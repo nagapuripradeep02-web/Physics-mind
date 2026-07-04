@@ -10424,6 +10424,12 @@ export const FIELD_3D_RENDERER_CODE = `
             ? stateDef.rotation_target_deg : theta;
         lg.userData.rotation_init_theta_deg = theta;
         lg.userData.rotation_start_time = time;
+        // Reset the unstable-equilibrium flip continuation (STATE_9): the one-way
+        // flip hands off to a decaying libration once it reaches the stable
+        // orientation; clear the handoff flags so re-entering the state restarts
+        // the flip from the top (updateTorqueLoopFrame reads these).
+        lg.userData.flipSettled = false;
+        lg.userData.flipSettleStart = -1;
         lg.userData.oscillation_amplitude_deg = stateDef.oscillation_amplitude_deg || 0;
         lg.userData.oscillation_period_s = stateDef.oscillation_period_s || 4;
         lg.userData.theta_sweep_period_s = stateDef.theta_sweep_period_s || 10;
@@ -10501,12 +10507,52 @@ export const FIELD_3D_RENDERER_CODE = `
         var curTheta = lg.userData.theta_deg;
 
         if (mode === "slow_rotation") {
-            // Linear interpolate from current toward rotation_target_deg
-            // over ~3 seconds.
             var target = lg.userData.rotation_target_deg;
-            var diff = target - curTheta;
-            var step = (Math.sign(diff)) * Math.min(Math.abs(diff), 30 * dtSeconds);
-            if (Math.abs(step) > 0.01) applyTorqueLoopTheta(lg, curTheta + step);
+            var initTheta = lg.userData.rotation_init_theta_deg;
+            // Unstable-equilibrium flip (STATE_9): the loop starts just off the
+            // unstable pose (theta near 180, mu anti-parallel B) and the torque
+            // drives it AWAY, all the way through the stable orientation at
+            // theta=360 (=0). A real loop released from near the inverted pose
+            // does NOT stop at the bottom — it arrives with rotational KE and
+            // LIBRATES about the stable point, the swing decaying as damping
+            // bleeds energy. So instead of clamping to a frozen frame once the
+            // one-way flip completes (which flatlines THE EYE D7), we hand off
+            // to a decaying oscillation about theta=360 that never fully dies
+            // within the state (Rule 31b: continuous distinct motion for the
+            // full duration; honest — it rotates AWAY from 180 and stays there).
+            // Scoped to this scenario + the flip-to-360 signature so STATE_4's
+            // one-time couple settle (target 60) is untouched.
+            var isUnstableFlip = config.scenario_type === "torque_on_loop_uniform_field"
+                && target >= 360 && initTheta > 135 && initTheta < 225;
+            if (isUnstableFlip) {
+                var diffU = target - curTheta;
+                if (!lg.userData.flipSettled && diffU > 0.5) {
+                    // Phase 1 — the driven flip (same linear-drive idiom as
+                    // STATE_4's couple rotation), sweeping theta up to 360.
+                    applyTorqueLoopTheta(lg, curTheta + Math.min(diffU, 30 * dtSeconds));
+                } else {
+                    // Phase 2 — arrived at the stable orientation with KE:
+                    // a decaying libration about theta=360 (same oscillation
+                    // idiom as STATE_8, offset to 360). Amplitude eases from
+                    // ~40 -> ~10 deg but never reaches a frozen frame, so the
+                    // motion stays above the D7 floor for the whole state.
+                    if (!lg.userData.flipSettled) {
+                        lg.userData.flipSettled = true;
+                        lg.userData.flipSettleStart = time;
+                    }
+                    var elU = time - lg.userData.flipSettleStart;
+                    var TU = 3.0;                                 // swing period (matches STATE_8)
+                    var ampU = 10 + 30 * Math.exp(-elU / 10);     // 40 -> 10 deg, never 0
+                    applyTorqueLoopTheta(lg, 360 + ampU * Math.sin((elU / TU) * 2 * Math.PI));
+                }
+            } else {
+                // Original one-time settle (STATE_4 couple rotation, etc.):
+                // linear interpolate from current toward rotation_target_deg,
+                // then hold.
+                var diff = target - curTheta;
+                var step = (Math.sign(diff)) * Math.min(Math.abs(diff), 30 * dtSeconds);
+                if (Math.abs(step) > 0.01) applyTorqueLoopTheta(lg, curTheta + step);
+            }
         } else if (mode === "oscillation") {
             // Simple SHM about θ = 0.
             var T = lg.userData.oscillation_period_s || 4;

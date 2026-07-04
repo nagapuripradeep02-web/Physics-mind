@@ -166,7 +166,7 @@
       },
       "STATE_2": {
         "title": "Force on one side — F = I L × B reveals on the left side",
-        "duration": 20,
+        "duration": 18,
         "focal_primitive_id": "force_left_label",
         "advance_mode": "manual_click",
         "scene_composition": [
@@ -174,14 +174,14 @@
             "type": "annotation",
             "id": "force_left_label",
             "position": { "x": 380, "y": 60 },
-            "text": "Predict, then reveal: F on the LEFT side",
+            "text": "Force on the LEFT side — F = I L × B",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
             "id": "predict_label",
             "position": { "x": 200, "y": 230 },
-            "text": "Watch the dots on the LEFT side.\nCurrent flows UP.\nB points to the right.\nPredict: which way is the force?",
+            "text": "Watch the dots on the LEFT side.\nCurrent flows UP.\nB points to the right.",
             "color": "#FFCC9F"
           },
           {
@@ -189,31 +189,28 @@
             "id": "reveal_label",
             "position": { "x": 560, "y": 230 },
             "text": "See the guide (top right):\nI arrow = up, B arrow = right\n→ F = I × B points INTO the page.\nF₁ into the page. ✓",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s2_4"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "magnitude_label",
             "position": { "x": 380, "y": 470 },
             "text": "F₁ = I · L_side · B. For our defaults: F₁ = 0.5 · 0.10 · 0.1 = 0.005 N.",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s2_4"
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Watch the orange dots on the left side of the loop. They flow upward. Current on the left side is going up.", "text_hi": "Loop के left side पर orange dots देखो। वे ऊपर की तरफ flow कर रहे हैं। Left side पर current ऊपर जा रही है।", "text_te": "Loop యొక్క left side పై orange dots చూడండి. అవి upward గా flow అవుతున్నాయి. Left side పై current పైకి వెళ్తోంది.", "glow": "dot_left_a" },
-            { "id": "s2_2", "text_en": "Predict before I show you. Current up, field pointing right. Which way is the force? Take three seconds.", "text_hi": "मैं दिखाने से पहले predict करो। Current ऊपर, field right की तरफ। Force किस direction में है? तीन seconds लो।", "text_te": "నేను చూపించే ముందే predict చేయండి. Current పైకి, field right వైపు. Force ఏ direction లో ఉంది? మూడు seconds తీసుకోండి.", "glow": "side_left", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "Look at the guide in the upper right. Three arrows: current I pointing up, magnetic field B pointing right, and force F equals I cross B.", "text_hi": "ऊपर दाएं guide देखो। तीन arrows: current I ऊपर, magnetic field B right, और force F equals I cross B।", "text_te": "Upper right లో guide చూడండి. మూడు arrows: current I పైకి, magnetic field B right వైపు, మరియు force F equals I cross B.", "glow": "rhr_guide_left" },
-            { "id": "s2_4", "text_en": "Force F points into the page — away from you. That is the cross product: thumb up, fingers right, palm faces away. F-one into the page.", "text_hi": "Force F page के अंदर point करता है — तुमसे दूर। यही cross product है: thumb ऊपर, fingers right, palm दूर की तरफ। F-one page के अंदर।", "text_te": "Force F page లోపలికి point అవుతుంది — మీ నుండి దూరంగా. ఇదే cross product: thumb పైకి, fingers right వైపు, palm దూరంగా. F-one page లోపలికి.", "glow": ["rhr_guide_left", "f_left"], "math_show": "\\vec{F}_1 = I(\\vec{L} \\times \\vec{B}),\\quad \\text{into page}" },
-            { "id": "s2_5", "text_en": "Magnitude: current I times L times B. For our defaults, five thousandths of a newton.", "text_hi": "Magnitude: current I times L times B। हमारे default values के लिए, five thousandths of a newton।", "text_te": "Magnitude: current I times L times B. మన default values కోసం, five thousandths of a newton.", "glow": "f_left", "math_show": "F_1 = I L B = 0.005\\,\\text{N}" }
+            { "id": "s2_1", "text_en": "Watch the orange dots on the left side — current flows upward, and the magnetic field B points to the right.", "text_hi": "Loop के left side पर orange dots देखो — current ऊपर की तरफ flow कर रही है, और magnetic field B right की तरफ point करता है।", "text_te": "Loop యొక్క left side పై orange dots చూడండి — current పైకి flow అవుతోంది, మరియు magnetic field B right వైపు point చేస్తుంది.", "glow": ["dot_left_a", "side_left"] },
+            { "id": "s2_3", "text_en": "Look at the guide in the upper right: current I up, field B right, and force F equals I cross B.", "text_hi": "ऊपर दाएं guide देखो: current I ऊपर, field B right, और force F equals I cross B।", "text_te": "Upper right లో guide చూడండి: current I పైకి, field B right వైపు, మరియు force F equals I cross B.", "glow": "rhr_guide_left" },
+            { "id": "s2_4", "text_en": "Force F points into the page, away from you — thumb up, fingers right, palm pushes away. F-one is into the page.", "text_hi": "Force F page के अंदर, तुमसे दूर point करता है — thumb ऊपर, fingers right, palm दूर की तरफ। F-one page के अंदर है।", "text_te": "Force F page లోపలికి, మీ నుండి దూరంగా point అవుతుంది — thumb పైకి, fingers right వైపు, palm దూరంగా. F-one page లోపలికి ఉంది.", "glow": ["rhr_guide_left", "f_left"], "math_show": "\\vec{F}_1 = I(\\vec{L} \\times \\vec{B}),\\quad \\text{into page}" },
+            { "id": "s2_5", "text_en": "Magnitude: F equals I times L times B — five thousandths of a newton for our defaults.", "text_hi": "Magnitude: F equals I times L times B — हमारे defaults के लिए, five thousandths of a newton।", "text_te": "Magnitude: F equals I times L times B — మన defaults కోసం, five thousandths of a newton.", "glow": "f_left", "math_show": "F_1 = I L B = 0.005\\,\\text{N}" }
           ]
         }
       },
       "STATE_3": {
         "title": "Force on the opposite side — F₂ is anti-parallel; ΣF = 0",
-        "duration": 22,
+        "duration": 18,
         "focal_primitive_id": "force_right_label",
         "advance_mode": "manual_click",
         "has_prebuilt_deep_dive": false,
@@ -229,7 +226,7 @@
             "type": "annotation",
             "id": "right_predict",
             "position": { "x": 200, "y": 230 },
-            "text": "Watch the dots on the RIGHT side.\nCurrent flows DOWN.\nB still points right.\nPredict F before looking at the guide.",
+            "text": "Watch the dots on the RIGHT side.\nCurrent flows DOWN.\nB still points right.",
             "color": "#FFCC9F"
           },
           {
@@ -237,33 +234,30 @@
             "id": "right_reveal",
             "position": { "x": 560, "y": 230 },
             "text": "Guide shows: I down, B right\n→ F = I × B points OUT of the page.\nF₂ and F₁ are anti-parallel. ✓",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s3_4"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "sum_zero",
             "position": { "x": 380, "y": 470 },
             "text": "ΣF = F₁ + F₂ = 0. The loop will NOT translate. Anywhere.",
-            "color": "#FFF176",
-            "reveal_at_tts_id": "s3_4"
+            "color": "#FFF176"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Now the right side. Watch the orange dots — they flow downward. Current on the right is going down.", "text_hi": "अब right side। Orange dots देखो — वे नीचे flow कर रहे हैं। Right side पर current नीचे जा रही है।", "text_te": "ఇప్పుడు right side. Orange dots చూడండి — అవి downward గా flow అవుతున్నాయి. Right side పై current కిందికి వెళ్తోంది.", "glow": "dot_right_a" },
-            { "id": "s3_2", "text_en": "Predict again before the guide shows you. Current down, field right. Which way is the force?", "text_hi": "Guide दिखाने से पहले फिर से predict करो। Current नीचे, field right। Force किस तरफ है?", "text_te": "Guide చూపించే ముందే మళ్ళీ predict చేయండి. Current కిందికి, field right వైపు. Force ఏ వైపుకు?", "glow": "side_right", "pause_after_ms": 2500 },
-            { "id": "s3_3", "text_en": "Look at the guide. Current I arrow down, magnetic field B arrow right. Force F equals I cross B — out of the page this time.", "text_hi": "Guide देखो। current I arrow नीचे, magnetic field B arrow right। force F equals I cross B — इस बार page के बाहर।", "text_te": "Guide చూడండి. current I arrow కిందికి, magnetic field B arrow right వైపు. force F equals I cross B — ఈసారి page బయటికి.", "glow": "rhr_guide_right" },
-            { "id": "s3_4", "text_en": "F-two is out of the page. Opposite direction to F-one. Same magnitude. Add them — net force is zero.", "text_hi": "F-two page के बाहर है। F-one के opposite direction में। Same magnitude। दोनों को add करो — net force zero है।", "text_te": "F-two page బయట ఉంది. F-one కు opposite direction లో. Same magnitude. రెండూ add చేయండి — net force zero.", "glow": ["side_right", "f_right", "sum_zero"], "math_show": "\\sum \\vec{F} = \\vec{F}_1 + \\vec{F}_2 = 0" },
-            { "id": "s3_5", "text_en": "But notice — the forces act on DIFFERENT lines of action. Left side and right side. That asymmetry is about to matter.", "text_hi": "लेकिन ध्यान दो — forces DIFFERENT lines of action पर act कर रहे हैं। Left side और right side। यह asymmetry अब important होने वाली है।", "text_te": "కానీ గమనించండి — forces DIFFERENT lines of action పై act చేస్తున్నాయి. Left side మరియు right side. ఈ asymmetry ఇప్పుడు important అవుతుంది.", "glow": ["f_left", "f_right"] }
+            { "id": "s3_1", "text_en": "Now watch the orange dots on the right side — they flow downward, and the field B still points to the right.", "text_hi": "अब right side पर orange dots देखो — वे नीचे की तरफ flow कर रहे हैं, और field B अब भी right की तरफ point करता है।", "text_te": "ఇప్పుడు right side లో orange dots చూడండి — అవి కిందికి flow అవుతున్నాయి, మరియు field B ఇప్పటికీ right వైపు point చేస్తుంది.", "glow": ["dot_right_a", "side_right"] },
+            { "id": "s3_3", "text_en": "Apply the guide again: current I down, field B right — force F equals I cross B, out of the page this time.", "text_hi": "फिर से guide apply करो: current I नीचे, field B right — force F equals I cross B, इस बार page के बाहर।", "text_te": "మళ్ళీ guide apply చేయండి: current I కిందికి, field B right వైపు — force F equals I cross B, ఈసారి page బయటికి.", "glow": "rhr_guide_right" },
+            { "id": "s3_4", "text_en": "F-two is out of the page — opposite to F-one, same magnitude. Add them: the net force is zero.", "text_hi": "F-two page के बाहर है — F-one के opposite, same magnitude। दोनों को add करो: net force zero है।", "text_te": "F-two page బయట ఉంది — F-one కి opposite, same magnitude. రెండూ add చేయండి: net force zero.", "glow": ["side_right", "f_right", "sum_zero"], "math_show": "\\sum \\vec{F} = \\vec{F}_1 + \\vec{F}_2 = 0" },
+            { "id": "s3_5", "text_en": "But the two forces act on different lines of action — left side and right side. That asymmetry is about to matter.", "text_hi": "लेकिन दोनों forces different lines of action पर act करते हैं — left side और right side। यह asymmetry अब important होने वाली है।", "text_te": "కానీ రెండు forces different lines of action పై act చేస్తాయి — left side మరియు right side. ఈ asymmetry ఇప్పుడు important అవుతుంది.", "glow": ["f_left", "f_right"] }
           ]
         }
       },
       "STATE_4": {
         "title": "Torque emerges — two opposite forces on different lines = a couple",
-        "duration": 28,
+        "duration": 18,
         "focal_primitive_id": "torque_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "has_prebuilt_deep_dive": false,
         "scene_composition": [
           {
@@ -285,23 +279,20 @@
             "id": "rotation_label",
             "position": { "x": 560, "y": 230 },
             "text": "ΣF = 0  ✓  no translation\nΣτ ≠ 0  →  rotation begins",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s4_3"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "aha_label",
             "position": { "x": 380, "y": 470 },
             "text": "Zero net force and non-zero net torque are simultaneously true. This is the heart of rotational dynamics.",
-            "color": "#FFF176",
-            "reveal_at_tts_id": "s4_5"
+            "color": "#FFF176"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Two forces. Equal magnitude. Opposite direction. Different lines of action. What does that combination do?", "text_hi": "दो forces। Equal magnitude। Opposite direction। Different lines of action। यह combination क्या करता है?", "text_te": "రెండు forces. Equal magnitude. Opposite direction. Different lines of action. ఈ combination ఏమి చేస్తుంది?", "glow": ["f_left", "f_right"] },
-            { "id": "s4_2", "text_en": "Take three seconds. Picture the loop. Picture the forces.", "text_hi": "तीन seconds लो। Loop की picture बनाओ। Forces की picture बनाओ।", "text_te": "మూడు seconds తీసుకోండి. Loop ని imagine చేయండి. Forces ని imagine చేయండి.", "glow": "loop", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "It is a couple. A couple produces rotation with no translation. The loop will spin about the vertical axis through its centre.", "text_hi": "यह एक couple है। Couple rotation produce करता है बिना translation के। Loop अपने centre से गुजरने वाले vertical axis के बारे में spin करेगी।", "text_te": "ఇది ఒక couple. Couple అనేది translation లేకుండా rotation ఉత్పన్నం చేస్తుంది. Loop దాని centre గుండా వెళ్ళే vertical axis చుట్టూ spin అవుతుంది.", "glow": ["rotation_label", "tau_arrow"] },
+            { "id": "s4_1", "text_en": "Two forces — equal magnitude, opposite direction, on different lines of action. What does that combination do?", "text_hi": "दो forces — equal magnitude, opposite direction, different lines of action पर। यह combination क्या करता है?", "text_te": "రెండు forces — equal magnitude, opposite direction, వేర్వేరు lines of action పై. ఈ combination ఏమి చేస్తుంది?", "glow": ["f_left", "f_right"] },
+            { "id": "s4_3", "text_en": "It is a couple — a couple produces rotation with no translation. The loop spins about the vertical axis through its centre.", "text_hi": "यह एक couple है — couple बिना translation के rotation produce करता है। Loop अपने centre से गुजरने वाले vertical axis पर spin करती है।", "text_te": "ఇది ఒక couple — couple translation లేకుండా rotation ఉత్పన్నం చేస్తుంది. Loop దాని centre గుండా వెళ్ళే vertical axis చుట్టూ spin అవుతుంది.", "glow": ["loop", "rotation_label", "tau_arrow"] },
             { "id": "s4_4", "text_en": "Sum of forces is zero. Sum of torques is not zero. Both statements are true at the same time.", "text_hi": "Sum of forces zero है। Sum of torques zero नहीं है। दोनों बातें एक साथ सच हैं।", "text_te": "Sum of forces zero. Sum of torques zero కాదు. రెండు statements ఒకే సమయంలో నిజమే.", "glow": ["sum_zero", "tau_arrow"], "math_show": "\\sum \\vec{F} = 0, \\quad \\sum \\vec{\\tau} \\neq 0" },
             { "id": "s4_5", "text_en": "This is the heart of rotational dynamics. Forces decide translation. Torques decide rotation.", "text_hi": "यही rotational dynamics का heart है। Forces translation decide करते हैं। Torques rotation decide करते हैं।", "text_te": "ఇదే rotational dynamics యొక్క heart. Forces translation decide చేస్తాయి. Torques rotation decide చేస్తాయి.", "glow": "aha_label" }
           ]
@@ -404,9 +395,9 @@
       },
       "STATE_7": {
         "title": "Where is τ maximum? — predict before you see",
-        "duration": 24,
+        "duration": 18,
         "focal_primitive_id": "predict_title",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "has_prebuilt_deep_dive": false,
         "scene_composition": [
           {
@@ -428,24 +419,22 @@
             "id": "answer_reveal",
             "position": { "x": 560, "y": 230 },
             "text": "Actual answer: θ = 90°.\nτ = μ B sin 90° = μ B\n\nCross product is biggest when the two vectors are PERPENDICULAR, not parallel.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s7_3"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "cross_product_reminder",
             "position": { "x": 380, "y": 470 },
             "text": "τ = μ × B. Parallel → sin 0 = 0 → τ = 0. Perpendicular → sin 90 = 1 → τ = max.",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s7_4"
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "The loop is now frozen at theta equals ninety degrees. Look at the torque arrow — fully extended.", "text_hi": "Loop अब theta equals ninety degrees पर frozen है। Torque arrow देखो — पूरी तरह extended है।", "text_te": "Loop ఇప్పుడు theta equals ninety degrees వద్ద frozen గా ఉంది. Torque arrow చూడండి — పూర్తిగా extended గా ఉంది.", "glow": "predict_title" },
-            { "id": "s7_2", "text_en": "Predict first. At what angle does the torque reach its maximum? Three seconds.", "text_hi": "पहले predict करो। Torque किस angle पर maximum पहुँचता है? तीन seconds।", "text_te": "ముందు predict చేయండి. Torque ఏ angle వద్ద maximum కి చేరుతుంది? మూడు seconds.", "glow": "wrong_belief", "pause_after_ms": 3000 },
-            { "id": "s7_3", "text_en": "Many students say theta zero — where mu is parallel to magnetic field B. That feels right. It is wrong. The answer is ninety degrees.", "text_hi": "बहुत से students theta zero कहते हैं — जहाँ mu, magnetic field B के parallel है। यह सही लगता है। लेकिन यह गलत है। Answer ninety degrees है।", "text_te": "చాలా మంది students theta zero అంటారు — ఇక్కడ mu, magnetic field B కు parallel గా ఉంటుంది. అది సరిగ్గా అనిపిస్తుంది. కానీ అది తప్పు. Answer ninety degrees.", "glow": "answer_reveal", "math_show": "\\tau_{\\max} = \\mu B \\;\\text{at}\\; \\theta = 90^{\\circ}" },
-            { "id": "s7_4", "text_en": "Because tau is a cross product. Cross products are biggest when the two vectors are perpendicular, smallest when they are parallel.", "text_hi": "क्योंकि tau एक cross product है। Cross products सबसे बड़े होते हैं जब दो vectors perpendicular होते हैं, सबसे छोटे जब वे parallel होते हैं।", "text_te": "ఎందుకంటే tau ఒక cross product. రెండు vectors perpendicular గా ఉన్నప్పుడు cross products అత్యధికంగా ఉంటాయి, parallel గా ఉన్నప్పుడు అత్యల్పంగా ఉంటాయి.", "glow": "cross_product_reminder" }
+            { "id": "s7_1", "text_en": "The loop is frozen at theta equals ninety degrees — look at the torque arrow, fully extended.", "text_hi": "Loop अब theta equals ninety degrees पर frozen है — torque arrow देखो, पूरी तरह extended।", "text_te": "Loop ఇప్పుడు theta equals ninety degrees వద్ద frozen గా ఉంది — torque arrow చూడండి, పూర్తిగా extended.", "glow": "predict_title" },
+            { "id": "s7_2", "text_en": "It might seem the torque peaks at theta zero, where mu lines up with the magnetic field B — but that's the wrong guess.", "text_hi": "ऐसा लग सकता है कि torque theta zero पर peak करता है, जहाँ mu magnetic field B के साथ line up होता है — लेकिन यह गलत guess है।", "text_te": "Torque theta zero వద్ద peak అవుతుందని అనిపించవచ్చు, ఇక్కడ mu magnetic field B తో line up అవుతుంది — కానీ ఇది తప్పు guess.", "glow": "wrong_belief" },
+            { "id": "s7_3", "text_en": "It is wrong — the actual answer is ninety degrees, where torque equals mu times B.", "text_hi": "यह गलत है — actual answer ninety degrees है, जहाँ torque equals mu times B।", "text_te": "ఇది తప్పు — actual answer ninety degrees, ఇక్కడ torque equals mu times B.", "glow": "answer_reveal", "math_show": "\\tau_{\\max} = \\mu B \\;\\text{at}\\; \\theta = 90^{\\circ}" },
+            { "id": "s7_4", "text_en": "Because tau is a cross product — cross products are biggest when the two vectors are perpendicular, smallest when parallel.", "text_hi": "क्योंकि tau एक cross product है — cross products सबसे बड़े होते हैं जब दो vectors perpendicular होते हैं, सबसे छोटे जब वे parallel होते हैं।", "text_te": "ఎందుకంటే tau ఒక cross product — రెండు vectors perpendicular గా ఉన్నప్పుడు cross products అత్యధికంగా ఉంటాయి, parallel గా ఉన్నప్పుడు అత్యల్పంగా ఉంటాయి.", "glow": "cross_product_reminder" }
           ]
         },
         "misconception_watch": [
@@ -782,7 +771,7 @@
         "label": "Frozen at θ = 90° — predict the max angle",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4],
-        "caption": "Loop pinned at θ = 90°. Wrong-belief prompt and answer reveal via reveal_at_tts_id.",
+        "caption": "Loop pinned at θ = 90°. Wrong-belief callout, then the correct answer.",
         "theta_deg": 90,
         "rotation_mode": "static",
         "extras": {
