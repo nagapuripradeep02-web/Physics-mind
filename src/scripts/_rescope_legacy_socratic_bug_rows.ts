@@ -69,6 +69,7 @@ function emitSql(): string {
 async function main(): Promise<void> {
   const sqlPath = join(
     process.cwd(),
+    'supabase_migrations',
     'supabase_2026-07-03_rescope_legacy_socratic_bug_rows_migration.sql',
   );
   writeFileSync(sqlPath, emitSql(), 'utf-8');

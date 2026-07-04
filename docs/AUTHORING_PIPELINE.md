@@ -201,7 +201,7 @@ npm run log:lesson -- \
 
 | Channel | Compounds when? | Mechanism |
 |---|---|---|
-| **Bug-prevention** | ✅ Day 1 (live) | `engine_bug_queue` — 38 incident rows (25 fixed, 8 open, 3 deferred, 2 not-reproducing as of 2026-06-11, verified post-migration), 100% carry a `prevention_rule`. Every fix protects all future concepts. (The 38 vision-probe check definitions live separately as `row_type='probe_definition'` — see `supabase_2026-06-11_engine_bug_queue_row_type_migration.sql`.) |
+| **Bug-prevention** | ✅ Day 1 (live) | `engine_bug_queue` — 38 incident rows (25 fixed, 8 open, 3 deferred, 2 not-reproducing as of 2026-06-11, verified post-migration), 100% carry a `prevention_rule`. Every fix protects all future concepts. (The 38 vision-probe check definitions live separately as `row_type='probe_definition'` — see `supabase_migrations/supabase_2026-06-11_engine_bug_queue_row_type_migration.sql`.) |
 | **Pedagogy rules** | ✅ Day 1 (live) | Professor lessons + diamond lessons → patterns library. Diamond #N is born knowing everything #1…#N-1 learned. |
 | **Comprehension** ("did a cold student learn?") | ⏳ Later (needs students) | pre/post quiz → `comprehension_result` → Tier-8 Proposer → `proposal_queue`. Currently **0 rows** — lights up at stage ⑤. |
 

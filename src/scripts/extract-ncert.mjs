@@ -417,7 +417,7 @@ async function main() {
 
     if (countErr) {
         console.error("❌  Cannot reach ncert_content table:", countErr.message);
-        console.error("   Did you run supabase_ncert_migration.sql first?");
+        console.error("   Did you run supabase_migrations/supabase_ncert_migration.sql first?");
         setTimeout(() => process.exit(1), 500);
         return;
     }

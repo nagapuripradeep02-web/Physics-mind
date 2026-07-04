@@ -168,7 +168,7 @@ async function mergeSpiralConcept(): Promise<void> {
 
 async function main(): Promise<void> {
   // 1. Emit the archival SQL migration.
-  const sqlPath = join(process.cwd(), 'supabase_2026-06-25_seed_engine_bug_queue_radius_period_chain_migration.sql');
+  const sqlPath = join(process.cwd(), 'supabase_migrations', 'supabase_2026-06-25_seed_engine_bug_queue_radius_period_chain_migration.sql');
   writeFileSync(sqlPath, emitSql([...incidents, ...directives]), 'utf-8');
   console.log(`Wrote archival SQL: ${sqlPath} (${incidents.length} incident + ${directives.length} directive rows)`);
 

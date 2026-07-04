@@ -13,7 +13,7 @@
  * Usage:
  *   npx tsx src/scripts/compileRoutingSignals.ts
  *
- * Pre-requisite: run supabase_routing_signals_migration.sql in Supabase SQL Editor
+ * Pre-requisite: run supabase_migrations/supabase_routing_signals_migration.sql in Supabase SQL Editor
  */
 
 import dotenv from 'dotenv';

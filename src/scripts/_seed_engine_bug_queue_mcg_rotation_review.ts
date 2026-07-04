@@ -119,7 +119,7 @@ ON CONFLICT (bug_class) DO NOTHING;
 }
 
 async function main(): Promise<void> {
-  const sqlPath = join(process.cwd(), 'supabase_2026-06-28_seed_engine_bug_queue_mcg_rotation_review_migration.sql');
+  const sqlPath = join(process.cwd(), 'supabase_migrations', 'supabase_2026-06-28_seed_engine_bug_queue_mcg_rotation_review_migration.sql');
   writeFileSync(sqlPath, emitSql(incidents), 'utf-8');
   console.log(`Wrote archival SQL: ${sqlPath}`);
 

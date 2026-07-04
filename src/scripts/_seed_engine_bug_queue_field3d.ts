@@ -353,7 +353,7 @@ async function upsertBatch(rows: Row[], label: string): Promise<boolean> {
 
 async function main(): Promise<void> {
   // 1. Emit the archival SQL migration (single source of truth = these arrays).
-  const sqlPath = join(process.cwd(), 'supabase_2026-06-25_seed_engine_bug_queue_field3d_diamonds_migration.sql');
+  const sqlPath = join(process.cwd(), 'supabase_migrations', 'supabase_2026-06-25_seed_engine_bug_queue_field3d_diamonds_migration.sql');
   writeFileSync(sqlPath, emitSql([...incidents, ...directives]), 'utf-8');
   console.log(`Wrote archival SQL: ${sqlPath} (${incidents.length} incident + ${directives.length} directive rows)`);
 

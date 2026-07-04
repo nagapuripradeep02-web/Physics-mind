@@ -129,7 +129,7 @@ function emitSql(all: Row[]): string {
 }
 
 async function main(): Promise<void> {
-  const sqlPath = join(process.cwd(), 'supabase_2026-07-03_seed_engine_bug_queue_swc_video_review_migration.sql');
+  const sqlPath = join(process.cwd(), 'supabase_migrations', 'supabase_2026-07-03_seed_engine_bug_queue_swc_video_review_migration.sql');
   writeFileSync(sqlPath, emitSql(incidents), 'utf-8');
   console.log(`Wrote archival SQL: ${sqlPath} (${incidents.length} incident rows)`);
 

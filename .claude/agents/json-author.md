@@ -1,6 +1,6 @@
 ---
 name: json-author
-description: Use this agent AFTER architect skeleton AND physics-author block exist — json-author writes the actual src/data/concepts/<id>.json conforming to v2.2 Zod schema, registers the concept at all 8 registration sites (panelConfig, intentClassifier VALID_CONCEPT_IDS + CLASSIFIER_PROMPT, PCPL_CONCEPTS set, etc.), authors the supabase_<date>_seed_<id>_clusters_migration.sql, and ensures every primitive lives within the 760×500 canvas. Iterate until npx tsc --noEmit and npm run validate:concepts both pass.
+description: Use this agent AFTER architect skeleton AND physics-author block exist — json-author writes the actual src/data/concepts/<id>.json conforming to v2.2 Zod schema, registers the concept at all 8 registration sites (panelConfig, intentClassifier VALID_CONCEPT_IDS + CLASSIFIER_PROMPT, PCPL_CONCEPTS set, etc.), authors the supabase_migrations/supabase_<date>_seed_<id>_clusters_migration.sql, and ensures every primitive lives within the 760×500 canvas. Iterate until npx tsc --noEmit and npm run validate:concepts both pass.
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 
@@ -36,7 +36,7 @@ Emit `src/data/concepts/<id>.json` conforming to v2.1 gold-standard schema. Wire
 
 1. New file `src/data/concepts/<id>.json` — PASSes `npx tsc --noEmit` and `npm run validate:concepts`.
 2. Edits to 7 registration sites (see §"Eight registration sites" below).
-3. A migration file `supabase_<date>_seed_<id>_clusters_migration.sql` containing INSERT rows into `confusion_cluster_registry` matching the physics_author's drill-down phrasings.
+3. A migration file `supabase_migrations/supabase_<date>_seed_<id>_clusters_migration.sql` (all migrations live in `supabase_migrations/`, never the repo root) containing INSERT rows into `confusion_cluster_registry` matching the physics_author's drill-down phrasings.
 
 ## TTS narration — author born v3-compliant (Rule 30)
 
