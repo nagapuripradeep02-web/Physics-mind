@@ -1,6 +1,6 @@
 {
-  "approved_at": "2026-07-04T22:22:58.536Z",
-  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\circular_motion_charge_in_uniform_B\\20260704-070557",
+  "approved_at": "2026-07-04T22:23:03.873Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\cyclotron_period_independent_of_speed\\20260704-053324",
   "tolerance": 0.02,
   "states": {
     "STATE_1": {
@@ -16,14 +16,6 @@
       "compare_frozen": true
     },
     "STATE_4": {
-      "compare": true,
-      "compare_frozen": true
-    },
-    "STATE_5": {
-      "compare": true,
-      "compare_frozen": true
-    },
-    "STATE_6": {
       "compare": true,
       "compare_frozen": true
     }
