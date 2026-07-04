@@ -747,7 +747,7 @@
       "STATE_6": {
         "label": "Slip rings deliver AC; a split ring would give DC",
         "visible_elements": ["acg_coil", "acg_axle", "acg_slipring", "acg_slipring_lbl", "acg_brush", "acg_extwire", "acg_extcurr", "acg_curr", "acg_commutator", "acg_pole"],
-        "camera_position": [2.6, 0.2, 5.4],
+        "camera_position": [2.6, 0.6, 7.0],
         "caption": "Two continuous rings + fixed brushes: the current beads reverse and the outside arrow flips each half turn (at the sine's zero) -> AC. The rotating split ring's brush dots swap instead -> the dashed grey |eps| trace: one-way pulsating DC.",
         "show_sliders": true,
         "formula_overlay": "two rings -> AC   |   one split ring -> DC",

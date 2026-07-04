@@ -3627,11 +3627,23 @@ export const FIELD_3D_RENDERER_CODE = `
     //   v / F / v cos θ / v sin θ arrows in the Lorentz scenario.
     function createLabelSprite(text, color, scaleFactor) {
         var canvas = document.createElement("canvas");
-        canvas.width = 384;
-        canvas.height = 128;
+        var fontSpec = "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
+        // Measure the text FIRST and size the canvas to fit, so a wide string
+        // is no longer clipped at BOTH edges of a fixed 384px canvas (the bug:
+        // ac_generator "I (flips each half turn = AC)" showed only "each half tu").
+        // The Math.max(384, ...) floor keeps every short label (<=384px) identical
+        // in width AND scale (384/128 = 3), so no existing label in any field_3d
+        // scenario shifts by a pixel — only strings wider than 384px grow.
         var ctx = canvas.getContext("2d");
+        ctx.font = fontSpec;
+        var pad = 56;
+        var measured = Math.ceil(ctx.measureText(text).width) + pad;
+        canvas.width = Math.max(384, measured);
+        canvas.height = 128;
+        // Resizing the canvas resets its context state — re-acquire + re-apply.
+        ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.font = "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
+        ctx.font = fontSpec;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         // Dark outline for legibility against the deep-blue background
@@ -3647,8 +3659,9 @@ export const FIELD_3D_RENDERER_CODE = `
         });
         var sprite = new THREE.Sprite(material);
         var s = scaleFactor != null ? scaleFactor : 0.85;
-        // aspect: 384/128 = 3
-        sprite.scale.set(s * 3, s, 1);
+        // World-width tracks the canvas aspect (height fixed at 128) so glyphs
+        // keep the same on-screen height; a short label reduces to the old s*3.
+        sprite.scale.set(s * (canvas.width / canvas.height), s, 1);
         sprite.renderOrder = 999;  // always draw on top of arrows
         // Retain canvas/ctx/color so the label text can be redrawn live (e.g. a
         // counting "theta = N deg"); existing callers ignore these props.
@@ -20785,8 +20798,18 @@ export const FIELD_3D_RENDERER_CODE = `
             var kF = Math.floor(theta / (2 * Math.PI)); var tF = t + (2 * Math.PI * kF - theta) / omega;
             var kE = Math.floor((theta - Math.PI / 2) / (2 * Math.PI)); var tE = t + (Math.PI / 2 + 2 * Math.PI * kE - theta) / omega;
             ctx.setLineDash([4, 3]); ctx.font = "9px monospace";
-            if (tF >= t - tWin) { ctx.strokeStyle = "#66BB6A"; ctx.beginPath(); ctx.moveTo(xPix(tF), padT); ctx.lineTo(xPix(tF), H - padB); ctx.stroke(); ctx.fillStyle = "#66BB6A"; ctx.fillText("Phi max, eps=0", xPix(tF) - 2, padT + 9); }
-            if (tE >= t - tWin) { ctx.strokeStyle = "#FFB300"; ctx.beginPath(); ctx.moveTo(xPix(tE), padT); ctx.lineTo(xPix(tE), H - padB); ctx.stroke(); ctx.fillStyle = "#FFB300"; ctx.fillText("eps peak, Phi=0", xPix(tE) - 2, H - padB - 2); }
+            // Labels are left-aligned from the marker line, which sits near the
+            // RIGHT edge (a quarter/half period back from the live dot at xPix(t)).
+            // Clamp each label's x so the whole string stays inside [padL, W-padR]
+            // instead of truncating at the panel clip ("eps p...").
+            function acgMarkerLabel(text, mx, y) {
+                var lx = mx - 2, tw = ctx.measureText(text).width;
+                if (lx + tw > W - padR) lx = (W - padR) - tw;
+                if (lx < padL) lx = padL;
+                ctx.fillText(text, lx, y);
+            }
+            if (tF >= t - tWin) { ctx.strokeStyle = "#66BB6A"; ctx.beginPath(); ctx.moveTo(xPix(tF), padT); ctx.lineTo(xPix(tF), H - padB); ctx.stroke(); ctx.fillStyle = "#66BB6A"; acgMarkerLabel("Phi max, eps=0", xPix(tF), padT + 9); }
+            if (tE >= t - tWin) { ctx.strokeStyle = "#FFB300"; ctx.beginPath(); ctx.moveTo(xPix(tE), padT); ctx.lineTo(xPix(tE), H - padB); ctx.stroke(); ctx.fillStyle = "#FFB300"; acgMarkerLabel("eps peak, Phi=0", xPix(tE), H - padB - 2); }
             ctx.setLineDash([]);
         }
         // live dots at the right edge (current theta) — always on the curve
@@ -20830,6 +20853,12 @@ export const FIELD_3D_RENDERER_CODE = `
             var so = sceneObjects[j], sud = so.userData || {};
             var et = sud.elementType || "";
             if (et.indexOf("acg_") !== 0) continue;
+            // The bulb's emissiveIntensity + colour are OWNED by the sin^2
+            // modulation in updateAcGeneratorFrame (runs just before this pass).
+            // applyGlowEmphasis restores every material to a lazily-captured
+            // first-frame baseline (theta~0 => dark), which would freeze the
+            // bulb dark and wipe the peak/zero brightness story. Skip it.
+            if (sud.id === "acg_bulb") continue;
             applyGlowEmphasis(so, on(sud.id) || on(et), glowActive, glowP, true);
         }
     }
