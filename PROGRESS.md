@@ -1,5 +1,22 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚢 SESSION — repo cleanup + Rule 31 pacing codified (15–25s) + Ch.6 release: 2 SHIPPED, 2 HELD on eye-walker findings (2026-07-04 late)
+
+**Bottom line: motional_emf + ac_generator SHIPPED (Rule 30f chain complete, $0 — all clips hash-fresh, baselines locked). eddy_currents + inductance HELD by the pre-ship eye-walker gate on pre-existing MAJOR defects the earlier auditor PASS missed. Rule 31 pacing doctrine reconciled to ~15–25s (≈3–4 tight sentences) fleet-wide. Repo root cleaned 150→29 files.**
+
+- **Repo cleanup (4 commits `bfbc3e9`→`a804e1a` + prior-turn deletes):** 16 gitignored junk/log files deleted; 19 dead tracked files removed; CLAUDE_ENGINES/CLAUDE_REFERENCE/PLAN/LEGACY_SPLIT_BACKLOG → `docs/archive/` (pointers updated incl. 7 emission preambles); all 93 SQL migrations → `supabase_migrations/` (24 seed-script paths + json_author convention updated). KEEP-forever set unchanged: CLAUDE.md/CLAUDE_RULES.md/CLAUDE_APPENDIX.md/CLAUDE_TEST.md.
+- **Rule 31 pacing codified (`4a870d3`):** ~28–35s → **~15–25s (≈3–4 tight sentences)** in CLAUDE.md §5+§7, CLAUDE_RULES.md 31a (with supersession note), architect + quality_auditor canonicals→emissions (Gate 3e soft-flags now >30s / <10s), AUTHORING_PIPELINE, concepts/CLAUDE.md, ARCHITECTURE_v2.2. Closes the reconcile flagged by both 2026-07-04 sessions.
+- **Ch.6 release chain (founder approval "Approve all 4 — full chain" captured via AskUserQuestion):** all 4 caches reseeded post-`2d606b9` (systemic sprite fix) → fresh EYE 30/26/30/30 all clean $0 → **eye-walker ×4 in parallel** (first fleet use as native dispatch; frame reads fully out of main context):
+  - `motional_emf` **CLEAN → SHIPPED** — walker proved the sprite fix repaired 3 previously-truncated `E_internal = vB` labels (side-by-side vs pre-fix run). Chain: 7 baselines locked · 50/50 clips fresh · 0 stale · HTTP 200 · validate PASS.
+  - `ac_generator` **CLEAN → SHIPPED** — all 4 `2d606b9` fixes VERIFIED on frames (bulb glow tracks |ε|/ε₀ incl. dark-at-"EMF 0" keyframe; S4 markers unclipped; S6 label unoccluded + beads in-canvas). Chain: 7 baselines locked · 44/44 clips fresh · 0 stale · HTTP 200 · validate PASS.
+  - `inductance` **HELD** — 1 MAJOR pre-existing: S6 coupling freeze-pin photographs "readout says iron-core, mesh not yet seated" (deriveStateMeta literal 5000ms vs 6000ms cue + 1s ease). Candidate row `coupling_state_core_reveal_pin_mismatch` [owner: peter_parker:renderer_primitives] — NOT inserted, founder to confirm. Frames: `.visual_runs/inductance/20260704-220024/STATE_6__frozen.png` vs `STATE_6__dense_t07000.png`.
+  - `eddy_currents` **HELD** — 2 MAJOR + 2 MODERATE pre-existing: S4 loop-badge labels permanently double-exposed (exact-string `ecpFindById` toggle misses `_lbl` sprites, root-traced ~renderer L18960/L19347); S5 `neutral_label` orphaned from `visible_elements` → last beat has nothing to glow + ~17s static tail (Rule 31 violation). Candidates NOT inserted. Frames: `.visual_runs/eddy_currents/20260704-214812/STATE_4__frozen.png`, `STATE_5__frozen.png`.
+- **Telugu remains DRAFT on both shipped concepts** (native reviewer pass required before student/production use — Rule 30f).
+
+**Next session:** founder decides the two holds (ship-as-is + queue fixes, or log rows → route S4/S6 renderer bugs to peter_parker:renderer_primitives and S5 visible_elements to alex:json_author → re-verify → ship). Then the Ch.4 Socratic backlog: `torque_on_current_loop_in_field` (light) via retrofit-surgeon, then the two HEAVY galvanometer concepts.
+
+---
+
 ## 🤖 SESSION — harness expansion: 3 new agents (eye-walker · retrofit-surgeon · shipper) + physics-author→Sonnet-5 (2026-07-04, Ch.6 session continued)
 
 **Bottom line: the agent fleet grew 7→10 (founder-approved). New: `eye_walker` (Alex — reads THE EYE frame dumps in its own context; live-tested on ac_generator: 122k tokens absorbed in-agent, ~600-token report returned, 3 real findings), `retrofit_surgeon` (Alex — one concept + one named doctrine delta, cue/glow bindings sacred), `shipper` (NEW Release cluster — post-founder-approval Rule 30f chain; refuses to run without an approval statement). `physics-author` emission pinned `model: claude-sonnet-5`.**
