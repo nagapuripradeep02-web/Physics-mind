@@ -1,6 +1,6 @@
 # CLAUDE.md — `.agents/` (canonical agent specs)
 
-Umbrella governance for the seven canonical agent specifications. This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
+Umbrella governance for the ten canonical agent specifications (seven original + three added 2026-07-04: `eye_walker`, `retrofit_surgeon`, `shipper`). This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
 
 ## Canonical source vs dispatch wrapper
 
@@ -24,17 +24,26 @@ When you edit `<role>/CLAUDE.md`:
 
 Naming reminder: emission filename and `name:` field use **hyphenated** form (`json-author`). Bug-queue ownership tags and FAIL routing use **underscored cluster-prefixed** form (`alex:json_author`). Both intentional. See `~/.claude/rules/agent-teams-reference.md`.
 
-## The seven roles
+## The ten roles (2026-07-04: adds `eye_walker`, `retrofit_surgeon`, `shipper` + the Release cluster)
 
 | Cluster | Role (canonical dir) | Pattern | One-line summary |
 |---|---|---|---|
 | Alex | `architect` | pipelined #1 | Produces 9-section skeleton + Pass-1 strategic checklist (v2.3) |
-| Alex | `physics_author` | pipelined #2 | Produces physics block (variables, formulas, constraints, reveals) |
+| Alex | `physics_author` | pipelined #2 | Produces physics block (variables, formulas, constraints, reveals). Model-pinned `claude-sonnet-5` (2026-07-04). |
 | Alex | `json_author` | pipelined #3 | Produces the `.json` + 8 registration sites + SQL migration |
 | Alex | `quality_auditor` | pipelined #4 (gate) | Per-gate PASS/FAIL verdict + return-to-author FAIL routing. Reports only, never edits. |
+| Alex | `eye_walker` | parallel verification (frames) | Reads THE EYE frame dumps in its own context; per-state verdict table + ≤5 frames for founder eyes. Curates, never approves. Dispatched alongside quality_auditor. |
+| Alex | `retrofit_surgeon` | dispatched per-concept for doctrine deltas | ONE concept + ONE named delta = minimal surgical diff; preserves cue/glow bindings + PRIMARY aha; fleet migration = N parallel dispatches. |
 | Peter Parker | `renderer_primitives` | FAIL-routed | Display layer in `parametric_renderer.ts` + PCPL primitives. Never call directly. |
 | Peter Parker | `runtime_generation` | FAIL-routed | Generator + jsonModifier + cache sweeps. Only agent that runs `DELETE` on cache tables. Never call directly. |
+| Release | `shipper` | post-approval release chain — **founder-triggered only** | Rule 30f last step: visual:approve → translate (provider fallback) → tts EN+TE → rebuild → verify. Refuses to run without an approval statement. |
 | Offline | `feedback_collector` | nightly only | E38–E41 quartet. Reads 5 feedback tables, writes proposals. Never invoked during live serving paths. |
+
+**Release cluster (added 2026-07-04).** A fourth, deliberately lightweight cluster beyond Alex / Peter
+Parker / Offline: script-orchestration roles that run AFTER the Rule 17 human gate. It has no OVERVIEW.md
+(no shared-subsystem sacred-boundary table, no inter-cluster handoff protocol — a single role invoking
+idempotent npm scripts doesn't warrant one; author an OVERVIEW only if the cluster grows a second role or
+a real handoff protocol). Owner-tag form: `release:shipper`.
 
 ## Hard rules (verbatim from `~/.claude/rules/agent-teams-reference.md`)
 
@@ -44,6 +53,7 @@ Naming reminder: emission filename and `name:` field use **hyphenated** form (`j
 4. Quality_auditor is the gate, not the author. Reports + routes. Never edits content.
 5. `.agents/<role>/CLAUDE.md` is the canonical source. `.claude/agents/<role>.md` is the emission. Never edit the emission directly.
 6. Anchor checking (Indian context, plain English, no Hinglish) is folded into quality_auditor's anti-plagiarism probe. Do not create a separate anchor-checker agent.
+7. *(added 2026-07-04)* `shipper` dispatches ONLY on explicit founder approval (Rule 17 gate — quality_auditor PASS / THE EYE clean are NOT approval); `eye_walker` curates frames but never approves (`visual:approve` stays founder-triggered); `retrofit_surgeon` never touches registration sites, renderer code, or a second file — it escalates instead.
 
 ## Versioning convention
 

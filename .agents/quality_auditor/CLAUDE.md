@@ -112,7 +112,7 @@ The architect's skeleton must contain a `## Definition of Done` block (output-co
 - **Right-hand rule** — every direction-teaching state in the DoD has its specified RHR overlay/animation primitive present (grip vs cross-product per `patterns/magnetism.md`).
 - **Motion** — every DoD motion row has a `choreography_sequence` / `animate_in` in that state. No static diagram where the DoD declared an animation.
 - **Modes** — the modes the DoD declares for this concept's phase exist and are COMPLETE (board ⇒ `canvas_style` + `derivation_sequence` + `mark_scheme`, Rule 21 — half a mode is worse than none).
-- **Comprehension keystone** — `assessment` + `coverage_map` + per-state `misconception_watch` present if the DoD declares them (mandatory for concepts authored 2026-05-30+).
+- **Comprehension keystone** — `assessment` + `coverage_map` present if the DoD declares them (mandatory for concepts authored 2026-05-30+), and `misconception_watch` present at the genuine motivation/misconception PIVOTS (the aha + any counter-intuitive beats) — NOT on every state. A straightforward teaching state carries NO `misconception_watch`; a per-state `misconception_watch` is a discipline defect (founder guardrail 2026-07-04). `assessment` + `coverage_map` remain mandatory where the DoD declares them.
 
 FAIL routing: DoD block missing/incomplete/TBD → `alex:architect` `[reason: pass-1]`. DoD line unsatisfied in the JSON → `alex:json_author` `[reason: dod]`.
 

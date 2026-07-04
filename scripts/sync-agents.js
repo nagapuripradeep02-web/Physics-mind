@@ -46,6 +46,10 @@ const ROLES = [
   { canonical: 'renderer_primitives', emission: 'renderer-primitives' },
   { canonical: 'runtime_generation',  emission: 'runtime-generation'  },
   { canonical: 'feedback_collector',  emission: 'feedback-collector'  },
+  // added 2026-07-04 — eye_walker + retrofit_surgeon (Alex), shipper (Release cluster)
+  { canonical: 'eye_walker',          emission: 'eye-walker'          },
+  { canonical: 'retrofit_surgeon',    emission: 'retrofit-surgeon'    },
+  { canonical: 'shipper',             emission: 'shipper'             },
 ];
 
 const H1 = /^#\s/; // a markdown H1 line ("# ...")
