@@ -855,7 +855,6 @@
         "show_force": true,
         "q2_sign": 1,
         "formula_overlay": "force F — across empty space",
-        "show_sliders": true,
         "visible_controls": []
       },
       "STATE_2": {
@@ -871,7 +870,6 @@
         "show_distance": true,
         "q2_sign": 1,
         "formula_overlay": "F = k q₁ q₂ / r²",
-        "show_sliders": true,
         "visible_controls": []
       },
       "STATE_3": {
@@ -887,7 +885,6 @@
         "show_distance": true,
         "q2_sign": -1,
         "formula_overlay": "unlike → attract,  like → repel",
-        "show_sliders": true,
         "visible_controls": [
           "sign"
         ]
@@ -905,7 +902,6 @@
         "show_third_law_pair": true,
         "q2_sign": 1,
         "formula_overlay": "|F₁₂| = |F₂₁|",
-        "show_sliders": true,
         "visible_controls": [
           "q2"
         ]
@@ -922,7 +918,6 @@
         "falloff_demo": true,
         "q2_sign": 1,
         "formula_overlay": "F ∝ 1/r²   (double r → F/4)",
-        "show_sliders": true,
         "visible_controls": [
           "r"
         ]
@@ -940,7 +935,6 @@
         "show_product_scaling": true,
         "q2_sign": 1,
         "formula_overlay": "F ∝ q₁ q₂",
-        "show_sliders": true,
         "visible_controls": [
           "q1"
         ]
@@ -956,7 +950,6 @@
         "caption": "",
         "superposition": true,
         "formula_overlay": "F_net = F₁ + F₂  (vector sum)",
-        "show_sliders": true,
         "visible_controls": []
       },
       "STATE_8": {
