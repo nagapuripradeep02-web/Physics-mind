@@ -101,7 +101,7 @@
         "title": "What is E? — E = F/q",
         "duration": 13,
         "focal_primitive_id": "e_def_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -218,7 +218,7 @@
         "title": "Sign sets direction",
         "duration": 13,
         "focal_primitive_id": "sign_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -255,7 +255,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Before I change anything — predict. If I make the charge negative, which way will the field point?", "text_hi": "कुछ change करने से पहले — predict करो। अगर मैं charge को negative करूँ, तो field किस तरफ point करेगा?", "text_te": "నేను ఏదైనా change చేయడానికి ముందు — predict చేయండి. నేను charge ని negative చేస్తే, field ఏ వైపు point చేస్తుంది?"
+              "text_en": "Now flip the same charge to negative. Something happens to every arrow at once.", "text_hi": "अब उसी charge को negative कर दो। हर एक arrow पर एक साथ कुछ होता है।", "text_te": "ఇప్పుడు అదే charge ని negative చేయండి. ప్రతి ఒక్క arrow పై ఒకేసారి ఏదో జరుగుతుంది."
             },
             {
               "id": "s3_2",
@@ -341,7 +341,7 @@
         "title": "Density = strength (1/r²)",
         "duration": 15,
         "focal_primitive_id": "density_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -378,7 +378,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Look closely. Where are the lines most crowded together — and what does that tell you about the field there?", "text_hi": "ध्यान से देखो। lines सबसे ज़्यादा कहाँ crowded हैं — और वो तुम्हें वहाँ के field के बारे में क्या बताता है?", "text_te": "జాగ్రత్తగా చూడండి. lines అత్యంత crowded గా ఎక్కడ ఉన్నాయి — మరియు అది అక్కడి field గురించి మీకు ఏమి చెప్తోంది?"
+              "text_en": "Look closely at the spacing of the lines — it is not the same everywhere.", "text_hi": "lines के spacing को ध्यान से देखो — यह हर जगह एक जैसा नहीं है।", "text_te": "lines యొక్క spacing ని జాగ్రత్తగా చూడండి — ఇది అన్ని చోట్ల ఒకేలా ఉండదు."
             },
             {
               "id": "s5_2",
@@ -561,6 +561,7 @@
     "states": {
       "STATE_1": {
         "label": "What is E — test charge feels a force",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [
           2.5,
@@ -576,6 +577,7 @@
       },
       "STATE_2": {
         "label": "E of a point charge — one radial arrow",
+        "visible_controls": ["r"],
         "visible_elements": [],
         "camera_position": [
           2.8,
@@ -591,6 +593,7 @@
       },
       "STATE_3": {
         "label": "Sign sets direction — flip to −Q",
+        "visible_controls": ["q_sign"],
         "visible_elements": [],
         "camera_position": [
           3,
@@ -607,6 +610,7 @@
       },
       "STATE_4": {
         "label": "Field lines = the map",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [
           3.2,
@@ -622,6 +626,7 @@
       },
       "STATE_5": {
         "label": "Density = strength (PRIMARY aha)",
+        "visible_controls": ["r"],
         "visible_elements": [],
         "camera_position": [
           2.6,
@@ -638,6 +643,7 @@
       },
       "STATE_6": {
         "label": "Two rules — never cross, not a path",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [
           3,
@@ -654,6 +660,7 @@
       },
       "STATE_7": {
         "label": "Free explore — Q, sign, distance",
+        "visible_controls": ["Q", "q_sign", "r"],
         "visible_elements": [],
         "camera_position": [
           3,
