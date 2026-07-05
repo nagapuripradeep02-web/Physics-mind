@@ -29,6 +29,13 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 
 import { join } from 'path';
 import { createHash } from 'crypto';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
+import {
+    pilotHeadTags,
+    isPilotConcept,
+    listPilotConceptIds,
+    chapterTitle,
+    writeRootAssets,
+} from './pilot_site_assets';
 
 // ── Types (subset of the concept JSON we read) ───────────────────────────────
 
@@ -52,6 +59,9 @@ type TtsSentenceJson = {
 type ConceptJson = {
     concept_id?: string;
     concept_name?: string;
+    chapter?: number;
+    section?: string;
+    class_level?: number;
     default_flow?: string[];
     field_3d_config?: Field3DConfig;
     epic_l_path?: {
@@ -269,15 +279,16 @@ function renderConceptPage(
     const statusPill =
         review?.reviewed === true
             ? `<div class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.2 1.6 2.7-.2.9 2.6 2.2 1.6-.9 2.6.9 2.6-2.2 1.6-.9 2.6-2.7-.2L12 21.5l-2.2-1.6-2.7.2-.9-2.6L4 15.9l.9-2.6L4 10.7l2.2-1.6.9-2.6 2.7.2z" fill="rgba(203,104,67,.2)" stroke="rgba(203,104,67,.6)" stroke-width="1.1"/><path d="M8.6 12l2.1 2.1 4.6-4.6" stroke="#E3A07F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Teacher-Verified${review?.reviewer ? ' &middot; ' + escapeHtml(review.reviewer) : ''}</div>`
-            : `<div class="verified pending"><span class="dot"></span> Awaiting review</div>`;
+            : '';   // professor-facing: an internal "awaiting review" pill would read as "unfinished"
     return `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${escapeHtml(conceptName)} — PhysicsMind review</title>
+<title>${escapeHtml(conceptName)} — PhysicsMind</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+${pilotHeadTags(1)}
 <style>
   :root{
     /* warm-dark surfaces (the student-product standard theme) */
@@ -334,6 +345,16 @@ function renderConceptPage(
   .card.active .ttl { color:var(--ink); font-weight:500; }
   .card .grip { flex:none; margin-left:4px; color:var(--ink-faint); font-size:12px; cursor:grab;
                 opacity:0; transition:opacity .16s ease; }
+  /* per-state hide + rename (pilot) */
+  .card .eye { flex:none; margin-left:2px; border:0; background:none; color:var(--ink-faint); font-size:13px;
+               cursor:pointer; padding:2px 4px; border-radius:6px; opacity:0; transition:opacity .16s ease; }
+  .card:hover .eye { opacity:1; }
+  .card .eye:hover { color:var(--clay-soft); background:var(--clay-wash); }
+  .card.hiddenstate { opacity:.42; }
+  .card.hiddenstate .eye { opacity:1; }
+  .card.hiddenstate .ttl { text-decoration:line-through; text-decoration-color:var(--ink-faint); }
+  .card .ttl input { width:100%; padding:2px 6px; border-radius:6px; border:1px solid rgba(203,104,67,.55);
+               background:var(--surface-3); color:var(--ink); font-size:12.5px; font-family:var(--font-ui); outline:none; }
   #main { flex:1 1 auto; display:flex; flex-direction:column; min-width:0; min-height:0; }
   header { padding:11px 18px 10px; border-bottom:1px solid var(--line); }
   .brandbar { display:flex; align-items:center; gap:15px; }
@@ -473,7 +494,7 @@ function renderConceptPage(
       <div class="brandbar">
         <div class="logo">
           <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
-          <div class="wordmark"><b>PhysicsMind</b><span>Teacher Review</span></div>
+          <div class="wordmark"><b>PhysicsMind</b><span>Teacher Edition</span></div>
         </div>
         <div class="vrule"></div>
         <h1 class="concept">${escapeHtml(conceptName)}</h1>
@@ -564,6 +585,12 @@ function renderConceptPage(
   var CONCEPT_ID = ${idJson};
   var DEFAULT_ORDER = ${orderJson};
 
+  // ── Pilot analytics bridge (pm-telemetry.js) ──
+  // pmt() is safe even when telemetry is absent/blocked — never throws into the player.
+  window.PM_CONCEPT_ID = CONCEPT_ID;
+  window.PM_STATE_ID = null;
+  function pmt(type, payload) { try { if (window.PM && PM.track) PM.track(type, payload || {}); } catch (e) {} }
+
   // Reveal-timeline pacing (Rule 26: reveals ride the state clock, not TTS). Tunable.
   var WPM = 150;             // words/min at rate 1.0 — controls how fast reveals advance
   var MIN_SENTENCE_MS = 1400;   // floor so a short sentence still holds a readable beat
@@ -611,6 +638,17 @@ function renderConceptPage(
   var order = loadOrder();
   var idx = 0;                       // position within the order array
   function cur() { return STATES[order[idx]]; }
+
+  // ── Per-state hide + rename (persisted like the order; keyed by STATES index) ──
+  var LS_HIDDEN = 'pm_hidden_' + CONCEPT_ID;
+  var LS_NAMES = 'pm_names_' + CONCEPT_ID;
+  function loadObj(key) { try { var raw = localStorage.getItem(key); if (raw) { var o = JSON.parse(raw); if (o && typeof o === 'object') return o; } } catch (e) {} return {}; }
+  var hiddenStates = loadObj(LS_HIDDEN);   // { stateIndex: 1 }
+  var stateNames = loadObj(LS_NAMES);      // { stateIndex: "custom title" }
+  function persistHidden() { try { localStorage.setItem(LS_HIDDEN, JSON.stringify(hiddenStates)); } catch (e) {} }
+  function persistNames() { try { localStorage.setItem(LS_NAMES, JSON.stringify(stateNames)); } catch (e) {} }
+  function isHidden(si) { return hiddenStates[si] === 1; }
+  function stateTitle(si) { return stateNames[si] || STATES[si].title; }
 
   var muted = (function () { try { var m = localStorage.getItem(LS_MUTE); return m === null ? true : m === '1'; } catch (e) { return true; } })();
 
@@ -773,8 +811,11 @@ function renderConceptPage(
   // mute-independent (Rule 26c); the last state holds its final frame.
   function onTimelineEnd() {
     ended = true;
-    if (autoEl.checked && idx < order.length - 1) {
-      goToState(idx + 1, playing);
+    // Auto-advance skips teacher-hidden states (explicit clicks still open them).
+    var nextPos = idx + 1;
+    while (nextPos < order.length && isHidden(order[nextPos])) nextPos++;
+    if (autoEl.checked && nextPos < order.length) {
+      goToState(nextPos, playing);
     } else {
       playing = false; setPlayBtnUI(false);
       try { stopAudio(); } catch (e) {}
@@ -826,6 +867,7 @@ function renderConceptPage(
   function freeze() {
     if (frozen) return;
     frozen = true;
+    pmt('pause', { at_ms: readSimTimeMs() });
     retireTapCue();                     // they discovered pause — stop hinting
     post({ type: 'SET_TIME_FREEZE', at_ms: readSimTimeMs() });   // pin clock → reveals hold (Rule 26b)
     try { stopAudio(); } catch (e) {}        // audio stops; play-intent survives
@@ -836,6 +878,7 @@ function renderConceptPage(
   function unfreeze() {
     if (!frozen) return;
     frozen = false;
+    pmt('resume', { at_ms: readSimTimeMs() });
     post({ type: 'SET_TIME_FREEZE', frozen: false });   // clock resumes from where it was pinned
     pausedBadge.style.display = 'none';
     playing = true;                     // resume (or tap-to-play an idle frame)
@@ -878,15 +921,55 @@ function renderConceptPage(
     cardsEl.innerHTML = '';
     for (var p = 0; p < order.length; p++) {
       (function (pos) {
-        var s = STATES[order[pos]];
+        var si = order[pos];
+        var s = STATES[si];
         var card = document.createElement('div');
-        card.className = 'card' + (pos === idx ? ' active' : '');
+        card.className = 'card' + (pos === idx ? ' active' : '') + (isHidden(si) ? ' hiddenstate' : '');
         card.setAttribute('draggable', 'true');
-        card.title = s.title;
+        card.title = stateTitle(si) + ' — double-click the name to rename';
         var num = document.createElement('span'); num.className = 'num'; num.textContent = String(pos + 1);
-        var ttl = document.createElement('span'); ttl.className = 'ttl'; ttl.textContent = s.title;
+        var ttl = document.createElement('span'); ttl.className = 'ttl'; ttl.textContent = stateTitle(si);
+        var eye = document.createElement('button');
+        eye.className = 'eye';
+        eye.innerHTML = isHidden(si) ? '&#128065;&#824;' : '&#128065;';
+        eye.title = isHidden(si) ? 'Show this state in the flow' : 'Hide this state from the flow';
         var grip = document.createElement('span'); grip.className = 'grip'; grip.innerHTML = '&#8942;';
-        card.appendChild(num); card.appendChild(ttl); card.appendChild(grip);
+        card.appendChild(num); card.appendChild(ttl); card.appendChild(eye); card.appendChild(grip);
+        eye.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          if (isHidden(si)) { delete hiddenStates[si]; pmt('state_unhide', { state_id: s.id, title: stateTitle(si) }); }
+          else { hiddenStates[si] = 1; pmt('state_hide', { state_id: s.id, title: stateTitle(si) }); }
+          persistHidden();
+          buildRail();
+        });
+        // Double-click the title → rename inline. Enter/blur commits, Escape cancels.
+        ttl.addEventListener('dblclick', function (ev) {
+          ev.stopPropagation();
+          if (ttl.querySelector('input')) return;
+          var old = stateTitle(si);
+          var inp = document.createElement('input');
+          inp.type = 'text'; inp.value = old; inp.maxLength = 80;
+          card.setAttribute('draggable', 'false');           // no drag while editing
+          ttl.textContent = ''; ttl.appendChild(inp);
+          inp.focus(); inp.select();
+          var done = false;
+          function commit(cancel) {
+            if (done) return; done = true;
+            var next = cancel ? old : (inp.value || '').trim();
+            if (!next || next === STATES[si].title) delete stateNames[si];
+            else stateNames[si] = next;
+            persistNames();
+            if (!cancel && next !== old) pmt('state_rename', { state_id: s.id, from: old, to: next || STATES[si].title });
+            buildRail(); updateBadge();
+          }
+          inp.addEventListener('click', function (e2) { e2.stopPropagation(); });
+          inp.addEventListener('keydown', function (e2) {
+            if (e2.key === 'Enter') { e2.preventDefault(); commit(false); }
+            else if (e2.key === 'Escape') { e2.preventDefault(); commit(true); }
+            e2.stopPropagation();
+          });
+          inp.addEventListener('blur', function () { commit(false); });
+        });
         card.addEventListener('click', function () { pause(); goToState(pos, false); });
         card.addEventListener('dragstart', function (e) { dragFrom = pos; card.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(pos)); } catch (_) {} });
         card.addEventListener('dragend', function () { card.classList.remove('dragging'); clearDragOver(); dragFrom = -1; });
@@ -904,6 +987,7 @@ function renderConceptPage(
     var moved = order.splice(from, 1)[0];
     order.splice(to, 0, moved);
     idx = order.indexOf(keep);          // keep viewing the same state after reorder
+    pmt('state_reorder', { state_id: STATES[moved].id, from: from, to: to, order: order.slice() });
     persistOrder();
     buildRail();
     updateBadge();
@@ -912,6 +996,13 @@ function renderConceptPage(
     var keep = order[idx];
     order = DEFAULT_ORDER.slice();
     idx = order.indexOf(keep); if (idx < 0) idx = 0;
+    // "Default order" is the teacher's full reset: order + hidden + renames.
+    var hadHides = false, hadNames = false, k;
+    for (k in hiddenStates) { hadHides = true; break; }
+    for (k in stateNames) { hadNames = true; break; }
+    hiddenStates = {}; stateNames = {};
+    persistHidden(); persistNames();
+    pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames });
     persistOrder();
     buildRail();
     updateBadge();
@@ -919,7 +1010,7 @@ function renderConceptPage(
 
   function updateBadge() {
     var st = cur();
-    statelabel.textContent = 'STATE ' + (idx + 1) + ' / ' + order.length + '  —  ' + st.title;
+    statelabel.textContent = 'STATE ' + (idx + 1) + ' / ' + order.length + '  —  ' + stateTitle(order[idx]);
     counter.textContent = (idx + 1) + ' / ' + order.length;
     var cards = cardsEl.querySelectorAll('.card');
     for (var i = 0; i < cards.length; i++) cards[i].classList.toggle('active', i === idx);
@@ -930,6 +1021,8 @@ function renderConceptPage(
   // play once rolled; audio follows mute). Else: idle on the opening frame until Play (Rule 26).
   function goToState(pos, autoRoll) {
     idx = Math.max(0, Math.min(order.length - 1, pos));
+    window.PM_STATE_ID = cur().id;
+    pmt('state_open', { state_id: cur().id, pos: idx, auto: autoRoll === true });
     if (frozen) { frozen = false; pausedBadge.style.display = 'none'; }  // SET_STATE releases the pin
     try { stopAudio(); } catch (e) {}
     caption.textContent = '';
@@ -956,6 +1049,7 @@ function renderConceptPage(
   }
 
   function play() {
+    pmt('play', {});
     rollTimeline();   // unpins + rolls the current state from the top; this click unlocks Web Speech
     showTapCue();
   }
@@ -971,11 +1065,12 @@ function renderConceptPage(
     else if (frozen && playing) { unfreeze(); }      // paused mid-play → resume
     else { play(); }                                 // idle / ended → roll from top
   });
-  replayBtn.addEventListener('click', function () { pause(); goToState(idx, true); });
+  replayBtn.addEventListener('click', function () { pmt('replay', {}); pause(); goToState(idx, true); });
   defaultOrderBtn.addEventListener('click', resetOrder);
   // Rule 26a: MUTE is audio ONLY — never pauses the clock, reveals, or play-intent.
   muteBtn.addEventListener('click', function () {
     muted = !muted;
+    pmt(muted ? 'mute' : 'unmute', {});
     try { localStorage.setItem(LS_MUTE, muted ? '1' : '0'); } catch (e) {}
     // Captions follow the narration switch: muting clears the prose track now (applyReveal
     // only repaints at sentence boundaries); un-muting repaints the current sentence.
@@ -988,6 +1083,7 @@ function renderConceptPage(
   // the active sentence — so switching mid-play just restarts the current clip.
   if (langSel) langSel.addEventListener('change', function () {
     lang = langSel.value;
+    pmt('lang_change', { lang: lang });
     try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
     stopAudio();
     if (!muted && curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
@@ -1009,6 +1105,7 @@ function renderConceptPage(
   // Release: SET_TIME_JUMP holds, so if we were playing we must un-pin to resume.
   scrubEl.addEventListener('change', function () {
     scrubbing = false;
+    pmt('scrub', { to_ms: parseInt(scrubEl.value, 10) || 0 });
     if (playing) {
       post({ type: 'SET_TIME_FREEZE', frozen: false });
       frozen = false;
@@ -1021,12 +1118,40 @@ function renderConceptPage(
     scrubTime.textContent = (ms / 1000).toFixed(1) + ' / ' + (mx / 1000).toFixed(1) + 's';
   }
   // Rate change re-paces the current state's reveal windows.
-  rateEl.addEventListener('change', function () { if (simReady) { computeTimeline(); sendCueTimes(); } });
+  rateEl.addEventListener('change', function () { pmt('speed_change', { rate: rateEl.value }); if (simReady) { computeTimeline(); sendCueTimes(); } });
+  autoEl.addEventListener('change', function () { pmt('auto_advance', { on: autoEl.checked }); });
+
+  // ── In-sim interaction capture (pilot analytics) ──
+  // The sim iframe is same-origin, so one delegated capture-phase listener on its
+  // document sees EVERY slider release + button press in every scenario — no
+  // per-scenario wiring in the renderer. isTrusted filters out choreography-driven
+  // (programmatic) value changes so only real teacher touches are recorded.
+  function attachSimCapture() {
+    try {
+      var doc = iframe.contentWindow.document;
+      if (!doc || doc.getAttribute && doc.documentElement.getAttribute('data-pm-captured')) return;
+      doc.documentElement.setAttribute('data-pm-captured', '1');
+      doc.addEventListener('change', function (ev) {
+        var el = ev.target;
+        if (!ev.isTrusted || !el) return;
+        if (el.type === 'range') pmt('slider_change', { slider: el.id || el.name || 'unnamed', value: el.value });
+        else if (el.tagName === 'SELECT') pmt('sim_select', { control: el.id || el.name || 'unnamed', value: el.value });
+      }, true);
+      doc.addEventListener('click', function (ev) {
+        var el = ev.target;
+        if (!ev.isTrusted || !el || !el.closest) return;
+        var btn = el.closest('button');
+        if (btn) pmt('sim_button', { button: btn.id || (btn.textContent || '').trim().slice(0, 40) });
+      }, true);
+    } catch (e) { /* cross-origin or not ready — never break playback */ }
+  }
 
   window.addEventListener('message', function (e) {
     var t = e.data && e.data.type;
     if (t === 'SIM_READY') {
       simReady = true;
+      pmt('sim_ready', { states: STATE_COUNT });
+      attachSimCapture();
       if (langSel) langSel.value = lang;
       // Baked audio can't be re-paced by the slider — disable it when clips exist.
       if (HAS_AUDIO && rateEl) { rateEl.disabled = true; rateEl.title = 'Pacing follows the recorded narration'; }
@@ -1035,10 +1160,14 @@ function renderConceptPage(
       startLoop();
       goToState(0, false);   // open the first state on its opening frame; Play to roll
     } else if (t === 'STATE_REACHED') {
+      pmt('state_reached', { state_id: e.data.state });
       if (pendingRoll && e.data.state === pendingRoll) {
         pendingRoll = null;
         rollTimeline();
       }
+    } else if (t === 'PARAM_UPDATE') {
+      // Explorer scenarios announce param changes explicitly (e.g. ac_generator).
+      pmt('slider_change', { slider: e.data.param || 'param', value: e.data.value, explorer: e.data.explorer_id || null });
     } else if (t === 'CANVAS_TAP') {
       toggleFreeze();
     }
@@ -1316,8 +1445,8 @@ function renderConceptPage(
     document.getElementById('lyBoardBtn').classList.toggle('on', layoutMode === 'board');
   }
 
-  wbBtn.addEventListener('click', function () { setBoardOpen(!boardOpen); });
-  railToggleEl.addEventListener('click', function () { railCollapsed = !railCollapsed; applyLayout(); saveWbUI(); });
+  wbBtn.addEventListener('click', function () { setBoardOpen(!boardOpen); pmt('whiteboard_toggle', { open: boardOpen }); });
+  railToggleEl.addEventListener('click', function () { railCollapsed = !railCollapsed; pmt('rail_toggle', { collapsed: railCollapsed }); applyLayout(); saveWbUI(); });
   document.getElementById('lyBothBtn').addEventListener('click', function () { layoutMode = 'both'; boardOpen = true; wbBtn.classList.add('on'); markLayoutBtns(); applyLayout(); });
   document.getElementById('lySimBtn').addEventListener('click', function () { layoutMode = 'sim'; markLayoutBtns(); applyLayout(); });
   document.getElementById('lyBoardBtn').addEventListener('click', function () { layoutMode = 'board'; boardOpen = true; wbBtn.classList.add('on'); markLayoutBtns(); applyLayout(); });
@@ -1410,7 +1539,7 @@ function renderConceptPage(
     if (isDefaultColor) { TOOL.color = on ? SIM_DEFAULT_COLOR : boardDefaultColor(); refreshSwatchSel(); }
     if (on) { lastSurface = simSurface; freeze(); }             // annotate a still frame (Rule 26b path)
   }
-  simDrawBtn.addEventListener('click', function () { setSimDraw(true); });
+  simDrawBtn.addEventListener('click', function () { pmt('pen_used', { surface: 'sim' }); setSimDraw(true); });
   simMoveBtn.addEventListener('click', function () { setSimDraw(false); });
   document.getElementById('simClearBtn').addEventListener('click', function () { simSurface.clear(); });
 
@@ -1442,50 +1571,79 @@ function renderConceptPage(
 // ── Catalog page ─────────────────────────────────────────────────────────────
 
 function rebuildCatalog(): void {
-    type Entry = { id: string; name: string };
+    // Professor-facing pilot catalog: ONLY founder-approved (baseline-locked)
+    // concepts are listed, grouped by NCERT chapter, with client-side search.
+    type Entry = { id: string; name: string; chapter: number | null; section: string | null; classLevel: number | null };
     const entries: Entry[] = [];
     if (existsSync(OUT_DIR)) {
         for (const dirent of readdirSync(OUT_DIR, { withFileTypes: true })) {
             if (!dirent.isDirectory()) continue;
             const metaPath = join(OUT_DIR, dirent.name, 'meta.json');
             if (!existsSync(metaPath)) continue;
+            if (!isPilotConcept(ROOT, dirent.name)) continue;   // founder-approved only
             try {
-                const meta = JSON.parse(readFileSync(metaPath, 'utf-8')) as { concept_id?: string; concept_name?: string };
-                entries.push({ id: dirent.name, name: meta.concept_name ?? dirent.name });
+                const meta = JSON.parse(readFileSync(metaPath, 'utf-8')) as {
+                    concept_id?: string;
+                    concept_name?: string;
+                    chapter?: number | null;
+                    section?: string | null;
+                    class_level?: number | null;
+                };
+                entries.push({
+                    id: dirent.name,
+                    name: meta.concept_name ?? dirent.name,
+                    chapter: typeof meta.chapter === 'number' ? meta.chapter : null,
+                    section: typeof meta.section === 'string' ? meta.section : null,
+                    classLevel: typeof meta.class_level === 'number' ? meta.class_level : null,
+                });
             } catch {
-                entries.push({ id: dirent.name, name: dirent.name });
+                entries.push({ id: dirent.name, name: dirent.name, chapter: null, section: null, classLevel: null });
             }
         }
     }
-    entries.sort((a, b) => a.name.localeCompare(b.name));
 
-    const status = loadReviewStatus();
-    const reviewedCount = entries.filter((e) => status[e.id]?.reviewed).length;
+    // Sort within a chapter by NCERT section ("1.16" → [1,16]), then name.
+    const sectionKey = (s: string | null): number[] =>
+        (s ?? '').split('.').map((p) => parseInt(p, 10)).map((n) => (Number.isFinite(n) ? n : 0));
+    const bySection = (a: Entry, b: Entry): number => {
+        const ka = sectionKey(a.section), kb = sectionKey(b.section);
+        for (let i = 0; i < Math.max(ka.length, kb.length); i++) {
+            const d = (ka[i] ?? 0) - (kb[i] ?? 0);
+            if (d !== 0) return d;
+        }
+        return a.name.localeCompare(b.name);
+    };
 
-    const cards = entries
-        .map((e) => {
-            const st = status[e.id];
-            const badge = st?.reviewed
-                ? `<span class="badge ok">&#10003; Reviewed${st.reviewer ? ` &middot; ${escapeHtml(st.reviewer)}` : ''}${
-                      st.reviewed_date ? ` &middot; ${escapeHtml(st.reviewed_date)}` : ''
-                  }</span>`
-                : `<span class="badge pending">Not yet reviewed</span>`;
-            const videos = (st?.videos ?? [])
-                .map((v) => {
-                    const label = escapeHtml(v.label ?? 'video');
-                    return v.url && v.url.trim()
-                        ? `<a class="vid" href="${escapeHtml(v.url)}" target="_blank" rel="noopener">&#127909; ${label}</a>`
-                        : `<span class="vid muted">&#127909; ${label} — pending</span>`;
-                })
-                .join('');
-            const videoRow = videos ? `\n      <div class="vids">${videos}</div>` : '';
-            // The whole card is the sim link; videos open in a new tab (stopPropagation via target=_blank on <a>).
-            return `    <div class="card">
-      <a class="open" href="./${encodeURIComponent(e.id)}/"><span class="t">${escapeHtml(
-                e.name,
-            )}</span><span class="id">${escapeHtml(e.id)}</span></a>
-      <div class="meta">${badge}</div>${videoRow}
-    </div>`;
+    // Group by (class_level, chapter); un-tagged concepts land in "Other" at the end.
+    const groups = new Map<string, { title: string; sortKey: number; items: Entry[] }>();
+    for (const e of entries) {
+        const key = `${e.classLevel ?? 99}::${e.chapter ?? 999}`;
+        if (!groups.has(key)) {
+            groups.set(key, {
+                title: chapterTitle(e.chapter ?? undefined, e.classLevel ?? undefined),
+                sortKey: (e.classLevel ?? 99) * 1000 + (e.chapter ?? 999),
+                items: [],
+            });
+        }
+        groups.get(key)!.items.push(e);
+    }
+    const ordered = [...groups.values()].sort((a, b) => a.sortKey - b.sortKey);
+
+    const chapterBlocks = ordered
+        .map((g) => {
+            const cards = g.items
+                .sort(bySection)
+                .map(
+                    (e) => `    <a class="card" data-search="${escapeHtml(`${e.name} ${e.id} ${g.title}`.toLowerCase())}" data-concept="${escapeHtml(e.id)}" href="./${encodeURIComponent(e.id)}/">
+      <span class="t">${escapeHtml(e.name)}</span>
+      <span class="arrow">&#8594;</span>
+    </a>`,
+                )
+                .join('\n');
+            return `  <section class="chapter">
+    <h2>${escapeHtml(g.title)}<span class="count">${g.items.length}</span></h2>
+${cards}
+  </section>`;
         })
         .join('\n');
 
@@ -1493,10 +1651,11 @@ function rebuildCatalog(): void {
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhysicsMind — simulations for review</title>
+<title>PhysicsMind — Simulation Library</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+${pilotHeadTags(0)}
 <style>
   :root{ --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --clay:#CB6843; --clay-soft:#E3A07F;
          --clay-wash:rgba(203,104,67,.15); --sage:#74B594; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
@@ -1507,47 +1666,102 @@ function rebuildCatalog(): void {
   body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
     background:radial-gradient(46% 38% at 100% 0%, rgba(203,104,67,.07), transparent 60%),
                radial-gradient(40% 32% at 0% 100%, rgba(116,181,148,.04), transparent 60%);}
-  .wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:34px 20px;}
+  .wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:34px 20px 60px;}
   .masthead{display:flex;align-items:center;gap:12px;}
   .masthead .mark{width:38px;height:38px;border-radius:11px;background:var(--clay);flex:none;
         display:grid;place-items:center;box-shadow:0 6px 18px -6px rgba(203,104,67,.55);}
   .masthead .mark svg{width:22px;height:22px;}
   .brand b{font-family:var(--font-disp);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ink);display:block;line-height:1;}
   .brand span{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;display:block;}
-  h1{font-family:var(--font-disp);font-size:22px;font-weight:600;color:var(--ink);margin:20px 0 4px;}
-  p.sub{color:var(--ink-dim);font-size:13px;margin:0 0 24px;}
-  .card{padding:15px 17px;margin-bottom:11px;background:var(--surface);border:1px solid var(--line);border-radius:13px;
+  .who{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--ink-dim);}
+  .who button{border:1px solid var(--line);background:none;color:var(--ink-dim);font-size:12px;padding:6px 13px;
+        border-radius:9px;cursor:pointer;font-family:var(--font-ui);transition:border-color .15s ease,color .15s ease;}
+  .who button:hover{border-color:rgba(203,104,67,.5);color:var(--clay-soft);}
+  h1{font-family:var(--font-disp);font-size:22px;font-weight:600;color:var(--ink);margin:26px 0 4px;}
+  p.sub{color:var(--ink-dim);font-size:13px;margin:0 0 20px;}
+  #search{width:100%;padding:12px 15px;border-radius:12px;border:1px solid var(--line);background:var(--surface);
+        color:var(--ink);font-size:14px;font-family:var(--font-ui);outline:none;margin-bottom:26px;}
+  #search:focus{border-color:rgba(203,104,67,.5);}
+  #search::placeholder{color:var(--ink-faint);}
+  .chapter{margin-bottom:26px;}
+  .chapter h2{font-family:var(--font-disp);font-size:15px;font-weight:600;color:var(--clay-soft);margin:0 0 10px;
+        display:flex;align-items:center;gap:9px;}
+  .chapter h2 .count{font-family:var(--font-ui);font-size:11px;font-weight:600;color:var(--ink-faint);
+        border:1px solid var(--line);border-radius:999px;padding:2px 9px;}
+  .card{display:flex;align-items:center;gap:10px;padding:13px 17px;margin-bottom:9px;background:var(--surface);
+        border:1px solid var(--line);border-radius:13px;text-decoration:none;color:var(--ink);
         transition:border-color .16s ease, background .16s ease;}
   .card:hover{border-color:rgba(203,104,67,.4);background:var(--surface-2);}
-  .card .open{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--ink);}
-  .card .t{font-family:var(--font-disp);font-size:16px;font-weight:600;}
-  .card .id{font-size:12px;color:var(--ink-faint);font-family:ui-monospace,monospace;}
-  .meta{margin-top:11px;}
-  .badge{display:inline-block;font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:999px;letter-spacing:.02em;}
-  .badge.ok{color:#d3efdd;background:rgba(116,181,148,.16);border:1px solid rgba(116,181,148,.4);}
-  .badge.pending{color:var(--ink-dim);background:rgba(245,240,230,.04);border:1px solid var(--line);}
-  .vids{margin-top:9px;display:flex;flex-wrap:wrap;gap:8px;}
-  .vid{font-size:12px;padding:4px 11px;border-radius:9px;border:1px solid rgba(203,104,67,.3);text-decoration:none;
-       color:var(--clay-soft);background:var(--clay-wash);}
-  .vid:hover{border-color:var(--clay);}
-  .vid.muted{color:var(--ink-faint);background:rgba(245,240,230,.04);border-color:var(--line);}
+  .card .t{font-family:var(--font-disp);font-size:15.5px;font-weight:600;flex:1 1 auto;}
+  .card .arrow{color:var(--ink-faint);font-size:15px;transition:color .16s ease, transform .16s ease;}
+  .card:hover .arrow{color:var(--clay-soft);transform:translateX(3px);}
   .empty{color:var(--ink-dim);font-size:14px;}
+  #noresults{display:none;color:var(--ink-dim);font-size:14px;padding:8px 2px;}
 </style>
 </head>
 <body><div class="wrap">
   <div class="masthead">
     <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
-    <div class="brand"><b>PhysicsMind</b><span>Teacher Review</span></div>
+    <div class="brand"><b>PhysicsMind</b><span>Teacher Edition</span></div>
+    <div class="who"><span id="whoName"></span><button id="signOutBtn">Sign out</button></div>
   </div>
-  <h1>Simulations for review</h1>
-  <p class="sub">Open a simulation, watch it once start-to-finish, then review it state by state.${
-      entries.length ? ` &middot; ${reviewedCount}/${entries.length} reviewed` : ''
-  }</p>
-${cards || '  <p class="empty">No simulations built yet.</p>'}
-</div></body></html>
+  <h1>Simulation Library</h1>
+  <p class="sub">Class 12 Physics &middot; ${entries.length} simulation${entries.length === 1 ? '' : 's'} &middot; open one and teach with it.</p>
+  <input id="search" type="search" placeholder="Search simulations… (e.g. flux, magnetic force, Gauss)" autocomplete="off">
+  <div id="noresults">No simulations match that search.</div>
+${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
+</div>
+<script>
+(function () {
+  window.PM_CONCEPT_ID = null;
+  function pmt(type, payload) { try { if (window.PM && PM.track) PM.track(type, payload || {}); } catch (e) {} }
+  pmt('catalog_open', {});
+  if (window.PM_DEV) {
+    var who = document.getElementById('whoName');
+    if (who) who.textContent = 'Local preview (dev — no login, no tracking)';
+    var so = document.getElementById('signOutBtn');
+    if (so) so.style.display = 'none';
+  } else if (window.PM && PM.authReady) PM.authReady.then(function (u) {
+    var el = document.getElementById('whoName');
+    if (el && u) el.textContent = (u.user_metadata && u.user_metadata.display_name) || u.email || '';
+  });
+  document.getElementById('signOutBtn').addEventListener('click', function () {
+    pmt('logout', {});
+    if (window.PM && PM.auth) PM.auth.signOut();
+  });
+  // Search: filter cards; hide emptied chapters; debounce the analytics event.
+  var input = document.getElementById('search');
+  var noRes = document.getElementById('noresults');
+  var searchTimer = null;
+  input.addEventListener('input', function () {
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+      var hit = !q || (cards[i].getAttribute('data-search') || '').indexOf(q) >= 0;
+      cards[i].style.display = hit ? '' : 'none';
+      if (hit) shown++;
+    }
+    var chapters = document.querySelectorAll('.chapter');
+    for (var c = 0; c < chapters.length; c++) {
+      var any = chapters[c].querySelector('.card:not([style*="none"])');
+      chapters[c].style.display = any ? '' : 'none';
+    }
+    noRes.style.display = shown === 0 ? 'block' : 'none';
+    if (searchTimer) clearTimeout(searchTimer);
+    if (q) searchTimer = setTimeout(function () { pmt('search', { query: q, results: shown }); }, 900);
+  });
+  // Which sim did they open (fires before navigation; telemetry flushes on pagehide).
+  document.addEventListener('click', function (ev) {
+    var card = ev.target && ev.target.closest ? ev.target.closest('.card') : null;
+    if (card) pmt('concept_open', { concept_id: card.getAttribute('data-concept') });
+  });
+})();
+</script>
+</body></html>
 `;
     writeFileSync(join(OUT_DIR, 'index.html'), html, 'utf-8');
-    console.log(`   catalog: review-site/index.html (${entries.length} sim${entries.length === 1 ? '' : 's'}, ${reviewedCount} reviewed)`);
+    console.log(`   catalog: review-site/index.html (${entries.length} pilot sim${entries.length === 1 ? '' : 's'} across ${ordered.length} chapter${ordered.length === 1 ? '' : 's'})`);
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
@@ -1596,10 +1810,20 @@ function buildOne(conceptId: string): void {
         'utf-8',
     );
 
-    // 3) meta for the catalog
+    // 3) meta for the catalog (chapter/section/class_level drive the pilot catalog grouping)
     writeFileSync(
         join(conceptDir, 'meta.json'),
-        JSON.stringify({ concept_id: conceptId, concept_name: conceptName }, null, 2),
+        JSON.stringify(
+            {
+                concept_id: conceptId,
+                concept_name: conceptName,
+                chapter: json.chapter ?? null,
+                section: json.section ?? null,
+                class_level: json.class_level ?? null,
+            },
+            null,
+            2,
+        ),
         'utf-8',
     );
 
@@ -1612,6 +1836,7 @@ function main(): void {
     if (!arg) {
         console.error('Usage:');
         console.error('  npx tsx src/scripts/build_review_site.ts <concept_id>   build one sim + refresh catalog');
+        console.error('  npx tsx src/scripts/build_review_site.ts --pilot        rebuild every founder-approved (baseline-locked) sim — the professor deploy set');
         console.error('  npx tsx src/scripts/build_review_site.ts --all          rebuild every sim in review_status.json');
         console.error('  npx tsx src/scripts/build_review_site.ts --catalog      refresh catalog only (badges/videos)');
         process.exit(1);
@@ -1619,8 +1844,26 @@ function main(): void {
 
     // --catalog: just regenerate the landing page from existing folders + review_status.json
     if (arg === '--catalog') {
+        writeRootAssets(OUT_DIR);
         rebuildCatalog();
         console.log(`\nCatalog refreshed from src/data/review_status.json.`);
+        return;
+    }
+
+    // --pilot: rebuild the professor deploy set — every baseline-locked concept
+    // (visual_baselines/<id>/baselines.json = founder ran visual:approve).
+    if (arg === '--pilot') {
+        const ids = listPilotConceptIds(ROOT);
+        if (ids.length === 0) {
+            console.error('✖ --pilot: no baseline-locked concepts found in visual_baselines/.');
+            process.exit(1);
+        }
+        console.log(`Building ${ids.length} pilot sim${ids.length === 1 ? '' : 's'} (curated PILOT_CONCEPTS) …\n`);
+        for (const id of ids) buildOne(id);
+        writeRootAssets(OUT_DIR);
+        rebuildCatalog();
+        console.log(`\nNext: npm run serve:review  →  http://localhost:8080/`);
+        console.log(`(or npm run deploy:review to push review-site/ to Netlify)\n`);
         return;
     }
 
@@ -1633,6 +1876,7 @@ function main(): void {
         }
         console.log(`Building ${ids.length} sim${ids.length === 1 ? '' : 's'} from review_status.json …\n`);
         for (const id of ids) buildOne(id);
+        writeRootAssets(OUT_DIR);
         rebuildCatalog();
         console.log(`\nNext: npm run serve:review  →  http://localhost:8080/`);
         console.log(`(or npm run deploy:review to push review-site/ to Netlify)\n`);
@@ -1641,6 +1885,7 @@ function main(): void {
 
     // single concept
     buildOne(arg);
+    writeRootAssets(OUT_DIR);
     rebuildCatalog();
     console.log(`\nNext: npm run serve:review  →  http://localhost:8080/${arg}/`);
     console.log(`(or npm run deploy:review to push review-site/ to Netlify)\n`);

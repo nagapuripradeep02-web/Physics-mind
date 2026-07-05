@@ -35,7 +35,8 @@
     "solve:layout": "npx tsx --env-file=.env.local src/scripts/solve_layout.ts",
     "sync:agents": "node scripts/sync-agents.js",
     "check:agents": "node scripts/sync-agents.js --check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:pilot": "npx tsx src/scripts/build_review_site.ts --pilot"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
