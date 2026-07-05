@@ -10047,7 +10047,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //    the loop turning in the field. We display the loop scaled up
         //    visually (side length 1.4 world units) regardless of physical L.
         var loopGroup = new THREE.Group();
-        loopGroup.userData = { elementType: "torque_loop_group", id: "loop_group" };
+        // invertRotY: the drawn current is CW-from-+z ⇒ μ = loop-local −z and
+        // the couple turns the loop CLOCKWISE (matching the force arrows). See
+        // applyTorqueLoopTheta. Torque scenario only — siblings never set it.
+        loopGroup.userData = { elementType: "torque_loop_group", id: "loop_group", invertRotY: true };
         var visualHalf = 0.7; // half side length in world units
 
         // 2a. Loop wire — 4 cylinders forming a square in the x-y plane.
@@ -10171,11 +10174,14 @@ export const FIELD_3D_RENDERER_CODE = `
         loopGroup.add(fRightArrow);
 
         // 2d. μ vector arrow — perpendicular to loop face, through centre.
-        //     In loop-local frame this is +z by RHR for our CW-from-+z
-        //     current direction.
+        //     In loop-local frame this is −z by RHR for our CW-from-+z current
+        //     direction (curl fingers along the current — left side up, right
+        //     side down — thumb points −z). Matches the STATE_5 narration
+        //     ("curl fingers along current, thumb gives μ") and makes τ = μ × B
+        //     turn the loop the way the force arrows push (see invertRotY).
         var muColor = "#FFD54F";
         var muArrow = new THREE.ArrowHelper(
-            new THREE.Vector3(0, 0, +1),
+            new THREE.Vector3(0, 0, -1),
             new THREE.Vector3(0, 0, 0),
             1.0, muColor, 0.26, 0.13
         );
@@ -10184,8 +10190,9 @@ export const FIELD_3D_RENDERER_CODE = `
         loopGroup.add(muArrow);
 
         // 2e. Bar magnet swap mesh (STATE_7). Two cylinders end-to-end along
-        //     loop-local +z. Red N pole (+z half), blue S pole (-z half).
-        //     Visible only when STATE_7's bar_magnet_swap.enabled fires.
+        //     loop-local z. The N pole sits on the μ side (loop-local −z, red),
+        //     S pole on +z (blue) — so the equivalent bar magnet's N–S axis
+        //     matches μ. Visible only when STATE_7's bar_magnet_swap.enabled fires.
         var barMagnetGroup = new THREE.Group();
         barMagnetGroup.userData = { elementType: "bar_magnet_group", id: "bar_magnet_group" };
         barMagnetGroup.visible = false;
@@ -10204,24 +10211,24 @@ export const FIELD_3D_RENDERER_CODE = `
         // Orient cylinder along loop-local +z; cylinder default axis is +y,
         // so rotate -90° about x to align +y → +z.
         nMesh.rotation.x = -Math.PI / 2;
-        nMesh.position.set(0, 0, +poleHalfLen / 2);
+        nMesh.position.set(0, 0, -poleHalfLen / 2);   // N on the μ side (−z)
         nMesh.userData = { elementType: "bar_magnet_pole", id: "bar_n" };
         barMagnetGroup.add(nMesh);
         var sGeom = new THREE.CylinderGeometry(poleRadius, poleRadius, poleHalfLen, 24);
         var sMesh = new THREE.Mesh(sGeom, sMat);
         sMesh.rotation.x = -Math.PI / 2;
-        sMesh.position.set(0, 0, -poleHalfLen / 2);
+        sMesh.position.set(0, 0, +poleHalfLen / 2);   // S opposite μ (+z)
         sMesh.userData = { elementType: "bar_magnet_pole", id: "bar_s" };
         barMagnetGroup.add(sMesh);
         // "N" / "S" sprite labels on the end caps.
         var nLabel = createLabelSprite("N", "#FFFFFF", 0.30);
-        nLabel.position.set(0, 0, +poleHalfLen + 0.15);
+        nLabel.position.set(0, 0, -poleHalfLen - 0.15);
         nLabel.material.transparent = true;
         nLabel.material.opacity = 0;
         nLabel.userData = { elementType: "bar_magnet_label", id: "bar_n_label" };
         barMagnetGroup.add(nLabel);
         var sLabel = createLabelSprite("S", "#FFFFFF", 0.30);
-        sLabel.position.set(0, 0, -poleHalfLen - 0.15);
+        sLabel.position.set(0, 0, +poleHalfLen + 0.15);
         sLabel.material.transparent = true;
         sLabel.material.opacity = 0;
         sLabel.userData = { elementType: "bar_magnet_label", id: "bar_s_label" };
@@ -10229,9 +10236,9 @@ export const FIELD_3D_RENDERER_CODE = `
         loopGroup.add(barMagnetGroup);
 
         // 2f. "μ" sprite label — parented to loopGroup so it rotates with μ.
-        //     Positioned just past the μ-arrow tip along loop-local +z.
+        //     Positioned just past the μ-arrow tip along loop-local −z.
         var muLabelSprite = createLabelSprite("μ", muColor, 0.40);
-        muLabelSprite.position.set(0, 0.18, 1.15);
+        muLabelSprite.position.set(0, 0.18, -1.15);
         muLabelSprite.visible = false;
         muLabelSprite.userData = { elementType: "mu_label", id: "mu_label" };
         loopGroup.add(muLabelSprite);
@@ -10375,10 +10382,20 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     function applyTorqueLoopTheta(loopGroup, thetaDeg) {
-        // Rotate loop group about the world Y axis so that μ (loop-local +z)
-        // moves to make angle θ with B (world +x). θ=90 → μ along +z (perp
-        // to B). θ=0 → μ along +x (parallel to B). θ=180 → μ along -x.
-        var rotY = (90 - thetaDeg) * Math.PI / 180;
+        // Rotate loop group about the world Y axis so μ makes angle θ with B
+        // (world +x): θ=90 → μ ⊥ B; θ=0 → μ ∥ B (aligned/stable); θ=180 → μ
+        // anti-∥ B (unstable).
+        // invertRotY (torque_on_loop_uniform_field ONLY): the drawn current is
+        // CW-from-+z, so by the right-hand rule μ = loop-local −z (NOT +z), and
+        // τ = μ × B turns the loop the OTHER way — the sense the on-screen force
+        // couple actually dictates (f_left into page at x<0, f_right out of page
+        // at x>0 ⇒ clockwise from the default elevated camera). Negating rotY
+        // flips only the visual turn direction; θ=0 stays the aligned/stable
+        // pose, so every state's θ value (incl. STATE_8/9) is unchanged. Siblings
+        // (current_loop_acts_as_dipole, pe_external_field) never set the flag ⇒
+        // byte-identical (μ still +z, still CCW).
+        var invert = loopGroup.userData && loopGroup.userData.invertRotY;
+        var rotY = (invert ? (thetaDeg - 90) : (90 - thetaDeg)) * Math.PI / 180;
         loopGroup.rotation.set(0, rotY, 0);
         loopGroup.userData.theta_deg = thetaDeg;
     }
@@ -10645,7 +10662,10 @@ export const FIELD_3D_RENDERER_CODE = `
         if (tauArr && tauArr.visible) {
             var sRaw = Math.sin(lg.userData.theta_deg * Math.PI / 180);
             var sAbs = Math.abs(sRaw);
-            var sSign = sRaw >= 0 ? 1 : -1;
+            // τ = μ × B. With invertRotY (μ = −z) the axial torque is −Y at
+            // θ=90 (the clockwise sense the force couple produces), so negate
+            // the sign; siblings (μ = +z) keep the original +Y convention.
+            var sSign = (sRaw >= 0 ? 1 : -1) * (lg.userData.invertRotY ? -1 : 1);
             tauArr.setDirection(new THREE.Vector3(0, sSign, 0));
             // Slider-driven scaling for STATE_11 sandbox: when sliders have
             // been seeded (by applyState or by the slider input handler),
@@ -10711,7 +10731,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var tauLab = findTorqueElementById("tau_label");
         if (tauLab && tauArr && tauArr.visible) {
             var sR = Math.sin(lg.userData.theta_deg * Math.PI / 180);
-            tauLab.position.set(0, (sR >= 0 ? 1.65 : -1.65) - (sR === 0 ? 0.5 : 0), 0);
+            // Follow the τ-arrow tip (which flips −Y under invertRotY).
+            var sEff = sR * (lg.userData.invertRotY ? -1 : 1);
+            tauLab.position.set(0, (sEff >= 0 ? 1.65 : -1.65) - (sR === 0 ? 0.5 : 0), 0);
         }
 
         // Fade-in opacity tween for newly-visible vectors (F_left, F_right,
