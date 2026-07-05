@@ -116,7 +116,7 @@
         "title": "Dipole & moment p",
         "duration": 13,
         "focal_primitive_id": "p_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -215,13 +215,13 @@
         "title": "Equatorial point",
         "duration": 15,
         "focal_primitive_id": "equatorial_formula",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "predict_label",
             "position": { "x": 360, "y": 80 },
-            "text": "predict: which way will E point?",
+            "text": "P on the perpendicular bisector",
             "color": "#D4D4D8"
           },
           {
@@ -243,7 +243,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Now move P out sideways, onto the perpendicular bisector. Before I draw it — predict which way the field points.", "text_hi": "अब P को sideways, perpendicular bisector पर ले जाओ। मैं draw करने से पहले — predict करो, field किस direction में point करेगी?", "text_te": "ఇప్పుడు P ని sideways గా, perpendicular bisector పైకి తీసుకువెళ్ళు. నేను draw చేయడానికి ముందు — predict చేయి, field ఏ వైపు point చేస్తుందో?"
+              "text_en": "Now move P out sideways, onto the perpendicular bisector. Here the field direction is about to flip.", "text_hi": "अब P को sideways, perpendicular bisector पर ले जाओ। यहाँ field की direction flip होने वाली है।", "text_te": "ఇప్పుడు P ని sideways గా, perpendicular bisector పైకి తీసుకువెళ్ళండి. ఇక్కడ field direction flip అవబోతోంది."
             },
             {
               "id": "s3_2",
@@ -320,7 +320,7 @@
         "title": "1/r³ falloff",
         "duration": 16,
         "focal_primitive_id": "falloff_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -348,7 +348,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Watch the net arrow at three growing distances. What happens to its length as I step outward?", "text_hi": "तीन बढ़ती हुई distances पर net arrow को देखो। जैसे-जैसे मैं बाहर जाता हूँ, इसकी length का क्या होता है?", "text_te": "మూడు పెరుగుతున్న distances వద్ద net arrow ను చూడండి. నేను బయటికి వెళ్ళే కొద్దీ దాని length కి ఏం జరుగుతుందో?"
+              "text_en": "Watch the net arrow at three growing distances — its length is about to collapse as we step outward.", "text_hi": "तीन बढ़ती हुई distances पर net arrow को देखो — जैसे-जैसे हम बाहर जाते हैं, इसकी length collapse होने वाली है।", "text_te": "మూడు పెరుగుతున్న distances వద్ద net arrow ను చూడండి — మనం బయటికి వెళ్ళే కొద్దీ దాని length collapse అవబోతోంది."
             },
             {
               "id": "s5_2",
@@ -509,6 +509,7 @@
     "states": {
       "STATE_1": {
         "label": "The dipole + moment p",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [0.5, 1.2, 4.5],
         "caption": "",
@@ -517,6 +518,7 @@
       },
       "STATE_2": {
         "label": "Axial point — superpose E+ and E−",
+        "visible_controls": ["r"],
         "visible_elements": [],
         "camera_position": [0.6, 0.9, 6.2],
         "caption": "",
@@ -526,6 +528,7 @@
       },
       "STATE_3": {
         "label": "Equatorial point",
+        "visible_controls": ["r"],
         "visible_elements": [],
         "camera_position": [0.4, 1.2, 6.2],
         "caption": "",
@@ -535,6 +538,7 @@
       },
       "STATE_4": {
         "label": "Axial = 2 × equatorial",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [0.6, 1.2, 6.4],
         "caption": "",
@@ -544,6 +548,7 @@
       },
       "STATE_5": {
         "label": "1/r³ falloff (PRIMARY aha)",
+        "visible_controls": ["r"],
         "visible_elements": [],
         "camera_position": [0.9, 0.9, 6.2],
         "caption": "",
@@ -553,6 +558,7 @@
       },
       "STATE_6": {
         "label": "Field-line map",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [0.5, 1.8, 5.2],
         "caption": "",
@@ -562,6 +568,7 @@
       },
       "STATE_7": {
         "label": "Free explore — q, r, θ",
+        "visible_controls": ["q", "r", "theta"],
         "visible_elements": [],
         "camera_position": [0.6, 1.1, 6.4],
         "caption": "",
