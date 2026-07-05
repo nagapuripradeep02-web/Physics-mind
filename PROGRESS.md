@@ -1,5 +1,20 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🛠️ SESSION UPDATE — torque FULL Rule-31 rebuild COMPLETE (contextual controls + per-state motion), eye-walker verified; awaiting founder review before galvanometer fan-out (2026-07-05)
+
+**Bottom line: founder authorized the full Rule-31 rebuild of torque_on_current_loop_in_field + reuse for the 2 galvanometers. Torque Phase 1 is DONE and eye-walker pixel-verified — both gap rows FIXED. Review page live; STOPPING at the founder review gate before Phase 2 (galvanometers).**
+
+- **Both torque gaps FIXED + verified (eye-walker run 20260705-045637, pixel-proxy method):**
+  - `torque_scenario_no_contextual_controls` → FIXED. Renderer: wrapped the 4 sliders in tq_*_row divs (built once) + `applyVisibleControls({N,I,B,theta}, stateDef.visible_controls)` in the torque branch (reuses the shared helper at renderer:27101). JSON: per-state `visible_controls` — **S5=[N,I] · S6=[B] · S7=[theta] · S11=all · watch beats=none** (verified each state shows exactly its rows) + fixed STATE_11's `show_sliders` array bug.
+  - `torque_static_early_states` → FIXED. The 6 formerly-static states now animate: S1 loop-edge breathing, S2 F1 opacity pulse, S3 both-arrows in-phase cancel-pulse, S5 μ opacity pulse, S7 τ bounded throb, S10 loop↔bar-magnet cross-fade. **Design journey (3 verification rounds — the honest scar):** one-time size-grow reveals were invisible due to FORESHORTENING (F/μ point near the camera axis → 3D length change barely moves the 2D projection) and were a Rule-29 concern; a one-time opacity fade also failed (near-static after 1.4s + fragile to THE EYE's clock sampling). Final = **continuous bounded OPACITY pulses** (period 3.0s, non-aliasing with the 1s dense cadence; Rule-29-clean brightness-not-size, honest full length) — the same channel S3's cancel-pulse always worked on. S4's PRIMARY-aha rotation was also fixed (was a per-frame accumulator that clamped before THE EYE sampled → converted to a pure-function eased sweep + floored libration, mirroring the STATE_9 anti-freeze).
+- **Key lesson (added to the probe_logic):** THE EYE's D6/D7 motion checks can PASS on marching-dot baseline while the INTENDED distinct motion (arrow/vector/loop) is absent — the taught element must be pixel-proxy-verified, not trusted to the gate. The eye-walker caught this 3× where 46/46 deterministic passed.
+- **Verify:** tsc 0 · validate PASS · EYE 46/46 · eye-walker CLEAN all 4 targets + no regressions (S4/S6–S11) · review HTTP 200. Renderer changes scenario-gated (`current_loop_acts_as_dipole` + `pe_external_field` byte-identical).
+- **Review link (founder gate):** http://localhost:8080/torque_on_current_loop_in_field/ — 14 tts clips stale from the earlier narration retrofit (muted; re-voice at ship, not now). NOT shipped.
+
+**Next (Phase 2, after founder approves torque):** apply the SAME pattern to `moving_coil_galvanometer` (mcg_*_row) + `galvanometer_to_ammeter_voltmeter` (gav_*_row) — each also needs a Socratic strip (retrofit-surgeon; mcg 3/37/8, gav 3/34/8) + json visible_controls; both already have per-state choreography so less motion-invention. The reusable asset (`applyVisibleControls`) is unchanged — this is pattern-reuse, not new shared code.
+
+---
+
 ## 📘 SESSION — Ch.1 START: coulombs_law Rule-31 JSON pass DONE + committed; engine rebuild deferred to batch (2026-07-05)
 
 **Bottom line: founder pivoted from Ch.4 to Ch.1 (Electric Charges & Fields), then went to sleep with "complete the whole thing." First concept `coulombs_law` reconstructed to Rule 31 at the JSON level — 3 commits (`7d641c8` content + `fd028a9` field-align + `6a7f555` regression fix), validate PASS + tsc 0 + THE EYE 34/34 deterministic (×2) + eye-walker CONFIRMED + review page live. The live-instrument ENGINE rebuild is DEFERRED (not rushed) — same call the founder already made for torque; batch it. HELD for founder: visual approval → TTS re-voice → ship.**

@@ -1974,14 +1974,14 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="cyc_invariant">T <span id="cyc_live_bar"></span></div>
 </div>
 <div id="torque_sliders">
-    <label>N = <span id="n_torque_val">1</span> turns</label>
-    <input type="range" id="n_torque_slider" min="1" max="100" step="1" value="1">
-    <label>I = <span id="i_torque_val">0.50</span> A</label>
-    <input type="range" id="i_torque_slider" min="0.01" max="5" step="0.01" value="0.5">
-    <label>B = <span id="b_torque_val">0.10</span> T</label>
-    <input type="range" id="b_torque_slider" min="0.01" max="1" step="0.01" value="0.1">
-    <label>θ(μ,B) = <span id="theta_torque_val">45</span>°</label>
-    <input type="range" id="theta_torque_slider" min="0" max="180" step="1" value="45">
+    <div id="tq_n_row"><label>N = <span id="n_torque_val">1</span> turns</label>
+    <input type="range" id="n_torque_slider" min="1" max="100" step="1" value="1"></div>
+    <div id="tq_i_row"><label>I = <span id="i_torque_val">0.50</span> A</label>
+    <input type="range" id="i_torque_slider" min="0.01" max="5" step="0.01" value="0.5"></div>
+    <div id="tq_b_row"><label>B = <span id="b_torque_val">0.10</span> T</label>
+    <input type="range" id="b_torque_slider" min="0.01" max="1" step="0.01" value="0.1"></div>
+    <div id="tq_theta_row"><label>θ(μ,B) = <span id="theta_torque_val">45</span>°</label>
+    <input type="range" id="theta_torque_slider" min="0" max="180" step="1" value="45"></div>
     <div id="tau_readout">τ = 0.0 μN·m</div>
 </div>
 <div id="dipole_sliders">
@@ -10433,6 +10433,14 @@ export const FIELD_3D_RENDERER_CODE = `
         lg.userData.oscillation_amplitude_deg = stateDef.oscillation_amplitude_deg || 0;
         lg.userData.oscillation_period_s = stateDef.oscillation_period_s || 4;
         lg.userData.theta_sweep_period_s = stateDef.theta_sweep_period_s || 10;
+        // S4 couple-rotation sweep duration (seconds, state clock) — how long the
+        // slow_rotation pure-function sweep takes to go initTheta → target. Default
+        // 5s makes the 90°→60° turn read across several dense frames.
+        lg.userData.rotation_sweep_s = stateDef.rotation_sweep_s || 5;
+        // S3 cancel-pulse flag (Rule 31b): once both F arrows have grown in, they
+        // do a synchronized in-phase opacity throb conveying the equal-and-opposite
+        // "locked" pair (ΣF = 0). Reset to false on every entry unless declared.
+        lg.userData.cancelPulse = !!(ex.cancel_pulse);
 
         function setVisibleWithFade(obj, wantVisible) {
             if (!obj) return;
@@ -10450,6 +10458,14 @@ export const FIELD_3D_RENDERER_CODE = `
         var fRight = findTorqueElementById("f_right");
         setVisibleWithFade(fLeft, ex.force_vectors && ex.force_vectors.show_left);
         setVisibleWithFade(fRight, ex.force_vectors && ex.force_vectors.show_right);
+        // F arrows always render at their full built length (0.85) — the
+        // arrow_grow reveal is an OPACITY fade (below), never a size change, so
+        // the length is constant in every state. Reset here so a stale length
+        // can't bleed in. Scenario-gated so the current_loop sibling is untouched.
+        if (config.scenario_type === "torque_on_loop_uniform_field") {
+            if (fLeft) fLeft.setLength(0.85, 0.22, 0.11);
+            if (fRight) fRight.setLength(0.85, 0.22, 0.11);
+        }
 
         // μ vector — accept scale_factor in extras.mu_vector (default 1.0)
         // so STATE_5/6/7 can show μ shrinking/growing with N·I·A.
@@ -10466,6 +10482,15 @@ export const FIELD_3D_RENDERER_CODE = `
             var muLen = 0.5 + 0.5 * muScale;
             muArr.setLength(muLen, 0.26, 0.13);
             muArr.userData.muLen = muLen;
+            // Heal μ opacity to solid on entry (the mu_reveal frame block fades it
+            // from faint over ~1.4s; every other μ-state must show it solid — μ is
+            // NOT in the tweenOpacity list, so it can't self-heal like the F arrows).
+            // Scenario-gated; mirrors the F-arrow length reset above.
+            if (config.scenario_type === "torque_on_loop_uniform_field" && muArr.children) {
+                muArr.children.forEach(function (mc) {
+                    if (mc.material) { mc.material.transparent = true; mc.material.opacity = 1.0; }
+                });
+            }
         }
 
         // τ vector (direction sign + length scaled by sin θ in updateFrame).
@@ -10545,10 +10570,40 @@ export const FIELD_3D_RENDERER_CODE = `
                     var ampU = 10 + 30 * Math.exp(-elU / 10);     // 40 -> 10 deg, never 0
                     applyTorqueLoopTheta(lg, 360 + ampU * Math.sin((elU / TU) * 2 * Math.PI));
                 }
+            } else if (config.scenario_type === "torque_on_loop_uniform_field") {
+                // S4 couple rotation (the PRIMARY "rotation begins" aha) — a PURE
+                // FUNCTION of the state clock (like oscillation / theta_sweep), so
+                // THE EYE's dense capture samples the motion (time crawls toward each
+                // pin, so time − rotation_start_time advances smoothly). The prior
+                // per-frame integrator raced to the target at ~30°/s and completed
+                // before the capture opened → bit-identical frames.
+                //   Phase 1 (0 → sweepDur): eased sweep initTheta → target.
+                //   Phase 2 (after sweepDur): the couple keeps ROCKING the loop — a
+                //     gentle bounded libration about the target with a non-zero
+                //     amplitude FLOOR (mirrors STATE_9's Phase-2 libration), so it
+                //     never freezes. Needed because at the rotated pose the marching
+                //     dots' screen-motion drops below THE EYE's 0.1% floor, so a bare
+                //     hold trips D7 "animation died mid-state" (same freeze-after-
+                //     completion problem solved for STATE_9). Position is continuous
+                //     at the handoff (both give θ = target); Phase 2 starts at max
+                //     libration velocity so there is no stall. Scenario-gated; the
+                //     current_loop sibling keeps the integrator below.
+                var sweepDur = lg.userData.rotation_sweep_s || 5.0;
+                var elapsedR = time - lg.userData.rotation_start_time;
+                if (elapsedR <= sweepDur) {
+                    var fracR = Math.max(0, Math.min(1, elapsedR / sweepDur));
+                    var easedR = 0.5 - 0.5 * Math.cos(fracR * Math.PI); // easeInOut
+                    applyTorqueLoopTheta(lg, initTheta + (target - initTheta) * easedR);
+                } else {
+                    var elL = elapsedR - sweepDur;
+                    var TL = 3.0;                              // swing period (matches S8/S9)
+                    var ampL = 3 + 7 * Math.exp(-elL / 8);     // 10° → 3° floor, never 0
+                    applyTorqueLoopTheta(lg, target + ampL * Math.sin((elL / TL) * 2 * Math.PI));
+                }
             } else {
-                // Original one-time settle (STATE_4 couple rotation, etc.):
-                // linear interpolate from current toward rotation_target_deg,
-                // then hold.
+                // Sibling (current_loop_acts_as_dipole) one-time settle: linear
+                // per-frame integrate from current toward rotation_target_deg,
+                // then hold (unchanged — byte-identical).
                 var diff = target - curTheta;
                 var step = (Math.sign(diff)) * Math.min(Math.abs(diff), 30 * dtSeconds);
                 if (Math.abs(step) > 0.01) applyTorqueLoopTheta(lg, curTheta + step);
@@ -10568,8 +10623,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var phs = ((time - lg.userData.rotation_start_time) / Ts) * 2 * Math.PI;
             applyTorqueLoopTheta(lg, 90 + 90 * Math.sin(phs));
         }
-        // theta_controlled, manual, static — no auto-update; theta_deg is
-        // set by applyState or by an external SET_LOOP_ANGLE postMessage.
+        // theta_controlled, manual, static, current_flow_idle, arrow_grow,
+        // mu_reveal, tau_max_throb, swap_loop — no LOOP ROTATION here; theta_deg is
+        // set by applyState or by an external SET_LOOP_ANGLE postMessage. S1
+        // current_flow_idle is a deliberately non-rotating "setup" beat whose life
+        // is the marching current dots (animated unconditionally below — above the
+        // EYE floor at θ=90). The reveal/pulse modes (arrow_grow / mu_reveal /
+        // tau_max_throb / swap_loop) drive their own per-frame motion further down
+        // (τ block, the Rule-31b reveal block, and the bar-swap block).
 
         // τ-arrow direction + length. τ = μ × B. μ is loop-local +z; after
         // rotY=(90-θ)·deg→rad, μ projects onto world axes as
@@ -10603,7 +10664,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // Scale length AND head dimensions so the τ arrow visibly grows
             // and shrinks as θ sweeps — at sinθ=0 it nearly vanishes
             // (equilibria), at sinθ=1 it reaches full size (max torque).
-            var tauTotal = 0.05 + 1.2 * sAbs * tauMult;
+            // S7 tau_max_throb (torque_on_loop_uniform_field): a bounded ±12%
+            // throb at the FIXED θ=90 maximum — the sanctioned tauThrob idiom
+            // (Rule 29: an honest "this is the maximum" emphasis, not a magnitude
+            // lie), looping so THE EYE sees sustained above-floor motion. Scenario+
+            // mode gated → the dipole/pe siblings stay byte-identical (mult = 1).
+            var tauThrob = (config.scenario_type === "torque_on_loop_uniform_field"
+                && mode === "tau_max_throb") ? (1 + 0.12 * Math.sin(time * 5)) : 1;
+            var tauTotal = (0.05 + 1.2 * sAbs * tauMult) * tauThrob;
             var tauHead = Math.max(0.04, 0.30 * sAbs * Math.min(1.6, tauMult));
             var tauHeadW = Math.max(0.02, 0.15 * sAbs * Math.min(1.6, tauMult));
             tauArr.setLength(tauTotal, tauHead, tauHeadW);
@@ -10672,12 +10740,71 @@ export const FIELD_3D_RENDERER_CODE = `
         tweenOpacity(findTorqueElementById("sum_zero"));
         tweenOpacity(findTorqueElementById("tau_arrow"));
 
+        // ── Rule 31b distinct-motion via CONTINUOUS pulses (torque_on_loop only) ──
+        //   Scenario-gated so current_loop_acts_as_dipole / pe_external_field (which
+        //   share this frame engine but never set these modes) stay byte-identical.
+        //   S2/S3/S5 use a SUSTAINED bounded opacity pulse for the WHOLE state (NOT a
+        //   one-time reveal: a fade/grow that finishes in ~1.4s reads near-static for
+        //   the remaining ~16s and is fragile to THE EYE's 1s dense cadence). This is
+        //   the same channel S3's cancel-pulse pixel-verified on. Full length always
+        //   (Rule 29: opacity/brightness, never size — F=ILB and μ=NIA are constant
+        //   here, and the ±z arrows are foreshortened so a length change is invisible).
+        //   PERIOD 3.0s ⇒ 120° phase step at the 1s cadence, so adjacent dense samples
+        //   always differ (t=0/1000/2000ms → opacity 0.55/0.94/0.16). Runs after
+        //   tweenOpacity so the pulse owns the F-arrow opacity.
+        if (config.scenario_type === "torque_on_loop_uniform_field") {
+            var pulsePhase = ((time - lg.userData.rotation_start_time) / 3.0) * 2 * Math.PI;
+            var setArrowOpacity = function (arrow, op) {
+                if (!arrow || !arrow.children) return;
+                arrow.children.forEach(function (c) {
+                    if (c.material) { c.material.transparent = true; c.material.opacity = op; }
+                });
+            };
+            // S2 (F1 left only) / S3 (F1+F2, in-phase) arrow_grow. Which arrows pulse
+            // is read from their own visibility (extras.force_vectors.show_left/right,
+            // applied by applyTorqueLoopState).
+            if (mode === "arrow_grow") {
+                var fLg = findTorqueElementById("f_left");
+                var fRg = findTorqueElementById("f_right");
+                var opNow;
+                if (lg.userData.cancelPulse) {
+                    // S3: the EXACT continuous synchronized cancel-pulse that pixel-
+                    // verified (both F arrows throb in-phase the whole state — the
+                    // equal-and-opposite "locked" pair, ΣF=0). Range 0.55..1.0.
+                    opNow = 0.55 + 0.45 * (0.5 + 0.5 * Math.sin(time * 2.6));
+                } else {
+                    // S2: continuous opacity pulse on the shown F arrow. Range 0.10..1.0.
+                    opNow = 0.55 + 0.45 * Math.sin(pulsePhase);
+                }
+                if (fLg && fLg.visible) setArrowOpacity(fLg, opNow);
+                if (fRg && fRg.visible) setArrowOpacity(fRg, opNow);
+            }
+            // S5 mu_reveal: continuous opacity pulse on μ at full length (0.10..1.0).
+            // The marching current dots supply the RHR-curl context (fingers curl with
+            // I, thumb = μ). No size change, no new primitive.
+            if (mode === "mu_reveal") {
+                var muRev = findTorqueElementById("mu_arrow");
+                if (muRev && muRev.visible) setArrowOpacity(muRev, 0.55 + 0.45 * Math.sin(pulsePhase));
+            }
+        }
+
         // Bar-magnet swap fade (STATE_7). t∈[0,1.5s]; loop wires fade to
         // 0.25 opacity, bar magnet fades 0 → 1. Sprite labels share the
         // bar magnet's opacity so "N"/"S" appear in sync.
         var swapT0 = lg.userData.barSwapStartTime;
         if (swapT0 != null && swapT0 >= 0) {
-            var sp = Math.min(1, (time - swapT0) / 1.5);
+            // S10 swap_loop (torque_on_loop_uniform_field): a CONTINUOUS cross-fade
+            // loop↔bar (period ~5s) instead of a one-shot fade that then freezes —
+            // keeps the "loop = bar magnet" equivalence beat alive (Rule 31b) and
+            // above the EYE motion floor for the whole state. Any other scenario /
+            // mode keeps the original one-shot ramp (byte-identical for siblings).
+            var sp;
+            if (config.scenario_type === "torque_on_loop_uniform_field"
+                && lg.userData.rotation_mode === "swap_loop") {
+                sp = 0.5 - 0.5 * Math.cos(((time - swapT0) / 2.5) * Math.PI);
+            } else {
+                sp = Math.min(1, (time - swapT0) / 1.5);
+            }
             var loopOp = 1.0 - 0.75 * sp;
             var barOp = sp;
             for (var ic = 0; ic < lg.children.length; ic++) {
@@ -10713,6 +10840,28 @@ export const FIELD_3D_RENDERER_CODE = `
                 var rud = rch.userData || {};
                 if (rud.elementType === "loop_side" && rch.material) {
                     rch.material.opacity = 1.0;
+                }
+            }
+        }
+
+        // ── S1 current_flow_idle: keep the setup beat genuinely ALIVE ──────────
+        //   No loop rotation (setup at θ=90) and the marching current dots are too
+        //   small to clear THE EYE floor, so give the LOOP EDGE a continuous gentle
+        //   opacity breathing on the same sin channel as S2/S3/S5 (Rule 29: opacity,
+        //   not size). Placed AFTER the bar-swap else-branch (which restores loop_side
+        //   to 1.0) so the pulse owns loop_side opacity; opacity is untouched by
+        //   applyTorqueLoopGlow (brightenOnly). loop_side self-heals to 1.0 via that
+        //   else-branch in every non-current_flow_idle state, so nothing bleeds.
+        //   PERIOD 3.0s ⇒ 120° step at the 1s cadence → adjacent dense samples differ.
+        if (config.scenario_type === "torque_on_loop_uniform_field"
+            && mode === "current_flow_idle") {
+            var s1Phase = ((time - lg.userData.rotation_start_time) / 3.0) * 2 * Math.PI;
+            var s1Op = 0.60 + 0.40 * Math.sin(s1Phase);   // 0.20 .. 1.00
+            for (var s1i = 0; s1i < lg.children.length; s1i++) {
+                var s1c = lg.children[s1i];
+                if (s1c.userData && s1c.userData.elementType === "loop_side" && s1c.material) {
+                    s1c.material.transparent = true;
+                    s1c.material.opacity = s1Op;
                 }
             }
         }
@@ -27877,7 +28026,22 @@ export const FIELD_3D_RENDERER_CODE = `
                 // recomputes against the just-synced θ value (otherwise
                 // the readout shows the stale value from setupSliders'
                 // initial refreshTorqueLabels() at slider_controls.default).
+                // The synthetic event is isTrusted===false, so refreshTorqueLabels'
+                // trusted-drag guard leaves the state's authored rotation_mode
+                // (arrow_grow / mu_reveal / tau_max_throb / swap_loop / ...) intact.
                 if (thT) thT.dispatchEvent(new Event("input", { bubbles: true }));
+                // Rule 31c per-state contextual controls (torque_on_loop_uniform_field
+                // ONLY): show only the row(s) this beat teaches; an absent
+                // visible_controls shows every row (explore state STATE_11 +
+                // legacy safety). Sibling current_loop_acts_as_dipole shares
+                // #torque_sliders via isTorque but is deliberately NOT gated here,
+                // so its rows stay all-visible (unchanged behaviour).
+                if (config.scenario_type === "torque_on_loop_uniform_field") {
+                    applyVisibleControls(
+                        { N: "tq_n_row", I: "tq_i_row", B: "tq_b_row", theta: "tq_theta_row" },
+                        stateDef.visible_controls
+                    );
+                }
             }
         }
         if (dipoleSlidersEl) {
@@ -30475,7 +30639,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
 
-            function refreshTorqueLabels() {
+            function refreshTorqueLabels(ev) {
                 var nVal = document.getElementById("n_torque_val");
                 var iVal = document.getElementById("i_torque_val");
                 var bVal = document.getElementById("b_torque_val");
@@ -30498,10 +30662,17 @@ export const FIELD_3D_RENDERER_CODE = `
                     lgT.userData.slider_I = i;
                     lgT.userData.slider_B = b;
                     lgT.userData.slider_theta_deg = th;
-                    // θ slider takes direct rotation control — switch to
-                    // manual mode and apply immediately.
-                    lgT.userData.rotation_mode = "manual";
-                    applyTorqueLoopTheta(lgT, th);
+                    // θ slider takes direct rotation control — but ONLY on a real
+                    // teacher drag (ev.isTrusted). The programmatic on-entry sync
+                    // (synthetic input event from applyState, ev.isTrusted===false)
+                    // and the init call (no ev) must NOT seize manual, or they would
+                    // overwrite the state's authored auto-motion (current_flow_idle /
+                    // arrow_grow / mu_reveal / tau_max_throb / swap_loop). Mirrors
+                    // circular_loop's clOnInput trusted-drag guard.
+                    if (ev && ev.isTrusted !== false) {
+                        lgT.userData.rotation_mode = "manual";
+                        applyTorqueLoopTheta(lgT, th);
+                    }
                 }
 
                 // τ = N·I·A·B·|sinθ| in N·m → display in μN·m for legibility.
@@ -30790,8 +30961,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Diamond #3 — torque-loop rotation + τ-arrow scaling + TTS glow.
         if (config.scenario_type === "torque_on_loop_uniform_field") {
-            // slow_rotation integrates by dt independent of the time var —
-            // pass 0 while held at the pin so the loop angle freezes too.
+            // Rotation/reveal modes are pure functions of (time − rotation_start_time)
+            // so they freeze automatically when the pin holds the time var; the
+            // marching current dots still integrate by dt, so pass 0 while held at the
+            // pin to freeze them (and the sibling's slow_rotation integrator) too.
             updateTorqueLoopFrame(heldAtPin ? 0 : 0.016);
             applyTorqueLoopGlow();
         }

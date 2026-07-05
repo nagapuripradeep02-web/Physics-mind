@@ -4,11 +4,11 @@
  * narration retrofit (retrofit_surgeon, JSON-only) landed but THE EYE + the surgeon's
  * escalation showed the torque_on_loop_uniform_field scenario is not yet Rule-31-ready.
  *
- * The hard D7 blocker (STATE_9 motion death) was fixed same session (renderer_primitives)
- * and is EYE-clean (46/46). These two rows track the REMAINING gaps for a dedicated
- * Rule-31 rebuild pass (founder-deferred, not a rushed bolt-on): per-state contextual
- * controls + non-static early states. The concept is committed as a narration checkpoint,
- * NOT shipped.
+ * The hard D7 blocker (STATE_9 motion death) was fixed 2026-07-05 (renderer_primitives).
+ * UPDATE 2026-07-05: founder authorized the full Rule-31 rebuild — BOTH gaps are now
+ * FIXED and eye-walker pixel-verified (run 20260705-045637): per-state contextual controls
+ * (tq_*_row + applyVisibleControls; S5=N,I / S6=B / S7=theta / S11=all / watch beats=none)
+ * and distinct sustained motion on every state (the 6 formerly-static beats now animate).
  *
  * Idempotent: upsert onConflict 'bug_class'. Also writes the archival SQL.
  * Run: npx tsx --env-file=.env.local src/scripts/_seed_engine_bug_queue_torque_rule31_gaps.ts
@@ -45,15 +45,15 @@ const incidents: Row[] = [
     severity: 'MAJOR',
     owner_cluster: 'peter_parker:renderer_primitives',
     root_cause:
-      `Surfaced by retrofit_surgeon 2026-07-05 (Socratic->Rule-31 narration retrofit, JSON-only). The scenario's #torque_sliders panel is one div of four bare label+input pairs (N/I/B/theta) with NO row-wrapper ids, and the per-frame gate is stateDef.show_sliders && isTorque (${RENDERER} ~L27748) with NO applyVisibleControls({...}, stateDef.visible_controls) call — unlike force_on_current_wire (~L27657), magnetic_field_circular_loop (~L11391), faraday (~L27044) which DO wrap rows + call applyVisibleControls. So Rule-31c (each guided state exposes ONLY its relevant slider(s)) is not implementable today; only STATE_11 (explore) shows the panel — the OLD last-state-only pattern. Retrofit_surgeon correctly did NOT fake it with an inert JSON visible_controls field. TWO-PART FIX for the rebuild pass: (a) renderer_primitives adds row-wrapper ids (tor_n_row/tor_i_row/tor_b_row/tor_theta_row) inside #torque_sliders + an applyVisibleControls call in the torqueSlidersEl branch, mirroring force_on_current_wire; (b) json_author adds per-state visible_controls declarations to the guided states (e.g. STATE_5 = N,I).`,
+      `FIXED + VERIFIED 2026-07-05. Was: the #torque_sliders panel was four bare label+input pairs with NO row-wrapper ids and NO applyVisibleControls call (only STATE_11 showed the panel — the old last-state-only pattern). TWO-PART FIX landed: (a) renderer_primitives wrapped the four sliders in tq_n_row/tq_i_row/tq_b_row/tq_theta_row (built once) + calls applyVisibleControls({N:tq_n_row,I:tq_i_row,B:tq_b_row,theta:tq_theta_row}, stateDef.visible_controls) in the torqueSlidersEl branch (scenario-gated), reusing the shared helper; (b) json_author added per-state visible_controls arrays (S5=[N,I], S6=[B], S7=[theta], S11=[N,I,B,theta], watch beats none) + show_sliders:true and fixed STATE_11's show_sliders array bug. Eye-walker pixel-verified run 20260705-045637: each state shows exactly its relevant slider row set, explore shows all.`,
     prevention_rule:
       'A field_3d scenario used by a Rule-31 concept must support per-state contextual controls (row-wrapper ids + applyVisibleControls reading stateDef.visible_controls) BEFORE the concept is authored/retrofitted to Rule 31 — a Socratic->straightforward narration retrofit alone does not make a concept Rule-31-compliant if its scenario is control-incapable.',
     probe_type: 'manual',
     probe_logic:
       'For torque_on_current_loop_in_field, confirm each guided state exposes only its relevant slider row(s) and the explore state exposes all. If the panel is all-or-nothing (only the explore state shows any slider), Rule-31c is unmet.',
-    status: 'OPEN',
+    status: 'FIXED',
     concepts_affected: [CONCEPT],
-    fixed_in_files: [],
+    fixed_in_files: [RENDERER, 'src/data/concepts/torque_on_current_loop_in_field.json'],
     row_type: 'incident',
   },
   {
@@ -62,15 +62,15 @@ const incidents: Row[] = [
     severity: 'MODERATE',
     owner_cluster: 'ambiguous',
     root_cause:
-      `Surfaced 2026-07-05 during the Socratic->Rule-31 retrofit (out of scope for that JSON-only narration delta; noted, not fixed). STATE_1 (geometry setup), STATE_2 (F on left side), STATE_3 (F on right side, sum F=0) are authored rotation_mode: "static" — they present a still picture while the narration plays, which Rule 31b forbids (every state must earn its place with distinct motion — a watch-this beat still needs auto-playing choreography, motion and interactivity being separate axes). This is a DESIGN decision (what motion each early beat should show — e.g. the force vectors animating in, or a gentle idle rotation), so it is owner-ambiguous pending founder/architect direction, then renderer_primitives to implement. Part of the deferred torque Rule-31 rebuild pass, alongside torque_scenario_no_contextual_controls.`,
+      `FIXED + VERIFIED 2026-07-05. Was: STATE_1/2/3/5/7/10 authored rotation_mode:"static" (frozen picture, Rule 31b violation). FIX: renderer_primitives added distinct sustained motion per state (json_author selects the mode) — S1 current_flow_idle (loop-edge breathing pulse), S2 arrow_grow (F1 continuous opacity pulse), S3 arrow_grow+cancel_pulse (both F arrows in-phase throb), S5 mu_reveal (mu opacity pulse), S7 tau_max_throb (bounded tau pulse), S10 swap_loop (loop<->bar-magnet cross-fade). NOTE the design journey (3 verification rounds): one-time size-grow reveals were tried first but were invisible on screen due to FORESHORTENING (F/mu point near the camera axis, so a 3D length change barely moves the 2D projection) AND were a Rule-29 concern (growing a fixed-magnitude vector). Final design = continuous bounded OPACITY pulses (period 3.0s, non-aliasing with THE EYE's 1s sampling; Rule-29-clean = brightness not size, honest full length). Eye-walker pixel-verified oscillation on all of S1/S2/S3/S5 (run 20260705-045637: e.g. S2 F1 pixel-count trough 5 -> peak 150). rotation_mode metadata no longer literally "static" on any guided state.`,
     prevention_rule:
       'Every guided state (including setup / watch-this beats) must show distinct auto-playing motion (Rule 31b) — a rotation_mode "static" state is a design smell to resolve at author time, not ship.',
     probe_type: 'manual',
     probe_logic:
-      'For each guided state, THE EYE motion profile (D-checks) must show sustained above-floor adjacent-frame motion; a state that is flat for its whole duration is a static-state violation.',
-    status: 'OPEN',
+      'For each guided state, THE EYE motion profile (D-checks) must show sustained above-floor adjacent-frame motion; a state that is flat for its whole duration is a static-state violation. NOTE: D6/D7 can PASS on marching-dot baseline while the INTENDED distinct motion is absent — verify the taught element (arrow/vector/loop) with a pixel-proxy oscillation measure, not just the gate.',
+    status: 'FIXED',
     concepts_affected: [CONCEPT],
-    fixed_in_files: [],
+    fixed_in_files: [RENDERER, 'src/data/concepts/torque_on_current_loop_in_field.json'],
     row_type: 'incident',
   },
 ];
@@ -108,7 +108,7 @@ async function main(): Promise<void> {
   }));
   const { error } = await supabaseAdmin.from('engine_bug_queue').upsert(payload, { onConflict: 'bug_class' });
   if (error) { console.error(`✗ upsert failed: ${error.message}`); process.exit(1); }
-  console.log(`✓ ${incidents.length} torque Rule-31 gap row(s) upserted (both OPEN, deferred rebuild pass)`);
+  console.log(`✓ ${incidents.length} torque Rule-31 gap row(s) upserted (both FIXED + eye-walker verified)`);
 }
 
 main().catch((err) => { console.error('💥 seed failed:', err instanceof Error ? err.stack : err); process.exit(1); });

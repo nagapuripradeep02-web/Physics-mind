@@ -678,7 +678,7 @@
         "camera_position": [3.5, 2, 4],
         "caption": "Rectangular loop in uniform B. θ = 90° — loop face parallel to the field axis. No force vectors shown yet.",
         "theta_deg": 90,
-        "rotation_mode": "static",
+        "rotation_mode": "current_flow_idle",
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
@@ -693,7 +693,7 @@
         "camera_position": [3.5, 2, 4],
         "caption": "Left side: current up, B right. RHR → F₁ INTO page. Magnitude I·L·B.",
         "theta_deg": 90,
-        "rotation_mode": "static",
+        "rotation_mode": "arrow_grow",
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
@@ -709,11 +709,12 @@
         "camera_position": [3.5, 2, 4],
         "caption": "Right side: current down, B right. RHR → F₂ OUT of page. F₁ + F₂ = 0. Loop will not translate.",
         "theta_deg": 90,
-        "rotation_mode": "static",
+        "rotation_mode": "arrow_grow",
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
           "force_vectors": { "show_left": true, "show_right": true, "color": "#66BB6A" },
+          "cancel_pulse": true,
           "sum_force_badge": true,
           "mu_vector": false,
           "tau_vector": false,
@@ -742,7 +743,9 @@
         "camera_position": [3, 2.5, 4],
         "caption": "μ = NIA. Direction: perpendicular to loop face, RHR (fingers curl with current, thumb gives μ). Observe-only — interactivity is reserved for STATE_11.",
         "theta_deg": 90,
-        "rotation_mode": "static",
+        "rotation_mode": "mu_reveal",
+        "show_sliders": true,
+        "visible_controls": ["N", "I"],
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
@@ -759,6 +762,8 @@
         "theta_deg": 0,
         "rotation_mode": "theta_sweep",
         "theta_sweep_period_s": 10,
+        "show_sliders": true,
+        "visible_controls": ["B"],
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
@@ -773,7 +778,9 @@
         "camera_position": [3, 2.5, 4],
         "caption": "Loop pinned at θ = 90°. Wrong-belief callout, then the correct answer.",
         "theta_deg": 90,
-        "rotation_mode": "static",
+        "rotation_mode": "tau_max_throb",
+        "show_sliders": true,
+        "visible_controls": ["theta"],
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
@@ -821,7 +828,7 @@
         "camera_position": [3.5, 3, 4.5],
         "caption": "Loop fades, bar magnet appears with same μ direction. τ unchanged.",
         "theta_deg": 60,
-        "rotation_mode": "static",
+        "rotation_mode": "swap_loop",
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
@@ -838,7 +845,8 @@
         "caption": "Sliders control N, I, B, θ. τ and μ update on every drag.",
         "theta_deg": 45,
         "rotation_mode": "static",
-        "show_sliders": ["N", "I", "B", "theta_deg"],
+        "show_sliders": true,
+        "visible_controls": ["N", "I", "B", "theta"],
         "extras": {
           "loop_visible": true,
           "current_arrows": true,
