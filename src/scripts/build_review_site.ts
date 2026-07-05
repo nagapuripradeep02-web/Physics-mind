@@ -1723,7 +1723,11 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     if (so) so.style.display = 'none';
   } else if (window.PM && PM.authReady) PM.authReady.then(function (u) {
     var el = document.getElementById('whoName');
-    if (el && u) el.textContent = (u.user_metadata && u.user_metadata.display_name) || u.email || '';
+    if (el && u) {
+      var m = u.user_metadata || {};
+      var staff = m.role === 'founder' || m.staff === true;
+      el.textContent = (m.display_name || u.email || '') + (staff ? '  ·  founder — not tracked' : '');
+    }
   });
   document.getElementById('signOutBtn').addEventListener('click', function () {
     pmt('logout', {});

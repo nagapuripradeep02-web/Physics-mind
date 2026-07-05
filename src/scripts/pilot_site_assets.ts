@@ -204,6 +204,22 @@ function pmTelemetryJs(): string {
   // DEV EXEMPTION (matches pm-auth): on localhost, events are console-logged
   // only — NEVER sent — so founder testing can't pollute the professor data.
   var IS_DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  // STAFF EXEMPTION: a logged-in founder/staff account (user_metadata.role ===
+  // 'founder' or staff === true) is NEVER recorded — so the founder can use the
+  // REAL production app, click through everything, and pollute nothing. Only
+  // teacher accounts (no flag) write to pilot_events. Resolves async on auth.
+  var isStaff = false;
+  PM.isStaff = function () { return isStaff; };
+  if (window.PM && PM.authReady && PM.authReady.then) {
+    PM.authReady.then(function (u) {
+      var m = (u && u.user_metadata) ? u.user_metadata : {};
+      if (m.role === 'founder' || m.staff === true) {
+        isStaff = true;
+        queue = [];   // drop anything captured before auth resolved
+        try { console.info('[pm-telemetry] founder/staff session — analytics OFF (nothing recorded).'); } catch (e) {}
+      }
+    });
+  }
 
   function sessionId() {
     try {
@@ -216,8 +232,8 @@ function pmTelemetryJs(): string {
 
   PM.track = function (type, payload) {
     if (!type) return;
-    if (IS_DEV) {
-      try { console.debug('[pm-telemetry dev, NOT sent] ' + type, payload || {}); } catch (e) {}
+    if (IS_DEV || isStaff) {
+      try { console.debug('[pm-telemetry ' + (isStaff ? 'founder' : 'dev') + ', NOT sent] ' + type, payload || {}); } catch (e) {}
       return;
     }
     queue.push({
@@ -233,6 +249,7 @@ function pmTelemetryJs(): string {
   };
 
   function flush(unloading) {
+    if (isStaff) { queue = []; return; }   // founder/staff: never send
     if (!queue.length || !window.PM_CONFIG) return;
     var tok = PM.auth && PM.auth.token && PM.auth.token();
     if (!tok) return;                      // hold until authed; RLS rejects anon anyway
