@@ -12238,7 +12238,14 @@ export const FIELD_3D_RENDERER_CODE = `
         else target = stateDef.radial ? mcgPhiRadialDeg(v) : mcgUniformPhiDeg(v);
         if (coil) { coil.userData.phiStartDeg = mcgPhiCurrentDeg; coil.userData.phiTargetDeg = target; }
 
-        if (stateDef.show_sliders) { mcgInteracted = false; refreshMovingCoilExplorer(); }
+        if (stateDef.show_sliders) {
+            mcgInteracted = false;
+            refreshMovingCoilExplorer();
+            // Rule 31c per-state contextual controls — show only the row(s) this
+            // state teaches; the explore state lists all. Rows are built once in
+            // the #sliders panel init; absent visible_controls ⇒ all rows shown.
+            applyVisibleControls({ I: "mcg_i_row", N: "mcg_n_row", B: "mcg_b_row", A: "mcg_a_row", k: "mcg_k_row" }, stateDef.visible_controls);
+        }
     }
 
     // Per-frame motion — a PURE function of the state clock (deterministic under
@@ -12260,17 +12267,14 @@ export const FIELD_3D_RENDERER_CODE = `
         var phiStart = coil.userData.phiStartDeg || 0;
         var phiTarget = (coil.userData.phiTargetDeg != null) ? coil.userData.phiTargetDeg : 0;
         var phi;
-        if (sliderMode) {
+        if (sliderMode && mcgInteracted) {
+            // Live-instrument model: the teacher has GRABBED a slider, so φ now tracks
+            // the panel (only the state's contextual row(s) are shown, per
+            // applyVisibleControls). Until a grab, a show_sliders state instead plays
+            // its scripted choreography below (or the idle sweep if it has none), so
+            // enabling contextual controls on a guided state never costs its animation.
             var sv = mcgReadSliders();
             if (sv) { v = sv; }
-            if (!mcgInteracted) {
-                // Idle auto-sweep on I — keep the slider thumb + "I = … µA" label in
-                // lock-step with the swept value so I and φ never disagree (at the rest
-                // value I=50 µA the readout reads φ=28.65°, not a stale default).
-                v.I = 50 + 45 * Math.sin(stS * 0.5);
-                var iSl = document.getElementById("mcg_i_slider"); if (iSl) iSl.value = String(v.I);
-                var iVl = document.getElementById("mcg_i_val"); if (iVl) iVl.textContent = v.I.toFixed(0);
-            }
             phi = (sd.radial === false) ? mcgUniformPhiDeg(v) : mcgPhiRadialDeg(v);
         } else if (ex.current_step && ex.current_step.enabled) {
             var cs = ex.current_step;
@@ -12293,6 +12297,19 @@ export const FIELD_3D_RENDERER_CODE = `
             var swAt = sw.at_ms != null ? sw.at_ms : 500, swDur = sw.duration_ms != null ? sw.duration_ms : 2500, maxM = sw.max_mult != null ? sw.max_mult : 1.8;
             var u2 = mcgClamp((elapsedMs - swAt) / swDur, 0, 1);
             phi = mcgPhiRadialDeg(v) * (1 + (maxM - 1) * mcgSmooth(u2));
+        } else if (sliderMode) {
+            // show_sliders state that is not yet grabbed AND has no scripted
+            // choreography (the sandbox, STATE_9): the idle auto-sweep on I keeps it
+            // alive and shows the I↔φ coupling until the teacher takes manual control.
+            // Deterministic under THE EYE (mcgInteracted stays false → this branch is a
+            // pure function of the state clock). Keeps the slider thumb + "I = … µA"
+            // label in lock-step with the swept value so I and φ never disagree.
+            var sv2 = mcgReadSliders();
+            if (sv2) { v = sv2; }
+            v.I = 50 + 45 * Math.sin(stS * 0.5);
+            var iSl = document.getElementById("mcg_i_slider"); if (iSl) iSl.value = String(v.I);
+            var iVl = document.getElementById("mcg_i_val"); if (iVl) iVl.textContent = v.I.toFixed(0);
+            phi = (sd.radial === false) ? mcgUniformPhiDeg(v) : mcgPhiRadialDeg(v);
         } else {
             var dEx = ex.deflect || {};
             var dDur = dEx.duration_ms != null ? dEx.duration_ms : 1500, dAt = dEx.at_ms != null ? dEx.at_ms : 0;
@@ -12332,10 +12349,27 @@ export const FIELD_3D_RENDERER_CODE = `
         var core = mcgFindById("mcg_core");
         if (core && core.visible && core.material) { core.material.emissiveIntensity = (core.userData.baseEmissive || 0.25) + 0.5 * radialProgress; }
 
-        // Force arrows: full when radial, \\u00d7|cos\\u03c6| in the uniform field.
-        var fLen = sd.radial ? 0.85 : 0.85 * Math.abs(Math.cos(phiRad));
-        if (coil.userData.fLeft && coil.userData.fLeft.visible) coil.userData.fLeft.setLength(Math.max(0.08, fLen), 0.22, 0.11);
-        if (coil.userData.fRight && coil.userData.fRight.visible) coil.userData.fRight.setLength(Math.max(0.08, fLen), 0.22, 0.11);
+        // Force arrows. |F| = BIL is CONSTANT in magnitude in BOTH fields — the
+        // earlier \\u00d7|cos\\u03c6| shrink in the uniform field wrongly implied |F| depends on
+        // \\u03c6; only the TORQUE falls as cos\\u03c6 (shown by the \\u03c4 arrow / lever arm below).
+        // Direction: in the UNIFORM field the vertical sides stay vertical, so
+        // F = I L(\\u00b1y) \\u00d7 B(+x) = \\u2213z is FIXED in world regardless of coil angle, so
+        // counter-rotate the coil-child arrows to hold them at world \\u2213z. In the RADIAL
+        // field the force is genuinely tangential and co-rotates with the coil, so keep
+        // the coil-local \\u2213z direction. (engine_bug_queue: mcg_uniform_field_force_arrow_shrinks_with_cosphi)
+        var cRot = coil.rotation.y;
+        if (coil.userData.fLeft && coil.userData.fLeft.visible) {
+            coil.userData.fLeft.setLength(0.85, 0.22, 0.11);
+            coil.userData.fLeft.setDirection(sd.radial
+                ? new THREE.Vector3(0, 0, -1)
+                : new THREE.Vector3(Math.sin(cRot), 0, -Math.cos(cRot)).normalize());
+        }
+        if (coil.userData.fRight && coil.userData.fRight.visible) {
+            coil.userData.fRight.setLength(0.85, 0.22, 0.11);
+            coil.userData.fRight.setDirection(sd.radial
+                ? new THREE.Vector3(0, 0, 1)
+                : new THREE.Vector3(-Math.sin(cRot), 0, Math.cos(cRot)).normalize());
+        }
 
         // Deflecting \\u03c4 length \\u221d NIAB (radial: const; uniform: \\u00d7cos\\u03c6).
         var tauD = mcgFindById("mcg_tau_deflect");
@@ -30119,17 +30153,21 @@ export const FIELD_3D_RENDERER_CODE = `
                 var mBDef = mB.default != null ? mB.default : 0.2, mBMin = mB.min != null ? mB.min : 0.05, mBMax = mB.max != null ? mB.max : 0.5, mBStep = mB.step != null ? mB.step : 0.01;
                 var mADef = mA.default != null ? mA.default : 2.0, mAMin = mA.min != null ? mA.min : 0.5, mAMax = mA.max != null ? mA.max : 5.0, mAStep = mA.step != null ? mA.step : 0.1;
                 var mKDef = mK.default != null ? mK.default : 4.0, mKMin = mK.min != null ? mK.min : 1.0, mKMax = mK.max != null ? mK.max : 10.0, mKStep = mK.step != null ? mK.step : 0.5;
+                // Each control lives in its own row div (mcg_i_row / mcg_n_row /
+                // mcg_b_row / mcg_a_row / mcg_k_row) so applyVisibleControls can show
+                // only the state-relevant slider(s) per Rule 31c; the explore state
+                // lists all. Mirrors magnetic_field_circular_loop (cl_*_row).
                 mcgPanel.innerHTML =
-                    '<label>I = <span id="mcg_i_val">' + mIDef.toFixed(0) + '</span> \\u00b5A</label>' +
-                    '<input type="range" id="mcg_i_slider" min="' + mIMin + '" max="' + mIMax + '" step="' + mIStep + '" value="' + mIDef + '">' +
-                    '<label>N = <span id="mcg_n_val">' + mNDef + '</span> turns</label>' +
-                    '<input type="range" id="mcg_n_slider" min="' + mNMin + '" max="' + mNMax + '" step="' + mNStep + '" value="' + mNDef + '">' +
-                    '<label>B = <span id="mcg_b_val">' + mBDef.toFixed(2) + '</span> T</label>' +
-                    '<input type="range" id="mcg_b_slider" min="' + mBMin + '" max="' + mBMax + '" step="' + mBStep + '" value="' + mBDef + '">' +
-                    '<label>A = <span id="mcg_a_val">' + mADef.toFixed(1) + '</span> cm\\u00b2</label>' +
-                    '<input type="range" id="mcg_a_slider" min="' + mAMin + '" max="' + mAMax + '" step="' + mAStep + '" value="' + mADef + '">' +
-                    '<label>k = <span id="mcg_k_val">' + mKDef.toFixed(1) + '</span> \\u00d710\\u207b\\u2077 N\\u00b7m/rad</label>' +
-                    '<input type="range" id="mcg_k_slider" min="' + mKMin + '" max="' + mKMax + '" step="' + mKStep + '" value="' + mKDef + '">' +
+                    '<div id="mcg_i_row"><label>I = <span id="mcg_i_val">' + mIDef.toFixed(0) + '</span> \\u00b5A</label>' +
+                    '<input type="range" id="mcg_i_slider" min="' + mIMin + '" max="' + mIMax + '" step="' + mIStep + '" value="' + mIDef + '"></div>' +
+                    '<div id="mcg_n_row"><label>N = <span id="mcg_n_val">' + mNDef + '</span> turns</label>' +
+                    '<input type="range" id="mcg_n_slider" min="' + mNMin + '" max="' + mNMax + '" step="' + mNStep + '" value="' + mNDef + '"></div>' +
+                    '<div id="mcg_b_row"><label>B = <span id="mcg_b_val">' + mBDef.toFixed(2) + '</span> T</label>' +
+                    '<input type="range" id="mcg_b_slider" min="' + mBMin + '" max="' + mBMax + '" step="' + mBStep + '" value="' + mBDef + '"></div>' +
+                    '<div id="mcg_a_row"><label>A = <span id="mcg_a_val">' + mADef.toFixed(1) + '</span> cm\\u00b2</label>' +
+                    '<input type="range" id="mcg_a_slider" min="' + mAMin + '" max="' + mAMax + '" step="' + mAStep + '" value="' + mADef + '"></div>' +
+                    '<div id="mcg_k_row"><label>k = <span id="mcg_k_val">' + mKDef.toFixed(1) + '</span> \\u00d710\\u207b\\u2077 N\\u00b7m/rad</label>' +
+                    '<input type="range" id="mcg_k_slider" min="' + mKMin + '" max="' + mKMax + '" step="' + mKStep + '" value="' + mKDef + '"></div>' +
                     '<div id="mcg_readout">\\u03c6 = 28.6\\u00b0<br>sensitivity = 0.573 \\u00b0/\\u00b5A</div>';
                 var mcgOnInput = function () { mcgInteracted = true; refreshMovingCoilExplorer(); };
                 var mcgIds = ["mcg_i_slider", "mcg_n_slider", "mcg_b_slider", "mcg_a_slider", "mcg_k_slider"];
