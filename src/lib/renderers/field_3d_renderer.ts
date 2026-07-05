@@ -12732,7 +12732,14 @@ export const FIELD_3D_RENDERER_CODE = `
             dd.userData.active = true;
             act.push(dd);
         }
-        if (stateDef.show_sliders) { gavInteracted = false; refreshGalvanometerExplorer(); }
+        if (stateDef.show_sliders) {
+            gavInteracted = false;
+            refreshGalvanometerExplorer();
+            // Rule 31c per-state contextual controls — show only the row(s) this state
+            // teaches (S4 shunt: Ig,G,I; S6 voltmeter: Ig,G,V; S9 sandbox: all). Rows
+            // built once in the #sliders panel init; absent visible_controls ⇒ all shown.
+            applyVisibleControls({ Ig: "gav_ig_row", G: "gav_g_row", I: "gav_i_row", V: "gav_v_row" }, stateDef.visible_controls);
+        }
     }
 
     var gavInteracted = false;
@@ -12804,7 +12811,19 @@ export const FIELD_3D_RENDERER_CODE = `
         var sv = gavReadSliders(); if (!sv) return;
         var S = gavShuntS(sv), R = gavSeriesR(sv), aR = gavAmmeterRes(sv), vR = gavVoltmeterRes(sv);
         var ro = document.getElementById("gav_readout");
-        if (ro) ro.innerHTML = "Shunt S = " + S.toFixed(3) + " \\u03a9 (in parallel)<br>Series R = " + Math.round(R) + " \\u03a9 (in series)<br>Ammeter \\u2248 " + aR.toFixed(3) + " \\u03a9 &nbsp; Voltmeter \\u2248 " + Math.round(vR) + " \\u03a9";
+        if (ro) {
+            // Contextual readout (Rule 31c) — show ONLY the meter this state teaches,
+            // matching its visible_controls: S4 shunt-world (has I, no V) → shunt S +
+            // ammeter; S6 voltmeter-world (has V, no I) → series R + voltmeter; S9
+            // sandbox (both) → both. Absent visible_controls ⇒ show both (safe default).
+            var gvc = (config.states[PM_currentState] || {}).visible_controls || null;
+            var showShunt = !gvc || gvc.indexOf("I") !== -1;
+            var showSeries = !gvc || gvc.indexOf("V") !== -1;
+            var lines = [];
+            if (showShunt) lines.push("Shunt S = " + S.toFixed(3) + " \\u03a9 (in parallel) \\u2192 Ammeter \\u2248 " + aR.toFixed(3) + " \\u03a9");
+            if (showSeries) lines.push("Series R = " + Math.round(R) + " \\u03a9 (in series) \\u2192 Voltmeter \\u2248 " + Math.round(vR) + " \\u03a9");
+            ro.innerHTML = lines.join("<br>");
+        }
         var a = document.getElementById("gav_ig_val"); if (a) a.textContent = sv.Ig.toFixed(1);
         var b = document.getElementById("gav_g_val"); if (b) b.textContent = String(Math.round(sv.G));
         var c = document.getElementById("gav_i_val"); if (c) c.textContent = sv.I.toFixed(1);
@@ -30192,15 +30211,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 var gGDef = gG.default != null ? gG.default : 100, gGMin = gG.min != null ? gG.min : 20, gGMax = gG.max != null ? gG.max : 200, gGStep = gG.step != null ? gG.step : 10;
                 var gIDef = gI.default != null ? gI.default : 1, gIMin = gI.min != null ? gI.min : 0.1, gIMax = gI.max != null ? gI.max : 10, gIStep = gI.step != null ? gI.step : 0.1;
                 var gVDef = gV.default != null ? gV.default : 10, gVMin = gV.min != null ? gV.min : 1, gVMax = gV.max != null ? gV.max : 100, gVStep = gV.step != null ? gV.step : 1;
+                // Each control lives in its own row div (gav_ig_row / gav_g_row /
+                // gav_i_row / gav_v_row) so applyVisibleControls can show only the
+                // state-relevant slider(s) per Rule 31c: S4 shunt = Ig,G,I; S6
+                // voltmeter = Ig,G,V; S9 sandbox = all. Mirrors moving_coil_galvanometer.
                 gavPanel.innerHTML =
-                    '<label>I\\u2089 = <span id="gav_ig_val">' + gIgDef.toFixed(1) + '</span> mA</label>' +
-                    '<input type="range" id="gav_ig_slider" min="' + gIgMin + '" max="' + gIgMax + '" step="' + gIgStep + '" value="' + gIgDef + '">' +
-                    '<label>G = <span id="gav_g_val">' + Math.round(gGDef) + '</span> \\u03a9</label>' +
-                    '<input type="range" id="gav_g_slider" min="' + gGMin + '" max="' + gGMax + '" step="' + gGStep + '" value="' + gGDef + '">' +
-                    '<label>I (range) = <span id="gav_i_val">' + gIDef.toFixed(1) + '</span> A</label>' +
-                    '<input type="range" id="gav_i_slider" min="' + gIMin + '" max="' + gIMax + '" step="' + gIStep + '" value="' + gIDef + '">' +
-                    '<label>V (range) = <span id="gav_v_val">' + Math.round(gVDef) + '</span> V</label>' +
-                    '<input type="range" id="gav_v_slider" min="' + gVMin + '" max="' + gVMax + '" step="' + gVStep + '" value="' + gVDef + '">' +
+                    '<div id="gav_ig_row"><label>I\\u2089 = <span id="gav_ig_val">' + gIgDef.toFixed(1) + '</span> mA</label>' +
+                    '<input type="range" id="gav_ig_slider" min="' + gIgMin + '" max="' + gIgMax + '" step="' + gIgStep + '" value="' + gIgDef + '"></div>' +
+                    '<div id="gav_g_row"><label>G = <span id="gav_g_val">' + Math.round(gGDef) + '</span> \\u03a9</label>' +
+                    '<input type="range" id="gav_g_slider" min="' + gGMin + '" max="' + gGMax + '" step="' + gGStep + '" value="' + gGDef + '"></div>' +
+                    '<div id="gav_i_row"><label>I (range) = <span id="gav_i_val">' + gIDef.toFixed(1) + '</span> A</label>' +
+                    '<input type="range" id="gav_i_slider" min="' + gIMin + '" max="' + gIMax + '" step="' + gIStep + '" value="' + gIDef + '"></div>' +
+                    '<div id="gav_v_row"><label>V (range) = <span id="gav_v_val">' + Math.round(gVDef) + '</span> V</label>' +
+                    '<input type="range" id="gav_v_slider" min="' + gVMin + '" max="' + gVMax + '" step="' + gVStep + '" value="' + gVDef + '"></div>' +
                     '<div id="gav_readout">Shunt S = 0.100 \\u03a9 (in parallel)<br>Series R = 9900 \\u03a9 (in series)</div>';
                 var gavOnInput = function () { gavInteracted = true; refreshGalvanometerExplorer(); };
                 var gavIds = ["gav_ig_slider", "gav_g_slider", "gav_i_slider", "gav_v_slider"];

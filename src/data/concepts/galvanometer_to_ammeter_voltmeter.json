@@ -77,7 +77,6 @@
     "states": {
       "STATE_1": {
         "title": "The delicate galvanometer: tiny Ig, coil resistance G",
-        "teaching_method": "narrative_socratic",
         "duration": 16,
         "focal_primitive_id": "gav_galvo_symbol",
         "advance_mode": "auto_after_tts",
@@ -107,15 +106,15 @@
             "type": "annotation",
             "id": "intro_question",
             "position": { "x": 380, "y": 475 },
-            "text": "Question: how do we turn this fragile detector into an ammeter and a voltmeter?",
+            "text": "This fragile detector is about to become both an ammeter and a voltmeter.",
             "color": "#FFF176"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "This is a galvanometer, the symbol G. Watch the current creep through its delicate coil.", "text_hi": "यह एक galvanometer है, symbol G। देखिए current इसकी delicate coil में धीरे-धीरे बहता है।", "text_te": "ఇది ఒక galvanometer, symbol G. దాని delicate coil గుండా current నెమ్మదిగా ప్రవహించడాన్ని గమనించండి.", "pause_after_ms": 1500 },
-            { "id": "s1_2", "text_en": "It reads only a tiny full-scale current, the microamp-level current I g, and its coil has resistance G.", "text_hi": "यह केवल एक tiny full-scale current पढ़ता है, microamp-level current I g, और इसकी coil की resistance G है।", "text_te": "ఇది కేవలం ఒక tiny full-scale current ను చదువుతుంది, microamp-level current I g, మరియు దాని coil కి resistance G ఉంటుంది.", "pause_after_ms": 1500 },
-            { "id": "s1_3", "text_en": "So how do we turn this fragile detector into an ammeter and a voltmeter?", "text_hi": "तो हम इस fragile detector को ammeter और voltmeter में कैसे बदलें?", "text_te": "మరి ఈ fragile detector ను ammeter మరియు voltmeter గా ఎలా మారుస్తాం?", "pause_after_ms": 1500 }
+            { "id": "s1_1", "text_en": "This is a galvanometer, the symbol G. Watch the current creep through its delicate coil.", "text_hi": "यह एक galvanometer है, symbol G। देखिए current इसकी delicate coil में धीरे-धीरे बहता है।", "text_te": "ఇది ఒక galvanometer, symbol G. దాని delicate coil గుండా current నెమ్మదిగా ప్రవహించడాన్ని గమనించండి." },
+            { "id": "s1_2", "text_en": "It reads only a tiny full-scale current, the microamp-level current I g, and its coil has resistance G.", "text_hi": "यह केवल एक tiny full-scale current पढ़ता है, microamp-level current I g, और इसकी coil की resistance G है।", "text_te": "ఇది కేవలం ఒక tiny full-scale current ను చదువుతుంది, microamp-level current I g, మరియు దాని coil కి resistance G ఉంటుంది." },
+            { "id": "s1_3", "text_en": "That is exactly what turns this fragile detector into an ammeter and a voltmeter — a resistor wired in the right way.", "text_hi": "यही है जो इस fragile detector को ammeter और voltmeter में बदलता है — एक resistor सही तरीके से जोड़कर।", "text_te": "ఇదే ఈ fragile detector ను ammeter మరియు voltmeter గా మారుస్తుంది — ఒక resistor ను సరైన విధంగా జోడించడం ద్వారా." }
           ]
         },
         "misconception_watch": [
@@ -128,7 +127,6 @@
       },
       "STATE_2": {
         "title": "The problem: a real circuit would burn the bare coil",
-        "teaching_method": "narrative_socratic",
         "duration": 20,
         "focal_primitive_id": "gav_galvo_symbol",
         "advance_mode": "manual_click",
@@ -144,7 +142,7 @@
             "type": "annotation",
             "id": "problem_predict",
             "position": { "x": 200, "y": 235 },
-            "text": "A real circuit can push\nwhole amperes. The coil only\nsurvives the tiny Ig.\nWhat happens to the needle?",
+            "text": "A real circuit can push\nwhole amperes, but the coil\nonly survives the tiny Ig —\nit is about to be overwhelmed.",
             "color": "#FFCC9F"
           },
           {
@@ -166,10 +164,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Drop the bare galvanometer into a real circuit with a battery and a load.", "text_hi": "Bare galvanometer को एक real circuit में डालिए, battery और load के साथ।", "text_te": "Bare galvanometer ను ఒక real circuit లో ఉంచండి, battery మరియు load తో.", "pause_after_ms": 1500 },
-            { "id": "s2_2", "text_en": "A real circuit can push whole amperes, but the coil only survives the tiny current I g.", "text_hi": "एक real circuit पूरे amperes push कर सकता है, लेकिन coil केवल tiny current I g सहती है।", "text_te": "ఒక real circuit మొత్తం amperes ను push చేయగలదు, కానీ coil కేవలం tiny current I g ను మాత్రమే తట్టుకుంటుంది.", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "Send the full current through it and the needle slams off-scale; the coil would burn out.", "text_hi": "इसमें full current भेजिए और needle off-scale slam हो जाती है; coil burn out हो जाती।", "text_te": "దానిలో full current పంపండి, needle off-scale కి కొట్టుకుంటుంది; coil burn out అయిపోతుంది.", "pause_after_ms": 1800 },
-            { "id": "s2_4", "text_en": "And across a large voltage it draws too much current to read. We must protect and rescale it.", "text_hi": "और एक large voltage के across यह पढ़ने के लिए बहुत ज़्यादा current खींचती है। हमें इसे protect और rescale करना होगा।", "text_te": "మరియు ఒక large voltage అంతటా ఇది చదవడానికి చాలా ఎక్కువ current ను లాగుతుంది. మనం దీన్ని protect మరియు rescale చేయాలి.", "pause_after_ms": 1500 }
+            { "id": "s2_1", "text_en": "Drop the bare galvanometer into a real circuit with a battery and a load.", "text_hi": "Bare galvanometer को एक real circuit में डालिए, battery और load के साथ।", "text_te": "Bare galvanometer ను ఒక real circuit లో ఉంచండి, battery మరియు load తో." },
+            { "id": "s2_2", "text_en": "A real circuit can push whole amperes, but the coil only survives the tiny current I g.", "text_hi": "एक real circuit पूरे amperes push कर सकता है, लेकिन coil केवल tiny current I g सहती है।", "text_te": "ఒక real circuit మొత్తం amperes ను push చేయగలదు, కానీ coil కేవలం tiny current I g ను మాత్రమే తట్టుకుంటుంది." },
+            { "id": "s2_3", "text_en": "Send the full current through it and the needle slams off-scale; the coil would burn out.", "text_hi": "इसमें full current भेजिए और needle off-scale slam हो जाती है; coil burn out हो जाती।", "text_te": "దానిలో full current పంపండి, needle off-scale కి కొట్టుకుంటుంది; coil burn out అయిపోతుంది." },
+            { "id": "s2_4", "text_en": "And across a large voltage it draws too much current to read. We must protect and rescale it.", "text_hi": "और एक large voltage के across यह पढ़ने के लिए बहुत ज़्यादा current खींचती है। हमें इसे protect और rescale करना होगा।", "text_te": "మరియు ఒక large voltage అంతటా ఇది చదవడానికి చాలా ఎక్కువ current ను లాగుతుంది. మనం దీన్ని protect మరియు rescale చేయాలి." }
           ]
         },
         "misconception_watch": [
@@ -182,10 +180,9 @@
       },
       "STATE_3": {
         "title": "Ammeter idea: a small shunt in parallel splits the current",
-        "teaching_method": "narrative_socratic",
         "duration": 24,
         "focal_primitive_id": "gav_shunt_resistor",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "auto_after_tts",
         "scene_composition": [
           {
             "type": "annotation",
@@ -198,7 +195,7 @@
             "type": "annotation",
             "id": "shunt_predict",
             "position": { "x": 200, "y": 235 },
-            "text": "Predict before the reveal:\nwhen the current reaches the\njunction, how does it split\nbetween the coil and the shunt?",
+            "text": "At the junction the current\nsplits between the coil and\nthe shunt — most takes the\neasier, low-resistance path.",
             "color": "#FFCC9F"
           },
           {
@@ -220,10 +217,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "To measure a large current, we add a small shunt resistance S in parallel with the galvanometer.", "text_hi": "एक large current measure करने के लिए, हम galvanometer के parallel एक small shunt resistance S जोड़ते हैं।", "text_te": "ఒక large current ను measure చేయడానికి, galvanometer కి parallel గా ఒక small shunt resistance S జోడిస్తాం.", "pause_after_ms": 1500 },
-            { "id": "s3_2", "text_en": "Predict: when the current reaches the junction, how does it split between the coil and the shunt?", "text_hi": "Predict कीजिए: जब current junction पर पहुँचता है, यह coil और shunt के बीच कैसे split होता है?", "text_te": "Predict చేయండి: current junction కి చేరినప్పుడు, అది coil మరియు shunt మధ్య ఎలా split అవుతుంది?", "pause_after_ms": 3500 },
-            { "id": "s3_3", "text_en": "Most of it races through the low-resistance shunt; only the tiny current I g still passes through the coil.", "text_hi": "इसका अधिकांश low-resistance shunt से race करता है; केवल tiny current I g अभी भी coil से गुज़रती है।", "text_te": "దానిలో ఎక్కువ భాగం low-resistance shunt గుండా race చేస్తుంది; కేవలం tiny current I g మాత్రమే coil గుండా వెళుతుంది.", "pause_after_ms": 1800 },
-            { "id": "s3_4", "text_en": "The galvanometer never carries more than I g; the shunt safely carries the rest, the current I minus I g.", "text_hi": "Galvanometer कभी भी I g से ज़्यादा नहीं ले जाती; shunt बाकी को safely ले जाती है, current I minus I g।", "text_te": "Galvanometer ఎప్పుడూ I g కంటే ఎక్కువ తీసుకువెళ్ళదు; shunt మిగిలినదాన్ని safely తీసుకువెళుతుంది, current I minus I g.", "pause_after_ms": 1500 }
+            { "id": "s3_1", "text_en": "To measure a large current, we add a small shunt resistance S in parallel with the galvanometer.", "text_hi": "एक large current measure करने के लिए, हम galvanometer के parallel एक small shunt resistance S जोड़ते हैं।", "text_te": "ఒక large current ను measure చేయడానికి, galvanometer కి parallel గా ఒక small shunt resistance S జోడిస్తాం." },
+            { "id": "s3_2", "text_en": "At the junction the current splits between the coil and the shunt, the two parallel paths sharing the same voltage.", "text_hi": "Junction पर current, coil और shunt के बीच split होता है, दोनों parallel paths same voltage share करते हैं।", "text_te": "Junction వద్ద current, coil మరియు shunt మధ్య split అవుతుంది, రెండు parallel paths ఒకే voltage ను share చేస్తాయి." },
+            { "id": "s3_3", "text_en": "Most of it races through the low-resistance shunt; only the tiny current I g still passes through the coil.", "text_hi": "इसका अधिकांश low-resistance shunt से race करता है; केवल tiny current I g अभी भी coil से गुज़रती है।", "text_te": "దానిలో ఎక్కువ భాగం low-resistance shunt గుండా race చేస్తుంది; కేవలం tiny current I g మాత్రమే coil గుండా వెళుతుంది." },
+            { "id": "s3_4", "text_en": "The galvanometer never carries more than I g; the shunt safely carries the rest, the current I minus I g.", "text_hi": "Galvanometer कभी भी I g से ज़्यादा नहीं ले जाती; shunt बाकी को safely ले जाती है, current I minus I g।", "text_te": "Galvanometer ఎప్పుడూ I g కంటే ఎక్కువ తీసుకువెళ్ళదు; shunt మిగిలినదాన్ని safely తీసుకువెళుతుంది, current I minus I g." }
           ]
         },
         "misconception_watch": [
@@ -236,7 +233,6 @@
       },
       "STATE_4": {
         "title": "The shunt formula: S = Ig·G/(I−Ig) is small",
-        "teaching_method": "narrative_socratic",
         "duration": 22,
         "focal_primitive_id": "gav_shunt_resistor",
         "advance_mode": "manual_click",
@@ -252,7 +248,7 @@
             "type": "annotation",
             "id": "formula_predict",
             "position": { "x": 200, "y": 235 },
-            "text": "Equal voltage across the two\nparallel branches:\nIg · G  =  (I − Ig) · S.\nSolve for the shunt S.",
+            "text": "Equal voltage across the two\nparallel branches: Ig · G  =\n(I − Ig) · S — this fixes\nthe value of the shunt S.",
             "color": "#FFCC9F"
           },
           {
@@ -274,10 +270,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Both branches connect the same two junctions, so they share the same voltage across them.", "text_hi": "दोनों branches एक ही दो junctions को connect करती हैं, इसलिए वे same voltage share करती हैं।", "text_te": "రెండు branches ఒకే రెండు junctions ను connect చేస్తాయి, కాబట్టి అవి same voltage ను share చేస్తాయి.", "pause_after_ms": 1500 },
-            { "id": "s4_2", "text_en": "That gives current I g times G equals the shunt current times S — equal voltage on the two parallel branches.", "text_hi": "इससे मिलता है current I g times G equals shunt current times S — दोनों parallel branches पर equal voltage।", "text_te": "దీని నుండి current I g times G equals shunt current times S వస్తుంది — రెండు parallel branches పై equal voltage.", "pause_after_ms": 2000 },
-            { "id": "s4_3", "text_en": "Solve it and the shunt resistance S equals I g times G, divided by I minus I g.", "text_hi": "इसे solve कीजिए और shunt resistance S equals I g times G, divided by I minus I g।", "text_te": "దాన్ని solve చేయండి, shunt resistance S equals I g times G, divided by I minus I g.", "pause_after_ms": 1800 },
-            { "id": "s4_4", "text_en": "Because the current I is much larger than I g, the shunt resistance S comes out very small.", "text_hi": "क्योंकि current I, I g से बहुत बड़ा है, shunt resistance S बहुत small आती है।", "text_te": "Current I, I g కంటే చాలా పెద్దది కాబట్టి, shunt resistance S చాలా small గా వస్తుంది.", "pause_after_ms": 1500 }
+            { "id": "s4_1", "text_en": "Both branches connect the same two junctions, so they share the same voltage across them.", "text_hi": "दोनों branches एक ही दो junctions को connect करती हैं, इसलिए वे same voltage share करती हैं।", "text_te": "రెండు branches ఒకే రెండు junctions ను connect చేస్తాయి, కాబట్టి అవి same voltage ను share చేస్తాయి." },
+            { "id": "s4_2", "text_en": "That gives current I g times G equals the shunt current times S — equal voltage on the two parallel branches.", "text_hi": "इससे मिलता है current I g times G equals shunt current times S — दोनों parallel branches पर equal voltage।", "text_te": "దీని నుండి current I g times G equals shunt current times S వస్తుంది — రెండు parallel branches పై equal voltage." },
+            { "id": "s4_3", "text_en": "Solve it and the shunt resistance S equals I g times G, divided by I minus I g.", "text_hi": "इसे solve कीजिए और shunt resistance S equals I g times G, divided by I minus I g।", "text_te": "దాన్ని solve చేయండి, shunt resistance S equals I g times G, divided by I minus I g." },
+            { "id": "s4_4", "text_en": "Because the current I is much larger than I g, the shunt resistance S comes out very small.", "text_hi": "क्योंकि current I, I g से बहुत बड़ा है, shunt resistance S बहुत small आती है।", "text_te": "Current I, I g కంటే చాలా పెద్దది కాబట్టి, shunt resistance S చాలా small గా వస్తుంది." }
           ]
         },
         "misconception_watch": [
@@ -290,10 +286,9 @@
       },
       "STATE_5": {
         "title": "Ideal ammeter ~0 Ω, connected in series",
-        "teaching_method": "narrative_socratic",
         "duration": 24,
         "focal_primitive_id": "gav_ammeter_box",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "auto_after_tts",
         "scene_composition": [
           {
             "type": "annotation",
@@ -306,7 +301,7 @@
             "type": "annotation",
             "id": "ammeter_predict",
             "position": { "x": 200, "y": 235 },
-            "text": "The galvanometer and a tiny\nshunt sit in parallel.\nIs their combined resistance\nlarge, or small?",
+            "text": "The galvanometer and a tiny\nshunt sit in parallel, so\ntheir combined resistance drops\nto nearly nothing.",
             "color": "#FFCC9F"
           },
           {
@@ -328,10 +323,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Seal the coil and its shunt into one unit; that is your ammeter, marked A.", "text_hi": "Coil और इसके shunt को एक unit में seal कीजिए; वह है आपका ammeter, marked A।", "text_te": "Coil మరియు దాని shunt ను ఒక unit గా seal చేయండి; అదే మీ ammeter, marked A.", "pause_after_ms": 1500 },
-            { "id": "s5_2", "text_en": "Predict: the galvanometer and a tiny shunt sit in parallel. Is their combined resistance large or small?", "text_hi": "Predict कीजिए: galvanometer और एक tiny shunt parallel में हैं। उनकी combined resistance large है या small?", "text_te": "Predict చేయండి: galvanometer మరియు ఒక tiny shunt parallel లో ఉన్నాయి. వాటి combined resistance large గా ఉందా, small గా ఉందా?", "pause_after_ms": 3500 },
-            { "id": "s5_3", "text_en": "It is tiny, close to zero ohms, so the ammeter barely disturbs the circuit it measures.", "text_hi": "यह tiny है, zero ohms के करीब, इसलिए ammeter जिस circuit को measure करता है उसे barely disturb करता है।", "text_te": "ఇది tiny, zero ohms కి దగ్గరగా, కాబట్టి ammeter తాను measure చేసే circuit ను barely disturb చేస్తుంది.", "pause_after_ms": 1800 },
-            { "id": "s5_4", "text_en": "That is why an ammeter is connected in series, and an ideal ammeter has almost zero resistance.", "text_hi": "इसीलिए ammeter series में connect होता है, और ideal ammeter की resistance लगभग zero होती है।", "text_te": "అందుకే ammeter series లో connect అవుతుంది, మరియు ideal ammeter resistance దాదాపు zero గా ఉంటుంది.", "pause_after_ms": 1500 }
+            { "id": "s5_1", "text_en": "Seal the coil and its shunt into one unit; that is your ammeter, marked A.", "text_hi": "Coil और इसके shunt को एक unit में seal कीजिए; वह है आपका ammeter, marked A।", "text_te": "Coil మరియు దాని shunt ను ఒక unit గా seal చేయండి; అదే మీ ammeter, marked A." },
+            { "id": "s5_2", "text_en": "The galvanometer and a tiny shunt sit in parallel, and together their combined resistance drops to nearly nothing.", "text_hi": "Galvanometer और एक tiny shunt parallel में हैं, और साथ मिलकर उनकी combined resistance लगभग zero हो जाती है।", "text_te": "Galvanometer మరియు ఒక tiny shunt parallel లో ఉన్నాయి, మరియు కలిసి వాటి combined resistance దాదాపు zero కి పడిపోతుంది." },
+            { "id": "s5_3", "text_en": "It is tiny, close to zero ohms, so the ammeter barely disturbs the circuit it measures.", "text_hi": "यह tiny है, zero ohms के करीब, इसलिए ammeter जिस circuit को measure करता है उसे barely disturb करता है।", "text_te": "ఇది tiny, zero ohms కి దగ్గరగా, కాబట్టి ammeter తాను measure చేసే circuit ను barely disturb చేస్తుంది." },
+            { "id": "s5_4", "text_en": "That is why an ammeter is connected in series, and an ideal ammeter has almost zero resistance.", "text_hi": "इसीलिए ammeter series में connect होता है, और ideal ammeter की resistance लगभग zero होती है।", "text_te": "అందుకే ammeter series లో connect అవుతుంది, మరియు ideal ammeter resistance దాదాపు zero గా ఉంటుంది." }
           ]
         },
         "misconception_watch": [
@@ -344,10 +339,9 @@
       },
       "STATE_6": {
         "title": "Voltmeter idea: a large R in series; R = V/Ig − G",
-        "teaching_method": "narrative_socratic",
         "duration": 24,
         "focal_primitive_id": "gav_series_resistor",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "auto_after_tts",
         "scene_composition": [
           {
             "type": "annotation",
@@ -360,7 +354,7 @@
             "type": "annotation",
             "id": "volt_predict",
             "position": { "x": 200, "y": 235 },
-            "text": "With this big resistance in\nthe line, how much current\nflows through the coil —\na lot, or just Ig?",
+            "text": "With this big resistance in\nthe line, only the tiny Ig\nstill reaches the coil — the\nrest is choked back.",
             "color": "#FFCC9F"
           },
           {
@@ -382,10 +376,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Now to read a voltage, we add a large resistance R in series with the galvanometer.", "text_hi": "अब एक voltage पढ़ने के लिए, हम galvanometer के series में एक large resistance R जोड़ते हैं।", "text_te": "ఇప్పుడు ఒక voltage చదవడానికి, galvanometer కి series లో ఒక large resistance R జోడిస్తాం.", "pause_after_ms": 1500 },
-            { "id": "s6_2", "text_en": "Predict: with this big resistance in the line, how much current flows through the coil?", "text_hi": "Predict कीजिए: line में इस big resistance के साथ, coil से कितना current बहता है?", "text_te": "Predict చేయండి: line లో ఈ big resistance తో, coil గుండా ఎంత current ప్రవహిస్తుంది?", "pause_after_ms": 3500 },
-            { "id": "s6_3", "text_en": "Only the tiny current I g flows, because the large R chokes the current to the galvanometer's full-scale value.", "text_hi": "केवल tiny current I g बहता है, क्योंकि large R current को galvanometer के full-scale value तक choke कर देती है।", "text_te": "కేవలం tiny current I g మాత్రమే ప్రవహిస్తుంది, ఎందుకంటే large R current ను galvanometer full-scale value కి choke చేస్తుంది.", "pause_after_ms": 1800 },
-            { "id": "s6_4", "text_en": "The chain drops the whole voltage at that current, so the series resistance R equals V over I g, minus G.", "text_hi": "Chain उस current पर पूरा voltage drop करती है, इसलिए series resistance R equals V over I g, minus G।", "text_te": "Chain ఆ current వద్ద మొత్తం voltage ను drop చేస్తుంది, కాబట్టి series resistance R equals V over I g, minus G.", "pause_after_ms": 1500 }
+            { "id": "s6_1", "text_en": "Now to read a voltage, we add a large resistance R in series with the galvanometer.", "text_hi": "अब एक voltage पढ़ने के लिए, हम galvanometer के series में एक large resistance R जोड़ते हैं।", "text_te": "ఇప్పుడు ఒక voltage చదవడానికి, galvanometer కి series లో ఒక large resistance R జోడిస్తాం." },
+            { "id": "s6_2", "text_en": "With this big resistance in the line, only the tiny current I g still reaches the coil.", "text_hi": "Line में इस big resistance के साथ, केवल tiny current I g ही coil तक पहुँचता है।", "text_te": "Line లో ఈ big resistance తో, కేవలం tiny current I g మాత్రమే coil కి చేరుతుంది." },
+            { "id": "s6_3", "text_en": "Only the tiny current I g flows, because the large R chokes the current to the galvanometer's full-scale value.", "text_hi": "केवल tiny current I g बहता है, क्योंकि large R current को galvanometer के full-scale value तक choke कर देती है।", "text_te": "కేవలం tiny current I g మాత్రమే ప్రవహిస్తుంది, ఎందుకంటే large R current ను galvanometer full-scale value కి choke చేస్తుంది." },
+            { "id": "s6_4", "text_en": "The chain drops the whole voltage at that current, so the series resistance R equals V over I g, minus G.", "text_hi": "Chain उस current पर पूरा voltage drop करती है, इसलिए series resistance R equals V over I g, minus G।", "text_te": "Chain ఆ current వద్ద మొత్తం voltage ను drop చేస్తుంది, కాబట్టి series resistance R equals V over I g, minus G." }
           ]
         },
         "misconception_watch": [
@@ -398,7 +392,6 @@
       },
       "STATE_7": {
         "title": "Ideal voltmeter ~∞ Ω, connected in parallel",
-        "teaching_method": "narrative_socratic",
         "duration": 22,
         "focal_primitive_id": "gav_voltmeter_box",
         "advance_mode": "manual_click",
@@ -414,7 +407,7 @@
             "type": "annotation",
             "id": "vbox_predict",
             "position": { "x": 200, "y": 235 },
-            "text": "The coil plus a big resistance\nR add up to a very large\ncombined resistance.\nHow much current can it draw?",
+            "text": "The coil plus a big resistance\nR add up to a very large\ncombined resistance, so it draws\nalmost no current at all.",
             "color": "#FFCC9F"
           },
           {
@@ -436,10 +429,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Seal the coil and its large series resistance into one unit; that is your voltmeter, marked V.", "text_hi": "Coil और इसकी large series resistance को एक unit में seal कीजिए; वह है आपका voltmeter, marked V।", "text_te": "Coil మరియు దాని large series resistance ను ఒక unit గా seal చేయండి; అదే మీ voltmeter, marked V.", "pause_after_ms": 1500 },
-            { "id": "s7_2", "text_en": "The galvanometer plus a big resistance R add up to a very large combined resistance.", "text_hi": "Galvanometer plus एक big resistance R मिलकर एक बहुत large combined resistance बनाते हैं।", "text_te": "Galvanometer plus ఒక big resistance R కలిసి చాలా large combined resistance గా అవుతాయి.", "pause_after_ms": 1500 },
-            { "id": "s7_3", "text_en": "So the voltmeter draws almost no current, ideally infinite resistance, and barely disturbs the circuit.", "text_hi": "इसलिए voltmeter लगभग कोई current नहीं खींचता, ideally infinite resistance, और circuit को barely disturb करता है।", "text_te": "కాబట్టి voltmeter దాదాపు ఏ current ను లాగదు, ideally infinite resistance, మరియు circuit ను barely disturb చేస్తుంది.", "pause_after_ms": 1800 },
-            { "id": "s7_4", "text_en": "That is why a voltmeter is connected in parallel, straight across the part whose voltage you want.", "text_hi": "इसीलिए voltmeter parallel में connect होता है, उस part के across जिसका voltage आप चाहते हैं।", "text_te": "అందుకే voltmeter parallel లో connect అవుతుంది, మీకు కావలసిన voltage ఉన్న part అంతటా.", "pause_after_ms": 1500 }
+            { "id": "s7_1", "text_en": "Seal the coil and its large series resistance into one unit; that is your voltmeter, marked V.", "text_hi": "Coil और इसकी large series resistance को एक unit में seal कीजिए; वह है आपका voltmeter, marked V।", "text_te": "Coil మరియు దాని large series resistance ను ఒక unit గా seal చేయండి; అదే మీ voltmeter, marked V." },
+            { "id": "s7_2", "text_en": "The galvanometer plus a big resistance R add up to a very large combined resistance.", "text_hi": "Galvanometer plus एक big resistance R मिलकर एक बहुत large combined resistance बनाते हैं।", "text_te": "Galvanometer plus ఒక big resistance R కలిసి చాలా large combined resistance గా అవుతాయి." },
+            { "id": "s7_3", "text_en": "So the voltmeter draws almost no current, ideally infinite resistance, and barely disturbs the circuit.", "text_hi": "इसलिए voltmeter लगभग कोई current नहीं खींचता, ideally infinite resistance, और circuit को barely disturb करता है।", "text_te": "కాబట్టి voltmeter దాదాపు ఏ current ను లాగదు, ideally infinite resistance, మరియు circuit ను barely disturb చేస్తుంది." },
+            { "id": "s7_4", "text_en": "That is why a voltmeter is connected in parallel, straight across the part whose voltage you want.", "text_hi": "इसीलिए voltmeter parallel में connect होता है, उस part के across जिसका voltage आप चाहते हैं।", "text_te": "అందుకే voltmeter parallel లో connect అవుతుంది, మీకు కావలసిన voltage ఉన్న part అంతటా." }
           ]
         },
         "misconception_watch": [
@@ -452,7 +445,6 @@
       },
       "STATE_8": {
         "title": "Ammeter vs voltmeter — the swap that fails",
-        "teaching_method": "narrative_socratic",
         "duration": 22,
         "focal_primitive_id": "gav_swap_warning",
         "advance_mode": "manual_click",
@@ -468,7 +460,7 @@
             "type": "annotation",
             "id": "swap_predict",
             "position": { "x": 200, "y": 235 },
-            "text": "What if you swapped them —\nan ammeter across a part,\na voltmeter in the line?\nPredict what breaks.",
+            "text": "Swap them — an ammeter\nacross a part, a voltmeter\nin the line — and the\ncircuit breaks.",
             "color": "#FFCC9F"
           },
           {
@@ -490,10 +482,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Side by side: the ammeter sits in series with almost zero resistance; the voltmeter sits across, with almost infinite resistance.", "text_hi": "Side by side: ammeter series में almost zero resistance के साथ है; voltmeter across में almost infinite resistance के साथ है।", "text_te": "Side by side: ammeter series లో almost zero resistance తో ఉంటుంది; voltmeter across లో almost infinite resistance తో ఉంటుంది.", "pause_after_ms": 1800 },
-            { "id": "s8_2", "text_en": "Swap them and the circuit breaks: a near-zero ammeter across a component short-circuits it.", "text_hi": "इन्हें swap कीजिए और circuit टूट जाता है: एक component के across near-zero ammeter उसे short-circuit कर देता है।", "text_te": "వీటిని swap చేస్తే circuit విరిగిపోతుంది: ఒక component అంతటా near-zero ammeter దాన్ని short-circuit చేస్తుంది.", "pause_after_ms": 1800 },
-            { "id": "s8_3", "text_en": "And a near-infinite voltmeter placed in series blocks the current almost completely.", "text_hi": "और series में रखा एक near-infinite voltmeter current को लगभग पूरी तरह block कर देता है।", "text_te": "మరియు series లో ఉంచిన ఒక near-infinite voltmeter current ను దాదాపు పూర్తిగా block చేస్తుంది.", "pause_after_ms": 1800 },
-            { "id": "s8_4", "text_en": "Ammeter in series with a small shunt; voltmeter in parallel with a large series resistance — never the other way round.", "text_hi": "Ammeter series में small shunt के साथ; voltmeter parallel में large series resistance के साथ — कभी उल्टा नहीं।", "text_te": "Ammeter series లో small shunt తో; voltmeter parallel లో large series resistance తో — ఎప్పుడూ తలకిందులుగా కాదు.", "pause_after_ms": 1500 }
+            { "id": "s8_1", "text_en": "Side by side: the ammeter sits in series with almost zero resistance; the voltmeter sits across, with almost infinite resistance.", "text_hi": "Side by side: ammeter series में almost zero resistance के साथ है; voltmeter across में almost infinite resistance के साथ है।", "text_te": "Side by side: ammeter series లో almost zero resistance తో ఉంటుంది; voltmeter across లో almost infinite resistance తో ఉంటుంది." },
+            { "id": "s8_2", "text_en": "Swap them and the circuit breaks: a near-zero ammeter across a component short-circuits it.", "text_hi": "इन्हें swap कीजिए और circuit टूट जाता है: एक component के across near-zero ammeter उसे short-circuit कर देता है।", "text_te": "వీటిని swap చేస్తే circuit విరిగిపోతుంది: ఒక component అంతటా near-zero ammeter దాన్ని short-circuit చేస్తుంది." },
+            { "id": "s8_3", "text_en": "And a near-infinite voltmeter placed in series blocks the current almost completely.", "text_hi": "और series में रखा एक near-infinite voltmeter current को लगभग पूरी तरह block कर देता है।", "text_te": "మరియు series లో ఉంచిన ఒక near-infinite voltmeter current ను దాదాపు పూర్తిగా block చేస్తుంది." },
+            { "id": "s8_4", "text_en": "Ammeter in series with a small shunt; voltmeter in parallel with a large series resistance — never the other way round.", "text_hi": "Ammeter series में small shunt के साथ; voltmeter parallel में large series resistance के साथ — कभी उल्टा नहीं।", "text_te": "Ammeter series లో small shunt తో; voltmeter parallel లో large series resistance తో — ఎప్పుడూ తలకిందులుగా కాదు." }
           ]
         },
         "misconception_watch": [
@@ -542,9 +534,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Your turn. Drag the full-scale current I g, the coil resistance G, the current range I, and the voltage range V.", "text_hi": "अब आपकी बारी। Drag कीजिए full-scale current I g, coil resistance G, current range I, और voltage range V।", "text_te": "ఇప్పుడు మీ వంతు. Drag చేయండి full-scale current I g, coil resistance G, current range I, మరియు voltage range V.", "pause_after_ms": 1500 },
-            { "id": "s9_2", "text_en": "Watch the shunt resistance S and the series resistance R update live as you change the ranges.", "text_hi": "Shunt resistance S और series resistance R को live update होते देखिए जैसे आप ranges बदलते हैं।", "text_te": "Shunt resistance S మరియు series resistance R ను live update అవుతూ చూడండి, మీరు ranges మార్చుతున్నప్పుడు.", "pause_after_ms": 1500 },
-            { "id": "s9_3", "text_en": "Notice the shunt S stays small for an ammeter, while the series R stays large for a voltmeter.", "text_hi": "देखिए shunt S एक ammeter के लिए small रहती है, जबकि series R एक voltmeter के लिए large रहती है।", "text_te": "గమనించండి shunt S ఒక ammeter కోసం small గా ఉంటుంది, అయితే series R ఒక voltmeter కోసం large గా ఉంటుంది.", "pause_after_ms": 1500 }
+            { "id": "s9_1", "text_en": "Your turn. Drag the full-scale current I g, the coil resistance G, the current range I, and the voltage range V.", "text_hi": "अब आपकी बारी। Drag कीजिए full-scale current I g, coil resistance G, current range I, और voltage range V।", "text_te": "ఇప్పుడు మీ వంతు. Drag చేయండి full-scale current I g, coil resistance G, current range I, మరియు voltage range V." },
+            { "id": "s9_2", "text_en": "Watch the shunt resistance S and the series resistance R update live as you change the ranges.", "text_hi": "Shunt resistance S और series resistance R को live update होते देखिए जैसे आप ranges बदलते हैं।", "text_te": "Shunt resistance S మరియు series resistance R ను live update అవుతూ చూడండి, మీరు ranges మార్చుతున్నప్పుడు." },
+            { "id": "s9_3", "text_en": "Notice the shunt S stays small for an ammeter, while the series R stays large for a voltmeter.", "text_hi": "देखिए shunt S एक ammeter के लिए small रहती है, जबकि series R एक voltmeter के लिए large रहती है।", "text_te": "గమనించండి shunt S ఒక ammeter కోసం small గా ఉంటుంది, అయితే series R ఒక voltmeter కోసం large గా ఉంటుంది." }
           ]
         }
       }
@@ -624,6 +616,8 @@
         "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
         "camera_position": [0, 0, 6.5],
         "caption": "Both branches share the same voltage: Ig·G = (I − Ig)·S, so S = Ig·G/(I − Ig) — a very small resistance (≈ 0.1 Ω here).",
+        "show_sliders": true,
+        "visible_controls": ["Ig", "G", "I"],
         "extras": { "current_dots": true, "dot_paths": "ammeter_split" }
       },
       "STATE_5": {
@@ -652,6 +646,8 @@
         "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
         "camera_position": [0, 0, 7],
         "caption": "Wire a large R in series with G across the load: only the tiny Ig creeps through, and the chain drops the full V — so R = V/Ig − G.",
+        "show_sliders": true,
+        "visible_controls": ["Ig", "G", "V"],
         "extras": { "current_dots": true, "dot_paths": "voltmeter" }
       },
       "STATE_7": {
@@ -696,6 +692,7 @@
         "camera_position": [0, 0, 7],
         "caption": "Drag Ig, G, I, V. Shunt S = Ig·G/(I − Ig) and series R = V/Ig − G update live: S stays small, R stays large.",
         "show_sliders": true,
+        "visible_controls": ["Ig", "G", "I", "V"],
         "extras": { "current_dots": true, "dot_paths": "ammeter_split", "readout": { "show": true, "fields": ["shunt_S", "series_R"] } }
       }
     }

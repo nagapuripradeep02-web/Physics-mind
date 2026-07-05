@@ -1284,6 +1284,25 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
     }
 
+    // galvanometer_to_ammeter_voltmeter: the ammeter/voltmeter assembly diamond.
+    // STATE_5 cross-fades G ‖ shunt into an "A" meter box (assemble_ammeter) and
+    // STATE_7 fades G + R into a "V" box (assemble_voltmeter), each ~1.5s after a
+    // late at_ms (8000–9000ms). Pin the frozen frame past the merge so THE EYE
+    // photographs the COMPLETED meter box, not the pre-assembly picture — without
+    // this the DEFAULT_REVEAL_MS fallback (1500ms) captures long before the assemble
+    // fires. The other states are dot-stream watch beats; S4/S6/S9 are show_sliders.
+    const gavx = asObj(state.extras);
+    if (gavx) {
+        const gAmm = asObj(gavx.assemble_ammeter);
+        if (isEnabled(gAmm) && gAmm) {
+            candidates.push(asNum(gAmm.at_ms, 9000) + asNum(gAmm.duration_ms, 1500) + 400);
+        }
+        const gVolt = asObj(gavx.assemble_voltmeter);
+        if (isEnabled(gVolt) && gVolt) {
+            candidates.push(asNum(gVolt.at_ms, 8000) + asNum(gVolt.duration_ms, 1500) + 400);
+        }
+    }
+
     const extras = asObj(state.extras);
     const rightHand = extras ? asObj(extras.right_hand) : null;
     if (rightHand) candidates.push(asNum(rightHand.fade_duration_ms, 0));
