@@ -856,7 +856,7 @@
         "q2_sign": 1,
         "formula_overlay": "force F — across empty space",
         "show_sliders": true,
-        "controls": []
+        "visible_controls": []
       },
       "STATE_2": {
         "label": "F = k q₁ q₂ / r²",
@@ -872,7 +872,7 @@
         "q2_sign": 1,
         "formula_overlay": "F = k q₁ q₂ / r²",
         "show_sliders": true,
-        "controls": []
+        "visible_controls": []
       },
       "STATE_3": {
         "label": "Sign → attract or repel",
@@ -888,7 +888,7 @@
         "q2_sign": -1,
         "formula_overlay": "unlike → attract,  like → repel",
         "show_sliders": true,
-        "controls": [
+        "visible_controls": [
           "sign"
         ]
       },
@@ -906,7 +906,7 @@
         "q2_sign": 1,
         "formula_overlay": "|F₁₂| = |F₂₁|",
         "show_sliders": true,
-        "controls": [
+        "visible_controls": [
           "q2"
         ]
       },
@@ -923,7 +923,7 @@
         "q2_sign": 1,
         "formula_overlay": "F ∝ 1/r²   (double r → F/4)",
         "show_sliders": true,
-        "controls": [
+        "visible_controls": [
           "r"
         ]
       },
@@ -941,7 +941,7 @@
         "q2_sign": 1,
         "formula_overlay": "F ∝ q₁ q₂",
         "show_sliders": true,
-        "controls": [
+        "visible_controls": [
           "q1"
         ]
       },
@@ -957,7 +957,7 @@
         "superposition": true,
         "formula_overlay": "F_net = F₁ + F₂  (vector sum)",
         "show_sliders": true,
-        "controls": []
+        "visible_controls": []
       },
       "STATE_8": {
         "label": "Free explore — q₁, q₂, r",
@@ -971,7 +971,7 @@
         "explorer": true,
         "show_sliders": true,
         "formula_overlay": "F = k q₁ q₂ / r²",
-        "controls": [
+        "visible_controls": [
           "q1",
           "q2",
           "r",
