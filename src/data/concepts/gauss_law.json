@@ -162,7 +162,7 @@
         "title": "Net flux is set by the charge inside — but by exactly how much?",
         "duration": 15,
         "focal_primitive_id": "proportional_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -206,12 +206,11 @@
             },
             {
               "id": "s1_2",
-              "text_en": "So far we only said net flux is proportional to the enclosed charge. But proportional with what exact constant?", "text_hi": "अब तक हमने सिर्फ कहा था कि net flux, enclosed charge के proportional है। लेकिन किस exact constant के साथ proportional?", "text_te": "ఇప్పటివరకు మేము కేవలం net flux, enclosed charge కి proportional అని మాత్రమే చెప్పాము. కానీ ఏ exact constant తో proportional?"
+              "text_en": "So far we only said net flux is proportional to the enclosed charge — without yet naming the exact constant that multiplies it.", "text_hi": "अब तक हमने सिर्फ कहा था कि net flux, enclosed charge के proportional है — लेकिन उस exact constant का नाम अभी नहीं लिया जो इसे multiply करता है।", "text_te": "ఇప్పటివరకు మేము కేవలం net flux, enclosed charge కి proportional అని మాత్రమే చెప్పాము — దాన్ని multiply చేసే exact constant పేరు ఇంకా చెప్పలేదు."
             },
             {
               "id": "s1_3",
-              "text_en": "Think about it: is the net flux just equal to the charge inside, or is there a fixed number multiplying it?", "text_hi": "इस बारे में सोचिए: क्या net flux सिर्फ अंदर के charge के equal है, या कोई fixed number इसे multiply कर रहा है?", "text_te": "దీని గురించి ఆలోచించండి: net flux కేవలం లోపల ఉన్న charge కి equal అవుతుందా, లేక దాన్ని multiply చేసే fixed number ఏదైనా ఉందా?",
-              "pause_after_ms": 2600
+              "text_en": "The net flux is not simply equal to the charge inside — one fixed number of nature multiplies it, and that constant comes next.", "text_hi": "net flux सिर्फ अंदर के charge के equal नहीं है — प्रकृति का एक fixed number इसे multiply करता है, और वह constant आगे आता है।", "text_te": "net flux కేవలం లోపల ఉన్న charge కి equal కాదు — ప్రకృతి యొక్క ఒక fixed number దాన్ని multiply చేస్తుంది, ఆ constant తరువాత వస్తుంది."
             }
           ]
         },
@@ -227,7 +226,7 @@
         "title": "The constant is 1/ε₀: Φ = q_enc/ε₀",
         "duration": 17,
         "focal_primitive_id": "gauss_equation_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -337,8 +336,7 @@
             },
             {
               "id": "s3_2",
-              "text_en": "Watch the readout as I change the surface. Will a bigger, lumpier surface catch more flux, or less, or the same?", "text_hi": "readout को देखिए जब मैं surface को बदलता हूँ। क्या एक bigger, lumpier surface अधिक flux पकड़ेगी, या कम, या same?", "text_te": "నేను surface ని మార్చినప్పుడు readout ని గమనించండి. ఒక bigger, lumpier surface ఎక్కువ flux ని పట్టుకుంటుందా, తక్కువనా, లేదా same గానా?",
-              "pause_after_ms": 2700
+              "text_en": "Now I start changing the surface, from a small sphere to a bigger one, then a lumpier shape.", "text_hi": "अब मैं surface को बदलना शुरू करता हूँ — एक small sphere से एक bigger shape में, फिर एक lumpier shape में।", "text_te": "ఇప్పుడు నేను surface ని మార్చడం మొదలుపెడతాను — ఒక small sphere నుండి ఒక bigger shape కి, ఆపై ఒక lumpier shape కి."
             },
             {
               "id": "s3_3",
@@ -364,7 +362,7 @@
         "title": "Charges outside contribute zero",
         "duration": 18,
         "focal_primitive_id": "enclosed_only_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -404,8 +402,7 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Now the charge sits entirely outside the closed surface. Its field still reaches the surface. So what should the net flux be?", "text_hi": "अब charge पूरी तरह से closed surface के बाहर है। इसका field फिर भी surface तक पहुँचता है। तो net flux क्या होना चाहिए?", "text_te": "ఇప్పుడు charge పూర్తిగా closed surface బయట ఉంది. దీని field ఇంకా surface కు చేరుతుంది. కాబట్టి net flux ఎంత ఉండాలి?",
-              "pause_after_ms": 2700
+              "text_en": "Now the charge sits entirely outside the closed surface. Its field still reaches the surface, yet the net flux is about to come out zero.", "text_hi": "अब charge पूरी तरह से closed surface के बाहर है। इसका field फिर भी surface तक पहुँचता है, फिर भी net flux zero निकलने वाला है।", "text_te": "ఇప్పుడు charge పూర్తిగా closed surface బయట ఉంది. దీని field ఇంకా surface కు చేరుతుంది, అయినా net flux zero గా రాబోతోంది."
             },
             {
               "id": "s4_2",
@@ -473,8 +470,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Now put two charges inside, a plus charge q and a minus charge q. What is the enclosed charge that goes into Gauss's law?", "text_hi": "अब दो charges को अंदर रखिए, एक plus charge q और एक minus charge q। Gauss's law में जाने वाला enclosed charge क्या है?", "text_te": "ఇప్పుడు రెండు charges ని లోపల ఉంచండి, ఒక plus charge q మరియు ఒక minus charge q. Gauss's law లోకి వెళ్ళే enclosed charge ఎంత?",
-              "pause_after_ms": 2600
+              "text_en": "Now put two charges inside, a plus charge q and a minus charge q, and find the enclosed charge that goes into Gauss's law.", "text_hi": "अब दो charges को अंदर रखिए, एक plus charge q और एक minus charge q, और Gauss's law में जाने वाला enclosed charge निकालिए।", "text_te": "ఇప్పుడు రెండు charges ని లోపల ఉంచండి, ఒక plus charge q మరియు ఒక minus charge q, మరియు Gauss's law లోకి వెళ్ళే enclosed charge ని కనుక్కోండి."
             },
             {
               "id": "s5_2",
@@ -732,6 +728,7 @@
     "states": {
       "STATE_1": {
         "label": "Net flux is set by the charge inside — but by exactly how much?",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -749,6 +746,7 @@
       },
       "STATE_2": {
         "label": "The constant is 1/ε₀: Φ = q_enc/ε₀",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -769,6 +767,7 @@
       },
       "STATE_3": {
         "label": "Any closed (Gaussian) surface — same q_enc/ε₀ (PRIMARY aha)",
+        "visible_controls": ["surface_shape"],
         "visible_elements": [
           "all"
         ],
@@ -794,6 +793,7 @@
       },
       "STATE_4": {
         "label": "Charges outside contribute zero",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -815,6 +815,7 @@
       },
       "STATE_5": {
         "label": "q_enc is the ALGEBRAIC sum — signs matter",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -846,6 +847,8 @@
       },
       "STATE_6": {
         "label": "Explore: add, remove and reshape — watch Φ = q_enc/ε₀",
+        "visible_controls": ["q_enc", "surface_shape", "charge_x"],
+        "show_sliders": true,
         "visible_elements": [
           "all"
         ],
