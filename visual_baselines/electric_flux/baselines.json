@@ -1,0 +1,47 @@
+{
+  "approved_at": "2026-07-05T19:13:58.125Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\electric_flux\\20260705-210212",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_10": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_9": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

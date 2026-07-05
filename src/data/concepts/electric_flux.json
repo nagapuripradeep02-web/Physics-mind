@@ -139,7 +139,7 @@
         "title": "Flux is how much field pierces an area — not the field itself",
         "duration": 16,
         "focal_primitive_id": "pierce_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -183,11 +183,11 @@
             },
             {
               "id": "s1_2",
-              "text_en": "Count them: eight lines go through. That count is the electric flux. Now, is flux just another name for the field strength E?", "text_hi": "इन्हें count करिए: आठ lines अंदर से गुज़र रही हैं। यही count है electric flux। अब, क्या flux बस field strength E का दूसरा नाम है?", "text_te": "వాటిని count చేయండి: ఎనిమిది lines గుండా వెళ్తున్నాయి. ఆ count అనేది electric flux. ఇప్పుడు చెప్పండి — flux అంటే field strength E కి వేరే పేరా?"
+              "text_en": "Count them: eight lines go through. That count is the electric flux. But flux is not just another name for the field strength E.", "text_hi": "इन्हें count करिए: आठ lines अंदर से गुज़र रही हैं। यही count है electric flux। लेकिन flux, field strength E का दूसरा नाम नहीं है।", "text_te": "వాటిని count చేయండి: ఎనిమిది lines గుండా వెళ్తున్నాయి. ఆ count అనేది electric flux. కానీ flux అనేది field strength E కి వేరే పేరు కాదు."
             },
             {
               "id": "s1_3",
-              "text_en": "No. Shrink the ring in the same field and fewer lines pierce, so the flux drops, even though the electric field E at every point is unchanged.", "text_hi": "नहीं। उसी field में ring को छोटा करिए — अब कम lines pierce होंगी, इसलिए flux कम हो जाएगा, भले ही हर point पर electric field E बिल्कुल unchanged है।", "text_te": "లేదు. అదే field లో ring ని చిన్నదిగా చేయండి — అప్పుడు తక్కువ lines pierce అవుతాయి, flux తగ్గిపోతుంది, ప్రతి point లో electric field E మారకున్నా సరే."
+              "text_en": "Shrink the ring in the same field and fewer lines pierce, so the flux drops, even though the electric field E at every point is unchanged.", "text_hi": "उसी field में ring को छोटा करिए — अब कम lines pierce होंगी, इसलिए flux कम हो जाएगा, भले ही हर point पर electric field E बिल्कुल unchanged है।", "text_te": "అదే field లో ring ని చిన్నదిగా చేయండి — అప్పుడు తక్కువ lines pierce అవుతాయి, flux తగ్గిపోతుంది, ప్రతి point లో electric field E మారకున్నా సరే."
             },
             {
               "id": "s1_4",
@@ -207,7 +207,7 @@
         "title": "Face-on: every line through, Φ = E·A is maximum",
         "duration": 13,
         "focal_primitive_id": "max_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -260,7 +260,7 @@
         "title": "Tilt it: flux drops by cosθ, θ measured to the normal",
         "duration": 17,
         "focal_primitive_id": "cos_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -300,7 +300,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Same field, same area. Now I tilt the ring. Will the flux stay the same, since neither the electric field E nor the area A has changed?", "text_hi": "वही field, वही area। अब मैं ring को tilt करता हूँ। क्या flux same रहेगा, क्योंकि न electric field E बदला है, न area A?", "text_te": "అదే field, అదే area. ఇప్పుడు నేను ring ని tilt చేస్తున్నాను. electric field E మారలేదు, area A మారలేదు — flux same గా ఉంటుందా?"
+              "text_en": "Same field, same area. Now I tilt the ring — and even though neither the electric field E nor the area A has changed, the flux is about to drop.", "text_hi": "वही field, वही area। अब मैं ring को tilt करता हूँ — और भले ही न electric field E बदला है, न area A, फिर भी flux अब कम होने वाला है।", "text_te": "అదే field, అదే area. ఇప్పుడు నేను ring ని tilt చేస్తున్నాను — electric field E మారలేదు, area A మారలేదు, అయినా flux ఇప్పుడు తగ్గబోతోంది."
             },
             {
               "id": "s3_2",
@@ -328,7 +328,7 @@
         "title": "Why cosθ: E splits into a part that pierces and a part that grazes",
         "duration": 18,
         "focal_primitive_id": "pierce_part_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "variable_overrides": {
           "theta": 55
         },
@@ -375,7 +375,7 @@
             },
             {
               "id": "s4_2",
-              "text_en": "Split the electric field E into two arrows: one straight along the normal, one along the surface. Which one do you think actually pierces the face?", "text_hi": "electric field E को दो arrows में split करिए: एक normal के साथ, एक surface के साथ। आपके हिसाब से कौन-सा actually face को pierce करता है?", "text_te": "electric field E ని రెండు arrows గా split చేయండి: ఒకటి normal వెంట, ఒకటి surface వెంట. మీ అభిప్రాయంలో face ని actually pierce చేసేది ఏది?"
+              "text_en": "Split the electric field E into two arrows: one straight along the normal, one along the surface. Just one of them actually pierces the face.", "text_hi": "electric field E को दो arrows में split करिए: एक normal के साथ, एक surface के साथ। इनमें से सिर्फ़ एक ही actually face को pierce करता है।", "text_te": "electric field E ని రెండు arrows గా split చేయండి: ఒకటి normal వెంట, ఒకటి surface వెంట. వీటిలో ఒక్కటి మాత్రమే actually face ని pierce చేస్తుంది."
             },
             {
               "id": "s4_3",
@@ -520,7 +520,7 @@
         "title": "Flux has a sign: out is +, in is −",
         "duration": 17,
         "focal_primitive_id": "sign_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -560,7 +560,7 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "So far the field left through the front of the surface, and the flux was positive. What happens if I tilt past ninety degrees?", "text_hi": "अब तक field, surface के सामने से बाहर निकलती थी और flux positive था। अगर मैं ninety degrees से आगे tilt करूँ तो क्या होगा?", "text_te": "ఇప్పటి వరకు field, surface యొక్క ముందు నుండి బయటకు వెళ్తోంది, flux positive గా ఉంది. ninety degrees దాటి tilt చేస్తే ఏమవుతుంది?"
+              "text_en": "So far the field left through the front of the surface, and the flux was positive. Watch as I tilt the surface past ninety degrees.", "text_hi": "अब तक field, surface के सामने से बाहर निकलती थी और flux positive था। देखिए जब मैं surface को ninety degrees से आगे tilt करता हूँ।", "text_te": "ఇప్పటి వరకు field, surface యొక్క ముందు నుండి బయటకు వెళ్తోంది, flux positive గా ఉంది. surface ని ninety degrees దాటి tilt చేస్తుండగా చూడండి."
             },
             {
               "id": "s7_2",
@@ -588,7 +588,7 @@
         "title": "Close the box: the six faces add up to net Φ ∝ charge inside",
         "duration": 19,
         "focal_primitive_id": "net_sum_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -701,7 +701,7 @@
             },
             {
               "id": "s9_2",
-              "text_en": "It does not budge. Position inside never changes the net. Now what if the charge sits entirely OUTSIDE the box — what should the net be?", "text_hi": "यह हिलता नहीं। अंदर position बदलने से net कभी नहीं बदलता। अब अगर charge पूरी तरह box के OUTSIDE बैठे — तो net क्या होना चाहिए?", "text_te": "అది కదలదు. లోపలి position net ని ఎప్పుడూ మార్చదు. ఇప్పుడు charge పూర్తిగా box OUTSIDE ఉంటే — net ఎంత ఉండాలి?"
+              "text_en": "It does not budge. Position inside never changes the net. Now I move the charge entirely outside the box.", "text_hi": "यह हिलता नहीं। अंदर position बदलने से net कभी नहीं बदलता। अब मैं charge को पूरी तरह box के बाहर ले जाता हूँ।", "text_te": "అది కదలదు. లోపలి position net ని ఎప్పుడూ మార్చదు. ఇప్పుడు నేను charge ని పూర్తిగా box బయటకు తీసుకువెళ్తున్నాను."
             },
             {
               "id": "s9_3",
@@ -1006,6 +1006,7 @@
     "states": {
       "STATE_1": {
         "label": "Flux is how much field pierces an area — not the field itself",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -1023,6 +1024,7 @@
       },
       "STATE_2": {
         "label": "Face-on: every line through, Φ = E·A is maximum",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -1042,6 +1044,7 @@
       },
       "STATE_3": {
         "label": "Tilt it: flux drops by cosθ, θ measured to the normal",
+        "visible_controls": ["theta_deg"],
         "visible_elements": [
           "all"
         ],
@@ -1067,6 +1070,7 @@
       },
       "STATE_4": {
         "label": "Why cosθ: E splits into a part that pierces and a part that grazes",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -1089,6 +1093,7 @@
       },
       "STATE_5": {
         "label": "Edge-on: θ = 90°, zero flux",
+        "visible_controls": ["theta_deg"],
         "visible_elements": [
           "all"
         ],
@@ -1114,6 +1119,7 @@
       },
       "STATE_6": {
         "label": "Why it works: flux is the dot product E·A",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -1134,6 +1140,7 @@
       },
       "STATE_7": {
         "label": "Flux has a sign: out is +, in is −",
+        "visible_controls": ["theta_deg"],
         "visible_elements": [
           "all"
         ],
@@ -1159,6 +1166,7 @@
       },
       "STATE_8": {
         "label": "Close the box: six faces add to net Φ ∝ charge inside (PRIMARY aha)",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -1180,6 +1188,7 @@
       },
       "STATE_9": {
         "label": "Move it inside, then sweep it outside: net holds, then net → 0",
+        "visible_controls": ["charge_x"],
         "visible_elements": [
           "all"
         ],
@@ -1201,6 +1210,8 @@
       },
       "STATE_10": {
         "label": "Explore: spin the disc through a full turn and watch signed Φ",
+        "visible_controls": ["theta_deg"],
+        "show_sliders": true,
         "visible_elements": [
           "all"
         ],
