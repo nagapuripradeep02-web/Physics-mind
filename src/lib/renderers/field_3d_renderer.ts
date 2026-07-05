@@ -1985,12 +1985,12 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="tau_readout">τ = 0.0 μN·m</div>
 </div>
 <div id="dipole_sliders">
-    <label>p = <span id="p_dipole_val">5.0</span> ×10⁻³⁰ C·m</label>
-    <input type="range" id="p_dipole_slider" min="1" max="10" step="0.5" value="5">
-    <label>E = <span id="e_dipole_val">5.0</span> kV/m</label>
-    <input type="range" id="e_dipole_slider" min="1" max="10" step="0.5" value="5">
-    <label>θ(p,E) = <span id="theta_dipole_val">45</span>°</label>
-    <input type="range" id="theta_dipole_slider" min="0" max="180" step="1" value="45">
+    <div id="dpf_p_row"><label>p = <span id="p_dipole_val">5.0</span> ×10⁻³⁰ C·m</label>
+    <input type="range" id="p_dipole_slider" min="1" max="10" step="0.5" value="5"></div>
+    <div id="dpf_e_row"><label>E = <span id="e_dipole_val">5.0</span> kV/m</label>
+    <input type="range" id="e_dipole_slider" min="1" max="10" step="0.5" value="5"></div>
+    <div id="dpf_theta_row"><label>θ(p,E) = <span id="theta_dipole_val">45</span>°</label>
+    <input type="range" id="theta_dipole_slider" min="0" max="180" step="1" value="45"></div>
     <div id="dipole_readout">τ = 0.0 · U = 0.0</div>
 </div>
 <div id="bmf_sliders">
@@ -13569,6 +13569,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var arc = findTorqueElementById("dpf_theta_arc"); if (arc) arc.visible = arcShow;
         var arcLbl = findTorqueElementById("dpf_theta_lbl"); if (arcLbl) arcLbl.visible = arcShow;
         lg.userData.theta_arc_show_degrees = !!(ex.theta_arc && ex.theta_arc.show_degrees);
+        // A show_degrees state (the θ-sweep / flip beats) rewrites this sprite
+        // with live numbers every frame; reset it to the bare θ symbol on entry
+        // to any state that does NOT opt in, so a prior state's last number
+        // can't leak forward (eye-walker dipole_theta_arc_label_stale_across_states).
+        if (arcLbl && !lg.userData.theta_arc_show_degrees) updateLabelSpriteText(arcLbl, "\\u03b8");
 
         var meterShow = !!(ex.energy_meter && ex.energy_meter.show);
         ["dpf_u_track", "dpf_u_dot", "dpf_u_lbl", "dpf_u_max_lbl", "dpf_u_min_lbl"].forEach(function(id) {
@@ -13601,6 +13606,17 @@ export const FIELD_3D_RENDERER_CODE = `
         lg.userData.tauPulse = !!ex.tau_pulse;
         // p-vector draw-in (STATE_1): the moment arrow grows from −q to +q.
         lg.userData.pGrowStartTime = ex.p_animate_in ? time : -1;
+        // physics_release (explore state): a trusted θ-slider RELEASE hands the
+        // dipole to the damped_pendulum integrator from the released angle, so
+        // "hold it at 130°, let go" swings home to θ=0 by real τ = pE sinθ
+        // dynamics (founder directive 2026-07-05). Guided states leave this off.
+        lg.userData.physicsRelease = !!ex.physics_release;
+        // Field-off states (STATE_1) must never show non-zero τ/U numbers —
+        // there IS no torque before E exists. Hide the readout and gate the
+        // live HUD on this flag (eye-walker dipole_s1_hud_ignores_field_off_flag).
+        lg.userData.fieldOff = ex.e_field === false;
+        var dpfReadoutEl = document.getElementById("dipole_readout");
+        if (dpfReadoutEl) dpfReadoutEl.style.display = lg.userData.fieldOff ? "none" : "block";
     }
 
     function updateDipoleInFieldFrame(dtSeconds) {
@@ -13720,7 +13736,16 @@ export const FIELD_3D_RENDERER_CODE = `
             var tauHeadW = Math.max(0.02, 0.15 * sAbs * Math.min(1.6, tauMult)) * tauGrow;
             tauArr.setLength(tauTotal, tauHead, tauHeadW);
             var tauLab = findTorqueElementById("dpf_tau_label");
-            if (tauLab) tauLab.position.set(0, (sRaw >= 0 ? 1.65 : -1.65), 0);
+            if (tauLab) {
+                // When the ΣF = 0 badge (fixed at y = −1.85) is up and the
+                // oscillation swings τ to the negative side, the label's flip
+                // position (y = −1.65) lands on the badge and reads "ΣF^τ = 0"
+                // — sidestep it in x so both stay legible (eye-walker
+                // dipole_s4_tau_label_collides_sum_force_badge).
+                var dpfBadge = findTorqueElementById("dpf_sum_zero");
+                var tauLabX = (dpfBadge && dpfBadge.visible && sRaw < 0) ? 0.85 : 0;
+                tauLab.position.set(tauLabX, (sRaw >= 0 ? 1.65 : -1.65), 0);
+            }
         }
 
         // θ-arc: azimuth 0 (+x) → θ (toward +z) in the x–z plane.
@@ -13793,6 +13818,34 @@ export const FIELD_3D_RENDERER_CODE = `
         tweenOpacity(findTorqueElementById("dpf_f_minus"));
         tweenOpacity(findTorqueElementById("dpf_sum_zero"));
         tweenOpacity(findTorqueElementById("dpf_tau_arrow"));
+
+        // Live HUD: whenever the ANIMATION drives the rotation (sweep /
+        // oscillation / damped_pendulum — anything but a manual drag), the θ
+        // thumb, its label and the τ/U readout track the animated angle every
+        // frame, so the numbers always match the picture (the readout used to
+        // freeze at the state default while the dipole visibly rotated). A
+        // trusted drag flips the mode to "manual", so the slider is never
+        // fought mid-drag. Electric-dipole panel only (the bar-magnet twin
+        // owns different DOM ids).
+        if (config.scenario_type === "dipole_in_uniform_field" && mode !== "manual" && !lg.userData.fieldOff) {
+            var hudPanel = document.getElementById("dipole_sliders");
+            if (hudPanel && hudPanel.style.display !== "none") {
+                var hudTheta = Math.abs(lg.userData.theta_deg || 0);
+                var hudThumb = document.getElementById("theta_dipole_slider");
+                if (hudThumb) hudThumb.value = String(hudTheta);
+                var hudVal = document.getElementById("theta_dipole_val");
+                if (hudVal) hudVal.textContent = String(Math.round(hudTheta));
+                var hudReadout = document.getElementById("dipole_readout");
+                if (hudReadout) {
+                    var hudP = typeof lg.userData.slider_p === "number" ? lg.userData.slider_p : (lg.userData.dpf_p_default || 5);
+                    var hudE = typeof lg.userData.slider_E === "number" ? lg.userData.slider_E : (lg.userData.dpf_E_default || 5);
+                    var hudRad = hudTheta * Math.PI / 180;
+                    var hudTau = 0.1 * hudP * hudE * Math.abs(Math.sin(hudRad));
+                    var hudU = -0.1 * hudP * hudE * Math.cos(hudRad);
+                    hudReadout.textContent = "\\u03c4 = " + hudTau.toFixed(2) + "   U = " + hudU.toFixed(2);
+                }
+            }
+        }
     }
 
     function applyDipoleInFieldGlow() {
@@ -28123,6 +28176,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var showDipoleSliders = !!(stateDef.show_sliders && isDipole);
             dipoleSlidersEl.style.display = showDipoleSliders ? "block" : "none";
             if (showDipoleSliders) {
+                // Rule 31c per-state contextual controls — show only the row(s)
+                // this state teaches (guided beats expose θ only; the explore
+                // state exposes p, E and θ). Rows built once in #dipole_sliders;
+                // absent visible_controls ⇒ all rows shown (legacy behaviour).
+                applyVisibleControls(
+                    { p: "dpf_p_row", E: "dpf_e_row", theta_deg: "dpf_theta_row" },
+                    stateDef.visible_controls
+                );
                 // Sync the θ slider thumb to the state's theta_deg, then re-fire
                 // the dipole slider handler so the τ/U readout matches on entry.
                 var thD = document.getElementById("theta_dipole_slider");
@@ -30848,6 +30909,33 @@ export const FIELD_3D_RENDERER_CODE = `
             pDipole.addEventListener("input", function () { refreshDipoleLabels(false); });
             eDipole.addEventListener("input", function () { refreshDipoleLabels(false); });
             thetaDipole.addEventListener("input", function (ev) { refreshDipoleLabels(!!(ev && ev.isTrusted)); });
+            // physics_release (explore state): letting GO of the θ slider hands
+            // the dipole to the damped_pendulum integrator from the released
+            // angle — it swings home to θ=0 by real τ = pE sinθ dynamics
+            // (overshoot + damped libration; released near 180° it lingers on
+            // the unstable maximum first). Stiffness k scales with the live
+            // p·E product so raising either slider makes the swing snappier
+            // (k = pE/I). Guided states (physicsRelease unset) keep the
+            // trusted-drag manual seize unchanged.
+            thetaDipole.addEventListener("change", function (ev) {
+                if (!ev || !ev.isTrusted) return;
+                var lgRel = findTorqueLoopGroup();
+                if (!lgRel || !lgRel.userData.physicsRelease) return;
+                var relTheta = parseFloat(thetaDipole.value);
+                if (!isFinite(relTheta)) return;
+                // sin(180°) = 0 exactly — a release parked dead on the unstable
+                // maximum would never depart. Nudge to 179° so it creeps, then flips.
+                if (relTheta > 179) relTheta = 179;
+                var relP = parseFloat(pDipole.value), relE = parseFloat(eDipole.value);
+                var relPDef = lgRel.userData.dpf_p_default || 5;
+                var relEDef = lgRel.userData.dpf_E_default || 5;
+                var relMult = (isFinite(relP) && isFinite(relE)) ? (relP / relPDef) * (relE / relEDef) : 1;
+                lgRel.userData.pend_k = 2.5 * Math.max(0.1, relMult);
+                lgRel.userData.pend_b = 0.8;
+                lgRel.userData.rotation_init_theta_deg = relTheta;
+                lgRel.userData.rotation_start_time = time;
+                lgRel.userData.rotation_mode = "damped_pendulum";
+            });
             refreshDipoleLabels(false);
         }
 
