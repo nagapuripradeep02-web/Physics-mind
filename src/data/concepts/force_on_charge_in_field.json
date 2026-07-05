@@ -107,7 +107,7 @@
         "title": "A Charge in a Field Feels a Force — F = qE",
         "duration": 13,
         "focal_primitive_id": "force_def_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -165,7 +165,7 @@
         "title": "Sign Sets the Direction — Flip q to Negative",
         "duration": 14,
         "focal_primitive_id": "sign_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -202,7 +202,7 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Before I change anything — predict. If the charge is negative, which way does the force point?", "text_hi": "कुछ बदलने से पहले — predict कीजिए। अगर charge negative है, तो force किस direction में point करेगा?", "text_te": "నేను ఏదైనా మార్చే ముందు — predict చేయండి. charge negative అయితే, force ఏ direction లో point అవుతుంది?"
+              "text_en": "Now flip the same charge to negative. The direction of the force is about to change.", "text_hi": "अब उसी charge को negative कर दीजिए। force की direction बदलने वाली है।", "text_te": "ఇప్పుడు అదే charge ని negative చేయండి. force యొక్క direction మారబోతోంది."
             },
             {
               "id": "s2_2",
@@ -347,7 +347,7 @@
         "title": "Launch It Sideways — the Path Is a Parabola",
         "duration": 16,
         "focal_primitive_id": "parabola_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -384,7 +384,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Now launch the charge sideways across the field. Predict — what shape will its path be?", "text_hi": "अब charge को field के across sideways launch कीजिए। Predict करें — इसका path किस shape का होगा?", "text_te": "ఇప్పుడు charge ని field అంతటా sideways launch చేయండి. Predict చేయండి — దాని path ఏ shape లో ఉంటుంది?"
+              "text_en": "Now launch the charge sideways across the field — its velocity now points across the force, not along it.", "text_hi": "अब charge को field के across sideways launch कीजिए — इसकी velocity अब force के across point करती है, along नहीं।", "text_te": "ఇప్పుడు charge ని field అంతటా sideways launch చేయండి — దాని velocity ఇప్పుడు force కి across point చేస్తుంది, along కాదు."
             },
             {
               "id": "s5_2",
@@ -571,6 +571,7 @@
     "states": {
       "STATE_1": {
         "label": "A charge in a field feels a force — F = qE",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [
           1.7,
@@ -584,6 +585,7 @@
       },
       "STATE_2": {
         "label": "Sign sets direction — flip to −q",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [
           1.7,
@@ -597,6 +599,7 @@
       },
       "STATE_3": {
         "label": "How big — F = qE scales with q and E",
+        "visible_controls": ["q", "E"],
         "visible_elements": [],
         "camera_position": [
           1.6,
@@ -610,6 +613,7 @@
       },
       "STATE_4": {
         "label": "Constant force ⇒ constant acceleration",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [
           1.4,
@@ -623,6 +627,7 @@
       },
       "STATE_5": {
         "label": "Sideways launch ⇒ parabola (PRIMARY aha)",
+        "visible_controls": [],
         "visible_elements": [],
         "camera_position": [
           0.7,
@@ -636,6 +641,7 @@
       },
       "STATE_6": {
         "label": "Same force, different mass — a = qE/m",
+        "visible_controls": ["m"],
         "visible_elements": [],
         "camera_position": [
           0.6,
@@ -649,6 +655,7 @@
       },
       "STATE_7": {
         "label": "Free explore — q, sign, field, mass",
+        "visible_controls": ["q", "E", "m"],
         "visible_elements": [],
         "camera_position": [
           1.0,
