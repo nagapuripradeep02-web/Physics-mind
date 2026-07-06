@@ -136,8 +136,8 @@
         "title": "A ball with charge through its whole volume — what is E(r)?",
         "duration": 15,
         "focal_primitive_id": "question_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -185,8 +185,7 @@
             },
             {
               "id": "s1_3",
-              "text_en": "So here is the question: what is the electric field E at a distance r — deep inside the ball, and far outside it?", "text_hi": "तो यहाँ question यह है: distance r पर electric field E क्या होगा — ball के अंदर deep में, और बाहर दूर में?", "text_te": "అయితే ఇక్కడ question ఏమిటంటే: distance r వద్ద electric field E ఎంత ఉంటుంది — ball లో లోపల deep లో, మరియు బయట చాలా దూరంలో?",
-              "pause_after_ms": 2600
+              "text_en": "So the real task is to find the electric field E at a distance r — both deep inside the ball and far outside it.", "text_hi": "तो असली काम है एक distance r पर electric field E निकालना — ball के अंदर deep में भी और बाहर दूर में भी।", "text_te": "కాబట్టి అసలు పని ఏమిటంటే — distance r వద్ద electric field E ని కనుక్కోవడం — ball లో లోపల deep లో మరియు బయట చాలా దూరంలో కూడా."
             }
           ]
         },
@@ -203,7 +202,7 @@
         "duration": 17,
         "focal_primitive_id": "symmetry_constant_label",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -243,12 +242,11 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Pick a point P at distance r from the centre. In which direction must the field point there?", "text_hi": "Centre से distance r पर एक point P लो। वहाँ field किस direction में होनी चाहिए?", "text_te": "Centre నుండి distance r వద్ద ఒక point P తీసుకోండి. అక్కడ field ఏ direction లో ఉండాలి?"
+              "text_en": "Pick a point P at distance r from the centre, and look at which way the field must point there.", "text_hi": "Centre से distance r पर एक point P लो, और देखो कि वहाँ field किस direction में होनी चाहिए।", "text_te": "Centre నుండి distance r వద్ద ఒక point P తీసుకోండి, మరియు అక్కడ field ఏ direction లో ఉండాలో చూడండి."
             },
             {
               "id": "s2_2",
-              "text_en": "Could the electric field E point sideways, or must it point straight out along the radius?", "text_hi": "क्या electric field E sideways direction में point कर सकता है, या फिर इसे radius के साथ straight out point करना ही होगा?", "text_te": "electric field E sideways direction లో point చేయగలదా, లేదా radius వెంట straight out point చేయాల్సిందేనా?",
-              "pause_after_ms": 2800
+              "text_en": "The electric field E cannot lean sideways along the sphere; it must point straight out along the radius.", "text_hi": "electric field E sphere के साथ sideways नहीं झुक सकता; उसे radius के along straight out ही point करना होगा।", "text_te": "electric field E sphere వెంబడి sideways వంగలేదు; అది radius వెంబడి straight out point చేయాల్సిందే."
             },
             {
               "id": "s2_3",
@@ -272,7 +270,7 @@
         "title": "Outside (r ≥ R): Φ = E·4πr² = q/ε₀ ⇒ E = kq/r²",
         "duration": 19,
         "focal_primitive_id": "E_kq_over_r2_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
@@ -317,8 +315,7 @@
             },
             {
               "id": "s3_2",
-              "text_en": "What is the flux through it, in terms of the electric field E and the sphere's area?", "text_hi": "electric field E और sphere के area के terms में, इसके through flux क्या है?", "text_te": "electric field E మరియు sphere యొక్క area పరంగా, దాని ద్వారా flux ఎంత?",
-              "pause_after_ms": 2700
+              "text_en": "Look at the flux through it, written in terms of the electric field E and the sphere's area.", "text_hi": "electric field E और sphere के area के terms में, इसके through flux को देखो।", "text_te": "electric field E మరియు sphere యొక్క area పరంగా, దాని ద్వారా flux ను చూడండి."
             },
             {
               "id": "s3_3",
@@ -389,12 +386,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "Here is the key question: how much charge does it enclose now — all of q, or only part of it?", "text_hi": "यहाँ key question है: अब यह कितना charge enclose कर रहा है — पूरा q, या उसका सिर्फ एक हिस्सा?", "text_te": "ఇక్కడ key question ఏమిటంటే: ఇప్పుడు ఇది ఎంత charge enclose చేస్తుందో — మొత్తం q నా, లేదా దాని కొంత భాగం మాత్రమేనా?",
-              "pause_after_ms": 2800
+              "text_en": "Look at how much charge it encloses now — not all of q, but only the part inside radius r.", "text_hi": "अब देखो यह कितना charge enclose करता है — पूरा q नहीं, बल्कि सिर्फ radius r के अंदर का हिस्सा।", "text_te": "ఇప్పుడు ఇది ఎంత charge enclose చేస్తుందో చూడండి — మొత్తం q కాదు, కేవలం radius r లోపల ఉన్న భాగం మాత్రమే."
             },
             {
               "id": "s4_3",
-              "text_en": "Only the part inside radius r. Since the charge fills the volume evenly, that fraction is charge q times r over R, cubed.", "text_hi": "सिर्फ radius r के अंदर का हिस्सा। चूँकि charge volume को evenly fill करता है, वह fraction है charge q times r over R, cubed।", "text_te": "కేవలం radius r లోపల ఉన్న భాగం మాత్రమే. charge volume ని evenly fill చేస్తుంది కాబట్టి, ఆ fraction అనేది charge q times r over R, cubed."
+              "text_en": "Because the charge fills the volume evenly, that enclosed fraction is charge q times r over R, cubed.", "text_hi": "चूँकि charge volume को evenly fill करता है, वह enclosed fraction है charge q times r over R, cubed।", "text_te": "charge volume ని evenly fill చేస్తుంది కాబట్టి, ఆ enclosed fraction అనేది charge q times r over R, cubed."
             },
             {
               "id": "s4_4",
@@ -402,8 +398,7 @@
             },
             {
               "id": "s4_5",
-              "text_en": "Solve, and the r squared partly cancels: the electric field E equals kq times r over R cubed. The field grows in a straight line — zero at the centre, strongest at the surface.", "text_hi": "Solve करो, और r squared partly cancel हो जाता है: electric field E equals kq times r over R cubed। Field एक straight line में बढ़ती है — centre पर zero, surface पर सबसे ज़्यादा।", "text_te": "Solve చేయండి, మరియు r squared partly cancel అవుతుంది: electric field E equals kq times r over R cubed. Field ఒక straight line లో పెరుగుతుంది — centre వద్ద zero, surface వద్ద అత్యధికం.",
-              "pause_after_ms": 1500
+              "text_en": "Solve, and the r squared partly cancels: the electric field E equals kq times r over R cubed. The field grows in a straight line — zero at the centre, strongest at the surface.", "text_hi": "Solve करो, और r squared partly cancel हो जाता है: electric field E equals kq times r over R cubed। Field एक straight line में बढ़ती है — centre पर zero, surface पर सबसे ज़्यादा।", "text_te": "Solve చేయండి, మరియు r squared partly cancel అవుతుంది: electric field E equals kq times r over R cubed. Field ఒక straight line లో పెరుగుతుంది — centre వద్ద zero, surface వద్ద అత్యధికం."
             },
             {
               "id": "s4_6",
@@ -466,8 +461,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Watch the Gaussian sphere grow right up to the surface, to r equals R. Does the field jump there, or stay smooth?", "text_hi": "Gaussian sphere को surface तक, यानी r equals R तक बढ़ते हुए देखो। क्या वहाँ field jump करती है, या smooth रहती है?", "text_te": "Gaussian sphere ని surface వరకు, అంటే r equals R వరకు పెరగడం గమనించండి. అక్కడ field jump అవుతుందా, లేదా smooth గా ఉంటుందా?",
-              "pause_after_ms": 2600
+              "text_en": "Watch the Gaussian sphere grow right up to the surface, to r equals R, and look at whether the field jumps there or passes through smoothly.", "text_hi": "Gaussian sphere को surface तक, यानी r equals R तक बढ़ते हुए देखो, और देखो कि वहाँ field jump करती है या smoothly गुज़रती है।", "text_te": "Gaussian sphere ని surface వరకు, అంటే r equals R వరకు పెరగడం గమనించండి, మరియు అక్కడ field jump అవుతుందా లేదా smoothly గా దాటుతుందా అని చూడండి."
             },
             {
               "id": "s5_2",
@@ -536,18 +530,15 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Watch the Gaussian sphere and the graph move together. Start at the centre: the field is zero and the dot rides the bottom.", "text_hi": "Gaussian sphere और graph को साथ-साथ move करते हुए देखो। Centre से शुरू करो: field zero है और dot नीचे ride कर रही है।", "text_te": "Gaussian sphere మరియు graph ని కలిసి move చేయడం గమనించండి. Centre నుండి start చేయండి: field zero గా ఉంది మరియు dot కిందన ride చేస్తుంది.",
-              "pause_after_ms": 3000
+              "text_en": "Watch the Gaussian sphere and the graph move together. Start at the centre: the field is zero and the dot rides the bottom.", "text_hi": "Gaussian sphere और graph को साथ-साथ move करते हुए देखो। Centre से शुरू करो: field zero है और dot नीचे ride कर रही है।", "text_te": "Gaussian sphere మరియు graph ని కలిసి move చేయడం గమనించండి. Centre నుండి start చేయండి: field zero గా ఉంది మరియు dot కిందన ride చేస్తుంది."
             },
             {
               "id": "s6_2",
-              "text_en": "As the sphere grows toward the surface, the field climbs in a straight line — the dot rides up a slope, reaching its peak exactly at r equals R.", "text_hi": "जैसे-जैसे sphere surface की तरफ बढ़ती है, field एक straight line में climb करती है — dot एक slope पर ऊपर ride करती है, ठीक r equals R पर अपनी peak तक पहुँचती है।", "text_te": "Sphere surface వైపు పెరిగేకొద్దీ, field ఒక straight line లో climb చేస్తుంది — dot ఒక slope మీద పైకి ride చేస్తూ, సరిగ్గా r equals R వద్ద తన peak కి చేరుకుంటుంది.",
-              "pause_after_ms": 1500
+              "text_en": "As the sphere grows toward the surface, the field climbs in a straight line — the dot rides up a slope, reaching its peak exactly at r equals R.", "text_hi": "जैसे-जैसे sphere surface की तरफ बढ़ती है, field एक straight line में climb करती है — dot एक slope पर ऊपर ride करती है, ठीक r equals R पर अपनी peak तक पहुँचती है।", "text_te": "Sphere surface వైపు పెరిగేకొద్దీ, field ఒక straight line లో climb చేస్తుంది — dot ఒక slope మీద పైకి ride చేస్తూ, సరిగ్గా r equals R వద్ద తన peak కి చేరుకుంటుంది."
             },
             {
               "id": "s6_3",
-              "text_en": "Keep going outside: now the arrows shrink and the dot slides down the tail, falling off as one over r squared — the point-charge curve.", "text_hi": "Outside जाते रहो: अब arrows shrink होते हैं और dot tail पर नीचे slide करती है, one over r squared की तरह fall off करती है — यह point-charge curve है।", "text_te": "Outside వైపు కొనసాగండి: ఇప్పుడు arrows shrink అవుతాయి మరియు dot tail మీద కిందకు slide అవుతుంది, one over r squared గా fall off అవుతూ — ఇది point-charge curve.",
-              "pause_after_ms": 1500
+              "text_en": "Keep going outside: now the arrows shrink and the dot slides down the tail, falling off as one over r squared — the point-charge curve.", "text_hi": "Outside जाते रहो: अब arrows shrink होते हैं और dot tail पर नीचे slide करती है, one over r squared की तरह fall off करती है — यह point-charge curve है।", "text_te": "Outside వైపు కొనసాగండి: ఇప్పుడు arrows shrink అవుతాయి మరియు dot tail మీద కిందకు slide అవుతుంది, one over r squared గా fall off అవుతూ — ఇది point-charge curve."
             },
             {
               "id": "s6_4",
@@ -791,6 +782,7 @@
     "states": {
       "STATE_1": {
         "label": "A ball with charge through its whole volume — what is E(r)?",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -813,6 +805,7 @@
       },
       "STATE_2": {
         "label": "By symmetry, E is radial and the same on the whole sphere",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -842,6 +835,7 @@
       },
       "STATE_3": {
         "label": "Outside (r ≥ R): Φ = E·4πr² = q/ε₀ ⇒ E = kq/r²",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -870,6 +864,7 @@
       },
       "STATE_4": {
         "label": "Inside (r < R): q_enc = q(r/R)³ ⇒ E = kq·r/R³ grows from zero",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -902,6 +897,7 @@
       },
       "STATE_5": {
         "label": "At the surface the two pieces meet — continuous, peak at r = R",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -932,6 +928,7 @@
       },
       "STATE_6": {
         "label": "The full picture: a straight ramp up, then a 1/r² tail",
+        "visible_controls": ["r_gauss"],
         "visible_elements": [
           "all"
         ],
@@ -966,6 +963,7 @@
       },
       "STATE_7": {
         "label": "Explore: drag the Gaussian sphere from centre to far outside",
+        "visible_controls": ["r_gauss"],
         "visible_elements": [
           "all"
         ],
