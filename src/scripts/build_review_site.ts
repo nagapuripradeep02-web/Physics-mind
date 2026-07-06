@@ -356,18 +356,18 @@ ${pilotHeadTags(1)}
   .card .ttl input { width:100%; padding:2px 6px; border-radius:6px; border:1px solid rgba(203,104,67,.55);
                background:var(--surface-3); color:var(--ink); font-size:12.5px; font-family:var(--font-ui); outline:none; }
   #main { flex:1 1 auto; display:flex; flex-direction:column; min-width:0; min-height:0; }
-  header { padding:11px 18px 10px; border-bottom:1px solid var(--line); }
-  .brandbar { display:flex; align-items:center; gap:15px; }
-  .logo { display:flex; align-items:center; gap:11px; flex:none; }
-  .mark { width:36px; height:36px; border-radius:11px; background:var(--clay); flex:none;
+  header { padding:5px 14px; border-bottom:1px solid var(--line); }
+  .brandbar { display:flex; align-items:center; gap:11px; }
+  .logo { display:flex; align-items:center; gap:9px; flex:none; }
+  .mark { width:26px; height:26px; border-radius:8px; background:var(--clay); flex:none;
           display:grid; place-items:center; box-shadow:0 6px 18px -6px rgba(203,104,67,.55); }
-  .mark svg { width:21px; height:21px; }
-  .wordmark b { font-family:var(--font-disp); font-weight:600; font-size:17px; letter-spacing:-.01em;
+  .mark svg { width:16px; height:16px; }
+  .wordmark b { font-family:var(--font-disp); font-weight:600; font-size:13px; letter-spacing:-.01em;
                 color:var(--ink); display:block; line-height:1; }
-  .wordmark span { font-family:var(--font-ui); font-size:8.5px; letter-spacing:.22em;
-                   text-transform:uppercase; color:var(--ink-faint); margin-top:4px; display:block; }
-  .vrule { width:1px; height:28px; background:var(--line); flex:none; }
-  header h1.concept { font-family:var(--font-disp); font-style:italic; font-size:17px; font-weight:500;
+  .wordmark span { font-family:var(--font-ui); font-size:7.5px; letter-spacing:.2em;
+                   text-transform:uppercase; color:var(--ink-faint); margin-top:3px; display:block; }
+  .vrule { width:1px; height:20px; background:var(--line); flex:none; }
+  header h1.concept { font-family:var(--font-disp); font-style:italic; font-size:13px; font-weight:500;
                       color:var(--ink); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .hd-right { margin-left:auto; display:flex; align-items:center; gap:13px; flex:none; }
   .verified { display:flex; align-items:center; gap:7px; padding:6px 13px 6px 9px; border-radius:999px;
@@ -380,7 +380,16 @@ ${pilotHeadTags(1)}
   #stage { position:relative; flex:1 1 auto; min-height:0; background:var(--sim); }
   #stage::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:3; border-radius:0;
                   box-shadow: inset 0 0 0 1px var(--line), inset 0 0 70px rgba(0,0,0,.4); }
+  #stage:fullscreen { background:var(--sim); }
+  #stage:fullscreen::after { box-shadow:none; }
   #sim { width:100%; height:100%; border:0; display:block; }
+  /* fullscreen-the-sim button — top-right glass, mirrors #simPenBar (top-left) */
+  #fsBtn { position:absolute; top:10px; right:10px; z-index:9; display:flex; align-items:center; gap:6px;
+           background:rgba(16,14,11,0.82); backdrop-filter:blur(6px); padding:6px 11px; border-radius:10px;
+           border:1px solid var(--line); box-shadow:0 2px 10px rgba(0,0,0,0.4);
+           color:var(--ink-dim); font-size:12px; font-weight:600; cursor:pointer; user-select:none;
+           transition:color .15s ease, border-color .15s ease; }
+  #fsBtn:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   #caption { position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
              background:rgba(16,14,11,0.82); backdrop-filter:blur(8px); color:var(--ink);
              padding:8px 16px; border:1px solid var(--line);
@@ -396,18 +405,25 @@ ${pilotHeadTags(1)}
             padding:6px 16px; border:1px solid var(--line);
             border-radius:999px; font-size:13px; font-weight:600; z-index:7;
             pointer-events:none; box-shadow:0 2px 10px rgba(0,0,0,0.4); }
-  #scrubbar { flex:0 0 auto; display:flex; align-items:center; gap:12px; padding:8px 18px;
+  /* collapse handle for the whole bottom control band (scrubbar + footer) */
+  #ctlToggle { flex:0 0 auto; display:flex; align-items:center; justify-content:center; height:15px;
+               border-top:1px solid var(--line); background:var(--surface-2); color:var(--ink-faint);
+               cursor:pointer; font-size:11px; line-height:1; user-select:none;
+               transition:color .15s ease, background .15s ease; }
+  #ctlToggle:hover { color:var(--clay-soft); background:var(--surface-3); }
+  #scrubbar { flex:0 0 auto; display:flex; align-items:center; gap:12px; padding:4px 14px;
               border-top:1px solid var(--line); background:var(--surface); }
+  #scrubbar.collapsed, footer.collapsed { display:none; }
   #scrub { flex:1 1 auto; width:auto; }
   #scrubtime { font-size:11px; color:var(--ink-dim); font-variant-numeric:tabular-nums;
                min-width:74px; text-align:right; }
-  footer { flex:0 0 auto; padding:10px 18px; border-top:1px solid var(--line); background:var(--surface); }
-  #statelabel { font-family:var(--font-disp); font-size:13.5px; font-weight:600; color:var(--clay-soft);
-                margin-bottom:9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .controls { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-  button { font:inherit; font-family:var(--font-ui); font-size:13px; font-weight:600;
-           border:1px solid var(--line); border-radius:10px;
-           padding:8px 14px; cursor:pointer; background:var(--surface-2); color:var(--ink);
+  footer { flex:0 0 auto; padding:5px 14px 7px; border-top:1px solid var(--line); background:var(--surface); }
+  #statelabel { font-family:var(--font-disp); font-size:11px; font-weight:600; color:var(--clay-soft);
+                margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  button { font:inherit; font-family:var(--font-ui); font-size:11.5px; font-weight:600;
+           border:1px solid var(--line); border-radius:9px;
+           padding:5px 10px; cursor:pointer; background:var(--surface-2); color:var(--ink);
            transition:background .15s ease, border-color .15s ease; }
   button:hover { background:var(--surface-3); }
   button.primary { background:var(--clay); color:#fff; border-color:transparent; box-shadow:var(--lift); }
@@ -416,38 +432,48 @@ ${pilotHeadTags(1)}
   button.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   button:disabled { opacity:0.4; cursor:default; }
   .spacer { flex:1 1 auto; }
-  label.ctl { font-size:12px; color:var(--ink-dim); display:inline-flex; align-items:center; gap:6px; }
+  label.ctl { font-size:11px; color:var(--ink-dim); display:inline-flex; align-items:center; gap:6px; }
   /* custom range (scrubber + speed) — warm track, clay thumb */
   input[type=range] { width:120px; vertical-align:middle; -webkit-appearance:none; appearance:none;
                       height:5px; border-radius:999px; background:var(--surface-3); cursor:pointer; }
-  #scrub { height:6px; }
+  #scrub { height:8px; cursor:grab; }
+  #scrub:active { cursor:grabbing; }
   input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:15px; height:15px;
                       border-radius:50%; background:var(--clay); border:2px solid var(--bg);
-                      box-shadow:0 1px 4px rgba(0,0,0,.5); }
+                      box-shadow:0 1px 4px rgba(0,0,0,.5); transition:width .1s ease, height .1s ease; }
+  #scrub::-webkit-slider-thumb { width:17px; height:17px; }
+  #scrub:hover::-webkit-slider-thumb, #scrub:active::-webkit-slider-thumb { width:19px; height:19px; }
   input[type=range]::-moz-range-thumb { width:14px; height:14px; border-radius:50%; background:var(--clay);
                       border:2px solid var(--bg); box-shadow:0 1px 4px rgba(0,0,0,.5); }
+  #scrub::-moz-range-thumb { width:17px; height:17px; }
   input[type=range]::-moz-range-track { height:5px; border-radius:999px; background:var(--surface-3); }
+  #scrub::-moz-range-track { height:8px; }
 
   /* ── Whiteboard + unified pen (teaching surface) ── */
   #rail { transition: flex-basis .14s ease, width .14s ease; }
   #rail.collapsed { flex:0 0 0 !important; width:0 !important; border-right:0; }
   #railToggle { flex:0 0 14px; width:14px; display:flex; align-items:center; justify-content:center;
                 background:var(--surface); border-right:1px solid var(--line); color:var(--ink-dim);
-                cursor:pointer; font-size:13px; user-select:none; }
+                cursor:col-resize; font-size:13px; user-select:none; touch-action:none; }
   #railToggle:hover { color:var(--clay-soft); background:var(--surface-2); }
+  #railToggle:active { background:rgba(203,104,67,.35); }
   #boardToggle { flex:0 0 14px; width:14px; display:flex; align-items:center; justify-content:center;
                  background:var(--surface); border-left:1px solid var(--line); color:var(--ink-dim);
                  cursor:pointer; font-size:13px; user-select:none; }
   #boardToggle:hover { color:var(--clay-soft); background:var(--surface-2); }
   #main.hidden { display:none; }
-  #divider { flex:0 0 6px; width:6px; cursor:col-resize; background:var(--line); align-self:stretch; }
+  /* wider invisible grab zone around the 6px visual bar → easier, smoother drag */
+  #divider { position:relative; flex:0 0 6px; width:6px; cursor:col-resize; background:var(--line);
+             align-self:stretch; touch-action:none; }
+  #divider::before { content:""; position:absolute; top:0; bottom:0; left:-6px; right:-6px; }
   #divider:hover { background:rgba(203,104,67,.4); }
+  #divider:active { background:rgba(203,104,67,.65); }
   #divider.hidden { display:none; }
   #boardCol { flex:0 0 480px; min-width:0; display:flex; flex-direction:column;
               background:var(--bg); border-left:1px solid var(--line); }
   #boardCol.hidden { display:none; }
-  #boardToolbar { flex:0 0 auto; display:flex; align-items:center; gap:5px; flex-wrap:wrap;
-                  padding:7px 9px; background:var(--surface); border-bottom:1px solid var(--line); }
+  #boardToolbar { flex:0 0 auto; display:flex; align-items:center; gap:4px; flex-wrap:wrap;
+                  padding:4px 7px; background:var(--surface); border-bottom:1px solid var(--line); }
   #boardToolbar .grp { display:inline-flex; align-items:center; gap:4px; padding-right:6px;
                        margin-right:2px; border-right:1px solid var(--line); }
   #boardToolbar .grp:last-child { border-right:0; }
@@ -465,9 +491,9 @@ ${pilotHeadTags(1)}
   #simPenBar .seg .pmbtn { border-radius:0; border:0; }
   #stage.sim-draw #simOverlay { box-shadow: inset 0 0 0 2px rgba(203,104,67,0.55); cursor: crosshair; }
   #stage.sim-draw #paused { display:none !important; }
-  .pmbtn { font:inherit; font-family:var(--font-ui); font-size:12px; font-weight:600;
+  .pmbtn { font:inherit; font-family:var(--font-ui); font-size:11px; font-weight:600;
            border:1px solid var(--line); border-radius:7px;
-           padding:5px 8px; cursor:pointer; background:var(--surface-2); color:var(--ink); }
+           padding:4px 7px; cursor:pointer; background:var(--surface-2); color:var(--ink); }
   .pmbtn:hover { background:var(--surface-3); }
   .pmbtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   .swatch { width:18px; height:18px; border-radius:50%; border:2px solid var(--line);
@@ -511,12 +537,14 @@ ${pilotHeadTags(1)}
         </span>
         <button id="simClearBtn" class="pmbtn" title="Clear sim annotations">Clear</button>
       </div>
+      <div id="fsBtn" title="Full screen the simulation (Esc to exit)"><span id="fsIcon">&#9974;</span> Full screen</div>
       <div id="paused">&#9208; Paused — tap to resume</div>
       <div id="tapcue">&#9208; Tap the sim anytime to pause</div>
       <div id="caption"></div>
     </div>
+    <div id="ctlToggle" title="Hide / show the controls (more room for the simulation)">&#9662;</div>
     <div id="scrubbar">
-      <input id="scrub" type="range" min="0" max="1000" step="10" value="0">
+      <input id="scrub" type="range" min="0" max="1000" step="1" value="0">
       <span id="scrubtime">0.0 / 0.0s</span>
     </div>
     <footer>
@@ -563,11 +591,6 @@ ${pilotHeadTags(1)}
       </span>
       <span class="grp">
         <button id="wbThemeBtn" class="pmbtn" title="Switch the page between white and dark">&#9680; Page</button>
-      </span>
-      <span class="grp">
-        <button id="lyBothBtn" class="pmbtn on" title="Sim + whiteboard side by side">Both</button>
-        <button id="lySimBtn" class="pmbtn" title="Simulation only">Sim</button>
-        <button id="lyBoardBtn" class="pmbtn" title="Whiteboard only">Board</button>
       </span>
     </div>
     <div id="boardScroll">
@@ -1093,14 +1116,21 @@ ${pilotHeadTags(1)}
   });
 
   // ── Scrubber: drag to jump within the current state's timeline ──
+  // rAF-throttle the jump so a fast drag doesn't spam the iframe → smooth scrubbing.
+  var scrubRaf = 0, scrubPending = 0;
   scrubEl.addEventListener('input', function () {
     scrubbing = true;
     var ms = parseInt(scrubEl.value, 10) || 0;
-    try { stopAudio(); } catch (e) {}
-    post({ type: 'SET_TIME_JUMP', at_ms: ms });   // instant jump + hold (both directions)
+    scrubPending = ms;
     frozen = true;
-    curSi = -1; applyReveal(activeSiAt(ms));       // show the reveal at the scrub point now
-    updateScrubLabel(ms);
+    updateScrubLabel(ms);                          // label updates every input (cheap)
+    if (scrubRaf) return;
+    scrubRaf = requestAnimationFrame(function () {
+      scrubRaf = 0;
+      try { stopAudio(); } catch (e) {}
+      post({ type: 'SET_TIME_JUMP', at_ms: scrubPending });   // one jump per frame
+      curSi = -1; applyReveal(activeSiAt(scrubPending));
+    });
   });
   // Release: SET_TIME_JUMP holds, so if we were playing we must un-pin to resume.
   scrubEl.addEventListener('change', function () {
@@ -1384,8 +1414,10 @@ ${pilotHeadTags(1)}
   }
 
   // ── Layout: rail | railToggle | main(sim) | divider | boardCol ──────────────
-  var RAIL_W = 200, DIV_W = 6, TOG_W = 14, BTOG_W = 14, SIM_MIN = 772;  // keep sim > 768 so field_3d stays 3D
-  var boardOpen = false, railCollapsed = false, layoutMode = 'both', boardWidth = 480;
+  // Floors are tiny (not the old 772) so the teacher can drag freely — "no hurdle".
+  var DIV_W = 6, TOG_W = 14, BTOG_W = 14, SIM_MIN = 220, BOARD_MIN = 140, RAIL_MIN = 44;
+  var railWidth = 200, boardOpen = false, railCollapsed = false, layoutMode = 'both',
+      boardWidth = 480, controlsCollapsed = false;
 
   var railEl = document.getElementById('rail');
   var railToggleEl = document.getElementById('railToggle');
@@ -1401,32 +1433,42 @@ ${pilotHeadTags(1)}
 
   var LS_WBUI = 'pm_wbui_' + CONCEPT_ID;
   function loadWbUI() {
-    try { var d = JSON.parse(localStorage.getItem(LS_WBUI) || 'null'); if (d) { if (typeof d.boardWidth === 'number') boardWidth = d.boardWidth; if (typeof d.railCollapsed === 'boolean') railCollapsed = d.railCollapsed; } } catch (e) {}
+    try {
+      var d = JSON.parse(localStorage.getItem(LS_WBUI) || 'null');
+      if (d) {
+        if (typeof d.boardWidth === 'number') boardWidth = d.boardWidth;
+        if (typeof d.railWidth === 'number') railWidth = d.railWidth;
+        if (typeof d.railCollapsed === 'boolean') railCollapsed = d.railCollapsed;
+        if (typeof d.controlsCollapsed === 'boolean') controlsCollapsed = d.controlsCollapsed;
+      }
+    } catch (e) {}
   }
-  function saveWbUI() { try { localStorage.setItem(LS_WBUI, JSON.stringify({ boardWidth: boardWidth, railCollapsed: railCollapsed })); } catch (e) {} }
+  function saveWbUI() { try { localStorage.setItem(LS_WBUI, JSON.stringify({ boardWidth: boardWidth, railWidth: railWidth, railCollapsed: railCollapsed, controlsCollapsed: controlsCollapsed })); } catch (e) {} }
 
+  // Two states only now (Sim/Both/Board buttons removed): board OPEN = rail | sim |
+  // divider | board; board CLOSED = rail | sim(full). Widths are free-drag with tiny
+  // floors so nothing snaps back. Persisted widths are re-clamped to the viewport.
   function applyLayout() {
     railEl.classList.toggle('collapsed', railCollapsed);
     if (railToggleEl) railToggleEl.innerHTML = railCollapsed ? '›' : '‹';
     if (boardToggleEl) boardToggleEl.innerHTML = boardOpen ? '›' : '‹';
+    // rail width (when not collapsed)
+    if (!railCollapsed) {
+      var vw = document.documentElement.clientWidth;
+      railWidth = Math.max(RAIL_MIN, Math.min(railWidth, vw - TOG_W - 120));
+      railEl.style.flex = '0 0 ' + railWidth + 'px'; railEl.style.width = railWidth + 'px';
+    }
+    var railW = railCollapsed ? 0 : railWidth;
     if (!boardOpen) {
       dividerEl.classList.add('hidden'); boardColEl.classList.add('hidden'); mainEl.classList.remove('hidden');
       mainEl.style.flex = '1 1 auto'; mainEl.style.width = '';
-    } else if (layoutMode === 'board') {
-      mainEl.classList.add('hidden'); dividerEl.classList.add('hidden'); boardColEl.classList.remove('hidden');
-      boardColEl.style.flex = '1 1 auto'; boardColEl.style.width = '';
-    } else if (layoutMode === 'sim') {
-      boardColEl.classList.add('hidden'); dividerEl.classList.add('hidden'); mainEl.classList.remove('hidden');
-      mainEl.style.flex = '1 1 auto'; mainEl.style.width = '';
     } else {
       mainEl.classList.remove('hidden'); boardColEl.classList.remove('hidden'); dividerEl.classList.remove('hidden');
-      var railW = railCollapsed ? 0 : RAIL_W;
-      var avail = document.documentElement.clientWidth - railW - TOG_W - BTOG_W;
-      var maxBoard = avail - DIV_W - SIM_MIN;
-      if (maxBoard < 220 && !railCollapsed) { railCollapsed = true; railEl.classList.add('collapsed'); avail = document.documentElement.clientWidth - TOG_W - BTOG_W; maxBoard = avail - DIV_W - SIM_MIN; }
-      var bw = Math.max(220, Math.min(boardWidth, Math.max(220, maxBoard)));
+      var avail = document.documentElement.clientWidth - railW - TOG_W - BTOG_W - DIV_W;
+      var maxBoard = Math.max(BOARD_MIN, avail - SIM_MIN);
+      var bw = Math.max(BOARD_MIN, Math.min(boardWidth, maxBoard));
       boardWidth = bw;
-      var mw = Math.max(SIM_MIN, avail - DIV_W - bw);
+      var mw = Math.max(SIM_MIN, avail - bw);
       mainEl.style.flex = '0 0 ' + mw + 'px'; mainEl.style.width = mw + 'px';
       boardColEl.style.flex = '0 0 ' + bw + 'px'; boardColEl.style.width = bw + 'px';
     }
@@ -1435,27 +1477,78 @@ ${pilotHeadTags(1)}
 
   function setBoardOpen(open) {
     boardOpen = open;
-    if (open) { if (layoutMode !== 'board' && layoutMode !== 'sim') layoutMode = 'both'; if (document.documentElement.clientWidth < 1200) railCollapsed = true; }
+    if (open && document.documentElement.clientWidth < 1100) railCollapsed = true;
     wbBtn.classList.toggle('on', open);
     applyLayout(); saveWbUI();
   }
-  function markLayoutBtns() {
-    document.getElementById('lyBothBtn').classList.toggle('on', layoutMode === 'both');
-    document.getElementById('lySimBtn').classList.toggle('on', layoutMode === 'sim');
-    document.getElementById('lyBoardBtn').classList.toggle('on', layoutMode === 'board');
-  }
 
   wbBtn.addEventListener('click', function () { setBoardOpen(!boardOpen); pmt('whiteboard_toggle', { open: boardOpen }); });
-  railToggleEl.addEventListener('click', function () { railCollapsed = !railCollapsed; pmt('rail_toggle', { collapsed: railCollapsed }); applyLayout(); saveWbUI(); });
-  document.getElementById('lyBothBtn').addEventListener('click', function () { layoutMode = 'both'; boardOpen = true; wbBtn.classList.add('on'); markLayoutBtns(); applyLayout(); });
-  document.getElementById('lySimBtn').addEventListener('click', function () { layoutMode = 'sim'; markLayoutBtns(); applyLayout(); });
-  document.getElementById('lyBoardBtn').addEventListener('click', function () { layoutMode = 'board'; boardOpen = true; wbBtn.classList.add('on'); markLayoutBtns(); applyLayout(); });
 
-  // Divider drag (clamped so the sim never drops below 768 → stays 3D)
+  // ── Rail handle: DRAG to resize the state rail, CLICK (barely moved) to collapse ──
+  var railDrag = false, railStartX = 0, railStartW = 0, railMoved = false, railWasCol = false;
+  railToggleEl.addEventListener('pointerdown', function (e) {
+    railDrag = true; railMoved = false; railWasCol = railCollapsed;
+    railStartX = e.clientX; railStartW = railCollapsed ? 0 : railWidth;
+    railEl.style.transition = 'none';   // instant pointer tracking (restore on up → collapse still animates)
+    try { railToggleEl.setPointerCapture(e.pointerId); } catch (_) {}
+    document.body.classList.add('dragging'); e.preventDefault();
+  });
+  railToggleEl.addEventListener('pointermove', function (e) {
+    if (!railDrag) return;
+    if (!railMoved && Math.abs(e.clientX - railStartX) > 3) { railMoved = true; if (railCollapsed) railCollapsed = false; }
+    if (railMoved) { railWidth = Math.max(RAIL_MIN, railStartW + (e.clientX - railStartX)); applyLayout(); }
+  });
+  railToggleEl.addEventListener('pointerup', function (e) {
+    if (!railDrag) return;
+    railDrag = false; try { railToggleEl.releasePointerCapture(e.pointerId); } catch (_) {}
+    document.body.classList.remove('dragging');
+    railEl.style.transition = '';   // restore the collapse animation for click-toggles
+    if (!railMoved) { railCollapsed = !railWasCol; pmt('rail_toggle', { collapsed: railCollapsed }); applyLayout(); }
+    saveWbUI();
+  });
+
+  // ── Sim | Whiteboard divider: free drag (tiny floors, no snap-back) ──
   var dragging = false, dragStartX = 0, dragStartBW = 0;
   dividerEl.addEventListener('pointerdown', function (e) { dragging = true; dragStartX = e.clientX; dragStartBW = boardWidth; try { dividerEl.setPointerCapture(e.pointerId); } catch (_) {} document.body.classList.add('dragging'); e.preventDefault(); });
   dividerEl.addEventListener('pointermove', function (e) { if (!dragging) return; boardWidth = dragStartBW + (dragStartX - e.clientX); applyLayout(); });
   dividerEl.addEventListener('pointerup', function (e) { if (!dragging) return; dragging = false; try { dividerEl.releasePointerCapture(e.pointerId); } catch (_) {} document.body.classList.remove('dragging'); saveWbUI(); });
+
+  // ── Collapse the whole bottom control band (scrubbar + footer) for max sim ──
+  var scrubbarEl = document.getElementById('scrubbar');
+  var footerEl = document.querySelector('footer');
+  var ctlToggleEl = document.getElementById('ctlToggle');
+  function applyControls() {
+    scrubbarEl.classList.toggle('collapsed', controlsCollapsed);
+    if (footerEl) footerEl.classList.toggle('collapsed', controlsCollapsed);
+    ctlToggleEl.innerHTML = controlsCollapsed ? '\\u25B4' : '\\u25BE';   // ▴ up (open) / ▾ down (close)
+    ctlToggleEl.title = controlsCollapsed ? 'Show the controls' : 'Hide the controls (more room for the simulation)';
+    requestAnimationFrame(function () { if (simSurface) simSurface.resize(); });
+  }
+  ctlToggleEl.addEventListener('click', function () { controlsCollapsed = !controlsCollapsed; pmt('controls_toggle', { collapsed: controlsCollapsed }); applyControls(); saveWbUI(); });
+
+  // ── Full-screen the simulation ──
+  var stageEl2 = document.getElementById('stage');
+  var fsBtn = document.getElementById('fsBtn');
+  var fsIcon = document.getElementById('fsIcon');
+  function inFullscreen() { return document.fullscreenElement || document.webkitFullscreenElement; }
+  fsBtn.addEventListener('click', function () {
+    pmt('fullscreen_toggle', { on: !inFullscreen() });
+    if (!inFullscreen()) {
+      if (stageEl2.requestFullscreen) stageEl2.requestFullscreen();
+      else if (stageEl2.webkitRequestFullscreen) stageEl2.webkitRequestFullscreen();
+    } else {
+      if (document.exitFullscreen) document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    }
+  });
+  function onFsChange() {
+    var on = !!inFullscreen();
+    if (fsIcon) fsIcon.innerHTML = on ? '\\u2715' : '\\u26F6';   // ✕ exit / ⛶ enter
+    fsBtn.childNodes[fsBtn.childNodes.length - 1].nodeValue = on ? ' Exit full screen' : ' Full screen';
+    requestAnimationFrame(function () { if (simSurface) simSurface.resize(); });
+  }
+  document.addEventListener('fullscreenchange', onFsChange);
+  document.addEventListener('webkitfullscreenchange', onFsChange);
 
   // ── Surfaces ────────────────────────────────────────────────────────────────
   loadWbUI();
@@ -1557,6 +1650,7 @@ ${pilotHeadTags(1)}
   window.PM_wb_count = function () { return { board: boardSurface.count(), sim: simSurface.count(), simDraw: simDrawMode, boardOpen: boardOpen }; };
 
   applyLayout();
+  applyControls();
 
   // Initial paint (rail + mute) in case SIM_READY already fired before this ran.
   buildRail();
