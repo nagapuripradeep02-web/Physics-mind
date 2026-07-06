@@ -23343,7 +23343,19 @@ export const FIELD_3D_RENDERER_CODE = `
             } else if (ud.elementType === "gln_cap_flux_label") {
                 var showFlux = showCaps && capsReveal > 0.001;
                 o.visible = showFlux;
-                o.position.set(0, ud.capSign * ((L / 2) + 0.55), 0);
+                if (ud.capSign > 0) {
+                    // top cap: push "Φ=0" out to the camera-LEFT of the axis so it
+                    // clears BOTH the centred "Gaussian cylinder (radius r, height L)"
+                    // header (at 0, L/2+0.5, 0) directly above the top cap AND the
+                    // camera-RIGHT "L" ruler label — fixes the
+                    // field3d_label_sprite_overlap recurrence (the top-cap tag used to
+                    // stack on the header at x=z=0). Bottom cap has nothing above or
+                    // below it, so it stays centred.
+                    var capCamRight = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+                    o.position.set(-capCamRight.x * (r + 0.55), (L / 2) + 0.30, -capCamRight.z * (r + 0.55));
+                } else {
+                    o.position.set(0, -((L / 2) + 0.55), 0);
+                }
                 // bright + a small brightness throb; floor 0.8 so "Φ=0" reads clearly.
                 if (o.material) o.material.opacity = capsReveal * (0.8 + 0.2 * (0.5 + 0.5 * Math.sin(flowPhase * 0.8)));
             }

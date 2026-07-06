@@ -134,8 +134,8 @@
         "title": "A long charged wire — how does E fall off with r?",
         "duration": 15,
         "focal_primitive_id": "question_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -179,8 +179,7 @@
             },
             {
               "id": "s1_2",
-              "text_en": "As you walk away from the wire, how does its field weaken with distance r, and what is your first guess for the law?", "text_hi": "जब आप wire से दूर जाते हो, तो उसका field distance r के साथ कैसे कमजोर होता है, और law के बारे में आपका पहला guess क्या है?", "text_te": "మీరు wire నుండి దూరంగా వెళ్ళినప్పుడు, దాని field distance r తో ఎలా తగ్గుతుంది — మరియు law కోసం మీ first guess ఏమిటి?",
-              "pause_after_ms": 2600
+              "text_en": "As you walk away, the field weakens with distance r. It's tempting to expect the point-charge law, one over r squared — but we'll derive its real law.", "text_hi": "जब आप दूर जाते हो, field distance r के साथ कमजोर होता है। Point-charge law, one over r squared, expect करना tempting है — लेकिन हम इसका real law derive करेंगे।", "text_te": "మీరు దూరంగా వెళ్ళగా, field distance r తో తగ్గుతుంది. Point-charge law, one over r squared, expect చేయడం tempting — కానీ మనం దీని real law ని derive చేస్తాం."
             }
           ]
         },
@@ -196,8 +195,8 @@
         "title": "Same strength all around: the field is purely radial",
         "duration": 17,
         "focal_primitive_id": "radial_label",
-        "advance_mode": "auto_after_tts",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -237,8 +236,7 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Point at P, a step out from the wire. Which way does the field push there, along the wire, toward the nearest bit of wire, or straight out?", "text_hi": "P पर ध्यान दो, wire से एक कदम बाहर। Field वहाँ किस direction में push करता है — wire के along, wire के nearest bit की तरफ, या straight out?", "text_te": "P పైన చూడండి, wire నుండి ఒక అడుగు బయటకి. Field అక్కడ ఏ direction లో push చేస్తుంది — wire along గా, wire యొక్క nearest bit వైపు, లేదా straight out గా?",
-              "pause_after_ms": 2600
+              "text_en": "Point at P, a step out from the wire. The field there could push three ways: along the wire, toward the nearest bit, or straight out.", "text_hi": "P पर ध्यान दो, wire से एक कदम बाहर। Field वहाँ तीन तरह से push कर सकता है: wire के along, nearest bit की तरफ, या straight out।", "text_te": "P పైన చూడండి, wire నుండి ఒక అడుగు బయట. Field అక్కడ మూడు విధాలుగా push చేయవచ్చు: wire along గా, nearest bit వైపు, లేదా straight out గా."
             },
             {
               "id": "s2_2",
@@ -303,8 +301,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "We could add up Coulomb's law from every tiny piece of charge, slow. Instead we wrap one closed surface around the wire. Sphere, or cylinder?", "text_hi": "हम Coulomb's law को charge के हर tiny piece से add up कर सकते हैं, लेकिन वो slow है। इसके बजाय हम wire के चारों तरफ एक closed surface wrap करते हैं। Sphere, या cylinder?", "text_te": "మనం Coulomb's law ని charge యొక్క ప్రతి tiny piece నుండి add up చేయవచ్చు, కానీ అది slow. దానికి బదులు మనం wire చుట్టూ ఒక closed surface wrap చేస్తాం. Sphere, లేదా cylinder?",
-              "pause_after_ms": 2400
+              "text_en": "We could add Coulomb's law from every tiny piece of charge, but that's slow. Instead we wrap one closed surface around the wire — and its shape must match the wire.", "text_hi": "हम Coulomb's law को हर tiny piece से add कर सकते हैं, लेकिन वो slow है। इसके बजाय हम wire के चारों तरफ एक closed surface wrap करते हैं — और उसकी shape wire से match होनी चाहिए।", "text_te": "మనం Coulomb's law ని ప్రతి tiny piece నుండి add చేయవచ్చు, కానీ అది slow. దానికి బదులు wire చుట్టూ ఒక closed surface wrap చేస్తాం — దాని shape wire తో match అవ్వాలి."
             },
             {
               "id": "s3_2",
@@ -328,8 +325,8 @@
         "title": "The two flat end caps carry ZERO flux",
         "duration": 18,
         "focal_primitive_id": "wall_flux_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -369,8 +366,7 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "The cylinder has three pieces, the curved wall and two flat end caps. Which pieces does the field actually pierce?", "text_hi": "Cylinder के तीन हिस्से हैं — curved wall और दो flat end caps। Field actually किन हिस्सों को pierce करता है?", "text_te": "Cylinder లో మూడు భాగాలు ఉన్నాయి — curved wall మరియు రెండు flat end caps. Field నిజంగా ఏ భాగాలను pierce చేస్తుంది?",
-              "pause_after_ms": 2800
+              "text_en": "The cylinder has three pieces: the curved wall and two flat end caps. The field pierces only some of them.", "text_hi": "Cylinder के तीन हिस्से हैं: curved wall और दो flat end caps। Field उनमें से केवल कुछ को ही pierce करता है।", "text_te": "Cylinder లో మూడు భాగాలు: curved wall మరియు రెండు flat end caps. Field వాటిలో కొన్నింటిని మాత్రమే pierce చేస్తుంది."
             },
             {
               "id": "s4_2",
@@ -441,8 +437,7 @@
             },
             {
               "id": "s5_2",
-              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for the field E, and watch what happens to the length L.", "text_hi": "अब हमारे पास same flux के लिए दो expressions हैं। उन्हें equal set करो और field E के लिए solve करो — और देखो length L के साथ क्या होता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal గా set చేసి field E కోసం solve చేయండి — మరియు length L తో ఏమి జరుగుతుందో చూడండి.",
-              "pause_after_ms": 2500
+              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for the field E, and watch what happens to the length L.", "text_hi": "अब हमारे पास same flux के लिए दो expressions हैं। उन्हें equal set करो और field E के लिए solve करो — और देखो length L के साथ क्या होता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal గా set చేసి field E కోసం solve చేయండి — మరియు length L తో ఏమి జరుగుతుందో చూడండి."
             },
             {
               "id": "s5_3",
@@ -513,8 +508,7 @@
             },
             {
               "id": "s6_2",
-              "text_en": "Back at the start you probably guessed the wire fades the same way. Does it? Watch the wire's own curve as the distance r grows.", "text_hi": "शुरुआत में आपने शायद guess किया था कि wire उसी तरह fade होती है। क्या ऐसा है? Wire के अपने curve को देखो जैसे-जैसे distance r बढ़ता है।", "text_te": "మొదట్లో మీరు బహుశా guess చేశారు wire అదే విధంగా fade అవుతుందని. అలా అవుతుందా? distance r పెరిగే కొద్దీ wire యొక్క curve ని చూడండి.",
-              "pause_after_ms": 2800
+              "text_en": "Back at the start, the instinct was that the wire fades the same way. It does not — watch the wire's own curve as the distance r grows.", "text_hi": "शुरुआत में instinct यह था कि wire उसी तरह fade होती है। ऐसा नहीं है — wire के अपने curve को देखो जैसे-जैसे distance r बढ़ता है।", "text_te": "మొదట్లో instinct ఏమిటంటే wire అదే విధంగా fade అవుతుందని. అలా జరగదు — distance r పెరిగే కొద్దీ wire యొక్క curve ని చూడండి."
             },
             {
               "id": "s6_3",
@@ -771,6 +765,7 @@
     "states": {
       "STATE_1": {
         "label": "A long charged wire — how does E fall off with r?",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -790,6 +785,7 @@
       },
       "STATE_2": {
         "label": "Same strength all around: the field is purely radial",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -811,6 +807,7 @@
       },
       "STATE_3": {
         "label": "Choose a coaxial Gaussian CYLINDER (radius r, height L)",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -836,6 +833,7 @@
       },
       "STATE_4": {
         "label": "The two flat end caps carry ZERO flux",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -863,6 +861,7 @@
       },
       "STATE_5": {
         "label": "Φ = E·(2πrL) = λL/ε₀ ⇒ E = λ/(2πε₀r); L cancels",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -891,6 +890,7 @@
       },
       "STATE_6": {
         "label": "1/r, NOT 1/r²: the line falls off slower than a point charge",
+        "visible_controls": ["r_gauss"],
         "visible_elements": [
           "all"
         ],
@@ -924,6 +924,7 @@
       },
       "STATE_7": {
         "label": "Explore: tune λ and r, watch the arrows rescale as 1/r",
+        "visible_controls": ["lambda", "r_gauss"],
         "visible_elements": [
           "all"
         ],
