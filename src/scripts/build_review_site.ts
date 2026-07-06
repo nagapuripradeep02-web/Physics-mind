@@ -1940,6 +1940,13 @@ ${pilotHeadTags(0)}
   .card:hover .arrow{color:var(--clay-soft);transform:translateX(3px);}
   .empty{color:var(--ink-dim);font-size:14px;}
   #noresults{display:none;color:var(--ink-dim);font-size:14px;padding:8px 2px;}
+  #earlyNote{display:flex;align-items:center;gap:11px;padding:11px 15px;margin:0 0 18px;
+        background:var(--clay-wash);border:1px solid rgba(203,104,67,.35);border-radius:12px;}
+  #earlyNote .txt{flex:1 1 auto;font-size:12.5px;line-height:1.5;color:var(--ink-dim);}
+  #earlyNote .txt b{color:var(--clay-soft);font-weight:600;}
+  #earlyNote button{flex:none;border:none;background:none;color:var(--ink-faint);font-size:17px;line-height:1;
+        padding:2px 6px;cursor:pointer;border-radius:7px;transition:color .15s ease;}
+  #earlyNote button:hover{color:var(--clay-soft);}
 </style>
 </head>
 <body><div class="wrap">
@@ -1950,6 +1957,10 @@ ${pilotHeadTags(0)}
   </div>
   <h1>Simulation Library</h1>
   <p class="sub">Class 12 Physics &middot; ${entries.length} simulation${entries.length === 1 ? '' : 's'} &middot; open one and teach with it.</p>
+  <div id="earlyNote" hidden>
+    <span class="txt"><b>Early access</b> &mdash; new simulations are added regularly, and your feedback shapes what we build next.</span>
+    <button id="earlyNoteX" title="Dismiss" aria-label="Dismiss">&times;</button>
+  </div>
   <input id="search" type="search" placeholder="Search simulations… (e.g. flux, magnetic force, Gauss)" autocomplete="off">
   <div id="noresults">No simulations match that search.</div>
 ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
@@ -1959,6 +1970,18 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   window.PM_CONCEPT_ID = null;
   function pmt(type, payload) { try { if (window.PM && PM.track) PM.track(type, payload || {}); } catch (e) {} }
   pmt('catalog_open', {});
+  // Early-access note: shows until dismissed once, then never again (per browser).
+  try {
+    var noteEl = document.getElementById('earlyNote');
+    if (noteEl && !localStorage.getItem('pm_early_note_dismissed')) {
+      noteEl.hidden = false;
+      document.getElementById('earlyNoteX').addEventListener('click', function () {
+        noteEl.hidden = true;
+        try { localStorage.setItem('pm_early_note_dismissed', '1'); } catch (e2) {}
+        pmt('early_note_dismiss', {});
+      });
+    }
+  } catch (e) {}
   if (window.PM_DEV) {
     var who = document.getElementById('whoName');
     if (who) who.textContent = 'Local preview (dev — no login, no tracking)';
