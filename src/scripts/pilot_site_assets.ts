@@ -64,6 +64,8 @@ export const PILOT_CONCEPTS: string[] = [
     'charge_distribution',
     'electric_flux',
     'gauss_law',
+    'gauss_law_sphere',
+    'gauss_law_line',
     // Ch.4 — Moving Charges & Magnetism
     'magnetic_force_moving_charge',
     'magnetic_force_direction_right_hand_rule',
