@@ -1282,9 +1282,29 @@ ${pilotHeadTags(1)}
         var btn = el.closest('button');
         if (btn) pmt('sim_button', { button: btn.id || (btn.textContent || '').trim().slice(0, 40) });
       }, true);
+      // Camera settle: after a real orbit/zoom gesture, record where the
+      // teacher left the camera (renderer exposes window.PM_camera live).
+      // Choreography moves the camera without DOM events, so it never fires.
+      var camTimer = null, lastCam = null;
+      try { var c0 = iframe.contentWindow.PM_camera; if (c0) lastCam = { t: c0.theta, p: c0.phi, r: c0.radius }; } catch (e2) {}
+      function camSettle() {
+        camTimer = null;
+        try {
+          var c = iframe.contentWindow.PM_camera;
+          if (!c) return;
+          if (lastCam && Math.abs(c.theta - lastCam.t) < 0.02 && Math.abs(c.phi - lastCam.p) < 0.02 && Math.abs(c.radius - lastCam.r) < 0.05) return;
+          lastCam = { t: c.theta, p: c.phi, r: c.radius };
+          pmt('camera_settle', { theta: Math.round(c.theta * 100) / 100, phi: Math.round(c.phi * 100) / 100, radius: Math.round(c.radius * 100) / 100 });
+        } catch (e3) {}
+      }
+      function camPoke(ev) { if (!ev.isTrusted) return; if (camTimer) clearTimeout(camTimer); camTimer = setTimeout(camSettle, 900); }
+      doc.addEventListener('pointerup', camPoke, true);
+      doc.addEventListener('touchend', camPoke, true);
+      doc.addEventListener('wheel', camPoke, { capture: true, passive: true });
     } catch (e) { /* cross-origin or not ready — never break playback */ }
   }
 
+  var simErrCount = 0;
   window.addEventListener('message', function (e) {
     var t = e.data && e.data.type;
     if (t === 'SIM_READY') {
@@ -1309,8 +1329,23 @@ ${pilotHeadTags(1)}
       pmt('slider_change', { slider: e.data.param || 'param', value: e.data.value, explorer: e.data.explorer_id || null });
     } else if (t === 'CANVAS_TAP') {
       toggleFreeze();
+    } else if (t === 'SIM_ERROR') {
+      // Relayed by the error hook inside sim.html. Re-slice here too: any
+      // window can postMessage, so never trust payload sizes from outside.
+      if (simErrCount < 10) {
+        simErrCount++;
+        pmt('sim_error', {
+          message: String(e.data.message || '').slice(0, 300),
+          source: String(e.data.source || '').slice(0, 200),
+          lineno: e.data.lineno || 0
+        });
+      }
     }
   });
+
+  // Reliability watchdog: a sim that never says SIM_READY is a broken class.
+  // Log-only — playback behavior is unchanged.
+  setTimeout(function () { if (!simReady) pmt('sim_error', { kind: 'ready_timeout', after_ms: 15000 }); }, 15000);
 
   // Spacebar toggles freeze; arrow keys step the (possibly reordered) sequence.
   window.addEventListener('keydown', function (e) {
@@ -1463,6 +1498,7 @@ ${pilotHeadTags(1)}
         ops.push({ type: 'add', stroke: curStroke });
         redo.length = 0;
         growSpacer(); persist(); render();
+        if (opts.onStroke) { try { opts.onStroke(curStroke); } catch (e2) {} }
       }
       curStroke = null;
     }
@@ -1661,8 +1697,10 @@ ${pilotHeadTags(1)}
 
   // ── Surfaces ────────────────────────────────────────────────────────────────
   loadWbUI();
-  simSurface = makeSurface(simOverlayEl, { scrolls: false, onActivate: function () { lastSurface = simSurface; } });
-  boardSurface = makeSurface(wbCanvasEl, { scrolls: true, scrollEl: boardScrollEl, spacerEl: wbSpacerEl, persistKey: 'pm_wb_' + CONCEPT_ID, onActivate: function () { lastSurface = boardSurface; } });
+  simSurface = makeSurface(simOverlayEl, { scrolls: false, onActivate: function () { lastSurface = simSurface; },
+    onStroke: function (s) { pmt('pen_stroke', { surface: 'sim', at_ms: readSimTimeMs(), tool: s.tool, points: s.points.length }); } });
+  boardSurface = makeSurface(wbCanvasEl, { scrolls: true, scrollEl: boardScrollEl, spacerEl: wbSpacerEl, persistKey: 'pm_wb_' + CONCEPT_ID, onActivate: function () { lastSurface = boardSurface; },
+    onStroke: function (s) { pmt('pen_stroke', { surface: 'board', at_ms: readSimTimeMs(), tool: s.tool, points: s.points.length }); } });
   lastSurface = boardSurface;
   var restored = boardSurface.restore();
   boardScrollEl.addEventListener('scroll', function () { boardSurface.setScroll(boardScrollEl.scrollTop); });

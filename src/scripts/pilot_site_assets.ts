@@ -248,8 +248,33 @@ function pmTelemetryJs(): string {
     if (queue.length >= FLUSH_AT) flush(false);
   };
 
+  // One device/context snapshot per tab session (projector vs laptop vs tablet).
+  // Queued pre-auth is fine: flush() holds until a token exists.
+  try {
+    if (!sessionStorage.getItem('pm_session_info_sent')) {
+      sessionStorage.setItem('pm_session_info_sent', '1');
+      PM.track('session_info', {
+        screen_w: (window.screen && window.screen.width) || 0,
+        screen_h: (window.screen && window.screen.height) || 0,
+        vp_w: window.innerWidth || 0,
+        vp_h: window.innerHeight || 0,
+        dpr: window.devicePixelRatio || 1,
+        touch: (navigator.maxTouchPoints || 0) > 0,
+        lang: navigator.language || '',
+        ua: String(navigator.userAgent || '').slice(0, 120)
+      });
+    }
+  } catch (e) {}
+
   function flush(unloading) {
     if (isStaff) { queue = []; return; }   // founder/staff: never send
+    // Re-check at send time too: on login.html authReady resolves null before
+    // sign-in, so the async isStaff flag alone can't protect that page.
+    try {
+      var su = PM.auth && PM.auth.user && PM.auth.user();
+      var sm = (su && su.user_metadata) ? su.user_metadata : {};
+      if (sm.role === 'founder' || sm.staff === true) { queue = []; return; }
+    } catch (e) {}
     if (!queue.length || !window.PM_CONFIG) return;
     var tok = PM.auth && PM.auth.token && PM.auth.token();
     if (!tok) return;                      // hold until authed; RLS rejects anon anyway
@@ -275,6 +300,9 @@ function pmTelemetryJs(): string {
 
   setInterval(function () { flush(false); }, FLUSH_MS);
 
+  // Explicit flush for callers that navigate away immediately (login redirect).
+  PM.flushNow = function () { try { flush(true); } catch (e) {} };
+
   // Dwell heartbeat: proves the tab is actually in front of a class.
   setInterval(function () {
     if (document.visibilityState === 'visible') PM.track('dwell', {});
@@ -283,6 +311,33 @@ function pmTelemetryJs(): string {
   window.addEventListener('pagehide', function () { PM.track('page_leave', {}); flush(true); });
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') flush(true);
+  });
+
+  // Page-level error capture (catalog + player + login). Capped so an error
+  // loop can never flood pilot_events; try-caught so telemetry never rethrows.
+  var errCount = 0;
+  function trackErr(kind, msg, src, line) {
+    try {
+      if (errCount >= 10) return;
+      errCount++;
+      PM.track('client_error', {
+        kind: kind,
+        message: String(msg || '').slice(0, 300),
+        source: String(src || '').slice(0, 200),
+        lineno: line || 0
+      });
+    } catch (e) {}
+  }
+  window.addEventListener('error', function (e) {
+    if (e && e.target && e.target !== window && (e.target.src || e.target.href)) {
+      trackErr('resource', e.target.src || e.target.href, '', 0);
+      return;
+    }
+    trackErr('js', e && e.message, e && e.filename, e && e.lineno);
+  }, true);
+  window.addEventListener('unhandledrejection', function (e) {
+    var r = e && e.reason;
+    trackErr('rejection', (r && r.message) ? r.message : String(r), '', 0);
   });
 })();
 `;
@@ -300,6 +355,7 @@ function loginHtml(): string {
 <script src="./pm-config.js"></script>
 <script src="${SUPABASE_JS_CDN}"></script>
 <script src="./pm-auth.js"></script>
+<script src="./pm-telemetry.js"></script>
 <style>
   :root{ --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --clay:#CB6843; --clay-deep:#B0552F;
          --clay-soft:#E3A07F; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
@@ -413,6 +469,7 @@ function loginHtml(): string {
       if (res.error) { showErr('Sign-in failed: ' + res.error.message); return; }
       var u = res.data && res.data.user;
       if (window.PM && PM.track) PM.track('login', {});
+      if (window.PM && PM.flushNow) PM.flushNow();   // keepalive fetch survives the redirect
       if (mustChange(u)) showChange();
       else location.replace(nextUrl());
     }, function () { btn.disabled = false; showErr('Network error — please try again.'); });
@@ -430,6 +487,7 @@ function loginHtml(): string {
       btn.disabled = false;
       if (res.error) { showErr('Could not save: ' + res.error.message); return; }
       if (window.PM && PM.track) PM.track('password_changed', {});
+      if (window.PM && PM.flushNow) PM.flushNow();
       showOk('Password saved. Taking you to your simulations…');
       setTimeout(function () { location.replace(nextUrl()); }, 900);
     }, function () { btn.disabled = false; showErr('Network error — please try again.'); });

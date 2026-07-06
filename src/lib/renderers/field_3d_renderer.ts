@@ -1077,6 +1077,26 @@ export function assembleField3DHtml(config: Field3DConfig): string {
 <html><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+// First script on purpose: relays every iframe error (incl. CDN load failures
+// and renderer init crashes) to the parent player, which logs it to telemetry.
+(function () {
+  var sent = 0;
+  function relay(msg, src, line) {
+    if (sent >= 10) return;
+    sent++;
+    try { parent.postMessage({ type: 'SIM_ERROR', message: String(msg || '').slice(0, 300), source: String(src || '').slice(0, 200), lineno: line || 0 }, '*'); } catch (e) {}
+  }
+  window.addEventListener('error', function (e) {
+    if (e && e.target && e.target !== window && (e.target.src || e.target.href)) { relay('resource_failed: ' + (e.target.src || e.target.href), '', 0); return; }
+    relay(e && e.message, e && e.filename, e && e.lineno);
+  }, true);
+  window.addEventListener('unhandledrejection', function (e) {
+    var r = e && e.reason;
+    relay('unhandledrejection: ' + ((r && r.message) ? r.message : String(r)), '', 0);
+  });
+})();
+<\/script>
 <style>
 html, body { margin: 0; padding: 0; overflow: hidden; background: ${bg}; width: 100%; height: 100%; }
 canvas { display: block; width: 100%; height: 100%; }
@@ -2762,6 +2782,9 @@ export const FIELD_3D_RENDERER_CODE = `
             r * Math.sin(spherical.phi) * Math.sin(spherical.theta)
         );
         camera.lookAt(0, 0, 0);
+        // Live camera pose for the parent player (same pattern as PM_simTimeMs).
+        var pc = window.PM_camera || (window.PM_camera = { theta: 0, phi: 0, radius: 0 });
+        pc.theta = spherical.theta; pc.phi = spherical.phi; pc.radius = spherical.radius;
     }
 
     function animateCameraTo(pos) {
