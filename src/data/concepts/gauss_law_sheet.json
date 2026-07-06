@@ -137,8 +137,9 @@
         "title": "A big charged sheet — how does E change as you walk away?",
         "duration": 15,
         "focal_primitive_id": "question_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -182,8 +183,7 @@
             },
             {
               "id": "s1_2",
-              "text_en": "As you walk straight out from a big charged sheet, how does its field weaken with distance, and what is your first guess for the law?", "text_hi": "जब तुम एक big charged sheet से सीधे बाहर चलते हो, तो इसका field distance के साथ कैसे कमज़ोर होता है, और law के लिए तुम्हारा पहला guess क्या है?", "text_te": "ఒక big charged sheet నుండి నేరుగా బయటకు నడిచినప్పుడు, దాని field distance తో ఎలా తగ్గుతుంది, మరియు law కోసం నీ first guess ఏమిటి?",
-              "pause_after_ms": 2600
+              "text_en": "As you walk straight out from a big charged sheet, your instinct says its field must fade with distance, the way a point charge or a wire does.", "text_hi": "जब तुम एक big charged sheet से सीधे बाहर चलते हो, तो instinct कहता है कि इसका field distance के साथ fade होना चाहिए, जैसे एक point charge या wire का होता है।", "text_te": "ఒక big charged sheet నుండి నేరుగా బయటకు నడిచేకొద్దీ, దాని field distance తో fade అవ్వాలి అని instinct చెబుతుంది, ఒక point charge లేదా wire లా."
             }
           ]
         },
@@ -199,8 +199,9 @@
         "title": "Straight out on BOTH sides: perpendicular and uniform",
         "duration": 17,
         "focal_primitive_id": "perpendicular_label",
-        "advance_mode": "auto_after_tts",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -240,8 +241,7 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Point at P, one step off the face. Which way does the field push there, along the sheet, slanting toward the nearest charge, or straight out?", "text_hi": "P को देखो, face से एक step की दूरी पर। वहाँ field किस तरफ push करता है, sheet के साथ-साथ, nearest charge की तरफ slant होते हुए, या सीधे बाहर?", "text_te": "P వైపు చూడండి, face నుండి ఒక step దూరంలో. అక్కడ field ఏ వైపు push చేస్తుంది, sheet వెంబడి, nearest charge వైపు slant అవుతూ, లేదా నేరుగా బయటకు?",
-              "pause_after_ms": 2600
+              "text_en": "Point at P, one step off the face. The field there could run along the sheet, slant toward the nearest charge, or go straight out.", "text_hi": "P को देखो, face से एक step की दूरी पर। वहाँ field sheet के साथ-साथ चल सकता है, nearest charge की तरफ slant हो सकता है, या सीधे बाहर जा सकता है।", "text_te": "P వైపు చూడండి, face నుండి ఒక step దూరంలో. అక్కడ field sheet వెంబడి వెళ్ళవచ్చు, nearest charge వైపు slant అవ్వవచ్చు, లేదా నేరుగా బయటకు వెళ్ళవచ్చు."
             },
             {
               "id": "s2_2",
@@ -267,6 +267,7 @@
         "focal_primitive_id": "cap_area_label",
         "advance_mode": "manual_click",
         "teaching_method": "derivation_first_principles",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -306,8 +307,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "We could add up Coulomb's law from every tiny patch, slow. Instead we pierce the sheet with one closed surface. A sphere, a cylinder along, or a flat pillbox?", "text_hi": "हम हर tiny patch से Coulomb's law को जोड़ सकते हैं, लेकिन यह slow है। बजाय इसके हम sheet को एक closed surface से pierce करते हैं। एक sphere, एक cylinder, या एक flat pillbox?", "text_te": "మనం ప్రతి tiny patch నుండి Coulomb's law ని జోడించవచ్చు, కానీ అది slow. అందుకు బదులు మనం sheet ని ఒక closed surface తో pierce చేస్తాం. ఒక sphere, ఒక cylinder, లేదా ఒక flat pillbox?",
-              "pause_after_ms": 2400
+              "text_en": "We could add up Coulomb's law from every tiny patch, slow. Instead we pierce the sheet with one closed surface, and its shape must match the flat sheet.", "text_hi": "हम हर tiny patch से Coulomb's law को जोड़ सकते हैं, लेकिन यह slow है। बजाय इसके हम sheet को एक closed surface से pierce करते हैं, और इसकी shape flat sheet से match होनी चाहिए।", "text_te": "మనం ప్రతి tiny patch నుండి Coulomb's law ని జోడించవచ్చు, కానీ అది slow. అందుకు బదులు మనం sheet ని ఒక closed surface తో pierce చేస్తాం, మరియు దాని shape flat sheet తో match అవ్వాలి."
             },
             {
               "id": "s3_2",
@@ -331,8 +331,9 @@
         "title": "The curved WALL carries ZERO flux — only the two CAPS",
         "duration": 18,
         "focal_primitive_id": "total_flux_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -372,8 +373,7 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "The pillbox has three pieces, two flat caps and one curved wall. Which pieces does the field actually pierce?", "text_hi": "Pillbox के तीन हिस्से हैं, दो flat caps और एक curved wall। Field वास्तव में किन हिस्सों से pierce करता है?", "text_te": "Pillbox కి మూడు భాగాలు ఉన్నాయి, రెండు flat caps మరియు ఒక curved wall. Field వాస్తవంగా ఏ భాగాల నుండి pierce చేస్తుంది?",
-              "pause_after_ms": 2800
+              "text_en": "The pillbox has three pieces, two flat caps and one curved wall, and the field pierces only some of them.", "text_hi": "Pillbox के तीन हिस्से हैं, दो flat caps और एक curved wall, और field उनमें से केवल कुछ को ही pierce करता है।", "text_te": "Pillbox కి మూడు భాగాలు ఉన్నాయి, రెండు flat caps మరియు ఒక curved wall, మరియు field వాటిలో కొన్నింటిని మాత్రమే pierce చేస్తుంది."
             },
             {
               "id": "s4_2",
@@ -401,6 +401,7 @@
         "focal_primitive_id": "solved_field_label",
         "advance_mode": "manual_click",
         "teaching_method": "derivation_first_principles",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -440,12 +441,11 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "How much charge sits inside the pillbox? Just the charge on one patch of sheet, that is sigma times A. By Gauss, the flux equals sigma-A over epsilon-nought.", "text_hi": "Pillbox के अंदर कितना charge है? बस sheet के एक patch पर जो charge है, वह है sigma times A। Gauss के अनुसार, flux equals sigma times A over epsilon-nought।", "text_te": "Pillbox లో ఎంత charge ఉంది? Sheet యొక్క ఒక patch మీద ఉన్న charge మాత్రమే, అది sigma times A. Gauss ప్రకారం, flux equals sigma times A over epsilon-nought."
+              "text_en": "Only one patch of sheet sits inside the pillbox, so the enclosed charge is just sigma times A. By Gauss, the flux equals sigma-A over epsilon-nought.", "text_hi": "Pillbox के अंदर sheet का केवल एक patch है, तो enclosed charge बस sigma times A है। Gauss के अनुसार, flux equals sigma times A over epsilon-nought।", "text_te": "Pillbox లో sheet యొక్క ఒక patch మాత్రమే ఉంది, కాబట్టి enclosed charge కేవలం sigma times A. Gauss ప్రకారం, flux equals sigma times A over epsilon-nought."
             },
             {
               "id": "s5_2",
-              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for the electric field E, and watch the area A, and where the factor of two lands.", "text_hi": "अब हमारे पास same flux के दो expressions हैं। उन्हें equal set करो और electric field E के लिए solve करो, और area A को देखो, और factor of two कहाँ आता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal set చేసి electric field E కోసం solve చేయండి, మరియు area A ని గమనించండి, మరియు factor of two ఎక్కడ వస్తుందో చూడండి.",
-              "pause_after_ms": 2500
+              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for the electric field E, and watch the area A, and where the factor of two lands.", "text_hi": "अब हमारे पास same flux के दो expressions हैं। उन्हें equal set करो और electric field E के लिए solve करो, और area A को देखो, और factor of two कहाँ आता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal set చేసి electric field E కోసం solve చేయండి, మరియు area A ని గమనించండి, మరియు factor of two ఎక్కడ వస్తుందో చూడండి."
             },
             {
               "id": "s5_3",
@@ -473,6 +473,7 @@
         "focal_primitive_id": "constant_compare_label",
         "advance_mode": "manual_click",
         "teaching_method": "compare_contrast",
+        "visible_controls": ["d"],
         "scene_composition": [
           {
             "type": "annotation",
@@ -516,8 +517,7 @@
             },
             {
               "id": "s6_2",
-              "text_en": "Back at the start you probably guessed the sheet fades too. Does it? Watch the sheet's own line as you walk away.", "text_hi": "शुरुआत में तुमने शायद guess किया होगा कि sheet भी fade होती है। क्या होती है? जैसे तुम दूर जाते हो, sheet की अपनी line को देखो।", "text_te": "మొదట్లో నువ్వు బహుశా guess చేసి ఉంటావు sheet కూడా fade అవుతుందని. అవుతుందా? నువ్వు దూరంగా వెళ్ళేకొద్దీ sheet యొక్క own line ని చూడు.",
-              "pause_after_ms": 2800
+              "text_en": "Back at the start, the instinct was that the sheet fades too. It does not. Watch the sheet's own line as you walk away.", "text_hi": "शुरुआत में instinct यह था कि sheet भी fade होती है। यह नहीं होती। जैसे तुम दूर जाते हो, sheet की अपनी line को देखो।", "text_te": "మొదట్లో instinct ఏమిటంటే sheet కూడా fade అవుతుందని. అది అవ్వదు. నువ్వు దూరంగా వెళ్ళేకొద్దీ sheet యొక్క own line ని చూడు."
             },
             {
               "id": "s6_3",
@@ -545,6 +545,7 @@
         "focal_primitive_id": "live_readout_label",
         "advance_mode": "interaction_complete",
         "teaching_method": "exploration_sliders",
+        "visible_controls": ["sigma", "d"],
         "scene_composition": [
           {
             "type": "annotation",
