@@ -136,8 +136,8 @@
         "title": "We know Φ = q/ε₀ — but what is E(r) inside and outside?",
         "duration": 15,
         "focal_primitive_id": "question_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -185,8 +185,7 @@
             },
             {
               "id": "s1_3",
-              "text_en": "So here is the real question: what is the electric field E at a distance r — inside the shell, and outside it?", "text_hi": "तो असली सवाल यह है: एक distance r पर electric field E क्या होगा — shell के inside, और outside?", "text_te": "కాబట్టి అసలు ప్రశ్న ఏమిటంటే: distance r వద్ద electric field E ఎంత ఉంటుంది — shell యొక్క inside లో, మరియు outside లో?",
-              "pause_after_ms": 2600
+              "text_en": "So the real task is to find the electric field E at a distance r — both inside the shell and outside it.", "text_hi": "तो असली काम है एक distance r पर electric field E निकालना — shell के inside भी और outside भी।", "text_te": "కాబట్టి అసలు పని ఏమిటంటే — distance r వద్ద electric field E ని కనుక్కోవడం — shell యొక్క inside లో మరియు outside లో కూడా."
             }
           ]
         },
@@ -203,7 +202,7 @@
         "duration": 17,
         "focal_primitive_id": "symmetry_constant_label",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -243,16 +242,15 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Pick a point P at distance r from the centre. In which direction must the field point there?", "text_hi": "Centre से r दूरी पर एक point P लो। वहाँ field किस direction में होगी?", "text_te": "Centre నుండి r దూరంలో ఒక point P తీసుకోండి। అక్కడ field ఏ direction లో ఉండాలి?"
+              "text_en": "Pick a point P at distance r from the centre, and look at which way its field must point.", "text_hi": "Centre से r दूरी पर एक point P लो, और देखो कि वहाँ इसकी field किस direction में होनी चाहिए।", "text_te": "Centre నుండి r దూరంలో ఒక point P తీసుకోండి, మరియు అక్కడ దాని field ఏ direction లో ఉండాలో చూడండి."
             },
             {
               "id": "s2_2",
-              "text_en": "Could the electric field E point sideways along the sphere, or must it point straight out along the radius?", "text_hi": "क्या electric field E sphere के साथ sideways point कर सकता है, या उसे radius के along straight out point करना ही होगा?", "text_te": "electric field E sphere వెంబడి sideways point చేయగలదా, లేదా radius వెంబడి straight out point చేయాలా?",
-              "pause_after_ms": 2800
+              "text_en": "The electric field E cannot lean sideways along the sphere; it must point straight out along the radius.", "text_hi": "electric field E sphere के साथ sideways नहीं झुक सकता; उसे radius के along straight out ही point करना होगा।", "text_te": "electric field E sphere వెంబడి sideways వంగలేదు; అది radius వెంబడి straight out point చేయాల్సిందే."
             },
             {
               "id": "s2_3",
-              "text_en": "The shell looks identical from every direction, so the electric field E has nothing to pick a sideways direction. It must point radially.", "text_hi": "Shell हर direction से बिल्कुल एक जैसी दिखती है, इसलिए electric field E के पास sideways direction चुनने का कोई कारण नहीं। इसे radially point करना ही पड़ेगा।", "text_te": "Shell అన్ని directions నుండి సరిగ్గా ఒకే విధంగా కనిపిస్తుంది, కాబట్టి electric field E sideways direction ఎంచుకోవడానికి ఎలాంటి కారణం లేదు। అది radially point చేయాలి।"
+              "text_en": "The shell looks identical from every direction, so the electric field E has no way to prefer a sideways tilt — pure symmetry makes it radial.", "text_hi": "Shell हर direction से बिल्कुल एक जैसी दिखती है, इसलिए electric field E किसी sideways झुकाव को नहीं चुन सकता — यही pure symmetry इसे radial बनाती है।", "text_te": "Shell అన్ని directions నుండి సరిగ్గా ఒకే విధంగా కనిపిస్తుంది, కాబట్టి electric field E ఏ sideways వంపునూ ఎంచుకోలేదు — ఈ pure symmetry దాన్ని radial గా చేస్తుంది."
             },
             {
               "id": "s2_4",
@@ -272,7 +270,7 @@
         "title": "Outside (r ≥ R): Φ = E·4πr² = q/ε₀ ⇒ E = kq/r²",
         "duration": 19,
         "focal_primitive_id": "E_kq_over_r2_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
@@ -317,8 +315,7 @@
             },
             {
               "id": "s3_2",
-              "text_en": "Now write the flux through it. What is the flux Φ in terms of the electric field E and the sphere's area?", "text_hi": "अब इसके through flux लिखो। electric field E और sphere की area के terms में flux Φ क्या होगा?", "text_te": "ఇప్పుడు దాని గుండా flux రాయండి। electric field E మరియు sphere యొక్క area పరంగా flux Φ ఏమవుతుంది?",
-              "pause_after_ms": 2700
+              "text_en": "Now write the flux through it, in terms of the electric field E and the sphere's area.", "text_hi": "अब इसके through flux लिखो — electric field E और sphere की area के terms में।", "text_te": "ఇప్పుడు దాని గుండా flux రాయండి — electric field E మరియు sphere యొక్క area పరంగా."
             },
             {
               "id": "s3_3",
@@ -344,8 +341,8 @@
         "title": "From outside, the shell is exactly a point charge at the centre",
         "duration": 30,
         "focal_primitive_id": "point_charge_equiv_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
         "scene_composition": [
           {
             "type": "annotation",
@@ -389,13 +386,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "At a distance r, its field is the electric field E equals kq over r squared — straight out, weakening as one over r squared.", "text_hi": "एक distance r पर, इसकी field है electric field E equals kq over r squared — सीधा बाहर, one over r squared के रूप में कमज़ोर होती हुई।", "text_te": "distance r వద్ద, దాని field అనేది electric field E equals kq over r squared — నేరుగా బయటికి, one over r squared గా బలహీనమవుతూ।",
-              "pause_after_ms": 1500
+              "text_en": "At a distance r, its field is the electric field E equals kq over r squared — straight out, weakening as one over r squared.", "text_hi": "एक distance r पर, इसकी field है electric field E equals kq over r squared — सीधा बाहर, one over r squared के रूप में कमज़ोर होती हुई।", "text_te": "distance r వద్ద, దాని field అనేది electric field E equals kq over r squared — నేరుగా బయటికి, one over r squared గా బలహీనమవుతూ।"
             },
             {
               "id": "s4_3",
-              "text_en": "Now think — will a charged shell of the same total charge q give the same field out here, or a different one?", "text_hi": "अब सोचो — क्या same total charge q वाला एक charged shell यहाँ बाहर same field देगा, या कोई अलग field?", "text_te": "ఇప్పుడు ఆలోచించండి — same total charge q ఉన్న ఒక charged shell ఇక్కడ same field ఇస్తుందా, లేదా వేరే field ఇస్తుందా?",
-              "pause_after_ms": 2500
+              "text_en": "Now bring in a charged shell of the same total charge q, and check its field out here against the point charge.", "text_hi": "अब same total charge q वाली एक charged shell लाओ, और यहाँ बाहर इसकी field को point charge से मिलाकर देखो।", "text_te": "ఇప్పుడు same total charge q ఉన్న ఒక charged shell ని తీసుకురండి, మరియు ఇక్కడ బయట దాని field ను point charge తో పోల్చి చూడండి."
             },
             {
               "id": "s4_4",
@@ -468,12 +463,11 @@
             },
             {
               "id": "s5_2",
-              "text_en": "All the charge lives on the shell, outside this little sphere. So how much charge does it enclose?", "text_hi": "सारा charge shell पर है, इस छोटी sphere के outside। तो यह कितना charge enclose करती है?", "text_te": "అన్ని charge shell మీద ఉంది, ఈ చిన్న sphere యొక్క outside లో। కాబట్టి ఇది ఎంత charge enclose చేస్తుంది?",
-              "pause_after_ms": 2600
+              "text_en": "All the charge lives on the shell, outside this little sphere — so it encloses no charge at all.", "text_hi": "सारा charge shell पर है, इस छोटी sphere के outside — इसलिए यह कोई charge enclose नहीं करती।", "text_te": "అన్ని charge shell మీద ఉంది, ఈ చిన్న sphere యొక్క outside లో — కాబట్టి ఇది ఏ charge నీ enclose చేయదు."
             },
             {
               "id": "s5_3",
-              "text_en": "None at all. q enclosed is zero, so the flux through it is zero, and by symmetry the electric field E times four pi r squared is zero.", "text_hi": "बिल्कुल नहीं। q enclosed zero है, तो इसके through flux zero है, और symmetry से electric field E times four pi r squared zero है।", "text_te": "అస్సలు ఏమీ లేదు। q enclosed zero, కాబట్టి దాని గుండా flux zero, మరియు symmetry వల్ల electric field E times four pi r squared zero అవుతుంది।"
+              "text_en": "So q enclosed is zero, the flux through it is zero, and by symmetry the electric field E times four pi r squared is zero.", "text_hi": "तो q enclosed zero है, इसके through flux zero है, और symmetry से electric field E times four pi r squared zero है।", "text_te": "కాబట్టి q enclosed zero, దాని గుండా flux zero, మరియు symmetry వల్ల electric field E times four pi r squared zero అవుతుంది।"
             },
             {
               "id": "s5_4",
@@ -536,18 +530,15 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Watch the Gaussian sphere and the graph move together. Right now the sphere sits inside the shell, and the field is flat at zero — the dot rides along the bottom.", "text_hi": "Gaussian sphere और graph को एक साथ move होते देखो। अभी sphere, shell के inside है, और field zero पर flat है — dot नीचे के along चल रहा है।", "text_te": "Gaussian sphere మరియు graph కలిసి move అవడం చూడండి। ఇప్పుడు sphere, shell యొక్క inside లో ఉంది, మరియు field zero వద్ద flat గా ఉంది — dot అడుగు వెంట పయనిస్తోంది।",
-              "pause_after_ms": 3500
+              "text_en": "Watch the Gaussian sphere and the graph move together. Right now the sphere sits inside the shell, and the field is flat at zero — the dot rides along the bottom.", "text_hi": "Gaussian sphere और graph को एक साथ move होते देखो। अभी sphere, shell के inside है, और field zero पर flat है — dot नीचे के along चल रहा है।", "text_te": "Gaussian sphere మరియు graph కలిసి move అవడం చూడండి। ఇప్పుడు sphere, shell యొక్క inside లో ఉంది, మరియు field zero వద్ద flat గా ఉంది — dot అడుగు వెంట పయనిస్తోంది।"
             },
             {
               "id": "s6_2",
-              "text_en": "Now the sphere grows out to the surface. Right at r equals R the field jumps straight up to its peak value kq over R squared — a sudden step, not a smooth climb.", "text_hi": "अब sphere surface तक बड़ी होती है। r equals R पर field सीधे ऊपर अपनी peak value kq over R squared तक jump करती है — एक sudden step, smooth climb नहीं।", "text_te": "ఇప్పుడు sphere surface వరకు పెరుగుతుంది। r equals R వద్ద field నేరుగా పైకి peak value kq over R squared వరకు jump చేస్తుంది — ఒక sudden step, smooth climb కాదు।",
-              "pause_after_ms": 1500
+              "text_en": "Now the sphere grows out to the surface. Right at r equals R the field jumps straight up to its peak value kq over R squared — a sudden step, not a smooth climb.", "text_hi": "अब sphere surface तक बड़ी होती है। r equals R पर field सीधे ऊपर अपनी peak value kq over R squared तक jump करती है — एक sudden step, smooth climb नहीं।", "text_te": "ఇప్పుడు sphere surface వరకు పెరుగుతుంది। r equals R వద్ద field నేరుగా పైకి peak value kq over R squared వరకు jump చేస్తుంది — ఒక sudden step, smooth climb కాదు।"
             },
             {
               "id": "s6_3",
-              "text_en": "Keep going outside: as r grows past R the arrows shrink and the dot slides down the tail, falling off as one over r squared — the point-charge curve.", "text_hi": "Outside जाते रहो: जैसे-जैसे r, R से आगे बढ़ता है, arrows सिकुड़ते हैं और dot tail के नीचे slide करता है, one over r squared की तरह fall off करते हुए — यह point-charge curve है।", "text_te": "Outside వైపు కొనసాగండి: r, R ని దాటి పెరిగే కొద్దీ arrows తగ్గిపోతాయి మరియు dot tail వెంట కిందికి slide అవుతుంది, one over r squared లా fall off అవుతూ — ఇది point-charge curve.",
-              "pause_after_ms": 1500
+              "text_en": "Keep going outside: as r grows past R the arrows shrink and the dot slides down the tail, falling off as one over r squared — the point-charge curve.", "text_hi": "Outside जाते रहो: जैसे-जैसे r, R से आगे बढ़ता है, arrows सिकुड़ते हैं और dot tail के नीचे slide करता है, one over r squared की तरह fall off करते हुए — यह point-charge curve है।", "text_te": "Outside వైపు కొనసాగండి: r, R ని దాటి పెరిగే కొద్దీ arrows తగ్గిపోతాయి మరియు dot tail వెంట కిందికి slide అవుతుంది, one over r squared లా fall off అవుతూ — ఇది point-charge curve."
             },
             {
               "id": "s6_4",
@@ -791,6 +782,7 @@
     "states": {
       "STATE_1": {
         "label": "We know Φ = q/ε₀ — but what is E(r) inside and outside?",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -812,6 +804,7 @@
       },
       "STATE_2": {
         "label": "By symmetry, E is radial and the same on the whole sphere",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -840,6 +833,7 @@
       },
       "STATE_3": {
         "label": "Outside (r ≥ R): Φ = E·4πr² = q/ε₀ ⇒ E = kq/r²",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -867,6 +861,7 @@
       },
       "STATE_4": {
         "label": "From outside, the shell is exactly a point charge at the centre",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -900,6 +895,7 @@
       },
       "STATE_5": {
         "label": "Inside (r < R): q_enc = 0 ⇒ Φ = 0 ⇒ E = 0",
+        "visible_controls": [],
         "visible_elements": [
           "all"
         ],
@@ -929,6 +925,7 @@
       },
       "STATE_6": {
         "label": "The full picture: flat zero, a jump at R, then 1/r²",
+        "visible_controls": ["r_gauss"],
         "visible_elements": [
           "all"
         ],
@@ -962,6 +959,7 @@
       },
       "STATE_7": {
         "label": "Explore: grab the field point and move it anywhere",
+        "visible_controls": ["r_gauss"],
         "visible_elements": [
           "all"
         ],
