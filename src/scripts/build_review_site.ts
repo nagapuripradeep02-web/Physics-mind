@@ -322,9 +322,31 @@ ${pilotHeadTags(1)}
   #railhead { padding:14px 14px 10px; border-bottom:1px solid var(--line); }
   #railhead .rt { font-size:10.5px; font-weight:600; color:var(--ink-faint);
                   letter-spacing:.18em; text-transform:uppercase; }
-  #railhead .rbtns { margin-top:9px; }
+  #railhead .rbtns { margin-top:9px; display:flex; gap:6px; }
   button.mini { font-size:11px; padding:5px 9px; }
-  #cards { flex:1 1 auto; overflow-y:auto; padding:6px 6px; }
+  button.mini.save { background:var(--clay); color:#fff; border-color:transparent; }
+  button.mini.save:hover { background:var(--clay-deep); }
+  button.mini.save.saved { background:var(--surface-2); color:var(--sage); border-color:rgba(116,181,148,.4); }
+  button.mini.save.dirty::after { content:"\\2022"; margin-left:5px; color:#fff; }
+  #cards { flex:0 1 auto; overflow-y:auto; padding:6px 6px; }
+  /* Hidden (N) section — hidden states leave the main list and tuck here */
+  #hiddenWrap { flex:0 0 auto; }
+  .hidhead { display:flex; align-items:center; gap:7px; padding:8px 14px; cursor:pointer;
+             font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+             color:var(--ink-faint); border-top:1px solid var(--line); user-select:none; }
+  .hidhead:hover { color:var(--clay-soft); background:var(--surface-2); }
+  .hidrow { display:flex; align-items:center; gap:9px; padding:7px 12px 7px 14px; opacity:.55;
+            border-bottom:1px solid var(--line-2); }
+  .hidrow .ttl { flex:1 1 auto; min-width:0; font-size:12px; color:var(--ink-dim);
+                 white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  /* per-row ⋮ menu popover */
+  #rowMenu { position:fixed; z-index:50; display:none; min-width:120px; padding:5px;
+             background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+             box-shadow:0 12px 30px -10px rgba(0,0,0,.7); }
+  #rowMenu.open { display:block; }
+  #rowMenu button { display:block; width:100%; text-align:left; font-size:12px; font-weight:500;
+             padding:7px 10px; border:0; border-radius:7px; background:none; color:var(--ink); cursor:pointer; }
+  #rowMenu button:hover { background:var(--clay-wash); color:var(--clay-soft); }
   /* flat, minimal one-line rows (matches the student product's lesson list) */
   .card { position:relative; display:flex; align-items:center; gap:11px;
           padding:9px 12px 9px 14px; cursor:pointer;
@@ -343,17 +365,13 @@ ${pilotHeadTags(1)}
   .card .ttl { flex:1 1 auto; min-width:0; font-size:12.5px; line-height:1.45; color:var(--ink-dim);
                white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .card.active .ttl { color:var(--ink); font-weight:500; }
-  .card .grip { flex:none; margin-left:4px; color:var(--ink-faint); font-size:12px; cursor:grab;
+  /* ⋮ menu button (per row: state actions Rename / Hide / Unhide) */
+  .card .grip, .hidrow .grip { flex:none; margin-left:2px; border:0; background:none; color:var(--ink-faint);
+                font-size:15px; line-height:1; cursor:pointer; padding:2px 5px; border-radius:6px;
                 opacity:0; transition:opacity .16s ease; }
-  /* per-state hide + rename (pilot) */
-  .card .eye { flex:none; margin-left:2px; border:0; background:none; color:var(--ink-faint); font-size:13px;
-               cursor:pointer; padding:2px 4px; border-radius:6px; opacity:0; transition:opacity .16s ease; }
-  .card:hover .eye { opacity:1; }
-  .card .eye:hover { color:var(--clay-soft); background:var(--clay-wash); }
-  .card.hiddenstate { opacity:.42; }
-  .card.hiddenstate .eye { opacity:1; }
-  .card.hiddenstate .ttl { text-decoration:line-through; text-decoration-color:var(--ink-faint); }
-  .card .ttl input { width:100%; padding:2px 6px; border-radius:6px; border:1px solid rgba(203,104,67,.55);
+  .card:hover .grip, .card.active .grip, .hidrow .grip { opacity:1; }
+  .card .grip:hover, .hidrow .grip:hover { color:var(--clay-soft); background:var(--clay-wash); }
+  .card .ttl input, .hidrow .ttl input { width:100%; padding:2px 6px; border-radius:6px; border:1px solid rgba(203,104,67,.55);
                background:var(--surface-3); color:var(--ink); font-size:12.5px; font-family:var(--font-ui); outline:none; }
   #main { flex:1 1 auto; display:flex; flex-direction:column; min-width:0; min-height:0; }
   header { padding:5px 14px; border-bottom:1px solid var(--line); }
@@ -395,6 +413,7 @@ ${pilotHeadTags(1)}
              padding:8px 16px; border:1px solid var(--line);
              border-radius:11px; font-size:15px; line-height:1.4; max-width:86%;
              text-align:center; pointer-events:none; min-height:1.2em; z-index:5; }
+  #caption.cc-off { display:none; }   /* subtitles toggled off (independent of mute) */
   #paused { position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
             display:none; background:var(--red); color:#fff;
             padding:7px 18px; border-radius:999px; font-size:14px; font-weight:600;
@@ -510,9 +529,13 @@ ${pilotHeadTags(1)}
   <aside id="rail">
     <div id="railhead">
       <div class="rt">STATES</div>
-      <div class="rbtns"><button id="defaultOrderBtn" class="mini">&#8635; Default order</button></div>
+      <div class="rbtns">
+        <button id="saveLayoutBtn" class="mini save">&#10003; Save</button>
+        <button id="defaultOrderBtn" class="mini">&#8635; Default</button>
+      </div>
     </div>
     <div id="cards"></div>
+    <div id="hiddenWrap"></div>
   </aside>
   <div id="railToggle" title="Show/hide the state rail">&#9776;</div>
   <div id="main">
@@ -553,6 +576,7 @@ ${pilotHeadTags(1)}
         <button id="playBtn" class="primary">&#9654; Play state</button>
         <button id="replayBtn">&#128257; Replay</button>
         <button id="muteBtn">&#128263; Muted</button>
+        <button id="ccBtn" title="Show / hide subtitles">Subtitles</button>
         <label class="ctl">Voice
           <select id="lang">
             <option value="en">English</option>
@@ -626,8 +650,11 @@ ${pilotHeadTags(1)}
   var playBtn = document.getElementById('playBtn');
   var replayBtn = document.getElementById('replayBtn');
   var muteBtn = document.getElementById('muteBtn');
+  var ccBtn = document.getElementById('ccBtn');
   var defaultOrderBtn = document.getElementById('defaultOrderBtn');
   var cardsEl = document.getElementById('cards');
+  var hiddenWrapEl = document.getElementById('hiddenWrap');
+  var hiddenExpanded = false;
   var rateEl = document.getElementById('rate');
   var langSel = document.getElementById('lang');
   var autoEl = document.getElementById('auto');
@@ -639,8 +666,11 @@ ${pilotHeadTags(1)}
   var tapCueDone = false;
   var tapCueTimer = null;
 
-  // ── Navigation order (Rule 25d: reorderable, persisted locally) ──
-  var LS_ORDER = 'pm_order_' + CONCEPT_ID;
+  // ── Teacher layout (order + hides + renames), EXPLICIT SAVE (Rule 25d) ──
+  // One consolidated store. Changes apply live but persist only on Save (or a
+  // Default-order reset, which persists immediately). So a teacher previews
+  // freely; only what he Saves survives a reload — forever, until re-Saved/reset.
+  var LS_LAYOUT = 'pm_layout_' + CONCEPT_ID;
   var LS_MUTE = 'pm_mute_' + CONCEPT_ID;
   var LS_LANG = 'pm_lang_' + CONCEPT_ID;
   function validOrder(a) {
@@ -653,27 +683,37 @@ ${pilotHeadTags(1)}
     }
     return true;
   }
-  function loadOrder() {
-    try { var raw = localStorage.getItem(LS_ORDER); if (raw) { var a = JSON.parse(raw); if (validOrder(a)) return a; } } catch (e) {}
-    return DEFAULT_ORDER.slice();
+  var order = DEFAULT_ORDER.slice();   // position → STATES index
+  var hiddenStates = {};               // { stateIndex: 1 }
+  var stateNames = {};                 // { stateIndex: "custom title" }
+  var dirty = false;                   // unsaved changes present?
+  function loadLayout() {
+    try {
+      var d = JSON.parse(localStorage.getItem(LS_LAYOUT) || 'null');
+      if (d) {
+        if (validOrder(d.order)) order = d.order.slice();
+        if (d.hidden && typeof d.hidden === 'object') hiddenStates = d.hidden;
+        if (d.names && typeof d.names === 'object') stateNames = d.names;
+      }
+    } catch (e) {}
   }
-  function persistOrder() { try { localStorage.setItem(LS_ORDER, JSON.stringify(order)); } catch (e) {} }
-  var order = loadOrder();
+  function saveLayout() {
+    try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+    dirty = false; updateSaveBtn(true);
+  }
+  function markDirty() { dirty = true; updateSaveBtn(false); }
+  loadLayout();
   var idx = 0;                       // position within the order array
   function cur() { return STATES[order[idx]]; }
-
-  // ── Per-state hide + rename (persisted like the order; keyed by STATES index) ──
-  var LS_HIDDEN = 'pm_hidden_' + CONCEPT_ID;
-  var LS_NAMES = 'pm_names_' + CONCEPT_ID;
-  function loadObj(key) { try { var raw = localStorage.getItem(key); if (raw) { var o = JSON.parse(raw); if (o && typeof o === 'object') return o; } } catch (e) {} return {}; }
-  var hiddenStates = loadObj(LS_HIDDEN);   // { stateIndex: 1 }
-  var stateNames = loadObj(LS_NAMES);      // { stateIndex: "custom title" }
-  function persistHidden() { try { localStorage.setItem(LS_HIDDEN, JSON.stringify(hiddenStates)); } catch (e) {} }
-  function persistNames() { try { localStorage.setItem(LS_NAMES, JSON.stringify(stateNames)); } catch (e) {} }
   function isHidden(si) { return hiddenStates[si] === 1; }
   function stateTitle(si) { return stateNames[si] || STATES[si].title; }
+  // Next/prev visible order-position (skips hidden states); -1 if none.
+  function nextVisible(pos, dir) { for (var p = pos + dir; p >= 0 && p < order.length; p += dir) { if (!isHidden(order[p])) return p; } return -1; }
 
   var muted = (function () { try { var m = localStorage.getItem(LS_MUTE); return m === null ? true : m === '1'; } catch (e) { return true; } })();
+  // ── Subtitles (caption box) on/off — teacher-wide preference, independent of mute ──
+  var LS_CC = 'pm_cc';
+  var subsOn = (function () { try { return localStorage.getItem(LS_CC) !== '0'; } catch (e) { return true; } })();
 
   // ── Language (EN/HI/TE) — narration is pre-generated Sarvam audio (Rule 13) ──
   var lang = (function () { try { var l = localStorage.getItem(LS_LANG); return (l === 'hi' || l === 'te' || l === 'en') ? l : 'en'; } catch (e) { return 'en'; } })();
@@ -808,11 +848,10 @@ ${pilotHeadTags(1)}
     sendFreeze(s.freeze_proton);
     if (s.math_show) { sendMath(s.math_show, s.math_persist); }
     else if (!s.math_persist) { sendMath(null, false); }
-    // Rule 24: when muted (teacher default) the narration is the ONLY prose; gate the
-    // caption track so the silent visual reads with labels/equations only. The physics
-    // reveals above (glow/math/hand/freeze + the iframe's formula_overlay) still run on
-    // the clock, so the picture is identical sound on/off — only the AI prose is hidden.
-    caption.textContent = muted ? '' : sentText(s);
+    // Subtitle track is independent of audio mute: it follows the CC toggle (subsOn),
+    // so a muted teacher can still read the narration. The #caption element is shown/
+    // hidden by the cc-off class (applySubs); we just keep its text current here.
+    caption.textContent = sentText(s);
   }
   // Play the active sentence's stored clip if audio is allowed. No onended chaining
   // — the clock advances reveals (Rule 26); audio is a passenger. The single shared
@@ -940,59 +979,96 @@ ${pilotHeadTags(1)}
   }
 
   // ── Rail (clickable + drag-reorderable state cards) ──
+  // ── Save button state ──
+  var saveBtn = document.getElementById('saveLayoutBtn');
+  var saveFlashT = null;
+  function updateSaveBtn(justSaved) {
+    if (!saveBtn) return;
+    if (saveFlashT) { clearTimeout(saveFlashT); saveFlashT = null; }
+    if (justSaved) {
+      saveBtn.className = 'mini save saved'; saveBtn.innerHTML = '&#10003; Saved';
+      saveFlashT = setTimeout(function () { saveBtn.className = 'mini save'; saveBtn.innerHTML = '&#10003; Save'; }, 1600);
+    } else if (dirty) {
+      saveBtn.className = 'mini save dirty'; saveBtn.innerHTML = '&#10003; Save';
+    } else {
+      saveBtn.className = 'mini save'; saveBtn.innerHTML = '&#10003; Save';
+    }
+  }
+
+  // ── Per-row ⋮ menu (Rename / Hide / Unhide) ──
+  var rowMenu = document.createElement('div'); rowMenu.id = 'rowMenu'; document.body.appendChild(rowMenu);
+  function closeRowMenu() { rowMenu.classList.remove('open'); rowMenu.innerHTML = ''; }
+  document.addEventListener('click', function (e) { if (!rowMenu.contains(e.target)) closeRowMenu(); }, true);
+  window.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeRowMenu(); });
+  function openRowMenu(si, anchorEl) {
+    rowMenu.innerHTML = '';
+    var s = STATES[si], hid = isHidden(si);
+    var mkBtn = function (label, fn) { var b = document.createElement('button'); b.textContent = label; b.addEventListener('click', function (ev) { ev.stopPropagation(); closeRowMenu(); fn(); }); rowMenu.appendChild(b); };
+    mkBtn('Rename', function () { startRename(si); });
+    mkBtn(hid ? 'Unhide' : 'Hide', function () { setHidden(si, !hid); });
+    var r = anchorEl.getBoundingClientRect();
+    rowMenu.classList.add('open');
+    var mw = rowMenu.offsetWidth || 130, mh = rowMenu.offsetHeight || 70;
+    var left = Math.min(r.left, document.documentElement.clientWidth - mw - 6);
+    var top = Math.min(r.bottom + 4, document.documentElement.clientHeight - mh - 6);
+    rowMenu.style.left = Math.max(6, left) + 'px'; rowMenu.style.top = Math.max(6, top) + 'px';
+  }
+
+  function setHidden(si, hide) {
+    if (hide) { hiddenStates[si] = 1; pmt('state_hide', { state_id: STATES[si].id, title: stateTitle(si) }); }
+    else { delete hiddenStates[si]; pmt('state_unhide', { state_id: STATES[si].id, title: stateTitle(si) }); }
+    // If we just hid the state currently being viewed, jump to the next visible one.
+    if (hide && order[idx] === si) { var nx = nextVisible(idx, 1); if (nx < 0) nx = nextVisible(idx, -1); if (nx >= 0) idx = nx; }
+    markDirty(); buildRail(); updateBadge();
+  }
+
+  // Rename a state by STATES index (menu action + dblclick shortcut share this).
+  function startRename(si) {
+    var ttl = document.querySelector('[data-ttl="' + si + '"]');
+    if (!ttl || ttl.querySelector('input')) return;
+    var card = ttl.parentElement;
+    var old = stateTitle(si);
+    var inp = document.createElement('input');
+    inp.type = 'text'; inp.value = old; inp.maxLength = 80;
+    if (card) card.setAttribute('draggable', 'false');
+    ttl.textContent = ''; ttl.appendChild(inp);
+    inp.focus(); inp.select();
+    var done = false;
+    function commit(cancel) {
+      if (done) return; done = true;
+      var next = cancel ? old : (inp.value || '').trim();
+      if (!next || next === STATES[si].title) delete stateNames[si]; else stateNames[si] = next;
+      if (!cancel && next !== old) { pmt('state_rename', { state_id: STATES[si].id, from: old, to: next || STATES[si].title }); markDirty(); }
+      buildRail(); updateBadge();
+    }
+    inp.addEventListener('click', function (e2) { e2.stopPropagation(); });
+    inp.addEventListener('keydown', function (e2) {
+      if (e2.key === 'Enter') { e2.preventDefault(); commit(false); }
+      else if (e2.key === 'Escape') { e2.preventDefault(); commit(true); }
+      e2.stopPropagation();
+    });
+    inp.addEventListener('blur', function () { commit(false); });
+  }
+
   function buildRail() {
     cardsEl.innerHTML = '';
+    var hiddenIdxs = [];
+    var visNum = 0;
     for (var p = 0; p < order.length; p++) {
-      (function (pos) {
-        var si = order[pos];
-        var s = STATES[si];
+      var si0 = order[p];
+      if (isHidden(si0)) { hiddenIdxs.push({ si: si0, pos: p }); continue; }
+      visNum++;
+      (function (pos, si, num) {
         var card = document.createElement('div');
-        card.className = 'card' + (pos === idx ? ' active' : '') + (isHidden(si) ? ' hiddenstate' : '');
+        card.className = 'card' + (pos === idx ? ' active' : '');
         card.setAttribute('draggable', 'true');
-        card.title = stateTitle(si) + ' — double-click the name to rename';
-        var num = document.createElement('span'); num.className = 'num'; num.textContent = String(pos + 1);
-        var ttl = document.createElement('span'); ttl.className = 'ttl'; ttl.textContent = stateTitle(si);
-        var eye = document.createElement('button');
-        eye.className = 'eye';
-        eye.innerHTML = isHidden(si) ? '&#128065;&#824;' : '&#128065;';
-        eye.title = isHidden(si) ? 'Show this state in the flow' : 'Hide this state from the flow';
-        var grip = document.createElement('span'); grip.className = 'grip'; grip.innerHTML = '&#8942;';
-        card.appendChild(num); card.appendChild(ttl); card.appendChild(eye); card.appendChild(grip);
-        eye.addEventListener('click', function (ev) {
-          ev.stopPropagation();
-          if (isHidden(si)) { delete hiddenStates[si]; pmt('state_unhide', { state_id: s.id, title: stateTitle(si) }); }
-          else { hiddenStates[si] = 1; pmt('state_hide', { state_id: s.id, title: stateTitle(si) }); }
-          persistHidden();
-          buildRail();
-        });
-        // Double-click the title → rename inline. Enter/blur commits, Escape cancels.
-        ttl.addEventListener('dblclick', function (ev) {
-          ev.stopPropagation();
-          if (ttl.querySelector('input')) return;
-          var old = stateTitle(si);
-          var inp = document.createElement('input');
-          inp.type = 'text'; inp.value = old; inp.maxLength = 80;
-          card.setAttribute('draggable', 'false');           // no drag while editing
-          ttl.textContent = ''; ttl.appendChild(inp);
-          inp.focus(); inp.select();
-          var done = false;
-          function commit(cancel) {
-            if (done) return; done = true;
-            var next = cancel ? old : (inp.value || '').trim();
-            if (!next || next === STATES[si].title) delete stateNames[si];
-            else stateNames[si] = next;
-            persistNames();
-            if (!cancel && next !== old) pmt('state_rename', { state_id: s.id, from: old, to: next || STATES[si].title });
-            buildRail(); updateBadge();
-          }
-          inp.addEventListener('click', function (e2) { e2.stopPropagation(); });
-          inp.addEventListener('keydown', function (e2) {
-            if (e2.key === 'Enter') { e2.preventDefault(); commit(false); }
-            else if (e2.key === 'Escape') { e2.preventDefault(); commit(true); }
-            e2.stopPropagation();
-          });
-          inp.addEventListener('blur', function () { commit(false); });
-        });
+        card.title = stateTitle(si);
+        var numEl = document.createElement('span'); numEl.className = 'num'; numEl.textContent = String(num);
+        var ttl = document.createElement('span'); ttl.className = 'ttl'; ttl.textContent = stateTitle(si); ttl.setAttribute('data-ttl', String(si));
+        var grip = document.createElement('button'); grip.className = 'grip'; grip.innerHTML = '&#8942;'; grip.title = 'State options — rename or hide';
+        card.appendChild(numEl); card.appendChild(ttl); card.appendChild(grip);
+        grip.addEventListener('click', function (ev) { ev.stopPropagation(); openRowMenu(si, grip); });
+        ttl.addEventListener('dblclick', function (ev) { ev.stopPropagation(); startRename(si); });
         card.addEventListener('click', function () { pause(); goToState(pos, false); });
         card.addEventListener('dragstart', function (e) { dragFrom = pos; card.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(pos)); } catch (_) {} });
         card.addEventListener('dragend', function () { card.classList.remove('dragging'); clearDragOver(); dragFrom = -1; });
@@ -1000,9 +1076,32 @@ ${pilotHeadTags(1)}
         card.addEventListener('dragleave', function () { card.classList.remove('dragover'); });
         card.addEventListener('drop', function (e) { e.preventDefault(); card.classList.remove('dragover'); reorder(dragFrom, pos); });
         cardsEl.appendChild(card);
-      })(p);
+      })(p, si0, visNum);
+    }
+    buildHidden(hiddenIdxs);
+  }
+
+  function buildHidden(hiddenIdxs) {
+    hiddenWrapEl.innerHTML = '';
+    if (!hiddenIdxs.length) return;
+    var head = document.createElement('div'); head.className = 'hidhead';
+    head.innerHTML = (hiddenExpanded ? '&#9662;' : '&#9656;') + ' Hidden (' + hiddenIdxs.length + ')';
+    head.addEventListener('click', function () { hiddenExpanded = !hiddenExpanded; buildRail(); });
+    hiddenWrapEl.appendChild(head);
+    if (!hiddenExpanded) return;
+    for (var i = 0; i < hiddenIdxs.length; i++) {
+      (function (si) {
+        var row = document.createElement('div'); row.className = 'hidrow';
+        var ttl = document.createElement('span'); ttl.className = 'ttl'; ttl.textContent = stateTitle(si); ttl.setAttribute('data-ttl', String(si));
+        var grip = document.createElement('button'); grip.className = 'grip'; grip.innerHTML = '&#8942;'; grip.title = 'State options — rename or unhide';
+        row.appendChild(ttl); row.appendChild(grip);
+        grip.addEventListener('click', function (ev) { ev.stopPropagation(); openRowMenu(si, grip); });
+        ttl.addEventListener('dblclick', function (ev) { ev.stopPropagation(); startRename(si); });
+        hiddenWrapEl.appendChild(row);
+      })(hiddenIdxs[i].si);
     }
   }
+
   function clearDragOver() { var c = cardsEl.querySelectorAll('.card.dragover'); for (var i = 0; i < c.length; i++) c[i].classList.remove('dragover'); }
   function reorder(from, to) {
     if (from < 0 || from === to) return;
@@ -1011,7 +1110,7 @@ ${pilotHeadTags(1)}
     order.splice(to, 0, moved);
     idx = order.indexOf(keep);          // keep viewing the same state after reorder
     pmt('state_reorder', { state_id: STATES[moved].id, from: from, to: to, order: order.slice() });
-    persistOrder();
+    markDirty();
     buildRail();
     updateBadge();
   }
@@ -1019,14 +1118,13 @@ ${pilotHeadTags(1)}
     var keep = order[idx];
     order = DEFAULT_ORDER.slice();
     idx = order.indexOf(keep); if (idx < 0) idx = 0;
-    // "Default order" is the teacher's full reset: order + hidden + renames.
+    // "Default order" is the teacher's full reset: order + hidden + renames — and it PERSISTS immediately.
     var hadHides = false, hadNames = false, k;
     for (k in hiddenStates) { hadHides = true; break; }
     for (k in stateNames) { hadNames = true; break; }
-    hiddenStates = {}; stateNames = {};
-    persistHidden(); persistNames();
+    hiddenStates = {}; stateNames = {}; hiddenExpanded = false;
     pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames });
-    persistOrder();
+    saveLayout();     // durable reset
     buildRail();
     updateBadge();
   }
@@ -1090,15 +1188,26 @@ ${pilotHeadTags(1)}
   });
   replayBtn.addEventListener('click', function () { pmt('replay', {}); pause(); goToState(idx, true); });
   defaultOrderBtn.addEventListener('click', resetOrder);
+  saveBtn.addEventListener('click', function () { saveLayout(); pmt('layout_save', {}); });
+  // Subtitles: show/hide the caption box (independent of audio mute — a muted teacher
+  // can still read along). Teacher-wide preference (LS_CC).
+  function applySubs() {
+    if (caption) caption.classList.toggle('cc-off', !subsOn);
+    if (ccBtn) { ccBtn.classList.toggle('on', subsOn); ccBtn.textContent = subsOn ? 'Subtitles' : 'Subtitles off'; }
+  }
+  if (ccBtn) ccBtn.addEventListener('click', function () {
+    subsOn = !subsOn;
+    try { localStorage.setItem(LS_CC, subsOn ? '1' : '0'); } catch (e) {}
+    pmt('subtitles_toggle', { on: subsOn });
+    applySubs();
+  });
   // Rule 26a: MUTE is audio ONLY — never pauses the clock, reveals, or play-intent.
   muteBtn.addEventListener('click', function () {
     muted = !muted;
     pmt(muted ? 'mute' : 'unmute', {});
     try { localStorage.setItem(LS_MUTE, muted ? '1' : '0'); } catch (e) {}
-    // Captions follow the narration switch: muting clears the prose track now (applyReveal
-    // only repaints at sentence boundaries); un-muting repaints the current sentence.
-    if (muted) { try { stopAudio(); } catch (e) {} caption.textContent = ''; }
-    else { spokenSi = -1; if (curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]); playCurrent(); }
+    if (muted) { try { stopAudio(); } catch (e) {} }
+    else { spokenSi = -1; playCurrent(); }
     applyMuteUI();
   });
   // Language switch (EN/HI/TE). Audio + caption swap; reveals re-pace to the new
@@ -1109,7 +1218,7 @@ ${pilotHeadTags(1)}
     pmt('lang_change', { lang: lang });
     try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
     stopAudio();
-    if (!muted && curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
+    if (curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
     if (simReady) { computeTimeline(); sendCueTimes(); }   // clips re-paced → cue times shift with them
     spokenSi = -1;
     if (playing && !frozen) playCurrent();
@@ -1206,8 +1315,8 @@ ${pilotHeadTags(1)}
   // Spacebar toggles freeze; arrow keys step the (possibly reordered) sequence.
   window.addEventListener('keydown', function (e) {
     if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggleFreeze(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); if (idx < order.length - 1) { pause(); goToState(idx + 1, false); } }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); if (idx > 0) { pause(); goToState(idx - 1, false); } }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); var nR = nextVisible(idx, 1); if (nR >= 0) { pause(); goToState(nR, false); } }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); var nL = nextVisible(idx, -1); if (nL >= 0) { pause(); goToState(nL, false); } }
   });
 
   // ════════════════════════════════════════════════════════════════════════
@@ -1655,6 +1764,8 @@ ${pilotHeadTags(1)}
   // Initial paint (rail + mute) in case SIM_READY already fired before this ran.
   buildRail();
   applyMuteUI();
+  applySubs();
+  updateSaveBtn(false);
   startLoop();
   if (iframe.contentWindow) { post({ type: 'PING' }); }
 </script>
