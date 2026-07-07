@@ -153,8 +153,8 @@
         "title": "One surface, one V — where are the other points reading 8?",
         "duration": 14,
         "focal_primitive_id": "predict_locus_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -174,7 +174,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "where are the OTHER points reading V = 8?",
+            "text": "natural guess: V = 8 belongs to just point P",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -202,12 +202,11 @@
             },
             {
               "id": "s1_2",
-              "text_en": "Every point on this shell shares that same value, V equals 8. So where are the OTHER points that also read 8 — predict before I show them.",
-              "text_hi": "इस shell पर हर point उसी value को share करता है, V equals 8. तो वे OTHER points कहाँ हैं जो भी 8 read करते हैं — दिखाने से पहले predict कीजिए।",
-              "text_te": "ఈ shell పై ప్రతి point అదే value ను share చేస్తుంది, V equals 8. అయితే 8 అని చదివే OTHER points ఎక్కడ ఉన్నాయి — నేను చూపించే ముందు predict చేయండి.",
+              "text_en": "Every point on this shell shares that same value, V equals 8. The natural guess is that this reading of 8 belongs to just the one point P.",
+              "text_hi": "इस shell पर हर point उसी value को share करता है, V equals 8. natural guess यह है कि 8 का यह reading केवल एक point P का है।",
+              "text_te": "ఈ shell పై ప్రతి point అదే value ను share చేస్తుంది, V equals 8. natural guess ఏమిటంటే 8 అనే ఈ reading కేవలం ఒక point P కు మాత్రమే చెందుతుంది.",
               "reveal_primitive_id": "predict_locus_label",
-              "appear_at_ms": 6000,
-              "pause_after_ms": 3000
+              "appear_at_ms": 6000
             },
             {
               "id": "s1_3",
@@ -232,7 +231,7 @@
         "duration": 18,
         "focal_primitive_id": "predict_shape_label",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -252,7 +251,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "flat rings, or closed surfaces? predict the shape",
+            "text": "natural guess: flat rings drawn around the charge",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -291,12 +290,11 @@
             },
             {
               "id": "s2_2",
-              "text_en": "Picture the full family. Are these flat rings, or closed surfaces — predict the shape before I reveal it.",
-              "text_hi": "पूरे family की कल्पना कीजिए। क्या ये flat rings हैं, या closed surfaces — reveal करने से पहले shape predict कीजिए।",
-              "text_te": "మొత్తం family ను ఊహించండి. ఇవి flat rings నా, లేక closed surfaces నా — నేను reveal చేసే ముందు shape ని predict చేయండి.",
+              "text_en": "Picture the full family. The natural guess is that these are flat rings drawn around the charge, like circles on paper.",
+              "text_hi": "पूरे family की कल्पना कीजिए। natural guess यह है कि ये charge के चारों ओर खींची गई flat rings हैं, कागज़ पर circles की तरह।",
+              "text_te": "మొత్తం family ను ఊహించండి. natural guess ఏమిటంటే ఇవి charge చుట్టూ గీసిన flat rings, కాగితంపై circles లాంటివి.",
               "reveal_primitive_id": "predict_shape_label",
-              "appear_at_ms": 4500,
-              "pause_after_ms": 3000
+              "appear_at_ms": 4500
             },
             {
               "id": "s2_3",
@@ -328,7 +326,7 @@
         "title": "No work along the surface — W = F·d·cos90° = 0",
         "duration": 22,
         "focal_primitive_id": "predict_work_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "scene_composition": [
           {
@@ -349,7 +347,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "work done sliding along: positive, or zero?",
+            "text": "natural guess: sliding along costs work",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -388,12 +386,11 @@
             },
             {
               "id": "s3_2",
-              "text_en": "Moving a charge usually costs work. Predict the work done sliding ALONG this one shell — is it positive, or is it zero?",
-              "text_hi": "एक charge को move करना आमतौर पर work लेता है। इस एक shell के साथ ALONG slide करने में किया गया work predict कीजिए — क्या यह positive है, या zero है?",
-              "text_te": "ఒక charge ను move చేయడం సాధారణంగా work తీసుకుంటుంది. ఈ ఒక shell వెంట ALONG slide చేయడంలో జరిగే work ని predict చేయండి — ఇది positive నా, లేక zero నా?",
+              "text_en": "Moving a charge usually costs work. So the natural guess is that sliding it ALONG this one shell costs work too.",
+              "text_hi": "एक charge को move करना आमतौर पर work लेता है। तो natural guess यह है कि इसे इस एक shell के साथ ALONG slide करने में भी work लगता है।",
+              "text_te": "ఒక charge ను move చేయడం సాధారణంగా work తీసుకుంటుంది. కాబట్టి natural guess ఏమిటంటే దీన్ని ఈ ఒక shell వెంట ALONG slide చేయడంలో కూడా work అవుతుంది.",
               "reveal_primitive_id": "predict_work_label",
-              "appear_at_ms": 5500,
-              "pause_after_ms": 3000
+              "appear_at_ms": 5500
             },
             {
               "id": "s3_3",
@@ -409,8 +406,7 @@
               "text_hi": "तो work है W equals F times d times cos ninety degrees, और cos ninety zero है। एक equipotential के साथ slide करना free है।",
               "text_te": "కాబట్టి work అనేది W equals F times d times cos ninety degrees, మరియు cos ninety zero. ఒక equipotential వెంట slide చేయడం free.",
               "reveal_primitive_id": "work_zero_callout",
-              "appear_at_ms": 13500,
-              "pause_after_ms": 1500
+              "appear_at_ms": 13500
             }
           ]
         },
@@ -454,7 +450,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "do the lines run ALONG the shells, or pierce them?",
+            "text": "natural guess: the lines run ALONG the shells",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -493,12 +489,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "At what angle does each field line cross a shell — predict it. Do the lines run ALONG the surfaces, or pierce through them?",
-              "text_hi": "हर field line एक shell को किस angle पर cross करती है — predict कीजिए। क्या lines surfaces के ALONG चलती हैं, या उनके through pierce करती हैं?",
-              "text_te": "ప్రతి field line ఒక shell ను ఏ angle వద్ద cross చేస్తుంది — predict చేయండి. lines surfaces వెంట ALONG నడుస్తాయా, లేక వాటి గుండా pierce చేస్తాయా?",
+              "text_en": "The natural guess is that the field lines run ALONG the surfaces, lying flat against them.",
+              "text_hi": "natural guess यह है कि field lines surfaces के ALONG चलती हैं, उन पर flat पड़ी हुई।",
+              "text_te": "natural guess ఏమిటంటే field lines surfaces వెంట ALONG నడుస్తాయి, వాటిపై flat గా పడి ఉంటాయి.",
               "reveal_primitive_id": "predict_angle_label",
-              "appear_at_ms": 5000,
-              "pause_after_ms": 3500
+              "appear_at_ms": 5000
             },
             {
               "id": "s4_3",
@@ -514,8 +509,7 @@
               "text_hi": "और lines inner high-V shell से outer low-V shell तक चलती हैं — field हमेशा high potential से low की ओर इशारा करता है।",
               "text_te": "మరియు lines inner high-V shell నుండి outer low-V shell వరకు నడుస్తాయి — field ఎల్లప్పుడూ high potential నుండి low కు సూచిస్తుంది.",
               "reveal_primitive_id": "high_to_low_label",
-              "appear_at_ms": 14000,
-              "pause_after_ms": 1500
+              "appear_at_ms": 14000
             }
           ]
         },
@@ -538,8 +532,8 @@
         "title": "Crowded means strong — equal V-steps bunch near the charge",
         "duration": 22,
         "focal_primitive_id": "predict_spacing_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -559,7 +553,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "evenly spaced, or do they bunch somewhere?",
+            "text": "natural guess: evenly spaced like ladder rungs",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -598,12 +592,11 @@
             },
             {
               "id": "s5_2",
-              "text_en": "Predict where the shells crowd together. Are they evenly spaced, or do they bunch somewhere?",
-              "text_hi": "predict कीजिए shells कहाँ एक साथ crowd करते हैं। क्या वे evenly spaced हैं, या वे कहीं bunch करते हैं?",
-              "text_te": "shells ఎక్కడ కలిసి crowd అవుతాయో predict చేయండి. అవి evenly spaced గా ఉన్నాయా, లేక ఎక్కడైనా bunch అవుతాయా?",
+              "text_en": "The natural guess is that these equal steps are evenly spaced, like rungs on a ladder.",
+              "text_hi": "natural guess यह है कि ये equal steps evenly spaced हैं, ladder की rungs की तरह।",
+              "text_te": "natural guess ఏమిటంటే ఈ equal steps evenly spaced గా ఉంటాయి, ladder మీద rungs లాగా.",
               "reveal_primitive_id": "predict_spacing_label",
-              "appear_at_ms": 5000,
-              "pause_after_ms": 3000
+              "appear_at_ms": 5000
             },
             {
               "id": "s5_3",
@@ -619,8 +612,7 @@
               "text_hi": "crowded shells का मतलब strong field; widely spread shells का मतलब weak field। spacing field strength बताती है।",
               "text_te": "crowded shells అంటే strong field; widely spread shells అంటే weak field. spacing field strength ను తెలియజేస్తుంది.",
               "reveal_primitive_id": "dense_strong_label",
-              "appear_at_ms": 13500,
-              "pause_after_ms": 1500
+              "appear_at_ms": 13500
             }
           ]
         },
@@ -639,7 +631,7 @@
         "duration": 18,
         "focal_primitive_id": "predict_flip_label",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -659,7 +651,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "do the surfaces warp, or only sign + direction flip?",
+            "text": "natural guess: the surfaces warp or rotate",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -670,7 +662,7 @@
               "x": 600,
               "y": 360
             },
-            "text": "V labels go negative, field lines reverse inward",
+            "text": "V labels go negative, source and shells recolor blue",
             "color": "#42A5F5",
             "is_persistent": false
           },
@@ -698,18 +690,17 @@
             },
             {
               "id": "s6_2",
-              "text_en": "Predict what changes. Do the surfaces warp or rotate, or does only the SIGN and the field direction flip?",
-              "text_hi": "predict कीजिए क्या बदलता है। क्या surfaces warp या rotate करती हैं, या केवल SIGN और field direction flip होते हैं?",
-              "text_te": "ఏమి మారుతుందో predict చేయండి. surfaces warp లేదా rotate అవుతాయా, లేక కేవలం SIGN మరియు field direction మాత్రమే flip అవుతాయా?",
+              "text_en": "The natural guess is that the surfaces warp or rotate when the source charge flips.",
+              "text_hi": "natural guess यह है कि source charge flip होने पर surfaces warp या rotate करती हैं।",
+              "text_te": "natural guess ఏమిటంటే source charge flip అయినప్పుడు surfaces warp లేదా rotate అవుతాయి.",
               "reveal_primitive_id": "predict_flip_label",
-              "appear_at_ms": 5000,
-              "pause_after_ms": 3000
+              "appear_at_ms": 5000
             },
             {
               "id": "s6_3",
-              "text_en": "Only the sign and the direction change. The V labels go negative, and the field lines reverse, now pointing inward.",
-              "text_hi": "केवल sign और direction बदलते हैं। V labels negative हो जाते हैं, और field lines reverse हो जाती हैं, अब अंदर की ओर इशारा करती हुई।",
-              "text_te": "కేవలం sign మరియు direction మారతాయి. V labels negative అవుతాయి, మరియు field lines reverse అవుతాయి, ఇప్పుడు లోపలికి సూచిస్తూ.",
+              "text_en": "Only the sign changes, not the shape. Every V label turns negative, and the source and its shells recolor to the negative blue.",
+              "text_hi": "केवल sign बदलता है, shape नहीं। हर V label negative हो जाता है, और source और उसके shells negative blue में recolor हो जाते हैं।",
+              "text_te": "కేవలం sign మారుతుంది, shape కాదు. ప్రతి V label negative అవుతుంది, మరియు source మరియు దాని shells negative blue కి recolor అవుతాయి.",
               "reveal_primitive_id": "sign_flip_reveal",
               "appear_at_ms": 9000
             },
@@ -1022,6 +1013,7 @@
     "states": {
       "STATE_1": {
         "label": "One surface, one V - single V=8 shell blooms through P",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "equipotential_shell_at_P",
@@ -1049,15 +1041,16 @@
       },
       "STATE_2": {
         "label": "The whole family - nested spheres V=12,8,6,4",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "equipotential_shells",
           "v_labels"
         ],
         "camera_position": [
-          2.8,
-          1.6,
-          4.2
+          4.2,
+          2.4,
+          6.3
         ],
         "caption": "",
         "show_charge": "plus",
@@ -1088,6 +1081,7 @@
       },
       "STATE_3": {
         "label": "No work along - tangential slide + cos90 glyph",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "equipotential_shells",
@@ -1097,9 +1091,9 @@
           "right_angle_glyph"
         ],
         "camera_position": [
-          2.8,
-          1.5,
-          4.0
+          4.3,
+          2.3,
+          6.2
         ],
         "caption": "",
         "show_charge": "plus",
@@ -1120,6 +1114,7 @@
       },
       "STATE_4": {
         "label": "PRIMARY aha - field lines pierce shells at 90, high-V to low-V",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "equipotential_shells",
@@ -1127,9 +1122,9 @@
           "right_angle_marks"
         ],
         "camera_position": [
-          2.6,
-          1.7,
-          3.8
+          4.2,
+          2.7,
+          6.1
         ],
         "caption": "",
         "show_charge": "plus",
@@ -1146,15 +1141,16 @@
       },
       "STATE_5": {
         "label": "Crowded means strong - equal V-steps 12,9,6,3 bunch near charge",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "equipotential_shells",
           "v_labels_equal_step"
         ],
         "camera_position": [
-          2.8,
-          1.6,
-          4.4
+          5.4,
+          3.1,
+          8.5
         ],
         "caption": "",
         "show_charge": "plus",
@@ -1185,6 +1181,7 @@
       },
       "STATE_6": {
         "label": "Flip the sign - +Q to -Q, geometry unchanged",
+        "visible_controls": [],
         "visible_elements": [
           "charge_sign_toggle",
           "equipotential_shells",
@@ -1192,9 +1189,9 @@
           "field_lines_inward"
         ],
         "camera_position": [
-          2.8,
-          1.6,
-          4.2
+          4.2,
+          2.4,
+          6.3
         ],
         "caption": "",
         "show_charge": "plus",
@@ -1210,6 +1207,7 @@
       },
       "STATE_7": {
         "label": "Explore - drag P, V constant on a shell, jumps across shells",
+        "visible_controls": ["r"],
         "visible_elements": [
           "charge_plus",
           "equipotential_shells",
@@ -1217,9 +1215,9 @@
           "v_readout_live"
         ],
         "camera_position": [
-          2.8,
-          1.8,
-          4.5
+          3.9,
+          2.5,
+          6.3
         ],
         "caption": "",
         "show_charge": "plus",
