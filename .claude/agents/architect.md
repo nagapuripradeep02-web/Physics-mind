@@ -36,6 +36,45 @@ Given a concept_id + chapter, decide:
 - Chapter ID (e.g., `ch8_forces`, `ch5_vectors_kinematics`).
 - List of already-shipped concepts in `src/data/concepts/` for prerequisite resolution.
 
+## Reconstruction mode — Rule 31/32 retrofit of an existing Socratic-era concept (added 2026-07-08)
+
+When the input is an EXISTING pre-Rule-31 concept JSON rather than a fresh concept_id, run the SAME
+pipeline with this entry brief. Boundaries: ONE named small delta is NOT a reconstruction — that's
+`retrofit-surgeon` (whose binding-count invariant forbids state deletion by design). And a scenario
+with no per-state motion modes / control rows (static-poses class, e.g. old Ch.1 coulomb) needs a
+`peter_parker:renderer_primitives` live-instrument delta FIRST — flag it in the skeleton; JSON alone
+cannot add motion the scenario can't render. Reference precedent: the coulombs_law reconstruction
+spec (`docs/superpowers/specs/2026-07-05-coulombs_law-rule31-reconstruction-design.md`).
+
+**Input contract (reconstruction):**
+- The existing `src/data/concepts/<id>.json` + its scenario in `field_3d_renderer.ts` (verify
+  per-state mode/control-row support: Class A = has it → pure JSON pass; Class B = static-poses →
+  engine delta first, then JSON).
+- Measured per-state `text_en` word counts (script the count — never guess).
+- Founder verdicts if any (video-review notes, `engine_bug_queue` directives for this concept).
+
+**The grading pass — every OLD state must RE-EARN a row in the NEW control table:**
+- Assign each old state a motion archetype + delta line. Two old states sharing an archetype with no
+  contrast-pair justification → **MERGE**. A state with no archetype-worthy motion (the classic
+  Socratic pause/think beat) → **DELETE**. An old predict→reveal PAIR → collapses to **ONE**
+  straightforward beat. A >55-word survivor carrying two ideas → **SPLIT** (rare — merging dominates:
+  the Session 78 fleet audit graded 309 → ~75 states).
+- **PRESERVE:** the PRIMARY aha (it moves WITH its surviving state — never dies in a merge), the
+  Indian anchor, the physics block, `assessment` (if authored).
+- `misconception_watch`: prune to 1–3 genuine pivots (founder guardrail 2026-07-04).
+
+**Deletion-mechanics checklist (silent breakers — the skeleton must account for ALL):**
+- `state_count` + contiguous STATE_N renumbering — `epic_l_path.states` AND `field_3d_config.states`
+  keys move together.
+- `entry_state_map` ranges re-mapped to the new numbering (foundational must still contain the
+  PRIMARY aha, or declare the mandatory exit-pill).
+- Gate 12: ≥2 distinct `advance_mode` across surviving states (`manual_click` + `interaction_complete`
+  default); strip every `wait_for_answer`/`pause_after_ms`/`narrative_socratic`.
+- `has_prebuilt_deep_dive` flags re-pointed; `aha_moment`'s state reference updated.
+- TTS: surviving states' scripts are REWRITTEN → full EN+TE re-voice at the Rule 30f step (the
+  hash-pruner orphans deleted states' clips automatically); budget Sarvam per reconstruction.
+- Baselines: `visual_baselines/` regenerate only AFTER founder re-approval (`visual:approve`).
+
 ## Output contract
 
 A single markdown skeleton (no JSON yet) with these 10 sections:
@@ -319,6 +358,7 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 - [ ] Every EPIC-L state has a `teaching_method` field (v2.2) — never `narrative_socratic` on new concepts (Rule 31).
 - [ ] **Per-state control table present (Rule 31)** — one row per state: teaches × motion archetype × distinct motion (no two alike, none static; no archetype repeat except a declared contrast pair; drag-sandbox only on explore) × delta (one line, unique) × live controls (only-what-this-state-needs; explore state = ALL) × narration budget (25–55 EN words guided, explore 0/open).
 - [ ] **Rule 32 legibility plan** — every state's choreography sequences CAUSE before effect (readable beat); only the taught variable moves (explore exempt); the delta column doubles as the ≤5-word caption cue; apparatus persists from a home pose (no teleport-rebuild; camera moves only to frame the new thing); exactly ONE glow focal at any instant.
+- [ ] **(Reconstruction mode only)** every OLD state graded keep/merge/delete/split via the archetype rubric with a one-line verdict each; PRIMARY aha survives (named surviving state); deletion-mechanics checklist fully accounted for (renumbering, entry_state_map, Gate 12, deep-dive flags, TTS re-voice note, baselines); Class A/B scenario triage stated (Class B → renderer_primitives delta flagged FIRST).
 - [ ] `entry_state_map` declared with at least `foundational` range, plus any aspect-specific ranges (incline, elevator, etc.) that match the concept's scope.
 - [ ] Prerequisites are advisory, cite shipped concepts where possible.
 - [ ] Definition of Done block (section 10) is complete — every named vector has a label row, every direction-teaching state has an RHR row, everything that moves has a motion row, modes + assessment declared. Zero TBDs (Gate 0 fails the skeleton otherwise).

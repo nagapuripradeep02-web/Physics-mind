@@ -33,8 +33,8 @@ Sliders: q₁ (1–10 nC), q₂ (1–10 nC), r (2–20 cm) + q₂ sign toggle. E
 ## Misconception pivots: 8 → 3
 Keep on S3, S4, S5 only. Prune S1, S2, S6, S7 (unrendered metadata; pruning needs no re-voice).
 
-## Pacing (Rule 31a/b)
-Each guided beat ~15–25s ≈ 3–4 tight sentences. Reuse existing scripts with the "predict" framing stripped from S3/S5/S8; write one fresh 3–4 sentence script for the merged S7 (vector + superposition). Explore = open/interaction_complete.
+## Pacing (Rule 31a/b — updated 2026-07-08 to the word budget; supersedes this spec's original ~15–25s)
+Each guided beat = ONE idea + ONE complete motion, narration **25–55 EN words (2–4 tight sentences ≈ 10–20s)** counted on `text_en` (>55 = split, <~20 = merge; Gate 3f counts it). Reuse existing scripts with the "predict" framing stripped from S3/S5/S8 — then TRIM each surviving script into the 25–55 budget; write one fresh 2–4 sentence script for the merged S7 (vector + superposition). Also apply Rule 32 (delta cue opens each caption; cause moves before effect; one variable per state; home pose). Explore = open/interaction_complete.
 
 ## Engine delta (minimal, additive)
 `field_3d_renderer.ts` coulomb scenario: per-state control-row visibility. Add a per-state `controls: string[]` (or `coulomb.mode`) read that toggles which panel rows render, mirroring faraday's `stateDef.faraday.mode` → rows. All-or-nothing explorer stays for S8. No behavioral change to physics/arrows.
