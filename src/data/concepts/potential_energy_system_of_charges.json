@@ -133,8 +133,8 @@
         "title": "Bring a charge in from infinity — that work is the pair's energy U = k q₁q₂/r",
         "duration": 17,
         "focal_primitive_id": "work_done",
-        "advance_mode": "auto_after_animation",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "variable_overrides": {
           "q3_value": 2
         },
@@ -206,7 +206,7 @@
         "title": "Flip the sign — like charges store +U, unlike charges release −U",
         "duration": 18,
         "focal_primitive_id": "u_negative",
-        "advance_mode": "auto_after_animation",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "variable_overrides": {
           "q3_value": 2
@@ -230,7 +230,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "predict: does the energy bank positive again, or flip?",
+            "text": "natural guess: energy banks positive again",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -258,12 +258,11 @@
             },
             {
               "id": "s2_2",
-              "text_en": "Predict: does the energy bank positive again, like the like-charge pair, or does it flip?",
-              "text_hi": "Predict कीजिए: क्या energy फिर से positive बैंक होती है, like-charge pair की तरह, या flip हो जाती है?",
-              "text_te": "Predict చేయండి: energy మళ్ళీ positive గా bank అవుతుందా, like-charge pair లాగా, లేదా flip అవుతుందా?",
+              "text_en": "The natural guess is that the energy banks positive again, just like the like-charge pair did.",
+              "text_hi": "natural guess यह है कि energy फिर से positive बैंक होती है, जैसे like-charge pair ने की थी।",
+              "text_te": "natural guess ఏమిటంటే energy మళ్ళీ positive గా bank అవుతుంది, like-charge pair చేసినట్లే.",
               "reveal_primitive_id": "predict_sign",
-              "appear_at_ms": 4200,
-              "pause_after_ms": 2200
+              "appear_at_ms": 4200
             },
             {
               "id": "s2_3",
@@ -287,7 +286,7 @@
         "title": "Add a third charge — it pairs with EVERY charge already there",
         "duration": 20,
         "focal_primitive_id": "two_new_terms",
-        "advance_mode": "auto_after_animation",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "variable_overrides": {
           "q3_value": 2
@@ -374,7 +373,7 @@
         "title": "The rule: U = Σ over every unique pair = N(N−1)/2 terms",
         "duration": 22,
         "focal_primitive_id": "the_rule",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "rule_synthesis",
         "variable_overrides": {
           "q3_value": 2
@@ -398,7 +397,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "predict: how many pairs for FOUR charges?",
+            "text": "natural guess: four pairs, one per charge",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -426,12 +425,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "Predict before we go on: how many pairs would four charges make?",
-              "text_hi": "आगे बढ़ने से पहले predict कीजिए: चार charges कितने pairs बनाएँगे?",
-              "text_te": "ముందుకు వెళ్ళే ముందు predict చేయండి: నాలుగు charges ఎన్ని pairs చేస్తాయి?",
+              "text_en": "The natural guess for four charges is four pairs, one for each charge.",
+              "text_hi": "चार charges के लिए natural guess है चार pairs, हर charge के लिए एक।",
+              "text_te": "నాలుగు charges కోసం natural guess నాలుగు pairs, ప్రతి charge కి ఒకటి.",
               "reveal_primitive_id": "predict_pairs",
-              "appear_at_ms": 5000,
-              "pause_after_ms": 3000
+              "appear_at_ms": 5000
             },
             {
               "id": "s4_3",
@@ -820,6 +818,7 @@
     "states": {
       "STATE_1": {
         "label": "Bring +q₂ from infinity — work stored as U = k q₁q₂/r",
+        "visible_controls": [],
         "visible_elements": [
           "pe_charge_q1",
           "pe_charge_q2",
@@ -867,6 +866,7 @@
       },
       "STATE_2": {
         "label": "Flip q₂ negative — unlike pair releases −U",
+        "visible_controls": [],
         "visible_elements": [
           "pe_charge_q1",
           "pe_charge_q2",
@@ -911,6 +911,7 @@
       },
       "STATE_3": {
         "label": "Add +2q₃ — two new pair terms appear at once",
+        "visible_controls": [],
         "visible_elements": [
           "pe_charge_q1",
           "pe_charge_q2",
@@ -972,6 +973,7 @@
       },
       "STATE_4": {
         "label": "The rule: U = Σ over every pair, N(N−1)/2 terms",
+        "visible_controls": [],
         "visible_elements": [
           "pe_charge_q1",
           "pe_charge_q2",
@@ -1019,10 +1021,11 @@
           "meter_at_ms": 2000,
           "sum_at_ms": 8000
         },
-        "formula_overlay": "U = −4.3 + 9.2 − 10.3 = −5.4   ·   4 charges → 6 pairs"
+        "formula_overlay": "U = −4.3 + 9.2 − 10.3 = −5.4   ·   3 charges → 3 pairs  (N(N−1)/2)"
       },
       "STATE_5": {
         "label": "Reorder (q₃ first) → same total; U vs V",
+        "visible_controls": [],
         "visible_elements": [
           "pe_charge_q1",
           "pe_charge_q2",
@@ -1094,6 +1097,7 @@
       },
       "STATE_6": {
         "label": "Explore — drag q₃, slide its charge, live U",
+        "visible_controls": ["q3_value"],
         "visible_elements": [
           "pe_charge_q1",
           "pe_charge_q2",

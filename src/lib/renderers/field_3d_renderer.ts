@@ -6285,6 +6285,34 @@ export const FIELD_3D_RENDERER_CODE = `
                 '<div id="pe_u_readout_dom" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.2);color:' + meterPosCol + ';font-weight:bold;letter-spacing:1px;">U = +0.0</div>' +
                 '<div id="pe_breakdown" style="margin-top:4px;color:' + textColor + ';font-size:11px;">&nbsp;</div>';
             document.body.appendChild(sl);
+            // Wire the q3 slider HERE, in the build fn — NOT in setupSliders. This
+            // panel is created during buildScenario(), which runs AFTER setupSliders(),
+            // so wiring it there binds null and the slider is dead (the same trap the
+            // pe_external_field panel documents). Drives PM_peQ3 so every pair term,
+            // the running-sum panel, the meter, the U readout + the DOM breakdown
+            // update; PM_peUserDragged stops any idle motion; emits PARAM_UPDATE (Rule 27).
+            var peQ3wire = document.getElementById("pe_q3_slider");
+            var peScQ3w = (config.slider_controls && config.slider_controls.q3_value) || {};
+            if (peQ3wire) {
+                if (peScQ3w.min != null) peQ3wire.min = String(peScQ3w.min);
+                if (peScQ3w.max != null) peQ3wire.max = String(peScQ3w.max);
+                if (peScQ3w.step != null) peQ3wire.step = String(peScQ3w.step);
+                peQ3wire.addEventListener("input", function () {
+                    var qv = parseFloat(peQ3wire.value);
+                    window.PM_peUserDragged = true;
+                    window.PM_peQ3 = qv;
+                    var vEl = document.getElementById("pe_q3_val");
+                    if (vEl) vEl.textContent = peFmt0(qv);
+                    try {
+                        parent.postMessage({
+                            type: "PARAM_UPDATE",
+                            explorer_id: (config.explorer_id || "energy_explorer"),
+                            param: "q3_value",
+                            value: { q3_value: qv, U: window.PM_peLiveU }
+                        }, "*");
+                    } catch (e) {}
+                });
+            }
         }
     }
 
@@ -30206,37 +30234,9 @@ export const FIELD_3D_RENDERER_CODE = `
         // (its #soc_sliders panel is created during buildScenario(), AFTER this fn —
         // wiring here would bind null and the slider would be dead).
 
-        // ── system_pe_assembly (STATE_6) slider wiring: q3 magnitude -> live U ─────
-        //   Dedicated #pe_sliders panel. Drives PM_peQ3 (q3's live signed magnitude),
-        //   so every visible pair term, the running-sum panel, the meter, the U readout
-        //   + the DOM breakdown update. Emits PARAM_UPDATE on explorer_id (Rule 27).
-        if (config.scenario_type === "system_pe_assembly") {
-            var peQ3S = document.getElementById("pe_q3_slider");
-            var peScQ3w = (config.slider_controls && config.slider_controls.q3_value) || {};
-            if (peQ3S) {
-                if (peScQ3w.min != null) peQ3S.min = String(peScQ3w.min);
-                if (peScQ3w.max != null) peQ3S.max = String(peScQ3w.max);
-                if (peScQ3w.step != null) peQ3S.step = String(peScQ3w.step);
-            }
-            var refreshPeSliders = function () {
-                var s = document.getElementById("pe_q3_slider");
-                if (!s) return;
-                var qv = parseFloat(s.value);
-                window.PM_peUserDragged = true;
-                window.PM_peQ3 = qv;
-                var vEl = document.getElementById("pe_q3_val");
-                if (vEl) vEl.textContent = peFmt0(qv);
-                try {
-                    parent.postMessage({
-                        type: "PARAM_UPDATE",
-                        explorer_id: (config.explorer_id || "energy_explorer"),
-                        param: "q3_value",
-                        value: { q3_value: qv, U: window.PM_peLiveU }
-                    }, "*");
-                } catch (e) {}
-            };
-            if (peQ3S) peQ3S.addEventListener("input", refreshPeSliders);
-        }
+        // system_pe_assembly (STATE_6) q3 slider is wired inside buildSystemPeAssembly
+        // (its #pe_sliders panel is created during buildScenario(), AFTER this fn —
+        // wiring here would bind null and the slider would be dead).
 
         // pe_external_field (STATE_9) q + theta slider wiring lives in
         // buildPeExternalField, NOT here: its #pef_sliders panel is created during

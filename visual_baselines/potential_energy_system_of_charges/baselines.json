@@ -1,0 +1,31 @@
+{
+  "approved_at": "2026-07-07T21:42:33.961Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\potential_energy_system_of_charges\\20260707-234109",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}
