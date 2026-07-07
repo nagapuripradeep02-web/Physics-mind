@@ -170,8 +170,8 @@
         "title": "Three charges + a probe — each gives its own potential k q / r",
         "duration": 18,
         "focal_primitive_id": "per_charge_tags",
-        "advance_mode": "auto_after_tts",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "variable_overrides": {
           "px": 2.0,
           "py": 1.6
@@ -269,7 +269,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "predict: combine like vectors (directions), or like signed numbers?",
+            "text": "natural guess: combine like vectors, with directions",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -297,12 +297,11 @@
             },
             {
               "id": "s2_2",
-              "text_en": "Predict: do these combine like vectors, with directions, or like ordinary signed numbers?",
-              "text_hi": "Predict करिए: क्या ये vectors की तरह, directions के साथ, या ordinary signed numbers की तरह combine होते हैं?",
-              "text_te": "Predict చేయండి: ఇవి vectors లా, directions తో కలుస్తాయా, లేదా ordinary signed numbers లా కలుస్తాయా?",
+              "text_en": "The natural guess is that these combine like vectors, each with its own direction, the way the field does.",
+              "text_hi": "natural guess यह है कि ये vectors की तरह combine होते हैं, हर एक अपनी direction के साथ, जैसे field होता है।",
+              "text_te": "natural guess ఏమిటంటే ఇవి vectors లా కలుస్తాయి, ప్రతి ఒక్కటి తన own direction తో, field లాగా.",
               "reveal_primitive_id": "predict_combine_label",
-              "appear_at_ms": 6000,
-              "pause_after_ms": 2000
+              "appear_at_ms": 6000
             },
             {
               "id": "s2_3",
@@ -326,7 +325,7 @@
         "title": "Does the far charge still count? Every term contributes",
         "duration": 20,
         "focal_primitive_id": "far_term_highlight",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "variable_overrides": {
           "px": 3.0,
@@ -351,7 +350,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "predict: only the nearest charge, or does far q₁ still count?",
+            "text": "natural guess: only the nearest charge counts now",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -390,12 +389,11 @@
             },
             {
               "id": "s3_2",
-              "text_en": "Predict the total. Does only the nearest charge matter, or does the far charge q₁ still count in the sum?",
-              "text_hi": "total predict करिए। क्या केवल nearest charge मायने रखता है, या दूर का charge q₁ sum में अभी भी count करता है?",
-              "text_te": "total ని predict చేయండి. కేవలం nearest charge మాత్రమే important అవుతుందా, లేదా దూరపు charge q₁ sum లో ఇంకా count అవుతుందా?",
+              "text_en": "The natural guess is that only the nearest charge matters now, and the far charge q₁ drops out of the sum.",
+              "text_hi": "natural guess यह है कि अब केवल nearest charge मायने रखता है, और दूर का charge q₁ sum से बाहर हो जाता है।",
+              "text_te": "natural guess ఏమిటంటే ఇప్పుడు కేవలం nearest charge మాత్రమే important, మరియు దూరపు charge q₁ sum నుండి బయటకు పోతుంది.",
               "reveal_primitive_id": "predict_far_label",
-              "appear_at_ms": 5500,
-              "pause_after_ms": 2800
+              "appear_at_ms": 5500
             },
             {
               "id": "s3_3",
@@ -434,7 +432,7 @@
         "title": "The equal +/− pair cancels — signs decide the sum",
         "duration": 22,
         "focal_primitive_id": "pair_cancel",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "variable_overrides": {
           "px": 0.0,
@@ -459,7 +457,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "two charges sit close — predict: a big V, or something surprising?",
+            "text": "natural guess: two nearby charges give a big V",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -498,12 +496,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "Two charges sit close by. Predict the total potential V here — a big value, or something surprising?",
-              "text_hi": "दो charges पास में हैं। यहाँ total potential V predict करिए — एक बड़ी value, या कुछ surprising?",
-              "text_te": "రెండు charges దగ్గరలో ఉన్నాయి. ఇక్కడ total potential V ని predict చేయండి — ఒక పెద్ద value, లేదా ఏదైనా surprising?",
+              "text_en": "Two charges sit close by. The natural guess is that together they must give a big total potential V here.",
+              "text_hi": "दो charges पास में हैं। natural guess यह है कि मिलकर वे यहाँ एक बड़ा total potential V देते होंगे।",
+              "text_te": "రెండు charges దగ్గరలో ఉన్నాయి. natural guess ఏమిటంటే కలిసి అవి ఇక్కడ ఒక పెద్ద total potential V ఇవ్వాలి.",
               "reveal_primitive_id": "predict_cancel_label",
-              "appear_at_ms": 6000,
-              "pause_after_ms": 3000
+              "appear_at_ms": 6000
             },
             {
               "id": "s4_3",
@@ -566,7 +563,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "predict: can we add the field E the same easy way?",
+            "text": "natural guess: the field E adds the same easy way",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -605,12 +602,11 @@
             },
             {
               "id": "s5_2",
-              "text_en": "Now the electric field E at the same point. Predict: can we add the field the same easy way?",
-              "text_hi": "अब उसी point पर electric field E। Predict करिए: क्या हम field को उसी easy तरीके से जोड़ सकते हैं?",
-              "text_te": "ఇప్పుడు అదే point వద్ద electric field E. Predict చేయండి: మనం field ని అదే easy విధంగా కలపగలమా?",
+              "text_en": "Now the electric field E at the same point. The natural guess is that we can add the field the same easy way.",
+              "text_hi": "अब उसी point पर electric field E। natural guess यह है कि हम field को उसी easy तरीके से जोड़ सकते हैं।",
+              "text_te": "ఇప్పుడు అదే point వద్ద electric field E. natural guess ఏమిటంటే మనం field ని అదే easy విధంగా కలపగలం.",
               "reveal_primitive_id": "predict_field_label",
-              "appear_at_ms": 6000,
-              "pause_after_ms": 2000
+              "appear_at_ms": 6000
             },
             {
               "id": "s5_3",
@@ -919,6 +915,7 @@
     "states": {
       "STATE_1": {
         "label": "Three charges + probe — each gives its own k q / r",
+        "visible_controls": [],
         "visible_elements": [
           "q1",
           "q2",
@@ -948,6 +945,7 @@
       },
       "STATE_2": {
         "label": "V is a scalar — add the three signed numbers",
+        "visible_controls": [],
         "visible_elements": [
           "q1",
           "q2",
@@ -969,13 +967,13 @@
           "probe_y": 1.6,
           "v_formula": "V_total_demo",
           "show_running_sum": true,
-          "predict_at_ms": 6000,
           "running_sum_at_ms": 9500
         },
         "formula_overlay": "V = +3.4 − 6.7 + 11.9 = +8.6"
       },
       "STATE_3": {
         "label": "Push the probe far — the distant charge still counts",
+        "visible_controls": [],
         "visible_elements": [
           "q1",
           "q2",
@@ -998,7 +996,6 @@
           "v_formula": "V_total_demo",
           "show_running_sum": true,
           "highlight_term": "q1_far",
-          "predict_at_ms": 5500,
           "far_term_at_ms": 9000,
           "total_with_far_at_ms": 14500
         },
@@ -1006,6 +1003,7 @@
       },
       "STATE_4": {
         "label": "Equidistant +/− pair cancels — total is just q₃",
+        "visible_controls": [],
         "visible_elements": [
           "q1",
           "q2",
@@ -1028,7 +1026,6 @@
           "v_formula": "V_total_demo",
           "show_running_sum": true,
           "show_cancellation": true,
-          "predict_at_ms": 6000,
           "cancellation_at_ms": 10000,
           "total_just_q3_at_ms": 16000
         },
@@ -1036,6 +1033,7 @@
       },
       "STATE_5": {
         "label": "Scalar sum vs the field's vector addition (the aha)",
+        "visible_controls": [],
         "visible_elements": [
           "q1",
           "q2",
@@ -1057,7 +1055,6 @@
           "probe_y": 1.0,
           "v_formula": "V_total_demo",
           "show_field_contrast": true,
-          "predict_at_ms": 6000,
           "field_contrast_at_ms": 9000,
           "split_callout_at_ms": 15000
         },
@@ -1065,6 +1062,7 @@
       },
       "STATE_6": {
         "label": "Explore — drag probe, slide q₃, live running sum",
+        "visible_controls": ["q3_value"],
         "visible_elements": [
           "q1",
           "q2",

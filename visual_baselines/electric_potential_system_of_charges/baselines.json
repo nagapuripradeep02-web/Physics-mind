@@ -1,0 +1,31 @@
+{
+  "approved_at": "2026-07-07T14:12:01.736Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\electric_potential_system_of_charges\\20260707-160813",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

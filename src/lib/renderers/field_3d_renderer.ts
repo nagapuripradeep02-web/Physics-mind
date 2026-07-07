@@ -28775,6 +28775,17 @@ export const FIELD_3D_RENDERER_CODE = `
         // the qV / -pE cos(theta) overlays carry the meaning; the generic legend would
         // print misleading +q/-q field text. Suppress it.
         if (config.scenario_type === "pe_external_field") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // system_of_charges is a silent visual (Rule 24): the in-scene +q1/-q2/+2q3
+        // labels, the per-charge k q/r tags, the running-sum panel + formula overlay
+        // carry everything. Its scenario name contains "charge", so it would otherwise
+        // hit the generic point_charge legend "Red sphere = +q / Blue sphere = -q /
+        // Lines = E field direction" — wrong content (three labelled charges, not a
+        // +/- pair; the connector lines are r-distance lines, not field lines) and
+        // "E field direction" conflates the scalar V with a vector, the exact
+        // misconception this concept's STATE_5 aha confronts. Suppress it (the sibling
+        // electric_potential_meaning suppresses the same legend for the same reason;
+        // electric_potential_point_charge is covered by its potential_meaning block).
+        if (config.scenario_type === "system_of_charges") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
