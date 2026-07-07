@@ -146,8 +146,8 @@
         "title": "Back at the same +Q dome — how big is V at distance r?",
         "duration": 14,
         "focal_primitive_id": "how_big_question_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -178,7 +178,7 @@
               "x": 360,
               "y": 440
             },
-            "text": "each shell has one V number — how big at distance r?",
+            "text": "each shell has one V number — its size at distance r comes next",
             "color": "#D4D4D8",
             "is_persistent": false
           }
@@ -193,10 +193,9 @@
             },
             {
               "id": "s1_2",
-              "text_en": "Each shell carries one number, the potential V on that shell. But we never asked: how BIG is that number at a given distance r?", "text_hi": "हर shell एक number कैरी करता है, उस shell पर potential V। लेकिन हमने कभी नहीं पूछा: एक given distance r पर वह number कितना BIG होता है?", "text_te": "ప్రతి shell ఒక number ని కలిగి ఉంటుంది, ఆ shell పై potential V. కానీ మనం ఎప్పుడూ అడగలేదు: ఒక given distance r వద్ద ఆ number ఎంత BIG గా ఉంటుంది?",
+              "text_en": "Each shell carries one number, the potential V on that shell. What we have not yet named is how BIG that number is at a given distance r.", "text_hi": "हर shell एक number कैरी करता है, उस shell पर potential V। अब तक हमने यह नहीं बताया कि एक given distance r पर वह number कितना BIG होता है।", "text_te": "ప్రతి shell ఒక number ని కలిగి ఉంటుంది, ఆ shell పై potential V. ఒక given distance r వద్ద ఆ number ఎంత BIG గా ఉంటుందో మనం ఇంకా చెప్పలేదు.",
               "reveal_primitive_id": "how_big_question_label",
-              "appear_at_ms": 7000,
-              "pause_after_ms": 1500
+              "appear_at_ms": 7000
             }
           ]
         },
@@ -213,7 +212,7 @@
         "duration": 18,
         "focal_primitive_id": "formula_callout_label",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -253,7 +252,7 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Pick a point P out here at distance r from the charge Q. What is the potential V exactly there?", "text_hi": "यहाँ charge Q से distance r पर एक point P चुनिए। वहाँ potential V exactly क्या है?", "text_te": "ఇక్కడ charge Q నుండి distance r వద్ద ఒక point P ని ఎంచుకోండి. అక్కడ potential V exactly ఎంత?",
+              "text_en": "Pick a point P out here at distance r from the charge Q. The task is to find the potential V exactly there.", "text_hi": "यहाँ charge Q से distance r पर एक point P चुनिए। हमारा task है वहाँ का potential V exactly निकालना।", "text_te": "ఇక్కడ charge Q నుండి distance r వద్ద ఒక point P ని ఎంచుకోండి. అక్కడ potential V ని exactly కనుగొనడమే మన task.",
               "reveal_primitive_id": "point_p_label",
               "appear_at_ms": 800
             },
@@ -267,8 +266,7 @@
               "id": "s2_3",
               "text_en": "Read the formula carefully: the distance r is downstairs, to the first power. One power of r, not r squared. Hold on to that.", "text_hi": "formula को ध्यान से पढ़िए: distance r downstairs है, to the first power। r की one power, r squared नहीं। इसे याद रखिए।", "text_te": "formula ను జాగ్రత్తగా చదవండి: distance r downstairs ఉంది, to the first power. r యొక్క one power, r squared కాదు. దీన్ని గుర్తుంచుకోండి.",
               "reveal_primitive_id": "formula_callout_label",
-              "appear_at_ms": 11000,
-              "pause_after_ms": 1200
+              "appear_at_ms": 11000
             }
           ]
         },
@@ -284,7 +282,7 @@
         "title": "Halve r — the 1/r² instinct says ×4, but V only DOUBLES",
         "duration": 22,
         "focal_primitive_id": "doubles_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "scene_composition": [
           {
@@ -305,7 +303,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "field instinct: ×4 to V = 24?",
+            "text": "field instinct expects ×4, to V = 24",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -331,17 +329,15 @@
             },
             {
               "id": "s3_2",
-              "text_en": "Predict the new potential V. The electric field E goes as one over r squared, so halving the distance r makes the electric field E four times bigger. Does the potential V also jump four times, to 24?", "text_hi": "new potential V को predict कीजिए। electric field E, one over r squared के रूप में जाता है, तो distance r को halve करने से electric field E four times bigger हो जाता है। क्या potential V भी four times, 24 तक jump करता है?", "text_te": "new potential V ని predict చేయండి. electric field E, one over r squared గా ఉంటుంది, కాబట్టి distance r ని halve చేస్తే electric field E four times bigger అవుతుంది. potential V కూడా four times, 24 కి jump అవుతుందా?",
+              "text_en": "The electric field E falls as one over r squared, so halving the distance r makes it four times bigger. The natural guess is that the potential V also quadruples, to 24.", "text_hi": "electric field E, one over r squared के रूप में गिरता है, तो distance r को halve करने से यह four times bigger हो जाता है। natural guess यह है कि potential V भी four times बढ़कर 24 हो जाता है।", "text_te": "electric field E, one over r squared గా తగ్గుతుంది, కాబట్టి distance r ని halve చేస్తే అది four times bigger అవుతుంది. natural guess ఏమిటంటే potential V కూడా four times పెరిగి 24 అవుతుంది.",
               "reveal_primitive_id": "predict_label",
-              "appear_at_ms": 6000,
-              "pause_after_ms": 2800
+              "appear_at_ms": 6000
             },
             {
               "id": "s3_3",
               "text_en": "Watch. The potential V only DOUBLES, from 6 to 12. Not four times — just twice.", "text_hi": "देखिए। potential V केवल DOUBLES होता है, 6 से 12 तक। four times नहीं — बस twice।", "text_te": "చూడండి. potential V కేవలం DOUBLES అవుతుంది, 6 నుండి 12 వరకు. four times కాదు — కేవలం twice.",
               "reveal_primitive_id": "doubles_label",
-              "appear_at_ms": 9200,
-              "pause_after_ms": 1500
+              "appear_at_ms": 9200
             },
             {
               "id": "s3_4",
@@ -425,15 +421,13 @@
               "id": "s4_3",
               "text_en": "Now fade in the electric field E = k Q / r squared beneath it, dimmed. The two meet at distance r = 2.", "text_hi": "अब इसके नीचे electric field E = k Q / r squared fade in करें, dimmed। ये दोनों distance r = 2 पर मिलते हैं।", "text_te": "ఇప్పుడు దీని క్రింద electric field E = k Q / r squared fade in చేయండి, dimmed. ఈ రెండూ distance r = 2 వద్ద కలుస్తాయి.",
               "reveal_primitive_id": "e_ghost_label",
-              "appear_at_ms": 9000,
-              "pause_after_ms": 1200
+              "appear_at_ms": 9000
             },
             {
               "id": "s4_4",
               "text_en": "Move outward and they split apart. The potential V rides ABOVE the electric field E far out — it fades slowly while the field dies fast. That gap is the whole idea: one power of r gentler.", "text_hi": "बाहर की ओर जाएँ और वे अलग हो जाते हैं। Potential V, electric field E से बहुत दूर ABOVE रहता है — यह धीरे-धीरे fade होता है जबकि field तेज़ी से ख़त्म हो जाता है। वह gap ही पूरा idea है: one power of r gentler।", "text_te": "బయటికి కదలండి మరియు అవి విడిపోతాయి. Potential V, electric field E కంటే చాలా దూరంగా ABOVE ఉంటుంది — అది నెమ్మదిగా fade అవుతుంది, అయితే field వేగంగా తగ్గిపోతుంది. ఆ gap నే మొత్తం idea: one power of r gentler.",
               "reveal_primitive_id": "gap_label",
-              "appear_at_ms": 14000,
-              "pause_after_ms": 1800
+              "appear_at_ms": 14000
             }
           ]
         },
@@ -456,8 +450,8 @@
         "title": "V is a SIGNED scalar: flip Q and the hill becomes a well — no arrow",
         "duration": 22,
         "focal_primitive_id": "well_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -477,7 +471,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "flip Q to −Q: arrow appears, or just sign flips?",
+            "text": "flip Q to −Q: the natural guess is an arrow appears",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -503,17 +497,15 @@
             },
             {
               "id": "s5_2",
-              "text_en": "For a positive charge Q the potential V is positive everywhere: a hill. If I flip the charge Q to negative, predict — does an arrow appear, or does the number just change sign?", "text_hi": "एक positive charge Q के लिए potential V हर जगह positive होता है: एक hill। अगर मैं charge Q को negative करता हूँ, तो predict करें — क्या कोई arrow दिखाई देता है, या क्या number बस sign बदलता है?", "text_te": "ఒక positive charge Q కోసం potential V ప్రతిచోటా positive గా ఉంటుంది: ఒక hill. నేను charge Q ని negative కు flip చేస్తే, predict చేయండి — ఒక arrow కనిపిస్తుందా, లేక number కేవలం sign మారుతుందా?",
+              "text_en": "For a positive charge Q the potential V is positive everywhere: a hill. Now I flip the charge Q to negative — the natural guess is that some arrow should appear.", "text_hi": "एक positive charge Q के लिए potential V हर जगह positive होता है: एक hill। अब मैं charge Q को negative करता हूँ — natural guess यह है कि कोई arrow दिखना चाहिए।", "text_te": "ఒక positive charge Q కోసం potential V ప్రతిచోటా positive గా ఉంటుంది: ఒక hill. ఇప్పుడు నేను charge Q ని negative కు flip చేస్తున్నాను — natural guess ఏమిటంటే ఏదో arrow కనిపించాలి.",
               "reveal_primitive_id": "predict_sign_label",
-              "appear_at_ms": 6000,
-              "pause_after_ms": 2600
+              "appear_at_ms": 6000
             },
             {
               "id": "s5_3",
               "text_en": "Watch. Flip the sign of the charge Q, and the potential V flips from plus to minus — a well, not a hill. No arrow ever appears. The sign is in the number, never a direction.", "text_hi": "देखिए। Charge Q का sign flip करें, और potential V plus से minus हो जाता है — एक well, hill नहीं। कोई arrow कभी नहीं दिखता। Sign number में होता है, कभी direction में नहीं।", "text_te": "చూడండి. Charge Q యొక్క sign ని flip చేయండి, మరియు potential V plus నుండి minus కు flip అవుతుంది — ఒక well, hill కాదు. ఎప్పుడూ arrow కనిపించదు. Sign number లో ఉంటుంది, ఎప్పుడూ direction లో ఉండదు.",
               "reveal_primitive_id": "well_label",
-              "appear_at_ms": 9500,
-              "pause_after_ms": 1200
+              "appear_at_ms": 9500
             }
           ]
         },
@@ -849,10 +841,12 @@
     "states": {
       "STATE_1": {
         "label": "Recall hook - same +Q dome, faint known shells",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "field_lines_faint",
-          "equipotential_shells_faint"
+          "equipotential_shells_faint",
+          "test_charge_idle"
         ],
         "camera_position": [
           2.6,
@@ -862,17 +856,20 @@
         "caption": "",
         "show_charge": "plus",
         "potential": {
-          "show_field": "off",
+          "show_field": "faint",
           "show_equipotential": "faint",
-          "show_v_curve": false
+          "show_v_curve": false,
+          "show_test_charge": true,
+          "test_charge_r": 2.5,
+          "idle_bob": true
         },
         "formula_overlay": ""
       },
       "STATE_2": {
         "label": "Answer V = kQ/r - shell at P lights up",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
-          "field_lines_faint",
           "point_P",
           "equipotential_shell_at_P",
           "v_value_on_shell"
@@ -896,10 +893,10 @@
         "formula_overlay": "V = kQ/r"
       },
       "STATE_3": {
-        "label": "Halve r - predict x4, reveal only x2 (6 to 12)",
+        "label": "Halve r - instinct says x4, V only x2 (6 to 12)",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
-          "field_lines_faint",
           "equipotential_shells",
           "test_charge_moving",
           "v_count_up"
@@ -926,6 +923,7 @@
       },
       "STATE_4": {
         "label": "PRIMARY aha - V (1/r) curve over E (1/r2) ghost, meet at r=2",
+        "visible_controls": [],
         "visible_elements": [
           "v_vs_r_axes",
           "v_curve_bright",
@@ -954,6 +952,7 @@
       },
       "STATE_5": {
         "label": "Sign flip - +Q hill to -Q well, no arrow",
+        "visible_controls": [],
         "visible_elements": [
           "charge_sign_toggle",
           "equipotential_shells",
@@ -979,6 +978,8 @@
       },
       "STATE_6": {
         "label": "Explore - drag r, live V on the 1/r curve, sign toggle",
+        "visible_controls": ["r"],
+        "show_sliders": true,
         "visible_elements": [
           "charge_plus",
           "equipotential_shells",
@@ -1010,7 +1011,7 @@
       "background": "#0A0A1A",
       "text": "#D4D4D8",
       "positive": "#EF5350",
-      "negative": "#42A5F5",
+      "negative": "#2979FF",
       "field_line": "#66BB6A"
     }
   }

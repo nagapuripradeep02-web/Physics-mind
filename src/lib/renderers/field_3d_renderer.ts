@@ -314,6 +314,10 @@ export interface Field3DConfig {
             // STATE_7 explorer: render at full immediately + idle auto-sweep + drag.
             draggable_test_charge?: boolean;
             idle_auto_sweep?: boolean;
+            // STATE_1 hook: gentle camera-plane bob of the statically-posed test
+            // charge (Rule 31 no-static-state; pm_state1_hook_zero_motion row).
+            // Pure fn of the state clock; ignored on route/draggable states.
+            idle_bob?: boolean;
             // ── equipotential_surfaces STATE_7 explore-state tuning (2026-06-28,
             //   all OPTIONAL, DEFAULT-OFF/elevated — absence ⇒ identical behaviour
             //   for every existing diamond). Read by applyPotentialMeaningState() +
@@ -14719,11 +14723,54 @@ export const FIELD_3D_RENDERER_CODE = `
     //               label gets a leading minus. NO arrow is ever drawn (the potential
     //               is a signed SCALAR — constraint C3 / Rule 16a secondary). Called
     //               from the STATE_5 flip + STATE_6 toggle + each apply() entry reset.
+    //   The SOURCE sphere + the outward-built field lines follow the live sign too
+    //   (ppc_sign_flip_recolor_imperceptible_source_stays_red): the red dome turns
+    //   the negative colour, and the fl_/arr_ field lines HIDE while negative —
+    //   their arrowheads were built pointing outward, wrong physics for −Q.
     function pmApplyChargeSign(sign, immediate) {
         var neg = sign < 0;
         var posCol = (config.colors && config.colors.equipotential) || (config.equipotential && config.equipotential.color) || "#4FC3F7";
         var negCol = (config.pvl_colors && config.pvl_colors.negative) || (config.colors && config.colors.negative) || "#42A5F5";
         var shellCol = neg ? negCol : posCol;
+        // Source sphere: colour + emissive by live sign, string-form .set() only
+        // (setHex(<Color>) coerces to NaN and blacks the mesh — the known scar).
+        var srcPosCol = (config.pvl_colors && config.pvl_colors.positive) || (config.field_lines && config.field_lines.color_positive) || "#EF5350";
+        var srcCol = neg ? negCol : srcPosCol;
+        var srcSph = pmFindById("pm_source");
+        if (srcSph && srcSph.material && srcSph.material.color) {
+            srcSph.material.color.set(srcCol);
+            if (srcSph.material.emissive) srcSph.material.emissive.set(srcCol);
+        }
+        // Field lines + arrowheads (build ids fl_*/arr_* only — never the ⊥-E demo
+        // arrow pm_e_arrow): hide while negative; on return to + re-derive the
+        // CURRENT state's opacity tier + count-thinning instead of restoring a
+        // stash, which would go stale across a state change (the apply() entry
+        // reset fires this with the new state already applied).
+        for (var fi = 0; fi < sceneObjects.length; fi++) {
+            var fo = sceneObjects[fi], fud = fo.userData;
+            if (!fud || (fud.elementType !== "field_line" && fud.elementType !== "arrow")) continue;
+            if (!/^(fl_|arr_)/.test(String(fud.id || ""))) continue;
+            if (neg) {
+                fud.pmHiddenBySign = true;
+                fo.visible = false;
+                if (fo.material) fo.material.opacity = 0;
+            } else if (fud.pmHiddenBySign) {
+                delete fud.pmHiddenBySign;
+                var sdefS = config.states && config.states[PM_currentState];
+                var pS = (sdefS && sdefS.potential) || {};
+                var flmS = pS.show_field || "faint";
+                var floS = flmS === "off" ? 0 : (flmS === "normal" ? 0.85 : 0.22);
+                if (typeof pS.field_line_opacity === "number") floS = pS.field_line_opacity;
+                var flcS = (typeof pS.field_line_count === "number") ? pS.field_line_count : -1;
+                if (flcS >= 0) {
+                    var mS = String(fud.id || "").match(/^(?:fl_.*_(\d+)|arr_.*_(\d+)_\d+)$/);
+                    var idxS = mS ? parseInt(mS[1] != null ? mS[1] : mS[2], 10) : -1;
+                    if (idxS >= flcS) floS = 0;
+                }
+                fo.visible = floS > 0;
+                if (fo.material) { fo.material.transparent = true; fo.material.opacity = floS; }
+            }
+        }
         for (var i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i], ud = o.userData;
             if (!ud || !ud.isPmShell) continue;
@@ -14773,6 +14820,21 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // camera basis for billboarding markers to screen-right (3/4 camera).
         var camR = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+
+        // ── STATE_1 hook: gentle idle bob of the far test charge ─────────────
+        // (Rule 31 no-static-state — pm_state1_hook_zero_motion_full_duration.)
+        // A small deterministic Lissajous around the seeded pose, pure fn of the
+        // state clock (THE EYE-safe). Guarded off route/draggable states so it
+        // can never fight the STATE_2 travel or the STATE_7 sweep/drag.
+        if (p.idle_bob && !(p.animate_route && p.animate_route.length) && !p.draggable_test_charge) {
+            var bobR = (typeof p.test_charge_r === "number") ? p.test_charge_r : startR;
+            var bobX = bobR + 0.10 * Math.sin(ms / 1400);
+            var bobY = 0.07 * Math.sin(ms / 900 + 1.2);
+            var tcBob = pmFindById("pm_test_charge");
+            var tcBobLbl = pmFindById("pm_test_charge_label");
+            if (tcBob) { tcBob.visible = true; tcBob.position.set(bobX, bobY, 0); }
+            if (tcBobLbl) { tcBobLbl.visible = true; tcBobLbl.position.set(bobX, bobY + 0.34, 0); }
+        }
 
         // ── STATE_2: two-route animation + live tally tick ───────────────────
         if (p.animate_route && p.animate_route.length) {
