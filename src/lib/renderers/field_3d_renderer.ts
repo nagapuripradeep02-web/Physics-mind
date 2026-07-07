@@ -5376,7 +5376,12 @@ export const FIELD_3D_RENDERER_CODE = `
             // sweep θ across the half-plane where cosθ matches sign(c).
             for (var deg = -88; deg <= 88; deg += 4) {
                 var th = deg * Math.PI / 180;
-                var cosv = (c >= 0) ? Math.cos(th) : -Math.cos(th);   // mirror for negative lobe
+                // r(θ) = sqrt(vp·p·|cosθ|/|c|) is mirror-symmetric — the sgn
+                // multiplier below already reflects the loop to the −q side for
+                // c<0. The old cosv = −cos(th) made cosv ≤ 0 for EVERY th in
+                // [−88°,88°], so the negative tubes kept their 2-point stub and
+                // never rendered (dipole_lobe_negative_branch_dead).
+                var cosv = Math.cos(th);
                 if (cosv <= 0.001) continue;
                 var rr = Math.sqrt(vp * p * cosv / Math.abs(c));
                 rr = Math.min(rr, 3.4);
@@ -5425,6 +5430,29 @@ export const FIELD_3D_RENDERER_CODE = `
             if (ms <= at5) th = f5;
             else if (ms >= at5 + dur5) th = t5;
             else { var u5 = (ms - at5) / dur5; u5 = u5 * u5 * (3 - 2 * u5); th = f5 + (t5 - f5) * u5; }
+        }
+        // STATE_7 idle auto-sweep — hands-free θ drift across the sign flip +
+        // gentle r breathing until the teacher grabs the probe or a slider
+        // (both set PM_dpUserDragged). Pure fn of the state clock + config
+        // constants, no accumulation (Rule 26); mirrors the system_of_charges
+        // idle_auto_sweep (dipole_potential_idle_auto_sweep_unimplemented).
+        if (p.idle_auto_sweep && !p.sweep && !p.theta_sweep && !window.PM_dpUserDragged) {
+            var ti7 = ms / 1000;
+            var rb7 = (config.dipole_defaults && config.dipole_defaults.r_default != null)
+                ? config.dipole_defaults.r_default : 1.5;
+            th = 90 - 80 * Math.cos(ti7 * 0.45);   // starts at θ=10° (+q side), sweeps across the equator
+            r = Math.max(0.7, Math.min(2.9, rb7 + 0.45 * Math.sin(ti7 * 0.7 + 0.9)));
+        }
+        // S1/S2 hook idle bob — tiny deterministic (r, θ) breathing of the
+        // statically posed probe (Rule 31 no-static-state,
+        // dp_hook_states_zero_physical_motion); the live V readout ticks with
+        // it — V is a number AT a point. Guarded off sweep/drag states; pure
+        // fn of the clock + the state's own probe_r/probe_theta constants.
+        if (p.idle_bob && !p.sweep && !p.theta_sweep && !p.draggable_probe && !window.PM_dpUserDragged) {
+            var rbB = (typeof p.probe_r === "number") ? p.probe_r : r;
+            var tbB = (typeof p.probe_theta === "number") ? p.probe_theta : th;
+            th = tbB + 6 * Math.sin(ms / 1400);
+            r = rbB + 0.08 * Math.sin(ms / 900 + 1.2);
         }
         window.PM_dpR = r; window.PM_dpTheta = th;
         if (p.show_probe) dpRepositionProbe(r, th);

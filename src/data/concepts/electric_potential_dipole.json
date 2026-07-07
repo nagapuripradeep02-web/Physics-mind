@@ -161,8 +161,8 @@
         "title": "A dipole + a probe — add the two charge potentials as scalars",
         "duration": 17,
         "focal_primitive_id": "dipole_pair",
-        "advance_mode": "auto_after_tts",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -232,7 +232,7 @@
         "duration": 19,
         "focal_primitive_id": "formula_callout",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -301,7 +301,7 @@
         "title": "Cross to the other side — the sign follows POSITION, not charge",
         "duration": 20,
         "focal_primitive_id": "sign_recolor",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "scene_composition": [
           {
@@ -322,7 +322,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "does V stay positive (+q wins), or go negative?",
+            "text": "natural guess: V stays positive (+q wins)",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -350,12 +350,11 @@
             },
             {
               "id": "s3_2",
-              "text_en": "Predict the sign of the potential V over there. Does it stay positive because plus q is the bigger, friendlier charge, or does it go negative?",
-              "text_hi": "उस तरफ potential V का sign predict करें। क्या यह positive रहेगा क्योंकि plus q बड़ा और 'friendly' charge है, या negative हो जाएगा?",
-              "text_te": "ఆ వైపు potential V యొక్క sign ని predict చేయండి. Plus q పెద్ద, 'friendly' charge కాబట్టి V positive గా ఉంటుందా, లేదా negative అవుతుందా?",
+              "text_en": "The natural guess is that the potential V stays positive everywhere, because plus q feels like the bigger, friendlier charge that always wins.",
+              "text_hi": "natural guess यह है कि potential V हर जगह positive रहता है, क्योंकि plus q बड़ा और friendly charge लगता है जो हमेशा जीतता है।",
+              "text_te": "natural guess ఏమిటంటే potential V ప్రతిచోటా positive గా ఉంటుంది, ఎందుకంటే plus q పెద్ద, friendly charge గా అనిపిస్తుంది, అది ఎప్పుడూ గెలుస్తుంది.",
               "reveal_primitive_id": "predict_sign_label",
-              "appear_at_ms": 5500,
-              "pause_after_ms": 2800
+              "appear_at_ms": 5500
             },
             {
               "id": "s3_3",
@@ -394,7 +393,7 @@
         "title": "The equatorial plane: V = 0 everywhere — but E is not",
         "duration": 28,
         "focal_primitive_id": "equatorial_E_arrow",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "scene_composition": [
           {
@@ -415,7 +414,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "V = 0 only at the centre, or across the WHOLE plane?",
+            "text": "natural guess: V = 0 only at the centre",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -465,12 +464,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "On this whole plane every point is equally far from plus q and from minus q. Predict the potential V here — zero only at the dead centre, or zero across the ENTIRE plane?",
-              "text_hi": "इस पूरे plane पर हर point, plus q और minus q से बराबर दूरी पर है। यहाँ potential V क्या होगा — केवल बीचोंबीच zero, या पूरे ENTIRE plane पर zero?",
-              "text_te": "ఈ పూర్తి plane లో ప్రతి point plus q మరియు minus q నుండి సమానంగా దూరంలో ఉంది. ఇక్కడ potential V ని predict చేయండి — కేవలం మధ్య point లో zero, లేదా ENTIRE plane అంతటా zero?",
+              "text_en": "On this whole plane every point is equally far from plus q and from minus q. The natural guess is that the potential V is zero only at the dead centre.",
+              "text_hi": "इस पूरे plane पर हर point, plus q और minus q से बराबर दूरी पर है। natural guess यह है कि potential V केवल बीचोंबीच dead centre पर ही zero होता है।",
+              "text_te": "ఈ పూర్తి plane లో ప్రతి point plus q మరియు minus q నుండి సమానంగా దూరంలో ఉంది. natural guess ఏమిటంటే potential V కేవలం మధ్య dead centre లో మాత్రమే zero అవుతుంది.",
               "reveal_primitive_id": "predict_zero_label",
-              "appear_at_ms": 6000,
-              "pause_after_ms": 3000
+              "appear_at_ms": 6000
             },
             {
               "id": "s4_3",
@@ -523,7 +521,7 @@
         "duration": 19,
         "focal_primitive_id": "v_vs_theta_curve",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -601,7 +599,7 @@
         "title": "Falloff: dipole V dies as 1/r² — steeper than a point charge's 1/r",
         "duration": 20,
         "focal_primitive_id": "inv_r2_split",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "scene_composition": [
           {
@@ -622,7 +620,7 @@
               "x": 600,
               "y": 210
             },
-            "text": "dipole V fades as 1/r like a point charge, or faster?",
+            "text": "natural guess: dipole V fades as 1/r, like a point charge",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -661,12 +659,11 @@
             },
             {
               "id": "s6_2",
-              "text_en": "A single point charge fades as one over r. Predict the dipole: does its potential V also fade as one over r, or faster?",
-              "text_hi": "एक single point charge, one over r की तरह fade होता है। Dipole के बारे में predict करें: क्या इसका potential V भी one over r की तरह fade होगा, या तेज?",
-              "text_te": "ఒక single point charge one over r గా fade అవుతుంది. Dipole గురించి predict చేయండి: దాని potential V కూడా one over r గా fade అవుతుందా, లేదా వేగంగా?",
+              "text_en": "A single point charge fades as one over r. The natural guess is that the dipole's potential V fades the same way, as one over r.",
+              "text_hi": "एक single point charge, one over r की तरह fade होता है। natural guess यह है कि dipole का potential V भी उसी तरह, one over r की तरह fade होता है।",
+              "text_te": "ఒక single point charge one over r గా fade అవుతుంది. natural guess ఏమిటంటే dipole యొక్క potential V కూడా అదే విధంగా, one over r గా fade అవుతుంది.",
               "reveal_primitive_id": "predict_falloff_label",
-              "appear_at_ms": 5500,
-              "pause_after_ms": 2800
+              "appear_at_ms": 5500
             },
             {
               "id": "s6_3",
@@ -1045,6 +1042,7 @@
     "states": {
       "STATE_1": {
         "label": "Dipole + probe - add the two charge potentials as scalars",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "charge_minus",
@@ -1069,12 +1067,14 @@
           "v_formula": "V_superpose_demo",
           "show_two_term": true,
           "two_term_at_ms": 6500,
-          "v_readout_at_ms": 12500
+          "v_readout_at_ms": 12500,
+          "idle_bob": true
         },
         "formula_overlay": "V = k q / r₊ − k q / r₋"
       },
       "STATE_2": {
         "label": "Step back - two-term sum collapses to V = k p cosθ / r²",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "charge_minus",
@@ -1099,12 +1099,14 @@
           "v_formula": "V_dipole_demo",
           "show_theta_arc": true,
           "theta_arc_at_ms": 700,
-          "formula_callout_at_ms": 6000
+          "formula_callout_at_ms": 6000,
+          "idle_bob": true
         },
         "formula_overlay": "V = k p cos θ / r²"
       },
       "STATE_3": {
         "label": "Cross the centre - sign follows cos θ (position), not charge",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "charge_minus",
@@ -1133,13 +1135,13 @@
             "at_ms": 9000,
             "duration_ms": 3500
           },
-          "show_sign_recolor": true,
-          "predict_at_ms": 5500
+          "show_sign_recolor": true
         },
         "formula_overlay": "sign follows cos θ: + near +q, − near −q"
       },
       "STATE_4": {
         "label": "PRIMARY aha - equatorial disc reads V=0 everywhere, E arrow stays",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "charge_minus",
@@ -1166,13 +1168,13 @@
           "show_equatorial_E_arrow": true,
           "e_arrow_formula": "E_equatorial_demo",
           "e_arrow_direction": "antiparallel_to_p",
-          "e_arrow_at_ms": 16000,
-          "predict_at_ms": 6000
+          "e_arrow_at_ms": 16000
         },
         "formula_overlay": "θ = 90°: V = 0 everywhere, but E ≠ 0"
       },
       "STATE_5": {
         "label": "Sweep θ - V rides a cosine curve, a signed scalar with no arrow",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "charge_minus",
@@ -1207,6 +1209,7 @@
       },
       "STATE_6": {
         "label": "Falloff - dipole 1/r² (bright) dives below point-charge 1/r ghost",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "charge_minus",
@@ -1232,13 +1235,13 @@
           "curve_draw_at_ms": 700,
           "ghost_fade_at_ms": 9000,
           "crossover_at_r": 1.0,
-          "predict_at_ms": 5500,
           "split_highlight_at_ms": 9000
         },
         "formula_overlay": "dipole V ~ 1/r²  vs  point charge V ~ 1/r"
       },
       "STATE_7": {
         "label": "Explore - drag probe + θ/r sliders, live signed V, equipotential lobes",
+        "visible_controls": ["theta", "r"],
         "visible_elements": [
           "charge_plus",
           "charge_minus",
