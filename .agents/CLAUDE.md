@@ -28,14 +28,14 @@ Naming reminder: emission filename and `name:` field use **hyphenated** form (`j
 
 | Cluster | Role (canonical dir) | Pattern | One-line summary |
 |---|---|---|---|
-| Alex | `architect` | pipelined #1 | Produces 9-section skeleton + Pass-1 strategic checklist (v2.3) |
+| Alex | `architect` | pipelined #1 | Produces 9-section skeleton + Pass-1 strategic checklist (v2.3). Model-pinned `claude-fable-5` (2026-07-08 — the creative pedagogy/choreography role; watch the first dispatch's token cost, fallback = revert pin to sonnet-5). |
 | Alex | `physics_author` | pipelined #2 | Produces physics block (variables, formulas, constraints, reveals). Model-pinned `claude-sonnet-5` (2026-07-04). |
-| Alex | `json_author` | pipelined #3 | Produces the `.json` + 8 registration sites + SQL migration |
-| Alex | `quality_auditor` | pipelined #4 (gate) | Per-gate PASS/FAIL verdict + return-to-author FAIL routing. Reports only, never edits. |
+| Alex | `json_author` | pipelined #3 | Produces the `.json` + 8 registration sites + SQL migration. Model-pinned `claude-sonnet-5` (2026-07-08). |
+| Alex | `quality_auditor` | pipelined #4 (gate) | Per-gate PASS/FAIL verdict + return-to-author FAIL routing. Reports only, never edits. Model-pinned `claude-sonnet-5` (2026-07-08; upgraded from `claude-sonnet-4-6`). |
 | Alex | `eye_walker` | parallel verification (frames) | Reads THE EYE frame dumps in its own context; per-state verdict table + ≤5 frames for founder eyes. Curates, never approves. Dispatched alongside quality_auditor. |
 | Alex | `retrofit_surgeon` | dispatched per-concept for doctrine deltas | ONE concept + ONE named delta = minimal surgical diff; preserves cue/glow bindings + PRIMARY aha; fleet migration = N parallel dispatches. |
-| Peter Parker | `renderer_primitives` | FAIL-routed | Display layer in `parametric_renderer.ts` + PCPL primitives. Never call directly. |
-| Peter Parker | `runtime_generation` | FAIL-routed | Generator + jsonModifier + cache sweeps. Only agent that runs `DELETE` on cache tables. Never call directly. |
+| Peter Parker | `renderer_primitives` | FAIL-routed | Display layer in `parametric_renderer.ts` + PCPL primitives. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
+| Peter Parker | `runtime_generation` | FAIL-routed | Generator + jsonModifier + cache sweeps. Only agent that runs `DELETE` on cache tables. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
 | Release | `shipper` | post-approval release chain — **founder-triggered only** | Rule 30f last step: visual:approve → translate (provider fallback) → tts EN+TE → rebuild → verify. Refuses to run without an approval statement. |
 | Offline | `feedback_collector` | nightly only | E38–E41 quartet. Reads 5 feedback tables, writes proposals. Never invoked during live serving paths. |
 

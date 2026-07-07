@@ -2,6 +2,7 @@
 name: runtime-generation
 description: Use this agent when a bug is tagged [owner: peter_parker:runtime_generation] — root cause lives in aiSimulationGenerator, jsonModifier, loadConstants, deep-dive/drill-down generators, the inline computePhysics_<concept> functions in parametric_renderer.ts lines 47–250, the 8 physicsEngine concept files, prompt files, or API serving routes. ALSO use when an incoming regen directive needs cache-table sweep execution — only agent that runs DELETE on cache tables.
 tools: Read, Grep, Glob, Edit, Write, Bash
+model: claude-sonnet-5
 ---
 
 > **Spec source.** This subagent's body is the canonical role spec for `runtime-generation` in the PhysicsMind Peter Parker engine cluster.

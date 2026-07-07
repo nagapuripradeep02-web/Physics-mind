@@ -2,6 +2,7 @@
 name: renderer-primitives
 description: Use this agent when a bug is tagged [owner: peter_parker:renderer_primitives] — root cause lives in parametric_renderer display layer (drawForceArrow, drawVector, drawAngleArc, subscene assembly, postMessage SET_STATE/PARAM_UPDATE listeners), 14-file PCPL primitive library, anchor-resolver / zone-layout / choreography / scale engines, or constraint solver. Fixes engine once, writes regen directive, hands to runtime-generation for cache execution. Never edits content JSONs or API routes.
 tools: Read, Grep, Glob, Edit, Write, Bash
+model: claude-sonnet-5
 ---
 
 > **Spec source.** This subagent's body is the canonical role spec for `renderer-primitives` in the PhysicsMind Peter Parker engine cluster.

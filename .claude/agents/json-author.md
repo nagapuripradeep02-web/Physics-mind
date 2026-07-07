@@ -2,6 +2,7 @@
 name: json-author
 description: Use this agent AFTER architect skeleton AND physics-author block exist — json-author writes the actual src/data/concepts/<id>.json conforming to v2.2 Zod schema, registers the concept at all 8 registration sites (panelConfig, intentClassifier VALID_CONCEPT_IDS + CLASSIFIER_PROMPT, PCPL_CONCEPTS set, etc.), authors the supabase_migrations/supabase_<date>_seed_<id>_clusters_migration.sql, and ensures every primitive lives within the 760×500 canvas. Iterate until npx tsc --noEmit and npm run validate:concepts both pass.
 tools: Read, Grep, Glob, Edit, Write, Bash
+model: claude-sonnet-5
 ---
 
 > **Spec source.** This subagent's body is the canonical role spec for `json-author` in the PhysicsMind concept-authoring pipeline.
@@ -20,7 +21,12 @@ Third in the pipeline. Converts architect skeleton + physics block into a full c
 > replaces "sliders in the last state only"):** every state is live (`show_sliders: true`), but each state
 > exposes ONLY its own relevant control row(s) via the scenario's per-state block (mode-driven, like
 > `faraday.mode`); the final explore state exposes ALL. Panel built ONCE in the scenario; rows shown/hidden
-> per state; shared sliders keep their screen position. **Legacy-only:** `pause_after_ms` carrying applies
+> per state; shared sliders keep their screen position. **Legibility (Rule 32, 2026-07-08):** every guided
+> state's `field_3d_config.states[].caption` OPENS with a ≤5-word delta cue naming the state's one new
+> thing (from the architect's delta column; STATE_1 = the setup/hook) — label-style, Rule 24-safe;
+> per-state configs keep the SAME apparatus from a recognizable home pose (no teleport-rebuild; camera
+> moves only to frame the new thing); glow choreography never overlaps — exactly ONE glow focal at any
+> instant (32e). **Legacy-only:** `pause_after_ms` carrying applies
 > when retrofitting a pre-Rule-31 Socratic concept (the electric_flux clone gotcha) — never author new ones.
 
 ## Role
@@ -244,7 +250,7 @@ Before declaring a state done, answer all four in concrete terms (not generic). 
 - No Hinglish (`zameen, deewar, tum, hain, kya, seedhi`).
 - No textbook phrasing (*"Let us consider a block of mass m..."*).
 - Indian real-world concrete (*"a mango from a tree"*, *"an elevator floor"*) not abstract (*"an object"*).
-- 3–5 sentences per state typical.
+- 2–4 tight sentences (25–55 EN words total) per guided state (Rule 31a word budget, 2026-07-08); >55 words = the state carries two ideas — flag to architect to split, don't compress into run-ons; explore state = 0/open.
 
 ## Modes — CONCEPTUAL ONLY for new concepts (Rule 20 SUSPENDED 2026-06-11)
 
@@ -292,6 +298,7 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 - [ ] Re-entry orientation check — first 5s of each state shows relevant context; no delayed first reveal (`reveal_at_ms > 2000`) leaves a bare object during the orientation window.
 - [ ] For RHR/FBD/gesture states: gesture-mirror primitive present (`field_3d_config…right_hand.animate_curl:true` for field_3d) OR escalation note attached (`peter_parker:renderer_primitives` bug filed).
 - [ ] field_3d concepts: every physics-block `pause_after_ms` carried forward into the JSON (the Diamond #4 dropped-pause regression check).
+- [ ] **Rule 32 legibility (new concepts):** every guided state's caption opens with the ≤5-word delta cue; per-state word count on `text_en` ∈ 25–55 (explore exempt); same apparatus/home pose across state configs (no teleport-rebuild); no overlapping glow windows — one focal at a time.
 
 ## Escalation
 

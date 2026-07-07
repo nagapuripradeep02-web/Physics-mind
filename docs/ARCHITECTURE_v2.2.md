@@ -210,10 +210,11 @@ The CLAUDE.md §7 table (2-3 / 3-4 / 5-6 / 7-9 / 10-12) is calibration, not a ce
 
 ### 4.2 Socratic reveal — the default pacing
 
-> **[SUPERSEDED — Rule 31, 2026-07-02.]** The default pacing for NEW concepts is now the
-> **straightforward distinct-motion beat** (~15–25s, no predict→reveal, per-state contextual
-> controls, combined interactive explore-last) — see root `CLAUDE.md` Rule 31, CLAUDE_RULES.md,
-> and DISCUSSIONS Sessions 78/79. The core claim below stands — *static simulations fail
+> **[SUPERSEDED — Rule 31, 2026-07-02; word budget 2026-07-08.]** The default pacing for NEW concepts is now the
+> **straightforward distinct-motion beat** (ONE idea + ONE complete motion; narration 25–55 EN words
+> ≈ 2–4 tight sentences ≈ 10–20s; no predict→reveal; per-state contextual
+> controls, combined interactive explore-last) — see root `CLAUDE.md` Rules 31/32, CLAUDE_RULES.md,
+> and DISCUSSIONS Sessions 78/79/82. The core claim below stands — *static simulations fail
 > pedagogy* — but the fix is continuous motion, not prediction pauses. The template below is
 > retained for pre-Rule-31 (legacy Socratic) concepts only.
 

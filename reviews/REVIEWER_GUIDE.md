@@ -23,15 +23,15 @@ reverse.
 - You do **not** need to pretend to be a student or guess "will a student understand this?" — your real
   student answers that for us.
 
-### 2. Your per-state review — the 6 questions
+### 2. Your per-state review — the 7 questions
 
-Go through the sim **state by state**, and for each state answer the six questions below. Deliver this
+Go through the sim **state by state**, and for each state answer the seven questions below. Deliver this
 whichever way is easier for you:
 
 - **record yourself** narrating the 6 answers per state as you click through, **or**
 - **fill the Excel template** → [`templates/per_state_review.csv`](templates/per_state_review.csv).
 
-**The 6 questions (per state):**
+**The 7 questions (per state):**
 
 1. **Correct?** — Is the physics in this state right?
 2. **Right order?** — Does this state build on the one before it? Is anything shown or named *before* the
@@ -40,9 +40,11 @@ whichever way is easier for you:
    direction or a quantity is being taught?
 4. **Reads with sound OFF?** — Mute it. Does the picture alone carry the point? (We default to no audio
    in class.)
-5. **How would you use it?** — Where would you point? Would you skip this state? How does it fit your
+5. **Clearly different?** — Did this state feel clearly different from the previous one — and worth its
+   own click? (If two states blur together, tell us which.)
+6. **How would you use it?** — Where would you point? Would you skip this state? How does it fit your
    explanation?
-6. **Anything missing, wrong, or confusing?** — The one thing you'd fix.
+7. **Anything missing, wrong, or confusing?** — The one thing you'd fix.
 
 **Also — your recommended state order.** Tell us the order *you* would teach these states in (e.g.
 "I'd swap 3 and 4"). Your recommended flow becomes the sim's default order.
@@ -67,8 +69,9 @@ whichever way is easier for you:
 > and screen-record it. Teach naturally — don't explain the sim, just teach. Let them ask questions.
 >
 > **2)** Then go through the sim state by state and tell me, for each state: (1) is it correct? (2) is
-> the order right? (3) are the labels/arrows there? (4) does it make sense with the sound off? (5) how
-> would you use it? (6) anything missing or wrong? — record yourself saying it, or fill the small Excel
+> the order right? (3) are the labels/arrows there? (4) does it make sense with the sound off? (5) did
+> this state feel clearly different from the previous one — worth its own click? (6) how
+> would you use it? (7) anything missing or wrong? — record yourself saying it, or fill the small Excel
 > I'll send. Also tell me the order you'd teach the states in.
 >
 > Keep it to ~5 main points. Drop both recordings into the Drive folder, named "[concept] [date]".

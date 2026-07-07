@@ -1,10 +1,14 @@
 # faraday_law_induction — architect skeleton (Rule 31 exemplar — CLONE THIS SHAPE)
 
-> **[NEW MODEL — the canonical Rule 31 exemplar, 2026-07-02.]** This skeleton is reverse-engineered
-> from the SHIPPED `src/data/concepts/faraday_law_induction.json` (built natively in the
-> straightforward + per-state-contextual-controls model, founder-approved). New concepts clone THIS
-> shape: straightforward distinct-motion beats (~28–35s, no Socratic predict→reveal), per-state
-> contextual controls, combined interactive explore-last, one scenario engine.
+> **[NEW MODEL — the canonical Rule 31 exemplar, 2026-07-02; archetype/delta columns + word budget 2026-07-08.]**
+> This skeleton is reverse-engineered from the SHIPPED `src/data/concepts/faraday_law_induction.json`
+> (built natively in the straightforward + per-state-contextual-controls model, founder-approved).
+> New concepts clone THIS shape: straightforward distinct-motion beats (ONE idea + ONE complete motion,
+> narration 25–55 EN words ≈ 2–4 tight sentences, no Socratic predict→reveal), per-state contextual
+> controls, combined interactive explore-last, one scenario engine.
+> **Word-budget caveat:** faraday's shipped narration (67–94 EN words/state, measured 2026-07-08)
+> PREDATES the 25–55 budget — clone the arc/controls/archetypes, NOT the sentence length. The first
+> true word-budget exemplar will be the next natively-authored concept (`magnetic_flux`).
 > Companion: `magnetisation_and_intensity` (same model, retrofitted from founder video review).
 
 ## 1. Atomic claim
@@ -20,19 +24,26 @@ is static, no `teaching_method` fields (Rule 31 default).
 
 ## 3. Per-state choreography + control plan — THE CONTROL TABLE (Rule 31 — first design artifact)
 
-| state | teaches | DISTINCT motion (no repeats; pure fn of state clock) | live control(s) | dur |
-|---|---|---|---|---|
-| S1 `flux_steady` | Φ = B·A·cosθ; steady flux → ε = 0 | magnet HELD STILL partway in; flux lines shimmer/breathe; needle pinned at zero (the contrast beat) | **none** (watch) | 30s |
-| S2 `push_in` | changing flux induces ε (AHA) | magnet SLIDES IN (smoothstep 2.2s); flux lines densify; needle swings; current beads start flowing | **none** (guided) | 32s |
-| S3 `pull_out` | sign of ε follows the change direction | magnet SLIDES OUT; flux thins; needle swings the OTHER way; beads reverse | **none** (guided) | 30s |
-| S4 `lenz` | the − sign = opposition (energy conservation) | two-phase LOOP: slow approach (coil face = red N, repels) → withdrawal (face flips blue S, attracts); force arrow always against the motion | **none** (guided) | 32s |
-| S5 `rate` | ε = −N dΦ/dt — rate + turns scale it | magnet OSCILLATES; needle amplitude tracks the speed slider live | **speed v · turns N** | 32s |
-| S6 `sandbox` | synthesis — recover every relation | teacher DRAGS the magnet; flux/needle/beads/readout all live | **ALL: position · speed · turns** | 0/open |
+| state | teaches | archetype | DISTINCT motion (no repeats; pure fn of state clock) | delta (→ ≤5-word caption cue, Rule 32c) | live control(s) | narration (EN words)* |
+|---|---|---|---|---|---|---|
+| S1 `flux_steady` | Φ = B·A·cosθ; steady flux → ε = 0 | `null-result-hold` | magnet HELD STILL partway in; flux lines shimmer/breathe; needle pinned at zero (the contrast beat) | setup: big flux, zero current | **none** (watch) | 79 |
+| S2 `push_in` | changing flux induces ε (AHA) | `translate-through` | magnet SLIDES IN (smoothstep 2.2s); flux lines densify; needle swings; current beads start flowing | motion begins → needle kicks | **none** (guided) | 81 |
+| S3 `pull_out` | sign of ε follows the change direction | `translate-through` (contrast pair of S2) | magnet SLIDES OUT; flux thins; needle swings the OTHER way; beads reverse | direction reverses → sign flips | **none** (guided) | 67 |
+| S4 `lenz` | the − sign = opposition (energy conservation) | `cycle-compare` | two-phase LOOP: slow approach (coil face = red N, repels) → withdrawal (face flips blue S, attracts); force arrow always against the motion | pole face opposes BOTH ways | **none** (guided) | 94 |
+| S5 `rate` | ε = −N dΦ/dt — rate + turns scale it | `oscillate/track` | magnet OSCILLATES; needle amplitude tracks the speed slider live | speed & turns scale ε | **speed v · turns N** | 84 |
+| S6 `sandbox` | synthesis — recover every relation | `drag-sandbox` | teacher DRAGS the magnet; flux/needle/beads/readout all live | all yours | **ALL: position · speed · turns** | 0/open |
+
+\* Measured 2026-07-08 from the shipped JSON — these counts PREDATE the 25–55 word budget (Rule 31a);
+new concepts must land 25–55 per guided state. S2/S3 sharing `translate-through` is the canonical
+declared contrast/reversal pair (delta names the flip); every other archetype appears once;
+`drag-sandbox` on the explore state only.
 
 Control-table catches honored: one panel (`far_sliders`) built once, rows (`far_pos_row` /
 `far_speed_row` / `far_turns_row`) shown/hidden per state by the scenario block's `mode`; shared
 sliders keep bottom-right position + row order; S1–S4 having zero controls is FINE — their
-choreography auto-plays (motion ≠ interactivity).
+choreography auto-plays (motion ≠ interactivity). Rule 32 legibility honored: cause→effect ordering
+(magnet moves, THEN needle/beads respond), one variable moves per state, apparatus persists (same
+coil/magnet/needle home pose across all six states), delta column doubles as the caption cue.
 
 ## 4. Misconception confrontation plan (Rule 16a — contrast beats, no predict→reveal)
 

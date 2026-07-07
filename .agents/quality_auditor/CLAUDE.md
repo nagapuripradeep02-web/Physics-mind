@@ -26,6 +26,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 - **Gate 3c** — Socratic-reveal discipline — **LEGACY: only if any state has `teaching_method: "narrative_socratic"` (pre-Rule-31 PCPL). Does NOT fire for field_3d diamonds or any new concept.**
 - **Gate 3d** — E42 physics 9-condition check.
 - **Gate 3e** — Rule 31 distinct-motion + contextual-controls discipline — **ALL new concepts** (per-state control table honored; no static state; no two states' motion alike; explore-last has all controls; no Socratic artifacts).
+- **Gate 3f** — Rule 32 legibility + Rule 31-tight word-budget pacing — **ALL new concepts** (25–55 EN words/guided state; archetype table honored, no repeat without declared contrast pair; ≤5-word delta cue opens every caption; cause before effect; one variable moves; home-pose continuity; one glow focal).
 - **Gate 4 (+4a, +4b)** — live visual walk both paths + classifier-reachability + pill freshness. For field_3d diamonds this is `visual:eyes` / direct capture — **actually look at every state.**
 - **Gate 7** — console + log discipline (zero errors/warnings on target routes).
 - **Gate 8** — `engine_bug_queue` regression check ← **the scar list.** Every probe relevant to the candidate must pass. This is the mechanism by which the pre-flight gets smarter every week as the reviewer surfaces new mistake-classes (Phase 3).
@@ -199,13 +200,40 @@ per-state control table (skeleton section 3 — its absence is itself a Gate 0 F
    SAME screen position + row order across them.
 4. **No Socratic artifacts:** no `wait_for_answer` advance_mode, no `pause_after_ms` prediction pauses,
    no `narrative_socratic` teaching_method on a new concept.
-5. **Pacing:** guided beats ~15–25s ≈3–4 tight sentences (soft — flag >30s or <10s as Concern, not FAIL); final explore
+5. **Pacing:** superseded 2026-07-08 → checked by Part 3f #1 (word budget); final explore
    state duration 0/open.
 
 Violations: route content-table mismatches to json_author; a missing/incoherent control table to
 architect; panel-rebuild / position-drift defects to `peter_parker:renderer_primitives`.
 Reference implementations: `faraday_law_induction` (S1–S4 none · S5 speed+turns · S6 all),
 `magnetisation_and_intensity` (current on S1–S4 · +material on S5/S6).
+
+**Part 3f — Rule 32 legibility + Rule 31-tight pacing (added 2026-07-08) — ALL new concepts**
+
+The visibility counterpart of 3e (3e = shape; 3f = legibility). Check against the architect's control
+table (archetype + delta columns — their absence is a Gate 0 FAIL) and the shipped JSON:
+1. **Word budget (mechanical):** per guided state, total words across `tts_sentences[].text_en` ∈ 25–55.
+   >55 = FAIL ("two ideas — split", route to architect); <~20 = Concern ("merge or enrich"). Explore
+   state exempt. Count with a script, paste the per-state numbers as evidence.
+2. **Archetype table (structural):** skeleton §3 table carries `motion archetype` + `delta` columns;
+   every guided state's archetype ∈ the seed vocabulary (or coined + justified in the skeleton); NO
+   archetype repeat without a declared contrast/reversal pair whose delta names the flip;
+   `drag-sandbox` only on the explore state. JSON states must match the table.
+3. **Delta cue (mechanical):** every guided state's `field_3d_config.states[].caption` OPENS with a
+   ≤5-word cue naming the state's new thing (STATE_1 = setup/hook). Missing/buried cue = FAIL.
+4. **Cause→effect (judgment):** in each state's choreography the CAUSE moves visibly first; the effect
+   responds after a readable beat (~0.5–1s). Simultaneous cause+effect = FAIL (except `oscillate/track`
+   states after their first explicit cause→effect demonstration).
+5. **One-variable-moves (judgment):** only the taught variable's motion changes; every other apparatus
+   element holds pose (explore exempt).
+6. **Continuity (judgment; use eye_walker frames):** same apparatus across states, recognizable home
+   pose, no teleport-rebuild; camera moves only to frame the new thing.
+7. **Single focal (mechanical):** no overlapping glow windows in the teacher_script/choreography —
+   exactly ONE glow focal at any instant (Rule 32e; Rule 29 governs how, 3f#7 governs how many).
+
+Violations: word budget / delta cue → json_author (text) or architect (two-ideas split); timeline /
+cause-effect ordering → physics_author; archetype/table design → architect; panel/continuity engine
+defects → `peter_parker:renderer_primitives`.
 
 **Part 3d — E42 Physics Validator 9 conditions** (CLAUDE_ENGINES.md Tier 9):
 1. **mg_perp direction symmetry** — normal reaction perpendicular to surface, opposite to mg_perp component

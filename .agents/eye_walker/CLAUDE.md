@@ -5,10 +5,12 @@ context so the main session never loads ~100+ PNGs (~100–150k tokens/concept �
 compaction). Dispatched by the main session AFTER `npm run visual:eyes -- <id>` has run (or runs it itself),
 in PARALLEL with quality_auditor (routine checks fan out — hard rule 2). Owner-tag: `alex:eye_walker`.
 
-> **Phase directive (2026-07-04).** Rule 31 straightforward model is LAW: every guided state must show
-> distinct motion, no static state, no two states visually alike, explore-last. Conceptual-only phase:
-> board/competitive overlays should NOT appear in any frame. EPIC-C branches deferred — frames come from
-> `epic_l_path` states only.
+> **Phase directive (2026-07-04; Rule 32 added 2026-07-08).** Rule 31 straightforward model is LAW: every
+> guided state must show distinct motion, no static state, no two states visually alike, explore-last.
+> Rule 32 legibility is LAW on new concepts: each state's frozen frame must VISIBLY differ from the previous
+> state's, its caption must open with a ≤5-word delta cue, and at any instant exactly ONE element carries
+> glow emphasis. Conceptual-only phase: board/competitive overlays should NOT appear in any frame. EPIC-C
+> branches deferred — frames come from `epic_l_path` states only.
 
 ## Role
 
@@ -48,7 +50,13 @@ routing to `alex:json_author` / `peter_parker:*` is decided by the main session 
    - distinct motion present (Rule 31) — something physically meaningful moves;
    - no frozen tail (motion dies before the state's end);
    - no mid-state teleport (discontinuous jump between adjacent dense frames);
-   - across states: no two states visually alike.
+   - across states: no two states visually alike;
+   - **delta visible (Rule 32, new concepts):** this state's frozen frame visibly differs from the
+     PREVIOUS state's frozen frame, and the caption's ≤5-word delta cue is readable in-frame;
+   - **single focal (Rule 32e):** in any one frame at most ONE element reads as glow-emphasized
+     (two simultaneous bright focals = a finding);
+   - **home-pose continuity (Rule 32d):** the apparatus persists across adjacent states' frames —
+     no teleport-rebuild of the scene between states (camera may re-frame the new thing only).
 5. **Formula/caption frames → `<STATE_N>__i2_*.png`.** Rule 24: labels + equations + derivation steps only,
    never prose walls; must read correctly with sound OFF. Rule 29: emphasis via brightness, never size.
 6. **Known false-positive classes — do NOT flag:**
@@ -62,8 +70,10 @@ routing to `alex:json_author` / `peter_parker:*` is decided by the main session 
 A single compact markdown report (this is your final message — raw data, not prose for a human):
 
 1. The deterministic gate summary line, verbatim.
-2. **Per-state verdict table:** `| state | reveal (frozen) | motion (dense) | Rule 24/29 | note |` with
-   ✓/✗ per cell and a ≤10-word note on any ✗.
+2. **Per-state verdict table:** `| state | reveal (frozen) | motion (dense) | delta visible? | Rule 24/29 | note |` with
+   ✓/✗ per cell and a ≤10-word note on any ✗. `delta visible?` = the state's frozen frame visibly
+   differs from the previous state's AND the ≤5-word delta cue is readable (STATE_1: cue names the
+   setup; compare against a black/empty baseline).
 3. **Frames for founder eyes:** ≤5 absolute frame paths, each with one line of why. Zero is a valid answer.
 4. **Candidate engine_bug_queue rows** for every real defect found: `bug_class` (snake_case, new),
    `severity` (CRITICAL/MAJOR/MODERATE), suggested `owner_cluster`
@@ -95,7 +105,8 @@ known scar is a MAJOR finding even if it looks minor on screen.
 ## Self-review checklist (before returning)
 
 - [ ] Deterministic summary line echoed verbatim.
-- [ ] EVERY state appears in the verdict table (no sampling — the walk is exhaustive).
+- [ ] EVERY state appears in the verdict table (no sampling — the walk is exhaustive), including the
+      `delta visible?` column on every row (Rule 32).
 - [ ] Every reveal judgment cites the frozen frame, not a dense frame.
 - [ ] Every ✗ has either a founder-eyes frame path or a candidate bug row (or both).
 - [ ] No false-positive class flagged (checked against the list above).

@@ -30,7 +30,7 @@ A single markdown skeleton (no JSON yet) with these 10 sections:
 
 1. **Atomic claim** — one sentence: "This concept teaches X and only X. It does not cover Y (deferred to <concept_id>)."
 2. **State count + arc** — EPIC-L state count with a one-line purpose per state (guided distinct-motion beats → combined interactive last state; the hook MOVES too — no static setup state). Include per-state `teaching_method` (see §"Teaching method per state" below).
-3. **Per-state choreography + control plan (Rule 31 — the control table is the FIRST design artifact)** — one row per state: (a) what it teaches (one aspect); (b) its DISTINCT motion — what animates, and how it differs from every other state's motion (no two alike, none static); (c) its live control(s) — ONLY the slider(s) relevant to this state's teaching; the final explore state lists ALL; (d) rough duration (~15–25s guided ≈3–4 tight sentences; explore = 0/open). See §"Straightforward motion beats" below. No prediction questions, no reveal-answer beats.
+3. **Per-state choreography + control plan (Rule 31 — the control table is the FIRST design artifact)** — one row per state: (a) what it teaches (one aspect); (b) its **motion archetype** — ONE name from the vocabulary in §"Straightforward motion beats" (coin a new one only with a one-line justification); (c) its DISTINCT motion — what animates, and how it differs from every other state's motion (no two alike, none static; no archetype repeat except a declared contrast/reversal pair whose delta names the flip); (d) its **delta** — one line, "what changed vs the previous state" (unique per state; it becomes the state's ≤5-word on-canvas delta cue, Rule 32c); (e) its live control(s) — ONLY the slider(s) relevant to this state's teaching; the final explore state lists ALL; (f) narration budget (**25–55 EN words ≈ 2–4 tight sentences ≈ 10–20s**; >55 = the state carries two ideas, split it; <~20 = merge or enrich; explore = 0/open). See §"Straightforward motion beats" below. No prediction questions, no reveal-answer beats.
 4. **Misconception confrontation plan** — list the genuine wrong beliefs and, for each, the EPIC-L state + `misconception_watch` beat that confronts it (Rule 16a). EPIC-C branches are NOT authored by default (EPIC-L-first directive, 2026-06-10); only when the founder explicitly requests them, give branch_id + misconception one-liner + how STATE_1 visualizes the wrong belief explicitly (Rule 16b). **Guardrail (founder 2026-07-04): `misconception_watch` belongs ONLY at genuine motivation/misconception pivots — never a per-state tic. Most states are straightforward teaching and carry NO misconception_watch. If you find yourself adding one to every state, you are manufacturing misconceptions — stop and keep only the real ones (typically 1–3 per concept).**
 5. **`has_prebuilt_deep_dive` states** — 2–3 state IDs whose deep-dive sub-sims are worth pre-authoring (fast cache hit). **Not a gate** — every state shows the Explain button to students; this flag just means the deep-dive is pre-built, not on-demand (Sonnet). Justify each ("this is where students historically get stuck, so we invest in a hand-authored deep-dive").
 6. **Drill-down clusters** — for each `has_prebuilt_deep_dive` state, 3 cluster_id candidates (snake_case) + one-sentence description. Physics_author will flesh out trigger_examples.
@@ -79,22 +79,39 @@ If you land outside this range, either the concept isn't atomic (consider splitt
 
 **Static simulations still fail pedagogy — but the fix is MOTION, not prediction pauses.** The V1 audience is a teacher narrating in their own voice (Rule 24); there is no student at the screen to answer a prediction question, so the Socratic predict→pause→reveal machinery is retired for new concepts (founder, Sessions 78/79). The default pattern for every guided state:
 
-- **One aspect, one beat, ~15–25s.** The state teaches exactly one thing, and its choreography SHOWS that thing happening — continuously, auto-playing on the state clock (Rule 26), looping if natural (e.g. faraday S4's approach→withdraw Lenz loop).
-- **Distinct motion per state.** No two states may share the same motion/choreography; no state may be static. A state earns its place by a genuinely distinct picture-in-motion (Session 78 grading rule).
+- **One idea, one beat, one complete motion — 25–55 EN words (Rule 31a, 2026-07-08).** The state teaches exactly one thing, and its choreography SHOWS that thing happening — continuously, auto-playing on the state clock (Rule 26), looping if natural (e.g. faraday S4's approach→withdraw Lenz loop), completing at least one full motion cycle per dwell. Narration budget 25–55 EN words (2–4 tight sentences ≈ 10–20s): >55 words = two ideas, split the state; <~20 = doesn't earn its click, merge or enrich. The motion may run longer than the talking, never the reverse.
+- **Distinct motion per state — DECLARED via archetype + delta.** No two states may share the same motion/choreography; no state may be static. A state earns its place by a genuinely distinct picture-in-motion (Session 78 grading rule). Each state's table row names ONE archetype from this seed vocabulary (coin a new one only with a one-line justification):
+
+| Archetype | Definition | Example |
+|---|---|---|
+| `translate-through` | An object moves through/past the apparatus | Magnet slides into coil |
+| `rotate/flip` | Orientation change of an object | Dipole flip; pole-face reversal |
+| `densify/rarefy` | Field lines / particles visibly thicken or thin | Flux densifies as magnet nears |
+| `oscillate/track` | Periodic motion with a readout tracking it | Magnet oscillates, needle tracks |
+| `align/scatter` | Many elements order or disorder | Domain dipoles align; M grows |
+| `flow-along-path` | Particles/beads stream along a path | Induced-current beads in the coil |
+| `reveal-build` | Scene constructs piece by piece | Field lines draw in one by one |
+| `cycle-compare` | A→B→A′ loop contrasting phases | Approach vs withdraw (Lenz) |
+| `null-result-hold` | Deliberate "nothing happens" beat killing a misconception | Static magnet inside coil → needle 0 (the Rule 16a contrast pattern) |
+| `drag-sandbox` | Teacher-driven manipulation | Explore state ONLY |
+
+  **No-repeat rule:** two guided states may share an archetype ONLY as a deliberate contrast/reversal pair whose delta line names the flip (faraday S2 push-in / S3 pull-out — same translate, delta = sign of dΦ/dt reverses). `drag-sandbox` is reserved for the final explore state.
+- **Legibility per beat (Rule 32).** Choreograph the CAUSE moving visibly first, the effect responding after a readable beat (~0.5–1s) — never simultaneous (32a). Only the taught variable's motion changes; all other apparatus holds pose (32b; explore exempt). The delta column doubles as the state's ≤5-word caption cue (32c). The same apparatus persists across states from a recognizable home pose — no teleport-rebuild; camera moves only to frame the new thing (32d). Exactly ONE glow focal at any instant (32e).
 - **Contextual controls (Rule 31c).** The state exposes ONLY the slider(s) relevant to its aspect — the visible control silently says "this is the variable that matters here." Zero controls is fine on a watch-this beat (motion ≠ interactivity). The final explore state exposes ALL controls.
 - **Misconceptions = contrast beats (Rule 16a amended).** Show the wrong expectation's consequence visually, then the real physics, back-to-back in motion — no question, no pause (e.g. faraday S1: magnet held still INSIDE the coil → needle stays at zero despite large flux).
 
 **Architect's job**: fill the per-state control table (state × teaches × distinct motion × live controls × duration). Physics_author turns each row into a motion timeline; json_author implements via the scenario's per-state block (mode-driven, like `faraday.mode`).
 
-**Reference pattern — `faraday_law_induction` (authored natively in this model):**
+**Reference pattern — `faraday_law_induction` (authored natively in this model; archetypes annotated 2026-07-08):**
 ```
-S1 flux_steady   magnet still, flux shimmer, needle at 0     controls: none    (contrast beat)
-S2 push_in       magnet slides in, flux densifies, needle    controls: none    (the AHA)
-S3 pull_out      magnet slides out, needle reverses          controls: none
-S4 lenz          approach→withdraw loop, pole face flips     controls: none
-S5 rate          magnet oscillates, deflection tracks speed  controls: speed, turns
-S6 sandbox       teacher drags magnet, all readouts live     controls: ALL     (interaction_complete)
+S1 flux_steady   null-result-hold   magnet still, flux shimmer, needle at 0     delta: setup — big flux, zero current   controls: none    (contrast beat)
+S2 push_in       translate-through  magnet slides in, flux densifies, needle    delta: motion begins → needle kicks     controls: none    (the AHA)
+S3 pull_out      translate-through  magnet slides out, needle reverses          delta: direction reverses → sign flips  controls: none    (contrast pair of S2)
+S4 lenz          cycle-compare      approach→withdraw loop, pole face flips     delta: pole face opposes BOTH ways      controls: none
+S5 rate          oscillate/track    magnet oscillates, deflection tracks speed  delta: speed & turns scale ε            controls: speed, turns
+S6 sandbox       drag-sandbox       teacher drags magnet, all readouts live     delta: all yours                        controls: ALL     (interaction_complete)
 ```
+*(Clone this arc/controls/archetype SHAPE — not its sentence length: faraday's narration (67–94 EN words/state) predates the 25–55 word budget.)*
 
 ## Socratic reveal — [SUPERSEDED by Rule 31, 2026-07-02 — do NOT clone for new concepts; legacy reference only] (session 33)
 
@@ -288,7 +305,8 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 - [ ] (When EPIC-C branches are authored) each STATE_1 plan describes visualizing the wrong belief in primitives, not just stating it in a teacher_script sentence.
 - [ ] 2–3 `has_prebuilt_deep_dive` states picked (cache-hint, not a gate), each with 3 candidate cluster_ids.
 - [ ] Every EPIC-L state has a `teaching_method` field (v2.2) — never `narrative_socratic` on new concepts (Rule 31).
-- [ ] **Per-state control table present (Rule 31)** — one row per state: teaches × distinct motion (no two alike, none static) × live controls (only-what-this-state-needs; explore state = ALL) × duration (~15–25s guided, explore 0/open).
+- [ ] **Per-state control table present (Rule 31)** — one row per state: teaches × motion archetype × distinct motion (no two alike, none static; no archetype repeat except a declared contrast pair; drag-sandbox only on explore) × delta (one line, unique) × live controls (only-what-this-state-needs; explore state = ALL) × narration budget (25–55 EN words guided, explore 0/open).
+- [ ] **Rule 32 legibility plan** — every state's choreography sequences CAUSE before effect (readable beat); only the taught variable moves (explore exempt); the delta column doubles as the ≤5-word caption cue; apparatus persists from a home pose (no teleport-rebuild; camera moves only to frame the new thing); exactly ONE glow focal at any instant.
 - [ ] `entry_state_map` declared with at least `foundational` range, plus any aspect-specific ranges (incline, elevator, etc.) that match the concept's scope.
 - [ ] Prerequisites are advisory, cite shipped concepts where possible.
 - [ ] Definition of Done block (section 10) is complete — every named vector has a label row, every direction-teaching state has an RHR row, everything that moves has a motion row, modes + assessment declared. Zero TBDs (Gate 0 fails the skeleton otherwise).

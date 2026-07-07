@@ -131,10 +131,14 @@ EPIC-L: 2–3 (very simple) … 10–12 (very complex). MICRO/HOTSPOT = exactly 
 Quality test: "could a student who watches ALL states answer any exam question on this concept?"
 (EPIC-C / deep-dive / drill-down / board state counts are DORMANT — CLAUDE_RULES.md.)
 
-**Pacing + shape (Rule 31):** guided states are straightforward distinct-motion beats **~15–25s (≈3–4 tight sentences)** each
-(the final explore state = 0/open); no two states alike, no static state (DISCUSSIONS Session 78
-distinct-pictures grading + Session 79 straightforward model). Exemplars: `faraday_law_induction`,
-`magnetisation_and_intensity`.
+**Pacing + shape (Rule 31, word budget 2026-07-08):** a guided state = **ONE idea + ONE complete motion**,
+narration **25–55 EN words (2–4 tight sentences ≈ 10–20s)** — >55 = split ("two ideas"), <~20 = merge/enrich;
+motion may outrun narration, never the reverse (the final explore state = 0/open); no two states alike, no
+static state — each state DECLARES a motion archetype + delta line, no archetype repeat except a declared
+contrast pair (DISCUSSIONS Sessions 78/82). **Legibility (Rule 32):** cause moves before effect · only the
+taught variable moves · caption opens with a ≤5-word delta cue · same apparatus, home pose, no teleport ·
+one glow focal at a time. Shape exemplars: `faraday_law_induction`, `magnetisation_and_intensity` (narration
+predates the word budget — clone their arc/controls, not their sentence length).
 
 ---
 
@@ -204,7 +208,9 @@ wrong belief via a straightforward contrast beat) · Rule 19 (≥3 primitives/st
 (labels/equations only, reads sound-off) · Rule 25 (foundation-first, no untaught term, explanation
 co-located with its visual) · Rule 27 (new physics objects = explorer pattern: stable ID + params) ·
 Rule 29 (emphasis = brightness, never size — no zoom/bulge) · **Rule 31 (per-state contextual
-controls; distinct motion every state, no static state; explore-last)** · Indian anchor, plain
+controls; word budget 25–55 EN words/state; distinct motion every state via declared archetype+delta,
+no static state; explore-last)** · **Rule 32 (cause-first, one-variable-moves, delta-cue caption,
+home-pose continuity, single focal)** · Indian anchor, plain
 English · **THE EYE** (§5 ③) with zero new `engine_bug_queue` rows.
 
 ---
@@ -244,7 +250,8 @@ English · **THE EYE** (§5 ③) with zero new `engine_bug_queue` rows.
 28. **[V2]** Every new field_3d sim ships a "Professor Pack" as DATA (concept JSON knobs/objects/states + reviewed `voice_professor/<id>.json`), never new engine code. Generic verbs over named objects; never invent per-sim ops. (§4)
 29. **[A]** Emphasis is brightness, NEVER size — no zoom-in/zoom-out "bulge" on any element. Focal brightens + peers dim via `applyGlowEmphasis()`; named meshes (the 3D hand) stay static, full-bright, never dim (`brightenOnly`); a vector's length changes ONLY when the real physical magnitude does (e.g. `tauThrob`). (CLAUDE_RULES.md)
 30. **[A]** Stored narration uses Sarvam **bulbul:v3** (speaker `priya`), not v2 — v3 pronounces inline code-mixed English / Romanized symbols natively. **Never transliterate** inline English to Telugu/Hindi script (Sarvam: transliteration *degrades* quality). **Expand bare single-letter physics symbols to their full spoken name in the narration** (E→"electric field E", V→"potential V", B→"magnetic field B", I→"current I", F→"force F", …) — concept-correct meaning, formula bodies stay compact; on-canvas labels stay symbolic (Rule 24). **Colour names stay ENGLISH in the Hindi + Telugu narration** (founder 2026-06-29) — write red/blue/yellow/green/purple/amber in Latin inside `text_hi`/`text_te`, never translated (red→लाल/ఎరుపు, blue→नीला/నీలం, etc.); same code-mixed reasoning as no-transliteration. Defaults live in `generate_tts_audio.ts`. **30f (2026-07-02): ship EN + Telugu AUDIO per concept — rendered LAST (after founder visual approval, before teacher handoff); Hindi text-only until a Hindi market exists; more languages only after ~25-chapter coverage + a native reviewer each.** (CLAUDE_RULES.md)
-31. **[A]** **Straightforward + per-state contextual controls (founder 2026-07-01/02; Sessions 78/79).** Guided states = straightforward distinct-motion beats (~15–25s ≈3–4 tight sentences, no Socratic predict→reveal, no static state, no two states alike); each state exposes ONLY the slider(s) relevant to what it teaches; the final explore state exposes ALL (`interaction_complete`). Built as presets over ONE engine: control panel built once, rows shown/hidden per state; a shared slider keeps the same screen position; the per-state control table is a REQUIRED design artifact. Exemplars: `faraday_law_induction`, `magnetisation_and_intensity`. (CLAUDE_RULES.md)
+31. **[A]** **Straightforward + per-state contextual controls (founder 2026-07-01/02; Sessions 78/79; word budget + archetypes 2026-07-08).** Guided states = ONE idea + ONE complete motion each (narration 25–55 EN words ≈ 2–4 tight sentences ≈ 10–20s; >55 = split, <~20 = merge; motion may outrun narration, never the reverse; no Socratic predict→reveal, no static state); distinct motion is DECLARED — each state names a motion archetype + a one-line delta, no archetype repeat except a declared contrast pair; each state exposes ONLY the slider(s) relevant to what it teaches; the final explore state exposes ALL (`interaction_complete`). Built as presets over ONE engine: control panel built once, rows shown/hidden per state; a shared slider keeps the same screen position; the per-state control table (state × teaches × archetype × delta × controls × duration) is a REQUIRED design artifact. Shape exemplars: `faraday_law_induction`, `magnetisation_and_intensity`. (CLAUDE_RULES.md)
+32. **[A]** **Legibility — every state makes its physics and its difference visible (founder 2026-07-08; Session 82).** (32a) the CAUSE moves visibly first, the effect responds after a readable beat — never simultaneous; (32b) in a guided state ONLY the taught variable's motion changes, all else holds pose (explore exempt); (32c) each guided state's caption OPENS with a ≤5-word delta cue naming its one new thing; (32d) the same apparatus persists across states from a recognizable home pose — at every click the only visible change IS the new thing; (32e) exactly ONE glow-focal element at any instant (Rule 29 = how to emphasize; 32e = how many). Gate 3f + eye_walker "delta visible?". (CLAUDE_RULES.md)
 
 ---
 
