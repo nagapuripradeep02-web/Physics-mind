@@ -1547,8 +1547,14 @@ export function deriveHoldExpectations(
             //     is user-driven and the headless harness never performs it →
             //     interactive.
             //   animate_route / release_at_ms → STATE_2/3 (meaning) are declared MOTION
-            //     in deriveMotionExpectations → keep the strict gate (undefined) so
-            //     D5/D6/D7 expect ongoing pixel motion, not a static tail.
+            //     in deriveMotionExpectations (D5/D6 expect the travel/fly-out to move
+            //     pixels), but the choreography plays ONCE and then HOLDS its end pose
+            //     (route 2 lands its tally ~16.5s into a 22s state; the release drains
+            //     the badge ~8.7s into an 18s state) → reveal_hold, the same
+            //     motion+hold pairing as the dipole_potential sweep/theta_sweep branch
+            //     below, so D7 permits the authored post-choreography tail instead of
+            //     false-failing "animation died" (seen live 2026-07-06, THE EYE run
+            //     20260706 electric_potential_meaning S2/S3).
             //   the remaining beats (q→2q grow, ΔV/∞ markers, shells, V write-in, the
             //     point_charge halve-r slide+count-up, the V-vs-r curve draw + gap, the
             //     sign-flip recolor) are one-shot reveals then HOLD → reveal_hold via
@@ -1561,7 +1567,7 @@ export function deriveHoldExpectations(
                 // user-driven (the headless harness never drags) → interactive.
                 if (potHold.draggable_probe === true) { out[stateId] = 'interactive'; continue; }
                 const routes = Array.isArray(potHold.animate_route) && potHold.animate_route.length > 0;
-                if (routes || typeof potHold.release_at_ms === 'number') { out[stateId] = undefined; continue; }
+                if (routes || typeof potHold.release_at_ms === 'number') { out[stateId] = 'reveal_hold'; continue; }
                 // dipole_potential STATE_3 `sweep` / STATE_5 `theta_sweep`: both are
                 // one-shot probe sweeps that play ONCE then HOLD their end pose (STATE_5
                 // holds the finished cosine curve; STATE_3 holds the probe at θ=140° with

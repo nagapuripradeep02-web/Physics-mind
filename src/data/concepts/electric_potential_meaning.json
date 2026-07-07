@@ -147,8 +147,8 @@
         "title": "A +Q dome — how much effort to push a test charge in close?",
         "duration": 14,
         "focal_primitive_id": "effort_question_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -192,8 +192,7 @@
             },
             {
               "id": "s1_2",
-              "text_en": "To push that small charge in close to the dome, against the field shoving it away, will it take effort, and does it matter which way you walk it in?", "text_hi": "उस छोटे charge को dome के पास push करने के लिए, field के against जो उसे दूर धकेल रही है — क्या उसमें effort लगेगा, और क्या मायने रखता है कि आप किस रास्ते से ले जाते हैं?", "text_te": "ఆ చిన్న charge ని dome దగ్గరకి push చేయడానికి, field కి వ్యతిరేకంగా — అందులో effort పడుతుందా, మరియు మీరు ఏ దారిలో తీసుకెళ్ళినా తేడా ఉంటుందా?",
-              "pause_after_ms": 2600
+              "text_en": "Pushing that small charge in close, against the field shoving it away, takes real effort — and the route you take feels like it should matter too.", "text_hi": "उस छोटे charge को पास push करने में, field के against जो उसे दूर धकेल रही है, असली effort लगता है — और लगता है कि रास्ता भी मायने रखना चाहिए।", "text_te": "ఆ చిన్న charge ని దగ్గరకి, దాన్ని దూరంగా నెట్టే field కి వ్యతిరేకంగా push చేయడానికి నిజమైన effort పడుతుంది — మరియు మీరు తీసుకునే దారి కూడా ముఖ్యమనిపిస్తుంది."
             }
           ]
         },
@@ -209,8 +208,8 @@
         "title": "Two different paths, same total effort: the field is conservative",
         "duration": 22,
         "focal_primitive_id": "conservative_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -250,8 +249,7 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Watch me bring it in two ways. Path one is a straight dash inward. Path two loops the long way around. Predict: same effort, or different?", "text_hi": "देखो मैं इसे दो तरीकों से लाता हूँ। Path one सीधे अंदर की तरफ है। Path two लंबे रास्ते से घूमकर। Predict करो: same effort लगेगा, या अलग?", "text_te": "నేను దీన్ని రెండు విధాలుగా తీసుకొస్తా చూడండి. Path one నేరుగా లోపలికి. Path two పొడవైన దారి చుట్టూ. Predict చేయండి: same effort అవుతుందా, వేరుగా ఉంటుందా?",
-              "pause_after_ms": 2800
+              "text_en": "Watch me bring it in two ways. Path one is a straight dash inward. Path two loops the long way around. We will compare the effort each route costs.", "text_hi": "देखो मैं इसे दो तरीकों से लाता हूँ। Path one सीधे अंदर की तरफ है। Path two लंबे रास्ते से घूमकर। हम compare करेंगे कि हर route में कितना effort लगता है।", "text_te": "నేను దీన్ని రెండు విధాలుగా తీసుకొస్తా చూడండి. Path one నేరుగా లోపలికి. Path two పొడవైన దారి చుట్టూ. ఒక్కో route కి ఎంత effort అవుతుందో compare చేద్దాం."
             },
             {
               "id": "s2_2",
@@ -281,8 +279,8 @@
         "title": "That stored effort is the charge's potential ENERGY, U",
         "duration": 18,
         "focal_primitive_id": "energy_label",
-        "advance_mode": "auto_after_tts",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -322,8 +320,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "That effort you spent pushing in did not vanish. If I let go of the charge right now, what do you think happens?", "text_hi": "वो effort जो तुमने push करने में लगाया, वो गया नहीं। अगर मैं अभी charge को छोड़ दूँ, तो क्या होगा बताओ?", "text_te": "మీరు push చేయడానికి పెట్టిన ఆ effort అదృశ్యం కాలేదు. నేను ఇప్పుడే charge ని వదిలేస్తే, ఏం జరుగుతుందని అనుకుంటున్నారు?",
-              "pause_after_ms": 2500
+              "text_en": "That effort you spent pushing in did not vanish. It is banked at this spot — and letting go of the charge is about to show where it went.", "text_hi": "वो effort जो तुमने push करने में लगाया, वो गया नहीं। वो इसी जगह जमा है — और charge को छोड़ते ही पता चलेगा कि वो कहाँ गया।", "text_te": "మీరు push చేయడానికి పెట్టిన ఆ effort అదృశ్యం కాలేదు. అది ఈ చోటే దాచుకుని ఉంది — charge ని వదిలేయగానే అది ఎక్కడికెళ్ళిందో కనబడుతుంది."
             },
             {
               "id": "s3_2",
@@ -392,8 +389,7 @@
             },
             {
               "id": "s4_2",
-              "text_en": "Swap the small charge for one twice as big, a 2q. Predict the work to bring it to the same point, and predict the work divided by the charge.", "text_hi": "छोटे charge की जगह दोगुना बड़ा, एक 2q लाओ। Predict करो कि उसे उसी point तक लाने में कितना work लगेगा, और work divided by the charge कितना होगा।", "text_te": "చిన్న charge బదులు రెట్టింపు పెద్దది, ఒక 2q తీసుకురండి. దాన్ని అదే point కి తీసుకురావడానికి work ఎంత అవుతుందో, మరియు work divided by the charge ఎంతుంటుందో predict చేయండి.",
-              "pause_after_ms": 2800
+              "text_en": "Swap the small charge for one twice as big, a 2q. The work is about to change — but watch what the work divided by the charge does.", "text_hi": "छोटे charge की जगह दोगुना बड़ा, एक 2q लाओ। Work बदलने वाला है — लेकिन देखो work divided by the charge का क्या होता है।", "text_te": "చిన్న charge బదులు రెట్టింపు పెద్దది, ఒక 2q తీసుకురండి. Work మారబోతోంది — కానీ work divided by the charge ఏం చేస్తుందో చూడండి."
             },
             {
               "id": "s4_3",
@@ -424,7 +420,7 @@
         "duration": 30,
         "focal_primitive_id": "delta_v_label",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
+        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
@@ -464,7 +460,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "We have been saying 'work to bring it here', but from where? We need a starting line. The natural zero is infinitely far away, where the field cannot reach.", "text_hi": "हम 'work to bring it here' कह रहे थे, लेकिन कहाँ से? हमें एक starting line चाहिए। Natural zero बहुत दूर infinity पर है, जहाँ field पहुँच नहीं सकती।", "text_te": "మేము 'work to bring it here' అంటున్నాం, కానీ ఎక్కడి నుండి? మాకు ఒక starting line కావాలి. Natural zero అనంత దూరంలో infinity వద్ద ఉంది, అక్కడికి field చేరలేదు."
+              "text_en": "We have been saying 'work to bring it here' — that needs a starting line to measure from. The natural zero is infinitely far away, where the field cannot reach.", "text_hi": "हम 'work to bring it here' कह रहे थे — इसके लिए एक starting line चाहिए जहाँ से measure करें। Natural zero बहुत दूर infinity पर है, जहाँ field पहुँच नहीं सकती।", "text_te": "మేము 'work to bring it here' అంటున్నాం — దానికి measure చేయడానికి ఒక starting line కావాలి. Natural zero అనంత దూరంలో infinity వద్ద ఉంది, అక్కడికి field చేరలేదు."
             },
             {
               "id": "s5_2",
@@ -472,8 +468,7 @@
             },
             {
               "id": "s5_3",
-              "text_en": "Now mark a second point, B, closer in than A. Predict: for this positive dome, is B's potential higher than A's, or lower?", "text_hi": "अब A से थोड़ा अंदर एक दूसरा point B mark करो। Predict करो: इस positive dome के लिए, B का potential A से ऊँचा होगा या नीचा?", "text_te": "ఇప్పుడు A కంటే కొంచెం లోపల ఒక రెండో point B ని mark చేయండి. Predict చేయండి: ఈ positive dome కి, B యొక్క potential A కంటే ఎక్కువగా ఉంటుందా లేదా తక్కువగా?",
-              "pause_after_ms": 2600
+              "text_en": "Now mark a second point, B, closer in than A. For this positive dome, watch which of the two sits at the higher potential.", "text_hi": "अब A से थोड़ा अंदर एक दूसरा point B mark करो। इस positive dome के लिए, देखो दोनों में से कौन higher potential पर बैठता है।", "text_te": "ఇప్పుడు A కంటే కొంచెం లోపల ఒక రెండో point B ని mark చేయండి. ఈ positive dome కి, రెండింటిలో ఏది higher potential వద్ద ఉంటుందో చూడండి."
             },
             {
               "id": "s5_4",
@@ -542,12 +537,11 @@
             },
             {
               "id": "s6_2",
-              "text_en": "Is potential an arrow too? Does the potential at a point have a direction, like the electric field E does? Predict before I reveal the shells.", "text_hi": "क्या potential भी एक arrow है? क्या किसी point पर potential की कोई direction होती है, जैसे electric field E की होती है? Shells reveal करने से पहले predict करो।", "text_te": "Potential కూడా ఒక arrow అంటారా? ఒక point వద్ద potential కి కూడా direction ఉంటుందా, electric field E లాగా? Shells reveal చేయడానికి ముందు predict చేయండి.",
-              "pause_after_ms": 2800
+              "text_en": "The natural guess is that potential is an arrow too, with a direction at every point just like the electric field E. The shells about to appear settle it.", "text_hi": "Natural guess यह है कि potential भी एक arrow है, हर point पर एक direction के साथ, बिल्कुल electric field E की तरह। जो shells आने वाली हैं, वही इसका फैसला करेंगी।", "text_te": "Natural guess ఏమిటంటే potential కూడా ఒక arrow అని, ప్రతి point వద్ద ఒక direction తో, సరిగ్గా electric field E లాగా. రాబోయే shells ఇది తేల్చేస్తాయి."
             },
             {
               "id": "s6_3",
-              "text_en": "No. Watch the surfaces of equal potential appear: nested shells, each carrying one plain number, no arrow. Every point on a shell shares one potential V.", "text_hi": "नहीं। देखो equal potential की surfaces कैसे appear होती हैं: nested shells, हर एक पर एक plain number, कोई arrow नहीं। एक shell पर हर point एक ही potential V share करता है।", "text_te": "లేదు. Equal potential యొక్క surfaces ఎలా appear అవుతున్నాయో చూడండి: nested shells, ఒక్కో దానిపై ఒక plain number, arrow లేదు. ఒక shell మీద ప్రతి point ఒకే potential V share చేసుకుంటుంది."
+              "text_en": "It is not. Watch the surfaces of equal potential appear: nested shells, each carrying one plain number, no arrow. Every point on a shell shares one potential V.", "text_hi": "ऐसा नहीं है। देखो equal potential की surfaces कैसे appear होती हैं: nested shells, हर एक पर एक plain number, कोई arrow नहीं। एक shell पर हर point एक ही potential V share करता है।", "text_te": "అలా కాదు. Equal potential యొక్క surfaces ఎలా appear అవుతున్నాయో చూడండి: nested shells, ఒక్కో దానిపై ఒక plain number, arrow లేదు. ఒక shell మీద ప్రతి point ఒకే potential V share చేసుకుంటుంది."
             },
             {
               "id": "s6_4",
@@ -622,7 +616,7 @@
             },
             {
               "id": "s7_3",
-              "text_en": "One question left for next time: exactly how big is the potential V at distance r from a point charge? That is the potential V = kQ/r, the formula behind these shells.", "text_hi": "अगली बार के लिए एक question बचा है: ठीक-ठीक potential V कितना होता है जब point charge से distance r हो? वो है potential V equals k Q over r, इन shells के पीछे का formula।", "text_te": "తర్వాత సారికి ఒక question మిగిలింది: ఒక point charge నుండి distance r వద్ద potential V సరిగ్గా ఎంత? అది potential V equals k Q over r, ఈ shells వెనక ఉన్న formula."
+              "text_en": "One thing is saved for next time: exactly how big the potential V is at distance r from a point charge. That is the potential V equals k Q over r, the formula behind these shells.", "text_hi": "अगली बार के लिए एक चीज़ बची है: point charge से distance r पर potential V ठीक-ठीक कितना होता है। वो है potential V equals k Q over r, इन shells के पीछे का formula।", "text_te": "తర్వాత సారికి ఒకటి మిగిల్చాం: ఒక point charge నుండి distance r వద్ద potential V సరిగ్గా ఎంత ఉంటుందో. అది potential V equals k Q over r, ఈ shells వెనక ఉన్న formula."
             }
           ]
         }
@@ -894,7 +888,8 @@
     },
     "states": {
       "STATE_1": {
-        "label": "Hook - effort to push a charge in?",
+        "label": "A +Q dome - how much effort to push a test charge in?",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "field_lines_faint",
@@ -911,6 +906,7 @@
           "show_field": "faint",
           "show_test_charge": true,
           "test_charge_r": 3.5,
+          "idle_bob": true,
           "show_work_tally": false,
           "show_equipotential": false
         },
@@ -918,6 +914,7 @@
       },
       "STATE_2": {
         "label": "Two paths, same work - conservative",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "field_lines_faint",
@@ -950,6 +947,7 @@
       },
       "STATE_3": {
         "label": "Stored effort = potential energy U",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "field_lines_faint",
@@ -976,6 +974,7 @@
       },
       "STATE_4": {
         "label": "Divide out q - V = W/q (the definition)",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "test_charge_at_dest",
@@ -1005,6 +1004,7 @@
       },
       "STATE_5": {
         "label": "Reference V(inf)=0 and delta V",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "test_charge_at_dest",
@@ -1033,7 +1033,8 @@
         "formula_overlay": "delta V = V_B - V_A = 3"
       },
       "STATE_6": {
-        "label": "PRIMARY aha - V scalar shells, E perpendicular",
+        "label": "V is a scalar: shells of equal potential - E perpendicular",
+        "visible_controls": [],
         "visible_elements": [
           "charge_plus",
           "field_lines_faint",
@@ -1042,9 +1043,9 @@
           "scalar_label"
         ],
         "camera_position": [
-          2.6,
-          1.7,
-          3.8
+          4.2,
+          2.7,
+          6.1
         ],
         "caption": "",
         "show_charge": "plus",
@@ -1059,6 +1060,8 @@
       },
       "STATE_7": {
         "label": "Explore - drag the test charge, read V",
+        "visible_controls": ["r"],
+        "show_sliders": true,
         "visible_elements": [
           "charge_plus",
           "equipotential_shells",
@@ -1068,9 +1071,9 @@
           "teaser_pill"
         ],
         "camera_position": [
-          2.8,
-          1.8,
-          4.5
+          3.9,
+          2.5,
+          6.3
         ],
         "caption": "",
         "show_charge": "plus",
