@@ -5242,6 +5242,55 @@ export const FIELD_3D_RENDERER_CODE = `
                 '<input type="range" id="dpot_r_slider" min="0.6" max="3.0" step="0.05" value="1.5" style="width:100%;margin-bottom:6px;">' +
                 '<div id="dpot_v_readout" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.2);color:' + vColor + ';font-weight:bold;letter-spacing:1px;">V = 0.0</div>';
             document.body.appendChild(sl);
+            // Wire the θ/r sliders HERE, in the build fn — NOT in setupSliders. This
+            // panel is created during buildScenario(), which runs AFTER setupSliders(),
+            // so wiring it there binds null and the sliders are dead (the same trap the
+            // pe_external_field panel documents). Both drive the SAME window vars the
+            // drag uses (PM_dpTheta/PM_dpR) so the probe + readout + both graph live
+            // dots track them; emits PARAM_UPDATE on explorer_id (Rule 27).
+            var dtWire = document.getElementById("dpot_theta_slider");
+            var drWire = document.getElementById("dpot_r_slider");
+            var scThW = (config.slider_controls && config.slider_controls.theta) || {};
+            var scRW = (config.slider_controls && config.slider_controls.r) || {};
+            if (dtWire) {
+                if (scThW.min != null) dtWire.min = String(scThW.min);
+                if (scThW.max != null) dtWire.max = String(scThW.max);
+                if (scThW.step != null) dtWire.step = String(scThW.step);
+            }
+            if (drWire) {
+                if (scRW.min != null) drWire.min = String(scRW.min);
+                if (scRW.max != null) drWire.max = String(scRW.max);
+                if (scRW.step != null) drWire.step = String(scRW.step);
+            }
+            var refreshDipoleSlidersB = function () {
+                var tS = document.getElementById("dpot_theta_slider");
+                var rS = document.getElementById("dpot_r_slider");
+                if (!tS || !rS) return;
+                var thv = parseFloat(tS.value);
+                var rv = parseFloat(rS.value);
+                window.PM_dpUserDragged = true;
+                window.PM_dpTheta = thv;
+                window.PM_dpR = rv;
+                var tvEl = document.getElementById("dpot_theta_val");
+                var rvEl = document.getElementById("dpot_r_val");
+                if (tvEl) tvEl.textContent = String(Math.round(thv));
+                if (rvEl) rvEl.textContent = rv.toFixed(2);
+                var V = dpV_dipole(rv, thv);
+                var sgn = (V >= 0) ? "+" : "\\u2212";
+                var roEl = document.getElementById("dpot_v_readout");
+                if (roEl) roEl.innerHTML = "V = " + sgn + Math.abs(V).toFixed(1);
+                if (typeof dpRepositionProbe === "function") dpRepositionProbe(rv, thv);
+                try {
+                    parent.postMessage({
+                        type: "PARAM_UPDATE",
+                        explorer_id: (config.explorer_id || "potential_explorer"),
+                        param: "theta_r",
+                        value: { r: rv, theta: thv, V: V }
+                    }, "*");
+                } catch (e) {}
+            };
+            if (dtWire) dtWire.addEventListener("input", refreshDipoleSlidersB);
+            if (drWire) drWire.addEventListener("input", refreshDipoleSlidersB);
         }
         if (!document.getElementById("dpot_vtheta_panel")) {
             var vp = document.createElement("div");
@@ -5840,6 +5889,37 @@ export const FIELD_3D_RENDERER_CODE = `
                 '<div id="soc_v_readout_dom" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.2);color:' + vColor + ';font-weight:bold;letter-spacing:1px;">V = +8.0</div>' +
                 '<div id="soc_breakdown" style="margin-top:4px;color:' + textColor + ';font-size:11px;">&nbsp;</div>';
             document.body.appendChild(sl);
+            // Wire the q3 slider HERE, in the build fn — NOT in setupSliders. This
+            // panel is created during buildScenario(), which runs AFTER setupSliders(),
+            // so wiring it there binds to a null element and the slider is dead (the
+            // same trap the pe_external_field panel documents). Drives PM_socQ3 so
+            // every per-charge tag, the running-sum panel, the readout + the DOM
+            // breakdown update; PM_socUserDragged stops the idle sweep; emits
+            // PARAM_UPDATE on explorer_id (Rule 27).
+            var q3wire = document.getElementById("soc_q3_slider");
+            var scQ3w = (config.slider_controls && config.slider_controls.q3_value) || {};
+            if (q3wire) {
+                if (scQ3w.min != null) q3wire.min = String(scQ3w.min);
+                if (scQ3w.max != null) q3wire.max = String(scQ3w.max);
+                if (scQ3w.step != null) q3wire.step = String(scQ3w.step);
+                q3wire.addEventListener("input", function () {
+                    var qv = parseFloat(q3wire.value);
+                    window.PM_socUserDragged = true;
+                    window.PM_socQ3 = qv;
+                    var vEl = document.getElementById("soc_q3_val");
+                    if (vEl) vEl.textContent = socFmt0(qv);
+                    var px = window.PM_socPx, py = window.PM_socPy;
+                    var V = socVtotal(px, py);
+                    try {
+                        parent.postMessage({
+                            type: "PARAM_UPDATE",
+                            explorer_id: (config.explorer_id || "potential_explorer"),
+                            param: "q3_value",
+                            value: { q3_value: qv, px: px, py: py, V: V }
+                        }, "*");
+                    } catch (e) {}
+                });
+            }
         }
     }
 
@@ -5988,6 +6068,26 @@ export const FIELD_3D_RENDERER_CODE = `
                     socRebuildArrow(o, ec.position, dir, len, fieldColor);
                     ud._op = ramp((p.field_contrast_at_ms != null) ? p.field_contrast_at_ms : 0, 700) * 0.6;
                     setObjOpacity(o, ud._op);
+                }
+            } else if (et === "soc_charge") {
+                // q3 is the slider-driven charge: recolour its sphere + relabel it by
+                // the LIVE signed value so a negative q3 reads as a blue "-Nq3", never
+                // a stale red "+2q3" acting negative. q1/q2 are fixed (config sign) and
+                // never change. In S1-S5 PM_socQ3 stays at the +2 default, so this is a
+                // no-op there (re-asserts the built red +2q3) — no baseline regression.
+                if (ud.id === "soc_charge_q3" || ud.id === "soc_label_q3") {
+                    var q3v = (typeof window.PM_socQ3 === "number") ? window.PM_socQ3 : 2;
+                    var q3col = (q3v > 0) ? posColor : (q3v < 0 ? negColor : vColor);
+                    if (ud.id === "soc_charge_q3") {
+                        if (o.material && o.material.color) {
+                            o.material.color.set(q3col);
+                            if (o.material.emissive) o.material.emissive.set(q3col);
+                        }
+                    } else {
+                        o._pmColor = q3col;
+                        var q3txt = (q3v > 0 ? "+" + q3v : (q3v < 0 ? "\\u2212" + Math.abs(q3v) : "0")) + "q\\u2083";
+                        updateLabelSpriteText(o, q3txt);
+                    }
                 }
             }
         }
@@ -30098,89 +30198,13 @@ export const FIELD_3D_RENDERER_CODE = `
             refreshPlatesSliders();
         }
 
-        // ── dipole_potential (STATE_7) slider wiring: θ + r → live signed V ──────
-        //   Dedicated #dpot_sliders panel. Both drive the SAME window vars the drag
-        //   uses (PM_dpTheta / PM_dpR), so the probe + readout + both graph live dots
-        //   track the sliders. Emits PARAM_UPDATE on explorer_id (Rule 27).
-        if (config.scenario_type === "dipole_potential") {
-            var dtS = document.getElementById("dpot_theta_slider");
-            var drS = document.getElementById("dpot_r_slider");
-            var scTh = (config.slider_controls && config.slider_controls.theta) || {};
-            var scR2 = (config.slider_controls && config.slider_controls.r) || {};
-            if (dtS) {
-                if (scTh.min != null) dtS.min = String(scTh.min);
-                if (scTh.max != null) dtS.max = String(scTh.max);
-                if (scTh.step != null) dtS.step = String(scTh.step);
-            }
-            if (drS) {
-                if (scR2.min != null) drS.min = String(scR2.min);
-                if (scR2.max != null) drS.max = String(scR2.max);
-                if (scR2.step != null) drS.step = String(scR2.step);
-            }
-            var refreshDipoleSliders = function () {
-                var tS = document.getElementById("dpot_theta_slider");
-                var rS = document.getElementById("dpot_r_slider");
-                if (!tS || !rS) return;
-                var thv = parseFloat(tS.value);
-                var rv = parseFloat(rS.value);
-                window.PM_dpUserDragged = true;
-                window.PM_dpTheta = thv;
-                window.PM_dpR = rv;
-                var tvEl = document.getElementById("dpot_theta_val");
-                var rvEl = document.getElementById("dpot_r_val");
-                if (tvEl) tvEl.textContent = String(Math.round(thv));
-                if (rvEl) rvEl.textContent = rv.toFixed(2);
-                var V = dpV_dipole(rv, thv);
-                var sgn = (V >= 0) ? "+" : "\\u2212";
-                var roEl = document.getElementById("dpot_v_readout");
-                if (roEl) roEl.innerHTML = "V = " + sgn + Math.abs(V).toFixed(1);
-                if (typeof dpRepositionProbe === "function") dpRepositionProbe(rv, thv);
-                try {
-                    parent.postMessage({
-                        type: "PARAM_UPDATE",
-                        explorer_id: (config.explorer_id || "potential_explorer"),
-                        param: "theta_r",
-                        value: { r: rv, theta: thv, V: V }
-                    }, "*");
-                } catch (e) {}
-            };
-            if (dtS) dtS.addEventListener("input", refreshDipoleSliders);
-            if (drS) drS.addEventListener("input", refreshDipoleSliders);
-        }
+        // dipole_potential (STATE_7) θ/r sliders are wired inside buildDipolePotential
+        // (its #dpot_sliders panel is created during buildScenario(), AFTER this fn —
+        // wiring here would bind null and the sliders would be dead).
 
-        // ── system_of_charges (STATE_6) slider wiring: q3_value -> live signed sum ─
-        //   Dedicated #soc_sliders panel. Drives PM_socQ3 (q3's live signed magnitude),
-        //   so every per-charge tag, the running-sum panel, the live readout + the DOM
-        //   breakdown update. Emits PARAM_UPDATE on explorer_id (Rule 27).
-        if (config.scenario_type === "system_of_charges") {
-            var q3S = document.getElementById("soc_q3_slider");
-            var scQ3w = (config.slider_controls && config.slider_controls.q3_value) || {};
-            if (q3S) {
-                if (scQ3w.min != null) q3S.min = String(scQ3w.min);
-                if (scQ3w.max != null) q3S.max = String(scQ3w.max);
-                if (scQ3w.step != null) q3S.step = String(scQ3w.step);
-            }
-            var refreshSocSliders = function () {
-                var s = document.getElementById("soc_q3_slider");
-                if (!s) return;
-                var qv = parseFloat(s.value);
-                window.PM_socUserDragged = true;
-                window.PM_socQ3 = qv;
-                var vEl = document.getElementById("soc_q3_val");
-                if (vEl) vEl.textContent = socFmt0(qv);
-                var px = window.PM_socPx, py = window.PM_socPy;
-                var V = socVtotal(px, py);
-                try {
-                    parent.postMessage({
-                        type: "PARAM_UPDATE",
-                        explorer_id: (config.explorer_id || "potential_explorer"),
-                        param: "q3_value",
-                        value: { q3_value: qv, px: px, py: py, V: V }
-                    }, "*");
-                } catch (e) {}
-            };
-            if (q3S) q3S.addEventListener("input", refreshSocSliders);
-        }
+        // system_of_charges (STATE_6) q3 slider is wired inside buildSystemOfCharges
+        // (its #soc_sliders panel is created during buildScenario(), AFTER this fn —
+        // wiring here would bind null and the slider would be dead).
 
         // ── system_pe_assembly (STATE_6) slider wiring: q3 magnitude -> live U ─────
         //   Dedicated #pe_sliders panel. Drives PM_peQ3 (q3's live signed magnitude),
