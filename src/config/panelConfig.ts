@@ -1229,6 +1229,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    magnetic_flux: {
+        concept_id: 'magnetic_flux',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'magnetic_flux',
+            label: 'Magnetic Flux — Φ = B·A·cosθ (3D)',
+        },
+    },
+
     motional_emf: {
         concept_id: 'motional_emf',
         layout: 'single',

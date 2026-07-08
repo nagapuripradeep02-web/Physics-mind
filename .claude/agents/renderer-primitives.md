@@ -141,8 +141,31 @@ Rendering bugs that Zod + API-level probes cannot catch. Each row lists the bug 
 | Ghost duplicate body primitive on state transition (bug #5) | Scene diff between STATE_N and STATE_N+1 must not produce superimposed body primitives during the 800 ms fade. Screenshot-diff at t=400 ms: only one body instance visible. |
 | Previous state's primitives bleed into next state (bug #7) | TeacherPlayer state-swap MUST clear the prior `scene_composition` before applying the new one. Probe: at `STATE_REACHED` postMessage, assert canvas pixels at prior-state focal primitive coordinates are background color. **Rule-31 scope note (2026-07-02):** the clear applies to authored `scene_composition` primitives ONLY. Scenario-owned control panels/readouts (`mag_sliders`, `far_readout`, …) PERSIST across states by design — the Rule 31 one-panel model toggles their rows per state (`applyXState` show/hide), never rebuilds them. A "fix" that destroys/recreates a scenario panel on state-swap is rejected (it breaks slider position-stability, catch #3). |
 | Slider value changes, physics doesn't recompute (bug #10) | `PARAM_UPDATE` listener must re-eval `PM_physics.variables`, re-run the matching `computePhysics_<concept>` (read-only call into runtime_generation territory), and redraw. Probe: change slider value via `preview_fill`, then `preview_snapshot`; arrow length changed proportionally. |
+| NEW field_3d scenario ships without its `deriveStateMeta.ts` reveal_hold/D7 entry or its `#sliders` exclusion-chain entry (2026-07-08, `magnetic_flux_loop`) | Landed BOTH in the same change as the renderer code (`maxRevealForField3dState` candidate + explicit interactive-vs-reveal_hold classification in `deriveHoldExpectations`, plus `isMfl` added to the generic `#sliders` display-condition NOT-list). Probe: `npm run visual:eyes -- <id>` — every guided state classifies `reveal_hold` (not a false-fail static tail), the explore state classifies `interactive`, and no dedicated panel's rows bleed into the generic `#sliders` panel on any state. |
 
 Add a row to this catalog every time a new rendering bug class is surfaced. The catalog is the regression suite.
+
+### `magnetic_flux_loop` scenario contract (2026-07-08, seeded for `magnetic_flux` Ch.6 §6.3)
+
+A stationary tiltable/resizable square loop in a uniform B (Φ = B·A·cosθ), built because no existing
+scenario_type covered a NON-continuously-spinning loop with a live signed flux readout. Config keys
+`json_author` authors against (all in `field_3d_renderer.ts`'s `Field3DConfig`):
+
+- Top-level `config.slider_controls.B` / `.A` / `.theta_deg` — `{min, max, step, default, label}`. `A` is
+  a newly-added key (m²). `config.field_lines.opacity` is REQUIRED (read directly — a missing block is
+  the "blank scene" trap).
+- Per-state `field_3d_config.states.<id>.magnetic_flux_loop = { mode?: 'guided'|'explore', controls?:
+  ('B'|'A'|'theta')[], static_readouts?: ('B'|'A'|'theta')[], theta_range?: [number,number],
+  idle_sweep_duration_ms?, idle_sweep_hold_ms?, show_area_vector?, show_theta_arc?, show_projection?,
+  show_hand?, show_unit? }`. `controls` = live slider rows this beat teaches (Rule 31); `static_readouts`
+  = disabled rows shown in the SAME screen position; a key in neither is hidden. Absent `mode` (or
+  `'guided'`) runs a renderer-internal idle-sweep-then-HOLD on any live control the headless harness never
+  drags (mirrors `electric_flux`'s `theta_anim`); `mode: 'explore'` (S6 sandbox) runs a continuous idle
+  auto-sweep instead and classifies `interactive`. The Φ readout + the effective-area projection shadow
+  lag the driving control by `MFL_LAG_SEC` (0.8s, Rule 32a cause-leads-effect) — the loop's own tilt/scale
+  track the live value immediately. `show_unit` defaults to `state_index ≥ 5` (bare number before that,
+  per the "don't pre-spoil the unit" beat). Panel row ids are fixed: `#mfl_B_row` / `#mfl_A_row` /
+  `#mfl_theta_row` — built once, never rebuilt (Rule 32d).
 
 ## Rules this cluster enforces (CLAUDE.md §7)
 

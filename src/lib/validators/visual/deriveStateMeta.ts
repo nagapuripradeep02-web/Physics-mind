@@ -394,6 +394,19 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(asNum(flux.accumulate_at_ms, 1000) + 6 * asNum(flux.accumulate_stagger_ms, 350) + 500);
         }
     }
+    // magnetic_flux_loop (Φ = B·A·cosθ): a guided beat's live control(s)
+    // (B/A/theta, per `controls`) run a renderer-internal idle sweep-then-HOLD
+    // when the headless harness never drags (mirrors electric_flux's
+    // theta_anim). The sweep+hold durations default to MFL_SWEEP_MS=3000 /
+    // MFL_HOLD_MS=2000 in field_3d_renderer.ts — keep these fallbacks in sync
+    // if that renderer file's defaults ever change. The explore state (mode:
+    // 'explore') runs a continuous un-ending idle sweep instead — NOT a one-
+    // shot reveal, so it's excluded here and caught by the 'interactive'
+    // classification in deriveHoldExpectations below.
+    const mfl = asObj(state.magnetic_flux_loop);
+    if (mfl && mfl.mode !== 'explore' && Array.isArray(mfl.controls) && mfl.controls.length > 0) {
+        candidates.push(asNum(mfl.idle_sweep_duration_ms, 3000) + asNum(mfl.idle_sweep_hold_ms, 2000) + 500);
+    }
     // gauss_law: the Gauss's-law STATEMENT scenario (Φ = q_enc/ε₀). Its one-shot
     // timed reveals then HOLD still (mirror electric_flux) — pin the frozen frame
     // past their payoff so the capture photographs the completed reveal, and so
@@ -1489,6 +1502,19 @@ export function deriveHoldExpectations(
             const acgHold = asObj(state.ac_generator);
             if (acgHold) {
                 out[stateId] = (acgHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // magnetic_flux_loop: every state exposes at least the relevant
+            // slider row(s) (Rule 31), so the generic show_sliders catch below
+            // would swallow S1-S5's guided idle-sweep-then-HOLD beats into
+            // 'interactive' before they ever reach it. Classify explicitly
+            // (mirrors the ac_generator/inductance split above): the explore
+            // state (mode: 'explore', S6) is user-driven → interactive; every
+            // other mode is a guided beat that idle-sweeps then settles to a
+            // HOLD (caught by maxRevealForField3dState above) → reveal_hold.
+            const mflHold = asObj(state.magnetic_flux_loop);
+            if (mflHold) {
+                out[stateId] = (mflHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }

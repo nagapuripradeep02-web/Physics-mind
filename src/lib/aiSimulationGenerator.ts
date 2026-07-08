@@ -2819,6 +2819,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     earths_magnetism:               "field_3d",
     magnetisation_and_intensity:    "field_3d",
     faraday_law_induction:          "field_3d",
+    magnetic_flux:                  "field_3d",
     motional_emf:                   "field_3d",
     eddy_currents:                  "field_3d",
     inductance:                     "field_3d",

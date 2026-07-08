@@ -43,7 +43,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -816,6 +816,34 @@ export interface Field3DConfig {
             show_face_values?: boolean;      // closed: per-face numeric Φ labels on the 6 faces
             outside_demo?: boolean;          // closed: auto-sweep the charge OUTSIDE the box → net Φ = 0 (signed faces)
         };
+        // ── magnetic_flux_loop per-state config (Φ = B·A·cosθ; NEW 2026-07-08) ──
+        // A stationary tiltable/resizable square loop face-on to a uniform B
+        // (Rule 32d home pose persists — the loop never rebuilds across states).
+        // Rule 31 per-state contextual controls: `controls` lists the row(s)
+        // ("B"|"A"|"theta") that are LIVE sliders this beat; `static_readouts`
+        // lists rows shown as a disabled numeric readout in the SAME screen
+        // position (never hidden-then-reappearing elsewhere); a key in neither
+        // list hides that row entirely (STATE_1's hook has none). The panel
+        // rows are built ONCE (#mfl_B_row / #mfl_A_row / #mfl_theta_row) and
+        // toggled per state — never rebuilt (THE-EYE "no ghost duplicate on
+        // state transition" scar).
+        magnetic_flux_loop?: {
+            mode?: 'guided' | 'explore';       // 'explore' (S6 sandbox) = user-driven, all rows live, no idle sweep hold
+            controls?: Array<'B' | 'A' | 'theta'>;
+            static_readouts?: Array<'B' | 'A' | 'theta'>;
+            theta_range?: [number, number];    // slider bounds this state, e.g. [0,90] S4, [0,180] S5/S6
+            // Idle-sweep timing for a guided state's live control(s) when the
+            // headless harness never drags (D1p motion + THE-EYE reveal_hold
+            // payoff). Defaults mirrored EXACTLY in deriveStateMeta.ts — keep
+            // both in sync if changed (MFL_SWEEP_MS / MFL_HOLD_MS below).
+            idle_sweep_duration_ms?: number;   // default 3000
+            idle_sweep_hold_ms?: number;       // default 2000
+            show_area_vector?: boolean;        // draw the A-hat normal arrow + label (S5+)
+            show_theta_arc?: boolean;          // draw the θ arc from A⃗ to B⃗
+            show_projection?: boolean;         // S4 aha: the shrinking effective-area A·cosθ silhouette
+            show_hand?: boolean;               // RHR hand asset beat (S5 only)
+            show_unit?: boolean;               // append "Wb" to the Φ readout (default: state_index ≥ 5)
+        };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
         //    lorentz_force_uniform_field) ──────────────────────────────────
         // HARD CUT-LINE: this scenario teaches the DIRECTION of F = qv×B only.
@@ -1066,6 +1094,8 @@ export interface Field3DConfig {
         // are radius-specific.
         m?: { min: number; max: number; step?: number; default: number; label: string };
         q_mag?: { min: number; max: number; step?: number; default: number; label: string };
+        // magnetic_flux_loop — loop area A (m²). B and theta_deg above are reused.
+        A?: { min: number; max: number; step?: number; default: number; label: string };
     };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
@@ -21217,6 +21247,547 @@ export const FIELD_3D_RENDERER_CODE = `
         if (want !== acgTurnsShown) { acgMakeCoil(acgCoilGrp, want, ACG_COIL_H, ACG_COIL_W, "#FFAB40"); acgTurnsShown = want; }
     }
 
+    // ── magnetic_flux_loop scenario (\\u03A6 = B\\u00B7A\\u00B7cos\\u03B8) ─────
+    //   A STATIONARY, tiltable + resizable square wireframe loop, face-on to a
+    //   uniform horizontal B (\\u2225 +X). Home pose persists across every state
+    //   (Rule 32d, no teleport-rebuild) — only the driving control changes.
+    //   Tilt reuses the electric_flux math (rotation.y = (90-\\u03B8)\\u00B0 about the
+    //   local +Z normal) so \\u03B8=0 is face-on (+X normal, max \\u03A6), \\u03B8=90 edge-on
+    //   (zero), \\u03B8 past 90 negative (loop tips past the field). Area scales the
+    //   loop's own mesh (Rule 29-legal: a REAL magnitude changing size), never a
+    //   focal-emphasis "bulge". Sign flips recolour text + the threading-line
+    //   tint only, never geometry size (Rule 29).
+    var MFL_LOOP_SCALE = 1.6;      // world half-width = MFL_LOOP_SCALE * sqrt(A) / 2
+    var MFL_LINE_MAX = 16;         // ambient B-field lattice slots (4x4 grid)
+    var MFL_SWEEP_MS = 3000;       // idle-sweep duration default (mirror deriveStateMeta.ts)
+    var MFL_HOLD_MS = 2000;        // idle-sweep end HOLD default (mirror deriveStateMeta.ts)
+    var MFL_LAG_SEC = 0.8;         // Rule 32a: effect (\\u03A6 readout/shadow) lags the cause by ~0.8s
+    var MFL_LOOP_COLOR = "#42A5F5";
+    var MFL_RIM_FOCAL_COLOR = "#90CAF9";
+    var MFL_FULL_LINE_LEN = 5.2;
+    // ── STATE_1 hook reveal (eye-pass fix #2): a controls:[]/static_readouts:[]
+    //   state has NO live variable, so the "tally builds one line at a time"
+    //   narration must be engine-driven — a pure fn of (t = time-stateStartTime),
+    //   Rule 26. Sweep < stagger so exactly one line is ever mid-ramp at once.
+    var MFL_REVEAL_STAGGER_MS = 700;   // cadence between successive line reveals
+    var MFL_REVEAL_SWEEP_MS = 500;     // per-line materialize-and-sweep-in duration
+    var MFL_REVEAL_SETTLE_MS = 600;    // a just-landed line stays the sole focal this long (< stagger, Rule 32e)
+    var MFL_REVEAL_TALLY_LAG_MS = 500; // Rule 32a: the tally counter ticks this long AFTER a line lands
+    var MFL_S2_FOCAL_INDEX = 5;        // fixed "densest-cluster representative" line for a B-only state (S2)
+    var MFL_LINE_GRID = [
+        [-0.66, -0.66], [-0.22, -0.66], [0.22, -0.66], [0.66, -0.66],
+        [-0.66, -0.22], [-0.22, -0.22], [0.22, -0.22], [0.66, -0.22],
+        [-0.66, 0.22], [-0.22, 0.22], [0.22, 0.22], [0.66, 0.22],
+        [-0.66, 0.66], [-0.22, 0.66], [0.22, 0.66], [0.66, 0.66]
+    ];
+
+    function mflFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (o.userData && o.userData.id === id) return o;
+            if (o.userData && o.userData.elementType === "mfl_loop_group") {
+                for (var j = 0; j < o.children.length; j++) {
+                    if (o.children[j].userData && o.children[j].userData.id === id) return o.children[j];
+                }
+            }
+        }
+        return null;
+    }
+
+    function buildMagneticFluxLoop() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var flColorPos = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+        var flColorNeg = (config.field_lines && config.field_lines.color_negative) || "#EF5350";
+        var flOpacity = (config.field_lines && config.field_lines.opacity != null) ? config.field_lines.opacity : 0.8;
+        var normalColor = "#FFD54F";
+        var loopColor = "#42A5F5";
+
+        // 1. Uniform B lattice (+X) — REQUIRED field_lines block read here (a
+        //    missing config.field_lines.opacity is the scar-list "blank scene"
+        //    trap — this scenario's opacity ALWAYS reads config.field_lines).
+        for (var li = 0; li < MFL_LINE_GRID.length; li++) {
+            var gy = MFL_LINE_GRID[li][0], gz = MFL_LINE_GRID[li][1];
+            var fl = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-2.6, gy, gz), MFL_FULL_LINE_LEN, flColorPos, 0.22, 0.11);
+            fl.userData = { elementType: "mfl_field_line", id: "mfl_line_" + li, gridY: gy, gridZ: gz, gridIndex: li };
+            fl.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = flOpacity; } });
+            addToScene(fl);
+        }
+        var bLbl = createLabelSprite("B", flColorPos, 0.46);
+        bLbl.position.set(2.95, 0.95, 0);
+        bLbl.userData = { elementType: "mfl_field_lbl", id: "mfl_lbl_B" };
+        addToScene(bLbl);
+
+        // 2. The stationary tiltable/resizable loop group (rotation.y = tilt).
+        var loopGrp = new THREE.Group();
+        loopGrp.userData = { elementType: "mfl_loop_group", id: "mfl_loop_group", theta_deg: 0, area: 1.0 };
+        var faceMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(loopColor), emissive: hexToThreeColor(loopColor),
+            emissiveIntensity: 0.22, transparent: true, opacity: 0.22, side: THREE.DoubleSide
+        });
+        var face = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), faceMat);
+        face.userData = { elementType: "mfl_loop_face", id: "mfl_loop_face" };
+        loopGrp.add(face);
+        var edgeGeo = new THREE.EdgesGeometry(new THREE.PlaneGeometry(2, 2));
+        var edges = new THREE.LineSegments(edgeGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor(loopColor), transparent: true, opacity: 0.95, linewidth: 2 }));
+        edges.userData = { elementType: "mfl_loop_edges", id: "mfl_loop_edges" };
+        loopGrp.add(edges);
+        var normalArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), 1.3, hexToThreeColor(normalColor), 0.24, 0.14);
+        normalArrow.userData = { elementType: "mfl_normal", id: "mfl_normal" };
+        loopGrp.add(normalArrow);
+        var normalLbl = createLabelSprite("A\\u0302 (normal)", normalColor, 0.4);
+        normalLbl.position.set(0, 0.22, 1.5);
+        normalLbl.userData = { elementType: "mfl_normal", id: "mfl_lbl_normal" };
+        loopGrp.add(normalLbl);
+        addToScene(loopGrp);
+
+        // 3. theta arc (world x-z plane, between B at +X/0\\u00B0 and A-hat at theta).
+        var arc = mflMakeArc(0);
+        arc.userData = { elementType: "mfl_theta_arc", id: "mfl_theta_arc" };
+        addToScene(arc);
+        var thetaLbl = createLabelSprite("\\u03B8 = 0\\u00B0", normalColor, 0.36);
+        thetaLbl.position.set(1.6, 0, 0.3);
+        thetaLbl.userData = { elementType: "mfl_theta_arc", id: "mfl_lbl_theta" };
+        addToScene(thetaLbl);
+
+        // 4. Effective-area "shadow" (S4 aha): the loop's projection \\u22A5 B,
+        //    side = full_width\\u00B7\\u221acos\\u03B8 \\u2192 shrinks to nothing edge-on
+        //    (Rule 29-legal — the REAL projected area magnitude).
+        var projMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFCA28"), emissive: hexToThreeColor("#FFCA28"), emissiveIntensity: 0.3, transparent: true, opacity: 0.3, side: THREE.DoubleSide });
+        var proj = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), projMat);
+        proj.rotation.y = Math.PI / 2;
+        proj.position.set(2.3, 0, 0);
+        proj.visible = false;
+        proj.userData = { elementType: "mfl_projection", id: "mfl_projection" };
+        addToScene(proj);
+        var projLbl = createWideLabelSprite("A cos\\u03B8", "#FFCA28", 0.4);
+        projLbl.position.set(2.3, -1.4, 0);
+        projLbl.visible = false;
+        projLbl.userData = { elementType: "mfl_projection", id: "mfl_lbl_proj" };
+        addToScene(projLbl);
+
+        // 5. RHR hand asset (S5 beat only) — static orientation cue, full-bright,
+        //    never dims (Rule 29). Reuses the existing 3D hand mesh (Diamond #2).
+        var hand = createLorentzHand({ position: [1.7, -1.1, 1.0], scale: 0.85 });
+        hand.visible = false;
+        hand.userData = { elementType: "mfl_hand", id: "mfl_hand" };
+        addToScene(hand);
+
+        // 6. Live readout panel (Rule 24 — numbers only).
+        var rp = document.createElement("div");
+        rp.id = "mfl_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:200px;display:none;";
+        document.body.appendChild(rp);
+
+        // 7. Dedicated per-state contextual control panel — rows built ONCE
+        //    (#mfl_B_row / #mfl_A_row / #mfl_theta_row), shown/hidden + set
+        //    live-vs-disabled per state (Rule 31). Same screen position always.
+        var scfg = config.slider_controls || {};
+        function mflSc(key, dmin, dmax, dstep, ddef, dlabel) {
+            var o = scfg[key] || {};
+            return {
+                min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+                step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+                label: o.label || dlabel
+            };
+        }
+        var scB = mflSc("B", 0.2, 2.0, 0.1, 0.8, "Field B");
+        var scA = mflSc("A", 0.25, 4.0, 0.05, 1.0, "Loop area A");
+        var scTh = mflSc("theta_deg", 0, 180, 1, 0, "Tilt \\u03B8");
+        window.PM_mflB = scB.def; window.PM_mflA = scA.def; window.PM_mflTheta = scTh.def;
+        window.PM_mflBDragged = false; window.PM_mflADragged = false; window.PM_mflThetaDragged = false;
+
+        var sp = document.createElement("div");
+        sp.id = "mfl_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        sp.innerHTML =
+            '<div id="mfl_B_row" style="display:none"><label>' + scB.label + ': <span id="mfl_b_val">' + scB.def.toFixed(2) + '</span> T</label>' +
+            '<input type="range" id="mfl_b_slider" min="' + scB.min + '" max="' + scB.max + '" step="' + scB.step + '" value="' + scB.def + '" style="width:100%"></div>' +
+            '<div id="mfl_A_row" style="display:none;margin-top:6px"><label>' + scA.label + ': <span id="mfl_a_val">' + scA.def.toFixed(2) + '</span> m2</label>' +
+            '<input type="range" id="mfl_a_slider" min="' + scA.min + '" max="' + scA.max + '" step="' + scA.step + '" value="' + scA.def + '" style="width:100%"></div>' +
+            '<div id="mfl_theta_row" style="display:none;margin-top:6px"><label>' + scTh.label + ': <span id="mfl_th_val">' + scTh.def + '</span>\\u00B0</label>' +
+            '<input type="range" id="mfl_theta_slider" min="' + scTh.min + '" max="' + scTh.max + '" step="' + scTh.step + '" value="' + scTh.def + '" style="width:100%"></div>';
+        document.body.appendChild(sp);
+
+        function mflEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "magnetic_flux_loop_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var bSl = document.getElementById("mfl_b_slider"), bV = document.getElementById("mfl_b_val");
+        var aSl = document.getElementById("mfl_a_slider"), aV = document.getElementById("mfl_a_val");
+        var thSl = document.getElementById("mfl_theta_slider"), thV = document.getElementById("mfl_th_val");
+        if (bSl) bSl.addEventListener("input", function () { window.PM_mflB = parseFloat(bSl.value); if (bV) bV.textContent = window.PM_mflB.toFixed(2); window.PM_mflBDragged = true; mflEmit("B", window.PM_mflB); });
+        if (aSl) aSl.addEventListener("input", function () { window.PM_mflA = parseFloat(aSl.value); if (aV) aV.textContent = window.PM_mflA.toFixed(2); window.PM_mflADragged = true; mflEmit("A", window.PM_mflA); });
+        if (thSl) thSl.addEventListener("input", function () { window.PM_mflTheta = parseFloat(thSl.value); if (thV) thV.textContent = String(Math.round(window.PM_mflTheta)); window.PM_mflThetaDragged = true; mflEmit("theta", window.PM_mflTheta); });
+
+        mflApplyPose(0, scA.def);
+    }
+
+    function mflMakeArc(thetaDeg) {
+        var R = 0.85;
+        var th = thetaDeg * Math.PI / 180;
+        var steps = Math.max(2, Math.round(Math.abs(thetaDeg) / 4));
+        var pts = [];
+        for (var i = 0; i <= steps; i++) {
+            var s = th * (i / steps);
+            pts.push(new THREE.Vector3(R * Math.cos(s), 0, R * Math.sin(s)));
+        }
+        var geo = new THREE.BufferGeometry().setFromPoints(pts);
+        var mat = new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFD54F"), transparent: true, opacity: 0.9 });
+        return new THREE.Line(geo, mat);
+    }
+
+    // Rotate + resize the loop (rotation.y drives tilt about the local +Z
+    // normal — theta=0 -> +X normal (face-on), theta=90 -> +Z normal (edge-on),
+    // mirrors the electric_flux tilt convention exactly). Area scales the mesh
+    // ONLY (Rule 29 — a real magnitude, never a focal-emphasis bulge).
+    function mflApplyPose(thetaDeg, areaVal) {
+        var grp = mflFindById("mfl_loop_group");
+        if (!grp) return;
+        grp.rotation.set(0, (90 - thetaDeg) * Math.PI / 180, 0);
+        grp.userData.theta_deg = thetaDeg;
+        grp.userData.area = areaVal;
+        var hw = MFL_LOOP_SCALE * Math.sqrt(Math.max(0.01, areaVal)) / 2;
+        var face = mflFindById("mfl_loop_face"), edges = mflFindById("mfl_loop_edges");
+        if (face) face.scale.set(hw, hw, 1);
+        if (edges) edges.scale.set(hw, hw, 1);
+
+        var last = window.PM_mflLastArcTheta;
+        if (last == null || Math.abs(last - thetaDeg) > 0.5) {
+            var arc = mflFindById("mfl_theta_arc");
+            if (arc) {
+                if (arc.geometry) arc.geometry.dispose();
+                var R = 0.85, th = thetaDeg * Math.PI / 180;
+                var steps = Math.max(2, Math.round(Math.abs(thetaDeg) / 4));
+                var pts = [];
+                for (var i = 0; i <= steps; i++) { var s = th * (i / steps); pts.push(new THREE.Vector3(R * Math.cos(s), 0, R * Math.sin(s))); }
+                arc.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+            }
+            var tl = mflFindById("mfl_lbl_theta");
+            if (tl) {
+                var mid = (thetaDeg * 0.5) * Math.PI / 180;
+                tl.position.set(1.6 * Math.cos(mid), 0, 1.6 * Math.sin(mid));
+                updateLabelSpriteText(tl, "\\u03B8 = " + Math.round(thetaDeg) + "\\u00B0");
+            }
+            window.PM_mflLastArcTheta = thetaDeg;
+        }
+    }
+
+    // A control's live value: dragged (user/trusted) > guided idle-sweep (pure
+    // fn of state-local time, Rule 26) > static authored value. 'atT' lets the
+    // caller sample the SAME closed-form sweep at a lagged time (Rule 32a —
+    // the effect readout/shadow trails the cause by MFL_LAG_SEC).
+    function mflControlValueAt(key, mfl, dragged, draggedVal, def, rangeMin, rangeMax, atT) {
+        if (dragged) return draggedVal;
+        var isLive = mfl.controls && mfl.controls.indexOf(key) !== -1;
+        var isExplore = mfl.mode === "explore";
+        if (isLive && !isExplore) {
+            var dur = (mfl.idle_sweep_duration_ms != null ? mfl.idle_sweep_duration_ms : MFL_SWEEP_MS) / 1000;
+            var hold = (mfl.idle_sweep_hold_ms != null ? mfl.idle_sweep_hold_ms : MFL_HOLD_MS) / 1000;
+            var t = Math.max(0, atT);
+            var p = dur > 0 ? Math.max(0, Math.min(1, t / dur)) : 1;
+            var eased = p * p * (3 - 2 * p);
+            return rangeMin + (rangeMax - rangeMin) * eased; // holds at rangeMax once p saturates (t > dur+hold irrelevant, clamp already caps p=1)
+        }
+        if (isLive && isExplore) {
+            // S6 sandbox idle auto-sweep (D1p headless motion) — bounded
+            // oscillation across the full range, only while un-dragged.
+            var mid = (rangeMin + rangeMax) / 2, amp = (rangeMax - rangeMin) / 2;
+            return mid + amp * Math.sin(atT * 0.35);
+        }
+        return def; // static_readout or not relevant this state — authored/default value, no motion
+    }
+
+    function applyMagneticFluxLoopState(stateDef) {
+        var mfl = stateDef.magnetic_flux_loop || {};
+        var controls = mfl.controls || [];
+        var statics = mfl.static_readouts || [];
+        var scfg = config.slider_controls || {};
+        var defB = (scfg.B && scfg.B["default"] != null) ? scfg.B["default"] : 0.8;
+        var defA = (scfg.A && scfg.A["default"] != null) ? scfg.A["default"] : 1.0;
+        var defTh = (scfg.theta_deg && scfg.theta_deg["default"] != null) ? scfg.theta_deg["default"] : 0;
+
+        window.PM_mflBDragged = false; window.PM_mflADragged = false; window.PM_mflThetaDragged = false;
+        window.PM_mflB = defB; window.PM_mflA = defA; window.PM_mflTheta = defTh;
+
+        var rowIds = { B: "mfl_B_row", A: "mfl_A_row", theta: "mfl_theta_row" };
+        var sliderIds = { B: "mfl_b_slider", A: "mfl_a_slider", theta: "mfl_theta_slider" };
+        var valIds = { B: "mfl_b_val", A: "mfl_a_val", theta: "mfl_th_val" };
+        var defs = { B: defB, A: defA, theta: defTh };
+        for (var key in rowIds) {
+            var rowEl = document.getElementById(rowIds[key]);
+            var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
+            if (rowEl) rowEl.style.display = relevant ? "block" : "none";
+            var slEl = document.getElementById(sliderIds[key]);
+            var isLive = controls.indexOf(key) !== -1;
+            if (slEl) {
+                slEl.disabled = !isLive;
+                slEl.style.opacity = isLive ? "1" : "0.55";
+                if (relevant) slEl.value = String(defs[key]);
+            }
+            var vEl = document.getElementById(valIds[key]);
+            if (vEl && relevant) vEl.textContent = (key === "theta") ? String(Math.round(defs[key])) : defs[key].toFixed(2);
+        }
+        if (mfl.theta_range) {
+            var thSl2 = document.getElementById("mfl_theta_slider");
+            if (thSl2) { thSl2.min = String(mfl.theta_range[0]); thSl2.max = String(mfl.theta_range[1]); }
+        }
+
+        var panelEl = document.getElementById("mfl_sliders");
+        if (panelEl) panelEl.style.display = (controls.length + statics.length > 0) ? "block" : "none";
+        var readoutEl = document.getElementById("mfl_readout");
+        if (readoutEl) readoutEl.style.display = "block";
+
+        var normalArrow = mflFindById("mfl_normal"), normalLbl = mflFindById("mfl_lbl_normal");
+        if (normalArrow) normalArrow.visible = !!mfl.show_area_vector;
+        if (normalLbl) normalLbl.visible = !!mfl.show_area_vector;
+        var arc = mflFindById("mfl_theta_arc"), arcLbl = mflFindById("mfl_lbl_theta");
+        if (arc) arc.visible = !!mfl.show_theta_arc;
+        if (arcLbl) arcLbl.visible = !!mfl.show_theta_arc;
+        var proj = mflFindById("mfl_projection"), projLbl = mflFindById("mfl_lbl_proj");
+        if (proj) proj.visible = false; // seeded hidden; updateMagneticFluxLoopFrame reveals when cos>0 and show_projection
+        if (projLbl) projLbl.visible = false;
+        var hand = mflFindById("mfl_hand");
+        if (hand) hand.visible = !!mfl.show_hand;
+
+        // Reset every field line to its home look (full length, base opacity,
+        // base colour) on EVERY state entry — a prior hook-reveal (S1) or S2/S3
+        // glow pass must never bleed its mid-sweep length / dimmed opacity /
+        // tinted colour into the next state (Rule 32d home-pose persistence is
+        // about the APPARATUS staying put, not about carrying over a transient
+        // per-state glow). The per-frame updater re-derives the correct look
+        // from t=0 on the very next frame regardless (including re-hiding lines
+        // for a fresh S1 replay), so this is a defensive baseline only.
+        for (var fi = 0; fi < sceneObjects.length; fi++) {
+            var fo = sceneObjects[fi], fud = fo.userData;
+            if (!fud || fud.elementType !== "mfl_field_line") continue;
+            fo.visible = true;
+            fo.setLength(MFL_FULL_LINE_LEN, 0.22, 0.11);
+            fo.setColor(hexToThreeColor((config.field_lines && config.field_lines.color_positive) || "#66BB6A"));
+            fo.children.forEach(function (ch) { if (ch.material) ch.material.opacity = (config.field_lines && config.field_lines.opacity != null) ? config.field_lines.opacity : 0.8; });
+        }
+        var edgesReset = mflFindById("mfl_loop_edges");
+        if (edgesReset && edgesReset.material) { edgesReset.material.color.set(hexToThreeColor(MFL_LOOP_COLOR)); edgesReset.material.opacity = 0.95; }
+
+        window.PM_mflLastArcTheta = null;
+        mflApplyPose(defTh, defA);
+    }
+
+    // Rule 31 fix (mfl_control_panel_slider_desync): sync BOTH the slider
+    // handle AND its numeric label from the SAME live value driving the
+    // readout, every animation frame — not only on state-entry or the
+    // widget's own input event. A row not in 'controls' is left untouched
+    // (applyMagneticFluxLoopState already parked it at its static/default
+    // value; it never moves, so it needs no per-frame sync).
+    function mflSyncSliderUI(mfl, Bv, Av, Thv) {
+        var controls = mfl.controls || [];
+        if (controls.indexOf("B") !== -1) {
+            var bSl = document.getElementById("mfl_b_slider"), bV = document.getElementById("mfl_b_val");
+            if (bSl) bSl.value = String(Bv);
+            if (bV) bV.textContent = Bv.toFixed(2);
+        }
+        if (controls.indexOf("A") !== -1) {
+            var aSl = document.getElementById("mfl_a_slider"), aV = document.getElementById("mfl_a_val");
+            if (aSl) aSl.value = String(Av);
+            if (aV) aV.textContent = Av.toFixed(2);
+        }
+        if (controls.indexOf("theta") !== -1) {
+            var thSl = document.getElementById("mfl_theta_slider"), thV = document.getElementById("mfl_th_val");
+            if (thSl) thSl.value = String(Thv);
+            if (thV) thV.textContent = String(Math.round(Thv));
+        }
+    }
+
+    // STATE_1 hook reveal (eye-pass fix #2): lines materialize sequentially at
+    // the loop's left edge, sweep through (setLength ramp), and LAND — a pure
+    // fn of (t = time-stateStartTime), Rule 26. Exactly one line is ever the
+    // glow focal at a time (Rule 32e): the currently-ramping line takes
+    // priority; once no line is ramping, the most-recently-landed line holds
+    // the focal for MFL_REVEAL_SETTLE_MS (< the stagger, so it can never
+    // overlap the next line's ramp). The tally ticks up MFL_REVEAL_TALLY_LAG_MS
+    // AFTER each line lands (Rule 32a cause-then-effect, expressed as a step).
+    function mflUpdateHookReveal(t) {
+        var total = MFL_LINE_GRID.length;
+        var lines = [];
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (ud && ud.elementType === "mfl_field_line" && ud.gridIndex != null) lines[ud.gridIndex] = o;
+        }
+        var revealedTally = 0, rampingIdx = -1;
+        var landTimes = [];
+        for (var li = 0; li < total; li++) {
+            var revealAt = (li * MFL_REVEAL_STAGGER_MS) / 1000;
+            var landAt = revealAt + MFL_REVEAL_SWEEP_MS / 1000;
+            landTimes[li] = landAt;
+            var o2 = lines[li];
+            if (!o2) continue;
+            if (t < revealAt) {
+                o2.visible = false;
+            } else if (t < landAt) {
+                o2.visible = true;
+                var frac = Math.max(0.04, (t - revealAt) / (MFL_REVEAL_SWEEP_MS / 1000));
+                o2.setLength(MFL_FULL_LINE_LEN * frac, Math.max(0.06, 0.22 * frac), Math.max(0.03, 0.11 * frac));
+                rampingIdx = li;
+            } else {
+                o2.visible = true;
+                o2.setLength(MFL_FULL_LINE_LEN, 0.22, 0.11);
+                var tallyAt = landAt + MFL_REVEAL_TALLY_LAG_MS / 1000;
+                if (t >= tallyAt) revealedTally++;
+            }
+        }
+        var focalIdx = rampingIdx;
+        if (focalIdx === -1) {
+            var bestLand = -1;
+            for (var lj = 0; lj < total; lj++) {
+                var landAt2 = landTimes[lj];
+                if (t >= landAt2 && t < landAt2 + MFL_REVEAL_SETTLE_MS / 1000 && landAt2 > bestLand) { bestLand = landAt2; focalIdx = lj; }
+            }
+        }
+        for (var lk = 0; lk < total; lk++) {
+            var ok = lines[lk];
+            if (!ok || !ok.visible) continue;
+            var op = (lk === focalIdx) ? 1.0 : 0.55;
+            ok.children.forEach(function (ch) { if (ch.material) ch.material.opacity = op; });
+        }
+        return { revealedTally: revealedTally, total: total, allTallied: revealedTally >= total };
+    }
+
+    function updateMagneticFluxLoopFrame() {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var mfl = stateDef.magnetic_flux_loop || {};
+        var t = time - stateStartTime; // state-local seconds (Rule 26 clock)
+        var scfg = config.slider_controls || {};
+        var defB = (scfg.B && scfg.B["default"] != null) ? scfg.B["default"] : 0.8;
+        var defA = (scfg.A && scfg.A["default"] != null) ? scfg.A["default"] : 1.0;
+        var defTh = (scfg.theta_deg && scfg.theta_deg["default"] != null) ? scfg.theta_deg["default"] : 0;
+        var rB = scfg.B || { min: 0.2, max: 2.0 };
+        var rA = scfg.A || { min: 0.25, max: 4.0 };
+        var rTh = mfl.theta_range || [0, 180];
+
+        // Live (cause) values drive the loop's OWN pose/density immediately.
+        var Bv = mflControlValueAt("B", mfl, window.PM_mflBDragged, window.PM_mflB, defB, rB.min, rB.max, t);
+        var Av = mflControlValueAt("A", mfl, window.PM_mflADragged, window.PM_mflA, defA, rA.min, rA.max, t);
+        var Thv = mflControlValueAt("theta", mfl, window.PM_mflThetaDragged, window.PM_mflTheta, defTh, rTh[0], rTh[1], t);
+        mflApplyPose(Thv, Av);
+
+        // Lagged (effect) values feed the Phi readout + the projection shadow
+        // (Rule 32a — cause leads effect by a readable beat). Dragged/explore
+        // states track live (no authored lag on free interaction).
+        var lagT = Math.max(0, t - MFL_LAG_SEC);
+        var BvE = window.PM_mflBDragged ? Bv : mflControlValueAt("B", mfl, false, Bv, defB, rB.min, rB.max, lagT);
+        var AvE = window.PM_mflADragged ? Av : mflControlValueAt("A", mfl, false, Av, defA, rA.min, rA.max, lagT);
+        var ThvE = window.PM_mflThetaDragged ? Thv : mflControlValueAt("theta", mfl, false, Thv, defTh, rTh[0], rTh[1], lagT);
+
+        var thr = ThvE * Math.PI / 180, cosT = Math.cos(thr);
+        var phi = BvE * AvE * cosT;
+        var sign = phi >= 0 ? 1 : -1;
+        var readout = document.getElementById("mfl_readout");
+
+        // controls:[] AND static_readouts:[] — a pure "hook" state with NO live
+        // variable (S1). The engine drives the sequential line reveal itself
+        // (fix #2); the readout shows the growing tally, then the settled Phi
+        // line once every line has landed + ticked.
+        var controls = mfl.controls || [];
+        var statics = mfl.static_readouts || [];
+        var isHook = controls.length === 0 && statics.length === 0;
+
+        if (isHook) {
+            var hookRes = mflUpdateHookReveal(t);
+            if (readout) {
+                var hh = '<div>lines through = ' + hookRes.revealedTally + ' / ' + hookRes.total + '</div>';
+                if (hookRes.allTallied) {
+                    hh += '<div style="color:#FFCA28">\\u03A6 = B\\u00B7A\\u00B7cos\\u03B8 = ' + phi.toFixed(2) + '</div>';
+                }
+                readout.innerHTML = hh;
+            }
+            return;
+        }
+
+        // Rule 31 fix (#1): sync the live slider handle(s) + label(s) from the
+        // SAME value driving this readout, every frame — not only on drag/entry.
+        mflSyncSliderUI(mfl, Bv, Av, Thv);
+
+        // Single-live-control states get a dedicated single glow focal (Rule
+        // 32e): S2 (B only) highlights one fixed "densest-cluster representative"
+        // field line; S3 (A only) highlights the RIM instead — the growing loop
+        // capturing more of the ambient lattice is shown via a secondary (not
+        // sole-focal) "enclosed" brightness tier so the count-scaling reads
+        // without creating a second competing glow (fix #3 + fix #4).
+        var isBOnly = controls.length === 1 && controls[0] === "B";
+        var isAOnly = controls.length === 1 && controls[0] === "A";
+
+        var thrCosLive = Math.cos(Thv * Math.PI / 180);
+        var footprint = MFL_LOOP_SCALE * Math.sqrt(Math.max(0.01, Av)) / 2;
+        var flColorPos = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+        var flColorNeg = (config.field_lines && config.field_lines.color_negative) || "#EF5350";
+        var flOpacity = (config.field_lines && config.field_lines.opacity != null) ? config.field_lines.opacity : 0.8;
+        // B pinned + visible-throughout states (S4/S5, B a static_readout) get a
+        // constant, clearly-visible ambient density — never fades with theta.
+        var visFrac = Math.max(0.35, Math.min(1, Bv / (rB.max || 2.0)));
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || ud.elementType !== "mfl_field_line" || ud.gridY == null) continue;
+            o.visible = true;
+            o.setLength(MFL_FULL_LINE_LEN, 0.22, 0.11);
+            // Euclidean-radius "enclosed by the loop" test (fix #4) — the fixed
+            // 4x4 lattice has 3 concentric radius tiers (4/8/12/16 cumulative
+            // lines), so the enclosed COUNT visibly climbs in tiers as the loop
+            // grows across the authored A range, unlike the old per-axis AND
+            // test which saturated almost immediately.
+            var radius = Math.sqrt(ud.gridY * ud.gridY + ud.gridZ * ud.gridZ);
+            var enclosed = radius <= footprint;
+            var col = (enclosed && thrCosLive < 0) ? flColorNeg : flColorPos;
+            var baseOp = flOpacity * visFrac;
+            if (enclosed) baseOp = Math.min(0.92, baseOp + 0.3); // secondary "captured" tier, below the sole focal
+            var isFocalLine = isBOnly && ud.gridIndex === MFL_S2_FOCAL_INDEX;
+            if (isFocalLine) baseOp = 1.0;
+            else if (isBOnly) baseOp *= 0.6; // dim peers so the S2 representative is the ONE glow focal
+            o.children.forEach(function (ch) {
+                if (!ch.material) return;
+                ch.material.opacity = baseOp;
+                ch.material.color.set(hexToThreeColor(col));
+            });
+        }
+
+        // S3 (A only): the RIM is the sole glow focal, never a field line.
+        var edgesFrame = mflFindById("mfl_loop_edges");
+        if (edgesFrame && edgesFrame.material) {
+            if (isAOnly) { edgesFrame.material.color.set(hexToThreeColor(MFL_RIM_FOCAL_COLOR)); edgesFrame.material.opacity = 1.0; }
+            else { edgesFrame.material.color.set(hexToThreeColor(MFL_LOOP_COLOR)); edgesFrame.material.opacity = 0.95; }
+        }
+
+        if (mfl.show_projection) {
+            var proj = mflFindById("mfl_projection"), projLbl = mflFindById("mfl_lbl_proj");
+            var effCos = Math.max(0, cosT);
+            // Fix #5: drive the shadow's COLLAPSING dimension DIRECTLY off
+            // effective_area = A*cos(theta) (linear, not sqrt) so it visibly
+            // hairlines at edge-on — matching the Phi readout hitting 0.00. The
+            // breadth dimension stays at the loop's own half-width (only the
+            // dimension that foreshortens under a Y-axis tilt collapses).
+            var hwProj = MFL_LOOP_SCALE * Math.sqrt(Math.max(0.01, AvE)) / 2;
+            var heightScale = Math.max(0.0, effCos);
+            if (proj) { proj.scale.set(hwProj, hwProj * Math.max(0.015, heightScale), 1); proj.visible = effCos > 0.01; }
+            if (projLbl) projLbl.visible = effCos > 0.01;
+        }
+
+        if (readout) {
+            var idx = mflStateIndex();
+            var showUnit = (mfl.show_unit != null) ? mfl.show_unit : (idx >= 5);
+            var phiStr = phi.toFixed(2) + (showUnit ? " Wb" : "");
+            var phiColor = sign < 0 ? "#EF5350" : "#FFCA28";
+            var h = '<div>B = ' + Bv.toFixed(2) + ' T</div>';
+            h += '<div>A = ' + Av.toFixed(2) + ' m\\u00B2</div>';
+            h += '<div>\\u03B8 = ' + Math.round(Thv) + '\\u00B0</div>';
+            h += '<div style="color:' + phiColor + '">\\u03A6 = B\\u00B7A\\u00B7cos\\u03B8 = ' + phiStr + '</div>';
+            readout.innerHTML = h;
+        }
+    }
+
+    function mflStateIndex() {
+        var keys = Object.keys(config.states);
+        var idx = keys.indexOf(PM_currentState);
+        return idx >= 0 ? idx + 1 : 1;
+    }
+
     // Authoritative per-state exact-match visibility + seed (locked B/A/N/omega)
     // + per-state contextual-control panel (Rule 31). Runs after the generic
     // visible_elements matcher and fully overrides it (mirrors applyFaradayState).
@@ -27575,6 +28146,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildAcGenerator();
                 break;
 
+            case "magnetic_flux_loop":
+                buildMagneticFluxLoop();
+                break;
+
             case "gauss_law_sphere":
                 buildGaussSphereField();
                 break;
@@ -27963,6 +28538,15 @@ export const FIELD_3D_RENDERER_CODE = `
             applyAcGeneratorState(stateDef);
         }
 
+        // magnetic_flux_loop — per-state contextual-control row visibility
+        // (B/A/theta live-vs-static-vs-hidden), theta_range bounds, and the
+        // area-vector/theta-arc/RHR-hand/projection-shadow flags. The animate
+        // loop then drives the idle-sweep-or-drag pose + the lagged Phi readout
+        // (Rule 32a) + the field-line density/sign tint.
+        if (config.scenario_type === "magnetic_flux_loop") {
+            applyMagneticFluxLoopState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -28243,6 +28827,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // "#sliders exclusion chain" — every dedicated panel adds itself to this
         // NOT-list, same as isMag/isFaraday/isInductance/... above).
         var isAcGenerator = config.scenario_type === "ac_generator";
+        // magnetic_flux_loop owns its OWN #mfl_sliders panel (B/A/theta) -- must
+        // be excluded here or the generic #sliders panel bleeds through
+        // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
+        // itself to this NOT-list, same as isMag/isFaraday/isAcGenerator/... above).
+        var isMfl = config.scenario_type === "magnetic_flux_loop";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -28281,7 +28870,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -28850,6 +29439,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // everything. It has pole-coloured faces that would otherwise read against
         // the generic point-charge/bar-magnet legend — suppress it entirely.
         if (config.scenario_type === "ac_generator") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // magnetic_flux_loop is a silent visual (Rule 24): the loop + B lattice +
+        // the live Phi = B.A.cos(theta) readout carry everything — suppress the
+        // generic legend (the scenario id would otherwise fall into no branch and
+        // print the generic point-charge legend text, which is wrong content here).
+        if (config.scenario_type === "magnetic_flux_loop") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // gauss_law_sphere is a silent visual (Rule 24): the shell + Gaussian
         // sphere + radial arrows + E readout + E-vs-r plot carry everything —
         // suppress the generic point-charge legend.
@@ -31475,6 +32069,16 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "ac_generator") {
             updateAcGeneratorFrame();
             applyAcGeneratorGlow();
+        }
+
+        // magnetic_flux_loop — stationary tiltable/resizable loop in a uniform B.
+        // Drives the idle-sweep-or-drag pose (theta/B/A, pure fn of the state
+        // clock, Rule 26), the lagged Phi = B.A.cos(theta) readout + shrinking
+        // projection shadow (Rule 32a cause-leads-effect), and the field-line
+        // density (\\u221d B) + through-loop sign tint (brightness/colour only,
+        // Rule 29).
+        if (config.scenario_type === "magnetic_flux_loop") {
+            updateMagneticFluxLoopFrame();
         }
 
         // gauss_law_sphere — charged-shell field. Drives the Gaussian-sphere

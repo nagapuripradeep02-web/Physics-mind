@@ -1,0 +1,561 @@
+{
+  "concept_id": "magnetic_flux",
+  "concept_name": "Magnetic Flux — Φ = B·A·cosθ",
+  "chapter": 6,
+  "section": "6.3",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Ch.6 Electromagnetic Induction §6.3 (Magnetic Flux) — table-of-contents reference only; teaching authored from first principles. The atomic concept: magnetic flux Φ = B·A·cosθ counts how many magnetic field lines thread a loop's window — a fixed snapshot count of field lines threading a surface, not a flow. Split out of faraday_law_induction's opening beat into its own atomic (2026-07-08) so flux-only confusions (is it a flow?, why does tilting kill it?, why does it turn negative?) get their own five-state EPIC-L arc before Faraday's law layers CHANGE on top of it. Built instrument-native in the straightforward (non-Socratic) model: five motion-distinct teaching beats + one combined interactive state, each state exposing only its own contextual controls (Rule 31), first concept authored under the tightened word-budget + Rule 32 legibility conventions.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "magnetic_flux_loop"
+    ]
+  },
+  "prerequisites": [
+    "bar_magnet_as_dipole",
+    "electric_flux"
+  ],
+  "real_world_anchor": {
+    "primary": "A rooftop solar panel is tilted to roughly match the city's latitude — about 13° in Chennai, about 28° in Delhi — so its face meets the sun as squarely as possible and catches the most sunlight through its area. Turn a panel edge-on to the sun and it catches almost nothing, even though the sunlight itself is exactly as strong as before. That is the same cosθ that sets magnetic flux, and the same exam trap: a strong field does not guarantee a big flux.",
+    "secondary": "An induction cooktop only heats a pan that sits flat, square on the coil. Tilt the pan and the flux through it collapses, even though the coil's field underneath is unchanged — the same geometry lesson, and the direct bridge into Faraday's law of induction, where it is a CHANGING flux like this one that induces the current."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "B": {
+        "name": "magnetic field strength",
+        "unit": "T",
+        "min": 0.2,
+        "max": 2.0,
+        "default": 0.8
+      },
+      "A": {
+        "name": "loop area",
+        "unit": "m²",
+        "min": 0.25,
+        "max": 4.0,
+        "default": 1.0
+      },
+      "theta": {
+        "name": "tilt angle between the area vector A and the field B",
+        "unit": "degrees",
+        "min": 0,
+        "max": 180,
+        "default": 0
+      },
+      "Phi": {
+        "name": "magnetic flux through the loop",
+        "unit": "Wb",
+        "min": -1.6,
+        "max": 1.6,
+        "default": 0.8,
+        "derived": "B*A*cos(radians(theta))"
+      }
+    },
+    "computed_outputs": {
+      "flux": {
+        "formula": "B * A * cos(radians(theta))"
+      },
+      "effective_area": {
+        "formula": "A * cos(radians(theta))"
+      }
+    },
+    "formulas": {
+      "magnetic_flux": "Φ = B·A·cosθ  (weber, Wb) — how many field lines thread the loop",
+      "effective_area": "A_eff = A·cosθ — the area the loop actually presents to the field",
+      "sign_convention": "θ is measured between the field B and the loop's AREA VECTOR (its normal), never the loop's flat face"
+    },
+    "constraints": [
+      "Magnetic flux Φ = B·A·cosθ counts how much field threads the loop — a fixed snapshot count, not a flow",
+      "θ = 0° (loop face-on to B) gives the maximum flux; θ = 90° (loop edge-on to B) gives zero flux even if B is unchanged",
+      "θ is measured from the loop's AREA VECTOR (the normal to its face), never from the plane of the loop itself",
+      "Past θ = 90° the area vector tips to the far side of the field and the flux becomes NEGATIVE — same lines, opposite face",
+      "A stronger B always raises the LINE DENSITY, but only the component of B through the loop's face (B·cosθ) sets the flux",
+      "SI unit of flux is the weber (Wb), 1 Wb = 1 T·m²"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 35
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Tilting the loop kills flux to zero even though the field stays full strength.",
+    "visual_confirmation": "The window turns edge-on, the effective-area shadow shrinks to nothing, and the flux counter drops to zero while B holds steady at 0.8 T."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "angle": [
+      "STATE_4",
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_5",
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Magnetic flux: counting threading lines",
+        "duration": 26,
+        "focal_primitive_id": "flux_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "flux_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Φ = B·A·cosθ  (magnetic flux)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "tally_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "each line lands and stays\n→ the tally builds",
+            "color": "#B0BEC5"
+          },
+          {
+            "type": "annotation",
+            "id": "hold_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "lines stop appearing\n→ count holds steady",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Magnetic flux Phi counts how many magnetic field lines thread through this loop's open window. Each line lands and stays in place, and the tally builds one line at a time.", "text_hi": "Magnetic flux Phi गिनता है कि इस loop के open window में कितनी magnetic field lines धागे की तरह से गुज़र रही हैं। हर line आती है और अपनी जगह पर रुक जाती है, और गिनती एक-एक line से बढ़ती है।", "text_te": "Magnetic flux Phi లెక్కిస్తుంది ఈ loop యొక్క open window లో ఎన్ని magnetic field lines దారంలా ప్రవేశిస్తున్నాయో. ప్రతి line వస్తుంది మరియు తన స్థానంలో ఉండిపోతుంది, మరియు లెక్క ఒక్కో line గా పెరుగుతుంది.",
+              "glow": "flux_label"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Once the lines stop appearing, the count holds steady — flux is a fixed number of threading lines, not a flow.", "text_hi": "एक बार lines आना बंद हो जाएँ, तो गिनती स्थिर हो जाती है — flux एक निश्चित संख्या है threading lines की, कोई flow नहीं है।", "text_te": "ఒకసారి lines రావడం ఆగిపోతే, లెక్క స్థిరంగా ఉంటుంది — flux అనేది threading lines యొక్క ఒక నిర్దిష్ట సంఖ్య, ప్రవాహం కాదు.",
+              "glow": "hold_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Flux means something is flowing",
+            "visual_counter": "Each line lands and stays threaded through the window; once the lines stop appearing the counter holds exactly steady — nothing continues to move.",
+            "one_line_fix": "Flux is a snapshot count of threading lines — nothing flows."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "does flux mean something is actually flowing through",
+          "is flux like current passing through the loop",
+          "why is flux zero if nothing moves",
+          "flux sounds like liquid flowing through a pipe",
+          "what is actually moving when we say flux"
+        ]
+      },
+      "STATE_2": {
+        "title": "Field strength B: denser lines, more flux",
+        "duration": 26,
+        "focal_primitive_id": "B_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "B_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Φ = B·A·cosθ  — B rises",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "denser_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "stronger B\n→ lines pack closer",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "sparser_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "weaker B\n→ fewer lines thread → flux falls",
+            "color": "#FFB300"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "A stronger magnetic field B packs the field lines closer together, so more of them thread the same window.", "text_hi": "एक stronger magnetic field B field lines को एक-दूसरे के करीब pack करता है, तो उनमें से ज़्यादा lines उसी window में से गुज़रती हैं।", "text_te": "ఒక stronger magnetic field B field lines ను ఒకదానికొకటి దగ్గరగా pack చేస్తుంది, కాబట్టి వాటిలో ఎక్కువ lines అదే window లో ప్రవేశిస్తాయి.",
+              "glow": "denser_label"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "As B increases, the line density rises and the flux counter climbs with it. A weaker field spreads the lines apart, and fewer lines thread the loop, so flux falls.", "text_hi": "जैसे-जैसे B बढ़ता है, line density बढ़ती है और flux counter भी उसके साथ चढ़ता है। कमज़ोर field lines को फैला देता है, और कम lines loop में से गुज़रती हैं, तो flux गिर जाता है।", "text_te": "B పెరిగే కొద్దీ, line density పెరుగుతుంది మరియు flux counter కూడా దానితో పాటు పెరుగుతుంది. బలహీనమైన field lines ను విస్తరింపజేస్తుంది, మరియు తక్కువ lines loop లో ప్రవేశిస్తాయి, కాబట్టి flux తగ్గుతుంది.",
+              "glow": "sparser_label"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Window area A: bigger catch, more flux",
+        "duration": 26,
+        "focal_primitive_id": "A_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "A_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Φ = B·A·cosθ  — A rises",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "catch_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "bigger window\n→ catches more lines",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "shrink_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "smaller window\n→ lines escape past the rim",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "A bigger window catches more of the same field lines passing by. As area A grows, the loop's edge sweeps outward and encloses additional lines that were missing it before.", "text_hi": "एक बड़ा window उन्हीं field lines में से ज़्यादा को पकड़ लेता है जो पास से गुज़र रही हैं। जैसे-जैसे area A बढ़ता है, loop का किनारा बाहर की ओर फैलता है और उन additional lines को घेर लेता है जो पहले छूट रही थीं।", "text_te": "ఒక పెద్ద window అదే field lines లో ఎక్కువ వాటిని పట్టుకుంటుంది, ఇవి పక్కనుండి ప్రయాణిస్తున్నాయి. Area A పెరిగే కొద్దీ, loop యొక్క అంచు బయటికి విస్తరిస్తుంది మరియు అదనపు lines ను ఆవరిస్తుంది, ఇవి ఇంతకు ముందు తప్పిపోయాయి.",
+              "glow": "catch_label"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Shrinking the window lets lines escape past the rim, so fewer thread through and flux drops.", "text_hi": "window को छोटा करने से lines rim के बाहर निकल जाती हैं, तो कम lines गुज़रती हैं और flux गिर जाता है।", "text_te": "window ని చిన్నది చేయడం వలన lines rim నుండి బయటికి తప్పించుకుంటాయి, కాబట్టి తక్కువ lines ప్రవేశిస్తాయి మరియు flux తగ్గుతుంది.",
+              "glow": "shrink_label"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Tilt θ: edge-on kills flux to zero",
+        "duration": 30,
+        "focal_primitive_id": "theta_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "theta_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Φ = B·A·cosθ  — θ rises, B unchanged",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "edge_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "edge-on (θ = 90°)\n→ effective area → 0",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "zero_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "flux drops to zero\nthough B is full strength",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Watch field strength B stay completely unchanged. As the window tilts toward angle theta, its face turns edge-on and its effective area shrinks toward nothing.", "text_hi": "ध्यान दीजिए field strength B पूरी तरह से अपरिवर्तित रहता है। जैसे ही window theta कोण की ओर झुकती है, उसका face किनारे पर आ जाता है और उसका effective area लगभग शून्य हो जाता है।", "text_te": "గమనించండి field strength B పూర్తిగా మారకుండా ఉంటుంది. Window theta కోణం వైపు వంగినప్పుడు, దాని ముఖం అంచున వస్తుంది మరియు దాని effective area దాదాపు సున్నాకి తగ్గుతుంది.",
+              "glow": "edge_label"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "At ninety degrees the loop shows no width to the field at all — flux falls to zero, though B is still full strength.", "text_hi": "नब्बे डिग्री पर loop field के सामने कोई चौड़ाई नहीं दिखाता — flux शून्य हो जाता है, हालाँकि B अभी भी पूरी ताकत से है।", "text_te": "తొంభై డిగ్రీల వద్ద loop field కు ఎలాంటి వెడల్పు చూపించదు — flux సున్నాకి పడిపోతుంది, అయినప్పటికీ B పూర్తి బలంతో ఉంటుంది.",
+              "glow": "zero_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A strong field always means a big flux",
+            "visual_counter": "Edge-on hold: B stays pinned at 0.8 T, full strength, while the flux counter reads exactly zero for two full seconds.",
+            "one_line_fix": "Flux depends on the field's component through the window, not on the field's strength alone."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "if field is strong why is flux zero",
+          "how can flux be zero when B is not zero",
+          "does tilting the loop change the field itself",
+          "why does turning the loop kill the flux",
+          "shouldnt strong magnet always give big flux"
+        ]
+      },
+      "STATE_5": {
+        "title": "Past 90°: the area vector flips, flux turns negative",
+        "duration": 32,
+        "focal_primitive_id": "sign_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sign_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Φ = B·A·cosθ  — past 90°, Φ turns negative",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "normal_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "θ is measured from the area\nvector A, not the loop's flat face",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "unit_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Wb = T·m²  (weber)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Past edge-on, the area vector A tilts to the far side of the field, and flux Phi turns negative — the same lines now thread the loop from the opposite face.", "text_hi": "edge-on से आगे, area vector A field के दूसरी तरफ झुक जाता है, और flux Phi negative हो जाता है — वही lines अब loop में opposite face से गुज़र रही हैं।", "text_te": "edge-on నుండి ముందుకు, area vector A field యొక్క ఇతర వైపుకు వంగుతుంది, మరియు flux Phi negative అవుతుంది — అవే lines ఇప్పుడు loop లో వ్యతిరేక ముఖం నుండి ప్రవేశిస్తున్నాయి.",
+              "glow": "sign_label"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Theta is measured from the normal vector A, not the loop's flat surface. Flux equals B times A times cosine theta, in weber.", "text_hi": "Theta normal vector A से मापा जाता है, loop की flat surface से नहीं। Flux equals B times A times cosine theta, in weber.", "text_te": "Theta ని normal vector A నుండి కొలుస్తారు, loop యొక్క flat surface నుండి కాదు. Flux equals B times A times cosine theta, in weber.",
+              "glow": "normal_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Theta is the angle with the loop's plane",
+            "one_line_fix": "Theta is measured from the area vector (the normal), not the plane of the loop."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "is theta the angle with the loop surface or with the normal",
+          "why is theta not measured from the plane of the loop",
+          "in the formula which line is theta measured from",
+          "does theta start from the flat face of the loop",
+          "why is my answer wrong if I take theta from the plane"
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: drag B, A, and tilt θ",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Drag B · A · θ — watch Φ respond",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "edge-on → Φ = 0\npast 90° → Φ negative",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "Φ = B·A·cosθ  (weber)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "All yours — drag field strength, window area, and tilt, and watch flux respond.", "text_hi": "All yours — drag करें field strength, window area, और tilt, और देखें flux कैसे respond करता है।", "text_te": "All yours — drag చేయండి field strength, window area, మరియు tilt, మరియు flux ఎలా respond అవుతుందో చూడండి."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "magnetic_flux_loop",
+    "field_lines": {
+      "count": 16,
+      "color_positive": "#66BB6A",
+      "color_negative": "#EF5350",
+      "opacity": 0.7
+    },
+    "slider_controls": {
+      "B": {
+        "min": 0.2,
+        "max": 2.0,
+        "step": 0.1,
+        "default": 0.8,
+        "label": "B (T)"
+      },
+      "A": {
+        "min": 0.25,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 1.0,
+        "label": "A (m²)"
+      },
+      "theta_deg": {
+        "min": 0,
+        "max": 180,
+        "step": 1,
+        "default": 0,
+        "label": "θ"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Magnetic flux: counting threading lines",
+        "visible_elements": [],
+        "camera_position": [1.4, 1.2, 6.4],
+        "caption": "Flux counts threading lines",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A·cosθ",
+        "magnetic_flux_loop": {
+          "mode": "guided",
+          "controls": [],
+          "static_readouts": [],
+          "show_area_vector": false,
+          "show_theta_arc": false,
+          "show_projection": false,
+          "show_hand": false,
+          "show_unit": false
+        }
+      },
+      "STATE_2": {
+        "label": "Field strength B: denser lines, more flux",
+        "visible_elements": [],
+        "camera_position": [1.4, 1.2, 6.2],
+        "caption": "Stronger field, denser lines",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A·cosθ",
+        "magnetic_flux_loop": {
+          "mode": "guided",
+          "controls": ["B"],
+          "static_readouts": [],
+          "show_area_vector": false,
+          "show_theta_arc": false,
+          "show_projection": false,
+          "show_hand": false,
+          "show_unit": false
+        }
+      },
+      "STATE_3": {
+        "label": "Window area A: bigger catch, more flux",
+        "visible_elements": [],
+        "camera_position": [1.4, 1.2, 6.2],
+        "caption": "Bigger window, more lines",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A·cosθ",
+        "magnetic_flux_loop": {
+          "mode": "guided",
+          "controls": ["A"],
+          "static_readouts": [],
+          "show_area_vector": false,
+          "show_theta_arc": false,
+          "show_projection": false,
+          "show_hand": false,
+          "show_unit": false
+        }
+      },
+      "STATE_4": {
+        "label": "Tilt θ: edge-on kills flux to zero",
+        "visible_elements": [],
+        "camera_position": [1.6, 1.3, 6.4],
+        "caption": "Edge-on: strong field, ZERO",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A·cosθ",
+        "magnetic_flux_loop": {
+          "mode": "guided",
+          "controls": ["theta"],
+          "static_readouts": ["B", "A"],
+          "theta_range": [0, 90],
+          "idle_sweep_hold_ms": 2000,
+          "show_area_vector": false,
+          "show_theta_arc": false,
+          "show_projection": true,
+          "show_hand": false,
+          "show_unit": false
+        }
+      },
+      "STATE_5": {
+        "label": "Past ninety, flux negative",
+        "visible_elements": [],
+        "camera_position": [1.6, 1.3, 6.6],
+        "caption": "Past ninety, flux negative",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A·cosθ",
+        "magnetic_flux_loop": {
+          "mode": "guided",
+          "controls": ["theta"],
+          "static_readouts": ["B", "A"],
+          "theta_range": [0, 180],
+          "show_area_vector": true,
+          "show_theta_arc": true,
+          "show_projection": false,
+          "show_hand": true,
+          "show_unit": true
+        }
+      },
+      "STATE_6": {
+        "label": "Explore: B, A, and tilt θ",
+        "visible_elements": [],
+        "camera_position": [1.8, 1.4, 6.8],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A·cosθ",
+        "magnetic_flux_loop": {
+          "mode": "explore",
+          "controls": ["B", "A", "theta"],
+          "static_readouts": [],
+          "theta_range": [0, 180],
+          "show_area_vector": true,
+          "show_theta_arc": true,
+          "show_projection": true,
+          "show_hand": false,
+          "show_unit": true
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#FFCA28",
+      "negative": "#EF5350",
+      "field_line": "#66BB6A"
+    }
+  }
+}
