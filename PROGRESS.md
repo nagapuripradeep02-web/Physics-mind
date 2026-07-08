@@ -1,5 +1,225 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧲 SESSION — Ch.4 CLOSED: `biot_savart_law` + `current_loop_acts_as_dipole` Rule-31 reconstructed (the last 2 Ch.4 stragglers); THE EYE blocked on Supabase TLS flakiness (2026-07-08)
+
+**Bottom line: the two remaining pre-Rule-31 Ch.4 concepts — `biot_savart_law` (§4.4) and `current_loop_acts_as_dipole` (§4.10) — were the last stragglers carrying `wait_for_answer`/`pause_after_ms` after the 2026-07-05 instrument arc (torque + 2 galvanometers) closed. Both reconstructed to Rule 31 via a JSON-only `retrofit-surgeon` fleet migration (2 parallel dispatches, one per concept). tsc 0 · validate:concepts 113/113 PASS both. Physics/narration hand-verified preserved. NOT committed (shared-tree no-race), NOT shipped (visual:approve + Rule 30g re-translation + EN+TE re-voice are founder-gated). THE EYE did NOT run — Supabase writes are hitting intermittent TLS `fetch failed` (project is UP: raw REST returns 401; connections flake ~1-in-2), so the seed can't write a `simulation_cache` row; a background watcher retries seed+EYE until connectivity recovers. Since `field_3d_config` was untouched, rendered scenes are byte-identical to the pre-existing authored sims — THE EYE here is build-integrity re-confirmation, not new-visual validation.**
+
+- **Delta applied (both, JSON-only — renderer/registration/SQL/tts untouched, no-race safe):** strip Socratic (biot 2 `wait_for_answer`→`manual_click`; current_loop 1 `wait_for_answer`→`manual_click` + 3 `pause_after_ms` removed + predict→reveal framing rewritten straightforward); word budget to 25–55 EN words/state (biot was up to 114→now 49–55; current_loop up to 82→41–55); `misconception_watch` pruned to genuine pivots (biot 6→2, current_loop 6→3); per-state `visible_controls` inert contract added (explore state = all sliders; `show_sliders` kept explore-only per the coulomb-regression lesson); biot's dormant `epic_c_branches` removed (EPIC-L-first); current_loop's 33 glow + `math_show` bindings preserved (33→33). PRIMARY aha preserved verbatim (biot STATE_7, current_loop STATE_4 s4_4).
+- **De-Socratic polish (biot, main session):** field_3d_config STATE_6 rendered label + epic_l_path title "Predict the direction" → "Direction rule: dot ⊙ vs cross ⊗" / "The direction rule: dot vs cross" (the only rendered residual Socratic text; scene_composition annotations are not rendered for field_3d, so those are inert).
+- **Gates (run this session):** `npx tsc --noEmit` 0 · `npm run validate:concepts` 113 PASS / 0 FAIL (both PASS) · sim HTML assembles clean (2.07 MB each — renderer+config sound) · review pages built + live HTTP 200: **http://localhost:8080/biot_savart_law/** · **http://localhost:8080/current_loop_acts_as_dipole/** (narration SILENT — not re-voiced; captions readable from JSON).
+- **TTS-stale (re-voice at ship):** biot 21 sentences rewritten (20 removed sentence-ids no longer need clips); current_loop 24 rewritten. `text_hi`/`text_te` left stale on rewritten sentences — Rule 30g Sonnet-5-subscription re-translation is a separate founder-gated ship step.
+- **Files:** `src/data/concepts/biot_savart_law.json`, `src/data/concepts/current_loop_acts_as_dipole.json` (reconstructed); NEW temp seed `src/scripts/_seed_biot_savart_law_cache.ts` (mirrors the existing `_seed_current_loop_acts_as_dipole_cache.ts` convention).
+
+**Next:** when Supabase TLS stabilizes → the background watcher (or a manual `visual:eyes -- <id>` ×2) produces frames → dispatch `eye-walker` (never read frames in main session) → founder eyes → ship chain (visual:approve + Rule 30g text_te + `tts:generate --langs=en,te`). With these two done, **Chapter 4 (Moving Charges & Magnetism) is fully Rule-31**. Commit the shared tree only on founder confirmation (no-race).
+
+---
+
+## 📘 SESSION — `resistivity` Rule 33 round 2: teacher-visible AMMETER + per-state one-electron storytelling; Rule 33 codified in CLAUDE.md (2026-07-08)
+
+**Bottom line: founder review of the split-canvas v1 flagged three problems — the ammeter showed no reading, and every state's inside-the-rod view looked the same generic drift. Fixed: (1) Rule 33 written into CLAUDE.md §7+§6 (founder-approved). (2) AMMETER rebuilt into a teacher-facing instrument — dial + tick marks + a needle that tracks the live current + a bold numeric `I = x.xx A`, moved fully clear of the slider panel; the redundant top-left meter box is suppressed under macro_view so there's ONE current instrument. (3) Per-state micro storytelling via a new `micro_focus` flag: `trace_one` (S1/S3/S4/S5/S6) follows ONE electron as a persistent bright anchor and tallies its collisions on a HUD; `count_carriers` (S2) lights up more drifting carriers as area grows ("more lanes"). The collision counter escalates exactly as the physics demands — geometry states ~5.5–6/s vs material/heat states 12/20/s — so each state now tells its own story with a real number. quality_auditor (Opus 4.8) PASS; eye_walker found 3 defects across two walks, all FIXED + re-verified CLEAN.**
+
+- **Rule 33 codified:** CLAUDE.md §7 rule 33 (33a macro cause object / 33b micro mechanism + zoom-link / 33c each state's interior tells its own story with a real number / 33d instruments show live numeric + tracking needle) + §6 self-review line. Design record: `docs/notes/resistivity-macro-view-design.md`.
+- **Ammeter (`drawMacroBand`):** dial arc + 5 ticks + red needle (`lerp(aLo,aHi, i/iMax)`, tracks `realCurrent()*curDriftFactor`) + `AMMETER` label + bold `I = x.xx A`. `panelReserve` raised 260→300 after eye_walker caught the panel's REAL padded width (238 + 12·2 pad + 1·2 border + 10 right ≈ 274px left edge, spanning the full band height → X-clearance is the only fix). Top-left `drawCurrentMeter()` gated `&& !mvOn()`.
+- **Per-state micro (`micro_focus`):** `trace_one` → electron 0 = brightenOnly anchor (opacity 1, long white trail, collision flashes) + `p.collisions++` per scatter (deterministic, resets in rebuildScene); `count_carriers` → all carriers keep drifting (motion never dies) but the active subset (`carriersForArea()` = count·A/Amax, grows with area) is brightened+enlarged+ringed. `drawMicroHUD()` shows "collisions: N" / "carriers flowing: K". S7 explore intentionally unset (full live sea).
+- **eye_walker defects, all FIXED:** walk 1 — (MAJOR) ammeter swallowed by panel → inset; (MODERATE) S2 thickness illegible → thickness ∝ A; (MODERATE) S6 manganin unnamed → on-canvas material label. walk 2 — (CRITICAL) S4 material bounced copper↔nichrome every 3s (the `material_cycle` 6s loop read as a glitch, contradicted "copper, then nichrome") → converted to a SINGLE cued `material_switch` at t=3.5s holding nichrome; (MAJOR) ammeter still overlapped on S3/S7 → panelReserve 300. walk 3 = CLEAN (S4 single clean swap confirmed monotonic collisions 0→389; ammeter clear on S3/S7). Plus auditor LOW note applied: S1 `glow_focal` `current_meter`→`ammeter` (was a dangling key under macro_view).
+- **Gates:** tsc 0, embedded-JS parse OK, validate 113/113 PASS, THE EYE 41/43 (all D5/D7 motion pass; the only 2 fails are expected H2 baseline-regression trips on S2/S4, cleared by visual:approve). quality_auditor on **Opus 4.8** = PASS (determinism preserved, no-op for siblings confirmed, single-focal brightenOnly reading defensible). No `text_en/hi/te` changed anywhere across the whole redesign → ZERO re-voice; the shipped 38 audio clips stay valid.
+- **Infra scar (this session):** Node `fetch`/undici to Supabase started failing intermittently (libuv `UV_HANDLE_CLOSING` crash on Windows) — `_seed_resistivity_cache.ts` could not write the cache. curl to the same endpoint works (authed GET/DELETE HTTP 200/204), so the reseed was done by assembling the row to a file (`scratchpad/assemble_resistivity_row.ts`) and `curl -X DELETE`+`POST` with `-H "Expect:"` (large POST needs the 100-continue handshake disabled) + retry-until-2xx. THE EYE's own cache reads worked. If this recurs, prefer the curl-bypass reseed.
+- **STATE_6 removed (founder 2026-07-08):** the manganin "steady alloy" contrast state was dropped. Concept is now **6 states** (S1–S5 guided + S7 explore). Chose a NUMBERING GAP over renumbering: `build_review_site.extractStates` sorts states by their numeric part and advances by list index (not `STATE_{n+1}` arithmetic), and audio is keyed by sentence-id+text-hash — so leaving S7 as the 6th state is safe AND keeps the explore-state audio wired, whereas renumbering S7→S6 would have stale-muted it (a `s6_1_en` clip exists but holds the deleted manganin narration). Edits: deleted both STATE_6 blocks (epic_l_path + particle_field_config), `state_count` 7→6, `entry_state_map.temperature` → [STATE_5] only. Manganin PRESERVED in the materials array + S7 explore material slider (0=cu/1=ni/2=mn) + the secondary real-world anchor. The 3 orphaned manganin clips (s6_* ×en/te) are simply unreferenced now; zero re-voice. THE EYE 35/37 (6 states, all motion pass, only the 2 expected H2 baseline trips).
+- **NOT committed / NOT re-approved:** `visual:approve` is founder-triggered; shared tree (no-race). Review rebuilt + serving: **http://localhost:8080/resistivity/**.
+- **Next:** founder eyes → `visual:approve` re-locks the **6** baselines → commit (renderer + resistivity.json + CLAUDE.md Rule 33 + agent pins + spec/PROGRESS) when tree is safe → then Ch.3 continuation. Deferred polish (auditor LOW note 2): trace_one interiors on copper states S1/S3/S4 look similar at the frozen instant (differentiation carried by macro band + readouts) — a pedagogy-judgment call for Asmi's review, not a blocker.
+
+## 📘 SESSION — `resistivity` macro/micro SPLIT-CANVAS redesign (Rule 33) + quality_auditor→Opus-4.8 pin (2026-07-08)
+
+**Bottom line: founder review of the shipped `resistivity` sim found it illegible — the whole sim lived *inside* the rod (lattice+electrons), so a macroscopic cause (wire longer/wider/hotter/different metal) was invisible. Fixed by a new `particle_field` capability `macro_view: true` (proposed Rule 33): the canvas splits into a top MACRO band (physical rod — length←L, thickness←A, tint←material, heat←T; battery + ammeter-with-needle + zoom-lens link) over the existing MICRO band (lattice+electrons). Additive + flag-gated → `drift_velocity`/`ohms_law` byte-identical. NO narration text changed → ZERO re-voice (audio from the ship still valid). quality_auditor (now on Opus 4.8) PASS; eye_walker found 3 defects on the first walk, all 3 FIXED + re-verified CLEAN. Awaiting founder eyes → `visual:approve` (founder-triggered) to re-lock the 7 baselines, and founder sign-off to append Rule 33 to CLAUDE.md.**
+
+- **Spec/doctrine:** design record `docs/notes/resistivity-macro-view-design.md` (Approach A chosen over two-panel renderer_pair / interleaved states); proposed **Rule 33** (macro↔micro dual-level legibility) drafted there — CLAUDE.md §7 index entry pending founder approval.
+- **Engine delta (`particle_field_renderer.ts`, additive):** helpers `mvOn()`/`macroBandH()`(=floor(h·0.38) when on, else 0)/`microTop()`/`microH()`; the micro scene is built into `microH()` (particle y-bounds, lattice spacingY, field-arrow y, y-wrap) and drawn under one `push();translate(0,microTop());…;pop()` — flag OFF ⇒ macroBandH()=0 ⇒ full-canvas identity. New `drawMacroBand()` (rod length/thickness/tint/heat-halo, battery, ammeter needle←`realCurrent()`, zoom-lens dashed link, L-callout, material-name label) + `drawDashedLine()`. Two new glow keys `macro_rod`/`ammeter` as real `dimFor()` call-sites. New `ParticleFieldAuthoredConfig.macro_view?`.
+- **JSON (`resistivity.json`):** `macro_view:true`; per-sentence `glow` retuned so CAUSE sentences focus the macro band (`macro_rod`/`ammeter`) and MECHANISM sentences focus the micro band (`electrons`/`lattice`/readouts) — cause-first legibility (32a) via glow sequencing, single-focal (32e) preserved. No `text_en/hi/te` touched.
+- **Gates:** tsc 0, embedded-JS `new Function` parse OK, validate:concepts PASS (113/113). THE EYE: all 7 states D5/D7 motion-pass; only failures are the expected H2 baseline-regression trips (intentional macro-band change vs stale baseline, cleared by visual:approve). **quality_auditor (Opus 4.8, first dispatch on the new pin) = PASS** (flag-gating no-op verified, glow keys wired 1:1, word budget unchanged, H2 trips correctly classified). **eye_walker walk #1 found 3 defects → all FIXED:** (1) MAJOR ammeter swallowed by the top-right slider panel on multi-slider states → inset the ammeter to reserve the 238px panel footprint; (2) MODERATE S2 rod thickness illegible (2× area barely changed width) → thickness now ∝ A (14px×A/A_def) so 2× reads as 2×; (3) MODERATE S6 manganin never named on-canvas → material-name label added top-left whenever the material slider exists. eye_walker walk #2 (focused) = **CLEAN**, no regressions, no new findings.
+- **Model pin (founder-approved):** `quality_auditor` → **`claude-opus-4-8`** (was sonnet-5) — emission frontmatter + audit-trail note in canonical `.agents/quality_auditor/CLAUDE.md` + governance table in `.agents/CLAUDE.md`. Rationale: highest-ROI single Opus slot (final adversarial gate, reasons across the whole pipeline, never edits ⇒ zero blast radius). All other roles keep pins; physics_author = Opus-by-dispatch-convention on hard chapters, not a standing pin.
+- **NOT committed / NOT re-approved:** `visual:approve` is founder-triggered (baselines still show the pre-redesign sim); shares `particle_field_renderer.ts` per the no-race rule. Review rebuilt + serving: **http://localhost:8080/resistivity/**.
+- **Next:** founder eyes on the split canvas → `visual:approve` re-locks 7 baselines → append Rule 33 to CLAUDE.md §7 (+ CLAUDE_RULES.md body) on approval → commit (renderer + resistivity.json + agent pins + spec/PROGRESS) when the tree is safe → then resume Ch.3 (temperature_dependence overlap check, else series/parallel combinations).
+
+---
+
+## 📘 SESSION — Ch.3 #3: `resistivity` AUTHORED + gated (R=ρL/A, ρ=m/(ne²τ), ρ_T=ρ₀(1+αΔT)); particle_field engine gains L/material/T support (2026-07-08)
+
+**Bottom line: third Ch.3 diamond `resistivity` (NCERT §3.6/§3.7 — resistance factorizes into shape×material, R=ρL/A; a material's own number ρ=m/(ne²τ); metals resist MORE when hot, ρ_T=ρ₀(1+αΔT)) went through the full Alex pipeline (architect → physics_author → json_author → quality_auditor ∥ eye_walker) in one session, following directly after `ohms_law` per NCERT+dependency order. Required a genuine engine delta on `particle_field_renderer.ts` — the first since ohms_law's V/R adapter. quality_auditor's one hard FAIL (Gate 3f word-budget overrun on the PRIMARY-aha state) was fixed and re-verified before this entry was written. NOT shipped (no TTS/audio, no founder approval yet) — authored + gated only.**
+
+- **Engine delta (`particle_field_renderer.ts`, additive, drift/ohms untouched):** `L` (wire length) and `material` (copper/nichrome/manganin preset, index-encoded on an ordinary numeric slider — engine special-cases its display to show the material NAME) and `T` (temperature °C) sliders; `condLength()`/`condAreaM2()` now read live/auto-swept L/A; a resistivity adapter block (`materialList`/`materialAt`/`rhoOf`/`tauFromRho`/`curRho`) makes `τ = m/(ne²ρ)` — algebraically self-consistent with the existing `i=neAv_d` chain so `i = V_supply·A/(ρL)` **exactly**, independent of which n/e/m values are configured (they cancel). Single hidden calibration constant `V_supply` (physically honest, not a fudge — real copper at 1m/1mm² has R=0.017Ω, so ~0.02V truly gives ~1.2A, continuous with the sibling concepts' defaults). New clock-driven auto-sweeps (`autoSweepLSimple`/`autoSweepASimple`/`geometryPhaseLA` 3-phase cycle/`autoMaterialIndex`/`autoSweepT`), a one-shot cued `material_switch`, a lattice thermal-jitter model (shivers with T, independent of current), material-tinted lattice colour, a new `drawThermometer()` gauge, and two new independently-glowable readout spans (`r_readout`/`rho_readout`) split out of the readout DOM box. Verified via `node` arithmetic (not just tsc) — all six taught ratios matched exactly: default i=1.20A; S1 stretch→0.60A (half); S2 widen→2.40A (double); S3 constant-volume stretch→R×4; S4 nichrome/copper ρ ratio≈64.7×; S5 copper 20→220°C ρ≈1.78×; S6 manganin same sweep ρ≈1.002× (flat).
+- **Pipeline:** architect (`.agents/proof_run/resistivity_skeleton.md`, 7 states, PRIMARY aha S3 `shape_times_material`, 2 coined archetypes `reshape-apparatus`/`agitate` each with a declared contrast pair, 3 misconception pivots) → physics_author (block appended to the same file — locked slider specs, `text_en` narration, 45 drill-down phrases across 9 clusters, independently re-verified the engine's own numbers) → json_author (`resistivity.json` + registration: `CONCEPT_PANEL_MAP`, `CONCEPT_RENDERER_MAP`→particle_field, `VALID_CONCEPT_IDS` placeholder confirmed+extended in `CLASSIFIER_PROMPT`, NOT added to `PCPL_CONCEPTS`; clusters migration + seed script authored-not-applied).
+- **Gates:** THE EYE 30/30 ×3 runs ($0). **eye_walker found 2 real issues on the first walk, both FIXED + re-verified clean:** (1) MAJOR — new `drawThermometer()` overlapped the bottom-right formula_overlay caption on every state that showed both (S5/S6/S7); moved thermometer to bottom-left. (2) MODERATE — S2's area auto-sweep target was coded as "sweep to slider max" (5mm², inherited from a literal-max assumption) instead of the narrated "doubles" (2mm²) — L's own max happened to equal 2×default so it read correctly by coincidence, A's didn't; fixed both `autoSweepLSimple`/`autoSweepASimple` to target `min(default×2, max)` explicitly. **quality_auditor first pass: FAIL** — one hard finding, Gate 3f: STATE_3 (PRIMARY aha) narration ran 65 words (4 sentences), over the 55-word ceiling, because it bundled the R=ρL/A aha with a 4th sentence narrating the constant-volume ×4 JEE trap. Fixed by dropping the trap sentence from narration only (50 words, 3 sentences) — the visual constant-volume phase still plays (`geometry_cycle`'s 3rd phase is clock-scripted, not narration-gated) and the trap's full explanation already lives in the `stretched_wire_r_scales_l_squared` drill-down cluster. Re-verified: tsc 0, validate:concepts PASS (113/113 suite stable), THE EYE 30/30 again, eye_walker focused re-check on both fixes = CLEAN.
+- **quality_auditor re-confirmed PASS** on a scoped Gate 3f re-audit after the STATE_3 trim (50 words, all 7 states now within budget) plus a regression check on the two touched renderer functions (`drawThermometer`, `autoSweepASimple`) — no open finding remains.
+- **Ship (founder "ship it"):** Rule 30g applied FIRST this time (not as a post-hoc redo like ohms_law) — dumped all 19 `tts_sentences` → a `model: sonnet` Claude Code subscription sub-agent translated to code-mixed `text_hi`/`text_te` under the Rule 30 constraints → wrote both fields into `resistivity.json` directly (tsc 0, validate PASS after) → dispatched `shipper`: `visual:approve` (7 baselines) → `tts:translate` correctly no-op'd ("nothing to do — already translated", $0, confirming the idempotent skip-if-both-fields-present behavior works as designed) → `tts:generate --langs=en,te` (**38 clips**, 19 EN + 19 TE, 0 stale, Sarvam bulbul:v3/priya) → `build:review` → verify (38/38 manifest, HTTP 200, validate PASS). **Telugu = DRAFT** (Rule 30f, native reviewer pass still required). Review: **http://localhost:8080/resistivity/**.
+- **NOT committed** — shares `particle_field_renderer.ts`/registration files with any other concurrent session per the no-race rule. Not yet in `PILOT_CONCEPTS`.
+- Founder still needs to hand-test S7's trusted-drag L/A/material/T sliders (THE EYE can't fire trusted events).
+
+**Next (resistivity):** `git add visual_baselines/resistivity/` + commit when safe to do so; native Telugu reviewer pass; add to `PILOT_CONCEPTS` when ready for the pilot catalog. Then Ch.3 continues: `temperature_dependence_of_resistance` may already be substantially covered by this concept's S5/S6 (assess before authoring a separate concept — possible scope overlap, confirm with founder) — otherwise proceed to series/parallel combinations, then the lab-apparatus trio (Wheatstone/meter bridge/potentiometer, needs circuit primitives).
+
+---
+
+## 📗 SESSION — Ch.2 #8: parallel_plate_capacitor_field Rule-31/32 reconstruction PASSED — **Ch.2 CLOSED at 8/8** (2026-07-08)
+
+**Bottom line: eighth and LAST Ch.2 diamond `parallel_plate_capacitor_field` (E=V/d uniform between plates, ≈0 outside, E∝1/d at fixed V) reconstructed 7→6 states via the full pipeline. This scenario's engine was already hardened from a prior legacy pass (7/7 old scars FIXED) — expected a clean JSON-only pass, and mostly was, but verification still caught one genuinely new engine bug on the PRIMARY aha state. quality_auditor final verdict: PASS. Chapter 2 (Electrostatic Potential & Capacitance) is now fully reconstructed to current doctrine: electric_potential_meaning, electric_potential_point_charge, electric_potential_dipole, electric_potential_system_of_charges, equipotential_surfaces, potential_energy_system_of_charges, potential_energy_in_external_field, parallel_plate_capacitor_field.**
+
+- **Reconstruction (architect):** 7 old states → 6. Unlike the prior reconstruction (`potential_energy_in_external_field`), none of the 3 old `wait_for_answer` states merged away outright — each taught genuinely distinct content. Old S1+S2 merged (bare setup + switch-on-V = one lead-in); old S4 SPLIT (two-sheet derivation carried both "why uniform inside" and "why ≈0 outside" — the only split in either Ch.2 reconstruction) into new S3 (inside-add) + folding into new S4 (outside-cancel, absorbing old S5's edge-on view). One coined archetype: `superpose-combine`, used as a declared contrast pair (S3=aligned→ADD, S4=opposed→CANCEL). PRIMARY aha (uniform field, 3 equal probe arrows) preserved, moved old STATE_3 → new STATE_2.
+- **Notable engineering move (physics_author):** S3/S4's contrast pair needed showing "2 arrows only" vs "6 arrows, 4 fading" — achieved with zero engine changes by reusing the existing `cancel_outside_at_ms` field as a permanent zone-suppressor (`cancel_outside_at_ms:0` on S3 zeroes the outside arrows for the whole state via the existing fade math, verified by hand-deriving the ramp arithmetic before authoring it).
+- **JSON pass:** word budget 31-54 EN words/state (was 66-93); 3 `wait_for_answer` stripped → `manual_click`×5 + `interaction_complete`×1. Misconceptions pruned to 3 genuine pivots (S1 radial-vs-uniform, S2 uniform-not-position-dependent, S5 E-depends-on-V-only).
+- **1 NEW engine bug found + fixed** (this scenario's first-ever fresh bug, despite the 7-row FIXED history): `pp_probe_and_sheet_arrows_camouflaged_by_translucent_plate_blend` (MAJOR) — `buildParallelPlatesField()` never applied `depthTest:false`/`renderOrder` to its arrow primitives (probe arrows, sheet-field arrows, field lines, fringe tubes, test-charge), so anything sitting near the translucent +/− plate meshes rendered as a muddy color-blend instead of reading clean — directly breaking the PRIMARY aha (2 of 3 "identical" probe arrows were visually camouflaged, pixel-confirmed by quality_auditor before the fix). Fixed by applying the exact pattern already proven in `gauss_law_sphere`/`gauss_law_line`/`gauss_law_sheet` elsewhere in the same file. Pixel-level re-verification confirmed 0 muddy-blend pixels post-fix across STATE_2's frozen frame and STATE_5's full gap-widen sweep.
+- **1 eye-walker finding disproven:** an initial eye-walker pass flagged STATE_4's cancel-outside fade as not firing — quality_auditor's fresh pixel-level re-check (exact-pixel counts at t=5000/6000/7000/8000/9000/12000) showed the fade DOES fire correctly, transitioning from full-opacity to zero between t=7000 and t=8000 exactly as authored (`cancel_outside_at_ms:7000`+800ms). Recorded as a false positive, not fixed (nothing was broken).
+- **Verification:** `tsc` 0 · `validate:concepts` PASS zero-WARN · THE EYE 26/26 ×3 (one re-run purely to rule out cache staleness before escalating) · engine_bug_queue 8/8 FIXED (7 pre-existing + 1 new) · quality_auditor final verdict **PASS**.
+- **Founder-directed STATE_2 redesign (post-PASS, then re-PASSED):** founder reviewed live and wanted the PRIMARY aha reworked — instead of 3 identical probe ARROWS proving uniformity by matching geometry, show 3 labeled POINTS (A, B, C) at the same locations, each with a marker dot + a live numeric E readout, proving uniformity by matching NUMBERS (all three read "1200"). This needed a NEW reusable engine primitive `probe_points` (labeled points + live per-point readouts, sibling to `probe_arrows`, built additively — available to any future uniform-field/potential concept). Two follow-up engine fixes: readout text was overlapping horizontally → bare-number readouts + one shared "E (V/m)" legend row; `deriveStateMeta` didn't register `probe_points_at_ms` → registered it (killed a D7 false-fail + fixed an empty frozen frame). 4 new engine_bug_queue rows, all FIXED. quality_auditor re-audited the redesign: PASS, no regressions. Founder: "it is perfect now."
+- **SHIPPED EN+TE (2026-07-08):** `visual:approve` 6 baselines → **Rule 30g translation via a `model:sonnet` sub-agent** (NOT `tts:translate` — avoids the metered anthropic/deepseek/google keys; code-mixed text_te authored under Rule 30 constraints: technical terms Latin, symbols expanded to spoken names, "yellow" kept English) → text_te written into the JSON (18 sentences) → `tts:generate --langs=en,te` **36 clips** (18 EN + 18 TE, 0 Hindi, 0 stale) → `build:review` → verify (HTTP 200, 36-clip manifest, 36 mp3 on disk, 0 stale). **Telugu = DRAFT** (Rule 30f, native reviewer pending). Review: **http://localhost:8080/parallel_plate_capacitor_field/**.
+- **NOT committed** — multiple concurrent sessions share this working tree (Ch.3 `drift_velocity`/`ohms_law` also shipped this session, untouched by this thread). Founder needs to confirm before any commit given shared state.
+
+**Next (fresh context):** Ch.2 is fully closed at 8/8 — no more Ch.2 reconstruction work. Founder should decide the next chapter/priority (Ch.3 Current Electricity is already underway in a parallel session: drift_velocity + ohms_law shipped; Ch.6 EMI has magnetic_flux shipped, lenz_law still open per the doctrine-session notes below).
+
+---
+
+## 📘 SESSION — Ch.3 #2: `ohms_law` (V=IR) AUTHORED + gated + SHIPPED (EN+TE 34 clips); Rule 30g codified (Sonnet-5-subscription translation, not the metered API) (2026-07-08)
+
+**Bottom line: the second Ch.3 diamond `ohms_law` (NCERT §3.4/§3.6 — V=IR, R = the slope of the straight V–I line, current conserved through a resistor, ohmic-only via the filament curve) went from design → Phase-A engine → full Alex pipeline → THE EYE/eye-walker → SHIPPED EN+TE in one session. Chosen by NCERT sequence + concept dependency: drift_velocity gave the microscopic i=neAv_d, ohms_law is the macroscopic law every remaining Ch.3 concept needs. Reuses the drift particle_field engine + 5 NEW additive primitives. Founder said "ship it" → shipper release chain ran (visual:approve → tts:generate EN+TE → build:review, DeepSeek carried tts:translate since Anthropic API credits were out) → then founder redirected: Telugu must come from **Sonnet 5 on the Claude Code subscription**, never a metered API — re-translated + re-voiced, and the rule was codified as **CLAUDE.md Rule 30g**. NOT committed (shared-renderer no-race).**
+
+- **Design (founder-approved section-by-section):** `docs/superpowers/specs/2026-07-08-ohms-law-design.md`. Representation = hybrid (drift wire = cause, V–I graph panel = the law). 6 states: push_drives_flow → straight_line_law (PRIMARY aha, i∝V) → slope_is_resistance → nothing_used_up (misconception: current conserved, V spent) → when_the_line_bends (filament, ohmic-only) → sandbox. Anchor = household fan regulator + filament bulb.
+- **Phase A — engine (`src/lib/renderers/particle_field_renderer.ts`, additive, drift untouched, browser-verified):** ohms_law adapter (V slider→E=V/L, R slider→τ=mL/ne²AR ⟹ **i=V/R exactly**, independent of L/A) · **V–I graph panel** `show_vi_graph` (I on x, V on y so slope=R is literal — CORRECTED mid-session from an initial I-on-y bug that mislabelled slope) with fixed-axis-from-default-R so R visibly tilts the line · `vi_autosweep` (clock-drives V 0→default, cause-first, deterministic under SET_TIME_FREEZE) · `r_autosweep` (S3 auto-ramps R so the tilt self-demonstrates) · non-ohmic `ohmic:false` (R_eff=R(1+k·V/Vmax), concave-up curve) · `show_flux_conservation` (S4 count-in=count-out band + V-drop gradient) · current meter climbs with curDriftFactor + reads `i=V/R`. New per-state flags added to the TS interface.
+- **Phase B — pipeline (all under Rule 31/32):** architect (`.agents/proof_run/ohms_law_skeleton.md`, 6 states, PRIMARY aha S2, control table, 2 misconception pivots) → physics_author (`.agents/proof_run/ohms_law_physics_block.md`, arithmetic re-verified: i=1.2A defaults, filament R_eff=8.5Ω at V=6, word budgets S1–S6 50/53/50/53/54/19) → json_author (`ohms_law.json` + 8 sites; replaced STALE legacy `graph_interactive`/`dual_horizontal` placeholders in panelConfig + CONCEPT_RENDERER_MAP with the real particle_field path; `ohms_law` was already an unbuilt placeholder in VALID_CONCEPT_IDS/CLASSIFIER_PROMPT — verified+extended, not duplicated; clusters migration `supabase_2026-07-08_seed_ohms_law_clusters_migration.sql` authored-not-applied). Seed script `_seed_ohms_law_cache.ts`.
+- **Phase C — gates:** THE EYE 26/26 ×3 runs ($0). **eye-walker walked → 3 real findings, all FIXED + re-verified:** (1) CRITICAL `state_cue_gated_by_conflicting_field_visible_false` — S1 had field_visible:false + drift_speed:0 so the field_on cause→effect never rendered → set true/0.35/left (mirrors drift's S2 pattern); (2) MODERATE S3 label was literal placeholder `"slope R = ... Ω"` → "R sets the slope" + added r_autosweep so S3's tilt is actually visible (was static-identical to S2); (3) glow enum — per-sentence `glow` + state `glow_focal` remapped to the renderer-keyed set (vi_graph/flux; the finer vi_operating_point/slope_readout/vi_trace/flux_tallies aren't keyed → would dim the panel). Also dead `retilt_to_r15` no-op cue removed.
+- **Verified:** tsc 0 (every edit) · validate:concepts PASS ohms_law (suite stable) · browser smoke of all 6 states (physics exact: S2 i=V/R straight, S3 steeper=more R, S5 filament concave-up i=0.71 at V=6, S4 8/s in=8/s out) zero console errors · THE EYE dense frames confirm S1 meter climbs 0→1.2A after the field cue, S3 auto-tilts to a steeper line. Review: **http://localhost:8080/ohms_law/**.
+- **Ship (Phase D, founder "ship it pls"):** `shipper` ran visual:approve (6 baselines locked, `visual_baselines/ohms_law/`) → tts:translate (Anthropic exhausted → DeepSeek `deepseek-chat` fallback, 17/17 sentences) → tts:generate `--langs=en,te` (34 clips, 0 stale, 0 Hindi) → build:review → verify (manifest 34/34 available, HTTP 200, validate PASS). Review: **http://localhost:8080/ohms_law/**.
+- **Rule 30g — translation redo + doctrine (founder-directed, 2026-07-08):** founder rejected the DeepSeek-API translation path — Telugu must be **Sonnet 5 run on the Claude Code subscription** (a `model: sonnet` sub-agent), never `npm run tts:translate`'s metered anthropic/deepseek/google keys (the subscription is only reachable from inside Claude Code, so this is necessarily an agent step, not a script). Re-ran: dumped 17 `text_en` → Sonnet-5 sub-agent translated under the Rule-30 code-mix constraints (terms stay Latin, no transliteration, bare symbols expanded, colour words English) → wrote `text_te` into `ohms_law.json` (tsc 0, validate PASS after) → `tts:generate` hash-aware re-voice (17 TE re-fetched, 17 EN skipped-unchanged, 34/34 available) → rebuilt (HTTP 200). **Codified as CLAUDE.md §7 Rule 30g** (right after 30f): Sonnet-5-subscription translation is now the standing rule for ALL future concepts' text_te/text_hi; Sarvam bulbul:v3/priya remains the audio engine (separate paid TTS, unaffected); Sarvam-Translate/Mayura explicitly rejected (breaks the code-mix bulbul needs); flagged that the `shipper` chain still calls `tts:translate` internally, so the Sonnet-5 step must run BEFORE shipping until shipper is updated to do it natively. Session memory also updated (`feedback_tts_translation_sonnet5_subscription.md`).
+- **NOT committed:** working tree shares `particle_field_renderer.ts` + registration files + CLAUDE.md with the parallel drift/Ch.6 sessions — region-disjoint additive edits, did NOT commit (no-race rule). Legacy `generateOhmsLawConfig`/`ohmsLawRenderer.ts` now dead code for this id (json_author left in place; cleanup later). **Telugu narration is DRAFT** — native reviewer pass still required (Rule 30f) even after the Sonnet-5 redo. Founder still needs to hand-test S6 trusted-drag V+R sliders (THE EYE can't fire trusted events); paid smoke:visual-validator not run (Anthropic credits).
+
+**Next (ohms_law):** hand-test S6 sliders; native Telugu reviewer pass; optionally update `shipper` to run the Sonnet-5 translation step natively (closing the tts:translate gap). Then Ch.3 continues per NCERT+dependency: `resistivity` / `temperature_dependence_of_resistance` (build on drift+ohms), then series/parallel combos, then the lab-apparatus trio (needs circuit primitives). Reconcile + commit the shared renderer + CLAUDE.md when the parallel sessions land.
+
+---
+
+## 📗 SESSION — Ch.2 #7: potential_energy_in_external_field Rule-31/32 reconstruction SHIPPED (EN+TE 40 clips, 7 baselines); 3 dipole-engine bugs found + fixed (2026-07-08)
+
+**Bottom line: seventh Ch.2 diamond `potential_energy_in_external_field` (U=qV for a charge → U=q1V1+q2V2 for a system → U=−p·E=−pEcosθ for a dipole; the "aligned looks stable but is actually the energy maximum" reversal) reconstructed 9→7 states via the full pipeline (architect reconstruction mode → physics_author → json_author → THE EYE → eye-walker ∥ quality_auditor), SHIPPED EN+TE after founder approval. Ch.2 now 7/8 — one concept left.**
+
+- **Reconstruction (architect):** 9 old Socratic states graded keep/merge/delete via the archetype rubric → 7 new states. STATE_2+STATE_3 merged (fly-in + sign-flip predict-pause → one straightforward "flip" beat, PRIMARY aha survives here); STATE_7+STATE_8 merged (theta-sweep predict-pause + damped-pendulum release → one "oscillate/track" beat). 7 distinct archetypes, zero repeats: reveal-build · flip · translate-through · cycle-compare · converge-merge (coined) · oscillate/track · drag-sandbox. Misconceptions pruned 4→3 genuine pivots (STATE_2 sign-of-U, STATE_4 external-vs-mutual, STATE_6 stability-reversal).
+- **JSON pass:** word budget 32-53 EN words/guided state (was 65-104); all `wait_for_answer`/`pause_after_ms`/`narrative_socratic`/`auto_after_tts`/`auto_after_animation` stripped → `manual_click`×6 + `interaction_complete`×1 (Gate 12 ✓). One new physics variable added (`V_single=4`, fixing a pre-existing V1/V_single conflation bug in the shipped file's STATE_2 numbers).
+- **3 engine bugs found during verification, all fixed in `field_3d_renderer.ts` (all now FIXED in `engine_bug_queue`):**
+  1. `dipole_growth_timer_desync` (MAJOR) — STATE_5's p-arrow/field-fade growth timers were absolute-time stamps never re-synced on `RESET_TRAJECTORY`, so THE EYE's dense capture showed a frozen already-grown dipole for the full 15s. **Confirmed capture-harness-only, never live-blocking** (traced the real `SET_STATE` production path in `build_review_site.ts`, which never snaps time forward). Fixed by rewriting growth as a pure function of `(time - stateStartTime)`. Side-effect fix: also closed the same latent bug in `electric_dipole_in_field` + `bar_magnet_in_uniform_field`.
+  2. `dipole_replay_animations_scenario_type_gap` (MODERATE) — `REPLAY_ANIMATIONS`'s `rotation_start_time` re-stamp was gated by an enumerated `scenario_type` allowlist missing `pe_external_field`/`bar_magnet_in_uniform_field`. This one **was live-real** (narrow path: clicking ▶ Play again after a state finishes) and directly broke STATE_6's frozen-frame evidence (showed the settled θ=0° end-pose instead of the anti-aligned θ=178° start the stability misconception beat needs). Fixed by replacing the allowlist with a generic shared-group existence check; paired a `screenshotter.ts` fix so THE EYE's capture actually exercises `REPLAY_ANIMATIONS` (it never had before).
+  3. `pe_charge_entry_glide_dead_when_no_slide` (MAJOR) — a charge authored with `enter_from` but no `slide_to` never glided in; `slideAt` defaulted to `0` instead of `Infinity`, making the enter-branch dead code for STATE_2/STATE_3's charge arrivals. One-line default-value fix, zero blast radius (confirmed only consumer of the pattern in the file).
+- **Content fix (json_author):** STATE_4's mutual-vs-qV bonds rendered collinear/overlapping (both charges sat on the field's own axis) — undercut the "qV is not mutual" teaching point. Fixed by offsetting q1/q2 off-axis in y, applied to both STATE_3 and STATE_4 for Rule 32d home-pose continuity.
+- **Verification:** 4 rounds of THE EYE + eye-walker + quality_auditor (each engine fix required a fresh full re-audit — quality_auditor correctly refused to rubber-stamp past new findings each pass). Final: `tsc` 0 · `validate:concepts` PASS · THE EYE 30/30 ×4 · engine_bug_queue 3/3 FIXED · quality_auditor final verdict **PASS**, zero open findings.
+- **Cache regen:** `runtime_generation` swept `simulation_cache`/`deep_dive_cache`/`drill_down_cache` for all 3 affected concepts post-fix (see REGEN EXECUTION LOG below — deep-dive/drill-down were empty for all 3, nothing to regenerate there).
+- **Release (shipper, founder said "ship it" after reviewing the live site):** `visual:approve` 7 baselines → `tts:translate` (Anthropic credits exhausted → DeepSeek fallback succeeded, 20/20 sentences) → `tts:generate --langs=en,te` **40 clips** (20 EN + 20 TE, 0 Hindi, 0 stale) → `build:review` → verify (40-clip manifest, HTTP 200, validate PASS). **Telugu = DRAFT** (Rule 30f). Review: **http://localhost:8080/potential_energy_in_external_field/**.
+- **NOT yet committed** — multiple concurrent sessions share this working tree (Ch.3 `drift_velocity`/`ohms_law` work also in progress, untouched by this session). Founder needs to confirm before any commit given shared state.
+
+**Next (fresh context):** Ch.2 #8 = `parallel_plate_capacitor_field` — the last Ch.2 concept, closes Ch.2 at 8/8. Its `engine_bug_queue` scar list already shows 7 rows, all FIXED (a prior legacy pass already hardened this scenario's per-state motion/config-reading — Class A, pure JSON pass expected, no engine work anticipated). Same reconstruction pipeline.
+
+---
+
+## 🔧 REGEN EXECUTION — runtime_generation cache sweep for dipole-engine fix (2026-07-08)
+
+**Executed an incoming `RENDERER REGEN DIRECTIVE` from `peter_parker:renderer_primitives`** (this
+session's two dipole-engine dispatches: p-vector/field-switch-on growth timers rewritten as pure
+functions of `time - stateStartTime`; `REPLAY_ANIMATIONS` scenario_type allowlist replaced with a
+generic shared-group check). Per mandate, `runtime_generation` is the only cluster authorized to run
+`DELETE` on cache tables — this was pure sweep execution, no code change.
+
+**Before-sweep row counts** (queried fresh via `supabaseAdmin`, not trusted from the directive's summary):
+
+| concept_id | simulation_cache | deep_dive_cache | drill_down_cache |
+|---|---|---|---|
+| `potential_energy_in_external_field` | 1 (stale — pre-existing ad-hoc reseed from run `20260708-143945`) | 0 | 0 |
+| `electric_dipole_in_field` | 0 (never touched this session, as flagged) | 0 | 0 |
+| `bar_magnet_in_uniform_field` | 1 (stale — pre-existing ad-hoc reseed from run `20260708-144745`) | 0 | 0 |
+
+`deep_dive_cache` and `drill_down_cache` were **empty for all 3 concepts before the sweep — there was
+nothing to delete there** (these are conceptual-only field_3d diamonds; no deep-dive/drill-down rows
+have ever been generated for them). Reporting this plainly rather than implying the sweep of those two
+tables accomplished a no-op cleanup.
+
+**Scoped DELETEs executed** (`WHERE concept_key = <id>` / `WHERE fingerprint_key LIKE '<id>%'` on
+`simulation_cache`; `WHERE concept_id = <id>` on `deep_dive_cache` + `drill_down_cache` — both tables
+have a native `concept_id` column per the Phase-D migration, so no full-table truncate was needed for
+any table) — ran for all 3 concept IDs, including the 2 already ad-hoc-reseeded (per directive: trust
+this cluster's own sanctioned path, not the prior summary).
+
+**Re-seed** — ran the existing `_seed_<id>_cache.ts` scripts (all 3 already existed; confirmed before
+running) which assemble `sim_html` fresh from the CURRENT `field_3d_renderer.ts` (post dipole-engine
+fix) + each concept's `field_3d_config`:
+- `npx tsx --env-file=.env.local src/scripts/_seed_potential_energy_in_external_field_cache.ts` → 1 row, 2,064,682 chars
+- `npx tsx --env-file=.env.local src/scripts/_seed_electric_dipole_in_field_cache.ts` → 1 row, 2,065,979 chars
+- `npx tsx --env-file=.env.local src/scripts/_seed_bar_magnet_in_uniform_field_cache.ts` → 1 row, 2,065,060 chars
+
+(First combined-script attempt hit a transient `fetch failed` on the first insert — payload ~2MB;
+retried via the standalone per-concept seed scripts, all 3 succeeded cleanly on retry.)
+
+**After-sweep verification** — fresh `simulation_cache` row per concept, `created_at` ≈ 2026-07-08
+12:52:50–12:53:06 UTC (all after the DELETE sweep), `fingerprint_key = <id>|understand|12|conceptual|none`,
+`served_count: 1`; `deep_dive_cache`/`drill_down_cache` confirmed still 0 rows (nothing existed to
+regenerate — Rule 18 sub-sim paths are dormant for these 3 concepts).
+
+```
+## REGEN EXECUTION LOG
+- source_directive: peter_parker:renderer_primitives, dipole-engine growth-timer + REPLAY_ANIMATIONS
+  scenario_type fix (this session, two dispatches)
+- execution_sql (via supabaseAdmin, not raw SQL — Supabase MCP needs interactive OAuth, doesn't run
+  headless in this environment):
+    simulation_cache: .delete().eq('concept_key', <id>)        — all 3 ids
+                      .delete().like('fingerprint_key', '<id>%') — all 3 ids
+    deep_dive_cache:  .delete().eq('concept_id', <id>)          — all 3 ids
+    drill_down_cache: .delete().eq('concept_id', <id>)          — all 3 ids
+- prewarm_calls: 3 (one `_seed_<id>_cache.ts` run per concept — this IS the prewarm path for field_3d
+  concepts, which are assembled deterministically rather than served through /api/generate-simulation)
+- cold_hit_confirmed: yes (all 3 rows deleted before re-seed, confirmed via count query)
+- warm_hit_confirmed: yes (post-seed SELECT shows exactly 1 fresh simulation_cache row per concept,
+  new created_at timestamps, correct fingerprint_key)
+- executed_at: 2026-07-08T12:54:00Z
+```
+
+Files added (temp, mirrors the existing `_seed_<id>_cache.ts` / `regen-*` convention — left in place as
+this session's regen record, not deleted post-use, consistent with how the existing seed scripts are
+kept in the repo):
+```
+ADDED:
+  src/scripts/_regen_sweep_20260708_dipole_engine_fix.ts   (before-counts + scoped delete + re-seed)
+  src/scripts/_verify_sweep_20260708_dipole_engine_fix.ts  (post-sweep verification query)
+```
+No sacred-table writes. No edits to `.json` concept files, renderer/engine display code, or any
+`.agents/**` spec.
+
+---
+
+## 📗 SESSION — Ch.3 OPENED: `drift_velocity` SHIPPED (EN+TE 36 clips, 7 baselines) + the 2D particle_field pipeline UNLOCKED end-to-end (2026-07-08, parallel session to the doctrine one below)
+
+**Bottom line: Chapter 3 (Current Electricity) is decided 2D-not-3D and its first diamond `drift_velocity` (NCERT §3.5 — thermal chaos ~10⁵ m/s vs drift ~10⁻⁴ m/s; the "field arrives, not electrons" fan-switch aha; v_d = eEτ/m; i = neAv_d) is SHIPPED EN+TE via the full pipeline. This required a one-time infra unlock: `particle_field_renderer.ts` (p5.js) modernized to the complete player contract and wired into build:review + THE EYE — the SECOND live renderer through the teacher pipeline, and the template for the rest of Ch.3 (Wheatstone/meter bridge/potentiometer next, pending their circuit primitives).**
+
+- **Renderer decision (founder):** Ch.3 = flat content (circuits/graphs/lab apparatus) → 2D; field_3d stays reserved for spatial vector-field chapters. Evidence-checked: mechanics_2d/PCPL lacks the modern contract entirely (no SET_TIME_FREEZE/PM_simTimeMs/show_sliders/SET_GLOW); the old `particle_field_renderer.ts` already had the drift physics + postMessage basics — so it was modernized in place, NOT ported.
+- **Engine (Phase A):** particle_field gained: PM_simTimeMs state clock · deterministic SET_TIME_FREEZE re-sim (seeded mulberry32 PRNG, same seed every state = Rule 32d home pose + reproducible EYE baselines) · Rule-31 per-state `visible_controls` slider rows (E/τ/A, panel built once) · delta-cue caption strip + formula_overlay DOM panels · brightness-only glow focals (`dimFor`, six named targets) · cause-first `field_on` cue channel (600ms fade → 900ms beat → 800ms drift ramp) + SET_CUE_TIME · live real-unit readouts (v_d = eEτ/m, i = neAv_d from formula_anchor.constants) · `assembleParticleFieldHtml()` export. `build_review_site.ts` branches on `particle_field_config`; `deriveStateMeta.ts` gained resolveParticleFieldStates (motion always-true, cue-payoff reveal times, show_sliders→interactive holds); seed script `_seed_drift_velocity_cache.ts`.
+- **Authoring (Phase B, full pipeline under the NEW Rule 31/32 specs):** architect (7 states, all archetypes distinct, control table native) → physics_author (arithmetic verified: defaults land v_d ≈ 8.78×10⁻⁵ m/s, i ≈ 1.19 A; the ≈14 h number derived honestly from d≈4.4 m) → json_author (JSON + registrations + clusters migration `supabase_2026-07-08_seed_drift_velocity_clusters_migration.sql`, authored-not-applied). **First concept to natively meet the word budget: S1–S6 = 40/53/50/54/38/53 words.** Skeleton + physics block at `.agents/proof_run/drift_velocity_*.md`.
+- **Gates (Phase C):** THE EYE 30/30 ×2 · eye-walker caught 2 REAL renderer bugs on the first walk → logged OPEN → fixed → re-verified in frames → FIXED: `particle_field_cue_gate_skipped_on_zero_step_freeze` (CRITICAL — frozen t=0 opening hold showed post-cue arrows before Play; fix = updateCueGates() shared by stepPhysics+resetToHomePose) and `particle_field_dense_capture_inherits_reveal_pin_clock` (MAJOR — missing `__PM_supportsTimePin` flag + RESET_TRAJECTORY no-op + floor→ceil step count; dense runtime dropped 191s→95s once pinned). quality_auditor **PASS** (first Gate 3f run — word counts recounted independently, cause-first pixel-verified); its stale `concept_panel_config` dual-panel row advisory fixed (DB row → single-panel). LOW advisory left open for later disposition: spotlight electron static 1.8× size (object-identity carve-out).
+- **⚠ Vision smoke gate SKIPPED — Anthropic API credits exhausted** (every Category-I failure = the billing 400; founder accepted by approving). Re-run `smoke:visual-validator -- drift_velocity --dense` after top-up if desired; H2 baselines now exist.
+- **Ship (Phase D, founder "ship it"):** visual:approve (7 baselines) → tts:translate anthropic FAILED (credits) → **deepseek 18/18** → tts:generate 36/36 clips EN+TE (Sarvam balance held) → build:review → verify all green. **Telugu narration is DRAFT — native reviewer pass required (Rule 30f).** Review: `http://localhost:8080/drift_velocity/`.
+- **Session-71-doctrine note:** novel renderer path → reviewer-first early-access flag when this reaches the pilot catalog (NOT yet added to PILOT_CONCEPTS).
+- **Not committed:** working tree shares uncommitted files with the parallel Ch.6 session (panelConfig/aiSimulationGenerator/intentClassifier/deriveStateMeta all co-modified) — per the no-race rule this session made region-disjoint edits and did NOT commit; reconcile + commit when the Ch.6 session lands.
+
+**Next (Ch.3):** decide + build the circuit-primitive set for the lab-apparatus trio (`wheatstone_bridge_balance` / `meter_bridge` / `potentiometer` — the highest "teacher can't draw this" value) or continue cheap wins on the now-proven particle_field engine. Also: apply the clusters migration, re-run the vision smoke after credit top-up, Telugu review pass, PILOT_CONCEPTS early-access flag.
+
+---
+
+## 📘 SESSION — Doctrine: Rule 32 (legibility) + Rule 31 word-budget pacing + motion-archetype taxonomy CODIFIED; Gate 3f; Fable-5 architect / Sonnet-5 fleet pins; faraday added to pilot catalog (2026-07-08)
+
+**Bottom line: the founder's "make upcoming sims decisively better" brainstorm became doctrine — a NEW Rule 32 (cause-before-effect · one-variable-moves · ≤5-word delta cue opening every caption · home-pose continuity · single glow focal), Rule 31a pacing rewritten as a word budget (ONE idea + ONE complete motion; 25–55 EN words ≈ 2–4 tight sentences ≈ 10–20s; >55 = split, <~20 = merge), and Rule 31b distinctness made DECLARED (10-archetype motion taxonomy + per-state delta line; no repeat except a declared contrast pair). Enforced via new quality_auditor Gate 3f + eye_walker "delta visible?" column. Architect pinned `claude-fable-5`; json_author/quality_auditor(4-6→5)/engine cluster pinned `claude-sonnet-5`.**
+
+- Design spec (founder-approved section-by-section): `docs/superpowers/specs/2026-07-08-rule32-legibility-rule31-tightening-design.md`; full discussion → DISCUSSIONS Session 82.
+- Doctrine: CLAUDE.md (§5 pacing, §6 self-review, §7 index 31 amended + 32 appended) + CLAUDE_RULES.md (31a/31b/31c-iv amended; Rule 32 full body appended; counters 31→32).
+- Agent fleet: 5 canonicals edited (architect table +archetype+delta cols + taxonomy vocabulary + Rule 32 rows; physics_author cause-first timeline + word budget; json_author delta-cue caption + continuity + single-focal; quality_auditor Gate 3f + roster + 3e#5 superseded; eye_walker delta-visible column + protocol) → `sync:agents` 5 synced, `check:agents` OK; model pins hand-set in emission frontmatter (sync preserves them).
+- Supporting: AUTHORING_PIPELINE Stage ② control-table columns + word budget; ARCHITECTURE_v2.2 + src/data/concepts/CLAUDE.md stale-pacing strings updated; faraday skeleton → archetype/delta columns populated (S1 null-result-hold · S2/S3 translate-through contrast pair · S4 cycle-compare · S5 oscillate/track · S6 drag-sandbox) + measured word counts.
+- **Honest scar found:** faraday (THE exemplar) runs 67–94 EN words/state — narration predates the budget. All docs now say "clone the shape, not the sentence length"; first true word-budget exemplar = the next natively-authored concept.
+- Asmi review template: 7th per-state question "Did this state feel clearly different — worth its own click?" (guide ×2 places + CSV column `clearly_different_YN`) — the teacher-pulse check on Rule 31b/32.
+- Also this session (pre-brainstorm): `faraday_law_induction` added to `PILOT_CONCEPTS` (Ch.6 group) — ⚠️ needs `tts:generate --langs=en,te` (never voiced; Sarvam balance) + `build:pilot` before it actually ships; Netlify deploys still credit-blocked. Ch.6 audit: 4/6 live, `magnetic_flux` (§6.3) + `lenz_law` (§6.5) = the authoring gaps.
+- Follow-up: architect spec gains **Reconstruction mode** (old Socratic sims → new strategy via the SAME pipeline; archetype rubric = the keep/merge/delete criterion; PRIMARY aha moves with its surviving state; deletion-mechanics checklist; Class A/B scenario triage — static-poses route to renderer_primitives FIRST). NO new reconstructor agent (duplicate-architect + stage-matching); retrofit-surgeon stays deltas-only. Pending coulombs_law spec's pacing patched to the word budget. Emission re-synced.
+
+**Next (fresh context):** author `magnetic_flux` (Ch.6 §6.3 — the chapter's missing foundation) via the pipeline under the NEW specs — first Fable-5 architect dispatch (watch token cost; fallback = revert pin) + first Gate 3f/word-budget concept. Then `lenz_law`. Faraday audio+build when Sarvam credits topped up.
+
+---
+
 ## 📗 SESSION — Ch.2 #6: potential_energy_system_of_charges Rule-31 pass + system_pe_assembly dead-slider fix + S4 overlay fix SHIPPED (EN+TE 38 clips, 6 baselines) (2026-07-07)
 
 **Bottom line: sixth Ch.2 diamond `potential_energy_system_of_charges` (U = Σ k qᵢqⱼ/rᵢⱼ — the work to assemble charges from infinity; energy lives in PAIRs, carries the pair's sign, adds a term with EVERY existing charge, is order-independent, and is ONE number for the whole system vs V a value at a point) reconstructed to Rule 31, its scenario's dead-slider bug fixed + VERIFIED LIVE, one eye-walker finding fixed, SHIPPED EN+TE. This CLOSES the dead-slider class across the potential family. Ch.2 now 6/8.**
@@ -11310,3 +11530,149 @@ DATABASE:
 ### Blockers discovered
 
 None. THE EYE 38/38 clean. Reseed-before-EYE is the gotcha to remember.
+
+---
+
+## Session 2026-07-08 — renderer_primitives: `probe_points` primitive for `parallel_plate_capacitor_field` STATE_2
+
+Founder-directed feature request (via json_author investigation, Class B — new engine primitive
+needed). STATE_2's PRIMARY aha currently proves field uniformity via 3 identical probe ARROWS; founder
+wants 3 labeled POINTS (A/B/C) with a small glow dot + a live numeric E readout instead, proving
+uniformity via matching NUMBERS. Built the primitive per json_author's spec; JSON not yet switched over
+(that's a follow-up json_author step).
+
+### What was built (`src/lib/renderers/field_3d_renderer.ts`)
+
+- `platesResolveProbeZ(posName, sep)` — resolves `"near_positive"|"centre"|"near_negative"` to a z-depth,
+  reusing the same convention the 3 hardcoded `probe_arrows` already encode positionally.
+- `platesFindById(id)` — scene lookup helper (mirrors `dpFindById`/`clFindById`).
+- `platesMakeProbeDot(position, radius, color)` — wraps `createHighlightedPoint`, applies the same
+  `depthTest:false`/`depthWrite:false`/`renderOrder:998` camouflage fix already on the probe/sheet arrows
+  (`pp_probe_and_sheet_arrows_camouflaged_by_translucent_plate_blend`) since these dots sit right next to
+  the translucent plates.
+- `buildParallelPlatesField()` — new block (sibling to the existing probe_arrows block) reading
+  `config.probe_points` (`count`/`positions`/`labels`/`marker_radius`/`marker_color`/`label_color`/
+  `readout_color`/`value_unit`), building per point: a glow dot, a letter-label sprite
+  (`pmCreateAutoLabel`), and a live-readout sprite (`"E = … V/m"`). All tagged `elementType: "probe_points"`.
+  Additive — the old `probe_arrows` mechanism is untouched.
+- `applyParallelPlatesState()` — new `probe_points` visibility branch keyed off `cap.show_probe_points`,
+  alongside (not replacing) `three_probe_arrows`.
+- `updateParallelPlatesFrame()` — `ramp(cap.probe_points_at_ms, 600)` opacity fade for the probe_points
+  group; the flat DOM `#plates_readout` panel's `E = V / Math.max(1e-9, dEff)` computation now runs ONCE
+  per frame and is reused to `updateLabelSpriteText()` all 3 readout sprites when `cap.show_probe_points`
+  — same computation, same number, three places (the pedagogical point).
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors in `field_3d_renderer.ts` (2 pre-existing errors in
+  `particle_field_renderer.ts` are from a different in-progress session's uncommitted edits — out of
+  scope, unrelated file).
+- Re-seeded `simulation_cache` for `parallel_plate_capacitor_field`
+  (`npx tsx --env-file=.env.local src/scripts/_seed_parallel_plate_capacitor_field_cache.ts`) — assembles
+  without runtime error against the CURRENT json (still using `show_probe_arrows`), confirming the
+  additive renderer change doesn't break assembly.
+- `npm run visual:eyes -- parallel_plate_capacitor_field` → **26/26 deterministic checks passed, 0
+  failed** (run `20260708-205845`).
+- Regression check: `STATE_2__frozen.png` and `STATE_1__dense_t00000.png` inspected — render byte-for-byte
+  as before (3 identical green probe arrows, no probe_points markers/labels leak in, since no state
+  config yet sets `show_probe_points`).
+
+### RENDERER REGEN DIRECTIVE
+- cluster: renderer_primitives
+- fix_summary: added new additive `probe_points` primitive (labeled A/B/C points + live E readouts) to `buildParallelPlatesField`/`applyParallelPlatesState`/`updateParallelPlatesFrame`, sibling to `probe_arrows`; no existing state config references it yet, so this directive is a no-op regen until json_author switches STATE_2's config over — filed now so the sweep isn't missed on that follow-up commit
+- affected_cache_tables: [simulation_cache, deep_dive_cache, drill_down_cache]
+- affected_concept_ids: [parallel_plate_capacitor_field]
+- affected_modes: [conceptual]
+- handoff_to: runtime_generation
+
+### engine_bug_queue
+
+Inserted new DIRECTIVE row `ppc_probe_points_primitive_new_build` (severity MODERATE, status FIXED) via
+`src/scripts/_seed_engine_bug_queue_ppc_probe_points_primitive.ts` — documents the primitive, the
+named-position enum, the camouflage-fix reuse, and the "all 3 readouts must share ONE computation" gotcha.
+Archival SQL: `supabase_migrations/supabase_2026-07-08_seed_engine_bug_queue_ppc_probe_points_primitive_migration.sql`.
+
+**Not done (explicitly out of this cluster's scope):** the silent-failure catalog markdown table in
+`.agents/renderer_primitives/CLAUDE.md` was NOT appended — this role's own "Tools forbidden" list bars
+`Edit`/`Write` on any `.agents/**` spec file ("spec edits are their own change class"), which overrides the
+post-fix step's instruction to also edit the spec table. The engine_bug_queue row above is the durable
+record; a founder/architect-level pass should append the corresponding catalog row to the spec file.
+
+### Next session's first task (json_author follow-up, not this cluster)
+
+1. Author `field_3d_config.probe_points` block on `parallel_plate_capacitor_field.json` (positions
+   `["near_positive","centre","near_negative"]`, labels `["A","B","C"]`).
+2. Switch STATE_2's `capacitor` block: replace `show_probe_arrows`/`probe_arrows_at_ms` with
+   `show_probe_points: true` + `probe_points_at_ms`.
+3. Re-seed cache + re-run `visual:eyes` — confirm all 3 readout sprites show the identical live E value.
+4. Run the RENDERER REGEN DIRECTIVE above (cache sweep) once the switch lands.
+
+### Blockers discovered
+
+None. `particle_field_renderer.ts` has substantial uncommitted changes from a different concurrent
+session (per project convention, this working tree is shared) — did not touch that file, left as-is.
+
+---
+
+## Session 2026-07-08 (follow-up) — renderer_primitives: `probe_points` readout overlap + deriveStateMeta registration
+
+Coordinator relayed json_author's fresh EYE run (`.visual_runs/parallel_plate_capacitor_field/20260708-211309/`)
+surfacing two engine-side issues on the newly-wired STATE_2 `probe_points` primitive.
+
+### Issue 1 — readout overlap (fixed)
+
+Root cause: `pmCreateAutoLabel` sizes its canvas to the measured text width; a full `"E = 1200 V/m"`
+string is wide enough that 3 adjacent sprites at the 0.8-unit point spacing visually run together.
+Fix (option (c), founder-approved variant — "show just '1200' per point with a single shared 'V/m'
+legend"): each point's readout sprite now shows the bare rounded number only; ONE shared `"E (V/m)"`
+legend sprite is built once and placed on its OWN row below the readouts (not beside point C — an
+initial attempt placing it to the right of C still collided; moved it to `(0, -0.68, 0)`, centred under
+the row, permanently avoiding any digit-count-dependent collision).
+
+### Issue 2 — `deriveStateMeta` missing `probe_points_at_ms` (fixed)
+
+Registered `cap.probe_points_at_ms` in `maxRevealForField3dState`'s parallel_plates candidate list
+(`src/lib/validators/visual/deriveStateMeta.ts`, alongside the sibling `probe_arrows_at_ms` /
+`sheet_fields_at_ms` / etc. registrations) — same pattern, same fade pad (+600+300).
+
+### Re-verification
+
+- `npx tsc --noEmit` → 0 errors in both touched files.
+- Re-seeded `simulation_cache` for `parallel_plate_capacitor_field` (twice — once per fix iteration).
+- `npm run visual:eyes -- parallel_plate_capacitor_field` → **26/26 deterministic checks passed** on the
+  final run (`20260708-213000`) — D7 no longer false-fails STATE_2.
+- `STATE_2__frozen.png` read directly: now shows the 3 A/B/C yellow-dot points + non-overlapping "1200"
+  readouts + the "E (V/m)" legend below (previously an empty field-lines-only frame, since the frozen
+  capture was pinned before `probe_points_at_ms:5000`).
+- `STATE_2__dense_t04000.png` (before the 5000ms reveal) confirms the reveal TIMING itself is unchanged —
+  points correctly not-yet-visible; `STATE_2__dense_t08000.png` (after) confirms all 3 "1200" values
+  render as 3 clearly separated, obviously-identical strings with zero collision.
+
+### RENDERER REGEN DIRECTIVE
+- cluster: renderer_primitives
+- fix_summary: probe_points readout sprites shortened to bare number + one shared "E (V/m)" legend (fixes horizontal collision); deriveStateMeta now registers probe_points_at_ms (fixes D7 false-fail + premature frozen-frame capture)
+- affected_cache_tables: [simulation_cache, deep_dive_cache, drill_down_cache]
+- affected_concept_ids: [parallel_plate_capacitor_field]
+- affected_modes: [conceptual]
+- handoff_to: runtime_generation
+
+### engine_bug_queue
+
+Two new incident rows inserted via `src/scripts/_seed_engine_bug_queue_ppc_probe_points_followup_fixes.ts`:
+`ppc_probe_points_readout_overlap` (MODERATE, FIXED) and `ppc_devstatemeta_missing_probe_points_at_ms`
+(MAJOR, FIXED). Archival SQL:
+`supabase_migrations/supabase_2026-07-08_seed_engine_bug_queue_ppc_probe_points_followup_fixes_migration.sql`.
+Same caveat as the prior entry: the `.agents/renderer_primitives/CLAUDE.md` silent-failure catalog table
+was NOT hand-edited (this role's own Tools Forbidden list bars `.agents/**` edits) — the queue rows above
+are the durable record pending a founder/architect-level catalog sync.
+
+### Files modified (this follow-up)
+
+```
+MODIFIED:
+  src/lib/renderers/field_3d_renderer.ts           (probe_points readout text shortened + shared legend repositioned)
+  src/lib/validators/visual/deriveStateMeta.ts     (probe_points_at_ms registered in maxRevealForField3dState)
+DATABASE:
+  simulation_cache row for parallel_plate_capacitor_field regenerated (reseed x2)
+  engine_bug_queue: 2 new rows (see above)
+```

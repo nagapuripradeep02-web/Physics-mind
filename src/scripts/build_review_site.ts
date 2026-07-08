@@ -30,6 +30,10 @@ import { join } from 'path';
 import { createHash } from 'crypto';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
 import {
+    assembleParticleFieldHtml,
+    type ParticleFieldAuthoredConfig,
+} from '@/lib/renderers/particle_field_renderer';
+import {
     pilotHeadTags,
     isPilotConcept,
     listPilotConceptIds,
@@ -64,6 +68,7 @@ type ConceptJson = {
     class_level?: number;
     default_flow?: string[];
     field_3d_config?: Field3DConfig;
+    particle_field_config?: ParticleFieldAuthoredConfig;
     epic_l_path?: {
         state_count?: number;
         states?: Record<
@@ -2039,8 +2044,11 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
 /** Build the per-concept review files (sim.html + player + meta.json). Caller refreshes the catalog. */
 function buildOne(conceptId: string): void {
     const json = loadConcept(conceptId);
-    if (!json.field_3d_config) {
-        console.error(`✖ ${conceptId}: no field_3d_config block — only field_3d diamonds are supported.`);
+    if (!json.field_3d_config && !json.particle_field_config) {
+        console.error(
+            `✖ ${conceptId}: no field_3d_config or particle_field_config block — ` +
+            `only field_3d and particle_field diamonds are supported.`,
+        );
         process.exit(1);
     }
     const conceptName = json.concept_name ?? conceptId;
@@ -2069,8 +2077,10 @@ function buildOne(conceptId: string): void {
     const conceptDir = join(OUT_DIR, conceptId);
     mkdirSync(conceptDir, { recursive: true });
 
-    // 1) the self-contained scene
-    const simHtml = assembleField3DHtml(json.field_3d_config);
+    // 1) the self-contained scene (field_3d = Three.js diamonds; particle_field = 2D p5 diamonds)
+    const simHtml = json.field_3d_config
+        ? assembleField3DHtml(json.field_3d_config)
+        : assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig);
     writeFileSync(join(conceptDir, 'sim.html'), simHtml, 'utf-8');
 
     // 2) the player page

@@ -650,7 +650,7 @@ const CLASSIFIER_PROMPT = `You are a physics question analyzer for Indian Class 
 VALID CONCEPT IDs — you MUST return one of these exactly as written:
 ════════════════════════════
   ── Current electricity (Ch.3) ──
-  ohms_law              ← V=IR, non-ohmic conductors, current same through series resistors
+  ohms_law              ← V=IR, straight V-I line + slope=R, current not used up by a resistor (voltage drops instead), non-ohmic/filament conductors (aspects: foundational=V=IR/slope, conservation=current not used up, non_ohmic=filament bends the line, exploration=both dials)
   parallel_resistance   ← 1/R = 1/R1 + 1/R2, current splits across branches
   series_resistance     ← R = R1 + R2, same current through every element
   kirchhoffs_voltage_law
@@ -660,8 +660,8 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   meter_bridge
   internal_resistance
   electric_power_heating ← P=I²R, Joule heating, bulb glows, heating effect
-  drift_velocity
-  resistivity
+  drift_velocity        ← v_d = eEτ/m, thermal speed vs drift speed, why current is instant though electrons crawl, i = neAv_d
+  resistivity            ← R = ρL/A (resistance factorizes into shape × material), ρ = m/(ne²τ) (why materials differ), ρ_T = ρ₀(1+αΔT) (why hot metals resist more), nichrome vs copper vs manganin (aspects: foundational=R=ρL/A geometry, microscopic=ρ=m/ne²τ material identity, temperature=ρ rises with heat/alloy contrast, exploration=all four dials)
   resistance
   temperature_dependence_of_resistance
   resistance_temperature_dependence
@@ -805,9 +805,12 @@ CRITICAL DISAMBIGUATION (current electricity):
 - "is current the same before and after a resistor?" → ohms_law
 - "what is V=IR?" → ohms_law
 - "how does voltage relate to current?" → ohms_law
+- "which materials obey ohms law" / "is a metal wire always ohmic" / "what makes something non ohmic" / "does ohms law ever completely fail" / "why does a bulbs resistance change when it heats up" / "why isnt R constant for a light bulb" / "why does the filament curve bend upward" / "whats the difference between R equals V over I and dV over dI" / "static resistance vs dynamic resistance" / "why is slope R and not 1 over R on the V-I graph" / "why does the line have to pass through zero" → ohms_law (non-ohmic / slope aspects, NOT electric_power_heating — this is about the SHAPE of the V-I relationship, not the heat produced)
 - "why does a wire get hot when current flows?" → electric_power_heating (NOT ohms_law)
 - "why does the bulb glow?" → electric_power_heating
 - "joule heating" / "P = I²R" / "heating effect of current" → electric_power_heating
+- "why does current flow instantly if electrons are so slow" / "electrons dont actually travel down the wire" / "what is drift velocity" / "v d equals e E tau over m" / "signal speed vs electron speed" / "thermal speed vs drift speed" / "why does area affect current but not drift speed" / "what is relaxation time tau" / "why does a thicker wire carry more current" / "i equals n e A v d" → drift_velocity (NOT electric_power_heating — this is about the MECHANISM of current, not heating)
+- "why does a longer wire have more resistance" / "does thickness affect resistance" / "R equals rho L over A" / "whats the difference between R and rho" / "why does resistance become four times not two times when stretched" / "why does nichrome resist more than copper" / "whats rho made of" / "rho equals m over n e squared tau" / "why does a metals resistance rise when heated" / "why is manganin used for standard resistors" / "does every material get more resistive when heated" / "alpha meaning units resistivity" → resistivity (NOT ohms_law — this is about WHY R takes the value it does, geometry × material, not the V-I relationship)
 
 CRITICAL DISAMBIGUATION (vectors, Ch.5):
 - "triangle law" / "parallelogram law" / "resultant of two vectors" → resultant_formula

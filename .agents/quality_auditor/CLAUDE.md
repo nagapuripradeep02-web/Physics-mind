@@ -1,5 +1,15 @@
 # QUALITY_AUDITOR — Agent Spec
 
+> **Model pin (2026-07-08, founder):** this role dispatches on `claude-opus-4-8` (upgraded from
+> `claude-sonnet-5`) — set as `model:` in the emission frontmatter (`.claude/agents/quality-auditor.md`).
+> Rationale: the final adversarial pre-founder gate reasons across the whole pipeline (skeleton + physics
+> block + JSON + THE EYE + eye_walker findings + FAIL routing) and never edits files, so it is the
+> highest-ROI single Opus slot with zero blast radius. Per the regeneration procedure, frontmatter (incl.
+> `model:`) is preserved on every regen; this note is the canonical-side audit trail. Fallback = revert
+> pin to `claude-sonnet-5`. Every other fleet role keeps its current pin (architect Fable-5, rest
+> Sonnet-5, shipper Haiku); physics_author overrides to Opus by dispatch convention on hard chapters
+> (EMI/AC/optics/rotation), not a standing pin.
+
 Read this file, then the target concept JSON, then run the 8 gates below. Never rubber-stamp.
 
 > **field_3d Gate 8 (headless scar regression):** for a field_3d concept, run

@@ -2565,12 +2565,33 @@ window.SIM_CONFIG = ${JSON.stringify(config)};
 // ALL circuit concepts MUST be listed here so resolveRendererType() routes them
 // correctly. This is the single source of truth — do NOT use a local Set alongside it.
 export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_field" | "graph_interactive" | "mechanics_2d" | "wave_canvas" | "optics_ray" | "field_3d" | "thermodynamics"> = {
+    // Ch.3 Current Electricity opener — FIRST concept authored on the
+    // particle_field (2D p5.js) renderer via the Alex pipeline (2026-07-08).
+    // Previously unregistered here (only resolved via the RENDERER_MAP /
+    // resolveRendererType fallback chain) — added so production
+    // (/api/generate-simulation) routes the same as /test-engines.
+    drift_velocity:                 "particle_field",
     // Ohm's law family
-    // ohms_law routes to graph_interactive so runGraphPipeline generates BOTH panels:
-    //   - graph (V-I) as simHtml (RIGHT panel)
-    //   - OhmsLaw circuit as primarySimHtml (LEFT panel)
-    // The route then sets: simHtml=circuit (primary), secondarySimHtml=graph (secondary)
-    ohms_law:                       "graph_interactive",
+    // ohms_law is the second Ch.3 concept authored on the particle_field
+    // (2D p5.js) renderer via the Alex pipeline (2026-07-08), same engine
+    // family as drift_velocity — the V–I graph is drawn INSIDE the single
+    // particle_field canvas (particle_field_config.vi_graph), not a separate
+    // graph_interactive panel. Routes here (not "graph_interactive") so
+    // production (/api/generate-simulation) hits the strict-engines bypass
+    // the same way /test-engines does. Supersedes the earlier
+    // graph_interactive/dual-panel placeholder (pre-dated the particle_field
+    // vi_graph Phase-A build) — that legacy generateOhmsLawConfig/runGraphPipeline
+    // path is now unreachable for this concept_id but left in place harmlessly.
+    ohms_law:                       "particle_field",
+    // resistivity is the third Ch.3 concept authored on the particle_field
+    // (2D p5.js) renderer via the Alex pipeline (2026-07-08), same engine
+    // family as drift_velocity/ohms_law — L/A/material/T sliders drive the
+    // shipped resistivity adapter (R/rho readouts + thermometer) inside the
+    // single particle_field canvas. Routes here (not "graph_interactive",
+    // which still carries the legacy RENDERER_MAP placeholder below) so
+    // production (/api/generate-simulation) hits the strict-engines bypass
+    // the same way /test-engines does.
+    resistivity:                    "particle_field",
     // series_resistance intentionally omitted — uses particle_field to show current conservation
     parallel_resistance:            "circuit_live",
     internal_resistance:            "circuit_live",

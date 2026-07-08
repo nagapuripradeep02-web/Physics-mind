@@ -1,0 +1,749 @@
+{
+  "concept_id": "ohms_law",
+  "concept_name": "Ohm's Law — the Straight Line That Is V = IR",
+  "chapter": 3,
+  "section": "3.4",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.4 Ohm's law, §3.6 V–I characteristics) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: Ohm's law / V–I characteristics / combination-of-resistors sections) to confirm atomic boundaries — no teaching method, example problem, or figure imported. HC Verma consulted for teaching SEQUENCE (open with voltage as the visible cause of current, sweep out the straight proportionality line as the aha, name resistance as its slope, confront current-is-used-up with matched crossing tallies, then show the law's own boundary on a heating filament) never copied. The atomic idea: for a metallic conductor at constant temperature, current is directly proportional to the potential difference across it — V = IR — with R the constant of proportionality visible as the slope of the straight V–I line. SCOPE: this is the SECOND concept of Ch.3 (drift_velocity is the opener) and does NOT cover the resistivity derivation ρ = m/ne²τ or its temperature dependence (deferred to resistivity / temperature_dependence_of_resistance), series/parallel combinations (deferred to series_resistance / parallel_resistance), power P = VI (deferred to electric_power_heating), or EMF/internal resistance/Kirchhoff (deferred). SECOND concept authored on the particle_field (2D p5.js) renderer, same engine family as drift_velocity — the electron-cloud + lattice + field-arrow + V–I graph scenario is config-driven (particle_field_config); the renderer computes i natively in engine JS (realResistance() / drift-chain adapter) from slider_controls.{V,R} + formula_anchor.constants, NOT via physics_engine_config.formulas/PM_interpolate — physics_engine_config below is authored as documentation per the Zod requirement. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the two genuine misconceptions — 'current is used up crossing a resistor' and 'V = IR always, R is a universal constant' — are confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast-in-motion beats at STATE_4/STATE_5, no predict-pause). V–I graph axis convention: I on x-axis, V on y-axis (NCERT convention) — geometric slope dV/dI equals R directly; a steeper line means MORE resistance.",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "ohms_law"
+    ]
+  },
+  "prerequisites": [
+    "drift_velocity",
+    "electric_field_point_charge"
+  ],
+  "real_world_anchor": {
+    "primary": "The round fan regulator on your bedroom wall — turn the knob and the fan speeds up in step; each notch raises the voltage across the motor and the current climbs in exact proportion. That steady, predictable more-push-more-flow is the straight line of Ohm's law, and how much current each volt buys is set by one number: the resistance.",
+    "secondary": "The old filament bulb on the same board — as it warms from a dull orange to full glow, it stops obeying the straight line; its resistance rises with the heat, exactly the curving trace of the filament state."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "V": {
+        "name": "Potential difference (voltage), student-adjustable",
+        "unit": "V",
+        "min": 0,
+        "max": 12,
+        "default": 6,
+        "role": "slider — drives the drift, the operating point, and the swept V–I trace"
+      },
+      "R": {
+        "name": "Resistance, student-adjustable",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "default": 5,
+        "role": "slider — tilts the V–I line's slope; realized under the hood as an inverse change in relaxation time τ"
+      },
+      "i": {
+        "name": "Current",
+        "unit": "A",
+        "derived": "V/R (ohmic) or V/R_eff (non-ohmic)",
+        "role": "live readout — computed natively in particle_field_renderer.ts (realResistance()/drift-chain adapter), not via physics_engine_config.formulas"
+      },
+      "R_eff": {
+        "name": "Effective resistance (non-ohmic states only)",
+        "unit": "Ω",
+        "derived": "R*(1 + filament_k*V/Vmax)",
+        "role": "live readout, STATE_5 only — rises with V as the filament heats"
+      },
+      "e": {
+        "name": "Elementary charge",
+        "unit": "C",
+        "constant": 1.6e-19,
+        "role": "locked constant, shared with drift_velocity"
+      },
+      "m_e": {
+        "name": "Electron mass",
+        "unit": "kg",
+        "constant": 9.11e-31,
+        "role": "locked constant"
+      },
+      "n": {
+        "name": "Free-electron number density (copper)",
+        "unit": "m^-3",
+        "constant": 8.5e+28,
+        "role": "locked constant — material property, not battery-dependent"
+      },
+      "L": {
+        "name": "Conductor length",
+        "unit": "m",
+        "constant": 1,
+        "role": "locked, wire geometry never changes on screen"
+      },
+      "A_mm2": {
+        "name": "Conductor cross-section",
+        "unit": "mm^2",
+        "constant": 1,
+        "role": "locked, drift_velocity's variable, fixed here so the wire never visibly changes shape"
+      },
+      "filament_k": {
+        "name": "Non-ohmic heating coefficient",
+        "unit": "dimensionless",
+        "constant": 1.4,
+        "role": "locked, STATE_5 only — tuned so the curve departs visibly within the V sweep"
+      },
+      "Vmax": {
+        "name": "Sweep ceiling used in the R_eff formula",
+        "unit": "V",
+        "constant": 12,
+        "role": "locked, equals the V slider max"
+      }
+    },
+    "formulas": {
+      "macroscopic_law": "V = IR, equivalently R = V/I — what the V–I graph shows (documentary; the engine computes i from the microscopic bridge below, and V = IR falls out as a consequence)",
+      "microscopic_bridge": "E = V/L, v_d = eEτ/m_e, i = neAv_d = (ne²Aτ/(m_e L)) * V = V/R, where R = m_e L / (n e^2 A τ) — continuous with drift_velocity",
+      "non_ohmic": "R_eff = R*(1 + filament_k*V/Vmax); i = V/R_eff — as V rises, R_eff rises with it, so i grows less than proportionally (the trace steepens/curves upward on I-on-x/V-on-y axes)"
+    },
+    "constraints": [
+      "i = V/R exactly, for every (V,R) pair on the ohmic states — the swept trace passes through the origin",
+      "on the V-on-y / I-on-x axes, geometric slope dV/dI equals R directly — steeper line means larger R, never smaller",
+      "current i is conserved through a series resistor: the number of electrons crossing any plane per second is identical before and after the resistor band",
+      "what drops across a resistor is potential difference V, never current i — the colour gradient represents a V-drop, not a flow reduction",
+      "R is constant (independent of V) only for an ohmic conductor at constant temperature; for the filament, R_eff rises with V",
+      "at V = 0, i = 0 on every state, ohmic or non-ohmic — the line/curve always passes through the origin",
+      "wire geometry (L, A_mm2) never changes on screen as R changes — R is realized purely as a change in electron relaxation time tau under the hood"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "The swept trace is a dead-straight line through the origin — that IS Ohm's law.",
+    "visual_confirmation": "The bright operating point climbs and leaves a perfectly straight trace through the origin as V sweeps up."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "conservation": [
+      "STATE_4"
+    ],
+    "non_ohmic": [
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Voltage is the cause: battery on, drift begins, the meter climbs",
+        "duration": 15,
+        "focal_primitive_id": "current_meter",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "battery_cue",
+            "position": {
+              "x": 380,
+              "y": 90
+            },
+            "text": "The battery's push sets up a field along the wire — the CAUSE.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "electron_drift",
+            "position": {
+              "x": 620,
+              "y": 250
+            },
+            "text": "Every electron picks up the same slow collective drift.",
+            "color": "#42A5F5",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "current_meter",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "The current meter climbs from zero and settles — the EFFECT.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "The battery's push sets up a field along the wire, and every electron picks up that same slow drift you met before.",
+              "text_hi": "बैटरी का push wire के साथ एक field स्थापित करता है, और हर electron उसी slow drift को पकड़ लेता है जो पहले देखा था।",
+              "text_te": "battery push wire వెంబడి ఒక field ని create చేస్తుంది, మరియు ప్రతి electron కూడా మీరు ముందు చూసిన అదే slow drift ని పొందుతుంది.",
+              "glow": "field",
+              "scenario_cue": "field_on"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch the current meter climb from zero as the battery switches on, then settle.",
+              "text_hi": "जैसे ही battery चालू होती है, current meter को zero से चढ़ते और फिर settle होते देखिए।",
+              "text_te": "battery switch on అయినప్పుడు current meter zero నుండి పైకి climb అవడం చూడండి, తర్వాత అది settle అవుతుంది.",
+              "glow": "current_meter"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "More push means more current — cause and effect, the whole law in miniature.",
+              "text_hi": "अधिक push का मतलब अधिक current — cause and effect, पूरा law miniature में।",
+              "text_te": "ఎక్కువ push అంటే ఎక్కువ current — cause and effect, ఇదే మొత్తం law చిన్న రూపంలో.",
+              "glow": "current_meter"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "PRIMARY aha — the swept V–I trace is a straight line through the origin",
+        "duration": 18,
+        "focal_primitive_id": "vi_operating_point",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sweep_v",
+            "position": {
+              "x": 380,
+              "y": 90
+            },
+            "text": "Sweep the voltage up from zero.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "vi_operating_point",
+            "position": {
+              "x": 620,
+              "y": 250
+            },
+            "text": "The graph point climbs and leaves a bright trace as the drift quickens.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "straight_line_law",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "That trace is dead straight through the origin — this straight line IS Ohm's law.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Sweep the voltage up from zero and watch two things happen.",
+              "text_hi": "Voltage को zero से ऊपर sweep कीजिए और दो चीज़ें होते देखिए।",
+              "text_te": "voltage ని zero నుండి పైకి sweep చేయండి, రెండు విషయాలు జరగడం చూడండి.",
+              "glow": "field"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "In the wire the drift quickens as V climbs; the graph point climbs too, leaving a bright trace.",
+              "text_hi": "Wire में drift तेज़ हो जाता है जैसे V चढ़ता है; graph point भी चढ़ता है, एक bright trace छोड़ता हुआ।",
+              "text_te": "wire లో voltage V పెరిగేకొద్దీ drift వేగం పెరుగుతుంది; graph point కూడా పైకి ఎక్కుతుంది, ఒక bright trace ని వదిలేస్తుంది.",
+              "glow": "vi_graph"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "That trace is dead straight through the origin — current is exactly proportional to voltage, at steady temperature.",
+              "text_hi": "वह trace origin से बिल्कुल सीधी रेखा है — steady temperature पर current बिल्कुल voltage के proportional है।",
+              "text_te": "ఆ trace origin గుండా పూర్తిగా straight గా ఉంటుంది — steady temperature వద్ద current, voltage కి exactly proportional గా ఉంటుంది.",
+              "glow": "vi_graph"
+            },
+            {
+              "id": "s2_4",
+              "text_en": "This straight line is Ohm's law.",
+              "text_hi": "यह सीधी रेखा Ohm's law है।",
+              "text_te": "ఈ straight line నే Ohm's law అంటారు.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "slope_axis_confusion",
+          "why_straight_through_origin",
+          "ohms_law_from_drift"
+        ]
+      },
+      "STATE_3": {
+        "title": "R = V/i — resistance is the slope; more R tilts the line steeper",
+        "duration": 16,
+        "focal_primitive_id": "slope_readout",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_r",
+            "position": {
+              "x": 380,
+              "y": 90
+            },
+            "text": "Drag resistance up and watch the line itself tilt.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "line_tilts",
+            "position": {
+              "x": 620,
+              "y": 250
+            },
+            "text": "A bigger R needs more volts for the same amp — the slope climbs.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "slope_readout",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "Slope R = V/I — the readout tracks it live.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "As the resistance climbs, the line itself tilts steeper.",
+              "text_hi": "जैसे resistance चढ़ता है, line और steeper झुक जाती है।",
+              "text_te": "resistance పెరిగేకొద్దీ, ఆ line కూడా మరింత steep గా tilt అవుతుంది.",
+              "glow": "vi_graph"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "A bigger R needs more volts for the same amp, so the slope climbs — more resistance, steeper line.",
+              "text_hi": "एक बड़े R को same amp के लिए अधिक volts चाहिए, इसलिए slope चढ़ता है — more resistance, steeper line।",
+              "text_te": "పెద్ద resistance R కి అదే amp కోసం ఎక్కువ volts కావాలి, కాబట్టి slope పైకి ఎక్కుతుంది — resistance ఎక్కువైతే, line అంత steep గా ఉంటుంది.",
+              "glow": "vi_graph"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "In the wire the drift visibly slows at the same voltage, and the readout confirms: slope R equals V over I.",
+              "text_hi": "Wire में drift उसी voltage पर साफ धीमा हो जाता है, और readout confirm करता है: slope R equals V over I।",
+              "text_te": "wire లో అదే voltage వద్ద drift కనిపించేలా slow అవుతుంది, మరియు readout దీన్ని confirm చేస్తుంది: slope R equals V over I.",
+              "glow": "vi_graph"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Nothing is used up — current is conserved, voltage is what drops",
+        "duration": 18,
+        "focal_primitive_id": "flux_tallies",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "resistor_band",
+            "position": {
+              "x": 380,
+              "y": 90
+            },
+            "text": "Two counting planes sit before and after the resistor band.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "flux_tallies",
+            "position": {
+              "x": 620,
+              "y": 250
+            },
+            "text": "Twin tallies stay matched all the way through — in equals out.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "voltage_drop_gradient",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "The colour gradient across the band shows what IS spent: voltage.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Two counting planes sit before and after this resistor, tallying electrons crossing every second.",
+              "text_hi": "दो counting planes इस resistor के पहले और बाद में रखे हैं, हर second में electrons गिनते हुए।",
+              "text_te": "ఈ resistor కి ముందు మరియు తర్వాత రెండు counting planes ఉన్నాయి, ప్రతి సెకనూ దాటే electrons ని లెక్కిస్తున్నాయి.",
+              "glow": "flux"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Watch both tallies through the whole dwell — they stay matched, in equals out; current never drops crossing a resistor.",
+              "text_hi": "पूरे dwell के दौरान दोनों tallies को देखिए — वे matched रहते हैं, in equals out; current कभी resistor पार करते हुए drop नहीं होता।",
+              "text_te": "మొత్తం dwell సమయంలో రెండు tally లు చూడండి — అవి match అయ్యే ఉంటాయి, in equals out; resistor ని దాటేటప్పుడు current ఎప్పుడూ తగ్గదు.",
+              "glow": "flux"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "What drops is voltage — watch the colour gradient fade across the band; the resistor spends voltage, never current.",
+              "text_hi": "जो drop होता है वो voltage है — देखिए colour gradient को band के पार fading होते हुए; resistor voltage खर्च करता है, current नहीं।",
+              "text_te": "తగ్గేది voltage — band అంతటా colour gradient fade అవడం చూడండి; resistor voltage ని spend చేస్తుంది, current ని కాదు.",
+              "glow": "field"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Current is used up crossing a resistor — less comes out than went in.",
+            "visual_counter": "Twin counting planes tally crossings per second before AND after the resistor band; the tallies stay matched for the whole dwell while the colour gradient shows the thing that DOES drop — the potential.",
+            "one_line_fix": "The resistor spends voltage, never current — every electron that enters, leaves."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "current_conservation_series",
+          "what_the_resistor_spends",
+          "where_the_energy_goes"
+        ]
+      },
+      "STATE_5": {
+        "title": "When the line bends — a filament's resistance rises with voltage",
+        "duration": 17,
+        "focal_primitive_id": "vi_trace",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "filament_sweep",
+            "position": {
+              "x": 380,
+              "y": 90
+            },
+            "text": "Sweep voltage again, now on a glowing filament bulb.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "curve_peels_away",
+            "position": {
+              "x": 620,
+              "y": 250
+            },
+            "text": "The bright trace peels away from the faint straight reference, curving upward.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "non_ohmic_tag",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "Filament — R rises with V; Ohm's law holds only for ohmic conductors.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Sweep voltage again, but now on a glowing filament bulb, not a plain wire.",
+              "text_hi": "Voltage को फिर से sweep करें, लेकिन अब एक glowing filament bulb पर, सादे wire पर नहीं।",
+              "text_te": "మళ్ళీ voltage ని sweep చేయండి, కానీ ఇప్పుడు plain wire మీద కాదు, glowing filament bulb మీద.",
+              "glow": "field"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Watch the bright trace peel away from the faint straight reference, curving upward as voltage grows.",
+              "text_hi": "देखिए bright trace को faint straight reference से peel away होते हुए, voltage बढ़ने पर upward curve करते हुए।",
+              "text_te": "bright trace, faint straight reference నుండి విడిపోవడం చూడండి, voltage పెరిగేకొద్దీ upward గా curve అవుతూ ఉంటుంది.",
+              "glow": "vi_graph"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The filament heats, its resistance rises with voltage, and the slope keeps changing — Ohm's law holds only for ohmic conductors at constant temperature.",
+              "text_hi": "Filament गर्म होता है, इसका resistance voltage के साथ बढ़ता है, और slope बदलता रहता है — Ohm's law केवल ohmic conductors के लिए constant temperature पर मान्य है।",
+              "text_te": "filament heat అవుతుంది, దాని resistance voltage తో పాటు పెరుగుతుంది, మరియు slope మారుతూనే ఉంటుంది — Ohm's law constant temperature వద్ద ఉన్న ohmic conductors కి మాత్రమే వర్తిస్తుంది.",
+              "glow": "vi_graph"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "V = IR always; R is a universal constant of the object.",
+            "visual_counter": "The identical autosweep that drew the straight ohmic line is re-run on a filament: the bright trace curves upward off the straight reference in the same axes — the law's boundary is SHOWN, not stated.",
+            "one_line_fix": "V = IR defines R at each point — R stays constant only for ohmic conductors at constant temperature."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "ohmic_vs_non_ohmic",
+          "filament_resistance_rises",
+          "dynamic_resistance_meaning"
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore — both dials yours: V and R",
+        "duration": 0,
+        "focal_primitive_id": "vi_operating_point",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "both_dials",
+            "position": {
+              "x": 380,
+              "y": 90
+            },
+            "text": "Both dials are live: V and R.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "operating_point_live",
+            "position": {
+              "x": 620,
+              "y": 250
+            },
+            "text": "The operating point rides the live line as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "readouts_live",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "Trace, slope, and current meter all respond live.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Both dials are yours now — drag voltage and resistance and watch the operating point ride the live curve.",
+              "text_hi": "दोनों dials अब आपके हैं — voltage और resistance को drag करें और देखिए operating point को live curve पर ride करते हुए।",
+              "text_te": "ఇప్పుడు రెండు dials మీవే — voltage మరియు resistance ని drag చేసి operating point live curve మీద ఎలా move అవుతుందో చూడండి.",
+              "glow": "vi_graph"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "ohms_law_water_tank_and_pipe",
+      "type": "B",
+      "label": "A water tank feeding a pipe — raise the tank, the flow climbs in step",
+      "physical_world": "A water tank on a rooftop feeding a fixed pipe below: raising the tank's water level (the pressure) makes the flow rate climb proportionally; a narrower pipe (higher resistance) needs a taller tank for the same flow.",
+      "same_physics": "Same V = IR relationship — tank height plays the role of voltage, flow rate plays the role of current, and the pipe's narrowness plays the role of resistance.",
+      "scene_hint": "Swap the fan-regulator anchor for a rooftop tank and pipe; same electron-cloud + V–I graph choreography underneath."
+    },
+    {
+      "variant_id": "ohms_law_led_dimmer_strip",
+      "type": "B",
+      "label": "An LED strip dimmer — turn the knob, the strip brightens in step until it doesn't",
+      "physical_world": "A household LED strip on a dimmer: turning the knob raises the voltage and the strip's current climbs proportionally at low settings, then the LEDs (non-ohmic) depart from that straight line as they warm.",
+      "same_physics": "Same ohmic straight-line law at low drive, same non-ohmic departure at higher drive — mirrors STATE_2/STATE_3 (ohmic) and STATE_5 (non-ohmic) in one everyday object.",
+      "scene_hint": "Optional supplementary anchor for STATE_5; the primary teaching anchor stays the fan-regulator / filament-bulb pair."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "ohms_law",
+    "particles": {
+      "count": 40,
+      "thermal_speed": 2.2,
+      "color": "#42A5F5",
+      "size": 7,
+      "trail_length": 12
+    },
+    "lattice": {
+      "count": 24,
+      "color": "#90A4AE",
+      "size": 12,
+      "glow": false
+    },
+    "field_arrows": {
+      "count": 5,
+      "direction": "left_to_right",
+      "color": "#FF9800"
+    },
+    "vi_graph": {
+      "position": "bottom_corner",
+      "x_axis": "I (A)",
+      "y_axis": "V (volts)"
+    },
+    "slider_controls": {
+      "V": {
+        "min": 0,
+        "max": 12,
+        "step": 0.5,
+        "default": 6,
+        "label": "Voltage V",
+        "unit": "V"
+      },
+      "R": {
+        "min": 1,
+        "max": 20,
+        "step": 0.5,
+        "default": 5,
+        "label": "Resistance R",
+        "unit": "Ω"
+      }
+    },
+    "formula_anchor": {
+      "constants": {
+        "e": 1.6e-19,
+        "m_e": 9.11e-31,
+        "n": 8.5e+28,
+        "L": 1,
+        "A_mm2": 1,
+        "filament_k": 1.4,
+        "Vmax": 12
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "lattice": "#90A4AE",
+      "field_arrow": "#FF9800",
+      "drift_arrow": "#4DD0E1",
+      "current_meter": "#80DEEA",
+      "vi_trace": "#4DD0E1",
+      "ohmic_reference": "#546E7A",
+      "flux_tallies": "#66BB6A",
+      "voltage_drop": "#EF5350",
+      "highlight": "#FFFFFF",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "i = V/R (settling)",
+        "caption": "Battery on",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "cue": {
+          "id": "field_on",
+          "at_ms": 800
+        },
+        "show_current_meter": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "current_meter"
+      },
+      "STATE_2": {
+        "label": "V (volts) vs I (A)",
+        "caption": "Double the push",
+        "formula_overlay": "V = IR",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_vi_graph": true,
+        "vi_autosweep": true,
+        "ohmic": true,
+        "show_sliders": false,
+        "visible_controls": [
+          "V"
+        ],
+        "glow_focal": "vi_graph"
+      },
+      "STATE_3": {
+        "label": "R sets the slope",
+        "caption": "Steeper means more R",
+        "formula_overlay": "R = V/I",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_vi_graph": true,
+        "ohmic": true,
+        "r_autosweep": true,
+        "show_sliders": false,
+        "visible_controls": [
+          "R"
+        ],
+        "glow_focal": "vi_graph"
+      },
+      "STATE_4": {
+        "label": "N/s in = N/s out",
+        "caption": "Same current, less V",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_vi_graph": false,
+        "show_flux_conservation": true,
+        "ohmic": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "flux"
+      },
+      "STATE_5": {
+        "label": "filament — R rises with V",
+        "caption": "The bulb bends it",
+        "formula_overlay": "R_eff = R(1 + k·V/V_max)",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_vi_graph": true,
+        "vi_autosweep": true,
+        "ohmic": false,
+        "show_sliders": false,
+        "visible_controls": [
+          "V"
+        ],
+        "glow_focal": "vi_graph"
+      },
+      "STATE_6": {
+        "label": "Explore: V, R",
+        "caption": "Both dials yours",
+        "formula_overlay": "V = IR",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_vi_graph": true,
+        "ohmic": true,
+        "show_current_meter": true,
+        "show_sliders": true,
+        "glow_focal": "vi_graph"
+      }
+    }
+  }
+}

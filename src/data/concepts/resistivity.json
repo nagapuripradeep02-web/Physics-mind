@@ -1,0 +1,738 @@
+{
+  "concept_id": "resistivity",
+  "concept_name": "Resistivity — Shape Times Material (R = ρL/A, ρ = m/ne²τ, ρ_T = ρ₀(1+αΔT))",
+  "chapter": 3,
+  "section": "3.6",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.6 Resistivity of Various Materials, §3.7 Temperature Dependence of Resistance) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: resistivity / temperature-dependence / combination-of-resistors sections) to confirm atomic boundaries — no teaching method, example problem, or figure imported. HC Verma consulted for teaching SEQUENCE (stretch the wire longer and watch current fall — geometry alone can change resistance; widen it and watch current climb back; cycle geometry through three phases including the constant-volume stretch trap while pinning resistivity beside the dancing resistance readout as the PRIMARY aha; swap the material itself to show resistivity is what the material IS, not its shape; heat the metal to show the microscopic mechanism behind temperature dependence; contrast with a near-zero-alpha alloy; hand the explorer all four dials), never copied. The atomic idea: resistance factorizes into shape × material — R = ρL/A, where resistivity ρ = m/(ne²τ) is the material's own number (set by n and τ, independent of geometry) and, for metals, rises with temperature as ρ_T = ρ₀(1 + α(T − T₀)) because hotter lattices cut τ. SCOPE: this is the THIRD concept of Ch.3, continuous with drift_velocity (SHIPPED, opener) and ohms_law (SHIPPED, second) — same particle_field (2D p5.js) renderer family, same i = neAv_d microscopic chain, this time with L/A/material/T as the driven sliders. Does NOT cover conductivity/current density σ, j (deferred to current_density_conductivity), semiconductor band theory (deferred to Ch.14 semiconductors_energy_bands), superconductivity (deferred to superconductivity), mobility μ = v_d/E (deferred to electron_mobility), series/parallel combinations, or power/heating P = I²R (deferred to electric_power_heating). Renderer-reality note: this concept does NOT drive i/R/rho via physics_engine_config.formulas/PM_interpolate — particle_field_renderer.ts computes them natively in engine JS via the shipped resistivity adapter (condLength/condAreaM2/materialList/materialAt/rhoOf/tauFromRho/curL/curA/curMaterialIndex/curTemperature/curRho/realCurrent/realResistance), reading slider_controls.{L,A,material,T} and formula_anchor.constants.{e,m_e,n,T0_ref,V_supply} — physics_engine_config below is authored as documentation per the Zod requirement. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three genuine misconceptions — 'resistance is fixed by the material; length and thickness don't matter', 'R is a property of copper itself' (conflating R with ρ), and 'metals conduct better when hot' — are confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast-in-motion beats at STATE_1/STATE_3/STATE_5, no predict-pause). Calibration note: real copper at 1 m/1 mm² gives R = 0.017 Ω, which cannot honestly drive a demo meter off a visible supply — a fixed hidden V_supply (0.0204 V, physConst, never a slider, never shown on screen) is the declared demo adapter (same fudge pattern as ohms_law's τ-adapter) so defaults land i ≈ 1.2 A, continuous with the siblings; n/e/m_e algebraically cancel in the closed form i = V_supply·A/(ρ·L), so R and ρ RATIOS on screen are numerically true-valued independent of that adapter choice — verified via node arithmetic this session (see constraints).",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "resistivity"
+    ]
+  },
+  "prerequisites": [
+    "drift_velocity",
+    "ohms_law"
+  ],
+  "real_world_anchor": {
+    "primary": "Open the back of a room heater — the coil that glows orange is nichrome, but the cord feeding it is copper, and the same current flows through both. The coil is long, thin, and made of a material whose resistivity ρ is about sixty-five times copper's, so almost all the resistance — and therefore almost all the heat — lives in the coil, while the copper cord stays cool in your hand. R = ρL/A, engineered on purpose: the coil maximizes all three levers, the cord minimizes them.",
+    "secondary": "Touch a multimeter to a cold filament bulb and you read a fraction of its rated resistance — the tungsten's ρ climbs several-fold as it heats to glowing; and the reason lab-standard resistance boxes are wound with manganin is exactly its near-zero α — a resistance that refuses to drift with the weather."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "L": {
+        "name": "Conductor length",
+        "unit": "m",
+        "min": 0.5,
+        "max": 2,
+        "default": 1,
+        "role": "slider — live from STATE_1; drives R directly (R ∝ L)"
+      },
+      "A": {
+        "name": "Conductor cross-section area",
+        "unit": "mm^2",
+        "min": 0.5,
+        "max": 5,
+        "default": 1,
+        "role": "slider — live from STATE_2; drives R inversely (R ∝ 1/A)"
+      },
+      "material": {
+        "name": "Material index (0=copper, 1=nichrome, 2=manganin)",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 2,
+        "default": 0,
+        "role": "slider (discrete preset) — live from STATE_4; selects {rho0, alpha, tint} from the materials array"
+      },
+      "T": {
+        "name": "Temperature",
+        "unit": "C",
+        "min": 20,
+        "max": 220,
+        "default": 20,
+        "role": "slider — live from STATE_5; drives rho via rho_T = rho0(1+alpha*(T-T0_ref))"
+      },
+      "R": {
+        "name": "Resistance",
+        "unit": "Ω",
+        "derived": "rho*L/A (engine: realResistance())",
+        "role": "live readout — computed natively in particle_field_renderer.ts, not via physics_engine_config.formulas"
+      },
+      "rho": {
+        "name": "Resistivity",
+        "unit": "Ω·m",
+        "derived": "rhoOf(material, T) = rho0(material)*(1+alpha(material)*(T-T0_ref))",
+        "role": "live readout — computed natively, the material's own fixed number, independent of L and A"
+      },
+      "i": {
+        "name": "Current",
+        "unit": "A",
+        "derived": "V_supply*A/(rho*L) (n,e,m_e cancel algebraically)",
+        "role": "live readout — computed natively via the current meter"
+      },
+      "e": {
+        "name": "Elementary charge",
+        "unit": "C",
+        "constant": 1.6e-19,
+        "role": "locked constant, shared with drift_velocity/ohms_law — algebraically cancels, not a calibration lever"
+      },
+      "m_e": {
+        "name": "Electron mass",
+        "unit": "kg",
+        "constant": 9.11e-31,
+        "role": "locked constant — algebraically cancels"
+      },
+      "n": {
+        "name": "Free-electron number density",
+        "unit": "m^-3",
+        "constant": 8.5e+28,
+        "role": "locked constant, held fixed across ALL three materials as a declared teaching simplification — algebraically cancels"
+      },
+      "T0_ref": {
+        "name": "Reference temperature for alpha",
+        "unit": "C",
+        "constant": 20,
+        "role": "locked, matches the T slider's own default so rho = rho0 exactly at default"
+      },
+      "V_supply": {
+        "name": "Fixed hidden internal supply",
+        "unit": "V",
+        "constant": 0.0204,
+        "role": "locked, NEVER shown to the student — the sole calibration lever; ratios on screen are true-valued independent of its value"
+      }
+    },
+    "formulas": {
+      "macroscopic_law": "R = rho*L/A — the geometric factorization (documentary; the engine computes i from the microscopic bridge below, and R = rho*L/A falls out as a consequence)",
+      "temperature_law": "rho_T = rho0*(1 + alpha*(T - T0_ref)) — linear approximation, valid 20-220 C for these three metals/alloys",
+      "microscopic_bridge": "rho(T) = rho0(material)*(1+alpha(material)*(T-T0_ref)); tau = m_e/(n*e^2*rho); E = V_supply/L; v_d = e*E*tau/m_e; i = n*e*A*v_d; R = V_supply/i — algebraically equals rho*L/A exactly, for ANY choice of n/e/m_e (they cancel)",
+      "constant_volume_stretch": "at constant volume (L*A held fixed), A = A0*L0/L, so R = rho*L^2/(A0*L0) — R scales as L^2, not L; doubling L at constant volume QUADRUPLES R, the stock JEE trap drawn live in STATE_3 phase 3"
+    },
+    "constraints": [
+      "R = rho * L / A exactly, at every (L, A, material, T) combination — the geometric factorization is exact, not approximate",
+      "rho depends ONLY on material and temperature, never on L or A — geometry and material identity are independent factors",
+      "at constant volume (L*A held fixed), R scales as L^2, not L — a stretched-and-thinned wire's resistance quadruples when length doubles",
+      "rho_T = rho0 * (1 + alpha*(T - T0_ref)) is a linear approximation valid over 20-220 C for these three metals/alloys; no phase transitions or superconducting/semiconducting regimes are modeled",
+      "n (free-electron density) is held fixed across ALL three materials in this simulation as a declared teaching simplification — the taught quantity is rho itself, never n or tau individually",
+      "V_supply is a fixed hidden internal constant (0.0204 V), never shown to the student — the taught quantities are R, rho, and their RATIOS across states, which are numerically honest independent of V_supply's value",
+      "verified via node arithmetic this session: default L=1,A=1,copper,T=20 -> R=0.0170 Ohm, i=1.2000 A; S1 end L=2 -> i=0.6000 A (exact half); S2 end A=2 -> i=2.4000 A (exact double); S3 constant-volume L=2,A=0.5 -> R=0.0680 Ohm (exactly 4x, confirms quadruples not doubles); S4 copper->nichrome rho ratio = 64.706x; S5 copper T:20->220 rho ratio = 1.780x (i falls to 0.5618x). (STATE_6 manganin-contrast removed by founder 2026-07-08; manganin still reachable in the STATE_7 explore material slider, rho ratio ~1.002x)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Geometry dances, but resistivity never moves — R = ρL/A.",
+    "visual_confirmation": "The R readout swings through the whole three-phase geometry cycle while the ρ readout sits pinned at 1.700×10⁻⁸ Ω·m the entire time."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "microscopic": [
+      "STATE_4"
+    ],
+    "temperature": [
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Longer chokes: same copper, same battery — stretch it and the current falls",
+        "duration": 15,
+        "focal_primitive_id": "current_meter",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "same_copper_same_battery",
+            "position": { "x": 380, "y": 90 },
+            "text": "Same copper wire, same battery — watch what happens when it simply gets longer.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "length_stretch",
+            "position": { "x": 620, "y": 250 },
+            "text": "The wire visibly elongates from one metre to two metres.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "current_meter",
+            "position": { "x": 380, "y": 440 },
+            "text": "The current meter falls — all the way to half.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Same copper wire, same battery — watch what happens when it simply gets longer.",
+              "text_hi": "वही copper wire, वही battery — जब यह सिर्फ लंबा हो जाता है तो क्या होता है देखिए.",
+              "text_te": "అదే copper wire, అదే battery — ఇది కేవలం పొడవుగా అయితే ఏమి జరుగుతుందో చూడండి.",
+              "glow": "macro_rod"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "As the wire stretches from one metre to two, the current meter falls — all the way to half.",
+              "text_hi": "जैसे wire एक मीटर से दो मीटर तक खिंचता है, current meter गिर जाता है — बिल्कुल आधे तक.",
+              "text_te": "wire ఒక మీటర్ నుండి రెండు మీటర్లకు సాగుతున్నప్పుడు, current meter పడిపోతుంది — సరిగ్గా సగానికి.",
+              "glow": "ammeter"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Nothing about the copper changed. Length alone doubled the resistance R.",
+              "text_hi": "copper में कुछ भी नहीं बदला. सिर्फ length ने resistance R को दोगुना कर दिया.",
+              "text_te": "copper లో ఏమీ మారలేదు. length మాత్రమే resistance R ను రెట్టింపు చేసింది.",
+              "glow": "r_readout"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Resistance is fixed by the material; length and thickness don't matter.",
+            "visual_counter": "The same copper wire, same fixed supply — stretched from 1 m to 2 m, the current meter falls to exactly half and the R readout doubles, live, on screen.",
+            "one_line_fix": "Same copper, twice the wire — twice the resistance R. Shape is half the story."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Wider frees: widen the same wire and the current climbs back",
+        "duration": 15,
+        "focal_primitive_id": "r_readout",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "widen_cue",
+            "position": { "x": 380, "y": 90 },
+            "text": "Now widen this same wire instead of stretching it.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "more_lanes",
+            "position": { "x": 620, "y": 250 },
+            "text": "As area A grows, more lanes open for the drifting electrons.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "r_readout",
+            "position": { "x": 380, "y": 440 },
+            "text": "Resistance R has exactly halved — area and resistance move opposite ways.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now widen this same wire instead of stretching it.",
+              "text_hi": "अब इसी wire को खींचने के बजाय चौड़ा कीजिए.",
+              "text_te": "ఇప్పుడు ఈ అదే wire ను సాగదీయకుండా వెడల్పు చేయండి.",
+              "glow": "macro_rod"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "As the cross-section area A grows, more lanes open for the drifting electrons, and the current climbs back up.",
+              "text_hi": "जैसे-जैसे cross-section area A बढ़ता है, drifting electrons के लिए और रास्ते खुलते हैं, और current फिर से बढ़ जाता है.",
+              "text_te": "cross-section area A పెరుగుతున్న కొద్దీ, drifting electrons కు మరిన్ని దారులు తెరుచుకుంటాయి, మరియు current మళ్ళీ పెరుగుతుంది.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Resistance R has exactly halved — area and resistance move opposite ways.",
+              "text_hi": "Resistance R बिल्कुल आधा हो गया है — area और resistance विपरीत दिशाओं में चलते हैं.",
+              "text_te": "Resistance R సరిగ్గా సగానికి తగ్గింది — area మరియు resistance వ్యతిరేక దిశల్లో కదులుతాయి.",
+              "glow": "r_readout"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "PRIMARY aha — R = ρL/A: geometry dances, resistivity never moves",
+        "duration": 24,
+        "focal_primitive_id": "rho_readout",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "shape_dance",
+            "position": { "x": 380, "y": 90 },
+            "text": "Watch the wire's shape dance — length stretches, then area widens, then both together.",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "r_dances_rho_pinned",
+            "position": { "x": 620, "y": 250 },
+            "text": "The R readout swings through every change, but resistivity ρ never moves a single digit.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "formula_landing",
+            "position": { "x": 380, "y": 440 },
+            "text": "R equals ρL over A — shape is yours to engineer, ρ is the material's own fixed number.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "constant_volume_trap",
+            "position": { "x": 380, "y": 300 },
+            "text": "Stretch the wire to double length at constant volume and R doesn't double — it quadruples.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Watch the wire's shape dance — length stretches, then area widens, then both together.",
+              "text_hi": "wire के shape का बदलना देखिए — length खिंचती है, फिर area चौड़ा होता है, फिर दोनों साथ में.",
+              "text_te": "wire ఆకారం మారడం చూడండి — length సాగుతుంది, తర్వాత area వెడల్పు అవుతుంది, తర్వాత రెండూ కలిసి.",
+              "glow": "macro_rod"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The resistance R readout swings through every change, but resistivity rho never moves a single digit.",
+              "text_hi": "resistance R की reading हर बदलाव के साथ बदलती है, लेकिन resistivity rho एक अंक भी नहीं हिलता.",
+              "text_te": "resistance R రీడింగ్ ప్రతి మార్పుతో మారుతుంది, కానీ resistivity rho ఒక్క అంకె కూడా కదలదు.",
+              "glow": "rho_readout"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "That's the law: R equals rho L over A — shape is yours to engineer, rho is the material's own fixed number.",
+              "text_hi": "यही नियम है: R बराबर rho L over A — shape को आप engineer कर सकते हैं, rho material की अपनी fixed संख्या है.",
+              "text_te": "అదే నియమం: R అనేది rho L over A కు సమానం — shape ను మీరు engineer చేసుకోవచ్చు, rho అనేది material యొక్క సొంత స్థిర సంఖ్య.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "R is a property of copper itself.",
+            "visual_counter": "The R readout swinging through the full three-phase geometry cycle (including the ×4 constant-volume spike) while the ρ readout sits pinned at 1.700×10⁻⁸ Ω·m the entire time, both instruments visible simultaneously.",
+            "one_line_fix": "Rho belongs to the material; R = rho L over A belongs to this particular wire's shape."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "stretched_wire_r_scales_l_squared",
+          "r_vs_rho_which_is_material",
+          "units_of_resistivity"
+        ]
+      },
+      "STATE_4": {
+        "title": "What ρ is made of: swap the metal and ρ jumps sixty-five times",
+        "duration": 22,
+        "focal_primitive_id": "lattice",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "swap_metal",
+            "position": { "x": 380, "y": 90 },
+            "text": "Keep the shape frozen and swap the metal itself — copper, then nichrome.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "lattice_retint",
+            "position": { "x": 620, "y": 250 },
+            "text": "Nichrome's lattice ions collide with electrons far more often.",
+            "color": "#B0BEC5",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "rho_jump",
+            "position": { "x": 380, "y": 440 },
+            "text": "Resistivity rho jumps about sixty-five times higher.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "formula_rho_micro",
+            "position": { "x": 380, "y": 300 },
+            "text": "Rho equals m over n e squared tau — a material's identity is its electron count n and collision time tau.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Keep the shape frozen and swap the metal itself — copper, then nichrome.",
+              "text_hi": "shape को स्थिर रखते हुए metal को ही बदलिए — copper, फिर nichrome.",
+              "text_te": "shape ను స్థిరంగా ఉంచి, metal నే మార్చండి — copper, తర్వాత nichrome.",
+              "glow": "macro_rod"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Nichrome's lattice ions collide with electrons far more often, and resistivity rho jumps about sixty-five times higher.",
+              "text_hi": "Nichrome के lattice ions, electrons से कहीं ज्यादा बार टकराते हैं, और resistivity rho लगभग पैंसठ गुना ज्यादा बढ़ जाता है.",
+              "text_te": "Nichrome యొక్క lattice ions, electrons తో చాలా ఎక్కువగా ఢీకొంటాయి, మరియు resistivity rho దాదాపు అరవై ఐదు రెట్లు ఎక్కువగా పెరుగుతుంది.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Rho equals m over n e squared tau — a material's identity is its electron count n and its collision time tau, nothing geometric.",
+              "text_hi": "Rho बराबर m over n e squared tau — किसी material की पहचान उसका electron count n और collision time tau है, कोई geometric चीज़ नहीं.",
+              "text_te": "Rho అనేది m over n e squared tau కు సమానం — ఒక material యొక్క గుర్తింపు దాని electron count n మరియు collision time tau మాత్రమే, geometric ఏదీ కాదు.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_nichrome_resists_more",
+          "where_geometry_went",
+          "rho_from_drift_chain"
+        ]
+      },
+      "STATE_5": {
+        "title": "Heat raises ρ: a hotter metal resists more, not less",
+        "duration": 23,
+        "focal_primitive_id": "thermometer",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "heat_copper",
+            "position": { "x": 380, "y": 90 },
+            "text": "Heat this copper wire from room temperature up toward two hundred twenty degrees.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "lattice_shiver",
+            "position": { "x": 620, "y": 250 },
+            "text": "The lattice ions shiver harder, collisions come sooner, and the current visibly slows.",
+            "color": "#90A4AE",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "rho_climbs",
+            "position": { "x": 380, "y": 440 },
+            "text": "Resistivity rho climbs by nearly eighty percent.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "formula_rho_t",
+            "position": { "x": 380, "y": 300 },
+            "text": "Rho at T equals rho-zero times one plus alpha delta T.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Heat this copper wire from room temperature up toward two hundred twenty degrees.",
+              "text_hi": "इस copper wire को room temperature से दो सौ बीस डिग्री तक गर्म कीजिए.",
+              "text_te": "ఈ copper wire ను room temperature నుండి రెండు వందల ఇరవై డిగ్రీల వరకు వేడి చేయండి.",
+              "glow": "thermometer"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The lattice ions shiver harder, collisions come sooner, and the current visibly slows — resistivity rho climbs by nearly eighty percent.",
+              "text_hi": "lattice ions और ज़ोर से कांपते हैं, collisions जल्दी होते हैं, और current साफ़ धीमा हो जाता है — resistivity rho लगभग अस्सी प्रतिशत बढ़ जाता है.",
+              "text_te": "lattice ions మరింత గట్టిగా కంపిస్తాయి, collisions త్వరగా జరుగుతాయి, మరియు current స్పష్టంగా నెమ్మదిస్తుంది — resistivity rho దాదాపు ఎనభై శాతం పెరుగుతుంది.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Heat shakes the lattice, relaxation time tau shrinks, and rho rises: rho at T equals rho-zero times one plus alpha delta T.",
+              "text_hi": "गर्मी lattice को हिलाती है, relaxation time tau घट जाता है, और rho बढ़ जाता है: rho at T बराबर rho-zero times one plus alpha delta T.",
+              "text_te": "వేడి lattice ను కదిలిస్తుంది, relaxation time tau తగ్గుతుంది, మరియు rho పెరుగుతుంది: rho at T అనేది rho-zero times one plus alpha delta T కు సమానం.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Metals conduct better when hot.",
+            "visual_counter": "Thermometer climbing → lattice visibly shivering harder → collision flashes coming sooner → drift slowing → current meter falling → rho readout climbing 1.78×, all at the same fixed supply.",
+            "one_line_fix": "Heat shakes the lattice, relaxation time tau shrinks — a hot metal resists MORE, not less."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "metal_vs_semiconductor_temperature",
+          "alpha_meaning_and_units",
+          "filament_curve_explained"
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore — all four dials yours: L, A, material, T",
+        "duration": 0,
+        "focal_primitive_id": "r_readout",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_dials",
+            "position": { "x": 380, "y": 90 },
+            "text": "All four dials are live: L, A, material, T.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "readouts_live",
+            "position": { "x": 620, "y": 250 },
+            "text": "R and rho respond live off any dial.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "current_meter_live",
+            "position": { "x": 380, "y": 440 },
+            "text": "Watch current, R, and rho all update together.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "All four dials are yours — length, area, material, temperature. Watch R and rho respond live.",
+              "text_hi": "चारों dials आपके हाथ में हैं — length, area, material, temperature. R और rho को live respond करते देखिए.",
+              "text_te": "నాలుగు dials మీ చేతుల్లోనే — length, area, material, temperature. R మరియు rho live గా ఎలా స్పందిస్తాయో చూడండి.",
+              "glow": "r_readout"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "resistivity_water_pipe_material",
+      "type": "B",
+      "label": "A water pipe network — pipe length and width matter, but so does what the pipe is made of",
+      "physical_world": "A long, narrow pipe resists water flow more than a short, wide one — but a pipe lined with rough gravel resists more than a smooth one of the identical shape.",
+      "same_physics": "Same R = rho*L/A factorization — pipe length plays L, pipe width plays A, and the lining's roughness plays resistivity rho, the material's own fixed number independent of the pipe's shape.",
+      "scene_hint": "Optional supplementary anchor; the primary teaching anchor stays the heater-coil / copper-cord pair."
+    },
+    {
+      "variant_id": "resistivity_kitchen_wiring",
+      "type": "B",
+      "label": "Kitchen wiring — thick aluminium bus bars vs thin nichrome heating elements",
+      "physical_world": "An electrician chooses thick, low-resistivity aluminium or copper for the wiring that carries current efficiently, but a thin, high-resistivity nichrome coil for a toaster or iron that is SUPPOSED to get hot.",
+      "same_physics": "Same R = rho*L/A engineering choice — same current electrical wiring, opposite intent: minimize R for the cord (low rho, thick, short), maximize R for the heating element (high rho, thin, long).",
+      "scene_hint": "Mirrors the primary heater-coil anchor from a household-electrician's decision-making angle."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "resistivity",
+    "macro_view": true,
+    "design": {
+      "background": "#0A0A1A"
+    },
+    "particles": {
+      "count": 40,
+      "thermal_speed": 2.2,
+      "color": "#42A5F5",
+      "size": 7,
+      "trail_length": 12
+    },
+    "lattice": {
+      "count": 24,
+      "color": "#90A4AE",
+      "size": 12,
+      "glow": false
+    },
+    "field_arrows": {
+      "count": 5,
+      "direction": "left_to_right",
+      "color": "#FF9800"
+    },
+    "slider_controls": {
+      "L": {
+        "min": 0.5,
+        "max": 2,
+        "step": 0.1,
+        "default": 1,
+        "label": "Length L",
+        "unit": "m"
+      },
+      "A": {
+        "min": 0.5,
+        "max": 5,
+        "step": 0.25,
+        "default": 1,
+        "label": "Area A",
+        "unit": "mm2"
+      },
+      "material": {
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 0,
+        "label": "Material"
+      },
+      "T": {
+        "min": 20,
+        "max": 220,
+        "step": 10,
+        "default": 20,
+        "label": "Temperature T",
+        "unit": "C"
+      }
+    },
+    "materials": [
+      { "id": "copper",   "label": "Copper",   "rho0": 1.7e-8, "alpha": 3.9e-3, "tint": "#CE7B4B" },
+      { "id": "nichrome", "label": "Nichrome", "rho0": 1.1e-6, "alpha": 1.7e-4, "tint": "#B0BEC5" },
+      { "id": "manganin", "label": "Manganin", "rho0": 4.4e-7, "alpha": 1.0e-5, "tint": "#C9A66B" }
+    ],
+    "formula_anchor": {
+      "constants": {
+        "e": 1.6e-19,
+        "m_e": 9.11e-31,
+        "n": 8.5e+28,
+        "T0_ref": 20,
+        "V_supply": 0.0204
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "lattice": "#90A4AE",
+      "field_arrow": "#FF9800",
+      "drift_arrow": "#4DD0E1",
+      "current_meter": "#80DEEA",
+      "r_readout": "#80DEEA",
+      "rho_readout": "#66BB6A",
+      "thermometer": "#EF5350",
+      "highlight": "#FFFFFF",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "R = ρL/A",
+        "caption": "Longer wire, less current",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "length_autosweep": true,
+        "micro_focus": "trace_one",
+        "show_current_meter": true,
+        "show_sliders": false,
+        "visible_controls": ["L"],
+        "glow_focal": "ammeter"
+      },
+      "STATE_2": {
+        "label": "R = ρL/A",
+        "caption": "Wider wire, more current",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "area_autosweep": true,
+        "micro_focus": "count_carriers",
+        "show_current_meter": true,
+        "show_sliders": false,
+        "visible_controls": ["A"],
+        "glow_focal": "r_readout"
+      },
+      "STATE_3": {
+        "label": "R = ρL/A",
+        "caption": "Geometry moves, ρ doesn't",
+        "formula_overlay": "R = ρL/A",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "geometry_cycle": true,
+        "micro_focus": "trace_one",
+        "show_current_meter": true,
+        "show_sliders": false,
+        "visible_controls": ["L", "A"],
+        "glow_focal": "rho_readout"
+      },
+      "STATE_4": {
+        "label": "ρ = m/(ne²τ)",
+        "caption": "New metal, new ρ",
+        "formula_overlay": "ρ = m/(ne²τ)",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "material_switch": { "cue": "switch_to_nichrome", "from": 0, "to": 1 },
+        "cue": { "id": "switch_to_nichrome", "at_ms": 3500 },
+        "micro_focus": "trace_one",
+        "show_current_meter": true,
+        "show_sliders": false,
+        "visible_controls": ["material"],
+        "glow_focal": "lattice"
+      },
+      "STATE_5": {
+        "label": "ρ_T = ρ₀(1+αΔT)",
+        "caption": "Hotter metal resists more",
+        "formula_overlay": "ρ_T = ρ₀(1+αΔT)",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "temperature_autosweep": true,
+        "micro_focus": "trace_one",
+        "show_thermometer": true,
+        "show_current_meter": true,
+        "show_sliders": false,
+        "visible_controls": ["T"],
+        "glow_focal": "thermometer"
+      },
+      "STATE_7": {
+        "label": "Explore: L, A, material, T",
+        "caption": "All four dials yours",
+        "formula_overlay": "R = ρL/A",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_thermometer": true,
+        "show_current_meter": true,
+        "show_sliders": true,
+        "glow_focal": "r_readout"
+      }
+    }
+  }
+}

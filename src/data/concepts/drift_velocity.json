@@ -1,0 +1,700 @@
+{
+  "concept_id": "drift_velocity",
+  "concept_name": "Drift Velocity — the Tiny Collective Crawl Behind Every Current (v_d = eEτ/m, i = neAv_d)",
+  "chapter": 3,
+  "section": "3.5",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.5 Drift velocity) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: drift velocity / current density / Ohm's law sections) to confirm atomic boundaries — no teaching method, example problem, or figure imported. HC Verma consulted for teaching SEQUENCE (build the paradox before resolving it: idle-wire electrons already move at ~10^5 m/s with zero net transport → switch on a field and reveal a drift a billion times slower → confront the 'electrons travel near light speed' belief head-on by showing the field fill the whole wire in one frame while the spotlighted electron crawls → zoom into ONE electron's kick-then-collide cycle to derive v_d = eEτ/m concretely before the formula lands → sweep E live to show v_d tracks it linearly → widen the cross-section to show current climbs while drift speed itself never moves → hand the explorer all three dials), never copied. The atomic idea: electric current is a tiny collective drift (v_d = eEτ/m, ~10^-4 m/s) superposed on enormous random thermal motion (~10^5 m/s), and i = neAv_d. SCOPE: this is the FOUNDATIONAL opener of Ch.3 — it does NOT cover the resistivity derivation ρ = m/ne²τ or Ohm's law (deferred to origin_of_resistivity), mobility μ = v_d/E (deferred to electron_mobility), or temperature dependence of resistance (deferred to resistivity_temperature_dependence). FIRST concept authored on the particle_field (2D p5.js) renderer — the electron-cloud + lattice + field-arrow scenario is config-driven (particle_field_config), not scenario-type-dispatched like field_3d; the renderer computes v_d and i natively in engine JS (realDriftVelocity/realCurrent) from slider_controls + formula_anchor.constants, NOT via physics_engine_config.formulas/PM_interpolate — physics_engine_config below is authored as documentation per the Zod requirement. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three genuine misconceptions — 'electrons sit still until pushed' / 'all that thermal motion must be current', 'electrons race near light speed on switching' (PRIMARY), and 'v_d is the electron's actual speed' — are confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast-in-motion beats at STATE_1/STATE_3/STATE_4, no predict-pause).",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "drift_velocity"
+    ]
+  },
+  "prerequisites": [
+    "electric_field_point_charge",
+    "force_on_charge_in_field"
+  ],
+  "real_world_anchor": {
+    "primary": "You flip the switch by the bedroom door and the ceiling fan hums the same instant — yet each electron in that wire crawls at about a tenth of a millimetre per second and would need roughly fourteen hours to travel the few metres to the fan. What reaches the fan instantly is the electric field, not the electrons.",
+    "secondary": "When power returns after a monsoon outage, every streetlight down the road comes on together — the field is established along the whole line at once; no electron 'delivers' the electricity to the far end."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "E": {
+        "name": "Electric field E (student-adjustable, live from STATE_5)",
+        "unit": "V/m",
+        "min": 0,
+        "max": 0.1,
+        "default": 0.02,
+        "role": "slider — drives v_d and the drift-arrow length"
+      },
+      "tau": {
+        "name": "Relaxation time τ (tau, student-adjustable, live from STATE_4)",
+        "unit": "s (authored in fs; ×10⁻¹⁵ s inside the renderer)",
+        "min": 5,
+        "max": 50,
+        "default": 25,
+        "role": "slider — free time between collisions"
+      },
+      "A": {
+        "name": "Conductor cross-section A (student-adjustable, live from STATE_6)",
+        "unit": "m² (authored in mm²; ×10⁻⁶ m² inside the renderer)",
+        "min": 0.5,
+        "max": 5,
+        "default": 1,
+        "role": "slider — multiplies current, NOT drift velocity"
+      },
+      "e": {
+        "name": "Elementary charge",
+        "unit": "C",
+        "constant": 1.6e-19,
+        "role": "locked constant"
+      },
+      "m_e": {
+        "name": "Electron mass",
+        "unit": "kg",
+        "constant": 9.11e-31,
+        "role": "locked constant"
+      },
+      "n": {
+        "name": "Free-electron number density (copper)",
+        "unit": "m^-3",
+        "constant": 8.5e28,
+        "role": "locked constant — a material property, not battery-dependent"
+      },
+      "u": {
+        "name": "Thermal (random) speed of a free electron",
+        "unit": "m/s",
+        "constant": 117000,
+        "role": "documentary only, no slider — present and non-zero in every state, including STATE_1 with the field off"
+      },
+      "a": {
+        "name": "Acceleration of an electron between collisions",
+        "unit": "m/s^2",
+        "derived": "e*E/m_e",
+        "role": "intermediate step shown in the STATE_4 formula overlay"
+      },
+      "v_d": {
+        "name": "Drift velocity",
+        "unit": "m/s",
+        "derived": "e*E*tau/m_e (tau in seconds)",
+        "role": "live readout — computed natively in particle_field_renderer.ts (realDriftVelocity), not via physics_engine_config.formulas"
+      },
+      "i": {
+        "name": "Current",
+        "unit": "A",
+        "derived": "n*e*A*v_d",
+        "role": "live readout — computed natively in particle_field_renderer.ts (realCurrent), not via physics_engine_config.formulas"
+      }
+    },
+    "formulas": {
+      "drift_velocity": "v_d = e*E*tau/m_e — NCERT §3.5 form, NO 1/2 factor (averaged ACROSS the population's random free times, not within one flight)",
+      "acceleration": "a = e*E/m_e — F = eE on the electron, opposite E (electron charge is negative)",
+      "current": "i = n*e*A*v_d — current is the number of electrons crossing a plane every second",
+      "speed_ratio": "u/v_d ~ 1.33e9 at defaults — the 10^9 paradox this concept resolves in STATE_3"
+    },
+    "constraints": [
+      "v_d << u at every slider setting — ratio never drops below ~10^8, even at E and tau both maxed",
+      "drift velocity direction is opposite to the electric field direction (electron charge is negative)",
+      "conventional current i points along E, opposite to the electron drift direction",
+      "current i scales linearly with cross-section A; drift velocity v_d does NOT depend on A",
+      "v_d is directly proportional to both E and tau (independently, holding the other fixed)",
+      "n = 8.5 x 10^28 /m^3 is a fixed material property of copper — not a slider, not battery-dependent",
+      "thermal/random motion (u) is present and non-zero in every state, including S1 with the field off"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "The field reaches every electron instantly; each electron itself only crawls.",
+    "visual_confirmation": "Field arrows fill the whole wire in one frame while the spotlighted electron crawls only a few pixels across the whole loop."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "current_relation": [
+      "STATE_5",
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Thermal chaos: electrons already tear around, going nowhere",
+        "duration": 15,
+        "focal_primitive_id": "electron_cloud",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "electron_cloud",
+            "position": { "x": 380, "y": 90 },
+            "text": "Free electrons in the idle wire zigzag violently at u ~ 1x10^5 m/s — no field applied yet.",
+            "color": "#E2E8F0",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "lattice_ions",
+            "position": { "x": 620, "y": 250 },
+            "text": "Lattice ions sit fixed; electrons bounce off them constantly (random collisions).",
+            "color": "#90A4AE",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "net_shift_marker",
+            "position": { "x": 380, "y": 440 },
+            "text": "A net-shift marker stays pinned at zero the whole state — huge speed, zero transport.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Inside this idle wire, free electrons already tear around at about a hundred thousand metres per second, bouncing off the lattice constantly.", "text_hi": "इस idle wire के अंदर, free electrons पहले से ही लगभग एक hundred thousand metres per second की speed से घूम रहे हैं, लगातार lattice से टकरा रहे हैं।", "text_te": "ఈ idle wire లోపల, free electrons ఇప్పటికే సుమారు a hundred thousand metres per second వేగంతో తిరుగుతున్నాయి, నిరంతరం lattice ని ఢీకొంటున్నాయి.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Yet the whole cloud goes nowhere — net displacement is exactly zero.", "text_hi": "फिर भी पूरा cloud कहीं नहीं जाता — net displacement exactly zero है।", "text_te": "అయినా మొత్తం cloud ఎక్కడికీ వెళ్ళదు — net displacement exactly zero.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "All that speed, and still no current.", "text_hi": "इतनी सारी speed, और फिर भी कोई current नहीं।", "text_te": "అంత వేగం ఉన్నా, ఇంకా current లేదు.",
+              "glow": "electrons"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Electrons sit still until the battery pushes them — and all that random motion must itself be the current.",
+            "visual_counter": "Electrons visibly tear around at ~10^5 m/s in an idle wire while a net-shift marker stays pinned at zero the whole state — huge speed, zero transport.",
+            "one_line_fix": "An idle wire already has electrons moving at ~10^5 m/s; only a superposed collective DRIFT (once a field is applied) is current, never the random thermal speed itself."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Switch the field on — a tiny collective drift appears",
+        "duration": 18,
+        "focal_primitive_id": "field_arrows",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_arrows",
+            "position": { "x": 380, "y": 90 },
+            "text": "Electric field E switches on — arrows fill the wire first (the CAUSE).",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "drift_cloud",
+            "position": { "x": 620, "y": 250 },
+            "text": "A heartbeat later the whole electron cloud streams slowly opposite E — the drift (the EFFECT).",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "twin_readouts",
+            "position": { "x": 380, "y": 440 },
+            "text": "Twin readouts: u ~ 1x10^5 m/s (thermal) vs v_d ~ 8.8x10^-5 m/s (drift) — same zigzag, one tiny new bias.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now switch the electric field on.", "text_hi": "अब electric field को on कर दीजिए।", "text_te": "ఇప్పుడు electric field ని on చేయండి.",
+              "glow": "field",
+              "scenario_cue": "field_on"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the field arrows fill the wire, and a heartbeat later a tiny drift appears in the electron cloud, moving opposite to the field.", "text_hi": "field arrows को wire में भरते हुए देखिए, और कुछ ही देर में electron cloud में एक छोटा सा drift दिखाई देता है, जो field के opposite direction में move कर रहा है।", "text_te": "field arrows wire లో నిండడం చూడండి, మరియు కొంచెం ఆలస్యంలో electron cloud లో ఒక చిన్న drift కనిపిస్తుంది, అది field కి opposite direction లో move అవుతోంది.",
+              "glow": "field"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "That drift rides on the same violent zigzag: thermal speed near a hundred thousand metres per second, drift barely a ten-thousandth of that.", "text_hi": "वह drift उसी तेज़ zigzag पर सवार है: thermal speed लगभग एक hundred thousand metres per second, drift उसका barely एक ten-thousandth हिस्सा।", "text_te": "ఆ drift అదే వేగవంతమైన zigzag పై ప్రయాణిస్తోంది: thermal speed దాదాపు a hundred thousand metres per second, drift దానిలో barely a ten-thousandth వంతు.",
+              "glow": "electrons"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "PRIMARY aha — the field arrives instantly; electrons only crawl",
+        "duration": 17,
+        "focal_primitive_id": "field_instant",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "switch_flip",
+            "position": { "x": 380, "y": 90 },
+            "text": "Flip the switch — what actually reaches the fan first?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "crawling_electron",
+            "position": { "x": 620, "y": 250 },
+            "text": "The spotlighted electron would take about 14 hours to crawl the ~4.4 m from switch to fan.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "field_instant",
+            "position": { "x": 380, "y": 440 },
+            "text": "The field itself fills the whole wire in the same instant — every electron everywhere starts drifting at once.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Flip a switch — what actually reaches the fan first?", "text_hi": "एक switch को flip कीजिए — fan तक असल में सबसे पहले क्या पहुँचता है?", "text_te": "ఒక switch ని flip చేయండి — fan వద్దకు నిజంగా ముందు ఏమి చేరుతుంది?",
+              "glow": "field"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Not the electron — this spotlighted one would take about fourteen hours to crawl the few metres from switch to fan.", "text_hi": "वो electron नहीं — यह spotlighted electron switch से fan तक के कुछ metres को crawl करने में लगभग fourteen hours लेगा।", "text_te": "ఆ electron కాదు — ఈ spotlighted electron switch నుండి fan వరకు ఉన్న కొన్ని metres ని crawl చేయడానికి దాదాపు fourteen hours పడుతుంది.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "What arrives instantly is the field itself, filling the whole wire at once — every electron everywhere starts drifting the same moment.", "text_hi": "जो instantly पहुँचता है वह field itself है, जो पूरे wire को एक साथ भर देता है — हर जगह हर एक electron एक ही moment पर drift करना शुरू कर देता है।", "text_te": "ఇన్స్టంట్గా చేరేది field itself, అది మొత్తం wire ని ఒకేసారి నింపేస్తుంది — ప్రతి చోట ప్రతి electron ఒకే moment లో drift చేయడం మొదలుపెడుతుంది.",
+              "glow": "field",
+              "scenario_cue": "field_on"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Electrons race through the wire near light speed the instant you flip a switch.",
+            "visual_counter": "The spotlighted electron crawls only a few pixels over the whole loop (~14 h to cross the wire) while field arrows fill the ENTIRE wire in the same frame the switch flips.",
+            "one_line_fix": "What travels near light speed is the electric FIELD, not the electrons — every electron everywhere starts drifting the same instant, but each electron itself only crawls."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "field_travels_not_electrons",
+          "why_bulb_lights_instantly",
+          "signal_speed_vs_electron_speed"
+        ]
+      },
+      "STATE_4": {
+        "title": "One electron, kicked between collisions — v_d = eEτ/m",
+        "duration": 19,
+        "focal_primitive_id": "formula_vd",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "spotlight_electron",
+            "position": { "x": 380, "y": 90 },
+            "text": "Follow one spotlighted electron; the rest of the cloud dims to 25% opacity.",
+            "color": "#E2E8F0",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "tau_tick",
+            "position": { "x": 620, "y": 250 },
+            "text": "E accelerates it (a = eE/m) for time tau between collision resets — tau is adjustable on the slider.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "formula_vd",
+            "position": { "x": 380, "y": 440 },
+            "text": "Averaged over every electron's tau: v_d = eEτ/m — the drift speed.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Follow just one electron between collisions.", "text_hi": "बस एक electron को collisions के बीच follow कीजिए।", "text_te": "కేవలం ఒక electron ని collisions మధ్య follow చేయండి.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The electric field pushes it with a constant acceleration — a equals e E over m — for the free time between two collisions, call that time tau.", "text_hi": "Electric field उसे एक constant acceleration से धकेलता है — a equals e E over m — जो दो collisions के बीच के free time पर आधारित है, उस time को हम tau कहते हैं।", "text_te": "Electric field దాన్ని ఒక constant acceleration తో నెట్టుతుంది — a equals e E over m — రెండు collisions మధ్య ఉన్న free time కోసం, ఆ time ని tau అని పిలుద్దాం.",
+              "glow": "formula"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Average that little kick over every electron's tau, and you get the drift speed: v d equals e E tau over m.", "text_hi": "उस छोटे से kick का average हर electron के tau पर लीजिए, तो आपको drift speed मिलेगी: v d equals e E tau over m।", "text_te": "ఆ చిన్న kick యొక్క సగటును ప్రతి electron యొక్క tau పై తీసుకోండి, మీకు drift speed వస్తుంది: v d equals e E tau over m.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "v_d is how fast an electron actually moves.",
+            "visual_counter": "The spotlighted electron's actual path is a violent zigzag at u ~ 10^5 m/s; v_d appears only as the tiny average bias accumulated per collision cycle — two separately labelled speeds, never conflated.",
+            "one_line_fix": "v_d is the average DRIFT bias between collisions (eEτ/m), not the electron's actual instantaneous speed, which is the much larger thermal u."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "relaxation_time_meaning",
+          "collision_reset_mechanism",
+          "why_vd_proportional_tau"
+        ]
+      },
+      "STATE_5": {
+        "title": "v_d is proportional to E — double the field, double the drift",
+        "duration": 15,
+        "focal_primitive_id": "drift_arrow",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "e_slider",
+            "position": { "x": 380, "y": 90 },
+            "text": "Drag the E slider — field arrows brighten with E.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "drift_arrow",
+            "position": { "x": 620, "y": 250 },
+            "text": "The labelled v_d drift arrow grows and shrinks in lockstep with E.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "linear_readout",
+            "position": { "x": 380, "y": 440 },
+            "text": "Live readout tracks v_d = eEτ/m — a straight-line relationship, tau held fixed.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Drag the field slider and watch the labelled v d arrow respond.", "text_hi": "Field slider को drag कीजिए और labelled v d arrow को respond करते देखिए।", "text_te": "Field slider ని drag చేయండి మరియు labelled v d arrow ప్రతిస్పందించడాన్ని చూడండి.",
+              "glow": "field"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Double the field E, and the drift velocity doubles too — it's a straight-line relationship, v d equals e E tau over m, with tau held fixed.", "text_hi": "Field E को double कीजिए, तो drift velocity भी double हो जाती है — यह एक straight-line relationship है — v d equals e E tau over m, जहाँ tau को fixed रखा गया है।", "text_te": "Field E ని double చేయండి, అప్పుడు drift velocity కూడా double అవుతుంది — ఇది ఒక straight-line relationship — v d equals e E tau over m, tau ని fixed గా ఉంచితే.",
+              "glow": "drift_arrow"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "i = neAv_d — current climbs with area, drift speed doesn't",
+        "duration": 18,
+        "focal_primitive_id": "current_meter",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "a_slider",
+            "position": { "x": 380, "y": 90 },
+            "text": "Widen the wire's cross-section A on the slider.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "current_meter",
+            "position": { "x": 620, "y": 250 },
+            "text": "Current meter i = neAv_d climbs as A grows — more lanes of electron traffic.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "vd_holds",
+            "position": { "x": 380, "y": 440 },
+            "text": "The v_d readout barely moves — more lanes, not faster cars.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now widen the wire's cross-section, A.", "text_hi": "अब wire के cross-section A को widen कीजिए।", "text_te": "ఇప్పుడు wire యొక్క cross-section A ని widen చేయండి.",
+              "glow": "current_meter"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Current is just the number of electrons crossing a plane every second — i equals n e A v d — so a wider wire carries more lanes of traffic.", "text_hi": "Current, मात्र एक plane को हर second पार करने वाले electrons की संख्या है — i equals n e A v d — तो एक चौड़ी wire, traffic के ज़्यादा lanes ले जाती है।", "text_te": "Current, కేవలం ఒక plane ని ప్రతి second దాటే electrons సంఖ్య — i equals n e A v d — కాబట్టి వెడల్పైన wire, traffic కు ఎక్కువ lanes తీసుకువస్తుంది.",
+              "glow": "current_meter"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Watch the meter climb as A grows — but the drift speed readout barely moves. More lanes, not faster cars.", "text_hi": "Meter को A के बढ़ने पर चढ़ते देखिए — लेकिन drift speed readout मुश्किल से हिलता है। ज़्यादा lanes, तेज़ cars नहीं।", "text_te": "A పెరుగుతున్న కొద్దీ meter పైకి ఎక్కడాన్ని చూడండి — కానీ drift speed readout దాదాపు కదలదు. ఎక్కువ lanes, వేగవంతమైన cars కాదు.",
+              "glow": "current_meter"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "current_area_dependence",
+          "number_density_n_confusion",
+          "same_current_thinner_wire_faster_drift"
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore — all three dials yours: E, τ, A",
+        "duration": 0,
+        "focal_primitive_id": "current_meter_live",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_sliders",
+            "position": { "x": 380, "y": 90 },
+            "text": "All three dials are live: E, tau, and A.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "drift_arrow_live",
+            "position": { "x": 620, "y": 250 },
+            "text": "The drift arrow and the current meter update live as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "current_meter_live",
+            "position": { "x": 380, "y": 440 },
+            "text": "Explore how v_d and i respond to each dial independently.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "All three dials are yours now — E, tau, and A — explore how drift and current respond.", "text_hi": "तीनों dials अब आपके हैं — E, tau, और A — देखिए drift और current कैसे respond करते हैं।", "text_te": "మూడు dials ఇప్పుడు మీవి — E, tau, మరియు A — drift మరియు current ఎలా ప్రతిస్పందిస్తాయో అన్వేషించండి.",
+              "glow": "current_meter"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "drift_velocity_streetlight_line",
+      "type": "B",
+      "label": "A monsoon streetlight line — every bulb along the road comes on together",
+      "physical_world": "A long streetlight line after a power cut: every bulb down the road lights together the instant power returns.",
+      "same_physics": "Same v_d = eEτ/m and i = neAv_d — the field re-establishes along the whole line at once; no electron 'delivers' the electricity to the far bulb.",
+      "scene_hint": "Swap the fan-switch anchor for a row of streetlights; same electron-cloud + field-arrow choreography."
+    },
+    {
+      "variant_id": "drift_velocity_water_pipe_analogy",
+      "type": "B",
+      "label": "A garden hose already full of water — push one end, water exits the other almost instantly",
+      "physical_world": "A garden hose already full of water: push water in at one end and water comes out the other end almost immediately, even though any one water molecule barely moves.",
+      "same_physics": "The pressure wave (the disturbance) travels near the speed of sound in water; individual water molecules barely drift — the same field-vs-carrier split as drift velocity, used here as a supplementary analogy only.",
+      "scene_hint": "Optional supplementary comparison panel; the primary teaching anchor stays the fan-switch / streetlight electrical picture."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "drift_velocity",
+    "particles": {
+      "count": 40,
+      "thermal_speed": 2.2,
+      "color": "#42A5F5",
+      "size": 7,
+      "trail_length": 12
+    },
+    "lattice": {
+      "count": 24,
+      "color": "#90A4AE",
+      "size": 12,
+      "glow": false
+    },
+    "field_arrows": {
+      "count": 5,
+      "direction": "left_to_right",
+      "color": "#FF9800"
+    },
+    "slider_controls": {
+      "E": {
+        "min": 0,
+        "max": 0.1,
+        "step": 0.005,
+        "default": 0.02,
+        "label": "Electric field E",
+        "unit": "V/m"
+      },
+      "tau": {
+        "min": 5,
+        "max": 50,
+        "step": 1,
+        "default": 25,
+        "label": "Relaxation time τ",
+        "unit": "fs"
+      },
+      "A": {
+        "min": 0.5,
+        "max": 5,
+        "step": 0.1,
+        "default": 1,
+        "label": "Cross-section A",
+        "unit": "mm²"
+      }
+    },
+    "formula_anchor": {
+      "constants": {
+        "e": 1.6e-19,
+        "m_e": 9.11e-31,
+        "n": 8.5e28
+      }
+    },
+    "animation_constraints": {
+      "collision_glow": false
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "lattice": "#90A4AE",
+      "field_arrow": "#FF9800",
+      "drift_arrow": "#4DD0E1",
+      "current_meter": "#80DEEA",
+      "highlight": "#FFFFFF",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "u ≈ 1.2×10⁵ m/s · net shift = 0",
+        "caption": "Fast everywhere, going nowhere",
+        "field_visible": false,
+        "drift_speed": 0,
+        "drift_direction": "none",
+        "highlight_particle": false,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "electrons"
+      },
+      "STATE_2": {
+        "label": "u ≈ 1.2×10⁵ m/s · v_d ≈ 8.8×10⁻⁵ m/s",
+        "caption": "Field on — drift begins",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "cue": { "id": "field_on", "at_ms": 1200 },
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "field"
+      },
+      "STATE_3": {
+        "label": "field ≈ instant · electron ≈ 14 h to cross ~4.4 m",
+        "caption": "Field arrives, not electrons",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "highlight_particle": true,
+        "dim_others": false,
+        "cue": { "id": "field_on", "at_ms": 1200 },
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "electrons"
+      },
+      "STATE_4": {
+        "label": "u ≈ 1.2×10⁵ m/s (zigzag) · v_d ≈ 8.8×10⁻⁵ m/s (avg drift)",
+        "caption": "One electron, kicked between collisions",
+        "formula_overlay": "a = eE/m\nv_d = aτ = eEτ/m",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "highlight_particle": true,
+        "dim_others": true,
+        "dim_opacity": 0.25,
+        "show_sliders": false,
+        "visible_controls": ["tau"],
+        "glow_focal": "formula"
+      },
+      "STATE_5": {
+        "label": "v_d ∝ E (linear)",
+        "caption": "Double the field, double drift",
+        "formula_overlay": "v_d = eEτ/m",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_drift_arrow": true,
+        "show_sliders": false,
+        "visible_controls": ["E"],
+        "glow_focal": "drift_arrow"
+      },
+      "STATE_6": {
+        "label": "i → (current)   electrons ← (actual drift)",
+        "caption": "Crossings per second = current",
+        "formula_overlay": "v_d = eEτ/m\ni = neAv_d\nn = 8.5×10²⁸ /m³ (copper)",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_current_meter": true,
+        "show_sliders": false,
+        "visible_controls": ["A"],
+        "glow_focal": "current_meter"
+      },
+      "STATE_7": {
+        "label": "Explore: E, τ, A",
+        "caption": "All three dials yours",
+        "formula_overlay": "a = eE/m\nv_d = eEτ/m\ni = neAv_d\nn = 8.5×10²⁸ /m³ (copper)",
+        "field_visible": true,
+        "drift_speed": 0.35,
+        "drift_direction": "left",
+        "show_drift_arrow": true,
+        "show_current_meter": true,
+        "show_sliders": true,
+        "glow_focal": "current_meter"
+      }
+    }
+  }
+}

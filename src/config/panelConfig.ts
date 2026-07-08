@@ -48,18 +48,34 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #2 — Alex pipeline (2026-07-08), same engine
+    // family as drift_velocity. The V–I graph is drawn INSIDE the single
+    // particle_field canvas (particle_field_config.vi_graph, bottom_corner
+    // dock), not a separate graph_interactive panel — single-panel layout,
+    // mirrors drift_velocity's registration exactly. Replaces the earlier
+    // dual_horizontal placeholder (pre-dated the particle_field vi_graph
+    // Phase-A build).
     ohms_law: {
         concept_id: 'ohms_law',
-        layout: 'dual_horizontal',
+        layout: 'single',
         primary: {
             renderer: 'particle_field',
-            config_key: 'ohms_law_microscopic',
-            label: 'Microscopic View',
+            config_key: 'ohms_law',
+            label: 'Ohm’s Law',
         },
-        secondary: {
-            renderer: 'graph_interactive',
-            config_key: 'ohms_law_graph',
-            label: 'V–I Graph',
+    },
+
+    // Ch.3 Current Electricity #3 — Alex pipeline (2026-07-08), same engine
+    // family as drift_velocity/ohms_law. Single particle_field canvas (R/rho
+    // readouts + thermometer drawn INSIDE it, particle_field_config.states),
+    // no separate graph panel — mirrors drift_velocity/ohms_law's registration.
+    resistivity: {
+        concept_id: 'resistivity',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'resistivity',
+            label: 'Resistivity',
         },
     },
 

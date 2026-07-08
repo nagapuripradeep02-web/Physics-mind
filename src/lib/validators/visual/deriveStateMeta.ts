@@ -83,6 +83,19 @@ export function deriveMotionExpectations(
 ): Record<string, boolean | undefined> {
     const out: Record<string, boolean | undefined> = {};
 
+    // particle_field (2D p5 diamonds — drift_velocity class): thermal random-walk
+    // motion runs EVERY frame in EVERY state (the electrons never stop jittering,
+    // even in the explore state), so all states declare motion unless a state
+    // explicitly opts out with `motion: false`.
+    const pfMotion = resolveParticleFieldStates(physicsConfig);
+    if (pfMotion) {
+        for (const [stateId, stateRaw] of Object.entries(pfMotion)) {
+            const st = asObj(stateRaw);
+            out[stateId] = !(st && st.motion === false);
+        }
+        return out;
+    }
+
     // field_3d (authoritative shape): a gauss block with flow:true declares
     // continuous field-line flow — D5/D6 should expect ongoing pixel motion.
     // Read from field_3d_config.states (or a cached field_3d-as-physics_config)
@@ -357,6 +370,48 @@ function resolveField3dStates(config: Record<string, unknown> | null): Field3dSt
 function resolveCoilTurns(coil: Record<string, unknown> | null): number {
     const t = coil ? asNum(coil.turns, DEFAULT_COIL_TURNS) : DEFAULT_COIL_TURNS;
     return t > 0 ? t : DEFAULT_COIL_TURNS;
+}
+
+/**
+ * particle_field (2D p5 diamonds — drift_velocity class): resolve the per-state
+ * map from the authored `particle_field_config.states` (present in the concept
+ * JSON and in the seeded physics_config). Returns null for other renderers.
+ */
+function resolveParticleFieldStates(config: Record<string, unknown> | null): StateRecord | null {
+    if (!config) return null;
+    const pfCfg = asObj(config.particle_field_config);
+    if (pfCfg) {
+        const states = asObj(pfCfg.states) as StateRecord | null;
+        if (states && Object.keys(states).length > 0) return states;
+    }
+    return null;
+}
+
+/**
+ * Mirror of particle_field_renderer.ts cue pacing (FIELD_FADE_MS 600 +
+ * CAUSE_BEAT_MS 900 + DRIFT_RAMP_MS 800 — the Rule 32a cause-first choreography):
+ * a frozen capture pinned before the drift ramp completes would photograph the
+ * pre-payoff scene and false-fail the reveal.
+ */
+const PF_CUE_PAYOFF_MS = 600 + 900 + 800;
+
+/** Latest sim-time at which every particle_field one-shot cue has paid off. */
+function pfRevealMs(state: Record<string, unknown> | null): number {
+    if (!state) return DEFAULT_REVEAL_MS;
+    const cues: Array<Record<string, unknown>> = [];
+    const single = asObj(state.cue);
+    if (single) cues.push(single);
+    if (Array.isArray(state.cues)) {
+        for (const c of state.cues) {
+            const co = asObj(c);
+            if (co) cues.push(co);
+        }
+    }
+    let maxMs = DEFAULT_REVEAL_MS;
+    for (const c of cues) {
+        maxMs = Math.max(maxMs, asNum(c.at_ms, 0) + PF_CUE_PAYOFF_MS);
+    }
+    return maxMs;
 }
 
 /** Latest sim-time (state-local ms) at which every timed reveal has completed. */
@@ -965,6 +1020,8 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     //   • field_lines_at_ms  — STATE_2/4 straight + → − lines reveal (+ STATE_4's
     //                          late re-reveal after the sheet superposition).
     //   • probe_arrows_at_ms — STATE_3 the three equal probe arrows fade in.
+    //   • probe_points_at_ms — STATE_2 (probe_points variant) the 3 labeled A/B/C
+    //                          points + live E readouts fade in (then hold).
     //   • sheet_fields_at_ms / cancel_outside_at_ms — STATE_4 two-sheet add-inside,
     //                          then the OUTSIDE pair fades to zero (cancel) — the
     //                          last payoff; pin past the cancel fade.
@@ -984,6 +1041,9 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
         if (typeof cap.probe_arrows_at_ms === 'number') {
             candidates.push(asNum(cap.probe_arrows_at_ms, 0) + 600 + 300);
+        }
+        if (typeof cap.probe_points_at_ms === 'number') {
+            candidates.push(asNum(cap.probe_points_at_ms, 0) + 600 + 300);
         }
         if (typeof cap.sheet_fields_at_ms === 'number') {
             candidates.push(asNum(cap.sheet_fields_at_ms, 0) + 600 + 300);
@@ -1399,6 +1459,17 @@ export function deriveMaxRevealTimeMs(
         return out;
     }
 
+    // particle_field: the only timed reveals are the one-shot cues (field_on
+    // etc.) — pin the frozen frame past the cue payoff (fade + cause-beat +
+    // drift ramp, mirroring the renderer's Rule 32a choreography).
+    const pfReveal = resolveParticleFieldStates(config);
+    if (pfReveal) {
+        for (const [stateId, stateRaw] of Object.entries(pfReveal)) {
+            out[stateId] = clampReveal(pfRevealMs(asObj(stateRaw)));
+        }
+        return out;
+    }
+
     // PCPL fallback (parametric is already wall-clock-correct; this keeps the
     // frozen-frame target consistent across renderers).
     for (const [stateId, state] of Object.entries(resolveStates(config))) {
@@ -1425,6 +1496,19 @@ export function deriveHoldExpectations(
 ): Record<string, 'reveal_hold' | 'interactive' | undefined> {
     const out: Record<string, 'reveal_hold' | 'interactive' | undefined> = {};
     const reveal = deriveMaxRevealTimeMs(config);
+
+    // particle_field: thermal motion never stops, so guided states keep the
+    // strict motion gate (undefined — D5/D6/D7 expect ongoing pixel movement).
+    // The explore state (show_sliders: true = ALL control rows) is user-driven
+    // → interactive, relaxing D7/D1 (its background jitter still moves anyway).
+    const pfHold = resolveParticleFieldStates(config);
+    if (pfHold) {
+        for (const [stateId, stateRaw] of Object.entries(pfHold)) {
+            const st = asObj(stateRaw);
+            out[stateId] = st && st.show_sliders === true ? 'interactive' : undefined;
+        }
+        return out;
+    }
 
     const f3d = resolveField3dStates(config);
     if (f3d) {
