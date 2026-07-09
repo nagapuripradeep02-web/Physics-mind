@@ -1040,6 +1040,20 @@ function drawAmmeterAtC(cx, cy, iVal, label, dim, amR) {
   fillHex('#FFFFFF', 0.98 * dim); textSize(amR > 20 ? 15 : 12); textStyle(BOLD); textAlign(CENTER, TOP); text('I = ' + iVal.toFixed(2) + ' A', cx, cy + amR * 0.5 + 3);
   textStyle(NORMAL);
 }
+// Voltmeter across the cell terminals — purple needle (distinct from the red
+// ammeter). Reads terminal voltage V; in this ideal-cell scenario V = eps.
+function drawVoltmeterC(cx, cy, vVal, eps, dim) {
+  var amR = 24, boxW = amR * 2 + 30, boxH = amR + 42;
+  rectMode(CENTER); fill(0, 0, 0, 150 * dim); noStroke(); rect(cx, cy + 4, boxW, boxH, 8); rectMode(CORNER);
+  var aLo = -PI * 3 / 4, aHi = -PI / 4;
+  strokeHex('#78909C', 0.7 * dim); strokeWeight(2); noFill(); arc(cx, cy, amR * 2, amR * 2, aLo - 0.08, aHi + 0.08);
+  var na = lerp(aLo, aHi, constrain(vVal / max(eps * 1.15, 1e-6), 0, 1));
+  strokeHex('#B39DDB', 0.98 * dim); strokeWeight(3); line(cx, cy, cx + cos(na) * amR * 0.9, cy + sin(na) * amR * 0.9);
+  noStroke(); fillHex('#B39DDB', 0.98 * dim); ellipse(cx, cy, 5);
+  fillHex('#CE93D8', 0.9 * dim); textSize(10); textAlign(CENTER, BOTTOM); text('VOLTMETER', cx, cy - amR - 3);
+  fillHex('#FFFFFF', 0.98 * dim); textSize(15); textStyle(BOLD); textAlign(CENTER, TOP); text('V = ' + vVal.toFixed(2) + ' V', cx, cy + amR * 0.5 + 3);
+  textStyle(NORMAL);
+}
 function drawSwitchC(g, open, topo, dim) {
   var sx = (topo === 'parallel') ? (g.jLx + 30) : ((g.leftX + g.rightX) * 0.5);
   var sy = (topo === 'parallel') ? (g.topY + g.gap) : g.botY;
@@ -1126,6 +1140,13 @@ function drawEmfScenario() {
   drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
   drawEmfCell(g, c.eps, 1, !!(st && st.pump_focus) || !c.swOpen);   // pump animates while current flows / when focal
   if (st && st.show_ladder) drawPotentialLadder(c.eps, c.i, c.R, c.swOpen, 1);
+  if (st && st.show_voltmeter) {
+    var vmDim = dimFor('voltmeter'), vx = g.leftX + 82, vy = g.midY;
+    strokeHex('#B39DDB', 0.7 * vmDim); strokeWeight(1.5);            // leads tapping the two terminals
+    line(g.leftX, g.midY - 16, vx, vy - 14); line(g.leftX, g.midY + 16, vx, vy + 14);
+    noStroke();
+    drawVoltmeterC(vx, vy, c.Vterm, c.eps, vmDim);
+  }
 }
 
 function stepCircuit(state) {
