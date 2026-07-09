@@ -677,7 +677,7 @@ function updateReadouts() {
     var vEl = document.getElementById('pm-sv-V');
     if (vEl) { var vd2 = defs.V || {}; vEl.textContent = (Math.round(plotV() * 100) / 100) + (vd2.unit ? (' ' + vd2.unit) : ''); }
   }
-  if (hasSlider('R') && !userTouched['R']) {   // R thumb tracks the r_autosweep
+  if (hasSlider('R') && !userTouched['R'] && !emfMode()) {   // R thumb tracks the r_autosweep (ohms_law only)
     var rEl = document.getElementById('pm-sv-R');
     if (rEl) { var rd2 = defs.R || {}; rEl.textContent = (Math.round(plotR() * 100) / 100) + (rd2.unit ? (' ' + rd2.unit) : ''); }
   }
@@ -708,7 +708,12 @@ function updateReadouts() {
   }
   var ro = document.getElementById('pm-readout');
   if (ro) {
-    if (circuitMode()) {                                      // combination_of_resistors: R_eq + total current
+    if (emfMode()) {                                          // emf_definition: eps, terminal V, i (ideal cell -> V = eps)
+      var ec = emfCurrents();
+      ro.textContent = '\\u03B5 = ' + ec.eps.toFixed(1) + ' V\\n' +
+                       'V = ' + ec.Vterm.toFixed(2) + ' V\\n' +
+                       'i = ' + ec.i.toFixed(2) + ' A';
+    } else if (circuitMode()) {                               // combination_of_resistors: R_eq + total current
       var cc = cCurrents();
       ro.textContent = (cc.topo === 'series' ? 'Series' : 'Parallel') + '\\n' +
                        'R_eq = ' + fmtNum(cc.Req) + ' \\u03A9\\n' +
@@ -1185,7 +1190,7 @@ function draw() {
       : (config.design && config.design.background) ? config.design.background : '#0A0A1A';
     background(cbg);
     if (emfMode()) drawEmfScenario(); else drawCircuit();
-    if (circuitMode()) updateReadouts();          // combination-only: live R_eq / i / swept-R2 (else it bleeds entry values)
+    if (isCircuitFamily()) updateReadouts();      // live derived readout (combination R_eq/i ; emf eps/V/i)
     // (no drawLabel here — the state label duplicated the bottom-right formula_overlay)
     var frmC = document.getElementById('pm-formula');
     if (frmC) frmC.style.opacity = max(dimFor('formula'), 0.6);   // keep the equation readable even when not the focal

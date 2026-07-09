@@ -91,7 +91,12 @@ export function deriveMotionExpectations(
     if (pfMotion) {
         for (const [stateId, stateRaw] of Object.entries(pfMotion)) {
             const st = asObj(stateRaw);
-            out[stateId] = !(st && st.motion === false);
+            // emf_definition open-circuit states halt the current (i=0 → beads
+            // frozen): a legitimately static MEASUREMENT beat (the voltmeter reads
+            // the full emf), not a dead animation. Treat like an explicit motion:false
+            // so D5 skips it instead of false-failing "motion declared but pixels
+            // never move".
+            out[stateId] = !(st && (st.motion === false || st.open_circuit === true));
         }
         return out;
     }
