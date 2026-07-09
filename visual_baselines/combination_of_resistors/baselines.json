@@ -1,0 +1,43 @@
+{
+  "approved_at": "2026-07-09T13:09:17.452Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\combination_of_resistors\\20260709-150859",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_9": {
+      "compare": false,
+      "compare_frozen": true
+    }
+  }
+}

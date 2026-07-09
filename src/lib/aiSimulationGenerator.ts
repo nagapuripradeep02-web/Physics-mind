@@ -2592,6 +2592,17 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // production (/api/generate-simulation) hits the strict-engines bypass
     // the same way /test-engines does.
     resistivity:                    "particle_field",
+    // combination_of_resistors is the fourth Ch.3 concept authored on the
+    // particle_field (2D p5.js) renderer via the Alex pipeline (2026-07-09),
+    // same engine family as drift_velocity/ohms_law/resistivity — a dedicated
+    // circuit scenario_type (battery + wire loop + resistor boxes + junction +
+    // ammeters), NOT the free-drift gas. Routes here (not "circuit_live",
+    // which still carries the legacy series_resistance/parallel_resistance
+    // placeholders below) so production (/api/generate-simulation) hits the
+    // strict-engines bypass the same way /test-engines does. Intentionally
+    // NOT added to PCPL_CONCEPTS — that set is for the parametric_renderer
+    // (2D mechanics) family, not particle_field.
+    combination_of_resistors:       "particle_field",
     // series_resistance intentionally omitted — uses particle_field to show current conservation
     parallel_resistance:            "circuit_live",
     internal_resistance:            "circuit_live",

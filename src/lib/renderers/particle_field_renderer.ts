@@ -53,6 +53,8 @@ var uiBuilt = false;
 var curDriftFactor = 1;      // cue-gated drift ramp 0..1 (persists while frozen)
 var curFieldAlpha = 1;       // cue-gated field-arrow fade 0..1
 var curEffDrift = 0;         // effective drift px/frame after sliders+cues
+var circuitBeadPhase = [];   // combination_of_resistors: fixed per-bead phase (deterministic)
+var CIRCUIT_BEAD_RATE = 0.05; // loop-fractions per second at reference current
 
 // ─── Deterministic PRNG (physics only — never p5 random()) ─────────────────
 var PHYS_SEED = 987654321;
@@ -468,6 +470,7 @@ function windowResized() {
 // ─── Scene construction (deterministic) ─────────────────────────────────────
 function rebuildScene() {
   physRand = mulberry32(PHYS_SEED);
+  if (circuitMode()) { circuitInitBeads(); collisionFlashes = []; return; }  // circuit path builds beads, not a free-drift gas
   particles = [];
   for (var i = 0; i < config.particles.count; i++) {
     var angle = pr() * TWO_PI;
@@ -652,6 +655,8 @@ function buildOverlayUI() {
 
 function fmtSliderValue(id) {
   if (id === 'material') return materialAt(sliderVal('material')).label;
+  if (id === 'topology') return sliderVal('topology') >= 0.5 ? 'Parallel' : 'Series';
+  if (id === 'switch') return sliderVal('switch') < 0.5 ? 'Open' : 'Closed';
   var defs = sliderDefs();
   var d = (defs && defs[id]) ? defs[id] : {};
   var v = sliderVal(id);
@@ -693,9 +698,22 @@ function updateReadouts() {
     var tEl = document.getElementById('pm-sv-T');
     if (tEl) { var td2 = defs.T || {}; tEl.textContent = (Math.round(curTemperature() * 100) / 100) + (td2.unit ? (' ' + td2.unit) : ''); }
   }
+  if (circuitMode() && hasSlider('R2') && !userTouched['R2'] && curState() && curState().r2_autosweep) {
+    var r2El = document.getElementById('pm-sv-R2');           // R2 label tracks the S6 auto-sweep
+    if (r2El) { var r2d = defs.R2 || {}; r2El.textContent = fmtNum(cR2()) + (r2d.unit ? (' ' + r2d.unit) : ''); }
+  }
+  if (circuitMode() && hasSlider('switch') && curState() && curState().switch_cycle) {
+    var swEl = document.getElementById('pm-sv-switch');       // switch label tracks the S8 auto open/close
+    if (swEl) swEl.textContent = cSwitchOpen() ? 'Open' : 'Closed';
+  }
   var ro = document.getElementById('pm-readout');
   if (ro) {
-    if (hasSlider('material')) {                              // resistivity: R, rho, i (independently glowable)
+    if (circuitMode()) {                                      // combination_of_resistors: R_eq + total current
+      var cc = cCurrents();
+      ro.textContent = (cc.topo === 'series' ? 'Series' : 'Parallel') + '\\n' +
+                       'R_eq = ' + fmtNum(cc.Req) + ' \\u03A9\\n' +
+                       'i = ' + cc.itot.toFixed(2) + ' A';
+    } else if (hasSlider('material')) {                       // resistivity: R, rho, i (independently glowable)
       var iAm = realCurrent();
       var Rval = realResistance();
       ro.innerHTML =
@@ -836,11 +854,251 @@ function getCurrentIntensity() {
   return normalized;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// CIRCUIT SCENARIO — combination_of_resistors (series / parallel resistors)
+// A distinct render path: electron beads follow wire+resistor LOOPS and split at
+// a parallel junction by branch conductance. Everything is a pure function of
+// PM_simTimeMs so SET_TIME_FREEZE re-sim reproduces frames. The free-drift
+// scenarios (drift/ohms/resistivity) never enter this path (circuitMode() false).
+// ═══════════════════════════════════════════════════════════════════════════
+function circuitMode() { return !!(config && config.scenario_type === 'combination_of_resistors'); }
+function circuitBeadCount() { return (config && config.particles && config.particles.count) ? config.particles.count : 40; }
+function fmtNum(x) { return (abs(x - round(x)) < 0.05) ? String(round(x)) : x.toFixed(1); }
+
+// ── circuit physics (pure functions of V, R1, R2, topology, switch) ─────────
+function cVolt() { return hasSlider('V') ? sliderVal('V') : physConst('V_circuit', 6); }
+function cR1() { return hasSlider('R1') ? sliderVal('R1') : physConst('R1', 6); }
+function cR2raw() { return hasSlider('R2') ? sliderVal('R2') : physConst('R2', 6); }
+function cR2() {
+  var st = curState();
+  if (st && st.r2_autosweep && !userTouched['R2']) {   // S6: R2 grows 6->12 to open the split
+    var start = 700, dur = 3200;
+    var r2a = hasSlider('R2') ? sliderDefault('R2') : 6;
+    var r2b = (st.r2_autosweep_to !== undefined) ? st.r2_autosweep_to : 12;
+    return r2a + (r2b - r2a) * constrain((PM_simTimeMs - start) / dur, 0, 1);
+  }
+  return cR2raw();
+}
+function cTopology() {
+  var st = curState();
+  if (st && st.topology) return st.topology;
+  if (hasSlider('topology')) return sliderVal('topology') >= 0.5 ? 'parallel' : 'series';
+  return 'series';
+}
+function cSwitchOpen() {
+  var st = curState();
+  if (st && st.switch_cycle) { var per = 4200; return (PM_simTimeMs % per) > (per * 0.52); }  // S8: auto open/close
+  if (hasSlider('switch')) return sliderVal('switch') < 0.5;   // 0 = open, 1 = closed
+  return false;
+}
+function cCurrents() {
+  var V = cVolt(), R1 = max(cR1(), 1e-6), R2 = max(cR2(), 1e-6);
+  var swOpen = cSwitchOpen();
+  var st0 = curState();
+  if (st0 && st0.single_resistor) {                    // S1 baseline: one loop, one resistor
+    var iB = swOpen ? 0 : V / R1;
+    return { topo: 'series', single: true, i1: iB, i2: iB, itot: iB, Req: R1, V: V, R1: R1, R2: R2 };
+  }
+  if (cTopology() === 'series') {
+    var iS = swOpen ? 0 : V / (R1 + R2);
+    return { topo: 'series', i1: iS, i2: iS, itot: iS, Req: R1 + R2, V: V, R1: R1, R2: R2 };
+  }
+  var i1 = V / R1;
+  var i2 = swOpen ? 0 : V / R2;
+  return { topo: 'parallel', i1: i1, i2: i2, itot: i1 + i2,
+           Req: swOpen ? R1 : (R1 * R2) / (R1 + R2), V: V, R1: R1, R2: R2 };
+}
+
+// ── geometry + polyline sampling ────────────────────────────────────────────
+function circuitGeom() {
+  var leftX = width * 0.15, rightX = width * 0.70;
+  var topY = height * 0.31, botY = height * 0.73;
+  var midY = (topY + botY) / 2;
+  var span = rightX - leftX;
+  return { leftX: leftX, rightX: rightX, topY: topY, botY: botY, midY: midY,
+           jLx: leftX + span * 0.26, jRx: leftX + span * 0.74, gap: height * 0.115,
+           sR1: { x: leftX + span * 0.34, y: topY }, sR2: { x: leftX + span * 0.64, y: topY },
+           pRx: leftX + span * 0.50, amMain: { x: (leftX + rightX) / 2, y: botY } };
+}
+function polyLen(pts) { var L = 0; for (var i = 1; i < pts.length; i++) L += dist(pts[i-1].x, pts[i-1].y, pts[i].x, pts[i].y); return L; }
+function polyAt(pts, total, s) {
+  var target = ((s % 1) + 1) % 1 * total, acc = 0;
+  for (var i = 1; i < pts.length; i++) {
+    var seg = dist(pts[i-1].x, pts[i-1].y, pts[i].x, pts[i].y);
+    if (acc + seg >= target) { var f = (target - acc) / max(seg, 1e-6); return { x: lerp(pts[i-1].x, pts[i].x, f), y: lerp(pts[i-1].y, pts[i].y, f) }; }
+    acc += seg;
+  }
+  return pts[pts.length - 1];
+}
+function circuitLoops() {
+  var g = circuitGeom();
+  var batt = { x: g.leftX, y: g.midY };
+  var inSeg = [batt, { x: g.leftX, y: g.topY }, { x: g.jLx, y: g.topY }];
+  var outSeg = [{ x: g.jRx, y: g.topY }, { x: g.rightX, y: g.topY }, { x: g.rightX, y: g.botY }, { x: g.leftX, y: g.botY }, batt];
+  var b1 = [{ x: g.jLx, y: g.topY - g.gap }, { x: g.jRx, y: g.topY - g.gap }];
+  var b2 = [{ x: g.jLx, y: g.topY + g.gap }, { x: g.jRx, y: g.topY + g.gap }];
+  return { g: g,
+    series: [batt, { x: g.leftX, y: g.topY }, { x: g.rightX, y: g.topY }, { x: g.rightX, y: g.botY }, { x: g.leftX, y: g.botY }, batt],
+    loop1: inSeg.concat(b1, outSeg), loop2: inSeg.concat(b2, outSeg) };
+}
+
+// ── beads (fixed phase spread; branch chosen by live current fraction) ──────
+function circuitInitBeads() {
+  var r = mulberry32(PHYS_SEED + 7); circuitBeadPhase = [];
+  for (var i = 0; i < circuitBeadCount(); i++) circuitBeadPhase.push(r());
+}
+function circuitBeadLoop(i, c) {
+  if (c.topo === 'series' || c.itot <= 1e-9) return 'series';
+  var lane = (i + 0.5) / circuitBeadCount();
+  return (lane < c.i1 / c.itot) ? 'loop1' : 'loop2';   // fraction on branch1 = i1/itot
+}
+function circuitBeadS(i, c) {
+  var spd = (c.itot < 0.02) ? 0 : constrain(c.itot / 1.0, 0.28, 3.0);   // more total current -> faster; dead loop halts
+  return (circuitBeadPhase[i] + CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * spd) % 1;
+}
+
+// ── primitives ──────────────────────────────────────────────────────────────
+function drawWireC(pts, hex, a, w) {
+  strokeHex(hex, a); strokeWeight(w); noFill();
+  beginShape(); for (var i = 0; i < pts.length; i++) vertex(pts[i].x, pts[i].y); endShape();
+  noStroke();
+}
+function drawResistorBoxC(cx, cy, label, dim) {
+  rectMode(CENTER);
+  fill(18, 22, 38, 235 * dim); noStroke(); rect(cx, cy, 66, 26, 4);
+  strokeHex('#FFB74D', 0.95 * dim); strokeWeight(2); noFill(); rect(cx, cy, 66, 26, 4);
+  strokeWeight(2); noFill();   // zigzag element
+  beginShape();
+  var x0 = cx - 22;
+  for (var k = 0; k <= 6; k++) vertex(x0 + k * (44 / 6), cy + (k === 0 || k === 6 ? 0 : (k % 2 ? -6 : 6)));
+  endShape();
+  rectMode(CORNER); noStroke();
+  fillHex('#FFFFFF', 0.95 * dim); textSize(12); textStyle(BOLD); textAlign(CENTER, TOP);
+  text(label, cx, cy + 16); textStyle(NORMAL);
+}
+function drawBatteryC(g, V, dim) {
+  var bx = g.leftX, by = g.midY;
+  strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx, by - 15, bx, by + 15);
+  strokeWeight(6); line(bx - 9, by - 8, bx - 9, by + 8);
+  noStroke(); fillHex('#FFD54F', 0.95 * dim);
+  textSize(12); textStyle(BOLD); textAlign(RIGHT, CENTER);
+  text('V = ' + V.toFixed(1) + ' V', bx - 18, by); textStyle(NORMAL);
+}
+function drawAmmeterAtC(cx, cy, iVal, label, dim, amR) {
+  var boxW = amR * 2 + 26, boxH = amR + 42;
+  rectMode(CENTER); fill(0, 0, 0, 150 * dim); noStroke(); rect(cx, cy + 4, boxW, boxH, 8); rectMode(CORNER);
+  var aLo = -PI * 3 / 4, aHi = -PI / 4;
+  strokeHex('#78909C', 0.7 * dim); strokeWeight(2); noFill(); arc(cx, cy, amR * 2, amR * 2, aLo - 0.08, aHi + 0.08);
+  for (var tk = 0; tk <= 4; tk++) { var ta = lerp(aLo, aHi, tk / 4); strokeHex('#B0BEC5', 0.6 * dim); strokeWeight(1.5); line(cx + cos(ta) * amR * 0.84, cy + sin(ta) * amR * 0.84, cx + cos(ta) * amR, cy + sin(ta) * amR); }
+  noStroke();
+  var na = lerp(aLo, aHi, constrain(iVal / 2.6, 0, 1));
+  strokeHex('#FF5252', 0.98 * dim); strokeWeight(amR > 20 ? 3 : 2); line(cx, cy, cx + cos(na) * amR * 0.9, cy + sin(na) * amR * 0.9);
+  noStroke(); fillHex('#FF5252', 0.98 * dim); ellipse(cx, cy, 5);
+  fillHex('#80DEEA', 0.9 * dim); textSize(amR > 20 ? 10 : 9); textStyle(NORMAL); textAlign(CENTER, BOTTOM); text(label, cx, cy - amR - 3);
+  fillHex('#FFFFFF', 0.98 * dim); textSize(amR > 20 ? 15 : 12); textStyle(BOLD); textAlign(CENTER, TOP); text('I = ' + iVal.toFixed(2) + ' A', cx, cy + amR * 0.5 + 3);
+  textStyle(NORMAL);
+}
+function drawSwitchC(g, open, topo, dim) {
+  var sx = (topo === 'parallel') ? (g.jLx + 30) : ((g.leftX + g.rightX) * 0.5);
+  var sy = (topo === 'parallel') ? (g.topY + g.gap) : g.botY;
+  var col = open ? '#EF5350' : '#66BB6A';
+  fillHex('#ECEFF1', 0.9 * dim); noStroke(); ellipse(sx - 11, sy, 5); ellipse(sx + 11, sy, 5);
+  strokeHex(col, 0.98 * dim); strokeWeight(3);
+  if (open) line(sx - 11, sy, sx + 7, sy - 15); else line(sx - 11, sy, sx + 11, sy);
+  noStroke();
+}
+function drawCircuitBeads(loops, c) {
+  var N = circuitBeadCount(), eDim = dimFor('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var Ls = polyLen(loops.series), L1 = polyLen(loops.loop1), L2 = polyLen(loops.loop2);
+  noStroke();
+  for (var i = 0; i < N; i++) {
+    var lp = circuitBeadLoop(i, c);
+    var pts = (lp === 'series') ? loops.series : (lp === 'loop1' ? loops.loop1 : loops.loop2);
+    var tot = (lp === 'series') ? Ls : (lp === 'loop1' ? L1 : L2);
+    var p = polyAt(pts, tot, circuitBeadS(i, c));
+    fillHex(col, 0.28 * eDim); ellipse(p.x, p.y, sz * 2.1);
+    fillHex(col, 0.95 * eDim); ellipse(p.x, p.y, sz);
+  }
+}
+function drawCircuit() {
+  var c = cCurrents(), loops = circuitLoops(), g = loops.g;
+  var st = curState();
+  var wcol = '#546E7A';
+  if (c.topo === 'series') { drawWireC(loops.series, wcol, 0.85, 3); }
+  else {
+    drawWireC(loops.loop1, wcol, 0.85, 3); drawWireC(loops.loop2, wcol, 0.85, 3);
+    var jDim = dimFor('junction');
+    fillHex('#4DD0E1', 0.95 * jDim); noStroke(); ellipse(g.jLx, g.topY, 11); ellipse(g.jRx, g.topY, 11);
+  }
+  drawCircuitBeads(loops, c);
+  var rDim = dimFor('resistors');
+  if (c.single) {
+    drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R1 = ' + fmtNum(c.R1) + ' \\u03A9', rDim);
+  } else if (c.topo === 'series') {
+    drawResistorBoxC(g.sR1.x, g.sR1.y, 'R1 = ' + fmtNum(c.R1) + ' \\u03A9', rDim);
+    drawResistorBoxC(g.sR2.x, g.sR2.y, 'R2 = ' + fmtNum(c.R2) + ' \\u03A9', rDim);
+    if (st && st.show_voltages) {   // S4: V across each = i*R (series → they add to V)
+      var vDim = dimFor('volt_probe');
+      fillHex('#B39DDB', 0.95 * vDim); textSize(12); textStyle(BOLD); textAlign(CENTER, BOTTOM);
+      text('V1 = ' + (c.itot * c.R1).toFixed(1) + ' V', g.sR1.x, g.sR1.y - 20);
+      text('V2 = ' + (c.itot * c.R2).toFixed(1) + ' V', g.sR2.x, g.sR2.y - 20);
+      textStyle(NORMAL);
+    }
+  } else {
+    drawResistorBoxC(g.pRx, g.topY - g.gap, 'R1 = ' + fmtNum(c.R1) + ' \\u03A9', rDim);
+    drawResistorBoxC(g.pRx, g.topY + g.gap, 'R2 = ' + fmtNum(c.R2) + ' \\u03A9', rDim);
+  }
+  drawBatteryC(g, c.V, 1);
+  if (st && (st.switch_cycle || hasSlider('switch'))) drawSwitchC(g, cSwitchOpen(), c.topo, dimFor('switch'));
+  drawAmmeterAtC(g.amMain.x, g.amMain.y, c.itot, 'AMMETER', dimFor('ammeter_total'), 26);
+  if (st && st.show_branch_meters && c.topo === 'parallel') {
+    var bDim = dimFor('ammeter_branches');
+    drawAmmeterAtC(g.jRx + 46, g.topY - g.gap, c.i1, 'A1', bDim, 17);
+    drawAmmeterAtC(g.jRx + 46, g.topY + g.gap, c.i2, 'A2', bDim, 17);
+  }
+  if (st && st.in_line_meters && c.topo === 'series') {
+    var iDim = dimFor('ammeter_branches');
+    drawAmmeterAtC(g.leftX + (g.rightX - g.leftX) * 0.18, g.topY - 38, c.itot, 'A1', iDim, 14);
+    drawAmmeterAtC(g.leftX + (g.rightX - g.leftX) * 0.49, g.topY - 38, c.itot, 'A2', iDim, 14);
+    drawAmmeterAtC(g.leftX + (g.rightX - g.leftX) * 0.80, g.topY - 38, c.itot, 'A3', iDim, 14);
+  }
+  if (st && st.show_req_box) {
+    var qDim = dimFor('req_box'), qx = g.pRx, qy = (c.topo === 'parallel') ? g.topY : g.topY - 44;
+    rectMode(CENTER); fillHex('#0A0A1A', 0.88 * qDim); noStroke(); rect(qx, qy, 132, 34, 6);
+    strokeHex('#66BB6A', 0.95 * qDim); strokeWeight(2); noFill(); rect(qx, qy, 132, 34, 6); rectMode(CORNER); noStroke();
+    fillHex('#66BB6A', 0.98 * qDim); textSize(14); textStyle(BOLD); textAlign(CENTER, CENTER);
+    text('R_eq = ' + fmtNum(c.Req) + ' \\u03A9', qx, qy); textStyle(NORMAL);
+  }
+}
+function stepCircuit(state) {
+  PM_simTimeMs += 1000 / 60; window.PM_simTimeMs = PM_simTimeMs;
+  var cues = getCues(state);
+  for (var ci = 0; ci < cues.length; ci++) {
+    var cc = cues[ci];
+    if (cueFiredAt[cc.id] === undefined && PM_simTimeMs >= cueTriggerMs(cc)) cueFiredAt[cc.id] = PM_simTimeMs;
+  }
+}
+
 // ─── Draw loop (render only — physics advanced separately) ──────────────────
 function draw() {
   if (!config) return;
   var state = curState();
   if (!state) return;
+
+  if (circuitMode()) {
+    if (!frozen && !paused) stepCircuit(state);
+    var cbg = (config.canvas && config.canvas.bg_color) ? config.canvas.bg_color
+      : (config.design && config.design.background) ? config.design.background : '#0A0A1A';
+    background(cbg);
+    drawCircuit();
+    updateReadouts();          // live R_eq / i / swept-R2 in the panel (else it bleeds the entry values)
+    // (no drawLabel here — the state label duplicated the bottom-right formula_overlay)
+    var frmC = document.getElementById('pm-formula');
+    if (frmC) frmC.style.opacity = max(dimFor('formula'), 0.6);   // keep the equation readable even when not the focal
+    return;
+  }
 
   if (!frozen && !paused) stepPhysics(state);
 
@@ -1519,7 +1777,7 @@ window.addEventListener('message', function(e) {
         // ceil, not floor: PM_simTimeMs must land >= at_ms or the harness's
         // pollSimTimeReached burns a full poll cap on every dense frame.
         var steps = ceil(target / (1000 / 60));
-        for (var k = 0; k < steps; k++) stepPhysics(st);
+        for (var k = 0; k < steps; k++) { if (circuitMode()) stepCircuit(st); else stepPhysics(st); }
       }
       frozen = true;
     }
@@ -1604,6 +1862,16 @@ export interface ParticleFieldStateConfig {
     temperature_autosweep?: boolean; // clock-drives T from default toward max (S5/S6)
     show_thermometer?: boolean;      // draw the T gauge (S5/S6)
     micro_focus?: 'trace_one' | 'count_carriers';  // Rule 33c per-state interior story
+    // combination_of_resistors (Ch.3 #4 — circuit scenario)
+    single_resistor?: boolean;       // S1 baseline: one loop, one resistor (i = V/R1)
+    topology?: 'series' | 'parallel'; // per-state circuit topology (else the topology slider)
+    r2_autosweep?: boolean;          // S6: R2 grows from default toward r2_autosweep_to
+    r2_autosweep_to?: number;        // target R2 for the S6 sweep (default 12)
+    show_branch_meters?: boolean;    // parallel: draw per-branch ammeters (i1, i2)
+    in_line_meters?: boolean;        // series: draw 3 in-line ammeters (all read i)
+    show_req_box?: boolean;          // draw the equivalent-resistance badge (S7)
+    show_voltages?: boolean;         // S4: per-resistor voltage-drop labels (series → they add)
+    switch_cycle?: boolean;          // S8: a branch switch auto-opens/closes on a loop
     [key: string]: unknown;
 }
 

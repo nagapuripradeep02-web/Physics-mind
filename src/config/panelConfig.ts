@@ -79,6 +79,21 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #4 — Alex pipeline (2026-07-09), same engine
+    // family as drift_velocity/ohms_law/resistivity. Dedicated circuit
+    // scenario (battery + wire loop + resistor boxes + junction + ammeters)
+    // drawn INSIDE the single particle_field canvas — mirrors the three
+    // siblings' registration exactly.
+    combination_of_resistors: {
+        concept_id: 'combination_of_resistors',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'combination_of_resistors',
+            label: 'Combination of Resistors',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

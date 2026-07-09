@@ -411,6 +411,10 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     for (const c of cues) {
         maxMs = Math.max(maxMs, asNum(c.at_ms, 0) + PF_CUE_PAYOFF_MS);
     }
+    // combination_of_resistors: the R2 auto-grow (S6/S7) is a clock-driven reveal
+    // with no cue — mirror the renderer's cR2 sweep (start 700 + dur 3200) so the
+    // frozen frame lands on the SETTLED 12Ω split, not mid-growth.
+    if (state.r2_autosweep === true) maxMs = Math.max(maxMs, 700 + 3200 + 400);
     return maxMs;
 }
 

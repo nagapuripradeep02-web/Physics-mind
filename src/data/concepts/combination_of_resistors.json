@@ -1,0 +1,826 @@
+{
+  "concept_id": "combination_of_resistors",
+  "concept_name": "Combination of Resistors — Series Adds Resistance, Parallel Opens New Paths",
+  "chapter": 3,
+  "section": "3.10",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.10 Combination of Resistors — Series and Parallel) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: Ohm's law / resistivity / combination-of-resistors sections) to confirm atomic boundaries — no teaching method, example problem, or figure imported. HC Verma consulted for teaching SEQUENCE (open on a one-resistor baseline loop and let the ammeter settle at one ampere; splice a second resistor in-line and watch every electron in the loop slow together as resistances add; confirm the far-side ammeters never lag — current is never used up, only voltage drops; sweep a potential probe around the loop to show the voltage staircasing down twice; lift that same resistor out and re-land it ACROSS the first, the PRIMARY aha as the needle LEAPS rather than falls; grow the second resistor and watch the current split unevenly at the junction by ease of path, never by half; collapse the two branches into their single equivalent box below the smallest resistor; open a branch switch to show parallel branches are independent — the anchor payoff for why every home is wired this way; then hand over every dial), never copied. The atomic idea: in SERIES the same current threads every resistor and voltages add — R_eq = R1 + R2 + …; in PARALLEL every branch shares the same voltage and currents add at the junction — 1/R_eq = 1/R1 + 1/R2 + … — so the parallel equivalent resistance is always LESS than the smallest branch alone. SCOPE: this is the FOURTH concept of Ch.3, continuous with drift_velocity (SHIPPED, opener), ohms_law (SHIPPED, second), and resistivity (SHIPPED, third) — same particle_field (2D p5.js) renderer family, this time a dedicated circuit scenario (battery + wire loop + resistor boxes + junction + ammeters) rather than the free-drift gas. Does NOT cover EMF and internal resistance (deferred to cells_emf_internal_resistance), combinations of cells (deferred to combination_of_cells), Kirchhoff's rules (deferred to kirchhoffs_laws), Wheatstone/metre bridge (deferred), power/heating in combinations (deferred to electric_power_heating), or multi-step mixed-network reduction drills (the two combination laws taught here ARE the reduction tool; chaining them belongs to the Kirchhoff/Wheatstone concepts). Renderer-reality note: this concept does NOT drive R_eq/i/i1/i2 via physics_engine_config.formulas/PM_interpolate — particle_field_renderer.ts computes them natively in engine JS via the shipped circuit adapter (cVolt/cR1/cR2/cTopology/cSwitchOpen/cCurrents), reading slider_controls.{V,R1,R2,topology,switch}; physics_engine_config below is authored as documentation per the Zod requirement. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three genuine misconceptions — 'current is used up crossing a resistor', 'adding any resistor increases total resistance', and 'parallel branches share current equally' — are confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast-in-motion beats at STATE_3/STATE_5/STATE_6, no predict-pause). Calibration note: unlike resistivity (which needs a hidden fixed V_supply to make real copper's milliohm-scale resistance drive a legible demo meter), this concept treats R1/R2 as discrete component-scale resistors (Ω-scale by construction, like real resistor decade boxes) driven by a normal battery-scale voltage (0–12 V) — i = V/R_eq lands directly in a legible 0.05–12 A range with zero hidden calibration constant.",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "combination_of_resistors"
+    ]
+  },
+  "prerequisites": [
+    "ohms_law",
+    "drift_velocity",
+    "resistivity"
+  ],
+  "real_world_anchor": {
+    "primary": "Every appliance in an Indian home — the ceiling fan, the fridge, the TV, the geyser — hangs on its own parallel branch across the same 220-volt mains. That is why each one gets the full mains voltage, why the fridge doesn't blink when you switch the fan off, and why the meter reading climbs as you switch more things ON: every new appliance is a new parallel path, and the house's total resistance FALLS.",
+    "secondary": "The old style of decorative string lights wires dozens of tiny bulbs in SERIES — one bulb dies and the whole string goes dark, and someone has to test bulb by bulb to find the culprit. Modern strings (and homes) wire in parallel precisely to escape this: one broken filament breaks only its own path."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "V": {
+        "name": "Battery voltage",
+        "unit": "V",
+        "min": 0,
+        "max": 12,
+        "default": 6,
+        "role": "slider — S9 only; locked to 6 via variable_overrides on S1–S8, never adjustable until explore"
+      },
+      "R1": {
+        "name": "Resistor 1",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "default": 6,
+        "role": "slider — S9 only; locked to 6 on S1–S8 — R1 never moves in any guided state, the fixed reference every other change is measured against"
+      },
+      "R2": {
+        "name": "Resistor 2",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "default": 6,
+        "role": "slider — live on S2/S4/S6/S7/S9; locked to 6 on S1/S3/S5/S8; auto-sweeps 6→12 on the state clock in S6/S7"
+      },
+      "topology": {
+        "name": "Circuit topology (0=series, 1=parallel)",
+        "unit": "dimensionless (enum)",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "role": "slider (2-state toggle) — live ONLY in S9; every guided state drives it via the state's own topology flag, never a direct drag; rendered as text (Series/Parallel), never raw 0/1"
+      },
+      "switch": {
+        "name": "Branch-2 switch (0=open, 1=closed)",
+        "unit": "dimensionless (enum)",
+        "min": 0,
+        "max": 1,
+        "default": 1,
+        "role": "slider (2-state toggle) — live ONLY in S8/S9; the switch element does not exist on screen before S8; rendered as text (Open/Closed), never raw 0/1"
+      },
+      "R_eq": {
+        "name": "Equivalent resistance",
+        "unit": "Ω",
+        "derived": "topology===0 ? (R1+R2) : (R1*R2)/(R1+R2)",
+        "role": "live readout — the S2 overlay (series) and S7 req_box (parallel)"
+      },
+      "i_total": {
+        "name": "Total (battery) current",
+        "unit": "A",
+        "derived": "V / R_eq",
+        "role": "live readout — the main ammeter every state reads"
+      },
+      "i1": {
+        "name": "Branch 1 / series current",
+        "unit": "A",
+        "derived": "topology===0 ? i_total : V/R1",
+        "role": "live readout — in series equals i_total exactly (S3's matched ammeters); in parallel is R1's own branch current (S6/S8)"
+      },
+      "i2": {
+        "name": "Branch 2 current (switch-gated)",
+        "unit": "A",
+        "derived": "switch===0 ? 0 : (topology===0 ? i_total : V/R2)",
+        "role": "live readout — drives branch-2 bead speed; exactly 0 the instant the switch opens (S8)"
+      },
+      "V1": {
+        "name": "Voltage across R1 (series)",
+        "unit": "V",
+        "derived": "i_total * R1",
+        "role": "live readout — S4's first staircase step"
+      },
+      "V2": {
+        "name": "Voltage across R2 (series)",
+        "unit": "V",
+        "derived": "i_total * R2",
+        "role": "live readout — S4's second staircase step"
+      },
+      "V_branch": {
+        "name": "Voltage across either parallel branch",
+        "unit": "V",
+        "derived": "V",
+        "role": "live readout — S6's 'both branches read 6.0 V'"
+      }
+    },
+    "formulas": {
+      "R_eq": "topology === 0 ? (R1 + R2) : (R1 * R2) / (R1 + R2)",
+      "i_total": "V / R_eq",
+      "i1": "topology === 0 ? (V / (R1 + R2)) : (V / R1)",
+      "i2": "switch === 0 ? 0 : (topology === 0 ? (V / (R1 + R2)) : (V / R2))",
+      "V1_series": "(V / (R1 + R2)) * R1",
+      "V2_series": "(V / (R1 + R2)) * R2",
+      "current_division_ratio": "in parallel mode, i1 / i2 = R2 / R1 — the inverse-resistance ratio, exact at every (R1,R2)"
+    },
+    "constraints": [
+      "i_total = V / R_eq exactly at every (V,R1,R2,topology) combination — Ohm's law applied to the equivalent resistance",
+      "Series: R_eq = R1 + R2 ALWAYS ≥ max(R1,R2) — adding a series resistor never lowers R_eq or raises current",
+      "Parallel: 1/R_eq = 1/R1 + 1/R2, so R_eq ALWAYS < min(R1,R2) — adding a parallel branch never raises R_eq; as R2 → ∞, R_eq → R1 from below, never reaching or exceeding it",
+      "Junction current conservation (KCL): i_total = i1 + i2 at every instant in parallel mode; series mode has i uniform everywhere",
+      "Current-division ratio: i1/i2 = R2/R1 in parallel mode — the INVERSE resistance ratio, bigger resistor gets LESS current",
+      "Series voltage division: V1 + V2 = V always, with V1/V2 = R1/R2 — the DIRECT resistance ratio, bigger resistor takes the BIGGER voltage share",
+      "Both parallel branches see the identical voltage V, independent of the other branch's resistance value",
+      "All currents ≥ 0 always; switch = 0 forces the gated current to exactly 0, never a decaying artifact",
+      "Every derived quantity (R_eq, i_total, i1, i2, V1, V2) is a pure function of (V,R1,R2,topology,switch) with no hidden internal state",
+      "No hidden calibration constant — R1/R2 are component-scale resistors on a battery-scale supply, unlike resistivity's hidden V_supply fudge"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Adding a resistor ACROSS instead of in-line makes the current climb, not fall.",
+    "visual_confirmation": "The main ammeter leaps from 1.00 A to 2.00 A the instant R2 lands across R1, while the R_eq readout drops to 3 Ω."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
+    "series": ["STATE_2", "STATE_3", "STATE_4"],
+    "parallel": ["STATE_5", "STATE_6", "STATE_7"],
+    "home_wiring": ["STATE_8"],
+    "exploration": ["STATE_9"]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Baseline: one loop, one resistor — the ammeter settles at one ampere",
+        "duration": 14,
+        "focal_primitive_id": "ammeter_climbs",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "one_loop_one_resistor",
+            "position": { "x": 380, "y": 90 },
+            "text": "Six volts, one resistor of six ohms — the simplest possible loop.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "ammeter_climbs",
+            "position": { "x": 620, "y": 250 },
+            "text": "The ammeter climbs from zero and settles at one ampere.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "reference_baseline",
+            "position": { "x": 380, "y": 440 },
+            "text": "One ampere — i = V/R1 — is the reference for every state ahead.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Six volts from the battery push current through one resistor of six ohms.",
+              "glow": "resistors"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch the ammeter needle climb from zero and settle at one ampere.",
+              "glow": "ammeter_total"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "One ampere — current I equals voltage V over resistance R — is our reference for every state ahead.",
+              "glow": "ammeter_total"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Series build: R2 splices in, resistances add",
+        "duration": 17,
+        "focal_primitive_id": "needle_sinks",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "second_resistor_splices",
+            "position": { "x": 380, "y": 90 },
+            "text": "A second resistor, R2, slides in line and splices into the loop.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "needle_sinks",
+            "position": { "x": 620, "y": 250 },
+            "text": "Every electron in the loop slows together — the ammeter sinks to half.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "req_formula",
+            "position": { "x": 380, "y": 440 },
+            "text": "Resistances simply add: R_eq = R1 + R2 = twelve ohms.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "A second resistor, R two, slides in line and splices into the loop.",
+              "glow": "resistors"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "After a beat, every electron everywhere in the loop slows together, and the needle sinks from one ampere to zero point five.",
+              "glow": "ammeter_total"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Resistances simply add in series: the equivalent resistance, R eq, equals R one plus R two — twelve ohms here.",
+              "glow": "formula"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Same current everywhere in series — nothing is used up",
+        "duration": 15,
+        "focal_primitive_id": "all_matched",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "three_meters_watch",
+            "position": { "x": 380, "y": 90 },
+            "text": "Three ammeters watch this loop — before R1, between the two, and after R2.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "if_used_up",
+            "position": { "x": 620, "y": 250 },
+            "text": "If current were used up crossing a resistor, the later meters should read less.",
+            "color": "#EF5350",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "all_matched",
+            "position": { "x": 380, "y": 440 },
+            "text": "All three stay pinned at 0.50 A the whole time — resistors spend voltage, never current.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Three ammeters watch this loop: before the first resistor, between the two, and after the second.",
+              "glow": "ammeter_branches"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "If current I were used up crossing a resistor, later meters should read less — watch all three.",
+              "glow": "ammeter_branches"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "All three stay pinned at zero point five ampere the whole time: resistors spend voltage V, never current I.",
+              "glow": "ammeter_branches"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Current gets used up crossing a resistor — the resistor after the first one gets less.",
+            "visual_counter": "Three in-line ammeters — before R1, between the two resistors, and after R2 — stay matched at 0.50 A for the entire dwell, with live per-second crossing tallies.",
+            "one_line_fix": "Resistors spend voltage, never current — in one series loop every plane passes the same electrons per second."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Series voltages add — V1 + V2 = V",
+        "duration": 17,
+        "focal_primitive_id": "steps_down_twice",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "probe_rides_loop",
+            "position": { "x": 380, "y": 90 },
+            "text": "A glowing probe rides the loop, reading the potential as it goes.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "steps_down_twice",
+            "position": { "x": 620, "y": 250 },
+            "text": "Three volts vanish crossing R1, three more crossing R2.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "v_sum_formula",
+            "position": { "x": 380, "y": 440 },
+            "text": "V1 + V2 = V — the bigger resistance always takes the bigger share.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "A glowing probe rides the loop: three volts vanish crossing R one, three more crossing R two — voltage V one plus voltage V two equals six volts.",
+              "glow": "volt_probe"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Drag R two to twelve ohms and the steps reshape live — two volts, then four: the bigger resistance always takes the bigger voltage share.",
+              "glow": "volt_probe"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "PRIMARY aha — a parallel path lowers resistance, the ammeter leaps",
+        "duration": 19,
+        "focal_primitive_id": "needle_leaps",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r2_lifts_out",
+            "position": { "x": 380, "y": 90 },
+            "text": "R2 lifts out of line — the loop heals, the needle returns to one ampere.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "lands_across",
+            "position": { "x": 620, "y": 250 },
+            "text": "That same resistor lands ACROSS R1 — a junction blooms.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "needle_leaps",
+            "position": { "x": 380, "y": 440 },
+            "text": "The needle LEAPS to two amperes — a new path means room for more current, not more obstacle.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "R two lifts out of line — the loop heals, needle back to one ampere.",
+              "glow": "resistors"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "That same resistor lands ACROSS R one — a junction blooms, and the needle LEAPS to two amperes.",
+              "glow": "junction"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "A new path means room for more current, not more obstacle — resistance drops to three ohms, below either resistor alone.",
+              "glow": "ammeter_total"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Adding ANY resistor increases total resistance and decreases current.",
+            "visual_counter": "The identical R2 that just sank the needle from 1.00 A to 0.50 A in series now lands ACROSS R1 instead, and the same ammeter LEAPS to 2.00 A while R_eq drops to 3 Ω.",
+            "one_line_fix": "In-line adds an obstacle; across adds a PATH — more paths, more current, less resistance."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_more_paths_less_resistance",
+          "parallel_req_below_smallest",
+          "battery_supplies_more_current"
+        ]
+      },
+      "STATE_6": {
+        "title": "Current divides by ease of path — not by half",
+        "duration": 17,
+        "focal_primitive_id": "branch_split_unequal",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r2_grows",
+            "position": { "x": 380, "y": 90 },
+            "text": "R2 grows from six ohms toward twelve — watch the stream split at the junction.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "branch_split_unequal",
+            "position": { "x": 620, "y": 250 },
+            "text": "Branch one stays pinned at one ampere; branch two thins to half.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "same_voltage_both",
+            "position": { "x": 380, "y": 440 },
+            "text": "Both branches read the full six volts — they share voltage equally, never current.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "R two grows from six ohms to twelve — watch the stream split at junction.",
+              "glow": "junction"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Branch one stays pinned at one ampere; branch two thins to zero point five ampere.",
+              "glow": "ammeter_branches"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Both branches read the full six volts — they share voltage equally, never current.",
+              "glow": "ammeter_branches"
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Current I splits by ease of path — not by half.",
+              "glow": "ammeter_branches"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Parallel branches share the current equally.",
+            "visual_counter": "With R2 grown to twelve ohms the stream visibly splits 2:1 — 1.00 A down the six-ohm branch, 0.50 A down the twelve-ohm branch — while both branches stay labelled the same 6.0 V.",
+            "one_line_fix": "Branches share VOLTAGE equally, never current — each branch draws i = V/R for itself."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "current_division_ratio",
+          "same_voltage_across_branches",
+          "junction_current_conservation"
+        ]
+      },
+      "STATE_7": {
+        "title": "1/R_eq = 1/R1 + 1/R2 — parallel R_eq is below the smallest branch",
+        "duration": 19,
+        "focal_primitive_id": "req_below_smallest",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "two_branches_collapse",
+            "position": { "x": 380, "y": 90 },
+            "text": "Branch one at six ohms, branch two at twelve — about to collapse into one.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "reciprocal_formula",
+            "position": { "x": 620, "y": 250 },
+            "text": "One over R_eq equals one over R1 plus one over R2.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "req_below_smallest",
+            "position": { "x": 380, "y": 440 },
+            "text": "That box reads four ohms — less than the smallest branch — while the total ammeter holds steady.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Branch one at six ohms, branch two at twelve, about to collapse into one box.",
+              "glow": "resistors"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Watch them merge: one over R eq equals one over R one plus one over R two.",
+              "glow": "req_box"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "That box reads four ohms — less than the smallest branch — while the ammeter holds steady at one point five amperes.",
+              "glow": "req_box"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "reciprocal_invert_slip",
+          "product_over_sum_shortcut",
+          "n_equal_resistors_pattern"
+        ]
+      },
+      "STATE_8": {
+        "title": "Branch independence — one switch, others unaffected",
+        "duration": 19,
+        "focal_primitive_id": "branch1_unaffected",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "switch_on_branch2",
+            "position": { "x": 380, "y": 90 },
+            "text": "A switch sits on branch two of this parallel circuit.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "branch1_unaffected",
+            "position": { "x": 620, "y": 250 },
+            "text": "Open it — branch one keeps flowing, completely unaffected.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "why_homes_wire_parallel",
+            "position": { "x": 380, "y": 440 },
+            "text": "That is why every home wires its appliances in parallel.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "One switch sits on branch two: open it in parallel mode.",
+              "glow": "switch"
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Branch one keeps flowing at one ampere, completely unaffected — only branch two goes dark.",
+              "glow": "ammeter_branches"
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Old series fairy lights are the opposite — one bulb dies and the whole string goes dark.",
+              "glow": "switch"
+            },
+            {
+              "id": "s8_4",
+              "text_en": "That is why every home wires its appliances in parallel.",
+              "glow": "switch"
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — every dial is yours: V, R1, R2, topology, switch",
+        "duration": 0,
+        "focal_primitive_id": "meters_respond_live",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_dials_live",
+            "position": { "x": 380, "y": 90 },
+            "text": "Every dial is live: voltage, both resistors, topology, and the switch.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "meters_respond_live",
+            "position": { "x": 620, "y": 250 },
+            "text": "Every meter, the R_eq box, and the formula respond live as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "both_laws_side_by_side",
+            "position": { "x": 380, "y": 440 },
+            "text": "Series: R_eq = R1+R2. Parallel: 1/R_eq = 1/R1+1/R2.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Every dial is yours: voltage V, both resistors, series or parallel, and the switch — watch every meter respond live.",
+              "glow": "formula"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "combination_of_resistors_irrigation_channels",
+      "type": "B",
+      "label": "Farm irrigation channels — one long channel vs splitting into parallel channels",
+      "physical_world": "A farmer's water channel: joining two narrow channels end-to-end (series) makes the water struggle further, but cutting a second channel alongside the first (parallel) gives the water two easy paths and it drains faster overall.",
+      "same_physics": "Same combination laws — channel length in series adds resistance to flow, while parallel channels each carry their own share and the combined resistance to flow drops below either channel alone.",
+      "scene_hint": "Optional supplementary anchor; the primary teaching anchor stays the home switchboard / festival-lights pair."
+    },
+    {
+      "variant_id": "combination_of_resistors_traffic_routes",
+      "type": "B",
+      "label": "City traffic — one lane vs two parallel lanes to the same destination",
+      "physical_world": "Merging two lanes into one long queue (series) backs traffic up further, but opening a second parallel lane to the same destination lets more cars through per minute even though nothing about the first lane changed.",
+      "same_physics": "Same combination laws — series bottlenecks stack up resistance to flow, parallel lanes each carry their own share of traffic and the combined resistance to flow drops with every lane added.",
+      "scene_hint": "Mirrors the primary home-switchboard anchor from a traffic-flow angle; optional supplementary anchor for STATE_5/STATE_6."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "combination_of_resistors",
+    "particles": {
+      "count": 40,
+      "color": "#42A5F5",
+      "size": 8
+    },
+    "slider_controls": {
+      "V": {
+        "min": 0,
+        "max": 12,
+        "step": 0.5,
+        "default": 6,
+        "label": "Voltage V",
+        "unit": "V"
+      },
+      "R1": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 6,
+        "label": "Resistor R1",
+        "unit": "Ω"
+      },
+      "R2": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 6,
+        "label": "Resistor R2",
+        "unit": "Ω"
+      },
+      "topology": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "label": "Topology"
+      },
+      "switch": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "label": "Switch"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "resistor": "#FFB74D",
+      "junction": "#4DD0E1",
+      "ammeter_needle": "#FF5252",
+      "ammeter_readout": "#80DEEA",
+      "req_box": "#66BB6A",
+      "volt_probe": "#B39DDB",
+      "switch_closed": "#66BB6A",
+      "switch_open": "#EF5350",
+      "battery": "#FFD54F",
+      "highlight": "#FFFFFF",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "i = V / R1",
+        "caption": "One loop, one ampere",
+        "formula_overlay": "i = V / R1",
+        "single_resistor": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ammeter_total"
+      },
+      "STATE_2": {
+        "label": "R_eq = R1 + R2",
+        "caption": "Second resistor, in-line",
+        "formula_overlay": "R_eq = R1 + R2",
+        "topology": "series",
+        "show_sliders": false,
+        "visible_controls": ["R2"],
+        "glow_focal": "resistors"
+      },
+      "STATE_3": {
+        "label": "i same everywhere",
+        "caption": "Three meters, one reading",
+        "formula_overlay": "i same everywhere",
+        "topology": "series",
+        "in_line_meters": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ammeter_branches"
+      },
+      "STATE_4": {
+        "label": "V1 + V2 = V",
+        "caption": "Voltage steps down twice",
+        "formula_overlay": "V1 + V2 = V",
+        "topology": "series",
+        "show_voltages": true,
+        "show_sliders": false,
+        "visible_controls": ["R2"],
+        "glow_focal": "volt_probe"
+      },
+      "STATE_5": {
+        "label": "R_eq < R1",
+        "caption": "Same resistor, placed across",
+        "formula_overlay": "R_eq < R1",
+        "topology": "parallel",
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ammeter_total"
+      },
+      "STATE_6": {
+        "label": "i = i1 + i2",
+        "caption": "Easier path takes more",
+        "formula_overlay": "i = i1 + i2",
+        "topology": "parallel",
+        "r2_autosweep": true,
+        "r2_autosweep_to": 12,
+        "show_branch_meters": true,
+        "show_sliders": false,
+        "visible_controls": ["R2"],
+        "glow_focal": "ammeter_branches"
+      },
+      "STATE_7": {
+        "label": "1/R_eq = 1/R1 + 1/R2",
+        "caption": "Two boxes become one",
+        "formula_overlay": "1/R_eq = 1/R1 + 1/R2",
+        "topology": "parallel",
+        "r2_autosweep": true,
+        "r2_autosweep_to": 12,
+        "show_req_box": true,
+        "show_sliders": false,
+        "visible_controls": ["R2"],
+        "glow_focal": "req_box"
+      },
+      "STATE_8": {
+        "label": "branches independent",
+        "caption": "One switch, others unaffected",
+        "formula_overlay": "branches independent",
+        "topology": "parallel",
+        "switch_cycle": true,
+        "show_branch_meters": true,
+        "show_sliders": false,
+        "visible_controls": ["switch"],
+        "glow_focal": "switch"
+      },
+      "STATE_9": {
+        "label": "Explore: V, R1, R2, topology, switch",
+        "caption": "All yours",
+        "formula_overlay": "R_eq = R1+R2  |  1/R_eq = 1/R1+1/R2",
+        "show_sliders": true,
+        "glow_focal": "formula"
+      }
+    }
+  }
+}

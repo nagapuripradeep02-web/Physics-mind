@@ -39,6 +39,7 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'kirchhoffs_voltage_law', 'kirchhoffs_current_law', 'kirchhoffs_laws',
     'wheatstone_bridge', 'meter_bridge', 'internal_resistance',
     'electric_power_heating', 'drift_velocity', 'resistivity', 'resistance',
+    'combination_of_resistors',
     'temperature_dependence_of_resistance', 'resistance_temperature_dependence',
     'potentiometer',
     // Vectors / kinematics (Ch.5-7)
@@ -662,6 +663,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   electric_power_heating ← P=I²R, Joule heating, bulb glows, heating effect
   drift_velocity        ← v_d = eEτ/m, thermal speed vs drift speed, why current is instant though electrons crawl, i = neAv_d
   resistivity            ← R = ρL/A (resistance factorizes into shape × material), ρ = m/(ne²τ) (why materials differ), ρ_T = ρ₀(1+αΔT) (why hot metals resist more), nichrome vs copper vs manganin (aspects: foundational=R=ρL/A geometry, microscopic=ρ=m/ne²τ material identity, temperature=ρ rises with heat/alloy contrast, exploration=all four dials)
+  combination_of_resistors ← series: R_eq=R1+R2, same current everywhere, voltages add (V1+V2=V); parallel: 1/R_eq=1/R1+1/R2, same voltage on every branch, currents add (i=i1+i2), R_eq is LESS than the smallest branch; why homes wire appliances in parallel (aspects: foundational=baseline through the parallel aha, series=R_eq adds/same current/voltage divides, parallel=current divides/R_eq below smallest branch, home_wiring=branch independence/why parallel at home, exploration=all five dials)
   resistance
   temperature_dependence_of_resistance
   resistance_temperature_dependence
@@ -811,6 +813,7 @@ CRITICAL DISAMBIGUATION (current electricity):
 - "joule heating" / "P = I²R" / "heating effect of current" → electric_power_heating
 - "why does current flow instantly if electrons are so slow" / "electrons dont actually travel down the wire" / "what is drift velocity" / "v d equals e E tau over m" / "signal speed vs electron speed" / "thermal speed vs drift speed" / "why does area affect current but not drift speed" / "what is relaxation time tau" / "why does a thicker wire carry more current" / "i equals n e A v d" → drift_velocity (NOT electric_power_heating — this is about the MECHANISM of current, not heating)
 - "why does a longer wire have more resistance" / "does thickness affect resistance" / "R equals rho L over A" / "whats the difference between R and rho" / "why does resistance become four times not two times when stretched" / "why does nichrome resist more than copper" / "whats rho made of" / "rho equals m over n e squared tau" / "why does a metals resistance rise when heated" / "why is manganin used for standard resistors" / "does every material get more resistive when heated" / "alpha meaning units resistivity" → resistivity (NOT ohms_law — this is about WHY R takes the value it does, geometry × material, not the V-I relationship)
+- "resistors in series" / "resistors in parallel" / "how do resistors combine" / "R equals R1 plus R2" / "1 over R eq equals 1 over R1 plus 1 over R2" / "why does adding a resistor in parallel decrease the resistance" / "why is equivalent resistance smaller than the smallest resistor" / "does current split equally in parallel" / "how much current goes through each branch" / "why do both branches get the same voltage" / "why is current the same everywhere in series" / "why does voltage divide in series but not in parallel" / "why are household appliances wired in parallel" / "why does a whole string of old-style decorative lights go dark when one bulb dies" / "product over sum shortcut for two resistors" / "n equal resistors in series vs parallel" → combination_of_resistors (NOT ohms_law/resistivity — this is about how MULTIPLE resistors COMBINE into one equivalent resistance, not the V-I relationship of a single resistor or why a single resistor's R takes the value it does)
 
 CRITICAL DISAMBIGUATION (vectors, Ch.5):
 - "triangle law" / "parallelogram law" / "resultant of two vectors" → resultant_formula
