@@ -1147,6 +1147,21 @@ function drawEmfScenario() {
     noStroke();
     drawVoltmeterC(vx, vy, c.Vterm, c.eps, vmDim);
   }
+  // S3 intensive-invariance beat: 1 charge, then 2 — total work W = n*eps doubles,
+  // but the per-charge lift W/q = eps is UNCHANGED (emf is energy per charge, not a force).
+  if (st && st.charge_double) {
+    var nq = ((PM_simTimeMs / 1000) % 4 < 2) ? 1 : 2;
+    for (var qi = 0; qi < nq; qi++) {
+      var qy = lerp(g.midY + 14, g.midY - 14, (PM_simTimeMs / 1100) % 1);
+      fillHex('#FFE082', 0.95); noStroke(); ellipse(g.leftX + 16 + qi * 12, qy, 9);
+    }
+    var bx = width * 0.28, by = height * 0.82;
+    fillHex('#CFD8DC', 0.95); textSize(13); textStyle(BOLD); textAlign(LEFT, CENTER);
+    text('charges q = ' + nq + '    \\u2192    work W = ' + (nq * c.eps).toFixed(1) + ' J', bx, by);
+    fillHex('#4DD0E1', 0.98);
+    text('W / q = \\u03B5 = ' + c.eps.toFixed(1) + ' V   (per charge \\u2014 unchanged)', bx, by + 20);
+    textStyle(NORMAL);
+  }
 }
 
 function stepCircuit(state) {
