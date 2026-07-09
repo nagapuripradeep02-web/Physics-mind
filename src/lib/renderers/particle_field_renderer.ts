@@ -1119,13 +1119,13 @@ function drawCircuit() {
 // added incrementally: drawEmfCell (Task 3), drawPotentialLadder (Task 4),
 // drawVoltmeterC (Task 5). Beads flow at speed ~ i (0 when the loop is open).
 function drawEmfScenario() {
-  var c = emfCurrents(), loops = circuitLoops(), g = loops.g;
+  var c = emfCurrents(), loops = circuitLoops(), g = loops.g, st = curState();
   drawWireC(loops.series, '#546E7A', 0.85, 3);
   drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i, Req: c.R, V: c.eps, R1: c.R, R2: c.R });
   drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + fmtNum(c.R) + ' \\u03A9', dimFor('load'));
   drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
-  var st = curState();
   drawEmfCell(g, c.eps, 1, !!(st && st.pump_focus) || !c.swOpen);   // pump animates while current flows / when focal
+  if (st && st.show_ladder) drawPotentialLadder(c.eps, c.i, c.R, c.swOpen, 1);
 }
 
 function stepCircuit(state) {
@@ -1632,6 +1632,34 @@ function currentAtV(v) {
     R = R * (1 + physConst('filament_k', 1.4) * (v / max(vmax, 1e-9)));
   }
   return ohmicCurrentAt(v, R);
+}
+// POTENTIAL LADDER — the money primitive for emf. Right-side inset: potential vs
+// position around the loop. Step UP by eps at the cell (the lift), flat along the
+// wire, step DOWN by eps across the load. When the loop is open (no current) the
+// potential stays flat at eps the whole way — the voltmeter reads the full emf.
+function drawPotentialLadder(eps, i, R, swOpen, dim) {
+  var x0 = width * 0.74, y0 = height * 0.30, w = width * 0.225, h = height * 0.42;
+  rectMode(CORNER); fill(10, 12, 28, 210 * dim); noStroke(); rect(x0, y0, w, h, 6);
+  strokeHex('#37474F', 0.8 * dim); strokeWeight(1); noFill(); rect(x0, y0, w, h, 6);
+  var padL = 30, padB = 20, gx = x0 + padL, gy = y0 + h - padB, gw = w - padL - 12, gh = h - padB - 20;
+  var vmax = eps * 1.2;
+  function py(v) { return gy - gh * constrain(v / vmax, 0, 1); }
+  strokeHex('#78909C', 0.7 * dim); strokeWeight(1.5); line(gx, gy, gx, gy - gh); line(gx, gy, gx + gw, gy);
+  strokeHex('#66BB6A', 0.35 * dim); strokeWeight(1); line(gx, py(eps), gx + gw, py(eps));   // eps reference
+  var xa = gx, xc = gx + gw * 0.50, xd = gx + gw * 0.70, xe = gx + gw;
+  var lDim = dimFor('ladder'), lo = swOpen ? eps : 0;
+  strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
+  beginShape();
+  vertex(xa, py(0)); vertex(xa, py(eps));       // STEP UP by eps at the cell (the lift)
+  vertex(xc, py(eps));                          // flat along the wire
+  vertex(xd, py(lo)); vertex(xe, py(lo));       // STEP DOWN across the load (to 0 when current flows)
+  endShape();
+  noStroke(); fillHex('#4DD0E1', 0.98 * lDim); textSize(11); textStyle(BOLD); textAlign(LEFT, BOTTOM);
+  text('\\u03B5 = ' + eps.toFixed(1) + ' V', xa + 4, py(eps) - 4);
+  fillHex('#B0BEC5', 0.85 * dim); textSize(9); textStyle(NORMAL); textAlign(LEFT, TOP);
+  text('potential around loop (J/C)', gx, y0 + 4);
+  textAlign(CENTER, TOP); text('cell', xa + gw * 0.25, gy + 3); text('load', (xc + xd) / 2, gy + 3);
+  textStyle(NORMAL);
 }
 function drawVIGraph(state) {
   var dimMul = dimFor('vi_graph');
