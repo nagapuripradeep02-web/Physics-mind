@@ -94,6 +94,20 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #5 — Alex pipeline (2026-07-10), same engine
+    // family as combination_of_resistors. New circuit scenario (charge-pump
+    // cell + potential ladder + terminal voltmeter) teaching emf = W/q.
+    // Diamond 1 of the two-diamond emf / internal-resistance split.
+    emf_definition: {
+        concept_id: 'emf_definition',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'emf_definition',
+            label: 'EMF — Energy per Charge',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

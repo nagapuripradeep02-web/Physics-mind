@@ -2603,6 +2603,11 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // NOT added to PCPL_CONCEPTS — that set is for the parametric_renderer
     // (2D mechanics) family, not particle_field.
     combination_of_resistors:       "particle_field",
+    // emf_definition is the fifth Ch.3 concept on particle_field (2D p5.js) via
+    // the Alex pipeline (2026-07-10) — a new circuit scenario (charge-pump cell +
+    // potential ladder + voltmeter) for emf = W/q. Diamond 1 of the two-diamond
+    // emf/internal-resistance split. NOT added to PCPL_CONCEPTS (parametric_renderer only).
+    emf_definition:                 "particle_field",
     // series_resistance intentionally omitted — uses particle_field to show current conservation
     parallel_resistance:            "circuit_live",
     internal_resistance:            "circuit_live",

@@ -1,0 +1,84 @@
+{
+  "concept_id": "emf_definition",
+  "concept_name": "EMF — the Energy a Cell Gives Each Charge",
+  "chapter": 3,
+  "section": "3.11",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "moderate",
+  "source_book": "STUB — disposable Phase-A dev harness; replaced wholesale by json_author in Phase B (see docs/superpowers/plans/2026-07-10-emf-definition.md).",
+  "renderer_pair": { "panel_a": "particle_field", "panel_b": "particle_field" },
+  "available_renderer_scenarios": { "particle_field": ["emf_definition"] },
+  "prerequisites": ["ohms_law", "drift_velocity"],
+  "real_world_anchor": { "primary": "STUB", "secondary": "STUB" },
+  "physics_engine_config": { "variables": {}, "formulas": {}, "constraints": [] },
+  "cognitive_limits": { "max_primitives_per_state": 5, "max_labels_per_state": 4, "max_words_per_tts_sentence": 32 },
+  "aha_moment": { "state_id": "STATE_3", "statement": "STUB", "visual_confirmation": "STUB" },
+  "entry_state_map": { "foundational": ["STATE_1", "STATE_2", "STATE_3"] },
+  "epic_l_path": {
+    "state_count": 2,
+    "states": {
+      "STATE_1": {
+        "title": "stub — pump + ladder",
+        "duration": 12,
+        "focal_primitive_id": "a",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }
+        ],
+        "teacher_script": { "tts_sentences": [ { "id": "s1_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "pump" } ] }
+      },
+      "STATE_2": {
+        "title": "stub — open circuit voltmeter",
+        "duration": 0,
+        "focal_primitive_id": "a",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }
+        ],
+        "teacher_script": { "tts_sentences": [ { "id": "s2_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "voltmeter" } ] }
+      }
+    }
+  },
+  "particle_field_config": {
+    "scenario_type": "emf_definition",
+    "particles": { "count": 34, "color": "#42A5F5", "size": 8 },
+    "slider_controls": {
+      "emf": { "min": 1, "max": 12, "step": 0.1, "default": 1.5, "label": "EMF ε", "unit": "V" },
+      "R": { "min": 0.5, "max": 12, "step": 0.5, "default": 1.5, "label": "Load R", "unit": "Ω" },
+      "switch": { "min": 0, "max": 1, "step": 1, "default": 1, "label": "Switch" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "cell": "#FFD54F",
+      "ladder": "#4DD0E1",
+      "voltmeter": "#B39DDB",
+      "load": "#FFB74D",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "ε = W / q",
+        "caption": "Cell lifts each charge",
+        "formula_overlay": "ε = W / q",
+        "pump_focus": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "pump"
+      },
+      "STATE_2": {
+        "label": "no current → V = ε",
+        "caption": "All yours",
+        "formula_overlay": "V = ε",
+        "open_circuit": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": true,
+        "glow_focal": "voltmeter"
+      }
+    }
+  }
+}

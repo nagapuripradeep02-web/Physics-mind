@@ -39,7 +39,7 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'kirchhoffs_voltage_law', 'kirchhoffs_current_law', 'kirchhoffs_laws',
     'wheatstone_bridge', 'meter_bridge', 'internal_resistance',
     'electric_power_heating', 'drift_velocity', 'resistivity', 'resistance',
-    'combination_of_resistors',
+    'combination_of_resistors', 'emf_definition',
     'temperature_dependence_of_resistance', 'resistance_temperature_dependence',
     'potentiometer',
     // Vectors / kinematics (Ch.5-7)
