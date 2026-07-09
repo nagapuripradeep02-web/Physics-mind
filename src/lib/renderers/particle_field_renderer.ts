@@ -1004,6 +1004,28 @@ function drawBatteryC(g, V, dim) {
   textSize(12); textStyle(BOLD); textAlign(RIGHT, CENTER);
   text('V = ' + V.toFixed(1) + ' V', bx - 18, by); textStyle(NORMAL);
 }
+// The cell as a CHARGE PUMP: charges rise inside it from - to + (the chemistry
+// does work on each one). The upward arrow = "work done on each charge". Named
+// meshes stay full-bright; the pump animates only when pumpActive.
+function drawEmfCell(g, eps, dim, pumpActive) {
+  var bx = g.leftX, by = g.midY;
+  strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx, by - 16, bx, by + 16);   // + plate (long)
+  strokeWeight(6); line(bx - 9, by - 8, bx - 9, by + 8);                                 // - plate (short/thick)
+  if (pumpActive) {
+    var pDim = dimFor('pump'), n = 4;
+    for (var k = 0; k < n; k++) {
+      var ph = (PM_simTimeMs / 900 + k / n) % 1;                 // 0 = bottom (-), 1 = top (+)
+      var py = lerp(by + 13, by - 13, ph);
+      fillHex('#42A5F5', (0.2 + 0.7 * sin(ph * PI)) * pDim); noStroke(); ellipse(bx - 3, py, 6);
+    }
+    strokeHex('#FFD54F', 0.9 * pDim); strokeWeight(2);           // work-on-each-charge arrow (upward)
+    line(bx - 3, by + 11, bx - 3, by - 11);
+    line(bx - 3, by - 11, bx - 7, by - 5); line(bx - 3, by - 11, bx + 1, by - 5);
+    noStroke();
+  }
+  fillHex('#FFD54F', 0.95 * dim); textSize(12); textStyle(BOLD); textAlign(RIGHT, CENTER);
+  text('\\u03B5 = ' + eps.toFixed(1) + ' V', bx - 20, by); textStyle(NORMAL);
+}
 function drawAmmeterAtC(cx, cy, iVal, label, dim, amR) {
   var boxW = amR * 2 + 26, boxH = amR + 42;
   rectMode(CENTER); fill(0, 0, 0, 150 * dim); noStroke(); rect(cx, cy + 4, boxW, boxH, 8); rectMode(CORNER);
@@ -1102,7 +1124,8 @@ function drawEmfScenario() {
   drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i, Req: c.R, V: c.eps, R1: c.R, R2: c.R });
   drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + fmtNum(c.R) + ' \\u03A9', dimFor('load'));
   drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
-  drawBatteryC(g, c.eps, 1);   // placeholder cell — replaced by drawEmfCell in Task 3
+  var st = curState();
+  drawEmfCell(g, c.eps, 1, !!(st && st.pump_focus) || !c.swOpen);   // pump animates while current flows / when focal
 }
 
 function stepCircuit(state) {
