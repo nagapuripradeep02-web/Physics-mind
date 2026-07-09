@@ -143,11 +143,29 @@
     "visual_confirmation": "The main ammeter leaps from 1.00 A to 2.00 A the instant R2 lands across R1, while the R_eq readout drops to 3 Ω."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
-    "series": ["STATE_2", "STATE_3", "STATE_4"],
-    "parallel": ["STATE_5", "STATE_6", "STATE_7"],
-    "home_wiring": ["STATE_8"],
-    "exploration": ["STATE_9"]
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "series": [
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "parallel": [
+      "STATE_5",
+      "STATE_6",
+      "STATE_7"
+    ],
+    "home_wiring": [
+      "STATE_8"
+    ],
+    "exploration": [
+      "STATE_9"
+    ]
   },
   "epic_l_path": {
     "state_count": 9,
@@ -161,7 +179,10 @@
           {
             "type": "annotation",
             "id": "one_loop_one_resistor",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Six volts, one resistor of six ohms — the simplest possible loop.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -169,7 +190,10 @@
           {
             "type": "annotation",
             "id": "ammeter_climbs",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The ammeter climbs from zero and settles at one ampere.",
             "color": "#80DEEA",
             "is_persistent": false
@@ -177,7 +201,10 @@
           {
             "type": "annotation",
             "id": "reference_baseline",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "One ampere — i = V/R1 — is the reference for every state ahead.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -188,16 +215,22 @@
             {
               "id": "s1_1",
               "text_en": "Six volts from the battery push current through one resistor of six ohms.",
+              "text_hi": "Battery से छह volts, छह ohms के एक resistor से होकर current को आगे धकेलते हैं।",
+              "text_te": "Battery ఇచ్చే ఆరు volts, ఆరు ohms ఉన్న ఒక resistor గుండా current ని ముందుకు నెడతాయి.",
               "glow": "resistors"
             },
             {
               "id": "s1_2",
               "text_en": "Watch the ammeter needle climb from zero and settle at one ampere.",
+              "text_hi": "देखिए, ammeter की needle zero से ऊपर चढ़ती है और एक ampere पर टिक जाती है।",
+              "text_te": "చూడండి, ammeter యొక్క needle zero నుండి పైకి ఎక్కి ఒక ampere వద్ద స్థిరపడుతుంది.",
               "glow": "ammeter_total"
             },
             {
               "id": "s1_3",
               "text_en": "One ampere — current I equals voltage V over resistance R — is our reference for every state ahead.",
+              "text_hi": "एक ampere — current I equals voltage V over resistance R — आगे आने वाली हर state के लिए हमारा reference है।",
+              "text_te": "ఒక ampere — current I equals voltage V over resistance R — ఇక ముందు వచ్చే ప్రతి state కి మన reference.",
               "glow": "ammeter_total"
             }
           ]
@@ -212,7 +245,10 @@
           {
             "type": "annotation",
             "id": "second_resistor_splices",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "A second resistor, R2, slides in line and splices into the loop.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -220,7 +256,10 @@
           {
             "type": "annotation",
             "id": "needle_sinks",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Every electron in the loop slows together — the ammeter sinks to half.",
             "color": "#80DEEA",
             "is_persistent": false
@@ -228,7 +267,10 @@
           {
             "type": "annotation",
             "id": "req_formula",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Resistances simply add: R_eq = R1 + R2 = twelve ohms.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -239,16 +281,22 @@
             {
               "id": "s2_1",
               "text_en": "A second resistor, R two, slides in line and splices into the loop.",
+              "text_hi": "एक दूसरा resistor, R two, लाइन में सरककर loop में जुड़ जाता है।",
+              "text_te": "రెండో resistor, R two, లైన్‌లో జారి loop లోకి చేరుతుంది.",
               "glow": "resistors"
             },
             {
               "id": "s2_2",
               "text_en": "After a beat, every electron everywhere in the loop slows together, and the needle sinks from one ampere to zero point five.",
+              "text_hi": "एक पल बाद, loop में हर जगह हर electron एक साथ धीमा हो जाता है, और needle एक ampere से गिरकर शून्य दशमलव पाँच पर आ जाती है।",
+              "text_te": "కొద్దిసేపటికి, loop అంతటా ప్రతి electron కలిసి నెమ్మదిస్తుంది, మరియు needle ఒక ampere నుండి సున్నా దశాంశం ఐదు కి పడిపోతుంది.",
               "glow": "ammeter_total"
             },
             {
               "id": "s2_3",
               "text_en": "Resistances simply add in series: the equivalent resistance, R eq, equals R one plus R two — twelve ohms here.",
+              "text_hi": "series में resistances बस जुड़ जाते हैं: equivalent resistance, R eq, equals R one plus R two — यहाँ बारह ohms।",
+              "text_te": "series లో resistances కేవలం కూడతాయి: equivalent resistance, R eq, equals R one plus R two — ఇక్కడ పన్నెండు ohms.",
               "glow": "formula"
             }
           ]
@@ -263,7 +311,10 @@
           {
             "type": "annotation",
             "id": "three_meters_watch",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Three ammeters watch this loop — before R1, between the two, and after R2.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -271,7 +322,10 @@
           {
             "type": "annotation",
             "id": "if_used_up",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "If current were used up crossing a resistor, the later meters should read less.",
             "color": "#EF5350",
             "is_persistent": false
@@ -279,7 +333,10 @@
           {
             "type": "annotation",
             "id": "all_matched",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "All three stay pinned at 0.50 A the whole time — resistors spend voltage, never current.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -290,16 +347,22 @@
             {
               "id": "s3_1",
               "text_en": "Three ammeters watch this loop: before the first resistor, between the two, and after the second.",
+              "text_hi": "तीन ammeters इस loop को देख रहे हैं: पहले resistor से पहले, दोनों के बीच में, और दूसरे के बाद।",
+              "text_te": "మూడు ammeters ఈ loop ని గమనిస్తున్నాయి: మొదటి resistor కి ముందు, రెండింటి మధ్య, మరియు రెండో దాని తర్వాత.",
               "glow": "ammeter_branches"
             },
             {
               "id": "s3_2",
               "text_en": "If current I were used up crossing a resistor, later meters should read less — watch all three.",
+              "text_hi": "अगर current I किसी resistor को पार करते हुए खर्च हो जाता, तो बाद के meters कम दिखाते — तीनों को देखिए।",
+              "text_te": "ఒకవేళ current I ఒక resistor ని దాటేటప్పుడు ఖర్చు అయిపోతే, తర్వాతి meters తక్కువ చూపించాలి — మూడింటినీ గమనించండి.",
               "glow": "ammeter_branches"
             },
             {
               "id": "s3_3",
               "text_en": "All three stay pinned at zero point five ampere the whole time: resistors spend voltage V, never current I.",
+              "text_hi": "तीनों पूरे समय शून्य दशमलव पाँच ampere पर टिके रहते हैं: resistors voltage V खर्च करते हैं, current I कभी नहीं।",
+              "text_te": "మూడూ ఎప్పుడూ సున్నా దశాంశం ఐదు ampere వద్దే నిలిచి ఉంటాయి: resistors voltage V ని ఖర్చు చేస్తాయి, current I ని ఎప్పుడూ కాదు.",
               "glow": "ammeter_branches"
             }
           ]
@@ -321,7 +384,10 @@
           {
             "type": "annotation",
             "id": "probe_rides_loop",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "A glowing probe rides the loop, reading the potential as it goes.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -329,7 +395,10 @@
           {
             "type": "annotation",
             "id": "steps_down_twice",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Three volts vanish crossing R1, three more crossing R2.",
             "color": "#B39DDB",
             "is_persistent": false
@@ -337,7 +406,10 @@
           {
             "type": "annotation",
             "id": "v_sum_formula",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "V1 + V2 = V — the bigger resistance always takes the bigger share.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -348,11 +420,15 @@
             {
               "id": "s4_1",
               "text_en": "A glowing probe rides the loop: three volts vanish crossing R one, three more crossing R two — voltage V one plus voltage V two equals six volts.",
+              "text_hi": "एक चमकता हुआ probe loop पर चलता है: R one को पार करते ही तीन volts गायब हो जाते हैं, R two को पार करते ही तीन volts और गायब हो जाते हैं — voltage V one plus voltage V two equals छह volts।",
+              "text_te": "మెరుస్తున్న ఒక probe loop మీద తిరుగుతుంది: R one ని దాటగానే మూడు volts మాయమవుతాయి, R two ని దాటగానే మరో మూడు volts మాయమవుతాయి — voltage V one plus voltage V two equals ఆరు volts.",
               "glow": "volt_probe"
             },
             {
               "id": "s4_2",
               "text_en": "Drag R two to twelve ohms and the steps reshape live — two volts, then four: the bigger resistance always takes the bigger voltage share.",
+              "text_hi": "R two को बारह ohms तक खींचिए और steps तुरंत बदल जाते हैं — पहले दो volts, फिर चार: बड़ा resistance हमेशा voltage का बड़ा हिस्सा लेता है।",
+              "text_te": "R two ని పన్నెండు ohms వరకు లాగండి, steps వెంటనే మారిపోతాయి — ముందు రెండు volts, తర్వాత నాలుగు: పెద్ద resistance ఎప్పుడూ voltage లో పెద్ద వాటా తీసుకుంటుంది.",
               "glow": "volt_probe"
             }
           ]
@@ -367,7 +443,10 @@
           {
             "type": "annotation",
             "id": "r2_lifts_out",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "R2 lifts out of line — the loop heals, the needle returns to one ampere.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -375,7 +454,10 @@
           {
             "type": "annotation",
             "id": "lands_across",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "That same resistor lands ACROSS R1 — a junction blooms.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -383,7 +465,10 @@
           {
             "type": "annotation",
             "id": "needle_leaps",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The needle LEAPS to two amperes — a new path means room for more current, not more obstacle.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -394,16 +479,22 @@
             {
               "id": "s5_1",
               "text_en": "R two lifts out of line — the loop heals, needle back to one ampere.",
+              "text_hi": "R two लाइन से बाहर निकल जाता है — loop फिर से जुड़ जाता है, needle एक ampere पर वापस आ जाती है।",
+              "text_te": "R two లైన్ నుండి బయటకు వస్తుంది — loop మళ్ళీ కుదురుకుంటుంది, needle ఒక ampere కి తిరిగి వస్తుంది.",
               "glow": "resistors"
             },
             {
               "id": "s5_2",
               "text_en": "That same resistor lands ACROSS R one — a junction blooms, and the needle LEAPS to two amperes.",
+              "text_hi": "वही resistor R one के ACROSS जाकर बैठ जाता है — एक junction बन जाता है, और needle दो amperes तक उछल जाती है।",
+              "text_te": "అదే resistor R one కి ACROSS గా వచ్చి కూర్చుంటుంది — ఒక junction ఏర్పడుతుంది, మరియు needle రెండు amperes కి ఎగిరిపోతుంది.",
               "glow": "junction"
             },
             {
               "id": "s5_3",
               "text_en": "A new path means room for more current, not more obstacle — resistance drops to three ohms, below either resistor alone.",
+              "text_hi": "एक नया path मतलब और current के लिए जगह, न कि और रुकावट — resistance गिरकर तीन ohms हो जाता है, जो दोनों resistors से अकेले भी कम है।",
+              "text_te": "కొత్త path అంటే మరింత current కి చోటు, మరింత అడ్డంకి కాదు — resistance పడిపోయి మూడు ohms అవుతుంది, ఇది ఒక్కో resistor కంటే కూడా తక్కువ.",
               "glow": "ammeter_total"
             }
           ]
@@ -432,7 +523,10 @@
           {
             "type": "annotation",
             "id": "r2_grows",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "R2 grows from six ohms toward twelve — watch the stream split at the junction.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -440,7 +534,10 @@
           {
             "type": "annotation",
             "id": "branch_split_unequal",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Branch one stays pinned at one ampere; branch two thins to half.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -448,7 +545,10 @@
           {
             "type": "annotation",
             "id": "same_voltage_both",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Both branches read the full six volts — they share voltage equally, never current.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -459,21 +559,29 @@
             {
               "id": "s6_1",
               "text_en": "R two grows from six ohms to twelve — watch the stream split at junction.",
+              "text_hi": "R two छह ohms से बढ़कर बारह हो जाता है — देखिए धारा junction पर कैसे बँट जाती है।",
+              "text_te": "R two ఆరు ohms నుండి పన్నెండు కి పెరుగుతుంది — junction వద్ద ప్రవాహం ఎలా చీలిపోతుందో గమనించండి.",
               "glow": "junction"
             },
             {
               "id": "s6_2",
               "text_en": "Branch one stays pinned at one ampere; branch two thins to zero point five ampere.",
+              "text_hi": "Branch one एक ampere पर टिका रहता है; branch two घटकर शून्य दशमलव पाँच ampere हो जाता है।",
+              "text_te": "Branch one ఒక ampere వద్దే నిలిచి ఉంటుంది; branch two తగ్గి సున్నా దశాంశం ఐదు ampere అవుతుంది.",
               "glow": "ammeter_branches"
             },
             {
               "id": "s6_3",
               "text_en": "Both branches read the full six volts — they share voltage equally, never current.",
+              "text_hi": "दोनों branches पूरे छह volts दिखाते हैं — वे voltage को बराबर बाँटते हैं, current को कभी नहीं।",
+              "text_te": "రెండు branches పూర్తి ఆరు volts చూపిస్తాయి — అవి voltage ని సమానంగా పంచుకుంటాయి, current ని ఎప్పుడూ కాదు.",
               "glow": "ammeter_branches"
             },
             {
               "id": "s6_4",
               "text_en": "Current I splits by ease of path — not by half.",
+              "text_hi": "Current I path की आसानी के हिसाब से बँटता है — आधा-आधा नहीं।",
+              "text_te": "Current I path యొక్క సౌలభ్యాన్ని బట్టి చీలుతుంది — సగం సగం కాదు.",
               "glow": "ammeter_branches"
             }
           ]
@@ -502,7 +610,10 @@
           {
             "type": "annotation",
             "id": "two_branches_collapse",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Branch one at six ohms, branch two at twelve — about to collapse into one.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -510,7 +621,10 @@
           {
             "type": "annotation",
             "id": "reciprocal_formula",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "One over R_eq equals one over R1 plus one over R2.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -518,7 +632,10 @@
           {
             "type": "annotation",
             "id": "req_below_smallest",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "That box reads four ohms — less than the smallest branch — while the total ammeter holds steady.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -529,16 +646,22 @@
             {
               "id": "s7_1",
               "text_en": "Branch one at six ohms, branch two at twelve, about to collapse into one box.",
+              "text_hi": "Branch one छह ohms पर, branch two बारह पर — अभी एक ही box में सिमटने वाले हैं।",
+              "text_te": "Branch one ఆరు ohms వద్ద, branch two పన్నెండు వద్ద — ఇప్పుడు ఒకే box లోకి కుదించబోతున్నాయి.",
               "glow": "resistors"
             },
             {
               "id": "s7_2",
               "text_en": "Watch them merge: one over R eq equals one over R one plus one over R two.",
+              "text_hi": "देखिए वे कैसे मिलते हैं: एक over R eq equals एक over R one plus एक over R two।",
+              "text_te": "అవి ఎలా కలుస్తాయో చూడండి: ఒక over R eq equals ఒక over R one plus ఒక over R two.",
               "glow": "req_box"
             },
             {
               "id": "s7_3",
               "text_en": "That box reads four ohms — less than the smallest branch — while the ammeter holds steady at one point five amperes.",
+              "text_hi": "वह box चार ohms दिखाता है — सबसे छोटे branch से भी कम — जबकि ammeter एक दशमलव पाँच amperes पर स्थिर रहता है।",
+              "text_te": "ఆ box నాలుగు ohms చూపిస్తుంది — అతి చిన్న branch కంటే కూడా తక్కువ — ammeter మాత్రం ఒక దశాంశం ఐదు amperes వద్ద స్థిరంగా ఉంటుంది.",
               "glow": "req_box"
             }
           ]
@@ -560,7 +683,10 @@
           {
             "type": "annotation",
             "id": "switch_on_branch2",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "A switch sits on branch two of this parallel circuit.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -568,7 +694,10 @@
           {
             "type": "annotation",
             "id": "branch1_unaffected",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Open it — branch one keeps flowing, completely unaffected.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -576,7 +705,10 @@
           {
             "type": "annotation",
             "id": "why_homes_wire_parallel",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "That is why every home wires its appliances in parallel.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -587,21 +719,29 @@
             {
               "id": "s8_1",
               "text_en": "One switch sits on branch two: open it in parallel mode.",
+              "text_hi": "एक switch branch two पर लगा है: उसे parallel mode में खोलिए।",
+              "text_te": "ఒక switch branch two మీద ఉంది: దాన్ని parallel mode లో తెరవండి.",
               "glow": "switch"
             },
             {
               "id": "s8_2",
               "text_en": "Branch one keeps flowing at one ampere, completely unaffected — only branch two goes dark.",
+              "text_hi": "Branch one एक ampere पर बहता रहता है, बिल्कुल अप्रभावित — सिर्फ़ branch two अंधेरे में चला जाता है।",
+              "text_te": "Branch one ఒక ampere వద్ద ప్రవహిస్తూనే ఉంటుంది, ఏమాత్రం ప్రభావితం కాకుండా — branch two మాత్రమే చీకటిలోకి వెళ్తుంది.",
               "glow": "ammeter_branches"
             },
             {
               "id": "s8_3",
               "text_en": "Old series fairy lights are the opposite — one bulb dies and the whole string goes dark.",
+              "text_hi": "पुरानी series fairy lights इसके उलट होती हैं — एक bulb बंद होते ही पूरी string अंधेरी हो जाती है।",
+              "text_te": "పాత series fairy lights దీనికి వ్యతిరేకం — ఒక bulb ఆరిపోగానే మొత్తం string చీకటైపోతుంది.",
               "glow": "switch"
             },
             {
               "id": "s8_4",
               "text_en": "That is why every home wires its appliances in parallel.",
+              "text_hi": "इसीलिए हर घर अपने appliances को parallel में वायर करता है।",
+              "text_te": "అందుకే ప్రతి ఇల్లు తన appliances ని parallel లో వైర్ చేస్తుంది.",
               "glow": "switch"
             }
           ]
@@ -616,7 +756,10 @@
           {
             "type": "annotation",
             "id": "all_dials_live",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Every dial is live: voltage, both resistors, topology, and the switch.",
             "color": "#FFD54F",
             "is_persistent": false
@@ -624,7 +767,10 @@
           {
             "type": "annotation",
             "id": "meters_respond_live",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Every meter, the R_eq box, and the formula respond live as you drag.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -632,7 +778,10 @@
           {
             "type": "annotation",
             "id": "both_laws_side_by_side",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Series: R_eq = R1+R2. Parallel: 1/R_eq = 1/R1+1/R2.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -643,6 +792,8 @@
             {
               "id": "s9_1",
               "text_en": "Every dial is yours: voltage V, both resistors, series or parallel, and the switch — watch every meter respond live.",
+              "text_hi": "हर dial अब आपका है: voltage V, दोनों resistors, series या parallel, और switch — हर meter को live respond करते देखिए।",
+              "text_te": "ప్రతి dial ఇప్పుడు మీదే: voltage V, రెండు resistors, series లేదా parallel, మరియు switch — ప్రతి meter live గా స్పందించడం గమనించండి.",
               "glow": "formula"
             }
           ]
@@ -747,7 +898,9 @@
         "formula_overlay": "R_eq = R1 + R2",
         "topology": "series",
         "show_sliders": false,
-        "visible_controls": ["R2"],
+        "visible_controls": [
+          "R2"
+        ],
         "glow_focal": "resistors"
       },
       "STATE_3": {
@@ -767,7 +920,9 @@
         "topology": "series",
         "show_voltages": true,
         "show_sliders": false,
-        "visible_controls": ["R2"],
+        "visible_controls": [
+          "R2"
+        ],
         "glow_focal": "volt_probe"
       },
       "STATE_5": {
@@ -788,7 +943,9 @@
         "r2_autosweep_to": 12,
         "show_branch_meters": true,
         "show_sliders": false,
-        "visible_controls": ["R2"],
+        "visible_controls": [
+          "R2"
+        ],
         "glow_focal": "ammeter_branches"
       },
       "STATE_7": {
@@ -800,7 +957,9 @@
         "r2_autosweep_to": 12,
         "show_req_box": true,
         "show_sliders": false,
-        "visible_controls": ["R2"],
+        "visible_controls": [
+          "R2"
+        ],
         "glow_focal": "req_box"
       },
       "STATE_8": {
@@ -811,7 +970,9 @@
         "switch_cycle": true,
         "show_branch_meters": true,
         "show_sliders": false,
-        "visible_controls": ["switch"],
+        "visible_controls": [
+          "switch"
+        ],
         "glow_focal": "switch"
       },
       "STATE_9": {
