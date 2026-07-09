@@ -470,7 +470,7 @@ function windowResized() {
 // ─── Scene construction (deterministic) ─────────────────────────────────────
 function rebuildScene() {
   physRand = mulberry32(PHYS_SEED);
-  if (circuitMode()) { circuitInitBeads(); collisionFlashes = []; return; }  // circuit path builds beads, not a free-drift gas
+  if (isCircuitFamily()) { circuitInitBeads(); collisionFlashes = []; return; }  // circuit path builds beads, not a free-drift gas
   particles = [];
   for (var i = 0; i < config.particles.count; i++) {
     var angle = pr() * TWO_PI;
@@ -862,7 +862,27 @@ function getCurrentIntensity() {
 // scenarios (drift/ohms/resistivity) never enter this path (circuitMode() false).
 // ═══════════════════════════════════════════════════════════════════════════
 function circuitMode() { return !!(config && config.scenario_type === 'combination_of_resistors'); }
+function emfMode() { return !!(config && config.scenario_type === 'emf_definition'); }
+function isCircuitFamily() { return circuitMode() || emfMode(); }
 function circuitBeadCount() { return (config && config.particles && config.particles.count) ? config.particles.count : 40; }
+
+// ── emf physics (emf_definition) — IDEAL cell, r = 0: terminal V = eps always ──
+// The droop V = eps - I*r is the NEXT diamond (internal_resistance); this scenario
+// claims nothing about it. i = eps / R_load (open circuit -> i = 0).
+function cEmf()   { return hasSlider('emf') ? sliderVal('emf') : physConst('emf', 1.5); }
+function cLoadR() { return hasSlider('R')   ? sliderVal('R')   : physConst('R_load', 1.5); }
+function emfSwitchOpen() {
+  var st = curState();
+  if (st && st.open_circuit) return true;              // S5: loop opened to measure emf
+  if (hasSlider('switch')) return sliderVal('switch') < 0.5;   // 0 = open, 1 = closed
+  return false;
+}
+function emfCurrents() {
+  var eps = cEmf(), R = max(cLoadR(), 1e-6);
+  var swOpen = emfSwitchOpen();
+  var i = swOpen ? 0 : eps / R;
+  return { eps: eps, R: R, i: i, swOpen: swOpen, Vterm: eps };
+}
 function fmtNum(x) { return (abs(x - round(x)) < 0.05) ? String(round(x)) : x.toFixed(1); }
 
 // ── circuit physics (pure functions of V, R1, R2, topology, switch) ─────────
@@ -1072,6 +1092,19 @@ function drawCircuit() {
     text('R_eq = ' + fmtNum(c.Req) + ' \\u03A9', qx, qy); textStyle(NORMAL);
   }
 }
+// ═══ emf_definition scenario — charge-pump cell + potential ladder + voltmeter ══
+// A single IDEAL-cell loop reusing the combination bead engine. Primitives are
+// added incrementally: drawEmfCell (Task 3), drawPotentialLadder (Task 4),
+// drawVoltmeterC (Task 5). Beads flow at speed ~ i (0 when the loop is open).
+function drawEmfScenario() {
+  var c = emfCurrents(), loops = circuitLoops(), g = loops.g;
+  drawWireC(loops.series, '#546E7A', 0.85, 3);
+  drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i, Req: c.R, V: c.eps, R1: c.R, R2: c.R });
+  drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + fmtNum(c.R) + ' \\u03A9', dimFor('load'));
+  drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
+  drawBatteryC(g, c.eps, 1);   // placeholder cell — replaced by drawEmfCell in Task 3
+}
+
 function stepCircuit(state) {
   PM_simTimeMs += 1000 / 60; window.PM_simTimeMs = PM_simTimeMs;
   var cues = getCues(state);
@@ -1087,13 +1120,13 @@ function draw() {
   var state = curState();
   if (!state) return;
 
-  if (circuitMode()) {
+  if (isCircuitFamily()) {
     if (!frozen && !paused) stepCircuit(state);
     var cbg = (config.canvas && config.canvas.bg_color) ? config.canvas.bg_color
       : (config.design && config.design.background) ? config.design.background : '#0A0A1A';
     background(cbg);
-    drawCircuit();
-    updateReadouts();          // live R_eq / i / swept-R2 in the panel (else it bleeds the entry values)
+    if (emfMode()) drawEmfScenario(); else drawCircuit();
+    if (circuitMode()) updateReadouts();          // combination-only: live R_eq / i / swept-R2 (else it bleeds entry values)
     // (no drawLabel here — the state label duplicated the bottom-right formula_overlay)
     var frmC = document.getElementById('pm-formula');
     if (frmC) frmC.style.opacity = max(dimFor('formula'), 0.6);   // keep the equation readable even when not the focal
@@ -1777,7 +1810,7 @@ window.addEventListener('message', function(e) {
         // ceil, not floor: PM_simTimeMs must land >= at_ms or the harness's
         // pollSimTimeReached burns a full poll cap on every dense frame.
         var steps = ceil(target / (1000 / 60));
-        for (var k = 0; k < steps; k++) { if (circuitMode()) stepCircuit(st); else stepPhysics(st); }
+        for (var k = 0; k < steps; k++) { if (isCircuitFamily()) stepCircuit(st); else stepPhysics(st); }
       }
       frozen = true;
     }
