@@ -988,9 +988,13 @@ function irCurrents() {
 function fmtNum(x) { return (abs(x - round(x)) < 0.05) ? String(round(x)) : x.toFixed(1); }
 
 // ── circuit physics (pure functions of V, R1, R2, topology, switch) ─────────
-function cVolt() { return hasSlider('V') ? sliderVal('V') : physConst('V_circuit', 6); }
-function cR1() { return hasSlider('R1') ? sliderVal('R1') : physConst('R1', 6); }
-function cR2raw() { return hasSlider('R2') ? sliderVal('R2') : physConst('R2', 6); }
+// electric_power per-state numeric locks (powerMode-gated → siblings untouched):
+// a guided state may pin V/R1/R2 so a value dragged in an earlier interactive
+// state (e.g. V in S2) never corrupts a later state's taught numbers (S3's 6 J/s).
+// The live control of each state is left UNPINNED so its slider still drives.
+function cVolt() { var st = curState(); if (powerMode() && st && typeof st.V === 'number') return st.V; return hasSlider('V') ? sliderVal('V') : physConst('V_circuit', 6); }
+function cR1() { var st = curState(); if (powerMode() && st && typeof st.R1 === 'number') return st.R1; return hasSlider('R1') ? sliderVal('R1') : physConst('R1', 6); }
+function cR2raw() { var st = curState(); if (powerMode() && st && typeof st.R2 === 'number') return st.R2; return hasSlider('R2') ? sliderVal('R2') : physConst('R2', 6); }
 function cR2() {
   var st = curState();
   if (st && st.r2_autosweep && !userTouched['R2']) {   // S6: R2 grows 6->12 to open the split
