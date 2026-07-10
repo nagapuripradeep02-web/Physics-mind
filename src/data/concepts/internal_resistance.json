@@ -30,15 +30,15 @@
     "scenario_type": "internal_resistance",
     "particles": { "count": 34, "color": "#42A5F5", "size": 8 },
     "slider_controls": {
-      "emf": { "min": 1, "max": 12, "step": 0.1, "default": 1.5, "label": "EMF \\u03b5", "unit": "V" },
-      "r": { "min": 0.1, "max": 2, "step": 0.1, "default": 0.5, "label": "internal r", "unit": "\\u03a9" },
-      "R": { "min": 0.25, "max": 12, "step": 0.25, "default": 1, "label": "Load R", "unit": "\\u03a9" },
+      "emf": { "min": 1, "max": 12, "step": 0.1, "default": 1.5, "label": "EMF ε", "unit": "V" },
+      "r": { "min": 0.1, "max": 2, "step": 0.1, "default": 0.5, "label": "internal r", "unit": "Ω" },
+      "R": { "min": 0.25, "max": 12, "step": 0.25, "default": 1, "label": "Load R", "unit": "Ω" },
       "switch": { "min": 0, "max": 1, "step": 1, "default": 1, "label": "Switch" }
     },
     "pvl_colors": { "background": "#0A0A1A", "electron": "#42A5F5", "wire": "#546E7A", "cell": "#FFD54F", "ladder": "#4DD0E1", "voltmeter": "#B39DDB", "load": "#FFB74D", "labels": "#D4D4D8" },
     "states": {
-      "STATE_1": { "label": "V = \\u03b5 \\u2212 ir", "caption": "Close switch \\u2014 volts drop", "formula_overlay": "V = \\u03b5 \\u2212 ir", "droop_intro": true, "show_voltmeter": true, "show_ladder": true, "show_r": true, "show_sliders": false, "visible_controls": [], "glow_focal": "voltmeter", "emf": 1.5, "r": 0.5, "R": 1 },
-      "STATE_2": { "label": "V = \\u03b5 + ir", "caption": "Charging lifts V above \\u03b5", "formula_overlay": "V = \\u03b5 + ir", "charging": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": true, "glow_focal": "charger", "emf": 1.5, "r": 0.5, "R": 1 }
+      "STATE_1": { "label": "V = ε − ir", "caption": "Close switch — volts drop", "formula_overlay": "V = ε − ir", "droop_intro": true, "show_voltmeter": true, "show_ladder": true, "show_r": true, "show_sliders": false, "visible_controls": [], "glow_focal": "voltmeter", "emf": 1.5, "r": 0.5, "R": 1 },
+      "STATE_2": { "label": "V = ε + ir", "caption": "Charging lifts V above ε", "formula_overlay": "V = ε + ir", "charging": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": true, "glow_focal": "charger", "emf": 1.5, "r": 0.5, "R": 1 }
     }
   }
 }

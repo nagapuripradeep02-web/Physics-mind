@@ -872,7 +872,8 @@ function getCurrentIntensity() {
 // ═══════════════════════════════════════════════════════════════════════════
 function circuitMode() { return !!(config && config.scenario_type === 'combination_of_resistors'); }
 function emfMode() { return !!(config && config.scenario_type === 'emf_definition'); }
-function isCircuitFamily() { return circuitMode() || emfMode(); }
+function irMode() { return !!(config && config.scenario_type === 'internal_resistance'); }
+function isCircuitFamily() { return circuitMode() || emfMode() || irMode(); }
 function circuitBeadCount() { return (config && config.particles && config.particles.count) ? config.particles.count : 40; }
 
 // ── emf physics (emf_definition) — IDEAL cell, r = 0: terminal V = eps always ──
@@ -904,6 +905,55 @@ function emfCurrents() {
   var swOpen = emfSwitchOpen();
   var i = swOpen ? 0 : eps / R;
   return { eps: eps, R: R, i: i, swOpen: swOpen, Vterm: eps };
+}
+
+// ── internal_resistance physics — the REAL cell: i = eps/(R+r), V = eps - i*r ──
+// (charging: an ideal 3.0 V charger drives i backwards -> V = eps + i*r).
+// Per-state numeric locks (st.emf / st.r / st.R / st.switch) win over sliders so a
+// guided state renders at its authored value on the reorderable rail (Rule 25d).
+function cIntR() {
+  var st = curState();
+  if (st && typeof st.r === 'number') return st.r;
+  return hasSlider('r') ? sliderVal('r') : physConst('r_internal', 0.5);
+}
+function cIrLoadR() {
+  var st = curState();
+  if (st && st.R_autosweep_down && !userTouched['R']) {   // S3 droop-grow / S4 short-circuit sweep (teacher-seizable)
+    var a = (st && typeof st.R === 'number') ? st.R : (hasSlider('R') ? sliderDefault('R') : 1.0);
+    var b = (st.R_autosweep_to !== undefined) ? st.R_autosweep_to : 0.25;
+    return a + (b - a) * constrain((PM_simTimeMs - 700) / 3200, 0, 1);
+  }
+  return cLoadR();
+}
+function irSwitchOpen() {
+  var st = curState();
+  if (st && st.droop_intro && !userTouched['switch']) return PM_simTimeMs < 1500;   // S1: cued close
+  if (st && st.two_reading && !userTouched['switch']) return PM_simTimeMs < 2500;   // S5: open-hold, then close
+  if (st && st.open_circuit) return true;
+  if (st && typeof st.switch === 'number') return st.switch < 0.5;
+  if (hasSlider('switch')) return sliderVal('switch') < 0.5;
+  return false;
+}
+function irRampK() {   // deterministic 800ms current ease after a cued switch-close
+  var st = curState();
+  if (userTouched['switch']) return 1;
+  var t0 = (st && st.droop_intro) ? 1500 : ((st && st.two_reading) ? 2500 : 0);
+  if (!t0) return 1;
+  return constrain((PM_simTimeMs - t0) / 800, 0, 1);
+}
+function irCurrents() {
+  var eps = cEmf(), r = max(cIntR(), 1e-6);
+  var st = curState();
+  if (st && st.charging) {
+    var epsCh = (typeof st.charger_emf === 'number') ? st.charger_emf : 3.0;
+    var Rs = cIrLoadR();
+    var iC = max(epsCh - eps, 0) / (Rs + r);
+    return { eps: eps, r: r, R: Rs, i: iC, swOpen: false, Vterm: eps + iC * r, mode: 'charging', epsCh: epsCh };
+  }
+  var R = cIrLoadR();   // R_autosweep_to: 0 is legal — the denominator is R + r >= r > 0
+  var swOpen = irSwitchOpen();
+  var i = swOpen ? 0 : (eps / (R + r)) * irRampK();
+  return { eps: eps, r: r, R: R, i: i, swOpen: swOpen, Vterm: eps - i * r, mode: swOpen ? 'open' : 'discharge' };
 }
 function fmtNum(x) { return (abs(x - round(x)) < 0.05) ? String(round(x)) : x.toFixed(1); }
 
@@ -996,7 +1046,8 @@ function circuitBeadLoop(i, c) {
 }
 function circuitBeadS(i, c) {
   var spd = (c.itot < 0.02) ? 0 : constrain(c.itot / 1.0, 0.28, 3.0);   // more total current -> faster; dead loop halts
-  return (circuitBeadPhase[i] + CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * spd) % 1;
+  var dir = (c && c.dir === -1) ? -1 : 1;   // internal_resistance charging: beads reverse (polyAt normalizes negatives)
+  return (circuitBeadPhase[i] + dir * CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * spd) % 1;
 }
 
 // ── primitives ──────────────────────────────────────────────────────────────
@@ -1204,6 +1255,37 @@ function drawEmfScenario() {
   }
 }
 
+// ═══ internal_resistance scenario — the emf loop with the hidden r revealed ═══
+// Diamond 2: same cell/ladder/voltmeter as emf_definition, plus the internal r.
+// The switch is drawn at 0.78 of the bottom edge (drawSwitchC's series position
+// collides with the main ammeter at the bottom midpoint).
+function drawIrSwitch(g, open, dim) {
+  var sx = g.leftX + (g.rightX - g.leftX) * 0.78, sy = g.botY;
+  var col = open ? '#EF5350' : '#66BB6A';
+  fillHex('#ECEFF1', 0.9 * dim); noStroke(); ellipse(sx - 11, sy, 5); ellipse(sx + 11, sy, 5);
+  strokeHex(col, 0.98 * dim); strokeWeight(3);
+  if (open) line(sx - 11, sy, sx + 7, sy - 15); else line(sx - 11, sy, sx + 11, sy);
+  noStroke();
+}
+function drawIrScenario() {
+  var c = irCurrents(), loops = circuitLoops(), g = loops.g, st = curState();
+  drawWireC(loops.series, '#546E7A', 0.85, 3);
+  drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i,
+                            Req: c.R, V: c.eps, R1: c.R, R2: c.R,
+                            dir: (c.mode === 'charging') ? -1 : 1 });
+  drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + fmtNum(c.R) + ' \\u03A9', dimFor('load'));
+  drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
+  drawEmfCell(g, c.eps, 1, !c.swOpen);          // r-reveal arg added with the cell extension
+  if (!(st && st.charging)) drawIrSwitch(g, c.swOpen, dimFor('switch'));
+  if (st && st.show_voltmeter) {
+    var vmDim = dimFor('voltmeter'), vx = g.leftX + 82, vy = g.midY;
+    strokeHex('#B39DDB', 0.7 * vmDim); strokeWeight(1.5);            // leads tapping the two terminals
+    line(g.leftX, g.midY - 16, vx, vy - 14); line(g.leftX, g.midY + 16, vx, vy + 14);
+    noStroke();
+    drawVoltmeterC(vx, vy, c.Vterm, max(c.eps * 1.5, c.Vterm), vmDim);   // 1.5x headroom: charging V > eps must not peg
+  }
+}
+
 function stepCircuit(state) {
   PM_simTimeMs += 1000 / 60; window.PM_simTimeMs = PM_simTimeMs;
   var cues = getCues(state);
@@ -1224,7 +1306,7 @@ function draw() {
     var cbg = (config.canvas && config.canvas.bg_color) ? config.canvas.bg_color
       : (config.design && config.design.background) ? config.design.background : '#0A0A1A';
     background(cbg);
-    if (emfMode()) drawEmfScenario(); else drawCircuit();
+    if (emfMode()) drawEmfScenario(); else if (irMode()) drawIrScenario(); else drawCircuit();
     if (isCircuitFamily()) updateReadouts();      // live derived readout (combination R_eq/i ; emf eps/V/i)
     // (no drawLabel here — the state label duplicated the bottom-right formula_overlay)
     var frmC = document.getElementById('pm-formula');
