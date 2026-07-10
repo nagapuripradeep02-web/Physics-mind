@@ -420,6 +420,10 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     // with no cue — mirror the renderer's cR2 sweep (start 700 + dur 3200) so the
     // frozen frame lands on the SETTLED 12Ω split, not mid-growth.
     if (state.r2_autosweep === true) maxMs = Math.max(maxMs, 700 + 3200 + 400);
+    // emf_definition S4: ε auto-glides (start 700 + dur 3200) so "bigger ε, taller
+    // lift" self-demonstrates — pin the frozen frame past the settle so it lands on
+    // the tall-ε pose (visually distinct from S2), not mid-glide.
+    if (state.emf_autosweep === true) maxMs = Math.max(maxMs, 700 + 3200 + 400);
     return maxMs;
 }
 

@@ -677,6 +677,10 @@ function updateReadouts() {
     var vEl = document.getElementById('pm-sv-V');
     if (vEl) { var vd2 = defs.V || {}; vEl.textContent = (Math.round(plotV() * 100) / 100) + (vd2.unit ? (' ' + vd2.unit) : ''); }
   }
+  if (emfMode() && hasSlider('emf') && !userTouched['emf'] && curState() && curState().emf_autosweep) {
+    var eSwEl = document.getElementById('pm-sv-emf');        // emf row tracks the S4 auto-glide (thumb stays at default)
+    if (eSwEl) { var ed = defs.emf || {}; eSwEl.textContent = (Math.round(cEmf() * 100) / 100) + (ed.unit ? (' ' + ed.unit) : ''); }
+  }
   if (hasSlider('R') && !userTouched['R'] && !emfMode()) {   // R thumb tracks the r_autosweep (ohms_law only)
     var rEl = document.getElementById('pm-sv-R');
     if (rEl) { var rd2 = defs.R || {}; rEl.textContent = (Math.round(plotR() * 100) / 100) + (rd2.unit ? (' ' + rd2.unit) : ''); }
@@ -874,12 +878,25 @@ function circuitBeadCount() { return (config && config.particles && config.parti
 // ── emf physics (emf_definition) — IDEAL cell, r = 0: terminal V = eps always ──
 // The droop V = eps - I*r is the NEXT diamond (internal_resistance); this scenario
 // claims nothing about it. i = eps / R_load (open circuit -> i = 0).
-function cEmf()   { return hasSlider('emf') ? sliderVal('emf') : physConst('emf', 1.5); }
-function cLoadR() { return hasSlider('R')   ? sliderVal('R')   : physConst('R_load', 1.5); }
+// Per-state numeric locks (st.emf / st.R / st.switch) win over the live slider so a
+// guided state renders at its authored value even after a teacher dragged a slider and
+// jumped states on the reorderable rail (Rule 25d). Live states (S4 emf, S6 all) omit
+// the lock, so the slider drives.
+function cEmf()   {
+  var st = curState();
+  if (st && st.emf_autosweep && !userTouched['emf']) {   // S4: ε glides up so "taller lift" self-demonstrates (teacher-seizable)
+    var a = 1.5, b = (st.emf_autosweep_to !== undefined) ? st.emf_autosweep_to : 12;
+    return a + (b - a) * constrain((PM_simTimeMs - 700) / 3200, 0, 1);
+  }
+  if (st && typeof st.emf === 'number') return st.emf;
+  return hasSlider('emf') ? sliderVal('emf') : physConst('emf', 1.5);
+}
+function cLoadR() { var st = curState(); if (st && typeof st.R === 'number') return st.R; return hasSlider('R') ? sliderVal('R') : physConst('R_load', 1.5); }
 function emfSwitchOpen() {
   var st = curState();
   if (st && st.open_circuit) return true;              // S5: loop opened to measure emf
-  if (hasSlider('switch')) return sliderVal('switch') < 0.5;   // 0 = open, 1 = closed
+  if (st && typeof st.switch === 'number') return st.switch < 0.5;   // per-state lock (0=open, 1=closed)
+  if (hasSlider('switch')) return sliderVal('switch') < 0.5;
   return false;
 }
 function emfCurrents() {
@@ -1028,8 +1045,11 @@ function drawEmfCell(g, eps, dim, pumpActive) {
     line(bx - 3, by - 11, bx - 7, by - 5); line(bx - 3, by - 11, bx + 1, by - 5);
     noStroke();
   }
-  fillHex('#FFD54F', 0.95 * dim); textSize(12); textStyle(BOLD); textAlign(RIGHT, CENTER);
-  text('\\u03B5 = ' + eps.toFixed(1) + ' V', bx - 20, by); textStyle(NORMAL);
+  textSize(12); textStyle(BOLD); textAlign(RIGHT, CENTER);
+  var elbl = '\\u03B5 = ' + eps.toFixed(1) + ' V', elw = textWidth(elbl);
+  rectMode(CENTER); fill(10, 12, 28, 225 * dim); noStroke();   // chip keeps the label legible over frozen beads (S5 scar)
+  rect(bx - 20 - elw / 2, by, elw + 10, 18, 4); rectMode(CORNER);
+  fillHex('#FFD54F', 0.98 * dim); text(elbl, bx - 20, by); textStyle(NORMAL);
 }
 function drawAmmeterAtC(cx, cy, iVal, label, dim, amR) {
   var boxW = amR * 2 + 26, boxH = amR + 42;
