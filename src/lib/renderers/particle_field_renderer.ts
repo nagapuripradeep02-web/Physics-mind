@@ -1341,7 +1341,8 @@ function drawIrScenario() {
   }
   if (st && st.show_ladder) {
     drawPotentialLadder(c.eps, c.i, c.R, c.swOpen, 1, null, 0, null,
-      { mode: c.mode, r: c.r, epsCh: c.epsCh || 0, V: c.Vterm });
+      { mode: c.mode, r: c.r, epsCh: c.epsCh || 0, V: c.Vterm,
+        mystery: !(st.show_r || st.r_reveal) });   // S1: gap shown, not explained
   }
   // S5 two-reading measurement — ONE-shot sequence (open-hold -> cued close -> the
   // computed r line), never a cycle. Reading 1 shows eps because irSwitchOpen()
@@ -1940,14 +1941,18 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir
   } else if (ir) {
     // REAL cell discharging: up eps, down i*r STILL INSIDE the cell band, flat at V
     // along the wire, down V across the load. i = 0 degenerates to flat-at-eps (open).
+    // ir.mystery (S1, before the r reveal): the internal drop is drawn in the SAME
+    // cyan with NO i*r label and NO cell-band shading — the 0.50 V gap is SHOWN,
+    // not explained (do-not-prespoil; S2 colors it orange, labels it, opens the casing).
     var rD2 = dimFor('r_internal');
     var xb = gx + gw * 0.13;
     var vT = eps - i * ir.r;                                         // terminal voltage
-    noStroke(); fill(66, 44, 34, 70 * dim); rect(xa, gy - gh, gw * 0.13, gh);   // 'inside the cell' band
+    if (!ir.mystery) { noStroke(); fill(66, 44, 34, 70 * dim); rect(xa, gy - gh, gw * 0.13, gh); }   // 'inside the cell' band
     strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
     beginShape(); vertex(xa, py(0)); vertex(xa, py(eps)); endShape();           // the eps riser (the lift)
-    strokeHex('#FF8A65', 0.98 * rD2); strokeWeight(2.5); noFill();
-    beginShape(); vertex(xa, py(eps)); vertex(xb, py(vT)); endShape();          // the INTERNAL step — highlighted
+    if (ir.mystery) { strokeHex('#4DD0E1', 0.98 * lDim); } else { strokeHex('#FF8A65', 0.98 * rD2); }
+    strokeWeight(2.5); noFill();
+    beginShape(); vertex(xa, py(eps)); vertex(xb, py(vT)); endShape();          // the INTERNAL step (highlighted unless mystery)
     strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
     beginShape();
     vertex(xb, py(vT)); vertex(xc, py(vT));                                     // flat at V along the wire
@@ -1956,9 +1961,11 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir
     noStroke(); fillHex('#4DD0E1', 0.98 * lDim); textSize(11); textStyle(BOLD); textAlign(LEFT, BOTTOM);
     text('\\u03B5 = ' + eps.toFixed(1) + ' V', xa + 4, py(eps) - 4);
     if (i > 0.02) {
-      fillHex('#FF8A65', 0.95 * rD2); textSize(10); textAlign(LEFT, TOP);
-      text('i\\u00B7r', xb + 3, py((eps + vT) / 2) - 4);
-      fillHex('#B39DDB', 0.95 * dim); textAlign(RIGHT, BOTTOM);
+      if (!ir.mystery) {
+        fillHex('#FF8A65', 0.95 * rD2); textSize(10); textAlign(LEFT, TOP);
+        text('i\\u00B7r', xb + 3, py((eps + vT) / 2) - 4);
+      }
+      fillHex('#B39DDB', 0.95 * dim); textSize(10); textAlign(RIGHT, BOTTOM);
       text('V = ' + vT.toFixed(2) + ' V', xc, py(vT) - 3);
     }
   } else {
