@@ -1,0 +1,16 @@
+# Cloudflare Worker (static assets) for the PILOT TEACHER APP — app.viditra.co.
+# Separate from wrangler.toml (the marketing site worker "viditra" → viditra.co).
+# The custom_domain route auto-attaches app.viditra.co on deploy (the viditra.co
+# zone lives on this account); workers.dev stays enabled as a fallback URL.
+# NOTE: `routes` is a TOP-LEVEL key — placed above [assets]; if it comes after a
+# table header, TOML scopes it into that table and wrangler silently ignores it.
+# Deploy:  npm run deploy:app   (= npx wrangler deploy -c wrangler.app.toml)
+name = "viditra-app"
+compatibility_date = "2026-06-01"
+
+routes = [
+  { pattern = "app.viditra.co", custom_domain = true }
+]
+
+[assets]
+directory = "./review-site"

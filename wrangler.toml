@@ -1,0 +1,10 @@
+# Cloudflare Worker (static assets) for the marketing site viditra.co.
+# The site is served by a Worker named "viditra" with the website/ folder as its
+# static assets (custom domain viditra.co attached to the service). Redeploying
+# with the same name updates it in place — custom domain + routes are preserved.
+# Deploy:  npx wrangler deploy   (or  npm run deploy:cf-site )
+name = "viditra"
+compatibility_date = "2026-06-01"
+
+[assets]
+directory = "./website"

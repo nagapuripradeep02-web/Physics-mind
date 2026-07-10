@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="theme-color" content="#1C1B19">
+<title>&#8203;</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="js/brand.js"></script>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site" id="top">
+  <div class="wrap bar">
+    <a class="masthead" href="#top" aria-label="Home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg>
+      </span>
+      <span class="brand"><b data-brand="name"></b><span data-brand="sub"></span></span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#why">Why</a>
+      <a href="#product">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#subjects">Subjects</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="btn small" href="#access">Start your free week</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1 · HERO -->
+  <section class="hero">
+    <div class="wrap heroGrid">
+      <div class="heroCopy">
+        <p class="eyebrow">For physics teachers &middot; Class 10&ndash;12 &middot; JEE / NEET / CBSE</p>
+        <h1>The <em>moving picture</em> you can&rsquo;t draw on a whiteboard.</h1>
+        <p class="lede"><span data-brand="name"></span> gives you accurate, manipulable <b>3D</b> physics simulations you drive live in class &mdash; every field line, force and orbit computed from the real equations, at the pace of your lesson.</p>
+        <div class="ctas">
+          <a class="btn" href="#access">Start your free week</a>
+          <a class="btn ghost" href="demo/">Try a live simulation</a>
+        </div>
+      </div>
+      <figure class="canvasCard heroCard">
+        <canvas id="heroField" role="img" aria-label="Animation: the three-dimensional electric field of a dipole, slowly orbiting"></canvas>
+        <figcaption>Live &mdash; the electric field of a dipole, in 3D. Computed, not drawn.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2 · PROOF STRIP -->
+  <section class="strip" aria-label="Pilot facts">
+    <div class="wrap stripRow">
+      <div class="fact reveal"><b>20</b><span>interactive 3D simulations</span></div>
+      <div class="fact reveal"><b>Live</b><span>with physics professors</span></div>
+      <div class="fact reveal"><b>3 months</b><span>classroom pilot</span></div>
+    </div>
+  </section>
+
+  <!-- 3 · THE CONTRAST -->
+  <section class="sec" id="why">
+    <div class="wrap">
+      <p class="eyebrow reveal">Why simulations</p>
+      <h2 class="reveal">Diagrams freeze. Physics moves.</h2>
+      <p class="sub reveal">You&rsquo;ve drawn this a hundred times &mdash; the circle, the arrows, the crosses &mdash; and said &ldquo;imagine it moving.&rdquo; Now it moves, at the pace of your explanation.</p>
+      <div class="contrastGrid">
+        <figure class="boardMock reveal">
+          <div class="boardTitle">On your board</div>
+          <svg viewBox="0 0 440 320" role="img" aria-label="A hand-drawn board diagram of a charge in a magnetic field, frozen at one instant">
+            <defs>
+              <g id="bx" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" opacity=".75">
+                <path d="M-5 -5 L5 5 M5 -5 L-5 5" fill="none"/>
+              </g>
+            </defs>
+            <!-- scattered B-crosses, the way a teacher dots them in -->
+            <use href="#bx" transform="translate(48 46) rotate(8)"/>
+            <use href="#bx" transform="translate(122 42) rotate(-6)"/>
+            <use href="#bx" transform="translate(198 48) rotate(4)"/>
+            <use href="#bx" transform="translate(274 42) rotate(-8)"/>
+            <use href="#bx" transform="translate(350 48) rotate(6)"/>
+            <use href="#bx" transform="translate(392 116) rotate(-5)"/>
+            <use href="#bx" transform="translate(396 192) rotate(7)"/>
+            <use href="#bx" transform="translate(56 266) rotate(-7)"/>
+            <use href="#bx" transform="translate(130 276) rotate(5)"/>
+            <use href="#bx" transform="translate(350 272) rotate(-4)"/>
+            <use href="#bx" transform="translate(276 282) rotate(8)"/>
+            <use href="#bx" transform="translate(203 286) rotate(-6)"/>
+            <!-- the circle, freehand -->
+            <ellipse cx="205" cy="158" rx="84" ry="80" transform="rotate(-3 205 158)" fill="none"
+              stroke="#33302A" stroke-width="2" stroke-linecap="round" stroke-dasharray="11 8 14 7"/>
+            <circle cx="205" cy="158" r="2.6" fill="#33302A"/>
+            <!-- radius note -->
+            <line x1="205" y1="158" x2="147" y2="216" stroke="#33302A" stroke-width="1.4" stroke-dasharray="3 5"/>
+            <text x="164" y="184" font-size="15" font-style="italic" font-family="Georgia,serif" fill="#33302A">r</text>
+            <!-- the particle, one frozen instant -->
+            <circle cx="205" cy="78" r="5.5" fill="#33302A"/>
+            <!-- v arrow (blue marker) -->
+            <path d="M212 77 L258 73" stroke="#2F5FA8" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <path d="M258 73 L248 68 M258 73 L249 80" stroke="#2F5FA8" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <text x="264" y="70" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#2F5FA8">v</text>
+            <!-- F arrow (red marker), toward the centre -->
+            <path d="M205 88 L205 124" stroke="#C0453B" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <path d="M205 124 L199 114 M205 124 L211 114" stroke="#C0453B" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <text x="213" y="120" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#C0453B">F</text>
+            <!-- the two curved "it goes round this way" arrows -->
+            <path d="M287 122 Q296 154 285 188" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M285 188 L282 177 M285 188 L293 181" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M124 196 Q115 160 126 126" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M126 126 L118 134 M126 126 L129 137" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <!-- board notes -->
+            <text x="26" y="128" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#33302A">F = qvB</text>
+            <text x="26" y="152" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#33302A">r = mv&#8260;qB</text>
+            <text x="26" y="304" font-size="13.5" font-style="italic" font-family="Georgia,serif" fill="#57534A">&#8855; B into the board</text>
+            <text x="284" y="248" font-size="14.5" font-style="italic" font-family="Georgia,serif" fill="#8A857B" transform="rotate(-4 284 248)">&ldquo;imagine it moving&hellip;&rdquo;</text>
+          </svg>
+          <figcaption>One frozen instant. Motion by imagination.</figcaption>
+        </figure>
+        <figure class="canvasCard reveal">
+          <canvas id="cyclotron" role="img" aria-label="Animation: charged particles curving into circles in a magnetic field pointing into the page"></canvas>
+          <figcaption>In <span data-brand="name"></span> &mdash; the motion itself, live.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · PRODUCT -->
+  <section class="sec alt" id="product">
+    <div class="wrap">
+      <p class="eyebrow reveal">The teaching surface</p>
+      <h2 class="reveal">Built for the way you actually teach.</h2>
+      <div class="productGrid">
+        <div class="frame reveal">
+          <div class="frameBar" aria-hidden="true"><i></i><i></i><i></i><span>Simple pendulum &mdash; state 3 of 5</span></div>
+          <div class="frameBody">
+            <canvas id="pendulum" role="img" aria-label="Animation: a pendulum whose length is changed by a slider, visibly changing its period"></canvas>
+            <div class="ctl">
+              <label for="lenSlider">Length&nbsp;L</label>
+              <input id="lenSlider" type="range" min="0" max="100" value="30" step="1" aria-label="Pendulum length">
+              <output id="lenOut" for="lenSlider">1.0 m</output>
+            </div>
+          </div>
+          <div class="frameCaption">Per-state controls &mdash; each step exposes only the slider it teaches. Try it.</div>
+        </div>
+        <ul class="features">
+          <li class="reveal"><b>Full 3D, in your hands.</b> Orbit around the field, look along the axis &mdash; see the physics from any angle, on a laptop or a phone.</li>
+          <li class="reveal"><b>Reorder the lesson mid-class.</b> Drag simulation states to match the flow of your explanation.</li>
+          <li class="reveal"><b>Draw on the physics itself.</b> A pen and whiteboard sit on top of the live simulation.</li>
+          <li class="reveal"><b>One control at a time.</b> Each state shows only the slider it teaches &mdash; the full set unlocks at the end.</li>
+          <li class="reveal"><b>Speaks English and Telugu.</b> Optional narration for bilingual classrooms &mdash; off by default. You are the voice.</li>
+          <li class="reveal"><b>Accurate by construction.</b> Every frame is computed from the equations &mdash; never hand-drawn animation.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · HOW IT WORKS -->
+  <section class="sec" id="how">
+    <div class="wrap">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 class="reveal">Three steps to a lesson they&rsquo;ll remember.</h2>
+      <ol class="steps">
+        <li class="reveal"><span class="n">1</span><b>Pick a concept</b><p>Mapped to NCERT chapters for Class 10&ndash;12.</p></li>
+        <li class="reveal"><span class="n">2</span><b>Teach it live</b><p>Step through states, draw, pause, reorder.</p></li>
+        <li class="reveal"><span class="n">3</span><b>Show, don&rsquo;t tell</b><p>Accurate motion answers the &ldquo;why&rdquo; words can&rsquo;t.</p></li>
+      </ol>
+    </div>
+    <figure class="band reveal">
+      <canvas id="generator" role="img" aria-label="Animation: a coil rotating between magnet poles, drawing the induced EMF sine wave in real time"></canvas>
+      <figcaption class="wrap">AC generator &mdash; the EMF peaks exactly when the coil is parallel to the field.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 6 · SUBJECTS -->
+  <section class="sec alt" id="subjects">
+    <div class="wrap">
+      <p class="eyebrow reveal">Subjects</p>
+      <h2 class="reveal">Starting with physics.</h2>
+      <div class="cards">
+        <article class="card live reveal">
+          <div class="orb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle class="nuc" cx="12" cy="12" r="2" fill="currentColor"/><g class="o1"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="currentColor" stroke-width="1.1"/></g><g class="o2"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="currentColor" stroke-width="1.1" transform="rotate(60 12 12)"/></g><g class="o3"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="currentColor" stroke-width="1.1" transform="rotate(120 12 12)"/></g></svg>
+          </div>
+          <h3>Physics</h3>
+          <p class="pill on">20 concepts live</p>
+          <p>Electrostatics &middot; Magnetism &middot; Electromagnetic induction &mdash; in full 3D, growing every week.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Mathematics</h3>
+          <p class="pill">Coming soon</p>
+          <p>Curves, transformations and calculus you can bend with your hands.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Chemistry</h3>
+          <p class="pill">Coming soon</p>
+          <p>Bonds, orbitals and reactions as moving structure, not flat diagrams.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · ABOUT -->
+  <section class="sec" id="about">
+    <div class="wrap narrow">
+      <p class="eyebrow reveal">About</p>
+      <h2 class="reveal">Made with teachers, in classrooms.</h2>
+      <div class="prose reveal">
+        <p>Every simulation is shaped by professors teaching real students, reviewed state by state, before it ships. If it doesn&rsquo;t survive a live classroom, it doesn&rsquo;t go in.</p>
+        <p>The physics is accurate by construction: rendering engines compute each frame from the governing equations, in real 3D. Nothing is key-framed, nothing is approximated art &mdash; so what your students see is what the mathematics says.</p>
+        <p>And it&rsquo;s built for Indian classrooms first &mdash; NCERT-mapped, exam-aware, comfortable in bilingual teaching. You stay the teacher; <span data-brand="name"></span> is the picture.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · PRICING -->
+  <section class="sec alt" id="pricing">
+    <div class="wrap narrow">
+      <p class="eyebrow reveal">Pricing</p>
+      <h2 class="reveal">One price. Everything included.</h2>
+      <p class="sub reveal">Less than what one hour of your teaching earns &mdash; for a month of every simulation.</p>
+      <div class="priceCard reveal">
+        <p class="pill on">Founding teacher &middot; first 25</p>
+        <p class="priceRow">
+          <span class="priceWas" aria-label="Standard price 999 rupees per month">&#8377;999</span>
+          <span class="priceNow">&#8377;699</span>
+          <span class="pricePer">/ month</span>
+        </p>
+        <p class="priceLock">Locked at &#8377;699 for as long as you stay &mdash; founding teachers never pay the standard price.</p>
+        <ul class="priceList">
+          <li>All 20 3D simulations today &mdash; new ones every week</li>
+          <li>The full teaching surface &mdash; reorder, draw, per-state controls</li>
+          <li>Narration in English and Telugu, off by default</li>
+          <li>Runs in your browser &mdash; nothing to install</li>
+        </ul>
+        <p class="priceTrial">Starts with one free week &mdash; full library, no card, no commitment. Teach a real class with it, then decide.</p>
+        <a class="btn wide" href="#access">Start your free week</a>
+        <p class="priceFine">Standard price after the founding cohort: &#8377;999/month.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · EARLY ACCESS -->
+  <section class="sec cta" id="access">
+    <div class="wrap narrow">
+      <h2 class="reveal">Teach with it before you decide.</h2>
+      <p class="sub reveal">One week free. The full library. No card. We onboard you personally &mdash; you could be teaching with it tomorrow.</p>
+      <form id="accessForm" class="accessForm reveal" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="fName">Your name</label>
+            <input id="fName" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="fInst">School / institute <span class="opt">(optional)</span></label>
+            <input id="fInst" name="institution" type="text" autocomplete="organization">
+          </div>
+        </div>
+        <div class="field">
+          <label for="fEmail">Email</label>
+          <input id="fEmail" name="email" type="email" autocomplete="email" required>
+        </div>
+        <button class="btn wide" type="submit">Start my free week</button>
+        <p class="assurance">25 founding seats &middot; &#8377;699/mo locked after your free week &middot; cancel anytime</p>
+        <p class="alt-mail">This opens your email app &mdash; or write to us directly at <a class="mailto" href="#">&nbsp;</a></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap footRow">
+    <div class="masthead">
+      <span class="mark sm" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg>
+      </span>
+      <span class="brand"><b data-brand="name"></b></span>
+    </div>
+    <p class="subjectsLine">Physics &middot; Mathematics <i>(soon)</i> &middot; Chemistry <i>(soon)</i></p>
+    <p class="fine"><a class="mailto" href="#">&nbsp;</a> &middot; &copy; <span id="year"></span></p>
+  </div>
+</footer>
+
+<script src="js/motion.js"></script>
+<script src="js/anims.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
