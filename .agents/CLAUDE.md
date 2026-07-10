@@ -52,7 +52,7 @@ a real handoff protocol). Owner-tag form: `release:shipper`.
 3. Never call `renderer_primitives` or `runtime_generation` directly. They're triggered by quality_auditor's FAIL routing.
 4. Quality_auditor is the gate, not the author. Reports + routes. Never edits content.
 5. `.agents/<role>/CLAUDE.md` is the canonical source. `.claude/agents/<role>.md` is the emission. Never edit the emission directly.
-6. Anchor checking (Indian context, plain English, no Hinglish) is folded into quality_auditor's anti-plagiarism probe. Do not create a separate anchor-checker agent.
+6. Anchor checking (UNIVERSAL culture-neutral anchor per Rule 35 — founder 2026-07-10, supersedes the old "Indian context" requirement; plain English, no Hinglish) is folded into quality_auditor's anti-plagiarism probe. Do not create a separate anchor-checker agent.
 7. *(added 2026-07-04)* `shipper` dispatches ONLY on explicit founder approval (Rule 17 gate — quality_auditor PASS / THE EYE clean are NOT approval); `eye_walker` curates frames but never approves (`visual:approve` stays founder-triggered); `retrofit_surgeon` never touches registration sites, renderer code, or a second file — it escalates instead.
 
 ## Versioning convention

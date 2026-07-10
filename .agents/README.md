@@ -30,7 +30,7 @@ proposal_queue for founder approval. Never in live serving paths.
 
 - **architect** decides WHAT: state count, arc shape, Rule 16a misconception beats
   (EPIC-C branches deferred until real students exist — 2026-06-10 directive),
-  Definition of Done, deep-dive hot states, prerequisites, Indian anchor.
+  Definition of Done, deep-dive hot states, prerequisites, universal real-world anchor (Rule 35).
 - **physics_author** decides HOW MUCH: formulas, variables, constraints, reveal
   timeline, drill-down phrasings. (Board mark schemes: deferred — conceptual-only
   directive 2026-06-11.)

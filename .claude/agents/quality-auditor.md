@@ -172,9 +172,9 @@ Any failure on the target = FAIL, route to json_author (bounds) or architect (st
 
 3b is a **pedagogy-judgment** layer. Most findings raise as `Concern` (json-author addresses iteratively); only **(a)** spatial-contiguity >2 violations in 3b.ii and **(b)** segmenting overload (any state with `scene_composition.length > 12`) raise as `FAIL`. Concerns accumulate in the report but don't block ship — PASS-WITH-NOTES is acceptable.
 
-*3b.i — Topper lens* (lived experience + `student_confusion_log` + Indian context):
+*3b.i — Topper lens* (lived experience + `student_confusion_log`):
 - EPIC-C STATE_1 sanity: each branch NAMES the wrong belief in text (Rule 16 in topper voice — "Myth: X" / "Wrong: Y" pattern). Missing = Concern.
-- Real-world anchor: Indian context, plain English, no Hinglish (CLAUDE.md §5). Single instance of "zameen / deewar / seedhi / tum / hain" = FAIL.
+- Real-world anchor: UNIVERSAL, culture-neutral (Rule 35, founder 2026-07-10 — any country-specific place/festival/food/currency/brand/name in rendered or narrated text = FAIL; region constants like mains 50/60 Hz must be neutral or parameterized). Plain English, no Hinglish (CLAUDE.md §5). Single instance of "zameen / deewar / seedhi / tum / hain" = FAIL.
 - Exam-yield: at least ONE state implicitly maps to a JEE Main / NEET / JEE Adv PYQ pattern. If concept is exam-relevant but no state surfaces a PYQ-shaped trap, raise Concern.
 - Pacing: would a topper skip any state as "I already know this"? List skip-candidates as Concern.
 
@@ -413,12 +413,13 @@ Spot-check real-world anchors + teacher_script text across all 9 states. **Red f
 - Textbook problem setups: *"A block of mass m is placed on a smooth inclined plane of angle θ…"* — this is DC Pandey's voice, not ours.
 - Figure references: *"See figure 5.12"*, *"as shown in the diagram above"*.
 - Paragraph structure mirroring DC Pandey / HC Verma — multi-clause compound sentences with passive voice.
-- Real-world anchor that is not Indian context: a treadmill, an escalator, or a roller-coaster is generic Western; a mango falling from a tree in a Chennai monsoon is Indian.
+- Country-specific cultural anchors (Rule 35, founder 2026-07-10 — INVERTS the pre-2026-07-10 "must be Indian" check): a named city, a festival, a currency amount, a local brand, or "in every Indian home"-style phrasing = FAIL. The anchor must read identically to a student in Hyderabad, London, or Texas.
 
-Good anchor examples (from shipped files):
-- `field_forces.json` — mango falls from a tree.
+Good anchor examples (universal — Rule 35):
+- a fruit falling from a tree (no named place or monsoon).
 - `normal_reaction.json` — person standing on an elevator floor.
 - `vector_resolution.json` — trolley on a ramp at a railway platform.
+- a ceiling fan, a phone charger, a speaker magnet, an MRI scanner.
 
 ## Self-review checklist (on your own report)
 

@@ -16,7 +16,7 @@ Given a concept_id + chapter, decide:
 - What are the genuine misconceptions students bring to this concept? (They feed the EPIC-L `misconception_watch` + straightforward contrast beats — Rule 16a as amended 2026-07-02: show the wrong expectation's consequence visually, then the real physics; no predict→reveal. EPIC-C branches are deferred until real students exist: EPIC-L-first directive, 2026-06-10.)
 - Which 2–3 states should support deep-dive?
 - Which prerequisites (other atomic concepts) does this assume?
-- What Indian real-world anchor makes the hook land?
+- What universal real-world anchor makes the hook land? (Rule 35 — culture-neutral, never country-specific)
 
 ## Input contract
 
@@ -48,7 +48,7 @@ spec (`docs/superpowers/specs/2026-07-05-coulombs_law-rule31-reconstruction-desi
   straightforward beat. A >55-word survivor carrying two ideas → **SPLIT** (rare — merging dominates:
   the Session 78 fleet audit graded 309 → ~75 states).
 - **PRESERVE:** the PRIMARY aha (it moves WITH its surviving state — never dies in a merge), the
-  Indian anchor, the physics block, `assessment` (if authored).
+  real-world anchor (universal per Rule 35), the physics block, `assessment` (if authored).
 - `misconception_watch`: prune to 1–3 genuine pivots (founder guardrail 2026-07-04).
 
 **Deletion-mechanics checklist (silent breakers — the skeleton must account for ALL):**
@@ -75,7 +75,7 @@ A single markdown skeleton (no JSON yet) with these 10 sections:
 6. **Drill-down clusters** — for each `has_prebuilt_deep_dive` state, 3 cluster_id candidates (snake_case) + one-sentence description. Physics_author will flesh out trigger_examples.
 7. **`entry_state_map`** (v2.2) — aspect-to-state-range mapping so the classifier's `aspect` routes a query to the right slice of the concept, not all states. Example for `normal_reaction`: `foundational → STATE_1–3`, `incline → STATE_4–5`, `elevator → STATE_6–7`. See §"Entry state map" below.
 8. **Prerequisites** — list of other concept_ids this advises, advisory only (Rule 23).
-9. **Real-world anchor** — Indian context, plain English, no Hinglish. Primary + optional secondary. Short paragraph explaining why it hooks Class 10-12 JEE/NEET students specifically.
+9. **Real-world anchor** — UNIVERSAL, culture-neutral context (Rule 35, founder 2026-07-10: the product ships to multiple country syllabi from the same content, so NO country-specific places, festivals, food, currency, brands, or names — a ceiling fan, a phone charger, an elevator, an MRI scanner, a speaker magnet; region-dependent constants like mains 50/60 Hz phrased neutrally or parameterized). Plain English, no Hinglish. Primary + optional secondary. Short paragraph explaining why it hooks a Class 10–12 physics student. *(Supersedes the pre-2026-07-10 "Indian context" requirement; the proof_run exemplar skeletons predate this rule — do NOT clone their Indian anchors.)*
 10. **Definition of Done (added 2026-06-11 — enforced by quality_auditor Gate 0)** — the complete checklist of what the FINISHED sim contains, written BEFORE anything is built (AUTHORING_PIPELINE.md §Stage ②): (a) every EPIC-L state by id with one-line content; (b) **symbol-label table** — every vector/quantity the narration will name → its exact on-canvas label (dl, r̂, θ, dB, B, F, v, μ₀…); (c) **right-hand-rule plan** — which rule on which direction-teaching state (grip rule for circulation, cross-product rule for a single dB/F — see `patterns/magnetism.md`); (d) **motion plan** — what animates in every state where something moves or a rule is performed (the founder rejects passive states); (e) **modes** required for this concept's phase; (f) `assessment` + `coverage_map` + per-state `misconception_watch` (mandatory for concepts authored 2026-05-30+). **No TBD entries.** Downstream agents build to ALL of it in ONE pass — labels, rules, and motion are table stakes, not iteration rounds. Target 2–3 founder rounds, not 7 (the biot_savart_law lesson, 2026-06-11).
 
 ## Tools allowed
@@ -305,15 +305,15 @@ When proposing a new concept, add an edge from its prerequisites to it and note 
 **FORBIDDEN:**
 - Teaching sequences. Our state order is authored from first principles based on cognitive progression, not from the textbook's chapter flow.
 - Figure references. Every diagram is newly composed in scene_composition.
-- Example problems. Real-world anchors are Indian context (mango tree, auto-rickshaw, Mumbai local train) not "a block of mass m on a frictionless plane".
+- Example problems. Real-world anchors are concrete everyday contexts (a ceiling fan, a falling fruit, an elevator, a phone charger) not "a block of mass m on a frictionless plane" — and never country-specific culture (Rule 35; the pre-2026-07-10 Indian-context examples are retired).
 - Explanation phrasings. teacher_script.tts_sentences[].text_en is authored fresh.
 
 **DC Pandey check** (add to architect's self-review output): *"Consulted Ch. X table of contents to confirm scope. No teaching method, no example problem, no figure reference imported."*
 
 ## Real-world anchor — what makes one good
 
-- **Indian specificity**: mango tree + Chennai monsoon ≠ generic "a fruit falls from a tree". Specificity earns trust.
-- **Age-appropriate**: Class 10-12 students relate to auto-rickshaws, IPL matches, local trains, monsoon, Diwali crackers. Not Wall Street, not Tesla cars.
+- **Concrete specificity, universal setting (Rule 35, 2026-07-10 — supersedes the old "Indian specificity" guidance)**: "a ceiling fan slowing after the switch is off" ≠ generic "an object rotates". Specificity earns trust — but the SETTING must read identically to a student in Hyderabad, London, or Texas: no named cities, festivals, currencies, brands, or country-specific transport.
+- **Age-appropriate**: Class 10–12 students relate to fans, phone chargers, elevators, playground swings, speakers, kitchen appliances. Not finance, not brand-name products.
 - **Plain English**: No Hinglish. No "tum", "hain", "zameen", "deewar". The student's English teacher would approve every sentence.
 - **Physics-true**: the anchor must genuinely exhibit the concept — not a metaphor that breaks at any level of depth.
 
@@ -350,7 +350,7 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 - [ ] `entry_state_map` declared with at least `foundational` range, plus any aspect-specific ranges (incline, elevator, etc.) that match the concept's scope.
 - [ ] Prerequisites are advisory, cite shipped concepts where possible.
 - [ ] Definition of Done block (section 10) is complete — every named vector has a label row, every direction-teaching state has an RHR row, everything that moves has a motion row, modes + assessment declared. Zero TBDs (Gate 0 fails the skeleton otherwise).
-- [ ] Real-world anchor is Indian, plain English, physics-true.
+- [ ] Real-world anchor is universal/culture-neutral (Rule 35 — no country-specific culture), plain English, physics-true.
 - [ ] DC Pandey check line in output: scope only, no teaching method copied.
 - [ ] Engine bug queue consulted; every relevant `prevention_rule` satisfied or exception documented and FLAGed.
 - [ ] **Two-pass lens Block 1 present** — prerequisite cliff sentences, JEE-backwards trace, misconception-entry mapping all filled (no "TBD").

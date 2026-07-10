@@ -152,7 +152,7 @@ The YouTube professor is the **nervous system** (pacing, emphasis, what makes it
 **skeleton** still comes from the source triad — don't let one charismatic video become the sole source:
 - **HC Verma** → teaching sequence / derivation order
 - **DC Pandey** → problem types + misconception beliefs (the belief only)
-- **NCERT** → Indian real-world anchors
+- **NCERT** → syllabus coverage + sequencing (its Indian-context examples are NOT imported — anchors are universal per Rule 35, 2026-07-10)
 Cross-check the video against the skeleton so nothing required is missing.
 
 ### 3. Visual testing means Claude actually LOOKS — every time

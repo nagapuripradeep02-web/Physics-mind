@@ -249,7 +249,7 @@ Before declaring a state done, answer all four in concrete terms (not generic). 
 - Plain English, Class 11 reading level.
 - No Hinglish (`zameen, deewar, tum, hain, kya, seedhi`).
 - No textbook phrasing (*"Let us consider a block of mass m..."*).
-- Indian real-world concrete (*"a mango from a tree"*, *"an elevator floor"*) not abstract (*"an object"*).
+- Universal real-world concrete (*"a fruit from a tree"*, *"an elevator floor"*, *"a ceiling fan"*) not abstract (*"an object"*) — and never country-specific culture (Rule 35, 2026-07-10).
 - 2–4 tight sentences (25–55 EN words total) per guided state (Rule 31a word budget, 2026-07-08); >55 words = the state carries two ideas — flag to architect to split, don't compress into run-ons; explore state = 0/open.
 
 ## Modes — CONCEPTUAL ONLY for new concepts (Rule 20 SUSPENDED 2026-06-11)
@@ -288,7 +288,7 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 ## Self-review checklist (run before handoff to quality_auditor)
 
 - [ ] `npx tsc --noEmit` → 0 errors; `npm run validate:concepts` → target PASSES, no bounds WARN.
-- [ ] CLAUDE.md §6 checklist items 3–8 (Rules 15, 16, 19, 20, 21, Indian-context anchor).
+- [ ] CLAUDE.md §6 checklist items 3–8 (Rules 15, 16, 19, 20, 21, universal anchor per Rule 35).
 - [ ] All 8 registration sites touched. Especially sites #7 (`PCPL_CONCEPTS`) and #8 (`CLASSIFIER_PROMPT`) — boot-time assertion in `intentClassifier.ts` must log zero warnings after your changes.
 - [ ] SQL migration drafted (physics_author's phrasings → INSERT rows into `confusion_cluster_registry`).
 - [ ] No primitive type used outside the verified list. Every `*_expr` references only declared vars.
