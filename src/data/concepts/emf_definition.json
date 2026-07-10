@@ -137,7 +137,10 @@
           {
             "type": "annotation",
             "id": "pump_lift_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Inside the cell, every charge is lifted from the − terminal to the + terminal.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -145,7 +148,10 @@
           {
             "type": "annotation",
             "id": "terminal_tags",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "− is low potential, + is high potential — the pump raises every charge that passes through.",
             "color": "#80DEEA",
             "is_persistent": false
@@ -153,7 +159,10 @@
           {
             "type": "annotation",
             "id": "ammeter_callout",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The ammeter reads i = 1.0 A — this is a normal, working loop.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -164,11 +173,15 @@
             {
               "id": "s1_1",
               "text_en": "These drifting charges are the current I you already know — but the cell keeps spending energy to push them around this loop.",
+              "text_hi": "ये drift करते हुए charges वही current I हैं जो आप पहले से जानते हैं — लेकिन cell इस loop में उन्हें आगे धकेलने के लिए energy खर्च करता रहता है।",
+              "text_te": "ఈ drift అవుతున్న charges మీకు ఇప్పటికే తెలిసిన current I నే — కానీ cell ఈ loop చుట్టూ వాటిని ముందుకు నెట్టడానికి energy ని ఖర్చు చేస్తూనే ఉంటుంది.",
               "glow": "electrons"
             },
             {
               "id": "s1_2",
               "text_en": "Inside, each charge is lifted from the low end to the high end — real work W, not just drift.",
+              "text_hi": "अंदर, हर charge को low end से high end तक ऊपर उठाया जाता है — यह असली work W है, सिर्फ drift नहीं।",
+              "text_te": "లోపల, ప్రతి charge, low end నుండి high end కు పైకి లేపబడుతుంది — ఇది నిజమైన work W, కేవలం drift కాదు.",
               "glow": "pump"
             }
           ]
@@ -183,7 +196,10 @@
           {
             "type": "annotation",
             "id": "step_height_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Step up = ε = 1.5 J/C — the measured size of the lift.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -191,7 +207,10 @@
           {
             "type": "annotation",
             "id": "flat_wire_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Flat along the wire — no potential is spent just travelling.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -199,7 +218,10 @@
           {
             "type": "annotation",
             "id": "load_drop_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Equal drop across the load, R = 1.5 Ω — the same energy spent as heat.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -210,16 +232,22 @@
             {
               "id": "s2_1",
               "text_en": "That lift has a real size: the ladder traces it as a step up of one point five joules for every coulomb.",
+              "text_hi": "उस उठाव का एक असली आकार है: ladder इसे हर coulomb के लिए डेढ़ joules ऊपर चढ़ने वाले step के रूप में दिखाती है।",
+              "text_te": "ఆ లేపడానికి ఒక నిజమైన పరిమాణం ఉంది: ladder దానిని ప్రతి coulomb కు ఒకటిన్నర joules పైకి ఎక్కే step గా చూపిస్తుంది.",
               "glow": "ladder"
             },
             {
               "id": "s2_2",
               "text_en": "The charge rides flat along the wire, then drops that same amount crossing the load.",
+              "text_hi": "Charge wire के साथ-साथ flat चलता है, फिर load को पार करते समय उतनी ही मात्रा नीचे गिर जाता है।",
+              "text_te": "Charge wire వెంట flat గా ప్రయాణిస్తుంది, తర్వాత load ను దాటేటప్పుడు అదే మొత్తం కిందికి పడిపోతుంది.",
               "glow": "load"
             },
             {
               "id": "s2_3",
               "text_en": "That is the definition: emf epsilon equals work W divided by charge q.",
+              "text_hi": "यही definition है: emf epsilon, work W को charge q से भाग देने पर बराबर होता है।",
+              "text_te": "అదే definition: emf epsilon అంటే work W ను charge q తో భాగించగా వచ్చేది.",
               "glow": "formula"
             }
           ]
@@ -241,7 +269,10 @@
           {
             "type": "annotation",
             "id": "q_packet_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Charge packet: q = 1 C → 2 C.",
             "color": "#FFE082",
             "is_persistent": false
@@ -249,7 +280,10 @@
           {
             "type": "annotation",
             "id": "w_readout_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Work done: W = 1.5 J → 3.0 J — the total work doubles.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -257,7 +291,10 @@
           {
             "type": "annotation",
             "id": "held_step_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The step height holds at 1.5 J/C — per charge, never total.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -268,16 +305,22 @@
             {
               "id": "s3_1",
               "text_en": "Here's the test: watch the charge packet double from one coulomb to two.",
+              "text_hi": "यह रहा test: charge packet को एक coulomb से दो तक दोगुना होते देखिए।",
+              "text_te": "ఇదిగో test: charge packet ఒక coulomb నుండి రెండుకు రెట్టింపు అవ్వడం చూడండి.",
               "glow": "pump"
             },
             {
               "id": "s3_2",
               "text_en": "The total work W the cell does doubles — one point five joules becomes three — but the ladder step itself never moves.",
+              "text_hi": "Cell द्वारा किया गया कुल work W दोगुना हो जाता है — डेढ़ joules तीन बन जाते हैं — लेकिन ladder step खुद कभी नहीं हिलता।",
+              "text_te": "Cell చేసే మొత్తం work W రెట్టింపు అవుతుంది — ఒకటిన్నర joules మూడు అవుతుంది — కానీ ladder step మాత్రం ఎప్పటికీ కదలదు.",
               "glow": "ladder"
             },
             {
               "id": "s3_3",
               "text_en": "That's the proof: emf is energy per charge, not a force — one volt really is one joule per coulomb, never newtons.",
+              "text_hi": "यही सबूत है: emf हर charge के लिए energy है, कोई force नहीं — एक volt वास्तव में हर coulomb के लिए एक joule है, कभी newtons नहीं।",
+              "text_te": "అదే నిరూపణ: emf అంటే ప్రతి charge కు ఉండే energy, force కాదు — ఒక volt అంటే నిజంగా ప్రతి coulomb కు ఒక joule, ఎప్పటికీ newtons కాదు.",
               "glow": "formula"
             }
           ]
@@ -306,7 +349,10 @@
           {
             "type": "annotation",
             "id": "chemistry_stop_tag_1",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "1.5 V dry cell · 2 V lead-acid cell.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -314,7 +360,10 @@
           {
             "type": "annotation",
             "id": "chemistry_stop_tag_2",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "3.7 V Li-ion cell · 12 V car battery.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -322,7 +371,10 @@
           {
             "type": "annotation",
             "id": "step_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Taller step = bigger emf epsilon — the chemistry decides, never the circuit.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -333,11 +385,15 @@
             {
               "id": "s4_1",
               "text_en": "Drag the emf slider and watch the lift itself grow — different cells, different epsilon, same law: current i equals epsilon over R.",
+              "text_hi": "emf slider को खींचिए और उस उठाव को बढ़ते देखिए — अलग-अलग cells, अलग-अलग epsilon, लेकिन law एक ही है: current i, epsilon को R से भाग देने पर बराबर होता है।",
+              "text_te": "emf slider ను లాగి, ఆ లేపడం పెరగడం చూడండి — వేర్వేరు cells, వేర్వేరు epsilon, కానీ law మాత్రం ఒకటే: current i అంటే epsilon ను R తో భాగించగా వచ్చేది.",
               "glow": "pump"
             },
             {
               "id": "s4_2",
               "text_en": "A torch cell sits at one point five volts, a car battery at twelve — the chemistry inside sets that number, never the circuit outside.",
+              "text_hi": "एक torch cell डेढ़ volts पर रहता है, एक car battery बारह पर — अंदर की chemistry वह संख्या तय करती है, बाहर का circuit कभी नहीं।",
+              "text_te": "ఒక torch cell ఒకటిన్నర volts వద్ద ఉంటుంది, ఒక car battery పన్నెండు వద్ద — లోపలి chemistry ఆ సంఖ్యను నిర్ణయిస్తుంది, బయటి circuit ఎప్పటికీ కాదు.",
               "glow": "ladder"
             }
           ]
@@ -352,7 +408,10 @@
           {
             "type": "annotation",
             "id": "broken_loop_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Switch open — the loop is broken.",
             "color": "#EF5350",
             "is_persistent": false
@@ -360,7 +419,10 @@
           {
             "type": "annotation",
             "id": "dead_ammeter_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Ammeter at zero — no current flowing.",
             "color": "#80DEEA",
             "is_persistent": false
@@ -368,7 +430,10 @@
           {
             "type": "annotation",
             "id": "voltmeter_callout",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Voltmeter settles at V = ε = 1.5 V.",
             "color": "#B39DDB",
             "is_persistent": false
@@ -379,16 +444,22 @@
             {
               "id": "s5_1",
               "text_en": "Now open the switch: the loop breaks, beads coast to a stop, and the ammeter dies to zero.",
+              "text_hi": "अब switch खोलिए: loop टूट जाता है, beads धीरे-धीरे रुक जाते हैं, और ammeter zero पर आ जाता है।",
+              "text_te": "ఇప్పుడు switch ను తెరవండి: loop విరిగిపోతుంది, beads మెల్లగా ఆగిపోతాయి, మరియు ammeter zero కు పడిపోతుంది.",
               "glow": "electrons"
             },
             {
               "id": "s5_2",
               "text_en": "With no current at all, the voltmeter across the terminals settles at the full emf epsilon — one point five volts, exactly.",
+              "text_hi": "बिल्कुल भी current न होने पर, terminals के बीच का voltmeter पूरे emf epsilon पर टिक जाता है — ठीक डेढ़ volts।",
+              "text_te": "ఏమాత్రం current లేకుండా, terminals మధ్య ఉన్న voltmeter పూర్తి emf epsilon వద్ద స్థిరపడుతుంది — సరిగ్గా ఒకటిన్నర volts.",
               "glow": "voltmeter"
             },
             {
               "id": "s5_3",
               "text_en": "That's how emf is measured — a real cell has more to tell once current flows again.",
+              "text_hi": "इसी तरह emf मापा जाता है — जैसे ही current फिर से बहने लगता है, असली cell के पास बताने के लिए और भी बहुत कुछ होता है।",
+              "text_te": "ఇలాగే emf ను కొలుస్తారు — current మళ్ళీ ప్రవహించడం మొదలైతే, నిజమైన cell చెప్పడానికి ఇంకా చాలా ఉంటుంది.",
               "glow": "voltmeter"
             }
           ]
@@ -410,7 +481,10 @@
           {
             "type": "annotation",
             "id": "formula_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "i = ε / R — every dial is live now.",
             "color": "#FFD54F",
             "is_persistent": false
@@ -418,7 +492,10 @@
           {
             "type": "annotation",
             "id": "readout_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Pump, ladder, ammeter, and voltmeter all respond live as you drag.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -426,7 +503,10 @@
           {
             "type": "annotation",
             "id": "controls_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Drag epsilon, the load R, or flip the switch.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -437,6 +517,8 @@
             {
               "id": "s6_1",
               "text_en": "Every dial is yours now — epsilon, load R, and the switch — the same law, i equals epsilon over R.",
+              "text_hi": "अब हर dial आपके हाथ में है — epsilon, load R, और switch — law वही है, i, epsilon को R से भाग देने पर बराबर होता है।",
+              "text_te": "ఇప్పుడు ప్రతి dial మీ చేతిలోనే ఉంది — epsilon, load R, మరియు switch — law మాత్రం అదే, i అంటే epsilon ను R తో భాగించగా వచ్చేది.",
               "glow": "formula"
             }
           ]
@@ -464,11 +546,35 @@
   ],
   "particle_field_config": {
     "scenario_type": "emf_definition",
-    "particles": { "count": 34, "color": "#42A5F5", "size": 8 },
+    "particles": {
+      "count": 34,
+      "color": "#42A5F5",
+      "size": 8
+    },
     "slider_controls": {
-      "emf": { "min": 1, "max": 12, "step": 0.1, "default": 1.5, "label": "EMF ε", "unit": "V" },
-      "R": { "min": 0.5, "max": 12, "step": 0.5, "default": 1.5, "label": "Load R", "unit": "Ω" },
-      "switch": { "min": 0, "max": 1, "step": 1, "default": 1, "label": "Switch" }
+      "emf": {
+        "min": 1,
+        "max": 12,
+        "step": 0.1,
+        "default": 1.5,
+        "label": "EMF ε",
+        "unit": "V"
+      },
+      "R": {
+        "min": 0.5,
+        "max": 12,
+        "step": 0.5,
+        "default": 1.5,
+        "label": "Load R",
+        "unit": "Ω"
+      },
+      "switch": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "label": "Switch"
+      }
     },
     "pvl_colors": {
       "background": "#0A0A1A",
@@ -527,7 +633,9 @@
         "emf_autosweep": true,
         "emf_autosweep_to": 12,
         "show_sliders": false,
-        "visible_controls": ["emf"],
+        "visible_controls": [
+          "emf"
+        ],
         "glow_focal": "ladder",
         "R": 1.5,
         "switch": 1
