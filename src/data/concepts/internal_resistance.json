@@ -688,6 +688,7 @@
         "two_reading": true,
         "show_r": true,
         "show_voltmeter": true,
+        "show_ladder": true,
         "show_sliders": false,
         "visible_controls": ["switch"],
         "glow_focal": "voltmeter",

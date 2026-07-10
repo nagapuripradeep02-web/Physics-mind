@@ -1322,7 +1322,10 @@ function drawIrScenario() {
   drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i,
                             Req: c.R, V: c.eps, R1: c.R, R2: c.R,
                             dir: (c.mode === 'charging') ? -1 : 1 });
-  drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + fmtNum(c.R) + ' \\u03A9', dimFor('load'));
+  // R label matches the slider row's 2-decimal precision (never a coarser toFixed(1) —
+  // at the S3 sweep end the loop must read the same 0.25 the panel shows).
+  var rl = (abs(c.R - round(c.R)) < 0.005) ? String(round(c.R)) : String(round(c.R * 100) / 100);
+  drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + rl + ' \\u03A9', dimFor('load'));
   drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
   var rr = null;
   if (st && (st.show_r || st.r_reveal)) {
