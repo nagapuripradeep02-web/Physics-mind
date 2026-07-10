@@ -424,6 +424,15 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     // lift" self-demonstrates — pin the frozen frame past the settle so it lands on
     // the tall-ε pose (visually distinct from S2), not mid-glide.
     if (state.emf_autosweep === true) maxMs = Math.max(maxMs, 700 + 3200 + 400);
+    // internal_resistance one-shots — pin the frozen frame past each settle:
+    // droop_intro = cued switch-close at 1500 + 800ms current ramp; two_reading =
+    // open-hold → close at 2500 + ramp + the computed-r line at 3600; r_reveal =
+    // casing draw-in 700 + 900; R_autosweep_down = the S3/S4 sweep (700 + 3200,
+    // mirrors cIrLoadR in the renderer).
+    if (state.droop_intro === true) maxMs = Math.max(maxMs, 1500 + 800 + 400);
+    if (state.two_reading === true) maxMs = Math.max(maxMs, 3600 + 400);
+    if (state.r_reveal === true) maxMs = Math.max(maxMs, 700 + 900 + 400);
+    if (state.R_autosweep_down === true) maxMs = Math.max(maxMs, 700 + 3200 + 400);
     return maxMs;
 }
 
