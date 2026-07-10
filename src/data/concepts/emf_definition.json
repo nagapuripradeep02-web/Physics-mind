@@ -21,7 +21,7 @@
     "drift_velocity"
   ],
   "real_world_anchor": {
-    "primary": "The emf hierarchy of real Indian cells: a 1.5 V Eveready dry cell in a torch, a 2 V lead-acid cell inside an inverter bank, a 3.7 V lithium-ion cell in every phone, a 12 V car battery — four everyday objects, four different numbers, and the number means one exact thing: how many joules that cell's chemistry hands every coulomb that passes through it. A dry cell the size of a thumb and a fat D-cell both say 1.5 V, because the chemistry is the same — the chemistry sets ε; the circuit never does.",
+    "primary": "The emf hierarchy of everyday cells: a 1.5 V dry cell in a torch, a 2 V lead-acid cell inside an inverter or UPS bank, a 3.7 V lithium-ion cell in every phone, a 12 V car battery — four everyday objects, four different numbers, and the number means one exact thing: how many joules that cell's chemistry hands every coulomb that passes through it. A dry cell the size of a thumb and a fat D-cell both say 1.5 V, because the chemistry is the same — the chemistry sets ε; the circuit never does.",
     "secondary": "Every student has read these numbers off real batteries their whole life without knowing what the number promises; 'define emf and state its SI unit' and 'distinguish emf from terminal potential difference' are board staples, and this hierarchy makes the definition concrete four times over."
   },
   "physics_engine_config": {
