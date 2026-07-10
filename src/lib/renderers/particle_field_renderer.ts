@@ -470,7 +470,7 @@ function windowResized() {
 // ─── Scene construction (deterministic) ─────────────────────────────────────
 function rebuildScene() {
   physRand = mulberry32(PHYS_SEED);
-  if (isCircuitFamily()) { circuitInitBeads(); collisionFlashes = []; return; }  // circuit path builds beads, not a free-drift gas
+  if (isCircuitFamily()) { circuitInitBeads(); collisionFlashes = []; powerEnergyReset(); return; }  // circuit path builds beads, not a free-drift gas
   particles = [];
   for (var i = 0; i < config.particles.count; i++) {
     var angle = pr() * TWO_PI;
@@ -1016,6 +1016,28 @@ function cCurrents() {
            Req: swOpen ? R1 : (R1 * R2) / (R1 + R2), V: V, R1: R1, R2: R2 };
 }
 
+// ── electric_power: per-bulb dissipation + Joule-heating energy accumulator ──
+// Series: same current itot through both -> P = i^2 R. Parallel: same V across
+// each -> P = V^2 / R. POWER_PMAX is a FIXED brightness normalizer (never
+// per-state auto-scale) so the series-vs-parallel magnitude flip stays honest.
+var POWER_PMAX = 6;
+var powerEnergyJ = 0;                 // S3 accumulator (state-local; reset on entry)
+function powerEnergyReset() { powerEnergyJ = 0; }
+function cBulbPowers() {
+  var c = cCurrents();
+  if (c.single) {
+    var Ps = c.itot * c.V;
+    return { topo: 'single', single: true, P1: Ps, P2: 0, Ptot: Ps, Pmax: POWER_PMAX };
+  }
+  if (c.topo === 'series') {
+    var Pa = c.itot * c.itot * c.R1, Pb = c.itot * c.itot * c.R2;
+    return { topo: 'series', single: false, P1: Pa, P2: Pb, Ptot: Pa + Pb, Pmax: POWER_PMAX };
+  }
+  var Pp1 = (c.V * c.V) / c.R1;
+  var Pp2 = (c.i2 <= 1e-9) ? 0 : (c.V * c.V) / c.R2;
+  return { topo: 'parallel', single: false, P1: Pp1, P2: Pp2, Ptot: Pp1 + Pp2, Pmax: POWER_PMAX };
+}
+
 // ── geometry + polyline sampling ────────────────────────────────────────────
 function circuitGeom() {
   var leftX = width * 0.15, rightX = width * 0.70;
@@ -1396,6 +1418,9 @@ function drawIrScenario() {
 
 function stepCircuit(state) {
   PM_simTimeMs += 1000 / 60; window.PM_simTimeMs = PM_simTimeMs;
+  if (state && state.energy_accumulate) {                 // electric_power S3: P*dt piles up
+    powerEnergyJ += cBulbPowers().Ptot * (1000 / 60) / 1000;
+  }
   var cues = getCues(state);
   for (var ci = 0; ci < cues.length; ci++) {
     var cc = cues[ci];
