@@ -50,7 +50,7 @@
         "min": 0.25,
         "max": 12,
         "step": 0.25,
-        "default": 1.0,
+        "default": 1,
         "role": "slider — LIVE in STATE_3 (visible_controls: ['R'], teacher-seizable mid-sweep, 700–3900 ms) and STATE_7 (explore). The SAME R_autosweep_down/R_autosweep_to mechanism also drives STATE_4's collapse-to-zero, but STATE_4 HIDES the row (visible_controls: []) — a fixed ceiling demonstration, not teacher-dragged. Not locked on STATE_3/STATE_4 (locking would freeze the row against teacher drag); locked to 1.0 on STATE_1/STATE_2/STATE_5/STATE_6 where R carries no live control."
       },
       "switch": {
@@ -65,7 +65,7 @@
       "charger_emf": {
         "name": "ideal charger emf (fixed)",
         "unit": "V",
-        "constant": 3.0,
+        "constant": 3,
         "role": "FIXED ENGINE CONSTANT, not a slider — read only via st.charger_emf on STATE_6 (the engine defaults to 3.0 if the state omits it). Authored explicitly as charger_emf: 3.0 on STATE_6 anyway (defensive-lock discipline — declare non-default-path values explicitly so nothing silently falls back). No UI slider or new flag added for it."
       },
       "i": {
@@ -156,7 +156,10 @@
           {
             "type": "annotation",
             "id": "promise_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "A real cell should deliver its full label — right now the voltmeter reads a steady 1.50 V, switch open.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -164,7 +167,10 @@
           {
             "type": "annotation",
             "id": "droop_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Close the switch: the voltmeter glides from 1.50 V down to 1.00 V the instant real current flows.",
             "color": "#B39DDB",
             "is_persistent": false
@@ -172,7 +178,10 @@
           {
             "type": "annotation",
             "id": "gap_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "A 0.50 V gap opens between the cell's badge and the meter's reading — shown, not yet explained.",
             "color": "#80DEEA",
             "is_persistent": false
@@ -183,22 +192,22 @@
             {
               "id": "s1_1",
               "text_en": "A real cell should deliver its full label — right now, switch open, this one reads a steady 1.50 volts.",
-              "text_hi": "A real cell should deliver its full label — right now, switch open, this one reads a steady 1.50 volts.",
-              "text_te": "A real cell should deliver its full label — right now, switch open, this one reads a steady 1.50 volts.",
+              "text_hi": "एक असली cell को अपना पूरा label देना चाहिए — अभी, switch खुला होने पर, यह स्थिर रूप से 1.50 volts दिखा रहा है।",
+              "text_te": "ఒక నిజమైన cell తన పూర్తి label ను అందించాలి — ప్రస్తుతం, switch తెరిచి ఉండగా, ఇది స్థిరంగా 1.50 volts చూపిస్తోంది.",
               "glow": "voltmeter"
             },
             {
               "id": "s1_2",
               "text_en": "Close the switch, and current i starts flowing.",
-              "text_hi": "Close the switch, and current i starts flowing.",
-              "text_te": "Close the switch, and current i starts flowing.",
+              "text_hi": "switch बंद कीजिए, और current i बहना शुरू हो जाता है।",
+              "text_te": "switch ను మూయండి, అప్పుడు current i ప్రవహించడం మొదలవుతుంది.",
               "glow": "switch"
             },
             {
               "id": "s1_3",
               "text_en": "Watch the voltmeter: it glides down to 1.00 volt the instant real current flows — the promise breaks.",
-              "text_hi": "Watch the voltmeter: it glides down to 1.00 volt the instant real current flows — the promise breaks.",
-              "text_te": "Watch the voltmeter: it glides down to 1.00 volt the instant real current flows — the promise breaks.",
+              "text_hi": "voltmeter को देखिए: असली current बहते ही यह तुरंत 1.00 volt तक फिसल जाता है — वादा टूट जाता है।",
+              "text_te": "voltmeter ను గమనించండి: నిజమైన current ప్రవహించిన క్షణమే అది 1.00 volt కు జారిపోతుంది — వాగ్దానం విరిగిపోతుంది.",
               "glow": "voltmeter"
             }
           ]
@@ -213,7 +222,10 @@
           {
             "type": "annotation",
             "id": "zigzag_r_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "The cell's casing opens: a zigzag marks the internal resistance r = 0.5 Ω — the electrolyte and electrodes' own resistance, not an installed part.",
             "color": "#FF8A65",
             "is_persistent": false
@@ -221,7 +233,10 @@
           {
             "type": "annotation",
             "id": "internal_step_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The ladder grows a second, internal step: i·r = 0.50 V, spent before the charge even leaves the cell.",
             "color": "#FF8A65",
             "is_persistent": false
@@ -229,7 +244,10 @@
           {
             "type": "annotation",
             "id": "accounting_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The accounting closes: ε = V + i·r → 1.50 = 1.00 + 0.50 — the missing volts, found.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -240,22 +258,22 @@
             {
               "id": "s2_1",
               "text_en": "The ladder still tracks each coulomb's energy — up the full epsilon inside the pump.",
-              "text_hi": "The ladder still tracks each coulomb's energy — up the full epsilon inside the pump.",
-              "text_te": "The ladder still tracks each coulomb's energy — up the full epsilon inside the pump.",
+              "text_hi": "ladder अब भी हर coulomb की energy को track करती है — pump के अंदर पूरे epsilon तक ऊपर।",
+              "text_te": "ladder ఇప్పటికీ ప్రతి coulomb శక్తిని track చేస్తుంది — pump లోపల పూర్తి epsilon వరకు పైకి.",
               "glow": "ladder"
             },
             {
               "id": "s2_2",
               "text_en": "Its casing opens: an internal resistance r — the electrolyte and electrodes' own resistance, not something installed.",
-              "text_hi": "Its casing opens: an internal resistance r — the electrolyte and electrodes' own resistance, not something installed.",
-              "text_te": "Its casing opens: an internal resistance r — the electrolyte and electrodes' own resistance, not something installed.",
+              "text_hi": "इसका casing खुलता है: एक internal resistance r — यह electrolyte और electrodes का अपना resistance है, कोई लगाई हुई चीज़ नहीं।",
+              "text_te": "దాని casing తెరుచుకుంటుంది: ఒక internal resistance r — ఇది electrolyte మరియు electrodes కు స్వంతమైన resistance, ఇది బయటి నుండి అమర్చినది కాదు.",
               "glow": "r_internal"
             },
             {
               "id": "s2_3",
               "text_en": "The missing 0.50 volts appear as a second step before the charge leaves the cell: epsilon equals terminal voltage V plus i r — found.",
-              "text_hi": "The missing 0.50 volts appear as a second step before the charge leaves the cell: epsilon equals terminal voltage V plus i r — found.",
-              "text_te": "The missing 0.50 volts appear as a second step before the charge leaves the cell: epsilon equals terminal voltage V plus i r — found.",
+              "text_hi": "गायब 0.50 volts, charge के cell से बाहर निकलने से पहले एक दूसरे step के रूप में दिखते हैं: epsilon, terminal voltage V और i r को जोड़ने पर बराबर होता है — मिल गया।",
+              "text_te": "కనిపించని 0.50 volts, charge cell నుండి బయటకు వెళ్ళే ముందు రెండో step గా కనిపిస్తాయి: epsilon అంటే terminal voltage V మరియు i r ను కలిపితే వచ్చేది — దొరికింది.",
               "glow": "r_internal"
             }
           ]
@@ -284,7 +302,10 @@
           {
             "type": "annotation",
             "id": "sweep_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "R glides down from 1.0 Ω to 0.25 Ω — the same Ohm's law, now with R and r in series.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -292,7 +313,10 @@
           {
             "type": "annotation",
             "id": "growing_step_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Current climbs 1.0 A to 2.0 A; the internal step stretches 0.50 V to 1.00 V — the droop doubles exactly when i doubles.",
             "color": "#FF8A65",
             "is_persistent": false
@@ -300,7 +324,10 @@
           {
             "type": "annotation",
             "id": "falling_v_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "V falls 1.00 V to 0.50 V on the ladder and the needle together — like headlights dimming when the starter cranks.",
             "color": "#B39DDB",
             "is_persistent": false
@@ -311,22 +338,22 @@
             {
               "id": "s3_1",
               "text_en": "The same Ohm's law drives the loop — R and r, in series.",
-              "text_hi": "The same Ohm's law drives the loop — R and r, in series.",
-              "text_te": "The same Ohm's law drives the loop — R and r, in series.",
+              "text_hi": "वही Ohm's law इस loop को चलाता है — R और r, series में।",
+              "text_te": "అదే Ohm's law ఈ loop ను నడిపిస్తుంది — R మరియు r, series లో.",
               "glow": "ladder"
             },
             {
               "id": "s3_2",
               "text_en": "As R shrinks, current climbs 1.0 to 2.0 amps, and the droop grows 0.50 to 1.00 volt — it doubles exactly when current doubles.",
-              "text_hi": "As R shrinks, current climbs 1.0 to 2.0 amps, and the droop grows 0.50 to 1.00 volt — it doubles exactly when current doubles.",
-              "text_te": "As R shrinks, current climbs 1.0 to 2.0 amps, and the droop grows 0.50 to 1.00 volt — it doubles exactly when current doubles.",
+              "text_hi": "जैसे-जैसे R घटता है, current 1.0 से 2.0 amps तक चढ़ता है, और droop 0.50 से 1.00 volt तक बढ़ता है — जब current दोगुना होता है तो यह भी ठीक दोगुना हो जाता है।",
+              "text_te": "R తగ్గుతున్న కొద్దీ, current 1.0 నుండి 2.0 amps కు పెరుగుతుంది, మరియు droop 0.50 నుండి 1.00 volt కు పెరుగుతుంది — current రెట్టింపైనప్పుడు ఇది సరిగ్గా రెట్టింపు అవుతుంది.",
               "glow": "load"
             },
             {
               "id": "s3_3",
               "text_en": "It's the same reason car headlights dim the instant the starter cranks — more current, more voltage spent inside.",
-              "text_hi": "It's the same reason car headlights dim the instant the starter cranks — more current, more voltage spent inside.",
-              "text_te": "It's the same reason car headlights dim the instant the starter cranks — more current, more voltage spent inside.",
+              "text_hi": "यही वजह है कि starter घूमते ही car की headlights धुंधली पड़ जाती हैं — ज़्यादा current, अंदर ज़्यादा voltage खर्च होता है।",
+              "text_te": "ఇదే కారణం వల్ల starter తిరిగిన క్షణమే car headlights మసకబారతాయి — ఎక్కువ current, లోపల ఎక్కువ voltage ఖర్చు అవుతుంది.",
               "glow": "ladder"
             }
           ]
@@ -341,7 +368,10 @@
           {
             "type": "annotation",
             "id": "r_zero_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "R collapses to exactly zero — plain Ohm's law i = ε/R would predict infinite current.",
             "color": "#EF5350",
             "is_persistent": false
@@ -349,7 +379,10 @@
           {
             "type": "annotation",
             "id": "capped_ammeter_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "But the ammeter stops cold at i_max = ε/r = 3.0 A — the hidden r is still in the loop.",
             "color": "#FF8A65",
             "is_persistent": false
@@ -357,7 +390,10 @@
           {
             "type": "annotation",
             "id": "heat_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "V dies to 0; all of ε is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
             "color": "#EF5350",
             "is_persistent": false
@@ -368,22 +404,22 @@
             {
               "id": "s4_1",
               "text_en": "With R at zero, plain Ohm's law would predict infinite current.",
-              "text_hi": "With R at zero, plain Ohm's law would predict infinite current.",
-              "text_te": "With R at zero, plain Ohm's law would predict infinite current.",
+              "text_hi": "R के शून्य पर होने पर, सीधा Ohm's law अनंत current की भविष्यवाणी करेगा।",
+              "text_te": "R సున్నా వద్ద ఉన్నప్పుడు, సాధారణ Ohm's law అనంతమైన current ను ఊహిస్తుంది.",
               "glow": "ladder"
             },
             {
               "id": "s4_2",
               "text_en": "But the ammeter stops cold at 3.0 amps — the hidden r is still there, so current caps at epsilon over r.",
-              "text_hi": "But the ammeter stops cold at 3.0 amps — the hidden r is still there, so current caps at epsilon over r.",
-              "text_te": "But the ammeter stops cold at 3.0 amps — the hidden r is still there, so current caps at epsilon over r.",
+              "text_hi": "लेकिन ammeter 3.0 amps पर आकर पूरी तरह रुक जाता है — छिपा हुआ r अब भी वहीं है, इसलिए current, epsilon को r से भाग देने पर मिलने वाली सीमा पर रुक जाता है।",
+              "text_te": "కానీ ammeter 3.0 amps వద్ద ఆగిపోతుంది — దాగి ఉన్న r ఇప్పటికీ అక్కడే ఉంది, కాబట్టి current, epsilon ను r తో భాగించగా వచ్చే పరిమితి వద్ద ఆగిపోతుంది.",
               "glow": "electrons"
             },
             {
               "id": "s4_3",
               "text_en": "All of epsilon is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
-              "text_hi": "All of epsilon is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
-              "text_te": "All of epsilon is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
+              "text_hi": "अब पूरा epsilon अंदर ही खर्च हो जाता है, और cell साफ़ नज़र आने लायक गरम हो जाता है — इसमें से कुछ भी terminals तक नहीं पहुँचता।",
+              "text_te": "ఇప్పుడు epsilon మొత్తం లోపలే ఖర్చు అవుతుంది, మరియు cell కనిపించేలా వేడెక్కుతుంది — అందులో ఏమీ terminals కు చేరదు.",
               "glow": "pump"
             }
           ]
@@ -412,7 +448,10 @@
           {
             "type": "annotation",
             "id": "reading_a_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Reading 1, open: the voltmeter reads the full ε = 1.50 V exactly, no current flowing.",
             "color": "#B39DDB",
             "is_persistent": false
@@ -420,7 +459,10 @@
           {
             "type": "annotation",
             "id": "reading_b_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Reading 2, closed: close the switch and it drops to V = 1.00 V at i = 1.0 A.",
             "color": "#B39DDB",
             "is_persistent": false
@@ -428,7 +470,10 @@
           {
             "type": "annotation",
             "id": "computed_r_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Two readings give r: r = (ε − V) / i = 0.50 Ω — the trick that catches a worn cell.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -439,22 +484,22 @@
             {
               "id": "s5_1",
               "text_en": "Open circuit: the voltmeter reads the full 1.50 volts, epsilon exactly.",
-              "text_hi": "Open circuit: the voltmeter reads the full 1.50 volts, epsilon exactly.",
-              "text_te": "Open circuit: the voltmeter reads the full 1.50 volts, epsilon exactly.",
+              "text_hi": "Open circuit: voltmeter पूरे 1.50 volts दिखाता है, ठीक epsilon जितना।",
+              "text_te": "Open circuit: voltmeter పూర్తి 1.50 volts చూపిస్తుంది, సరిగ్గా epsilon అంతే.",
               "glow": "voltmeter"
             },
             {
               "id": "s5_2",
               "text_en": "Close the switch: it drops to 1.00 volt at 1.0 amp, a loaded cell.",
-              "text_hi": "Close the switch: it drops to 1.00 volt at 1.0 amp, a loaded cell.",
-              "text_te": "Close the switch: it drops to 1.00 volt at 1.0 amp, a loaded cell.",
+              "text_hi": "switch बंद कीजिए: यह 1.0 amp पर 1.00 volt तक गिर जाता है, एक loaded cell।",
+              "text_te": "switch ను మూయండి: ఇది 1.0 amp వద్ద 1.00 volt కు పడిపోతుంది, ఇదొక loaded cell.",
               "glow": "switch"
             },
             {
               "id": "s5_3",
               "text_en": "Two readings give r: epsilon minus V over i, 0.5 ohms — the trick that catches a worn cell reading full voltage but unable to turn a motor.",
-              "text_hi": "Two readings give r: epsilon minus V over i, 0.5 ohms — the trick that catches a worn cell reading full voltage but unable to turn a motor.",
-              "text_te": "Two readings give r: epsilon minus V over i, 0.5 ohms — the trick that catches a worn cell reading full voltage but unable to turn a motor.",
+              "text_hi": "दो readings r बताती हैं: epsilon में से V घटाकर, उसे i से भाग देने पर, 0.5 ohms — यही वह trick है जो पूरी voltage दिखाने वाले लेकिन motor को घुमा न पाने वाले घिसे हुए cell को पकड़ लेती है।",
+              "text_te": "రెండు readings r ను ఇస్తాయి: epsilon నుండి V ను తీసివేసి, దానిని i తో భాగించగా, 0.5 ohms — ఇది పూర్తి voltage చూపిస్తూ కూడా ఒక motor ను తిప్పలేని అరిగిపోయిన cell ను పట్టుకునే trick.",
               "glow": "voltmeter"
             }
           ]
@@ -476,7 +521,10 @@
           {
             "type": "annotation",
             "id": "charger_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "A 3.0 V ideal charger docks on the loop's right edge — strong enough to overpower the cell's own 1.5 V.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -484,7 +532,10 @@
           {
             "type": "annotation",
             "id": "reversed_beads_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Current is forced BACKWARDS through the cell, against everything shown so far.",
             "color": "#42A5F5",
             "is_persistent": false
@@ -492,7 +543,10 @@
           {
             "type": "annotation",
             "id": "above_eps_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The voltmeter climbs to V = ε + i·r = 2.00 V — above the 1.5 V ceiling, like a phone charging above its resting voltage.",
             "color": "#B39DDB",
             "is_persistent": false
@@ -503,22 +557,22 @@
             {
               "id": "s6_1",
               "text_en": "Now dock a 3.0 volt charger onto the same cell.",
-              "text_hi": "Now dock a 3.0 volt charger onto the same cell.",
-              "text_te": "Now dock a 3.0 volt charger onto the same cell.",
+              "text_hi": "अब उसी cell पर एक 3.0 volt charger लगाइए।",
+              "text_te": "ఇప్పుడు అదే cell కు ఒక 3.0 volt charger ను జోడించండి.",
               "glow": "charger"
             },
             {
               "id": "s6_2",
               "text_en": "It's strong enough to force current backwards through the cell — against everything you've seen so far.",
-              "text_hi": "It's strong enough to force current backwards through the cell — against everything you've seen so far.",
-              "text_te": "It's strong enough to force current backwards through the cell — against everything you've seen so far.",
+              "text_hi": "यह इतना ताकतवर है कि cell के अंदर से current को उल्टा बहा दे — अब तक जो कुछ आपने देखा है, उसके बिल्कुल विपरीत।",
+              "text_te": "ఇది cell గుండా current ను వెనక్కి బలవంతంగా నెట్టేంత శక్తివంతమైనది — ఇప్పటివరకు మీరు చూసిన దానికి పూర్తిగా వ్యతిరేకంగా.",
               "glow": "electrons"
             },
             {
               "id": "s6_3",
               "text_en": "The voltmeter climbs to 2.00 volts, above the 1.5 volt ceiling — epsilon plus i r, exactly like a phone that reads above its resting voltage while charging.",
-              "text_hi": "The voltmeter climbs to 2.00 volts, above the 1.5 volt ceiling — epsilon plus i r, exactly like a phone that reads above its resting voltage while charging.",
-              "text_te": "The voltmeter climbs to 2.00 volts, above the 1.5 volt ceiling — epsilon plus i r, exactly like a phone that reads above its resting voltage while charging.",
+              "text_hi": "voltmeter 2.00 volts तक चढ़ जाता है, 1.5 volt की सीमा से भी ऊपर — epsilon और i r को जोड़ने पर, बिल्कुल उस phone की तरह जो charge होते समय अपने resting voltage से ज़्यादा दिखाता है।",
+              "text_te": "voltmeter 2.00 volts కు పైకి ఎక్కుతుంది, 1.5 volt పరిమితి కంటే ఎక్కువ — epsilon మరియు i r ను కలిపితే, ఇది charge అవుతున్నప్పుడు తన resting voltage కంటే ఎక్కువ చూపించే phone లాగే.",
               "glow": "voltmeter"
             }
           ]
@@ -540,7 +594,10 @@
           {
             "type": "annotation",
             "id": "formula_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "i = ε / (R + r) — every dial is live now.",
             "color": "#FFD54F",
             "is_persistent": false
@@ -548,7 +605,10 @@
           {
             "type": "annotation",
             "id": "readout_tag",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Pump, r-interior, ladder, ammeter, and voltmeter all respond live as you drag.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -556,7 +616,10 @@
           {
             "type": "annotation",
             "id": "controls_tag",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Drag ε, r, the load R, or flip the switch.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -567,8 +630,8 @@
             {
               "id": "s7_1",
               "text_en": "Every dial is yours now — epsilon, r, R, switch — watch i equals epsilon over R plus r drive everything.",
-              "text_hi": "Every dial is yours now — epsilon, r, R, switch — watch i equals epsilon over R plus r drive everything.",
-              "text_te": "Every dial is yours now — epsilon, r, R, switch — watch i equals epsilon over R plus r drive everything.",
+              "text_hi": "अब हर dial आपके हाथ में है — epsilon, r, R, switch — देखिए i, epsilon को R और r के जोड़ से भाग देने पर बराबर होता है और यही सब कुछ चलाता है।",
+              "text_te": "ఇప్పుడు ప్రతి dial మీ చేతిలోనే ఉంది — epsilon, r, R, switch — i అంటే epsilon ను R మరియు r ల మొత్తంతో భాగించగా వచ్చేది ప్రతిదీ ఎలా నడిపిస్తుందో చూడండి.",
               "glow": "formula"
             }
           ]
@@ -602,10 +665,37 @@
       "size": 8
     },
     "slider_controls": {
-      "emf": { "min": 1, "max": 12, "step": 0.1, "default": 1.5, "label": "EMF ε", "unit": "V" },
-      "r": { "min": 0.1, "max": 2, "step": 0.1, "default": 0.5, "label": "internal r", "unit": "Ω" },
-      "R": { "min": 0.25, "max": 12, "step": 0.25, "default": 1, "label": "Load R", "unit": "Ω" },
-      "switch": { "min": 0, "max": 1, "step": 1, "default": 1, "label": "Switch" }
+      "emf": {
+        "min": 1,
+        "max": 12,
+        "step": 0.1,
+        "default": 1.5,
+        "label": "EMF ε",
+        "unit": "V"
+      },
+      "r": {
+        "min": 0.1,
+        "max": 2,
+        "step": 0.1,
+        "default": 0.5,
+        "label": "internal r",
+        "unit": "Ω"
+      },
+      "R": {
+        "min": 0.25,
+        "max": 12,
+        "step": 0.25,
+        "default": 1,
+        "label": "Load R",
+        "unit": "Ω"
+      },
+      "switch": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "label": "Switch"
+      }
     },
     "pvl_colors": {
       "background": "#0A0A1A",
@@ -658,7 +748,9 @@
         "show_voltmeter": true,
         "show_ladder": true,
         "show_sliders": false,
-        "visible_controls": ["R"],
+        "visible_controls": [
+          "R"
+        ],
         "glow_focal": "ladder",
         "emf": 1.5,
         "r": 0.5,
@@ -690,7 +782,9 @@
         "show_voltmeter": true,
         "show_ladder": true,
         "show_sliders": false,
-        "visible_controls": ["switch"],
+        "visible_controls": [
+          "switch"
+        ],
         "glow_focal": "voltmeter",
         "emf": 1.5,
         "r": 0.5,
@@ -710,7 +804,7 @@
         "emf": 1.5,
         "r": 0.5,
         "R": 1,
-        "charger_emf": 3.0
+        "charger_emf": 3
       },
       "STATE_7": {
         "label": "i = ε/(R+r)",
