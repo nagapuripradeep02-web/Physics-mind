@@ -6,47 +6,721 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "STUB — replaced by json_author in Phase B",
-  "renderer_pair": { "panel_a": "particle_field", "panel_b": "particle_field" },
-  "available_renderer_scenarios": { "particle_field": ["internal_resistance"] },
-  "prerequisites": ["emf_definition", "ohms_law"],
-  "real_world_anchor": { "primary": "STUB", "secondary": "STUB" },
-  "physics_engine_config": { "variables": {}, "formulas": {}, "constraints": [] },
-  "cognitive_limits": { "max_primitives_per_state": 5, "max_labels_per_state": 4, "max_words_per_tts_sentence": 32 },
-  "aha_moment": { "state_id": "STATE_2", "statement": "STUB", "visual_confirmation": "STUB" },
-  "entry_state_map": { "foundational": ["STATE_1", "STATE_2"] },
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.11 Internal Resistance, second half) — table-of-contents + scope reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: emf / cells / internal resistance / grouping-of-cells sections) to confirm internal resistance and terminal voltage is a distinct sub-topic between emf's definition and grouping of cells — no teaching method, example problem, or figure imported. The atomic idea: a real cell carries a hidden resistance r inside itself, so whenever current i flows, i·r volts are spent inside the cell and the terminals deliver only V = ε − i·r, with three corollaries from the same one line: open circuit reads the full ε (i=0), short circuit caps the current at i_max = ε/r (never infinite), and charging pushes the terminals ABOVE ε (V = ε + i·r). SCOPE: this is the SIXTH Ch.3 concept, continuous with drift_velocity, ohms_law, resistivity, combination_of_resistors, and emf_definition (all SHIPPED) — same particle_field (2D p5.js) renderer family, reusing emf_definition's charge-pump cell + potential-energy ladder + terminal voltmeter verbatim, plus a newly-revealed internal-resistance zigzag and an external charger. Diamond 2 of the two-diamond emf/internal-resistance split — this diamond OPENS in emf_definition's closing pose (switch open, ε = 1.5 V, the ideal r = 0 story) and immediately breaks the ideal-cell promise the instant the switch closes. Does NOT cover grouping of cells (deferred to combination_of_cells, A14/A15), maximum power transfer (A20), the potentiometer method of measuring r (A26 — the two-reading method here is the conceptual seed), Kirchhoff's rules, or the electrochemical origin of r in ion transport (outside atomic scope — the mechanism shown here is the potential-energy ladder's internal step, not the chemistry itself). Renderer-reality note: this concept does NOT drive i/V_terminal/r_measured via physics_engine_config.formulas/PM_interpolate — particle_field_renderer.ts computes them natively in engine JS via the shipped internal-resistance adapter (cIntR/cIrLoadR/irSwitchOpen/irRampK/irCurrents), reading slider_controls.{emf,r,R,switch}; physics_engine_config below is authored as documentation per the Zod requirement, mirroring emf_definition's and combination_of_resistors' convention.",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "internal_resistance"
+    ]
+  },
+  "prerequisites": [
+    "emf_definition",
+    "ohms_law"
+  ],
+  "real_world_anchor": {
+    "primary": "A car's headlights dim the instant the starter motor cranks — the starter draws a huge current from the same battery, and i·r eats several volts inside the battery itself, sagging the terminal voltage until the engine catches and the current drops back down. Anyone who has ridden in or started a car has watched this exact V = ε − i·r droop without knowing they were watching physics — bigger current, bigger internal loss, dimmer lights.",
+    "secondary": "A worn-out cell still reads its full ε on an open-circuit voltmeter but can't run a motor — aging raises the hidden r, which is why testing a battery with only a voltmeter can lie to you; and a phone battery reads a number ABOVE its normal resting voltage while charging, the everyday proof that terminal voltage can climb above emf."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "emf": {
+        "name": "electromotive force (epsilon)",
+        "unit": "V",
+        "min": 1,
+        "max": 12,
+        "step": 0.1,
+        "default": 1.5,
+        "role": "slider — LIVE ONLY in STATE_7 (explore); locked to 1.5 on STATE_1–STATE_6. Epsilon is the fixed premise this diamond droops/caps/reverses around, never the swept variable before STATE_7."
+      },
+      "r": {
+        "name": "internal resistance",
+        "unit": "Ω",
+        "min": 0.1,
+        "max": 2,
+        "step": 0.1,
+        "default": 0.5,
+        "role": "slider — LIVE ONLY in STATE_7; locked to 0.5 on STATE_1–STATE_6. Introduced (revealed) at STATE_2; its INTERIOR (show_r) persists STATE_2 through STATE_7 (Rule 32d docking), but the numeric value is never teacher-dragged before STATE_7. r.min = 0.1 (never 0) is the engine's finite-ceiling guarantee (the short-circuit corollary)."
+      },
+      "R": {
+        "name": "load resistance",
+        "unit": "Ω",
+        "min": 0.25,
+        "max": 12,
+        "step": 0.25,
+        "default": 1.0,
+        "role": "slider — LIVE in STATE_3 (visible_controls: ['R'], teacher-seizable mid-sweep, 700–3900 ms) and STATE_7 (explore). The SAME R_autosweep_down/R_autosweep_to mechanism also drives STATE_4's collapse-to-zero, but STATE_4 HIDES the row (visible_controls: []) — a fixed ceiling demonstration, not teacher-dragged. Not locked on STATE_3/STATE_4 (locking would freeze the row against teacher drag); locked to 1.0 on STATE_1/STATE_2/STATE_5/STATE_6 where R carries no live control."
+      },
+      "switch": {
+        "name": "circuit switch (0=open, 1=closed)",
+        "unit": "dimensionless (enum)",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "role": "slider (2-state toggle) — LIVE in STATE_5 (visible_controls: ['switch'], the two_reading cue governs it until touched) and STATE_7 (explore). The SAME cue-then-seize mechanism drives STATE_1's droop_intro close, but STATE_1 HIDES the row. Not locked on STATE_1/STATE_5 (droop_intro/two_reading own the open-to-closed timing internally via PM_simTimeMs, overriding any slider read). Explicitly locked switch=1 (closed) on STATE_2/STATE_3/STATE_4 (Rule 25d defensive lock — these states have no cue mechanism of their own, so a teacher landing here after toggling elsewhere must still see the closed picture). Irrelevant on STATE_6 (the charging branch ignores swOpen entirely). Render as text Open/Closed, never raw 0/1."
+      },
+      "charger_emf": {
+        "name": "ideal charger emf (fixed)",
+        "unit": "V",
+        "constant": 3.0,
+        "role": "FIXED ENGINE CONSTANT, not a slider — read only via st.charger_emf on STATE_6 (the engine defaults to 3.0 if the state omits it). Authored explicitly as charger_emf: 3.0 on STATE_6 anyway (defensive-lock discipline — declare non-default-path values explicitly so nothing silently falls back). No UI slider or new flag added for it."
+      },
+      "i": {
+        "name": "loop current",
+        "unit": "A",
+        "derived": "discharge: swOpen ? 0 : eps/(R+r); charging: max(epsCh-eps,0)/(R+r)",
+        "role": "live readout — the ammeter. Ramps over 800 ms after a cued switch-close, never snaps."
+      },
+      "V_terminal": {
+        "name": "terminal voltage",
+        "unit": "V",
+        "derived": "discharge: eps - i*r; open: eps; charging: eps + i*r",
+        "role": "the voltmeter reading — the quantity this whole diamond is about. Never both signs at once (discharge/open/charging are mutually exclusive)."
+      },
+      "i_max": {
+        "name": "short-circuit current ceiling",
+        "unit": "A",
+        "derived": "eps / r   (the R -> 0 limit of eps/(R+r))",
+        "role": "STATE_4's taught number — a CONSEQUENCE of the discharge formula at its boundary, not a separate physics path. Finite because r.min = 0.1 > 0 always."
+      },
+      "r_measured": {
+        "name": "internal resistance, as computed from two readings",
+        "unit": "Ω",
+        "derived": "(eps - V) / i",
+        "role": "STATE_5-ONLY diagnostic readout (the computed-r line at the two_reading sequence's 3600 ms settle) — not an engine input anywhere; requires i > 0.02 to avoid a divide-near-zero display glitch."
+      }
+    },
+    "formulas": {
+      "i_discharge": "swOpen ? 0 : (eps / (R + r)) * irRampK()",
+      "V_terminal_discharge": "eps - i * r",
+      "i_max_short": "eps / r",
+      "i_charging": "max(epsCh - eps, 0) / (R + r)",
+      "V_terminal_charging": "eps + i * r",
+      "r_measured": "(eps - V) / i"
+    },
+    "computed_outputs": {
+      "heat_normalized": {
+        "formula": "constrain((i*i*r) / 4.5, 0, 1)"
+      }
+    },
+    "constraints": [
+      "open circuit (i=0) implies V_terminal = eps EXACTLY, true for ANY cell, ideal or real — no current means the i·r term is identically zero, which is why STATE_5's open reading and STATE_1's opening pose both safely inherit emf_definition's V = ε claim",
+      "short-circuit current is always FINITE — i_max = eps/r, never infinite, because r.min = 0.1 Ω > 0 is enforced by the slider range; R can legally sweep to exactly 0 (R_autosweep_to: 0) because the denominator R+r >= r > 0, never zero",
+      "V = eps minus i·r holds ONLY while discharging; V = eps plus i·r holds ONLY while charging — the two never apply simultaneously (discharge/open/charging are mutually exclusive by construction)",
+      "r is the electrolyte's and electrodes' OWN resistance — not a discrete component anyone installed; the zigzag drawn inside the opened casing is only r's SYMBOL, never a claim that a literal resistor sits inside the cell",
+      "the internal droop i·r is proportional to i for fixed r — this is WHY the droop exactly doubles when i doubles at STATE_3's sweep end (0.50 V to 1.00 V as i: 1.0 A to 2.0 A), not a coincidence of the chosen numbers",
+      "the i²r/4.5 heat-halo normalization (engine-internal, visual-only) maxes out exactly at STATE_4's taught ceiling (3.0² × 0.5 = 4.5 W) — not itself a taught number, only a display scale"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "The missing volts were never lost — spent inside the cell's own hidden r.",
+    "visual_confirmation": "The voltmeter drops from 1.50 V to 1.00 V the instant the switch closes, and the opened casing shows the missing 0.50 V as the ladder's second, internal i·r step."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "short_circuit": [
+      "STATE_4"
+    ],
+    "measuring_r": [
+      "STATE_5"
+    ],
+    "charging": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
   "epic_l_path": {
-    "state_count": 2,
+    "state_count": 7,
     "states": {
-      "STATE_1": { "title": "stub droop intro", "duration": 12, "focal_primitive_id": "a", "advance_mode": "manual_click",
-        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
-        "teacher_script": { "tts_sentences": [{ "id": "s1_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "voltmeter" }] } },
-      "STATE_2": { "title": "stub charging", "duration": 12, "focal_primitive_id": "a", "advance_mode": "manual_click",
-        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
-        "teacher_script": { "tts_sentences": [{ "id": "s2_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "charger" }] } },
-      "STATE_3": { "title": "stub two reading", "duration": 12, "focal_primitive_id": "a", "advance_mode": "manual_click",
-        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
-        "teacher_script": { "tts_sentences": [{ "id": "s3_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "voltmeter" }] } },
-      "STATE_4": { "title": "stub short circuit", "duration": 0, "focal_primitive_id": "a", "advance_mode": "interaction_complete",
-        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
-        "teacher_script": { "tts_sentences": [{ "id": "s4_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "pump" }] } }
+      "STATE_1": {
+        "title": "A real cell's promise breaks under load",
+        "duration": 14,
+        "focal_primitive_id": "droop_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "promise_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "A real cell should deliver its full label — right now the voltmeter reads a steady 1.50 V, switch open.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "droop_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Close the switch: the voltmeter glides from 1.50 V down to 1.00 V the instant real current flows.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "gap_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "A 0.50 V gap opens between the cell's badge and the meter's reading — shown, not yet explained.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A real cell should deliver its full label — right now, switch open, this one reads a steady 1.50 volts.",
+              "text_hi": "A real cell should deliver its full label — right now, switch open, this one reads a steady 1.50 volts.",
+              "text_te": "A real cell should deliver its full label — right now, switch open, this one reads a steady 1.50 volts.",
+              "glow": "voltmeter"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Close the switch, and current i starts flowing.",
+              "text_hi": "Close the switch, and current i starts flowing.",
+              "text_te": "Close the switch, and current i starts flowing.",
+              "glow": "switch"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Watch the voltmeter: it glides down to 1.00 volt the instant real current flows — the promise breaks.",
+              "text_hi": "Watch the voltmeter: it glides down to 1.00 volt the instant real current flows — the promise breaks.",
+              "text_te": "Watch the voltmeter: it glides down to 1.00 volt the instant real current flows — the promise breaks.",
+              "glow": "voltmeter"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The hidden r: where the volts went",
+        "duration": 17,
+        "focal_primitive_id": "internal_step_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "zigzag_r_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "The cell's casing opens: a zigzag marks the internal resistance r = 0.5 Ω — the electrolyte and electrodes' own resistance, not an installed part.",
+            "color": "#FF8A65",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "internal_step_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "The ladder grows a second, internal step: i·r = 0.50 V, spent before the charge even leaves the cell.",
+            "color": "#FF8A65",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "accounting_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "The accounting closes: ε = V + i·r → 1.50 = 1.00 + 0.50 — the missing volts, found.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "The ladder still tracks each coulomb's energy — up the full epsilon inside the pump.",
+              "text_hi": "The ladder still tracks each coulomb's energy — up the full epsilon inside the pump.",
+              "text_te": "The ladder still tracks each coulomb's energy — up the full epsilon inside the pump.",
+              "glow": "ladder"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Its casing opens: an internal resistance r — the electrolyte and electrodes' own resistance, not something installed.",
+              "text_hi": "Its casing opens: an internal resistance r — the electrolyte and electrodes' own resistance, not something installed.",
+              "text_te": "Its casing opens: an internal resistance r — the electrolyte and electrodes' own resistance, not something installed.",
+              "glow": "r_internal"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The missing 0.50 volts appear as a second step before the charge leaves the cell: epsilon equals terminal voltage V plus i r — found.",
+              "text_hi": "The missing 0.50 volts appear as a second step before the charge leaves the cell: epsilon equals terminal voltage V plus i r — found.",
+              "text_te": "The missing 0.50 volts appear as a second step before the charge leaves the cell: epsilon equals terminal voltage V plus i r — found.",
+              "glow": "r_internal"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "a 1.5 V cell always delivers 1.5 V — the label is a promise",
+            "visual_counter": "closing the switch drops the voltmeter from 1.50 to 1.00 V before your eyes, and the opened casing shows the missing 0.50 V spent across the cell's own internal r as the ladder's second, internal step",
+            "one_line_fix": "the label states ε — the terminals deliver ε − ir the moment current flows."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "where_did_the_volts_go",
+          "emf_vs_terminal_voltage",
+          "what_is_r_physically"
+        ]
+      },
+      "STATE_3": {
+        "title": "More current, more droop: V = ε − i·r",
+        "duration": 16,
+        "focal_primitive_id": "growing_step_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sweep_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "R glides down from 1.0 Ω to 0.25 Ω — the same Ohm's law, now with R and r in series.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "growing_step_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Current climbs 1.0 A to 2.0 A; the internal step stretches 0.50 V to 1.00 V — the droop doubles exactly when i doubles.",
+            "color": "#FF8A65",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "falling_v_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "V falls 1.00 V to 0.50 V on the ladder and the needle together — like headlights dimming when the starter cranks.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "The same Ohm's law drives the loop — R and r, in series.",
+              "text_hi": "The same Ohm's law drives the loop — R and r, in series.",
+              "text_te": "The same Ohm's law drives the loop — R and r, in series.",
+              "glow": "ladder"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "As R shrinks, current climbs 1.0 to 2.0 amps, and the droop grows 0.50 to 1.00 volt — it doubles exactly when current doubles.",
+              "text_hi": "As R shrinks, current climbs 1.0 to 2.0 amps, and the droop grows 0.50 to 1.00 volt — it doubles exactly when current doubles.",
+              "text_te": "As R shrinks, current climbs 1.0 to 2.0 amps, and the droop grows 0.50 to 1.00 volt — it doubles exactly when current doubles.",
+              "glow": "load"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "It's the same reason car headlights dim the instant the starter cranks — more current, more voltage spent inside.",
+              "text_hi": "It's the same reason car headlights dim the instant the starter cranks — more current, more voltage spent inside.",
+              "text_te": "It's the same reason car headlights dim the instant the starter cranks — more current, more voltage spent inside.",
+              "glow": "ladder"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Short circuit: the finite ceiling i_max = ε/r",
+        "duration": 15,
+        "focal_primitive_id": "capped_ammeter_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r_zero_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "R collapses to exactly zero — plain Ohm's law i = ε/R would predict infinite current.",
+            "color": "#EF5350",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "capped_ammeter_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "But the ammeter stops cold at i_max = ε/r = 3.0 A — the hidden r is still in the loop.",
+            "color": "#FF8A65",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "heat_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "V dies to 0; all of ε is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "With R at zero, plain Ohm's law would predict infinite current.",
+              "text_hi": "With R at zero, plain Ohm's law would predict infinite current.",
+              "text_te": "With R at zero, plain Ohm's law would predict infinite current.",
+              "glow": "ladder"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "But the ammeter stops cold at 3.0 amps — the hidden r is still there, so current caps at epsilon over r.",
+              "text_hi": "But the ammeter stops cold at 3.0 amps — the hidden r is still there, so current caps at epsilon over r.",
+              "text_te": "But the ammeter stops cold at 3.0 amps — the hidden r is still there, so current caps at epsilon over r.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "All of epsilon is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
+              "text_hi": "All of epsilon is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
+              "text_te": "All of epsilon is now spent inside, and the cell visibly heats — none of it reaches the terminals.",
+              "glow": "pump"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "if R goes to zero, i = ε/R blows up to infinity",
+            "visual_counter": "R collapses to exactly zero and the ammeter stops at 3.0 A — the hidden r is still in the loop; the ladder shows the entire 1.5 V now falling inside the cell, which visibly heats",
+            "one_line_fix": "the current always sees R plus r — at R = 0 it caps at i_max = ε/r."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_not_infinite_current",
+          "ohms_law_with_r_included",
+          "why_shorted_cells_get_hot"
+        ]
+      },
+      "STATE_5": {
+        "title": "Measuring r: two readings, one formula",
+        "duration": 18,
+        "focal_primitive_id": "computed_r_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "reading_a_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Reading 1, open: the voltmeter reads the full ε = 1.50 V exactly, no current flowing.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "reading_b_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Reading 2, closed: close the switch and it drops to V = 1.00 V at i = 1.0 A.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "computed_r_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Two readings give r: r = (ε − V) / i = 0.50 Ω — the trick that catches a worn cell.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Open circuit: the voltmeter reads the full 1.50 volts, epsilon exactly.",
+              "text_hi": "Open circuit: the voltmeter reads the full 1.50 volts, epsilon exactly.",
+              "text_te": "Open circuit: the voltmeter reads the full 1.50 volts, epsilon exactly.",
+              "glow": "voltmeter"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Close the switch: it drops to 1.00 volt at 1.0 amp, a loaded cell.",
+              "text_hi": "Close the switch: it drops to 1.00 volt at 1.0 amp, a loaded cell.",
+              "text_te": "Close the switch: it drops to 1.00 volt at 1.0 amp, a loaded cell.",
+              "glow": "switch"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Two readings give r: epsilon minus V over i, 0.5 ohms — the trick that catches a worn cell reading full voltage but unable to turn a motor.",
+              "text_hi": "Two readings give r: epsilon minus V over i, 0.5 ohms — the trick that catches a worn cell reading full voltage but unable to turn a motor.",
+              "text_te": "Two readings give r: epsilon minus V over i, 0.5 ohms — the trick that catches a worn cell reading full voltage but unable to turn a motor.",
+              "glow": "voltmeter"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_two_readings",
+          "voltmeter_lies_under_load",
+          "open_circuit_reads_emf"
+        ]
+      },
+      "STATE_6": {
+        "title": "Charging: current forced backwards, V above ε",
+        "duration": 16,
+        "focal_primitive_id": "above_eps_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "charger_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "A 3.0 V ideal charger docks on the loop's right edge — strong enough to overpower the cell's own 1.5 V.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "reversed_beads_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Current is forced BACKWARDS through the cell, against everything shown so far.",
+            "color": "#42A5F5",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "above_eps_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "The voltmeter climbs to V = ε + i·r = 2.00 V — above the 1.5 V ceiling, like a phone charging above its resting voltage.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now dock a 3.0 volt charger onto the same cell.",
+              "text_hi": "Now dock a 3.0 volt charger onto the same cell.",
+              "text_te": "Now dock a 3.0 volt charger onto the same cell.",
+              "glow": "charger"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "It's strong enough to force current backwards through the cell — against everything you've seen so far.",
+              "text_hi": "It's strong enough to force current backwards through the cell — against everything you've seen so far.",
+              "text_te": "It's strong enough to force current backwards through the cell — against everything you've seen so far.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The voltmeter climbs to 2.00 volts, above the 1.5 volt ceiling — epsilon plus i r, exactly like a phone that reads above its resting voltage while charging.",
+              "text_hi": "The voltmeter climbs to 2.00 volts, above the 1.5 volt ceiling — epsilon plus i r, exactly like a phone that reads above its resting voltage while charging.",
+              "text_te": "The voltmeter climbs to 2.00 volts, above the 1.5 volt ceiling — epsilon plus i r, exactly like a phone that reads above its resting voltage while charging.",
+              "glow": "voltmeter"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "V is always below ε — the cell always taxes you",
+            "visual_counter": "the charger forces the beads backwards and the voltmeter reads 2.00 V, above the 1.5 V ceiling every earlier state respected — the same i·r that subtracted now adds",
+            "one_line_fix": "while charging, V = ε + ir — the terminals must sit above the emf to push current in."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore: i = ε/(R+r), every dial live",
+        "duration": 0,
+        "focal_primitive_id": "formula_tag",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "formula_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "i = ε / (R + r) — every dial is live now.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "readout_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Pump, r-interior, ladder, ammeter, and voltmeter all respond live as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "controls_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Drag ε, r, the load R, or flip the switch.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Every dial is yours now — epsilon, r, R, switch — watch i equals epsilon over R plus r drive everything.",
+              "text_hi": "Every dial is yours now — epsilon, r, R, switch — watch i equals epsilon over R plus r drive everything.",
+              "text_te": "Every dial is yours now — epsilon, r, R, switch — watch i equals epsilon over R plus r drive everything.",
+              "glow": "formula"
+            }
+          ]
+        }
+      }
     }
   },
+  "regeneration_variants": [
+    {
+      "variant_id": "internal_resistance_leaky_garden_pump",
+      "type": "B",
+      "label": "A garden water pump with a narrow internal pipe",
+      "physical_world": "A pump promises a certain push to the water leaving it, but the water must first squeeze through a narrow pipe INSIDE the pump housing itself before it reaches the outlet — the faster the water tries to flow, the more pressure that narrow internal pipe eats before the water even leaves the pump. Close the outlet completely and the flow rate still caps at whatever that internal pipe allows — never infinite.",
+      "same_physics": "The pump's own internal narrow pipe is exactly r: a resistance the source itself carries, invisible from outside, that eats i·r worth of the promised push before any of it reaches the outside world — capping the maximum flow at a finite value even when the external path offers zero resistance.",
+      "scene_hint": "Optional supplementary anchor for STATE_1/STATE_3/STATE_4; the primary teaching anchor stays the car-headlights / worn-cell / phone-charging trio (Rule 35)."
+    },
+    {
+      "variant_id": "internal_resistance_dynamo_driven_backwards",
+      "type": "B",
+      "label": "A hand-crank dynamo spun backwards by a stronger outside motor",
+      "physical_world": "A hand-crank dynamo normally pushes current out through its own coil. Connect it to a stronger outside motor that spins it backwards, and current is forced IN through that same coil — the dynamo's own coil resistance now adds to, rather than subtracts from, the voltage measured across its terminals.",
+      "same_physics": "Reversing the current through the same internal resistance flips the sign of the i·r term — V = ε − i·r while delivering current, V = ε + i·r while being driven backwards — the identical mechanism as a cell being charged.",
+      "scene_hint": "Optional supplementary anchor for STATE_6's charging/reverse-flow beat."
+    }
+  ],
   "particle_field_config": {
     "scenario_type": "internal_resistance",
-    "particles": { "count": 34, "color": "#42A5F5", "size": 8 },
+    "particles": {
+      "count": 34,
+      "color": "#42A5F5",
+      "size": 8
+    },
     "slider_controls": {
       "emf": { "min": 1, "max": 12, "step": 0.1, "default": 1.5, "label": "EMF ε", "unit": "V" },
       "r": { "min": 0.1, "max": 2, "step": 0.1, "default": 0.5, "label": "internal r", "unit": "Ω" },
       "R": { "min": 0.25, "max": 12, "step": 0.25, "default": 1, "label": "Load R", "unit": "Ω" },
       "switch": { "min": 0, "max": 1, "step": 1, "default": 1, "label": "Switch" }
     },
-    "pvl_colors": { "background": "#0A0A1A", "electron": "#42A5F5", "wire": "#546E7A", "cell": "#FFD54F", "ladder": "#4DD0E1", "voltmeter": "#B39DDB", "load": "#FFB74D", "labels": "#D4D4D8" },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "cell": "#FFD54F",
+      "ladder": "#4DD0E1",
+      "voltmeter": "#B39DDB",
+      "load": "#FFB74D",
+      "labels": "#D4D4D8"
+    },
     "states": {
-      "STATE_1": { "label": "V = ε − ir", "caption": "Close switch — volts drop", "formula_overlay": "V = ε − ir", "droop_intro": true, "show_voltmeter": true, "show_ladder": true, "show_r": true, "show_sliders": false, "visible_controls": [], "glow_focal": "voltmeter", "emf": 1.5, "r": 0.5, "R": 1 },
-      "STATE_2": { "label": "V = ε + ir", "caption": "Charging lifts V above ε", "formula_overlay": "V = ε + ir", "charging": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": false, "visible_controls": [], "glow_focal": "charger", "emf": 1.5, "r": 0.5, "R": 1 },
-      "STATE_3": { "label": "r = (ε − V) / i", "caption": "Two readings give r", "formula_overlay": "r = (ε − V) / i", "two_reading": true, "show_r": true, "show_voltmeter": true, "show_sliders": false, "visible_controls": ["switch"], "glow_focal": "voltmeter", "emf": 1.5, "r": 0.5, "R": 1 },
-      "STATE_4": { "label": "i_max = ε / r", "caption": "All ε lost inside", "formula_overlay": "i_max = ε / r", "R_autosweep_down": true, "R_autosweep_to": 0, "short_circuit": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": true, "glow_focal": "pump", "emf": 1.5, "r": 0.5 }
+      "STATE_1": {
+        "label": "V < ε",
+        "caption": "Close switch — volts drop",
+        "formula_overlay": "V < ε",
+        "droop_intro": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "voltmeter",
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 1
+      },
+      "STATE_2": {
+        "label": "ε = V + i·r",
+        "caption": "The missing volts, found",
+        "formula_overlay": "ε = V + i·r",
+        "r_reveal": true,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "r_internal",
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 1,
+        "switch": 1
+      },
+      "STATE_3": {
+        "label": "V = ε − i·r",
+        "caption": "More current, more droop",
+        "formula_overlay": "V = ε − i·r",
+        "R_autosweep_down": true,
+        "R_autosweep_to": 0.25,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": ["R"],
+        "glow_focal": "ladder",
+        "emf": 1.5,
+        "r": 0.5,
+        "switch": 1
+      },
+      "STATE_4": {
+        "label": "i_max = ε/r",
+        "caption": "All ε lost inside",
+        "formula_overlay": "i_max = ε/r",
+        "R_autosweep_down": true,
+        "R_autosweep_to": 0,
+        "short_circuit": true,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "pump",
+        "emf": 1.5,
+        "r": 0.5,
+        "switch": 1
+      },
+      "STATE_5": {
+        "label": "r = (ε − V)/i",
+        "caption": "Two readings give r",
+        "formula_overlay": "r = (ε − V)/i",
+        "two_reading": true,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_sliders": false,
+        "visible_controls": ["switch"],
+        "glow_focal": "voltmeter",
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 1
+      },
+      "STATE_6": {
+        "label": "V = ε + i·r",
+        "caption": "Charging lifts V above ε",
+        "formula_overlay": "V = ε + i·r",
+        "charging": true,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "charger",
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 1,
+        "charger_emf": 3.0
+      },
+      "STATE_7": {
+        "label": "i = ε/(R+r)",
+        "caption": "All yours",
+        "formula_overlay": "i = ε/(R+r)",
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": true,
+        "glow_focal": "formula"
+      }
     }
   }
 }
