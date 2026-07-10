@@ -433,6 +433,11 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     if (state.two_reading === true) maxMs = Math.max(maxMs, 3600 + 400);
     if (state.r_reveal === true) maxMs = Math.max(maxMs, 700 + 900 + 400);
     if (state.R_autosweep_down === true) maxMs = Math.max(maxMs, 700 + 3200 + 400);
+    // electric_power: S3 energy accumulates on the clock (settle by ~3500ms so the
+    // frozen frame shows a non-trivial J count); S5 parallel flip re-lands the bulbs
+    // (cued switch-close at 1500 + 800ms current ramp, mirrors the ir droop pin).
+    if (state.energy_accumulate === true) maxMs = Math.max(maxMs, 3500 + 400);
+    if (state.parallel_flip === true) maxMs = Math.max(maxMs, 1500 + 800 + 400);
     return maxMs;
 }
 
