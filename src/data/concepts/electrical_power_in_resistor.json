@@ -1,0 +1,670 @@
+{
+  "concept_id": "electrical_power_in_resistor",
+  "concept_name": "Electrical Power in a Resistor — P = VI = I²R = V²/R",
+  "chapter": 3,
+  "section": "3.9",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.9 Electrical Energy, Power) — table-of-contents + scope reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: resistivity / combination-of-resistors / EMF-internal-resistance / power-heating sections) to confirm electrical power & Joule heating is a distinct sub-topic sitting between combination_of_resistors and the EMF/internal-resistance pair — no teaching method, example problem, or figure imported. The atomic idea: a resistive load converts the energy its charges lose into heat and light at the rate P = VI = I²R = V²/R — one quantity, three algebraic faces via Ohm's law substituted into itself — accumulating as energy E = P·t (Joule heating); and whether a higher resistance dissipates MORE or LESS power is not fixed — at fixed current (series) higher R wins (P = I²R), at fixed voltage (parallel) higher R loses (P = V²/R). SCOPE: this is the SEVENTH Ch.3 concept, continuous with drift_velocity, ohms_law, resistivity, combination_of_resistors, emf_definition, and internal_resistance (all shipped) — same particle_field (2D p5.js) renderer family, a new scenario_type (\"electric_power\") reusing the circuit engine's wire-loop/topology/switch/ammeter machinery verbatim plus one new primitive, a glowing rated bulb whose brightness IS its live power. Foundational backfill — combination_of_resistors explicitly defers \"power/heating in combinations\" to this concept. Does NOT cover maximum power transfer (deferred to grouping_cells_mixed_max_power_transfer), high-voltage transmission losses (deferred to power_transmission_high_voltage), bulb power rating as a standalone taught state (folded into the two rated-bulb states' nameplates plus drill-downs), combination-reduction drills, Kirchhoff's rules, or RC heating. Renderer-reality note: this concept does NOT drive P/i/energy via physics_engine_config.formulas/PM_interpolate — particle_field_renderer.ts computes them natively in engine JS (cCurrents/cBulbPowers, plus a state-clock energy accumulator reset on state entry); physics_engine_config below is authored as documentation per the Zod requirement, mirroring every particle_field sibling's convention. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches) — the two genuine misconceptions (\"higher R always dissipates more power\"; \"the higher-wattage bulb is always brighter\") are confronted inside EPIC-L via Rule 16a misconception_watch across the declared STATE_4→STATE_5 contrast pair, no predict-pause. Anchors authored UNIVERSAL per Rule 35 (household bulbs / a phone charger / a kettle coil — no country, brand, festival, or currency; mains phrased neutrally, never a number; the sim itself stays battery-scale, 6 V).",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "electric_power"
+    ]
+  },
+  "prerequisites": [
+    "ohms_law",
+    "combination_of_resistors"
+  ],
+  "real_world_anchor": {
+    "primary": "A 100 W and a 60 W household bulb — in ordinary parallel house wiring the 100 W bulb is the brighter one, exactly as its label promises; but wire the same two bulbs in series (the way old-style string lights are wired) and the order flips — the 60 W bulb burns brighter instead, because now the same current, not the same voltage, is shared between them. Whether a higher-resistance load dissipates more or less power depends entirely on what stays fixed: current, or voltage.",
+    "secondary": "A phone charger's wattage label is a RATE, not a stored amount — it says how fast energy is delivered, never how much. A kettle or heater coil left switched on twice as long delivers twice the ENERGY at the very same power; energy equals power times time is exactly what a household energy meter counts, never a wattage rating by itself."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "V": {
+        "name": "Battery voltage",
+        "unit": "V",
+        "min": 0,
+        "max": 12,
+        "step": 0.5,
+        "default": 6,
+        "role": "slider — LIVE in STATE_1/STATE_2 (visible_controls: ['V'], the swept variable) and STATE_6 (explore); locked to 6 via a numeric state override on STATE_3/STATE_4/STATE_5 so a value dragged earlier never corrupts their taught numbers."
+      },
+      "R1": {
+        "name": "Bulb resistance (\"bulb R\")",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 6,
+        "role": "slider — LIVE in STATE_3 (visible_controls: ['R1'], sets the single bulb's power level and hence the energy-accumulation slope) and STATE_6 (explore); locked to 6 (the '6 W' bulb, R = V²/P = 36/6) on STATE_1/STATE_2/STATE_4/STATE_5."
+      },
+      "R2": {
+        "name": "Second resistor (the '3 W' bulb)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 12,
+        "role": "slider — LIVE ONLY in STATE_6 (explore); locked to 12 (the '3 W' bulb, R = 36/3) on STATE_4/STATE_5; unused before STATE_4 (single-bulb loop)."
+      },
+      "topology": {
+        "name": "Circuit topology (0=series, 1=parallel)",
+        "unit": "dimensionless (enum)",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "role": "slider (2-state toggle) — LIVE ONLY in STATE_6; STATE_4 sets the STRING flag topology:'series' and STATE_5 sets topology:'parallel' directly (never a teacher drag); STATE_1–STATE_3 use single_resistor (one-bulb loop) instead of topology entirely; rendered as text (Series/Parallel), never raw 0/1."
+      },
+      "switch": {
+        "name": "Branch-2 / loop switch (0=open, 1=closed)",
+        "unit": "dimensionless (enum)",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "role": "slider (2-state toggle) — LIVE ONLY in STATE_6 (parallel: kills branch 2/the 3 W bulb only, the independence beat; series/single: kills the loop); defaults closed everywhere else, no guided state drives it."
+      },
+      "i": {
+        "name": "Loop / branch current",
+        "unit": "A",
+        "derived": "single: V/R1; series: V/(R1+R2); parallel: branch1 = V/R1, branch2 = V/R2 independently",
+        "role": "live readout — the ammeter every guided state reads (1.00 A single, 0.333 A series, split in parallel)."
+      },
+      "P_single": {
+        "name": "Single-bulb power",
+        "unit": "W",
+        "derived": "V·i = i²·R1 = V²/R1",
+        "role": "STATE_1/STATE_2/STATE_3's taught number — the three algebraic faces of the SAME quantity, 6.00 W at defaults."
+      },
+      "energy": {
+        "name": "Accumulated Joule heat",
+        "unit": "J",
+        "derived": "∫ P dt on the state clock (engine accumulator), reset on every state entry",
+        "role": "STATE_3-only climbing readout — E(3.5 s) ≈ 21 J at the fixed 6 J/s rate; monotonically increasing, never itself a rate."
+      },
+      "i_series": {
+        "name": "Series-loop current (rated pair)",
+        "unit": "A",
+        "derived": "V / (R1 + R2)",
+        "role": "STATE_4's ammeter reading — 0.333 A at defaults, the SAME current threading both rated bulbs."
+      },
+      "P1_series": {
+        "name": "6 W bulb's power in series",
+        "unit": "W",
+        "derived": "i_series² · R1",
+        "role": "STATE_4 — 0.667 W; the DIMMER bulb here despite its higher nameplate rating."
+      },
+      "P2_series": {
+        "name": "3 W bulb's power in series",
+        "unit": "W",
+        "derived": "i_series² · R2",
+        "role": "STATE_4 — 1.333 W; the higher-resistance bulb WINS at fixed current, 2× brighter than the 6 W bulb."
+      },
+      "P1_parallel": {
+        "name": "6 W bulb's power in parallel",
+        "unit": "W",
+        "derived": "V² / R1",
+        "role": "STATE_5, PRIMARY aha — 6.00 W exactly, its precise nameplate; wins here at fixed voltage, 2× the 3 W bulb."
+      },
+      "P2_parallel": {
+        "name": "3 W bulb's power in parallel",
+        "unit": "W",
+        "derived": "switch===0 ? 0 : V² / R2",
+        "role": "STATE_5 — 3.00 W exactly, its precise nameplate; the order FLIPS from STATE_4, the same brightness order a household 100 W/60 W pair shows."
+      },
+      "brightness_map": {
+        "name": "Bulb glow brightness (visual-only)",
+        "unit": "dimensionless (0.12–1)",
+        "derived": "sqrt(constrain(P / POWER_PMAX, 0.12, 1)) — POWER_PMAX fixed at 6 W, never per-state auto-scaled",
+        "role": "the drawBulbC glow normalizer — a fixed ceiling keeps the series-vs-parallel magnitude flip honest across states (Rule 29: emphasis is brightness, never size)."
+      }
+    },
+    "formulas": {
+      "i_single": "V / R1",
+      "P_single": "V * i_single  (=  i_single^2 * R1  =  V^2 / R1)",
+      "i_series": "V / (R1 + R2)",
+      "P1_series": "i_series^2 * R1",
+      "P2_series": "i_series^2 * R2",
+      "P1_parallel": "V^2 / R1",
+      "P2_parallel": "switch === 0 ? 0 : V^2 / R2",
+      "energy_accum": "running total of P * dt, integrated on the state clock, reset on state entry"
+    },
+    "computed_outputs": {
+      "brightness_map": {
+        "formula": "sqrt(constrain(P / 6, 0.12, 1))"
+      }
+    },
+    "constraints": [
+      "P = VI = I²R = V²/R identically — one quantity via Ohm's law V=IR substituted into itself, never three independent laws",
+      "P ≥ 0 always for a passive resistor — a bulb only dissipates, never generates, power",
+      "in SERIES (same current shared by both bulbs) higher resistance dissipates MORE power: P=I²R grows with R at fixed I",
+      "in PARALLEL (same voltage shared by both branches) higher resistance dissipates LESS power: P=V²/R shrinks with R at fixed V",
+      "a bulb reaches its exact nameplate rating ONLY when it receives its rated voltage — parallel wiring at V=6V delivers exactly that here",
+      "energy E=P·t is a monotonically increasing running total, never itself a rate — it cannot decrease while P>0"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Same two bulbs, rewired parallel — the brighter one flips.",
+    "visual_confirmation": "The 3 W bulb wins in series (0.67 W vs 1.33 W); rewired parallel the 6 W bulb wins instead (6.00 W vs 3.00 W), each at its exact nameplate."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "joule_heating": [
+      "STATE_3"
+    ],
+    "series_vs_parallel": [
+      "STATE_4",
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "A bulb turns delivered watts into light: P = VI",
+        "duration": 16,
+        "focal_primitive_id": "bulb_glow_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "circuit_loop_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "One 6 W bulb on a six-volt loop — the switch is already closed.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "bulb_glow_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Beads flow, the filament glows: power P = VI, six watts.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "rate_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Watts are a RATE of delivery — like a phone charger's label.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Close the switch — current I flows at one ampere.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "The bulb glows: it turns delivered energy into light and heat at a rate — power P equals voltage V times current I, six watts.",
+              "glow": "bulb1"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Like a phone charger's eighteen-watt label — a rate, not a stored amount.",
+              "glow": "bulb1"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Same watts, three faces: P = VI = I²R = V²/R",
+        "duration": 19,
+        "focal_primitive_id": "three_faces_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "same_bulb_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Same bulb, home pose — but the formula swaps to the identity.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "three_faces_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "VI = I²R = V²/R — three faces, all reading six watts live.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "recompute_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Drag voltage V — all three readouts recompute together, still agreeing.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Same bulb, same six watts — but write it three ways.",
+              "glow": "bulb1"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Multiply voltage V by current I: six watts. Square current I and multiply by resistance R: six watts again.",
+              "glow": "formula"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Square voltage V and divide by resistance R: still six watts — the same quantity, three faces, live-agreeing as you move the voltage slider.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "which_formula_when",
+          "p_proportional_to_r_or_not",
+          "what_is_a_watt"
+        ]
+      },
+      "STATE_3": {
+        "title": "Power is a rate; energy piles up: E = P·t",
+        "duration": 18,
+        "focal_primitive_id": "energy_climb_tag",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rate_vs_stock_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Power is a rate; energy is what piles up as it runs.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "energy_climb_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "The counter climbs: energy = P·t, six joules every second.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "slope_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Raise the bulb's resistance R1 — power drops, the climb slows.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Power is a rate, watts delivered each second. Energy piles up: E equals P times t.",
+              "glow": "bulb1"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch the counter climb — six joules each second, twenty-one joules by three and a half seconds.",
+              "glow": "bulb1"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Raise the bulb's resistance and the climb slows — like a kettle coil, energy is what a meter counts.",
+              "glow": "bulb1"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "SERIES: same current, P = I²R, the higher-R bulb wins",
+        "duration": 20,
+        "focal_primitive_id": "series_result_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "relay_series_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "The same two rated bulbs re-lay in SERIES — one current threads both.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "series_result_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Current drops to 0.33 A; the 3 W (12 Ω) bulb glows brighter.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "higher_r_wins_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "P = I²R at fixed current — the higher-resistance bulb wins here.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Same two bulbs, wired in series now — one current I threads both, and it drops to point-three-three amps.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "With the same current in both, power follows P equals I squared R — the twelve-ohm bulb dissipates more, one-point-three-three watts against point-six-seven.",
+              "glow": "bulb2"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Same current, twice — the higher-resistance bulb wins here, brighter, while the higher-wattage bulb loses.",
+              "glow": "bulb2"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "more ohms means more heat, always",
+            "visual_counter": "In series, the same current threads both bulbs — the 12 Ω (3 W) bulb genuinely dissipates more here (1.33 W vs 0.67 W), confirming the rule... for now. The very next state breaks it.",
+            "one_line_fix": "P=I²R rules when current is shared (series); P=V²/R when voltage is shared (parallel) — ask what's held constant first."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "series_string_lights_dim",
+          "series_voltage_sharing",
+          "max_power_transfer_forward_ref"
+        ]
+      },
+      "STATE_5": {
+        "title": "PARALLEL: same voltage, P = V²/R — THE FLIP",
+        "duration": 19,
+        "focal_primitive_id": "parallel_flip_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "relay_parallel_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Same two bulbs re-land in PARALLEL — each gets the full six volts.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "parallel_flip_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "The order FLIPS: the 6 W (6 Ω) bulb blazes, each at nameplate.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "fixed_voltage_wins_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "P = V²/R at fixed voltage — the higher-resistance bulb loses now.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Same two bulbs, now parallel — each branch gets the full six volts.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Power now follows P equals V squared over R — the six-ohm bulb wins, six watts to three, order flips.",
+              "glow": "bulb1"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Each bulb lands at its exact nameplate — the same flip a hundred-watt and sixty-watt household bulb show: ask what's held constant first.",
+              "glow": "bulb1"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "more ohms means more heat, always",
+            "visual_counter": "Same two bulbs, same 6 V, re-landed parallel — the 12 Ω (3 W) bulb drops to 3.00 W while the 6 Ω (6 W) bulb blazes to 6.00 W; the brightness order SWAPS from the series state.",
+            "one_line_fix": "P=I²R rules when current is shared (series); P=V²/R when voltage is shared (parallel) — ask what's held constant first."
+          },
+          {
+            "belief": "the higher-wattage bulb is always brighter",
+            "visual_counter": "In series the 6 W bulb was the DIMMER one (0.67 W vs 1.33 W); here it wins (6.00 W vs 3.00 W) — a rating only promises its power at rated voltage, which parallel wiring delivers.",
+            "one_line_fix": "a rating is P at rated voltage — in series nobody gets their rated voltage, so the order can invert."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "bulb_rating_meaning",
+          "run_below_rated_voltage",
+          "household_bulbs_parallel"
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: P = VI = I²R = V²/R, every dial live",
+        "duration": 0,
+        "focal_primitive_id": "explore_tag",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_dials_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Every dial is live: V, R1, R2, topology, and the switch.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "explore_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "P = VI = I²R = V²/R drives everything you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "replay_flip_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Flip topology to replay the series/parallel brightness flip yourself.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Every dial is yours now — watch P equals VI equals I squared R equals V squared over R drive everything.",
+              "glow": "formula"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "electrical_power_in_resistor_household_bulb_swap",
+      "type": "B",
+      "label": "Two household bulbs — the bright one dims in series, blazes in parallel",
+      "physical_world": "A 100 W and a 60 W bulb wired first in old-style series string lights, then in ordinary parallel household wiring.",
+      "same_physics": "Same P=I²R (series, fixed current) vs P=V²/R (parallel, fixed voltage) flip — the sim's toy 6 W/3 W-at-6 V rated pair reproduces this exact direction.",
+      "scene_hint": "Narration anchor for STATE_5 only; nothing house-shaped is drawn on canvas and no brand/place is named (Rule 35)."
+    },
+    {
+      "variant_id": "electrical_power_in_resistor_charger_kettle_energy",
+      "type": "B",
+      "label": "A phone charger's wattage vs a kettle coil's energy bill",
+      "physical_world": "A charger's nameplate wattage is a RATE; running a kettle or heater coil twice as long delivers twice the ENERGY at the same power — what an energy meter counts.",
+      "same_physics": "P is the rate (STATE_1); E=P·t is the accumulated stock (STATE_3) — same rate-vs-stock distinction, different appliance.",
+      "scene_hint": "Narration anchor for STATE_1/STATE_3; no brand, place, or currency drawn or spoken."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "electric_power",
+    "particles": {
+      "count": 36,
+      "color": "#42A5F5",
+      "size": 8
+    },
+    "slider_controls": {
+      "V": {
+        "min": 0,
+        "max": 12,
+        "step": 0.5,
+        "default": 6,
+        "label": "Voltage V",
+        "unit": "V"
+      },
+      "R1": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 6,
+        "label": "bulb R",
+        "unit": "Ω"
+      },
+      "R2": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 12,
+        "label": "Resistor R2",
+        "unit": "Ω"
+      },
+      "topology": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "label": "Topology"
+      },
+      "switch": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "label": "Switch"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "battery": "#FFD54F",
+      "bulb": "#FFCA28",
+      "ammeter_readout": "#80DEEA",
+      "energy": "#66BB6A",
+      "formula": "#4DD0E1",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "P = VI",
+        "caption": "Bulb turns watts to light",
+        "formula_overlay": "P = VI",
+        "single_bulb": true,
+        "single_resistor": true,
+        "show_sliders": false,
+        "visible_controls": ["V"],
+        "glow_focal": "bulb1",
+        "R1": 6
+      },
+      "STATE_2": {
+        "label": "P = VI = I²R = V²/R",
+        "caption": "Same watts, three ways",
+        "formula_overlay": "P = VI = I²R = V²/R",
+        "three_faces": true,
+        "single_bulb": true,
+        "single_resistor": true,
+        "show_sliders": false,
+        "visible_controls": ["V"],
+        "glow_focal": "formula",
+        "R1": 6
+      },
+      "STATE_3": {
+        "label": "E = P·t",
+        "caption": "Energy piles up as heat",
+        "formula_overlay": "E = P·t",
+        "energy_accumulate": true,
+        "single_bulb": true,
+        "single_resistor": true,
+        "show_sliders": false,
+        "visible_controls": ["R1"],
+        "glow_focal": "bulb1",
+        "V": 6
+      },
+      "STATE_4": {
+        "label": "P = I²R",
+        "caption": "Series: higher-R bulb wins",
+        "formula_overlay": "P = I²R",
+        "series_pair": true,
+        "topology": "series",
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "bulb2",
+        "V": 6,
+        "R1": 6,
+        "R2": 12
+      },
+      "STATE_5": {
+        "label": "P = V²/R",
+        "caption": "Parallel — brightness flips",
+        "formula_overlay": "P = V²/R",
+        "parallel_flip": true,
+        "topology": "parallel",
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "bulb1",
+        "V": 6,
+        "R1": 6,
+        "R2": 12
+      },
+      "STATE_6": {
+        "label": "P = VI = I²R = V²/R",
+        "caption": "All yours",
+        "formula_overlay": "P = VI = I²R = V²/R",
+        "show_sliders": true,
+        "glow_focal": "formula"
+      }
+    }
+  }
+}

@@ -121,6 +121,22 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #7 — Alex pipeline (2026-07-10), same engine
+    // family as the six particle_field siblings. New "electric_power" circuit
+    // scenario: glowing rated bulbs whose brightness IS live power, reusing
+    // the shared circuit-family engine (wire loop / topology / switch /
+    // ammeter). PRIMARY aha: series->parallel brightness flip on two rated
+    // bulbs (P=I²R vs P=V²/R).
+    electrical_power_in_resistor: {
+        concept_id: 'electrical_power_in_resistor',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'electrical_power_in_resistor',
+            label: 'Electrical Power — P = VI = I²R = V²/R',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

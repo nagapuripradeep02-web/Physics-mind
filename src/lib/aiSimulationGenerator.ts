@@ -2615,6 +2615,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // the hidden r inside the emf_definition cell (V = eps - ir, short circuit,
     // two-reading measurement, charging). Replaced the STALE circuit_live placeholder.
     internal_resistance:            "particle_field",
+    // electrical_power_in_resistor is the seventh Ch.3 concept on particle_field
+    // (2D p5.js) via the Alex pipeline (2026-07-10) — a new "electric_power"
+    // circuit scenario (glowing rated bulbs whose brightness IS live power),
+    // reusing the shared circuit engine (wire loop / topology / switch /
+    // ammeter). NOT added to PCPL_CONCEPTS (parametric_renderer only).
+    electrical_power_in_resistor:   "particle_field",
     emf_internal_resistance:        "circuit_live",
     electrical_power_energy:        "circuit_live",
     resistance_temperature_dependence: "circuit_live",
