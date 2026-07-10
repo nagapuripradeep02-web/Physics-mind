@@ -1084,6 +1084,33 @@ function drawResistorBoxC(cx, cy, label, dim) {
   fillHex('#FFFFFF', 0.95 * dim); textSize(12); textStyle(BOLD); textAlign(CENTER, TOP);
   text(label, cx, cy + 16); textStyle(NORMAL);
 }
+// A bulb = a resistor that shows its dissipation as LIGHT. Brightness (not size —
+// Rule 29) tracks power via a sqrt map so low-power series bulbs still read as lit
+// and their 2:1 ratio stays visible, while the parallel bulbs go full-bright.
+// Pmax is a FIXED normalizer (never per-state auto-scale) so the series-vs-parallel
+// magnitude flip is honest. rating e.g. '6 W'; P in watts; dim = glow-focal mult.
+function drawBulbC(cx, cy, rating, P, Pmax, dim) {
+  var b = constrain(sqrt(max(P, 0) / max(Pmax, 1e-6)), 0.12, 1);   // brightness 0.12..1
+  var flick = 0.96 + 0.04 * sin(PM_simTimeMs / 140);               // faint filament shimmer
+  var glow = b * flick;
+  // heat/light halo (extends the i^2 r halo idiom from drawEmfCell)
+  noStroke(); fillHex('#FFB300', 0.16 * glow * dim); ellipse(cx, cy, 46 + 26 * glow);
+  fillHex('#FFCA28', 0.22 * glow * dim); ellipse(cx, cy, 30 + 12 * glow);
+  // glass envelope (constant geometry — never scales)
+  strokeHex('#B0BEC5', 0.85 * dim); strokeWeight(2); noFill(); ellipse(cx, cy, 26, 26);
+  strokeWeight(2); line(cx - 6, cy + 12, cx + 6, cy + 12);         // base contact
+  // filament: bright core whose alpha = brightness
+  noStroke(); fillHex('#FFF3E0', (0.25 + 0.75 * glow) * dim); ellipse(cx, cy, 12);
+  strokeHex('#FFD54F', (0.4 + 0.6 * glow) * dim); strokeWeight(1.5); noFill();
+  beginShape();
+  for (var k = 0; k <= 4; k++) vertex(cx - 6 + k * 3, cy + (k % 2 ? -4 : 4));
+  endShape(); noStroke();
+  // rating label (above) + live power (below)
+  fillHex('#FFE082', 0.95 * dim); textSize(11); textStyle(BOLD); textAlign(CENTER, BOTTOM);
+  text(rating, cx, cy - 18);
+  fillHex('#FFFFFF', 0.98 * dim); textSize(12); textAlign(CENTER, TOP);
+  text('P = ' + P.toFixed(2) + ' W', cx, cy + 18); textStyle(NORMAL);
+}
 function drawBatteryC(g, V, dim) {
   var bx = g.leftX, by = g.midY;
   strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx, by - 15, bx, by + 15);
