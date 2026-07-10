@@ -150,7 +150,7 @@
         }
       },
       "STATE_2": {
-        "title": "Flux linkage: Phi = NBA cos(omega t), max face-on, zero edge-on",
+        "title": "Flux linkage: Φ = NBA cos(ωt), max face-on, zero edge-on",
         "duration": 20,
         "focal_primitive_id": "acg_flux_formula",
         "advance_mode": "manual_click",
@@ -261,7 +261,7 @@
         }
       },
       "STATE_4": {
-        "title": "The EMF peaks where the flux is zero — the 90 deg phase lag",
+        "title": "The EMF peaks where the flux is zero — the 90° phase lag",
         "duration": 26,
         "focal_primitive_id": "acg_phase_note",
         "advance_mode": "manual_click",
@@ -328,7 +328,7 @@
         ]
       },
       "STATE_5": {
-        "title": "Peak EMF: eps0 = NBA omega — omega raises peak AND frequency",
+        "title": "Peak EMF: ε₀ = NBAω — ω raises peak AND frequency",
         "duration": 22,
         "focal_primitive_id": "acg_peak_formula",
         "advance_mode": "manual_click",
@@ -439,7 +439,7 @@
         ]
       },
       "STATE_7": {
-        "title": "Explore: crank the coil, set omega, N, B, A",
+        "title": "Explore: crank the coil, set ω, N, B, A",
         "duration": 0,
         "focal_primitive_id": "acg_explore_key",
         "advance_mode": "interaction_complete",
@@ -657,7 +657,7 @@
       "opacity": 0.85
     },
     "slider_controls": {
-      "omega": { "min": 0.5, "max": 3.0, "step": 0.1, "default": 1.5, "label": "Crank speed omega" },
+      "omega": { "min": 0.5, "max": 3.0, "step": 0.1, "default": 1.5, "label": "Crank speed ω" },
       "N": { "min": 20, "max": 300, "step": 10, "default": 100, "label": "Turns N" },
       "B": { "min": 0.05, "max": 0.5, "step": 0.05, "default": 0.2, "label": "Field B" },
       "A": { "min": 0.005, "max": 0.05, "step": 0.005, "default": 0.02, "label": "Coil area A" }
@@ -667,7 +667,7 @@
         "label": "The machine: coil spinning in a field lights the grid",
         "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_slipring", "acg_slipring_lbl", "acg_brush", "acg_extwire", "acg_curr", "acg_bulb", "acg_bulb_lbl"],
         "camera_position": [4.8, 3.2, 7.6],
-        "caption": "A coil rotates in the steady field B; slip rings + brushes light the bulb. Stop cranking -> flux steady -> bulb dark.",
+        "caption": "Spinning coil lights the bulb",
         "show_sliders": true,
         "formula_overlay": "",
         "ac_generator": {
@@ -679,12 +679,12 @@
         }
       },
       "STATE_2": {
-        "label": "Flux linkage: Phi = NBA cos(omega t)",
+        "label": "Flux linkage: Φ = NBA cos(ωt)",
         "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_normal", "acg_fluxlink", "acg_theta_arc"],
         "camera_position": [3.6, 2.2, 6.2],
-        "caption": "The area-vector sweeps relative to B; the flux-through-face and the green cosine graph pulse from a face-on max to an edge-on zero. The yellow arc is theta = omega t.",
+        "caption": "Flux follows cos ωt",
         "show_sliders": true,
-        "formula_overlay": "Phi = NBA cos(omega t)",
+        "formula_overlay": "Φ = NBA cos(ωt)",
         "ac_generator": {
           "mode": "flux_trace",
           "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
@@ -695,12 +695,12 @@
         }
       },
       "STATE_3": {
-        "label": "Why an EMF? F = qv x B pushes the charges",
+        "label": "Why an EMF? F = qv×B pushes the charges",
         "visible_elements": ["acg_coil", "acg_axle", "acg_pole", "acg_bfield", "acg_normal", "acg_theta_arc", "acg_vf", "acg_qf"],
         "camera_position": [2.9, 1.7, 5.2],
-        "caption": "Each axle-parallel side sweeps through B: every charge in it feels F = qv x B ALONG the wire — zero face-on (v parallel to B), maximum edge-on (v cuts B). Top/bottom sides are pushed ACROSS the wire: no drive. Slowed to omega = 0.8 for watchability.",
+        "caption": "Side wires feel qv×B",
         "show_sliders": true,
-        "formula_overlay": "F = qv x B — only the axle-parallel sides drive charge",
+        "formula_overlay": "F = qv × B",
         "ac_generator": {
           "mode": "emf_mechanism",
           "B": 0.2, "A": 0.02, "N": 100, "omega": 0.8,
@@ -710,12 +710,12 @@
         }
       },
       "STATE_4": {
-        "label": "EMF peaks where flux = 0 — the 90 deg phase lag",
+        "label": "EMF peaks where flux = 0 — the 90° phase lag",
         "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_normal", "acg_theta_arc"],
         "camera_position": [3.8, 2.4, 6.6],
-        "caption": "Faded cosine flux + bright sine EMF, 90 deg apart: at flux-max the EMF is zero; a quarter-turn later flux is zero and the EMF peaks. eps0 = NBA omega.",
+        "caption": "EMF peaks at zero flux",
         "show_sliders": true,
-        "formula_overlay": "eps = NBA omega sin(omega t),  eps0 = NBA omega",
+        "formula_overlay": "ε = NBAω sin(ωt)\nε₀ = NBAω",
         "ac_generator": {
           "mode": "emf_phase",
           "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
@@ -728,12 +728,12 @@
         }
       },
       "STATE_5": {
-        "label": "Peak EMF: eps0 = NBA omega (raises peak AND frequency)",
+        "label": "Peak EMF: ε₀ = NBAω (raises peak AND frequency)",
         "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield"],
         "camera_position": [3.8, 2.4, 6.6],
-        "caption": "Crank omega up -> the sine grows taller AND fits more cycles (fixed axis +/-4.0 V). More turns N -> taller only. f = omega/2pi.",
+        "caption": "ω raises peak and frequency",
         "show_sliders": true,
-        "formula_overlay": "eps0 = NBA omega,   f = omega/2pi",
+        "formula_overlay": "ε₀ = NBAω\nf = ω/2π",
         "ac_generator": {
           "mode": "peak_dependence",
           "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
@@ -748,9 +748,9 @@
         "label": "Slip rings deliver AC; a split ring would give DC",
         "visible_elements": ["acg_coil", "acg_axle", "acg_slipring", "acg_slipring_lbl", "acg_brush", "acg_extwire", "acg_extcurr", "acg_curr", "acg_commutator", "acg_pole"],
         "camera_position": [2.6, 0.6, 7.0],
-        "caption": "Two continuous rings + fixed brushes: the current beads reverse and the outside arrow flips each half turn (at the sine's zero) -> AC. The rotating split ring's brush dots swap instead -> the dashed grey |eps| trace: one-way pulsating DC.",
+        "caption": "Slip rings deliver AC",
         "show_sliders": true,
-        "formula_overlay": "two rings -> AC   |   one split ring -> DC",
+        "formula_overlay": "two rings → AC\nsplit ring → DC",
         "ac_generator": {
           "mode": "slip_rings",
           "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
@@ -763,12 +763,12 @@
         }
       },
       "STATE_7": {
-        "label": "Explore: crank the coil, set omega, N, B, A",
+        "label": "Explore: crank the coil, set ω, N, B, A",
         "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_slipring", "acg_slipring_lbl", "acg_brush", "acg_extwire", "acg_extcurr", "acg_curr", "acg_bulb", "acg_bulb_lbl", "acg_normal", "acg_theta_arc"],
         "camera_position": [4.8, 3.0, 7.8],
-        "caption": "Set omega, N, B, A and watch Phi, eps, eps0, the bulb, and the flowing current re-derive live (graph auto-scaled). Until you touch a slider, omega sweeps by itself — grab it to take over.",
+        "caption": "Your turn — crank everything",
         "show_sliders": true,
-        "formula_overlay": "eps = NBA omega sin(omega t)",
+        "formula_overlay": "ε = NBAω sin(ωt)",
         "ac_generator": {
           "mode": "sandbox",
           "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,

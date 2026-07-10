@@ -413,12 +413,20 @@ ${pilotHeadTags(1)}
            color:var(--ink-dim); font-size:12px; font-weight:600; cursor:pointer; user-select:none;
            transition:color .15s ease, border-color .15s ease; }
   #fsBtn:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
-  #caption { position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
-             background:rgba(16,14,11,0.82); backdrop-filter:blur(8px); color:var(--ink);
-             padding:8px 16px; border:1px solid var(--line);
-             border-radius:11px; font-size:15px; line-height:1.4; max-width:86%;
-             text-align:center; pointer-events:none; min-height:1.2em; z-index:5; }
+  /* Subtitle strip BELOW the canvas (de-clutter 2026-07-10) — narration prose never
+     covers the sim; the strip collapses when subtitles are toggled off. */
+  #capStrip { flex:0 0 auto; background:var(--surface); border-top:1px solid var(--line);
+              padding:7px 16px; text-align:center; }
+  #capStrip.cc-off { display:none; }
+  #caption { color:var(--ink); font-size:15px; line-height:1.4; min-height:1.35em;
+             max-width:900px; margin:0 auto; text-align:center; pointer-events:none; }
   #caption.cc-off { display:none; }   /* subtitles toggled off (independent of mute) */
+  /* fullscreen is #stage-only, so onFsChange re-parents #caption INTO the stage —
+     this block restores the old floating-overlay look for that mode only. */
+  #stage #caption { position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
+                    background:rgba(16,14,11,0.82); backdrop-filter:blur(8px);
+                    padding:8px 16px; border:1px solid var(--line); border-radius:11px;
+                    max-width:86%; z-index:5; }
   #paused { position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
             display:none; background:var(--red); color:#fff;
             padding:7px 18px; border-radius:999px; font-size:14px; font-weight:600;
@@ -568,8 +576,8 @@ ${pilotHeadTags(1)}
       <div id="fsBtn" title="Full screen the simulation (Esc to exit)"><span id="fsIcon">&#9974;</span> Full screen</div>
       <div id="paused">&#9208; Paused — tap to resume</div>
       <div id="tapcue">&#9208; Tap the sim anytime to pause</div>
-      <div id="caption"></div>
     </div>
+    <div id="capStrip"><div id="caption"></div></div>
     <div id="ctlToggle" title="Hide / show the controls (more room for the simulation)">&#9662;</div>
     <div id="scrubbar">
       <input id="scrub" type="range" min="0" max="1000" step="1" value="0">
@@ -1198,6 +1206,8 @@ ${pilotHeadTags(1)}
   // can still read along). Teacher-wide preference (LS_CC).
   function applySubs() {
     if (caption) caption.classList.toggle('cc-off', !subsOn);
+    var capStripEl = document.getElementById('capStrip');
+    if (capStripEl) capStripEl.classList.toggle('cc-off', !subsOn);   // reclaim the strip's pixels
     if (ccBtn) { ccBtn.classList.toggle('on', subsOn); ccBtn.textContent = subsOn ? 'Subtitles' : 'Subtitles off'; }
   }
   if (ccBtn) ccBtn.addEventListener('click', function () {
@@ -1695,6 +1705,13 @@ ${pilotHeadTags(1)}
     var on = !!inFullscreen();
     if (fsIcon) fsIcon.innerHTML = on ? '\\u2715' : '\\u26F6';   // ✕ exit / ⛶ enter
     fsBtn.childNodes[fsBtn.childNodes.length - 1].nodeValue = on ? ' Exit full screen' : ' Full screen';
+    // Fullscreen wraps #stage only, so the below-canvas subtitle strip would vanish:
+    // re-parent #caption into the stage (styled as an overlay by the "#stage #caption" CSS).
+    var capStripEl = document.getElementById('capStrip');
+    if (caption && capStripEl) {
+      if (on) { stageEl2.appendChild(caption); capStripEl.style.display = 'none'; }
+      else { capStripEl.style.display = ''; capStripEl.appendChild(caption); }
+    }
     requestAnimationFrame(function () { if (simSurface) simSurface.resize(); });
   }
   document.addEventListener('fullscreenchange', onFsChange);
