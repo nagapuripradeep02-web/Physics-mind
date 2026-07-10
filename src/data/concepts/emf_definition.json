@@ -498,6 +498,7 @@
         "caption": "The lift, measured",
         "formula_overlay": "ε = W / q",
         "show_ladder": true,
+        "trace_charge": true,
         "show_sliders": false,
         "visible_controls": [],
         "glow_focal": "ladder",

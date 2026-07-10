@@ -1164,7 +1164,22 @@ function drawEmfScenario() {
   drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + fmtNum(c.R) + ' \\u03A9', dimFor('load'));
   drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
   drawEmfCell(g, c.eps, 1, !!(st && st.pump_focus) || !c.swOpen);   // pump animates while current flows / when focal
-  if (st && st.show_ladder) drawPotentialLadder(c.eps, c.i, c.R, c.swOpen, 1);
+  var traceS = null, prof = null;
+  if (st && st.trace_charge && !c.swOpen) {              // S2: the followed charge (loop side)
+    prof = emfLoopProfile(loops);
+    traceS = emfTraceS(c);
+    var tp = polyAt(loops.series, prof.L, traceS);
+    noStroke(); fillHex('#FFE082', 0.30); ellipse(tp.x, tp.y, 22);   // halo emphasis (Rule 29)
+    fillHex('#FFE082', 0.98); ellipse(tp.x, tp.y, 9);
+  }
+  var holdPulse = 0;
+  if (st && st.charge_double) {                          // S3: pulse "still eps" on each q flip (flips every 2s)
+    holdPulse = max(0, 1 - ((PM_simTimeMs % 2000) / 800));
+  }
+  if (st && st.show_ladder) {
+    if (traceS !== null && !prof) prof = emfLoopProfile(loops);
+    drawPotentialLadder(c.eps, c.i, c.R, c.swOpen, 1, traceS, holdPulse, prof || emfLoopProfile(loops));
+  }
   if (st && st.show_voltmeter) {
     var vmDim = dimFor('voltmeter'), vx = g.leftX + 82, vy = g.midY;
     strokeHex('#B39DDB', 0.7 * vmDim); strokeWeight(1.5);            // leads tapping the two terminals
@@ -1694,11 +1709,36 @@ function currentAtV(v) {
   }
   return ohmicCurrentAt(v, R);
 }
+// ── S2 trace-sync: one followed charge on the loop + a coordinated energy-dot on
+// the ladder. Both are driven by the SAME loop-fraction s (pure fn of PM_simTimeMs),
+// so they cannot desync. The potential profile v(s) mirrors the drawn staircase:
+// rise inside the cell, flat at eps along the wire, linear drop across the load,
+// flat at 0 on the return. Rule 29: the tracer is a colour+halo emphasis, same size.
+var EMF_TRACE_PHASE = 0.93;   // starts just BEFORE the cell so the step-up lands early
+function emfLoopProfile(loops) {
+  var g = loops.g, L = polyLen(loops.series);
+  var up = g.midY - g.topY;                                  // battery → top-left corner
+  var resC = up + (g.rightX - g.leftX) / 2;                  // arc length to resistor centre
+  return { L: L, sc: 30 / L, s1: (resC - 33) / L, s2: (resC + 33) / L };
+}
+function emfTraceS(c) {
+  var spd = (c.i < 0.02) ? 0 : constrain(c.i / 1.0, 0.28, 3.0);
+  return (EMF_TRACE_PHASE + CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * spd) % 1;
+}
+function emfTraceV(s, p, eps) {                              // potential of the followed charge
+  if (s < p.sc) return eps * (s / p.sc);                     // climbing inside the cell
+  if (s < p.s1) return eps;                                  // wire: holds the full lift
+  if (s < p.s2) return eps * (1 - (s - p.s1) / (p.s2 - p.s1)); // spending it across the load
+  return 0;                                                  // return path back to the - terminal
+}
+
 // POTENTIAL LADDER — the money primitive for emf. Right-side inset: potential vs
 // position around the loop. Step UP by eps at the cell (the lift), flat along the
 // wire, step DOWN by eps across the load. When the loop is open (no current) the
 // potential stays flat at eps the whole way — the voltmeter reads the full emf.
-function drawPotentialLadder(eps, i, R, swOpen, dim) {
+// traceS (nullable): the followed charge's loop fraction — draws the synced energy
+// dot. holdPulse (0..1): S3's "still 1.5 J/C" step-label emphasis on each q flip.
+function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof) {
   var x0 = width * 0.74, y0 = height * 0.30, w = width * 0.225, h = height * 0.42;
   rectMode(CORNER); fill(10, 12, 28, 210 * dim); noStroke(); rect(x0, y0, w, h, 6);
   strokeHex('#37474F', 0.8 * dim); strokeWeight(1); noFill(); rect(x0, y0, w, h, 6);
@@ -1717,6 +1757,24 @@ function drawPotentialLadder(eps, i, R, swOpen, dim) {
   endShape();
   noStroke(); fillHex('#4DD0E1', 0.98 * lDim); textSize(11); textStyle(BOLD); textAlign(LEFT, BOTTOM);
   text('\\u03B5 = ' + eps.toFixed(1) + ' V', xa + 4, py(eps) - 4);
+  if (holdPulse && holdPulse > 0) {                      // S3: the step "still eps" emphasis on each q flip
+    fillHex('#FFFFFF', 0.9 * holdPulse * lDim); textSize(10); textAlign(LEFT, TOP);
+    text('still ' + eps.toFixed(1) + ' J/C', xa + 4, py(eps) + 4);
+    strokeHex('#FFFFFF', 0.85 * holdPulse * lDim); strokeWeight(2); noFill();
+    line(xa, py(0), xa, py(eps));                        // re-stroke the riser: the height that did NOT change
+    noStroke();
+  }
+  if (traceS !== null && traceS !== undefined && !swOpen) {   // the followed charge's energy dot
+    var p2 = prof, s = traceS;
+    var tx, tv = emfTraceV(s, p2, eps);
+    if (s < p2.sc) tx = xa;                                              // riding UP the riser
+    else if (s < p2.s1) tx = xa + (xc - xa) * ((s - p2.sc) / max(p2.s1 - p2.sc, 1e-6));
+    else if (s < p2.s2) tx = xc + (xd - xc) * ((s - p2.s1) / max(p2.s2 - p2.s1, 1e-6));
+    else tx = xd + (xe - xd) * ((s - p2.s2) / max(1 - p2.s2, 1e-6));
+    var ty = py(tv);
+    noStroke(); fillHex('#FFE082', 0.30 * lDim); ellipse(tx, ty, 14);    // halo (brightness, not size — Rule 29)
+    fillHex('#FFE082', 0.98 * lDim); ellipse(tx, ty, 7);
+  }
   fillHex('#B0BEC5', 0.85 * dim); textSize(9); textStyle(NORMAL); textAlign(LEFT, TOP);
   text('potential around loop (J/C)', gx, y0 + 4);
   textAlign(CENTER, TOP); text('cell', xa + gw * 0.25, gy + 3); text('load', (xc + xd) / 2, gy + 3);
