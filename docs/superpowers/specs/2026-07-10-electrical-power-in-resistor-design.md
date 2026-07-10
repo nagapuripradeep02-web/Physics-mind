@@ -109,9 +109,13 @@ series/parallel topology + junction split by conductance, the branch `switch`, `
 2. `drawPowerScenario()` render branch (sibling of `drawEmfScenario` / `drawIrScenario` / `drawCircuit`),
    dispatched in the `isCircuitFamily()` block.
 3. `updateReadouts()` power branch.
-4. **New primitive `drawBulbC(cx, cy, rating, P, Pmax, dim)`** — glass envelope + filament with
-   glow intensity ∝ P/Pmax (this IS the watt-meter), heat halo (extends the existing i²R halo), rating
-   label ("6 W"), live `P = x.x W`. The one real primitive to build.
+4. **New primitive `drawBulbC(cx, cy, rating, R, P, Pmax, dim)`** — glass envelope + filament with
+   glow intensity ∝ √(P/Pmax) (this IS the watt-meter), heat halo (extends the existing i²R halo), a
+   nameplate showing **rating + resistance** (`"6 W · 6 Ω"` / `"3 W · 12 Ω"`), and live `P = x.xx W`
+   below. The one real primitive to build. **The resistance is on-canvas on purpose** (added 2026-07-11,
+   founder review): the whole pivot turns on which bulb is higher-R, so R must be *visible* — the sim now
+   reads correctly sound-off (Rule 24) and "higher-R wins/loses" is grounded, not just narrated. In S3 the
+   `Ω` label updates live as the bulb-R slider moves.
 5. **Power/energy adapter (honest, no fudge):** `cPower` per bulb `P = V_bulb · I_bulb` derived from the
    same `cVolt`/`cCurrents` the circuit engine already computes (so P = VI = I²R = V²/R are identically
    consistent); **energy accumulator** for S3 `E += P·dt` on the state clock (resets in `rebuildScene`),
