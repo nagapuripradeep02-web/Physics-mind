@@ -681,9 +681,17 @@ function updateReadouts() {
     var eSwEl = document.getElementById('pm-sv-emf');        // emf row tracks the S4 auto-glide (thumb stays at default)
     if (eSwEl) { var ed = defs.emf || {}; eSwEl.textContent = (Math.round(cEmf() * 100) / 100) + (ed.unit ? (' ' + ed.unit) : ''); }
   }
-  if (hasSlider('R') && !userTouched['R'] && !emfMode()) {   // R thumb tracks the r_autosweep (ohms_law only)
+  if (hasSlider('R') && !userTouched['R'] && !emfMode() && !irMode()) {   // R thumb tracks the r_autosweep (ohms_law only)
     var rEl = document.getElementById('pm-sv-R');
     if (rEl) { var rd2 = defs.R || {}; rEl.textContent = (Math.round(plotR() * 100) / 100) + (rd2.unit ? (' ' + rd2.unit) : ''); }
+  }
+  if (irMode() && hasSlider('R') && !userTouched['R'] && curState() && curState().R_autosweep_down) {
+    var rIrEl = document.getElementById('pm-sv-R');            // R row tracks the S3/S4 auto-sweep
+    if (rIrEl) { var rdd = defs.R || {}; rIrEl.textContent = (Math.round(cIrLoadR() * 100) / 100) + (rdd.unit ? (' ' + rdd.unit) : ''); }
+  }
+  if (irMode() && hasSlider('switch') && !userTouched['switch'] && curState() && (curState().droop_intro || curState().two_reading)) {
+    var swIrEl = document.getElementById('pm-sv-switch');      // switch row tracks the cued close
+    if (swIrEl) swIrEl.textContent = irSwitchOpen() ? 'Open' : 'Closed';
   }
   // resistivity: L/A/material/T rows track their own auto-sweeps until grabbed.
   if (hasSlider('L') && !userTouched['L']) {
@@ -712,7 +720,13 @@ function updateReadouts() {
   }
   var ro = document.getElementById('pm-readout');
   if (ro) {
-    if (emfMode()) {                                          // emf_definition: eps, terminal V, i (ideal cell -> V = eps)
+    if (irMode()) {                                           // internal_resistance: eps, r, V, i (real cell)
+      var ic2 = irCurrents();
+      ro.textContent = '\\u03B5 = ' + ic2.eps.toFixed(1) + ' V\\n' +
+                       'r = ' + ic2.r.toFixed(1) + ' \\u03A9\\n' +
+                       'V = ' + ic2.Vterm.toFixed(2) + ' V\\n' +
+                       'i = ' + ic2.i.toFixed(2) + ' A';
+    } else if (emfMode()) {                                   // emf_definition: eps, terminal V, i (ideal cell -> V = eps)
       var ec = emfCurrents();
       ro.textContent = '\\u03B5 = ' + ec.eps.toFixed(1) + ' V\\n' +
                        'V = ' + ec.Vterm.toFixed(2) + ' V\\n' +
@@ -1329,6 +1343,23 @@ function drawIrScenario() {
     drawPotentialLadder(c.eps, c.i, c.R, c.swOpen, 1, null, 0, null,
       { mode: c.mode, r: c.r, epsCh: c.epsCh || 0, V: c.Vterm });
   }
+  // S5 two-reading measurement — ONE-shot sequence (open-hold -> cued close -> the
+  // computed r line), never a cycle. Reading 1 shows eps because irSwitchOpen()
+  // holds the loop open until 2500ms in this state.
+  if (st && st.two_reading) {
+    var bx3 = width * 0.28, by3 = height * 0.84;
+    fillHex('#CFD8DC', 0.95); textSize(13); textStyle(BOLD); textAlign(LEFT, CENTER);
+    if (PM_simTimeMs < 2500 && !userTouched['switch']) {
+      text('reading 1 \\u2014 open:   V = \\u03B5 = ' + c.eps.toFixed(2) + ' V', bx3, by3);
+    } else {
+      text('reading 2 \\u2014 closed:   V = ' + c.Vterm.toFixed(2) + ' V   at   i = ' + c.i.toFixed(2) + ' A', bx3, by3);
+      if (PM_simTimeMs >= 3600 && c.i > 0.02) {
+        fillHex('#FF8A65', 0.98);
+        text('r = (\\u03B5 \\u2212 V) / i = (' + c.eps.toFixed(2) + ' \\u2212 ' + c.Vterm.toFixed(2) + ') / ' + c.i.toFixed(2) + ' = ' + ((c.eps - c.Vterm) / max(c.i, 1e-6)).toFixed(1) + ' \\u03A9', bx3, by3 + 22);
+      }
+    }
+    textStyle(NORMAL);
+  }
 }
 
 function stepCircuit(state) {
@@ -1871,7 +1902,7 @@ function emfTraceV(s, p, eps) {                              // potential of the
 // terminal-to-terminal = V = eps + i*r. ir absent -> pixel-identical emf_definition
 // profile (locked baselines).
 function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir) {
-  var x0 = width * 0.74, y0 = (ir ? height * 0.365 : height * 0.30), w = width * 0.225, h = height * 0.42;   // ir: clear the slider panel (Rule 34d)
+  var x0 = width * 0.74, y0 = (ir ? height * 0.39 : height * 0.30), w = width * 0.225, h = height * 0.42;   // ir: clear the 4-row slider panel + readout (Rule 34d)
   rectMode(CORNER); fill(10, 12, 28, 210 * dim); noStroke(); rect(x0, y0, w, h, 6);
   strokeHex('#37474F', 0.8 * dim); strokeWeight(1); noFill(); rect(x0, y0, w, h, 6);
   var padL = 30, padB = 20, gx = x0 + padL, gy = y0 + h - padB, gw = w - padL - 12, gh = h - padB - 20;

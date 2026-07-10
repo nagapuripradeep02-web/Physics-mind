@@ -21,9 +21,15 @@
       "STATE_1": { "title": "stub droop intro", "duration": 12, "focal_primitive_id": "a", "advance_mode": "manual_click",
         "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
         "teacher_script": { "tts_sentences": [{ "id": "s1_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "voltmeter" }] } },
-      "STATE_2": { "title": "stub charging", "duration": 0, "focal_primitive_id": "a", "advance_mode": "interaction_complete",
+      "STATE_2": { "title": "stub charging", "duration": 12, "focal_primitive_id": "a", "advance_mode": "manual_click",
         "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
-        "teacher_script": { "tts_sentences": [{ "id": "s2_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "charger" }] } }
+        "teacher_script": { "tts_sentences": [{ "id": "s2_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "charger" }] } },
+      "STATE_3": { "title": "stub two reading", "duration": 12, "focal_primitive_id": "a", "advance_mode": "manual_click",
+        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
+        "teacher_script": { "tts_sentences": [{ "id": "s3_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "voltmeter" }] } },
+      "STATE_4": { "title": "stub short circuit", "duration": 0, "focal_primitive_id": "a", "advance_mode": "interaction_complete",
+        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
+        "teacher_script": { "tts_sentences": [{ "id": "s4_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "pump" }] } }
     }
   },
   "particle_field_config": {
@@ -38,7 +44,9 @@
     "pvl_colors": { "background": "#0A0A1A", "electron": "#42A5F5", "wire": "#546E7A", "cell": "#FFD54F", "ladder": "#4DD0E1", "voltmeter": "#B39DDB", "load": "#FFB74D", "labels": "#D4D4D8" },
     "states": {
       "STATE_1": { "label": "V = ε − ir", "caption": "Close switch — volts drop", "formula_overlay": "V = ε − ir", "droop_intro": true, "show_voltmeter": true, "show_ladder": true, "show_r": true, "show_sliders": false, "visible_controls": [], "glow_focal": "voltmeter", "emf": 1.5, "r": 0.5, "R": 1 },
-      "STATE_2": { "label": "V = ε + ir", "caption": "Charging lifts V above ε", "formula_overlay": "V = ε + ir", "charging": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": true, "glow_focal": "charger", "emf": 1.5, "r": 0.5, "R": 1 }
+      "STATE_2": { "label": "V = ε + ir", "caption": "Charging lifts V above ε", "formula_overlay": "V = ε + ir", "charging": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": false, "visible_controls": [], "glow_focal": "charger", "emf": 1.5, "r": 0.5, "R": 1 },
+      "STATE_3": { "label": "r = (ε − V) / i", "caption": "Two readings give r", "formula_overlay": "r = (ε − V) / i", "two_reading": true, "show_r": true, "show_voltmeter": true, "show_sliders": false, "visible_controls": ["switch"], "glow_focal": "voltmeter", "emf": 1.5, "r": 0.5, "R": 1 },
+      "STATE_4": { "label": "i_max = ε / r", "caption": "All ε lost inside", "formula_overlay": "i_max = ε / r", "R_autosweep_down": true, "R_autosweep_to": 0, "short_circuit": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": true, "glow_focal": "pump", "emf": 1.5, "r": 0.5 }
     }
   }
 }
