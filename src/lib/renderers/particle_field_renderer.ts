@@ -731,6 +731,15 @@ function updateReadouts() {
       ro.textContent = '\\u03B5 = ' + ec.eps.toFixed(1) + ' V\\n' +
                        'V = ' + ec.Vterm.toFixed(2) + ' V\\n' +
                        'i = ' + ec.i.toFixed(2) + ' A';
+    } else if (powerMode()) {                                 // electric_power: P per bulb + total
+      var pwr = cBulbPowers();
+      if (pwr.single) {
+        ro.textContent = 'P = ' + pwr.P1.toFixed(2) + ' W';
+      } else {
+        ro.textContent = 'P\\u2081 = ' + pwr.P1.toFixed(2) + ' W\\n' +
+                         'P\\u2082 = ' + pwr.P2.toFixed(2) + ' W\\n' +
+                         'total = ' + pwr.Ptot.toFixed(2) + ' W';
+      }
     } else if (circuitMode()) {                               // combination_of_resistors: R_eq + total current
       var cc = cCurrents();
       ro.textContent = (cc.topo === 'series' ? 'Series' : 'Parallel') + '\\n' +
@@ -1416,6 +1425,38 @@ function drawIrScenario() {
   }
 }
 
+// ═══ electric_power scenario — bulbs (brightness = power) on the circuit loop ═══
+// M1 (single_bulb/three_faces/energy_accumulate): ONE 6 W bulb on the series loop.
+// M2 series_pair: two rated bulbs at g.sR1/g.sR2 in series (same current).
+// M2 parallel_flip: same two bulbs on the parallel branches (same voltage).
+function drawPowerScenario() {
+  var c = cCurrents(), pw = cBulbPowers(), loops = circuitLoops(), g = loops.g, st = curState();
+  var wcol = '#546E7A';
+  if (pw.topo === 'parallel') {
+    drawWireC(loops.loop1, wcol, 0.85, 3); drawWireC(loops.loop2, wcol, 0.85, 3);
+  } else {
+    drawWireC(loops.series, wcol, 0.85, 3);
+  }
+  drawCircuitBeads(loops, c);
+  drawBatteryC(g, c.V, 1);
+  var d1 = dimFor('bulb1'), d2 = dimFor('bulb2');   // glow focal = the brighter bulb (single-focal, Rule 32e)
+  if (pw.single) {
+    drawBulbC((g.leftX + g.rightX) / 2, g.topY, '6 W', pw.P1, pw.Pmax, d1);
+  } else if (pw.topo === 'series') {
+    drawBulbC(g.sR1.x, g.sR1.y, '6 W', pw.P1, pw.Pmax, d1);
+    drawBulbC(g.sR2.x, g.sR2.y, '3 W', pw.P2, pw.Pmax, d2);
+  } else {
+    drawBulbC(g.pRx, g.topY - g.gap, '6 W', pw.P1, pw.Pmax, d1);
+    drawBulbC(g.pRx, g.topY + g.gap, '3 W', pw.P2, pw.Pmax, d2);
+  }
+  drawAmmeterAtC(g.amMain.x, g.amMain.y, c.itot, 'AMMETER', dimFor('electrons'), 26);
+  if (st && st.energy_accumulate) {                 // S3: power is a RATE; energy piles up
+    fillHex('#FF8A65', 0.98); textSize(13); textStyle(BOLD); textAlign(LEFT, CENTER);
+    text('energy = P \\u00B7 t = ' + powerEnergyJ.toFixed(0) + ' J', width * 0.28, height * 0.84);
+    textStyle(NORMAL);
+  }
+}
+
 function stepCircuit(state) {
   PM_simTimeMs += 1000 / 60; window.PM_simTimeMs = PM_simTimeMs;
   if (state && state.energy_accumulate) {                 // electric_power S3: P*dt piles up
@@ -1439,7 +1480,7 @@ function draw() {
     var cbg = (config.canvas && config.canvas.bg_color) ? config.canvas.bg_color
       : (config.design && config.design.background) ? config.design.background : '#0A0A1A';
     background(cbg);
-    if (emfMode()) drawEmfScenario(); else if (irMode()) drawIrScenario(); else drawCircuit();
+    if (emfMode()) drawEmfScenario(); else if (irMode()) drawIrScenario(); else if (powerMode()) drawPowerScenario(); else drawCircuit();
     if (isCircuitFamily()) updateReadouts();      // live derived readout (combination R_eq/i ; emf eps/V/i)
     // (no drawLabel here — the state label duplicated the bottom-right formula_overlay)
     var frmC = document.getElementById('pm-formula');
