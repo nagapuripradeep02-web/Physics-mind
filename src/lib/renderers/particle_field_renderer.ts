@@ -1292,6 +1292,16 @@ function drawIrSwitch(g, open, dim) {
   if (open) line(sx - 11, sy, sx + 7, sy - 15); else line(sx - 11, sy, sx + 11, sy);
   noStroke();
 }
+// The external charger — an ideal second source on the RIGHT edge of the loop,
+// strong enough (3.0 V > eps) to force current BACKWARDS through the cell (S6).
+function drawChargerC(g, epsCh, dim) {
+  var cx = g.rightX, cy = g.midY;
+  fill(10, 12, 28, 235); noStroke(); rectMode(CENTER); rect(cx, cy, 26, 44, 4); rectMode(CORNER);
+  strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(cx, cy - 16, cx, cy + 16);   // long (+) plate
+  strokeWeight(6); line(cx + 9, cy - 8, cx + 9, cy + 8);                                // short (-) plate
+  noStroke(); fillHex('#66BB6A', 0.95 * dim); textSize(11); textStyle(BOLD); textAlign(RIGHT, CENTER);
+  text('charger ' + epsCh.toFixed(1) + ' V', cx - 16, cy); textStyle(NORMAL);
+}
 function drawIrScenario() {
   var c = irCurrents(), loops = circuitLoops(), g = loops.g, st = curState();
   drawWireC(loops.series, '#546E7A', 0.85, 3);
@@ -1306,7 +1316,8 @@ function drawIrScenario() {
     rr = { r: c.r, i: c.i, reveal: rev, heat: constrain((c.i * c.i * c.r) / 4.5, 0, 1) };
   }
   drawEmfCell(g, c.eps, 1, !c.swOpen, rr);
-  if (!(st && st.charging)) drawIrSwitch(g, c.swOpen, dimFor('switch'));
+  if (st && st.charging) drawChargerC(g, c.epsCh, dimFor('charger'));
+  else drawIrSwitch(g, c.swOpen, dimFor('switch'));
   if (st && st.show_voltmeter) {
     var vmDim = dimFor('voltmeter'), vx = g.leftX + 82, vy = g.midY;
     strokeHex('#B39DDB', 0.7 * vmDim); strokeWeight(1.5);            // leads tapping the two terminals
