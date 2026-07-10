@@ -1130,7 +1130,7 @@ function drawResistorBoxC(cx, cy, label, dim) {
 // and their 2:1 ratio stays visible, while the parallel bulbs go full-bright.
 // Pmax is a FIXED normalizer (never per-state auto-scale) so the series-vs-parallel
 // magnitude flip is honest. rating e.g. '6 W'; P in watts; dim = glow-focal mult.
-function drawBulbC(cx, cy, rating, P, Pmax, dim) {
+function drawBulbC(cx, cy, rating, R, P, Pmax, dim) {
   var b = constrain(sqrt(max(P, 0) / max(Pmax, 1e-6)), 0.12, 1);   // brightness 0.12..1
   var flick = 0.96 + 0.04 * sin(PM_simTimeMs / 140);               // faint filament shimmer
   var glow = b * flick;
@@ -1146,9 +1146,10 @@ function drawBulbC(cx, cy, rating, P, Pmax, dim) {
   beginShape();
   for (var k = 0; k <= 4; k++) vertex(cx - 6 + k * 3, cy + (k % 2 ? -4 : 4));
   endShape(); noStroke();
-  // rating label (above) + live power (below)
+  // nameplate rating + resistance (above) + live power (below) — R is the cause
+  // variable P = I²R / V²/R turns on, so it must be visible (reads sound-off).
   fillHex('#FFE082', 0.95 * dim); textSize(11); textStyle(BOLD); textAlign(CENTER, BOTTOM);
-  text(rating, cx, cy - 18);
+  text(rating + ' \\u00B7 ' + fmtNum(R) + ' \\u03A9', cx, cy - 18);
   fillHex('#FFFFFF', 0.98 * dim); textSize(12); textAlign(CENTER, TOP);
   text('P = ' + P.toFixed(2) + ' W', cx, cy + 18); textStyle(NORMAL);
 }
@@ -1451,13 +1452,13 @@ function drawPowerScenario() {
   drawBatteryC(g, c.V, 1);
   var d1 = dimFor('bulb1'), d2 = dimFor('bulb2');   // glow focal = the brighter bulb (single-focal, Rule 32e)
   if (pw.single) {
-    drawBulbC((g.leftX + g.rightX) / 2, g.topY, '6 W', pw.P1, pw.Pmax, d1);
+    drawBulbC((g.leftX + g.rightX) / 2, g.topY, '6 W', c.R1, pw.P1, pw.Pmax, d1);
   } else if (pw.topo === 'series') {
-    drawBulbC(g.sR1.x, g.sR1.y, '6 W', pw.P1, pw.Pmax, d1);
-    drawBulbC(g.sR2.x, g.sR2.y, '3 W', pw.P2, pw.Pmax, d2);
+    drawBulbC(g.sR1.x, g.sR1.y, '6 W', c.R1, pw.P1, pw.Pmax, d1);
+    drawBulbC(g.sR2.x, g.sR2.y, '3 W', c.R2, pw.P2, pw.Pmax, d2);
   } else {
-    drawBulbC(g.pRx, g.topY - g.gap, '6 W', pw.P1, pw.Pmax, d1);
-    drawBulbC(g.pRx, g.topY + g.gap, '3 W', pw.P2, pw.Pmax, d2);
+    drawBulbC(g.pRx, g.topY - g.gap, '6 W', c.R1, pw.P1, pw.Pmax, d1);
+    drawBulbC(g.pRx, g.topY + g.gap, '3 W', c.R2, pw.P2, pw.Pmax, d2);
   }
   drawAmmeterAtC(g.amMain.x, g.amMain.y, c.itot, 'AMMETER', dimFor('electrons'), 26);
   if (st && st.energy_accumulate) {                 // S3: power is a RATE; energy piles up
