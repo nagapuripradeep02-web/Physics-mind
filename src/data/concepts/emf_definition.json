@@ -5,41 +5,463 @@
   "section": "3.11",
   "schema_version": "2.0.0",
   "class_level": 12,
-  "concept_tier": "moderate",
-  "source_book": "STUB — disposable Phase-A dev harness; replaced wholesale by json_author in Phase B (see docs/superpowers/plans/2026-07-10-emf-definition.md).",
-  "renderer_pair": { "panel_a": "particle_field", "panel_b": "particle_field" },
-  "available_renderer_scenarios": { "particle_field": ["emf_definition"] },
-  "prerequisites": ["ohms_law", "drift_velocity"],
-  "real_world_anchor": { "primary": "STUB", "secondary": "STUB" },
-  "physics_engine_config": { "variables": {}, "formulas": {}, "constraints": [] },
-  "cognitive_limits": { "max_primitives_per_state": 5, "max_labels_per_state": 4, "max_words_per_tts_sentence": 32 },
-  "aha_moment": { "state_id": "STATE_3", "statement": "STUB", "visual_confirmation": "STUB" },
-  "entry_state_map": { "foundational": ["STATE_1", "STATE_2", "STATE_3"] },
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.11 Electromotive Force) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: emf / cells / internal resistance / grouping-of-cells sections) to confirm emf's definition is a distinct sub-topic ahead of internal resistance and cell grouping — no teaching method, example problem, or figure imported. HC Verma consulted for the historical SCOPE of the electromotive-'force' misnomer (§32.5) only — confirms it is a genuine, chapter-standard misconception worth confronting, never its phrasing or worked examples. The atomic idea: a cell is a charge pump whose chemistry does work W on charge q lifting it from the low (−) terminal to the high (+) terminal; emf ε = W/q, units volts = joules per coulomb — an intensive property of the cell's chemistry, fixed and independent of the circuit, never a force. With no current flowing, an ideal voltmeter across the terminals reads exactly ε — the measurement condition that bridges to the next diamond. SCOPE: this is the FIFTH Ch.3 concept, continuous with drift_velocity, ohms_law, resistivity, and combination_of_resistors (all SHIPPED) — same particle_field (2D p5.js) renderer family, a new dedicated circuit scenario (charge-pump cell + potential-energy ladder + terminal voltmeter). Diamond 1 of a two-diamond split — this cell is IDEAL (internal resistance r = 0); terminal voltage equals ε identically, open or closed, and NO on-screen statement claims otherwise. Does NOT cover internal resistance or the terminal-voltage droop V = ε − Ir (deferred to internal_resistance, Diamond 2, which reuses this exact cell + ladder), combinations of cells (deferred to combination_of_cells), Kirchhoff's rules, or the electrochemistry of electrode reactions (outside atomic scope — the mechanism shown here is the potential-energy ladder, not the chemistry itself). Renderer-reality note: this concept does NOT drive i/V_terminal/W via physics_engine_config.formulas/PM_interpolate — particle_field_renderer.ts computes them natively in engine JS via the shipped emf adapter (cEmf/cLoadR/emfSwitchOpen/emfCurrents), reading slider_controls.{emf,R,switch}; physics_engine_config below is authored as documentation per the Zod requirement, mirroring combination_of_resistors' convention.",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "emf_definition"
+    ]
+  },
+  "prerequisites": [
+    "ohms_law",
+    "drift_velocity"
+  ],
+  "real_world_anchor": {
+    "primary": "The emf hierarchy of real Indian cells: a 1.5 V Eveready dry cell in a torch, a 2 V lead-acid cell inside an inverter bank, a 3.7 V lithium-ion cell in every phone, a 12 V car battery — four everyday objects, four different numbers, and the number means one exact thing: how many joules that cell's chemistry hands every coulomb that passes through it. A dry cell the size of a thumb and a fat D-cell both say 1.5 V, because the chemistry is the same — the chemistry sets ε; the circuit never does.",
+    "secondary": "Every student has read these numbers off real batteries their whole life without knowing what the number promises; 'define emf and state its SI unit' and 'distinguish emf from terminal potential difference' are board staples, and this hierarchy makes the definition concrete four times over."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "emf": {
+        "name": "electromotive force (epsilon)",
+        "unit": "V",
+        "min": 1,
+        "max": 12,
+        "default": 1.5,
+        "role": "slider — live ONLY in S4 (taught variable) and S6 (explore); locked to 1.5 on S1/S2/S3/S5 — reorder-safe per Rule 25d"
+      },
+      "R": {
+        "name": "load resistance",
+        "unit": "Ω",
+        "min": 0.5,
+        "max": 12,
+        "default": 1.5,
+        "role": "slider — live ONLY in S6; locked to 1.5 on S1-S5 (never the taught variable in this diamond)"
+      },
+      "switch": {
+        "name": "circuit switch (0=open, 1=closed)",
+        "unit": "dimensionless (enum)",
+        "min": 0,
+        "max": 1,
+        "default": 1,
+        "role": "slider (2-state toggle) — live ONLY in S6; closed on S1-S4, forced open by open_circuit on S5; rendered as text (Open/Closed), never raw 0/1"
+      },
+      "q": {
+        "name": "charge in the traced packet (display-only, NOT an engine slider)",
+        "unit": "C",
+        "min": 1,
+        "max": 2,
+        "default": 1,
+        "role": "S3 ONLY — driven by the charge_double flag on the state clock (1 C → 2 C); NOT a control on any state"
+      },
+      "i": {
+        "name": "loop current",
+        "unit": "A",
+        "derived": "switch === 0 ? 0 : emf / R",
+        "role": "live readout — the ammeter; dies to 0 on S5"
+      },
+      "V_terminal": {
+        "name": "terminal voltage",
+        "unit": "V",
+        "derived": "emf",
+        "role": "IDEAL cell only (r=0) — always equals ε, open or closed; the voltmeter reading. Diamond 2 replaces with ε − i·r"
+      },
+      "W": {
+        "name": "work done by the cell on the traced packet",
+        "unit": "J",
+        "derived": "emf * q",
+        "role": "readout on the lifted packet — 1.5 J at q=1, 3.0 J at q=2 (S3)"
+      },
+      "W_per_q": {
+        "name": "work per unit charge — the definition of emf",
+        "unit": "J/C",
+        "derived": "W / q",
+        "role": "the ladder step-height label; reads the SAME number as the emf badge at every instant, incl. during S3 doubling — this identity IS the aha"
+      }
+    },
+    "formulas": {
+      "i": "switch === 0 ? 0 : emf / R",
+      "V_terminal": "emf",
+      "W": "emf * q",
+      "epsilon_definition": "emf = W / q",
+      "unit_identity": "1 V ≡ 1 J/C"
+    },
+    "constraints": [
+      "ε = W/q at every instant — an intensive property; doubling q doubles W but leaves ε (=W/q) unchanged (the S3 aha)",
+      "ε is set by the cell's chemistry — independent of R, switch state, and i (S4: the circuit never sets ε)",
+      "IDEAL cell (r=0): V_terminal = ε identically, open OR closed — NO droop authored; Diamond 2 replaces this with V = ε − ir",
+      "open circuit (switch=0) ⇒ i=0 exactly; and i=0 ⇒ V_terminal=ε is TRUE FOR ANY CELL (no current ⇒ no i·r term) — why S5's claim safely survives into Diamond 2, unlike a closed-circuit V=ε claim",
+      "i ≥ 0 always; emf ∈ [1,12], R ∈ [0.5,12] both > 0 ⇒ i = emf/R has no divide-by-zero in range",
+      "1 V ≡ 1 J/C exactly — the SI definition of the volt, not an approximation"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Double the charge doubles the work — but the step per coulomb never changes.",
+    "visual_confirmation": "The work readout climbs from 1.5 J to 3.0 J as the charge packet doubles, while the ladder's step height holds at 1.5 J/C the entire time."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "cell_chemistry": [
+      "STATE_4"
+    ],
+    "measuring_emf": [
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
   "epic_l_path": {
-    "state_count": 2,
+    "state_count": 6,
     "states": {
       "STATE_1": {
-        "title": "stub — pump + ladder",
-        "duration": 12,
-        "focal_primitive_id": "a",
+        "title": "The cell does work: every charge gets lifted",
+        "duration": 14,
+        "focal_primitive_id": "pump_lift_tag",
         "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }
+          {
+            "type": "annotation",
+            "id": "pump_lift_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Inside the cell, every charge is lifted from the − terminal to the + terminal.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "terminal_tags",
+            "position": { "x": 620, "y": 250 },
+            "text": "− is low potential, + is high potential — the pump raises every charge that passes through.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "ammeter_callout",
+            "position": { "x": 380, "y": 440 },
+            "text": "The ammeter reads i = 1.0 A — this is a normal, working loop.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
         ],
-        "teacher_script": { "tts_sentences": [ { "id": "s1_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "pump" } ] }
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "These drifting charges are the current I you already know — but the cell keeps spending energy to push them around this loop.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Inside, each charge is lifted from the low end to the high end — real work W, not just drift.",
+              "glow": "pump"
+            }
+          ]
+        }
       },
       "STATE_2": {
-        "title": "stub — open circuit voltmeter",
+        "title": "How big is the lift: ε = W/q",
+        "duration": 17,
+        "focal_primitive_id": "step_height_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "step_height_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Step up = ε = 1.5 J/C — the measured size of the lift.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "flat_wire_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Flat along the wire — no potential is spent just travelling.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "load_drop_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Equal drop across the load, R = 1.5 Ω — the same energy spent as heat.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "That lift has a real size: the ladder traces it as a step up of one point five joules for every coulomb.",
+              "glow": "ladder"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The charge rides flat along the wire, then drops that same amount crossing the load.",
+              "glow": "load"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "That is the definition: emf epsilon equals work W divided by charge q.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_volts_not_joules",
+          "emf_vs_potential_difference",
+          "who_does_the_work"
+        ]
+      },
+      "STATE_3": {
+        "title": "Per charge, not a force — the primary aha",
+        "duration": 18,
+        "focal_primitive_id": "held_step_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "q_packet_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Charge packet: q = 1 C → 2 C.",
+            "color": "#FFE082",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "w_readout_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Work done: W = 1.5 J → 3.0 J — the total work doubles.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "held_step_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "The step height holds at 1.5 J/C — per charge, never total.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Here's the test: watch the charge packet double from one coulomb to two.",
+              "glow": "pump"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The total work W the cell does doubles — one point five joules becomes three — but the ladder step itself never moves.",
+              "glow": "ladder"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "That's the proof: emf is energy per charge, not a force — one volt really is one joule per coulomb, never newtons.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "emf is a force that pushes the charges — electromotive FORCE.",
+            "visual_counter": "The units on screen are volts = joules per coulomb, and when the charge count doubles the total work W doubles while the ladder step height ε visibly holds — an intensive per-charge energy, not a force that would scale with the amount of charge.",
+            "one_line_fix": "emf is the energy the cell hands each coulomb — measured in volts, never newtons."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "emf_is_not_a_force",
+          "double_charge_double_energy",
+          "volts_equal_joules_per_coulomb"
+        ]
+      },
+      "STATE_4": {
+        "title": "Different cells, different emf",
+        "duration": 15,
+        "focal_primitive_id": "step_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "chemistry_stop_tag_1",
+            "position": { "x": 380, "y": 90 },
+            "text": "1.5 V dry cell · 2 V lead-acid cell.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "chemistry_stop_tag_2",
+            "position": { "x": 620, "y": 250 },
+            "text": "3.7 V Li-ion cell · 12 V car battery.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "step_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Taller step = bigger emf epsilon — the chemistry decides, never the circuit.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Drag the emf slider and watch the lift itself grow — different cells, different epsilon, same law: current i equals epsilon over R.",
+              "glow": "pump"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "A torch cell sits at one point five volts, a car battery at twelve — the chemistry inside sets that number, never the circuit outside.",
+              "glow": "ladder"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Measuring emf: no current, full ε",
+        "duration": 18,
+        "focal_primitive_id": "voltmeter_callout",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "broken_loop_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Switch open — the loop is broken.",
+            "color": "#EF5350",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "dead_ammeter_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Ammeter at zero — no current flowing.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "voltmeter_callout",
+            "position": { "x": 380, "y": 440 },
+            "text": "Voltmeter settles at V = ε = 1.5 V.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Now open the switch: the loop breaks, beads coast to a stop, and the ammeter dies to zero.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "With no current at all, the voltmeter across the terminals settles at the full emf epsilon — one point five volts, exactly.",
+              "glow": "voltmeter"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "That's how emf is measured — a real cell has more to tell once current flows again.",
+              "glow": "voltmeter"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_no_current_to_measure",
+          "voltmeter_draws_no_current",
+          "emf_when_current_flows"
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: i = ε/R, every dial live",
         "duration": 0,
-        "focal_primitive_id": "a",
+        "focal_primitive_id": "formula_tag",
         "advance_mode": "interaction_complete",
         "scene_composition": [
-          { "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }
+          {
+            "type": "annotation",
+            "id": "formula_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "i = ε / R — every dial is live now.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "readout_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Pump, ladder, ammeter, and voltmeter all respond live as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "controls_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Drag epsilon, the load R, or flip the switch.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
         ],
-        "teacher_script": { "tts_sentences": [ { "id": "s2_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "voltmeter" } ] }
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Every dial is yours now — epsilon, load R, and the switch — the same law, i equals epsilon over R.",
+              "glow": "formula"
+            }
+          ]
+        }
       }
     }
   },
+  "regeneration_variants": [
+    {
+      "variant_id": "emf_definition_water_tower_pump",
+      "type": "B",
+      "label": "A rooftop water pump lifting bucket after bucket to a fixed height",
+      "physical_world": "A motor pumps water from a ground tank up to a fixed rooftop tank. Every bucket of water it lifts gets the SAME amount of energy spent on it, set by how strong the motor is — not by how many buckets you send up.",
+      "same_physics": "Energy spent per unit quantity moved is a fixed, intensive property of the pump (like ε = W/q for a cell) — doubling the number of buckets doubles the total work, but the energy-per-bucket never changes.",
+      "scene_hint": "Optional supplementary anchor for STATE_2/STATE_3; the primary teaching anchor stays the four-cell emf hierarchy (dry cell/lead-acid/Li-ion/car battery)."
+    },
+    {
+      "variant_id": "emf_definition_hand_crank_charger",
+      "type": "B",
+      "label": "A hand-crank torch/phone charger — harder cranking, bigger emf",
+      "physical_world": "A hand-crank generator charges a phone: cranking harder or using a bigger internal magnet raises the emf it delivers per unit charge, exactly the way a different cell chemistry sets a different ε — the mechanism inside decides the number, not how the charging cable is wired.",
+      "same_physics": "The source's own internal design (chemistry for a cell, crank/magnet strength for a generator) fixes the energy handed to every unit of charge — the external circuit never sets it.",
+      "scene_hint": "Optional supplementary anchor for STATE_4's chemistry-sets-ε teaching."
+    }
+  ],
   "particle_field_config": {
     "scenario_type": "emf_definition",
     "particles": { "count": 34, "color": "#42A5F5", "size": 8 },
@@ -60,24 +482,77 @@
     },
     "states": {
       "STATE_1": {
-        "label": "ε = W / q",
+        "label": "the cell does work",
         "caption": "Cell lifts each charge",
-        "formula_overlay": "ε = W / q",
+        "formula_overlay": "the cell does work",
         "pump_focus": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "pump",
+        "emf": 1.5,
+        "R": 1.5,
+        "switch": 1
+      },
+      "STATE_2": {
+        "label": "ε = W / q",
+        "caption": "The lift, measured",
+        "formula_overlay": "ε = W / q",
         "show_ladder": true,
         "show_sliders": false,
         "visible_controls": [],
-        "glow_focal": "pump"
+        "glow_focal": "ladder",
+        "emf": 1.5,
+        "R": 1.5,
+        "switch": 1
       },
-      "STATE_2": {
-        "label": "no current → V = ε",
-        "caption": "All yours",
-        "formula_overlay": "V = ε",
+      "STATE_3": {
+        "label": "1 V = 1 J/C",
+        "caption": "Per charge — not a force",
+        "formula_overlay": "1 V = 1 J/C",
+        "show_ladder": true,
+        "charge_double": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ladder",
+        "emf": 1.5,
+        "R": 1.5,
+        "switch": 1
+      },
+      "STATE_4": {
+        "label": "ε set by chemistry",
+        "caption": "Bigger ε, taller lift",
+        "formula_overlay": "ε set by chemistry",
+        "show_ladder": true,
+        "emf_autosweep": true,
+        "emf_autosweep_to": 12,
+        "show_sliders": false,
+        "visible_controls": ["emf"],
+        "glow_focal": "ladder",
+        "R": 1.5,
+        "switch": 1
+      },
+      "STATE_5": {
+        "label": "V = ε (no current)",
+        "caption": "No current → V = ε",
+        "formula_overlay": "V = ε (no current)",
         "open_circuit": true,
         "show_voltmeter": true,
         "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "voltmeter",
+        "emf": 1.5,
+        "R": 1.5,
+        "switch": 0
+      },
+      "STATE_6": {
+        "label": "i = ε / R",
+        "caption": "All yours",
+        "formula_overlay": "i = ε / R",
         "show_sliders": true,
-        "glow_focal": "voltmeter"
+        "show_ladder": true,
+        "show_voltmeter": true,
+        "glow_focal": "formula"
       }
     }
   }
