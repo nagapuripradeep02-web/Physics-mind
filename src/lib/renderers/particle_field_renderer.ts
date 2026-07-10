@@ -1314,6 +1314,10 @@ function drawIrScenario() {
     noStroke();
     drawVoltmeterC(vx, vy, c.Vterm, max(c.eps * 1.5, c.Vterm), vmDim);   // 1.5x headroom: charging V > eps must not peg
   }
+  if (st && st.show_ladder) {
+    drawPotentialLadder(c.eps, c.i, c.R, c.swOpen, 1, null, 0, null,
+      { mode: c.mode, r: c.r, epsCh: c.epsCh || 0, V: c.Vterm });
+  }
 }
 
 function stepCircuit(state) {
@@ -1850,17 +1854,72 @@ function emfTraceV(s, p, eps) {                              // potential of the
 // potential stays flat at eps the whole way — the voltmeter reads the full emf.
 // traceS (nullable): the followed charge's loop fraction — draws the synced energy
 // dot. holdPulse (0..1): S3's "still 1.5 J/C" step-label emphasis on each q flip.
-function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof) {
-  var x0 = width * 0.74, y0 = height * 0.30, w = width * 0.225, h = height * 0.42;
+// Optional 9th arg ir = { mode, r, epsCh, V } (internal_resistance): discharge mode
+// draws the INTERNAL i*r step inside the cell band (terminal height = V = eps - i*r);
+// charging mode draws charger-riser -> i*R drop -> cell band (eps stored + i*r heat),
+// terminal-to-terminal = V = eps + i*r. ir absent -> pixel-identical emf_definition
+// profile (locked baselines).
+function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir) {
+  var x0 = width * 0.74, y0 = (ir ? height * 0.365 : height * 0.30), w = width * 0.225, h = height * 0.42;   // ir: clear the slider panel (Rule 34d)
   rectMode(CORNER); fill(10, 12, 28, 210 * dim); noStroke(); rect(x0, y0, w, h, 6);
   strokeHex('#37474F', 0.8 * dim); strokeWeight(1); noFill(); rect(x0, y0, w, h, 6);
   var padL = 30, padB = 20, gx = x0 + padL, gy = y0 + h - padB, gw = w - padL - 12, gh = h - padB - 20;
-  var vmax = eps * 1.2;
+  var vmax = (ir && ir.mode === 'charging') ? ir.epsCh * 1.15 : eps * 1.2;
   function py(v) { return gy - gh * constrain(v / vmax, 0, 1); }
   strokeHex('#78909C', 0.7 * dim); strokeWeight(1.5); line(gx, gy, gx, gy - gh); line(gx, gy, gx + gw, gy);
   strokeHex('#66BB6A', 0.35 * dim); strokeWeight(1); line(gx, py(eps), gx + gw, py(eps));   // eps reference
   var xa = gx, xc = gx + gw * 0.50, xd = gx + gw * 0.70, xe = gx + gw;
   var lDim = dimFor('ladder'), lo = swOpen ? eps : 0;
+  if (ir && ir.mode === 'charging') {
+    // charger lifts to epsCh -> down i*R across the series R -> cell band: down eps
+    // (stored as chemistry) + down i*r (heat). Terminals across the cell hold V = eps + i*r.
+    var rD3 = dimFor('r_internal');
+    var x1 = gx + gw * 0.36, x2 = gx + gw * 0.52, x3 = gx + gw * 0.66, x35 = gx + gw * 0.80, x4 = gx + gw * 0.90;
+    var vTop = ir.epsCh, vMid = ir.epsCh - i * R;                    // vMid = V across the cell = eps + i*r
+    noStroke(); fill(66, 44, 34, 70 * dim); rect(x3, gy - gh, gw * 0.24, gh);   // 'inside the cell' band
+    strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
+    beginShape();
+    vertex(xa, py(0)); vertex(xa, py(vTop));      // charger riser
+    vertex(x1, py(vTop));                         // flat
+    vertex(x2, py(vMid)); vertex(x3, py(vMid));   // down i*R across the series R, flat to the cell
+    vertex(x35, py(i * ir.r));                    // down eps INSIDE the cell (stored)
+    endShape();
+    strokeHex('#FF8A65', 0.98 * rD3); strokeWeight(2.5); noFill();
+    beginShape(); vertex(x35, py(i * ir.r)); vertex(x4, py(0)); endShape();   // down i*r (heat) — highlighted
+    strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
+    beginShape(); vertex(x4, py(0)); vertex(xe, py(0)); endShape();
+    noStroke(); fillHex('#66BB6A', 0.95 * dim); textSize(10); textStyle(BOLD); textAlign(LEFT, BOTTOM);
+    text('charger ' + vTop.toFixed(1) + ' V', xa + 4, py(vTop) - 3);
+    fillHex('#B39DDB', 0.95 * dim); textAlign(LEFT, BOTTOM);
+    text('V = ' + ir.V.toFixed(2) + ' V', x3 + 2, py(vMid) - 3);
+    fillHex('#FF8A65', 0.9 * rD3); textAlign(LEFT, TOP); text('i\\u00B7r', x35 + 4, py(i * ir.r) + 2);
+    fillHex('#66BB6A', 0.8 * dim); textSize(9); textAlign(RIGHT, BOTTOM);
+    text('\\u03B5 = ' + eps.toFixed(1) + ' V', xe - 2, py(eps) - 2);   // the emf line V sits ABOVE
+  } else if (ir) {
+    // REAL cell discharging: up eps, down i*r STILL INSIDE the cell band, flat at V
+    // along the wire, down V across the load. i = 0 degenerates to flat-at-eps (open).
+    var rD2 = dimFor('r_internal');
+    var xb = gx + gw * 0.13;
+    var vT = eps - i * ir.r;                                         // terminal voltage
+    noStroke(); fill(66, 44, 34, 70 * dim); rect(xa, gy - gh, gw * 0.13, gh);   // 'inside the cell' band
+    strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
+    beginShape(); vertex(xa, py(0)); vertex(xa, py(eps)); endShape();           // the eps riser (the lift)
+    strokeHex('#FF8A65', 0.98 * rD2); strokeWeight(2.5); noFill();
+    beginShape(); vertex(xa, py(eps)); vertex(xb, py(vT)); endShape();          // the INTERNAL step — highlighted
+    strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
+    beginShape();
+    vertex(xb, py(vT)); vertex(xc, py(vT));                                     // flat at V along the wire
+    vertex(xd, py(0)); vertex(xe, py(0));                                       // down V across the load
+    endShape();
+    noStroke(); fillHex('#4DD0E1', 0.98 * lDim); textSize(11); textStyle(BOLD); textAlign(LEFT, BOTTOM);
+    text('\\u03B5 = ' + eps.toFixed(1) + ' V', xa + 4, py(eps) - 4);
+    if (i > 0.02) {
+      fillHex('#FF8A65', 0.95 * rD2); textSize(10); textAlign(LEFT, TOP);
+      text('i\\u00B7r', xb + 3, py((eps + vT) / 2) - 4);
+      fillHex('#B39DDB', 0.95 * dim); textAlign(RIGHT, BOTTOM);
+      text('V = ' + vT.toFixed(2) + ' V', xc, py(vT) - 3);
+    }
+  } else {
   strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
   beginShape();
   vertex(xa, py(0)); vertex(xa, py(eps));       // STEP UP by eps at the cell (the lift)
@@ -1869,6 +1928,7 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof) {
   endShape();
   noStroke(); fillHex('#4DD0E1', 0.98 * lDim); textSize(11); textStyle(BOLD); textAlign(LEFT, BOTTOM);
   text('\\u03B5 = ' + eps.toFixed(1) + ' V', xa + 4, py(eps) - 4);
+  }
   if (holdPulse && holdPulse > 0) {                      // S3: the step "still eps" emphasis on each q flip
     fillHex('#FFFFFF', 0.9 * holdPulse * lDim); textSize(10); textAlign(LEFT, TOP);
     text('still ' + eps.toFixed(1) + ' J/C', xa + 4, py(eps) + 4);
@@ -1889,7 +1949,14 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof) {
   }
   fillHex('#B0BEC5', 0.85 * dim); textSize(9); textStyle(NORMAL); textAlign(LEFT, TOP);
   text('potential around loop (J/C)', gx, y0 + 4);
-  textAlign(CENTER, TOP); text('cell', xa + gw * 0.25, gy + 3); text('load', (xc + xd) / 2, gy + 3);
+  textAlign(CENTER, TOP);
+  if (ir && ir.mode === 'charging') {
+    text('charger', xa + gw * 0.18, gy + 3); text('R', xa + gw * 0.51, gy + 3); text('cell', xa + gw * 0.78, gy + 3);
+  } else if (ir) {
+    text('cell', xa + gw * 0.065, gy + 3); text('load', (xc + xd) / 2, gy + 3);
+  } else {
+    text('cell', xa + gw * 0.25, gy + 3); text('load', (xc + xd) / 2, gy + 3);
+  }
   textStyle(NORMAL);
 }
 function drawVIGraph(state) {
