@@ -1,0 +1,44 @@
+{
+  "concept_id": "internal_resistance",
+  "concept_name": "Internal Resistance — the Hidden r Inside Every Real Cell",
+  "chapter": 3,
+  "section": "3.11",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "STUB — replaced by json_author in Phase B",
+  "renderer_pair": { "panel_a": "particle_field", "panel_b": "particle_field" },
+  "available_renderer_scenarios": { "particle_field": ["internal_resistance"] },
+  "prerequisites": ["emf_definition", "ohms_law"],
+  "real_world_anchor": { "primary": "STUB", "secondary": "STUB" },
+  "physics_engine_config": { "variables": {}, "formulas": {}, "constraints": [] },
+  "cognitive_limits": { "max_primitives_per_state": 5, "max_labels_per_state": 4, "max_words_per_tts_sentence": 32 },
+  "aha_moment": { "state_id": "STATE_2", "statement": "STUB", "visual_confirmation": "STUB" },
+  "entry_state_map": { "foundational": ["STATE_1", "STATE_2"] },
+  "epic_l_path": {
+    "state_count": 2,
+    "states": {
+      "STATE_1": { "title": "stub droop intro", "duration": 12, "focal_primitive_id": "a", "advance_mode": "manual_click",
+        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
+        "teacher_script": { "tts_sentences": [{ "id": "s1_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "voltmeter" }] } },
+      "STATE_2": { "title": "stub charging", "duration": 0, "focal_primitive_id": "a", "advance_mode": "interaction_complete",
+        "scene_composition": [{ "type": "annotation", "id": "a", "position": { "x": 380, "y": 90 }, "text": "stub", "color": "#FFB74D", "is_persistent": false }],
+        "teacher_script": { "tts_sentences": [{ "id": "s2_1", "text_en": "stub", "text_hi": "stub", "text_te": "stub", "glow": "charger" }] } }
+    }
+  },
+  "particle_field_config": {
+    "scenario_type": "internal_resistance",
+    "particles": { "count": 34, "color": "#42A5F5", "size": 8 },
+    "slider_controls": {
+      "emf": { "min": 1, "max": 12, "step": 0.1, "default": 1.5, "label": "EMF \\u03b5", "unit": "V" },
+      "r": { "min": 0.1, "max": 2, "step": 0.1, "default": 0.5, "label": "internal r", "unit": "\\u03a9" },
+      "R": { "min": 0.25, "max": 12, "step": 0.25, "default": 1, "label": "Load R", "unit": "\\u03a9" },
+      "switch": { "min": 0, "max": 1, "step": 1, "default": 1, "label": "Switch" }
+    },
+    "pvl_colors": { "background": "#0A0A1A", "electron": "#42A5F5", "wire": "#546E7A", "cell": "#FFD54F", "ladder": "#4DD0E1", "voltmeter": "#B39DDB", "load": "#FFB74D", "labels": "#D4D4D8" },
+    "states": {
+      "STATE_1": { "label": "V = \\u03b5 \\u2212 ir", "caption": "Close switch \\u2014 volts drop", "formula_overlay": "V = \\u03b5 \\u2212 ir", "droop_intro": true, "show_voltmeter": true, "show_ladder": true, "show_r": true, "show_sliders": false, "visible_controls": [], "glow_focal": "voltmeter", "emf": 1.5, "r": 0.5, "R": 1 },
+      "STATE_2": { "label": "V = \\u03b5 + ir", "caption": "Charging lifts V above \\u03b5", "formula_overlay": "V = \\u03b5 + ir", "charging": true, "show_r": true, "show_voltmeter": true, "show_ladder": true, "show_sliders": true, "glow_focal": "charger", "emf": 1.5, "r": 0.5, "R": 1 }
+    }
+  }
+}

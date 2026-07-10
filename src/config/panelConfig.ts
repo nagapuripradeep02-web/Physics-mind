@@ -108,6 +108,19 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #6 — Alex pipeline (2026-07-10). Diamond 2 of the
+    // emf / internal-resistance split: reveals the hidden r inside the emf_definition
+    // cell (V = ε − ir droop, short circuit, two-reading r measurement, charging).
+    internal_resistance: {
+        concept_id: 'internal_resistance',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'internal_resistance',
+            label: 'Internal Resistance — the Hidden r',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

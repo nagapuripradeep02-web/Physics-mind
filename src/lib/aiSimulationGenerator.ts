@@ -2610,7 +2610,11 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     emf_definition:                 "particle_field",
     // series_resistance intentionally omitted — uses particle_field to show current conservation
     parallel_resistance:            "circuit_live",
-    internal_resistance:            "circuit_live",
+    // internal_resistance is the sixth Ch.3 concept on particle_field (2D p5.js) via
+    // the Alex pipeline (2026-07-10) — Diamond 2 of the emf/internal-resistance split:
+    // the hidden r inside the emf_definition cell (V = eps - ir, short circuit,
+    // two-reading measurement, charging). Replaced the STALE circuit_live placeholder.
+    internal_resistance:            "particle_field",
     emf_internal_resistance:        "circuit_live",
     electrical_power_energy:        "circuit_live",
     resistance_temperature_dependence: "circuit_live",
