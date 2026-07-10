@@ -887,7 +887,8 @@ function getCurrentIntensity() {
 function circuitMode() { return !!(config && config.scenario_type === 'combination_of_resistors'); }
 function emfMode() { return !!(config && config.scenario_type === 'emf_definition'); }
 function irMode() { return !!(config && config.scenario_type === 'internal_resistance'); }
-function isCircuitFamily() { return circuitMode() || emfMode() || irMode(); }
+function powerMode() { return !!(config && config.scenario_type === 'electric_power'); }
+function isCircuitFamily() { return circuitMode() || emfMode() || irMode() || powerMode(); }
 function circuitBeadCount() { return (config && config.particles && config.particles.count) ? config.particles.count : 40; }
 
 // ── emf physics (emf_definition) — IDEAL cell, r = 0: terminal V = eps always ──
