@@ -733,7 +733,13 @@ function updateReadouts() {
                        'i = ' + ec.i.toFixed(2) + ' A';
     } else if (powerMode()) {                                 // electric_power: P per bulb + total
       var pwr = cBulbPowers();
-      if (pwr.single) {
+      var stPw = curState();
+      if (pwr.single && stPw && stPw.three_faces) {           // S2: the three faces, all computing the SAME live watt
+        var ccF = cCurrents();
+        ro.textContent = 'VI = ' + (ccF.V * ccF.itot).toFixed(2) + ' W\\n' +
+                         'I\\u00B2R = ' + (ccF.itot * ccF.itot * ccF.R1).toFixed(2) + ' W\\n' +
+                         'V\\u00B2/R = ' + ((ccF.V * ccF.V) / ccF.R1).toFixed(2) + ' W';
+      } else if (pwr.single) {
         ro.textContent = 'P = ' + pwr.P1.toFixed(2) + ' W';
       } else {
         ro.textContent = 'P\\u2081 = ' + pwr.P1.toFixed(2) + ' W\\n' +
