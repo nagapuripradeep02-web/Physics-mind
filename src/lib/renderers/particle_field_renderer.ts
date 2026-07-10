@@ -1080,7 +1080,10 @@ function drawBatteryC(g, V, dim) {
 // The cell as a CHARGE PUMP: charges rise inside it from - to + (the chemistry
 // does work on each one). The upward arrow = "work done on each charge". Named
 // meshes stay full-bright; the pump animates only when pumpActive.
-function drawEmfCell(g, eps, dim, pumpActive) {
+// Optional 5th arg rr = { r, i, reveal 0..1, heat 0..1 } (internal_resistance):
+// draws the opened casing + the hidden r zigzag + i*r drop label + i^2 r heat
+// halo. rr absent -> pixel-identical emf_definition rendering (locked baselines).
+function drawEmfCell(g, eps, dim, pumpActive, rr) {
   var bx = g.leftX, by = g.midY;
   strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx, by - 16, bx, by + 16);   // + plate (long)
   strokeWeight(6); line(bx - 9, by - 8, bx - 9, by + 8);                                 // - plate (short/thick)
@@ -1095,6 +1098,28 @@ function drawEmfCell(g, eps, dim, pumpActive) {
     line(bx - 3, by + 11, bx - 3, by - 11);
     line(bx - 3, by - 11, bx - 7, by - 5); line(bx - 3, by - 11, bx + 1, by - 5);
     noStroke();
+  }
+  if (rr && rr.reveal > 0) {
+    var rDim = dimFor('r_internal') * rr.reveal;
+    var byT = by - 34;                                           // r sits between the + plate and the wire exit
+    if (rr.heat > 0.05) {                                        // i^2 r heat halo (short circuit cooks the cell)
+      var hp = 0.5 + 0.5 * sin(PM_simTimeMs / 260);
+      noStroke(); fillHex('#FF7043', (0.10 + 0.25 * rr.heat * hp) * rDim);
+      ellipse(bx - 2, by - 12, 54 + 26 * rr.heat);
+    }
+    strokeHex('#B0BEC5', 0.55 * rDim); strokeWeight(1); noFill();
+    rectMode(CENTER); rect(bx - 2, by - 6, 34, 62, 5); rectMode(CORNER);   // the opened casing
+    strokeHex('#FF8A65', 0.95 * rDim); strokeWeight(2); noFill();          // the hidden r (vertical zigzag)
+    beginShape();
+    for (var zk = 0; zk <= 6; zk++) vertex(bx + (zk === 0 || zk === 6 ? 0 : (zk % 2 ? -5 : 5)), byT + zk * (16 / 6));
+    endShape();
+    noStroke(); fillHex('#FF8A65', 0.95 * rDim); textSize(10); textStyle(BOLD); textAlign(RIGHT, CENTER);
+    text('r = ' + rr.r.toFixed(1) + ' \\u03A9', bx - 20, byT + 2);   // left of the cell (right of it sits the voltmeter)
+    if (rr.i > 0.02) {
+      fillHex('#FFAB91', 0.9 * rDim); textSize(10); textAlign(RIGHT, CENTER);
+      text('i\\u00B7r = ' + (rr.i * rr.r).toFixed(2) + ' V', bx - 20, byT - 12);
+    }
+    textStyle(NORMAL);
   }
   textSize(12); textStyle(BOLD); textAlign(RIGHT, CENTER);
   var elbl = '\\u03B5 = ' + eps.toFixed(1) + ' V', elw = textWidth(elbl);
@@ -1275,7 +1300,12 @@ function drawIrScenario() {
                             dir: (c.mode === 'charging') ? -1 : 1 });
   drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + fmtNum(c.R) + ' \\u03A9', dimFor('load'));
   drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
-  drawEmfCell(g, c.eps, 1, !c.swOpen);          // r-reveal arg added with the cell extension
+  var rr = null;
+  if (st && (st.show_r || st.r_reveal)) {
+    var rev = (st && st.r_reveal) ? constrain((PM_simTimeMs - 700) / 900, 0, 1) : 1;
+    rr = { r: c.r, i: c.i, reveal: rev, heat: constrain((c.i * c.i * c.r) / 4.5, 0, 1) };
+  }
+  drawEmfCell(g, c.eps, 1, !c.swOpen, rr);
   if (!(st && st.charging)) drawIrSwitch(g, c.swOpen, dimFor('switch'));
   if (st && st.show_voltmeter) {
     var vmDim = dimFor('voltmeter'), vx = g.leftX + 82, vy = g.midY;
