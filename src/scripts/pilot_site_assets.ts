@@ -815,6 +815,12 @@ function loginHtml(): string {
         font-size:14px;font-weight:600;font-family:var(--font-ui);cursor:pointer;transition:background .15s ease;}
   button.go:hover{background:var(--clay-deep);}
   button.go:disabled{opacity:.55;cursor:default;}
+  button.gbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;padding:11px;
+        border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);
+        font-size:14px;font-weight:600;font-family:var(--font-ui);cursor:pointer;transition:border-color .15s ease;}
+  button.gbtn:hover{border-color:rgba(203,104,67,.5);}
+  .or{display:flex;align-items:center;gap:10px;margin:16px 0 2px;color:var(--ink-faint);font-size:11px;}
+  .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line);}
   .err{display:none;margin-top:14px;padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.45;
        color:#F3C9BE;background:rgba(224,106,82,.12);border:1px solid rgba(224,106,82,.4);}
   .ok{display:none;margin-top:14px;padding:10px 13px;border-radius:10px;font-size:13px;
@@ -832,7 +838,12 @@ function loginHtml(): string {
 
   <div id="signinPanel">
     <h1>Sign in</h1>
-    <p class="sub">Use the email and password you were given. You can change the password after signing in.</p>
+    <p class="sub">Continue with Google, or use the email and password you were given.</p>
+    <button class="gbtn" id="googleBtn" type="button">
+      <svg viewBox="0 0 48 48" width="17" height="17" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.3 6.1 29.4 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.2-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.1 18.9 12 24 12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.3 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.2 5.2C40.7 35.6 44 30.3 44 24c0-1.2-.1-2.3-.4-3.5z"/></svg>
+      Continue with Google
+    </button>
+    <div class="or"><span>or with a password</span></div>
     <form id="signinForm">
       <label for="email">Email</label>
       <input id="email" type="email" autocomplete="username" required>
@@ -903,6 +914,16 @@ function loginHtml(): string {
       if (mustChange(u)) showChange();
       else location.replace(nextUrl());
     }, function () { btn.disabled = false; showErr('Network error — please try again.'); });
+  });
+
+  document.getElementById('googleBtn').addEventListener('click', function () {
+    clearMsg();
+    var c = client();
+    if (!c) { showErr('Could not load the sign-in service. Check the internet connection and reload.'); return; }
+    var back = location.origin + '/login.html' + (location.search || '');
+    c.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: back } }).then(function (res) {
+      if (res && res.error) showErr('Google sign-in failed: ' + res.error.message);
+    }, function () { showErr('Network error — please try again.'); });
   });
 
   document.getElementById('changeForm').addEventListener('submit', function (ev) {
