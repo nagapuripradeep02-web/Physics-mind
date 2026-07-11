@@ -119,6 +119,10 @@
   .card .ttl input, .hidrow .ttl input { width:100%; padding:2px 6px; border-radius:6px; border:1px solid rgba(203,104,67,.55);
                background:var(--surface-3); color:var(--ink); font-size:12.5px; font-family:var(--font-ui); outline:none; }
   #main { flex:1 1 auto; display:flex; flex-direction:column; min-width:0; min-height:0; }
+  /* full-screen wraps THIS (not just #stage) so the caption strip + collapsible
+     scrubber/footer panel + header stay reachable/consistent — header is the one
+     thing deliberately left OUTSIDE #fsScope, so it never shows in full screen. */
+  #fsScope { flex:1 1 auto; display:flex; flex-direction:column; min-width:0; min-height:0; }
   header { padding:5px 14px; border-bottom:1px solid var(--line); }
   .brandbar { display:flex; align-items:center; gap:11px; }
   .logo { display:flex; align-items:center; gap:9px; flex:none; }
@@ -143,16 +147,41 @@
   #stage { position:relative; flex:1 1 auto; min-height:0; background:var(--sim); }
   #stage::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:3; border-radius:0;
                   box-shadow: inset 0 0 0 1px var(--line), inset 0 0 70px rgba(0,0,0,.4); }
-  #stage:fullscreen { background:var(--sim); }
-  #stage:fullscreen::after { box-shadow:none; }
+  #fsScope:fullscreen { background:var(--sim); }
+  #fsScope:fullscreen #stage::after { box-shadow:none; }
   #sim { width:100%; height:100%; border:0; display:block; }
-  /* fullscreen-the-sim button — top-right glass, mirrors #simPenBar (top-left) */
-  #fsBtn { position:absolute; top:10px; right:10px; z-index:9; display:flex; align-items:center; gap:6px;
+  /* fullscreen-the-sim + clean-mode buttons — top-right glass cluster, mirrors #simPenBar (top-left) */
+  #fsTopControls { position:absolute; top:10px; right:10px; z-index:9; display:flex; align-items:center; gap:8px; }
+  .fsGlassBtn { display:flex; align-items:center; gap:6px;
            background:rgba(16,14,11,0.82); backdrop-filter:blur(6px); padding:6px 11px; border-radius:10px;
            border:1px solid var(--line); box-shadow:0 2px 10px rgba(0,0,0,0.4);
            color:var(--ink-dim); font-size:12px; font-weight:600; cursor:pointer; user-select:none;
-           transition:color .15s ease, border-color .15s ease; }
-  #fsBtn:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+           transition:color .15s ease, border-color .15s ease, background .15s ease; }
+  .fsGlassBtn:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #fsCleanBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* Next/Prev state chevrons + readout — full-screen only (§4, gated by #fsScope.pm-fs, not
+     the :fullscreen pseudo-class, since these live inside #stage, a descendant of the
+     fullscreen root, not the root itself). */
+  .fsChevron, #fsCleanBtn, #fsStateReadout { display:none; }
+  #fsScope.pm-fs .fsChevron { display:flex; }
+  #fsScope.pm-fs #fsCleanBtn, #fsScope.pm-fs #fsStateReadout { display:flex; }
+  .fsChevron { position:absolute; top:50%; transform:translateY(-50%); z-index:9;
+               width:48px; height:48px; border-radius:50%; align-items:center; justify-content:center;
+               font-size:24px; line-height:1; background:rgba(16,14,11,.82); backdrop-filter:blur(6px);
+               border:1px solid var(--line); color:var(--ink-dim); cursor:pointer; padding:0;
+               transition:opacity .3s ease, color .15s ease, border-color .15s ease; }
+  .fsChevron:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  .fsChevron:disabled { opacity:.35; pointer-events:none; }
+  .fsChevron-left { left:14px; }
+  .fsChevron-right { right:14px; }
+  #fsStateReadout { position:absolute; top:54px; left:50%; transform:translateX(-50%); z-index:9;
+                     background:rgba(16,14,11,.82); backdrop-filter:blur(6px); border:1px solid var(--line);
+                     border-radius:999px; padding:5px 14px; font-size:11.5px; font-weight:600;
+                     color:var(--ink-dim); pointer-events:none; letter-spacing:.03em; }
+  /* idle auto-fade (§6) — chrome dims after a few seconds of no pointer activity, restores on movement */
+  .fsChevron, #fsBtn, #simPenBar { transition: opacity .3s ease, color .15s ease, border-color .15s ease, background .15s ease; }
+  #fsScope.pm-idle .fsChevron, #fsScope.pm-idle #fsBtn, #fsScope.pm-idle #simPenBar { opacity:.28; }
+  #fsScope.pm-idle .fsChevron:hover, #fsScope.pm-idle #fsBtn:hover, #fsScope.pm-idle #simPenBar:hover { opacity:1; }
   /* Subtitle strip BELOW the canvas (de-clutter 2026-07-10) — narration prose never
      covers the sim; the strip collapses when subtitles are toggled off. */
   #capStrip { flex:0 0 auto; background:var(--surface); border-top:1px solid var(--line);
@@ -161,12 +190,10 @@
   #caption { color:var(--ink); font-size:15px; line-height:1.4; min-height:1.35em;
              max-width:900px; margin:0 auto; text-align:center; pointer-events:none; }
   #caption.cc-off { display:none; }   /* subtitles toggled off (independent of mute) */
-  /* fullscreen is #stage-only, so onFsChange re-parents #caption INTO the stage —
-     this block restores the old floating-overlay look for that mode only. */
-  #stage #caption { position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
-                    background:rgba(16,14,11,0.82); backdrop-filter:blur(8px);
-                    padding:8px 16px; border:1px solid var(--line); border-radius:11px;
-                    max-width:86%; z-index:5; }
+  /* clean mode (§5) — independent of .cc-off; hides the wrapper's prose subtitle strip.
+     The on-canvas caption/formula/HUD/sliders inside the iframe are hidden separately
+     via postMessage → body.pm-clean in field_3d_renderer.ts. */
+  #capStrip.pm-clean-hide { display:none; }
   #paused { position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
             display:none; background:var(--red); color:#fff;
             padding:7px 18px; border-radius:999px; font-size:14px; font-weight:600;
@@ -300,9 +327,10 @@
         </div>
         <div class="vrule"></div>
         <h1 class="concept">AC Generator</h1>
-        <div class="hd-right"><a class="demoCta" href="../#access"><span class="long">This is 1 of 20 simulations &mdash; get the full library free for a week &rarr;</span><span class="short">1 of 20 &middot; Free week &rarr;</span></a></div>
+        <div class="hd-right"><a class="demoCta" href="../#access"><span class="long">This is 1 of 20 simulations &mdash; get the full library free for two weeks &rarr;</span><span class="short">1 of 20 &middot; 2 weeks free &rarr;</span></a></div>
       </div>
     </header>
+    <div id="fsScope">
     <div id="stage">
       <iframe id="sim" src="sim.html" title="sim" allow="autoplay"></iframe>
       <canvas id="simOverlay"></canvas>
@@ -313,7 +341,13 @@
         </span>
         <button id="simClearBtn" class="pmbtn" title="Clear sim annotations">Clear</button>
       </div>
-      <div id="fsBtn" title="Full screen the simulation (Esc to exit)"><span id="fsIcon">&#9974;</span> Full screen</div>
+      <div id="fsTopControls">
+        <div id="fsCleanBtn" class="fsGlassBtn" title="Clean mode — hide on-canvas labels/sliders">&#10022; Clean</div>
+        <div id="fsBtn" class="fsGlassBtn" title="Full screen the simulation (Esc to exit)"><span id="fsIcon">&#9974;</span> Full screen</div>
+      </div>
+      <button id="fsPrevBtn" class="fsChevron fsChevron-left" title="Previous state (← / Page Up)">&#8249;</button>
+      <button id="fsNextBtn" class="fsChevron fsChevron-right" title="Next state (→ / Page Down)">&#8250;</button>
+      <div id="fsStateReadout"></div>
       <div id="paused">&#9208; Paused — tap to resume</div>
       <div id="tapcue">&#9208; Tap the sim anytime to pause</div>
     </div>
@@ -343,6 +377,7 @@
         <span id="counter" class="ctl"></span>
       </div>
     </footer>
+    </div>
   </div>
   <div id="divider" class="hidden"></div>
   <aside id="boardCol" class="hidden">
@@ -889,6 +924,7 @@
     var cards = cardsEl.querySelectorAll('.card');
     for (var i = 0; i < cards.length; i++) cards[i].classList.toggle('active', i === idx);
     // scrubEl.max is owned by computeTimeline() (the choreography length, not authored duration).
+    updateFsNav();   // keep the full-screen chevrons/readout (§4) in sync with every state change
   }
 
   // Move to the given order-position. autoRoll = start the timeline on entry (reveals always
@@ -1102,11 +1138,13 @@
   // Log-only — playback behavior is unchanged.
   setTimeout(function () { if (!simReady) pmt('sim_error', { kind: 'ready_timeout', after_ms: 15000 }); }, 15000);
 
-  // Spacebar toggles freeze; arrow keys step the (possibly reordered) sequence.
+  // Spacebar toggles freeze; arrow keys (or PageUp/PageDown — most classroom wireless
+  // presenter clickers send Page keys, not arrows, §6) step the (possibly reordered) sequence.
   window.addEventListener('keydown', function (e) {
+    armIdle();
     if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggleFreeze(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); var nR = nextVisible(idx, 1); if (nR >= 0) { pause(); goToState(nR, false); } }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); var nL = nextVisible(idx, -1); if (nL >= 0) { pause(); goToState(nL, false); } }
+    else if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); var nR = nextVisible(idx, 1); if (nR >= 0) { pause(); goToState(nR, false); } }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); var nL = nextVisible(idx, -1); if (nL >= 0) { pause(); goToState(nL, false); } }
   });
 
   // ════════════════════════════════════════════════════════════════════════
@@ -1427,31 +1465,85 @@
   ctlToggleEl.addEventListener('click', function () { controlsCollapsed = !controlsCollapsed; pmt('controls_toggle', { collapsed: controlsCollapsed }); applyControls(); saveWbUI(); });
 
   // ── Full-screen the simulation ──
-  var stageEl2 = document.getElementById('stage');
+  // Full screen wraps #fsScope (stage + caption strip + collapsible scrubber/footer),
+  // NOT just #stage, so the whole control band stays reachable in full screen instead of
+  // being structurally outside the fullscreen subtree. #main's <header> is deliberately
+  // left OUTSIDE #fsScope — it never shows in full screen (§3 of the design spec).
+  var fsScopeEl = document.getElementById('fsScope');
   var fsBtn = document.getElementById('fsBtn');
   var fsIcon = document.getElementById('fsIcon');
+  var fsCleanBtn = document.getElementById('fsCleanBtn');
+  var fsPrevBtn = document.getElementById('fsPrevBtn');
+  var fsNextBtn = document.getElementById('fsNextBtn');
+  var fsStateReadout = document.getElementById('fsStateReadout');
   function inFullscreen() { return document.fullscreenElement || document.webkitFullscreenElement; }
   fsBtn.addEventListener('click', function () {
     pmt('fullscreen_toggle', { on: !inFullscreen() });
     if (!inFullscreen()) {
-      if (stageEl2.requestFullscreen) stageEl2.requestFullscreen();
-      else if (stageEl2.webkitRequestFullscreen) stageEl2.webkitRequestFullscreen();
+      if (fsScopeEl.requestFullscreen) fsScopeEl.requestFullscreen();
+      else if (fsScopeEl.webkitRequestFullscreen) fsScopeEl.webkitRequestFullscreen();
     } else {
       if (document.exitFullscreen) document.exitFullscreen();
       else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
     }
   });
+
+  // ── Next/Prev state chevrons (full-screen only, §4) — reuse the same nextVisible/
+  // goToState the state-rail cards and ArrowLeft/ArrowRight already use, so a teacher's
+  // saved reorder/hide layout (LS_LAYOUT) is respected identically everywhere.
+  function updateFsNav() {
+    if (!fsPrevBtn) return;
+    fsPrevBtn.disabled = nextVisible(idx, -1) < 0;
+    fsNextBtn.disabled = nextVisible(idx, 1) < 0;
+    if (fsStateReadout) fsStateReadout.textContent = 'STATE ' + (idx + 1) + ' / ' + order.length;
+  }
+  fsPrevBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, -1); if (n >= 0) { pause(); goToState(n, false); } });
+  fsNextBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, 1); if (n >= 0) { pause(); goToState(n, false); } });
+
+  // ── Clean mode (§5) — strips the on-canvas caption/formula/HUD/sliders to a bare scene.
+  // Independent of the #ctlToggle panel. Never persisted: onFsChange resets it to off on
+  // every full-screen entry AND exit (founder decision, 2026-07-10).
+  var cleanMode = false;
+  function sendCleanMode(on) { post({ type: 'SET_CLEAN_MODE', on: on === true }); }
+  function setCleanMode(on) {
+    cleanMode = on === true;
+    var capStripEl = document.getElementById('capStrip');
+    if (capStripEl) capStripEl.classList.toggle('pm-clean-hide', cleanMode);
+    if (fsCleanBtn) fsCleanBtn.classList.toggle('on', cleanMode);
+    sendCleanMode(cleanMode);
+  }
+  fsCleanBtn.addEventListener('click', function () { pmt('clean_mode_toggle', { on: !cleanMode }); setCleanMode(!cleanMode); });
+
+  // ── Idle auto-fade (§6) — chevrons/#fsBtn/#simPenBar dim after a few seconds of no
+  // pointer activity on the wrapper; any movement restores them. Known accepted gap:
+  // pointer movement INSIDE the #sim iframe doesn't bubble to this document (cross-frame
+  // events don't cross), so resting the mouse over the sim itself (without touching a
+  // control) won't reset the timer — deliberate interaction (chevrons/pen-bar/keys) does.
+  var IDLE_MS = 3000, idleTimer = null;
+  function armIdle() {
+    if (idleTimer) clearTimeout(idleTimer);
+    fsScopeEl.classList.remove('pm-idle');
+    if (!inFullscreen()) return;
+    idleTimer = setTimeout(function () { fsScopeEl.classList.add('pm-idle'); }, IDLE_MS);
+  }
+  function resetIdleTimer() {
+    if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; }
+    fsScopeEl.classList.remove('pm-idle');
+    if (inFullscreen()) armIdle();
+  }
+  fsScopeEl.addEventListener('pointermove', armIdle);
+  fsScopeEl.addEventListener('pointerdown', armIdle);
+  fsScopeEl.addEventListener('touchstart', armIdle, { passive: true });
+
   function onFsChange() {
     var on = !!inFullscreen();
+    fsScopeEl.classList.toggle('pm-fs', on);
     if (fsIcon) fsIcon.innerHTML = on ? '\u2715' : '\u26F6';   // ✕ exit / ⛶ enter
     fsBtn.childNodes[fsBtn.childNodes.length - 1].nodeValue = on ? ' Exit full screen' : ' Full screen';
-    // Fullscreen wraps #stage only, so the below-canvas subtitle strip would vanish:
-    // re-parent #caption into the stage (styled as an overlay by the "#stage #caption" CSS).
-    var capStripEl = document.getElementById('capStrip');
-    if (caption && capStripEl) {
-      if (on) { stageEl2.appendChild(caption); capStripEl.style.display = 'none'; }
-      else { capStripEl.style.display = ''; capStripEl.appendChild(caption); }
-    }
+    if (on) { controlsCollapsed = true; applyControls(); }   // full screen always opens minimal (§7) — not saveWbUI()'d
+    setCleanMode(false);   // resets on both entry AND exit (founder decision, 2026-07-10)
+    resetIdleTimer();
+    updateFsNav();
     requestAnimationFrame(function () { if (simSurface) simSurface.resize(); });
   }
   document.addEventListener('fullscreenchange', onFsChange);
