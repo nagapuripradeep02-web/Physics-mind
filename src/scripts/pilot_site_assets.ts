@@ -1040,6 +1040,133 @@ function joinHtml(): string {
 `;
 }
 
+// ── welcome.html — 4-question profile setup; the ONLY path that starts a trial ─
+// Runs with a session but no profile (pm-auth routes profileless users here).
+// Submits to the start_trial RPC (security definer — one trial per identity,
+// enforced in the DB). On success: clear the splash guard so the catalog plays
+// the "{Name}'s Class · powered by Viditra" card, then go teach.
+function welcomeHtml(): string {
+    const chapterOptions = Object.entries(CLASS12_CHAPTER_NAMES)
+        .map(([n, name]) => `<option value="Ch.${n} ${name}">Ch.${n} — ${name}</option>`)
+        .join('');
+    return `<!DOCTYPE html>
+<html lang="en" data-pm-page="welcome"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome — Viditra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./pm-config.js"></script>
+<script src="${SUPABASE_JS_CDN}"></script>
+<script src="./pm-auth.js"></script>
+<script src="./pm-telemetry.js"></script>
+<style>
+  :root{ --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --clay:#CB6843; --clay-deep:#B0552F;
+         --clay-soft:#E3A07F; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+         --line:rgba(245,240,230,.10); --red:#E06A52; --sage:#74B594;
+         --font-disp:"Fraunces",Georgia,serif; --font-ui:"Inter",system-ui,sans-serif; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(46% 38% at 100% 0%, rgba(203,104,67,.08), transparent 60%),
+               radial-gradient(40% 32% at 0% 100%, rgba(116,181,148,.05), transparent 60%);}
+  .wrap{position:relative;min-height:100vh;display:grid;place-items:center;padding:24px;}
+  .card{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--line);border-radius:18px;
+        padding:34px 32px 30px;box-shadow:0 24px 60px -30px rgba(0,0,0,.8);}
+  .masthead{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+  .mark{width:40px;height:40px;border-radius:12px;background:var(--clay);flex:none;display:grid;place-items:center;
+        box-shadow:0 6px 18px -6px rgba(203,104,67,.55);}
+  .mark svg{width:23px;height:23px;}
+  .brand b{font-family:var(--font-disp);font-weight:600;font-size:19px;display:block;line-height:1;}
+  .brand span{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;display:block;}
+  h1{font-family:var(--font-disp);font-size:20px;font-weight:600;margin:0 0 4px;}
+  p.sub{color:var(--ink-dim);font-size:13px;margin:0 0 18px;line-height:1.5;}
+  label{display:block;font-size:12px;font-weight:600;color:var(--ink-dim);margin:14px 0 6px;letter-spacing:.02em;}
+  input,select{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);
+        color:var(--ink);font-size:14px;font-family:var(--font-ui);outline:none;}
+  input:focus,select:focus{border-color:rgba(203,104,67,.55);}
+  button.go{width:100%;margin-top:22px;padding:12px;border:0;border-radius:10px;background:var(--clay);color:#fff;
+        font-size:14px;font-weight:600;font-family:var(--font-ui);cursor:pointer;transition:background .15s ease;}
+  button.go:hover{background:var(--clay-deep);}
+  button.go:disabled{opacity:.55;cursor:default;}
+  a.alt{display:block;text-align:center;margin-top:16px;color:var(--ink-dim);font-size:12.5px;text-decoration:none;}
+  a.alt:hover{color:var(--clay-soft);}
+  .err{display:none;margin-top:14px;padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.45;
+       color:#F3C9BE;background:rgba(224,106,82,.12);border:1px solid rgba(224,106,82,.4);}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+  <div class="masthead">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
+  </div>
+
+  <h1>Welcome — let's set up your class</h1>
+  <p class="sub">Four quick questions and your 14-day free trial starts. This becomes your own teaching space — everything you customize is saved to it.</p>
+  <form id="setupForm">
+    <label for="nm">Your name (as your students know you)</label>
+    <input id="nm" type="text" maxlength="80" required>
+    <label for="sc">School / institute (optional)</label>
+    <input id="sc" type="text" maxlength="120">
+    <label for="tc">What you teach</label>
+    <input id="tc" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
+    <label for="ch">Which chapter are you teaching next?</label>
+    <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other / Class 11</option></select>
+    <button class="go" id="setupBtn" type="submit">Start my 14-day free trial</button>
+  </form>
+  <div class="err" id="errBox"></div>
+  <a class="alt" href="#" id="soLink">Signed in with the wrong account? Sign out</a>
+</div></div>
+
+<script>
+(function () {
+  var errBox = document.getElementById('errBox');
+  function showErr(m) { errBox.textContent = m; errBox.style.display = 'block'; }
+  function clearErr() { errBox.style.display = 'none'; }
+  PM.authReady.then(function (u) {
+    if (!u) return;   // gate already handles no-session; dev shows the form inert
+    var m = u.user_metadata || {};
+    var nm = document.getElementById('nm');
+    if (!nm.value) nm.value = m.full_name || m.name || m.display_name || '';
+  });
+  document.getElementById('soLink').addEventListener('click', function (ev) {
+    ev.preventDefault(); if (window.PM && PM.auth) PM.auth.signOut();
+  });
+  document.getElementById('setupForm').addEventListener('submit', function (ev) {
+    ev.preventDefault(); clearErr();
+    var c = PM.auth && PM.auth.client && PM.auth.client();
+    if (!c) { showErr('Could not reach the service — check the connection and reload.'); return; }
+    var btn = document.getElementById('setupBtn'); btn.disabled = true;
+    c.rpc('start_trial', {
+      p_display_name: document.getElementById('nm').value,
+      p_school: document.getElementById('sc').value,
+      p_teaches: document.getElementById('tc').value,
+      p_next_chapter: document.getElementById('ch').value
+    }).then(function (res) {
+      btn.disabled = false;
+      var d = res && res.data;
+      if (res && res.error) { showErr('Could not save: ' + res.error.message); return; }
+      if (!d || d.ok !== true) {
+        var e = d && d.error;
+        if (e === 'already_registered') { location.replace('/'); return; }
+        if (e === 'name_required') { showErr('Please enter your name.'); return; }
+        showErr('Something went wrong — please try again.');
+        return;
+      }
+      try { sessionStorage.removeItem('pm_splash_shown'); } catch (e2) {}
+      if (window.PM && PM.track) PM.track('profile_created', {});
+      if (window.PM && PM.flushNow) PM.flushNow();
+      location.replace('/');
+    }, function () { btn.disabled = false; showErr('Network error — please try again.'); });
+  });
+})();
+</script>
+</body></html>
+`;
+}
+
 /** Write the shared root assets into the review-site output dir. */
 export function writeRootAssets(outDir: string): void {
     writeFileSync(join(outDir, 'pm-config.js'), pmConfigJs(), 'utf-8');
@@ -1048,5 +1175,6 @@ export function writeRootAssets(outDir: string): void {
     writeFileSync(join(outDir, 'pm-feedback.js'), pmFeedbackJs(), 'utf-8');
     writeFileSync(join(outDir, 'login.html'), loginHtml(), 'utf-8');
     writeFileSync(join(outDir, 'join.html'), joinHtml(), 'utf-8');
-    console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, login.html, join.html → review-site/');
+    writeFileSync(join(outDir, 'welcome.html'), welcomeHtml(), 'utf-8');
+    console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, login.html, join.html, welcome.html → review-site/');
 }
