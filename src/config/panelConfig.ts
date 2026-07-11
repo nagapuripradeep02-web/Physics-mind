@@ -137,6 +137,24 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #8 — Alex pipeline (2026-07-11), same engine
+    // family as the seven particle_field siblings. REUSES the
+    // combination_of_resistors scenario_type verbatim (no new scenario flag —
+    // confirmed engine constraint: circuitMode()'s cR1() has no per-state
+    // override, so only R2 varies state-to-state via r2_autosweep). Teaches
+    // Sigma i_in = Sigma i_out (KCL) via the SAME two-branch junction: equal
+    // split -> PRIMARY aha unequal-conductance split (still sums) ->
+    // generalization to any junction.
+    kirchhoff_junction_rule_KCL: {
+        concept_id: 'kirchhoff_junction_rule_KCL',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'kirchhoff_junction_rule_KCL',
+            label: "Kirchhoff's Junction Rule — Σi_in = Σi_out",
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

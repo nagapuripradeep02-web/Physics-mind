@@ -1,0 +1,673 @@
+{
+  "concept_id": "kirchhoff_junction_rule_KCL",
+  "concept_name": "Kirchhoff's Junction Rule (KCL) — Σi_in = Σi_out",
+  "chapter": 3,
+  "section": "3.13",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "simple",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.13 Kirchhoff's Rules — the junction/current rule half) — table-of-contents + scope reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC places Kirchhoff's rules after combination_of_resistors/emf/internal_resistance/electrical_power, before Wheatstone/potentiometer) to confirm the atomic boundary — no teaching method, example problem, or figure imported. The atomic idea: at any junction (node) in a circuit, the total current flowing IN equals the total current flowing OUT — Σi_in = Σi_out — because charge is conserved and cannot pile up or vanish at a point; when current splits at a fork it redistributes by branch conductance (1/R), but the branch currents always add back to exactly what entered. Does NOT cover the loop rule / KVL (deferred to kirchhoff_loop_rule_KVL, a separate diamond), solving multi-loop networks (downstream application), the current-divider formula as a taught derivation (it emerges as a NUMBER on the ammeters here, never derived on canvas — that belongs to combination_of_resistors / a future drill-down), or Wheatstone/potentiometer (downstream catalog nodes that depend on this one). EIGHTH Ch.3 concept on the particle_field (2D p5.js) renderer, same engine family as drift_velocity/ohms_law/resistivity/combination_of_resistors/emf_definition/internal_resistance/electrical_power_in_resistor. Renderer upgrade (founder-directed, 2026-07-11): the particle_field circuit engine (`combination_of_resistors` scenario_type) was extended with the KCL flag set — a per-state R1 numeric lock (circuitMode's cR1() now honors state.R1 exactly like the pre-existing R2 lock), a genuine THIRD parallel branch (R3 + state.three_branch, feeding node N with a real 3-way split in circuitGeom()/cCurrents()), show_branch_meters + branch_labels for symbolic per-branch ammeters, show_in_meter/in_meter_label + main_meter_label (the A_in / A_out framing), kcl_sum_readout (an on-canvas value-only Σ HUD, auto-formatting 2- or 3-branch sums, and switching #pm-readout to 'A_in = A_out' so R_eq is suppressed on these states per the taught invariant), ghost_text/ghost_pos (a fixed, config-driven struck-through naive-expectation string), and node_label (labels junction N, reusing the existing `junction` glow key — no new primitive needed). This concept now renders the FULL physics-author-verified numbers with no adapted or workaround values: S1/S2 R1=R2=3Ω → I_total=2.0A, I1=I2=1.0A; S3 R1=6Ω,R2=2Ω (both dials move together from the S1/S2 baseline) → R_eq unchanged at 1.5Ω (Rule 32b's deliberate invariant — total pinned while only the split changes), I1=0.5A, I2=1.5A, sum still 2.0A; S4 ships as the 3-branch PRIMARY path (not the 2-branch fallback) — R1=2Ω, R2=10Ω, R3=15Ω → R_eq=1.5Ω a third time, I1=1.5A, I2=0.3A, I3=0.2A, summing to 2.0A. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches) — the two genuine misconceptions ('current gets used up', 'a fork always splits fifty-fifty') are confronted inside EPIC-L via Rule 16a misconception_watch, both fired together at the STATE_3 pivot only (founder guardrail 2026-07-04: no per-state tic), no predict-pause. Anchors authored UNIVERSAL per Rule 35 (a wall socket feeding a power strip; a T-junction in a water pipe — no country, brand, festival, or currency; plain English throughout, no Hinglish).",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "combination_of_resistors"
+    ]
+  },
+  "prerequisites": [
+    "electric_current"
+  ],
+  "real_world_anchor": {
+    "primary": "A wall socket feeding a power strip: the single supply current splits at the strip — some to each plugged-in device — and every branch current returns and sums back to exactly what the socket delivered, however unevenly it divided among the devices. Nothing is lost or stored at the split; the strip IS a junction.",
+    "secondary": "Water flowing through a pipe that splits at a T-joint into two smaller pipes — the water doesn't compress or vanish at the joint, so however unevenly it divides between the two branches, the two flows always add back to what entered."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "epsilon": {
+        "name": "Cell voltage (ideal, fixed)",
+        "unit": "V",
+        "constant": 3.0,
+        "role": "locked constant every state incl. explore; never a slider — set via particle_field_config.formula_anchor.constants.V_circuit (no V slider exists, so circuitMode's cVolt() falls through to this fixed value)"
+      },
+      "R1": {
+        "name": "Branch 1 resistance (top)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "default": 3,
+        "role": "per-state numeric lock (engine-verified: circuitMode's cR1() honors state.R1 identically to cR2raw()'s pre-existing R2 lock) — 3Ω on S1/S2, 6Ω on S3 (climbs together with R2's fall), 2Ω on S4 (3-branch primary); live-draggable in S3 (post-reveal) and S5 (explore)"
+      },
+      "R2": {
+        "name": "Branch 2 resistance (bottom)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "default": 3,
+        "role": "per-state numeric lock — 3Ω on S1/S2 (equal split), 2Ω on S3 (the CAUSE that moves first alongside R1, Rule 32a), 10Ω on S4 (3-branch primary); live-draggable in S3 (post-reveal) and S5 (explore)"
+      },
+      "R3": {
+        "name": "Branch 3 resistance (third parallel branch)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "default": 15,
+        "role": "only read when state.three_branch is true (S4, S5) — locked to 15Ω on S4 via state.R3, teacher-seizable; live-draggable only in S5 (explore)"
+      },
+      "R_eq": {
+        "name": "Equivalent resistance at N",
+        "unit": "Ω",
+        "derived": "three_branch ? 1/(1/R1+1/R2+1/R3) : 1/(1/R1+1/R2)",
+        "role": "NOT displayed on canvas — KCL states switch #pm-readout to 'A_in = A_out' via kcl_sum_readout, suppressing R_eq; internal sanity value only — 1.5Ω identically on S2/S3/S4 by DELIBERATE authorial construction (Rule 32b: total pinned, only the split changes)"
+      },
+      "I_total": {
+        "name": "Total current (A_in = A_out)",
+        "unit": "A",
+        "derived": "epsilon / R_eq  (identically I1 + I2 [+ I3])",
+        "role": "live readout — the A_in ammeter (pre-fork) and the A_out ammeter (post-recombination) both read this identical number every instant, every state — this IS the KCL identity made visible with two instruments reading the same value"
+      },
+      "I1": {
+        "name": "Branch 1 current",
+        "unit": "A",
+        "derived": "epsilon / R1",
+        "role": "live readout — branch ammeter A₁: 1.0 A on S1/S2 (equal split), 0.5 A on S3 (R1 now the harder path), 1.5 A on S4 (R1=2Ω, now the easiest of three)"
+      },
+      "I2": {
+        "name": "Branch 2 current",
+        "unit": "A",
+        "derived": "epsilon / R2",
+        "role": "live readout — branch ammeter A₂: 1.0 A on S1/S2, 1.5 A on S3 (the easier 2Ω path), 0.3 A on S4 (R2=10Ω)"
+      },
+      "I3": {
+        "name": "Branch 3 current",
+        "unit": "A",
+        "derived": "three_branch ? epsilon / R3 : 0",
+        "role": "live readout — branch ammeter A₃; only rendered when state.three_branch is true — 0.2 A on S4 (R3=15Ω, the hardest of the three paths)"
+      }
+    },
+    "formulas": {
+      "R_eq": "three_branch === true ? 1/(1/R1+1/R2+1/R3) : 1/(1/R1+1/R2)",
+      "I_total": "epsilon / R_eq",
+      "I1": "epsilon / R1",
+      "I2": "epsilon / R2",
+      "I3": "three_branch === true ? epsilon / R3 : 0",
+      "kcl_identity": "I_total === I1 + I2 (+ I3) identically, by construction on this ideal-cell node — this IS the taught rule (Σi_in = Σi_out), not a coincidence to verify",
+      "current_divider_number_source": "Ik = I_total*(R_eq/Rk) ≡ I_total*(1/Rk)/Σ(1/Rk) — NUMBER SOURCE ONLY for the ammeter readings; NEVER a taught derivation or on-canvas formula"
+    },
+    "constraints": [
+      "I_total = I1 + I2 (+ I3) EXACTLY at every setting — this is the definition of the taught rule, true by the circuit's construction, not an approximation",
+      "the A_in ammeter (pre-fork) and A_out ammeter (post-recombination) read the SAME number at every instant, every state — the visual proof that current is never 'used up'",
+      "split ratio is set by CONDUCTANCE (1/R): the lower-resistance branch always carries proportionally more current, never an automatic 50/50 share regardless of the resistor values",
+      "R_eq = 1.5Ω identically on S2/S3/S4 — DELIBERATE authorial invariant (Rule 32b: A_in/A_out hold still while only the split changes) — do NOT 'fix'",
+      "R1/R2 both move together S1/S2 → S3 (3,3)→(6,2) to hold R_eq fixed while flipping the split; S4 adds a genuine THIRD parallel branch (R1=2,R2=10,R3=15) rendered natively in circuitGeom()/cCurrents() — no fallback 2-branch reframe needed",
+      "all currents ≥ 0; R1,R2,R3 ∈ [1,20]Ω so no divide-by-zero, no negative resistance, no infinite current",
+      "energy/heat is OUT OF SCOPE (that is electrical_power_in_resistor) — no P=I²R anywhere on canvas or in narration",
+      "the current-divider formula is a number-source only, engine-internal — never an on-canvas formula or a narrated derivation; only Σi_in = Σi_out is taught, first shown formally at STATE_4"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 4,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "The split looks broken — yet total in still equals total out."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "multi_branch": [
+      "STATE_4",
+      "STATE_5"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Charge can't pile up: beads stream through node N",
+        "duration": 14,
+        "focal_primitive_id": "no_pileup",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "node_intro",
+            "position": { "x": 380, "y": 90 },
+            "text": "One cell drives current into a single junction, node N.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "no_pileup",
+            "position": { "x": 620, "y": 250 },
+            "text": "Beads arrive and leave node N at exactly the same rate.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "charge_conserved",
+            "position": { "x": 380, "y": 440 },
+            "text": "Charge cannot vanish or stack up at a single point in a wire.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Current flows from the cell into a single junction — node N — and splits into two branches."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch node N closely: beads arrive and leave at exactly the same rate, so nothing ever piles up there."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Charge cannot vanish or pile up at a single point in a wire."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Splits, then adds back: equal branches, in = branch₁ + branch₂",
+        "duration": 15,
+        "focal_primitive_id": "ammeters_settle",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "equal_fork",
+            "position": { "x": 380, "y": 90 },
+            "text": "The stream forks into two equal three-ohm branches at node N.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "ammeters_settle",
+            "position": { "x": 620, "y": 250 },
+            "text": "Branch ammeters settle at one ampere each, main ammeter two amperes.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sum_identity",
+            "position": { "x": 380, "y": 440 },
+            "text": "Two amps in equals one plus one equals two amps out.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "The stream reaches node N and splits into two equal branches, three ohms each."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the branch ammeters settle: one ampere down each path, while the main ammeter still reads two amperes total."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Two amps in equals one plus one equals two amps out — the split adds back to exactly what entered."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "PRIMARY aha — unequal branches redistribute, sum still conserved",
+        "duration": 18,
+        "focal_primitive_id": "uneven_split",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r2_falls",
+            "position": { "x": 380, "y": 90 },
+            "text": "R one climbs to six ohms; R two falls to two ohms — R two is now the easier path.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "uneven_split",
+            "position": { "x": 620, "y": 250 },
+            "text": "Branch two climbs to one point five amperes; branch one falls to zero point five.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "naive_vs_real",
+            "position": { "x": 380, "y": 440 },
+            "text": "Not one plus one — the easier path takes three times as much: zero point five plus one point five.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "R one climbs to six ohms; R two falls to two — now the easier path."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The streams reshuffle: branch two climbs to one point five amperes, branch one falls to zero point five."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Not one plus one — the easier path takes three times as much, yet the total holds at two amperes."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Current gets used up as it flows through a resistor.",
+            "visual_counter": "The A_in and A_out ammeters both read 2.00 A — the same number whether read as what enters the split or what leaves after the branches recombine; the loop closes at full current every cycle.",
+            "one_line_fix": "Current is charge in motion — it is never used up, only energy is."
+          },
+          {
+            "belief": "A fork always splits current fifty-fifty.",
+            "visual_counter": "Naively 2.00 A should split 1.00 + 1.00, but the two-ohm branch (the easier path) actually carries 1.50 A against the six-ohm branch's 0.50 A — still summing to exactly 2.00 A.",
+            "one_line_fix": "The easier path (lower R) takes more — but the parts always add back to the whole."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Generalization: ANY junction, any number of wires — Σi_in = Σi_out",
+        "duration": 15,
+        "focal_primitive_id": "sigma_rule",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "any_junction",
+            "position": { "x": 380, "y": 90 },
+            "text": "A third branch joins the fork — the same balance holds no matter how many wires meet here.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "totals_match",
+            "position": { "x": 620, "y": 250 },
+            "text": "One point five plus zero point three plus zero point two amperes in still equals two amperes out.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sigma_rule",
+            "position": { "x": 380, "y": 440 },
+            "text": "Sum of current in equals sum of current out — Kirchhoff's junction rule.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "A third branch joins the fork — three paths now leave node N."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Watch the three ammeters settle: one point five, zero point three, and zero point two amperes."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Add them up: one point five plus zero point three plus zero point two — still two amperes, in equals out at any junction."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Explore — every dial is yours: R1, R2, every ammeter live",
+        "duration": 0,
+        "focal_primitive_id": "explore_all",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_dials_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Both resistors are live now — drag either one.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "explore_all",
+            "position": { "x": 620, "y": 250 },
+            "text": "Every ammeter and the formula respond live as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "rule_always_holds",
+            "position": { "x": 380, "y": 440 },
+            "text": "The junction rule holds at every setting you choose.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Every dial is yours now — drag either resistor and watch the junction rule hold at every setting."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered Kirchhoff's junction rule when they can (1) state that charge cannot accumulate or vanish at any point in a circuit, so the total current entering a junction must equal the total current leaving it, second for second; (2) predict that current splits UNEVENLY between unequal branches — by conductance (1/R), not automatically fifty-fifty — while the branch currents still sum to exactly what entered; (3) recognize that a resistor spends ENERGY (as heat), never CHARGE, so an ammeter reads the same current before a split and after the branches recombine; (4) apply Σi_in = Σi_out to solve for an unknown branch current at a junction with any number of wires; and (5) explain WHY the rule holds at every junction regardless of branch count — it follows directly from conservation of charge, not from a rule specific to two-way forks.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Electrons flow steadily into a junction in a wire and immediately split into two branches. What happens to the charge AT the junction itself, second after second?",
+        "options": {
+          "A": "None of it accumulates — exactly as much charge arrives each second as leaves, so the junction never gains or loses charge",
+          "B": "A small amount accumulates at the junction, slowly charging it up over time",
+          "C": "Charge is briefly stored and released in bursts, causing the current to pulse",
+          "D": "The charge arriving is partly converted to heat right at the junction, so less charge leaves than arrives"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imagines a junction as a leaky reservoir that could store charge, rather than a simple conductor with no capacity to accumulate it",
+          "C": "invents a pulsing/bursting behavior with no physical mechanism — steady inflow gives steady, not pulsed, outflow",
+          "D": "confuses charge (strictly conserved) with energy (which can convert to heat) — no charge is destroyed anywhere in a circuit"
+        },
+        "tested_idea": "Charge cannot accumulate or vanish at a junction — exactly as much flows out each second as flows in.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A junction has current flowing steadily into it from one wire and out through two others. Explain what this implies about the charge sitting AT the junction at any instant."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Two identical resistors branch off the same junction from a single incoming current of 2.0 A. How does the current divide?",
+        "options": {
+          "A": "1.0 A down each branch — equal resistors share the current equally, and the two branches still add up to the full 2.0 A",
+          "B": "2.0 A down each branch — every branch always carries the full incoming current",
+          "C": "The current chooses only one branch and ignores the other entirely",
+          "D": "1.0 A down each branch, but only 1.5 A total leaves the junction — the rest is lost in the split"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats every branch as carrying the FULL current independently, ignoring that current entering a junction is shared among the paths, not duplicated",
+          "C": "assumes current is all-or-nothing at a fork, rather than dividing continuously across every available path",
+          "D": "reintroduces the used-up misconception — the branch currents must still sum to exactly the incoming current, 2.0 A, with nothing lost"
+        },
+        "tested_idea": "When branch resistances are equal, current splits equally between them, and the branches still sum to the total that entered.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A junction with two identical branches has 6.0 A entering it. State how that current divides, and confirm the branches still add to 6.0 A."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "At a junction with two very different branch resistances, the total current entering is 2.0 A. After it passes through both branches and recombines, what does the ammeter after the junction read?",
+        "options": {
+          "A": "2.0 A — exactly the same as before the split; nothing was consumed by the resistors along the way",
+          "B": "Less than 2.0 A, because the resistors used up some of the current",
+          "C": "More than 2.0 A, because the resistors add extra current",
+          "D": "It depends on which resistor is bigger — the reading changes with resistance"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic 'current gets used up' trap — resistors dissipate ENERGY as heat, they do not consume CHARGE",
+          "C": "invents current being created from nothing, violating charge conservation just as badly as consuming it would",
+          "D": "confuses how the SPLIT changes with resistance (true) with the TOTAL changing after recombination (false) — total in must equal total out regardless of the split"
+        },
+        "tested_idea": "The current measured after a junction's branches recombine equals the current that entered — resistors spend energy, never charge.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A junction splits 5.0 A between two unequal branches that later recombine. State the ammeter reading after recombination, and justify it."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A junction splits into a 6 Ω branch and a 2 Ω branch, with 2.0 A entering total. How does the 2.0 A actually divide?",
+        "options": {
+          "A": "0.5 A down the 6 Ω branch and 1.5 A down the 2 Ω branch — the lower-resistance path carries three times as much, not an equal share",
+          "B": "1.0 A down each branch, since a fork always splits current evenly",
+          "C": "All 2.0 A goes down the 2 Ω branch, since current always avoids resistance entirely",
+          "D": "0.5 A down each branch, with the remaining 1.0 A lost at the junction"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the fifty-fifty misconception — an unequal split by conductance is the norm, not a special case",
+          "C": "overcorrects into all-or-nothing routing, ignoring that current flows down EVERY available path, just unevenly",
+          "D": "reintroduces the used-up misconception on top of the wrong split ratio"
+        },
+        "tested_idea": "Current splits by conductance (1/R) — the lower-resistance branch carries proportionally more, never an automatic equal share.",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A junction splits into a 2 Ω branch and a 6 Ω branch, with 4.0 A entering total. Find the current in each branch."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "At a junction, currents of 3 A and 2 A flow IN along two wires, and 4 A flows OUT along a third wire. A fourth wire is also connected to this junction. What current flows in that fourth wire, and in which direction?",
+        "options": {
+          "A": "1 A, flowing OUT — the total in (3+2=5 A) must equal the total out, so the remaining 1 A must also leave",
+          "B": "1 A, flowing IN — extra current always enters wherever there's room",
+          "C": "5 A, flowing OUT — all incoming current must double back out somewhere",
+          "D": "0 A — a junction can only have three wires, so the fourth carries nothing"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "gets the magnitude right but the direction backwards — since 5 A already entered and only 4 A left, the missing 1 A must be LEAVING, not entering, to keep the sums equal",
+          "C": "confuses the total in (5 A) with what must additionally flow out, rather than subtracting what's already accounted for",
+          "D": "invents a wire-count limit that doesn't exist — Kirchhoff's junction rule applies to ANY number of wires meeting at a point"
+        },
+        "tested_idea": "Σi_in = Σi_out holds at a junction with any number of wires — solve for the unknown branch by balancing the sums.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "At a junction, 6 A and 1 A flow IN along two wires, and 5 A flows OUT along one wire. A fourth wire also meets there. Find its current and direction."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Why does Σi_in = Σi_out hold at a junction no matter how many wires meet there, or how the current happens to divide among them?",
+        "options": {
+          "A": "Because charge is conserved at every point in a circuit — a junction with any number of wires cannot store or create charge, so whatever arrives each second must leave each second",
+          "B": "Because engineers design junctions to always balance current on purpose",
+          "C": "Because the rule only actually works for junctions with exactly two branches; more wires need a different law",
+          "D": "Because resistance at the junction forces the currents to average out"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "attributes a law of physics to deliberate engineering, rather than the underlying conservation of charge that makes it universally true",
+          "C": "wrongly restricts the rule to two-branch junctions — the SAME charge-conservation argument applies to a junction with any number of wires",
+          "D": "invents a resistance-averaging mechanism; the junction itself has no resistance and does nothing to the currents except let them meet"
+        },
+        "tested_idea": "Σi_in = Σi_out generalizes to any junction because it follows directly from conservation of charge, not from a rule specific to two branches.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why Kirchhoff's junction rule works just as well at a five-wire junction as it does at a two-branch fork."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q3", "Q4"],
+      "STATE_4": ["Q5", "Q6"]
+    },
+    "non_assessed_states": [
+      "STATE_5"
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "kirchhoff_junction_rule_KCL_water_pipe_tjunction",
+      "type": "B",
+      "label": "A T-junction in a water pipe — flow in equals flow out",
+      "physical_world": "Water flowing through a pipe that splits at a T-joint into two smaller pipes — the water doesn't compress or vanish at the joint, so however it divides between the two branches, the two flows always add back to the amount that entered.",
+      "same_physics": "Same conservation identity as Σi_in=Σi_out — a continuity statement for a conserved quantity moving through a network of paths, whether that quantity is charge or water volume.",
+      "scene_hint": "Narration-only secondary anchor for STATE_4's generalization beat; nothing pipe-shaped is drawn on canvas."
+    },
+    {
+      "variant_id": "kirchhoff_junction_rule_KCL_power_strip",
+      "type": "B",
+      "label": "A power strip splitting one supply current across several devices",
+      "physical_world": "A single wall-socket current feeds a power strip; several devices plug into it and each draws its own share, but the current returning through the strip's own cord always sums back to exactly what the socket delivered.",
+      "same_physics": "Same Σi_in=Σi_out identity — the strip is a junction; a device with lower effective resistance draws a bigger share, exactly like the sim's unequal branches.",
+      "scene_hint": "Primary teaching anchor (real_world_anchor.primary) restated as a Type-B variant for STATE_1/STATE_2."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "combination_of_resistors",
+    "particles": {
+      "count": 40,
+      "color": "#42A5F5",
+      "size": 8
+    },
+    "formula_anchor": {
+      "constants": {
+        "V_circuit": 3.0
+      }
+    },
+    "slider_controls": {
+      "R1": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 3,
+        "label": "Resistor R1",
+        "unit": "Ω"
+      },
+      "R2": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 3,
+        "label": "Resistor R2",
+        "unit": "Ω"
+      },
+      "R3": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 15,
+        "label": "Resistor R3",
+        "unit": "Ω"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "resistor": "#FFB74D",
+      "junction": "#4DD0E1",
+      "ammeter_needle": "#FF5252",
+      "ammeter_readout": "#80DEEA",
+      "req_box": "#66BB6A",
+      "volt_probe": "#B39DDB",
+      "switch_closed": "#66BB6A",
+      "switch_open": "#EF5350",
+      "battery": "#FFD54F",
+      "highlight": "#FFFFFF",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "iᵢₙ = iₒᵤₜ",
+        "caption": "Nothing piles up here",
+        "formula_overlay": "iᵢₙ = iₒᵤₜ",
+        "topology": "parallel",
+        "R1": 3,
+        "R2": 3,
+        "node_label": "N",
+        "show_branch_meters": false,
+        "show_in_meter": true,
+        "in_meter_label": "A_in",
+        "main_meter_label": "A_out",
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "junction"
+      },
+      "STATE_2": {
+        "label": "i = i₁ + i₂",
+        "caption": "In = branch₁ + branch₂",
+        "formula_overlay": "i = i₁ + i₂",
+        "topology": "parallel",
+        "R1": 3,
+        "R2": 3,
+        "show_branch_meters": true,
+        "branch_labels": ["A₁", "A₂"],
+        "show_in_meter": true,
+        "in_meter_label": "A_in",
+        "main_meter_label": "A_out",
+        "kcl_sum_readout": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ammeter_branches"
+      },
+      "STATE_3": {
+        "label": "i₁ + i₂ = i",
+        "caption": "Uneven split, same sum",
+        "formula_overlay": "i₁ + i₂ = i",
+        "topology": "parallel",
+        "R1": 6,
+        "R2": 2,
+        "show_branch_meters": true,
+        "branch_labels": ["A₁", "A₂"],
+        "show_in_meter": true,
+        "in_meter_label": "A_in",
+        "main_meter_label": "A_out",
+        "kcl_sum_readout": true,
+        "ghost_text": "1.0 + 1.0",
+        "show_sliders": false,
+        "visible_controls": ["R1", "R2"],
+        "glow_focal": "ammeter_branches"
+      },
+      "STATE_4": {
+        "label": "Σiᵢₙ = Σiₒᵤₜ",
+        "caption": "Total in = total out",
+        "formula_overlay": "Σiᵢₙ = Σiₒᵤₜ",
+        "topology": "parallel",
+        "three_branch": true,
+        "R1": 2,
+        "R2": 10,
+        "R3": 15,
+        "show_branch_meters": true,
+        "branch_labels": ["A₁", "A₂", "A₃"],
+        "show_in_meter": true,
+        "in_meter_label": "A_in",
+        "main_meter_label": "A_out",
+        "kcl_sum_readout": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "formula"
+      },
+      "STATE_5": {
+        "label": "Σiᵢₙ = Σiₒᵤₜ",
+        "caption": "All yours",
+        "formula_overlay": "Σiᵢₙ = Σiₒᵤₜ",
+        "topology": "parallel",
+        "three_branch": true,
+        "show_branch_meters": true,
+        "branch_labels": ["A₁", "A₂", "A₃"],
+        "show_in_meter": true,
+        "in_meter_label": "A_in",
+        "main_meter_label": "A_out",
+        "kcl_sum_readout": true,
+        "show_sliders": true
+      }
+    }
+  }
+}

@@ -2621,6 +2621,13 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // reusing the shared circuit engine (wire loop / topology / switch /
     // ammeter). NOT added to PCPL_CONCEPTS (parametric_renderer only).
     electrical_power_in_resistor:   "particle_field",
+    // kirchhoff_junction_rule_KCL is the eighth Ch.3 concept on particle_field
+    // (2D p5.js) via the Alex pipeline (2026-07-11) — REUSES the
+    // combination_of_resistors scenario_type verbatim (confirmed engine
+    // constraint: no new scenario_type flag needed/added; R1 is engine-wide
+    // constant for this scenario, only R2 varies per state via r2_autosweep).
+    // NOT added to PCPL_CONCEPTS (parametric_renderer only).
+    kirchhoff_junction_rule_KCL:    "particle_field",
     emf_internal_resistance:        "circuit_live",
     electrical_power_energy:        "circuit_live",
     resistance_temperature_dependence: "circuit_live",

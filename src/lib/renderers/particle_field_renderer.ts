@@ -714,6 +714,19 @@ function updateReadouts() {
     var r2El = document.getElementById('pm-sv-R2');           // R2 label tracks the S6 auto-sweep
     if (r2El) { var r2d = defs.R2 || {}; r2El.textContent = fmtNum(cR2()) + (r2d.unit ? (' ' + r2d.unit) : ''); }
   }
+  // KCL per-state R locks: the slider row shows the pinned state-entry value until grabbed (snap, not glide).
+  if (circuitMode() && hasSlider('R1') && !userTouched['R1'] && curState() && typeof curState().R1 === 'number') {
+    var r1LEl = document.getElementById('pm-sv-R1');
+    if (r1LEl) { var r1Ld = defs.R1 || {}; r1LEl.textContent = fmtNum(cR1()) + (r1Ld.unit ? (' ' + r1Ld.unit) : ''); }
+  }
+  if (circuitMode() && hasSlider('R2') && !userTouched['R2'] && curState() && typeof curState().R2 === 'number') {
+    var r2LEl = document.getElementById('pm-sv-R2');
+    if (r2LEl) { var r2Ld = defs.R2 || {}; r2LEl.textContent = fmtNum(cR2()) + (r2Ld.unit ? (' ' + r2Ld.unit) : ''); }
+  }
+  if (circuitMode() && hasSlider('R3') && !userTouched['R3'] && curState() && typeof curState().R3 === 'number') {
+    var r3LEl = document.getElementById('pm-sv-R3');
+    if (r3LEl) { var r3Ld = defs.R3 || {}; r3LEl.textContent = fmtNum(cR3()) + (r3Ld.unit ? (' ' + r3Ld.unit) : ''); }
+  }
   if (circuitMode() && hasSlider('switch') && curState() && curState().switch_cycle) {
     var swEl = document.getElementById('pm-sv-switch');       // switch label tracks the S8 auto open/close
     if (swEl) swEl.textContent = cSwitchOpen() ? 'Open' : 'Closed';
@@ -748,9 +761,15 @@ function updateReadouts() {
       }
     } else if (circuitMode()) {                               // combination_of_resistors: R_eq + total current
       var cc = cCurrents();
-      ro.textContent = (cc.topo === 'series' ? 'Series' : 'Parallel') + '\\n' +
-                       'R_eq = ' + fmtNum(cc.Req) + ' \\u03A9\\n' +
-                       'i = ' + cc.itot.toFixed(2) + ' A';
+      var stC = curState();
+      if (stC && stC.kcl_sum_readout) {                       // KCL: A_in = A_out is the instrument story (R_eq off-canvas by design)
+        ro.textContent = 'A_in = ' + cc.itot.toFixed(1) + ' A\\n' +
+                         'A_out = ' + cc.itot.toFixed(1) + ' A';
+      } else {
+        ro.textContent = (cc.topo === 'series' ? 'Series' : 'Parallel') + '\\n' +
+                         'R_eq = ' + fmtNum(cc.Req) + ' \\u03A9\\n' +
+                         'i = ' + cc.itot.toFixed(2) + ' A';
+      }
     } else if (hasSlider('material')) {                       // resistivity: R, rho, i (independently glowable)
       var iAm = realCurrent();
       var Rval = realResistance();
@@ -993,8 +1012,12 @@ function fmtNum(x) { return (abs(x - round(x)) < 0.05) ? String(round(x)) : x.to
 // state (e.g. V in S2) never corrupts a later state's taught numbers (S3's 6 J/s).
 // The live control of each state is left UNPINNED so its slider still drives.
 function cVolt() { var st = curState(); if (powerMode() && st && typeof st.V === 'number') return st.V; return hasSlider('V') ? sliderVal('V') : physConst('V_circuit', 6); }
-function cR1() { var st = curState(); if (powerMode() && st && typeof st.R1 === 'number') return st.R1; return hasSlider('R1') ? sliderVal('R1') : physConst('R1', 6); }
-function cR2raw() { var st = curState(); if (powerMode() && st && typeof st.R2 === 'number') return st.R2; return hasSlider('R2') ? sliderVal('R2') : physConst('R2', 6); }
+function cR1() { var st = curState(); if (powerMode() && st && typeof st.R1 === 'number') return st.R1; if (circuitMode() && st && typeof st.R1 === 'number' && !userTouched['R1']) return st.R1; return hasSlider('R1') ? sliderVal('R1') : physConst('R1', 6); }
+function cR2raw() { var st = curState(); if (powerMode() && st && typeof st.R2 === 'number') return st.R2; if (circuitMode() && st && typeof st.R2 === 'number' && !userTouched['R2']) return st.R2; return hasSlider('R2') ? sliderVal('R2') : physConst('R2', 6); }
+// KCL third branch (kirchhoff_junction_rule_KCL S4). Per-state numeric lock in
+// circuit mode, teacher-seizable (mirrors cR1/cR2raw); slider R3 or physConst
+// fallback otherwise. Only ever read when a state sets st.three_branch.
+function cR3() { var st = curState(); if (circuitMode() && st && typeof st.R3 === 'number' && !userTouched['R3']) return st.R3; return hasSlider('R3') ? sliderVal('R3') : physConst('R3', 15); }
 function cR2() {
   var st = curState();
   if (st && st.r2_autosweep && !userTouched['R2']) {   // S6: R2 grows 6->12 to open the split
@@ -1028,6 +1051,12 @@ function cCurrents() {
   if (cTopology() === 'series') {
     var iS = swOpen ? 0 : V / (R1 + R2);
     return { topo: 'series', i1: iS, i2: iS, itot: iS, Req: R1 + R2, V: V, R1: R1, R2: R2 };
+  }
+  if (st0 && st0.three_branch) {                       // KCL S4: a THIRD parallel branch feeds node N
+    var R3 = max(cR3(), 1e-6);
+    var t1 = V / R1, t2 = swOpen ? 0 : V / R2, t3 = swOpen ? 0 : V / R3;
+    return { topo: 'parallel', three: true, i1: t1, i2: t2, i3: t3, itot: t1 + t2 + t3,
+             Req: swOpen ? R1 : 1 / (1 / R1 + 1 / R2 + 1 / R3), V: V, R1: R1, R2: R2, R3: R3 };
   }
   var i1 = V / R1;
   var i2 = swOpen ? 0 : V / R2;
@@ -1063,10 +1092,16 @@ function circuitGeom() {
   var topY = height * 0.31, botY = height * 0.73;
   var midY = (topY + botY) / 2;
   var span = rightX - leftX;
-  return { leftX: leftX, rightX: rightX, topY: topY, botY: botY, midY: midY,
+  var g = { leftX: leftX, rightX: rightX, topY: topY, botY: botY, midY: midY,
            jLx: leftX + span * 0.26, jRx: leftX + span * 0.74, gap: height * 0.115,
            sR1: { x: leftX + span * 0.34, y: topY }, sR2: { x: leftX + span * 0.64, y: topY },
            pRx: leftX + span * 0.50, amMain: { x: (leftX + rightX) / 2, y: botY } };
+  var st = curState();
+  if (st && st.three_branch) {                         // KCL S4: three legible parallel lanes
+    g.three = true;
+    g.laneY = [topY - g.gap, topY, topY + g.gap];       // R1 top / R2 spine / R3 bottom
+  }
+  return g;
 }
 function polyLen(pts) { var L = 0; for (var i = 1; i < pts.length; i++) L += dist(pts[i-1].x, pts[i-1].y, pts[i].x, pts[i].y); return L; }
 function polyAt(pts, total, s) {
@@ -1085,9 +1120,15 @@ function circuitLoops() {
   var outSeg = [{ x: g.jRx, y: g.topY }, { x: g.rightX, y: g.topY }, { x: g.rightX, y: g.botY }, { x: g.leftX, y: g.botY }, batt];
   var b1 = [{ x: g.jLx, y: g.topY - g.gap }, { x: g.jRx, y: g.topY - g.gap }];
   var b2 = [{ x: g.jLx, y: g.topY + g.gap }, { x: g.jRx, y: g.topY + g.gap }];
-  return { g: g,
+  var out = { g: g,
     series: [batt, { x: g.leftX, y: g.topY }, { x: g.rightX, y: g.topY }, { x: g.rightX, y: g.botY }, { x: g.leftX, y: g.botY }, batt],
     loop1: inSeg.concat(b1, outSeg), loop2: inSeg.concat(b2, outSeg) };
+  if (g.three) {                                        // KCL S4: middle lane rides the spine (topY), bottom lane stays topY + gap
+    var bMid = [{ x: g.jLx, y: g.topY }, { x: g.jRx, y: g.topY }];
+    out.loop2 = inSeg.concat(bMid, outSeg);
+    out.loop3 = inSeg.concat(b2, outSeg);
+  }
+  return out;
 }
 
 // ── beads (fixed phase spread; branch chosen by live current fraction) ──────
@@ -1098,6 +1139,10 @@ function circuitInitBeads() {
 function circuitBeadLoop(i, c) {
   if (c.topo === 'series' || c.itot <= 1e-9) return 'series';
   var lane = (i + 0.5) / circuitBeadCount();
+  if (c.three) {                                       // KCL S4: split by cumulative current fraction (conductance)
+    var f1 = c.i1 / c.itot, f2 = (c.i1 + c.i2) / c.itot;
+    return (lane < f1) ? 'loop1' : (lane < f2 ? 'loop2' : 'loop3');
+  }
   return (lane < c.i1 / c.itot) ? 'loop1' : 'loop2';   // fraction on branch1 = i1/itot
 }
 function circuitBeadS(i, c) {
@@ -1253,15 +1298,25 @@ function drawCircuitBeads(loops, c) {
   var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
   var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
   var Ls = polyLen(loops.series), L1 = polyLen(loops.loop1), L2 = polyLen(loops.loop2);
+  var L3 = loops.loop3 ? polyLen(loops.loop3) : L2;
   noStroke();
   for (var i = 0; i < N; i++) {
     var lp = circuitBeadLoop(i, c);
-    var pts = (lp === 'series') ? loops.series : (lp === 'loop1' ? loops.loop1 : loops.loop2);
-    var tot = (lp === 'series') ? Ls : (lp === 'loop1' ? L1 : L2);
+    var pts = (lp === 'series') ? loops.series : (lp === 'loop1' ? loops.loop1 : (lp === 'loop3' ? loops.loop3 : loops.loop2));
+    var tot = (lp === 'series') ? Ls : (lp === 'loop1' ? L1 : (lp === 'loop3' ? L3 : L2));
     var p = polyAt(pts, tot, circuitBeadS(i, c));
     fillHex(col, 0.28 * eDim); ellipse(p.x, p.y, sz * 2.1);
     fillHex(col, 0.95 * eDim); ellipse(p.x, p.y, sz);
   }
+}
+// KCL struck-through ghost: a FIXED authored string (never computed) drawn with a
+// red line through it — the naive expectation ('1.0 + 1.0') the state refutes.
+function drawStruckTextC(cx, cy, str, dim) {
+  textSize(15); textStyle(BOLD); textAlign(CENTER, CENTER);
+  fillHex('#90A4AE', 0.85 * dim); text(str, cx, cy);
+  var w = textWidth(str);
+  strokeHex('#EF5350', 0.95 * dim); strokeWeight(2); line(cx - w / 2 - 4, cy, cx + w / 2 + 4, cy);
+  noStroke(); textStyle(NORMAL);
 }
 function drawCircuit() {
   var c = cCurrents(), loops = circuitLoops(), g = loops.g;
@@ -1270,8 +1325,13 @@ function drawCircuit() {
   if (c.topo === 'series') { drawWireC(loops.series, wcol, 0.85, 3); }
   else {
     drawWireC(loops.loop1, wcol, 0.85, 3); drawWireC(loops.loop2, wcol, 0.85, 3);
+    if (loops.loop3) drawWireC(loops.loop3, wcol, 0.85, 3);   // KCL S4: third branch wire
     var jDim = dimFor('junction');
     fillHex('#4DD0E1', 0.95 * jDim); noStroke(); ellipse(g.jLx, g.topY, 11); ellipse(g.jRx, g.topY, 11);
+    if (st && typeof st.node_label === 'string') {            // KCL: label the junction node (reuses junction glow key)
+      fillHex('#4DD0E1', 0.98 * jDim); textSize(14); textStyle(BOLD); textAlign(CENTER, BOTTOM);
+      text(st.node_label, g.jLx, g.topY - 16); textStyle(NORMAL);
+    }
   }
   drawCircuitBeads(loops, c);
   var rDim = dimFor('resistors');
@@ -1287,17 +1347,31 @@ function drawCircuit() {
       text('V2 = ' + (c.itot * c.R2).toFixed(1) + ' V', g.sR2.x, g.sR2.y - 20);
       textStyle(NORMAL);
     }
+  } else if (c.three) {   // KCL S4: three parallel resistor boxes (R1 top / R2 spine / R3 bottom)
+    drawResistorBoxC(g.pRx, g.topY - g.gap, 'R1 = ' + fmtNum(c.R1) + ' \\u03A9', rDim);
+    drawResistorBoxC(g.pRx, g.topY,         'R2 = ' + fmtNum(c.R2) + ' \\u03A9', rDim);
+    drawResistorBoxC(g.pRx, g.topY + g.gap, 'R3 = ' + fmtNum(c.R3) + ' \\u03A9', rDim);
   } else {
     drawResistorBoxC(g.pRx, g.topY - g.gap, 'R1 = ' + fmtNum(c.R1) + ' \\u03A9', rDim);
     drawResistorBoxC(g.pRx, g.topY + g.gap, 'R2 = ' + fmtNum(c.R2) + ' \\u03A9', rDim);
   }
   drawBatteryC(g, c.V, 1);
   if (st && (st.switch_cycle || hasSlider('switch'))) drawSwitchC(g, cSwitchOpen(), c.topo, dimFor('switch'));
-  drawAmmeterAtC(g.amMain.x, g.amMain.y, c.itot, 'AMMETER', dimFor('ammeter_total'), 26);
+  drawAmmeterAtC(g.amMain.x, g.amMain.y, c.itot, (st && st.main_meter_label) ? st.main_meter_label : 'AMMETER', dimFor('ammeter_total'), 26);
+  if (st && st.show_in_meter) {   // KCL: A_in on the in-segment before the fork — reads the SAME itot as A_out (taught invariant)
+    drawAmmeterAtC((g.leftX + g.jLx) / 2, g.topY - 30, c.itot, (st.in_meter_label || 'A_in'), dimFor('ammeter_total'), 16);
+  }
   if (st && st.show_branch_meters && c.topo === 'parallel') {
     var bDim = dimFor('ammeter_branches');
-    drawAmmeterAtC(g.jRx + 46, g.topY - g.gap, c.i1, 'A1', bDim, 17);
-    drawAmmeterAtC(g.jRx + 46, g.topY + g.gap, c.i2, 'A2', bDim, 17);
+    var bl = (st.branch_labels && st.branch_labels.length) ? st.branch_labels : null;
+    if (c.three) {   // KCL S4: three branch ammeters (top / spine / bottom)
+      drawAmmeterAtC(g.jRx + 46, g.topY - g.gap, c.i1, bl ? bl[0] : 'A1', bDim, 17);
+      drawAmmeterAtC(g.jRx + 46, g.topY,         c.i2, bl ? bl[1] : 'A2', bDim, 17);
+      drawAmmeterAtC(g.jRx + 46, g.topY + g.gap, c.i3, bl ? bl[2] : 'A3', bDim, 17);
+    } else {
+      drawAmmeterAtC(g.jRx + 46, g.topY - g.gap, c.i1, bl ? bl[0] : 'A1', bDim, 17);
+      drawAmmeterAtC(g.jRx + 46, g.topY + g.gap, c.i2, bl ? bl[1] : 'A2', bDim, 17);
+    }
   }
   if (st && st.in_line_meters && c.topo === 'series') {
     var iDim = dimFor('ammeter_branches');
@@ -1311,6 +1385,28 @@ function drawCircuit() {
     strokeHex('#66BB6A', 0.95 * qDim); strokeWeight(2); noFill(); rect(qx, qy, 132, 34, 6); rectMode(CORNER); noStroke();
     fillHex('#66BB6A', 0.98 * qDim); textSize(14); textStyle(BOLD); textAlign(CENTER, CENTER);
     text('R_eq = ' + fmtNum(c.Req) + ' \\u03A9', qx, qy); textStyle(NORMAL);
+  }
+  // KCL live sum readout (value-only HUD, Rule 34b) — the branch currents adding
+  // back to itot. Auto-formats for 2 or 3 branches. Numbers only; the symbolic
+  // Sigma-i_in = Sigma-i_out lives in the DOM formula surface.
+  if (st && st.kcl_sum_readout) {
+    var kDim = dimFor('formula');
+    var nums = c.three
+      ? (c.i1.toFixed(1) + ' + ' + c.i2.toFixed(1) + ' + ' + c.i3.toFixed(1))
+      : (c.i1.toFixed(1) + ' + ' + c.i2.toFixed(1));
+    var kstr = nums + ' = ' + c.itot.toFixed(1) + ' A';
+    var kx = width * 0.30, ky = height * 0.87, kw = 224, kh = 34;
+    rectMode(CENTER); fillHex('#0A0A1A', 0.88 * kDim); noStroke(); rect(kx, ky, kw, kh, 6);
+    strokeHex('#4DD0E1', 0.95 * kDim); strokeWeight(2); noFill(); rect(kx, ky, kw, kh, 6); rectMode(CORNER); noStroke();
+    fillHex('#FFFFFF', 0.98 * kDim); textSize(15); textStyle(BOLD); textAlign(CENTER, CENTER);
+    text(kstr, kx, ky); textStyle(NORMAL);
+  }
+  // KCL naive-expectation ghost (S3) — fixed string, struck through, placed beside
+  // the live sum. Position config-driven (normalized 0..1); defaults above the sum box.
+  if (st && typeof st.ghost_text === 'string') {
+    var gx = (st.ghost_pos && typeof st.ghost_pos.x === 'number') ? st.ghost_pos.x * width : width * 0.30;
+    var gy = (st.ghost_pos && typeof st.ghost_pos.y === 'number') ? st.ghost_pos.y * height : height * 0.80;
+    drawStruckTextC(gx, gy, st.ghost_text, dimFor('formula'));
   }
 }
 // ═══ emf_definition scenario — charge-pump cell + potential ladder + voltmeter ══
@@ -2426,6 +2522,19 @@ export interface ParticleFieldStateConfig {
     show_req_box?: boolean;          // draw the equivalent-resistance badge (S7)
     show_voltages?: boolean;         // S4: per-resistor voltage-drop labels (series → they add)
     switch_cycle?: boolean;          // S8: a branch switch auto-opens/closes on a loop
+    // kirchhoff_junction_rule_KCL (Ch.3 — KCL; REUSES scenario_type 'combination_of_resistors')
+    R1?: number;                     // per-state R1 lock in circuit mode (instantaneous snap on entry; teacher-seizable via the R1 slider)
+    R2?: number;                     // per-state R2 lock in circuit mode (snap on entry; teacher-seizable)
+    R3?: number;                     // third-branch resistance (only read when three_branch:true; snap; teacher-seizable)
+    three_branch?: boolean;          // S4: add a THIRD parallel branch → 3-way split (R1 top / R2 spine / R3 bottom), Req = 1/(1/R1+1/R2+1/R3)
+    branch_labels?: string[];        // symbolic labels for the branch ammeters, e.g. ["A₁","A₂","A₃"]; index 0=top,1=mid/bottom
+    show_in_meter?: boolean;         // draw the A_in ammeter on the in-segment before the fork (reads the same itot as the main meter)
+    in_meter_label?: string;         // label for A_in (default "A_in")
+    main_meter_label?: string;       // relabel the main bottom ammeter (default "AMMETER"; KCL → "A_out")
+    kcl_sum_readout?: boolean;       // on-canvas value HUD "i1 + i2 (+ i3) = itot A" + #pm-readout A_in=A_out (R_eq suppressed)
+    ghost_text?: string;             // fixed authored string drawn struck-through (naive expectation, e.g. "1.0 + 1.0")
+    ghost_pos?: { x: number; y: number };  // normalized 0..1 canvas position for the ghost (default 0.30, 0.80 — above the sum box at 0.30, 0.87)
+    node_label?: string;             // label the junction node (e.g. "N"); drawn above the left junction dot, uses the junction glow key
     [key: string]: unknown;
 }
 
