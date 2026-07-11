@@ -39,6 +39,7 @@ import {
     listPilotConceptIds,
     chapterTitle,
     writeRootAssets,
+    CLASS12_CHAPTER_NAMES,
 } from './pilot_site_assets';
 
 // ── Types (subset of the concept JSON we read) ───────────────────────────────
@@ -2137,6 +2138,11 @@ ${cards}
         })
         .join('\n');
 
+    // Chapter options for the profile panel's "teaching next" select (mirrors welcome.html).
+    const profileChapterOptions = Object.entries(CLASS12_CHAPTER_NAMES)
+        .map(([n, name]) => `<option value="Ch.${n} ${name}">Ch.${n} — ${name}</option>`)
+        .join('');
+
     const html = `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
@@ -2209,6 +2215,44 @@ ${pilotHeadTags(0)}
   #pmSplash .nm{font-family:var(--font-disp);font-size:26px;font-weight:600;color:var(--ink);}
   #pmSplash .pw{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
   #pmSplash .pw b{color:var(--clay-soft);font-weight:600;}
+  /* ── Wave 1: profile / settings panel (click your name) ── */
+  .whoBtn{border:1px solid transparent;background:none;color:var(--ink-dim);font:inherit;font-size:12.5px;
+        cursor:pointer;padding:5px 10px;border-radius:9px;display:inline-flex;align-items:center;gap:6px;
+        transition:border-color .15s ease,color .15s ease,background .15s ease;font-family:var(--font-ui);}
+  .whoBtn:hover{border-color:rgba(203,104,67,.4);color:var(--clay-soft);background:var(--surface);}
+  .whoBtn::after{content:"\\25BE";font-size:9px;opacity:.7;}
+  .whoBtn.nomenu{cursor:default;}
+  .whoBtn.nomenu:hover{border-color:transparent;color:var(--ink-dim);background:none;}
+  .whoBtn.nomenu::after{content:none;}
+  #pmProfOvl{position:fixed;inset:0;z-index:99992;display:none;place-items:center;background:rgba(0,0,0,.5);padding:20px;}
+  #pmProfOvl.open{display:grid;}
+  #pmProfCard{width:min(94vw,430px);background:var(--surface);color:var(--ink);border:1px solid var(--line);
+        border-radius:16px;padding:24px 24px 20px;box-shadow:0 24px 60px -30px rgba(0,0,0,.85);font-family:var(--font-ui);}
+  #pmProfCard h2{margin:0 0 3px;font-family:var(--font-disp);font-size:18px;font-weight:600;}
+  #pmProfCard .psub{margin:0 0 16px;font-size:12.5px;color:var(--ink-dim);}
+  #pmProfCard label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-dim);margin:13px 0 6px;letter-spacing:.02em;}
+  #pmProfCard input,#pmProfCard select{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;
+        border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font-size:13.5px;font-family:var(--font-ui);outline:none;}
+  #pmProfCard input:focus,#pmProfCard select:focus{border-color:rgba(203,104,67,.55);}
+  .pTrial{margin:15px 0 4px;padding:9px 12px;border-radius:10px;background:var(--clay-wash);
+        border:1px solid rgba(203,104,67,.3);font-size:12.5px;color:var(--clay-soft);font-weight:600;}
+  .pRow{display:flex;gap:9px;margin-top:16px;}
+  .pRow button{flex:1 1 auto;padding:10px;border-radius:10px;font:600 13px var(--font-ui);cursor:pointer;}
+  #pmProfSave{border:0;background:var(--clay);color:#fff;}
+  #pmProfSave:hover{background:var(--clay-deep);}
+  #pmProfSave:disabled{opacity:.5;cursor:default;}
+  #pmProfCancel{border:1px solid var(--line);background:none;color:var(--ink-dim);}
+  #pmProfCancel:hover{color:var(--ink);}
+  .pLinks{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+  .pLinks button{border:0;background:none;font:inherit;font-size:12.5px;cursor:pointer;padding:4px 2px;font-family:var(--font-ui);}
+  #pmProfTour{color:var(--clay-soft);}
+  #pmProfTour:hover{text-decoration:underline;}
+  #pmProfSignOut{color:var(--ink-faint);}
+  #pmProfSignOut:hover{color:var(--red);}
+  #pmProfErr{display:none;margin-top:12px;padding:8px 11px;border-radius:9px;font-size:12px;
+        color:#F3C9BE;background:rgba(224,106,82,.12);border:1px solid rgba(224,106,82,.4);}
+  #pmProfOk{display:none;margin-top:12px;padding:8px 11px;border-radius:9px;font-size:12px;
+        color:#d3efdd;background:rgba(116,181,148,.12);border:1px solid rgba(116,181,148,.4);}
   @keyframes pmSplashFade{0%{opacity:0;}12%{opacity:1;}78%{opacity:1;}100%{opacity:0;visibility:hidden;}}
 </style>
 </head>
@@ -2216,7 +2260,7 @@ ${pilotHeadTags(0)}
   <div class="masthead">
     <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
-    <div class="who"><span class="chip" id="trialChip" hidden></span><span id="whoName"></span><button id="signOutBtn">Sign out</button></div>
+    <div class="who"><span class="chip" id="trialChip" hidden></span><button class="whoBtn" id="whoName" type="button" hidden></button><button id="signOutBtn">Sign out</button></div>
   </div>
   <h1 id="catTitle">Simulation Library</h1>
   <p class="sub">Class 12 Physics &middot; ${entries.length} simulation${entries.length === 1 ? '' : 's'} &middot; open one and teach with it.</p>
@@ -2232,6 +2276,29 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
   <div class="nm" id="pmSplashName"></div>
   <div class="pw">powered by <b>Viditra</b></div>
+</div></div>
+<div id="pmProfOvl"><div id="pmProfCard" role="dialog" aria-modal="true" aria-label="My profile">
+  <h2>My profile</h2>
+  <p class="psub">This is your teaching space. Update it anytime.</p>
+  <label for="pfName">Your name (as your students know you)</label>
+  <input id="pfName" type="text" maxlength="80">
+  <label for="pfSchool">School / institute</label>
+  <input id="pfSchool" type="text" maxlength="120">
+  <label for="pfTeaches">What you teach</label>
+  <input id="pfTeaches" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
+  <label for="pfChapter">Teaching next</label>
+  <select id="pfChapter"><option value="">Choose…</option>${profileChapterOptions}<option value="Other">Other / Class 11</option></select>
+  <div class="pTrial" id="pfTrial"></div>
+  <div id="pmProfErr"></div>
+  <div id="pmProfOk"></div>
+  <div class="pRow">
+    <button id="pmProfCancel" type="button">Cancel</button>
+    <button id="pmProfSave" type="button">Save changes</button>
+  </div>
+  <div class="pLinks">
+    <button id="pmProfTour" type="button">&#65311; Replay tour</button>
+    <button id="pmProfSignOut" type="button">Sign out</button>
+  </div>
 </div></div>
 <script>
 (function () {
@@ -2252,7 +2319,7 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   } catch (e) {}
   if (window.PM_DEV) {
     var who = document.getElementById('whoName');
-    if (who) who.textContent = 'Local preview (dev — no login, no tracking)';
+    if (who) { who.textContent = 'Local preview (dev — no login, no tracking)'; who.hidden = false; who.className = 'whoBtn nomenu'; }
     var so = document.getElementById('signOutBtn');
     if (so) so.style.display = 'none';
   } else if (window.PM && PM.authReady) PM.authReady.then(function (u) {
@@ -2262,6 +2329,9 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
       var m = u.user_metadata || {};
       var staff = m.role === 'founder' || m.staff === true;
       el.textContent = ((p && p.display_name) || m.display_name || u.email || '') + (staff ? '  ·  founder — not tracked' : '');
+      el.hidden = false;
+      if (p && p.display_name) { el.title = 'Your profile & settings'; el.addEventListener('click', openProfile); }
+      else { el.className = 'whoBtn nomenu'; }   // founder/staff: no profile row to edit
     }
     // ── The hero surface: her name on her product (profile-gated; dev/staff see the generic title) ──
     if (p && p.display_name) {
@@ -2287,6 +2357,81 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     pmt('logout', {});
     if (window.PM && PM.auth) PM.auth.signOut();
   });
+
+  // ── Wave 1: profile / settings panel (view + edit your own teacher_profiles row) ──
+  // RLS allows a teacher to update ONLY their own row (profiles_update_own), so the
+  // client writes directly; fail-loud on error, never silently drop an edit.
+  var profOvl = document.getElementById('pmProfOvl');
+  var profSaving = false;
+  function profEl(id) { return document.getElementById(id); }
+  function openProfile() {
+    var p = window.PM_PROFILE; if (!p) return;
+    profEl('pfName').value = p.display_name || '';
+    profEl('pfSchool').value = p.school || '';
+    profEl('pfTeaches').value = p.teaches || '';
+    profEl('pfChapter').value = p.next_chapter || '';
+    var t = profEl('pfTrial');
+    if (window.PM_TRIAL_END) {
+      var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
+      t.textContent = 'Free trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
+      t.style.display = '';
+    } else { t.style.display = 'none'; }
+    profEl('pmProfErr').style.display = 'none';
+    profEl('pmProfOk').style.display = 'none';
+    profOvl.className = 'open';
+    pmt('profile_open', {});
+  }
+  function closeProfile() { profOvl.className = ''; }
+  if (profOvl) {
+    profEl('pmProfCancel').addEventListener('click', closeProfile);
+    profOvl.addEventListener('click', function (e) { if (e.target === profOvl) closeProfile(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && profOvl.className === 'open') closeProfile(); });
+    profEl('pmProfSignOut').addEventListener('click', function () {
+      pmt('logout', {}); if (window.PM && PM.auth) PM.auth.signOut();
+    });
+    profEl('pmProfTour').addEventListener('click', function () {
+      // Reuse pm-tour.js's own launcher (injected as #pmTourLink) so there's one source of truth.
+      var link = document.getElementById('pmTourLink');
+      if (link) { link.click(); } else { closeProfile(); }
+    });
+    profEl('pmProfSave').addEventListener('click', function () {
+      if (profSaving) return;
+      var name = profEl('pfName').value.replace(/^\\s+|\\s+$/g, '');
+      var err = profEl('pmProfErr'), ok = profEl('pmProfOk');
+      err.style.display = 'none'; ok.style.display = 'none';
+      if (!name) { err.textContent = 'Please enter your name.'; err.style.display = 'block'; return; }
+      var p = window.PM_PROFILE;
+      var c = (window.PM && PM.auth && PM.auth.client) ? PM.auth.client() : null;
+      if (!p || !c) { err.textContent = 'Could not reach the service — please reload and try again.'; err.style.display = 'block'; return; }
+      var patch = {
+        display_name: name,
+        school: profEl('pfSchool').value.replace(/^\\s+|\\s+$/g, '') || null,
+        teaches: profEl('pfTeaches').value.replace(/^\\s+|\\s+$/g, '') || null,
+        next_chapter: profEl('pfChapter').value || null
+      };
+      profSaving = true; var btn = profEl('pmProfSave'); btn.disabled = true; btn.textContent = 'Saving…';
+      c.from('teacher_profiles').update(patch).eq('professor_id', p.professor_id).then(function (res) {
+        profSaving = false; btn.disabled = false; btn.textContent = 'Save changes';
+        if (res && res.error) { err.textContent = 'Could not save: ' + res.error.message; err.style.display = 'block'; return; }
+        // Reflect the change everywhere the name shows, without a reload.
+        window.PM_PROFILE = { professor_id: p.professor_id, display_name: patch.display_name,
+          school: patch.school, teaches: patch.teaches, next_chapter: patch.next_chapter,
+          trial_started_at: p.trial_started_at, trial_days: p.trial_days };
+        try { document.getElementById('catTitle').textContent = patch.display_name + '’s Class'; } catch (e) {}
+        try {
+          var wb = document.getElementById('whoName');
+          if (wb) wb.textContent = patch.display_name;
+        } catch (e) {}
+        pmt('profile_saved', {});
+        ok.textContent = 'Saved \\u2713'; ok.style.display = 'block';
+        setTimeout(closeProfile, 800);
+      }, function () {
+        profSaving = false; btn.disabled = false; btn.textContent = 'Save changes';
+        err.textContent = 'Network error — please try again.'; err.style.display = 'block';
+      });
+    });
+  }
+
   // Search: filter cards; hide emptied chapters; debounce the analytics event.
   var input = document.getElementById('search');
   var noRes = document.getElementById('noresults');
