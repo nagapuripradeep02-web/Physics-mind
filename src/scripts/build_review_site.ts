@@ -2100,15 +2100,27 @@ ${pilotHeadTags(0)}
   #earlyNote button{flex:none;border:none;background:none;color:var(--ink-faint);font-size:17px;line-height:1;
         padding:2px 6px;cursor:pointer;border-radius:7px;transition:color .15s ease;}
   #earlyNote button:hover{color:var(--clay-soft);}
+  .who .chip{font-size:11px;font-weight:600;color:var(--clay-soft);border:1px solid rgba(203,104,67,.4);
+        border-radius:999px;padding:3px 10px;background:var(--clay-wash);}
+  #pmSplash{position:fixed;inset:0;z-index:99995;display:grid;place-items:center;background:var(--bg);
+        animation:pmSplashFade 2.1s ease forwards;}
+  #pmSplash .sc{text-align:center;display:grid;place-items:center;gap:14px;}
+  #pmSplash .mark{width:56px;height:56px;border-radius:16px;background:var(--clay);display:grid;place-items:center;
+        box-shadow:0 10px 30px -8px rgba(203,104,67,.6);}
+  #pmSplash .mark svg{width:32px;height:32px;}
+  #pmSplash .nm{font-family:var(--font-disp);font-size:26px;font-weight:600;color:var(--ink);}
+  #pmSplash .pw{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
+  #pmSplash .pw b{color:var(--clay-soft);font-weight:600;}
+  @keyframes pmSplashFade{0%{opacity:0;}12%{opacity:1;}78%{opacity:1;}100%{opacity:0;visibility:hidden;}}
 </style>
 </head>
 <body><div class="wrap">
   <div class="masthead">
     <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
-    <div class="who"><span id="whoName"></span><button id="signOutBtn">Sign out</button></div>
+    <div class="who"><span class="chip" id="trialChip" hidden></span><span id="whoName"></span><button id="signOutBtn">Sign out</button></div>
   </div>
-  <h1>Simulation Library</h1>
+  <h1 id="catTitle">Simulation Library</h1>
   <p class="sub">Class 12 Physics &middot; ${entries.length} simulation${entries.length === 1 ? '' : 's'} &middot; open one and teach with it.</p>
   <div id="earlyNote" hidden>
     <span class="txt"><b>Early access</b> &mdash; new simulations are added regularly, and your feedback shapes what we build next.</span>
@@ -2118,6 +2130,11 @@ ${pilotHeadTags(0)}
   <div id="noresults">No simulations match that search.</div>
 ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
 </div>
+<div id="pmSplash" hidden><div class="sc">
+  <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+  <div class="nm" id="pmSplashName"></div>
+  <div class="pw">powered by <b>Viditra</b></div>
+</div></div>
 <script>
 (function () {
   window.PM_CONCEPT_ID = null;
@@ -2142,10 +2159,30 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     if (so) so.style.display = 'none';
   } else if (window.PM && PM.authReady) PM.authReady.then(function (u) {
     var el = document.getElementById('whoName');
+    var p = window.PM_PROFILE;
     if (el && u) {
       var m = u.user_metadata || {};
       var staff = m.role === 'founder' || m.staff === true;
-      el.textContent = (m.display_name || u.email || '') + (staff ? '  ·  founder — not tracked' : '');
+      el.textContent = ((p && p.display_name) || m.display_name || u.email || '') + (staff ? '  ·  founder — not tracked' : '');
+    }
+    // ── The hero surface: her name on her product (profile-gated; dev/staff see the generic title) ──
+    if (p && p.display_name) {
+      try { document.getElementById('catTitle').textContent = p.display_name + '’s Class'; } catch (e) {}
+      if (window.PM_TRIAL_END) {
+        var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
+        var chip = document.getElementById('trialChip');
+        if (chip) { chip.textContent = 'Trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left'; chip.hidden = false; }
+      }
+      try {
+        if (!sessionStorage.getItem('pm_splash_shown')) {
+          sessionStorage.setItem('pm_splash_shown', '1');
+          var sp = document.getElementById('pmSplash');
+          document.getElementById('pmSplashName').textContent = p.display_name + '’s Class';
+          sp.hidden = false;
+          setTimeout(function () { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 2300);
+          pmt('splash_shown', {});
+        }
+      } catch (e) {}
     }
   });
   document.getElementById('signOutBtn').addEventListener('click', function () {
