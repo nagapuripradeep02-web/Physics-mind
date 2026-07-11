@@ -1481,13 +1481,28 @@ function stepCircuit(state) {
 }
 
 // ─── Draw loop (render only — physics advanced separately) ──────────────────
+// Frame-rate-independent stepping (2026-07-11). p5's frameRate(60) is only a
+// TARGET — on displays it can't hit exactly (or a 120 Hz device that rounds to
+// a multiple), the old one-tick-per-draw ran physics at draw rate while the
+// recorded narration played at wall-clock speed. Accumulate real elapsed ms
+// (p5's deltaTime) and run 0-3 fixed 1/60 s ticks per draw — numerically
+// identical when draw fires at 60 Hz, rate-correct elsewhere. The
+// SET_TIME_FREEZE deterministic re-sim path is untouched (draw() never steps
+// while frozen/paused), so THE EYE's pinned captures stay byte-identical.
+var __pmAccumMs = 0;
+function pmStepTicks(state, stepFn) {
+  __pmAccumMs += min(50, deltaTime); // clamp tab-background gaps to 3 catch-up ticks
+  var n = 0;
+  while (__pmAccumMs >= 1000 / 60 && n < 3) { stepFn(state); __pmAccumMs -= 1000 / 60; n++; }
+}
+
 function draw() {
   if (!config) return;
   var state = curState();
   if (!state) return;
 
   if (isCircuitFamily()) {
-    if (!frozen && !paused) stepCircuit(state);
+    if (!frozen && !paused) pmStepTicks(state, stepCircuit);
     var cbg = (config.canvas && config.canvas.bg_color) ? config.canvas.bg_color
       : (config.design && config.design.background) ? config.design.background : '#0A0A1A';
     background(cbg);
@@ -1499,7 +1514,7 @@ function draw() {
     return;
   }
 
-  if (!frozen && !paused) stepPhysics(state);
+  if (!frozen && !paused) pmStepTicks(state, stepPhysics);
 
   var intensity = getCurrentIntensity();
 

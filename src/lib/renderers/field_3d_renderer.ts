@@ -4662,6 +4662,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // A fixed-length arrow (shaft tube + head cone) as a Group, materials
     // transparent so reveal ramps land. dir is a 3-vector; built at the given
     // world origin pointing along dir for the given length.
+    // depthTest OFF + depthWrite OFF + high renderOrder (mirrors the
+    // gauss_law_sphere/line/sheet probe-arrow treatment, e.g. gsphMakeThickVector
+    // ~22219 and the gln cap-graze arrows ~23805): every one of these arrows sits
+    // right against — sometimes geometrically inside — the translucent +/- plate
+    // slabs (near-plate probes, sheet fields, the test-charge force arrow), and
+    // without this they camouflage into a muddy blend of arrow-color + plate-color
+    // instead of reading on top of the plate (engine_bug_queue:
+    // pp_probe_and_sheet_arrows_camouflaged_by_translucent_plate_blend).
     function platesArrowGroup(origin, dir, length, color, shaftR) {
         var g = new THREE.Group();
         var d = new THREE.Vector3(dir[0], dir[1], dir[2]);
@@ -4671,11 +4679,58 @@ export const FIELD_3D_RENDERER_CODE = `
         var shaftLen = Math.max(0.02, length - headLen);
         var endShaft = [origin[0] + d.x * shaftLen, origin[1] + d.y * shaftLen, origin[2] + d.z * shaftLen];
         var shaft = createTubeLine([origin, endShaft], color, shaftR || 0.03);
-        if (shaft) { shaft.material.transparent = true; shaft.userData = { elementType: "plates_arrow_part" }; g.add(shaft); }
+        if (shaft) {
+            shaft.material.transparent = true;
+            shaft.material.depthTest = false; shaft.material.depthWrite = false;
+            shaft.renderOrder = 998;
+            shaft.userData = { elementType: "plates_arrow_part" }; g.add(shaft);
+        }
         var tip = [origin[0] + d.x * length, origin[1] + d.y * length, origin[2] + d.z * length];
         var head = createArrowHead(tip, [d.x, d.y, d.z], color);
-        head.material.transparent = true; head.userData = { elementType: "plates_arrow_part" }; g.add(head);
+        head.material.transparent = true;
+        head.material.depthTest = false; head.material.depthWrite = false;
+        head.renderOrder = 998;
+        head.userData = { elementType: "plates_arrow_part" }; g.add(head);
         return g;
+    }
+
+    // Resolve a named probe position ("near_positive" | "centre" | "near_negative")
+    // to a z-depth. Reuses the SAME convention the 3 built-in probe_arrows already
+    // encode positionally (index 0 = near the + plate at z=+sep/2*0.6, index 1 =
+    // centre, index 2 = near the − plate at z=−sep/2*0.6) — see probeDepths in
+    // buildParallelPlatesField. Shared by probe_arrows' index-based layout and the
+    // config-driven probe_points block (founder request: labeled points A/B/C with
+    // live readouts, proving uniformity via matching NUMBERS instead of matching
+    // arrow geometry).
+    function platesResolveProbeZ(posName, sep) {
+        if (posName === "near_positive") return sep / 2 * 0.6;
+        if (posName === "near_negative") return -sep / 2 * 0.6;
+        return 0; // "centre" (or any unrecognised name) -> the safe midpoint.
+    }
+
+    // Look up a parallel_plates primitive by userData.id (mirrors dpFindById /
+    // clFindById in the sibling scenarios).
+    function platesFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+
+    // Build a single labeled probe-point marker (small glow dot) for probe_points.
+    // Reuses createHighlightedPoint, then applies the SAME depthTest-off +
+    // high-renderOrder camouflage fix already on the probe/sheet/fringe arrows —
+    // these dots sit right next to the translucent plates and would otherwise hit
+    // the exact same bug (engine_bug_queue:
+    // pp_probe_and_sheet_arrows_camouflaged_by_translucent_plate_blend).
+    function platesMakeProbeDot(position, radius, color) {
+        var grp = createHighlightedPoint({ position: position, radius: radius, color: color });
+        for (var ci = 0; ci < grp.children.length; ci++) {
+            var m = grp.children[ci];
+            if (m.material) { m.material.transparent = true; m.material.depthTest = false; m.material.depthWrite = false; }
+            m.renderOrder = 998;
+        }
+        return grp;
     }
 
     function buildParallelPlatesField(config) {
@@ -4771,13 +4826,22 @@ export const FIELD_3D_RENDERER_CODE = `
                     flColor, 0.02
                 );
                 if (shaft) {
+                    // depthTest OFF + high renderOrder: near the grid edges the
+                    // shaft's z-endpoints ride close to the plate faces, and
+                    // without this it z-fights/blends into the translucent plate
+                    // color as the gap widens (STATE_5 mid-shaft color-split;
+                    // engine_bug_queue: pp_probe_and_sheet_arrows_camouflaged_by_translucent_plate_blend).
                     shaft.material.transparent = true; shaft.material.opacity = 0;
+                    shaft.material.depthTest = false; shaft.material.depthWrite = false;
+                    shaft.renderOrder = 998;
                     shaft.visible = false;
                     shaft.userData = { elementType: "field_lines", id: "pp_fl_shaft_" + fli, gx: gx, gy: gy };
                     addToScene(shaft);
                 }
                 var head = createArrowHead([gx, gy, -baseSep / 2 * 0.78], [0, 0, -1], flColor);
                 head.material.transparent = true; head.material.opacity = 0;
+                head.material.depthTest = false; head.material.depthWrite = false;
+                head.renderOrder = 998;
                 head.visible = false;
                 head.userData = { elementType: "field_lines", id: "pp_fl_head_" + fli, gx: gx, gy: gy };
                 addToScene(head);
@@ -4803,6 +4867,69 @@ export const FIELD_3D_RENDERER_CODE = `
         if (probeLbl.material) probeLbl.material.opacity = 0;
         probeLbl.userData = { elementType: "three_probe_arrows", id: "pp_probe_label" };
         addToScene(probeLbl);
+
+        // ── 4b. Three labeled probe POINTS (A/B/C) — sibling to the probe_arrows
+        //   above, proving field uniformity via matching NUMBERS instead of
+        //   matching arrow geometry (founder review, session 2026-07-08). Additive:
+        //   probe_arrows is untouched so any scenario/state still wanting arrows
+        //   keeps working. Generalizable — future uniform-field/potential concepts
+        //   authoring "N labeled points proving uniformity" reuse this SAME
+        //   config.probe_points block, not a parallel_plates-only mechanism.
+        var PP = config.probe_points || {};
+        var ppPositions = PP.positions || ["near_positive", "centre", "near_negative"];
+        var ppLabels = PP.labels || ["A", "B", "C"];
+        var ppMarkerR = (typeof PP.marker_radius === "number") ? PP.marker_radius : 0.08;
+        var ppMarkerColor = PP.marker_color || "#FFF176";
+        var ppLabelColor = PP.label_color || "#FFF176";
+        var ppReadoutColor = PP.readout_color || "#66BB6A";
+        var ppUnit0 = PP.value_unit || "V/m";
+        window.PM_platesProbePointReadouts = [];
+        window.PM_platesProbePointUnit = ppUnit0;
+        for (var qi = 0; qi < ppPositions.length; qi++) {
+            var qz = platesResolveProbeZ(ppPositions[qi], baseSep);
+            var qx = (qi - (ppPositions.length - 1) / 2) * 0.8;
+            var qPos = [qx, 0, qz];
+
+            var dotGrp = platesMakeProbeDot(qPos, ppMarkerR, ppMarkerColor);
+            dotGrp.visible = false; setObjOpacity(dotGrp, 0);
+            dotGrp.userData = { elementType: "probe_points", id: "pp_point_dot_" + qi, kind: "dot" };
+            addToScene(dotGrp);
+
+            var letterLbl = pmCreateAutoLabel(ppLabels[qi] || String.fromCharCode(65 + qi), ppLabelColor, 0.36);
+            letterLbl.position.set(qx, 0.32, qz);
+            letterLbl.visible = false;
+            if (letterLbl.material) letterLbl.material.opacity = 0;
+            letterLbl.userData = { elementType: "probe_points", id: "pp_point_label_" + qi, kind: "label" };
+            addToScene(letterLbl);
+
+            // Bare NUMBER only (no "E =" / unit per point) — a full "E = 1200 V/m"
+            // string is wider than the 0.8-unit point spacing and 3 of them
+            // collide into an unreadable run. Matching NUMBERS is the pedagogical
+            // point, so keep each point's readout to just the number; the
+            // shared quantity+unit legend is built ONCE below (founder-approved
+            // fix option: "show just '1200' per point with a single shared
+            // 'V/m' legend", 2026-07-08).
+            var readoutLbl = pmCreateAutoLabel("0", ppReadoutColor, 0.34);
+            readoutLbl.position.set(qx, -0.32, qz);
+            readoutLbl.visible = false;
+            if (readoutLbl.material) readoutLbl.material.opacity = 0;
+            readoutLbl.userData = { elementType: "probe_points", id: "pp_point_readout_" + qi, kind: "readout" };
+            addToScene(readoutLbl);
+            window.PM_platesProbePointReadouts.push(readoutLbl.userData.id);
+        }
+        // Single shared "E (V/m)" legend — read once, applies to all 3 points
+        // (they are, by construction, always identical). Placed on its OWN row
+        // BELOW the readouts, centred under the "centre" point (x=0 — the
+        // symmetric average of any N-point spread), so it never shares a
+        // horizontal band with a per-point readout regardless of how many
+        // digits the live number has (a right-of-C placement collided with
+        // point C's readout — engine_bug_queue: ppc_probe_points_readout_overlap).
+        var ppLegend = pmCreateAutoLabel("E (" + ppUnit0 + ")", ppReadoutColor, 0.3);
+        ppLegend.position.set(0, -0.68, 0);
+        ppLegend.visible = false;
+        if (ppLegend.material) ppLegend.material.opacity = 0;
+        ppLegend.userData = { elementType: "probe_points", id: "pp_point_unit_legend", kind: "legend" };
+        addToScene(ppLegend);
 
         // ── 5. Sheet fields (S4): each plate's σ/2ε₀ field, tagged by zone so the
         //   outside ones can fade out (cancel) while the inside ones add.
@@ -4832,7 +4959,12 @@ export const FIELD_3D_RENDERER_CODE = `
             else pts = [[0, -plateH / 2, baseSep / 2], [0, -plateH / 2 - 0.85, 0], [0, -plateH / 2, -baseSep / 2]];
             var ft = createTubeLine(pts, flColor, 0.015);
             if (ft) {
+                // Endpoints sit exactly AT the plate face z (baseSep/2, -baseSep/2)
+                // by construction — same translucent-plate camouflage risk as the
+                // field-line shafts above, so same depthTest-off + renderOrder fix.
                 ft.material.transparent = true; ft.material.opacity = 0;
+                ft.material.depthTest = false; ft.material.depthWrite = false;
+                ft.renderOrder = 998;
                 ft.visible = false;
                 ft.userData = { elementType: "fringe", id: idn };
                 addToScene(ft);
@@ -4844,7 +4976,13 @@ export const FIELD_3D_RENDERER_CODE = `
         addFringe("pp_fringe_ny", "ny");
 
         // ── 7. Test charge (S7): yellow sphere + constant F=qE arrow + drag proxy.
+        // Draggable inside the gap — can end up close to either plate face, so it
+        // gets the same depthTest-off + renderOrder treatment as the probe/force
+        // arrows (see platesArrowGroup above) to keep it reading on top of the
+        // translucent plates instead of blending into their color.
         var tc = createChargeSphere([0, 0, 0], tcColor, 0.18);
+        if (tc.material) { tc.material.transparent = true; tc.material.depthTest = false; tc.material.depthWrite = false; }
+        tc.renderOrder = 998;
         tc.visible = false;
         tc.userData = { elementType: "test_charge", id: "pp_test_charge" };
         addToScene(tc);
@@ -4925,6 +5063,9 @@ export const FIELD_3D_RENDERER_CODE = `
             } else if (et === "three_probe_arrows") {
                 o.visible = !!cap.show_probe_arrows;
                 setObjOpacity(o, 0);
+            } else if (et === "probe_points") {
+                o.visible = !!cap.show_probe_points;
+                setObjOpacity(o, 0);
             } else if (et === "sheet_fields") {
                 o.visible = !!cap.show_sheet_fields;
                 setObjOpacity(o, 0);
@@ -4997,6 +5138,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 setObjOpacity(o, ramp(cap.field_lines_at_ms, 600) * flTarget * 1.6);
             } else if (et === "three_probe_arrows") {
                 setObjOpacity(o, ramp(cap.probe_arrows_at_ms, 600));
+            } else if (et === "probe_points") {
+                setObjOpacity(o, ramp(cap.probe_points_at_ms, 600));
             } else if (et === "sheet_fields") {
                 var so = ramp(cap.sheet_fields_at_ms, 600) * 0.7;
                 if (ud.zone === "outside" && cap.show_cancel_outside && cancelStart != null) {
@@ -5036,13 +5179,26 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
-        // Live E = V/d readout.
+        // Live E = V/d readout — computed ONCE and reused by both the flat DOM
+        // panel and the 3 probe_points sprites below, so all necessarily display
+        // the IDENTICAL live number (same computation, same value, three places —
+        // that identity IS the uniformity proof the founder asked for).
+        var V = window.PM_platesV || window.PM_platesVdef || 12;
+        var dEff = window.PM_platesDEff || window.PM_platesDdef || 0.01;
+        var E = V / Math.max(1e-9, dEff);
         var roEl = document.getElementById("plates_readout");
         if (roEl && roEl.style.display !== "none") {
-            var V = window.PM_platesV || window.PM_platesVdef || 12;
-            var dEff = window.PM_platesDEff || window.PM_platesDdef || 0.01;
-            var E = V / Math.max(1e-9, dEff);
             roEl.innerHTML = "E = V / d = " + Math.round(E) + " V/m";
+        }
+        if (cap.show_probe_points) {
+            // Bare number per point (see buildParallelPlatesField) — the shared
+            // "E (V/m)" legend sprite is static text, never redrawn here.
+            var ppIds = window.PM_platesProbePointReadouts || [];
+            var ppRounded = String(Math.round(E));
+            for (var pri = 0; pri < ppIds.length; pri++) {
+                var prSprite = platesFindById(ppIds[pri]);
+                if (prSprite) updateLabelSpriteText(prSprite, ppRounded);
+            }
         }
     }
 
@@ -6976,7 +7132,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         if (pef.dipole) {
-            updateDipoleInFieldFrame(heldAtPin ? 0 : 0.016);
+            updateDipoleInFieldFrame(heldAtPin ? 0 : 0.016 * __pmSteps);
             var fo2 = dpFindById("pef_formula");
             if (fo2 && fo2.visible && fo2.material) fo2.material.opacity = ramp(fo2.userData._revealAt, 600);
             updatePefEquipotential(ramp);
@@ -7002,7 +7158,18 @@ export const FIELD_3D_RENDERER_CODE = `
             var pc = pcharges[pi];
             var base = pefById(pc.id) || {};
             var target = pc.pos || base.pos || [0, 0, 0];
-            var slideAt = (pc.slide_at_ms != null) ? pc.slide_at_ms : 0;
+            // Rule 26 fix (engine_bug_queue pe_charge_entry_glide_dead_when_no_slide,
+            // 2026-07-08): defaulting slideAt to 0 when slide_at_ms is absent made
+            // the 'ms < slideAt' check reduce to ms < 0 -- false for every non-
+            // negative ms, so an entry-only charge (enter_from authored, no
+            // slide_to) NEVER took the enter/glide branch below -- it fell
+            // straight to the else snap-to-target branch from frame 0. Defaulting
+            // to Infinity instead means a charge with no authored slide never
+            // satisfies the 'ms >= slideAt' check either, so the enter branch
+            // stays reachable for its whole enter_dur_ms window, and the slide_to
+            // branch (which requires pc.slide_to to be truthy anyway) is
+            // unaffected for charges that DO author a slide.
+            var slideAt = (pc.slide_at_ms != null) ? pc.slide_at_ms : Infinity;
             var vLive = (pc.V != null) ? pc.V : (base.V != null ? base.V : 0);
             if (pc.enter_from && ms < slideAt) {
                 var eat = (pc.enter_at_ms != null) ? pc.enter_at_ms : 0;
@@ -8147,7 +8314,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (!o.visible) continue;
                 var ddir = (ud.wire === 1) ? dir1 : dir2;
                 if (ud.dotPhase == null) ud.dotPhase = (ud.dotIndex || 0) / (ud.dotCount || 6);
-                ud.dotPhase += 0.016 * dotSpeed;
+                ud.dotPhase += 0.016 * __pmSteps * dotSpeed;
                 var loopT = ud.dotPhase % 1;
                 o.position.x = (ud.wire === 1) ? x1 : x2;
                 o.position.y = ddir > 0 ? (-2.5 + loopT * 5) : (2.5 - loopT * 5);
@@ -8159,7 +8326,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (current up). The orbit flows in DECREASING angle and the arrowhead
                 // points along B (downstream). dir1 flips the whole sense for current down.
                 var rotSign = dir1;
-                ud.swPhase += 0.016 * orbitRate * (-rotSign);
+                ud.swPhase += 0.016 * __pmSteps * orbitRate * (-rotSign);
                 var ang = (ud.flowAngleOffset || 0) + ud.swPhase;
                 o.position.set((ud.flowCenterX || x1) + ud.flowRadius * Math.cos(ang), ud.flowHeight, ud.flowRadius * Math.sin(ang));
                 var tx = Math.sin(ang) * rotSign, tz = -Math.cos(ang) * rotSign;
@@ -12990,7 +13157,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var pts = gavPathCache[dd.userData.path] || gavPathCache.solo;
             // the tiny coil current creeps; the vm-branch trickle creeps too.
             var sp = speed * ((dd.userData.path === "coil" || dd.userData.path === "vmbranch") ? 0.35 : 1.0);
-            dd.userData.t = (dd.userData.t + sp * 0.016);
+            dd.userData.t = (dd.userData.t + sp * 0.016 * __pmSteps);
             var xy = gavLerpPath(pts, dd.userData.t);
             dd.position.set(xy[0], xy[1], 0);
         }
@@ -13263,7 +13430,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var d = 0; d < bmTracers.length; d++) {
                 var tr = bmTracers[d]; if (!tr.visible) continue;
                 var path = bmArchPaths[tr.userData.arch % bmArchPaths.length];
-                tr.userData.t = (tr.userData.t + 0.18 * 0.016);
+                tr.userData.t = (tr.userData.t + 0.18 * 0.016 * __pmSteps);
                 var xy = gavLerpPath(path, tr.userData.t);
                 tr.position.set(xy[0], xy[1], 0.05);
             }
@@ -13272,7 +13439,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var loop = bmFindById("bm_loop_tube");
         var ldot = bmFindById("bm_loop_dot");
         if (loop && ldot && ldot.visible && loop.userData.loopPath) {
-            ldot.userData.t = (ldot.userData.t + 0.12 * 0.016);
+            ldot.userData.t = (ldot.userData.t + 0.12 * 0.016 * __pmSteps);
             var lp = gavLerpPath(loop.userData.loopPath.map(function (p) { return [p[0], p[1]]; }), ldot.userData.t);
             ldot.position.set(lp[0], lp[1], 0.5);
         }
@@ -13828,12 +13995,25 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         // ── Choreography stamps (one-shot reveal animations) ──────────────────
+        // Rule 26 fix (engine_bug_queue dipole_growth_timer_desync, 2026-07-08):
+        // these used to be ABSOLUTE time stamps (time-at-entry). RESET_TRAJECTORY
+        // rebases stateStartTime only — it never touched these — so THE EYE's
+        // dense-series capture (which sends RESET_TRAJECTORY AFTER the primary
+        // reveal-target capture has already snapped 'time' forward for
+        // accumulator-free scenario types incl. pe_external_field, see the
+        // animate() gate above) produced a dense "t=0" frame whose (time - stale
+        // stamp) already exceeded the growth duration — every dense frame read
+        // as already-grown (STATE_5's p-arrow: all 16 frames pixel-identical).
+        // Fix: store only the boolean gate; elapsed is computed below as
+        // (time - stateStartTime), which RESET_TRAJECTORY DOES rebase — the same
+        // pure-function-of-stateStartTime pattern every other reveal in this
+        // file already uses (e.g. updatePeExternalFieldFrame's ramp()).
         // Field switch-on (STATE_2): fade the uniform field up from 0.
-        lg.userData.fieldGrowStartTime = fieldAnimateIn ? time : -1;
+        lg.userData.fieldAnimateIn = fieldAnimateIn;
         // τ throb to emphasise "this is the maximum torque" (STATE_6).
         lg.userData.tauPulse = !!ex.tau_pulse;
-        // p-vector draw-in (STATE_1): the moment arrow grows from −q to +q.
-        lg.userData.pGrowStartTime = ex.p_animate_in ? time : -1;
+        // p-vector draw-in (STATE_1/STATE_5): the moment arrow grows from −q to +q.
+        lg.userData.pAnimateIn = !!ex.p_animate_in;
         // physics_release (explore state): a trusted θ-slider RELEASE hands the
         // dipole to the damped_pendulum integrator from the released angle, so
         // "hold it at 130°, let go" swings home to θ=0 by real τ = pE sinθ
@@ -14006,14 +14186,16 @@ export const FIELD_3D_RENDERER_CODE = `
             uDot.position.set(uDot.userData.meterX, -top * Math.cos(thetaRad), 0);
         }
 
-        // p-vector draw-in (STATE_1): grow the moment arrow from 0 → full so the
-        // student sees it drawn from −q to +q. Held at full length otherwise.
+        // p-vector draw-in (STATE_1/STATE_5): grow the moment arrow from 0 → full
+        // so the student sees it drawn from −q to +q. Held at full length
+        // otherwise. Rule 26 fix (dipole_growth_timer_desync, 2026-07-08):
+        // elapsed is (time - stateStartTime), NOT a separate absolute stamp —
+        // RESET_TRAJECTORY-safe (see the write-site comment above).
         var pArr = findTorqueElementById("dpf_p_arrow");
         if (pArr) {
             var pFull = 2 * half + 0.2;
-            var pgt = lg.userData.pGrowStartTime;
-            if (pgt != null && pgt >= 0) {
-                var pg = Math.min(1, (time - pgt) / 0.9);
+            if (lg.userData.pAnimateIn) {
+                var pg = Math.min(1, Math.max(0, (time - stateStartTime) / 0.9));
                 pArr.setLength(Math.max(0.04, pFull * pg), 0.26 * Math.min(1, pg + 0.15), 0.16 * Math.min(1, pg + 0.15));
             } else {
                 pArr.setLength(pFull, 0.26, 0.16);
@@ -14021,10 +14203,9 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         // Field switch-on (STATE_2): fade the uniform-field arrows up from 0 so
-        // the field visibly "turns on" over ~1s.
-        var fgt = lg.userData.fieldGrowStartTime;
-        if (fgt != null && fgt >= 0) {
-            var fgp = Math.min(1, (time - fgt) / 1.0);
+        // the field visibly "turns on" over ~1s. Same RESET_TRAJECTORY-safe fix.
+        if (lg.userData.fieldAnimateIn) {
+            var fgp = Math.min(1, Math.max(0, (time - stateStartTime) / 1.0));
             for (var fai = 0; fai < sceneObjects.length; fai++) {
                 var fao = sceneObjects[fai];
                 if (!fao.userData || fao.userData.elementType !== "ambient_field" || !fao.children) continue;
@@ -18028,7 +18209,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var d = 0; d < gmTracers.length; d++) {
                 var tr = gmTracers[d]; if (!tr.visible) continue;
                 var path = gmLoopPaths[tr.userData.loop % gmLoopPaths.length];
-                tr.userData.t = tr.userData.t + 0.18 * 0.016;
+                tr.userData.t = tr.userData.t + 0.18 * 0.016 * __pmSteps;
                 var xyz = gmLerpPath3(path, tr.userData.t);
                 tr.position.set(xyz[0], xyz[1], xyz[2]);
             }
@@ -18036,7 +18217,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // 2b. The internal-return dot traces the front internal tube (S→N).
         var intT = gmFindById("gm_internal"), intD = gmFindById("gm_internal_dot");
         if (intT && intD && intD.visible && intT.userData.loopPath) {
-            intD.userData.t = intD.userData.t + 0.18 * 0.016;
+            intD.userData.t = intD.userData.t + 0.18 * 0.016 * __pmSteps;
             var lp = gmLerpPath3(intT.userData.loopPath, intD.userData.t);
             intD.position.set(lp[0], lp[1], lp[2]);
         }
@@ -21132,7 +21313,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var h1 = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 20, Math.PI - 0.35), halfMat); h1.rotation.x = Math.PI / 2; h1.rotation.z = 0.17; acgComGrp.add(h1);
         var h2 = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 20, Math.PI - 0.35), halfMat.clone()); h2.rotation.x = Math.PI / 2; h2.rotation.z = Math.PI + 0.17; acgComGrp.add(h2);
         acgComGrp.userData = { elementType: "acg_commutator", id: "acg_commutator" }; addToScene(acgComGrp);
-        var comLbl = createWideLabelSprite("split ring -> one-way DC", "#90A4AE", 0.24); comLbl.position.set(3.0, -1.15, 0);
+        var comLbl = createWideLabelSprite("split ring \\u2192 one-way DC", "#90A4AE", 0.24); comLbl.position.set(3.0, -1.15, 0);
         comLbl.userData = { elementType: "acg_commutator", id: "acg_commutator_lbl" }; addToScene(comLbl);
         var comBrA = new THREE.Mesh(new THREE.SphereGeometry(0.07, 10, 10),
             new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFF176"), emissive: hexToThreeColor("#FFF176"), emissiveIntensity: 0.9 }));
@@ -21191,7 +21372,9 @@ export const FIELD_3D_RENDERER_CODE = `
         // ── DOM panels: readout, dual cos/sin graph canvas, contextual sliders,
         //    formula overlay (mirrors faraday/inductance createElement pattern) ──
         var rp = document.createElement("div"); rp.id = "acg_readout";
-        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:250px;display:none;";
+        // top:52px clears the review-chrome "Full screen" button (top:10px,
+        // right:10px, ~40px tall) that overlays the iframe's top-right corner.
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:170px;display:none;";
         document.body.appendChild(rp);
 
         var gc = document.createElement("canvas"); gc.id = "acg_graph_canvas";
@@ -21203,7 +21386,7 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_acgManual = false; window.PM_acgPhase = 0; window.PM_acgLastT = 0;
 
         var ff = document.createElement("div"); ff.id = "acg_formula";
-        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.45 monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFF176;font:600 22px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;white-space:pre-line;";
         document.body.appendChild(ff);
 
         var spd = document.createElement("div"); spd.id = "acg_sliders";
@@ -21220,7 +21403,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 label: o.label || dlabel
             };
         }
-        var scO = acgSc("omega", 0.5, 3.0, 0.1, 1.5, "Crank speed omega");
+        var scO = acgSc("omega", 0.5, 3.0, 0.1, 1.5, "Crank speed \\u03c9");
         var scN = acgSc("N", 20, 300, 10, 100, "Turns N");
         var scB = acgSc("B", 0.05, 0.5, 0.05, 0.2, "Field B");
         var scA = acgSc("A", 0.005, 0.05, 0.005, 0.02, "Coil area A");
@@ -21231,7 +21414,7 @@ export const FIELD_3D_RENDERER_CODE = `
             '<input type="range" id="acg_n_slider" min="' + scN.min + '" max="' + scN.max + '" step="' + scN.step + '" value="' + scN.def + '" style="width:100%"></div>' +
             '<div id="acg_b_row" style="margin-top:6px"><label>' + scB.label + ': <span id="acg_b_val">' + scB.def.toFixed(2) + '</span> T</label>' +
             '<input type="range" id="acg_b_slider" min="' + scB.min + '" max="' + scB.max + '" step="' + scB.step + '" value="' + scB.def + '" style="width:100%"></div>' +
-            '<div id="acg_a_row" style="margin-top:6px"><label>' + scA.label + ': <span id="acg_a_val">' + scA.def.toFixed(3) + '</span> m2</label>' +
+            '<div id="acg_a_row" style="margin-top:6px"><label>' + scA.label + ': <span id="acg_a_val">' + scA.def.toFixed(3) + '</span> m\\u00b2</label>' +
             '<input type="range" id="acg_a_slider" min="' + scA.min + '" max="' + scA.max + '" step="' + scA.step + '" value="' + scA.def + '" style="width:100%"></div>';
         document.body.appendChild(spd);
 
@@ -22040,7 +22223,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var s3 = Math.max(t - tWin, eS); s3 <= t + 0.0001; s3 += step) { var xv3 = xPix(s3), yv3 = yEmf(Math.abs(emf0 * Math.sin(phaseAt(s3)))); if (f3) { ctx.moveTo(xv3, yv3); f3 = false; } else ctx.lineTo(xv3, yv3); }
             ctx.stroke(); ctx.setLineDash([]);
             ctx.fillStyle = "#90A4AE"; ctx.font = "9px monospace";
-            ctx.fillText("split ring -> |eps| (one-way DC, grey)", padL, H - 4);
+            ctx.fillText("split ring \\u2192 |\\u03b5| (one-way DC, grey)", padL, H - 4);
         }
         ctx.lineWidth = 1;
         // snap markers (S3): last flux-max (phase=2*pi*k) + last emf-max (phase=pi/2+2*pi*k)
@@ -22058,8 +22241,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (lx < padL) lx = padL;
                 ctx.fillText(text, lx, y);
             }
-            if (tF >= t - tWin) { ctx.strokeStyle = "#66BB6A"; ctx.beginPath(); ctx.moveTo(xPix(tF), padT); ctx.lineTo(xPix(tF), H - padB); ctx.stroke(); ctx.fillStyle = "#66BB6A"; acgMarkerLabel("Phi max, eps=0", xPix(tF), padT + 9); }
-            if (tE >= t - tWin) { ctx.strokeStyle = "#FFB300"; ctx.beginPath(); ctx.moveTo(xPix(tE), padT); ctx.lineTo(xPix(tE), H - padB); ctx.stroke(); ctx.fillStyle = "#FFB300"; acgMarkerLabel("eps peak, Phi=0", xPix(tE), H - padB - 2); }
+            if (tF >= t - tWin) { ctx.strokeStyle = "#66BB6A"; ctx.beginPath(); ctx.moveTo(xPix(tF), padT); ctx.lineTo(xPix(tF), H - padB); ctx.stroke(); ctx.fillStyle = "#66BB6A"; acgMarkerLabel("\\u03a6 max, \\u03b5 = 0", xPix(tF), padT + 9); }
+            if (tE >= t - tWin) { ctx.strokeStyle = "#FFB300"; ctx.beginPath(); ctx.moveTo(xPix(tE), padT); ctx.lineTo(xPix(tE), H - padB); ctx.stroke(); ctx.fillStyle = "#FFB300"; acgMarkerLabel("\\u03b5 peak, \\u03a6 = 0", xPix(tE), H - padB - 2); }
             ctx.setLineDash([]);
         }
         // live dots at the right edge (current theta) — always on the curve
@@ -22067,9 +22250,9 @@ export const FIELD_3D_RENDERER_CODE = `
         if (showEmf) { ctx.fillStyle = "#FFF176"; ctx.beginPath(); ctx.arc(xPix(t), yEmf(emf0 * Math.sin(theta)), 3.6, 0, 2 * Math.PI); ctx.fill(); }
         // titles
         ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
-        var title = (mode === "flux_cos") ? "Phi vs t (cosine)" : (mode === "both") ? "Phi (green) & eps (amber) vs t" : "eps vs t (sine)";
+        var title = (mode === "flux_cos") ? "\\u03a6 vs t (cosine)" : (mode === "both") ? "\\u03a6 (green) & \\u03b5 (amber) vs t" : "\\u03b5 vs t (sine)";
         ctx.fillText(title, padL, 11);
-        if (mode === "emf_fixed_axis") { ctx.fillStyle = "#B0BEC5"; ctx.fillText("axis +/-4.0 V", W - padR - 84, 11); }
+        if (mode === "emf_fixed_axis") { ctx.fillStyle = "#B0BEC5"; ctx.fillText("axis \\u00b14.0 V", W - padR - 84, 11); }
         else if (d.auto_scale) { ctx.fillStyle = "#B0BEC5"; ctx.fillText("(auto-scaled)", W - padR - 84, 11); }
     }
 
@@ -22078,18 +22261,20 @@ export const FIELD_3D_RENDERER_CODE = `
         var eColor = (Math.abs(emf) < 0.02 * Math.max(emf0, 0.01)) ? "#90A4AE" : (emf > 0 ? "#66BB6A" : "#EF5350");
         var f = omega / (2 * Math.PI);
         var html = "";
-        html += "<div style=\\"color:#FFCC80\\">N = " + N + " turns   B = " + B.toFixed(2) + " T   A = " + A.toFixed(3) + " m2</div>";
-        html += "<div style=\\"color:#90CAF9\\">omega = " + omega.toFixed(1) + " rad/s" + (d.show_f ? ("   f = " + f.toFixed(2) + " Hz") : "") + "</div>";
+        // Compact value rows — the symbolic formulas live in #acg_formula only
+        // (de-clutter 2026-07-10): the HUD reads like an instrument, not a derivation.
+        html += "<div style=\\"color:#FFCC80\\">N " + N + " \\u00b7 B " + B.toFixed(2) + " T \\u00b7 A " + A.toFixed(3) + " m\\u00b2</div>";
+        html += "<div style=\\"color:#90CAF9\\">\\u03c9 " + omega.toFixed(1) + " rad/s" + (d.show_f ? (" \\u00b7 f " + f.toFixed(2) + " Hz") : "") + "</div>";
         // reveal gate: S1 (machine_overview) shows NO flux/EMF formula; S2 shows
         // only the flux cosine; the EMF sine + peak eps0 appear FIRST at S3 (reveal_emf0).
         if (mode !== "machine_overview") {
             var thDeg = (((theta % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)) * 180 / Math.PI;
             html += "<div style=\\"color:#FFEE58\\">\\u03b8 = \\u03c9t = " + thDeg.toFixed(0) + "\\u00b0</div>";
         }
-        if (mode !== "machine_overview") html += "<div style=\\"color:#66BB6A\\">\\u03a6 = NBA cos(\\u03c9t) = " + Phi.toFixed(3) + " Wb</div>";
+        if (mode !== "machine_overview") html += "<div style=\\"color:#66BB6A\\">\\u03a6 = " + Phi.toFixed(3) + " Wb</div>";
         if (d.reveal_emf0) {
-            html += "<div style=\\"color:" + eColor + "\\">\\u03b5 = NBA\\u03c9 sin(\\u03c9t) = " + emf.toFixed(2) + " V</div>";
-            html += "<div style=\\"color:#FFD54F\\">\\u03b5\\u2080 = NBA\\u03c9 = " + emf0.toFixed(2) + " V</div>";
+            html += "<div style=\\"color:" + eColor + "\\">\\u03b5 = " + emf.toFixed(2) + " V</div>";
+            html += "<div style=\\"color:#FFD54F\\">\\u03b5\\u2080 = " + emf0.toFixed(2) + " V</div>";
         }
         if (Math.abs(cosT) > 0.985) html += "<div style=\\"color:#90A4AE;font-size:11px\\">face-on: flux max, EMF 0</div>";
         else if (Math.abs(sinT) > 0.985) html += "<div style=\\"color:#90A4AE;font-size:11px\\">edge-on: flux 0, EMF peak</div>";
@@ -31856,8 +32041,39 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // ── Animation loop ────────────────────────────────────────────────────
     var time = 0;
+    // Frame-rate-independent stepping (2026-07-11). rAF fires at the DISPLAY
+    // refresh rate — the old unconditional "time += 0.016" ran the whole sim
+    // (and every inline "+= 0.016 * rate" accumulator) at 2x on a 120 Hz
+    // tablet while the recorded narration played at wall-clock speed, racing
+    // choreography ahead of the voice. Live playback now accumulates real
+    // elapsed ms and runs 0-3 fixed 1/60 s steps per frame via __pmSteps —
+    // numerically identical at 60 Hz (1 step/frame), rate-correct elsewhere
+    // (every integrator is linear in dt, so N steps x 0.016 == 0.016 x N).
+    // UNDER A PIN (freezeAtTime !== null) __pmSteps is FORCED to 1: THE EYE's
+    // determinism contract needs a fixed integer frame count during the
+    // crawl-to-pin, and headless rAF wall-deltas are tiny/erratic — coupling
+    // the crawl to wall-clock would stall pollSimTimeReached.
+    var __pmStepMs = 1000 / 60;
+    var __pmAccumMs = 0;
+    var __pmLastWall;
+    var __pmSteps = 1; // read by scenario updaters' inline accumulators too
     function animate() {
         animationId = requestAnimationFrame(animate);
+        if (freezeAtTime === null) {
+            var __nowW = performance.now();
+            if (__pmLastWall === undefined) __pmLastWall = __nowW;
+            // Clamp big gaps (tab background, GC stall) to 50 ms so we never
+            // fast-forward more than 3 steps after a hiccup.
+            __pmAccumMs += Math.min(50, __nowW - __pmLastWall);
+            __pmLastWall = __nowW;
+            __pmSteps = 0;
+            while (__pmAccumMs >= __pmStepMs && __pmSteps < 3) { __pmAccumMs -= __pmStepMs; __pmSteps++; }
+        } else {
+            __pmLastWall = undefined;
+            __pmAccumMs = 0;
+            __pmSteps = 1;
+        }
+        var dtStep = 0.016 * __pmSteps;
         // SET_TIME_FREEZE pin-by-target: advance virtual time normally until
         // the pin, then hold — never jump, so per-frame accumulators (particle
         // trail, slow_rotation integration) build the exact same frame count
@@ -31881,11 +32097,11 @@ export const FIELD_3D_RENDERER_CODE = `
             // gate capture late reveals (the sweep-end / curve-draw payoff frames).
             time = freezeAtTime;
             heldAtPin = true;
-        } else if (freezeAtTime !== null && time + 0.016 >= freezeAtTime) {
+        } else if (freezeAtTime !== null && time + dtStep >= freezeAtTime) {
             time = freezeAtTime;
             heldAtPin = true;
         } else {
-            time += 0.016;
+            time += dtStep;
         }
 
         // Visual-validator capture hook: expose the renderer's SIM-TIME clock
@@ -31905,14 +32121,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // so they freeze automatically when the pin holds the time var; the
             // marching current dots still integrate by dt, so pass 0 while held at the
             // pin to freeze them (and the sibling's slow_rotation integrator) too.
-            updateTorqueLoopFrame(heldAtPin ? 0 : 0.016);
+            updateTorqueLoopFrame(heldAtPin ? 0 : dtStep);
             applyTorqueLoopGlow();
         }
 
         // Current loop acts as a dipole — rotation + τ/μ scaling + ring current
         // dot orbit + TTS glow (reuses the torque engine + glow).
         if (config.scenario_type === "current_loop_acts_as_dipole") {
-            updateCurrentLoopDipoleFrame(heldAtPin ? 0 : 0.016);
+            updateCurrentLoopDipoleFrame(heldAtPin ? 0 : dtStep);
             applyTorqueLoopGlow();
         }
 
@@ -31996,7 +32212,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // arrow repositioning + θ-arc + U-meter + TTS glow.
         if (config.scenario_type === "dipole_in_uniform_field" ||
             config.scenario_type === "bar_magnet_in_uniform_field") {
-            updateDipoleInFieldFrame(heldAtPin ? 0 : 0.016);
+            updateDipoleInFieldFrame(heldAtPin ? 0 : dtStep);
             applyDipoleInFieldGlow();
         }
 
@@ -32149,7 +32365,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // length scales with sin(θ) for feel; NO magnitude is ever printed, and
         // the F arrow is hidden at θ=0 / |v|=0 (no zero-length stub).
         if (config.scenario_type === "rhr_force_direction") {
-            updateRhrForceDirectionFrame(heldAtPin ? 0 : 0.016);
+            updateRhrForceDirectionFrame(heldAtPin ? 0 : dtStep);
             applyRhrForceDirectionGlow();
         }
 
@@ -32160,7 +32376,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // fixed glyph length (never ∝ v or B), F hidden at v∥B, |v| meter = speed
         // (never a force), magnetic W pinned to 0, no r/T number ever printed.
         if (config.scenario_type === "magnetic_no_work") {
-            updateMagneticNoWorkFrame(heldAtPin ? 0 : 0.016);
+            updateMagneticNoWorkFrame(heldAtPin ? 0 : dtStep);
             applyMagneticNoWorkGlow();
         }
 
@@ -32171,7 +32387,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // RELATIVE readout. CUT-LINE: the only surfaced quantity is a relative r —
         // never a metres/period/force number; F is a direction-only fixed glyph.
         if (config.scenario_type === "radius_in_uniform_field") {
-            updateRadiusInUniformFieldFrame(heldAtPin ? 0 : 0.016);
+            updateRadiusInUniformFieldFrame(heldAtPin ? 0 : dtStep);
             applyRadiusInUniformFieldGlow();
         }
 
@@ -32194,7 +32410,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // SHOWN but ONLY as a relative lap-fill — never a seconds/force number; F is
         // a direction-only fixed glyph; the fast charge's v glyph is NOT longer.
         if (config.scenario_type === "cyclotron_period") {
-            updateCyclotronPeriodFrame(heldAtPin ? 0 : 0.016);
+            updateCyclotronPeriodFrame(heldAtPin ? 0 : dtStep);
             applyCyclotronPeriodGlow();
         }
 
@@ -33109,7 +33325,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         // rotating field," just no longer a perfectly rigid one (deterministic,
                         // no randomness, no new state — Rule 26).
                         var swRateScale = 1 + 0.02 * (swRingIdx - 2.5) + 0.012 * (swHeightIdx - 1);
-                        swUd.swPhase += 0.016 * effRotRate * rotDirSign * swRateScale;
+                        swUd.swPhase += dtStep * effRotRate * rotDirSign * swRateScale;
                         var swStagger = ((swHeightIdx * 6 + swRingIdx) / 18) * Math.PI * 2;
                         var ang = (swUd.flowAngleOffset || 0) + swUd.swPhase + swStagger;
                         swObj.position.set(
@@ -33143,7 +33359,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         // Flow speed scales with the live current (dots crawl as the
                         // switch ramps the current down, freeze as it hits 0).
                         if (swUd.dotPhase == null) swUd.dotPhase = phase;
-                        swUd.dotPhase += 0.016 * dotSpeed * iScale;
+                        swUd.dotPhase += dtStep * dotSpeed * iScale;
                         var loopT = swUd.dotPhase % 1;
                         // Up-flow: y goes -2.5 → +2.5; Down-flow: y goes +2.5 → -2.5
                         swObj.position.x = wireScenarioOffsetX; // ride with the panel split
@@ -33329,7 +33545,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         if (localMs < cfReveal) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
                         var cfDir = ((cfCfg.direction === "reverse") ? -1 : 1) * solRevSign;
                         var cfSpeed = ((cfCfg.speed != null) ? cfCfg.speed : (ud.speed || 0.16)) * solSpeedK;
-                        var cfDt = heldAtPin ? 0 : 0.016;
+                        var cfDt = heldAtPin ? 0 : dtStep;
                         ud.t = (ud.t + cfDir * cfSpeed * cfDt + 1.0) % 1.0;
                         var cfPos = sampleHelix(ud.t, coilForChildren.userData.helixPts, coilForChildren.userData.helixCum, coilForChildren.userData.helixLen);
                         ch.position.set(cfPos[0], cfPos[1], cfPos[2]);
