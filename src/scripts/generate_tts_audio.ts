@@ -153,7 +153,7 @@ function wavDurationMs(buf: Buffer): number {
 // ("spawnSync ffmpeg EOF") after hundreds of spawns. File in/out avoids both
 // pipes entirely; retry a few times with a short backoff for transient spawns.
 let tmpCounter = 0;
-function wavToMp3(wav: Buffer): Buffer {
+export function wavToMp3(wav: Buffer): Buffer {
   const base = join(tmpdir(), `pmtts_${process.pid}_${tmpCounter++}`);
   const wavPath = `${base}.wav`;
   const mp3Path = `${base}.mp3`;
@@ -181,7 +181,7 @@ function wavToMp3(wav: Buffer): Buffer {
 }
 
 // ── Sarvam call (with retry on 429/5xx) ──────────────────────────────────────
-async function sarvamTts(
+export async function sarvamTts(
   text: string,
   langCode: string,
   apiKey: string,
@@ -371,7 +371,12 @@ async function main(): Promise<void> {
   console.log(`  manifest: ${manifestPath}`);
 }
 
-main().catch((err) => {
-  console.error('💥 generate_tts_audio failed:', err instanceof Error ? err.message : err);
-  process.exit(1);
-});
+// Run the CLI only when invoked directly (npx tsx …/generate_tts_audio.ts) — NOT
+// when another script imports sarvamTts/wavToMp3 (e.g. build_onboarding_audio.ts).
+const __entry = (process.argv[1] || '').replace(/\\/g, '/');
+if (/\/generate_tts_audio\.(t|j)s$/.test(__entry)) {
+  main().catch((err) => {
+    console.error('💥 generate_tts_audio failed:', err instanceof Error ? err.message : err);
+    process.exit(1);
+  });
+}

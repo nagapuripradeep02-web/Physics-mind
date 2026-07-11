@@ -150,7 +150,21 @@ function writeVendorAssets(): void {
     copyFileSync(join(nm, 'katex', 'dist', 'katex.min.css'), join(vendorDir, 'katex.min.css'));
     cpSync(join(nm, 'katex', 'dist', 'fonts'), join(vendorDir, 'fonts'), { recursive: true });
     copyFileSync(join(nm, 'p5', 'lib', 'p5.min.js'), join(vendorDir, 'p5.min.js'));
-    console.log('✅ Vendored three/katex(+fonts)/p5 → review-site/vendor/');
+    // driver.js (v1.3.1, MIT) powers the first-login onboarding tour. Checked into
+    // the repo (assets/vendor/driver/), not node_modules, so it self-hosts without
+    // adding an npm dependency — same wifi-safe reasoning as three/katex/p5.
+    const driverSrc = join(ROOT, 'assets', 'vendor', 'driver');
+    copyFileSync(join(driverSrc, 'driver.js.iife.js'), join(vendorDir, 'driver.js.iife.js'));
+    copyFileSync(join(driverSrc, 'driver.css'), join(vendorDir, 'driver.css'));
+    // The tour's per-step narration clips (assets/onboarding-audio/, rendered once by
+    // build_onboarding_audio.ts) are copied into review-site/onboarding/ every build so
+    // they survive a rebuild + deploy without re-hitting Sarvam. Tour is silent-tolerant
+    // if the folder is absent.
+    const audioSrc = join(ROOT, 'assets', 'onboarding-audio');
+    if (existsSync(audioSrc)) {
+        cpSync(audioSrc, join(OUT_DIR, 'onboarding'), { recursive: true });
+    }
+    console.log('✅ Vendored three/katex(+fonts)/p5/driver (+ onboarding audio) → review-site/');
 }
 
 // ── Review-tracking manifest (who reviewed what, + her recorded videos) ───────
