@@ -949,12 +949,104 @@ function loginHtml(): string {
 `;
 }
 
-/** Write the five shared root assets into the review-site output dir. */
+// ── join.html — the PUBLIC "Start your free trial" landing ──────────────────
+// The single URL every website CTA and WhatsApp message points at (no invite
+// codes, no per-teacher links — founder decision 2026-07-11). Google-first;
+// the password link exists for the two legacy pilot-professor accounts.
+function joinHtml(): string {
+    return `<!DOCTYPE html>
+<html lang="en" data-pm-page="join"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start your free trial — Viditra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./pm-config.js"></script>
+<script src="${SUPABASE_JS_CDN}"></script>
+<script src="./pm-auth.js"></script>
+<script src="./pm-telemetry.js"></script>
+<style>
+  :root{ --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --clay:#CB6843; --clay-deep:#B0552F;
+         --clay-soft:#E3A07F; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+         --line:rgba(245,240,230,.10); --red:#E06A52; --sage:#74B594;
+         --font-disp:"Fraunces",Georgia,serif; --font-ui:"Inter",system-ui,sans-serif; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(46% 38% at 100% 0%, rgba(203,104,67,.08), transparent 60%),
+               radial-gradient(40% 32% at 0% 100%, rgba(116,181,148,.05), transparent 60%);}
+  .wrap{position:relative;min-height:100vh;display:grid;place-items:center;padding:24px;}
+  .card{width:100%;max-width:400px;background:var(--surface);border:1px solid var(--line);border-radius:18px;
+        padding:34px 32px 30px;box-shadow:0 24px 60px -30px rgba(0,0,0,.8);}
+  .masthead{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+  .mark{width:40px;height:40px;border-radius:12px;background:var(--clay);flex:none;display:grid;place-items:center;
+        box-shadow:0 6px 18px -6px rgba(203,104,67,.55);}
+  .mark svg{width:23px;height:23px;}
+  .brand b{font-family:var(--font-disp);font-weight:600;font-size:19px;display:block;line-height:1;}
+  .brand span{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;display:block;}
+  h1{font-family:var(--font-disp);font-size:20px;font-weight:600;margin:0 0 4px;}
+  p.sub{color:var(--ink-dim);font-size:13px;margin:0 0 16px;line-height:1.5;}
+  ul.perk{list-style:none;margin:0 0 20px;padding:0;color:var(--ink-dim);font-size:13px;line-height:2;}
+  ul.perk li::before{content:"\\2713";color:var(--sage);font-weight:700;margin-right:9px;}
+  button.gbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;padding:11px;
+        border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);
+        font-size:14px;font-weight:600;font-family:var(--font-ui);cursor:pointer;transition:border-color .15s ease;}
+  button.gbtn:hover{border-color:rgba(203,104,67,.5);}
+  a.alt{display:block;text-align:center;margin-top:16px;color:var(--ink-dim);font-size:12.5px;text-decoration:none;}
+  a.alt:hover{color:var(--clay-soft);}
+  .err{display:none;margin-top:14px;padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.45;
+       color:#F3C9BE;background:rgba(224,106,82,.12);border:1px solid rgba(224,106,82,.4);}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+  <div class="masthead">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
+  </div>
+
+  <h1>Start your free trial</h1>
+  <p class="sub">Interactive 3D physics simulations you teach with — your own space, ready in under a minute.</p>
+  <ul class="perk">
+    <li>Two weeks free &mdash; the full simulation library</li>
+    <li>No card, no commitment</li>
+    <li>Everything you customize is saved to your account</li>
+  </ul>
+  <button class="gbtn" id="googleBtn" type="button">
+    <svg viewBox="0 0 48 48" width="17" height="17" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.3 6.1 29.4 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.2-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.1 18.9 12 24 12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.3 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.2 5.2C40.7 35.6 44 30.3 44 24c0-1.2-.1-2.3-.4-3.5z"/></svg>
+    Continue with Google
+  </button>
+  <a class="alt" id="pwLink" href="/login.html">I already have an email &amp; password account</a>
+  <div class="err" id="errBox"></div>
+</div></div>
+
+<script>
+(function () {
+  var errBox = document.getElementById('errBox');
+  function showErr(m) { errBox.textContent = m; errBox.style.display = 'block'; }
+  // Already signed in (tapped the link again)? The gate routes them to catalog/welcome/expired.
+  PM.authReady.then(function (u) { if (u) location.replace('/'); });
+  document.getElementById('googleBtn').addEventListener('click', function () {
+    var c = PM.auth && PM.auth.client && PM.auth.client();
+    if (!c) { showErr('Could not load the sign-in service. Check the internet connection and reload.'); return; }
+    c.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + '/welcome.html' } })
+      .then(function (res) { if (res && res.error) showErr('Google sign-in failed: ' + res.error.message); },
+            function () { showErr('Network error — please try again.'); });
+  });
+})();
+</script>
+</body></html>
+`;
+}
+
+/** Write the shared root assets into the review-site output dir. */
 export function writeRootAssets(outDir: string): void {
     writeFileSync(join(outDir, 'pm-config.js'), pmConfigJs(), 'utf-8');
     writeFileSync(join(outDir, 'pm-auth.js'), pmAuthJs(), 'utf-8');
     writeFileSync(join(outDir, 'pm-telemetry.js'), pmTelemetryJs(), 'utf-8');
     writeFileSync(join(outDir, 'pm-feedback.js'), pmFeedbackJs(), 'utf-8');
     writeFileSync(join(outDir, 'login.html'), loginHtml(), 'utf-8');
-    console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, login.html → review-site/');
+    writeFileSync(join(outDir, 'join.html'), joinHtml(), 'utf-8');
+    console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, login.html, join.html → review-site/');
 }
