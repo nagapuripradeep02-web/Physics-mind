@@ -36,7 +36,7 @@ VALUES
   'kirchhoff_junction_rule_KCL',
   'STATE_3',
   'Why doesn''t current get used up passing through a resistor at a junction?',
-  'Student treats current the way they''d treat a consumable — as if a resistor "spends" some of it the way it would spend fuel. A resistor spends ENERGY (as heat), never CHARGE: the number of electrons per second entering a branch equals the number per second leaving it, because charge is strictly conserved at every point in a wire. The sim''s single main ammeter makes this visible with one instrument — the same reading whether interpreted as current entering the split or leaving after the branches recombine, at 4.00 A, unmoved by whatever the resistor values are.',
+  'Student treats current the way they''d treat a consumable — as if a resistor "spends" some of it the way it would spend fuel. A resistor spends ENERGY (as heat), never CHARGE: the number of electrons per second entering a branch equals the number per second leaving it, because charge is strictly conserved at every point in a wire. The sim''s A_in and A_out ammeters make this visible with two instruments — the same reading whether interpreted as current entering the split or leaving after the branches recombine, both at 2.00 A, unmoved by whatever the resistor values are.',
   ARRAY[
     'why doesnt current go down after passing a resistor',
     'shouldnt some current be lost at the junction',
@@ -52,7 +52,7 @@ VALUES
   'kirchhoff_junction_rule_KCL',
   'STATE_3',
   'Why doesn''t current split fifty-fifty at every fork, regardless of the resistors?',
-  'Student over-generalizes STATE_2''s equal-branch demo (which genuinely does split 1.0 + 1.0) into a universal rule — "a fork always shares evenly." It doesn''t: current splits by CONDUCTANCE (1/R). The branch with LESS resistance is the easier path and carries MORE current, in exact proportion to 1/R — not an automatic half-and-half share. STATE_3''s sim makes this concrete: with R1=3Ω fixed and R2 lowered to 1Ω, the naive expectation (2.00+2.00) is wrong; the real split is 1.00+3.00 — still summing to the same 4.00 A total, but nowhere near even.',
+  'Student over-generalizes STATE_2''s equal-branch demo (which genuinely does split 1.0 + 1.0) into a universal rule — "a fork always shares evenly." It doesn''t: current splits by CONDUCTANCE (1/R). The branch with LESS resistance is the easier path and carries MORE current, in exact proportion to 1/R — not an automatic half-and-half share. STATE_3''s sim makes this concrete: with R1=6Ω and R2=2Ω, the naive expectation (1.00+1.00) is wrong; the real split is 0.50+1.50 — still summing to the same 2.00 A total, but nowhere near even.',
   ARRAY[
     'why doesnt it split half half at the fork',
     'shouldnt both branches always get equal current',

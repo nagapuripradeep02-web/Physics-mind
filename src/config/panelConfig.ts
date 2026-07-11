@@ -138,10 +138,10 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
     },
 
     // Ch.3 Current Electricity #8 — Alex pipeline (2026-07-11), same engine
-    // family as the seven particle_field siblings. REUSES the
-    // combination_of_resistors scenario_type verbatim (no new scenario flag —
-    // confirmed engine constraint: circuitMode()'s cR1() has no per-state
-    // override, so only R2 varies state-to-state via r2_autosweep). Teaches
+    // family as the seven particle_field siblings. Reuses the
+    // combination_of_resistors scenario_type as the renderer selector, but
+    // rides NEW per-state flags added to the circuit engine (per-state
+    // R1/R2/R3 locks, three_branch, kcl_sum_readout, ghost_text). Teaches
     // Sigma i_in = Sigma i_out (KCL) via the SAME two-branch junction: equal
     // split -> PRIMARY aha unequal-conductance split (still sums) ->
     // generalization to any junction.
