@@ -48,15 +48,17 @@ the concept is already approved. Your judgment is operational — credits, fallb
 1. `npm run visual:approve -- <concept_id>` — locks THE EYE regression baselines into
    `visual_baselines/<id>/` + `baselines.json`. Include the script's own reminder to
    `git add visual_baselines/<id>` in your report. (Skip on `skip-approve`.)
-2. `npm run tts:generate -- <concept_id> --langs=en,te` — pass `--langs=en,te` explicitly
-   (belt-and-suspenders; the script default is `en,te` and Hindi now requires `--allow-hindi`,
-   which is FORBIDDEN here). **`tts:rollout` does NOT forward a langs flag — NEVER use rollout.**
-   `--force` is FORBIDDEN (hash-awareness already re-voices stale clips; --force re-burns every credit).
+2. `npm run tts:generate -- <concept_id> --langs=en` — pass `--langs=en` explicitly (Rule 30h:
+   audio is ON-DEMAND; render ENGLISH ONLY. Telugu AUDIO is NOT shipped by default even though
+   `text_te` exists — the script's own default is `en,te`, so the explicit `--langs=en` is REQUIRED to
+   override it and avoid burning Sarvam credits on unreviewed Telugu audio). Hindi (`--allow-hindi`) is
+   FORBIDDEN here. **`tts:rollout` does NOT forward a langs flag — NEVER use rollout.** `--force` is
+   FORBIDDEN (hash-awareness already re-voices stale clips; --force re-burns every credit).
 3. `npm run build:review -- <concept_id>` — then check its output for the stale warning
    (`⚠ <id>: N STALE audio clip(s) muted`). After step 2 that count MUST be 0; if not, one re-run of
    step 2 (still no --force), then rebuild; if still stale, stop and report.
 4. Verify (all, evidence pasted):
-   - `review-site/<id>/audio_manifest.json` clip count == tts_sentences count × 2 langs;
+   - `review-site/<id>/audio_manifest.json` clip count == tts_sentences count (EN only per Rule 30h — × 1 lang, not × 2);
    - `http://localhost:8080/<id>/` returns HTTP 200 (if the serve:review server is down, say so — do not
      start servers; the main session owns processes);
    - `npm run validate:concepts` → target still PASSES (guards against pre-ship JSON edits,
@@ -70,8 +72,9 @@ A release report (final message = raw data):
    (clips written / skipped / stale-refreshed).
 2. Per-step result table: `| step | command | result | evidence |`.
 3. The review link `http://localhost:8080/<id>/` + the `git add visual_baselines/<id>` reminder.
-4. **Mandatory caveat, verbatim:** "Telugu narration is DRAFT — native Telugu reviewer pass required
-   before any student/production use (Rule 30f)."
+4. **Mandatory caveat, verbatim:** "English audio only (Rule 30h — audio is on-demand). `text_te` is
+   present but NOT voiced; render Telugu audio only on genuine teacher demand, and it stays DRAFT until a
+   native Telugu reviewer pass (Rule 30f/17)."
 5. Anything skipped/failed + the exact resume command.
 
 ## Failure discipline
@@ -99,7 +102,7 @@ A release report (final message = raw data):
 ## Self-review checklist (before returning)
 
 - [ ] Approval statement present in dispatch prompt (quoted in report header).
-- [ ] `--langs=en,te` on every generate invocation (grep your own commands).
+- [ ] `--langs=en` on every generate invocation (Rule 30h — EN-only audio; grep your own commands).
 - [ ] Zero `--force` used.
 - [ ] Stale-clip warning count in final build output == 0.
 - [ ] Manifest count == sentences × 2; HTTP 200; validate target PASS — evidence pasted for all three.
