@@ -2182,8 +2182,12 @@ ${pilotHeadTags(0)}
   #earlyNote button:hover{color:var(--clay-soft);}
   .who .chip{font-size:11px;font-weight:600;color:var(--clay-soft);border:1px solid rgba(203,104,67,.4);
         border-radius:999px;padding:3px 10px;background:var(--clay-wash);}
-  #pmSplash{position:fixed;inset:0;z-index:99995;display:grid;place-items:center;background:var(--bg);
-        animation:pmSplashFade 2.1s ease forwards;}
+  /* default OFF via display:none (an author rule beats the hidden attribute regardless of
+     specificity, so relying on it alone would show this immediately at parse time and race
+     its own fade against the auth-gate reveal delay). JS adds .show at the exact moment the
+     profile is confirmed, which is what actually starts the clock. */
+  #pmSplash{position:fixed;inset:0;z-index:99995;display:none;place-items:center;background:var(--bg);}
+  #pmSplash.show{display:grid;animation:pmSplashFade 2.1s ease forwards;}
   #pmSplash .sc{text-align:center;display:grid;place-items:center;gap:14px;}
   #pmSplash .mark{width:56px;height:56px;border-radius:16px;background:var(--clay);display:grid;place-items:center;
         box-shadow:0 10px 30px -8px rgba(203,104,67,.6);}
@@ -2258,7 +2262,7 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
           sessionStorage.setItem('pm_splash_shown', '1');
           var sp = document.getElementById('pmSplash');
           document.getElementById('pmSplashName').textContent = p.display_name + '’s Class';
-          sp.hidden = false;
+          sp.className = 'show';   // starts the 2.1s fade NOW — not at page-parse time
           setTimeout(function () { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 2300);
           pmt('splash_shown', {});
         }
