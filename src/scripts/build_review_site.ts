@@ -816,10 +816,58 @@ ${pilotHeadTags(1)}
   }
   function saveLayout() {
     try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+    pushLayoutRemote();
     dirty = false; updateSaveBtn(true);
   }
   function markDirty() { dirty = true; updateSaveBtn(false); }
+
+  // ── Per-account layout sync (teacher_layouts) — Supabase is the source of truth
+  // across devices; localStorage stays the fast cache + offline/dev fallback.
+  // Fail-open always: a failed cloud call never blocks or breaks the classroom.
+  var railTouched = false;   // teacher interacted → never yank the rail under them
+  function pushLayoutRemote() {
+    try {
+      if (window.PM_DEV || !window.PM_CONFIG || !(window.PM && PM.auth)) return;
+      var tok = PM.auth.token && PM.auth.token();
+      if (!tok) return;
+      fetch(PM_CONFIG.supabaseUrl + '/rest/v1/teacher_layouts?on_conflict=professor_id,concept_id', {
+        method: 'POST',
+        headers: {
+          'apikey': PM_CONFIG.supabaseAnonKey, 'Authorization': 'Bearer ' + tok,
+          'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal'
+        },
+        body: JSON.stringify({ concept_id: CONCEPT_ID, layout: { order: order, hidden: hiddenStates, names: stateNames }, updated_at: new Date().toISOString() })
+      }).then(function (r) { if (!r.ok) { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} } },
+              function () { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} });
+    } catch (e) {}
+  }
+  function pullLayoutRemote() {
+    if (window.PM_DEV || !window.PM_CONFIG || !(window.PM && PM.authReady)) return;
+    PM.authReady.then(function (u) {
+      if (!u) return;
+      var tok = PM.auth.token && PM.auth.token();
+      if (!tok) return;
+      fetch(PM_CONFIG.supabaseUrl + '/rest/v1/teacher_layouts?select=layout&concept_id=eq.' + encodeURIComponent(CONCEPT_ID), {
+        headers: { 'apikey': PM_CONFIG.supabaseAnonKey, 'Authorization': 'Bearer ' + tok }
+      }).then(function (r) { return r.ok ? r.json() : null; }).then(function (rows) {
+        if (!rows || !rows.length || !rows[0].layout) return;
+        if (dirty || railTouched) return;   // they're already working — this device's view wins for now
+        var d = rows[0].layout;
+        var same = JSON.stringify([d.order, d.hidden, d.names]) ===
+                   JSON.stringify([order, hiddenStates, stateNames]);
+        if (same) return;
+        if (validOrder(d.order)) order = d.order.slice();
+        hiddenStates = (d.hidden && typeof d.hidden === 'object') ? d.hidden : {};
+        stateNames = (d.names && typeof d.names === 'object') ? d.names : {};
+        try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+        dirty = false;
+        buildRail();
+        goToState(0, false);
+      }).catch(function () {});
+    });
+  }
   loadLayout();
+  pullLayoutRemote();
   var idx = 0;                       // position within the order array
   function cur() { return STATES[order[idx]]; }
   function isHidden(si) { return hiddenStates[si] === 1; }
@@ -1186,7 +1234,7 @@ ${pilotHeadTags(1)}
         card.appendChild(numEl); card.appendChild(ttl); card.appendChild(grip);
         grip.addEventListener('click', function (ev) { ev.stopPropagation(); openRowMenu(si, grip); });
         ttl.addEventListener('dblclick', function (ev) { ev.stopPropagation(); startRename(si); });
-        card.addEventListener('click', function () { pause(); goToState(pos, false); });
+        card.addEventListener('click', function () { railTouched = true; pause(); goToState(pos, false); });
         card.addEventListener('dragstart', function (e) { dragFrom = pos; card.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(pos)); } catch (_) {} });
         card.addEventListener('dragend', function () { card.classList.remove('dragging'); clearDragOver(); dragFrom = -1; });
         card.addEventListener('dragover', function (e) { e.preventDefault(); card.classList.add('dragover'); });
@@ -1300,6 +1348,7 @@ ${pilotHeadTags(1)}
   }
 
   playBtn.addEventListener('click', function () {
+    railTouched = true;
     if (playing && !frozen) { freeze(); }            // playing → pause-hold
     else if (frozen && playing) { unfreeze(); }      // paused mid-play → resume
     else { play(); }                                 // idle / ended → roll from top
