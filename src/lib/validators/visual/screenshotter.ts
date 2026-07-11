@@ -178,6 +178,14 @@ export interface TemplateLeakFinding {
     sample_text: string;
 }
 
+export interface ConsoleErrorFinding {
+    /** State active when the error fired ('(load)' = before the first state drive). */
+    state_id: string;
+    /** 'pageerror' = uncaught exception; 'console' = console.error() output. */
+    kind: 'pageerror' | 'console';
+    text: string;
+}
+
 export interface CaptureResult {
     state_captures: StateCapture[];
     timings: TimingMeasurement[];
@@ -191,6 +199,13 @@ export interface CaptureResult {
      * (OCR backstop in pixelGate.ts still runs on canvas-rendered text).
      */
     template_leak_dom_findings: TemplateLeakFinding[];
+    /**
+     * H3 (render console errors) — every console.error / uncaught exception the
+     * page (including the sim iframes) emitted during capture, attributed to the
+     * state being driven at the time. A render crash or dead-slider throw shows
+     * up here even when the pixels look plausible.
+     */
+    console_errors: ConsoleErrorFinding[];
     /** Non-fatal warnings (e.g., "panel B SIM_READY timed out"). */
     warnings: string[];
 }
@@ -290,6 +305,21 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
         const context = await browser.newContext({ viewport });
         const page = await context.newPage();
 
+        // H3 collectors — attach BEFORE routing/setContent so load-time crashes
+        // are caught too. Sims run inside iframes; page-level 'console' receives
+        // child-frame events, and iframe uncaught exceptions surface as
+        // console-type 'error' (pageerror covers the wrapper itself).
+        const consoleErrors: ConsoleErrorFinding[] = [];
+        let consoleStateId = '(load)';
+        page.on('pageerror', (e) => {
+            consoleErrors.push({ state_id: consoleStateId, kind: 'pageerror', text: String(e) });
+        });
+        page.on('console', (m) => {
+            if (m.type() === 'error') {
+                consoleErrors.push({ state_id: consoleStateId, kind: 'console', text: m.text() });
+            }
+        });
+
         await page.route(PANEL_A_PATH, route => route.fulfill({
             status: 200, contentType: 'text/html', body: req.panelAHtml,
         }));
@@ -319,6 +349,7 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
         const templateLeakDomFindings: TemplateLeakFinding[] = [];
         const denseTimeseries: DenseTimeseries[] = [];
         for (const stateId of req.stateIds) {
+            consoleStateId = stateId;
             const timing = await driveToState(page, stateId, hasPanelB, perStateTimeoutMs);
             timings.push(timing);
             if (timing.timed_out) warnings.push(`STATE_REACHED timeout for ${stateId}`);
@@ -332,6 +363,14 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             const revealTargetMs = req.maxRevealMsByState?.[stateId];
             if (revealTargetMs != null && revealTargetMs > 0) {
                 await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
+                // Pair with REPLAY_ANIMATIONS (engine_bug_queue dipole_replay_animations_
+                // scenario_type_gap, 2026-07-08) — production's rollTimeline() always sends
+                // RESET_TRAJECTORY immediately followed by REPLAY_ANIMATIONS; THE EYE only
+                // sent the former, so any one-shot rotation timer that RESET_TRAJECTORY
+                // itself doesn't rebase (e.g. the dipole engine's rotation_start_time) went
+                // stale relative to the fresh stateStartTime. No-op on renderers without
+                // the handler.
+                await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
                 await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: revealTargetMs }, hasPanelB);
                 const poll = await pollSimTimeReached(page, 'panel_a', revealTargetMs, {
                     wallCapMs: revealTargetMs * 2.5 + 4000,
@@ -380,10 +419,15 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             // dense capture sees a LIVE clock from a fresh state-local t=0 (D5/D6/D7
             // need motion). SET_TIME_FREEZE{frozen:false} clears the pin;
             // RESET_TRAJECTORY re-zeroes stateStartTime + the trail. No-op on
-            // renderers without these handlers.
+            // renderers without these handlers. REPLAY_ANIMATIONS pairs with it (see
+            // note above) so a fresh dense "t=0" shows the state's TRUE authored
+            // starting pose (e.g. a damped_pendulum's initial angle), not wherever the
+            // primary capture's forward time-snap had already carried a one-shot
+            // rotation timer that RESET_TRAJECTORY alone doesn't rebase.
             if (revealTargetMs != null && revealTargetMs > 0) {
                 await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, hasPanelB);
                 await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
+                await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
             }
 
             // Dense series — the state is already active here, so capture in place.
@@ -460,6 +504,7 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             animation_timeseries: animationTimeseries,
             dense_timeseries: req.dense ? denseTimeseries : undefined,
             template_leak_dom_findings: templateLeakDomFindings,
+            console_errors: consoleErrors,
             warnings,
         };
     } finally {
@@ -607,6 +652,10 @@ async function postToPanels(page: Page, msg: Record<string, unknown>, hasPanelB:
 /**
  * Capture the deterministic frozen frame for the CURRENT state:
  * RESET_TRAJECTORY (re-zeroes the renderer's state-local clock + trail) →
+ * REPLAY_ANIMATIONS (re-stamps one-shot rotation timers RESET_TRAJECTORY alone
+ * doesn't touch, e.g. the dipole engine's rotation_start_time — engine_bug_queue
+ * dipole_replay_animations_scenario_type_gap, 2026-07-08; mirrors production's
+ * rollTimeline() which always sends the two together) →
  * SET_TIME_FREEZE {at_ms} (virtual clock advances to the pin and holds) →
  * settle wait (covers the pin run-up PLUS the renderer's wall-clock easings,
  * e.g. the compass swing, which SET_TIME_FREEZE cannot pin — see the renderer
@@ -616,6 +665,7 @@ async function captureFrozenFrame(
     page: Page, hasPanelB: boolean, opts: { atMs: number; settleMs?: number },
 ): Promise<string> {
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
+    await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
     await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: opts.atMs }, hasPanelB);
     // Poll the renderer's actual sim-clock to REACH the pin before settling —
     // headless rAF throttling means field_3d's frame-count clock can still be
@@ -629,6 +679,7 @@ async function captureFrozenFrame(
     const png = await captureIframe(page, 'panel_a');
     await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, hasPanelB);
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
+    await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
     return png.toString('base64');
 }
 
@@ -812,8 +863,12 @@ async function captureDenseSeries(
 
     // field_3d: sim-time-pinned dense capture. Reset ONCE for a clean state-local
     // t=0 + empty trail; never reset between frames (that would wipe the trail the
-    // crawl is accumulating).
+    // crawl is accumulating). REPLAY_ANIMATIONS paired with the reset (engine_bug_queue
+    // dipole_replay_animations_scenario_type_gap, 2026-07-08) so one-shot rotation
+    // timers RESET_TRAJECTORY alone doesn't rebase (e.g. the dipole engine's
+    // rotation_start_time) don't leave the dense series' own "t=0" reading mid-motion.
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, false);
+    await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, false);
     for (let i = 0; i < frameCount; i++) {
         // Pin to the frame's sim-time. max(1, …) avoids at_ms=0, which the
         // renderer's SET_TIME_FREEZE handler maps to its 1500ms default.
@@ -830,6 +885,7 @@ async function captureDenseSeries(
     // Hand a live clock back to the downstream math-replay / next state.
     await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, false);
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, false);
+    await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, false);
     return { state_id: stateId, frames_b64: frames, capture_times_ms: captureTimes };
 }
 

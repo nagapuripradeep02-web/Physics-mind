@@ -56,7 +56,7 @@ export type VisualCheckId =
     // Category G — Panel B practical understanding
     | 'G1' | 'G2' | 'G3' | 'G4' | 'G5' | 'G6'
     // Category H — Authoring hygiene (pixelGate / regressionGate)
-    | 'H1' | 'H2'
+    | 'H1' | 'H2' | 'H3'
     // Category I — TTS–visual semantic sync
     | 'I1' | 'I2';
 
@@ -115,6 +115,7 @@ export type BugClass =
     | 'TEMPLATE_LEAK'
     | 'ANIMATION_NO_PLAYBACK_PIXEL'
     | 'VISUAL_REGRESSION'
+    | 'RENDER_CONSOLE_ERROR'
     // Category I — TTS–visual semantic sync
     | 'TTS_GLOW_TARGET_MISSING'
     | 'TTS_MATH_NOT_RENDERED';
@@ -413,6 +414,12 @@ export const VISUAL_CHECKS: Record<VisualCheckId, VisualCheckSpec> = {
         passCriterion: 'Each state render pixelmatches its approved baseline in visual_baselines/<concept_id>/ within tolerance (default 2%). Skipped when no baseline is approved or the state is excluded (compare:false for animated states).',
         bugClass: 'VISUAL_REGRESSION',
         validationMethod: 'pixel',
+    },
+    H3: {
+        id: 'H3', category: 'H', name: 'Render console errors',
+        passCriterion: 'The page (wrapper + sim iframes) emitted zero console.error output and zero uncaught exceptions during capture. Catches render crashes, dead-slider handler throws, and CDN-load failures at the root instead of via downstream pixel symptoms. Collected by page.on(console/pageerror) in screenshotter.ts, attributed to the state being driven.',
+        bugClass: 'RENDER_CONSOLE_ERROR',
+        validationMethod: 'dom',
     },
 
     // ── Category I — TTS–visual semantic sync (vision) ───────────────────────

@@ -17,7 +17,7 @@ import { Buffer } from 'node:buffer';
 import pixelmatch from 'pixelmatch';
 import sharp from 'sharp';
 import { createWorker, type Worker } from 'tesseract.js';
-import type { CaptureResult, DenseTimeseries, TemplateLeakFinding } from './screenshotter';
+import type { CaptureResult, ConsoleErrorFinding, DenseTimeseries, TemplateLeakFinding } from './screenshotter';
 import type { CheckResult, VisualCheckId } from './spec';
 import { VISUAL_CHECKS } from './spec';
 
@@ -130,6 +130,9 @@ export async function runPixelGate(input: RunPixelGateInput): Promise<PixelGateR
     // H1 — template substitution leak (DOM findings + OCR backstop)
     const h1Results = await runH1Checks(input.capture);
     results.push(...h1Results);
+
+    // H3 — render console errors (collected by screenshotter's page listeners)
+    results.push(...runConsoleChecks(input.capture));
 
     return {
         check_results: results,
@@ -325,6 +328,37 @@ async function runH1Checks(capture: CaptureResult): Promise<CheckResult[]> {
         }
     }
 
+    return results;
+}
+
+// ─── H3 — render console errors ───────────────────────────────────────────────
+
+/**
+ * One H3 CheckResult per capture-context that emitted console.error output or
+ * an uncaught exception ('(load)' + each affected state), plus a single passing
+ * summary row when the whole capture was clean. Deterministic and $0 — a render
+ * crash or dead-slider throw fails THE EYE even when the pixels look plausible.
+ */
+function runConsoleChecks(capture: CaptureResult): CheckResult[] {
+    const errors = capture.console_errors ?? [];
+    if (errors.length === 0) {
+        return [mkResult('H3', 'ALL_STATES', true,
+            'OK — zero console.error output and zero uncaught exceptions during capture.')];
+    }
+    const byState = new Map<string, ConsoleErrorFinding[]>();
+    for (const e of errors) {
+        const arr = byState.get(e.state_id) ?? [];
+        arr.push(e);
+        byState.set(e.state_id, arr);
+    }
+    const results: CheckResult[] = [];
+    for (const [stateId, hits] of byState) {
+        const sample = hits.slice(0, 3)
+            .map(h => `[${h.kind}] ${h.text.length > 200 ? h.text.slice(0, 200) + '…' : h.text}`)
+            .join(' | ');
+        results.push(mkResult('H3', stateId, false,
+            `${hits.length} console error(s) during capture: ${sample}${hits.length > 3 ? ` (+${hits.length - 3} more)` : ''}. A rendering exception fired even if pixels look plausible — fix the throw, not the symptom.`));
+    }
     return results;
 }
 

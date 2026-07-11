@@ -35,6 +35,7 @@ function mkCapture(series: DenseTimeseries[]): CaptureResult {
         param_relay: { timed_out: true },
         dense_timeseries: series,
         template_leak_dom_findings: [],
+        console_errors: [],
         warnings: [],
     };
 }
