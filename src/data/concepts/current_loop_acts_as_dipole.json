@@ -120,6 +120,7 @@
         "duration": 14,
         "focal_primitive_id": "setup_label",
         "advance_mode": "auto_after_tts",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -163,6 +164,7 @@
         "duration": 18,
         "focal_primitive_id": "field_title",
         "advance_mode": "manual_click",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -175,7 +177,7 @@
             "type": "annotation",
             "id": "predict_label",
             "position": { "x": 200, "y": 230 },
-            "text": "Predict before the reveal:\nwhat shape do the field lines make\naround a loop of current?",
+            "text": "Watch the space around the loop —\na field is about to appear.",
             "color": "#FFCC9F"
           },
           {
@@ -196,24 +198,19 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Moving charge always makes a magnetic field. The current in this loop is moving charge, so it must make a field.", "text_hi": "Moving charge हमेशा एक magnetic field बनाती है। इस loop में current moving charge है, तो यह field जरूर बनाएगी।", "text_te": "Moving charge ఎప్పుడూ ఒక magnetic field తయారు చేస్తుంది. ఈ loop లో current అంటే moving charge, అందుకే ఇది field తప్పక తయారు చేస్తుంది.", "glow": "loop" },
-            { "id": "s2_2", "text_en": "Predict the shape. Take three seconds. What do the field lines around a current loop look like?", "text_hi": "Shape predict करो। तीन seconds लो। एक current loop के आस-पास field lines कैसी दिखती हैं?", "text_te": "Shape predict చెయ్యండి. మూడు seconds తీసుకోండి. ఒక current loop చుట్టూ field lines ఎలా కనిపిస్తాయి?", "glow": "predict_label", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "Here they are. The lines leave one face, curl right around through space, and come back into the other face.", "text_hi": "ये रहीं। Lines एक face से निकलती हैं, space में curl होकर, दूसरे face में वापस आ जाती हैं।", "text_te": "ఇవిగో. Lines ఒక face నుండి బయటకు వెళ్ళి, space లో curl అయి, మళ్ళీ రెండో face లోకి తిరిగి వస్తాయి.", "glow": "loop_field_line" },
-            { "id": "s2_4", "text_en": "Closed loops in three dimensions — not a flat circle around the wire. That shape is the clue to what comes next.", "text_hi": "तीन dimensions में closed loops — wire के चारों तरफ एक flat circle नहीं। वो shape ही अगली बात का clue है।", "text_te": "మూడు dimensions లో closed loops — wire చుట్టూ ఒక flat circle కాదు. ఆ shape అనేది తర్వాత వచ్చే విషయానికి clue.", "glow": "loop_field_line" }
+            { "id": "s2_1", "text_en": "Moving charge makes a magnetic field — and current in this loop is moving charge.", "text_hi": "Moving charge हमेशा एक magnetic field बनाती है। इस loop में current moving charge है, तो यह field जरूर बनाएगी।", "text_te": "Moving charge ఎప్పుడూ ఒక magnetic field తయారు చేస్తుంది. ఈ loop లో current అంటే moving charge, అందుకే ఇది field తప్పక తయారు చేస్తుంది.", "glow": "loop" },
+            { "id": "s2_2", "text_en": "Watch the space around the loop for the field it creates.", "text_hi": "Shape predict करो। तीन seconds लो। एक current loop के आस-पास field lines कैसी दिखती हैं?", "text_te": "Shape predict చెయ్యండి. మూడు seconds తీసుకోండి. ఒక current loop చుట్టూ field lines ఎలా కనిపిస్తాయి?", "glow": "predict_label" },
+            { "id": "s2_3", "text_en": "The lines leave one face, curl through space, and return into the other face.", "text_hi": "ये रहीं। Lines एक face से निकलती हैं, space में curl होकर, दूसरे face में वापस आ जाती हैं।", "text_te": "ఇవిగో. Lines ఒక face నుండి బయటకు వెళ్ళి, space లో curl అయి, మళ్ళీ రెండో face లోకి తిరిగి వస్తాయి.", "glow": "loop_field_line" },
+            { "id": "s2_4", "text_en": "Closed loops in three dimensions, not a flat circle — that is the clue ahead.", "text_hi": "तीन dimensions में closed loops — wire के चारों तरफ एक flat circle नहीं। वो shape ही अगली बात का clue है।", "text_te": "మూడు dimensions లో closed loops — wire చుట్టూ ఒక flat circle కాదు. ఆ shape అనేది తర్వాత వచ్చే విషయానికి clue.", "glow": "loop_field_line" }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "Current only makes circular field lines around the wire, not a looped dipole pattern through the loop.",
-            "one_line_fix": "Each bit of the ring does circle its wire, but adding all the bits together gives a field that threads through the loop and closes far away — the dipole pattern."
-          }
-        ]
+        }
       },
       "STATE_3": {
         "title": "One face is North, one is South",
         "duration": 18,
         "focal_primitive_id": "pole_title",
         "advance_mode": "manual_click",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -233,7 +230,7 @@
             "type": "annotation",
             "id": "predict_pole",
             "position": { "x": 560, "y": 230 },
-            "text": "Could you ever get just\na single North pole on its own?\nPredict, then watch.",
+            "text": "Watch whether the north face\ncan ever exist by itself.",
             "color": "#66BB6A",
             "reveal_at_tts_id": "s3_4"
           },
@@ -248,10 +245,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Look at the face where the lines leave. That side acts as a north pole.", "text_hi": "जिस face से lines निकल रही हैं, उसे देखो। वो side north pole की तरह act करता है।", "text_te": "Lines బయటకు వెళ్ళే face చూడండి. ఆ side north pole లాగా act చేస్తుంది.", "glow": "loop_N_label" },
-            { "id": "s3_2", "text_en": "Look at the face where the lines come back in. That side acts as a south pole.", "text_hi": "जिस face में lines वापस आ रही हैं, उसे देखो। वो side south pole की तरह act करता है।", "text_te": "Lines తిరిగి వచ్చే face చూడండి. ఆ side south pole లాగా act చేస్తుంది.", "glow": "loop_S_label" },
-            { "id": "s3_3", "text_en": "So a single loop already has two poles — north on one face, south on the other.", "text_hi": "तो एक single loop में पहले से ही दो poles हैं — एक face पर north, दूसरे face पर south।", "text_te": "అంటే ఒక single loop లో ఇప్పటికే రెండు poles ఉన్నాయి — ఒక face పై north, మరో face పై south.", "glow": ["loop_N_label", "loop_S_label"] },
-            { "id": "s3_4", "text_en": "Could you keep just the north? No. The two faces are one object. A single magnetic pole does not exist.", "text_hi": "क्या तुम सिर्फ north रख सकते हो? नहीं। दोनों faces एक ही object हैं। एक single magnetic pole exist नहीं करता।", "text_te": "North ని మాత్రమే ఉంచగలవా? లేదు. రెండు faces ఒకే object. ఒక single magnetic pole exist అవదు.", "glow": "no_monopole" }
+            { "id": "s3_1", "text_en": "The face where the lines leave acts as a north pole.", "text_hi": "जिस face से lines निकल रही हैं, उसे देखो। वो side north pole की तरह act करता है।", "text_te": "Lines బయటకు వెళ్ళే face చూడండి. ఆ side north pole లాగా act చేస్తుంది.", "glow": "loop_N_label" },
+            { "id": "s3_2", "text_en": "The face where the lines return acts as a south pole.", "text_hi": "जिस face में lines वापस आ रही हैं, उसे देखो। वो side south pole की तरह act करता है।", "text_te": "Lines తిరిగి వచ్చే face చూడండి. ఆ side south pole లాగా act చేస్తుంది.", "glow": "loop_S_label" },
+            { "id": "s3_3", "text_en": "A single loop already has two poles — north on one face, south on the other.", "text_hi": "तो एक single loop में पहले से ही दो poles हैं — एक face पर north, दूसरे face पर south।", "text_te": "అంటే ఒక single loop లో ఇప్పటికే రెండు poles ఉన్నాయి — ఒక face పై north, మరో face పై south.", "glow": ["loop_N_label", "loop_S_label"] },
+            { "id": "s3_4", "text_en": "The two faces are one object — a single magnetic pole does not exist.", "text_hi": "क्या तुम सिर्फ north रख सकते हो? नहीं। दोनों faces एक ही object हैं। एक single magnetic pole exist नहीं करता।", "text_te": "North ని మాత్రమే ఉంచగలవా? లేదు. రెండు faces ఒకే object. ఒక single magnetic pole exist అవదు.", "glow": "no_monopole" }
           ]
         },
         "misconception_watch": [
@@ -265,8 +262,9 @@
         "title": "This IS a bar magnet's field",
         "duration": 26,
         "focal_primitive_id": "aha_title",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "has_prebuilt_deep_dive": false,
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -279,7 +277,7 @@
             "type": "annotation",
             "id": "compare_prompt",
             "position": { "x": 200, "y": 230 },
-            "text": "On the left: a bar magnet.\nOn the right: our current loop.\nCompare the two field patterns.\nSame or different?",
+            "text": "On the left: a bar magnet.\nOn the right: our current loop.\nCompare the two field patterns.",
             "color": "#FFCC9F"
           },
           {
@@ -301,11 +299,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Now bring a bar magnet alongside the loop. There it is, on the left.", "text_hi": "अब एक bar magnet को loop के पास लाते हैं। देखो, वो left side पर है।", "text_te": "ఇప్పుడు ఒక bar magnet ని loop పక్కన తీసుకొద్దాం. అదిగో, left side లో ఉంది.", "glow": "bar_compare" },
-            { "id": "s4_2", "text_en": "Both are drawn the same way. Compare the two field patterns. Take three seconds — same or different?", "text_hi": "दोनों को same तरीके से draw किया गया है। दोनों field patterns compare करो। तीन seconds लो — same है या different?", "text_te": "రెండింటినీ same విధంగా draw చేశారు. రెండు field patterns compare చెయ్యండి. మూడు seconds తీసుకోండి — same గా ఉన్నాయా లేదా different?", "glow": "compare_prompt", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "Look carefully. The loops of field line have the same shape, the same north and south.", "text_hi": "ध्यान से देखो। field line के loops का shape same है, north and south भी same हैं।", "text_te": "జాగ్రత్తగా చూడండి. field line loops అన్నింటికీ same shape ఉంది, same north and south కూడా.", "glow": ["loop_field_line", "bar_compare"] },
+            { "id": "s4_1", "text_en": "Now bring a bar magnet alongside the loop.", "text_hi": "अब एक bar magnet को loop के पास लाते हैं। देखो, वो left side पर है।", "text_te": "ఇప్పుడు ఒక bar magnet ని loop పక్కన తీసుకొద్దాం. అదిగో, left side లో ఉంది.", "glow": "bar_compare" },
+            { "id": "s4_2", "text_en": "Compare the two field patterns.", "text_hi": "दोनों को same तरीके से draw किया गया है। दोनों field patterns compare करो। तीन seconds लो — same है या different?", "text_te": "రెండింటినీ same విధంగా draw చేశారు. రెండు field patterns compare చెయ్యండి. మూడు seconds తీసుకోండి — same గా ఉన్నాయా లేదా different?", "glow": "compare_prompt" },
+            { "id": "s4_3", "text_en": "The loops of field line share the same shape, same north and south.", "text_hi": "ध्यान से देखो। field line के loops का shape same है, north and south भी same हैं।", "text_te": "జాగ్రత్తగా చూడండి. field line loops అన్నింటికీ same shape ఉంది, same north and south కూడా.", "glow": ["loop_field_line", "bar_compare"] },
             { "id": "s4_4", "text_en": "They are identical. Outside, a current loop's field is exactly a bar magnet's field.", "text_hi": "वो identical हैं। बाहर, एक current loop का field बिल्कुल एक bar magnet के field जैसा ही है।", "text_te": "అవి identical గా ఉన్నాయి. బయట, ఒక current loop యొక్క field సరిగ్గా ఒక bar magnet యొక్క field లాంటిదే.", "glow": "compare_reveal", "math_show": "\\text{loop field} \\;\\equiv\\; \\text{bar-magnet field}" },
-            { "id": "s4_5", "text_en": "That is the big idea. A current loop IS a magnetic dipole. Swap one for the other and nothing outside changes.", "text_hi": "यही है big idea। एक current loop ही एक magnetic dipole है। एक को दूसरे से swap करो — बाहर कुछ नहीं बदलेगा।", "text_te": "ఇదే big idea. ఒక current loop అనేది magnetic dipole. ఒకదాన్ని మరొకదానితో swap చెయ్యి — బయట ఏమీ మారదు.", "glow": "aha_note" }
+            { "id": "s4_5", "text_en": "That is the big idea: a current loop IS a magnetic dipole.", "text_hi": "यही है big idea। एक current loop ही एक magnetic dipole है। एक को दूसरे से swap करो — बाहर कुछ नहीं बदलेगा।", "text_te": "ఇదే big idea. ఒక current loop అనేది magnetic dipole. ఒకదాన్ని మరొకదానితో swap చెయ్యి — బయట ఏమీ మారదు.", "glow": "aha_note" }
           ]
         },
         "misconception_watch": [
@@ -321,6 +319,7 @@
         "focal_primitive_id": "moment_title",
         "advance_mode": "manual_click",
         "has_prebuilt_deep_dive": false,
+        "visible_controls": ["N", "I"],
         "scene_composition": [
           {
             "type": "annotation",
@@ -353,24 +352,19 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "How strong is this dipole? One quantity answers it: the magnetic moment m, equal to N times I times A.", "text_hi": "यह dipole कितना strong है? एक quantity ही जवाब देती है: magnetic moment m, जो N times I times A के बराबर है।", "text_te": "ఈ dipole ఎంత strong? ఒక quantity మాత్రమే జవాబు చెప్తుంది: magnetic moment m, అది N times I times A కి సమానం.", "glow": "mu_arrow", "math_show": "m = N I A,\\quad A = \\pi r^2" },
-            { "id": "s5_2", "text_en": "It is a vector, not just a number. The yellow arrow points along the loop axis.", "text_hi": "यह सिर्फ एक number नहीं, यह एक vector है। Yellow arrow, loop axis के साथ-साथ point करता है।", "text_te": "ఇది కేవలం ఒక number కాదు, ఇది ఒక vector. Yellow arrow, loop axis వెంట point చేస్తుంది.", "glow": "mu_arrow" },
-            { "id": "s5_3", "text_en": "Its direction is the right-hand rule. Curl your fingers along the current; your thumb points along magnetic moment m.", "text_hi": "इसकी direction right-hand rule से मिलती है। अपनी fingers को current के साथ curl करो; thumb magnetic moment m की direction में point करेगा।", "text_te": "దీని direction అనేది right-hand rule వల్ల వస్తుంది. మీ fingers ని current వెంట curl చెయ్యండి; thumb magnetic moment m వెంట point చేస్తుంది.", "glow": "mu_arrow" },
-            { "id": "s5_4", "text_en": "More turns, more current, or more area — all make magnetic moment m bigger, and the dipole stronger.", "text_hi": "ज्यादा turns, ज्यादा current, या ज्यादा area — सब magnetic moment m को बड़ा बनाते हैं, और dipole को stronger।", "text_te": "ఎక్కువ turns, ఎక్కువ current, లేదా ఎక్కువ area — అన్నీ magnetic moment m ని పెద్దగా చేస్తాయి, dipole ని stronger గా చేస్తాయి.", "glow": "moment_scale" }
+            { "id": "s5_1", "text_en": "How strong is this dipole? The magnetic moment m equals N times I times A.", "text_hi": "यह dipole कितना strong है? एक quantity ही जवाब देती है: magnetic moment m, जो N times I times A के बराबर है।", "text_te": "ఈ dipole ఎంత strong? ఒక quantity మాత్రమే జవాబు చెప్తుంది: magnetic moment m, అది N times I times A కి సమానం.", "glow": "mu_arrow", "math_show": "m = N I A,\\quad A = \\pi r^2" },
+            { "id": "s5_2", "text_en": "It is a vector, not a number — the yellow arrow points along the loop axis.", "text_hi": "यह सिर्फ एक number नहीं, यह एक vector है। Yellow arrow, loop axis के साथ-साथ point करता है।", "text_te": "ఇది కేవలం ఒక number కాదు, ఇది ఒక vector. Yellow arrow, loop axis వెంట point చేస్తుంది.", "glow": "mu_arrow" },
+            { "id": "s5_3", "text_en": "Its direction follows the right-hand rule — curl fingers along the current, thumb along m.", "text_hi": "इसकी direction right-hand rule से मिलती है। अपनी fingers को current के साथ curl करो; thumb magnetic moment m की direction में point करेगा।", "text_te": "దీని direction అనేది right-hand rule వల్ల వస్తుంది. మీ fingers ని current వెంట curl చెయ్యండి; thumb magnetic moment m వెంట point చేస్తుంది.", "glow": "mu_arrow" },
+            { "id": "s5_4", "text_en": "More turns, current, or area make m bigger — a stronger dipole.", "text_hi": "ज्यादा turns, ज्यादा current, या ज्यादा area — सब magnetic moment m को बड़ा बनाते हैं, और dipole को stronger।", "text_te": "ఎక్కువ turns, ఎక్కువ current, లేదా ఎక్కువ area — అన్నీ magnetic moment m ని పెద్దగా చేస్తాయి, dipole ని stronger గా చేస్తాయి.", "glow": "moment_scale" }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The magnetic moment is just a number that measures strength.",
-            "one_line_fix": "m is a vector. Its size N·I·A sets the strength AND its direction (along the axis, by the right-hand rule) sets which way the dipole points — both matter."
-          }
-        ]
+        }
       },
       "STATE_6": {
         "title": "Put it in an external field",
         "duration": 20,
         "focal_primitive_id": "field_setup_title",
         "advance_mode": "auto_after_tts",
+        "visible_controls": ["B"],
         "scene_composition": [
           {
             "type": "annotation",
@@ -403,10 +397,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Now switch on a uniform external field — the blue arrows, magnetic field B.", "text_hi": "अब एक uniform external field switch on करते हैं — वो blue arrows, magnetic field B।", "text_te": "ఇప్పుడు ఒక uniform external field switch on చేద్దాం — ఆ blue arrows, magnetic field B.", "glow": "b" },
-            { "id": "s6_2", "text_en": "Opposite sides of the loop feel opposite forces. Together they make a couple: no net push, but a turning effect.", "text_hi": "Loop के opposite sides को opposite forces feel होती हैं। मिलकर वो एक couple बनाते हैं: कोई net push नहीं, पर एक turning effect जरूर है।", "text_te": "Loop యొక్క opposite sides కి opposite forces అనిపిస్తాయి. కలిసి అవి ఒక couple తయారు చేస్తాయి: net push లేదు, కానీ ఒక turning effect ఉంటుంది.", "glow": ["f_left", "f_right"] },
-            { "id": "s6_3", "text_en": "That turning effect is the torque, τ equals m cross B — the purple arrow.", "text_hi": "वो turning effect ही torque है, τ equals m cross B — वो purple arrow।", "text_te": "ఆ turning effect అనేది torque, τ equals m cross B — ఆ purple arrow.", "glow": "tau_arrow", "math_show": "\\vec{\\tau} = \\vec{m} \\times \\vec{B}" },
-            { "id": "s6_4", "text_en": "A bar magnet of the same moment in the same field would feel exactly this torque.", "text_hi": "इसी field में इसी moment का bar magnet exactly यही torque feel करेगा।", "text_te": "అదే field లో అదే moment గల bar magnet సరిగ్గా ఇదే torque అనుభవిస్తుంది.", "glow": "tau_arrow" }
+            { "id": "s6_1", "text_en": "Now switch on a uniform external field B — the blue arrows.", "text_hi": "अब एक uniform external field switch on करते हैं — वो blue arrows, magnetic field B।", "text_te": "ఇప్పుడు ఒక uniform external field switch on చేద్దాం — ఆ blue arrows, magnetic field B.", "glow": "b" },
+            { "id": "s6_2", "text_en": "Opposite sides of the loop feel opposite forces — a couple, no net push, but a turning effect.", "text_hi": "Loop के opposite sides को opposite forces feel होती हैं। मिलकर वो एक couple बनाते हैं: कोई net push नहीं, पर एक turning effect जरूर है।", "text_te": "Loop యొక్క opposite sides కి opposite forces అనిపిస్తాయి. కలిసి అవి ఒక couple తయారు చేస్తాయి: net push లేదు, కానీ ఒక turning effect ఉంటుంది.", "glow": ["f_left", "f_right"] },
+            { "id": "s6_3", "text_en": "That turning effect is the torque, τ equals m cross B.", "text_hi": "वो turning effect ही torque है, τ equals m cross B — वो purple arrow।", "text_te": "ఆ turning effect అనేది torque, τ equals m cross B — ఆ purple arrow.", "glow": "tau_arrow", "math_show": "\\vec{\\tau} = \\vec{m} \\times \\vec{B}" },
+            { "id": "s6_4", "text_en": "A bar magnet of the same moment would feel exactly this torque.", "text_hi": "इसी field में इसी moment का bar magnet exactly यही torque feel करेगा।", "text_te": "అదే field లో అదే moment గల bar magnet సరిగ్గా ఇదే torque అనుభవిస్తుంది.", "glow": "tau_arrow" }
           ]
         }
       },
@@ -415,6 +409,7 @@
         "duration": 18,
         "focal_primitive_id": "align_title",
         "advance_mode": "auto_after_tts",
+        "visible_controls": ["theta_deg"],
         "scene_composition": [
           {
             "type": "annotation",
@@ -447,9 +442,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Watch what the torque does. The loop swings, back and forth, and settles with magnetic moment m lined up along magnetic field B.", "text_hi": "देखो torque क्या करता है। Loop आगे-पीछे swing करता है, और magnetic moment m को magnetic field B के साथ line up करके settle हो जाता है।", "text_te": "Torque ఏం చేస్తోందో చూడండి. Loop ముందూ వెనకా swing అవుతుంది, మరియు magnetic moment m ని magnetic field B వెంట line up చేసి settle అవుతుంది.", "glow": "mu_arrow" },
-            { "id": "s7_2", "text_en": "That is exactly a compass needle finding north. The needle is just a magnetic dipole, and so is this loop.", "text_hi": "यह बिल्कुल वैसा ही है जैसे एक compass needle north ढूंढती है। वो needle सिर्फ एक magnetic dipole है, और यह loop भी।", "text_te": "ఇది సరిగ్గా ఒక compass needle north వెతికినట్లే. ఆ needle కేవలం ఒక magnetic dipole, ఈ loop కూడా అంతే.", "glow": "mu_arrow" },
-            { "id": "s7_3", "text_en": "And notice — no permanent magnet was needed. A plain loop of current responds to the field on its own.", "text_hi": "और ध्यान दो — कोई permanent magnet जरूरी नहीं था। current का एक plain loop field पर खुद ही respond करता है।", "text_te": "మరియు గమనించండి — ఏ permanent magnet అవసరం లేదు. current యొక్క ఒక plain loop field కి తనంత తానే respond చేస్తుంది.", "glow": "compass_note" }
+            { "id": "s7_1", "text_en": "Watch the torque: the loop swings, then settles with m lined up along B.", "text_hi": "देखो torque क्या करता है। Loop आगे-पीछे swing करता है, और magnetic moment m को magnetic field B के साथ line up करके settle हो जाता है।", "text_te": "Torque ఏం చేస్తోందో చూడండి. Loop ముందూ వెనకా swing అవుతుంది, మరియు magnetic moment m ని magnetic field B వెంట line up చేసి settle అవుతుంది.", "glow": "mu_arrow" },
+            { "id": "s7_2", "text_en": "That is exactly a compass needle finding north — the needle is a magnetic dipole too.", "text_hi": "यह बिल्कुल वैसा ही है जैसे एक compass needle north ढूंढती है। वो needle सिर्फ एक magnetic dipole है, और यह loop भी।", "text_te": "ఇది సరిగ్గా ఒక compass needle north వెతికినట్లే. ఆ needle కేవలం ఒక magnetic dipole, ఈ loop కూడా అంతే.", "glow": "mu_arrow" },
+            { "id": "s7_3", "text_en": "And no permanent magnet was needed — this plain loop responds to the field on its own.", "text_hi": "और ध्यान दो — कोई permanent magnet जरूरी नहीं था। current का एक plain loop field पर खुद ही respond करता है।", "text_te": "మరియు గమనించండి — ఏ permanent magnet అవసరం లేదు. current యొక్క ఒక plain loop field కి తనంత తానే respond చేస్తుంది.", "glow": "compass_note" }
           ]
         },
         "misconception_watch": [
@@ -464,6 +459,7 @@
         "duration": 20,
         "focal_primitive_id": "origin_title",
         "advance_mode": "manual_click",
+        "visible_controls": [],
         "scene_composition": [
           {
             "type": "annotation",
@@ -483,7 +479,7 @@
             "type": "annotation",
             "id": "predict_origin",
             "position": { "x": 560, "y": 230 },
-            "text": "Predict: where does a bar magnet's\nmagnetism actually come from?",
+            "text": "Where does a bar magnet's\nmagnetism actually come from?",
             "color": "#66BB6A",
             "reveal_at_tts_id": "s8_3"
           },
@@ -499,22 +495,17 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s8_1", "text_en": "Here is why this matters so much. An electron orbiting in an atom is a tiny current loop.", "text_hi": "यह इतना important क्यों है? क्योंकि atom में orbit करने वाला electron एक tiny current loop होता है।", "text_te": "ఇది ఎందుకు ఇంత important? ఒక atom లో orbit చేసే electron ఒక tiny current loop.", "glow": "loop" },
-            { "id": "s8_2", "text_en": "So every atom carries tiny magnetic dipoles. Predict — where does a bar magnet's magnetism come from?", "text_hi": "तो हर atom में tiny magnetic dipoles होते हैं। Predict करो — एक bar magnet का magnetism आता कहाँ से है?", "text_te": "కాబట్టి ప్రతి atom లో tiny magnetic dipoles ఉంటాయి. Predict చెయ్యండి — ఒక bar magnet యొక్క magnetism ఎక్కడ నుండి వస్తుంది?", "glow": "predict_origin", "pause_after_ms": 3000 },
+            { "id": "s8_2", "text_en": "So every atom carries tiny magnetic dipoles — where does a bar magnet's magnetism actually come from?", "text_hi": "तो हर atom में tiny magnetic dipoles होते हैं। Predict करो — एक bar magnet का magnetism आता कहाँ से है?", "text_te": "కాబట్టి ప్రతి atom లో tiny magnetic dipoles ఉంటాయి. Predict చెయ్యండి — ఒక bar magnet యొక్క magnetism ఎక్కడ నుండి వస్తుంది?", "glow": "predict_origin" },
             { "id": "s8_3", "text_en": "From all those atomic loops adding up. Magnetism is built from current loops — never from single magnetic poles.", "text_hi": "उन सभी atomic loops के जुड़ने से। Magnetism current loops से बनता है — कभी single magnetic poles से नहीं।", "text_te": "ఆ అన్ని atomic loops కలవడం వల్ల. Magnetism అనేది current loops నుండి నిర్మితమవుతుంది — ఎన్నడూ single magnetic poles నుండి కాదు.", "glow": "origin_note" }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "Magnetism needs a permanent magnet, and magnetic monopoles (single poles) exist.",
-            "one_line_fix": "All magnetism comes from current loops — moving charges in atoms. Every source is a dipole; an isolated single magnetic pole has never been found."
-          }
-        ]
+        }
       },
       "STATE_9": {
         "title": "Your turn",
         "duration": 30,
         "focal_primitive_id": "sandbox_title",
         "advance_mode": "interaction_complete",
+        "visible_controls": ["N", "I", "B", "theta_deg"],
         "scene_composition": [
           {
             "type": "annotation",

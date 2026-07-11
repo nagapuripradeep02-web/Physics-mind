@@ -1345,6 +1345,22 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
     }
 
+    // biot_savart_law: accumulate_mode:'sequence' assembles the field circle
+    // element-by-element over num_elements (STATE_7 the full-assembly aha,
+    // STATE_8 the sinθ/r²-weighted variant) — pin the frozen frame past full
+    // assembly so THE EYE / visual:approve never captures the empty
+    // pre-assembly frame (docs/notes/biot_savart_law-engine-fix-spec.md Finding 1).
+    const be = asObj(state.biot_element);
+    if (be && be.accumulate_mode === 'sequence') {
+        const n = asNum(be.num_elements, 9);
+        candidates.push(
+            asNum(be.reveal_at_ms, 1500)
+            + Math.max(0, n - 1) * asNum(be.reveal_stagger_ms, 350)
+            + asNum(be.reveal_fade_ms, 400)
+            + 800,
+        );
+    }
+
     // moving_coil_galvanometer: the φ = N I A B / k diamond. Per-state `extras`
     // drive one-shot timed choreography that then HOLDS its end pose — the small
     // turn + force/ΣF=0 + τ grow on S2 (phi_target_deg / deflect), the crowded-scale

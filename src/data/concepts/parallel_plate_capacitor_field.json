@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.12 Parallel plate capacitor) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (set up two oppositely charged plates with a gap d → switch on V and PREDICT the field shape, confronting the radial-fan instinct → straight parallel equally-spaced lines from + to −, E = V/d → probe at three points and PREDICT the magnitudes, confronting the stronger-near-the-plates instinct → all three equal: the field is UNIFORM → derive WHY from two charged sheets, each σ/2ε₀, adding inside to σ/ε₀ and cancelling outside → turn edge-on and see the field CONFINED to the gap, ≈0 outside with only an edge fringe → hold V fixed and double d, confronting the field-depends-only-on-V instinct → E halves, E ∝ 1/d → hand the explorer the V and d sliders plus a draggable test charge), never copied. The atomic idea: between two oppositely charged parallel plates the electric field is UNIFORM — straight, parallel, equally-spaced lines running + to −, the SAME magnitude E = V/d = σ/ε₀ at every interior point regardless of position; it is ≈0 outside the plates (the two sheet-fields cancel) with only a small edge fringe; and at fixed voltage E ∝ 1/d. SCOPE: this is the UNIFORM-FIELD diamond of Ch.2. It declares electric_field_point_charge (the radial 1/r² field it is NOT), gauss_law_sheet (the single isolated sheet's σ/2ε₀), and electric_potential_meaning (V = W/q) as prerequisites and does NOT re-teach them. It STOPS SHORT of capacitance C = ε₀A/d, the stored energy ½CV², dielectrics, and the energy density of the field. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the four misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal). Routed to the field_3d parallel_plates scenario (NEW plate + uniform-field-line + three-probe-arrow + two-sheet-superposition + edge-on-fringe + gap-widen + draggable-test-charge primitives — the field_3d_config below is the renderer contract).",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.12 Parallel plate capacitor) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (set up two oppositely charged plates with a gap d, switch on V and show the field fill the gap in dead-straight, parallel, equally-spaced lines from + to − — not the radial fan a point charge would give, E = V/d → probe three points (near +, dead centre, near −) and show all three live E readouts identical: the field is UNIFORM → derive WHY from two charged sheets, each σ/2ε₀, ADDING inside to σ/ε₀ → turn edge-on and show the same two sheet-fields CANCELLING outside, confining the field to the gap with only a small edge fringe → hold V fixed and double d live, watch E halve: E ∝ 1/d → hand the explorer the V and d sliders plus a draggable test charge), never copied. The atomic idea: between two oppositely charged parallel plates the electric field is UNIFORM — straight, parallel, equally-spaced lines running + to −, the SAME magnitude E = V/d = σ/ε₀ at every interior point regardless of position; it is ≈0 outside the plates (the two sheet-fields cancel) with only a small edge fringe; and at fixed voltage E ∝ 1/d. SCOPE: this is the UNIFORM-FIELD diamond of Ch.2. It declares electric_field_point_charge (the radial 1/r² field it is NOT), gauss_law_sheet (the single isolated sheet's σ/2ε₀), and electric_potential_meaning (V = W/q) as prerequisites and does NOT re-teach them. It STOPS SHORT of capacitance C = ε₀A/d, the stored energy ½CV², dielectrics, and the energy density of the field. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch as a straightforward contrast beat — no predict→reveal). Reconstructed 2026-07-08 from the original 7-state Socratic arc to the Rule 31/32 straightforward model: STATE_1+STATE_2 merged into one setup-and-switch-on hook, the old STATE_4 superposition derivation split across two states (inside-add, then outside-cancel edge-on) so each state carries exactly one idea, and all predict-pause/wait_for_answer wiring is stripped. Routed to the field_3d parallel_plates scenario (plate + uniform-field-line + three-labeled-probe-point + two-sheet-superposition + edge-on-fringe + gap-widen + draggable-test-charge primitives — the field_3d_config below is the renderer contract).",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -111,9 +111,9 @@
     "max_words_per_tts_sentence": 32
   },
   "aha_moment": {
-    "state_id": "STATE_3",
+    "state_id": "STATE_2",
     "statement": "The field is the same at every point between the plates.",
-    "visual_confirmation": "Three E arrows probed at the +edge, the dead centre, and the −edge are drawn identical in length and direction.",
+    "visual_confirmation": "Three labeled points (A, B, C) at the +edge, dead centre, and −edge each show a live E readout — all three numbers identical.",
     "primary": true
   },
   "entry_state_map": {
@@ -121,495 +121,290 @@
       "STATE_1",
       "STATE_2",
       "STATE_3",
-      "STATE_4",
-      "STATE_5"
+      "STATE_4"
     ],
     "uniformity": [
-      "STATE_2",
-      "STATE_3"
+      "STATE_1",
+      "STATE_2"
     ],
     "confinement": [
-      "STATE_4",
-      "STATE_5"
+      "STATE_3",
+      "STATE_4"
     ],
     "formula": [
-      "STATE_6"
+      "STATE_5"
     ],
     "exploration": [
-      "STATE_7"
+      "STATE_6"
     ]
   },
   "epic_l_path": {
-    "state_count": 7,
+    "state_count": 6,
     "states": {
       "STATE_1": {
-        "title": "Two plates, one even gap — the setup",
-        "duration": 13,
-        "focal_primitive_id": "plus_plate_label",
-        "advance_mode": "auto_after_tts",
-        "teaching_method": "narrative_socratic",
+        "title": "Two plates, one gap — switch on V",
+        "duration": 24,
+        "focal_primitive_id": "field_fill_label",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "plus_plate_label",
+            "id": "setup_label",
             "position": {
-              "x": 360,
-              "y": 90
+              "x": 380,
+              "y": 60
             },
-            "text": "left plate +, right plate − — equal and opposite",
-            "color": "#EF5350",
-            "is_persistent": false
+            "text": "Two plates, gap d, connect voltage V",
+            "color": "#4FC3F7"
           },
           {
             "type": "annotation",
-            "id": "gap_bracket_label",
+            "id": "gap_label",
             "position": {
-              "x": 600,
-              "y": 260
+              "x": 200,
+              "y": 250
             },
-            "text": "the gap between them is the separation d",
-            "color": "#4FC3F7",
-            "is_persistent": false
+            "text": "the gap between them is d",
+            "color": "#90CAF9"
           },
           {
             "type": "annotation",
-            "id": "anchor_label",
+            "id": "field_fill_label",
             "position": {
-              "x": 360,
-              "y": 440
+              "x": 560,
+              "y": 380
             },
-            "text": "exactly the plates inside a ceiling-fan regulator capacitor",
-            "color": "#FFF176",
-            "is_persistent": false
+            "text": "field fills the gap — straight, parallel lines",
+            "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Here are two flat metal plates facing each other. The left plate is charged positive, the right plate negative — equal and opposite.",
-              "text_hi": "यहाँ दो flat metal plates एक-दूसरे के सामने हैं। left plate positively charged है, right plate negative — equal और opposite।",
-              "text_te": "ఇక్కడ రెండు flat metal plates ఒకదానికొకటి ఎదురుగా ఉన్నాయి. left plate positive గా charged, right plate negative — equal మరియు opposite.",
-              "reveal_primitive_id": "plus_plate_label",
-              "appear_at_ms": 700
+              "text_en": "Two flat metal plates face a small gap — like the ceiling-fan regulator capacitor's plates.",
+              "text_te": "రెండు చదునైన మెటల్ plates ఒక చిన్న gap ఎదురుగా ఉన్నాయి — ceiling-fan regulator capacitor యొక్క plates లాగా."
             },
             {
               "id": "s1_2",
-              "text_en": "The gap between them is the separation d. There is no field drawn yet — just the two charged plates set a distance apart.",
-              "text_hi": "उनके बीच का gap ही separation d है। अभी कोई field नहीं दिखाया गया — बस दो charged plates एक distance d पर रखी हैं।",
-              "text_te": "వాటి మధ్య gap అనేది separation d. ఇంకా ఏ field చూపించలేదు — కేవలం రెండు charged plates ఒక distance దూరంగా ఉన్నాయి.",
-              "reveal_primitive_id": "gap_bracket_label",
-              "appear_at_ms": 5200
+              "text_en": "That gap between them is the plate separation, d.",
+              "text_te": "వాటి మధ్య ఉన్న ఆ gap నే plate separation, d అంటారు."
             },
             {
               "id": "s1_3",
-              "text_en": "This is exactly the pair of metal sheets inside a ceiling-fan regulator capacitor — two plates, a small even gap.",
-              "text_hi": "यह बिल्कुल वही pair है जो ceiling-fan regulator के capacitor के अंदर होती है — दो plates, एक छोटा even gap।",
-              "text_te": "ఇది సరిగ్గా ఒక ceiling-fan regulator capacitor లోపల ఉండే metal sheets pair — రెండు plates, ఒక చిన్న even gap.",
-              "reveal_primitive_id": "anchor_label",
-              "appear_at_ms": 9000
+              "text_en": "Connect a voltage V across the plates.",
+              "text_te": "plates మధ్య ఒక voltage V ను కనెక్ట్ చేయండి."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "You might expect the field to fan out like a single charge's — instead it fills in dead-straight, parallel, evenly-spaced lines, running plate to plate.",
+              "text_te": "single charge దగ్గర ఉన్నట్టు field బయటకు విస్తరిస్తుందని మీరు అనుకోవచ్చు — కానీ బదులుగా ఇది పూర్తిగా straight, parallel, సమాన అంతరంలో ఉన్న lines తో నిండి, plate నుండి plate వరకు నడుస్తుంది."
             }
           ]
-        }
+        },
+        "misconception_watch": [
+          {
+            "belief": "The electric field between the plates fans out radially in every direction, the way it does around a single point charge.",
+            "visual_counter": "The narration names this expectation, then the field lines draw in dead-straight, parallel, evenly-spaced lines running plate to plate — no fan, no curve.",
+            "one_line_fix": "Between parallel plates the field is uniform, not radial — straight, parallel lines from + to −."
+          }
+        ]
       },
       "STATE_2": {
-        "title": "Switch on V — does the field fan out, or stay parallel?",
-        "duration": 18,
-        "focal_primitive_id": "predict_field_shape_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "misconception_confrontation",
+        "title": "PRIMARY aha — three equal probes: the field is uniform",
+        "duration": 24,
+        "focal_primitive_id": "probe_equal_label",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "field_setup_label",
+            "id": "probe_points_label",
             "position": {
-              "x": 360,
-              "y": 90
+              "x": 380,
+              "y": 60
             },
-            "text": "connect the voltage V — a field appears in the gap",
-            "color": "#4FC3F7",
-            "is_persistent": false
+            "text": "probe at +edge, centre, and −edge",
+            "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "predict_field_shape_label",
+            "id": "probe_equal_label",
             "position": {
-              "x": 600,
-              "y": 210
+              "x": 200,
+              "y": 250
             },
-            "text": "fan out radially, or stay straight and parallel?",
-            "color": "#90CAF9",
-            "is_persistent": false
+            "text": "all three readings identical",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "field_lines_uniform",
+            "id": "e_uniform_label",
             "position": {
-              "x": 360,
-              "y": 440
+              "x": 560,
+              "y": 380
             },
-            "text": "straight, parallel, equally spaced — all + to −",
-            "color": "#66BB6A",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "e_vd_label",
-            "position": {
-              "x": 600,
-              "y": 360
-            },
-            "text": "their strength is E = V / d",
-            "color": "#66BB6A",
-            "is_persistent": false
+            "text": "E = V/d — same everywhere inside",
+            "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Now connect the voltage V across the plates. An electric field appears in the gap between them.",
-              "text_hi": "अब voltage V को plates के across connect कीजिए। उनके बीच gap में electric field E प्रकट होता है।",
-              "text_te": "ఇప్పుడు voltage V ను plates అంతటా connect చేయండి. వాటి మధ్య gap లో electric field E ప్రత్యక్షమవుతుంది.",
-              "reveal_primitive_id": "field_setup_label",
-              "appear_at_ms": 700
+              "text_en": "Probe the field at three points: right at the positive plate, dead centre, and right at the negative plate.",
+              "text_te": "మూడు పాయింట్ల దగ్గర field ను probe చేయండి: positive plate దగ్గర సరిగ్గా, సరిగ్గా మధ్యలో, మరియు negative plate దగ్గర సరిగ్గా."
             },
             {
               "id": "s2_2",
-              "text_en": "Predict its shape: does the field fan out radially, like around a point charge, or stay straight and parallel? Decide before I reveal it.",
-              "text_hi": "इसकी shape predict कीजिए: क्या field radially fan out होती है, जैसे point charge के आसपास, या straight और parallel रहती है? reveal करने से पहले decide कीजिए।",
-              "text_te": "దాని shape ని predict చేయండి: field radially fan out అవుతుందా, point charge చుట్టూ లాగా, లేక straight మరియు parallel గా ఉంటుందా? నేను reveal చేసే ముందు decide చేయండి.",
-              "reveal_primitive_id": "predict_field_shape_label",
-              "appear_at_ms": 4500,
-              "pause_after_ms": 2500
+              "text_en": "You might expect it stronger near the plates and weaker in the middle — all three readings return identical.",
+              "text_te": "plates దగ్గర ఇది బలంగా, మధ్యలో బలహీనంగా ఉంటుందని మీరు అనుకోవచ్చు — కానీ మూడు readings కూడా ఒకేలా వస్తాయి."
             },
             {
               "id": "s2_3",
-              "text_en": "It is straight, parallel, equally-spaced lines, all running the same way — from the positive plate to the negative plate.",
-              "text_hi": "ये straight, parallel, equally-spaced lines हैं, सब एक ही direction में चलती हैं — positive plate से negative plate तक।",
-              "text_te": "ఇవి straight, parallel, equally-spaced lines, అన్నీ ఒకే direction లో నడుస్తున్నాయి — positive plate నుండి negative plate వరకు.",
-              "reveal_primitive_id": "field_lines_uniform",
-              "appear_at_ms": 8500
-            },
-            {
-              "id": "s2_4",
-              "text_en": "Their strength is the electric field E equals voltage V divided by separation d.",
-              "text_hi": "उनकी strength electric field E है जो voltage V को separation d से divide करने पर मिलती है।",
-              "text_te": "వాటి strength electric field E అనేది voltage V ని separation d తో divide చేయడం వల్ల వస్తుంది.",
-              "reveal_primitive_id": "e_vd_label",
-              "appear_at_ms": 13000
-            }
-          ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The field between the plates spreads out radially, fanning from each plate the way it does around a point charge.",
-            "visual_counter": "The lines fade in dead straight, parallel and equally spaced, every one running plate-to-plate in the same direction — no fan, no curve.",
-            "one_line_fix": "Between parallel plates the field lines are straight, parallel and equally spaced from + to −, not radial."
-          }
-        ]
-      },
-      "STATE_3": {
-        "title": "Probe three points — stronger near the plates, or all equal?",
-        "duration": 19,
-        "focal_primitive_id": "predict_strength_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "misconception_confrontation",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "probe_points_label",
-            "position": {
-              "x": 360,
-              "y": 90
-            },
-            "text": "probe at +edge, dead centre, and −edge",
-            "color": "#FFF176",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "predict_strength_label",
-            "position": {
-              "x": 600,
-              "y": 210
-            },
-            "text": "stronger near the plates, or the same everywhere?",
-            "color": "#90CAF9",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "three_arrows_equal",
-            "position": {
-              "x": 360,
-              "y": 440
-            },
-            "text": "all three arrows identical — same size, same direction",
-            "color": "#66BB6A",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "e_uniform_label",
-            "position": {
-              "x": 600,
-              "y": 360
-            },
-            "text": "UNIFORM: E does not depend on where you stand",
-            "color": "#66BB6A",
-            "is_persistent": false
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s3_1",
-              "text_en": "Let me probe the field at three places: right next to the positive plate, in the dead centre, and next to the negative plate.",
-              "text_hi": "तीन जगहों पर field probe करते हैं: positive plate के बिल्कुल पास, dead centre में, और negative plate के पास।",
-              "text_te": "మూడు చోట్ల field ని probe చేద్దాం: positive plate దగ్గరగా, dead centre లో, మరియు negative plate దగ్గర.",
-              "reveal_primitive_id": "probe_points_label",
-              "appear_at_ms": 700
-            },
-            {
-              "id": "s3_2",
-              "text_en": "Predict the three arrow lengths: is the electric field E stronger near the plates, or exactly the same at every point in between?",
-              "text_hi": "तीन arrows की lengths predict कीजिए: क्या electric field E plates के पास stronger है, या बीच के हर point पर exactly same है?",
-              "text_te": "మూడు arrows యొక్క lengths ని predict చేయండి: electric field E plates దగ్గర stronger గా ఉందా, లేక మధ్యలో ప్రతి point వద్ద exactly same గా ఉందా?",
-              "reveal_primitive_id": "predict_strength_label",
-              "appear_at_ms": 5000,
-              "pause_after_ms": 3000
-            },
-            {
-              "id": "s3_3",
-              "text_en": "All three arrows are identical. The field has the same magnitude and the same direction at every interior point.",
-              "text_hi": "तीनों arrows identical हैं। field की magnitude और direction हर interior point पर same है।",
-              "text_te": "మూడు arrows ఒకేలా ఉన్నాయి. field యొక్క magnitude మరియు direction ప్రతి interior point వద్ద same గా ఉంది.",
-              "reveal_primitive_id": "three_arrows_equal",
-              "appear_at_ms": 9500
-            },
-            {
-              "id": "s3_4",
-              "text_en": "That is what UNIFORM means — electric field E does not depend on where you stand between the plates.",
-              "text_hi": "यही UNIFORM का मतलब है — electric field E इस पर depend नहीं करता कि आप plates के बीच कहाँ खड़े हैं।",
-              "text_te": "UNIFORM అంటే అదే అర్థం — electric field E మీరు plates మధ్య ఎక్కడ నిలుచున్నారు అన్నదానిపై depend చేయదు.",
-              "reveal_primitive_id": "e_uniform_label",
-              "appear_at_ms": 14000
+              "text_en": "That is what uniform means: E equals V over d, same everywhere inside.",
+              "text_te": "uniform అంటే ఇదే: electric field E equals voltage V over separation d, లోపల ప్రతిచోటా ఒకేలా ఉంటుంది."
             }
           ]
         },
         "misconception_watch": [
           {
             "belief": "The field is stronger right next to the plates and weaker in the middle of the gap.",
-            "visual_counter": "Three probe arrows at the +edge, the centre, and the −edge are drawn identical in length and direction — the field never changes across the gap.",
-            "one_line_fix": "The field between parallel plates is uniform — E = V/d is the same at every interior point."
+            "visual_counter": "Three labeled points, A, B and C — near the positive plate, dead centre, and near the negative plate — each show an identical live E reading.",
+            "one_line_fix": "The field is the same at every interior point — that is what uniform means."
           }
         ],
         "has_prebuilt_deep_dive": true,
-        "allow_deep_dive": true,
         "drill_downs": [
           "why_field_doesnt_fan_out",
-          "field_same_in_middle"
+          "field_same_in_middle",
+          "where_does_v_over_d_come_from"
         ]
       },
-      "STATE_4": {
-        "title": "Why uniform — two sheets, σ/2ε₀ each, adding inside",
+      "STATE_3": {
+        "title": "Why uniform — two sheets add inside",
         "duration": 22,
-        "focal_primitive_id": "e_sigma_label",
+        "focal_primitive_id": "sheets_add_label",
         "advance_mode": "manual_click",
-        "teaching_method": "derivation_first_principles",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "sheet_each_label",
             "position": {
-              "x": 360,
-              "y": 90
+              "x": 380,
+              "y": 60
             },
-            "text": "each plate is a sheet: field σ / 2ε₀, same at any distance",
-            "color": "#4FC3F7",
-            "is_persistent": false
+            "text": "each plate = a sheet, field σ/2ε₀",
+            "color": "#4FC3F7"
           },
           {
             "type": "annotation",
-            "id": "superpose_inside_label",
+            "id": "sheets_add_label",
             "position": {
-              "x": 600,
-              "y": 210
+              "x": 200,
+              "y": 250
             },
-            "text": "between the plates the two sheet-fields ADD",
-            "color": "#66BB6A",
-            "is_persistent": false
+            "text": "inside: the two fields ADD",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "field_confirm_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "sum = σ/ε₀ = V/d, the same field",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Treat each plate as a charged sheet, each one making a field of sigma over two epsilon-nought.",
+              "text_te": "ప్రతి plate నూ ఒక charged sheet గా అనుకోండి, ప్రతి ఒక్కటి sigma over two epsilon-nought అనే field ను తయారు చేస్తుంది."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Between the plates both sheet-fields point the same way, so they add.",
+              "text_te": "plates మధ్య, ఈ రెండు sheet-fields ఒకే దిశలో ఉంటాయి, కాబట్టి అవి add అవుతాయి."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The sum is sigma over epsilon-nought — the same uniform field, E equals V over d, we already saw.",
+              "text_te": "ఆ మొత్తం sigma over epsilon-nought — అదే uniform field, electric field E equals voltage V over separation d, ఇది మనం ఇంతకుముందే చూశాం."
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "sheet_field_sigma_two_epsilon",
+          "why_fields_add_inside",
+          "sigma_epsilon_vs_v_over_d"
+        ]
+      },
+      "STATE_4": {
+        "title": "Outside — the two fields cancel",
+        "duration": 24,
+        "focal_primitive_id": "cancel_outside_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "edge_on_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "turn edge-on, look from the side",
+            "color": "#4FC3F7"
           },
           {
             "type": "annotation",
             "id": "cancel_outside_label",
             "position": {
-              "x": 600,
-              "y": 360
+              "x": 200,
+              "y": 250
             },
-            "text": "outside they point opposite ways and CANCEL",
-            "color": "#42A5F5",
-            "is_persistent": false
+            "text": "outside: the two fields CANCEL",
+            "color": "#42A5F5"
           },
           {
             "type": "annotation",
-            "id": "e_sigma_label",
+            "id": "fringe_label",
             "position": {
-              "x": 360,
-              "y": 440
+              "x": 560,
+              "y": 380
             },
-            "text": "inside: E = σ / ε₀ = V / d — the same uniform field",
-            "color": "#66BB6A",
-            "is_persistent": false
+            "text": "only a small fringe curls at the edges",
+            "color": "#FFF176"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Here is why. Treat each plate as a charged sheet. One sheet alone makes a uniform field of size surface charge density sigma over two epsilon-nought — the same at any distance.",
-              "text_hi": "यह रहा कारण। हर plate को एक charged sheet मानिए। एक sheet अकेले surface charge density σ over two ε₀ का uniform field बनाती है — किसी भी distance पर same।",
-              "text_te": "ఇందుకే. ప్రతి plate ని ఒక charged sheet గా treat చేయండి. ఒక sheet మాత్రమే surface charge density σ over two ε₀ పరిమాణంలో uniform field చేస్తుంది — ఏ distance లో అయినా same.",
-              "reveal_primitive_id": "sheet_each_label",
-              "appear_at_ms": 700
+              "text_en": "Turn the capacitor edge-on: the same two sheet-fields are here, but now look further out, beyond either plate.",
+              "text_te": "capacitor ను edge-on గా తిప్పండి: ఇక్కడ కూడా అవే రెండు sheet-fields ఉన్నాయి, కానీ ఇప్పుడు మరింత బయటకు, ఏదైనా plate కు ఆవల చూడండి."
             },
             {
               "id": "s4_2",
-              "text_en": "Between the plates the two sheet-fields point the SAME way, so they add: sigma over two epsilon-nought plus sigma over two epsilon-nought.",
-              "text_hi": "plates के बीच दोनों sheet-fields एक ही direction में point करती हैं, इसलिए वे add होती हैं: σ over two ε₀ plus σ over two ε₀।",
-              "text_te": "plates మధ్య రెండు sheet-fields ఒకే direction లో point చేస్తాయి, కాబట్టి అవి add అవుతాయి: σ over two ε₀ plus σ over two ε₀.",
-              "reveal_primitive_id": "superpose_inside_label",
-              "appear_at_ms": 5500
+              "text_en": "Out there the two fields point opposite ways, so they cancel to nearly zero.",
+              "text_te": "అక్కడ ఈ రెండు fields వ్యతిరేక దిశల్లో ఉంటాయి, కాబట్టి అవి దాదాపు జీరో కి cancel అవుతాయి."
             },
             {
               "id": "s4_3",
-              "text_en": "Outside, the two sheet-fields point OPPOSITE ways, so they cancel to nearly zero.",
-              "text_hi": "बाहर, दोनों sheet-fields OPPOSITE directions में point करती हैं, इसलिए वे nearly zero हो जाती हैं।",
-              "text_te": "బయట, రెండు sheet-fields OPPOSITE directions లో point చేస్తాయి, కాబట్టి అవి nearly zero కి cancel అవుతాయి.",
-              "reveal_primitive_id": "cancel_outside_label",
-              "appear_at_ms": 10000
-            },
-            {
-              "id": "s4_4",
-              "text_en": "Inside, that sum is the electric field E equals surface charge density sigma over epsilon-nought — the very same uniform field as V divided by d.",
-              "text_hi": "अंदर, उनका sum electric field E equals surface charge density σ over ε₀ है — V divided by d के same uniform field।",
-              "text_te": "లోపల, ఆ sum electric field E equals surface charge density σ over ε₀ — V divided by d తో సరిగ్గా అదే uniform field.",
-              "reveal_primitive_id": "e_sigma_label",
-              "appear_at_ms": 14000
+              "text_en": "Only a thin fringe curls round the very edges — everywhere else outside, the field is essentially gone.",
+              "text_te": "plates అంచుల దగ్గర మాత్రమే కొద్దిగా curl అవుతుంది — బయట మిగతా ప్రతిచోటా, field దాదాపు పోయినట్టే."
             }
           ]
-        },
-        "has_prebuilt_deep_dive": true,
-        "allow_deep_dive": true
+        }
       },
       "STATE_5": {
-        "title": "Edge-on — the field is confined to the gap",
-        "duration": 18,
-        "focal_primitive_id": "empty_outside_label",
+        "title": "Fixed V, double d — E halves",
+        "duration": 24,
+        "focal_primitive_id": "gap_widen_label",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "sideview_label",
-            "position": {
-              "x": 360,
-              "y": 90
-            },
-            "text": "turn the capacitor edge-on, look from the side",
-            "color": "#4FC3F7",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "dense_inside_label",
-            "position": {
-              "x": 600,
-              "y": 210
-            },
-            "text": "between the plates: dense, uniform — the field lives here",
-            "color": "#66BB6A",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "empty_outside_label",
-            "position": {
-              "x": 360,
-              "y": 440
-            },
-            "text": "outside: almost no lines — E ≈ 0, field confined",
-            "color": "#66BB6A",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "fringe_label",
-            "position": {
-              "x": 600,
-              "y": 360
-            },
-            "text": "only a small fringe curls round the edges",
-            "color": "#FFF176",
-            "is_persistent": false
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s5_1",
-              "text_en": "Turn the capacitor edge-on so we can look from the side.",
-              "text_hi": "capacitor को edge-on घुमाइए ताकि हम side से देख सकें।",
-              "text_te": "capacitor ని edge-on తిప్పండి తద్వారా మనం side నుండి చూడవచ్చు.",
-              "reveal_primitive_id": "sideview_label",
-              "appear_at_ms": 700
-            },
-            {
-              "id": "s5_2",
-              "text_en": "Between the plates the field lines are dense and uniform — the field lives here.",
-              "text_hi": "plates के बीच field lines dense और uniform हैं — field यहीं रहता है।",
-              "text_te": "plates మధ్య field lines dense మరియు uniform గా ఉన్నాయి — field ఇక్కడే నివసిస్తుంది.",
-              "reveal_primitive_id": "dense_inside_label",
-              "appear_at_ms": 4500
-            },
-            {
-              "id": "s5_3",
-              "text_en": "Outside the plates there are almost no lines: the electric field E is approximately zero. The field is confined to the gap.",
-              "text_hi": "plates के बाहर लगभग कोई lines नहीं हैं: electric field E approximately zero है। field gap तक ही confined है।",
-              "text_te": "plates బయట దాదాపు ఏ lines లేవు: electric field E approximately zero గా ఉంది. field gap లోనే confined అయి ఉంది.",
-              "reveal_primitive_id": "empty_outside_label",
-              "appear_at_ms": 8500
-            },
-            {
-              "id": "s5_4",
-              "text_en": "Only a small fringe curls round the very edges — the one place a real capacitor leaks a little field.",
-              "text_hi": "केवल एक छोटा fringe किनारों के चारों ओर curl करता है — यही वह जगह है जहाँ real capacitor थोड़ा field leak करता है।",
-              "text_te": "కేవలం ఒక చిన్న fringe అంచుల చుట్టూ curl అవుతుంది — real capacitor కొంచెం field leak చేసే ఒకే ఒక చోటు.",
-              "reveal_primitive_id": "fringe_label",
-              "appear_at_ms": 13000
-            }
-          ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "A capacitor's field spreads out into the whole room, like the field of an isolated charge.",
-            "visual_counter": "The side view shows dense lines packed inside the gap and essentially nothing outside, with only a faint fringe curling at the edges.",
-            "one_line_fix": "The field is confined to the gap; outside an ideal capacitor the two plates' fields cancel to nearly zero."
-          }
-        ],
-        "has_prebuilt_deep_dive": true,
-        "allow_deep_dive": true,
-        "drill_downs": [
-          "field_zero_outside_capacitor"
-        ]
-      },
-      "STATE_6": {
-        "title": "Hold V, double d — does E stay, double, or halve?",
-        "duration": 18,
-        "focal_primitive_id": "predict_double_d_label",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "misconception_confrontation",
         "variable_overrides": {
           "V": 12,
           "d": 0.01
@@ -619,163 +414,114 @@
             "type": "annotation",
             "id": "fix_v_label",
             "position": {
-              "x": 360,
-              "y": 90
+              "x": 380,
+              "y": 60
             },
-            "text": "keep V fixed at 12 V, pull the plates twice as far apart",
-            "color": "#4FC3F7",
-            "is_persistent": false
+            "text": "V pinned at 12 V — about to pull plates apart",
+            "color": "#4FC3F7"
           },
           {
             "type": "annotation",
-            "id": "predict_double_d_label",
+            "id": "gap_widen_label",
             "position": {
-              "x": 600,
-              "y": 210
+              "x": 200,
+              "y": 250
             },
-            "text": "V fixed, d doubled: E stays, doubles, or halves?",
-            "color": "#90CAF9",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "d_doubles_anim",
-            "position": {
-              "x": 600,
-              "y": 360
-            },
-            "text": "gap widens, lines spread, E readout drops to half",
-            "color": "#66BB6A",
-            "is_persistent": false
+            "text": "gap widens, live E readout falls",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "e_halves_label",
             "position": {
-              "x": 360,
-              "y": 440
+              "x": 560,
+              "y": 380
             },
-            "text": "E = V / d, so doubling d halves E: E ∝ 1/d",
-            "color": "#66BB6A",
-            "is_persistent": false
+            "text": "E = V/d — double d, E halves",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Keep voltage V fixed at twelve volts — I am about to pull the plates twice as far apart.",
+              "text_te": "voltage V ను పన్నెండు volts వద్ద ఫిక్స్ గా ఉంచండి — ఇప్పుడు నేను plates ను రెండింతలు దూరం లాగబోతున్నాను."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Watch the gap widen and the lines spread — the live reading falls from twelve hundred to six hundred volts per metre.",
+              "text_te": "gap వెడల్పు అవ్వడం మరియు lines విస్తరించడం చూడండి — live reading పన్నెండు వందల నుండి ఆరు వందల volts per metre కి పడిపోతుంది."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Since E equals V over d, doubling d at fixed voltage always halves the field.",
+              "text_te": "electric field E equals voltage V over separation d కాబట్టి, voltage ఫిక్స్ గా ఉన్నప్పుడు separation d ని రెట్టింపు చేస్తే, field ఎప్పుడూ సగం అవుతుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The electric field depends only on the voltage, so moving the plates apart at fixed V should leave the field unchanged.",
+            "visual_counter": "With V pinned at 12 V, the plates pull apart and the live readout falls from 1200 V/m to 600 V/m.",
+            "one_line_fix": "Since E = V/d, at fixed voltage doubling the separation halves the field."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "e_inverse_d_at_fixed_v",
+          "fixed_v_vs_fixed_q_gap_change",
+          "does_charge_change_when_d_changes"
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore — drag V, d, and the test charge",
+        "duration": 0,
+        "focal_primitive_id": "drag_charge_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "drag V and d — watch E = V/d update",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "drag_charge_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "drag the yellow test charge inside",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "force_vanish_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "drag it outside — the force vanishes",
+            "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Keep the voltage V fixed at twelve volts. I am about to pull the plates twice as far apart, doubling the separation d.",
-              "text_hi": "voltage V को बारह volts पर fixed रखिए। मैं plates को दोगुनी दूरी पर खींचने वाला हूँ, separation d को double करते हुए।",
-              "text_te": "voltage V ని twelve volts వద్ద fixed గా ఉంచండి. నేను plates ని రెండింతలు దూరంగా లాగబోతున్నాను, separation d ని double చేస్తూ.",
-              "reveal_primitive_id": "fix_v_label",
-              "appear_at_ms": 700
+              "text_en": "Now you drive it — use the sliders for voltage V and separation d.",
+              "text_te": "ఇప్పుడు మీరు దీన్ని నడపండి — voltage V మరియు separation d కోసం sliders ను వాడండి."
             },
             {
               "id": "s6_2",
-              "text_en": "Predict the electric field E: with voltage V held fixed and separation d doubled, does E stay the same, double, or halve?",
-              "text_hi": "electric field E predict कीजिए: voltage V fixed रहे और separation d double हो जाए, तो क्या E same रहता है, double होता है, या half हो जाता है?",
-              "text_te": "electric field E ని predict చేయండి: voltage V fixed గా ఉండి separation d double అయితే, E same గా ఉంటుందా, double అవుతుందా, లేక half అవుతుందా?",
-              "reveal_primitive_id": "predict_double_d_label",
-              "appear_at_ms": 5000,
-              "pause_after_ms": 2500
-            },
-            {
-              "id": "s6_3",
-              "text_en": "Watch — the gap widens, the field lines spread out, and the live readout of electric field E drops to half its value.",
-              "text_hi": "देखिए — gap चौड़ा होता है, field lines फैल जाती हैं, और electric field E का live readout आधा हो जाता है।",
-              "text_te": "చూడండి — gap వెడల్పవుతుంది, field lines వ్యాపిస్తాయి, మరియు electric field E యొక్క live readout సగానికి తగ్గుతుంది.",
-              "reveal_primitive_id": "d_doubles_anim",
-              "appear_at_ms": 9000
-            },
-            {
-              "id": "s6_4",
-              "text_en": "Because E equals V divided by d, at fixed voltage doubling the separation halves the field: E is proportional to one over d.",
-              "text_hi": "क्योंकि E equals V divided by d, fixed voltage पर separation double करने से field half हो जाती है: E proportional है one over d के।",
-              "text_te": "ఎందుకంటే E equals V divided by d, fixed voltage వద్ద separation double చేయడం వల్ల field half అవుతుంది: E proportional to one over d.",
-              "reveal_primitive_id": "e_halves_label",
-              "appear_at_ms": 13500
-            }
-          ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The field depends only on the voltage, so moving the plates apart at fixed V leaves E unchanged.",
-            "visual_counter": "With V held at 12 V, doubling d spreads the lines apart and the live E readout drops from 1200 to 600 V/m.",
-            "one_line_fix": "Since E = V/d, at fixed voltage doubling the separation halves the field — E ∝ 1/d."
-          }
-        ],
-        "has_prebuilt_deep_dive": true,
-        "allow_deep_dive": true,
-        "drill_downs": [
-          "e_inverse_d_at_fixed_v"
-        ]
-      },
-      "STATE_7": {
-        "title": "You drive — sliders for V and d, drag the test charge",
-        "duration": 16,
-        "focal_primitive_id": "sliders_label",
-        "advance_mode": "interaction_complete",
-        "teaching_method": "exploration_sliders",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "sliders_label",
-            "position": {
-              "x": 360,
-              "y": 90
-            },
-            "text": "drag V and d — watch E = V / d update live",
-            "color": "#FFF176",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "test_charge_drag_label",
-            "position": {
-              "x": 600,
-              "y": 210
-            },
-            "text": "drag the yellow charge inside: force is the same everywhere",
-            "color": "#4FC3F7",
-            "is_persistent": false
-          },
-          {
-            "type": "annotation",
-            "id": "force_vanishes_label",
-            "position": {
-              "x": 360,
-              "y": 440
-            },
-            "text": "drag it outside: the force vanishes — no field out there",
-            "color": "#66BB6A",
-            "is_persistent": false
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s7_1",
-              "text_en": "Now you drive it. Use the sliders to change the voltage V and the separation d, and watch the live electric field E equals V over d update.",
-              "text_hi": "अब आप drive कीजिए। voltage V और separation d बदलने के लिए sliders use कीजिए, और live electric field E equals V over d update होते देखिए।",
-              "text_te": "ఇప్పుడు మీరు drive చేయండి. voltage V మరియు separation d మార్చడానికి sliders use చేయండి, మరియు live electric field E equals V over d update అవడం చూడండి.",
-              "reveal_primitive_id": "sliders_label",
-              "appear_at_ms": 700
-            },
-            {
-              "id": "s7_2",
-              "text_en": "Drag the yellow test charge anywhere inside: the force on it stays the same size everywhere, because the field is uniform.",
-              "text_hi": "yellow test charge को अंदर कहीं भी drag कीजिए: उस पर force हर जगह same size का रहता है, क्योंकि field uniform है।",
-              "text_te": "yellow test charge ని లోపల ఎక్కడైనా drag చేయండి: దానిపై force ప్రతిచోటా same size గా ఉంటుంది, ఎందుకంటే field uniform.",
-              "reveal_primitive_id": "test_charge_drag_label",
-              "appear_at_ms": 5000
-            },
-            {
-              "id": "s7_3",
-              "text_en": "Drag it outside the plates and the force vanishes — there is essentially no field out there.",
-              "text_hi": "इसे plates के बाहर drag कीजिए और force vanish हो जाता है — बाहर essentially कोई field नहीं है।",
-              "text_te": "దాన్ని plates బయటికి drag చేయండి మరియు force vanish అవుతుంది — బయట essentially ఏ field లేదు.",
-              "reveal_primitive_id": "force_vanishes_label",
-              "appear_at_ms": 9500
+              "text_en": "Watch the live field update, and drag the yellow test charge — the force stays constant inside, gone outside.",
+              "text_te": "live field update అవ్వడం చూడండి, మరియు yellow test charge ను డ్రాగ్ చేయండి — force లోపల స్థిరంగా ఉంటుంది, బయట పోతుంది."
             }
           ]
         }
@@ -801,7 +547,7 @@
           "D": "puts the field ALONG the plates instead of across the gap from + to −"
         },
         "tested_idea": "Between parallel plates the field lines are straight, parallel and equally spaced, from + to −.",
-        "teaches_state": "STATE_2",
+        "teaches_state": "STATE_1",
         "difficulty": "core",
         "parallel_form_stem": "Two oppositely charged metal plates face each other with a voltage across them. Describe the geometry of the field lines in the gap."
       },
@@ -821,7 +567,7 @@
           "D": "treats the gap like a 1/r decay away from the positive plate, ignoring uniformity"
         },
         "tested_idea": "The field between parallel plates is uniform — equal magnitude at every interior point.",
-        "teaches_state": "STATE_3",
+        "teaches_state": "STATE_2",
         "difficulty": "core",
         "parallel_form_stem": "A probe reads the field just inside the positive plate, halfway across, and just inside the negative plate of a capacitor. State how the three readings compare."
       },
@@ -841,7 +587,7 @@
           "D": "imagines the field switching off entirely once the gap widens"
         },
         "tested_idea": "At fixed voltage E = V/d ∝ 1/d, so doubling the separation halves the field.",
-        "teaches_state": "STATE_6",
+        "teaches_state": "STATE_5",
         "difficulty": "core",
         "parallel_form_stem": "Keeping the battery voltage constant, you move the plates of a capacitor from 1 mm to 2 mm apart. State what happens to the field in the gap and why."
       },
@@ -861,7 +607,7 @@
           "D": "misreads the cancellation as a halving rather than near-total cancellation"
         },
         "tested_idea": "Outside an ideal capacitor the two sheet-fields cancel, so E ≈ 0 except for an edge fringe.",
-        "teaches_state": "STATE_5",
+        "teaches_state": "STATE_4",
         "difficulty": "core",
         "parallel_form_stem": "Standing just beyond the edge of a charged parallel-plate capacitor, what electric field would you measure, and why?"
       },
@@ -881,7 +627,7 @@
           "D": "double-counts the superposition, inflating the result"
         },
         "tested_idea": "Between the plates the two σ/2ε₀ sheet-fields add to σ/ε₀; outside they cancel.",
-        "teaches_state": "STATE_4",
+        "teaches_state": "STATE_3",
         "difficulty": "stretch",
         "parallel_form_stem": "Each plate of a capacitor is a sheet making a field σ/2ε₀ on each side. By superposition, what is the field in the gap between the two plates?"
       },
@@ -901,7 +647,7 @@
           "D": "thinks the force direction tracks the nearer plate, not the fixed + to − field"
         },
         "tested_idea": "In a uniform field F = qE is constant, so the force on a test charge is the same everywhere inside.",
-        "teaches_state": "STATE_3",
+        "teaches_state": "STATE_2",
         "difficulty": "stretch",
         "parallel_form_stem": "A positive test charge is moved around inside a parallel-plate capacitor. State how the force on it changes as it moves, and justify your answer from the field."
       }
@@ -909,26 +655,25 @@
   },
   "coverage_map": {
     "by_state": {
-      "STATE_2": [
+      "STATE_1": [
         "Q1"
       ],
-      "STATE_3": [
+      "STATE_2": [
         "Q2",
         "Q6"
       ],
-      "STATE_4": [
+      "STATE_3": [
         "Q5"
       ],
-      "STATE_5": [
+      "STATE_4": [
         "Q4"
       ],
-      "STATE_6": [
+      "STATE_5": [
         "Q3"
       ]
     },
     "non_assessed_states": [
-      "STATE_1",
-      "STATE_7"
+      "STATE_6"
     ]
   },
   "field_3d_config": {
@@ -967,16 +712,24 @@
       "show_add_inside_label": "σ/2ε₀ + σ/2ε₀ = σ/ε₀",
       "show_cancel_outside_label": "σ/2ε₀ − σ/2ε₀ = 0"
     },
-    "probe_arrows": {
+    "probe_points": {
       "count": 3,
       "positions": [
         "near_positive",
         "centre",
         "near_negative"
       ],
-      "color": "#66BB6A",
-      "equal_length": true,
-      "label": "E"
+      "marker_radius": 0.08,
+      "marker_color": "#FFF176",
+      "label_color": "#FFF176",
+      "readout_color": "#66BB6A",
+      "labels": [
+        "A",
+        "B",
+        "C"
+      ],
+      "value_expr": "E_field_display",
+      "value_unit": "V/m"
     },
     "test_charge": {
       "color": "#FFF176",
@@ -1010,107 +763,87 @@
     },
     "states": {
       "STATE_1": {
-        "label": "Setup — two plates, one even gap d, no field yet",
+        "label": "Setup — plates, voltage on, field fills the gap",
         "visible_elements": [
           "positive_plate",
           "negative_plate",
-          "gap_bracket"
-        ],
-        "camera_position": [
-          3.0,
-          1.6,
-          4.4
-        ],
-        "caption": "",
-        "capacitor": {
-          "show_plates": true,
-          "show_field": false,
-          "show_gap_bracket": true,
-          "gap_bracket_at_ms": 5200
-        },
-        "formula_overlay": "two plates, separation d"
-      },
-      "STATE_2": {
-        "label": "Switch on V — straight parallel lines + to −, E = V/d",
-        "visible_elements": [
-          "positive_plate",
-          "negative_plate",
+          "gap_bracket",
           "field_lines"
         ],
         "camera_position": [
           2.8,
-          1.6,
-          4.4
+          1.55,
+          4.3
         ],
-        "caption": "",
+        "caption": "Voltage on — field fills",
         "capacitor": {
           "show_plates": true,
+          "show_gap_bracket": true,
+          "gap_bracket_at_ms": 4500,
           "show_field": true,
-          "field_lines_at_ms": 8500,
-          "field_line_count": 16,
-          "field_lines_uniform": true
-        },
-        "formula_overlay": "E = V / d  (straight, parallel, + → −)"
+          "field_lines_at_ms": 8300
+        }
       },
-      "STATE_3": {
-        "label": "PRIMARY aha — three equal probe arrows: field is uniform",
+      "STATE_2": {
+        "label": "PRIMARY aha — three labeled points, matching E readouts: field is uniform",
         "visible_elements": [
           "positive_plate",
           "negative_plate",
           "field_lines",
-          "three_probe_arrows"
+          "probe_points"
         ],
         "camera_position": [
-          2.6,
-          1.5,
-          4.2
+          2.8,
+          1.55,
+          4.3
         ],
-        "caption": "",
+        "caption": "Same field at every point",
         "capacitor": {
           "show_plates": true,
           "show_field": true,
-          "show_probe_arrows": true,
-          "probe_arrows_at_ms": 9500,
+          "show_probe_points": true,
+          "probe_points_at_ms": 5000,
           "probe_positions": [
             "near_positive",
             "centre",
             "near_negative"
-          ],
-          "probe_arrows_equal_length": true
+          ]
         },
-        "formula_overlay": "E is the same at every interior point"
+        "formula_overlay": "E = V / d"
       },
-      "STATE_4": {
-        "label": "Why uniform — two sheets σ/2ε₀ add inside, cancel outside",
-        "visible_elements": [
-          "positive_plate",
-          "negative_plate",
-          "sheet_fields",
-          "field_lines"
-        ],
-        "camera_position": [
-          2.8,
-          1.5,
-          4.2
-        ],
-        "caption": "",
-        "capacitor": {
-          "show_plates": true,
-          "show_sheet_fields": true,
-          "sheet_fields_at_ms": 5500,
-          "show_cancel_outside": true,
-          "cancel_outside_at_ms": 10000,
-          "show_field": true,
-          "field_lines_at_ms": 14000
-        },
-        "formula_overlay": "σ/2ε₀ + σ/2ε₀ = σ/ε₀ inside; cancel outside"
-      },
-      "STATE_5": {
-        "label": "Edge-on — field confined to the gap, E ≈ 0 outside, small fringe",
+      "STATE_3": {
+        "label": "Why uniform — two sheets σ/2ε₀ add inside",
         "visible_elements": [
           "positive_plate",
           "negative_plate",
           "field_lines",
+          "sheet_fields"
+        ],
+        "camera_position": [
+          2.8,
+          1.55,
+          4.3
+        ],
+        "caption": "Inside: two fields add",
+        "_engine_note_cancel_outside_at_ms_0": "INTENTIONAL zone-suppression trick, NOT a typo. cancel_outside_at_ms:0 combined with sheet_fields_at_ms:5700 permanently pins the OUTSIDE-zone sheet arrows' fadeU multiplier to 0 for the entire state (fadeU reaches 0 at ms>=cancelStart+800=800, and the inside/outside opacity ramp itself never starts before sheet_fields_at_ms=5700>800). Net effect: only the 2 INSIDE-zone sheet arrows become visible; the 4 OUTSIDE-zone arrows never appear this state — that is the whole point (this state teaches ADD-inside only; CANCEL-outside is taught next state). See updateParallelPlatesFrame() in field_3d_renderer.ts (~line 4972-4993). Do NOT change cancel_outside_at_ms away from 0 here — that would let the outside arrows flash briefly, muddying the one-idea-per-state contract (Rule 31/32).",
+        "capacitor": {
+          "show_plates": true,
+          "show_field": true,
+          "field_lines_at_ms": 9500,
+          "show_sheet_fields": true,
+          "sheet_fields_at_ms": 5700,
+          "show_cancel_outside": true,
+          "cancel_outside_at_ms": 0
+        },
+        "formula_overlay": "σ/2ε₀ + σ/2ε₀ = σ/ε₀ (inside)"
+      },
+      "STATE_4": {
+        "label": "Edge-on — outside the two fields cancel, only a fringe remains",
+        "visible_elements": [
+          "positive_plate",
+          "negative_plate",
+          "field_lines",
+          "sheet_fields",
           "fringe"
         ],
         "camera_position": [
@@ -1118,18 +851,22 @@
           0.6,
           0.8
         ],
-        "caption": "",
+        "caption": "Outside: fields cancel",
         "capacitor": {
           "show_plates": true,
           "show_field": true,
           "edge_on_view": true,
           "dense_inside": true,
+          "show_sheet_fields": true,
+          "sheet_fields_at_ms": 3500,
+          "show_cancel_outside": true,
+          "cancel_outside_at_ms": 7000,
           "show_fringe": true,
-          "fringe_at_ms": 13000
+          "fringe_at_ms": 11500
         },
-        "formula_overlay": "field confined to the gap; E ≈ 0 outside"
+        "formula_overlay": "σ/2ε₀ − σ/2ε₀ = 0 (outside)"
       },
-      "STATE_6": {
+      "STATE_5": {
         "label": "Hold V, double d — gap widens, E readout drops to half",
         "visible_elements": [
           "positive_plate",
@@ -1142,7 +879,7 @@
           1.6,
           4.6
         ],
-        "caption": "",
+        "caption": "Double d — E halves",
         "capacitor": {
           "show_plates": true,
           "show_field": true,
@@ -1150,13 +887,13 @@
           "gap_widen": {
             "d_from": 1.6,
             "d_to": 3.2,
-            "anim_at_ms": 9000,
+            "anim_at_ms": 7800,
             "duration_ms": 2500
           }
         },
-        "formula_overlay": "E = V / d → halves when d doubles  (E ∝ 1/d)"
+        "formula_overlay": "E = V / d — fixed V: E ∝ 1/d, doubling d halves E"
       },
-      "STATE_7": {
+      "STATE_6": {
         "label": "Explore — sliders V and d, drag the test charge",
         "visible_elements": [
           "positive_plate",
@@ -1166,11 +903,11 @@
           "sliders"
         ],
         "camera_position": [
-          3.0,
+          3,
           1.8,
           4.8
         ],
-        "caption": "",
+        "caption": "All yours",
         "show_sliders": true,
         "capacitor": {
           "show_plates": true,
@@ -1185,7 +922,7 @@
           "V",
           "d"
         ],
-        "formula_overlay": "E = V / d  (drag V, d, and the test charge)"
+        "formula_overlay": "E = V / d      F = qE"
       }
     },
     "pvl_colors": {
