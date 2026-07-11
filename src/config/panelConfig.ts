@@ -966,6 +966,26 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    electric_field_dipole: {
+        concept_id: 'electric_field_dipole',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_field_dipole',
+            label: 'Field of an Electric Dipole (3D)',
+        },
+    },
+
+    electric_dipole_in_field: {
+        concept_id: 'electric_dipole_in_field',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_dipole_in_field',
+            label: 'Dipole in a Uniform Field (3D)',
+        },
+    },
+
     electric_flux: {
         concept_id: 'electric_flux',
         layout: 'single',

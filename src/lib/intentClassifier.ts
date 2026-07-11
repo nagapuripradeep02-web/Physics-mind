@@ -180,6 +180,10 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // torque toward alignment, stable/unstable equilibrium, U = −pE cos θ). The
     // electric sibling of torque_on_current_loop_in_field.
     'electric_dipole_in_field',
+    // The FIELD OF a dipole itself (Class 12 Ch.1.11 — field_3d scenario): the
+    // ± pair's combined E pattern, axial vs equatorial points, 1/r³ falloff.
+    // NOT the dipole placed in an external field (electric_dipole_in_field).
+    'electric_field_dipole',
     // Electric potential — the MEANING of V (Class 12 Ch.2.1-2.2). V at a point is
     // the work done per unit positive test charge to bring it from infinity to the
     // point: V = W/q. A single SCALAR per location (no direction), path-independent
@@ -754,6 +758,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   gauss_law_sheet                 ← APPLYING Gauss's law + PLANAR symmetry to an INFINITE PLANE SHEET of uniform surface charge density σ to SOLVE for E: a Gaussian PILLBOX (the curved WALL carries zero flux, only the two flat CAPS count — the exact INVERSE of the line's cylinder) gives Φ = 2EA = σA/ε₀, the A cancels ⇒ E = σ/(2ε₀), ⊥ to the sheet, pointing away on BOTH sides, equal everywhere. The headline: the field is CONSTANT — it does NOT fall off with distance at all (NOT the line's 1/r, NOT the point's 1/r²), because the pillbox encloses the same σA patch however far out the caps sit. The ½ is from flux leaving BOTH caps, so an ISOLATED sheet gives σ/2ε₀ — distinct from the σ/ε₀ conductor-surface / between-two-plates case (a DIFFERENT concept). SHEET / PLANE ONLY — no line/sphere, no edge effects. Route "field of an infinite charged sheet/plane", "E = σ/2ε₀", "why doesn't the sheet field fall off", "uniform field from a sheet", "Gaussian pillbox" here.
   force_on_charge_in_field        ← force on a charge placed in a field F = qE, direction by sign (along E for +q, opposite for −q), constant force in a uniform field, a = qE/m, parabolic deflection of a launched charge
   electric_dipole_in_field        ← electric dipole in a UNIFORM field: torque τ = p × E = pE sin θ, the force couple ±qE with zero net force, rotation toward alignment, stable (θ=0) vs unstable (θ=180°) equilibrium, potential energy U = −pE cos θ
+  electric_field_dipole           ← the FIELD OF an electric dipole itself: the ± pair's combined E pattern, axial point (along p, fields add) vs equatorial point (⊥ bisector, opposite to p), 1/r³ falloff — faster than a point charge's 1/r². The dipole as a SOURCE — NOT the dipole placed in an external field (that is electric_dipole_in_field)
 
   ── Electrostatic Potential and Capacitance (Class 12 Ch.2) ──
   electric_potential_meaning      ← the MEANING of electric potential V = W/q: the work done per unit positive test charge to bring it from infinity to a point; a single SCALAR per place (no direction, NOT a vector, NOT the field E); path-independent because the electrostatic force is conservative; the reference V(∞)=0; ΔV = V_B − V_A is the per-unit-charge work between two points (closer to a +source ⇒ higher V); potential energy U = qV (belongs to the charge, scales with q) vs potential V (belongs to the place, does not). Mentions equipotential surfaces only in passing (V = altitude, E = slope); the DEDICATED equipotential-surface GEOMETRY (concentric spheres, E ⟂ surface, zero work along, crowding↔field-strength) is the separate sibling equipotential_surfaces. Teaches V = W/q and STOPS SHORT of V = kQ/r. Route "what is electric potential", "what does voltage at a point mean", "V = W/q", "work per unit charge", "is potential a vector or scalar", "potential vs potential energy", "potential at a point" here.

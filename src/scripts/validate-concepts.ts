@@ -20,6 +20,7 @@ import path from 'path';
 import { spawnSync } from 'child_process';
 import { validateConceptJson } from '../schemas/conceptJson';
 import { validatePCPLSubSimStates } from '../lib/pcplPhysicsValidator';
+import { resolveRendererType } from './lib/rendererLookup';
 import {
   ANIMATION_TYPES,
   ANIMATE_IN_KINDS,
@@ -961,6 +962,147 @@ export function validateConceptFile(filePath: string): ConceptFileValidation {
   return out;
 }
 
+// ─── Gate 7 — Rule 31a word budget (25–55 EN words per guided state) ──────────
+// Measured on the sum of teacher_script.tts_sentences[].text_en per state; the
+// final explore state (advance_mode 'interaction_complete') is exempt (0/open).
+// WARN for the legacy fleet (466 over-budget states predate the 2026-07-08
+// budget — no fleet retrofit); FAIL only when the concept opts into Rule-31/32
+// authorship by declaring motion_archetype or delta_cue on any state.
+
+interface WordBudgetFinding { path: string; message: string; fatal: boolean }
+
+function checkConceptWordBudget(data: unknown): WordBudgetFinding[] {
+  const out: WordBudgetFinding[] = [];
+  const states = (data as { epic_l_path?: { states?: Record<string, unknown> } })
+    ?.epic_l_path?.states;
+  if (!states || typeof states !== 'object') return out;
+
+  const entries = Object.entries(states).filter(
+    (e): e is [string, Record<string, unknown>] => !!e[1] && typeof e[1] === 'object',
+  );
+  const rule31Marked = entries.some(
+    ([, s]) => 'motion_archetype' in s || 'delta_cue' in s,
+  );
+
+  for (const [stateId, state] of entries) {
+    if (state.advance_mode === 'interaction_complete') continue;
+    const sentences = (state.teacher_script as { tts_sentences?: unknown[] } | undefined)
+      ?.tts_sentences;
+    if (!Array.isArray(sentences)) continue;
+    const words = sentences.reduce<number>((n, s) => {
+      const t = (s as { text_en?: unknown })?.text_en;
+      return typeof t === 'string' ? n + t.trim().split(/\s+/).filter(Boolean).length : n;
+    }, 0);
+    if (words > 55) {
+      out.push({
+        path: `epic_l_path.states.${stateId}`,
+        fatal: rule31Marked,
+        message: `word budget: ${words} EN words > 55 (Rule 31a — ONE idea per state; split it)${rule31Marked ? '' : ' [legacy fleet — warning only]'}`,
+      });
+    } else if (words > 0 && words < 20) {
+      out.push({
+        path: `epic_l_path.states.${stateId}`,
+        fatal: false,
+        message: `word budget: ${words} EN words < 20 floor (Rule 31a — merge or enrich)`,
+      });
+    }
+  }
+  return out;
+}
+
+// ─── Gate 8b — registration cross-check (fleet-level) ─────────────────────────
+// 5 of the 8 registration sites are hand-maintained duplicates of concept-JSON
+// fields, and a miss was previously SILENT (the PCPL miss shipped a chapter
+// mis-routed, sessions 28–31.5). Text-parses the three registries (no runtime
+// imports — intentClassifier/aiSimulationGenerator pull in Supabase) and
+// asserts every atomic concept is registered. Any violation exits 1.
+
+interface RegistrationRecord { file: string; id: string; panelA?: string }
+interface RegistrationFailure { path: string; message: string }
+
+function stripLineComments(src: string): string {
+  return src.replace(/\/\/[^\n]*/g, '');
+}
+
+function extractIdSet(src: string, startAnchor: string, endAnchor: string): Set<string> {
+  const start = src.indexOf(startAnchor);
+  if (start < 0) return new Set();
+  const end = src.indexOf(endAnchor, start);
+  if (end < 0) return new Set();
+  const block = stripLineComments(src.slice(start, end));
+  const ids = new Set<string>();
+  // [A-Za-z0-9_] — trailing capitals are real (magnetic_field_concept_B et al.;
+  // a lowercase-only class silently drops them — the documented drift trap in
+  // intentClassifier's own extractAdvertisedConcepts).
+  for (const m of block.matchAll(/'([a-z][A-Za-z0-9_]*)'/g)) ids.add(m[1]);
+  return ids;
+}
+
+function checkRegistrations(records: RegistrationRecord[]): RegistrationFailure[] {
+  const failures: RegistrationFailure[] = [];
+  const SRC = path.resolve(__dirname, '..');
+
+  const classifierSrc = fs.readFileSync(path.join(SRC, 'lib', 'intentClassifier.ts'), 'utf-8');
+  const generatorSrc = fs.readFileSync(path.join(SRC, 'lib', 'aiSimulationGenerator.ts'), 'utf-8');
+  const panelSrc = fs.readFileSync(path.join(SRC, 'config', 'panelConfig.ts'), 'utf-8');
+
+  const validIds = extractIdSet(
+    classifierSrc, 'VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([', ']);',
+  );
+  const pcplIds = extractIdSet(
+    generatorSrc, 'const PCPL_CONCEPTS = new Set<string>([', ']);',
+  );
+  const panelIds = new Set<string>();
+  for (const m of panelSrc.matchAll(/concept_id:\s*'([a-z][A-Za-z0-9_]*)'/g)) panelIds.add(m[1]);
+
+  if (validIds.size === 0 || pcplIds.size === 0 || panelIds.size === 0) {
+    failures.push({
+      path: 'registration_gate',
+      message: `registry parse failed (VALID_CONCEPT_IDS=${validIds.size}, PCPL_CONCEPTS=${pcplIds.size}, CONCEPT_PANEL_MAP=${panelIds.size}) — the anchor text moved; fix extractIdSet, do not skip the gate`,
+    });
+    return failures;
+  }
+
+  const fileIds = new Set(records.map((r) => r.id));
+
+  for (const r of records) {
+    if (!validIds.has(r.id)) {
+      failures.push({
+        path: r.file,
+        message: `'${r.id}' missing from VALID_CONCEPT_IDS (src/lib/intentClassifier.ts) — the classifier will drop it as untrusted`,
+      });
+    }
+    if (!panelIds.has(r.id)) {
+      failures.push({
+        path: r.file,
+        message: `'${r.id}' missing from CONCEPT_PANEL_MAP (src/config/panelConfig.ts) — panel layout falls back silently`,
+      });
+    }
+    // PCPL members route through the parametric assembler, so panel_a
+    // ('mechanics_2d'/'parametric') intentionally differs from resolveRendererType.
+    if (r.panelA && !pcplIds.has(r.id)) {
+      const resolved = resolveRendererType(r.id);
+      if (resolved !== r.panelA) {
+        failures.push({
+          path: r.file,
+          message: `renderer mismatch: renderer_pair.panel_a='${r.panelA}' but CONCEPT_RENDERER_MAP resolves '${resolved}' — the concept renders on the wrong engine`,
+        });
+      }
+    }
+  }
+
+  for (const id of pcplIds) {
+    if (!fileIds.has(id)) {
+      failures.push({
+        path: 'PCPL_CONCEPTS',
+        message: `'${id}' is in PCPL_CONCEPTS but has no concept JSON in src/data/concepts/`,
+      });
+    }
+  }
+
+  return failures;
+}
+
 function main(): void {
   const cli = parseCliArgs(process.argv.slice(2));
   const files = fs.readdirSync(CONCEPTS_DIR)
@@ -984,6 +1126,7 @@ function main(): void {
   const boundsWarnFiles = new Set<string>();
   const categoryTally = new Map<string, number>();
   const categoryFiles = new Map<string, Set<string>>();
+  const registrationRecords: RegistrationRecord[] = [];
 
   for (const file of files) {
     const filePath = path.join(CONCEPTS_DIR, file);
@@ -1115,12 +1258,33 @@ function main(): void {
       animFatalThisFile++;
     }
 
+    // Gate 7 — Rule 31a word budget (WARN for the legacy fleet; FAIL only for
+    // concepts that declare motion_archetype/delta_cue — Rule-31/32-era opt-in).
+    let wordBudgetFatalThisFile = 0;
+    const budget = checkConceptWordBudget(data);
+    for (const w of budget) {
+      const tag = w.fatal ? 'FAIL' : 'WARN';
+      console.log(`  ${tag}  ${w.path}: ${w.message}`);
+      const cat = w.fatal ? 'word_budget_fail' : 'word_budget_warning';
+      categoryTally.set(cat, (categoryTally.get(cat) ?? 0) + 1);
+      if (!categoryFiles.has(cat)) categoryFiles.set(cat, new Set());
+      categoryFiles.get(cat)!.add(file);
+      if (w.fatal) wordBudgetFatalThisFile++;
+      else { boundsWarnCount++; boundsWarnFiles.add(file); }
+    }
+
+    // Collect for the fleet-level registration cross-check (Gate 8b).
+    const reg = data as { concept_id?: string; renderer_pair?: { panel_a?: string } };
+    if (typeof reg.concept_id === 'string') {
+      registrationRecords.push({ file, id: reg.concept_id, panelA: reg.renderer_pair?.panel_a });
+    }
+
     // If any of the new fatal gates fired, treat this file as a failure even
     // though the Zod pass succeeded. Don't double-count files Zod already
     // failed.
     if (
       result.passed &&
-      (physicsCriticalThisFile + exprFatalThisFile + plainEnFatalThisFile + animFatalThisFile) > 0
+      (physicsCriticalThisFile + exprFatalThisFile + plainEnFatalThisFile + animFatalThisFile + wordBudgetFatalThisFile) > 0
     ) {
       // Demote PASS → FAIL retroactively.
       passCount--;
@@ -1137,6 +1301,15 @@ function main(): void {
   console.log(`  ${tierBuckets.legacy_array.length.toString().padStart(3)} LEGACY ARRAY     (skipped — root is an array)`);
   if (tierBuckets.unknown.length > 0) {
     console.log(`  ${tierBuckets.unknown.length.toString().padStart(3)} UNKNOWN          (fail — shape doesn't match any tier)`);
+  }
+
+  // Gate 8b — registration cross-check (fleet-level; a miss was previously silent).
+  const regFailures = checkRegistrations(registrationRecords);
+  if (regFailures.length > 0) {
+    console.log('\nRegistration cross-check FAILURES:');
+    for (const f of regFailures) console.log(`  FAIL  ${f.path}: ${f.message}`);
+  } else {
+    console.log('\nRegistration cross-check: all concepts registered (VALID_CONCEPT_IDS · renderer map · panel map · PCPL) ✓');
   }
 
   console.log(`\nAtomic results: ${passCount} PASS, ${atomicFailCount} FAIL out of ${tierBuckets.atomic_v2.length} atomic files`);
@@ -1164,7 +1337,7 @@ function main(): void {
     console.log('');
   }
 
-  if (atomicFailCount > 0 || unknownCount > 0) {
+  if (atomicFailCount > 0 || unknownCount > 0 || regFailures.length > 0) {
     process.exit(1);
   }
 

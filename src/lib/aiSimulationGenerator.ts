@@ -2861,6 +2861,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     current_loop_acts_as_dipole:    "field_3d",
     parallel_currents_force:        "field_3d",
     electric_dipole_in_field:       "field_3d",
+    electric_field_dipole:          "field_3d",
     bar_magnet_in_uniform_field:    "field_3d",
     gauss_law_magnetism:            "field_3d",
     earths_magnetism:               "field_3d",
