@@ -40,10 +40,14 @@ describe('conceptJsonToEngineConfigs', () => {
     const sm = conceptJsonToEngineConfigs(json)['state-machine'];
     expect(sm.states).toEqual(['STATE_1', 'STATE_2', 'STATE_3', 'STATE_4', 'STATE_5']);
     expect(sm.initialState).toBe('STATE_1');
-    // Every state has a declared advance mode (default manual_click)
-    for (const s of sm.states) {
-      expect(sm.advanceModes?.[s]).toBe('manual_click');
-    }
+    // Every state carries its declared advance mode (Rule 15: ≥2 distinct modes)
+    expect(sm.advanceModes).toEqual({
+      STATE_1: 'auto_after_tts',
+      STATE_2: 'manual_click',
+      STATE_3: 'wait_for_answer',
+      STATE_4: 'auto_after_tts',
+      STATE_5: 'interaction_complete',
+    });
   });
 
   it('4. teacher-script config includes every state\'s sentences with id + text_en', () => {
@@ -54,19 +58,19 @@ describe('conceptJsonToEngineConfigs', () => {
     expect(s1!.sentences.length).toBe(4);
     expect(s1!.sentences[0]).toEqual({
       id: 's1',
-      text_en: 'You are standing on the floor. Gravity pulls you down with 588 Newtons.',
+      text_en: 'You are standing on the classroom floor. Gravity pulls you down with 588 Newtons.',
     });
-    expect(s1!.advanceMode).toBe('manual_click');
+    expect(s1!.advanceMode).toBe('auto_after_tts');
   });
 
   it('5. misconception-detection branches map snake_case → camelCase', () => {
     const json = loadConcept('normal_reaction');
     const md = conceptJsonToEngineConfigs(json)['misconception-detection'];
-    expect(md.branches.length).toBe(1);
+    expect(md.branches.length).toBe(4);
     const branch = md.branches[0];
     expect(branch.branchId).toBe('N_equals_mg_always');
     expect(branch.triggerPhrases).toContain('N equals mg always');
-    expect(branch.triggerPhrases.length).toBe(3);
+    expect(branch.triggerPhrases.length).toBe(4);
   });
 
   it('6. panel-b config passes through with snake_case accepted', () => {
@@ -87,6 +91,6 @@ describe('conceptJsonToEngineConfigs', () => {
     const json = loadConcept('normal_reaction');
     const p = conceptJsonToEngineConfigs(json).physics;
     expect(p.conceptId).toBe('normal_reaction');
-    expect(p.initialVariables).toEqual({ m: 2, g: 9.8, theta: 30 });
+    expect(p.initialVariables).toEqual({ m: 2, g: 9.8, theta: 30, a: 0 });
   });
 });

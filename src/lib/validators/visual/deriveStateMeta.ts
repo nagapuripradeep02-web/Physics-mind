@@ -1472,7 +1472,7 @@ function clampReveal(ms: number): number {
  * timed reveals have fired, regardless of headless rAF throttling.
  *
  * `config` may be the concept JSON (authoritative — has field_3d_config) or a
- * cached physics_config. Clamped to [1500, 30000] ms.
+ * cached physics_config. Clamped to [1500, 60000] ms (DURATION_MAX_MS).
  */
 export function deriveMaxRevealTimeMs(
     config: Record<string, unknown> | null,

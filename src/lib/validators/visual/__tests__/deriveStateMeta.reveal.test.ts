@@ -49,9 +49,9 @@ describe('deriveMaxRevealTimeMs — field_3d', () => {
         expect(deriveMaxRevealTimeMs(flat).STATE_3).toBe(7300);
     });
 
-    it('clamps to the 30s ceiling', () => {
+    it('clamps to the 60s ceiling (DURATION_MAX_MS, raised 2026-07-03)', () => {
         const huge = { field_3d_config: { states: { STATE_1: { axial_buildup_arrows: { enabled: true, reveal_at_ms: 99000, arise_duration_ms: 5000 } } } } };
-        expect(deriveMaxRevealTimeMs(huge).STATE_1).toBe(30000);
+        expect(deriveMaxRevealTimeMs(huge).STATE_1).toBe(60000);
     });
 });
 

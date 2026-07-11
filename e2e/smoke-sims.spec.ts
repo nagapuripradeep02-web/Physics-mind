@@ -61,6 +61,7 @@ async function waitForSimReady(page: Page): Promise<void> {
         return m !== null && typeof m === 'object' && (m as { type?: unknown }).type === 'SIM_READY';
       });
     },
+    undefined,
     { timeout: 10_000 },
   );
 }
