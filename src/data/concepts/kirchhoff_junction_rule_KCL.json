@@ -164,15 +164,18 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Current flows from the cell into a single junction — node N — and splits into two branches."
+              "text_en": "Current flows from the cell into a single junction — node N — and splits into two branches.",
+              "text_te": "Current, cell నుండి ఒకే junction లోకి ప్రవహిస్తుంది — అదే node N — తర్వాత రెండు branches గా split అవుతుంది."
             },
             {
               "id": "s1_2",
-              "text_en": "Watch node N closely: beads arrive and leave at exactly the same rate, so nothing ever piles up there."
+              "text_en": "Watch node N closely: beads arrive and leave at exactly the same rate, so nothing ever piles up there.",
+              "text_te": "Node N ను జాగ్రత్తగా చూడండి: beads అదే rate తో వస్తాయి మరియు వెళ్తాయి, కాబట్టి అక్కడ ఎప్పుడూ ఏమీ పేరుకుపోదు."
             },
             {
               "id": "s1_3",
-              "text_en": "Charge cannot vanish or pile up at a single point in a wire."
+              "text_en": "Charge cannot vanish or pile up at a single point in a wire.",
+              "text_te": "Charge ఒక wire లో ఒకే point వద్ద మాయం కాదు లేదా పేరుకుపోదు."
             }
           ]
         }
@@ -212,15 +215,18 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "The stream reaches node N and splits into two equal branches, three ohms each."
+              "text_en": "The stream reaches node N and splits into two equal branches, three ohms each.",
+              "text_te": "Stream node N కి చేరి రెండు సమాన branches గా split అవుతుంది, ఒక్కొక్కటి three ohms."
             },
             {
               "id": "s2_2",
-              "text_en": "Watch the branch ammeters settle: one ampere down each path, while the main ammeter still reads two amperes total."
+              "text_en": "Watch the branch ammeters settle: one ampere down each path, while the main ammeter still reads two amperes total.",
+              "text_te": "Branch ammeters స్థిరపడటం చూడండి: ప్రతి path లో one ampere, main ammeter మాత్రం మొత్తం two amperes చూపిస్తుంది."
             },
             {
               "id": "s2_3",
-              "text_en": "Two amps in equals one plus one equals two amps out — the split adds back to exactly what entered."
+              "text_en": "Two amps in equals one plus one equals two amps out — the split adds back to exactly what entered.",
+              "text_te": "లోపలికి వచ్చిన two amps, one plus one కి సమానం, బయటకు వెళ్ళే two amps కి సమానం — split మళ్ళీ కలిసి లోపలికి వచ్చిన దానికి సరిగ్గా సమానం అవుతుంది."
             }
           ]
         }
@@ -260,15 +266,18 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "R one climbs to six ohms; R two falls to two — now the easier path."
+              "text_en": "R one climbs to six ohms; R two falls to two — now the easier path.",
+              "text_te": "R one six ohms కి పెరుగుతుంది; R two two ohms కి తగ్గుతుంది — ఇప్పుడు ఇదే easier path."
             },
             {
               "id": "s3_2",
-              "text_en": "The streams reshuffle: branch two climbs to one point five amperes, branch one falls to zero point five."
+              "text_en": "The streams reshuffle: branch two climbs to one point five amperes, branch one falls to zero point five.",
+              "text_te": "Streams మళ్ళీ సర్దుకుంటాయి: branch two one point five amperes కి పెరుగుతుంది, branch one zero point five కి తగ్గుతుంది."
             },
             {
               "id": "s3_3",
-              "text_en": "Not one plus one — the easier path takes three times as much, yet the total holds at two amperes."
+              "text_en": "Not one plus one — the easier path takes three times as much, yet the total holds at two amperes.",
+              "text_te": "One plus one కాదు — easier path మూడు రెట్లు ఎక్కువ current తీసుకుంటుంది, అయినా total two amperes వద్దే ఉంటుంది."
             }
           ]
         },
@@ -320,15 +329,18 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "A third branch joins the fork — three paths now leave node N."
+              "text_en": "A third branch joins the fork — three paths now leave node N.",
+              "text_te": "మూడో branch fork లో కలుస్తుంది — ఇప్పుడు node N నుండి three paths బయలుదేరతాయి."
             },
             {
               "id": "s4_2",
-              "text_en": "Watch the three ammeters settle: one point five, zero point three, and zero point two amperes."
+              "text_en": "Watch the three ammeters settle: one point five, zero point three, and zero point two amperes.",
+              "text_te": "మూడు ammeters స్థిరపడటం చూడండి: one point five, zero point three, మరియు zero point two amperes."
             },
             {
               "id": "s4_3",
-              "text_en": "Add them up: one point five plus zero point three plus zero point two — still two amperes, in equals out at any junction."
+              "text_en": "Add them up: one point five plus zero point three plus zero point two — still two amperes, in equals out at any junction.",
+              "text_te": "వాటిని కలిపి చూడండి: one point five plus zero point three plus zero point two — ఇంకా two amperes, ఏ junction లోనైనా in equals out."
             }
           ]
         }
@@ -368,7 +380,8 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Every dial is yours now — drag either resistor and watch the junction rule hold at every setting."
+              "text_en": "Every dial is yours now — drag either resistor and watch the junction rule hold at every setting.",
+              "text_te": "ప్రతి dial ఇప్పుడు మీదే — ఏదైనా resistor ని drag చేసి ప్రతి setting వద్ద junction rule ఎలా నిలుస్తుందో చూడండి."
             }
           ]
         }

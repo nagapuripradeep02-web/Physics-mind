@@ -1,0 +1,27 @@
+{
+  "approved_at": "2026-07-11T21:50:52.356Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\kirchhoff_junction_rule_KCL\\20260711-231909",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": false,
+      "compare_frozen": true
+    }
+  }
+}
