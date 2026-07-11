@@ -444,6 +444,17 @@ ${pilotHeadTags(1)}
   .verified .dot { width:7px; height:7px; border-radius:50%; background:var(--sage);
                    box-shadow:0 0 8px rgba(116,181,148,.6); }
   #stage { position:relative; flex:1 1 auto; min-height:0; background:var(--sim); }
+  /* ── brand surfaces: persistent watermark + load-masking card (Rule 34d: corner reserved, never collides) ── */
+  #pmWm{position:absolute;left:12px;bottom:10px;z-index:6;pointer-events:none;
+        font:500 10.5px var(--font-ui);letter-spacing:.05em;color:rgba(236,233,226,.32);}
+  #pmWm b{font-weight:600;color:rgba(227,160,127,.55);}
+  #pmLoad{position:absolute;inset:0;z-index:40;display:grid;place-items:center;background:var(--sim);
+        opacity:1;transition:opacity .45s ease;pointer-events:none;}
+  #pmLoad.gone{opacity:0;}
+  #pmLoad .plc{text-align:center;display:grid;gap:10px;}
+  #pmLoad .nm{font-family:var(--font-disp);font-size:22px;font-weight:600;color:var(--ink);}
+  #pmLoad .pw{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
+  #pmLoad .pw b{color:var(--clay-soft);font-weight:600;}
   #stage::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:3; border-radius:0;
                   box-shadow: inset 0 0 0 1px var(--line), inset 0 0 70px rgba(0,0,0,.4); }
   #fsScope:fullscreen { background:var(--sim); }
@@ -632,6 +643,8 @@ ${pilotHeadTags(1)}
     <div id="fsScope">
     <div id="stage">
       <iframe id="sim" src="sim.html" title="sim" allow="autoplay"></iframe>
+      <div id="pmWm">powered by <b>Viditra</b></div>
+      <div id="pmLoad"><div class="plc"><span class="nm" id="pmLoadName">Viditra</span><span class="pw">powered by <b>Viditra</b></span></div></div>
       <canvas id="simOverlay"></canvas>
       <div id="simPenBar">
         <span class="seg">
@@ -752,6 +765,23 @@ ${pilotHeadTags(1)}
   var scrubTime = document.getElementById('scrubtime');
   var tapCueDone = false;
   var tapCueTimer = null;
+
+  // ── Brand load card: masks iframe boot. Gone on SIM_READY (min 700ms shown, 4s failsafe). ──
+  var pmLoadEl = document.getElementById('pmLoad');
+  var pmLoadT0 = Date.now();
+  function pmLoadDone() {
+    if (!pmLoadEl) return;
+    var pmLoadElGone = pmLoadEl; pmLoadEl = null;
+    var pmLoadWait = Math.max(0, 700 - (Date.now() - pmLoadT0));
+    setTimeout(function () {
+      pmLoadElGone.className = 'gone';
+      setTimeout(function () { if (pmLoadElGone.parentNode) pmLoadElGone.parentNode.removeChild(pmLoadElGone); }, 500);
+    }, pmLoadWait);
+  }
+  setTimeout(pmLoadDone, 4000);
+  if (window.PM && PM.authReady) PM.authReady.then(function () {
+    try { if (window.PM_PROFILE && PM_PROFILE.display_name) document.getElementById('pmLoadName').textContent = PM_PROFILE.display_name + '’s Class'; } catch (e) {}
+  });
 
   // ── Teacher layout (order + hides + renames), EXPLICIT SAVE (Rule 25d) ──
   // One consolidated store. Changes apply live but persist only on Save (or a
@@ -1407,6 +1437,7 @@ ${pilotHeadTags(1)}
       buildRail();
       applyMuteUI();
       startLoop();
+      pmLoadDone();
       goToState(0, false);   // open the first state on its opening frame; Play to roll
     } else if (t === 'STATE_REACHED') {
       pmt('state_reached', { state_id: e.data.state });
