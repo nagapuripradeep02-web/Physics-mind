@@ -1,6 +1,7 @@
 /**
  * generate_tts_audio — pre-generate STORED Sarvam TTS narration clips for a
- * concept's teacher_script, in English + Hindi + Telugu, and emit a manifest
+ * concept's teacher_script, in English + Telugu (Hindi only via --allow-hindi;
+ * Rule 30f: Hindi is text-only until a Hindi market exists), and emit a manifest
  * the review-site builder embeds. This is the "store it once, no live API at
  * teach-time" path (CLAUDE.md §3 / Rule 28 voice seed).
  *
@@ -18,7 +19,8 @@
  * Run:
  *   npx tsx --env-file=.env.local src/scripts/generate_tts_audio.ts parallel_currents_force
  *   npx tsx --env-file=.env.local src/scripts/generate_tts_audio.ts parallel_currents_force --force
- *   ... --langs=hi,te   --model=bulbul:v3 --speaker=anushka
+ *   ... --langs=en,te   --model=bulbul:v3 --speaker=anushka
+ *   ... --langs=en,hi,te --allow-hindi   (Hindi voicing is opt-in — billed + unwanted per Rule 30f)
  */
 import '@/lib/loadEnvLocal';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, readdirSync } from 'node:fs';
@@ -73,12 +75,23 @@ function parseArgs() {
   const args = process.argv.slice(2);
   const conceptId = args.find((a) => !a.startsWith('--'));
   const force = args.includes('--force');
+  const allowHindi = args.includes('--allow-hindi');
   const langsArg = args.find((a) => a.startsWith('--langs='));
   const modelArg = args.find((a) => a.startsWith('--model='));
   const speakerArg = args.find((a) => a.startsWith('--speaker='));
-  const langs = (langsArg ? langsArg.split('=')[1].split(',') : ['en', 'hi', 'te'])
+  // Default is en,te — Hindi audio is opt-in only (Rule 30f: Hindi stays
+  // text-only until a Hindi market exists; every hi clip bills Sarvam credits).
+  const langs = (langsArg ? langsArg.split('=')[1].split(',') : ['en', 'te'])
     .map((l) => l.trim())
     .filter((l): l is Lang => l === 'en' || l === 'hi' || l === 'te');
+  if (langs.includes('hi') && !allowHindi) {
+    console.error(
+      '✗ --langs includes "hi" but --allow-hindi was not passed.\n' +
+      '  Hindi audio is opt-in (Rule 30f: text-only until a Hindi market exists).\n' +
+      '  Re-run with --allow-hindi if you really intend to voice Hindi clips.',
+    );
+    process.exit(1);
+  }
   return {
     conceptId,
     force,
@@ -229,7 +242,7 @@ async function safeText(res: Response): Promise<string> {
 async function main(): Promise<void> {
   const { conceptId, force, langs, model, speaker } = parseArgs();
   if (!conceptId) {
-    console.error('Usage: generate_tts_audio.ts <conceptId> [--force] [--langs=en,hi,te] [--model=] [--speaker=]');
+    console.error('Usage: generate_tts_audio.ts <conceptId> [--force] [--langs=en,te] [--allow-hindi] [--model=] [--speaker=]');
     process.exit(1);
   }
   const apiKey = process.env.SARVAM_API_KEY;
