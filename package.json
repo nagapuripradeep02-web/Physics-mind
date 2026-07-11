@@ -84,7 +84,9 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "music-metadata": "^11.13.0",
+    "p5": "1.9.4",
     "tailwindcss": "^4",
+    "three": "0.128.0",
     "typescript": "^5",
     "vitest": "^4.1.4"
   }

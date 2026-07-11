@@ -25,7 +25,7 @@
  *   (no env needed — nothing talks to Supabase)
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, copyFileSync, cpSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
@@ -113,6 +113,45 @@ const ROOT = process.cwd();
 const CONCEPTS_DIR = join(ROOT, 'src', 'data', 'concepts');
 const OUT_DIR = join(ROOT, 'review-site');
 const REVIEW_STATUS_PATH = join(ROOT, 'src', 'data', 'review_status.json');
+
+// ── Vendored libraries (classroom reliability, 2026-07-11) ───────────────────
+// The renderer templates emit absolute CDN URLs — THE EYE (page.route intercepts
+// only the two panel paths) and the admin srcDoc pages rely on them, so the
+// templates stay untouched. But a school's flaky/filtered wifi must never blank
+// a live class: the static review/pilot site rewrites the tags to a shared
+// ../vendor/ copy at build time and ships the files alongside the sims.
+// Versions: three r128 (=0.128.0, the last UMD build with a global THREE) and
+// p5 1.9.4 pinned exactly to the CDN tags; KaTeX vendors the installed 0.16.33
+// (CDN tag says 0.16.9 — same 0.16.x line, conscious upgrade). KaTeX's CSS
+// references fonts/ relative to itself, so vendor/fonts/ ships with it.
+const VENDOR_SWAPS: Array<[cdn: string, local: string]> = [
+    ['https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css', '../vendor/katex.min.css'],
+    ['https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js', '../vendor/katex.min.js'],
+    ['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', '../vendor/three.min.js'],
+    ['https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js', '../vendor/p5.min.js'],
+];
+
+function vendorizeSimHtml(html: string): string {
+    let out = html;
+    for (const [cdn, local] of VENDOR_SWAPS) out = out.split(cdn).join(local);
+    // Drop crossorigin="anonymous" from the now-local tags: it's meaningless
+    // same-origin over HTTP, and under file:// (origin 'null') it forces a
+    // CORS check that ALWAYS fails — blank canvas on a locally-opened export.
+    out = out.replace(/(<(?:link|script)[^>]*\.\.\/vendor\/[^>]*?) crossorigin="anonymous"/g, '$1');
+    return out;
+}
+
+function writeVendorAssets(): void {
+    const vendorDir = join(OUT_DIR, 'vendor');
+    mkdirSync(vendorDir, { recursive: true });
+    const nm = join(ROOT, 'node_modules');
+    copyFileSync(join(nm, 'three', 'build', 'three.min.js'), join(vendorDir, 'three.min.js'));
+    copyFileSync(join(nm, 'katex', 'dist', 'katex.min.js'), join(vendorDir, 'katex.min.js'));
+    copyFileSync(join(nm, 'katex', 'dist', 'katex.min.css'), join(vendorDir, 'katex.min.css'));
+    cpSync(join(nm, 'katex', 'dist', 'fonts'), join(vendorDir, 'fonts'), { recursive: true });
+    copyFileSync(join(nm, 'p5', 'lib', 'p5.min.js'), join(vendorDir, 'p5.min.js'));
+    console.log('✅ Vendored three/katex(+fonts)/p5 → review-site/vendor/');
+}
 
 // ── Review-tracking manifest (who reviewed what, + her recorded videos) ───────
 // Single source of truth the founder edits after each review; drives the catalog
@@ -289,7 +328,7 @@ function renderConceptPage(
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${escapeHtml(conceptName)} — PhysicsMind</title>
+<title>${escapeHtml(conceptName)} — Viditra</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -2008,7 +2047,7 @@ ${cards}
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhysicsMind — Simulation Library</title>
+<title>Viditra — Simulation Library</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -2066,7 +2105,7 @@ ${pilotHeadTags(0)}
 <body><div class="wrap">
   <div class="masthead">
     <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
-    <div class="brand"><b>PhysicsMind</b><span>Teacher Edition</span></div>
+    <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
     <div class="who"><span id="whoName"></span><button id="signOutBtn">Sign out</button></div>
   </div>
   <h1>Simulation Library</h1>
@@ -2187,9 +2226,11 @@ function buildOne(conceptId: string): void {
     mkdirSync(conceptDir, { recursive: true });
 
     // 1) the self-contained scene (field_3d = Three.js diamonds; particle_field = 2D p5 diamonds)
-    const simHtml = json.field_3d_config
-        ? assembleField3DHtml(json.field_3d_config)
-        : assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig);
+    const simHtml = vendorizeSimHtml(
+        json.field_3d_config
+            ? assembleField3DHtml(json.field_3d_config)
+            : assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig),
+    );
     writeFileSync(join(conceptDir, 'sim.html'), simHtml, 'utf-8');
 
     // 2) the player page
@@ -2230,6 +2271,10 @@ function main(): void {
         console.error('  npx tsx src/scripts/build_review_site.ts --catalog      refresh catalog only (badges/videos)');
         process.exit(1);
     }
+
+    // Every mode that (re)builds sims needs the shared vendor/ dir in place —
+    // sim.html references ../vendor/{three,katex,p5} instead of the CDNs.
+    if (arg !== '--catalog') writeVendorAssets();
 
     // --catalog: just regenerate the landing page from existing folders + review_status.json
     if (arg === '--catalog') {
