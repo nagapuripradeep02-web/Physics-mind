@@ -1,38 +1,22 @@
 {
-  "approved_at": "2026-06-10T18:35:54.878Z",
-  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\magnetic_force_moving_charge\\20260610-203203",
+  "approved_at": "2026-07-11T20:45:48.204Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\magnetic_force_moving_charge\\20260711-214907",
   "tolerance": 0.02,
   "states": {
     "STATE_1": {
-      "compare": false,
+      "compare": true,
       "compare_frozen": true
     },
     "STATE_2": {
-      "compare": false,
+      "compare": true,
       "compare_frozen": true
     },
     "STATE_3": {
-      "compare": false,
+      "compare": true,
       "compare_frozen": true
     },
     "STATE_4": {
-      "compare": false,
-      "compare_frozen": true
-    },
-    "STATE_5": {
-      "compare": false,
-      "compare_frozen": true
-    },
-    "STATE_6": {
-      "compare": false,
-      "compare_frozen": true
-    },
-    "STATE_7": {
-      "compare": false,
-      "compare_frozen": true
-    },
-    "STATE_8": {
-      "compare": false,
+      "compare": true,
       "compare_frozen": true
     }
   }

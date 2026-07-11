@@ -1167,6 +1167,82 @@ function welcomeHtml(): string {
 `;
 }
 
+// ── expired.html — SOFT trial-end screen ─────────────────────────────────────
+// Data is NEVER deleted (the saved work is the teacher's hook to convert and the
+// founder's feedback goldmine); this page just gates access and points at Pradeep.
+function expiredHtml(): string {
+    return `<!DOCTYPE html>
+<html lang="en" data-pm-page="expired"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trial ended — Viditra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./pm-config.js"></script>
+<script src="${SUPABASE_JS_CDN}"></script>
+<script src="./pm-auth.js"></script>
+<script src="./pm-telemetry.js"></script>
+<style>
+  :root{ --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --clay:#CB6843; --clay-deep:#B0552F;
+         --clay-soft:#E3A07F; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+         --line:rgba(245,240,230,.10); --red:#E06A52; --sage:#74B594;
+         --font-disp:"Fraunces",Georgia,serif; --font-ui:"Inter",system-ui,sans-serif; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(46% 38% at 100% 0%, rgba(203,104,67,.08), transparent 60%),
+               radial-gradient(40% 32% at 0% 100%, rgba(116,181,148,.05), transparent 60%);}
+  .wrap{position:relative;min-height:100vh;display:grid;place-items:center;padding:24px;}
+  .card{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--line);border-radius:18px;
+        padding:34px 32px 30px;box-shadow:0 24px 60px -30px rgba(0,0,0,.8);}
+  .masthead{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+  .mark{width:40px;height:40px;border-radius:12px;background:var(--clay);flex:none;display:grid;place-items:center;
+        box-shadow:0 6px 18px -6px rgba(203,104,67,.55);}
+  .mark svg{width:23px;height:23px;}
+  .brand b{font-family:var(--font-disp);font-weight:600;font-size:19px;display:block;line-height:1;}
+  .brand span{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;display:block;}
+  h1{font-family:var(--font-disp);font-size:20px;font-weight:600;margin:0 0 4px;}
+  p.sub{color:var(--ink-dim);font-size:13px;margin:0 0 22px;line-height:1.6;}
+  a.go{display:block;text-align:center;text-decoration:none;width:100%;margin-top:4px;padding:12px;border:0;border-radius:10px;
+       background:var(--clay);color:#fff;font-size:14px;font-weight:600;font-family:var(--font-ui);transition:background .15s ease;}
+  a.go:hover{background:var(--clay-deep);}
+  .hint{font-size:11.5px;color:var(--ink-faint);margin-top:10px;text-align:center;}
+  a.alt{display:block;text-align:center;margin-top:16px;color:var(--ink-dim);font-size:12.5px;text-decoration:none;}
+  a.alt:hover{color:var(--clay-soft);}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+  <div class="masthead">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
+  </div>
+
+  <h1 id="xhead">Your free trial has ended</h1>
+  <p class="sub">Everything you set up — your saved lesson layouts, renames, and customizations — is safe
+     and waiting exactly as you left it. To keep teaching with Viditra, message Pradeep and he will
+     activate your founding-teacher plan (&#8377;699/month, locked).</p>
+  <a class="go" href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email pradeep@viditra.co</a>
+  <p class="hint">or reply on the WhatsApp thread we've been talking on — that works too.</p>
+  <a class="alt" href="#" id="soLink">Sign out</a>
+</div></div>
+
+<script>
+(function () {
+  PM.authReady.then(function () {
+    var p = window.PM_PROFILE;
+    if (p && p.display_name) document.getElementById('xhead').textContent = p.display_name.split(' ')[0] + ', your free trial has ended';
+  });
+  document.getElementById('soLink').addEventListener('click', function (ev) {
+    ev.preventDefault(); if (window.PM && PM.auth) PM.auth.signOut();
+  });
+})();
+</script>
+</body></html>
+`;
+}
+
 /** Write the shared root assets into the review-site output dir. */
 export function writeRootAssets(outDir: string): void {
     writeFileSync(join(outDir, 'pm-config.js'), pmConfigJs(), 'utf-8');
@@ -1176,5 +1252,6 @@ export function writeRootAssets(outDir: string): void {
     writeFileSync(join(outDir, 'login.html'), loginHtml(), 'utf-8');
     writeFileSync(join(outDir, 'join.html'), joinHtml(), 'utf-8');
     writeFileSync(join(outDir, 'welcome.html'), welcomeHtml(), 'utf-8');
-    console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, login.html, join.html, welcome.html → review-site/');
+    writeFileSync(join(outDir, 'expired.html'), expiredHtml(), 'utf-8');
+    console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, login.html, join.html, welcome.html, expired.html → review-site/');
 }
