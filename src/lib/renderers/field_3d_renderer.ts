@@ -1736,12 +1736,27 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #66BB6A; font-weight: bold;
 }
+/* Full-screen "clean mode" (build_review_site.ts SET_CLEAN_MODE, toggled via
+   body.pm-clean): strips the on-canvas caption/formula/HUD/sliders to a bare
+   scene. .pm_hud is added by hand to the statically-authored overlay divs below;
+   [style*="position:fixed"] catches every dynamically-created per-scenario
+   HUD/readout panel (built via panel.style.cssText = "position:fixed; ...") with
+   NO changes needed at their creation sites, and stays correct for future
+   scenarios automatically as long as they keep that convention. New dynamically
+   -created panels: no action needed. New statically-authored overlay divs: add
+   class="pm_hud". !important is required — it must win over each panel's own
+   non-!important style.display toggling. */
+body.pm-clean .pm_hud,
+body.pm-clean [style*="position:fixed"],
+body.pm-clean [style*="position: fixed"] {
+    display: none !important;
+}
 </style>
 </head><body>
-<div id="caption"></div>
-<div id="legend"></div>
+<div id="caption" class="pm_hud"></div>
+<div id="legend" class="pm_hud"></div>
 <div id="mobile-fallback"></div>
-<div id="sliders">
+<div id="sliders" class="pm_hud">
     <div id="gen_i_row">
     <label>I = <span id="i_val">5</span> A</label>
     <input type="range" id="i_slider" min="0.5" max="20" step="0.5" value="5">
@@ -1752,11 +1767,11 @@ canvas { display: block; width: 100%; height: 100%; }
     </div>
     <div id="b_readout">B = 20.0 μT</div>
 </div>
-<div id="formula_overlay"></div>
-<div id="equation_panel" class="anchor-bottom-left"></div>
-<div id="acl_eq_panel"></div>
-<canvas id="acl_stage"></canvas>
-<div id="rhr_overlay">
+<div id="formula_overlay" class="pm_hud"></div>
+<div id="equation_panel" class="anchor-bottom-left pm_hud"></div>
+<div id="acl_eq_panel" class="pm_hud"></div>
+<canvas id="acl_stage" class="pm_hud"></canvas>
+<div id="rhr_overlay" class="pm_hud">
     <div class="rhr-title">Right-Hand Rule</div>
     <div class="rhr-case rhr-case-section-a">
         <div class="rhr-case-label rhr-case-a-label">Case A · I points UP ↑</div>
@@ -1820,7 +1835,7 @@ canvas { display: block; width: 100%; height: 100%; }
     </div>
     <div class="rhr-footer">Same RIGHT hand — flip thumb, B reverses too</div>
 </div>
-<div id="palm_rule_overlay">
+<div id="palm_rule_overlay" class="pm_hud">
     <div class="palm-title">Right-Hand Rule · F = q v × B</div>
     <div class="palm-case palm-case-section-pos">
         <div class="palm-case-label palm-case-pos-label">Positive charge (+q)</div>
@@ -1876,7 +1891,7 @@ canvas { display: block; width: 100%; height: 100%; }
     </div>
     <div class="palm-footer">NCERT / DC Pandey: right-hand rule for v × B. Same hand both cases — only F's sign flips with q.</div>
 </div>
-<div id="fleming_overlay">
+<div id="fleming_overlay" class="pm_hud">
     <div class="fleming-title">Fleming's Left-Hand Rule</div>
     <svg class="fleming-axes-svg" viewBox="0 0 170 150" xmlns="http://www.w3.org/2000/svg" aria-label="left hand: forefinger up (B), thumb left (F), central finger toward viewer (v) — matches the scene orientation">
         <ellipse cx="90" cy="90" rx="14" ry="11" fill="rgba(244,167,126,0.22)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
@@ -1913,7 +1928,7 @@ canvas { display: block; width: 100%; height: 100%; }
         Works for +q only. For −q, F reverses.<br/>For any θ ≠ 90°, use right-hand rule.
     </div>
 </div>
-<div id="lorentz_sliders">
+<div id="lorentz_sliders" class="pm_hud">
     <div id="lz_q_row"><label>q = <span id="q_toggle">+e</span></label></div>
     <div id="lz_v_row"><label>|v| = <span id="v_val">1.0</span> ×10⁵ m/s</label>
     <input type="range" id="v_slider" min="0.5" max="5" step="0.1" value="1"></div>
@@ -1923,7 +1938,7 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="theta_slider" min="0" max="90" step="1" value="90"></div>
     <div id="f_readout">F = 0.16 fN</div>
 </div>
-<div id="nowork_meters" class="nowork_meters">
+<div id="nowork_meters" class="nowork_meters pm_hud">
     <div class="nw_panel_title" id="nw_title">no work</div>
     <div class="nw_gauges">
         <div class="nw_gauge">
@@ -1936,7 +1951,7 @@ canvas { display: block; width: 100%; height: 100%; }
         </div>
     </div>
 </div>
-<div id="nowork_meters_l" class="nowork_meters">
+<div id="nowork_meters_l" class="nowork_meters pm_hud">
     <div class="nw_panel_title" id="nw_title_l">electric</div>
     <div class="nw_gauges">
         <div class="nw_gauge">
@@ -1949,7 +1964,7 @@ canvas { display: block; width: 100%; height: 100%; }
         </div>
     </div>
 </div>
-<div id="nowork_meters_r" class="nowork_meters">
+<div id="nowork_meters_r" class="nowork_meters pm_hud">
     <div class="nw_panel_title" id="nw_title_r">magnetic</div>
     <div class="nw_gauges">
         <div class="nw_gauge">
@@ -1962,16 +1977,16 @@ canvas { display: block; width: 100%; height: 100%; }
         </div>
     </div>
 </div>
-<div id="nw_phase_l" class="nw_phase">ELECTRIC — F not ⊥ v</div>
-<div id="nw_phase_r" class="nw_phase">MAGNETIC — F always ⊥ v</div>
-<div id="nowork_sliders">
+<div id="nw_phase_l" class="nw_phase pm_hud">ELECTRIC — F not ⊥ v</div>
+<div id="nw_phase_r" class="nw_phase pm_hud">MAGNETIC — F always ⊥ v</div>
+<div id="nowork_sliders" class="pm_hud">
     <label>|v| = <span id="nw_v_val">1.0</span> ×10⁵ m/s</label>
     <input type="range" id="nw_v_slider" min="0.5" max="5" step="0.1" value="1">
     <label>B = <span id="nw_b_val">10</span> mT</label>
     <input type="range" id="nw_b_slider" min="1" max="100" step="1" value="10">
     <div id="nw_invariant">|v| fixed · W = 0 · bigger B ⇒ tighter turn</div>
 </div>
-<div id="radius_sliders">
+<div id="radius_sliders" class="pm_hud">
     <div id="rad_m_row"><label>m = <span id="rad_m_val">1.0</span> (mass)</label>
     <input type="range" id="rad_m_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
     <div id="rad_v_row"><label>v = <span id="rad_v_val">1.0</span> (speed)</label>
@@ -1982,11 +1997,11 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="rad_b_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
     <div id="rad_readout">r <span id="rad_bar">▮▮▮</span></div>
 </div>
-<div id="radius_eqn">
+<div id="radius_eqn" class="pm_hud">
     <div class="rad_eqn_balance" id="rad_eqn_balance">qvB = mv²/r</div>
     <div class="rad_eqn_solved" id="rad_eqn_solved">r = mv/qB</div>
 </div>
-<div id="helix_sliders">
+<div id="helix_sliders" class="pm_hud">
     <div id="hx_theta_row"><label>θ = <span id="hx_theta_val">45</span>° (angle)</label>
     <input type="range" id="hx_theta_slider" min="10" max="90" step="5" value="45"></div>
     <div id="hx_v_row"><label>v = <span id="hx_v_val">1.0</span> (speed)</label>
@@ -1994,11 +2009,11 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="hx_B_row"><label>B = <span id="hx_B_val">1.0</span> (field)</label>
     <input type="range" id="hx_B_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
 </div>
-<div id="hx_readout">
+<div id="hx_readout" class="pm_hud">
     <div id="hx_r_line">r <span id="hx_r_bar">▮▮▮</span></div>
     <div id="hx_p_line">p <span id="hx_p_bar">▮▮▮</span></div>
 </div>
-<div id="cyclotron_timers">
+<div id="cyclotron_timers" class="pm_hud">
     <div class="cyc_timer" id="cyc_timer_a">
         <div class="cyc_timer_label" id="cyc_timer_a_label">lap</div>
         <div class="cyc_timer_bar" id="cyc_timer_a_bar"></div>
@@ -2009,14 +2024,14 @@ canvas { display: block; width: 100%; height: 100%; }
     </div>
     <div id="cyc_tie_badge">= same T</div>
 </div>
-<div id="cyclotron_eqn">
+<div id="cyclotron_eqn" class="pm_hud">
     <div class="cyc_eqn_line" id="cyc_eqn_line1"></div>
     <div class="cyc_eqn_line" id="cyc_eqn_line2"></div>
     <div class="cyc_eqn_line" id="cyc_eqn_line3"></div>
     <div class="cyc_eqn_line" id="cyc_eqn_final"></div>
     <div class="cyc_eqn_line" id="cyc_eqn_aside"></div>
 </div>
-<div id="cyclotron_sliders">
+<div id="cyclotron_sliders" class="pm_hud">
     <div id="cyc_m_row"><label>m = <span id="cyc_m_val">1.0</span> (mass)</label>
     <input type="range" id="cyc_m_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
     <div id="cyc_v_row"><label>v = <span id="cyc_v_val">1.0</span> (speed)</label>
@@ -2027,7 +2042,7 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="cyc_b_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
     <div id="cyc_invariant">T <span id="cyc_live_bar"></span></div>
 </div>
-<div id="torque_sliders">
+<div id="torque_sliders" class="pm_hud">
     <div id="tq_n_row"><label>N = <span id="n_torque_val">1</span> turns</label>
     <input type="range" id="n_torque_slider" min="1" max="100" step="1" value="1"></div>
     <div id="tq_i_row"><label>I = <span id="i_torque_val">0.50</span> A</label>
@@ -2038,7 +2053,7 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="theta_torque_slider" min="0" max="180" step="1" value="45"></div>
     <div id="tau_readout">τ = 0.0 μN·m</div>
 </div>
-<div id="dipole_sliders">
+<div id="dipole_sliders" class="pm_hud">
     <div id="dpf_p_row"><label>p = <span id="p_dipole_val">5.0</span> ×10⁻³⁰ C·m</label>
     <input type="range" id="p_dipole_slider" min="1" max="10" step="0.5" value="5"></div>
     <div id="dpf_e_row"><label>E = <span id="e_dipole_val">5.0</span> kV/m</label>
@@ -2047,7 +2062,7 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="theta_dipole_slider" min="0" max="180" step="1" value="45"></div>
     <div id="dipole_readout">τ = 0.0 · U = 0.0</div>
 </div>
-<div id="bmf_sliders">
+<div id="bmf_sliders" class="pm_hud">
     <label>m = <span id="bmf_m_val">5.0</span> A·m²</label>
     <input type="range" id="bmf_m_slider" min="1" max="10" step="0.5" value="5">
     <label>B = <span id="bmf_b_val">5.0</span> ×10⁻⁴ T</label>
@@ -2056,7 +2071,7 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="bmf_theta_slider" min="0" max="180" step="1" value="45">
     <div id="bmf_readout">τ = 0.0 · U = 0.0 · T = 0.0 s</div>
 </div>
-<div id="fcw_sliders">
+<div id="fcw_sliders" class="pm_hud">
     <div id="fcw_i_row"><label>I = <span id="fcw_i_val">2</span> A</label>
     <input type="range" id="fcw_i_slider" min="0.5" max="5" step="0.5" value="2"></div>
     <div id="fcw_l_row"><label>L = <span id="fcw_l_val">0.5</span> m</label>
@@ -2068,14 +2083,14 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="fcw_dir_row"><button id="fcw_dir_toggle" type="button">Flip current →</button></div>
     <div id="fcw_f_readout">F = 0.50 N</div>
 </div>
-<div id="plates_sliders">
+<div id="plates_sliders" class="pm_hud">
     <label>V = <span id="plates_v_val">12</span> V</label>
     <input type="range" id="plates_v_slider" min="1" max="100" step="1" value="12">
     <label>d = <span id="plates_d_val">10</span> mm</label>
     <input type="range" id="plates_d_slider" min="0.001" max="0.1" step="0.001" value="0.01">
     <div id="plates_e_readout">E = V / d = 1200 V/m</div>
 </div>
-<div id="plates_readout">E = V / d = 1200 V/m</div>
+<div id="plates_readout" class="pm_hud">E = V / d = 1200 V/m</div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"><\/script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"><\/script>
@@ -34961,18 +34976,48 @@ export const FIELD_3D_RENDERER_CODE = `
                     // with TTS narration when the founder clicks ▶ Play TTS.
                     // Continuous modes (theta_sweep, oscillation) restart from
                     // phi=0 for a clean visual reset.
-                    if (config.scenario_type === "torque_on_loop_uniform_field" ||
-                        config.scenario_type === "dipole_in_uniform_field") {
-                        var lgR = findTorqueLoopGroup();
-                        if (lgR) {
-                            var initT = lgR.userData.rotation_init_theta_deg;
-                            if (typeof initT === "number") applyTorqueLoopTheta(lgR, initT);
-                            lgR.userData.rotation_start_time = time;
-                            if (lgR.userData.barSwapEnabled) {
-                                lgR.userData.barSwapStartTime = time;
-                            }
+                    // Generic on the shared torque-loop group (engine_bug_queue
+                    // dipole_replay_animations_scenario_type_gap, 2026-07-08):
+                    // findTorqueLoopGroup() returns the SAME torque_loop_group
+                    // element for every scenario_type that builds one via
+                    // buildDipoleInField()/buildTorqueLoop() (torque_on_loop_
+                    // uniform_field, dipole_in_uniform_field, bar_magnet_in_
+                    // uniform_field, pe_external_field's dipole phase) — an
+                    // enumerated scenario_type allowlist here silently excluded
+                    // any scenario that reuses the engine without also being
+                    // added to the list (pe_external_field + bar_magnet_in_
+                    // uniform_field were both missing, so REPLAY_ANIMATIONS
+                    // never re-stamped rotation_start_time on rebase for them —
+                    // the instant RESET_TRAJECTORY rebased stateStartTime, e.g.
+                    // STATE_6's damped_pendulum, its stale rotation_start_time
+                    // made a fresh replay — clicking ▶ Play again after a state
+                    // finishes calls rollTimeline() -> RESET_TRAJECTORY +
+                    // REPLAY_ANIMATIONS — show a mid/late-arc angle instead of
+                    // the authored initial theta). The 'if (lgR)' guard already
+                    // no-ops safely when no group exists, so a plain existence check
+                    // covers every current AND future consumer by construction
+                    // instead of an allowlist that goes stale.
+                    var lgR = findTorqueLoopGroup();
+                    if (lgR) {
+                        var initT = lgR.userData.rotation_init_theta_deg;
+                        if (typeof initT === "number") applyTorqueLoopTheta(lgR, initT);
+                        lgR.userData.rotation_start_time = time;
+                        if (lgR.userData.barSwapEnabled) {
+                            lgR.userData.barSwapStartTime = time;
                         }
                     }
+                    break;
+
+                case "SET_CLEAN_MODE":
+                    // Full-screen "clean mode" (build_review_site.ts #fsCleanBtn):
+                    // strips the on-canvas caption/formula/HUD/sliders to a bare 3D
+                    // scene. See the body.pm-clean rule in <style> above — it targets
+                    // .pm_hud (statically-authored overlay divs) and any element whose
+                    // inline style contains position:fixed (the ~50 dynamically-created
+                    // per-scenario HUD/readout panels, all built with that convention).
+                    // Never persisted here — the review player resets this to off on
+                    // every full-screen entry AND exit.
+                    document.body.classList.toggle("pm-clean", !!data.on);
                     break;
             }
         });
