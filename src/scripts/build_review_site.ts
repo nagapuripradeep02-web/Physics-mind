@@ -165,7 +165,12 @@ function writeVendorAssets(): void {
     if (existsSync(audioSrc)) {
         cpSync(audioSrc, join(OUT_DIR, 'onboarding'), { recursive: true });
     }
-    console.log('✅ Vendored three/katex(+fonts)/p5/driver (+ onboarding audio) → review-site/');
+    // Brand intro sting (4s silent logo animation) — played once ever on first login.
+    const introSrc = join(ROOT, 'assets', 'brand', 'viditra-intro.mp4');
+    if (existsSync(introSrc)) {
+        copyFileSync(introSrc, join(OUT_DIR, 'viditra-intro.mp4'));
+    }
+    console.log('✅ Vendored three/katex(+fonts)/p5/driver (+ onboarding audio + intro) → review-site/');
 }
 
 // ── Review-tracking manifest (who reviewed what, + her recorded videos) ───────
@@ -463,12 +468,18 @@ ${pilotHeadTags(1)}
   #pmWm{position:absolute;left:12px;bottom:10px;z-index:6;pointer-events:none;
         font:500 10.5px var(--font-ui);letter-spacing:.05em;color:rgba(236,233,226,.32);}
   #pmWm b{font-weight:600;color:rgba(227,160,127,.55);}
-  #pmLoad{position:absolute;inset:0;z-index:40;display:grid;place-items:center;background:var(--sim);
-        opacity:1;transition:opacity .45s ease;pointer-events:none;}
-  #pmLoad.gone{opacity:0;}
-  #pmLoad .plc{text-align:center;display:grid;gap:10px;}
-  #pmLoad .nm{font-family:var(--font-disp);font-size:22px;font-weight:600;color:var(--ink);}
-  #pmLoad .pw{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
+  /* Full-viewport brand curtain: covers rail/header/footer too, so the whole teaching UI
+     is revealed together by ONE smooth fade (blocks clicks while opaque; 99994 = above the
+     feedback pill/overlay 99990-1, below the tour overlay 99999). */
+  #pmLoad{position:fixed;inset:0;z-index:99994;display:grid;place-items:center;background:var(--bg);
+        opacity:1;transition:opacity .8s ease;}
+  #pmLoad.gone{opacity:0;pointer-events:none;}
+  #pmLoad .plc{text-align:center;display:grid;place-items:center;gap:14px;}
+  #pmLoad .mark{width:72px;height:72px;border-radius:20px;background:var(--clay);display:grid;place-items:center;
+        box-shadow:0 12px 36px -8px rgba(203,104,67,.6);}
+  #pmLoad .mark svg{width:42px;height:42px;}
+  #pmLoad .nm{font-family:var(--font-disp);font-size:clamp(34px,5.5vw,52px);font-weight:600;color:var(--ink);line-height:1.05;}
+  #pmLoad .pw{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);}
   #pmLoad .pw b{color:var(--clay-soft);font-weight:600;}
   #stage::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:3; border-radius:0;
                   box-shadow: inset 0 0 0 1px var(--line), inset 0 0 70px rgba(0,0,0,.4); }
@@ -659,7 +670,10 @@ ${pilotHeadTags(1)}
     <div id="stage">
       <iframe id="sim" src="sim.html" title="sim" allow="autoplay"></iframe>
       <div id="pmWm">powered by <b>Viditra</b></div>
-      <div id="pmLoad"><div class="plc"><span class="nm" id="pmLoadName">Viditra</span><span class="pw">powered by <b>Viditra</b></span></div></div>
+      <div id="pmLoad"><div class="plc">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+        <span class="nm" id="pmLoadName">Viditra</span><span class="pw">powered by <b>Viditra</b></span>
+      </div></div>
       <canvas id="simOverlay"></canvas>
       <div id="simPenBar">
         <span class="seg">
@@ -781,16 +795,25 @@ ${pilotHeadTags(1)}
   var tapCueDone = false;
   var tapCueTimer = null;
 
-  // ── Brand load card: masks iframe boot. Gone on SIM_READY (min 700ms shown, 4s failsafe). ──
+  // ── Brand curtain: full-screen "{Name}'s Class · powered by Viditra" masks the whole UI while
+  //    the sim boots. Held min 2.8s (the brand moment), gone on SIM_READY, 4s failsafe; the .8s
+  //    opacity fade IS the reveal — rail/header/sim all appear together. ──
   var pmLoadEl = document.getElementById('pmLoad');
   var pmLoadT0 = Date.now();
+  // Pre-fill the tutor's name from pm-auth's cache (written on any earlier gated page, e.g. the
+  // catalog) so the curtain reads "{Name}'s Class" from the FIRST frame — the PM.authReady swap
+  // below stays as the fresh-truth confirmation for first-ever visits.
+  try {
+    var pmNmCache = localStorage.getItem('pm_name_cache');
+    if (pmNmCache) document.getElementById('pmLoadName').textContent = pmNmCache + '’s Class';
+  } catch (e) {}
   function pmLoadDone() {
     if (!pmLoadEl) return;
     var pmLoadElGone = pmLoadEl; pmLoadEl = null;
-    var pmLoadWait = Math.max(0, 700 - (Date.now() - pmLoadT0));
+    var pmLoadWait = Math.max(0, 2800 - (Date.now() - pmLoadT0));
     setTimeout(function () {
       pmLoadElGone.className = 'gone';
-      setTimeout(function () { if (pmLoadElGone.parentNode) pmLoadElGone.parentNode.removeChild(pmLoadElGone); }, 500);
+      setTimeout(function () { if (pmLoadElGone.parentNode) pmLoadElGone.parentNode.removeChild(pmLoadElGone); }, 900);
     }, pmLoadWait);
   }
   setTimeout(pmLoadDone, 4000);

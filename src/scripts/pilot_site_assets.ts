@@ -184,6 +184,7 @@ function pmAuthJs(): string {
     user: function () { return user; },
     client: function () { return client; },
     signOut: function () {
+      try { localStorage.removeItem('pm_name_cache'); } catch (e) {}   // next teacher must not see this name
       var done = function () { location.href = toLogin(); };
       if (client) client.auth.signOut().then(done, done); else done();
     }
@@ -239,6 +240,9 @@ function pmAuthJs(): string {
         location.replace('/welcome.html'); return;
       }
       window.PM_PROFILE = p;
+      // Cache the name so brand surfaces (player boot curtain) can show "{Name}'s Class"
+      // from the FIRST paint of the NEXT page, before this async gate resolves there.
+      try { if (p.display_name) localStorage.setItem('pm_name_cache', p.display_name); } catch (e) {}
       var end = 0;
       try { end = new Date(p.trial_started_at).getTime() + (p.trial_days || 14) * 86400000; } catch (e) { end = 0; }
       window.PM_TRIAL_END = end;
