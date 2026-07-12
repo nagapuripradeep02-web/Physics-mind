@@ -1551,6 +1551,25 @@ function drawEmfScenario() {
   }
 }
 
+// FINDING A - shared loop->ladder parameterisation for the S1 followed charge.
+// Returns the arc-length fractions along loops.series where the cell riser ends
+// (sc) and where each resistor box is entered/exited. The SAME loop-fraction
+// (mark) drives BOTH the physical loop marker (polyAt over loops.series) and the
+// ladder tracking-dot (mapped through these breakpoints inside drawPotentialLadder),
+// so the dot always sits at the potential of the exact loop position the marker
+// occupies - no arc-length desync between the two differently-shaped polylines.
+function kvlLoopProfile(loops, c) {
+  var g = loops.g, L = polyLen(loops.series);
+  var up = g.midY - g.topY;                             // batt -> top-left corner (arc before the top edge)
+  var res = c.three ? [g.sR1, g.sR2, g.sR3] : [g.sR1, g.sR2];
+  var half = 33;                                        // resistor box half-width (drawResistorBoxC draws 66 wide)
+  var enter = [], exit = [];
+  for (var k = 0; k < res.length; k++) {
+    enter.push((up + (res[k].x - half - g.leftX)) / L);
+    exit.push((up + (res[k].x + half - g.leftX)) / L);
+  }
+  return { sc: 30 / L, enter: enter, exit: exit, n: res.length };
+}
 // ═══ kirchhoff_loop_rule_KVL scenario — ideal cell + 2-3 SERIES resistors ═════
 // Reuses scenario_type 'emf_definition' but every piece here is gated behind a
 // per-state flag (kvl_multi_ladder / show_element_voltmeters / kvl_sum_readout /
@@ -1603,9 +1622,11 @@ function drawKvlScenario() {
   if (st && st.show_ladder) {
     var mark = (st.trace_charge && !c.swOpen) ? emfTraceS({ i: c.i }) : null;
     var build = (st.ladder_build_ms && st.ladder_build_ms.length) ? st.ladder_build_ms : null;
+    var prof = (mark !== null) ? kvlLoopProfile(loops, c) : null;   // FINDING A: one shared loop->ladder mapping for BOTH dots
+    var tallPanel = !!(st.show_sliders || (st.visible_controls && st.visible_controls.length >= 3));   // FINDING C: the S5 all-sliders panel is tall enough to overlap the ladder title
     drawPotentialLadder(c.eps, c.i, c.Rtot, c.swOpen, 1, null, 0, null, null,
-      { V1: c.V1, V2: c.V2, V3: c.V3, three: c.three, build: build, marker: mark });
-    if (mark !== null) {                                 // the followed charge on the physical loop (synced with the ladder dot)
+      { V1: c.V1, V2: c.V2, V3: c.V3, three: c.three, build: build, marker: mark, prof: prof, shiftDown: tallPanel });
+    if (mark !== null) {                                 // the followed charge on the PHYSICAL loop; the ladder dot rides the SAME mark+prof (lockstep)
       var lp = polyAt(loops.series, polyLen(loops.series), mark);
       noStroke(); fillHex('#FFE082', 0.30); ellipse(lp.x, lp.y, 22);
       fillHex('#FFE082', 0.98); ellipse(lp.x, lp.y, 9);
@@ -2296,7 +2317,8 @@ function emfTraceV(s, p, eps) {                              // potential of the
 // terminal-to-terminal = V = eps + i*r. ir absent -> pixel-identical emf_definition
 // profile (locked baselines).
 function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir, kvl) {
-  var x0 = width * 0.74, y0 = (ir ? height * 0.39 : height * 0.30), w = width * 0.225, h = height * 0.42;   // ir: clear the 4-row slider panel + readout (Rule 34d)
+  var lowPanel = !!ir || !!(kvl && kvl.shiftDown);   // clear the tall 4-row slider panel + readout (Rule 34d): internal_resistance always; KVL only on the S5 all-sliders layout (FINDING C)
+  var x0 = width * 0.74, y0 = (lowPanel ? height * 0.39 : height * 0.30), w = width * 0.225, h = height * 0.42;
   rectMode(CORNER); fill(10, 12, 28, 210 * dim); noStroke(); rect(x0, y0, w, h, 6);
   strokeHex('#37474F', 0.8 * dim); strokeWeight(1); noFill(); rect(x0, y0, w, h, 6);
   var padL = 30, padB = 20, gx = x0 + padL, gy = y0 + h - padB, gw = w - padL - 12, gh = h - padB - 20;
@@ -2344,12 +2366,37 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir
       text('\\u2212' + Dk[lk].toFixed(1), gx + seg * (1.5 + 2 * lk), py(accV + Dk[lk] * 0.5) + 1);
     }
     fillHex('#66BB6A', 0.9 * dim); textSize(9); textAlign(RIGHT, BOTTOM); text('0', gx - 3, py(0) + 4);
-    // the followed charge (S1) rides the ladder polyline by arc length (climbs the
-    // riser, walks the flats, ramps each drop) — in lockstep with the loop dot.
-    if (kvl.marker !== null && kvl.marker !== undefined && !swOpen) {
-      var mp = polyAt(pts, polyLen(pts), kvl.marker);
-      noStroke(); fillHex('#FFE082', 0.30 * lDimK); ellipse(mp.x, mp.y, 14);
-      fillHex('#FFE082', 0.98 * lDimK); ellipse(mp.x, mp.y, 7);
+    // the followed charge (S1) rides the ladder in lockstep with the loop marker:
+    // BOTH are driven by the SAME loop-fraction (kvl.marker) mapped through the SAME
+    // loop profile (kvl.prof) so the dot sits at exactly the potential of the loop
+    // position the physical marker occupies (FINDING A) - no arc-length desync.
+    if (kvl.marker !== null && kvl.marker !== undefined && !swOpen && kvl.prof) {
+      var mkS = ((kvl.marker % 1) + 1) % 1, mkP = kvl.prof, mkX, mkV;
+      if (mkS < mkP.sc) {                              // riser at the cell: x fixed, potential climbs 0 -> eps
+        mkX = gx; mkV = eps * (mkS / max(mkP.sc, 1e-6));
+      } else if (mkS < mkP.enter[0]) {                 // wire cell -> R1: ladder top flat at eps
+        mkX = gx + seg * (mkS - mkP.sc) / max(mkP.enter[0] - mkP.sc, 1e-6); mkV = eps;
+      } else {
+        var mkA = eps, mkPlaced = false;
+        for (var rk = 0; rk < nk; rk++) {
+          if (mkS < mkP.exit[rk]) {                     // across resistor rk: the -IRk drop
+            var mkF = (mkS - mkP.enter[rk]) / max(mkP.exit[rk] - mkP.enter[rk], 1e-6);
+            mkX = gx + seg * (1 + 2 * rk) + seg * mkF; mkV = mkA - Dk[rk] * mkF; mkPlaced = true; break;
+          }
+          mkA -= Dk[rk];                               // past resistor rk (fully dropped)
+          if (rk < nk - 1 && mkS < mkP.enter[rk + 1]) { // wire rk -> rk+1: flat at mkA
+            var mkFw = (mkS - mkP.exit[rk]) / max(mkP.enter[rk + 1] - mkP.exit[rk], 1e-6);
+            mkX = gx + seg * (2 + 2 * rk) + seg * mkFw; mkV = mkA; mkPlaced = true; break;
+          }
+        }
+        if (!mkPlaced) {                               // return wire after the last drop: flat at closing potential (0)
+          var mkLast = mkP.exit[nk - 1], mkFr = (mkS - mkLast) / max(1 - mkLast, 1e-6);
+          mkX = gx + seg * (2 * nk) + (gw - seg * (2 * nk)) * mkFr; mkV = mkA;
+        }
+      }
+      var mkY = py(mkV);
+      noStroke(); fillHex('#FFE082', 0.30 * lDimK); ellipse(mkX, mkY, 14);
+      fillHex('#FFE082', 0.98 * lDimK); ellipse(mkX, mkY, 7);
     }
   } else if (ir && ir.mode === 'charging') {
     // charger lifts to epsCh -> down i*R across the series R -> cell band: down eps

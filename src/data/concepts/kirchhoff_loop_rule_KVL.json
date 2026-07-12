@@ -603,7 +603,7 @@
         "three_resistor": false,
         "kvl_multi_ladder": true,
         "show_ladder": true,
-        "ladder_build_ms": [1200, 2700, 4200],
+        "ladder_build_ms": [100, 400, 700],
         "show_element_voltmeters": true,
         "kvl_sum_readout": false,
         "show_hl_tags": false,
