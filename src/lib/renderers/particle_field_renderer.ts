@@ -727,6 +727,25 @@ function updateReadouts() {
     var r3LEl = document.getElementById('pm-sv-R3');
     if (r3LEl) { var r3Ld = defs.R3 || {}; r3LEl.textContent = fmtNum(cR3()) + (r3Ld.unit ? (' ' + r3Ld.unit) : ''); }
   }
+  // KVL (emf-family) slider rows: R2 tracks the S3 autosweep 1->4, R1/R2/R3 show
+  // their pinned per-state value until grabbed. emfMode-gated + hasSlider('R1'..)
+  // is false for emf_definition (it has only emf/R/switch), so this is inert there.
+  if (emfMode() && hasSlider('R2') && !userTouched['R2'] && curState() && curState().r2_autosweep) {
+    var r2SwEl = document.getElementById('pm-sv-R2');
+    if (r2SwEl) { var r2Sd = defs.R2 || {}; r2SwEl.textContent = fmtNum(cKvlR2()) + (r2Sd.unit ? (' ' + r2Sd.unit) : ''); }
+  }
+  if (emfMode() && hasSlider('R1') && !userTouched['R1'] && curState() && typeof curState().R1 === 'number') {
+    var r1KEl = document.getElementById('pm-sv-R1');
+    if (r1KEl) { var r1Kd = defs.R1 || {}; r1KEl.textContent = fmtNum(cKvlR1()) + (r1Kd.unit ? (' ' + r1Kd.unit) : ''); }
+  }
+  if (emfMode() && hasSlider('R2') && !userTouched['R2'] && curState() && typeof curState().R2 === 'number' && !curState().r2_autosweep) {
+    var r2KEl = document.getElementById('pm-sv-R2');
+    if (r2KEl) { var r2Kd = defs.R2 || {}; r2KEl.textContent = fmtNum(cKvlR2()) + (r2Kd.unit ? (' ' + r2Kd.unit) : ''); }
+  }
+  if (emfMode() && hasSlider('R3') && !userTouched['R3'] && curState() && typeof curState().R3 === 'number') {
+    var r3KEl = document.getElementById('pm-sv-R3');
+    if (r3KEl) { var r3Kd = defs.R3 || {}; r3KEl.textContent = fmtNum(cKvlR3()) + (r3Kd.unit ? (' ' + r3Kd.unit) : ''); }
+  }
   if (circuitMode() && hasSlider('switch') && curState() && curState().switch_cycle) {
     var swEl = document.getElementById('pm-sv-switch');       // switch label tracks the S8 auto open/close
     if (swEl) swEl.textContent = cSwitchOpen() ? 'Open' : 'Closed';
@@ -739,11 +758,19 @@ function updateReadouts() {
                        'r = ' + ic2.r.toFixed(1) + ' \\u03A9\\n' +
                        'V = ' + ic2.Vterm.toFixed(2) + ' V\\n' +
                        'i = ' + ic2.i.toFixed(2) + ' A';
-    } else if (emfMode()) {                                   // emf_definition: eps, terminal V, i (ideal cell -> V = eps)
-      var ec = emfCurrents();
-      ro.textContent = '\\u03B5 = ' + ec.eps.toFixed(1) + ' V\\n' +
-                       'V = ' + ec.Vterm.toFixed(2) + ' V\\n' +
-                       'i = ' + ec.i.toFixed(2) + ' A';
+    } else if (emfMode()) {
+      var stEr = curState();
+      if (stEr && stEr.kvl_multi_ladder) {                    // KVL: eps, the single loop current, and the SIGNED loop sum (= 0)
+        var kc = cKvlCurrents();
+        ro.textContent = '\\u03B5 = ' + kc.eps.toFixed(1) + ' V\\n' +
+                         'i = ' + kc.i.toFixed(2) + ' A\\n' +
+                         '\\u03A3V = ' + kc.kvl_sum.toFixed(1) + ' V';
+      } else {                                                 // emf_definition: eps, terminal V, i (ideal cell -> V = eps)
+        var ec = emfCurrents();
+        ro.textContent = '\\u03B5 = ' + ec.eps.toFixed(1) + ' V\\n' +
+                         'V = ' + ec.Vterm.toFixed(2) + ' V\\n' +
+                         'i = ' + ec.i.toFixed(2) + ' A';
+      }
     } else if (powerMode()) {                                 // electric_power: P per bulb + total
       var pwr = cBulbPowers();
       var stPw = curState();
@@ -956,6 +983,62 @@ function emfCurrents() {
   return { eps: eps, R: R, i: i, swOpen: swOpen, Vterm: eps };
 }
 
+// ── kirchhoff_loop_rule_KVL physics (emf-family) — one IDEAL cell driving 2-3
+// SERIES resistors around a single loop. i = eps / SumR (one value everywhere —
+// series, no split); each drop Vk = i*Rk; the SIGNED loop sum eps - SumVk === 0
+// by construction (this IS the taught rule, not a coincidence). Gated entirely
+// behind st.kvl_multi_ladder so emf_definition renders byte-identical (it never
+// sets R1/R2/R3 nor the KVL flags). Per-state R locks (st.R1/R2/R3) snap on entry
+// and stay teacher-seizable (userTouched); S3's r2_autosweep glides R2 1->4 (the
+// CAUSE, Rule 32a); S4's r3_draw_in adds R3 to the loop mid-state.
+function cKvlR1() {
+  var st = curState();
+  if (st && typeof st.R1 === 'number' && !userTouched['R1']) return st.R1;
+  return hasSlider('R1') ? sliderVal('R1') : physConst('R1', 2);
+}
+function cKvlR2() {
+  var st = curState();
+  if (st && st.r2_autosweep && !userTouched['R2']) {          // S3: R2 grows 1->4 ohm (the cause)
+    var start = 1000, dur = 3100;
+    var r2a = (typeof st.R2 === 'number') ? st.R2 : (hasSlider('R2') ? sliderDefault('R2') : 1);
+    var r2b = (st.r2_autosweep_to !== undefined) ? st.r2_autosweep_to : 4;
+    return r2a + (r2b - r2a) * constrain((PM_simTimeMs - start) / dur, 0, 1);
+  }
+  if (st && typeof st.R2 === 'number' && !userTouched['R2']) return st.R2;
+  return hasSlider('R2') ? sliderVal('R2') : physConst('R2', 1);
+}
+function cKvlR3() {
+  var st = curState();
+  if (st && typeof st.R3 === 'number' && !userTouched['R3']) return st.R3;
+  return hasSlider('R3') ? sliderVal('R3') : physConst('R3', 3);
+}
+// Is R3 part of the loop right now? S4 flips it in at the r3_draw_in cue (~900ms);
+// S5 authors three_resistor:true directly; S1-S3 leave it false (R3 undrawn).
+function cKvlThree() {
+  var st = curState();
+  if (!st) return false;
+  if (st.r3_draw_in) return !!userTouched['R3'] || PM_simTimeMs >= 900;
+  return !!st.three_resistor;
+}
+// R3's draw-in animation factor 0..1 (S4 reveal); 1 whenever R3 is simply present.
+function cKvlR3Reveal() {
+  var st = curState();
+  if (st && st.r3_draw_in && !userTouched['R3']) return constrain((PM_simTimeMs - 900) / 700, 0, 1);
+  return cKvlThree() ? 1 : 0;
+}
+function cKvlCurrents() {
+  var eps = cEmf();
+  var R1 = max(cKvlR1(), 1e-6), R2 = max(cKvlR2(), 1e-6);
+  var three = cKvlThree();
+  var R3 = three ? max(cKvlR3(), 1e-6) : 0;
+  var swOpen = emfSwitchOpen();
+  var Rtot = R1 + R2 + (three ? R3 : 0);
+  var i = swOpen ? 0 : eps / max(Rtot, 1e-6);
+  var V1 = i * R1, V2 = i * R2, V3 = three ? i * R3 : 0;
+  return { eps: eps, R1: R1, R2: R2, R3: R3, three: three, i: i, swOpen: swOpen,
+           V1: V1, V2: V2, V3: V3, kvl_sum: eps - V1 - V2 - V3, Rtot: Rtot };
+}
+
 // ── internal_resistance physics — the REAL cell: i = eps/(R+r), V = eps - i*r ──
 // (charging: an ideal 3.0 V charger drives i backwards -> V = eps + i*r).
 // Per-state numeric locks (st.emf / st.r / st.R / st.switch) win over sliders so a
@@ -1100,6 +1183,12 @@ function circuitGeom() {
   if (st && st.three_branch) {                         // KCL S4: three legible parallel lanes
     g.three = true;
     g.laneY = [topY - g.gap, topY, topY + g.gap];       // R1 top / R2 spine / R3 bottom
+  }
+  if (st && st.kvl_multi_ladder) {                     // KVL: 2-3 SERIES resistors at FIXED home slots (Rule 32d — S4 only ADDS R3, no teleport)
+    g.kvlLoop = true;
+    g.sR1 = { x: leftX + span * 0.28, y: topY };
+    g.sR2 = { x: leftX + span * 0.50, y: topY };
+    g.sR3 = { x: leftX + span * 0.72, y: topY };
   }
   return g;
 }
@@ -1414,6 +1503,8 @@ function drawCircuit() {
 // added incrementally: drawEmfCell (Task 3), drawPotentialLadder (Task 4),
 // drawVoltmeterC (Task 5). Beads flow at speed ~ i (0 when the loop is open).
 function drawEmfScenario() {
+  var stK = curState();
+  if (stK && stK.kvl_multi_ladder) { drawKvlScenario(); return; }   // kirchhoff_loop_rule_KVL — fully gated; emf_definition path below is untouched
   var c = emfCurrents(), loops = circuitLoops(), g = loops.g, st = curState();
   drawWireC(loops.series, '#546E7A', 0.85, 3);
   drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i, Req: c.R, V: c.eps, R1: c.R, R2: c.R });
@@ -1457,6 +1548,89 @@ function drawEmfScenario() {
     fillHex('#4DD0E1', 0.98);
     text('W / q = \\u03B5 = ' + c.eps.toFixed(1) + ' V   (per charge \\u2014 unchanged)', bx, by + 20);
     textStyle(NORMAL);
+  }
+}
+
+// ═══ kirchhoff_loop_rule_KVL scenario — ideal cell + 2-3 SERIES resistors ═════
+// Reuses scenario_type 'emf_definition' but every piece here is gated behind a
+// per-state flag (kvl_multi_ladder / show_element_voltmeters / kvl_sum_readout /
+// show_hl_tags / ghost_text / ladder_build_ms) so emf_definition + internal_
+// resistance render byte-identical (they never set them). Shares the cell/beads/
+// ammeter/ladder/voltmeter primitives; adds the multi-step ladder, per-element
+// voltmeters, the SIGNED loop-sum HUD, H/L tags, and the naive add-all ghost.
+function drawKvlScenario() {
+  var c = cKvlCurrents(), loops = circuitLoops(), g = loops.g, st = curState();
+  drawWireC(loops.series, '#546E7A', 0.85, 3);
+  drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i,
+                            Req: c.Rtot, V: c.eps, R1: c.R1, R2: c.R2 });
+  var rDim = dimFor('load'), r3rev = cKvlR3Reveal();
+  drawResistorBoxC(g.sR1.x, g.sR1.y, 'R\\u2081 = ' + fmtNum(c.R1) + ' \\u03A9', rDim);
+  drawResistorBoxC(g.sR2.x, g.sR2.y, 'R\\u2082 = ' + fmtNum(c.R2) + ' \\u03A9', rDim);
+  if (c.three && r3rev > 0.02) {                        // S4: R3 fades/joins in via the reveal factor (Rule 32d — ADD, not rebuild)
+    drawResistorBoxC(g.sR3.x, g.sR3.y, 'R\\u2083 = ' + fmtNum(c.R3) + ' \\u03A9', rDim * r3rev);
+  }
+  drawAmmeterAtC(g.amMain.x, g.amMain.y, c.i, 'AMMETER', dimFor('electrons'), 26);
+  drawEmfCell(g, c.eps, 1, !!(st && st.pump_focus) || !c.swOpen);   // pump animates while current flows
+
+  // H/L sign tags (S3+): current enters each resistor's LEFT end (H, higher
+  // potential) and leaves the RIGHT end (L, lower) along the current — fixed
+  // geometry, only the magnitudes respond to sliders. Beads flow left->right.
+  if (st && st.show_hl_tags) {
+    var hlDim = dimFor('load');
+    textStyle(BOLD); textSize(11); textAlign(CENTER, BOTTOM);
+    var tagY = g.topY - 20, tags = c.three ? [g.sR1, g.sR2, g.sR3] : [g.sR1, g.sR2];
+    for (var ti = 0; ti < tags.length; ti++) {
+      var tr = (ti === 2) ? r3rev : 1;
+      fillHex('#EF9A9A', 0.95 * hlDim * tr); text('H', tags[ti].x - 40, tagY);
+      fillHex('#90CAF9', 0.95 * hlDim * tr); text('L', tags[ti].x + 40, tagY);
+    }
+    textStyle(NORMAL);
+  }
+
+  // Per-element voltmeters (cell eps + each resistor) — the EXISTING drawVoltmeterC
+  // dial, one per element, in the loop interior below its element. Labeled values.
+  if (st && st.show_element_voltmeters) {
+    var vDim = dimFor('voltmeter'), vy = (g.topY + g.midY) / 2 + 6;
+    drawVoltmeterC(g.leftX + 40, vy, c.eps, c.eps, vDim);   // cell voltmeter reads the full ideal-cell eps
+    drawVoltmeterC(g.sR1.x, vy, c.V1, c.eps, vDim);
+    drawVoltmeterC(g.sR2.x, vy, c.V2, c.eps, vDim);
+    if (c.three && r3rev > 0.5) drawVoltmeterC(g.sR3.x, vy, c.V3, c.eps, vDim);
+  }
+
+  // The multi-step potential ladder — the money primitive (+eps riser, one -IRk
+  // down-step per resistor, closing to exactly 0). S1: a followed charge walks the
+  // loop + the ladder in lockstep (trace_charge). S2: staged reveal (ladder_build_ms).
+  if (st && st.show_ladder) {
+    var mark = (st.trace_charge && !c.swOpen) ? emfTraceS({ i: c.i }) : null;
+    var build = (st.ladder_build_ms && st.ladder_build_ms.length) ? st.ladder_build_ms : null;
+    drawPotentialLadder(c.eps, c.i, c.Rtot, c.swOpen, 1, null, 0, null, null,
+      { V1: c.V1, V2: c.V2, V3: c.V3, three: c.three, build: build, marker: mark });
+    if (mark !== null) {                                 // the followed charge on the physical loop (synced with the ladder dot)
+      var lp = polyAt(loops.series, polyLen(loops.series), mark);
+      noStroke(); fillHex('#FFE082', 0.30); ellipse(lp.x, lp.y, 22);
+      fillHex('#FFE082', 0.98); ellipse(lp.x, lp.y, 9);
+    }
+  }
+
+  // SIGNED loop-sum HUD (value-only, Rule 34b) — '+6.0 - 4.0 - 2.0 (- 3.0) = 0.0'.
+  // Distinct from KCL's UNSIGNED kcl_sum_readout; the symbolic form lives in the DOM.
+  if (st && st.kvl_sum_readout) {
+    var kDim = dimFor('formula');
+    var sstr = '+' + c.eps.toFixed(1) + ' \\u2212 ' + c.V1.toFixed(1) + ' \\u2212 ' + c.V2.toFixed(1)
+             + (c.three ? (' \\u2212 ' + c.V3.toFixed(1)) : '') + ' = ' + c.kvl_sum.toFixed(1);
+    var kx = width * 0.32, ky = height * 0.90, kw = c.three ? 300 : 244, kh = 34;
+    rectMode(CENTER); fillHex('#0A0A1A', 0.88 * kDim); noStroke(); rect(kx, ky, kw, kh, 6);
+    strokeHex('#4DD0E1', 0.95 * kDim); strokeWeight(2); noFill(); rect(kx, ky, kw, kh, 6); rectMode(CORNER); noStroke();
+    fillHex('#FFFFFF', 0.98 * kDim); textSize(15); textStyle(BOLD); textAlign(CENTER, CENTER);
+    text(sstr, kx, ky); textStyle(NORMAL);
+  }
+
+  // Naive add-all-positive ghost (S3) — a FIXED authored string, struck through,
+  // pinned to the ORIGINAL 4/2 split (never recomputed; reuses drawStruckTextC).
+  if (st && typeof st.ghost_text === 'string') {
+    var gx = (st.ghost_pos && typeof st.ghost_pos.x === 'number') ? st.ghost_pos.x * width : width * 0.30;
+    var gy = (st.ghost_pos && typeof st.ghost_pos.y === 'number') ? st.ghost_pos.y * height : height * 0.80;
+    drawStruckTextC(gx, gy, st.ghost_text + ' \\u2717', dimFor('formula'));
   }
 }
 
@@ -2121,7 +2295,7 @@ function emfTraceV(s, p, eps) {                              // potential of the
 // charging mode draws charger-riser -> i*R drop -> cell band (eps stored + i*r heat),
 // terminal-to-terminal = V = eps + i*r. ir absent -> pixel-identical emf_definition
 // profile (locked baselines).
-function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir) {
+function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir, kvl) {
   var x0 = width * 0.74, y0 = (ir ? height * 0.39 : height * 0.30), w = width * 0.225, h = height * 0.42;   // ir: clear the 4-row slider panel + readout (Rule 34d)
   rectMode(CORNER); fill(10, 12, 28, 210 * dim); noStroke(); rect(x0, y0, w, h, 6);
   strokeHex('#37474F', 0.8 * dim); strokeWeight(1); noFill(); rect(x0, y0, w, h, 6);
@@ -2132,7 +2306,52 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir
   strokeHex('#66BB6A', 0.35 * dim); strokeWeight(1); line(gx, py(eps), gx + gw, py(eps));   // eps reference
   var xa = gx, xc = gx + gw * 0.50, xd = gx + gw * 0.70, xe = gx + gw;
   var lDim = dimFor('ladder'), lo = swOpen ? eps : 0;
-  if (ir && ir.mode === 'charging') {
+  if (kvl) {
+    // KVL multi-step profile: +eps riser at the cell, then one -IRk diagonal
+    // down-step per resistor, closing to exactly 0. Sub-segments across gw =
+    // flat,drop,flat,drop,...,drop,flat_return = 2n+1 for n resistors. Each
+    // segment's delta is scaled by a staged-reveal factor (S2 ladder_build_ms:
+    // index 0 = riser, 1..n = each step) so the ladder builds segment by segment
+    // and is derivable at ANY pinned sim-time (t=0 => all factors 0 => flat at 0V baseline).
+    var Dk = kvl.three ? [kvl.V1, kvl.V2, kvl.V3] : [kvl.V1, kvl.V2];
+    var nk = Dk.length, seg = gw / (2 * nk + 1), lDimK = dimFor('ladder');
+    var segRev = function(idx) {
+      if (!kvl.build || kvl.build[idx] === undefined) return 1;
+      return constrain((PM_simTimeMs - kvl.build[idx]) / 500, 0, 1);
+    };
+    var pts = [], vx = gx, vv = eps * segRev(0);
+    pts.push({ x: gx, y: py(0) });                     // riser bottom (0 V)
+    pts.push({ x: gx, y: py(vv) });                    // riser top (+eps)
+    vx = gx + seg; pts.push({ x: vx, y: py(vv) });     // top flat
+    for (var dk = 0; dk < nk; dk++) {
+      vv -= Dk[dk] * segRev(dk + 1);                   // -IR(dk) diagonal drop
+      vx += seg; pts.push({ x: vx, y: py(vv) });
+      vx += seg; pts.push({ x: vx, y: py(vv) });       // flat to next resistor / return
+    }
+    pts.push({ x: gx + gw, y: py(vv) });               // extend the closing flat to the wall
+    strokeHex('#4DD0E1', 0.98 * lDimK); strokeWeight(2.5); noFill();
+    beginShape(); for (var pk = 0; pk < pts.length; pk++) vertex(pts[pk].x, pts[pk].y); endShape();
+    // 0 V baseline tick — the ladder ALWAYS lands here (the taught rule)
+    strokeHex('#66BB6A', 0.4 * dim); strokeWeight(1); line(gx, py(0), gx + gw, py(0));
+    // step labels: +eps at the riser, -Vk at each drop centre
+    noStroke(); textStyle(BOLD); textSize(10);
+    fillHex('#66BB6A', 0.95 * segRev(0) * dim); textAlign(LEFT, BOTTOM);
+    text('+' + eps.toFixed(1), gx + 3, py(eps) - 3);
+    var accV = eps;
+    for (var lk = 0; lk < nk; lk++) {
+      accV -= Dk[lk];
+      fillHex('#EF9A9A', 0.95 * segRev(lk + 1) * dim); textAlign(CENTER, TOP);
+      text('\\u2212' + Dk[lk].toFixed(1), gx + seg * (1.5 + 2 * lk), py(accV + Dk[lk] * 0.5) + 1);
+    }
+    fillHex('#66BB6A', 0.9 * dim); textSize(9); textAlign(RIGHT, BOTTOM); text('0', gx - 3, py(0) + 4);
+    // the followed charge (S1) rides the ladder polyline by arc length (climbs the
+    // riser, walks the flats, ramps each drop) — in lockstep with the loop dot.
+    if (kvl.marker !== null && kvl.marker !== undefined && !swOpen) {
+      var mp = polyAt(pts, polyLen(pts), kvl.marker);
+      noStroke(); fillHex('#FFE082', 0.30 * lDimK); ellipse(mp.x, mp.y, 14);
+      fillHex('#FFE082', 0.98 * lDimK); ellipse(mp.x, mp.y, 7);
+    }
+  } else if (ir && ir.mode === 'charging') {
     // charger lifts to epsCh -> down i*R across the series R -> cell band: down eps
     // (stored as chemistry) + down i*r (heat). Terminals across the cell hold V = eps + i*r.
     var rD3 = dimFor('r_internal');
@@ -2218,7 +2437,13 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir
   fillHex('#B0BEC5', 0.85 * dim); textSize(9); textStyle(NORMAL); textAlign(LEFT, TOP);
   text('potential around loop (J/C)', gx, y0 + 4);
   textAlign(CENTER, TOP);
-  if (ir && ir.mode === 'charging') {
+  if (kvl) {
+    var nk2 = kvl.three ? 3 : 2, seg2 = gw / (2 * nk2 + 1);
+    text('cell', gx + seg2 * 0.5, gy + 3);
+    text('R\\u2081', gx + seg2 * 1.5, gy + 3);
+    text('R\\u2082', gx + seg2 * 3.5, gy + 3);
+    if (kvl.three) text('R\\u2083', gx + seg2 * 5.5, gy + 3);
+  } else if (ir && ir.mode === 'charging') {
     text('charger', xa + gw * 0.18, gy + 3); text('R', xa + gw * 0.51, gy + 3); text('cell', xa + gw * 0.78, gy + 3);
   } else if (ir) {
     text('cell', xa + gw * 0.065, gy + 3); text('load', (xc + xd) / 2, gy + 3);
@@ -2535,6 +2760,17 @@ export interface ParticleFieldStateConfig {
     ghost_text?: string;             // fixed authored string drawn struck-through (naive expectation, e.g. "1.0 + 1.0")
     ghost_pos?: { x: number; y: number };  // normalized 0..1 canvas position for the ghost (default 0.30, 0.80 — above the sum box at 0.30, 0.87)
     node_label?: string;             // label the junction node (e.g. "N"); drawn above the left junction dot, uses the junction glow key
+    // kirchhoff_loop_rule_KVL (Ch.3 — KVL; REUSES scenario_type 'emf_definition', all flags opt-in → emf_definition/internal_resistance unaffected)
+    kvl_multi_ladder?: boolean;      // MASTER gate: render the emf loop as a 2-3 SERIES-resistor KVL scene (multi-step ladder + KVL layout). Absent → emf_definition single-load path
+    three_resistor?: boolean;        // include R3 in the loop (S5 authors true directly; S4 flips it in via r3_draw_in). False → R3 undrawn (S1-S3)
+    r3_draw_in?: boolean;            // S4 cue: R3 draws in + joins the loop at ~900ms (state entry starts three_resistor:false; reveal ramps 900→1600ms)
+    show_ladder?: boolean;           // draw the potential ladder (shared with emf/ir; KVL draws the multi-step profile when kvl_multi_ladder is set)
+    trace_charge?: boolean;          // S1: a followed charge walks the loop AND the ladder in lockstep (loop-walk archetype)
+    ladder_build_ms?: number[];      // S2 staged reveal: [riser_ms, step1_ms, step2_ms(, step3_ms)] — each ladder segment animates in at its ms (derivable at any pinned t)
+    show_element_voltmeters?: boolean; // draw a drawVoltmeterC dial for the cell (ε) + each resistor (V1/V2[/V3]) in the loop interior
+    kvl_sum_readout?: boolean;       // SIGNED loop-sum HUD "+6.0 − 4.0 − 2.0 (− 3.0) = 0.0" (distinct from KCL's UNSIGNED kcl_sum_readout)
+    show_hl_tags?: boolean;          // fixed H (current-entry/higher) / L (exit/lower) sign tags at each resistor's ends (S3+)
+    // (KVL also reuses: r2_autosweep + r2_autosweep_to for S3's R2 1→4 glide; R1/R2/R3 per-state locks; ghost_text/ghost_pos for S3's naive add-all ghost; emf lock/slider for ε)
     [key: string]: unknown;
 }
 

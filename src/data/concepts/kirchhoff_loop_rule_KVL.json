@@ -1,0 +1,668 @@
+{
+  "concept_id": "kirchhoff_loop_rule_KVL",
+  "concept_name": "Kirchhoff's Loop Rule (KVL) — ΣV = 0",
+  "chapter": 3,
+  "section": "3.13",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.13 Kirchhoff's Rules — the loop/voltage rule half) — table-of-contents + scope reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC places Kirchhoff's rules after combination_of_resistors/emf/internal_resistance/electrical_power, before Wheatstone/potentiometer) to confirm the atomic boundary — no teaching method, example problem, or figure imported. The atomic idea: around any closed loop in a circuit, the algebraic sum of potential changes is zero — ΣV = 0 — because the EMF raises the potential (+ε, a rise) and each resistor drops it (−IR, a drop along the current), so the rise always equals the total of the drops and a charge that travels the loop returns to exactly the potential it started at (energy conservation); for an ideal single-loop cell, ε = IR1 + IR2. The signs are the crux — traverse a source low-to-high is a RISE (+ε), traverse a resistor along the current is a DROP (−IR). Does NOT cover the junction rule / KCL (shipped, sibling `kirchhoff_junction_rule_KCL`), solving a multi-loop network by simultaneous KVL+KCL (mesh analysis, downstream application), internal resistance as a taught idea (its own shipped diamond `internal_resistance`; r never appears here as a guided-state target), a second/opposing EMF in the same loop (sign of ε, a natural drill-down candidate, deferred), or Wheatstone/potentiometer (downstream catalog nodes that depend on this one). NINTH Ch.3 concept on the particle_field (2D p5.js) renderer, same engine family as drift_velocity/ohms_law/resistivity/combination_of_resistors/emf_definition/internal_resistance/electrical_power_in_resistor/kirchhoff_junction_rule_KCL. Reuses scenario_type 'emf_definition' as the renderer selector (per the approved design's directive to NOT mint a new scenario_type) — but rides engine additions that are AUTHORED here and FLAGGED for peter_parker:renderer_primistives (via quality_auditor FAIL-routing), not yet implemented as of this authoring pass: (1) a multi-step series-resistor potential ladder (2-3 down-steps at R1/R2[/R3] instead of the single-resistor 'load' step the emf/internal_resistance family currently draws — extend drawPotentialLadder / the loop profile in particle_field_renderer.ts, gated behind the new per-state flag kvl_multi_ladder so emf_definition.json/internal_resistance.json render pixel-identically when the flag is absent); (2) per-element voltmeters (cell epsilon + each resistor, labeled+signed) by calling the EXISTING drawVoltmeterC primitive multiple times per state, gated behind show_element_voltmeters; (3) a kvl_sum_readout value HUD (sibling of the shipped kcl_sum_readout), a NEW draw block inside drawEmfScenario() rendering the SIGNED identity '+6.0 − 4.0 − 2.0 = 0.0' (not the unsigned sum kcl_sum_readout computes); (4) wiring the ALREADY-SHIPPED ghost_text/ghost_pos + drawStruckTextC mechanism (currently read only inside drawCircuit()) into drawEmfScenario() too, so STATE_3's fixed naive-expectation string '6 + 4 + 2 = 12' can render on the emf-family scenario; (5) new per-state cue-gated reveals (r2_autosweep 1→4Ω on STATE_3, r3_draw_in on STATE_4) mirroring the EXISTING r2_autosweep/r_reveal patterns already used by combination_of_resistors/internal_resistance, extended to the emf-family adapter; (6) a staged ladder-segment reveal on STATE_2 (ladder_build_ms array) — no existing precedent draws a ladder incrementally; (7) small fixed H/L sign-tag labels at each resistor's current-entry/exit ends (show_hl_tags, S3+). Zero regression declared to emf_definition/internal_resistance/combination_of_resistors/electrical_power_in_resistor/kirchhoff_junction_rule_KCL — every new flag is opt-in and absent from all five sibling JSONs. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches) — the two genuine misconceptions ('leftover voltage after the drops', 'add all voltages regardless of direction') are confronted inside EPIC-L via Rule 16a misconception_watch, fired together at the STATE_3 pivot only, no predict-pause. Anchors authored UNIVERSAL per Rule 35 (a hiking loop trail; a series lamp loop — no country, brand, festival, or currency; plain English throughout, no Hinglish).",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "emf_definition"
+    ]
+  },
+  "prerequisites": [
+    "emf_definition",
+    "internal_resistance"
+  ],
+  "real_world_anchor": {
+    "primary": "A hiking loop trail: climb the ridge, walk down the far side, and you arrive back at the trailhead at exactly the altitude you started — no matter how the descent splits between the two sides, the total descent always equals the climb. Around an electrical loop it's the same round trip: the cell is the climb, each resistor is a descent, and the total of the descents always equals the climb, however the descent is split.",
+    "secondary": "A battery driving two lamps wired one after another in a single loop: the full push the battery delivers is shared between the two lamps, and nothing is left over once both are crossed."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "emf": {
+        "name": "EMF (ideal cell, ε)",
+        "unit": "V",
+        "min": 3,
+        "max": 12,
+        "default": 6,
+        "role": "locked via per-state numeric override on S1-S4 (Rule 25d — never a guided teaching target); live ONLY in S5 (explore) via the emf slider"
+      },
+      "R1": {
+        "name": "Resistor R1 (series)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 8,
+        "default": 2,
+        "role": "locked at 2Ω on S1/S2/S4; unchanged on S3 (R2 is the CAUSE that moves, R1 stays fixed) but its slider is visible+live post-reveal alongside R2; live-draggable S5"
+      },
+      "R2": {
+        "name": "Resistor R2 (series)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 8,
+        "default": 1,
+        "role": "locked at 1Ω on S1/S2/S4; S3 = scripted cue r2_autosweep sweeping 1Ω→4Ω (the CAUSE, Rule 32a) starting ~1000ms into the state, then live-draggable post-reveal; live S5"
+      },
+      "R3": {
+        "name": "Resistor R3 (series, third element)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 8,
+        "default": 3,
+        "role": "inert/undrawn on S1-S3 (three_resistor:false); drawn via the r3_draw_in cue (~900ms into STATE_4) and locked to 3Ω on S4; live-draggable ONLY in S5"
+      },
+      "I": {
+        "name": "Loop current (single value, series loop)",
+        "unit": "A",
+        "derived": "three_resistor ? emf/(R1+R2+R3) : emf/(R1+R2)",
+        "role": "the SAME single number everywhere in the loop — no split (the sibling contrast to KCL's parallel branches); drives bead speed and the walking marker"
+      },
+      "V1": {
+        "name": "Drop across R1",
+        "unit": "V",
+        "derived": "I * R1",
+        "role": "live readout — the voltmeter across R1; drives one down-step of the ladder. 4.0V on S1/S2, falls to 2.0V on S3, 2.0V on S4"
+      },
+      "V2": {
+        "name": "Drop across R2",
+        "unit": "V",
+        "derived": "I * R2",
+        "role": "live readout — the voltmeter across R2; drives one down-step of the ladder. 2.0V on S1/S2, rises to 4.0V on S3, 1.0V on S4"
+      },
+      "V3": {
+        "name": "Drop across R3",
+        "unit": "V",
+        "derived": "three_resistor ? I * R3 : 0",
+        "role": "live readout — the voltmeter across R3; only rendered when three_resistor is true — 3.0V on S4"
+      },
+      "kvl_sum": {
+        "name": "Signed loop sum (the taught identity)",
+        "unit": "V",
+        "derived": "emf - V1 - V2 - (three_resistor ? V3 : 0)",
+        "role": "MUST equal 0.0 at every instant, every state, every slider setting — this IS the taught rule, not a coincidence to verify; drives the kvl_sum_readout HUD and the ladder's closing-back-to-baseline"
+      }
+    },
+    "formulas": {
+      "I": "three_resistor ? emf/(R1+R2+R3) : emf/(R1+R2)",
+      "V1": "I * R1",
+      "V2": "I * R2",
+      "V3": "three_resistor ? I * R3 : 0",
+      "loop_equation": "emf = I*R1 + I*R2 (+ I*R3) — the unsigned rise-equals-drops form taught on S2-S3; ΣV=0 is the equivalent signed form taught from S4 onward",
+      "kvl_identity": "emf - V1 - V2 (- V3) === 0 identically, by construction on this ideal-cell series loop — this IS the taught rule (ΣV=0), not a coincidence to verify"
+    },
+    "constraints": [
+      "ΣV = 0 EXACTLY at every setting — the definition of the taught rule, not a coincidence. V1 + V2 (+ V3) = emf always.",
+      "S3's R2 change REDISTRIBUTES the individual drops (V1 falls 4→2, V2 rises 2→4) but the SIGNED SUM never changes — Rule 32b's deliberate invariant.",
+      "I is the SAME single number everywhere in the loop (a series loop — no split; the sibling contrast to KCL's parallel branches).",
+      "R ∈ [1,8]Ω, emf ∈ [3,12]V ⇒ I ∈ [0.375,6]A — no divide-by-zero, no negative resistance, no infinite current.",
+      "S3's ghost '6 + 4 + 2 = 12' is a FIXED authored string pinned to the ORIGINAL 4/2 split — never recomputed, never allowed to equal the live signed sum.",
+      "H/L sign tags (a rise is low-to-high at the source; a drop is high-to-low across a resistor, along the current) are fixed geometry appearing S3+ — only the MAGNITUDES respond to sliders, never the sign convention itself.",
+      "emf is NEVER a live slider in guided states (locked via per-state numeric override); live only in S5 (explore).",
+      "R3 the ELEMENT is not rendered before STATE_4 (Rule 32d — STATE_4 only ADDS R3 to the same apparatus, no teleport-rebuild).",
+      "the optional internal-resistance slider r is EXCLUDED from S5 this ship — would force emf = I·ΣR to become approximate and needs a second engine capability (internal_resistance owns that idea)."
+    ]
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Change a resistor and the drops swap, but the signed sum always closes at zero.",
+    "visual_confirmation": "The ladder always lands at exactly zero height, while the naive ghost '6 + 4 + 2 = 12' hangs above it, struck through."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "multi_element": [
+      "STATE_4",
+      "STATE_5"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Round trip = 0: walk the loop",
+        "duration": 14,
+        "focal_primitive_id": "loop_walk",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "trail_intro",
+            "position": { "x": 380, "y": 90 },
+            "text": "A closed loop is like a hiking trail: climb up, come back down, land at the same height.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "loop_walk",
+            "position": { "x": 620, "y": 250 },
+            "text": "A marker walks the loop: up at the cell, down across each resistor.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "returns_to_start",
+            "position": { "x": 380, "y": 440 },
+            "text": "It always closes back to exactly where it started.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Watch a marker walk this loop: up at the cell, down across resistor R one, down again across resistor R two."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "It lands back exactly where it started — a full round trip always returns to the same potential."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Rise equals total drops: ε = IR1 + IR2",
+        "duration": 15,
+        "focal_primitive_id": "voltmeters_settle",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rise_label",
+            "position": { "x": 380, "y": 90 },
+            "text": "The cell lifts the potential — a measurable rise up the ladder.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "voltmeters_settle",
+            "position": { "x": 620, "y": 250 },
+            "text": "Voltmeters settle at six, then four, then two volts as the steps land.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sum_identity",
+            "position": { "x": 380, "y": 440 },
+            "text": "Six volts up equals four plus two volts down.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now watch the numbers: the cell lifts the potential by six volts."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Crossing resistor R one drops it four volts, then resistor R two drops it another two volts."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Six volts up equals four plus two volts down — the rise always equals the total of the drops."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "PRIMARY aha — signs close the loop, no leftover",
+        "duration": 18,
+        "focal_primitive_id": "signed_vs_naive",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r2_grows",
+            "position": { "x": 380, "y": 90 },
+            "text": "Resistor R two grows from one ohm to four ohms — resistor R one stays fixed.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "drops_swap",
+            "position": { "x": 620, "y": 250 },
+            "text": "The drops swap: R one now reads two volts, R two reads four volts.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "signed_vs_naive",
+            "position": { "x": 380, "y": 440 },
+            "text": "Adding all three as positive gives twelve volts — wrong. The signed sum is zero.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Grow resistor R two from one ohm to four ohms; R one stays at two ohms."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The current falls and the drops swap: R one now drops two volts, R two drops four."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Adding all three as positive gives twelve volts, which is wrong. The signed sum, six minus four minus two, equals zero."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "There's leftover voltage after the drops.",
+            "visual_counter": "The ladder is pinned to exactly zero height at loop-close while the drops redistribute under the slider — nothing is ever left over, whatever the resistor values.",
+            "one_line_fix": "The rise equals the total of the drops — a full loop always nets to zero."
+          },
+          {
+            "belief": "You add all voltages regardless of direction (signs).",
+            "visual_counter": "A struck-through runaway ghost '6 + 4 + 2 = 12' sits beside the real signed ladder closing to zero; the H/L tags anchor why the resistor terms are negative when traversed along the current.",
+            "one_line_fix": "Rises are plus, drops are minus (low to high at the source) — only the signed sum closes the loop."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Generalization: any loop, any number of elements",
+        "duration": 15,
+        "focal_primitive_id": "three_steps_close",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "third_resistor_joins",
+            "position": { "x": 380, "y": 90 },
+            "text": "A third resistor, R three, joins the same loop.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "three_steps_close",
+            "position": { "x": 620, "y": 250 },
+            "text": "The ladder now steps down three times and still lands at zero.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "any_loop_rule",
+            "position": { "x": 380, "y": 440 },
+            "text": "The sum of every voltage around any closed loop equals zero.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Add a third resistor, R three, in series with the same loop."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The current settles lower, and the ladder now steps down three times: two volts, then one volt, then three volts."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Six volts up still equals two plus one plus three down — the sum of all voltages around any loop equals zero."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Explore — every dial is yours: ε, R1, R2, R3",
+        "duration": 0,
+        "focal_primitive_id": "explore_ladder",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_dials_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Every dial is live — the cell's voltage and every resistor.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "explore_ladder",
+            "position": { "x": 620, "y": 250 },
+            "text": "The ladder, every voltmeter, and the sum all respond as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "rule_always_holds",
+            "position": { "x": 380, "y": 440 },
+            "text": "The loop rule holds at every setting you choose.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Every dial is yours now — drag the cell's voltage or any resistor and watch the loop always close to zero."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered Kirchhoff's loop rule when they can (1) state that a full round trip around any closed loop returns to the same potential, so the net change over the loop is exactly zero (energy conservation); (2) apply ε = IR1 + IR2 (or with more resistors) to find the current and each resistor's drop in a single-loop series circuit; (3) recognize that changing one resistor's value redistributes the individual drops but never changes their signed sum, which stays pinned at zero; (4) apply the correct sign convention — a source traversed low-to-high is a RISE (plus), a resistor traversed along the current is a DROP (minus) — rather than adding every element's voltage as a positive number; and (5) generalize ΣV = 0 to a loop with any number of elements, explaining WHY it holds — because potential is a property of position, not of the path taken to reach it.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "In a simple loop with one ideal cell and two resistors, a positive test charge is walked once around the loop back to its starting point. What is the net change in potential over the full round trip?",
+        "options": {
+          "A": "Zero — the charge returns to exactly the potential it started at, since the rise at the cell exactly matches the total drops across the resistors",
+          "B": "Positive — some potential is left over after crossing both resistors",
+          "C": "Negative — the resistors take more than the cell supplies",
+          "D": "It depends on which resistor the charge crosses first"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the leftover-voltage misconception — imagines the round trip ending above where it started",
+          "C": "assumes drops habitually exceed the rise, which would violate energy conservation",
+          "D": "wrongly makes a globally conserved quantity depend on the order elements are crossed within the same loop"
+        },
+        "tested_idea": "A closed loop's net potential change is exactly zero (energy conservation) — the rise matches the total drops.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A charge circles a loop containing one battery and three resistors. State the net potential change for the full round trip, and explain why."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "An ideal 6 V cell drives current through two series resistors, R1 = 2 Ω and R2 = 1 Ω. What do the voltmeters across R1 and R2 read, and how do those readings relate to the cell's 6 V?",
+        "options": {
+          "A": "V1 = 4 V, V2 = 2 V, and 4 + 2 = 6 V — the drops sum to exactly the rise",
+          "B": "V1 = V2 = 3 V each, since two resistors always split a cell's voltage equally",
+          "C": "V1 = 4 V, V2 = 2 V, but they don't need to add up to 6 V",
+          "D": "V1 = 6 V, V2 = 6 V — every resistor in the loop sees the full cell voltage"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes an automatic equal split between series resistors, ignoring their different resistances",
+          "C": "gets the individual drop values right but drops the identity that they MUST sum to the rise",
+          "D": "confuses series drops (which share the total rise) with parallel branches (each of which sees the full voltage)"
+        },
+        "tested_idea": "In series, IR drops are proportional to each resistance and sum to exactly the EMF (ε = IR1 + IR2).",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "An ideal 12 V cell drives a 4 Ω and a 2 Ω resistor in series. Find each drop and confirm they sum to 12 V."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "In the same loop, R2 is changed from 1 Ω to 4 Ω while R1 stays at 2 Ω. After the current settles, what is the sum of the two resistor drops?",
+        "options": {
+          "A": "Still exactly 6 V — the drops redistribute (V1 falls to 2 V, V2 rises to 4 V) but always sum to the cell's 6 V",
+          "B": "12 V — since R2 quadrupled, both drops should increase and add up higher",
+          "C": "Less than 6 V — some voltage is lost adjusting to the new resistance",
+          "D": "6 V, but only because the current also increased to compensate"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the naive add-all-positive trap — mistakes 'a resistor changed' for 'the total changed', ignoring that the current also FALLS",
+          "C": "reintroduces the leftover/lost-voltage misconception at a new resistor setting",
+          "D": "gets the sum right for the wrong reason — the current actually FALLS from 2 A to 1 A, it does not increase"
+        },
+        "tested_idea": "Changing one resistor redistributes the individual drops, but the SIGNED sum around the loop is invariant at ΣV = 0.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "In a loop with an ideal cell and two series resistors, one resistor's value is increased. Explain what happens to the total of the two drops."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A student writes the loop equation as '6 + 4 + 2 = 12 V' by adding all three element voltages as positive numbers. What is wrong with this equation?",
+        "options": {
+          "A": "The resistor drops must be SUBTRACTED, not added — the correct signed equation is +6 − 4 − 2 = 0, because the cell raises the potential while each resistor lowers it",
+          "B": "Nothing is wrong — 12 V is a valid alternate way to state the loop rule",
+          "C": "The numbers themselves are wrong; the drops should have been 3 V and 3 V instead",
+          "D": "The equation is right, but the units should be amperes, not volts"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "accepts the add-all-positive error as an equally valid form — it is not; only the signed sum equals zero",
+          "C": "misdirects the error onto the numeric values instead of the sign convention",
+          "D": "confuses volts and amperes — a category error unrelated to the actual mistake"
+        },
+        "tested_idea": "The loop rule requires signed traversal (rises positive, drops negative along the current) — only the signed sum equals zero.",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A student sums a cell's EMF and two resistor drops all as positive numbers and gets a nonzero total. Identify and correct the error."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A third resistor R3 is added in series to the loop (now three resistors in series with the ideal cell). What must be true of ΣV around this new, larger loop?",
+        "options": {
+          "A": "ΣV = 0 still — the rise at the cell equals the sum of all three drops, however many resistors are in the loop",
+          "B": "ΣV = 0 only for loops with exactly two resistors; a third resistor needs a different rule",
+          "C": "ΣV becomes positive, since there's now more resistance to overcome",
+          "D": "ΣV = 0 only if all three resistors happen to be equal"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "wrongly restricts the loop rule to a specific element count, when it is a general conservation statement",
+          "C": "invents a resistance-dependent nonzero total, contradicting the rule",
+          "D": "invents an unnecessary equal-values special case"
+        },
+        "tested_idea": "ΣV = 0 generalizes to any closed loop, with any number of elements, not just the two-resistor case.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A loop has an ideal cell and four resistors in series. State what must be true of the sum of potential changes around the loop."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Why does ΣV = 0 hold for a closed loop with any number and arrangement of elements, not just a specific circuit?",
+        "options": {
+          "A": "Because potential is a property of position — after a full round trip you return to the same point, so the net change in potential must be zero regardless of the path taken to get there (energy conservation)",
+          "B": "Because circuit designers arrange components to force the voltages to balance",
+          "C": "Because Kirchhoff's loop rule only works for circuits with exactly one cell",
+          "D": "Because resistors automatically adjust their own drop to make the sum work out"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "attributes a conservation law to deliberate engineering rather than physics",
+          "C": "wrongly restricts the rule to single-cell loops — the underlying argument has no such limit",
+          "D": "invents resistors as active agents 'adjusting' rather than passively obeying Ohm's law at whatever current actually flows"
+        },
+        "tested_idea": "ΣV = 0 follows from potential being a path-independent (conservative) quantity — a round trip always returns to the start.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain why Kirchhoff's loop rule works just as well on a five-element loop as it does on a two-resistor loop."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q3", "Q4"],
+      "STATE_4": ["Q5", "Q6"]
+    },
+    "non_assessed_states": [
+      "STATE_5"
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "kirchhoff_loop_rule_KVL_hiking_loop_trail",
+      "type": "B",
+      "label": "A hiking loop trail — climb up, come back down, no altitude left over",
+      "physical_world": "A hiker climbs a ridge and walks back down the far side, arriving at the trailhead at exactly the altitude they started, however the descent splits between the two sides of the loop.",
+      "same_physics": "A round trip through a conservative field (gravitational potential here, electric potential in the circuit) always nets to zero — the total climb equals the total descent, split however it splits.",
+      "scene_hint": "Primary teaching anchor (real_world_anchor.primary) restated as a Type-B variant for STATE_1's round-trip beat."
+    },
+    {
+      "variant_id": "kirchhoff_loop_rule_KVL_series_lamp_loop",
+      "type": "B",
+      "label": "A battery driving two lamps in series — the push is shared, nothing left over",
+      "physical_world": "A battery and two lamps wired one after another in a single loop; the full push the battery delivers is shared between the two lamps, and nothing is left over once both are crossed.",
+      "same_physics": "Same ΣV = 0 identity — the battery's rise is shared as drops across the two lamps in series, exactly like the sim's two resistors.",
+      "scene_hint": "Secondary anchor restated as a Type-B variant for STATE_2/STATE_4's quantitative beats."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "emf_definition",
+    "particles": {
+      "count": 34,
+      "color": "#42A5F5",
+      "size": 8
+    },
+    "slider_controls": {
+      "emf": {
+        "min": 3,
+        "max": 12,
+        "step": 0.5,
+        "default": 6,
+        "label": "EMF ε",
+        "unit": "V"
+      },
+      "R1": {
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 2,
+        "label": "Resistor R1",
+        "unit": "Ω"
+      },
+      "R2": {
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 1,
+        "label": "Resistor R2",
+        "unit": "Ω"
+      },
+      "R3": {
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 3,
+        "label": "Resistor R3",
+        "unit": "Ω"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "cell": "#FFD54F",
+      "ladder": "#4DD0E1",
+      "voltmeter": "#B39DDB",
+      "load": "#FFB74D",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "loop closes at 0",
+        "caption": "Loop closes at zero",
+        "formula_overlay": "loop closes at 0",
+        "emf": 6,
+        "R1": 2,
+        "R2": 1,
+        "three_resistor": false,
+        "kvl_multi_ladder": true,
+        "show_ladder": true,
+        "trace_charge": true,
+        "show_element_voltmeters": false,
+        "kvl_sum_readout": false,
+        "show_hl_tags": false,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ladder"
+      },
+      "STATE_2": {
+        "label": "ε = IR₁ + IR₂",
+        "caption": "Rise = total drops",
+        "formula_overlay": "ε = IR₁ + IR₂",
+        "emf": 6,
+        "R1": 2,
+        "R2": 1,
+        "three_resistor": false,
+        "kvl_multi_ladder": true,
+        "show_ladder": true,
+        "ladder_build_ms": [1200, 2700, 4200],
+        "show_element_voltmeters": true,
+        "kvl_sum_readout": false,
+        "show_hl_tags": false,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "voltmeter"
+      },
+      "STATE_3": {
+        "label": "ε = IR₁ + IR₂",
+        "caption": "Signs close the loop",
+        "formula_overlay": "ε = IR₁ + IR₂",
+        "emf": 6,
+        "R1": 2,
+        "R2": 1,
+        "three_resistor": false,
+        "kvl_multi_ladder": true,
+        "show_ladder": true,
+        "show_element_voltmeters": true,
+        "kvl_sum_readout": true,
+        "show_hl_tags": true,
+        "r2_autosweep": true,
+        "r2_autosweep_to": 4,
+        "ghost_text": "6 + 4 + 2 = 12",
+        "ghost_pos": { "x": 0.30, "y": 0.80 },
+        "show_sliders": false,
+        "visible_controls": ["R1", "R2"],
+        "glow_focal": "formula"
+      },
+      "STATE_4": {
+        "label": "ΣV = 0",
+        "caption": "More drops, still zero",
+        "formula_overlay": "ΣV = 0",
+        "emf": 6,
+        "R1": 2,
+        "R2": 1,
+        "R3": 3,
+        "three_resistor": false,
+        "r3_draw_in": true,
+        "kvl_multi_ladder": true,
+        "show_ladder": true,
+        "show_element_voltmeters": true,
+        "kvl_sum_readout": true,
+        "show_hl_tags": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ladder"
+      },
+      "STATE_5": {
+        "label": "ΣV = 0",
+        "caption": "You drive it",
+        "formula_overlay": "ΣV = 0",
+        "three_resistor": true,
+        "kvl_multi_ladder": true,
+        "show_ladder": true,
+        "show_element_voltmeters": true,
+        "kvl_sum_readout": true,
+        "show_hl_tags": true,
+        "show_sliders": true
+      }
+    }
+  }
+}

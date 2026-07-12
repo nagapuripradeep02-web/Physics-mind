@@ -1,16 +1,16 @@
-# SDD Progress — kirchhoff_junction_rule_KCL
+# SDD Progress — kirchhoff_loop_rule_KVL
 
-Plan: docs/superpowers/plans/2026-07-11-kirchhoff-junction-rule-kcl.md
+Plan: docs/superpowers/plans/2026-07-12-kirchhoff-loop-rule-kvl.md
 Branch: feat/field3d-draggable-sensor
-Start base: (recorded per task below)
+Base at start: 21d3588
+(KCL shipped prior — commits f7c2af0/8250c07/dc4d0e8/381771a.)
 
 ## Tasks
-- Task 1 (architect skeleton): complete (artifact saved; spec-compliant; auditor must re-run engine_bug_queue at Gate 8)
-- Task 2 (physics-author block): complete (artifact saved; numbers verified; junction glow key exists→no new primitive; S4 3-branch primary preferred; engine_bug_queue ran live)
-- Task 3 (json-author + 8 sites): complete (commits 97d62e8..8250c07 = f7c2af0 concept+engine, 8250c07 review fixes; tsc 0, validate PASS zero WARN; code review clean — regression guard PASS, 3 ⚠️ resolved [no regression, V_circuit=3.0 ok, S3 visible_controls interactive], Defect 1 SQL numbers fixed, comments fixed, ASPECT_VOCABULARY N/A). FOUNDER DECISION 2026-07-11: FULL ENGINE UPGRADE done as Task 3b.
-- Task 3b (renderer_primitives engine upgrade): complete — per-state R1/R2/R3 locks + three_branch geometry + drawStruckTextC ghost + kcl_sum_readout + labeled A_in/A₁/A₂/A₃/A_out, all gated; tsc 0 errors; flag contract returned. Snap (not glide) for pinned total; 3rd branch static (t=0-derivable). Only particle_field_renderer.ts changed (was clean).
-- Task 4 (quality-auditor gate): complete — PASS, no FAIL, no routing; 2 LOW advisories (cell label V=3.0V vs ε; all-A answer keys, dormant). Gate 8 ran live: no rows.
-- Task 5 (THE EYE / eye-walker): complete — visual:eyes 23/23 $0; eye-walker CLEAN all 5 states (ghost strikethrough ok, Unicode ok, 3-branch no overlap, no 4.0A fallback). visual:approve is FOUNDER-GATED — NOT self-approved.
-- Task 6 (review link + Telugu text + PROGRESS): COMPLETE — review served :8080 (200); founder approved baseline (visual:approve, 5 locked) + chose Telugu-text+EN-audio; text_te ×13 (Sonnet-5), EN audio ×13 (Sarvam); PROGRESS.md session entry added. Commits f7c2af0/8250c07/dc4d0e8 (+ PROGRESS).
-
-ALL TASKS COMPLETE. Not pushed (shared branch, founder's call). KVL = next session.
+- Task 1 (architect skeleton): complete (artifact saved; S3 R₂ 1→4Ω drops SWAP 4+2→2+4; S4 R₃=3 drops 2+1+3; glow keys pump/ladder/voltmeter/electrons/formula exist)
+- Task 2 (physics-author block): complete (artifact saved; Python-verified numbers; r-slider excluded from S5; S4 3-resistor primary + formula-generalize fallback)
+- Task 3 (json-author + 8 sites): JSON+registrations done (tsc 0, validate 119/119 PASS) — references not-yet-built flags. Engine build required (Task 3b).
+- Task 3b (renderer_primitives KVL engine adds): in_progress — 8 gaps on emf_definition scenario: multi-step ladder, per-element voltmeters, kvl_sum_readout(signed), ghost wiring, series geometry+sR3, H/L tags, cKvl adapters (r2_autosweep/r3_draw_in), ladder_build_ms staged reveal. ALL gated → no regression.
+- Task 4 (code review): pending
+- Task 5 (quality-auditor gate): pending
+- Task 6 (THE EYE / eye-walker): pending
+- Task 7 (review link + Telugu text + PROGRESS): pending

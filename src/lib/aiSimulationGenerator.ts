@@ -2628,6 +2628,17 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // R1/R2/R3 locks, three_branch, kcl_sum_readout, ghost_text).
     // NOT added to PCPL_CONCEPTS (parametric_renderer only).
     kirchhoff_junction_rule_KCL:    "particle_field",
+    // kirchhoff_loop_rule_KVL is the ninth Ch.3 concept on particle_field
+    // (2D p5.js) via the Alex pipeline (2026-07-12) — sibling of
+    // kirchhoff_junction_rule_KCL (loop/voltage rule vs junction/current
+    // rule). Reuses the emf_definition scenario_type as the renderer
+    // selector, riding NEW per-state flags on the emf-family circuit engine
+    // (kvl_multi_ladder, show_element_voltmeters, kvl_sum_readout, ghost_text
+    // wiring, r2_autosweep/r3_draw_in cues, show_hl_tags — engine additions
+    // authored-but-not-yet-implemented as of 2026-07-12, flagged for
+    // peter_parker:renderer_primitives via quality_auditor). NOT added to
+    // PCPL_CONCEPTS (parametric_renderer only).
+    kirchhoff_loop_rule_KVL:        "particle_field",
     emf_internal_resistance:        "circuit_live",
     electrical_power_energy:        "circuit_live",
     resistance_temperature_dependence: "circuit_live",

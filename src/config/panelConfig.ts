@@ -155,6 +155,25 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #9 — Alex pipeline (2026-07-12), sibling of
+    // kirchhoff_junction_rule_KCL, same engine family as the eight particle_field
+    // siblings. Reuses the emf_definition scenario_type as the renderer selector,
+    // riding NEW per-state flags added to the emf-family circuit engine
+    // (kvl_multi_ladder, show_element_voltmeters, kvl_sum_readout, ghost_text
+    // wiring, r2_autosweep/r3_draw_in cues, show_hl_tags — see the JSON's
+    // source_book for the exact engine-gap list). Teaches ΣV = 0 (KVL) via a
+    // single series loop: round trip = 0 -> quantitative rise=drops -> PRIMARY
+    // aha signed sum (no leftover) -> generalization to any loop.
+    kirchhoff_loop_rule_KVL: {
+        concept_id: 'kirchhoff_loop_rule_KVL',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'kirchhoff_loop_rule_KVL',
+            label: "Kirchhoff's Loop Rule — ΣV = 0",
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',
