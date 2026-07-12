@@ -1504,8 +1504,10 @@ function pmTourJs(): string {
       '.pm-tour-link{margin-left:14px;background:none;border:0;color:#c7d2fe;font:inherit;font-size:.86rem;cursor:pointer;opacity:.85}',
       '.pm-tour-link:hover{opacity:1;text-decoration:underline}',
       '.pm-tour-mute{background:none;border:0;color:#6366f1;font:inherit;font-size:.8rem;cursor:pointer;margin-right:auto;padding:4px 2px}',
-      '.pm-tour-ovl{position:fixed;inset:0;z-index:99999;background:rgba(15,17,26,.62);display:flex;align-items:center;justify-content:center;padding:20px}',
-      '.pm-tour-card{max-width:440px;width:100%;background:#fff;color:#1f2430;border-radius:16px;padding:28px 26px;box-shadow:0 24px 60px rgba(0,0,0,.35);font-family:system-ui,Segoe UI,Roboto,sans-serif;text-align:center}',
+      '.pm-tour-ovl{position:fixed;inset:0;z-index:99999;background:rgba(15,17,26,.62);display:flex;align-items:center;justify-content:center;padding:20px;animation:pmTourFade .4s ease both}',
+      '@keyframes pmTourFade{from{opacity:0}to{opacity:1}}',
+      '.pm-tour-card{max-width:440px;width:100%;background:#fff;color:#1f2430;border-radius:16px;padding:28px 26px;box-shadow:0 24px 60px rgba(0,0,0,.35);font-family:system-ui,Segoe UI,Roboto,sans-serif;text-align:center;animation:pmTourRise .4s ease both}',
+      '@keyframes pmTourRise{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}',
       '.pm-tour-card h2{margin:0 0 8px;font-size:1.35rem}',
       '.pm-tour-card p{margin:0 0 20px;line-height:1.5;color:#4b5563;font-size:.98rem}',
       '.pm-tour-card .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}',
@@ -1547,20 +1549,25 @@ function pmTourJs(): string {
     document.getElementById('pmTourSkip').addEventListener('click', function () { markSeen(); ovl.remove(); });
   }
 
-  // Wave-0: the "{Name}'s Class" splash owns the first ~2.3s of the catalog. Let it
-  // finish before the welcome modal opens, so the brand beat and the tour prompt
-  // never stack. The #pmSplash node is ALWAYS in the DOM (static markup); it only
-  // carries the .show class while actually playing, so key on that, not existence —
-  // otherwise dev/return-visits (splash never plays) would wait the full fallback.
-  function splashPlaying() {
+  // A brand beat owns the first moments of the catalog and the welcome modal must wait
+  // for it, so the two never stack. TWO possible beats: the FIRST-login intro VIDEO
+  // (#pmIntro, up to ~6s) which plays instead of the splash on the very first entry, and
+  // the per-session "{Name}'s Class" SPLASH (#pmSplash, ~2.3s) every session after. Both
+  // nodes are always in the DOM (static markup); each carries .show only while actually
+  // playing, so key on that (not existence), else dev/return-visits would wait the fallback.
+  function brandBeatPlaying() {
     var sp = document.getElementById('pmSplash');
-    return !!(sp && sp.classList && sp.classList.contains('show'));
+    var iv = document.getElementById('pmIntro');
+    var splashOn = !!(sp && sp.classList && sp.classList.contains('show'));
+    var introOn = !!(iv && iv.classList && iv.classList.contains('show'));
+    return splashOn || introOn;
   }
   function afterSplash(fn) {
-    if (!splashPlaying()) { fn(); return; }
+    if (!brandBeatPlaying()) { fn(); return; }
     var tries = 0;
-    var iv = setInterval(function () {
-      if (!splashPlaying() || ++tries > 20) { clearInterval(iv); fn(); }
+    // Poll to ~9s so the intro's 6s failsafe + fade is fully covered before the fallback.
+    var poll = setInterval(function () {
+      if (!brandBeatPlaying() || ++tries > 45) { clearInterval(poll); fn(); }
     }, 200);
   }
 
