@@ -2423,7 +2423,33 @@ export const FIELD_3D_RENDERER_CODE = `
     var spherical = { theta: Math.PI / 4, phi: Math.PI / 3, radius: 8 };
     var targetSpherical = { theta: spherical.theta, phi: spherical.phi, radius: spherical.radius };
     var animating = false;
-    var isMobile = window.innerWidth < 768;
+    // ROOT CAUSE (engine_bug_queue explore_state_manual_mode_not_interactive,
+    // 2026-07-13): this used to be a bare 'window.innerWidth < 768'. That
+    // measures the IFRAME's OWN viewport width, which is a function of the
+    // REVIEW PLAYER'S PAGE LAYOUT (a 200px state-rail sidebar + an optional
+    // whiteboard column), NOT the device. A perfectly normal desktop browser
+    // window (mouse-driven, non-touch) can easily leave the #stage/iframe
+    // narrower than 768px once the rail (and/or whiteboard) is open — that
+    // silently tripped the mobile branch below, which returns BEFORE
+    // setupSliders()/buildScenario()/animate() ever run. Every slider (incl.
+    // bar_magnet_in_uniform_field's m/B/theta panel) stays visible (the
+    // generic show_sliders visibility toggle in applyState is unrelated to
+    // this early return) but is completely UNWIRED — dragging it moves only
+    // the native browser thumb, with zero effect on the scene: exactly
+    // "purely static, dragging any slider produces no visible change".
+    // Verified via a live Playwright probe: at iframe width 672px this
+    // reproduced exactly (mobile-fallback shown, #bmf_sliders present but
+    // display never toggled since applyState's 3D-scene dispatch never ran);
+    // at the SAME state via a normal-width iframe (1052px) every drag (m, B,
+    // theta; scripted AND real mouse/keyboard input) moved the magnet +
+    // rescaled the force arrows + updated the readout, confirmed by actual
+    // pixel-diffed screenshots. Fix: require genuine TOUCH/mobile-UA
+    // signals in addition to the narrow width, so a narrow desktop window
+    // (no touch, no mobile UA) never trips the fallback — only a real phone/
+    // tablet does (unchanged behaviour for the actual target device class).
+    var isTouchLikeDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) ||
+        /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
+    var isMobile = window.innerWidth < 768 && isTouchLikeDevice;
 
     // ── Mobile fallback: 2D SVG projection ────────────────────────────────
     if (isMobile) {
