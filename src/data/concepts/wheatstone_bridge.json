@@ -158,7 +158,10 @@
           {
             "type": "annotation",
             "id": "battery_splits_at_a",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "One battery drives current into node A, splitting it into two paths.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -166,7 +169,10 @@
           {
             "type": "annotation",
             "id": "paths_recombine_at_c",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The upper path runs resistor P then resistor Q; the lower path runs resistor R then resistor S; both recombine at node C.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -174,7 +180,10 @@
           {
             "type": "annotation",
             "id": "meter_bridges_midpoints",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "A meter bridges the two midpoints in between, node B and node D.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -184,11 +193,13 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "One battery drives current into node A, splitting it into two paths — through resistor P then resistor Q on top, through resistor R then resistor S below."
+              "text_en": "One battery drives current into node A, splitting it into two paths — through resistor P then resistor Q on top, through resistor R then resistor S below.",
+              "text_te": "ఒక battery, node A లోకి current ను పంపిస్తుంది, అది రెండు paths గా విడిపోతుంది — పైన resistor P తర్వాత resistor Q ద్వారా, కింద resistor R తర్వాత resistor S ద్వారా."
             },
             {
               "id": "s1_2",
-              "text_en": "Both paths recombine at node C, and a meter bridges the midpoints in between, node B and node D."
+              "text_en": "Both paths recombine at node C, and a meter bridges the midpoints in between, node B and node D.",
+              "text_te": "రెండు paths node C దగ్గర మళ్ళీ కలుస్తాయి, మధ్యలో ఉన్న midpoints — node B మరియు node D — మధ్య ఒక meter bridge చేస్తుంది."
             }
           ]
         }
@@ -202,7 +213,10 @@
           {
             "type": "annotation",
             "id": "r_climbs_to_six",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Resistor R climbs from three ohms to six.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -210,7 +224,10 @@
           {
             "type": "annotation",
             "id": "needle_swings_off_centre",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The top midpoint sits at four volts, the bottom at three — they disagree, so current flows in the meter branch and the needle swings off centre.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -218,7 +235,10 @@
           {
             "type": "annotation",
             "id": "ratios_disagree",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The ratio on top no longer matches the ratio on the bottom — the bridge is unbalanced.",
             "color": "#EF5350",
             "is_persistent": false
@@ -228,15 +248,18 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Watch resistor R climb from three ohms to six."
+              "text_en": "Watch resistor R climb from three ohms to six.",
+              "text_te": "resistor R మూడు ohms నుండి ఆరు ohms కి పెరగడం చూడండి."
             },
             {
               "id": "s2_2",
-              "text_en": "The top midpoint now sits at four volts, the bottom at three — they disagree, so current flows in the meter branch and the needle swings off centre."
+              "text_en": "The top midpoint now sits at four volts, the bottom at three — they disagree, so current flows in the meter branch and the needle swings off centre.",
+              "text_te": "ఇప్పుడు పైన ఉన్న midpoint నాలుగు volts వద్ద, కింద ఉన్నది మూడు volts వద్ద ఉంది — ఇవి సరిపోలడం లేదు, కాబట్టి meter branch లో current ప్రవహిస్తుంది మరియు needle మధ్య నుండి పక్కకు జరుగుతుంది."
             },
             {
               "id": "s2_3",
-              "text_en": "The ratio on top no longer matches the ratio on the bottom — the bridge is unbalanced."
+              "text_en": "The ratio on top no longer matches the ratio on the bottom — the bridge is unbalanced.",
+              "text_te": "పైన ఉన్న ratio ఇక కింద ఉన్న ratio తో సరిపోలడం లేదు — bridge unbalanced గా ఉంది."
             }
           ]
         }
@@ -251,7 +274,10 @@
           {
             "type": "annotation",
             "id": "r_falls_to_three",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Resistor R falls back from six ohms to three.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -259,7 +285,10 @@
           {
             "type": "annotation",
             "id": "needle_settles_at_zero",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The bottom midpoint climbs to meet the top at four volts, the meter branch empties, and the needle settles dead at the centre — a true zero.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -267,7 +296,10 @@
           {
             "type": "annotation",
             "id": "arms_still_flow",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Every arm keeps carrying current — only the meter branch itself goes silent.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -277,15 +309,18 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Now watch resistor R fall from six ohms back to three."
+              "text_en": "Now watch resistor R fall from six ohms back to three.",
+              "text_te": "ఇప్పుడు resistor R ఆరు ohms నుండి మళ్ళీ మూడు ohms కి తగ్గడం చూడండి."
             },
             {
               "id": "s3_2",
-              "text_en": "The ratios match, the bottom midpoint climbs to meet the top at four volts, and the needle settles dead at the centre — a true zero, not a small number."
+              "text_en": "The ratios match, the bottom midpoint climbs to meet the top at four volts, and the needle settles dead at the centre — a true zero, not a small number.",
+              "text_te": "ratios సరిపోతాయి, కింద ఉన్న midpoint పైకి పెరిగి పైన ఉన్న దానితో నాలుగు volts వద్ద కలుస్తుంది, మరియు needle సరిగ్గా మధ్యలో స్థిరపడుతుంది — ఇది నిజమైన zero, ఒక చిన్న number కాదు."
             },
             {
               "id": "s3_3",
-              "text_en": "Yet every arm keeps carrying current — only the meter branch itself goes silent."
+              "text_en": "Yet every arm keeps carrying current — only the meter branch itself goes silent.",
+              "text_te": "అయినా ప్రతి arm current ను carry చేస్తూనే ఉంటుంది — meter branch మాత్రమే silent గా అవుతుంది."
             }
           ]
         },
@@ -307,7 +342,10 @@
           {
             "type": "annotation",
             "id": "battery_sweeps",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "The battery's voltage slides from three volts up to ten.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -315,7 +353,10 @@
           {
             "type": "annotation",
             "id": "needle_stays_pinned",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Both midpoints climb together, always equal, and the needle never leaves zero.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -323,7 +364,10 @@
           {
             "type": "annotation",
             "id": "s_formula_no_emf",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The unknown resistor works out to six ohms from the known arm and the ratio of the other two arms — no battery voltage anywhere in the formula.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -333,15 +377,18 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Now slide the battery's voltage from three volts up to ten."
+              "text_en": "Now slide the battery's voltage from three volts up to ten.",
+              "text_te": "ఇప్పుడు battery voltage ను మూడు volts నుండి పది volts వరకు slide చేయండి."
             },
             {
               "id": "s4_2",
-              "text_en": "Both midpoints climb together, always equal, and the needle never leaves zero."
+              "text_en": "Both midpoints climb together, always equal, and the needle never leaves zero.",
+              "text_te": "రెండు midpoints కలిసి పెరుగుతాయి, ఎప్పుడూ equal గా ఉంటాయి, మరియు needle ఎప్పుడూ zero నుండి కదలదు."
             },
             {
               "id": "s4_3",
-              "text_en": "That's why the unknown resistor works out to six ohms — the known arm times a ratio of two other arms — with no battery voltage in the formula anywhere."
+              "text_en": "That's why the unknown resistor works out to six ohms — the known arm times a ratio of two other arms — with no battery voltage in the formula anywhere.",
+              "text_te": "అందుకే unknown resistor ఆరు ohms అని తేలుతుంది — known arm ను మిగతా రెండు arms ratio తో multiply చేస్తే — formula లో battery voltage ఎక్కడా ఉండదు."
             }
           ]
         },
@@ -363,7 +410,10 @@
           {
             "type": "annotation",
             "id": "all_dials_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Every arm and the battery are live now — drag any dial.",
             "color": "#FFD54F",
             "is_persistent": false
@@ -371,7 +421,10 @@
           {
             "type": "annotation",
             "id": "null_it_yourself",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Unbalance the bridge, then null it again by matching the ratios.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -379,7 +432,10 @@
           {
             "type": "annotation",
             "id": "rule_always_holds",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The needle, the readouts, and the ratio all respond live as you drag.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -389,7 +445,8 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Every arm and the battery are yours now — drag any dial, unbalance the bridge, and null it again by matching the ratios."
+              "text_en": "Every arm and the battery are yours now — drag any dial, unbalance the bridge, and null it again by matching the ratios.",
+              "text_te": "ప్రతి arm మరియు battery ఇప్పుడు మీవే — ఏ dial నైనా drag చేయండి, bridge ను unbalance చేయండి, ratios ను సరిపోల్చి మళ్ళీ null చేయండి."
             }
           ]
         }
@@ -523,10 +580,20 @@
   },
   "coverage_map": {
     "by_state": {
-      "STATE_1": ["Q1"],
-      "STATE_2": ["Q2"],
-      "STATE_3": ["Q3", "Q4"],
-      "STATE_4": ["Q5", "Q6"]
+      "STATE_1": [
+        "Q1"
+      ],
+      "STATE_2": [
+        "Q2"
+      ],
+      "STATE_3": [
+        "Q3",
+        "Q4"
+      ],
+      "STATE_4": [
+        "Q5",
+        "Q6"
+      ]
     },
     "non_assessed_states": [
       "STATE_5"
@@ -625,7 +692,12 @@
         "label": "Wheatstone bridge",
         "caption": "Two paths, one meter",
         "topology": "bridge",
-        "node_dot_labels": ["A", "B", "C", "D"],
+        "node_dot_labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
         "P": 10,
         "Q": 20,
         "R": 3,
@@ -634,7 +706,10 @@
         "show_galvanometer": true,
         "galvanometer_label": "G",
         "show_node_readouts": false,
-        "node_readout_labels": ["V_B", "V_D"],
+        "node_readout_labels": [
+          "V_B",
+          "V_D"
+        ],
         "show_ratio_hud": false,
         "show_bridge_wire_beads": true,
         "show_ig_zero_label": false,
@@ -648,7 +723,12 @@
         "caption": "Unequal ratios → swing",
         "formula_overlay": "i_g ∝ V_D − V_B",
         "topology": "bridge",
-        "node_dot_labels": ["A", "B", "C", "D"],
+        "node_dot_labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
         "P": 10,
         "Q": 20,
         "R": 3,
@@ -661,13 +741,18 @@
         "show_galvanometer": true,
         "galvanometer_label": "G",
         "show_node_readouts": true,
-        "node_readout_labels": ["V_B", "V_D"],
+        "node_readout_labels": [
+          "V_B",
+          "V_D"
+        ],
         "show_ratio_hud": true,
         "show_bridge_wire_beads": true,
         "show_ig_zero_label": false,
         "show_s_readout": false,
         "show_sliders": false,
-        "visible_controls": ["R"],
+        "visible_controls": [
+          "R"
+        ],
         "glow_focal": "galvanometer"
       },
       "STATE_3": {
@@ -675,7 +760,12 @@
         "caption": "Ratios match → zero",
         "formula_overlay": "P/Q = R/S ⇒ i_g = 0",
         "topology": "bridge",
-        "node_dot_labels": ["A", "B", "C", "D"],
+        "node_dot_labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
         "P": 10,
         "Q": 20,
         "R": 6,
@@ -688,13 +778,18 @@
         "show_galvanometer": true,
         "galvanometer_label": "G",
         "show_node_readouts": true,
-        "node_readout_labels": ["V_B", "V_D"],
+        "node_readout_labels": [
+          "V_B",
+          "V_D"
+        ],
         "show_ratio_hud": true,
         "show_bridge_wire_beads": true,
         "show_ig_zero_label": true,
         "show_s_readout": false,
         "show_sliders": false,
-        "visible_controls": ["R"],
+        "visible_controls": [
+          "R"
+        ],
         "glow_focal": "galvanometer"
       },
       "STATE_4": {
@@ -702,7 +797,12 @@
         "caption": "Change battery → still zero",
         "formula_overlay": "S = R·(Q/P)",
         "topology": "bridge",
-        "node_dot_labels": ["A", "B", "C", "D"],
+        "node_dot_labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
         "P": 10,
         "Q": 20,
         "R": 3,
@@ -715,13 +815,18 @@
         "show_galvanometer": true,
         "galvanometer_label": "G",
         "show_node_readouts": true,
-        "node_readout_labels": ["V_B", "V_D"],
+        "node_readout_labels": [
+          "V_B",
+          "V_D"
+        ],
         "show_ratio_hud": true,
         "show_bridge_wire_beads": true,
         "show_ig_zero_label": false,
         "show_s_readout": true,
         "show_sliders": false,
-        "visible_controls": ["emf"],
+        "visible_controls": [
+          "emf"
+        ],
         "glow_focal": "formula"
       },
       "STATE_5": {
@@ -729,11 +834,19 @@
         "caption": "You balance it",
         "formula_overlay": "P/Q = R/S",
         "topology": "bridge",
-        "node_dot_labels": ["A", "B", "C", "D"],
+        "node_dot_labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
         "show_galvanometer": true,
         "galvanometer_label": "G",
         "show_node_readouts": true,
-        "node_readout_labels": ["V_B", "V_D"],
+        "node_readout_labels": [
+          "V_B",
+          "V_D"
+        ],
         "show_ratio_hud": true,
         "show_bridge_wire_beads": true,
         "show_ig_zero_label": true,
