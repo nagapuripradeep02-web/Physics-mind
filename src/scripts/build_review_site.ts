@@ -2238,6 +2238,15 @@ ${pilotHeadTags(0)}
   #pmSplash .nm{font-family:var(--font-disp);font-size:26px;font-weight:600;color:var(--ink);}
   #pmSplash .pw{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
   #pmSplash .pw b{color:var(--clay-soft);font-weight:600;}
+  /* ── First-login brand intro (4s silent video, once ever; above the splash) ── */
+  #pmIntro{position:fixed;inset:0;z-index:99996;display:none;place-items:center;background:var(--bg);opacity:1;transition:opacity .5s ease;}
+  #pmIntro.show{display:grid;}
+  #pmIntro.gone{opacity:0;}
+  #pmIntro video{max-width:100%;max-height:100%;}
+  #pmIntroSkip{position:absolute;right:18px;bottom:16px;border:1px solid var(--line);background:rgba(0,0,0,.35);
+        color:var(--ink-dim);font:600 12px var(--font-ui);padding:6px 15px;border-radius:9px;cursor:pointer;
+        transition:color .15s ease,border-color .15s ease;}
+  #pmIntroSkip:hover{color:var(--ink);border-color:rgba(203,104,67,.5);}
   /* ── Account menu — Claude-style dropdown (click your avatar) ── */
   #pmTourLink{display:none !important;}   /* folded into the account menu (still clicked programmatically) */
   #pmAcct{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--surface);
@@ -2345,6 +2354,10 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   <div class="nm" id="pmSplashName"></div>
   <div class="pw">powered by <b>Viditra</b></div>
 </div></div>
+<div id="pmIntro" hidden>
+  <video id="pmIntroVid" src="./viditra-intro.mp4" muted playsinline preload="auto"></video>
+  <button id="pmIntroSkip" type="button">Skip &rsaquo;</button>
+</div>
 <div id="pmProfOvl"><div id="pmProfCard" role="dialog" aria-modal="true" aria-label="My profile">
   <h2>My profile</h2>
   <p class="psub">This is your teaching space. Update it anytime.</p>
@@ -2419,7 +2432,14 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     if (hasProfile) {
       try { document.getElementById('catTitle').textContent = p.display_name + '’s Class'; } catch (e) {}
       try {
-        if (!sessionStorage.getItem('pm_splash_shown')) {
+        // FIRST LOGIN EVER: the brand intro sting plays once, IN PLACE of the splash this
+        // session (avoids stacking two brand beats). Every session after: the personalized
+        // "{Name}'s Class" splash, once per session.
+        if (localStorage.getItem('pm_intro_seen') !== '1') {
+          localStorage.setItem('pm_intro_seen', '1');
+          sessionStorage.setItem('pm_splash_shown', '1');   // intro is this session's brand moment
+          playIntro();
+        } else if (!sessionStorage.getItem('pm_splash_shown')) {
           sessionStorage.setItem('pm_splash_shown', '1');
           var sp = document.getElementById('pmSplash');
           document.getElementById('pmSplashName').textContent = p.display_name + '’s Class';
@@ -2430,6 +2450,28 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
       } catch (e) {}
     }
   });
+
+  // ── First-login brand intro (4s silent video). Plays once ever (see pm_intro_seen
+  //    above); click / Skip / end / a 6s failsafe all dismiss it; autoplay-block falls
+  //    through gracefully so a teacher is never stuck behind a frozen curtain. ──
+  function playIntro() {
+    var ov = document.getElementById('pmIntro');
+    var vid = document.getElementById('pmIntroVid');
+    if (!ov || !vid) return;
+    ov.className = 'show';
+    var done = false;
+    function finish() {
+      if (done) return; done = true;
+      try { vid.pause(); } catch (e) {}
+      ov.className = 'gone';
+      setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 550);
+    }
+    vid.addEventListener('ended', finish);
+    ov.addEventListener('click', finish);
+    setTimeout(finish, 6000);   // failsafe: never trap the teacher behind the curtain
+    try { var pr = vid.play(); if (pr && pr.catch) pr.catch(function () { finish(); }); } catch (e) { finish(); }
+    pmt('intro_shown', {});
+  }
 
   // ── Account dropdown menu (Claude-style) ──
   (function () {
