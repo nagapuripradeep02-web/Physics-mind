@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "complex",
-  "source_book": "NCERT Class 12 Physics Part 1, Chapter 5 (Magnetism and Matter) §5.2.3 (The dipole in a uniform magnetic field) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor (the compass needle and the freely-suspended bar magnet / vibration magnetometer). The atomic concept taught here is what a UNIFORM external field B does to a bar magnet of magnetic moment m: each pole feels a force (the N pole +mB along B, the S pole −mB opposite), and because these forces are equal, opposite, and act on different lines they form a COUPLE — the net force is ZERO (the magnet does not translate) but the couple produces a torque τ = m × B of magnitude mB·sinθ that rotates the magnet toward alignment with B. The torque is maximum at θ = 90° (a cross product is largest when the vectors are perpendicular) and zero at θ = 0° and θ = 180°. Released near alignment the magnet OSCILLATES about θ = 0° with period T = 2π√(I/mB), where I is its moment of inertia — the principle of the vibration magnetometer. The potential energy is U = −m·B = −mB·cosθ: a MINIMUM at θ = 0° (stable equilibrium — a nudge produces a restoring torque) and a MAXIMUM at θ = 180° (unstable — any nudge grows and the magnet flips to θ = 0°). The deepest student confusions targeted: (M1) a uniform field pushes the magnet bodily along B (net force is zero — only a torque); (M2) the magnet feels no force at all (each pole DOES feel mB; they form a couple); (M3) torque is maximum when m ∥ B (it is zero there; maximum at 90°); (M4) θ = 180° is as stable as θ = 0° (it is the energy maximum — unstable); (M5) the oscillation period is independent of the field (T = 2π√(I/mB), so a stronger m or B gives a faster swing). This is the magnetic twin of electric_dipole_in_field (τ = p × E, U = −p·E), reusing its rotational-dynamics renderer. CUT-LINE: the bar magnet's own field / closed-loop lines / no-monopole / axial-equatorial 1/r³ is the prerequisite bar_magnet_as_dipole; Gauss's law for magnetism (∮B·dA = 0) is the downstream gauss_law_magnetism. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; the five misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "source_book": "NCERT Class 12 Physics Part 1, Chapter 5 (Magnetism and Matter) §5.2.3 (The dipole in a uniform magnetic field) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the universal real-world anchor (a magnetic compass needle and a lab vibration magnetometer) — Rule 35: no country-specific culture anywhere in the sim. The atomic concept taught here is what a UNIFORM external field B does to a bar magnet of magnetic moment m: each pole feels a force (the N pole +mB along B, the S pole −mB opposite), and because these forces are equal, opposite, and act on different lines they form a COUPLE — the net force is ZERO (the magnet does not translate) but the couple produces a torque τ = m × B of magnitude mB·sinθ that rotates the magnet toward alignment with B. The torque is maximum at θ = 90° (a cross product is largest when the vectors are perpendicular) and zero at θ = 0° and θ = 180°. Released near alignment the magnet OSCILLATES about θ = 0° with period T = 2π√(I/mB), where I is its moment of inertia — the principle of the vibration magnetometer. The potential energy is U = −m·B = −mB·cosθ: a MINIMUM at θ = 0° (stable equilibrium — a nudge produces a restoring torque) and a MAXIMUM at θ = 180° (unstable — any nudge grows and the magnet flips to θ = 0°). Five student misconceptions are confronted, each at its own pivot state via a straightforward cause-then-effect contrast beat (Rule 16a / Rule 31 — never a predict-pause, never wait_for_answer): (M2) the magnet feels no force at all (each pole DOES feel mB; they form a couple) — STATE_3; (M1) a uniform field pushes the magnet bodily along B (net force is zero — only a torque) — STATE_4, the PRIMARY aha; (M3) torque is maximum when m ∥ B (it is zero there; maximum at 90°) — STATE_6; (M4) θ = 180° is as stable as θ = 0° (it is the energy maximum — unstable) — STATE_7; (M5) the oscillation period is independent of the field (T = 2π√(I/mB), so a stronger m or B gives a faster swing) — STATE_8. This is the magnetic twin of electric_dipole_in_field (τ = p × E, U = −p·E), reusing its rotational-dynamics renderer. CUT-LINE: the bar magnet's own field / closed-loop lines / no-monopole / axial-equatorial 1/r³ is the prerequisite bar_magnet_as_dipole; Gauss's law for magnetism (∮B·dA = 0) is the downstream gauss_law_magnetism. Conceptual-only ship (no mode_overrides, Rule 20). EPIC-L-first (no epic_c_branches; the five misconceptions are confronted inside EPIC-L via straightforward misconception_watch contrast beats, not predict→reveal).",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -21,13 +21,13 @@
   "real_world_anchor": {
     "primary": "Picture the magnetic compass needle from your geography or physics class. The needle is a tiny bar magnet sitting in the Earth's uniform field. Let it go and it swings until it points along the field, then holds there; push it aside and it springs straight back. That 'springs back to alignment' is exactly the torque τ = mB·sinθ doing its job — and a bar magnet in any uniform field behaves the very same way.",
     "secondary": "Picture the vibration magnetometer used in the school lab — a small bar magnet hung by a thread that you twist and release, then count how many swings it makes per minute. The time for one swing is the period T = 2π√(I/mB); a stronger magnet or a stronger field makes it swing faster. That timed swing is how the lab actually measures a magnetic field.",
-    "tertiary": "Picture a bar magnet floating on a cork in a bowl of water, free to turn. It rotates until its N pole points roughly north, lining up with the Earth's field, and settles there — the same τ = m × B settling the magnet into its lowest-energy pose."
+    "tertiary": "Picture a bar magnet floating on a cork in a bowl of water, free to turn. It rotates until its N pole points roughly along the field and settles there — the same τ = m × B settling the magnet into its lowest-energy pose."
   },
   "physics_engine_config": {
     "variables": {
       "m": { "name": "Magnetic moment of the bar magnet", "unit": "A*m^2", "min": 1, "max": 10, "default": 5, "step": 0.5 },
       "B": { "name": "Magnitude of the uniform external field", "unit": "x10^-4 T", "min": 1, "max": 10, "default": 5, "step": 0.5 },
-      "theta_deg": { "name": "Angle between m and B", "unit": "deg", "min": 0, "max": 180, "default": 60, "step": 1 },
+      "theta_deg": { "name": "Angle between m and B", "unit": "deg", "min": 0, "max": 180, "default": 45, "step": 1 },
       "I": { "name": "Moment of inertia of the magnet", "unit": "kg*m^2", "min": 1e-6, "max": 1e-4, "default": 1e-5, "step": 1e-6 }
     },
     "computed_outputs": {
@@ -47,12 +47,13 @@
       "equilibrium_unstable": "θ = 180° (m anti-parallel to B) — unstable equilibrium; U is a maximum, and any tiny nudge grows until the magnet flips to θ = 0°."
     },
     "constraints": [
-      "B must be uniform across the magnet. A non-uniform field adds a net force (gradient term) so the magnet would also translate.",
+      "B must be uniform across the magnet — a non-uniform field adds a net force (gradient term) so the magnet would also translate; this concept only covers the uniform case.",
       "The magnet is rigid — its magnetic moment m and length are fixed during rotation.",
-      "τ = m × B is a vector perpendicular to BOTH m and B; its magnitude is mB·sinθ.",
-      "θ is measured from m to B; a small positive θ gives a restoring torque toward θ = 0°.",
-      "U = −m·B is defined up to a constant; the standard reference is U = 0 at θ = 90°.",
-      "The small-oscillation period T = 2π√(I/mB) holds for small amplitudes about the stable equilibrium θ = 0°."
+      "τ = m × B is a vector perpendicular to BOTH m and B; its magnitude is mB·sinθ, and ΣF = 0 exactly, for every θ, in a uniform field.",
+      "θ is measured from m to B; a small positive θ near 0° gives a restoring torque back toward θ = 0° (stable); a small departure from θ = 180° gives a torque that GROWS away from it (unstable).",
+      "U = −m·B is defined up to an additive constant; the reference used throughout is U = 0 at θ = 90°, so U ranges from −mB (θ=0°, minimum) to +mB (θ=180°, maximum).",
+      "The small-oscillation period T = 2π√(I/mB) holds for small amplitudes about the stable equilibrium θ = 0° — STATE_8 uses a ±25° amplitude, within the small-angle regime NCERT scope assumes.",
+      "B is expressed on a ×10⁻⁴ T scale for slider range; every torque/energy/period formula must multiply the raw slider value by 1e-4 before use — never compute with the raw slider integer as if it were Tesla."
     ]
   },
   "cognitive_limits": {
@@ -63,183 +64,241 @@
   "aha_moment": {
     "state_id": "STATE_4",
     "statement": "Net force is zero, yet the torque is not — the magnet turns without moving.",
-    "visual_confirmation": "Watch STATE_3 → STATE_4: the two equal-and-opposite pole forces resolve to a ΣF = 0 badge, yet the τ vector appears and the magnet begins to turn. Both facts are true at once."
+    "visual_confirmation": "Watch STATE_3 → STATE_4: the two equal-and-opposite pole forces resolve to a ΣF = 0 badge, yet the τ vector appears and the magnet begins to turn. Both facts are true at once.",
+    "primary": true
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
-    "exploration": ["STATE_5", "STATE_6", "STATE_7", "STATE_8"]
+    "foundational": { "start": "STATE_1", "end": "STATE_9" },
+    "couple_force": { "start": "STATE_3", "end": "STATE_4" },
+    "torque_angle": { "start": "STATE_5", "end": "STATE_6" },
+    "stability_energy": { "start": "STATE_7", "end": "STATE_7" },
+    "oscillation_period": { "start": "STATE_8", "end": "STATE_8" },
+    "explore": { "start": "STATE_9", "end": "STATE_9" }
   },
   "epic_l_path": {
-    "state_count": 8,
+    "state_count": 9,
     "states": {
       "STATE_1": {
-        "title": "A bar magnet and its moment m (S → N)",
-        "duration": 16,
-        "focal_primitive_id": "setup_label",
-        "advance_mode": "auto_after_tts",
+        "title": "A bar magnet carries a moment m, S → N",
+        "duration": 14,
+        "focal_primitive_id": "dpf_p_arrow",
+        "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "setup_label", "position": { "x": 380, "y": 60 }, "text": "A bar magnet: N (red) and S (blue), with its moment m", "color": "#FFD54F" },
-          { "type": "annotation", "id": "moment_label", "position": { "x": 200, "y": 230 }, "text": "The magnetic moment m\npoints from S to N.\nIts size measures how\nstrong the magnet is.", "color": "#FFCA28" },
-          { "type": "annotation", "id": "no_field_label", "position": { "x": 560, "y": 230 }, "text": "No external field yet.\nNext: drop this magnet\ninto a uniform field B.", "color": "#66BB6A" },
-          { "type": "annotation", "id": "anchor_label", "position": { "x": 380, "y": 470 }, "text": "A compass needle is exactly this — a tiny bar magnet.", "color": "#D4D4D8" }
+          { "type": "annotation", "id": "s1_title", "position": { "x": 380, "y": 55 }, "text": "A bar magnet: N (red), S (blue), and its moment m", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s1_cause", "position": { "x": 200, "y": 235 }, "text": "The magnet holds its home pose. Then the yellow m\narrow grows out from S to N.", "color": "#FFCC9F" },
+          { "type": "annotation", "id": "s1_effect", "position": { "x": 560, "y": 235 }, "text": "Its length shows how strong the magnet is.\nNo external field yet.", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s1_note", "position": { "x": 380, "y": 475 }, "text": "A compass needle is exactly this — a tiny bar magnet with moment m", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "This is a bar magnet. North pole red, south pole blue, with its magnetic moment m drawn in yellow.", "text_hi": "यह एक bar magnet है। North pole red, south pole blue, इसके magnetic moment m के साथ जो yellow रंग में है।", "text_te": "ఇది ఒక bar magnet. North pole red, south pole blue, దాని magnetic moment m yellow రంగులో గీయబడింది.", "glow": "dipole" },
-            { "id": "s1_2", "text_en": "The yellow arrow is the magnetic moment m. It points from the south pole to the north pole.", "text_hi": "yellow arrow magnetic moment m है। यह south pole से north pole की तरफ point करता है।", "text_te": "yellow arrow magnetic moment m. ఇది south pole నుండి north pole వైపు point చేస్తుంది.", "glow": "p", "math_show": "\\vec{m}" },
-            { "id": "s1_3", "text_en": "Its size measures how strong the magnet is. There is no field yet.", "text_hi": "इसका size बताता है कि magnet कितना मज़बूत है। अभी कोई field नहीं है।", "text_te": "దాని size magnet ఎంత బలంగా ఉందో చెబుతుంది. ఇంకా field లేదు.", "glow": "p" },
-            { "id": "s1_4", "text_en": "Next, we drop this magnet into a uniform external magnetic field B.", "text_hi": "अगले step में, हम इस magnet को एक uniform external magnetic field B में डालेंगे।", "text_te": "తర్వాత, మనం ఈ magnet ని ఒక uniform external magnetic field B లో వేస్తాం.", "glow": "dipole" }
+            { "id": "s1_1", "text_en": "This is a bar magnet — north pole red, south pole blue." },
+            { "id": "s1_2", "text_en": "Its magnetic moment m, in yellow, points from south to north and measures how strong it is." }
           ]
         }
       },
       "STATE_2": {
-        "title": "Place it in a uniform field B",
-        "duration": 18,
-        "focal_primitive_id": "field_label",
+        "title": "A uniform field B — the same everywhere",
+        "duration": 16,
+        "focal_primitive_id": "dpf_theta_arc",
         "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "field_label", "position": { "x": 380, "y": 60 }, "text": "A uniform field B — the same everywhere", "color": "#FFD54F" },
-          { "type": "annotation", "id": "uniform_label", "position": { "x": 200, "y": 230 }, "text": "Every blue arrow is identical:\nsame length, same direction.\nThat is what 'uniform' means.", "color": "#82B1FF" },
-          { "type": "annotation", "id": "angle_label", "position": { "x": 560, "y": 230 }, "text": "The magnet sits at an angle θ\nto the field. Watch the yellow\narc between m and B.", "color": "#FFD54F" },
-          { "type": "annotation", "id": "question_label", "position": { "x": 380, "y": 470 }, "text": "What will the field do to this tilted magnet?", "color": "#66BB6A" }
+          { "type": "annotation", "id": "s2_title", "position": { "x": 380, "y": 55 }, "text": "A uniform field B — identical everywhere", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s2_cause", "position": { "x": 200, "y": 235 }, "text": "Blue field arrows sweep in, all the same\nlength and direction.", "color": "#82B1FF" },
+          { "type": "annotation", "id": "s2_effect", "position": { "x": 560, "y": 235 }, "text": "The magnet sits tilted at angle θ. The yellow\narc marks that angle to B.", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s2_note", "position": { "x": 380, "y": 475 }, "text": "Uniform means the field never changes strength or direction, anywhere", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Now switch on a uniform magnetic field. Every blue arrow is identical in length and direction.", "text_hi": "अब एक uniform magnetic field switch on करते हैं। हर blue arrow length और direction में identical है।", "text_te": "ఇప్పుడు ఒక uniform magnetic field switch on చేద్దాం. ప్రతి blue arrow length మరియు direction లో identical.", "glow": "e" },
-            { "id": "s2_2", "text_en": "Uniform means the field is the same at every point. It does not get stronger or weaker anywhere.", "text_hi": "Uniform का मतलब field हर जगह एक समान है। यह कहीं stronger या weaker नहीं होती।", "text_te": "Uniform అంటే field అన్ని చోట్లా ఒకేలా ఉంటుంది. ఇది ఎక్కడా stronger లేదా weaker కాదు.", "glow": "e" },
-            { "id": "s2_3", "text_en": "The magnet sits tilted at an angle theta to the field. The yellow arc marks that angle between the magnetic moment m and the field B.", "text_hi": "Magnet field के साथ theta angle पर tilted है। yellow arc उस angle को mark करता है जो magnetic moment m और field B के बीच है।", "text_te": "Magnet field తో theta angle లో tilted గా ఉంది. yellow arc magnetic moment m మరియు field B మధ్య ఆ angle ని చూపిస్తుంది.", "glow": "theta" },
-            { "id": "s2_4", "text_en": "Question. What does the field do to this tilted magnet? Keep watching.", "text_hi": "Question। यह field इस tilted magnet के साथ क्या करती है? देखते रहो।", "text_te": "Question. ఈ field ఈ tilted magnet కి ఏమి చేస్తుందో? చూస్తూ ఉండండి.", "glow": "dipole" }
+            { "id": "s2_1", "text_en": "Now switch on a uniform magnetic field B — every blue arrow is identical, same length and direction everywhere." },
+            { "id": "s2_2", "text_en": "The magnet sits tilted at angle theta to the field, marked by the yellow arc." }
           ]
         }
       },
       "STATE_3": {
-        "title": "Two pole forces +mB and −mB — a couple",
-        "duration": 22,
-        "focal_primitive_id": "forces_label",
+        "title": "Each pole feels mB — a couple",
+        "duration": 21,
+        "focal_primitive_id": "dpf_f_plus",
         "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "forces_label", "position": { "x": 380, "y": 60 }, "text": "Each pole feels a force in the field", "color": "#FFD54F" },
-          { "type": "annotation", "id": "plus_force_label", "position": { "x": 200, "y": 230 }, "text": "On N: force +mB,\nalong the field.\nOn S: force −mB,\nopposite the field.", "color": "#66BB6A" },
-          { "type": "annotation", "id": "couple_label", "position": { "x": 560, "y": 230 }, "text": "Equal. Opposite. But on\ndifferent lines of action.\nThat is a COUPLE.", "color": "#FFCC9F", "reveal_at_tts_id": "s3_3" },
-          { "type": "annotation", "id": "magnitude_label", "position": { "x": 380, "y": 470 }, "text": "Each force has magnitude mB. They do not cancel as a pair — they twist.", "color": "#D4D4D8", "reveal_at_tts_id": "s3_4" }
+          { "type": "annotation", "id": "s3_title", "position": { "x": 380, "y": 55 }, "text": "Each pole feels a force: +mB and −mB", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s3_cause", "position": { "x": 200, "y": 235 }, "text": "The field shimmers once. Then the north pole's\n+mB arrow grows out along B.", "color": "#FFCC9F" },
+          { "type": "annotation", "id": "s3_effect", "position": { "x": 560, "y": 235 }, "text": "The south pole's −mB arrow grows out against\nB — equal, opposite, different lines.", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s3_note", "position": { "x": 380, "y": 475 }, "text": "That pairing is a couple, not a cancellation — the magnet still feels forces", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Look at each pole separately. The north pole feels a force m B, pointing along the field.", "text_hi": "हर pole को अलग-अलग देखो। North pole को एक force m B महसूस होता है, जो field की direction में point करता है।", "text_te": "ప్రతి pole ని విడిగా చూడండి. North pole కి ఒక force m B అనిపిస్తుంది, అది field వైపు point చేస్తుంది.", "glow": "forces", "math_show": "\\vec{F}_N = +mB" },
-            { "id": "s3_2", "text_en": "The south pole feels a force m B pointing the opposite way, against the field.", "text_hi": "South pole को भी force m B महसूस होता है, लेकिन opposite direction में, field के against।", "text_te": "South pole కి కూడా force m B అనిపిస్తుంది, కానీ opposite వైపు, field కి వ్యతిరేకంగా.", "glow": "forces", "math_show": "\\vec{F}_S = -mB" },
-            { "id": "s3_3", "text_en": "Two forces. Equal in size. Opposite in direction. But acting on different lines. That combination is called a couple.", "text_hi": "दो forces। size में बराबर। direction में opposite। लेकिन अलग-अलग lines पर act करती हैं। इस combination को couple कहते हैं।", "text_te": "రెండు forces. size లో సమానం. direction లో opposite. కానీ వేర్వేరు lines పై act చేస్తాయి. ఈ combination ని couple అంటారు.", "glow": "forces" },
-            { "id": "s3_4", "text_en": "So the magnet does feel forces. It is just that the two forces are set up to twist it, not to push it.", "text_hi": "तो magnet को forces ज़रूर महसूस होती हैं। बस दोनों forces उसे push नहीं, बल्कि twist करने के लिए set up हैं।", "text_te": "కాబట్టి magnet కి forces అనిపిస్తాయే. కేవలం ఆ రెండు forces దాన్ని push చేయవు, twist చేయడానికి set up అయ్యాయి.", "glow": "forces" }
+            { "id": "s3_1", "text_en": "The field shimmers once, then each pole answers separately." },
+            { "id": "s3_2", "text_en": "The north pole feels a force m B along the field; the south pole feels the same size force, m B, but directed against it." },
+            { "id": "s3_3", "text_en": "Equal, opposite, on different lines — that pairing is a couple, not a cancellation." }
           ]
         },
         "misconception_watch": [
-          { "belief": "A magnet placed in a field feels no force at all, because the poles are equal and opposite.", "one_line_fix": "Each pole DOES feel a force mB. The two are equal and opposite, so they form a couple — zero net force, but a real twisting torque." }
+          {
+            "belief": "A magnet placed in a uniform field feels no force at all, because the two poles are equal and opposite.",
+            "visual_counter": "The north pole's +mB arrow grows out along the field, then the south pole's −mB arrow grows out against it — two real forces, equal and opposite, arranged on different lines to form a couple.",
+            "one_line_fix": "Each pole DOES feel a force mB. The two are equal and opposite, so they form a couple — zero net force, but a real twisting torque."
+          }
         ]
       },
       "STATE_4": {
-        "title": "Net force zero, but torque is not",
-        "duration": 26,
-        "focal_primitive_id": "torque_label",
-        "advance_mode": "wait_for_answer",
+        "title": "Net force zero — it still turns",
+        "duration": 24,
+        "focal_primitive_id": "dpf_tau_arrow",
+        "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "torque_label", "position": { "x": 380, "y": 60 }, "text": "ΣF = 0, yet the magnet turns", "color": "#FFD54F" },
-          { "type": "annotation", "id": "sum_zero_label", "position": { "x": 200, "y": 230 }, "text": "Add the two forces:\n+mB and −mB cancel.\nΣF = 0 → no sliding.", "color": "#FFF176" },
-          { "type": "annotation", "id": "rotate_label", "position": { "x": 560, "y": 230 }, "text": "But the couple makes a torque.\nThe purple arrow is τ.\nThe magnet rotates toward B.", "color": "#E879F9", "reveal_at_tts_id": "s4_3" },
-          { "type": "annotation", "id": "aha_label", "position": { "x": 380, "y": 470 }, "text": "Zero net force and non-zero torque are both true at once. The magnet turns without moving off the spot.", "color": "#FFF176", "reveal_at_tts_id": "s4_5" }
+          { "type": "annotation", "id": "s4_title", "position": { "x": 380, "y": 55 }, "text": "ΣF = 0, yet the magnet turns", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s4_cause", "position": { "x": 200, "y": 235 }, "text": "The two force arrows pulse, then sum to zero —\na badge confirms it, centre fixed.", "color": "#FFF176" },
+          { "type": "annotation", "id": "s4_effect", "position": { "x": 560, "y": 235 }, "text": "The couple still makes a torque τ (purple).\nThe magnet swings toward B.", "color": "#E879F9" },
+          { "type": "annotation", "id": "s4_note", "position": { "x": 380, "y": 475 }, "text": "Zero net force and non-zero torque are both true at the same instant", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Now add the two forces together. Plus m B and minus m B cancel exactly. The net force is zero.", "text_hi": "अब दोनों forces को जोड़ो। plus m B और minus m B बिल्कुल cancel हो जाती हैं। net force zero हो जाती है।", "text_te": "ఇప్పుడు రెండు forces ని కలపండి. plus m B మరియు minus m B పూర్తిగా cancel అవుతాయి. net force zero అవుతుంది.", "glow": "sum", "math_show": "\\sum \\vec{F} = 0" },
-            { "id": "s4_2", "text_en": "Zero net force means the magnet will not slide anywhere. Take three seconds — does that mean nothing happens?", "text_hi": "Zero net force का मतलब magnet कहीं slide नहीं करेगा। तीन seconds लो — क्या इसका मतलब है कुछ नहीं होता?", "text_te": "Zero net force అంటే magnet ఎక్కడికీ slide అవ్వదు. మూడు seconds తీసుకోండి — దీని అర్థం ఏమీ జరగదా?", "glow": "dipole", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "No. The couple produces a torque. The purple arrow is the torque tau, and the magnet begins to rotate toward the field.", "text_hi": "नहीं। couple एक torque produce करता है। purple arrow torque tau है, और magnet field की तरफ rotate होना शुरू हो जाता है।", "text_te": "లేదు. couple ఒక torque produce చేస్తుంది. purple arrow torque tau, మరియు magnet field వైపు rotate అవ్వడం మొదలవుతుంది.", "glow": "tau" },
-            { "id": "s4_4", "text_en": "Net force zero, but torque not zero. Both statements are true at the same moment.", "text_hi": "Net force zero, लेकिन torque zero नहीं। दोनों बातें एक ही moment पर true हैं।", "text_te": "Net force zero, కానీ torque zero కాదు. రెండు statements ఒకే moment లో true గా ఉంటాయి.", "glow": ["sum", "tau"], "math_show": "\\sum \\vec{F} = 0, \\quad \\vec{\\tau} \\neq 0" },
-            { "id": "s4_5", "text_en": "Forces decide sliding. Torques decide turning. A uniform field gives the magnet only a turn.", "text_hi": "Forces sliding decide करती हैं। Torques turning decide करते हैं। एक uniform field magnet को सिर्फ़ एक turn देती है।", "text_te": "Forces sliding decide చేస్తాయి. Torques turning decide చేస్తాయి. ఒక uniform field magnet కి కేవలం ఒక turn ఇస్తుంది.", "glow": "tau" }
+            { "id": "s4_1", "text_en": "Add the two pole forces: plus m B and minus m B cancel, so the net force is zero — a badge confirms it." },
+            { "id": "s4_2", "text_en": "The couple still creates a torque tau, the purple arrow, and the magnet swings toward the field, centre pinned." },
+            { "id": "s4_3", "text_en": "Zero force, non-zero torque — both true at once." }
           ]
         },
         "misconception_watch": [
-          { "belief": "A uniform field pushes the magnet bodily along the direction of the field.", "one_line_fix": "In a UNIFORM field the net force is exactly zero — the magnet only rotates to align with B, it does not translate." }
+          {
+            "belief": "A uniform field pushes the magnet bodily along the direction of the field.",
+            "visual_counter": "The centre-pin holds fixed and the ΣF = 0 badge stamps while only the magnet's orientation changes — it turns in place, it never slides.",
+            "one_line_fix": "In a UNIFORM field the net force is exactly zero — the magnet only rotates to align with B, it does not translate."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "if forces cancel how does it turn",
+          "what exactly is a couple in physics",
+          "would a magnet slide in a field that is not uniform",
+          "why do the two mB forces not cancel completely"
         ]
       },
       "STATE_5": {
-        "title": "τ = mB·sinθ — sweep θ and watch τ trace a sine",
-        "duration": 22,
-        "focal_primitive_id": "sweep_label",
-        "advance_mode": "auto_after_tts",
+        "title": "τ = mB·sinθ — a sine in the angle",
+        "duration": 18,
+        "focal_primitive_id": "dpf_tau_arrow",
+        "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "sweep_label", "position": { "x": 380, "y": 60 }, "text": "Watch θ sweep — τ rises and falls", "color": "#FFD54F" },
-          { "type": "annotation", "id": "grows_label", "position": { "x": 200, "y": 230 }, "text": "τ is zero when m lines up with B,\ngrows as the magnet tilts,\nand falls back to zero again.", "color": "#FFCC9F" },
-          { "type": "annotation", "id": "sine_label", "position": { "x": 560, "y": 230 }, "text": "Functional form:\nτ = mB·sinθ.\nThis is a sine curve.", "color": "#E879F9" },
-          { "type": "annotation", "id": "watch_label", "position": { "x": 380, "y": 470 }, "text": "Watch only. The purple τ arrow grows and shrinks with the angle.", "color": "#D4D4D8" }
+          { "type": "annotation", "id": "s5_title", "position": { "x": 380, "y": 55 }, "text": "τ = mB·sinθ — watch it rise and fall", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s5_cause", "position": { "x": 200, "y": 235 }, "text": "θ sweeps smoothly from 0° to 180°\nand back.", "color": "#FFCC9F" },
+          { "type": "annotation", "id": "s5_effect", "position": { "x": 560, "y": 235 }, "text": "The purple τ arrow grows, peaks at the\nmiddle, then shrinks again.", "color": "#E879F9" },
+          { "type": "annotation", "id": "s5_note", "position": { "x": 380, "y": 475 }, "text": "That shape is a sine curve: τ = mB·sinθ", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Watch the angle sweep from zero through ninety to one eighty and back. Keep your eye on the purple torque arrow.", "text_hi": "Angle को zero से ninety होते हुए one eighty तक और वापस sweep होते देखो। purple torque arrow पर नज़र रखो।", "text_te": "Angle zero నుండి ninety గుండా one eighty వరకు మరియు తిరిగి sweep అవ్వడం చూడండి. purple torque arrow పై దృష్టి పెట్టండి.", "glow": "theta" },
-            { "id": "s5_2", "text_en": "The torque starts at zero, grows as the magnet tilts away from the field, peaks, then falls back to zero.", "text_hi": "Torque zero से शुरू होता है, जैसे-जैसे magnet field से tilt होता है बढ़ता है, peak करता है, फिर zero पर वापस आ जाता है।", "text_te": "Torque zero నుండి మొదలవుతుంది, magnet field నుండి tilt అవుతూ పెరుగుతుంది, peak చేరుతుంది, తర్వాత zero కి తిరిగి వస్తుంది.", "glow": "tau" },
-            { "id": "s5_3", "text_en": "That shape is a sine. Tau equals m B sine theta. Where does it reach its biggest value? You will guess next.", "text_hi": "यह shape एक sine है। tau equals m B sine theta। यह अपनी सबसे बड़ी value कहाँ reach करता है? अगले step में तुम guess करोगे।", "text_te": "ఆ shape ఒక sine. tau equals m B sine theta. ఇది అత్యధిక value ఎక్కడ reach అవుతుంది? తర్వాత మీరు guess చేస్తారు.", "glow": "tau", "math_show": "\\tau = mB\\sin\\theta" }
+            { "id": "s5_1", "text_en": "Watch the angle theta sweep smoothly from zero to one eighty degrees and back." },
+            { "id": "s5_2", "text_en": "The torque arrow tau grows, peaks at the middle, then shrinks again — tracing a sine curve, tau equals m B sine theta." }
           ]
         }
       },
       "STATE_6": {
-        "title": "Where is τ maximum? — predict before you see",
-        "duration": 22,
-        "focal_primitive_id": "predict_label",
-        "advance_mode": "wait_for_answer",
+        "title": "τ max at 90°, zero at 0° and 180°",
+        "duration": 18,
+        "focal_primitive_id": "dpf_tau_arrow",
+        "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "predict_label", "position": { "x": 380, "y": 60 }, "text": "At what angle is the torque MAXIMUM?", "color": "#FFD54F" },
-          { "type": "annotation", "id": "wrong_label", "position": { "x": 200, "y": 230 }, "text": "Common wrong guess:\nθ = 0° (m lined up with B).\n\"Aligned must be biggest, right?\"", "color": "#FFCC9F" },
-          { "type": "annotation", "id": "answer_label", "position": { "x": 560, "y": 230 }, "text": "Answer: θ = 90°.\nτ = mB·sin 90° = mB.\nA cross product is biggest\nwhen the vectors are perpendicular.", "color": "#66BB6A", "reveal_at_tts_id": "s6_3" },
-          { "type": "annotation", "id": "cross_label", "position": { "x": 380, "y": 470 }, "text": "τ = m × B. Parallel → sin 0 = 0 → τ = 0. Perpendicular → sin 90 = 1 → τ = max.", "color": "#D4D4D8", "reveal_at_tts_id": "s6_4" }
+          { "type": "annotation", "id": "s6_title", "position": { "x": 380, "y": 55 }, "text": "Biggest at 90°, zero at 0° and 180°", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s6_cause", "position": { "x": 200, "y": 235 }, "text": "The magnet snaps to 0° — the τ arrow\nvanishes.", "color": "#FFCC9F" },
+          { "type": "annotation", "id": "s6_effect", "position": { "x": 560, "y": 235 }, "text": "It snaps to 90° — τ fully extends,\nτ = mB, the maximum.", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s6_note", "position": { "x": 380, "y": 475 }, "text": "At 180° it vanishes again — a cross product peaks ⊥, dies ∥", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "The magnet is now frozen at ninety degrees. Look at the torque arrow — it is fully extended.", "text_hi": "Magnet अभी ninety degrees पर frozen है। torque arrow को देखो — यह पूरी तरह extended है।", "text_te": "Magnet ఇప్పుడు ninety degrees వద్ద frozen గా ఉంది. torque arrow చూడండి — అది పూర్తిగా extended గా ఉంది.", "glow": "tau" },
-            { "id": "s6_2", "text_en": "Predict first. At what angle is the torque largest? Take three seconds.", "text_hi": "पहले predict करो। torque किस angle पर सबसे बड़ा है? तीन seconds लो।", "text_te": "మొదట predict చేయండి. torque ఏ angle వద్ద అత్యధికంగా ఉంటుంది? మూడు seconds తీసుకోండి.", "glow": "theta", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "Many students say zero degrees, where the moment m lines up with the field B. That feels right, but it is wrong. The answer is ninety.", "text_hi": "बहुत से students कहते हैं zero degrees, जहाँ moment m, field B के साथ line up होता है। यह सही लगता है, लेकिन गलत है। answer ninety है।", "text_te": "చాలా students zero degrees అంటారు, అక్కడ moment m, field B తో line up అవుతుంది. అది సరిగ్గా అనిపిస్తుంది, కానీ తప్పు. answer ninety.", "glow": "tau", "math_show": "\\tau_{\\max} = mB \\;\\text{at}\\; \\theta = 90^{\\circ}" },
-            { "id": "s6_4", "text_en": "Because the torque tau is a cross product. Cross products are biggest when the two vectors are perpendicular, and zero when they are parallel.", "text_hi": "क्योंकि torque tau एक cross product है। cross products सबसे बड़े होते हैं जब दोनों vectors perpendicular हों, और zero जब वे parallel हों।", "text_te": "ఎందుకంటే torque tau ఒక cross product. cross products అత్యధికంగా ఉంటాయి రెండు vectors perpendicular గా ఉన్నప్పుడు, మరియు zero గా ఉంటాయి parallel గా ఉన్నప్పుడు.", "glow": "theta" }
+            { "id": "s6_1", "text_en": "The magnet snaps to three poses." },
+            { "id": "s6_2", "text_en": "At zero degrees, aligned with the field, the torque arrow vanishes." },
+            { "id": "s6_3", "text_en": "At ninety degrees it fully extends — tau equals m B, the maximum." },
+            { "id": "s6_4", "text_en": "At one eighty it vanishes again: a cross product peaks when perpendicular, dies when parallel." }
           ]
         },
         "misconception_watch": [
-          { "belief": "Torque is maximum when m is parallel to B, because that is when the magnet is most aligned.", "one_line_fix": "Alignment means τ = 0, not τ_max. τ = m × B is a cross product — it is largest when m ⊥ B (θ = 90°)." }
+          {
+            "belief": "Torque is maximum when the moment m is parallel to the field B, because that is when the magnet is most aligned.",
+            "visual_counter": "At the 0° and 180° held poses the τ arrow disappears entirely; at the 90° pose it snaps out fully extended, with the HUD reading τ = mB.",
+            "one_line_fix": "Alignment means τ = 0, not τₘₐₓ. τ = m × B is a cross product — it is largest when m ⊥ B (θ = 90°)."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why is torque biggest at 90 degrees not 0",
+          "why is torque zero when magnet is aligned with field",
+          "which way does torque point using right hand rule",
+          "how is torque related to cross product geometry"
         ]
       },
       "STATE_7": {
-        "title": "Stable vs unstable, U = −mB·cosθ, and the swing T = 2π√(I/mB)",
+        "title": "0° springs back; 180° flips away",
         "duration": 28,
-        "focal_primitive_id": "equilibrium_label",
+        "focal_primitive_id": "dpf_u_dot",
         "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "equilibrium_label", "position": { "x": 380, "y": 60 }, "text": "Released near alignment, the magnet swings — like a compass", "color": "#FFD54F" },
-          { "type": "annotation", "id": "stable_label", "position": { "x": 200, "y": 230 }, "text": "θ = 0° (m ∥ B): U is LOWEST.\nNudge it → it swings back.\nStable. It oscillates here\nwith period T = 2π√(I/mB).", "color": "#66BB6A" },
-          { "type": "annotation", "id": "unstable_label", "position": { "x": 560, "y": 230 }, "text": "θ = 180° (m against B): U is HIGHEST.\nAny nudge grows → it flips around.\nUnstable. See the U-meter on the left.", "color": "#EF5350" },
-          { "type": "annotation", "id": "energy_label", "position": { "x": 380, "y": 470 }, "text": "U = −mB·cosθ (lowest at 0°, highest at 180°). Swing period T = 2π√(I/mB).", "color": "#FFCA28" }
+          { "type": "annotation", "id": "s7_title", "position": { "x": 380, "y": 55 }, "text": "Nudge: back vs flip", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s7_cause", "position": { "x": 200, "y": 235 }, "text": "Nudged from 0°, the magnet springs straight\nback — U sits at its minimum.", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s7_effect", "position": { "x": 560, "y": 235 }, "text": "Nudged the same amount from 180°, it flips\nall the way to 0° instead.", "color": "#EF5350" },
+          { "type": "annotation", "id": "s7_note", "position": { "x": 380, "y": 475 }, "text": "Same small nudge, opposite fate: one stable, one unstable", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Torque is zero at two angles. Theta zero, where the moment m lines up with the field B, and theta one eighty, where m points against B.", "text_hi": "Torque दो angles पर zero है। theta zero, जहाँ moment m, field B के साथ line up होता है, और theta one eighty, जहाँ m, B के against point करता है।", "text_te": "Torque రెండు angles వద్ద zero. theta zero వద్ద, అక్కడ moment m, field B తో line up అవుతుంది, మరియు theta one eighty వద్ద, అక్కడ m, B కి వ్యతిరేకంగా point చేస్తుంది.", "glow": "u" },
-            { "id": "s7_2", "text_en": "But they are not equally safe. Watch the magnet oscillate gently about theta zero. Nudge it and it always swings back.", "text_hi": "लेकिन वे equally safe नहीं हैं। magnet को theta zero के आसपास gently oscillate होते देखो। इसे nudge करो और यह हमेशा वापस swing करता है।", "text_te": "కానీ అవి equally safe కాదు. magnet theta zero చుట్టూ gently oscillate అవ్వడం చూడండి. దాన్ని nudge చేస్తే అది ఎప్పుడూ తిరిగి swing అవుతుంది.", "glow": "dipole" },
-            { "id": "s7_3", "text_en": "That is stable equilibrium. On the U-meter the marker sits at the bottom — the energy is lowest, U equals minus m B cosine theta.", "text_hi": "यह stable equilibrium है। U-meter पर marker नीचे sit करता है — energy सबसे कम है, U equals minus m B cosine theta।", "text_te": "ఇది stable equilibrium. U-meter పై marker కింద ఉంది — energy అత్యల్పం, U equals minus m B cosine theta.", "glow": "u", "math_show": "U = -mB\\cos\\theta" },
-            { "id": "s7_4", "text_en": "Each gentle swing takes a time T equals two pi root I over m B. A stronger magnet or a stronger field makes it swing faster.", "text_hi": "हर gentle swing में समय लगता है T equals two pi root I over m B। एक मज़बूत magnet या मज़बूत field इसे तेज़ swing कराते हैं।", "text_te": "ప్రతి gentle swing కి సమయం పడుతుంది T equals two pi root I over m B. ఒక బలమైన magnet లేదా బలమైన field దాన్ని వేగంగా swing చేస్తాయి.", "glow": "tau", "math_show": "T = 2\\pi\\sqrt{I/mB}" },
-            { "id": "s7_5", "text_en": "Theta one eighty is the opposite — the energy maximum. Any tiny nudge grows and the magnet flips all the way to theta zero.", "text_hi": "theta one eighty उल्टा है — energy maximum। कोई भी tiny nudge बढ़ता है और magnet flip होकर theta zero पर आ जाता है।", "text_te": "theta one eighty వ్యతిరేకం — energy maximum. ఏ tiny nudge అయినా పెరిగి magnet theta zero కి flip అవుతుంది.", "glow": "u" }
+            { "id": "s7_1", "text_en": "Nudge the magnet slightly from zero degrees — it springs right back, and the U meter sits at the bottom, its energy minimum." },
+            { "id": "s7_2", "text_en": "Nudge it the same amount from one eighty — the deviation grows instead, and it flips to zero as the U marker falls from top to bottom." },
+            { "id": "s7_3", "text_en": "Same nudge, opposite fate." }
           ]
         },
         "misconception_watch": [
-          { "belief": "θ = 180° is just as stable as θ = 0°, because the torque is zero at both angles.", "one_line_fix": "Only θ = 0° is stable — the energy minimum. θ = 180° is the energy maximum, so any nudge grows and the magnet flips to θ = 0°." },
-          { "belief": "The oscillation period does not depend on the magnet or the field.", "one_line_fix": "T = 2π√(I/mB): a stronger moment m or a stronger field B makes the swing FASTER (shorter period); a heavier magnet (larger I) makes it slower." }
+          {
+            "belief": "θ = 180° is just as stable as θ = 0°, because the torque is zero at both angles.",
+            "visual_counter": "The same small nudge is applied at both poses: at 0° the magnet springs straight back and the U-marker sits at the bottom; at 180° the deviation grows instead, and the magnet flips all the way to 0° as the U-marker falls from the top.",
+            "one_line_fix": "Only θ = 0° is stable — the energy minimum. θ = 180° is the energy maximum, so any nudge grows and the magnet flips to θ = 0°."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why is 180 degrees not stable if torque is zero there too",
+          "why does U have a negative sign in the formula",
+          "how much work does it take to flip the magnet from 0 to 180",
+          "what makes one equilibrium stable and another unstable"
         ]
       },
       "STATE_8": {
-        "title": "Your turn — drag m, B and θ; watch τ, U and the period T",
-        "duration": 0,
-        "focal_primitive_id": "sandbox_label",
-        "advance_mode": "interaction_complete",
+        "title": "Stronger field, faster swing",
+        "duration": 24,
+        "focal_primitive_id": "loop_group",
+        "advance_mode": "manual_click",
         "scene_composition": [
-          { "type": "annotation", "id": "sandbox_label", "position": { "x": 380, "y": 60 }, "text": "Sandbox — drag the three sliders", "color": "#FFD54F" },
-          { "type": "annotation", "id": "equation_label", "position": { "x": 200, "y": 230 }, "text": "τ = mB·sinθ\nU = −mB·cosθ\nT = 2π√(I/mB)\n\nm or B up → τ up, T down", "color": "#FFCC9F" },
-          { "type": "annotation", "id": "challenge_label", "position": { "x": 560, "y": 230 }, "text": "Try these:\n1. Set θ = 90° — τ is biggest.\n2. Set θ = 0° — τ = 0, U lowest.\n3. Raise m and B — T gets shorter.", "color": "#66BB6A" }
+          { "type": "annotation", "id": "s8_title", "position": { "x": 380, "y": 55 }, "text": "Stronger field, faster swing", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s8_cause", "position": { "x": 200, "y": 235 }, "text": "The magnet oscillates steadily about 0°;\nthe period T reads on the HUD.", "color": "#FFCC9F" },
+          { "type": "annotation", "id": "s8_effect", "position": { "x": 560, "y": 235 }, "text": "The field steps up — B doubles, the\narrows lengthen and brighten.", "color": "#82B1FF" },
+          { "type": "annotation", "id": "s8_note", "position": { "x": 380, "y": 475 }, "text": "The swing quickens at once and T drops, exactly as T = 2π√(I/mB) predicts", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Your turn. Three sliders — the magnetic moment m, the field B, and the angle theta. Drag them and watch the torque arrow respond.", "text_hi": "अब तुम्हारी बारी। तीन sliders — magnetic moment m, field B, और angle theta। इन्हें drag करो और torque arrow को respond करते देखो।", "text_te": "ఇప్పుడు మీ వంతు. మూడు sliders — magnetic moment m, field B, మరియు angle theta. వాటిని drag చేసి torque arrow respond అవ్వడం చూడండి.", "glow": "sandbox_label" },
-            { "id": "s8_2", "text_en": "Set theta to ninety for the biggest torque. Then raise the moment m or the field B and watch the swing period T get shorter.", "text_hi": "सबसे बड़े torque के लिए theta को ninety पर set करो। फिर moment m या field B बढ़ाओ और swing period T को छोटा होते देखो।", "text_te": "అత్యధిక torque కోసం theta ని ninety కి set చేయండి. తర్వాత moment m లేదా field B పెంచి swing period T తగ్గడం చూడండి.", "glow": "challenge_label" }
+            { "id": "s8_1", "text_en": "The magnet oscillates steadily about zero degrees; T ticks on the readout." },
+            { "id": "s8_2", "text_en": "Now the field steps up — B doubling, arrows lengthening and brightening." },
+            { "id": "s8_3", "text_en": "Watch the swing quicken at once, and T on the readout drop." },
+            { "id": "s8_4", "text_en": "Exactly as T equals two pi root I over m B predicts — a stronger field, a faster swing." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The oscillation period of the magnet does not depend on the magnet or the field.",
+            "visual_counter": "Partway through the steady swing, B visibly steps up — the field arrows lengthen and brighten — and the swing immediately quickens while the T readout on screen drops.",
+            "one_line_fix": "T = 2π√(I/mB): a stronger moment m or a stronger field B makes the swing FASTER (shorter period); a heavier magnet (larger I) makes it slower."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Your turn — drag m, B and θ",
+        "duration": 0,
+        "focal_primitive_id": "loop_group",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_title", "position": { "x": 380, "y": 55 }, "text": "Explore: drag m, B, and θ", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s9_guide", "position": { "x": 200, "y": 235 }, "text": "Watch τ, U, and the period T respond\nlive to every drag.", "color": "#FFCC9F" },
+          { "type": "annotation", "id": "s9_challenge", "position": { "x": 560, "y": 235 }, "text": "Try θ = 90° for maximum τ. Try θ = 0°\nfor the lowest U.", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s9_note", "position": { "x": 380, "y": 475 }, "text": "τ = mB·sinθ · U = −mB·cosθ · T = 2π√(I/mB)", "color": "#D4D4D8" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Your turn — drag m, B, and theta, and watch torque tau, energy U, and period T respond live." }
           ]
         }
       }
@@ -267,13 +326,14 @@
     },
     "states": {
       "STATE_1": {
-        "label": "A bar magnet and its moment m — no field yet",
+        "label": "A bar magnet carries a moment m, S → N",
         "visible_elements": [],
         "camera_position": [3, 2.2, 4],
-        "caption": "A bar magnet (N red, S blue) with the magnetic moment m pointing S → N. The external field is not switched on yet.",
+        "caption": "A magnet's moment m",
         "theta_deg": 90,
         "rotation_mode": "static",
         "idle_sway_deg": 3,
+        "formula_overlay": "m",
         "extras": {
           "e_field": false,
           "p_animate_in": true,
@@ -285,10 +345,10 @@
         }
       },
       "STATE_2": {
-        "label": "Place it in a uniform field B (θ ≈ 60°)",
+        "label": "A uniform field B — the same everywhere",
         "visible_elements": [],
         "camera_position": [3, 2.2, 4],
-        "caption": "The uniform field B (identical blue arrows) is switched on. The magnet sits tilted at θ to the field; the yellow arc marks the angle.",
+        "caption": "Now a uniform field B",
         "theta_deg": 60,
         "rotation_mode": "static",
         "idle_sway_deg": 3,
@@ -303,13 +363,14 @@
         }
       },
       "STATE_3": {
-        "label": "The force couple — +mB and −mB",
+        "label": "Each pole feels mB — a couple",
         "visible_elements": [],
         "camera_position": [3, 2.2, 4],
-        "caption": "Each pole feels a force mB: +mB along B on N, −mB against B on S. Equal, opposite, on different lines — a couple.",
+        "caption": "Each pole: force mB",
         "theta_deg": 60,
         "rotation_mode": "static",
         "idle_sway_deg": 2,
+        "formula_overlay": "F = mB",
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": true, "show_minus": true },
@@ -320,14 +381,15 @@
         }
       },
       "STATE_4": {
-        "label": "ΣF = 0, τ ≠ 0 — the magnet rotates toward B",
+        "label": "Net force zero — it still turns",
         "visible_elements": [],
-        "camera_position": [3, 2.5, 4],
-        "caption": "The two forces sum to zero (ΣF = 0 badge), yet the couple makes a torque τ. The magnet begins to rotate toward alignment.",
+        "camera_position": [3, 2.2, 4],
+        "caption": "Zero force, still turns",
         "theta_deg": 55,
-        "rotation_mode": "oscillation",
-        "oscillation_amplitude_deg": 55,
-        "oscillation_period_s": 3.4,
+        "rotation_mode": "damped_swing",
+        "oscillation_period_s": 3.0,
+        "swing_decay_s": 2.2,
+        "formula_overlay": "ΣF = 0,  τ = m × B",
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": true, "show_minus": true },
@@ -338,49 +400,58 @@
         }
       },
       "STATE_5": {
-        "label": "θ sweep 0 → 180° — τ traces a sine",
+        "label": "τ = mB·sinθ — a sine in the angle",
         "visible_elements": [],
-        "camera_position": [3, 2.5, 4],
-        "caption": "θ animates 0 → 180° and back on a 10-second cycle. The τ arrow scales with sin θ — zero at 0° and 180°, biggest in the middle.",
+        "camera_position": [3, 2.2, 4],
+        "caption": "τ grows, then fades",
         "theta_deg": 90,
         "rotation_mode": "theta_sweep",
         "theta_sweep_period_s": 10,
+        "formula_overlay": "τ = mB·sinθ",
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": false, "show_minus": false },
           "tau_vector": { "show": true },
           "sum_force_badge": false,
-          "theta_arc": { "show": true },
+          "theta_arc": { "show": true, "show_degrees": true },
           "energy_meter": { "show": false }
         }
       },
       "STATE_6": {
-        "label": "Frozen at θ = 90° — predict the maximum",
+        "label": "τ max at 90°, zero at 0° and 180°",
         "visible_elements": [],
-        "camera_position": [3, 2.5, 4],
-        "caption": "The magnet is pinned at θ = 90°, where τ = mB is at its maximum. Wrong-belief prompt and answer reveal via reveal_at_tts_id.",
-        "theta_deg": 90,
-        "rotation_mode": "static",
+        "camera_position": [3, 2.2, 4],
+        "caption": "Biggest at 90°",
+        "theta_deg": 0,
+        "rotation_mode": "pose_compare",
+        "pose_compare": {
+          "poses": [
+            { "theta_deg": 0, "hold_ms": 1500 },
+            { "theta_deg": 90, "hold_ms": 1500 },
+            { "theta_deg": 180, "hold_ms": 1500 }
+          ],
+          "transition_ms": 400,
+          "loop": true
+        },
         "idle_sway_deg": 2,
+        "formula_overlay": "τₘₐₓ = mB",
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": false, "show_minus": false },
           "tau_vector": { "show": true },
-          "tau_pulse": true,
           "sum_force_badge": false,
-          "theta_arc": { "show": true },
+          "theta_arc": { "show": true, "show_degrees": true },
           "energy_meter": { "show": false }
         }
       },
       "STATE_7": {
-        "label": "Stable oscillation about θ = 0° + U-meter + period T",
+        "label": "0° springs back; 180° flips away",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4.5],
-        "caption": "The magnet oscillates gently about θ = 0° (stable) with period T = 2π√(I/mB). The U-meter shows U = −mB·cosθ: lowest at 0°, highest at 180°.",
-        "theta_deg": 0,
-        "rotation_mode": "oscillation",
-        "oscillation_amplitude_deg": 25,
-        "oscillation_period_s": 3,
+        "caption": "Nudge: back vs flip",
+        "theta_deg": 165,
+        "rotation_mode": "damped_pendulum",
+        "formula_overlay": "U = −mB·cosθ",
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": false, "show_minus": false },
@@ -391,13 +462,34 @@
         }
       },
       "STATE_8": {
-        "label": "Interactive sandbox — drag m, B, θ",
+        "label": "Stronger field, faster swing",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4.5],
-        "caption": "Sliders control m, B and θ. The τ arrow, the force couple, the U-meter and the readout (τ, U, period T) all update on every drag.",
+        "caption": "Stronger field, faster swing",
+        "theta_deg": 0,
+        "rotation_mode": "oscillation",
+        "oscillation_amplitude_deg": 25,
+        "oscillation_period_s": 3.0,
+        "field_step": { "at_ms": 6000, "from_B": 5, "to_B": 10 },
+        "formula_overlay": "T = 2π√(I/mB)",
+        "extras": {
+          "e_field": true,
+          "force_vectors": { "show_plus": false, "show_minus": false },
+          "tau_vector": { "show": true },
+          "sum_force_badge": false,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": false }
+        }
+      },
+      "STATE_9": {
+        "label": "Explore: drag m, B and θ",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.5],
+        "caption": "Your turn — drag",
         "theta_deg": 45,
         "rotation_mode": "manual",
         "show_sliders": true,
+        "visible_controls": ["m", "B", "theta_deg"],
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": true, "show_minus": true },
@@ -416,6 +508,24 @@
       "field_line": "#42A5F5"
     }
   },
+  "regeneration_variants": [
+    {
+      "variant_id": "compass_needle_in_earth_field",
+      "type": "B",
+      "label": "The compass needle",
+      "physical_world": "A magnetic compass needle resting in the Earth's roughly uniform field",
+      "same_physics": "The needle IS a tiny bar magnet of moment m; the couple ±mB gives it a torque τ = m × B that swings it into alignment and springs it back from a nudge, exactly as in this concept",
+      "scene_hint": "A pivoted compass needle tilted at angle θ to the Earth's field lines, swinging toward alignment and springing back when nudged."
+    },
+    {
+      "variant_id": "vibration_magnetometer",
+      "type": "B",
+      "label": "The lab vibration magnetometer",
+      "physical_world": "A small bar magnet suspended by a thread in the school lab, twisted and released",
+      "same_physics": "The timed swing about θ = 0° has period T = 2π√(I/mB) — the same oscillation this concept teaches, used here to MEASURE an unknown field",
+      "scene_hint": "A thread-suspended bar magnet oscillating gently about the field direction, with a stopwatch counting swings."
+    }
+  ],
   "assessment": {
     "mastery_definition": "A student has mastered this concept when they can explain that a bar magnet of moment m in a UNIFORM field B feels equal and opposite pole forces (+mB on N, −mB on S) that form a couple — zero net force, so the magnet does not translate — but a torque τ = m × B of magnitude mB·sinθ that rotates it toward alignment; that the torque is maximum at θ = 90° (a cross product is largest when the vectors are perpendicular) and zero at θ = 0° and 180°; that released near alignment it oscillates about θ = 0° with period T = 2π√(I/mB), so a stronger m or B makes it swing faster; and that the potential energy U = −m·B = −mB·cosθ is a minimum at θ = 0° (stable) and a maximum at θ = 180° (unstable), so the magnet always settles pointing along the field.",
     "questions": [
@@ -535,7 +645,7 @@
           "D": "Thinks a stronger field halts oscillation rather than speeding it"
         },
         "tested_idea": "T = 2π√(I/mB): a stronger m or B shortens the period (faster swing).",
-        "teaches_state": "STATE_7",
+        "teaches_state": "STATE_8",
         "difficulty": "stretch",
         "parallel_form_stem": "In a vibration magnetometer the magnet swings faster in a stronger field. Justify this from the period formula T = 2π√(I/mB)."
       }
@@ -547,8 +657,9 @@
       "STATE_4": ["Q2"],
       "STATE_5": ["Q3"],
       "STATE_6": ["Q4"],
-      "STATE_7": ["Q5", "Q6"]
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
     },
-    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_8"]
+    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_9"]
   }
 }
