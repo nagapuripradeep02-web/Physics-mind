@@ -1684,13 +1684,19 @@ function drawBridgeBattery(nd, emf, dim) {
 }
 function drawBridgeNodes(nd, st) {
   var col = bpvl('node_dot', '#80CBC4'), jDim = dimFor('junction');
+  var fs = focalSet(), junctionFocal = !!(fs && fs['junction']);   // S1: node A is the current-split focal
   var labs = (st && st.node_dot_labels && st.node_dot_labels.length >= 4) ? st.node_dot_labels : ['A', 'B', 'C', 'D'];
   var pts = [nd.A, nd.B, nd.C, nd.D];
   var lx = [-14, 0, 14, 0], ly = [0, -15, 0, 15];
   var ax = [RIGHT, CENTER, LEFT, CENTER], ay = [CENTER, BOTTOM, CENTER, TOP];
+  if (junctionFocal) {                                             // Rule 29: emphasize A by brightness (glow halo), not size
+    fillHex(col, 0.15); noStroke(); ellipse(pts[0].x, pts[0].y, 34);
+    fillHex(col, 0.28); noStroke(); ellipse(pts[0].x, pts[0].y, 22);
+  }
   for (var i = 0; i < 4; i++) {
-    fillHex(col, 0.95 * jDim); noStroke(); ellipse(pts[i].x, pts[i].y, 11);
-    fillHex(col, 0.98 * jDim); textSize(13); textStyle(BOLD); textAlign(ax[i], ay[i]);
+    var nodeDim = (junctionFocal && i !== 0) ? dimLevel() : jDim;  // focal A bright, peer nodes dim (Rule 29)
+    fillHex(col, 0.95 * nodeDim); noStroke(); ellipse(pts[i].x, pts[i].y, 11);
+    fillHex(col, 0.98 * nodeDim); textSize(13); textStyle(BOLD); textAlign(ax[i], ay[i]);
     text(labs[i], pts[i].x + lx[i], pts[i].y + ly[i]); textStyle(NORMAL);
   }
 }
