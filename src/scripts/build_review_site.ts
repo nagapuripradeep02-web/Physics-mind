@@ -165,12 +165,13 @@ function writeVendorAssets(): void {
     if (existsSync(audioSrc)) {
         cpSync(audioSrc, join(OUT_DIR, 'onboarding'), { recursive: true });
     }
-    // Brand intro sting (4s silent logo animation) — played once ever on first login.
-    const introSrc = join(ROOT, 'assets', 'brand', 'viditra-intro.mp4');
-    if (existsSync(introSrc)) {
-        copyFileSync(introSrc, join(OUT_DIR, 'viditra-intro.mp4'));
+    // Brand wordmark font for the intro sting (the intro itself is an inline SVG +
+    // Web-Audio animation in the catalog page — no video asset; see playIntro()).
+    const brandFontSrc = join(ROOT, 'assets', 'brand', 'space-grotesk-latin.woff2');
+    if (existsSync(brandFontSrc)) {
+        copyFileSync(brandFontSrc, join(OUT_DIR, 'space-grotesk-latin.woff2'));
     }
-    console.log('✅ Vendored three/katex(+fonts)/p5/driver (+ onboarding audio + intro) → review-site/');
+    console.log('✅ Vendored three/katex(+fonts)/p5/driver (+ onboarding audio + brand font) → review-site/');
 }
 
 // ── Review-tracking manifest (who reviewed what, + her recorded videos) ───────
@@ -2239,10 +2240,19 @@ ${pilotHeadTags(0)}
   #pmSplash .pw{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
   #pmSplash .pw b{color:var(--clay-soft);font-weight:600;}
   /* ── First-login brand intro (4s silent video, once ever; above the splash) ── */
-  #pmIntro{position:fixed;inset:0;z-index:99996;display:none;place-items:center;background:var(--bg);opacity:1;transition:opacity .5s ease;}
-  #pmIntro.show{display:grid;}
-  #pmIntro.gone{opacity:0;}
-  #pmIntro video{max-width:100%;max-height:100%;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;
+    src:url('./space-grotesk-latin.woff2') format('woff2');}
+  #pmIntro{position:fixed;inset:0;z-index:99996;display:none;background:#1C1B19;opacity:1;transition:opacity .5s ease;}
+  #pmIntro.show{display:block;}
+  #pmIntro.gone{display:block;opacity:0;pointer-events:none;}   /* keep display so the .5s fade actually runs */
+  #pmIntroStage{position:absolute;inset:0;}
+  #pmIntroStage svg{width:100%;height:100%;display:block;}
+  #pmIntroSound{position:absolute;left:18px;bottom:16px;width:38px;height:38px;border-radius:19px;cursor:pointer;
+    border:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--ink-dim);display:grid;place-items:center;}
+  #pmIntroSound:hover{color:var(--ink);border-color:rgba(203,104,67,.5);}
+  #pmIntroSound.blocked{animation:pmSndPulse 2s ease-in-out infinite;}
+  @keyframes pmSndPulse{0%,100%{box-shadow:0 0 0 0 rgba(203,104,67,0);}
+    50%{box-shadow:0 0 0 8px rgba(203,104,67,.18);border-color:rgba(203,104,67,.6);}}
   #pmIntroSkip{position:absolute;right:18px;bottom:16px;border:1px solid var(--line);background:rgba(0,0,0,.35);
         color:var(--ink-dim);font:600 12px var(--font-ui);padding:6px 15px;border-radius:9px;cursor:pointer;
         transition:color .15s ease,border-color .15s ease;}
@@ -2313,7 +2323,28 @@ ${pilotHeadTags(0)}
   @keyframes pmSplashFade{0%{opacity:0;}12%{opacity:1;}78%{opacity:1;}100%{opacity:0;visibility:hidden;}}
 </style>
 </head>
-<body><div class="wrap">
+<body>
+<!-- Boot curtain — first paint is this flat brand-dark layer, so the catalog never
+     flashes before the intro. playIntro() drops it as the sting starts; every
+     no-brand-moment path (dev, no profile, errors) dismisses it; and an inline 8s
+     failsafe below guarantees nobody is ever trapped even if the main script dies. -->
+<div id="pmBoot"></div>
+<style>
+  #pmBoot{position:fixed;inset:0;z-index:99997;background:#1C1B19;opacity:1;transition:opacity .6s ease;}
+  #pmBoot.gone{opacity:0;pointer-events:none;}
+  #pmBootHint{position:absolute;left:50%;bottom:14%;transform:translateX(-50%);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:rgba(245,239,232,.5);
+    opacity:0;animation:pmHintIn .9s ease .6s forwards;pointer-events:none;}
+  @keyframes pmHintIn{to{opacity:1;}}
+</style>
+<script>
+  window.__pmBootKill = setTimeout(function () {
+    var b = document.getElementById('pmBoot');
+    if (b) { b.className = 'gone'; setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 700); }
+  }, 8000);
+</script>
+<div class="wrap">
   <div class="masthead">
     <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
@@ -2355,7 +2386,8 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   <div class="pw">powered by <b>Viditra</b></div>
 </div></div>
 <div id="pmIntro" hidden>
-  <video id="pmIntroVid" src="./viditra-intro.mp4" muted playsinline preload="auto"></video>
+  <div id="pmIntroStage"></div>
+  <button id="pmIntroSound" type="button" aria-label="Toggle sound"></button>
   <button id="pmIntroSkip" type="button">Skip &rsaquo;</button>
 </div>
 <div id="pmProfOvl"><div id="pmProfCard" role="dialog" aria-modal="true" aria-label="My profile">
@@ -2415,6 +2447,7 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   }
   if (window.PM_DEV) {
     setAcct({ name: 'Local preview', sub: 'dev — no login, no tracking', avatar: '•', menu: false, showProfile: false });
+    pmBootDismiss();   // dev preview: no brand moment, reveal immediately
   } else if (window.PM && PM.authReady) PM.authReady.then(function (u) {
     var p = window.PM_PROFILE;
     var m = (u && u.user_metadata) || {};
@@ -2429,48 +2462,498 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     } else if (staff) { sub = 'Staff · not tracked'; }
     setAcct({ name: name, sub: sub, email: email, menu: true, showProfile: hasProfile });
     // ── The hero surface: her name on her product (profile-gated; dev/staff see the generic title) ──
+    var brandMomentStarted = false;
     if (hasProfile) {
       try { document.getElementById('catTitle').textContent = p.display_name + '’s Class'; } catch (e) {}
       try {
-        // FIRST LOGIN EVER: the brand intro sting plays once, IN PLACE of the splash this
-        // session (avoids stacking two brand beats). Every session after: the personalized
-        // "{Name}'s Class" splash, once per session.
-        if (localStorage.getItem('pm_intro_seen') !== '1') {
-          localStorage.setItem('pm_intro_seen', '1');
-          sessionStorage.setItem('pm_splash_shown', '1');   // intro is this session's brand moment
-          playIntro();
-        } else if (!sessionStorage.getItem('pm_splash_shown')) {
-          sessionStorage.setItem('pm_splash_shown', '1');
-          var sp = document.getElementById('pmSplash');
-          document.getElementById('pmSplashName').textContent = p.display_name + '’s Class';
-          sp.className = 'show';   // starts the 2.1s fade NOW — not at page-parse time
-          setTimeout(function () { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 2300);
-          pmt('splash_shown', {});
+        // Brand moment — a SEQUENCE on EVERY page load (founder 2026-07-12): the Viditra
+        // intro sting plays FIRST, then the personalized "{Name}'s Class" splash crossfades
+        // in. Fires on every login / open / reload of the catalog — the guard is a
+        // per-page-load window flag (fresh on every reload; a full page load resets it), so
+        // it replays each visit yet never double-fires if authReady resolves twice in one load.
+        if (!window.__pmBrandMomentPlayed) {
+          window.__pmBrandMomentPlayed = true;
+          brandMomentStarted = true;
+          var splashName = p.display_name + '’s Class';
+          playIntro(function () { showSplash(splashName); });
         }
       } catch (e) {}
     }
-  });
+    if (!brandMomentStarted) pmBootDismiss();   // no intro on this path — reveal the catalog
+  }, function () { pmBootDismiss(); });          // auth failed — never leave the curtain up
+  else pmBootDismiss();                          // no auth layer at all — plain static build
 
-  // ── First-login brand intro (4s silent video). Plays once ever (see pm_intro_seen
-  //    above); click / Skip / end / a 6s failsafe all dismiss it; autoplay-block falls
-  //    through gracefully so a teacher is never stuck behind a frozen curtain. ──
-  function playIntro() {
+  // ── Boot-curtain dismissal — used by every path that does NOT play the intro.
+  //    (playIntro drops the curtain itself once the sting is rendering underneath.)
+  function pmBootDismiss() {
+    try { clearTimeout(window.__pmBootKill); } catch (e) {}
+    var b = document.getElementById('pmBoot');
+    if (b) { b.className = 'gone'; setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 700); }
+  }
+
+  // ── Brand intro (~4s Viditra sting). Plays on every page load (see the
+  //    __pmBrandMomentPlayed per-load guard above), then hands off to the splash; click /
+  //    Skip / end / a 6s failsafe all dismiss it; autoplay-block falls through gracefully
+  //    so a teacher is never stuck behind a frozen curtain. ──
+  // ── The "{Name}'s Class · powered by Viditra" splash — plays AFTER the intro. ──
+  function showSplash(name) {
+    var sp = document.getElementById('pmSplash');
+    if (!sp) return;
+    var nmEl = document.getElementById('pmSplashName');
+    if (nmEl) nmEl.textContent = name;
+    sp.className = 'show';   // starts the 2.1s fade NOW — not at page-parse time
+    setTimeout(function () { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 2300);
+    pmt('splash_shown', {});
+  }
+
+  // ── Intro engine — native SVG + Web-Audio port of the brand artifact
+  //    ("Viditra Intro (standalone).html"). No video file, no audio file: the scene is
+  //    drawn per-frame into #pmIntroStage and every sound is synthesized (warm bells as
+  //    the orbits draw on, a water-drop bloop at the nucleus pop, whoosh + cushioned
+  //    landing for the clay tile, an airy swish on the slide). Formulas follow the
+  //    artifact, with its documented intent RESTORED where its own clamp bug had lost it:
+  //    the three orbits draw themselves on over 0.15–1.5s (electrons riding each arc tip,
+  //    then blending into the orbital spin) instead of popping in fully formed
+  //    (premium pass, founder 2026-07-12). Full-bleed: the scene covers the viewport via
+  //    preserveAspectRatio slice on landscape screens (meet on portrait/extreme ratios).
+  //    Browsers gate audio on a user gesture: with none yet the sting starts silent, ANY
+  //    first click/keypress unlocks it mid-play, and the speaker toggle (bottom-left,
+  //    pref persisted) pulses as the affordance while blocked.
+  var pmIntroAudio = {
+    ctx: null, bus: null, master: null,
+    muted: (function () { try { return localStorage.getItem('viditra-intro-muted') === '1'; } catch (e) { return false; } })(),
+    ensure: function () {
+      if (this.muted) return false;
+      if (!this.ctx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return false;
+        this.ctx = new AC();
+        this.bus = this.ctx.createGain();
+        this.master = this.ctx.createGain();
+        this.master.gain.value = 1.15;   // the artifact's 0.85 was inaudibly soft on laptop speakers
+        var conv = this.ctx.createConvolver();      // short, subtle room — no audible echo tail
+        conv.buffer = this.impulse(1.2, 4.5);
+        var wet = this.ctx.createGain(); wet.gain.value = 0.22;
+        var dry = this.ctx.createGain(); dry.gain.value = 0.85;
+        var lp = this.ctx.createBiquadFilter();     // gentle top-end rolloff — keeps everything soft
+        lp.type = 'lowpass'; lp.frequency.value = 1800; lp.Q.value = 0.3;
+        var warm = this.ctx.createBiquadFilter();   // low-shelf warmth boost
+        warm.type = 'lowshelf'; warm.frequency.value = 300; warm.gain.value = 4;
+        this.bus.connect(dry); dry.connect(lp);
+        this.bus.connect(conv); conv.connect(wet); wet.connect(lp);
+        lp.connect(warm); warm.connect(this.master);
+        this.master.connect(this.ctx.destination);
+      }
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      return this.ctx.state === 'running';
+    },
+    ensureAsync: function (cb) {
+      // Like ensure(), but answers the blocked-vs-running question reliably: a suspended
+      // context's resume() promise stays PENDING until a user gesture arrives, so race it
+      // against a short timer. cb(true) → audio will be audible right now.
+      if (this.muted) { cb(false); return; }
+      this.ensure();
+      var c = this.ctx;
+      if (!c) { cb(false); return; }
+      if (c.state === 'running') { cb(true); return; }
+      var settled = false;
+      function settle(ok) { if (settled) return; settled = true; cb(ok); }
+      try { c.resume().then(function () { settle(true); }, function () { settle(false); }); }
+      catch (e) { settle(false); }
+      setTimeout(function () { settle(c.state === 'running'); }, 150);
+    },
+    impulse: function (seconds, decay) {
+      var rate = this.ctx.sampleRate, len = rate * seconds;
+      var buf = this.ctx.createBuffer(2, len, rate);
+      for (var c = 0; c < 2; c++) {
+        var d = buf.getChannelData(c);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
+      }
+      return buf;
+    },
+    tone: function (o) {
+      var c = this.ctx, now = c.currentTime + (o.t0 || 0);
+      var attack = o.attack || 0.01, hold = o.hold || 0, release = o.release || 0.4, vol = o.vol || 0.1;
+      var osc = c.createOscillator();
+      osc.type = o.type || 'sine';
+      osc.frequency.setValueAtTime(o.freq, now);
+      if (o.glideTo) osc.frequency.exponentialRampToValueAtTime(o.glideTo, now + attack + hold + release);
+      var g = c.createGain();
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.exponentialRampToValueAtTime(vol, now + attack);
+      if (hold) g.gain.setValueAtTime(vol, now + attack + hold);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + attack + hold + release);
+      var p = c.createStereoPanner ? c.createStereoPanner() : null;
+      osc.connect(g);
+      if (p) { p.pan.value = o.pan || 0; g.connect(p); p.connect(this.bus); } else g.connect(this.bus);
+      osc.start(now); osc.stop(now + attack + hold + release + 0.1);
+    },
+    noise: function (o) {
+      var c = this.ctx, now = c.currentTime + (o.t0 || 0), dur = o.dur || 0.3;
+      var len = c.sampleRate * dur;
+      var buf = c.createBuffer(1, len, c.sampleRate);
+      var d = buf.getChannelData(0);
+      for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      var src = c.createBufferSource(); src.buffer = buf;
+      var f = c.createBiquadFilter(); f.type = 'lowpass';
+      f.frequency.setValueAtTime(o.from || 3000, now);
+      f.frequency.exponentialRampToValueAtTime(o.to || 400, now + dur);
+      var g = c.createGain();
+      g.gain.setValueAtTime(o.vol || 0.06, now);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+      src.connect(f); f.connect(g); g.connect(this.bus);
+      src.start(now); src.stop(now + dur);
+    },
+    bell: function (freq, o) {
+      // felt-piano softness: slow attack, warm sub-octave body, soft fifth shimmer
+      o = o || {};
+      var vol = o.vol || 0.12, release = o.release || 1.6, t0 = o.t0 || 0, pan = o.pan || 0;
+      this.tone({ freq: freq, type: 'sine', t0: t0, attack: 0.12, release: release, vol: vol, pan: pan });
+      this.tone({ freq: freq / 2, type: 'sine', t0: t0, attack: 0.15, release: release * 0.8, vol: vol * 0.35, pan: pan });
+      this.tone({ freq: freq * 1.5, type: 'sine', t0: t0 + 0.02, attack: 0.18, release: release * 0.5, vol: vol * 0.1, pan: pan });
+    },
+    fadeOut: function () {
+      if (this.ctx && this.master) this.master.gain.setTargetAtTime(0.0001, this.ctx.currentTime, 0.08);
+    },
+    restore: function () {
+      if (this.ctx && this.master) this.master.gain.setValueAtTime(1.15, this.ctx.currentTime);
+    },
+    cueOrbit: function (i) {
+      if (!this.ensure()) return;
+      var notes = [220, 277.18, 329.63];  // A3 C#4 E4 — A major, an octave down for warmth
+      this.bell(notes[i], { vol: 0.055, release: 2.2, pan: (i - 1) * 0.25 });
+      if (i === 0) {
+        // warm sustained pad under the opening — A2 + E3 + sub, breathing in slowly
+        this.tone({ freq: 110, attack: 1.4, hold: 1.2, release: 1.8, vol: 0.045 });
+        this.tone({ freq: 164.8, attack: 1.6, hold: 1.2, release: 1.8, vol: 0.028 });
+        this.tone({ freq: 55, attack: 1.8, hold: 1.2, release: 2.0, vol: 0.03 });
+      }
+    },
+    cueNucleus: function () {
+      if (!this.ensure()) return;
+      // soft water drop: rounded bloop — upward gliding sine + warm A4 ripple body
+      this.tone({ freq: 320, glideTo: 620, type: 'sine', attack: 0.02, release: 0.22, vol: 0.18 });
+      this.tone({ freq: 440, type: 'sine', attack: 0.05, release: 1.4, vol: 0.11 });
+    },
+    cueTileWhoosh: function () {
+      if (!this.ensure()) return;
+      this.noise({ dur: 0.4, from: 700, to: 1500, vol: 0.018 });  // rising approach
+    },
+    cueTileLand: function () {
+      if (!this.ensure()) return;
+      this.tone({ freq: 100, glideTo: 62, type: 'sine', attack: 0.05, release: 0.7, vol: 0.075 });  // cushioned landing
+      this.noise({ dur: 0.3, from: 900, to: 150, vol: 0.015 });   // settle breath
+      this.bell(220, { t0: 0.05, vol: 0.035, release: 2.0 });
+    },
+    cueSlide: function () {
+      if (!this.ensure()) return;
+      this.noise({ dur: 0.7, from: 400, to: 1100, vol: 0.012 });  // airy swish as the mark glides left
+    }
+  };
+
+  var pmIvE = {
+    clamp01: function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; },
+    outBack: function (p) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); },
+    outCubic: function (p) { return --p * p * p + 1; },
+    inOutCubic: function (p) { return p < 0.5 ? 4 * p * p * p : (p - 1) * (2 * p - 2) * (2 * p - 2) + 1; },
+    outQuad: function (p) { return p * (2 - p); },
+    anim: function (from, to, start, end, ease, t) {
+      if (t <= start) return from;
+      if (t >= end) return to;
+      var p = (t - start) / (end - start);
+      return from + (to - from) * (ease ? ease(p) : p);
+    },
+    interp: function (t, xs, ys, ease) {
+      if (t <= xs[0]) return ys[0];
+      if (t >= xs[xs.length - 1]) return ys[ys.length - 1];
+      for (var i = 0; i < xs.length - 1; i++) {
+        if (t >= xs[i] && t <= xs[i + 1]) {
+          var span = xs[i + 1] - xs[i];
+          var p = span === 0 ? 0 : (t - xs[i]) / span;
+          return ys[i] + (ys[i + 1] - ys[i]) * (ease ? ease(p) : p);
+        }
+      }
+      return ys[ys.length - 1];
+    }
+  };
+
+  function pmSvgEl(name, attrs, parent) {
+    var el = document.createElementNS('http://www.w3.org/2000/svg', name);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+
+  // Build the 1920x1080 scene once; pmIntroRender() then drives it per frame.
+  function pmIntroBuild(stage) {
+    // Full-bleed: cover the viewport (center-crop) on landscape screens — the composition
+    // is center-safe, so cropping edges is fine and there is never a visible pillarbox
+    // seam. On portrait / extreme ratios fall back to contain, where cover would crop
+    // the wordmark itself.
+    var ar = (window.innerWidth || 1920) / (window.innerHeight || 1080);
+    var fit = (ar >= 1.05 && ar <= 2.9) ? 'xMidYMid slice' : 'xMidYMid meet';
+    var svg = pmSvgEl('svg', { viewBox: '0 0 1920 1080', preserveAspectRatio: fit });
+    var defs = pmSvgEl('defs', {}, svg);
+    var clay = pmSvgEl('linearGradient', { id: 'pmIvClay', x1: '0', y1: '0', x2: '.35', y2: '1' }, defs);
+    pmSvgEl('stop', { offset: '0', 'stop-color': '#E08A5E' }, clay);
+    pmSvgEl('stop', { offset: '.55', 'stop-color': '#C86540' }, clay);
+    pmSvgEl('stop', { offset: '1', 'stop-color': '#AC5230' }, clay);
+    var vign = pmSvgEl('radialGradient', { id: 'pmIvVign', cx: '0.5', cy: '0.5', r: '0.75' }, defs);
+    pmSvgEl('stop', { offset: '0.5', 'stop-color': '#000', 'stop-opacity': '0' }, vign);
+    pmSvgEl('stop', { offset: '1', 'stop-color': '#000', 'stop-opacity': '0.45' }, vign);
+    var halo = pmSvgEl('radialGradient', { id: 'pmIvHaloG', cx: '0.5', cy: '0.5', r: '0.5' }, defs);
+    pmSvgEl('stop', { offset: '0', 'stop-color': '#C86540', 'stop-opacity': '0.22' }, halo);
+    pmSvgEl('stop', { offset: '1', 'stop-color': '#C86540', 'stop-opacity': '0' }, halo);
+    var clip = pmSvgEl('clipPath', { id: 'pmIvWordClip' }, defs);
+    var clipRect = pmSvgEl('rect', { x: 0, y: 380, width: 0, height: 320 }, clip);
+
+    // ambient dust — 26 deterministic motes drifting slowly down
+    var dust = [];
+    var dustG = pmSvgEl('g', {}, svg);
+    for (var i = 0; i < 26; i++) {
+      var seed = i * 137.508;
+      var el = pmSvgEl('circle', {
+        cx: (seed * 7.13) % 1920, cy: 0,
+        r: 1.2 + (i % 3) * 0.8,
+        fill: '#E08A5E', opacity: 0.06 + (i % 4) * 0.03
+      }, dustG);
+      dust.push({ el: el, y0: (seed * 3.77) % 1080, spd: 6 + (i % 5) * 3 });
+    }
+
+    var haloC = pmSvgEl('circle', { cx: 960, cy: 540, r: 620, fill: 'url(#pmIvHaloG)' }, svg);
+    // drift is a constant 1.012 in the approved export — bake it into the root transform
+    var root = pmSvgEl('g', { transform: 'translate(960 540) scale(1.012) translate(-960 -540)' }, svg);
+    var pulse = pmSvgEl('circle', { cx: 960, cy: 540, fill: 'none', stroke: '#E08A5E', opacity: 0 }, root);
+
+    var tile = pmSvgEl('g', { opacity: 0 }, root);
+    var tileRx = 460 * 29 / 128;
+    pmSvgEl('rect', { x: -230, y: -230, width: 460, height: 460, rx: tileRx, fill: 'url(#pmIvClay)' }, tile);
+    pmSvgEl('rect', { x: -230, y: -230, width: 460, height: 230, rx: tileRx, fill: '#FFFFFF', opacity: 0.05 }, tile);
+
+    var atom = pmSvgEl('g', {}, root);
+    var orbits = [], electrons = [];
+    for (var o = 0; o < 3; o++) {
+      orbits.push(pmSvgEl('ellipse', {
+        transform: 'rotate(' + (o * 60) + ')',
+        fill: 'none', stroke: '#FFFFFF', 'stroke-linecap': 'round'
+      }, atom));
+    }
+    for (var e = 0; e < 3; e++) {
+      var g = pmSvgEl('g', { opacity: 0 }, atom);
+      var core = pmSvgEl('circle', { fill: '#FFDCC8' }, g);
+      var glow = pmSvgEl('circle', { fill: '#E08A5E', opacity: 0.35 }, g);
+      electrons.push({ g: g, core: core, glow: glow });
+    }
+    var nuc = pmSvgEl('circle', { fill: '#FFFFFF', r: 0 }, atom);
+
+    var word = pmSvgEl('text', {
+      x: 1260, y: 602, opacity: 0,
+      'font-family': "'Space Grotesk', Helvetica, sans-serif",
+      'font-weight': 600, 'font-size': 182,
+      fill: '#F5EFE8', 'letter-spacing': '-5',
+      'clip-path': 'url(#pmIvWordClip)'
+    }, root);
+    word.textContent = 'Viditra';
+
+    pmSvgEl('rect', { width: 1920, height: 1080, fill: 'url(#pmIvVign)', 'pointer-events': 'none' }, svg);
+    stage.appendChild(svg);
+    return { dust: dust, halo: haloC, pulse: pulse, tile: tile, atom: atom, orbits: orbits, electrons: electrons, nuc: nuc, word: word, clipRect: clipRect };
+  }
+
+  function pmIntroRender(R, t) {
+    var E = pmIvE;
+    var nucP = E.anim(0, 1, 1.1, 1.5, E.outBack, t);
+    var pulseP = E.anim(0, 1, 1.15, 1.9, E.outCubic, t);
+    var tileP = E.anim(0, 1, 1.6, 2.25, E.outBack, t);
+    var tileFade = E.anim(0, 1, 1.6, 1.85, E.outQuad, t);
+    var slideP = E.anim(0, 1, 2.35, 3.05, E.inOutCubic, t);
+    var wordP = E.anim(0, 1, 2.55, 3.3, E.outCubic, t);
+    var settled = 460 / 128;   // exact logo proportion inside the tile
+    var atomScale = E.interp(t, [0, 1.6, 2.25], [7.2, 7.2, settled], E.inOutCubic);
+    var sw = E.interp(t, [0, 1.6, 2.25], [7, 7, 4.6 * settled], E.inOutCubic);
+    var electronOp = E.interp(t, [0, 0.25, 2.0, 2.3], [0, 1, 1, 0], null);
+    var markX = 960 - 330 * slideP;
+
+    for (var i = 0; i < R.dust.length; i++) {
+      var d = R.dust[i];
+      d.el.setAttribute('cy', (d.y0 + t * d.spd) % 1080);
+    }
+    R.halo.setAttribute('cx', markX);
+
+    if (pulseP > 0 && pulseP < 1) {
+      R.pulse.setAttribute('cx', markX);
+      R.pulse.setAttribute('r', 20 + pulseP * 300);
+      R.pulse.setAttribute('stroke-width', 3 * (1 - pulseP));
+      R.pulse.setAttribute('opacity', 0.6 * (1 - pulseP));
+    } else {
+      R.pulse.setAttribute('opacity', 0);
+    }
+
+    R.tile.setAttribute('opacity', tileFade);
+    R.tile.setAttribute('transform',
+      'translate(' + markX + ' 540) scale(' + (0.6 + 0.4 * tileP) + ') rotate(' + ((1 - tileP) * -8) + ')');
+
+    R.atom.setAttribute('transform', 'translate(' + markX + ' 540)');
+    var a = 34 * atomScale, b = 12.6 * atomScale;
+    // ellipse perimeter (Ramanujan) — for the dash-based draw-on
+    var per = Math.PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (a + 3 * b)));
+    for (var e = 0; e < 3; e++) {
+      // Draw-on: orbit e starts at 0.15 + e*0.18 and completes at 1.5s (staggered starts,
+      // shared finish), its electron riding the arc tip; after 1.5s the electrons blend
+      // into the orbital spin, their phases spreading over 0.6s (no teleport).
+      var s0 = 0.15 + e * 0.18;
+      var p = E.clamp01((t - s0) / (1.5 - s0));
+      var eased = E.inOutCubic(p);
+      var orb = R.orbits[e];
+      orb.setAttribute('rx', a);
+      orb.setAttribute('ry', b);
+      orb.setAttribute('stroke-width', sw);
+      orb.setAttribute('opacity', p > 0 ? 1 : 0);
+      if (eased < 1) {
+        orb.setAttribute('stroke-dasharray', per);
+        orb.setAttribute('stroke-dashoffset', per * (1 - eased));
+      } else {
+        orb.setAttribute('stroke-dasharray', 'none');
+        orb.setAttribute('stroke-dashoffset', 0);
+      }
+      var ang = t < 1.5
+        ? eased * Math.PI * 2
+        : Math.PI * 2 + (t - 1.5) * 1.6 + e * 2.1 * E.clamp01((t - 1.5) / 0.6);
+      var x0 = a * Math.cos(ang), y0 = b * Math.sin(ang);
+      var rot = (e * 60 * Math.PI) / 180;
+      var ex = x0 * Math.cos(rot) - y0 * Math.sin(rot);
+      var ey = x0 * Math.sin(rot) + y0 * Math.cos(rot);
+      var el = R.electrons[e];
+      el.g.setAttribute('opacity', electronOp * (p > 0.02 ? 1 : 0));
+      el.core.setAttribute('cx', ex); el.core.setAttribute('cy', ey); el.core.setAttribute('r', sw * 1.7);
+      el.glow.setAttribute('cx', ex); el.glow.setAttribute('cy', ey); el.glow.setAttribute('r', sw * 4);
+      el.glow.setAttribute('opacity', t < 2.1 ? 0.35 : 0);
+    }
+    R.nuc.setAttribute('r', nucP * 6.2 * atomScale);
+
+    // wordmark — wipe reveal left to right
+    var wordX = markX + 300;
+    var reveal = E.outCubic(E.clamp01(wordP));
+    R.word.setAttribute('x', wordX);
+    R.word.setAttribute('opacity', E.outQuad(E.clamp01(wordP)));
+    R.word.setAttribute('transform', 'translate(' + ((1 - reveal) * 40) + ' 0)');
+    R.clipRect.setAttribute('x', wordX - 10);
+    R.clipRect.setAttribute('width', reveal * 720);
+  }
+
+  function playIntro(onDone) {
     var ov = document.getElementById('pmIntro');
-    var vid = document.getElementById('pmIntroVid');
-    if (!ov || !vid) return;
+    var stage = document.getElementById('pmIntroStage');
+    if (!ov || !stage || !window.requestAnimationFrame) { pmBootDismiss(); if (onDone) onDone(); return; }
+    // reduced-motion preference: skip the sting, go straight to the gentle splash fade
+    try {
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { pmBootDismiss(); if (onDone) onDone(); return; }
+    } catch (e) {}
+    var R;
+    try { R = pmIntroBuild(stage); pmIntroRender(R, 0); } catch (e) { pmBootDismiss(); if (onDone) onDone(); return; }
+    // ── Sound gate (founder 2026-07-12: a reload must not run a silent sting). Login
+    //    navigations carry the user's click, so audio is already allowed → begin at once.
+    //    A plain reload carries NO gesture and Chrome hard-blocks audio until one lands —
+    //    so hold the boot curtain with a "click anywhere to begin" hint; the first
+    //    click/keypress starts the sting WITH sound from its first bell. A 3s fallback
+    //    begins silently — the curtain never blocks teaching. Muted-pref users skip the
+    //    wait entirely (they chose silence). ──
+    var begun = false;
+    function beginOnGesture() { beginSting(true); }
+    function beginSting(viaGesture) {
+      if (begun) return; begun = true;
+      window.removeEventListener('pointerdown', beginOnGesture, true);
+      window.removeEventListener('keydown', beginOnGesture, true);
+      var hint = document.getElementById('pmBootHint');
+      if (hint && hint.parentNode) hint.parentNode.removeChild(hint);
+      if (viaGesture) pmIntroAudio.ensure();   // resume INSIDE the gesture → audible run
+      runSting();
+    }
+    pmIntroAudio.ensureAsync(function (soundOk) {
+      if (begun) return;
+      if (soundOk || pmIntroAudio.muted) { beginSting(false); return; }
+      var b = document.getElementById('pmBoot');
+      if (b && !document.getElementById('pmBootHint')) {
+        var hint = document.createElement('div');
+        hint.id = 'pmBootHint';
+        hint.textContent = 'Click anywhere to begin';
+        b.appendChild(hint);
+      }
+      window.addEventListener('pointerdown', beginOnGesture, true);
+      window.addEventListener('keydown', beginOnGesture, true);
+      setTimeout(function () { beginSting(false); }, 3000);
+    });
+    function runSting() {
     ov.className = 'show';
-    var done = false;
+    pmBootDismiss();   // the boot curtain crossfades out over the sting already rendering beneath
+    // sound cues, fired on a tight forward crossing (a rAF stall skips a cue, never bursts them)
+    var CUES = [
+      [0.15, 'cueOrbit', 0], [0.31, 'cueOrbit', 1], [0.47, 'cueOrbit', 2],
+      [1.10, 'cueNucleus'], [1.60, 'cueTileWhoosh'], [1.78, 'cueTileLand'], [2.35, 'cueSlide']
+    ];
+    var fired = {};
+    var done = false, raf = null, t0 = null;
     function finish() {
       if (done) return; done = true;
-      try { vid.pause(); } catch (e) {}
-      ov.className = 'gone';
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener('pointerdown', unlock, true);
+      window.removeEventListener('keydown', unlock, true);
+      pmIntroAudio.fadeOut();
+      if (onDone) onDone();   // hand off to the splash NOW so it crossfades in UNDER the
+      ov.className = 'gone';  // fading intro (splash z-index sits just below) — no blank gap.
       setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 550);
     }
-    vid.addEventListener('ended', finish);
-    ov.addEventListener('click', finish);
+    function frame(ts) {
+      if (done) return;
+      if (t0 === null) t0 = ts;
+      var t = (ts - t0) / 1000;
+      if (t >= 4) { pmIntroRender(R, 4); finish(); return; }
+      pmIntroRender(R, t);
+      for (var i = 0; i < CUES.length; i++) {
+        if (!fired[i] && t >= CUES[i][0] && t - CUES[i][0] < 0.2) {
+          fired[i] = 1;
+          try { pmIntroAudio[CUES[i][1]](CUES[i][2]); } catch (e) {}
+        }
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    ov.addEventListener('click', finish);   // Skip button clicks bubble here too
     setTimeout(finish, 6000);   // failsafe: never trap the teacher behind the curtain
-    try { var pr = vid.play(); if (pr && pr.catch) pr.catch(function () { finish(); }); } catch (e) { finish(); }
+    // Speaker toggle — also the audio-unlock affordance when the browser blocked autoplay
+    var snd = document.getElementById('pmIntroSound');
+    function sndIcon() {
+      if (!snd) return;
+      snd.innerHTML = pmIntroAudio.muted
+        ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>'
+        : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+    }
+    function sndStateUI() {
+      if (!snd) return;
+      sndIcon();
+      // pulse the toggle while the browser is still blocking audio — the click affordance
+      var blocked = !pmIntroAudio.muted && (!pmIntroAudio.ctx || pmIntroAudio.ctx.state !== 'running');
+      if (blocked) snd.classList.add('blocked'); else snd.classList.remove('blocked');
+    }
+    if (snd) {
+      snd.addEventListener('click', function (e) {
+        e.stopPropagation();   // the toggle must never skip the intro
+        pmIntroAudio.muted = !pmIntroAudio.muted;
+        try { localStorage.setItem('viditra-intro-muted', pmIntroAudio.muted ? '1' : '0'); } catch (e2) {}
+        if (pmIntroAudio.muted) { pmIntroAudio.fadeOut(); }
+        else { pmIntroAudio.restore(); pmIntroAudio.ensure(); }
+        sndStateUI();
+        setTimeout(sndStateUI, 200);   // ctx.resume() is async — re-check once it settles
+      });
+    }
+    // ANY first interaction (click / key) is the gesture browsers need — unlock mid-play
+    var unlock = function () { pmIntroAudio.ensure(); setTimeout(sndStateUI, 200); };
+    window.addEventListener('pointerdown', unlock, true);
+    window.addEventListener('keydown', unlock, true);
+    pmIntroAudio.ensure();   // starts sound now if the browser already allows it
+    sndStateUI();
+    raf = requestAnimationFrame(frame);
     pmt('intro_shown', {});
+    }   // end runSting
   }
 
   // ── Account dropdown menu (Claude-style) ──

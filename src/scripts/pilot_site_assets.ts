@@ -1163,7 +1163,8 @@ function welcomeHtml(): string {
         showErr('Something went wrong — please try again.');
         return;
       }
-      try { sessionStorage.removeItem('pm_splash_shown'); } catch (e2) {}
+      // brand moment now plays on every catalog load (per-page-load guard in
+      // build_review_site.ts), so the post-signup reload below replays it automatically.
       if (window.PM && PM.track) PM.track('profile_created', {});
       if (window.PM && PM.flushNow) PM.flushNow();
       location.replace('/');
@@ -1550,24 +1551,29 @@ function pmTourJs(): string {
   }
 
   // A brand beat owns the first moments of the catalog and the welcome modal must wait
-  // for it, so the two never stack. TWO possible beats: the FIRST-login intro VIDEO
-  // (#pmIntro, up to ~6s) which plays instead of the splash on the very first entry, and
-  // the per-session "{Name}'s Class" SPLASH (#pmSplash, ~2.3s) every session after. Both
-  // nodes are always in the DOM (static markup); each carries .show only while actually
-  // playing, so key on that (not existence), else dev/return-visits would wait the fallback.
+  // for it, so the two never stack. The beat is a SEQUENCE every session: the Viditra
+  // intro VIDEO (#pmIntro, up to ~6s) plays FIRST, then the "{Name}'s Class" SPLASH
+  // (#pmSplash, ~2.3s) crossfades in under it. Both nodes are always in the DOM (static
+  // markup); each carries .show only while actually playing, so key on that (not
+  // existence), else dev/return-visits would wait the fallback.
   function brandBeatPlaying() {
     var sp = document.getElementById('pmSplash');
     var iv = document.getElementById('pmIntro');
+    var bt = document.getElementById('pmBoot');
     var splashOn = !!(sp && sp.classList && sp.classList.contains('show'));
     var introOn = !!(iv && iv.classList && iv.classList.contains('show'));
-    return splashOn || introOn;
+    // the boot curtain (pre-intro, while auth resolves) counts too — it is removed from
+    // the DOM (or classed 'gone') on every no-intro path, so this can never deadlock
+    var bootOn = !!(bt && !(bt.classList && bt.classList.contains('gone')));
+    return splashOn || introOn || bootOn;
   }
   function afterSplash(fn) {
     if (!brandBeatPlaying()) { fn(); return; }
     var tries = 0;
-    // Poll to ~9s so the intro's 6s failsafe + fade is fully covered before the fallback.
+    // Poll to ~12s so the intro's 6s failsafe + the ~2.3s splash that follows it are both
+    // fully covered before the fallback fires.
     var poll = setInterval(function () {
-      if (!brandBeatPlaying() || ++tries > 45) { clearInterval(poll); fn(); }
+      if (!brandBeatPlaying() || ++tries > 60) { clearInterval(poll); fn(); }
     }, 200);
   }
 
