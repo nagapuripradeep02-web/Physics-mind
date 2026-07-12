@@ -174,6 +174,24 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #10 — Alex pipeline (2026-07-12), first of the
+    // founder's lab trio (Wheatstone c20 -> potentiometer c23 -> meter bridge).
+    // Reuses the combination_of_resistors scenario_type as the renderer
+    // selector, riding a NEW 'bridge' topology + drawGalvanometerC + ratio
+    // HUD / node-readout engine additions (see the JSON's source_book for the
+    // exact engine-gap list, flagged for peter_parker:renderer_primitives).
+    // Was previously routed to the legacy circuit_live placeholder in
+    // CONCEPT_RENDERER_MAP — this is the first authoritative panel config.
+    wheatstone_bridge: {
+        concept_id: 'wheatstone_bridge',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'wheatstone_bridge',
+            label: 'Wheatstone Bridge — Balance Condition P/Q = R/S',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

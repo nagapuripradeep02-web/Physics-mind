@@ -671,6 +671,27 @@ function updateReadouts() {
     var el = document.getElementById('pm-sv-' + id);
     if (el) el.textContent = fmtSliderValue(id);
   }
+  // wheatstone_bridge: the R / emf rows track their clock sweep until grabbed, and
+  // the readout box shows the bridge story (V_B, V_D, null). Early-out so the
+  // ohms_law/circuit branches below (which assume series/parallel) never misfire.
+  if (circuitMode() && cTopology() === 'bridge') {
+    if (hasSlider('R') && !userTouched['R']) {
+      var brR = document.getElementById('pm-sv-R');
+      if (brR) { var brRd = defs.R || {}; brR.textContent = fmtNum(cBridgeR()) + (brRd.unit ? (' ' + brRd.unit) : ''); }
+    }
+    if (hasSlider('emf') && !userTouched['emf']) {
+      var brE = document.getElementById('pm-sv-emf');
+      if (brE) { var brEd = defs.emf || {}; brE.textContent = (Math.round(cBridgeEmf() * 100) / 100) + (brEd.unit ? (' ' + brEd.unit) : ''); }
+    }
+    var brRo = document.getElementById('pm-readout');
+    if (brRo) {
+      var bpr = bridgePhysics();
+      brRo.textContent = 'V_B = ' + bpr.VB.toFixed(1) + ' V\\n' +
+                         'V_D = ' + bpr.VD.toFixed(1) + ' V\\n' +
+                         (bpr.balanced ? 'i_g = 0' : ('\\u0394V = ' + (bpr.VB - bpr.VD).toFixed(1) + ' V'));
+    }
+    return;
+  }
   // ohms_law: the V thumb sits at default while the graph auto-sweeps — show the
   // live swept voltage on the V row so the number matches the moving point.
   if (hasSlider('V') && !userTouched['V']) {
@@ -1147,6 +1168,70 @@ function cCurrents() {
            Req: swOpen ? R1 : (R1 * R2) / (R1 + R2), V: V, R1: R1, R2: R2 };
 }
 
+// ═══ wheatstone_bridge — 'bridge' topology (gated behind cTopology()==='bridge') ══
+// A DIAMOND: node A(left) B(top) C(right) D(bottom); arm resistors P(A-B) Q(B-C)
+// R(A-D) S(D-C); the cell across the A-C diagonal is routed as an EXTERNAL loop
+// below D (never crosses the B-D chord); a centre-zero galvanometer sits on the
+// B-D chord. Every value is a PURE function of the live P/Q/R/S/emf, and every
+// field is opt-in — a state WITHOUT topology:'bridge' never touches any of this,
+// so series/parallel/KCL render byte-identical. Per-state override -> slider ->
+// default (teacher-seizable via userTouched, reset per state on entry) mirrors the
+// KCL cR1/cR2 per-state lock. Two clock-driven sweeps mirror r2_autosweep. All
+// numeric comparisons use the ratio TOLERANCE (bridge_calibration.ratio_tolerance),
+// never strict equality (the S5 explore sandbox may sit slightly off the null).
+function bpvl(key, fb) { return (config && config.pvl_colors && config.pvl_colors[key]) ? config.pvl_colors[key] : fb; }
+function bcal(key, fb) { return (config && config.bridge_calibration && typeof config.bridge_calibration[key] === 'number') ? config.bridge_calibration[key] : fb; }
+function bridgeTol() { return bcal('ratio_tolerance', 0.01); }
+function cBridgeP() { var st = curState(); if (st && typeof st.P === 'number' && !userTouched['P']) return st.P; return hasSlider('P') ? sliderVal('P') : 10; }
+function cBridgeQ() { var st = curState(); if (st && typeof st.Q === 'number' && !userTouched['Q']) return st.Q; return hasSlider('Q') ? sliderVal('Q') : 20; }
+function cBridgeS() { var st = curState(); if (st && typeof st.S === 'number' && !userTouched['S']) return st.S; return hasSlider('S') ? sliderVal('S') : 6; }
+// R: state entry value -> optional clock sweep -> slider. The sweep is a pure fn of
+// PM_simTimeMs so home-pose reset (t=0) reads the ENTRY value with no special case
+// (never a hardcoded post-sweep constant), and SET_TIME_FREEZE re-sims identically.
+function cBridgeR() {
+  var st = curState();
+  if (st && st.bridge_r_sweep && !userTouched['R']) {
+    var start = (typeof st.bridge_r_sweep_start_ms === 'number') ? st.bridge_r_sweep_start_ms : 900;
+    var dur = (typeof st.bridge_r_sweep_duration_ms === 'number') ? st.bridge_r_sweep_duration_ms : 800;
+    var a = (typeof st.R === 'number') ? st.R : (hasSlider('R') ? sliderDefault('R') : 3);
+    var b = (typeof st.bridge_r_sweep_to === 'number') ? st.bridge_r_sweep_to : a;
+    return a + (b - a) * constrain((PM_simTimeMs - start) / max(dur, 1), 0, 1);
+  }
+  if (st && typeof st.R === 'number' && !userTouched['R']) return st.R;
+  return hasSlider('R') ? sliderVal('R') : 3;
+}
+function cBridgeEmf() {
+  var st = curState();
+  if (st && st.bridge_emf_sweep && !userTouched['emf']) {
+    var start = (typeof st.bridge_emf_sweep_start_ms === 'number') ? st.bridge_emf_sweep_start_ms : 900;
+    var dur = (typeof st.bridge_emf_sweep_duration_ms === 'number') ? st.bridge_emf_sweep_duration_ms : 1400;
+    var a = (typeof st.emf === 'number') ? st.emf : (hasSlider('emf') ? sliderDefault('emf') : 6);
+    var b = (typeof st.bridge_emf_sweep_to === 'number') ? st.bridge_emf_sweep_to : a;
+    return a + (b - a) * constrain((PM_simTimeMs - start) / max(dur, 1), 0, 1);
+  }
+  if (st && typeof st.emf === 'number' && !userTouched['emf']) return st.emf;
+  return hasSlider('emf') ? sliderVal('emf') : 6;
+}
+// Divider-idealization physics: away from balance the galvanometer is treated as
+// high-R, so i1/i2 use the simple open-circuit divider currents; AT balance i_g = 0
+// is EXACT for any galvanometer resistance (V_B = V_D => zero PD across the branch).
+function bridgePhysics() {
+  var P = max(cBridgeP(), 1e-6), Q = max(cBridgeQ(), 1e-6);
+  var R = max(cBridgeR(), 1e-6), S = max(cBridgeS(), 1e-6);
+  var emf = cBridgeEmf();
+  var VB = emf * Q / (P + Q);          // top midpoint (upper divider)
+  var VD = emf * S / (R + S);          // bottom midpoint (lower divider)
+  var i1 = emf / (P + Q);              // upper path A->P->B->Q->C
+  var i2 = emf / (R + S);              // lower path A->R->D->S->C
+  var gap = (P / Q) - (R / S);         // ratio mismatch (0 <=> balanced)
+  return { P: P, Q: Q, R: R, S: S, emf: emf, VB: VB, VD: VD, i1: i1, i2: i2,
+           gap: gap, balanced: abs(gap) < bridgeTol() };
+}
+function bridgeNeedleDeg(bp) {
+  var k = bcal('needle_deg_per_volt', 25), mx = bcal('needle_max_deg', 60);
+  return constrain(k * (bp.VD - bp.VB), -mx, mx);   // centre-zero, deg from straight-up
+}
+
 // ── electric_power: per-bulb dissipation + Joule-heating energy accumulator ──
 // Series: same current itot through both -> P = i^2 R. Parallel: same V across
 // each -> P = V^2 / R. POWER_PMAX is a FIXED brightness normalizer (never
@@ -1408,6 +1493,7 @@ function drawStruckTextC(cx, cy, str, dim) {
   noStroke(); textStyle(NORMAL);
 }
 function drawCircuit() {
+  if (cTopology() === 'bridge') { drawBridgeScenario(); return; }   // wheatstone_bridge — bypasses series/parallel geometry
   var c = cCurrents(), loops = circuitLoops(), g = loops.g;
   var st = curState();
   var wcol = '#546E7A';
@@ -1496,6 +1582,170 @@ function drawCircuit() {
     var gx = (st.ghost_pos && typeof st.ghost_pos.x === 'number') ? st.ghost_pos.x * width : width * 0.30;
     var gy = (st.ghost_pos && typeof st.ghost_pos.y === 'number') ? st.ghost_pos.y * height : height * 0.80;
     drawStruckTextC(gx, gy, st.ghost_text, dimFor('formula'));
+  }
+}
+// ═══ wheatstone_bridge — the diamond bridge render path (topology:'bridge') ══════
+// Self-contained: bypasses the series/parallel geometry entirely (invoked from the
+// top of drawCircuit). Node layout (fractions of the fill-viewport canvas W x H):
+//   A(left)  0.28W,0.46H   B(top)   0.48W,0.20H
+//   C(right) 0.68W,0.46H   D(bottom)0.48W,0.72H
+// The galvanometer sits at the B-D midpoint (0.48W,0.46H = diamond centre); the
+// cell rides an EXTERNAL loop along y=0.88H (below D) so it never crosses B-D.
+function bridgeNodes() {
+  var W = width, H = height;
+  var nd = {
+    A: { x: W * 0.28, y: H * 0.46 }, B: { x: W * 0.48, y: H * 0.20 },
+    C: { x: W * 0.68, y: H * 0.46 }, D: { x: W * 0.48, y: H * 0.72 },
+    extRx: W * 0.82, extLx: W * 0.14, extY: H * 0.88, battX: W * 0.48
+  };
+  // external return polyline: C -> right -> down -> battery -> left -> up -> A
+  nd.extBack = [
+    { x: nd.extRx, y: nd.C.y }, { x: nd.extRx, y: nd.extY },
+    { x: nd.battX, y: nd.extY }, { x: nd.extLx, y: nd.extY },
+    { x: nd.extLx, y: nd.A.y }, nd.A
+  ];
+  return nd;
+}
+// Two divider loops (A->B->C->ext->A and A->D->C->ext->A) share the external return,
+// so the return segment naturally carries i1+i2 while each arm carries its own i.
+// Bead COUNT per loop is proportional to that loop's current fraction (density ∝ i)
+// and SPEED is proportional to that loop's current — both pure fns of PM_simTimeMs.
+function drawBridgeBeads(nd, bp) {
+  var N = circuitBeadCount(), eDim = dimFor('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var loopU = [nd.A, nd.B, nd.C].concat(nd.extBack);
+  var loopL = [nd.A, nd.D, nd.C].concat(nd.extBack);
+  var LU = polyLen(loopU), LL = polyLen(loopL);
+  var i1 = bp.i1, i2 = bp.i2, itot = i1 + i2;
+  var fU = (itot > 1e-9) ? i1 / itot : 0.5;                       // fraction of beads on the upper loop
+  var spU = constrain(i1 / 0.4, 0.3, 3.0), spL = constrain(i2 / 0.4, 0.3, 3.0);
+  noStroke();
+  for (var k = 0; k < N; k++) {
+    var lane = (k + 0.5) / N, onU = lane < fU;
+    var pts = onU ? loopU : loopL, tot = onU ? LU : LL, sp = onU ? spU : spL;
+    var s = (circuitBeadPhase[k] + CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * sp) % 1;
+    var p = polyAt(pts, tot, s);
+    fillHex(col, 0.26 * eDim); ellipse(p.x, p.y, sz * 2.1);
+    fillHex(col, 0.95 * eDim); ellipse(p.x, p.y, sz);
+  }
+}
+// Bridge-wire (galvanometer branch) beads on B-D. Direction = sign(V_B - V_D)
+// (current leaves the HIGHER-potential midpoint); count (density) and speed ∝
+// |V_D - V_B|; EXACTLY zero at balance (V_B = V_D). Pure fn of PM_simTimeMs. The
+// galvanometer disc is drawn AFTER these, hiding the mid-chord beads behind it.
+function drawBridgeWireBeads(nd, bp) {
+  var dv = bp.VB - bp.VD, mag = abs(dv);
+  if (mag < 1e-4) return;                                         // balance -> the meter branch is empty
+  var eDim = dimFor('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var path = (dv >= 0) ? [nd.B, nd.D] : [nd.D, nd.B];            // from higher midpoint to lower
+  var L = polyLen(path), nBW = ceil(constrain(mag / 1.0, 0, 1) * 6);
+  if (nBW < 1) nBW = 1;
+  var sp = constrain(mag / 0.5, 0.4, 2.5);
+  noStroke();
+  for (var b = 0; b < nBW; b++) {
+    var s = (b / nBW + CIRCUIT_BEAD_RATE * 2 * (PM_simTimeMs / 1000) * sp) % 1;
+    var p = polyAt(path, L, s);
+    fillHex(col, 0.30 * eDim); ellipse(p.x, p.y, sz * 1.8);
+    fillHex(col, 0.95 * eDim); ellipse(p.x, p.y, sz * 0.95);
+  }
+}
+// Centre-zero galvanometer dial — a NEW primitive. Needle angle measured from
+// straight-up dead-centre (0 = null); positive tilts right. Honors the 'galvanometer'
+// glow key via the dim mult passed in.
+function drawGalvanometerC(gx, gy, gR, needleDeg, label, dim) {
+  var bodyCol = bpvl('galvanometer', '#FF8A65'), nCol = bpvl('galvanometer_needle', '#FF5252');
+  noStroke(); fill(10, 12, 28, 232 * dim); ellipse(gx, gy, gR * 2.2, gR * 2.2);
+  strokeHex(bodyCol, 0.9 * dim); strokeWeight(2); noFill(); ellipse(gx, gy, gR * 2.2, gR * 2.2);
+  for (var d = -60; d <= 60; d += 30) {                          // centre-zero tick scale
+    var th = radians(d);
+    var x1 = gx + sin(th) * gR * 0.70, y1 = gy - cos(th) * gR * 0.70;
+    var x2 = gx + sin(th) * gR * 0.92, y2 = gy - cos(th) * gR * 0.92;
+    strokeHex('#B0BEC5', (d === 0 ? 0.95 : 0.55) * dim); strokeWeight(d === 0 ? 2 : 1.5); line(x1, y1, x2, y2);
+  }
+  noStroke();
+  var nt = radians(needleDeg);                                   // 0 = straight up
+  strokeHex(nCol, 0.98 * dim); strokeWeight(3);
+  line(gx, gy, gx + sin(nt) * gR * 0.84, gy - cos(nt) * gR * 0.84);
+  noStroke(); fillHex(nCol, 0.98 * dim); ellipse(gx, gy, 6);
+  fillHex('#B0BEC5', 0.7 * dim); textSize(9); textStyle(NORMAL); textAlign(CENTER, BOTTOM);
+  text('0', gx, gy - gR * 0.96);
+  fillHex('#80DEEA', 0.92 * dim); textSize(11); textStyle(BOLD); textAlign(CENTER, TOP);
+  text(label || 'G', gx, gy + gR * 0.55); textStyle(NORMAL);
+}
+function drawBridgeBattery(nd, emf, dim) {
+  var bx = nd.battX, by = nd.extY, col = bpvl('battery', '#FFD54F');
+  strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx - 6, by - 15, bx - 6, by + 15);  // + plate (long) toward A
+  strokeWeight(6); line(bx + 8, by - 8, bx + 8, by + 8);                                       // - plate (short) toward C
+  noStroke(); fillHex(col, 0.98 * dim); textSize(12); textStyle(BOLD); textAlign(CENTER, TOP);
+  text('\\u03B5 = ' + emf.toFixed(1) + ' V', bx, by + 12); textStyle(NORMAL);
+}
+function drawBridgeNodes(nd, st) {
+  var col = bpvl('node_dot', '#80CBC4'), jDim = dimFor('junction');
+  var labs = (st && st.node_dot_labels && st.node_dot_labels.length >= 4) ? st.node_dot_labels : ['A', 'B', 'C', 'D'];
+  var pts = [nd.A, nd.B, nd.C, nd.D];
+  var lx = [-14, 0, 14, 0], ly = [0, -15, 0, 15];
+  var ax = [RIGHT, CENTER, LEFT, CENTER], ay = [CENTER, BOTTOM, CENTER, TOP];
+  for (var i = 0; i < 4; i++) {
+    fillHex(col, 0.95 * jDim); noStroke(); ellipse(pts[i].x, pts[i].y, 11);
+    fillHex(col, 0.98 * jDim); textSize(13); textStyle(BOLD); textAlign(ax[i], ay[i]);
+    text(labs[i], pts[i].x + lx[i], pts[i].y + ly[i]); textStyle(NORMAL);
+  }
+}
+// value-only chip (Rule 34b/d) — always legible (not tied to a glow focal).
+function drawBridgeChip(cx, cy, str, col, ts) {
+  textSize(ts); textStyle(BOLD); textAlign(CENTER, CENTER);
+  var w = textWidth(str) + 16;
+  rectMode(CENTER); fill(10, 12, 28, 220); noStroke(); rect(cx, cy, w, ts + 10, 5);
+  strokeHex(col, 0.6); strokeWeight(1); noFill(); rect(cx, cy, w, ts + 10, 5); rectMode(CORNER); noStroke();
+  fillHex(col, 0.98); text(str, cx, cy); textStyle(NORMAL);
+}
+function drawBridgeScenario() {
+  var bp = bridgePhysics(), st = curState(), nd = bridgeNodes();
+  var wireCol = bpvl('wire', '#546E7A'), wA = 0.85 * dimFor('wires');
+  drawWireC([nd.A, nd.B], wireCol, wA, 3); drawWireC([nd.B, nd.C], wireCol, wA, 3);
+  drawWireC([nd.A, nd.D], wireCol, wA, 3); drawWireC([nd.D, nd.C], wireCol, wA, 3);
+  drawWireC([nd.C].concat(nd.extBack), wireCol, wA, 3);          // external battery loop
+  drawWireC([nd.B, nd.D], wireCol, wA, 3);                       // galvanometer chord (behind the dial)
+  drawBridgeBeads(nd, bp);
+  if (st && st.show_bridge_wire_beads) drawBridgeWireBeads(nd, bp);
+  var rDim = dimFor('resistors');
+  drawResistorBoxC((nd.A.x + nd.B.x) / 2, (nd.A.y + nd.B.y) / 2, 'P = ' + fmtNum(bp.P) + ' \\u03A9', rDim);
+  drawResistorBoxC((nd.B.x + nd.C.x) / 2, (nd.B.y + nd.C.y) / 2, 'Q = ' + fmtNum(bp.Q) + ' \\u03A9', rDim);
+  drawResistorBoxC((nd.A.x + nd.D.x) / 2, (nd.A.y + nd.D.y) / 2, 'R = ' + fmtNum(bp.R) + ' \\u03A9', rDim);
+  drawResistorBoxC((nd.D.x + nd.C.x) / 2, (nd.D.y + nd.C.y) / 2, 'S = ' + fmtNum(bp.S) + ' \\u03A9', rDim);
+  drawBridgeBattery(nd, bp.emf, dimFor('battery'));
+  drawBridgeNodes(nd, st);
+  var gcy = (nd.B.y + nd.D.y) / 2, gR = height * 0.075;
+  if (!st || st.show_galvanometer !== false) {
+    drawGalvanometerC(nd.B.x, gcy, gR, bridgeNeedleDeg(bp), (st && st.galvanometer_label) ? st.galvanometer_label : 'G', dimFor('galvanometer'));
+    if (st && st.show_ig_zero_label && bp.balanced) {           // literal i_g = 0 — ONLY when live-balanced
+      fillHex(bpvl('ratio_hud_ok', '#66BB6A'), 0.98); textSize(14); textStyle(BOLD); textAlign(CENTER, TOP);
+      text('i_g = 0', nd.B.x, gcy + gR + 10); textStyle(NORMAL);
+    }
+  }
+  if (st && st.show_node_readouts) {
+    var nl = (st.node_readout_labels && st.node_readout_labels.length >= 2) ? st.node_readout_labels : ['V_B', 'V_D'];
+    var nrCol = bpvl('node_readout', '#B39DDB');
+    drawBridgeChip(nd.B.x + width * 0.085, nd.B.y - height * 0.02, nl[0] + ' = ' + bp.VB.toFixed(1) + ' V', nrCol, 12);
+    drawBridgeChip(nd.D.x + width * 0.085, nd.D.y + height * 0.02, nl[1] + ' = ' + bp.VD.toFixed(1) + ' V', nrCol, 12);
+  }
+  if (st && st.show_ratio_hud) {
+    var okC = bpvl('ratio_hud_ok', '#66BB6A'), badC = bpvl('ratio_hud_bad', '#EF5350');
+    var mark = bp.balanced ? ' \\u2713' : ' \\u2717';           // check / cross
+    var rstr = 'P/Q = ' + (bp.P / bp.Q).toFixed(2) + '   vs   R/S = ' + (bp.R / bp.S).toFixed(2) + mark;
+    var rc = bp.balanced ? okC : badC;
+    textSize(14); textStyle(BOLD); textAlign(LEFT, CENTER);
+    var rw = textWidth(rstr) + 16, rx = width * 0.04, ry = height * 0.10;
+    rectMode(CORNER); fill(10, 12, 28, 212); noStroke(); rect(rx - 8, ry - 14, rw, 28, 6);
+    strokeHex(rc, 0.7); strokeWeight(1.5); noFill(); rect(rx - 8, ry - 14, rw, 28, 6); noStroke();
+    fillHex(rc, 0.98); text(rstr, rx, ry); textStyle(NORMAL);
+  }
+  if (st && st.show_s_readout) {                                 // S = R·(Q/P) — the measured unknown (no emf term)
+    var Smeas = bp.R * (bp.Q / bp.P);
+    drawBridgeChip(width * 0.48, height * 0.80, 'S = ' + Smeas.toFixed(1) + ' \\u03A9', bpvl('node_readout', '#B39DDB'), 15);
   }
 }
 // ═══ emf_definition scenario — charge-pump cell + potential ladder + voltmeter ══
@@ -2786,7 +3036,7 @@ export interface ParticleFieldStateConfig {
     micro_focus?: 'trace_one' | 'count_carriers';  // Rule 33c per-state interior story
     // combination_of_resistors (Ch.3 #4 — circuit scenario)
     single_resistor?: boolean;       // S1 baseline: one loop, one resistor (i = V/R1)
-    topology?: 'series' | 'parallel'; // per-state circuit topology (else the topology slider)
+    topology?: 'series' | 'parallel' | 'bridge'; // per-state circuit topology ('bridge' = wheatstone_bridge diamond; else the topology slider)
     r2_autosweep?: boolean;          // S6: R2 grows from default toward r2_autosweep_to
     r2_autosweep_to?: number;        // target R2 for the S6 sweep (default 12)
     show_branch_meters?: boolean;    // parallel: draw per-branch ammeters (i1, i2)
@@ -2818,6 +3068,27 @@ export interface ParticleFieldStateConfig {
     kvl_sum_readout?: boolean;       // SIGNED loop-sum HUD "+6.0 − 4.0 − 2.0 (− 3.0) = 0.0" (distinct from KCL's UNSIGNED kcl_sum_readout)
     show_hl_tags?: boolean;          // fixed H (current-entry/higher) / L (exit/lower) sign tags at each resistor's ends (S3+)
     // (KVL also reuses: r2_autosweep + r2_autosweep_to for S3's R2 1→4 glide; R1/R2/R3 per-state locks; ghost_text/ghost_pos for S3's naive add-all ghost; emf lock/slider for ε)
+    // wheatstone_bridge (Ch.3 — 'bridge' topology; REUSES scenario_type 'combination_of_resistors', every flag opt-in behind topology:'bridge' → siblings byte-identical)
+    P?: number;                      // per-state arm lock: ratio arm P (A–B); snap on entry, teacher-seizable (R already declared above; Q/S below)
+    Q?: number;                      // per-state arm lock: ratio arm Q (B–C)
+    S?: number;                      // per-state arm lock: unknown arm S (D–C)
+    node_dot_labels?: string[];      // labels for nodes [A, B, C, D]
+    node_readout_labels?: string[];  // labels for the two midpoint readouts [V_B, V_D]
+    galvanometer_label?: string;     // galvanometer dial label (default 'G')
+    show_galvanometer?: boolean;     // draw the centre-zero galvanometer on the B–D chord (needle = clamp(k·(V_D−V_B)))
+    show_node_readouts?: boolean;    // value-only chips: V_B / V_D at the midpoints
+    show_ratio_hud?: boolean;        // value-only HUD: 'P/Q = … vs R/S = … ✓/✗' (tolerance compare, never strict ===)
+    show_bridge_wire_beads?: boolean;// beads on the B–D chord, dir sign(V_B−V_D), density ∝ |V_D−V_B|, exactly 0 at balance
+    show_ig_zero_label?: boolean;    // literal 'i_g = 0' — shown ONLY when live-balanced (|gap| < ratio_tolerance)
+    show_s_readout?: boolean;        // value-only chip: S = R·(Q/P) (no emf term), separate from the formula surface
+    bridge_r_sweep?: boolean;        // clock-driven R sweep (mirrors r2_autosweep): state R → bridge_r_sweep_to
+    bridge_r_sweep_to?: number;      // target R for the sweep
+    bridge_r_sweep_start_ms?: number;    // sweep window start (default 900)
+    bridge_r_sweep_duration_ms?: number; // sweep window duration (default 800)
+    bridge_emf_sweep?: boolean;      // clock-driven emf sweep (mirrors r2_autosweep): state emf → bridge_emf_sweep_to
+    bridge_emf_sweep_to?: number;    // target emf for the sweep
+    bridge_emf_sweep_start_ms?: number;    // sweep window start (default 900)
+    bridge_emf_sweep_duration_ms?: number; // sweep window duration (default 1400)
     [key: string]: unknown;
 }
 

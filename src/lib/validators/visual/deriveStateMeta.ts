@@ -460,6 +460,18 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     // well past state entry, distinct from S4's series composition.
     if (state.energy_accumulate === true) maxMs = Math.max(maxMs, 3500 + 400);
     if (state.parallel_flip === true) maxMs = Math.max(maxMs, 1500 + 800 + 400);
+    // wheatstone_bridge: the R / emf clock sweeps (mirror r2_autosweep) END after
+    // the 1500ms DEFAULT_REVEAL_MS (S2 R→6 ends 1700; S3 R→3 & S4 ε→10 end 2300),
+    // so the frozen frame must pin past each sweep's settle or it captures mid-sweep
+    // (needle mid-swing, R mid-glide). Pin to start + duration + 300ms buffer so the
+    // frozen frame lands on the SETTLED end-state (S2 deflected@R=6, S3 nulled@R=3,
+    // S4 pinned@ε=10). Mirrors cBridgeR/cBridgeEmf in particle_field_renderer.ts.
+    if (state.bridge_r_sweep === true) {
+        maxMs = Math.max(maxMs, asNum(state.bridge_r_sweep_start_ms, 900) + asNum(state.bridge_r_sweep_duration_ms, 800) + 300);
+    }
+    if (state.bridge_emf_sweep === true) {
+        maxMs = Math.max(maxMs, asNum(state.bridge_emf_sweep_start_ms, 900) + asNum(state.bridge_emf_sweep_duration_ms, 1400) + 300);
+    }
     return maxMs;
 }
 

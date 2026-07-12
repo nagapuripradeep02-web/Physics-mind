@@ -2650,7 +2650,17 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     kvl:                            "circuit_live",
     kcl:                            "circuit_live",
     // Bridge / measurement circuits
-    wheatstone_bridge:              "circuit_live",
+    // wheatstone_bridge is the TENTH Ch.3 concept on particle_field (2D p5.js)
+    // via the Alex pipeline (2026-07-12) — first of the founder's lab trio
+    // (Wheatstone c20 -> potentiometer c23 -> meter bridge). Reuses the
+    // combination_of_resistors scenario_type as the renderer selector, riding
+    // NEW per-state flags on the circuit engine (topology:'bridge',
+    // drawGalvanometerC, node readouts, ratio HUD, bridge_r_sweep /
+    // bridge_emf_sweep — engine additions authored-but-not-yet-implemented as
+    // of 2026-07-12, flagged for peter_parker:renderer_primitives via
+    // quality_auditor). Replaces the STALE circuit_live placeholder. NOT
+    // added to PCPL_CONCEPTS (parametric_renderer only).
+    wheatstone_bridge:              "particle_field",
     meter_bridge:                   "circuit_live",
     potentiometer:                  "circuit_live",
     // Cells
