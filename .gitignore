@@ -96,3 +96,6 @@ review-site/
 # Local Netlify folder
 .netlify
 review-site-archive/
+
+# Windows redirect-typo artifact (a "> nul" in Git Bash creates a real file)
+nul

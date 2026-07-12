@@ -49,8 +49,9 @@ const visionContextSchema = z.object({
 
 const requestSchema = z.object({
     conceptId:         z.string().min(1),
-    panelAHtml:        z.string().min(1),
-    panelBHtml:        z.string().optional(),
+    // Cached sims run ~2 MB of panel HTML; 6 MB is headroom, not a target.
+    panelAHtml:        z.string().min(1).max(6_000_000),
+    panelBHtml:        z.string().max(6_000_000).optional(),
     stateIds:          z.array(z.string().min(1)).min(1),
     animateStateId:    z.string().optional(),
     panelCount:        z.number().int().min(1).max(2),

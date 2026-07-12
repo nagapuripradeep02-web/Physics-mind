@@ -33,9 +33,12 @@ export const PILOT_SUPABASE_URL = 'https://jqbnmltsupnnbuvqgkix.supabase.co';
 export const PILOT_SUPABASE_ANON_KEY =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxYm5tbHRzdXBubmJ1dnFna2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyNzA4NjEsImV4cCI6MjA5ODg0Njg2MX0.W_ha8YQoYdXh9SZmZ2XrqmyTyv6O3RGoZ64aUS6uPeM';
 
-// Pinned UMD build (window.supabase.createClient) — same CDN pattern as the
-// renderer's Three.js/KaTeX. Pinned so a CDN-side major bump can't break login.
-const SUPABASE_JS_CDN = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
+// supabase-js is a pinned UMD build (window.supabase.createClient), vendored at
+// assets/vendor/supabase/ (2.45.4) and shipped via review-site/vendor/ — login
+// must survive a CDN outage the same way the sims do (three/katex/p5 precedent).
+// Root-level standalone pages (login/trial/welcome/expired) use this constant;
+// gated pages get the depth-prefixed tag from pilotHeadTags().
+const SUPABASE_JS_LOCAL = './vendor/supabase.min.js';
 
 /** <head> tags every gated page carries (player + catalog). `depth` = how many
  *  directories deep the page lives (0 = root catalog, 1 = /<concept>/). */
@@ -43,7 +46,7 @@ export function pilotHeadTags(depth: number): string {
     const p = depth === 0 ? './' : '../';
     return [
         `<script src="${p}pm-config.js"></script>`,
-        `<script src="${SUPABASE_JS_CDN}"></script>`,
+        `<script src="${p}vendor/supabase.min.js"></script>`,
         `<script src="${p}pm-auth.js"></script>`,
         `<script src="${p}pm-telemetry.js"></script>`,
         `<script src="${p}pm-feedback.js" defer></script>`,
@@ -791,7 +794,7 @@ function loginHtml(): string {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="./pm-config.js"></script>
-<script src="${SUPABASE_JS_CDN}"></script>
+<script src="${SUPABASE_JS_LOCAL}"></script>
 <script src="./pm-auth.js"></script>
 <script src="./pm-telemetry.js"></script>
 <style>
@@ -971,7 +974,7 @@ function joinHtml(): string {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="./pm-config.js"></script>
-<script src="${SUPABASE_JS_CDN}"></script>
+<script src="${SUPABASE_JS_LOCAL}"></script>
 <script src="./pm-auth.js"></script>
 <script src="./pm-telemetry.js"></script>
 <style>
@@ -1066,7 +1069,7 @@ function welcomeHtml(): string {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="./pm-config.js"></script>
-<script src="${SUPABASE_JS_CDN}"></script>
+<script src="${SUPABASE_JS_LOCAL}"></script>
 <script src="./pm-auth.js"></script>
 <script src="./pm-telemetry.js"></script>
 <style>
@@ -1189,7 +1192,7 @@ function expiredHtml(): string {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="./pm-config.js"></script>
-<script src="${SUPABASE_JS_CDN}"></script>
+<script src="${SUPABASE_JS_LOCAL}"></script>
 <script src="./pm-auth.js"></script>
 <script src="./pm-telemetry.js"></script>
 <style>

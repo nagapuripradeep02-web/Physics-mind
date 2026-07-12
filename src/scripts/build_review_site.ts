@@ -157,6 +157,10 @@ function writeVendorAssets(): void {
     const driverSrc = join(ROOT, 'assets', 'vendor', 'driver');
     copyFileSync(join(driverSrc, 'driver.js.iife.js'), join(vendorDir, 'driver.js.iife.js'));
     copyFileSync(join(driverSrc, 'driver.css'), join(vendorDir, 'driver.css'));
+    // supabase-js (2.45.4 UMD, checked into assets/vendor/supabase/) gates every
+    // pilot page at login — a jsdelivr outage must not lock teachers out mid-class.
+    copyFileSync(join(ROOT, 'assets', 'vendor', 'supabase', 'supabase.min.js'),
+        join(vendorDir, 'supabase.min.js'));
     // The tour's per-step narration clips (assets/onboarding-audio/, rendered once by
     // build_onboarding_audio.ts) are copied into review-site/onboarding/ every build so
     // they survive a rebuild + deploy without re-hitting Sarvam. Tour is silent-tolerant
@@ -171,7 +175,7 @@ function writeVendorAssets(): void {
     if (existsSync(brandFontSrc)) {
         copyFileSync(brandFontSrc, join(OUT_DIR, 'space-grotesk-latin.woff2'));
     }
-    console.log('✅ Vendored three/katex(+fonts)/p5/driver (+ onboarding audio + brand font) → review-site/');
+    console.log('✅ Vendored three/katex(+fonts)/p5/driver/supabase (+ onboarding audio + brand font) → review-site/');
 }
 
 // ── Review-tracking manifest (who reviewed what, + her recorded videos) ───────
