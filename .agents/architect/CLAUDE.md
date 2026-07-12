@@ -59,8 +59,9 @@ spec (`docs/superpowers/specs/2026-07-05-coulombs_law-rule31-reconstruction-desi
 - Gate 12: ≥2 distinct `advance_mode` across surviving states (`manual_click` + `interaction_complete`
   default); strip every `wait_for_answer`/`pause_after_ms`/`narrative_socratic`.
 - `has_prebuilt_deep_dive` flags re-pointed; `aha_moment`'s state reference updated.
-- TTS: surviving states' scripts are REWRITTEN → full EN+TE re-voice at the Rule 30f step (the
-  hash-pruner orphans deleted states' clips automatically); budget Sarvam per reconstruction.
+- TTS: surviving states' scripts are REWRITTEN → re-run the Rule-30g Sonnet-5 `text_te` sub-agent on
+  the changed sentences; AUDIO re-renders only on demand (Rule 30h — the hash-pruner orphans deleted
+  states' clips automatically, and every render is real Sarvam spend).
 - Baselines: `visual_baselines/` regenerate only AFTER founder re-approval (`visual:approve`).
 
 ## Output contract
@@ -71,12 +72,12 @@ A single markdown skeleton (no JSON yet) with these 10 sections:
 2. **State count + arc** — EPIC-L state count with a one-line purpose per state (guided distinct-motion beats → combined interactive last state; the hook MOVES too — no static setup state). Include per-state `teaching_method` (see §"Teaching method per state" below).
 3. **Per-state choreography + control plan (Rule 31 — the control table is the FIRST design artifact)** — one row per state: (a) what it teaches (one aspect); (b) its **motion archetype** — ONE name from the vocabulary in §"Straightforward motion beats" (coin a new one only with a one-line justification); (c) its DISTINCT motion — what animates, and how it differs from every other state's motion (no two alike, none static; no archetype repeat except a declared contrast/reversal pair whose delta names the flip); (d) its **delta** — one line, "what changed vs the previous state" (unique per state; it becomes the state's ≤5-word on-canvas delta cue, Rule 32c); (e) its live control(s) — ONLY the slider(s) relevant to this state's teaching; the final explore state lists ALL; (f) narration budget (**25–55 EN words ≈ 2–4 tight sentences ≈ 10–20s**; >55 = the state carries two ideas, split it; <~20 = merge or enrich; explore = 0/open). See §"Straightforward motion beats" below. No prediction questions, no reveal-answer beats.
 4. **Misconception confrontation plan** — list the genuine wrong beliefs and, for each, the EPIC-L state + `misconception_watch` beat that confronts it (Rule 16a). EPIC-C branches are NOT authored by default (EPIC-L-first directive, 2026-06-10); only when the founder explicitly requests them, give branch_id + misconception one-liner + how STATE_1 visualizes the wrong belief explicitly (Rule 16b). **Guardrail (founder 2026-07-04): `misconception_watch` belongs ONLY at genuine motivation/misconception pivots — never a per-state tic. Most states are straightforward teaching and carry NO misconception_watch. If you find yourself adding one to every state, you are manufacturing misconceptions — stop and keep only the real ones (typically 1–3 per concept).**
-5. **`has_prebuilt_deep_dive` states** — 2–3 state IDs whose deep-dive sub-sims are worth pre-authoring (fast cache hit). **Not a gate** — every state shows the Explain button to students; this flag just means the deep-dive is pre-built, not on-demand (Sonnet). Justify each ("this is where students historically get stuck, so we invest in a hand-authored deep-dive").
+5. **`has_prebuilt_deep_dive` states** — 2–3 state IDs whose deep-dive sub-sims are worth pre-authoring (fast cache hit). **Not a gate** — every state shows the Explain button to students; this flag just means the deep-dive is pre-built and cache-ready. (Runtime generation is RETIRED — Rule 18: on un-flagged states the button routes to the feedback form; Sonnet never generates a deep-dive at serve time.) Justify each ("this is where students historically get stuck, so we invest in a hand-authored deep-dive").
 6. **Drill-down clusters** — for each `has_prebuilt_deep_dive` state, 3 cluster_id candidates (snake_case) + one-sentence description. Physics_author will flesh out trigger_examples.
 7. **`entry_state_map`** (v2.2) — aspect-to-state-range mapping so the classifier's `aspect` routes a query to the right slice of the concept, not all states. Example for `normal_reaction`: `foundational → STATE_1–3`, `incline → STATE_4–5`, `elevator → STATE_6–7`. See §"Entry state map" below.
 8. **Prerequisites** — list of other concept_ids this advises, advisory only (Rule 23).
 9. **Real-world anchor** — UNIVERSAL, culture-neutral context (Rule 35, founder 2026-07-10: the product ships to multiple country syllabi from the same content, so NO country-specific places, festivals, food, currency, brands, or names — a ceiling fan, a phone charger, an elevator, an MRI scanner, a speaker magnet; region-dependent constants like mains 50/60 Hz phrased neutrally or parameterized). Plain English, no Hinglish. Primary + optional secondary. Short paragraph explaining why it hooks a Class 10–12 physics student. *(Supersedes the pre-2026-07-10 "Indian context" requirement; the proof_run exemplar skeletons predate this rule — do NOT clone their Indian anchors.)*
-10. **Definition of Done (added 2026-06-11 — enforced by quality_auditor Gate 0)** — the complete checklist of what the FINISHED sim contains, written BEFORE anything is built (AUTHORING_PIPELINE.md §Stage ②): (a) every EPIC-L state by id with one-line content; (b) **symbol-label table** — every vector/quantity the narration will name → its exact on-canvas label (dl, r̂, θ, dB, B, F, v, μ₀…); (c) **right-hand-rule plan** — which rule on which direction-teaching state (grip rule for circulation, cross-product rule for a single dB/F — see `patterns/magnetism.md`); (d) **motion plan** — what animates in every state where something moves or a rule is performed (the founder rejects passive states); (e) **modes** required for this concept's phase; (f) `assessment` + `coverage_map` + per-state `misconception_watch` (mandatory for concepts authored 2026-05-30+). **No TBD entries.** Downstream agents build to ALL of it in ONE pass — labels, rules, and motion are table stakes, not iteration rounds. Target 2–3 founder rounds, not 7 (the biot_savart_law lesson, 2026-06-11).
+10. **Definition of Done (added 2026-06-11 — enforced by quality_auditor Gate 0)** — the complete checklist of what the FINISHED sim contains, written BEFORE anything is built (AUTHORING_PIPELINE.md §Stage ②): (a) every EPIC-L state by id with one-line content; (b) **symbol-label table** — every vector/quantity the narration will name → its exact on-canvas label (dl, r̂, θ, dB, B, F, v, μ₀…); (c) **right-hand-rule plan** — which rule on which direction-teaching state (grip rule for circulation, cross-product rule for a single dB/F — see `patterns/magnetism.md`); (d) **motion plan** — what animates in every state where something moves or a rule is performed (the founder rejects passive states); (e) **modes** required for this concept's phase; (f) `assessment` + `coverage_map` + per-state `misconception_watch` (mandatory for concepts authored 2026-05-30+); (g) **macro↔micro plan (Rule 33, 2026-07-12)** — when the taught variable is macroscopic, declare per state the macro object's visible change + the micro mechanism story + the real number it exposes + every instrument's live numeric readout/needle; (h) **canvas budget (Rule 34, 2026-07-12)** — per state: ONE formula surface, ≤5-word delta-cue caption, value-only HUD. **No TBD entries.** Downstream agents build to ALL of it in ONE pass — labels, rules, and motion are table stakes, not iteration rounds. Target 2–3 founder rounds, not 7 (the biot_savart_law lesson, 2026-06-11).
 
 ## Tools allowed
 
@@ -105,8 +106,6 @@ Very complex (moment of inertia):      10–12 states
 ```
 
 If you land outside this range, either the concept isn't atomic (consider splitting) or it's genuinely more complex than the table predicts (document why in the skeleton).
-
-**Real-time generation (DEEP-DIVE / DRILL-DOWN) follows the same rule.** Sonnet may produce 3, 5, or 8 sub-states per the confusion's complexity. The 4-6 range in CLAUDE.md §5 is a bounded suggestion for offline authoring, not a runtime rule.
 
 **Reference counts from shipped concepts:**
 - `field_forces.json` → 5 states (medium)
@@ -192,8 +191,8 @@ Pacing is now the straightforward motion beat (§above). **Teaching method** is 
 |---|---|
 | `narrative_socratic` | **LEGACY (pre-Rule-31 concepts only — never assign on new concepts.)** Was: default hook → predict → reveal → explain. New-concept default: a straightforward motion beat (no explicit teaching_method needed, or omit the field). |
 | `misconception_confrontation` | EPIC-C STATE_1 of every branch. Wrong belief literally drawn on canvas with "Myth:" label. |
-| `worked_example` | Board-mode states. Derivation steps, `derivation_sequence` + `mark_badge` per state. |
-| `shortcut_edge_case` | Competitive-mode states. Shortcut formula, boundary condition. |
+| `worked_example` | Board-mode states. Derivation steps, `derivation_sequence` + `mark_badge` per state. (Rule 20 [D] — deferred) |
+| `shortcut_edge_case` | Competitive-mode states. Shortcut formula, boundary condition. (Rule 20 [D] — deferred) |
 | `compare_contrast` | DRILL-DOWN sub-sims. Right intuition beside wrong intuition. |
 | `exploration_sliders` | Interactive final state of EPIC-L — exposes ALL controls (Rule 31c); guided states expose only their own. Teacher/student drives the variables. |
 | `derivation_first_principles` | Feynman-mode / advanced derive states. Formula built from axioms. |
@@ -260,7 +259,7 @@ One paragraph per item.
 
 ## `has_prebuilt_deep_dive` picking — WHERE to invest in pre-authored sub-sims (session 33 rename)
 
-**Student-first policy change**: every EPIC-L state now shows the Explain (deep-dive) button. `has_prebuilt_deep_dive` (formerly `allow_deep_dive`) is NOT a gate — it's a cache hint. States flagged `true` get a hand-authored deep-dive that caches instantly; states flagged `false` generate on-demand via Sonnet (slower spinner, but still works). No student is ever told "this state can't be explained deeper."
+**Student-first policy change**: every EPIC-L state now shows the Explain (deep-dive) button. `has_prebuilt_deep_dive` (formerly `allow_deep_dive`) is NOT a gate — it's a cache hint. States flagged `true` get a hand-authored deep-dive that caches instantly; un-flagged states route the Explain button to the feedback form (Rule 18 — no runtime generation). No student is ever told "this state can't be explained deeper."
 
 Set `has_prebuilt_deep_dive: true` on the 2–3 states in EPIC-L that:
 - Involve a mathematical abstraction (components, resolution, trigonometry, derivation).
@@ -317,9 +316,11 @@ When proposing a new concept, add an edge from its prerequisites to it and note 
 - **Plain English**: No Hinglish. No "tum", "hain", "zameen", "deewar". The student's English teacher would approve every sentence.
 - **Physics-true**: the anchor must genuinely exhibit the concept — not a metaphor that breaks at any level of depth.
 
-**Strong examples from shipped concepts:**
-- `field_forces.json`: "A mango falls from a tree in a Chennai monsoon. No rope pulled it, no wind pushed it — and yet it fell."
+**Strong examples:**
+- "A fruit falls from a tree — no rope pulled it, no wind pushed it, and yet it fell." (Rule 35 universal rewrite of the old `field_forces.json` named-city anchor: gravity acts everywhere, no named place needed.)
 - `normal_reaction.json`: "Standing on an elevator floor — you feel heavier going up, lighter coming down."
+
+**Rule-35-CLEAN clone targets (2026-07-12):** among recent skeletons, `proof_run/internal_resistance_skeleton.md` and `proof_run/bar_magnet_in_uniform_field_skeleton.md` are the Rule-35-clean exemplars. Earlier `proof_run/` anchors predate Rule 35 — never clone them.
 
 ## Engine bug queue consultation (pre-authoring)
 
@@ -346,6 +347,8 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 - [ ] Every EPIC-L state has a `teaching_method` field (v2.2) — never `narrative_socratic` on new concepts (Rule 31).
 - [ ] **Per-state control table present (Rule 31)** — one row per state: teaches × motion archetype × distinct motion (no two alike, none static; no archetype repeat except a declared contrast pair; drag-sandbox only on explore) × delta (one line, unique) × live controls (only-what-this-state-needs; explore state = ALL) × narration budget (25–55 EN words guided, explore 0/open).
 - [ ] **Rule 32 legibility plan** — every state's choreography sequences CAUSE before effect (readable beat); only the taught variable moves (explore exempt); the delta column doubles as the ≤5-word caption cue; apparatus persists from a home pose (no teleport-rebuild; camera moves only to frame the new thing); exactly ONE glow focal at any instant.
+- [ ] **Rule 33 macro↔micro plan (2026-07-12)** — when the taught variable is macroscopic, the skeleton declares the per-state macro↔micro plan: macro visible change × micro story × the real number exposed × instruments with live numeric readouts + tracking needles.
+- [ ] **Rule 34 canvas budget (2026-07-12)** — per state: ONE math-serif Unicode formula surface, on-canvas caption = the ≤5-word delta cue only, HUD value-only.
 - [ ] **(Reconstruction mode only)** every OLD state graded keep/merge/delete/split via the archetype rubric with a one-line verdict each; PRIMARY aha survives (named surviving state); deletion-mechanics checklist fully accounted for (renumbering, entry_state_map, Gate 12, deep-dive flags, TTS re-voice note, baselines); Class A/B scenario triage stated (Class B → renderer_primitives delta flagged FIRST).
 - [ ] `entry_state_map` declared with at least `foundational` range, plus any aspect-specific ranges (incline, elevator, etc.) that match the concept's scope.
 - [ ] Prerequisites are advisory, cite shipped concepts where possible.

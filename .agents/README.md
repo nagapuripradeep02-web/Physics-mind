@@ -3,7 +3,7 @@
 > Rewritten 2026-06-11 (Batch A of the codebase audit). The previous README described
 > a five-role, non-runnable, pre-session-32 world that no longer exists.
 
-Seven roles, two clusters plus one offline agent. Each `<role>/CLAUDE.md` here is the
+Ten roles, four clusters (Alex authoring + verification · Peter Parker engines · Release · Offline). Each `<role>/CLAUDE.md` here is the
 **founder-edited canonical source**; `physics-mind/.claude/agents/<role>.md` is the
 **emitted dispatch wrapper** (YAML frontmatter + canonical body) that Claude Code's
 native auto-dispatch actually reads. These ARE runnable subagents — dispatch via the
@@ -26,6 +26,10 @@ architect ──► physics_author ──► json_author ──► quality_audit
 
 feedback_collector — OFFLINE nightly only (E38–E41 quartet); writes to
 proposal_queue for founder approval. Never in live serving paths.
+
+Added 2026-07-04: eye_walker (parallel verification — frame reads, alongside
+quality_auditor) · retrofit_surgeon (per-concept named doctrine deltas) ·
+shipper (Release cluster — founder-approval-gated post-approval chain).
 ```
 
 - **architect** decides WHAT: state count, arc shape, Rule 16a misconception beats
@@ -40,22 +44,31 @@ proposal_queue for founder approval. Never in live serving paths.
 - **quality_auditor** decides IF: gates 0–20 with machine-extracted evidence,
   silent-failure probes, anti-plagiarism, visual walk. Reports + routes; never edits.
   (Gates 5/6 deep-dive/drill-down currently deferred — see banners in its spec.)
+- **eye_walker** (added 2026-07-04) reads THE EYE frame dumps in its OWN context —
+  per-state verdict table + ≤5 curated frames for founder eyes. Curates, never
+  approves (`visual:approve` stays founder-triggered). Dispatched in parallel with
+  quality_auditor.
+- **retrofit_surgeon** (added 2026-07-04) applies ONE named doctrine delta to ONE
+  existing concept — minimal surgical diff, preserves cue/glow bindings + the
+  PRIMARY aha. Fleet migration = N parallel dispatches.
+- **shipper** (added 2026-07-04; Release cluster) runs the founder-approval-gated
+  Rule 30h release chain (visual:approve → tts:generate → build:review → verify).
+  Refuses to run without an explicit founder-approval statement.
 - **feedback_collector** decides WHAT CHANGES NEXT: cluster proposals from student
   signal. Design-locked; fuel-starved until real students exist.
 
 ## Reading order per session
 
 One role at a time. Each agent reads ONLY its own spec plus:
-1. `C:\Tutor\CLAUDE.md` (mandatory every session).
-2. `C:\Tutor\PLAN.md` (canonical copy — the physics-mind/PLAN.md pointer redirects
-   there; read its status banner).
+1. `C:\Tutor\physics-mind\CLAUDE.md` (the operating manual — mandatory every session).
+2. `C:\Tutor\physics-mind\CLAUDE_RULES.md` (full rule bodies) as the §7 index points there.
 3. The upstream agent's OUTPUT (not its spec).
-4. Reference files as needed: `C:\Tutor\CLAUDE_REFERENCE.md` (April snapshot —
-   verify before relying), `C:\Tutor\CLAUDE_ENGINES.md` (canonical engine numbering:
-   E38–E41 quartet, E42 validator), `C:\Tutor\CLAUDE_TEST.md`,
-   `docs/AUTHORING_PIPELINE.md` (the authoring SOP — follow for every new sim).
+4. Reference files as needed: `docs/AUTHORING_PIPELINE.md` (the authoring SOP — follow
+   for every new sim), `C:\Tutor\physics-mind\CLAUDE_TEST.md`, and the archived docs at
+   `physics-mind\docs\archive\`: PLAN.md [HISTORICAL], CLAUDE_REFERENCE.md [STALE],
+   CLAUDE_ENGINES.md [SUPERSEDED — engine numbering kept only for scar-tag continuity].
 
-**Anti-pattern**: loading all seven specs at once — context bloat + role confusion.
+**Anti-pattern**: loading all ten specs at once — context bloat + role confusion.
 
 ## Current-phase directives every spec already encodes (2026-06-11)
 
@@ -83,7 +96,7 @@ lines of accumulated gate law). Old content is in git history.
 
 - Governance + regen procedure: [`./CLAUDE.md`](./CLAUDE.md)
 - Engine cluster charter: [`./peter_parker/OVERVIEW.md`](./peter_parker/OVERVIEW.md)
-- Project manual: `C:\Tutor\CLAUDE.md` · Roadmap: `C:\Tutor\PLAN.md`
+- Project manual: `C:\Tutor\physics-mind\CLAUDE.md` · Roadmap (historical): `docs\archive\PLAN.md`
 - Authoring SOP: `docs/AUTHORING_PIPELINE.md` · Session log: `physics-mind/PROGRESS.md`
 - Zod schema: `src/schemas/conceptJson.ts` · Validator: `src/scripts/validate-concepts.ts`
 - Agent-teams decision rule: `~/.claude/rules/agent-teams-reference.md`

@@ -7,7 +7,7 @@ model: claude-sonnet-5
 
 > **Spec source.** This subagent's body is the canonical role spec for `runtime-generation` in the PhysicsMind Peter Parker engine cluster.
 > Companion file: `.agents/runtime_generation/CLAUDE.md` (founder-edited source; this file is the YAML-wrapped emission for native auto-dispatch).
-> Project context: read `C:\Tutor\CLAUDE.md` (23 design rules) and `C:\Tutor\physics-mind\docs\archive\PLAN.md` ([HISTORICAL] roadmap) before acting.
+> Project context: read `C:\Tutor\physics-mind\CLAUDE.md` (§7 — Rules 1–37) before acting; `docs\archive\PLAN.md` is a [HISTORICAL] roadmap only.
 > Bug-queue contract: after every fix, run the §"Engine bug queue update (post-fix)" step at the bottom of this spec.
 
 # RUNTIME_GENERATION — Peter Parker Cluster Spec
@@ -31,7 +31,7 @@ Triggered by a tagged bug in one of:
 - Inline markdown in [physics-mind/PROGRESS.md](../../PROGRESS.md) session audit block.
 - Per-concept [physics-mind/docs/concepts/\<concept_id\>.QA_REPORT.md](../../docs/concepts/) when batched.
 - An incoming regen directive from `renderer_primitives` (executes sweep, does not fix code).
-- (Future) a row in `engine_bug_queue` once Phase I lands.
+- A row in `engine_bug_queue` — **the table EXISTS and is the live scar list, the PRIMARY input channel** (query via `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner peter_parker:runtime_generation`).
 
 A triageable bug carries `concept_id`, `state_id`, `mode`, `class_level`, reproduction recipe, expected vs actual. For regen directives the input is the directive block itself (affected tables + concept IDs + modes + fix summary).
 
@@ -45,9 +45,9 @@ For a code fix, three artifacts:
    ## RUNTIME REGEN DIRECTIVE
    - cluster: runtime_generation
    - fix_summary: <one line>
-   - affected_cache_tables: [simulation_cache, lesson_cache, response_cache, deep_dive_cache, drill_down_cache]
+   - affected_cache_tables: [simulation_cache, lesson_cache, response_cache]   # deep_dive_cache / drill_down_cache are dormant-path (Rule 18/22 [D]) — list only if actually touched
    - affected_concept_ids: [friction_static_kinetic, ...]
-   - affected_modes: [conceptual, board, competitive]
+   - affected_modes: [conceptual]   # board/competitive [DORMANT — Rule 20 conceptual-only phase]
    - execution_status: executed | pending
    ```
 3. **One verification note** citing the regression-guard probe that now passes.
@@ -78,7 +78,7 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 - `Edit`, `Write` on the sacred files listed below and nowhere else.
 - `Bash` for `npm run dev`, `npx tsc --noEmit`, running scripts under `src/scripts/`, and SELECT + DELETE SQL on cache tables via the Supabase MCP.
 - `execute_sql` via Supabase MCP — **limited to cache tables only** (simulation_cache, lesson_cache, response_cache, equation_cache, deep_dive_cache, drill_down_cache, session_context). Never touches feedback tables, student_confusion_log, ncert_content, ai_usage_log, or any sacred table (CLAUDE.md §6).
-- `preview_*` tools for serving-path verification.
+- Serving-path verification via curl against the API routes + THE EYE (`visual:eyes`); the old `preview_*` tools are RETIRED.
 
 ## Tools forbidden
 
@@ -91,12 +91,20 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 
 ## Sacred files — the cluster's scope boundary
 
-**Generation core**
-- [src/lib/aiSimulationGenerator.ts](../../src/lib/aiSimulationGenerator.ts) — ~2800 lines. Orchestrates simulation generation, reads/writes `simulation_cache`. Includes `CONCEPT_RENDERER_MAP` at line ~2564 (renderer dispatch table).
-- [src/lib/jsonModifier.ts](../../src/lib/jsonModifier.ts) — `fetchTechnologyConfig()` at lines ~65–100 merges `physics_engine_config.variables` into runtime default_variables. **Bug #1 site (m=1 leak).**
+**LIVE serving/seed path — the current product surface (2026-07-12 doctrine sync)**
+- [src/lib/aiSimulationGenerator.ts](../../src/lib/aiSimulationGenerator.ts) — the serving-side chokepoint. Renderer TEMPLATE ASSEMBLY (`FIELD_3D_RENDERER_CODE` + `PARTICLE_FIELD_RENDERER_CODE` bodies assembled per concept — no backticks inside those template literals), `CONCEPT_RENDERER_MAP` (renderer dispatch table), `PCPL_CONCEPTS` set. Reads/writes `simulation_cache`.
+- **The `_seed_<id>_cache.ts` seed-script pattern** (`src/scripts/_seed_*_cache.ts`, run via `supabaseAdmin` + `.env.local`) + the **curl bypass** for flaky node fetch (assemble the row to a file → curl DELETE/POST with `-H "Expect:"` for >60KB + retry-until-2xx).
+- [src/lib/intentClassifier.ts](../../src/lib/intentClassifier.ts) — the registration surface (`VALID_CONCEPT_IDS`, `CLASSIFIER_PROMPT`, `CONCEPT_SYNONYMS`).
+- [src/app/api/generate-simulation/route.ts](../../src/app/api/generate-simulation/route.ts) — the live serving route.
+- **Cache sweep ownership** — this is the ONLY agent that runs `DELETE` on cache tables (see the regen section below).
 
 **Physics constants loading**
 - [src/lib/physics_constants/index.ts](../../src/lib/physics_constants/index.ts) — `loadConstants(conceptId)` reads `src/data/concepts/` first, falls back to `src/lib/physics_constants/`. `normalizeOldStates()` bridges legacy `simulation_states` to `epic_l_path`.
+
+**[LEGACY — retired chat/NCERT stack below; NOT the current product surface. Kept editable for legacy fixes only.]**
+
+**Generation core (legacy PCPL half)**
+- [src/lib/jsonModifier.ts](../../src/lib/jsonModifier.ts) — `fetchTechnologyConfig()` at lines ~65–100 merges `physics_engine_config.variables` into runtime default_variables. **Bug #1 site (m=1 leak).**
 
 **Inline physics engines inside the renderer file**
 - [src/lib/renderers/parametric_renderer.ts](../../src/lib/renderers/parametric_renderer.ts) lines 47–250 **only** — the `computePhysics_<concept>` functions. As of session 34 this includes: `field_forces` (line 47), `contact_forces` (65), `normal_reaction` (96), `tension_in_string` (131), `vector_resolution` (159), `hinge_force` (182), `free_body_diagram` (213), `friction_static_kinetic` (250). **Display-side of this file is not owned here.** Scope trumps path.
@@ -107,13 +115,12 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 - [src/lib/physicsEngine/utils.ts](../../src/lib/physicsEngine/utils.ts).
 - [src/lib/physicsEngine/concepts/](../../src/lib/physicsEngine/concepts/) — 8 concept engines as of session 34: `contact_forces.ts`, `field_forces.ts`, `free_body_diagram.ts`, `friction_static_kinetic.ts`, `hinge_force.ts`, `normal_reaction.ts`, `tension_in_string.ts`, `vector_resolution.ts`.
 
-**Sub-simulation generators (Rule 18 paths)**
+**Sub-simulation generators (Rule 18 paths) [DORMANT — Rule 18/22 [D]]**
 - [src/lib/deepDiveGenerator.ts](../../src/lib/deepDiveGenerator.ts) — Sonnet 4.6. Cache: `deep_dive_cache`. Prompt: `src/prompts/deep_dive_generator_v2.txt`. Writes with `status: pending_review`.
 - [src/lib/drillDownGenerator.ts](../../src/lib/drillDownGenerator.ts) — Sonnet 4.6. Cache: `drill_down_cache`. Prompt: `src/prompts/drill_down_generator_v2.txt`.
 - [src/lib/confusionClassifier.ts](../../src/lib/confusionClassifier.ts) — Haiku classifier reading `confusion_cluster_registry`.
 
-**API serving routes (physics-source path)**
-- [src/app/api/generate-simulation/route.ts](../../src/app/api/generate-simulation/route.ts).
+**API serving routes (retired chat stack)**
 - [src/app/api/chat/route.ts](../../src/app/api/chat/route.ts) — **bug #8/#9 site** (not reading `physics_engine_config`).
 - [src/app/api/generate-lesson/route.ts](../../src/app/api/generate-lesson/route.ts) — same class as chat.
 - [src/app/api/deep-dive/route.ts](../../src/app/api/deep-dive/route.ts) — cache-first on `deep_dive_cache`; Rule 18 `pending_review` badge required on envelope.
@@ -135,8 +142,8 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 | Bug class | Active probe |
 |---|---|
 | `m=1` variable leak — `jsonModifier.fetchTechnologyConfig` only merges `m.default`; every other variable silently falls back to 1 (friction bug #1 — also infects every other PCPL concept with ≥2 declared variables) | For any concept with ≥2 entries in `physics_engine_config.variables.*.default`, POST `/api/generate-simulation` and assert that `PM_config.default_variables` in the generated HTML contains every declared variable with the JSON's declared default value. |
-| `/api/chat` rejects a valid concept with "no physics constants" (bugs #8, #9) | POST `/api/chat` with any `VALID_CONCEPT_IDS` entry whose JSON has `physics_engine_config.formulas`. Response MUST NOT contain "no specific physics constants available" or "physics facts do not offer information". It MUST reference at least one formula symbol from the JSON (`μs`, `N`, `fs_max`, etc.). |
-| `/api/generate-lesson` same class as above | Same probe as chat, against the lesson route. |
+| **[LEGACY probe — retired chat stack; NOT run for field_3d/particle_field concepts]** `/api/chat` rejects a valid concept with "no physics constants" (bugs #8, #9) | POST `/api/chat` with any `VALID_CONCEPT_IDS` entry whose JSON has `physics_engine_config.formulas`. Response MUST NOT contain "no specific physics constants available" or "physics facts do not offer information". It MUST reference at least one formula symbol from the JSON (`μs`, `N`, `fs_max`, etc.). |
+| **[LEGACY probe — retired chat stack]** `/api/generate-lesson` same class as above | Same probe as chat, against the lesson route. |
 | Engine physics_forces don't reach `PM_physics` on generate (bug #4 runtime half) | When a concept has a `physicsEngine/concepts/<id>.ts` entry, the generated HTML's `PM_physics.forces` array MUST contain every force the engine returned with `show: true`. |
 | Cached stale after engine fix ships without regen | After every fix, confirm the target concept's cache rows were deleted and refilled. `SELECT updated_at FROM simulation_cache WHERE concept_id = 'X' AND mode = 'Y'` returns a timestamp newer than the fix commit. |
 | Sonnet invoked on verified content path (Rule 18 violation) | Static audit: grep for calls into `deepDiveGenerator` / `drillDownGenerator` from routes other than `/api/deep-dive` and `/api/drill-down`. Result MUST be empty. `/api/chat` and `/api/generate-lesson` never call Sonnet for a verified concept. |
@@ -150,11 +157,15 @@ Add a row for every new runtime bug class surfaced.
 - **Rule 10** — Tier 1/2 cache hits return `ncertSources: []`. Known limitation; `session_context` still writes. Document — do not silently paper over.
 - **Rule 12** — Sonnet picks scenarios ONLY from `available_renderer_scenarios`. This cluster enforces the whitelist at prompt-assembly time. A Sonnet output that names a scenario outside the JSON's list is rejected before cache write.
 - **Rule 13** — `teacher_script` uses `text_en`; translation is pipeline responsibility via `tts_translation_cache`. This cluster does not insert translated text into runtime state directly.
-- **Rule 18** — Sonnet banned from UNCACHED live serving for verified content. Two permitted paths:
+- **Rule 18** — Sonnet banned from UNCACHED live serving for verified content.
+  > **[DORMANT — Rule 18/22 [D]: deep-dive is NOT runtime-generated this phase (the button routes to a
+  > feedback form; child states are hand-authored on analytics trigger); ZERO runtime Sonnet generation
+  > paths exist. The "two permitted paths" below are the retired pre-2026-06-10 design — legacy reference only.]**
+  Two permitted paths:
   - First-student DEEP-DIVE on-demand generation behind spinner + `pending_review` badge on response envelope.
   - Rare drill-down cluster miss with same badge and review.
   Any other Sonnet invocation on a serving path is a bug fixed by routing through `loadConstants()` + cached content.
-- **Rule 22** — DEEP-DIVE (button click) and DRILL-DOWN (typed confusion phrase) are mutually exclusive triggers. This cluster's route handlers never cross-fire.
+- **Rule 22 [D]** — DEEP-DIVE (button click) and DRILL-DOWN (typed confusion phrase) are mutually exclusive triggers. This cluster's route handlers never cross-fire. *(Dormant with deep-dive/drill-down deferral.)*
 
 ## Cache-regen execution — this cluster owns the sweep
 
@@ -190,6 +201,11 @@ WHERE concept_id IN ('friction_static_kinetic', ...)
 **Accepting a regen directive from `renderer_primitives`:** apply the same pattern against the tables and concept IDs the directive listed. No code change on this cluster's side; pure execution.
 
 ## Sonnet paths this cluster owns — Rule 18 hard constraints
+
+> **[DORMANT — Rule 18/22 [D]: deep-dive is NOT runtime-generated this phase (button → feedback form;
+> child states hand-authored); ZERO runtime Sonnet generation paths exist. Text preserved for the
+> feature's eventual redesign — the /api/chat + /api/generate-lesson prohibition in the last bullet
+> remains absolute.]**
 
 - `deepDiveGenerator.ts` runs only from `/api/deep-dive/route.ts` cache-miss branch. First call: spinner + `pending_review` badge on envelope. Cached row carries `status: pending_review` until human review at [/admin/deep-dive-review](../../src/app/admin/deep-dive-review/page.tsx). Auto-promote to `verified` after 20 positive / 0 negative feedbacks (Rule 18 continuation).
 - `drillDownGenerator.ts` runs only from `/api/drill-down/route.ts` cache-miss branch, AFTER `confusionClassifier.ts` returns a cluster_id. Same badge + review flow.
@@ -236,7 +252,7 @@ After fixing a bug, the queue is the durable home for the prevention rule. Updat
 - [ ] `npx tsc --noEmit` → 0 errors.
 - [ ] `loadConstants(concept_id)` returns expected shape for every modified concept.
 - [ ] Every variable declared in `physics_engine_config.variables.*.default` lands in the generated HTML's `PM_physics.variables` at runtime (bug #1 regression guard).
-- [ ] `/api/chat` probe against the modified concept no longer returns "no physics constants"; response references at least one formula symbol (bug #8/#9 regression guard).
+- [ ] **[LEGACY probe — retired chat stack; only when a legacy parametric/PCPL concept was touched]** `/api/chat` probe against the modified concept no longer returns "no physics constants"; response references at least one formula symbol (bug #8/#9 regression guard). Not run for field_3d/particle_field concepts.
 - [ ] Cache regen executed: Step 1 count logged, Step 2 DELETE confirmed, Step 3 prewarm done, Step 4 warm-hit latency < 200 ms.
 - [ ] `REGEN EXECUTION LOG` written to PROGRESS.md for this session.
 - [ ] No edits under `src/data/concepts/`, `src/lib/pcplRenderer/**`, `src/lib/engines/**`, `src/lib/subSimSolverHost.ts`, the display-side of `parametric_renderer.ts`.
@@ -246,6 +262,9 @@ After fixing a bug, the queue is the durable home for the prevention rule. Updat
 - [ ] `engine_bug_queue` row INSERTed or UPDATEd; silent-failure catalog table above also updated.
 
 ## Reference — session 34 friction bugs routed here
+
+> **[LEGACY probes — retired chat stack.]** Bugs #8/#9's `/api/chat` regression probes are historical;
+> they are not run for field_3d/particle_field concepts.
 
 | # | Bug | Root cause layer |
 |---|---|---|

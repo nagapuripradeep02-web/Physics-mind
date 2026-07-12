@@ -154,6 +154,8 @@ Both gold-standard shipped diamonds on the same renderer family. Ch.3 graph edge
 
 ## 9. Real-world anchor (Indian, plain English, physics-true)
 
+> **[pre-Rule-35 — do NOT clone this anchor section. Anchors are UNIVERSAL/culture-neutral since 2026-07-10 (no country phrasing, festivals, brands, or asserted mains values). Clean clone targets: internal_resistance_skeleton.md, bar_magnet_in_uniform_field_skeleton.md.]**
+
 **Primary — the emf hierarchy of real cells:** the 1.5 V Eveready dry cell in a torch, the 2 V lead-acid cell inside an inverter bank, the 3.7 V lithium-ion cell in every phone, the 12 V car battery — four everyday objects, four different numbers, and the number means one exact thing: how many joules that cell's chemistry hands every coulomb that passes through it. A dry cell the size of a thumb and a fat D-cell both say 1.5 V, because the chemistry is the same — **the chemistry sets ε; the circuit never does.** S4 puts these four chemistry tags on the slider stops, so the anchor is literally on-canvas.
 
 **Why it hooks Class 10–12 JEE/NEET students:** every student has read these numbers off real batteries their whole life without knowing what the number promises; "define emf and state its SI unit" and "distinguish emf from terminal potential difference" are board staples, and the hierarchy makes the definition concrete four times over. Physics-true at every depth (each value follows from electrode chemistry). Plain English, no Hinglish.

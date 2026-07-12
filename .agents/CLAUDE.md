@@ -4,20 +4,24 @@ Umbrella governance for the ten canonical agent specifications (seven original +
 
 ## Canonical source vs dispatch wrapper
 
-Per root `CLAUDE.md` §2 hard rule 5:
+Per hard rule 5 (`~/.claude/rules/agent-teams-reference.md`, mirrored in §Hard rules below):
 
 - `physics-mind/.agents/<role>/CLAUDE.md` — **canonical**. Founder-edited. Markdown body only, no YAML.
 - `physics-mind/.claude/agents/<role>.md` — **emission**. YAML frontmatter (`name:`, `description:`, optional `model:`) + body copied from canonical. Regenerated, never hand-written.
 
 Silent failure mode this prevents: someone edits the wrapper because it's the file Claude Code reads at dispatch time → next regeneration from canonical overwrites the change → fix vanishes with no audit trail.
 
-## Regeneration procedure (manual today; automate later)
+## Regeneration procedure
 
-When you edit `<role>/CLAUDE.md`:
+When you edit `<role>/CLAUDE.md`, run **`npm run sync:agents`** (scripts/sync-agents.js, added 2026-07-04):
+it preserves everything above each emission's first H1 (YAML frontmatter + Spec-source preamble) verbatim
+and replaces the body with the canonical's. `npm run sync:agents -- --check` verifies without writing.
+Frontmatter (`name:`, `description:`, `model:`, `tools:`) is hand-maintained IN the emission — update
+`description:` there directly when the role's one-line summary genuinely changed. Manual fallback:
 
 1. Open the corresponding `.claude/agents/<role>.md`.
-2. Preserve the existing YAML frontmatter block at the top (`name:`, `description:`, `model:` if set). Update `description:` only if the role's one-line summary genuinely changed.
-3. Replace the body below the frontmatter with the new canonical body verbatim.
+2. Preserve the existing YAML frontmatter block at the top.
+3. Replace the body below the first H1 with the new canonical body verbatim.
 4. Save.
 
 **Same-session rule (added 2026-06-11):** a canonical edit without its emission regenerated in the SAME session is an unfinished edit. The 2026-06-11 harness audit found emissions running days-to-weeks behind their canonicals (renderer_primitives 9 days; physics_author two spec generations) — auto-dispatched agents were operating on stale contracts. Regenerate before the session ends, every time.
@@ -36,7 +40,7 @@ Naming reminder: emission filename and `name:` field use **hyphenated** form (`j
 | Alex | `retrofit_surgeon` | dispatched per-concept for doctrine deltas | ONE concept + ONE named delta = minimal surgical diff; preserves cue/glow bindings + PRIMARY aha; fleet migration = N parallel dispatches. |
 | Peter Parker | `renderer_primitives` | FAIL-routed | Display layer in `parametric_renderer.ts` + PCPL primitives. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
 | Peter Parker | `runtime_generation` | FAIL-routed | Generator + jsonModifier + cache sweeps. Only agent that runs `DELETE` on cache tables. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
-| Release | `shipper` | post-approval release chain — **founder-triggered only** | Rule 30f last step: visual:approve → translate (provider fallback) → tts EN+TE → rebuild → verify. Refuses to run without an approval statement. |
+| Release | `shipper` | post-approval release chain — **founder-triggered only** | Rule 30h chain: REFUSES if any `text_te` is missing (translation = pre-ship Sonnet-5 sub-agent, Rule 30g — never `tts:translate`) → visual:approve → `tts:generate --langs=en` (audio on-demand, EN only) → build:review → verify. Refuses to run without an approval statement. |
 | Offline | `feedback_collector` | nightly only | E38–E41 quartet. Reads 5 feedback tables, writes proposals. Never invoked during live serving paths. |
 
 **Release cluster (added 2026-07-04).** A fourth, deliberately lightweight cluster beyond Alex / Peter
@@ -63,4 +67,4 @@ Section headers carry a `(v2.x addition)` tag (e.g. architect's `Two-pass cognit
 
 - `physics-mind/docs/archive/PASS_2_PROPOSAL.md` — Pass-2 framework. SHIPPED as Gate 15 (quality_auditor) + json_author guidance after the Diamond-#4 dogfood (Session 64); doc archived.
 - `~/.claude/rules/agent-teams-reference.md` — full agent-teams decision rule + cluster taxonomy.
-- Root `C:\Tutor\CLAUDE.md` §2 — Claude's role definition + self-review checklist.
+- `C:\Tutor\physics-mind\CLAUDE.md` §1 (architecture) + §6 (self-review checklist) — the operating manual.

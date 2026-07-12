@@ -42,7 +42,7 @@ For every NEW simulation:
         │
         ▼
 ④  PROFESSOR GATE  (before any student ever sees it)
-    The reviewing professor (Venkata / Asmi) reviews the PEDAGOGY:
+    The reviewing professor (Asmi Singh) reviews the PEDAGOGY:
       "Is anything wrong, unclear, or out of order? Where will a student trip?"
     Take the feedback → update the simulation → re-run ③.
     The professor's lesson is ALSO logged to the queue with a prevention_rule (see below).
@@ -127,8 +127,8 @@ every week.
 - [ ] Where **direction** is taught: the correct **right-hand rule** on those states — grip rule for circulation, cross-product rule for a single dB/F. Right rule on the right state (see `patterns/magnetism.md`).
 - [ ] **Motion wherever something moves or a rule is performed** — no static diagram where an animation teaches better (curling hand, flowing current, assembling field, orbiting tangent). The founder rejects passive states.
 - [ ] **Conceptual mode ONLY** (founder directive 2026-06-11, CLAUDE.md Rule 20 suspension): do NOT author `mode_overrides.board` / `mode_overrides.competitive` — board + competitive are dropped for the current phase and resume later as dedicated retrofit phases.
-- [ ] `assessment` + `coverage_map` + per-state `misconception_watch` if authored 2026-05-30+.
-- [ ] **TTS audio (Rule 30f) — LAST step, after founder visual approval:** render **EN + Telugu** clips (`npm run tts:generate <id>`, foreground, native-listen a sample) before teacher handoff. Hindi stays text-only (authored, unrendered) until a Hindi-market customer exists. Never render mid-iteration; edits after teacher feedback → incremental re-render of affected clips.
+- [ ] `misconception_watch` at **1–3 genuine pivots only** (founder 2026-07-04 — never a per-state tic; it's unrendered metadata). `assessment` + `coverage_map` are deferred this phase.
+- [ ] **Narration text + audio (Rules 30g/30h — 30h supersedes the old 30f "audio LAST step"):** author `text_te` for every tts_sentence via the Rule-30g **Sonnet-5 sub-agent** (subscription-billed, code-mixed per Rule 30 — NEVER `npm run tts:translate`, which bills the metered API keys). AUDIO is **ON-DEMAND, never a ship gate**: the sim ships silent-but-complete on baseline-locked visuals (Rule 24 — the teacher narrates); render EN (`npm run tts:generate -- <id> --langs=en`, foreground) only when the pilot needs narration, Telugu audio only on real teacher/market demand, Hindi text-only. Every render is real Sarvam spend — never render mid-iteration or speculatively.
 
 **Compute, don't guess.** Every placement, timing, and orientation is derivable up front — guess-and-recapture costs more than the math:
 - **Screen position** of an overlay/hand → from the camera basis: screen-right ≈ `normalize(viewDir × up)`. Its z-component is negative for the default +x+y+z camera, so increasing world-z moves an object **left**, not right. Prefer **camera-relative anchoring** (position computed from `stateDef.camera_position`) over per-state hand-tuned world coords — framing-correct by construction, zero tuning.
@@ -166,8 +166,10 @@ The fix is discipline + automation, not a new check. See `VISUAL_VALIDATOR_SPEC.
 npm run visual:eyes -- <concept_id>     # $0 — captures EVERY state + dense ~1s frames,
                                         # runs all deterministic gates (D1p/H1/D5/D6/D7/H2),
                                         # dumps every PNG to .visual_runs/<id>/<timestamp>/
-# → Claude Reads EVERY printed PNG path. Actually looks. Only then founder review.
-npm run smoke:visual-validator -- <concept_id> --dense   # vision categories A–G + I
+# → dispatch EYE-WALKER to read EVERY printed PNG path in its own context (never read
+#   the ~100 frames in the main session). Only then founder review.
+npm run smoke:visual-validator -- <concept_id> --dense   # PAID escalation ONLY — run when
+                                        # THE EYE is inconclusive or the founder asks
                                         # (cost ladder: Gemini Flash → Sonnet → Opus-flag)
 npm run visual:approve -- <concept_id>  # after founder approval → lock regression baselines
 ```

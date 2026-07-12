@@ -37,6 +37,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 - **Gate 3d** — E42 physics 9-condition check.
 - **Gate 3e** — Rule 31 distinct-motion + contextual-controls discipline — **ALL new concepts** (per-state control table honored; no static state; no two states' motion alike; explore-last has all controls; no Socratic artifacts).
 - **Gate 3f** — Rule 32 legibility + Rule 31-tight word-budget pacing — **ALL new concepts** (25–55 EN words/guided state; archetype table honored, no repeat without declared contrast pair; ≤5-word delta cue opens every caption; cause before effect; one variable moves; home-pose continuity; one glow focal).
+- **Gate 3g** — Rules 33/34 macro↔micro + uncluttered canvas (2026-07-12) — **ALL new concepts** (both levels + zoom-link when the taught variable is macroscopic; per-state micro story with a real number; live numeric instruments; ≤5-word caption cue only; ONE Unicode formula surface; value-only HUD; no overlay collisions).
 - **Gate 4 (+4a, +4b)** — live visual walk both paths + classifier-reachability + pill freshness. For field_3d diamonds this is `visual:eyes` / direct capture — **actually look at every state.**
 - **Gate 7** — console + log discipline (zero errors/warnings on target routes).
 - **Gate 8** — `engine_bug_queue` regression check ← **the scar list.** Every probe relevant to the candidate must pass. This is the mechanism by which the pre-flight gets smarter every week as the reviewer surfaces new mistake-classes (Phase 3).
@@ -73,7 +74,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 A single report with:
 - **VERDICT**: PASS or FAIL
 - **Gate results**: every gate run (0–20), each with ✓ / ✗ / N/A, and pasted machine evidence per the §"Evidence discipline" section below (file:line, probe output, grep line, or network response — never a from-memory claim).
-- **Screenshots**: one per EPIC-L state (visual proof), one per `allow_deep_dive: true` state inside deep-dive, one of drill-down sub-sim.
+- **Screenshots**: one per EPIC-L state (visual proof). (Deep-dive/drill-down screenshots: DORMANT — Rule 18/22 [D], Gates 5/6 deferred.)
 - **Return-to-author feedback**: if FAIL, name exactly ONE upstream agent to route back to, with a `[reason: ...]` tag from the four-tag system below.
 
 **Reason tags (v2.3 addition)**:
@@ -85,7 +86,7 @@ A single report with:
 
 **Dual-failure routing rule (upstream wins)**: on simultaneous Pass-1 + Pass-2 FAIL, route to `alex:architect` with `[reason: pass-1]`. Pass-2 re-audit happens only after Pass-1 PASSes — downstream is rebuilt on a fixed strategic foundation, not patched on a broken one.
 
-**Scene_designer advisory mode (M4+)**: from the moment `peter_parker:scene_designer` begins producing candidate JSONs, Gate 14 enters **advisory mode for scene_designer output only** — FAIL becomes `PASS-WITH-NOTES`. Hand-authored diamonds stay on hard FAIL. Advisory mode promotes to hard FAIL once `docs/patterns/magnetism.md` (and any other patterns library scene_designer composes from) has been retrofitted with Pass-2 annotations.
+**Advisory-mode carve-out — [RETIRED 2026-07-12]:** no scene-designer role exists in the fleet (the engine cluster is `renderer_primitives` + `runtime_generation` only). Gate 14 has no advisory mode — every candidate JSON stays on hard FAIL.
 
 ## Evidence discipline — no verdict without machine-extracted evidence (added 2026-06-11)
 
@@ -103,7 +104,7 @@ Why this is a hard rule: in the 2026-06-11 harness audit, a review agent produce
 
 - `Read`, `Grep`, `Glob` on the target JSON + project source.
 - `Bash`: `npx tsc --noEmit`, `npm run validate:concepts`.
-- `preview_*` MCP tools: eval, screenshot, network, console_logs, click, fill.
+- `preview_*` MCP tools: eval, screenshot, network, console_logs, click, fill. **[RETIRED — these MCP tools no longer exist (2026-07-12); use THE EYE (`visual:eyes`) frames + review-site captures instead.]**
 - Supabase MCP `execute_sql` for cluster registry checks (read-only).
 
 ## Tools forbidden
@@ -123,7 +124,7 @@ The architect's skeleton must contain a `## Definition of Done` block (output-co
 - **Right-hand rule** — every direction-teaching state in the DoD has its specified RHR overlay/animation primitive present (grip vs cross-product per `patterns/magnetism.md`).
 - **Motion** — every DoD motion row has a `choreography_sequence` / `animate_in` in that state. No static diagram where the DoD declared an animation.
 - **Modes** — the modes the DoD declares for this concept's phase exist and are COMPLETE (board ⇒ `canvas_style` + `derivation_sequence` + `mark_scheme`, Rule 21 — half a mode is worse than none).
-- **Comprehension keystone** — `assessment` + `coverage_map` present if the DoD declares them (mandatory for concepts authored 2026-05-30+), and `misconception_watch` present at the genuine motivation/misconception PIVOTS (the aha + any counter-intuitive beats) — NOT on every state. A straightforward teaching state carries NO `misconception_watch`; a per-state `misconception_watch` is a discipline defect (founder guardrail 2026-07-04). `assessment` + `coverage_map` remain mandatory where the DoD declares them.
+- **Comprehension keystone** — `assessment` + `coverage_map` present if the DoD declares them (when the DoD declares them — deferred this phase, Gates 16–20 dormant; the 2026-05-30+ mandate stands down until the comprehension loop reactivates), and `misconception_watch` present at the genuine motivation/misconception PIVOTS (the aha + any counter-intuitive beats) — NOT on every state. A straightforward teaching state carries NO `misconception_watch`; a per-state `misconception_watch` is a discipline defect (founder guardrail 2026-07-04). `assessment` + `coverage_map` remain mandatory where the DoD declares them.
 
 FAIL routing: DoD block missing/incomplete/TBD → `alex:architect` `[reason: pass-1]`. DoD line unsatisfied in the JSON → `alex:json_author` `[reason: dod]`.
 
@@ -245,7 +246,37 @@ Violations: word budget / delta cue → json_author (text) or architect (two-ide
 cause-effect ordering → physics_author; archetype/table design → architect; panel/continuity engine
 defects → `peter_parker:renderer_primitives`.
 
-**Part 3d — E42 Physics Validator 9 conditions** (CLAUDE_ENGINES.md Tier 9):
+**Part 3g — Rule 33 macro↔micro + Rule 34 uncluttered canvas (added 2026-07-12 doctrine sync) — ALL new concepts**
+
+The dual-level + canvas-budget counterpart of 3f. Evidence discipline applies as on every gate: cite
+THE EYE / eye_walker frames and DOM greps, never memory.
+1. **Macro↔micro dual level (Rule 33a/b):** when the taught variable is MACROSCOPIC but its mechanism is
+   MICROSCOPIC, BOTH levels are visible simultaneously with an explicit zoom-link; the macro cause is a
+   real object that visibly changes (rod longer/wider/hotter, plates farther). Only-the-interior shown
+   while the cause is macroscopic = FAIL.
+2. **Micro story per state (33c):** each guided state's micro view tells its OWN story with a real
+   NUMBER exposed (collision count, carrier count, meter reading). Two states sharing the same generic
+   interior = FAIL.
+3. **Instruments (33d):** every ammeter/voltmeter/thermometer shows a live NUMERIC reading + a needle
+   that tracks the physical change. A decorative dial with no value = FAIL.
+4. **Caption budget (34a):** the on-canvas TOP caption is the ≤5-word delta cue ONLY — prose narration
+   lives in the subtitle strip BELOW the canvas (`#capStrip`), never overlaying the sim.
+5. **One formula surface (34b):** exactly ONE math-serif Unicode formula overlay per state; the HUD is
+   VALUE-only (`Φ = 0.350 Wb`, never the symbolic derivation duplicated).
+6. **Unicode everywhere (34c):** ALL on-canvas math is real Unicode (Φ ω ε θ ° ² · → × ⊙ ⊗ μ …), never
+   ASCII (`Phi`, `omega`, `->`, `m2`, `deg`) — grep all THREE text paths: DOM overlays (concept JSON),
+   canvas-drawn `ctx.fillText` graph text, and 3D sprite labels in field_3d (`createLabelSprite`) /
+   p5 text in particle_field. A sweep of one path silently skips the others.
+7. **No collisions (34d):** overlays never collide or clip; the HUD clears the review-chrome
+   Full-screen button (`top:52px`+); formula / graph / sliders occupy distinct zones; each state shows
+   only the overlays it needs.
+8. **Re-baseline expectation (34e):** a text-only de-clutter EXPECTS H2 baseline fails (pixels moved) —
+   after founder OK that routes to `visual:approve` re-baseline, NOT a fix cycle.
+
+Violations: caption/formula/HUD/Unicode text → json_author; macro↔micro state design → architect;
+instrument/zoom-link/overlay engine defects → `peter_parker:renderer_primitives`.
+
+**Part 3d — E42 Physics Validator 9 conditions** (`docs/archive/CLAUDE_ENGINES.md` **[SUPERSEDED — engine numbering kept for continuity]** Tier 9):
 1. **mg_perp direction symmetry** — normal reaction perpendicular to surface, opposite to mg_perp component
 2. **ΣF = 0 at equilibrium** — static/uniform-velocity states balance
 3. **angle_arc presence rules** — every angle referenced in text has an `angle_arc` primitive
@@ -257,6 +288,14 @@ defects → `peter_parker:renderer_primitives`.
 9. **mode_overrides coverage** — SUSPENDED with Rule 20 (conceptual-only directive 2026-06-11): absence of mode_overrides is the expected, correct state. Check only conceptual-baseline completeness.
 
 ### Gate 4 — Live visual walk — BOTH paths
+
+> **Renderer-family scoping (2026-07-12; formalizes the CURRENT-PHASE PRE-FLIGHT redirect).** For
+> **field_3d and particle_field** concepts, Gate 4 verification = THE EYE (`npm run visual:eyes -- <id>`
+> frames, read via eye_walker) + the review site — actually look at every state. The chat-flow/pill
+> probes below (Path 2, Gate 4a, Gate 4b) are **[LEGACY — retired chat stack]** and run ONLY for old
+> parametric/PCPL concepts. Note also that the `preview_*` MCP tools referenced below no longer exist —
+> use THE EYE captures / review-site DOM probes instead.
+
 Walk the concept through BOTH routes. `/test-engines` bypasses production routing; this caught sessions 28-30 green but they were actually disconnected from production (session 31.5 finding).
 
 **Path 1 — `/test-engines?concept=<id>`** (calls `assembleParametricHtml` directly).
@@ -275,7 +314,7 @@ fetch('/api/generate-simulation', {
 ```
 - Expected: response `conceptId === '<target_id>'`.
 - **Failure signal**: response `conceptId` is a legacy bundle name (e.g. `rain_umbrella`, `vector_basics`, `projectile_motion`) or a sibling atomic. That means `CLASSIFIER_PROMPT` in `src/lib/intentClassifier.ts:137+` doesn't advertise the target atomic; Gemini picked the nearest legacy synonym instead. Fail gate; route to json_author for registration site #8.
-- The dev-only boot assertion in `intentClassifier.ts` warns on startup if the prompt ↔ `VALID_CONCEPT_IDS` are out of sync — check `preview_console_logs` after server boot for `[intentClassifier] ⚠️`.
+- The dev-only boot assertion in `intentClassifier.ts` warns on startup if the prompt ↔ `VALID_CONCEPT_IDS` are out of sync — check the dev-server terminal output after boot for `[intentClassifier] ⚠️` (the old `preview_console_logs` tool is RETIRED).
 
 #### Gate 4b — Pill stale-fingerprint probe (session 32 finding)
 Inside an active chat about concept X (e.g., normal_reaction), type a question for concept Y (e.g., umbrella tilt). The classifier should offer a pill for Y. Click it.
@@ -344,10 +383,11 @@ For each state with `drill_downs: […]` array:
 Any ✗ = FAIL. Route to json_author if cluster seeding missing (check registry first), to feedback_collector if cluster count is low.
 
 ### Gate 7 — Console + log discipline
-Across the entire gate-4-through-6 walk:
-- `preview_console_logs` level=error → **zero** errors.
-- `preview_console_logs` level=warn → zero warnings (background `/api/mcqset` 500s are pre-existing; don't count those against the target).
-- Server logs (`preview_logs`) clean for routes touching the concept: `/api/generate-simulation`, `/api/deep-dive`, `/api/drill-down`.
+Across the entire visual walk (the old `preview_console_logs`/`preview_logs` tools are RETIRED — read the
+browser console via Playwright/chrome-devtools, and the dev-server terminal output directly):
+- Browser console level=error → **zero** errors.
+- Browser console level=warn → zero warnings (background `/api/mcqset` 500s are pre-existing; don't count those against the target).
+- Dev-server output clean for routes touching the concept: `/api/generate-simulation` (deep-dive/drill-down routes are DORMANT — Rule 18/22 [D]).
 
 ### Gate 8 — Engine bug queue regression check (NEW session 36)
 
@@ -375,6 +415,12 @@ ANY probe failure = Gate 8 FAIL, route to the bug's `owner_cluster` (e.g., `pete
 
 The queue is the durable, cross-session bug ledger. The inline silent-failure catalogs in `.agents/renderer_primitives/CLAUDE.md` and `.agents/runtime_generation/CLAUDE.md` mirror queue rows for fast read-without-DB; Gate 8 reads the queue as canonical and is responsible for catching any drift between the two.
 
+> **confusion_cluster_registry probe — N/A-DORMANT this phase (2026-07-12).** For new conceptual-only
+> field_3d/particle_field concepts, any probe demanding `confusion_cluster_registry` rows (including the
+> "Empty cluster_registry" catalog row below) is **N/A** — cluster migrations are authored-but-NOT-applied
+> while drill-down is deferred (Rule 22 [D]). A missing registry row is NOT a FAIL and must NOT be routed
+> to json_author.
+
 ## Future automation (gates 4–7 are manual today)
 
 Two Tier 9 engines (NOT_STARTED) will automate most manual work: **E43 Visual Probe** replaces gate 4 walks, logs to `test_session_log`. **E44 Regression Suite** runs gates 5–6 nightly across all concepts. Until both land, auditor walks every gate by hand — reason these specs exist.
@@ -396,7 +442,7 @@ Two Tier 9 engines (NOT_STARTED) will automate most manual work: **E43 Visual Pr
 
 ## Anti-plagiarism probe (CLAUDE.md §5)
 
-Spot-check real-world anchors + teacher_script text across all 9 states. **Red flags** (each = FAIL, route to architect):
+Spot-check real-world anchors + teacher_script text across all states. **Red flags** (each = FAIL, route to architect):
 - Hinglish tokens: *zameen, deewar, seedhi, tum, hain, kya*.
 - Textbook problem setups: *"A block of mass m is placed on a smooth inclined plane of angle θ…"* — this is DC Pandey's voice, not ours.
 - Figure references: *"See figure 5.12"*, *"as shown in the diagram above"*.
@@ -412,7 +458,7 @@ Good anchor examples (universal — Rule 35):
 ## Self-review checklist (on your own report)
 
 - [ ] All 8 gates reported ✓/✗/N/A.
-- [ ] Screenshots: per EPIC-L state + per `allow_deep_dive` state + one drill-down sub-sim.
+- [ ] Screenshots: per EPIC-L state (deep-dive/drill-down shots DORMANT — Rule 18/22 [D]).
 - [ ] FAIL → return-to-author field names exactly ONE agent.
 - [ ] Anti-plagiarism probe run on ALL `text_en` fields, not spot-checked.
 - [ ] Gate 8 enumerates per-probe results for every relevant FIXED row in `engine_bug_queue` (not just the count).
@@ -499,7 +545,7 @@ Any sub-check missing or marked "TBD" = FAIL, route to `alex:architect` with rea
 
 **Renderer-family note (REQUIRED before walking 15b/15c — determines which fields you audit):**
 - **(a) PCPL / parametric_renderer concepts** (states carry `teaching_method: "narrative_socratic"`): within-state reveal is `scene_composition` primitives bound via `reveal_at_tts_id`, and prediction think-time is `pause_after_ms` on the prediction tts_sentence. **Gate 3c runs underneath; Gate 15 is the intent layer above it.**
-- **(b) field_3d concepts** (no `teaching_method`; `renderer_pair = field_3d` — e.g. ALL magnetism diamonds): **Gate 3c DOES NOT FIRE** (its trigger `teaching_method: "narrative_socratic"` is absent); Gate 3e (Rule 31) + Gate 15 carry the cognitive-flow audit. Rule-31-era field_3d concepts author motion in the scenario's per-state block (mode-driven, like `faraday.mode`) rather than `reveal_at_ms` — audit what THE EYE frames actually show. Within-state motion lives in `field_3d_config.states.STATE_N.*` keyed by `reveal_at_ms` (absolute ms after state-enter, synced to TTS by author intent), **NOT** `reveal_at_tts_id`. When you walk 15b/15c on a field_3d concept: (i) **15b pause** — confirm the prediction tts_sentence carries `pause_after_ms ≥ 2000` AND the corresponding `field_3d_config` `reveal_at_ms` sits AFTER that pause window (so the answer does not appear during think-time); a prediction sentence with no `pause_after_ms` = 15b FAIL. (ii) **15c motion** — cite the `field_3d_config` `reveal_at_ms` primitive (`per_turn_field_circles`, `radial_cancellation_arrows`, `axial_buildup_arrows`, `right_hand.animate_curl`, etc.), NOT `reveal_at_tts_id`. (iii) **annotation orphaning** — a `scene_composition` annotation that names a referent (e.g. `cancel_label` naming the radial arrows) must NOT render at t=0 while its referent `reveal_at_ms` is delayed; flag as a 15c timing violation. **Do NOT instruct json_author to add `reveal_at_tts_id` to a field_3d primitive — the renderer does not read it.**
+- **(b) field_3d concepts** (no `teaching_method`; `renderer_pair = field_3d` — e.g. ALL magnetism diamonds): **Gate 3c DOES NOT FIRE** (its trigger `teaching_method: "narrative_socratic"` is absent); Gate 3e (Rule 31) + Gate 15 carry the cognitive-flow audit. Rule-31-era field_3d concepts author motion in the scenario's per-state block (mode-driven, like `faraday.mode`) rather than `reveal_at_ms` — audit what THE EYE frames actually show. Within-state motion lives in `field_3d_config.states.STATE_N.*` keyed by `reveal_at_ms` (absolute ms after state-enter, synced to TTS by author intent), **NOT** `reveal_at_tts_id`. When you walk 15b/15c on a field_3d concept: (i) **15b pause — LEGACY-ONLY (pre-Rule-31 Socratic concepts):** confirm the prediction tts_sentence carries `pause_after_ms ≥ 2000` AND the corresponding `field_3d_config` `reveal_at_ms` sits AFTER that pause window (so the answer does not appear during think-time); a prediction sentence with no `pause_after_ms` = 15b FAIL. On Rule-31 concepts there are NO prediction sentences and NO `pause_after_ms` — this check is N/A (see the amended 15b note below). (ii) **15c motion** — cite the `field_3d_config` `reveal_at_ms` primitive (`per_turn_field_circles`, `radial_cancellation_arrows`, `axial_buildup_arrows`, `right_hand.animate_curl`, etc.), NOT `reveal_at_tts_id`. (iii) **annotation orphaning** — a `scene_composition` annotation that names a referent (e.g. `cancel_label` naming the radial arrows) must NOT render at t=0 while its referent `reveal_at_ms` is delayed; flag as a 15c timing violation. **Do NOT instruct json_author to add `reveal_at_tts_id` to a field_3d primitive — the renderer does not read it.**
 
 Walk 15a–15d on **EVERY EPIC-L state** (not a sample — the four-question lens is the per-state strategic presence check; sampling defeats its purpose and would miss a systemic regression, e.g. a 2-state spot-check that happens to draw only a passing state):
 

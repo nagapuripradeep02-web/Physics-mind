@@ -71,6 +71,14 @@ routing to `alex:json_author` / `peter_parker:*` is decided by the main session 
      no teleport-rebuild of the scene between states (camera may re-frame the new thing only).
 5. **Formula/caption frames → `<STATE_N>__i2_*.png`.** Rule 24: labels + equations + derivation steps only,
    never prose walls; must read correctly with sound OFF. Rule 29: emphasis via brightness, never size.
+   **Rules 33d + 34a–d (added 2026-07-12 doctrine sync):**
+   - instruments (ammeter/voltmeter/thermometer) show a live NUMERIC value + a needle that tracks the
+     change — a decorative dial with no value = finding (33d);
+   - the top caption is a ≤5-word delta cue, NEVER a prose sentence (34a);
+   - exactly ONE formula surface per state, math-serif Unicode — flag ASCII math (`Phi`, `omega`, `->`,
+     `m2`, `deg`) in ANY rendered text (34b/34c);
+   - the HUD/readout is value-only (34b);
+   - overlays must not collide or clip — check the corners + the review-chrome Full-screen button zone (34d).
 6. **Known false-positive classes — do NOT flag:**
    - stale-H2 regression diffs after an intentional redesign (expected, not logged);
    - "Anchor tie relaxed required→strong" amber solver notes (safety net, not failure);

@@ -1,5 +1,7 @@
 # Architect skeleton — `torque_on_current_loop_in_field`
 
+> **[VINTAGE — pre-Rule-31/35 architecture (Socratic beats, Indian anchors, EPIC-C). Historical record only — never clone.]**
+
 > **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
 > per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
 > `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control

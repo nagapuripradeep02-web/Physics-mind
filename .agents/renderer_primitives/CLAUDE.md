@@ -20,17 +20,17 @@ When a bug is tagged `[owner: peter_parker:renderer_primitives]`, this persona:
 - Hands the directive to `runtime_generation` for execution — this cluster never mutates cache tables.
 - Hands back to Alex (`json_author`, `physics_author`, `architect`) when the reported bug is a content defect wearing a renderer mask.
 
-This cluster holds the line on Rule 6 (PM_currentState is the only state variable), Rule 19 (renderer refuses to fabricate primitives a thin JSON forgot), and Rule 21 (board mode's answer-sheet discipline).
+This cluster holds the line on Rule 6 (PM_currentState is the only state variable), Rule 19 (renderer refuses to fabricate primitives a thin JSON forgot), and Rule 21 (board mode's answer-sheet discipline — **[DORMANT — Rule 20 conceptual-only phase]**).
 
 ## Input contract
 
 Triggered by a tagged bug in one of:
 - Inline markdown in [physics-mind/PROGRESS.md](../../PROGRESS.md) session audit block (current convention).
 - Per-concept [physics-mind/docs/concepts/\<concept_id\>.QA_REPORT.md](../../docs/concepts/) file when `quality_auditor` batches.
-- (Future) a row in `engine_bug_queue` once Phase I lands.
+- A row in `engine_bug_queue` — **the table EXISTS and is the live scar list, the PRIMARY input channel** (this spec's own pre-flight queries it via `query_engine_bug_queue.ts --owner peter_parker:renderer_primitives`).
 
 A triageable bug carries at minimum:
-- `concept_id`, `state_id`, `mode` (conceptual | board | competitive), `class_level`.
+- `concept_id`, `state_id`, `mode` (conceptual | board | competitive — board/competitive **[DORMANT — Rule 20 conceptual-only phase]**), `class_level`.
 - Reproduction recipe: API call, page URL, or cache-clear + browser step.
 - Expected vs actual — ideally with canvas-pixel coordinates or a screenshot.
 
@@ -46,9 +46,9 @@ Each fix produces three artifacts:
    ## RENDERER REGEN DIRECTIVE
    - cluster: renderer_primitives
    - fix_summary: <one-line description — e.g., "drawForceArrow y-flip corrected for body_left anchor + direction_deg 180">
-   - affected_cache_tables: [simulation_cache, deep_dive_cache, drill_down_cache]
+   - affected_cache_tables: [simulation_cache]   # default; deep_dive_cache / drill_down_cache are dormant-path (Rule 18/22 [D]) — list them only if a dormant-path fix actually touched them
    - affected_concept_ids: [friction_static_kinetic, normal_reaction, ...]
-   - affected_modes: [conceptual, board]
+   - affected_modes: [conceptual]   # board/competitive DORMANT (Rule 20)
    - handoff_to: runtime_generation
    ```
 3. **One verification note** citing the regression-guard probe that now passes (typically a canvas-pixel probe or a screenshot-diff).
@@ -68,7 +68,7 @@ No engine code is changed in that case.
 - `Read`, `Grep`, `Glob`, `Explore` on any file — navigation is free.
 - `Edit`, `Write` on the sacred files listed below and nowhere else.
 - `Bash` for `npm run dev`, `npx tsc --noEmit`, and cache-inspection SQL (SELECT only).
-- `preview_*` tools for visual verification (`preview_start`, `preview_snapshot`, `preview_screenshot`, `preview_eval`, `preview_inspect`).
+- Visual verification (2026-07-12 — the old `preview_*` MCP tools no longer exist): **THE EYE** — `npm run visual:eyes -- <id>` for deterministic frames + gates ($0), then **dispatch eye-walker** for the frame reads (never load ~100 PNGs in your own context). **Node-driver blind spot:** a mocked-THREE/DOM driver verifies VALUES (arrow length set, position assigned) but is BLIND to viewport clipping, depth occlusion, and camera framing — root-cause visual symptoms from actual EYE pixels (compute projected screen positions, check in-frame), never from driver output alone.
 
 ## Tools forbidden
 
@@ -84,6 +84,13 @@ No engine code is changed in that case.
 
 The cluster owns these files end-to-end. Bugs routed here land on one of these. If a fix would require editing anything else, stop and escalate.
 
+**Live renderers — the current product surface (2026-07-12 doctrine sync)**
+- [src/lib/renderers/field_3d_renderer.ts](../../src/lib/renderers/field_3d_renderer.ts) — Three.js 3D sims (ALL current diamonds). The PRIMARY live surface: scenario engines, sprite labels (`createLabelSprite`/`createWideLabelSprite`), glow/choreography, postMessage consumer side. No backticks inside its template-literal body.
+- [src/lib/renderers/particle_field_renderer.ts](../../src/lib/renderers/particle_field_renderer.ts) — p5 2D renderer (Ch.3 current electricity): circuit/KCL scenario engine, `macro_view` split canvas (Rule 33), V–I graph surface.
+- [src/lib/validators/visual/deriveStateMeta.ts](../../src/lib/validators/visual/deriveStateMeta.ts) — **MUST be co-edited in the SAME change** whenever a new scenario, one-shot, or `*_at_ms` field is added to either live renderer; otherwise THE EYE mis-classifies the state and false-fails (see the 2026-07-08 silent-failure catalog row).
+
+**[LEGACY — PCPL/old 2D stack below (parametric display layer, graph_interactive, the 14 PCPL primitives); NOT the current product surface. Kept editable for legacy fixes only.]**
+
 **Display-layer of the parametric renderer**
 - [src/lib/renderers/parametric_renderer.ts](../../src/lib/renderers/parametric_renderer.ts) — ~2383 lines. This cluster owns:
   - `drawForceArrow()` (line ~989), `drawVector()` (line ~1222), `drawAngleArc()` (line ~1459).
@@ -95,9 +102,9 @@ The cluster owns these files end-to-end. Bugs routed here land on one of these. 
 
 **Fallback and mode-specific renderers**
 - [src/lib/renderers/mechanics_2d_renderer.ts](../../src/lib/renderers/mechanics_2d_renderer.ts) — ~5752 lines, 10+ scenarios. Fallback for concepts not yet on PCPL.
-- [src/lib/renderers/graph_interactive_renderer.ts](../../src/lib/renderers/graph_interactive_renderer.ts) — emits `GRAPH_INTERACTIVE_RENDERER_CODE`; reads `panel_b_config` from concept JSON; bilateral sync with Panel A via `PARAM_UPDATE`.
+- [src/lib/renderers/graph_interactive_renderer.ts](../../src/lib/renderers/graph_interactive_renderer.ts) **[LEGACY]** — emits `GRAPH_INTERACTIVE_RENDERER_CODE`; reads `panel_b_config` from concept JSON; bilateral sync with Panel A via `PARAM_UPDATE`.
 
-**PCPL primitive library** — [src/lib/pcplRenderer/primitives/](../../src/lib/pcplRenderer/primitives/), 14 files:
+**PCPL primitive library [LEGACY]** — [src/lib/pcplRenderer/primitives/](../../src/lib/pcplRenderer/primitives/), 14 files:
 `angle_arc.ts`, `annotation.ts`, `body.ts`, `comparison_panel.ts`, `derivation_step.ts`, `force_arrow.ts`, `formula_box.ts`, `label.ts`, `mark_badge.ts`, `motion_path.ts`, `projection_shadow.ts`, `slider.ts`, `surface.ts`, `vector.ts`.
 
 **PCPL core**
@@ -124,11 +131,11 @@ Rendering bugs that Zod + API-level probes cannot catch. Each row lists the bug 
 | Bug class | Active probe |
 |---|---|
 | Force arrow mis-resolves when `force_id` matches an engine-computed force AND spec carries `direction_deg` (friction bug #2 — fs_arrow, fs_max, fk all drew DOWNWARD with `direction_deg: 180, origin_anchor: body_left`) | Canvas-pixel probe: for any arrow with `direction_deg: 180` and a horizontal anchor, sample pixels at expected tip coordinates. Tip.x must be < origin.x (arrow points left); \|tip.y − origin.y\| < 5 px (no downward drift). Floor_y is not crossed. |
-| Applied-F arrow invisible (bug #3) | Every state with `F > 0` in `physics_engine_config.variables` renders a primitive with non-zero stroke alpha at the expected zone. `preview_inspect` the stroke value, assert > 0. |
+| Applied-F arrow invisible (bug #3) | Every state with `F > 0` in `physics_engine_config.variables` renders a primitive with non-zero stroke alpha at the expected zone. Probe the stroke value via a Playwright evaluate or a THE-EYE frame pixel-check (the old `preview_inspect` tool is RETIRED), assert > 0. |
 | Weight (mg) and Normal (N) arrows missing from engine-fallback (bug #4) | When `PM_physics.forces` contains `mg` or `N`, the renderer draws them even if `scene_composition.primitives` omits them. Probe: count drawn arrows ≥ count of physics_forces with `show: true`. |
 | Ghost duplicate body primitive on state transition (bug #5) | Scene diff between STATE_N and STATE_N+1 must not produce superimposed body primitives during the 800 ms fade. Screenshot-diff at t=400 ms: only one body instance visible. |
 | Previous state's primitives bleed into next state (bug #7) | TeacherPlayer state-swap MUST clear the prior `scene_composition` before applying the new one. Probe: at `STATE_REACHED` postMessage, assert canvas pixels at prior-state focal primitive coordinates are background color. **Rule-31 scope note (2026-07-02):** the clear applies to authored `scene_composition` primitives ONLY. Scenario-owned control panels/readouts (`mag_sliders`, `far_readout`, …) PERSIST across states by design — the Rule 31 one-panel model toggles their rows per state (`applyXState` show/hide), never rebuilds them. A "fix" that destroys/recreates a scenario panel on state-swap is rejected (it breaks slider position-stability, catch #3). |
-| Slider value changes, physics doesn't recompute (bug #10) | `PARAM_UPDATE` listener must re-eval `PM_physics.variables`, re-run the matching `computePhysics_<concept>` (read-only call into runtime_generation territory), and redraw. Probe: change slider value via `preview_fill`, then `preview_snapshot`; arrow length changed proportionally. |
+| Slider value changes, physics doesn't recompute (bug #10) | `PARAM_UPDATE` listener must re-eval `PM_physics.variables`, re-run the matching `computePhysics_<concept>` (read-only call into runtime_generation territory), and redraw. Probe: drive the slider via Playwright (or a `PARAM_UPDATE` postMessage) and screenshot before/after (the old `preview_fill`/`preview_snapshot` tools are RETIRED); arrow length changed proportionally. |
 | NEW field_3d scenario ships without its `deriveStateMeta.ts` reveal_hold/D7 entry or its `#sliders` exclusion-chain entry (2026-07-08, `magnetic_flux_loop`) | Landed BOTH in the same change as the renderer code (`maxRevealForField3dState` candidate + explicit interactive-vs-reveal_hold classification in `deriveHoldExpectations`, plus `isMfl` added to the generic `#sliders` display-condition NOT-list). Probe: `npm run visual:eyes -- <id>` — every guided state classifies `reveal_hold` (not a false-fail static tail), the explore state classifies `interactive`, and no dedicated panel's rows bleed into the generic `#sliders` panel on any state. |
 
 Add a row to this catalog every time a new rendering bug class is surfaced. The catalog is the regression suite.
@@ -159,7 +166,24 @@ scenario_type covered a NON-continuously-spinning loop with a live signed flux r
 
 - **Rule 6** — `PM_currentState` is the ONLY state variable. Never introduce a parallel `currentState` integer anywhere in this cluster. A fix that adds a second state variable is rejected.
 - **Rule 19** — `scene_composition.primitives.length ≥ 3` per state. The renderer MUST NOT hide a thin JSON via silent fallback drawing. If a state ships with 0–2 primitives, the renderer renders what's there and the probe fails — then `json_author` gets the handoff-back. Visual layer lives in JSON, not in renderer mercy.
-- **Rule 21** — Board mode rendering: `canvas_style: "answer_sheet"` produces a white ruled background; `derivation_sequence` drives handwriting animation primitive-by-primitive; every state carries a `mark_badge` tied to a line in `mark_scheme`. These are rendered here.
+- **Rule 21** — **[DORMANT — Rule 20 conceptual-only phase]** Board mode rendering: `canvas_style: "answer_sheet"` produces a white ruled background; `derivation_sequence` drives handwriting animation primitive-by-primitive; every state carries a `mark_badge` tied to a line in `mark_scheme`. These are rendered here.
+
+## Rule 36 — frame-rate independence (2026-07-12 doctrine sync)
+
+The renderer clock is the INVARIANT, not a per-sim test. Both live renderers accumulate REAL elapsed
+ms and run **0–3 fixed 1/60 s steps per frame** (`__pmSteps`/`dtStep` in field_3d; the p5 `deltaTime`
+accumulator in particle_field) — numerically identical at 60 Hz, rate-correct on 120 Hz+ hardware.
+
+- **Every integrator MUST stay linear in dt** (N steps × 0.016 ≡ 0.016 × N).
+- Under a `SET_TIME_FREEZE` pin the step count is FORCED to 1, so THE EYE's frozen baselines stay
+  byte-identical by construction.
+- **NEVER hardcode a per-frame delta (`time += 0.016`) or assume 60 Hz** in either renderer. The failure
+  is INVISIBLE in dev and surfaces only on real classroom hardware — recorded Sarvam audio plays at
+  wall-clock while choreography runs ~2× on a 120 Hz tablet (fixed 2026-07-11, commit `6febde1`).
+- **`npm run check:renderer-syntax` is MANDATORY after every renderer edit** (node --check on both
+  emitted template bodies).
+- NOT clocks — leave them: geometry constants that legitimately use 0.016 s (tube/cylinder radii) and
+  the explorer drag-velocity divisor.
 
 ## Cache-invalidation contract
 
@@ -167,7 +191,7 @@ This cluster **writes directives, does not execute sweeps.**
 
 - Every fix that alters a rendering invariant (arrow direction, anchor resolution, scene diff, transition timing, board canvas style) ships with a regen directive in the output-contract format above.
 - The directive lists every `(concept_id, mode)` pair that depends on the changed invariant. When in doubt, enumerate wider, not narrower — stale cache is worse than redundant regen.
-- The directive names the cache tables affected. Conservative defaults: `simulation_cache` for every fix; `deep_dive_cache` + `drill_down_cache` whenever the fix affects primitive drawing or the iframe contract.
+- The directive names the cache tables affected. Default: `[simulation_cache]` — `deep_dive_cache` + `drill_down_cache` are dormant-path (Rule 18/22 [D]) and are listed only when a dormant-path fix actually touched them.
 - `runtime_generation` executes the sweep. This cluster does not run `DELETE FROM <cache_table>` SQL directly.
 
 **Until `engine_version` / `renderer_version` columns exist on cache rows (PLAN.md Phase G/H):**
@@ -185,7 +209,7 @@ Before writing engine code, confirm the bug is actually an engine bug. Three exp
 
 - If the bug requires a prompt change (e.g., Sonnet's `deep_dive_generator_v2.txt` emits bad specs) → route to `runtime_generation`.
 - If the bug requires a new JSON schema field → route to `alex:architect`, then `alex:json_author`.
-- If the bug reveals a missing `quality_auditor` probe → route to `quality_auditor` so the probe gets added to the 7-gate list.
+- If the bug reveals a missing `quality_auditor` probe → route to `quality_auditor` so the probe gets added to its gate list (Gates 0–20).
 - If the fix needs a Supabase schema change (new column, new index, new table) → stop and escalate to founder. No cluster has schema authority.
 
 ## Engine bug queue update (post-fix)
@@ -216,7 +240,8 @@ After fixing a bug, the queue is the durable home for the prevention rule. Updat
 - [ ] No edits to `src/prompts/**`, `src/app/api/**`, `src/lib/jsonModifier.ts`, `src/lib/aiSimulationGenerator.ts`, `src/lib/physics_constants/**`, `src/lib/physicsEngine/**`, or the `computePhysics_<concept>` block at lines 47–250 of `parametric_renderer.ts`.
 - [ ] Regen directive written with affected cache tables, affected concept IDs, affected modes, and `handoff_to: runtime_generation`.
 - [ ] `PM_currentState` remains the sole state variable (Rule 6).
-- [ ] For board-mode fixes: `canvas_style: "answer_sheet"`, `derivation_sequence`, and `mark_badge` still render correctly on `normal_reaction` and any other board-mode concept touched.
+- [ ] For board-mode fixes **[DORMANT — Rule 20 conceptual-only phase]**: `canvas_style: "answer_sheet"`, `derivation_sequence`, and `mark_badge` still render correctly on `normal_reaction` and any other board-mode concept touched.
+- [ ] **Rule 36:** no hardcoded per-frame delta / 60 Hz assumption introduced; integrators stay linear in dt; `npm run check:renderer-syntax` run after the renderer edit → clean.
 - [ ] For primitive-library fixes: every caller of the edited primitive checked; list the callers in the verification note.
 - [ ] `engine_bug_queue` row INSERTed or UPDATEd; silent-failure catalog table above also updated.
 

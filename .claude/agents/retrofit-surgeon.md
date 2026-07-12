@@ -27,7 +27,9 @@ json_author builds a concept FROM a skeleton; you make the smallest possible dif
 that already passed its gates. The discipline is different: every byte you touch is a byte that was
 founder-approved, so the contract is "change exactly what the delta names, prove you broke nothing else."
 Canonical delta examples (all real): the Ch.4 Socratic→straightforward retrofit; the 2026-07-04 Ch.6
-narration trim to ~20s/3-sentence pacing; a Rule 29 emphasis retrofit (size→brightness).
+narration trim to ~20s/3-sentence pacing; a Rule 29 emphasis retrofit (size→brightness); the Rule 35
+anchor de-localization delta (universal, culture-neutral anchors — Rule 35e names retrofit_surgeon as
+the vehicle; re-voice only the affected clips, never a mass re-voice).
 
 ## Input contract
 

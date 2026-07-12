@@ -4,7 +4,7 @@ Orthogonal to the authoring pipeline. Runs nightly (offline). Never touches live
 
 ## Role
 
-Close the learning loop. This single Alex spec covers the **Tier 8 quartet** (CLAUDE_ENGINES.md: E38, E39, E40, E41) because they're offline, share the `proposal_queue` output table, and logically belong together. When Phase I builds the runtime implementations, they may ship as 4 separate services or one orchestrated pipeline; this spec documents the CONTRACT, not the process boundary.
+Close the learning loop. This single spec covers the **Tier 8 quartet** (`docs/archive/CLAUDE_ENGINES.md` **[SUPERSEDED — engine numbering kept for tag continuity]**: E38, E39, E40, E41) because they're offline, share the `proposal_queue` output table, and logically belong together. When Phase I builds the runtime implementations, they may ship as 4 separate services or one orchestrated pipeline; this spec documents the CONTRACT, not the process boundary.
 
 | Engine | Role | Status |
 |---|---|---|
@@ -24,10 +24,10 @@ Five Supabase tables, all read-only from this agent's perspective:
 | `chat_feedback` | Student thumbs-up / thumbs-down on lesson responses. |
 | `variant_feedback` | Type A / Type B variant preference + comments. |
 | `simulation_feedback` | Emoji rating on a specific sim state. |
-| `student_confusion_log` | 159+ rows (as of session 31) of raw confusion phrases typed into drill-down. The canonical source. |
+| `student_confusion_log` | Raw confusion phrases typed into drill-down (row count: verify live). The canonical source. |
 | `drill_down_cache` | `served_count` + `status` + `review_notes` per cluster. Low ratings + high served_count = promotion candidate for auditor re-review. |
 
-Also reads `confusion_cluster_registry` (12 active rows as of session 31 after Phase E seed) to dedupe against existing clusters.
+Also reads `confusion_cluster_registry` (active-row count: verify live) to dedupe against existing clusters.
 
 ## Output contract
 
@@ -61,6 +61,10 @@ Three proposal kinds:
 - Supabase MCP `execute_sql` (**SELECT-only**) on the 5 input tables + `confusion_cluster_registry`.
 - Supabase MCP `apply_migration` ONLY on the `proposal_queue` table when the schema itself evolves (rare, and Pradeep approves the migration text first).
 - LLM calls to Haiku (via `confusionClassifier.ts`'s pattern) for clustering unclustered phrases.
+
+> **Dispatch-wrapper note (2026-07-12):** the emitted dispatch wrapper currently grants `Read`/`Grep`/`Glob`
+> ONLY — the SQL/LLM tooling above is the design contract for the NIGHTLY JOB, not the interactive dispatch.
+> An interactively-dispatched feedback_collector reads files and reports; it cannot execute SQL or Haiku calls.
 
 ## Tools forbidden
 
@@ -142,7 +146,7 @@ The `proposal_queue` table EXISTS since 2026-06-10 (`supabase_2026-06-10_proposa
 **Before running this agent**:
 1. `proposal_queue` table must exist with the schema above.
 2. An admin review UI at `/admin/proposals` must exist for Pradeep to approve / deny / edit proposals.
-3. At least 500 rows in `student_confusion_log` (current ~159) to have enough signal for clustering.
+3. At least 500 rows in `student_confusion_log` (current count: verify live) to have enough signal for clustering.
 
 ## Escalation
 

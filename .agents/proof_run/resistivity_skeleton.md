@@ -98,6 +98,8 @@ PRIMARY aha (S3) is inside `foundational` ✓ (foundational-coverage rule satisf
 
 ## 9. Real-world anchor (Indian, plain English, physics-true)
 
+> **[pre-Rule-35 — do NOT clone this anchor section. Anchors are UNIVERSAL/culture-neutral since 2026-07-10 (no country phrasing, festivals, brands, or asserted mains values). Clean clone targets: internal_resistance_skeleton.md, bar_magnet_in_uniform_field_skeleton.md.]**
+
 **Primary:** open the back of a room heater — the coil that glows orange is nichrome, but the cord feeding it is copper, and the same current flows through both. The coil is long, thin, and made of a material whose ρ is about sixty-five times copper's, so almost all the resistance — and therefore almost all the heat — lives in the coil, while the copper cord stays cool in your hand. R = ρL/A, engineered on purpose: the coil maximizes all three levers, the cord minimizes them. **Secondary (S5/S6):** touch a multimeter to a cold filament bulb and you read a fraction of its rated resistance — the tungsten's ρ climbs several-fold as it heats to glowing; and the reason lab-standard resistance boxes are wound with manganin is exactly its near-zero α — a resistance that refuses to drift with the weather.
 
 Why it hooks Class 11-12 JEE/NEET students: the heater coil is a physical object in most Indian homes every winter; "why nichrome for the element and copper for the wiring?" is a stock NCERT-derived board and NEET assertion-reason question, and the cold-bulb multimeter reading is checkable at home. Plain English, no Hinglish; no DC Pandey/HC Verma prose or figures.

@@ -1,5 +1,7 @@
 # RENDERER REGEN DIRECTIVE — electric_potential_meaning
 
+> **[VINTAGE — pre-Rule-31/35 architecture (Socratic beats, Indian anchors, EPIC-C). Historical record only — never clone.]**
+
 - cluster: renderer_primitives
 - fix_summary: added the electric_potential_meaning field_3d primitives (config-driven labelled equipotential shells, route-animating test charge + live work tally, q→2q grow, ΔV bracket + ∞·V=0 reference marker billboarded camera-right, draggable V-readout explorer with idle auto-sweep) + deriveStateMeta recognition for the V=W/q arc
 - affected_cache_tables: [simulation_cache]

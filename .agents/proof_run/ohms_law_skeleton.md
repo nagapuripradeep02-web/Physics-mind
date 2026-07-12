@@ -89,6 +89,8 @@ PRIMARY aha (S2) is inside `foundational` ✓ (foundational-coverage rule satisf
 
 ## 9. Real-world anchor (Indian, plain English, physics-true)
 
+> **[pre-Rule-35 — do NOT clone this anchor section. Anchors are UNIVERSAL/culture-neutral since 2026-07-10 (no country phrasing, festivals, brands, or asserted mains values). Clean clone targets: internal_resistance_skeleton.md, bar_magnet_in_uniform_field_skeleton.md.]**
+
 **Primary:** the round fan regulator on the wall — turn the knob and the fan speeds up in step; each notch raises the voltage across the motor and the current climbs in exact proportion. That steady, predictable "more push, proportionally more flow" is the straight line of Ohm's law, and how MUCH current each volt buys is set by one number: the resistance. **Secondary (S5):** the old filament bulb on the same board — as it warms from a dull orange to full glow, it stops obeying the straight line; its resistance rises with the heat, which is exactly the curving trace of S5.
 
 Why it hooks Class 11-12 JEE/NEET students: the regulator knob is a daily physical act in every Indian home; the filament bulb is NCERT's own non-ohmic example, and "does the bulb obey Ohm's law?" is a stock board/JEE assertion-reason question. Plain English, no Hinglish; no DC Pandey/HC Verma prose or figures.

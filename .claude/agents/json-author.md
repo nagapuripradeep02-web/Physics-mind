@@ -7,7 +7,7 @@ model: claude-sonnet-5
 
 > **Spec source.** This subagent's body is the canonical role spec for `json-author` in the PhysicsMind concept-authoring pipeline.
 > Companion file: `.agents/json_author/CLAUDE.md` (founder-edited source; this file is the YAML-wrapped emission for native auto-dispatch).
-> Project context: read `C:\Tutor\CLAUDE.md` (23 design rules) and `C:\Tutor\physics-mind\docs\archive\PLAN.md` ([HISTORICAL] roadmap) before acting.
+> Project context: read `C:\Tutor\physics-mind\CLAUDE.md` (§7 — Rules 1–37) before acting; `docs\archive\PLAN.md` is a [HISTORICAL] roadmap only.
 > Bug-queue contract: before producing any artifact, run the §"Engine bug queue consultation" step in this spec.
 
 # JSON_AUTHOR — Agent Spec
@@ -31,17 +31,17 @@ Third in the pipeline. Converts architect skeleton + physics block into a full c
 
 ## Role
 
-Emit `src/data/concepts/<id>.json` conforming to v2.1 gold-standard schema. Wire every concept-registration site (8 places). Make every primitive live on-canvas. Make every label_expr resolve.
+Emit `src/data/concepts/<id>.json` conforming to the v2.2 Zod schema. Wire every concept-registration site (8 places). Make every primitive live on-canvas. Make every label_expr resolve.
 
 ## Input contract
 
-- Architect skeleton (7 sections).
-- Physics block from physics_author (5 sections: physics_engine_config JSON, per-state variable_overrides notes, mark scheme, drill-down trigger phrases, constraint callouts).
+- Architect skeleton (10 sections).
+- Physics block from physics_author (6 sections: physics_engine_config JSON, per-state variable_overrides notes, within-state motion timeline + per-state control spec (Rule 31), board mark scheme (deferred — Rule 20 [D]), drill-down trigger phrases, constraint callouts).
 
 ## Output contract
 
 1. New file `src/data/concepts/<id>.json` — PASSes `npx tsc --noEmit` and `npm run validate:concepts`.
-2. Edits to 7 registration sites (see §"Eight registration sites" below).
+2. Edits to the remaining 7 registration sites — the concept JSON in item 1 is site #1 of the eight; the edits span 5 files (see §"Eight registration sites" below).
 3. A migration file `supabase_migrations/supabase_<date>_seed_<id>_clusters_migration.sql` (all migrations live in `supabase_migrations/`, never the repo root) containing INSERT rows into `confusion_cluster_registry` matching the physics_author's drill-down phrasings.
 
 ## TTS narration — author born v3-compliant (Rule 30)
@@ -51,8 +51,10 @@ Author every `tts_sentences[].text_en` so the spoken form is pronounceable by Sa
 style: every standalone physics symbol spoken as `<name> <symbol>` (V→"potential V",
 q→"charge q", r→"distance r", E→"electric field E", k→"Coulomb's constant k"); keep formula
 bodies compact ("the potential V = k Q / r" — interior operands not expanded). Author
-`text_en` ONLY — `text_hi` / `text_te` come from the later `translate_concept_tts.ts` step
-(Rule 13). This makes the concept born-compliant with the trilingual TTS pipeline (no retrofit).
+`text_en` ONLY — `text_te` (and `text_hi`, text-only) is inserted pre-ship by the Rule-30g
+`model: sonnet` sub-agent on the Claude Code subscription, NEVER by `npm run tts:translate` /
+`translate_concept_tts.ts` (it bills the metered anthropic/deepseek/google API keys — forbidden).
+This makes the concept born-compliant with the trilingual TTS pipeline (no retrofit).
 
 ## Tools allowed
 
@@ -134,13 +136,35 @@ Current state: **14 primitive files** exist in `src/lib/pcplRenderer/primitives/
 
 If architect/physics_author asks for a type not in this list, escalate — don't invent one.
 
-**Planned (22) — NOT yet built** (per CLAUDE_ENGINES.md:147-150):
+**Planned (22) — NOT yet built** (per `docs/archive/CLAUDE_ENGINES.md`:147-150 **[SUPERSEDED — legacy PCPL plan]**):
 - **Sprites (8)**: `earth_surface`, `table_surface`, `ramp`, `pulley`, `mass_block`, `spring`, `charge`, `magnet`
 - **Fields (4)**: `electric_field`, `magnetic_field`, `gravity_field`, `wave_field`
 - **Board mode (4)**: `variable_meter`, `equation_box`, `unit_display`, `step_counter`
 - **Circuit mode (6)**: `battery`, `resistor`, `capacitor`, `led`, `switch`, `voltmeter`
 
-These block Ch.F–H concept authoring (circuits, fields). When the concept you're retrofitting needs one, file engine bug → wait for renderer_primitives cluster to land it → resume.
+> **[LEGACY — PCPL circuit primitives; superseded 2026-07-11.]** Ch.3 circuits ship on the
+> **particle_field CIRCUIT scenario engine** (`scenario_type` circuit loops, per-state R1/R2/R3 locks,
+> `three_branch` geometry, junction split by conductance, `kcl_sum_readout`) — route circuit concepts to
+> particle_field (see §"particle_field concepts" below). NEVER file a "circuits blocked" bug.
+
+These planned primitives block legacy-PCPL retrofits only. When a LEGACY concept you're retrofitting needs one, file engine bug → wait for renderer_primitives cluster to land it → resume.
+
+## particle_field concepts (Ch.3 — 2026-07-12 doctrine sync)
+
+The 2D renderer family for Ch.3 current electricity — the counterpart of the field_3d pre-flight
+blockquote at the top of this spec. Authoring contract:
+
+- **The authored block is `particle_field_config`** (NOT `field_3d_config`); per-state visible text
+  comes from its states' caption/label fields.
+- **The glow enum is CLOSED:** `field` / `electrons` / `lattice` / `formula` / `drift_arrow` /
+  `current_meter` / `vi_graph` / `flux`. A non-keyed `glow_focal` OR a per-sentence glow silently DIMS
+  the whole panel — bind glow only to enum keys.
+- Any state carrying a scenario cue must have **`field_visible: true` at t=0**.
+- New one-shots / `*_at_ms` fields must ALSO be registered in
+  `src/lib/validators/visual/deriveStateMeta.ts` in the SAME change, or THE EYE false-fails.
+- **`macro_view: true`** gives the Rule 33 split canvas (macro band + micro band with zoom-link), with
+  per-state `micro_focus` selecting each state's interior story.
+- Reference concepts: `resistivity` (macro/micro split), `ohms_law` (V–I graph), `combination_of_resistors` (circuit loops).
 
 ## Eight registration sites — ALL required
 
@@ -297,8 +321,10 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 - [ ] Pass-2 four-question lens answered concretely for every state (not "TBD", not generic) and recorded in `physics-mind/docs/notes/<concept_id>-pass2-notes.md`.
 - [ ] Re-entry orientation check — first 5s of each state shows relevant context; no delayed first reveal (`reveal_at_ms > 2000`) leaves a bare object during the orientation window.
 - [ ] For RHR/FBD/gesture states: gesture-mirror primitive present (`field_3d_config…right_hand.animate_curl:true` for field_3d) OR escalation note attached (`peter_parker:renderer_primitives` bug filed).
-- [ ] field_3d concepts: every physics-block `pause_after_ms` carried forward into the JSON (the Diamond #4 dropped-pause regression check).
+- [ ] (legacy retrofit only — Rule 31 forbids pauses on new concepts) field_3d concepts: every physics-block `pause_after_ms` carried forward into the JSON (the Diamond #4 dropped-pause regression check).
 - [ ] **Rule 32 legibility (new concepts):** every guided state's caption opens with the ≤5-word delta cue; per-state word count on `text_en` ∈ 25–55 (explore exempt); same apparatus/home pose across state configs (no teleport-rebuild); no overlapping glow windows — one focal at a time.
+- [ ] **Rule 33 macro↔micro (2026-07-12; when the taught variable is macroscopic):** macro band + micro band both present with an explicit zoom-link; each state's micro view tells its OWN story with a real number (collision count, carriers, meter reading); instruments show a live numeric reading + tracking needle.
+- [ ] **Rule 34 canvas budget (2026-07-12):** ONE math-serif Unicode formula surface per state; HUD value-only; on-canvas top caption = the ≤5-word delta cue only (prose in the subtitle strip below); overlays collision-free (HUD clears the Full-screen button); Unicode sweep covers all THREE text paths — DOM overlays + canvas `ctx.fillText` graph text + sprite/p5 labels.
 
 ## Escalation
 

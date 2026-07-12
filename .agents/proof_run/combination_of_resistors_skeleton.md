@@ -161,6 +161,8 @@ All three are gold-standard shipped diamonds on the same renderer family. Edge a
 
 ## 9. Real-world anchor (Indian, plain English, physics-true)
 
+> **[pre-Rule-35 — do NOT clone this anchor section. Anchors are UNIVERSAL/culture-neutral since 2026-07-10 (no country phrasing, festivals, brands, or asserted mains values). Clean clone targets: internal_resistance_skeleton.md, bar_magnet_in_uniform_field_skeleton.md.]**
+
 **Primary — the home switchboard:** Every appliance in an Indian home — the ceiling fan, the fridge, the TV, the geyser — hangs on its own parallel branch across the same 220-volt mains. That is why each one gets the full mains voltage, why the fridge doesn't blink when you switch the fan off, and why the meter reading climbs as you switch more things ON: every new appliance is a new parallel path, and the house's total resistance FALLS. The wiring of every home the student has ever lived in is a running demonstration of the primary aha.
 
 **Secondary — festival string lights:** The old style of decorative string lights is dozens of tiny bulbs in SERIES — one bulb dies and the whole string goes dark, and someone has to test bulb by bulb to find the culprit. One broken filament breaks the only path. Modern strings (and homes) wire in parallel precisely to escape this.

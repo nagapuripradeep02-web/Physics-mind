@@ -77,6 +77,8 @@ flux induces an EMF." Visual confirmation: flux lines pack denser + needle swing
 
 ## 9. Real-world anchor (Indian, plain English)
 
+> **[pre-Rule-35 — do NOT clone this anchor section. Anchors are UNIVERSAL/culture-neutral since 2026-07-10 (no country phrasing, festivals, brands, or asserted mains values). Clean clone targets: internal_resistance_skeleton.md, bar_magnet_in_uniform_field_skeleton.md.]**
+
 Primary: a magnet dropped down a copper pipe falls in slow motion — Lenz's opposition you can watch.
 Secondary: the 220/400/765 kV grid step-up/step-down transformers + the induction cooktop.
 

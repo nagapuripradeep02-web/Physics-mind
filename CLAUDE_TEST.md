@@ -1,14 +1,17 @@
 # CLAUDE_TEST.md — PhysicsMind Visual Test Protocol
 # v1.0 | April 2026 | Opened whenever Claude runs a verification session
-# [2026-06-23] Aligned to TEACHER-FACING V1 (teachers pay). THE EYE (§5 audit / §6 sync) = ACTIVE gate.
+# [2026-07-12] The ACTIVE gate = THE EYE + eye-walker (see ACTIVE VERIFICATION PATH below).
+# §3–§5 = LEGACY chat-stack mechanics (their per-state audit DISCIPLINE lives on in eye-walker's protocol);
 # §7 deep-dive / §8 drill-down / §9 modes + §14/§15 (44-engine E25/E42/E43 framing) = DORMANT/historical.
 
 > **CURRENT-PHASE SCOPE (founder directive, 2026-06-11).** The loop right now is:
-> build quality EPIC-L simulations → professor review (Venkata/Asmi) → update →
+> build quality EPIC-L simulations → professor review (Asmi Singh) → update →
 > repeat (AUTHORING_PIPELINE.md stages ②–④). Later: ~100-student feedback pool →
 > free pilot with 2–3 teachers after 1–2 solid chapters → paid teacher
 > subscriptions after 3–4 chapters (v1 launch). Until then:
-> **§5 per-state audit, §6 sync = ACTIVE** (these verify sim quality).
+> **Sim quality is verified via the ACTIVE VERIFICATION PATH below (THE EYE → eye-walker)** —
+> §5's per-state audit questions survive as eye-walker's frame-reading protocol; §5/§6's
+> browser mechanics are legacy chat-stack.
 > **§7 deep-dive, §8 drill-down, §9 mode switch = DEFERRED** — deep-dive/drill-down
 > are not being built this phase, and board + competitive modes are dropped per the
 > conceptual-only directive (founder, 2026-06-11). Do not spend test time on them
@@ -17,6 +20,20 @@
 > **When to open this file**: Any session where the next task is "test X", "verify X", "visual sign-off", "Phase N smoke test", "pre-ship review", "regression check", or any prompt that involves running the product against real concepts. If you are authoring JSONs or writing code that is then visually tested before commit, this protocol is the gate.
 >
 > **Who this is for**: Claude Code operating as Engineer+QA in a single session. The protocol replaces "eyeball it" with a structured audit that catches quality drift — something the Architect cannot catch from diffs alone.
+
+---
+
+## ACTIVE VERIFICATION PATH (2026-07-12)
+
+For field_3d / particle_field concepts (the live product):
+
+1. `npm run visual:eyes -- <id>` (THE EYE, $0, mandatory) then dispatch **eye-walker** for the frame read.
+2. `npm run smoke:visual-validator -- <id> --dense` is a **PAID escalation** — run only when THE EYE is
+   inconclusive or the founder asks (cost ladder; known structural false-positives on particle_field).
+3. Review-site check: `npm run build:review -- <id>` + serve + HTTP 200.
+4. `npx tsc --noEmit` + `npm run validate:concepts`.
+
+Sections 3–5 below describe the RETIRED chat-stack protocol — legacy reference only.
 
 ---
 
@@ -41,41 +58,45 @@ Run before every test session. Fail-fast on any red.
 | 1.1 | Git working tree state | `git status` | Clean OR only intentional scratch files. If dirty, commit or stash first. |
 | 1.2 | TypeScript is green | `npx tsc --noEmit` | **0 errors**. If errors exist, STOP — fix before testing. |
 | 1.3 | Concept validator is green for target concept | `npm run validate:concepts` | Target concept **PASSES** (other concepts may still be in Phase E queue). |
-| 1.4 | Dev server not already running | `mcp__Claude_Preview__preview_list` | No existing `physics-mind-dev` server. If one exists, stop it first. |
-| 1.5 | Node / Next.js compiled cleanly | `mcp__Claude_Preview__preview_logs` after start | `✓ Ready in Xs` present. No red compile errors. |
+| 1.4 | Dev server not already running | `mcp__Claude_Preview__preview_list` **[STALE tooling — current sessions drive via Playwright/chrome-devtools + detached processes]** | No existing `physics-mind-dev` server. If one exists, stop it first. |
+| 1.5 | Node / Next.js compiled cleanly | `mcp__Claude_Preview__preview_logs` after start **[STALE tooling — see 1.4]** | `✓ Ready in Xs` present. No red compile errors. |
 | 1.6 | Supabase reachable | Any `execute_sql` with trivial SELECT | Returns rows. If down, abort — cache state cannot be trusted. |
 
-**Launch config**: `.claude/launch.json` must exist with name `physics-mind-dev`. If missing, create it with `{ runtimeExecutable: "npm", runtimeArgs: ["run", "dev", "--prefix", "physics-mind"], port: 3000 }`.
+**Launch config** **[STALE tooling — current sessions drive via Playwright/chrome-devtools + detached processes]**: `.claude/launch.json` must exist with name `physics-mind-dev`. If missing, create it with `{ runtimeExecutable: "npm", runtimeArgs: ["run", "dev", "--prefix", "physics-mind"], port: 3000 }`.
 
 ---
 
-## SECTION 2 — THE SIX-CACHE CLEAR (SACRED)
+## SECTION 2 — THE CACHE CLEAR (SACRED)
 
-Run these as **six separate queries** via `mcp__82beb286-...__execute_sql` with `project_id: "dxwpkjfypzxrzgbevfnx"`. Never batch. Never via curl. Never via Supabase dashboard UI.
+The **live** cache set is FOUR tables (CLAUDE.md §6):
 
 ```sql
 DELETE FROM simulation_cache;
 DELETE FROM lesson_cache;
 DELETE FROM response_cache;
 DELETE FROM session_context;
-DELETE FROM deep_dive_cache;
-DELETE FROM drill_down_cache;
 ```
 
-(CLAUDE.md §3 lists the first four. Phase D added `deep_dive_cache` and `drill_down_cache` — for sub-sim testing, clear those too.)
+`deep_dive_cache` and `drill_down_cache` exist but serve DORMANT paths (Rule 18/22 [D]) — clear them
+ONLY when testing the legacy deep-dive/drill-down flows.
 
-**Never touch the sacred tables** listed in CLAUDE.md §3 ("NEVER DELETE"). Those hold real student data. If a test seems to require clearing one, STOP and ask.
+**How to run:** one DELETE per query, **never batched**. Use the Supabase MCP (`execute_sql`,
+`project_id: "dxwpkjfypzxrzgbevfnx"`) when running interactively; headless, use the documented curl
+bypass (MCP OAuth doesn't run headless — see memory `feedback_node_fetch_flaky_curl_bypass`). Never
+via the Supabase dashboard UI for speed.
+
+**Never touch the sacred tables** listed in CLAUDE.md §6 ("NEVER DELETE"). Those hold real student data. If a test seems to require clearing one, STOP and ask.
 
 ---
 
-## SECTION 3 — LOGIN RITUAL (TESTBOT ACCOUNT)
+## SECTION 3 — LOGIN RITUAL (TESTBOT ACCOUNT) **[LEGACY — retired chat-stack protocol; not the live product surface]**
 
 ```
 Email:    testbot@example.com
-Password: password123
+Password: TESTBOT_PASSWORD in .env.local (rotated 2026-07-12 — never write the value into a committed doc)
 ```
 
-If the account doesn't exist, run `npx tsx --env-file=.env.local create-user.ts` from the repo root.
+If the account doesn't exist, run `npx tsx --env-file=.env.local create-user.ts` from the repo root (reads `TESTBOT_PASSWORD`).
 
 **UI quirk**: `/login` defaults to the **signup** form ("Create your account"). To sign in:
 
@@ -88,7 +109,7 @@ If the account doesn't exist, run `npx tsx --env-file=.env.local create-user.ts`
 
 ---
 
-## SECTION 4 — CONCEPT LOAD RITUAL
+## SECTION 4 — CONCEPT LOAD RITUAL **[LEGACY — retired chat-stack protocol; not the live product surface]**
 
 ```javascript
 // Step 1: Fill the concept input (chat composer)
@@ -142,7 +163,7 @@ Before clicking anything, extract the concept's ground truth:
 //     color words, direction words)
 ```
 
-### 5.1 State click ritual (USE THIS EXACT SEQUENCE)
+### 5.1 State click ritual (USE THIS EXACT SEQUENCE) **[LEGACY — retired chat-stack protocol; not the live product surface]**
 
 React's synthetic-event system can drop plain `.click()` calls when the pill is deep in a rerender. Use the MouseEvent sequence:
 
@@ -257,7 +278,7 @@ Record the alignment result as **"Script↔Sim: Aligned / Drifted (list drifts)"
 | `kinematics` (projectile, uniform) | (a) v-arrow tangent to path at current position; (b) trajectory traces a parabola under gravity (symmetric about apex); (c) g-arrow always downward. |
 | `circuit` (Ohm's, KCL, KVL) | (a) Current direction arrows consistent with conventional current (positive to negative external); (b) junction current sum = 0 (KCL); (c) loop voltage sum = 0 (KVL). |
 | `vectors` (addition, components) | (a) Resultant = vector sum of components (head-to-tail); (b) angle consistent with atan2(y,x); (c) magnitude label matches √(x²+y²). |
-| `graph_interactive` (Panel B) | (a) curve equation matches formula in Panel A (e.g. N = mg cos θ cosine shape); (b) live_dot x-coord === Panel A slider value; (c) y-coord on curve, not drifting. |
+| `graph_interactive` (Panel B) [LEGACY renderer — retired] | (a) curve equation matches formula in Panel A (e.g. N = mg cos θ cosine shape); (b) live_dot x-coord === Panel A slider value; (c) y-coord on curve, not drifting. |
 
 If any of these fail, **DO NOT sign off** — file a "physics integrity" bug with severity: HIGH.
 
@@ -281,7 +302,7 @@ Fill this block for EACH state and append to session report:
 ```
 ## STATE_<N> audit
 
-- advance_mode: <auto_after_tts | manual_click | wait_for_answer | interaction_complete>
+- advance_mode: <auto_after_tts | manual_click | wait_for_answer (LEGACY — Rule 15/31, never on new concepts) | interaction_complete>
 - allow_deep_dive: <true | false>
 - Probe: total=<N>, atZero=<N>, offCanvas=<N>, templateLeak=<N>
 - byType: <dict>
@@ -568,7 +589,7 @@ When you propose a check:
 | `scene_composition` shape differs: array directly for inline sub-states, `{primitives: []}` for some JSONs | Probe checks both: `Array.isArray(...) ? ... : (x?.primitives \|\| [])` |
 | Primitive position precedence | `_solverPosition > _resolvedPosition > position`. Never read raw `position` if solver ran. |
 | Sonnet 16k-token deep-dive takes 30-60s | Use `run_in_background: true` on sleep, then check logs. Never poll in a tight loop. |
-| Canvas bounds | 760 × 500 px (matches `createCanvas(760, 500)` in parametric_renderer.ts). Off-canvas = x<0 OR x>760 OR y<0 OR y>500. |
+| Canvas bounds | 760 × 500 px (matches `createCanvas(760, 500)` in parametric_renderer.ts) (PCPL/parametric legacy concepts only — field_3d/particle_field don't use this canvas). Off-canvas = x<0 OR x>760 OR y<0 OR y>500. |
 | Gemini overload → Anthropic Haiku fallback | Not a bug. But if Haiku then fails with "text content blocks must be non-empty," that IS a bug (empty system prompt on fallback). |
 | `npm run dev` from `C:\Tutor\` not `C:\Tutor\physics-mind\` | launch.json uses `--prefix physics-mind` to handle this. |
 
@@ -655,20 +676,20 @@ can be backfilled from PROGRESS.md.
 
 ---
 
-## QUICK REFERENCE — THE 10-STEP DRILL
+## QUICK REFERENCE — THE FAST-PATH DRILL (2026-07-12)
 
-For fast-path sessions where you already know the protocol, here's the minimal loop:
+For fast-path sessions where you already know the protocol, the minimal LIVE loop:
 
-1. `git status` clean + `npx tsc --noEmit` zero errors
-2. Clear 6 caches (SQL × 6, separate queries)
-3. `preview_start physics-mind-dev` → wait for "Ready"
-4. Login as testbot (toggle to sign-in first)
-5. Type concept name → submit form → wait for simulation
-6. For each state: click pill → wait 2s → probe → screenshot → record
-7. Bidirectional sync test (if dual-panel)
-8. ~~Deep-dive walk~~ — SKIP (deferred, see §7 banner)
-9. ~~Drill-down phrases~~ — SKIP (deferred, see §8 banner)
-10. Mode switches (if exist) → fill session report → commit or bubble to Architect
+1. `git status` clean + `npx tsc --noEmit` zero errors + `npm run validate:concepts` target PASS
+2. Clear the 4 live caches (separate queries; +2 dormant caches only for legacy flows — §2)
+3. `npm run visual:eyes -- <id>` ($0) → dispatch **eye-walker** for the frame read
+4. `npm run build:review -- <id>` + serve → HTTP 200 spot-check
+5. `smoke:visual-validator` ONLY as paid escalation (EYE inconclusive / founder asks)
+6. Zero new `engine_bug_queue` rows → founder review → `visual:approve`
+
+**[LEGACY chat-stack drill — retired]:** preview_start → testbot login → type concept →
+per-state pill clicks → sync test → mode switches. Reference only (§3–§6); deep-dive/drill-down
+remain deferred (§7/§8 banners).
 
 ---
 

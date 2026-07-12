@@ -85,6 +85,8 @@ No shipped atomic exists for "electric current" itself; drift_velocity is Ch.3's
 
 ## 9. Real-world anchor (Indian, plain English, physics-true)
 
+> **[pre-Rule-35 — do NOT clone this anchor section. Anchors are UNIVERSAL/culture-neutral since 2026-07-10 (no country phrasing, festivals, brands, or asserted mains values). Clean clone targets: internal_resistance_skeleton.md, bar_magnet_in_uniform_field_skeleton.md.]**
+
 **Primary:** You flip the switch by the bedroom door and the ceiling fan hums the same instant — yet each electron in that wire crawls at about a tenth of a millimetre per second and would need roughly fourteen hours to travel the few metres to the fan. What reaches the fan instantly is the electric field, not the electrons. **Secondary:** when power returns after a monsoon outage, every streetlight down the road comes on together — the field is established along the whole line at once; no electron "delivered" the electricity to the far end.
 
 Why it hooks Class 11-12 JEE/NEET students: the fan-switch is a daily, physical act in every Indian home; the "fourteen hours" number is shocking, checkable with the formula they just learned (a genuine i = neAv_d numerical in disguise), and it is a stock JEE assertion-reason trap.
