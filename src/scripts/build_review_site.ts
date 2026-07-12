@@ -2456,7 +2456,10 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     var name = (hasProfile && p.display_name) || m.display_name || (u && u.email) || 'Teacher';
     var email = (u && u.email) || '';
     var sub = '';
-    if (hasProfile && window.PM_TRIAL_END) {
+    if (hasProfile && window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now()) {
+      // paying member — the plan replaces the trial countdown (pm-auth sets PM_PLAN)
+      sub = window.PM_PLAN === 'founding-699' ? 'Founding · ₹699/mo' : 'Member';
+    } else if (hasProfile && window.PM_TRIAL_END) {
       var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
       sub = 'Trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
     } else if (staff) { sub = 'Staff · not tracked'; }
@@ -3004,7 +3007,12 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     profEl('pfTeaches').value = p.teaches || '';
     profEl('pfChapter').value = p.next_chapter || '';
     var t = profEl('pfTrial');
-    if (window.PM_TRIAL_END) {
+    if (window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now()) {
+      var until = new Date(window.PM_PAID_UNTIL);
+      t.textContent = (window.PM_PLAN === 'founding-699' ? 'Founding teacher · ₹699/month' : 'Member')
+        + ' · active until ' + until.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+      t.style.display = '';
+    } else if (window.PM_TRIAL_END) {
       var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
       t.textContent = 'Free trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
       t.style.display = '';
