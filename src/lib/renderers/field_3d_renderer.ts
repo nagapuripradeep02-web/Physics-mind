@@ -1715,6 +1715,19 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #E879F9; font-weight: bold;
 }
+/* bar_magnet_in_uniform_field GUIDED-state (S4-S8) value-only τ/U/T HUD (Rule
+   33d/34b) -- top:52px clears the review-chrome "Full screen" button
+   (top:10px/right:10px) the same way #acg_readout does; shares the #bmf_sliders
+   corner (top:12/right:12) but the two are mutually exclusive (the explorer
+   panel only shows in S9, this HUD only in S4-S8), so they never collide. */
+#bmf_hud {
+    position: fixed; top: 52px; right: 12px;
+    background: rgba(0,0,0,0.82); color: ${textColor};
+    padding: 9px 13px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 150px; display: none;
+}
+#bmf_hud div { margin: 2px 0; color: #E879F9; font-weight: bold; }
 #fcw_sliders {
     position: fixed; top: 12px; right: 12px;
     background: rgba(0,0,0,0.85); color: ${textColor};
@@ -2070,6 +2083,11 @@ body.pm-clean [style*="position: fixed"] {
     <label>θ(m,B) = <span id="bmf_theta_val">45</span>°</label>
     <input type="range" id="bmf_theta_slider" min="0" max="180" step="1" value="45">
     <div id="bmf_readout">τ = 0.0 · U = 0.0 · T = 0.0 s</div>
+</div>
+<div id="bmf_hud" class="pm_hud">
+    <div id="bmf_hud_tau"></div>
+    <div id="bmf_hud_u"></div>
+    <div id="bmf_hud_t"></div>
 </div>
 <div id="fcw_sliders" class="pm_hud">
     <div id="fcw_i_row"><label>I = <span id="fcw_i_val">2</span> A</label>
@@ -14303,6 +14321,15 @@ export const FIELD_3D_RENDERER_CODE = `
         lg.userData.pend_omega = 0;
         lg.userData.pend_k = stateDef.pend_k != null ? stateDef.pend_k : 5.0;
         lg.userData.pend_b = stateDef.pend_b != null ? stateDef.pend_b : 0.8;
+        // pose_compare (bar_magnet_in_uniform_field S6, NEW mode) + field_step
+        // (S8, NEW scripted mid-state B step-up) -- stored verbatim so
+        // updateDipoleInFieldFrame can read them as a PURE FUNCTION of
+        // (time - rotation_start_time), Rule 26/36. null when a state doesn't
+        // author them, so every other state/scenario using this shared engine
+        // (dipole_in_uniform_field, pe_external_field's dipole phase) is
+        // completely unaffected -- presence-gated, not scenario_type-gated.
+        lg.userData.pose_compare = stateDef.pose_compare || null;
+        lg.userData.field_step = stateDef.field_step || null;
 
         function setVisibleWithFade(obj, want) {
             if (!obj) return;
@@ -14313,8 +14340,26 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var fv = ex.force_vectors || {};
-        setVisibleWithFade(findTorqueElementById("dpf_f_plus"), !!fv.show_plus);
-        setVisibleWithFade(findTorqueElementById("dpf_f_minus"), !!fv.show_minus);
+        // bar_magnet_in_uniform_field STATE_3 vector-grow archetype (Rule 31/32):
+        // the authored narrative is +mB grows in FIRST, then -mB after a readable
+        // stagger (physics_author's beat sheet: 800-1600ms / 1900-2700ms) -- both
+        // arrows fading in together over ~0.6s then holding for the rest of the
+        // 21s state read as frozen to eye_walker. Scoped tightly to this exact
+        // scenario+state (never the dipole_in_uniform_field sibling or any other
+        // bar_magnet_in_uniform_field state) so nothing else changes. -mB is kept
+        // VISIBLE (so its opacity/length tween runs) but its fadeStartTime is
+        // scheduled ~1.1s into the future -- dpfGrow/tweenOpacity below already
+        // clamp a not-yet-arrived fadeStartTime to a near-zero stub, so no new
+        // per-frame accumulator is needed (deterministic under SET_TIME_FREEZE).
+        var isBmfCoupleStagger = (config.scenario_type === "bar_magnet_in_uniform_field" && PM_currentState === "STATE_3");
+        if (isBmfCoupleStagger && fv.show_plus && fv.show_minus) {
+            setVisibleWithFade(findTorqueElementById("dpf_f_plus"), true);
+            var fMinusStag = findTorqueElementById("dpf_f_minus");
+            if (fMinusStag) { fMinusStag.visible = true; fMinusStag.userData.fadeStartTime = time + 1.1; }
+        } else {
+            setVisibleWithFade(findTorqueElementById("dpf_f_plus"), !!fv.show_plus);
+            setVisibleWithFade(findTorqueElementById("dpf_f_minus"), !!fv.show_minus);
+        }
         var fpl = findTorqueElementById("dpf_f_plus_lbl"); if (fpl) fpl.visible = !!fv.show_plus;
         var fml = findTorqueElementById("dpf_f_minus_lbl"); if (fml) fml.visible = !!fv.show_minus;
 
@@ -14405,8 +14450,76 @@ export const FIELD_3D_RENDERER_CODE = `
         } else if (mode === "oscillation") {
             var T = lg.userData.oscillation_period_s || 4;
             var amp = lg.userData.oscillation_amplitude_deg || 20;
-            var phi = ((time - lg.userData.rotation_start_time) / T) * 2 * Math.PI;
-            applyTorqueLoopTheta(lg, amp * Math.cos(phi));
+            var fs = lg.userData.field_step;
+            if (fs && typeof fs.at_ms === "number" && typeof fs.from_B === "number"
+                && typeof fs.to_B === "number" && fs.from_B > 0) {
+                // bar_magnet_in_uniform_field STATE_8 (NEW): a scripted mid-state
+                // B step-up (from_B -> to_B at at_ms). T = 2pi*sqrt(I/mB) so
+                // T_after = T_before / sqrt(to_B/from_B) -- the swing visibly
+                // QUICKENS. Rebase the PHASE (not the angle) at the step instant
+                // so theta is continuous across the transition (same idiom as
+                // REPLAY_ANIMATIONS' rotation_start_time rebase, but computed as
+                // a PURE FUNCTION of elapsed time so it stays frame-rate
+                // independent + deterministic under SET_TIME_FREEZE, Rule 36 --
+                // no stateful per-frame accumulator).
+                var fsElapsedS = time - lg.userData.rotation_start_time;
+                var fsStepS = fs.at_ms / 1000;
+                var fsTafter = T / Math.sqrt(Math.max(0.01, fs.to_B / fs.from_B));
+                var fsPhiAtStep = (fsStepS / T) * 2 * Math.PI;
+                var fsPhi = (fsElapsedS <= fsStepS)
+                    ? (fsElapsedS / T) * 2 * Math.PI
+                    : fsPhiAtStep + ((fsElapsedS - fsStepS) / fsTafter) * 2 * Math.PI;
+                applyTorqueLoopTheta(lg, amp * Math.cos(fsPhi));
+                lg.userData.fieldStepRatio = (fsElapsedS <= fsStepS) ? 1 : (fs.to_B / fs.from_B);
+            } else {
+                var phi = ((time - lg.userData.rotation_start_time) / T) * 2 * Math.PI;
+                applyTorqueLoopTheta(lg, amp * Math.cos(phi));
+                lg.userData.fieldStepRatio = 1;
+            }
+        } else if (mode === "pose_compare") {
+            // bar_magnet_in_uniform_field STATE_6 (NEW mode): snap-hold-snap
+            // through an authored list of poses ("biggest at 90 deg" contrast --
+            // 0 deg hold -> transition -> 90 deg hold -> transition -> 180 deg
+            // hold -> transition -> loops back to pose 0). A PURE FUNCTION of
+            // (time - rotation_start_time): walk the cumulative hold+transition
+            // windows to find which segment the elapsed (looped, if authored)
+            // time falls in, and either hold flat at a pose's theta or ease
+            // between the previous/next pose during its transition window.
+            // Frame-rate independent + deterministic under SET_TIME_FREEZE
+            // (Rule 36) -- no stateful per-frame accumulator, same idiom as
+            // theta_sweep/oscillation above.
+            var pc = lg.userData.pose_compare;
+            if (pc && Array.isArray(pc.poses) && pc.poses.length > 0) {
+                var pcTrans = pc.transition_ms != null ? pc.transition_ms : 400;
+                var pcPoses = pc.poses;
+                var pcCycleMs = 0;
+                for (var pci = 0; pci < pcPoses.length; pci++) {
+                    pcCycleMs += (pcPoses[pci].hold_ms != null ? pcPoses[pci].hold_ms : 1500) + pcTrans;
+                }
+                var pcElapsedMs = Math.max(0, (time - lg.userData.rotation_start_time) * 1000);
+                var pcT = (pc.loop !== false)
+                    ? (pcCycleMs > 0 ? pcElapsedMs % pcCycleMs : 0)
+                    : Math.min(pcElapsedMs, pcCycleMs);
+                var pcAcc = 0;
+                var pcTheta = pcPoses[0].theta_deg != null ? pcPoses[0].theta_deg : 0;
+                for (var pcj = 0; pcj < pcPoses.length; pcj++) {
+                    var pcHold = pcPoses[pcj].hold_ms != null ? pcPoses[pcj].hold_ms : 1500;
+                    var pcFromTheta = pcPoses[pcj].theta_deg != null ? pcPoses[pcj].theta_deg : 0;
+                    var pcNext = pcPoses[(pcj + 1) % pcPoses.length];
+                    var pcToTheta = pcNext.theta_deg != null ? pcNext.theta_deg : pcFromTheta;
+                    if (pcT < pcAcc + pcHold) { pcTheta = pcFromTheta; break; }
+                    pcAcc += pcHold;
+                    if (pcT < pcAcc + pcTrans) {
+                        var pcFrac = pcTrans > 0 ? (pcT - pcAcc) / pcTrans : 1;
+                        var pcEased = 0.5 - 0.5 * Math.cos(Math.min(1, Math.max(0, pcFrac)) * Math.PI);
+                        pcTheta = pcFromTheta + (pcToTheta - pcFromTheta) * pcEased;
+                        break;
+                    }
+                    pcAcc += pcTrans;
+                    pcTheta = pcToTheta;
+                }
+                applyTorqueLoopTheta(lg, pcTheta);
+            }
         } else if (mode === "theta_sweep") {
             var Ts = lg.userData.theta_sweep_period_s || 10;
             var phs = ((time - lg.userData.rotation_start_time) / Ts) * 2 * Math.PI;
@@ -14458,7 +14571,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!obj || !obj.userData) return 1;
             var t0 = obj.userData.fadeStartTime;
             if (t0 == null || t0 < 0) return 1;
-            return Math.min(1, (time - t0) / (dur || 0.6));
+            // Clamped at 0 (not just 1) so a fadeStartTime SCHEDULED into the
+            // future (the STATE_3 staggered-grow trick above) reads as a clean
+            // zero-length stub instead of a negative fraction until 'time'
+            // catches up to it. Every existing caller always set fadeStartTime
+            // to the current 'time' (never future), so time - t0 was already
+            // >= 0 in every prior usage -- this is a no-op for them.
+            return Math.max(0, Math.min(1, (time - t0) / (dur || 0.6)));
         }
 
         var thetaRad = lg.userData.theta_deg * Math.PI / 180;
@@ -14577,12 +14696,40 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
+        // field_step (bar_magnet_in_uniform_field STATE_8, NEW): once B steps
+        // up (lg.userData.fieldStepRatio set by the oscillation branch above),
+        // the ambient B-field arrows visibly LENGTHEN + BRIGHTEN in proportion
+        // (5 -> 10 doubles length/opacity), giving the "cause" (the field
+        // strengthening) a visible payoff of its own, distinct from the
+        // quickening swing. Gated on lg.userData.field_step being present, so
+        // every other bar_magnet_in_uniform_field state and the sibling
+        // dipole_in_uniform_field/pe_external_field are completely untouched.
+        if (lg.userData.field_step) {
+            var fsRatio = Math.max(0.6, Math.min(2.0, lg.userData.fieldStepRatio || 1));
+            var fsBaseLen = 0.55, fsBaseHeadLen = 0.14, fsBaseHeadW = 0.09;
+            var fsBaseOpacity = (config.ambient_field && typeof config.ambient_field.opacity === "number") ? config.ambient_field.opacity : 0.42;
+            var fsHeadScale = Math.min(1.3, fsRatio);
+            for (var fsi = 0; fsi < sceneObjects.length; fsi++) {
+                var fso = sceneObjects[fsi];
+                if (!fso.userData || fso.userData.elementType !== "ambient_field") continue;
+                if (typeof fso.setLength === "function") {
+                    fso.setLength(fsBaseLen * fsRatio, fsBaseHeadLen * fsHeadScale, fsBaseHeadW * fsHeadScale);
+                }
+                if (fso.children) {
+                    fso.children.forEach(function(c) { if (c.material) { c.material.transparent = true; c.material.opacity = Math.min(0.85, fsBaseOpacity * fsRatio); } });
+                }
+            }
+        }
+
         // Fade-in tween for newly-visible force arrows / τ / badge.
         function tweenOpacity(obj) {
             if (!obj || !obj.visible) return;
             var t0 = obj.userData.fadeStartTime;
             if (t0 == null || t0 < 0) return;
-            var pNorm = Math.min(1, (time - t0) / 0.6);
+            // Clamped at 0 for the same future-fadeStartTime reason as dpfGrow
+            // above (no-op for every existing caller, which never scheduled a
+            // future timestamp before the STATE_3 staggered-grow addition).
+            var pNorm = Math.max(0, Math.min(1, (time - t0) / 0.6));
             if (obj.children && obj.children.length > 0) {
                 obj.children.forEach(function(c) { if (c.material) { c.material.transparent = true; c.material.opacity = pNorm; } });
             } else if (obj.material) { obj.material.transparent = true; obj.material.opacity = pNorm; }
@@ -14617,6 +14764,68 @@ export const FIELD_3D_RENDERER_CODE = `
                     var hudU = -0.1 * hudP * hudE * Math.cos(hudRad);
                     hudReadout.textContent = "\\u03c4 = " + hudTau.toFixed(2) + "   U = " + hudU.toFixed(2);
                 }
+            }
+        }
+
+        updateBmfHud();
+    }
+
+    // bar_magnet_in_uniform_field GUIDED-state (S4-S8) live τ/U/T value-only
+    // HUD (Rule 33d instrument readout) -- recomputes every frame from the LIVE
+    // animated angle (lg.userData.theta_deg) + the concept's LOCKED m/B defaults
+    // (guided states never expose sliders -- Rule 25d reproducible presets),
+    // using the REAL SI formulas: tau [N*m] = m*(B*1e-4)*sin(theta), U [J] =
+    // -m*(B*1e-4)*cos(theta), T [s] = 2*pi*sqrt(I/(m*(B*1e-4))), I = 1e-5 fixed
+    // (matches the S9 sandbox readout fix in refreshBmfLabels below, so the
+    // numbers are continuous across the whole concept). Hidden entirely on the
+    // S9 explorer (its own #bmf_readout inside #bmf_sliders already shows this
+    // live off the sliders) and on field-off states. Scoped to scenario_type so
+    // dipole_in_uniform_field (its own #dipole_readout, shown only with its own
+    // #dipole_sliders explorer) is completely untouched.
+    function updateBmfHud() {
+        if (config.scenario_type !== "bar_magnet_in_uniform_field") return;
+        var hudEl = document.getElementById("bmf_hud");
+        if (!hudEl) return;
+        var lgH = findTorqueLoopGroup();
+        var bmfSlidersElH = document.getElementById("bmf_sliders");
+        var explorerOn = !!(bmfSlidersElH && bmfSlidersElH.style.display === "block");
+        if (!lgH || explorerOn || lgH.userData.fieldOff) { hudEl.style.display = "none"; return; }
+        var tauArrH = findTorqueElementById("dpf_tau_arrow");
+        var uDotH = findTorqueElementById("dpf_u_dot");
+        var showTau = !!(tauArrH && tauArrH.visible);
+        var showU = !!(uDotH && uDotH.visible);
+        var isOsc = lgH.userData.rotation_mode === "oscillation" && !!lgH.userData.field_step;
+        if (!showTau && !showU && !isOsc) { hudEl.style.display = "none"; return; }
+        hudEl.style.display = "block";
+        var mDef = (config.slider_controls && config.slider_controls.m && typeof config.slider_controls.m.default === "number") ? config.slider_controls.m.default : 5;
+        var bDef = (config.slider_controls && config.slider_controls.B && typeof config.slider_controls.B.default === "number") ? config.slider_controls.B.default : 5;
+        var fsCfgH = lgH.userData.field_step;
+        var bLive = bDef;
+        if (fsCfgH && typeof fsCfgH.at_ms === "number" && typeof fsCfgH.from_B === "number" && typeof fsCfgH.to_B === "number") {
+            var elapsedH = (time - lgH.userData.rotation_start_time) * 1000;
+            bLive = (elapsedH >= fsCfgH.at_ms) ? fsCfgH.to_B : fsCfgH.from_B;
+        }
+        var thetaRadH = (lgH.userData.theta_deg || 0) * Math.PI / 180;
+        var bTeslaH = bLive * 1e-4;
+        var IH = 1e-5;
+        var tauValH = mDef * bTeslaH * Math.sin(thetaRadH);
+        var uValH = -mDef * bTeslaH * Math.cos(thetaRadH);
+        var tauRowEl = document.getElementById("bmf_hud_tau");
+        var uRowEl = document.getElementById("bmf_hud_u");
+        var tRowEl = document.getElementById("bmf_hud_t");
+        if (tauRowEl) {
+            tauRowEl.style.display = showTau ? "block" : "none";
+            if (showTau) tauRowEl.textContent = "\\u03c4 = " + (tauValH * 1000).toFixed(2) + " mN\\u00b7m";
+        }
+        if (uRowEl) {
+            uRowEl.style.display = showU ? "block" : "none";
+            if (showU) uRowEl.textContent = "U = " + (uValH >= 0 ? "+" : "\\u2212") + Math.abs(uValH * 1000).toFixed(2) + " mJ";
+        }
+        if (tRowEl) {
+            tRowEl.style.display = isOsc ? "block" : "none";
+            if (isOsc) {
+                var tValH = 2 * Math.PI * Math.sqrt(IH / Math.max(1e-9, mDef * bTeslaH));
+                tRowEl.textContent = "T = " + tValH.toFixed(2) + " s";
             }
         }
     }
@@ -32349,10 +32558,20 @@ export const FIELD_3D_RENDERER_CODE = `
                     applyTorqueLoopTheta(lgB, th);
                 }
 
-                var tauB = 0.1 * mv * bv * Math.abs(Math.sin(th * Math.PI / 180));
-                var uB = -0.1 * mv * bv * Math.cos(th * Math.PI / 180);
-                var periodB = 10 / Math.sqrt(Math.max(0.01, mv * bv));   // T ∝ 1/√(mB), relative s
-                if (readout) readout.textContent = "\\u03c4 = " + tauB.toFixed(2) + "   U = " + uB.toFixed(2) + "   T = " + periodB.toFixed(2) + " s";
+                // REAL SI formulas (engine_bug_queue bmf_readout_wrong_unit_convention,
+                // 2026-07-12 — the old relative-scaled formula (0.1*m*B*sinθ etc.)
+                // printed a unitless "τ = 1.77", numerically DISCONTINUOUS with the
+                // guided states' HUD (updateBmfHud) and computed_outputs. B is on a
+                // ×10⁻⁴ T slider scale (physics_engine_config constraint); I is fixed
+                // at 1×10⁻⁵ kg·m² (never a UI slider). τ/U scaled to milli-units so the
+                // panel never prints a bare/unitless number.
+                var thRadB = th * Math.PI / 180;
+                var bTeslaB = bv * 1e-4;
+                var IB = 1e-5;
+                var tauB = mv * bTeslaB * Math.sin(thRadB);
+                var uB = -mv * bTeslaB * Math.cos(thRadB);
+                var periodB = 2 * Math.PI * Math.sqrt(IB / Math.max(1e-9, mv * bTeslaB));   // T = 2π√(I/mB), seconds
+                if (readout) readout.textContent = "\\u03c4 = " + (tauB * 1000).toFixed(2) + " mN\\u00b7m   U = " + (uB >= 0 ? "+" : "\\u2212") + Math.abs(uB * 1000).toFixed(2) + " mJ   T = " + periodB.toFixed(2) + " s";
             }
 
             // Instrument rule (2026-06-30): same as the dipole — m / B drags scale

@@ -107,6 +107,7 @@ export function deriveMotionExpectations(
     // since the gauss block does not live on epic_l_path.states.
     const f3d = resolveField3dStates(physicsConfig);
     if (f3d) {
+        const f3dScenarioType = resolveField3dScenarioType(physicsConfig);
         for (const [stateId, stateRaw] of Object.entries(f3d.states)) {
             const state = asObj(stateRaw);
             const gauss = state ? asObj(state.gauss) : null;
@@ -263,6 +264,28 @@ export function deriveMotionExpectations(
                 || bmDipole.r_sweep_theta_locked === true || bmDipole.edipole_glide)) {
                 out[stateId] = true; continue;
             }
+            // bar_magnet_in_uniform_field (Ch.5 rebuild, 2026-07-12): the shared
+            // torque-loop engine's rotation_mode lives at the TOP LEVEL of the
+            // state object (not nested in a scenario-specific block like pef/
+            // mag/faraday), so without this branch every guided state falls
+            // through unclassified (undefined = 'unknown, skip' — D5/D6 never
+            // enforce motion on ANY of them). STATE_6 (pose_compare, NEW mode)
+            // snap-holds through 0deg/90deg/180deg and loops — genuine ongoing
+            // motion, so D5/D6 should expect it. STATE_8 (oscillation + a
+            // field_step block, NEW) scripts a mid-state B step-up that visibly
+            // quickens the swing — also genuine motion. Scoped tightly to this
+            // scenario_type so the sibling dipole_in_uniform_field (electric_
+            // dipole_in_field) — whose guided states with the SAME rotation_mode
+            // values already carry show_sliders:true and are classified
+            // 'interactive' in deriveHoldExpectations below — is completely
+            // untouched (this branch would never match its states anyway, since
+            // neither pose_compare nor field_step are ever authored there, but
+            // the scenario_type gate makes the isolation explicit).
+            if (f3dScenarioType === 'bar_magnet_in_uniform_field') {
+                const bmfRm = state && typeof state.rotation_mode === 'string' ? state.rotation_mode : null;
+                if (bmfRm === 'pose_compare') { out[stateId] = true; continue; }
+                if (bmfRm === 'oscillation' && state && asObj(state.field_step)) { out[stateId] = true; continue; }
+            }
             // Other field_3d states fall through to the epic_l_path-based pass
             // below (trajectory_mode / advance_mode), so don't set them here.
         }
@@ -395,6 +418,24 @@ function resolveField3dStates(config: Record<string, unknown> | null): Field3dSt
 function resolveCoilTurns(coil: Record<string, unknown> | null): number {
     const t = coil ? asNum(coil.turns, DEFAULT_COIL_TURNS) : DEFAULT_COIL_TURNS;
     return t > 0 ? t : DEFAULT_COIL_TURNS;
+}
+
+/**
+ * Resolve the field_3d `scenario_type` from EITHER the concept-JSON shape
+ * (`config.field_3d_config.scenario_type`) OR a cached physics_config that
+ * already flattened field_3d_config to the top level (`config.scenario_type`).
+ * Used ONLY to scope narrow, scenario-specific classification rules (e.g. the
+ * bar_magnet_in_uniform_field damped_swing/damped_pendulum reveal_hold fix)
+ * without perturbing every other scenario sharing the same shared rendering
+ * engine (dipole_in_uniform_field, pe_external_field, torque_on_loop_uniform_
+ * field all reuse the same torque-loop rotation_mode enum at the state level).
+ */
+function resolveField3dScenarioType(config: Record<string, unknown> | null): string | null {
+    if (!config) return null;
+    const f3dCfg = asObj(config.field_3d_config);
+    if (f3dCfg && typeof f3dCfg.scenario_type === 'string') return f3dCfg.scenario_type;
+    if (typeof config.scenario_type === 'string') return config.scenario_type;
+    return null;
 }
 
 /**
@@ -1650,6 +1691,7 @@ export function deriveHoldExpectations(
 
     const f3d = resolveField3dStates(config);
     if (f3d) {
+        const f3dScenarioType = resolveField3dScenarioType(config);
         for (const [stateId, stateRaw] of Object.entries(f3d.states)) {
             const state = asObj(stateRaw);
             if (!state) { out[stateId] = undefined; continue; }
@@ -1761,6 +1803,34 @@ export function deriveHoldExpectations(
                 || bmDipoleHold.r_sweep_theta_locked === true || bmDipoleHold.edipole_glide)) {
                 out[stateId] = bmDipoleHold.loop_choreography ? undefined : 'reveal_hold';
                 continue;
+            }
+            // bar_magnet_in_uniform_field (Ch.5 rebuild, 2026-07-12): STATE_4
+            // (damped_swing) and STATE_7 (damped_pendulum) are genuine one-shot
+            // settle choreographies that then HOLD their end pose (the compass-
+            // needle spring-back / the unstable-to-stable flip) — but the shared
+            // torque-loop engine's rotation_mode lives at the TOP LEVEL of the
+            // state (not nested in a block like pef/mag/swc), so without this
+            // branch they fall through this entire dispatch chain unclassified
+            // and land on the generic reveal[]-based fallback below, which has
+            // no candidate push for this scenario's rotation_mode (maxReveal
+            // defaults to DEFAULT_REVEAL_MS) — so they land on 'undefined'
+            // (strict motion gate) and D7 false-fails "animation died mid-state"
+            // once the settle finishes (~6-7s) well before the state's declared
+            // duration (24s/28s). Classify these TWO settling modes reveal_hold
+            // directly (bypassing the reveal-time fallback, same as the emHold/
+            // swcHold/memHold/etc. direct-classification pattern above). Scoped
+            // tightly to this scenario_type so the sibling dipole_in_uniform_
+            // field (electric_dipole_in_field) is untouched — its own guided
+            // states using these same rotation_mode values already carry
+            // show_sliders:true and are caught 'interactive' by the check right
+            // below (verified live: electric_dipole_in_field.json STATE_7
+            // damped_pendulum has show_sliders:true), so it never relied on the
+            // old undefined/strict classification in the first place.
+            if (f3dScenarioType === 'bar_magnet_in_uniform_field') {
+                const bmfRmHold = typeof state.rotation_mode === 'string' ? state.rotation_mode : null;
+                if (bmfRmHold === 'damped_swing' || bmfRmHold === 'damped_pendulum') {
+                    out[stateId] = 'reveal_hold'; continue;
+                }
             }
             if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }
             // charge_distribution explore state: the density slider drives the
