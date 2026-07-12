@@ -1082,6 +1082,13 @@ ${pilotHeadTags(1)}
     while (nextPos < order.length && isHidden(order[nextPos])) nextPos++;
     if (autoEl.checked && nextPos < order.length) {
       goToState(nextPos, playing);
+    } else if (cur() && cur().advance_mode === 'interaction_complete') {
+      // Explore/sandbox state: never auto-freeze. Let the clock free-run so the
+      // motion loops forever (the renderer's bead phase wraps % 1) and slider
+      // drags drive live continuous motion — a teacher can still Pause manually
+      // (the Pause button calls freeze()). Nothing left to reveal here, so keep
+      // playing and do NOT pin the clock. (founder 2026-07-12: the last state must
+      // run continuously, not stop after its narration ends.)
     } else {
       playing = false; setPlayBtnUI(false);
       try { stopAudio(); } catch (e) {}
