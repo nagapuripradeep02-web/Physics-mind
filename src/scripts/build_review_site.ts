@@ -2155,7 +2155,7 @@ ${pilotHeadTags(0)}
 <style>
   :root{ --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --clay:#CB6843; --clay-soft:#E3A07F;
          --clay-wash:rgba(203,104,67,.15); --sage:#74B594; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
-         --line:rgba(245,240,230,.10);
+         --line:rgba(245,240,230,.10); --clay-deep:#B0532E; --red:#E06A52;
          --font-disp:"Fraunces",Georgia,"Times New Roman",serif; --font-ui:"Inter",system-ui,-apple-system,sans-serif; }
   *{box-sizing:border-box;}
   html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;}
@@ -2169,7 +2169,7 @@ ${pilotHeadTags(0)}
   .masthead .mark svg{width:22px;height:22px;}
   .brand b{font-family:var(--font-disp);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ink);display:block;line-height:1;}
   .brand span{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;display:block;}
-  .who{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--ink-dim);}
+  .who{position:relative;margin-left:auto;display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--ink-dim);}
   .who button{border:1px solid var(--line);background:none;color:var(--ink-dim);font-size:12px;padding:6px 13px;
         border-radius:9px;cursor:pointer;font-family:var(--font-ui);transition:border-color .15s ease,color .15s ease;}
   .who button:hover{border-color:rgba(203,104,67,.5);color:var(--clay-soft);}
@@ -2215,15 +2215,40 @@ ${pilotHeadTags(0)}
   #pmSplash .nm{font-family:var(--font-disp);font-size:26px;font-weight:600;color:var(--ink);}
   #pmSplash .pw{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
   #pmSplash .pw b{color:var(--clay-soft);font-weight:600;}
-  /* ── Wave 1: profile / settings panel (click your name) ── */
-  .whoBtn{border:1px solid transparent;background:none;color:var(--ink-dim);font:inherit;font-size:12.5px;
-        cursor:pointer;padding:5px 10px;border-radius:9px;display:inline-flex;align-items:center;gap:6px;
-        transition:border-color .15s ease,color .15s ease,background .15s ease;font-family:var(--font-ui);}
-  .whoBtn:hover{border-color:rgba(203,104,67,.4);color:var(--clay-soft);background:var(--surface);}
-  .whoBtn::after{content:"\\25BE";font-size:9px;opacity:.7;}
-  .whoBtn.nomenu{cursor:default;}
-  .whoBtn.nomenu:hover{border-color:transparent;color:var(--ink-dim);background:none;}
-  .whoBtn.nomenu::after{content:none;}
+  /* ── Account menu — Claude-style dropdown (click your avatar) ── */
+  #pmTourLink{display:none !important;}   /* folded into the account menu (still clicked programmatically) */
+  #pmAcct{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--surface);
+        color:var(--ink);cursor:pointer;padding:5px 10px 5px 5px;border-radius:12px;font-family:var(--font-ui);
+        transition:border-color .15s ease,background .15s ease;}
+  #pmAcct:hover{border-color:rgba(203,104,67,.45);background:var(--surface-2);}
+  #pmAcct .pmAvatar{width:30px;height:30px;flex:none;border-radius:9px;background:var(--clay);color:#fff;
+        font-family:var(--font-disp);font-weight:600;font-size:15px;line-height:1;display:grid;place-items:center;
+        box-shadow:0 4px 12px -5px rgba(203,104,67,.7);}
+  #pmAcct .pmAcctText{display:flex;flex-direction:column;align-items:flex-start;gap:1px;line-height:1.15;text-align:left;}
+  #pmAcct .pmAcctName{font-size:12.5px;font-weight:600;color:var(--ink);max-width:160px;overflow:hidden;
+        text-overflow:ellipsis;white-space:nowrap;}
+  #pmAcct .pmAcctSub{font-size:10.5px;font-weight:500;color:var(--clay-soft);}
+  #pmAcct .pmAcctCh{font-size:9px;color:var(--ink-faint);transition:transform .15s ease;}
+  #pmAcct[aria-expanded="true"] .pmAcctCh{transform:rotate(180deg);}
+  #pmAcct.nomenu{cursor:default;}
+  #pmAcct.nomenu:hover{border-color:var(--line);background:var(--surface);}
+  #pmAcct.nomenu .pmAcctCh{display:none;}
+  #pmAcctMenu{position:absolute;right:0;top:calc(100% + 8px);z-index:9999;width:272px;max-width:calc(100vw - 24px);
+        background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:6px;
+        box-shadow:0 24px 55px -26px rgba(0,0,0,.9),0 6px 16px -10px rgba(0,0,0,.7);
+        opacity:0;transform:translateY(-6px) scale(.98);transform-origin:top right;pointer-events:none;
+        transition:opacity .14s ease,transform .14s ease;}
+  #pmAcctMenu.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+  #pmAcctMenu .pmMenuEmail{padding:9px 11px 8px;font-size:11.5px;color:var(--ink-faint);
+        white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  #pmAcctMenu .pmMenuGroup{padding:4px 0;border-top:1px solid var(--line);}
+  #pmAcctMenu .pmMenuRow{display:flex;align-items:center;gap:11px;width:100%;box-sizing:border-box;border:0;
+        background:none;color:var(--ink);font:500 13px var(--font-ui);text-align:left;text-decoration:none;
+        padding:9px 11px;border-radius:9px;cursor:pointer;transition:background .12s ease,color .12s ease;}
+  #pmAcctMenu .pmMenuRow:hover{background:var(--surface-2);color:var(--clay-soft);}
+  #pmAcctMenu .pmMenuRow .pmIco{width:16px;height:16px;flex:none;opacity:.8;}
+  #pmAcctMenu .pmMenuRow.pmDanger:hover{background:rgba(224,106,82,.12);color:var(--red);}
+  @media (prefers-reduced-motion: reduce){ #pmAcctMenu{transition:none;} #pmAcct .pmAcctCh{transition:none;} }
   #pmProfOvl{position:fixed;inset:0;z-index:99992;display:none;place-items:center;background:rgba(0,0,0,.5);padding:20px;}
   #pmProfOvl.open{display:grid;}
   #pmProfCard{width:min(94vw,430px);background:var(--surface);color:var(--ink);border:1px solid var(--line);
@@ -2260,7 +2285,27 @@ ${pilotHeadTags(0)}
   <div class="masthead">
     <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
-    <div class="who"><span class="chip" id="trialChip" hidden></span><button class="whoBtn" id="whoName" type="button" hidden></button><button id="signOutBtn">Sign out</button></div>
+    <div class="who">
+      <button id="pmAcct" type="button" aria-haspopup="menu" aria-expanded="false" hidden>
+        <span class="pmAvatar" id="pmAcctAvatar" aria-hidden="true"></span>
+        <span class="pmAcctText"><span class="pmAcctName" id="pmAcctName"></span><span class="pmAcctSub" id="pmAcctSub" hidden></span></span>
+        <span class="pmAcctCh" aria-hidden="true">&#9662;</span>
+      </button>
+      <div id="pmAcctMenu" role="menu" aria-label="Your account">
+        <div class="pmMenuEmail" id="pmAcctEmail" hidden></div>
+        <div class="pmMenuGroup">
+          <button class="pmMenuRow" id="pmMenuProfile" type="button" role="menuitem" hidden><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H2a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 8a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H8a1.65 1.65 0 0 0 1-1.51V2a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V8a1.65 1.65 0 0 0 1.51 1H22a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>My profile &amp; settings</button>
+          <button class="pmMenuRow" id="pmMenuTour" type="button" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Replay guided tour</button>
+          <a class="pmMenuRow" id="pmMenuHelp" href="mailto:pradeep@viditra.co" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Get help</a>
+        </div>
+        <div class="pmMenuGroup">
+          <a class="pmMenuRow" id="pmMenuPlans" href="https://viditra.co/#pricing" target="_blank" rel="noopener" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.4 3.8 1.2 4.6 5 5-3.8.4-4.6 1.2-5 5-.4-3.8-1.2-4.6-5-5 3.8-.4 4.6-1.2 5-5z"/></svg>View plans</a>
+        </div>
+        <div class="pmMenuGroup">
+          <button class="pmMenuRow pmDanger" id="pmMenuSignOut" type="button" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
+        </div>
+      </div>
+    </div>
   </div>
   <h1 id="catTitle">Simulation Library</h1>
   <p class="sub">Class 12 Physics &middot; ${entries.length} simulation${entries.length === 1 ? '' : 's'} &middot; open one and teach with it.</p>
@@ -2317,30 +2362,39 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
       });
     }
   } catch (e) {}
+  // ── Account trigger (avatar + name + trial) ──
+  function acctInitial(name, email) {
+    var s = (name || email || '').replace(/^\\s+/, '');
+    return s ? s.charAt(0).toUpperCase() : '•';
+  }
+  function setAcct(o) {
+    var a = document.getElementById('pmAcct'); if (!a) return;
+    var nm = document.getElementById('pmAcctName'); if (nm) nm.textContent = o.name || '';
+    var sub = document.getElementById('pmAcctSub'); if (sub) { sub.textContent = o.sub || ''; sub.hidden = !o.sub; }
+    var av = document.getElementById('pmAcctAvatar'); if (av) av.textContent = o.avatar || acctInitial(o.name, o.email);
+    var em = document.getElementById('pmAcctEmail'); if (em) { em.textContent = o.email || ''; em.hidden = !o.email; }
+    var pr = document.getElementById('pmMenuProfile'); if (pr) pr.hidden = !o.showProfile;
+    if (o.menu === false) a.classList.add('nomenu'); else a.classList.remove('nomenu');
+    a.hidden = false;
+  }
   if (window.PM_DEV) {
-    var who = document.getElementById('whoName');
-    if (who) { who.textContent = 'Local preview (dev — no login, no tracking)'; who.hidden = false; who.className = 'whoBtn nomenu'; }
-    var so = document.getElementById('signOutBtn');
-    if (so) so.style.display = 'none';
+    setAcct({ name: 'Local preview', sub: 'dev — no login, no tracking', avatar: '•', menu: false, showProfile: false });
   } else if (window.PM && PM.authReady) PM.authReady.then(function (u) {
-    var el = document.getElementById('whoName');
     var p = window.PM_PROFILE;
-    if (el && u) {
-      var m = u.user_metadata || {};
-      var staff = m.role === 'founder' || m.staff === true;
-      el.textContent = ((p && p.display_name) || m.display_name || u.email || '') + (staff ? '  ·  founder — not tracked' : '');
-      el.hidden = false;
-      if (p && p.display_name) { el.title = 'Your profile & settings'; el.addEventListener('click', openProfile); }
-      else { el.className = 'whoBtn nomenu'; }   // founder/staff: no profile row to edit
-    }
+    var m = (u && u.user_metadata) || {};
+    var staff = m.role === 'founder' || m.staff === true;
+    var hasProfile = !!(p && p.display_name);
+    var name = (hasProfile && p.display_name) || m.display_name || (u && u.email) || 'Teacher';
+    var email = (u && u.email) || '';
+    var sub = '';
+    if (hasProfile && window.PM_TRIAL_END) {
+      var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
+      sub = 'Trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
+    } else if (staff) { sub = 'Staff · not tracked'; }
+    setAcct({ name: name, sub: sub, email: email, menu: true, showProfile: hasProfile });
     // ── The hero surface: her name on her product (profile-gated; dev/staff see the generic title) ──
-    if (p && p.display_name) {
+    if (hasProfile) {
       try { document.getElementById('catTitle').textContent = p.display_name + '’s Class'; } catch (e) {}
-      if (window.PM_TRIAL_END) {
-        var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
-        var chip = document.getElementById('trialChip');
-        if (chip) { chip.textContent = 'Trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left'; chip.hidden = false; }
-      }
       try {
         if (!sessionStorage.getItem('pm_splash_shown')) {
           sessionStorage.setItem('pm_splash_shown', '1');
@@ -2353,10 +2407,41 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
       } catch (e) {}
     }
   });
-  document.getElementById('signOutBtn').addEventListener('click', function () {
-    pmt('logout', {});
-    if (window.PM && PM.auth) PM.auth.signOut();
-  });
+
+  // ── Account dropdown menu (Claude-style) ──
+  (function () {
+    var btn = document.getElementById('pmAcct');
+    var menu = document.getElementById('pmAcctMenu');
+    if (!btn || !menu) return;
+    function closeMenu() {
+      menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false');
+    }
+    function openMenu() { menu.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); pmt('acct_menu_open', {}); }
+    btn.addEventListener('click', function (e) {
+      if (btn.classList.contains('nomenu')) return;
+      e.stopPropagation();
+      if (menu.classList.contains('open')) closeMenu(); else openMenu();
+    });
+    document.addEventListener('click', function (e) {
+      if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+    });
+    var rProfile = document.getElementById('pmMenuProfile');
+    if (rProfile) rProfile.addEventListener('click', function () { closeMenu(); openProfile(); });
+    var rTour = document.getElementById('pmMenuTour');
+    if (rTour) rTour.addEventListener('click', function () {
+      closeMenu();
+      var link = document.getElementById('pmTourLink'); if (link) link.click();
+    });
+    var rPlans = document.getElementById('pmMenuPlans');
+    if (rPlans) rPlans.addEventListener('click', function () { pmt('view_plans', {}); closeMenu(); });
+    var rHelp = document.getElementById('pmMenuHelp');
+    if (rHelp) rHelp.addEventListener('click', function () { pmt('get_help', {}); closeMenu(); });
+    var rOut = document.getElementById('pmMenuSignOut');
+    if (rOut) rOut.addEventListener('click', function () { pmt('logout', {}); if (window.PM && PM.auth) PM.auth.signOut(); });
+  })();
 
   // ── Wave 1: profile / settings panel (view + edit your own teacher_profiles row) ──
   // RLS allows a teacher to update ONLY their own row (profiles_update_own), so the
@@ -2419,8 +2504,10 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
           trial_started_at: p.trial_started_at, trial_days: p.trial_days };
         try { document.getElementById('catTitle').textContent = patch.display_name + '’s Class'; } catch (e) {}
         try {
-          var wb = document.getElementById('whoName');
-          if (wb) wb.textContent = patch.display_name;
+          var nm2 = document.getElementById('pmAcctName');
+          if (nm2) nm2.textContent = patch.display_name;
+          var av2 = document.getElementById('pmAcctAvatar');
+          if (av2) av2.textContent = (patch.display_name || '').replace(/^\\s+/, '').charAt(0).toUpperCase() || '•';
         } catch (e) {}
         pmt('profile_saved', {});
         ok.textContent = 'Saved \\u2713'; ok.style.display = 'block';
