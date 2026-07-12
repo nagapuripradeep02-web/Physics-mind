@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "complex",
-  "source_book": "NCERT Class 12 Physics Part 1, Chapter 5 (Magnetism and Matter) §5.2 (The Bar Magnet) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor (the school-lab bar magnet + iron-filings demo and the magnetic compass). The atomic concept taught here is what a bar magnet IS: a MAGNETIC DIPOLE. Its magnetic field lines are continuous CLOSED loops — they emerge from the N pole, curve around outside to the S pole, and continue INSIDE the magnet from S back to N, so a line never starts or ends (unlike electric field lines, which begin on + charge and end on − charge). A direct consequence is that there is NO isolated magnetic pole (no magnetic monopole): break a bar magnet and you get two complete smaller magnets, each with its own N and S — new poles appear at the cut. The bar magnet carries a magnetic moment m that points from S to N, and it is the EQUIVALENT of a solenoid of moment m = NIA, producing the same far field. That far field is the dipole field, falling as 1/r³: at the same distance r the AXIAL field (along the magnet's axis) is exactly TWICE the EQUATORIAL field (perpendicular to it) — B_axial = (μ₀/4π)(2m/r³), B_equatorial = (μ₀/4π)(m/r³). This is the exact electrostatic ANALOG of an electric dipole (m ↔ p, μ₀/4π ↔ 1/4πε₀). The deepest student confusions targeted: (M1) field lines start at N and end at S like charges; (M2) you can isolate a north pole by cutting the magnet; (M3) magnetism is unrelated to electric current; (M4) the axial and equatorial fields are equal; (M5) the dipole field falls as 1/r² like a point charge. CUT-LINE: this concept teaches the bar magnet's IDENTITY and FIELD only — it does NOT cover the torque/oscillation/energy of a bar magnet in an external uniform field (τ = m × B, U = −m·B), which is the sibling concept bar_magnet_in_uniform_field, nor Gauss's law for magnetism (∮B·dA = 0), which is gauss_law_magnetism. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; the five misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "source_book": "NCERT Class 12 Physics Part 1, Chapter 5 (Magnetism and Matter) §5.2 (The Bar Magnet) — table-of-contents reference only; teaching authored from first principles. The atomic concept taught here is what a bar magnet IS: a MAGNETIC DIPOLE. Its magnetic field lines are continuous CLOSED loops — they emerge from the N pole, curve around outside to the S pole, and continue INSIDE the magnet from S back to N, so a line never starts or ends (unlike electric field lines, which begin on + charge and end on − charge). A direct consequence is that there is NO isolated magnetic pole (no magnetic monopole): break a bar magnet and you get two complete smaller magnets, each with its own N and S — new poles appear at the cut. The bar magnet carries a magnetic moment m that points from S to N, and it is the EQUIVALENT of a solenoid of moment m = NIA, producing the same far field. That far field is the dipole field, falling as 1/r³: at the same distance r the AXIAL field (along the magnet's axis) is exactly TWICE the EQUATORIAL field (perpendicular to it) — B_axial = (μ₀/4π)(2m/r³), B_equatorial = (μ₀/4π)(m/r³). This is the exact electrostatic ANALOG of an electric dipole (m ↔ p, μ₀/4π ↔ 1/4πε₀). The deepest student confusions targeted: (M1) field lines start at N and end at S like charges; (M2) you can isolate a north pole by cutting the magnet; (M3) magnetism is unrelated to electric current; (M4) the axial and equatorial fields are equal; (M5) the dipole field falls as 1/r² like a point charge. Four of these (M1, M2, M4, M5) are confronted at explicit misconception_watch pivot states via a straightforward cause-then-effect contrast beat (Rule 31, 2026-07-02 — never a predict-pause); M3 is taught straightforwardly with no watch entry. CUT-LINE: this concept teaches the bar magnet's IDENTITY and FIELD only — it does NOT cover the torque/oscillation/energy of a bar magnet in an external uniform field (τ = m × B, U = −m·B), which is the sibling concept bar_magnet_in_uniform_field, nor Gauss's law for magnetism (∮B·dA = 0), which is gauss_law_magnetism. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches).",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -26,7 +26,7 @@
   "physics_engine_config": {
     "variables": {
       "m": { "name": "Magnetic moment of the bar magnet", "unit": "A*m^2", "min": 1, "max": 10, "default": 5, "step": 1 },
-      "r": { "name": "Distance from the magnet centre", "unit": "m", "min": 1.2, "max": 3.5, "default": 2, "step": 0.1 }
+      "r": { "name": "Distance from the magnet centre", "unit": "m", "min": 1.2, "max": 4.0, "default": 2, "step": 0.1 }
     },
     "computed_outputs": {
       "B_axial": { "formula": "2 * m / (r * r * r)" },
@@ -59,425 +59,442 @@
   "aha_moment": {
     "state_id": "STATE_3",
     "statement": "Break a bar magnet and you never get a lone pole — only two dipoles.",
-    "visual_confirmation": "STATE_3 splits the magnet at its centre; brand-new N and S poles light up at the cut, and the field rearranges into two complete dipoles — repeating to show it happens no matter where you break it.",
+    "visual_confirmation": "STATE_3 splits the magnet at its centre; brand-new N and S poles ignite at the cut, each half re-closes its own field loop, then a second cut elsewhere repeats the same result.",
     "primary": true
   },
   "entry_state_map": {
-    "foundational": { "start": "STATE_1", "end": "STATE_8" },
+    "foundational": { "start": "STATE_1", "end": "STATE_9" },
     "field_lines": { "start": "STATE_1", "end": "STATE_2" },
     "no_monopole": { "start": "STATE_3", "end": "STATE_3" },
     "dipole_field": { "start": "STATE_6", "end": "STATE_7" },
-    "explore": { "start": "STATE_8", "end": "STATE_8" }
+    "explore": { "start": "STATE_9", "end": "STATE_9" }
   },
   "epic_l_path": {
-    "state_count": 8,
+    "state_count": 9,
     "states": {
       "STATE_1": {
-        "title": "A bar magnet and its field — a compass lines up tangent",
-        "teaching_method": "narrative_socratic",
+        "title": "A bar magnet's field — a compass settles tangent to it",
         "duration": 16,
-        "focal_primitive_id": "bm_field_line",
-        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "bm_compass",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "intro_title",
+            "id": "s1_title",
             "position": { "x": 380, "y": 55 },
-            "text": "A bar magnet (N red, S blue) and the field around it",
+            "text": "A bar magnet (N red, S blue) and its field",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "intro_legend",
+            "id": "s1_cause",
             "position": { "x": 200, "y": 235 },
-            "text": "Green lines = magnetic field B.\nAmber dots drift along them,\nshowing the field direction —\nout of N, into S.",
+            "text": "Green field lines B loop out of N and\nback into S; amber dots drift steadily\nalong them, showing the field's direction.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "intro_anchor",
+            "id": "s1_effect",
             "position": { "x": 560, "y": 235 },
-            "text": "Like iron filings snapping into\ncurves under your lab magnet.\nA compass needle settles\ntangent to the field.",
+            "text": "A compass needle settles and lines up\ntangent to that same field direction —\njust like the needle in your classroom.",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "intro_question",
+            "id": "s1_note",
             "position": { "x": 380, "y": 475 },
-            "text": "Question: what kind of object is a bar magnet, really — and what is this field?",
-            "color": "#FFF176"
+            "text": "A bar magnet is a source of a directional magnetic field B",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Here is a bar magnet — north pole red, south pole blue — with its magnetic field B drawn in green around it.", "text_hi": "यहाँ एक bar magnet है — north pole red, south pole blue — इसके चारों ओर magnetic field B green रंग में।", "text_te": "ఇక్కడ ఒక bar magnet ఉంది — north pole red, south pole blue — దాని చుట్టూ magnetic field B green రంగులో.", "pause_after_ms": 1500 },
-            { "id": "s1_2", "text_en": "The amber dots drift along the field lines, showing the field direction — out of the north pole, around, into the south.", "text_hi": "Amber dots field lines के साथ बहते हैं, field की दिशा दिखाते हैं — north pole से बाहर, घूमकर, south में।", "text_te": "Amber dots field lines వెంట కదులుతాయి, field దిశను చూపుతాయి — north pole నుండి బయటకు, చుట్టూ, south లోకి.", "pause_after_ms": 1500 },
-            { "id": "s1_3", "text_en": "A compass needle settles tangent to the field. So what kind of object is a bar magnet, really?", "text_hi": "एक compass needle field के tangent settle होती है। तो bar magnet असल में किस तरह की वस्तु है?", "text_te": "ఒక compass needle field కి tangent గా settle అవుతుంది. మరి bar magnet నిజంగా ఎలాంటి వస్తువు?", "pause_after_ms": 1500 }
+            { "id": "s1_1", "text_en": "A bar magnet's field forms closed loops, with amber dots drifting steadily from the north pole around to the south.", "text_hi": "एक bar magnet का field closed loops बनाता है, amber dots उत्तर वाले pole से दक्षिण वाले pole तक लगातार बहते हैं।", "text_te": "ఒక bar magnet యొక్క field closed loops ఏర్పరుస్తుంది, amber dots north pole నుండి south pole వరకు స్థిరంగా కదులుతాయి." },
+            { "id": "s1_2", "text_en": "A moment later, a compass needle settles and lines up exactly along that same direction.", "text_hi": "थोड़ी देर बाद, एक compass needle settle होती है और ठीक उसी direction में align हो जाती है।", "text_te": "కొద్ది సేపటి తర్వాత, ఒక compass needle settle అయ్యి, సరిగ్గా అదే direction లో align అవుతుంది." },
+            { "id": "s1_3", "text_en": "So a bar magnet is really a source of a directional magnetic field B, not just a glowing object.", "text_hi": "तो एक bar magnet असल में एक directional magnetic field B का source है, सिर्फ चमकती हुई वस्तु नहीं।", "text_te": "కాబట్టి ఒక bar magnet నిజంగా ఒక directional magnetic field B యొక్క source, కేవలం మెరిసే వస్తువు కాదు." }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "A magnet's field is just a glow around it, with no definite direction.",
-            "visual_counter": "Amber dots drift consistently out of the north pole and into the south along each line, and a compass needle settles tangent to the field.",
-            "one_line_fix": "The magnetic field has a definite direction at every point — out of N, into S outside the magnet — and a compass lines up tangent to it."
-          }
-        ]
+        }
       },
       "STATE_2": {
-        "title": "The field lines are CLOSED loops — unlike electric field lines",
-        "teaching_method": "narrative_socratic",
-        "duration": 22,
-        "focal_primitive_id": "bm_loop_tube",
-        "advance_mode": "wait_for_answer",
+        "title": "The field line is a CLOSED loop — it never ends at S",
+        "duration": 18,
+        "focal_primitive_id": "bm_loop_dot",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "loop_title",
+            "id": "s2_title",
             "position": { "x": 380, "y": 55 },
             "text": "Follow ONE field line all the way around",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "loop_predict",
+            "id": "s2_cause",
             "position": { "x": 200, "y": 235 },
-            "text": "It leaves the N pole and\ncurves to the S pole. Where\ndoes it go from there —\ndoes it just stop at S?",
+            "text": "A faint tracer rides the outside arc from\nN toward S and appears to just die out\nat the south pole.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "loop_reveal",
+            "id": "s2_effect",
             "position": { "x": 560, "y": 235 },
-            "text": "No — it continues INSIDE the\nmagnet, from S back to N.\nThe line closes on itself: a\ncontinuous loop, no end.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s2_3"
+            "text": "A brighter tracer keeps going, straight\nthrough the magnet from S back to N —\nthe line closes on itself.",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "loop_note",
+            "id": "s2_note",
             "position": { "x": 380, "y": 475 },
-            "text": "Magnetic field lines are CLOSED loops — electric field lines start on + and end on −",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s2_4"
+            "text": "Magnetic field lines are CLOSED loops — electric field lines start and end on charge",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Follow one field line. It leaves the north pole and curves around the outside toward the south pole.", "text_hi": "एक field line follow कीजिए। यह north pole से निकलती है और बाहर से घूमकर south pole की ओर जाती है।", "text_te": "ఒక field line ను follow చేయండి. అది north pole నుండి బయలుదేరి, బయట నుండి south pole వైపు వంగుతుంది.", "pause_after_ms": 1500 },
-            { "id": "s2_2", "text_en": "Where does it go from there? Does the line simply stop at the south pole?", "text_hi": "वहाँ से यह कहाँ जाती है? क्या line बस south pole पर रुक जाती है?", "text_te": "అక్కడ నుండి అది ఎక్కడికి వెళుతుంది? Line కేవలం south pole వద్ద ఆగిపోతుందా?", "pause_after_ms": 3500 },
-            { "id": "s2_3", "text_en": "No — it continues right through the magnet, from south back to north. The line closes on itself.", "text_hi": "नहीं — यह magnet के अंदर से होकर, south से वापस north जाती है। Line अपने आप पर बंद हो जाती है।", "text_te": "కాదు — అది magnet లోపలి నుండి, south నుండి తిరిగి north కి వెళుతుంది. Line తనపై తాను మూసుకుంటుంది.", "pause_after_ms": 1800 },
-            { "id": "s2_4", "text_en": "Magnetic field lines are continuous closed loops — unlike electric field lines, which start on positive charge and end on negative.", "text_hi": "Magnetic field lines continuous closed loops हैं — electric field lines के विपरीत, जो positive charge पर शुरू और negative पर खत्म होती हैं।", "text_te": "Magnetic field lines continuous closed loops — electric field lines కి భిన్నంగా, అవి positive charge వద్ద మొదలై negative వద్ద ముగుస్తాయి.", "pause_after_ms": 1500 }
+            { "id": "s2_1", "text_en": "Follow one field line: it leaves the north pole, arcs outside, and looks like it stops at the south.", "text_hi": "एक field line को follow कीजिए: यह north pole से निकलती है, बाहर arc करती है, और south पर रुकती हुई लगती है।", "text_te": "ఒక field line ను follow చేయండి: ఇది north pole నుండి బయలుదేరి, బయట arc అయ్యి, south వద్ద ఆగినట్టు కనిపిస్తుంది." },
+            { "id": "s2_2", "text_en": "Watch closely — a brighter dot keeps going, right through the magnet, back from south to north.", "text_hi": "ध्यान से देखिए — एक brighter dot आगे बढ़ता रहता है, magnet के अंदर से होकर, south से वापस north तक।", "text_te": "జాగ్రత్తగా చూడండి — ఒక brighter dot ముందుకు సాగుతూనే ఉంటుంది, magnet లోపలి నుండి, south నుండి తిరిగి north వరకు." },
+            { "id": "s2_3", "text_en": "A magnetic field line never starts or ends — unlike an electric field line on a charge.", "text_hi": "एक magnetic field line कभी शुरू या खत्म नहीं होती — charge वाली electric field line के विपरीत।", "text_te": "ఒక magnetic field line ఎప్పుడూ మొదలవదు లేదా ముగియదు — charge పై ఉండే electric field line కి భిన్నంగా." }
           ]
         },
         "misconception_watch": [
           {
             "belief": "Magnetic field lines start at the north pole and end at the south pole, just like electric field lines on charges.",
-            "visual_counter": "A bright tracer dot rides one field line out of N, around to S, and then continues straight through the magnet from S back to N — closing the loop.",
+            "visual_counter": "A faint tracer riding the external arc appears to die out at the south pole — then a brighter tracer continues straight through the magnet, closing the loop back at the north pole.",
             "one_line_fix": "Magnetic field lines never start or end; they are continuous closed loops that pass through the magnet from S to N inside."
           }
         ]
       },
       "STATE_3": {
-        "title": "No magnetic monopole — break it and get two dipoles",
-        "teaching_method": "narrative_socratic",
-        "duration": 24,
+        "title": "No magnetic monopole — cut it and get two complete dipoles",
+        "duration": 20,
         "focal_primitive_id": "bm_break",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "break_title",
+            "id": "s3_title",
             "position": { "x": 380, "y": 55 },
-            "text": "Cut the bar magnet exactly in half",
+            "text": "Cut the bar magnet at its centre",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "break_predict",
+            "id": "s3_cause",
             "position": { "x": 200, "y": 235 },
-            "text": "Predict: do you get one piece\nthat is pure north and another\nthat is pure south — an\nisolated single pole?",
+            "text": "The magnet splits into two halves that\nseparate from each other.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "break_reveal",
+            "id": "s3_effect",
             "position": { "x": 560, "y": 235 },
-            "text": "No — each half is a complete\nmagnet. Brand-new N and S\npoles appear at the cut.\nYou can never isolate a pole.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s3_3"
+            "text": "Brand-new N and S poles ignite right at\nthe cut — each half is instantly its own\ncomplete magnet with a full field loop.",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "break_note",
+            "id": "s3_note",
             "position": { "x": 380, "y": 475 },
-            "text": "No magnetic monopole: every cut makes two dipoles — keep cutting, always two poles",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s3_4"
+            "text": "No magnetic monopole: every cut makes two complete dipoles, anywhere along the length",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Now cut the bar magnet exactly in half at its middle.", "text_hi": "अब bar magnet को इसके बीच में ठीक आधा काटिए।", "text_te": "ఇప్పుడు bar magnet ను దాని మధ్యలో సరిగ్గా సగానికి కట్ చేయండి.", "pause_after_ms": 1500 },
-            { "id": "s3_2", "text_en": "Predict: do you get one piece that is pure north and another that is pure south — a single isolated pole?", "text_hi": "Predict कीजिए: क्या आपको एक टुकड़ा pure north और दूसरा pure south मिलता है — एक single isolated pole?", "text_te": "Predict చేయండి: మీకు ఒక ముక్క pure north, మరొకటి pure south వస్తుందా — ఒక single isolated pole?", "pause_after_ms": 3500 },
-            { "id": "s3_3", "text_en": "No — each half is instantly a complete magnet. Brand-new north and south poles appear at the cut.", "text_hi": "नहीं — हर आधा टुकड़ा तुरंत एक complete magnet है। Cut पर बिल्कुल नए north और south poles आ जाते हैं।", "text_te": "కాదు — ప్రతి సగం వెంటనే ఒక complete magnet అవుతుంది. Cut వద్ద సరికొత్త north మరియు south poles వస్తాయి.", "pause_after_ms": 2000 },
-            { "id": "s3_4", "text_en": "There is no magnetic monopole. Keep cutting and you always get two poles — never a lone north or south.", "text_hi": "कोई magnetic monopole नहीं होता। काटते रहिए और आपको हमेशा two poles मिलते हैं — कभी अकेला north या south नहीं।", "text_te": "Magnetic monopole అనేది లేదు. కట్ చేస్తూ ఉంటే మీకు ఎల్లప్పుడూ two poles వస్తాయి — ఎప్పుడూ ఒంటరి north లేదా south కాదు.", "pause_after_ms": 1500 }
+            { "id": "s3_1", "text_en": "Cut the bar magnet exactly at its centre, and the two halves begin to separate.", "text_hi": "bar magnet को ठीक उसके centre पर काटिए, और दोनों halves अलग होना शुरू हो जाते हैं।", "text_te": "bar magnet ను సరిగ్గా దాని centre వద్ద కట్ చేయండి, రెండు halves వేరవడం మొదలవుతుంది." },
+            { "id": "s3_2", "text_en": "New north and south poles ignite right at the cut — each half is instantly its own complete magnet.", "text_hi": "cut पर बिल्कुल नए north और south poles जल उठते हैं — हर half तुरंत अपने आप में एक complete magnet है।", "text_te": "cut వద్ద సరికొత్త north మరియు south poles వెలుగుతాయి — ప్రతి half వెంటనే తనలో తానే ఒక complete magnet." },
+            { "id": "s3_3", "text_en": "There is no magnetic monopole — cut it again anywhere else and you still get two full magnets.", "text_hi": "कोई magnetic monopole नहीं होता — इसे कहीं और फिर से काटिए, फिर भी दो पूरे magnets मिलते हैं।", "text_te": "magnetic monopole అనేది లేదు — దీన్ని మరెక్కడైనా మళ్ళీ కట్ చేసినా, ఇంకా రెండు పూర్తి magnets వస్తాయి." }
           ]
         },
         "misconception_watch": [
           {
             "belief": "If you cut a bar magnet in half you can isolate a single north pole and a single south pole.",
-            "visual_counter": "The magnet splits at the centre and new N and S poles light up at the cut faces, so each half is a complete dipole with its own field — repeated to show it always happens.",
+            "visual_counter": "The magnet splits and brand-new N and S poles ignite at both cut faces, each half closing its own complete field loop — cutting again, anywhere along its length, always repeats the same result.",
             "one_line_fix": "There is no magnetic monopole: every cut produces two complete dipoles, each with a north AND a south pole."
           }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why can't you get just a north pole by cutting a magnet",
+          "what happens if you cut a magnet into many tiny pieces",
+          "does the new pole come from somewhere inside the magnet",
+          "is there such a thing as a magnetic monopole"
         ]
       },
       "STATE_4": {
-        "title": "The magnetic moment m — pointing S to N",
-        "teaching_method": "narrative_socratic",
-        "duration": 18,
+        "title": "The magnetic moment m — one arrow, locked S to N",
+        "duration": 16,
         "focal_primitive_id": "bm_moment",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "moment_title",
+            "id": "s4_title",
             "position": { "x": 380, "y": 55 },
-            "text": "Give the magnet one arrow that captures its strength + direction",
+            "text": "One vector m captures the whole magnet",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "moment_predict",
+            "id": "s4_cause",
             "position": { "x": 200, "y": 235 },
-            "text": "A single vector describes the\nwhole dipole. Which way\nshould it point — from N to S,\nor from S to N?",
+            "text": "The magnet flips a half turn — the pole\nends swap places.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "moment_reveal",
+            "id": "s4_effect",
             "position": { "x": 560, "y": 235 },
-            "text": "The magnetic moment m points\nfrom S to N, along the axis.\nIts size measures how strong\nthe magnet is.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s4_3"
+            "text": "The moment arrow m still points from\nthe new S to the new N — it is locked\nto the body, not to world direction.",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "moment_note",
+            "id": "s4_note",
             "position": { "x": 380, "y": 475 },
-            "text": "Magnetic moment m: points S → N, magnitude m = N·I·A (the equivalent solenoid)",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s4_4"
+            "text": "Magnetic moment m: points S → N, magnitude m = N·I·A",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "We capture the whole dipole with a single vector — the magnetic moment, written m.", "text_hi": "हम पूरे dipole को एक single vector से दर्शाते हैं — magnetic moment, जिसे m लिखते हैं।", "text_te": "మనం మొత్తం dipole ను ఒక single vector తో సూచిస్తాం — magnetic moment, దీన్ని m అని రాస్తాం.", "pause_after_ms": 1500 },
-            { "id": "s4_2", "text_en": "Which way should the moment m point — from north to south, or from south to north?", "text_hi": "Moment m को किस ओर point करना चाहिए — north से south, या south से north?", "text_te": "Moment m ఏ వైపు point చేయాలి — north నుండి south, లేదా south నుండి north?", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "The magnetic moment m points from the south pole to the north pole, along the magnet's axis.", "text_hi": "Magnetic moment m, south pole से north pole की ओर, magnet के axis के साथ point करता है।", "text_te": "Magnetic moment m, south pole నుండి north pole వైపు, magnet axis వెంట point చేస్తుంది.", "pause_after_ms": 1800 },
-            { "id": "s4_4", "text_en": "Its magnitude is m equals N times I times A — the same moment as the equivalent solenoid.", "text_hi": "इसका magnitude है m equals N times I times A — equivalent solenoid जैसा ही moment।", "text_te": "దాని magnitude m equals N times I times A — equivalent solenoid వంటి moment.", "pause_after_ms": 1500 }
+            { "id": "s4_1", "text_en": "The whole magnet is captured by one vector, the magnetic moment m, pointing from south to north.", "text_hi": "पूरे magnet को एक vector, magnetic moment m, दर्शाता है, जो south से north की ओर point करता है।", "text_te": "మొత్తం magnet ను ఒక vector, magnetic moment m, సూచిస్తుంది, ఇది south నుండి north వైపు point చేస్తుంది." },
+            { "id": "s4_2", "text_en": "Now the magnet flips a half turn — notice the poles swap ends, but the arrow m still points from south to north.", "text_hi": "अब magnet आधा turn flip होता है — देखिए poles के ends बदल जाते हैं, पर arrow m अब भी south से north की ओर point करता है।", "text_te": "ఇప్పుడు magnet సగం turn flip అవుతుంది — poles యొక్క ends మారడం గమనించండి, కానీ arrow m ఇప్పటికీ south నుండి north వైపు point చేస్తుంది." },
+            { "id": "s4_3", "text_en": "The arrow is locked to the body: wherever south and north end up, m follows.", "text_hi": "arrow body से locked रहता है: south और north चाहे कहीं भी हों, m उन्हें follow करता है।", "text_te": "arrow body కి locked అయి ఉంటుంది: south మరియు north ఎక్కడ ఉన్నా, m వాటిని follow చేస్తుంది." }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The magnetic moment points from the north pole to the south pole, like a field line outside the magnet.",
-            "visual_counter": "The moment arrow m is drawn along the axis pointing from the S pole to the N pole, distinct from the external field-line direction.",
-            "one_line_fix": "The magnetic moment m points from S to N (inside-to-outside sense), with magnitude m = NIA — the same as the equivalent solenoid."
-          }
-        ]
+        }
       },
       "STATE_5": {
-        "title": "A bar magnet ≡ a solenoid (m = NIA)",
-        "teaching_method": "narrative_socratic",
-        "duration": 20,
+        "title": "A bar magnet ≡ a solenoid (m = N·I·A)",
+        "duration": 18,
         "focal_primitive_id": "bm_solenoid",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "sol_title",
+            "id": "s5_title",
             "position": { "x": 380, "y": 55 },
-            "text": "Slip a current-carrying solenoid over the magnet's place",
+            "text": "A current-carrying solenoid replaces the magnet",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "sol_predict",
+            "id": "s5_cause",
             "position": { "x": 200, "y": 235 },
-            "text": "A solenoid of N turns carrying\ncurrent I also has an N end\nand an S end. How does its\nfar field compare?",
+            "text": "A coil of many turns carrying current I\ncross-fades in over the bar magnet.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "sol_reveal",
+            "id": "s5_effect",
             "position": { "x": 560, "y": 235 },
-            "text": "Identical. A bar magnet is\nequivalent to a solenoid of\nmoment m = N·I·A — the same\nfar field, the same dipole.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s5_3"
+            "text": "The far field stays exactly the same the\nwhole time — the solenoid IS a magnet\nof moment m = N·I·A.",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "sol_note",
+            "id": "s5_note",
             "position": { "x": 380, "y": 475 },
-            "text": "Bar magnet ≡ solenoid: the magnetism of matter comes from tiny current loops (m = N·I·A)",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s5_4"
+            "text": "Bar magnet ≡ solenoid: magnetism in matter comes from tiny current loops",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Slip a solenoid — a coil of N turns carrying current I — into the magnet's place.", "text_hi": "Magnet की जगह एक solenoid रखिए — N turns की coil जिसमें current I बहता है।", "text_te": "Magnet స్థానంలో ఒక solenoid ను ఉంచండి — current I ప్రవహించే N turns coil.", "pause_after_ms": 1500 },
-            { "id": "s5_2", "text_en": "The solenoid also has a north end and a south end. How does its far field compare to the magnet's?", "text_hi": "Solenoid के भी north और south end होते हैं। इसका far field magnet से कैसे compare होता है?", "text_te": "Solenoid కి కూడా north మరియు south end ఉంటాయి. దాని far field magnet తో ఎలా compare అవుతుంది?", "pause_after_ms": 3000 },
-            { "id": "s5_3", "text_en": "Identical. A bar magnet is equivalent to a solenoid of magnetic moment m equals N times I times A.", "text_hi": "बिल्कुल समान। एक bar magnet, magnetic moment m equals N times I times A वाले solenoid के equivalent है।", "text_te": "సరిగ్గా సమానం. ఒక bar magnet, magnetic moment m equals N times I times A ఉన్న solenoid కి equivalent.", "pause_after_ms": 1800 },
-            { "id": "s5_4", "text_en": "The magnetism of matter itself comes from countless tiny atomic current loops — every magnet is, at heart, current.", "text_hi": "पदार्थ का magnetism भी अनगिनत tiny atomic current loops से आता है — हर magnet मूल रूप से current है।", "text_te": "పదార్థం యొక్క magnetism కూడా లెక్కలేనన్ని tiny atomic current loops నుండి వస్తుంది — ప్రతి magnet మూలంలో current.", "pause_after_ms": 1500 }
+            { "id": "s5_1", "text_en": "Recall a coil of many turns carrying current — its far field looks exactly like this magnet's field.", "text_hi": "याद कीजिए, कई turns वाली एक coil जिसमें current बहता है — इसका far field बिल्कुल इस magnet के field जैसा दिखता है।", "text_te": "గుర్తుచేసుకోండి, చాలా turns ఉన్న ఒక coil లో current ప్రవహిస్తుంది — దీని far field ఈ magnet field లాగే కనిపిస్తుంది." },
+            { "id": "s5_2", "text_en": "A bar magnet is equivalent to a solenoid of magnetic moment m equals N times I times A.", "text_hi": "एक bar magnet, magnetic moment m equals N times I times A वाले solenoid के equivalent है।", "text_te": "ఒక bar magnet, magnetic moment m equals N times I times A ఉన్న solenoid కి equivalent." },
+            { "id": "s5_3", "text_en": "So the magnetism of matter itself comes from countless tiny atomic current loops.", "text_hi": "तो पदार्थ का magnetism भी अनगिनत tiny atomic current loops से आता है।", "text_te": "కాబట్టి పదార్థం యొక్క magnetism కూడా లెక్కలేనన్ని tiny atomic current loops నుండి వస్తుంది." }
           ]
         },
-        "misconception_watch": [
-          {
-            "belief": "A permanent magnet's magnetism is something entirely different from electric current.",
-            "visual_counter": "A solenoid of current loops fades onto the magnet's axis and produces the same dipole field, with the moment labelled m = NIA.",
-            "one_line_fix": "A bar magnet is equivalent to a current-carrying solenoid of moment m = NIA; magnetism in matter comes from tiny atomic current loops."
-          }
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why is a bar magnet like a current-carrying coil",
+          "does a permanent magnet actually have current flowing in it",
+          "what is n i a for a solenoid",
+          "where does a permanent magnet's magnetism actually come from"
         ]
       },
       "STATE_6": {
-        "title": "The dipole field: B_axial = 2·B_equatorial, both ∝ 1/r³",
-        "teaching_method": "narrative_socratic",
-        "duration": 24,
+        "title": "At equal r, axial field is TWICE the equatorial field",
+        "duration": 18,
         "focal_primitive_id": "bm_probe_axial",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "probe_title",
+            "id": "s6_title",
             "position": { "x": 380, "y": 55 },
-            "text": "Measure the field at the same distance r — on the axis vs to the side",
+            "text": "Same distance r — axial vs equatorial",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "probe_predict",
+            "id": "s6_cause",
             "position": { "x": 200, "y": 235 },
-            "text": "Two probes at equal distance r:\none on the axis (axial), one\nperpendicular (equatorial).\nWhich field is stronger?",
+            "text": "A ghost pair of equal-length arrows\nappears first, one axial, one equatorial,\nboth at the same distance r.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "probe_reveal",
+            "id": "s6_effect",
             "position": { "x": 560, "y": 235 },
-            "text": "The axial field is exactly\nTWICE the equatorial field.\nBoth fade as 1/r³ — a dipole,\nnot a 1/r² point charge.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s6_3"
+            "text": "The real arrows snap in unequal: the\naxial one is exactly twice as long as\nthe equatorial one, same r.",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "probe_note",
+            "id": "s6_note",
             "position": { "x": 380, "y": 475 },
-            "text": "B_axial = (μ₀/4π)(2m/r³)   B_equatorial = (μ₀/4π)(m/r³)   →   axial : equatorial = 2 : 1",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s6_4"
+            "text": "B_axial : B_equatorial = 2 : 1 at the same distance r",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Place two probes at the same distance r: one on the axis, one perpendicular, on the equatorial line.", "text_hi": "एक ही distance r पर दो probes रखिए: एक axis पर, एक perpendicular, equatorial line पर।", "text_te": "ఒకే distance r వద్ద రెండు probes ఉంచండి: ఒకటి axis పై, ఒకటి perpendicular, equatorial line పై.", "pause_after_ms": 1500 },
-            { "id": "s6_2", "text_en": "Both are equally far from the magnet. Predict: which field is stronger — the axial or the equatorial?", "text_hi": "दोनों magnet से समान दूरी पर हैं। Predict कीजिए: कौन सा field stronger है — axial या equatorial?", "text_te": "రెండూ magnet నుండి సమాన దూరంలో ఉన్నాయి. Predict చేయండి: ఏ field stronger — axial లేదా equatorial?", "pause_after_ms": 3500 },
-            { "id": "s6_3", "text_en": "The axial field is exactly twice the equatorial field, and both fade as one over r cubed.", "text_hi": "Axial field, equatorial field से ठीक दोगुना है, और दोनों one over r cubed के अनुसार fade होते हैं।", "text_te": "Axial field, equatorial field కంటే సరిగ్గా రెట్టింపు, మరియు రెండూ one over r cubed ప్రకారం fade అవుతాయి.", "pause_after_ms": 1800 },
-            { "id": "s6_4", "text_en": "That one over r cubed falloff is the signature of a dipole — far steeper than a point charge's one over r squared.", "text_hi": "वह one over r cubed falloff एक dipole की पहचान है — point charge के one over r squared से कहीं तेज़।", "text_te": "ఆ one over r cubed falloff ఒక dipole యొక్క గుర్తు — point charge యొక్క one over r squared కంటే చాలా ఎక్కువ.", "pause_after_ms": 1500 }
+            { "id": "s6_1", "text_en": "Two ghost arrows of equal length appear first, at the same distance r — one axial, one equatorial.", "text_hi": "पहले बराबर length के दो ghost arrows दिखते हैं, same distance r पर — एक axial, एक equatorial।", "text_te": "మొదట సమాన length ఉన్న రెండు ghost arrows కనిపిస్తాయి, అదే distance r వద్ద — ఒకటి axial, ఒకటి equatorial." },
+            { "id": "s6_2", "text_en": "But the real field snaps in differently: the axial arrow is exactly twice as long as the equatorial one, same distance r.", "text_hi": "पर real field अलग तरह से snap होता है: axial arrow, equatorial से ठीक दोगुना लंबा है, same distance r पर।", "text_te": "కానీ real field వేరుగా snap అవుతుంది: axial arrow, equatorial కంటే సరిగ్గా రెట్టింపు పొడవు, అదే distance r వద్ద." },
+            { "id": "s6_3", "text_en": "A dipole field is direction-dependent — axial is always twice equatorial.", "text_hi": "एक dipole field direction-dependent होता है — axial हमेशा equatorial से दोगुना होता है।", "text_te": "ఒక dipole field direction-dependent — axial ఎల్లప్పుడూ equatorial కంటే రెట్టింపు." }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "The magnetic field is the same in all directions at a given distance, or falls as 1/r² like a point charge.",
-            "visual_counter": "At equal r the axial probe arrow is twice as long as the equatorial one, and as r sweeps outward both arrows shrink as 1/r³.",
-            "one_line_fix": "A dipole field is direction-dependent: B_axial = 2·B_equatorial at the same r, and both fall as 1/r³, steeper than a point charge's 1/r²."
+            "belief": "At the same distance from a bar magnet, the field should be the same strength in every direction — axial and equatorial should be equal.",
+            "visual_counter": "A ghost pair of equal-length arrows fades in first — then the real arrows snap in showing the axial arrow twice as long as the equatorial one, at the exact same distance r.",
+            "one_line_fix": "At equal distance r, the axial field is exactly TWICE the equatorial field — a dipole field is direction-dependent."
           }
         ]
       },
       "STATE_7": {
-        "title": "The electrostatic analog — a magnetic version of the electric dipole",
-        "teaching_method": "narrative_socratic",
+        "title": "The field falls as 1/r³ — steeper than a point charge",
         "duration": 20,
+        "focal_primitive_id": "bm_probe_axial",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Sweep the distance r — how fast does B fall?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_cause",
+            "position": { "x": 200, "y": 235 },
+            "text": "A dashed ghost pair, anchored at r = 2,\nmarks what a 1/r² guess would predict\nas distance grows.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_effect",
+            "position": { "x": 560, "y": 235 },
+            "text": "The real arrows shrink much faster —\nby r = 4 the real field has dropped to\none eighth, not one quarter.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "B_axial = (μ₀/4π)(2m/r³)   B_equatorial = (μ₀/4π)(m/r³)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "A dashed ghost pair, anchored at r equals 2, marks what a one-over-r-squared guess would predict as distance grows.", "text_hi": "r equals 2 पर anchored एक dashed ghost pair दिखाती है कि distance बढ़ने पर one-over-r-squared guess क्या predict करता।", "text_te": "r equals 2 వద్ద anchor అయిన ఒక dashed ghost pair, distance పెరిగే కొద్దీ one-over-r-squared guess ఏమి predict చేస్తుందో చూపిస్తుంది." },
+            { "id": "s7_2", "text_en": "Watch the real arrows shrink much faster as r sweeps 2 to 4 — the field falls as one over r cubed.", "text_hi": "r के 2 से 4 तक sweep होने पर real arrows को तेज़ी से shrink होते देखिए — field one over r cubed के अनुसार गिरता है।", "text_te": "r 2 నుండి 4 వరకు sweep అయ్యేటప్పుడు real arrows వేగంగా shrink అవడం చూడండి — field one over r cubed ప్రకారం తగ్గుతుంది." },
+            { "id": "s7_3", "text_en": "Double the distance and the real field drops to one eighth, not one quarter.", "text_hi": "Distance दोगुना कीजिए और real field one eighth तक गिर जाता है, one quarter नहीं।", "text_te": "Distance రెట్టింపు చేస్తే real field one eighth కి పడిపోతుంది, one quarter కాదు." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The magnetic field of a bar magnet should fall off as 1/r², the same way a point charge's field does.",
+            "visual_counter": "A dashed ghost pair anchored at r = 2 (matching a 1/r² guess) is left behind as the real arrows shrink faster; by r = 4 the real field has dropped to one eighth while the ghost guess has only dropped to one quarter.",
+            "one_line_fix": "A dipole field falls as 1/r³, steeper than a point charge's 1/r² — double the distance and the real field drops to one eighth."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why does the magnetic field fall off faster than 1/r squared",
+          "is the dipole field the same as coulomb's law falloff",
+          "why is the axial field twice the equatorial field at large r",
+          "what happens to the field if I double the distance from the magnet"
+        ]
+      },
+      "STATE_8": {
+        "title": "The electrostatic analog — same field as an electric dipole",
+        "duration": 16,
         "focal_primitive_id": "bm_edipole",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "analog_title",
+            "id": "s8_title",
             "position": { "x": 380, "y": 55 },
-            "text": "Compare the bar magnet with a +q / −q electric dipole",
+            "text": "An electric dipole glides in beside the magnet",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "analog_predict",
+            "id": "s8_cause",
             "position": { "x": 200, "y": 235 },
-            "text": "An electric dipole has the\nsame 1/r³ field, axial twice\nequatorial. What plays the\nrole of the moment?",
+            "text": "A translucent +q / −q electric dipole,\nwith its own field, glides toward the\nbar magnet's field.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "analog_reveal",
+            "id": "s8_effect",
             "position": { "x": 560, "y": 235 },
-            "text": "The same pattern exactly.\nThe magnetic moment m plays\nthe role of the electric\ndipole moment p.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s7_3"
+            "text": "The two field patterns snap into exact\ncoincidence — the same shape, the same\n1/r³ falloff.",
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "analog_note",
+            "id": "s8_note",
             "position": { "x": 380, "y": 475 },
-            "text": "Electrostatic analog:  m ↔ p,  μ₀/4π ↔ 1/4πε₀  — identical dipole field",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s7_4"
+            "text": "m ↔ p     μ₀/4π ↔ 1/(4πε₀)",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Beside the magnet, picture a small electric dipole — a plus charge and a minus charge.", "text_hi": "Magnet के बगल में, एक छोटा electric dipole सोचिए — एक plus charge और एक minus charge।", "text_te": "Magnet పక్కన, ఒక చిన్న electric dipole ను ఊహించండి — ఒక plus charge మరియు ఒక minus charge.", "pause_after_ms": 1500 },
-            { "id": "s7_2", "text_en": "It has the same one over r cubed field, with axial twice equatorial. What plays the role of the moment?", "text_hi": "इसका भी same one over r cubed field है, axial equatorial से दोगुना। Moment की भूमिका कौन निभाता है?", "text_te": "దానికి కూడా same one over r cubed field, axial equatorial కంటే రెట్టింపు. Moment పాత్రను ఎవరు పోషిస్తారు?", "pause_after_ms": 3000 },
-            { "id": "s7_3", "text_en": "The pattern is identical. The magnetic moment m plays exactly the role of the electric dipole moment p.", "text_hi": "Pattern बिल्कुल समान है। Magnetic moment m, electric dipole moment p की भूमिका निभाता है।", "text_te": "Pattern సరిగ్గా సమానం. Magnetic moment m, electric dipole moment p పాత్రను పోషిస్తుంది.", "pause_after_ms": 1800 },
-            { "id": "s7_4", "text_en": "So a bar magnet is the magnetic analog of an electric dipole, with mu zero over four pi replacing one over four pi epsilon zero.", "text_hi": "तो bar magnet, electric dipole का magnetic analog है, जहाँ mu zero over four pi, one over four pi epsilon zero की जगह लेता है।", "text_te": "కాబట్టి bar magnet, electric dipole యొక్క magnetic analog, ఇక్కడ mu zero over four pi, one over four pi epsilon zero స్థానంలో ఉంటుంది.", "pause_after_ms": 1500 }
+            { "id": "s8_1", "text_en": "Beside the magnet, a translucent electric dipole glides in with its own field.", "text_hi": "magnet के बगल में, एक translucent electric dipole अपने field के साथ glide करते हुए आता है।", "text_te": "magnet పక్కన, ఒక translucent electric dipole తన field తో glide అవుతూ వస్తుంది." },
+            { "id": "s8_2", "text_en": "Watch the two field patterns snap into exact coincidence: a bar magnet's field matches an electric dipole's field.", "text_hi": "दोनों field patterns को बिल्कुल coincide होते देखिए: bar magnet का field, electric dipole के field से match करता है।", "text_te": "రెండు field patterns ఖచ్చితంగా coincide అవడం చూడండి: bar magnet యొక్క field, electric dipole యొక్క field తో match అవుతుంది." },
+            { "id": "s8_3", "text_en": "The magnetic moment m plays the role of p, with mu zero over four pi replacing one over four pi epsilon zero.", "text_hi": "Magnetic moment m, p की भूमिका निभाता है, जहाँ mu zero over four pi, one over four pi epsilon zero की जगह लेता है।", "text_te": "Magnetic moment m, p పాత్రను పోషిస్తుంది, ఇక్కడ mu zero over four pi, one over four pi epsilon zero స్థానంలో ఉంటుంది." }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "Magnetism and electrostatics are unrelated, with completely different field shapes.",
-            "visual_counter": "An electric dipole drawn beside the magnet shows the identical closed dipole field pattern, with the analogy m ↔ p, μ₀/4π ↔ 1/4πε₀ stated.",
-            "one_line_fix": "A bar magnet is the exact magnetic analog of an electric dipole: m plays the role of p and μ₀/4π replaces 1/4πε₀, giving the same 1/r³ field."
-          }
-        ]
+        }
       },
-      "STATE_8": {
-        "title": "Your turn — m and r",
-        "teaching_method": "exploration_sliders",
-        "duration": 24,
+      "STATE_9": {
+        "title": "Your turn — drag m and r",
+        "duration": 0,
         "focal_primitive_id": "bm_probe_axial",
         "advance_mode": "interaction_complete",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "explore_title",
+            "id": "s9_title",
             "position": { "x": 380, "y": 55 },
             "text": "Explore: drag the moment m and the distance r",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "explore_guide",
+            "id": "s9_guide",
             "position": { "x": 200, "y": 235 },
-            "text": "Watch the axial and equatorial\nprobe arrows. The axial one\nstays twice the equatorial,\nat every distance.",
+            "text": "Watch the axial and equatorial probe\narrows respond live to both sliders.",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "explore_challenge",
+            "id": "s9_challenge",
             "position": { "x": 560, "y": 235 },
-            "text": "Challenge:\nDouble the distance r — by\nwhat factor does the field\ndrop? (1/r³ → ÷8)",
+            "text": "Challenge: double r — by what factor\ndoes the field drop? (1/r³ → ÷8)",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "explore_note",
+            "id": "s9_note",
             "position": { "x": 380, "y": 475 },
             "text": "B_axial ∝ 2m/r³ · B_equatorial ∝ m/r³ · ratio always 2 : 1",
             "color": "#D4D4D8"
@@ -485,9 +502,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Your turn. Drag the magnetic moment m and the distance r, and watch the two probe arrows.", "text_hi": "अब आपकी बारी। Magnetic moment m और distance r को drag कीजिए, और दोनों probe arrows देखिए।", "text_te": "ఇప్పుడు మీ వంతు. Magnetic moment m మరియు distance r ను drag చేయండి, రెండు probe arrows చూడండి.", "pause_after_ms": 1500 },
-            { "id": "s8_2", "text_en": "The axial arrow stays twice the equatorial one at every distance, and both shrink fast as r grows.", "text_hi": "Axial arrow हर distance पर equatorial से दोगुना रहता है, और दोनों r बढ़ने पर तेज़ी से shrink होते हैं।", "text_te": "Axial arrow ప్రతి distance వద్ద equatorial కంటే రెట్టింపు ఉంటుంది, మరియు r పెరిగే కొద్దీ రెండూ వేగంగా shrink అవుతాయి.", "pause_after_ms": 1500 },
-            { "id": "s8_3", "text_en": "Double the distance and the field drops to one eighth, because the dipole field falls as one over r cubed.", "text_hi": "Distance दोगुना कीजिए और field one eighth रह जाता है, क्योंकि dipole field one over r cubed के अनुसार गिरता है।", "text_te": "Distance రెట్టింపు చేస్తే field one eighth కి పడిపోతుంది, ఎందుకంటే dipole field one over r cubed ప్రకారం తగ్గుతుంది.", "pause_after_ms": 1500 }
+            { "id": "s9_1", "text_en": "Your turn — drag the moment m and the distance r, and watch both arrows respond live.", "text_hi": "अब आपकी बारी — moment m और distance r को drag कीजिए, और दोनों arrows को live respond करते देखिए।", "text_te": "ఇప్పుడు మీ వంతు — moment m మరియు distance r ను drag చేయండి, రెండు arrows live గా respond అవడం చూడండి." }
           ]
         }
       }
@@ -505,94 +520,156 @@
       "south": "#42A5F5",
       "field": "#66BB6A",
       "tracer": "#FFD54F",
-      "moment": "#FFCA28"
+      "moment": "#FFCA28",
+      "ghost": "#9CA3AF"
     },
     "slider_controls": {
       "m": { "min": 1, "max": 10, "step": 1, "default": 5, "label": "Magnetic moment m" },
-      "r": { "min": 1.2, "max": 3.5, "step": 0.1, "default": 2, "label": "Distance r" }
+      "r": { "min": 1.2, "max": 4.0, "step": 0.1, "default": 2, "label": "Distance r" }
     },
     "states": {
       "STATE_1": {
-        "label": "Bar magnet + closed-loop field, tracers drifting, compass settling",
+        "label": "Field lines loop, then a compass settles",
         "visible_elements": [
           "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
           "bm_field_line", "bm_field_arrow", "bm_tracer", "bm_compass"
         ],
         "camera_position": [0, 0, 7],
-        "caption": "A bar magnet (N red, S blue). Field B in green; amber dots drift out of N into S; a compass settles tangent.",
-        "extras": { "current_dots": true }
+        "caption": "Field has a direction",
+        "visible_controls": [],
+        "extras": {
+          "current_dots": true,
+          "field_reveal_ms": 1200,
+          "compass_settle": { "gap_after_reveal_ms": 600, "scale": 2.6, "dim_field_during_settle": true }
+        }
       },
       "STATE_2": {
-        "label": "One field line traced as a CLOSED loop (external arc + internal return)",
+        "label": "One field line closes through the magnet",
         "visible_elements": [
           "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
-          "bm_field_line", "bm_field_arrow", "bm_tracer", "bm_loop_tube", "bm_loop_dot"
+          "bm_field_line", "bm_field_arrow", "bm_loop_tube", "bm_loop_dot"
         ],
         "camera_position": [0, 0, 6.8],
-        "caption": "Follow one line: out of N, around to S, then through the magnet from S back to N — a continuous closed loop.",
-        "extras": { "current_dots": true }
+        "caption": "Lines close, no ends",
+        "visible_controls": [],
+        "extras": {
+          "current_dots": false,
+          "loop_choreography": { "ghost_death_at_s_ms": 1800, "gap_ms": 600, "real_close_duration_ms": 2200, "cycle": true }
+        }
       },
       "STATE_3": {
-        "label": "Break the magnet → two complete dipoles (new poles at the cut), looping",
+        "label": "Cut the magnet: two new dipoles appear",
         "visible_elements": [
           "bm_break"
         ],
         "camera_position": [0, 0, 7],
-        "caption": "Cut it in half and each piece is a complete magnet — new N and S appear at the cut. No isolated pole exists.",
-        "extras": { "current_dots": false, "break_anim": { "enabled": true, "at_ms": 2500, "duration_ms": 1600 } }
+        "caption": "Cut it: two magnets",
+        "visible_controls": [],
+        "extras": {
+          "current_dots": false,
+          "break_anim": { "enabled": true, "at_ms": 2500, "duration_ms": 1600 },
+          "second_cut": { "enabled": true, "offset_from_centre": 0.3, "at_ms": 9000 },
+          "frozen_pose_ms": 4200
+        }
       },
       "STATE_4": {
-        "label": "The magnetic moment m arrow (S → N) + field",
+        "label": "Moment m points S→N and rides the magnet",
         "visible_elements": [
           "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
-          "bm_field_line", "bm_field_arrow", "bm_tracer", "bm_moment", "bm_moment_label"
+          "bm_field_line", "bm_field_arrow", "bm_moment", "bm_moment_label"
         ],
         "camera_position": [0, 0, 7],
-        "caption": "The magnetic moment m points from S to N along the axis; its magnitude m = NIA captures the magnet's strength.",
-        "extras": { "current_dots": true }
+        "caption": "One arrow: m, S→N",
+        "formula_overlay": "m",
+        "show_sliders": true,
+        "visible_controls": ["m"],
+        "extras": {
+          "current_dots": true,
+          "flip_anim": { "at_ms": 800, "duration_ms": 1400 },
+          "moment_scales_with_m": true,
+          "brightness_pulse_on_drag": true
+        }
       },
       "STATE_5": {
-        "label": "Equivalent solenoid morph (m = NIA) over the magnet",
+        "label": "A bar magnet is a solenoid of current",
         "visible_elements": [
           "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
-          "bm_field_line", "bm_field_arrow", "bm_tracer", "bm_solenoid", "bm_moment"
+          "bm_field_line", "bm_field_arrow", "bm_solenoid", "bm_moment"
         ],
         "camera_position": [0, 0, 7],
-        "caption": "A solenoid of N turns carrying current I has the same far field: a bar magnet ≡ a solenoid of moment m = NIA.",
-        "extras": { "current_dots": true }
+        "caption": "A magnet is current",
+        "formula_overlay": "m = N·I·A",
+        "visible_controls": [],
+        "extras": {
+          "current_dots": true,
+          "solenoid_crossfade": { "enabled": true, "period_ms": 3200 }
+        }
       },
       "STATE_6": {
-        "label": "Axial vs equatorial probes: 2:1 at equal r, r-sweep shows 1/r³",
+        "label": "Axial field is twice the equatorial field",
         "visible_elements": [
           "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
-          "bm_field_line", "bm_field_arrow", "bm_tracer", "bm_moment",
-          "bm_probe_axial", "bm_probe_eq", "bm_axial_label", "bm_eq_label"
+          "bm_field_line", "bm_field_arrow", "bm_moment",
+          "bm_probe_axial", "bm_probe_eq", "bm_axial_label", "bm_eq_label",
+          "bm_ghost_axial", "bm_ghost_eq"
         ],
         "camera_position": [0, 0, 8],
-        "caption": "At equal distance r, the axial field is twice the equatorial field; as r sweeps out, both shrink as 1/r³.",
-        "extras": { "current_dots": true }
+        "caption": "Axial is twice equatorial",
+        "formula_overlay": "B∥ : B⊥ = 2 : 1",
+        "visible_controls": [],
+        "extras": {
+          "current_dots": true,
+          "ghost_ratio_pair": { "enabled": true, "hold_ms": 1500 },
+          "orbit_probe": { "enabled": true, "from_deg": 0, "to_deg": 90, "r_locked": 2.0, "gap_ms": 500, "duration_ms": 1800 }
+        }
       },
       "STATE_7": {
-        "label": "Electric-dipole analog inset beside the magnet (m ↔ p)",
+        "label": "The dipole field weakens as 1/r³",
         "visible_elements": [
           "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
-          "bm_field_line", "bm_field_arrow", "bm_tracer", "bm_edipole"
+          "bm_field_line", "bm_field_arrow", "bm_moment",
+          "bm_probe_axial", "bm_probe_eq", "bm_axial_label", "bm_eq_label",
+          "bm_ghost_axial_r2", "bm_ghost_eq_r2"
         ],
         "camera_position": [0, 0, 8],
-        "caption": "An electric dipole shows the identical 1/r³ pattern: m plays the role of p, and μ₀/4π replaces 1/4πε₀.",
-        "extras": { "current_dots": true }
+        "caption": "Field falls as 1/r³",
+        "formula_overlay": "B∥ = (μ₀/4π)(2m/r³)",
+        "show_sliders": true,
+        "visible_controls": ["r"],
+        "extras": {
+          "current_dots": true,
+          "ghost_1_over_r2": { "enabled": true, "anchor_r": 2.0, "style": "dashed" },
+          "r_sweep_theta_locked": true,
+          "callout_at_r_ge": { "r": 3.9, "text": "Real ÷8, guess ÷4" }
+        }
       },
       "STATE_8": {
-        "label": "Sandbox — m, r sliders with a live axial/equatorial B readout",
+        "label": "A bar magnet mirrors an electric dipole",
         "visible_elements": [
           "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
-          "bm_field_line", "bm_field_arrow", "bm_tracer", "bm_moment",
+          "bm_field_line", "bm_field_arrow", "bm_edipole"
+        ],
+        "camera_position": [0, 0, 8],
+        "caption": "Same field as p",
+        "formula_overlay": "m ↔ p     μ₀/4π ↔ 1/(4πε₀)",
+        "visible_controls": [],
+        "extras": {
+          "current_dots": true,
+          "edipole_glide": { "enabled": true, "gap_ms": 500, "registration_glow_ms": 700 }
+        }
+      },
+      "STATE_9": {
+        "label": "Explore: drag moment m and distance r",
+        "visible_elements": [
+          "bm_magnet_n", "bm_magnet_s", "bm_n_label", "bm_s_label",
+          "bm_field_line", "bm_field_arrow", "bm_moment",
           "bm_probe_axial", "bm_probe_eq", "bm_axial_label", "bm_eq_label"
         ],
         "camera_position": [0, 0, 8],
-        "caption": "Drag m and r. Axial ∝ 2m/r³ and equatorial ∝ m/r³ update live — the ratio stays 2 : 1, both fall as 1/r³.",
+        "caption": "All yours",
         "show_sliders": true,
-        "extras": { "current_dots": true, "readout": { "show": true, "fields": ["B_axial", "B_equatorial"] } }
+        "visible_controls": ["m", "r"],
+        "extras": { "current_dots": true, "readout": { "show": true, "fields": ["B_axial", "B_equatorial"], "value_only": true } }
       }
     }
   },
@@ -713,7 +790,7 @@
           "D": "Gets the 2:1 ratio but uses the wrong (point-charge) 1/r² falloff"
         },
         "tested_idea": "B_axial = 2·B_equatorial at equal r, and both fall as 1/r³ (a dipole field).",
-        "teaches_state": "STATE_6",
+        "teaches_state": "STATE_7",
         "difficulty": "core",
         "parallel_form_stem": "Two points are equally distant from a short bar magnet, one on its axis and one on its perpendicular bisector. Compare the magnetic field magnitudes and state how each scales with distance."
       },
@@ -733,7 +810,7 @@
           "D": "Denies the well-established dipole analogy"
         },
         "tested_idea": "A bar magnet is the magnetic analog of an electric dipole (m ↔ p, μ₀/4π ↔ 1/4πε₀).",
-        "teaches_state": "STATE_7",
+        "teaches_state": "STATE_8",
         "difficulty": "stretch",
         "parallel_form_stem": "State the electrostatic analog of a bar magnet and give the correspondence between the magnetic and electric quantities in the far-field dipole formulas."
       }
@@ -745,9 +822,9 @@
       "STATE_3": ["Q2"],
       "STATE_4": ["Q3"],
       "STATE_5": ["Q4"],
-      "STATE_6": ["Q5"],
-      "STATE_7": ["Q6"]
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
     },
-    "non_assessed_states": ["STATE_1", "STATE_8"]
+    "non_assessed_states": ["STATE_1", "STATE_6", "STATE_9"]
   }
 }

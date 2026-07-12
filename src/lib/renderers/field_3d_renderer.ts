@@ -13241,7 +13241,8 @@ export const FIELD_3D_RENDERER_CODE = `
     var BM = {
         tipN: 1.0, tipS: -1.0, archK: 6, archMaxH: 1.55, archMinH: 0.45,
         nColor: "#EF5350", sColor: "#42A5F5", flColor: "#66BB6A", tracer: "#FFD54F",
-        mColor: "#FFCA28", solColor: "#FFAB40", axColor: "#F472B6", eqColor: "#22D3EE"
+        mColor: "#FFCA28", solColor: "#FFAB40", axColor: "#F472B6", eqColor: "#22D3EE",
+        ghost: "#9CA3AF"
     };
     var bmTracers = [];
     var bmArchPaths = null;     // [[x,y],...] per external arch — drives tracer flow
@@ -13254,6 +13255,58 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function bmFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i]; } return null; }
     function bmSetOpacity(obj, op) { if (!obj) return; if (obj.material) { obj.material.transparent = true; obj.material.opacity = op; } if (obj.children) for (var i = 0; i < obj.children.length; i++) bmSetOpacity(obj.children[i], op); }
+
+    // Display-only perceptual length compression (Rule 29: arrow length is the
+    // real physical magnitude, but a LINEAR 1/r^3 length clips the +/-4 frame at
+    // the low-r/high-m extreme and vanishes at the high-r/low-m extreme). BASE
+    // is the axial arrow's length at the default pose (m=5, r=2); MIN/MAX bound
+    // the frame. The equatorial length is always EXACTLY HALF the (compressed)
+    // axial length — B_axial : B_equatorial is exactly 2 : 1 for ANY m, r
+    // (computed_outputs.axial_to_eq_ratio), so deriving eq from axial (instead
+    // of compressing each independently) preserves the 2:1 relationship exactly
+    // at any compression exponent. The numeric HUD (refreshBarMagnetExplorer)
+    // always reads the TRUE linear B — only the on-screen arrow LENGTH is
+    // compressed (engine_bug_queue: bm_dipole_arrow_display_compression).
+    var BM_ARROW_BASE = 1.2, BM_ARROW_MIN = 0.45, BM_ARROW_MAX = 3.6, BM_B_AXIAL_DEFAULT = 1.25;
+    function bmDisplayLenFromB(bAxialTrue) {
+        var disp = BM_ARROW_BASE * Math.pow(Math.max(1e-6, bAxialTrue / BM_B_AXIAL_DEFAULT), 0.4);
+        return Math.max(BM_ARROW_MIN, Math.min(BM_ARROW_MAX, disp));
+    }
+    function bmDisplayAxialLen(mVal, rVal) { return bmDisplayLenFromB(2 * mVal / (rVal * rVal * rVal)); }
+    // Equatorial length: normally EXACTLY half the (compressed) axial length —
+    // but half of an already-floored axial length can itself sit at/under
+    // BM_ARROW_MIN, which is how B⊥ was vanishing at the low-B extreme
+    // (2026-07-12 fix #2). Floor B⊥ independently at BM_ARROW_MIN too: the
+    // 2:1 read is preserved everywhere the true ratio doesn't need the floor
+    // (the vast majority of m,r), and at the extreme both arrows converge to
+    // the SAME floored length (still 2 clearly visible arrows, "tiny but
+    // present" over "gone" per founder direction) rather than one vanishing.
+    function bmDisplayEqLen(axialDisplayLen) { return Math.max(BM_ARROW_MIN, axialDisplayLen * 0.5); }
+    // 2026-07-12 fix #4 (round 3): the equatorial probe sits at world (0, r) —
+    // at camera_position [0,0,8]/fov 60 that world plane maps to screen at
+    // ~82 px per world-unit around a 360px vertical centre (measured from
+    // rendered frames), so as the TRUE r sweeps 2->4 the probe's own BASE
+    // position climbs from screen-y~194 to screen-y~32 — off the top of a
+    // 720-tall canvas. This is a VIEWPORT-FRAMING bug, not a length bug (the
+    // arrow itself was always > 0 length; the CONTENT was leaving the frame).
+    // Decouple the probe's DISPLAY position from the true r: both probes (and
+    // the ghost pair, which must track them) are placed at a COMPRESSED
+    // display radius that only grows to ~2.9 world-units by r=4 (screen-y
+    // ~122, comfortably inside frame, matching the safe r~2.8 framing already
+    // proven in earlier captures) while every PHYSICS quantity — arrow
+    // LENGTH (1/r^3 falloff), the r-slider value, and the HUD readout — keeps
+    // reading the TRUE r. Only the on-screen POSITION is compressed.
+    function bmProbeDispR(trueR) { return 2.0 + (trueR - 2.0) * 0.45; }
+    // Brief brightness-only pulse (Rule 29: brightness, never size) — lerps an
+    // ArrowHelper's colour toward white and back over the caller-supplied
+    // pulseT in [0,1] (1 = fully pulsed, 0 = resting colour).
+    function bmPulseColor(ah, baseHex, pulseT) {
+        if (!ah || !ah.setColor) return;
+        var base = hexToThreeColor(baseHex);
+        if (pulseT <= 0) { ah.setColor(base); return; }
+        var white = new THREE.Color(0xFFFFFF);
+        ah.setColor(base.clone().lerp(white, Math.max(0, Math.min(1, pulseT))));
+    }
 
     function buildBarMagnetAsDipole() {
         var B = BM;
@@ -13306,7 +13359,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var s = 0; s <= 14; s++) { var t = s / 14; ret.push([B.tipS + (B.tipN - B.tipS) * t, 0, 0.45]); }
             var loopPts = top.concat(ret);
             var lt = createTubeLine(loopPts, "#FFEE58", 0.03);
-            if (lt) { if (lt.material) { lt.material.opacity = 1; lt.material.emissive = hexToThreeColor("#FFEE58"); lt.material.emissiveIntensity = 0.55; } lt.userData = { elementType: "bm_loop_tube", id: "bm_loop_tube", loopPath: top.concat(ret) }; lt.visible = false; addToScene(lt); }
+            if (lt) { if (lt.material) { lt.material.opacity = 1; lt.material.emissive = hexToThreeColor("#FFEE58"); lt.material.emissiveIntensity = 0.55; } lt.userData = { elementType: "bm_loop_tube", id: "bm_loop_tube", loopPath: top.concat(ret), topLen: top.length }; lt.visible = false; addToScene(lt); }
             var ld = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 12), new THREE.MeshPhongMaterial({ color: 0xFFFFFF, emissive: 0xFFFFFF, emissiveIntensity: 0.9 }));
             ld.userData = { elementType: "bm_loop_dot", id: "bm_loop_dot", t: 0 }; ld.visible = false; addToScene(ld);
         })();
@@ -13355,7 +13408,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 var ring = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.025, 8, 30), new THREE.MeshPhongMaterial({ color: hexToThreeColor(B.solColor), emissive: hexToThreeColor(B.solColor), emissiveIntensity: 0.45 }));
                 ring.rotation.y = Math.PI / 2; ring.position.set(xr, 0, 0); ring.userData = { id: "bm_sol_ring_" + r }; g.add(ring);
             }
-            var sd = createWideLabelSprite("solenoid: m = N I A", B.solColor, 0.32); sd.position.set(0, -1.5, 0.2); g.add(sd);
+            // No on-mesh formula text here (2026-07-12 fix): the JSON's
+            // formula_overlay ("m = N·I·A") is the single formula surface for
+            // this state (Rule 34b) — a second sprite duplicating it was a
+            // second formula surface on the same frame.
             g.visible = false; addToScene(g);
         })();
 
@@ -13366,8 +13422,43 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         bmProbe("bm_probe_axial", 2.0, 0, 1, 0, 0.95, B.axColor);     // axial: B along +m
         bmProbe("bm_probe_eq", 0, 2.0, -1, 0, 0.48, B.eqColor);       // equatorial: B opposes m, half length
-        bmWideLabel("bm_axial_label", "B_axial \\u2248 2m/r\\u00b3", B.axColor, 0.32, 2.7, 0.4);
-        bmWideLabel("bm_eq_label", "B_eq \\u2248 m/r\\u00b3", B.eqColor, 0.32, 1.0, 2.3);
+        // Symbol-only (2026-07-12 fix): these were duplicating a formula
+        // surface on-mesh (Rule 34b — the JSON formula_overlay is the single
+        // formula surface); the sprites now just NAME which probe is which.
+        bmWideLabel("bm_axial_label", "B\\u2225", B.axColor, 0.32, 2.7, 0.4);
+        bmWideLabel("bm_eq_label", "B\\u22a5", B.eqColor, 0.32, 1.0, 2.3);
+
+        // ── Ghost arrow pairs (misconception contrast beats) ──
+        // S6 (ghost_ratio_pair): equal-length pair at the SAME r, representing
+        // the wrong "axial = equatorial" expectation (M4). S7 (ghost_1_over_r2):
+        // a translucent pair anchored at r=2 tracking a 1/r^2 falloff, so the
+        // REAL arrows (1/r^3) visibly pull ahead as r sweeps out (M5).
+        function bmGhostArrow(id, ox, oy, dx, dy, len, color) {
+            var a = new THREE.ArrowHelper(new THREE.Vector3(dx, dy, 0).normalize(), new THREE.Vector3(ox, oy, 0.24), len, color, 0.2, 0.11);
+            // 2026-07-12 fix #3: the ghost pair was being lost to depth
+            // occlusion against the (opaque, same-line-of-sight) real probe
+            // arrow it sits directly behind — depthTest:false + a high
+            // renderOrder is this codebase's established overlay-visibility
+            // pattern (mirrors the sprite/vector-overlay treatment elsewhere
+            // in this file, e.g. shaft/head renderOrder 998 + depthTest false)
+            // so the ghost ALWAYS paints through, regardless of z-ordering.
+            if (a.line && a.line.material) { a.line.material.transparent = true; a.line.material.opacity = 0.6; a.line.material.depthTest = false; a.line.material.depthWrite = false; }
+            if (a.cone && a.cone.material) { a.cone.material.transparent = true; a.cone.material.opacity = 0.6; a.cone.material.depthTest = false; a.cone.material.depthWrite = false; }
+            a.renderOrder = 998;
+            a.userData = { elementType: id, id: id }; a.visible = false; addToScene(a); return a;
+        }
+        bmGhostArrow("bm_ghost_axial", 2.0, 0, 1, 0, 0.7, B.ghost);
+        bmGhostArrow("bm_ghost_eq", 0, 2.0, -1, 0, 0.7, B.ghost);
+        bmGhostArrow("bm_ghost_axial_r2", 2.0, 0, 1, 0, 0.7, B.ghost);
+        bmGhostArrow("bm_ghost_eq_r2", 0, 2.0, -1, 0, 0.7, B.ghost);
+        bmWideLabel("bm_s7_callout", "Real \\u00f78, guess \\u00f74", "#FDE68A", 0.3, 0, -2.35);
+
+        // ── Loop-trace ghost dot (S2 M1 contrast: a faint dot dies at S, then a
+        //    brighter dot closes the WHOLE loop through the magnet's interior) ──
+        (function () {
+            var gd = new THREE.Mesh(new THREE.SphereGeometry(0.06, 10, 10), new THREE.MeshPhongMaterial({ color: hexToThreeColor(B.ghost), emissive: hexToThreeColor(B.ghost), emissiveIntensity: 0.4, transparent: true, opacity: 0.65 }));
+            gd.userData = { elementType: "bm_loop_dot_ghost", id: "bm_loop_dot_ghost", t: 0 }; gd.visible = false; addToScene(gd);
+        })();
 
         // ── Electric-dipole analog inset (S7): a small +q / -q pair, same pattern ──
         (function () {
@@ -13416,7 +13507,44 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // seed tracers across the arches
         for (var d = 0; d < bmTracers.length; d++) { var tr = bmTracers[d]; tr.userData.t = (d / bmTracers.length); }
-        if (stateDef.show_sliders) { bmInteracted = false; refreshBarMagnetExplorer(); }
+        // A prior state's m-drag / a trusted r-drag on S7 must never leave a
+        // stale brightness pulse or a seized auto-sweep bleeding into a later
+        // state entered fresh (Rule 26/32b: state-entry reset, mirrors
+        // window.PM_swcManualI / PM_magManual elsewhere).
+        window.PM_bmLastMDragMs = -1e9;
+        window.PM_bmRManual = false;
+        if (stateDef.show_sliders) {
+            bmInteracted = false;
+            refreshBarMagnetExplorer();
+            // Rule 31c per-state contextual controls — S4 teaches only m; S7
+            // only r; S9 (sandbox) both. Rows built once in setupSliders' bar-
+            // magnet block (bm_m_row / bm_r_row); absent visible_controls means
+            // every row shows (legacy / all-shown fallback).
+            applyVisibleControls({ m: "bm_m_row", r: "bm_r_row" }, stateDef.visible_controls);
+        }
+        // bm_readout (standalone, independent of the slider-row visibility
+        // above — 2026-07-12 fix): show ONLY on the field-magnitude beats.
+        // "bm_probe_axial" is listed in visible_elements EXACTLY on STATE_6/
+        // STATE_7/STATE_9 (the states with the axial/equatorial probes on
+        // screen) and nowhere else — a semantically meaningful, already-
+        // authored discriminator, so no new JSON key is needed.
+        var bmReadoutPanel = document.getElementById("bm_readout");
+        if (bmReadoutPanel) {
+            var bmShowReadout = listed("bm_probe_axial");
+            bmReadoutPanel.style.display = bmShowReadout ? "block" : "none";
+            if (bmShowReadout) {
+                // STATE_6 has NO slider rows at all (r is locked, not draggable),
+                // so its readout must report the LOCKED r, not whatever stale
+                // value a PRIOR state's r-drag left in the (hidden) DOM slider —
+                // otherwise the numbers would contradict the on-screen arrows.
+                var bmSvEntry = bmReadSliders();
+                var bmExtrasEntry = stateDef.extras || {};
+                var bmOrbitEntry = bmExtrasEntry.orbit_probe;
+                var bmREntry = (bmOrbitEntry && bmOrbitEntry.r_locked != null) ? bmOrbitEntry.r_locked : (bmSvEntry ? bmSvEntry.r : 2.0);
+                var bmMEntry = bmSvEntry ? bmSvEntry.m : 5;
+                bmUpdateReadout(bmMEntry, bmREntry);
+            }
+        }
     }
 
     var bmInteracted = false;
@@ -13435,43 +13563,265 @@ export const FIELD_3D_RENDERER_CODE = `
                 tr.position.set(xy[0], xy[1], 0.05);
             }
         }
-        // S2 — a dot traces the full closed loop (external arch + internal return)
+        // S2 — TWO-PHASE loop trace (M1 confrontation): a faint ghost dot rides
+        // the EXTERNAL arc only and dies out at S (the wrong expectation); after
+        // a gap, a brighter real dot traces the WHOLE closed loop, continuing
+        // through the magnet's interior back to N. cycle:true — the payoff IS
+        // the repetition, so this stays a strict-motion state (see
+        // deriveMotionExpectations), never a static hold.
         var loop = bmFindById("bm_loop_tube");
         var ldot = bmFindById("bm_loop_dot");
-        if (loop && ldot && ldot.visible && loop.userData.loopPath) {
-            ldot.userData.t = (ldot.userData.t + 0.12 * 0.016 * __pmSteps);
-            var lp = gavLerpPath(loop.userData.loopPath.map(function (p) { return [p[0], p[1]]; }), ldot.userData.t);
-            ldot.position.set(lp[0], lp[1], 0.5);
+        var gdot2 = bmFindById("bm_loop_dot_ghost");
+        if (ex.loop_choreography && loop && ldot && loop.userData.loopPath) {
+            var s2Death = ex.loop_choreography.ghost_death_at_s_ms || 1800;
+            var s2Gap = ex.loop_choreography.gap_ms || 600;
+            var s2Real = ex.loop_choreography.real_close_duration_ms || 2200;
+            var s2Cycle = Math.max(1, s2Death + s2Gap + s2Real);
+            var s2Phase = elapsedMs % s2Cycle;
+            if (gdot2) {
+                var s2ShowGhost = s2Phase < s2Death;
+                gdot2.visible = s2ShowGhost;
+                if (s2ShowGhost) {
+                    var extPts = loop.userData.loopPath.slice(0, loop.userData.topLen || loop.userData.loopPath.length).map(function (p) { return [p[0], p[1]]; });
+                    var gp2 = gavLerpPath(extPts, s2Phase / s2Death);
+                    gdot2.position.set(gp2[0], gp2[1], 0.5);
+                }
+            }
+            var s2ShowReal = s2Phase >= s2Death + s2Gap;
+            ldot.visible = s2ShowReal;
+            if (s2ShowReal) {
+                ldot.userData.t = Math.max(0, Math.min(1, (s2Phase - s2Death - s2Gap) / s2Real));
+                var lp = gavLerpPath(loop.userData.loopPath.map(function (p) { return [p[0], p[1]]; }), ldot.userData.t);
+                ldot.position.set(lp[0], lp[1], 0.5);
+            }
+        } else {
+            if (gdot2) gdot2.visible = false;
         }
-        // S3 — break: separate the two halves along x + fade in the new inner poles
+        // S3 — break: hold whole, split at centre (new poles ignite), HOLD open
+        // (the PRIMARY aha's static payoff — long enough for a dense/frozen
+        // capture to reliably land here), rejoin, brief pause, repeat ("cut it
+        // again, still two dipoles" — Rule 26 clock). 2026-07-12 round-3: the
+        // off-centre second-cut beat (a flash-marker approximation) never
+        // rendered visibly in review and is CLEANLY REMOVED rather than left
+        // half-working — the symmetric centre cut alone already carries the
+        // concept's PRIMARY aha (json_author's 'second_cut'/'frozen_pose_ms'
+        // extras are simply unread now; the JSON itself is untouched).
         var br = bmFindById("bm_break");
         if (br && br.visible && ex.break_anim && ex.break_anim.enabled) {
-            // loop: hold whole (gap 0) briefly, then split + new poles fade in, hold,
-            // rejoin — repeats so "break it again → still two dipoles" keeps moving.
-            var atMs = ex.break_anim.at_ms || 0, dur = ex.break_anim.duration_ms || 1600;
-            var phase = Math.max(0, elapsedMs - atMs) % (dur * 2.4);
-            var ub = phase < dur ? (phase / dur) : (phase < dur * 1.4 ? 1 : Math.max(0, 1 - (phase - dur * 1.4) / dur));
-            var ubs = mcgSmooth(Math.max(0, Math.min(1, ub)));
-            var gap = 0.72 * ubs;
-            if (br.userData.left) br.userData.left.position.x = -gap;
-            if (br.userData.right) br.userData.right.position.x = gap;
-            for (var c = 0; c < br.children.length; c++) { var ch = br.children[c]; if (ch.userData && ch.userData.newPole && ch.material) { ch.material.opacity = ubs; ch.material.transparent = true; } }
+            var atMs = ex.break_anim.at_ms || 2500, dur = ex.break_anim.duration_ms || 1600;
+            var holdOpenMs = 3000, pauseWholeMs = 1500;
+            var macro3 = Math.max(1, dur + holdOpenMs + dur + pauseWholeMs);
+            var t3 = Math.max(0, elapsedMs - atMs) % macro3;
+            var gap3 = 0, poleOp3 = 0;
+            if (t3 < dur) { var u1 = mcgSmooth(t3 / dur); gap3 = 0.72 * u1; poleOp3 = u1; }
+            else if (t3 < dur + holdOpenMs) { gap3 = 0.72; poleOp3 = 1; }   // STATIC payoff hold — THE EYE pins its capture here
+            else if (t3 < dur + holdOpenMs + dur) { var u2 = mcgSmooth(1 - (t3 - (dur + holdOpenMs)) / dur); gap3 = 0.72 * u2; poleOp3 = u2; }
+            else { gap3 = 0; poleOp3 = 0; }   // whole again, brief pause before repeating
+            if (br.userData.left) br.userData.left.position.x = -gap3;
+            if (br.userData.right) br.userData.right.position.x = gap3;
+            for (var c = 0; c < br.children.length; c++) { var ch = br.children[c]; if (ch.userData && ch.userData.newPole && ch.material) { ch.material.opacity = poleOp3; ch.material.transparent = true; } }
         }
-        // S5 — solenoid current dots circulate (visual only): pulse the rings' glow
+        // S4 — 180° flip (N<->S swap via a position slide, face-on 2D scenario)
+        // + the moment arrow m rotating through a semicircular arc (Rule 29:
+        // arrow LENGTH never shrinks to fake a rotation — only its DIRECTION and
+        // TAIL position move); once the flip settles, m's slider drives the
+        // arrow's real length + a brightness-only pulse on drag.
+        var momArrow = bmFindById("bm_moment");
+        var flip = ex.flip_anim;
+        if (flip && momArrow) {
+            var fT = Math.max(0, Math.min(1, (elapsedMs - (flip.at_ms != null ? flip.at_ms : 800)) / (flip.duration_ms || 1400)));
+            var fE = mcgSmooth(fT);
+            var nBox = bmFindById("bm_magnet_n"), sBox = bmFindById("bm_magnet_s");
+            var nLbl = bmFindById("bm_n_label"), sLbl = bmFindById("bm_s_label");
+            if (nBox) nBox.position.x = 0.5 - fE * 1.0;
+            if (sBox) sBox.position.x = -0.5 + fE * 1.0;
+            if (nLbl) nLbl.position.x = 1.28 - fE * 2.56;
+            if (sLbl) sLbl.position.x = -1.28 + fE * 2.56;
+            var flipTheta = fE * Math.PI;
+            momArrow.setDirection(new THREE.Vector3(Math.cos(flipTheta), 0.35 * Math.sin(flipTheta), 0).normalize());
+            momArrow.position.set(-0.75 + 1.5 * fE, 0, 0.55);
+        }
+        if (momArrow && ex.moment_scales_with_m) {
+            var svM4 = bmReadSliders();
+            var mNow = svM4 ? svM4.m : 5;
+            momArrow.setLength(0.9 + 1.2 * (mNow / 10), 0.3, 0.16);
+            if (ex.brightness_pulse_on_drag) {
+                var dtDrag = (typeof window.PM_bmLastMDragMs === "number") ? (performance.now() - window.PM_bmLastMDragMs) : 1e9;
+                bmPulseColor(momArrow, BM.mColor, dtDrag < 500 ? (1 - dtDrag / 500) : 0);
+            }
+        }
+        // S5 — solenoid cross-fades IN over the magnet (opacity 0->1 across
+        // period_ms) while the external field is held IDENTICAL and unmoving —
+        // the teaching point IS that nothing about the field changes.
         var sol = bmFindById("bm_solenoid");
-        if (sol && sol.visible) { var pg = 0.45 + 0.25 * Math.abs(Math.sin(time * 2.0)); for (var s2 = 0; s2 < sol.children.length; s2++) { var rg = sol.children[s2]; if (rg.userData && rg.userData.id && rg.userData.id.indexOf("bm_sol_ring") === 0 && rg.material) rg.material.emissiveIntensity = pg; } }
-        // S6 — probe r-sweep: move probes in/out and rescale by 1/r^3 (2:1 axial:eq)
-        var ax = bmFindById("bm_probe_axial"), eq = bmFindById("bm_probe_eq");
-        if ((ax && ax.visible) || (eq && eq.visible)) {
-            var r = 1.6 + 0.7 * (0.5 + 0.5 * Math.sin(time * 0.9));   // sweeps 1.6..2.3
-            var refL = 0.95 * Math.pow(2.0 / r, 3);
-            if (ax) { ax.position.set(r, 0, 0.3); ax.setLength(Math.max(0.18, refL), 0.22, 0.12); }
-            if (eq) { eq.position.set(0, r, 0.3); eq.setLength(Math.max(0.1, refL * 0.5), 0.18, 0.1); }
+        if (sol && sol.visible) {
+            var solPeriod = (ex.solenoid_crossfade && ex.solenoid_crossfade.period_ms) || 3200;
+            var solFade = mcgSmooth(Math.max(0, Math.min(1, elapsedMs / solPeriod)));
+            var pg = 0.45 + 0.25 * Math.abs(Math.sin(time * 2.0));
+            for (var s2 = 0; s2 < sol.children.length; s2++) {
+                var rg = sol.children[s2];
+                if (rg.userData && rg.userData.id && rg.userData.id.indexOf("bm_sol_ring") === 0 && rg.material) {
+                    rg.material.emissiveIntensity = pg;
+                    rg.material.transparent = true; rg.material.opacity = solFade;
+                }
+            }
         }
-        // S1 — compass settle: needle eases to point along +x (axial field by N)
+        // S6 — LOCKED-r contrast (ghost equal-length pair holds the wrong M4
+        // expectation, then the real arrows snap to the true 2:1). 2026-07-12
+        // round-3 fix (MODERATE — orphaned "B∥" label): the prior version
+        // glided the axial probe off its labeled position to merge with the
+        // equatorial arrow, leaving bm_axial_label behind with no arrow under
+        // it. Simplified per founder direction — NO merge/glide: axial stays
+        // on the right at its full (2x) length, equatorial stays on top at
+        // its (1x, independently-floored) length, BOTH exactly where their
+        // labels already sit. The 2:1 reads side-by-side; a brief brightness
+        // pulse on both (Rule 29) marks the snap moment. Nothing ever leaves
+        // its labeled position, so neither label can orphan.
+        var ax = bmFindById("bm_probe_axial"), eq = bmFindById("bm_probe_eq");
+        var gAx6 = bmFindById("bm_ghost_axial"), gEq6 = bmFindById("bm_ghost_eq");
+        if (ex.ghost_ratio_pair && ex.ghost_ratio_pair.enabled) {
+            var s6R = bmProbeDispR((ex.orbit_probe && ex.orbit_probe.r_locked) || 2.0);
+            var sv6 = bmReadSliders();
+            var s6M = sv6 ? sv6.m : 5;
+            var s6AxLen = bmDisplayAxialLen(s6M, s6R);
+            var s6EqLen = bmDisplayEqLen(s6AxLen);   // fix #1: floored independently — B⊥ can never vanish
+            var s6Hold = ex.ghost_ratio_pair.hold_ms || 1500;
+            var s6Gap = (ex.orbit_probe && ex.orbit_probe.gap_ms) || 500;
+            var s6ShowGhost = elapsedMs < s6Hold;
+            if (gAx6) { gAx6.visible = s6ShowGhost; if (s6ShowGhost) { gAx6.position.set(s6R, 0, 0.28); gAx6.setLength(s6AxLen, 0.2, 0.11); } }
+            if (gEq6) { gEq6.visible = s6ShowGhost; if (s6ShowGhost) { gEq6.position.set(0, s6R, 0.28); gEq6.setLength(s6AxLen, 0.2, 0.11); } }
+            if (ax) { ax.visible = !s6ShowGhost; if (!s6ShowGhost) { ax.position.set(s6R, 0, 0.3); ax.setLength(s6AxLen, 0.22, 0.12); } }
+            if (eq) { eq.visible = !s6ShowGhost; if (!s6ShowGhost) { eq.position.set(0, s6R, 0.3); eq.setLength(s6EqLen, 0.18, 0.1); } }
+            if (!s6ShowGhost) {
+                var s6PulseT = elapsedMs < s6Hold + s6Gap + 400 ? (1 - (elapsedMs - s6Hold - s6Gap) / 400) : 0;
+                bmPulseColor(ax, BM.axColor, s6PulseT);
+                bmPulseColor(eq, BM.eqColor, s6PulseT);
+            }
+        } else {
+            if (gAx6) gAx6.visible = false;
+            if (gEq6) gEq6.visible = false;
+        }
+        // S7 — r-SWEEP at a LOCKED theta (dashed 1/r^2 ghost pair anchored at
+        // r=2 alongside the REAL 1/r^3 arrows; the real arrows visibly pull
+        // ahead as r sweeps 2->4, then a callout names the gap). One-shot sweep
+        // that then HOLDS at r=4 (the payoff needs no further repetition).
+        var gAx7 = bmFindById("bm_ghost_axial_r2"), gEq7 = bmFindById("bm_ghost_eq_r2");
+        var s7Callout = bmFindById("bm_s7_callout");
+        var bmS7Active = false;
+        if (ex.r_sweep_theta_locked === true) {
+            bmS7Active = true;
+            var BM_S7_SWEEP_MS = 4500;
+            var sv7 = bmReadSliders();
+            var s7M = sv7 ? sv7.m : 5;
+            var s7R;
+            if (window.PM_bmRManual && sv7) {
+                // A trusted teacher drag has SEIZED r (Rule 31 trusted-drag-
+                // seizes-manual pattern) — the slider is now the source of truth.
+                s7R = sv7.r;
+            } else {
+                // The renderer-driven demo OWNS r until a trusted drag seizes it
+                // (bug fix 2026-07-12: bmApplyExplorer used to run unconditionally
+                // every frame afterward and stomp this position back to the
+                // slider's static default r=2, so the sweep never visibly moved —
+                // that generic call is now skipped for the whole duration this
+                // branch is active; see bmS7Active below).
+                var s7U = mcgSmooth(Math.max(0, Math.min(1, elapsedMs / BM_S7_SWEEP_MS)));
+                s7R = 2.0 + 2.0 * s7U;
+                // Keep the slider thumb + label in sync with the auto-sweep (a
+                // programmatic, NOT trusted, DOM update) so a later grab starts
+                // smoothly from wherever the demo currently is.
+                var s7RSliderEl = document.getElementById("bm_r_slider");
+                if (s7RSliderEl) s7RSliderEl.value = s7R.toFixed(1);
+                var s7RValEl = document.getElementById("bm_r_val");
+                if (s7RValEl) s7RValEl.textContent = s7R.toFixed(1);
+            }
+            // Physics (length) always uses the TRUE r — only screen POSITION
+            // is compressed below (fix #4, round 3).
+            var s7RealLen = bmDisplayAxialLen(s7M, s7R);
+            var s7RealEqLen = bmDisplayEqLen(s7RealLen);   // fix #1: floored independently — B⊥ can never vanish
+            var s7AxialAtAnchor = 2 * s7M / (2.0 * 2.0 * 2.0);   // true B_axial at the anchor r=2
+            var s7GhostB = s7AxialAtAnchor * Math.pow(2.0 / s7R, 2);   // a 1/r^2 guess, anchored equal at r=2
+            var s7GhostLen = bmDisplayLenFromB(s7GhostB);
+            var s7GhostEqLen = bmDisplayEqLen(s7GhostLen);
+            var s7DispR = bmProbeDispR(s7R);   // fix #4: keeps the equatorial probe's BASE position in-frame
+            if (ax) { ax.visible = true; ax.position.set(s7DispR, 0, 0.3); ax.setLength(s7RealLen, 0.22, 0.12); }
+            if (eq) { eq.visible = true; eq.position.set(0, s7DispR, 0.3); eq.setLength(s7RealEqLen, 0.18, 0.1); }
+            // fix #3: the ghost pair sits laterally OFFSET beside the real
+            // arrows (not perfectly collinear/overlapping along the same
+            // shaft line) so the widening gap between "real" and "1/r^2
+            // guess" reads clearly as two distinct arrows side by side, not
+            // one hiding behind the other. Tracks the SAME display radius as
+            // the real probes (fix #4) so it never drifts off-frame either.
+            if (gAx7) { gAx7.visible = true; gAx7.position.set(s7DispR, 0.22, 0.24); gAx7.setLength(s7GhostLen, 0.2, 0.11); }
+            if (gEq7) { gEq7.visible = true; gEq7.position.set(0.22, s7DispR, 0.24); gEq7.setLength(s7GhostEqLen, 0.18, 0.1); }
+            var s7CalloutR = (ex.callout_at_r_ge && ex.callout_at_r_ge.r) || 3.9;
+            if (s7Callout) s7Callout.visible = s7R >= s7CalloutR;
+            // Live readout numbers track the sweep (or the seized drag) every
+            // frame — without this the bm_readout panel would freeze at
+            // whatever r happened to be on state entry while the visible
+            // arrows kept moving.
+            bmUpdateReadout(s7M, s7R);
+        } else {
+            if (gAx7) gAx7.visible = false;
+            if (gEq7) gEq7.visible = false;
+            if (s7Callout) s7Callout.visible = false;
+        }
+        // S8 — the electric-dipole inset glides from its corner toward the bar
+        // magnet's own field, growing to visually overlay/coincide with it, then
+        // a brief registration-glow pulse (brightness only) confirms the match.
+        var edi = bmFindById("bm_edipole");
+        if (edi && edi.visible && ex.edipole_glide && ex.edipole_glide.enabled) {
+            var BM_S8_GLIDE_MS = 1200;
+            var s8Gap = ex.edipole_glide.gap_ms || 500;
+            var s8GlowMs = ex.edipole_glide.registration_glow_ms || 700;
+            var s8Start = new THREE.Vector3(2.5, 1.35, 0), s8End = new THREE.Vector3(0, 0, 0.55);
+            if (elapsedMs < s8Gap) {
+                edi.position.copy(s8Start); edi.scale.setScalar(1.0);
+            } else if (elapsedMs < s8Gap + BM_S8_GLIDE_MS) {
+                var s8U = mcgSmooth((elapsedMs - s8Gap) / BM_S8_GLIDE_MS);
+                edi.position.lerpVectors(s8Start, s8End, s8U);
+                edi.scale.setScalar(1.0 + 1.9 * s8U);
+            } else {
+                edi.position.copy(s8End); edi.scale.setScalar(2.9);
+                var s8GlowT = Math.max(0, 1 - (elapsedMs - s8Gap - BM_S8_GLIDE_MS) / Math.max(1, s8GlowMs));
+                for (var eci = 0; eci < edi.children.length; eci++) {
+                    var ech = edi.children[eci];
+                    if (ech.material && ech.material.emissiveIntensity != null) ech.material.emissiveIntensity = 0.5 + 0.5 * s8GlowT;
+                }
+            }
+        }
+        // S1 — field lines fade in (field_reveal_ms), THEN (after a gap) the
+        // compass settles while the field dims slightly (brightness only, Rule
+        // 29) to draw the eye to the needle; the compass is drawn at the
+        // authored enlarged scale so the pose reads clearly.
         var cmp = bmFindById("bm_compass");
-        if (cmp && cmp.visible) { var uc = Math.max(0, Math.min(1, elapsedMs / 1600)); cmp.rotation.z = (1 - mcgSmooth(uc)) * 0.9; }
-        if (sd.show_sliders) { var sv = bmReadSliders(); if (sv) bmApplyExplorer(sv); }
+        var cmpSettle = ex.compass_settle;
+        if (cmpSettle) {
+            var BM_S1_SETTLE_MS = 1600;
+            var revealMs = ex.field_reveal_ms || 1200;
+            var gapMs1 = cmpSettle.gap_after_reveal_ms || 600;
+            var fieldOp = mcgSmooth(Math.max(0, Math.min(1, elapsedMs / revealMs)));
+            var settleStart = revealMs + gapMs1;
+            var settling = elapsedMs >= settleStart && elapsedMs < settleStart + BM_S1_SETTLE_MS;
+            var dimOp = (cmpSettle.dim_field_during_settle && settling) ? 0.55 : 1.0;
+            for (var fi = 0; fi < sceneObjects.length; fi++) {
+                var fo = sceneObjects[fi], fud = fo.userData || {};
+                if (fud.elementType === "bm_field_line" || fud.elementType === "bm_field_arrow") {
+                    if (fo.material) { fo.material.transparent = true; fo.material.opacity = fieldOp * dimOp * 0.9; }
+                }
+            }
+            if (cmp) {
+                cmp.scale.setScalar(cmpSettle.scale || 2.6);
+                var uc = Math.max(0, Math.min(1, (elapsedMs - settleStart) / BM_S1_SETTLE_MS));
+                cmp.rotation.z = (1 - mcgSmooth(uc)) * 0.9;
+            }
+        }
+        // S7's r-sweep branch above is the sole owner of ax/eq while active
+        // (auto-sweep OR a seized trusted drag) — calling the generic explorer
+        // here too would stomp its position back to a stale slider read every
+        // frame (the S7-dead-sweep bug). S4/S9 (no r_sweep_theta_locked) still
+        // go through the generic path unchanged.
+        if (sd.show_sliders && !bmS7Active) { var sv = bmReadSliders(); if (sv) bmApplyExplorer(sv); }
     }
 
     function applyBarMagnetAsDipoleGlow() {
@@ -13487,17 +13837,31 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function bmApplyExplorer(sv) {
         var ax = bmFindById("bm_probe_axial"), eq = bmFindById("bm_probe_eq");
-        var base = 0.5 + 0.5 * (sv.m / 10);   // moment scales arrow magnitude
-        var refL = base * Math.pow(2.0 / sv.r, 3);
-        if (ax) { ax.position.set(sv.r, 0, 0.3); ax.setLength(Math.max(0.15, refL), 0.22, 0.12); }
-        if (eq) { eq.position.set(0, sv.r, 0.3); eq.setLength(Math.max(0.08, refL * 0.5), 0.18, 0.1); }
+        var axLen = bmDisplayAxialLen(sv.m, sv.r);   // display-compressed (Rule 29) — HUD stays true-linear
+        // fix #4 (round 3): S9's r slider spans the SAME 1.2..4.0 range as
+        // S7's sweep, so the equatorial probe's base position can climb off
+        // the top of the frame here too — same display-radius compression,
+        // physics (length) and the HUD both still read the TRUE sv.r/sv.m.
+        var dispR = bmProbeDispR(sv.r);
+        if (ax) { ax.position.set(dispR, 0, 0.3); ax.setLength(axLen, 0.22, 0.12); }
+        if (eq) { eq.position.set(0, dispR, 0.3); eq.setLength(bmDisplayEqLen(axLen), 0.18, 0.1); }   // fix #1: floored independently — B⊥ can never vanish
+    }
+    // Value-only, true-linear, Unicode (Rule 34b/c fix 2026-07-12) — no formula
+    // bodies (no "2m/r³"), no ASCII (no B_axial/B_equatorial/B_eq). Split out
+    // of refreshBarMagnetExplorer so STATE_6 (no sliders at all) and STATE_7's
+    // auto-sweep (which syncs the slider DOM but never calls the full explorer
+    // refresh) can both keep the readout's NUMBERS live without re-touching the
+    // probe arrows' position/length (which each of those states already owns).
+    function bmUpdateReadout(mVal, rVal) {
+        var ro = document.getElementById("bm_readout");
+        if (!ro) return;
+        var axB = (2.0 * mVal) / Math.pow(rVal, 3), eqB = (1.0 * mVal) / Math.pow(rVal, 3);
+        ro.innerHTML = "B\\u2225 = " + axB.toFixed(2) + "<br>B\\u22a5 = " + eqB.toFixed(2) + "<br>B\\u2225 : B\\u22a5 = 2 : 1";
     }
     function refreshBarMagnetExplorer() {
         var sv = bmReadSliders(); if (!sv) return;
         bmApplyExplorer(sv);
-        var ax = (2.0 * sv.m) / Math.pow(sv.r, 3), eqv = (1.0 * sv.m) / Math.pow(sv.r, 3);
-        var ro = document.getElementById("bm_readout");
-        if (ro) ro.innerHTML = "B_axial \\u221d 2m/r\\u00b3 = " + ax.toFixed(2) + "<br>B_equatorial \\u221d m/r\\u00b3 = " + eqv.toFixed(2) + "<br>ratio B_axial : B_eq = 2 : 1";
+        bmUpdateReadout(sv.m, sv.r);
         var mv = document.getElementById("bm_m_val"); if (mv) mv.textContent = sv.m.toFixed(0);
         var rv = document.getElementById("bm_r_val"); if (rv) rv.textContent = sv.r.toFixed(1);
     }
@@ -31258,13 +31622,52 @@ export const FIELD_3D_RENDERER_CODE = `
                 var bM = bSc.m || {}, bR = bSc.r || {};
                 var bMDef = bM.default != null ? bM.default : 5, bMMin = bM.min != null ? bM.min : 1, bMMax = bM.max != null ? bM.max : 10, bMStep = bM.step != null ? bM.step : 1;
                 var bRDef = bR.default != null ? bR.default : 2, bRMin = bR.min != null ? bR.min : 1.2, bRMax = bR.max != null ? bR.max : 3.5, bRStep = bR.step != null ? bR.step : 0.1;
+                // Rows wrapped in bm_m_row / bm_r_row so applyVisibleControls
+                // (called from applyBarMagnetAsDipoleState) can show only the
+                // state-relevant row(s) per Rule 31c: S4 (flip) = m only; S7
+                // (r-sweep) = r only; S9 (sandbox) = both. Mirrors the
+                // gav_ig_row / mcg_i_row shared-panel pattern.
                 bmPanel.innerHTML =
-                    '<label>m (moment) = <span id="bm_m_val">' + bMDef.toFixed(0) + '</span></label>' +
-                    '<input type="range" id="bm_m_slider" min="' + bMMin + '" max="' + bMMax + '" step="' + bMStep + '" value="' + bMDef + '">' +
-                    '<label>r (distance) = <span id="bm_r_val">' + bRDef.toFixed(1) + '</span></label>' +
-                    '<input type="range" id="bm_r_slider" min="' + bRMin + '" max="' + bRMax + '" step="' + bRStep + '" value="' + bRDef + '">' +
-                    '<div id="bm_readout">B_axial \\u221d 2m/r\\u00b3<br>B_equatorial \\u221d m/r\\u00b3<br>ratio = 2 : 1</div>';
-                var bmOnInput = function () { bmInteracted = true; refreshBarMagnetExplorer(); };
+                    '<div id="bm_m_row"><label>m (moment) = <span id="bm_m_val">' + bMDef.toFixed(0) + '</span></label>' +
+                    '<input type="range" id="bm_m_slider" min="' + bMMin + '" max="' + bMMax + '" step="' + bMStep + '" value="' + bMDef + '"></div>' +
+                    '<div id="bm_r_row"><label>r (distance) = <span id="bm_r_val">' + bRDef.toFixed(1) + '</span></label>' +
+                    '<input type="range" id="bm_r_slider" min="' + bRMin + '" max="' + bRMax + '" step="' + bRStep + '" value="' + bRDef + '"></div>';
+                // bm_readout is a STANDALONE body-appended div (2026-07-12 fix,
+                // mirrors mag_readout/far_readout/acg_readout) — it must show on
+                // STATE_6/7/9 (the field-magnitude beats) even though STATE_6 has
+                // NO slider panel at all (show_sliders falsy there), so it cannot
+                // live inside #sliders (a hidden parent hides any child). Its
+                // visibility is set in applyBarMagnetAsDipoleState, independent of
+                // the slider-row visibility above.
+                //
+                // Placement (2026-07-12 fix #2, Rule 34d): bottom:right/right:12
+                // is #formula_overlay's OWN zone (see the #formula_overlay CSS
+                // rule) — painting bm_readout there garbled the two together.
+                // top:145px clears BOTH the review-chrome "Full screen" button
+                // (top:10px/right:10px, ~40px tall — the acg_readout top:52px
+                // convention) AND the shared #sliders panel above it (top:12px,
+                // tall enough on STATE_9 to hold both the m AND r rows).
+                var bmReadoutEl = document.getElementById("bm_readout");
+                if (!bmReadoutEl) {
+                    bmReadoutEl = document.createElement("div"); bmReadoutEl.id = "bm_readout";
+                    var bmTextColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+                    bmReadoutEl.style.cssText = "position:fixed;top:145px;right:12px;background:rgba(0,0,0,0.82);color:" + bmTextColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:170px;display:none;";
+                    document.body.appendChild(bmReadoutEl);
+                }
+                var bmOnInput = function (ev) {
+                    bmInteracted = true;
+                    // brightness_pulse_on_drag (S4): stamp the wall-clock moment of
+                    // an m-drag so updateBarMagnetAsDipoleFrame can pulse the
+                    // moment arrow's colour briefly (Rule 29: brightness, never size).
+                    if (ev && ev.target && ev.target.id === "bm_m_slider") window.PM_bmLastMDragMs = performance.now();
+                    // S7's r-sweep is a renderer-driven auto demo (Rule 31 "trusted-
+                    // drag seizes manual" pattern, mirrors swc/mag/em/etc.) — a REAL
+                    // teacher drag (ev.isTrusted) seizes r; the programmatic sync the
+                    // auto-sweep performs on the same slider (isTrusted===false) must
+                    // never seize, or the sweep would freeze itself on its own first frame.
+                    if (ev && ev.isTrusted && ev.target && ev.target.id === "bm_r_slider") window.PM_bmRManual = true;
+                    refreshBarMagnetExplorer();
+                };
                 var bmIds = ["bm_m_slider", "bm_r_slider"];
                 for (var bk = 0; bk < bmIds.length; bk++) { var bEl = document.getElementById(bmIds[bk]); if (bEl) bEl.addEventListener("input", bmOnInput); }
                 refreshBarMagnetExplorer();

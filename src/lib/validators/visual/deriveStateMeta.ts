@@ -243,6 +243,26 @@ export function deriveMotionExpectations(
             // relaxed by the show_sliders→interactive hold pass).
             const swc = state ? asObj(state.swc) : null;
             if (swc) { out[stateId] = (swc.mode && swc.mode !== 'sandbox') ? true : false; continue; }
+            // bar_magnet_as_dipole: STATE_2's loop trace + STATE_3's break
+            // genuinely CYCLE (the payoff is the repetition — "cut it
+            // again, still two dipoles"), so they declare ongoing motion. Every
+            // other guided beat (S1 compass settle, S4 flip, S5 solenoid cross-
+            // fade, S6 ghost-ratio+orbit, S7 r-sweep+ghost+callout, S8 edipole
+            // glide) ALSO moves pixels mid-state before settling — declare
+            // motion=true so D5/D6 expect the mid-state movement (the post-
+            // payoff hold is handled separately in deriveHoldExpectations as
+            // reveal_hold, the same dual classification the pef/dipole_potential
+            // sweep states use). STATE_9 (show_sliders, both m+r, no scripted
+            // choreography) has none of these keys — it falls through to the
+            // generic pass below (undefined; its live-but-static frame is
+            // relaxed by the show_sliders->interactive hold pass).
+            const bmDipole = state ? asObj(state.extras) : null;
+            if (bmDipole && (bmDipole.loop_choreography || bmDipole.break_anim
+                || bmDipole.flip_anim || bmDipole.solenoid_crossfade
+                || bmDipole.ghost_ratio_pair || bmDipole.compass_settle
+                || bmDipole.r_sweep_theta_locked === true || bmDipole.edipole_glide)) {
+                out[stateId] = true; continue;
+            }
             // Other field_3d states fall through to the epic_l_path-based pass
             // below (trajectory_mode / advance_mode), so don't set them here.
         }
@@ -1461,6 +1481,67 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         candidates.push(asNum(pl.reveal_at_ms, 300) + asNum(pl.fade_ms, 500));
     }
 
+    // bar_magnet_as_dipole (NCERT Ch.5 Sec.5.2 dipole field): per-state `extras`
+    // drive one-shot timed choreography that then HOLDS its end pose. STATE_2's
+    // loop trace CYCLES forever (the payoff is the repetition) so it is NOT
+    // pinned here — it stays in the strict motion gate via
+    // deriveMotionExpectations/deriveHoldExpectations below, never a settle
+    // time. STATE_3 (break) DOES pin here — pinned to the MIDDLE of the
+    // renderer's hold-open window so it lands well clear of either phase
+    // boundary. 2026-07-12 round 3: the JSON's `second_cut`/`frozen_pose_ms`
+    // extras are no longer read by the renderer (that beat never rendered
+    // visibly and was cleanly removed — the symmetric centre cut alone
+    // carries STATE_3's PRIMARY aha); this pin now matches the renderer's
+    // actual simple split/hold/rejoin/pause cycle unconditionally. Renderer-
+    // only timing constants the JSON does not carry (the 1600ms compass-
+    // settle ease, the 3000ms post-split hold-open, the 4500ms r-sweep, the
+    // 1200ms edipole glide) are hardcoded fallbacks here — they MUST mirror
+    // field_3d_renderer.ts's updateBarMagnetAsDipoleFrame (bar_magnet_as_dipole
+    // scenario region) if ever changed there.
+    const bmx = asObj(state.extras);
+    if (bmx) {
+        const bmCompass = asObj(bmx.compass_settle);
+        if (bmCompass) {
+            candidates.push(
+                asNum(bmx.field_reveal_ms, 1200)
+                + asNum(bmCompass.gap_after_reveal_ms, 600)
+                + 1600 // BM_S1_SETTLE_MS
+                + 400,
+            );
+        }
+        const bmBreak = asObj(bmx.break_anim);
+        if (isEnabled(bmBreak) && bmBreak) {
+            // Pin to the MIDDLE of the 3000ms hold-open window (not its start
+            // or end) so THE EYE's frozen/dense capture is robust to any small
+            // drift between this fallback and the renderer's exact constants.
+            candidates.push(asNum(bmBreak.at_ms, 2500) + asNum(bmBreak.duration_ms, 1600) + 1500 /* half of BM_S3_HOLD_OPEN_MS=3000 */ + 400);
+        }
+        const bmFlip = asObj(bmx.flip_anim);
+        if (bmFlip) {
+            candidates.push(asNum(bmFlip.at_ms, 800) + asNum(bmFlip.duration_ms, 1400) + 400);
+        }
+        const bmSol = asObj(bmx.solenoid_crossfade);
+        if (isEnabled(bmSol) && bmSol) {
+            candidates.push(asNum(bmSol.period_ms, 3200) + 400);
+        }
+        const bmGhostRatio = asObj(bmx.ghost_ratio_pair);
+        if (isEnabled(bmGhostRatio) && bmGhostRatio) {
+            const bmOrbit = asObj(bmx.orbit_probe);
+            candidates.push(
+                asNum(bmGhostRatio.hold_ms, 1500)
+                + (bmOrbit ? asNum(bmOrbit.gap_ms, 500) + asNum(bmOrbit.duration_ms, 1800) : 0)
+                + 400,
+            );
+        }
+        if (bmx.r_sweep_theta_locked === true) {
+            candidates.push(4500 /* BM_S7_SWEEP_MS */ + 500);
+        }
+        const bmEdipole = asObj(bmx.edipole_glide);
+        if (isEnabled(bmEdipole) && bmEdipole) {
+            candidates.push(asNum(bmEdipole.gap_ms, 500) + 1200 /* BM_S8_GLIDE_MS */ + asNum(bmEdipole.registration_glow_ms, 700) + 400);
+        }
+    }
+
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
@@ -1644,6 +1725,29 @@ export function deriveHoldExpectations(
             const mflHold = asObj(state.magnetic_flux_loop);
             if (mflHold) {
                 out[stateId] = (mflHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE
+            // (show_sliders true — Rule 31 contextual m/r rows), so the generic
+            // show_sliders catch below would swallow their genuine reveal-then-
+            // hold beats into 'interactive' before they ever reach it. Classify
+            // explicitly (mirrors the ac_generator/inductance/mfl guided-vs-
+            // sandbox split above): STATE_2's loop trace genuinely cycles
+            // forever (the payoff IS the repetition) so it stays in the strict
+            // motion gate (undefined, mirrors gauss flow:true) rather than
+            // reveal_hold; every other state with one of these unique bar-
+            // magnet extras keys (S1 compass settle, S3 break+hold-open
+            // payoff, S4 flip, S5 solenoid cross-fade, S6 ghost-ratio+orbit, S7
+            // r-sweep+ghost+callout, S8 edipole glide) is a one-shot
+            // choreography that then HOLDS -> reveal_hold. STATE_9 (both m AND
+            // r, no scripted choreography, none of these keys) falls through to
+            // the generic show_sliders catch right below -> interactive.
+            const bmDipoleHold = asObj(state.extras);
+            if (bmDipoleHold && (bmDipoleHold.loop_choreography || bmDipoleHold.break_anim
+                || bmDipoleHold.flip_anim || bmDipoleHold.solenoid_crossfade
+                || bmDipoleHold.ghost_ratio_pair || bmDipoleHold.compass_settle
+                || bmDipoleHold.r_sweep_theta_locked === true || bmDipoleHold.edipole_glide)) {
+                out[stateId] = bmDipoleHold.loop_choreography ? undefined : 'reveal_hold';
                 continue;
             }
             if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }
