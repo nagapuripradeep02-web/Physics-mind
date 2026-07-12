@@ -162,11 +162,13 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Watch a marker walk this loop: up at the cell, down across resistor R one, down again across resistor R two."
+              "text_en": "Watch a marker walk this loop: up at the cell, down across resistor R one, down again across resistor R two.",
+              "text_te": "ఈ loop వెంట marker నడవడం చూడండి: cell వద్ద పైకి, resistor R one దాటుతూ కిందికి, resistor R two దాటుతూ మళ్ళీ కిందికి."
             },
             {
               "id": "s1_2",
-              "text_en": "It lands back exactly where it started — a full round trip always returns to the same potential."
+              "text_en": "It lands back exactly where it started — a full round trip always returns to the same potential.",
+              "text_te": "అది సరిగ్గా మొదలుపెట్టిన చోటికే వచ్చి ఆగుతుంది — పూర్తి round trip ఎప్పుడూ అదే potential కి తిరిగి వస్తుంది."
             }
           ]
         }
@@ -206,15 +208,18 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Now watch the numbers: the cell lifts the potential by six volts."
+              "text_en": "Now watch the numbers: the cell lifts the potential by six volts.",
+              "text_te": "ఇప్పుడు numbers చూడండి: cell potential ని six volts పెంచుతుంది."
             },
             {
               "id": "s2_2",
-              "text_en": "Crossing resistor R one drops it four volts, then resistor R two drops it another two volts."
+              "text_en": "Crossing resistor R one drops it four volts, then resistor R two drops it another two volts.",
+              "text_te": "Resistor R one దాటినప్పుడు అది four volts తగ్గుతుంది, తర్వాత resistor R two మరో two volts తగ్గిస్తుంది."
             },
             {
               "id": "s2_3",
-              "text_en": "Six volts up equals four plus two volts down — the rise always equals the total of the drops."
+              "text_en": "Six volts up equals four plus two volts down — the rise always equals the total of the drops.",
+              "text_te": "Six volts పైకి, four plus two volts కిందికి కి సమానం — rise ఎప్పుడూ total drops కి సమానంగా ఉంటుంది."
             }
           ]
         }
@@ -254,15 +259,18 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Grow resistor R two from one ohm to four ohms; R one stays at two ohms."
+              "text_en": "Grow resistor R two from one ohm to four ohms; R one stays at two ohms.",
+              "text_te": "Resistor R two ని one ohm నుండి four ohms కి పెంచండి; R one two ohms వద్దే ఉంటుంది."
             },
             {
               "id": "s3_2",
-              "text_en": "The current falls and the drops swap: R one now drops two volts, R two drops four."
+              "text_en": "The current falls and the drops swap: R one now drops two volts, R two drops four.",
+              "text_te": "Current తగ్గుతుంది మరియు drops మారిపోతాయి: R one ఇప్పుడు two volts తగ్గుతుంది, R two four తగ్గుతుంది."
             },
             {
               "id": "s3_3",
-              "text_en": "Adding all three as positive gives twelve volts, which is wrong. The signed sum, six minus four minus two, equals zero."
+              "text_en": "Adding all three as positive gives twelve volts, which is wrong. The signed sum, six minus four minus two, equals zero.",
+              "text_te": "అన్నిటినీ positive గా కలిపితే twelve volts వస్తుంది, అది తప్పు. Signed sum, six minus four minus two, zero కి సమానం."
             }
           ]
         },
@@ -314,15 +322,18 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Add a third resistor, R three, in series with the same loop."
+              "text_en": "Add a third resistor, R three, in series with the same loop.",
+              "text_te": "అదే loop లో series గా మూడో resistor, R three, జోడించండి."
             },
             {
               "id": "s4_2",
-              "text_en": "The current settles lower, and the ladder now steps down three times: two volts, then one volt, then three volts."
+              "text_en": "The current settles lower, and the ladder now steps down three times: two volts, then one volt, then three volts.",
+              "text_te": "Current తక్కువ విలువ వద్ద స్థిరపడుతుంది, మరియు ladder ఇప్పుడు మూడుసార్లు కిందికి దిగుతుంది: two volts, తర్వాత one volt, తర్వాత three volts."
             },
             {
               "id": "s4_3",
-              "text_en": "Six volts up still equals two plus one plus three down — the sum of all voltages around any loop equals zero."
+              "text_en": "Six volts up still equals two plus one plus three down — the sum of all voltages around any loop equals zero.",
+              "text_te": "Six volts పైకి ఇప్పటికీ two plus one plus three కిందికి కి సమానం — ఏ loop చుట్టూనైనా అన్ని voltages మొత్తం zero కి సమానం."
             }
           ]
         }
@@ -362,7 +373,8 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Every dial is yours now — drag the cell's voltage or any resistor and watch the loop always close to zero."
+              "text_en": "Every dial is yours now — drag the cell's voltage or any resistor and watch the loop always close to zero.",
+              "text_te": "ప్రతి dial ఇప్పుడు మీదే — cell voltage ని లేదా ఏదైనా resistor ని drag చేసి loop ఎప్పుడూ zero వద్దే ఎలా close అవుతుందో చూడండి."
             }
           ]
         }
