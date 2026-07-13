@@ -123,11 +123,13 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Watch a bright tracer ride one full loop of this magnet's field — out of the north pole, around the outside, and into the south."
+              "text_en": "Watch a bright tracer ride one full loop of this magnet's field — out of the north pole, around the outside, and into the south.",
+              "text_te": "ఈ magnet యొక్క field మీద ఒక bright tracer పూర్తి loop తిరగడం చూడండి — north pole నుండి బయటకు, బయట చుట్టూ, మరియు south లోకి వెళ్తుంది."
             },
             {
               "id": "s1_2",
-              "text_en": "It keeps going, back through the magnet's own body to north, closing the loop with no start and no end."
+              "text_en": "It keeps going, back through the magnet's own body to north, closing the loop with no start and no end.",
+              "text_te": "అది magnet లోపలి body గుండా మళ్ళీ north వైపుకు వెళ్ళి, loop ను close చేస్తుంది — దీనికి start కానీ end కానీ లేదు."
             }
           ]
         },
@@ -174,19 +176,23 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Wrap a closed surface around the whole magnet."
+              "text_en": "Wrap a closed surface around the whole magnet.",
+              "text_te": "మొత్తం magnet చుట్టూ ఒక closed surface ను wrap చేయండి."
             },
             {
               "id": "s2_2",
-              "text_en": "Every closed loop that pokes outward through it also pokes back inward somewhere else — out always matches in."
+              "text_en": "Every closed loop that pokes outward through it also pokes back inward somewhere else — out always matches in.",
+              "text_te": "దీని గుండా బయటకు వెళ్ళే ప్రతి closed loop, ఇంకో చోట తిరిగి లోపలికి వస్తుంది — out ఎప్పుడూ in తో సరిపోతుంది."
             },
             {
               "id": "s2_3",
-              "text_en": "Watch the live tally: flux out and flux in climb together, so the net magnetic flux stays at zero."
+              "text_en": "Watch the live tally: flux out and flux in climb together, so the net magnetic flux stays at zero.",
+              "text_te": "ఈ live tally ను చూడండి: flux out మరియు flux in కలిసి పెరుగుతాయి, కాబట్టి net magnetic flux zero వద్దే ఉంటుంది."
             },
             {
               "id": "s2_4",
-              "text_en": "That is Gauss's law for magnetism."
+              "text_en": "That is Gauss's law for magnetism.",
+              "text_te": "అదే Gauss's law for magnetism."
             }
           ]
         },
@@ -233,19 +239,23 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Shrink that same surface onto the north pole alone."
+              "text_en": "Shrink that same surface onto the north pole alone.",
+              "text_te": "అదే surface ను కేవలం north pole మీదకు shrink చేయండి."
             },
             {
               "id": "s3_2",
-              "text_en": "Watch the lines emerging outside re-enter through the magnet's own body, still inside this surface."
+              "text_en": "Watch the lines emerging outside re-enter through the magnet's own body, still inside this surface.",
+              "text_te": "బయట emerge అయిన lines, ఈ surface లోపలే ఉన్న magnet body గుండా తిరిగి re-enter కావడం చూడండి."
             },
             {
               "id": "s3_3",
-              "text_en": "Out still equals in, so the net magnetic flux stays exactly zero — around a single pole."
+              "text_en": "Out still equals in, so the net magnetic flux stays exactly zero — around a single pole.",
+              "text_te": "ఒక్క pole చుట్టూ కూడా out ఇంకా in కు సమానంగానే ఉంటుంది, కాబట్టి net magnetic flux exactly zero గా ఉంటుంది."
             },
             {
               "id": "s3_4",
-              "text_en": "There is no magnetic monopole to trap; that is the heart of this law."
+              "text_en": "There is no magnetic monopole to trap; that is the heart of this law.",
+              "text_te": "trap చేయడానికి ఏ magnetic monopole లేదు; అదే ఈ law యొక్క heart."
             }
           ]
         },
@@ -292,11 +302,13 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Now reshape this closed surface — sphere, then cube, then a lumpy blob — around the same magnet."
+              "text_en": "Now reshape this closed surface — sphere, then cube, then a lumpy blob — around the same magnet.",
+              "text_te": "ఇప్పుడు అదే magnet చుట్టూ ఈ closed surface ను reshape చేయండి — sphere, తర్వాత cube, తర్వాత ఒక lumpy blob."
             },
             {
               "id": "s4_2",
-              "text_en": "No matter the shape or size, every loop that leaves still comes back in, so the net magnetic flux holds dead steady at zero."
+              "text_en": "No matter the shape or size, every loop that leaves still comes back in, so the net magnetic flux holds dead steady at zero.",
+              "text_te": "shape లేదా size ఏదైనా సరే, బయటకు వెళ్ళే ప్రతి loop తిరిగి లోపలికి వస్తుంది, కాబట్టి net magnetic flux ఖచ్చితంగా zero వద్దే స్థిరంగా ఉంటుంది."
             }
           ]
         },
@@ -343,15 +355,18 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Compare the two Gauss laws side by side: a bar magnet on the left with its closed loops, a single positive charge q on the right."
+              "text_en": "Compare the two Gauss laws side by side: a bar magnet on the left with its closed loops, a single positive charge q on the right.",
+              "text_te": "రెండు Gauss laws ను పక్కపక్కనే compare చేయండి: ఎడమవైపు closed loops తో ఒక bar magnet, కుడివైపు ఒక single positive charge q."
             },
             {
               "id": "s5_2",
-              "text_en": "The charge's field lines only point outward — they start on the charge and never return."
+              "text_en": "The charge's field lines only point outward — they start on the charge and never return.",
+              "text_te": "charge యొక్క field lines కేవలం బయటకే point చేస్తాయి — అవి charge మీద start అయ్యి తిరిగి రావు."
             },
             {
               "id": "s5_3",
-              "text_en": "So the electric flux is not zero: it equals charge q over epsilon-nought."
+              "text_en": "So the electric flux is not zero: it equals charge q over epsilon-nought.",
+              "text_te": "కాబట్టి electric flux zero కాదు: అది charge q over epsilon-nought కు సమానం."
             }
           ]
         },
@@ -398,11 +413,13 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Now you drive it — reshape the surface and slide it anywhere, even onto a single pole."
+              "text_en": "Now you drive it — reshape the surface and slide it anywhere, even onto a single pole.",
+              "text_te": "ఇప్పుడు మీరే దీన్ని drive చేయండి — surface ను reshape చేసి ఎక్కడైనా slide చేయండి, ఒక్క pole మీదకు కూడా."
             },
             {
               "id": "s6_2",
-              "text_en": "Watch the net magnetic flux stay locked at zero."
+              "text_en": "Watch the net magnetic flux stay locked at zero.",
+              "text_te": "net magnetic flux zero వద్దే లాక్ అయి ఉండటం చూడండి."
             }
           ]
         }
