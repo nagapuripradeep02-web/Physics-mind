@@ -34,7 +34,7 @@ import { join } from 'path';
 // (founder KYC pending) → expired.html keeps its mailto-first copy. Once Razorpay
 // activates, paste the rzp.io URL here and rebuild — the expired page then leads
 // with the payment button. Single edit point.
-export const PAYMENT_LINK = '';
+export const PAYMENT_LINK = 'https://rzp.io/rzp/hQXPjZqv';
 
 export const PILOT_SUPABASE_URL = 'https://jqbnmltsupnnbuvqgkix.supabase.co';
 export const PILOT_SUPABASE_ANON_KEY =
@@ -182,6 +182,7 @@ function pmAuthJs(): string {
   window.PM_TRIAL_END = 0;
   window.PM_PAID_UNTIL = 0;
   window.PM_PLAN = null;
+  window.PM_PAYMENT_LINK = ${JSON.stringify(PAYMENT_LINK)};
   var PAGE = document.documentElement.getAttribute('data-pm-page') || '';
   var IS_PUBLIC = PAGE === 'login' || PAGE === 'join';
   if (!IS_PUBLIC && !IS_DEV) document.documentElement.style.visibility = 'hidden';

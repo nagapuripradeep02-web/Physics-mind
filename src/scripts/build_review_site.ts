@@ -2224,6 +2224,13 @@ ${pilotHeadTags(0)}
   #earlyNote button{flex:none;border:none;background:none;color:var(--ink-faint);font-size:17px;line-height:1;
         padding:2px 6px;cursor:pointer;border-radius:7px;transition:color .15s ease;}
   #earlyNote button:hover{color:var(--clay-soft);}
+  #trialNote{display:flex;align-items:center;gap:11px;padding:11px 15px;margin:0 0 18px;
+        background:var(--clay-wash);border:1px solid rgba(203,104,67,.35);border-radius:12px;}
+  #trialNote .txt{flex:1 1 auto;font-size:12.5px;line-height:1.5;color:var(--ink-dim);}
+  #trialNote .txt b{color:var(--clay-soft);font-weight:600;}
+  #trialNote a.cta{flex:none;font-size:12.5px;font-weight:600;color:#fff;background:var(--clay);
+        text-decoration:none;padding:8px 14px;border-radius:9px;white-space:nowrap;transition:background .15s ease;}
+  #trialNote a.cta:hover{background:var(--clay-soft);}
   .who .chip{font-size:11px;font-weight:600;color:var(--clay-soft);border:1px solid rgba(203,104,67,.4);
         border-radius:999px;padding:3px 10px;background:var(--clay-wash);}
   /* default OFF via display:none (an author rule beats the hidden attribute regardless of
@@ -2363,6 +2370,7 @@ ${pilotHeadTags(0)}
         </div>
         <div class="pmMenuGroup">
           <a class="pmMenuRow" id="pmMenuPlans" href="https://viditra.co/#pricing" target="_blank" rel="noopener" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.4 3.8 1.2 4.6 5 5-3.8.4-4.6 1.2-5 5-.4-3.8-1.2-4.6-5-5 3.8-.4 4.6-1.2 5-5z"/></svg>View plans</a>
+          <a class="pmMenuRow" id="pmMenuSubscribe" href="#" target="_blank" rel="noopener" role="menuitem" hidden><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Subscribe &middot; &#8377;699/mo</a>
         </div>
         <div class="pmMenuGroup">
           <button class="pmMenuRow pmDanger" id="pmMenuSignOut" type="button" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
@@ -2375,6 +2383,10 @@ ${pilotHeadTags(0)}
   <div id="earlyNote" hidden>
     <span class="txt"><b>Early access</b> &mdash; new simulations are added regularly, and your feedback shapes what we build next.</span>
     <button id="earlyNoteX" title="Dismiss" aria-label="Dismiss">&times;</button>
+  </div>
+  <div id="trialNote" hidden>
+    <span class="txt" id="trialNoteTxt"></span>
+    <a class="cta" id="trialNoteGo" href="#" target="_blank" rel="noopener">Continue &mdash; &#8377;699/month</a>
   </div>
   <input id="search" type="search" placeholder="Search simulations… (e.g. flux, magnetic force, Gauss)" autocomplete="off">
   <div id="noresults">No simulations match that search.</div>
@@ -2430,6 +2442,10 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
       });
     }
   } catch (e) {}
+  try {
+    var tnGoEl = document.getElementById('trialNoteGo');
+    if (tnGoEl) tnGoEl.addEventListener('click', function () { pmt('subscribe_click', { source: 'trial_banner' }); });
+  } catch (e) {}
   // ── Account trigger (avatar + name + trial) ──
   function acctInitial(name, email) {
     var s = (name || email || '').replace(/^\\s+/, '');
@@ -2456,7 +2472,8 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     var name = (hasProfile && p.display_name) || m.display_name || (u && u.email) || 'Teacher';
     var email = (u && u.email) || '';
     var sub = '';
-    if (hasProfile && window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now()) {
+    var isPaid = !!(hasProfile && window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now());
+    if (isPaid) {
       // paying member — the plan replaces the trial countdown (pm-auth sets PM_PLAN)
       sub = window.PM_PLAN === 'founding-699' ? 'Founding · ₹699/mo' : 'Member';
     } else if (hasProfile && window.PM_TRIAL_END) {
@@ -2464,6 +2481,32 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
       sub = 'Trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
     } else if (staff) { sub = 'Staff · not tracked'; }
     setAcct({ name: name, sub: sub, email: email, menu: true, showProfile: hasProfile });
+    // ── Early-pay path (not gated by trial expiry): a teacher who's already sold
+    // doesn't have to wait to be locked out to give us money. The account-menu item
+    // is always available in-trial; the banner only surfaces in the final stretch.
+    try {
+      var payLink = window.PM_PAYMENT_LINK || '';
+      if (hasProfile && !isPaid && payLink) {
+        var mSub = document.getElementById('pmMenuSubscribe');
+        if (mSub) { mSub.href = payLink; mSub.hidden = false; }
+        if (window.PM_TRIAL_END) {
+          var daysLeft = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
+          if (daysLeft <= 3) {
+            var tn = document.getElementById('trialNote');
+            var tnTxt = document.getElementById('trialNoteTxt');
+            var tnGo = document.getElementById('trialNoteGo');
+            if (tn && tnTxt && tnGo) {
+              tnTxt.innerHTML = daysLeft <= 0
+                ? '<b>Your trial ends today</b> — keep teaching with Viditra on the founding-teacher plan, no interruption.'
+                : '<b>Your trial ends in ' + daysLeft + ' day' + (daysLeft === 1 ? '' : 's') + '</b> — continue now and keep teaching without a gap.';
+              tnGo.href = payLink;
+              tn.hidden = false;
+              pmt('trial_ending_banner_shown', { days_left: daysLeft });
+            }
+          }
+        }
+      }
+    } catch (e) {}
     // ── The hero surface: her name on her product (profile-gated; dev/staff see the generic title) ──
     var brandMomentStarted = false;
     if (hasProfile) {
@@ -2988,6 +3031,8 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     });
     var rPlans = document.getElementById('pmMenuPlans');
     if (rPlans) rPlans.addEventListener('click', function () { pmt('view_plans', {}); closeMenu(); });
+    var rSub = document.getElementById('pmMenuSubscribe');
+    if (rSub) rSub.addEventListener('click', function () { pmt('subscribe_click', { source: 'acct_menu' }); closeMenu(); });
     var rHelp = document.getElementById('pmMenuHelp');
     if (rHelp) rHelp.addEventListener('click', function () { pmt('get_help', {}); closeMenu(); });
     var rOut = document.getElementById('pmMenuSignOut');
