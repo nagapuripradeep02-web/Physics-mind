@@ -2007,8 +2007,8 @@ function drawWireScenario() {
     text('i = 0', geo.Ax + width * 0.085, geo.Gy); textStyle(NORMAL);
   }
   if (st && st.show_voltmeter_compare) {                          // V_meter vs true E (voltmeter reads LESS)
-    drawBridgeChip(width * 0.50, height * 0.11,
-      'V_meter = ' + g.Vmeter.toFixed(2) + ' V   vs   E = ' + g.E.toFixed(2) + ' V', bpvl('compare_bad', '#EF5350'), 14);
+    drawBridgeChip(width * 0.66, height * 0.32,                    // upper-right clear zone — clears the ε_d driver-cell label + k-chip (Rule 34d)
+      'V_meter = ' + g.Vmeter.toFixed(2) + ' V  vs  E = ' + g.E.toFixed(2) + ' V', bpvl('compare_bad', '#EF5350'), 14);
   }
 }
 
