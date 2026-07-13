@@ -1,0 +1,741 @@
+{
+  "concept_id": "potentiometer",
+  "concept_name": "Potentiometer — Measuring True EMF by Nulling (E = k·l)",
+  "chapter": 3,
+  "section": "3.15",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.15 Potentiometer) — table-of-contents + scope reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC places the potentiometer after the Wheatstone/meter bridge as the precision null method) to confirm the A24 atomic boundary — no teaching method, example problem, or figure imported. The atomic idea: a potentiometer measures a cell's true EMF by NULLING — a driver cell sends a steady current down a long uniform wire so the potential drops UNIFORMLY along it (a gradient k = V/L); a sliding jockey taps the drop from the start of the wire to itself (k·l), and when that tapped drop exactly equals the tested cell's EMF the galvanometer reads ZERO — E = k·l, with the balance length DIRECTLY PROPORTIONAL to EMF — and because at balance NO CURRENT is drawn from the tested cell, the reading is the TRUE EMF, which a voltmeter can never give (it draws current through the cell's internal resistance and reads the smaller terminal voltage E − Ir). Does NOT cover comparing two EMFs E1/E2 = l1/l2 (atomic A25, downstream diamond, natural drill-down pointer only), measuring internal resistance r = R(l1−l2)/l2 (atomic A26, its own diamond), the meter bridge (the third lab-trio member, own apparatus), or galvanometer internals / sensitivity, end-errors, and driver-rheostat calibration of k (drill-down candidates only, never guided states). SECOND of the founder's lab trio (Wheatstone c20 -> potentiometer c23 -> meter bridge), same particle_field (2D p5.js) engine family as drift_velocity/ohms_law/resistivity/combination_of_resistors/emf_definition/internal_resistance/electrical_power_in_resistor/kirchhoff_junction_rule_KCL/kirchhoff_loop_rule_KVL/wheatstone_bridge. Reuses scenario_type 'combination_of_resistors' as the renderer selector (per the approved design's directive to NOT mint a new scenario_type) — but rides engine additions AUTHORED here and FLAGGED for peter_parker:renderer_primitives (via quality_auditor FAIL-routing), NOT yet implemented as of this authoring pass: (1) a new 'wire' topology value in circuitMode's cTopology() (currently 'series'|'parallel'|'bridge') — a horizontal wire from node A (left) to node C (right), a driver cell + outer top loop delivering the full driver EMF across the wire, a linear potential-gradient ramp drawn above the wire, and a steady bead stream along it, gated so combination_of_resistors.json/kirchhoff_junction_rule_KCL.json/wheatstone_bridge.json render pixel-identically when the flag is absent; (2) a sliding jockey J — a movable contact whose position is read from the per-state 'jockey_pos' field (0-1 fraction of the wire length), with clock-driven one-shot sweeps under the distinct flag names jockey_sweep / jockey_sweep_to / jockey_sweep_start_ms / jockey_sweep_duration_ms (the bridge_r_sweep sibling pattern), whitelisted in pfRevealMs so THE EYE's frozen frame lands settled (S3's 1400ms sweep also finishes under the 1500ms DEFAULT_REVEAL_MS floor, belt-and-suspenders per KVL/wheatstone precedent); (3) a tap branch carrying the tested cell E and the EXISTING drawGalvanometerC primitive REUSED AS-IS (the c20 centre-zero dial, shipped on wheatstone_bridge), needle angle = clamp(K_NEEDLE*(k*l - E), -NEEDLE_MAX_DEG, +NEEDLE_MAX_DEG) with this concept's own calibration constants documented in particle_field_config.potentiometer_calibration (K_NEEDLE=60 deg/V, NEEDLE_MAX_DEG=60deg; checkpoints S2 (k*l-E=+0.6V) -> +36deg, S3-end/S4 (0V) -> 0deg dead centre), gated behind show_galvanometer (the reused flag); tap-branch beads gated behind show_tap_branch_beads, density/direction driven by sign(k*l-E), draining to zero at balance (pre-authorized fallback per the bridge precedent: if fiddly, the needle + numeric readouts alone carry the pedagogy); (4) readouts — the linear gradient ramp + a value-only 'k = 3.00 V/m' readout gated behind show_gradient_ramp; value-only 'l = 0.50 m' / 'k·l = ...V' balance readouts gated behind show_balance_readout; a literal 'i = 0' label gated behind show_izero_label, shown ONLY when the live |k*l - E| is genuinely inside tolerance (STATE_3's scripted null and STATE_5's explore sandbox when the teacher nulls it — NEVER STATE_4, where the caption's focus is the voltmeter contrast, and NEVER fabricated away from balance); a STATE_4-only voltmeter-compare surface (a second dial reading V_meter = E - I_meter*r, plus a value-only 'V_meter = 1.35 V vs E = 1.50 V' compare readout) gated behind show_voltmeter_compare (the KVL show_element_voltmeters sibling pattern); (5) glow keys — 'galvanometer' (REUSED, shipped on wheatstone_bridge) for S2/S3, 'formula' (shipped) for S4; a 'gradient' key is a trivial in-engine dimFor('gradient') addition only if the existing 'electrons' key can't be re-pointed for S1's ramp-reveal focal. Idealization (physics-author constraint, load-bearing, same class as the bridge's i_g note): the tap-branch current is EXACTLY zero at balance for ANY galvanometer/tap-branch resistance — k*l = E means zero potential difference across the tap branch, so zero current by Ohm's law regardless of resistance; the high-resistance-galvanometer idealization is load-bearing ONLY away from balance, letting the tap beads/needle carry a qualitative imbalance without a full network solve (never a fabricated numeric off-balance tap current). The driver loop is idealized to deliver the full driver EMF across the wire (k = eps_d/L exactly); the wire's own resistance sets a fixed, state-invariant driver-bead density (i_wire = eps_d/R_wire = 1.00A identically S1-S4). Zero regression declared to combination_of_resistors/kirchhoff_junction_rule_KCL/kirchhoff_loop_rule_KVL/emf_definition/internal_resistance/electrical_power_in_resistor/wheatstone_bridge — every new flag is opt-in (topology:'wire') and absent from all seven sibling JSONs. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches) — the two genuine misconceptions ('the galvanometer/jockey draws current from the cell like any meter' and 'a voltmeter reads the true EMF') are confronted inside EPIC-L via Rule 16a misconception_watch, fired at the STATE_3 and STATE_4 pivots respectively (founder guardrail 2026-07-04: no per-state tic), no predict-pause. Anchors authored UNIVERSAL per Rule 35 (a volume-fader / dimmer slider IS a potentiometer — under the sliding knob sits a resistive track with a voltage across it, and the slider taps a fraction of that voltage; the lab instrument turns the same slider into a precision measurer by sliding until the tapped voltage exactly cancels a cell, and reading the cell's true EMF off the length; secondary: battery testers that draw almost nothing get closer to the true EMF the null method reads exactly — no country, brand, festival, or currency; plain English throughout, no Hinglish). Legacy note: a stale src/lib/physics_constants/potentiometer.json exists from the pre-Alex-pipeline era — loadConstants() reads src/data/concepts/ FIRST (see src/lib/physics_constants/index.ts), so this file takes precedence; the legacy file is left untouched.",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "combination_of_resistors"
+    ]
+  },
+  "prerequisites": [
+    "ohms_law",
+    "emf_definition",
+    "internal_resistance"
+  ],
+  "real_world_anchor": {
+    "primary": "A volume fader or dimmer slider IS a potentiometer. Under the sliding knob sits a resistive track with a voltage across it; the slider is a jockey tapping off a fraction of that voltage — slide further, tap more. The lab instrument turns that same slider into a precision measurer: instead of using the tapped voltage, you slide until it exactly cancels a cell, and read the cell's true EMF off the length.",
+    "secondary": "Battery testers that claim the 'real' cell voltage must draw almost nothing — the less a meter loads the cell, the closer it gets to what the null method reads exactly."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "E": {
+        "name": "Tested cell EMF",
+        "unit": "V",
+        "min": 0.5,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.5,
+        "role": "FIXED 1.50V on S1-S4 (the constant the jockey must find); live S5 explore"
+      },
+      "eps_d": {
+        "name": "Driver cell EMF",
+        "unit": "V",
+        "min": 2,
+        "max": 5,
+        "step": 0.5,
+        "default": 3,
+        "role": "FIXED 3.0V on S1-S4 (sets k = eps_d/L); live S5 — lowering below E makes the null unreachable (honest sandbox)"
+      },
+      "l": {
+        "name": "Jockey position from A",
+        "unit": "m",
+        "min": 0.05,
+        "max": 0.95,
+        "step": 0.01,
+        "default": 0.5,
+        "role": "the ONE taught control on S2/S3 — S1 home 0.5 (balanced, quiet, uncommented), S2 entry 0.5 -> slide 0.7, S3 entry 0.7 -> sweep 0.5, S4 pinned 0.5, live S5"
+      },
+      "L": {
+        "name": "Wire length",
+        "unit": "m",
+        "constant": 1,
+        "role": "fixed geometry; sets k = eps_d/L"
+      },
+      "R_wire": {
+        "name": "Wire resistance",
+        "unit": "Ω",
+        "constant": 3,
+        "role": "fixed; driver bead density i_wire = eps_d/R_wire = 1.00A, INVARIANT S1-S4 (does NOT affect k — the driver-loop idealization puts the full eps_d across the wire)"
+      },
+      "r": {
+        "name": "Tested cell internal resistance",
+        "unit": "Ω",
+        "constant": 1,
+        "role": "S4-only; the loss the voltmeter exposes and the null hides"
+      },
+      "Rv": {
+        "name": "Voltmeter resistance",
+        "unit": "Ω",
+        "constant": 9,
+        "role": "S4-only; with r gives a legible ~1.35V droop (I=0.15A)"
+      },
+      "k": {
+        "name": "Potential gradient",
+        "unit": "V/m",
+        "derived": "eps_d / L",
+        "role": "live readout, first shown S1"
+      },
+      "kl": {
+        "name": "Tapped drop A to J",
+        "unit": "V",
+        "derived": "k * l",
+        "role": "live readout, first shown S2; ticks 2.10 -> 1.50V across S3"
+      },
+      "tap_gap": {
+        "name": "Balance mismatch",
+        "unit": "V",
+        "derived": "kl - E",
+        "role": "drives needle_deg + tap-bead direction/density (qualitative away from balance)"
+      },
+      "needle_deg": {
+        "name": "Galvanometer needle angle",
+        "unit": "degrees",
+        "derived": "clamp(K_NEEDLE*(kl-E), -NEEDLE_MAX_DEG, +NEEDLE_MAX_DEG)",
+        "role": "live tracking indicator (33d); K_NEEDLE=60 deg/V, NEEDLE_MAX_DEG=60deg; checkpoints S2 -> +36deg, S3/S4 -> 0deg"
+      },
+      "i_wire": {
+        "name": "Driver-loop current",
+        "unit": "A",
+        "derived": "eps_d / R_wire",
+        "role": "driver-bead-density; INVARIANT 1.00A S1-S4; flows in EVERY state incl. balance"
+      },
+      "I_meter": {
+        "name": "S4 voltmeter current",
+        "unit": "A",
+        "derived": "E / (r + Rv)",
+        "role": "S4-only; drives cell-branch beads + dial droop"
+      },
+      "V_meter": {
+        "name": "Voltmeter reading",
+        "unit": "V",
+        "derived": "E - I_meter * r",
+        "role": "S4-only compare readout, 1.35V vs pinned E=1.50V null"
+      }
+    },
+    "formulas": {
+      "k": "eps_d / L",
+      "kl": "k * l",
+      "balance_condition": "kl === E  <=>  i_tap = 0 (exact, for ANY galvanometer/tap-branch resistance)",
+      "needle_deg": "clamp(60 * (kl - E), -60, 60)",
+      "I_meter": "E / (r + Rv)",
+      "V_meter": "E - I_meter * r"
+    },
+    "constraints": [
+      "tap_current_zero_at_balance_exact_for_any_G — i_tap = 0 EXACTLY at kl = E, ANY finite tap-branch resistance (not merely the high-R idealization)",
+      "potential_drops_uniformly_along_wire — k = eps_d/L constant per unit length; equal current x equal resistance-per-length gives an exactly linear ramp",
+      "driver_beads_flow_always — i_wire = 1.00A in EVERY state incl. balance; only the TAP-branch current is ever zero",
+      "needle_centre_zero — needle_deg = 0 is the null; sign flips either side",
+      "balance_length_proportional_to_emf — l = E/k at fixed k",
+      "null_reads_true_emf_voltmeter_reads_less — at balance i_tap=0 so no Ir loss (true EMF exact); voltmeter draws I=E/(r+Rv)>0, reads E-Ir < E",
+      "explore_null_unreachable_when_driver_below_tested — eps_d < E means k*L < E for all l, no null — EXPECTED honest lab behavior, never a forced null",
+      "no_region_dependent_constant_asserted — E, eps_d are sliders (Rule 35)",
+      "i_wire_invariant_S1_to_S4 — i_wire = 1.00A identically S1-S4 — DELIBERATE",
+      "no_divide_by_zero — L, R_wire, r+Rv > 0; l floored at 0.05"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 10,
+    "max_labels_per_state": 8,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "The needle reads nothing — and that nothing is the cell's true, unloaded EMF."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "measurement": [
+      "STATE_4",
+      "STATE_5"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Steady current, uniform drop: the gradient k = V/L",
+        "duration": 14,
+        "focal_primitive_id": "gradient_fills_evenly",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "driver_current_flows",
+            "position": { "x": 380, "y": 90 },
+            "text": "A driver cell pushes a steady current around the wire, end A to end C.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "gradient_fills_evenly",
+            "position": { "x": 620, "y": 250 },
+            "text": "The potential drops evenly along it — a straight ramp from three volts at A to zero at C.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "apparatus_ready",
+            "position": { "x": 380, "y": 440 },
+            "text": "The tested cell and galvanometer sit ready in the tap branch, jockey parked at the midpoint.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A driver cell pushes a steady current around this long wire, from end A to end C."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Because every stretch of wire has the same resistance, the potential drops evenly along it — a straight ramp from three volts down to zero."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The jockey taps the drop: k·l ≠ E deflects the needle",
+        "duration": 15,
+        "focal_primitive_id": "needle_swings_off_centre",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "jockey_slides_out",
+            "position": { "x": 380, "y": 90 },
+            "text": "The jockey slides out to seven tenths of a metre.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "drop_exceeds_emf",
+            "position": { "x": 620, "y": 250 },
+            "text": "The tapped drop reaches two point one volts — more than the tested cell's one point five.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "needle_swings_off_centre",
+            "position": { "x": 380, "y": 440 },
+            "text": "Current flows in the tap branch and the needle swings off centre.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Slide the jockey along the wire to seven tenths of a metre, tapping the potential drop between the start and that point."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "That tapped drop reads two point one volts, more than the tested cell's one point five volts, so current flows in the tap branch and the needle swings off centre."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "PRIMARY aha — the drop equals the EMF: needle nulls, zero current",
+        "duration": 18,
+        "focal_primitive_id": "needle_settles_at_zero",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "jockey_slides_back",
+            "position": { "x": 380, "y": 90 },
+            "text": "The jockey slides back toward the midpoint, five tenths of a metre.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "drop_meets_emf",
+            "position": { "x": 620, "y": 250 },
+            "text": "The tapped drop falls to exactly one point five volts, matching the tested cell.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "needle_settles_at_zero",
+            "position": { "x": 380, "y": 440 },
+            "text": "The tap current drains to zero and the needle settles dead centre — the true EMF, undisturbed.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Slide the jockey back to the midpoint, five tenths of a metre."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The tapped drop falls to one point five volts, matching the tested cell — the tap current drains to zero and the needle settles dead centre."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "That zero is the measurement: the cell's true EMF, found without ever drawing current from it."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The jockey/galvanometer draws current from the cell like any meter.",
+            "visual_counter": "As the jockey sweeps to balance the tap-branch beads visibly drain to none and 'i = 0' lights — while the wire's driver beads keep streaming past the jockey the whole time.",
+            "one_line_fix": "At balance the wire's tapped drop exactly opposes the cell — zero current is drawn, so the cell is measured undisturbed."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "True EMF vs voltmeter: a loaded meter reads E − Ir, the null doesn't move",
+        "duration": 16,
+        "focal_primitive_id": "meter_droops",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "voltmeter_connects",
+            "position": { "x": 380, "y": 90 },
+            "text": "A voltmeter connects across the same tested cell.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "meter_droops",
+            "position": { "x": 620, "y": 250 },
+            "text": "Current flows through the cell and the meter droops to one point three five volts.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "null_stays_still",
+            "position": { "x": 380, "y": 440 },
+            "text": "The null beside it never moves — still one point five volts, the true EMF.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Connect a voltmeter across the same tested cell."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Current now flows through the cell, and the meter droops to one point three five volts — its own internal resistance eats part of the push."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The null beside it never moves: still one point five volts, the true EMF, because it draws no current at all."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A voltmeter reads the true EMF.",
+            "visual_counter": "The voltmeter connects, beads flow through the cell, and its dial droops to 1.35 V — while the potentiometer null, drawing nothing, holds exactly 1.50 V beside it.",
+            "one_line_fix": "A voltmeter loads the cell and reads the smaller E − Ir; only the zero-current null reads the true EMF."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Explore — tested E, driver ε_d, and the jockey are yours: balance it",
+        "duration": 0,
+        "focal_primitive_id": "balance_it_yourself",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_dials_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Every dial is live now — the tested cell, the driver cell, and the jockey.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "balance_it_yourself",
+            "position": { "x": 620, "y": 250 },
+            "text": "Unbalance it, then null it again by sliding the jockey.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "rule_always_holds",
+            "position": { "x": 380, "y": 440 },
+            "text": "The needle, the readouts, and the balance length all respond live as you drag.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Every dial is yours now — the tested cell, the driver cell, and the jockey — balance it yourself and watch the balance length track the EMF."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the potentiometer principle when they can (1) explain that a steady driver current through a uniform wire produces a LINEAR potential gradient k = V/L, so the potential drop from the start of the wire to any point is proportional to the distance; (2) explain that a sliding jockey taps that drop (k·l), and when k·l does not equal the tested cell's EMF the mismatch drives current through the galvanometer branch, deflecting the needle; (3) state the balance condition E = k·l and explain that at balance the galvanometer reads exactly zero because NO current is drawn from the tested cell — not because the cell has stopped working, but because the tapped drop exactly opposes it; (4) explain why this null reading is the cell's TRUE EMF, while a voltmeter placed across the same cell necessarily draws some current and reads the smaller terminal voltage E − Ir; and (5) recognize that the balance length is directly proportional to the tested EMF, and that the driver EMF must exceed the tested EMF for a null to exist at all.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A driver cell sends a steady current down a long uniform potentiometer wire from end A to end C. What happens to the potential as you move along the wire from A to C?",
+        "options": {
+          "A": "It drops evenly, at a constant rate per unit length, because every equal stretch of wire has the same resistance and carries the same current",
+          "B": "It stays the same everywhere, since the wire is a single uninterrupted conductor",
+          "C": "It drops in large steps only where the jockey happens to touch",
+          "D": "It rises from A to C, since the driver cell is pushing current in that direction"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses a single conductor with a zero-resistance ideal wire — a real wire carrying current still drops potential steadily along its own resistance",
+          "C": "invents step changes that only exist at discrete components (like a resistor), when a uniform wire drops potential continuously and smoothly",
+          "D": "reverses the direction — potential falls along the direction of conventional current flow through a resistive wire, it does not rise"
+        },
+        "tested_idea": "A steady current through a uniform wire produces a linear, uniform potential gradient k = V/L — equal drops over equal lengths.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A driver cell maintains 4 V across a 1 m uniform potentiometer wire. Describe how the potential varies from one end of the wire to the other, and state the gradient in volts per metre."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "With the gradient k = 3.00 V/m and a tested cell of EMF 1.50 V, the jockey is placed at l = 0.70 m, tapping a drop of k·l = 2.10 V. What does the galvanometer do?",
+        "options": {
+          "A": "It deflects, because the tapped drop (2.10 V) does not equal the tested cell's EMF (1.50 V), so current flows in the tap branch",
+          "B": "It reads zero, because the jockey is touching the wire and completing a circuit",
+          "C": "It deflects because the jockey is far from the midpoint, regardless of the actual voltages involved",
+          "D": "It reads the full 2.10 V directly, since that is the tapped drop at that point"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses merely completing a circuit with achieving balance — a completed but mismatched circuit still drives current and deflects the needle",
+          "C": "swaps the true cause — a voltage mismatch between the tapped drop and the EMF — for an unrelated geometric detail (distance from the midpoint)",
+          "D": "confuses the galvanometer with a voltmeter reading the tapped drop directly — the galvanometer instead reads the DIFFERENCE between the tapped drop and the cell's EMF"
+        },
+        "tested_idea": "The galvanometer deflects whenever the tapped drop k·l does not equal the tested cell's EMF — it detects the mismatch, not either voltage directly.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "With the same gradient and the same 1.50 V tested cell, the jockey is placed at l = 0.40 m. State whether the galvanometer deflects, and if so, in which sense compared to placing it at l = 0.70 m."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "The jockey is slid until the galvanometer reads exactly zero, at l = 0.50 m with gradient k = 3.00 V/m. What is the tested cell's EMF, and what is true of the current drawn from that cell at this instant?",
+        "options": {
+          "A": "EMF = 1.50 V (from E = k·l), and the current drawn from the tested cell is exactly zero — the tapped drop exactly opposes the cell, so no current flows in the tap branch",
+          "B": "EMF = 1.50 V, but some small current must still flow through the cell to make the needle read zero",
+          "C": "EMF = 0.50 V, since the balance length itself equals the EMF numerically",
+          "D": "The zero reading means the entire circuit, including the driver loop, has stopped carrying current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic potentiometer misconception — a null reading is mistaken for a small-but-nonzero reading, when it is EXACTLY zero for any galvanometer resistance",
+          "C": "confuses the balance LENGTH (in metres) with the EMF (in volts) — the two are related by E = k·l, not numerically identical unless k = 1",
+          "D": "the everything-stops trap — only the TAP-branch current is zero; the driver loop keeps carrying its own steady current the whole time"
+        },
+        "tested_idea": "At balance, E = k·l gives the true EMF, and the tap-branch current is EXACTLY zero — the measurement happens at the one point where the cell delivers no current.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A potentiometer wire carries a gradient of 4.00 V/m. A different cell balances at l = 0.35 m. Find its EMF, and state exactly what current is drawn from it at balance."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A student argues: 'zero deflection probably just means a very small current, not truly none — after all, the galvanometer has some resistance, so it must draw something to register balance.' Is this reasoning correct?",
+        "options": {
+          "A": "No — at balance the potential difference across the tap branch is exactly zero, so by Ohm's law the current through it is exactly zero regardless of the galvanometer's resistance, however large or small",
+          "B": "Yes — a real galvanometer always draws a tiny nonzero current, so balance is only ever approximate",
+          "C": "No, but only because this particular galvanometer happens to have zero resistance",
+          "D": "Yes, and that small current is what causes the needle to physically move to the centre position"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the small-but-nonzero trap — mistakes a genuinely zero potential difference for a genuinely small (but real) current; Ohm's law makes it exactly zero regardless of resistance",
+          "C": "invents a special-case condition (zero galvanometer resistance) that the exact-zero result does NOT depend on — it holds for ANY finite resistance",
+          "D": "reverses cause and effect — the needle centres BECAUSE the current is zero, not the other way around; no current is needed to make it settle at rest"
+        },
+        "tested_idea": "The zero-current result at balance is exact for any tap-branch resistance — it follows from Ohm's law applied to a zero potential difference, not from an idealization about the galvanometer.",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain, using Ohm's law, why the tap-branch current at balance is exactly zero for a potentiometer, no matter what the galvanometer's own resistance happens to be."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "The same tested cell (EMF = 1.50 V, internal resistance 1 Ω) is now measured with an ordinary voltmeter of resistance 9 Ω instead of the potentiometer. What does the voltmeter read, and why does it differ from the potentiometer's null reading?",
+        "options": {
+          "A": "About 1.35 V — the voltmeter draws current (0.15 A) through the cell's internal resistance, so it reads the smaller terminal voltage E − Ir, not the true EMF",
+          "B": "Exactly 1.50 V — any voltmeter reads the true EMF as long as it is connected correctly",
+          "C": "About 1.35 V, but only because this particular voltmeter is faulty",
+          "D": "More than 1.50 V, since the voltmeter adds its own voltage to the circuit"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic 'voltmeter reads true EMF' misconception — any real voltmeter with finite resistance draws SOME current and therefore always reads slightly less than the EMF",
+          "C": "misattributes a universal physical limitation (any finite-resistance meter loads the circuit) to a specific manufacturing defect",
+          "D": "invents a voltage-adding mechanism with no physical basis — a passive voltmeter can only draw current and drop the reading, never raise it above the source EMF"
+        },
+        "tested_idea": "Any voltmeter with finite resistance draws current through the cell's internal resistance and reads the terminal voltage E − Ir, which is always less than the true EMF; only a zero-current method reads the EMF exactly.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A cell of EMF 2.0 V and internal resistance 0.5 Ω is measured with a voltmeter of resistance 19.5 Ω. Find the voltmeter's reading, and explain why it is less than 2.0 V."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A potentiometer wire 1 m long has 4 V maintained across it. A cell balances at 35 cm. Find its EMF, state the current drawn from the cell at balance, and state whether a voltmeter across the same cell would read more or less than this, and why.",
+        "options": {
+          "A": "EMF = 1.40 V (from the gradient 4 V/m times 0.35 m); the current drawn at balance is zero; a voltmeter would read LESS, because it draws current through the cell's internal resistance",
+          "B": "EMF = 1.40 V; the current at balance is a small but nonzero amount; a voltmeter would read the same, since both are just measuring devices",
+          "C": "EMF = 0.35 V, taken directly from the balance length; the current at balance is zero; a voltmeter would read more",
+          "D": "EMF = 1.40 V; the current at balance is zero; a voltmeter would read MORE, since it adds its own driving voltage to the cell"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the small-but-nonzero trap again, now combined with the false idea that a zero-current and a current-drawing method must agree — they only agree because at balance nothing loads the cell",
+          "C": "confuses the balance length (0.35 m) with the EMF (in volts) — the two are related through the gradient, E = k·l = 4 x 0.35, not numerically equal",
+          "D": "invents a voltage-adding mechanism for a passive voltmeter, and gets the direction of the loading error backwards — loading always reduces the reading, never increases it"
+        },
+        "tested_idea": "The balance-length calculation (E = k·l), the exact-zero tap current at balance, and the voltmeter's necessarily-lower reading (E − Ir) are three faces of the same null-method idea.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A potentiometer wire 1 m long has 5 V maintained across it. A different cell balances at 42 cm. Find its EMF, the current drawn at balance, and whether a voltmeter reading of that cell would read more or less, and why."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": [
+        "Q1"
+      ],
+      "STATE_2": [
+        "Q2"
+      ],
+      "STATE_3": [
+        "Q3",
+        "Q4"
+      ],
+      "STATE_4": [
+        "Q5",
+        "Q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_5"
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "potentiometer_volume_fader_dimmer_slider",
+      "type": "B",
+      "label": "A volume fader / dimmer slider — the same sliding tap, put to precision use",
+      "physical_world": "Under a mixing-desk fader or a dimmer knob sits a resistive track with a voltage across it; the slider is a jockey tapping off a fraction of that voltage — slide further, tap more.",
+      "same_physics": "Same linear potential-gradient tap (k·l) as the sim's wire — the lab instrument simply slides until the tapped voltage exactly cancels a cell, instead of using the tapped voltage directly.",
+      "scene_hint": "Primary teaching anchor (real_world_anchor.primary) restated as a Type-B variant for STATE_1's gradient hook and STATE_2/3's tapping beat."
+    },
+    {
+      "variant_id": "potentiometer_battery_tester_loading",
+      "type": "B",
+      "label": "A battery tester that draws almost nothing to read the 'real' voltage",
+      "physical_world": "Battery testers that claim the 'real' cell voltage must draw almost nothing — the less a meter loads the cell, the closer it gets to the true EMF.",
+      "same_physics": "Same true-EMF-vs-loaded-reading contrast the sim's STATE_4 draws between the zero-current null and the current-drawing voltmeter.",
+      "scene_hint": "Secondary anchor restated as a Type-B variant for STATE_4's true-EMF-vs-voltmeter beat."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "combination_of_resistors",
+    "particles": {
+      "count": 36,
+      "color": "#42A5F5",
+      "size": 8
+    },
+    "potentiometer_calibration": {
+      "needle_deg_per_volt": 60,
+      "needle_max_deg": 60
+    },
+    "slider_controls": {
+      "E": {
+        "min": 0.5,
+        "max": 2.5,
+        "step": 0.1,
+        "default": 1.5,
+        "label": "Tested cell E",
+        "unit": "V"
+      },
+      "eps_d": {
+        "min": 2,
+        "max": 5,
+        "step": 0.5,
+        "default": 3,
+        "label": "Driver cell ε_d",
+        "unit": "V"
+      },
+      "l": {
+        "min": 0.05,
+        "max": 0.95,
+        "step": 0.01,
+        "default": 0.5,
+        "label": "Jockey position l",
+        "unit": "m"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "driver_cell": "#FFD54F",
+      "tested_cell": "#FFB74D",
+      "jockey": "#FF7043",
+      "gradient_ramp": "#4DD0E1",
+      "galvanometer": "#FF8A65",
+      "galvanometer_needle": "#FF5252",
+      "balance_readout": "#B39DDB",
+      "voltmeter": "#CE93D8",
+      "compare_ok": "#66BB6A",
+      "compare_bad": "#EF5350",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "k = ε_d / L",
+        "caption": "Potential drops evenly",
+        "formula_overlay": "k = ε_d / L",
+        "topology": "wire",
+        "E": 1.5,
+        "eps_d": 3,
+        "l": 0.5,
+        "jockey_pos": 0.5,
+        "show_gradient_ramp": true,
+        "show_balance_readout": false,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_tap_branch_beads": false,
+        "show_izero_label": false,
+        "show_voltmeter_compare": false,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "gradient"
+      },
+      "STATE_2": {
+        "label": "V_AJ = k · l",
+        "caption": "Jockey taps the drop",
+        "formula_overlay": "V_AJ = k · l",
+        "topology": "wire",
+        "E": 1.5,
+        "eps_d": 3,
+        "l": 0.7,
+        "jockey_pos": 0.7,
+        "jockey_sweep": true,
+        "jockey_sweep_to": 0.7,
+        "jockey_sweep_start_ms": 800,
+        "jockey_sweep_duration_ms": 800,
+        "show_gradient_ramp": true,
+        "show_balance_readout": true,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_tap_branch_beads": true,
+        "show_izero_label": false,
+        "show_voltmeter_compare": false,
+        "show_sliders": false,
+        "visible_controls": [
+          "l"
+        ],
+        "glow_focal": "galvanometer"
+      },
+      "STATE_3": {
+        "label": "E = k · l",
+        "caption": "Drop equals EMF → zero",
+        "formula_overlay": "E = k · l",
+        "topology": "wire",
+        "E": 1.5,
+        "eps_d": 3,
+        "l": 0.5,
+        "jockey_pos": 0.5,
+        "jockey_sweep": true,
+        "jockey_sweep_to": 0.5,
+        "jockey_sweep_start_ms": 900,
+        "jockey_sweep_duration_ms": 1400,
+        "show_gradient_ramp": true,
+        "show_balance_readout": true,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_tap_branch_beads": true,
+        "show_izero_label": true,
+        "show_voltmeter_compare": false,
+        "show_sliders": false,
+        "visible_controls": [
+          "l"
+        ],
+        "glow_focal": "galvanometer"
+      },
+      "STATE_4": {
+        "label": "V = E − I · r < E",
+        "caption": "Voltmeter loads, null doesn't",
+        "formula_overlay": "V = E − I · r < E",
+        "topology": "wire",
+        "E": 1.5,
+        "eps_d": 3,
+        "l": 0.5,
+        "jockey_pos": 0.5,
+        "r": 1,
+        "Rv": 9,
+        "show_gradient_ramp": true,
+        "show_balance_readout": true,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_tap_branch_beads": false,
+        "show_izero_label": false,
+        "show_voltmeter_compare": true,
+        "show_sliders": false,
+        "visible_controls": [
+          "voltmeter_compare"
+        ],
+        "glow_focal": "formula"
+      },
+      "STATE_5": {
+        "label": "E = k · l",
+        "caption": "You balance it",
+        "formula_overlay": "E = k · l",
+        "topology": "wire",
+        "show_gradient_ramp": true,
+        "show_balance_readout": true,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_tap_branch_beads": true,
+        "show_izero_label": true,
+        "show_voltmeter_compare": false,
+        "show_sliders": true
+      }
+    }
+  }
+}

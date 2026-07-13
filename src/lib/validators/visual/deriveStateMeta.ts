@@ -513,6 +513,13 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     if (state.bridge_emf_sweep === true) {
         maxMs = Math.max(maxMs, asNum(state.bridge_emf_sweep_start_ms, 900) + asNum(state.bridge_emf_sweep_duration_ms, 1400) + 300);
     }
+    // potentiometer: the jockey clock sweep (mirror bridge_r_sweep). S2 slides l 0.5→0.7
+    // over [800,1600]; S3 sweeps l 0.7→0.5 over [900,2300]. Pin the frozen frame past
+    // the sweep's settle (+300 buffer) so THE EYE lands on the SETTLED end-state (S2
+    // needle deflected@l=0.7, S3 needle nulled@l=0.5). Mirrors cPotL in the renderer.
+    if (state.jockey_sweep === true) {
+        maxMs = Math.max(maxMs, asNum(state.jockey_sweep_start_ms, 800) + asNum(state.jockey_sweep_duration_ms, 800) + 300);
+    }
     return maxMs;
 }
 

@@ -2662,7 +2662,19 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // added to PCPL_CONCEPTS (parametric_renderer only).
     wheatstone_bridge:              "particle_field",
     meter_bridge:                   "circuit_live",
-    potentiometer:                  "circuit_live",
+    // potentiometer is the ELEVENTH Ch.3 concept on particle_field (2D p5.js)
+    // via the Alex pipeline (2026-07-13) — second of the founder's lab trio
+    // (Wheatstone c20 -> potentiometer c23 -> meter bridge). Reuses the
+    // combination_of_resistors scenario_type as the renderer selector, riding
+    // NEW per-state flags on the circuit engine (topology:'wire', sliding
+    // jockey_pos/jockey_sweep*, show_gradient_ramp, show_tap_branch_beads,
+    // show_balance_readout, show_izero_label, show_voltmeter_compare, reused
+    // show_galvanometer/drawGalvanometerC — engine additions
+    // authored-but-not-yet-implemented as of 2026-07-13, flagged for
+    // peter_parker:renderer_primitives via quality_auditor). Replaces the
+    // STALE circuit_live placeholder. NOT added to PCPL_CONCEPTS
+    // (parametric_renderer only).
+    potentiometer:                  "particle_field",
     // Cells
     cells_in_series_parallel:       "circuit_live",
     cells_in_series:                "circuit_live",

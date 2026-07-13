@@ -192,6 +192,26 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #11 — Alex pipeline (2026-07-13), second of the
+    // founder's lab trio (Wheatstone c20 -> potentiometer c23 -> meter bridge).
+    // Reuses the combination_of_resistors scenario_type as the renderer
+    // selector, riding a NEW 'wire' topology + sliding jockey + gradient ramp
+    // + reused drawGalvanometerC + voltmeter-compare engine additions (see the
+    // JSON's source_book for the exact engine-gap list, flagged for
+    // peter_parker:renderer_primitives). Was previously routed to the legacy
+    // circuit_live placeholder in CONCEPT_RENDERER_MAP — this is the first
+    // authoritative panel config. NOT added to PILOT_CONCEPTS (novel 'wire'
+    // renderer path -> reviewer-first).
+    potentiometer: {
+        concept_id: 'potentiometer',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'potentiometer',
+            label: 'Potentiometer — Measuring True EMF by Nulling (E = k·l)',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

@@ -692,6 +692,32 @@ function updateReadouts() {
     }
     return;
   }
+  // potentiometer: the l/E/eps_d rows track their per-state lock (l also its sweep)
+  // until grabbed, and the readout box shows the gradient/tap/balance story. Early-out
+  // so the ohms_law/circuit branches below (series/parallel assumptions) never misfire.
+  if (circuitMode() && cTopology() === 'wire') {
+    var wp = potPhysics();
+    if (hasSlider('l') && !userTouched['l']) {
+      var wpl = document.getElementById('pm-sv-l');
+      if (wpl) { var wpld = defs.l || {}; wpl.textContent = (Math.round(wp.l * 100) / 100) + (wpld.unit ? (' ' + wpld.unit) : ''); }
+    }
+    if (hasSlider('E') && !userTouched['E']) {
+      var wpE = document.getElementById('pm-sv-E');
+      if (wpE) { var wpEd = defs.E || {}; wpE.textContent = (Math.round(wp.E * 100) / 100) + (wpEd.unit ? (' ' + wpEd.unit) : ''); }
+    }
+    if (hasSlider('eps_d') && !userTouched['eps_d']) {
+      var wpEps = document.getElementById('pm-sv-eps_d');
+      if (wpEps) { var wpEpsd = defs.eps_d || {}; wpEps.textContent = (Math.round(wp.epsD * 100) / 100) + (wpEpsd.unit ? (' ' + wpEpsd.unit) : ''); }
+    }
+    var wpRo = document.getElementById('pm-readout');
+    if (wpRo) {
+      wpRo.textContent = 'k = ' + wp.k.toFixed(2) + ' V/m\\n' +
+                         'k\\u00B7l = ' + wp.kl.toFixed(2) + ' V\\n' +
+                         'E = ' + wp.E.toFixed(2) + ' V\\n' +
+                         (wp.balanced ? 'i = 0' : ('\\u0394 = ' + (wp.kl - wp.E).toFixed(2) + ' V'));
+    }
+    return;
+  }
   // ohms_law: the V thumb sits at default while the graph auto-sweeps — show the
   // live swept voltage on the V row so the number matches the moving point.
   if (hasSlider('V') && !userTouched['V']) {
@@ -1493,6 +1519,7 @@ function drawStruckTextC(cx, cy, str, dim) {
   noStroke(); textStyle(NORMAL);
 }
 function drawCircuit() {
+  if (cTopology() === 'wire') { drawWireScenario(); return; }       // potentiometer — bypasses series/parallel geometry
   if (cTopology() === 'bridge') { drawBridgeScenario(); return; }   // wheatstone_bridge — bypasses series/parallel geometry
   var c = cCurrents(), loops = circuitLoops(), g = loops.g;
   var st = curState();
@@ -1754,6 +1781,237 @@ function drawBridgeScenario() {
     drawBridgeChip(width * 0.48, height * 0.80, 'S = ' + Smeas.toFixed(1) + ' \\u03A9', bpvl('node_readout', '#B39DDB'), 15);
   }
 }
+// ═══ potentiometer — 'wire' topology (gated behind cTopology()==='wire') ═══════
+// A HORIZONTAL potentiometer wire A(left) -> C(right). A driver cell rides an outer
+// TOP loop and puts the FULL driver EMF across the wire (idealization: k = eps_d/L
+// exactly), so the potential drops LINEARLY along it — a gradient ramp is drawn
+// above the wire. A sliding jockey J taps the drop V_AJ = k*l at x = lerp(A,C,l/L);
+// a tap branch runs from A down through the tested cell E and the REUSED centre-zero
+// galvanometer G up to J. At balance (k*l = E) the tap PD is zero, so tap current is
+// EXACTLY zero for any galvanometer resistance and the needle sits dead-centre. Every
+// value is a PURE fn of live E/eps_d/l and every field is opt-in — a state WITHOUT
+// topology:'wire' never touches any of this, so series/parallel/bridge/KCL/KVL render
+// byte-identical. Per-state override -> slider -> default (teacher-seizable via
+// userTouched, reset per state) mirrors the bridge cBridge* / KCL cR1 locks. The l
+// clock sweep (jockey_sweep) mirrors bridge_r_sweep; L/R_wire/r/Rv are constants read
+// from formula_anchor (fallbacks = the concept's declared constants).
+function pcal(key, fb) { return (config && config.potentiometer_calibration && typeof config.potentiometer_calibration[key] === 'number') ? config.potentiometer_calibration[key] : fb; }
+function cPotE() {
+  var st = curState();
+  if (st && typeof st.E === 'number' && !userTouched['E']) return st.E;
+  return hasSlider('E') ? sliderVal('E') : 1.5;
+}
+function cPotEpsD() {
+  var st = curState();
+  if (st && typeof st.eps_d === 'number' && !userTouched['eps_d']) return st.eps_d;
+  return hasSlider('eps_d') ? sliderVal('eps_d') : 3;
+}
+// l: state-entry value -> optional clock sweep -> slider. The sweep is a pure fn of
+// PM_simTimeMs so home-pose reset (t=0) reads the ENTRY value with no special case
+// (never a hardcoded post-sweep constant), and SET_TIME_FREEZE re-sims identically.
+function cPotL() {
+  var st = curState();
+  if (st && st.jockey_sweep && !userTouched['l']) {
+    var start = (typeof st.jockey_sweep_start_ms === 'number') ? st.jockey_sweep_start_ms : 800;
+    var dur = (typeof st.jockey_sweep_duration_ms === 'number') ? st.jockey_sweep_duration_ms : 800;
+    var a = (typeof st.l === 'number') ? st.l : (hasSlider('l') ? sliderDefault('l') : 0.5);
+    var b = (typeof st.jockey_sweep_to === 'number') ? st.jockey_sweep_to : a;
+    return a + (b - a) * constrain((PM_simTimeMs - start) / max(dur, 1), 0, 1);
+  }
+  if (st && typeof st.l === 'number' && !userTouched['l']) return st.l;
+  return hasSlider('l') ? sliderVal('l') : 0.5;
+}
+// Balance tolerance in volts — a grid-exact null (eps_d*l = E on the slider steps)
+// falls well inside it; used for the 'exactly zero at balance' tap-current + i=0 gate.
+function potTol() { return 0.02; }
+function potPhysics() {
+  var L = max(physConst('L', 1), 1e-6);
+  var Rw = max(physConst('R_wire', 3), 1e-6);
+  var E = cPotE(), epsD = cPotEpsD(), l = constrain(cPotL(), 0, L);
+  var k = epsD / L, kl = k * l, gap = kl - E;          // gap = tap_gap = k*l - E
+  var iWire = epsD / Rw;                                // driver-loop current (flows in EVERY state)
+  var kdeg = pcal('needle_deg_per_volt', 60), mxdeg = pcal('needle_max_deg', 60);
+  var needle = constrain(kdeg * gap, -mxdeg, mxdeg);   // centre-zero, deg from straight-up
+  var r = max(physConst('r', 1), 1e-6), Rv = max(physConst('Rv', 9), 1e-6);
+  var Imeter = E / (r + Rv), Vmeter = E - Imeter * r;  // S4 voltmeter contrast
+  return { L: L, Rw: Rw, E: E, epsD: epsD, l: l, k: k, kl: kl, gap: gap, iWire: iWire,
+           needle: needle, r: r, Rv: Rv, Imeter: Imeter, Vmeter: Vmeter,
+           balanced: abs(gap) < potTol() };
+}
+// Apparatus legibility floor (Rule 32d — the same machine persists, recognizable in
+// every state): non-focal structural parts sit at 0.55, the ONE glow focal at 1.0.
+function wdim(name) { return max(dimFor(name), 0.55); }
+function wireGeom() {
+  var W = width, H = height;
+  var Ax = W * 0.20, Cx = W * 0.85, wireY = H * 0.50;
+  var topY = H * 0.15, lowerY = H * 0.80, span = Cx - Ax;
+  var g = potPhysics();
+  var Jx = Ax + span * constrain(g.l / g.L, 0, 1);
+  var Ey = lerp(wireY, lowerY, 0.30), Gy = lerp(wireY, lowerY, 0.74);
+  var gR = H * 0.055, rampMaxPx = H * 0.24;
+  var epsMax = (sliderDefs() && sliderDefs().eps_d && sliderDefs().eps_d.max) ? sliderDefs().eps_d.max : 5;
+  return { W: W, H: H, Ax: Ax, Cx: Cx, wireY: wireY, topY: topY, lowerY: lowerY, span: span,
+           Jx: Jx, Ey: Ey, Gy: Gy, gR: gR, rampMaxPx: rampMaxPx, pxPerVolt: rampMaxPx / max(epsMax, 1e-6), phys: g };
+}
+// The linear potential-gradient ramp above the wire: height ∝ potential (eps_d at A,
+// 0 at C). The A->J sub-region (the tapped drop k*l) is shaded brighter with a jockey
+// tick, so the moving jockey visibly grows/shrinks the tapped drop.
+function drawGradientRamp(geo) {
+  var g = geo.phys, dim = wdim('gradient'), col = bpvl('gradient_ramp', '#4DD0E1');
+  var hA = g.epsD * geo.pxPerVolt, hJ = (g.epsD - g.kl) * geo.pxPerVolt;
+  noStroke(); fillHex(col, 0.13 * dim);
+  triangle(geo.Ax, geo.wireY - hA, geo.Cx, geo.wireY, geo.Ax, geo.wireY);
+  fillHex(col, 0.30 * dim);                                       // brighter A->J = the tapped drop
+  beginShape();
+  vertex(geo.Ax, geo.wireY - hA); vertex(geo.Jx, geo.wireY - hJ);
+  vertex(geo.Jx, geo.wireY); vertex(geo.Ax, geo.wireY);
+  endShape(CLOSE);
+  strokeHex(col, 0.85 * dim); strokeWeight(2); noFill();
+  line(geo.Ax, geo.wireY - hA, geo.Cx, geo.wireY);               // ramp top edge
+  strokeHex(bpvl('jockey', '#FF7043'), 0.9 * dim); strokeWeight(1.5);
+  line(geo.Jx, geo.wireY, geo.Jx, geo.wireY - hJ);               // jockey tick up to the ramp
+  noStroke();
+}
+// Driver stream: beads circulate the full driver loop (across the wire A->C, up and
+// back over the top rail). Count (density) + speed ∝ i_wire — flows in EVERY state.
+function drawWireDriverBeads(geo) {
+  var g = geo.phys, eDim = wdim('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var loop = [ { x: geo.Ax, y: geo.wireY }, { x: geo.Cx, y: geo.wireY },
+               { x: geo.Cx, y: geo.topY }, { x: geo.Ax, y: geo.topY }, { x: geo.Ax, y: geo.wireY } ];
+  var L = polyLen(loop), N = min(circuitBeadCount(), round(constrain(g.iWire, 0.3, 2.0) * 18));
+  var sp = constrain(g.iWire, 0.3, 2.5);
+  noStroke();
+  for (var i = 0; i < N; i++) {
+    var s = (circuitBeadPhase[i] + CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * sp) % 1;
+    var p = polyAt(loop, L, s);
+    fillHex(col, 0.26 * eDim); ellipse(p.x, p.y, sz * 2.1);
+    fillHex(col, 0.95 * eDim); ellipse(p.x, p.y, sz);
+  }
+}
+// Tap-branch stream on A -> (E,G) -> J. Direction = sign(gap), density + speed ∝ |gap|,
+// EXACTLY zero at balance (never a fabricated off-balance current). The galvanometer
+// disc is drawn AFTER, hiding the beads passing behind it.
+function drawWireTapBeads(geo) {
+  var g = geo.phys, mag = abs(g.gap);
+  if (mag < potTol()) return;                                    // balance -> the tap branch is empty
+  var eDim = wdim('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var path = [ { x: geo.Ax, y: geo.wireY }, { x: geo.Ax, y: geo.lowerY },
+               { x: geo.Jx, y: geo.lowerY }, { x: geo.Jx, y: geo.wireY } ];
+  var L = polyLen(path), dir = (g.gap >= 0) ? 1 : -1;
+  var n = ceil(constrain(mag / 1.0, 0, 1) * 6); if (n < 1) n = 1;
+  var sp = constrain(mag / 0.5, 0.4, 2.5);
+  noStroke();
+  for (var b = 0; b < n; b++) {
+    var s = (b / n + dir * CIRCUIT_BEAD_RATE * 2 * (PM_simTimeMs / 1000) * sp) % 1;
+    var p = polyAt(path, L, s);
+    fillHex(col, 0.30 * eDim); ellipse(p.x, p.y, sz * 1.8);
+    fillHex(col, 0.95 * eDim); ellipse(p.x, p.y, sz * 0.95);
+  }
+}
+// S4 voltmeter loop stream: a small loop E <-> voltmeter, density + speed ∝ I_meter.
+function drawWireVoltmeterBeads(geo) {
+  var g = geo.phys;
+  if (g.Imeter < 1e-4) return;
+  var eDim = wdim('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var vmx = geo.Ax - width * 0.10, vmy = geo.Ey;
+  var loop = [ { x: geo.Ax, y: geo.Ey - 10 }, { x: vmx, y: vmy - 12 },
+               { x: vmx, y: vmy + 12 }, { x: geo.Ax, y: geo.Ey + 10 } ];
+  var L = polyLen(loop), n = ceil(constrain(g.Imeter / 0.3, 0, 1) * 5); if (n < 1) n = 1;
+  var sp = constrain(g.Imeter / 0.15, 0.4, 2.0);
+  noStroke();
+  for (var b = 0; b < n; b++) {
+    var s = (b / n + CIRCUIT_BEAD_RATE * 2 * (PM_simTimeMs / 1000) * sp) % 1;
+    var p = polyAt(loop, L, s);
+    fillHex(col, 0.30 * eDim); ellipse(p.x, p.y, sz * 1.7);
+    fillHex(col, 0.95 * eDim); ellipse(p.x, p.y, sz * 0.9);
+  }
+}
+// Driver cell on the top rail (delivers the full eps_d across the wire).
+function drawWireDriverCell(geo) {
+  var g = geo.phys, dim = wdim('driver_cell'), bx = (geo.Ax + geo.Cx) / 2, by = geo.topY;
+  var col = bpvl('driver_cell', '#FFD54F');
+  strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx - 8, by - 14, bx - 8, by + 14);   // + plate (long)
+  strokeWeight(6); line(bx + 8, by - 8, bx + 8, by + 8);                                         // - plate (short)
+  noStroke(); fillHex(col, 0.98 * dim); textSize(12); textStyle(BOLD); textAlign(CENTER, BOTTOM);
+  text('\\u03B5_d = ' + g.epsD.toFixed(1) + ' V', bx, by - 12); textStyle(NORMAL);
+}
+// Tested cell E on the left riser (horizontal plates on a vertical wire).
+function drawWireTestedCell(geo) {
+  var dim = wdim('tested_cell'), bx = geo.Ax, by = geo.Ey, col = bpvl('tested_cell', '#FFB74D');
+  strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx - 14, by - 6, bx + 14, by - 6);    // + plate (long)
+  strokeWeight(6); line(bx - 8, by + 6, bx + 8, by + 6);                                          // - plate (short)
+  noStroke(); fillHex(col, 0.98 * dim); textSize(11); textStyle(BOLD); textAlign(LEFT, CENTER);
+  text('E', bx + 16, by); textStyle(NORMAL);
+}
+// Sliding jockey contact — a triangle sitting on the wire at x = lerp(A,C,l/L).
+function drawJockey(geo) {
+  var dim = wdim('jockey'), col = bpvl('jockey', '#FF7043'), jx = geo.Jx, jy = geo.wireY;
+  fillHex(col, 0.95 * dim); noStroke();
+  triangle(jx, jy, jx - 7, jy - 16, jx + 7, jy - 16);
+  fillHex(col, 0.98 * dim); textSize(11); textStyle(BOLD); textAlign(CENTER, BOTTOM);
+  text('J', jx, jy - 18); textStyle(NORMAL);
+}
+function drawWireNodeLabels(geo) {
+  var dim = wdim('wires'), lc = bpvl('labels', '#D4D4D8');
+  fillHex(bpvl('node_dot', '#80CBC4'), 0.9 * dim); noStroke();
+  ellipse(geo.Ax, geo.wireY, 9); ellipse(geo.Cx, geo.wireY, 9);
+  fillHex(lc, 0.95 * dim); textSize(13); textStyle(BOLD);
+  textAlign(RIGHT, CENTER); text('A', geo.Ax - 8, geo.wireY - 12);
+  textAlign(LEFT, CENTER); text('C', geo.Cx + 8, geo.wireY - 12);
+  textStyle(NORMAL);
+}
+// S4 voltmeter across the tested cell — REUSES drawVoltmeterC (reads V_meter = E - I*r).
+function drawWireVoltmeter(geo) {
+  var g = geo.phys, dim = wdim('voltmeter'), vmx = geo.Ax - width * 0.10, vmy = geo.Ey;
+  strokeHex('#B39DDB', 0.7 * dim); strokeWeight(1.5);
+  line(geo.Ax, geo.Ey - 8, vmx, vmy - 14); line(geo.Ax, geo.Ey + 8, vmx, vmy + 14);
+  noStroke();
+  drawVoltmeterC(vmx, vmy, g.Vmeter, g.E, dim);
+}
+function drawWireScenario() {
+  var geo = wireGeom(), g = geo.phys, st = curState();
+  var wireCol = bpvl('wire', '#546E7A'), wA = 0.85 * wdim('wires');
+  if (st && st.show_gradient_ramp) drawGradientRamp(geo);
+  drawWireC([ { x: geo.Ax, y: geo.wireY }, { x: geo.Cx, y: geo.wireY } ], wireCol, wA, 3);                       // the potentiometer wire A->C
+  drawWireC([ { x: geo.Ax, y: geo.wireY }, { x: geo.Ax, y: geo.topY }, { x: geo.Cx, y: geo.topY }, { x: geo.Cx, y: geo.wireY } ], wireCol, wA, 3);  // driver outer loop
+  drawWireC([ { x: geo.Ax, y: geo.wireY }, { x: geo.Ax, y: geo.lowerY }, { x: geo.Jx, y: geo.lowerY }, { x: geo.Jx, y: geo.wireY } ], wireCol, wA, 3);  // tap branch A -> (E,G) -> J
+  drawWireDriverBeads(geo);
+  if (st && st.show_tap_branch_beads) drawWireTapBeads(geo);
+  if (st && st.show_voltmeter_compare) drawWireVoltmeterBeads(geo);
+  drawWireDriverCell(geo);
+  drawWireTestedCell(geo);
+  if (!st || st.show_galvanometer !== false) {
+    drawGalvanometerC(geo.Ax, geo.Gy, geo.gR, g.needle, (st && st.galvanometer_label) ? st.galvanometer_label : 'G', wdim('galvanometer'));
+  }
+  drawJockey(geo);
+  drawWireNodeLabels(geo);
+  if (st && st.show_voltmeter_compare) drawWireVoltmeter(geo);
+  // value-only HUD chips (Rule 34b/d — distinct zones, always legible) ────────────
+  if (st && st.show_gradient_ramp) {
+    drawBridgeChip(width * 0.32, height * 0.11, 'k = ' + g.k.toFixed(2) + ' V/m', bpvl('gradient_ramp', '#4DD0E1'), 14);
+  }
+  if (st && st.show_balance_readout) {
+    var rc = bpvl('balance_readout', '#B39DDB');
+    drawBridgeChip(width * 0.28, height * 0.90, 'l = ' + g.l.toFixed(2) + ' m', rc, 14);
+    drawBridgeChip(width * 0.46, height * 0.90, 'k\\u00B7l = ' + g.kl.toFixed(2) + ' V', rc, 14);
+    drawBridgeChip(width * 0.63, height * 0.90, 'E = ' + g.E.toFixed(2) + ' V', bpvl('tested_cell', '#FFB74D'), 14);
+  }
+  if (st && st.show_izero_label && g.balanced) {                  // literal i = 0 — ONLY when live-balanced
+    fillHex(bpvl('compare_ok', '#66BB6A'), 0.98); textSize(14); textStyle(BOLD); textAlign(LEFT, CENTER);
+    text('i = 0', geo.Ax + width * 0.085, geo.Gy); textStyle(NORMAL);
+  }
+  if (st && st.show_voltmeter_compare) {                          // V_meter vs true E (voltmeter reads LESS)
+    drawBridgeChip(width * 0.50, height * 0.11,
+      'V_meter = ' + g.Vmeter.toFixed(2) + ' V   vs   E = ' + g.E.toFixed(2) + ' V', bpvl('compare_bad', '#EF5350'), 14);
+  }
+}
+
 // ═══ emf_definition scenario — charge-pump cell + potential ladder + voltmeter ══
 // A single IDEAL-cell loop reusing the combination bead engine. Primitives are
 // added incrementally: drawEmfCell (Task 3), drawPotentialLadder (Task 4),
@@ -3042,7 +3300,7 @@ export interface ParticleFieldStateConfig {
     micro_focus?: 'trace_one' | 'count_carriers';  // Rule 33c per-state interior story
     // combination_of_resistors (Ch.3 #4 — circuit scenario)
     single_resistor?: boolean;       // S1 baseline: one loop, one resistor (i = V/R1)
-    topology?: 'series' | 'parallel' | 'bridge'; // per-state circuit topology ('bridge' = wheatstone_bridge diamond; else the topology slider)
+    topology?: 'series' | 'parallel' | 'bridge' | 'wire'; // per-state circuit topology ('bridge' = wheatstone_bridge diamond; 'wire' = potentiometer; else the topology slider)
     r2_autosweep?: boolean;          // S6: R2 grows from default toward r2_autosweep_to
     r2_autosweep_to?: number;        // target R2 for the S6 sweep (default 12)
     show_branch_meters?: boolean;    // parallel: draw per-branch ammeters (i1, i2)
@@ -3095,6 +3353,20 @@ export interface ParticleFieldStateConfig {
     bridge_emf_sweep_to?: number;    // target emf for the sweep
     bridge_emf_sweep_start_ms?: number;    // sweep window start (default 900)
     bridge_emf_sweep_duration_ms?: number; // sweep window duration (default 1400)
+    // potentiometer (Ch.3 — 'wire' topology; REUSES scenario_type 'combination_of_resistors', every flag opt-in behind topology:'wire' → all siblings byte-identical)
+    E?: number;                      // per-state tested-cell EMF lock (snap on entry; teacher-seizable via the E slider)
+    eps_d?: number;                  // per-state driver-cell EMF lock (sets the gradient k = eps_d/L; teacher-seizable)
+    l?: number;                      // per-state jockey position lock in metres (snap on entry; teacher-seizable via the l slider)
+    jockey_pos?: number;             // authored jockey fraction 0..1 (documentary; the live jockey tracks l/L, so this is not read by the renderer)
+    jockey_sweep?: boolean;          // clock-driven l sweep (mirrors bridge_r_sweep): state l → jockey_sweep_to
+    jockey_sweep_to?: number;        // target l for the sweep (metres)
+    jockey_sweep_start_ms?: number;      // sweep window start (default 800)
+    jockey_sweep_duration_ms?: number;   // sweep window duration (default 800)
+    show_gradient_ramp?: boolean;    // draw the linear potential-gradient ramp above the wire + a 'k = … V/m' chip
+    show_balance_readout?: boolean;  // value-only chips: 'l = … m', 'k·l = … V', 'E = … V'
+    show_tap_branch_beads?: boolean; // beads on the tap branch, dir sign(k·l−E), density ∝ |k·l−E|, exactly 0 at balance
+    show_izero_label?: boolean;      // literal 'i = 0' — shown ONLY when live-balanced (|k·l−E| < tol)
+    show_voltmeter_compare?: boolean;// S4: a voltmeter across the tested cell (droops to V_meter = E − I·r) + a compare chip
     [key: string]: unknown;
 }
 
