@@ -496,7 +496,8 @@
           "tau_vector": { "show": true },
           "sum_force_badge": false,
           "theta_arc": { "show": true },
-          "energy_meter": { "show": true }
+          "energy_meter": { "show": true },
+          "physics_release": true
         }
       }
     },

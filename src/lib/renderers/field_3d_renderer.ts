@@ -32607,6 +32607,34 @@ export const FIELD_3D_RENDERER_CODE = `
             mBmf.addEventListener("input", function () { refreshBmfLabels(false); });
             bBmf.addEventListener("input", function () { refreshBmfLabels(false); });
             thetaBmf.addEventListener("input", function (ev) { refreshBmfLabels(!!(ev && ev.isTrusted)); });
+            // physics_release (STATE_9 explore): letting GO of the θ slider hands the
+            // magnet to the damped_pendulum integrator from the released angle — it
+            // swings home to θ=0 by real τ = mB·sinθ dynamics (overshoot + damped
+            // libration; released near 180° it lingers on the unstable maximum first),
+            // exactly the compass / vibration-magnetometer behaviour. Stiffness k scales
+            // with the live m·B product so raising either slider makes the swing snappier
+            // (k ∝ mB/I, so M5 is explorable). Mirrors the dipole's physics_release
+            // (founder directive 2026-07-05). Guided states (physicsRelease unset) keep
+            // the trusted-drag manual seize unchanged.
+            thetaBmf.addEventListener("change", function (ev) {
+                if (!ev || !ev.isTrusted) return;
+                var lgRel = findTorqueLoopGroup();
+                if (!lgRel || !lgRel.userData.physicsRelease) return;
+                var relTheta = parseFloat(thetaBmf.value);
+                if (!isFinite(relTheta)) return;
+                // sin(180°) = 0 exactly — a release parked dead on the unstable
+                // maximum would never depart. Nudge to 179° so it creeps, then flips.
+                if (relTheta > 179) relTheta = 179;
+                var relM = parseFloat(mBmf.value), relB = parseFloat(bBmf.value);
+                var relMDef = lgRel.userData.dpf_p_default || 5;
+                var relBDef = lgRel.userData.dpf_E_default || 5;
+                var relMult = (isFinite(relM) && isFinite(relB)) ? (relM / relMDef) * (relB / relBDef) : 1;
+                lgRel.userData.pend_k = 2.5 * Math.max(0.1, relMult);
+                lgRel.userData.pend_b = 0.8;
+                lgRel.userData.rotation_init_theta_deg = relTheta;
+                lgRel.userData.rotation_start_time = time;
+                lgRel.userData.rotation_mode = "damped_pendulum";
+            });
             refreshBmfLabels(false);
         }
 
