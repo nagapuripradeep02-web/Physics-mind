@@ -85,13 +85,28 @@ export const PILOT_CONCEPTS: string[] = [
     'gauss_law_line',
     'gauss_law_sheet',
     'gauss_law_solid_sphere',
+    // Ch.2 — Electrostatic Potential & Capacitance (added 2026-07-13, founder push-all:
+    // marker-clean + baseline-locked; authored pre-Rule-31-tightening — pull any id
+    // here if a teacher review flags pacing)
+    'electric_potential_meaning',
+    'electric_potential_point_charge',
+    'electric_potential_dipole',
+    'electric_potential_system_of_charges',
+    'equipotential_surfaces',
+    'potential_energy_system_of_charges',
+    'potential_energy_in_external_field',
     // Ch.4 — Moving Charges & Magnetism
+    'magnetic_field_concept_B',
     'magnetic_force_moving_charge',
     'magnetic_force_direction_right_hand_rule',
     'magnetic_force_perpendicular_no_work',
     'parallel_currents_force',
     'force_on_current_carrying_wire',
+    // Ch.5 — Magnetism & Matter (added 2026-07-13; Rule-31 rebuilds)
+    'bar_magnet_as_dipole',
+    'gauss_law_magnetism',
     // Ch.6 — Electromagnetic Induction
+    'magnetic_flux',
     'faraday_law_induction',
     'motional_emf',
     'ac_generator',
@@ -111,6 +126,12 @@ export const PILOT_CONCEPTS: string[] = [
     'emf_definition',
     'internal_resistance',
     'electrical_power_in_resistor',
+    // Ch.3 lab quartet (added 2026-07-13, founder push-all; Kirchhoff pair + the
+    // bridge/wire topologies — all Rule-31 authored, audited, baseline-locked)
+    'kirchhoff_junction_rule_KCL',
+    'kirchhoff_loop_rule_KVL',
+    'wheatstone_bridge',
+    'potentiometer',
 ];
 
 const PILOT_SET = new Set(PILOT_CONCEPTS);
