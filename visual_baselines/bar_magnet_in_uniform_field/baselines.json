@@ -1,0 +1,43 @@
+{
+  "approved_at": "2026-07-13T00:26:47.332Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\bar_magnet_in_uniform_field\\20260713-022607",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_9": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}
