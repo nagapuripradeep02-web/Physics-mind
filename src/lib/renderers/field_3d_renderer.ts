@@ -18503,7 +18503,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var gmTracers = [];
 
     function gmFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i]; } return null; }
-    function gmSetOpacity(obj, op) { if (!obj) return; if (obj.material) { obj.material.transparent = true; obj.material.opacity = op; } if (obj.children) for (var i = 0; i < obj.children.length; i++) gmSetOpacity(obj.children[i], op); }
+    // gmBaseOpacity (round-3 fix, 2026-07-13): applyGaussLawMagnetismState() force-resets
+    // EVERY gm_-prefixed object's material opacity to 1 on every state entry (below), which
+    // was silently clobbering the S5 contrast-inset's dimmed shell every time — the actual
+    // root cause of the round-2 wireframe dim reading byte-identical. A node that carries a
+    // fixed userData.gmBaseOpacity keeps that value instead of the blanket reset.
+    function gmSetOpacity(obj, op) { if (!obj) return; var useOp = (obj.userData && typeof obj.userData.gmBaseOpacity === "number") ? obj.userData.gmBaseOpacity : op; if (obj.material) { obj.material.transparent = true; obj.material.opacity = useOp; } if (obj.children) for (var i = 0; i < obj.children.length; i++) gmSetOpacity(obj.children[i], op); }
 
     // 3D arc-length interpolation along a closed-loop point list (t in [0,1)).
     function gmLerpPath3(pts, t) {
@@ -18551,6 +18556,60 @@ export const FIELD_3D_RENDERER_CODE = `
             wire.position.set(offsetX, 0, 0);
         }
         if (lbl) lbl.position.set(offsetX, R + 0.5, 0);
+    }
+
+    // Pure point-in-closed-surface test — mirrors EXACTLY the geometry construction
+    // in gaussShapeGeometry/gaussBlobGeometry (sphere/cube/blob), snapped to the
+    // nearest of the 3 discrete shapes the same way gmApplyShape snaps the mesh
+    // itself (physics-block §10 callout), so the tally always agrees with what is
+    // actually drawn — even mid-morph. p = world-space [x,y,z]; the surface is
+    // centered at (offsetX,0,0).
+    function gmInsideSurface(p, roundedShape, R, offsetX) {
+        var dx = p[0] - offsetX, dy = p[1], dz = p[2];
+        if (roundedShape === 1) {
+            // cube: axis-aligned half-width R (Chebyshev / max-norm).
+            return Math.max(Math.abs(dx), Math.abs(dy), Math.abs(dz)) <= R;
+        }
+        if (roundedShape === 2) {
+            // blob: same deterministic bump gaussBlobGeometry applies to a base
+            // sphere-of-radius-R vertex, sampled along this point's direction.
+            var len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (len < 1e-6) return true;
+            var ux = dx / len, uy = dy / len, uz = dz / len;
+            var bx = R * ux, by = R * uy, bz = R * uz;
+            var bump = 0.22 * Math.sin(2.0 * bx + 1.3) * Math.cos(1.7 * by - 0.6) + 0.16 * Math.sin(2.4 * bz + 0.4);
+            return len <= (R + bump);
+        }
+        // sphere (default).
+        return (dx * dx + dy * dy + dz * dz) <= (R * R);
+    }
+
+    // Decision-A live crossing tally (physics block §2.4): walks each of the 12
+    // abstract gmLoopPaths (NEVER the single visible gm_internal mesh — that would
+    // fabricate an unbalanced 12-vs-1 count, physics-block ⚠ trap) and counts
+    // inside→outside ("out") and outside→inside ("in") transitions against the
+    // CURRENT closed-surface geometry. A PURE function of (shape,R,offsetX) only —
+    // never a per-frame accumulator — so it is identical at any frame rate
+    // (Rule 36) and byte-stable under SET_TIME_FREEZE (a frozen surface geometry
+    // always yields the same tally). net = out-in is ALWAYS 0 by the closed-loop
+    // crossing-parity theorem (physics block §2.1); it is computed here, never
+    // hardcoded, so a geometry bug would visibly break the balance instead of
+    // silently hiding it.
+    function gmComputeCrossingTally(shape, R, offsetX) {
+        var rounded = Math.round(shape);
+        var out = 0, inn = 0;
+        for (var li = 0; li < gmLoopPaths.length; li++) {
+            var loop = gmLoopPaths[li];
+            if (!loop.length) continue;
+            var wasIn = gmInsideSurface(loop[0], rounded, R, offsetX);
+            for (var vi = 1; vi < loop.length; vi++) {
+                var isIn = gmInsideSurface(loop[vi], rounded, R, offsetX);
+                if (wasIn && !isIn) out++;
+                else if (!wasIn && isIn) inn++;
+                wasIn = isIn;
+            }
+        }
+        return { out: out, in: inn, net: out - inn };
     }
 
     function buildGaussLawMagnetism() {
@@ -18607,7 +18666,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //    body — the "every external line returns inside" half of the loop.
         var intPts = [];
         for (var si = 0; si <= 18; si++) { var ti = si / 18; intPts.push([GM_TIP_S + (GM_TIP_N - GM_TIP_S) * ti, 0, 0.34]); }
-        var intTube = createTubeLine(intPts, "#FFB74D", 0.02);
+        // Radius bumped 0.02->0.03 (round-3 legibility fix, 2026-07-13) so the S3
+        // cutaway "return through the body" reads a touch more clearly as the
+        // focal — secondary to the live crossing-tally readout, not over-brightened.
+        var intTube = createTubeLine(intPts, "#FFB74D", 0.03);
         if (intTube) {
             if (intTube.material) { intTube.material.transparent = true; intTube.material.opacity = 0.9; intTube.material.emissive = hexToThreeColor("#FFB74D"); intTube.material.emissiveIntensity = 0.4; }
             intTube.userData = { elementType: "gm_internal", id: "gm_internal", loopPath: intPts.map(function (p) { return [p[0], p[1], p[2]]; }) }; intTube.visible = false; addToScene(intTube);
@@ -18649,13 +18711,28 @@ export const FIELD_3D_RENDERER_CODE = `
             var L = new THREE.Group(); L.position.set(-2.4, 0, 0);
             var ln = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.28, 0.28), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.nColor), emissive: hexToThreeColor(G.nColor), emissiveIntensity: 0.45 })); ln.position.set(0.27, 0, 0); L.add(ln);
             var ls = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.28, 0.28), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.sColor), emissive: hexToThreeColor(G.sColor), emissiveIntensity: 0.45 })); ls.position.set(-0.27, 0, 0); L.add(ls);
+            // Loop tubes drawn bold — the closed-loop-vs-radial-outward CONTRAST is
+            // this state's whole teaching point, so it must read at a glance over
+            // the (now much fainter) surface shell (round-3 legibility fix,
+            // 2026-07-13: radius 0.022->0.03, opacity 0.95->1.0, emissive 0.55->0.6).
             [1, -1].forEach(function (sgn) {
                 var pp = bmArch2D(0.52, -0.52, 0.62, sgn, 22).map(function (p) { return [p[0], p[1], 0]; });
-                var tb = createTubeLine(pp, G.flColor, 0.012);
-                if (tb) { if (tb.material) { tb.material.opacity = 0.85; tb.material.emissive = hexToThreeColor(G.flColor); tb.material.emissiveIntensity = 0.3; } L.add(tb); }
+                var tb = createTubeLine(pp, G.flColor, 0.03);
+                if (tb) { if (tb.material) { tb.material.opacity = 1.0; tb.material.emissive = hexToThreeColor(G.flColor); tb.material.emissiveIntensity = 0.6; } L.add(tb); }
             });
-            var lsm = new THREE.Mesh(new THREE.SphereGeometry(0.95, 28, 20), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.surfColor), emissive: hexToThreeColor(G.surfColor), emissiveIntensity: 0.12, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false })); L.add(lsm);
-            var lsw = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(0.95, 16, 10)), new THREE.LineBasicMaterial({ color: hexToThreeColor(G.surfColor), transparent: true, opacity: 0.4 })); L.add(lsw);
+            // Shell — a mere HINT of "a closed surface", not the star of the frame.
+            // Round-2 dimmed this mesh's construction-time opacity (0.12->0.05) but
+            // that had ZERO effect because applyGaussLawMagnetismState() force-resets
+            // every gm_-prefixed material to opacity=1 on every state entry (see
+            // gmSetOpacity above) — the true root cause of the "two dominant bright
+            // wireframe balls" bug. gmBaseOpacity (round-3 fix) makes gmSetOpacity
+            // respect this node's own fixed opacity instead of clobbering it. The
+            // separate dense-EdgesGeometry wireframe outline (formerly lsw/rsw, a
+            // SphereGeometry(0.95,16,10) edge mesh) is REMOVED outright — its many
+            // overlapping line segments were the actual "wireframe ball" silhouette
+            // and added no pedagogical value over the faint shell.
+            var lsm = new THREE.Mesh(new THREE.SphereGeometry(0.95, 28, 20), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.surfColor), emissive: hexToThreeColor(G.surfColor), emissiveIntensity: 0.05, transparent: true, opacity: 0.06, side: THREE.DoubleSide, depthWrite: false }));
+            lsm.userData = { gmBaseOpacity: 0.06 }; L.add(lsm);
             var lLab = createWideLabelSprite("magnet: \\u222eB\\u00b7dA = 0", G.radColor, 0.3); lLab.position.set(0, -1.5, 0); L.add(lLab);
             g.add(L);
             // RIGHT: +q + radial OUTWARD lines + small sphere surface.
@@ -18663,14 +18740,19 @@ export const FIELD_3D_RENDERER_CODE = `
             var pq = createChargeSphere([0, 0, 0], G.posColor, 0.18); Rg.add(pq);
             var pqL = createLabelSprite("+q", G.posColor, 0.36); pqL.position.set(0, 0.4, 0); Rg.add(pqL);
             var rdirs = efluxRadialDirs();
+            // Rays lengthened/thickened (1.1->1.35, head 0.16/0.09->0.2/0.12, round-3
+            // legibility fix) so "radiates outward, never returns" reads clearly next
+            // to the now-bold LEFT loops — a fixed-length diagram convention, not a
+            // magnitude-encoding vector (Rule 29: no live field-strength is bound to
+            // this length).
             for (var ri = 0; ri < rdirs.length; ri++) {
                 var rd = rdirs[ri];
-                var ra = new THREE.ArrowHelper(new THREE.Vector3(rd[0], rd[1], rd[2]), new THREE.Vector3(0, 0, 0), 1.1, hexToThreeColor(G.radColor), 0.16, 0.09);
-                ra.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0.7; } });
+                var ra = new THREE.ArrowHelper(new THREE.Vector3(rd[0], rd[1], rd[2]), new THREE.Vector3(0, 0, 0), 1.35, hexToThreeColor(G.radColor), 0.2, 0.12);
+                ra.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0.85; } });
                 ra.userData = { gmContrastRadial: true }; Rg.add(ra);
             }
-            var rsm = new THREE.Mesh(new THREE.SphereGeometry(0.95, 28, 20), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.surfColor), emissive: hexToThreeColor(G.surfColor), emissiveIntensity: 0.12, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false })); Rg.add(rsm);
-            var rsw = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(0.95, 16, 10)), new THREE.LineBasicMaterial({ color: hexToThreeColor(G.surfColor), transparent: true, opacity: 0.4 })); Rg.add(rsw);
+            var rsm = new THREE.Mesh(new THREE.SphereGeometry(0.95, 28, 20), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.surfColor), emissive: hexToThreeColor(G.surfColor), emissiveIntensity: 0.05, transparent: true, opacity: 0.06, side: THREE.DoubleSide, depthWrite: false }));
+            rsm.userData = { gmBaseOpacity: 0.06 }; Rg.add(rsm);
             var rLab = createWideLabelSprite("charge: \\u222eE\\u00b7dA = q/\\u03b5\\u2080 \\u2260 0", "#FF8A80", 0.3); rLab.position.set(0, -1.5, 0); Rg.add(rLab);
             g.add(Rg);
             var vs = createLabelSprite("vs", "#CFD8DC", 0.4); vs.position.set(0, 0, 0); g.add(vs);
@@ -18681,7 +18763,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
         var rp = document.createElement("div");
         rp.id = "gm_readout";
-        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:235px;display:none;";
+        // top:52px clears the review-chrome "Full screen" button (Rule 34d).
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:235px;display:none;";
         document.body.appendChild(rp);
 
         // 8. Explore sliders (S6 only): surface shape + surface position.
@@ -18690,7 +18773,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var osc = (config.slider_controls && config.slider_controls.surface_pos) || { min: -1.2, max: 1.2, step: 0.05, default: 0, label: "Surface position" };
         var gp = document.createElement("div");
         gp.id = "gm_sliders";
-        gp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:200px;display:none;";
+        // bottom:LEFT (not right) — #formula_overlay is also fixed bottom-right,
+        // and S6 is the only gm state that shows both at once (Rule 34d: overlays
+        // must never collide).
+        gp.style.cssText = "position:fixed;bottom:12px;left:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:200px;display:none;";
         gp.innerHTML =
             '<label>' + ssc.label + ': <span id="gm_s_val">' + ssc.default + '</span></label>' +
             '<input type="range" id="gm_s_slider" min="' + ssc.min + '" max="' + ssc.max + '" step="' + (ssc.step || 1) + '" value="' + ssc.default + '" style="width:100%">' +
@@ -18752,6 +18838,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var t = time - stateStartTime;
         var sliders = !!gm.sliders;
         var dragging = sliders && window.PM_gmUserDragged;
+        var cutaway = !!gm.cutaway;
 
         // 1. Surface shape/scope this frame (slider in sandbox, else morph anim, else seed).
         var R = (typeof gm.surface_R === "number") ? gm.surface_R : GM_SURF_R;
@@ -18830,8 +18917,26 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!fud || fud.elementType !== "gm_field_line" || !fo.visible) continue;
             if (!fo.material) continue;
             var wob = 0.4 + 0.5 * Math.sin(pulsePhase - (fud.flIndex || 0) * 0.55);
+            // S3 body-cutaway (decision B, Rule 29/32e): the internal return path
+            // (below) is the SOLE glow focal at gm.cutaway — these external arcs
+            // dim as peers. Brightness only; the tube geometry never moves.
+            if (cutaway) { wob *= 0.28; fo.material.emissiveIntensity = 0.10; }
+            else if (fo.material.emissiveIntensity != null) { fo.material.emissiveIntensity = 0.3; }
             fo.material.transparent = true;
-            fo.material.opacity = Math.max(0.12, wob);
+            fo.material.opacity = Math.max(cutaway ? 0.05 : 0.12, wob);
+        }
+        // 2d. S3 body-cutaway brightening (decision B, Rule 29/32e): promote the
+        //     internal S→N return path (already visually offset in FRONT of the
+        //     magnet body, z=0.34 — see buildGaussLawMagnetism §3) to the bright
+        //     single glow focal so the student sees the lines that emerged near N
+        //     re-entering through the body INSIDE the shrunk surface. Brightness
+        //     only — position/geometry never change (peers dimmed just above).
+        if (intT && intT.material) {
+            intT.material.emissiveIntensity = cutaway ? (0.75 + 0.25 * Math.sin(t * 2.4)) : 0.4;
+            intT.material.opacity = cutaway ? 1.0 : 0.9;
+        }
+        if (intD && intD.material) {
+            intD.material.emissiveIntensity = cutaway ? 1.3 : 0.9;
         }
 
         // 3. Contrast inset (S5): pulse the radial OUTWARD lines so the "lines leave
@@ -18848,32 +18953,73 @@ export const FIELD_3D_RENDERER_CODE = `
             })(con, { v: 0 });
         }
 
-        // 4. Readout: ∮B·dA = 0 (always), worded per the state's mode.
+        // 4. Readout (decision A, Rule 33d/34b): when gm.show_tally, a VALUE-ONLY
+        //    live crossing tally computed by the pure gmComputeCrossingTally over
+        //    the 12 abstract gmLoopPaths against THIS frame's surface geometry
+        //    (shape/R/offsetX from step 1 above) — never the single visible
+        //    gm_internal mesh (physics-block ⚠ trap: that would fabricate an
+        //    unbalanced 12-vs-1 count). S4 (morph) shows ONLY the net — its raw
+        //    out/in split fluctuates with the live shape even though net never
+        //    moves off 0, so the split is deliberately hidden to keep the
+        //    invariant (not the noise) legible. Falls back to a short symbolic
+        //    line for any gm state authored without show_tally.
         var roEl = document.getElementById("gm_readout");
         if (roEl && roEl.style.display !== "none") {
             var mode = gm.mode || "loops";
             var html = "";
-            if (gm.caption) html += '<div>' + gm.caption + '</div>';
-            else if (mode === "loops") html += '<div>magnetic field B = closed loops</div><div>no start, no end</div>';
-            else if (mode === "whole") html += '<div>lines leaving = lines entering</div><div style="color:#8CF5A0">\\u03a6_out + \\u03a6_in = 0</div>';
-            else if (mode === "pole") html += '<div style="color:#FFD54F">even around ONE pole: out = in</div><div>no magnetic monopole</div>';
-            else if (mode === "morph") html += '<div>sphere \\u2192 cube \\u2192 blob</div><div>any closed surface</div>';
-            else if (mode === "contrast") html += '<div style="color:#8CF5A0">magnet: \\u222eB\\u00b7dA = 0</div><div style="color:#FF8A80">charge: \\u222eE\\u00b7dA = q/\\u03b5\\u2080 \\u2260 0</div>';
-            else if (mode === "sandbox") html += '<div>drag the surface \\u2014 anywhere</div>';
-            if (mode !== "contrast") html += '<div style="color:#8CF5A0">net \\u03a6_B = \\u222eB\\u00b7dA = 0</div>';
+            if (gm.show_tally) {
+                var tally = gmComputeCrossingTally(shape, R, offsetX);
+                if (mode === "morph") {
+                    html = '<div style="color:#8CF5A0">net \\u03a6_B = ' + tally.net + '</div>';
+                } else {
+                    html = '<div style="color:#8CF5A0">\\u03a6_out = +' + tally.out
+                        + ' \\u00b7 \\u03a6_in = \\u2212' + tally.in
+                        + ' \\u00b7 net = ' + tally.net + '</div>';
+                }
+            } else if (mode === "loops") html = '<div>magnetic field B = closed loops</div><div>no start, no end</div>';
+            else if (mode === "whole") html = '<div>lines leaving = lines entering</div><div style="color:#8CF5A0">net \\u03a6_B = 0</div>';
+            else if (mode === "pole") html = '<div style="color:#FFD54F">even around ONE pole: out = in</div><div>no magnetic monopole</div>';
+            else if (mode === "contrast") html = '<div style="color:#8CF5A0">magnet: \\u222eB\\u00b7dA = 0</div><div style="color:#FF8A80">charge: \\u222eE\\u00b7dA = q/\\u03b5\\u2080 \\u2260 0</div>';
+            else if (mode === "sandbox") html = '<div>drag the surface \\u2014 anywhere</div>';
+            else html = '<div style="color:#8CF5A0">net \\u03a6_B = \\u222eB\\u00b7dA = 0</div>';
             roEl.innerHTML = html;
         }
     }
 
     // TTS-bound brightness emphasis (Rule 29): brighten gm_* elements named in the
     // narration's glow targets, dim their peers — never resize.
+    //
+    // Round-2 fix (S3 cutaway wipe, 2026-07-13): this pass runs IMMEDIATELY
+    // after updateGaussLawMagnetismFrame() in the animate loop, and — because
+    // gm_internal/gm_internal_dot carry elementType "gm_" and are almost never
+    // the exact-match TTS glowTarget — applyGlowEmphasis's brightenOnly "idle"
+    // branch was resetting their emissiveIntensity back to the captured
+    // baseline (_glowBaseEmI) EVERY frame, silently clobbering the S3 cutaway
+    // brightening choreography (step 2d in updateGaussLawMagnetismFrame) on
+    // the same frame it was set. Fix: while gm.cutaway is active, exclude
+    // those two meshes from the generic loop entirely, then explicitly
+    // restate their brightened state AFTER the loop so the cutaway boost is
+    // unambiguously the frame's last word — nothing runs after this to reset
+    // it again.
     function applyGaussLawMagnetismGlow() {
         var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
         function on(id) { return glowTargets.indexOf(id) >= 0; }
+        var stateDef = config.states[PM_currentState];
+        var gmCutaway = !!(stateDef && stateDef.gm && stateDef.gm.cutaway);
         for (var j = 0; j < sceneObjects.length; j++) {
             var so = sceneObjects[j], sud = so.userData || {};
             if (!sud.elementType || sud.elementType.indexOf("gm_") !== 0) continue;
+            if (gmCutaway && (sud.id === "gm_internal" || sud.id === "gm_internal_dot")) continue;
             applyGlowEmphasis(so, on(sud.id) || on(sud.elementType), glowActive, glowP, true);
+        }
+        if (gmCutaway) {
+            var ct = time - stateStartTime;
+            var intT = gmFindById("gm_internal"), intD = gmFindById("gm_internal_dot");
+            if (intT && intT.material) {
+                intT.material.emissiveIntensity = 0.9 + 0.2 * Math.sin(ct * 2.4);
+                intT.material.opacity = 1.0;
+            }
+            if (intD && intD.material) intD.material.emissiveIntensity = 1.3;
         }
     }
 
