@@ -91,8 +91,8 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "This is a bar magnet — north pole red, south pole blue." },
-            { "id": "s1_2", "text_en": "Its magnetic moment m, in yellow, points from south to north and measures how strong it is." }
+            { "id": "s1_1", "text_en": "This is a bar magnet — north pole red, south pole blue." , "text_te": "ఇది ఒక bar magnet — north pole red, south pole blue రంగుల్లో ఉన్నాయి." },
+            { "id": "s1_2", "text_en": "Its magnetic moment m, in yellow, points from south to north and measures how strong it is." , "text_te": "దీని magnetic moment m, yellow రంగులో, south నుండి north వైపు point చేస్తుంది మరియు ఇది ఎంత strong గా ఉందో measure చేస్తుంది." }
           ]
         }
       },
@@ -109,8 +109,8 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Now switch on a uniform magnetic field B — every blue arrow is identical, same length and direction everywhere." },
-            { "id": "s2_2", "text_en": "The magnet sits tilted at angle theta to the field, marked by the yellow arc." }
+            { "id": "s2_1", "text_en": "Now switch on a uniform magnetic field B — every blue arrow is identical, same length and direction everywhere." , "text_te": "ఇప్పుడు ఒక uniform magnetic field B ను switch on చేద్దాం — ప్రతి blue arrow ఒకేలా ఉంటుంది, అన్ని చోట్లా same length మరియు direction తో." },
+            { "id": "s2_2", "text_en": "The magnet sits tilted at angle theta to the field, marked by the yellow arc." , "text_te": "ఈ magnet field తో angle theta వద్ద tilt అయ్యి ఉంది, దానిని yellow arc గుర్తిస్తుంది." }
           ]
         }
       },
@@ -127,9 +127,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "The field shimmers once, then each pole answers separately." },
-            { "id": "s3_2", "text_en": "The north pole feels a force m B along the field; the south pole feels the same size force, m B, but directed against it." },
-            { "id": "s3_3", "text_en": "Equal, opposite, on different lines — that pairing is a couple, not a cancellation." }
+            { "id": "s3_1", "text_en": "The field shimmers once, then each pole answers separately." , "text_te": "Field ఒకసారి shimmer అవుతుంది, తర్వాత ప్రతి pole విడిగా respond అవుతుంది." },
+            { "id": "s3_2", "text_en": "The north pole feels a force m B along the field; the south pole feels the same size force, m B, but directed against it." , "text_te": "North pole field దిశలో ఒక force m B ను feel చేస్తుంది; south pole అదే size force, m B ను, కానీ దానికి వ్యతిరేక దిశలో feel చేస్తుంది." },
+            { "id": "s3_3", "text_en": "Equal, opposite, on different lines — that pairing is a couple, not a cancellation." , "text_te": "Equal, opposite, వేర్వేరు lines మీద — ఈ pairing ఒక couple, cancellation కాదు." }
           ]
         },
         "misconception_watch": [
@@ -153,9 +153,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Add the two pole forces: plus m B and minus m B cancel, so the net force is zero — a badge confirms it." },
-            { "id": "s4_2", "text_en": "The couple still creates a torque tau, the purple arrow, and the magnet swings toward the field, centre pinned." },
-            { "id": "s4_3", "text_en": "Zero force, non-zero torque — both true at once." }
+            { "id": "s4_1", "text_en": "Add the two pole forces: plus m B and minus m B cancel, so the net force is zero — a badge confirms it." , "text_te": "రెండు pole forces ను add చేస్తే: plus m B మరియు minus m B cancel అవుతాయి, కాబట్టి net force zero అవుతుంది — ఒక badge దీన్ని confirm చేస్తుంది." },
+            { "id": "s4_2", "text_en": "The couple still creates a torque tau, the purple arrow, and the magnet swings toward the field, centre pinned." , "text_te": "అయినప్పటికీ ఈ couple ఒక torque tau ను create చేస్తుంది, purple arrow, మరియు magnet centre pin అయ్యి field వైపు swing అవుతుంది." },
+            { "id": "s4_3", "text_en": "Zero force, non-zero torque — both true at once." , "text_te": "Zero force, non-zero torque — రెండూ ఒకేసారి true గా ఉంటాయి." }
           ]
         },
         "misconception_watch": [
@@ -186,8 +186,8 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Watch the angle theta sweep smoothly from zero to one eighty degrees and back." },
-            { "id": "s5_2", "text_en": "The torque arrow tau grows, peaks at the middle, then shrinks again — tracing a sine curve, tau equals m B sine theta." }
+            { "id": "s5_1", "text_en": "Watch the angle theta sweep smoothly from zero to one eighty degrees and back." , "text_te": "Angle theta zero నుండి one eighty degrees వరకు smoothly sweep అయ్యి తిరిగి రావడం చూడండి." },
+            { "id": "s5_2", "text_en": "The torque arrow tau grows, peaks at the middle, then shrinks again — tracing a sine curve, tau equals m B sine theta." , "text_te": "Torque arrow tau పెరుగుతుంది, మధ్యలో peak అవుతుంది, తర్వాత మళ్ళీ తగ్గుతుంది — ఇది ఒక sine curve ను trace చేస్తుంది, tau equals m B sine theta." }
           ]
         }
       },
@@ -204,10 +204,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "The magnet snaps to three poses." },
-            { "id": "s6_2", "text_en": "At zero degrees, aligned with the field, the torque arrow vanishes." },
-            { "id": "s6_3", "text_en": "At ninety degrees it fully extends — tau equals m B, the maximum." },
-            { "id": "s6_4", "text_en": "At one eighty it vanishes again: a cross product peaks when perpendicular, dies when parallel." }
+            { "id": "s6_1", "text_en": "The magnet snaps to three poses." , "text_te": "Magnet మూడు poses కు snap అవుతుంది." },
+            { "id": "s6_2", "text_en": "At zero degrees, aligned with the field, the torque arrow vanishes." , "text_te": "Zero degrees వద్ద, field తో aligned గా ఉన్నప్పుడు, torque arrow vanish అవుతుంది." },
+            { "id": "s6_3", "text_en": "At ninety degrees it fully extends — tau equals m B, the maximum." , "text_te": "Ninety degrees వద్ద ఇది fully extend అవుతుంది — tau equals m B, ఇదే maximum." },
+            { "id": "s6_4", "text_en": "At one eighty it vanishes again: a cross product peaks when perpendicular, dies when parallel." , "text_te": "One eighty వద్ద ఇది మళ్ళీ vanish అవుతుంది: ఒక cross product perpendicular గా ఉన్నప్పుడు peak అవుతుంది, parallel గా ఉన్నప్పుడు die అవుతుంది." }
           ]
         },
         "misconception_watch": [
@@ -238,9 +238,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Nudge the magnet slightly from zero degrees — it springs right back, and the U meter sits at the bottom, its energy minimum." },
-            { "id": "s7_2", "text_en": "Nudge it the same amount from one eighty — the deviation grows instead, and it flips to zero as the U marker falls from top to bottom." },
-            { "id": "s7_3", "text_en": "Same nudge, opposite fate." }
+            { "id": "s7_1", "text_en": "Nudge the magnet slightly from zero degrees — it springs right back, and the U meter sits at the bottom, its energy minimum." , "text_te": "Magnet ను zero degrees నుండి కొద్దిగా nudge చేయండి — ఇది వెంటనే వెనక్కి spring అవుతుంది, మరియు U meter దాని energy minimum అయిన bottom వద్ద ఉంటుంది." },
+            { "id": "s7_2", "text_en": "Nudge it the same amount from one eighty — the deviation grows instead, and it flips to zero as the U marker falls from top to bottom." , "text_te": "దానిని one eighty నుండి అదే amount nudge చేయండి — దానికి బదులుగా deviation పెరుగుతుంది, మరియు U marker top నుండి bottom కు పడిపోతున్నప్పుడు ఇది zero కు flip అవుతుంది." },
+            { "id": "s7_3", "text_en": "Same nudge, opposite fate." , "text_te": "Same nudge, కానీ opposite fate." }
           ]
         },
         "misconception_watch": [
@@ -271,10 +271,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "The magnet oscillates steadily about zero degrees; T ticks on the readout." },
-            { "id": "s8_2", "text_en": "Now the field steps up — B doubling, arrows lengthening and brightening." },
-            { "id": "s8_3", "text_en": "Watch the swing quicken at once, and T on the readout drop." },
-            { "id": "s8_4", "text_en": "Exactly as T equals two pi root I over m B predicts — a stronger field, a faster swing." }
+            { "id": "s8_1", "text_en": "The magnet oscillates steadily about zero degrees; T ticks on the readout." , "text_te": "Magnet zero degrees చుట్టూ steadily oscillate అవుతుంది; T readout మీద tick అవుతుంది." },
+            { "id": "s8_2", "text_en": "Now the field steps up — B doubling, arrows lengthening and brightening." , "text_te": "ఇప్పుడు field step up అవుతుంది — B double అవుతుంది, arrows length పెరుగుతూ brighten అవుతున్నాయి." },
+            { "id": "s8_3", "text_en": "Watch the swing quicken at once, and T on the readout drop." , "text_te": "Swing వెంటనే quicken అవ్వడం, మరియు readout మీద T పడిపోవడం చూడండి." },
+            { "id": "s8_4", "text_en": "Exactly as T equals two pi root I over m B predicts — a stronger field, a faster swing." , "text_te": "సరిగ్గా T equals two pi root I over m B predict చేసినట్లుగా — stronger field, faster swing." }
           ]
         },
         "misconception_watch": [
@@ -298,7 +298,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Your turn — drag m, B, and theta, and watch torque tau, energy U, and period T respond live." }
+            { "id": "s9_1", "text_en": "Your turn — drag m, B, and theta, and watch torque tau, energy U, and period T respond live." , "text_te": "మీ వంతు — m, B, మరియు theta ను drag చేయండి, torque tau, energy U, మరియు period T live గా respond అవ్వడం చూడండి." }
           ]
         }
       }
