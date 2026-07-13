@@ -174,7 +174,10 @@
           {
             "type": "annotation",
             "id": "driver_current_flows",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "A driver cell pushes a steady current around the wire, end A to end C.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -182,7 +185,10 @@
           {
             "type": "annotation",
             "id": "gradient_fills_evenly",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The potential drops evenly along it — a straight ramp from three volts at A to zero at C.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -190,7 +196,10 @@
           {
             "type": "annotation",
             "id": "apparatus_ready",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The tested cell and galvanometer sit ready in the tap branch, jockey parked at the midpoint.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -200,11 +209,13 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "A driver cell pushes a steady current around this long wire, from end A to end C."
+              "text_en": "A driver cell pushes a steady current around this long wire, from end A to end C.",
+              "text_te": "ఈ పొడవైన wire చుట్టూ, A end నుండి C end వరకు, ఒక driver cell ఒక steady current ను పంపిస్తుంది."
             },
             {
               "id": "s1_2",
-              "text_en": "Because every stretch of wire has the same resistance, the potential drops evenly along it — a straight ramp from three volts down to zero."
+              "text_en": "Because every stretch of wire has the same resistance, the potential drops evenly along it — a straight ramp from three volts down to zero.",
+              "text_te": "wire లో ప్రతి భాగానికి ఒకే resistance ఉంటుంది కాబట్టి, దాని వెంబడి potential సమానంగా తగ్గుతుంది — three volts నుండి zero వరకు ఒక straight ramp లా."
             }
           ]
         }
@@ -218,7 +229,10 @@
           {
             "type": "annotation",
             "id": "jockey_slides_out",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "The jockey slides out to seven tenths of a metre.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -226,7 +240,10 @@
           {
             "type": "annotation",
             "id": "drop_exceeds_emf",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The tapped drop reaches two point one volts — more than the tested cell's one point five.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -234,7 +251,10 @@
           {
             "type": "annotation",
             "id": "needle_swings_off_centre",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "Current flows in the tap branch and the needle swings off centre.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -244,11 +264,13 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Slide the jockey along the wire to seven tenths of a metre, tapping the potential drop between the start and that point."
+              "text_en": "Slide the jockey along the wire to seven tenths of a metre, tapping the potential drop between the start and that point.",
+              "text_te": "jockey ను wire వెంబడి, metre లో seven tenths వరకు జరపండి, మొదలు నుండి ఆ point వరకు ఉన్న potential drop ను tap చేస్తూ."
             },
             {
               "id": "s2_2",
-              "text_en": "That tapped drop reads two point one volts, more than the tested cell's one point five volts, so current flows in the tap branch and the needle swings off centre."
+              "text_en": "That tapped drop reads two point one volts, more than the tested cell's one point five volts, so current flows in the tap branch and the needle swings off centre.",
+              "text_te": "ఆ tapped drop two point one volts చూపిస్తుంది, tested cell యొక్క one point five volts కన్నా ఎక్కువ, కాబట్టి tap branch లో current flow అవుతుంది మరియు needle centre నుండి పక్కకు swing అవుతుంది."
             }
           ]
         }
@@ -263,7 +285,10 @@
           {
             "type": "annotation",
             "id": "jockey_slides_back",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "The jockey slides back toward the midpoint, five tenths of a metre.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -271,7 +296,10 @@
           {
             "type": "annotation",
             "id": "drop_meets_emf",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "The tapped drop falls to exactly one point five volts, matching the tested cell.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -279,7 +307,10 @@
           {
             "type": "annotation",
             "id": "needle_settles_at_zero",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The tap current drains to zero and the needle settles dead centre — the true EMF, undisturbed.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -289,15 +320,18 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Slide the jockey back to the midpoint, five tenths of a metre."
+              "text_en": "Slide the jockey back to the midpoint, five tenths of a metre.",
+              "text_te": "jockey ను తిరిగి midpoint కు, metre లో five tenths వరకు జరపండి."
             },
             {
               "id": "s3_2",
-              "text_en": "The tapped drop falls to one point five volts, matching the tested cell — the tap current drains to zero and the needle settles dead centre."
+              "text_en": "The tapped drop falls to one point five volts, matching the tested cell — the tap current drains to zero and the needle settles dead centre.",
+              "text_te": "tapped drop one point five volts కు పడిపోతుంది, tested cell తో match అవుతూ — tap current zero కు drain అయ్యి, needle సరిగ్గా centre లో settle అవుతుంది."
             },
             {
               "id": "s3_3",
-              "text_en": "That zero is the measurement: the cell's true EMF, found without ever drawing current from it."
+              "text_en": "That zero is the measurement: the cell's true EMF, found without ever drawing current from it.",
+              "text_te": "ఆ zero నే measurement: cell నుండి ఎప్పుడూ current తీసుకోకుండానే కనుగొన్న దాని true EMF."
             }
           ]
         },
@@ -319,7 +353,10 @@
           {
             "type": "annotation",
             "id": "voltmeter_connects",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "A voltmeter connects across the same tested cell.",
             "color": "#FFB74D",
             "is_persistent": false
@@ -327,7 +364,10 @@
           {
             "type": "annotation",
             "id": "meter_droops",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Current flows through the cell and the meter droops to one point three five volts.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -335,7 +375,10 @@
           {
             "type": "annotation",
             "id": "null_stays_still",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The null beside it never moves — still one point five volts, the true EMF.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -345,15 +388,18 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Connect a voltmeter across the same tested cell."
+              "text_en": "Connect a voltmeter across the same tested cell.",
+              "text_te": "అదే tested cell కు across గా ఒక voltmeter ను connect చేయండి."
             },
             {
               "id": "s4_2",
-              "text_en": "Current now flows through the cell, and the meter droops to one point three five volts — its own internal resistance eats part of the push."
+              "text_en": "Current now flows through the cell, and the meter droops to one point three five volts — its own internal resistance eats part of the push.",
+              "text_te": "ఇప్పుడు cell ద్వారా current flow అవుతుంది, మరియు meter one point three five volts కు droop అవుతుంది — దాని own internal resistance push లో కొంత భాగాన్ని తినేస్తుంది."
             },
             {
               "id": "s4_3",
-              "text_en": "The null beside it never moves: still one point five volts, the true EMF, because it draws no current at all."
+              "text_en": "The null beside it never moves: still one point five volts, the true EMF, because it draws no current at all.",
+              "text_te": "దాని పక్కన ఉన్న null ఎప్పుడూ కదలదు: ఇంకా one point five volts, true EMF, ఎందుకంటే అది ఏమాత్రం current తీసుకోదు."
             }
           ]
         },
@@ -375,7 +421,10 @@
           {
             "type": "annotation",
             "id": "all_dials_tag",
-            "position": { "x": 380, "y": 90 },
+            "position": {
+              "x": 380,
+              "y": 90
+            },
             "text": "Every dial is live now — the tested cell, the driver cell, and the jockey.",
             "color": "#FFD54F",
             "is_persistent": false
@@ -383,7 +432,10 @@
           {
             "type": "annotation",
             "id": "balance_it_yourself",
-            "position": { "x": 620, "y": 250 },
+            "position": {
+              "x": 620,
+              "y": 250
+            },
             "text": "Unbalance it, then null it again by sliding the jockey.",
             "color": "#4DD0E1",
             "is_persistent": false
@@ -391,7 +443,10 @@
           {
             "type": "annotation",
             "id": "rule_always_holds",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "The needle, the readouts, and the balance length all respond live as you drag.",
             "color": "#66BB6A",
             "is_persistent": false
@@ -401,7 +456,8 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Every dial is yours now — the tested cell, the driver cell, and the jockey — balance it yourself and watch the balance length track the EMF."
+              "text_en": "Every dial is yours now — the tested cell, the driver cell, and the jockey — balance it yourself and watch the balance length track the EMF.",
+              "text_te": "ఇప్పుడు ప్రతి dial మీదే — tested cell, driver cell, మరియు jockey — మీరే balance చేసి, balance length EMF ను ఎలా track చేస్తుందో చూడండి."
             }
           ]
         }
