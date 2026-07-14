@@ -374,7 +374,7 @@
         "label": "It doesn't just curve — it closes",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
-        "caption": "",
+        "caption": "Path closes into a circle",
         "advance_mode": "auto_after_tts",
         "duration": 20,
         "trajectory_mode": "circle",
@@ -390,6 +390,7 @@
           "hide_period_readout": true,
           "hide_magnitude_readout": true
         },
+        "formula_overlay": "closed circle",
         "teacher_script": {
           "tts_sentences": [
             { "id": "s1_1", "text_en": "A charge moves through a uniform magnetic field, and its path is already curving." },
@@ -402,7 +403,7 @@
         "label": "Why a perfect circle?",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
-        "caption": "",
+        "caption": "Same-length radius, always",
         "advance_mode": "manual_click",
         "duration": 20,
         "trajectory_mode": "circle",
@@ -417,6 +418,7 @@
           "hide_period_readout": true,
           "hide_magnitude_readout": true
         },
+        "formula_overlay": "constant pull → circle",
         "teacher_script": {
           "tts_sentences": [
             { "id": "s2_1", "text_en": "The magnetic force stays the same size and always points to one centre while the charge orbits." },
@@ -429,7 +431,7 @@
         "label": "The magnetic force IS the centripetal force",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
-        "caption": "",
+        "caption": "Force gives r = mv/qB",
         "advance_mode": "manual_click",
         "duration": 20,
         "trajectory_mode": "circle",
@@ -457,7 +459,7 @@
         "label": "Heavier or faster -> bigger circle",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
-        "caption": "",
+        "caption": "Heavier or faster → wider",
         "advance_mode": "manual_click",
         "duration": 20,
         "trajectory_mode": "circle",
@@ -474,6 +476,7 @@
           "hide_period_readout": true,
           "hide_magnitude_readout": true
         },
+        "formula_overlay": "r ∝ mv",
         "teacher_script": {
           "tts_sentences": [
             { "id": "s4_1", "text_en": "Mass m and velocity v sit on top of the formula, in the numerator." },
@@ -486,7 +489,7 @@
         "label": "More charge or stronger field -> tighter circle",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
-        "caption": "",
+        "caption": "More charge/field → tighter",
         "advance_mode": "manual_click",
         "duration": 20,
         "trajectory_mode": "circle",
@@ -503,6 +506,7 @@
           "hide_period_readout": true,
           "hide_magnitude_readout": true
         },
+        "formula_overlay": "r ∝ 1/(qB)",
         "teacher_script": {
           "tts_sentences": [
             { "id": "s5_1", "text_en": "Charge q and magnetic field B sit on the bottom of the formula, in the denominator." },
@@ -515,7 +519,7 @@
         "label": "Your turn — set the circle",
         "visible_elements": [],
         "camera_position": [3, 2, 5],
-        "caption": "",
+        "caption": "Live r = mv/qB",
         "advance_mode": "interaction_complete",
         "duration": 0,
         "trajectory_mode": "circle",
@@ -530,6 +534,7 @@
           "hide_period_readout": true,
           "hide_magnitude_readout": true
         },
+        "formula_overlay": "r = mv/qB (live)",
         "teacher_script": {
           "tts_sentences": [
             { "id": "s6_1", "text_en": "Your turn. Four sliders — mass m, velocity v, charge q, magnetic field B — and a live radius readout." },
