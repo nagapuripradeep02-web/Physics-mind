@@ -102,6 +102,12 @@ export const PILOT_CONCEPTS: string[] = [
     'magnetic_force_perpendicular_no_work',
     'parallel_currents_force',
     'force_on_current_carrying_wire',
+    // Ch.4 motion trio (added 2026-07-14; Rule 32/34 legibility retrofit +
+    // re-baseline-locked same day — radius/helix/period siblings on the
+    // radius_in_uniform_field / helix_in_uniform_field / cyclotron_period scenarios)
+    'circular_motion_charge_in_uniform_B',
+    'helical_motion_charge_in_uniform_B',
+    'cyclotron_period_independent_of_speed',
     // Ch.5 — Magnetism & Matter (added 2026-07-13; Rule-31 rebuilds)
     'bar_magnet_as_dipole',
     'gauss_law_magnetism',
