@@ -244,6 +244,23 @@ function escapeHtml(s: string): string {
         .replace(/"/g, '&quot;');
 }
 
+// ── The brand-moment handshake (founder 2026-07-17) ───────────────────────────────────────────
+// The Viditra sting + "{Name}'s Class" is an ARRIVAL moment: it belongs to a login / fresh open /
+// explicit reload, and must NEVER replay when a teacher simply presses Back out of a sim — that
+// reads as the app restarting mid-lesson.
+//
+// WHY NOT Navigation Timing: the obvious discriminator is nav type === 'back_forward'. Measured in
+// Chrome (2026-07-17) it is NOT reliable here — a real Back out of a sim reports 'navigate' (and
+// via CDP sometimes 'reload'), so the gate would never fire and the bug would survive. These two
+// sessionStorage markers are a deterministic handshake between the two pages instead: no
+// dependence on nav type, on bfcache, or on the browser at all. Both are read-once-then-cleared,
+// and every access is try/catch'd — if storage throws, each page degrades toward the calmer screen
+// (catalog keeps its brand moment; the sim curtain stays quiet), never toward a stuck curtain.
+/** Stamped by a sim page on load; the catalog reads+clears it → "she came back, don't re-brand". */
+const PM_FROM_SIM_KEY = 'pm_from_sim';
+/** Stamped by the catalog's card click; the sim reads+clears it → "this is a real open, brand it". */
+const PM_BRAND_OPEN_KEY = 'pm_brand_open';
+
 /** JSON for safe embedding inside an inline <script> (no </script> break). */
 function embedJson(value: unknown): string {
     // Escape <, U+2028 and U+2029 so the JSON is safe inside an inline <script>.
@@ -479,6 +496,9 @@ ${pilotHeadTags(1)}
   #pmLoad{position:fixed;inset:0;z-index:99994;display:grid;place-items:center;background:var(--bg);
         opacity:1;transition:opacity .8s ease;}
   #pmLoad.gone{opacity:0;pointer-events:none;}
+  /* Reload / back into a sim is NOT a new arrival: the curtain still masks the booting scene, but
+     shows nothing (no mark, no name) and lifts on SIM_READY with no brand hold — see pmBrandOpen. */
+  #pmLoad.quiet .plc{display:none;}
   #pmLoad .plc{text-align:center;display:grid;place-items:center;gap:14px;}
   #pmLoad .mark{width:72px;height:72px;border-radius:20px;background:var(--clay);display:grid;place-items:center;
         box-shadow:0 12px 36px -8px rgba(203,104,67,.6);}
@@ -803,26 +823,40 @@ ${pilotHeadTags(1)}
   // ── Brand curtain: full-screen "{Name}'s Class · powered by Viditra" masks the whole UI while
   //    the sim boots. Held min 2.8s (the brand moment), gone on SIM_READY, 4s failsafe; the .8s
   //    opacity fade IS the reveal — rail/header/sim all appear together. ──
+  //    ONLY on a real open, though — a card click from the catalog, which stamps pm_brand_open.
+  //    A reload, or a back into a sim she is already teaching, is not a new arrival: she wants her
+  //    sim back, not a 2.8s title card. There the curtain goes 'quiet' (no mark, no name, no hold)
+  //    and lifts the instant SIM_READY lands, but STILL masks the boot so a half-built Three.js
+  //    scene is never on screen. Read the marker once then clear it, so the next reload of this
+  //    same sim is correctly quiet; and stamp pm_from_sim so that when she leaves via Back, the
+  //    catalog knows she is returning and skips its own intro (founder 2026-07-17). ──
+  var pmBrandOpen = false;
+  try {
+    pmBrandOpen = sessionStorage.getItem('${PM_BRAND_OPEN_KEY}') === '1';
+    sessionStorage.removeItem('${PM_BRAND_OPEN_KEY}');
+    sessionStorage.setItem('${PM_FROM_SIM_KEY}', '1');
+  } catch (e) {}
   var pmLoadEl = document.getElementById('pmLoad');
   var pmLoadT0 = Date.now();
+  if (!pmBrandOpen && pmLoadEl) pmLoadEl.classList.add('quiet');
   // Pre-fill the tutor's name from pm-auth's cache (written on any earlier gated page, e.g. the
   // catalog) so the curtain reads "{Name}'s Class" from the FIRST frame — the PM.authReady swap
   // below stays as the fresh-truth confirmation for first-ever visits.
-  try {
+  if (pmBrandOpen) try {
     var pmNmCache = localStorage.getItem('pm_name_cache');
     if (pmNmCache) document.getElementById('pmLoadName').textContent = pmNmCache + '’s Class';
   } catch (e) {}
   function pmLoadDone() {
     if (!pmLoadEl) return;
     var pmLoadElGone = pmLoadEl; pmLoadEl = null;
-    var pmLoadWait = Math.max(0, 2800 - (Date.now() - pmLoadT0));
+    var pmLoadWait = pmBrandOpen ? Math.max(0, 2800 - (Date.now() - pmLoadT0)) : 0;
     setTimeout(function () {
-      pmLoadElGone.className = 'gone';
+      pmLoadElGone.classList.add('gone');   // add, never assign — 'quiet' must survive the fade
       setTimeout(function () { if (pmLoadElGone.parentNode) pmLoadElGone.parentNode.removeChild(pmLoadElGone); }, 900);
     }, pmLoadWait);
   }
   setTimeout(pmLoadDone, 4000);
-  if (window.PM && PM.authReady) PM.authReady.then(function () {
+  if (pmBrandOpen && window.PM && PM.authReady) PM.authReady.then(function () {
     try { if (window.PM_PROFILE && PM_PROFILE.display_name) document.getElementById('pmLoadName').textContent = PM_PROFILE.display_name + '’s Class'; } catch (e) {}
   });
 
@@ -2350,6 +2384,26 @@ ${pilotHeadTags(0)}
   @keyframes pmHintIn{to{opacity:1;}}
 </style>
 <script>
+  // Is this an ARRIVAL? Decided here — inline, right after #pmBoot, BEFORE first paint — so that
+  // coming back out of a sim the dark curtain never even paints and she lands straight on her
+  // catalog. A sim page stamps pm_from_sim on load; finding it means she is RETURNING, not
+  // arriving. Read once, then clear, so the very next reload brands normally again. Any other
+  // entry (login redirect, fresh open, reload) has no marker → the brand moment plays.
+  window.__pmSkipBrand = false;
+  try {
+    window.__pmSkipBrand = sessionStorage.getItem('${PM_FROM_SIM_KEY}') === '1';
+    sessionStorage.removeItem('${PM_FROM_SIM_KEY}');
+  } catch (e) {}
+  // bfcache restore: this document never re-executes, so nothing above runs and no brand replays —
+  // but the marker would go stale and swallow the NEXT real reload's brand moment. Clearing it on
+  // every pageshow (the one event bfcache does fire) keeps the handshake honest either way.
+  window.addEventListener('pageshow', function () {
+    try { sessionStorage.removeItem('${PM_FROM_SIM_KEY}'); } catch (e) {}
+  });
+  if (window.__pmSkipBrand) {
+    var b0 = document.getElementById('pmBoot');
+    if (b0 && b0.parentNode) b0.parentNode.removeChild(b0);
+  }
   window.__pmBootKill = setTimeout(function () {
     var b = document.getElementById('pmBoot');
     if (b) { b.className = 'gone'; setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 700); }
@@ -2428,7 +2482,7 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
 (function () {
   window.PM_CONCEPT_ID = null;
   function pmt(type, payload) { try { if (window.PM && PM.track) PM.track(type, payload || {}); } catch (e) {} }
-  pmt('catalog_open', {});
+  pmt('catalog_open', { returning: !!window.__pmSkipBrand });   // true = came back out of a sim, not a fresh arrival
   // Early-access note: shows until dismissed once, then never again (per browser).
   try {
     var noteEl = document.getElementById('earlyNote');
@@ -2477,12 +2531,13 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     if (hasProfile) {
       try { document.getElementById('catTitle').textContent = p.display_name + '’s Class'; } catch (e) {}
       try {
-        // Brand moment — a SEQUENCE on EVERY page load (founder 2026-07-12): the Viditra
-        // intro sting plays FIRST, then the personalized "{Name}'s Class" splash crossfades
-        // in. Fires on every login / open / reload of the catalog — the guard is a
-        // per-page-load window flag (fresh on every reload; a full page load resets it), so
-        // it replays each visit yet never double-fires if authReady resolves twice in one load.
-        if (!window.__pmBrandMomentPlayed) {
+        // Brand moment — a SEQUENCE on every ARRIVAL (founder 2026-07-12, scoped 2026-07-17):
+        // the Viditra intro sting plays FIRST, then the personalized "{Name}'s Class" splash
+        // crossfades in. Fires on login / fresh open / reload of the catalog, but NOT on a back
+        // traversal out of a sim (__pmSkipBrand, set pre-paint above) — she never left. Two
+        // guards: the per-page-load window flag stops a double-fire if authReady resolves twice
+        // in one load; __pmSkipBrand stops the replay-on-Back.
+        if (!window.__pmBrandMomentPlayed && !window.__pmSkipBrand) {
           window.__pmBrandMomentPlayed = true;
           brandMomentStarted = true;
           var splashName = p.display_name + '’s Class';
@@ -3103,7 +3158,12 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   // Which sim did they open (fires before navigation; telemetry flushes on pagehide).
   document.addEventListener('click', function (ev) {
     var card = ev.target && ev.target.closest ? ev.target.closest('.card') : null;
-    if (card) pmt('concept_open', { concept_id: card.getAttribute('data-concept') });
+    if (!card) return;
+    pmt('concept_open', { concept_id: card.getAttribute('data-concept') });
+    // Deliberately opening a sim from the catalog IS an arrival — the one case that earns the
+    // "{Name}'s Class" curtain over there. A reload or a back INTO a sim never sets this, so the
+    // curtain stays quiet and she gets her sim back immediately.
+    try { sessionStorage.setItem('${PM_BRAND_OPEN_KEY}', '1'); } catch (e) {}
   });
 })();
 </script>
