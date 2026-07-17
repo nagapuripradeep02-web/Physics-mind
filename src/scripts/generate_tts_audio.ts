@@ -1,9 +1,15 @@
 /**
  * generate_tts_audio — pre-generate STORED Sarvam TTS narration clips for a
- * concept's teacher_script, in English + Telugu (Hindi only via --allow-hindi;
- * Rule 30f: Hindi is text-only until a Hindi market exists), and emit a manifest
- * the review-site builder embeds. This is the "store it once, no live API at
- * teach-time" path (CLAUDE.md §3 / Rule 28 voice seed).
+ * concept's teacher_script and emit a manifest the review-site builder embeds.
+ * This is the "store it once, no live API at teach-time" path (CLAUDE.md §3 /
+ * Rule 28 voice seed).
+ *
+ * Defaults to ENGLISH ONLY (Rule 30i, founder 2026-07-17): the product ships no
+ * language picker, and audio is on-demand (Rule 30h), so every run voices only
+ * what was explicitly asked for. Hindi (`--langs=en,hi`) is the sanctioned second
+ * language. Telugu is RETIRED and gated behind --allow-telugu — existing te clips
+ * stay on disk as dormant history, but new ones bill Sarvam for a language the
+ * product no longer shows.
  *
  * For each tts_sentence × language it calls Sarvam Bulbul, decodes the base64
  * MP3 and writes:
@@ -13,14 +19,14 @@
  * Idempotent: an existing .mp3 is NOT re-fetched (unless --force) but is still
  * measured from disk so the manifest is rebuilt deterministically.
  *
- * Technical terms / spoken-math stay in English inside HI/TE sentences
+ * Technical terms / spoken-math stay in English inside HI sentences
  * (code-mixed — Bulbul handles this out of the box).
  *
  * Run:
  *   npx tsx --env-file=.env.local src/scripts/generate_tts_audio.ts parallel_currents_force
  *   npx tsx --env-file=.env.local src/scripts/generate_tts_audio.ts parallel_currents_force --force
- *   ... --langs=en,te   --model=bulbul:v3 --speaker=anushka
- *   ... --langs=en,hi,te --allow-hindi   (Hindi voicing is opt-in — billed + unwanted per Rule 30f)
+ *   ... --langs=en,hi  --model=bulbul:v3 --speaker=anushka
+ *   ... --langs=en,te --allow-telugu   (Telugu is RETIRED — billed + unreachable; Rule 30i)
  */
 import '@/lib/loadEnvLocal';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, readdirSync } from 'node:fs';
@@ -75,20 +81,27 @@ function parseArgs() {
   const args = process.argv.slice(2);
   const conceptId = args.find((a) => !a.startsWith('--'));
   const force = args.includes('--force');
-  const allowHindi = args.includes('--allow-hindi');
+  const allowTelugu = args.includes('--allow-telugu');
   const langsArg = args.find((a) => a.startsWith('--langs='));
   const modelArg = args.find((a) => a.startsWith('--model='));
   const speakerArg = args.find((a) => a.startsWith('--speaker='));
-  // Default is en,te — Hindi audio is opt-in only (Rule 30f: Hindi stays
-  // text-only until a Hindi market exists; every hi clip bills Sarvam credits).
-  const langs = (langsArg ? langsArg.split('=')[1].split(',') : ['en', 'te'])
+  // Default is en ONLY (Rule 30i, founder 2026-07-17): the product is English-only and audio is
+  // on-demand (Rule 30h), so never voice anything that wasn't explicitly asked for. This default
+  // also protects `tts:rollout`, which never forwards --langs and so inherits whatever is here.
+  const langs = (langsArg ? langsArg.split('=')[1].split(',') : ['en'])
     .map((l) => l.trim())
     .filter((l): l is Lang => l === 'en' || l === 'hi' || l === 'te');
-  if (langs.includes('hi') && !allowHindi) {
+  // Telugu is RETIRED (Rule 30i). The existing clips stay on disk as dormant history, but voicing
+  // NEW ones bills Sarvam for a language the product no longer shows — so it takes an explicit
+  // opt-in. (This guard replaces the old --allow-hindi gate: Hindi is now the sanctioned second
+  // language, authored as text_hi, and no longer needs one.)
+  if (langs.includes('te') && !allowTelugu) {
     console.error(
-      '✗ --langs includes "hi" but --allow-hindi was not passed.\n' +
-      '  Hindi audio is opt-in (Rule 30f: text-only until a Hindi market exists).\n' +
-      '  Re-run with --allow-hindi if you really intend to voice Hindi clips.',
+      '✗ --langs includes "te" but --allow-telugu was not passed.\n' +
+      '  Telugu is retired (Rule 30i, founder 2026-07-17): the product is English-only and no\n' +
+      '  language picker ships, so Telugu audio would be unreachable AND bill Sarvam credits.\n' +
+      '  Existing te clips are kept as dormant history — you almost certainly do not want this.\n' +
+      '  Re-run with --allow-telugu only if you really intend to voice new Telugu clips.',
     );
     process.exit(1);
   }
@@ -242,7 +255,7 @@ async function safeText(res: Response): Promise<string> {
 async function main(): Promise<void> {
   const { conceptId, force, langs, model, speaker } = parseArgs();
   if (!conceptId) {
-    console.error('Usage: generate_tts_audio.ts <conceptId> [--force] [--langs=en,te] [--allow-hindi] [--model=] [--speaker=]');
+    console.error('Usage: generate_tts_audio.ts <conceptId> [--force] [--langs=en,hi] [--allow-telugu] [--model=] [--speaker=]');
     process.exit(1);
   }
   const apiKey = process.env.SARVAM_API_KEY;

@@ -65,13 +65,16 @@ export function pilotHeadTags(depth: number): string {
 // (Rule 31, zero wait_for_answer/narrative_socratic/pause_after_ms), baseline-locked,
 // and THE EYE passes against the current renderer.
 //
-// AUDIO DOCTRINE (founder 2026-07-11 — supersedes the old "EN+Telugu audio complete"
-// gate): the sim is a silent visual (Rule 24 — TTS off by default; the teacher
-// narrates). Narration audio is therefore ON-DEMAND, not a catalog gate: author the
-// Telugu TEXT always (cheap, keeps portability), render English audio when narration
-// matters for the pilot, render Telugu audio only on genuine teacher/market demand.
-// A concept ships to the catalog on its (complete, baseline-locked) VISUALS; a missing
-// audio manifest = silent narration, which is the default anyway. (Amends Rule 30f.)
+// LANGUAGE + AUDIO DOCTRINE (founder 2026-07-17, Rule 30i — supersedes the Telugu-first
+// parts of 30f/30g/30h): the product is ENGLISH-ONLY. There is no language picker in
+// production — the player pins `lang = 'en'` and the feedback mic pins 'en-IN'. Authoring
+// writes `text_hi` (never `text_te`) as the future-market seed; Telugu is RETIRED, and the
+// existing text_te + rendered clips stay on disk as dormant history — never deleted (there
+// is no free Sarvam restore), never shown, never a ship gate.
+// Audio remains ON-DEMAND, not a catalog gate: the sim is a silent visual (Rule 24 — TTS
+// off by default; the teacher narrates), so render English audio only when narration
+// matters for the pilot. A concept ships to the catalog on its (complete, baseline-locked)
+// VISUALS; a missing audio manifest = silent narration, which is the default anyway.
 export const PILOT_CONCEPTS: string[] = [
     // Ch.1 — Electric Charges & Fields
     'coulombs_law',
@@ -448,8 +451,9 @@ function pmFeedbackJs(): string {
 // v2: per-state "About" targeting on player pages (reads window.STATES + the
 // teacher's own pm_layout_* order/renames; state_id = the selection, null =
 // whole sim; current_state_id = auto-captured state on screen) + Web Speech API
-// dictation into the text box (en-IN/te-IN/hi-IN, auto-restart on Chrome's
-// silence cutoff, 3-min hard cap, mic hidden when the API is unsupported).
+// dictation into the text box (en-IN only — the product is English-only per Rule
+// 30i; auto-restart on Chrome's silence cutoff, 3-min hard cap, mic hidden when
+// the API is unsupported).
 (function () {
   if (document.documentElement.getAttribute('data-pm-page') === 'login') return;   // no widget pre-auth
   var IS_DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -489,8 +493,6 @@ function pmFeedbackJs(): string {
     '#pmFbMic:hover{border-color:rgba(203,104,67,.5);}',
     '#pmFbMic.on{background:rgba(224,106,82,.14);border-color:#E06A52;color:#F3C9BE;animation:pmFbPulse 1.3s ease-in-out infinite;}',
     '@keyframes pmFbPulse{0%,100%{box-shadow:0 0 0 0 rgba(224,106,82,.35);}50%{box-shadow:0 0 0 7px rgba(224,106,82,0);}}',
-    '#pmFbSttLang{padding:7px 8px;border-radius:9px;border:1px solid rgba(245,240,230,.12);background:#302E2B;',
-    '  color:#A8A299;font:500 12px inherit;font-family:inherit;outline:none;}',
     '#pmFbInterim{flex:1 1 100%;min-height:15px;font-size:12px;line-height:1.4;color:#726C63;font-style:italic;}',
     '#pmFbErr{display:none;margin-top:10px;padding:8px 11px;border-radius:9px;font-size:12.5px;line-height:1.45;',
     '  color:#F3C9BE;background:rgba(224,106,82,.12);border:1px solid rgba(224,106,82,.4);}',
@@ -554,16 +556,10 @@ function pmFeedbackJs(): string {
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   var STT_MAX_MS = 180000;   // hard cap per arming so a forgotten mic can't run away
 
-  function sttStartLang() {
-    try {
-      var saved = localStorage.getItem('pm_fb_stt_lang');
-      if (saved === 'en-IN' || saved === 'te-IN' || saved === 'hi-IN') return saved;
-      var l = localStorage.getItem('pm_lang_' + window.PM_CONCEPT_ID);
-      if (l === 'te') return 'te-IN';
-      if (l === 'hi') return 'hi-IN';
-    } catch (e) {}
-    return 'en-IN';
-  }
+  // English-only (founder 2026-07-17, Rule 30i). A pinned constant, NOT read back from
+  // pm_fb_stt_lang / pm_lang_<concept>: both may still hold 'te-IN'/'te' from before the picker was
+  // removed, which would silently put the mic into Telugu with no control to change it back.
+  function sttStartLang() { return 'en-IN'; }
 
   function build() {
     var style = document.createElement('style');
@@ -591,14 +587,12 @@ function pmFeedbackJs(): string {
     var aboutRow = stateOptionsHtml()
       ? '<div id="pmFbAboutRow"><label for="pmFbState">About</label><select id="pmFbState"></select></div>'
       : '';
+    // English-only (founder 2026-07-17, Rule 30i): the speech-language picker is gone — dictation
+    // is always en-IN. This row mounts on the catalog too (floating pill), so it was a language
+    // surface there as well.
     var micRow = SR
       ? '<div id="pmFbMicRow">' +
           '<button type="button" id="pmFbMic" title="Speak your feedback instead of typing">\\uD83C\\uDFA4 Speak</button>' +
-          '<select id="pmFbSttLang" title="Speech language">' +
-            '<option value="en-IN">English</option>' +
-            '<option value="te-IN">\\u0C24\\u0C46\\u0C32\\u0C41\\u0C17\\u0C41</option>' +
-            '<option value="hi-IN">\\u0939\\u093F\\u0902\\u0926\\u0940</option>' +
-          '</select>' +
           '<span id="pmFbInterim"></span>' +
         '</div>'
       : '';
@@ -628,7 +622,6 @@ function pmFeedbackJs(): string {
     var chips = overlay.querySelectorAll('.pmFbChip');
     var stateSel = overlay.querySelector('#pmFbState');
     var micBtn = overlay.querySelector('#pmFbMic');
-    var sttLang = overlay.querySelector('#pmFbSttLang');
     var interim = overlay.querySelector('#pmFbInterim');
 
     function refresh() {
@@ -702,7 +695,7 @@ function pmFeedbackJs(): string {
     function runStt() {
       var r = new SR();
       rec = r;
-      r.lang = sttLang ? sttLang.value : 'en-IN';
+      r.lang = sttStartLang();
       r.continuous = true;
       r.interimResults = true;
       r.onresult = function (ev) {
@@ -738,12 +731,7 @@ function pmFeedbackJs(): string {
       try { r.start(); } catch (e) { stopStt(); }
     }
     if (micBtn) {
-      try { sttLang.value = sttStartLang(); } catch (e) {}
       micBtn.addEventListener('click', function () { if (micOn) stopStt(); else startStt(); });
-      sttLang.addEventListener('change', function () {
-        try { localStorage.setItem('pm_fb_stt_lang', sttLang.value); } catch (e) {}
-        if (micOn) { stopStt(); startStt(); }   // restart in the new language
-      });
       window.addEventListener('pagehide', stopStt);
     }
 
@@ -1349,7 +1337,7 @@ function pmTourJs(): string {
     { element: '#railhead', prep: function () { ensureUnhidden(); }, title: 'Save or reset your layout', text: 'Reordered, renamed, or hidden the states the way you want? Hit \\u2713 Save to keep this layout. \\u21bb Default resets the order, names, and hides.' },
     { element: '#stage', title: 'Tap to pause', text: 'Tap the simulation anytime to pause it mid-motion \\u2014 tap again to resume. Perfect for stopping on a key frame to explain.' },
     { element: '#simPenBar', title: 'Draw on the simulation', text: 'Switch to Draw to annotate directly on the 3D picture; Move lets you rotate and zoom it. Clear wipes your marks.' },
-    { element: 'footer .controls', title: 'Play, narrate, adjust', text: 'Play or replay the state, mute or unmute narration, switch language, and change speed or auto-advance.' },
+    { element: 'footer .controls', title: 'Play, narrate, adjust', text: 'Play or replay the state, mute or unmute narration, show or hide subtitles, and change speed or auto-advance.' },
     { element: '#scrubbar', title: 'Move through the lesson', text: 'Scrub the timeline here, or use the \\u2039 \\u203a arrows and your keyboard arrow keys to step between states.' },
     { element: '#boardToggle', title: 'Your whiteboard', text: 'Open the whiteboard on the right to work through problems by hand \\u2014 pen, highlighter, eraser, and colours included.' },
     { title: 'You\\u2019re all set!', text: 'That\\u2019s the tour. Reopen it anytime from \\uFF1F Tour at the top right. Happy teaching!' }

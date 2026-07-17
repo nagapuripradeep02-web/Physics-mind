@@ -730,13 +730,6 @@ ${pilotHeadTags(1)}
         <button id="replayBtn">&#128257; Replay</button>
         <button id="muteBtn">&#128263; Muted</button>
         <button id="ccBtn" title="Show / hide subtitles">Subtitles</button>
-        <label class="ctl">Voice
-          <select id="lang">
-            <option value="en">English</option>
-            <option value="hi">&#2361;&#2367;&#2306;&#2342;&#2368;</option>
-            <option value="te">&#3108;&#3142;&#3122;&#3137;&#3095;&#3137;</option>
-          </select>
-        </label>
         <div class="spacer"></div>
         <label class="ctl">Speed <input id="rate" type="range" min="0.7" max="1.1" step="0.05" value="0.9"></label>
         <label class="ctl"><input id="auto" type="checkbox"> Auto-advance</label>
@@ -810,7 +803,6 @@ ${pilotHeadTags(1)}
   var hiddenWrapEl = document.getElementById('hiddenWrap');
   var hiddenExpanded = false;
   var rateEl = document.getElementById('rate');
-  var langSel = document.getElementById('lang');
   var autoEl = document.getElementById('auto');
   var counter = document.getElementById('counter');
   var pausedBadge = document.getElementById('paused');
@@ -866,7 +858,6 @@ ${pilotHeadTags(1)}
   // freely; only what he Saves survives a reload — forever, until re-Saved/reset.
   var LS_LAYOUT = 'pm_layout_' + CONCEPT_ID;
   var LS_MUTE = 'pm_mute_' + CONCEPT_ID;
-  var LS_LANG = 'pm_lang_' + CONCEPT_ID;
   function validOrder(a) {
     if (!a || a.length !== STATE_COUNT) return false;
     var seen = {};
@@ -957,9 +948,13 @@ ${pilotHeadTags(1)}
   var LS_CC = 'pm_cc';
   var subsOn = (function () { try { return localStorage.getItem(LS_CC) !== '0'; } catch (e) { return true; } })();
 
-  // ── Language (EN/HI/TE) — narration is pre-generated Sarvam audio (Rule 13) ──
-  var lang = (function () { try { var l = localStorage.getItem(LS_LANG); return (l === 'hi' || l === 'te' || l === 'en') ? l : 'en'; } catch (e) { return 'en'; } })();
-  function sentText(s) { return (lang === 'hi' ? s.text_hi : lang === 'te' ? s.text_te : s.text_en) || s.text_en || ''; }
+  // ── Language: ENGLISH ONLY (founder 2026-07-17 — Rule 30i; supersedes the EN/HI/TE picker) ──
+  //    Deliberately a pinned constant, NOT read back from pm_lang_<concept>: a teacher who once
+  //    chose తెలుగు still has that value in her localStorage, and with the picker gone she could
+  //    never switch back — she'd be stranded on Telugu captions forever. text_hi/text_te stay in
+  //    the data (dormant, a future-market seed); nothing reads them.
+  var lang = 'en';
+  function sentText(s) { return s.text_en || ''; }
   // True if any stored clip exists → the rate slider can't re-pace baked audio.
   var HAS_AUDIO = (function () {
     for (var a = 0; a < STATES.length; a++) {
@@ -1463,19 +1458,8 @@ ${pilotHeadTags(1)}
     else { spokenSi = -1; playCurrent(); }
     applyMuteUI();
   });
-  // Language switch (EN/HI/TE). Audio + caption swap; reveals re-pace to the new
-  // clips' durations. The clock position is preserved — the next tick re-derives
-  // the active sentence — so switching mid-play just restarts the current clip.
-  if (langSel) langSel.addEventListener('change', function () {
-    lang = langSel.value;
-    pmt('lang_change', { lang: lang });
-    try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
-    stopAudio();
-    if (curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
-    if (simReady) { computeTimeline(); sendCueTimes(); }   // clips re-paced → cue times shift with them
-    spokenSi = -1;
-    if (playing && !frozen) playCurrent();
-  });
+  // (No language switch — the product is English-only, Rule 30i. The old EN/HI/TE picker + its
+  //  re-pace/caption-swap handler are gone; lang is pinned above.)
 
   // ── Scrubber: drag to jump within the current state's timeline ──
   // rAF-throttle the jump so a fast drag doesn't spam the iframe → smooth scrubbing.
@@ -1564,7 +1548,6 @@ ${pilotHeadTags(1)}
       simReady = true;
       pmt('sim_ready', { states: STATE_COUNT });
       attachSimCapture();
-      if (langSel) langSel.value = lang;
       // Baked audio can't be re-paced by the slider — disable it when clips exist.
       if (HAS_AUDIO && rateEl) { rateEl.disabled = true; rateEl.title = 'Pacing follows the recorded narration'; }
       buildRail();
