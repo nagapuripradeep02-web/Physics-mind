@@ -46,7 +46,7 @@ the vehicle; re-voice only the affected clips, never a mass re-voice).
 2. **The PRIMARY aha sentence is preserved verbatim** (see `aha_moment.statement` and its carrying state)
    unless the delta explicitly targets it.
 3. **Rule 30 spoken-symbol style preserved:** bare letters stay expanded in narration
-   ("magnetic field B", "current I"...); colour words stay ENGLISH in `text_hi`/`text_te`; formula bodies
+   ("magnetic field B", "current I"...); colour words stay ENGLISH in `text_hi`; formula bodies
    stay compact. On-canvas labels (`scene_composition`) stay symbolic — Rule 24 — and are OUT of scope for
    a narration delta.
 4. **Editing `text_en` under an existing sentence id makes its stored mp3 STALE.** That is expected

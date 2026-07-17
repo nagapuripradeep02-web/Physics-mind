@@ -39,10 +39,11 @@ Author every `tts_sentences[].text_en` so the spoken form is pronounceable by Sa
 style: every standalone physics symbol spoken as `<name> <symbol>` (V→"potential V",
 q→"charge q", r→"distance r", E→"electric field E", k→"Coulomb's constant k"); keep formula
 bodies compact ("the potential V = k Q / r" — interior operands not expanded). Author
-`text_en` ONLY — `text_te` (and `text_hi`, text-only) is inserted pre-ship by the Rule-30g
+`text_en` ONLY — `text_hi` (text-only, the future-market seed) is inserted pre-ship by the Rule-30g
 `model: sonnet` sub-agent on the Claude Code subscription, NEVER by `npm run tts:translate` /
 `translate_concept_tts.ts` (it bills the metered anthropic/deepseek/google API keys — forbidden).
-This makes the concept born-compliant with the trilingual TTS pipeline (no retrofit).
+**Never author `text_te`** — Telugu is retired (Rule 30i, founder 2026-07-17); the product is
+English-only and ships no language picker. Existing concepts keep their `text_te` as dormant history.
 
 ## Tools allowed
 

@@ -71,7 +71,7 @@ spec (`docs/superpowers/specs/2026-07-05-coulombs_law-rule31-reconstruction-desi
 - Gate 12: ≥2 distinct `advance_mode` across surviving states (`manual_click` + `interaction_complete`
   default); strip every `wait_for_answer`/`pause_after_ms`/`narrative_socratic`.
 - `has_prebuilt_deep_dive` flags re-pointed; `aha_moment`'s state reference updated.
-- TTS: surviving states' scripts are REWRITTEN → re-run the Rule-30g Sonnet-5 `text_te` sub-agent on
+- TTS: surviving states' scripts are REWRITTEN → re-run the Rule-30g Sonnet-5 `text_hi` sub-agent on
   the changed sentences; AUDIO re-renders only on demand (Rule 30h — the hash-pruner orphans deleted
   states' clips automatically, and every render is real Sarvam spend).
 - Baselines: `visual_baselines/` regenerate only AFTER founder re-approval (`visual:approve`).
