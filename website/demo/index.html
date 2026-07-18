@@ -305,6 +305,48 @@
 </style>
 </head>
 <body>
+<!-- DEMO PATCH #7 (founder 2026-07-18): gentle phone-only "best on a bigger screen" tip.
+     Non-blocking + dismissible + auto-fades; shows once per device; phones only (not iPads/laptops).
+     Framed positively (the screen you'll teach on) so it never reads as "your phone is too small". -->
+<div id="pmDeviceTip" role="status" aria-live="polite">
+  <span class="pmdIcon" aria-hidden="true">&#128161;</span>
+  <span class="pmdMsg">Best on a laptop, iPad, or classroom projector &mdash; the screen you&rsquo;ll teach on. Explore here for now.</span>
+  <button id="pmDeviceTipX" type="button" aria-label="Dismiss">&times;</button>
+</div>
+<style>
+  #pmDeviceTip{position:fixed;left:12px;right:12px;bottom:14px;z-index:99999;
+    display:none;align-items:flex-start;gap:10px;
+    background:rgba(28,27,25,.94);color:#ECE9E2;border:1px solid rgba(203,104,67,.55);
+    border-radius:12px;padding:11px 12px;font:500 13.5px/1.4 system-ui,-apple-system,sans-serif;
+    box-shadow:0 10px 30px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    opacity:0;transform:translateY(10px);transition:opacity .35s ease,transform .35s ease;}
+  #pmDeviceTip.show{opacity:1;transform:none;}
+  #pmDeviceTip .pmdIcon{font-size:16px;flex:none;}
+  #pmDeviceTip .pmdMsg{flex:1;}
+  #pmDeviceTipX{flex:none;background:none;border:0;color:#A8A299;font-size:20px;line-height:1;
+    cursor:pointer;padding:0 2px;margin-left:2px;}
+  #pmDeviceTipX:hover{color:#ECE9E2;}
+</style>
+<script>
+  (function(){
+    try{
+      // Phones only: the smaller viewport dimension < 560 CSS px catches phones in any
+      // orientation, while iPads (~744+) and laptops are left alone. Shows at most once.
+      var small = Math.min(window.innerWidth, window.innerHeight) < 560;
+      if(!small || localStorage.getItem('pm_demo_devicetip') === '1') return;
+      var el = document.getElementById('pmDeviceTip');
+      el.style.display = 'flex';
+      requestAnimationFrame(function(){ el.classList.add('show'); });
+      var hide = function(){
+        try{ localStorage.setItem('pm_demo_devicetip','1'); }catch(e){}
+        el.classList.remove('show');
+        setTimeout(function(){ el.style.display = 'none'; }, 400);
+      };
+      document.getElementById('pmDeviceTipX').addEventListener('click', hide);
+      setTimeout(hide, 7000);   // auto-fade after 7s; teacher can keep exploring underneath
+    }catch(e){}
+  })();
+</script>
 <div id="app">
   <aside id="rail">
     <div id="railhead">
