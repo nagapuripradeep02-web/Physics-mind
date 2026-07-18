@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Viditra — Outreach Funnel</title>
+<style>
+  :root{
+    --bg:#1C1B19; --surface:#242220; --surface2:#2b2825; --line:rgba(245,240,230,.10);
+    --clay:#CB6843; --clay-soft:#E3A07F; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+    --good:#6FBF8A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    padding:28px 20px 60px;line-height:1.45;}
+  .wrap{max-width:860px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+  .mark{width:30px;height:30px;border-radius:8px;background:var(--clay);flex:none;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:6px 0 22px;}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;}
+  input,button,select{font:inherit;color:var(--ink);}
+  input[type=text],input[type=date]{background:var(--surface);border:1px solid var(--line);
+    border-radius:9px;padding:9px 11px;font-size:14px;}
+  input[type=text]{width:280px;letter-spacing:.05em;}
+  button{background:var(--clay);border:0;border-radius:9px;padding:9px 15px;font-weight:600;
+    font-size:13.5px;cursor:pointer;}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim);}
+  button.ghost.on{border-color:var(--clay);color:var(--ink);background:rgba(203,104,67,.12);}
+  button:hover{filter:brightness(1.06);}
+  .presets{display:flex;gap:6px;margin-left:auto;}
+  .msg{font-size:13px;color:var(--ink-dim);min-height:18px;margin-bottom:14px;}
+  .msg.err{color:#E58B72;}
+  /* funnel */
+  .funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:10px;}
+  .stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 15px;position:relative;}
+  .stage .lab{font-size:12px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.06em;}
+  .stage .num{font-size:34px;font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums;}
+  .stage .conv{font-size:12px;color:var(--clay-soft);margin-top:4px;min-height:16px;}
+  .stage.active .num{color:var(--good);}
+  .secondary{display:flex;gap:22px;flex-wrap:wrap;margin:16px 2px 26px;font-size:13.5px;color:var(--ink-dim);}
+  .secondary b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;}
+  h2{font-size:14px;font-weight:600;color:var(--ink-dim);margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);}
+  th{color:var(--ink-faint);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;}
+  td.n{text-align:right;font-variant-numeric:tabular-nums;}
+  .foot{margin-top:24px;color:var(--ink-faint);font-size:12px;}
+  .tokenbar{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:20px;}
+  @media(max-width:640px){.funnel{grid-template-columns:repeat(2,1fr)}.presets{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="mark"></span> Outreach Funnel</h1>
+  <p class="sub">Visitors &rarr; clicked to the app &rarr; signed up &rarr; actively using it. Updates live as teachers arrive.</p>
+
+  <div class="tokenbar" id="tokenbar" style="display:none">
+    <div class="row" style="margin-bottom:0">
+      <input id="token" type="text" placeholder="Paste your dashboard token" autocomplete="off">
+      <button id="saveTok">Unlock</button>
+    </div>
+  </div>
+
+  <div class="row" id="controls" style="display:none">
+    <label style="font-size:13px;color:var(--ink-dim)">Since <input id="since" type="date"></label>
+    <div class="presets">
+      <button class="ghost" data-days="0">Today</button>
+      <button class="ghost on" data-days="7">7 days</button>
+      <button class="ghost" data-days="30">30 days</button>
+      <button class="ghost" data-since="2026-07-18">Since launch</button>
+      <button id="refresh">Refresh</button>
+    </div>
+  </div>
+
+  <div class="msg" id="msg"></div>
+
+  <div id="report" style="display:none">
+    <div class="funnel">
+      <div class="stage"><div class="lab">Visits</div><div class="num" id="s_visits">&mdash;</div><div class="conv" id="c_visits"></div></div>
+      <div class="stage"><div class="lab">Clicked to app</div><div class="num" id="s_app">&mdash;</div><div class="conv" id="c_app"></div></div>
+      <div class="stage"><div class="lab">Signed up</div><div class="num" id="s_signup">&mdash;</div><div class="conv" id="c_signup"></div></div>
+      <div class="stage active"><div class="lab">Using it</div><div class="num" id="s_active">&mdash;</div><div class="conv" id="c_active"></div></div>
+    </div>
+    <div class="secondary">
+      <span><b id="s_uv">&mdash;</b> unique visitors</span>
+      <span><b id="s_demo">&mdash;</b> tried the demo</span>
+      <span><b id="s_form">&mdash;</b> filled the form</span>
+    </div>
+
+    <h2>By outreach source</h2>
+    <table>
+      <thead><tr><th>Source (?src=)</th><th class="n">Visits</th><th class="n">Clicked to app</th><th class="n">Rate</th></tr></thead>
+      <tbody id="srcBody"></tbody>
+    </table>
+
+    <p class="foot" id="foot"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var URL = 'https://jqbnmltsupnnbuvqgkix.supabase.co/rest/v1/rpc/funnel_summary';
+  var KEY = 'sb_publishable_pNj_zCtoU3kKdedr0KMvlQ_rAUo7PXc';
+  var $ = function(id){ return document.getElementById(id); };
+  var token = '';
+  try { token = localStorage.getItem('pm_funnel_token') || ''; } catch(e){}
+
+  function pad(n){ return (n<10?'0':'')+n; }
+  function iso(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function fmt(n){ return (n==null?'—':Number(n).toLocaleString('en-IN')); }
+  function pct(a,b){ return (b>0) ? Math.round(a/b*1000)/10 + '%' : '—'; }
+
+  // default "since" = 7 days ago
+  (function(){ var d=new Date(); d.setDate(d.getDate()-7); $('since').value = iso(d); })();
+
+  function currentSince(){
+    var v = $('since').value;
+    return v ? v + 'T00:00:00Z' : '2026-07-18T00:00:00Z';
+  }
+
+  function setMsg(t, err){ var m=$('msg'); m.textContent=t||''; m.className='msg'+(err?' err':''); }
+
+  function showAuthed(on){
+    $('tokenbar').style.display = on ? 'none' : 'block';
+    $('controls').style.display = on ? 'flex' : 'none';
+    $('report').style.display   = on ? 'block' : 'none';
+  }
+
+  function load(){
+    if(!token){ showAuthed(false); return; }
+    setMsg('Loading…');
+    fetch(URL, {
+      method:'POST',
+      headers:{ apikey:KEY, Authorization:'Bearer '+KEY, 'Content-Type':'application/json' },
+      body: JSON.stringify({ tok: token, since: currentSince() })
+    }).then(function(r){
+      if(!r.ok) return r.text().then(function(t){ throw new Error(r.status===400||r.status===500 ? 'Invalid token' : ('HTTP '+r.status)); });
+      return r.json();
+    }).then(function(d){
+      render(d);
+      showAuthed(true);
+      setMsg('');
+    }).catch(function(e){
+      if(/Invalid token/.test(e.message)){
+        token=''; try{localStorage.removeItem('pm_funnel_token');}catch(x){}
+        showAuthed(false);
+        setMsg('That token was not accepted. Paste the correct one.', true);
+      } else {
+        setMsg('Could not load: '+e.message, true);
+      }
+    });
+  }
+
+  function render(d){
+    $('s_visits').textContent = fmt(d.visits);
+    $('s_app').textContent    = fmt(d.app_clicks);
+    $('s_signup').textContent = fmt(d.signups);
+    $('s_active').textContent = fmt(d.active_users);
+    $('c_app').textContent    = 'of visits: '  + pct(d.app_clicks, d.visits);
+    $('c_signup').textContent = 'of clicks: '  + pct(d.signups, d.app_clicks);
+    $('c_active').textContent = 'of signups: ' + pct(d.active_users, d.signups);
+    $('s_uv').textContent   = fmt(d.unique_visitors);
+    $('s_demo').textContent = fmt(d.demo_clicks);
+    $('s_form').textContent = fmt(d.form_submits);
+
+    var rows = (d.by_source||[]).map(function(s){
+      return '<tr><td>'+esc(s.source)+'</td><td class="n">'+fmt(s.visits)+'</td><td class="n">'+fmt(s.app_clicks)+'</td><td class="n">'+pct(s.app_clicks,s.visits)+'</td></tr>';
+    }).join('') || '<tr><td colspan="4" style="color:var(--ink-faint)">No visits yet.</td></tr>';
+    $('srcBody').innerHTML = rows;
+
+    var g = d.generated_at ? new Date(d.generated_at).toLocaleString() : '';
+    $('foot').textContent = 'Signups + usage read from your app data; visits + clicks from the site beacon. Updated '+g+'.';
+  }
+
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]); }); }
+
+  // token save
+  $('saveTok').addEventListener('click', function(){
+    token = $('token').value.trim();
+    if(!token){ return; }
+    try{ localStorage.setItem('pm_funnel_token', token); }catch(e){}
+    load();
+  });
+  $('token').addEventListener('keydown', function(e){ if(e.key==='Enter') $('saveTok').click(); });
+
+  // presets
+  Array.prototype.forEach.call(document.querySelectorAll('.presets .ghost'), function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.presets .ghost').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      if(b.dataset.since){ $('since').value = b.dataset.since; }
+      else { var d=new Date(); d.setDate(d.getDate()-Number(b.dataset.days)); $('since').value = iso(d); }
+      load();
+    });
+  });
+  $('refresh').addEventListener('click', load);
+  $('since').addEventListener('change', load);
+
+  showAuthed(!!token);
+  if(token) load();
+})();
+</script>
+</body>
+</html>
