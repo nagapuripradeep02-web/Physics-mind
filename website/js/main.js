@@ -62,13 +62,16 @@
       var name = (document.getElementById("fName").value || "").trim();
       var inst = (document.getElementById("fInst").value || "").trim();
       var email = (document.getElementById("fEmail").value || "").trim();
-      var subject = "Free week request — " + B.name;
+      var chapterEl = document.getElementById("fChapter");
+      var chapter = (chapterEl && chapterEl.value || "").trim();
+      var subject = "Free trial request — " + B.name;
       var body =
-        "Hi,\n\nI'd like to start my free week with " + B.name +
-        " (founding teacher — ₹699/mo locked after the trial).\n\n" +
+        "Hi,\n\nI'd like to start my free trial (2 weeks) with " + B.name +
+        " (founding teacher — ₹499/mo locked after the trial).\n\n" +
         "Name: " + name + "\n" +
         (inst ? "School / institute: " + inst + "\n" : "") +
-        "Email: " + email + "\n";
+        "Email: " + email + "\n" +
+        (chapter ? "Teaching next: " + chapter + "\n" : "");
       window.location.href =
         "mailto:" + B.email +
         "?subject=" + encodeURIComponent(subject) +

@@ -1249,7 +1249,7 @@ function expiredHtml(): string {
   <h1 id="xhead">Your free trial has ended</h1>
   <p class="sub">Everything you set up — your saved lesson layouts, renames, and customizations — is safe
      and waiting exactly as you left it. To keep teaching with Viditra, message Pradeep and he will
-     activate your founding-teacher plan (&#8377;699/month, locked).</p>
+     activate your founding-teacher plan (&#8377;499/month, locked).</p>
   <a class="go" href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email pradeep@viditra.co</a>
   <p class="hint">or reply on the WhatsApp thread we've been talking on — that works too.</p>
   <a class="alt" href="#" id="soLink">Sign out</a>
