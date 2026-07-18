@@ -858,7 +858,7 @@ function loginHtml(): string {
 <body>
 <div class="wrap"><div class="card">
   <div class="masthead">
-    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
   </div>
 
@@ -1028,7 +1028,7 @@ function joinHtml(): string {
 <body>
 <div class="wrap"><div class="card">
   <div class="masthead">
-    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
   </div>
 
@@ -1125,7 +1125,7 @@ function welcomeHtml(): string {
 <body>
 <div class="wrap"><div class="card">
   <div class="masthead">
-    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
   </div>
 
@@ -1242,7 +1242,7 @@ function expiredHtml(): string {
 <body>
 <div class="wrap"><div class="card">
   <div class="masthead">
-    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
   </div>
 
