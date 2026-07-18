@@ -683,7 +683,7 @@ ${pilotHeadTags(1)}
     <header>
       <div class="brandbar">
         <div class="logo">
-          <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
+          <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(45 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(135 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="#fff"/><circle cx="5.21" cy="5.21" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
           <div class="wordmark"><b>Viditra</b><span>Teacher Edition</span></div>
         </div>
         <div class="vrule"></div>
@@ -696,7 +696,7 @@ ${pilotHeadTags(1)}
       <iframe id="sim" src="sim.html" title="sim" allow="autoplay"></iframe>
       <div id="pmWm">powered by <b>Viditra</b></div>
       <div id="pmLoad"><div class="plc">
-        <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(45 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(135 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="#fff"/><circle cx="5.21" cy="5.21" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
         <span class="nm" id="pmLoadName">Viditra</span><span class="pw">powered by <b>Viditra</b></span>
       </div></div>
       <canvas id="simOverlay"></canvas>
@@ -2394,7 +2394,7 @@ ${pilotHeadTags(0)}
 </script>
 <div class="wrap">
   <div class="masthead">
-    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(45 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(135 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="#fff"/><circle cx="5.21" cy="5.21" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
     <div class="who">
       <button id="pmAcct" type="button" aria-haspopup="menu" aria-expanded="false" hidden>
@@ -2429,7 +2429,7 @@ ${pilotHeadTags(0)}
 ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
 </div>
 <div id="pmSplash" hidden><div class="sc">
-  <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/><circle cx="16.8" cy="20.31" r="1.5" fill="#fff"/><circle cx="7.2" cy="3.69" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
+  <div class="mark"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(45 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(135 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="#fff"/><circle cx="5.21" cy="5.21" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg></div>
   <div class="nm" id="pmSplashName"></div>
   <div class="pw">powered by <b>Viditra</b></div>
 </div></div>
@@ -2781,13 +2781,16 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
 
     var atom = pmSvgEl('g', {}, root);
     var orbits = [], electrons = [];
-    for (var o = 0; o < 3; o++) {
+    // Two-shell atom — the de-Reacted mark: orbits 90° apart (45°/135°), two
+    // electrons resting antipodally on the 45° shell (matches the static logo).
+    var pmIvAngles = [45, 135];
+    for (var o = 0; o < pmIvAngles.length; o++) {
       orbits.push(pmSvgEl('ellipse', {
-        transform: 'rotate(' + (o * 60) + ')',
+        transform: 'rotate(' + pmIvAngles[o] + ')',
         fill: 'none', stroke: '#FFFFFF', 'stroke-linecap': 'round'
       }, atom));
     }
-    for (var e = 0; e < 3; e++) {
+    for (var e = 0; e < pmIvAngles.length; e++) {
       var g = pmSvgEl('g', { opacity: 0 }, atom);
       var core = pmSvgEl('circle', { fill: '#FFDCC8' }, g);
       var glow = pmSvgEl('circle', { fill: '#E08A5E', opacity: 0.35 }, g);
@@ -2820,7 +2823,7 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     var settled = 460 / 128;   // exact logo proportion inside the tile
     var atomScale = E.interp(t, [0, 1.6, 2.25], [7.2, 7.2, settled], E.inOutCubic);
     var sw = E.interp(t, [0, 1.6, 2.25], [7, 7, 4.6 * settled], E.inOutCubic);
-    var electronOp = E.interp(t, [0, 0.25, 2.0, 2.3], [0, 1, 1, 0], null);
+    var electronOp = E.interp(t, [0, 0.25], [0, 1], null);   // fade in, then stay — the new mark keeps its electrons
     var markX = 960 - 330 * slideP;
 
     for (var i = 0; i < R.dust.length; i++) {
@@ -2846,10 +2849,10 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     var a = 34 * atomScale, b = 12.6 * atomScale;
     // ellipse perimeter (Ramanujan) — for the dash-based draw-on
     var per = Math.PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (a + 3 * b)));
-    for (var e = 0; e < 3; e++) {
-      // Draw-on: orbit e starts at 0.15 + e*0.18 and completes at 1.5s (staggered starts,
-      // shared finish), its electron riding the arc tip; after 1.5s the electrons blend
-      // into the orbital spin, their phases spreading over 0.6s (no teleport).
+    for (var e = 0; e < 2; e++) {
+      // Draw-on: orbit e starts at 0.15 + e*0.18 and completes at 1.5s (staggered
+      // starts, shared finish). The two electrons ride the 45° shell antipodally and
+      // settle onto its tips at 1.5s — the resolved mark IS the static logo.
       var s0 = 0.15 + e * 0.18;
       var p = E.clamp01((t - s0) / (1.5 - s0));
       var eased = E.inOutCubic(p);
@@ -2865,11 +2868,11 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
         orb.setAttribute('stroke-dasharray', 'none');
         orb.setAttribute('stroke-dashoffset', 0);
       }
-      var ang = t < 1.5
-        ? eased * Math.PI * 2
-        : Math.PI * 2 + (t - 1.5) * 1.6 + e * 2.1 * E.clamp01((t - 1.5) / 0.6);
+      // Electron rides its draw-on to the tip (ang -> 2π), then holds there; the
+      // e*π offset makes the pair antipodal, and rot pins both to the 45° shell.
+      var ang = eased * Math.PI * 2 + e * Math.PI;
       var x0 = a * Math.cos(ang), y0 = b * Math.sin(ang);
-      var rot = (e * 60 * Math.PI) / 180;
+      var rot = (45 * Math.PI) / 180;
       var ex = x0 * Math.cos(rot) - y0 * Math.sin(rot);
       var ey = x0 * Math.sin(rot) + y0 * Math.cos(rot);
       var el = R.electrons[e];
