@@ -1,4 +1,4 @@
-// Brand fill, scroll reveals, header state, mailto CTA. No frameworks, no analytics.
+// Brand fill, scroll reveals, header state, seats counter, WhatsApp trial CTA. No frameworks.
 (function () {
   var B = window.BRAND;
 
@@ -20,6 +20,11 @@
 
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
+
+  // founding-seat counter — single edit point: seatsTaken in brand.js
+  var seatsLeft = Math.max(0, (B.seatsTotal || 25) - (B.seatsTaken || 0));
+  var seatEls = document.querySelectorAll("[data-seats-left]");
+  for (var se = 0; se < seatEls.length; se++) seatEls[se].textContent = String(seatsLeft);
 
   // header hairline once scrolled
   var header = document.querySelector("header.site");
@@ -54,7 +59,8 @@
     for (var v = 0; v < reveals.length; v++) io.observe(reveals[v]);
   }
 
-  // early-access form → prefilled email (no backend)
+  // early-access form → WhatsApp with details prefilled (teachers are WhatsApp-first;
+  // the old mailto silently died on phones with no mail app configured)
   var form = document.getElementById("accessForm");
   if (form) {
     form.addEventListener("submit", function (ev) {
@@ -64,18 +70,18 @@
       var email = (document.getElementById("fEmail").value || "").trim();
       var chapterEl = document.getElementById("fChapter");
       var chapter = (chapterEl && chapterEl.value || "").trim();
-      var subject = "Free trial request — " + B.name;
-      var body =
-        "Hi,\n\nI'd like to start my free trial (1 week) with " + B.name +
-        " (founding teacher — ₹499/mo locked after the trial).\n\n" +
+      var msg =
+        "Hi! I'd like to start my free trial (1 week) with " + B.name +
+        " — founding teacher, ₹499/mo locked after the trial.\n" +
         "Name: " + name + "\n" +
         (inst ? "School / institute: " + inst + "\n" : "") +
         "Email: " + email + "\n" +
-        (chapter ? "Teaching next: " + chapter + "\n" : "");
-      window.location.href =
-        "mailto:" + B.email +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
+        (chapter ? "Teaching next: " + chapter : "");
+      // lead capture: log to the dashboard before leaving, so no request is ever lost
+      if (window.pmTrack) window.pmTrack("trial_request", {
+        name: name, institution: inst || null, email: email, chapter: chapter || null
+      });
+      window.location.href = "https://wa.me/" + B.whatsapp + "?text=" + encodeURIComponent(msg);
     });
   }
 })();

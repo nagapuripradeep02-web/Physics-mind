@@ -136,6 +136,13 @@
   .vrule { width:1px; height:20px; background:var(--line); flex:none; }
   header h1.concept { font-family:var(--font-disp); font-style:italic; font-size:13px; font-weight:500;
                       color:var(--ink); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ncertChip { flex:none; margin-left:4px; padding:4px 10px; border-radius:999px; white-space:nowrap;
+               font-family:var(--font-ui); font-size:10px; font-weight:600; letter-spacing:.05em;
+               text-transform:uppercase; color:var(--clay-soft); background:var(--clay-wash);
+               border:1px solid rgba(203,104,67,.3); }
+  .ncertChip .long{display:inline;}
+  .ncertChip .short{display:none;}
+  @media (max-width:1100px){ .ncertChip .long{display:none;} .ncertChip .short{display:inline;} }
   .hd-right { margin-left:auto; display:flex; align-items:center; gap:13px; flex:none; }
   .verified { display:flex; align-items:center; gap:7px; padding:6px 13px 6px 9px; border-radius:999px;
               font-size:10.5px; letter-spacing:.04em; font-weight:600; text-transform:uppercase; white-space:nowrap;
@@ -387,6 +394,7 @@
         </div>
         <div class="vrule"></div>
         <h1 class="concept">AC Generator</h1>
+        <span class="ncertChip"><span class="long">NCERT Class 12 &middot; Ch.&nbsp;6 Electromagnetic Induction</span><span class="short">NCERT &middot; Ch&nbsp;6</span></span>
         <div class="hd-right"><a class="demoCta" href="../#access"><span class="long">This is 1 of 20 simulations &mdash; get the full library free for one week &rarr;</span><span class="short">1 of 20 &middot; 1 week free &rarr;</span></a></div>
       </div>
     </header>

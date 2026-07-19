@@ -242,6 +242,9 @@ header.site.scrolled{border-bottom-color:var(--line);}
 .priceList li::before{content:"";position:absolute;left:2px;top:7px;width:9px;height:5px;
   border-left:2px solid var(--sage);border-bottom:2px solid var(--sage);transform:rotate(-45deg);}
 .priceTrial{font-size:14px;color:var(--ink);margin:0 0 8px;}
+.priceSeats{font-size:14px;color:var(--clay-soft);margin:0 0 10px;}
+.priceSeats b{font-weight:600;}
+.assurance [data-seats-left]{color:var(--clay-soft);font-weight:600;}
 .priceFine{font-size:12px;color:var(--ink-faint);text-align:center;margin:14px 0 0;}
 .assurance{font-size:12.5px;color:var(--sage);text-align:center;margin:14px 0 0;letter-spacing:.02em;}
 
