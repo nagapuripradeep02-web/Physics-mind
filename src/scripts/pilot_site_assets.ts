@@ -141,6 +141,10 @@ export const PILOT_CONCEPTS: string[] = [
     'kirchhoff_loop_rule_KVL',
     'wheatstone_bridge',
     'potentiometer',
+    // Ch.3 #12 (added 2026-07-19, founder-approved ship; quality-auditor PASS —
+    // all 20 gates, particle_field cycle_compare engine verified fully implemented,
+    // no renderer_primitives FAIL-route needed; baseline-locked + EN audio rendered)
+    'combination_of_cells',
 ];
 
 const PILOT_SET = new Set(PILOT_CONCEPTS);
@@ -976,8 +980,8 @@ function loginHtml(): string {
 }
 
 // ── join.html — the PUBLIC "Start your free trial" landing ──────────────────
-// The single URL every website CTA and WhatsApp message points at (no invite
-// codes, no per-teacher links — founder decision 2026-07-11). Google-first;
+// The single URL every website CTA points at (no invite codes, no per-teacher
+// links — founder decision 2026-07-11). Google-first;
 // the password link exists for the two legacy pilot-professor accounts.
 function joinHtml(): string {
     return `<!DOCTYPE html>
@@ -1116,6 +1120,13 @@ function welcomeHtml(): string {
         font-size:14px;font-weight:600;font-family:var(--font-ui);cursor:pointer;transition:background .15s ease;}
   button.go:hover{background:var(--clay-deep);}
   button.go:disabled{opacity:.55;cursor:default;}
+  details.optWrap{margin-top:18px;border-top:1px solid var(--line);padding-top:6px;}
+  details.optWrap summary{cursor:pointer;list-style:none;font-size:12.5px;color:var(--ink-dim);
+        padding:8px 0;user-select:none;}
+  details.optWrap summary::-webkit-details-marker{display:none;}
+  details.optWrap summary::before{content:"+ ";color:var(--clay-soft);font-weight:700;}
+  details.optWrap[open] summary::before{content:"– ";}
+  details.optWrap .optHint{color:var(--ink-faint);font-weight:400;}
   a.alt{display:block;text-align:center;margin-top:16px;color:var(--ink-dim);font-size:12.5px;text-decoration:none;}
   a.alt:hover{color:var(--clay-soft);}
   .err{display:none;margin-top:14px;padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.45;
@@ -1129,18 +1140,21 @@ function welcomeHtml(): string {
     <div class="brand"><b>Viditra</b><span>Teacher Edition</span></div>
   </div>
 
-  <h1>Welcome — let's set up your class</h1>
-  <p class="sub">Four quick questions and your one-week free trial starts. This becomes your own teaching space — everything you customize is saved to it.</p>
+  <h1>Welcome — one tap and you're in</h1>
+  <p class="sub">Just confirm your name and your one-week free trial starts. Everything else is optional — you can add it any time, and everything you customize is saved to your space.</p>
   <form id="setupForm">
     <label for="nm">Your name (as your students know you)</label>
     <input id="nm" type="text" maxlength="80" required>
-    <label for="sc">School / institute (optional)</label>
-    <input id="sc" type="text" maxlength="120">
-    <label for="tc">What you teach</label>
-    <input id="tc" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
-    <label for="ch">Which chapter are you teaching next?</label>
-    <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other / Class 11</option></select>
-    <button class="go" id="setupBtn" type="submit">Start my one-week free trial</button>
+    <button class="go" id="setupBtn" type="submit">Start teaching — one week free</button>
+    <details class="optWrap">
+      <summary>Add class details <span class="optHint">(optional — helps us point you to the right sims)</span></summary>
+      <label for="sc">School / institute</label>
+      <input id="sc" type="text" maxlength="120">
+      <label for="tc">What you teach</label>
+      <input id="tc" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
+      <label for="ch">Which chapter are you teaching next?</label>
+      <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other / Class 11</option></select>
+    </details>
   </form>
   <div class="err" id="errBox"></div>
   <a class="alt" href="#" id="soLink">Signed in with the wrong account? Sign out</a>
@@ -1251,7 +1265,6 @@ function expiredHtml(): string {
      and waiting exactly as you left it. To keep teaching with Viditra, message Pradeep and he will
      activate your founding-teacher plan (&#8377;499/month, locked).</p>
   <a class="go" href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email pradeep@viditra.co</a>
-  <p class="hint">or reply on the WhatsApp thread we've been talking on — that works too.</p>
   <a class="alt" href="#" id="soLink">Sign out</a>
 </div></div>
 

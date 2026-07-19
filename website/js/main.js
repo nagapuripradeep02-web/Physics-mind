@@ -1,4 +1,4 @@
-// Brand fill, scroll reveals, header state, seats counter, WhatsApp trial CTA. No frameworks.
+// Brand fill, scroll reveals, header state, seats counter. No frameworks, no forms.
 (function () {
   var B = window.BRAND;
 
@@ -59,29 +59,6 @@
     for (var v = 0; v < reveals.length; v++) io.observe(reveals[v]);
   }
 
-  // early-access form → WhatsApp with details prefilled (teachers are WhatsApp-first;
-  // the old mailto silently died on phones with no mail app configured)
-  var form = document.getElementById("accessForm");
-  if (form) {
-    form.addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      var name = (document.getElementById("fName").value || "").trim();
-      var inst = (document.getElementById("fInst").value || "").trim();
-      var email = (document.getElementById("fEmail").value || "").trim();
-      var chapterEl = document.getElementById("fChapter");
-      var chapter = (chapterEl && chapterEl.value || "").trim();
-      var msg =
-        "Hi! I'd like to start my free trial (1 week) with " + B.name +
-        " — founding teacher, ₹499/mo locked after the trial.\n" +
-        "Name: " + name + "\n" +
-        (inst ? "School / institute: " + inst + "\n" : "") +
-        "Email: " + email + "\n" +
-        (chapter ? "Teaching next: " + chapter : "");
-      // lead capture: log to the dashboard before leaving, so no request is ever lost
-      if (window.pmTrack) window.pmTrack("trial_request", {
-        name: name, institution: inst || null, email: email, chapter: chapter || null
-      });
-      window.location.href = "https://wa.me/" + B.whatsapp + "?text=" + encodeURIComponent(msg);
-    });
-  }
+  // No signup form on the marketing site anymore — every trial CTA links straight to
+  // app.viditra.co/join (Google one-tap). The instant self-serve path IS the funnel.
 })();
