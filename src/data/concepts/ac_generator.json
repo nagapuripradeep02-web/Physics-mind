@@ -188,7 +188,8 @@
             {
               "id": "s2_1",
               "text_en": "Follow the flux. The yellow area-vector shows which way the coil faces; when it lines up with the field B, the most field threads the coil.", "text_hi": "Flux का पीछा करें। Yellow area-vector दिखाता है कि coil किस तरफ़ है; जब यह field B के साथ लाइन में आता है, तो सबसे ज़्यादा field coil से गुज़रता है।", "text_te": "Flux ను అనుసరించండి. Yellow area-vector చూపిస్తుంది coil ఏ వైపు ఉందో; అది field B తో సరిపోలినప్పుడు, అత్యధిక field coil గుండా వెళుతుంది.",
-              "glow": "acg_faceon_note"
+              "glow": "acg_faceon_note",
+              "scenario_cue": "flux_graph_start"
             },
             {
               "id": "s2_2",
@@ -198,8 +199,7 @@
             {
               "id": "s2_3",
               "text_en": "The green cosine graph traces it live — peak face-on, zero edge-on — its dot moving in lockstep with the coil.", "text_hi": "Green cosine graph इसे लाइव ट्रैस करता है — peak face-on, zero edge-on — इसका dot coil के साथ lockstep में चलता है।", "text_te": "Green cosine graph దీన్ని live గా ట్రాస్ చేస్తుంది — peak face-on, zero edge-on — దాని dot coil తో lockstep లో కదులుతుంది.",
-              "glow": "acg_edgeon_note",
-              "scenario_cue": "flux_graph_start"
+              "glow": "acg_edgeon_note"
             }
           ]
         },

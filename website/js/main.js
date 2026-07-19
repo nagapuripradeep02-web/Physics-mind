@@ -66,7 +66,7 @@
       var chapter = (chapterEl && chapterEl.value || "").trim();
       var subject = "Free trial request — " + B.name;
       var body =
-        "Hi,\n\nI'd like to start my free trial (2 weeks) with " + B.name +
+        "Hi,\n\nI'd like to start my free trial (1 week) with " + B.name +
         " (founding teacher — ₹499/mo locked after the trial).\n\n" +
         "Name: " + name + "\n" +
         (inst ? "School / institute: " + inst + "\n" : "") +
