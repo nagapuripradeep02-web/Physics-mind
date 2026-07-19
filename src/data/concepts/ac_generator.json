@@ -21,7 +21,7 @@
     "torque_on_current_loop_in_field"
   ],
   "real_world_anchor": {
-    "primary": "The 50-hertz electricity in every Indian home starts as a giant version of this exact machine. At the Bhakra Nangal and Tehri dams, falling water spins enormous coils inside powerful magnets; at a thermal plant, high-pressure steam does the spinning; on the wind farms of Tamil Nadu and Gujarat, the wind does it. Every one is a coil turning in a magnetic field, and the speed of that turning is what fixes the steady 50 cycles per second the whole grid runs on.",
+    "primary": "The electricity in every wall socket starts as a giant version of this exact machine. At a hydroelectric dam, falling water spins enormous coils inside powerful magnets; at a thermal plant, high-pressure steam does the spinning; on a wind farm, the wind does it. Every one is a coil turning in a magnetic field, and the speed of that turning is what fixes the steady frequency the whole grid runs on.",
     "secondary": "A bicycle dynamo lamp — press the little dynamo wheel against the moving tyre and the lamp lights the faster you pedal. It is the same rotating-coil-in-a-field, shrunk to fist size, and you can watch the brightness rise and fall with your own legs."
   },
   "physics_engine_config": {
@@ -133,7 +133,7 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "This coil, spinning between two magnet poles, is an AC generator — the machine behind the fifty-cycle power in every Indian home.", "text_hi": "यह coil, दो magnet poles के बीच घूमता है, एक AC generator है — वह machine जो हर Indian घर में fifty-cycle power लाता है।", "text_te": "ఈ coil, రెండు magnet poles మధ్య తిరుగుతుంది, అది AC generator — ప్రతి Indian ఇంట్లో fifty-cycle power ను తీసుకువచ్చే machine.",
+              "text_en": "This coil, spinning between two magnet poles, is an AC generator — the machine behind the alternating current that powers your home.", "text_hi": "यह coil, दो magnet poles के बीच घूमता है, एक AC generator है — वह machine जो आपके घर में alternating current पहुँचाती है।", "text_te": "ఈ coil, రెండు magnet poles మధ్య తిరుగుతుంది, అది AC generator — మీ ఇంటికి alternating current ను అందించే machine.",
               "glow": "acg_machine_head"
             },
             {
@@ -352,7 +352,7 @@
             "type": "annotation",
             "id": "acg_freq_note",
             "position": { "x": 560, "y": 400 },
-            "text": "f = omega/2pi -> grid 50 Hz needs a fixed steady speed",
+            "text": "f = omega/2pi -> a fixed grid frequency needs a fixed steady speed",
             "color": "#42A5F5"
           }
         ],
@@ -370,7 +370,7 @@
             },
             {
               "id": "s5_3",
-              "text_en": "Frequency f equals omega over two pi. To hold the grid at fifty cycles a second, the coil must spin at one fixed, steady speed.", "text_hi": "Frequency f equals omega over two pi। Grid को fifty cycles a second पर रखने के लिए, coil को एक fixed, steady speed पर घूमना चाहिए।", "text_te": "Frequency f equals omega over two pi. Grid ని fifty cycles a second వద్ద ఉంచడానికి, coil ఒక fixed, steady speed లో తిరగాలి.",
+              "text_en": "Frequency f equals omega over two pi. To hold the grid at one fixed frequency, the coil must spin at one constant, steady speed.", "text_hi": "Frequency f equals omega over two pi। Grid को एक fixed frequency पर रखने के लिए, coil को एक constant, steady speed पर घूमना चाहिए।", "text_te": "Frequency f equals omega over two pi. Grid ని ఒక fixed frequency వద్ద ఉంచడానికి, coil ఒక constant, steady speed లో తిరగాలి.",
               "glow": "acg_freq_note"
             }
           ]
