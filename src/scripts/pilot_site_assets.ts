@@ -277,7 +277,7 @@ function pmAuthJs(): string {
       // from the FIRST paint of the NEXT page, before this async gate resolves there.
       try { if (p.display_name) localStorage.setItem('pm_name_cache', p.display_name); } catch (e) {}
       var end = 0;
-      try { end = new Date(p.trial_started_at).getTime() + (p.trial_days || 14) * 86400000; } catch (e) { end = 0; }
+      try { end = new Date(p.trial_started_at).getTime() + (p.trial_days || 7) * 86400000; } catch (e) { end = 0; }
       window.PM_TRIAL_END = end;
       if (end && Date.now() > end) {
         if (PAGE === 'expired') { pass(); return; }
@@ -1035,7 +1035,7 @@ function joinHtml(): string {
   <h1>Start your free trial</h1>
   <p class="sub">Interactive 3D physics simulations you teach with — your own space, ready in under a minute.</p>
   <ul class="perk">
-    <li>Two weeks free &mdash; the full simulation library</li>
+    <li>One week free &mdash; the full simulation library</li>
     <li>No card, no commitment</li>
     <li>Everything you customize is saved to your account</li>
   </ul>
@@ -1130,7 +1130,7 @@ function welcomeHtml(): string {
   </div>
 
   <h1>Welcome — let's set up your class</h1>
-  <p class="sub">Four quick questions and your 14-day free trial starts. This becomes your own teaching space — everything you customize is saved to it.</p>
+  <p class="sub">Four quick questions and your one-week free trial starts. This becomes your own teaching space — everything you customize is saved to it.</p>
   <form id="setupForm">
     <label for="nm">Your name (as your students know you)</label>
     <input id="nm" type="text" maxlength="80" required>
@@ -1140,7 +1140,7 @@ function welcomeHtml(): string {
     <input id="tc" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
     <label for="ch">Which chapter are you teaching next?</label>
     <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other / Class 11</option></select>
-    <button class="go" id="setupBtn" type="submit">Start my 14-day free trial</button>
+    <button class="go" id="setupBtn" type="submit">Start my one-week free trial</button>
   </form>
   <div class="err" id="errBox"></div>
   <a class="alt" href="#" id="soLink">Signed in with the wrong account? Sign out</a>
