@@ -19122,12 +19122,13 @@ export const FIELD_3D_RENDERER_CODE = `
         geoAxis.userData = { elementType: "em_geo_axis", id: "em_geo_axis" }; geoAxis.visible = false; addToScene(geoAxis);
         var geoNLbl = createWideLabelSprite("geographic N", EM.geoAxis, 0.3); geoNLbl.position.set(0, 2.62, 0); geoNLbl.userData = { elementType: "em_geo_axis", id: "em_geo_axis_lbl" }; geoNLbl.visible = false; addToScene(geoNLbl);
 
-        // 3. Magnetic axis — amber line tilted EM_TILT_DEG about world Z.
+        // 3. Magnetic axis — amber line built VERTICAL then tilted EM_TILT_DEG via
+        //    rotation.z (rotating +Y by +tilt about Z gives (-sin,cos) — the same
+        //    magDir as before, COLLINEAR with the internal dipole). Built as an
+        //    object rotation so STATE_1 tilt_reveal can animate it from upright.
         var tilt = EM_TILT_DEG * Math.PI / 180;
-        // magDir points toward the S end (up, toward geographic N) — COLLINEAR with
-        // the internal dipole below, which tilts its S end (local +Y) to (-sin,cos).
-        var magDir = new THREE.Vector3(-Math.sin(tilt), Math.cos(tilt), 0);
-        var magAxis = new THREE.Line(new THREE.BufferGeometry().setFromPoints([magDir.clone().multiplyScalar(-2.0), magDir.clone().multiplyScalar(2.0)]), lineMat(EM.magAxis, 0.8));
+        var magAxis = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -2.0, 0), new THREE.Vector3(0, 2.0, 0)]), lineMat(EM.magAxis, 0.8));
+        magAxis.rotation.z = tilt;
         magAxis.userData = { elementType: "em_mag_axis", id: "em_mag_axis" }; magAxis.visible = false; addToScene(magAxis);
         var magLbl = createWideLabelSprite("magnetic axis (tilt \\u2248 11\\u00b0)", EM.magAxis, 0.28); magLbl.position.set(1.55, -1.55, 0); magLbl.userData = { elementType: "em_mag_axis", id: "em_mag_axis_lbl" }; magLbl.visible = false; addToScene(magLbl);
 
@@ -19203,29 +19204,42 @@ export const FIELD_3D_RENDERER_CODE = `
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
         var rp = document.createElement("div");
         rp.id = "em_readout";
-        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:215px;display:none;";
+        // F4 (Rule 34d): top:12px;right:12px collided with build_review_site.ts's
+        // #fsTopControls ("Full screen" button, top:10px;right:10px) in every
+        // readout-bearing state (S3-S6). Cleared to top:52px+ (engine_bug_queue:
+        // field3d_sliders_panel_top12_vs_fsbtn_top10 tracks this defect fleet-wide —
+        // this fix is em-local only; see report for whether it generalizes).
+        rp.style.cssText = "position:fixed;top:56px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:215px;display:none;";
         document.body.appendChild(rp);
 
-        window.PM_emManual = false; window.PM_emLat = 30; window.PM_emDecl = 4;
+        window.PM_emManual = false; window.PM_emLat = 30; window.PM_emDecl = 4; window.PM_emB = 50;
         var latC = (config.slider_controls && config.slider_controls.latitude) || { min: 0, max: 90, step: 1, default: 30, label: "Magnetic latitude \\u03bb" };
         var decC = (config.slider_controls && config.slider_controls.declination) || { min: 0, max: 30, step: 1, default: 4, label: "Declination D" };
+        var bC = (config.slider_controls && config.slider_controls.b_total) || { min: 25, max: 65, step: 1, default: 50, label: "Total field B (\\u00b5T)" };
+        window.PM_emB = bC.default;
         var sp = document.createElement("div");
         sp.id = "em_sliders";
-        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:210px;display:none;";
+        // bottom:LEFT (not right) — #formula_overlay is fixed bottom-right (Rule 34d:
+        // overlays never collide). Mirrors #mag_formula/#mem_formula/#acg_formula pattern.
+        sp.style.cssText = "position:fixed;bottom:12px;left:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:210px;display:none;";
         sp.innerHTML =
-            '<label>' + latC.label + ': <span id="em_lat_val">' + latC.default + '</span>\\u00b0</label>' +
-            '<input type="range" id="em_lat_slider" min="' + latC.min + '" max="' + latC.max + '" step="' + (latC.step || 1) + '" value="' + latC.default + '" style="width:100%">' +
-            '<label style="margin-top:6px">' + decC.label + ': <span id="em_dec_val">' + decC.default + '</span>\\u00b0</label>' +
-            '<input type="range" id="em_dec_slider" min="' + decC.min + '" max="' + decC.max + '" step="' + (decC.step || 1) + '" value="' + decC.default + '" style="width:100%">';
+            '<div id="em_lat_row"><label>' + latC.label + ': <span id="em_lat_val">' + latC.default + '</span>\\u00b0</label>' +
+            '<input type="range" id="em_lat_slider" min="' + latC.min + '" max="' + latC.max + '" step="' + (latC.step || 1) + '" value="' + latC.default + '" style="width:100%"></div>' +
+            '<div id="em_dec_row"><label style="margin-top:6px">' + decC.label + ': <span id="em_dec_val">' + decC.default + '</span>\\u00b0</label>' +
+            '<input type="range" id="em_dec_slider" min="' + decC.min + '" max="' + decC.max + '" step="' + (decC.step || 1) + '" value="' + decC.default + '" style="width:100%"></div>' +
+            '<div id="em_b_row"><label style="margin-top:6px">' + bC.label + ': <span id="em_b_val">' + bC.default + '</span></label>' +
+            '<input type="range" id="em_b_slider" min="' + bC.min + '" max="' + bC.max + '" step="' + (bC.step || 1) + '" value="' + bC.default + '" style="width:100%"></div>';
         document.body.appendChild(sp);
         var latSl = document.getElementById("em_lat_slider"), latV = document.getElementById("em_lat_val");
         var decSl = document.getElementById("em_dec_slider"), decV = document.getElementById("em_dec_val");
+        var bSl = document.getElementById("em_b_slider"), bV = document.getElementById("em_b_val");
         // Instrument rule (2026-06-30): a TRUSTED latitude drag seizes manual (stops
-        // the STATE_3 auto-sweep + STATE_4 idle drift); declination only updates D.
+        // the auto-sweep + idle drift); declination + total-field B only update value.
         // The on-entry sync sets .value directly (no input event fires), so the
         // auto-demo is never killed by state entry.
         if (latSl) latSl.addEventListener("input", function (ev) { window.PM_emLat = parseFloat(latSl.value); if (latV) latV.textContent = latSl.value; if (ev && ev.isTrusted) window.PM_emManual = true; });
         if (decSl) decSl.addEventListener("input", function () { window.PM_emDecl = parseFloat(decSl.value); if (decV) decV.textContent = decSl.value; });
+        if (bSl) bSl.addEventListener("input", function () { window.PM_emB = parseFloat(bSl.value); if (bV) bV.textContent = bSl.value; });
 
         // Hide every em_* element on build (mirrors gm).
         for (var qi = 0; qi < sceneObjects.length; qi++) { var qo = sceneObjects[qi]; if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("em_") === 0) qo.visible = false; }
@@ -19236,19 +19250,45 @@ export const FIELD_3D_RENDERER_CODE = `
         var em = stateDef.em || {};
         var vis = stateDef.visible_elements || [];
         function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        // F2 (Rule 31 explore invariant — the sandbox exposes ALL live controls):
+        // the S6 sandbox's declination slider needs its own geometry (compass
+        // needle + true-N reference + D arc) actually drawn, reusing the exact
+        // primitives proven in STATE_2, rather than requiring a visible_elements
+        // edit. Union-only, gated on em.mode === "sandbox" (S6's own marker) so no
+        // other em state or sibling scenario is ever touched.
+        var emSandboxDecl = em.mode === "sandbox";
         for (var i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i], ud = o.userData;
             if (!ud || !ud.elementType || ud.elementType.indexOf("em_") !== 0) continue;
-            o.visible = listed(ud.elementType);
+            var emShow = listed(ud.elementType);
+            if (!emShow && emSandboxDecl && (ud.elementType === "em_compass" || ud.elementType === "em_geo_north_ref" || ud.elementType === "em_decl_arc")) emShow = true;
+            o.visible = emShow;
         }
+        // F3 (Rule 34b — one formula surface per state): em_tan_lbl / em_bmag_lbl
+        // are STATIC in-scene sprites ("tan I = V/H", "B = sqrt(H^2+V^2)") that
+        // would duplicate — and in S5/S6 actively contradict (S5 teaches
+        // tan I = 2 tan lambda; S6 shows live numeric values) — the state's own
+        // #formula_overlay, which already varies correctly per state. Suppress
+        // them unconditionally; the dedicated overlay is the single surface.
+        var emTanLbl = emFindById("em_tan_lbl"); if (emTanLbl) emTanLbl.visible = false;
+        var emBmagLbl = emFindById("em_bmag_lbl"); if (emBmagLbl) emBmagLbl.visible = false;
         // Seed the instrument for this entry (resets the auto-demo clock + manual flag).
         window.PM_emManual = false;
         window.PM_emLat = (typeof em.latitude_deg === "number") ? em.latitude_deg : 30;
         window.PM_emDecl = (typeof em.declination_deg === "number") ? em.declination_deg : 4;
+        window.PM_emB = (typeof em.b_total === "number") ? em.b_total : 50;
         var latSl = document.getElementById("em_lat_slider"), latV = document.getElementById("em_lat_val");
         if (latSl) latSl.value = String(window.PM_emLat); if (latV) latV.textContent = String(Math.round(window.PM_emLat));
         var decSl = document.getElementById("em_dec_slider"), decV = document.getElementById("em_dec_val");
         if (decSl) decSl.value = String(window.PM_emDecl); if (decV) decV.textContent = String(Math.round(window.PM_emDecl));
+        var bSl = document.getElementById("em_b_slider"), bV = document.getElementById("em_b_val");
+        if (bSl) bSl.value = String(window.PM_emB); if (bV) bV.textContent = String(Math.round(window.PM_emB));
+        // Per-state contextual control rows (Rule 31): show only the slider(s) this
+        // state teaches (S2 D · S5 lambda · S6 all). Hidden rows keep their last value.
+        function emSetRow(id, show) { var e = document.getElementById(id); if (e) e.style.display = show ? "block" : "none"; }
+        emSetRow("em_lat_row", em.slider_lat === true);
+        emSetRow("em_dec_row", em.slider_decl === true);
+        emSetRow("em_b_row", em.slider_b === true);
         var roEl = document.getElementById("em_readout"); if (roEl) roEl.style.display = (em.show_readout === false) ? "none" : "block";
     }
 
@@ -19284,8 +19324,13 @@ export const FIELD_3D_RENDERER_CODE = `
             lat = seedLat * ease;
             if (p >= 1) { var ts = t - hold - dur; lat = seedLat + 0.8 * Math.sin(ts * 2.2) * Math.exp(-ts * 0.8); }
             window.PM_emLat = lat;
+        } else if (em.decompose_reveal) {
+            // STATE_4: hold the place fixed (the dip needle stays at I from STATE_3,
+            // home-pose continuity) — only the H/V/triangle draw in. No latitude motion.
+            lat = seedLat;
+            window.PM_emLat = lat;
         } else {
-            // STATE_4 sandbox: gentle idle micro-drift until a trusted drag seizes manual.
+            // STATE_6 sandbox: gentle idle micro-drift until a trusted drag seizes manual.
             lat = seedLat + 1.6 * Math.sin(t * 0.7);
             window.PM_emLat = lat;
         }
@@ -19293,8 +19338,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var I = emDipFromLat(lat);
         var Irad = I * Math.PI / 180;
         var D = window.PM_emDecl;
-        var H = EM_BVAL * Math.cos(Irad);
-        var V = EM_BVAL * Math.sin(Irad);
+        var Bt = (typeof window.PM_emB === "number") ? window.PM_emB : EM_BVAL;
+        var H = Bt * Math.cos(Irad);
+        var V = Bt * Math.sin(Irad);
 
         // Keep the latitude slider thumb tracking the live (swept/drifting) value
         // when the teacher has not seized manual.
@@ -19303,12 +19349,96 @@ export const FIELD_3D_RENDERER_CODE = `
             if (latSl2) latSl2.value = String(lat); if (latV2) latV2.textContent = String(Math.round(lat));
         }
 
-        // 2. GLOBE view: idle-sway the compass about magnetic north + draw the D arc.
+        // 2a. GLOBE view — STATE_1 tilt-reveal: the internal dipole + magnetic axis
+        //     tilt in from upright (collinear with the white spin axis) to EM_TILT_DEG,
+        //     then hold. The founding geometry the whole concept rests on; cause-first.
+        var emTiltR = EM_TILT_DEG * Math.PI / 180;
+        var emDip = emFindById("em_dipole"), emMagAx = emFindById("em_mag_axis");
+        if (em.tilt_reveal) {
+            var tlh = 0.3, tld = 1.0;
+            var tlp = t <= tlh ? 0 : Math.min(1, (t - tlh) / tld);
+            var tAng = emTiltR * (tlp * tlp * (3 - 2 * tlp));      // smoothstep 0 -> tilt
+            if (emDip) emDip.rotation.z = tAng;
+            if (emMagAx) emMagAx.rotation.z = tAng;
+        } else {
+            if (emDip) emDip.rotation.z = emTiltR;
+            if (emMagAx) emMagAx.rotation.z = emTiltR;
+        }
+
+        // 2a-lift. GLOBE view — STATE_2 declination CAMERA LIFT (engine_bug_queue:
+        //     em_state2_declination_camera_edge_on / F1). At the authored oblique
+        //     camera_position (shared with STATE_1) the horizontal XZ plane is
+        //     viewed too edge-on for a small D (~15deg) to read on screen (measured
+        //     ~0.94deg on screen) — the compass needle and the true-N reference render
+        //     collinear. Ease the camera from the state's OWN camera_position up to an
+        //     optional em.camera_lift_to (safe default [1.5, 8.0, 4.0], a raised
+        //     near-top-down pose measured at ~12.5deg on-screen declination) over
+        //     ~1.2s, deterministic fn of the state clock (time - stateStartTime) so it
+        //     is freeze-stable under SET_TIME_FREEZE (Rule 36). Gated on
+        //     em.swing_reveal — the STATE_2-only marker — so no sibling em state and
+        //     no sibling scenario is ever touched. Runs AFTER lerpSpherical() in the
+        //     animate() loop (this fn is called later), so it has final say on
+        //     camera.position for the frame; it also writes spherical/targetSpherical
+        //     so the NEXT state's generic animateCameraTo() eases from wherever this
+        //     lift left off (Rule 32d — no teleport) instead of fighting it.
+        if (em.swing_reveal) {
+            var liftFrom = stateDef.camera_position || [3.6, 2.4, 7.2];
+            var liftTo = (em.camera_lift_to && em.camera_lift_to.length === 3) ? em.camera_lift_to : [1.5, 8.0, 4.0];
+            var liftDur = 1.2;
+            var liftP = Math.min(1, t / liftDur);
+            var liftEase = liftP * liftP * (3 - 2 * liftP);          // smoothstep
+            var lx = liftFrom[0] + (liftTo[0] - liftFrom[0]) * liftEase;
+            var ly = liftFrom[1] + (liftTo[1] - liftFrom[1]) * liftEase;
+            var lz = liftFrom[2] + (liftTo[2] - liftFrom[2]) * liftEase;
+            var lr = Math.sqrt(lx * lx + ly * ly + lz * lz);
+            if (lr > 0.001) {
+                spherical.radius = lr; targetSpherical.radius = lr;
+                spherical.phi = Math.acos(Math.max(-1, Math.min(1, ly / lr))); targetSpherical.phi = spherical.phi;
+                spherical.theta = Math.atan2(lz, lx); targetSpherical.theta = spherical.theta;
+                animating = false;
+                updateCameraFromSpherical();
+            }
+        }
+
+        // 2b. GLOBE view — compass points to magnetic N + the D arc. STATE_2 swing-
+        //     reveal: the needle starts on the true-N line (heading 0) and swings over
+        //     to the declination D, then settles into a gentle idle sway; the yellow D
+        //     arc tracks the LIVE heading, opening the true-N -> magnetic-N gap. Other
+        //     globe appearances just idle-sway about D. Re-phased (F1) to start AFTER
+        //     the camera lift above completes (~1.2s), so the swing is watched from the
+        //     raised pose, not during the move (Rule 32a cause-first, sequential not
+        //     simultaneous).
         var compass = emFindById("em_compass");
-        var sway = (2.0 * Math.PI / 180) * Math.sin(t * 0.9);
-        if (compass && compass.visible) compass.rotation.y = D * Math.PI / 180 + sway;
+        var Drad = D * Math.PI / 180;
+        var emHeading;
+        if (em.swing_reveal) {
+            var swh = 1.3, swd = 1.2;
+            var swp = t <= swh ? 0 : Math.min(1, (t - swh) / swd);
+            emHeading = Drad * (swp * swp * (3 - 2 * swp));       // smoothstep 0 -> D
+            if (swp >= 1) { var swt = t - swh - swd; emHeading = Drad + (2.0 * Math.PI / 180) * Math.sin(swt * 0.9); }
+        } else {
+            emHeading = Drad + (2.0 * Math.PI / 180) * Math.sin(t * 0.9);
+        }
+        if (compass && compass.visible) compass.rotation.y = emHeading;
         var declArc = emFindById("em_decl_arc");
-        if (declArc && declArc.visible) emSetLinePoints(declArc, emArcPoints(0, 1.95, 0, 0.9, 0, D * Math.PI / 180 + sway, "xz", 24));
+        if (declArc && declArc.visible) emSetLinePoints(declArc, emArcPoints(0, 1.95, 0, 0.9, 0, emHeading, "xz", 24));
+        // A5: track the D-arc midpoint (was fixed at (0.6, compY, 0.55), landing on
+        //     the red arrow shaft) — same pattern as the dip label below.
+        var declLblEl = emFindById("em_decl_arc_lbl");
+        if (declLblEl && declLblEl.visible) {
+            var declMid = emHeading / 2;
+            declLblEl.position.set(1.2 * Math.sin(declMid), 1.95, 1.2 * Math.cos(declMid));
+        }
+
+        // F2 (Rule 29 — a vector's length changes ONLY when the real physical
+        //     magnitude does): STATES 3-5 intentionally hold the needle/H/V/B
+        //     triangle at a FIXED world length (EM_NEEDLE_LEN) — that fixed-magnitude
+        //     cos/sin trade-off IS the lesson there, so bScale stays 1 (unchanged
+        //     behaviour). Only in the S6 sandbox, where B is an exposed LIVE slider,
+        //     do the needle/H/V/resultant lengths actually scale with B — clamped to
+        //     the slider's own [25,65] range around the EM_BVAL=50 baseline (0.5x-1.3x)
+        //     so a max-B triangle stays comfortably in frame (F2).
+        var bScale = (em.mode === "sandbox") ? Math.max(0.5, Math.min(1.3, Bt / EM_BVAL)) : 1;
 
         // 3. LOCAL view: tilt the dip needle (N tip dives BELOW the horizon), draw
         //    the I arc + H/V arrows + the right-triangle outline (a pure cos/sin split
@@ -19316,16 +19446,33 @@ export const FIELD_3D_RENDERER_CODE = `
         var dipNeedle = emFindById("em_dip_needle");
         if (dipNeedle && dipNeedle.visible) {
             dipNeedle.rotation.z = -Irad;
+            dipNeedle.scale.set(bScale, bScale, bScale);
             var bl = emFindById("em_b_lbl");
-            if (bl) bl.position.set((EM_NEEDLE_LEN + 0.32) * Math.cos(Irad), EM_PIVY - (EM_NEEDLE_LEN + 0.32) * Math.sin(Irad), 0.06);
+            if (bl) bl.position.set((EM_NEEDLE_LEN * bScale + 0.32) * Math.cos(Irad), EM_PIVY - (EM_NEEDLE_LEN * bScale + 0.32) * Math.sin(Irad), 0.06);
         }
         var dipArc = emFindById("em_dip_arc");
         if (dipArc && dipArc.visible) {
             emSetLinePoints(dipArc, emArcPoints(0, EM_PIVY, 0, 0.72, 0, -Irad, "xy", 24));
             var dl = emFindById("em_dip_lbl"); if (dl) dl.position.set(0.98 * Math.cos(Irad / 2), EM_PIVY - 0.98 * Math.sin(Irad / 2), 0);
         }
-        var Hw = EM_NEEDLE_LEN * Math.cos(Irad);              // world component lengths
-        var Vw = EM_NEEDLE_LEN * Math.sin(Irad);
+        // STATE_4 decompose-reveal: stage the component build — H arrow, then V arrow,
+        //   then the closed right-triangle + formula labels, ~0.7s apart (cause->effect,
+        //   Rule 32a). Overrides the exact-token visibility from applyState, ONLY while
+        //   decompose_reveal is on (S5 sweep + S6 sandbox keep all three fully visible).
+        if (em.decompose_reveal) {
+            var dcH = 0.4, dcV = 1.1, dcT = 1.8;
+            var e_h = emFindById("em_comp_h"), e_hl = emFindById("em_h_lbl");
+            var e_v = emFindById("em_comp_v"), e_vl = emFindById("em_v_lbl");
+            var e_tri = emFindById("em_triangle");
+            if (e_h) e_h.visible = t >= dcH; if (e_hl) e_hl.visible = t >= dcH;
+            if (e_v) e_v.visible = t >= dcV; if (e_vl) e_vl.visible = t >= dcV;
+            if (e_tri) e_tri.visible = t >= dcT;
+            // em_tan_lbl / em_bmag_lbl stay permanently suppressed (F3, Rule 34b —
+            // see applyEarthsMagnetismState); the dedicated #formula_overlay is the
+            // single formula surface for S4/S5/S6.
+        }
+        var Hw = EM_NEEDLE_LEN * bScale * Math.cos(Irad);     // world component lengths (F2: bScale=1 outside sandbox)
+        var Vw = EM_NEEDLE_LEN * bScale * Math.sin(Irad);
         var hA = emFindById("em_comp_h");
         if (hA && hA.visible) {
             hA.position.set(0, EM_PIVY, 0);
@@ -19341,16 +19488,22 @@ export const FIELD_3D_RENDERER_CODE = `
         var triEl = emFindById("em_triangle");
         if (triEl && triEl.visible) emSetLinePoints(triEl, [[0, EM_PIVY, 0], [Hw, EM_PIVY, 0], [Hw, EM_PIVY - Vw, 0], [0, EM_PIVY, 0]]);
 
-        // 4. Live readout — lambda, I, D, H, V, B.
+        // 4. Live readout — lambda, I, D, H, V, B. A6 (Rule 25 foundation-first):
+        //    H/V are not DEFINED until STATE_4 (decompose_reveal), so hold those two
+        //    rows out of the readout until decompose_reveal/sweep/sandbox (S4+) —
+        //    pure derivation from the already-authored em fields, no JSON edit.
         var roEl = document.getElementById("em_readout");
         if (roEl && roEl.style.display !== "none") {
+            var showHV = !!(em.decompose_reveal || em.mode === "sweep" || em.mode === "sandbox");
             var html = "";
             html += "<div>\\u03bb (mag. latitude) = " + lat.toFixed(0) + "\\u00b0</div>";
             html += "<div style=\\"color:#E040FB\\">I (dip) = " + I.toFixed(0) + "\\u00b0</div>";
             html += "<div style=\\"color:#FFEE58\\">D (declination) = " + D.toFixed(0) + "\\u00b0</div>";
-            html += "<div style=\\"color:#66BB6A\\">H = " + H.toFixed(1) + " \\u00b5T</div>";
-            html += "<div style=\\"color:#4DD0E1\\">V = " + V.toFixed(1) + " \\u00b5T</div>";
-            html += "<div style=\\"color:#FFD54F\\">B = " + EM_BVAL.toFixed(0) + " \\u00b5T  (=\\u221a(H\\u00b2+V\\u00b2))</div>";
+            if (showHV) {
+                html += "<div style=\\"color:#66BB6A\\">H = " + H.toFixed(1) + " \\u00b5T</div>";
+                html += "<div style=\\"color:#4DD0E1\\">V = " + V.toFixed(1) + " \\u00b5T</div>";
+            }
+            html += "<div style=\\"color:#FFD54F\\">B = " + Bt.toFixed(0) + " \\u00b5T</div>";
             roEl.innerHTML = html;
         }
     }
