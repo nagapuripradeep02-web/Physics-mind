@@ -520,6 +520,43 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     if (state.jockey_sweep === true) {
         maxMs = Math.max(maxMs, asNum(state.jockey_sweep_start_ms, 800) + asNum(state.jockey_sweep_duration_ms, 800) + 300);
     }
+    // combination_of_cells S7: cycle_compare is a 3-phase clock sequence (topology
+    // -> series, then R jump, then topology -> parallel) with NO cue — unlike
+    // bridge_r_sweep/jockey_sweep's single sweep, take the AUTHORED total settle
+    // time directly (cycle_compare_settle_ms) since it spans 3 sequential phases.
+    // Pin the frozen frame past the full cycle so THE EYE lands on the settled S7
+    // aha grid (all 4 compare_grid cells revealed, the live topology holding at
+    // its final parallel value), not mid-cycle. Mirrors ccCyclePhys in the renderer.
+    if (state.cycle_compare === true) {
+        maxMs = Math.max(maxMs, asNum(state.cycle_compare_settle_ms, 5400) + 400);
+    }
+    // combination_of_cells: the plain regroup one-shot (S5-style) is also a
+    // clock-driven morph with no cue. S5's early timing (300 + 700) always sat
+    // under DEFAULT_REVEAL_MS so the gap never bit — until the S7 split moved a
+    // regroup to 4000 + 900 and THE EYE's frozen frame photographed the PRE-morph
+    // pose (founder review 2026-07-20). Pin past the morph + effect lag. Same for
+    // dock_cell (S2) and flip_cell (S4), which share the ccMechP/ccEffP clock.
+    if (state.regroup === true) {
+        maxMs = Math.max(maxMs, asNum(state.regroup_start_ms, 300) + asNum(state.regroup_duration_ms, 700) + 700);
+    }
+    if (state.dock_cell === true) {
+        maxMs = Math.max(maxMs, asNum(state.dock_cell_start_ms, 300) + asNum(state.dock_cell_duration_ms, 700) + 700);
+    }
+    if (state.flip_cell === true) {
+        maxMs = Math.max(maxMs, asNum(state.flip_cell_start_ms, 300) + asNum(state.flip_cell_duration_ms, 700) + 700);
+    }
+    if (state.switch_close_cue === true) {
+        maxMs = Math.max(maxMs, asNum(state.switch_close_cue_start_ms, 300) + asNum(state.switch_close_cue_duration_ms, 600) + 700);
+    }
+    // compare_grid rows reveal on their own authored clocks — the frozen frame
+    // must land after the LAST row so THE EYE photographs the completed verdict
+    // grid, never a partial one.
+    if (Array.isArray(state.compare_grid)) {
+        for (const cellRaw of state.compare_grid) {
+            const cell = asObj(cellRaw);
+            if (cell) maxMs = Math.max(maxMs, asNum(cell.reveal_at_ms, 0) + 400);
+        }
+    }
     return maxMs;
 }
 
@@ -1677,6 +1714,60 @@ function isPcplInteractive(state: Record<string, unknown>): boolean {
  *                   headless harness never performs
  *   undefined     → unknown / genuinely continuous motion → keep the strict gate
  */
+
+/**
+ * combination_of_cells (particle_field, scenario_type 'internal_resistance'
+ * EXTENDED with cell_topology/cell_count/flip_cell2 grouped-cell sliders — see
+ * ccMode()/ccCombo()/ccFormula() in particle_field_renderer.ts): does this
+ * guided state's grouped-cell circuit settle with i=0 (no bead flow) once its
+ * one-shot (dock_cell/switch_close_cue/flip_cell/regroup/cycle_compare) has
+ * landed? Re-derived from the AUTHORED post-one-shot TARGET fields
+ * (dock_cell_topology_to, flip_cell2_to, regroup_topology_to, the
+ * cycle_phase*_target_topology chain, switch_close_cue_to) — never the entry
+ * pose alone — so a state whose one-shot CLOSES the loop (S3) or restores the
+ * flip doesn't false-positive into reveal_hold, and a state whose one-shot
+ * leaves it open/dead (S2 post-dock, S4's reversed-pair dead circuit, S5
+ * post-regroup) correctly does. Gated by the caller on `cell_topology` being a
+ * per-state field at all, so every other particle_field concept (no such
+ * field) never reaches this function.
+ */
+function ccGroupedCellsEndsDead(st: Record<string, unknown>): boolean {
+    // Final switch state: switch_close_cue's target overrides the entry lock;
+    // otherwise the entry `switch` field; default closed if neither is authored.
+    let switchOpen = typeof st.switch === 'number' ? st.switch < 0.5 : false;
+    if (st.switch_close_cue === true) {
+        const to = typeof st.switch_close_cue_to === 'number' ? st.switch_close_cue_to : 1;
+        switchOpen = to < 0.5;
+    }
+    if (switchOpen) return true;   // no current can flow with the loop open
+
+    // Final topology: dock_cell / regroup / cycle_compare's LAST topology-
+    // changing phase (phase3, falling back to phase1) override the entry value.
+    let topology = typeof st.cell_topology === 'string' ? st.cell_topology : 'single';
+    if (st.dock_cell === true && typeof st.dock_cell_topology_to === 'string') {
+        topology = st.dock_cell_topology_to;
+    } else if (st.regroup === true && typeof st.regroup_topology_to === 'string') {
+        topology = st.regroup_topology_to;
+    } else if (st.cycle_compare === true) {
+        if (typeof st.cycle_phase3_target_topology === 'string') topology = st.cycle_phase3_target_topology;
+        else if (typeof st.cycle_phase1_target_topology === 'string') topology = st.cycle_phase1_target_topology;
+    }
+
+    // Final flip_cell2: flip_cell's target overrides the entry lock.
+    let flip = typeof st.flip_cell2 === 'number' ? st.flip_cell2 : 0;
+    if (st.flip_cell === true) {
+        flip = typeof st.flip_cell2_to === 'number' ? st.flip_cell2_to : 1;
+    }
+
+    // eps_eq = 0 only in the series signed-sum reversed-pair dead zone; parallel/
+    // single always keep eps_eq = emf > 0 (the identical-cells idealization).
+    if (topology !== 'series') return false;
+    const emf = typeof st.emf === 'number' ? st.emf : 1.5;
+    const count = typeof st.cell_count === 'number' ? st.cell_count : 1;
+    const epsEq = emf * (count - 2 * flip);
+    return Math.abs(epsEq) < 1e-9;
+}
+
 export function deriveHoldExpectations(
     config: Record<string, unknown> | null,
 ): Record<string, 'reveal_hold' | 'interactive' | undefined> {
@@ -1691,7 +1782,21 @@ export function deriveHoldExpectations(
     if (pfHold) {
         for (const [stateId, stateRaw] of Object.entries(pfHold)) {
             const st = asObj(stateRaw);
-            out[stateId] = st && st.show_sliders === true ? 'interactive' : undefined;
+            if (st && st.show_sliders === true) { out[stateId] = 'interactive'; continue; }
+            // combination_of_cells: some guided states correctly settle to a
+            // STATIC-but-live payoff pose after their one-shot lands — the switch
+            // ends open (S2 post-dock, S5 post-regroup: i=0, no bead flow) or the
+            // switch stays closed but the group's OWN eps_eq lands on exactly 0
+            // (S4's reversed-pair "dead circuit, two live cells" — the state's own
+            // teaching point). Declare those reveal_hold so D7's stuck-tail check
+            // doesn't misread the settled payoff as "animation died". Every other
+            // guided state (S1/S3/S6/S7) ends with current genuinely flowing →
+            // keep the strict gate. Every other particle_field concept has no
+            // `cell_topology` field at all, so this never fires for them.
+            if (st && typeof st.cell_topology === 'string' && ccGroupedCellsEndsDead(st)) {
+                out[stateId] = 'reveal_hold'; continue;
+            }
+            out[stateId] = undefined;
         }
         return out;
     }

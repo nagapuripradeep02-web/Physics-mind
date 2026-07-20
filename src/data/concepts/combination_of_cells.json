@@ -1,0 +1,1125 @@
+{
+  "concept_id": "combination_of_cells",
+  "concept_name": "Combination of Cells — Series Adds, Parallel Shares",
+  "chapter": 3,
+  "section": "3.12",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.12 Cells in Series and in Parallel) — table-of-contents + scope reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC: emf / cells / internal resistance / grouping-of-cells sections) to confirm grouping of cells is a distinct sub-topic after internal resistance, and that mixed grouping / maximum power transfer is conventionally a separate optimization topic — no teaching method, example problem, or figure imported. The atomic idea: joining real cells (each carrying its own emf epsilon and internal resistance r) in SERIES adds both the pushes and the tolls — epsilon_eq = sum of the individual emfs signed by polarity, r_eq = sum of the individual r's always — while joining IDENTICAL cells in PARALLEL keeps the push but SHARES the toll — epsilon_eq = epsilon, r_eq = r/m — so which grouping actually helps depends on the load: series wins when R is much greater than r, parallel wins when R is comparable to or smaller than r, and 'more cells' is never automatically 'more current'. SCOPE: this concept is a direct sequel of emf_definition and internal_resistance (both SHIPPED) — same particle_field (2D p5.js) renderer family, reusing their charge-pump cell + potential-energy ladder + terminal voltmeter + r-interior machinery, same epsilon = 1.5 V / r = 0.5 Ω home cell, now MULTIPLIED into 2-3 cells joined in series or parallel. Does NOT cover maximum power transfer or mixed m-by-n grouping optimization (deferred to grouping_cells_mixed_max_power_transfer, a future atomic), emf's definition or single-cell V = epsilon - i*r mechanics (shipped emf_definition / internal_resistance — assumed here), Kirchhoff's laws as a method (shipped KCL/KVL — loop reasoning used informally, never re-taught), or the general UNEQUAL-cell parallel formula epsilon_eq = (epsilon1*r2 + epsilon2*r1)/(r1+r2) — genuine NCERT scope but DEFERRED to the unequal_parallel_cells drill-down cluster (the identical-cells idealization is stated honestly on-canvas at STATE_6's formula surface). Renderer-reality note: this concept does NOT drive epsilon_eq/r_eq/i/V_terminal via physics_engine_config.formulas/PM_interpolate — particle_field_renderer.ts computes them natively in engine JS via the EXTENDED internal_resistance adapter, reading slider_controls.{emf,r,R,switch,cell_topology,cell_count,flip_cell2}; physics_engine_config below is authored as documentation per the Zod requirement, mirroring internal_resistance/emf_definition/combination_of_resistors' convention. Reuses scenario_type 'internal_resistance' with NEW GATED per-state flags (cell_topology, cell_count, flip_cell2, dock_cell, switch_close_cue, flip_cell, regroup, R_autosweep_down/R_autosweep_to REUSED verbatim from internal_resistance, cycle_compare + per-phase fields, compare_readout/compare_chip/compare_grid, ghost_text, and two new glow keys cells/ammeter) — all routed to peter_parker:renderer_primitives via quality_auditor FAIL, never implemented directly by the alex authoring agents. STATE_8's cycle_compare mechanism (2-phase: R sweep then regroup) is the surviving half of what was originally a single 3-phase STATE_7 — split 2026-07-20 (founder review: 4 grid reveals + 3 circuit morphs in ~5s was illegible) into STATE_7 (heavy-load verdict, one plain regroup one-shot) and STATE_8 (light-load verdict, a 2-phase cycle_compare); the bridge_r_sweep/jockey_sweep precedents are single-phase, so the 2-phase chain on STATE_8 remains this concept's largest engine ask.",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "internal_resistance"
+    ]
+  },
+  "prerequisites": [
+    "internal_resistance",
+    "emf_definition",
+    "combination_of_resistors",
+    "ohms_law"
+  ],
+  "real_world_anchor": {
+    "primary": "A flashlight stacks its cells nose-to-tail — in series — because its lamp wants more push than one 1.5 V cell can give: two cells, three volts, one brighter beam. Put one cell in backwards and the flashlight goes completely dead even though both cells are still full — the reversed cell subtracts its push. But series stacking is not what a cordless drill or a starter motor needs: a motor straining against a load is a tiny-resistance, huge-current problem, and there the pack's OWN internal resistance is the bottleneck — packs built for heavy current put cells side-by-side so each one carries only a share and the pack doesn't sag. Same cells, two opposite architectures, chosen by the load.",
+    "secondary": "Battery holders in toys and remotes are shaped to FORCE the right grouping — the springs and metal nubs are the manufacturer's answer to exactly this concept."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "emf": {
+        "name": "electromotive force per cell (epsilon)",
+        "unit": "V",
+        "min": 1.0,
+        "max": 3.0,
+        "step": 0.1,
+        "default": 1.5,
+        "role": "slider — LOCKED to 1.5 on STATE_1-STATE_8 (every guided state assumes the c11/c12 home cell for pose continuity + checkpoint-number stability); LIVE only in STATE_9 (explore). Range kept narrower than the c11/c12 sibling's [1,12] on purpose — this diamond's payload is the GROUPING arithmetic, not chemistry diversity; a tight range keeps every derived number legible."
+      },
+      "r": {
+        "name": "internal resistance per cell",
+        "unit": "Ω",
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.1,
+        "default": 0.5,
+        "role": "slider — LOCKED to 0.5 on STATE_1-STATE_8; LIVE only in STATE_9. r.min = 0.1 (never 0) preserved from internal_resistance's finite-ceiling guarantee — with cell_count up to 3, r_eq can get very small; r=0 would make a series r_eq=0 possible only if r itself were 0, which the slider forbids."
+      },
+      "R": {
+        "name": "load resistance",
+        "unit": "Ω",
+        "min": 0.25,
+        "max": 8,
+        "step": 0.25,
+        "default": 4,
+        "role": "slider — LOCKED to 4 (the light-load baseline) on STATE_1/STATE_2/STATE_4/STATE_5; STATE_3 stays FIXED at 4 throughout (S3's cause is the SWITCH closing, not an R sweep); STATE_6 sweeps 4 to 0.25 then goes LIVE post-sweep (visible_controls: ['R'], internal_resistance S3 precedent); STATE_7 stays FIXED at 0.25 throughout (S7's only cause is a plain regroup one-shot, cell_topology parallel->series); STATE_8 is driven by its own cycle_compare phase list (0.25 then 4, NOT teacher-draggable mid-cycle, live only after the cycle completes); LIVE in STATE_9."
+      },
+      "switch": {
+        "name": "circuit switch (0=open, 1=closed)",
+        "unit": "dimensionless (enum)",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "role": "slider (2-state toggle), rendered as text Open/Closed never raw 0/1 (sibling convention). LOCKED closed(1) on STATE_1 (hook moves from t=0, no cue needed), LOCKED open(0) as the ENTRY pose on STATE_2/STATE_3/STATE_5 (defensive Rule 25d locks), LOCKED closed(1) as the entry pose on STATE_4/STATE_6/STATE_7/STATE_8 (continuation locks). LIVE only in STATE_9."
+      },
+      "cell_topology": {
+        "name": "how the cells are joined",
+        "unit": "enum (single | series | parallel)",
+        "role": "NEW variable (source-side mirror of combination_of_resistors' cTopology). Default value single. LOCKED per guided state (single: S1; series: S2-S4; parallel: S5-S6; S7 REGROUPS parallel to series on its own clock — the heavy-load verdict; S8 CYCLES series to parallel on its own clock via an R sweep then a regroup — the light-load verdict; neither is slider-driven mid-state); LIVE in STATE_9. Rendered as text, never a raw enum index."
+      },
+      "cell_count": {
+        "name": "number of identical cells joined — reads as n (series) or m (parallel); irrelevant (=1) when topology=single",
+        "unit": "count (discrete)",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2,
+        "role": "NEW variable. LOCKED to 1 on STATE_1, LOCKED to 2 on STATE_2-STATE_8 (every guided state is the two-cell case — 3-cell rendering is EXPLORE-ONLY). LIVE (1-3) only in STATE_9."
+      },
+      "flip_cell2": {
+        "name": "polarity of cell 2 (0 = normal, 1 = reversed end-for-end)",
+        "unit": "dimensionless (enum, boolean)",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "role": "NEW variable (source-side cell_polarity). LOCKED 0 on every state EXCEPT STATE_4 (locked 1 AFTER the flip_cell one-shot fires). LOCKED 0 (RESTORED) as the declared S5 entry pose. LIVE in STATE_9, but ONLY MEANINGFUL when cell_topology='series' AND cell_count>=2 — see constraints for the out-of-scope flip-times-parallel combination."
+      }
+    },
+    "derived_readouts": {
+      "eps_eq": {
+        "name": "equivalent emf of the group",
+        "unit": "V",
+        "derived": "topology==='series' ? emf*(cell_count - 2*flip_cell2) : emf",
+        "role": "SERIES: signed sum — cell_count identical +emf terms, minus 2*emf if cell 2 is flipped (one term flips sign, net change is minus 2 times that term). PARALLEL or SINGLE: eps_eq = emf identically (the identical-cells idealization). flip_cell2 has NO effect when topology != series."
+      },
+      "r_eq": {
+        "name": "equivalent internal resistance of the group",
+        "unit": "Ω",
+        "derived": "topology==='series' ? cell_count*r : (topology==='parallel' ? r/cell_count : r)",
+        "role": "SERIES: r_eq = n*r ALWAYS — independent of flip_cell2 (the S4 checkpoint: r_eq holds 1.0Ω through the flip). PARALLEL: r_eq = r/m (identical-cells idealization)."
+      },
+      "i": {
+        "name": "loop current",
+        "unit": "A",
+        "derived": "switch===0 ? 0 : eps_eq/(R+r_eq)",
+        "role": "the ammeter readout — single formula covers open/closed/series/parallel uniformly (open implies i=0 by the switch guard, not a separate branch)."
+      },
+      "V_terminal": {
+        "name": "terminal voltage",
+        "unit": "V",
+        "derived": "eps_eq - i*r_eq",
+        "role": "the voltmeter readout. Collapses correctly to V_terminal = eps_eq when switch is open (i=0 there already), so ONE formula covers every state — no separate open-circuit branch needed."
+      },
+      "i_through_cell": {
+        "name": "current actually flowing through ONE physical cell",
+        "unit": "A",
+        "derived": "topology==='parallel' ? i/cell_count : i",
+        "role": "SERIES/SINGLE: every cell carries the full loop current i (one path). PARALLEL: each of cell_count branches carries i/cell_count — the S6 'share-the-load' number (1.5 A per branch at the checkpoint)."
+      },
+      "internal_step_per_cell": {
+        "name": "ladder's internal (i*r) step height for ONE cell",
+        "unit": "V",
+        "derived": "i_through_cell * r",
+        "role": "SERIES: each cell draws its own full-height step (S3: 0.30 V x2). PARALLEL: each cell draws one HALF-HEIGHT step (S6: 0.75 V)."
+      },
+      "i_ceiling_stack": {
+        "name": "asymptotic series ceiling as n grows without bound (explore-only, informational)",
+        "unit": "A",
+        "derived": "emf / r",
+        "role": "EXPLORE HONESTY NUMBER (STATE_9 only) — the limit of eps_eq/(R+r_eq)=n*emf/(R+n*r) as n grows, independent of R for ANY fixed R>0."
+      },
+      "i_ceiling_bank": {
+        "name": "asymptotic parallel ceiling as m grows without bound (explore-only, informational)",
+        "unit": "A",
+        "derived": "emf / R",
+        "role": "EXPLORE HONESTY NUMBER (STATE_9 only) — the limit of emf/(R+r/m) as m grows, independent of r, for ANY fixed R>0."
+      },
+      "load_glow_normalized": {
+        "name": "load-box brightness, display-only",
+        "unit": "dimensionless [0,1]",
+        "derived": "constrain((i*i*R) / 2.25, 0, 1)",
+        "role": "K=2.25 W pinned to the guided arc's power CLIMAX (S6's heavy-load parallel reading: i=3.00A, R=0.25Ω gives i^2*R = 2.25 W exactly — also S7's opening grid cell). CLAMPED at 1 for STATE_9 extremes — display-only, never printed on-canvas."
+      }
+    },
+    "formulas": {
+      "eps_eq": "topology==='series' ? emf*(cell_count - 2*flip_cell2) : emf",
+      "r_eq": "topology==='series' ? cell_count*r : (topology==='parallel' ? r/cell_count : r)",
+      "i": "switch===0 ? 0 : eps_eq/(R+r_eq)",
+      "V_terminal": "eps_eq - i*r_eq",
+      "i_through_cell": "topology==='parallel' ? i/cell_count : i",
+      "internal_step_per_cell": "i_through_cell * r",
+      "i_ceiling_stack": "emf / r",
+      "i_ceiling_bank": "emf / R"
+    },
+    "computed_outputs": {
+      "load_glow_normalized": {
+        "formula": "constrain((i*i*R) / 2.25, 0, 1)"
+      }
+    },
+    "constraints": [
+      "IDENTICAL-CELLS IDEALIZATION: eps_eq(parallel) = epsilon and r_eq(parallel) = r/m are exact ONLY when every cell shares the same epsilon and r. The general unequal-cell parallel result is genuine NCERT scope but is DEFERRED to the unequal_parallel_cells drill-down cluster, never asserted as exact for mismatched cells; the S6 formula surface carries an 'identical cells' rider for exactly this reason.",
+      "SERIES r_eq = sum of r's ALWAYS, independent of polarity: flipping cell 2 changes eps_eq (via the signed sum) but NEVER changes r_eq — internal resistance is a scalar property of each cell's electrolyte/electrodes, not sensitive to which way current would flow through it. This is the exact invariant S4 exists to demonstrate (r_eq chip HOLDS 1.0Ω across the flip).",
+      "EXPLORE HONESTY CEILINGS (STATE_9): as cell_count grows without bound in series, i approaches epsilon/r for ANY FIXED R>0 — not merely 'on a tiny R'. As cell_count grows without bound in parallel, i approaches epsilon/R for ANY FIXED R>0, most dramatically visible on a small (heavy) R but not restricted to it. These are UNREACHABLE asymptotes at cell_count<=3 (the honest slider ceiling) — S9 never actually reaches them, it only gestures toward them.",
+      "REVERSED-PAIR DEAD ZERO IS A cell_count=2 RESULT, NOT A GENERAL 'any n' RESULT: eps_eq=0 exactly requires cell_count=2 with flip_cell2=1 (epsilon minus epsilon = 0). At cell_count=3 with flip_cell2=1, eps_eq = epsilon*(3-2) = epsilon (one net cell's worth, NOT zero). STATE_9's explore-honesty note should say 'dead zero at cell_count=2; at cell_count=3 one cell's worth of epsilon survives, r_eq stays 3r' rather than implying the zero generalizes to any n.",
+      "flip_cell2 IS SCOPED TO SERIES: combining flip_cell2=1 with cell_topology='parallel' is OUT OF SCOPE for this diamond (an unequal-and-opposite parallel pair produces inter-cell circulating current — exactly the deferred unequal_parallel_cells territory). If the STATE_9 slider UI technically allows the combination, the formulas simply hold eps_eq=epsilon (the parallel branch ignores flip_cell2), a defensible SIMPLIFICATION that should never be narrated or highlighted as a taught result.",
+      "load_glow_normalized is DISPLAY-ONLY: it is a brightness-scale normalization (K=2.25W pinned to the S6/S7 climax reading), never a claim about actual absolute wattage — no on-canvas number should present '2.25' as anything but the internal normalization constant (never surfaced in narration or HUD).",
+      "i >= 0 always across every guided state (no charging branch exists in this diamond, unlike internal_resistance's S6) — the formula i = eps_eq/(R+r_eq) with the switch guard never goes negative for any declared entry pose or the S4 flip (which lands at exactly i=0, not negative)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 33
+  },
+  "aha_moment": {
+    "state_id": "STATE_8",
+    "statement": "More cells isn't more current — match series or parallel to the load.",
+    "visual_confirmation": "The same two cells that lose to parallel on the heavy load (2.40 A vs 3.00 A) barely beat a single cell on the light load — the 2x2 grid shows both verdicts side by side, R against r."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6",
+      "STATE_7",
+      "STATE_8"
+    ],
+    "series": [
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "parallel": [
+      "STATE_5",
+      "STATE_6"
+    ],
+    "grouping_choice": [
+      "STATE_7",
+      "STATE_8",
+      "STATE_9"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "One real cell drives a weak current against this load",
+        "duration": 12,
+        "focal_primitive_id": "weak_current_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "home_cell_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "One real cell: emf epsilon = 1.5 V, internal r = 0.5 Ω, driving a 4 Ω load — switch already closed.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "weak_current_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Current i settles at a weak 0.33 A — one cell alone barely pushes this load.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "ladder_baseline_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "The ladder shows one climb, one small internal step, one external drop — the reference for every state ahead.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Home cell: emf epsilon one point five volts, internal resistance r half an ohm, driving a four ohm load — switch already closed.",
+              "text_te": "Home cell: emf epsilon one point five volts, internal resistance r half an ohm — four ohm load ను నడుపుతోంది, switch ఇప్పటికే మూసి ఉంది.",
+              "glow": "ladder"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Current i settles at a weak zero point three three amps — one cell alone barely pushes this load.",
+              "text_te": "current i ఒక బలహీనమైన zero point three three amps వద్ద settle అవుతుంది — ఒక్క cell మాత్రమే ఈ load ను కష్టంగా నడుపుతుంది.",
+              "glow": "electrons"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Series: a second cell docks in-line, EMFs add",
+        "duration": 14,
+        "focal_primitive_id": "eps_eq_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "single_cell_open_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Switch open, one cell alone: the voltmeter reads a steady 1.50 V.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "dock_cell_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "A second identical cell docks in, nose to tail — in series, emfs simply add.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "eps_eq_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "The ladder grows a second climb, the voltmeter glides to 3.00 V — ε_eq = ε₁ + ε₂ = 3.0 V.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Switch open, one cell alone reads one point five volts on the voltmeter.",
+              "text_te": "switch open గా ఉంది, ఒక్క cell మాత్రమే voltmeter పై one point five volts చూపిస్తుంది.",
+              "glow": "voltmeter"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "A second identical cell docks in, nose to tail — in series, e-m-fs simply add.",
+              "text_te": "రెండో identical cell ముందు-వెనుక కలిపి dock అవుతుంది — series లో e-m-f లు కేవలం add అవుతాయి.",
+              "glow": "cells"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The ladder grows a second climb, and the voltmeter glides from one point five to three volts — the equivalent epsilon is epsilon-one plus epsilon-two.",
+              "text_te": "ladder కు రెండో climb వస్తుంది, మరియు voltmeter one point five నుండి three volts వరకు glide అవుతుంది — equivalent epsilon అంటే epsilon-one ప్లస్ epsilon-two.",
+              "glow": "ladder"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Series' hidden cost: every cell adds its own r",
+        "duration": 16,
+        "focal_primitive_id": "densify_audit_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "entry_series_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Series pair, switch still open: the voltmeter holds at 3.00 V, nothing flowing yet.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "switch_close_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Close the switch — the only thing that changes.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "densify_audit_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Current climbs to 0.60 A; the ladder audits 0.30 + 0.30 + 2.40 = 3.00 V — r_eq = 1.0 Ω, nearly double one cell's 0.33 A.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Close the switch: each cell adds its internal resistance r, so r-equivalent is one ohm — current i climbs to zero point six amps, nearly double one cell's rate against this light load.",
+              "text_te": "switch ను మూయండి: ప్రతి cell తన internal resistance r ను add చేస్తుంది, కాబట్టి r-equivalent one ohm అవుతుంది — current i zero point six amps కు పెరుగుతుంది, ఈ light load పై ఒక్క cell rate కన్నా దాదాపు రెట్టింపు.",
+              "glow": "switch"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The ladder confirms it: two zero point three volt steps plus a two point four volt drop make the full three volts.",
+              "text_te": "ladder దీన్ని confirm చేస్తుంది: రెండు zero point three volt steps, ఒక two point four volt drop తో కలిస్తే మొత్తం three volts అవుతుంది.",
+              "glow": "r_internal"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Polarity: a reversed cell subtracts its emf, but its r still adds",
+        "duration": 14,
+        "focal_primitive_id": "dead_circuit_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "entry_flowing_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Series pair, switch closed, current already flowing at 0.60 A.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "flip_cell_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Watch cell 2 flip end-for-end — its emf now subtracts.",
+            "color": "#FF8A65",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "dead_circuit_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "ε_eq falls to zero, current and voltage die — yet r_eq still holds 1.0 Ω: a dead circuit, two live cells.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Watch cell two flip end-for-end: its emf subtracts, so epsilon-equivalent falls to zero — epsilon-one minus epsilon-two.",
+              "text_te": "cell two ఎండ్-టు-ఎండ్ flip అవ్వడం చూడండి: దాని emf subtract అవుతుంది, కాబట్టి epsilon-equivalent zero కు పడిపోతుంది — epsilon-one మైనస్ epsilon-two.",
+              "glow": "cells"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The ladder's climb inverts into a descent, beads freeze, and current i and voltage V die to zero.",
+              "text_te": "ladder యొక్క climb తలకిందులై descent గా మారుతుంది, beads freeze అవుతాయి, మరియు current i, voltage V రెండూ zero కు die అవుతాయి.",
+              "glow": "ladder"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Yet both r's are still in the loop — r-equivalent still holds one ohm: a dead circuit, two live cells.",
+              "text_te": "అయినా రెండు r లు ఇంకా loop లోనే ఉన్నాయి — r-equivalent ఇప్పటికీ one ohm వద్దే ఉంటుంది: ఒక dead circuit, రెండు live cells.",
+              "glow": "r_internal"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Polarity/order doesn't matter in a stack; and if two equal cells cancel, everything cancels.",
+            "visual_counter": "Cell 2 flips and the ammeter dies to 0.00 A, while both r zigzags stay drawn in the loop and the r_eq chip holds 1.0 Ω.",
+            "one_line_fix": "EMFs add WITH SIGN; internal resistances always add — a cancelled pair is a dead but still-resistive battery."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Parallel: the voltmeter refuses to rise — ε_eq = ε",
+        "duration": 13,
+        "focal_primitive_id": "voltage_hold_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "restored_series_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Polarity restored, switch open, still in series: the voltmeter reads 3.00 V.",
+            "color": "#B39DDB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "regroup_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "The same two cells regroup side by side into a parallel bank.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "voltage_hold_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "The voltmeter glides back to 1.50 V and holds — two cells, one cell's voltage: ε_eq = ε.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Polarity restored, switch open, still in series: the voltmeter reads three volts.",
+              "text_te": "polarity restore అయ్యింది, switch open, ఇంకా series లోనే ఉంది: voltmeter three volts చూపిస్తుంది.",
+              "glow": "cells"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now watch the same two cells regroup side by side, into a parallel bank.",
+              "text_te": "ఇప్పుడు అవే రెండు cells పక్క-పక్కన regroup అయ్యి, ఒక parallel bank గా మారడం చూడండి.",
+              "glow": "cells"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The voltmeter glides back down to one point five volts and holds — two cells, one cell's voltage: epsilon-equivalent is just epsilon.",
+              "text_te": "voltmeter తిరిగి one point five volts కు glide అయ్యి అక్కడే ఆగుతుంది — రెండు cells, కానీ ఒక్క cell voltage — epsilon-equivalent కేవలం epsilon మాత్రమే.",
+              "glow": "voltmeter"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Two cells always add up — a two-cell pack must read 3 V however you join it.",
+            "visual_counter": "The same two cells that read 3.00 V in series regroup side-by-side and the voltmeter glides back to 1.50 V and holds (ghost chip: series read 3.00 V).",
+            "one_line_fix": "Parallel keeps ε — it multiplies current capacity, never voltage."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Parallel's gift: each cell carries a share, r_eq = r/m",
+        "duration": 16,
+        "focal_primitive_id": "share_load_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "bank_entry_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Parallel bank, switch closed, light load: current settles near 0.35 A.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "R_sweep_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Load R shrinks from 4 Ω to a heavy 0.25 Ω.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "share_load_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Current climbs to 3.00 A as the stream splits — each cell carries 1.50 A, r_eq = r/2 for identical cells.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Load R shrinks from four ohms to a heavy zero point two five — current i climbs to three amps as it splits, each cell carrying one point five amps.",
+              "text_te": "load R four ohms నుండి భారీ zero point two five కు shrink అవుతుంది — current i split అవుతూ three amps కు పెరుగుతుంది, ప్రతి cell one point five amps మోస్తుంది.",
+              "glow": "load"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Sharing halves the internal toll: r-equivalent is r over two, one half-height step of zero point seven five volts — past one cell's two amps.",
+              "text_te": "sharing internal toll ను సగానికి తగ్గిస్తుంది: r-equivalent r over two అవుతుంది, ఒక half-height step zero point seven five volts — ఇది ఒక్క cell ఇచ్చే two amps ను దాటిపోతుంది.",
+              "glow": "r_internal"
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Heavy load: bank wins",
+        "duration": 17,
+        "focal_primitive_id": "bank_wins_verdict_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "heavy_load_lock_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Parallel bank on the heavy quarter-ohm load: the ammeter locks in at 3.00 A.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "regroup_to_series_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Watch the same two cells regroup end-to-end into a single stack.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "bank_wins_verdict_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Current falls to 2.40 A — the stack's doubled r_eq chokes it; on a heavy load, the bank wins.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7a_1",
+              "text_en": "Two cells side by side on this heavy quarter ohm load hold the ammeter at a strong three amps.",
+              "text_hi": "इस heavy quarter ohm load पर दो cells side by side हैं — ammeter एक मजबूत three amps दिखा रहा है।",
+              "glow": "ammeter"
+            },
+            {
+              "id": "s7a_2",
+              "text_en": "Now watch these same two cells regroup into a single stack.",
+              "text_hi": "अब देखिए, ये दोनों cells एक ही stack में regroup हो जाते हैं।",
+              "glow": "cells"
+            },
+            {
+              "id": "s7a_3",
+              "text_en": "Current i falls to two point four amps — the stack's doubled internal resistance chokes it; on a heavy load, the bank wins.",
+              "text_hi": "current i गिरकर two point four amps हो जाता है — stack का doubled internal resistance उसे रोक देता है; heavy load पर, side by side bank जीत जाता है।",
+              "glow": "ammeter"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Light load: stack wins",
+        "duration": 20,
+        "focal_primitive_id": "aha_verdict_tag",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "light_load_entry_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Series pair still on the heavy load: current holds at 2.40 A entering this state.",
+            "color": "#80DEEA",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "load_and_regroup_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Load R rises to four ohms, then the same two cells regroup into the bank.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "aha_verdict_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Series wins the light load at 0.60 A, the bank falls to 0.35 A — match the grouping to the load.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8a_1",
+              "text_en": "Raise the load from a quarter ohm to four ohms — the stack settles at zero point six amps.",
+              "text_hi": "load को quarter ohm से four ohms तक बढ़ाइए — stack zero point six amps पर settle हो जाता है।",
+              "glow": "load"
+            },
+            {
+              "id": "s8a_2",
+              "text_en": "Regroup into the bank and current i drops to zero point three five — same two cells, opposite verdicts.",
+              "text_hi": "अब bank में regroup कीजिए — current i गिरकर zero point three five हो जाता है; same two cells, opposite verdicts।",
+              "glow": "cells"
+            },
+            {
+              "id": "s8a_3",
+              "text_en": "Don't add cells for more current — match series or parallel to the load, R against r.",
+              "text_hi": "ज़्यादा current के लिए cells मत जोड़िए — load के हिसाब से series या parallel choose करें, R को r से compare करें।",
+              "glow": "formula"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "More cells = more current, always.",
+            "visual_counter": "The 2x2 grid — the series stack LOSES to the bank on the heavy load (2.40 vs 3.00 A), the bank barely beats a single cell on the light load (0.35 vs 0.33 A) — each grouping visibly fails on the wrong load.",
+            "one_line_fix": "Compare R to r: R much greater than r wants series, R comparable to or smaller than r wants parallel."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Explore: topology, cell count, flip, epsilon, r, R, switch — all live",
+        "duration": 0,
+        "focal_primitive_id": "live_meters_tag",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_all_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Every dial is live: topology, cell count, polarity, ε, r, R, switch.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "live_meters_tag",
+            "position": { "x": 620, "y": 250 },
+            "text": "Ladder, both meters, and every chip track continuously as you drag.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "honesty_ceiling_tag",
+            "position": { "x": 380, "y": 440 },
+            "text": "Stacking has a ceiling near ε/r; paralleling trends toward ε/R; equal-and-opposite is a dead zero only at exactly two cells.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Every dial is yours now — topology, cell count, polarity, epsilon, r, R, and the switch.",
+              "text_te": "ఇప్పుడు ప్రతి dial మీదే — topology, cell count, polarity, epsilon, r, R, మరియు switch.",
+              "glow": "formula"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "combination_of_cells_solar_panel_strings",
+      "type": "B",
+      "label": "Small solar panels wired in strings vs in banks",
+      "physical_world": "Small solar panels each produce a fixed voltage and carry their own small internal resistance. Wiring several panels end-to-end in a string adds their voltages (and their internal resistances); wiring several strings side-by-side in a bank keeps the same voltage but lets more current flow, each string sharing the load.",
+      "same_physics": "Identical to series/parallel cells — a panel string's equivalent emf and r add exactly like series cells, while parallel strings share current exactly like parallel cells, with the open-circuit voltage unchanged.",
+      "scene_hint": "Optional supplementary anchor for STATE_2/STATE_6; the primary teaching anchor stays the flashlight / cordless-drill pair (Rule 35)."
+    },
+    {
+      "variant_id": "combination_of_cells_hand_crank_generators",
+      "type": "B",
+      "label": "Two hand-crank generators turning the same shaft",
+      "physical_world": "Two identical hand-crank generators, each with its own small coil resistance, can be linked to spin one after another (their pushes add) or side by side sharing the same shaft load (their currents share, voltage stays that of one generator).",
+      "same_physics": "Same series/parallel source-grouping laws — chaining adds emf and internal resistance; paralleling keeps emf fixed and shares delivered current.",
+      "scene_hint": "Optional supplementary anchor for STATE_4/STATE_7/STATE_8 (reversed-cell / decision-rule beats)."
+    }
+  ],
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can compute epsilon_eq and r_eq for both a series grouping and a series grouping with one reversed cell, correctly state that a parallel grouping leaves the open-circuit voltage unchanged while sharing current via r_eq = r/m, and — given epsilon, r, and a load R — choose and justify which grouping (series or parallel) drives more current, without assuming more cells always means more current.",
+    "questions": [
+      {
+        "q_id": "q_series",
+        "stem": "Three cells, each of emf 2 V and internal resistance 1 Ω, are connected in series across an external resistance of 9 Ω. Find the equivalent emf, the equivalent internal resistance, and the current in the circuit.",
+        "options": {
+          "A": "epsilon_eq = 6 V, r_eq = 1 Ω, i = 0.6 A",
+          "B": "epsilon_eq = 6 V, r_eq = 3 Ω, i = 0.5 A",
+          "C": "epsilon_eq = 2 V, r_eq = 3 Ω, i is about 0.18 A",
+          "D": "epsilon_eq = 6 V, r_eq = 3 Ω, i = 0.67 A"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "forgot that internal resistances also add in series — used a single cell's r instead of the sum of all three",
+          "C": "treated epsilon_eq as one cell's emf instead of the signed sum of all three cells",
+          "D": "computed current as epsilon_eq divided by R only, ignoring the cells' own internal resistance"
+        },
+        "tested_idea": "series-signed-emf-and-r-sum",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Two cells, each of emf 3 V and internal resistance 0.5 Ω, are connected in series across an external resistance of 5 Ω. Find the equivalent emf, equivalent internal resistance, and current."
+      },
+      {
+        "q_id": "q_reversed",
+        "stem": "One of those three series cells is now connected reversed end-for-end. What is the new equivalent emf, and does the equivalent internal resistance change?",
+        "options": {
+          "A": "epsilon_eq = 0 V, r_eq = 3 Ω — a reversed cell cancels the whole pack",
+          "B": "epsilon_eq = 2 V, r_eq = 1 Ω — the reversed cell's resistance drops out",
+          "C": "epsilon_eq = 2 V, r_eq = 3 Ω — unchanged",
+          "D": "epsilon_eq = 6 V, r_eq = 3 Ω — polarity doesn't affect emf, only current direction"
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "believes reversing any one of several cells cancels the entire pack's emf to zero",
+          "B": "believes a reversed cell's own internal resistance also drops out of the loop",
+          "D": "believes polarity/order doesn't matter in a stack of emfs"
+        },
+        "tested_idea": "reversed-cell-r_eq-invariance",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two identical cells (epsilon = 1.5 V, r = 0.5 Ω) are in series and one is then reversed. Find the new equivalent emf and equivalent internal resistance."
+      },
+      {
+        "q_id": "q_parallel_v",
+        "stem": "Four identical 1.5 V cells are connected in parallel. What does an ideal voltmeter read across the open-circuit terminals?",
+        "options": {
+          "A": "3.0 V — parallel cells average their emf with the load",
+          "B": "6.0 V — four cells add their emfs like in series",
+          "C": "0.375 V — the emf divides by the number of cells",
+          "D": "1.5 V"
+        },
+        "correct": "D",
+        "distractor_misconceptions": {
+          "A": "invents an averaging rule that mixes the load into an open-circuit reading",
+          "B": "overgeneralizes the series addition rule to a parallel grouping",
+          "C": "believes emf divides among parallel cells the way current divides among parallel branches"
+        },
+        "tested_idea": "parallel-voltage-unchanged",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Three identical 2 V cells are connected in parallel. What does an ideal voltmeter read across the open-circuit terminals?"
+      },
+      {
+        "q_id": "q_parallel_i",
+        "stem": "Two identical cells (epsilon = 1.5 V, r = 0.5 Ω) are connected in parallel across a heavy load R = 0.25 Ω. Find the total current and the current through each cell.",
+        "options": {
+          "A": "i_total = 3.00 A, i_per_cell = 1.50 A",
+          "B": "i_total = 1.50 A, i_per_cell = 0.75 A — same as one cell alone, since parallel doesn't help current",
+          "C": "i_total = 2.00 A, i_per_cell = 2.00 A — each cell drives the load independently at full current",
+          "D": "i_total = 6.00 A, i_per_cell = 3.00 A — parallel cells add their currents the way series cells add emf"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes adding a parallel cell never increases current at all",
+          "C": "ignores the shared r/m reduction and double-counts each cell as independently driving the full load",
+          "D": "overgeneralizes the series-emf-addition rule into a parallel-current-addition rule"
+        },
+        "tested_idea": "parallel-current-sharing-r-over-m",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "Three identical cells (epsilon = 1.5 V, r = 0.6 Ω) are connected in parallel across a load R = 0.2 Ω. Find the total current and the current through each cell."
+      },
+      {
+        "q_id": "q_choice",
+        "stem": "Two cells, each epsilon = 1.5 V and r = 0.5 Ω, are available. For a load R = 0.1 Ω, and separately for a load R = 10 Ω, which grouping — series or parallel — drives the larger current in each case?",
+        "options": {
+          "A": "Series always wins, regardless of the load — more cells always means more push",
+          "B": "R = 0.1 Ω: series wins; R = 10 Ω: parallel wins — more cells always wins on the light load",
+          "C": "R = 0.1 Ω: parallel wins; R = 10 Ω: series wins",
+          "D": "Parallel always wins, regardless of the load — sharing the internal resistance always helps most"
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "believes more cells in series always means more current, regardless of the load",
+          "B": "swaps the two regimes — believes the light load always favors more cells",
+          "D": "overgeneralizes parallel's current-sharing benefit to every load, including light loads where it barely helps"
+        },
+        "tested_idea": "load-matching-decision",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two cells, each epsilon = 2 V and r = 1 Ω, are available. For a load R = 0.5 Ω and separately R = 20 Ω, which grouping drives the larger current in each case?"
+      },
+      {
+        "q_id": "q_ceiling",
+        "stem": "You keep adding identical cells in series across a very small (near-zero) external resistance. No matter how many cells you add, the current can never exceed what value?",
+        "options": {
+          "A": "Infinite — stacking cells without limit lets current grow without bound",
+          "B": "epsilon/r — the single cell's own short-circuit ceiling",
+          "C": "n*epsilon/R — current keeps climbing proportionally to how many cells you add",
+          "D": "epsilon/R — the ceiling is set by the external load alone, cells don't matter"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "believes more cells in series always means more current, with no ceiling",
+          "C": "ignores that r_eq = n*r also grows with every added cell",
+          "D": "ignores the cells' own internal resistance entirely, treating R as the only limiting factor"
+        },
+        "tested_idea": "series-ceiling-independent-of-external-R",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "You keep adding identical cells in parallel across a fixed external resistance R. As the number of cells grows without bound, what value does the current approach?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_3": ["q_series"],
+      "STATE_4": ["q_reversed"],
+      "STATE_5": ["q_parallel_v"],
+      "STATE_6": ["q_parallel_i"],
+      "STATE_8": ["q_choice", "q_ceiling"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_7", "STATE_9"]
+  },
+  "particle_field_config": {
+    "scenario_type": "internal_resistance",
+    "particles": {
+      "count": 34,
+      "color": "#42A5F5",
+      "size": 8
+    },
+    "slider_controls": {
+      "emf": {
+        "min": 1.0,
+        "max": 3.0,
+        "step": 0.1,
+        "default": 1.5,
+        "label": "EMF ε per cell",
+        "unit": "V"
+      },
+      "r": {
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.1,
+        "default": 0.5,
+        "label": "internal r per cell",
+        "unit": "Ω"
+      },
+      "R": {
+        "min": 0.25,
+        "max": 8,
+        "step": 0.25,
+        "default": 4,
+        "label": "Load R",
+        "unit": "Ω"
+      },
+      "switch": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "label": "Switch"
+      },
+      "cell_topology": {
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 1,
+        "label": "Cell topology"
+      },
+      "cell_count": {
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2,
+        "label": "Cell count"
+      },
+      "flip_cell2": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "label": "Cell 2 polarity"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "cell": "#FFD54F",
+      "ladder": "#4DD0E1",
+      "voltmeter": "#B39DDB",
+      "load": "#FFB74D",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "i = ε/(R+r)",
+        "caption": "One cell, weak drive",
+        "formula_overlay": "i = ε/(R+r)",
+        "cell_topology": "single",
+        "cell_count": 1,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 4,
+        "switch": 1,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ladder"
+      },
+      "STATE_2": {
+        "label": "ε_eq = ε₁ + ε₂",
+        "caption": "EMFs stack in series",
+        "formula_overlay": "ε_eq = ε₁ + ε₂",
+        "cell_topology": "single",
+        "cell_count": 1,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 4,
+        "switch": 0,
+        "dock_cell": true,
+        "dock_cell_start_ms": 300,
+        "dock_cell_duration_ms": 600,
+        "dock_cell_topology_to": "series",
+        "dock_cell_count_to": 2,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "cells"
+      },
+      "STATE_3": {
+        "label": "i = (ε₁+ε₂)/(R + r₁+r₂)",
+        "caption": "Every cell adds its r",
+        "formula_overlay": "i = (ε₁+ε₂)/(R + r₁+r₂)",
+        "cell_topology": "series",
+        "cell_count": 2,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 4,
+        "switch": 0,
+        "switch_close_cue": true,
+        "switch_close_cue_start_ms": 300,
+        "switch_close_cue_duration_ms": 600,
+        "switch_close_cue_to": 1,
+        "compare_readout": true,
+        "compare_chip": "one cell gave 0.33 A",
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "r_internal"
+      },
+      "STATE_4": {
+        "label": "ε_eq = ε₁ − ε₂",
+        "caption": "Reversed cell subtracts",
+        "formula_overlay": "ε_eq = ε₁ − ε₂",
+        "cell_topology": "series",
+        "cell_count": 2,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 4,
+        "switch": 1,
+        "flip_cell2": 0,
+        "flip_cell": true,
+        "flip_cell_start_ms": 300,
+        "flip_cell_duration_ms": 500,
+        "flip_cell2_to": 1,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "cells"
+      },
+      "STATE_5": {
+        "label": "ε_eq = ε",
+        "caption": "Parallel: voltage unchanged",
+        "formula_overlay": "ε_eq = ε",
+        "cell_topology": "series",
+        "cell_count": 2,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 4,
+        "switch": 0,
+        "flip_cell2": 0,
+        "regroup": true,
+        "regroup_start_ms": 300,
+        "regroup_duration_ms": 700,
+        "regroup_topology_to": "parallel",
+        "ghost_text": "series read 3.00 V",
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "voltmeter"
+      },
+      "STATE_6": {
+        "label": "r_eq = r/m",
+        "caption": "Parallel shares the current",
+        "formula_overlay": "r_eq = r/m",
+        "formula_rider": "identical cells",
+        "cell_topology": "parallel",
+        "cell_count": 2,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 4,
+        "switch": 1,
+        "flip_cell2": 0,
+        "R_autosweep_down": true,
+        "R_autosweep_to": 0.25,
+        "show_branch_split": true,
+        "compare_readout": true,
+        "compare_chip": "one cell alone: 2.0 A",
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": ["R"],
+        "glow_focal": "ammeter"
+      },
+      "STATE_7": {
+        "label": "r_eq = r/2 (parallel) · r_eq = 2r (series)",
+        "caption": "Heavy load: bank wins",
+        "formula_overlay": "r_eq = r/2 (parallel) · r_eq = 2r (series)",
+        "cell_topology": "parallel",
+        "cell_count": 2,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 0.25,
+        "switch": 1,
+        "flip_cell2": 0,
+        "regroup": true,
+        "regroup_start_ms": 4000,
+        "regroup_duration_ms": 900,
+        "regroup_topology_to": "series",
+        "compare_readout": true,
+        "compare_grid": [
+          { "id": "cell1", "topology": "parallel", "R_label": "0.25 Ω", "value": "3.00 A", "reveal_at_ms": 1500, "winner": true },
+          { "id": "cell2", "topology": "series", "R_label": "0.25 Ω", "value": "2.40 A", "reveal_at_ms": 6500, "winner": false }
+        ],
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ammeter"
+      },
+      "STATE_8": {
+        "label": "i_ser = 2ε/(R+2r) · i_par = ε/(R+r/2)",
+        "caption": "Light load: stack wins",
+        "formula_overlay": "i_ser = 2ε/(R+2r) · i_par = ε/(R+r/2)",
+        "cell_topology": "series",
+        "cell_count": 2,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 0.25,
+        "switch": 1,
+        "flip_cell2": 0,
+        "cycle_compare": true,
+        "cycle_compare_settle_ms": 11100,
+        "cycle_phase2_start_ms": 3000,
+        "cycle_phase2_duration_ms": 1200,
+        "cycle_phase2_target_R": 4,
+        "cycle_phase3_start_ms": 9500,
+        "cycle_phase3_duration_ms": 900,
+        "cycle_phase3_target_topology": "parallel",
+        "compare_readout": true,
+        "compare_grid": [
+          { "id": "cell1", "topology": "parallel", "R_label": "0.25 Ω", "value": "3.00 A", "reveal_at_ms": 0, "winner": true },
+          { "id": "cell2", "topology": "series", "R_label": "0.25 Ω", "value": "2.40 A", "reveal_at_ms": 0, "winner": false },
+          { "id": "cell3", "topology": "series", "R_label": "4 Ω", "value": "0.60 A", "reveal_at_ms": 5000, "winner": true },
+          { "id": "cell4", "topology": "parallel", "R_label": "4 Ω", "value": "0.35 A", "reveal_at_ms": 11000, "winner": false }
+        ],
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "ammeter"
+      },
+      "STATE_9": {
+        "label": "i = nε/(R+nr) | i = ε/(R+r/m)",
+        "caption": "All yours",
+        "formula_overlay": "i = nε/(R+nr) | i = ε/(R+r/m)",
+        "cell_topology": "series",
+        "cell_count": 2,
+        "emf": 1.5,
+        "r": 0.5,
+        "R": 4,
+        "switch": 1,
+        "flip_cell2": 0,
+        "show_r": true,
+        "show_voltmeter": true,
+        "show_ladder": true,
+        "show_sliders": true,
+        "glow_focal": "formula"
+      }
+    }
+  }
+}

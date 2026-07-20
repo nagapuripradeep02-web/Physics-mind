@@ -657,6 +657,11 @@ function fmtSliderValue(id) {
   if (id === 'material') return materialAt(sliderVal('material')).label;
   if (id === 'topology') return sliderVal('topology') >= 0.5 ? 'Parallel' : 'Series';
   if (id === 'switch') return sliderVal('switch') < 0.5 ? 'Open' : 'Closed';
+  // combination_of_cells: NEW enum sliders — always rendered as words (physics_
+  // author's constraint block: cell_topology/switch as text, flip_cell2 never a
+  // raw number).
+  if (id === 'cell_topology') { var ctv0 = ccTopologyFromNum(sliderVal('cell_topology')); return ctv0.charAt(0).toUpperCase() + ctv0.slice(1); }
+  if (id === 'flip_cell2') return sliderVal('flip_cell2') < 0.5 ? 'Normal' : 'Reversed';
   var defs = sliderDefs();
   var d = (defs && defs[id]) ? defs[id] : {};
   var v = sliderVal(id);
@@ -740,6 +745,13 @@ function updateReadouts() {
     var swIrEl = document.getElementById('pm-sv-switch');      // switch row tracks the cued close
     if (swIrEl) swIrEl.textContent = irSwitchOpen() ? 'Open' : 'Closed';
   }
+  // combination_of_cells S7: the cell_topology row tracks the 3-phase cycle_compare
+  // clock (parallel -> series -> parallel) until grabbed — every other guided state
+  // hides this row (visible_controls), so no other override is needed.
+  if (ccMode() && hasSlider('cell_topology') && !userTouched['cell_topology'] && curState() && curState().cycle_compare) {
+    var ctEl = document.getElementById('pm-sv-cell_topology');
+    if (ctEl) { var ctT = ccCombo().phys._ladderTopology; ctEl.textContent = ctT.charAt(0).toUpperCase() + ctT.slice(1); }
+  }
   // resistivity: L/A/material/T rows track their own auto-sweeps until grabbed.
   if (hasSlider('L') && !userTouched['L']) {
     var lEl = document.getElementById('pm-sv-L');
@@ -799,7 +811,13 @@ function updateReadouts() {
   }
   var ro = document.getElementById('pm-readout');
   if (ro) {
-    if (irMode()) {                                           // internal_resistance: eps, r, V, i (real cell)
+    if (ccMode()) {                                           // combination_of_cells: eps_eq, r_eq, V, i (grouped cells)
+      var ccRo = ccCombo().phys;
+      ro.textContent = '\\u03B5_eq = ' + ccRo.epsEq.toFixed(2) + ' V\\n' +
+                       'r_eq = ' + ccRo.rEq.toFixed(2) + ' \\u03A9\\n' +
+                       'V = ' + ccRo.V.toFixed(2) + ' V\\n' +
+                       'i = ' + ccRo.i.toFixed(2) + ' A';
+    } else if (irMode()) {                                    // internal_resistance: eps, r, V, i (real cell)
       var ic2 = irCurrents();
       ro.textContent = '\\u03B5 = ' + ic2.eps.toFixed(1) + ' V\\n' +
                        'r = ' + ic2.r.toFixed(1) + ' \\u03A9\\n' +
@@ -1442,11 +1460,19 @@ function drawEmfCell(g, eps, dim, pumpActive, rr) {
     beginShape();
     for (var zk = 0; zk <= 6; zk++) vertex(bx + (zk === 0 || zk === 6 ? 0 : (zk % 2 ? -5 : 5)), byT + zk * (16 / 6));
     endShape();
+    // Casing outline is a CENTER-mode rect(bx-2, by-6, 34, 62) -> its left edge sits
+    // at bx-19; the stock label (right-aligned at bx-20) cleared it by just 1px,
+    // messy but tolerable for internal_resistance's single-cell layout. combination_
+    // of_cells' multi-cell composites (a 2nd/3rd cell icon drawn close by) made that
+    // 1px margin read as clipped in every multi-cell state (eye-walker: combo_cells_
+    // r_label_clips_casing_outline). rr.multiCellClear (set only by ccDrawCells, for
+    // n>1 cells) nudges it 8px further left; every other caller (unset) is unchanged.
+    var rLabelX = bx - 20 - (rr.multiCellClear ? 8 : 0);
     noStroke(); fillHex('#FF8A65', 0.95 * rDim); textSize(10); textStyle(BOLD); textAlign(RIGHT, CENTER);
-    text('r = ' + rr.r.toFixed(1) + ' \\u03A9', bx - 20, byT + 2);   // left of the cell (right of it sits the voltmeter)
+    text('r = ' + rr.r.toFixed(1) + ' \\u03A9', rLabelX, byT + 2);   // left of the cell (right of it sits the voltmeter)
     if (rr.i > 0.02) {
       fillHex('#FFAB91', 0.9 * rDim); textSize(10); textAlign(RIGHT, CENTER);
-      text('i\\u00B7r = ' + (rr.i * rr.r).toFixed(2) + ' V', bx - 20, byT - 12);
+      text('i\\u00B7r = ' + (rr.i * rr.r).toFixed(2) + ' V', rLabelX, byT - 12);
     }
     textStyle(NORMAL);
   }
@@ -2191,7 +2217,600 @@ function drawChargerC(g, epsCh, dim) {
   noStroke(); fillHex('#66BB6A', 0.95 * dim); textSize(11); textStyle(BOLD); textAlign(RIGHT, CENTER);
   text('charger ' + epsCh.toFixed(1) + ' V', cx - 16, cy); textStyle(NORMAL);
 }
+// ═══ combination_of_cells adapter — EXTENDS internal_resistance (irMode) with
+// grouped cells: cell_topology (single|series|parallel) + cell_count (1-3) +
+// flip_cell2 (0/1), plus new one-shots (dock_cell, switch_close_cue, flip_cell,
+// regroup, cycle_compare) and two new glow keys (cells, ammeter). Gated on
+// hasSlider('cell_topology') -> ccMode() is FALSE for internal_resistance.json
+// (no such slider), so drawIrScenario()'s original path below is untouched —
+// every function here is new code, nothing shared is mutated.
+//
+// Cause-before-effect (Rule 32a): every one-shot runs a MECHANICAL window
+// (ccMechP — POSITIONS/ROTATES the cell icons, the visible cause) followed by an
+// EFFECT window that starts only once the mechanical window ends (ccEffP — blends
+// the ELECTRICAL numbers, the readable consequence: eps_eq/r_eq/i/V glide, the
+// ladder's new/flipped climb grows/inverts). Both are pure functions of
+// PM_simTimeMs + the authored *_start_ms/*_duration_ms fields, so SET_TIME_FREEZE
+// re-sim at ANY pinned time reproduces the frame exactly (no incremental/
+// accumulated state — derivable at t=0, the bring-up contract).
+function ccMode() { return irMode() && hasSlider('cell_topology'); }
+function ccTopologyFromNum(v) { return v < 0.5 ? 'single' : (v < 1.5 ? 'series' : 'parallel'); }
+function ccBaseTopology() {
+  var st = curState();
+  if (userTouched['cell_topology']) return ccTopologyFromNum(sliderVal('cell_topology'));
+  if (st && typeof st.cell_topology === 'string') return st.cell_topology;
+  return hasSlider('cell_topology') ? ccTopologyFromNum(sliderVal('cell_topology')) : 'single';
+}
+function ccBaseCount() {
+  var st = curState();
+  if (userTouched['cell_count']) return round(sliderVal('cell_count'));
+  if (st && typeof st.cell_count === 'number') return st.cell_count;
+  return hasSlider('cell_count') ? round(sliderVal('cell_count')) : 1;
+}
+function ccBaseFlip() {
+  var st = curState();
+  if (userTouched['flip_cell2']) return sliderVal('flip_cell2') >= 0.5 ? 1 : 0;
+  if (st && typeof st.flip_cell2 === 'number') return st.flip_cell2;
+  return hasSlider('flip_cell2') ? (sliderVal('flip_cell2') >= 0.5 ? 1 : 0) : 0;
+}
+function ccBaseSwitchOpen() {
+  var st = curState();
+  if (userTouched['switch']) return sliderVal('switch') < 0.5;
+  if (st && typeof st.switch === 'number') return st.switch < 0.5;
+  return hasSlider('switch') ? sliderVal('switch') < 0.5 : false;
+}
+// The pure formula core (physics_engine_config.formulas, verbatim). n may be a
+// NON-integer during a dock_cell growth blend — the extra cell's contribution
+// scales continuously 0->1, which is what makes "the ladder grows a second
+// climb" and "the voltmeter glides" the SAME animation, not two separate ones.
+function ccFormula(topology, n, flipFrac, R, switchOpen, emfV, rV) {
+  var nn = max(1e-6, n);
+  var epsEq, rEq;
+  if (topology === 'series') { epsEq = emfV * (nn - 2 * flipFrac); rEq = nn * rV; }
+  else if (topology === 'parallel') { epsEq = emfV; rEq = rV / nn; }
+  else { epsEq = emfV; rEq = rV; }
+  var i = switchOpen ? 0 : epsEq / max(R + rEq, 1e-6);
+  var V = epsEq - i * rEq;
+  var iPerCell = (topology === 'parallel') ? i / nn : i;
+  var stepPerCell = iPerCell * rV;
+  return { topology: topology, cellCount: n, flipFrac: flipFrac, R: R, switchOpen: switchOpen,
+           epsEq: epsEq, rEq: rEq, i: i, V: V, iPerCell: iPerCell, stepPerCell: stepPerCell };
+}
+function ccLerpPhys(a, b, t) {
+  return { topology: t >= 1 ? b.topology : a.topology, cellCount: a.cellCount, flipFrac: a.flipFrac,
+           R: lerp(a.R, b.R, t), switchOpen: t >= 1 ? b.switchOpen : a.switchOpen,
+           epsEq: lerp(a.epsEq, b.epsEq, t), rEq: lerp(a.rEq, b.rEq, t), i: lerp(a.i, b.i, t), V: lerp(a.V, b.V, t),
+           iPerCell: lerp(a.iPerCell, b.iPerCell, t), stepPerCell: lerp(a.stepPerCell, b.stepPerCell, t) };
+}
+// mech: 0->1 across [start, start+dur] — drives the VISIBLE cause (icon slide/flip).
+function ccMechP(startMs, durMs) {
+  if (typeof startMs !== 'number') return 1;
+  return constrain((PM_simTimeMs - startMs) / max(durMs || 1, 1), 0, 1);
+}
+// eff: HOLDS at 0 through the whole mechanical window, then ramps 0->1 across the
+// next effMs — drives the READABLE consequence (numbers/ladder), always AFTER the
+// cause has finished moving (Rule 32a's readable gap).
+function ccEffP(startMs, durMs, effMs) {
+  if (typeof startMs !== 'number') return 1;
+  var mechEnd = startMs + (durMs || 0);
+  if (PM_simTimeMs < mechEnd) return 0;
+  return constrain((PM_simTimeMs - mechEnd) / max(effMs || 1, 1), 0, 1);
+}
+// S7 cycle_compare — 3 sequential phases chained off the PREVIOUS phase's landed
+// state (never off the raw entry pose), each with its own mech/eff split. Returns
+// a phys object plus _ladderTopology (the shape to DRAW — snaps once a phase's
+// numbers finish gliding) and _iconMechExtra (drives the cell icons' shape blend
+// during a topology-changing phase's mechanical window; phase 2 only moves R, so
+// the cells don't move and _iconMechExtra stays null there).
+function ccCyclePhys(st, topo0, count0, flip0, swOpen0, emfV, rV) {
+  var R0 = (typeof st.R === 'number') ? st.R : cLoadR();
+  var stage0 = ccFormula(topo0, count0, flip0, R0, swOpen0, emfV, rV);
+  var p1s = st.cycle_phase1_start_ms, p1d = (typeof st.cycle_phase1_duration_ms === 'number') ? st.cycle_phase1_duration_ms : 500;
+  var p2s = st.cycle_phase2_start_ms, p2d = (typeof st.cycle_phase2_duration_ms === 'number') ? st.cycle_phase2_duration_ms : 600;
+  var p3s = st.cycle_phase3_start_ms, p3d = (typeof st.cycle_phase3_duration_ms === 'number') ? st.cycle_phase3_duration_ms : 500;
+  var topo1 = (typeof st.cycle_phase1_target_topology === 'string') ? st.cycle_phase1_target_topology : topo0;
+  var R2v = (typeof st.cycle_phase2_target_R === 'number') ? st.cycle_phase2_target_R : R0;
+  var topo3 = (typeof st.cycle_phase3_target_topology === 'string') ? st.cycle_phase3_target_topology : topo1;
+  var stage1 = ccFormula(topo1, count0, flip0, R0, swOpen0, emfV, rV);
+  var stage2 = ccFormula(topo1, count0, flip0, R2v, swOpen0, emfV, rV);
+  var stage3 = ccFormula(topo3, count0, flip0, R2v, swOpen0, emfV, rV);
+
+  var result, shapeTopo, iconMechExtra = null;
+  if (typeof p3s === 'number' && PM_simTimeMs >= p3s) {
+    var g3 = ccEffP(p3s, p3d, 300);
+    result = ccLerpPhys(stage2, stage3, g3);
+    shapeTopo = g3 >= 1 ? topo3 : topo1;
+    iconMechExtra = { kind: 'shape', mech: ccMechP(p3s, p3d), fromTopo: topo1, toTopo: topo3 };
+  } else if (typeof p2s === 'number' && PM_simTimeMs >= p2s) {
+    var g2 = ccEffP(p2s, p2d, 300);
+    result = ccLerpPhys(stage1, stage2, g2);
+    shapeTopo = topo1;
+  } else if (typeof p1s === 'number' && PM_simTimeMs >= p1s) {
+    var g1 = ccEffP(p1s, p1d, 300);
+    result = ccLerpPhys(stage0, stage1, g1);
+    shapeTopo = g1 >= 1 ? topo1 : topo0;
+    iconMechExtra = { kind: 'shape', mech: ccMechP(p1s, p1d), fromTopo: topo0, toTopo: topo1 };
+  } else {
+    result = stage0; shapeTopo = topo0;
+  }
+  result._ladderTopology = shapeTopo;
+  result._growCount = count0;
+  result._iconMechExtra = iconMechExtra;
+  return result;
+}
+// Master per-frame resolver — the ONE place every draw call reads from. Exactly
+// one of the 5 gated one-shots is ever active per authored state (never combined),
+// so the if-chain is a straight dispatch, not a priority stack.
+function ccCombo() {
+  var st = curState();
+  var emfV = cEmf(), rV = max(cIntR(), 1e-6);
+  var topo0 = ccBaseTopology(), count0 = ccBaseCount(), flip0 = ccBaseFlip();
+  var R0 = cIrLoadR();   // reuses R_autosweep_down verbatim (S6) -- zero new work, constraint #5
+  var swOpen0 = ccBaseSwitchOpen();
+  var seized = !!(userTouched['cell_topology'] || userTouched['cell_count'] || userTouched['flip_cell2'] || userTouched['switch']);
+
+  var iconTopology = topo0, iconCount = count0, iconFlipFrac = flip0, iconMechExtra = null;
+  var phys;
+
+  if (!seized && st && st.dock_cell) {
+    var dMech = ccMechP(st.dock_cell_start_ms, st.dock_cell_duration_ms);
+    var dEff  = ccEffP(st.dock_cell_start_ms, st.dock_cell_duration_ms, 400);
+    var toCount = (typeof st.dock_cell_count_to === 'number') ? st.dock_cell_count_to : count0;
+    var toTopo  = (typeof st.dock_cell_topology_to === 'string') ? st.dock_cell_topology_to : topo0;
+    var effCount = count0 + (toCount - count0) * dEff;
+    iconTopology = toTopo; iconCount = toCount;
+    iconMechExtra = { kind: 'dock', mech: dMech, fromCount: count0 };
+    phys = ccFormula(toTopo, effCount, flip0, R0, swOpen0, emfV, rV);
+    phys._growCount = effCount; phys._ladderTopology = toTopo;
+  } else if (!seized && st && st.switch_close_cue) {
+    var sMech = ccMechP(st.switch_close_cue_start_ms, st.switch_close_cue_duration_ms);
+    var sEff  = ccEffP(st.switch_close_cue_start_ms, st.switch_close_cue_duration_ms, 400);
+    var stillOpen = sMech < 1;
+    var closedPhys = ccFormula(topo0, count0, flip0, R0, false, emfV, rV);
+    var iNow = stillOpen ? 0 : closedPhys.i * sEff;
+    phys = { topology: topo0, cellCount: count0, flipFrac: flip0, R: R0, switchOpen: stillOpen,
+             epsEq: closedPhys.epsEq, rEq: closedPhys.rEq, i: iNow, V: closedPhys.epsEq - iNow * closedPhys.rEq,
+             iPerCell: (topo0 === 'parallel') ? iNow / max(count0, 1) : iNow, stepPerCell: 0 };
+    phys.stepPerCell = phys.iPerCell * rV;
+    phys._growCount = count0; phys._ladderTopology = topo0;
+  } else if (!seized && st && st.flip_cell) {
+    var fMech = ccMechP(st.flip_cell_start_ms, st.flip_cell_duration_ms);
+    var fEff  = ccEffP(st.flip_cell_start_ms, st.flip_cell_duration_ms, 400);
+    var toFlip = (typeof st.flip_cell2_to === 'number') ? st.flip_cell2_to : 1;
+    iconFlipFrac = lerp(flip0, toFlip, fMech);
+    var flipEff = lerp(flip0, toFlip, fEff);
+    phys = ccFormula(topo0, count0, flipEff, R0, swOpen0, emfV, rV);
+    phys._growCount = count0; phys._ladderTopology = topo0;
+  } else if (!seized && st && st.regroup) {
+    var rMech = ccMechP(st.regroup_start_ms, st.regroup_duration_ms);
+    var rEff  = ccEffP(st.regroup_start_ms, st.regroup_duration_ms, 300);
+    var toTopoR = (typeof st.regroup_topology_to === 'string') ? st.regroup_topology_to : topo0;
+    iconTopology = toTopoR;
+    iconMechExtra = { kind: 'shape', mech: rMech, fromTopo: topo0, toTopo: toTopoR };
+    var beforeR = ccFormula(topo0, count0, flip0, R0, swOpen0, emfV, rV);
+    var afterR  = ccFormula(toTopoR, count0, flip0, R0, swOpen0, emfV, rV);
+    phys = ccLerpPhys(beforeR, afterR, rEff);
+    phys._growCount = count0; phys._ladderTopology = (rEff >= 1) ? toTopoR : topo0;
+  } else if (!seized && st && st.cycle_compare) {
+    phys = ccCyclePhys(st, topo0, count0, flip0, swOpen0, emfV, rV);
+    iconTopology = phys._ladderTopology;
+    iconMechExtra = phys._iconMechExtra;
+    iconCount = count0;
+  } else {
+    phys = ccFormula(topo0, count0, flip0, R0, swOpen0, emfV, rV);
+    phys._growCount = count0; phys._ladderTopology = topo0;
+  }
+
+  return { topo0: topo0, count0: count0, flip0: flip0,
+           iconTopology: iconTopology, iconCount: iconCount, iconFlipFrac: iconFlipFrac, iconMechExtra: iconMechExtra,
+           phys: phys };
+}
+// Cell icon HOME positions for a given (topology, count) — founder 2026-07-19
+// review (illegible smudges + parallel-looks-like-series + voltmeter pileup):
+// k=0 (the REPRESENTATIVE cell, pump + r-reveal) is ALWAYS anchored at (0,0) —
+// the bank's fixed point where the external loop wire actually passes —
+// regardless of topology/count, so the pump/r-reveal geometry never chases a
+// moving anchor and never has to know which topology is active. SERIES cells
+// alternate below/above that anchor (down first — the r-reveal sits down-LEFT
+// of the anchor, so straight-down growth never crosses it); PARALLEL cells step
+// RIGHTWARD into the loop interior at generous pitch, so ccDrawCells can draw
+// real rails + rungs (an unmistakable ladder) instead of a same-y row of icons
+// that reads as series at a glance.
+// Round 2 (founder 2026-07-19): widened 76->170. 76 only ever fit the PLAIN
+// "eps = 1.5 V" chip -- restoring the "cell N ..." ordinal prefix in parallel
+// too (round-2 fix item 3) needs a materially wider column so two adjacent
+// bold-12px chips never collide (the exact failure mode round 1's own comment
+// below this constant was written to avoid -- fixed here by giving the ordinal
+// room instead of dropping it).
+var CC_SERIES_SPACING = 58, CC_PARALLEL_SPACING = 170;
+// Half-gap between the parallel ladder's two rails. Must clear the eps chip's
+// OWN footprint (chip centre at cellY+30, half-height ~10 -> bottom edge
+// ~cellY+40) on the bottom side, not just the plate span -- 26 let the bottom
+// rail cut straight through the chip text (eye-walker: combo_cells_parallel_
+// rail_clips_eps_chip). 46 clears it with margin; the resulting extra headroom
+// on the top side (the plates only need ~9px) is harmless empty space, not a
+// collision, so one symmetric constant is kept for both ccDrawCells (draws the
+// rails) and ccDrawBranchSplit (positions the per-rung current label below them).
+var CC_RAIL_HALF = 46;
+function ccShapeOffsets(topology, n) {
+  var out = [], k;
+  if (topology === 'series') {
+    for (k = 0; k < n; k++) {
+      if (k === 0) { out.push({ dx: 0, dy: 0 }); continue; }
+      var rung = ceil(k / 2), dir = (k % 2 === 1) ? 1 : -1;   // 1st extra cell down, 2nd up, 3rd down again...
+      out.push({ dx: 0, dy: dir * rung * CC_SERIES_SPACING });
+    }
+  } else {
+    for (k = 0; k < n; k++) out.push({ dx: k * CC_PARALLEL_SPACING, dy: 0 });
+  }
+  return out;
+}
+function ccIconOffsets(cc) {
+  var n = max(1, cc.iconCount), mx = cc.iconMechExtra, k;
+  if (mx && mx.kind === 'shape') {
+    var fromOff = ccShapeOffsets(mx.fromTopo, n), toOff = ccShapeOffsets(mx.toTopo, n), out = [];
+    for (k = 0; k < n; k++) out.push({ dx: lerp(fromOff[k].dx, toOff[k].dx, mx.mech), dy: lerp(fromOff[k].dy, toOff[k].dy, mx.mech) });
+    return out;
+  }
+  if (mx && mx.kind === 'dock') {
+    // dock_cell (S2): the incoming 2nd cell must be an UNMISSABLE cause-first
+    // event (Rule 32a) at the new, bigger cell scale — a long diagonal glide in
+    // from clearly off-bank (upper-left), not a short nudge from just above its
+    // home slot.
+    var full = ccShapeOffsets('series', n), out2 = [];
+    for (k = 0; k < n; k++) {
+      if (k < mx.fromCount) { out2.push(full[k]); continue; }
+      out2.push({ dx: lerp(full[k].dx - 70, full[k].dx, mx.mech), dy: lerp(full[k].dy - 130, full[k].dy, mx.mech) });
+    }
+    return out2;
+  }
+  return ccShapeOffsets(cc.iconTopology, n);
+}
+// ═══ Standard textbook cell symbol (founder 2026-07-19: "cells render as ~28px
+// smudges... no +/- marks... show the proper standard symbol, big"). Current
+// through this bank runs VERTICALLY (along the loop's left wire, or along a
+// parallel rung — both vertical), so the plates are drawn HORIZONTAL, crossing
+// the wire — the textbook convention: long-THIN (+) bar, short-THICK (-) bar,
+// >=44px plate span so it reads at THE EYE's 640x360 capture, with explicit
+// +/- glyphs drawn INSIDE the same flip transform as their own bar (so a
+// reversed cell's glyphs travel WITH the plate that actually became + or -,
+// never mislabeling mid/post-flip). flipFrac 0->1 plays the same 2D card-flip
+// idiom as before (cos ramp +1->0->-1), now about the horizontal axis since
+// the bars are horizontal. '+' and '\\u2212' are both 180-degree-symmetric
+// glyphs, so they read correctly even mirrored by a negative y-scale.
+var CC_PLUS_HALF = 24, CC_MINUS_HALF = 13, CC_PLATE_GAP = 9;
+function ccDrawPlates(x, y, dim, flipFrac) {
+  push();
+  translate(x, y);
+  scale(1, cos(PI * constrain(flipFrac || 0, 0, 1)));
+  strokeHex('#ECEFF1', 0.95 * dim); strokeWeight(3); line(-CC_PLUS_HALF, -CC_PLATE_GAP, CC_PLUS_HALF, -CC_PLATE_GAP);    // + plate (long, thin)
+  strokeWeight(9); line(-CC_MINUS_HALF, CC_PLATE_GAP, CC_MINUS_HALF, CC_PLATE_GAP);                                     // - plate (short, thick)
+  noStroke(); textStyle(BOLD); textSize(12); textAlign(LEFT, CENTER);
+  fillHex('#66BB6A', 0.95 * dim); text('+', CC_PLUS_HALF + 6, -CC_PLATE_GAP);
+  fillHex('#EF5350', 0.95 * dim); text('\\u2212', CC_MINUS_HALF + 6, CC_PLATE_GAP);
+  textStyle(NORMAL);
+  pop();
+}
+// eps chip — value-only (Rule 34b), optionally prefixed with an ordinal ("cell
+// 2 \\u00B7 \\u03B5 = 1.5 V") so a multi-cell bank stays countable WITHOUT a
+// second vertical text row (which would need extra spacing the bank doesn't have).
+function ccDrawEpsChip(x, y, eps, dim, labelStr) {
+  var elbl = (labelStr ? (labelStr + ' \\u00B7 ') : '') + '\\u03B5 = ' + eps.toFixed(1) + ' V';
+  textSize(12); textStyle(BOLD); textAlign(CENTER, CENTER);
+  var elw = textWidth(elbl);
+  rectMode(CENTER); fill(10, 12, 28, 225 * dim); noStroke();
+  rect(x, y, elw + 12, 20, 4); rectMode(CORNER);
+  fillHex('#FFD54F', 0.98 * dim); text(elbl, x, y); textStyle(NORMAL);
+}
+// The 2nd/3rd cell — plates + its own eps chip only (no pump, no r-reveal:
+// which cell(s) show the internal r is a display choice, not a taught number —
+// physics_author's own note, preserved from the pre-existing drawCellIconC).
+function ccDrawStdCell(x, y, eps, dim, flipFrac, labelStr) {
+  ccDrawPlates(x, y, dim, flipFrac);
+  ccDrawEpsChip(x, y + 30, eps, dim, labelStr);
+}
+// The REPRESENTATIVE cell (k===0): plates + eps chip + optional pump (charge
+// lift, drawEmfCell's idiom) + optional r-reveal (opened casing + zigzag + i.r
+// label, same idiom). The r-reveal sits DOWN-LEFT of the plates — a zone
+// neither topology's 2nd-cell growth direction ever occupies (series grows
+// straight down at dx=0; parallel grows straight right at dy=0), so it can
+// never collide with cell 2/3 regardless of topology or count.
+function ccDrawRepresentativeCell(x, y, eps, dim, pumpActive, rr, labelStr, chipDx) {
+  ccDrawPlates(x, y, dim, 0);
+  // Round 3 (founder 2026-07-20, "cell 1's label crosses the main left wire
+  // vertical"): cell 1 sits AT the main wire's own x (leftX) by design (it's
+  // the component embedded in the wire — Rule 32d home pose) so its eps chip
+  // is centered on that same x too. Round 2's PARALLEL ordinal prefix widened
+  // that chip enough that the translucent box (its own fill alpha scales with
+  // dim, same as everything else) lets the wire's line read through the text.
+  // chipDx nudges the CHIP ONLY (never the plates -- the wire must still visibly
+  // pass through the physical cell symbol) a few px clear of that line. Callers
+  // that don't pass chipDx (every series call) get chipDx=0 -- byte-identical.
+  ccDrawEpsChip(x + (chipDx || 0), y + 30, eps, dim, labelStr);
+  if (pumpActive) {
+    var pDim = dimFor('pump'), nP = 4, px = x - CC_PLUS_HALF - 14;
+    for (var kp = 0; kp < nP; kp++) {
+      var ph = (PM_simTimeMs / 900 + kp / nP) % 1;                 // 0 = bottom (-), 1 = top (+)
+      var ppy = lerp(y + CC_PLATE_GAP, y - CC_PLATE_GAP, ph);
+      noStroke(); fillHex('#42A5F5', (0.2 + 0.7 * sin(ph * PI)) * pDim); ellipse(px, ppy, 6);
+    }
+    strokeHex('#FFD54F', 0.9 * pDim); strokeWeight(2);              // work-on-each-charge arrow (upward)
+    line(px, y + CC_PLATE_GAP - 2, px, y - CC_PLATE_GAP + 2);
+    line(px, y - CC_PLATE_GAP + 2, px - 4, y - CC_PLATE_GAP + 8); line(px, y - CC_PLATE_GAP + 2, px + 4, y - CC_PLATE_GAP + 8);
+    noStroke();
+  }
+  if (rr && rr.reveal > 0) {
+    var rDim = dimFor('r_internal') * rr.reveal;
+    var rcx = x - 58, rcy = y + 10;
+    if (rr.heat > 0.05) {                                          // i^2 r heat halo (short circuit cooks the cell)
+      var hp = 0.5 + 0.5 * sin(PM_simTimeMs / 260);
+      noStroke(); fillHex('#FF7043', (0.10 + 0.25 * rr.heat * hp) * rDim);
+      ellipse(rcx, rcy, 44 + 22 * rr.heat);
+    }
+    strokeHex('#B0BEC5', 0.55 * rDim); strokeWeight(1); noFill();
+    rectMode(CENTER); rect(rcx, rcy, 24, 46, 5); rectMode(CORNER);   // the opened casing
+    strokeHex('#FF8A65', 0.95 * rDim); strokeWeight(2); noFill();    // the hidden r (vertical zigzag)
+    beginShape();
+    for (var zk = 0; zk <= 6; zk++) vertex(rcx + (zk === 0 || zk === 6 ? 0 : (zk % 2 ? -5 : 5)), rcy - 18 + zk * (36 / 6));
+    endShape();
+    noStroke(); fillHex('#FF8A65', 0.95 * rDim); textSize(10); textStyle(BOLD); textAlign(CENTER, TOP);
+    text('r = ' + rr.r.toFixed(1) + ' \\u03A9', rcx, rcy + 26);
+    if (rr.i > 0.02) {
+      fillHex('#FFAB91', 0.9 * rDim); textAlign(CENTER, TOP);
+      text('i\\u00B7r = ' + (rr.i * rr.r).toFixed(2) + ' V', rcx, rcy + 38);
+    }
+    textStyle(NORMAL);
+  }
+}
+function ccDrawCells(cc, g, dim) {
+  var offsets = ccIconOffsets(cc), n = offsets.length, emfV = cEmf(), st = curState(), k;
+  // rr.i drives the "i.r" label on the representative cell -- it must be the
+  // current actually flowing through THIS one physical cell (i_through_cell),
+  // never the total loop current. SERIES: i_through_cell === i (one path), so
+  // this is a no-op there. PARALLEL: i_through_cell = i/cell_count -- the label
+  // was reading 1.50V (=total i * r) instead of the correct 0.75V (=branch i *
+  // r), directly contradicting the ladder's own half-height step drawn a few
+  // pixels away (eye-walker: combo_cells_parallel_ir_label_uses_total_current).
+  // heat (the i^2r halo) is fixed the same way -- it's THIS cell's own
+  // dissipation, not the loop's.
+  var rr = (st && st.show_r) ? { r: cIntR(), i: cc.phys.iPerCell, reveal: 1,
+    heat: constrain((cc.phys.iPerCell * cc.phys.iPerCell * cIntR()) / 4.5, 0, 1) } : null;
+  var isParallel = (cc.iconTopology === 'parallel');
+  // Round 2 (founder 2026-07-19, "parallel ladder still illegible"): the
+  // parallel cells' own plate+chip brightness gets a dim FLOOR -- max(dim,
+  // 0.6) -- so they never fade sub-perceptual when the bank isn't the
+  // state's declared glow_focal. Confirmed correct by the controller as-is;
+  // round 3 leaves this one alone.
+  var cellDim = isParallel ? max(dim, 0.6) : dim;
+  // Round 3 (founder 2026-07-20, "the ladder IS circuit wire, same status as
+  // the main loop"): the ladder's OWN floor is raised separately from the
+  // cells' -- max(dim, 0.9) puts its effective alpha at ~0.75-0.85 (matching
+  // drawWireC's own flat 0.85 main-loop call almost exactly), vs round 2's
+  // 0.6 floor which only reached ~0.51. Kept as its own variable (not reused
+  // for cellDim) so this bump can't accidentally re-brighten the cell plates/
+  // chips the controller already signed off on at the 0.6 level.
+  var ladderFloor = isParallel ? max(dim, 0.9) : dim;
+  // A countable bank names its members ("cell 1"/"cell 2"/...) IN THE CHIP text
+  // (no extra vertical row needed). Round 1 restricted this to series only,
+  // because CC_PARALLEL_SPACING was tuned for the PLAIN chip's width and two
+  // ordinal-prefixed chips at that pitch collided outright (eye-walker:
+  // combo_cells_parallel_ordinal_chips_overlap). Round 2 widens the parallel
+  // pitch specifically so the ordinal fits -- parallel cells are now
+  // countable BOTH by structure (own rung) AND by label, matching series'
+  // own treatment instead of a visually lesser one (Rule 29).
+  var showOrdinal = n > 1;
+  // PARALLEL = a real ladder, not a same-y row of icons (founder 2026-07-19:
+  // "S5 parallel looks the same as S2 series at a glance"): two horizontal
+  // rails bracket every cell's plates, a vertical rung drops from rail to rail
+  // at each cell beyond the first (the first cell's rung IS the main wire
+  // itself, already drawn by drawWireC — no separate segment needed there),
+  // and a junction dot marks where the rails branch off the main wire — these
+  // two dots ARE the visual claim "same two nodes -> same V", so they're drawn
+  // deliberately bright + big, never left to the ladder's own (possibly
+  // floored-low) alpha. Uses the drawWireC main-wire idiom (same helper, same
+  // #546E7A, same 0.85 base alpha as loops.series) so the ladder reads as
+  // "more wire", not a separate decorative rectangle. Drawn BEFORE the cell
+  // loop below (main-wire-then-cell-on-top, the same convention the k=0
+  // representative cell + drawWireC already use) so every plate renders
+  // cleanly on top of its rung, never a rung line cutting across a glyph.
+  // Reads during a regroup/cycle_compare morph too, since offsets are already
+  // interpolating (the rungs progressively spread as the icons glide apart).
+  if (isParallel && n > 1) {
+    var railHalf = CC_RAIL_HALF, railTop = g.midY - railHalf, railBot = g.midY + railHalf;
+    var xLast = g.leftX + offsets[n - 1].dx, kx;
+    var ladderA = 0.85 * ladderFloor;
+    drawWireC([{ x: g.leftX, y: railTop }, { x: xLast, y: railTop }], '#546E7A', ladderA, 3);
+    drawWireC([{ x: g.leftX, y: railBot }, { x: xLast, y: railBot }], '#546E7A', ladderA, 3);
+    for (kx = 1; kx < n; kx++) {
+      var rx = g.leftX + offsets[kx].dx;
+      drawWireC([{ x: rx, y: railTop }, { x: rx, y: railBot }], '#546E7A', ladderA, 3);
+    }
+    noStroke(); fillHex('#ECEFF1', 0.95 * ladderFloor);
+    ellipse(g.leftX, railTop, 11); ellipse(g.leftX, railBot, 11);
+  }
+  for (k = 0; k < n; k++) {
+    var x = g.leftX + offsets[k].dx, y = g.midY + offsets[k].dy;
+    var lbl = showOrdinal ? ('cell ' + (k + 1)) : null;
+    if (k === 0) {
+      // chipDx: only cell 1's own ordinal-widened chip in PARALLEL needs the
+      // nudge (it's the one sitting exactly on the main wire's x -- see the
+      // comment on ccDrawRepresentativeCell). Series' plain/ordinal chip at
+      // dim=1 or dim=0.35 was never flagged and stays untouched (chipDx=0).
+      var chipDx = (isParallel && showOrdinal) ? 40 : 0;
+      ccDrawRepresentativeCell(x, y, emfV, cellDim, !cc.phys.switchOpen, rr, lbl, chipDx);
+    } else {
+      ccDrawStdCell(x, y, emfV, cellDim, (k === 1) ? cc.iconFlipFrac : 0, lbl);
+    }
+  }
+}
+function ccDrawChip(str, dim) {
+  var cx = width * 0.30, cy = height * 0.87;
+  textSize(13); textStyle(BOLD); textAlign(CENTER, CENTER);
+  var w = textWidth(str) + 28, h = 28;
+  rectMode(CENTER); fillHex('#0A0A1A', 0.88 * dim); noStroke(); rect(cx, cy, w, h, 6);
+  strokeHex('#80DEEA', 0.85 * dim); strokeWeight(1.5); noFill(); rect(cx, cy, w, h, 6);
+  rectMode(CORNER); noStroke();
+  fillHex('#80DEEA', 0.95 * dim); text(str, cx, cy); textStyle(NORMAL);
+}
+// show_branch_split (S6) -- PRE-AUTHORIZED FALLBACK (physics_author's own note in
+// the physics block): per-branch NUMERIC chips beside each cell, alongside the
+// ladder's already-half-height toll step (ccFormula's parallel branch), carries
+// the pedagogy without a bespoke per-branch bead-stream geometry.
+function ccDrawBranchSplit(cc, g, phys) {
+  var offsets = ccIconOffsets(cc), dim = dimFor('cells'), railHalf = CC_RAIL_HALF, k;
+  for (k = 0; k < offsets.length; k++) {
+    var x = g.leftX + offsets[k].dx, y = g.midY + offsets[k].dy;
+    // Each rung's own current label sits BELOW that rung's rail (not below the
+    // cell's own y — with the ladder's generous pitch (CC_PARALLEL_SPACING)
+    // adjacent labels clear horizontally most of the time; the k%2 vertical
+    // stagger (kept from the pre-ladder layout) is the safety net for the
+    // ~9px width overrun a "i/2 = 1.50 A" label can still have at the tightest
+    // authored spacing (eye-walker: combo_cells_branch_split_labels_overlap).
+    var yOff = railHalf + 18 + (k % 2) * 16;
+    fillHex('#80DEEA', 0.95 * dim); textSize(11); textStyle(BOLD); textAlign(CENTER, TOP);
+    text('i/' + phys.cellCount.toFixed(0) + ' = ' + phys.iPerCell.toFixed(2) + ' A', x, y + yOff);
+    textStyle(NORMAL);
+  }
+}
+// The r_eq invariant chip (finding 5) -- value-only per Rule 34b, mirrors ccDrawChip's
+// box idiom but in the r_internal orange so it visually ties to the opened-casing r
+// zigzag it's proving. Rendered whenever the caller's derived condition fires
+// (switch_close_cue/flip_cell/R_autosweep_down -- S3/S4/S6 in the current JSON).
+function ccDrawREqChip(rEq, dim) {
+  var str = 'r_eq = ' + rEq.toFixed(2) + ' \\u03A9';
+  var cx = width * 0.30, cy = height * 0.94;
+  textSize(13); textStyle(BOLD); textAlign(CENTER, CENTER);
+  var w = textWidth(str) + 28, h = 28;
+  rectMode(CENTER); fillHex('#0A0A1A', 0.88 * dim); noStroke(); rect(cx, cy, w, h, 6);
+  strokeHex('#FF8A65', 0.85 * dim); strokeWeight(1.5); noFill(); rect(cx, cy, w, h, 6);
+  rectMode(CORNER); noStroke();
+  fillHex('#FF8A65', 0.95 * dim); text(str, cx, cy); textStyle(NORMAL);
+}
+function ccAsNum0(v) { return (typeof v === 'number') ? v : 0; }
+// S7 compare_grid -- authored FIXED strings (never computed), each gated by its
+// own reveal_at_ms; once both cells sharing an R_label have landed, the winner
+// brightens and the loser dims (Rule 29 brightness, never size).
+function ccDrawCompareGrid(grid, dim) {
+  var cols = 2, cellW = width * 0.185, cellH = height * 0.085, gapX = 10, gapY = 8;
+  var x0g = width * 0.20, y0g = height * 0.05, gi, gj;
+  for (gi = 0; gi < grid.length; gi++) {
+    var item = grid[gi];
+    if (PM_simTimeMs < ccAsNum0(item.reveal_at_ms)) continue;
+    var col = gi % cols, row = floor(gi / cols);
+    var cx = x0g + col * (cellW + gapX) + cellW / 2, cy = y0g + row * (cellH + gapY) + cellH / 2;
+    var pairRevealed = false;
+    for (gj = 0; gj < grid.length; gj++) {
+      if (gj !== gi && grid[gj].R_label === item.R_label && PM_simTimeMs >= ccAsNum0(grid[gj].reveal_at_ms)) pairRevealed = true;
+    }
+    var cellDim = (pairRevealed && !item.winner) ? dim * 0.55 : dim;
+    rectMode(CENTER); fillHex('#0E1024', 0.9 * cellDim); noStroke(); rect(cx, cy, cellW - 4, cellH - 4, 6);
+    strokeHex(item.winner ? '#66BB6A' : '#546E7A', (item.winner ? 0.95 : 0.6) * cellDim); strokeWeight(item.winner ? 2 : 1);
+    noFill(); rect(cx, cy, cellW - 4, cellH - 4, 6); rectMode(CORNER); noStroke();
+    fillHex('#FFD54F', 0.95 * cellDim); textSize(10); textStyle(BOLD); textAlign(CENTER, TOP);
+    text((item.topology === 'parallel' ? 'Parallel' : 'Series') + ' @ ' + item.R_label, cx, cy - cellH / 2 + 6);
+    fillHex(item.winner ? '#66BB6A' : '#FFFFFF', 0.98 * cellDim); textSize(14); textAlign(CENTER, BOTTOM);
+    text(item.value, cx, cy + cellH / 2 - 6);
+    textStyle(NORMAL);
+  }
+}
+// Round 3 (founder 2026-07-20, "bead split through the parallel ladder — the
+// real one"): builds the CC-specific path a bead takes when it's assigned to
+// cell k's OWN branch (k>=1), reusing circuitBeadLoop/drawCircuitBeads/polyAt
+// completely UNCHANGED (they're shared with combination_of_resistors/KCL/
+// bridge/potentiometer -- zero risk of touching them). The shape is the SAME
+// outer rectangle as loops.series (identical topY/rightX,topY/rightX,botY/
+// leftX,botY corners) but with the direct left-edge passage (the one
+// loops.series already takes straight through cell 1, at g.leftX) swapped for
+// a detour: out along the top rail to cell k's rung, down through cell k's
+// own plates, back along the bottom rail -- so a bead on this loop visibly
+// rides the ladder instead of overlapping cell 1's wire. loop1 for the k=0
+// branch is left as loops.series ITSELF (no rebuild needed -- it already
+// passes straight through cell 1, "between the two junction dots", exactly
+// as today).
+function ccParallelBeadLoop(g, offsets, k) {
+  var railTop = g.midY - CC_RAIL_HALF, railBot = g.midY + CC_RAIL_HALF;
+  var rx = g.leftX + offsets[k].dx;
+  var battK = { x: rx, y: g.midY };
+  return [battK, { x: rx, y: railTop }, { x: g.leftX, y: railTop },
+          { x: g.leftX, y: g.topY }, { x: g.rightX, y: g.topY }, { x: g.rightX, y: g.botY }, { x: g.leftX, y: g.botY },
+          { x: g.leftX, y: railBot }, { x: rx, y: railBot }, battK];
+}
+function drawCellComboScenario() {
+  var cc = ccCombo(), phys = cc.phys, st = curState();
+  var loops = circuitLoops(), g = loops.g;
+  drawWireC(loops.series, '#546E7A', 0.85, 3);
+  // Bead ROUTING keys off the PHYSICS phase (cc.phys.topology), never the icon/
+  // shape phase -- S7's cycle_compare snaps both at the exact same moment (see
+  // ccCyclePhys), and S5's regroup icon leads phys (icon is 'parallel' from
+  // t=0, phys catches up later) so the ladder this reads offsets from is
+  // ALWAYS already drawn in its parallel shape by the time phys agrees; S5
+  // itself has switch open (i=0) so its beads halt regardless (matches
+  // circuitBeadLoop's own itot<=1e-9 -> 'series' fallback). Falls straight
+  // through to the EXACT original single-loop call for every non-parallel
+  // phase (series states are untouched -- same object shape, same values).
+  var beadLoops = loops;
+  var beadC = { topo: 'series', single: true, i1: phys.i, i2: phys.i, itot: phys.i,
+                Req: phys.R, V: phys.epsEq, R1: phys.R, R2: phys.R, dir: 1 };
+  if (phys.topology === 'parallel') {
+    var bOffsets = ccIconOffsets(cc), bN = bOffsets.length;
+    if (bN >= 2) {
+      beadLoops = { series: loops.series, loop1: loops.series, loop2: ccParallelBeadLoop(g, bOffsets, 1) };
+      beadC = { topo: 'parallel', i1: phys.iPerCell, i2: phys.iPerCell, itot: phys.i, dir: 1 };
+      if (bN >= 3) {                                    // cell_count=3 is EXPLORE-only (S8), never an authored guided state
+        beadLoops.loop3 = ccParallelBeadLoop(g, bOffsets, 2);
+        beadC.three = true;
+      }
+    }
+  }
+  drawCircuitBeads(beadLoops, beadC);
+  var rl = (abs(phys.R - round(phys.R)) < 0.005) ? String(round(phys.R)) : String(round(phys.R * 100) / 100);
+  drawResistorBoxC((g.leftX + g.rightX) / 2, g.topY, 'R = ' + rl + ' \\u03A9', dimFor('load'));
+  drawAmmeterAtC(g.amMain.x, g.amMain.y, phys.i, 'AMMETER', dimFor('ammeter'), 26);
+
+  ccDrawCells(cc, g, dimFor('cells'));
+  drawIrSwitch(g, phys.switchOpen, dimFor('switch'));
+
+  if (st && st.show_voltmeter) {
+    // Relocated WELL clear of the bank (founder 2026-07-19: the voltmeter used
+    // to sit at leftX+82, dead centre of the parallel spread) -- up and into
+    // the loop interior, above the plates' own row and above the parallel
+    // rails (CC_RAIL_HALF around midY), so it never intersects a cell symbol,
+    // its ordinal/eps chip, the ladder rails, or the branch-split labels below
+    // them regardless of topology or cell_count.
+    var vmDim = dimFor('voltmeter'), vx = g.leftX + 120, vy = g.midY - 90;
+    strokeHex('#B39DDB', 0.7 * vmDim); strokeWeight(1.5);
+    line(g.leftX - 6, g.midY, vx - 10, vy + 14); line(g.leftX + 6, g.midY, vx + 10, vy + 14);
+    noStroke();
+    drawVoltmeterC(vx, vy, phys.V, max(phys.epsEq * 1.5, phys.V, 0.01), vmDim);
+  }
+  if (st && st.show_ladder) {
+    drawPotentialLadder(phys.epsEq, phys.i, phys.R, phys.switchOpen, 1, null, 0, null,
+      { mode: 'combo', topology: phys._ladderTopology, cellCount: phys._growCount,
+        flipFrac: phys.flipFrac, emf: cEmf(), r: cIntR(), i: phys.i, V: phys.V, epsEq: phys.epsEq,
+        stepPerCell: phys.stepPerCell, tallPanel: !!(st && st.show_sliders === true) });
+  }
+  if (st && st.compare_readout && typeof st.compare_chip === 'string') ccDrawChip(st.compare_chip, dimFor('formula'));
+  if (st && typeof st.ghost_text === 'string') drawStruckTextC(width * 0.30, height * 0.80, st.ghost_text, dimFor('formula'));
+  if (st && st.show_branch_split && phys.topology === 'parallel') ccDrawBranchSplit(cc, g, phys);
+  if (st && st.compare_grid && st.compare_grid.length) ccDrawCompareGrid(st.compare_grid, dimFor('formula'));
+  // r_eq is the STATE's own taught invariant on S3 (first introduced)/S4 (proven to
+  // HOLD across the flip -- the state's own misconception_watch text)/S6 (halves in
+  // parallel) but none of the three shows visible_controls containing the readout
+  // panel and none carries a compare_chip that names it -- a viewer had no on-screen
+  // way to verify the claim (eye-walker: combo_cells_r_eq_chip_narrated_but_not_
+  // rendered). Derived from the SAME semantic flags that make each state what it is
+  // (never a hardcoded stateId list), so it stays correct if states get reordered.
+  // Floor-clamped opacity (matches the DOM formula overlay's own convention) so it
+  // stays legible even when a different element is the state's declared focal.
+  if (st && (st.switch_close_cue === true || st.flip_cell === true || st.R_autosweep_down === true)) {
+    ccDrawREqChip(phys.rEq, max(dimFor('r_internal'), 0.6));
+  }
+}
 function drawIrScenario() {
+  // combination_of_cells EXTENDS this scenario_type with grouped-cell sliders —
+  // gated on hasSlider('cell_topology') so internal_resistance.json (no such
+  // slider) never enters this branch and renders byte-identically below.
+  if (ccMode()) { drawCellComboScenario(); return; }
   var c = irCurrents(), loops = circuitLoops(), g = loops.g, st = curState();
   drawWireC(loops.series, '#546E7A', 0.85, 3);
   drawCircuitBeads(loops, { topo: 'series', single: true, i1: c.i, i2: c.i, itot: c.i,
@@ -2832,11 +3451,37 @@ function emfTraceV(s, p, eps) {                              // potential of the
 // profile (locked baselines).
 function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir, kvl) {
   var lowPanel = !!ir || !!(kvl && kvl.shiftDown);   // clear the tall 4-row slider panel + readout (Rule 34d): internal_resistance always; KVL only on the S5 all-sliders layout (FINDING C)
-  var x0 = width * 0.74, y0 = (lowPanel ? height * 0.39 : height * 0.30), w = width * 0.225, h = height * 0.42;
+  // combination_of_cells STATE_8 (explore): the 7-row panel (emf/r/R/switch +
+  // cell_topology/cell_count/flip_cell2, THREE more rows than internal_resistance's
+  // stock 4) + the 4-line combo readout runs well past where the standard lowPanel
+  // offset (tuned for the 4-row panel) clears — the ladder's title/eps_eq label sat
+  // behind the opaque panel (eye-walker finding: combo_cells_explore_sliders_
+  // collide_ladder_graph). Push the box further down AND shrink its height so it
+  // still fits above the viewport bottom. Scoped to ccMode()'s show_sliders state
+  // only — every other ir-mode/KVL state (short or no panel) is unaffected.
+  var tallCombo = !!(ir && ir.mode === 'combo' && ir.tallPanel);
+  var x0 = width * 0.74, y0 = tallCombo ? height * 0.68 : (lowPanel ? height * 0.39 : height * 0.30);
+  // Follow-on to the panel-collision fix above: pushing y0 down to clear the S8
+  // slider panel left the box's own bottom edge (where the 'cell'/'load' x-axis
+  // labels sit, at gy = y0+h-padB) intruding into the ALWAYS-ON #pm-formula chip's
+  // fixed bottom-right corner (right:12/bottom:12, ~34px tall for its single-line
+  // formula text -> its top edge sits at height-46). 0.28*height pushed the label
+  // row to ~gy+3 = height-49, just inside that chip's zone (eye-walker: the S8
+  // ladder-panel/formula-chip corner collision). 0.24*height keeps the same y0
+  // (still clears the panel, per the earlier confirmed fix) but ends the box —
+  // and its bottom label row — well above the chip's top edge instead of pushing
+  // the box further down (which would risk the panel again) or narrower/left
+  // (which would collide with the circuit loop's own right wire at rightX=0.70W).
+  var w = width * 0.225, h = tallCombo ? height * 0.24 : height * 0.42;
   rectMode(CORNER); fill(10, 12, 28, 210 * dim); noStroke(); rect(x0, y0, w, h, 6);
   strokeHex('#37474F', 0.8 * dim); strokeWeight(1); noFill(); rect(x0, y0, w, h, 6);
   var padL = 30, padB = 20, gx = x0 + padL, gy = y0 + h - padB, gw = w - padL - 12, gh = h - padB - 20;
-  var vmax = (ir && ir.mode === 'charging') ? ir.epsCh * 1.15 : eps * 1.2;
+  // combination_of_cells S4: eps_eq legitimately glides to EXACTLY 0 (the reversed-
+  // pair dead circuit) and holds there for the rest of the state — a bare eps*1.2
+  // would make vmax 0 and py()'s v/vmax divide-by-zero into NaN for that entire
+  // hold. The 0.3 floor is a no-op for every existing sibling (emf sliders never
+  // author a 0 default/min anywhere in this file).
+  var vmax = (ir && ir.mode === 'charging') ? ir.epsCh * 1.15 : max(eps * 1.2, 0.3);
   function py(v) { return gy - gh * constrain(v / vmax, 0, 1); }
   strokeHex('#78909C', 0.7 * dim); strokeWeight(1.5); line(gx, gy, gx, gy - gh); line(gx, gy, gx + gw, gy);
   strokeHex('#66BB6A', 0.35 * dim); strokeWeight(1); line(gx, py(eps), gx + gw, py(eps));   // eps reference
@@ -2937,6 +3582,45 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir
     fillHex('#FF8A65', 0.9 * rD3); textAlign(LEFT, TOP); text('i\\u00B7r', x35 + 4, py(i * ir.r) + 2);
     fillHex('#66BB6A', 0.8 * dim); textSize(9); textAlign(RIGHT, BOTTOM);
     text('\\u03B5 = ' + eps.toFixed(1) + ' V', xe - 2, py(eps) - 2);   // the emf line V sits ABOVE
+  } else if (ir && ir.mode === 'combo') {
+    // combination_of_cells: SERIES chains one signed climb + one i.r toll STEP per
+    // cell (cell index 1 -- "cell 2" -- is the only one that ever flips, via
+    // ir.flipFrac 0..1 continuously inverting its climb into a descent, S4);
+    // PARALLEL/SINGLE draws ONE climb + ONE toll step using i_through_cell.r
+    // (naturally half-height at m=2 -- no special-casing needed, S6). A dock_cell
+    // growth blend (S2) passes a NON-integer ir.cellCount; the still-growing
+    // cell's climb+toll are scaled by its fractional weight so "the ladder grows
+    // a second climb" is the segment literally growing in, not popping in whole.
+    var rD5 = dimFor('r_internal');
+    var nRaw = (ir.topology === 'series') ? max(1, ir.cellCount) : 1;
+    var nFull = floor(nRaw + 1e-6), nFrac = nRaw - nFull;
+    var nSeg = (nFrac > 0.002) ? (nFull + 1) : max(nFull, 1);
+    var seg3 = gw / (2 * nSeg + 1), vx3 = gx, vNow3 = 0;
+    var pts3 = [{ x: gx, y: py(0) }];
+    var flipF = (ir.flipFrac !== undefined) ? ir.flipFrac : 0;
+    var kk3;
+    for (kk3 = 0; kk3 < nSeg; kk3++) {
+      var weight3 = (kk3 < nFull) ? 1 : nFrac;
+      var sign3 = (ir.topology === 'series' && kk3 === 1) ? (1 - 2 * flipF) : 1;
+      vNow3 += ir.emf * sign3 * weight3;
+      vx3 += seg3; pts3.push({ x: vx3, y: py(vNow3) });
+      vNow3 -= (ir.stepPerCell || 0) * weight3;
+      vx3 += seg3; pts3.push({ x: vx3, y: py(vNow3) });
+    }
+    pts3.push({ x: gx + gw, y: py(0) });                     // external R drop, closes the loop at 0V
+    strokeHex('#4DD0E1', 0.98 * lDim); strokeWeight(2.5); noFill();
+    beginShape(); for (var pk3 = 0; pk3 < pts3.length; pk3++) vertex(pts3[pk3].x, pts3[pk3].y); endShape();
+    strokeHex('#66BB6A', 0.4 * dim); strokeWeight(1); line(gx, py(0), gx + gw, py(0));
+    noStroke(); textStyle(BOLD); textSize(10); textAlign(LEFT, BOTTOM);
+    fillHex('#4DD0E1', 0.95 * lDim);
+    text('\\u03B5_eq = ' + ir.epsEq.toFixed(2) + ' V', gx + 4, py(max(ir.epsEq, vNow3, 0)) - 4);
+    if (ir.i > 0.02 && (ir.stepPerCell || 0) > 0.005) {
+      fillHex('#FF8A65', 0.9 * rD5); textAlign(LEFT, TOP);
+      text('i\\u00B7r', gx + seg3 * 1.15, py(ir.epsEq) + 2);
+    }
+    fillHex('#B39DDB', 0.95 * dim); textAlign(RIGHT, BOTTOM);
+    text('V = ' + ir.V.toFixed(2) + ' V', gx + gw * 0.85, py(vNow3) - 3);
+    textStyle(NORMAL);
   } else if (ir) {
     // REAL cell discharging: up eps, down i*r STILL INSIDE the cell band, flat at V
     // along the wire, down V across the load. i = 0 degenerates to flat-at-eps (open).
@@ -3006,6 +3690,8 @@ function drawPotentialLadder(eps, i, R, swOpen, dim, traceS, holdPulse, prof, ir
     if (kvl.three) text('R\\u2083', gx + seg2 * 5.5, gy + 3);
   } else if (ir && ir.mode === 'charging') {
     text('charger', xa + gw * 0.18, gy + 3); text('R', xa + gw * 0.51, gy + 3); text('cell', xa + gw * 0.78, gy + 3);
+  } else if (ir && ir.mode === 'combo') {
+    text('cells', xa + gw * 0.065, gy + 3); text('load', (xc + xd) / 2, gy + 3);
   } else if (ir) {
     text('cell', xa + gw * 0.065, gy + 3); text('load', (xc + xd) / 2, gy + 3);
   } else {

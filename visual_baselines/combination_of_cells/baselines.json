@@ -1,0 +1,43 @@
+{
+  "approved_at": "2026-07-20T00:29:48.207Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\combination_of_cells\\20260720-013156",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_9": {
+      "compare": false,
+      "compare_frozen": true
+    }
+  }
+}

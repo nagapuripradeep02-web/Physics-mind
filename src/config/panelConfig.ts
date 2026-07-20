@@ -212,6 +212,28 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #12 — Alex pipeline (2026-07-14), direct sequel of
+    // emf_definition + internal_resistance (same charge-pump cell + ladder +
+    // terminal voltmeter + r-interior machinery, now MULTIPLIED into 2-3 cells).
+    // Reuses the internal_resistance scenario_type as the renderer selector,
+    // riding NEW per-state flags on the circuit engine (cell_topology, cell_count,
+    // flip_cell2, dock_cell, switch_close_cue, flip_cell, regroup, R_autosweep_down/
+    // R_autosweep_to REUSED verbatim, cycle_compare + per-phase fields,
+    // compare_readout/compare_chip/compare_grid, ghost_text, glow keys cells/ammeter
+    // — engine additions authored-but-not-yet-implemented as of 2026-07-14,
+    // flagged for peter_parker:renderer_primitives via quality_auditor). NOT added
+    // to PCPL_CONCEPTS (parametric_renderer only). NOT added to PILOT_CONCEPTS
+    // (novel multi-cell engine path -> reviewer-first, potentiometer precedent).
+    combination_of_cells: {
+        concept_id: 'combination_of_cells',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'combination_of_cells',
+            label: 'Combination of Cells — Series Adds, Parallel Shares',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

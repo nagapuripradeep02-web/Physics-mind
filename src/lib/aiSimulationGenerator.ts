@@ -2675,6 +2675,19 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // STALE circuit_live placeholder. NOT added to PCPL_CONCEPTS
     // (parametric_renderer only).
     potentiometer:                  "particle_field",
+    // combination_of_cells is the TWELFTH Ch.3 concept on particle_field (2D
+    // p5.js) via the Alex pipeline (2026-07-14) — direct sequel of emf_definition
+    // + internal_resistance (same charge-pump cell + ladder + terminal voltmeter
+    // + r-interior machinery, now MULTIPLIED into 2-3 cells joined in series or
+    // parallel). Reuses the internal_resistance scenario_type as the renderer
+    // selector, riding NEW per-state flags on the circuit engine (cell_topology,
+    // cell_count, flip_cell2, dock_cell, switch_close_cue, flip_cell, regroup,
+    // R_autosweep_down/R_autosweep_to REUSED verbatim, cycle_compare + per-phase
+    // fields, compare_readout/compare_chip/compare_grid, ghost_text, glow keys
+    // cells/ammeter — engine additions authored-but-not-yet-implemented as of
+    // 2026-07-14, flagged for peter_parker:renderer_primitives via
+    // quality_auditor). NOT added to PCPL_CONCEPTS (parametric_renderer only).
+    combination_of_cells:           "particle_field",
     // Cells
     cells_in_series_parallel:       "circuit_live",
     cells_in_series:                "circuit_live",
