@@ -19534,14 +19534,69 @@ export const FIELD_3D_RENDERER_CODE = `
     var MAG_HSAT = 5000;              // A/m: dipole alignment saturates near here
     var MAG_HALF = 2.1;               // solenoid half-length along +X
     function magMaterial(idx) {
-        // teaching-representative chi (exaggerated so alignment + the B jump are
-        // VISIBLE; the relations B=mu0(H+M), M=chiH, mu_r=1+chi stay exact).
-        if (idx === 1) return { name: "diamagnetic", chi: -0.08, align: -0.14, color: "#90A4AE" };
-        if (idx === 2) return { name: "paramagnetic", chi: 0.60, align: 0.40, color: "#A5D6A7" };
-        if (idx === 3) return { name: "ferromagnetic", chi: 199, align: 1.0, color: "#FFCC80" };
+        // PHYSICALLY TRUE chi (founder-adjudicated 2026-07-20 — bug #5): dia ~
+        // bismuth (-1.66e-5), para ~ aluminium (2.3e-5), ferro ~ iron-order
+        // (1e3), matching NCERT Ch.5 Table 5.2 order of magnitude. 'align' is
+        // UNCHANGED from the prior exaggerated build — it drives the dipole
+        // arrow tilt / net-M-arrow-length visuals only, never the readout
+        // numbers, so every existing animation stays pixel-identical while the
+        // H/M/B/mu_r readout (see magFmtM/magFmtMuR below) becomes honest.
+        if (idx === 1) return { name: "diamagnetic", chi: -1.66e-5, align: -0.14, color: "#90A4AE" };
+        if (idx === 2) return { name: "paramagnetic", chi: 2.3e-5, align: 0.40, color: "#A5D6A7" };
+        if (idx === 3) return { name: "ferromagnetic", chi: 1000, align: 1.0, color: "#FFCC80" };
         return { name: "vacuum", chi: 0, align: 0, color: "#B0BEC5" };
     }
     function magFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+    // Adaptive numeric readouts (Rule 34b value-only + Rule 34c real Unicode) so
+    // dia/para (|chi| ~1e-5) and ferro (chi ~1e3) stay visually DISTINCT instead
+    // of both collapsing to "0 A/m" / "1.00" under fixed-precision rounding
+    // (bug #5b, session 2026-07-20).
+    function magSupStr(n) {
+        var map = { "0": "\\u2070", "1": "\\u00b9", "2": "\\u00b2", "3": "\\u00b3", "4": "\\u2074", "5": "\\u2075", "6": "\\u2076", "7": "\\u2077", "8": "\\u2078", "9": "\\u2079", "-": "\\u2212" };
+        var s = String(n), out = "";
+        for (var i = 0; i < s.length; i++) out += map[s.charAt(i)] || s.charAt(i);
+        return out;
+    }
+    function magSci(x, sig) {
+        if (x === 0) return "0";
+        var neg = x < 0, ax = Math.abs(x);
+        var exp = Math.floor(Math.log10(ax));
+        var mant = ax / Math.pow(10, exp);
+        mant = parseFloat(mant.toFixed(sig));
+        if (mant >= 10) { mant /= 10; exp += 1; }
+        return (neg ? "\\u2212" : "") + mant.toFixed(sig) + "\\u00d710" + magSupStr(exp);
+    }
+    // M (A/m): plain fixed inside a legible range, scientific notation outside
+    // it — ferro's M (~1e6) vs dia/para's M (~1e-2) at the SAME H would
+    // otherwise both go through Math.round() and dia/para would print "0".
+    function magFmtM(m) {
+        var am = Math.abs(m);
+        if (am === 0) return "0 A/m";
+        if (am >= 0.01 && am < 100000) {
+            var dec = (am >= 1000) ? 0 : (am >= 1 ? 2 : 3);
+            return (m < 0 ? "\\u2212" : "") + Math.abs(m).toFixed(dec) + " A/m";
+        }
+        return magSci(m, 2) + " A/m";
+    }
+    // mu_r = 1+chi: dia/para sit within ~1e-5 of 1 (toFixed(2) prints "1.00"
+    // for BOTH, indistinguishable); ferro sits far above 1. Show enough
+    // decimals to separate the near-1 pair, collapse to an integer once large.
+    function magFmtMuR(mu_r) {
+        var dev = Math.abs(mu_r - 1);
+        if (dev === 0) return "1";
+        if (Math.abs(mu_r) >= 100) return Math.round(mu_r).toString();
+        if (dev < 0.001) {
+            var dec = Math.min(8, Math.max(5, 2 - Math.floor(Math.log10(dev))));
+            return mu_r.toFixed(dec);
+        }
+        return mu_r.toFixed(3);
+    }
+    // B: ferro's B climbs past 1 T where mT digits get unreadably long; show
+    // Tesla once >=1 T, else mT (matches the existing dia/para/apply_h scale).
+    function magFmtB(bTesla) {
+        if (Math.abs(bTesla) >= 1) return bTesla.toFixed(3) + " T";
+        return (bTesla * 1000).toFixed(2) + " mT";
+    }
 
     function buildMagnetisation() {
         var flColor = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
@@ -19551,7 +19606,7 @@ export const FIELD_3D_RENDERER_CODE = `
         coil.userData = { elementType: "mag_coil", id: "mag_coil" };
         for (var ci = 0; ci < coil.children.length; ci++) { if (coil.children[ci].material) { coil.children[ci].material.transparent = true; coil.children[ci].material.opacity = 1; } }
         addToScene(coil);
-        var coilLbl = createWideLabelSprite("solenoid: H = n I", "#FFCC80", 0.3); coilLbl.position.set(0, 1.55, 0); coilLbl.userData = { elementType: "mag_label", id: "mag_coil_lbl" }; addToScene(coilLbl);
+        var coilLbl = createWideLabelSprite("solenoid", "#FFCC80", 0.3); coilLbl.position.set(0, 1.55, 0); coilLbl.userData = { elementType: "mag_label", id: "mag_coil_lbl" }; addToScene(coilLbl);
 
         // 2. Sparse internal field lines (the applied H, always present).
         for (var i = 0; i < 4; i++) {
@@ -19722,8 +19777,16 @@ export const FIELD_3D_RENDERER_CODE = `
         if (mArr && mArr.visible) { mArr.position.x = -0.75 + coreX; mArr.setLength(0.12 + 1.5 * Math.abs(align), 0.2, 0.13); mArr.setDirection(new THREE.Vector3(align >= 0 ? 1 : -1, 0, 0)); }
         var mLbl = magFindById("mag_M_lbl"); if (mLbl) mLbl.position.x = 0.9 + coreX;
 
-        // dense field-line bundle fade-in (sum mode = B = mu0(H+M))
-        var denseOp = (mode === "sum") ? 0.85 * Math.min(1, t / 1.5) : (mode === "sandbox" ? 0.85 * Math.min(1, Math.abs(align)) : 0);
+        // dense field-line bundle fade-in (sum mode = B = mu0(H+M)) — fires on
+        // the narrated sentence ("watch the internal field lines pack in
+        // denser") via SET_CUE_TIME 'dense_pack' when the live player sends
+        // it (Rule 32a cause-before-effect: the ramp used to always start at
+        // state entry, 10-20s before the sentence that describes it, so the
+        // teacher's "watch" landed on an already-settled pose). The 0 fallback
+        // reproduces the original t/1.5 ramp exactly, so THE EYE (which never
+        // sends a cue) captures byte-identical frozen frames.
+        var denseStartS = cueTriggerMs("dense_pack", 0) / 1000;
+        var denseOp = (mode === "sum") ? 0.85 * Math.min(1, Math.max(0, t - denseStartS) / 1.5) : (mode === "sandbox" ? 0.85 * Math.min(1, Math.abs(align)) : 0);
         for (var i = 0; i < sceneObjects.length; i++) { var o2 = sceneObjects[i], u2 = o2.userData; if (u2 && u2.elementType === "mag_fl_dense" && o2.material) o2.material.opacity = denseOp; }
 
         // current beads SPIRAL along the coil (12 turns, radius 0.9); speed scales
@@ -19746,15 +19809,23 @@ export const FIELD_3D_RENDERER_CODE = `
             var html = "";
             if (!hasMat) {
                 html += "<div style=\\"color:#66BB6A\\">H = " + Math.round(H) + " A/m</div>";
-                html += "<div style=\\"color:#FFD54F\\">B\\u2080 = \\u03bc\\u2080H = " + (MU_0 * H * 1000).toFixed(2) + " mT</div>";
+                html += "<div style=\\"color:#FFD54F\\">B\\u2080 = " + magFmtB(MU_0 * H) + "</div>";
             } else {
                 var Mdisp = (mode === "insert") ? 0 : M;
                 var Bdisp = (mode === "insert") ? (MU_0 * H) : Bt;
                 html += "<div>material: " + mat.name + "</div>";
                 html += "<div style=\\"color:#66BB6A\\">H = " + Math.round(H) + " A/m</div>";
-                html += "<div style=\\"color:#EF5350\\">M = \\u03c7H = " + Math.round(Mdisp) + " A/m</div>";
-                html += "<div style=\\"color:#FFD54F\\">B = \\u03bc\\u2080(H+M) = " + (Bdisp * 1000).toFixed(2) + " mT</div>";
-                html += "<div style=\\"color:#4DD0E1\\">\\u03bc\\u1d63 = 1+\\u03c7 = " + mu_r.toFixed(2) + "</div>";
+                html += "<div style=\\"color:#EF5350\\">M = " + magFmtM(Mdisp) + "</div>";
+                html += "<div style=\\"color:#FFD54F\\">B = " + magFmtB(Bdisp) + "</div>";
+                // Rule 25 foundation-first: mu_r (relative permeability) is not
+                // DEFINED until STATE_5 ("Three materials, three chi") -- showing
+                // it in insert/align/sum (S2-S4) contradicts those states'
+                // own teaching point (S2 explicitly asserts "no M yet"). Hold
+                // the row out until materials/sandbox (S5+), pure derivation
+                // from the already-authored mag.mode, no JSON edit. Mirrors the
+                // earths_magnetism A6 showHV gate above.
+                var showMuR = (mode === "materials" || mode === "sandbox");
+                if (showMuR) html += "<div style=\\"color:#4DD0E1\\">\\u03bc\\u1d63 = " + magFmtMuR(mu_r) + "</div>";
             }
             roEl.innerHTML = html;
         }
@@ -30629,7 +30700,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (magMode === "apply_h") lines.push("\\u26aa Coil current \\u2192 magnetic intensity H");
             else if (magMode === "insert") lines.push("\\u26aa Arrows = atomic dipoles (random \\u2192 M \\u2248 0)");
             else if (magMode === "align") lines.push("\\u26aa Dipoles align to H \\u2192 magnetisation M");
-            else if (magMode === "sum") lines.push("\\u26aa B = \\u03bc\\u2080(H + M): applied + material");
+            else if (magMode === "sum") lines.push("\\u26aa Total field: applied + material");
             else if (magMode === "materials") lines.push("\\u26aa \\u03c7 sets the response: dia / para / ferro");
             else lines.push("\\u26aa Drag current \\u00b7 pick material");
         } else if (scenario.indexOf("magnet") >= 0 || scenario === "solenoid_field") {

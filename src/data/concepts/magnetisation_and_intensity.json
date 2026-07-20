@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "complex",
-  "source_book": "NCERT Class 12 Ch.5 Magnetism and Matter §5.5 (Magnetisation and magnetic intensity) — table-of-contents reference only; teaching authored from first principles. The atomic concept: a solenoid supplies the magnetic INTENSITY H = nI (set by the free current, independent of any material); a material core develops a MAGNETISATION M (net magnetic dipole moment per unit volume) as its atomic dipoles align to H; the total field inside is B = μ₀(H + M). The susceptibility χ = M/H (and relative permeability μ_r = 1 + χ) classifies matter into diamagnetic (χ < 0), paramagnetic (small χ > 0) and ferromagnetic (large χ). Built instrument-native in the straightforward (non-Socratic) model: five motion-distinct teaching beats + one combined interactive state.",
+  "source_book": "NCERT Class 12 Ch.5 Magnetism and Matter §5.5 (Magnetisation and magnetic intensity) — table-of-contents reference only; teaching authored from first principles. The atomic concept: a solenoid supplies the magnetic INTENSITY H = nI (set by the free current, independent of any material); a material core develops a MAGNETISATION M (net magnetic dipole moment per unit volume) as its atomic dipoles align to H; the total field inside is B = μ₀(H + M). The susceptibility χ = M/H (and relative permeability μᵣ = 1 + χ) classifies matter into diamagnetic (χ < 0), paramagnetic (small χ > 0) and ferromagnetic (large χ). Built instrument-native in the straightforward (non-Socratic) model: five motion-distinct teaching beats + one combined interactive state.",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -84,7 +84,7 @@
       "magnetic_intensity": "H = n I  (set by the free current; units A/m)",
       "magnetisation": "M = χ H  (the material's response; units A/m)",
       "total_field": "B = μ₀ (H + M)",
-      "permeability": "μ_r = 1 + χ,  so  B = μ₀ μ_r H",
+      "permeability": "μᵣ = 1 + χ,  so  B = μ₀ μᵣ H",
       "susceptibility": "χ = M / H  (dia: χ < 0, para: small χ > 0, ferro: large χ)"
     },
     "constraints": [
@@ -92,7 +92,7 @@
       "M is the magnetisation of the material — net magnetic dipole moment per unit volume — produced when its atomic dipoles align to H",
       "Inside the material the TOTAL field is B = μ₀(H + M), not just μ₀H",
       "Susceptibility χ = M/H: diamagnetic χ slightly negative (dipoles oppose), paramagnetic χ small positive, ferromagnetic χ very large positive",
-      "Relative permeability μ_r = 1 + χ; a ferromagnetic core multiplies the field by μ_r (hundreds to thousands)",
+      "Relative permeability μᵣ = 1 + χ; a ferromagnetic core multiplies the field by μᵣ (hundreds to thousands)",
       "H and M share the same unit A/m; B is in tesla"
     ]
   },
@@ -182,14 +182,7 @@
               "glow": "vacuum_label"
             }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The magnetic intensity H depends on what material you put inside the coil",
-            "visual_counter": "H comes from the coil current alone (H = nI); the internal field lines are the same before any core is inserted.",
-            "one_line_fix": "H is fixed by the free current, H = nI, and does not depend on the core material."
-          }
-        ]
+        }
       },
       "STATE_2": {
         "title": "Insert matter: jumbled atomic dipoles",
@@ -252,14 +245,7 @@
               "glow": "atoms_label"
             }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "Every material is already magnetic before any field is applied",
-            "visual_counter": "The inserted rod's atomic arrows point randomly and its net M reads zero until H acts on them.",
-            "one_line_fix": "Ordinary matter has randomly-oriented atomic dipoles, so net M is zero until an applied H aligns them."
-          }
-        ]
+        }
       },
       "STATE_3": {
         "title": "H aligns them: magnetisation M appears",
@@ -382,7 +368,8 @@
               "text_en": "The total field is B equals mu-naught times the sum H plus M. Watch the internal field lines pack in denser.",
               "text_hi": "total field है B equals mu-naught into sum H plus M। देखिए internal field lines और denser पैक होती हैं।",
               "text_te": "total field ante B equals mu-naught into sum H plus M. internal field lines inka denser ga pack ayye vidhanam choodandi.",
-              "glow": "dense_label"
+              "glow": "dense_label",
+              "scenario_cue": "dense_pack"
             },
             {
               "id": "s4_3",
@@ -392,17 +379,10 @@
               "glow": "sum_label"
             }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The field inside a material core is just mu-naught times H, the same as empty space",
-            "visual_counter": "When the core magnetises, the internal field lines pack denser and the B meter jumps above mu-naught H.",
-            "one_line_fix": "Inside matter B = μ₀(H + M), which exceeds μ₀H whenever the core magnetises (M > 0)."
-          }
-        ]
+        }
       },
       "STATE_5": {
-        "title": "Three kinds of matter: χ and μ_r",
+        "title": "Three kinds of matter: χ and μᵣ",
         "duration": 32,
         "focal_primitive_id": "chi_label",
         "advance_mode": "manual_click",
@@ -414,7 +394,7 @@
               "x": 380,
               "y": 60
             },
-            "text": "M = χ H,   μ_r = 1 + χ",
+            "text": "M = χ H,   μᵣ = 1 + χ",
             "color": "#66BB6A"
           },
           {
@@ -467,7 +447,7 @@
           {
             "belief": "All materials respond to a magnetic field the same way",
             "visual_counter": "Cycling dia, para and ferro shows opposite/weak/violent alignment and a mu_r readout from below 1 to hundreds.",
-            "one_line_fix": "Susceptibility χ differs by material: dia (χ<0), para (small χ>0), ferro (huge χ) — so μ_r = 1+χ ranges from below 1 to hundreds."
+            "one_line_fix": "Susceptibility χ differs by material: dia (χ<0), para (small χ>0), ferro (huge χ) — so μᵣ = 1+χ ranges from below 1 to hundreds."
           }
         ]
       },
@@ -555,7 +535,7 @@
     },
     "states": {
       "STATE_1": {
-        "label": "Apply the field: intensity H = nI",
+        "label": "Apply the field",
         "visible_elements": [
           "mag_coil",
           "mag_fl_int",
@@ -568,7 +548,7 @@
           1.6,
           6.0
         ],
-        "caption": "Current in the coil sets the magnetic intensity H = nI",
+        "caption": "Coil current sets H",
         "show_sliders": true,
         "formula_overlay": "H = n I",
         "mag": {
@@ -593,7 +573,7 @@
           1.2,
           5.2
         ],
-        "caption": "Atomic dipoles point randomly → net M ≈ 0",
+        "caption": "Random dipoles, no M",
         "show_sliders": true,
         "mag": {
           "mode": "insert",
@@ -618,19 +598,19 @@
           1.0,
           4.8
         ],
-        "caption": "Raise the current → dipoles align → M grows",
+        "caption": "H aligns dipoles",
         "show_sliders": true,
         "formula_overlay": "M = χ H",
         "mag": {
           "mode": "align",
-          "material_idx": 2,
+          "material_idx": 3,
           "current_a": 5,
           "i_max": 5,
           "show_readout": true
         }
       },
       "STATE_4": {
-        "label": "Total field: B = μ₀(H + M)",
+        "label": "Total field inside the core",
         "visible_elements": [
           "mag_coil",
           "mag_fl_int",
@@ -646,18 +626,18 @@
           1.6,
           5.6
         ],
-        "caption": "M adds to H → field lines densify → B climbs",
+        "caption": "M adds to H",
         "show_sliders": true,
         "formula_overlay": "B = μ₀ (H + M)",
         "mag": {
           "mode": "sum",
-          "material_idx": 2,
+          "material_idx": 3,
           "current_a": 5,
           "show_readout": true
         }
       },
       "STATE_5": {
-        "label": "Three kinds of matter: χ and μ_r",
+        "label": "Three kinds of matter: χ and μᵣ",
         "visible_elements": [
           "mag_coil",
           "mag_fl_int",
@@ -672,9 +652,9 @@
           1.0,
           4.8
         ],
-        "caption": "dia / para / ferro cycle — M = χH, μ_r = 1+χ",
+        "caption": "Three materials, three χ",
         "show_sliders": true,
-        "formula_overlay": "M = χH  ·  μ_r = 1 + χ",
+        "formula_overlay": "M = χH  ·  μᵣ = 1 + χ",
         "mag": {
           "mode": "materials",
           "current_a": 5,
@@ -699,7 +679,7 @@
           1.8,
           6.2
         ],
-        "caption": "Drag current · pick material — watch H, M, B, μ_r",
+        "caption": "Drag current, pick material",
         "show_sliders": true,
         "formula_overlay": "H = nI  ·  M = χH  ·  B = μ₀(H+M)",
         "mag": {
