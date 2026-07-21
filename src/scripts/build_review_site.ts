@@ -520,6 +520,26 @@ ${pilotHeadTags(1)}
            transition:color .15s ease, border-color .15s ease, background .15s ease; }
   .fsGlassBtn:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   #fsCleanBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* ⚙ Widgets — only for sims that declare toggleable widgets in SIM_READY;
+     visible in AND out of fullscreen (unlike #fsCleanBtn). Dot marks active overrides. */
+  #wgBtn { display:none; }
+  #wgBtn.avail { display:flex; }
+  #wgBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* per-widget visibility popover (structure mirrors #rowMenu) */
+  #widgetMenu { position:fixed; z-index:50; display:none; min-width:230px; padding:9px 10px;
+             background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+             box-shadow:0 12px 30px -10px rgba(0,0,0,.7); }
+  #widgetMenu.open { display:block; }
+  #widgetMenu .wgHead { font-size:11px; font-weight:700; color:var(--ink-dim); letter-spacing:.04em;
+             text-transform:uppercase; padding:0 2px 7px; }
+  .wgRow { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:3px 2px; }
+  .wgRow .wgLbl { font-size:12px; color:var(--ink); white-space:nowrap; }
+  .wgSeg { display:flex; gap:3px; }
+  .wgSeg button { font-size:10px; font-weight:600; padding:3px 8px; border:1px solid var(--line);
+             background:none; color:var(--ink-dim); cursor:pointer; border-radius:6px; }
+  .wgSeg button:hover { color:var(--clay-soft); }
+  .wgSeg button.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #widgetMenu .wgHint { font-size:10px; color:var(--ink-dim); padding:7px 2px 0; }
   /* Next/Prev state chevrons + readout — full-screen only (§4, gated by #fsScope.pm-fs, not
      the :fullscreen pseudo-class, since these live inside #stage, a descendant of the
      fullscreen root, not the root itself). */
@@ -708,6 +728,7 @@ ${pilotHeadTags(1)}
         <button id="simClearBtn" class="pmbtn" title="Clear sim annotations">Clear</button>
       </div>
       <div id="fsTopControls">
+        <div id="wgBtn" class="fsGlassBtn" title="Show or hide individual sim widgets (sliders, graph, formula...)">&#9881; Widgets</div>
         <div id="fsCleanBtn" class="fsGlassBtn" title="Clean mode — hide on-canvas labels/sliders">&#10022; Clean</div>
         <div id="fsBtn" class="fsGlassBtn" title="Full screen the simulation (Esc to exit)"><span id="fsIcon">&#9974;</span> Full screen</div>
       </div>
@@ -871,6 +892,7 @@ ${pilotHeadTags(1)}
   var order = DEFAULT_ORDER.slice();   // position → STATES index
   var hiddenStates = {};               // { stateIndex: 1 }
   var stateNames = {};                 // { stateIndex: "custom title" }
+  var widgetStates = {};               // { widgetKey: 'show'|'hide' } — sim ⚙ overrides
   var dirty = false;                   // unsaved changes present?
   function loadLayout() {
     try {
@@ -879,11 +901,12 @@ ${pilotHeadTags(1)}
         if (validOrder(d.order)) order = d.order.slice();
         if (d.hidden && typeof d.hidden === 'object') hiddenStates = d.hidden;
         if (d.names && typeof d.names === 'object') stateNames = d.names;
+        if (d.widgets && typeof d.widgets === 'object') widgetStates = d.widgets;
       }
     } catch (e) {}
   }
   function saveLayout() {
-    try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+    try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates })); } catch (e) {}
     pushLayoutRemote();
     dirty = false; updateSaveBtn(true);
   }
@@ -904,7 +927,7 @@ ${pilotHeadTags(1)}
           'apikey': PM_CONFIG.supabaseAnonKey, 'Authorization': 'Bearer ' + tok,
           'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal'
         },
-        body: JSON.stringify({ concept_id: CONCEPT_ID, layout: { order: order, hidden: hiddenStates, names: stateNames }, updated_at: new Date().toISOString() })
+        body: JSON.stringify({ concept_id: CONCEPT_ID, layout: { order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates }, updated_at: new Date().toISOString() })
       }).then(function (r) { if (!r.ok) { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} } },
               function () { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} });
     } catch (e) {}
@@ -921,15 +944,18 @@ ${pilotHeadTags(1)}
         if (!rows || !rows.length || !rows[0].layout) return;
         if (dirty || railTouched) return;   // they're already working — this device's view wins for now
         var d = rows[0].layout;
-        var same = JSON.stringify([d.order, d.hidden, d.names]) ===
-                   JSON.stringify([order, hiddenStates, stateNames]);
+        var same = JSON.stringify([d.order, d.hidden, d.names, d.widgets]) ===
+                   JSON.stringify([order, hiddenStates, stateNames, widgetStates]);
         if (same) return;
         if (validOrder(d.order)) order = d.order.slice();
         hiddenStates = (d.hidden && typeof d.hidden === 'object') ? d.hidden : {};
         stateNames = (d.names && typeof d.names === 'object') ? d.names : {};
-        try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+        widgetStates = (d.widgets && typeof d.widgets === 'object') ? d.widgets : {};
+        try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates })); } catch (e) {}
         dirty = false;
         buildRail();
+        sendWidgetVis();
+        updateWgBtn();
         goToState(0, false);
       }).catch(function () {});
     });
@@ -1258,6 +1284,78 @@ ${pilotHeadTags(1)}
     rowMenu.style.left = Math.max(6, left) + 'px'; rowMenu.style.top = Math.max(6, top) + 'px';
   }
 
+  // ── ⚙ Per-widget visibility (SET_WIDGET_VIS) — the granular sibling of Clean
+  // mode. The SIM declares its toggleable widgets in SIM_READY; this chrome is
+  // generic and knows nothing about any specific sim. Three-way per widget:
+  // Auto (follow each state's authored default) / On (force show) / Off (force
+  // hide). Rides the LS_LAYOUT blob → applies live, persists on ✓ Save,
+  // cleared by ↻ Default, synced per professor via teacher_layouts.
+  var simWidgets = null;   // [{key,label}] from SIM_READY, or null = no button
+  function sendWidgetVis() { post({ type: 'SET_WIDGET_VIS', overrides: widgetStates }); }
+  function widgetOverrideCount() { var n = 0, k; for (k in widgetStates) n++; return n; }
+  function updateWgBtn() {
+    var wb = document.getElementById('wgBtn'); if (!wb) return;
+    wb.classList.toggle('avail', !!(simWidgets && simWidgets.length));
+    wb.classList.toggle('on', widgetOverrideCount() > 0);
+  }
+  var widgetMenu = document.createElement('div'); widgetMenu.id = 'widgetMenu';
+  (document.getElementById('fsScope') || document.body).appendChild(widgetMenu);   // inside #fsScope so it renders in fullscreen too
+  function closeWidgetMenu() { widgetMenu.classList.remove('open'); widgetMenu.innerHTML = ''; }
+  document.addEventListener('click', function (e) {
+    var wb = document.getElementById('wgBtn');
+    if (!widgetMenu.contains(e.target) && !(wb && wb.contains(e.target))) closeWidgetMenu();
+  }, true);
+  window.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeWidgetMenu(); });
+  function setWidgetMode(key, mode) {
+    if (mode) widgetStates[key] = mode; else delete widgetStates[key];
+    sendWidgetVis(); markDirty(); updateWgBtn();
+    pmt('widget_toggle', { widget: key, mode: mode || 'auto' });
+  }
+  function openWidgetMenu(anchorEl) {
+    widgetMenu.innerHTML = '';
+    var head = document.createElement('div'); head.className = 'wgHead'; head.textContent = 'Sim widgets'; widgetMenu.appendChild(head);
+    for (var i = 0; i < simWidgets.length; i++) {
+      (function (w) {
+        var row = document.createElement('div'); row.className = 'wgRow';
+        var lbl = document.createElement('span'); lbl.className = 'wgLbl'; lbl.textContent = w.label || w.key; row.appendChild(lbl);
+        var seg = document.createElement('span'); seg.className = 'wgSeg';
+        var modes = [['', 'Auto'], ['show', 'On'], ['hide', 'Off']];
+        for (var m = 0; m < modes.length; m++) {
+          (function (mv, ml) {
+            var b = document.createElement('button'); b.textContent = ml;
+            b.classList.toggle('on', (widgetStates[w.key] || '') === mv);
+            b.addEventListener('click', function (ev) {
+              ev.stopPropagation();
+              setWidgetMode(w.key, mv);
+              var sib = seg.querySelectorAll('button');
+              for (var s = 0; s < sib.length; s++) sib[s].classList.toggle('on', sib[s] === b);
+            });
+            seg.appendChild(b);
+          })(modes[m][0], modes[m][1]);
+        }
+        row.appendChild(seg); widgetMenu.appendChild(row);
+      })(simWidgets[i]);
+    }
+    var hint = document.createElement('div'); hint.className = 'wgHint';
+    hint.textContent = 'Auto follows each state. Save (✓) to keep across sessions.';
+    widgetMenu.appendChild(hint);
+    var r = anchorEl.getBoundingClientRect();
+    widgetMenu.classList.add('open');
+    var mw = widgetMenu.offsetWidth || 230, mh = widgetMenu.offsetHeight || 180;
+    var left = Math.min(r.right - mw, document.documentElement.clientWidth - mw - 6);
+    var top = Math.min(r.bottom + 6, document.documentElement.clientHeight - mh - 6);
+    widgetMenu.style.left = Math.max(6, left) + 'px'; widgetMenu.style.top = Math.max(6, top) + 'px';
+  }
+  (function () {
+    var wb = document.getElementById('wgBtn');
+    if (wb) wb.addEventListener('click', function () {
+      if (!simWidgets || !simWidgets.length) return;
+      if (widgetMenu.classList.contains('open')) { closeWidgetMenu(); return; }
+      pmt('widget_menu_open', { overrides: widgetOverrideCount() });
+      openWidgetMenu(wb);
+    });
+  })();
+
   function setHidden(si, hide) {
     if (hide) { hiddenStates[si] = 1; pmt('state_hide', { state_id: STATES[si].id, title: stateTitle(si) }); }
     else { delete hiddenStates[si]; pmt('state_unhide', { state_id: STATES[si].id, title: stateTitle(si) }); }
@@ -1362,12 +1460,16 @@ ${pilotHeadTags(1)}
     var keep = order[idx];
     order = DEFAULT_ORDER.slice();
     idx = order.indexOf(keep); if (idx < 0) idx = 0;
-    // "Default order" is the teacher's full reset: order + hidden + renames — and it PERSISTS immediately.
+    // "Default order" is the teacher's full reset: order + hidden + renames +
+    // widget overrides — and it PERSISTS immediately.
     var hadHides = false, hadNames = false, k;
     for (k in hiddenStates) { hadHides = true; break; }
     for (k in stateNames) { hadNames = true; break; }
-    hiddenStates = {}; stateNames = {}; hiddenExpanded = false;
-    pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames });
+    var hadWidgets = widgetOverrideCount() > 0;
+    hiddenStates = {}; stateNames = {}; widgetStates = {}; hiddenExpanded = false;
+    if (hadWidgets) { sendWidgetVis(); closeWidgetMenu(); }
+    updateWgBtn();
+    pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames, cleared_widgets: hadWidgets });
     saveLayout();     // durable reset
     buildRail();
     updateBadge();
@@ -1547,6 +1649,13 @@ ${pilotHeadTags(1)}
     if (t === 'SIM_READY') {
       simReady = true;
       pmt('sim_ready', { states: STATE_COUNT });
+      // Sims that support per-widget toggles declare them here (⚙ panel).
+      // Replaying the saved overrides restores the teacher's layout on load.
+      if (e.data.widgets && e.data.widgets.length) {
+        simWidgets = e.data.widgets;
+        updateWgBtn();
+        if (widgetOverrideCount() > 0) sendWidgetVis();
+      }
       attachSimCapture();
       // Baked audio can't be re-paced by the slider — disable it when clips exist.
       if (HAS_AUDIO && rateEl) { rateEl.disabled = true; rateEl.title = 'Pacing follows the recorded narration'; }

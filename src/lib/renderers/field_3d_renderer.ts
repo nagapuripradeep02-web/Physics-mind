@@ -21,8 +21,10 @@
 //   IN:  { type: 'SET_STATE', state: 'STATE_N' }
 //        { type: 'INIT_CONFIG', config: Field3DConfig }
 //        { type: 'REPLAY_ANIMATIONS' }   ← admin harness: rewind one-shot anims
+//        { type: 'SET_WIDGET_VIS', overrides: {key:'show'|'hide'} }  ← teacher ⚙ panel
 //        { type: 'PING' }
-//   OUT: { type: 'SIM_READY' }          — on load
+//   OUT: { type: 'SIM_READY', widgets?: [{key,label}] }  — on load; widgets = per-widget
+//        toggle declaration (SET_WIDGET_VIS targets; capacitance only for now)
 //        { type: 'STATE_REACHED', state: 'STATE_N' }  — on state apply
 //        { type: 'PONG' }
 // =============================================================================
@@ -5688,35 +5690,67 @@ export const FIELD_3D_RENDERER_CODE = `
             if (gapClosedEl) gapClosedEl.visible = !!cd.show_beads;
         }
 
-        // Contextual slider rows (Rule 31) — controls[] = live row(s);
-        // static_readouts[] = a disabled row at the SAME position.
-        var controls = cd.controls || [];
-        var statics = cd.static_readouts || [];
-        var rowIds = { V: "cap_V_row", A: "cap_A_row", d: "cap_d_row" };
-        var sliderIds = { V: "cap_v_slider", A: "cap_a_slider", d: "cap_d_slider" };
-        for (var key in rowIds) {
-            var rowEl = document.getElementById(rowIds[key]);
-            var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
-            if (rowEl) rowEl.style.display = relevant ? "block" : "none";
-            var slEl = document.getElementById(sliderIds[key]);
-            var isLive = controls.indexOf(key) !== -1;
-            if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
-        }
-        var panelEl = document.getElementById("cap_sliders");
-        if (panelEl) panelEl.style.display = (controls.length + statics.length > 0) ? "block" : "none";
-
-        var roEl = document.getElementById("cap_readout"); if (roEl) roEl.style.display = "block";
-        var ratioEl = document.getElementById("cap_ratio_readout"); if (ratioEl) ratioEl.style.display = cd.show_ratio_readout ? "block" : "none";
-        var ffEl = document.getElementById("cap_formula"); if (ffEl) ffEl.style.display = (cd.formula && cd.mode !== "derivation") ? "block" : "none";
-        var dvEl = document.getElementById("cap_derivation"); if (dvEl) dvEl.style.display = (cd.mode === "derivation") ? "block" : "none";
-        var gcEl = document.getElementById("cap_graph_canvas"); if (gcEl) gcEl.style.display = cd.show_graph ? "block" : "none";
-        var axisEl = document.getElementById("cap_axis_toggle"); if (axisEl) axisEl.style.display = (cd.show_graph && cd.axis_toggle) ? "block" : "none";
+        capApplyWidgetVis(cd);
 
         function syncS(id, v) { var el = document.getElementById(id); if (el) el.value = String(v); }
         syncS("cap_v_slider", window.PM_capV); syncS("cap_a_slider", window.PM_capA); syncS("cap_d_slider", window.PM_capD);
         var vV = document.getElementById("cap_v_val"); if (vV) vV.textContent = window.PM_capV.toFixed(1);
         var aV = document.getElementById("cap_a_val"); if (aV) aV.textContent = window.PM_capA.toFixed(3);
         var dV = document.getElementById("cap_d_val"); if (dV) dV.textContent = (window.PM_capD * 1000).toFixed(2);
+    }
+
+    // Teacher widget-visibility overrides (SET_WIDGET_VIS, review-chrome ⚙
+    // panel). Three-value per widget key: 'show' forces visible (slider rows
+    // also become live — the drag-seize pattern already keeps the physics
+    // exact under manual drives), 'hide' forces hidden, unset = follow the
+    // state's authored Rule-31 default. The map PERSISTS across SET_STATE
+    // (applyCapacitanceState routes every display decision back through
+    // capApplyWidgetVis), and THE EYE never sends the message, so captures
+    // always see the authored defaults — baselines unaffected.
+    function capWidgetVis(key, stateWants) {
+        var ov = (window.PM_widgetVis || {})[key];
+        if (ov === "show") return true;
+        if (ov === "hide") return false;
+        return !!stateWants;
+    }
+    // The single authoritative display pass for every capacitance DOM widget.
+    // Called from applyCapacitanceState's tail AND from the SET_WIDGET_VIS
+    // handler — the handler must NEVER re-run the full apply, which would
+    // reset the PM_cap*Dragged seize flags mid-state.
+    function capApplyWidgetVis(cd) {
+        cd = cd || {};
+        // Contextual slider rows (Rule 31) — controls[] = live row(s);
+        // static_readouts[] = a disabled row at the SAME position.
+        var controls = cd.controls || [];
+        var statics = cd.static_readouts || [];
+        var rowIds = { V: "cap_V_row", A: "cap_A_row", d: "cap_d_row" };
+        var sliderIds = { V: "cap_v_slider", A: "cap_a_slider", d: "cap_d_slider" };
+        var anyRow = false;
+        for (var key in rowIds) {
+            var wKey = "slider_" + key;
+            var authoredRelevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
+            var rowVisible = capWidgetVis(wKey, authoredRelevant);
+            var rowEl = document.getElementById(rowIds[key]);
+            if (rowEl) rowEl.style.display = rowVisible ? "block" : "none";
+            if (rowVisible) anyRow = true;
+            // A force-shown row is also live (the teacher showed it to use
+            // it); an authored-live row stays live; a static row stays dim.
+            var isLive = controls.indexOf(key) !== -1 || (window.PM_widgetVis || {})[wKey] === "show";
+            var slEl = document.getElementById(sliderIds[key]);
+            if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
+        }
+        var panelEl = document.getElementById("cap_sliders");
+        if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
+
+        var roEl = document.getElementById("cap_readout"); if (roEl) roEl.style.display = capWidgetVis("readout", true) ? "block" : "none";
+        var ratioEl = document.getElementById("cap_ratio_readout"); if (ratioEl) ratioEl.style.display = capWidgetVis("ratio", cd.show_ratio_readout) ? "block" : "none";
+        // A 'show' override can only uncover content the mode can actually
+        // render: the formula line needs authored text, the derivation panel
+        // exists only in derivation mode.
+        var ffEl = document.getElementById("cap_formula"); if (ffEl) ffEl.style.display = (capWidgetVis("formula", cd.formula && cd.mode !== "derivation") && cd.formula) ? "block" : "none";
+        var dvEl = document.getElementById("cap_derivation"); if (dvEl) dvEl.style.display = (capWidgetVis("formula", cd.mode === "derivation") && cd.mode === "derivation") ? "block" : "none";
+        var gcEl = document.getElementById("cap_graph_canvas"); if (gcEl) gcEl.style.display = capWidgetVis("graph", cd.show_graph) ? "block" : "none";
+        var axisEl = document.getElementById("cap_axis_toggle"); if (axisEl) axisEl.style.display = capWidgetVis("graph", cd.show_graph && cd.axis_toggle) ? "block" : "none";
     }
 
     // S6 chain-link derivation: three lines dock in turn on link_cues[0..2]
@@ -5961,7 +5995,10 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ffEl && ffEl.style.display !== "none") ffEl.textContent = cd.formula || "";
         if (mode === "derivation") capUpdateDerivation(cd, t, Q, A, D);
 
-        if (cd.show_graph) capDrawGraph(cd, mode, t, V, Q, C, Vdef);
+        // Unconditional: capDrawGraph early-returns when the canvas is hidden,
+        // and the display decision (state default ∘ teacher override) already
+        // happened in capApplyWidgetVis — so a force-shown graph paints live.
+        capDrawGraph(cd, mode, t, V, Q, C, Vdef);
     }
 
     // Glow-key enum CLOSED to exactly: beads | plate_dots | ratio_readout |
@@ -36840,7 +36877,7 @@ export const FIELD_3D_RENDERER_CODE = `
                             renderMobileSVG();
                         }
                     }
-                    parent.postMessage({ type: "SIM_READY" }, "*");
+                    parent.postMessage(pmSimReadyMsg(), "*");
                     break;
 
                 case "SET_STATE":
@@ -37062,8 +37099,41 @@ export const FIELD_3D_RENDERER_CODE = `
                     // every full-screen entry AND exit.
                     document.body.classList.toggle("pm-clean", !!data.on);
                     break;
+
+                case "SET_WIDGET_VIS":
+                    // Per-widget teacher overrides (review-chrome ⚙ panel) —
+                    // the granular sibling of SET_CLEAN_MODE. Full override
+                    // map every time (idempotent, replayable on reload).
+                    // Re-applies ONLY the display pass — never the full state
+                    // apply, which would reset the drag-seize flags mid-state.
+                    window.PM_widgetVis = (data && data.overrides && typeof data.overrides === "object") ? data.overrides : {};
+                    if (config.scenario_type === "capacitance" && !isMobile) {
+                        var wvSd = config.states[PM_currentState];
+                        if (wvSd) capApplyWidgetVis(wvSd.capacitance || {});
+                    }
+                    break;
             }
         });
+    }
+
+    // SIM_READY payload — a sim that supports per-widget teacher toggles
+    // DECLARES them here; the review chrome builds its ⚙ panel from this list
+    // and shows no button when the payload is absent (older scenarios).
+    // Prototype scope: capacitance only (curriculum-flex pilot, 2026-07-21).
+    function pmSimReadyMsg() {
+        var msg = { type: "SIM_READY" };
+        if (config && config.scenario_type === "capacitance") {
+            msg.widgets = [
+                { key: "slider_V", label: "Voltage slider" },
+                { key: "slider_A", label: "Area slider" },
+                { key: "slider_d", label: "Gap slider" },
+                { key: "graph", label: "Q–V graph" },
+                { key: "formula", label: "Formula" },
+                { key: "readout", label: "V/Q/C readout" },
+                { key: "ratio", label: "Q/V ratio readout" }
+            ];
+        }
+        return msg;
     }
 
     function handleSetMath(expression, persist) {
@@ -37207,7 +37277,7 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // Fire SIM_READY after a short delay to ensure rendering is stable
     setTimeout(function() {
-        parent.postMessage({ type: "SIM_READY" }, "*");
+        parent.postMessage(pmSimReadyMsg(), "*");
     }, 300);
 
 })();
