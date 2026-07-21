@@ -1,0 +1,31 @@
+{
+  "approved_at": "2026-07-21T21:33:26.361Z",
+  "source_run": "C:\\Tutor\\physics-mind-curriculum\\.visual_runs\\meter_bridge\\20260721-231857",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": false,
+      "compare_frozen": true
+    }
+  }
+}

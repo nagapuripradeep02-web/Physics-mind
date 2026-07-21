@@ -168,6 +168,14 @@ export const PILOT_CONCEPTS: string[] = [
     // all 20 gates, particle_field cycle_compare engine verified fully implemented,
     // no renderer_primitives FAIL-route needed; baseline-locked + EN audio rendered)
     'combination_of_cells',
+    // Ch.3 #13 — meter_bridge (added 2026-07-21, founder-approved ship; the lab-trio
+    // finale, NEW particle_field topology:"meter_bridge" slide-wire bridge). THE EYE
+    // 27/27; eye-walker MAJOR finding (STATE_2 no sweep) disproven on frame re-read —
+    // the segment_sweep animates correctly; PRIMARY aha X=6.0Ω at l₁=40cm verified
+    // exact; prior stale-label/leaked-R_eq bug class confirmed not recurring.
+    // KNOWN nuance (founder-accepted): STATE_4's live trial-X readout shares styling
+    // with the final answer — instructive as-is, revisit only if a teacher flags it.
+    'meter_bridge',
 ];
 
 const PILOT_SET = new Set(PILOT_CONCEPTS);
