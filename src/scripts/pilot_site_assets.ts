@@ -105,6 +105,12 @@ export const PILOT_CONCEPTS: string[] = [
     'equipotential_surfaces',
     'potential_energy_system_of_charges',
     'potential_energy_in_external_field',
+    // Ch.2 capacitance pair (added 2026-07-21, founder "deploy the catalog gap"):
+    // both baseline-locked (parallel_plate 2026-07-08, capacitance 2026-07-21) with
+    // an interaction_complete explore state and zero Socratic/pause markers.
+    // capacitance is the Rule-38 curriculum-flex proof-run concept (Ch.2 #9).
+    'parallel_plate_capacitor_field',
+    'capacitance',
     // Ch.4 — Moving Charges & Magnetism
     'magnetic_field_concept_B',
     'magnetic_force_moving_charge',
@@ -121,6 +127,16 @@ export const PILOT_CONCEPTS: string[] = [
     // Ch.5 — Magnetism & Matter (added 2026-07-13; Rule-31 rebuilds)
     'bar_magnet_as_dipole',
     'gauss_law_magnetism',
+    // Ch.5 completion (added 2026-07-21, founder "deploy the catalog gap"): the
+    // remaining baseline-locked Ch.5 rebuilds — #2 τ=m×B (2026-07-13), #4 earth's
+    // field (2026-07-20), #5 χ/M (2026-07-20). NOTE magnetisation_and_intensity is
+    // an arc/controls exemplar whose narration PREDATES the Rule-31a word budget
+    // (5 of 6 states run 56-71 words) — accepted, not a defect: narration is off by
+    // default (Rule 24/30h) so it costs audio length only. Ch.5 χ/M is NCERT-only
+    // — exclude from any future international preset (Session 86).
+    'bar_magnet_in_uniform_field',
+    'earths_magnetism',
+    'magnetisation_and_intensity',
     // Ch.6 — Electromagnetic Induction
     'magnetic_flux',
     'faraday_law_induction',
