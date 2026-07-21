@@ -543,10 +543,13 @@ ${pilotHeadTags(1)}
              border-radius:50%; background:var(--ink-dim); transition:left .15s ease, background .15s ease; }
   .wgSwitch.on { background:rgba(203,104,67,.6); }
   .wgSwitch.on::after { left:18px; background:#fff; }
-  #widgetMenu .wgReset { display:block; width:100%; margin-top:7px; padding:6px 8px; font-size:11px;
-             font-weight:600; text-align:center; border:1px solid var(--line); border-radius:7px;
-             background:none; color:var(--ink-dim); cursor:pointer; }
-  #widgetMenu .wgReset:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #widgetMenu .wgActions { display:flex; gap:6px; margin-top:8px; }
+  #widgetMenu .wgActions button { flex:1; padding:6px 8px; font-size:11px; font-weight:600;
+             text-align:center; border:1px solid var(--line); border-radius:7px;
+             background:none; color:var(--ink-dim); cursor:pointer;
+             transition:color .15s ease, border-color .15s ease, background .15s ease; }
+  #widgetMenu .wgActions button:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #widgetMenu .wgSave { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   #widgetMenu .wgHint { font-size:10px; color:var(--ink-dim); padding:7px 2px 0; }
   /* Next/Prev state chevrons + readout — full-screen only (§4, gated by #fsScope.pm-fs, not
      the :fullscreen pseudo-class, since these live inside #stage, a descendant of the
@@ -1352,17 +1355,33 @@ ${pilotHeadTags(1)}
         widgetRowEls[w.key] = sw;
       })(simWidgets[i]);
     }
-    var reset = document.createElement('button'); reset.className = 'wgReset';
-    reset.textContent = '↻ Back to lesson defaults';
+    var actions = document.createElement('div'); actions.className = 'wgActions';
+    var reset = document.createElement('button');
+    reset.textContent = '↻ Defaults';
+    reset.title = 'Back to the lesson’s own setup';
     reset.addEventListener('click', function (ev) {
       ev.stopPropagation();
       widgetStates = {};
       sendWidgetVis(); markDirty(); updateWgBtn();
       pmt('widget_toggle', { widget: 'ALL', mode: 'auto' });
     });
-    widgetMenu.appendChild(reset);
+    actions.appendChild(reset);
+    // Same save as the state rail's ✓ Save — persists the WHOLE layout
+    // (state order/hides/renames + widget setup) to this teacher's account.
+    var save = document.createElement('button'); save.className = 'wgSave';
+    save.textContent = '✓ Save';
+    save.title = 'Keep this setup on your account — it loads on every device';
+    save.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      saveLayout();
+      pmt('widget_save', { overrides: widgetOverrideCount() });
+      save.textContent = '✓ Saved';
+      setTimeout(function () { save.textContent = '✓ Save'; }, 1400);
+    });
+    actions.appendChild(save);
+    widgetMenu.appendChild(actions);
     var hint = document.createElement('div'); hint.className = 'wgHint';
-    hint.textContent = 'Point at a row to see it flash on screen. ✓ Save keeps your setup.';
+    hint.textContent = 'Point at a row to see it flash on screen.';
     widgetMenu.appendChild(hint);
     var r = anchorEl.getBoundingClientRect();
     widgetMenu.classList.add('open');
