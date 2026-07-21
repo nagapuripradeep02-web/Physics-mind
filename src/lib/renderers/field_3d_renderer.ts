@@ -37257,9 +37257,16 @@ export const FIELD_3D_RENDERER_CODE = `
     // must never see ("gsph_plot" → "Plot", not "Gsph plot"), so strip a short
     // leading token before falling back to the id's own words.
     function pmWgPanelWords(id) {
-        var parts = id.split("_");
+        var parts = id.split("_"), out = [], pi;
         if (parts.length > 1 && parts[0].length <= 5) parts = parts.slice(1);
-        var words = parts.join(" ").trim();
+        // Drop container noise words — they say nothing to a teacher.
+        for (pi = 0; pi < parts.length; pi++) {
+            var p = parts[pi];
+            if (p === "panel" || p === "box" || p === "overlay" || p === "hud" || p === "canvas") continue;
+            out.push(p);
+        }
+        if (!out.length) out = parts;
+        var words = out.join(" ").trim();
         return words ? words.charAt(0).toUpperCase() + words.slice(1) : id;
     }
     function pmWgPanelLabel(el) {
@@ -37270,7 +37277,10 @@ export const FIELD_3D_RENDERER_CODE = `
         if (id === "legend") return "Legend";
         if (id === "equation_panel") return "Equations";
         if (id.indexOf("formula") !== -1 || id.indexOf("eqn") !== -1 || id.indexOf("_eq_") !== -1 || id.indexOf("derivation") !== -1) return "Formula";
-        if (id.indexOf("graph") !== -1 || id.indexOf("plot") !== -1) return "Graph";
+        // A panel that wraps a <canvas> IS a plot, whatever its id says — a
+        // structural signal beats id keywords (dpot_vtheta_panel → "Graph").
+        if (id.indexOf("graph") !== -1 || id.indexOf("plot") !== -1 ||
+            (el.tagName !== "CANVAS" && el.querySelector && el.querySelector("canvas"))) return "Graph";
         if (id.indexOf("readout") !== -1 || id.indexOf("hud") !== -1 || id.indexOf("meter") !== -1 || id.indexOf("timer") !== -1) return "Live numbers";
         if (id.indexOf("caption") !== -1) return pmWgPanelWords(id);
         if (id.indexOf("overlay") !== -1) return "Rule card";
