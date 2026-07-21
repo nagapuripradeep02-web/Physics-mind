@@ -5330,6 +5330,13 @@ export const FIELD_3D_RENDERER_CODE = `
         return { value: from + (to - from) * capSmooth01((t - a) / dur), active: true };
     }
     function capC(A, d) { return CAP_EPS0 * A / Math.max(d, 1e-6); }
+    // physics_engine_config constraint 6.5: <100 pF shows 1 decimal (matches
+    // Q's own 2-decimal-nC precision at that scale), >=100 pF rounds to an
+    // integer (matches the narration's spoken "one-seventy-seven picofarads"
+    // and the S4 annotation's "177 pF" instead of a readout-only "177.1").
+    function capFormatPF(pF) {
+        return (pF < 100) ? pF.toFixed(1) : String(Math.round(pF));
+    }
     function capFindById(id) {
         for (var i = 0; i < sceneObjects.length; i++) {
             if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
@@ -5502,12 +5509,26 @@ export const FIELD_3D_RENDERER_CODE = `
                 dotSlots.push([((gxi + 0.5) / CAP_DOT_GRID - 0.5) * 0.86, ((gyi + 0.5) / CAP_DOT_GRID - 0.5) * 0.86]);
             }
         }
+        // From the default camera_position the two outer dot pools project into
+        // the SAME screen region (they share (x,y) grid slots, differing only in
+        // Z), and painter's-algorithm alpha blending stacks BOTH translucent
+        // plates (opacity 0.5 each) over whichever pool is farther from camera —
+        // typically the neg pool, which washes to grey-lavender against the
+        // brighter + pool (eye-walker: capacitance_negative_pool_low_contrast).
+        // depthTest:false/depthWrite:false + renderOrder:998 give every dot a
+        // saturation floor independent of plate translucency (mirrors the
+        // cap_fl_shaft field-line idiom just above); renderOrder is tied so the
+        // two pools still Z-sort normally AGAINST EACH OTHER (no regression to
+        // the already-correct + pool) — only the plates' dilution is removed.
+        // Colour/brightness only, never size (Rule 29).
         for (var dsi = 0; dsi < dotSlots.length; dsi++) {
-            var dotP = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor(posColor), transparent: true, opacity: 0 }));
+            var dotP = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor(posColor), transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+            dotP.renderOrder = 998;
             dotP.position.set(dotSlots[dsi][0], dotSlots[dsi][1], 0);
             dotP.userData = { elementType: "cap_dot", id: "cap_dot_pos_" + dsi, slotIndex: dsi };
             posDotGrp.add(dotP);
-            var dotN = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor(negColor), transparent: true, opacity: 0 }));
+            var dotN = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor(negColor), transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+            dotN.renderOrder = 998;
             dotN.position.set(dotSlots[dsi][0], dotSlots[dsi][1], 0);
             dotN.userData = { elementType: "cap_dot", id: "cap_dot_neg_" + dsi, slotIndex: dsi };
             negDotGrp.add(dotN);
@@ -5517,11 +5538,18 @@ export const FIELD_3D_RENDERER_CODE = `
         //    Rule 34b) / derivation (S6 three-line chain) / Q-V graph + axis-swap
         //    toggle (the ONE genuinely NEW surface this engine ask adds).
         var rp = document.createElement("div"); rp.id = "cap_readout";
-        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:200px;display:none;";
+        // top:52px clears the review-chrome "Full screen" button (Rule 34d;
+        // engine_bug_queue: field3d_sliders_panel_top12_vs_fsbtn_top10).
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:200px;display:none;";
         document.body.appendChild(rp);
 
         var ratioP = document.createElement("div"); ratioP.id = "cap_ratio_readout";
-        ratioP.style.cssText = "position:fixed;top:12px;left:12px;background:rgba(0,0,0,0.82);color:#FFCA28;padding:10px 14px;border-radius:8px;font:bold 14px/1.6 monospace;z-index:10;display:none;";
+        // top:52px clears build_review_site.ts's #simPenBar (top:10px;left:10px
+        // Move/Draw/Clear glass buttons) — the same Rule 34d collision, mirrored
+        // to the left edge (engine_bug_queue: field3d_sliders_panel_top12_vs_fsbtn_top10).
+        // S2 (the only state with show_ratio_readout) never shows the graph
+        // canvas, so top:52px;left:12px is clear of every other left-edge panel.
+        ratioP.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.82);color:#FFCA28;padding:10px 14px;border-radius:8px;font:bold 14px/1.6 monospace;z-index:10;display:none;";
         document.body.appendChild(ratioP);
 
         var ff = document.createElement("div"); ff.id = "cap_formula";
@@ -5693,15 +5721,28 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // S6 chain-link derivation: three lines dock in turn on link_cues[0..2]
     // (state-local ms), then the closing "C = Q/V = eps0 A/d" line lands. Pure
-    // fn of t (Rule 26).
+    // fn of t (Rule 26). Cue times are routed through cueTriggerMs so the live
+    // player's SET_CUE_TIME('link_1'/'link_2'/'link_3') — armed on the s6_2/
+    // s6_3/s6_4 narrated sentences — lands the reveal on the actual spoken
+    // beat in every language; THE EYE sends no cue times so this falls through
+    // to the authored link_cues fallback unchanged (mirrors every other
+    // scenario_cue consumer in this file).
+    function capLinkCueMs(cd) {
+        var cues = cd.link_cues || [0, 2000, 4000];
+        return [
+            cueTriggerMs("link_1", cues[0] != null ? cues[0] : 0),
+            cueTriggerMs("link_2", cues[1] != null ? cues[1] : 2000),
+            cueTriggerMs("link_3", cues[2] != null ? cues[2] : 4000)
+        ];
+    }
     function capUpdateDerivation(cd, t, Q, A, D) {
         var dvEl = document.getElementById("cap_derivation");
         if (!dvEl) return;
-        var cues = cd.link_cues || [0, 2000, 4000];
+        var cues = capLinkCueMs(cd);
         var lines = [];
-        if (t >= (cues[0] != null ? cues[0] : 0) / 1000) lines.push("\\u03C3 = Q/A");
-        if (t >= (cues[1] != null ? cues[1] : 2000) / 1000) lines.push("E = \\u03C3/\\u03B5\\u2080");
-        if (t >= (cues[2] != null ? cues[2] : 4000) / 1000) lines.push("V = E\\u00B7d");
+        if (t >= cues[0] / 1000) lines.push("\\u03C3 = Q/A");
+        if (t >= cues[1] / 1000) lines.push("E = \\u03C3/\\u03B5\\u2080");
+        if (t >= cues[2] / 1000) lines.push("V = E\\u00B7d");
         if (lines.length === 3) lines.push("C = Q/V = \\u03B5\\u2080A/d");
         var html = "";
         for (var i = 0; i < lines.length; i++) html += "<div>" + lines[i] + "</div>";
@@ -5887,7 +5928,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (roEl && roEl.style.display !== "none") {
             var h = "<div>V = " + V.toFixed(1) + " V</div>";
             h += "<div>Q = " + QnC.toFixed(2) + " nC</div>";
-            h += "<div style=\\"color:#FFCA28\\">C = " + (C * 1e12).toFixed(1) + " pF</div>";
+            h += "<div style=\\"color:#FFCA28\\">C = " + capFormatPF(C * 1e12) + " pF</div>";
             roEl.innerHTML = h;
         }
         var ratioEl = document.getElementById("cap_ratio_readout");
@@ -5908,14 +5949,36 @@ export const FIELD_3D_RENDERER_CODE = `
     // pools' children glow via their parent group); DOM overlays toggle the
     // shared .glow-pulse CSS class (mirrors the fleming_overlay/lorentz_sliders
     // pattern in the SET_GLOW handler).
-    function applyCapacitanceGlow() {
+    // S6 chain-link derivation spotlight (eye-walker: the pulse tying each
+    // formula line to the physical thing it describes was never wired — text
+    // revealed via capUpdateDerivation but nothing on the 3D picture lit up
+    // with it). Sim-clock driven off the SAME capLinkCueMs times as the text
+    // reveal (not glowTargets/SET_GLOW, which stay empty under THE EYE), and
+    // SUSTAINED per segment (link_N's element stays lit until link_N+1 fires,
+    // not a brief flash) so any >=1s sampling cadence is guaranteed to land
+    // inside it. Exactly one 3D element lit at a time (Rule 32e): dot pools
+    // (sigma = Q/A) -> field lines (E = sigma/eps0) -> gap bracket (V = E.d).
+    function capLinkFocalType(cd) {
+        if (cd.mode !== "derivation") return null;
+        var cues = capLinkCueMs(cd);
+        var tMs = (time - stateStartTime) * 1000;
+        if (tMs >= cues[2]) return "cap_gap_bracket";
+        if (tMs >= cues[1]) return "cap_field_line";
+        if (tMs >= cues[0]) return "cap_dot_grp";
+        return null;
+    }
+    function applyCapacitanceGlow(stateDef) {
+        var cd = (stateDef && stateDef.capacitance) || {};
         var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
         function on(key) { return glowTargets.indexOf(key) >= 0; }
+        var linkFocalType = capLinkFocalType(cd);
         for (var j = 0; j < sceneObjects.length; j++) {
             var so = sceneObjects[j], sud = so.userData || {};
             if (!sud.elementType || sud.elementType.indexOf("cap_") !== 0) continue;
             var g = sud.group;
-            applyGlowEmphasis(so, !!(g && on(g)) || on(sud.id) || on(sud.elementType), glowActive, glowP, true);
+            var isLinkFocal = !!(linkFocalType && sud.elementType === linkFocalType);
+            var isFocal = !!(g && on(g)) || on(sud.id) || on(sud.elementType) || isLinkFocal;
+            applyGlowEmphasis(so, isFocal, glowActive || isLinkFocal, glowP, true);
         }
         var ratioEl = document.getElementById("cap_ratio_readout");
         if (ratioEl) ratioEl.classList.toggle("glow-pulse", on("ratio_readout"));
@@ -33884,7 +33947,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // fn of time - stateStartTime, Rule 26/36).
         if (config.scenario_type === "capacitance") {
             var capStateDef = config.states[PM_currentState];
-            if (capStateDef) { updateCapacitanceFrame(capStateDef); applyCapacitanceGlow(); }
+            if (capStateDef) { updateCapacitanceFrame(capStateDef); applyCapacitanceGlow(capStateDef); }
         }
 
         // dipole_potential — timed reveals, STATE_3/5 sweeps, signed-V recolor
