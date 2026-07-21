@@ -1109,7 +1109,7 @@
           "show_field_lines": true,
           "show_graph": true,
           "show_ratio_readout": false,
-          "formula": "C = ε₀A / d",
+          "formula": "C = Q / V",
           "controls": ["V", "A", "d"],
           "static_readouts": [],
           "axis_toggle": true,

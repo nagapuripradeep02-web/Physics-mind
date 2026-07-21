@@ -5816,6 +5816,14 @@ export const FIELD_3D_RENDERER_CODE = `
             if (gapOpenEl) gapOpenEl.visible = !switchClosedNow;
             if (gapClosedEl) gapClosedEl.visible = switchClosedNow;
         } else if (mode === "v_steps" && Array.isArray(cd.v_steps) && cd.v_steps.length > 0) {
+            if (window.PM_capVDragged) {
+                // Teacher has seized the V slider for this state-visit — read
+                // straight from window.PM_capV (already assigned above) and
+                // stop the scripted step-ramp / auto-flowing beads (mirrors the
+                // explore-mode seize pattern below). Re-entering the state
+                // resets the flag (applyCapacitanceState) and restores the script.
+                flowing = false; window.PM_capChargeFrac = 1;
+            } else {
             // Walk the CHRONOLOGICAL steps and stop at the first one that is
             // either currently ramping (active) or not yet reached (t < its
             // at_ms) -- a step ALREADY complete (t past its window) settles at
@@ -5843,27 +5851,40 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             V = vNow; flowing = stepActive; flowDir = stepDir;
             window.PM_capChargeFrac = 1;
+            }
         } else if (mode === "v_sweep" && cd.v_sweep) {
+            if (window.PM_capVDragged) {
+                flowing = false; window.PM_capChargeFrac = 1;
+            } else {
             var sw = cd.v_sweep;
             var vFrom = (sw.v_from != null ? sw.v_from : 0), vTo = (sw.v_to != null ? sw.v_to : Vdef);
             var rs = capRamp(t, sw.at_ms, sw.duration_ms, vFrom, vTo);
             V = rs.value; flowing = rs.active; flowDir = (vTo >= vFrom) ? 1 : -1;
             window.PM_capChargeFrac = 1;
+            }
         } else if (mode === "area_morph" && cd.area_morph) {
+            if (window.PM_capADragged) {
+                flowing = false; window.PM_capChargeFrac = 1;
+            } else {
             var am = cd.area_morph;
             var aFrom = (am.a_from != null ? am.a_from : Adef), aTo = (am.a_to != null ? am.a_to : Adef);
             var ra = capRamp(t, am.at_ms, am.duration_ms, aFrom, aTo);
             A = ra.value; flowing = ra.active; flowDir = (aTo >= aFrom) ? 1 : -1;
             window.PM_capChargeFrac = 1;
+            }
         } else if (mode === "gap_morph" && cd.gap_morph) {
             // Mirrors updateParallelPlatesFrame's gap_widen morph shape exactly
             // (reused, not reimplemented) — widening DRAINS charge (flowDir<0,
             // beads flow back toward the battery).
+            if (window.PM_capDDragged) {
+                flowing = false; window.PM_capChargeFrac = 1;
+            } else {
             var gm = cd.gap_morph;
             var dFrom = (gm.d_from != null ? gm.d_from : Ddef), dTo = (gm.d_to != null ? gm.d_to : Ddef);
             var rg = capRamp(t, gm.at_ms, gm.duration_ms, dFrom, dTo);
             D = rg.value; flowing = rg.active; flowDir = (dTo >= dFrom) ? -1 : 1;
             window.PM_capChargeFrac = 1;
+            }
         } else if (mode === "derivation") {
             flowing = false; window.PM_capChargeFrac = 1;
         } else if (mode === "explore") {
