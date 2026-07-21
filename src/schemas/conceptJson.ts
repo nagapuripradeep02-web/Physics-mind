@@ -52,6 +52,13 @@ const misconceptionWatchSchema = z.object({
 //   - focal_primitive_id: required, non-empty (Section 6)
 // v2.2 additions (2026-05-04, optional for legacy v2.0 retrofit window):
 //   - misconception_watch: array of inline pre-emptive corrections
+// Curriculum-flex proof-run addition (2026-07-21, capacitance pilot,
+// worktree feat/curriculum-flex-pilot): `depth_ring` classifies a state's
+// place in the CBSE-native depth ladder (core = every syllabus's baseline;
+// extended = most boards; advanced = a derivation/stretch tail some presets
+// hide). OPTIONAL — omitted entirely by every pre-existing concept, so this
+// is purely additive and cannot regress the fleet. Not yet gate-enforced;
+// curriculum presets (proof-run extra (c)) will read it once promoted.
 
 const stateSchema = z.object({
   title: z.string(),
@@ -70,6 +77,7 @@ const stateSchema = z.object({
     phases: z.array(choreographyPhaseSchema),
   }).optional(),
   misconception_watch: z.array(misconceptionWatchSchema).optional(),
+  depth_ring: z.enum(['core', 'extended', 'advanced']).optional(),
 });
 
 // ── Physics Engine Config ───────────────────────────────────────────
@@ -286,6 +294,28 @@ const coverageMapSchema = z.object({
 
 const conceptTierSchema = z.enum(['simple', 'medium', 'complex']);
 
+// ── Curriculum tags (curriculum-flex proof-run, 2026-07-21) ─────────
+// Concept-level per-syllabus coverage claims — architect-authored per the
+// skeleton's extra (b) table (guideline 6, docs/proof_runs/capacitance_skeleton.md).
+// `verified`/`needs_teacher_verification` are DELIBERATELY separate booleans
+// (not one inferred flag): a cell can be verified=false today and later
+// flipped true by a human teacher without touching `coverage`/`syllabus_unit`.
+// OPTIONAL — no existing concept authors this field, purely additive.
+// Not yet gate-enforced or preset-consuming; this is the proof-run's data
+// shape pilot, promoted to a real gate only if the founder accepts guideline 6.
+
+const curriculumTagEntrySchema = z.object({
+  curriculum: z.string().min(1),
+  coverage: z.enum(['full', 'partial', 'absent']),
+  syllabus_unit: z.string().min(1),
+  verified: z.boolean(),
+  needs_teacher_verification: z.boolean(),
+}).passthrough();
+
+const curriculumTagsSchema = z.object({
+  entries: z.array(curriculumTagEntrySchema).min(1),
+}).passthrough();
+
 // ── Top-Level Concept JSON Schema (v2 target) ───────────────────────
 
 export const conceptJsonSchema = z.object({
@@ -329,6 +359,9 @@ export const conceptJsonSchema = z.object({
   // present, so the 62 un-retrofitted atomics stay passing.
   assessment: assessmentSchema.optional(),
   coverage_map: coverageMapSchema.optional(),
+
+  // Curriculum-flex proof-run (2026-07-21) — see curriculumTagsSchema above.
+  curriculum_tags: curriculumTagsSchema.optional(),
 }).passthrough().superRefine((data, ctx) => {
   // Phase A — CLAUDE.md rule 15: at least 2 distinct advance_mode values
   // across epic_l_path.states. All-`auto_after_tts` ships a passive video,

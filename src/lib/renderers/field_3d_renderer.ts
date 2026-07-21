@@ -43,7 +43,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -5265,6 +5265,666 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type !== "parallel_plates") return false;
         var sd = config.states && config.states[PM_currentState];
         return !!(sd && sd.capacitor && sd.capacitor.draggable_test_charge);
+    }
+
+    // ── capacitance (Q = CV, C = \\u03B5\\u2080A/d) ────────────────────────────
+    //   NEW scenario (2026-07-21 engine ask, peter_parker:renderer_primitives)
+    //   built for the 'capacitance' concept — the shipped 'parallel_plates'
+    //   scenario has no charge-flow machinery and stored charge Q is THIS
+    //   concept's taught variable, so a dedicated scenario was required. Clones
+    //   existing patterns only (no novel engine ideas): the plate/gap-bracket
+    //   geometry + REUSED gap-widen morph shape from parallel_plates, the
+    //   battery/switch/current-bead loop from motional_emf_rod/inductance, and
+    //   the accumulator-free timed-graph-pane pattern from ac_generator.
+    //
+    //   Per-state config shape (authored by json_author on a LATER pass):
+    //     state.capacitance = {
+    //       mode: 'switch_close'|'v_steps'|'v_sweep'|'area_morph'|'gap_morph'|
+    //             'derivation'|'explore',
+    //       V, A, d,                          // seed values (V volts, A m^2, d m)
+    //       show_beads, show_dots, show_gap_bracket, show_area_tag,
+    //       show_field_lines, show_graph, show_ratio_readout,
+    //       formula,                          // ONE-line formula surface text (Rule 34b)
+    //       switch_close_at_ms, charge_duration_ms,        // mode: switch_close
+    //       v_steps: [{ at_ms, duration_ms, v }, ...],      // mode: v_steps
+    //       v_sweep: { at_ms, duration_ms, v_from, v_to },  // mode: v_sweep
+    //       area_morph: { at_ms, duration_ms, a_from, a_to },// mode: area_morph
+    //       gap_morph: { at_ms, duration_ms, d_from, d_to }, // mode: gap_morph (mirrors
+    //                                          // parallel_plates' capacitor.gap_widen shape)
+    //       link_cues: [ms1, ms2, ms3],       // mode: derivation (3-line chain reveal)
+    //       controls: ['V']|['A']|['d']|['V','A','d'],  // Rule 31 live slider rows
+    //       static_readouts: [...],           // disabled rows at the SAME position
+    //       axis_toggle: true,                // S7 only — shows the Q-V/V-Q toggle
+    //       idle_sweep: true                  // S7 only — idle V auto-sweep (default true)
+    //     }
+    //   REQUIRED: config.field_lines.opacity must exist (an object, even {}) —
+    //   createTubeLine() reads config.field_lines.opacity unconditionally and a
+    //   missing block throws (the fleet's "blank scene" trap).
+    //   Glow-key enum is CLOSED to exactly: beads | plate_dots | ratio_readout |
+    //   graph | plates | gap | formula | battery (applyCapacitanceGlow below —
+    //   a non-keyed glow_focal silently dims the whole panel with no focal lit).
+    //   Rule 26/36: every choreography beat is a pure function of state-local
+    //   t = time - stateStartTime (capRamp, closed-form) — no per-frame
+    //   accumulator anywhere, so a SET_TIME_FREEZE pin reproduces byte-identical
+    //   pixels and this scenario is listed in the accumulator-free snap-to-pin
+    //   set below (mirrors parallel_plates/dipole_potential). Rule 29: the ONLY
+    //   things that change size are the plates themselves (a REAL A/d magnitude)
+    //   and the dot-pool COUNT (never a focal-emphasis bulge).
+    var CAP_EPS0 = 8.854e-12;
+    var CAP_DOT_GRID = 8;
+    var CAP_DOTS_MAX = CAP_DOT_GRID * CAP_DOT_GRID;   // 64 slots per plate face
+    var CAP_QREF_NC = 2.2;      // dot-pool + graph headroom normaliser (nC)
+    var CAP_IDLE_SWEEP_S = 9.0; // S7 idle V auto-sweep period (teacher-seizable)
+
+    function capSmooth01(u) { u = u < 0 ? 0 : (u > 1 ? 1 : u); return u * u * (3 - 2 * u); }
+    // Pure fn of t (Rule 26/36): value ramps from..to over [atMs, atMs+durMs]
+    // with a cubic smoothstep (mirrors platesReposition's gap-widen morph
+    // EXACTLY, reused rather than reinvented). active=true only strictly inside
+    // the ramp window — used to drive bead flow, which self-stops once the
+    // window closes (the "flow self-stops when V\\u00B7C settles" beat).
+    function capRamp(t, atMs, durMs, from, to) {
+        var a = (atMs != null ? atMs : 0) / 1000;
+        var dur = Math.max(0.001, (durMs != null ? durMs : 1500) / 1000);
+        if (t <= a) return { value: from, active: false };
+        if (t >= a + dur) return { value: to, active: false };
+        return { value: from + (to - from) * capSmooth01((t - a) / dur), active: true };
+    }
+    function capC(A, d) { return CAP_EPS0 * A / Math.max(d, 1e-6); }
+    function capFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+    // The plate-face dot pools are GROUP CHILDREN (not top-level sceneObjects,
+    // mirroring mflFindById's mfl_loop_group child-traversal pattern) so their
+    // local positions scale with the group's own hw transform in capReposition.
+    function capDotGroups() {
+        return [capFindById("cap_dot_grp_pos"), capFindById("cap_dot_grp_neg")];
+    }
+    function capForEachDot(fn) {
+        var grps = capDotGroups();
+        for (var g = 0; g < grps.length; g++) {
+            var grp = grps[g]; if (!grp) continue;
+            for (var i = 0; i < grp.children.length; i++) fn(grp.children[i]);
+        }
+    }
+
+    function buildCapacitanceField(config) {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var posColor = (config.colors && config.colors.positive) || (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
+        var negColor = (config.colors && config.colors.negative) || (config.pvl_colors && config.pvl_colors.negative) || "#42A5F5";
+        var flColor = (config.field_lines && (config.field_lines.color || config.field_lines.color_positive)) || (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+        var beadColor = "#FFB300";
+        var battColor = "#607D8B";
+        var wireColor = "#B0BEC5";
+
+        var SC = config.slider_controls || {};
+        var Vdef = (SC.V && SC.V["default"] != null) ? SC.V["default"] : 12;
+        var Adef = (SC.A && SC.A["default"] != null) ? SC.A["default"] : 0.01;
+        var Ddef = (SC.d && SC.d["default"] != null) ? SC.d["default"] : 0.001;
+        var baseSep = 1.6;                     // scene-space plate gap at Ddef
+        var basePlateW = 2.4, basePlateH = 2.4; // scene-space plate size at Adef
+
+        window.PM_capBaseSep = baseSep; window.PM_capBaseW = basePlateW; window.PM_capBaseH = basePlateH;
+        window.PM_capVdef = Vdef; window.PM_capAdef = Adef; window.PM_capDdef = Ddef;
+        window.PM_capV = Vdef; window.PM_capA = Adef; window.PM_capD = Ddef;
+        window.PM_capVDragged = false; window.PM_capADragged = false; window.PM_capDDragged = false;
+        window.PM_capAxisMode = "qv";
+        window.PM_capChargeFrac = 1;
+
+        // 1. Plates (reuse createPlate; same XY-slab-at-\\u00B1sep/2-along-Z
+        //    convention as parallel_plates so the camera framing carries over).
+        var posPlate = createPlate(basePlateW, basePlateH, [0, 0, baseSep / 2], posColor);
+        posPlate.material.opacity = 0.5;
+        posPlate.userData = { elementType: "cap_plate", id: "cap_plate_pos", group: "plates" };
+        addToScene(posPlate);
+        var negPlate = createPlate(basePlateW, basePlateH, [0, 0, -baseSep / 2], negColor);
+        negPlate.material.opacity = 0.5;
+        negPlate.userData = { elementType: "cap_plate", id: "cap_plate_neg", group: "plates" };
+        addToScene(negPlate);
+        var plusM = pmCreateAutoLabel("+", posColor, 0.55);
+        plusM.position.set(basePlateW / 2 - 0.3, basePlateH / 2 - 0.3, baseSep / 2 + 0.06);
+        plusM.userData = { elementType: "cap_plate", id: "cap_plus_marker", group: "plates" };
+        addToScene(plusM);
+        var minusM = pmCreateAutoLabel("\\u2212", negColor, 0.55);
+        minusM.position.set(basePlateW / 2 - 0.3, basePlateH / 2 - 0.3, -baseSep / 2 - 0.06);
+        minusM.userData = { elementType: "cap_plate", id: "cap_minus_marker", group: "plates" };
+        addToScene(minusM);
+
+        // 2. Gap bracket + "d" label (+X side — mirrors parallel_plates EXACTLY,
+        //    the morph itself is REUSED as-is via capReposition's scale.z ramp).
+        var bx = basePlateW / 2 + 0.45;
+        var bracket = createTubeLine([[bx, 0, baseSep / 2], [bx, 0, -baseSep / 2]], "#4FC3F7", 0.02);
+        if (bracket) {
+            bracket.material.transparent = true; bracket.material.opacity = 0;
+            bracket.userData = { elementType: "cap_gap_bracket", id: "cap_gap_bracket", group: "gap" };
+            addToScene(bracket);
+        }
+        var gapLbl = pmCreateAutoLabel("d", "#4FC3F7", 0.5);
+        gapLbl.position.set(bx + 0.35, 0, 0);
+        gapLbl.userData = { elementType: "cap_gap_bracket", id: "cap_gap_label", group: "gap" };
+        addToScene(gapLbl);
+
+        // 3. Plate-edge "A" tag (S4+) — a DISTINCT reference line from d (scar:
+        //    distinct reference lines for two different geometric quantities),
+        //    on the top edge so it never collides with the +X gap bracket.
+        var aTagY = basePlateH / 2 + 0.35;
+        var aBracket = createTubeLine([[-basePlateW / 2, aTagY, baseSep / 2], [basePlateW / 2, aTagY, baseSep / 2]], "#FFCA28", 0.018);
+        if (aBracket) {
+            aBracket.material.transparent = true; aBracket.material.opacity = 0;
+            aBracket.userData = { elementType: "cap_area_tag", id: "cap_area_bracket", group: "plates" };
+            addToScene(aBracket);
+        }
+        var aLbl = pmCreateAutoLabel("A", "#FFCA28", 0.46);
+        aLbl.position.set(0, aTagY + 0.3, baseSep / 2);
+        aLbl.userData = { elementType: "cap_area_tag", id: "cap_area_label", group: "plates" };
+        addToScene(aLbl);
+
+        // 4. Ambient field lines between the plates (S6 derivation + S7 explore
+        //    only) — supports the "field lines glow -> E = \\u03C3/\\u03B5\\u2080" S6 beat.
+        var flGridN = 3, fli = 0;
+        for (var ix = 0; ix < flGridN; ix++) {
+            for (var iy = 0; iy < flGridN; iy++) {
+                var gx = ((ix + 0.5) / flGridN - 0.5) * (basePlateW * 0.6);
+                var gy = ((iy + 0.5) / flGridN - 0.5) * (basePlateH * 0.6);
+                var shaft = createTubeLine([[gx, gy, baseSep / 2 * 0.85], [gx, gy, -baseSep / 2 * 0.85]], flColor, 0.018);
+                if (shaft) {
+                    shaft.material.transparent = true; shaft.material.opacity = 0;
+                    shaft.material.depthTest = false; shaft.material.depthWrite = false; shaft.renderOrder = 998;
+                    shaft.userData = { elementType: "cap_field_line", id: "cap_fl_shaft_" + fli, group: "gap" };
+                    addToScene(shaft);
+                }
+                fli++;
+            }
+        }
+
+        // 5. Charging circuit: battery + switch + two wire polylines (battery ->
+        //    +plate entry, battery -> -plate entry), approaching from the -X
+        //    side so beads NEVER enter the z-gap (misconception guard: the gap
+        //    stays visibly bead-free while +Q/-Q pile up face-to-face).
+        var hubX = -basePlateW / 2 - 1.0;
+        var battX = -basePlateW / 2 - 2.2, battY = -1.6;
+        var posEntry = [-basePlateW / 2 - 0.25, 0, baseSep / 2];
+        var negEntry = [-basePlateW / 2 - 0.25, 0, -baseSep / 2];
+        window.PM_capPosWirePts = [[battX, battY, 0], [hubX, battY, 0], [hubX, 0, baseSep / 2], posEntry];
+        window.PM_capNegWirePts = [[battX, battY, 0], [hubX, battY, 0], [hubX, 0, -baseSep / 2], negEntry];
+
+        var wirePos = createTubeLine(window.PM_capPosWirePts, wireColor, 0.03);
+        if (wirePos) { wirePos.userData = { elementType: "cap_wire", id: "cap_wire_pos", group: "battery" }; addToScene(wirePos); }
+        var wireNeg = createTubeLine(window.PM_capNegWirePts, wireColor, 0.03);
+        if (wireNeg) { wireNeg.userData = { elementType: "cap_wire", id: "cap_wire_neg", group: "battery" }; addToScene(wireNeg); }
+
+        var battery = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.75, 0.4), new THREE.MeshPhongMaterial({ color: hexToThreeColor(battColor), emissive: hexToThreeColor(battColor), emissiveIntensity: 0.2 }));
+        battery.position.set(battX, battY, 0);
+        battery.userData = { elementType: "cap_battery", id: "cap_battery", group: "battery" };
+        addToScene(battery);
+        var battLbl = pmCreateAutoLabel("battery", wireColor, 0.28);
+        battLbl.position.set(battX, battY + 0.55, 0);
+        battLbl.userData = { elementType: "cap_battery", id: "cap_battery_lbl", group: "battery" };
+        addToScene(battLbl);
+
+        var gapOpen = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, 0.24), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#EF5350"), emissive: hexToThreeColor("#EF5350"), emissiveIntensity: 0.4 }));
+        gapOpen.position.set(hubX + 0.5, battY, 0);
+        gapOpen.userData = { elementType: "cap_switch", id: "cap_gap_open", group: "battery" };
+        addToScene(gapOpen);
+        var gapClosed = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.45, 10), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#66BB6A"), emissive: hexToThreeColor("#66BB6A"), emissiveIntensity: 0.4 }));
+        gapClosed.rotation.z = Math.PI / 2; gapClosed.position.set(hubX + 0.5, battY, 0);
+        gapClosed.userData = { elementType: "cap_switch", id: "cap_gap_closed", group: "battery" };
+        addToScene(gapClosed);
+
+        var CAP_BEAD_N = 14;
+        for (var bi = 0; bi < CAP_BEAD_N; bi++) {
+            var beadP = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10), new THREE.MeshBasicMaterial({ color: hexToThreeColor(beadColor), transparent: true, opacity: 0 }));
+            beadP.userData = { elementType: "cap_bead", id: "cap_bead_pos_" + bi, slot: bi / CAP_BEAD_N, path: "pos", group: "beads" };
+            addToScene(beadP);
+            var beadN = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10), new THREE.MeshBasicMaterial({ color: hexToThreeColor(beadColor), transparent: true, opacity: 0 }));
+            beadN.userData = { elementType: "cap_bead", id: "cap_bead_neg_" + bi, slot: bi / CAP_BEAD_N, path: "neg", group: "beads" };
+            addToScene(beadN);
+        }
+
+        // 6. Plate-face charge-dot pools (Rule 33 micro layer) — a deterministic
+        //    8x8 grid PARENTED under a group whose scale tracks the live plate
+        //    half-size every frame (capReposition), so dot SPACING stays
+        //    proportional as the S4 area morph grows the plate ("same density,
+        //    twice the floor"). Warm (+) / cool (-) per the scar "colour by sign".
+        var posDotGrp = new THREE.Group();
+        posDotGrp.position.set(0, 0, baseSep / 2 + 0.03);
+        posDotGrp.userData = { elementType: "cap_dot_grp", id: "cap_dot_grp_pos", group: "plate_dots" };
+        addToScene(posDotGrp);
+        var negDotGrp = new THREE.Group();
+        negDotGrp.position.set(0, 0, -baseSep / 2 - 0.03);
+        negDotGrp.userData = { elementType: "cap_dot_grp", id: "cap_dot_grp_neg", group: "plate_dots" };
+        addToScene(negDotGrp);
+        var dotSlots = [];
+        for (var gyi = 0; gyi < CAP_DOT_GRID; gyi++) {
+            for (var gxi = 0; gxi < CAP_DOT_GRID; gxi++) {
+                dotSlots.push([((gxi + 0.5) / CAP_DOT_GRID - 0.5) * 0.86, ((gyi + 0.5) / CAP_DOT_GRID - 0.5) * 0.86]);
+            }
+        }
+        for (var dsi = 0; dsi < dotSlots.length; dsi++) {
+            var dotP = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor(posColor), transparent: true, opacity: 0 }));
+            dotP.position.set(dotSlots[dsi][0], dotSlots[dsi][1], 0);
+            dotP.userData = { elementType: "cap_dot", id: "cap_dot_pos_" + dsi, slotIndex: dsi };
+            posDotGrp.add(dotP);
+            var dotN = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor(negColor), transparent: true, opacity: 0 }));
+            dotN.position.set(dotSlots[dsi][0], dotSlots[dsi][1], 0);
+            dotN.userData = { elementType: "cap_dot", id: "cap_dot_neg_" + dsi, slotIndex: dsi };
+            negDotGrp.add(dotN);
+        }
+
+        // 7. DOM panels — readout / ratio readout (S2) / formula (single-line,
+        //    Rule 34b) / derivation (S6 three-line chain) / Q-V graph + axis-swap
+        //    toggle (the ONE genuinely NEW surface this engine ask adds).
+        var rp = document.createElement("div"); rp.id = "cap_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:200px;display:none;";
+        document.body.appendChild(rp);
+
+        var ratioP = document.createElement("div"); ratioP.id = "cap_ratio_readout";
+        ratioP.style.cssText = "position:fixed;top:12px;left:12px;background:rgba(0,0,0,0.82);color:#FFCA28;padding:10px 14px;border-radius:8px;font:bold 14px/1.6 monospace;z-index:10;display:none;";
+        document.body.appendChild(ratioP);
+
+        var ff = document.createElement("div"); ff.id = "cap_formula";
+        ff.style.cssText = "position:fixed;top:42%;right:22px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\'Cambria Math\\',monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:340px;text-align:right;";
+        document.body.appendChild(ff);
+
+        var deriv = document.createElement("div"); deriv.id = "cap_derivation";
+        deriv.style.cssText = "position:fixed;top:38%;right:22px;transform:translateY(-50%);color:#FFF176;font:bold 18px/1.7 \\'Cambria Math\\',monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;";
+        document.body.appendChild(deriv);
+
+        var gc = document.createElement("canvas"); gc.id = "cap_graph_canvas";
+        gc.width = 300; gc.height = 190;
+        gc.style.cssText = "position:fixed;bottom:52px;left:12px;width:300px;height:190px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+        var axisBtn = document.createElement("button"); axisBtn.id = "cap_axis_toggle"; axisBtn.type = "button";
+        axisBtn.textContent = "axis: Q\\u2013V (slope = C)";
+        axisBtn.style.cssText = "position:fixed;bottom:12px;left:12px;width:300px;padding:6px;border-radius:6px;border:none;background:#455A64;color:#ECEFF1;font:11px monospace;cursor:pointer;z-index:10;display:none;";
+        document.body.appendChild(axisBtn);
+        axisBtn.addEventListener("click", function () {
+            window.PM_capAxisMode = (window.PM_capAxisMode === "qv") ? "vq" : "qv";
+            axisBtn.textContent = (window.PM_capAxisMode === "qv") ? "axis: Q\\u2013V (slope = C)" : "axis: V\\u2013Q (slope = 1/C)";
+        });
+
+        // 8. Per-state contextual slider rows (Rule 31) — built ONCE, shown/
+        //    hidden + live-vs-disabled per state; same screen position always.
+        function capScRange(o, dmin, dmax, dstep) {
+            o = o || {};
+            return { min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax), step: (o.step != null ? o.step : dstep) };
+        }
+        var rngV = capScRange(SC.V, 0, 24, 1);
+        var rngA = capScRange(SC.A, 0.005, 0.02, 0.001);
+        var rngD = capScRange(SC.d, 0.0005, 0.002, 0.0001);
+
+        var sp = document.createElement("div"); sp.id = "cap_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        sp.innerHTML =
+            '<div id="cap_V_row" style="display:none"><label>Voltage V (p.d.): <span id="cap_v_val">' + Vdef.toFixed(1) + '</span> V</label>' +
+            '<input type="range" id="cap_v_slider" min="' + rngV.min + '" max="' + rngV.max + '" step="' + rngV.step + '" value="' + Vdef + '" style="width:100%"></div>' +
+            '<div id="cap_A_row" style="display:none;margin-top:6px"><label>Plate area A: <span id="cap_a_val">' + Adef.toFixed(3) + '</span> m\\u00B2</label>' +
+            '<input type="range" id="cap_a_slider" min="' + rngA.min + '" max="' + rngA.max + '" step="' + rngA.step + '" value="' + Adef + '" style="width:100%"></div>' +
+            '<div id="cap_d_row" style="display:none;margin-top:6px"><label>Separation d: <span id="cap_d_val">' + (Ddef * 1000).toFixed(2) + '</span> mm</label>' +
+            '<input type="range" id="cap_d_slider" min="' + rngD.min + '" max="' + rngD.max + '" step="' + rngD.step + '" value="' + Ddef + '" style="width:100%"></div>';
+        document.body.appendChild(sp);
+
+        function capEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "capacitance_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var vSl = document.getElementById("cap_v_slider"), vV = document.getElementById("cap_v_val");
+        var aSl = document.getElementById("cap_a_slider"), aV = document.getElementById("cap_a_val");
+        var dSl = document.getElementById("cap_d_slider"), dV = document.getElementById("cap_d_val");
+        if (vSl) vSl.addEventListener("input", function () { window.PM_capV = parseFloat(vSl.value); if (vV) vV.textContent = window.PM_capV.toFixed(1); window.PM_capVDragged = true; capEmit("V", window.PM_capV); });
+        if (aSl) aSl.addEventListener("input", function () { window.PM_capA = parseFloat(aSl.value); if (aV) aV.textContent = window.PM_capA.toFixed(3); window.PM_capADragged = true; capEmit("A", window.PM_capA); });
+        if (dSl) dSl.addEventListener("input", function () { window.PM_capD = parseFloat(dSl.value); if (dV) dV.textContent = (window.PM_capD * 1000).toFixed(2); window.PM_capDDragged = true; capEmit("d", window.PM_capD); });
+
+        for (var qi = 0; qi < sceneObjects.length; qi++) {
+            var qo = sceneObjects[qi];
+            if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("cap_") === 0) qo.visible = false;
+        }
+    }
+
+    // Reposition every gap/area-dependent primitive for the live sep (Z gap,
+    // reuses parallel_plates' scale.z ramp — REUSED as-is, not reimplemented)
+    // and hw (plate half-size factor, sqrt(A/Adef) — a REAL magnitude, Rule 29).
+    function capReposition(sep, hw) {
+        var baseSep = window.PM_capBaseSep || 1.6;
+        var ratio = sep / baseSep;
+        var posPlate = capFindById("cap_plate_pos"), negPlate = capFindById("cap_plate_neg");
+        if (posPlate) { posPlate.position.z = sep / 2; posPlate.scale.set(hw, hw, 1); }
+        if (negPlate) { negPlate.position.z = -sep / 2; negPlate.scale.set(hw, hw, 1); }
+        var plusM = capFindById("cap_plus_marker"), minusM = capFindById("cap_minus_marker");
+        var baseW = window.PM_capBaseW || 2.4;
+        var edgeXY = baseW * hw / 2 - 0.3;
+        if (plusM) plusM.position.set(edgeXY, edgeXY, sep / 2 + 0.06);
+        if (minusM) minusM.position.set(edgeXY, edgeXY, -sep / 2 - 0.06);
+        var bracket = capFindById("cap_gap_bracket");
+        if (bracket) bracket.scale.z = ratio;
+        var areaBracket = capFindById("cap_area_bracket");
+        if (areaBracket) areaBracket.scale.x = hw;
+        var posDotGrp = capFindById("cap_dot_grp_pos"), negDotGrp = capFindById("cap_dot_grp_neg");
+        if (posDotGrp) { posDotGrp.position.set(0, 0, sep / 2 + 0.03); posDotGrp.scale.set(hw, hw, 1); }
+        if (negDotGrp) { negDotGrp.position.set(0, 0, -sep / 2 - 0.03); negDotGrp.scale.set(hw, hw, 1); }
+    }
+
+    // Linear interpolation along an OPEN wire polyline (mirrors memLoopPoint's
+    // piecewise-segment param u -> world point).
+    function capBeadPoint(path, u) {
+        var pts = (path === "pos") ? window.PM_capPosWirePts : window.PM_capNegWirePts;
+        if (!pts || pts.length < 2) return [0, 0, 0];
+        var segN = pts.length - 1;
+        var s = Math.max(0, Math.min(1, u)) * segN;
+        var idx = Math.min(segN - 1, Math.floor(s));
+        var f = s - idx;
+        var p0 = pts[idx], p1 = pts[idx + 1];
+        return [p0[0] + (p1[0] - p0[0]) * f, p0[1] + (p1[1] - p0[1]) * f, p0[2] + (p1[2] - p0[2]) * f];
+    }
+
+    // Authoritative per-state visibility + reveal seeding for capacitance. Runs
+    // AFTER the generic visible_elements matcher and overrides it (mirrors
+    // applyParallelPlatesState / applyMagneticFluxLoopState).
+    function applyCapacitanceState(stateDef) {
+        var cd = stateDef.capacitance || {};
+        window.PM_capVDragged = false; window.PM_capADragged = false; window.PM_capDDragged = false;
+        window.PM_capV = (typeof cd.V === "number") ? cd.V : (window.PM_capVdef || 12);
+        window.PM_capA = (typeof cd.A === "number") ? cd.A : (window.PM_capAdef || 0.01);
+        window.PM_capD = (typeof cd.d === "number") ? cd.d : (window.PM_capDdef || 0.001);
+        window.PM_capChargeFrac = (cd.mode === "switch_close") ? 0 : 1;
+
+        var showEls = {
+            cap_plate: true,
+            cap_gap_bracket: !!cd.show_gap_bracket,
+            cap_area_tag: !!cd.show_area_tag,
+            cap_field_line: !!cd.show_field_lines,
+            cap_wire: !!cd.show_beads,
+            cap_battery: !!cd.show_beads,
+            cap_switch: !!cd.show_beads,
+            cap_bead: !!cd.show_beads,
+            cap_dot_grp: !!cd.show_dots
+        };
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("cap_") !== 0) continue;
+            var et = ud.elementType;
+            if (et in showEls) o.visible = showEls[et];
+            if (et === "cap_gap_bracket" || et === "cap_area_tag" || et === "cap_field_line" || et === "cap_bead") setObjOpacity(o, 0);
+        }
+        // Switch open/closed baseline — the per-frame updater refines this
+        // further ONLY for mode:'switch_close' (the literal closing animation);
+        // every other beat that shows the circuit sits CLOSED throughout (the
+        // charging already happened in a prior state).
+        var gapOpenEl = capFindById("cap_gap_open"), gapClosedEl = capFindById("cap_gap_closed");
+        if (cd.mode === "switch_close") {
+            if (gapOpenEl) gapOpenEl.visible = true;
+            if (gapClosedEl) gapClosedEl.visible = false;
+        } else {
+            if (gapOpenEl) gapOpenEl.visible = false;
+            if (gapClosedEl) gapClosedEl.visible = !!cd.show_beads;
+        }
+
+        // Contextual slider rows (Rule 31) — controls[] = live row(s);
+        // static_readouts[] = a disabled row at the SAME position.
+        var controls = cd.controls || [];
+        var statics = cd.static_readouts || [];
+        var rowIds = { V: "cap_V_row", A: "cap_A_row", d: "cap_d_row" };
+        var sliderIds = { V: "cap_v_slider", A: "cap_a_slider", d: "cap_d_slider" };
+        for (var key in rowIds) {
+            var rowEl = document.getElementById(rowIds[key]);
+            var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
+            if (rowEl) rowEl.style.display = relevant ? "block" : "none";
+            var slEl = document.getElementById(sliderIds[key]);
+            var isLive = controls.indexOf(key) !== -1;
+            if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
+        }
+        var panelEl = document.getElementById("cap_sliders");
+        if (panelEl) panelEl.style.display = (controls.length + statics.length > 0) ? "block" : "none";
+
+        var roEl = document.getElementById("cap_readout"); if (roEl) roEl.style.display = "block";
+        var ratioEl = document.getElementById("cap_ratio_readout"); if (ratioEl) ratioEl.style.display = cd.show_ratio_readout ? "block" : "none";
+        var ffEl = document.getElementById("cap_formula"); if (ffEl) ffEl.style.display = (cd.formula && cd.mode !== "derivation") ? "block" : "none";
+        var dvEl = document.getElementById("cap_derivation"); if (dvEl) dvEl.style.display = (cd.mode === "derivation") ? "block" : "none";
+        var gcEl = document.getElementById("cap_graph_canvas"); if (gcEl) gcEl.style.display = cd.show_graph ? "block" : "none";
+        var axisEl = document.getElementById("cap_axis_toggle"); if (axisEl) axisEl.style.display = (cd.show_graph && cd.axis_toggle) ? "block" : "none";
+
+        function syncS(id, v) { var el = document.getElementById(id); if (el) el.value = String(v); }
+        syncS("cap_v_slider", window.PM_capV); syncS("cap_a_slider", window.PM_capA); syncS("cap_d_slider", window.PM_capD);
+        var vV = document.getElementById("cap_v_val"); if (vV) vV.textContent = window.PM_capV.toFixed(1);
+        var aV = document.getElementById("cap_a_val"); if (aV) aV.textContent = window.PM_capA.toFixed(3);
+        var dV = document.getElementById("cap_d_val"); if (dV) dV.textContent = (window.PM_capD * 1000).toFixed(2);
+    }
+
+    // S6 chain-link derivation: three lines dock in turn on link_cues[0..2]
+    // (state-local ms), then the closing "C = Q/V = eps0 A/d" line lands. Pure
+    // fn of t (Rule 26).
+    function capUpdateDerivation(cd, t, Q, A, D) {
+        var dvEl = document.getElementById("cap_derivation");
+        if (!dvEl) return;
+        var cues = cd.link_cues || [0, 2000, 4000];
+        var lines = [];
+        if (t >= (cues[0] != null ? cues[0] : 0) / 1000) lines.push("\\u03C3 = Q/A");
+        if (t >= (cues[1] != null ? cues[1] : 2000) / 1000) lines.push("E = \\u03C3/\\u03B5\\u2080");
+        if (t >= (cues[2] != null ? cues[2] : 4000) / 1000) lines.push("V = E\\u00B7d");
+        if (lines.length === 3) lines.push("C = Q/V = \\u03B5\\u2080A/d");
+        var html = "";
+        for (var i = 0; i < lines.length; i++) html += "<div>" + lines[i] + "</div>";
+        dvEl.innerHTML = html;
+    }
+
+    // The Q-V graph pane — fully accumulator-free (Rule 36): recomputed from
+    // (t, V, C) every frame, so a SET_TIME_FREEZE pin reproduces byte-identical
+    // pixels. axis_toggle swaps which physical quantity maps to which pixel
+    // axis (Q-V slope = C <-> V-Q slope = 1/C) — the ONE genuinely NEW surface
+    // this engine ask adds (no prior graph pane supported an axis swap).
+    function capDrawGraph(cd, mode, t, V, Q, C, Vdef) {
+        var gc = document.getElementById("cap_graph_canvas"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, padL = 40, padR = 12, padT = 18, padB = 24;
+        var plotW = W - padL - padR, plotH = H - padT - padB;
+        var axisMode = window.PM_capAxisMode || "qv";
+        var Vaxis = Math.max(Vdef * 2, V * 1.15, 1);
+        var Qaxis = Math.max(C * Vaxis * 1e9, 0.1); // nC
+
+        function px(vVal, qValNc) {
+            var xFrac, yFrac;
+            if (axisMode === "qv") { xFrac = vVal / Vaxis; yFrac = qValNc / Qaxis; }
+            else { xFrac = qValNc / Qaxis; yFrac = vVal / Vaxis; }
+            return [padL + xFrac * plotW, (padT + plotH) - yFrac * plotH];
+        }
+        ctx.strokeStyle = "#37474F"; ctx.beginPath();
+        ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.stroke();
+
+        var vEnd = (mode === "v_sweep") ? V : Vaxis;
+        var p0 = px(0, 0), p1 = px(vEnd, C * vEnd * 1e9);
+        ctx.strokeStyle = "#66BB6A"; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(p0[0], p0[1]); ctx.lineTo(p1[0], p1[1]); ctx.stroke();
+        ctx.lineWidth = 1;
+
+        var pd = px(V, Q * 1e9);
+        ctx.fillStyle = "#FFF176"; ctx.beginPath(); ctx.arc(pd[0], pd[1], 4, 0, 2 * Math.PI); ctx.fill();
+
+        ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
+        if (axisMode === "qv") {
+            ctx.fillText("Q (nC)", padL, 12);
+            ctx.fillText("V (V)", padL + plotW - 34, H - 6);
+            ctx.fillText("slope = C", padL + plotW - 66, padT + 12);
+        } else {
+            ctx.fillText("V (V)", padL, 12);
+            ctx.fillText("Q (nC)", padL + plotW - 40, H - 6);
+            ctx.fillText("slope = 1/C", padL + plotW - 74, padT + 12);
+        }
+    }
+
+    // Per-frame update — resolves live V/A/d from the active mode's ramp (pure
+    // fn of t, Rule 26/36), repositions the plates/dots/bracket, flows the
+    // charging beads, reveals the dot pools, and paints the readout + graph.
+    function updateCapacitanceFrame(stateDef) {
+        var cd = stateDef.capacitance || {};
+        var t = time - stateStartTime;
+        var mode = cd.mode || "static";
+        var Vdef = window.PM_capVdef || 12, Adef = window.PM_capAdef || 0.01, Ddef = window.PM_capDdef || 0.001;
+        var baseSep = window.PM_capBaseSep || 1.6;
+
+        var V = window.PM_capV, A = window.PM_capA, D = window.PM_capD;
+        var flowing = false, flowDir = 1;
+
+        if (mode === "switch_close") {
+            var r = capRamp(t, cd.switch_close_at_ms, cd.charge_duration_ms, 0, V);
+            flowing = r.active; flowDir = 1;
+            window.PM_capChargeFrac = Math.max(0, Math.min(1, r.value / Math.max(1e-6, V)));
+            var gapOpenEl = capFindById("cap_gap_open"), gapClosedEl = capFindById("cap_gap_closed");
+            var switchClosedNow = t >= (cd.switch_close_at_ms || 0) / 1000;
+            if (gapOpenEl) gapOpenEl.visible = !switchClosedNow;
+            if (gapClosedEl) gapClosedEl.visible = switchClosedNow;
+        } else if (mode === "v_steps" && Array.isArray(cd.v_steps) && cd.v_steps.length > 0) {
+            // Walk the CHRONOLOGICAL steps and stop at the first one that is
+            // either currently ramping (active) or not yet reached (t < its
+            // at_ms) -- a step ALREADY complete (t past its window) settles at
+            // its own target and the walk continues to the next step. Naively
+            // evaluating every step and keeping the LAST iteration's value is
+            // WRONG: a future step's "hold at its from-value" (which equals the
+            // PRIOR step's authored target, not the prior step's live mid-ramp
+            // value) would silently overwrite an earlier step's genuine in-
+            // progress ramp (caught by the capacitance engine smoke test,
+            // 2026-07-21 — v_steps read the LAST step's target while step 1 was
+            // still visibly ramping).
+            var steps = cd.v_steps;
+            var vNow = (typeof cd.V === "number") ? cd.V : steps[0].v;
+            var stepActive = false, stepDir = 1;
+            for (var si = 0; si < steps.length; si++) {
+                var st = steps[si];
+                var stFrom = (si === 0) ? ((typeof cd.V === "number") ? cd.V : st.v) : steps[si - 1].v;
+                var rr = capRamp(t, st.at_ms, st.duration_ms, stFrom, st.v);
+                vNow = rr.value;
+                if (rr.active) { stepActive = true; stepDir = (st.v >= stFrom) ? 1 : -1; break; }
+                var stAtSec = (st.at_ms != null ? st.at_ms : 0) / 1000;
+                if (t < stAtSec) break; // not reached yet -> vNow = stFrom is final
+                // else: this step already completed (t past its window) -> vNow
+                // is now its settled target; continue to check the NEXT step.
+            }
+            V = vNow; flowing = stepActive; flowDir = stepDir;
+            window.PM_capChargeFrac = 1;
+        } else if (mode === "v_sweep" && cd.v_sweep) {
+            var sw = cd.v_sweep;
+            var vFrom = (sw.v_from != null ? sw.v_from : 0), vTo = (sw.v_to != null ? sw.v_to : Vdef);
+            var rs = capRamp(t, sw.at_ms, sw.duration_ms, vFrom, vTo);
+            V = rs.value; flowing = rs.active; flowDir = (vTo >= vFrom) ? 1 : -1;
+            window.PM_capChargeFrac = 1;
+        } else if (mode === "area_morph" && cd.area_morph) {
+            var am = cd.area_morph;
+            var aFrom = (am.a_from != null ? am.a_from : Adef), aTo = (am.a_to != null ? am.a_to : Adef);
+            var ra = capRamp(t, am.at_ms, am.duration_ms, aFrom, aTo);
+            A = ra.value; flowing = ra.active; flowDir = (aTo >= aFrom) ? 1 : -1;
+            window.PM_capChargeFrac = 1;
+        } else if (mode === "gap_morph" && cd.gap_morph) {
+            // Mirrors updateParallelPlatesFrame's gap_widen morph shape exactly
+            // (reused, not reimplemented) — widening DRAINS charge (flowDir<0,
+            // beads flow back toward the battery).
+            var gm = cd.gap_morph;
+            var dFrom = (gm.d_from != null ? gm.d_from : Ddef), dTo = (gm.d_to != null ? gm.d_to : Ddef);
+            var rg = capRamp(t, gm.at_ms, gm.duration_ms, dFrom, dTo);
+            D = rg.value; flowing = rg.active; flowDir = (dTo >= dFrom) ? -1 : 1;
+            window.PM_capChargeFrac = 1;
+        } else if (mode === "derivation") {
+            flowing = false; window.PM_capChargeFrac = 1;
+        } else if (mode === "explore") {
+            if (!window.PM_capVDragged && !window.PM_capADragged && !window.PM_capDDragged && cd.idle_sweep !== false) {
+                var amp = Math.max(1, Vdef * 0.9);
+                V = Math.max(0, Vdef + amp * Math.sin(t * (2 * Math.PI / CAP_IDLE_SWEEP_S)));
+                window.PM_capV = V;
+            }
+            flowing = true; window.PM_capChargeFrac = 1; // the sandbox always reads live
+        } else {
+            window.PM_capChargeFrac = (window.PM_capChargeFrac != null) ? window.PM_capChargeFrac : 1;
+        }
+
+        var C = capC(A, D);
+        var Q = C * V * (window.PM_capChargeFrac != null ? window.PM_capChargeFrac : 1);
+        var QnC = Q * 1e9;
+
+        var sep = baseSep * (D / Math.max(1e-9, Ddef));
+        var hw = Math.sqrt(Math.max(0.001, A / Adef));
+        capReposition(sep, hw);
+
+        // Beads: flow along the wire while charging/draining, park (fade) once
+        // the ramp settles — "flow self-stops when V.C settles" (a genuine
+        // reveal_hold beat, classified as such in deriveStateMeta.ts).
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || ud.elementType !== "cap_bead" || !o.visible) continue;
+            var ub = flowing ? (((ud.slot + flowDir * t * 0.35) % 1) + 1) % 1 : ud.slot;
+            var pt = capBeadPoint(ud.path, ub);
+            o.position.set(pt[0], pt[1], pt[2]);
+            if (o.material) o.material.opacity = flowing ? 0.9 : 0.12;
+        }
+
+        // Plate-face dot pools — count tracks |Q| live; grid spacing already
+        // tracks the plate's own hw scale via capReposition.
+        var visibleCount = Math.round(Math.min(1, QnC / CAP_QREF_NC) * CAP_DOTS_MAX);
+        capForEachDot(function (dot) {
+            var ud2 = dot.userData; if (!ud2 || !dot.material) return;
+            dot.material.opacity = (ud2.slotIndex < visibleCount) ? 0.95 : 0;
+        });
+
+        // Ambient field-line opacity carries |V| (S6/S7 only, when visible).
+        for (var k = 0; k < sceneObjects.length; k++) {
+            var ok = sceneObjects[k], udk = ok.userData;
+            if (!udk || udk.elementType !== "cap_field_line" || !ok.visible) continue;
+            if (ok.material) ok.material.opacity = 0.5 * Math.min(1, V / Math.max(1, Vdef));
+        }
+
+        // Gap bracket + area tag: one-shot fade-in, then hold.
+        var gapB = capFindById("cap_gap_bracket");
+        if (gapB && gapB.visible) setObjOpacity(gapB, Math.min(1, t / 0.6));
+        var areaB = capFindById("cap_area_bracket");
+        if (areaB && areaB.visible) setObjOpacity(areaB, Math.min(1, t / 0.6));
+
+        // Live sliders reflect any state-authored (non-dragged) V/A/D every frame.
+        if (!window.PM_capVDragged) { var vSl2 = document.getElementById("cap_v_slider"); if (vSl2) vSl2.value = String(V); var vV2 = document.getElementById("cap_v_val"); if (vV2) vV2.textContent = V.toFixed(1); }
+        if (!window.PM_capADragged) { var aSl2 = document.getElementById("cap_a_slider"); if (aSl2) aSl2.value = String(A); var aV2 = document.getElementById("cap_a_val"); if (aV2) aV2.textContent = A.toFixed(3); }
+        if (!window.PM_capDDragged) { var dSl2 = document.getElementById("cap_d_slider"); if (dSl2) dSl2.value = String(D); var dV2 = document.getElementById("cap_d_val"); if (dV2) dV2.textContent = (D * 1000).toFixed(2); }
+
+        // Live value-only HUD (Rule 33d/34b).
+        var roEl = document.getElementById("cap_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var h = "<div>V = " + V.toFixed(1) + " V</div>";
+            h += "<div>Q = " + QnC.toFixed(2) + " nC</div>";
+            h += "<div style=\\"color:#FFCA28\\">C = " + (C * 1e12).toFixed(1) + " pF</div>";
+            roEl.innerHTML = h;
+        }
+        var ratioEl = document.getElementById("cap_ratio_readout");
+        if (ratioEl && ratioEl.style.display !== "none") {
+            ratioEl.innerHTML = "Q/V = " + (C * 1e9).toFixed(4) + " nC per volt";
+        }
+
+        var ffEl = document.getElementById("cap_formula");
+        if (ffEl && ffEl.style.display !== "none") ffEl.textContent = cd.formula || "";
+        if (mode === "derivation") capUpdateDerivation(cd, t, Q, A, D);
+
+        if (cd.show_graph) capDrawGraph(cd, mode, t, V, Q, C, Vdef);
+    }
+
+    // Glow-key enum CLOSED to exactly: beads | plate_dots | ratio_readout |
+    // graph | plates | gap | formula | battery. 3D groups match via
+    // userData.group (traverse()'d by applyGlowEmphasis, so the plate-dot
+    // pools' children glow via their parent group); DOM overlays toggle the
+    // shared .glow-pulse CSS class (mirrors the fleming_overlay/lorentz_sliders
+    // pattern in the SET_GLOW handler).
+    function applyCapacitanceGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(key) { return glowTargets.indexOf(key) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            if (!sud.elementType || sud.elementType.indexOf("cap_") !== 0) continue;
+            var g = sud.group;
+            applyGlowEmphasis(so, !!(g && on(g)) || on(sud.id) || on(sud.elementType), glowActive, glowP, true);
+        }
+        var ratioEl = document.getElementById("cap_ratio_readout");
+        if (ratioEl) ratioEl.classList.toggle("glow-pulse", on("ratio_readout"));
+        var graphEl = document.getElementById("cap_graph_canvas");
+        if (graphEl) graphEl.classList.toggle("glow-pulse", on("graph"));
+        var ffEl = document.getElementById("cap_formula");
+        if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
+        var dvEl = document.getElementById("cap_derivation");
+        if (dvEl) dvEl.classList.toggle("glow-pulse", on("formula"));
     }
 
     // ── dipole_potential (electric_potential_dipole, V = k p cosθ / r²) ──────────
@@ -29183,6 +29843,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildParallelPlatesField(config);
                 break;
 
+            case "capacitance":
+                buildCapacitanceField(config);
+                break;
+
             case "dipole_potential":
                 buildDipolePotential(config);
                 break;
@@ -29805,6 +30469,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyParallelPlatesState(stateDef);
         }
 
+        // capacitance (Q = CV, C = ε₀A/d) — per-state seed (V/A/d) + contextual
+        // slider rows (Rule 31: controls[]/static_readouts[]) + DOM panel
+        // toggles (readout / ratio_readout / formula / derivation / graph +
+        // axis-swap toggle). The animate loop then drives the ramp-then-hold
+        // choreography (switch-close / v_steps / v_sweep / area_morph /
+        // gap_morph / S6 derivation / S7 explore), the bead flow, the
+        // plate-face dot pools, and the Q-V graph trace.
+        if (config.scenario_type === "capacitance") {
+            applyCapacitanceState(stateDef);
+        }
+
         // dipole_potential (electric_potential_dipole, V = k p cosθ/r²) —
         // authoritative per-state visibility (charges/p always on; probe / r-lines /
         // θ-arc / two-term + collapse callouts / equatorial disc + E arrow / curve
@@ -30007,6 +30682,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var isHelix = config.scenario_type === "helix_in_uniform_field";
         var isCyclotron = config.scenario_type === "cyclotron_period";
         var isPlates = config.scenario_type === "parallel_plates";
+        // capacitance owns its OWN #cap_sliders panel (V/A/d) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to
+        // this NOT-list, same as isPlates/isMfl/isInductance/... above).
+        var isCap = config.scenario_type === "capacitance";
         var isDipolePotential = config.scenario_type === "dipole_potential";
         var isSystemOfCharges = config.scenario_type === "system_of_charges";
         var isSystemPeAssembly = config.scenario_type === "system_pe_assembly";
@@ -30039,7 +30719,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -30226,8 +30906,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula)
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -30677,6 +31357,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // electric_potential_meaning suppresses the same legend for the same reason;
         // electric_potential_point_charge is covered by its potential_meaning block).
         if (config.scenario_type === "system_of_charges") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // capacitance is a silent visual (Rule 24): the plates + battery/switch/
+        // charging beads + plate-face charge-dot pools + gap/A reference lines +
+        // the live Q/V/C readout + the Q-V graph carry everything — suppress the
+        // generic legend (the scenario id has no "charge"/"magnet" substring so
+        // it would otherwise fall through to the bare "Drag to rotate" hint only,
+        // but suppress explicitly for consistency with every 2026-07+ scenario).
+        if (config.scenario_type === "capacitance") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
@@ -33136,7 +33823,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance")) {
             // parallel_plates + dipole_potential are accumulator-free (every reveal +
             // sweep + the gap-widen morph is a pure function of time - stateStartTime),
             // so snapping to the pin is byte-identical to crawling — lets the visual
@@ -33188,6 +33875,16 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "parallel_plates") {
             var ppStateDef = config.states[PM_currentState];
             if (ppStateDef) updateParallelPlatesFrame(ppStateDef);
+        }
+
+        // capacitance — ramp-then-hold choreography (switch-close charge-in /
+        // v_steps / v_sweep / area_morph / gap_morph / S6 derivation / S7
+        // explore idle sweep), bead flow, plate-face dot pools, live Q/V/C
+        // readout, and the Q-V graph + axis-swap toggle. Accumulator-free (pure
+        // fn of time - stateStartTime, Rule 26/36).
+        if (config.scenario_type === "capacitance") {
+            var capStateDef = config.states[PM_currentState];
+            if (capStateDef) { updateCapacitanceFrame(capStateDef); applyCapacitanceGlow(); }
         }
 
         // dipole_potential — timed reveals, STATE_3/5 sweeps, signed-V recolor

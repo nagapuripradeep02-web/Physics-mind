@@ -1290,6 +1290,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    capacitance: {
+        concept_id: 'capacitance',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'capacitance',
+            label: 'Capacitance (3D)',
+        },
+    },
+
     magnetic_field_solenoid: {
         concept_id: 'magnetic_field_solenoid',
         layout: 'single',
