@@ -2661,7 +2661,6 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // quality_auditor). Replaces the STALE circuit_live placeholder. NOT
     // added to PCPL_CONCEPTS (parametric_renderer only).
     wheatstone_bridge:              "particle_field",
-    meter_bridge:                   "circuit_live",
     // potentiometer is the ELEVENTH Ch.3 concept on particle_field (2D p5.js)
     // via the Alex pipeline (2026-07-13) — second of the founder's lab trio
     // (Wheatstone c20 -> potentiometer c23 -> meter bridge). Reuses the
@@ -2688,6 +2687,24 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // 2026-07-14, flagged for peter_parker:renderer_primitives via
     // quality_auditor). NOT added to PCPL_CONCEPTS (parametric_renderer only).
     combination_of_cells:           "particle_field",
+    // meter_bridge is the THIRTEENTH Ch.3 concept on particle_field (2D p5.js)
+    // via the Alex pipeline (2026-07-20) — FINALE of the founder's lab trio
+    // (Wheatstone c20 -> potentiometer c23 -> meter bridge). Reuses the
+    // combination_of_resistors scenario_type as the renderer selector, riding
+    // NEW per-state flags on the circuit engine (topology:'meter_bridge' — a
+    // HYBRID of wheatstone's 'bridge' diamond + potentiometer's 'wire' sliding
+    // jockey, REUSED show_galvanometer/drawGalvanometerC/show_balance_readout/
+    // show_ig_zero_label/jockey_pos/jockey_sweep*, NEW show_segment_ratio +
+    // segment_sweep* (S2 resistance-vs-length highlight), NEW show_error_band +
+    // error_band_grid + cycle_compare/cycle_phase2_* + jockey_jitter (S5
+    // precision beat) — engine additions authored-but-not-yet-implemented as of
+    // 2026-07-20, flagged for peter_parker:renderer_primitives via
+    // quality_auditor). 'meter_bridge' previously existed only as a placeholder
+    // concept_id routed here to the legacy circuit_live renderer — this entry
+    // REPLACES that stale placeholder, same pattern wheatstone_bridge and
+    // potentiometer each executed on their own prior slot. NOT added to
+    // PCPL_CONCEPTS (parametric_renderer only) — mirrors both siblings.
+    meter_bridge:                   "particle_field",
     // Cells
     cells_in_series_parallel:       "circuit_live",
     cells_in_series:                "circuit_live",

@@ -234,6 +234,28 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.3 Current Electricity #13 — Alex pipeline (2026-07-20), FINALE of the
+    // founder's lab trio (Wheatstone c20 -> potentiometer c23 -> meter bridge).
+    // Reuses the combination_of_resistors scenario_type as the renderer
+    // selector, riding a NEW 'meter_bridge' topology (joining wheatstone's
+    // 'bridge' diamond with potentiometer's 'wire' + sliding jockey) + reused
+    // drawGalvanometerC + NEW segment-ratio highlight + error-band engine
+    // additions (see the JSON's source_book for the exact engine-gap list,
+    // flagged for peter_parker:renderer_primitives). 'meter_bridge' previously
+    // existed only as a placeholder concept_id routed to the legacy
+    // circuit_live renderer (see CONCEPT_RENDERER_MAP) — this is the first
+    // authoritative panel config, replacing that placeholder exactly as
+    // wheatstone_bridge and potentiometer each did on their own prior slot.
+    meter_bridge: {
+        concept_id: 'meter_bridge',
+        layout: 'single',
+        primary: {
+            renderer: 'particle_field',
+            config_key: 'meter_bridge',
+            label: 'Meter Bridge — Finding an Unknown Resistance by Nulling on a Slide Wire',
+        },
+    },
+
     wave_superposition: {
         concept_id: 'wave_superposition',
         layout: 'single',

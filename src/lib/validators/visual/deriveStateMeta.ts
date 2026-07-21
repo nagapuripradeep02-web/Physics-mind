@@ -186,13 +186,14 @@ export function deriveMotionExpectations(
                 // auto_after_animation yet only draws p in once and then holds.
                 out[stateId] = false; continue;
             }
-            // earths_magnetism (the per-state `em` block). The ONLY mid-state motion
-            // is the STATE_3 latitude auto-sweep (em.sweep) → declare motion so D5/D6
-            // expect pixels to move. STATE_1 (compass idle-sway), STATE_2 (dive-then-
-            // hold) and STATE_4 (idle micro-drift) settle to a static-but-live payoff
-            // frame → declare them non-motion (false, not undefined) so the static
-            // payoff is not mis-read as "motion died". Their hold intent is handled in
-            // deriveHoldExpectations (show_sliders → interactive).
+            // earths_magnetism (the per-state `em` block). The ONLY sustained mid-state
+            // motion is the STATE_5 latitude auto-sweep (em.sweep) → declare motion so
+            // D5/D6 expect pixels to move. The reveal beats — STATE_1 tilt_reveal,
+            // STATE_2 swing_reveal, STATE_3 dive_reveal, STATE_4 decompose_reveal — each
+            // animate once then settle to a static-but-live payoff frame → declare them
+            // non-motion (false, not undefined) so the settled payoff is not mis-read as
+            // "motion died". Their reveal payoff is pinned in maxRevealForField3dState and
+            // their hold intent is handled in deriveHoldExpectations (em → interactive).
             const em = state ? asObj(state.em) : null;
             if (em) { out[stateId] = em.sweep ? true : false; continue; }
             // magnetisation: every guided beat animates (current pulse / dipole
@@ -520,6 +521,16 @@ function pfRevealMs(state: Record<string, unknown> | null): number {
     if (state.jockey_sweep === true) {
         maxMs = Math.max(maxMs, asNum(state.jockey_sweep_start_ms, 800) + asNum(state.jockey_sweep_duration_ms, 800) + 300);
     }
+    // meter_bridge S2: the resistance-vs-length highlight sweeps A→C over
+    // [segment_sweep_start_ms, +segment_sweep_duration_ms] (default [600, 2200]).
+    // Pin the frozen frame past its settle (+300) so THE EYE captures the completed
+    // "wire = resistance ruler" reveal, not the marker mid-sweep. Mirrors
+    // drawMbSegments in particle_field_renderer.ts. (S3/S4 jockey_sweep + S5
+    // cycle_compare are already covered above; S5's jockey_jitter is continuous
+    // motion, deterministic in PM_simTimeMs, so no settle pin is needed for it.)
+    if (state.segment_sweep === true) {
+        maxMs = Math.max(maxMs, asNum(state.segment_sweep_start_ms, 600) + asNum(state.segment_sweep_duration_ms, 1600) + 300);
+    }
     // combination_of_cells S7: cycle_compare is a 3-phase clock sequence (topology
     // -> series, then R jump, then topology -> parallel) with NO cue — unlike
     // bridge_r_sweep/jockey_sweep's single sweep, take the AUTHORED total settle
@@ -607,6 +618,23 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     const mfl = asObj(state.magnetic_flux_loop);
     if (mfl && mfl.mode !== 'explore' && Array.isArray(mfl.controls) && mfl.controls.length > 0) {
         candidates.push(asNum(mfl.idle_sweep_duration_ms, 3000) + asNum(mfl.idle_sweep_hold_ms, 2000) + 500);
+    }
+    // earths_magnetism: STATE_1 tilt_reveal / STATE_2 swing_reveal / STATE_4
+    // decompose_reveal are one-shot timed reveals that then HOLD (mirror the dive).
+    // Pin the frozen frame past each payoff so THE EYE captures the settled pose, not
+    // mid-animation (renderer timings, field_3d_renderer.ts: tilt done ~1.3s, decompose
+    // triangle in by ~1.8s). STATE_2 swing_reveal (F1, engine_bug_queue:
+    // em_state2_declination_camera_edge_on) now RE-PHASES behind a ~1.2s camera lift
+    // (hold=1.3s, dur=1.2s ⇒ swing completes ~2.5s, was ~1.5s pre-fix) — the candidate
+    // below MUST stay past both the lift and the swing or THE EYE freezes mid-motion.
+    // STATE_3 dive_reveal settles ~1.25s (< the 1500 default). STATE_5 sweep is
+    // continuous motion (declared in the motion pass, not a one-shot reveal). Keep
+    // these in sync with the renderer's constants.
+    const em = asObj(state.em);
+    if (em) {
+        if (em.tilt_reveal === true) candidates.push(1700);
+        if (em.swing_reveal === true) candidates.push(2900);
+        if (em.decompose_reveal === true) candidates.push(2200);
     }
     // gauss_law: the Gauss's-law STATEMENT scenario (Φ = q_enc/ε₀). Its one-shot
     // timed reveals then HOLD still (mirror electric_flux) — pin the frozen frame

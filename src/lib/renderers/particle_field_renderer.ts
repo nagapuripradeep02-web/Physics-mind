@@ -697,6 +697,29 @@ function updateReadouts() {
     }
     return;
   }
+  // meter_bridge: the l (jockey) + R (S5 cycle) rows track their choreography until
+  // grabbed, and the readout box shows the null-detector story (V_B, V_J, i_g). Early-out
+  // so the ohms_law/circuit branches below (series/parallel R_eq) never misfire — the
+  // generic "Parallel / R_eq" HUD is meaningless for a slide-wire bridge. Mirrors the
+  // wheatstone_bridge block above.
+  if (circuitMode() && cTopology() === 'meter_bridge') {
+    if (hasSlider('l') && !userTouched['l']) {
+      var mbLEl = document.getElementById('pm-sv-l');
+      if (mbLEl) { var mbLd = defs.l || {}; mbLEl.textContent = Math.round(cMbJockeyF() * 100) + (mbLd.unit ? (' ' + mbLd.unit) : ''); }
+    }
+    if (hasSlider('R') && !userTouched['R'] && curState() && curState().cycle_compare) {
+      var mbREl = document.getElementById('pm-sv-R');
+      if (mbREl) { var mbRd = defs.R || {}; mbREl.textContent = fmtNum(cMbR()) + (mbRd.unit ? (' ' + mbRd.unit) : ''); }
+    }
+    var mbRoEl = document.getElementById('pm-readout');
+    if (mbRoEl) {
+      var mbpr = mbPhysics();
+      mbRoEl.textContent = 'V_B = ' + mbpr.VB.toFixed(2) + ' V\\n' +
+                           'V_J = ' + mbpr.VJ.toFixed(2) + ' V\\n' +
+                           (mbpr.balanced ? 'i_g = 0' : ('\\u0394V = ' + mbpr.gap.toFixed(2) + ' V'));
+    }
+    return;
+  }
   // potentiometer: the l/E/eps_d rows track their per-state lock (l also its sweep)
   // until grabbed, and the readout box shows the gradient/tap/balance story. Early-out
   // so the ohms_law/circuit branches below (series/parallel assumptions) never misfire.
@@ -1547,6 +1570,7 @@ function drawStruckTextC(cx, cy, str, dim) {
 function drawCircuit() {
   if (cTopology() === 'wire') { drawWireScenario(); return; }       // potentiometer — bypasses series/parallel geometry
   if (cTopology() === 'bridge') { drawBridgeScenario(); return; }   // wheatstone_bridge — bypasses series/parallel geometry
+  if (cTopology() === 'meter_bridge') { drawMeterBridgeScenario(); return; }  // meter_bridge — slide-wire Wheatstone hybrid
   var c = cCurrents(), loops = circuitLoops(), g = loops.g;
   var st = curState();
   var wcol = '#546E7A';
@@ -2035,6 +2059,225 @@ function drawWireScenario() {
   if (st && st.show_voltmeter_compare) {                          // V_meter vs true E (voltmeter reads LESS)
     drawBridgeChip(width * 0.66, height * 0.32,                    // upper-right clear zone — clears the ε_d driver-cell label + k-chip (Rule 34d)
       'V_meter = ' + g.Vmeter.toFixed(2) + ' V  vs  E = ' + g.E.toFixed(2) + ' V', bpvl('compare_bad', '#EF5350'), 14);
+  }
+}
+
+// ═══ meter_bridge — 'meter_bridge' topology (gated behind cTopology()==='meter_bridge') ══
+// A HYBRID of the wheatstone diamond + the potentiometer slide wire. A uniform 1 m
+// slide wire A(left)->C(right) runs along the lower-middle; a top R-X path (known R in
+// the LEFT gap, unknown X in the RIGHT gap) meets at the top junction B; the cell drives
+// BOTH paths in parallel across A-C via an external loop below the wire. A centre-zero
+// galvanometer G sits on the B->J chord (J = the sliding jockey). At the null (V_B = V_J)
+// the meter-branch current is EXACTLY zero for any G, and X reads off the two lengths:
+// X = R*(100-l1)/l1. Every value is a PURE fn of live R/X/eps + the jockey fraction f;
+// every field is opt-in behind topology:'meter_bridge', so series/parallel/bridge/wire/
+// KCL/KVL render byte-identical. l (cm) is the human-facing HUD variable (= f*100);
+// jockey_pos/jockey_sweep_to stay 0..1 fractions so the sweep math mirrors the pot jockey.
+// Clock sweeps + the S5 jitter are pure fns of PM_simTimeMs so home-pose (t=0) and
+// SET_TIME_FREEZE re-sim reproduce frames exactly (THE EYE baselines).
+function mbcal(key, fb) { return (config && config.meter_bridge_calibration && typeof config.meter_bridge_calibration[key] === 'number') ? config.meter_bridge_calibration[key] : fb; }
+function cMbX() { var st = curState(); if (st && typeof st.X === 'number' && !userTouched['X']) return st.X; return hasSlider('X') ? sliderVal('X') : 6; }
+function cMbEps() { var st = curState(); if (st && typeof st.eps === 'number' && !userTouched['eps']) return st.eps; return hasSlider('eps') ? sliderVal('eps') : 2; }
+// R: per-state lock -> optional S5 cycle_compare sweep (R rises so the null walks to
+// mid-wire) -> slider. Pure fn of PM_simTimeMs.
+function cMbR() {
+  var st = curState();
+  if (st && st.cycle_compare && !userTouched['R']) {
+    var p2s = (typeof st.cycle_phase2_start_ms === 'number') ? st.cycle_phase2_start_ms : 2500;
+    var p2d = (typeof st.cycle_phase2_duration_ms === 'number') ? st.cycle_phase2_duration_ms : 900;
+    var r1 = (typeof st.R === 'number') ? st.R : 1;
+    var r2 = (typeof st.cycle_phase2_target_R === 'number') ? st.cycle_phase2_target_R : 6;
+    return r1 + (r2 - r1) * constrain((PM_simTimeMs - p2s) / max(p2d, 1), 0, 1);
+  }
+  if (st && typeof st.R === 'number' && !userTouched['R']) return st.R;
+  return hasSlider('R') ? sliderVal('R') : 4;
+}
+function mbBalanceFrac() { var R = cMbR(), X = cMbX(); return R / max(R + X, 1e-6); }
+// Jockey fraction f (0..1 along A->C). Priority: S5 jitter around the LIVE balance point
+// -> clock sweep (jockey_pos -> jockey_sweep_to) -> per-state jockey_pos -> l slider
+// (cm/100). userTouched['l'] hands control to the teacher.
+function cMbJockeyF() {
+  var st = curState();
+  if (st && st.jockey_jitter && !userTouched['l']) {
+    var amp = mbcal('delta_l_wobble_cm', 2) / 100;
+    return constrain(mbBalanceFrac() + amp * sin(TWO_PI * (PM_simTimeMs / 1000)), 0.02, 0.98);
+  }
+  if (st && st.jockey_sweep && !userTouched['l']) {
+    var start = (typeof st.jockey_sweep_start_ms === 'number') ? st.jockey_sweep_start_ms : 800;
+    var dur = (typeof st.jockey_sweep_duration_ms === 'number') ? st.jockey_sweep_duration_ms : 800;
+    var a = (typeof st.jockey_pos === 'number') ? st.jockey_pos : 0.5;
+    var b = (typeof st.jockey_sweep_to === 'number') ? st.jockey_sweep_to : a;
+    return a + (b - a) * constrain((PM_simTimeMs - start) / max(dur, 1), 0, 1);
+  }
+  if (st && typeof st.jockey_pos === 'number' && !userTouched['l']) return st.jockey_pos;
+  return hasSlider('l') ? constrain(sliderVal('l') / 100, 0, 1) : 0.5;
+}
+function mbPhysics() {
+  var R = cMbR(), X = cMbX(), eps = cMbEps(), f = constrain(cMbJockeyF(), 0.01, 0.99);
+  var VB = eps * X / max(R + X, 1e-6);          // R-X divider: V at junction B
+  var VJ = eps * (1 - f);                        // uniform-wire tap at the jockey
+  var gap = VB - VJ;                             // 0 at balance (eps cancels)
+  var bf = R / max(R + X, 1e-6);                 // balance fraction = R/(R+X)
+  var K = mbcal('needle_deg_per_volt', 50), MX = mbcal('needle_max_deg', 60);
+  var needle = constrain(K * gap, -MX, MX);      // centre-zero, deg from straight-up
+  var tol = mbcal('ratio_tolerance', 0.02);
+  var balanced = abs(f - bf) < max(tol, 0.012);
+  var lcm = f * 100, l1cm = constrain(bf * 100, 1, 99);
+  var Xmeas = R * (100 - lcm) / max(lcm, 1e-6);   // live from the jockey; = X at balance
+  var dl = mbcal('delta_l_wobble_cm', 2);
+  var bandDX = X * 100 * dl / max(l1cm * (100 - l1cm), 1e-6);   // sensitivity envelope at the null
+  return { R: R, X: X, eps: eps, f: f, VB: VB, VJ: VJ, gap: gap, bf: bf, needle: needle,
+           balanced: balanced, lcm: lcm, l1cm: l1cm, Xmeas: Xmeas, bandDX: bandDX };
+}
+function mbGeom() {
+  var W = width, H = height;
+  var Ax = W * 0.18, Cx = W * 0.82, wireY = H * 0.60;
+  var topY = H * 0.26, battY = H * 0.86;
+  var Bx = (Ax + Cx) / 2, By = topY, Gy = (By + wireY) / 2;
+  var p = mbPhysics();
+  var Jx = Ax + (Cx - Ax) * constrain(p.f, 0, 1), Jy = wireY;
+  var gR = H * 0.058;
+  return { W: W, H: H, Ax: Ax, Cx: Cx, wireY: wireY, topY: topY, battY: battY,
+           Bx: Bx, By: By, Gy: Gy, Jx: Jx, Jy: Jy, gR: gR, phys: p };
+}
+// Two parallel bead loops A->C (top R-X path + bottom slide wire) sharing the battery
+// return rail. Density + speed ~ each path's current; both flow in EVERY state.
+function drawMbLoopBeads(geo) {
+  var g = geo.phys, eDim = wdim('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var Rw = 2;                                            // nominal wire resistance (visual only)
+  var iTop = g.eps / max(g.R + g.X, 1e-6), iBot = g.eps / Rw;
+  var topLoop = [ { x: geo.Ax, y: geo.wireY }, { x: geo.Ax, y: geo.topY }, { x: geo.Cx, y: geo.topY },
+                  { x: geo.Cx, y: geo.wireY }, { x: geo.Cx, y: geo.battY }, { x: geo.Ax, y: geo.battY }, { x: geo.Ax, y: geo.wireY } ];
+  var botLoop = [ { x: geo.Ax, y: geo.wireY }, { x: geo.Cx, y: geo.wireY }, { x: geo.Cx, y: geo.battY },
+                  { x: geo.Ax, y: geo.battY }, { x: geo.Ax, y: geo.wireY } ];
+  var LT = polyLen(topLoop), LB = polyLen(botLoop);
+  var NT = max(6, round(constrain(iTop / 0.4, 0.3, 2.0) * 10)), NB = max(8, round(constrain(iBot / 0.6, 0.3, 2.5) * 12));
+  var spT = constrain(iTop / 0.4, 0.3, 2.2), spB = constrain(iBot / 0.6, 0.4, 2.8);
+  var PH = circuitBeadPhase.length;
+  noStroke();
+  for (var i = 0; i < NT; i++) {
+    var sT = (circuitBeadPhase[i % PH] + CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * spT) % 1;
+    var pT = polyAt(topLoop, LT, sT);
+    fillHex(col, 0.24 * eDim); ellipse(pT.x, pT.y, sz * 2.0); fillHex(col, 0.92 * eDim); ellipse(pT.x, pT.y, sz);
+  }
+  for (var j = 0; j < NB; j++) {
+    var sB = (circuitBeadPhase[(j + 5) % PH] + CIRCUIT_BEAD_RATE * (PM_simTimeMs / 1000) * spB) % 1;
+    var pB = polyAt(botLoop, LB, sB);
+    fillHex(col, 0.24 * eDim); ellipse(pB.x, pB.y, sz * 2.0); fillHex(col, 0.92 * eDim); ellipse(pB.x, pB.y, sz);
+  }
+}
+// Galvanometer-branch beads on B->G->J. Dir = sign(gap), density + speed ~ |gap|,
+// EXACTLY zero at balance (drains as the jockey reaches the null). Disc drawn AFTER.
+function drawMbGalvoBeads(geo) {
+  var g = geo.phys, mag = abs(g.gap);
+  if (mag < 0.02) return;                                // balance -> the meter branch is empty
+  var eDim = wdim('electrons');
+  var col = (config.particles && config.particles.color) ? config.particles.color : '#42A5F5';
+  var sz = (config.particles && config.particles.size) ? config.particles.size : 7;
+  var chord = (g.gap >= 0) ? [ { x: geo.Bx, y: geo.By }, { x: geo.Bx, y: geo.Gy }, { x: geo.Jx, y: geo.Jy } ]
+                           : [ { x: geo.Jx, y: geo.Jy }, { x: geo.Bx, y: geo.Gy }, { x: geo.Bx, y: geo.By } ];
+  var L = polyLen(chord), n = ceil(constrain(mag / 0.6, 0, 1) * 6); if (n < 1) n = 1;
+  var sp = constrain(mag / 0.3, 0.4, 2.5);
+  noStroke();
+  for (var b = 0; b < n; b++) {
+    var s = (b / n + CIRCUIT_BEAD_RATE * 2 * (PM_simTimeMs / 1000) * sp) % 1;
+    var pt = polyAt(chord, L, s);
+    fillHex(col, 0.30 * eDim); ellipse(pt.x, pt.y, sz * 1.7); fillHex(col, 0.95 * eDim); ellipse(pt.x, pt.y, sz * 0.9);
+  }
+}
+function drawMbBattery(geo, eps) {
+  var bx = (geo.Ax + geo.Cx) / 2, by = geo.battY, col = bpvl('battery', '#FFD54F'), dim = wdim('battery');
+  strokeHex('#ECEFF1', 0.92 * dim); strokeWeight(2); line(bx - 8, by - 14, bx - 8, by + 14);   // + plate (long)
+  strokeWeight(6); line(bx + 8, by - 8, bx + 8, by + 8);                                        // - plate (short)
+  noStroke(); fillHex(col, 0.98 * dim); textSize(12); textStyle(BOLD); textAlign(CENTER, TOP);
+  text('\\u03B5 = ' + eps.toFixed(1) + ' V', bx, by + 12); textStyle(NORMAL);
+}
+function drawMbNodes(geo, st) {
+  var col = bpvl('node_dot', '#80CBC4'), jDim = dimFor('junction');
+  var labs = (st && st.node_dot_labels && st.node_dot_labels.length >= 4) ? st.node_dot_labels : ['A', 'B', 'C', 'J'];
+  var junctionFocal = !!(focalSet() && focalSet()['junction']);
+  if (junctionFocal) {                                   // Rule 29: brighten junction B by a glow halo, not size
+    fillHex(bpvl('junction', '#4DD0E1'), 0.15); noStroke(); ellipse(geo.Bx, geo.By, 34);
+    fillHex(bpvl('junction', '#4DD0E1'), 0.28); noStroke(); ellipse(geo.Bx, geo.By, 22);
+  }
+  var aDim = wdim('wires');
+  fillHex(col, 0.95 * aDim); noStroke();
+  ellipse(geo.Ax, geo.wireY, 10); ellipse(geo.Cx, geo.wireY, 10);
+  fillHex(col, 0.95 * (junctionFocal ? 1 : max(jDim, 0.55))); ellipse(geo.Bx, geo.By, 11);
+  var lc = bpvl('labels', '#D4D4D8');
+  fillHex(lc, 0.96 * aDim); textSize(13); textStyle(BOLD);
+  textAlign(RIGHT, CENTER); text(labs[0], geo.Ax - 9, geo.wireY - 12);
+  textAlign(CENTER, BOTTOM); text(labs[1], geo.Bx, geo.By - 12);
+  textAlign(LEFT, CENTER); text(labs[2], geo.Cx + 9, geo.wireY - 12);
+  textStyle(NORMAL);
+  // Sliding jockey J: a triangle sitting ON the wire, apex touching, body above.
+  var jcol = bpvl('jockey', '#FF7043'), jd = wdim('jockey');
+  fillHex(jcol, 0.96 * jd); noStroke();
+  triangle(geo.Jx, geo.Jy, geo.Jx - 7, geo.Jy - 16, geo.Jx + 7, geo.Jy - 16);
+  fillHex(jcol, 0.98 * jd); textSize(11); textStyle(BOLD); textAlign(CENTER, BOTTOM);
+  text(labs[3], geo.Jx, geo.Jy - 18); textStyle(NORMAL);
+}
+// S2: the wire is a resistance ruler. A highlight sweeps A->C; the two segments A->J and
+// J->C tint to show resistance ~ length; a value chip shows the length ratio.
+function drawMbSegments(geo, st) {
+  var g = geo.phys, dim = wdim('segments'), col = bpvl('segment_highlight', '#4DD0E1');
+  var start = (typeof st.segment_sweep_start_ms === 'number') ? st.segment_sweep_start_ms : 600;
+  var dur = (typeof st.segment_sweep_duration_ms === 'number') ? st.segment_sweep_duration_ms : 1600;
+  var swept = st.segment_sweep ? constrain((PM_simTimeMs - start) / max(dur, 1), 0, 1) : 1;
+  var sx = geo.Ax + (geo.Cx - geo.Ax) * swept;
+  strokeHex(col, 0.85 * dim); strokeWeight(6); line(geo.Ax, geo.wireY, min(sx, geo.Jx), geo.wireY);
+  if (sx > geo.Jx) { strokeHex(bpvl('x_readout', '#CE93D8'), 0.75 * dim); strokeWeight(6); line(geo.Jx, geo.wireY, sx, geo.wireY); }
+  noStroke(); fillHex('#FFFFFF', 0.9 * dim); ellipse(sx, geo.wireY, 10);
+  var lcm = round(g.lcm);
+  drawBridgeChip((geo.Ax + geo.Cx) / 2, geo.wireY + height * 0.13, 'R_seg \\u221D length     ' + lcm + ' : ' + (100 - lcm), col, 13);
+}
+// S5 error band: a horizontal envelope under the X readout, half-width ~ the sensitivity
+// dX at the null (wide near an end, narrow at mid-wire), plus the current phase labels.
+function drawMbErrorBand(geo, st, p) {
+  var col = bpvl('error_band', '#FFD54F');
+  var cx = width * 0.70, cy = height * 0.815;
+  var halfW = constrain(p.bandDX * (width * 0.06), 5, width * 0.16);
+  strokeHex(col, 0.95); strokeWeight(3); line(cx - halfW, cy, cx + halfW, cy);
+  strokeWeight(2); line(cx - halfW, cy - 6, cx - halfW, cy + 6); line(cx + halfW, cy - 6, cx + halfW, cy + 6);
+  var grid = (st && st.error_band_grid && st.error_band_grid.length) ? st.error_band_grid : null;
+  if (grid) {
+    var cur = grid[0];
+    for (var i = 0; i < grid.length; i++) { if (PM_simTimeMs >= (grid[i].reveal_at_ms || 0)) cur = grid[i]; }
+    var lab = 'R = ' + cur.R_label + '    l\\u2081 = ' + cur.l1_label + '    \\u0394X = ' + cur.dX_label;
+    drawBridgeChip(width * 0.30, height * 0.76, lab, col, 13);
+  }
+}
+function drawMeterBridgeScenario() {
+  var geo = mbGeom(), p = geo.phys, st = curState();
+  var wireCol = bpvl('wire', '#546E7A'), wA = 0.85 * wdim('wires');
+  drawWireC([ { x: geo.Ax, y: geo.wireY }, { x: geo.Ax, y: geo.topY }, { x: geo.Cx, y: geo.topY }, { x: geo.Cx, y: geo.wireY } ], wireCol, wA, 3);   // top R-X path
+  drawWireC([ { x: geo.Ax, y: geo.wireY }, { x: geo.Cx, y: geo.wireY } ], wireCol, wA, 3);                                                            // bottom slide wire
+  drawWireC([ { x: geo.Ax, y: geo.wireY }, { x: geo.Ax, y: geo.battY }, { x: geo.Cx, y: geo.battY }, { x: geo.Cx, y: geo.wireY } ], wireCol, wA, 3);  // external battery loop
+  drawWireC([ { x: geo.Bx, y: geo.By }, { x: geo.Bx, y: geo.Gy }, { x: geo.Jx, y: geo.Jy } ], wireCol, 0.7 * wdim('wires'), 2);                       // galvanometer chord B->G->J
+  if (st && st.show_segment_ratio) drawMbSegments(geo, st);
+  drawMbLoopBeads(geo);
+  if (!st || st.show_galvanometer !== false) drawMbGalvoBeads(geo);
+  var rDim = wdim('resistors');
+  drawResistorBoxC((geo.Ax + geo.Bx) / 2, geo.topY, 'R = ' + fmtNum(p.R) + ' \\u03A9', rDim);
+  drawResistorBoxC((geo.Bx + geo.Cx) / 2, geo.topY, 'X = ' + fmtNum(p.X) + ' \\u03A9', rDim);
+  drawMbBattery(geo, p.eps);
+  drawMbNodes(geo, st);
+  if (!st || st.show_galvanometer !== false) {
+    drawGalvanometerC(geo.Bx, geo.Gy, geo.gR, p.needle, (st && st.galvanometer_label) ? st.galvanometer_label : 'G', dimFor('galvanometer'));
+    if (st && st.show_ig_zero_label && p.balanced) {
+      fillHex(bpvl('ig_zero_ok', '#66BB6A'), 0.98); textSize(14); textStyle(BOLD); textAlign(LEFT, CENTER);
+      text('i_g = 0', geo.Bx + geo.gR + 14, geo.Gy); textStyle(NORMAL);
+    }
+  }
+  // ── value-only HUD (Rule 34b/d — lower band, clears the top 'Full screen' chrome) ──
+  if (st && st.show_balance_readout && !st.show_error_band) {   // in S5 the error-band phase chip carries l1 instead
+    drawBridgeChip(width * 0.26, height * 0.76, 'l = ' + round(p.lcm) + ' cm', bpvl('balance_readout', '#B39DDB'), 14);
+  }
+  if (st && st.show_x_readout) {
+    drawBridgeChip(width * 0.70, height * 0.76, 'X = ' + p.Xmeas.toFixed(1) + ' \\u03A9', bpvl('x_readout', '#CE93D8'), 15);
+    if (st && st.show_error_band) drawMbErrorBand(geo, st, p);
   }
 }
 
@@ -4053,6 +4296,22 @@ export interface ParticleFieldStateConfig {
     show_tap_branch_beads?: boolean; // beads on the tap branch, dir sign(k·l−E), density ∝ |k·l−E|, exactly 0 at balance
     show_izero_label?: boolean;      // literal 'i = 0' — shown ONLY when live-balanced (|k·l−E| < tol)
     show_voltmeter_compare?: boolean;// S4: a voltmeter across the tested cell (droops to V_meter = E − I·r) + a compare chip
+    // meter_bridge (Ch.3 — 'meter_bridge' topology; REUSES scenario_type 'combination_of_resistors', every flag opt-in behind topology:'meter_bridge' → all siblings byte-identical). Reuses R/node_dot_labels/galvanometer_label/show_galvanometer/show_ig_zero_label/show_balance_readout/jockey_pos/jockey_sweep* declared above; new fields below.
+    X?: number;                      // per-state unknown-arm lock (right gap); teacher-seizable via the X slider
+    eps?: number;                    // per-state battery-EMF lock across A–C; irrelevant to the null (teacher-seizable)
+    show_x_readout?: boolean;        // value-only chip: X = R·(100−l₁)/l₁ (live from the jockey; = X at balance), separate from the formula surface
+    show_segment_ratio?: boolean;    // S2: tint the two wire segments A→J / J→C + a length-ratio chip (wire = resistance ruler)
+    segment_sweep?: boolean;         // S2: a highlight sweeps A→C (resistance ∝ length reveal); pure fn of PM_simTimeMs
+    segment_sweep_start_ms?: number; // S2 sweep window start (default 600)
+    segment_sweep_duration_ms?: number; // S2 sweep window duration (default 1600)
+    jockey_jitter?: boolean;         // S5: continuous ±delta_l_wobble_cm micro-jitter around the LIVE balance point (derived from current R,X)
+    cycle_compare?: boolean;         // S5: two-phase R sweep (end-balance → mid-balance) so the sensitivity envelope contrasts
+    cycle_compare_settle_ms?: number;    // S5 documentary: total cycle duration (renderer reads the phase windows below)
+    cycle_phase2_start_ms?: number;      // S5: phase-2 R-sweep window start (default 2500)
+    cycle_phase2_duration_ms?: number;   // S5: phase-2 R-sweep window duration (default 900)
+    cycle_phase2_target_R?: number;      // S5: R value at the end of phase 2 (mid-wire balance)
+    show_error_band?: boolean;       // S5: draw the sensitivity envelope (half-width ∝ dX at the null) + phase labels
+    error_band_grid?: Array<{ phase?: number; R_label?: string; l1_label?: string; dX_label?: string; reveal_at_ms?: number }>; // S5 phase-label schedule
     [key: string]: unknown;
 }
 

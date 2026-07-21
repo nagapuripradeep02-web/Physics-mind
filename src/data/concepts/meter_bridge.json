@@ -1,0 +1,823 @@
+{
+  "concept_id": "meter_bridge",
+  "concept_name": "Meter Bridge — Finding an Unknown Resistance by Nulling on a Slide Wire (X = R·(100 − l₁)/l₁)",
+  "chapter": 3,
+  "section": "3.16",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.3 Current Electricity (§3.7/§3.16 Meter Bridge, a special application of the Wheatstone-bridge principle) — table-of-contents + scope reference only; teaching authored from first principles. DC Pandey consulted for chapter SCOPE only (Current Electricity ToC places the meter bridge as the slide-wire realization of the Wheatstone bridge, taught after the four-arm bridge and independently of the potentiometer) to confirm the atomic boundary — no teaching method, example problem, or figure imported. The atomic idea: a meter bridge measures an unknown resistance X by NULLING a slide-wire Wheatstone bridge — a known resistance R and the unknown X sit in the two upper gaps meeting at junction B, a uniform one-metre wire runs below from end A to end C, and a galvanometer bridges the junction to a sliding jockey J; because the wire is uniform, each of its two segments' resistance is directly proportional to its length, so the two segments act as the bridge's other two ratio arms — sliding the jockey to the one balance length l₁ (measured from A) where the galvanometer reads exactly zero gives X = R·(100 − l₁)/l₁, a resistance computed from two lengths and one known resistor, with no current or voltage ever measured directly. FINALE of the founder's measurement/lab trio (wheatstone_bridge #10 → potentiometer #11 → meter_bridge #13; combination_of_cells was #12). Does NOT cover the potentiometer (#11 — the sibling null method that balances a POTENTIAL, referenced only as a deliberate contrast at STATE_2), the generic four-arm Wheatstone topology and its P/Q=R/S balance identity (#10 — the direct prerequisite this concept specializes onto a physical metre of wire), resistance-box calibration, temperature-coefficient measurement, or full end-error theory beyond the swap-to-cancel beat (all drill-down candidates only, never guided states). Renderer: particle_field (2D p5.js), reusing the combination_of_resistors scenario_type as the renderer selector (per the approved design's directive to NOT mint a new scenario_type) — riding engine additions AUTHORED here and FLAGGED for peter_parker:renderer_primitives (via quality_auditor FAIL-routing), NOT yet implemented as of this authoring pass: (1) a NEW 'meter_bridge' topology value in circuitMode's cTopology() (joining wheatstone's 'bridge' and potentiometer's 'wire') — a HYBRID layout: the 1 m slide wire A→C at the bottom (REUSED verbatim from potentiometer's 'wire' topology, including the sliding jockey J and its jockey_pos/jockey_sweep/jockey_sweep_to/jockey_sweep_start_ms/jockey_sweep_duration_ms one-shots, all in the SAME 0–1 fraction-of-wire-length units potentiometer already uses) PLUS two gap resistors R (left) and X (right) meeting at a top junction B (mirroring wheatstone's diamond arms), with the battery driving BOTH the top R–X path and the bottom wire path in parallel and the EXISTING drawGalvanometerC primitive (REUSED AS-IS, the c20 centre-zero dial shipped on wheatstone_bridge) on the B–J chord, gated so combination_of_resistors.json/kirchhoff_junction_rule_KCL.json/kirchhoff_loop_rule_KVL.json/wheatstone_bridge.json/potentiometer.json/combination_of_cells.json render pixel-identically when the flag is absent; (2) needle drive needle_deg = clamp(needle_deg_per_volt·(V_B − V_J), −needle_max_deg, +needle_max_deg), calibration constants documented in particle_field_config.meter_bridge_calibration (needle_deg_per_volt=50, needle_max_deg=60; checkpoints S3 (V_B−V_J=0.50 V)→+25°, S4-end→0° dead centre) — V_B=V_J EXACTLY at balance for ANY galvanometer resistance, the same idealization class as the bridge's i_g note; (3) NEW value-only readouts — live balance length (show_balance_readout, REUSED naming from wheatstone/potentiometer) and computed X = R·(100−l₁)/l₁ (show_x_readout, sibling of wheatstone's show_s_readout renamed for this concept's unknown symbol), separate from the ONE symbolic formula surface per Rule 34b; (4) STATE_2's resistance-∝-length highlight — a NEW show_segment_ratio flag gating a NEW one-shot triple segment_sweep/segment_sweep_start_ms/segment_sweep_duration_ms (a highlight sweep A→C plus a per-segment resistance readout climbing linearly with swept length; fallback: a static ratio label if the sweep proves fiddly); (5) STATE_5's fractional-error/error-band beat — a NEW show_error_band flag plus a NEW error_band_grid array (same reveal_at_ms shape as combination_of_cells' compare_grid) contrasting a near-end balance (R=1 Ω, l₁≈14 cm, wide ±ΔX) against a near-middle balance (R=6 Ω, l₁=50 cm, narrow ±ΔX), driven by a NEW two-phase cycle_compare/cycle_compare_settle_ms/cycle_phase2_start_ms/cycle_phase2_duration_ms/cycle_phase2_target_R block (REUSING the naming pattern combination_of_cells' STATE_8 already established, here with only one phase-2 transition instead of three) plus a NEW jockey_jitter boolean enabling a continuous ± delta_l_wobble_cm micro-jitter of the jockey around whichever phase's TRUE balance point R,X currently compute (never a fixed scripted position — the wobble must track the live balance point so the contrast stays physically honest); (6) galvanometer-branch beads draining to zero at balance (REUSED show_ig_zero_label pattern from wheatstone, gated on |R/X − l₁/(100−l₁)| < ratio_tolerance, never strict equality — required for STATE_6's explore sandbox where an off-grid R may not hit the exact null); (7) two NEW glow_focal keys extending the existing junction/galvanometer/formula/gradient/cells/ammeter vocabulary already used by sibling topologies on this same scenario_type — 'segments' (STATE_2's highlight) and 'x_readout' (STATE_5's error-band focal) — each a trivial in-engine dimFor() addition, per the precedent that added potentiometer's 'gradient' key; (8) registration housekeeping — register the new topology value in deriveStateMeta.ts (D7/reveal_hold + whitelist the jockey/segment/r sweeps in pfRevealMs so THE EYE's frozen frame lands settled, keeping every one-shot's start+duration under the 1500ms DEFAULT_REVEAL_MS floor per the KVL/wheatstone/potentiometer precedent) and extend the #sliders exclusion chain — else THE EYE false-fails or a stale panel bleeds. Idealization (physics-author constraint, load-bearing, same class as the bridge's and the potentiometer's own notes): the galvanometer-branch current is EXACTLY zero at balance for ANY galvanometer resistance — V_B = V_J means zero potential difference across that branch, so zero current by Ohm's law regardless of resistance; both the top (R–X) and the bottom (wire) paths carry real current in EVERY state including balance — only the galvanometer branch current is ever zero. The battery EMF (eps) is deliberately irrelevant to the balance condition (cancels algebraically in R/X = l₁/(100−l₁)) and only scales bead speed / arm-current size — STATE_6's explore sandbox must demonstrate this (drag eps, the null holds). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches) — the two genuine misconceptions ('this slide wire is the potentiometer, balancing a voltage' and 'the galvanometer's zero reading or the balance point itself gives me X directly') are confronted inside EPIC-L via Rule 16a misconception_watch, fired at the STATE_2 and STATE_4 pivots respectively (founder guardrail 2026-07-04: no per-state tic; founder-confirmed framing 2026-07-20), no predict-pause. Anchors authored UNIVERSAL per Rule 35 (measuring an unknown resistor precisely in a physics lab by sliding a contact along a metre of wire until a needle reads exactly zero, noting two lengths, and letting the wire hand you the resistance to three figures with no fine ammeter or voltmeter anywhere in the measurement; secondary: sorting or calibrating components to a tight tolerance by the same balance-length idea — no country, brand, festival, or currency; plain English throughout, no Hinglish). Legacy note: 'meter_bridge' already existed as a placeholder concept_id routed to the STALE circuit_live renderer in CONCEPT_RENDERER_MAP/conceptMap.ts/VALID_CONCEPT_IDS/CLASSIFIER_PROMPT from the pre-Alex-pipeline era (src/lib/physics_constants/meter_bridge.json is the legacy fact sheet; loadConstants() reads src/data/concepts/ FIRST — see src/lib/physics_constants/index.ts — so this file now takes precedence); this authoring pass REPLACES that placeholder with the first authoritative particle_field panel config and renderer-map entry, exactly the same replacement pattern wheatstone_bridge and potentiometer each executed on their own prior placeholders.",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "combination_of_resistors"
+    ]
+  },
+  "prerequisites": [
+    "wheatstone_bridge",
+    "resistivity",
+    "ohms_law"
+  ],
+  "real_world_anchor": {
+    "primary": "Measuring an unknown resistor precisely in a physics lab means sliding a contact along a metre of wire until a needle reads exactly zero, noting two lengths, and letting the wire hand you the resistance to three figures — with no fine ammeter or voltmeter anywhere in the measurement. Comparing an unknown against a known standard by nulling, rather than reading a meter, is how precision measurement works in general.",
+    "secondary": "The same balance-length idea is used to sort or calibrate components to a tight tolerance — the balance point shifts the instant a component's value differs even slightly from the standard it's compared against."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "R": {
+        "name": "Known resistance (left gap)",
+        "unit": "Ω",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 4,
+        "role": "FIXED 4 Ω on S1–S4 (the ratio arm the jockey must balance against); the ONE taught control on S5 (scripted sweep 1→6 Ω); live S6"
+      },
+      "X": {
+        "name": "Unknown resistance (right gap)",
+        "unit": "Ω",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "default": 6,
+        "role": "FIXED 6 Ω on S1–S5 (the quantity R's balance recovers); live slider ONLY in S6 explore"
+      },
+      "l": {
+        "name": "Jockey position from A",
+        "unit": "cm",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50,
+        "role": "the ONE taught control on S3/S4 — S1/S2 home 50 (quiet, balance not yet taught), S3 entry 50 -> sweep 65 (off-null), S4 entry 65 -> sweep 40 (the null), S5 scripted micro-jitter around each phase's own balance point, live S6"
+      },
+      "eps": {
+        "name": "Battery EMF across A–C",
+        "unit": "V",
+        "min": 1,
+        "max": 3,
+        "step": 0.5,
+        "default": 2,
+        "role": "FIXED 2 V on S1–S5 (deliberately irrelevant to the balance — cancels algebraically); live S6"
+      },
+      "l1": {
+        "name": "Balance length from A",
+        "unit": "cm",
+        "derived": "100 * R / (R + X)",
+        "role": "computed readout; first shown off-null on S3, resolves to the true balance on S4"
+      },
+      "VB": {
+        "name": "Potential at the R–X junction B",
+        "unit": "V",
+        "derived": "eps * X / (R + X)",
+        "role": "internal — drives needle_deg; not displayed as its own numeric readout"
+      },
+      "VJ": {
+        "name": "Potential at the jockey J on the wire",
+        "unit": "V",
+        "derived": "eps * (100 - l) / 100",
+        "role": "internal — drives needle_deg; not displayed as its own numeric readout"
+      },
+      "needle_deg": {
+        "name": "Galvanometer needle angle",
+        "unit": "degrees",
+        "derived": "clamp(50 * (VB - VJ), -60, 60)",
+        "role": "live tracking indicator (Rule 33d); checkpoints — S3 (VB - VJ = 0.50 V) -> +25 deg, S4-end/S6-balanced -> 0 deg dead centre"
+      },
+      "X_computed": {
+        "name": "Computed unknown resistance",
+        "unit": "Ω",
+        "derived": "R * (100 - l1) / l1",
+        "role": "live readout, first shown S4 (resolves to 6.0 Ω from l1=40, R=4)"
+      },
+      "seg_ratio_L": {
+        "name": "Left segment resistance share (S2 highlight)",
+        "unit": "dimensionless",
+        "derived": "l / 100",
+        "role": "S2 only — a uniform wire's Ω/cm cancels, only the length ratio matters"
+      },
+      "seg_ratio_R": {
+        "name": "Right segment resistance share (S2 highlight)",
+        "unit": "dimensionless",
+        "derived": "(100 - l) / 100",
+        "role": "S2 only — complements seg_ratio_L"
+      }
+    },
+    "formulas": {
+      "l1": "100 * R / (R + X)",
+      "balance_condition": "R/X === l1/(100-l1)  <=>  VB === VJ  <=>  i_g = 0 (exact, for ANY galvanometer resistance)",
+      "X_computed": "R * (100 - l1) / l1",
+      "VB": "eps * X / (R + X)",
+      "VJ": "eps * (100 - l) / 100",
+      "needle_deg": "clamp(50 * (VB - VJ), -60, 60)",
+      "fractional_error": "100 * delta_l / (l * (100 - l))"
+    },
+    "constraints": [
+      "galvanometer_current_zero_at_balance_exact_for_any_G — i_g = 0 EXACTLY at VB = VJ (equivalently R/X = l1/(100-l1)), true for ANY finite galvanometer resistance",
+      "both_paths_flow_always — the top R-X path and the bottom wire path each carry current in EVERY state including balance; only the GALVANOMETER branch current is ever zero",
+      "uniform_wire_ratio_only — segment resistance is proportional to length ONLY; the ratio R_segL:R_segR = l:(100-l) never needs the wire's absolute Ω/cm",
+      "battery_emf_cancels_in_balance — eps never affects l1 or X (cancels algebraically); it only scales bead speed and the size of the (irrelevant, at balance) arm currents",
+      "balance_length_in_open_interval — l1 = 100R/(R+X) always lies strictly between 0 and 100 cm for R,X > 0",
+      "fractional_error_minimized_at_middle — |ΔX/X| = 100*delta_l/[l*(100-l)] is minimized at l=50 (denominator maximal), diverges toward either end",
+      "no_region_dependent_constant_asserted — R, X, eps are sliders (Rule 35)",
+      "no_divide_by_zero — R, X > 0 (slider mins enforce); l floored away from 0 and 100"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 10,
+    "max_labels_per_state": 8,
+    "max_words_per_tts_sentence": 35
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Find one balance length on the wire, and it hands you the unknown resistance."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "sensitivity": [
+      "STATE_5"
+    ],
+    "explore": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Topology: two paths, one meter, on a metre of wire",
+        "duration": 14,
+        "focal_primitive_id": "meter_ready_at_rest",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "battery_splits_paths",
+            "position": { "x": 380, "y": 90 },
+            "text": "A battery drives current into the bridge, splitting it into two paths.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "two_paths_recombine",
+            "position": { "x": 620, "y": 250 },
+            "text": "The known resistance R and the unknown resistance X sit above; a bare metre of wire runs below — both paths recombine at end C.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "meter_ready_at_rest",
+            "position": { "x": 380, "y": 440 },
+            "text": "A galvanometer bridges the top junction to a jockey resting on the wire, ready to hunt for a reading of zero.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A battery drives current into the bridge, splitting it into two paths — through the known resistance R and the unknown resistance X on top, and along a bare wire below."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "A galvanometer bridges the top junction to a sliding jockey on the wire, hunting for the point where it reads nothing at all."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Wire = resistance ruler: the two segments are the bridge's other arms",
+        "duration": 16,
+        "focal_primitive_id": "not_a_potentiometer",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "wire_is_uniform",
+            "position": { "x": 380, "y": 90 },
+            "text": "This wire is uniform — every stretch of it carries resistance in exact proportion to its length.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "segments_are_ratio_arms",
+            "position": { "x": 620, "y": 250 },
+            "text": "The two segments either side of the jockey act as two more arms of the bridge, matched against the known resistance R and the unknown resistance X above.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "not_a_potentiometer",
+            "position": { "x": 380, "y": 440 },
+            "text": "It isn't a potentiometer tapping a reference voltage — it's a resistance ratio, nothing more.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "This long wire is uniform, so each stretch of it carries resistance in exact proportion to its length — the two segments either side of the jockey behave as two more arms of the bridge."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "This isn't a potentiometer — it's a resistance ratio, matched against the known R and the unknown X above."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "This slide-wire setup is the potentiometer — the jockey must be tapping a reference voltage.",
+            "visual_counter": "No gradient ramp is drawn anywhere; instead the known and unknown resistors glow while the two wire segments' own resistances climb with their lengths — four ratio arms, no reference EMF in sight.",
+            "one_line_fix": "The meter bridge compares a resistance RATIO (R:X against l1:100-l1); the potentiometer compares a POTENTIAL — same sliding jockey, a completely different quantity being balanced."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Off balance: the junction and the jockey disagree, the needle swings",
+        "duration": 14,
+        "focal_primitive_id": "needle_swings_off_centre",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "jockey_slides_off_null",
+            "position": { "x": 380, "y": 90 },
+            "text": "The jockey slides out to sixty-five centimetres, away from the true balance point.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "potentials_disagree",
+            "position": { "x": 620, "y": 250 },
+            "text": "The junction and the jockey now sit at different potentials.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "needle_swings_off_centre",
+            "position": { "x": 380, "y": 440 },
+            "text": "Current flows through the galvanometer branch and the needle swings off centre.",
+            "color": "#EF5350",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Slide the jockey out to sixty-five centimetres, away from the middle."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The top junction and the jockey now sit at different potentials, so current flows through the galvanometer branch and the needle swings off centre."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "PRIMARY aha — the null: X = R·(100 − l₁)/l₁, no meter reads it directly",
+        "duration": 18,
+        "focal_primitive_id": "x_resolves_from_lengths",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "jockey_slides_to_null",
+            "position": { "x": 380, "y": 90 },
+            "text": "The jockey slides back to forty centimetres.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "needle_settles_at_zero",
+            "position": { "x": 620, "y": 250 },
+            "text": "The two potentials now match exactly — the galvanometer branch empties and the needle settles dead at zero, a true null.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "x_resolves_from_lengths",
+            "position": { "x": 380, "y": 440 },
+            "text": "From that one balance length and the known resistance R, the unknown resistance X works out to six ohms — no meter reads it directly.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Slide the jockey back to forty centimetres."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The two potentials now match exactly, the galvanometer branch empties, and the needle settles dead at zero — a true null, not a small reading."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "From that one balance length and R, the unknown resistance X works out to six ohms — no meter reads it directly."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The galvanometer's zero reading — or the balance point itself — directly gives me the unknown resistance.",
+            "visual_counter": "The needle sits at dead-centre zero while the X-readout resolves purely from the balance length and the known resistance — the galvanometer branch carries no current at all at that instant.",
+            "one_line_fix": "It's a null method: the balance POSITION, combined with the known resistance, computes X — the meter only ever tells you WHEN you've balanced, never the value itself."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Precision: balancing near the middle minimizes the error in X",
+        "duration": 17,
+        "focal_primitive_id": "middle_balance_steadies",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r_at_one_ohm_near_end",
+            "position": { "x": 380, "y": 90 },
+            "text": "With the known resistance R at just one ohm, the balance sits near the very end of the wire.",
+            "color": "#FFB74D",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "wobble_swings_x_wildly",
+            "position": { "x": 620, "y": 250 },
+            "text": "A tiny jockey wobble there swings the computed unknown resistance X wildly.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "middle_balance_steadies",
+            "position": { "x": 380, "y": 440 },
+            "text": "Raise R to six ohms and the balance jumps to the middle — the same wobble barely moves the reading at all.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "With the known resistance R at just one ohm, the balance sits near the very end of the wire — and a tiny jockey wobble there swings the unknown resistance X wildly."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Raise R to six ohms and the balance jumps to the middle — the same wobble barely moves the reading at all."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Explore — balance it yourself: R, X, the jockey, and the battery are yours",
+        "duration": 0,
+        "focal_primitive_id": "balance_it_yourself",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "all_dials_tag",
+            "position": { "x": 380, "y": 90 },
+            "text": "Every dial is live now — the known resistance, the unknown resistance, the jockey, and the battery.",
+            "color": "#FFD54F",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "balance_it_yourself",
+            "position": { "x": 620, "y": 250 },
+            "text": "Unbalance it, then slide the jockey to null it again.",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "readouts_track_live",
+            "position": { "x": 380, "y": 440 },
+            "text": "The needle, the balance length, and the unknown resistance all respond live as you drag.",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Every dial is yours now — the known resistance, the unknown resistance, the jockey, and the battery — balance it yourself and watch the readouts track live."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the meter bridge when they can (1) describe the apparatus — a known resistance R and an unknown resistance X in the two upper gaps meeting at a junction B, a uniform one-metre wire from A to C below carrying a sliding jockey J, and a galvanometer bridging the junction to the jockey; (2) explain that a uniform wire's resistance is directly proportional to its length, so the two segments either side of the jockey act as two further ratio arms of a Wheatstone bridge — and distinguish this RATIO-balance method from the potentiometer's POTENTIAL-balance method, which uses the same sliding jockey to measure a completely different quantity; (3) state that the galvanometer deflects whenever the junction B and the jockey J disagree in potential, and settles at a true zero, not a small reading, when the two lengths satisfy R/X = l1/(100-l1); (4) compute the unknown resistance from a single balance length via X = R·(100-l1)/l1, and explain that this null reading never gives the answer directly — it only marks WHEN to compute it; and (5) explain why balancing near the middle of the wire — by choosing a known resistance close to the unknown — minimizes the fractional error in X from an unavoidable small jockey-placement uncertainty, and why interchanging R and X to average two balance lengths cancels systematic end errors.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "In a meter bridge, a known resistance R and an unknown resistance X sit above a one-metre uniform wire, with a battery driving current through both the R–X arm and the wire. What is the galvanometer connected across?",
+        "options": {
+          "A": "The junction between R and X, and a sliding jockey touching the wire — comparing the potential at one to the potential at the other",
+          "B": "The battery directly, measuring the total voltage supplied to the bridge",
+          "C": "Just the unknown resistance X, in series with it",
+          "D": "The two ends of the wire, A and C, measuring the drop across the whole wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the galvanometer's bridge-branch position (between the R–X junction and the jockey) with a voltmeter placed straight across the source",
+          "C": "misplaces the galvanometer inside a single arm instead of across the two points it's meant to compare",
+          "D": "confuses the galvanometer's comparison branch with a voltmeter reading the fixed drop across the whole wire, rather than the movable jockey tap"
+        },
+        "tested_idea": "The galvanometer bridges the R–X junction and the sliding jockey — a movable comparison point, not a fixed voltage across the whole apparatus.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "In a meter bridge circuit, describe exactly which two points the galvanometer connects between, and explain why a movable jockey — rather than a fixed point — is one of them."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "The meter bridge's wire is uniform along its whole length. If the jockey sits at forty centimetres from end A, how do the resistances of the left segment (A to jockey) and the right segment (jockey to C) compare?",
+        "options": {
+          "A": "They're in the exact ratio of their lengths, 40:60 — a uniform wire's resistance is directly proportional to length",
+          "B": "They're always equal, since it's a single uninterrupted wire",
+          "C": "The ratio depends on the actual resistivity of the wire material, which must be looked up separately",
+          "D": "The left segment has more resistance than the right, because current has already passed through R"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses a single conductor with a zero-resistance ideal wire — a uniform wire still divides its resistance by length between any two points",
+          "C": "invents an extra unneeded quantity — the wire's resistivity (Ω per cm) cancels out in the ratio, so it's never needed to find X",
+          "D": "invents a current-history effect with no basis — resistance is a property of the segment's own length, not of what current passed through earlier"
+        },
+        "tested_idea": "A uniform wire's resistance is proportional to length, so the two segments act as two more ratio arms of the bridge — no need to know the wire's actual resistivity.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "If the jockey sits at seventy centimetres from end A on the same uniform wire, state the ratio of the two segment resistances, and explain why the wire's exact resistivity never needs to be known."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "The jockey is moved to sixty-five centimetres from end A, off the true balance point. What does the galvanometer do, and why?",
+        "options": {
+          "A": "It deflects, because the potential at the R–X junction and the potential at the jockey's point on the wire no longer match",
+          "B": "It stays at zero, since the jockey is still touching the wire and completing the circuit",
+          "C": "It deflects because sixty-five centimetres is far from the midpoint, regardless of the actual potentials",
+          "D": "It shows the full battery voltage directly"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses merely completing a circuit with achieving balance — a completed but mismatched circuit still drives current and deflects the needle",
+          "C": "swaps the true cause — a potential mismatch between the junction and the jockey — for an unrelated geometric detail (distance from the midpoint)",
+          "D": "confuses the galvanometer, which reads a potential DIFFERENCE between two points, with a meter reading the full source voltage"
+        },
+        "tested_idea": "The galvanometer deflects whenever the R–X junction and the jockey's tap point disagree in potential — it detects the mismatch, not either potential directly.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "The jockey is placed at twenty centimetres from end A on the same bridge. State whether the galvanometer deflects, and in which sense compared with sixty-five centimetres."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "The jockey is slid until the galvanometer reads exactly zero, at a balance length of forty centimetres from end A, with the known resistance R = 4 Ω. What is the unknown resistance X?",
+        "options": {
+          "A": "6 Ω, from X = R times (100 − l₁) over l₁: 4 times 60 over 40",
+          "B": "6 Ω, since the balance length itself is proportional to X in ohms directly",
+          "C": "2.67 Ω, from X = R times l₁ over (100 − l₁), inverting the ratio",
+          "D": "4 Ω, since at balance the unknown must equal the known resistance"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the balance LENGTH (in centimetres) with a direct proportionality to X (in ohms) — the two are related through the formula, not a bare unit match",
+          "C": "inverts the length ratio — puts l₁ over (100 − l₁) instead of (100 − l₁) over l₁, giving a value far too small",
+          "D": "the equal-arms trap — balance is a length-and-resistance relationship, not a requirement that R and X be numerically equal"
+        },
+        "tested_idea": "At balance, X = R·(100 − l₁)/l₁ — the correct ratio orientation gives the unknown from the known resistance and the two lengths.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A different known resistance R = 5 Ω balances at l₁ = 25 cm on the same wire. Find the unknown resistance X."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A student argues: 'the galvanometer reads zero, so the meter itself must be showing me the unknown resistance somehow.' Is this reasoning correct?",
+        "options": {
+          "A": "No — the zero reading only tells you that you've found the balance point; the unknown resistance is computed afterward from the known resistance and the two lengths, never read off the meter",
+          "B": "Yes — a well-calibrated galvanometer can be read directly in ohms at balance",
+          "C": "No, but only because this particular galvanometer happens to be miscalibrated",
+          "D": "Yes, and the needle's exact rest position (not just zero) encodes the resistance value"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses a current-detecting galvanometer with a resistance-reading meter — a null method's zero tells you WHEN you've balanced, never a value directly",
+          "C": "invents a device-specific defect for what is a general property of ALL null methods — the meter never reads the answer, regardless of calibration",
+          "D": "invents extra information in the needle's rest position — at true balance the needle sits at exactly the same centre-zero regardless of what R, X, or l₁ happen to be"
+        },
+        "tested_idea": "A null method's zero reading marks the balance point only; the unknown resistance is always computed from the known resistance and the two measured lengths, never read directly off any meter.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain why finding a meter bridge's balance point tells you nothing about the unknown resistance's numeric value on its own, and state what two additional quantities you need."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "With the unknown resistance fixed at X = 6 Ω, a student sets the known resistance to R = 1 Ω and balances near l₁ = 14 cm, close to end A. Why is this a poor experimental choice compared with choosing R closer to 6 Ω?",
+        "options": {
+          "A": "Balancing near either end of the wire makes the reading highly sensitive to small jockey-placement errors, which distort the computed X far more than a balance near the middle",
+          "B": "It isn't a poor choice — any balance length gives an equally precise value of X, since the formula is exact",
+          "C": "It's poor only because R = 1 Ω is too small a number to use in any formula",
+          "D": "It's poor because the galvanometer cannot detect balance at all near the ends of the wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "ignores that the FORMULA being exact does not make the MEASUREMENT immune to a real, unavoidable small error in reading where the jockey sits",
+          "C": "invents a purely numerical objection to a small resistance value, when the actual issue is the balance LENGTH it produces, not R's size directly",
+          "D": "invents a detection failure with no basis — the galvanometer still nulls correctly at the ends; it's the SENSITIVITY of the reading to jockey error that suffers"
+        },
+        "tested_idea": "Choosing the known resistance close to the unknown places the balance point near the middle of the wire, which minimizes the fractional error in X from a fixed small jockey-placement uncertainty.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A student instead sets R = 6 Ω against the same 6 Ω unknown and balances at l₁ = 50 cm. Explain why this reading is more trustworthy than the R = 1 Ω attempt."
+      },
+      {
+        "q_id": "Q7",
+        "stem": "To reduce systematic end errors (extra resistance in the connecting copper strips at the ends of the wire), experimenters swap the positions of the known and unknown resistances and balance again. Why does this help?",
+        "options": {
+          "A": "The end errors stay the same in both trials, but swapping the resistors flips which end they favor, so averaging the two balance lengths cancels the end-error's effect on the computed X",
+          "B": "Swapping the resistors removes the end errors from the circuit entirely",
+          "C": "It helps only because the second reading is always more accurate than the first by itself",
+          "D": "Swapping has no real effect; it's done purely as a formality"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses cancelling an error through averaging with physically removing the resistance in the connecting strips — the end resistance is still there in both trials",
+          "C": "wrongly ranks one single reading as inherently superior, when the actual benefit comes from combining BOTH readings, not trusting either alone",
+          "D": "dismisses a real, deliberate error-cancellation technique as meaningless, when it is a standard precision method precisely because it works"
+        },
+        "tested_idea": "Interchanging the known and unknown resistances and averaging the two balance lengths cancels the systematic end-error contributed by resistance at the wire's end connections.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "After swapping R and X and rebalancing, a student gets a second balance length very close to the first. Explain what this closeness suggests about the size of the end errors in this particular bridge."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q3"],
+      "STATE_4": ["Q4", "Q5"],
+      "STATE_5": ["Q6", "Q7"]
+    },
+    "non_assessed_states": ["STATE_6"]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "meter_bridge_precision_lab_measurement",
+      "type": "B",
+      "label": "A precision lab measuring an unknown resistor on a metre of wire",
+      "physical_world": "Measuring an unknown resistor precisely in a physics lab means sliding a contact along a metre of wire until a needle reads exactly zero, noting two lengths, and letting the wire hand you the resistance to three figures — with no fine ammeter or voltmeter anywhere in the measurement.",
+      "same_physics": "Same length-ratio null balance X = R·(100 − l₁)/l₁ the sim demonstrates.",
+      "scene_hint": "Primary teaching anchor (real_world_anchor.primary) restated as a Type-B variant for STATE_1's apparatus hook and STATE_4's primary aha."
+    },
+    {
+      "variant_id": "meter_bridge_component_sorting_tolerance",
+      "type": "B",
+      "label": "Sorting or calibrating components to a tight tolerance by nulling",
+      "physical_world": "The same balance-length idea is used to sort or calibrate components to a tight tolerance — the balance point shifts the instant a component's value differs even slightly from the standard it's compared against.",
+      "same_physics": "Same balance-sensitivity beat the sim's STATE_5 demonstrates: a small measurement error near the ends distorts the reading far more than the same error near the middle.",
+      "scene_hint": "Secondary anchor restated as a Type-B variant for STATE_5's precision beat."
+    }
+  ],
+  "particle_field_config": {
+    "scenario_type": "combination_of_resistors",
+    "particles": {
+      "count": 40,
+      "color": "#42A5F5",
+      "size": 8
+    },
+    "meter_bridge_calibration": {
+      "ratio_tolerance": 0.02,
+      "needle_deg_per_volt": 50,
+      "needle_max_deg": 60,
+      "delta_l_wobble_cm": 2
+    },
+    "slider_controls": {
+      "R": {
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 4,
+        "label": "Known R",
+        "unit": "Ω"
+      },
+      "X": {
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "default": 6,
+        "label": "Unknown X",
+        "unit": "Ω"
+      },
+      "l": {
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50,
+        "label": "Jockey l",
+        "unit": "cm"
+      },
+      "eps": {
+        "min": 1,
+        "max": 3,
+        "step": 0.5,
+        "default": 2,
+        "label": "Battery ε",
+        "unit": "V"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "electron": "#42A5F5",
+      "wire": "#546E7A",
+      "resistor": "#FFB74D",
+      "junction": "#4DD0E1",
+      "node_dot": "#80CBC4",
+      "jockey": "#FF7043",
+      "galvanometer": "#FF8A65",
+      "galvanometer_needle": "#FF5252",
+      "balance_readout": "#B39DDB",
+      "x_readout": "#CE93D8",
+      "segment_highlight": "#4DD0E1",
+      "error_band": "#FFD54F",
+      "ig_zero_ok": "#66BB6A",
+      "labels": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Meter bridge",
+        "caption": "Two paths, one meter",
+        "topology": "meter_bridge",
+        "node_dot_labels": ["A", "B", "C", "J"],
+        "R": 4,
+        "X": 6,
+        "l": 50,
+        "eps": 2,
+        "jockey_pos": 0.5,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_balance_readout": false,
+        "show_x_readout": false,
+        "show_segment_ratio": false,
+        "show_ig_zero_label": false,
+        "show_error_band": false,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "junction"
+      },
+      "STATE_2": {
+        "label": "R⁄X = l₁⁄(100 − l₁)",
+        "caption": "Wire = resistance ruler",
+        "formula_overlay": "R⁄X = l₁⁄(100 − l₁)",
+        "topology": "meter_bridge",
+        "node_dot_labels": ["A", "B", "C", "J"],
+        "R": 4,
+        "X": 6,
+        "l": 50,
+        "eps": 2,
+        "jockey_pos": 0.5,
+        "show_segment_ratio": true,
+        "segment_sweep": true,
+        "segment_sweep_start_ms": 600,
+        "segment_sweep_duration_ms": 1600,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_balance_readout": false,
+        "show_x_readout": false,
+        "show_ig_zero_label": false,
+        "show_error_band": false,
+        "show_sliders": false,
+        "visible_controls": [],
+        "glow_focal": "segments"
+      },
+      "STATE_3": {
+        "label": "V_B ≠ V_J",
+        "caption": "Jockey off null → swing",
+        "formula_overlay": "V_B ≠ V_J",
+        "topology": "meter_bridge",
+        "node_dot_labels": ["A", "B", "C", "J"],
+        "R": 4,
+        "X": 6,
+        "l": 65,
+        "eps": 2,
+        "jockey_pos": 0.5,
+        "jockey_sweep": true,
+        "jockey_sweep_to": 0.65,
+        "jockey_sweep_start_ms": 800,
+        "jockey_sweep_duration_ms": 800,
+        "show_segment_ratio": false,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_balance_readout": true,
+        "show_x_readout": false,
+        "show_ig_zero_label": false,
+        "show_error_band": false,
+        "show_sliders": false,
+        "visible_controls": ["l"],
+        "glow_focal": "galvanometer"
+      },
+      "STATE_4": {
+        "label": "X = R·(100 − l₁) ⁄ l₁",
+        "caption": "At l₁ → needle nulls",
+        "formula_overlay": "X = R·(100 − l₁) ⁄ l₁",
+        "topology": "meter_bridge",
+        "node_dot_labels": ["A", "B", "C", "J"],
+        "R": 4,
+        "X": 6,
+        "l": 40,
+        "eps": 2,
+        "jockey_pos": 0.65,
+        "jockey_sweep": true,
+        "jockey_sweep_to": 0.4,
+        "jockey_sweep_start_ms": 900,
+        "jockey_sweep_duration_ms": 1400,
+        "show_segment_ratio": false,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_balance_readout": true,
+        "show_x_readout": true,
+        "show_ig_zero_label": true,
+        "show_error_band": false,
+        "show_sliders": false,
+        "visible_controls": ["l"],
+        "glow_focal": "galvanometer"
+      },
+      "STATE_5": {
+        "label": "|ΔX⁄X| = 100·δl ⁄ [l·(100 − l)]",
+        "caption": "Middle balance = least error",
+        "formula_overlay": "|ΔX⁄X| = 100·δl ⁄ [l·(100 − l)]",
+        "topology": "meter_bridge",
+        "node_dot_labels": ["A", "B", "C", "J"],
+        "R": 1,
+        "X": 6,
+        "l": 14,
+        "eps": 2,
+        "jockey_pos": 0.14,
+        "jockey_jitter": true,
+        "cycle_compare": true,
+        "cycle_compare_settle_ms": 4400,
+        "cycle_phase2_start_ms": 2500,
+        "cycle_phase2_duration_ms": 900,
+        "cycle_phase2_target_R": 6,
+        "show_error_band": true,
+        "error_band_grid": [
+          { "phase": 1, "R_label": "1 Ω", "l1_label": "14 cm", "dX_label": "±1.0 Ω", "reveal_at_ms": 0 },
+          { "phase": 2, "R_label": "6 Ω", "l1_label": "50 cm", "dX_label": "±0.5 Ω", "reveal_at_ms": 3400 }
+        ],
+        "show_segment_ratio": false,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_balance_readout": true,
+        "show_x_readout": true,
+        "show_ig_zero_label": false,
+        "show_sliders": false,
+        "visible_controls": ["R"],
+        "glow_focal": "x_readout"
+      },
+      "STATE_6": {
+        "label": "R⁄X = l₁⁄(100 − l₁)",
+        "caption": "Balance it yourself",
+        "formula_overlay": "R⁄X = l₁⁄(100 − l₁)",
+        "topology": "meter_bridge",
+        "node_dot_labels": ["A", "B", "C", "J"],
+        "show_segment_ratio": false,
+        "show_galvanometer": true,
+        "galvanometer_label": "G",
+        "show_balance_readout": true,
+        "show_x_readout": true,
+        "show_ig_zero_label": true,
+        "show_error_band": false,
+        "show_sliders": true
+      }
+    }
+  }
+}
