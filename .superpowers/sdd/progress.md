@@ -1,23 +1,22 @@
-# SDD Progress — kirchhoff_loop_rule_KVL
+# SDD Progress — gauss_law_magnetism (Ch.5 #3 rebuild)
 
-Plan: docs/superpowers/plans/2026-07-12-kirchhoff-loop-rule-kvl.md
+Plan: docs/superpowers/plans/2026-07-13-gauss-law-magnetism.md
+Spec: docs/superpowers/specs/2026-07-13-gauss-law-magnetism-design.md
 Branch: feat/field3d-draggable-sensor
-Base at start: 21d3588
-(KCL shipped prior — commits f7c2af0/8250c07/dc4d0e8/381771a.)
+Base at start: a919c7e (after spec 7b8c1d4 + plan a919c7e commits)
+
+Pipeline: architect → physics-author → json-author → THE EYE / eye-walker ∥ quality-auditor
+→ renderer FAIL-route (live crossing tally + S3 body-cutaway) → founder approve → Telugu → ship.
+No unit tests (CLAUDE.md §6); test cycle = tsc + validate:concepts + THE EYE.
 
 ## Tasks
-- Task 1 (architect skeleton): complete (artifact saved; S3 R₂ 1→4Ω drops SWAP 4+2→2+4; S4 R₃=3 drops 2+1+3; glow keys pump/ladder/voltmeter/electrons/formula exist)
-- Task 2 (physics-author block): complete (artifact saved; Python-verified numbers; r-slider excluded from S5; S4 3-resistor primary + formula-generalize fallback)
-- Task 3 (json-author + 8 sites): JSON+registrations done (tsc 0, validate 119/119 PASS) — references not-yet-built flags. Engine build required (Task 3b).
-- Task 3b (renderer_primitives KVL engine adds): complete + engine built (commit 86d6991). Code review PASS (regression guard safe). quality-auditor PASS. THE EYE 23/23 but eye-walker found 3 visual-polish findings (physics correct): A=S1 marker/ladder-dot desync, B=S2 frozen pin mid-ladder-draw, C=S5 HUD clips ladder title. FOUNDER: fix all 3.
-- Task 3c (fix A+B+C): complete — A/C renderer (peter_parker), B JSON (json_author); re-EYE + eye-walker CLEAN all 3 fixed; commit c1db94e.
-- Task 4 (code review): complete — PASS, regression guard safe, 3 minor nits.
-- Task 5 (quality-auditor): complete — PASS, 1 LOW (S5 clip, since fixed).
-- Task 6 (THE EYE): complete — 23/23; eye-walker found 3 (fixed) → re-EYE CLEAN; 5 baselines locked (founder OK, run 210911).
-- Task 7 (review link + Telugu + audio + PROGRESS): complete — served :8080 (200); text_te via Sonnet-5; EN audio 12 clips (founder chose); PROGRESS entry added. Commits 86d6991/c1db94e/3a8e55b(+PROGRESS).
+- Task 1 (architect skeleton, 6-state arc, aha S3): complete (commit c3ca8ef; 6 states, distinct archetypes, aha S3 primary, 5 misc M1@S1..M5@S5, universal anchor, deep-dive drop declared, engine deltas flagged: tally HUD + S3 cutaway)
+- Task 2 (physics-author block, crossing-tally invariant): complete (commit 2a535c5; Python-verified crossing counts vs real renderer geometry. KEY: S2/S4 surface_R 1.5→1.15 so tally actually ticks +6/−6 (adopted = decision A); S3 unchanged 12/12@R0.72; tally MUST read gmLoopPaths (12 loops) NOT gm_internal (1 mesh); durations bumped S2=19/S3=21/S5=21; S5 glow-focal gap flagged for Task5)
+- Task 3 (json-author + 8 sites, strip Socratic): complete (commit 4e5244a; tsc 0, validate 121/121 PASS, Socratic grep clean, Unicode clean. Controller review PASS: advance manual_click×5+interaction_complete, 6 delta captions, formula overlays, durations 16/19/21/17/21/0, gm flags surface_R 1.15 S2/S4 + show_tally S2/S3/S4/S6 + S3 cutaway, aha STATE_3 primary:true, 5 misc, words 44/51/54/40/54/25, deep-dive flags dropped. show_tally+cutaway NOT yet renderer-honored → Task 5. Clusters SQL new: supabase_2026-07-13_seed_gauss_law_magnetism_clusters_migration.sql)
+- Task 4 (THE EYE + eye-walker ∥ quality-auditor): in progress — seeded sim_html 2.12MB; THE EYE run 20260713-042311 = 27/27 deterministic checks pass $0; eye-walker + quality-auditor dispatched in parallel (awaiting). Expected FAIL-route: tally HUD + S3 cutaway (show_tally/cutaway not yet renderer-honored) → Task 5.
+- Task 4 quality-auditor: FAIL → peter_parker:renderer_primitives (ALL JSON gates PASS; physics correct; 5 misc genuine). Punch-list: (1) decision-A tally HUD not rendered [MAJOR, compute from gmLoopPaths NOT gm_internal, pure fn/freeze-stable] (2) decision-B S3 cutaway not rendered [MAJOR] (3) HUD value-only restyle [MOD] (4) S6 formula_overlay collides w/ slider panel [MOD] (5) S5 LEFT magnet inset shows no closed loops + glow-focal gap [MINOR]. Concept JSON clean, no Alex rework.
+- Task 5 (renderer touches): renderer-primitives DONE, 2 rounds (NOT yet committed — verify-before-commit). field_3d_renderer.ts only, all gm-gated. ROUND 1: (1) gmComputeCrossingTally+gmInsideSurface from 12 gmLoopPaths → value-only Φ_out/Φ_in/net readout top:52px (2) gm.cutaway (3) gm_sliders→bottom:left (4) S5 shells 0.12→0.05 (5) focal as-is. eye-walker run 045452: tally✅ S6✅ regressions✅ BUT cutaway PARTIAL (glow pass overwrote gm_internal emissive每frame) + S5 STILL-BROKEN (only shell meshes dimmed, not wireframes). ROOT CAUSE found by controller: applyGaussLawMagnetismGlow (33015) runs after updateFrame (33014) and resets gm_internal to _glowBaseEmI; S5 lsw/rsw wireframes (opacity 0.4) undimmed = the "blue balls". ROUND 2: cutaway re-asserted as LAST statement in glow fn (excluded gm_internal from reset loop); wireframes lsw/rsw 0.4→0.13. check:renderer-syntax OK, tsc 0. Re-seed 2.130MB → re-EYE run 20260713-052629 = 27/27 $0. eye-walker verifying round 2 (awaiting). Renderer shared-tree CLEAN before edits.
+- Task 5 (renderer touches): COMPLETE — committed 49f12c8. 3 rounds. Round-3 found the deep root cause: applyGaussLawMagnetismState's gmSetOpacity(o,1) force-opaqued ALL gm_ descendants on state entry (undoing S5 opacity edits) → now respects userData.gmBaseOpacity tag. S5 wireframe spheres REMOVED, bold closed-loop(L) vs radial-out(R) → legible. Controller verified S2/S3/S5 frames directly (run 055840): S2 tally +6/−6 surface-wraps-magnet✅, S3 tally +12/−12 surface-on-pole aha✅, S5 contrast legible✅. All gm-gated, tsc 0, check:renderer-syntax OK, 27/27 EYE every round.
+- Task 6 (founder review → visual:approve → Telugu → PROGRESS): COMPLETE. Founder said "approve" → visual:approve locked 6 baselines (src run 055840, commit 2ab263d). Telugu text_te on all 17 sentences via Sonnet-5 code-mix (commit a65a4f7, tsc 0 / validate 121/121). PROGRESS session log added (committed CLEAN over base — parallel session's Wheatstone+potentiometer PROGRESS entries were uncommitted; used backup→checkout→reapply→restore so I committed ONLY my gauss entry, restored theirs to working tree). Review served :8080. EN audio NOT rendered (Rule 30h on-demand).
 
-ALL TASKS COMPLETE. KVL shipped to reviewable state. Kirchhoff pair (KCL+KVL) done → unblocks Wheatstone c20 + potentiometer c23. Not pushed.
-- Task 4 (code review): pending
-- Task 5 (quality-auditor gate): pending
-- Task 6 (THE EYE / eye-walker): pending
-- Task 7 (review link + Telugu text + PROGRESS): pending
+ALL 6 TASKS COMPLETE. gauss_law_magnetism (Ch.5 #3) shipped to reviewable state. Commits: 7b8c1d4 spec · a919c7e plan · c3ca8ef skeleton · 2a535c5 physics · 4e5244a JSON · 49f12c8 renderer · a65a4f7 Telugu · 2ab263d PROGRESS+baselines. NOT pushed, NOT in PILOT_CONCEPTS (reviewer-first). Next: #4 earths_magnetism (last Ch.5 rebuild; scenario already exists in field_3d_renderer.ts).
