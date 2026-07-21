@@ -187,12 +187,29 @@ accumulator in particle_field) — numerically identical at 60 Hz, rate-correct 
 
 ## Rule 39 — teacher widget contract (2026-07-21, prototyped on `capacitance`)
 
-A BUILD CONTRACT for every NEW scenario that ships DOM overlay widgets (slider rows, graph, formula
-surface, readouts). The review-chrome ⚙ panel (`build_review_site.ts`: switches + hover-ping +
-in-panel ✓ Save/↻ Defaults) is built ONCE and fully generic — it renders whatever a sim declares and
-shows no button for sims that declare nothing, so the existing fleet is untouched until a scenario
-opts in (fleet retrofit of existing concepts = a separate founder-named decision, not this rule).
-The scenario side of the contract:
+> **39g — READ THIS FIRST (founder 2026-07-21): the ⚙ panel is now FLEET-WIDE and AUTOMATIC.**
+> Both live renderers carry a GENERIC widget engine, so **a new scenario needs NO widget work at
+> all** — do not implement 39a–39e by default, and never re-implement the engine per scenario.
+> - `field_3d_renderer.ts` — the `pmWg*` engine AUTO-DISCOVERS widgets from the same conventions
+>   clean mode uses (`.pm_hud` statics, inline `position:fixed` dynamics, `div[id$="_row"]` rows),
+>   declares them as states reveal them (`WIDGET_DECLARE`), and enforces overrides with
+>   `!important` `.pmWgHide`/`.pmWgShow` classes that beat each scenario's own inline
+>   `style.display` writes — which is exactly why **no scenario's display pass must be rewritten**.
+>   Consequence for you: a new panel is picked up FREE **provided it follows the existing
+>   conventions** — build dynamic panels with `panel.style.cssText = "position:fixed; …"`, give
+>   static overlays `class="pm_hud"`, and name slider rows `<prefix>_<name>_row`. Breaking those
+>   conventions silently costs both clean mode AND ⚙; that is the only new obligation.
+> - `particle_field_renderer.ts` — `pfWidgetList()` declares from config upfront and every
+>   canvas-drawn HUD is gated at its draw call via `pfWgVis(key, stateWants)`. A NEW canvas HUD
+>   here DOES need one line: add it to `PF_WG_FLAGS` and wrap its draw gate — canvas pixels have
+>   no DOM handle, so discovery cannot find them.
+>
+> 39a–39e below are now the CURATED opt-in path — worth taking only when auto-derived labels read
+> poorly or a widget needs bespoke show semantics (`capacitance` keeps its curated list; the
+> generic engine deliberately skips that scenario). Verified zero-regression 2026-07-21:
+> THE EYE `parallel_currents_force` 56/56, `ohms_law` 38/38.
+
+The curated contract (optional — see 39g):
 
 - **(39a) Declare** the toggleable widgets in `SIM_READY` — `widgets: [{key, label}]`, with
   teacher-friendly labels ("Live numbers (V, Q, C)", never internal ids).
@@ -270,7 +287,7 @@ After fixing a bug, the queue is the durable home for the prevention rule. Updat
 - [ ] `PM_currentState` remains the sole state variable (Rule 6).
 - [ ] For board-mode fixes **[DORMANT — Rule 20 conceptual-only phase]**: `canvas_style: "answer_sheet"`, `derivation_sequence`, and `mark_badge` still render correctly on `normal_reaction` and any other board-mode concept touched.
 - [ ] **Rule 36:** no hardcoded per-frame delta / 60 Hz assumption introduced; integrators stay linear in dt; `npm run check:renderer-syntax` run after the renderer edit → clean.
-- [ ] **Rule 39 (NEW scenario with DOM overlay widgets only):** the widget contract is implemented — `SIM_READY` declares `widgets: [{key, label}]` with teacher-friendly labels; ALL overlay display decisions route through the scenario's widget-vis resolver (override ∘ authored default; force-shown slider rows live via drag-seize); `SET_WIDGET_VIS` re-runs the display pass ONLY (never the full state apply); `WIDGET_VIS_STATE` posted on every apply; `WIDGET_PING` supported.
+- [ ] **Rule 39g (fleet-wide generic engine — the DEFAULT):** no per-scenario widget code written; new overlays follow the discovery conventions so ⚙ + clean mode pick them up free (dynamic panels built with inline `position:fixed`, static overlays `class="pm_hud"`, slider rows named `<prefix>_<name>_row`). **particle_field only:** any NEW canvas-drawn HUD added to `PF_WG_FLAGS` and its draw gate wrapped in `pfWgVis(key, stateWants)` — canvas pixels are invisible to DOM discovery. The curated 39a–39e path taken ONLY with a stated reason (poor auto-labels / bespoke show semantics).
 - [ ] For primitive-library fixes: every caller of the edited primitive checked; list the callers in the verification note.
 - [ ] `engine_bug_queue` row INSERTed or UPDATEd; silent-failure catalog table above also updated.
 

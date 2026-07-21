@@ -1721,6 +1721,21 @@ ${pilotHeadTags(1)}
       // Sim reports EFFECTIVE widget visibility (state default ∘ overrides) —
       // keeps the ⚙ panel's switches matching what's actually on screen.
       if (e.data.vis && typeof e.data.vis === 'object') { widgetVisNow = e.data.vis; syncWidgetMenu(); }
+    } else if (t === 'WIDGET_DECLARE') {
+      // The generic widget engine (field_3d) discovers widgets as states
+      // reveal them — the ⚙ list grows mid-session. Full list every time.
+      // Re-render an OPEN panel only when the key set actually changed: a
+      // rebuild detaches the row the teacher is mid-click on.
+      if (e.data.widgets && e.data.widgets.length) {
+        var prevKeys = (simWidgets || []).map(function (w) { return w.key; }).join('|');
+        var nextKeys = e.data.widgets.map(function (w) { return w.key; }).join('|');
+        if (prevKeys !== nextKeys) {
+          simWidgets = e.data.widgets;
+          updateWgBtn();
+          if (widgetMenu.classList.contains('open')) openWidgetMenu(document.getElementById('wgBtn'));
+          if (widgetOverrideCount() > 0) sendWidgetVis();
+        }
+      }
     } else if (t === 'CANVAS_TAP') {
       toggleFreeze();
     } else if (t === 'SIM_ERROR') {
