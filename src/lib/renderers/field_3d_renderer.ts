@@ -22,9 +22,12 @@
 //        { type: 'INIT_CONFIG', config: Field3DConfig }
 //        { type: 'REPLAY_ANIMATIONS' }   ← admin harness: rewind one-shot anims
 //        { type: 'SET_WIDGET_VIS', overrides: {key:'show'|'hide'} }  ← teacher ⚙ panel
+//        { type: 'WIDGET_PING', widget: key }   ← ⚙ panel hover: pulse the widget
 //        { type: 'PING' }
 //   OUT: { type: 'SIM_READY', widgets?: [{key,label}] }  — on load; widgets = per-widget
 //        toggle declaration (SET_WIDGET_VIS targets; capacitance only for now)
+//        { type: 'WIDGET_VIS_STATE', vis: {key:bool} }  — effective widget visibility,
+//        posted on every state apply / override change (drives the ⚙ panel switches)
 //        { type: 'STATE_REACHED', state: 'STATE_N' }  — on state apply
 //        { type: 'PONG' }
 // =============================================================================
@@ -1765,6 +1768,13 @@ body.pm-clean .pm_hud,
 body.pm-clean [style*="position:fixed"],
 body.pm-clean [style*="position: fixed"] {
     display: none !important;
+}
+/* ⚙ panel hover-ping (WIDGET_PING): briefly pulse a widget so the teacher sees
+   which on-canvas element a toggle row controls. */
+.wgPing { animation: wgPingA 0.45s ease-in-out 2; }
+@keyframes wgPingA {
+    0%, 100% { box-shadow: none; }
+    50% { box-shadow: 0 0 0 3px rgba(255, 202, 40, 0.95); }
 }
 </style>
 </head><body>
@@ -5713,6 +5723,14 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ov === "hide") return false;
         return !!stateWants;
     }
+    // widget key → DOM element ids (for the chrome's hover-ping highlight and
+    // anything else that needs to address a widget as a unit).
+    var CAP_WIDGET_ELS = {
+        slider_V: ["cap_V_row"], slider_A: ["cap_A_row"], slider_d: ["cap_d_row"],
+        graph: ["cap_graph_canvas", "cap_axis_toggle"],
+        formula: ["cap_formula", "cap_derivation"],
+        readout: ["cap_readout"], ratio: ["cap_ratio_readout"]
+    };
     // The single authoritative display pass for every capacitance DOM widget.
     // Called from applyCapacitanceState's tail AND from the SET_WIDGET_VIS
     // handler — the handler must NEVER re-run the full apply, which would
@@ -5725,11 +5743,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var statics = cd.static_readouts || [];
         var rowIds = { V: "cap_V_row", A: "cap_A_row", d: "cap_d_row" };
         var sliderIds = { V: "cap_v_slider", A: "cap_a_slider", d: "cap_d_slider" };
-        var anyRow = false;
+        var anyRow = false, rowVis = {};
         for (var key in rowIds) {
             var wKey = "slider_" + key;
             var authoredRelevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
             var rowVisible = capWidgetVis(wKey, authoredRelevant);
+            rowVis[key] = rowVisible;
             var rowEl = document.getElementById(rowIds[key]);
             if (rowEl) rowEl.style.display = rowVisible ? "block" : "none";
             if (rowVisible) anyRow = true;
@@ -5742,15 +5761,34 @@ export const FIELD_3D_RENDERER_CODE = `
         var panelEl = document.getElementById("cap_sliders");
         if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
 
-        var roEl = document.getElementById("cap_readout"); if (roEl) roEl.style.display = capWidgetVis("readout", true) ? "block" : "none";
-        var ratioEl = document.getElementById("cap_ratio_readout"); if (ratioEl) ratioEl.style.display = capWidgetVis("ratio", cd.show_ratio_readout) ? "block" : "none";
+        var showReadout = capWidgetVis("readout", true);
+        var roEl = document.getElementById("cap_readout"); if (roEl) roEl.style.display = showReadout ? "block" : "none";
+        var showRatio = capWidgetVis("ratio", cd.show_ratio_readout);
+        var ratioEl = document.getElementById("cap_ratio_readout"); if (ratioEl) ratioEl.style.display = showRatio ? "block" : "none";
         // A 'show' override can only uncover content the mode can actually
         // render: the formula line needs authored text, the derivation panel
         // exists only in derivation mode.
-        var ffEl = document.getElementById("cap_formula"); if (ffEl) ffEl.style.display = (capWidgetVis("formula", cd.formula && cd.mode !== "derivation") && cd.formula) ? "block" : "none";
-        var dvEl = document.getElementById("cap_derivation"); if (dvEl) dvEl.style.display = (capWidgetVis("formula", cd.mode === "derivation") && cd.mode === "derivation") ? "block" : "none";
-        var gcEl = document.getElementById("cap_graph_canvas"); if (gcEl) gcEl.style.display = capWidgetVis("graph", cd.show_graph) ? "block" : "none";
+        var showFormulaLine = capWidgetVis("formula", cd.formula && cd.mode !== "derivation") && !!cd.formula;
+        var ffEl = document.getElementById("cap_formula"); if (ffEl) ffEl.style.display = showFormulaLine ? "block" : "none";
+        var showDeriv = capWidgetVis("formula", cd.mode === "derivation") && cd.mode === "derivation";
+        var dvEl = document.getElementById("cap_derivation"); if (dvEl) dvEl.style.display = showDeriv ? "block" : "none";
+        var showGraph = capWidgetVis("graph", cd.show_graph);
+        var gcEl = document.getElementById("cap_graph_canvas"); if (gcEl) gcEl.style.display = showGraph ? "block" : "none";
         var axisEl = document.getElementById("cap_axis_toggle"); if (axisEl) axisEl.style.display = capWidgetVis("graph", cd.show_graph && cd.axis_toggle) ? "block" : "none";
+
+        // Report the EFFECTIVE visibility (state default ∘ override) so the
+        // chrome's ⚙ panel can show plain light-switches that always reflect
+        // what is actually on screen right now.
+        try {
+            parent.postMessage({
+                type: "WIDGET_VIS_STATE",
+                vis: {
+                    slider_V: rowVis.V, slider_A: rowVis.A, slider_d: rowVis.d,
+                    graph: showGraph, formula: showFormulaLine || showDeriv,
+                    readout: showReadout, ratio: showRatio
+                }
+            }, "*");
+        } catch (e) {}
     }
 
     // S6 chain-link derivation: three lines dock in turn on link_cues[0..2]
@@ -37112,6 +37150,22 @@ export const FIELD_3D_RENDERER_CODE = `
                         if (wvSd) capApplyWidgetVis(wvSd.capacitance || {});
                     }
                     break;
+
+                case "WIDGET_PING":
+                    // Chrome ⚙ panel hover: briefly pulse the widget on-canvas
+                    // so the teacher SEES which element a row controls — no
+                    // name-to-screen guessing. Visible widgets only.
+                    if (config.scenario_type === "capacitance" && data && CAP_WIDGET_ELS[data.widget]) {
+                        var pingIds = CAP_WIDGET_ELS[data.widget];
+                        for (var pi = 0; pi < pingIds.length; pi++) {
+                            (function (pel) {
+                                if (!pel || pel.style.display === "none") return;
+                                pel.classList.add("wgPing");
+                                setTimeout(function () { pel.classList.remove("wgPing"); }, 1000);
+                            })(document.getElementById(pingIds[pi]));
+                        }
+                    }
+                    break;
             }
         });
     }
@@ -37125,12 +37179,12 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config && config.scenario_type === "capacitance") {
             msg.widgets = [
                 { key: "slider_V", label: "Voltage slider" },
-                { key: "slider_A", label: "Area slider" },
+                { key: "slider_A", label: "Plate-area slider" },
                 { key: "slider_d", label: "Gap slider" },
                 { key: "graph", label: "Q–V graph" },
                 { key: "formula", label: "Formula" },
-                { key: "readout", label: "V/Q/C readout" },
-                { key: "ratio", label: "Q/V ratio readout" }
+                { key: "readout", label: "Live numbers (V, Q, C)" },
+                { key: "ratio", label: "Ratio box (Q/V)" }
             ];
         }
         return msg;

@@ -526,19 +526,27 @@ ${pilotHeadTags(1)}
   #wgBtn.avail { display:flex; }
   #wgBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   /* per-widget visibility popover (structure mirrors #rowMenu) */
-  #widgetMenu { position:fixed; z-index:50; display:none; min-width:230px; padding:9px 10px;
+  #widgetMenu { position:fixed; z-index:50; display:none; min-width:225px; padding:9px 10px;
              background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
              box-shadow:0 12px 30px -10px rgba(0,0,0,.7); }
   #widgetMenu.open { display:block; }
   #widgetMenu .wgHead { font-size:11px; font-weight:700; color:var(--ink-dim); letter-spacing:.04em;
              text-transform:uppercase; padding:0 2px 7px; }
-  .wgRow { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:3px 2px; }
+  .wgRow { display:flex; align-items:center; justify-content:space-between; gap:14px;
+             padding:5px 4px; border-radius:7px; cursor:default; }
+  .wgRow:hover { background:var(--clay-wash); }
   .wgRow .wgLbl { font-size:12px; color:var(--ink); white-space:nowrap; }
-  .wgSeg { display:flex; gap:3px; }
-  .wgSeg button { font-size:10px; font-weight:600; padding:3px 8px; border:1px solid var(--line);
-             background:none; color:var(--ink-dim); cursor:pointer; border-radius:6px; }
-  .wgSeg button:hover { color:var(--clay-soft); }
-  .wgSeg button.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* plain light-switch: reflects what is on screen RIGHT NOW; flip = show/hide */
+  .wgSwitch { position:relative; flex:0 0 auto; width:34px; height:18px; border-radius:9px;
+             background:var(--line); border:0; padding:0; cursor:pointer; transition:background .15s ease; }
+  .wgSwitch::after { content:''; position:absolute; top:2px; left:2px; width:14px; height:14px;
+             border-radius:50%; background:var(--ink-dim); transition:left .15s ease, background .15s ease; }
+  .wgSwitch.on { background:rgba(203,104,67,.6); }
+  .wgSwitch.on::after { left:18px; background:#fff; }
+  #widgetMenu .wgReset { display:block; width:100%; margin-top:7px; padding:6px 8px; font-size:11px;
+             font-weight:600; text-align:center; border:1px solid var(--line); border-radius:7px;
+             background:none; color:var(--ink-dim); cursor:pointer; }
+  #widgetMenu .wgReset:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   #widgetMenu .wgHint { font-size:10px; color:var(--ink-dim); padding:7px 2px 0; }
   /* Next/Prev state chevrons + readout — full-screen only (§4, gated by #fsScope.pm-fs, not
      the :fullscreen pseudo-class, since these live inside #stage, a descendant of the
@@ -1290,7 +1298,9 @@ ${pilotHeadTags(1)}
   // Auto (follow each state's authored default) / On (force show) / Off (force
   // hide). Rides the LS_LAYOUT blob → applies live, persists on ✓ Save,
   // cleared by ↻ Default, synced per professor via teacher_layouts.
-  var simWidgets = null;   // [{key,label}] from SIM_READY, or null = no button
+  var simWidgets = null;      // [{key,label}] from SIM_READY, or null = no button
+  var widgetVisNow = {};      // { key: bool } — EFFECTIVE visibility reported by the sim
+  var widgetRowEls = {};      // { key: switchButtonEl } for live sync while the panel is open
   function sendWidgetVis() { post({ type: 'SET_WIDGET_VIS', overrides: widgetStates }); }
   function widgetOverrideCount() { var n = 0, k; for (k in widgetStates) n++; return n; }
   function updateWgBtn() {
@@ -1300,48 +1310,63 @@ ${pilotHeadTags(1)}
   }
   var widgetMenu = document.createElement('div'); widgetMenu.id = 'widgetMenu';
   (document.getElementById('fsScope') || document.body).appendChild(widgetMenu);   // inside #fsScope so it renders in fullscreen too
-  function closeWidgetMenu() { widgetMenu.classList.remove('open'); widgetMenu.innerHTML = ''; }
+  function closeWidgetMenu() { widgetMenu.classList.remove('open'); widgetMenu.innerHTML = ''; widgetRowEls = {}; }
   document.addEventListener('click', function (e) {
     var wb = document.getElementById('wgBtn');
     if (!widgetMenu.contains(e.target) && !(wb && wb.contains(e.target))) closeWidgetMenu();
   }, true);
   window.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeWidgetMenu(); });
-  function setWidgetMode(key, mode) {
-    if (mode) widgetStates[key] = mode; else delete widgetStates[key];
-    sendWidgetVis(); markDirty(); updateWgBtn();
-    pmt('widget_toggle', { widget: key, mode: mode || 'auto' });
+  // Sync the open panel's switches to what the sim says is actually on screen
+  // (called on every WIDGET_VIS_STATE — state changes flip switches live).
+  function syncWidgetMenu() {
+    for (var k in widgetRowEls) {
+      if (widgetVisNow[k] !== undefined) widgetRowEls[k].classList.toggle('on', !!widgetVisNow[k]);
+    }
   }
   function openWidgetMenu(anchorEl) {
-    widgetMenu.innerHTML = '';
-    var head = document.createElement('div'); head.className = 'wgHead'; head.textContent = 'Sim widgets'; widgetMenu.appendChild(head);
+    widgetMenu.innerHTML = ''; widgetRowEls = {};
+    var head = document.createElement('div'); head.className = 'wgHead'; head.textContent = 'Show on screen'; widgetMenu.appendChild(head);
     for (var i = 0; i < simWidgets.length; i++) {
       (function (w) {
         var row = document.createElement('div'); row.className = 'wgRow';
         var lbl = document.createElement('span'); lbl.className = 'wgLbl'; lbl.textContent = w.label || w.key; row.appendChild(lbl);
-        var seg = document.createElement('span'); seg.className = 'wgSeg';
-        var modes = [['', 'Auto'], ['show', 'On'], ['hide', 'Off']];
-        for (var m = 0; m < modes.length; m++) {
-          (function (mv, ml) {
-            var b = document.createElement('button'); b.textContent = ml;
-            b.classList.toggle('on', (widgetStates[w.key] || '') === mv);
-            b.addEventListener('click', function (ev) {
-              ev.stopPropagation();
-              setWidgetMode(w.key, mv);
-              var sib = seg.querySelectorAll('button');
-              for (var s = 0; s < sib.length; s++) sib[s].classList.toggle('on', sib[s] === b);
-            });
-            seg.appendChild(b);
-          })(modes[m][0], modes[m][1]);
-        }
-        row.appendChild(seg); widgetMenu.appendChild(row);
+        var sw = document.createElement('button'); sw.className = 'wgSwitch';
+        sw.title = 'Show / hide';
+        var visNow = widgetVisNow[w.key];
+        if (visNow === undefined) visNow = widgetStates[w.key] !== 'hide';
+        sw.classList.toggle('on', !!visNow);
+        sw.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          var wantVisible = !sw.classList.contains('on');
+          sw.classList.toggle('on', wantVisible);
+          // Flip = an explicit pin for this widget ('show'/'hide'); the sim
+          // confirms via WIDGET_VIS_STATE, and Reset returns everything to
+          // the lesson's own defaults.
+          widgetStates[w.key] = wantVisible ? 'show' : 'hide';
+          sendWidgetVis(); markDirty(); updateWgBtn();
+          pmt('widget_toggle', { widget: w.key, mode: widgetStates[w.key] });
+        });
+        // Hovering a row pulses the widget on-canvas — no name-to-screen guessing.
+        row.addEventListener('mouseenter', function () { post({ type: 'WIDGET_PING', widget: w.key }); });
+        row.appendChild(sw); widgetMenu.appendChild(row);
+        widgetRowEls[w.key] = sw;
       })(simWidgets[i]);
     }
+    var reset = document.createElement('button'); reset.className = 'wgReset';
+    reset.textContent = '↻ Back to lesson defaults';
+    reset.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      widgetStates = {};
+      sendWidgetVis(); markDirty(); updateWgBtn();
+      pmt('widget_toggle', { widget: 'ALL', mode: 'auto' });
+    });
+    widgetMenu.appendChild(reset);
     var hint = document.createElement('div'); hint.className = 'wgHint';
-    hint.textContent = 'Auto follows each state. Save (✓) to keep across sessions.';
+    hint.textContent = 'Point at a row to see it flash on screen. ✓ Save keeps your setup.';
     widgetMenu.appendChild(hint);
     var r = anchorEl.getBoundingClientRect();
     widgetMenu.classList.add('open');
-    var mw = widgetMenu.offsetWidth || 230, mh = widgetMenu.offsetHeight || 180;
+    var mw = widgetMenu.offsetWidth || 230, mh = widgetMenu.offsetHeight || 200;
     var left = Math.min(r.right - mw, document.documentElement.clientWidth - mw - 6);
     var top = Math.min(r.bottom + 6, document.documentElement.clientHeight - mh - 6);
     widgetMenu.style.left = Math.max(6, left) + 'px'; widgetMenu.style.top = Math.max(6, top) + 'px';
@@ -1673,6 +1698,10 @@ ${pilotHeadTags(1)}
     } else if (t === 'PARAM_UPDATE') {
       // Explorer scenarios announce param changes explicitly (e.g. ac_generator).
       pmt('slider_change', { slider: e.data.param || 'param', value: e.data.value, explorer: e.data.explorer_id || null });
+    } else if (t === 'WIDGET_VIS_STATE') {
+      // Sim reports EFFECTIVE widget visibility (state default ∘ overrides) —
+      // keeps the ⚙ panel's switches matching what's actually on screen.
+      if (e.data.vis && typeof e.data.vis === 'object') { widgetVisNow = e.data.vis; syncWidgetMenu(); }
     } else if (t === 'CANVAS_TAP') {
       toggleFreeze();
     } else if (t === 'SIM_ERROR') {
