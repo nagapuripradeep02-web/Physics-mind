@@ -95,12 +95,12 @@ English-only and ships no language picker. Existing concepts keep their `text_te
 - **Explore state = core-ring symbols only (38b):** the final explore state's formula surface may only
   use symbols established in CORE-ring states (capacitance's explore shows `C = Q/V`, never `ε₀A/d` —
   those symbols land in an extended-ring state that a preset can hide).
-- **Rule 39 pre-check (NEW scenario only):** if the concept's scenario is NEW and ships DOM overlay
-  widgets, confirm the renderer implemented the Rule 39 teacher widget contract BEFORE wiring the
-  concept: `SIM_READY` declares `widgets: [{key, label}]`, and a widget-vis resolver +
-  display-pass-only `SET_WIDGET_VIS` handler exist (reference: `capApplyWidgetVis` in
-  `field_3d_renderer.ts`). The contract is RENDERER scope, not yours — if it is missing, FLAG it
-  (escalate to `peter_parker:renderer_primitives`), don't implement it.
+- **Rule 39 — NO pre-check needed any more (39g, founder 2026-07-21).** The ⚙ teacher widget panel
+  is now FLEET-WIDE and automatic: both live renderers carry a generic widget engine (field_3d
+  auto-discovers overlays/rows; particle_field declares from config + gates its canvas HUDs), so
+  every concept — existing and future — gets ⚙ on its next `build:review`/`build:pilot` with ZERO
+  concept-side authoring. Nothing to author, nothing to verify, nothing to escalate here. (The only
+  renderer-side obligation left lives in the renderer_primitives spec, not yours.)
 
 ## Canvas bounds — 760×500
 
@@ -335,7 +335,7 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 - [ ] **Rule 33 macro↔micro (2026-07-12; when the taught variable is macroscopic):** macro band + micro band both present with an explicit zoom-link; each state's micro view tells its OWN story with a real number (collision count, carriers, meter reading); instruments show a live numeric reading + tracking needle.
 - [ ] **Rule 34 canvas budget (2026-07-12):** ONE math-serif Unicode formula surface per state; HUD value-only; on-canvas top caption = the ≤5-word delta cue only (prose in the subtitle strip below); overlays collision-free (HUD clears the Full-screen button); Unicode sweep covers all THREE text paths — DOM overlays + canvas `ctx.fillText` graph text + sprite/p5 labels.
 - [ ] **Rule 38 curriculum-flex (2026-07-21):** `depth_ring` authored on every state + `curriculum_tags` block present, both exactly per the skeleton; NO unverified curriculum cell marked verified (`needs_teacher_verification: true` everywhere except verified CBSE/NCERT); the explore state's formula surface uses core-ring symbols only (38b).
-- [ ] **Rule 39 pre-check (NEW scenario with DOM overlay widgets only):** renderer's widget contract confirmed present BEFORE wiring (`SIM_READY` widget declaration + display-pass-only `SET_WIDGET_VIS`); if missing → flagged to `peter_parker:renderer_primitives`, never implemented here.
+- [ ] **Rule 39:** nothing to do — the ⚙ widget panel is fleet-wide and automatic since 39g (2026-07-21); no concept-side declaration, pre-check, or escalation.
 
 ## Escalation
 

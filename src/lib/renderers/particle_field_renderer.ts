@@ -12,7 +12,11 @@
 //        SET_GLOW {target}            → brightness focal (null = state default)
 //        PAUSE / RESUME               → clock+physics freeze/resume (Rule 26b)
 //        MUTE                         → no-op (audio lives in the player shell)
-//   OUT: SIM_READY (on load), STATE_REACHED (on state apply)
+//   OUT: SIM_READY {widgets?} (on load; widgets = ⚙ toggle declaration),
+//        STATE_REACHED (on state apply),
+//        WIDGET_VIS_STATE {vis} (effective widget visibility — ⚙ switches)
+//   IN (⚙/chrome extras): SET_WIDGET_VIS {overrides:{key:'show'|'hide'}},
+//        WIDGET_PING {widget}, SET_CLEAN_MODE {on}
 //   window.PM_simTimeMs               → state-local clock, read by the player
 //
 // DETERMINISM: all physics randomness flows through a seeded mulberry32 PRNG,
@@ -456,7 +460,11 @@ function setup() {
 
   if (!simReadyFired) {
     simReadyFired = true;
-    window.parent.postMessage({ type: 'SIM_READY' }, '*');
+    var pfReady = { type: 'SIM_READY' };
+    pfDeclaredWidgets = pfWidgetList();
+    if (pfDeclaredWidgets && pfDeclaredWidgets.length) pfReady.widgets = pfDeclaredWidgets;
+    window.parent.postMessage(pfReady, '*');
+    pfPostWidgetVis();
   }
 }
 
@@ -545,7 +553,112 @@ function applyState(stateId) {
   return true;
 }
 
+// ─── Per-widget teacher toggles (⚙ panel — chrome contract shared with field_3d) ──
+// The teacher can pin any widget 'show'/'hide' from the review chrome's ⚙
+// panel; unset = follow the state's authored Rule-31 default. DOM widgets
+// (caption / formula / slider rows / readout) are applied in
+// applyStateVisuals; canvas-drawn HUDs (meters / graphs / sum chips) are
+// gated at their draw call via pfWgVis(key, stateWants). THE EYE never sends
+// SET_WIDGET_VIS, so captures always see authored defaults — baselines
+// unaffected.
+var pfWidgetVis = {};          // { key: 'show'|'hide' } — teacher overrides
+var pfDeclaredWidgets = null;  // [{key,label}] declared in SIM_READY
+// Canvas-drawn HUD registry: widget key → the per-state flag that draws it.
+// def:true = drawn unless the state sets the flag explicitly false (the
+// show_galvanometer pattern); those declare only when a galvo-bearing
+// topology (bridge / wire / meter_bridge) exists in this concept.
+var PF_WG_FLAGS = [
+  { key: 'current_meter', flag: 'show_current_meter', label: 'Ammeter' },
+  { key: 'vi_graph', flag: 'show_vi_graph', label: 'V\\u2013I graph' },
+  { key: 'drift_arrow', flag: 'show_drift_arrow', label: 'Drift arrow' },
+  { key: 'thermometer', flag: 'show_thermometer', label: 'Thermometer' },
+  { key: 'flux_panel', flag: 'show_flux_conservation', label: 'Count in = out panel' },
+  { key: 'req_box', flag: 'show_req_box', label: 'R_eq badge' },
+  { key: 'kcl_sum', flag: 'kcl_sum_readout', label: 'KCL sum HUD' },
+  { key: 'kvl_sum', flag: 'kvl_sum_readout', label: 'KVL sum HUD' },
+  { key: 'galvanometer', flag: 'show_galvanometer', label: 'Galvanometer', def: true },
+  { key: 'node_readouts', flag: 'show_node_readouts', label: 'Node voltages' },
+  { key: 'ratio_hud', flag: 'show_ratio_hud', label: 'Ratio HUD' },
+  { key: 'balance_readout', flag: 'show_balance_readout', label: 'Balance readout' },
+  { key: 'voltmeter', flag: 'show_voltmeter_compare', label: 'Voltmeter' }
+];
+function pfWgVis(key, stateWants) {
+  var o = pfWidgetVis[key];
+  if (o === 'show') return true;
+  if (o === 'hide') return false;
+  return !!stateWants;
+}
+function pfWgFlagWants(f, state) {
+  if (!state) return false;
+  return f.def ? state[f.flag] !== false : !!state[f.flag];
+}
+function pfWidgetList() {
+  if (!config || !config.states) return null;
+  var out = [], sid, st, i;
+  var defs = sliderDefs() || {};
+  for (var id in defs) out.push({ key: 'slider_' + id, label: (defs[id].label || id) + ' slider' });
+  var anyCaption = false, anyFormula = false, anyGalvoTopo = false;
+  for (sid in config.states) {
+    st = config.states[sid];
+    if (!st) continue;
+    if (st.caption) anyCaption = true;
+    if (st.formula_overlay) anyFormula = true;
+    if (st.topology === 'bridge' || st.topology === 'wire' || st.topology === 'meter_bridge') anyGalvoTopo = true;
+  }
+  if (anyCaption) out.push({ key: 'caption', label: 'Caption' });
+  if (anyFormula) out.push({ key: 'formula', label: 'Formula' });
+  out.push({ key: 'readout', label: 'Live numbers' });
+  for (i = 0; i < PF_WG_FLAGS.length; i++) {
+    var f = PF_WG_FLAGS[i], used = false;
+    if (f.def) {
+      used = anyGalvoTopo;
+    } else {
+      for (sid in config.states) { if (pfWgFlagWants(f, config.states[sid])) { used = true; break; } }
+    }
+    if (used) out.push({ key: f.key, label: f.label });
+  }
+  if (hasPowerMeter()) out.push({ key: 'power_meter', label: 'Power meter' });
+  if (hasHeatCounter()) out.push({ key: 'heat_counter', label: 'Heat counter' });
+  return out;
+}
+function pfWidgetEffVis() {
+  var vis = {}, i, j, k;
+  if (!pfDeclaredWidgets) return vis;
+  var state = curState() || {};
+  var panelEl = document.getElementById('pm-sliders');
+  var panelOn = !!(panelEl && panelEl.style.display !== 'none');
+  for (i = 0; i < pfDeclaredWidgets.length; i++) {
+    k = pfDeclaredWidgets[i].key;
+    if (k.indexOf('slider_') === 0) {
+      var row = sliderRows[k.slice(7)];
+      vis[k] = !!(row && row.style.display !== 'none' && panelOn);
+    } else if (k === 'caption') {
+      var ce = document.getElementById('pm-caption'); vis[k] = !!(ce && ce.style.display !== 'none');
+    } else if (k === 'formula') {
+      var fe = document.getElementById('pm-formula'); vis[k] = !!(fe && fe.style.display !== 'none');
+    } else if (k === 'readout') {
+      var re = document.getElementById('pm-readout'); vis[k] = !!(re && re.style.display !== 'none' && panelOn);
+    } else if (k === 'power_meter') {
+      vis[k] = pfWgVis(k, hasPowerMeter());
+    } else if (k === 'heat_counter') {
+      vis[k] = pfWgVis(k, hasHeatCounter());
+    } else {
+      for (j = 0; j < PF_WG_FLAGS.length; j++) {
+        if (PF_WG_FLAGS[j].key === k) { vis[k] = pfWgVis(k, pfWgFlagWants(PF_WG_FLAGS[j], state)); break; }
+      }
+    }
+  }
+  return vis;
+}
+function pfPostWidgetVis() {
+  if (!pfDeclaredWidgets) return;
+  try { window.parent.postMessage({ type: 'WIDGET_VIS_STATE', vis: pfWidgetEffVis() }, '*'); } catch (err) {}
+}
+
 // Per-state DOM visuals: caption, formula overlay, slider row visibility.
+// Every display decision routes through pfWgVis so the teacher's ⚙ overrides
+// hold across state changes (this function is also the SET_WIDGET_VIS
+// re-apply path — it never resets the sim clock or the drag-seize flags).
 function applyStateVisuals() {
   var state = curState();
   if (!uiBuilt || !state) return;
@@ -553,13 +666,13 @@ function applyStateVisuals() {
   var cap = document.getElementById('pm-caption');
   if (cap) {
     cap.textContent = state.caption || '';
-    cap.style.display = state.caption ? 'block' : 'none';
+    cap.style.display = (state.caption && pfWgVis('caption', true)) ? 'block' : 'none';
   }
 
   var frm = document.getElementById('pm-formula');
   if (frm) {
     frm.textContent = state.formula_overlay || '';
-    frm.style.display = state.formula_overlay ? 'block' : 'none';
+    frm.style.display = (state.formula_overlay && pfWgVis('formula', true)) ? 'block' : 'none';
   }
 
   // Rule 31: rows shown/hidden per state; the panel (and each row) keeps its
@@ -570,13 +683,20 @@ function applyStateVisuals() {
     var showAll = !!state.show_sliders && !vis;
     var anyVisible = false;
     for (var id in sliderRows) {
-      var show = showAll || (vis && vis.indexOf(id) >= 0);
+      var show = pfWgVis('slider_' + id, showAll || (vis && vis.indexOf(id) >= 0));
       sliderRows[id].style.display = show ? 'flex' : 'none';
       if (show) anyVisible = true;
     }
-    panel.style.display = anyVisible ? 'block' : 'none';
+    var ro = document.getElementById('pm-readout');
+    var roOn = pfWgVis('readout', true);
+    if (ro) ro.style.display = roOn ? 'block' : 'none';
+    // The panel shell follows its content: any visible row, or a force-shown
+    // readout ('show' pin) when every row is hidden.
+    panel.style.display = (anyVisible || (roOn && pfWidgetVis['readout'] === 'show')) ? 'block' : 'none';
     updateReadouts();
   }
+
+  pfPostWidgetVis();
 }
 
 // ─── Overlay DOM (sliders / caption / formula) ──────────────────────────────
@@ -877,7 +997,7 @@ function updateReadouts() {
     } else if (circuitMode()) {                               // combination_of_resistors: R_eq + total current
       var cc = cCurrents();
       var stC = curState();
-      if (stC && stC.kcl_sum_readout) {                       // KCL: A_in = A_out is the instrument story (R_eq off-canvas by design)
+      if (stC && pfWgVis('kcl_sum', stC.kcl_sum_readout)) {                       // KCL: A_in = A_out is the instrument story (R_eq off-canvas by design)
         ro.textContent = 'A_in = ' + cc.itot.toFixed(1) + ' A\\n' +
                          'A_out = ' + cc.itot.toFixed(1) + ' A';
       } else {
@@ -1631,7 +1751,7 @@ function drawCircuit() {
     drawAmmeterAtC(g.leftX + (g.rightX - g.leftX) * 0.49, g.topY - 38, c.itot, 'A2', iDim, 14);
     drawAmmeterAtC(g.leftX + (g.rightX - g.leftX) * 0.80, g.topY - 38, c.itot, 'A3', iDim, 14);
   }
-  if (st && st.show_req_box) {
+  if (st && pfWgVis('req_box', st.show_req_box)) {
     var qDim = dimFor('req_box'), qx = g.pRx, qy = (c.topo === 'parallel') ? g.topY : g.topY - 44;
     rectMode(CENTER); fillHex('#0A0A1A', 0.88 * qDim); noStroke(); rect(qx, qy, 132, 34, 6);
     strokeHex('#66BB6A', 0.95 * qDim); strokeWeight(2); noFill(); rect(qx, qy, 132, 34, 6); rectMode(CORNER); noStroke();
@@ -1641,7 +1761,7 @@ function drawCircuit() {
   // KCL live sum readout (value-only HUD, Rule 34b) — the branch currents adding
   // back to itot. Auto-formats for 2 or 3 branches. Numbers only; the symbolic
   // Sigma-i_in = Sigma-i_out lives in the DOM formula surface.
-  if (st && st.kcl_sum_readout) {
+  if (st && pfWgVis('kcl_sum', st.kcl_sum_readout)) {
     var kDim = dimFor('formula');
     var nums = c.three
       ? (c.i1.toFixed(1) + ' + ' + c.i2.toFixed(1) + ' + ' + c.i3.toFixed(1))
@@ -1802,20 +1922,20 @@ function drawBridgeScenario() {
   drawBridgeBattery(nd, bp.emf, dimFor('battery'));
   drawBridgeNodes(nd, st);
   var gcy = (nd.B.y + nd.D.y) / 2, gR = height * 0.075;
-  if (!st || st.show_galvanometer !== false) {
+  if (pfWgVis('galvanometer', !st || st.show_galvanometer !== false)) {
     drawGalvanometerC(nd.B.x, gcy, gR, bridgeNeedleDeg(bp), (st && st.galvanometer_label) ? st.galvanometer_label : 'G', dimFor('galvanometer'));
     if (st && st.show_ig_zero_label && bp.balanced) {           // literal i_g = 0 — ONLY when live-balanced
       fillHex(bpvl('ratio_hud_ok', '#66BB6A'), 0.98); textSize(14); textStyle(BOLD); textAlign(CENTER, TOP);
       text('i_g = 0', nd.B.x, gcy + gR + 10); textStyle(NORMAL);
     }
   }
-  if (st && st.show_node_readouts) {
+  if (st && pfWgVis('node_readouts', st.show_node_readouts)) {
     var nl = (st.node_readout_labels && st.node_readout_labels.length >= 2) ? st.node_readout_labels : ['V_B', 'V_D'];
     var nrCol = bpvl('node_readout', '#B39DDB');
     drawBridgeChip(nd.B.x + width * 0.085, nd.B.y - height * 0.02, nl[0] + ' = ' + bp.VB.toFixed(1) + ' V', nrCol, 12);
     drawBridgeChip(nd.D.x + width * 0.085, nd.D.y + height * 0.02, nl[1] + ' = ' + bp.VD.toFixed(1) + ' V', nrCol, 12);
   }
-  if (st && st.show_ratio_hud) {
+  if (st && pfWgVis('ratio_hud', st.show_ratio_hud)) {
     var okC = bpvl('ratio_hud_ok', '#66BB6A'), badC = bpvl('ratio_hud_bad', '#EF5350');
     var mark = bp.balanced ? ' \\u2713' : ' \\u2717';           // check / cross
     var rstr = 'P/Q = ' + (bp.P / bp.Q).toFixed(2) + '   vs   R/S = ' + (bp.R / bp.S).toFixed(2) + mark;
@@ -2033,20 +2153,20 @@ function drawWireScenario() {
   drawWireC([ { x: geo.Ax, y: geo.wireY }, { x: geo.Ax, y: geo.lowerY }, { x: geo.Jx, y: geo.lowerY }, { x: geo.Jx, y: geo.wireY } ], wireCol, wA, 3);  // tap branch A -> (E,G) -> J
   drawWireDriverBeads(geo);
   if (st && st.show_tap_branch_beads) drawWireTapBeads(geo);
-  if (st && st.show_voltmeter_compare) drawWireVoltmeterBeads(geo);
+  if (st && pfWgVis('voltmeter', st.show_voltmeter_compare)) drawWireVoltmeterBeads(geo);
   drawWireDriverCell(geo);
   drawWireTestedCell(geo);
-  if (!st || st.show_galvanometer !== false) {
+  if (pfWgVis('galvanometer', !st || st.show_galvanometer !== false)) {
     drawGalvanometerC(geo.Ax, geo.Gy, geo.gR, g.needle, (st && st.galvanometer_label) ? st.galvanometer_label : 'G', wdim('galvanometer'));
   }
   drawJockey(geo);
   drawWireNodeLabels(geo);
-  if (st && st.show_voltmeter_compare) drawWireVoltmeter(geo);
+  if (st && pfWgVis('voltmeter', st.show_voltmeter_compare)) drawWireVoltmeter(geo);
   // value-only HUD chips (Rule 34b/d — distinct zones, always legible) ────────────
   if (st && st.show_gradient_ramp) {
     drawBridgeChip(width * 0.32, height * 0.11, 'k = ' + g.k.toFixed(2) + ' V/m', bpvl('gradient_ramp', '#4DD0E1'), 14);
   }
-  if (st && st.show_balance_readout) {
+  if (st && pfWgVis('balance_readout', st.show_balance_readout)) {
     var rc = bpvl('balance_readout', '#B39DDB');
     drawBridgeChip(width * 0.28, height * 0.90, 'l = ' + g.l.toFixed(2) + ' m', rc, 14);
     drawBridgeChip(width * 0.46, height * 0.90, 'k\\u00B7l = ' + g.kl.toFixed(2) + ' V', rc, 14);
@@ -2056,7 +2176,7 @@ function drawWireScenario() {
     fillHex(bpvl('compare_ok', '#66BB6A'), 0.98); textSize(14); textStyle(BOLD); textAlign(LEFT, CENTER);
     text('i = 0', geo.Ax + width * 0.085, geo.Gy); textStyle(NORMAL);
   }
-  if (st && st.show_voltmeter_compare) {                          // V_meter vs true E (voltmeter reads LESS)
+  if (st && pfWgVis('voltmeter', st.show_voltmeter_compare)) {                          // V_meter vs true E (voltmeter reads LESS)
     drawBridgeChip(width * 0.66, height * 0.32,                    // upper-right clear zone — clears the ε_d driver-cell label + k-chip (Rule 34d)
       'V_meter = ' + g.Vmeter.toFixed(2) + ' V  vs  E = ' + g.E.toFixed(2) + ' V', bpvl('compare_bad', '#EF5350'), 14);
   }
@@ -2258,13 +2378,13 @@ function drawMeterBridgeScenario() {
   drawWireC([ { x: geo.Bx, y: geo.By }, { x: geo.Bx, y: geo.Gy }, { x: geo.Jx, y: geo.Jy } ], wireCol, 0.7 * wdim('wires'), 2);                       // galvanometer chord B->G->J
   if (st && st.show_segment_ratio) drawMbSegments(geo, st);
   drawMbLoopBeads(geo);
-  if (!st || st.show_galvanometer !== false) drawMbGalvoBeads(geo);
+  if (pfWgVis('galvanometer', !st || st.show_galvanometer !== false)) drawMbGalvoBeads(geo);
   var rDim = wdim('resistors');
   drawResistorBoxC((geo.Ax + geo.Bx) / 2, geo.topY, 'R = ' + fmtNum(p.R) + ' \\u03A9', rDim);
   drawResistorBoxC((geo.Bx + geo.Cx) / 2, geo.topY, 'X = ' + fmtNum(p.X) + ' \\u03A9', rDim);
   drawMbBattery(geo, p.eps);
   drawMbNodes(geo, st);
-  if (!st || st.show_galvanometer !== false) {
+  if (pfWgVis('galvanometer', !st || st.show_galvanometer !== false)) {
     drawGalvanometerC(geo.Bx, geo.Gy, geo.gR, p.needle, (st && st.galvanometer_label) ? st.galvanometer_label : 'G', dimFor('galvanometer'));
     if (st && st.show_ig_zero_label && p.balanced) {
       fillHex(bpvl('ig_zero_ok', '#66BB6A'), 0.98); textSize(14); textStyle(BOLD); textAlign(LEFT, CENTER);
@@ -2272,7 +2392,7 @@ function drawMeterBridgeScenario() {
     }
   }
   // ── value-only HUD (Rule 34b/d — lower band, clears the top 'Full screen' chrome) ──
-  if (st && st.show_balance_readout && !st.show_error_band) {   // in S5 the error-band phase chip carries l1 instead
+  if (st && pfWgVis('balance_readout', st.show_balance_readout) && !st.show_error_band) {   // in S5 the error-band phase chip carries l1 instead
     drawBridgeChip(width * 0.26, height * 0.76, 'l = ' + round(p.lcm) + ' cm', bpvl('balance_readout', '#B39DDB'), 14);
   }
   if (st && st.show_x_readout) {
@@ -2418,7 +2538,7 @@ function drawKvlScenario() {
 
   // SIGNED loop-sum HUD (value-only, Rule 34b) — '+6.0 - 4.0 - 2.0 (- 3.0) = 0.0'.
   // Distinct from KCL's UNSIGNED kcl_sum_readout; the symbolic form lives in the DOM.
-  if (st && st.kvl_sum_readout) {
+  if (st && pfWgVis('kvl_sum', st.kvl_sum_readout)) {
     var kDim = dimFor('formula');
     var sstr = '+' + c.eps.toFixed(1) + ' \\u2212 ' + c.V1.toFixed(1) + ' \\u2212 ' + c.V2.toFixed(1)
              + (c.three ? (' \\u2212 ' + c.V3.toFixed(1)) : '') + ' = ' + c.kvl_sum.toFixed(1);
@@ -3211,14 +3331,14 @@ function draw() {
   pop();
   // Macro band (top): the physical rod whose length/thickness/tint/heat IS the taught cause
   if (mvOn()) drawMacroBand(state, intensity);
-  if (state.show_drift_arrow && curEffDrift > 0) drawDriftArrow(state);   // global-bottom, inside micro band
-  if (state.show_current_meter && !mvOn()) drawCurrentMeter();  // macro_view: the macro-band ammeter is the single current instrument
-  if (state.show_flux_conservation) drawFluxConservation(state);
-  if (state.show_vi_graph) { drawVIGraph(state); updateReadouts(); }  // readout tracks the live sweep
-  if (state.show_thermometer && hasSlider('T')) drawThermometer();
+  if (pfWgVis('drift_arrow', state.show_drift_arrow) && curEffDrift > 0) drawDriftArrow(state);   // global-bottom, inside micro band
+  if (pfWgVis('current_meter', state.show_current_meter) && !mvOn()) drawCurrentMeter();  // macro_view: the macro-band ammeter is the single current instrument
+  if (pfWgVis('flux_panel', state.show_flux_conservation)) drawFluxConservation(state);
+  if (pfWgVis('vi_graph', state.show_vi_graph)) { drawVIGraph(state); updateReadouts(); }  // readout tracks the live sweep
+  if (pfWgVis('thermometer', state.show_thermometer) && hasSlider('T')) drawThermometer();
   if (hasSlider('L') || hasSlider('material')) updateReadouts();     // resistivity: readout tracks live L/A/material/T
-  if (hasPowerMeter() && intensity > 0) drawPowerMeter(intensity);
-  if (hasHeatCounter() && heatAccumulator > 0) drawHeatCounter();
+  if (hasPowerMeter() && pfWgVis('power_meter', intensity > 0)) drawPowerMeter(intensity);
+  if (hasHeatCounter() && pfWgVis('heat_counter', heatAccumulator > 0)) drawHeatCounter();
   drawLabel(state);
 
   // Formula overlay + R/rho readout brightness follow the glow focal
@@ -4160,6 +4280,29 @@ window.addEventListener('message', function(e) {
     paused = false;
   } else if (t === 'MUTE') {
     // audio lives in the player shell — nothing to do (Rule 26a)
+  } else if (t === 'SET_WIDGET_VIS') {
+    // Teacher ⚙ overrides (full map every time — idempotent, replayable).
+    // Re-applies ONLY the DOM display pass; canvas HUD gates read
+    // pfWidgetVis on their next drawn frame. Never re-runs applyState —
+    // that would reset the sim clock mid-state.
+    pfWidgetVis = (e.data.overrides && typeof e.data.overrides === 'object') ? e.data.overrides : {};
+    applyStateVisuals();
+  } else if (t === 'WIDGET_PING') {
+    // Chrome ⚙ hover: pulse the widget. DOM widgets pulse in place;
+    // canvas-drawn HUDs have no element to pulse (silent no-op).
+    var wk = e.data.widget || '', pingEl = null;
+    if (wk === 'caption') pingEl = document.getElementById('pm-caption');
+    else if (wk === 'formula') pingEl = document.getElementById('pm-formula');
+    else if (wk === 'readout') pingEl = document.getElementById('pm-readout');
+    else if (wk.indexOf('slider_') === 0) pingEl = sliderRows[wk.slice(7)] || null;
+    if (pingEl && pingEl.style.display !== 'none') {
+      pingEl.classList.add('wgPing');
+      setTimeout(function() { pingEl.classList.remove('wgPing'); }, 1000);
+    }
+  } else if (t === 'SET_CLEAN_MODE') {
+    // Same contract as field_3d: strip every fixed-position overlay to a
+    // bare canvas (see the body.pm-clean CSS in the emitted <style>).
+    document.body.classList.toggle('pm-clean', !!e.data.on);
   }
   // Tolerant no-ops for field_3d-only messages:
   // SET_MATH / SET_HAND_PHASE / SET_FREEZE_PROTON / REPLAY_ANIMATIONS / PING
@@ -4384,6 +4527,21 @@ export function assembleParticleFieldHtml(cfgIn: ParticleFieldAuthoredConfig): s
 <style>
 html, body { margin: 0; padding: 0; overflow: hidden; background: ${bgColor}; width: 100%; height: 100%; }
 canvas { display: block; }
+/* Clean mode (SET_CLEAN_MODE): every DOM overlay here is a dynamically-created
+   inline position:fixed panel — same convention as field_3d, same selector. */
+body.pm-clean [style*="position:fixed"],
+body.pm-clean [style*="position: fixed"] { display: none !important; }
+/* ⚙ per-widget teacher toggles (SET_WIDGET_VIS) + hover-ping (WIDGET_PING) —
+   same contract as field_3d_renderer. DOM widgets are pinned with !important
+   classes; canvas-drawn HUDs are gated at their draw call via pfWgVis(). */
+.pmWgHide { display: none !important; }
+.pmWgShow { display: var(--pm-wg-disp, block) !important; }
+.pmWgShow:empty { display: none !important; }
+.wgPing { animation: wgPingA 0.45s ease-in-out 2; }
+@keyframes wgPingA {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 0 3px rgba(255, 202, 40, 0.95); }
+}
 </style>
 </head><body>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"><\/script>

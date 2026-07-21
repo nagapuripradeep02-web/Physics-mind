@@ -50,7 +50,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 - **Gate 3e** — Rule 31 distinct-motion + contextual-controls discipline — **ALL new concepts** (per-state control table honored; no static state; no two states' motion alike; explore-last has all controls; no Socratic artifacts).
 - **Gate 3f** — Rule 32 legibility + Rule 31-tight word-budget pacing — **ALL new concepts** (25–55 EN words/guided state; archetype table honored, no repeat without declared contrast pair; ≤5-word delta cue opens every caption; cause before effect; one variable moves; home-pose continuity; one glow focal).
 - **Gate 3g** — Rules 33/34 macro↔micro + uncluttered canvas (2026-07-12) — **ALL new concepts** (both levels + zoom-link when the taught variable is macroscopic; per-state micro story with a real number; live numeric instruments; ≤5-word caption cue only; ONE Unicode formula surface; value-only HUD; no overlay collisions).
-- **Gate 3h** — Rule 38 ring coherence + tag honesty (2026-07-21) — **ALL new concepts** (both preset cuts leave coherent lessons; explore state surfaces core-ring content only; every unverified `curriculum_tags` cell carries `needs_teacher_verification: true`); plus the Rule 39 widget-contract spot-check on NEW scenarios.
+- **Gate 3h** — Rule 38 ring coherence + tag honesty (2026-07-21) — **ALL new concepts** (both preset cuts leave coherent lessons; explore state surfaces core-ring content only; every unverified `curriculum_tags` cell carries `needs_teacher_verification: true`); plus the Rule 39g ⚙-panel spot-check on NEW scenarios/overlays (button present + teacher-readable labels; new canvas HUDs registered in `PF_WG_FLAGS`).
 - **Gate 4 (+4a, +4b)** — live visual walk both paths + classifier-reachability + pill freshness. For field_3d diamonds this is `visual:eyes` / direct capture — **actually look at every state.**
 - **Gate 7** — console + log discipline (zero errors/warnings on target routes).
 - **Gate 8** — `engine_bug_queue` regression check ← **the scar list.** Every probe relevant to the candidate must pass. This is the mechanism by which the pre-flight gets smarter every week as the reviewer surfaces new mistake-classes (Phase 3).
@@ -304,12 +304,20 @@ the JSON + skeleton and pasted probe output, never memory.
 2. **TAG HONESTY (38g, mechanical):** every `curriculum_tags` cell without documented verification
    carries `needs_teacher_verification: true`; only CBSE/NCERT may be marked verified at authoring
    time. A cell claiming verified without evidence = FAIL, route to `alex:json_author`.
-3. **Rule 39 widget contract (conditional — fires only on a NEW scenario with DOM overlay widgets):**
-   spot-check the renderer implemented its side of the contract — `SIM_READY` declares
-   `widgets: [{key, label}]` (the `pmSimReadyMsg` pattern), and the `SET_WIDGET_VIS` handler re-runs
-   ONLY the display pass (the `capApplyWidgetVis` pattern), never the full state apply (a full
-   re-apply resets drag-seize flags mid-state — a logged bug class). A missing contract on a new
-   scenario = FAIL, route to `peter_parker:renderer_primitives`.
+3. **Rule 39 widget check (REWRITTEN by 39g, founder 2026-07-21 — the ⚙ panel is now fleet-wide
+   and automatic).** Do NOT check for a per-scenario widget contract any more; a new concept
+   inherits ⚙ from the renderers' generic engine with zero authoring. What to verify instead, and
+   only when the concept introduced a NEW scenario or new overlay/HUD:
+   - Load the built page, open ⚙, and confirm the button is present and the list NAMES THE REAL
+     WIDGETS in teacher language (no internal ids like "Gsph plot", no live values baked into a
+     label, no duplicate rows). Poor labels = FAIL → `peter_parker:renderer_primitives` (fix is
+     either a `data-wg-label` attribute or the curated 39a path).
+   - A new DOM overlay must follow the discovery conventions (dynamic panel built with inline
+     `position:fixed`; static overlay `class="pm_hud"`; slider row named `<prefix>_<name>_row`) —
+     a panel missing from ⚙ AND from clean mode is the tell.
+   - **particle_field only:** a new CANVAS-drawn HUD must be registered in `PF_WG_FLAGS` with its
+     draw gate wrapped in `pfWgVis(...)`; canvas pixels cannot be auto-discovered. Missing = FAIL
+     → `peter_parker:renderer_primitives`.
 
 **Part 3d — E42 Physics Validator 9 conditions** (`docs/archive/CLAUDE_ENGINES.md` **[SUPERSEDED — engine numbering kept for continuity]** Tier 9):
 1. **mg_perp direction symmetry** — normal reaction perpendicular to surface, opposite to mg_perp component

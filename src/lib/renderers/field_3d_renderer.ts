@@ -25,7 +25,11 @@
 //        { type: 'WIDGET_PING', widget: key }   ← ⚙ panel hover: pulse the widget
 //        { type: 'PING' }
 //   OUT: { type: 'SIM_READY', widgets?: [{key,label}] }  — on load; widgets = per-widget
-//        toggle declaration (SET_WIDGET_VIS targets; capacitance only for now)
+//        toggle declaration (SET_WIDGET_VIS targets; FLEET-WIDE — capacitance
+//        declares a curated list, every other scenario auto-discovers via the
+//        generic widget engine riding the clean-mode conventions)
+//        { type: 'WIDGET_DECLARE', widgets: [{key,label}] }  — grows the ⚙ list as
+//        later states reveal widgets the initial state never showed
 //        { type: 'WIDGET_VIS_STATE', vis: {key:bool} }  — effective widget visibility,
 //        posted on every state apply / override change (drives the ⚙ panel switches)
 //        { type: 'STATE_REACHED', state: 'STATE_N' }  — on state apply
@@ -1776,6 +1780,16 @@ body.pm-clean [style*="position: fixed"] {
     0%, 100% { box-shadow: none; }
     50% { box-shadow: 0 0 0 3px rgba(255, 202, 40, 0.95); }
 }
+/* ⚙ per-widget teacher overrides (SET_WIDGET_VIS, generic engine): a pin must
+   survive every scenario's inline style.display writes — mid-state reveals
+   included — so it is a class with !important, same discipline as pm-clean.
+   --pm-wg-disp records the element's natural display value (block/flex/…) at
+   the moment it was first seen visible, so a force-show restores the right
+   layout. A force-shown EMPTY box stays hidden (same :empty discipline as
+   #caption — 'show' can reveal only content the state actually renders). */
+.pmWgHide { display: none !important; }
+.pmWgShow { display: var(--pm-wg-disp, block) !important; }
+.pmWgShow:empty { display: none !important; }
 </style>
 </head><body>
 <div id="caption" class="pm_hud"></div>
@@ -31084,7 +31098,9 @@ export const FIELD_3D_RENDERER_CODE = `
             equationPanelEl.innerHTML = "";
             equationPanelEl.style.display = "none";
             var anchor = stateDef.equation_panel_anchor || "bottom-left";
-            equationPanelEl.className = "anchor-" + anchor;
+            // pm_hud must survive the anchor rewrite or clean mode (and the ⚙
+            // widget engine) lose this panel after the first state change.
+            equationPanelEl.className = "anchor-" + anchor + " pm_hud";
         }
 
         // amperes_circuital_law: populate the screen-space derivation panel +
@@ -31108,6 +31124,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Update legend
         updateLegend(stateDef);
+
+        // ⚙ generic widget engine: re-discover + re-assert teacher overrides
+        // after every scenario display pass (capacitance-excluded inside).
+        pmWgTick();
     }
 
     // ── amperes_circuital_law screen-space overlays ──────────────────────────
@@ -33951,6 +33971,11 @@ export const FIELD_3D_RENDERER_CODE = `
     var __pmSteps = 1; // read by scenario updaters' inline accumulators too
     function animate() {
         animationId = requestAnimationFrame(animate);
+        // ⚙ generic widget engine heartbeat (~2 Hz): catches mid-state reveals
+        // that flip overlay visibility outside applyState. Observe-only unless
+        // the teacher has pinned overrides — THE EYE captures are unaffected.
+        __pmWgFrame = (__pmWgFrame + 1) % 30;
+        if (__pmWgFrame === 0) pmWgTick();
         if (freezeAtTime === null) {
             var __nowW = performance.now();
             if (__pmLastWall === undefined) __pmLastWall = __nowW;
@@ -37148,6 +37173,8 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (config.scenario_type === "capacitance" && !isMobile) {
                         var wvSd = config.states[PM_currentState];
                         if (wvSd) capApplyWidgetVis(wvSd.capacitance || {});
+                    } else {
+                        pmWgApply(true);   // generic engine (no-op on mobile)
                     }
                     break;
 
@@ -37164,16 +37191,236 @@ export const FIELD_3D_RENDERER_CODE = `
                                 setTimeout(function () { pel.classList.remove("wgPing"); }, 1000);
                             })(document.getElementById(pingIds[pi]));
                         }
+                    } else if (data && data.widget && PM_wgDeclared[data.widget]) {
+                        // Generic engine: the widget key IS the element id.
+                        (function (gel) {
+                            if (!pmWgSeenVisible(gel)) return;
+                            gel.classList.add("wgPing");
+                            setTimeout(function () { gel.classList.remove("wgPing"); }, 1000);
+                        })(document.getElementById(data.widget));
                     }
                     break;
             }
         });
     }
 
+    // ── Generic per-widget teacher toggles (⚙ panel) — fleet-wide ─────────────
+    // Generalizes the capacitance prototype to EVERY scenario with zero
+    // per-scenario registries. Discovery rides the same conventions clean mode
+    // already relies on: statically-authored overlays carry .pm_hud,
+    // dynamically-created panels are inline position:fixed, slider rows are
+    // div[id$="_row"]. A candidate is DECLARED as a toggle the first time it is
+    // actually seen on screen (dynamic panels immediately — only the active
+    // scenario ever builds its own panels), so the ⚙ list only ever names
+    // widgets this concept really shows. Newly-discovered widgets are pushed to
+    // the chrome via WIDGET_DECLARE as later states reveal them. Overrides are
+    // enforced with the .pmWgHide/.pmWgShow classes (see CSS) — they beat the
+    // scenarios' inline style.display writes without touching any display pass.
+    // THE EYE never sends SET_WIDGET_VIS, so captures always see the authored
+    // defaults — baselines unaffected. Capacitance keeps its curated bespoke
+    // path (capApplyWidgetVis); the generic engine skips that scenario.
+    var PM_WG_STATIC_IDS = { caption: 1, legend: 1, sliders: 1, formula_overlay: 1, equation_panel: 1, acl_eq_panel: 1, acl_stage: 1, rhr_overlay: 1, palm_rule_overlay: 1, fleming_overlay: 1, lorentz_sliders: 1, nowork_meters: 1, nowork_meters_l: 1, nowork_meters_r: 1, nw_phase_l: 1, nw_phase_r: 1, nowork_sliders: 1, radius_sliders: 1, radius_eqn: 1, helix_sliders: 1, hx_readout: 1, cyclotron_timers: 1, cyclotron_eqn: 1, cyclotron_sliders: 1, torque_sliders: 1, dipole_sliders: 1, bmf_sliders: 1, bmf_hud: 1, fcw_sliders: 1, plates_sliders: 1, plates_readout: 1 };
+    var PM_wgDeclared = {};      // key (= element id) → { label, row }
+    var PM_wgOrder = [];         // declaration order → the chrome's list order
+    var PM_wgDirty = false;      // new widgets since the last WIDGET_DECLARE
+    var PM_wgLastVisJson = "";   // last-posted WIDGET_VIS_STATE (dedupe)
+    var __pmWgFrame = 0;         // animate() heartbeat throttle
+
+    function pmWgGenericOn() {
+        return !isMobile && config && config.scenario_type !== "capacitance";
+    }
+    function pmWgSeenVisible(el) {
+        return !!(el && el.isConnected && el.getClientRects().length > 0);
+    }
+    function pmWgIsRowId(id) { return id.slice(-4) === "_row"; }
+    function pmWgRowLabel(el) {
+        var lab = el.querySelector("label");
+        if (lab) {
+            // Cut at the value separator ("I = 5 A", "Turns N: 100") — the
+            // label is captured ONCE at declaration, so a live value baked
+            // into it would go stale the moment the teacher drags.
+            var t = (lab.textContent || "").trim();
+            var cut = -1, ci, seps = ["=", ":"];
+            for (ci = 0; ci < seps.length; ci++) {
+                var at = t.indexOf(seps[ci]);
+                if (at > 0 && (cut === -1 || at < cut)) cut = at;
+            }
+            if (cut > 0) t = t.slice(0, cut).trim();
+            if (t && t.length <= 24) return t + " slider";
+        }
+        var stem = el.id.slice(0, el.id.length - 4).split("_");
+        var word = stem.length > 1 ? stem.slice(1).join(" ") : stem[0];
+        word = word.length <= 2 ? word.toUpperCase() : word.charAt(0).toUpperCase() + word.slice(1);
+        return word + " slider";
+    }
+    // Human label for a panel. Element ids carry a scenario prefix the teacher
+    // must never see ("gsph_plot" → "Plot", not "Gsph plot"), so strip a short
+    // leading token before falling back to the id's own words.
+    function pmWgPanelWords(id) {
+        var parts = id.split("_");
+        if (parts.length > 1 && parts[0].length <= 5) parts = parts.slice(1);
+        var words = parts.join(" ").trim();
+        return words ? words.charAt(0).toUpperCase() + words.slice(1) : id;
+    }
+    function pmWgPanelLabel(el) {
+        var dl = el.getAttribute("data-wg-label");
+        if (dl) return dl;
+        var id = el.id;
+        if (id === "caption") return "Caption";
+        if (id === "legend") return "Legend";
+        if (id === "equation_panel") return "Equations";
+        if (id.indexOf("formula") !== -1 || id.indexOf("eqn") !== -1 || id.indexOf("_eq_") !== -1 || id.indexOf("derivation") !== -1) return "Formula";
+        if (id.indexOf("graph") !== -1 || id.indexOf("plot") !== -1) return "Graph";
+        if (id.indexOf("readout") !== -1 || id.indexOf("hud") !== -1 || id.indexOf("meter") !== -1 || id.indexOf("timer") !== -1) return "Live numbers";
+        if (id.indexOf("caption") !== -1) return pmWgPanelWords(id);
+        if (id.indexOf("overlay") !== -1) return "Rule card";
+        if (id.indexOf("slider") !== -1) return "Sliders";
+        return pmWgPanelWords(id);
+    }
+    // Top-level overlay panels per the clean-mode convention (.pm_hud statics +
+    // inline position:fixed dynamics), each classified: a panel that contains
+    // slider rows contributes its ROWS (+ its non-row extras like #b_readout)
+    // as the toggle units; a row-less panel is one toggle itself.
+    function pmWgCandidates() {
+        var list = [], seen = {}, i, j;
+        function add(el, isRow) {
+            if (!el || !el.id || seen[el.id]) return;
+            if (el.id === "mobile-fallback") return;
+            seen[el.id] = 1;
+            list.push({ el: el, isRow: !!isRow });
+        }
+        var tops = document.body.children;
+        for (i = 0; i < tops.length; i++) {
+            var el = tops[i];
+            if (!el.id || el.tagName === "SCRIPT" || el.tagName === "STYLE") continue;
+            var isHud = typeof el.className === "string" && el.className.indexOf("pm_hud") !== -1;
+            var isFixed = el.style && el.style.position === "fixed";
+            if (!isHud && !isFixed) continue;
+            var inner = el.querySelectorAll("div[id]");
+            var rowCount = 0;
+            for (j = 0; j < inner.length; j++) {
+                if (pmWgIsRowId(inner[j].id)) { add(inner[j], true); rowCount++; }
+            }
+            if (rowCount === 0) {
+                add(el, false);
+            } else {
+                for (j = 0; j < inner.length; j++) {
+                    var kid = inner[j];
+                    if (!pmWgIsRowId(kid.id) && kid.parentNode === el && kid.id.indexOf("_val") === -1) add(kid, false);
+                }
+            }
+        }
+        return list;
+    }
+    function pmWgIsDynamicPanel(el) {
+        return !!(el && el.style && el.style.position === "fixed" && !PM_WG_STATIC_IDS[el.id]);
+    }
+    function pmWgSweep() {
+        if (!pmWgGenericOn()) return;
+        var cands = pmWgCandidates();
+        for (var i = 0; i < cands.length; i++) {
+            var el = cands[i].el;
+            if (PM_wgDeclared[el.id]) continue;
+            var declare = false;
+            if (pmWgIsDynamicPanel(el)) declare = true;
+            else if (pmWgSeenVisible(el)) declare = true;
+            else if (cands[i].isRow) {
+                var p = el.parentNode;
+                while (p && p.parentNode && p.parentNode !== document.body) p = p.parentNode;
+                if (pmWgIsDynamicPanel(p)) declare = true;
+            }
+            if (!declare) continue;
+            if (pmWgSeenVisible(el) && !el.style.getPropertyValue("--pm-wg-disp")) {
+                var d0 = getComputedStyle(el).display;
+                if (d0 && d0 !== "none") el.style.setProperty("--pm-wg-disp", d0);
+            }
+            // Two panels can map to the same friendly name (a scenario with a
+            // formula line AND a derivation panel). Keys stay unique (element
+            // ids) so toggles never cross-wire, but the teacher must still see
+            // two distinguishable rows — disambiguate with the id's own words.
+            var lbl = cands[i].isRow ? pmWgRowLabel(el) : pmWgPanelLabel(el);
+            var dupe = false, dk;
+            for (dk in PM_wgDeclared) { if (PM_wgDeclared[dk].label === lbl) { dupe = true; break; } }
+            if (dupe) lbl = lbl + " (" + pmWgPanelWords(el.id).toLowerCase() + ")";
+            PM_wgDeclared[el.id] = { label: lbl, row: cands[i].isRow };
+            PM_wgOrder.push(el.id);
+            PM_wgDirty = true;
+        }
+    }
+    function pmWgList() {
+        var ws = [];
+        for (var i = 0; i < PM_wgOrder.length; i++) ws.push({ key: PM_wgOrder[i], label: PM_wgDeclared[PM_wgOrder[i]].label });
+        return ws;
+    }
+    function pmWgApply(forcePost) {
+        if (!pmWgGenericOn()) return;
+        var ov = window.PM_widgetVis || {};
+        var k, el, o;
+        for (k in PM_wgDeclared) {
+            el = document.getElementById(k);
+            if (!el) continue;
+            o = ov[k];
+            if (o === "show" && !el.style.getPropertyValue("--pm-wg-disp")) {
+                var dNat = getComputedStyle(el).display;
+                if (dNat && dNat !== "none") el.style.setProperty("--pm-wg-disp", dNat);
+            }
+            el.classList.toggle("pmWgHide", o === "hide");
+            el.classList.toggle("pmWgShow", o === "show");
+        }
+        // Slider-panel shells follow their rows: if overrides emptied a panel
+        // the scenario wanted visible, hide the shell; if a row is force-shown
+        // while the scenario hid the panel, force the shell too.
+        var tops = document.body.children;
+        for (var pi = 0; pi < tops.length; pi++) {
+            var pn = tops[pi];
+            if (!pn.id || pn.tagName === "SCRIPT" || pn.tagName === "STYLE") continue;
+            var isHud = typeof pn.className === "string" && pn.className.indexOf("pm_hud") !== -1;
+            if (!isHud && !(pn.style && pn.style.position === "fixed")) continue;
+            var kids = pn.querySelectorAll("div[id]");
+            var hasUnit = false, anyEff = false, anySuppressed = false, anyForce = false;
+            for (var ki = 0; ki < kids.length; ki++) {
+                var kd = kids[ki];
+                if (!PM_wgDeclared[kd.id]) continue;
+                hasUnit = true;
+                var ko = ov[kd.id];
+                var authored = kd.style.display !== "none";
+                if (ko === "hide" ? false : (ko === "show" ? true : authored)) anyEff = true;
+                if (ko === "show") anyForce = true;
+                if (authored && ko === "hide") anySuppressed = true;
+            }
+            if (!hasUnit) continue;
+            pn.classList.toggle("pmWgHide", !anyEff && anySuppressed && ov[pn.id] !== "show");
+            pn.classList.toggle("pmWgShow", anyForce && pn.style.display === "none" && ov[pn.id] !== "hide");
+        }
+        // Report EFFECTIVE visibility so the chrome's switches always mirror
+        // what is actually on screen right now.
+        var vis = {};
+        for (k in PM_wgDeclared) vis[k] = pmWgSeenVisible(document.getElementById(k));
+        var vj = JSON.stringify(vis);
+        if (forcePost || vj !== PM_wgLastVisJson) {
+            PM_wgLastVisJson = vj;
+            try { parent.postMessage({ type: "WIDGET_VIS_STATE", vis: vis }, "*"); } catch (e) {}
+        }
+    }
+    function pmWgDeclareToChrome() {
+        if (!PM_wgDirty) return;
+        PM_wgDirty = false;
+        try { parent.postMessage({ type: "WIDGET_DECLARE", widgets: pmWgList() }, "*"); } catch (e) {}
+    }
+    // Heartbeat: applyState tail + ~2 Hz from animate() (catches mid-state
+    // reveals that flip overlay visibility outside applyState).
+    function pmWgTick() {
+        if (!pmWgGenericOn()) return;
+        pmWgSweep();
+        pmWgApply(false);
+        pmWgDeclareToChrome();
+    }
+
     // SIM_READY payload — a sim that supports per-widget teacher toggles
     // DECLARES them here; the review chrome builds its ⚙ panel from this list
-    // and shows no button when the payload is absent (older scenarios).
-    // Prototype scope: capacitance only (curriculum-flex pilot, 2026-07-21).
+    // (and grows it on WIDGET_DECLARE as later states reveal more widgets).
+    // Capacitance keeps its curated list; every other scenario declares via
+    // the generic discovery engine above. Fleet-wide since 2026-07-21.
     function pmSimReadyMsg() {
         var msg = { type: "SIM_READY" };
         if (config && config.scenario_type === "capacitance") {
@@ -37186,6 +37433,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 { key: "readout", label: "Live numbers (V, Q, C)" },
                 { key: "ratio", label: "Ratio box (Q/V)" }
             ];
+        } else if (pmWgGenericOn()) {
+            pmWgSweep();
+            if (PM_wgOrder.length) {
+                PM_wgDirty = false;
+                msg.widgets = pmWgList();
+            }
         }
         return msg;
     }
