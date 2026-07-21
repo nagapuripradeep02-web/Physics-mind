@@ -2911,6 +2911,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     potential_energy_in_external_field: "field_3d",
     electric_potential_3d:          "field_3d",
     parallel_plate_capacitor_field: "field_3d",
+    capacitance:                    "field_3d",
     magnetic_field_solenoid:        "field_3d",
     magnetic_field_concept_B:       "field_3d",
     magnetic_field_wire:            "field_3d",

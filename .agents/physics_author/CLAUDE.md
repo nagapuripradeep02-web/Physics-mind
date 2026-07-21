@@ -42,6 +42,15 @@ A markdown "physics block" appended to the skeleton with these 6 sections:
 
    **Rule 32 legibility constraints on every timeline (added 2026-07-08):** **(32a)** sequence the CAUSE's motion visibly BEFORE the effect responds — a readable ~0.5–1s gap between the cause window and the effect window, never simultaneous (e.g. S2 above: magnet slides 0–2.2s; needle/beads respond from ~0.6s, visibly *following* the magnet). `oscillate/track` states may co-move cause+effect after the first explicit cause→effect demonstration. **(32b)** within a guided state, only the taught variable's motion changes — every other apparatus element holds its pose (explore exempt). **(31a word budget)** each guided state's narration is 25–55 EN words (2–4 tight sentences ≈ 10–20s), counted on `text_en`; >55 = the state carries two ideas, send back to architect to split; <~20 = merge or enrich. The motion window may run longer than the narration, never the reverse.
 
+   **Rule 38c/38d notation + dialect obligations (2026-07-21 curriculum-flex):** audit the notation
+   ladder — every formula surface on a `core`- or `extended`-ring state must be ALGEBRA-ONLY
+   (ε = NΔΦ/Δt, C = Q/V; no calculus or vector operators — dΦ/dt, integrals, cross products live only
+   on `advanced`-ring states). If the physics GENUINELY requires calculus below the advanced ring,
+   FLAG it explicitly for the founder in the physics block — never smuggle a calculus form onto a
+   core/extended state. **(38d)** the variable table honors the dialect discipline: dual-label a
+   board-divergent term ONCE at first appearance ("Voltage V (p.d.)", bare V after; "battery" not
+   "cell").
+
 4. **Board-mode mark scheme + derivation sequence** — *DEFERRED while the conceptual-only directive is active (founder 2026-06-11, Rule 20 suspension): SKIP this section entirely for new concepts; do not draft board content.* When modes resume: 1 mark per state minimum (Rule 21), line-by-line what the handwriting animation writes per state.
 5. **Drill-down cluster phrasings** — for each cluster_id the architect named, write 5 real confusion phrases students would type ("why doesn't mg tilt", "does gravity need air"). These become `trigger_examples TEXT[]` in the Supabase seed.
 6. **Constraint callouts** — any special-case algebra the json_author must encode (e.g., angle is in degrees in UI but must convert to radians in formula via `radians(theta)`; slider steps; magnitude scaling via `scale_pixels_per_unit`).
@@ -199,6 +208,7 @@ Read every `prevention_rule`. Each is a one-line constraint a prior bug forced i
 - [ ] Within-state motion timeline written for every state (Rule 31): each row = t-window × what animates × driven-by-variable, every branch a pure fn of the state clock (Rule 26); no two states share a motion; no state is static; controls column matches the architect table. (Legacy retrofits of pre-Rule-31 Socratic concepts: carry existing `pause_after_ms` beats verbatim — the clone gotcha.)
 - [ ] **Rule 32 sequencing verified per state:** cause window opens before the effect window (readable ~0.5–1s gap; 32a); only the taught variable's motion changes, all else holds pose (32b; explore exempt).
 - [ ] **Word budget (Rule 31a):** every guided state's narration totals 25–55 EN words on `text_en` (>55 → flag "split" back to architect; <~20 → merge/enrich); explore = 0/open.
+- [ ] **Notation ladder (Rule 38c):** every formula on a core/extended-ring state is algebra-only (no calculus/vector operators); any place the physics genuinely needs calculus below the advanced ring is FLAGged explicitly for the founder, never smuggled in. **Dialect (38d):** the variable table dual-labels board-divergent terms at first appearance ("Voltage V (p.d.)").
 - [ ] Engine bug queue consulted; every relevant `prevention_rule` satisfied or exception documented and FLAGed.
 - [ ] DC Pandey check: no formula, explanation, or example problem imported from external books.
 

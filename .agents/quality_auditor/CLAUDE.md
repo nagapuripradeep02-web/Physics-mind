@@ -38,6 +38,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 - **Gate 3e** — Rule 31 distinct-motion + contextual-controls discipline — **ALL new concepts** (per-state control table honored; no static state; no two states' motion alike; explore-last has all controls; no Socratic artifacts).
 - **Gate 3f** — Rule 32 legibility + Rule 31-tight word-budget pacing — **ALL new concepts** (25–55 EN words/guided state; archetype table honored, no repeat without declared contrast pair; ≤5-word delta cue opens every caption; cause before effect; one variable moves; home-pose continuity; one glow focal).
 - **Gate 3g** — Rules 33/34 macro↔micro + uncluttered canvas (2026-07-12) — **ALL new concepts** (both levels + zoom-link when the taught variable is macroscopic; per-state micro story with a real number; live numeric instruments; ≤5-word caption cue only; ONE Unicode formula surface; value-only HUD; no overlay collisions).
+- **Gate 3h** — Rule 38 ring coherence + tag honesty (2026-07-21) — **ALL new concepts** (both preset cuts leave coherent lessons; explore state surfaces core-ring content only; every unverified `curriculum_tags` cell carries `needs_teacher_verification: true`); plus the Rule 39 widget-contract spot-check on NEW scenarios.
 - **Gate 4 (+4a, +4b)** — live visual walk both paths + classifier-reachability + pill freshness. For field_3d diamonds this is `visual:eyes` / direct capture — **actually look at every state.**
 - **Gate 7** — console + log discipline (zero errors/warnings on target routes).
 - **Gate 8** — `engine_bug_queue` regression check ← **the scar list.** Every probe relevant to the candidate must pass. This is the mechanism by which the pre-flight gets smarter every week as the reviewer surfaces new mistake-classes (Phase 3).
@@ -275,6 +276,28 @@ THE EYE / eye_walker frames and DOM greps, never memory.
 
 Violations: caption/formula/HUD/Unicode text → json_author; macro↔micro state design → architect;
 instrument/zoom-link/overlay engine defects → `peter_parker:renderer_primitives`.
+
+**Part 3h — Rule 38 ring coherence + tag honesty, plus the Rule 39 widget-contract spot-check (added 2026-07-21) — ALL new concepts**
+
+The curriculum-flex counterpart of 3g. Evidence discipline applies as on every gate — cite greps of
+the JSON + skeleton and pasted probe output, never memory.
+1. **RING COHERENCE (38a/38b):** every state carries `depth_ring: core|extended|advanced`; the
+   advanced ring is a CONTIGUOUS block immediately before the explore state; simulate BOTH preset
+   cuts (hide advanced; hide advanced+extended) and verify each leaves a coherent lesson — NO
+   surviving state's narration, caption, or formula surface references hidden-ring content. The
+   explore state surfaces CORE-ring content only — the capacitance proof-run caught exactly this
+   (S7's explore showed `ε₀A/d`, whose symbols are introduced only in hide-able S5). Ring
+   design/ordering defects → `alex:architect`; a surviving-state reference to hidden-ring content or
+   an explore surface using non-core symbols → `alex:json_author`.
+2. **TAG HONESTY (38g, mechanical):** every `curriculum_tags` cell without documented verification
+   carries `needs_teacher_verification: true`; only CBSE/NCERT may be marked verified at authoring
+   time. A cell claiming verified without evidence = FAIL, route to `alex:json_author`.
+3. **Rule 39 widget contract (conditional — fires only on a NEW scenario with DOM overlay widgets):**
+   spot-check the renderer implemented its side of the contract — `SIM_READY` declares
+   `widgets: [{key, label}]` (the `pmSimReadyMsg` pattern), and the `SET_WIDGET_VIS` handler re-runs
+   ONLY the display pass (the `capApplyWidgetVis` pattern), never the full state apply (a full
+   re-apply resets drag-seize flags mid-state — a logged bug class). A missing contract on a new
+   scenario = FAIL, route to `peter_parker:renderer_primitives`.
 
 **Part 3d — E42 Physics Validator 9 conditions** (`docs/archive/CLAUDE_ENGINES.md` **[SUPERSEDED — engine numbering kept for continuity]** Tier 9):
 1. **mg_perp direction symmetry** — normal reaction perpendicular to surface, opposite to mg_perp component

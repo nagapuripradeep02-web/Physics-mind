@@ -81,6 +81,7 @@ English-only and ships no language picker. Existing concepts keep their `text_te
 - `scene_composition: array` — min 3 primitives.
 - `teacher_script: { tts_sentences: [...] }` — min 1 sentence, each `{id, text_en}`.
 - `choreography_sequence: { phases: [...] }` optional.
+- `depth_ring: enum` — `core | extended | advanced`, OPTIONAL (Rule 38a, added 2026-07-21). Author it on EVERY state, exactly as the skeleton's control-table ring column specifies.
 
 **Top-level (lines 195+)**:
 - `concept_id`, `concept_name`, `chapter`, `section` required.
@@ -91,8 +92,27 @@ English-only and ships no language picker. Existing concepts keep their `text_te
 - `epic_c_branches` — OPTIONAL, and OMIT for new concepts (EPIC-L-first directive 2026-06-10; Zod is `.optional()` since 2026-06-11 — the old min-4 floor is retired). Misconceptions are confronted inside EPIC-L per Rule 16a.
 - `regeneration_variants: [...]` — Type B dominant (different world, same physics).
 - `mode_overrides` — **OMIT for new concepts** (conceptual-only directive 2026-06-11, Rule 20 suspension: board + competitive are dropped this phase). If a board override IS authored (legacy/retrofit), Gate 21 enforces all-or-nothing: `canvas_style` + `derivation_sequence` + `mark_scheme` together or validation FAILs.
+- `curriculum_tags` — OPTIONAL (Rule 38g, added 2026-07-21 — `curriculumTagsSchema`). Author it exactly as the skeleton specifies (see §"Rule 38 curriculum-flex fields + Rule 39 widget-contract pre-check" below).
 
 **superRefine**: ≥2 distinct `advance_mode` values across EPIC-L states (Rule 15). All-`auto_after_tts` = Zod FAIL.
+
+## Rule 38 curriculum-flex fields + Rule 39 widget-contract pre-check (2026-07-21)
+
+- **`depth_ring` on every state + the `curriculum_tags` block** (both OPTIONAL Zod fields, added
+  2026-07-21 in `src/schemas/conceptJson.ts`) are authored EXACTLY as the skeleton specifies — the
+  rings and tags are the architect's design; you transcribe, never re-derive.
+- **Tag honesty (38g):** NEVER mark an unverified curriculum cell as verified. Only CBSE/NCERT may be
+  marked verified at authoring time; every other cell ships `needs_teacher_verification: true`.
+  Quality_auditor's tag-honesty probe FAILs a verified-without-evidence cell back to you.
+- **Explore state = core-ring symbols only (38b):** the final explore state's formula surface may only
+  use symbols established in CORE-ring states (capacitance's explore shows `C = Q/V`, never `ε₀A/d` —
+  those symbols land in an extended-ring state that a preset can hide).
+- **Rule 39 pre-check (NEW scenario only):** if the concept's scenario is NEW and ships DOM overlay
+  widgets, confirm the renderer implemented the Rule 39 teacher widget contract BEFORE wiring the
+  concept: `SIM_READY` declares `widgets: [{key, label}]`, and a widget-vis resolver +
+  display-pass-only `SET_WIDGET_VIS` handler exist (reference: `capApplyWidgetVis` in
+  `field_3d_renderer.ts`). The contract is RENDERER scope, not yours — if it is missing, FLAG it
+  (escalate to `peter_parker:renderer_primitives`), don't implement it.
 
 ## Canvas bounds — 760×500
 
@@ -326,6 +346,8 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 - [ ] **Rule 32 legibility (new concepts):** every guided state's caption opens with the ≤5-word delta cue; per-state word count on `text_en` ∈ 25–55 (explore exempt); same apparatus/home pose across state configs (no teleport-rebuild); no overlapping glow windows — one focal at a time.
 - [ ] **Rule 33 macro↔micro (2026-07-12; when the taught variable is macroscopic):** macro band + micro band both present with an explicit zoom-link; each state's micro view tells its OWN story with a real number (collision count, carriers, meter reading); instruments show a live numeric reading + tracking needle.
 - [ ] **Rule 34 canvas budget (2026-07-12):** ONE math-serif Unicode formula surface per state; HUD value-only; on-canvas top caption = the ≤5-word delta cue only (prose in the subtitle strip below); overlays collision-free (HUD clears the Full-screen button); Unicode sweep covers all THREE text paths — DOM overlays + canvas `ctx.fillText` graph text + sprite/p5 labels.
+- [ ] **Rule 38 curriculum-flex (2026-07-21):** `depth_ring` authored on every state + `curriculum_tags` block present, both exactly per the skeleton; NO unverified curriculum cell marked verified (`needs_teacher_verification: true` everywhere except verified CBSE/NCERT); the explore state's formula surface uses core-ring symbols only (38b).
+- [ ] **Rule 39 pre-check (NEW scenario with DOM overlay widgets only):** renderer's widget contract confirmed present BEFORE wiring (`SIM_READY` widget declaration + display-pass-only `SET_WIDGET_VIS`); if missing → flagged to `peter_parker:renderer_primitives`, never implemented here.
 
 ## Escalation
 

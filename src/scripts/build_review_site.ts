@@ -520,6 +520,37 @@ ${pilotHeadTags(1)}
            transition:color .15s ease, border-color .15s ease, background .15s ease; }
   .fsGlassBtn:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   #fsCleanBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* ⚙ Widgets — only for sims that declare toggleable widgets in SIM_READY;
+     visible in AND out of fullscreen (unlike #fsCleanBtn). Dot marks active overrides. */
+  #wgBtn { display:none; }
+  #wgBtn.avail { display:flex; }
+  #wgBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* per-widget visibility popover (structure mirrors #rowMenu) */
+  #widgetMenu { position:fixed; z-index:50; display:none; min-width:225px; padding:9px 10px;
+             background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+             box-shadow:0 12px 30px -10px rgba(0,0,0,.7); }
+  #widgetMenu.open { display:block; }
+  #widgetMenu .wgHead { font-size:11px; font-weight:700; color:var(--ink-dim); letter-spacing:.04em;
+             text-transform:uppercase; padding:0 2px 7px; }
+  .wgRow { display:flex; align-items:center; justify-content:space-between; gap:14px;
+             padding:5px 4px; border-radius:7px; cursor:default; }
+  .wgRow:hover { background:var(--clay-wash); }
+  .wgRow .wgLbl { font-size:12px; color:var(--ink); white-space:nowrap; }
+  /* plain light-switch: reflects what is on screen RIGHT NOW; flip = show/hide */
+  .wgSwitch { position:relative; flex:0 0 auto; width:34px; height:18px; border-radius:9px;
+             background:var(--line); border:0; padding:0; cursor:pointer; transition:background .15s ease; }
+  .wgSwitch::after { content:''; position:absolute; top:2px; left:2px; width:14px; height:14px;
+             border-radius:50%; background:var(--ink-dim); transition:left .15s ease, background .15s ease; }
+  .wgSwitch.on { background:rgba(203,104,67,.6); }
+  .wgSwitch.on::after { left:18px; background:#fff; }
+  #widgetMenu .wgActions { display:flex; gap:6px; margin-top:8px; }
+  #widgetMenu .wgActions button { flex:1; padding:6px 8px; font-size:11px; font-weight:600;
+             text-align:center; border:1px solid var(--line); border-radius:7px;
+             background:none; color:var(--ink-dim); cursor:pointer;
+             transition:color .15s ease, border-color .15s ease, background .15s ease; }
+  #widgetMenu .wgActions button:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #widgetMenu .wgSave { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #widgetMenu .wgHint { font-size:10px; color:var(--ink-dim); padding:7px 2px 0; }
   /* Next/Prev state chevrons + readout — full-screen only (§4, gated by #fsScope.pm-fs, not
      the :fullscreen pseudo-class, since these live inside #stage, a descendant of the
      fullscreen root, not the root itself). */
@@ -708,6 +739,7 @@ ${pilotHeadTags(1)}
         <button id="simClearBtn" class="pmbtn" title="Clear sim annotations">Clear</button>
       </div>
       <div id="fsTopControls">
+        <div id="wgBtn" class="fsGlassBtn" title="Show or hide individual sim widgets (sliders, graph, formula...)">&#9881; Widgets</div>
         <div id="fsCleanBtn" class="fsGlassBtn" title="Clean mode — hide on-canvas labels/sliders">&#10022; Clean</div>
         <div id="fsBtn" class="fsGlassBtn" title="Full screen the simulation (Esc to exit)"><span id="fsIcon">&#9974;</span> Full screen</div>
       </div>
@@ -871,6 +903,7 @@ ${pilotHeadTags(1)}
   var order = DEFAULT_ORDER.slice();   // position → STATES index
   var hiddenStates = {};               // { stateIndex: 1 }
   var stateNames = {};                 // { stateIndex: "custom title" }
+  var widgetStates = {};               // { widgetKey: 'show'|'hide' } — sim ⚙ overrides
   var dirty = false;                   // unsaved changes present?
   function loadLayout() {
     try {
@@ -879,11 +912,12 @@ ${pilotHeadTags(1)}
         if (validOrder(d.order)) order = d.order.slice();
         if (d.hidden && typeof d.hidden === 'object') hiddenStates = d.hidden;
         if (d.names && typeof d.names === 'object') stateNames = d.names;
+        if (d.widgets && typeof d.widgets === 'object') widgetStates = d.widgets;
       }
     } catch (e) {}
   }
   function saveLayout() {
-    try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+    try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates })); } catch (e) {}
     pushLayoutRemote();
     dirty = false; updateSaveBtn(true);
   }
@@ -904,7 +938,7 @@ ${pilotHeadTags(1)}
           'apikey': PM_CONFIG.supabaseAnonKey, 'Authorization': 'Bearer ' + tok,
           'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal'
         },
-        body: JSON.stringify({ concept_id: CONCEPT_ID, layout: { order: order, hidden: hiddenStates, names: stateNames }, updated_at: new Date().toISOString() })
+        body: JSON.stringify({ concept_id: CONCEPT_ID, layout: { order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates }, updated_at: new Date().toISOString() })
       }).then(function (r) { if (!r.ok) { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} } },
               function () { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} });
     } catch (e) {}
@@ -921,15 +955,18 @@ ${pilotHeadTags(1)}
         if (!rows || !rows.length || !rows[0].layout) return;
         if (dirty || railTouched) return;   // they're already working — this device's view wins for now
         var d = rows[0].layout;
-        var same = JSON.stringify([d.order, d.hidden, d.names]) ===
-                   JSON.stringify([order, hiddenStates, stateNames]);
+        var same = JSON.stringify([d.order, d.hidden, d.names, d.widgets]) ===
+                   JSON.stringify([order, hiddenStates, stateNames, widgetStates]);
         if (same) return;
         if (validOrder(d.order)) order = d.order.slice();
         hiddenStates = (d.hidden && typeof d.hidden === 'object') ? d.hidden : {};
         stateNames = (d.names && typeof d.names === 'object') ? d.names : {};
-        try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+        widgetStates = (d.widgets && typeof d.widgets === 'object') ? d.widgets : {};
+        try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates })); } catch (e) {}
         dirty = false;
         buildRail();
+        sendWidgetVis();
+        updateWgBtn();
         goToState(0, false);
       }).catch(function () {});
     });
@@ -1258,6 +1295,111 @@ ${pilotHeadTags(1)}
     rowMenu.style.left = Math.max(6, left) + 'px'; rowMenu.style.top = Math.max(6, top) + 'px';
   }
 
+  // ── ⚙ Per-widget visibility (SET_WIDGET_VIS) — the granular sibling of Clean
+  // mode. The SIM declares its toggleable widgets in SIM_READY; this chrome is
+  // generic and knows nothing about any specific sim. Three-way per widget:
+  // Auto (follow each state's authored default) / On (force show) / Off (force
+  // hide). Rides the LS_LAYOUT blob → applies live, persists on ✓ Save,
+  // cleared by ↻ Default, synced per professor via teacher_layouts.
+  var simWidgets = null;      // [{key,label}] from SIM_READY, or null = no button
+  var widgetVisNow = {};      // { key: bool } — EFFECTIVE visibility reported by the sim
+  var widgetRowEls = {};      // { key: switchButtonEl } for live sync while the panel is open
+  function sendWidgetVis() { post({ type: 'SET_WIDGET_VIS', overrides: widgetStates }); }
+  function widgetOverrideCount() { var n = 0, k; for (k in widgetStates) n++; return n; }
+  function updateWgBtn() {
+    var wb = document.getElementById('wgBtn'); if (!wb) return;
+    wb.classList.toggle('avail', !!(simWidgets && simWidgets.length));
+    wb.classList.toggle('on', widgetOverrideCount() > 0);
+  }
+  var widgetMenu = document.createElement('div'); widgetMenu.id = 'widgetMenu';
+  (document.getElementById('fsScope') || document.body).appendChild(widgetMenu);   // inside #fsScope so it renders in fullscreen too
+  function closeWidgetMenu() { widgetMenu.classList.remove('open'); widgetMenu.innerHTML = ''; widgetRowEls = {}; }
+  document.addEventListener('click', function (e) {
+    var wb = document.getElementById('wgBtn');
+    if (!widgetMenu.contains(e.target) && !(wb && wb.contains(e.target))) closeWidgetMenu();
+  }, true);
+  window.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeWidgetMenu(); });
+  // Sync the open panel's switches to what the sim says is actually on screen
+  // (called on every WIDGET_VIS_STATE — state changes flip switches live).
+  function syncWidgetMenu() {
+    for (var k in widgetRowEls) {
+      if (widgetVisNow[k] !== undefined) widgetRowEls[k].classList.toggle('on', !!widgetVisNow[k]);
+    }
+  }
+  function openWidgetMenu(anchorEl) {
+    widgetMenu.innerHTML = ''; widgetRowEls = {};
+    var head = document.createElement('div'); head.className = 'wgHead'; head.textContent = 'Show on screen'; widgetMenu.appendChild(head);
+    for (var i = 0; i < simWidgets.length; i++) {
+      (function (w) {
+        var row = document.createElement('div'); row.className = 'wgRow';
+        var lbl = document.createElement('span'); lbl.className = 'wgLbl'; lbl.textContent = w.label || w.key; row.appendChild(lbl);
+        var sw = document.createElement('button'); sw.className = 'wgSwitch';
+        sw.title = 'Show / hide';
+        var visNow = widgetVisNow[w.key];
+        if (visNow === undefined) visNow = widgetStates[w.key] !== 'hide';
+        sw.classList.toggle('on', !!visNow);
+        sw.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          var wantVisible = !sw.classList.contains('on');
+          sw.classList.toggle('on', wantVisible);
+          // Flip = an explicit pin for this widget ('show'/'hide'); the sim
+          // confirms via WIDGET_VIS_STATE, and Reset returns everything to
+          // the lesson's own defaults.
+          widgetStates[w.key] = wantVisible ? 'show' : 'hide';
+          sendWidgetVis(); markDirty(); updateWgBtn();
+          pmt('widget_toggle', { widget: w.key, mode: widgetStates[w.key] });
+        });
+        // Hovering a row pulses the widget on-canvas — no name-to-screen guessing.
+        row.addEventListener('mouseenter', function () { post({ type: 'WIDGET_PING', widget: w.key }); });
+        row.appendChild(sw); widgetMenu.appendChild(row);
+        widgetRowEls[w.key] = sw;
+      })(simWidgets[i]);
+    }
+    var actions = document.createElement('div'); actions.className = 'wgActions';
+    var reset = document.createElement('button');
+    reset.textContent = '↻ Defaults';
+    reset.title = 'Back to the lesson’s own setup';
+    reset.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      widgetStates = {};
+      sendWidgetVis(); markDirty(); updateWgBtn();
+      pmt('widget_toggle', { widget: 'ALL', mode: 'auto' });
+    });
+    actions.appendChild(reset);
+    // Same save as the state rail's ✓ Save — persists the WHOLE layout
+    // (state order/hides/renames + widget setup) to this teacher's account.
+    var save = document.createElement('button'); save.className = 'wgSave';
+    save.textContent = '✓ Save';
+    save.title = 'Keep this setup on your account — it loads on every device';
+    save.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      saveLayout();
+      pmt('widget_save', { overrides: widgetOverrideCount() });
+      save.textContent = '✓ Saved';
+      setTimeout(function () { save.textContent = '✓ Save'; }, 1400);
+    });
+    actions.appendChild(save);
+    widgetMenu.appendChild(actions);
+    var hint = document.createElement('div'); hint.className = 'wgHint';
+    hint.textContent = 'Point at a row to see it flash on screen.';
+    widgetMenu.appendChild(hint);
+    var r = anchorEl.getBoundingClientRect();
+    widgetMenu.classList.add('open');
+    var mw = widgetMenu.offsetWidth || 230, mh = widgetMenu.offsetHeight || 200;
+    var left = Math.min(r.right - mw, document.documentElement.clientWidth - mw - 6);
+    var top = Math.min(r.bottom + 6, document.documentElement.clientHeight - mh - 6);
+    widgetMenu.style.left = Math.max(6, left) + 'px'; widgetMenu.style.top = Math.max(6, top) + 'px';
+  }
+  (function () {
+    var wb = document.getElementById('wgBtn');
+    if (wb) wb.addEventListener('click', function () {
+      if (!simWidgets || !simWidgets.length) return;
+      if (widgetMenu.classList.contains('open')) { closeWidgetMenu(); return; }
+      pmt('widget_menu_open', { overrides: widgetOverrideCount() });
+      openWidgetMenu(wb);
+    });
+  })();
+
   function setHidden(si, hide) {
     if (hide) { hiddenStates[si] = 1; pmt('state_hide', { state_id: STATES[si].id, title: stateTitle(si) }); }
     else { delete hiddenStates[si]; pmt('state_unhide', { state_id: STATES[si].id, title: stateTitle(si) }); }
@@ -1362,12 +1504,16 @@ ${pilotHeadTags(1)}
     var keep = order[idx];
     order = DEFAULT_ORDER.slice();
     idx = order.indexOf(keep); if (idx < 0) idx = 0;
-    // "Default order" is the teacher's full reset: order + hidden + renames — and it PERSISTS immediately.
+    // "Default order" is the teacher's full reset: order + hidden + renames +
+    // widget overrides — and it PERSISTS immediately.
     var hadHides = false, hadNames = false, k;
     for (k in hiddenStates) { hadHides = true; break; }
     for (k in stateNames) { hadNames = true; break; }
-    hiddenStates = {}; stateNames = {}; hiddenExpanded = false;
-    pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames });
+    var hadWidgets = widgetOverrideCount() > 0;
+    hiddenStates = {}; stateNames = {}; widgetStates = {}; hiddenExpanded = false;
+    if (hadWidgets) { sendWidgetVis(); closeWidgetMenu(); }
+    updateWgBtn();
+    pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames, cleared_widgets: hadWidgets });
     saveLayout();     // durable reset
     buildRail();
     updateBadge();
@@ -1547,6 +1693,13 @@ ${pilotHeadTags(1)}
     if (t === 'SIM_READY') {
       simReady = true;
       pmt('sim_ready', { states: STATE_COUNT });
+      // Sims that support per-widget toggles declare them here (⚙ panel).
+      // Replaying the saved overrides restores the teacher's layout on load.
+      if (e.data.widgets && e.data.widgets.length) {
+        simWidgets = e.data.widgets;
+        updateWgBtn();
+        if (widgetOverrideCount() > 0) sendWidgetVis();
+      }
       attachSimCapture();
       // Baked audio can't be re-paced by the slider — disable it when clips exist.
       if (HAS_AUDIO && rateEl) { rateEl.disabled = true; rateEl.title = 'Pacing follows the recorded narration'; }
@@ -1564,6 +1717,10 @@ ${pilotHeadTags(1)}
     } else if (t === 'PARAM_UPDATE') {
       // Explorer scenarios announce param changes explicitly (e.g. ac_generator).
       pmt('slider_change', { slider: e.data.param || 'param', value: e.data.value, explorer: e.data.explorer_id || null });
+    } else if (t === 'WIDGET_VIS_STATE') {
+      // Sim reports EFFECTIVE widget visibility (state default ∘ overrides) —
+      // keeps the ⚙ panel's switches matching what's actually on screen.
+      if (e.data.vis && typeof e.data.vis === 'object') { widgetVisNow = e.data.vis; syncWidgetMenu(); }
     } else if (t === 'CANVAS_TAP') {
       toggleFreeze();
     } else if (t === 'SIM_ERROR') {

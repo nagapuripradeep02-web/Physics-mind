@@ -348,6 +348,12 @@ const F3D_REVEAL_KEYS = [
     'wire_to_coil_morph', 'per_turn_field_circles',
     'radial_cancellation_arrows', 'axial_buildup_arrows',
     'capacitor',
+    // capacitance (Q = CV, C = ε₀A/d — 2026-07-21 engine ask): the per-state
+    // `capacitance` block (distinct from parallel_plates' `capacitor` block —
+    // different shape, a NEW scenario_type). Listed here so a cached
+    // physics_config that flattened field_3d_config.states is still recognised
+    // as field_3d, not PCPL.
+    'capacitance',
     // electric_potential_dipole (dipole_potential) + the potential siblings: every
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
@@ -1233,6 +1239,39 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(asNum(gapWiden.anim_at_ms, 9000) + asNum(gapWiden.duration_ms, 2500) + 500);
         }
     }
+    // capacitance (Q = CV, C = ε₀A/d — 2026-07-21 engine ask): the NEW capacitance
+    // scenario built alongside parallel_plates. Every guided beat is a one-shot
+    // smoothstep ramp (switch-close charge-in / a v_steps sequence / a continuous
+    // v_sweep / an area_morph / a gap_morph mirroring parallel_plates' gap_widen
+    // EXACTLY) that then HOLDS (updateCapacitanceFrame, accumulator-free — pure
+    // fn of state-local t) — pin the frozen frame past the LAST ramp's payoff so
+    // THE EYE photographs the settled Q/V/C readout, not a mid-ramp frame. S6
+    // (mode:'derivation') has no ramp — its three link_cues gate the chain-link
+    // formula reveal instead. S7 (mode:'explore') is user-driven — handled in
+    // deriveHoldExpectations as interactive, not pinned here.
+    const capState = asObj(state.capacitance);
+    if (capState) {
+        if (typeof capState.switch_close_at_ms === 'number') {
+            candidates.push(asNum(capState.switch_close_at_ms, 0) + asNum(capState.charge_duration_ms, 1800) + 500);
+        }
+        const vSteps = Array.isArray(capState.v_steps) ? capState.v_steps : [];
+        for (const stepRaw of vSteps) {
+            const step = asObj(stepRaw);
+            if (!step) continue;
+            candidates.push(asNum(step.at_ms, 0) + asNum(step.duration_ms, 1200) + 500);
+        }
+        const vSweep = asObj(capState.v_sweep);
+        if (vSweep) candidates.push(asNum(vSweep.at_ms, 0) + asNum(vSweep.duration_ms, 4000) + 500);
+        const areaMorph = asObj(capState.area_morph);
+        if (areaMorph) candidates.push(asNum(areaMorph.at_ms, 0) + asNum(areaMorph.duration_ms, 2500) + 500);
+        const gapMorph = asObj(capState.gap_morph);
+        if (gapMorph) candidates.push(asNum(gapMorph.at_ms, 0) + asNum(gapMorph.duration_ms, 2500) + 500);
+        const linkCues = Array.isArray(capState.link_cues) ? capState.link_cues : [];
+        if (linkCues.length > 0) {
+            const lastCue = linkCues[linkCues.length - 1];
+            if (typeof lastCue === 'number') candidates.push(lastCue + 800);
+        }
+    }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
     // are one-shot timed gestures that then HOLD still — pin the frozen frame
     // past each payoff so the capture photographs the completed reveal, and so
@@ -1919,6 +1958,20 @@ export function deriveHoldExpectations(
             const mflHold = asObj(state.magnetic_flux_loop);
             if (mflHold) {
                 out[stateId] = (mflHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // capacitance (Q = CV, C = ε₀A/d — 2026-07-21 engine ask): every state
+            // exposes at least the relevant slider row(s) (Rule 31 controls/
+            // static_readouts), so the generic show_sliders catch below would
+            // swallow S1-S6's genuine ramp-then-HOLD beats into 'interactive'
+            // before they ever reach it. Classify explicitly (mirrors the
+            // magnetic_flux_loop/inductance/ac_generator split above): the
+            // explore state (mode:'explore', S7) is user-driven -> interactive;
+            // every other mode is a guided beat that ramps then settles to a
+            // HOLD (caught by maxRevealForField3dState above) -> reveal_hold.
+            const capHold = asObj(state.capacitance);
+            if (capHold) {
+                out[stateId] = (capHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

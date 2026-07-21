@@ -185,6 +185,34 @@ accumulator in particle_field) — numerically identical at 60 Hz, rate-correct 
 - NOT clocks — leave them: geometry constants that legitimately use 0.016 s (tube/cylinder radii) and
   the explorer drag-velocity divisor.
 
+## Rule 39 — teacher widget contract (2026-07-21, prototyped on `capacitance`)
+
+A BUILD CONTRACT for every NEW scenario that ships DOM overlay widgets (slider rows, graph, formula
+surface, readouts). The review-chrome ⚙ panel (`build_review_site.ts`: switches + hover-ping +
+in-panel ✓ Save/↻ Defaults) is built ONCE and fully generic — it renders whatever a sim declares and
+shows no button for sims that declare nothing, so the existing fleet is untouched until a scenario
+opts in (fleet retrofit of existing concepts = a separate founder-named decision, not this rule).
+The scenario side of the contract:
+
+- **(39a) Declare** the toggleable widgets in `SIM_READY` — `widgets: [{key, label}]`, with
+  teacher-friendly labels ("Live numbers (V, Q, C)", never internal ids).
+- **(39b) Resolve** ALL overlay display decisions through a per-scenario widget-vis resolver:
+  effective = teacher override ('show'/'hide') ∘ the state's authored Rule-31 default. A force-shown
+  slider row is also LIVE via the drag-seize pattern (keeps the physics exact under manual drives);
+  a 'show' override can only uncover what the mode can actually render.
+- **(39c)** The `SET_WIDGET_VIS` handler re-runs ONLY the display pass — NEVER the full state apply
+  (a full re-apply resets the drag-seize flags mid-state — a logged bug class the capacitance
+  implementation dodged). The override map persists across `SET_STATE`.
+- **(39d) Report** effective visibility via `WIDGET_VIS_STATE` on every state apply and every
+  override change (drives the chrome's live-synced switches).
+- **(39e) Support `WIDGET_PING`** — a brief on-canvas pulse of the hovered widget (the no-guessing
+  affordance).
+
+THE EYE never sends overrides, so captures always see authored defaults — frozen baselines are
+unaffected by construction; persistence rides the existing `teacher_layouts` blob. **Reference
+implementation:** `capApplyWidgetVis` / `CAP_WIDGET_ELS` / `pmSimReadyMsg` in
+`field_3d_renderer.ts` (plus the contract header comment at the top of that file).
+
 ## Cache-invalidation contract
 
 This cluster **writes directives, does not execute sweeps.**
@@ -242,6 +270,7 @@ After fixing a bug, the queue is the durable home for the prevention rule. Updat
 - [ ] `PM_currentState` remains the sole state variable (Rule 6).
 - [ ] For board-mode fixes **[DORMANT — Rule 20 conceptual-only phase]**: `canvas_style: "answer_sheet"`, `derivation_sequence`, and `mark_badge` still render correctly on `normal_reaction` and any other board-mode concept touched.
 - [ ] **Rule 36:** no hardcoded per-frame delta / 60 Hz assumption introduced; integrators stay linear in dt; `npm run check:renderer-syntax` run after the renderer edit → clean.
+- [ ] **Rule 39 (NEW scenario with DOM overlay widgets only):** the widget contract is implemented — `SIM_READY` declares `widgets: [{key, label}]` with teacher-friendly labels; ALL overlay display decisions route through the scenario's widget-vis resolver (override ∘ authored default; force-shown slider rows live via drag-seize); `SET_WIDGET_VIS` re-runs the display pass ONLY (never the full state apply); `WIDGET_VIS_STATE` posted on every apply; `WIDGET_PING` supported.
 - [ ] For primitive-library fixes: every caller of the edited primitive checked; list the callers in the verification note.
 - [ ] `engine_bug_queue` row INSERTed or UPDATEd; silent-failure catalog table above also updated.
 
