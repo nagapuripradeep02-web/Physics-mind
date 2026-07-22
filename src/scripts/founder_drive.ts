@@ -32,8 +32,17 @@ interface SliderDrag {
   before: string;
   after: string;
   valueBefore: string;
-  valueAfter: string;
+  valueAtRelease: string; // input value the instant the mouse releases
+  valueAfter: string; // input value ~1.2s later — a scripted ramp clobbering the drag shows here
   moved: boolean;
+  reverted: boolean; // true = the sim took the drag then overwrote it (the dead-guided-slider class)
+}
+
+interface OverlayCollision {
+  state: number;
+  overlay: string;
+  chrome: string;
+  overlapPx: { w: number; h: number };
 }
 
 interface Manifest {
@@ -44,6 +53,7 @@ interface Manifest {
   stateTitles: string[];
   shots: Shot[];
   sliderDrags: SliderDrag[];
+  overlayCollisions: OverlayCollision[];
   motionProbe: { frameA: string; frameB: string; bytesEqual: boolean } | null;
   consoleErrors: string[];
   pageErrors: string[];
@@ -87,6 +97,7 @@ async function main(): Promise<void> {
     stateTitles: [],
     shots: [],
     sliderDrags: [],
+    overlayCollisions: [],
     motionProbe: null,
     consoleErrors: [],
     pageErrors: [],
@@ -139,20 +150,144 @@ async function main(): Promise<void> {
       manifest.stateTitles.push(((await cards.nth(i).textContent()) ?? '').trim());
     }
 
-    // ── Per-state walk: click card (enters paused at t=0), then Play and sample. ──
+    const findSimFrame = (): Frame | null =>
+      page.frames().find((f) => f !== page.mainFrame() && f.url() !== 'about:blank') ?? null;
+
+    // Trusted drag on every visible slider of the CURRENT state (Stage-0 harness gap:
+    // the dead-guided-slider class lives in scripted states, not explore — drag everywhere).
+    const dragVisibleSliders = async (stateNum: number, prefix: string): Promise<number> => {
+      const simFrame = findSimFrame();
+      if (!simFrame) {
+        manifest.flags.push(`NO_SIM_FRAME: could not locate the sim iframe in state ${stateNum}`);
+        return 0;
+      }
+      const sliders = simFrame.locator('input[type="range"]:visible');
+      const n = await sliders.count();
+      for (let s = 0; s < n; s++) {
+        const el = sliders.nth(s);
+        const id = (await el.getAttribute('id')) ?? `slider_${s}`;
+        const box = await el.boundingBox();
+        if (!box) continue;
+        const valueBefore = (await el.inputValue()) ?? '';
+        const beforeFile = `${prefix}_${id}_before.png`;
+        await page.screenshot({ path: join(outDir, beforeFile) });
+
+        const y = box.y + box.height / 2;
+        await page.mouse.move(box.x + box.width * 0.15, y);
+        await page.mouse.down();
+        await page.mouse.move(box.x + box.width * 0.85, y, { steps: 12 });
+        await page.mouse.up();
+        const valueAtRelease = (await el.inputValue()) ?? '';
+        await page.waitForTimeout(1200);
+
+        const valueAfter = (await el.inputValue()) ?? '';
+        const afterFile = `${prefix}_${id}_after.png`;
+        await page.screenshot({ path: join(outDir, afterFile) });
+        const reverted = valueAtRelease !== valueBefore && valueAfter !== valueAtRelease;
+        if (reverted) {
+          manifest.flags.push(
+            `SLIDER_CLOBBERED: ${id} in state ${stateNum} took the drag (${valueAtRelease}) then reverted to ${valueAfter}`,
+          );
+        }
+        manifest.sliderDrags.push({
+          sliderId: id,
+          state: stateNum,
+          before: beforeFile,
+          after: afterFile,
+          valueBefore,
+          valueAtRelease,
+          valueAfter,
+          moved: valueBefore !== valueAfter,
+          reverted,
+        });
+      }
+      return n;
+    };
+
+    // Overlay-vs-chrome collision probe (Stage-0 harness gap: THE EYE shoots the raw sim,
+    // so review-chrome collisions are invisible to every gate but this one). Measures the
+    // sim iframe's fixed-position overlays + .pm_hud statics against the player's glass
+    // buttons in PAGE coordinates.
+    const CHROME_SELECTORS = ['#fsBtn', '#wgBtn', '#fsCleanBtn', '#simPenBar'];
+    const probeChromeCollisions = async (stateNum: number): Promise<void> => {
+      const simFrame = findSimFrame();
+      if (!simFrame) return;
+      const chrome = await page.evaluate((sels) => {
+        const out: { sel: string; x: number; y: number; w: number; h: number }[] = [];
+        for (const sel of sels) {
+          const el = document.querySelector(sel);
+          if (!el) continue;
+          const r = el.getBoundingClientRect();
+          const cs = getComputedStyle(el);
+          if (r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none') {
+            out.push({ sel, x: r.x, y: r.y, w: r.width, h: r.height });
+          }
+        }
+        const iframeEl = document.getElementById('sim');
+        const ir = iframeEl ? iframeEl.getBoundingClientRect() : { x: 0, y: 0 };
+        return { chrome: out, iframeX: ir.x, iframeY: ir.y };
+      }, CHROME_SELECTORS);
+      const overlays = await simFrame.evaluate(() => {
+        const out: { name: string; x: number; y: number; w: number; h: number }[] = [];
+        const seen = new Set<Element>();
+        const candidates = [
+          ...Array.from(document.querySelectorAll('.pm_hud')),
+          ...Array.from(document.querySelectorAll('div, canvas')).filter(
+            (el) => getComputedStyle(el).position === 'fixed',
+          ),
+        ];
+        for (const el of candidates) {
+          if (seen.has(el)) continue;
+          seen.add(el);
+          const cs = getComputedStyle(el);
+          if (cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity) === 0) continue;
+          const r = el.getBoundingClientRect();
+          if (r.width < 8 || r.height < 8) continue;
+          out.push({
+            name: el.id || el.className.toString().split(' ')[0] || el.tagName.toLowerCase(),
+            x: r.x,
+            y: r.y,
+            w: r.width,
+            h: r.height,
+          });
+        }
+        return out;
+      });
+      for (const ov of overlays) {
+        const ox = ov.x + chrome.iframeX;
+        const oy = ov.y + chrome.iframeY;
+        for (const ch of chrome.chrome) {
+          const w = Math.min(ox + ov.w, ch.x + ch.w) - Math.max(ox, ch.x);
+          const h = Math.min(oy + ov.h, ch.y + ch.h) - Math.max(oy, ch.y);
+          if (w > 4 && h > 4) {
+            manifest.overlayCollisions.push({
+              state: stateNum,
+              overlay: ov.name,
+              chrome: ch.sel,
+              overlapPx: { w: Math.round(w), h: Math.round(h) },
+            });
+          }
+        }
+      }
+    };
+
+    // ── Per-state walk: click card (enters paused at t=0), Play, sample, probe, drag. ──
     for (let i = 0; i < stateCount; i++) {
       await cards.nth(i).click();
       await page.waitForTimeout(1400); // STATE_REACHED + first paint
       await shoot(i + 1, 'enter_t0', `S${i + 1}_t0`);
+      await probeChromeCollisions(i + 1);
 
       await page.locator('#playBtn').click();
       await page.waitForTimeout(2500);
       await shoot(i + 1, 'playing_mid', `S${i + 1}_mid`);
-      await page.waitForTimeout(3500);
+      // Drag mid-play so a scripted ramp that clobbers manual input shows as `reverted`.
+      await dragVisibleSliders(i + 1, `S${i + 1}`);
+      await page.waitForTimeout(2300);
       await shoot(i + 1, 'playing_late', `S${i + 1}_late`);
     }
 
-    // ── Explore state (last card): trusted slider drags + Rule-37 motion probe. ──
+    // ── Explore state (last card): post-narration sandbox re-drag + Rule-37 motion probe. ──
     if (stateCount > 0) {
       const exploreIdx = stateCount - 1;
       await cards.nth(exploreIdx).click();
@@ -160,47 +295,9 @@ async function main(): Promise<void> {
       await page.locator('#playBtn').click();
       // Let the narration/timeline run out so we test the post-narration sandbox.
       await page.waitForTimeout(9000);
-
-      const simFrame: Frame | null =
-        page.frames().find((f) => f !== page.mainFrame() && f.url() !== 'about:blank') ?? null;
-      if (!simFrame) {
-        manifest.flags.push('NO_SIM_FRAME: could not locate the sim iframe for slider drags');
-      } else {
-        const sliders = simFrame.locator('input[type="range"]:visible');
-        const n = await sliders.count();
-        if (n === 0) {
-          manifest.flags.push('NO_VISIBLE_SLIDERS_IN_EXPLORE: explore state exposes no sliders');
-        }
-        for (let s = 0; s < n; s++) {
-          const el = sliders.nth(s);
-          const id = (await el.getAttribute('id')) ?? `slider_${s}`;
-          const box = await el.boundingBox();
-          if (!box) continue;
-          const valueBefore = (await el.inputValue()) ?? '';
-          const beforeFile = `explore_${id}_before.png`;
-          await page.screenshot({ path: join(outDir, beforeFile) });
-
-          // Trusted drag: press on the track, pull to ~85% of its width.
-          const y = box.y + box.height / 2;
-          await page.mouse.move(box.x + box.width * 0.15, y);
-          await page.mouse.down();
-          await page.mouse.move(box.x + box.width * 0.85, y, { steps: 12 });
-          await page.mouse.up();
-          await page.waitForTimeout(1200);
-
-          const valueAfter = (await el.inputValue()) ?? '';
-          const afterFile = `explore_${id}_after.png`;
-          await page.screenshot({ path: join(outDir, afterFile) });
-          manifest.sliderDrags.push({
-            sliderId: id,
-            state: exploreIdx + 1,
-            before: beforeFile,
-            after: afterFile,
-            valueBefore,
-            valueAfter,
-            moved: valueBefore !== valueAfter,
-          });
-        }
+      const dragged = await dragVisibleSliders(exploreIdx + 1, 'explore');
+      if (dragged === 0) {
+        manifest.flags.push('NO_VISIBLE_SLIDERS_IN_EXPLORE: explore state exposes no sliders');
       }
 
       // Rule-37 probe: two frames 1s apart, long after narration end. Byte-equal
@@ -223,8 +320,12 @@ async function main(): Promise<void> {
   console.log(`founder_drive done: ${outDir}`);
   console.log(
     `  states=${manifest.stateCount} shots=${manifest.shots.length} drags=${manifest.sliderDrags.length} ` +
-      `flags=${manifest.flags.length} consoleErrors=${manifest.consoleErrors.length}`,
+      `collisions=${manifest.overlayCollisions.length} flags=${manifest.flags.length} ` +
+      `consoleErrors=${manifest.consoleErrors.length}`,
   );
+  for (const c of manifest.overlayCollisions) {
+    console.log(`  COLLISION: S${c.state} ${c.overlay} x ${c.chrome} (${c.overlapPx.w}x${c.overlapPx.h}px)`);
+  }
   for (const f of manifest.flags) console.log(`  FLAG: ${f}`);
 }
 

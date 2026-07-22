@@ -79,8 +79,15 @@ then continue at `next`.
    - **FIX** → save its candidate rows to `scar_candidates.sql` (**trial: files only, NEVER applied
      to the DB**), dispatch the ONE named `alex:*` owner per finding, re-run step 3's affected parts,
      re-dispatch founder-proxy. **Max 3 cycles**, then it's an ESCALATE.
-   - **ESCALATE** → park: commit WIP to the chapter branch, `parked:` entry in the state file,
-     PushNotification to the founder (concept, trigger, one-line why), **continue with next concept**.
+   - **FIX(engine)** *(non-blocking)* → append the finding to `docs/loop_runs/<chapter>_engine_queue.md`
+     + its scar candidate to `scar_candidates.sql`; the concept proceeds on its authoring merits
+     (can still APPROVE with engine items riding along). **NOBODY edits engine code during the loop** —
+     the queue batches to the founder at chapter end.
+   - **FIX(engine)-blocking** (the state's core claim is contradicted on screen) → park like an
+     escalation, with the engine finding as the named cause.
+   - **ESCALATE** (physics doubt | fix-budget exceeded) → park: commit WIP to the chapter branch,
+     `parked:` entry in the state file, PushNotification to the founder (concept, trigger, one-line
+     why), **continue with next concept**.
    - **APPROVE** → step 5.
 5. **Checkpoint** — surgical `git add` (concept JSON, registration sites, migration file,
    `docs/loop_runs/<chapter>/<concept>/`, PROGRESS.md) → commit to the chapter branch.
@@ -97,16 +104,21 @@ other branch or worktree.
 
 1. `npm run build:review -- <id>` for every approved concept (already built during the loop — verify
    HTTP 200 each on the detached server).
-2. PushNotification: "<chapter> ready: N approved, M parked, review at http://localhost:<port>".
+2. PushNotification: "<chapter> ready: N approved, M parked, E engine-queue items, review at
+   http://localhost:<port>".
 3. STOP. The founder batch-reviews every sim: approves (→ shipping flow later, at their discretion),
-   or gives tweaks (→ new scar candidates + fix dispatches), and rules on each `parked` concept and
-   each `scar_candidates.sql` (apply / edit / discard).
+   or gives tweaks (→ new scar candidates + fix dispatches), rules on each `parked` concept and each
+   `scar_candidates.sql` (apply / edit / discard), and triages `<chapter>_engine_queue.md` (the
+   batched `FIX(engine)` findings → peter_parker dispatches at the founder's discretion).
 
 ## 5 · Escalation triggers (founder-proxy → park-and-continue)
 
-1. The fix needs a renderer/engine edit (includes "needs a new scenario_type/primitive").
-2. Physics-correctness doubt founder-proxy cannot resolve beyond doubt.
-3. Fix-cycle budget exceeded (3 rounds).
+1. Physics-correctness doubt founder-proxy cannot resolve beyond doubt.
+2. Fix-cycle budget exceeded (3 rounds).
+
+Engine-side defects are NOT escalations (Stage-0 calibration outcome, founder-approved 2026-07-22):
+they are `FIX(engine)` ride-alongs batched to the chapter-end engine queue — unless blocking
+(`FIX(engine)-blocking`), which parks the concept.
 
 ## 6 · Quality-over-quantity (structural, not aspirational)
 
