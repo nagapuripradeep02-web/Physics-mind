@@ -33,6 +33,7 @@
     "smoke:install": "playwright install chromium",
     "smoke:visual-validator": "npx tsx --env-file=.env.local src/scripts/smoke_visual_validator.ts",
     "visual:eyes": "npx tsx --env-file=.env.local src/scripts/visual_eyes.ts",
+    "founder:drive": "npx tsx src/scripts/founder_drive.ts",
     "visual:approve": "npx tsx --env-file=.env.local src/scripts/visual_approve.ts",
     "log:lesson": "npx tsx --env-file=.env.local src/scripts/log_lesson.ts",
     "prewarm:deepdive": "npx tsx --env-file=.env.local src/scripts/prewarm_deepdive.ts",
