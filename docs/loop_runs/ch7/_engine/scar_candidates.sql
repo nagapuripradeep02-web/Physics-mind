@@ -260,6 +260,66 @@ INSERT INTO engine_bug_queue (
 -- itself and refuted all 3 of eye-walker's findings (S8 fold DOES render,
 -- S1 heater desync was a frame-mismatch, S6 DC-twin DOES drift live) but
 -- found these 2 real, non-blocking defects along the way.
+--
+-- STATUS UPDATE (§3b engine-loop dispatch, 2026-07-22): row (1) below FIXED.
+-- Fix landed in: src/lib/renderers/field_3d_renderer.ts (ac_resistor
+-- scenario's S6 twin-DC drift code path only; ~24211-24240 new helpers +
+-- ~24778-24809 the rewritten twin-apparatus block; two state-entry reset
+-- sites at ~24405-24408 / ~24450-24453).
+--   BEFORE (accumulator, invisible under THE EYE's coarse time-pin steps):
+--     window.PM_acrTwinBeadAccum = (window.PM_acrTwinBeadAccum || 0) + ACR_TWIN_DRIFT_K * I_dc * dt;
+--     var tf = (((tu.slot + window.PM_acrTwinBeadAccum) % 1) + 1) % 1;
+--   AFTER (pure function of absolute state-local t, mirrors capRamp's own
+--   "Pure fn of t" contract): a new acrRampIntegral(t, atMs, durMs, from, to)
+--   closed-form helper (antiderivative of capRamp's cubic smoothstep, u^3 -
+--   0.5u^4) integrates V_dc(tau)/R_dc analytically over [0,t] while neither
+--   V_dc nor R has ever been dragged this state-visit; the instant either is
+--   dragged, a (segment-start t, distance-at-start, rate) triple is
+--   baselined ONCE (continuous with the closed form at the drag instant) and
+--   only re-baselined on a further rate change -- a genuine discrete history
+--   event THE EYE never visits (it never drags). window.PM_acrTwinDist
+--   exposes the computed value every frame (same live-inspection convention
+--   as the other window.PM_acr* vars already on the file).
+-- After-proof (headless Playwright probe against the re-seeded
+-- simulation_cache row, pinning STATE_6 via the EXACT SET_TIME_FREEZE
+-- contract THE EYE/screenshotter.ts use -- RESET_TRAJECTORY once, then
+-- repeated SET_TIME_FREEZE with no reset between):
+--   distinct-position proof:  t=3000ms -> PM_acrTwinDist=0.594576111...,
+--                              t=6000ms -> PM_acrTwinDist=1.053555 (moved).
+--   REWIND/determinism proof: t=3000ms -> 0.594576111..., then t=6000ms,
+--                              then BACK to t=3000ms -> 0.594576111...
+--                              (byte-identical, diff=0) -- proves it is a
+--                              pure function of t, not a running accumulator
+--                              that cannot rewind (the actual bug fixed).
+--   independent cross-check:  a from-scratch reimplementation of the closed
+--                              form, written separately in the test script
+--                              (not calling any renderer code), matched the
+--                              renderer's live PM_acrTwinDist EXACTLY at both
+--                              pinned instants (diff < 1e-6).
+--   F1 preservation proof:    a real trusted keyboard drag on
+--                              #acr_V_dc_slider while pinned at t=3000ms
+--                              flipped PM_acrVdcDragged true and changed
+--                              V_dc 9.24V -> 8.4V; advancing the pin 600ms
+--                              forward gave impliedRate=0.168 vs
+--                              expectedRate=ACR_TWIN_DRIFT_K*(8.4/5)=0.168
+--                              (exact match) -- the drift rate visibly
+--                              changes going forward from the drag instant,
+--                              lockstep/lockstep lockstep gating intact.
+-- Verify chain: check:renderer-syntax clean, tsc --noEmit 0 errors,
+-- validate:concepts 125/125 PASS (ac_voltage_resistor.json PASS, no new
+-- warnings). THE EYE re-run on ac_voltage_resistor: 39/39 deterministic
+-- checks passed, 0 failed (was 39/39 before -- no regression; the DC-twin
+-- dense S6 frames now show genuinely distinct positions across the
+-- timeline, whereas before this fix they were pixel-static under the pin --
+-- this is the intended, desired change for a brand-new concept with no
+-- locked baseline yet, not a regression). Regression sample: re-seeded +
+-- re-ran THE EYE on faraday_law_induction (shared field_3d_renderer.ts) --
+-- see the session's verify-chain report for the exact pass count; 0 diffs
+-- vs its locked baseline. Fleet-wide sweep NOT warranted: the diff is
+-- scoped to the ac_resistor scenario's own local S6 drift calculation
+-- (never touches __pmSteps/dtStep/the shared fixed-step accumulator, Rule
+-- 36b), and ac_resistor is used by exactly one shipped concept so far
+-- (ac_voltage_resistor).
 -- ---------------------------------------------------------------------
 INSERT INTO engine_bug_queue (
   bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -274,9 +334,9 @@ INSERT INTO engine_bug_queue (
   'All scripted/choreographed motion in a field_3d scenario must be a PURE FUNCTION of absolute PM_simTimeMs (deterministic at any pinned instant, Rule-36-consistent). Reserve dt-accumulators strictly for trusted-drag interactive velocity, never for scripted drift. A drift whose design intent is declared (here: "DC beads drift, AC beads rock") must be verifiable in THE EYE''s frozen/dense frames.',
   'js_eval',
   'THE EYE dense frames for the state must show the declared drift element at >=1 DISTINCT position across the timeline (crop the element band, assert bead-core centroid moves > a few px between non-phase-aliased frames). If the element is static in THE EYE but the design declares drift, cross-check the founder_drive live dump: measured here at founder_drive S6_t0(1424ms)->S6_mid(2480ms) the DC bead core moved x=682.0->710.0 (+26 px/s), confirming a live-vs-capture split rather than a dead element.',
-  'OPEN',
+  'FIXED',
   ARRAY['ac_voltage_resistor']::text[],
-  ARRAY[]::text[],
+  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
   'ch7-stage1b-ac_voltage_resistor-checkpointB',
   'incident'
 );

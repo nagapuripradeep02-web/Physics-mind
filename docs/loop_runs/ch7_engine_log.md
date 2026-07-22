@@ -227,3 +227,68 @@ already covered this bug class.
 state transitions working). `npm run visual:eyes -- ac_voltage_resistor` must be re-run clean (without
 truncating output) before `quality-auditor` ∥ `eye-walker` dispatch, to confirm 39/39 and (separately)
 identify which single check was the original "1 failed" for the record.
+
+(Re-run confirmed clean: 39/39, 0 failed. quality-auditor PASS ∥ eye-walker FINDINGS(3) dispatched next
+— see Checkpoint B/C reports under `docs/loop_runs/ch7/ac_voltage_resistor/` for the reviewer
+disagreement and its resolution. `ac_voltage_resistor` SEALED and committed as `72910d1`.)
+
+---
+
+## Stage 1b — ride-along engine fix B1: DC-twin drift made pure-`t` (2026-07-22)
+
+**Rollback point (pre-dispatch HEAD):** `72910d1a131720593649bbff4acb41da53b0c79a`
+
+**Trigger:** founder-proxy Checkpoint B (`ac_voltage_resistor`), independently re-confirmed at
+Checkpoint C. While adjudicating a quality-auditor/eye-walker disagreement over S8's fold pane,
+founder-proxy opened the S6 frames directly and found the DC-twin bead drift — real and visible
+(~26 px/s) in the live `founder_drive` dump — pixel-static across every THE-EYE frame. Root cause: the
+drift was computed via an incremental per-frame accumulator (`PM_acrTwinBeadAccum += K*I_dc*dt`,
+`field_3d_renderer.ts:24745`), and a `dt>0.2→dt=0` guard (`:24686`) zeroes it under THE EYE's
+`SET_TIME_FREEZE` pin (which jumps ~1000ms between captured frames). Live-correct, gate-invisible —
+ride-along per Checkpoint B (does not contradict the concept's core teaching claim on the live screen),
+filed as `field3d_dt_accumulated_motion_invisible_to_eye_timepin` (MODERATE).
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, `general-purpose` stand-in (established
+pattern this run).
+
+**Fix landed:** `src/lib/renderers/field_3d_renderer.ts` only (+69/-4 lines, scoped entirely to the
+`ac_resistor` scenario's own S6 twin-drift code). Two new pure-`t` helpers — `acrRampIntegral` (the
+closed-form antiderivative of the existing `capRamp` cubic smoothstep, mirroring its own "pure fn of
+t" contract one level up) and `acrTwinScriptedDist` (divides that integral by `R_dc`, scaled by the
+existing `ACR_TWIN_DRIFT_K` pacing constant) — replace the accumulator. While neither `V_dc` nor `R`
+has been dragged this state-visit, distance is the exact closed-form integral of the scripted
+`V_dc(τ)/R` profile, reconstructible at any pinned `t` with zero per-frame history. The instant either
+control is dragged, a `(segment-start t, distance-at-start, rate)` triple is baselined once (continuous
+with the closed form at the drag instant) and only re-baselined on a further rate change — a genuine
+discrete history event THE EYE never visits (it never drags). `window.PM_acrTwinDist` now exposes the
+computed value each frame, matching the existing `window.PM_acr*` convention.
+
+**Verify chain (§3b):**
+1. `check:renderer-syntax` → PASS · `tsc --noEmit` → PASS · `validate:concepts` → PASS (125/125, no new
+   warnings).
+2. Runtime proof (the actual fix, not just tsc): pinned STATE_6 at two different absolute timestamps —
+   distinct `PM_acrTwinDist` values (`0.594576…` at t=3000ms, `1.053555` at t=6000ms). **Determinism/
+   rewind proof:** re-pinning back to t=3000ms after visiting t=6000ms reproduced the exact same value
+   (diff=0) — a running accumulator cannot rewind; a pure function of `t` can, which is the actual bug
+   fix. An independent from-scratch reimplementation of the closed form (written separately, never
+   calling renderer code) matched the renderer's live value at both instants to <1e-6. F1 preservation:
+   a real trusted drag on `#acr_V_dc_slider` (9.24V→8.4V) then advancing the pin 600ms gave an implied
+   drift rate matching `K·(8.4/5)` exactly — the drag-seize/lockstep gating from Checkpoint A's F1 fix
+   is untouched.
+3. `visual:eyes -- ac_voltage_resistor` → **39/39, 0 failed** (no locked baseline yet — H2 correctly
+   "Skipped"). Regression sample: `visual:eyes -- faraday_law_induction` → **27/27, 0 diffs** vs locked
+   baseline.
+4. Clock guard (Rule 36b): diff confined to `updateAcResistorFrame`'s local S6 block + 2 adjacent
+   state-entry-reset sites; `__pmSteps`/`dtStep`/the shared fixed-step accumulator untouched. Full fleet
+   sweep NOT warranted — `ac_resistor` is used by exactly one shipped concept, and the edit is scoped
+   entirely to that scenario's own local drift math.
+
+**Scar status updated:** `field3d_dt_accumulated_motion_invisible_to_eye_timepin` in
+`scar_candidates.sql`: `OPEN → FIXED`, `fixed_in_files` populated, documentation header added recording
+the before/after + all 4 verify proofs above.
+
+**Commit:** see `git log --grep=engine-loop -p` for
+`fix(engine-loop): field3d_dt_accumulated_motion_invisible_to_eye_timepin [peter_parker:renderer_primitives]`.
+
+**Outcome:** Fix PASSED. B2 (ASCII rms Unicode sweep) dispatches next, sequentially (same file), before
+`phasors` starts.

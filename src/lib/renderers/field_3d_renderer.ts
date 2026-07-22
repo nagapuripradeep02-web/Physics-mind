@@ -24208,6 +24208,37 @@ export const FIELD_3D_RENDERER_CODE = `
         return [x0 + (x1 - x0) * frac, wireY, 0];
     }
 
+    // Pure fn of t (Rule 26/36 — fixes engine_bug_queue
+    // field3d_dt_accumulated_motion_invisible_to_eye_timepin): closed-form
+    // definite integral of capRamp's own from->to smoothstep profile,
+    // integral_0^t V(tau) dtau, for the SAME (atMs, durMs, from, to) capRamp
+    // already takes. capRamp's ramp uses capSmooth01(u)=3u^2-2u^3, whose
+    // antiderivative over [0,u] is u^3 - u^4/2 — exact, no per-frame history,
+    // reconstructible at ANY pinned t (mirrors capRamp's own "Pure fn of t"
+    // contract exactly, one level up).
+    function acrRampIntegral(t, atMs, durMs, from, to) {
+        var a = (atMs != null ? atMs : 0) / 1000;
+        var dur = Math.max(0.001, (durMs != null ? durMs : 1500) / 1000);
+        var sum = Math.min(t, a) * from; // constant segment before the ramp starts
+        if (t > a) {
+            var u = Math.min(1, (t - a) / dur);
+            sum += dur * (from * u + (to - from) * (u * u * u - 0.5 * u * u * u * u));
+        }
+        if (t > a + dur) sum += (t - (a + dur)) * to; // constant segment after the ramp ends
+        return sum;
+    }
+
+    // Twin DC bead-drift distance while the scripted V_dc sweep (S6, not yet
+    // dragged) is driving — the closed-form integral of V_dc(tau)/R_dc over
+    // [0,t] via acrRampIntegral, scaled by the same ACR_TWIN_DRIFT_K pacing
+    // constant the old per-frame accumulator used. 'd' is the calling frame's
+    // stateDef.ac_resistor block (for the authored/cued ramp window).
+    function acrTwinScriptedDist(t, R_dc, d) {
+        var sMs = cueTriggerMs("dial_down_start", (d.dial_down_start_at_ms != null ? d.dial_down_start_at_ms : 2000));
+        var eMs = cueTriggerMs("dial_down_end", (d.dial_down_end_at_ms != null ? d.dial_down_end_at_ms : 5000));
+        return ACR_TWIN_DRIFT_K * acrRampIntegral(t, sMs, Math.max(1, eMs - sMs), 10.0, 7.0711) / R_dc;
+    }
+
     function buildAcResistor() {
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
 
@@ -24373,7 +24404,8 @@ export const FIELD_3D_RENDERER_CODE = `
 
         window.PM_acrVm = scVm.def; window.PM_acrR = scR.def; window.PM_acrFdemo = scF.def; window.PM_acrVdc = scVdc.def;
         window.PM_acrVmDragged = false; window.PM_acrRDragged = false; window.PM_acrFdemoDragged = false; window.PM_acrVdcDragged = false;
-        window.PM_acrPhase = 0; window.PM_acrLastT = 0; window.PM_acrTwinBeadAccum = 0;
+        window.PM_acrPhase = 0; window.PM_acrLastT = 0;
+        window.PM_acrTwinSegT = undefined; window.PM_acrTwinSegDist = undefined; window.PM_acrTwinSegRate = undefined;
         window.PM_acrMeterMode = "avg_i";
 
         // Rule 27 explorer pattern: stable id, every param change posted to parent.
@@ -24417,7 +24449,8 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_acrFdemo = (typeof ov.f_demo === "number") ? ov.f_demo : defF;
         window.PM_acrVdc = (typeof ov.V_dc === "number") ? ov.V_dc : defVdc;
         window.PM_acrVmDragged = false; window.PM_acrRDragged = false; window.PM_acrFdemoDragged = false; window.PM_acrVdcDragged = false;
-        window.PM_acrPhase = 0; window.PM_acrLastT = 0; window.PM_acrTwinBeadAccum = 0;
+        window.PM_acrPhase = 0; window.PM_acrLastT = 0;
+        window.PM_acrTwinSegT = undefined; window.PM_acrTwinSegDist = undefined; window.PM_acrTwinSegRate = undefined;
         window.PM_acrMeterMode = d.meter_mode || "avg_i";
 
         function syncS(id, v, dec) { var el = document.getElementById(id); if (el) el.value = String(v); var vEl = document.getElementById(id.replace("_slider", "_val")); if (vEl) vEl.textContent = v.toFixed(dec); }
@@ -24742,11 +24775,43 @@ export const FIELD_3D_RENDERER_CODE = `
                 twinHeaterObj.material.color = new THREE.Color(0x4A3B00).lerp(new THREE.Color(0xFFF176), 0.10 + 0.90 * twinHf);
                 twinHeaterObj.material.emissiveIntensity = 0.1 + 1.3 * twinHf;
             }
-            window.PM_acrTwinBeadAccum = (window.PM_acrTwinBeadAccum || 0) + ACR_TWIN_DRIFT_K * I_dc * dt;
+            // Bead-drift distance — PURE function of absolute state-local t
+            // (fixes field3d_dt_accumulated_motion_invisible_to_eye_timepin:
+            // the old '+= K*I_dc*dt' accumulator froze under THE EYE's
+            // SET_TIME_FREEZE pin, whose dt>0.2 guard (:24686-ish) zeroes it).
+            // While NEITHER V_dc nor R has ever been dragged this state-visit,
+            // distance is the closed-form scripted integral (reconstructible
+            // at any pinned t, no per-frame history — same contract as
+            // capRamp/acrRampIntegral). The instant either is dragged, the
+            // rate is baselined at a (segment-start t, distance) pair and
+            // re-baselined on every subsequent rate change — a genuine
+            // discrete history event THE EYE never visits (it never drags),
+            // so history-dependence there is exact for the live use it serves
+            // and preserves F1's "drift rate visibly changes going forward".
+            var twinDist;
+            if (!window.PM_acrVdcDragged && !window.PM_acrRDragged) {
+                window.PM_acrTwinSegT = undefined; window.PM_acrTwinSegDist = undefined; window.PM_acrTwinSegRate = undefined;
+                twinDist = acrTwinScriptedDist(t, R_dc, d);
+            } else if (window.PM_acrTwinSegT === undefined) {
+                // First frame post-drag: baseline continuity with wherever
+                // the (now-frozen) scripted formula had reached.
+                window.PM_acrTwinSegDist = acrTwinScriptedDist(t, R_dc, d);
+                window.PM_acrTwinSegT = t;
+                window.PM_acrTwinSegRate = I_dc;
+                twinDist = window.PM_acrTwinSegDist;
+            } else {
+                if (window.PM_acrTwinSegRate !== I_dc) {
+                    window.PM_acrTwinSegDist += ACR_TWIN_DRIFT_K * window.PM_acrTwinSegRate * (t - window.PM_acrTwinSegT);
+                    window.PM_acrTwinSegT = t;
+                    window.PM_acrTwinSegRate = I_dc;
+                }
+                twinDist = window.PM_acrTwinSegDist + ACR_TWIN_DRIFT_K * window.PM_acrTwinSegRate * (t - window.PM_acrTwinSegT);
+            }
+            window.PM_acrTwinDist = twinDist; // exposed for the same live-inspection convention as the other window.PM_acr* frame values above
             for (var ti = 0; ti < acrTwinGrp.children.length; ti++) {
                 var to = acrTwinGrp.children[ti], tu = to.userData;
                 if (!tu || tu.slot === undefined) continue;
-                var tf = (((tu.slot + window.PM_acrTwinBeadAccum) % 1) + 1) % 1;
+                var tf = (((tu.slot + twinDist) % 1) + 1) % 1;
                 to.position.set(-1.6 + tf * 3.2, 0.35, 0);
             }
             // DOM-thumb + numeric-label lockstep (§0b req 7 — the
