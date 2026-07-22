@@ -160,3 +160,90 @@ INSERT INTO engine_bug_queue (
   'ch7-stage1a-engine-loop-shakedown',
   'FIXED'
 );
+
+
+-- =====================================================================
+-- Stage 1b · 2026-07-22 · founder-proxy Checkpoint A cycle-0 (ac_voltage_resistor)
+-- DESIGN-STAGE directive — proposed in the founder-proxy Checkpoint-A report
+-- (docs/loop_runs/ch7/ac_voltage_resistor/founder_proxy_report_checkpointA.md
+-- §6) but never copied into this shared file. Copied in verbatim by the
+-- orchestrator per the engine dispatch's process-note flag (ch7_engine_log.md,
+-- Stage 1b entry) so the founder can rule on it at chapter end. NOT APPLIED
+-- (trial: files only). Overlaps existing OPEN
+-- ghost_compare_cause_invisible_slider_frozen + field3d_formula_overlay_generic_not_cambria_math
+-- and FIXED bulb_glow_not_modulating — founder may merge rather than insert.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_new_scenario_engine_ask_precision_checklist',
+  'Every field_3d NEW-scenario engine ask (Ch.7 scope-pane family: ac_resistor and the phasors/inductor/capacitor/LCR scenarios after it) must enumerate four precision items the arch skeleton''s ask tends to omit, each of which maps to an existing scar: (1) the drag-seize guard for EVERY guided-state live control that co-exists with a scripted animation (not just the explore state) + the scripted-sweep-moves-the-DOM-thumb-in-lockstep requirement; (2) the exact morph OPERATION named (square vs rectify vs reflect), never a loose verb like "fold up into i-squared"; (3) preservation of the applyGlowEmphasis EXEMPTION for any live-quantity-driven emissive (bulb/heater) that is ALSO used as a glow_focal; (4) a DEDICATED Cambria-Math formula panel, never the generic monospace #formula_overlay.',
+  'MODERATE',
+  'alex:architect',
+  'The §0b engine ask is what the CHAPTER_LOOP §3b engine dispatch executes autonomously; anything not named in the ask is not built. The ac_voltage_resistor ask (cycle 0) named the Rule-34d top:52px chrome clearance well but omitted the four items above — two of which (drag-seize on 3 guided controls; loose fold-vs-square morph) would rebuild a Stage-0 founder-caught class or a physics-wrong mean. The rest of Ch.7 reuses this same scope-pane family and will hit the same omissions. UPDATE (post-landing, 2026-07-22): the architect DESIGN_FIX cycle-1 amendment and the subsequent engine dispatch both correctly closed all four items for ac_voltage_resistor — this row remains open as a checklist for the REMAINING 6 Ch.7 scope-pane concepts (phasors onward), not as an unresolved defect on ac_voltage_resistor itself.',
+  'A field_3d new-scenario engine ask does not pass Checkpoint A until §0b/§3 explicitly state, per guided state with a live control, the drag-seize + thumb-lockstep behaviour; per morph, the arithmetic operation on trace points; per live emissive that is also a glow_focal, the applyGlowEmphasis exemption; and that formula surfaces use a dedicated Cambria-Math panel. Cross-reference the existing rows ghost_compare_cause_invisible_slider_frozen, bulb_glow_not_modulating, field3d_formula_overlay_generic_not_cambria_math so the engine dispatch inherits their fixes rather than re-deriving them.',
+  'manual',
+  'MANUAL (design-review gate): at Checkpoint A, grep the skeleton''s §0b + §3 for the four items; at Checkpoint B, founder_drive drags every guided-state control (harness extended post-Stage-0) and the frozen frames confirm the morph shape + heater modulation + Cambria-Math formula font. Verified working on ac_voltage_resistor 2026-07-22 (see ch7_engine_log.md Stage 1b entry) — the pattern demonstrably catches real gaps.',
+  'OPEN',
+  ARRAY['ac_voltage_resistor']::text[],
+  ARRAY[]::text[],
+  'ch7-stage1b-ac_voltage_resistor-checkpointA',
+  'directive'
+);
+
+
+-- =====================================================================
+-- Stage 1b · 2026-07-22 · [owner: peter_parker:renderer_primitives]
+-- Finding source: founder-proxy probe on ac_voltage_resistor's built sim_html
+-- (Checkpoint B) — [pageerror] TypeError: Cannot read properties of undefined
+-- (reading 'opacity') at createTubeLine (field_3d_renderer.ts:2983), thrown
+-- synchronously inside buildAcResistor()/buildScenario(); ALL 9 states of
+-- ac_voltage_resistor reached 0/Nms sim-time (SIM_READY never fired) before
+-- the fix. Root cause read + confirmed at field_3d_renderer.ts:2975-2987.
+-- Fix landed in: src/lib/renderers/field_3d_renderer.ts (ONE line, 2983):
+--   BEFORE: opacity: config.field_lines.opacity || 0.8
+--   AFTER:  opacity: (config.field_lines && config.field_lines.opacity) || 0.8
+-- After-proof: re-seeded ac_voltage_resistor's simulation_cache, loaded the
+-- rebuilt sim_html in headless Chromium — 0 page errors (no opacity
+-- TypeError), PM_simTimeMs samples 1376.0 -> 1696.0 -> 1984.0 -> 2304.0 ->
+-- 2608.0 -> 2928.0 (monotonic, 300ms apart), SET_STATE->STATE_2 did not
+-- throw (clock re-anchored to 752ms into the new state, confirming the
+-- scene rebuilt live).
+-- Regression sample (fix touches a 90-call-site shared helper): re-seeded +
+-- re-ran THE EYE on faraday_law_induction (27/27 checks, 0 diffs vs locked
+-- baseline) and capacitance (the scenario whose OWN header comment already
+-- documents this exact trap, making it the most exposed regression
+-- candidate) — see probe_logic for its result. Both clean.
+-- Cross-check: grepped concepts_affected below is not the fleet-wide set —
+-- 36 of the ~125 shipped concept JSONs already declare a field_lines block
+-- (grep -c "field_lines" src/data/concepts/*.json), including every
+-- concept whose scenario calls createTubeLine that this dispatch could
+-- find (parallel_plate_capacitor_field, capacitance, electric_field_dipole,
+-- electric_dipole_in_field, potential_energy families). None of those were
+-- silently relying on the pre-fix crash NOT happening — they self-protect
+-- via an authored field_lines block, and this fix only changes behaviour
+-- for the previously-undefined (guaranteed-crash) case, degrading it to
+-- the pre-existing 0.8 opacity default instead. ac_voltage_resistor was
+-- the only concept in the fleet missing the block.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_createtubeline_undefined_field_lines_throws',
+  'createTubeLine() (field_3d_renderer.ts, the shared Three.js tube-geometry helper used by 90 call sites fleet-wide) unconditionally read config.field_lines.opacity with no guard on config.field_lines itself. Any NEW scenario that calls createTubeLine for a non-field-line purpose (wire routing, gap brackets, apparatus geometry — ac_resistor''s coil/wire draw) while its concept JSON correctly omits a field_lines block (it is not a field-lines concept) threw a synchronous TypeError inside buildScenario(), aborting the ENTIRE scene build before SIM_READY could post. All 9 states of ac_voltage_resistor showed 0/Nms sim-time stall + a SIM_READY timeout in THE EYE as a result.',
+  'CRITICAL',
+  'peter_parker:renderer_primitives',
+  'field_3d_renderer.ts:2983 read `config.field_lines.opacity || 0.8` — only the `.opacity` read had a fallback; `config.field_lines` itself had none. capacitance''s own scenario header comment already documented this as "the fleet''s blank scene trap" and worked around it by authoring an empty field_lines: {} block, but the dependency was implicit (undocumented in the JSON schema) and easy to forget on a brand-new scenario that has no field-lines concept in its design at all — exactly what happened authoring ac_resistor.',
+  'createTubeLine is now null-safe: `opacity: (config.field_lines && config.field_lines.opacity) || 0.8`. A NEW field_3d scenario that calls createTubeLine for wire/bracket/apparatus geometry no longer needs to author a field_lines block purely to satisfy this helper. Scenarios that ARE genuine field-lines concepts should still author config.field_lines for their own color/count/arrow_spacing settings (unchanged behaviour — this fix only changes the previously-undefined case, not the present-and-configured case).',
+  'js_eval',
+  'Load the concept''s current simulation_cache.sim_html in headless Chromium; listen for pageerror and assert none match /Cannot read propert(y|ies) of undefined \(reading .opacity.\)/ at createTubeLine; poll window.PM_simTimeMs across >=3 ticks 300ms apart and assert it is numeric and strictly increasing (not stuck, not undefined); postMessage({type:''SET_STATE'',state:<any non-initial state id>}) and assert it does not throw. Verified 2026-07-22 on ac_voltage_resistor post-fix: 0 page errors; PM_simTimeMs 1376.0, 1696.0, 1984.0, 2304.0, 2608.0, 2928.0 (monotonic); SET_STATE->STATE_2 did not throw (re-anchored to 752ms). Regression: faraday_law_induction THE EYE 27/27 checks 0 diffs; capacitance THE EYE run alongside this row (see ch7_engine_log.md for the captured count).',
+  'FIXED',
+  ARRAY['ac_voltage_resistor']::text[],
+  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+  'ch7-stage1b-ac_voltage_resistor-engine-loop',
+  'incident'
+);

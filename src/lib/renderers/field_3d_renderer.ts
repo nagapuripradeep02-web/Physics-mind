@@ -2980,7 +2980,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var mat = new THREE.MeshPhongMaterial({
             color: hexToThreeColor(color),
             transparent: true,
-            opacity: config.field_lines.opacity || 0.8
+            opacity: (config.field_lines && config.field_lines.opacity) || 0.8
         });
         var mesh = new THREE.Mesh(geo, mat);
         return mesh;
