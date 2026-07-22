@@ -238,6 +238,18 @@ export function deriveMotionExpectations(
             // below — but the coil auto-sweeps there too, so it never truly freezes).
             const acg = state ? asObj(state.ac_generator) : null;
             if (acg) { out[stateId] = (acg.mode && acg.mode !== 'sandbox') ? true : false; continue; }
+            // ac_resistor (v=vm*sin(wt) applied to R — Ch.7 CHAPTER_LOOP Stage-1b
+            // engine ask): every guided beat animates continuously (oscillating
+            // beads / flipping current arrow / p(t)-modulated heater emissive,
+            // all driven by the accumulated phase on the state clock) — declare
+            // motion so D5/D6 expect ongoing pixel movement even in S7/S8 where
+            // the 3D apparatus itself holds pose (their motion lives on the scope
+            // pane, which the pixel-diff motion probe still sees). The S9 sandbox
+            // (mode 'explore') is user-driven → declare static (relaxed by the
+            // show_sliders→interactive hold pass below — the AC cycle still
+            // free-runs per Rule 37, so it never truly freezes either).
+            const acr = state ? asObj(state.ac_resistor) : null;
+            if (acr) { out[stateId] = (acr.mode && acr.mode !== 'explore') ? true : false; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -379,7 +391,11 @@ const F3D_REVEAL_KEYS = [
     // ac_generator: the per-state `ac_generator` block (mode-driven machine
     // overview / flux-cosine trace / EMF-sine phase / peak-dependence reshape /
     // slip-ring current flip / sandbox reveals for the rotating-coil AC generator).
-    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator',
+    // ac_resistor: the per-state `ac_resistor` block (mode-driven oscillate-
+    // track / reveal-build / cycle-compare / trace-product / null-result-hold /
+    // twin-compare / square-and-settle / chain-link-derivation / drag-sandbox
+    // reveals for AC voltage applied to a resistor — Ch.7 §7.2).
+    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator', 'ac_resistor',
     // helix_in_uniform_field (helical_motion_charge_in_uniform_B): the per-state
     // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
     // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
@@ -1131,6 +1147,43 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'peak_dependence') candidates.push(5000); // sine on the fixed axis
         else if (mode === 'slip_rings') candidates.push(5000);    // current arrow mid-cycle, flip pulse (4000ms) mid-fade
         else candidates.push(1500);                               // sandbox / no timed reveal
+    }
+    // ac_resistor (v=vm*sin(wt) on a resistor — Ch.7 §7.2 CHAPTER_LOOP Stage-1b
+    // engine ask): every guided beat's payoff lands on a cue-gated beat
+    // (renderer defaults mirrored here — keep in sync if those *_at_ms
+    // fallbacks in field_3d_renderer.ts ever change: updateAcResistorFrame /
+    // acrDrawViGraph / acrDrawPGraph / acrUpdateDerivation). Pin the frozen
+    // frame past the LAST payoff of each mode so THE EYE photographs the
+    // completed beat, never a mid-reveal frame.
+    const acr = asObj(state.ac_resistor);
+    if (acr) {
+        const mode = typeof acr.mode === 'string' ? acr.mode : '';
+        if (mode === 'ac_swings_both_ways') candidates.push(2000);        // vm peak line landed (~T/4 at default f)
+        else if (mode === 'ohm_at_every_instant') {
+            // three cursor samples (default 500/2000/3500ms) then the i-sweep
+            // (default i_sweep_start_at_ms=5000) — pin past the sweep settle.
+            candidates.push(asNum(acr.i_sweep_start_at_ms, 5000) + 1200);
+        }
+        else if (mode === 'both_halves_heat') candidates.push(3000);      // mid-B-half, glow + E established
+        else if (mode === 'power_never_negative') {
+            candidates.push(asNum(acr.product_walk_highlight_at_ms, 6500) + 500);
+        }
+        else if (mode === 'zero_average') {
+            candidates.push(asNum(acr.avg_zero_reveal_at_ms, 1500) + 500);
+        }
+        else if (mode === 'rms_dc_equivalent') {
+            // twin dock + the scripted V_dc dial-down window + the match reveal —
+            // pin past whichever payoff lands last.
+            candidates.push(asNum(acr.dial_down_end_at_ms, 5000) + 700);
+            candidates.push(asNum(acr.match_reveal_at_ms, 5200) + 500);
+        }
+        else if (mode === 'square_mean_root') {
+            candidates.push(asNum(acr.avg_power_dock_at_ms, 6000) + 500);
+        }
+        else if (mode === 'why_half') {
+            candidates.push(asNum(acr.identity_dock_at_ms, 3500) + 800);
+        }
+        else candidates.push(1500);                                       // explore / no timed reveal
     }
     // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
     // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
@@ -1945,6 +1998,22 @@ export function deriveHoldExpectations(
             const acgHold = asObj(state.ac_generator);
             if (acgHold) {
                 out[stateId] = (acgHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_resistor: every state is LIVE (show_sliders true — Rule 31), so
+            // the generic show_sliders catch below would swallow S1-S8's genuine
+            // reveal-then-hold beats into 'interactive' before they ever reach
+            // it. Classify explicitly (mirrors the ac_generator/inductance/mfl/
+            // capacitance guided-vs-explore split above): the S9 sandbox (mode
+            // 'explore') is user-driven → interactive; every other mode is a
+            // guided beat whose payoff (cursor sample / product walk / twin
+            // match / square-settle / fold) is established and then runs
+            // steadily on the state's own clock (beads/heater keep moving even
+            // after the payoff, per the checklist's "no frozen tail" —
+            // reveal_hold permits exactly that settled-but-still-live tail).
+            const acrHold = asObj(state.ac_resistor);
+            if (acrHold) {
+                out[stateId] = (acrHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // magnetic_flux_loop: every state exposes at least the relevant
