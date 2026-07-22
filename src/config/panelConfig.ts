@@ -1502,6 +1502,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    ac_voltage_resistor: {
+        concept_id: 'ac_voltage_resistor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_resistor',
+            label: 'AC Voltage on a Resistor — i = v/R, in phase, Vᵣₘₛ = vₘ/√2 (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

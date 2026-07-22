@@ -12120,3 +12120,61 @@ DATABASE:
   simulation_cache row for parallel_plate_capacitor_field regenerated (reseed x2)
   engine_bug_queue: 2 new rows (see above)
 ```
+
+## 2026-07-22 — CHAPTER_LOOP trial: Stage 1a + Stage 1b, `ac_voltage_resistor` SEALED (Ch.7 concept 1/8)
+
+**EXPERIMENTAL** — `docs/CHAPTER_LOOP.md`, branch `feat/ch7-alternating-current`, worktree
+`C:\Tutor\physics-mind-ch7`. Not doctrine; trial-only until founder graduation.
+
+**Stage 1a (engine-loop shakedown, PASSED):** ran the full §3b engine loop end-to-end on a KNOWN defect
+— `particle_field`'s `#pm-sliders` panel collided with the review chrome (Rule 34d class, `field_3d`
+already fixed, `particle_field` never migrated). Landed a chrome-aware conditional fix
+(`pfInReviewChrome()`) rather than a hardcoded `top:52px`, specifically to keep THE EYE's 13
+raw-capture baselines byte-identical (trial forbids `visual:approve` re-lock). Verify chain full green;
+commit `9c2c64e`. Proved dispatch + verify chain + rollback-readiness + commit discipline before novel
+content work.
+
+**Stage 1b (one concept through the full closed loop, SEALED):** `ac_voltage_resistor` (NCERT §7.2,
+"AC voltage applied to a resistor") — chapter map approved by the founder: `ac_voltage_resistor,
+phasors, ac_voltage_inductor, ac_voltage_capacitor, series_lcr_circuit, ac_power_factor,
+lc_oscillations, transformer`.
+
+- **Checkpoint A (design gate):** architect skeleton (9-state field_3d, NEW `scenario_type:
+  "ac_resistor"`) → 1 DESIGN_FIX cycle (drag-seize guard + S6 thumb-lockstep; S7 "fold" corrected to
+  explicit squaring y→y² vs S8's genuine point-symmetry fold; heater `applyGlowEmphasis` exemption;
+  dedicated Cambria-Math formula panel) → cycle 1 `DESIGN_OK`.
+- **Engine build:** the `ac_resistor` scenario did not exist — built in-loop (`field_3d_renderer.ts`
+  +789 lines, `deriveStateMeta.ts` +71 lines) per the Class-B triage. Full verify chain green; commit
+  `6b97ede`.
+- **In-loop engine fix (`createTubeLine` crash):** post-build THE EYE run hit a `TypeError` — the
+  shared 90-call-site `createTubeLine()` helper unconditionally read `config.field_lines.opacity`,
+  throwing when `ac_voltage_resistor.json` correctly omitted a `field_lines` block. This killed the
+  entire scene-construction loop (no `SIM_READY`, clock never advanced) on all 9 states. Hardened the
+  shared helper (one-line null-guard) rather than patching just this concept, since the rest of Ch.7
+  reuses this scope-pane family. Verify chain green incl. runtime re-probe + regression on
+  `faraday_law_induction`/`capacitance`; commit `d26d139`. Re-ran THE EYE clean: **39/39, 0 failed.**
+- **quality-auditor ∥ eye-walker:** auditor PASS (1 LOW cosmetic note); eye-walker FINDINGS(3),
+  including one rated CRITICAL (S8's fold pane allegedly never renders). The two reports disagreed.
+- **Checkpoint B (build gate):** founder-proxy opened the contested frames itself rather than average
+  the two reports — refuted all 3 of eye-walker's findings with pixel/byte-size evidence (S8's fold
+  pane does render and animate; the S1 "desync" was a frozen-vs-dense frame mismatch; S6's DC-twin
+  does drift live, just invisibly to THE EYE's frozen capture). Verdict **APPROVE** + 2 ride-along
+  `FIX(engine)`: DC-twin drift is a `dt`-accumulator invisible to THE EYE's time-pin (MODERATE), and an
+  ASCII-`rms`-subscript gap across 4 renderer text paths the JSON's own Unicode formulas don't share
+  (MINOR, meter-sprite truncation noted too).
+- **Checkpoint C (handover gate):** independently re-diffed all 4 Checkpoint-A fixes against the built
+  renderer (not the reports' say-so) and re-opened the single most-contested S8 frame itself — verdict
+  **SEALED**. Highest-value-achievable sentence: yes, physics numerically exact end-to-end, 39/39 EYE,
+  zero collision/flag/console-error on live drive; the only gap is the two named ride-along polish
+  items, neither touching correctness or legibility.
+
+**Commits this session:** `9c2c64e` (Stage 1a fix) · `6b97ede` (ac_resistor scenario build) ·
+`d26d139` (createTubeLine fix) · a seal commit for `ac_voltage_resistor`'s authoring artifacts follows
+this entry · 2 more engine-loop commits (B1, B2 ride-alongs) to follow before `phasors` starts, per
+§3b's ride-along ordering.
+
+**Trial constraints held throughout:** no `visual:approve`, no `tts:*`, no `PILOT_CONCEPTS`, no
+deploy, no DB writes to `engine_bug_queue` (all findings filed as files in
+`docs/loop_runs/ch7/_engine/scar_candidates.sql`, pending founder ruling at chapter end), no merge to
+master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
+`docs/loop_runs/ch7/ac_voltage_resistor/*`.

@@ -247,3 +247,56 @@ INSERT INTO engine_bug_queue (
   'ch7-stage1b-ac_voltage_resistor-engine-loop',
   'incident'
 );
+
+
+-- =====================================================================
+-- Ch.7 Stage 1b · 2026-07-22 · founder-proxy Checkpoint B (ac_voltage_resistor)
+-- Two engine ride-along findings. NOT APPLIED (trial: files only).
+-- Both owner peter_parker:renderer_primitives; both ride-along (live sim
+-- teaches correctly), so their §3b fixes run AFTER the Checkpoint-C seal
+-- commit, BEFORE the next concept (phasors) starts.
+-- Context: these surfaced while adjudicating a quality-auditor/eye-walker
+-- disagreement over S8's fold pane — founder-proxy opened the frames
+-- itself and refuted all 3 of eye-walker's findings (S8 fold DOES render,
+-- S1 heater desync was a frame-mismatch, S6 DC-twin DOES drift live) but
+-- found these 2 real, non-blocking defects along the way.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_dt_accumulated_motion_invisible_to_eye_timepin',
+  'A field_3d motion element driven by an incremental per-frame dt accumulator (PM_acrTwinBeadAccum += K*I_dc*dt at field_3d_renderer.ts:24745, the S6 DC-twin drift beads) FREEZES under THE EYE''s SET_TIME_FREEZE capture, because the dt = t - lastT; if(dt>0.2) dt=0 guard (:24686) zeroes THE EYE''s ~1s-per-frame time-pin stepping. It drifts correctly in the live review player (~26 px/s, proven by founder_drive) but is invisible to the primary automated gate — which produced a direct reviewer contradiction (quality-auditor cited intended fold behaviour vs eye-walker''s frozen-capture read) and leaves THE EYE permanently blind to any future regression of the DC drift.',
+  'MODERATE',
+  'peter_parker:renderer_primitives',
+  'The DC-twin bead is the LONE element in the ac_resistor scenario computed from accumulated real-frame dt rather than a pure function of the absolute state clock PM_simTimeMs. Every peer element is pure-t and renders correctly under time-pin: AC beads (:24707 beadFrac=0.5-aFrac*cosT), heater emissive (:24727 p(t)/P_REF), energy counter E_dc. Under SET_TIME_FREEZE the clock jumps ~1000ms per captured frame, so the dt>0.2 guard forces dt=0 and the accumulator never advances.',
+  'All scripted/choreographed motion in a field_3d scenario must be a PURE FUNCTION of absolute PM_simTimeMs (deterministic at any pinned instant, Rule-36-consistent). Reserve dt-accumulators strictly for trusted-drag interactive velocity, never for scripted drift. A drift whose design intent is declared (here: "DC beads drift, AC beads rock") must be verifiable in THE EYE''s frozen/dense frames.',
+  'js_eval',
+  'THE EYE dense frames for the state must show the declared drift element at >=1 DISTINCT position across the timeline (crop the element band, assert bead-core centroid moves > a few px between non-phase-aliased frames). If the element is static in THE EYE but the design declares drift, cross-check the founder_drive live dump: measured here at founder_drive S6_t0(1424ms)->S6_mid(2480ms) the DC bead core moved x=682.0->710.0 (+26 px/s), confirming a live-vs-capture split rather than a dead element.',
+  'OPEN',
+  ARRAY['ac_voltage_resistor']::text[],
+  ARRAY[]::text[],
+  'ch7-stage1b-ac_voltage_resistor-checkpointB',
+  'incident'
+);
+
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_rms_subscript_ascii_in_renderer_text_paths',
+  'Rule 34c: the ac_resistor scenario''s renderer-HARDCODED on-canvas text paths render rms subscripts as ASCII "V_rms"/"I_rms" while the concept JSON formula_overlay surfaces correctly use Unicode Vᵣₘₛ/Iᵣₘₛ. ASCII appears in the DOM HUD innerHTML (field_3d_renderer.ts:24812-24813), the canvas ctx.fillText graph level-line labels (:24575, :24589), the meter sprite (:24793), and the S7/S8 derivation chain (:24477-24478). The S7 meter sprite also appears TRUNCATED ("2.00 A² -> I_", the "rms" clipped), a possible label_sprite_wide_string_clipped recurrence on that path.',
+  'MINOR',
+  'peter_parker:renderer_primitives',
+  'The ASCII->Unicode subscript sweep covered the concept-JSON formula_overlay path (Vᵣₘₛ/Iᵣₘₛ correct) but skipped the three RENDERER-hardcoded text paths — exactly the "a sweep of one path silently skips the others" failure Rule 34c warns about. Owner is the ENGINE, not json_author: the JSON is already Unicode; the ASCII strings are literals in field_3d_renderer.ts.',
+  'Any rms/subscript Unicode sweep on a field_3d scenario must cover ALL renderer text paths — DOM innerHTML, canvas ctx.fillText, and createLabelSprite/createWideLabelSprite — verified against the JSON formula surfaces. Before swapping, confirm the ᵣₘₛ glyphs (U+1D63/U+2098/U+209B) render in the target font: the monospace HUD and 9px canvas-graph fonts may lack them (tofu) — route those readouts through the Cambria-Math serif (as the formula panel already does). Use createWideLabelSprite (measured glyph width) for the meter readout so "Iᵣₘₛ" is not clipped.',
+  'js_eval',
+  'Grep field_3d_renderer.ts string literals for /[VI]_rms/ and assert none remain on an on-canvas text path for the ac_resistor scenario. In the built sim, visually confirm the HUD, graph level-line labels, meter sprite, and derivation chain all render Vᵣₘₛ/Iᵣₘₛ with real Unicode subscripts (no tofu, no truncation). Cross-check the JSON formula_overlay already matches.',
+  'OPEN',
+  ARRAY['ac_voltage_resistor']::text[],
+  ARRAY[]::text[],
+  'ch7-stage1b-ac_voltage_resistor-checkpointB',
+  'incident'
+);
