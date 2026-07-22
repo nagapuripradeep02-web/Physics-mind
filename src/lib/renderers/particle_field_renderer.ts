@@ -699,6 +699,32 @@ function applyStateVisuals() {
   pfPostWidgetVis();
 }
 
+// ─── Review-chrome detection (Rule 34d, deliberately CONDITIONAL) ───────────
+// The sim always runs inside an iframe. In the REVIEW TOOL (build_review_site.ts)
+// the PARENT document carries the top-right glass cluster #fsTopControls
+// (#fsBtn 'Full screen' + #wgBtn 'Widgets', anchored top:10px;right:10px, ~30px
+// tall), so a fixed overlay pinned at top:10px on the right edge hides its first
+// row behind them. THE EYE renders the very same sim.html inside a BARE wrapper
+// iframe whose parent has NO chrome — so we must NOT hardcode the downward shift
+// the way field_3d_renderer.ts does (a literal top:52px would move every locked
+// raw-capture baseline for all particle_field concepts and trip the regression
+// gate; this trial cannot re-lock baselines). Instead detect the chrome at
+// runtime and shift ONLY when it is present. Same-origin parent access is
+// guaranteed in the review tool (sim.html is served from the parent's own
+// origin); THE EYE's wrapper parent either lacks #fsTopControls (-> false) or is
+// walled off cross-origin (-> false), so the raw-capture path stays
+// byte-identical by construction. DO NOT 'simplify' this back to a literal.
+// engine_bug_queue candidate: particle_field_sliders_panel_top10_vs_reviewchrome.
+function pfInReviewChrome() {
+  try {
+    if (window.parent === window) return false;
+    var pdoc = window.parent.document;
+    return !!(pdoc && (pdoc.getElementById('fsTopControls') || pdoc.getElementById('fsBtn')));
+  } catch (e) {
+    return false;
+  }
+}
+
 // ─── Overlay DOM (sliders / caption / formula) ──────────────────────────────
 function buildOverlayUI() {
   if (uiBuilt) return;
@@ -724,7 +750,13 @@ function buildOverlayUI() {
 
   var panel = document.createElement('div');
   panel.id = 'pm-sliders';
-  panel.style.cssText = 'position:fixed;top:10px;right:10px;width:238px;' +
+  // Clear the review chrome's top-right glass cluster (#fsBtn/#wgBtn, top:10px)
+  // ONLY when that chrome is actually present — top:52px in the review tool,
+  // unchanged top:10px in THE EYE's raw capture so every locked baseline stays
+  // byte-identical (Rule 34d; see pfInReviewChrome above; conditional on purpose,
+  // NOT the hardcoded top:52px field_3d uses).
+  var pmSlidersTop = pfInReviewChrome() ? '52px' : '10px';
+  panel.style.cssText = 'position:fixed;top:' + pmSlidersTop + ';right:10px;width:238px;' +
     'background:rgba(8,10,26,0.82);border:1px solid rgba(255,255,255,0.1);' +
     'border-radius:10px;padding:10px 12px;z-index:30;display:none;' +
     'font:12px system-ui,sans-serif;color:#CFD8DC;';
