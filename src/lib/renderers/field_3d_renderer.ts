@@ -52,7 +52,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -24938,6 +24938,862 @@ export const FIELD_3D_RENDERER_CODE = `
         if (energyEl) energyEl.classList.toggle("glow-pulse", on("energy_counter"));
     }
 
+    // ── ac_inductor scenario (AC voltage applied to an inductor — NCERT §7.3,
+    //   Ch.7 CHAPTER_LOOP engine ask, routed Class-B). Built from
+    //   docs/loop_runs/ch7/ac_voltage_inductor/skeleton.md §0b + physics_block.md
+    //   §1/§3 (every number there is ground truth — verified numerically against
+    //   this implementation, see the peter_parker dispatch report).
+    //
+    //   BINDING SCOPE (founder-proxy Checkpoint A, DF1): a CLEAN STANDALONE
+    //   SIBLING of the SEALED ac_resistor scenario (commit 72910d1). No
+    //   acr_-prefixed code is called, edited, or extracted from here — every
+    //   function/constant below is new acl_-prefixed code. Cross-scenario
+    //   reuse of genuinely GENERIC, already-shared helpers (createTubeLine,
+    //   createLabelSprite, hexToThreeColor, addToScene, applyGlowEmphasis,
+    //   cueTriggerMs, capSmooth01, indMakeCoilChildren — the last two owned by
+    //   the capacitance/inductance scenarios but already cross-called by
+    //   ac_resistor's OWN sealed code via capRamp, establishing the precedent)
+    //   is fine and used exactly the way ac_resistor itself already does.
+    //
+    //   v = vm*sin(wt); i = im*sin(wt-pi/2) = -im*cos(wt) LAGS v by exactly
+    //   pi/2 (T/4); Xl = wL; im = vm/Xl; p = v*i = -(vm*im/2)*sin(2wt) SIGNED,
+    //   swings +/-; <p> = 0 EXACT; U = 0.5*L*i^2 = Umax*cos^2(wt) breathes
+    //   0<->Umax twice per cycle.
+    //
+    //   Single state-clock phase (Rule 26/36): theta is a PURE closed-form
+    //   function of absolute state-local t for the S5 scripted f-ramp while
+    //   undragged (aclS5PhaseAtTr — fixes engine_bug_queue
+    //   field3d_dt_accumulated_motion_invisible_to_eye_timepin: zero per-frame
+    //   history, exactly rewindable under SET_TIME_FREEZE to an earlier pin
+    //   after a later one), and a plain omega*dt accumulator (Rule-36 linear-
+    //   in-dt) everywhere else — including once f_demo is dragged in S5 (the
+    //   accumulator picks up exactly where the closed form left off, by
+    //   construction, with zero special-casing) and throughout S9's fully
+    //   live sandbox (mirrors ac_resistor's own PM_acrPhase pattern, which
+    //   already tolerates a live-dragged frequency in its own S1).
+    //
+    //   Two INDEPENDENT arrow-pair timings (physics_block §6.4, binding — do
+    //   not derive one from the other): the wire current arrow flips at i's
+    //   OWN zero crossings (t=1.0/3.0s at defaults — the v-PEAK instants);
+    //   the back-emf arrow pair flips at v's OWN zero crossings (t=0/2.0/4.0s
+    //   — the i-PEAK instants). This 1.0s stagger is the lag made mechanically
+    //   visible and is deliberate, not a bug.
+    //
+    //   Documented engineering simplifications (not silent — see the dispatch
+    //   report): (1) the S4 tangent-walk cursor's three cue-gated dwell stops
+    //   render as static labelled call-outs (mirrors the sibling's own S2
+    //   three-marker precedent) while the tangent ARROW itself stays genuinely
+    //   continuous and live every frame (never hardcoded). (2) the coil field-
+    //   loop "direction flip" is a two-hue COOL colour tint (never warm) keyed
+    //   on arrow_dir's sign, not a literal reversed-flow animation — the WIRE
+    //   arrow already carries the literal direction picture; the loops' job is
+    //   the breathing density. (3) the S2 lag bracket is scoped to S2 only
+    //   (never carried into S5), sidestepping physics_block §6 constraint #9's
+    //   live-rescale duty entirely. (4) the S8 point-symmetry fold renders as a
+    //   sweep of echo dots travelling from a sampled point on one lobe to its
+    //   180°-rotated image on the next (a literal, verifiable implementation of
+    //   the physics, just rendered as discrete dots rather than a redrawn
+    //   curve segment). (5) the vi/p graphs' TRAILING-WINDOW history (the
+    //   scrolling ~8s of past curve) is drawn via local linear extrapolation
+    //   from the CURRENT instantaneous omega (mirrors ac_resistor's own graph-
+    //   history approach exactly) rather than re-evaluating the full S5
+    //   closed-form schedule at every historical sample — this affects ONLY
+    //   the cosmetic curvature of the graph's recent-past redraw during the S5
+    //   ramp, never the LIVE theta value itself (always the exact closed form)
+    //   nor any instrument/HUD numeric reading.
+    //
+    //   visible_elements tokens (CLOSED, elementType-prefixed): acl_source |
+    //   acl_beads | acl_arrow | acl_coil | acl_bfield | acl_emf_arrows |
+    //   acl_meter | acl_u_gauge. DEVIATES from skeleton §0b's 6-token proposal
+    //   by adding acl_meter + acl_u_gauge (the skeleton's guess omitted them;
+    //   this dispatch's contract is authoritative per the Stage-1b precedent —
+    //   see the dispatch report). Every object's own id field is deliberately
+    //   anchored so the GENERIC glow-alias resolver's first-underscore strip
+    //   ("acl_meter" -> "meter", "acl_u_gauge" -> "u_gauge", ...) lands
+    //   directly on the skeleton's OWN bare glow-key spelling with NO
+    //   deviation and no second alias table (source | beads | arrow | coil |
+    //   bfield | backemf | meter | u_gauge); the DOM-only keys (v_trace |
+    //   i_trace | ghost_trace | lag_bracket | tangent | xl_readout | p_strip |
+    //   formula) have no elementType at all and are matched directly in
+    //   applyAcInductorGlow's own tail, exactly mirroring ac_resistor's
+    //   pattern for its own DOM-only keys.
+    var ACL_SRC_X = -2.6, ACL_COIL_X = 2.6, ACL_TOP_Y = 0.9, ACL_BOT_Y = -0.9;
+    var ACL_BEAD_COUNT = 7;
+    var ACL_COIL_R = 0.5, ACL_COIL_HALF_LEN = 0.75, ACL_COIL_TURNS = 6;
+    var ACL_FIELD_LOOP_COUNT = 6, ACL_FIELD_LOOP_R = 0.30;
+    var ACL_UGAUGE_X = ACL_COIL_X + 1.35, ACL_UGAUGE_H = 1.5, ACL_UGAUGE_W = 0.55;
+    // Stylized visual gain (A/s -> screen tilt) for the S4 tangent-arrow
+    // display ONLY — the true numeric slope value is carried in the readout
+    // text (Rule 33d real number), never claimed by the drawn angle alone.
+    var ACL_TANGENT_VIS_SCALE = 3.5;
+    // S5 scripted f-ramp schedule (physics_block §3 S5 — endpoints/order are
+    // BINDING, leg durations are the proposed concrete schedule json_author
+    // may retime to fit actual narration length). Post-ramp holds at the
+    // final leg's f1 (0.25 Hz, back to default) forever.
+    var ACL_S5_LEGS = [
+        { kind: "ramp", dur: 4.0, f0: 0.25, f1: 0.50 },   // Leg A (rise)
+        { kind: "hold", dur: 1.5, f: 0.50 },              // Hold A
+        { kind: "ramp", dur: 6.0, f0: 0.50, f1: 0.10 },   // Leg B (fall)
+        { kind: "hold", dur: 1.5, f: 0.10 },              // Hold B
+        { kind: "ramp", dur: 4.0, f0: 0.10, f1: 0.25 }    // Leg C (return)
+    ];
+    var ACL_S5_POST_F = 0.25;
+
+    var aclSrcGrp = null, aclCoilGrp = null, aclArrow = null, aclMeterNeedle = null, aclUgaugeFill = null;
+
+    function aclFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+
+    // Slider-control resolver (mirrors acrSc's SHAPE as new acl_-prefixed
+    // code — never calls into ac_resistor's own acrSc).
+    function aclSc(key, dmin, dmax, dstep, ddef, dlabel) {
+        var scfg = config.slider_controls || {};
+        var o = scfg[key] || {};
+        return {
+            min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+            step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+            label: o.label || dlabel
+        };
+    }
+
+    // Wire geometry: two straight segments (top, bottom), source -> coil. Each
+    // bead confined to its OWN cell (mirrors the sibling's per-cell rock-in-
+    // place idiom, cloned as new acl_-prefixed code).
+    function aclWireCellPoint(wireY, cellIndex, frac) {
+        var cellW = (ACL_COIL_X - ACL_SRC_X) / ACL_BEAD_COUNT;
+        var x0 = ACL_SRC_X + cellIndex * cellW, x1 = x0 + cellW;
+        return [x0 + (x1 - x0) * frac, wireY, 0];
+    }
+
+    // Closed-form S5 phase (physics_block §3 S5 lemma — the
+    // field3d_dt_accumulated_motion_invisible_to_eye_timepin fix pattern): a
+    // PURE function of the leg-local elapsed time tr (seconds since the ramp
+    // cue fired), zero per-frame accumulated history, exactly re-derivable at
+    // any pinned t. Walks the leg schedule, closing out each FULLY completed
+    // leg's exact total (a ramp leg's Δθ(1) = π·dur·(f0+f1), the average-
+    // frequency shortcut — exact because ∫smoothstep=1/2) before handling the
+    // partial (possibly ramping) segment containing tr.
+    function aclS5PhaseAtTr(tr) {
+        if (tr <= 0) return 0;
+        var theta = 0, elapsed = 0;
+        for (var li = 0; li < ACL_S5_LEGS.length; li++) {
+            var leg = ACL_S5_LEGS[li];
+            if (tr <= elapsed + leg.dur) {
+                var local = tr - elapsed;
+                if (leg.kind === "ramp") {
+                    var u = local / leg.dur;
+                    theta += 2 * Math.PI * leg.dur * (leg.f0 * u + (leg.f1 - leg.f0) * (u * u * u - 0.5 * u * u * u * u));
+                } else {
+                    theta += 2 * Math.PI * leg.f * local;
+                }
+                return theta;
+            }
+            if (leg.kind === "ramp") theta += Math.PI * leg.dur * (leg.f0 + leg.f1);
+            else theta += 2 * Math.PI * leg.f * leg.dur;
+            elapsed += leg.dur;
+        }
+        theta += 2 * Math.PI * ACL_S5_POST_F * (tr - elapsed);
+        return theta;
+    }
+    // Instantaneous frequency at leg-local tr (display/HUD/Xl-readout only —
+    // NEVER fed back into the phase integral above, which is independently
+    // closed-form). Reuses capSmooth01 — a generic pure-math helper already
+    // cross-called by ac_resistor's own sealed code via capRamp, not scenario-
+    // scoped to capacitance.
+    function aclS5FreqAtTr(tr) {
+        var elapsed = 0;
+        for (var li = 0; li < ACL_S5_LEGS.length; li++) {
+            var leg = ACL_S5_LEGS[li];
+            if (tr <= elapsed + leg.dur) {
+                if (leg.kind === "ramp") { var u = (tr - elapsed) / leg.dur; return leg.f0 + (leg.f1 - leg.f0) * capSmooth01(u); }
+                return leg.f;
+            }
+            elapsed += leg.dur;
+        }
+        return ACL_S5_POST_F;
+    }
+
+    function buildAcInductor() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+
+        // 1. AC source — clones the sibling's VISUAL LANGUAGE (Rule 32d chapter
+        //    continuity: same home pose) as new acl_-prefixed geometry.
+        aclSrcGrp = new THREE.Group();
+        aclSrcGrp.userData = { elementType: "acl_source", id: "acl_source" };
+        var srcRing = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.09, 12, 28),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFB300"), emissive: hexToThreeColor("#7A4F00"), emissiveIntensity: 0.3 }));
+        srcRing.rotation.x = Math.PI / 2;
+        aclSrcGrp.add(srcRing);
+        aclSrcGrp.position.set(ACL_SRC_X, 0, 0);
+        addToScene(aclSrcGrp);
+        var srcGlyph = createLabelSprite("\\u223f", "#FFEE58", 0.5);
+        srcGlyph.position.set(ACL_SRC_X, 0, 0.02);
+        srcGlyph.userData = { elementType: "acl_source", id: "acl_source_glyph" }; addToScene(srcGlyph);
+        var srcLbl = createLabelSprite("AC source", "#FFCC80", 0.24);
+        srcLbl.position.set(ACL_SRC_X, -1.35, 0);
+        srcLbl.userData = { elementType: "acl_source", id: "acl_source_lbl" }; addToScene(srcLbl);
+        var connSrc = createTubeLine([[ACL_SRC_X, ACL_BOT_Y, 0], [ACL_SRC_X, ACL_TOP_Y, 0]], "#B0BEC5", 0.025);
+        if (connSrc) { connSrc.userData = { elementType: "acl_source", id: "acl_source_stub" }; addToScene(connSrc); }
+
+        // 2. Two wires source -> coil. The TOP wire carries the exact canonical
+        //    id "acl_beads" (elementType shared by both wires + every bead) so
+        //    the generic glow-alias resolver's first-underscore strip lands
+        //    on the bare key "beads" directly (see the header comment above).
+        var wTop = createTubeLine([[ACL_SRC_X, ACL_TOP_Y, 0], [ACL_COIL_X, ACL_TOP_Y, 0]], "#B0BEC5", 0.03);
+        if (wTop) { wTop.userData = { elementType: "acl_beads", id: "acl_beads" }; addToScene(wTop); }
+        var wBot = createTubeLine([[ACL_SRC_X, ACL_BOT_Y, 0], [ACL_COIL_X, ACL_BOT_Y, 0]], "#B0BEC5", 0.03);
+        if (wBot) { wBot.userData = { elementType: "acl_beads", id: "acl_wire_bot" }; addToScene(wBot); }
+
+        // 3. Coil (the anti-heater) — multi-turn tube geometry via
+        //    indMakeCoilChildren (a pure geometry-only helper, unrelated to
+        //    any acr_ code path — see the header comment). FLAT, NON-emissive
+        //    material, colour NEVER touched by the animate loop: the coil body
+        //    must read COLD in every frame (§0b req 1).
+        aclCoilGrp = new THREE.Group();
+        aclCoilGrp.userData = { elementType: "acl_coil", id: "acl_coil" };
+        aclCoilGrp.position.set(ACL_COIL_X, 0, 0);
+        indMakeCoilChildren(aclCoilGrp, ACL_COIL_TURNS, ACL_COIL_R, ACL_COIL_HALF_LEN, "#78909C");
+        addToScene(aclCoilGrp);
+        var coilLbl = createLabelSprite("L", "#FFCC80", 0.3);
+        coilLbl.position.set(ACL_COIL_X, -1.35, 0);
+        coilLbl.userData = { elementType: "acl_coil", id: "acl_coil_lbl" }; addToScene(coilLbl);
+
+        // 4. Field loops — COOL blue-cyan geometry ONLY, breathing opacity
+        //    driven live by field_brightness=cos²θ every frame (self-
+        //    normalized, never a fixed reference — physics_block §1), colour
+        //    tinted between two cool hues on arrow_dir's sign (documented
+        //    simplification #2 above). createTubeLine reads
+        //    config.field_lines.opacity (0.8 fallback) — the concept JSON
+        //    MUST still author a field_lines block (flagged to json_author).
+        for (var fli = 0; fli < ACL_FIELD_LOOP_COUNT; fli++) {
+            var flAng = (fli / ACL_FIELD_LOOP_COUNT) * Math.PI * 2;
+            var flPts = [];
+            for (var fls = 0; fls <= 16; fls++) {
+                var flT = fls / 16;
+                flPts.push([ACL_COIL_X - ACL_COIL_HALF_LEN + flT * 2 * ACL_COIL_HALF_LEN, ACL_FIELD_LOOP_R * Math.cos(flAng), ACL_FIELD_LOOP_R * Math.sin(flAng)]);
+            }
+            var flTube = createTubeLine(flPts, "#4FC3F7", 0.022);
+            if (flTube) {
+                if (flTube.material) { flTube.material.transparent = true; flTube.material.opacity = 0.1; }
+                flTube.userData = { elementType: "acl_bfield", id: (fli === 0 ? "acl_bfield" : ("acl_bfield_" + fli)) };
+                addToScene(flTube);
+            }
+        }
+
+        // 5. Current beads — ACL_BEAD_COUNT per wire. Cool cyan (not the
+        //    sibling's amber) — a deliberate palette choice reinforcing "this
+        //    is the inductor, not the resistor" (the v/i-trace colours below
+        //    stay chapter-continuity amber/cyan per skeleton §10b).
+        for (var wRow = 0; wRow < 2; wRow++) {
+            var wy = (wRow === 0) ? ACL_TOP_Y : ACL_BOT_Y;
+            for (var bi = 0; bi < ACL_BEAD_COUNT; bi++) {
+                var bead = new THREE.Mesh(new THREE.SphereGeometry(0.055, 10, 10),
+                    new THREE.MeshBasicMaterial({ color: hexToThreeColor("#4FC3F7"), transparent: true, opacity: 0.85 }));
+                var bp0 = aclWireCellPoint(wy, bi, 0.5);
+                bead.position.set(bp0[0], bp0[1], bp0[2]);
+                bead.userData = { elementType: "acl_beads", id: "acl_bead_" + wRow + "_" + bi, row: wRow, cell: bi };
+                addToScene(bead);
+            }
+        }
+
+        // 6. Wire current arrow — flips at i's OWN zero crossings (t=1.0/3.0s
+        //    at defaults), independently of the back-emf pair below (physics_
+        //    block §6.4, binding).
+        aclArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.45, ACL_TOP_Y + 0.32, 0), 0.9, hexToThreeColor("#4FC3F7"), 0.2, 0.13);
+        aclArrow.userData = { elementType: "acl_arrow", id: "acl_arrow" }; addToScene(aclArrow);
+        var arrowLbl = createLabelSprite("i (lags v by \\u00bc cycle)", "#4FC3F7", 0.22);
+        arrowLbl.position.set(0, ACL_TOP_Y + 0.68, 0);
+        arrowLbl.userData = { elementType: "acl_arrow", id: "acl_arrow_lbl" }; addToScene(arrowLbl);
+
+        // 7. Back-emf arrow pair (S3 mechanism) — source-drive arrow (sign(v))
+        //    + induced arrow (eps_back=-v), each computed independently from
+        //    its OWN formula, flipping at v's zero crossings (t=0/2.0/4.0s) —
+        //    a DIFFERENT timing from acl_arrow above (physics_block §6.4).
+        var vdriveArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(ACL_SRC_X, 1.15, 0), 0.42, hexToThreeColor("#FFCC80"), 0.16, 0.11);
+        vdriveArrow.userData = { elementType: "acl_emf_arrows", id: "acl_vdrive" }; addToScene(vdriveArrow);
+        var vdriveLbl = createLabelSprite("v (source)", "#FFCC80", 0.2);
+        vdriveLbl.position.set(ACL_SRC_X, 1.62, 0);
+        vdriveLbl.userData = { elementType: "acl_emf_arrows", id: "acl_vdrive_lbl" }; addToScene(vdriveLbl);
+        var backemfArrow = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(ACL_COIL_X, 1.15, 0), 0.42, hexToThreeColor("#EF5350"), 0.16, 0.11);
+        backemfArrow.userData = { elementType: "acl_emf_arrows", id: "acl_backemf" }; addToScene(backemfArrow);
+        var backemfLbl = createLabelSprite("\\u03b5_back (opposes the change)", "#EF5350", 0.2);
+        backemfLbl.position.set(ACL_COIL_X, 1.62, 0);
+        backemfLbl.userData = { elementType: "acl_emf_arrows", id: "acl_backemf_lbl" }; addToScene(backemfLbl);
+
+        // 8. Averaging meter — re-tasked EXCLUSIVELY to avg_p (unlike the
+        //    sibling's dual avg_i/rms_i2 meter, <p> here is EXACTLY zero
+        //    always — one mode suffices). Needle stays dead centre every
+        //    frame (S7's "nothing consumed" paradox).
+        var meterGrp = new THREE.Group();
+        meterGrp.userData = { elementType: "acl_meter", id: "acl_meter" };
+        meterGrp.position.set(0, 2.05, 0);
+        var arcPts = [];
+        for (var mi = 0; mi <= 40; mi++) { var aa = Math.PI * (1 - mi / 40); arcPts.push(new THREE.Vector3(0.6 * Math.cos(aa), 0.6 * Math.sin(aa), 0)); }
+        var meterArc = new THREE.Line(new THREE.BufferGeometry().setFromPoints(arcPts), new THREE.LineBasicMaterial({ color: hexToThreeColor("#90A4AE") }));
+        meterGrp.add(meterArc);
+        var needleGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.56, 6);
+        needleGeo.translate(0, 0.28, 0);
+        aclMeterNeedle = new THREE.Mesh(needleGeo, new THREE.MeshBasicMaterial({ color: hexToThreeColor("#66BB6A") }));
+        meterGrp.add(aclMeterNeedle);
+        addToScene(meterGrp);
+        var meterLbl = createLabelSprite("\\u27e8p\\u27e9 = 0.00 W", "#66BB6A", 0.22);
+        meterLbl.position.set(0, 2.85, 0);
+        meterLbl.userData = { elementType: "acl_meter", id: "acl_meter_lbl" }; addToScene(meterLbl);
+
+        // 9. U-gauge — breathing stored-energy tank (0<->Umax twice/cycle),
+        //    docked beside the coil. Fill height driven live by
+        //    field_brightness (=U/Umax, self-normalized) every frame.
+        var ugTankEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(ACL_UGAUGE_W, ACL_UGAUGE_H, ACL_UGAUGE_W)), new THREE.LineBasicMaterial({ color: hexToThreeColor("#90A4AE") }));
+        ugTankEdges.position.set(ACL_UGAUGE_X, 0, 0);
+        ugTankEdges.userData = { elementType: "acl_u_gauge", id: "acl_u_gauge" }; addToScene(ugTankEdges);
+        aclUgaugeFill = new THREE.Mesh(new THREE.BoxGeometry(ACL_UGAUGE_W - 0.06, 1, ACL_UGAUGE_W - 0.06), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#4FC3F7"), transparent: true, opacity: 0.85 }));
+        aclUgaugeFill.userData = { elementType: "acl_u_gauge", id: "acl_u_gauge_fill" }; addToScene(aclUgaugeFill);
+        var ugLbl = createWideLabelSprite("stored energy U = \\u00bdLi\\u00b2", "#4FC3F7", 0.22);
+        ugLbl.position.set(ACL_UGAUGE_X, ACL_UGAUGE_H / 2 + 0.35, 0);
+        ugLbl.userData = { elementType: "acl_u_gauge", id: "acl_u_gauge_lbl" }; addToScene(ugLbl);
+
+        // ── DOM panels ──────────────────────────────────────────────────────
+        var rp = document.createElement("div"); rp.id = "acl_readout";
+        // top:52px clears the review-chrome "Full screen" button (Rule 34d;
+        // engine_bug_queue: field3d_sliders_panel_top12_vs_fsbtn_top10).
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:190px;display:none;";
+        document.body.appendChild(rp);
+
+        var urp = document.createElement("div"); urp.id = "acl_ureadout";
+        urp.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.82);color:#4FC3F7;padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;display:none;";
+        document.body.appendChild(urp);
+
+        var gcVi = document.createElement("canvas"); gcVi.id = "acl_graph_vi";
+        gcVi.width = 320; gcVi.height = 150;
+        gcVi.style.cssText = "position:fixed;bottom:210px;left:12px;width:320px;height:150px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gcVi);
+
+        var gcP = document.createElement("canvas"); gcP.id = "acl_graph_p";
+        gcP.width = 320; gcP.height = 110;
+        gcP.style.cssText = "position:fixed;bottom:88px;left:12px;width:320px;height:110px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gcP);
+
+        var ff = document.createElement("div"); ff.id = "acl_formula";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#80DEEA;font:600 21px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var deriv = document.createElement("div"); deriv.id = "acl_derivation";
+        deriv.style.cssText = "position:fixed;top:38%;right:22px;transform:translateY(-50%);color:#80DEEA;font:600 18px/1.7 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:380px;text-align:right;";
+        document.body.appendChild(deriv);
+
+        var spd = document.createElement("div"); spd.id = "acl_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        var scVm = aclSc("vm", 2, 20, 1, 10.0, "Peak voltage v\\u2098");
+        var scL = aclSc("L", 1.0, 10.0, 0.1, 3.1831, "Inductance L");
+        var scF = aclSc("f_demo", 0.1, 0.5, 0.05, 0.25, "Frequency f");
+        spd.innerHTML =
+            '<div id="acl_vm_row"><label>' + scVm.label + ': <span id="acl_vm_val">' + scVm.def.toFixed(1) + '</span> V</label>' +
+            '<input type="range" id="acl_vm_slider" min="' + scVm.min + '" max="' + scVm.max + '" step="' + scVm.step + '" value="' + scVm.def + '" style="width:100%"></div>' +
+            '<div id="acl_L_row" style="margin-top:6px"><label>' + scL.label + ': <span id="acl_L_val">' + scL.def.toFixed(2) + '</span> H</label>' +
+            '<input type="range" id="acl_L_slider" min="' + scL.min + '" max="' + scL.max + '" step="' + scL.step + '" value="' + scL.def + '" style="width:100%"></div>' +
+            '<div id="acl_f_demo_row" style="margin-top:6px"><label>' + scF.label + ': <span id="acl_f_demo_val">' + scF.def.toFixed(2) + '</span> Hz</label>' +
+            '<input type="range" id="acl_f_demo_slider" min="' + scF.min + '" max="' + scF.max + '" step="' + scF.step + '" value="' + scF.def + '" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        window.PM_aclVm = scVm.def; window.PM_aclL = scL.def; window.PM_aclFdemo = scF.def;
+        window.PM_aclVmDragged = false; window.PM_aclLDragged = false; window.PM_aclFdemoDragged = false;
+        window.PM_aclPhase = 0; window.PM_aclLastT = 0;
+
+        // Rule 27 explorer pattern: stable id, every param change posted to parent.
+        function aclEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "ac_inductor_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var vmSl = document.getElementById("acl_vm_slider"), vmV = document.getElementById("acl_vm_val");
+        var lSl = document.getElementById("acl_L_slider"), lV = document.getElementById("acl_L_val");
+        var fSl = document.getElementById("acl_f_demo_slider"), fV = document.getElementById("acl_f_demo_val");
+        // Drag-seize: a TRUSTED input sets the *Dragged flag, halting the
+        // scripted/idle driver for the state-entry (checked below). vm/L are
+        // PLAIN live sliders (no scripted driver ever touches them); f_demo is
+        // the ONE seized-vs-scripted variable (S5).
+        if (vmSl) vmSl.addEventListener("input", function (ev) { window.PM_aclVm = parseFloat(vmSl.value); if (vmV) vmV.textContent = window.PM_aclVm.toFixed(1); if (ev && ev.isTrusted) window.PM_aclVmDragged = true; aclEmit("vm", window.PM_aclVm); });
+        if (lSl) lSl.addEventListener("input", function (ev) { window.PM_aclL = parseFloat(lSl.value); if (lV) lV.textContent = window.PM_aclL.toFixed(2); if (ev && ev.isTrusted) window.PM_aclLDragged = true; aclEmit("L", window.PM_aclL); });
+        if (fSl) fSl.addEventListener("input", function (ev) { window.PM_aclFdemo = parseFloat(fSl.value); if (fV) fV.textContent = window.PM_aclFdemo.toFixed(2); if (ev && ev.isTrusted) window.PM_aclFdemoDragged = true; aclEmit("f_demo", window.PM_aclFdemo); });
+    }
+
+    // Authoritative per-state exact-match acl_* visibility + variable_
+    // overrides seed (vm/L/f_demo) + per-state contextual-control panel
+    // (Rule 31). Runs after the generic visible_elements matcher and fully
+    // overrides it (mirrors applyAcResistorState's SHAPE as new code).
+    function applyAcInductorState(stateDef) {
+        var d = stateDef.ac_inductor || {};
+        var vis = stateDef.visible_elements || [];
+        function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("acl_") !== 0) continue;
+            o.visible = listed(ud.elementType);
+        }
+        var ov = stateDef.variable_overrides || {};
+        var scfg = config.slider_controls || {};
+        var defVm = (scfg.vm && scfg.vm["default"] != null) ? scfg.vm["default"] : 10.0;
+        var defL = (scfg.L && scfg.L["default"] != null) ? scfg.L["default"] : 3.1831;
+        var defF = (scfg.f_demo && scfg.f_demo["default"] != null) ? scfg.f_demo["default"] : 0.25;
+        window.PM_aclVm = (typeof ov.vm === "number") ? ov.vm : defVm;
+        window.PM_aclL = (typeof ov.L === "number") ? ov.L : defL;
+        window.PM_aclFdemo = (typeof ov.f_demo === "number") ? ov.f_demo : defF;
+        window.PM_aclVmDragged = false; window.PM_aclLDragged = false; window.PM_aclFdemoDragged = false;
+        window.PM_aclPhase = 0; window.PM_aclLastT = 0;
+
+        function syncS(id, v, dec) { var el = document.getElementById(id); if (el) el.value = String(v); var vEl = document.getElementById(id.replace("_slider", "_val")); if (vEl) vEl.textContent = v.toFixed(dec); }
+        syncS("acl_vm_slider", window.PM_aclVm, 1);
+        syncS("acl_L_slider", window.PM_aclL, 2);
+        syncS("acl_f_demo_slider", window.PM_aclFdemo, 2);
+
+        // Per-state contextual-control panel (Rule 31) — controls[] = live
+        // row(s); static_readouts[] = disabled row at the SAME position.
+        var controls = d.controls || [];
+        var statics = d.static_readouts || [];
+        var rowIds = { vm: "acl_vm_row", L: "acl_L_row", f_demo: "acl_f_demo_row" };
+        var sliderIds = { vm: "acl_vm_slider", L: "acl_L_slider", f_demo: "acl_f_demo_slider" };
+        var anyRow = false;
+        for (var key in rowIds) {
+            var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
+            var rowEl = document.getElementById(rowIds[key]);
+            if (rowEl) rowEl.style.display = relevant ? "block" : "none";
+            if (relevant) anyRow = true;
+            var isLive = controls.indexOf(key) !== -1;
+            var slEl = document.getElementById(sliderIds[key]);
+            if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
+        }
+        var panelEl = document.getElementById("acl_sliders");
+        if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
+
+        var roEl = document.getElementById("acl_readout"); if (roEl) roEl.style.display = d.show_readout !== false ? "block" : "none";
+        var urEl = document.getElementById("acl_ureadout"); if (urEl) urEl.style.display = d.show_u_readout ? "block" : "none";
+        var gcViEl = document.getElementById("acl_graph_vi"); if (gcViEl) gcViEl.style.display = d.show_graph_vi ? "block" : "none";
+        var gcPEl = document.getElementById("acl_graph_p"); if (gcPEl) gcPEl.style.display = d.show_graph_p ? "block" : "none";
+        var ffEl = document.getElementById("acl_formula");
+        var dvEl = document.getElementById("acl_derivation");
+        if (d.derivation) {
+            if (ffEl) ffEl.style.display = "none";
+            if (dvEl) dvEl.style.display = "block";
+        } else {
+            if (ffEl) { var ftext = d.formula_text || stateDef.formula_overlay || ""; ffEl.textContent = ftext; ffEl.style.display = ftext ? "block" : "none"; }
+            if (dvEl) dvEl.style.display = "none";
+        }
+
+        // S8's apparatus holds a STATIC, DIMMED pose (physics_block §3 S8 —
+        // Rule 26 motion carried entirely by the scope-pane fold + algebra
+        // dock, not the 3D apparatus). A one-time opacity pass; the per-frame
+        // update SKIPS the 3D apparatus entirely in this mode (see
+        // updateAcInductorFrame's animate3d guard below), so this pose sticks.
+        if (d.dim_apparatus) {
+            for (var di = 0; di < sceneObjects.length; di++) {
+                var dobj = sceneObjects[di], dud = dobj.userData;
+                if (!dud || !dud.elementType || dud.elementType.indexOf("acl_") !== 0) continue;
+                if (dud.elementType === "acl_u_gauge" || dud.elementType === "acl_meter") continue; // keep their own live readout legible, never dimmed
+                dobj.traverse(function (n) { if (n.material) { var ms = Array.isArray(n.material) ? n.material : [n.material]; for (var mi3 = 0; mi3 < ms.length; mi3++) { ms[mi3].transparent = true; ms[mi3].opacity = 0.45; } } });
+            }
+        }
+    }
+
+    // S8's one-integral chain-link derivation dock — mirrors acrUpdateDerivation's
+    // SHAPE as new acl_-prefixed code (cue-gated progressive line reveal).
+    function aclUpdateDerivation(mode, d, t) {
+        var dvEl = document.getElementById("acl_derivation");
+        if (!dvEl) return;
+        var lines = [];
+        if (mode === "one_integral_derivation") {
+            var c1 = cueTriggerMs("fold_start", (d.fold_start_at_ms != null ? d.fold_start_at_ms : 500)) / 1000;
+            var c2 = cueTriggerMs("fold_end", (d.fold_end_at_ms != null ? d.fold_end_at_ms : 2500)) / 1000;
+            var c3 = cueTriggerMs("identity_dock", (d.identity_dock_at_ms != null ? d.identity_dock_at_ms : 3500)) / 1000;
+            if (t >= c1) lines.push("v = L\\u00b7di/dt");
+            if (t >= c1) lines.push("i = \\u2212(v\\u2098/\\u03c9L)cos \\u03c9t = i\\u2098 sin(\\u03c9t \\u2212 \\u03c0/2)");
+            if (t >= c2) lines.push("p = \\u2212(v\\u2098i\\u2098/2) sin 2\\u03c9t");
+            if (t >= c3) lines.push("\\u27e8p\\u27e9 = 0  (exact, every T/2)");
+        }
+        var html = "";
+        for (var li = 0; li < lines.length; li++) html += "<div>" + lines[li] + "</div>";
+        dvEl.innerHTML = html;
+    }
+
+    // Top strip — v(t)/i(t) overlaid, colour-matched (chapter-continuity
+    // colours: v cyan, i amber — skeleton §10b). S2 docks the static dashed
+    // ghost (in-phase hypothesis) FIRST, then the real i-trace sweeps in
+    // CLOCK-DRAWN (never a phase-slide morph of the ghost — binding 32a
+    // caution) with the lag bracket. S4 carries the live tangent-walk cursor.
+    function aclDrawViGraph(mode, d, t, theta, omega, vm, L, im, Xl) {
+        var gc = document.getElementById("acl_graph_vi"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, padL = 34, padR = 10, padT = 16, padB = 14;
+        var plotW = W - padL - padR, plotH = (H - padB) - padT, midY = padT + plotH / 2;
+        var tWin = 8.0;
+        function xPix(sec) { return padL + ((sec - (t - tWin)) / tWin) * plotW; }
+        // Trailing-window extrapolation from the CURRENT instantaneous omega —
+        // documented simplification #5 (header comment); the LIVE theta above
+        // is always the exact closed form.
+        function phaseAt(sec) { return theta + omega * (sec - t); }
+
+        var vAxis = Math.max(vm * 1.15, 0.01);
+        // i-axis auto-scale (physics_block §1 edge-case sweep): always
+        // >=5.0A full range near defaults, scales smoothly to clear the
+        // analytic worst case with headroom, never clips.
+        var iAxis = Math.max(2.5 * im, 5.0);
+        function yV(val) { return midY - (val / vAxis) * (plotH / 2); }
+        function yI(val) { return midY - (val / iAxis) * (plotH / 2); }
+
+        ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(padL, midY); ctx.lineTo(W - padR, midY); ctx.stroke();
+
+        var step = tWin / 160;
+
+        // v-trace (always).
+        ctx.strokeStyle = "#4DD0E1"; ctx.lineWidth = 2; ctx.beginPath();
+        var f1 = true;
+        for (var s1 = t - tWin; s1 <= t + 0.0001; s1 += step) { var xv = xPix(s1), yv = yV(vm * Math.sin(phaseAt(s1))); if (f1) { ctx.moveTo(xv, yv); f1 = false; } else ctx.lineTo(xv, yv); }
+        ctx.stroke();
+
+        // Ghost trace — static dashed grey in-phase hypothesis (S2 only),
+        // NEVER phase-slid into the real trace (binding 32a caution).
+        if (d.show_ghost) {
+            ctx.strokeStyle = "rgba(176,190,197,0.65)"; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.6; ctx.beginPath();
+            var fg = true;
+            for (var sg = t - tWin; sg <= t + 0.0001; sg += step) { var iGhost = im * Math.sin(phaseAt(sg)); var xg = xPix(sg), yg = yI(iGhost); if (fg) { ctx.moveTo(xg, yg); fg = false; } else ctx.lineTo(xg, yg); }
+            ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillStyle = "#B0BEC5"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillText("in-phase guess (resistor's rhythm)", padL + 3, H - 4);
+        }
+
+        // Real i-trace — CLOCK-DRAWN via its own closed form i=-im*cos(theta).
+        var sIStart = (mode === "quarter_cycle_lag") ? (cueTriggerMs("real_sweep_start", (d.real_sweep_start_at_ms != null ? d.real_sweep_start_at_ms : 2500)) / 1000) : (t - tWin - 1);
+        var showI = t >= sIStart;
+        if (showI) {
+            ctx.strokeStyle = "#FFB300"; ctx.lineWidth = 2; ctx.beginPath();
+            var f2 = true;
+            var loStart = Math.max(t - tWin, sIStart);
+            for (var s2 = loStart; s2 <= t + 0.0001; s2 += step) {
+                var iVal = -im * Math.cos(phaseAt(s2));
+                var xv2 = xPix(s2), yv2 = yI(iVal);
+                if (f2) { ctx.moveTo(xv2, yv2); f2 = false; } else ctx.lineTo(xv2, yv2);
+            }
+            ctx.stroke();
+        }
+
+        // Lag bracket (S2 only — documented simplification #3, header comment).
+        if (d.show_lag_bracket) {
+            var lagC = cueTriggerMs("lag_bracket_land", (d.lag_bracket_land_at_ms != null ? d.lag_bracket_land_at_ms : 5000)) / 1000;
+            if (t >= lagC) {
+                var lagSecondsNow = 1 / (4 * Math.max(omega / (2 * Math.PI), 1e-6));
+                ctx.fillStyle = "#FFEE58"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+                ctx.fillText(lagSecondsNow.toFixed(1) + " s = \\u00bc cycle = 90\\u00b0", padL + 6, padT + 10);
+            }
+        }
+
+        // Tangent-walk cursor (S4 only) — CONTINUOUS live tilt = atan(slope_i),
+        // slope_i = v/L (recomputed live every frame, never hardcoded —
+        // binding). Three cue-gated dwell-stop LABELS (documented
+        // simplification #1, header comment).
+        if (mode === "slope_sets_current" && showI) {
+            var vNow = vm * Math.sin(theta);
+            var slopeNow = vNow / L;
+            var iNow = -im * Math.cos(theta);
+            var cx = xPix(t), cy = yI(iNow);
+            var ang = Math.atan2(-slopeNow, ACL_TANGENT_VIS_SCALE);
+            var tl = 20;
+            ctx.strokeStyle = "#E0F7FA"; ctx.lineWidth = 2; ctx.beginPath();
+            ctx.moveTo(cx - tl * Math.cos(ang), cy - tl * Math.sin(ang));
+            ctx.lineTo(cx + tl * Math.cos(ang), cy + tl * Math.sin(ang));
+            ctx.stroke();
+            ctx.fillStyle = "#E0F7FA"; ctx.beginPath(); ctx.arc(cx, cy, 3.6, 0, 2 * Math.PI); ctx.fill();
+
+            var stopCues = (d.tangent_stops_at_ms && d.tangent_stops_at_ms.length === 3) ? d.tangent_stops_at_ms : [1500, 4500, 7500];
+            var stopLabels = ["steepest climb", "flat crest", "steepest fall"];
+            for (var ti2 = 0; ti2 < 3; ti2++) {
+                var stopMs = cueTriggerMs("tangent_stop_" + (ti2 + 1), stopCues[ti2]);
+                if (t * 1000 < stopMs) continue;
+                var mxv = W - padR - (2 - ti2) * 34 - 6;
+                ctx.fillStyle = "#90A4AE"; ctx.font = "8px monospace";
+                ctx.fillText(stopLabels[ti2], mxv - 26, H - 3);
+            }
+        } else if (showI) {
+            var iNow2 = -im * Math.cos(theta);
+            ctx.fillStyle = "#FFB300"; ctx.beginPath(); ctx.arc(xPix(t), yI(iNow2), 3.6, 0, 2 * Math.PI); ctx.fill();
+        }
+        ctx.fillStyle = "#4DD0E1"; ctx.beginPath(); ctx.arc(xPix(t), yV(vm * Math.sin(theta)), 3.6, 0, 2 * Math.PI); ctx.fill();
+
+        ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
+        ctx.fillText("v (cyan) & i (amber) vs t", padL, 11);
+        if (d.show_vm_peak_line !== false) {
+            ctx.strokeStyle = "rgba(77,208,225,0.5)"; ctx.setLineDash([3, 3]); ctx.beginPath();
+            ctx.moveTo(padL, yV(vm)); ctx.lineTo(W - padR, yV(vm)); ctx.stroke(); ctx.setLineDash([]);
+        }
+        if (d.show_xl_on_graph) {
+            // Rule 34c: the X\\u2097 subscript needs the Cambria Math canvas
+            // font (the field3d_rms_subscript_ascii_in_renderer_text_paths
+            // fix's font-path lesson) — 9px 'monospace' would render it as an
+            // illegible blob.
+            ctx.fillStyle = "#80DEEA"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillText("X\\u2097 = " + Xl.toFixed(1) + " \\u03a9", padL + 3, padT + 10);
+        }
+    }
+
+    // Bottom strip — p(t) SIGNED, symmetric about a MID zero baseline the
+    // curve CROSSES (the sibling's p-strip only ever touches its floor
+    // baseline — a genuine, deliberate contrast). S6 tints the store/return
+    // lobes; S8 sweeps the point-symmetry fold (distinct construction from
+    // the sibling's own S8 vertical fold — do not conflate).
+    function aclDrawPGraph(mode, d, t, theta, omega, vm, im, Umax) {
+        var gc = document.getElementById("acl_graph_p"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, padL = 34, padR = 10, padT = 14, padB = 14;
+        var plotW = W - padL - padR, plotH = (H - padB) - padT, midY = padT + plotH / 2;
+        var tWin = 8.0;
+        function xPix(sec) { return padL + ((sec - (t - tWin)) / tWin) * plotW; }
+        function phaseAt(sec) { return theta + omega * (sec - t); }
+        var pAmp = vm * im / 2;
+        var pAxis = Math.max(pAmp * 1.2, 0.01);
+        function yP(val) { return midY - (val / pAxis) * (plotH / 2); }
+
+        ctx.strokeStyle = "#66BB6A"; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(padL, midY); ctx.lineTo(W - padR, midY); ctx.stroke(); ctx.lineWidth = 1;
+
+        var step = tWin / 200;
+        ctx.strokeStyle = "#AB47BC"; ctx.beginPath();
+        var first = true;
+        for (var s = t - tWin; s <= t + 0.0001; s += step) {
+            var pVal = -pAmp * Math.sin(2 * phaseAt(s));
+            var xv = xPix(s), yv = yP(pVal);
+            if (first) { ctx.moveTo(xv, yv); first = false; } else ctx.lineTo(xv, yv);
+        }
+        ctx.stroke();
+
+        // S6 signed product-walk beat — store/return tint + the area=Umax link.
+        if (mode === "power_swings") {
+            var wStart = cueTriggerMs("product_walk_start", (d.product_walk_start_at_ms != null ? d.product_walk_start_at_ms : 500));
+            if (t * 1000 >= wStart) {
+                var pNow = -pAmp * Math.sin(2 * theta);
+                ctx.fillStyle = (pNow >= 0) ? "rgba(102,187,106,0.85)" : "rgba(239,83,80,0.85)";
+                ctx.font = "10px monospace";
+                ctx.fillText(pNow >= 0 ? "storing" : "returning", padL + 6, padT + 10);
+            }
+            var areaC = cueTriggerMs("area_label", (d.area_label_at_ms != null ? d.area_label_at_ms : 3000));
+            if (t * 1000 >= areaC) {
+                ctx.fillStyle = "#FFEE58"; ctx.font = "9px monospace";
+                ctx.fillText("area = " + Umax.toFixed(2) + " J", padL + 6, H - 4);
+            }
+        }
+
+        // S8 — point-symmetry fold: echo dots travelling from a sampled point
+        // on one lobe to its 180°-rotated image on the next, about their
+        // SHARED zero crossing (physics_block §3 S8; distinct from the
+        // sibling's vertical fold-to-flat-line — do not conflate).
+        if (mode === "one_integral_derivation") {
+            var f1 = cueTriggerMs("fold_start", (d.fold_start_at_ms != null ? d.fold_start_at_ms : 500)) / 1000;
+            var f2 = cueTriggerMs("fold_end", (d.fold_end_at_ms != null ? d.fold_end_at_ms : 2500)) / 1000;
+            var foldProg = Math.max(0, Math.min(1, (t - f1) / Math.max(0.001, f2 - f1)));
+            if (foldProg > 0) {
+                var halfT = Math.PI / Math.max(omega, 1e-6); // p's own period is T/2 = pi/omega
+                var tc = Math.floor(t / halfT) * halfT;
+                if (tc - halfT >= t - tWin) tc -= halfT;
+                for (var dotI = 0; dotI <= 10; dotI++) {
+                    var s0 = tc - halfT * (dotI / 10);
+                    if (s0 < t - tWin || s0 > t + 0.0001) continue;
+                    var p0 = -pAmp * Math.sin(2 * phaseAt(s0));
+                    var sRot = 2 * tc - s0;
+                    var pRot = -p0;
+                    var sNow = s0 + (sRot - s0) * foldProg;
+                    var pNow2 = p0 + (pRot - p0) * foldProg;
+                    if (sNow < t - tWin || sNow > t + 0.0001) continue;
+                    ctx.fillStyle = "#FFEE58"; ctx.beginPath(); ctx.arc(xPix(sNow), yP(pNow2), 2.6, 0, 2 * Math.PI); ctx.fill();
+                }
+            }
+        }
+
+        var pNowDot = -pAmp * Math.sin(2 * theta);
+        ctx.fillStyle = "#AB47BC"; ctx.beginPath(); ctx.arc(xPix(t), yP(pNowDot), 3.6, 0, 2 * Math.PI); ctx.fill();
+
+        ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
+        ctx.fillText("p = v\\u00b7i vs t (signed)", padL, 11);
+    }
+
+    // Per-frame update — resolves live vm/L/f_demo (dragged > scripted >
+    // locked), advances theta (closed-form during the S5 undragged ramp, a
+    // plain Rule-36 accumulator otherwise), drives the beads/arrow/field-
+    // loops/emf-arrows/gauge/meter/graphs/derivation/readouts. S8's 3D
+    // apparatus is intentionally SKIPPED (animate3d=false) — its motion lives
+    // entirely on the scope panes (physics_block §3 S8).
+    function updateAcInductorFrame() {
+        if (config.scenario_type !== "ac_inductor") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.ac_inductor || {};
+        var mode = d.mode || "explore";
+        var t = time - stateStartTime;
+
+        if (window.PM_aclLastT === undefined) window.PM_aclLastT = t;
+        var dt = t - window.PM_aclLastT; if (dt < 0 || dt > 0.2) dt = 0; window.PM_aclLastT = t;
+        if (window.PM_aclPhase === undefined) window.PM_aclPhase = 0;
+
+        var vm = window.PM_aclVm, L = window.PM_aclL;
+        var fDemoDisplay = window.PM_aclFdemo;
+
+        if (mode === "reactance_ramp" && !window.PM_aclFdemoDragged) {
+            var rampStartMs = cueTriggerMs("ramp_window_start", (d.ramp_window_start_at_ms != null ? d.ramp_window_start_at_ms : 2000));
+            var rampStartSec = rampStartMs / 1000;
+            var preOmega = 2 * Math.PI * ACL_S5_POST_F;
+            var thetaClosed;
+            if (t < rampStartSec) {
+                thetaClosed = preOmega * t;
+                fDemoDisplay = ACL_S5_POST_F;
+            } else {
+                thetaClosed = preOmega * rampStartSec + aclS5PhaseAtTr(t - rampStartSec);
+                fDemoDisplay = aclS5FreqAtTr(t - rampStartSec);
+            }
+            window.PM_aclPhase = thetaClosed;
+            window.PM_aclFdemo = fDemoDisplay; // display/HUD only; the post-drag branch below continues from exactly this value
+        } else {
+            var omegaEff = 2 * Math.PI * window.PM_aclFdemo;
+            window.PM_aclPhase += omegaEff * dt;
+        }
+        var theta = window.PM_aclPhase;
+        var omega = 2 * Math.PI * fDemoDisplay;
+
+        var sinT = Math.sin(theta), cosT = Math.cos(theta);
+        var v = vm * sinT;
+        var Xl = Math.max(omega * L, 1e-6);
+        var im = vm / Xl;
+        var i = -im * cosT;
+        var epsBack = -v;
+        var p = v * i;
+        var Umax = 0.5 * L * im * im;
+        var U = Umax * cosT * cosT;
+        var fieldBrightness = cosT * cosT;
+        var arrowDir = (i >= 0) ? 1 : -1;
+
+        // Bead oscillation (physics_block §1: bead_frac = 0.5 - A_frac*sin(theta)
+        // — sin, NOT the sibling's cos, matching THIS concept's own i(t)
+        // shape). A_frac scales with the INSTANTANEOUS im/omega, clamped
+        // [0.08,0.42] (Rule 33c real number).
+        var ratioDefault = 1.27324; // im/omega at authored defaults (2.00/1.5708) -- numerically identical to the sibling's own calibration constant since Xl=R=5.0ohm at both concepts' defaults
+        var rawAFrac = 0.30 * ((im / Math.max(omega, 1e-6)) / ratioDefault);
+        var aFrac = Math.max(0.08, Math.min(0.42, rawAFrac));
+        var beadFrac = 0.5 - aFrac * sinT;
+
+        var animate3d = (mode !== "one_integral_derivation");
+        if (animate3d) {
+            for (var bi2 = 0; bi2 < sceneObjects.length; bi2++) {
+                var bo = sceneObjects[bi2], bu = bo.userData;
+                if (!bu || bu.elementType !== "acl_beads" || bu.row === undefined) continue;
+                var wy = (bu.row === 0) ? ACL_TOP_Y : ACL_BOT_Y;
+                var pt = aclWireCellPoint(wy, bu.cell, beadFrac);
+                bo.position.set(pt[0], pt[1], pt[2]);
+                if (bo.material) bo.material.opacity = 0.35 + 0.5 * Math.abs(sinT);
+            }
+
+            if (aclArrow && aclArrow.visible) {
+                aclArrow.setDirection(new THREE.Vector3(arrowDir, 0, 0));
+                aclArrow.position.set(arrowDir >= 0 ? -0.45 : 0.45, ACL_TOP_Y + 0.32, 0);
+            }
+
+            // Back-emf arrow pair — independently computed from their OWN
+            // sign (never derived from arrowDir/i — physics_block §6.4).
+            var vSign = (v >= 0) ? 1 : -1;
+            var backSign = (epsBack >= 0) ? 1 : -1;
+            var vdriveObj = aclFindById("acl_vdrive");
+            if (vdriveObj && vdriveObj.visible) { vdriveObj.setDirection(new THREE.Vector3(0, vSign, 0)); }
+            var backemfObj = aclFindById("acl_backemf");
+            if (backemfObj && backemfObj.visible) { backemfObj.setDirection(new THREE.Vector3(0, backSign, 0)); }
+
+            // Field loops — breathing opacity (field_brightness) + cool
+            // two-hue direction tint (documented simplification #2). The
+            // coil BODY is never touched (no emissive channel exists on it —
+            // the anti-heater, §0b req 1).
+            var flOpacity = 0.08 + 0.55 * fieldBrightness;
+            var flColorHex = (arrowDir >= 0) ? 0x4FC3F7 : 0x1E88E5;
+            for (var fi2 = 0; fi2 < sceneObjects.length; fi2++) {
+                var fo = sceneObjects[fi2], fu = fo.userData;
+                if (!fu || fu.elementType !== "acl_bfield") continue;
+                if (fo.material) { fo.material.opacity = flOpacity; fo.material.color.setHex(flColorHex); }
+            }
+        }
+
+        // U-gauge fill — driven live EVERY frame regardless of mode (S8's
+        // 3D-motion skip is an apparatus-only exemption; the gauge keeps
+        // telling the truth, mirroring S7's "the null is on the meter ONLY"
+        // pattern of some elements staying alive around a held/dimmed
+        // picture). Only the FILL GEOMETRY floors at 0.02 for legibility —
+        // the numeric U readout below stays UNCLAMPED (Rule 33d).
+        if (aclUgaugeFill) {
+            var fillH = Math.max(0.02, fieldBrightness) * ACL_UGAUGE_H;
+            aclUgaugeFill.scale.set(1, fillH, 1);
+            aclUgaugeFill.position.set(ACL_UGAUGE_X, -ACL_UGAUGE_H / 2 + fillH / 2, 0);
+        }
+        // Meter — always dead centre (<p> is EXACTLY zero for a pure
+        // inductor at every instant averaged over any half-source-period).
+        if (aclMeterNeedle) aclMeterNeedle.rotation.z = 0;
+
+        if (!window.PM_aclVmDragged) { var vmSl2 = document.getElementById("acl_vm_slider"); if (vmSl2) vmSl2.value = String(vm); var vmV2 = document.getElementById("acl_vm_val"); if (vmV2) vmV2.textContent = vm.toFixed(1); }
+        if (!window.PM_aclLDragged) { var lSl2 = document.getElementById("acl_L_slider"); if (lSl2) lSl2.value = String(L); var lV2 = document.getElementById("acl_L_val"); if (lV2) lV2.textContent = L.toFixed(2); }
+        if (!window.PM_aclFdemoDragged) { var fSl2 = document.getElementById("acl_f_demo_slider"); if (fSl2) fSl2.value = String(fDemoDisplay); var fV2 = document.getElementById("acl_f_demo_val"); if (fV2) fV2.textContent = fDemoDisplay.toFixed(2); }
+
+        if (d.derivation) aclUpdateDerivation(mode, d, t);
+        aclDrawViGraph(mode, d, t, theta, omega, vm, L, im, Xl);
+        aclDrawPGraph(mode, d, t, theta, omega, vm, im, Umax);
+
+        // Readout HUD (Rule 33d/34b — signed live numbers, precision per
+        // physics_block §6.2: v 1dp signed, i 2dp signed, p 1dp SIGNED
+        // (unlike the sibling's unsigned p), U 2dp, Xl 1dp).
+        var roEl = document.getElementById("acl_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var vSignStr = (v >= 0 ? "+" : "");
+            var iSignStr = (i >= 0 ? "+" : "");
+            var pSignStr = (p >= 0 ? "+" : "");
+            var html = "<div>v = " + vSignStr + v.toFixed(1) + " V</div>";
+            html += "<div>i = " + iSignStr + i.toFixed(2) + " A</div>";
+            html += "<div>p = " + pSignStr + p.toFixed(1) + " W</div>";
+            if (d.show_backemf_readout) {
+                html += "<div style=\\"color:#EF5350\\">\\u03b5_back = " + (epsBack >= 0 ? "+" : "") + epsBack.toFixed(1) + " V</div>";
+            }
+            if (d.show_xl_readout) {
+                html += "<div style=\\"color:#80DEEA\\">X\\u2097 = " + Xl.toFixed(1) + " \\u03a9</div>";
+            }
+            if (d.show_avg_p_readout) {
+                html += "<div style=\\"color:#66BB6A\\">\\u27e8p\\u27e9 = 0.00 W</div>";
+            }
+            roEl.innerHTML = html;
+        }
+        var urEl2 = document.getElementById("acl_ureadout");
+        if (urEl2 && urEl2.style.display !== "none") {
+            urEl2.innerHTML = "<div>U = " + U.toFixed(2) + " J</div><div>U_max = " + Umax.toFixed(2) + " J</div>";
+        }
+    }
+
+    // Glow-key enum CLOSED to exactly: source | beads | arrow | coil | bfield |
+    // backemf | meter | u_gauge (real 3D objects, resolved via the generic
+    // alias resolver's first-underscore strip landing on each object's own
+    // anchored id — see the scenario header comment) plus v_trace | i_trace |
+    // ghost_trace | lag_bracket | tangent | xl_readout | p_strip | formula
+    // (DOM-only panels, matched directly by bare key).
+    function applyAcInductorGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et.indexOf("acl_") !== 0) continue;
+            // Field loops are driven live every frame by field_brightness
+            // (opacity + direction tint, updateAcInductorFrame above) —
+            // EXEMPTED so the live channel is never overwritten (§0b req 5;
+            // mirrors the sibling's acr_heater exemption). The coil body
+            // itself carries no live channel at all and glows normally.
+            if (et === "acl_bfield") continue;
+            applyGlowEmphasis(so, on(sud.id) || on(et), glowActive, glowP, true);
+        }
+        var viGraphEl = document.getElementById("acl_graph_vi");
+        if (viGraphEl) viGraphEl.classList.toggle("glow-pulse", on("v_trace") || on("i_trace") || on("ghost_trace") || on("lag_bracket") || on("tangent"));
+        var pGraphEl = document.getElementById("acl_graph_p");
+        if (pGraphEl) pGraphEl.classList.toggle("glow-pulse", on("p_strip"));
+        var roGlowEl = document.getElementById("acl_readout");
+        if (roGlowEl) roGlowEl.classList.toggle("glow-pulse", on("xl_readout"));
+        var formulaEl3 = document.getElementById("acl_formula");
+        if (formulaEl3) formulaEl3.classList.toggle("glow-pulse", on("formula"));
+        var derivEl2 = document.getElementById("acl_derivation");
+        if (derivEl2) derivEl2.classList.toggle("glow-pulse", on("formula"));
+    }
+
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
     //   precedent (concentric surface meshes + radial E-arrows + an HTML readout
@@ -30994,6 +31850,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildAcResistor();
                 break;
 
+            case "ac_inductor":
+                buildAcInductor();
+                break;
+
             case "magnetic_flux_loop":
                 buildMagneticFluxLoop();
                 break;
@@ -31396,6 +32256,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyAcResistorState(stateDef);
         }
 
+        // ac_inductor — per-state exact-match acl_* visibility + variable_
+        // overrides seed (vm/L/f_demo) + the per-state contextual-control
+        // panel (vm on S4, f_demo on S5, all three on the S9 explore). The
+        // animate loop then advances the phase (closed-form during S5's
+        // undragged ramp, a plain accumulator otherwise), drives the beads/
+        // arrow/field-loops/emf-arrows/gauge/meter, paints the vi/p scope
+        // panes + derivation chain, and writes the signed HUD + U readout.
+        if (config.scenario_type === "ac_inductor") {
+            applyAcInductorState(stateDef);
+        }
+
         // magnetic_flux_loop — per-state contextual-control row visibility
         // (B/A/theta live-vs-static-vs-hidden), theta_range bounds, and the
         // area-vector/theta-arc/RHR-hand/projection-shadow flags. The animate
@@ -31701,6 +32572,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // "#sliders exclusion chain" — every dedicated panel adds itself to this
         // NOT-list, same as isMag/isFaraday/isAcGenerator/... above).
         var isAcResistor = config.scenario_type === "ac_resistor";
+        // ac_inductor owns its OWN #acl_sliders panel (vm/L/f_demo) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to
+        // this NOT-list, same as isMag/isFaraday/isAcResistor/... above).
+        var isAcInductor = config.scenario_type === "ac_inductor";
         // magnetic_flux_loop owns its OWN #mfl_sliders panel (B/A/theta) -- must
         // be excluded here or the generic #sliders panel bleeds through
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
@@ -31749,7 +32625,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -31936,8 +32812,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation)
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -32329,6 +33205,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // generic legend (would otherwise fall into no branch and print the
         // generic point-charge legend text, which is wrong content here).
         if (config.scenario_type === "ac_resistor") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // ac_inductor is a silent visual (Rule 24): the readout + vi/p scope
+        // panes + dedicated formula panel carry everything — suppress the
+        // generic legend (would otherwise fall into no branch and print the
+        // generic point-charge legend text, which is wrong content here).
+        if (config.scenario_type === "ac_inductor") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // magnetic_flux_loop is a silent visual (Rule 24): the loop + B lattice +
         // the live Phi = B.A.cos(theta) readout carry everything — suppress the
         // generic legend (the scenario id would otherwise fall into no branch and
@@ -35100,6 +35981,18 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "ac_resistor") {
             updateAcResistorFrame();
             applyAcResistorGlow();
+        }
+
+        // ac_inductor — v = vm*sin(wt), i = im*sin(wt-pi/2) LAGS by exactly
+        // pi/2, Xl = wL, <p> = 0 exact. Advances the phase (closed-form
+        // during S5's undragged f-ramp, a plain Rule-36 accumulator
+        // otherwise), drives the oscillating beads/flipping arrow/back-emf
+        // pair/breathing field-loops/U-gauge/dead-centre meter, paints the
+        // vi + p scope panes (incl. the S2 ghost-compare and S8 point-
+        // symmetry fold), and writes the signed HUD + derivation chain dock.
+        if (config.scenario_type === "ac_inductor") {
+            updateAcInductorFrame();
+            applyAcInductorGlow();
         }
 
         // magnetic_flux_loop — stationary tiltable/resizable loop in a uniform B.
