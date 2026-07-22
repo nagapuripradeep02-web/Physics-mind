@@ -292,3 +292,79 @@ the before/after + all 4 verify proofs above.
 
 **Outcome:** Fix PASSED. B2 (ASCII rms Unicode sweep) dispatches next, sequentially (same file), before
 `phasors` starts.
+
+**⚠ Process correction (discovered by the B2 dispatch, below — applies retroactively to this entry):**
+this entry's regression-sample claim ("faraday_law_induction: 27/27 checks, 0 diffs vs locked
+baseline") is WRONG in its second half. `faraday_law_induction` has NO committed `visual_baselines/`
+directory in this worktree on any branch (confirmed independently: `ls visual_baselines/` lists 40+
+concepts, `faraday_law_induction` is not among them; `git log --all -- visual_baselines/faraday_law_induction`
+is empty) — so its H2 (pixel-diff-vs-baseline) check was silently `Skipped — no approved baseline`, not
+a genuine 0-diff pass. The "27/27" / "39/39" style totals reflect the D/H1/H3 deterministic-motion and
+placeholder/console checks passing, which IS real signal, but is NOT the pixel-regression proof the
+§3b verify chain calls for. A genuine `capacitance` (which DOES have a committed baseline) regression
+run was captured after B1: **44/44 checks, H2 = 0.00% pixel diff across all 14 baseline images** — see
+the B2 entry below for the timestamp; this retroactively closes B1's regression-sample gap. Corrective
+action: use `capacitance` (not `faraday_law_induction`) as the reliable field_3d regression sample for
+the remainder of this chapter run; `faraday_law_induction`'s regression checks stay D/H1/H3-only until
+a real baseline is committed (`visual:approve` is banned this trial, so that's chapter-end/founder
+scope, not something this loop can self-correct).
+
+---
+
+## Stage 1b — ride-along engine fix B2: Unicode rms sweep across renderer text paths (2026-07-22)
+
+**Rollback point (pre-dispatch HEAD):** `ad7975b` (B1's commit)
+
+**Trigger:** founder-proxy Checkpoint B/C finding `field3d_rms_subscript_ascii_in_renderer_text_paths`
+(MINOR) — the `ac_resistor` scenario's renderer-hardcoded text paths (HUD, canvas graph labels, meter
+sprite, derivation chain) rendered ASCII `V_rms`/`I_rms` while the concept JSON's own `formula_overlay`
+already used proper Unicode `Vᵣₘₛ`/`Iᵣₘₛ` — a Rule-34c "sweep covered one path, silently skipped the
+others" gap, owned by the engine (not json_author, since the JSON was already correct). A meter-sprite
+truncation ("2.00 A² → I_") was folded into the same finding.
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, `general-purpose` stand-in.
+
+**Fix landed:** `src/lib/renderers/field_3d_renderer.ts` only (+37/-14 lines across 4 sites, all within
+the `ac_resistor` scenario). (1) Derivation chain (`#acr_derivation`, already Cambria Math) — direct
+Unicode swap. (2) Canvas V-I graph level-line labels (`ctx.fillText`, S6/S7/S8) — font changed
+`9px monospace` → `9px 'Cambria Math','Times New Roman',serif` PLUS the Unicode swap, because a
+headless-Chromium font test at the real 9px/DPR1 capture settings showed `ᵣₘₛ` renders as an illegible
+merged blob in monospace at that size (confirmed both synthetically and in-context) but clearly legible
+in Cambria Math at the same size. (3) DOM HUD (`#acr_readout`, 13px monospace) — direct Unicode swap,
+no font change needed (13px DOM text layout renders the subscript glyphs cleanly, unlike the 9px canvas
+raster). (4) Meter sprite — root cause of the truncation was `createLabelSprite` sizing its canvas once
+at creation time and `updateLabelSpriteText` not resizing a non-auto-width sprite's canvas on a later
+longer-text redraw; fixed by switching the creation call to the existing `pmCreateAutoLabel` helper
+(same font/pad/floor, so the S5 initial pose is pixel-identical; carries `_pmAutoWidth` so every live
+redraw re-measures and re-fits) rather than widening a fixed-size sprite, which the dispatch judged
+would only have deferred the same class of bug to the next longer string.
+
+**Verify chain (§3b):**
+1. `check:renderer-syntax` → PASS · `tsc --noEmit` → PASS · `validate:concepts` → PASS (125/125).
+2. Grep confirms zero remaining ASCII `V_rms`/`I_rms` on any renderer text path (2 remaining hits are
+   code comments only, not rendered text).
+3. Re-seeded + `visual:eyes -- ac_voltage_resistor` → **39/39, 0 failed** (unchanged from before).
+   Frames actually opened and read (not just grep-inferred): STATE_6/7/8 frozen + dense — DOM HUD,
+   canvas graph labels, meter sprite (no longer truncated — "i² running = 1.90 A² → Iᵣₘₛ = 1.38 A"
+   renders complete), and derivation chain all show real, legible Unicode subscripts, no tofu.
+4. Regression sample — **B2's dispatch surfaced that `faraday_law_induction` has no committed baseline
+   in this worktree** (see the correction note on the prior entry above); it substituted `capacitance`
+   (44/44, but ran BEFORE B1 was in the tree, so its H2 result covered B2 alone). The orchestrator then
+   ran a clean, post-B1+B2 `capacitance` regression pass to cover BOTH ride-along fixes at once:
+   re-seeded + `visual:eyes -- capacitance` (run `20260722-222854`) → **44/44 checks, 0 failed, H2 =
+   0.00% pixel diff across all 14 baseline images** (every `STATE_N` + `STATE_N__frozen` pair). Genuine
+   zero-regression proof for both B1 and B2 together.
+5. Clock guard (Rule 36b): not warranted — pure text/font/sprite-helper change, zero clock/integrator
+   code touched.
+
+**Scar status updated:** `field3d_rms_subscript_ascii_in_renderer_text_paths` in `scar_candidates.sql`:
+`OPEN → FIXED`, `fixed_in_files` populated, fix/verify documentation header added (including the
+faraday-baseline-gap finding).
+
+**Commit:** see `git log --grep=engine-loop -p` for
+`fix(engine-loop): field3d_rms_subscript_ascii_in_renderer_text_paths [peter_parker:renderer_primitives]`.
+
+**Outcome:** Fix PASSED. Both `ac_voltage_resistor` ride-along findings (B1, B2) are now closed and
+committed. `ac_voltage_resistor` is fully done: SEALED (`72910d1`) + B1 (`ad7975b`) + B2 (this commit).
+Per §3b's ride-along ordering, the loop may now advance to `phasors`, the next concept in the
+founder-approved chapter map.

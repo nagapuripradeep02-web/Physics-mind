@@ -24316,7 +24316,16 @@ export const FIELD_3D_RENDERER_CODE = `
         acrMeterNeedle = new THREE.Mesh(needleGeo, new THREE.MeshBasicMaterial({ color: hexToThreeColor("#EF5350") }));
         meterGrp.add(acrMeterNeedle);
         addToScene(meterGrp);
-        var meterLbl = createLabelSprite("\\u27e8i\\u27e9 = 0.00 A", "#90A4AE", 0.22);
+        // pmCreateAutoLabel (not createLabelSprite): this label is re-tasked at
+        // S7 to a much longer live string ("i² running = ... → Iᵣₘₛ = ... A")
+        // via updateLabelSpriteText — createLabelSprite's canvas is sized ONCE
+        // at creation and updateLabelSpriteText does not resize non-auto-width
+        // sprites on redraw, so the S5->S7 re-task clipped the longer string at
+        // the S5 text's canvas width (observed: "2.00 A² → I_" with "rms"
+        // cut off). pmCreateAutoLabel retains _pmAutoWidth so every live redraw
+        // re-measures + re-fits the canvas (same font/pad/floor as createLabelSprite,
+        // so the S5 "⟨i⟩ = 0.00 A" pose is pixel-identical to before).
+        var meterLbl = pmCreateAutoLabel("\\u27e8i\\u27e9 = 0.00 A", "#90A4AE", 0.22);
         meterLbl.position.set(0, 2.85, 0);
         meterLbl.userData = { elementType: "acr_meter", id: "acr_meter_lbl" }; addToScene(meterLbl);
 
@@ -24507,8 +24516,8 @@ export const FIELD_3D_RENDERER_CODE = `
             var c4 = cueTriggerMs("avg_power_dock", (d.avg_power_dock_at_ms != null ? d.avg_power_dock_at_ms : 6000)) / 1000;
             if (t >= c1) lines.push("i \\u2192 i\\u00b2");
             if (t >= c2) lines.push("\\u27e8i\\u00b2\\u27e9 = i\\u2098\\u00b2/2 = " + (im * im / 2).toFixed(2) + " A\\u00b2");
-            if (t >= c3) lines.push("I_rms = i\\u2098/\\u221a2 = " + Irms.toFixed(2) + " A");
-            if (t >= c4) lines.push("\\u27e8p\\u27e9 = I_rms\\u00b2R = " + pAvg.toFixed(1) + " W");
+            if (t >= c3) lines.push("Iᵣₘₛ = i\\u2098/\\u221a2 = " + Irms.toFixed(2) + " A");
+            if (t >= c4) lines.push("\\u27e8p\\u27e9 = Iᵣₘₛ\\u00b2R = " + pAvg.toFixed(1) + " W");
         } else if (mode === "why_half") {
             var f1 = cueTriggerMs("fold_start", (d.fold_start_at_ms != null ? d.fold_start_at_ms : 500)) / 1000;
             var f2 = cueTriggerMs("fold_end", (d.fold_end_at_ms != null ? d.fold_end_at_ms : 2500)) / 1000;
@@ -24598,14 +24607,19 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.fillStyle = "#FFB300"; ctx.beginPath(); ctx.arc(xPix(t), yI(iNowDisp), 3.6, 0, 2 * Math.PI); ctx.fill();
         }
 
-        // S7 root-pull: a dashed I_rms line converging onto the i-axis.
+        // S7 root-pull: a dashed Iᵣₘₛ line converging onto the i-axis.
         if (isSquareMode && window.PM_acrMeterMode === "rms_i2") {
             var rootC = cueTriggerMs("root_pull", (d.root_pull_at_ms != null ? d.root_pull_at_ms : 4000)) / 1000;
             if (t >= rootC) {
                 var IrmsNow = im / Math.SQRT2;
                 ctx.strokeStyle = "#66BB6A"; ctx.setLineDash([4, 3]); ctx.beginPath();
                 ctx.moveTo(padL, yI(IrmsNow)); ctx.lineTo(W - padR, yI(IrmsNow)); ctx.stroke(); ctx.setLineDash([]);
-                ctx.fillStyle = "#66BB6A"; ctx.font = "9px monospace"; ctx.fillText("I_rms", padL + 3, yI(IrmsNow) - 3);
+                // Rule 34c: 9px 'monospace' renders the ᵣₘₛ subscript glyphs as an
+                // illegible merged blob (verified via headless render + pixel-crop
+                // inspection, engine_bug_queue field3d_rms_subscript_ascii_in_renderer_text_paths)
+                // — switched to the same Cambria Math stack already proven-good on
+                // this scenario's #acr_formula/#acr_derivation panels (Checkpoint-A F4).
+                ctx.fillStyle = "#66BB6A"; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; ctx.fillText("Iᵣₘₛ", padL + 3, yI(IrmsNow) - 3);
             }
         }
 
@@ -24619,7 +24633,9 @@ export const FIELD_3D_RENDERER_CODE = `
             var VrmsV = vm / Math.SQRT2;
             ctx.strokeStyle = "rgba(255,202,40,0.7)"; ctx.setLineDash([2, 4]); ctx.beginPath();
             ctx.moveTo(padL, yV(VrmsV)); ctx.lineTo(W - padR, yV(VrmsV)); ctx.stroke(); ctx.setLineDash([]);
-            ctx.fillStyle = "#FFCA28"; ctx.font = "9px monospace"; ctx.fillText("V_rms", padL + 3, yV(VrmsV) - 3);
+            // Rule 34c: same Cambria Math swap as the Iᵣₘₛ root-pull label above
+            // (9px monospace ᵣₘₛ verified illegible; Cambria Math verified legible).
+            ctx.fillStyle = "#FFCA28"; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; ctx.fillText("Vᵣₘₛ", padL + 3, yV(VrmsV) - 3);
         }
     }
 
@@ -24855,7 +24871,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var meterLblObj = acrFindById("acr_meter_lbl");
         if (meterLblObj) {
             var meterText = (meterMode === "rms_i2")
-                ? ("i\\u00b2 running = " + i2Running.toFixed(2) + " A\\u00b2  \\u2192  I_rms = " + IrmsRunning.toFixed(2) + " A")
+                ? ("i\\u00b2 running = " + i2Running.toFixed(2) + " A\\u00b2  \\u2192  Iᵣₘₛ = " + IrmsRunning.toFixed(2) + " A")
                 : "\\u27e8i\\u27e9 = 0.00 A";
             updateLabelSpriteText(meterLblObj, meterText);
         }
@@ -24874,8 +24890,11 @@ export const FIELD_3D_RENDERER_CODE = `
             html += "<div>i = " + iSign + i.toFixed(2) + " A</div>";
             html += "<div>p = " + p.toFixed(1) + " W</div>";
             if (d.show_rms_readout) {
-                html += "<div style=\\"color:#FFCA28\\">V_rms = " + Vrms.toFixed(2) + " V</div>";
-                html += "<div style=\\"color:#FFCA28\\">I_rms = " + Irms.toFixed(2) + " A</div>";
+                // Rule 34c: ᵣₘₛ verified legible in this HUD's 13px/1.7 monospace
+                // stack (headless render + pixel-crop check) — direct swap, no
+                // font change needed here (unlike the 9px canvas graph labels).
+                html += "<div style=\\"color:#FFCA28\\">Vᵣₘₛ = " + Vrms.toFixed(2) + " V</div>";
+                html += "<div style=\\"color:#FFCA28\\">Iᵣₘₛ = " + Irms.toFixed(2) + " A</div>";
             }
             roEl.innerHTML = html;
         }
