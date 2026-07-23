@@ -8,9 +8,17 @@
  * places: this whitelist, the renderer's switch statement, and an authoring
  * Lesson note in `.agents/json_author/CLAUDE.md`.
  *
- * Renderer dispatch sites (parametric_renderer.ts):
- *   ANIMATION_TYPES   — `spec.animation.type` switches at lines 623–714
- *   ANIMATE_IN_KINDS  — `spec.animate_in` switch at lines 1811–1815
+ * Renderer dispatch sites (parametric_renderer.ts — re-locate by grep anchor,
+ * never by line number; this file has been edited repeatedly across the
+ * WP-R1..R5 hardening pass):
+ *   ANIMATION_TYPES   — `spec.animation.type` switches inside drawBody(),
+ *                        split across two spots: the animDx/animDy block
+ *                        (grep `spec.animation.type === 'free_fall'`) for
+ *                        every position-changing kind, and the rotDeg
+ *                        resolution a few lines later (grep
+ *                        `PM_rotateContinuousDeg`) for the one purely
+ *                        rotational kind, rotate_continuous.
+ *   ANIMATE_IN_KINDS  — `spec.animate_in` switch (grep `animate_in ===`)
  *
  * The renderer is built as a code-as-string blob inside a template literal,
  * so it can't `import` from this module at runtime. Instead the renderer's
@@ -28,6 +36,14 @@ export const ANIMATION_TYPES: readonly string[] = [
     'door_swing',
     'translate',
     'projectile',
+    // WP-R5 (D5, 2026-07-23) — decorative continuous spin for an element NOT
+    // tied to a physics variable (e.g. a compass-style pointer). Shape:
+    // { period_ms, from_deg?, direction?: 'cw' | 'ccw' }. Pure function of
+    // PM_simClockMs — freeze-deterministic like everything else in this file.
+    // Only rect/circle/stickman bodies actually spin (same restriction the
+    // renderer already has on any non-zero rotDeg — tree/pulley/door ignore
+    // rotation entirely; pre-existing gap, not introduced by this addition).
+    'rotate_continuous',
 ] as const;
 
 export const ANIMATE_IN_KINDS: readonly string[] = [

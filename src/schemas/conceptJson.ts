@@ -44,6 +44,31 @@ const misconceptionWatchSchema = z.object({
   one_line_fix: z.string().min(1),
 });
 
+// ── Variable Choreography (WP-R5, D5, 2026-07-23) ───────────────────
+// State-level array driving a declared physics_engine_config variable
+// continuously over the renderer's PM_simClockMs (never wall-clock —
+// determinism under SET_TIME_FREEZE is the whole point of that clock).
+// Renderer-consumed only. Cross-referencing `variable` against
+// physics_engine_config.variables happens in validate-concepts.ts (Zod
+// validates one state object at a time here and can't see the sibling
+// physics_engine_config block).
+
+const choreographyHoldSchema = z.object({
+  at_value: z.number(),
+  hold_ms: z.number().nonnegative(),
+});
+
+const variableChoreographySchema = z.object({
+  variable: z.string().min(1),
+  mode: z.enum(['once', 'loop', 'ping_pong']),
+  from: z.number(),
+  to: z.number(),
+  start_ms: z.number().nonnegative(),
+  duration_ms: z.number().positive(),
+  holds: z.array(choreographyHoldSchema).optional(),
+  seizable: z.boolean().optional(),
+});
+
 // ── State (within epic_l_path or epic_c_branches) ───────────────────
 // advance_mode + teacher_script are now REQUIRED per state.
 // CLAUDE.md rule 15: advance_mode must be specified per state. Never global.
@@ -70,6 +95,7 @@ const stateSchema = z.object({
     phases: z.array(choreographyPhaseSchema),
   }).optional(),
   misconception_watch: z.array(misconceptionWatchSchema).optional(),
+  variable_choreography: z.array(variableChoreographySchema).optional(),
 });
 
 // ── Physics Engine Config ───────────────────────────────────────────
