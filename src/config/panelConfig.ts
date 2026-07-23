@@ -421,16 +421,6 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
-    phasors: {
-        concept_id: 'phasors',
-        layout: 'single',
-        primary: {
-            renderer: 'graph_interactive',
-            config_key: 'phasors_graph',
-            label: 'Phasor Diagram',
-        },
-    },
-
     power_in_ac: {
         concept_id: 'power_in_ac',
         layout: 'single',
@@ -1529,6 +1519,21 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'ac_voltage_capacitor',
             label: 'AC Voltage on a Capacitor — i leads v by ¼ cycle, X_C = 1/(ωC) (3D)',
+        },
+    },
+
+    // Supersedes a legacy pre-field_3d 'phasors' -> graph_interactive stub
+    // (old retired 44-engine-OS scaffolding, never wired to a real concept
+    // JSON — see CLAUDE.md's note on superseded chat/particle_field/
+    // graph_interactive architecture). The real atomic concept now lives at
+    // src/data/concepts/phasors.json, field_3d ac_phasor scenario (Ch.7 #4).
+    phasors: {
+        concept_id: 'phasors',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'phasors',
+            label: 'Phasors — Rotating Vectors for AC (3D)',
         },
     },
 

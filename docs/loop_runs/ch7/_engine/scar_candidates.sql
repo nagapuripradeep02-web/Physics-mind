@@ -832,3 +832,124 @@ INSERT INTO engine_bug_queue (
  'ch7-stage3-ac_voltage_capacitor-checkpointB-cycle2', 'probe_definition');
 
 -- (end of Stage 3 cycle-2 records)
+
+-- ============================================================================
+-- Stage 4 · phasors (Ch.7 #4) — Checkpoint A design-gate + engine build (2026-07-23)
+-- Files only; never applied (trial). Authored against LIVE CHECK constraints:
+--   severity IN ('CRITICAL','MAJOR','MODERATE'); 7-value owner_cluster;
+--   probe_type IN ('sql','js_eval','manual','vision_model').
+-- ============================================================================
+
+-- Checkpoint A cycle 0 (founder_proxy_report_checkpointA.md section 4) — 3 rows
+INSERT INTO engine_bug_queue
+ (bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type) VALUES
+
+('skeleton_zone_map_asserts_pane_geometry_never_checked_against_built_overlay_css',
+ 'A skeleton zone map inherited a wrong pane position from its siblings and a new pane was specced against it',
+ 'MAJOR', 'alex:architect',
+ 'All four Ch.7 ac_* skeletons state "scope pane right" in their Rule-34 canvas budget. In the built renderer the v-i scope is a 320x150 DOM canvas at bottom:210px;left:12px (field_3d_renderer.ts:24375/:25283/:26526) and the top-right corner holds the HUD readout. The phrase was harmless boilerplate in the three sealed siblings because nothing depended on it. In phasors it became load-bearing: the new phasor disc was specced immediately LEFT of the scope, sharing its vertical axis, i.e. into 12 px of screen edge, and that adjacency carries the concept SUPPORTING AHA (the projection tie-line to the scope pen).',
+ 'Any skeleton that positions a NEW overlay RELATIVE to an existing one must cite the existing overlay actual CSS (file:line) in its zone map, not a prose memory of it. Relative placement claims are verified against the renderer source at Checkpoint A.',
+ 'manual',
+ 'For each relative-placement claim in a skeleton zone map, grep the renderer for the referenced overlay id and read its inline position/left/right/top/bottom. FAIL if the claimed side does not match, or if the free space in the claimed direction is less than the new overlay stated width.',
+ 'OPEN', ARRAY['phasors']::text[], ARRAY[]::text[],
+ 'ch7-stage4-phasors-checkpointA-cycle0', 'incident'),
+
+('one_shot_over_constrained_by_both_phase_target_and_narration_cue',
+ 'A physically phase-determined one-shot authored as cue-bound AND pinned to a theta/absolute-t target',
+ 'MAJOR', 'alex:architect',
+ 'The phasors design specified six freeze stops and two finish-line crossing flashes as scenario_cue-bound while also pinning each to a specific rotation angle or absolute state time. A cue fires when its sentence starts; a crossing happens when the rotation reaches the angle. The two cannot both hold, so the implementer silently picks one. Two of the quoted instants were additionally unobservable: S6 first C crossing at t = 0.0 s is the state opening frame (arrow starts on the line, no sweep), and S2 three stops were narrated 90 deg then 45 deg then 180 deg, which is not chronological within one turn.',
+ 'A one-shot whose trigger is a PHYSICAL event must declare arm-vs-fire semantics explicitly (cue ARMS, phase FIRES at the next occurrence) and must derive any displayed timestamp from the actual firing instant, never author it as a literal. Any authored instant at t = 0 of a state is rejected: it cannot show a cause-then-effect beat (Rule 32a).',
+ 'js_eval',
+ 'In the live player, log each one-shot fire with {id, PM_simTimeMs, theta}. FAIL if any fire time is < 0.3 s from state start, if a displayed timestamp differs from its logged fire time, or if the fire order differs from the authored narration order.',
+ 'OPEN', ARRAY['phasors']::text[], ARRAY[]::text[],
+ 'ch7-stage4-phasors-checkpointA-cycle0', 'incident'),
+
+('oncanvas_numeric_coincidence_shown_unqualified_with_only_narration_as_guard',
+ 'Equal numeric chips assert an unintended general identity sound-off; narration silence is not a visual guard',
+ 'MODERATE', 'alex:architect',
+ 'The phasors S6 scoreboard originally rendered R = 5.0 ohm, X_L = 5.0 ohm, X_C = 5.0 ohm side by side. The equality is an artifact of the chapter locked operating point (which is in fact the resonance point, f_res = 0.25002 Hz vs default 0.25 Hz) and is the very fact deferred to series_lcr_circuit. The design mitigation was to leave it unspoken, which under Rule 24 (the sim reads sound-off) is the weakest option: the identity is displayed with nothing on canvas to condition it. Resolved at cycle 1 by removing the numerals entirely (angles-only scoreboard).',
+ 'When a state renders numerically equal values whose equality is an artifact of the default operating point, either omit the numerals or render the operating condition beside them on canvas. Narration silence is never accepted as the guard for a sound-off misreading.',
+ 'manual',
+ 'In every frozen frame, list numerically equal on-canvas values belonging to different physical quantities. FAIL if any such set is rendered without an on-canvas condition label and the concept does not teach the equality.',
+ 'OPEN', ARRAY['phasors']::text[], ARRAY[]::text[],
+ 'ch7-stage4-phasors-checkpointA-cycle0', 'incident');
+
+-- Checkpoint A cycle 1 (founder_proxy_report_checkpointA_cycle1.md section 6) — 1 row
+INSERT INTO engine_bug_queue
+ (bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type) VALUES
+('skeleton_zone_map_sizes_a_subregion_without_a_content_fit_check',
+ 'A zone map fixed a sub-region size and separately assigned it content that cannot fit',
+ 'MODERATE', 'alex:architect',
+ 'The phasors cycle-1 revision correctly replaced a wrong pane position with a decided one (a single ~500x170 left-band canvas), and the OUTER envelope arithmetic was verified against the built overlay CSS. But two INNER budgets were stated without a fit check: a ~160 px square disc region was assigned S6 three side-by-side labeled mini phasor diagrams (~53 px per cell against a ~60 px label), and a shared internal y-axis with an 80 px disc radius forces the trace peak amplitude to 80 px inside a 170 px canvas, leaving ~5 px for the family gutter lines, their labels and S6 timestamps that the same skeleton requires on clear baselines. The engine fine-tune allowance (+/-20 px) could not reach either, because the binding-invariant list named the canvas, the split and the axis but not the disc diameter or the scoreboard footprint.',
+ 'A skeleton zone map that fixes an overlay size must state, for the LARGEST content each sub-region carries in any state, a minimum footprint per element and a minimum clear margin, and both must appear in the binding-invariant list handed to the engine dispatch. An outer-envelope check is not a fit check.',
+ 'manual',
+ 'For every sub-region in a skeleton zone map, list the states that render into it and the maximum element count plus longest label in each. FAIL if any state divides the region into cells narrower than its own longest label, or if the declared axis mapping consumes more than 90 percent of the region height leaving no margin for gutter labels or reference-line text.',
+ 'OPEN', ARRAY['phasors']::text[], ARRAY[]::text[],
+ 'ch7-stage4-phasors-checkpointA-cycle1', 'incident');
+
+-- Engine build (Stage 4 dispatch report) — 1 NEW row + 1 note on an existing probe
+INSERT INTO engine_bug_queue
+ (bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type) VALUES
+('field3d_freeze_window_must_be_phase_time_subtraction_not_render_halt',
+ 'A scenario freeze that halts the scene must subtract frozen time from the closed-form phase clock, never merely stop drawing while the base phase advances underneath',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ 'A freeze-and-read beat implemented by holding the render at a frozen angle while the base theta = theta0 + omega*t keeps advancing produces a visible phase JUMP when the freeze releases, and is not a pure function of t so it is not byte-stable under SET_TIME_FREEZE.',
+ 'A field_3d freeze window must be a pure function of state-local t: compute the deterministic fire instant (arm time + next target crossing), subtract each completed/in-progress freeze duration from the phase clock, and derive theta from the reduced phase time — so the pose holds at the target then resumes continuously with no jump, byte-identical under a SET_TIME_FREEZE pin.',
+ 'js_eval',
+ 'For a freeze state, sample the scenario phase at t just before, during, and just after a freeze window (from __PM_phsFreezeWindows()); assert the angle held constant during the window and is continuous (no >1 deg discontinuity) at the release edge.',
+ 'OPEN', ARRAY['phasors']::text[],
+ ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage4-phasors-engine-build', 'probe_definition');
+-- NOTE (not a new row): live_player_caption_order_probe_via_filltext_interception (filed Stage-3 cycle 2)
+-- now has a reference implementation in field_3d_renderer.ts (phasors window.__PM_phsProbe.start()/dump()).
+-- It stays OPEN as a reusable probe_definition; the loop does not apply the UPDATE (files only).
+
+-- ============================================================================
+-- Stage 4 · phasors · Checkpoint B (founder_proxy_report_checkpointB.md §5) — 2 rows
+-- Files only; never applied (trial). LIVE CHECK enums.
+-- ============================================================================
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_generic_element_value_renders_nothing_leaving_open_loop_with_live_current',
+  'ac_phasor S7 element="generic" hides R/L/C and draws nothing in the slot, leaving an open wire gap while amber current beads keep flowing — a physically impossible open circuit in the derivation state',
+  'CRITICAL',
+  'peter_parker:renderer_primitives',
+  'The ac_phasor element carousel builds phsElemR/L/C meshes but treats element=="generic" as "show none" (renderer comment: "generic shows none"), keeping phs_slot_stub_top/bot (0.6-unit gap) unbridged AND keeping the current path live (im=vm/R for generic). Related to field3d_scenario_declares_bead_element_but_never_builds_the_meshes but distinct: meshes exist; the generic VALUE lacks a rendered closed element. FIXED (commit 9c50ad5): phsBuildElementGeneric renders a neutral closed box bridging the stubs, dimmed per dim_apparatus, beads excluded.',
+  'A guided state that keeps current/voltage visibly flowing must keep the active circuit element RENDERED and the loop CLOSED (dimmed if the state calls for an E4 apparatus-dim). A "generic"/element-agnostic slot must render a neutral CLOSED component bridging the slot stubs, never an open gap.',
+  'js_eval',
+  'On STATE_7 under SET_TIME_FREEZE: query the Three.js scene for a visible mesh (material.opacity>0) whose bounding box bridges phs_slot_stub_top and phs_slot_stub_bot (y in [-0.3,0.3] at x=PHS_SLOT_X). Assert exactly one such element mesh exists whenever any phsBead is animating (im>0). FAIL if beads flow with no bridging element.',
+  'FIXED',
+  ARRAY['phasors']::text[],
+  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+  'ch7-stage4-phasors-checkpointB',
+  'incident'
+);
+
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_predates_scripted_reveal',
+  'ac_phasor has no maxRevealForField3dState block, so every frozen frame pins at DEFAULT_REVEAL_MS=1500ms; S5 lead_mirror_flip completes at flip_start(800)+1200=2000ms, so the H2 baseline is captured mid-flip at phi=+15deg while the static label and settled state read 90deg',
+  'MODERATE',
+  'peter_parker:visual_validator',
+  'deriveStateMeta.ts maxRevealForField3dState has an explicit per-scenario reveal-completion block for every other scenario but none for ac_phasor; with candidates=[] it returns DEFAULT_REVEAL_MS (1500). The S5 scripted flip settles at 2000ms > 1500ms, so THE EYE freezes the baseline mid-transition. Live playback is unaffected (the review player freezes at narration-end). FIXED (commit 04185ac): added the ac_phasor per-mode reveal block. A new field_3d scenario must be registered at THREE deriveStateMeta sites (timing-keys list + hold-classifier + maxRevealForField3dState), not two.',
+  'A new field_3d scenario with any scripted one-shot/ramp/reveal that completes after DEFAULT_REVEAL_MS must add a maxRevealForField3dState candidate block pinning the frozen frame past its LAST payoff (mirror the sibling scenario blocks): for a scripted phase relock, flip_start_at_ms + flip_duration + margin. Any scenario key present in the timing-keys list MUST have a matching branch in maxRevealForField3dState.',
+  'js_eval',
+  'On each guided ac_phasor state under SET_TIME_FREEZE at the derived reveal-hold pin: assert the live phi HUD readout equals the state static formula-overlay phi (both 90.0 for S5). FAIL if |HUD_phi - formula_phi| > 0.5deg (catches a mid-flip pin).',
+  'FIXED',
+  ARRAY['phasors']::text[],
+  ARRAY['src/lib/validators/visual/deriveStateMeta.ts']::text[],
+  'ch7-stage4-phasors-checkpointB',
+  'incident'
+);

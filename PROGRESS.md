@@ -12193,3 +12193,45 @@ deploy, no DB writes to `engine_bug_queue` (all findings filed as files in
 `docs/loop_runs/ch7/_engine/scar_candidates.sql`, pending founder ruling at chapter end), no merge to
 master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
 `docs/loop_runs/ch7/ac_voltage_resistor/*`.
+
+---
+
+## 2026-07-23 · Ch.7 chapter loop · `phasors` (concept 4/8) — SEALED
+
+Fourth concept of the autonomous Ch.7 run (NCERT 7.5, phasor representation). NEW `field_3d`
+scenario_type `ac_phasor`. Full pipeline + all three founder-proxy checkpoints.
+
+- **Checkpoint A (design):** DESIGN_FIX (11 findings, 5×P1) → 44-patch architect revision → **DESIGN_OK**
+  on cycle 1. Two founder-visible decisions recorded: (F1) the phasor disc was specced against a scope
+  pane position that does not exist in the built renderer — resolved to ONE combined left-band canvas
+  `phs_band`; (F4) the `R = X_L = X_C = 5.0 Ω` scoreboard silently displayed the resonance condition
+  `series_lcr_circuit` opens with — resolved by dropping the Ω chips (angles-only scoreboard), which also
+  retired the sole stated trigger for the compose-routine promotion.
+- **Pipeline:** physics_block (R3/R4/R5 residuals resolved, numbers independently re-derived) →
+  json_author (`phasors.json` + 8 registration sites + migration; tsc 0, validate PASS) → engine build
+  `62911da` (`ac_phasor`, closed-form θ(t)/Rule-36, freeze contract, F7 caption-order probe; a
+  scenario-scoped `phs_` compose clone, NOT the shared-layer promotion — F4 removed its trigger, so the
+  fleet-wide promotion is now a decoupled founder decision).
+- **Checkpoint B (build):** the two AI reviewers DISAGREED — quality-auditor PASS vs eye-walker
+  FINDINGS(2). founder-proxy opened the frames itself and ruled **eye-walker correct on both**:
+  **F2 (BLOCKING, CRITICAL)** — S7 (θ=ωt derivation) set `element:"generic"`, which rendered no element,
+  leaving a physically impossible open circuit with current flowing through a visible gap; **F1
+  (ride-along)** — the S5 frozen H2 baseline was pinned mid-flip (φ=15° in the HUD vs 90° in the formula
+  overlay). Both fixed via §3b: `9c50ad5` (a neutral closed generic element bridging the slot + a real
+  E4 `dim_apparatus`, general ∓ derivation preserved) and `04185ac` (the missing `ac_phasor`
+  `maxRevealForField3dState` block). Checkpoint-B re-review **APPROVE** — both resolved on the pixels,
+  regression clean, S8 explore ships bright. F3/F4 cosmetic JSON cleanups done by the loop session.
+- **Checkpoint C (handover):** diffed every A/B fix against the real commits, validated the 7-row scar
+  block against the LIVE CHECK constraints (applies clean, 0 collisions), confirmed sibling coherence
+  (X_L 5.000 / X_C 5.001 Ω at defaults, resonance withheld for `series_lcr`). One loop-fixable artifact
+  (state-file `engine_commits` omitted `04185ac`) fixed by the loop session, no cycle → **SEALED**.
+
+**Commits this session (this concept):** `62911da` (ac_phasor scenario build) · `9c50ad5` (F2 S7
+open-circuit fix) · `04185ac` (F1 frozen-pin fix) · this seal commit for the authoring artifacts.
+Phasors spent its full 2/2 per-concept engine-fix budget (guard NOT tripped). Verify chain green
+throughout, independently re-run by the orchestrator: EYE 35/35, capacitance regression 44/44 @ 0.00% H2.
+
+**Trial constraints held:** no `visual:approve`, no `tts:*`, no `PILOT_CONCEPTS`, no deploy, zero live
+`engine_bug_queue` writes (7 phasors scar rows filed as files, pending founder ruling), no merge to
+master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
+`docs/loop_runs/ch7/phasors/*`. **Next: `series_lcr_circuit` (concept 5/8).**

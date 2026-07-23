@@ -911,3 +911,153 @@ negative-form check ("X never does Y") must be preceded by an existence assertio
 **Two structural gate blind spots identified:** THE EYE posts no cue times, so it cannot see caption
 ORDERING defects; and canvas-internal text is invisible to founder_drive's DOM collision probe — which is
 exactly why the sealed sibling's identical `X_C` strike-through survived its own Checkpoint C.
+
+---
+
+## Stage 4 · 2026-07-23 · NEW field_3d scenario_type `ac_phasor` (phasors build)
+
+**Routing:** NOT a founder-proxy FAIL. Routed by the skeleton's Class-B triage (§0b) — `json_author`
+BLOCKED until a renderer delta lands, same shape as the three sealed siblings' first-build dispatches.
+Founder-proxy confirmed the triage at Checkpoint A (cycle 0 §1: Class-A honestly evaluated and rejected).
+
+**Dispatch:** general-purpose stand-in carrying `.agents/renderer_primitives/CLAUDE.md` as operating spec
+(native `renderer-primitives` type still not in this session's roster — founder-approved workaround since
+Stage 1a). Rollback point recorded before dispatch: `2f551c5`. Dispatch prompt restated the trial's
+**NO-DB-WRITES** override explicitly (per the Stage-2 correction) — verified held (see below).
+
+**One loop decision embedded in the dispatch — the compose-routine promotion was DECLINED for this build.**
+The founder's standing pre-authorization ("promote the `acc_`-scoped subscript compose routine to the shared
+text layer as a scoped engine task **when phasors needs X_L and X_C side by side**") was conditioned on a
+need the F4 design decision removed: reactance symbols render NOWHERE in this sim, so nothing forces the
+promotion. Founder-proxy (Checkpoint A cycle 1 §2) independently flagged that promoting now buys phasors
+nothing a scenario-scoped clone wouldn't, while still carrying regression risk across the three sealed
+siblings, and explicitly declined to route it ("a founder call, pre-authorized either way; I record it, I do
+not route it"). The loop therefore directed a **scenario-scoped `phs_` compose clone** (zero sealed call
+sites touched, zero sealed-chapter regression surface). The fleet-wide promotion remains a standalone
+quality decision for the founder at chapter end, now decoupled from phasors. **Rationale: the trial-
+conservative path — do not touch sealed-chapter code for zero local benefit.**
+
+**Fix landed (engine files only, +878/−4 across 2 files):**
+- `src/lib/renderers/field_3d_renderer.ts` (+842/−3): one new `ac_phasor` scenario block after the sealed
+  `ac_capacitor` block (untouched), plus 5 one-line integration wirings — the build dispatch
+  (`case "ac_phasor"`), the SET_STATE dispatch, the `#sliders` exclusion NOT-list, the formula-overlay-
+  suppress OR-chain, and the animate-loop calls. The 3 deletions are ONLY the three shared OR-chain/comment
+  lines being EXTENDED with `ac_phasor` — no sealed sibling internals (`buildAcResistor/Inductor/Capacitor`,
+  `acr_/acl_/acc_` bodies) removed or edited (verified by diff inspection).
+  - The `phs_`-scoped compose clone (`phsComposeSegments`/`phsHtmlComposeSub`/…) — serves `v_m`/`i_m` only.
+  - The `#phs_band` combined left-band canvas (500×170 @ `bottom:185px; left:12px`), disc region + sine strip
+    sharing one internal y-axis, same-canvas projection tie-line (F1 geometry).
+  - Closed-form θ(t) throughout (Rule 36): `θ_deg = θ₀(state) + ω_deg·(t − stateStart)`, NO dt-accumulator,
+    so frozen frames are byte-stable and 120 Hz-correct. **No `__pmSteps`/`dtStep`/integrator touched → no
+    Rule-36b fleet sweep triggered.**
+  - The freeze contract (F6) as **phase-time subtraction** — frozen ms subtracted from the phase clock so the
+    pose holds at its target then resumes with no jump; the whole θ-driven scene (disc/tie-line/pen/HUD/beads)
+    reads the one `phaseT`.
+  - S6 arm-timing (json_author's `note_arm_timing` flag) resolved by anchoring the crossing flashes on the
+    physical event and arming at state entry via the small `*_at_ms` (not `cueTriggerMs`), so a late TTS
+    `SET_CUE_TIME` cannot push the arm past the physical crossing; with θ₀=−90° the i-crossing lands at
+    t=1.0 s and v at t=2.0 s, timestamps DERIVED from the actual fire instants.
+  - R1 (S6 scoreboard the full ~500 px band width after the disc eases to a stop, ~166 px/cell ≥140).
+  - R2 (disc radius 58 → dia 116 ≤120; peak amplitude = 58 ≤60; ≥27 px top/bottom margin).
+  - R8 (freeze-window exemption exposed via `window.__PM_phsFreezeWindows()`, computed from the ACTUAL fire
+    instants, never the authored `*_at_ms`).
+  - F7 caption-order probe (`window.__PM_phsProbe.start()/dump()`) — fillText interception stamped with
+    state-local ms, 250 ms coalescing — invocable at Checkpoint B on S2/S4/S6.
+- `src/lib/validators/visual/deriveStateMeta.ts` (+37/−4): the 3 mandatory same-change registrations —
+  `'ac_phasor'` added to `F3D_REVEAL_KEYS`, `deriveMotionExpectations` (guided→motion / explore→static), and
+  `deriveHoldExpectations` (guided→`reveal_hold` / explore→`interactive`).
+- `field_lines`/`createTubeLine`: no crash risk in this tree — `createTubeLine` (`:2983`) already defaults
+  `opacity` safely when the block is absent (the old throw fixed in `d26d139`). No `field_lines` block needed;
+  no dependency introduced.
+
+**Verify chain — ALL GREEN, independently re-run by the orchestrator (not delegated trust):**
+1. `npm run check:renderer-syntax` → `field_3d: syntax OK`, `particle_field: syntax OK`. `npx tsc --noEmit`
+   → 0 errors. `npm run validate:concepts` → `PASS phasors.json`, 128 PASS / 0 FAIL.
+2. Re-seed `_seed_phasors_cache.ts` (2497352-char sim_html) → `npm run visual:eyes -- phasors` →
+   **35 deterministic checks · 35 passed · 0 failed** (all 8 states, frozen + dense + keyframes). Zero
+   `engine_bug_queue` candidates emitted. (Independently re-run by the orchestrator: identical 35/35.)
+3. Regression sample (shared `field_3d_renderer.ts` touched): re-seed + `visual:eyes -- capacitance` →
+   **44/44, zero H2 drift** vs the locked baseline. (faraday_law_induction still has no committed baseline in
+   this worktree — H2 silently skips — so capacitance is the reliable field_3d regression sample; not claimed
+   as faraday-proof.)
+
+**Diff-scope audit:** engine deletions are exclusively the three shared dispatch/reveal OR-chain lines +
+one comment, each EXTENDED with `ac_phasor`; the `acr_/acl_/acc_` tokens in the deletions appear only inside
+an extended comment string, not sibling code. No sealed sibling scenario body touched. No DB write of any
+kind (migration writes only `confusion_cluster_registry`; the generator's `engine_bug_queue` reference is a
+pre-existing runtime comment, not a new write).
+
+**Scar candidates filed (files only, NOT applied) — see scar_candidates.sql:**
+- NEW `field3d_freeze_window_must_be_phase_time_subtraction_not_render_halt` (MODERATE,
+  peter_parker:renderer_primitives) — a freeze that merely stops drawing while the base θ advances underneath
+  produces a phase jump on release and is not byte-stable under SET_TIME_FREEZE; the prevention rule is the
+  phase-time-subtraction pattern this build used.
+- `live_player_caption_order_probe_via_filltext_interception` (existing OPEN probe_definition) now has a
+  reference implementation in `field_3d_renderer.ts` (phasors `window.__PM_phsProbe`); stays OPEN as a
+  reusable probe.
+
+**Runaway-guard note:** this is a NEW-scenario `feat` build (the concept's renderer), NOT an engine FIX
+commit — the founder's guard counts *fixes*. Chapter engine-commit total after this: 11 (`9c2c64e`,
+`6b97ede`, `d26d139`, `ad7975b`, `4dc1c76`, `35ae566`, `eae16ca`, `21e1f0f`, `832b1d3`, `219937d`, + this
+build). The 8-commit §3b runaway guard (crossed at concept 3, already flagged to the founder) counts all
+engine-loop commits; this build is a first-build, not a phasors fix. Phasors fix-commit count so far: 0
+(the founder's "pause if phasors alone needs >2 engine-fix commits" guard is not yet approached).
+
+---
+
+## Stage 4 · fix cycle 0 · 2026-07-23 · `ac_phasor` Checkpoint-B F2 (blocking) + F1 (ride-along)
+
+**Routing:** founder-proxy Checkpoint B (`founder_proxy_report_checkpointB.md`). The two AI reviewers
+DISAGREED — quality-auditor PASS, eye-walker FINDINGS(2). founder-proxy opened all four named frames
+itself and ruled **eye-walker correct on both**; the auditor judged from the settled founder_drive walk
+and never scrutinised the frozen H2 baseline (S5) nor noticed S7's element is *absent* not *dimmed*.
+Verdict **FIX(engine)** — F2 blocking, F1 ride-along. Rollback points: F2 `62911da`, F1 `9c50ad5`.
+
+**F2 — S7 open circuit with live current (BLOCKING, CRITICAL) → commit `9c50ad5` [peter_parker:renderer_primitives].**
+STATE_7 (θ=ωt derivation) set `ac_phasor.element:"generic"`; the element carousel treated `"generic"`
+as "show none" — hid all R/L/C meshes but kept the slot stubs (~0.6-unit gap) AND the live current path
+(im=vm/R=2.00A). Amber beads flowed through a visible open gap: a physically impossible open circuit in
+the concept's own derivation state. A recurrence-in-spirit of the flagship
+`field3d_scenario_declares_bead_element_but_never_builds_the_meshes` ("presence is not correctness") —
+distinct mechanism: the meshes ARE built; the generic VALUE had no rendered representation.
+- Fix (ac_phasor block only): `phsBuildElementGeneric` — a neutral grey (#90A4AE) box 0.7×0.64×0.5 at
+  the slot centre, height 0.64 overlapping the ±0.3 stub ends → loop visibly CLOSED, element-agnostic, no
+  R/L/C glyph, no reactance text (F4), grey not cyan/amber. Preserves the general sin(ωt∓π/2) derivation —
+  the content workaround (concrete R/L/C in S7) was rejected per PRIME DIRECTIVE (it narrows the general ∓).
+  Also implemented `dim_apparatus` (previously a NO-OP in the phasor block): reversible E4 dim to opacity
+  0.45 (never 0), beads excluded so current still flows, original opacities cached+restored (Rule 25d/29).
+- No sealed sibling, no clock/integrator (no Rule-36b sweep).
+- **Re-review criterion met (orchestrator opened the frame itself):** `STATE_7__frozen.png` from the
+  post-fix run shows the grey box bridging the slot, loop CLOSED, amber beads flowing through a closed
+  circuit, no gap, formula chain intact. Not inferred from a green count — the pixels were read.
+
+**F1 — S5 frozen baseline pinned mid-flip (RIDE-ALONG, MODERATE) → commit `04185ac` [peter_parker:visual_validator].**
+`deriveStateMeta.ts maxRevealForField3dState` had a per-scenario reveal block for every field_3d scenario
+EXCEPT `ac_phasor` (json_author registered it in the timing-keys list + hold-classifier but not here), so
+every ac_phasor frozen frame fell to `DEFAULT_REVEAL_MS=1500ms`. S5 `lead_mirror_flip` settles at
+flip_start(800)+flipDur(1200)=2000ms, so THE EYE pinned the H2 baseline mid-flip at φ=+15° while the static
+formula overlay + live playback read 90° — a self-contradictory reviewed frame. Live playback never
+affected (the review player freezes at narration-end ≫2000ms; the 1500ms pin is THE EYE's only).
+- Fix (deriveStateMeta.ts only, +60): add the ac_phasor block mirroring the ac_capacitor/ac_resistor
+  idiom, pinning each mode past its last scripted payoff (from phasors.json `*_at_ms`): S1 13500, S2 17500
+  (freeze completions at the pinned f=0.25), S3 14300, S4 10300, S5 2200, S6 9800, S7 16500, S8 default.
+- No renderer, no clock, no sibling, no JSON.
+- **Re-review criterion met (orchestrator opened the frame):** post-fix `STATE_5__frozen.png` reads
+  φ=90.0° in the HUD, the dial mini-caption, AND the formula overlay — all three agree; capacitor plates
+  bridge the slot, loop closed. The 15° contradiction is gone.
+
+**Verify chain (independently re-run by the orchestrator, not delegated trust) — both fixes:**
+- syntax OK · tsc 0 · validate phasors PASS 128/0 (re-run after each fix + after the F3/F4 JSON cosmetics).
+- `visual:eyes -- phasors` 35/35 after F2 and again after F1.
+- Regression `visual:eyes -- capacitance` 44/44, **0.00% H2 drift** across all baselines, after F2 and F1.
+- The ac_phasor frozen frames change by design under F1 (S5 now 90°); ac_phasor has no locked baseline yet,
+  so that is intended, not a regression — capacitance is the locked field_3d sample and is byte-clean.
+
+**F3/F4 (cosmetic JSON, non-blocking) — done by the loop session directly (no dispatch, no cycle):**
+`_engine_status_note` (stale "NOT YET BUILT") removed; the `element` doc string corrected `C (S5-S7)` →
+`C (S5-S6) → generic (S7)` and unit → `R|L|C|generic`. JSON re-validated PASS. These seal at Checkpoint C.
+
+**Runaway guard:** phasors now has **2 engine-fix commits** (9c50ad5, 04185ac) — the founder's explicit
+per-concept budget ("pause + notify if phasors alone needs >2 engine-fix commits"). Budget exhausted; any
+further phasors engine fix trips the guard. Both were adjudicated blocking/ride-along findings, not scope
+creep. Chapter engine-commit total: 13 (11 prior + these 2).

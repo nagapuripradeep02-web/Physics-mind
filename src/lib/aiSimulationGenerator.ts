@@ -2722,7 +2722,6 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     capacitor_in_ac:                "circuit_live",
     transformer:                    "circuit_live",
     ac_basics:                      "graph_interactive",
-    phasors:                        "graph_interactive",
     resonance_lcr:                  "graph_interactive",
     power_in_ac:                    "graph_interactive",
     // Mechanics 2D — all concepts routed to the mechanics_2d renderer
@@ -2946,6 +2945,9 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     ac_voltage_resistor:            "field_3d",
     ac_voltage_inductor:            "field_3d",
     ac_voltage_capacitor:           "field_3d",
+    // Supersedes the legacy 'phasors' -> graph_interactive stub removed
+    // above (old retired scaffolding, never wired to a real concept JSON).
+    phasors:                        "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
 };
