@@ -617,3 +617,112 @@ process-violation account documented in that same block's header comment.
 **Outcome:** Fix PASSED, independently re-verified end-to-end by the orchestrator (not delegated
 trust). Next: re-run `founder:drive` + re-dispatch founder-proxy Checkpoint B (scoped to re-confirming
 S4 + F2/F3) before this concept can proceed to Checkpoint C.
+
+---
+
+## Stage 3 · 2026-07-23 · NEW field_3d scenario_type `ac_capacitor` (ac_voltage_capacitor build)
+
+**Routing:** NOT a founder-proxy FAIL. Routed by the architect's own Class-B triage in
+`docs/loop_runs/ch7/ac_voltage_capacitor/skeleton.md` §0b, which declared `json_author` BLOCKED until a
+renderer delta lands — the same shape as the two sealed siblings' first-build dispatches. Class-A was
+honestly evaluated and rejected against BOTH candidates: extending `ac_inductor` pure-JSON (six hard
+gaps — hard-coded −π/2 lag phase, no plates/E-field/charge visuals, opposite-sign mechanism HUD, U keyed
+to i not v, tangent on the effect trace not the cause, envelope falling not rising with f) and extending
+the shipped `capacitance` scenario (wrong instrument class — DC/electrostatics, no AC source, no scope
+pane, no phase machinery). Founder-proxy independently confirmed this triage as properly scoped at
+Checkpoint A.
+
+**Dispatch:** general-purpose stand-in carrying `.claude/agents/renderer-primitives.md` as its operating
+spec (native `renderer-primitives` type still not in this session's roster — the founder-approved
+workaround established in Stage 1a). Rollback point recorded before dispatch: `f913580`.
+
+**⚠ Process correction carried forward and APPLIED:** this dispatch prompt explicitly restated the trial's
+"NO DB writes to engine_bug_queue — candidates stay FILES" constraint, and named the prior violation by
+description so the subagent could not default to the normal non-trial `_seed_engine_bug_queue_*.ts`
+convention. **It worked** — the dispatch wrote zero DB rows and filed zero scar SQL itself, reporting its
+one flaggable item back to the orchestrator instead (see "Interpretive call" below). This is the fix for
+the gap identified in the Stage 2 violation writeup, and it should stay in EVERY future §3b dispatch
+prompt, fix cycles included.
+
+**What was built** (`field_3d_renderer.ts` +1206/−4, `deriveStateMeta.ts` +80/−1): a clean standalone
+`acc_`-prefixed scenario appended between the sealed `ac_inductor` block and `gauss_law_sphere`. New
+apparatus (AC source, wires+beads, parallel plates, inter-plate E-field line-work, charge-glyph pools);
+lead-phase trace machinery (real `i = iₘcos θ` clock-drawn, static dashed ghost = the coil's own
+`−iₘcos θ` rhythm, LEAD bracket now drawing an explicit line+arrowhead — genuinely new, the sibling's lag
+bracket was text-only); S3 fill/spill band with a world-space `q` annotation placed clear of the HUD (the
+F2 fix pattern, inherited); S4 tangent-walk riding the **v-trace** (cause) rather than the sibling's
+i-trace, using the post-fix single-latest-stop `clearRect` caption pattern (F1, inherited); S5 INVERTED
+ramp-response (envelope swells 2.00→4.00 A as f rises) reusing the closed-form ramp-phase lemma
+byte-for-byte (confirmed schedule-generic, independent of L vs C); S6 U-gauge keyed to v's crest, not i's;
+S8 chain-link derivation + point-symmetry echo-dot fold fed a positive-signed `p(t)`; and the F3
+`show_graph_p` HUD ring-gate (inherited).
+
+**The one piece of genuinely new low-level machinery: a styled-subscript COMPOSE routine.** Unicode has
+no subscript-"c" codepoint (verified independently at Checkpoint A against the actual subscript block —
+it carries a e h i j k l m n o p r s t u v x, no c/b/d/f/g/q/w/y/z), so `X_C`/`v_C` cannot be a
+pass-through glyph the way the sibling's `ₗ` was. Built `accComposeSegments` →
+`accMeasureComposedWidth`/`accDrawComposedRun` (shared core) → `accFillComposedOnCanvas` (canvas path) and
+`accHtmlComposeSub` (DOM path, which required switching the formula/derivation panels from `textContent`
+to `innerHTML`). Source-string convention PINNED across all three roles: authored JSON carries the plain
+ASCII token `X_C`/`v_C`, the engine detects the `_C` suffix and composes, and no literal underscore or
+side-by-side `XC` ever reaches the screen. Tested BEFORE wiring via a throwaway Node script running the
+exact functions against a fake canvas context with deterministic glyph widths — 30 assertions covering
+segment parsing, font-size regex rebuild, measured-width arithmetic, draw-advance math, font-state
+restoration, and an explicit no-underscore/no-bare-XC invariant; all 30 passed.
+
+**Interpretive call flagged by the dispatch (not silently taken):** the skeleton named only the E-field
+channel for the `applyGlowEmphasis` exemption; the dispatch additionally exempted `acc_charge`, whose
+colour+opacity are also live-driven every frame and would be clobbered by the glow pass's
+stale-baseline reset — exactly the failure mode the sibling's existing B-field exemption prevents.
+Documented in code. Flagged here for quality_auditor / founder-proxy to eyeball at Checkpoint B rather
+than accepted blind. `createComposedSubLabelSprite` (the 3D-sprite compose path) was also built but has
+NO live call site in this build — every `X_C`/`v_C` occurrence here is DOM-HUD or canvas-graph per the
+symbol table — so it ships ready for `series_lcr_circuit` and should be treated as untested-by-THE-EYE
+until then.
+
+**Verify chain — INDEPENDENTLY RE-RUN by the orchestrator, not delegated trust:**
+1. `check:renderer-syntax` → `field_3d: syntax OK (2304 KB)`, `particle_field: syntax OK (229 KB)` ·
+   `tsc --noEmit` → exit 0, zero output · `validate:concepts` → **126 PASS, 0 FAIL out of 126** (fleet
+   unaffected; no `ac_voltage_capacitor.json` yet — json_author writes it next).
+2. THE EYE on the target concept: N/A this dispatch (no concept JSON exists yet) — runs in json_author's
+   verify pass.
+3. **Regression sample, re-seeded and re-run by the orchestrator independently:** `capacitance` →
+   **44 deterministic checks · 44 passed · 0 failed**, and all **14 H2 baseline comparisons at 0.00%
+   pixels differ** (a grep for any non-`0.00%` H2 line returned empty). This is the reliable field_3d
+   regression sample per the Stage-1b process correction. The dispatch additionally ran
+   `ac_voltage_resistor` (39/39) and `ac_voltage_inductor` (39/39) — **but note both report H2
+   "Skipped — no approved baseline"**, since neither has been through `visual:approve` (forbidden by the
+   trial). Those two runs are therefore D/H1/H3-only, NOT pixel-regression proof — the same limitation
+   recorded for `faraday_law_induction` in the Stage-1b process finding. `capacitance` remains the only
+   genuine H2 pixel proof this chapter.
+4. **DF1 scope guarantee (that the build never touches either SEALED sibling) — independently verified by
+   the orchestrator, not accepted from the report:** extracted every `acr_`- and `acl_`-prefixed line from
+   `f913580` and from `21e1f0f` and diffed the content. Every single difference is either a COMMENT inside
+   the new `acc_` code that mentions the siblings by name, or the one shared formula-overlay-hide comment
+   being extended. **Zero sealed-sibling implementation lines changed.** The commit's 5 total deletions are
+   all shared-dispatch-chain one-liners being extended (the `scenario_type` union, the `#sliders` exclusion
+   boolean, the formula-overlay condition, the legend hide chain, `F3D_REVEAL_KEYS`) — the same
+   same-change duty every prior sibling scenario addition required.
+5. Clock guard (Rule 36b): the new code adds a local `window.PM_accPhase += omegaEff * dt` accumulator
+   mirroring the two siblings' equivalents byte-for-byte, consuming the shared master clock's `dt`
+   linearly. It does NOT touch `__pmSteps`/`dtStep`/any shared integrator, so no fleet-wide sweep is
+   warranted.
+
+**Final CLOSED enums the engine actually landed** (authoritative over the skeleton's proposal — they
+matched exactly): modes `apparatus_swap | quarter_cycle_lead | plates_push_back | slope_feeds_current |
+reactance_ramp | power_swings | null_average_power | one_derivative_derivation | explore`;
+`visible_elements` `acc_source | acc_beads | acc_arrow | acc_plates | acc_efield | acc_charge | acc_meter |
+acc_u_gauge`; glow keys `source · beads · arrow · plates · efield · charge · v_trace · i_trace ·
+ghost_trace · lead_bracket · tangent · xc_readout · p_strip · u_gauge · meter · formula`. A
+`field_3d_config.field_lines` block is REQUIRED (`createTubeLine` reads `config.field_lines.opacity` —
+the known scar both siblings also hit).
+
+**Scar candidates filed:** NONE from this dispatch — no defect was found, and per the corrected process
+the dispatch reported its one interpretive call back to the orchestrator instead of filing SQL itself.
+
+**Commit:** `21e1f0f` — `feat(engine-loop): NEW field_3d scenario_type ac_capacitor
+[peter_parker:renderer_primitives]`. Touches exactly 2 files (+1281/−5).
+
+**Outcome:** Build PASSED, verify chain independently re-confirmed by the orchestrator. Next:
+`json_author` writes `ac_voltage_capacitor.json` + the 8 registration sites against the enums above, then
+THE EYE + quality-auditor ∥ eye-walker + founder_drive → founder-proxy Checkpoint B.

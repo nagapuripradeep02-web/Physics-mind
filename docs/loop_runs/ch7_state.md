@@ -1,10 +1,10 @@
 # ch7 loop state
-updated: 2026-07-23T09:45:00+05:30
+updated: 2026-07-23T10:15:00+05:30
 review_port: 8087
 next: ac_voltage_capacitor
 done: stage1a_engine_shakedown (PASSED), ac_voltage_resistor (A:ok B-cycles:0 C:sealed, ride-alongs B1+B2 landed), ac_voltage_inductor (A:fix-1 B-cycles:1 C:sealed, engine build 35ae566 + fix eae16ca landed)
 parked: (none)
-in_flight: (none) — ac_voltage_inductor fully closed out
+in_flight: ac_voltage_capacitor stage=pipeline — engine build LANDED + committed (21e1f0f, NEW scenario_type ac_capacitor incl. the new styled-subscript compose routine); verify chain independently re-run by orchestrator (syntax OK, tsc 0, validate 126/126, capacitance 44/44 H2 0.00% across all 14 baselines, DF1 scope guarantee byte-verified); json_author dispatched
 engine_commits: 9c2c64e particle_field_sliders_panel_top10_vs_reviewchrome [peter_parker:renderer_primitives]; 6b97ede feat NEW field_3d scenario_type ac_resistor [peter_parker:renderer_primitives]; d26d139 fix field3d_createtubeline_undefined_field_lines_throws [peter_parker:renderer_primitives]; ad7975b fix field3d_dt_accumulated_motion_invisible_to_eye_timepin [peter_parker:renderer_primitives]; 4dc1c76 fix field3d_rms_subscript_ascii_in_renderer_text_paths [peter_parker:renderer_primitives]; 35ae566 feat NEW field_3d scenario_type ac_inductor [peter_parker:renderer_primitives]; eae16ca fix field3d_canvas_caption_text_not_cleared_between_sequential_reveals [peter_parker:renderer_primitives]
 chapter_map (founder-approved 2026-07-22, REORDERED 2026-07-22 — phasors moved after the three individual R/L/C element concepts so it introduces the combining tool once students have seen what's being combined): ac_voltage_resistor (done), ac_voltage_inductor (done), ac_voltage_capacitor, phasors, series_lcr_circuit, ac_power_factor, lc_oscillations, transformer
 notes: Pre-flight OK — .env.local present, check:agents clean (11/11), review server detached on 8087 (serves review-site/), 51 baseline-locked concepts.
