@@ -175,9 +175,103 @@ function annotationBbox(p: Record<string, unknown>): LabelBbox | null {
   };
 }
 
-function arrowBbox(p: Record<string, unknown>): LabelBbox | null {
+// ─────────────────────────────────────────────────────────────────────────────
+// Body position map — a force_arrow authored with origin_body_id/body_id (the
+// current PCPL convention; every modern concept uses this, not literal `from`)
+// has no static from.x/from.y to read. Prescan the state's own scene_composition
+// for type:'body' primitives (bodies are re-registered fresh per state by the
+// renderer's PM_bodyRegistry, so this map must be built per-state, not
+// concept-wide) and resolve arrows against it, mirroring PM_resolveForceOrigin
+// (parametric_renderer.ts ~2413-2471).
+// ─────────────────────────────────────────────────────────────────────────────
+type BodyInfo = { cx: number; cy: number; w: number; h: number; rotationDeg: number };
+
+function buildBodyMap(scene: unknown[]): Map<string, BodyInfo> {
+  const map = new Map<string, BodyInfo>();
+  for (const prim of scene) {
+    if (!prim || typeof prim !== 'object') continue;
+    const p = prim as Record<string, unknown>;
+    if (p.type !== 'body' || typeof p.id !== 'string') continue;
+    const pos = p.position as { x?: unknown; y?: unknown } | undefined;
+    if (!pos || !isNum(pos.x) || !isNum(pos.y)) continue;
+
+    // Mirrors drawBody()'s bw/bh resolution per shape (parametric_renderer.ts
+    // ~949-961). Unknown/unhandled shapes fall back to the renderer's own
+    // 60x60 default.
+    const shape = p.shape;
+    const size = p.size;
+    let w = 60, h = 60;
+    if (shape === 'circle' && isNum(size)) { w = size; h = size; }
+    else if (shape === 'pulley' && isNum(size)) { w = size; h = size; }
+    else if (shape === 'stickman' && isNum(size)) { w = size * 0.5; h = size; }
+    else if ((shape === 'rect' || shape === 'tree' || shape === 'door') && size && typeof size === 'object') {
+      const s = size as { w?: unknown; h?: unknown };
+      if (isNum(s.w) && isNum(s.h)) { w = s.w; h = s.h; }
+    }
+
+    // Mirrors drawBody()'s center resolution (~1020-1025): rect/tree/door are
+    // top-left anchored (position → center = position + half-extent);
+    // circle/stickman/pulley are already center-anchored. Approximation only
+    // (not pixel-perfect) — good enough for an overlap-warning bbox.
+    const isBoxed = shape === 'rect' || shape === 'tree' || shape === 'door';
+    const cx = isBoxed ? pos.x + w / 2 : pos.x;
+    const cy = isBoxed ? pos.y + h / 2 : pos.y;
+    const rotationDeg = isNum(p.rotation_deg) ? p.rotation_deg : 0;
+    map.set(p.id, { cx, cy, w, h, rotationDeg });
+  }
+  return map;
+}
+
+/**
+ * Mirrors PM_resolveForceOrigin's body-anchor resolution (parametric_renderer.ts
+ * ~2442-2470): pick the anchor keyword (origin_anchor, falling back to
+ * draw_from, default 'body_center'), offset by the body's half-extent, rotate
+ * by the body's rotation_deg. Deliberately does NOT replicate the renderer's
+ * "no body found → fall back to the first registered body" quirk — that's an
+ * arbitrary render-order artifact, not a real resolution, so an unmatched
+ * body id here falls through to literal `from` / skip instead (see arrowBbox).
+ * Also does not parse legacy compound-string `from` (e.g. "block_top_center")
+ * — out of this fix's scope; those already resolve to null as before.
+ */
+function resolveBodyAnchoredOrigin(
+  p: Record<string, unknown>,
+  bodies: Map<string, BodyInfo>,
+): { x: number; y: number } | null {
+  const bodyId = p.origin_body_id ?? p.body_id;
+  if (typeof bodyId !== 'string') return null;
+  const b = bodies.get(bodyId);
+  if (!b) return null;
+
+  const drawFrom = (typeof p.origin_anchor === 'string' && p.origin_anchor)
+    || (typeof p.draw_from === 'string' && p.draw_from)
+    || 'body_center';
+  let dx = 0, dy = 0;
+  if (drawFrom === 'body_bottom') dy = b.h / 2;
+  else if (drawFrom === 'body_top') dy = -b.h / 2;
+  else if (drawFrom === 'body_left') dx = -b.w / 2;
+  else if (drawFrom === 'body_right') dx = b.w / 2;
+  // else body_center (or unrecognized) → (0, 0)
+
+  if (b.rotationDeg) {
+    const r = (b.rotationDeg * Math.PI) / 180;
+    const rx = dx * Math.cos(r) - dy * Math.sin(r);
+    const ry = dx * Math.sin(r) + dy * Math.cos(r);
+    dx = rx; dy = ry;
+  }
+  return { x: b.cx + dx, y: b.cy + dy };
+}
+
+function literalArrowFrom(p: Record<string, unknown>): { x: number; y: number } | null {
   const from = p.from as { x?: unknown; y?: unknown } | undefined;
-  if (!from || !isNum(from.x) || !isNum(from.y)) return null;
+  if (from && isNum(from.x) && isNum(from.y)) return { x: from.x, y: from.y };
+  return null;
+}
+
+function arrowBbox(p: Record<string, unknown>, bodies: Map<string, BodyInfo>): LabelBbox | null {
+  // Resolution precedence (matches the renderer's post-WP-R4 fallback order):
+  // authored body id wins, then a literal `from: {x,y}` object, then skip.
+  const from = resolveBodyAnchoredOrigin(p, bodies) ?? literalArrowFrom(p);
+  if (!from) return null;
   const dirDeg = isNum(p.direction_deg) ? p.direction_deg : 0;
   const mag = isNum(p.magnitude) ? p.magnitude : 1;
   const scale = isNum(p.scale_pixels_per_unit) ? p.scale_pixels_per_unit : 5;
@@ -207,13 +301,14 @@ function checkStateOverlaps(stateId: string, state: unknown, pathPrefix: string)
   if (!state || typeof state !== 'object') return [];
   const scene = (state as { scene_composition?: unknown }).scene_composition;
   if (!Array.isArray(scene)) return [];
+  const bodies = buildBodyMap(scene);
   const boxes: LabelBbox[] = [];
   for (const prim of scene) {
     if (!prim || typeof prim !== 'object') continue;
     const p = prim as Record<string, unknown>;
     const t = p.type;
     if (t === 'force_arrow') {
-      const b = arrowBbox(p); if (b) boxes.push(b);
+      const b = arrowBbox(p, bodies); if (b) boxes.push(b);
     } else if (t === 'annotation' || t === 'formula_box' || t === 'label') {
       const b = annotationBbox(p); if (b) { b.type = String(t); boxes.push(b); }
     }
@@ -454,7 +549,7 @@ function checkExprString(
 
 const EXPR_FIELD_NAMES = [
   'text_expr', 'label_expr', 'label_override', 'equation_expr',
-  'y_expr', 'angle_expr', 'direction_deg_expr', 'magnitude_expr',
+  'x_expr', 'y_expr', 'angle_expr', 'direction_deg_expr', 'magnitude_expr',
 ];
 
 function walkPrimitivesForExpr(
@@ -728,6 +823,141 @@ function checkConceptAnimations(data: unknown): AnimWarning[] {
     }
   }
 
+  return out;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Gate 9 — WP-R5 choreography primitives (variable_choreography + anchor_to).
+// (a) anchor_to.primitive_id must name a primitive that exists AND is
+//     authored EARLIER in the same state's scene_composition array —
+//     PM_endpointRegistry (parametric_renderer.ts) only holds entries the
+//     current draw() pass has already registered, in array order, so a
+//     forward reference silently chains onto a stale/missing endpoint at
+//     runtime. FATAL.
+// (b) variable_choreography[].variable must be declared in
+//     physics_engine_config.variables — an undeclared variable still
+//     "moves" inside the renderer's PM_choreoValues cache but
+//     computePhysics() never receives it, so nothing downstream reacts.
+//     FATAL.
+// (c) variable_choreography[].seizable:true needs a type:'slider' primitive
+//     for the SAME variable somewhere in the state's scene_composition —
+//     otherwise a teacher can never actually take the sweep over (a dead
+//     flag, not a broken render). WARN, not fatal.
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface ChoreoWarning { path: string; message: string; fatal: boolean }
+
+function declaredPhysicsVariableNames(data: unknown): Set<string> {
+  const out = new Set<string>();
+  if (!data || typeof data !== 'object') return out;
+  const cfg = (data as { physics_engine_config?: unknown }).physics_engine_config;
+  if (!cfg || typeof cfg !== 'object') return out;
+  const vars = (cfg as { variables?: unknown }).variables;
+  if (!vars || typeof vars !== 'object') return out;
+  for (const name of Object.keys(vars as Record<string, unknown>)) out.add(name);
+  return out;
+}
+
+function checkStateChoreography(
+  stateId: string,
+  state: unknown,
+  pathPrefix: string,
+  declaredVars: Set<string>,
+): ChoreoWarning[] {
+  if (!state || typeof state !== 'object') return [];
+  const s = state as Record<string, unknown>;
+  const scene = s.scene_composition;
+  const out: ChoreoWarning[] = [];
+
+  // (a) anchor_to — walk scene_composition in authored array order, exactly
+  // matching PM_endpointRegistry's runtime fill order. Also collects the
+  // state's slider variables in the same pass for check (c) below.
+  const sliderVars = new Set<string>();
+  if (Array.isArray(scene)) {
+    const allIds = new Set<string>();
+    for (const prim of scene) {
+      const p = prim as { id?: unknown; type?: unknown; variable?: unknown } | null;
+      if (typeof p?.id === 'string') allIds.add(p.id);
+      if (p && p.type === 'slider' && typeof p.variable === 'string') sliderVars.add(p.variable);
+    }
+    const seenIds = new Set<string>();
+    scene.forEach((prim, idx) => {
+      if (!prim || typeof prim !== 'object') return;
+      const p = prim as Record<string, unknown>;
+      const anchorTo = p.anchor_to as { primitive_id?: unknown } | undefined;
+      if (anchorTo && typeof anchorTo === 'object' && typeof anchorTo.primitive_id === 'string') {
+        const targetId = anchorTo.primitive_id;
+        const label = typeof p.id === 'string' ? p.id : idx;
+        const where = `${pathPrefix}.${stateId}.scene_composition[${label}]`;
+        if (!allIds.has(targetId)) {
+          out.push({
+            path: where,
+            fatal: true,
+            message: `anchor_to_missing_target primitive_id='${targetId}' not found anywhere in this state's scene_composition`,
+          });
+        } else if (!seenIds.has(targetId)) {
+          out.push({
+            path: where,
+            fatal: true,
+            message: `anchor_to_forward_reference primitive_id='${targetId}' is authored AFTER this primitive — PM_endpointRegistry fills in array order, so this arrow/arc will chain onto a stale or missing endpoint. Move '${targetId}' earlier in scene_composition.`,
+          });
+        }
+      }
+      if (typeof p.id === 'string') seenIds.add(p.id);
+    });
+  }
+
+  // (b) + (c) variable_choreography.
+  const choreo = s.variable_choreography;
+  if (Array.isArray(choreo)) {
+    choreo.forEach((entry, idx) => {
+      if (!entry || typeof entry !== 'object') return;
+      const c = entry as Record<string, unknown>;
+      if (typeof c.variable !== 'string') return; // Zod already requires this; defend anyway
+      const variable = c.variable;
+      const where = `${pathPrefix}.${stateId}.variable_choreography[${idx}]`;
+      if (!declaredVars.has(variable)) {
+        out.push({
+          path: where,
+          fatal: true,
+          message: `choreography_variable_undeclared variable='${variable}' not found in physics_engine_config.variables — computePhysics() will never see this choreographed value`,
+        });
+      }
+      if (c.seizable === true && !sliderVars.has(variable)) {
+        out.push({
+          path: where,
+          fatal: false,
+          message: `choreography_seizable_without_slider variable='${variable}' is seizable but no type:'slider' primitive for it exists in this state — a teacher can never seize it`,
+        });
+      }
+    });
+  }
+
+  return out;
+}
+
+function checkConceptChoreography(data: unknown): ChoreoWarning[] {
+  if (!data || typeof data !== 'object') return [];
+  const obj = data as Record<string, unknown>;
+  const declaredVars = declaredPhysicsVariableNames(data);
+  const out: ChoreoWarning[] = [];
+
+  const walk = (states: Record<string, unknown>, pathPrefix: string): void => {
+    for (const [stateId, state] of Object.entries(states)) {
+      out.push(...checkStateChoreography(stateId, state, pathPrefix, declaredVars));
+    }
+  };
+
+  const epicL = obj.epic_l_path as { states?: Record<string, unknown> } | undefined;
+  if (epicL?.states) walk(epicL.states, 'epic_l_path.states');
+
+  const branches = obj.epic_c_branches;
+  if (Array.isArray(branches)) {
+    branches.forEach((branch, i) => {
+      const b = branch as { states?: Record<string, unknown> } | undefined;
+      if (b?.states) walk(b.states, `epic_c_branches[${i}].states`);
+    });
+  }
   return out;
 }
 
@@ -1273,6 +1503,21 @@ function main(): void {
       else { boundsWarnCount++; boundsWarnFiles.add(file); }
     }
 
+    // Gate 9 — WP-R5 choreography primitives (anchor_to chain order +
+    // variable_choreography declaration; seizable-without-slider is a WARN).
+    let choreoFatalThisFile = 0;
+    const choreoWarnings = checkConceptChoreography(data);
+    for (const w of choreoWarnings) {
+      const tag = w.fatal ? 'FAIL' : 'WARN';
+      console.log(`  ${tag}  ${w.path}: ${w.message}`);
+      const cat = w.fatal ? 'choreography_fatal' : 'choreography_warning';
+      categoryTally.set(cat, (categoryTally.get(cat) ?? 0) + 1);
+      if (!categoryFiles.has(cat)) categoryFiles.set(cat, new Set());
+      categoryFiles.get(cat)!.add(file);
+      if (w.fatal) choreoFatalThisFile++;
+      else { boundsWarnCount++; boundsWarnFiles.add(file); }
+    }
+
     // Collect for the fleet-level registration cross-check (Gate 8b).
     const reg = data as { concept_id?: string; renderer_pair?: { panel_a?: string } };
     if (typeof reg.concept_id === 'string') {
@@ -1284,7 +1529,7 @@ function main(): void {
     // failed.
     if (
       result.passed &&
-      (physicsCriticalThisFile + exprFatalThisFile + plainEnFatalThisFile + animFatalThisFile + wordBudgetFatalThisFile) > 0
+      (physicsCriticalThisFile + exprFatalThisFile + plainEnFatalThisFile + animFatalThisFile + wordBudgetFatalThisFile + choreoFatalThisFile) > 0
     ) {
       // Demote PASS → FAIL retroactively.
       passCount--;
