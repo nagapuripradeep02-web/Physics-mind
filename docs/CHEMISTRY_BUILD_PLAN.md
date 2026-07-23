@@ -19,7 +19,7 @@
 |---|---|---|---|
 | 0 | Safety baseline | none | ✅ 2026-07-23 |
 | 2 | Authoring layer ready (`chemistry_author` + architect sources) | low | ✅ 2026-07-23 (tripwire green: tsc 0 · 124/124 · 288/288 · 11/11 emissions) |
-| 1 | Curriculum plumbing (subject first-class) | low-med | ☐ |
+| 1 | Curriculum plumbing (subject first-class) | low-med | ✅ 2026-07-23 (physics catalog proven byte-identical; tripwire green) |
 | 3 | First concept — vertical slice | medium | ☐ (blocked on concept decision) |
 | 4 | Chemistry validator + visual gate + CI | medium | ☐ |
 | 5 | Dedicated chemistry renderer (3D) | high | ☐ (founder-gated) |
@@ -112,6 +112,23 @@ all-or-nothing — deferred until the chemistry serving path exists).
 (capture once before starting, diff after) · `/learn` renders unchanged for physics · dev server boots.
 **Rollback:** revert the commits of this phase; no data/schema migrations involved.
 **Checkpoint → founder:** click through `/learn` yourself; confirm zero physics-visible change.
+
+**As-built (2026-07-23) — two refinements vs the literal task list, both to protect byte-identical:**
+1. **`subject` is a ROUTING PARAMETER, not a stored field** on `CatalogConcept`/`CatalogChapter`/
+   `GhostSeed`. Adding a `subject: "physics"` field to every emitted object would have changed the
+   API response bytes; instead `getCatalogTree`/`getCatalogConcept`/`getNextConcept` take
+   `subject: Subject = 'physics'` and route via a `sourcesFor(subject)` bundle (dir + ghosts +
+   chapter/section maps). Physics output verified **byte-identical** at the function level (diff of
+   5 level-combos + 2 concept lookups, empty). When Phase 3 needs `subject` ON the concept object for
+   render routing, it gets added then as a reviewed change. `Subject` type lives in
+   `src/types/student.ts` (client-safe, not the `server-only` catalog).
+2. **The `/learn` subject TOGGLE is deferred to Phase 3** (it can't show anything until a live
+   chemistry concept exists). Phase 1 wired the label (now derived from `subject`, currently
+   `"Learn Physics"` — identical), the `&subject=` API param, and the whole catalog layer. Chemistry
+   chapter/section maps + Ch.2 roadmap ghosts live in the new `src/lib/chemistryCatalog.ts`; chemistry
+   NCERT scope is a separate `NCERT_CHEMISTRY_BOUNDARIES` export (physics `NCERT_BOUNDARIES` untouched;
+   both currently unconsumed). Pre-existing `react-hooks/set-state-in-effect` lint errors in
+   `learn/page.tsx` were left as-is (present on HEAD, out of scope).
 
 ---
 

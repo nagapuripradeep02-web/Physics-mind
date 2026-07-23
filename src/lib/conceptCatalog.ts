@@ -2,7 +2,8 @@ import 'server-only';
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { CONCEPT_PANEL_MAP } from '@/config/panelConfig';
-import type { ClassLevel } from '@/types/student';
+import type { ClassLevel, Subject } from '@/types/student';
+import { CHEMISTRY_CHAPTER_NAMES, CHEMISTRY_SECTION_NAMES, CHEMISTRY_GHOSTS } from './chemistryCatalog';
 
 export type ConceptStatus = 'live' | 'ghost';
 export type CardType = 'atomic' | 'nano';
@@ -161,11 +162,11 @@ function sectionKey(section: string): string {
     return parts.length >= 2 ? `${parts[0]}.${parts[1]}` : section;
 }
 
-function sectionName(section: string): string | undefined {
-    return SECTION_NAMES[sectionKey(section)];
+function sectionName(section: string, names: Record<string, string> = SECTION_NAMES): string | undefined {
+    return names[sectionKey(section)];
 }
 
-interface GhostSeed {
+export interface GhostSeed {
     concept_id: string;
     concept_name: string;
     chapter: number;
@@ -412,6 +413,38 @@ export const GHOST_CONCEPTS: GhostSeed[] = [
     { concept_id: 'toppling_condition', concept_name: 'Toppling Condition', chapter: 12, section: '12.13', class_level: 11, prerequisites: ['torque_definition', 'static_equilibrium'] },
 ];
 
+// ── Subject routing (CHEMISTRY_BUILD_PLAN.md Phase 1) ─────────────────────────
+// `subject` is the second curriculum dimension alongside class_level. It is a
+// ROUTING PARAMETER, not a stored field on the emitted catalog objects — so the
+// physics path (the default) produces byte-identical output to the pre-subject
+// implementation. Chemistry data lives in the sibling file `chemistryCatalog.ts`.
+interface SubjectCatalogSources {
+    conceptsDir: string[];                  // path segments under process.cwd()
+    ghosts: GhostSeed[];
+    chapterNames: Record<number, string>;
+    sectionNames: Record<string, string>;
+}
+
+function sourcesFor(subject: Subject): SubjectCatalogSources {
+    if (subject === 'chemistry') {
+        return {
+            // Isolation contract: chemistry JSONs live ONLY here, never the flat dir
+            // (docs/CHEMISTRY_ARCHITECTURE.md §7).
+            conceptsDir: ['src', 'data', 'concepts', 'chemistry'],
+            ghosts: CHEMISTRY_GHOSTS,
+            chapterNames: CHEMISTRY_CHAPTER_NAMES,
+            sectionNames: CHEMISTRY_SECTION_NAMES,
+        };
+    }
+    // Physics — the historical sources, unchanged.
+    return {
+        conceptsDir: ['src', 'data', 'concepts'],
+        ghosts: GHOST_CONCEPTS,
+        chapterNames: CHAPTER_NAMES,
+        sectionNames: SECTION_NAMES,
+    };
+}
+
 interface RawConceptJson {
     concept_id?: string;
     concept_name?: string;
@@ -425,8 +458,9 @@ interface RawConceptJson {
     why_learn?: string;
 }
 
-async function loadLiveConceptsFromJsons(): Promise<Omit<CatalogConcept, 'status'>[]> {
-    const dir = join(process.cwd(), 'src', 'data', 'concepts');
+async function loadLiveConceptsFromJsons(subject: Subject = 'physics'): Promise<Omit<CatalogConcept, 'status'>[]> {
+    const sources = sourcesFor(subject);
+    const dir = join(process.cwd(), ...sources.conceptsDir);
     const files = await readdir(dir);
     const jsonFiles = files.filter(f =>
         f.endsWith('.json') && !f.includes('.legacy.') && !f.includes('.deleted')
@@ -457,7 +491,7 @@ async function loadLiveConceptsFromJsons(): Promise<Omit<CatalogConcept, 'status
                     ? { why_learn: parsed.why_learn.trim() }
                     : {}),
             };
-            const name = sectionName(section);
+            const name = sectionName(section, sources.sectionNames);
             if (name) result.section_name = name;
             return result;
         } catch {
@@ -468,10 +502,10 @@ async function loadLiveConceptsFromJsons(): Promise<Omit<CatalogConcept, 'status
     return entries.filter((e): e is Omit<CatalogConcept, 'status'> => e !== null);
 }
 
-function createChapter(num: number, level: ClassLevel): CatalogChapter {
+function createChapter(num: number, level: ClassLevel, chapterNames: Record<number, string> = CHAPTER_NAMES): CatalogChapter {
     return {
         chapter_number: num,
-        chapter_name: CHAPTER_NAMES[num] ?? `Chapter ${num}`,
+        chapter_name: chapterNames[num] ?? `Chapter ${num}`,
         class_level: level,
         concepts: [],
         live_count: 0,
@@ -496,27 +530,28 @@ function compareSection(a: string, b: string): number {
     return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
 }
 
-export async function getCatalogTree(classLevels: ClassLevel[]): Promise<CatalogChapter[]> {
+export async function getCatalogTree(classLevels: ClassLevel[], subject: Subject = 'physics'): Promise<CatalogChapter[]> {
     if (classLevels.length === 0) return [];
+    const sources = sourcesFor(subject);
 
-    const live = await loadLiveConceptsFromJsons();
+    const live = await loadLiveConceptsFromJsons(subject);
     // Filter nano cards out of catalog rendering — they live invisibly in the
     // data model and surface only via in-lesson footers and chat answers.
     const liveAtomic = live.filter(c => c.card_type !== 'nano');
     const filteredLive = liveAtomic.filter(c => classLevels.includes(c.class_level));
-    const filteredGhosts = GHOST_CONCEPTS.filter(
+    const filteredGhosts = sources.ghosts.filter(
         g => classLevels.includes(g.class_level) && (g.card_type ?? 'atomic') !== 'nano',
     );
 
     // Index ghosts so live concepts can inherit spine + nano flags from the
     // central seed without each live JSON having to set them.
-    const ghostById = new Map(GHOST_CONCEPTS.map(g => [g.concept_id, g]));
+    const ghostById = new Map(sources.ghosts.map(g => [g.concept_id, g]));
 
     const liveIds = new Set(filteredLive.map(c => c.concept_id));
     const byChapter = new Map<number, CatalogChapter>();
 
     for (const c of filteredLive) {
-        const chapter = byChapter.get(c.chapter) ?? createChapter(c.chapter, c.class_level);
+        const chapter = byChapter.get(c.chapter) ?? createChapter(c.chapter, c.class_level, sources.chapterNames);
         const seed = ghostById.get(c.concept_id);
         const merged: CatalogConcept = {
             ...c,
@@ -547,10 +582,10 @@ export async function getCatalogTree(classLevels: ClassLevel[]): Promise<Catalog
 
     for (const g of filteredGhosts) {
         if (liveIds.has(g.concept_id)) continue;
-        const chapter = byChapter.get(g.chapter) ?? createChapter(g.chapter, g.class_level);
+        const chapter = byChapter.get(g.chapter) ?? createChapter(g.chapter, g.class_level, sources.chapterNames);
         chapter.concepts.push({
             ...g,
-            section_name: sectionName(g.section),
+            section_name: sectionName(g.section, sources.sectionNames),
             status: 'ghost',
             card_type: g.card_type ?? 'atomic',
         });
@@ -566,13 +601,14 @@ export async function getCatalogTree(classLevels: ClassLevel[]): Promise<Catalog
     return [...byChapter.values()].sort((a, b) => a.chapter_number - b.chapter_number);
 }
 
-export async function getCatalogConcept(conceptId: string): Promise<CatalogConcept | null> {
-    const live = await loadLiveConceptsFromJsons();
+export async function getCatalogConcept(conceptId: string, subject: Subject = 'physics'): Promise<CatalogConcept | null> {
+    const sources = sourcesFor(subject);
+    const live = await loadLiveConceptsFromJsons(subject);
     const liveHit = live.find(c => c.concept_id === conceptId);
     if (liveHit) {
         // Same seed-merge pattern as getCatalogTree so the lesson page sees
         // is_spine / why_learn / nano_definitions authored centrally.
-        const seed = GHOST_CONCEPTS.find(g => g.concept_id === conceptId);
+        const seed = sources.ghosts.find(g => g.concept_id === conceptId);
         return {
             ...liveHit,
             status: 'live',
@@ -588,11 +624,11 @@ export async function getCatalogConcept(conceptId: string): Promise<CatalogConce
                 : {}),
         };
     }
-    const ghostHit = GHOST_CONCEPTS.find(g => g.concept_id === conceptId);
+    const ghostHit = sources.ghosts.find(g => g.concept_id === conceptId);
     if (ghostHit) {
         return {
             ...ghostHit,
-            section_name: sectionName(ghostHit.section),
+            section_name: sectionName(ghostHit.section, sources.sectionNames),
             status: 'ghost',
             card_type: ghostHit.card_type ?? 'atomic',
         };
@@ -603,8 +639,9 @@ export async function getCatalogConcept(conceptId: string): Promise<CatalogConce
 export async function getNextConcept(
     currentConceptId: string,
     classLevels: ClassLevel[],
+    subject: Subject = 'physics',
 ): Promise<CatalogConcept | null> {
-    const tree = await getCatalogTree(classLevels);
+    const tree = await getCatalogTree(classLevels, subject);
     const flatLive = tree.flatMap(ch => ch.concepts.filter(c => c.status === 'live'));
     const idx = flatLive.findIndex(c => c.concept_id === currentConceptId);
     if (idx < 0 || idx >= flatLive.length - 1) return null;
