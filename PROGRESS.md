@@ -12235,3 +12235,18 @@ throughout, independently re-run by the orchestrator: EYE 35/35, capacitance reg
 `engine_bug_queue` writes (7 phasors scar rows filed as files, pending founder ruling), no merge to
 master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
 `docs/loop_runs/ch7/phasors/*`. **Next: `series_lcr_circuit` (concept 5/8).**
+
+**POST-SEAL — founder screen-review fix (same day):** the founder hand-reviewed the sealed sim and found
+a real bug in the S8 sandbox — the R/L/C picker was inert: switching element changed neither the trace
+phase nor amplitude, only the R value-slider moved the graph, and the physical component never swapped.
+Root cause (two coupled defects, ac_phasor block only): `updateAcPhasorFrame` read the authored
+`d.element` (always "R" in S8) instead of the live `window.PM_phsElem` the picker writes; and
+`phsPickElement` never toggled the element mesh. Fixed (+12/−1, commit `b0a9cf0`): the frame reads the
+live element (byte-safe for guided S1–S7, which sync `PM_phsElem=d.element` on entry), and the picker
+mirrors the entry-path mesh toggle. Verified: tsc 0, validate PASS, EYE 35/35 (guided unchanged),
+capacitance 44/44, **plus a live headless Playwright drive of the trusted picker** (R→φ=0° in phase; L→φ=−90°
+lags + coil in slot; C→φ=+90° leads + plates in slot; on C, raising f 0.25→0.45 Hz raised iₘ 2.0→3.60 A =
+vₘ·ωC). This was phasors engine-fix **#3** — past the founder's per-concept "pause if >2" guard — proceeded
+because the founder directed it explicitly on a confirmed defect (the guard targets runaway *autonomous*
+fixing). Filed as a file-only scar (`FIXED`); confirmed via a live SELECT that zero phasors rows exist in
+the live `engine_bug_queue` table (file-only discipline held). State recorded in `6d534b8`.
