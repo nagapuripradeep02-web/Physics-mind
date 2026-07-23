@@ -400,6 +400,56 @@ function computePhysics_scalar_vs_vector(vars) {
   };
 }
 
+// resultant_formula (Ch.5 Vectors) — the parallelogram-law MAGNITUDE:
+// R = sqrt(A^2 + B^2 + 2AB cos theta). Registered in PCPL_CONCEPTS but had no
+// computePhysics entry, so the dispatcher returned null and the whole sim drew
+// "Unknown concept" (fixed 2026-07-23, PCPL parity). Labels are authored static;
+// derived values feed any *_expr, the value-only HUD, and the explore-state sliders.
+function computePhysics_resultant_formula(vars) {
+  var A = (vars && vars.A != null) ? vars.A : 4;
+  var B = (vars && vars.B != null) ? vars.B : 3;
+  var theta_deg = (vars && vars.theta_deg != null) ? vars.theta_deg : 60;
+  var theta_rad = theta_deg * Math.PI / 180;
+  var R_mag = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(theta_rad));
+  var alpha_deg = Math.atan2(B * Math.sin(theta_rad), A + B * Math.cos(theta_rad)) * 180 / Math.PI;
+  return {
+    concept_id: 'resultant_formula',
+    variables: { A: A, B: B, theta_deg: theta_deg },
+    derived: {
+      A: A, B: B, theta_deg: theta_deg,
+      R_mag: R_mag, R: R_mag, alpha_deg: alpha_deg,
+      Rx: A + B * Math.cos(theta_rad),
+      Ry: B * Math.sin(theta_rad)
+    },
+    forces: []
+  };
+}
+
+// direction_of_resultant (Ch.5 Vectors) — the parallelogram-law DIRECTION:
+// alpha = atan2(B sin theta, A + B cos theta), the angle of R measured from A.
+// Same missing-computePhysics "Unknown concept" bug as resultant_formula (fixed
+// 2026-07-23). Also carries R_mag so a shared HUD/formula reads consistently.
+function computePhysics_direction_of_resultant(vars) {
+  var A = (vars && vars.A != null) ? vars.A : 4;
+  var B = (vars && vars.B != null) ? vars.B : 3;
+  var theta_deg = (vars && vars.theta_deg != null) ? vars.theta_deg : 60;
+  var theta_rad = theta_deg * Math.PI / 180;
+  var Rx = A + B * Math.cos(theta_rad);
+  var Ry = B * Math.sin(theta_rad);
+  var alpha_deg = Math.atan2(Ry, Rx) * 180 / Math.PI;
+  var R_mag = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(theta_rad));
+  return {
+    concept_id: 'direction_of_resultant',
+    variables: { A: A, B: B, theta_deg: theta_deg },
+    derived: {
+      A: A, B: B, theta_deg: theta_deg,
+      alpha_deg: alpha_deg, alpha: alpha_deg,
+      R_mag: R_mag, R: R_mag, Rx: Rx, Ry: Ry
+    },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -407,6 +457,8 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'normal_reaction') result = computePhysics_normal_reaction(vars);
   else if (conceptId === 'tension_in_string') result = computePhysics_tension_in_string(vars);
   else if (conceptId === 'vector_resolution') result = computePhysics_vector_resolution(vars);
+  else if (conceptId === 'resultant_formula') result = computePhysics_resultant_formula(vars);
+  else if (conceptId === 'direction_of_resultant') result = computePhysics_direction_of_resultant(vars);
   else if (conceptId === 'hinge_force') result = computePhysics_hinge_force(vars);
   else if (conceptId === 'free_body_diagram') result = computePhysics_free_body_diagram(vars);
   else if (conceptId === 'friction_static_kinetic') result = computePhysics_friction_static_kinetic(vars);
