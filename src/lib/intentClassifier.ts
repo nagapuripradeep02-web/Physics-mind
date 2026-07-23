@@ -58,6 +58,10 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // to current_not_vector anymore — see CONCEPT_SYNONYMS below, that alias
     // was removed 2026-07-23.
     'scalar_vs_vector',
+    // vector_addition_law — concept #2 of the new Class 11 Mechanics Ch.1
+    // "Vectors" DAG track (prerequisite: scalar_vs_vector). Alex pipeline,
+    // 2026-07-24.
+    'vector_addition_law',
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
     'current_not_vector', 'parallelogram_law_test', 'pressure_scalar',
     'area_vector',
@@ -690,6 +694,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
 
   ── Vectors (Ch.5) ── atomic splits
   scalar_vs_vector         ← the general TEST for whether a quantity is a scalar or a vector — magnitude+direction is necessary but NOT sufficient, it must also add by the triangle/parallelogram law (3 km + 4 km at a right angle gives 5 km, not 7); mass on a scale adds as a plain number regardless of orientation/angle. The general classification test — NOT a specific worked trap (current_not_vector, pressure_scalar are the specific applications of this same test).
+  vector_addition_law      ← HOW two vectors add once you already know something IS a vector — carry the second vector parallel to itself and dock its tail on the first one's head (triangle law), equivalently draw both from a common tail and take the parallelogram's diagonal; R = sqrt(A² + B² + 2AB cosθ) spans |A−B| ≤ R ≤ A+B (7 at θ=0, 5 at θ=90, 1 at θ=180 for the 3-4 legs); either order (A then B, or B then A) lands the same finishing corner — one law, two drawings. Prerequisite of scalar_vs_vector (the DAG root); does NOT cover resultant direction angle α, vector subtraction, or component resolution (aspects: foundational=numbers-lie through the PRIMARY tip-to-tail aha, parallelogram=either-order-same-diagonal, magnitude=the angle-dials-the-sum sweep + the smaller-than-both surprise, exploration=all three dials).
   vector_resolution        ← resolving a force/vector at an angle into axes
   unit_vector              ← definition, magnitude, direction of unit vector
   angle_between_vectors
@@ -952,6 +957,7 @@ CRITICAL DISAMBIGUATION (vectors, Ch.5.1):
 - "why is current not a vector" / "current has direction but is scalar" → current_not_vector (a SPECIFIC worked application of the scalar_vs_vector test)
 - "why is pressure a scalar" / "pressure pushes in all directions" → pressure_scalar (a SPECIFIC worked application of the scalar_vs_vector test)
 - "two conditions for a vector, formally, with more examples" / "surface tension / finite rotation / polar vs axial" → parallelogram_law_test
+- "how do you actually add two vectors" / "triangle law of vector addition" / "parallelogram law" / "tip to tail" / "why do you put the tail on the head" / "does it matter which vector you add first" / "resultant of two vectors" / "R = sqrt(a squared + b squared + 2ab cos theta)" / "can the sum be smaller than both vectors" / "range of the resultant" → vector_addition_law (the CONSTRUCTION/formula for adding two already-known vectors — distinct from scalar_vs_vector's classification TEST)
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "gravitational force" / "weight of object" → field_forces

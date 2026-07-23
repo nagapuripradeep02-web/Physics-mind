@@ -539,6 +539,17 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         primary: { renderer: 'mechanics_2d', config_key: 'scalar_vs_vector', label: 'Scalar vs Vector Quantities' },
     },
 
+    // vector_addition_law — concept #2 of the new Class 11 Mechanics Ch.1
+    // "Vectors" DAG track (prerequisite: scalar_vs_vector). Single-panel PCPL
+    // sim, no panel_b_config authored — same missing-panel_b_config defect
+    // class as scalar_vs_vector (default_panel_count=1 forced via the
+    // concept_panel_config Supabase row, see supabase_migrations/).
+    vector_addition_law: {
+        concept_id: 'vector_addition_law',
+        layout: 'single',
+        primary: { renderer: 'mechanics_2d', config_key: 'vector_addition_law', label: 'Vector Addition: Triangle/Parallelogram Law' },
+    },
+
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
     current_not_vector: {
         concept_id: 'current_not_vector',
