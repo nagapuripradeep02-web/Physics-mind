@@ -25215,8 +25215,26 @@ export const FIELD_3D_RENDERER_CODE = `
         vdriveLbl.userData = { elementType: "acl_emf_arrows", id: "acl_vdrive_lbl" }; addToScene(vdriveLbl);
         var backemfArrow = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(ACL_COIL_X, 1.15, 0), 0.42, hexToThreeColor("#EF5350"), 0.16, 0.11);
         backemfArrow.userData = { elementType: "acl_emf_arrows", id: "acl_backemf" }; addToScene(backemfArrow);
+        // F2 fix (ch7 loop Checkpoint B, peter_parker:renderer_primitives,
+        // engine_bug_queue field3d_hud_label_clipped_by_readout_box): this
+        // label used to sit at (ACL_COIL_X, 1.62, 0) -- directly above the
+        // arrow, same height as the source-side vdriveLbl -- which under
+        // S3's own close-in camera_position ([2.3, 0.6, 5.0]) projects into
+        // the top-right corner of the screen, the exact corner the
+        // acl_readout HUD occupies; once that HUD grew a 4th row (eps_back,
+        // this scenario's own addition) its taller/wider box started
+        // covering the label's tail. Never assume a fixed HUD width/height:
+        // moved the label both left (off the coil's own X, clear of the
+        // box's variable width) and down (below the HUD's row-count-
+        // dependent bottom edge) so it clears the box regardless of exactly
+        // how many rows it ends up rendering. acl_emf_arrows is S3-
+        // exclusive (no other state shows it), so this reposition is scoped
+        // to exactly the one state that needs it; the arrow itself (still
+        // at y=1.15, unmoved) still marks the mechanism precisely, and the
+        // shared red colour keeps the label visually tied to it despite the
+        // offset.
         var backemfLbl = createLabelSprite("\\u03b5_back (opposes the change)", "#EF5350", 0.2);
-        backemfLbl.position.set(ACL_COIL_X, 1.62, 0);
+        backemfLbl.position.set(ACL_COIL_X - 1.0, 1.3, 0);
         backemfLbl.userData = { elementType: "acl_emf_arrows", id: "acl_backemf_lbl" }; addToScene(backemfLbl);
 
         // 8. Averaging meter — re-tasked EXCLUSIVELY to avg_p (unlike the
@@ -25500,14 +25518,33 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.stroke();
             ctx.fillStyle = "#E0F7FA"; ctx.beginPath(); ctx.arc(cx, cy, 3.6, 0, 2 * Math.PI); ctx.fill();
 
+            // F1 fix (ch7 loop Checkpoint B, peter_parker:renderer_primitives,
+            // engine_bug_queue field3d_canvas_caption_text_not_cleared_between_
+            // sequential_reveals): the OLD loop drew EVERY triggered stop's
+            // label on EVERY frame at once, in 34px-wide slots far narrower
+            // than the label text itself -- once >1 stop had fired the labels
+            // visually composited into an unreadable blob
+            // ("steepestflatatcreststeepest") that persisted into the frozen
+            // H2 baseline on the PRIMARY AHA. Only the MOST RECENTLY triggered
+            // stop is drawn now, in one fixed caption slot; that slot is
+            // explicitly cleared before each redraw so a stale label can never
+            // composite with the current one (the top-level ctx.clearRect at
+            // the top of this function already wipes the whole canvas every
+            // frame -- this second clearRect is the belt-and-braces guarantee
+            // that the caption band itself never shows more than one label's
+            // ink within a single frame).
             var stopCues = (d.tangent_stops_at_ms && d.tangent_stops_at_ms.length === 3) ? d.tangent_stops_at_ms : [1500, 4500, 7500];
             var stopLabels = ["steepest climb", "flat crest", "steepest fall"];
+            var activeStopIdx = -1;
             for (var ti2 = 0; ti2 < 3; ti2++) {
                 var stopMs = cueTriggerMs("tangent_stop_" + (ti2 + 1), stopCues[ti2]);
-                if (t * 1000 < stopMs) continue;
-                var mxv = W - padR - (2 - ti2) * 34 - 6;
+                if (t * 1000 >= stopMs) activeStopIdx = ti2;
+            }
+            if (activeStopIdx >= 0) {
+                var stopLabelW = 90;
+                ctx.clearRect(W - padR - stopLabelW, H - 13, stopLabelW, 11);
                 ctx.fillStyle = "#90A4AE"; ctx.font = "8px monospace";
-                ctx.fillText(stopLabels[ti2], mxv - 26, H - 3);
+                ctx.fillText(stopLabels[activeStopIdx], W - padR - stopLabelW + 4, H - 3);
             }
         } else if (showI) {
             var iNow2 = -im * Math.cos(theta);
@@ -25743,7 +25780,20 @@ export const FIELD_3D_RENDERER_CODE = `
             var pSignStr = (p >= 0 ? "+" : "");
             var html = "<div>v = " + vSignStr + v.toFixed(1) + " V</div>";
             html += "<div>i = " + iSignStr + i.toFixed(2) + " A</div>";
-            html += "<div>p = " + pSignStr + p.toFixed(1) + " W</div>";
+            // F3 fix (ch7 loop Checkpoint B, peter_parker:renderer_primitives,
+            // engine_bug_queue field3d_readout_hud_emits_untaught_ring_quantity):
+            // p used to be emitted unconditionally whenever the readout is
+            // shown, leaking it into S1-S5's HUD (pre-spoiling the S6 "power
+            // swings both ways" reveal) and into S9's core-ring-only explore
+            // HUD (Rule 38b violation -- DoD specifies v/i/iₘ only there).
+            // Gate it on show_graph_p, the flag this concept's own JSON
+            // already sets true ONLY on S6/S7 (the two states that actually
+            // teach power) and false everywhere else, including S9 -- so no
+            // new flag is needed, just wiring the readout to the one that
+            // already carries the right per-state truth.
+            if (d.show_graph_p) {
+                html += "<div>p = " + pSignStr + p.toFixed(1) + " W</div>";
+            }
             if (d.show_backemf_readout) {
                 html += "<div style=\\"color:#EF5350\\">\\u03b5_back = " + (epsBack >= 0 ? "+" : "") + epsBack.toFixed(1) + " V</div>";
             }
