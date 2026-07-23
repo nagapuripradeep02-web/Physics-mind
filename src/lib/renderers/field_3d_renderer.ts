@@ -27382,7 +27382,7 @@ export const FIELD_3D_RENDERER_CODE = `
     var PHS_SRC_X = -2.7, PHS_SLOT_X = 2.3, PHS_TOP_Y = 0.9, PHS_BOT_Y = -0.9;
     var PHS_BEAD_COUNT = 7;
 
-    var phsSrcGrp = null, phsElemR = null, phsElemL = null, phsElemC = null;
+    var phsSrcGrp = null, phsElemR = null, phsElemL = null, phsElemC = null, phsElemGeneric = null;
 
     function phsFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
     function phsWireCellPoint(wireY, cellIndex, frac) {
@@ -27608,6 +27608,19 @@ export const FIELD_3D_RENDERER_CODE = `
         var bot = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.09, 0.7), mat.clone());
         bot.position.set(PHS_SLOT_X, -0.24, 0); grp.add(bot);
     }
+    function phsBuildElementGeneric(grp) {
+        // "generic" (S7 theta = omega·t derivation) — an element-AGNOSTIC,
+        // element-FREE closed two-terminal box that BRIDGES the two slot stubs so
+        // the loop is never open (F2: current flows through a CLOSED circuit, not a
+        // gap in the wire). Neutral apparatus grey (#90A4AE — never cyan/amber:
+        // those read as voltage/current), and carries NO R/L/C glyph (no heater
+        // coil, no rings, no plates, no X_L/X_C reactance text — F4) so the general
+        // sin(omega·t ∓ pi/2) derivation stays element-agnostic. Height 0.64
+        // (spans y ± 0.32) OVERLAPS the stub ends at ±0.3 → visibly closed.
+        var body = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.64, 0.5),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#90A4AE") }));
+        body.position.set(PHS_SLOT_X, 0, 0); grp.add(body);
+    }
 
     function buildAcPhasor() {
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
@@ -27653,6 +27666,8 @@ export const FIELD_3D_RENDERER_CODE = `
         phsBuildElementCoil(phsElemL); addToScene(phsElemL);
         phsElemC = new THREE.Group(); phsElemC.userData = { elementType: "phs_apparatus", id: "phs_elem_C" };
         phsBuildElementPlates(phsElemC); addToScene(phsElemC);
+        phsElemGeneric = new THREE.Group(); phsElemGeneric.userData = { elementType: "phs_apparatus", id: "phs_elem_generic" };
+        phsBuildElementGeneric(phsElemGeneric); addToScene(phsElemGeneric);
         var slotStubT = createTubeLine([[PHS_SLOT_X, PHS_TOP_Y, 0], [PHS_SLOT_X, 0.3, 0]], "#B0BEC5", 0.028);
         if (slotStubT) { slotStubT.userData = { elementType: "phs_apparatus", id: "phs_slot_stub_top" }; addToScene(slotStubT); }
         var slotStubB = createTubeLine([[PHS_SLOT_X, PHS_BOT_Y, 0], [PHS_SLOT_X, -0.3, 0]], "#B0BEC5", 0.028);
@@ -27749,11 +27764,14 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyAcPhasorState(stateDef) {
         var d = stateDef.ac_phasor || {};
 
-        // Element carousel visibility (d.element scripts R/L/C; 'generic' shows none).
+        // Element carousel visibility (d.element scripts R/L/C; 'generic' shows the
+        // element-free closed box that bridges the slot — F2: the loop is NEVER
+        // open, current always flows through a closed circuit).
         var el = d.element || "R";
         if (phsElemR) phsElemR.visible = (el === "R");
         if (phsElemL) phsElemL.visible = (el === "L");
         if (phsElemC) phsElemC.visible = (el === "C");
+        if (phsElemGeneric) phsElemGeneric.visible = (el === "generic");
         window.PM_phsElem = (el === "generic") ? "R" : el;
 
         // Apparatus band visible when phs_apparatus is listed.
@@ -27762,11 +27780,36 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i], ud = o.userData;
             if (!ud || !ud.elementType || ud.elementType.indexOf("phs_") !== 0) continue;
-            if (ud.id === "phs_elem_R" || ud.id === "phs_elem_L" || ud.id === "phs_elem_C") {
-                o.visible = showApp && ((ud.id === "phs_elem_R" && el === "R") || (ud.id === "phs_elem_L" && el === "L") || (ud.id === "phs_elem_C" && el === "C"));
+            if (ud.id === "phs_elem_R" || ud.id === "phs_elem_L" || ud.id === "phs_elem_C" || ud.id === "phs_elem_generic") {
+                o.visible = showApp && ((ud.id === "phs_elem_R" && el === "R") || (ud.id === "phs_elem_L" && el === "L") || (ud.id === "phs_elem_C" && el === "C") || (ud.id === "phs_elem_generic" && el === "generic"));
             } else {
                 o.visible = showApp;
             }
+        }
+
+        // dim_apparatus (S7 theta = omega·t derivation): the apparatus band recedes
+        // to a DIMMED-but-present pose (the E4 restore pattern — never opacity 0, the
+        // closed loop must stay visible) so the phasor disc + formula lead. Beads are
+        // EXCLUDED — current still visibly flows through the now-closed circuit (F2).
+        // Idempotent + reversible across teacher state-reorders (Rule 25d): each
+        // material's ORIGINAL opacity/transparency is cached once and restored when
+        // dim is off, so non-dim states stay pixel-identical. Opacity only (Rule 29:
+        // dim = brightness, not size); the per-frame brightenOnly glow never touches
+        // opacity (touchOp=false), so this one-time pass sticks.
+        var dimApp = !!d.dim_apparatus;
+        for (var pd = 0; pd < sceneObjects.length; pd++) {
+            var pdo = sceneObjects[pd], pdu = pdo.userData;
+            if (!pdu || pdu.elementType !== "phs_apparatus" || pdu.phsBead) continue;
+            pdo.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi = 0; mi < ms.length; mi++) {
+                    var m = ms[mi];
+                    if (m.__phsOrigOpacity === undefined) { m.__phsOrigOpacity = m.opacity; m.__phsOrigTransp = m.transparent; }
+                    if (dimApp) { m.transparent = true; m.opacity = 0.45; }
+                    else { m.transparent = m.__phsOrigTransp; m.opacity = m.__phsOrigOpacity; }
+                }
+            });
         }
 
         // Seed vm/f/element-values from variable_overrides (defensive re-locks —
