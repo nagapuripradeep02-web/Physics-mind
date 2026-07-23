@@ -308,14 +308,22 @@ export function deriveMotionExpectations(
             continue;
         }
         // PCPL (WP-T1, 2026-07-23): a looping/ping-ponging variable_choreography
-        // entry, or a rotate_continuous scene primitive, is genuinely ongoing
-        // motion (the sweep/spin never settles) — declare motion=true so D5/D6
-        // expect continuous pixel movement instead of D7 demanding stillness
-        // from a state that legitimately never stops (e.g. scalar_vs_vector's
-        // S2 psi_pointer loop, once WP-F1 restores it). A 'once' entry is NOT
-        // matched here — it settles, so its post-settle tail is a reveal_hold
-        // (pcplSceneRevealMs / deriveHoldExpectations), not ongoing motion.
-        if (pcplHasContinuousChoreography(state)) {
+        // entry, a rotate_continuous / pendulum / door_swing / looping-projectile
+        // scene primitive, is genuinely ongoing motion (the sweep/spin never
+        // settles) — declare motion=true so D5/D6 expect continuous pixel movement
+        // instead of D7 demanding stillness from a state that legitimately never
+        // stops (e.g. scalar_vs_vector's S2 psi_pointer loop). A 'once' entry is
+        // NOT matched here — it settles (reveal_hold below), not ongoing motion.
+        if (pcplHasContinuousMotion(state)) {
+            out[stateId] = true;
+            continue;
+        }
+        // PCPL parity (2026-07-23): a scene body animation that plays once and
+        // SETTLES (free_fall / atwood / translate / slide / one-shot projectile)
+        // is real motion during its reveal window — declare motion=true so D5
+        // confirms it visibly played; deriveHoldExpectations still marks the
+        // settled tail a reveal_hold (dual classification) so D7 stays green.
+        if (pcplHasTransientBodyMotion(state)) {
             out[stateId] = true;
             continue;
         }
@@ -1838,6 +1846,55 @@ function pcplHasContinuousChoreography(state: Record<string, unknown>): boolean 
     return false;
 }
 
+// PCPL body-animation categories — mirror parametric_renderer.ts animatePrimitive
+// (~L1027). CONTINUOUS types oscillate/spin forever (never settle → D7 stays strict,
+// no still tail allowed); TRANSIENT types play once and settle (free_fall lands, a
+// block slides to rest → the settled tail is a reveal_hold, D7 tolerant, but D5 still
+// enforces the animation visibly PLAYED). A 'projectile' loops iff loop_period_sec>0.
+const PCPL_CONTINUOUS_ANIM = new Set(['rotate_continuous', 'pendulum', 'door_swing']);
+const PCPL_TRANSIENT_ANIM = new Set(['free_fall', 'atwood', 'translate', 'slide_horizontal', 'slide_when_kinetic']);
+
+/** Scene-primitive animation blocks with a string type, for the categorizers below. */
+function pcplSceneAnims(state: Record<string, unknown>): Array<Record<string, unknown>> {
+    const scene = Array.isArray(state.scene_composition) ? state.scene_composition : [];
+    const anims: Array<Record<string, unknown>> = [];
+    for (const primRaw of scene) {
+        const prim = asObj(primRaw);
+        const anim = prim ? asObj(prim.animation) : null;
+        if (anim && typeof anim.type === 'string') anims.push(anim);
+    }
+    return anims;
+}
+
+/** A scene body animation that oscillates/spins forever (never settles). */
+function pcplHasContinuousBodyAnim(state: Record<string, unknown>): boolean {
+    for (const anim of pcplSceneAnims(state)) {
+        if (PCPL_CONTINUOUS_ANIM.has(anim.type as string)) return true;
+        if (anim.type === 'projectile' && asNum(anim.loop_period_sec, 0) > 0) return true;
+    }
+    return false;
+}
+
+/**
+ * A scene body animation that plays ONCE and settles (free_fall / atwood / translate /
+ * slide / one-shot projectile). Declared motion=true so D5 confirms it visibly moved,
+ * while deriveHoldExpectations keeps the settled tail a reveal_hold (dual classification,
+ * mirroring the field_3d pef/dipole sweep). Closes the G3 coverage hole where an animated
+ * PCPL state with neither auto_after_animation nor a loop silently skipped D5.
+ */
+function pcplHasTransientBodyMotion(state: Record<string, unknown>): boolean {
+    for (const anim of pcplSceneAnims(state)) {
+        if (PCPL_TRANSIENT_ANIM.has(anim.type as string)) return true;
+        if (anim.type === 'projectile' && asNum(anim.loop_period_sec, 0) <= 0) return true;
+    }
+    return false;
+}
+
+/** Motion that never settles — state-level loop/ping_pong choreography OR a continuous body anim. */
+function pcplHasContinuousMotion(state: Record<string, unknown>): boolean {
+    return pcplHasContinuousChoreography(state) || pcplHasContinuousBodyAnim(state);
+}
+
 function clampReveal(ms: number): number {
     return Math.min(DURATION_MAX_MS, Math.max(DEFAULT_REVEAL_MS, ms));
 }
@@ -2288,11 +2345,19 @@ export function deriveHoldExpectations(
     }
 
     // PCPL — parametric is wall-clock-correct, but interactive/reveal-hold states
-    // still false-trip the motion gates.
-    const motion = deriveMotionExpectations(config);
+    // still false-trip the motion gates. Classification by settle behaviour:
+    //   • never settles (loop/ping_pong choreography, or an oscillating/spinning
+    //     body anim) → D7 stays STRICT (undefined) — expect ongoing motion.
+    //   • SETTLES (a one-shot body anim, or auto_after_animation, or any timed
+    //     reveal past the floor) → reveal_hold, so D7 tolerates the still tail
+    //     even when the state is ALSO declared motion=true (dual classification,
+    //     mirroring the field_3d pef/dipole sweep). D5 reads the motion map, not
+    //     this one, so the two coexist.
     for (const [stateId, state] of Object.entries(resolveStates(config))) {
         if (isPcplInteractive(state)) { out[stateId] = 'interactive'; continue; }
-        out[stateId] = (reveal[stateId] ?? 0) > DEFAULT_REVEAL_MS && motion[stateId] !== true
+        if (pcplHasContinuousMotion(state)) { out[stateId] = undefined; continue; }
+        const settles = pcplHasTransientBodyMotion(state) || state.advance_mode === 'auto_after_animation';
+        out[stateId] = settles || (reveal[stateId] ?? 0) > DEFAULT_REVEAL_MS
             ? 'reveal_hold'
             : undefined;
     }
