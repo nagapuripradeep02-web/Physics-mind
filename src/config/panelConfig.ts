@@ -531,6 +531,14 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         secondary: { renderer: 'graph_interactive', config_key: 'fbd_graph', label: 'Force Balance' },
     },
 
+    // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
+    // Ch.1 "Vectors" — the DAG root). Single-panel PCPL sim, no panel_b_config.
+    scalar_vs_vector: {
+        concept_id: 'scalar_vs_vector',
+        layout: 'single',
+        primary: { renderer: 'mechanics_2d', config_key: 'scalar_vs_vector', label: 'Scalar vs Vector Quantities' },
+    },
+
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
     current_not_vector: {
         concept_id: 'current_not_vector',

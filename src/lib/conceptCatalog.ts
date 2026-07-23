@@ -184,7 +184,7 @@ interface GhostSeed {
 export const GHOST_CONCEPTS: GhostSeed[] = [
     // ── Ch.5 Vectors ──────────────────────────────────────────────────────
     // §5.1 Vectors vs Scalars
-    { concept_id: 'scalar_vs_vector', concept_name: 'Scalar vs Vector Quantities', chapter: 5, section: '5.1', class_level: 11, prerequisites: [], is_spine: true, why_learn: 'Every problem you solve in mechanics — projectile motion, forces, momentum — starts by deciding whether each quantity has a direction. Get this wrong and the rest unravels.' },
+    { concept_id: 'scalar_vs_vector', concept_name: 'Scalar vs Vector Quantities', chapter: 1, section: '1.1', class_level: 11, prerequisites: [], is_spine: true, why_learn: 'Every problem you solve in mechanics — projectile motion, forces, momentum — starts by deciding whether each quantity has a direction. Get this wrong and the rest unravels.' },
     { concept_id: 'vector_basics', concept_name: 'Vector — Basics', chapter: 5, section: '5.1', class_level: 11, prerequisites: ['scalar_vs_vector'], is_spine: true, why_learn: 'The shorthand and conventions you’ll use for the next 4 chapters — magnitude, direction, arrow, head-tail. Skip these and every diagram becomes a guess.' },
     { concept_id: 'pressure_scalar', concept_name: 'Why Pressure is a Scalar', chapter: 5, section: '5.1', class_level: 11, prerequisites: ['scalar_vs_vector'] },
     { concept_id: 'current_not_vector', concept_name: 'Why Current is Not a Vector', chapter: 5, section: '5.1', class_level: 11, prerequisites: ['scalar_vs_vector'] },
