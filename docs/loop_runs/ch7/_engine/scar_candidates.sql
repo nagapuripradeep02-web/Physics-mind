@@ -953,3 +953,27 @@ INSERT INTO engine_bug_queue (
   'ch7-stage4-phasors-checkpointB',
   'incident'
 );
+
+-- ============================================================================
+-- Stage 4 · phasors · FOUNDER REVIEW (post-seal) — S8 sandbox element-picker bug
+-- Founder screen-review 2026-07-23. Files only (trial). LIVE CHECK enums.
+-- ============================================================================
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_explore_picker_updates_global_but_frame_reads_authored_state_value',
+  'ac_phasor S8 sandbox: the R/L/C picker sets window.PM_phsElem but updateAcPhasorFrame reads d.element (the authored per-state value, always "R" in S8), so switching element changes neither the trace phase nor the amplitude, and only the R value-slider moves the graph; phsPickElement also never toggles the physical element mesh',
+  'MAJOR',
+  'peter_parker:renderer_primitives',
+  'Two coupled defects in the ac_phasor explore state. (1) updateAcPhasorFrame computes phiBase and im from `var el = d.element || "R"` — the STATE definition, which is the authored default "R" for S8 — instead of the live window.PM_phsElem the picker writes. So clicking L/C never changes phiBase (stuck 0deg, R in-phase) or im (stuck vm/PM_phsR); the L/C value sliders write PM_phsL/PM_phsC which the frame never reads; and frequency f never moves the L/C amplitude (im=vm/PM_phsR is f-independent). In guided states this was invisible because applyAcPhasorState syncs PM_phsElem=d.element on entry and the picker is hidden. (2) phsPickElement updates the slider label/range/value and PM_phsElem but never toggles the physical element mesh (phsElemR/L/C.visible), so the component in the slot does not change with the selection. Founder screen-review caught all three symptoms (graph identical across R/L/C; only R slider moves the graph; physical circuit unchanged).',
+  'A field_3d explore/sandbox state whose picker mutates a live global (PM_phs*) must have its per-frame update READ that global, not the authored per-state d.* value; and a picker that selects a physical variant must re-run the same element-mesh visibility toggle the state-entry path uses (extract a shared helper so entry and picker cannot diverge). Any interactive control in the explore state is dead unless the frame reads the same global the control writes.',
+  'js_eval',
+  'In the ac_phasor explore state, drive the picker to L then C (set window.PM_phsElem) and assert: (a) the rendered i-trace phase shifts to -90deg (L) / +90deg (C) vs v; (b) the visible element mesh changes (phsElemL.visible / phsElemC.visible true, others false); (c) dragging the element-VALUE slider and the frequency slider both change im for L and C, not only R. FAIL if the trace or mesh is invariant across element selection.',
+  'FIXED',
+  ARRAY['phasors']::text[],
+  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+  'ch7-stage4-phasors-founder-review',
+  'incident'
+);

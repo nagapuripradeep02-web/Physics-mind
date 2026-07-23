@@ -27741,6 +27741,14 @@ export const FIELD_3D_RENDERER_CODE = `
         });
         function phsPickElement(el) {
             window.PM_phsElem = el;
+            // Swap the physical element mesh in the slot — mirrors applyAcPhasorState's
+            // entry-path element-visibility. The picker exists only in the explore state,
+            // where phs_apparatus is visible (showApp true), so no showApp gate is needed;
+            // generic is never picked here.
+            if (phsElemR) phsElemR.visible = (el === "R");
+            if (phsElemL) phsElemL.visible = (el === "L");
+            if (phsElemC) phsElemC.visible = (el === "C");
+            if (phsElemGeneric) phsElemGeneric.visible = false;
             var sc = window.__PHS_SC[el];
             var lbl = document.getElementById("phs_elemval_label");
             var unit = document.getElementById("phs_elemval_unit");
@@ -28084,7 +28092,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var thetaVdeg = theta0 + omegaDeg * phaseT;
 
         // phi: state-scripted constant per element; S5 = scripted mirror flip.
-        var el = d.element || "R";
+        // Read the LIVE element (the S8 picker writes PM_phsElem); applyAcPhasorState
+        // re-locks PM_phsElem = d.element (generic->R) on every state entry, so S1-S7
+        // are unchanged — only S8's picker can diverge it from d.element.
+        var el = window.PM_phsElem || d.element || "R";
         var phiBase = (el === "R" || el === "generic") ? 0 : (el === "L") ? -90 : 90;
         var phiDeg = phiBase;
         if (d.flip_is_scripted_one_shot) {

@@ -1061,3 +1061,49 @@ affected (the review player freezes at narration-end ≫2000ms; the 1500ms pin i
 per-concept budget ("pause + notify if phasors alone needs >2 engine-fix commits"). Budget exhausted; any
 further phasors engine fix trips the guard. Both were adjudicated blocking/ride-along findings, not scope
 creep. Chapter engine-commit total: 13 (11 prior + these 2).
+
+---
+
+## Stage 4 · FOUNDER REVIEW fix (post-seal) · 2026-07-23 · `ac_phasor` S8 sandbox picker
+
+**Routing:** FOUNDER screen-review of the SEALED phasors sim (§4/§5 human review → tweak → fix dispatch).
+The founder reported, from the S8 explore sandbox: (1) switching R/L/C did not change the physical circuit
+element; (2) the graph was identical across R/L/C; (3) only the R value-slider moved the graph — the L/C
+sliders did nothing. Founder asked to verify against textbook physics and fix if wrong. **All three were
+real bugs**, localized to the interactive explore path (guided S1–S7 unaffected). Rollback point `1a66c2b`.
+
+**This is phasors engine-fix #3 — PAST the founder's per-concept "pause if >2" guard.** Proceeded WITHOUT
+pausing because the founder was directly, explicitly directing the fix on a confirmed defect (the guard
+exists to stop runaway AUTONOMOUS fixing; a founder-directed fix is its opposite). Flagged to the founder
+in-session.
+
+**Root cause (two coupled defects, both in the ac_phasor block):**
+1. `updateAcPhasorFrame` computed `phiBase`/`im` from `var el = d.element || "R"` — the AUTHORED per-state
+   value (always "R" in S8) — instead of the live `window.PM_phsElem` the picker writes. So the picker was
+   inert: phase stuck at 0° (R in-phase), amplitude stuck at vm/PM_phsR; the L/C value sliders (which
+   correctly wrote PM_phsL/PM_phsC) were never read; and frequency never moved the L/C amplitude. Invisible
+   in guided states because `applyAcPhasorState` syncs `PM_phsElem = d.element` (generic→R) on entry and the
+   picker is hidden there.
+2. `phsPickElement` updated the slider label/range + PM_phsElem but never toggled the physical element mesh
+   (`phsElemR/L/C.visible`), so the resistor stayed in the slot regardless of selection.
+
+**Fix (`src/lib/renderers/field_3d_renderer.ts`, ac_phasor block only, +12/−1):**
+- Edit 1: `var el = window.PM_phsElem || d.element || "R";` — the frame reads the LIVE element. Byte-safe
+  for S1–S7 (PM_phsElem === d.element there; `el` is used only for phiBase/im, both treat generic≡R).
+- Edit 2: `phsPickElement` now mirrors the entry-path element-mesh toggle
+  (`phsElemR/L/C.visible = (el===...)`, generic hidden) so the physical component swaps on pick.
+- No guided state, no sibling, no clock/integrator, no JSON, no deriveStateMeta touched.
+
+**Verify chain (independently re-run by the orchestrator):** check:renderer-syntax OK · tsc 0 · validate
+phasors PASS 128/0 · visual:eyes phasors 35/35 (UNCHANGED — THE EYE never fires the trusted picker, so a
+changed count would signal a guided-state regression; it didn't) · capacitance regression 44/44.
+**LIVE FUNCTIONAL PROOF (the trusted picker THE EYE cannot fire — driven headlessly by the orchestrator via
+a throwaway Playwright script on the review player, since a code trace alone is weaker for a founder-
+reported interactive bug):** pick R → φ=0°, iₘ=2.0A, resistor in slot; pick L → φ=−90° (current LAGS), iₘ=2.0A,
+COIL in slot + "Inductance L" slider; pick C → φ=+90° (current LEADS), iₘ=2.0A, PLATES in slot +
+"Capacitance C" slider; on C, raising f 0.25→0.45 Hz raised iₘ 2.0→3.60 A (iₘ=vm·ωC, exactly the
+frequency-dependence that was impossible before). All three founder symptoms resolved; screenshots
+reviewed by the orchestrator, throwaway removed after.
+
+**Founder still hand-tests the live trusted picker at their leisure** — but the headless drive already
+confirms the physics + mesh swap on the real render.
