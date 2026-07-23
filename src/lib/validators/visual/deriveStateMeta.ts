@@ -1321,6 +1321,66 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
         else candidates.push(1500);                                       // explore / no timed reveal
     }
+    // ac_phasor (a spinning phasor's shadow draws v = vₘ sin(ωt); the i-arrow's
+    // constant lead/lag angle IS the phase φ — Ch.7 §7.5, clean standalone
+    // sibling of ac_resistor/ac_inductor/ac_capacitor). Every guided beat is a
+    // SCRIPTED one-shot (trace-congruence naming / theta freeze demo / mirror
+    // flip / crossing-order scoreboard / derivation chain) that plays ONCE then
+    // HOLDS on the state's own clock (Rule 26); deriveHoldExpectations marks each
+    // guided mode reveal_hold below. Pin the frozen frame PAST the LAST scripted
+    // payoff of each mode so THE EYE photographs the SETTLED beat, never a mid-
+    // transition frame — the F1 defect this fixes: at the 1500ms DEFAULT_REVEAL_MS
+    // fallback the S5 flip is only (1500−800)/1200 = 15/90ths done, so the HUD
+    // reads φ = 15° while the static formula overlay reads the relocked 90°.
+    // Timings mirror the renderer's ac_phasor block (field_3d_renderer.ts:
+    // phsComputeFreeze / the hardcoded flipDur = 1.2s scripted flip) and
+    // phasors.json's per-state ac_phasor.*_at_ms — keep in sync if either changes.
+    const acPh = asObj(state.ac_phasor);
+    if (acPh) {
+        const mode = typeof acPh.mode === 'string' ? acPh.mode : '';
+        if (mode === 'spin_draws_sine') {
+            // S1: the spinning disc's sine trace is NAMED congruent with the live
+            // shadow (the payoff) at congruence_named_at_ms; pin just past it.
+            candidates.push(asNum(acPh.congruence_named_at_ms, 13000) + 500);
+        }
+        else if (mode === 'arrow_vs_shadow') {
+            // S2: three chronological θ freezes (45/90/180) that ARM at their
+            // *_at_ms then FIRE at the next target crossing (up to ~one revolution
+            // later) and hold freeze_budget_ms_each. At the captured f_demo = 0.25
+            // (T = 4.0s; phsComputeFreeze) the last (180°) stop fires ~16.0s and its
+            // 1.0s budget completes ~17.0s — pin past the whole freeze demo.
+            candidates.push(asNum(acPh.freeze_180_arm_at_ms, 13000) + 4500);
+        }
+        else if (mode === 'two_arrows_one_clock') {
+            // S3: the φ-arc opens (arc_open_at_ms) then the f-drag invite appears
+            // (f_invite_at_ms, the last reveal); pin past the invite.
+            candidates.push(asNum(acPh.f_invite_at_ms, 13800) + 500);
+        }
+        else if (mode === 'lag_becomes_angle') {
+            // S4: the freeze TRIO (30/150/240) all ARM together at
+            // freeze_trio_arm_at_ms then fire+hold sequentially; at the captured
+            // f_demo = 0.25 all three complete ~9.7s (phsComputeFreeze). Pin past.
+            candidates.push(asNum(acPh.freeze_trio_arm_at_ms, 4300) + 6000);
+        }
+        else if (mode === 'lead_mirror_flip') {
+            // S5: the SCRIPTED one-shot mirror flip — φ ramps flip_relock_from_deg
+            // → _to_deg (−90 → +90) over the renderer's hardcoded flipDur = 1200ms
+            // starting at flip_start_at_ms. Pin PAST the settle (800 + 1200 = 2000)
+            // so the frozen frame reads the relocked +90°, not a mid-flip +15°.
+            candidates.push(asNum(acPh.flip_start_at_ms, 800) + 1200 + 200);
+        }
+        else if (mode === 'reading_order') {
+            // S6: the upper-crossing flashes fire early (i_cross/v_cross_arm), then
+            // the R/L/C scoreboard SPLITS (scoreboard_split_at_ms, the last payoff).
+            candidates.push(asNum(acPh.scoreboard_split_at_ms, 9000) + 800);
+        }
+        else if (mode === 'radians_derivation') {
+            // S7: the four-line θ = ωt derivation writes in chain_1..chain_4_at_ms;
+            // pin past the last chain line's write-in.
+            candidates.push(asNum(acPh.chain_4_at_ms, 15700) + 800);
+        }
+        else candidates.push(1500);                                       // explore (S8) / no timed reveal
+    }
     // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
     // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
     // ramp (S1 close / S3 open, mirrors switch_toggle in the renderer's animate
