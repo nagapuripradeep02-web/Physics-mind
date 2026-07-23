@@ -571,6 +571,16 @@ function PM_hexToRgb(hex) {
 function PM_animationGate(spec) {
   if (!spec) return { visible: true, alpha: 1 };
   var appearAt = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
+  // Narration-bound reveal (R-E): a primitive may bind its appear time to a
+  // scenario_cue via spec.reveal_cue. When the player posts that cue's start
+  // (SET_CUE_TIME), the visual one-shot re-times to the ACTUAL narration beat
+  // (matching field_3d's cueTriggerMs) instead of a fixed appear_at_ms that
+  // desyncs after pacing trims. appear_at_ms stays the fallback — THE EYE never
+  // posts SET_CUE_TIME, so PM_cueOverrides is empty and frozen frames stay
+  // deterministic on the authored time.
+  if (typeof spec.reveal_cue === 'string' && typeof PM_cueOverrides[spec.reveal_cue] === 'number') {
+    appearAt = PM_cueOverrides[spec.reveal_cue];
+  }
   var animMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 0;
   var disappearAt = (typeof spec.disappear_at_ms === 'number') ? spec.disappear_at_ms : Infinity;
   var fadeOutMs = (typeof spec.fade_out_ms === 'number') ? spec.fade_out_ms : 0;
@@ -2472,6 +2482,10 @@ function drawFormulaBox(spec) {
   var padding = 10;
 
   push();
+  // Rule 34b — the ONE formula surface is math-serif Unicode (Φ ω ε ε₀ θ …), not
+  // the p5 default sans. CSS font stack falls back gracefully if 'Cambria Math' is
+  // absent. Set before textWidth() so box sizing measures the actual glyphs.
+  textFont("'Cambria Math','STIX Two Math','Times New Roman',serif");
   textSize(14);
   textStyle(BOLD);
   var maxW = 0;
@@ -2706,6 +2720,48 @@ function stepMotionIntegratorTick() {
 //   3. Posts { type:'PARAM_UPDATE', key, value } upward — DualPanelSimulation relays to Panel B
 // Position resolution: SliderSpec.position is 'bottom' | 'bottom_left' | 'bottom_right'.
 // CONTROL_ZONE = { x:30, y:460, w:700, h:40 } (from PM_ZONES).
+// Rule 31 muscle-memory: a slider shared across states must keep the SAME screen
+// position. Per-state idx/total (below) would move a variable that's alone in one
+// state but 2nd-of-3 in another. So assign each 'bottom' slider variable a STABLE
+// slot from a single scan of all states (first-appearance order; total = the count
+// of distinct 'bottom' sliders = what the explore state shows), cached once — the
+// panel is effectively "built once, rows shown/hidden per state" (Rule 31c).
+var PM_sliderSlotMap = null;
+function PM_ensureSliderSlotMap() {
+  if (PM_sliderSlotMap) return PM_sliderSlotMap;
+  var states = (PM_config && PM_config.states) || {};
+  var collect = function(sk) {
+    var out = [];
+    var scene = (states[sk] && states[sk].scene_composition) || [];
+    for (var i = 0; i < scene.length; i++) {
+      var p = scene[i];
+      if (p && p.type === 'slider' && p.variable && (p.position || 'bottom') === 'bottom') out.push(p.variable);
+    }
+    return out;
+  };
+  // Canonical order = the state with the MOST 'bottom' sliders (the explore
+  // sandbox, where the teacher lives), so its layout reads exactly as authored;
+  // every subset state then places its sliders at those same slots (no jump).
+  var bestList = [];
+  for (var sk in states) {
+    if (!Object.prototype.hasOwnProperty.call(states, sk)) continue;
+    var lst = collect(sk);
+    if (lst.length > bestList.length) bestList = lst;
+  }
+  var order = [], seen = {};
+  for (var b = 0; b < bestList.length; b++) if (!seen[bestList[b]]) { seen[bestList[b]] = true; order.push(bestList[b]); }
+  // append any variable that appears ONLY in other (non-max) states
+  for (var sk2 in states) {
+    if (!Object.prototype.hasOwnProperty.call(states, sk2)) continue;
+    var lst2 = collect(sk2);
+    for (var k = 0; k < lst2.length; k++) if (!seen[lst2[k]]) { seen[lst2[k]] = true; order.push(lst2[k]); }
+  }
+  var map = {};
+  for (var j = 0; j < order.length; j++) map[order[j]] = { index: j, total: order.length };
+  PM_sliderSlotMap = map;
+  return map;
+}
+
 function PM_resolveSliderSlot(pos, idx, total) {
   var zone = PM_ZONES.CONTROL_ZONE;
   if (pos === 'bottom_left') return { x: zone.x + 30, y: zone.y + 20, w: 220 };
@@ -2721,7 +2777,18 @@ function PM_resolveSliderSlot(pos, idx, total) {
 
 function drawCanvasSlider(spec, idx, total) {
   if (!spec || !spec.variable) return;
-  var slot = PM_resolveSliderSlot(spec.position || 'bottom', idx || 0, total || 1);
+  // 'bottom' sliders use the STABLE per-variable slot (so a shared slider keeps its
+  // screen position across states); explicit bottom_left/bottom_right and any
+  // variable not in the map fall back to the per-state idx/total distribution.
+  var sPos = spec.position || 'bottom';
+  var slot;
+  if (sPos === 'bottom') {
+    var sm = PM_ensureSliderSlotMap()[spec.variable];
+    slot = sm ? PM_resolveSliderSlot('bottom', sm.index, sm.total)
+              : PM_resolveSliderSlot('bottom', idx || 0, total || 1);
+  } else {
+    slot = PM_resolveSliderSlot(sPos, idx || 0, total || 1);
+  }
   var minV = (typeof spec.min === 'number') ? spec.min : 0;
   var maxV = (typeof spec.max === 'number') ? spec.max : 10;
   var defV = (typeof spec.default === 'number') ? spec.default : minV;
