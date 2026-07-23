@@ -282,6 +282,19 @@ export function deriveMotionExpectations(
             // Rule 37, so it never truly freezes either).
             const acCap = state ? asObj(state.ac_capacitor) : null;
             if (acCap) { out[stateId] = (acCap.mode && acCap.mode !== 'explore') ? true : false; continue; }
+            // ac_phasor (a rotating v-arrow's shadow pen-draws the AC trace; a
+            // co-rooted i-arrow rides one shared clock at a locked offset —
+            // Ch.7 §7.5, clean standalone sibling of ac_resistor/ac_inductor/
+            // ac_capacitor): every guided beat animates continuously (the disc
+            // rotates, the pen draws, the beads oscillate — all on the closed-
+            // form state clock) — declare motion so D5/D6 expect ongoing pixel
+            // movement (the S2/S4 freeze windows are bounded <=1s halts, and
+            // S6 eases to a scoreboard hold, both permitted by reveal_hold
+            // below). The S8 sandbox (mode 'explore') is user-driven → declare
+            // static (relaxed by the show_sliders→interactive hold pass below —
+            // Rule 37 free-run keeps it moving anyway).
+            const acPhasor = state ? asObj(state.ac_phasor) : null;
+            if (acPhasor) { out[stateId] = (acPhasor.mode && acPhasor.mode !== 'explore') ? true : false; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -440,7 +453,13 @@ const F3D_REVEAL_KEYS = [
     // derivation / drag-sandbox reveals for AC voltage applied to a
     // capacitor — Ch.7 §7.4. Clean standalone sibling of ac_resistor/
     // ac_inductor — see field_3d_renderer.ts's scenario header comment).
-    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator', 'ac_resistor', 'ac_inductor', 'ac_capacitor',
+    // ac_phasor: the per-state `ac_phasor` block (mode-driven spin_draws_sine /
+    // arrow_vs_shadow / two_arrows_one_clock / lag_becomes_angle /
+    // lead_mirror_flip / reading_order / radians_derivation / explore reveals
+    // for the phasor representation of AC — Ch.7 §7.5. Clean standalone sibling
+    // of ac_resistor/ac_inductor/ac_capacitor — see field_3d_renderer.ts's
+    // scenario header comment).
+    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator', 'ac_resistor', 'ac_inductor', 'ac_capacitor', 'ac_phasor',
     // helix_in_uniform_field (helical_motion_charge_in_uniform_B): the per-state
     // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
     // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
@@ -2168,6 +2187,22 @@ export function deriveHoldExpectations(
             const acCapHold = asObj(state.ac_capacitor);
             if (acCapHold) {
                 out[stateId] = (acCapHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_phasor: every state is LIVE (show_sliders true — Rule 31), so
+            // the generic show_sliders catch below would swallow S1-S7's genuine
+            // reveal/freeze-then-hold beats into 'interactive' before they ever
+            // reach it. Classify explicitly (mirrors the ac_capacitor/ac_inductor
+            // split above): the S8 sandbox (mode 'explore') is user-driven →
+            // interactive; every other mode is a guided beat whose payoff (the
+            // congruent trace / frozen 90° angle / mirror flip / crossing order /
+            // scoreboard / chain) is established and then holds on the state's
+            // own clock → reveal_hold, so D7/D1p permit the settled-but-live tail
+            // (the S2/S4 bounded freezes + S6's scoreboard hold are legitimate
+            // reveal_hold, not frozen tails).
+            const acPhasorHold = asObj(state.ac_phasor);
+            if (acPhasorHold) {
+                out[stateId] = (acPhasorHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // magnetic_flux_loop: every state exposes at least the relevant
