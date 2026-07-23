@@ -25981,7 +25981,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // as constants because the per-frame updater now REWRITES the colour every
     // frame (base hue, then a lerp toward white while the pool is the glow
     // focal), so the build-time material colour is no longer the only source.
-    var ACC_CHARGE_TOP_HEX = 0xEF5350, ACC_CHARGE_BOT_HEX = 0x42A5F5;
+    // Charge-glyph palette keyed on the SIGN OF THE CHARGE, never on which
+    // plate it sits on: red = positive charge, blue = negative charge, for
+    // BOTH pools. (Was ACC_CHARGE_TOP_HEX/ACC_CHARGE_BOT_HEX -- compile-time
+    // per-plate constants, which made the physically-correct q<0 configuration
+    // -- blue top, red bottom -- literally undrawable, and inverted the colour
+    // convention the sim itself teaches on every negative half-cycle.)
+    var ACC_CHARGE_POS_HEX = 0xEF5350, ACC_CHARGE_NEG_HEX = 0x42A5F5;
     // S5 scripted f-ramp schedule (physics_block §3 S5 — endpoints/order are
     // BINDING, leg durations are the proposed concrete schedule json_author
     // may retime to fit actual narration length). SAME schedule shape as
@@ -27151,23 +27157,33 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
 
-            // Charge-glyph pools — density = chargeGlyphFrac (0=empty,
-            // 1=full), colour = sign(sin theta): the top pool tints RED
-            // (positive) when sinT>=0 and dims to near-invisible when sinT<0
-            // (that instant the TOP plate is negative, so the BOTTOM pool
-            // lights instead) — beads pile INTO one plate and drain OUT of
-            // the other every half-cycle, NEVER crossing the gap (both pools
-            // are pinned to their own plate face; only their own opacity
-            // toggles).
+            // Charge-glyph pools — a capacitor's defining structural fact is
+            // EQUAL AND OPPOSITE charge on the two facing plates, so BOTH pools
+            // render together, ALWAYS, at the SAME |q|-proportional opacity
+            // (density = chargeGlyphFrac, 0=empty at v=0, 1=full at a crest).
+            // The polarity is carried ENTIRELY by colour, keyed on sign(q):
+            // top = sign(sin theta), bottom = the opposite, with red always
+            // meaning POSITIVE charge and blue always meaning NEGATIVE. So at
+            // q>0 the top reads red / bottom blue, and at q<0 the pair SWAPS to
+            // blue top / red bottom -- the same charges are still there, they
+            // have only changed sign, and nothing ever crosses the gap.
+            // Regression this replaces (E11): the old code hid the counter-
+            // charge at 0.06 opacity (i.e. absent) and pinned each pool to a
+            // fixed hex, so the composite a teacher saw was charge appearing on
+            // the top plate, fading, then appearing on the bottom -- the visual
+            // of charge CROSSING the dielectric, the exact misconception this
+            // apparatus exists to kill and a direct contradiction of s3_3's own
+            // narration. Never reintroduce a per-pool opacity asymmetry here.
             // Same exemption, same reason: a "charge" glow focal is applied on
             // the live channel (brightness only -- Rule 29). The colour lerp is
-            // load-bearing here, not decorative: the lit pool's own opacity is
-            // ALREADY 1.0 at every voltage crest, so an opacity multiplier
-            // alone clamps out and the glow would be silent on exactly the
-            // beat that narrates it.
+            // load-bearing here, not decorative: pool opacity is ALREADY 1.0 at
+            // every voltage crest, so an opacity multiplier alone clamps out and
+            // the glow would be silent on exactly the beat that narrates it.
             var chGlowP = accGlowFocalP("charge", "acc_charge");
-            var topOpacity = Math.min(1, chargeGlyphFrac * (chargeSign >= 0 ? 1 : 0.06) * (1 + 0.5 * chGlowP));
-            var botOpacity = Math.min(1, chargeGlyphFrac * (chargeSign >= 0 ? 0.06 : 1) * (1 + 0.5 * chGlowP));
+            var chOpacity = Math.min(1, chargeGlyphFrac * (1 + 0.5 * chGlowP));
+            var topOpacity = chOpacity, botOpacity = chOpacity;
+            var topChargeHex = (chargeSign >= 0) ? ACC_CHARGE_POS_HEX : ACC_CHARGE_NEG_HEX;
+            var botChargeHex = (chargeSign >= 0) ? ACC_CHARGE_NEG_HEX : ACC_CHARGE_POS_HEX;
             // The dots are CHILDREN of the two pool groups (accTopChargeGrp /
             // accBotChargeGrp .add(dot)), and addToScene only ever pushes the
             // top-level object it is handed -- so the dots are NOT in
@@ -27188,7 +27204,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     var co = pool.children[ci], cu = co.userData;
                     if (!cu || !cu.pool || !co.material) continue;
                     co.material.opacity = (cu.pool === "top") ? topOpacity : botOpacity;
-                    co.material.color.setHex((cu.pool === "top") ? ACC_CHARGE_TOP_HEX : ACC_CHARGE_BOT_HEX);
+                    co.material.color.setHex((cu.pool === "top") ? topChargeHex : botChargeHex);
                     if (chGlowP > 0) co.material.color.lerp(GLOW_WHITE, 0.10 + 0.18 * chGlowP);
                 }
             }
