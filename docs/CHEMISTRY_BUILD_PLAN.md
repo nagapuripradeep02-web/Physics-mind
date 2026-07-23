@@ -18,7 +18,7 @@
 | Phase | Name | Risk | Status |
 |---|---|---|---|
 | 0 | Safety baseline | none | ✅ 2026-07-23 |
-| 2 | Authoring layer ready (`chemistry_author` + architect sources) | low | ☐ |
+| 2 | Authoring layer ready (`chemistry_author` + architect sources) | low | ✅ 2026-07-23 (tripwire green: tsc 0 · 124/124 · 288/288 · 11/11 emissions) |
 | 1 | Curriculum plumbing (subject first-class) | low-med | ☐ |
 | 3 | First concept — vertical slice | medium | ☐ (blocked on concept decision) |
 | 4 | Chemistry validator + visual gate + CI | medium | ☐ |

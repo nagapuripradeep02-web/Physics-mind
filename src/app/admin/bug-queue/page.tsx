@@ -25,6 +25,7 @@ export interface BugQueueRow {
     owner_cluster:
         | "alex:architect"
         | "alex:physics_author"
+        | "alex:chemistry_author"
         | "alex:json_author"
         | "peter_parker:renderer_primitives"
         | "peter_parker:runtime_generation"

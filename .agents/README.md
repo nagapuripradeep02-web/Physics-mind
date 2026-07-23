@@ -3,7 +3,7 @@
 > Rewritten 2026-06-11 (Batch A of the codebase audit). The previous README described
 > a five-role, non-runnable, pre-session-32 world that no longer exists.
 
-Ten roles, four clusters (Alex authoring + verification · Peter Parker engines · Release · Offline). Each `<role>/CLAUDE.md` here is the
+Eleven roles, four clusters (Alex authoring + verification · Peter Parker engines · Release · Offline). Each `<role>/CLAUDE.md` here is the
 **founder-edited canonical source**; `physics-mind/.claude/agents/<role>.md` is the
 **emitted dispatch wrapper** (YAML frontmatter + canonical body) that Claude Code's
 native auto-dispatch actually reads. These ARE runnable subagents — dispatch via the
@@ -30,6 +30,11 @@ proposal_queue for founder approval. Never in live serving paths.
 Added 2026-07-04: eye_walker (parallel verification — frame reads, alongside
 quality_auditor) · retrofit_surgeon (per-concept named doctrine deltas) ·
 shipper (Release cluster — founder-approval-gated post-approval chain).
+
+Added 2026-07-23: chemistry_author (Alex) — CHEMISTRY concepts substitute it
+at position #2: architect ──► chemistry_author ──► json_author ──►
+quality_auditor. Same handoffs, same FAIL routing. Physics concepts are
+unchanged. (CHEMISTRY_BUILD_PLAN.md Phase 2.)
 ```
 
 - **architect** decides WHAT: state count, arc shape, Rule 16a misconception beats
@@ -38,6 +43,12 @@ shipper (Release cluster — founder-approval-gated post-approval chain).
 - **physics_author** decides HOW MUCH: formulas, variables, constraints, reveal
   timeline, drill-down phrasings. (Board mark schemes: deferred — conceptual-only
   directive 2026-06-11.)
+- **chemistry_author** (added 2026-07-23) — the chemistry sibling of
+  physics_author, substituted at position #2 for chemistry concepts: balanced-
+  equation ledger (atom/charge conservation, redox electron balance), quantities
+  with chemistry units, formulas, Rule 31 timelines targeting archetypes in
+  `docs/patterns/chemistry.md` that map to EXISTING renderers, drill-down
+  phrasings, constraints.
 - **json_author** decides WHERE: coordinates, primitives, conceptual mode only
   (no mode_overrides while the 2026-06-11 directive is active), 8 registration sites,
   SQL migration.

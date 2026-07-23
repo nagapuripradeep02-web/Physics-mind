@@ -50,6 +50,8 @@ const ROLES = [
   { canonical: 'eye_walker',          emission: 'eye-walker'          },
   { canonical: 'retrofit_surgeon',    emission: 'retrofit-surgeon'    },
   { canonical: 'shipper',             emission: 'shipper'             },
+  // added 2026-07-23 — chemistry_author (Alex, chemistry pipeline — CHEMISTRY_BUILD_PLAN.md Phase 2)
+  { canonical: 'chemistry_author',    emission: 'chemistry-author'    },
 ];
 
 const H1 = /^#\s/; // a markdown H1 line ("# ...")
