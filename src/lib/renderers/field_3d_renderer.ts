@@ -52,7 +52,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -25844,6 +25844,1165 @@ export const FIELD_3D_RENDERER_CODE = `
         if (derivEl2) derivEl2.classList.toggle("glow-pulse", on("formula"));
     }
 
+    // ── ac_capacitor scenario (AC voltage applied to a capacitor — NCERT §7.4,
+    //   Ch.7 CHAPTER_LOOP engine ask, routed Class-B). Built from
+    //   docs/loop_runs/ch7/ac_voltage_capacitor/skeleton.md §0b + physics_block.md
+    //   §1/§3 (every number there is ground truth — verified numerically against
+    //   this implementation, see the peter_parker dispatch report).
+    //
+    //   BINDING SCOPE (CHAPTER_LOOP §3b engine-loop dispatch, DF1): a CLEAN
+    //   STANDALONE SIBLING of the SEALED ac_resistor (72910d1) and ac_inductor
+    //   (35ae566 + eae16ca) scenarios. No acr_/acl_-prefixed code is called,
+    //   edited, or extracted from here — every function/constant below is new
+    //   acc_-prefixed code. Cross-scenario reuse of genuinely GENERIC, already-
+    //   shared helpers (createTubeLine, createLabelSprite, hexToThreeColor,
+    //   addToScene, applyGlowEmphasis, cueTriggerMs, capSmooth01 — all already
+    //   cross-called by ac_resistor/ac_inductor's own sealed code) is fine and
+    //   used exactly the way those scenarios already do.
+    //
+    //   v = vm*sin(wt); i = im*sin(wt+pi/2) = im*cos(wt) LEADS v by exactly
+    //   pi/2 (T/4) — the OPPOSITE sign from ac_inductor's own i, and the ghost
+    //   drawn in S2 is literally ac_inductor's own i(t) = -im*cos(wt), so the
+    //   real trace here is the ghost EXACTLY INVERTED. Xc = 1/(wC) FALLS as
+    //   frequency rises (opposite the coil); im = vm/Xc = w*C*vm; q = C*v =
+    //   qmax*sin(wt), qmax = C*vm (frequency-INDEPENDENT); p = v*i =
+    //   +(vm*im/2)*sin(2wt) SIGNED, POSITIVE sign (opposite ac_inductor's
+    //   negative sign — this concept's first quarter after v=0 rising is a
+    //   STORE quarter, verified in physics_block §2, not assumed); <p> = 0
+    //   EXACT; U = 0.5*C*v^2 = Umax*sin^2(wt) breathes 0<->Umax twice per
+    //   cycle, peaking at V'S OWN CREST (unlike ac_inductor's gauge, which
+    //   peaks at the i-crest).
+    //
+    //   Single state-clock phase (Rule 26/36): theta is a PURE closed-form
+    //   function of absolute state-local t for the S5 scripted f-ramp while
+    //   undragged (accS5PhaseAtTr — the SAME field3d_dt_accumulated_motion_
+    //   invisible_to_eye_timepin fix pattern ac_inductor already implements,
+    //   cloned schedule-generic per physics_block §3 S5: the lemma is
+    //   independent of L vs C), and a plain omega*dt accumulator (Rule-36
+    //   linear-in-dt) everywhere else — including once f_demo is dragged in S5
+    //   and throughout S9's fully live sandbox.
+    //
+    //   ONE flip schedule drives BOTH the wire current arrow and the plate
+    //   charge-glyph polarity here (physics_block §6.4, binding) —
+    //   arrow_dir(t) = sign(i) = sign(cos theta), flipping at t=1.0/3.0s at
+    //   defaults (i's own zero crossings, the v-crest/trough instants). This
+    //   is DELIBERATELY SIMPLER than ac_inductor, which needed TWO
+    //   independently-timed arrow-pairs (wire-current vs back-emf) — this
+    //   concept has no back-emf arrow pair at all (no acc_emf_arrows
+    //   elementType; do not port that machinery here).
+    //
+    //   Genuinely NEW machinery this dispatch adds (no clone source anywhere
+    //   in the fleet — see the dispatch report for the throwaway-test
+    //   verification): (1) the styled-subscript COMPOSE routine for X_C/v_C
+    //   (accComposeSegments/accDrawComposedRun/accFillComposedOnCanvas/
+    //   accHtmlComposeSub/createComposedSubLabelSprite, just above
+    //   buildAcCapacitor) — Unicode has NO subscript-"c" codepoint, so unlike
+    //   ac_inductor's real Xₗ subscript, X_C/v_C must be COMPOSED: base
+    //   letter full-size, "C" at reduced size on a lowered baseline, x-
+    //   advanced by the MEASURED base-glyph width. (2) the plate + charge-
+    //   accumulation band (acc_plates/acc_efield/acc_charge) replacing the
+    //   coil/B-field-loops/back-emf triad — beads pile INTO one plate and
+    //   drain OUT of the other, NEVER crossing the gap; the inter-plate field
+    //   is cool geometric line-work ONLY, exempted from applyGlowEmphasis
+    //   (mirrors ac_inductor's acl_bfield exemption exactly — see
+    //   applyAcCapacitorGlow below; acc_charge is ALSO exempted for the same
+    //   reason: its own colour+opacity channel is live-driven every frame and
+    //   would otherwise be clobbered by the glow pass's stale-baseline reset,
+    //   exactly the failure mode acl_bfield's exemption prevents). (3) the
+    //   world-space q annotation sprite (S3-only, positioned CLEAR of the
+    //   acc_readout HUD footprint — the F2 fix pattern, inherited as a
+    //   binding clone duty). (4) the LEAD bracket carries an EXPLICIT drawn
+    //   time-order arrow (a literal line+arrowhead on the vi-graph canvas,
+    //   from the most recent i-crest FORWARD to the v-crest it precedes) in
+    //   addition to its text label — ac_inductor's own lag bracket was text-
+    //   only; this concept's skeleton explicitly asks for "an explicit time-
+    //   order arrow", so this is a genuine (small) addition, not a straight
+    //   clone. (5) the S4 tangent-walk cursor rides the V-TRACE (cause) with
+    //   a secondary i-dot marker on the i-trace answering at the same instant
+    //   (physically simultaneous — i = C*dv/dt identically — so causation is
+    //   framed via the stop-caption text sequencing, cause-cue then effect-
+    //   cue within the same authored beat, never via an artificial physics
+    //   delay); ac_inductor's own tangent-walk rode the i-trace (effect).
+    //
+    //   Documented engineering simplifications (not silent — see the dispatch
+    //   report): (1) the S4 tangent-walk's three cue-gated dwell stops render
+    //   as static labelled call-outs (mirrors ac_inductor's own three-marker
+    //   precedent) while the tangent ARROW itself stays genuinely continuous
+    //   and live every frame (never hardcoded). (2) the S8 point-symmetry
+    //   fold renders as a sweep of echo dots (a literal, verifiable
+    //   implementation of the physics, just rendered as discrete dots rather
+    //   than a redrawn curve segment) — identical mechanism to ac_inductor's
+    //   own S8 fold, sign-agnostic in its geometry (works unchanged with this
+    //   concept's POSITIVE p convention). (3) the vi/p graphs' TRAILING-
+    //   WINDOW history is drawn via local linear extrapolation from the
+    //   CURRENT instantaneous omega (mirrors both siblings' own graph-history
+    //   approach exactly) — affects ONLY the cosmetic curvature of the
+    //   graph's recent-past redraw during the S5 ramp, never the LIVE theta
+    //   value itself nor any instrument/HUD numeric reading. (4) the
+    //   createComposedSubLabelSprite 3D-sprite compose path is built and
+    //   throwaway-tested (per the binding convention that the routine exist
+    //   on BOTH raster paths) but has NO live call site in this concept's own
+    //   authored content — every X_C/v_C occurrence in this build's symbol
+    //   table is DOM-HUD (trivial <sub>C</sub>) or canvas-graph (the
+    //   optional on-graph Xc readout); flagged transparently in the dispatch
+    //   report, not silently skipped. A future concept needing X_C beside a
+    //   real X_ₗ subscript in one 3D scene (series_lcr_circuit) has an
+    //   immediate, ready-built use for it.
+    //
+    //   visible_elements tokens (CLOSED, elementType-prefixed, matches the
+    //   skeleton §0b req 8 proposal with ZERO deviation — the guess already
+    //   accounted for meter/u_gauge, learned from ac_inductor's own history):
+    //   acc_source | acc_beads | acc_arrow | acc_plates | acc_efield |
+    //   acc_charge | acc_meter | acc_u_gauge. Every object's own id field is
+    //   deliberately anchored so the GENERIC glow-alias resolver's first-
+    //   underscore strip ("acc_meter" -> "meter", "acc_u_gauge" -> "u_gauge",
+    //   ...) lands directly on the skeleton's OWN bare glow-key spelling with
+    //   no deviation and no second alias table (source | beads | arrow |
+    //   plates | efield | charge | meter | u_gauge); the DOM-only keys
+    //   (v_trace | i_trace | ghost_trace | lead_bracket | tangent |
+    //   xc_readout | p_strip | formula) have no elementType at all and are
+    //   matched directly in applyAcCapacitorGlow's own tail, exactly
+    //   mirroring both siblings' pattern for their own DOM-only keys.
+    var ACC_SRC_X = -2.6, ACC_PLATE_X = 2.6, ACC_TOP_Y = 0.9, ACC_BOT_Y = -0.9;
+    var ACC_BEAD_COUNT = 7;
+    var ACC_PLATE_HALFGAP = 0.35, ACC_PLATE_THICK = 0.09, ACC_PLATE_W = 1.5, ACC_PLATE_D = 1.3;
+    var ACC_UGAUGE_X = ACC_PLATE_X + 1.35, ACC_UGAUGE_H = 1.5, ACC_UGAUGE_W = 0.55;
+    // Stylized visual gain (V/s -> screen tilt) for the S4 tangent-arrow
+    // display ONLY — the true numeric slope value is carried in the readout
+    // text (Rule 33d real number), never claimed by the drawn angle alone.
+    var ACC_TANGENT_VIS_SCALE = 3.5;
+    // S5 scripted f-ramp schedule (physics_block §3 S5 — endpoints/order are
+    // BINDING, leg durations are the proposed concrete schedule json_author
+    // may retime to fit actual narration length). SAME schedule shape as
+    // ac_inductor's own S5 (the closed-form lemma is schedule-generic,
+    // independent of L vs C — physics_block confirms this explicitly).
+    // Post-ramp holds at the final leg's f1 (0.25 Hz, back to default) forever.
+    var ACC_S5_LEGS = [
+        { kind: "ramp", dur: 4.0, f0: 0.25, f1: 0.50 },   // Leg A (rise)
+        { kind: "hold", dur: 1.5, f: 0.50 },              // Hold A
+        { kind: "ramp", dur: 6.0, f0: 0.50, f1: 0.10 },   // Leg B (fall)
+        { kind: "hold", dur: 1.5, f: 0.10 },              // Hold B
+        { kind: "ramp", dur: 4.0, f0: 0.10, f1: 0.25 }    // Leg C (return)
+    ];
+    var ACC_S5_POST_F = 0.25;
+
+    var accSrcGrp = null, accArrow = null, accMeterNeedle = null, accUgaugeFill = null;
+    var accTopChargeGrp = null, accBotChargeGrp = null;
+
+    function accFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+
+    // Slider-control resolver (mirrors acrSc/aclSc's SHAPE as new acc_-
+    // prefixed code — never calls into ac_resistor's/ac_inductor's own
+    // resolvers).
+    function accSc(key, dmin, dmax, dstep, ddef, dlabel) {
+        var scfg = config.slider_controls || {};
+        var o = scfg[key] || {};
+        return {
+            min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+            step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+            label: o.label || dlabel
+        };
+    }
+
+    // Wire geometry: two straight segments (top, bottom), source -> plates.
+    // Each bead confined to its OWN cell (mirrors both siblings' per-cell
+    // rock-in-place idiom, cloned as new acc_-prefixed code).
+    function accWireCellPoint(wireY, cellIndex, frac) {
+        var cellW = (ACC_PLATE_X - ACC_SRC_X) / ACC_BEAD_COUNT;
+        var x0 = ACC_SRC_X + cellIndex * cellW, x1 = x0 + cellW;
+        return [x0 + (x1 - x0) * frac, wireY, 0];
+    }
+
+    // Closed-form S5 phase (physics_block §3 S5 lemma — the
+    // field3d_dt_accumulated_motion_invisible_to_eye_timepin fix pattern,
+    // cloned from ac_inductor's own accS5PhaseAtTr/aclS5PhaseAtTr — the
+    // schedule-generic math is IDENTICAL, independent of L vs C): a PURE
+    // function of the leg-local elapsed time tr (seconds since the ramp cue
+    // fired), zero per-frame accumulated history, exactly re-derivable at any
+    // pinned t.
+    function accS5PhaseAtTr(tr) {
+        if (tr <= 0) return 0;
+        var theta = 0, elapsed = 0;
+        for (var li = 0; li < ACC_S5_LEGS.length; li++) {
+            var leg = ACC_S5_LEGS[li];
+            if (tr <= elapsed + leg.dur) {
+                var local = tr - elapsed;
+                if (leg.kind === "ramp") {
+                    var u = local / leg.dur;
+                    theta += 2 * Math.PI * leg.dur * (leg.f0 * u + (leg.f1 - leg.f0) * (u * u * u - 0.5 * u * u * u * u));
+                } else {
+                    theta += 2 * Math.PI * leg.f * local;
+                }
+                return theta;
+            }
+            if (leg.kind === "ramp") theta += Math.PI * leg.dur * (leg.f0 + leg.f1);
+            else theta += 2 * Math.PI * leg.f * leg.dur;
+            elapsed += leg.dur;
+        }
+        theta += 2 * Math.PI * ACC_S5_POST_F * (tr - elapsed);
+        return theta;
+    }
+    // Instantaneous frequency at leg-local tr (display/HUD/Xc-readout only —
+    // NEVER fed back into the phase integral above). Reuses capSmooth01 — a
+    // generic pure-math helper already cross-called by both siblings' own
+    // sealed code, not scenario-scoped to capacitance.
+    function accS5FreqAtTr(tr) {
+        var elapsed = 0;
+        for (var li = 0; li < ACC_S5_LEGS.length; li++) {
+            var leg = ACC_S5_LEGS[li];
+            if (tr <= elapsed + leg.dur) {
+                if (leg.kind === "ramp") { var u = (tr - elapsed) / leg.dur; return leg.f0 + (leg.f1 - leg.f0) * capSmooth01(u); }
+                return leg.f;
+            }
+            elapsed += leg.dur;
+        }
+        return ACC_S5_POST_F;
+    }
+
+    // ── Styled-subscript compose routine (X_C / v_C) ──────────────────────
+    //   Genuinely NEW machinery (physics_block §6.6, skeleton §0b req 7) — no
+    //   clone source exists anywhere in the fleet. Unicode's subscript letter
+    //   set (U+2090-209C: a e h i j k l m n o p r s t u v x) has NO subscript
+    //   "c" — ac_inductor's own Xₗ uses a REAL codepoint (ₗ exists);
+    //   X_C/v_C cannot. Verified with a throwaway Node test (segment parsing,
+    //   font-size regex rebuild, measured-width arithmetic, draw-advance
+    //   maths, and an explicit "never emit a literal underscore or bare XC/vC"
+    //   invariant check) before being wired in here — see the dispatch report.
+    //
+    //   Source-string convention (BINDING — physics_block §6.6): authored
+    //   text carries the literal ASCII token "X_C" / "v_C" (capital C,
+    //   underscore, exactly this casing). accComposeSegments is the ONLY
+    //   consumer of that token; a literal underscore or side-by-side "XC"/
+    //   "vC" must NEVER reach the screen through any of the three text paths.
+    //   DOM/HUD path: trivial (accHtmlComposeSub, a <sub>C</sub> tag) — used
+    //   on acc_formula/acc_derivation's AUTHORED formula_text/formula_overlay
+    //   strings (switched from textContent to innerHTML for exactly this).
+    //   Canvas + 3D-sprite paths use the two-draw compose below: base letter
+    //   full-size, then "C" at a reduced size on a lowered baseline, x-
+    //   advanced by the MEASURED width of the base glyph (ctx.measureText) —
+    //   never a hand-tuned pixel offset.
+    function accComposeSegments(text) {
+        var s = String(text == null ? "" : text);
+        var re = /(X_C|v_C)/g;
+        var segs = [], last = 0, m;
+        while ((m = re.exec(s)) !== null) {
+            if (m.index > last) segs.push({ t: s.slice(last, m.index), sub: false });
+            segs.push({ t: m[1].charAt(0), sub: true }); // base letter only -- "C" is its own reduced-size run
+            last = m.index + m[1].length;
+        }
+        if (last < s.length) segs.push({ t: s.slice(last), sub: false });
+        return segs;
+    }
+    // Parses a "<n>px" size out of a canvas font spec and rebuilds it at
+    // n*ratio (used ONLY for the composed "C"; the base-letter draw always
+    // uses the caller's unmodified font).
+    function accSubFont(fontStr, ratio) {
+        var m = /(\d+(?:\.\d+)?)px/.exec(fontStr);
+        if (!m) return fontStr;
+        var newSize = Math.max(6, parseFloat(m[1]) * ratio);
+        return fontStr.slice(0, m.index) + newSize.toFixed(1) + "px" + fontStr.slice(m.index + m[0].length);
+    }
+    // Total advance width of a composed run at the given base font (ctx.font
+    // is restored on exit — never leak font state into the next real draw,
+    // the field3d_rms_subscript scar class's exact failure mode on a
+    // different routine).
+    function accMeasureComposedWidth(ctx, text, baseFont, subRatio) {
+        var ratio = subRatio || 0.62;
+        var restoreFont = ctx.font;
+        var segs = accComposeSegments(text);
+        var total = 0;
+        for (var i = 0; i < segs.length; i++) {
+            ctx.font = baseFont;
+            total += ctx.measureText(segs[i].t).width;
+            if (segs[i].sub) {
+                ctx.font = accSubFont(baseFont, ratio);
+                total += ctx.measureText("C").width;
+            }
+        }
+        ctx.font = restoreFont;
+        return total;
+    }
+    // Left-to-right composed draw starting at (x, y) (alphabetic baseline).
+    // opts: { stroke, strokeColor, strokeWidth, subRatio, subDrop }.
+    function accDrawComposedRun(ctx, text, x, y, baseFont, color, opts) {
+        opts = opts || {};
+        var subRatio = opts.subRatio || 0.62;
+        var segs = accComposeSegments(text);
+        var sizeMatch = /(\d+(?:\.\d+)?)px/.exec(baseFont);
+        var baseSize = sizeMatch ? parseFloat(sizeMatch[1]) : 16;
+        var drop = (opts.subDrop != null) ? opts.subDrop : baseSize * 0.30;
+        var savedAlign = ctx.textAlign, savedBaseline = ctx.textBaseline;
+        ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+        var cx = x;
+        for (var i = 0; i < segs.length; i++) {
+            var seg = segs[i];
+            ctx.font = baseFont;
+            if (opts.stroke) { ctx.lineWidth = opts.strokeWidth || 3; ctx.strokeStyle = opts.strokeColor || "rgba(10,10,26,0.95)"; ctx.strokeText(seg.t, cx, y); }
+            ctx.fillStyle = color;
+            ctx.fillText(seg.t, cx, y);
+            cx += ctx.measureText(seg.t).width;
+            if (seg.sub) {
+                var subFont = accSubFont(baseFont, subRatio);
+                ctx.font = subFont;
+                if (opts.stroke) { ctx.strokeText("C", cx, y + drop); }
+                ctx.fillText("C", cx, y + drop);
+                cx += ctx.measureText("C").width;
+            }
+        }
+        ctx.textAlign = savedAlign; ctx.textBaseline = savedBaseline;
+        return cx - x;
+    }
+    // Canvas-graph HUD path (ctx.fillText) — reads the CURRENT ctx.font/
+    // fillStyle as the base style (mirrors every other on-graph label in this
+    // file: set font+fillStyle immediately before drawing). align: 'left' |
+    // 'center' | 'right' (default 'left'). Real call site: the optional
+    // on-graph Xc readout in accDrawViGraph below.
+    function accFillComposedOnCanvas(ctx, text, x, y, align) {
+        var baseFont = ctx.font, color = ctx.fillStyle;
+        var startX = x;
+        if (align === "center" || align === "right") {
+            var w = accMeasureComposedWidth(ctx, text, baseFont, 0.62);
+            startX = (align === "center") ? (x - w / 2) : (x - w);
+        }
+        accDrawComposedRun(ctx, text, startX, y, baseFont, color, { stroke: false });
+    }
+    // DOM/HTML path (trivial, per physics_block §6.6) — json_author's
+    // authored formula_text/formula_overlay strings carry the literal ASCII
+    // "X_C"/"v_C" token; this is the ONLY transform applied before innerHTML
+    // (never textContent, which would print the literal underscore).
+    function accHtmlComposeSub(text) {
+        if (text == null) return "";
+        return String(text).replace(/X_C/g, "X<sub>C</sub>").replace(/v_C/g, "v<sub>C</sub>");
+    }
+    // 3D-sprite path (createLabelSprite's compose-aware sibling) — mirrors its
+    // sizing/stroke/centring, substituting the compose-aware measure+draw. NO
+    // live call site in THIS scenario's own authored content (every X_C/v_C
+    // occurrence here is DOM-HUD or canvas-graph — see the dispatch report),
+    // built per the binding "both raster paths" convention and ready for a
+    // future 3D world-space use (e.g. series_lcr_circuit, which will need
+    // X_C beside a real X_ₗ subscript in one scene).
+    function createComposedSubLabelSprite(text, color, scaleFactor) {
+        var canvas = document.createElement("canvas");
+        var fontSpec = "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
+        var ctx = canvas.getContext("2d");
+        ctx.font = fontSpec;
+        var pad = 56;
+        var measured = Math.ceil(accMeasureComposedWidth(ctx, text, fontSpec, 0.6)) + pad;
+        canvas.width = Math.max(384, measured);
+        canvas.height = 128;
+        ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var w = accMeasureComposedWidth(ctx, text, fontSpec, 0.6);
+        var startX = canvas.width / 2 - w / 2;
+        accDrawComposedRun(ctx, text, startX, canvas.height / 2 + 26, fontSpec, color, {
+            stroke: true, strokeColor: "rgba(10,10,26,0.95)", strokeWidth: 8, subRatio: 0.6, subDrop: 22
+        });
+        var texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+        var material = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false, depthWrite: false });
+        var sprite = new THREE.Sprite(material);
+        var s = scaleFactor != null ? scaleFactor : 0.85;
+        sprite.scale.set(s * (canvas.width / canvas.height), s, 1);
+        sprite.renderOrder = 999;
+        return sprite;
+    }
+
+    function buildAcCapacitor() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+
+        // 1. AC source — clones the family's VISUAL LANGUAGE (Rule 32d chapter
+        //    continuity: same home pose) as new acc_-prefixed geometry.
+        accSrcGrp = new THREE.Group();
+        accSrcGrp.userData = { elementType: "acc_source", id: "acc_source" };
+        var srcRing = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.09, 12, 28),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFB300"), emissive: hexToThreeColor("#7A4F00"), emissiveIntensity: 0.3 }));
+        srcRing.rotation.x = Math.PI / 2;
+        accSrcGrp.add(srcRing);
+        accSrcGrp.position.set(ACC_SRC_X, 0, 0);
+        addToScene(accSrcGrp);
+        var srcGlyph = createLabelSprite("\\u223f", "#FFEE58", 0.5);
+        srcGlyph.position.set(ACC_SRC_X, 0, 0.02);
+        srcGlyph.userData = { elementType: "acc_source", id: "acc_source_glyph" }; addToScene(srcGlyph);
+        var srcLbl = createLabelSprite("AC source", "#FFCC80", 0.24);
+        srcLbl.position.set(ACC_SRC_X, -1.35, 0);
+        srcLbl.userData = { elementType: "acc_source", id: "acc_source_lbl" }; addToScene(srcLbl);
+        var connSrc = createTubeLine([[ACC_SRC_X, ACC_BOT_Y, 0], [ACC_SRC_X, ACC_TOP_Y, 0]], "#B0BEC5", 0.025);
+        if (connSrc) { connSrc.userData = { elementType: "acc_source", id: "acc_source_stub" }; addToScene(connSrc); }
+
+        // 2. Two wires source -> plates. The TOP wire carries the exact
+        //    canonical id "acc_beads" (elementType shared by both wires +
+        //    every bead) so the generic glow-alias resolver's first-
+        //    underscore strip lands on the bare key "beads" directly (see the
+        //    header comment above).
+        var wTop = createTubeLine([[ACC_SRC_X, ACC_TOP_Y, 0], [ACC_PLATE_X, ACC_TOP_Y, 0]], "#B0BEC5", 0.03);
+        if (wTop) { wTop.userData = { elementType: "acc_beads", id: "acc_beads" }; addToScene(wTop); }
+        var wBot = createTubeLine([[ACC_SRC_X, ACC_BOT_Y, 0], [ACC_PLATE_X, ACC_BOT_Y, 0]], "#B0BEC5", 0.03);
+        if (wBot) { wBot.userData = { elementType: "acc_beads", id: "acc_wire_bot" }; addToScene(wBot); }
+
+        // 3. Plates (the second anti-heater) — two flat horizontal slabs
+        //    stacked in Y (gap along Y, visually quoting the shipped
+        //    capacitance apparatus for fleet continuity — §0b req 1). FLAT,
+        //    non-emissive, colour NEVER touched by the animate loop: the
+        //    plate body must read COLD in every frame, same discipline as
+        //    both siblings' own anti-heater elements.
+        var plateMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C") });
+        var topY = ACC_PLATE_HALFGAP + ACC_PLATE_THICK / 2, botY = -topY;
+        var topPlate = new THREE.Mesh(new THREE.BoxGeometry(ACC_PLATE_W, ACC_PLATE_THICK, ACC_PLATE_D), plateMat);
+        topPlate.position.set(ACC_PLATE_X, topY, 0);
+        topPlate.userData = { elementType: "acc_plates", id: "acc_plates" }; addToScene(topPlate);
+        var botPlate = new THREE.Mesh(new THREE.BoxGeometry(ACC_PLATE_W, ACC_PLATE_THICK, ACC_PLATE_D), plateMat.clone());
+        botPlate.position.set(ACC_PLATE_X, botY, 0);
+        botPlate.userData = { elementType: "acc_plates", id: "acc_plate_bot" }; addToScene(botPlate);
+        // Vertical connector stubs from each wire row down/up to its plate —
+        // beads travel the STRAIGHT [SRC_X, PLATE_X] segment only (per-cell,
+        // accWireCellPoint); these short stubs are static geometry, not part
+        // of the bead path (mirrors both siblings' own stylized wire-to-
+        // device connection — the coil/resistor bodies weren't literally
+        // wired to the y=+/-0.9 rows either).
+        var stubTop = createTubeLine([[ACC_PLATE_X, ACC_TOP_Y, 0], [ACC_PLATE_X, topY + ACC_PLATE_THICK / 2, 0]], "#B0BEC5", 0.03);
+        if (stubTop) { stubTop.userData = { elementType: "acc_plates", id: "acc_stub_top" }; addToScene(stubTop); }
+        var stubBot = createTubeLine([[ACC_PLATE_X, ACC_BOT_Y, 0], [ACC_PLATE_X, botY - ACC_PLATE_THICK / 2, 0]], "#B0BEC5", 0.03);
+        if (stubBot) { stubBot.userData = { elementType: "acc_plates", id: "acc_stub_bot" }; addToScene(stubBot); }
+        var plateLbl = createLabelSprite("C", "#FFCC80", 0.3);
+        plateLbl.position.set(ACC_PLATE_X, -1.35, 0);
+        plateLbl.userData = { elementType: "acc_plates", id: "acc_plates_lbl" }; addToScene(plateLbl);
+
+        // 4. Inter-plate E-field — COOL geometric line-work ONLY, breathing
+        //    opacity driven live by field_brightness=sin²θ every frame (self-
+        //    normalized, never a fixed reference — physics_block §1), colour
+        //    tinted between two cool hues on the CHARGE polarity's sign
+        //    (never warm/orange — the anti-heater discipline, §0b req 1).
+        //    createTubeLine reads config.field_lines.opacity — the concept
+        //    JSON MUST author a field_lines block (flagged to json_author).
+        var efGridN = 3, efi = 0;
+        for (var efx = 0; efx < efGridN; efx++) {
+            for (var efz = 0; efz < efGridN; efz++) {
+                var gx = ((efx + 0.5) / efGridN - 0.5) * (ACC_PLATE_W * 0.6);
+                var gz = ((efz + 0.5) / efGridN - 0.5) * (ACC_PLATE_D * 0.6);
+                var efTube = createTubeLine([[ACC_PLATE_X + gx, botY + ACC_PLATE_THICK / 2, gz], [ACC_PLATE_X + gx, topY - ACC_PLATE_THICK / 2, gz]], "#4FC3F7", 0.02);
+                if (efTube) {
+                    efTube.material.transparent = true; efTube.material.opacity = 0.08;
+                    efTube.userData = { elementType: "acc_efield", id: (efi === 0 ? "acc_efield" : ("acc_efield_" + efi)) };
+                    addToScene(efTube);
+                }
+                efi++;
+            }
+        }
+
+        // 5. Charge-glyph pools (Rule 33 micro layer) — ONE small dot grid per
+        //    plate face (never two pools per plate — the polarity SIGN is
+        //    carried by live colour, the DENSITY by live opacity, both driven
+        //    every frame): beads pile INTO one plate / drain OUT of the
+        //    other, NEVER crossing the gap (a load-bearing correctness
+        //    visual, not decoration — kills "current flows through the
+        //    dielectric" on sight).
+        var ACC_DOT_GRID = 3;
+        accTopChargeGrp = new THREE.Group();
+        accTopChargeGrp.position.set(ACC_PLATE_X, topY - ACC_PLATE_THICK / 2 - 0.02, 0);
+        accTopChargeGrp.userData = { elementType: "acc_charge", id: "acc_charge" }; addToScene(accTopChargeGrp);
+        accBotChargeGrp = new THREE.Group();
+        accBotChargeGrp.position.set(ACC_PLATE_X, botY + ACC_PLATE_THICK / 2 + 0.02, 0);
+        accBotChargeGrp.userData = { elementType: "acc_charge", id: "acc_charge_bot" }; addToScene(accBotChargeGrp);
+        for (var cdy = 0; cdy < ACC_DOT_GRID; cdy++) {
+            for (var cdx = 0; cdx < ACC_DOT_GRID; cdx++) {
+                var dx = ((cdx + 0.5) / ACC_DOT_GRID - 0.5) * (ACC_PLATE_W * 0.6);
+                var dz = ((cdy + 0.5) / ACC_DOT_GRID - 0.5) * (ACC_PLATE_D * 0.6);
+                var topDot = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#EF5350"), transparent: true, opacity: 0 }));
+                topDot.position.set(dx, 0, dz);
+                topDot.userData = { elementType: "acc_charge", id: "acc_charge_top_dot_" + cdx + "_" + cdy, pool: "top" };
+                accTopChargeGrp.add(topDot);
+                var botDot = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#42A5F5"), transparent: true, opacity: 0 }));
+                botDot.position.set(dx, 0, dz);
+                botDot.userData = { elementType: "acc_charge", id: "acc_charge_bot_dot_" + cdx + "_" + cdy, pool: "bot" };
+                accBotChargeGrp.add(botDot);
+            }
+        }
+        // World-space q annotation (S3-only, F2 fix pattern — placed CLEAR of
+        // the acc_readout HUD's top-right footprint, below the apparatus like
+        // both siblings' own source/coil/plate labels). Live-redrawn text via
+        // updateLabelSpriteText (retained canvas — see pmCreateAutoLabel).
+        var qAnno = pmCreateAutoLabel("q = +0.00 C", "#FFEE58", 0.34);
+        qAnno.position.set(ACC_PLATE_X, -1.85, 0);
+        qAnno.userData = { elementType: "acc_charge", id: "acc_q_annotation" };
+        qAnno.visible = false;
+        addToScene(qAnno);
+
+        // 6. Wire current arrow — ONE flip schedule drives both this arrow
+        //    AND the charge-glyph polarity (physics_block §6.4, binding — no
+        //    separate back-emf arrow pair here, unlike ac_inductor).
+        accArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.45, ACC_TOP_Y + 0.32, 0), 0.9, hexToThreeColor("#FFB300"), 0.2, 0.13);
+        accArrow.userData = { elementType: "acc_arrow", id: "acc_arrow" }; addToScene(accArrow);
+        var arrowLbl = createLabelSprite("i (leads v by \\u00bc cycle)", "#FFB300", 0.22);
+        arrowLbl.position.set(0, ACC_TOP_Y + 0.68, 0);
+        arrowLbl.userData = { elementType: "acc_arrow", id: "acc_arrow_lbl" }; addToScene(arrowLbl);
+
+        // 7. Averaging meter — re-tasked EXCLUSIVELY to avg_p (mirrors
+        //    ac_inductor's own re-tasking; <p> here is EXACTLY zero always).
+        //    Needle stays dead centre every frame (S7's "nothing consumed"
+        //    paradox).
+        var meterGrp = new THREE.Group();
+        meterGrp.userData = { elementType: "acc_meter", id: "acc_meter" };
+        meterGrp.position.set(0, 2.05, 0);
+        var arcPts = [];
+        for (var mi = 0; mi <= 40; mi++) { var aa = Math.PI * (1 - mi / 40); arcPts.push(new THREE.Vector3(0.6 * Math.cos(aa), 0.6 * Math.sin(aa), 0)); }
+        var meterArc = new THREE.Line(new THREE.BufferGeometry().setFromPoints(arcPts), new THREE.LineBasicMaterial({ color: hexToThreeColor("#90A4AE") }));
+        meterGrp.add(meterArc);
+        var needleGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.56, 6);
+        needleGeo.translate(0, 0.28, 0);
+        accMeterNeedle = new THREE.Mesh(needleGeo, new THREE.MeshBasicMaterial({ color: hexToThreeColor("#66BB6A") }));
+        meterGrp.add(accMeterNeedle);
+        addToScene(meterGrp);
+        var meterLbl = createLabelSprite("\\u27e8p\\u27e9 = 0.00 W", "#66BB6A", 0.22);
+        meterLbl.position.set(0, 2.85, 0);
+        meterLbl.userData = { elementType: "acc_meter", id: "acc_meter_lbl" }; addToScene(meterLbl);
+
+        // 8. U-gauge — breathing stored-energy tank (0<->Umax twice/cycle),
+        //    docked beside the plates. Fill height driven live by
+        //    field_brightness (=U/Umax=sin²θ, self-normalized) every frame —
+        //    peaking at V'S OWN CREST (differs from ac_inductor's i-crest-
+        //    keyed gauge — a real formula change, not a retint).
+        var ugTankEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(ACC_UGAUGE_W, ACC_UGAUGE_H, ACC_UGAUGE_W)), new THREE.LineBasicMaterial({ color: hexToThreeColor("#90A4AE") }));
+        ugTankEdges.position.set(ACC_UGAUGE_X, 0, 0);
+        ugTankEdges.userData = { elementType: "acc_u_gauge", id: "acc_u_gauge" }; addToScene(ugTankEdges);
+        accUgaugeFill = new THREE.Mesh(new THREE.BoxGeometry(ACC_UGAUGE_W - 0.06, 1, ACC_UGAUGE_W - 0.06), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#4FC3F7"), transparent: true, opacity: 0.85 }));
+        accUgaugeFill.userData = { elementType: "acc_u_gauge", id: "acc_u_gauge_fill" }; addToScene(accUgaugeFill);
+        var ugLbl = createWideLabelSprite("stored energy U = \\u00bdCv\\u00b2", "#4FC3F7", 0.22);
+        ugLbl.position.set(ACC_UGAUGE_X, ACC_UGAUGE_H / 2 + 0.35, 0);
+        ugLbl.userData = { elementType: "acc_u_gauge", id: "acc_u_gauge_lbl" }; addToScene(ugLbl);
+
+        // ── DOM panels ──────────────────────────────────────────────────────
+        var rp = document.createElement("div"); rp.id = "acc_readout";
+        // top:52px clears the review-chrome "Full screen" button (Rule 34d;
+        // engine_bug_queue: field3d_sliders_panel_top12_vs_fsbtn_top10).
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:190px;display:none;";
+        document.body.appendChild(rp);
+
+        var urp = document.createElement("div"); urp.id = "acc_ureadout";
+        urp.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.82);color:#4FC3F7;padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;display:none;";
+        document.body.appendChild(urp);
+
+        var gcVi = document.createElement("canvas"); gcVi.id = "acc_graph_vi";
+        gcVi.width = 320; gcVi.height = 150;
+        gcVi.style.cssText = "position:fixed;bottom:210px;left:12px;width:320px;height:150px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gcVi);
+
+        var gcP = document.createElement("canvas"); gcP.id = "acc_graph_p";
+        gcP.width = 320; gcP.height = 110;
+        gcP.style.cssText = "position:fixed;bottom:88px;left:12px;width:320px;height:110px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gcP);
+
+        var ff = document.createElement("div"); ff.id = "acc_formula";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFD54F;font:600 21px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var deriv = document.createElement("div"); deriv.id = "acc_derivation";
+        deriv.style.cssText = "position:fixed;top:38%;right:22px;transform:translateY(-50%);color:#FFD54F;font:600 18px/1.7 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:380px;text-align:right;";
+        document.body.appendChild(deriv);
+
+        var spd = document.createElement("div"); spd.id = "acc_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        var scVm = accSc("vm", 2, 20, 1, 10.0, "Peak voltage v\\u2098");
+        var scC = accSc("C", 0.04, 0.40, 0.02, 0.1273, "Capacitance C");
+        var scF = accSc("f_demo", 0.1, 0.5, 0.05, 0.25, "Frequency f");
+        spd.innerHTML =
+            '<div id="acc_vm_row"><label>' + scVm.label + ': <span id="acc_vm_val">' + scVm.def.toFixed(1) + '</span> V</label>' +
+            '<input type="range" id="acc_vm_slider" min="' + scVm.min + '" max="' + scVm.max + '" step="' + scVm.step + '" value="' + scVm.def + '" style="width:100%"></div>' +
+            '<div id="acc_C_row" style="margin-top:6px"><label>' + scC.label + ': <span id="acc_C_val">' + scC.def.toFixed(2) + '</span> F</label>' +
+            '<input type="range" id="acc_C_slider" min="' + scC.min + '" max="' + scC.max + '" step="' + scC.step + '" value="' + scC.def + '" style="width:100%"></div>' +
+            '<div id="acc_f_demo_row" style="margin-top:6px"><label>' + scF.label + ': <span id="acc_f_demo_val">' + scF.def.toFixed(2) + '</span> Hz</label>' +
+            '<input type="range" id="acc_f_demo_slider" min="' + scF.min + '" max="' + scF.max + '" step="' + scF.step + '" value="' + scF.def + '" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        window.PM_accVm = scVm.def; window.PM_accC = scC.def; window.PM_accFdemo = scF.def;
+        window.PM_accVmDragged = false; window.PM_accCDragged = false; window.PM_accFdemoDragged = false;
+        window.PM_accPhase = 0; window.PM_accLastT = 0;
+
+        // Rule 27 explorer pattern: stable id, every param change posted to parent.
+        function accEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "ac_capacitor_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var vmSl = document.getElementById("acc_vm_slider"), vmV = document.getElementById("acc_vm_val");
+        var cSl = document.getElementById("acc_C_slider"), cV = document.getElementById("acc_C_val");
+        var fSl = document.getElementById("acc_f_demo_slider"), fV = document.getElementById("acc_f_demo_val");
+        // Drag-seize: a TRUSTED input sets the *Dragged flag, halting the
+        // scripted/idle driver for the state-entry (checked below). vm/C are
+        // PLAIN live sliders (no scripted driver ever touches them); f_demo is
+        // the ONE seized-vs-scripted variable (S5).
+        if (vmSl) vmSl.addEventListener("input", function (ev) { window.PM_accVm = parseFloat(vmSl.value); if (vmV) vmV.textContent = window.PM_accVm.toFixed(1); if (ev && ev.isTrusted) window.PM_accVmDragged = true; accEmit("vm", window.PM_accVm); });
+        if (cSl) cSl.addEventListener("input", function (ev) { window.PM_accC = parseFloat(cSl.value); if (cV) cV.textContent = window.PM_accC.toFixed(2); if (ev && ev.isTrusted) window.PM_accCDragged = true; accEmit("C", window.PM_accC); });
+        if (fSl) fSl.addEventListener("input", function (ev) { window.PM_accFdemo = parseFloat(fSl.value); if (fV) fV.textContent = window.PM_accFdemo.toFixed(2); if (ev && ev.isTrusted) window.PM_accFdemoDragged = true; accEmit("f_demo", window.PM_accFdemo); });
+    }
+
+    // Authoritative per-state exact-match acc_* visibility + variable_
+    // overrides seed (vm/f_demo/C) + per-state contextual-control panel
+    // (Rule 31). Runs after the generic visible_elements matcher and fully
+    // overrides it (mirrors applyAcInductorState's SHAPE as new code).
+    function applyAcCapacitorState(stateDef) {
+        var d = stateDef.ac_capacitor || {};
+        var vis = stateDef.visible_elements || [];
+        function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("acc_") !== 0) continue;
+            o.visible = listed(ud.elementType);
+        }
+        // The world-space q annotation is a MEMBER of the acc_charge glow
+        // group (so it glows/dims with the rest of the charge visual) but is
+        // NOT shown in every state that shows charge glyphs — it is S3-only
+        // (physics_block symbol table). AND the generic visibility with an
+        // explicit per-state flag so S1/S9's own charge glyphs never carry
+        // the numeric label along for free.
+        var qAnnoObj = accFindById("acc_q_annotation");
+        if (qAnnoObj) qAnnoObj.visible = qAnnoObj.visible && !!d.show_q_annotation;
+
+        var ov = stateDef.variable_overrides || {};
+        var scfg = config.slider_controls || {};
+        var defVm = (scfg.vm && scfg.vm["default"] != null) ? scfg.vm["default"] : 10.0;
+        var defC = (scfg.C && scfg.C["default"] != null) ? scfg.C["default"] : 0.1273;
+        var defF = (scfg.f_demo && scfg.f_demo["default"] != null) ? scfg.f_demo["default"] : 0.25;
+        window.PM_accVm = (typeof ov.vm === "number") ? ov.vm : defVm;
+        window.PM_accC = (typeof ov.C === "number") ? ov.C : defC;
+        window.PM_accFdemo = (typeof ov.f_demo === "number") ? ov.f_demo : defF;
+        window.PM_accVmDragged = false; window.PM_accCDragged = false; window.PM_accFdemoDragged = false;
+        window.PM_accPhase = 0; window.PM_accLastT = 0;
+
+        function syncS(id, v, dec) { var el = document.getElementById(id); if (el) el.value = String(v); var vEl = document.getElementById(id.replace("_slider", "_val")); if (vEl) vEl.textContent = v.toFixed(dec); }
+        syncS("acc_vm_slider", window.PM_accVm, 1);
+        syncS("acc_C_slider", window.PM_accC, 2);
+        syncS("acc_f_demo_slider", window.PM_accFdemo, 2);
+
+        // Per-state contextual-control panel (Rule 31) — controls[] = live
+        // row(s); static_readouts[] = disabled row at the SAME position.
+        var controls = d.controls || [];
+        var statics = d.static_readouts || [];
+        var rowIds = { vm: "acc_vm_row", C: "acc_C_row", f_demo: "acc_f_demo_row" };
+        var sliderIds = { vm: "acc_vm_slider", C: "acc_C_slider", f_demo: "acc_f_demo_slider" };
+        var anyRow = false;
+        for (var key in rowIds) {
+            var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
+            var rowEl = document.getElementById(rowIds[key]);
+            if (rowEl) rowEl.style.display = relevant ? "block" : "none";
+            if (relevant) anyRow = true;
+            var isLive = controls.indexOf(key) !== -1;
+            var slEl = document.getElementById(sliderIds[key]);
+            if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
+        }
+        var panelEl = document.getElementById("acc_sliders");
+        if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
+
+        var roEl = document.getElementById("acc_readout"); if (roEl) roEl.style.display = d.show_readout !== false ? "block" : "none";
+        var urEl = document.getElementById("acc_ureadout"); if (urEl) urEl.style.display = d.show_u_readout ? "block" : "none";
+        var gcViEl = document.getElementById("acc_graph_vi"); if (gcViEl) gcViEl.style.display = d.show_graph_vi ? "block" : "none";
+        var gcPEl = document.getElementById("acc_graph_p"); if (gcPEl) gcPEl.style.display = d.show_graph_p ? "block" : "none";
+        var ffEl = document.getElementById("acc_formula");
+        var dvEl = document.getElementById("acc_derivation");
+        if (d.derivation) {
+            if (ffEl) ffEl.style.display = "none";
+            if (dvEl) dvEl.style.display = "block";
+        } else {
+            // Styled-subscript compose (DOM path): authored formula_text/
+            // formula_overlay strings may carry the literal ASCII "X_C"/
+            // "v_C" token (physics_block §6.6 binding convention) — innerHTML
+            // + accHtmlComposeSub, NEVER textContent (which would print the
+            // literal underscore).
+            if (ffEl) { var ftext = d.formula_text || stateDef.formula_overlay || ""; ffEl.innerHTML = accHtmlComposeSub(ftext); ffEl.style.display = ftext ? "block" : "none"; }
+            if (dvEl) dvEl.style.display = "none";
+        }
+
+        // S8's apparatus holds a STATIC, DIMMED pose (physics_block §3 S8 —
+        // Rule 26 motion carried entirely by the scope-pane fold + algebra
+        // dock, not the 3D apparatus). A one-time opacity pass; the per-frame
+        // update SKIPS the 3D apparatus entirely in this mode (see
+        // updateAcCapacitorFrame's animate3d guard below), so this pose sticks.
+        if (d.dim_apparatus) {
+            for (var di = 0; di < sceneObjects.length; di++) {
+                var dobj = sceneObjects[di], dud = dobj.userData;
+                if (!dud || !dud.elementType || dud.elementType.indexOf("acc_") !== 0) continue;
+                if (dud.elementType === "acc_u_gauge" || dud.elementType === "acc_meter") continue; // keep their own live readout legible, never dimmed
+                dobj.traverse(function (n) { if (n.material) { var ms = Array.isArray(n.material) ? n.material : [n.material]; for (var mi3 = 0; mi3 < ms.length; mi3++) { ms[mi3].transparent = true; ms[mi3].opacity = 0.45; } } });
+            }
+        }
+    }
+
+    // S8's one-derivative chain-link derivation dock — mirrors
+    // aclUpdateDerivation's SHAPE as new acc_-prefixed code (cue-gated
+    // progressive line reveal). Formula lines carry no X_C/v_C token (the
+    // symbol table's compact chain never needs the subscript here), so no
+    // compose call is needed on this path.
+    function accUpdateDerivation(mode, d, t) {
+        var dvEl = document.getElementById("acc_derivation");
+        if (!dvEl) return;
+        var lines = [];
+        if (mode === "one_derivative_derivation") {
+            var c1 = cueTriggerMs("fold_start", (d.fold_start_at_ms != null ? d.fold_start_at_ms : 500)) / 1000;
+            var c2 = cueTriggerMs("fold_end", (d.fold_end_at_ms != null ? d.fold_end_at_ms : 2500)) / 1000;
+            var c3 = cueTriggerMs("identity_dock", (d.identity_dock_at_ms != null ? d.identity_dock_at_ms : 3500)) / 1000;
+            if (t >= c1) lines.push("q = Cv");
+            if (t >= c1) lines.push("i = C\\u00b7dv/dt = \\u03c9Cv\\u2098 cos \\u03c9t = i\\u2098 sin(\\u03c9t + \\u03c0/2)");
+            if (t >= c2) lines.push("p = (v\\u2098i\\u2098/2) sin 2\\u03c9t");
+            if (t >= c3) lines.push("\\u27e8p\\u27e9 = 0  (exact, every T/2)");
+        }
+        var html = "";
+        for (var li = 0; li < lines.length; li++) html += "<div>" + lines[li] + "</div>";
+        dvEl.innerHTML = html;
+    }
+
+    // Top strip — v(t)/i(t) overlaid, colour-matched (chapter-continuity
+    // colours: v cyan, i amber — skeleton §10b). S2 docks the static dashed
+    // ghost (last lesson's LAG hypothesis, literally ac_inductor's own i(t))
+    // FIRST, then the real i-trace sweeps in CLOCK-DRAWN (never a phase-slide
+    // morph of the ghost — binding 32a caution) with the LEAD bracket +
+    // explicit time-order arrow. S4 carries the live tangent-walk cursor
+    // riding the V-TRACE.
+    function accDrawViGraph(mode, d, t, theta, omega, vm, C, im, Xc) {
+        var gc = document.getElementById("acc_graph_vi"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, padL = 34, padR = 10, padT = 16, padB = 14;
+        var plotW = W - padL - padR, plotH = (H - padB) - padT, midY = padT + plotH / 2;
+        var tWin = 8.0;
+        function xPix(sec) { return padL + ((sec - (t - tWin)) / tWin) * plotW; }
+        // Trailing-window extrapolation from the CURRENT instantaneous omega —
+        // documented simplification (header comment); the LIVE theta above is
+        // always the exact closed form.
+        function phaseAt(sec) { return theta + omega * (sec - t); }
+
+        var vAxis = Math.max(vm * 1.15, 0.01);
+        // i-axis auto-scale (physics_block §1 edge-case sweep): always
+        // >=5.0A full range near defaults, scales smoothly to clear the
+        // analytic worst case with headroom, never clips.
+        var iAxis = Math.max(2.5 * im, 5.0);
+        function yV(val) { return midY - (val / vAxis) * (plotH / 2); }
+        function yI(val) { return midY - (val / iAxis) * (plotH / 2); }
+
+        ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(padL, midY); ctx.lineTo(W - padR, midY); ctx.stroke();
+
+        var step = tWin / 160;
+
+        // v-trace (always).
+        ctx.strokeStyle = "#4DD0E1"; ctx.lineWidth = 2; ctx.beginPath();
+        var f1 = true;
+        for (var s1 = t - tWin; s1 <= t + 0.0001; s1 += step) { var xv = xPix(s1), yv = yV(vm * Math.sin(phaseAt(s1))); if (f1) { ctx.moveTo(xv, yv); f1 = false; } else ctx.lineTo(xv, yv); }
+        ctx.stroke();
+
+        // Ghost trace — static dashed grey LAG hypothesis (S2 only), literally
+        // ac_inductor's own i(t) = -im*cos(theta) ("last lesson's rhythm"),
+        // NEVER phase-slid into the real trace (binding 32a caution).
+        if (d.show_ghost) {
+            ctx.strokeStyle = "rgba(176,190,197,0.65)"; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.6; ctx.beginPath();
+            var fg = true;
+            for (var sg = t - tWin; sg <= t + 0.0001; sg += step) { var iGhost = -im * Math.cos(phaseAt(sg)); var xg = xPix(sg), yg = yI(iGhost); if (fg) { ctx.moveTo(xg, yg); fg = false; } else ctx.lineTo(xg, yg); }
+            ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillStyle = "#B0BEC5"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillText("last lesson's rhythm (the coil \\u2014 \\u00bc late)", padL + 3, H - 4);
+        }
+
+        // Real i-trace — CLOCK-DRAWN via its own closed form i=+im*cos(theta)
+        // (LEADS v — the exact inversion of the ghost above).
+        var sIStart = (mode === "quarter_cycle_lead") ? (cueTriggerMs("real_sweep_start", (d.real_sweep_start_at_ms != null ? d.real_sweep_start_at_ms : 2500)) / 1000) : (t - tWin - 1);
+        var showI = t >= sIStart;
+        if (showI) {
+            ctx.strokeStyle = "#FFB300"; ctx.lineWidth = 2; ctx.beginPath();
+            var f2 = true;
+            var loStart = Math.max(t - tWin, sIStart);
+            for (var s2 = loStart; s2 <= t + 0.0001; s2 += step) {
+                var iVal = im * Math.cos(phaseAt(s2));
+                var xv2 = xPix(s2), yv2 = yI(iVal);
+                if (f2) { ctx.moveTo(xv2, yv2); f2 = false; } else ctx.lineTo(xv2, yv2);
+            }
+            ctx.stroke();
+        }
+
+        // LEAD bracket (S2 only) — text label PLUS an explicit drawn time-
+        // order arrow (genuinely new machinery, §0b req 2: the skeleton
+        // specifically asks for "an explicit time-order arrow", unlike
+        // ac_inductor's text-only lag bracket): a literal line+arrowhead
+        // running FORWARD from the most recent i-crest to the v-crest it
+        // precedes.
+        if (d.show_lead_bracket) {
+            var leadC = cueTriggerMs("lead_bracket_land", (d.lead_bracket_land_at_ms != null ? d.lead_bracket_land_at_ms : 5000)) / 1000;
+            if (t >= leadC) {
+                var omegaSafe = Math.max(omega, 1e-6);
+                var thetaMod = theta - 2 * Math.PI * Math.floor(theta / (2 * Math.PI));
+                var tICrest = t - thetaMod / omegaSafe;               // most recent instant where i=+im (theta ≡ 0)
+                var leadSecondsNow = 1 / (4 * Math.max(omega / (2 * Math.PI), 1e-6));
+                var tVCrest = tICrest + leadSecondsNow;
+                if (tVCrest > t) { tICrest -= (2 * Math.PI / omegaSafe); tVCrest -= (2 * Math.PI / omegaSafe); }
+                var xI = xPix(tICrest), xV = xPix(tVCrest), yArrow = padT + 20;
+                if (xI >= padL - 1 && xV <= W - padR + 1 && xV > xI) {
+                    ctx.strokeStyle = "#FFEE58"; ctx.lineWidth = 1.4;
+                    ctx.beginPath(); ctx.moveTo(xI, yArrow); ctx.lineTo(xV, yArrow); ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(xV, yArrow); ctx.lineTo(xV - 6, yArrow - 3.5); ctx.lineTo(xV - 6, yArrow + 3.5); ctx.closePath();
+                    ctx.fillStyle = "#FFEE58"; ctx.fill();
+                }
+                ctx.fillStyle = "#FFEE58"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+                ctx.fillText("i crests " + leadSecondsNow.toFixed(1) + " s BEFORE v = \\u00bc cycle = 90\\u00b0", padL + 6, padT + 34);
+            }
+        }
+
+        // Tangent-walk cursor (S4 only) — CONTINUOUS live tilt on the V-TRACE
+        // (the CAUSE, per skeleton §0b req 4 — inverted geometry from
+        // ac_inductor, whose own tangent rode the effect trace i). slope_v =
+        // vm*omega*cos(theta), recomputed live every frame, never hardcoded.
+        // A secondary i-dot on the i-trace marks the answering effect at the
+        // SAME instant (physically simultaneous — i=C*slope_v identically;
+        // the cause-then-effect framing lives in the stop-caption text
+        // sequencing, never in an artificial render delay).
+        if (mode === "slope_feeds_current" && showI) {
+            var vNow = vm * Math.sin(theta);
+            var slopeNow = vm * omega * Math.cos(theta);
+            var iNow = im * Math.cos(theta);
+            var cx = xPix(t), cy = yV(vNow);
+            var ang = Math.atan2(-slopeNow, ACC_TANGENT_VIS_SCALE);
+            var tl = 20;
+            ctx.strokeStyle = "#E0F7FA"; ctx.lineWidth = 2; ctx.beginPath();
+            ctx.moveTo(cx - tl * Math.cos(ang), cy - tl * Math.sin(ang));
+            ctx.lineTo(cx + tl * Math.cos(ang), cy + tl * Math.sin(ang));
+            ctx.stroke();
+            ctx.fillStyle = "#E0F7FA"; ctx.beginPath(); ctx.arc(cx, cy, 3.6, 0, 2 * Math.PI); ctx.fill();
+            // the answering i-dot (effect) — same instant, distinct colour.
+            ctx.fillStyle = "#FFB300"; ctx.beginPath(); ctx.arc(cx, yI(iNow), 3.2, 0, 2 * Math.PI); ctx.fill();
+
+            // F1 fix pattern (cloned, ch7 loop Checkpoint B, engine_bug_queue
+            // field3d_canvas_caption_text_not_cleared_between_sequential_
+            // reveals): only the MOST RECENTLY triggered stop is drawn, in
+            // one fixed caption slot explicitly cleared before each redraw —
+            // never every fired stop composited into one unreadable blob.
+            var stopCues = (d.tangent_stops_at_ms && d.tangent_stops_at_ms.length === 3) ? d.tangent_stops_at_ms : [1500, 4500, 7500];
+            var stopLabels = ["steepest climb \\u2192 i peak", "flat crest \\u2192 i=0", "steepest fall \\u2192 i trough"];
+            var activeStopIdx = -1;
+            for (var ti2 = 0; ti2 < 3; ti2++) {
+                var stopMs = cueTriggerMs("tangent_stop_" + (ti2 + 1), stopCues[ti2]);
+                if (t * 1000 >= stopMs) activeStopIdx = ti2;
+            }
+            if (activeStopIdx >= 0) {
+                var stopLabelW = 118;
+                ctx.clearRect(W - padR - stopLabelW, H - 13, stopLabelW, 11);
+                ctx.fillStyle = "#90A4AE"; ctx.font = "8px monospace";
+                ctx.fillText(stopLabels[activeStopIdx], W - padR - stopLabelW + 4, H - 3);
+            }
+        } else if (showI) {
+            var iNow2 = im * Math.cos(theta);
+            ctx.fillStyle = "#FFB300"; ctx.beginPath(); ctx.arc(xPix(t), yI(iNow2), 3.6, 0, 2 * Math.PI); ctx.fill();
+        }
+        ctx.fillStyle = "#4DD0E1"; ctx.beginPath(); ctx.arc(xPix(t), yV(vm * Math.sin(theta)), 3.6, 0, 2 * Math.PI); ctx.fill();
+
+        ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
+        ctx.fillText("v (cyan) & i (amber) vs t", padL, 11);
+        if (d.show_vm_peak_line !== false) {
+            ctx.strokeStyle = "rgba(77,208,225,0.5)"; ctx.setLineDash([3, 3]); ctx.beginPath();
+            ctx.moveTo(padL, yV(vm)); ctx.lineTo(W - padR, yV(vm)); ctx.stroke(); ctx.setLineDash([]);
+        }
+        if (d.show_xc_on_graph) {
+            // Styled-subscript compose (canvas path) — no real Unicode
+            // subscript-"c" codepoint exists (unlike ac_inductor's real ₗ),
+            // so this on-graph reactance label MUST route through
+            // accFillComposedOnCanvas rather than a plain ctx.fillText.
+            ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillStyle = "#FFD54F";
+            accFillComposedOnCanvas(ctx, "X_C = " + Xc.toFixed(1) + " \\u03a9", padL + 3, padT + 10, "left");
+        }
+    }
+
+    // Bottom strip — p(t) SIGNED, symmetric about a MID zero baseline the
+    // curve CROSSES. S6 tints the store/return lobes; S8 sweeps the point-
+    // symmetry fold (sign-agnostic geometry, works unchanged with this
+    // concept's POSITIVE p convention — the exact mechanism ac_inductor's own
+    // S8 fold uses, just fed a positive-signed p(t)).
+    function accDrawPGraph(mode, d, t, theta, omega, vm, im, Umax) {
+        var gc = document.getElementById("acc_graph_p"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, padL = 34, padR = 10, padT = 14, padB = 14;
+        var plotW = W - padL - padR, plotH = (H - padB) - padT, midY = padT + plotH / 2;
+        var tWin = 8.0;
+        function xPix(sec) { return padL + ((sec - (t - tWin)) / tWin) * plotW; }
+        function phaseAt(sec) { return theta + omega * (sec - t); }
+        var pAmp = vm * im / 2;
+        var pAxis = Math.max(pAmp * 1.2, 0.01);
+        function yP(val) { return midY - (val / pAxis) * (plotH / 2); }
+
+        ctx.strokeStyle = "#66BB6A"; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(padL, midY); ctx.lineTo(W - padR, midY); ctx.stroke(); ctx.lineWidth = 1;
+
+        var step = tWin / 200;
+        ctx.strokeStyle = "#AB47BC"; ctx.beginPath();
+        var first = true;
+        for (var s = t - tWin; s <= t + 0.0001; s += step) {
+            var pVal = pAmp * Math.sin(2 * phaseAt(s));
+            var xv = xPix(s), yv = yP(pVal);
+            if (first) { ctx.moveTo(xv, yv); first = false; } else ctx.lineTo(xv, yv);
+        }
+        ctx.stroke();
+
+        // S6 signed product-walk beat — store/return tint + the area=Umax link.
+        if (mode === "power_swings") {
+            var wStart = cueTriggerMs("product_walk_start", (d.product_walk_start_at_ms != null ? d.product_walk_start_at_ms : 500));
+            if (t * 1000 >= wStart) {
+                var pNow = pAmp * Math.sin(2 * theta);
+                ctx.fillStyle = (pNow >= 0) ? "rgba(102,187,106,0.85)" : "rgba(239,83,80,0.85)";
+                ctx.font = "10px monospace";
+                ctx.fillText(pNow >= 0 ? "storing" : "returning", padL + 6, padT + 10);
+            }
+            var areaC = cueTriggerMs("area_label", (d.area_label_at_ms != null ? d.area_label_at_ms : 3000));
+            if (t * 1000 >= areaC) {
+                ctx.fillStyle = "#FFEE58"; ctx.font = "9px monospace";
+                ctx.fillText("area = " + Umax.toFixed(2) + " J", padL + 6, H - 4);
+            }
+        }
+
+        // S8 — point-symmetry fold: echo dots travelling from a sampled point
+        // on one lobe to its 180°-rotated image on the next, about their
+        // SHARED zero crossing (physics_block §3 S8).
+        if (mode === "one_derivative_derivation") {
+            var f1 = cueTriggerMs("fold_start", (d.fold_start_at_ms != null ? d.fold_start_at_ms : 500)) / 1000;
+            var f2 = cueTriggerMs("fold_end", (d.fold_end_at_ms != null ? d.fold_end_at_ms : 2500)) / 1000;
+            var foldProg = Math.max(0, Math.min(1, (t - f1) / Math.max(0.001, f2 - f1)));
+            if (foldProg > 0) {
+                var halfT = Math.PI / Math.max(omega, 1e-6); // p's own period is T/2 = pi/omega
+                var tc = Math.floor(t / halfT) * halfT;
+                if (tc - halfT >= t - tWin) tc -= halfT;
+                for (var dotI = 0; dotI <= 10; dotI++) {
+                    var s0 = tc - halfT * (dotI / 10);
+                    if (s0 < t - tWin || s0 > t + 0.0001) continue;
+                    var p0 = pAmp * Math.sin(2 * phaseAt(s0));
+                    var sRot = 2 * tc - s0;
+                    var pRot = -p0;
+                    var sNow = s0 + (sRot - s0) * foldProg;
+                    var pNow2 = p0 + (pRot - p0) * foldProg;
+                    if (sNow < t - tWin || sNow > t + 0.0001) continue;
+                    ctx.fillStyle = "#FFEE58"; ctx.beginPath(); ctx.arc(xPix(sNow), yP(pNow2), 2.6, 0, 2 * Math.PI); ctx.fill();
+                }
+            }
+        }
+
+        var pNowDot = pAmp * Math.sin(2 * theta);
+        ctx.fillStyle = "#AB47BC"; ctx.beginPath(); ctx.arc(xPix(t), yP(pNowDot), 3.6, 0, 2 * Math.PI); ctx.fill();
+
+        ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
+        ctx.fillText("p = v\\u00b7i vs t (signed)", padL, 11);
+    }
+
+    // Per-frame update — resolves live vm/C/f_demo (dragged > scripted >
+    // locked), advances theta (closed-form during the S5 undragged ramp, a
+    // plain Rule-36 accumulator otherwise), drives the beads/arrow/plates/
+    // efield/charge-glyphs/gauge/meter/graphs/derivation/readouts. S8's 3D
+    // apparatus is intentionally SKIPPED (animate3d=false) — its motion lives
+    // entirely on the scope panes (physics_block §3 S8).
+    function updateAcCapacitorFrame() {
+        if (config.scenario_type !== "ac_capacitor") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.ac_capacitor || {};
+        var mode = d.mode || "explore";
+        var t = time - stateStartTime;
+
+        if (window.PM_accLastT === undefined) window.PM_accLastT = t;
+        var dt = t - window.PM_accLastT; if (dt < 0 || dt > 0.2) dt = 0; window.PM_accLastT = t;
+        if (window.PM_accPhase === undefined) window.PM_accPhase = 0;
+
+        var vm = window.PM_accVm, C = window.PM_accC;
+        var fDemoDisplay = window.PM_accFdemo;
+
+        if (mode === "reactance_ramp" && !window.PM_accFdemoDragged) {
+            var rampStartMs = cueTriggerMs("ramp_window_start", (d.ramp_window_start_at_ms != null ? d.ramp_window_start_at_ms : 2000));
+            var rampStartSec = rampStartMs / 1000;
+            var preOmega = 2 * Math.PI * ACC_S5_POST_F;
+            var thetaClosed;
+            if (t < rampStartSec) {
+                thetaClosed = preOmega * t;
+                fDemoDisplay = ACC_S5_POST_F;
+            } else {
+                thetaClosed = preOmega * rampStartSec + accS5PhaseAtTr(t - rampStartSec);
+                fDemoDisplay = accS5FreqAtTr(t - rampStartSec);
+            }
+            window.PM_accPhase = thetaClosed;
+            window.PM_accFdemo = fDemoDisplay; // display/HUD only; the post-drag branch below continues from exactly this value
+        } else {
+            var omegaEff = 2 * Math.PI * window.PM_accFdemo;
+            window.PM_accPhase += omegaEff * dt;
+        }
+        var theta = window.PM_accPhase;
+        var omega = 2 * Math.PI * fDemoDisplay;
+
+        var sinT = Math.sin(theta), cosT = Math.cos(theta);
+        var v = vm * sinT;
+        var vC = v; // ideal capacitor: v_C = v identically (physics_block §1)
+        var omegaC = Math.max(omega * C, 1e-9);
+        var Xc = 1 / omegaC;
+        var im = vm * omegaC; // = vm/Xc
+        var i = im * cosT;    // LEADS v by +pi/2
+        var qMax = C * vm;
+        var q = qMax * sinT;
+        var slopeV = vm * omega * cosT;
+        var p = v * i;
+        var Umax = 0.5 * C * vm * vm;
+        var U = Umax * sinT * sinT;       // peaks at v's OWN crest
+        var fieldBrightness = sinT * sinT; // = U/Umax, self-normalized
+        var chargeGlyphFrac = Math.abs(sinT);
+        var chargeSign = (sinT >= 0) ? 1 : -1;
+        var arrowDir = (i >= 0) ? 1 : -1;
+
+        // Bead oscillation (physics_block §1: bead_frac = 0.5 + A_frac*sin(theta)
+        // — SIGN FLIPPED from both siblings, per this concept's own i(t)
+        // shape). A_frac scales with the INSTANTANEOUS im/omega = C*vm = qMax
+        // (frequency-INDEPENDENT by construction — the "constant cargo"
+        // property), clamped [0.08,0.42] (Rule 33c real number): during the
+        // S5 f-ramp the bead's peak EXCURSION stays fixed while its
+        // OSCILLATION RATE (driven by theta=wt) visibly speeds up/slows down
+        // — exactly the "envelope swells/starves" reveal.
+        var ratioDefault = 1.27324; // im/omega at authored defaults (= C_def*vm_def = qMax default)
+        var rawAFrac = 0.30 * ((im / Math.max(omega, 1e-6)) / ratioDefault);
+        var aFrac = Math.max(0.08, Math.min(0.42, rawAFrac));
+        var beadFrac = 0.5 + aFrac * sinT;
+
+        var animate3d = (mode !== "one_derivative_derivation");
+        if (animate3d) {
+            for (var bi2 = 0; bi2 < sceneObjects.length; bi2++) {
+                var bo = sceneObjects[bi2], bu = bo.userData;
+                if (!bu || bu.elementType !== "acc_beads" || bu.row === undefined) continue;
+                var wy = (bu.row === 0) ? ACC_TOP_Y : ACC_BOT_Y;
+                var pt = accWireCellPoint(wy, bu.cell, beadFrac);
+                bo.position.set(pt[0], pt[1], pt[2]);
+                if (bo.material) bo.material.opacity = 0.35 + 0.5 * Math.abs(sinT);
+            }
+
+            if (accArrow && accArrow.visible) {
+                accArrow.setDirection(new THREE.Vector3(arrowDir, 0, 0));
+                accArrow.position.set(arrowDir >= 0 ? -0.45 : 0.45, ACC_TOP_Y + 0.32, 0);
+            }
+
+            // Inter-plate E-field — breathing opacity (field_brightness) +
+            // cool two-hue tint keyed on charge polarity (never warm/orange —
+            // the anti-heater discipline). The plate BODY is never touched
+            // (no emissive channel exists on it at all).
+            var efOpacity = 0.08 + 0.55 * fieldBrightness;
+            var efColorHex = (chargeSign >= 0) ? 0x4FC3F7 : 0x1E88E5;
+            for (var fi2 = 0; fi2 < sceneObjects.length; fi2++) {
+                var fo = sceneObjects[fi2], fu = fo.userData;
+                if (!fu || fu.elementType !== "acc_efield") continue;
+                if (fo.material) { fo.material.opacity = efOpacity; fo.material.color.setHex(efColorHex); }
+            }
+
+            // Charge-glyph pools — density = chargeGlyphFrac (0=empty,
+            // 1=full), colour = sign(sin theta): the top pool tints RED
+            // (positive) when sinT>=0 and dims to near-invisible when sinT<0
+            // (that instant the TOP plate is negative, so the BOTTOM pool
+            // lights instead) — beads pile INTO one plate and drain OUT of
+            // the other every half-cycle, NEVER crossing the gap (both pools
+            // are pinned to their own plate face; only their own opacity
+            // toggles).
+            var topOpacity = chargeGlyphFrac * (chargeSign >= 0 ? 1 : 0.06);
+            var botOpacity = chargeGlyphFrac * (chargeSign >= 0 ? 0.06 : 1);
+            for (var ci = 0; ci < sceneObjects.length; ci++) {
+                var co = sceneObjects[ci], cu = co.userData;
+                if (!cu || cu.elementType !== "acc_charge" || !cu.pool) continue;
+                if (co.material) co.material.opacity = (cu.pool === "top") ? topOpacity : botOpacity;
+            }
+
+            // World-space q annotation (S3 only) — live text redraw via the
+            // retained-canvas sprite (pmCreateAutoLabel/updateLabelSpriteText).
+            var qAnnoObj = accFindById("acc_q_annotation");
+            if (qAnnoObj && qAnnoObj.visible) {
+                var qSignStr = (q >= 0) ? "+" : "";
+                updateLabelSpriteText(qAnnoObj, "q = " + qSignStr + q.toFixed(2) + " C");
+            }
+        }
+
+        // U-gauge fill — driven live EVERY frame regardless of mode (S8's
+        // 3D-motion skip is an apparatus-only exemption; the gauge keeps
+        // telling the truth). Only the FILL GEOMETRY floors at 0.02 for
+        // legibility — the numeric U readout below stays UNCLAMPED (Rule 33d).
+        if (accUgaugeFill) {
+            var fillH = Math.max(0.02, fieldBrightness) * ACC_UGAUGE_H;
+            accUgaugeFill.scale.set(1, fillH, 1);
+            accUgaugeFill.position.set(ACC_UGAUGE_X, -ACC_UGAUGE_H / 2 + fillH / 2, 0);
+        }
+        // Meter — always dead centre (<p> is EXACTLY zero for a pure
+        // capacitor at every instant averaged over any half-source-period).
+        if (accMeterNeedle) accMeterNeedle.rotation.z = 0;
+
+        if (!window.PM_accVmDragged) { var vmSl2 = document.getElementById("acc_vm_slider"); if (vmSl2) vmSl2.value = String(vm); var vmV2 = document.getElementById("acc_vm_val"); if (vmV2) vmV2.textContent = vm.toFixed(1); }
+        if (!window.PM_accCDragged) { var cSl2 = document.getElementById("acc_C_slider"); if (cSl2) cSl2.value = String(C); var cV2 = document.getElementById("acc_C_val"); if (cV2) cV2.textContent = C.toFixed(2); }
+        if (!window.PM_accFdemoDragged) { var fSl2 = document.getElementById("acc_f_demo_slider"); if (fSl2) fSl2.value = String(fDemoDisplay); var fV2 = document.getElementById("acc_f_demo_val"); if (fV2) fV2.textContent = fDemoDisplay.toFixed(2); }
+
+        if (d.derivation) accUpdateDerivation(mode, d, t);
+        accDrawViGraph(mode, d, t, theta, omega, vm, C, im, Xc);
+        accDrawPGraph(mode, d, t, theta, omega, vm, im, Umax);
+
+        // Readout HUD (Rule 33d/34b — signed live numbers, precision per
+        // physics_block §6.2: v 1dp signed, i 2dp signed, v_C 1dp signed
+        // (styled-subscript compose — DOM path, trivial <sub>), Xc 1dp,
+        // qmax 2dp, p 1dp SIGNED, U 2dp, <p> held 0.00). Ring-gated per
+        // state (mirrors ac_inductor's F3 fix — an untaught quantity NEVER
+        // leaks into a state that hasn't taught it yet).
+        var roEl = document.getElementById("acc_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var vSignStr = (v >= 0 ? "+" : "");
+            var iSignStr = (i >= 0 ? "+" : "");
+            var pSignStr = (p >= 0 ? "+" : "");
+            var html = "<div>v = " + vSignStr + v.toFixed(1) + " V</div>";
+            html += "<div>i = " + iSignStr + i.toFixed(2) + " A</div>";
+            if (d.show_vc_readout) {
+                var vcSignStr = (vC >= 0 ? "+" : "");
+                html += "<div>v<sub>C</sub> = " + vcSignStr + vC.toFixed(1) + " V</div>";
+            }
+            if (d.show_graph_p) {
+                html += "<div>p = " + pSignStr + p.toFixed(1) + " W</div>";
+            }
+            if (d.show_xc_readout) {
+                html += "<div style=\\"color:#FFD54F\\">X<sub>C</sub> = " + Xc.toFixed(1) + " \\u03a9</div>";
+            }
+            if (d.show_qmax_readout) {
+                html += "<div style=\\"color:#FFEE58\\">q<sub>max</sub> = " + qMax.toFixed(2) + " C</div>";
+            }
+            if (d.show_avg_p_readout) {
+                html += "<div style=\\"color:#66BB6A\\">\\u27e8p\\u27e9 = 0.00 W</div>";
+            }
+            roEl.innerHTML = html;
+        }
+        var urEl2 = document.getElementById("acc_ureadout");
+        if (urEl2 && urEl2.style.display !== "none") {
+            urEl2.innerHTML = "<div>U = " + U.toFixed(2) + " J</div><div>U_max = " + Umax.toFixed(2) + " J</div>";
+        }
+    }
+
+    // Glow-key enum CLOSED to exactly: source | beads | arrow | plates |
+    // efield | charge | meter | u_gauge (real 3D objects, resolved via the
+    // generic alias resolver's first-underscore strip landing on each
+    // object's own anchored id — see the scenario header comment) plus
+    // v_trace | i_trace | ghost_trace | lead_bracket | tangent | xc_readout |
+    // p_strip | formula (DOM-only panels, matched directly by bare key).
+    function applyAcCapacitorGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et.indexOf("acc_") !== 0) continue;
+            // Both the E-field AND the charge-glyph pools are driven live
+            // every frame (opacity + colour, updateAcCapacitorFrame above) —
+            // EXEMPTED so the live channel is never overwritten (mirrors
+            // ac_inductor's acl_bfield exemption; charge is ALSO exempted
+            // here — its own live colour+opacity channel would otherwise be
+            // clobbered by the glow pass's stale-baseline reset the exact
+            // same way bfield's would, see the scenario header comment).
+            // Plates carry no live colour channel at all (like the coil
+            // body) and glow normally.
+            if (et === "acc_efield" || et === "acc_charge") continue;
+            applyGlowEmphasis(so, on(sud.id) || on(et), glowActive, glowP, true);
+        }
+        var viGraphEl = document.getElementById("acc_graph_vi");
+        if (viGraphEl) viGraphEl.classList.toggle("glow-pulse", on("v_trace") || on("i_trace") || on("ghost_trace") || on("lead_bracket") || on("tangent"));
+        var pGraphEl = document.getElementById("acc_graph_p");
+        if (pGraphEl) pGraphEl.classList.toggle("glow-pulse", on("p_strip"));
+        var roGlowEl = document.getElementById("acc_readout");
+        if (roGlowEl) roGlowEl.classList.toggle("glow-pulse", on("xc_readout"));
+        var formulaEl3 = document.getElementById("acc_formula");
+        if (formulaEl3) formulaEl3.classList.toggle("glow-pulse", on("formula"));
+        var derivEl2 = document.getElementById("acc_derivation");
+        if (derivEl2) derivEl2.classList.toggle("glow-pulse", on("formula"));
+    }
+
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
     //   precedent (concentric surface meshes + radial E-arrows + an HTML readout
@@ -31904,6 +33063,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildAcInductor();
                 break;
 
+            case "ac_capacitor":
+                buildAcCapacitor();
+                break;
+
             case "magnetic_flux_loop":
                 buildMagneticFluxLoop();
                 break;
@@ -32317,6 +33480,18 @@ export const FIELD_3D_RENDERER_CODE = `
             applyAcInductorState(stateDef);
         }
 
+        // ac_capacitor — per-state exact-match acc_* visibility + variable_
+        // overrides seed (vm/f_demo/C) + the per-state contextual-control
+        // panel (vm on S4, f_demo on S5, all three on the S9 explore). The
+        // animate loop then advances the phase (closed-form during S5's
+        // undragged ramp, a plain accumulator otherwise), drives the beads/
+        // arrow/plates/efield/charge-glyphs/gauge/meter, paints the vi/p
+        // scope panes + derivation chain, and writes the signed HUD + U
+        // readout.
+        if (config.scenario_type === "ac_capacitor") {
+            applyAcCapacitorState(stateDef);
+        }
+
         // magnetic_flux_loop — per-state contextual-control row visibility
         // (B/A/theta live-vs-static-vs-hidden), theta_range bounds, and the
         // area-vector/theta-arc/RHR-hand/projection-shadow flags. The animate
@@ -32627,6 +33802,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // "#sliders exclusion chain" — every dedicated panel adds itself to
         // this NOT-list, same as isMag/isFaraday/isAcResistor/... above).
         var isAcInductor = config.scenario_type === "ac_inductor";
+        // ac_capacitor owns its OWN #acc_sliders panel (vm/f_demo/C) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to
+        // this NOT-list, same as isMag/isFaraday/isAcInductor/... above).
+        var isAcCapacitor = config.scenario_type === "ac_capacitor";
         // magnetic_flux_loop owns its OWN #mfl_sliders panel (B/A/theta) -- must
         // be excluded here or the generic #sliders panel bleeds through
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
@@ -32675,7 +33855,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -32862,8 +34042,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation)
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -33260,6 +34440,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // generic legend (would otherwise fall into no branch and print the
         // generic point-charge legend text, which is wrong content here).
         if (config.scenario_type === "ac_inductor") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // ac_capacitor is a silent visual (Rule 24): the readout + vi/p scope
+        // panes + dedicated formula panel carry everything — suppress the
+        // generic legend (would otherwise fall into no branch and print the
+        // generic point-charge legend text, which is wrong content here).
+        if (config.scenario_type === "ac_capacitor") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // magnetic_flux_loop is a silent visual (Rule 24): the loop + B lattice +
         // the live Phi = B.A.cos(theta) readout carry everything — suppress the
         // generic legend (the scenario id would otherwise fall into no branch and
@@ -36043,6 +37228,19 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "ac_inductor") {
             updateAcInductorFrame();
             applyAcInductorGlow();
+        }
+
+        // ac_capacitor — v = vm*sin(wt), i = im*sin(wt+pi/2) = im*cos(wt)
+        // LEADS by exactly pi/2, Xc = 1/(wC), <p> = 0 exact. Advances the
+        // phase (closed-form during S5's undragged f-ramp, a plain Rule-36
+        // accumulator otherwise), drives the oscillating beads/flipping
+        // arrow/breathing inter-plate field/charge-glyph pools/U-gauge/dead-
+        // centre meter, paints the vi + p scope panes (incl. the S2 lead-
+        // bracket-with-time-order-arrow and S8 point-symmetry fold), and
+        // writes the signed HUD + derivation chain dock.
+        if (config.scenario_type === "ac_capacitor") {
+            updateAcCapacitorFrame();
+            applyAcCapacitorGlow();
         }
 
         // magnetic_flux_loop — stationary tiltable/resizable loop in a uniform B.
