@@ -729,6 +729,30 @@ function PM_safeEval(expr, vars) {
   }
 }
 
+// Point-returning sibling of PM_safeEval: evaluates a *_expr that yields a POINT
+// object, e.g. from_expr/to_expr = "{x: 310, y: 370 - N * 4}". PM_safeEval coerces
+// its result to a number (→NaN for objects), so geometric endpoints need this.
+function PM_safeEvalPoint(expr, vars) {
+  try {
+    var scope = PM_buildEvalScope(vars);
+    var fn = new Function(scope.keys.join(','), 'return (' + expr + ');');
+    var r = fn.apply(null, scope.vals);
+    if (r && typeof r.x === 'number' && typeof r.y === 'number' && isFinite(r.x) && isFinite(r.y)) {
+      return { x: r.x, y: r.y };
+    }
+  } catch (e) { /* fall through */ }
+  return null;
+}
+
+// Resolve a force_arrow / vector endpoint from a literal {x,y} or a point-expr string.
+function PM_resolveArrowPoint(literal, exprStr, vars) {
+  if (literal && typeof literal.x === 'number' && typeof literal.y === 'number') {
+    return { x: literal.x, y: literal.y };
+  }
+  if (typeof exprStr === 'string') return PM_safeEvalPoint(exprStr, vars);
+  return null;
+}
+
 // Live eval scope for *_expr fields (magnitude_expr, direction_deg_expr, accel_expr,
 // sign_expr, to_deg_expr, angle_value_expr, ...) evaluated via PM_safeEval outside of
 // PM_interpolate (drawForceArrow, drawVector, drawAngleArc, drawBody animations).
@@ -1553,6 +1577,66 @@ function drawForceArrow(spec, physics, origin) {
   //      engine, e.g. "external load F_ext = 30 N" prop in STATE_3).
   //   3. Fall back to the first physics force (legacy compat — avoid relying
   //      on this; prefer 1 or 2).
+  //   0. (checked FIRST) explicit geometry — from/from_expr → to/to_expr — a
+  //      literal segment between two resolved points. See the block below.
+
+  // Path 0 — explicit geometry (highest priority). An arrow authored with an
+  // endpoint pair (from/from_expr → to/to_expr) is a LITERAL segment between two
+  // resolved points: contact_forces STATE_4's FBD components (N/f/F, each a
+  // distinct from→to), and normal_reaction's "{x: 310, y: 370 - N*4}" stacked
+  // reactions. These carry no force_id match and no magnitude, so the physics
+  // paths below would collapse ALL of them onto physics.forces[0] (the bug). Draw
+  // the segment directly and return. Only force_arrows that authored to/to_expr
+  // enter here, so magnitude-driven arrows are unaffected.
+  var _hasGeomTo = (spec.to && typeof spec.to.x === 'number' && typeof spec.to.y === 'number')
+    || (typeof spec.to_expr === 'string');
+  if (_hasGeomTo) {
+    var gLive = PM_liveVarsWithDerived();
+    var gFrom = PM_resolveArrowPoint(spec.from, spec.from_expr, gLive) || { x: origin.x, y: origin.y };
+    var gTo = PM_resolveArrowPoint(spec.to, spec.to_expr, gLive);
+    if (!gTo) return;                              // unresolvable endpoint → draw nothing, not a wrong arrow
+    var gGate = PM_animationGate(spec);
+    if (!gGate.visible) return;
+    var gEmph = PM_focalEmphasis(spec);
+    var gColor = spec.color || '#EF4444';
+    var gRgb = PM_hexToRgb(gColor);
+    var gx1 = gFrom.x, gy1 = gFrom.y;              // grow from origin toward the endpoint as the reveal gate opens
+    var gx2 = gFrom.x + (gTo.x - gFrom.x) * gGate.alpha;
+    var gy2 = gFrom.y + (gTo.y - gFrom.y) * gGate.alpha;
+    if (spec.id) PM_endpointRegistry[spec.id] = { origin: { x: gx1, y: gy1 }, tip: { x: gx2, y: gy2 } };
+    var gA = 255 * gGate.alpha * gEmph.alphaMul;
+    push();
+    if (gEmph.glowPx > 0) { drawingContext.shadowColor = gColor; drawingContext.shadowBlur = gEmph.glowPx; }
+    stroke(gRgb[0], gRgb[1], gRgb[2], gA); strokeWeight(2);
+    fill(gRgb[0], gRgb[1], gRgb[2], gA);
+    var gAng = Math.atan2(gy2 - gy1, gx2 - gx1);
+    var gHead = 12;
+    line(gx1, gy1, gx2, gy2);
+    noStroke();
+    triangle(gx2, gy2,
+      gx2 - gHead * Math.cos(gAng - Math.PI / 6), gy2 - gHead * Math.sin(gAng - Math.PI / 6),
+      gx2 - gHead * Math.cos(gAng + Math.PI / 6), gy2 - gHead * Math.sin(gAng + Math.PI / 6));
+    fill(gRgb[0], gRgb[1], gRgb[2], gA); noStroke(); textSize(12);
+    var gLabel = spec.label_override ? PM_interpolate(spec.label_override)
+      : (typeof spec.label === 'string' && spec.label.length > 0) ? spec.label
+      : (spec.label_expr ? PM_interpolate(String(spec.label_expr)) : '');
+    var glx, gly;
+    if (spec.label_position === 'perpendicular') {
+      var gmx = (gx1 + gx2) / 2, gmy = (gy1 + gy2) / 2;
+      var gperp = (typeof spec.label_perp_offset === 'number') ? spec.label_perp_offset : 14;
+      glx = gmx + -Math.sin(gAng) * gperp; gly = gmy + Math.cos(gAng) * gperp;
+      textAlign(CENTER, CENTER);
+    } else { glx = gx2 + 6; gly = gy2; textAlign(LEFT, CENTER); }
+    if (spec.label_offset && typeof spec.label_offset === 'object') {
+      if (typeof spec.label_offset.dx === 'number') glx += spec.label_offset.dx;
+      if (typeof spec.label_offset.dy === 'number') gly += spec.label_offset.dy;
+    }
+    text(gLabel, glx, gly);
+    if (gEmph.glowPx > 0) { drawingContext.shadowColor = 'transparent'; drawingContext.shadowBlur = 0; }
+    pop();
+    return;
+  }
+
   var force = null;
   for (var i = 0; i < physics.forces.length; i++) {
     if (physics.forces[i].id === spec.force_id || physics.forces[i].id === spec.id) { force = physics.forces[i]; break; }
@@ -1850,12 +1934,25 @@ function drawVector(spec, ox, oy) {
   // spec.direction_deg are provided, synthesize to = from + (cos, -sin) * mag
   // using the same physics-y-up convention as drawForceArrow
   // (0 deg = +x, 90 deg = visually up on canvas).
-  var from = spec.from || { x: 0, y: 0 };
-  if (typeof from === 'string') from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+  // from/to may also be a point-EXPR string, e.g. from_expr:"{x: 310, y: 370 - N*4}"
+  // (contact_forces' N-stacked reaction). Previously unread → the vector collapsed
+  // to (0,0). Resolve it via PM_safeEvalPoint (literal/anchor paths unchanged).
+  var vLive = null;
+  var from = spec.from;
+  if (typeof from === 'string') {
+    from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+  } else if ((from == null || typeof from.x !== 'number') && typeof spec.from_expr === 'string') {
+    vLive = vLive || PM_liveVarsWithDerived();
+    from = PM_safeEvalPoint(spec.from_expr, vLive);
+  }
+  if (!from || typeof from.x !== 'number') from = { x: 0, y: 0 };
   var to;
   if (spec.to != null) {
     to = spec.to;
     if (typeof to === 'string') to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry);
+  } else if (typeof spec.to_expr === 'string') {
+    vLive = vLive || PM_liveVarsWithDerived();
+    to = PM_safeEvalPoint(spec.to_expr, vLive) || { x: from.x, y: from.y };
   } else if (typeof spec.magnitude === 'number' || typeof spec.magnitude_expr === 'string') {
     var liveVarsV = PM_liveVarsWithDerived();
     var magV = (typeof spec.magnitude_expr === 'string')
