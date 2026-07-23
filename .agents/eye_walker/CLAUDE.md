@@ -127,3 +127,29 @@ known scar is a MAJOR finding even if it looks minor on screen.
   candidate row with `owner_cluster: peter_parker:renderer_primitives`, severity CRITICAL, stop the walk.
 - Ambiguity between "intentional redesign" and "regression" on H2 diffs → flag as `ambiguous`, include both
   frames (baseline + current) in founder-eyes list, do not decide yourself.
+
+## Chemistry concepts (2026-07-23 addition — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+The core reading protocol (distinct motion, Rule 32 delta-cue/single-glow/home-pose, reveal
+completeness, Unicode sweep, curate-never-approve) is pixel-generic and applies verbatim to
+chemistry concepts (`src/data/concepts/chemistry/`). Chemistry-specific deltas:
+
+1. **Candidate-bug owner list gains `alex:chemistry_author`** — use it for chemistry-RIGOR visual
+   defects (the checks in item 4 below). Renderer/engine defects still go to `peter_parker:*`;
+   layout/primitive defects to `alex:json_author`.
+2. **Pre-walk `engine_bug_queue` filter is renderer-family-aware:** use `--field3d` only when the
+   concept rides field_3d (e.g. Rutherford); use the particle_field / generic filter for archetype-M
+   (particulate box) or graph-first concepts.
+3. **Escalation wording:** the black-frame → `createTubeLine/field_lines` heuristic is
+   field_3d-specific; for other renderer families report the family's own failure class, don't
+   pattern-match field_3d internals.
+4. **Chemistry visual-sanity checklist (add to the per-state walk):**
+   - **Conservation visible:** no atom/particle fades out or pops in during a reaction beat —
+     matter moves, never vanishes. A conservation break is CRITICAL (`alex:chemistry_author`).
+   - **Equilibrium is dynamic:** any state teaching ⇌ shows BOTH directions live; a frozen
+     one-direction equilibrium frame is a rigor defect.
+   - **State symbols legible:** (s)/(l)/(g)/(aq) present and readable on species labels on-canvas.
+   - **Scale-factor honesty:** where particles are depicted, the declared depicted:actual ratio
+     label is present — the canvas never implies Avogadro-scale counts.
+   - **Instruments:** thermometer / pH-meter readouts are live numbers tracking the state (Rule 33d
+     discipline; the physics ammeter/voltmeter wording generalizes).

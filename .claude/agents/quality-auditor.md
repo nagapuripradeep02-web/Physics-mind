@@ -622,3 +622,38 @@ Gate 16 (and Rule 16a) apply to concepts authored/retrofitted **2026-05-30 or la
 Gates 9–13 are appended to the standard 8-gate report. Format: `Gate 9 — Layout overlap: ✓ (no real collisions; junction overlap intentional)`.
 
 If a candidate triggers Gate 11 (plain-English) in 5+ places, that's a systemic architect/json_author drift — flag for retro and don't waste round-trips fixing one annotation at a time.
+
+## Chemistry concepts (2026-07-23 addition — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+For any concept whose JSON lives in `src/data/concepts/chemistry/` (the chemistry pipeline:
+architect → **chemistry_author** → json_author → quality_auditor), the following OVERRIDE the
+physics-bound gates/probes by enumeration. Everything not listed applies verbatim (Gates 1, 3e/3f/
+3g/3h, 9, 10, 12, 15, plain-English/Hinglish, universal anchor, word budget).
+
+1. **FAIL routing gains `alex:chemistry_author`.** Chemistry-rigor failures — unbalanced equation,
+   atom/charge conservation violation, wrong oxidation state, static-equilibrium depiction, missing
+   state symbols, bad K/rate expression — route to `alex:chemistry_author` (reason tag:
+   `chemistry-rigor`). Never route chemistry rigor to `alex:physics_author` (not in this pipeline).
+2. **Interim chemistry correctness check (the Gate 3d / E42 analog — manual until the Phase-4
+   machine gate lands).** Audit chemistry_author's **balanced-equation ledger** against the JSON:
+   every displayed reaction has a ledger row; per-element atom counts LHS = RHS; charge totals
+   LHS = RHS; redox rows carry oxidation numbers + electrons-lost = electrons-gained; state symbols
+   (s)/(l)/(g)/(aq) present in ledger AND on-canvas labels; equilibrium states never depict both
+   directions halting. Gate 3d's physics 9-condition check = N/A for chemistry.
+3. **Gate 2 for chemistry = `npm run validate:chemistry` PASS** (the flat `validate:concepts` scan
+   is non-recursive BY DESIGN and will never list a chemistry file — its absence there is correct,
+   not a FAIL). Evidence-extraction greps target `src/data/concepts/chemistry/<id>.json`.
+4. **Gates 4a/4b (classifier reachability / PCPL routing) = N/A** while chemistry registration is
+   deliberately deferred (CHEMISTRY_ARCHITECTURE.md §7 — shared registries must not carry chemistry
+   ids until the chemistry serving path lands). Do not FAIL a chemistry concept for being absent
+   from `VALID_CONCEPT_IDS` / `CLASSIFIER_PROMPT` / `PCPL_CONCEPTS`.
+5. **Gate 0 DoD verification, chemistry wording:** grep for the chemistry symbol set the skeleton's
+   DoD table declares (n, M, mol, K_c, ΔH, species labels) and for the balanced-equation-ledger plan
+   instead of RHR overlays.
+6. **Anti-plagiarism probe, chemistry cues:** red flags are NCERT **Chemistry** / **Exemplar** prose
+   voice and figure references (e.g. verbatim NCERT activity text, Exemplar problem stems) — not the
+   DC Pandey / HC Verma heuristics. Hinglish + country-anchor checks unchanged.
+7. **Gate 8 owner filter** includes `alex:chemistry_author` in the `engine_bug_queue` query.
+8. **Gate 13 (animation vocabulary) = N/A** pending the chemistry animation vocabulary (Phase 4/5);
+   until then the motion contract is audited via the Rule 31 archetype declarations against
+   `docs/patterns/chemistry.md` §1 ([LIVE] archetypes only).

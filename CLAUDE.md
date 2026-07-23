@@ -38,7 +38,8 @@ computation; AI writes *configuration only* and is **never in the rendering loop
 
 **Alex cluster — the authoring pipeline (sequential; each output is the next input):**
 `architect` → `physics-author` → `json-author` → `quality-auditor`. The auditor PASS/FAILs and can
-route a FAIL back to any upstream member.
+route a FAIL back to any upstream member. *(Chemistry concepts substitute `chemistry-author` at
+position #2 — added 2026-07-23; see `docs/CHEMISTRY_ARCHITECTURE.md` + `docs/CHEMISTRY_BUILD_PLAN.md`.)*
 
 **Peter Parker cluster — the engine layer:** `renderer-primitives` (display layer + primitives +
 anchor/zone/scale/choreography engines), `runtime-generation` (generator + serving routes + cache
@@ -132,6 +133,8 @@ Canonical SOP: `docs/AUTHORING_PIPELINE.md`. Five stages:
 of contents + problem variants + misconception *belief* (belief only, never prose/figures). NCERT =
 the syllabus backbone (coverage + sequencing) — its Indian-context examples are NOT imported; real-world
 anchors are authored UNIVERSAL (Rule 35). Teaching is Claude's own judgment. **Plain English only — never Hinglish.**
+*(Chemistry source roles — 2026-07-23: NCERT Chemistry = backbone, NCERT Exemplar = misconception
+beliefs; HCV/DCP are physics-only. See `docs/patterns/chemistry.md` §6.)*
 Full source rule: CLAUDE_RULES.md (§8 of original, preserved).
 
 **State count = minimum states to build COMPLETE understanding — complexity-driven, never fixed.**
@@ -211,6 +214,11 @@ Reveals/motion run on the state's own clock (`PM_simTimeMs`), never on TTS event
 6. If splitting a bundle: retire parent + add `CONCEPT_SYNONYMS` redirect
 7. `PCPL_CONCEPTS` in `src/lib/aiSimulationGenerator.ts` (only for PCPL/2D-rendered concepts)
 8. `CLASSIFIER_PROMPT` in `src/lib/intentClassifier.ts`
+
+*(CHEMISTRY concepts do NOT use these 8 sites — they live in `src/data/concepts/chemistry/` and,
+until the chemistry serving path lands, register NOWHERE else (sites 2/3/4/7/8 forbidden for
+chemistry ids — Gate 8b is all-or-nothing). Chemistry validation = `npm run validate:chemistry`.
+Full rules: `docs/CHEMISTRY_ARCHITECTURE.md` §7. — 2026-07-23)*
 
 ### Self-review checklist (before declaring a concept done)
 `tsc` 0 · `validate:concepts` target PASSES · Rule 15 (≥2 advance_mode) · Rule 16a (EPIC-L confronts the

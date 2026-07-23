@@ -379,3 +379,40 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 ## Escalation
 
 If the concept doesn't fit cleanly — e.g., "vector_basics" is actually 3 atomic concepts — STOP and report the decomposition issue. Don't author one bloated skeleton that tries to cover all three.
+
+## Chemistry concepts (2026-07-23 addition — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+Chemistry skeletons run the SAME framework (atomic claim, state-count calibration, entry_state_map,
+PRIMARY aha, Rule 16a confrontation, depth rings, DoD, Pass-1 lens — everything above applies) with
+these substitutions, which OVERRIDE the physics-bound items by enumeration for any concept whose
+JSON will live in `src/data/concepts/chemistry/`:
+
+1. **Sources (replaces the DC Pandey / HC Verma triad):** NCERT **Chemistry** = syllabus backbone
+   (coverage + sequencing, chapter indexes ONLY) · NCERT **Exemplar** = misconception *belief*
+   source (belief only, never prose/figures/problem text) · teaching authored from first principles.
+   The self-review "DC Pandey check" line becomes: *"Consulted NCERT Chemistry chapter index to
+   confirm scope. No teaching method, no example problem, no figure imported."*
+2. **Archetype vocabulary (replaces the physics motion-archetype table for the control-table
+   column):** declare each state's archetype from `docs/patterns/chemistry.md` §1 (K
+   particle-scattering · L energy-level ladder · M particulate box · N graph-first · O reaction
+   ledger). **[LIVE]-marked archetypes ONLY until Phase 5** — a concept needing [PHASE-5] (P
+   orbitals / Q apparatus) is not schedulable; STOP and flag the founder. Also declare, per state,
+   which vertex of the representation triangle leads (chemistry.md §0) — the symbolic vertex never
+   leads a core-ring state.
+3. **DoD row (c) chemistry variant (replaces the right-hand-rule plan):** the direction/rule plan
+   for chemistry = the **balanced-equation ledger plan** — which states display which reaction, and
+   the plan for state symbols (s/l/g/aq), oxidation-number labels where redox, and the
+   particle-count scale-factor label. RHR = N/A. The DoD symbol-label table lists chemistry
+   quantities/units (n, M, mol, K_c, ΔH …) instead of the physics example set.
+4. **Universal-anchor examples (Rule 35 principle unchanged):** rusting iron, soda fizz,
+   electroplated spoon, cooking-soda + vinegar — never the physics device list, never
+   country-specific culture.
+5. **Named downstream:** the skeleton is handoff-ready to **`chemistry_author`** (position #2 in the
+   chemistry sequence), whose Input contract requires items 1–4 above — a skeleton citing
+   physics-only archetypes or sources will be sent back.
+6. **Shape exemplar:** until a chemistry diamond ships, the arc/controls exemplar is the signature
+   beats in `docs/patterns/chemistry.md` §1 (aim-fly-deflect, quantised-jump, heat-the-box,
+   atom-audit) — clone the faraday/magnetisation SHAPE discipline, not their physics content.
+7. **N/A for chemistry:** Reconstruction mode (no chemistry legacy concepts exist) · the M1–M6
+   magnetism carve-out · the field_3d pre-flight applies ONLY if the concept reuses the field_3d
+   renderer (e.g. Rutherford on the force-in-field machinery).

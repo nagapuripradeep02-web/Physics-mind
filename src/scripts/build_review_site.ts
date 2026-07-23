@@ -28,6 +28,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, copyFileSync, cpSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
 import {
     assembleParticleFieldHtml,
@@ -270,11 +271,14 @@ function embedJson(value: unknown): string {
 }
 
 function loadConcept(conceptId: string): ConceptJson {
-    const path = join(CONCEPTS_DIR, `${conceptId}.json`);
-    if (!existsSync(path)) {
-        throw new Error(`Concept JSON not found: ${path}`);
+    // Subject-aware resolution (flat physics dir first, then chemistry/ — Phase 2.5).
+    const resolved = resolveConceptJsonPath(conceptId);
+    if (!resolved) {
+        throw new Error(
+            `Concept JSON not found: checked ${join(CONCEPTS_DIR, `${conceptId}.json`)} and src/data/concepts/chemistry/${conceptId}.json`,
+        );
     }
-    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+    return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
 }
 
 function extractStates(

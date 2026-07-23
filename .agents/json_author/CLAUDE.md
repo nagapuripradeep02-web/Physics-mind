@@ -525,3 +525,39 @@ After migration, `npm run solve:layout pressure_scalar` will report `pascal_box`
 **Known limitations**:
 - Force arrows are not registered as obstacles for collision avoidance (the solver can't bbox them — they have origin + direction + magnitude, not position + size). Layout-overlap warnings will still flag arrow-vs-annotation collisions; resolve manually until the solver learns force-arrow geometry.
 - Sub-scene primitives inside `comparison_panel` are NOT solved (sub-scenes use a stripped renderer).
+
+## Chemistry concepts (2026-07-23 addition — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+For chemistry concepts (upstream block comes from **`chemistry_author`**, consumed identically to a
+physics block — same 6-section shape, same `physics_engine_config`/PM_interpolate contract), the
+following OVERRIDE the physics-bound items by enumeration:
+
+1. **Output path (isolation contract):** `src/data/concepts/chemistry/<id>.json` — NEVER the flat
+   dir. A chemistry file written flat is validated as physics and trips fleet-wide Gate 8b
+   (docs/CHEMISTRY_ARCHITECTURE.md §7).
+2. **Registration:** for the vertical-slice phase, site #1 (the JSON, in `chemistry/`) is the ONLY
+   registration. Sites #2 (`CONCEPT_PANEL_MAP`), #3 (`CONCEPT_RENDERER_MAP`), #4
+   (`VALID_CONCEPT_IDS`), #7 (`PCPL_CONCEPTS`), #8 (`CLASSIFIER_PROMPT`) are **FORBIDDEN for
+   chemistry ids** until the chemistry serving path lands — Gate 8b is all-or-nothing and a
+   half-registered chemistry id fails the entire physics validate run. The "miss one = silent
+   failure" rule is a PHYSICS rule; for chemistry the failure mode is inverted.
+3. **Serving path:** the concept renders via the registration-free review-site chain
+   (`npm run build:review -- <id>`; requires a `field_3d_config` or `particle_field_config` block —
+   the [LIVE]-archetype constraint) and/or a bespoke admin test page. No Supabase rows required for
+   the slice; the future cache-seed script must read the chemistry subdir.
+4. **Validation self-review target:** `npm run validate:chemistry` PASSES (the flat
+   `validate:concepts` never sees chemistry files by design — do not chase its PASS list).
+5. **Primitives:** compose from the generic PCPL/premium set only (`body`, `label`, `formula_box`,
+   `annotation`, `comparison_panel`, `animated_path`, `glow_focus`, `particle_field`,
+   `smooth_camera`). A chemistry-specific primitive need (bond glyphs, Lewis dots, reaction arrows,
+   apparatus) = `engine_bug_queue` row to `peter_parker:renderer_primitives` per
+   `docs/patterns/chemistry.md` §2 (Phase-5b) — never improvised inline, never a STOP for the
+   generic-set-composable slice concepts.
+6. **`computePhysics_<id>` wiring (Lesson I) = N/A** for chemistry concepts riding a reused
+   renderer's existing scenario machinery; formulas live in `physics_engine_config.formulas`
+   (PM_interpolate) as usual.
+7. **SQL migration:** authored but NOT applied (drill-down is deferred and
+   `confusion_cluster_registry` is a shared registry — the founder applies it when the chemistry
+   drill-down path activates).
+8. **N/A:** site #6 bundle-retire / `CONCEPT_SYNONYMS` (no chemistry legacy bundles);
+   `pause_after_ms` legacy carry (no chemistry Socratic-era concepts).

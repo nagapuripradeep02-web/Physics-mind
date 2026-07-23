@@ -2,13 +2,15 @@
  * Shared loaders for the visual-validator CLI scripts (smoke / eyes / approve).
  *
  * loadCachedSim   — newest/most-served simulation_cache row for a concept.
- * loadConceptJson — RAW concept JSON from src/data/concepts/<id>.json (no
+ * loadConceptJson — RAW concept JSON, resolved subject-aware via
+ *                   resolveConceptJson.ts (flat physics dir first, then
+ *                   src/data/concepts/chemistry/ — Phase 2.5). No
  *                   normalizeConstants pass — Category I needs the original
- *                   epic_l_path…tts_sentences glow / math_show fields).
+ *                   epic_l_path…tts_sentences glow / math_show fields.
  */
-import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { resolveConceptJsonPath } from './resolveConceptJson';
 
 export interface CacheRow {
     sim_html: string;
@@ -39,11 +41,20 @@ export async function loadCachedSim(conceptId: string): Promise<CacheRow> {
 }
 
 export function loadConceptJson(conceptId: string): Record<string, unknown> | null {
-    const path = join(process.cwd(), 'src', 'data', 'concepts', `${conceptId}.json`);
-    if (!existsSync(path)) return null;
+    // Subject-aware resolution (flat physics dir first, then chemistry/ — Phase 2.5).
+    const resolved = resolveConceptJsonPath(conceptId);
+    if (!resolved) {
+        // Explicit warning (2026-07-23): a silent null here used to quietly disable
+        // THE EYE's Category I (TTS↔visual) + Category E (storyboard) checks — a
+        // degraded run looked like a clean pass. Legacy-bundle ids (no standalone
+        // JSON) will print this too; that is informational, not fatal.
+        console.warn(`⚠ loadConceptJson: no concept JSON found for "${conceptId}" (checked flat + chemistry namespaces) — JSON-based checks (Category I/E, reveal timings) will be skipped.`);
+        return null;
+    }
     try {
-        return JSON.parse(readFileSync(path, 'utf-8')) as Record<string, unknown>;
+        return JSON.parse(readFileSync(resolved.path, 'utf-8')) as Record<string, unknown>;
     } catch {
+        console.warn(`⚠ loadConceptJson: failed to parse ${resolved.path} — JSON-based checks will be skipped.`);
         return null;
     }
 }
