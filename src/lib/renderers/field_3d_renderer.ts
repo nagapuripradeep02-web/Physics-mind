@@ -25971,6 +25971,17 @@ export const FIELD_3D_RENDERER_CODE = `
     // display ONLY — the true numeric slope value is carried in the readout
     // text (Rule 33d real number), never claimed by the drawn angle alone.
     var ACC_TANGENT_VIS_SCALE = 3.5;
+    // Half-width (radians) of the phase band about each S4 tangent stop inside
+    // which that stop's caption is TRUE and therefore drawn. pi/5 = 0.628 rad
+    // is ~0.8 s of readable dwell per pass at the authored default 0.25 Hz,
+    // and is small enough that the three bands (theta = 0, pi/2, pi) never
+    // overlap (separation pi/2 = 1.571 > 2 * 0.628 = 1.257).
+    var ACC_STOP_BAND = Math.PI / 5;
+    // Charge-pool base hues (top = positive red, bottom = negative blue). Held
+    // as constants because the per-frame updater now REWRITES the colour every
+    // frame (base hue, then a lerp toward white while the pool is the glow
+    // focal), so the build-time material colour is no longer the only source.
+    var ACC_CHARGE_TOP_HEX = 0xEF5350, ACC_CHARGE_BOT_HEX = 0x42A5F5;
     // S5 scripted f-ramp schedule (physics_block §3 S5 — endpoints/order are
     // BINDING, leg durations are the proposed concrete schedule json_author
     // may retime to fit actual narration length). SAME schedule shape as
@@ -25988,8 +25999,82 @@ export const FIELD_3D_RENDERER_CODE = `
 
     var accSrcGrp = null, accArrow = null, accMeterNeedle = null, accUgaugeFill = null;
     var accTopChargeGrp = null, accBotChargeGrp = null;
+    var accArrowLbl = null, accUgaugeLbl = null;
 
     function accFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+
+    // ── Reveal ladder (Rule 25 foundation-first; engine_bug_queue scar class
+    //   teach_do_not_prespoil_a_later_reveal) ─────────────────────────────
+    //   STATE_1 poses the question ("the source pushes -- what does the current
+    //   do?"); the quarter-cycle LEAD is STATE_2's ANSWER and the concept's
+    //   Rule-16a confrontation. Every surface that states or draws that answer
+    //   -- the wire arrow's own caption, the i-trace on the scope, the i / i_m
+    //   lines in the HUD -- is gated behind this ONE predicate, so no earlier
+    //   state can print a later state's result. Authored override wins if
+    //   json_author ever needs a different ladder; the DEFAULT is "revealed
+    //   from the SECOND authored state onward" (Object.keys preserves the
+    //   authored order; Rule 25d runtime reordering never changes it).
+    function accStateIndex() {
+        var ks = Object.keys(config.states || {});
+        for (var si = 0; si < ks.length; si++) { if (ks[si] === PM_currentState) return si; }
+        return 0;
+    }
+    function accIRevealed(d) {
+        if (d && d.show_i_reveal != null) return !!d.show_i_reveal;
+        return accStateIndex() >= 1;
+    }
+
+    // Focal boost for the two live-driven channels that are (correctly)
+    // EXEMPTED from applyAcCapacitorGlow: acc_efield and acc_charge rewrite
+    // their own colour+opacity every frame, so the generic glow pass would
+    // clobber them. But the scenario also passes brightenOnly=true, so peers
+    // are never dimmed either -- which meant a glow focal on "efield"/"charge"
+    // produced ZERO visual change anywhere and silenced its narration beat.
+    // The focal emphasis is therefore applied ON the live channel here:
+    // brightness only, never size (Rule 29). Returns the glow pulse 0..1 when
+    // this key is the focal, else 0.
+    //
+    // It returns a PULSE rather than a bare opacity multiplier because an
+    // opacity multiply alone is not enough: the charge pool's own live opacity
+    // reaches 1.0 at every voltage crest (|sin theta| = 1), where a multiplier
+    // clamps back to 1.0 and the glow vanishes exactly on the beat the
+    // narration is pointing at. Callers therefore ALSO lerp their live colour
+    // toward white (the same thing applyGlowEmphasis does for every
+    // non-exempt object), which has headroom at any opacity.
+    function accGlowFocalP(key, id) {
+        if (!glowTargets || glowTargets.length === 0) return 0;
+        var hit = (glowTargets.indexOf(key) >= 0) || (!!id && glowTargets.indexOf(id) >= 0);
+        return hit ? glowEmphT(time) : 0;
+    }
+
+    // Paired apparatus dim/restore (S8's static dimmed pose). The mutation is
+    // ALWAYS applied with its explicit inverse in the SAME pass: every acc_*
+    // material's pristine opacity/transparent is captured on first touch and
+    // restored on entry to any state that does not ask for the dim. Without
+    // the inverse the dim was session-permanent -- and because the teaching
+    // order S1..S9 always passes THROUGH S8, the explore sandbox (S9) shipped
+    // permanently dimmed, as did every Rule-25d revisit.
+    function accSetApparatusDim(dim) {
+        for (var di = 0; di < sceneObjects.length; di++) {
+            var dobj = sceneObjects[di], dud = dobj.userData;
+            if (!dud || !dud.elementType || dud.elementType.indexOf("acc_") !== 0) continue;
+            if (dud.elementType === "acc_u_gauge" || dud.elementType === "acc_meter") continue; // keep their own live readout legible, never dimmed
+            dobj.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi3 = 0; mi3 < ms.length; mi3++) {
+                    var m = ms[mi3];
+                    if (!m.userData) m.userData = {};
+                    if (m.userData._accBaseOp === undefined) {
+                        m.userData._accBaseOp = (m.opacity != null ? m.opacity : 1);
+                        m.userData._accBaseTr = !!m.transparent;
+                    }
+                    if (dim) { m.transparent = true; m.opacity = 0.45; }
+                    else { m.transparent = m.userData._accBaseTr; m.opacity = m.userData._accBaseOp; }
+                }
+            });
+        }
+    }
 
     // Slider-control resolver (mirrors acrSc/aclSc's SHAPE as new acc_-
     // prefixed code — never calls into ac_resistor's/ac_inductor's own
@@ -26081,14 +26166,19 @@ export const FIELD_3D_RENDERER_CODE = `
     //   full-size, then "C" at a reduced size on a lowered baseline, x-
     //   advanced by the MEASURED width of the base glyph (ctx.measureText) —
     //   never a hand-tuned pixel offset.
+    //   Whitelist widened (ch7 Checkpoint B): the original /(X_C|v_C)/ could
+    //   only ever emit a "C", so an authored U_max / q_max token would have
+    //   fallen through and printed a literal ASCII underscore on canvas. The
+    //   subscript TEXT is now carried on the segment (seg.sub is the subscript
+    //   string, or false) instead of being hardcoded at every draw site.
     function accComposeSegments(text) {
         var s = String(text == null ? "" : text);
-        var re = /(X_C|v_C)/g;
+        var re = /([A-Za-z])_([A-Za-z]+)/g;
         var segs = [], last = 0, m;
         while ((m = re.exec(s)) !== null) {
             if (m.index > last) segs.push({ t: s.slice(last, m.index), sub: false });
-            segs.push({ t: m[1].charAt(0), sub: true }); // base letter only -- "C" is its own reduced-size run
-            last = m.index + m[1].length;
+            segs.push({ t: m[1], sub: m[2] }); // base letter only -- the subscript is its own reduced-size run
+            last = m.index + m[0].length;
         }
         if (last < s.length) segs.push({ t: s.slice(last), sub: false });
         return segs;
@@ -26116,7 +26206,7 @@ export const FIELD_3D_RENDERER_CODE = `
             total += ctx.measureText(segs[i].t).width;
             if (segs[i].sub) {
                 ctx.font = accSubFont(baseFont, ratio);
-                total += ctx.measureText("C").width;
+                total += ctx.measureText(segs[i].sub).width;
             }
         }
         ctx.font = restoreFont;
@@ -26144,9 +26234,9 @@ export const FIELD_3D_RENDERER_CODE = `
             if (seg.sub) {
                 var subFont = accSubFont(baseFont, subRatio);
                 ctx.font = subFont;
-                if (opts.stroke) { ctx.strokeText("C", cx, y + drop); }
-                ctx.fillText("C", cx, y + drop);
-                cx += ctx.measureText("C").width;
+                if (opts.stroke) { ctx.strokeText(seg.sub, cx, y + drop); }
+                ctx.fillText(seg.sub, cx, y + drop);
+                cx += ctx.measureText(seg.sub).width;
             }
         }
         ctx.textAlign = savedAlign; ctx.textBaseline = savedBaseline;
@@ -26172,7 +26262,10 @@ export const FIELD_3D_RENDERER_CODE = `
     // (never textContent, which would print the literal underscore).
     function accHtmlComposeSub(text) {
         if (text == null) return "";
-        return String(text).replace(/X_C/g, "X<sub>C</sub>").replace(/v_C/g, "v<sub>C</sub>");
+        // Same widened token set as accComposeSegments — a literal ASCII
+        // underscore must never survive to the screen on ANY of the three text
+        // paths (Rule 34c).
+        return String(text).replace(/([A-Za-z])_([A-Za-z]+)/g, "$1<sub>$2</sub>");
     }
     // 3D-sprite path (createLabelSprite's compose-aware sibling) — mirrors its
     // sizing/stroke/centring, substituting the compose-aware measure+draw. NO
@@ -26238,6 +26331,34 @@ export const FIELD_3D_RENDERER_CODE = `
         if (wTop) { wTop.userData = { elementType: "acc_beads", id: "acc_beads" }; addToScene(wTop); }
         var wBot = createTubeLine([[ACC_SRC_X, ACC_BOT_Y, 0], [ACC_PLATE_X, ACC_BOT_Y, 0]], "#B0BEC5", 0.03);
         if (wBot) { wBot.userData = { elementType: "acc_beads", id: "acc_wire_bot" }; addToScene(wBot); }
+
+        // 2b. THE BEADS THEMSELVES — ACC_BEAD_COUNT per wire row, each confined
+        //     to its OWN cell (accWireCellPoint), amber to read as the current
+        //     the wire arrow and the i-trace already carry. The per-frame
+        //     updater matches on elementType === "acc_beads" AND row !==
+        //     undefined, so BOTH userData keys below are load-bearing: without
+        //     them the loop matches nothing and beadFrac/aFrac/accWireCellPoint
+        //     become dead code computed every frame while five narration
+        //     sentences ("charges rush at full flood", "freeze completely at
+        //     the voltage's peak", "no charge crosses the gap", "the current
+        //     starves") describe motion that does not exist.
+        //     Home pose = cell centre (frac 0.5), the rock-in-place origin the
+        //     updater oscillates about. The cell grid spans [ACC_SRC_X,
+        //     ACC_PLATE_X] and the rows sit at y = +/-ACC_TOP_Y, so a bead
+        //     TERMINATES at the plate-stub junction and can never enter the
+        //     inter-plate gap (|y| <= ACC_PLATE_HALFGAP) -- the load-bearing
+        //     "no charge crosses the dielectric" correctness visual.
+        for (var wRow = 0; wRow < 2; wRow++) {
+            var wyB = (wRow === 0) ? ACC_TOP_Y : ACC_BOT_Y;
+            for (var bi = 0; bi < ACC_BEAD_COUNT; bi++) {
+                var bead = new THREE.Mesh(new THREE.SphereGeometry(0.055, 10, 10),
+                    new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300"), transparent: true, opacity: 0.85 }));
+                var bp0 = accWireCellPoint(wyB, bi, 0.5);
+                bead.position.set(bp0[0], bp0[1], bp0[2]);
+                bead.userData = { elementType: "acc_beads", id: "acc_bead_" + wRow + "_" + bi, row: wRow, cell: bi };
+                addToScene(bead);
+            }
+        }
 
         // 3. Plates (the second anti-heater) — two flat horizontal slabs
         //    stacked in Y (gap along Y, visually quoting the shipped
@@ -26332,9 +26453,15 @@ export const FIELD_3D_RENDERER_CODE = `
         //    separate back-emf arrow pair here, unlike ac_inductor).
         accArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.45, ACC_TOP_Y + 0.32, 0), 0.9, hexToThreeColor("#FFB300"), 0.2, 0.13);
         accArrow.userData = { elementType: "acc_arrow", id: "acc_arrow" }; addToScene(accArrow);
-        var arrowLbl = createLabelSprite("i (leads v by \\u00bc cycle)", "#FFB300", 0.22);
-        arrowLbl.position.set(0, ACC_TOP_Y + 0.68, 0);
-        arrowLbl.userData = { elementType: "acc_arrow", id: "acc_arrow_lbl" }; addToScene(arrowLbl);
+        // The arrow's caption is STATE_2's ANSWER, not a permanent decoration:
+        // built BARE ("i") and re-lettered per state through accIRevealed, so
+        // STATE_1 -- which legitimately needs the direction arrow -- can never
+        // print the lead result before the concept has confronted it.
+        // pmCreateAutoLabel (retained, auto-refitting canvas) replaces
+        // createLabelSprite precisely so the text can change live.
+        accArrowLbl = pmCreateAutoLabel("i", "#FFB300", 0.22);
+        accArrowLbl.position.set(0, ACC_TOP_Y + 0.68, 0);
+        accArrowLbl.userData = { elementType: "acc_arrow", id: "acc_arrow_lbl" }; addToScene(accArrowLbl);
 
         // 7. Averaging meter — re-tasked EXCLUSIVELY to avg_p (mirrors
         //    ac_inductor's own re-tasking; <p> here is EXACTLY zero always).
@@ -26366,9 +26493,16 @@ export const FIELD_3D_RENDERER_CODE = `
         ugTankEdges.userData = { elementType: "acc_u_gauge", id: "acc_u_gauge" }; addToScene(ugTankEdges);
         accUgaugeFill = new THREE.Mesh(new THREE.BoxGeometry(ACC_UGAUGE_W - 0.06, 1, ACC_UGAUGE_W - 0.06), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#4FC3F7"), transparent: true, opacity: 0.85 }));
         accUgaugeFill.userData = { elementType: "acc_u_gauge", id: "acc_u_gauge_fill" }; addToScene(accUgaugeFill);
-        var ugLbl = createWideLabelSprite("stored energy U = \\u00bdCv\\u00b2", "#4FC3F7", 0.22);
-        ugLbl.position.set(ACC_UGAUGE_X, ACC_UGAUGE_H / 2 + 0.35, 0);
-        ugLbl.userData = { elementType: "acc_u_gauge", id: "acc_u_gauge_lbl" }; addToScene(ugLbl);
+        // Rule 34b -- ONE formula surface per state. The symbolic relation
+        // U = 1/2 Cv^2 lives on the dedicated #acc_formula overlay (authored
+        // per state) and NOWHERE else; this gauge sprite is a value-only
+        // instrument carrying the quantity NAME plus its live number (Rule
+        // 33d). Previously it duplicated the symbolic form onto a second
+        // surface at S7 and, because the gauge is visible from S6, showed the
+        // relation a whole state before its authored home.
+        accUgaugeLbl = pmCreateAutoLabel("stored energy U = 0.00 J", "#4FC3F7", 0.22);
+        accUgaugeLbl.position.set(ACC_UGAUGE_X, ACC_UGAUGE_H / 2 + 0.35, 0);
+        accUgaugeLbl.userData = { elementType: "acc_u_gauge", id: "acc_u_gauge_lbl" }; addToScene(accUgaugeLbl);
 
         // ── DOM panels ──────────────────────────────────────────────────────
         var rp = document.createElement("div"); rp.id = "acc_readout";
@@ -26415,7 +26549,12 @@ export const FIELD_3D_RENDERER_CODE = `
 
         window.PM_accVm = scVm.def; window.PM_accC = scC.def; window.PM_accFdemo = scF.def;
         window.PM_accVmDragged = false; window.PM_accCDragged = false; window.PM_accFdemoDragged = false;
-        window.PM_accPhase = 0; window.PM_accLastT = 0;
+        // Phase ANCHOR (Rule 36 / scar field3d_dt_accumulated_motion_invisible_
+        // to_eye_timepin): theta is re-derived from absolute state-local t as
+        // PM_accPhaseBase + omega*(t - PM_accTAnchor) -- never accumulated.
+        window.PM_accPhase = 0;
+        window.PM_accPhaseBase = 0; window.PM_accTAnchor = 0;
+        window.PM_accOmegaAnchor = 2 * Math.PI * window.PM_accFdemo;
 
         // Rule 27 explorer pattern: stable id, every param change posted to parent.
         function accEmit(param, value) {
@@ -26464,7 +26603,10 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_accC = (typeof ov.C === "number") ? ov.C : defC;
         window.PM_accFdemo = (typeof ov.f_demo === "number") ? ov.f_demo : defF;
         window.PM_accVmDragged = false; window.PM_accCDragged = false; window.PM_accFdemoDragged = false;
-        window.PM_accPhase = 0; window.PM_accLastT = 0;
+        // Re-seat the phase anchor at state entry (theta = 0 at t = 0).
+        window.PM_accPhase = 0;
+        window.PM_accPhaseBase = 0; window.PM_accTAnchor = 0;
+        window.PM_accOmegaAnchor = 2 * Math.PI * window.PM_accFdemo;
 
         function syncS(id, v, dec) { var el = document.getElementById(id); if (el) el.value = String(v); var vEl = document.getElementById(id.replace("_slider", "_val")); if (vEl) vEl.textContent = v.toFixed(dec); }
         syncS("acc_vm_slider", window.PM_accVm, 1);
@@ -26509,19 +26651,26 @@ export const FIELD_3D_RENDERER_CODE = `
             if (dvEl) dvEl.style.display = "none";
         }
 
+        // The wire arrow's caption is a REVEAL, not a fixture (see
+        // accIRevealed): bare "i" before the lead is taught, the full lead
+        // caption from the reveal state onward. Re-lettered on every state
+        // apply so Rule-25d reordering can never strand the wrong caption.
+        var arrowLblObj = accFindById("acc_arrow_lbl");
+        if (arrowLblObj) updateLabelSpriteText(arrowLblObj, accIRevealed(d) ? "i (leads v by \\u00bc cycle)" : "i");
+
         // S8's apparatus holds a STATIC, DIMMED pose (physics_block §3 S8 —
         // Rule 26 motion carried entirely by the scope-pane fold + algebra
         // dock, not the 3D apparatus). A one-time opacity pass; the per-frame
         // update SKIPS the 3D apparatus entirely in this mode (see
         // updateAcCapacitorFrame's animate3d guard below), so this pose sticks.
-        if (d.dim_apparatus) {
-            for (var di = 0; di < sceneObjects.length; di++) {
-                var dobj = sceneObjects[di], dud = dobj.userData;
-                if (!dud || !dud.elementType || dud.elementType.indexOf("acc_") !== 0) continue;
-                if (dud.elementType === "acc_u_gauge" || dud.elementType === "acc_meter") continue; // keep their own live readout legible, never dimmed
-                dobj.traverse(function (n) { if (n.material) { var ms = Array.isArray(n.material) ? n.material : [n.material]; for (var mi3 = 0; mi3 < ms.length; mi3++) { ms[mi3].transparent = true; ms[mi3].opacity = 0.45; } } });
-            }
-        }
+        // ALWAYS called -- the restore branch is the mutation's explicit
+        // inverse and runs on entry to every state that does NOT ask for the
+        // dim. (Relying on the per-frame updater to recover was the defect: it
+        // only rewrites the two live channels -- efield opacity and charge
+        // opacity -- so the source, both wires, the beads, both plates, the
+        // arrow and every sprite label stayed at 0.45 for the rest of the
+        // session, shipping the S9 teacher sandbox permanently dimmed.)
+        accSetApparatusDim(!!d.dim_apparatus);
     }
 
     // S8's one-derivative chain-link derivation dock — mirrors
@@ -26575,6 +26724,39 @@ export const FIELD_3D_RENDERER_CODE = `
         function yV(val) { return midY - (val / vAxis) * (plotH / 2); }
         function yI(val) { return midY - (val / iAxis) * (plotH / 2); }
 
+        // The i-trace IS the answer STATE_2 exists to deliver — gate it behind
+        // the reveal ladder so the pre-reveal state cannot draw it from t=0 via
+        // the (t - tWin - 1) always-true fallback. Resolved HERE, before any
+        // drawing, because the reference-rule table below depends on it.
+        var iRevealed = accIRevealed(d);
+        var sIStart = (mode === "quarter_cycle_lead") ? (cueTriggerMs("real_sweep_start", (d.real_sweep_start_at_ms != null ? d.real_sweep_start_at_ms : 2500)) / 1000) : (t - tWin - 1);
+        var showI = iRevealed && t >= sIStart;
+
+        // Every horizontal reference rule this pane will draw, plus the helper
+        // that keeps a text baseline clear of all of them (Rule 34d). Canvas-
+        // internal collisions are invisible to the DOM-overlay collision probe,
+        // so EVERY label drawn in the top-left slot routes through this: the
+        // v_m rule struck the on-graph X_C label in every S5 frame, and would
+        // strike the S4 slope chip sharing that slot for exactly the same
+        // reason.
+        var refYs = [midY];
+        var drawPeakLines = (d.show_vm_peak_line !== false);
+        if (drawPeakLines) {
+            refYs.push(yV(vm));
+            if (showI) refYs.push(yI(im));
+        }
+        function accClearTextY(startY) {
+            var yv = startY;
+            for (var gy = 0; gy < 10; gy++) {
+                var clash = false;
+                for (var ry = 0; ry < refYs.length; ry++) { if (Math.abs(yv - refYs[ry]) < 9) { clash = true; break; } }
+                if (!clash) return yv;
+                yv += 11;
+                if (yv > H - padB - 4) return startY;
+            }
+            return yv;
+        }
+
         ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(padL, midY); ctx.lineTo(W - padR, midY); ctx.stroke();
 
         var step = tWin / 160;
@@ -26598,9 +26780,9 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         // Real i-trace — CLOCK-DRAWN via its own closed form i=+im*cos(theta)
-        // (LEADS v — the exact inversion of the ghost above).
-        var sIStart = (mode === "quarter_cycle_lead") ? (cueTriggerMs("real_sweep_start", (d.real_sweep_start_at_ms != null ? d.real_sweep_start_at_ms : 2500)) / 1000) : (t - tWin - 1);
-        var showI = t >= sIStart;
+        // (LEADS v — the exact inversion of the ghost above). showI / sIStart /
+        // iRevealed are resolved at the top of this function (the reference-rule
+        // table needs them before anything is drawn).
         if (showI) {
             ctx.strokeStyle = "#FFB300"; ctx.lineWidth = 2; ctx.beginPath();
             var f2 = true;
@@ -26637,7 +26819,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     ctx.fillStyle = "#FFEE58"; ctx.fill();
                 }
                 ctx.fillStyle = "#FFEE58"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
-                ctx.fillText("i crests " + leadSecondsNow.toFixed(1) + " s BEFORE v = \\u00bc cycle = 90\\u00b0", padL + 6, padT + 34);
+                // Routed through accClearTextY for the same reason as the X_C
+                // label and the slope chip: the i_m rule lands ~2px from this
+                // baseline at the authored defaults and would strike it out.
+                ctx.fillText("i crests " + leadSecondsNow.toFixed(1) + " s BEFORE v = \\u00bc cycle = 90\\u00b0", padL + 6, accClearTextY(padT + 34));
             }
         }
 
@@ -26664,17 +26849,44 @@ export const FIELD_3D_RENDERER_CODE = `
             // the answering i-dot (effect) — same instant, distinct colour.
             ctx.fillStyle = "#FFB300"; ctx.beginPath(); ctx.arc(cx, yI(iNow), 3.2, 0, 2 * Math.PI); ctx.fill();
 
+            // Rule 33c -- the state's own number, live: the tangent's slope and
+            // the current it produces, side by side on the beat that teaches
+            // i = C(dv/dt). S4 never sets show_xc_on_graph, so this top-left
+            // slot is free. Both numbers are recomputed every frame from the
+            // live theta; neither is ever hardcoded.
+            ctx.fillStyle = "#E0F7FA"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillText("slope " + slopeNow.toFixed(1) + " V/s \\u2192 i = C \\u00d7 slope = " + iNow.toFixed(2) + " A", padL + 3, accClearTextY(padT + 10));
+
             // F1 fix pattern (cloned, ch7 loop Checkpoint B, engine_bug_queue
             // field3d_canvas_caption_text_not_cleared_between_sequential_
             // reveals): only the MOST RECENTLY triggered stop is drawn, in
             // one fixed caption slot explicitly cleared before each redraw —
             // never every fired stop composited into one unreadable blob.
+            //
+            // ...and the caption must also be TRUE WHENEVER DISPLAYED. Arming
+            // it on the cue alone LATCHED it: the last-fired label kept
+            // redrawing for the rest of the state while v and i completed
+            // further cycles, so the canonical frozen baseline of this
+            // concept's PRIMARY AHA could read "steepest fall -> i trough"
+            // beside a climbing tangent and a positive i. The cue still ARMS
+            // each stop (narration order is preserved, and cueTriggerMs still
+            // overrides at_ms on the TTS path), but what is DRAWN is
+            // re-derived from the LIVE theta every frame -- the same
+            // live-derivation the S6 "storing"/"returning" label already uses.
+            // A stop is shown only while theta is inside a readable band about
+            // its OWN phase, so the words on screen always describe the
+            // tangent on screen. The three bands (0, pi/2, pi +/- ACC_STOP_BAND)
+            // cannot overlap: their separation pi/2 exceeds 2*ACC_STOP_BAND.
             var stopCues = (d.tangent_stops_at_ms && d.tangent_stops_at_ms.length === 3) ? d.tangent_stops_at_ms : [1500, 4500, 7500];
             var stopLabels = ["steepest climb \\u2192 i peak", "flat crest \\u2192 i=0", "steepest fall \\u2192 i trough"];
+            var stopPhases = [0, Math.PI / 2, Math.PI];
             var activeStopIdx = -1;
             for (var ti2 = 0; ti2 < 3; ti2++) {
                 var stopMs = cueTriggerMs("tangent_stop_" + (ti2 + 1), stopCues[ti2]);
-                if (t * 1000 >= stopMs) activeStopIdx = ti2;
+                if (t * 1000 < stopMs) continue;                       // not armed by its narration cue yet
+                var dPhi = theta - stopPhases[ti2];
+                dPhi = dPhi - 2 * Math.PI * Math.floor(dPhi / (2 * Math.PI) + 0.5);   // wrap to (-pi, pi]
+                if (Math.abs(dPhi) <= ACC_STOP_BAND) { activeStopIdx = ti2; break; }
             }
             if (activeStopIdx >= 0) {
                 var stopLabelW = 118;
@@ -26690,9 +26902,21 @@ export const FIELD_3D_RENDERER_CODE = `
 
         ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
         ctx.fillText("v (cyan) & i (amber) vs t", padL, 11);
-        if (d.show_vm_peak_line !== false) {
+        if (drawPeakLines) {
             ctx.strokeStyle = "rgba(77,208,225,0.5)"; ctx.setLineDash([3, 3]); ctx.beginPath();
             ctx.moveTo(padL, yV(vm)); ctx.lineTo(W - padR, yV(vm)); ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillStyle = "#4DD0E1"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillText("v\\u2098", 4, yV(vm) + 3);
+            // The i-peak reference line: i_m is a taught quantity from the
+            // reveal state onward (it is what X_C = v_m/i_m is measured
+            // against), and the v-peak line had no counterpart to read it
+            // against. Amber, matching the i-trace it belongs to.
+            if (showI) {
+                ctx.strokeStyle = "rgba(255,179,0,0.5)"; ctx.setLineDash([3, 3]); ctx.beginPath();
+                ctx.moveTo(padL, yI(im)); ctx.lineTo(W - padR, yI(im)); ctx.stroke(); ctx.setLineDash([]);
+                ctx.fillStyle = "#FFB300"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+                ctx.fillText("i\\u2098", 4, yI(im) + 3);
+            }
         }
         if (d.show_xc_on_graph) {
             // Styled-subscript compose (canvas path) — no real Unicode
@@ -26701,7 +26925,10 @@ export const FIELD_3D_RENDERER_CODE = `
             // accFillComposedOnCanvas rather than a plain ctx.fillText.
             ctx.font = "9px 'Cambria Math','Times New Roman',serif";
             ctx.fillStyle = "#FFD54F";
-            accFillComposedOnCanvas(ctx, "X_C = " + Xc.toFixed(1) + " \\u03a9", padL + 3, padT + 10, "left");
+            // ...and it must not be STRUCK THROUGH by a reference line: at the
+            // authored padT+10 baseline (y~26) it sat 2.2px from the v_m dashed
+            // line (y~23.8) in every S5 frame. accClearTextY steps it clear.
+            accFillComposedOnCanvas(ctx, "X_C = " + Xc.toFixed(1) + " \\u03a9", padL + 3, accClearTextY(padT + 10), "left");
         }
     }
 
@@ -26796,9 +27023,27 @@ export const FIELD_3D_RENDERER_CODE = `
         var mode = d.mode || "explore";
         var t = time - stateStartTime;
 
-        if (window.PM_accLastT === undefined) window.PM_accLastT = t;
-        var dt = t - window.PM_accLastT; if (dt < 0 || dt > 0.2) dt = 0; window.PM_accLastT = t;
+        // Rule 36 + scar field3d_dt_accumulated_motion_invisible_to_eye_timepin
+        // (fixed one commit earlier in this same chapter run, ad7975b, whose
+        // prevention rule reads: "All scripted/choreographed motion in a
+        // field_3d scenario must be a PURE FUNCTION of absolute PM_simTimeMs...
+        // Reserve dt-accumulators strictly for trusted-drag interactive
+        // velocity, never for scripted drift"). The master oscillation phase is
+        // the most load-bearing scripted quantity in this scenario, so it is
+        // re-derived from absolute state-local t every frame:
+        //     theta = PM_accPhaseBase + omega * (t - PM_accTAnchor)
+        // and NEVER integrated. There is no per-frame dt anywhere on this path.
+        // The (base, tAnchor, omega) anchor is re-seated ONLY when omega itself
+        // changes -- a trusted f_demo drag, or the S5 scripted ramp handing over
+        // to the live sandbox -- which preserves phase continuity across a
+        // frequency change exactly as the accumulator did, while leaving the
+        // undragged path an exact closed form. A SET_TIME_FREEZE pin that jumps
+        // FORWARD or REWINDS therefore lands on the authored phase, byte-
+        // identically, instead of on whatever history the accumulator happened
+        // to have walked.
         if (window.PM_accPhase === undefined) window.PM_accPhase = 0;
+        if (window.PM_accPhaseBase === undefined) window.PM_accPhaseBase = 0;
+        if (window.PM_accTAnchor === undefined) window.PM_accTAnchor = 0;
 
         var vm = window.PM_accVm, C = window.PM_accC;
         var fDemoDisplay = window.PM_accFdemo;
@@ -26817,9 +27062,25 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             window.PM_accPhase = thetaClosed;
             window.PM_accFdemo = fDemoDisplay; // display/HUD only; the post-drag branch below continues from exactly this value
+            // Keep the anchor riding the closed form, so the instant a trusted
+            // f_demo drag hands control to the branch below the phase carries
+            // over continuously (no jump) from the exact ramp value.
+            window.PM_accPhaseBase = thetaClosed;
+            window.PM_accTAnchor = t;
+            window.PM_accOmegaAnchor = 2 * Math.PI * fDemoDisplay;
         } else {
             var omegaEff = 2 * Math.PI * window.PM_accFdemo;
-            window.PM_accPhase += omegaEff * dt;
+            if (window.PM_accOmegaAnchor === undefined) window.PM_accOmegaAnchor = omegaEff;
+            if (window.PM_accOmegaAnchor !== omegaEff) {
+                // omega changed (trusted drag / ramp handover): re-seat the
+                // anchor AT the phase the old omega had reached, so the closed
+                // form stays continuous. This is the ad7975b re-anchor-on-
+                // trusted-drag baseline pattern, not an accumulator.
+                window.PM_accPhaseBase = window.PM_accPhaseBase + window.PM_accOmegaAnchor * (t - window.PM_accTAnchor);
+                window.PM_accTAnchor = t;
+                window.PM_accOmegaAnchor = omegaEff;
+            }
+            window.PM_accPhase = window.PM_accPhaseBase + omegaEff * (t - window.PM_accTAnchor);
         }
         var theta = window.PM_accPhase;
         var omega = 2 * Math.PI * fDemoDisplay;
@@ -26875,12 +27136,19 @@ export const FIELD_3D_RENDERER_CODE = `
             // cool two-hue tint keyed on charge polarity (never warm/orange —
             // the anti-heater discipline). The plate BODY is never touched
             // (no emissive channel exists on it at all).
-            var efOpacity = 0.08 + 0.55 * fieldBrightness;
+            // accGlowFocalP: this channel is exempted from applyGlowEmphasis, so
+            // an "efield" glow focal must land HERE or it lands nowhere.
+            var efGlowP = accGlowFocalP("efield", "acc_efield");
+            var efOpacity = Math.min(1, (0.08 + 0.55 * fieldBrightness) * (1 + 0.5 * efGlowP));
             var efColorHex = (chargeSign >= 0) ? 0x4FC3F7 : 0x1E88E5;
             for (var fi2 = 0; fi2 < sceneObjects.length; fi2++) {
                 var fo = sceneObjects[fi2], fu = fo.userData;
                 if (!fu || fu.elementType !== "acc_efield") continue;
-                if (fo.material) { fo.material.opacity = efOpacity; fo.material.color.setHex(efColorHex); }
+                if (fo.material) {
+                    fo.material.opacity = efOpacity;
+                    fo.material.color.setHex(efColorHex);
+                    if (efGlowP > 0) fo.material.color.lerp(GLOW_WHITE, 0.10 + 0.18 * efGlowP);
+                }
             }
 
             // Charge-glyph pools — density = chargeGlyphFrac (0=empty,
@@ -26891,12 +27159,38 @@ export const FIELD_3D_RENDERER_CODE = `
             // the other every half-cycle, NEVER crossing the gap (both pools
             // are pinned to their own plate face; only their own opacity
             // toggles).
-            var topOpacity = chargeGlyphFrac * (chargeSign >= 0 ? 1 : 0.06);
-            var botOpacity = chargeGlyphFrac * (chargeSign >= 0 ? 0.06 : 1);
-            for (var ci = 0; ci < sceneObjects.length; ci++) {
-                var co = sceneObjects[ci], cu = co.userData;
-                if (!cu || cu.elementType !== "acc_charge" || !cu.pool) continue;
-                if (co.material) co.material.opacity = (cu.pool === "top") ? topOpacity : botOpacity;
+            // Same exemption, same reason: a "charge" glow focal is applied on
+            // the live channel (brightness only -- Rule 29). The colour lerp is
+            // load-bearing here, not decorative: the lit pool's own opacity is
+            // ALREADY 1.0 at every voltage crest, so an opacity multiplier
+            // alone clamps out and the glow would be silent on exactly the
+            // beat that narrates it.
+            var chGlowP = accGlowFocalP("charge", "acc_charge");
+            var topOpacity = Math.min(1, chargeGlyphFrac * (chargeSign >= 0 ? 1 : 0.06) * (1 + 0.5 * chGlowP));
+            var botOpacity = Math.min(1, chargeGlyphFrac * (chargeSign >= 0 ? 0.06 : 1) * (1 + 0.5 * chGlowP));
+            // The dots are CHILDREN of the two pool groups (accTopChargeGrp /
+            // accBotChargeGrp .add(dot)), and addToScene only ever pushes the
+            // top-level object it is handed -- so the dots are NOT in
+            // sceneObjects. Walking sceneObjects here matched nothing (the
+            // groups carry elementType "acc_charge" but no pool key), which left
+            // every dot pinned at its build-time opacity 0: the whole charge-
+            // accumulation micro layer was INVISIBLE in every state, including
+            // S3, whose entire lesson is charge piling onto the plates. Iterate
+            // the pools directly. (Group-relative positioning, the visibility
+            // pass and the dim/restore pass all still work through the groups,
+            // which ARE in sceneObjects; children inherit .visible and are
+            // reached by .traverse.)
+            var accPools = [accTopChargeGrp, accBotChargeGrp];
+            for (var cp = 0; cp < accPools.length; cp++) {
+                var pool = accPools[cp];
+                if (!pool || !pool.children) continue;
+                for (var ci = 0; ci < pool.children.length; ci++) {
+                    var co = pool.children[ci], cu = co.userData;
+                    if (!cu || !cu.pool || !co.material) continue;
+                    co.material.opacity = (cu.pool === "top") ? topOpacity : botOpacity;
+                    co.material.color.setHex((cu.pool === "top") ? ACC_CHARGE_TOP_HEX : ACC_CHARGE_BOT_HEX);
+                    if (chGlowP > 0) co.material.color.lerp(GLOW_WHITE, 0.10 + 0.18 * chGlowP);
+                }
             }
 
             // World-space q annotation (S3 only) — live text redraw via the
@@ -26916,6 +27210,12 @@ export const FIELD_3D_RENDERER_CODE = `
             var fillH = Math.max(0.02, fieldBrightness) * ACC_UGAUGE_H;
             accUgaugeFill.scale.set(1, fillH, 1);
             accUgaugeFill.position.set(ACC_UGAUGE_X, -ACC_UGAUGE_H / 2 + fillH / 2, 0);
+        }
+        // Value-only instrument (Rule 33d/34b): the gauge's own sprite carries
+        // the quantity NAME + its live number; the symbolic U = 1/2 Cv^2 lives
+        // on the single #acc_formula surface only.
+        if (accUgaugeLbl && accUgaugeLbl.visible) {
+            updateLabelSpriteText(accUgaugeLbl, "stored energy U = " + U.toFixed(2) + " J");
         }
         // Meter — always dead centre (<p> is EXACTLY zero for a pure
         // capacitor at every instant averaged over any half-source-period).
@@ -26941,7 +27241,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var iSignStr = (i >= 0 ? "+" : "");
             var pSignStr = (p >= 0 ? "+" : "");
             var html = "<div>v = " + vSignStr + v.toFixed(1) + " V</div>";
-            html += "<div>i = " + iSignStr + i.toFixed(2) + " A</div>";
+            // The i and i_m lines ARE the reveal (see accIRevealed) — an
+            // ungated i line printed STATE_2's answer in STATE_1's HUD. i_m is
+            // the peak the whole X_C = v_m/i_m argument is measured against, so
+            // it rides the same gate and is present in the sandbox too.
+            if (accIRevealed(d)) {
+                html += "<div>i = " + iSignStr + i.toFixed(2) + " A</div>";
+                html += "<div>i<sub>m</sub> = " + im.toFixed(2) + " A</div>";
+            }
             if (d.show_vc_readout) {
                 var vcSignStr = (vC >= 0 ? "+" : "");
                 html += "<div>v<sub>C</sub> = " + vcSignStr + vC.toFixed(1) + " V</div>";
@@ -26962,7 +27269,11 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         var urEl2 = document.getElementById("acc_ureadout");
         if (urEl2 && urEl2.style.display !== "none") {
-            urEl2.innerHTML = "<div>U = " + U.toFixed(2) + " J</div><div>U_max = " + Umax.toFixed(2) + " J</div>";
+            // Rule 34c — a literal ASCII underscore must never reach the
+            // screen. This readout is a hand-written HTML string (it never
+            // routes through accHtmlComposeSub), so the subscript is written
+            // out explicitly, matching the q<sub>max</sub> line above.
+            urEl2.innerHTML = "<div>U = " + U.toFixed(2) + " J</div><div>U<sub>max</sub> = " + Umax.toFixed(2) + " J</div>";
         }
     }
 
