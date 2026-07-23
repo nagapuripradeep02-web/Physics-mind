@@ -726,3 +726,188 @@ the dispatch reported its one interpretive call back to the orchestrator instead
 **Outcome:** Build PASSED, verify chain independently re-confirmed by the orchestrator. Next:
 `json_author` writes `ac_voltage_capacitor.json` + the 8 registration sites against the enums above, then
 THE EYE + quality-auditor ∥ eye-walker + founder_drive → founder-proxy Checkpoint B.
+
+---
+
+## Stage 3 · fix round 1 · 2026-07-23 · `ac_capacitor` Checkpoint-B E1–E10 (commit `832b1d3`)
+
+**Routing:** founder-proxy Checkpoint B cycle-0 verdict `FIX` — **5 blocking `FIX(engine)` + 5 ride-alongs**, alongside 3 `alex:json_author` findings handled in parallel. Full adjudication in
+`docs/loop_runs/ch7/ac_voltage_capacitor/founder_proxy_report_checkpointB.md`. Rollback point recorded
+before dispatch: `21e1f0f`.
+
+**The auditor disagreement founder-proxy had to settle.** quality-auditor returned FAIL, eye-walker
+returned FINDINGS(2), and they named DIFFERENT root causes for the same S4 symptom — which mattered,
+because the routing depended on it:
+- eye-walker: "the live phase θ is NOT zeroed at state entry" → would route `peter_parker`.
+- quality-auditor: "`PM_accPhase` IS reset; the JSON's `tangent_stops_at_ms` are simply wrong" → routes `alex:json_author`.
+
+founder-proxy probed the real player at a clean state entry and measured the offset at **0.00°**,
+**REFUTING eye-walker's mechanism** and confirming quality-auditor. But it then found eye-walker's
+*observation* was real with a worse cause, and a third contributor neither had seen. Net: the S4
+defect had THREE independent causes, and a content-only fix would have left the PRIMARY AHA false.
+
+**BLOCKING findings fixed:**
+- **E1 — the wire beads were never built.** `buildAcCapacitor` tagged the two wire TUBES
+  `elementType: "acc_beads"` (so the glow alias would resolve) and created zero bead meshes; the
+  per-frame loop required `bu.row !== undefined` and matched nothing, making `accWireCellPoint` dead
+  code. Five narration sentences described motion that did not exist, including `s2_2`, the designated
+  Rule-16a `visual_counter`. Orchestrator verified independently: the sealed sibling creates beads at
+  `:25193` with `row`/`cell` userData; the `acc_` block had no equivalent line. **quality-auditor found
+  this by reading the build function; eye-walker MISSED it entirely and — worse — reported "beads never
+  cross the plate gap" as a clean check, which passes VACUOUSLY when no beads exist.**
+- **E2 — the S4 tangent-stop caption latched.** `activeStopIdx` was set to the most-recently-fired stop
+  and redrawn every frame after, so the final caption displayed for ~62% of the state while v and i
+  completed 2.5 further cycles. `STATE_4__frozen.png` — the PRIMARY AHA's canonical H2 baseline — showed
+  "steepest fall → i trough" beside `i = +0.83 A` with the tangent visibly climbing.
+- **E3 — `PM_accPhase += omegaEff * dt`: a RECURRENCE of the scar
+  `field3d_dt_accumulated_motion_invisible_to_eye_timepin`, fixed ONE COMMIT AGO** (`ad7975b`,
+  2026-07-22) in this same chapter run. That fix addressed only the reported symptom
+  (`PM_acrTwinBeadAccum`) and left the master oscillation phase — the most load-bearing scripted
+  quantity in the scenario — as an accumulator in all three `ac_*` scenarios. The new scenario cloned
+  the unfixed pattern. Because `SET_TIME_FREEZE` can rewind `time` while an accumulator cannot,
+  THE EYE's frames never showed the authored phase and every frozen H2 baseline was minted at an
+  arbitrary phase.
+- **E4 — `dim_apparatus` was a one-way, session-permanent dim.** No `else` branch, nothing restored it.
+  Because the normal teaching order S1→S9 always passes through S8, **the teacher's explore sandbox
+  shipped permanently dimmed by default**, and Rule 25d revisits were dimmed too. Found by
+  **neither auditor** — THE EYE captures states in order and minted S9's baseline WITH the bug;
+  eye-walker has no cross-state-order model; quality-auditor read S8 and S9 each as ✓ without comparing
+  S9's brightness against S1's.
+- **E5 — S1 pre-spoiled S2's answer** via a hardcoded `"i (leads v by ¼ cycle)"` sprite label on the
+  always-visible `acc_arrow`, plus an ungated i-trace and HUD `i` line. Live regression of the OPEN scar
+  `teach_do_not_prespoil_a_later_reveal`.
+
+**RIDE-ALONGS fixed in the same commit:** E6 literal `U_max` underscore · E7 glow focal on
+`efield`/`charge` being a total no-op (the exemption was CORRECT — founder-proxy endorsed it — but with
+`brightenOnly=true` peers were never dimmed either, so the focal changed nothing anywhere) · E8 missing
+`iₘ` marker + S9 `iₘ` HUD + S4's own slope number never drawn · E9 on-graph `X_C` struck through by the
+vₘ reference line · E10 `U = ½Cv²` duplicated across two surfaces.
+
+**A defect the fix dispatch found on its own, on the same root-cause family as E1:** the charge-glyph
+dots were CHILDREN of the pool groups, and `addToScene` only registers the object handed to it — so no
+dot was ever in `sceneObjects`, the per-frame updater matched nothing, and **every dot sat at build-time
+`opacity: 0`. The entire Rule-33 charge-accumulation micro layer was invisible in EVERY state**,
+including S3, whose whole lesson is charge piling onto the plates. All three reviewers had passed S3 as
+clean; founder-proxy's cycle-0 table had called it "the cleanest state in the sim". Fixed here — and see
+the fix-round-2 entry for what that revealed.
+
+**Verify chain — independently re-run by the orchestrator, not delegated trust:**
+`check:renderer-syntax` OK · `tsc --noEmit` exit 0 · `validate:concepts` **127 PASS / 0 FAIL** ·
+THE EYE `ac_voltage_capacitor` **39/39** (run `20260723-162028`) · regression `capacitance` **44/44 with
+all 14 H2 baselines at 0.00%** · `ac_voltage_resistor` 39/39 · `ac_voltage_inductor` 39/39 (the two
+siblings' H2 reports "Skipped — no approved baseline", expected under the trial — `capacitance` remains
+the only genuine pixel proof this chapter) · founder_drive 9 states / 27 shots / 8 drags /
+`overlayCollisions: []` / `flags: []` / `consoleErrors: 0` / `motionProbe.bytesEqual: false` (Rule 37).
+
+**E3 clock guard (Rule 36b) — rewind-determinism, the standard `ad7975b` itself set:** pin 3000 → 9000 →
+3000 ms. BASELINE: phase stuck at 14.137167 after the rewind (**+540.00° residual**), frames
+`5e895c55…` ≠ `c07ec7da…` → FAIL. FIXED: re-derives to 4.712389 = ω·t exactly (**0.00°**), frames
+`e268014c3b7cd007` **byte-identical** → PASS. Nothing in the shared `animate()`/`__pmSteps`/`dtStep` path
+was touched.
+
+**Scope (DF1) — orchestrator-verified byte-level:** `git show 832b1d3 -U0 | grep -cE "acr_|acl_|ACR_|ACL_"`
+on changed lines = **0**. One file, +355/−44. Sealed siblings untouched.
+
+**Commit:** `832b1d3` — `fix(engine-loop): ac_capacitor checkpointB E1-E10 [peter_parker:renderer_primitives]`.
+
+**Outcome:** all 10 findings landed. founder-proxy cycle-1 re-review verified 14 of 16 routed items closed
+against artifacts, and issued a further `FIX` — see below.
+
+---
+
+## Stage 3 · fix round 2 · 2026-07-23 · `ac_capacitor` E11 charge-glyph polarity (commit `219937d`)
+
+**Routing:** founder-proxy Checkpoint B cycle-1 verdict `FIX` — **1 blocking `FIX(engine)`** (E11) +
+1 `alex:json_author` (J1b). Report:
+`docs/loop_runs/ch7/ac_voltage_capacitor/founder_proxy_report_checkpointB_cycle1.md`.
+
+**E11 — fixing the invisibility bug promoted a never-reviewed layer into view, and its CONTENT was wrong.**
+This is the trial's most transferable lesson. The fix-round-1 registration repair was correct, but the
+charge layer it revealed had never been content-reviewed by anyone, because until that commit there was
+nothing to review. What it actually rendered:
+
+```js
+var topOpacity = ... * (chargeSign >= 0 ? 1    : 0.06) ...;   // counter-plate effectively hidden
+var botOpacity = ... * (chargeSign >= 0 ? 0.06 : 1)    ...;
+var ACC_CHARGE_TOP_HEX = 0xEF5350, ACC_CHARGE_BOT_HEX = 0x42A5F5;   // per-PLATE constants, never sign-tracking
+```
+
+Two errors, confirmed in pixels 3 s apart in the same state: at `q = +0.90 C` red dots on the TOP plate
+only, bottom bare; at `q = −1.27 C` blue dots on the BOTTOM plate only, top bare.
+1. **The counter-charge was never shown** — equal-and-opposite charge on facing plates, the structural
+   fact that makes a capacitor a capacitor, appeared in no frame of any state.
+2. **The colour convention inverted at v < 0** — and because the pool colours were compile-time
+   per-plate constants, the correct q < 0 configuration was literally **undrawable**.
+
+**Why blocking:** the composite a teacher sees is charge appearing on the top plate, fading, then
+appearing on the bottom — i.e. **the visual of charge crossing the gap**, the precise misconception
+`skeleton.md:244` item (2) says the parallel-plate apparatus exists to prevent, directly contradicting
+`s3_3`'s own narration. founder-proxy explicitly declined the cheap content workaround (re-hide the dots
+/ narrate around it) under the PRIME DIRECTIVE.
+
+**The fix:** palette re-keyed from plate identity to `sign(q)` (`ACC_CHARGE_POS_HEX`/`NEG_HEX`), and the
+per-pool opacity asymmetry replaced by a single shared `chOpacity` driving both pools. E7's `chGlowP`
+enters exactly as before.
+
+**Verification (founder-proxy, cycle 2) went past "the frame looks right" — three structural checks:**
+- **Equality is now UNREPRESENTABLE, not merely retuned:** `topOpacity = botOpacity = chOpacity` is one
+  shared expression, so no threshold exists at which the pools can differ. (This is why the fix
+  dispatch's own probe-threshold wobble, 0.15 → 0.35, was moot rather than worrying.)
+- **The pools are geometrically paired at build time:** one `topDot` and one `botDot` per grid cell at
+  identical `(dx, dz)`, so equal counts are guaranteed by construction.
+- **`chargeSign` is the physical sign:** `chargeGlyphFrac = |sin θ|`, `chargeSign = sign(sin θ)`,
+  `q = q_max sin θ`.
+Confirmed in pixels at four phases (frozen `q = +0.90 C`; dense t01000/t02000/t03000) plus a live-player
+explore-state slider drag: at the zero crossing **both pools empty together**, and across the sign flip
+the pair **swaps colour in place**. Nothing traverses the gap.
+
+**J1b, fixed in parallel by `alex:json_author` (concept JSON, not this commit):** removing a
+`scenario_cue` was not a valid resolution — the unbound `tangent_stop_3` fell through to its static
+6000 ms while its two siblings armed on narration cues at 7310/13408 ms, so the PRIMARY AHA's captions
+ran **fall → climb → fall → crest** in the live player. `sendCueTimes()` is not gated on mute, so this was
+the DEFAULT teacher path, and **THE EYE posts no cue times and is structurally blind to the whole class.**
+Resolved the prescribed way: the narrating sentence was REWRITTEN so the binding is true.
+founder-proxy verified by intercepting `fillText` in the sim frame and logging every caption draw stamped
+with `PM_simTimeMs` across a 26 s live playthrough: first appearances at **7600 / 12608 / 17664 ms** —
+strict taught order — with ~780 ms bursts matching the ±π/5 band (no latching) and zero overlapping
+windows (no compositing). That single probe closed three scar classes at once and is now filed as a
+reusable `probe_definition`.
+
+**Verify chain — orchestrator-verified:** `check:renderer-syntax` OK · `tsc` 0 errors ·
+`validate:concepts` **127 PASS / 0 FAIL** · THE EYE `ac_voltage_capacitor` **39/39** (run
+`20260723-165513`) · `capacitance` **44/44, 14/14 H2 at 0.00%** · `ac_voltage_resistor` 39/39 ·
+`ac_voltage_inductor` 39/39 · fresh founder_drive 9/27/8, 0 collisions, 0 flags, 0 consoleErrors.
+**Ordering check the orchestrator made rather than assumed:** the fix dispatch tested against concept
+JSON md5 `03ea328a47cc04ee09a9b9ca363e09bc`, and the file on disk carries that exact md5 — so J1b was
+already in place when THE EYE ran; both fixes are covered by the same 39/39 build, no stale-JSON gap.
+
+**Scope (DF1):** `git show 219937d -U0 | grep -cE "acr_|acl_|ACR_|ACL_"` = **0**. One file, +32/−16.
+
+**Commit:** `219937d` — `fix(engine-loop): ac_capacitor E11 charge-glyph polarity [peter_parker:renderer_primitives]`.
+
+**Outcome:** founder-proxy Checkpoint B **cycle 2 → APPROVE**, with a fix cycle still in hand.
+
+---
+
+## Stage 3 · process record
+
+**The no-DB-writes constraint held.** After the Stage-2 violation (a fix dispatch wrote 3 rows directly
+to the live `engine_bug_queue`; caught, remediated, root-caused to a dispatch prompt that omitted the
+trial override), every Stage-3 dispatch prompt restated the constraint explicitly — including fix
+cycles, which was the specific gap. **Zero violations across all four Stage-3 dispatches.** Verified live
+at Checkpoint C: `query_engine_bug_queue.ts` returns "No matching rows" for `ac_voltage_capacitor`,
+`ac_voltage_inductor` AND `ac_voltage_resistor` — zero live rows across the entire chapter.
+
+**Three defects shipped past both machine gates AND both AI reviewers**, each caught only by
+artifact-level review: the unbuilt beads (a `visible_elements` entry, a glow alias and an `elementType`
+gate all passed while zero meshes existed); the invisible charge layer (pinned at `opacity: 0` by a
+registration bug — every check on it passed *vacuously*); and the permanently-dimmed sandbox (THE EYE
+captures in state order and **minted the baseline with the bug in it**). THE EYE reported 39/39 both
+before and after all three. The directive that came out of it — **presence is not correctness**, and a
+negative-form check ("X never does Y") must be preceded by an existence assertion — is filed as
+`review_negative_form_check_is_vacuous_without_an_existence_assertion` and
+`review_a_newly_revealed_layer_has_never_been_content_reviewed`.
+
+**Two structural gate blind spots identified:** THE EYE posts no cue times, so it cannot see caption
+ORDERING defects; and canvas-internal text is invisible to founder_drive's DOM collision probe — which is
+exactly why the sealed sibling's identical `X_C` strike-through survived its own Checkpoint C.

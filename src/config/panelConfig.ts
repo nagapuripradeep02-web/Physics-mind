@@ -1522,6 +1522,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    ac_voltage_capacitor: {
+        concept_id: 'ac_voltage_capacitor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_capacitor',
+            label: 'AC Voltage on a Capacitor — i leads v by ¼ cycle, X_C = 1/(ωC) (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

@@ -422,7 +422,7 @@ INSERT INTO engine_bug_queue (
 ) VALUES (
   'field3d_rms_subscript_ascii_in_renderer_text_paths',
   'Rule 34c: the ac_resistor scenario''s renderer-HARDCODED on-canvas text paths render rms subscripts as ASCII "V_rms"/"I_rms" while the concept JSON formula_overlay surfaces correctly use Unicode Vᵣₘₛ/Iᵣₘₛ. ASCII appears in the DOM HUD innerHTML (field_3d_renderer.ts:24812-24813), the canvas ctx.fillText graph level-line labels (:24575, :24589), the meter sprite (:24793), and the S7/S8 derivation chain (:24477-24478). The S7 meter sprite also appears TRUNCATED ("2.00 A² -> I_", the "rms" clipped), a possible label_sprite_wide_string_clipped recurrence on that path.',
-  'MINOR',
+  'MODERATE',
   'peter_parker:renderer_primitives',
   'The ASCII->Unicode subscript sweep covered the concept-JSON formula_overlay path (Vᵣₘₛ/Iᵣₘₛ correct) but skipped the three RENDERER-hardcoded text paths — exactly the "a sweep of one path silently skips the others" failure Rule 34c warns about. Owner is the ENGINE, not json_author: the JSON is already Unicode; the ASCII strings are literals in field_3d_renderer.ts. The meter-sprite truncation''s separate root cause: updateLabelSpriteText does not resize a plain createLabelSprite sprite''s canvas on a live redraw, so a S5-short-text/S7-long-text re-task clips.',
   'Any rms/subscript Unicode sweep on a field_3d scenario must cover ALL renderer text paths — DOM innerHTML, canvas ctx.fillText, and createLabelSprite/createWideLabelSprite/pmCreateAutoLabel — verified against the JSON formula surfaces. Before swapping, ACTUALLY VERIFY the ᵣₘₛ glyphs (U+1D63/U+2098/U+209B) render in the target font via a headless render + pixel-crop check, not by assumption: a 9px canvas ctx.font=''monospace'' rasterizes them as an illegible merged blob on this stack even though the SAME glyphs are clearly legible in a 13px DOM element using the identical ''monospace'' font family (DOM text layout hints much better than a raw canvas fillText raster at small sizes) — so the right call differs PER TEXT PATH, not per font-family name. Route small canvas-drawn instances through the Cambria-Math serif (as the formula panel already does); DOM HUD instances at >=13px in this codebase''s monospace stack are fine as-is. For any label sprite that gets RE-TASKED to a longer live string after creation (via updateLabelSpriteText), use pmCreateAutoLabel (not createLabelSprite) so live redraws re-measure and re-fit the canvas — createWideLabelSprite is NOT a fix for a live-updating label (it has no retained canvas/ctx, so updateLabelSpriteText silently no-ops on it).',
@@ -531,3 +531,304 @@ INSERT INTO engine_bug_queue (
   'ch7-stage2-ac_voltage_inductor-checkpointB',
   'incident'
 );
+
+-- ============================================================================
+-- Ch.7 Stage 3 · 2026-07-23 · founder-proxy Checkpoint B (ac_voltage_capacitor)
+-- ----------------------------------------------------------------------------
+-- TRIAL: FILES ONLY. None of the below is applied to the live engine_bug_queue.
+-- Founder rules on each row at chapter end (apply / edit / discard).
+--
+-- SCHEMA NOTE (filed as a directive row below): BOTH upstream Checkpoint-B
+-- reports emitted SQL that would NOT have INSERTed. eye-walker used
+-- non-existent columns (concept_id, notes) and omitted 5 required columns;
+-- quality-auditor used a non-existent `description` column and omitted 3.
+-- Rows here are re-authored by founder-proxy against the live 13-column list.
+--
+-- ADJUDICATION SUMMARY (founder-proxy cycle 0, full report in
+-- docs/loop_runs/ch7/ac_voltage_capacitor/founder_proxy_report_checkpointB.md):
+--   * eye-walker's "theta not reset at state entry" root cause was REFUTED by a
+--     live probe measuring 0.00 degrees offset on clean forward entry. But its
+--     OBSERVATION was real with a worse cause -- see the dt-accumulator UPDATE.
+--   * quality-auditor's "beads never built" was CONFIRMED; eye-walker's
+--     "beads never cross the gap" was a VACUOUS pass (no beads exist).
+--   * Two further P1s were found by NEITHER reviewer (dim_apparatus one-way;
+--     and, during the fix cycle, the charge-glyph dots never registered in
+--     sceneObjects -- the entire Rule-33 micro layer invisible in every state).
+-- ============================================================================
+
+-- E3 is a RECURRENCE of an existing class: reopen, never mint a duplicate bug_class.
+UPDATE engine_bug_queue SET
+  status = 'OPEN',
+  severity = 'CRITICAL',
+  concepts_affected = ARRAY['ac_voltage_resistor','ac_voltage_inductor','ac_voltage_capacitor']::text[],
+  root_cause = 'REOPENED 2026-07-23 (ac_voltage_capacitor Checkpoint B). The 2026-07-22 fix (ad7975b) addressed only the reported SYMPTOM (PM_acrTwinBeadAccum, the S6 DC-twin bead drift) and left the class vector in place: the MASTER OSCILLATION PHASE of all three ch7 scenarios was still an incremental accumulator -- PM_acrPhase (:24737), PM_aclPhase (:25686), PM_accPhase (:26822) -- i.e. exactly the construct this row prohibits, driving the single most load-bearing scripted quantity in each scenario. The new ac_capacitor scenario cloned the unfixed pattern. Because SET_TIME_FREEZE can jump or rewind the time var while an accumulator cannot, THE EYE frames did not show the authored phase (STATE_1__dense_t01000.png read v=-10.0V where omega*t gives v=+10.0V, a ~183 degree residual), every frozen H2 baseline was minted at an arbitrary phase, and the rewind-determinism standard this row established failed (measured +540 degree residual after a pin-later-then-pin-earlier probe; frames 5e895c55 != c07ec7da). FIXED for ac_capacitor only in 832b1d3 (theta = PM_accPhaseBase + omega*(t - PM_accTAnchor), anchor re-seated only on omega change, preserving the ad7975b re-anchor-on-trusted-drag pattern); post-fix probe re-derives to 4.712389 = omega*t exactly (0.00 degrees) with byte-identical frames e268014c3b7cd007. The acr_/acl_ instances remain UNFIXED pending the founder chapter-end decision (deliberately out of scope: reopening sealed work is a human call).',
+  prevention_rule = 'UNCHANGED AND NOW EXPLICITLY CLASS-WIDE: all scripted/choreographed motion in a field_3d scenario must be a PURE FUNCTION of absolute state-local t. When closing this row for a specific element, the owner MUST grep the whole scenario block for every remaining "+= .* dt" and either convert it or record why it is trusted-drag-only -- closing on the single reported element is exactly what allowed this recurrence one commit later. The no-phase-jump-under-live-drag requirement is satisfied by the ad7975b re-anchor pattern (closed form while undragged; (segment-start t, value, rate) baseline re-anchored on each trusted drag), already proven in this same file, and by accS5PhaseAtTr (:26023) in this very scenario.'
+WHERE bug_class = 'field3d_dt_accumulated_motion_invisible_to_eye_timepin';
+
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES
+
+('field3d_scenario_declares_bead_element_but_never_builds_the_meshes',
+ 'ac_capacitor tagged its two wire tubes elementType "acc_beads" but never created any bead mesh, so the per-frame bead loop matched zero objects and five narration sentences described carrier motion that does not exist on screen',
+ 'CRITICAL', 'peter_parker:renderer_primitives',
+ 'buildAcCapacitor (:26232-26240) gave the WIRE tubes the canonical id/elementType "acc_beads" so the generic glow-alias resolver would land on the bare key "beads", then never wrote the bead-creation loop. Because the elementType exists, visible_elements matching, the glow resolver and per-state visibility all PASS while the animated objects are absent; the update loop guard (:26862, bu.row === undefined) silently matched nothing and accWireCellPoint/beadFrac/aFrac became dead code computed every frame. Both sealed siblings build the pool correctly (:24291, :25193). Consequence: s1_2, s1_3, s2_2 (the designated Rule-16a visual_counter), s3_3 and s5_3 all narrated motion that was not rendered, and three of them carry glow:"beads", which brightened a static grey tube.',
+ 'When cloning a sibling scenario micro band, grep the NEW build function for the per-frame loop OWN discriminator (row:/cell:/pool:) before shipping -- sharing an elementType between static geometry and the animated pool makes every declarative gate resolve while the meshes are missing. Every narration sentence or glow target describing carrier motion must have a countable built object behind it.',
+ 'js_eval',
+ 'For each glow/narration target naming a moving micro object, assert >=1 built mesh carries the per-frame loop discriminator field (here: count objects with elementType==="acc_beads" AND userData.row !== undefined; expect >= 14, got 0 pre-fix).',
+ 'FIXED', ARRAY['ac_voltage_capacitor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('field3d_child_mesh_never_registered_in_sceneobjects_so_updater_never_matches',
+ 'The charge-glyph dots were children of the pool groups but addToScene only registers the object handed to it, so no dot was ever in sceneObjects, the per-frame loop matched nothing, and the entire Rule-33 charge-accumulation micro layer stayed at build-time opacity 0 -- invisible in every state',
+ 'CRITICAL', 'peter_parker:renderer_primitives',
+ 'Found during the Checkpoint-B fix cycle (NOT by quality-auditor, eye-walker OR founder-proxy at cycle 0 -- all three passed S3, and founder-proxy explicitly called it "the cleanest state in the sim"). addToScene pushes only the object it is given; the charge dots were added as children of the two pool groups, so sceneObjects never contained them and the per-frame opacity/colour updater iterated zero dots. Every dot therefore kept its build-time opacity: 0. S3, whose entire lesson is charge piling onto the plates, rendered no charge glyphs at all. Same root-cause FAMILY as field3d_scenario_declares_bead_element_but_never_builds_the_meshes: an updater predicate that can never match, with every declarative gate still passing. Fixed in 832b1d3 by iterating the pools directly.',
+ 'A per-frame updater that selects from sceneObjects must be paired, at build time, with an assertion that its selector actually matches a non-zero count -- child meshes added via group.add() are NOT in sceneObjects unless registered explicitly. Any object whose visual state is driven per-frame (opacity, colour, position) must be built VISIBLE-by-default or have its updater existence-checked, so that a never-matching selector fails loudly instead of rendering an invisible layer.',
+ 'js_eval',
+ 'At build time, for every per-frame updater selector in the scenario, assert the selector matches >= 1 object in sceneObjects. Additionally assert no element authored in visible_elements renders with opacity 0 in the state that declares it visible.',
+ 'FIXED', ARRAY['ac_voltage_capacitor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('field3d_dim_apparatus_one_way_with_no_restore_on_state_exit',
+ 'dim_apparatus set opacity 0.45 on every scenario mesh with no restore branch, so the explore sandbox and every revisited state shipped permanently dimmed once the derivation state had been played',
+ 'CRITICAL', 'peter_parker:renderer_primitives',
+ 'applyAcCapacitorState (:26517-26523) applied a one-time opacity=0.45 traversal when d.dim_apparatus was true and nothing ever restored it. Only the live-driven channels (acc_efield, acc_charge opacity, rewritten each frame) recovered; the source, both wires, both plates, the current arrow and every sprite label stayed at 0.45 for the remainder of the session. Because the normal teaching order is S1->S9 THROUGH the S8 derivation state, the DIMMED sandbox was the DEFAULT experience, not an edge case, and Rule 25d state revisits were dimmed too. Rule 29 makes brightness the only emphasis channel, so a permanently 0.45 apparatus also destroyed glow dynamic range for the rest of the session. THE EYE never caught it because it captures states in order and minted S9 baseline WITH the bug; eye-walker reads states independently and has no cross-state-order model; quality-auditor read S8 as "apparatus correctly dimmed" and S9 as "free-running" without comparing S9 brightness against S1. The identical one-way dim exists in the SEALED ac_inductor at :25402 and is left UNFIXED pending founder decision.',
+ 'Any one-time material mutation applied on state ENTRY (opacity, colour, scale, visibility of a shared mesh) must have an explicit inverse applied on entry to every state that does not request it -- never rely on the per-frame updater to restore it, because the updater covers only the live-driven channels. Pair every "if (d.<flag>) { mutate }" with an "else { restore }" in the same pass, capturing the pristine value on first touch.',
+ 'js_eval',
+ 'Capture the explore state twice at an identical phase -- once fresh, once after visiting the dim_apparatus state -- and byte-compare. Any difference is this bug. Evidence: S9_fresh.png vs S9_after_S8.png, both at v=+7.1 V / i=-1.41 A.',
+ 'FIXED', ARRAY['ac_voltage_capacitor','ac_voltage_inductor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('field3d_latched_phase_claim_caption_persists_past_its_instant',
+ 'The tangent-stop caption latched to the most recently fired stop and redrew every frame thereafter, so a caption asserting an instantaneous phase fact stayed on screen while the phase moved on',
+ 'CRITICAL', 'peter_parker:renderer_primitives',
+ 'accDrawViGraph (:26674-26684) set activeStopIdx to the last fired stop and redrew it unconditionally. Even with phase-correct stop times, the final caption displayed for the remaining ~10 s of a 16 s state while v and i completed 2.5 further cycles, so the canonical frozen H2 baseline showed a false claim (STATE_4__frozen.png: "steepest fall -> i trough" beside i = +0.83 A, tangent visibly climbing). ac_capacitor also ESCALATED the sibling shape-only labels ("steepest climb") into claims about a SECOND quantity ("steepest climb -> i peak"), which converts an imprecise label into false physics. Fixed in 832b1d3 by re-deriving the drawn caption from live theta each frame (the accDrawPGraph storing/returning pattern), showing a stop only within +/-pi/5 of its own phase.',
+ 'A caption asserting an instantaneous physical condition must be true WHENEVER DISPLAYED: either hold the phase for a readable dwell at the stop, clear the caption after a short window, or re-derive it from the same live theta the HUD uses each frame (the storing/returning label in the power state already does this correctly and is the pattern to clone). Never latch a phase claim. When cloning a sibling caption set, do not escalate a curve-SHAPE descriptor into a claim about another quantity without re-deriving the trigger.',
+ 'js_eval',
+ 'At every dense pin in the tangent state, assert the drawn caption claim agrees with the concurrent HUD v/i within 5 degrees of phase.',
+ 'FIXED', ARRAY['ac_voltage_capacitor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('phase_anchored_caption_authored_as_wallclock_at_ms',
+ 'STATE_4 tangent_stops_at_ms [1500,4500,7500] against T=4.0 s put every stop 45 degrees off the phase its caption named, with two of three sign-inverted on the quantity claimed',
+ 'CRITICAL', 'alex:json_author',
+ 'The authored stop times contradicted physics_block section S4, which specifies t = 0 / 1.0 / 2.0 s. Verified live on the review player at a clean state entry with phase offset measured at 0.00 degrees: t=1500 gave v=+7.2/i=-1.39 under "steepest climb -> i peak"; t=4500 gave v=+7.0/i=+1.43 under "flat crest -> i=0"; t=7500 gave v=-7.2/i=+1.40 under "steepest fall -> i trough". Fixed to [4000,5000,6000] (congruent to 0/1.0/2.0 s mod the 4.0 s period). NOTE the sealed ac_voltage_inductor authors NO stops and inherits the same wrong ENGINE DEFAULT [1500,4500,7500] at the same f -- its t=4.5 s stop labels "flat crest" while i climbs at 71% of max. Left unfixed pending founder decision.',
+ 'A caption naming a phase-specific fact (zero crossing, crest, steepest slope) must be authored congruent to that phase modulo the period (nT, nT+T/4, ...), recomputed whenever the locked frequency changes, and cross-checked against the physics block stop table before commit. An engine DEFAULT for a phase-anchored schedule is itself a defect vector -- prefer no default and a hard failure over a plausible-looking constant that silently ships.',
+ 'js_eval',
+ 'For each tangent_stops_at_ms entry s: theta = 2*PI*f*(s/1000); assert the named quantity matches sin/cos(theta) within 5 degrees. Run it against the ENGINE DEFAULT too, not just authored values.',
+ 'FIXED', ARRAY['ac_voltage_capacitor','ac_voltage_inductor']::text[], ARRAY['src/data/concepts/ac_voltage_capacitor.json']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('field3d_hardcoded_sprite_label_prespoils_later_state_reveal',
+ 'The acc_arrow world label hardcoded the STATE_2 result and shipped in every state visible_elements, and the i-trace plus HUD i line were gated only inside the reveal state own mode',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ 'createLabelSprite("i (leads v by 1/4 cycle)") at :26334 was bound to acc_arrow, which appears in every state. The i-trace gate at :26602 fell back to (t - tWin - 1) outside quarter_cycle_lead so it drew from t=0, and the HUD i line at :26944 was ungated. STATE_1 therefore printed STATE_2 answer, contradicting skeleton section 0a ("No i-trace before S2") and the DoD symbol table ("current + peak ... First: S2"), and deflating the concept Rule-16a confrontation beat. Live regression of the OPEN scar teach_do_not_prespoil_a_later_reveal. Fixed in 832b1d3 via a single accIRevealed predicate gating label, trace and HUD line together.',
+ 'A hardcoded sprite or canvas label stating a RESULT must be gated by the state that teaches it, never bundled into an always-visible element token. When a skeleton says "quantity X not before STATE_N", the gate belongs on the label AND the trace AND the HUD line, not only on the formula overlay.',
+ 'manual',
+ 'Grep every hardcoded label string in a new scenario for result-claims; confirm each is gated to its teaching state, and diff the pre-reveal state frame against the DoD "first appears at" column.',
+ 'FIXED', ARRAY['ac_voltage_capacitor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('field3d_ascii_underscore_subscript_in_secondary_readout',
+ 'The U readout emitted a literal "U_max" while the main HUD ten lines earlier correctly emitted q<sub>max</sub> -- the Rule 34c sweep covered the primary HUD only',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ ':26965 built its innerHTML by hand without the <sub> markup its neighbour at :26956 uses. Note the scenario compose routine accComposeSegments (:26086) is a CLOSED two-token whitelist /(X_C|v_C)/g and could not have caught _max even if this path had called it -- so a compose routine is NOT a Rule 34c guarantee, only a helper for the tokens it whitelists. Fixed in 832b1d3 (real subscript + whitelist widened to carry subscript text generally). The SAME defect exists in the SEALED ac_inductor at :25810 (acl_ureadout emits a literal U_max) and is left unfixed pending founder decision.',
+ 'Rule 34c sweeps must cover EVERY readout element in a scenario, not just the main HUD, and must not assume a compose routine covers unseen tokens: grep the new block for /[A-Za-z]_[A-Za-z]/ inside any innerHTML/fillText/label string before shipping, and widen any compose whitelist to the full symbol table.',
+ 'js_eval',
+ 'Assert no visible DOM or canvas text in the scenario matches /[A-Za-z]_(max|min|rms|C|L|m)\b/.',
+ 'FIXED', ARRAY['ac_voltage_capacitor','ac_voltage_inductor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('glow_focal_on_live_driven_object_exempted_becomes_total_noop',
+ 'Exempting live-driven objects from the generic glow pass is correct, but combined with brightenOnly the exemption deleted the emphasis entirely on three narration beats',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ 'applyAcCapacitorGlow (:26991) continued on acc_efield and acc_charge because their colour and opacity are rewritten every frame (:26883-26899) and the generic pass would clobber them -- correct in itself, and explicitly endorsed by founder-proxy as the right interpretive call. But the scenario also passed brightenOnly=true, so applyGlowEmphasis (:2233) set touchOp=false and never dimmed peers either. A focal of efield or charge therefore produced ZERO visual change anywhere, silencing s3_2, s3_3 and s7_2. Fixed in 832b1d3 by applying the focal boost as a multiplier on the live channel.',
+ 'Exempting a live-driven object from the generic glow pass is correct, but the scenario must then apply the focal boost as a MULTIPLIER on the live channel inside its own update function -- otherwise the exemption silently deletes the emphasis. Re-check every exemption against the brightenOnly setting: exemption + brightenOnly = no-op.',
+ 'js_eval',
+ 'For each key in a scenario closed glow enum, assert at least one visible channel measurably changes between focal and non-focal frames.',
+ 'FIXED', ARRAY['ac_voltage_capacitor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('canvas_graph_label_collides_with_peak_reference_line',
+ 'The on-graph X_C label baseline coincided with the vm peak dashed line, striking the label through in every frame of the state -- and canvas-internal collisions are invisible to the DOM collision probe',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ 'accFillComposedOnCanvas was called at (padL+3, padT+10), baseline y ~26 px, while yV(vm) with vAxis = 1.15*vm landed at y ~23.8 px. Visible in STATE_5__frozen.png and every S5 dense frame. founder_drive reported overlayCollisions: [] because its probe walks DOM overlays only -- a genuine harness blind spot. Fixed in 832b1d3; the engine agent also caught and fixed a SELF-INFLICTED recurrence of this exact class mid-run when its new S4 slope chip reproduced the collision, then routed all top-left labels through a shared accClearTextY.',
+ 'Canvas-internal overlays are invisible to the founder_drive DOM collision probe: on-graph text must be placed against the COMPUTED y of every reference line in the same pane, never by eye. Extend the collision harness to canvas-drawn text, or the class recurs undetected.',
+ 'js_eval',
+ 'Assert |labelBaselineY - yV(referenceLine)| > fontSize for every on-graph label and every reference line in the same pane.',
+ 'FIXED', ARRAY['ac_voltage_capacitor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('field3d_duplicate_formula_surface_sprite_label_vs_formula_overlay',
+ 'The stored-energy relation was printed on two surfaces at once -- the 3D gauge sprite and the Cambria-Math formula overlay -- and arrived a state before its authored home',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ 'The U-gauge sprite hardcoded "stored energy U = 1/2Cv^2" (:26369; sibling :25268 with 1/2Li^2). At S7 the authored formula surface is the two-line "<p> = 0 / U = 1/2Cv^2", so the same relation rendered twice (STATE_7__frozen.png). At S6 the authored surface is "p = v.i", so the relation appeared one state early. Fixed in 832b1d3 for ac_capacitor; the sibling instance is left unfixed pending founder decision.',
+ 'Rule 34b is per-STATE and spans all text paths: an instrument sprite carries the quantity NAME and its live value only; the symbolic relation lives on the single formula surface of the state that teaches it. Check gauge/meter sprite strings against every state formula_overlay the element is visible in, not just the state it was designed for.',
+ 'manual',
+ 'For each state, extract every rendered symbolic relation across DOM overlay, canvas text and 3D sprite labels; assert no relation appears twice and none precedes its authored state.',
+ 'FIXED', ARRAY['ac_voltage_capacitor','ac_voltage_inductor']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'incident'),
+
+('review_negative_form_check_is_vacuous_without_an_existence_assertion',
+ 'A frame-reading clean check of the form "X never does Y" passes vacuously when X does not exist, which masked a completely unbuilt visual band',
+ 'MODERATE', 'ambiguous',
+ 'The eye-walker report listed "beads/charge glyphs never cross the plate gap in any zoomed frame" under Checked clean, on a build where ZERO bead meshes existed and every charge dot was at opacity 0. The check passed for the wrong reason and actively concealed a CRITICAL finding, while the parallel quality-auditor found it by reading the build function. The same review ALSO passed S3 as visually clean while its entire charge-glyph layer was invisible. Same failure shape is available to every negative-form visual check (never overlaps, never warms, never leaks).',
+ 'Every negative-form visual check must be preceded by an EXISTENCE assertion on its subject ("N beads present" before "no bead crosses the gap"); a check whose subject count is zero is reported as INCONCLUSIVE, never as clean. Frame-reading roles must additionally cross-check any narration sentence naming a moving object against a countable rendered object, and must not report a state clean on the strength of its HUD/annotation numbers when the state own micro layer is what it teaches.',
+ 'manual',
+ 'Audit each Checked-clean line for negative form; for each, require the subject-count evidence that makes the check meaningful.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'directive'),
+
+('scar_candidate_sql_authored_outside_the_live_column_list',
+ 'Both upstream Checkpoint-B reports emitted scar SQL that would not INSERT -- non-existent columns and omitted NOT-NULL columns',
+ 'MODERATE', 'ambiguous',
+ 'eye-walker used columns concept_id and notes (neither exists) and omitted title, root_cause, fixed_in_files, discovered_in_session and row_type. quality-auditor used description (does not exist) and omitted title, fixed_in_files and discovered_in_session. The live 13-column list is visible in this very file. Under trial rules the rows are files, so the breakage would surface only at the founder apply step -- i.e. at the worst possible moment, in a batch.',
+ 'Scar rows must be authored against the column list of the chapter scar_candidates.sql file itself (copy an existing row and edit values), with probe_type in (sql|js_eval|manual), row_type in (incident|probe_definition|directive), severity in (CRITICAL|MAJOR|MODERATE) -- NOTE: the live CHECK has NO MINOR level; owner_cluster is restricted to alex:architect|alex:physics_author|alex:json_author|peter_parker:renderer_primitives|peter_parker:runtime_generation|peter_parker:visual_validator|ambiguous, with NO reviewer-role values, array columns as ARRAY[...]::text[] never NULL, and bug_class checked against the other candidate files in the same run before minting a new class.',
+ 'sql',
+ 'Dry-run each candidate file against the table definition before handing it to the founder; assert every column named exists and every NOT NULL column is supplied.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB', 'directive');
+
+-- (end of Stage 3 records)
+
+-- ----------------------------------------------------------------------------
+-- Ch.7 Stage 3 · 2026-07-23 · founder-proxy Checkpoint B **cycle 1** (ac_voltage_capacitor)
+-- TRIAL: FILES ONLY. Not applied to the live engine_bug_queue.
+-- Checked against every existing bug_class in this run's candidate file — no collisions.
+-- ----------------------------------------------------------------------------
+
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES
+
+('field3d_capacitor_charge_glyphs_single_plate_and_sign_locked_colour',
+ 'Capacitor charge glyphs render one plate at a time with per-plate fixed colours, so equal-and-opposite is never shown and polarity inverts at v<0',
+ 'CRITICAL', 'peter_parker:renderer_primitives',
+ 'The counter-plate pool is multiplied by 0.06 (effectively hidden) whenever the other pool is lit (:27169-27170), and pool colours are compile-time constants per plate (:25984 ACC_CHARGE_TOP_HEX red / ACC_CHARGE_BOT_HEX blue) rather than functions of sign(q) -- so the top pool can only ever be red and the bottom only ever blue, and the correct q<0 configuration is undrawable. Confirmed in pixels 3 s apart in the same state: at q=+0.90 C red dots on the TOP plate only; at q=-1.27 C blue dots on the BOTTOM plate only. The composite a teacher sees is charge appearing on one plate, fading, then appearing on the other -- the visual of charge CROSSING THE GAP, the exact misconception skeleton.md:244 item (2) says the parallel-plate apparatus exists to prevent, and which s3_3 narration explicitly denies. Found only at Checkpoint B cycle 1, because the layer was invisible (opacity 0) until the registration fix in 832b1d3 promoted it into review for the first time.',
+ 'A charge-accumulation layer must render BOTH plates simultaneously at |q|-proportional opacity, with each pool colour a function of its own instantaneous sign, never a per-plate constant. Charge that appears on one plate and later on the other reads as charge crossing the gap -- the exact misconception a parallel-plate apparatus exists to prevent.',
+ 'js_eval',
+ 'Pin any instant: assert both pools have equal non-zero counts of children with material.opacity > 0.3, and that the two pools hex colours differ; re-pin at a v<0 instant and assert the top pool hex has swapped to the negative constant.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB-cycle1', 'incident'),
+
+('review_a_newly_revealed_layer_has_never_been_content_reviewed',
+ 'Fixing a visibility bug promotes a layer into review for the FIRST time -- presence is not correctness',
+ 'MODERATE', 'ambiguous',
+ 'A layer pinned at opacity 0 by a registration bug passes every review vacuously; when the visibility bug is fixed the layer CONTENT (polarity, colour convention, physics) enters review for the first time, but the fix is filed as a closed defect and the layer is never re-examined. On ac_voltage_capacitor the charge layer went from invisible (cycle 0, where S3 was graded "the cleanest state in the sim" by founder-proxy and passed clean by BOTH quality_auditor and eye_walker) to visible-and-physically-wrong (cycle 1) without any reviewer re-opening it. Written against the reviewer cluster rather than the engine because the miss was a review-protocol gap, and it applies to founder_proxy as much as to quality_auditor and eye_walker.',
+ 'When any fix restores visibility to a previously-invisible element, that element must be re-reviewed for physics correctness from scratch in the SAME cycle -- it carries no review history, only a bug history. Treat it as new content, not as a closed defect.',
+ 'manual',
+ 'For every FIX(engine) commit whose message or diff contains "invisible", "never rendered", "opacity 0" or "never registered": re-open the affected element content review and require a fresh correct_YN judgement with a frame citation.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB-cycle1', 'directive'),
+
+('unbound_one_shot_static_at_ms_races_cue_armed_siblings_in_same_state',
+ 'Removing a scenario_cue leaves a static at_ms that arms before its cue-bound siblings, reversing the taught caption order in the live player',
+ 'MODERATE', 'alex:json_author',
+ 'cueTriggerMs (field_3d_renderer.ts:2431) returns the posted cue time when bound and the authored at_ms otherwise. Within one state, cue-bound one-shots arm on narration times (7310/13408 ms measured live) while an unbound sibling arms on its authored constant (6000 ms), so the unbound event fires FIRST regardless of its position in the taught sequence -- the PRIMARY AHA captions ran fall -> climb -> fall -> crest. sendCueTimes() runs unconditionally on every SET_STATE (build_review_site.ts:1549) and is NOT gated on mute, so this is the DEFAULT teacher path, and THE EYE posts no cue times so its frames show the clean authored order and the gate is structurally blind to the whole class.',
+ 'Within a single state, a family of sequential one-shots is either ALL cue-bound or ALL static -- never mixed. Removing a binding is never a valid resolution for a mis-bound cue; rewrite the narrating sentence so the binding is true.',
+ 'js_eval',
+ 'For each state, collect the scenario_cue set of its tts_sentences and the *_at_ms keys of its scenario config; if a numbered family (foo_1..foo_N) has some members bound and some not, FAIL.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB-cycle1', 'incident'),
+
+('eye_frozen_candidate_offset_falls_outside_engine_display_band',
+ 'THE EYE frozen-frame candidate offset was tuned to a latched caption and misses a live-derived display band',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ 'deriveStateMeta picks the frozen candidate at stops[2]+800 ms, an offset that only captured the caption while it latched. After the caption became live-theta-derived with a +/-pi/5 band (= +/-400 ms at f=0.25 Hz), the candidate lands 400 ms outside the band, so the canonical H2 baseline never exercises the caption path at all. Not a screen defect -- the frame is strictly better than cycle 0 and carries the state atomic claim via the slope chip -- but it is lost GATE COVERAGE: a future regression in the stop-caption path would be invisible to THE EYE.',
+ 'When a caption changes from latched to phase-banded, re-derive every frozen-frame candidate offset that was chosen to capture it; the offset must be inside the new band (stops[2]+300 ms lands at 207 deg, inside +/-36 deg).',
+ 'js_eval',
+ 'For each state whose frozen candidate is expressed as <cue>+delta, assert delta is inside the renderer display band for that cue; FAIL if the frozen frame renders no caption where the state declares one.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB-cycle1', 'probe_definition'),
+
+('slider_step_grid_offset_when_min_is_nonzero',
+ 'Choosing a slider step from the default value alone leaves the thumb off-grid whenever min is non-zero',
+ 'MODERATE', 'alex:json_author',
+ 'An HTML range input snaps to min + n*step, not to n*step. A step chosen so that default/step is an integer still leaves the thumb off the default when min != 0: min=0.04, step=0.0127, default=0.1273 snaps to 0.1289 (machine-confirmed by founder_drive as valueBefore "0.1289"). NOTE the prescription that caused this was founder_proxy own at cycle 0, which assumed min=0 -- recorded here as a reviewer error, not an authoring one. Residual 1.26 %, both readings display 0.13 F at 2 dp, physics untouched (X_C = 5.0 Ohm, i_m = 2.00 A confirmed at S5). Exact value is step = 0.01455 = (0.1273 - 0.04)/6.',
+ 'Choose step so that (default - min)/step is an integer; state that arithmetic in the fix request. Also keep physics_engine_config.variables.<v>.step and field_3d_config.slider_controls.<v>.step consistent even though only the latter is read by the renderer.',
+ 'js_eval',
+ 'For every slider_controls entry, assert Math.abs(((default - min)/step) - Math.round((default - min)/step)) < 1e-9.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB-cycle1', 'incident');
+
+-- (end of Stage 3 cycle-1 records)
+
+-- ----------------------------------------------------------------------------
+-- Ch.7 Stage 3 · 2026-07-23 · founder-proxy Checkpoint B **cycle 2** (ac_voltage_capacitor)
+-- TRIAL: FILES ONLY. Not applied to the live engine_bug_queue.
+--
+-- SCHEMA CORRECTION APPLIED CHAPTER-WIDE AT CHECKPOINT C (2026-07-23):
+--   Checkpoint C validated this whole file against the LIVE CHECK constraints
+--   (queried read-only) rather than against founder_proxy's own spec, and found
+--   8 rows that would have FAILED to INSERT:
+--     * severity: live CHECK is (CRITICAL | MAJOR | MODERATE). There is NO
+--       'MINOR' level. 6 rows used it -- including one inside the SEALED
+--       ac_voltage_resistor Stage-1b block, which had been certified
+--       "schema-valid" at that concept's own Checkpoint C.
+--     * owner_cluster: live CHECK is (alex:architect | alex:physics_author |
+--       alex:json_author | peter_parker:renderer_primitives |
+--       peter_parker:runtime_generation | peter_parker:visual_validator |
+--       ambiguous). There are NO reviewer-role values. 3 directive rows used
+--       'alex:eye_walker' / 'alex:quality_auditor'.
+--   All 8 corrected in place (MINOR -> MODERATE; reviewer roles -> ambiguous,
+--   with the intended owner preserved in each row's prose so no routing
+--   information is lost).
+--
+--   The sharpest instance: the row scar_candidate_sql_authored_outside_the_live_column_list
+--   -- filed BECAUSE the upstream reports emitted SQL that would not INSERT --
+--   itself violated the schema twice AND propagated the wrong enum verbatim in
+--   its own prevention_rule. That text is now corrected.
+--
+--   FOUNDER DECISION PENDING (real information the trial produced): the scar
+--   schema has NO vocabulary for reviewer-owned process directives, and the
+--   trial has now generated four of them. Either widen owner_cluster to include
+--   alex:quality_auditor / alex:eye_walker / alex:founder_proxy, or accept
+--   'ambiguous' permanently. founder_proxy recommends widening -- a directive
+--   whose owner is 'ambiguous' cannot be routed, and routing is the column's
+--   whole purpose. Separately: decide whether severity gains 'MINOR' (restoring
+--   P1/P2/P3 resolution, matching how three concepts of rows were already
+--   authored) or whether the mapping becomes P1/P2/P3 -> CRITICAL/MAJOR/MODERATE.
+--   `.agents/founder_proxy/CLAUDE.md` states the WRONG enum and must be corrected
+--   either way -- it is founder-edited canonical source.
+-- ----------------------------------------------------------------------------
+
+-- Cycle 2: verified closed in pixels at four phases (frozen q=+0.90 C, dense
+-- t01000/t02000/t03000) plus the live player's explore-state drag. Both pools now
+-- share ONE opacity expression, so the asymmetry is UNREPRESENTABLE rather than
+-- merely retuned; the palette is keyed on sign(q); and the build loop pairs one
+-- top dot with one bottom dot per grid cell at identical (dx,dz), so equal counts
+-- are guaranteed at build time.
+UPDATE engine_bug_queue SET
+  status = 'FIXED',
+  fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[]
+WHERE bug_class = 'field3d_capacitor_charge_glyphs_single_plate_and_sign_locked_colour';
+
+-- Cycle 2: all three tangent stops cue-bound (4805/10903/17648 ms measured live);
+-- a fillText interception log shows FIRST appearances at 7600/12608/17664 ms --
+-- strict taught order. Resolved the prescribed way: the narrating sentence was
+-- REWRITTEN so the binding is true, not the binding removed.
+UPDATE engine_bug_queue SET
+  status = 'FIXED',
+  fixed_in_files = ARRAY['src/data/concepts/ac_voltage_capacitor.json']::text[]
+WHERE bug_class = 'unbound_one_shot_static_at_ms_races_cue_armed_siblings_in_same_state';
+
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES
+('live_player_caption_order_probe_via_filltext_interception',
+ 'Intercepting canvas fillText in the live player is the only gate that sees one-shot caption ORDER',
+ 'MODERATE', 'peter_parker:renderer_primitives',
+ 'THE EYE posts no cue times, so every canvas one-shot arms on its authored at_ms and the frozen/dense frames always show the clean authored order -- the gate is structurally blind to the order a teacher actually sees. The defect class was caught twice on ac_voltage_capacitor (cycle 0: a latched caption that outlived its instant; cycle 1: an unbound stop arming 4.9 s before its narration and reversing the PRIMARY AHA sequence) only because a reviewer drove the real player. Hooking CanvasRenderingContext2D.prototype.fillText inside the sim frame and stamping each matching draw with PM_simTimeMs turns that manual pass into a deterministic machine check, and additionally proves band-boundedness (no latching) and mutual exclusion (no compositing) from the same log.',
+ 'Any state whose canvas captions are armed by scenario_cue must be verified in the LIVE player, never from THE EYE frames alone: assert each caption family first appears in authored sentence order, each first appearance falls inside its own sentence window, and no two captions draw windows overlap.',
+ 'js_eval',
+ 'In the review player, install a fillText wrapper in the sim frame that records {text, PM_simTimeMs} for texts matching the state caption vocabulary, coalescing draws within 250 ms. Play the state for >= 2 full periods. FAIL if the order of FIRST appearances differs from the authored scenario_cue order, if any first appearance precedes its own sentence start, or if two distinct captions have overlapping draw windows.',
+ 'OPEN', ARRAY['ac_voltage_capacitor']::text[], ARRAY[]::text[],
+ 'ch7-stage3-ac_voltage_capacitor-checkpointB-cycle2', 'probe_definition');
+
+-- (end of Stage 3 cycle-2 records)
