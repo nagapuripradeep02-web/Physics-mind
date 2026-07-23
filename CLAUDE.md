@@ -48,10 +48,16 @@ invoked only by a quality-auditor FAIL routing (`[owner: peter_parker:*]`).
 **feedback-collector** — offline/nightly only; reads the feedback tables, writes proposals to
 `proposal_queue` for founder approval. Never invoked on a live serving path.
 
-**Three live renderers:** `field_3d_renderer.ts` (all current 3D diamonds),
-`particle_field_renderer.ts` (Ch.3 2D — drift/circuits/KCL on the CIRCUIT scenario engine), and
-`mechanics_2d_renderer.ts` + `pcplRenderer/*` (2D forces/friction; not the current focus). Other
-renderers exist (wave/optics/thermo) but are dormant.
+**Four live renderers:** `field_3d_renderer.ts` (all current 3D diamonds),
+`particle_field_renderer.ts` (Ch.3 2D — drift/circuits/KCL on the CIRCUIT scenario engine),
+`parametric_renderer.ts` (PCPL — the live engine for the Class-11 Vectors chapter; concepts are
+pure JSON with pixel coordinates), and `mechanics_2d_renderer.ts` (a separate, live-but-dormant
+scenario engine behind the old vectors/kinematics/forces JSONs — not product, §3). **Naming trap:**
+concept JSONs write `renderer_pair.panel_a: "mechanics_2d"` even for PCPL concepts (e.g.
+`scalar_vs_vector`) — `PCPL_CONCEPTS` in `aiSimulationGenerator.ts` overrides that label at the
+sim-assembler site, so the JSON string `"mechanics_2d"` does not mean `mechanics_2d_renderer.ts`
+runs. (`src/lib/pcplRenderer/` no longer exists — an unrelated, dead earlier architecture, deleted.)
+Other renderers exist (wave/optics/thermo) but are dormant.
 
 **Orchestration:** authoring = the pipeline above (sequential, never parallel). Routine checks
 (type-check / validator / console-audit) = parallel subagents. Full rule:
@@ -283,7 +289,8 @@ constants neutral or parameterized)** · plain English · **THE EYE** (§5 ③) 
   = the single catalog edit point). Live at app.viditra.co: `npm run build:pilot` → `npm run deploy:app`.
 - `src/lib/renderers/field_3d_renderer.ts` — Three.js 3D sims (the diamonds).
 - `src/lib/renderers/particle_field_renderer.ts` — p5 2D sims (Ch.3 drift/circuits/KCL scenario engine).
-- `src/lib/renderers/mechanics_2d_renderer.ts` + `src/lib/pcplRenderer/*` — 2D PCPL sims (not current focus).
+- `src/lib/renderers/parametric_renderer.ts` — PCPL 2D sims (the Class-11 Vectors chapter).
+- `src/lib/renderers/mechanics_2d_renderer.ts` — separate, live-but-dormant scenario engine (not product; §1).
 - `src/data/concepts/*.json` — the diamond content (the real product).
 - `src/app/admin/test-*/` — per-concept end-to-end verification pages.
 - `src/components/TeacherPlayer.tsx` — playback.
