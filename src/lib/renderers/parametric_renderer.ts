@@ -610,6 +610,19 @@ function PM_focalEmphasis(spec) {
   if (!stateData) return NONE;
   var elapsed = PM_simClockMs;
 
+  // Priority 0: SET_GLOW narration-beat override (per-sentence). Wins over the
+  // authored focal so the spotlight can re-target on each narrated sentence
+  // (field_3d parity). null = fall through to the authored focal below. THE EYE
+  // never posts SET_GLOW, so frozen baselines always use the authored focal (no churn).
+  if (PM_glowOverride != null) {
+    var isGlowFocal = (typeof PM_glowOverride === 'string')
+      ? (PM_glowOverride === spec.id)
+      : (Array.isArray(PM_glowOverride) && PM_glowOverride.indexOf(spec.id) !== -1);
+    return isGlowFocal
+      ? { isFocal: true, alphaMul: 1, glowPx: 12 }
+      : { isFocal: false, alphaMul: 0.6, glowPx: 0 };
+  }
+
   // Priority 1: focal_sequence — cycle through highlight_primitive_id by time
   var seq = stateData.focal_sequence;
   var focalId = null;
@@ -2861,6 +2874,8 @@ var PM_pinTargetMs = 0;           // SET_TIME_FREEZE {at_ms} target for the catc
 var PM_pinCatchupPending = false; // true for exactly one draw() frame after a fresh pin request
 var PM_muted = false;             // MUTE — gates sound_cue playback only, never the clock (Rule 26a)
 var PM_cueOverrides = {};         // sound_cue id -> at_ms override from SET_CUE_TIME; cleared on state switch
+var PM_cleanMode = false;         // SET_CLEAN_MODE — teacher Clean/full-screen: strip on-canvas chrome (formula/sliders/callouts/HUD), keep the physical picture
+var PM_glowOverride = null;       // SET_GLOW — narration-beat focal-id override (primitive id) feeding PM_focalEmphasis; null = use the state's authored focal
 var PM_simReadyFired = false;     // guards the CDN-failure watchdog at the bottom of this file
 
 // ── Engine 20 — Motion Integrator state ───────────────────────────────────
@@ -3178,6 +3193,7 @@ function setup() {
   PM_fitCanvas();
   PM_config = window.SIM_CONFIG || {};
   PM_currentState = PM_config.current_state || 'STATE_1';
+  window.PM_currentState = PM_currentState;   // mirror to window (field_3d/particle_field parity)
   PM_physics = window.PM_PRECOMPUTED_PHYSICS || computePhysics(PM_config.concept_id, PM_resolveStateVars(PM_currentState));
   PM_resetSimClock();
   PM_simReadyFired = true;
@@ -3380,6 +3396,12 @@ function draw() {
   for (var l = 0; l < scene.length; l++) {
     var lPrim = scene[l];
     if (!lPrim) continue;
+    // Clean mode (SET_CLEAN_MODE) — strip on-canvas TEXT CHROME (formula surface,
+    // sliders, callout captions, board marks) for a bare full-screen picture;
+    // keep the physical scene + object labels + geometry (angle_arc/axes/vector).
+    if (PM_cleanMode && (lPrim.type === 'formula_box' || lPrim.type === 'slider'
+        || lPrim.type === 'annotation' || lPrim.type === 'derivation_step'
+        || lPrim.type === 'mark_badge')) continue;
     if (lPrim.type === 'label') drawLabel(lPrim);
     else if (lPrim.type === 'annotation') drawAnnotation(lPrim);
     else if (lPrim.type === 'angle_arc') drawAngleArc(lPrim);
@@ -3406,7 +3428,7 @@ function draw() {
   // Diagnostic text top-right — opt-in via PM_config.show_diagnostic. Off by
   // default so STATE_1 doesn't pre-answer the pedagogical question with a
   // "w = 19.60" readout before weight has been introduced.
-  if (PM_config && PM_config.show_diagnostic) {
+  if (PM_config && PM_config.show_diagnostic && !PM_cleanMode) {
     fill(200); noStroke(); textSize(11); textAlign(RIGHT, TOP);
     var d = PM_physics.derived || {};
     var diagY = 10;
@@ -3437,6 +3459,7 @@ window.addEventListener('message', function(e) {
     var newState = e.data.state;
     var isNewState = newState !== PM_currentState;
     PM_currentState = newState;
+    window.PM_currentState = PM_currentState;   // mirror to window (field_3d/particle_field parity)
     // Rule 36 / 26b: any fresh SET_STATE releases an existing freeze pin — the
     // player re-pins with its own SET_TIME_FREEZE if it wants one.
     PM_frozen = false;
@@ -3449,6 +3472,7 @@ window.addEventListener('message', function(e) {
       PM_surfaceRegistry = {};
       PM_endpointRegistry = {}; // WP-R5 — stale anchor_to targets don't survive a real state switch
       PM_cueOverrides = {};   // player re-sends SET_CUE_TIME after SET_STATE
+      PM_glowOverride = null; // SET_GLOW is per-sentence; a fresh state starts on its authored focal
       PM_resetSimClock();     // clock 0 + accum 0 + Engine 20 motion wipe (Rule 36) + choreo cache wipe
       PM_userTouched = {};    // WP-R5 — seizure is per-state only; a fresh state starts un-seized
     }
@@ -3581,6 +3605,25 @@ window.addEventListener('message', function(e) {
 
   if (e.data.type === 'MUTE') {
     PM_muted = !!e.data.muted;   // Rule 26a — gates sound_cue playback only, never the clock
+  }
+
+  if (e.data.type === 'SET_CLEAN_MODE') {
+    // Teacher Clean / full-screen (build_review_site.ts fsCleanBtn → sendCleanMode).
+    // field_3d strips its DOM caption/formula/HUD/sliders via body.pm-clean CSS;
+    // parametric's overlays are canvas-drawn, so draw() skips the chrome primitives
+    // (formula_box / slider / annotation callouts / diagnostic / board marks) when
+    // PM_cleanMode is on, leaving the bare physical picture (bodies/arrows/vectors/
+    // arcs/axes/object labels). The player already hides its own #capStrip subtitle.
+    PM_cleanMode = !!e.data.on;
+  }
+
+  if (e.data.type === 'SET_GLOW') {
+    // Per-sentence narration-beat glow (build_review_site.ts sendGlow → s.glow).
+    // target is a primitive id, an array of ids, or null to clear. Feeds
+    // PM_focalEmphasis so the focal element can re-target on every narrated
+    // sentence (field_3d parity); null falls back to the state's authored focal.
+    var gt = e.data.target;
+    PM_glowOverride = (gt == null) ? null : gt;
   }
 });
 
