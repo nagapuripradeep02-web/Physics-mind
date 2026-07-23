@@ -139,7 +139,17 @@ function computePhysics_normal_reaction(vars) {
   return {
     concept_id: 'normal_reaction',
     variables: { m: m, theta: theta, a: a },
-    derived: { N: N, W: W, g: PM_G },
+    // derived now also EXPORTS the concept's declared computed_outputs names
+    // (N_value/mg_parallel/mg_perpendicular/apparent_weight) so a label/formula/
+    // graph *_expr referencing them resolves instead of NaN-ing to 0 — the
+    // STATE_5 computed_outputs name mismatch (PM_G=9.8 matches the JSON formulas).
+    derived: {
+      N: N, W: W, g: PM_G,
+      N_value: N,
+      mg_perpendicular: N,
+      mg_parallel: m * PM_G * Math.sin(rad),
+      apparent_weight: m * (PM_G + a)
+    },
     forces: [
       nForce,
       { id: 'N1', label: 'N\\u2081 = ' + W.toFixed(1) + ' N',
