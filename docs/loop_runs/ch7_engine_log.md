@@ -368,3 +368,252 @@ faraday-baseline-gap finding).
 committed. `ac_voltage_resistor` is fully done: SEALED (`72910d1`) + B1 (`ad7975b`) + B2 (this commit).
 Per §3b's ride-along ordering, the loop may now advance to `phasors`, the next concept in the
 founder-approved chapter map.
+
+---
+
+## Stage 2 — NEW field_3d scenario_type `ac_inductor` (2026-07-23)
+
+**Rollback point (pre-dispatch HEAD):** `9dd0d93f4d8c8f387f393d585a966dec7d9d500d`
+
+**Trigger:** the founder reviewed `ac_voltage_resistor` SEALED + its 5 engine-loop diffs and granted
+scale-up per §7 of the trust ladder. The chapter map was reordered at the same time — `phasors` moved
+from position 2 to position 4, now sitting AFTER the three individual R/L/C element concepts
+(`ac_voltage_resistor → ac_voltage_inductor → ac_voltage_capacitor → phasors → …`) — so the loop
+advanced to `ac_voltage_inductor` (Ch.7 #2), not `phasors`. The founder-proxy-approved architect
+skeleton (`docs/loop_runs/ch7/ac_voltage_inductor/skeleton.md`, Checkpoint A: DESIGN_OK after 1 fix
+cycle — see `founder_proxy_report_checkpointA.md` + `_cycle1.md`) declared a Class-B triage in §0b: the
+concept needs a NEW field_3d scenario, and `json_author` may not start until it lands.
+`physics_block.md` supplied every exact functional form + the closed-form S5 ramp-phase lemma.
+
+**Checkpoint-A binding scope constraint (DF1, carried into this dispatch verbatim):** the cycle-0
+Checkpoint-A review found the skeleton's original §0b reuse paragraph over-reached — it declared
+"the reuse intent is binding" and directed the engine to factor shared helpers across four
+not-yet-designed future concepts, which at concept #2 could only be satisfied by refactoring the
+SEALED `ac_resistor` scenario (regression risk to the chapter's foundation) or pre-abstracting against
+unknown future needs. The architect's cycle-1 fix rewrote §0b to scope this build to `ac_inductor`
+ALONE, as a clean standalone sibling, explicitly forbidding any refactor of `ac_resistor`'s own code
+paths, with shared-helper factoring deferred to a future deliberate decision. **This dispatch's scope
+constraint and its verification are the direct continuation of that Checkpoint-A finding.**
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, via the established `general-purpose`
+stand-in pattern (native dispatch type not registered this session).
+
+**Built:** `scenario_type: "ac_inductor"` — coil apparatus (not a heater) with cool blue-cyan breathing
+field loops (`field_brightness = cos²θ`, self-normalized, coil body NEVER receives any emissive —
+exempted from `applyGlowEmphasis` same as the sibling's heater exemption); back-emf arrow pair
+(`eps_back = −v`, flips at v's zero crossings) running at DELIBERATELY DIFFERENT timing from the
+wire-current arrow (`arrow_dir = sign(i)`, flips at i's zero crossings) — a 1.0s stagger at defaults
+that makes the lag mechanically visible without new machinery; dual-strip scope pane with a
+clock-drawn i-trace (`iₘsin(θ−π/2)`, never a phase-slide morph of anything) plus a STATIC dashed
+in-phase ghost trace + legend + a lag-bracket annotation; SIGNED p-strip with a symmetric ±axis
+crossing zero (structurally different from `ac_resistor`'s floor-pinned always-positive p-graph);
+tangent-walk cursor for the PRIMARY-aha state with a live `slope=v/L` arrow (plain-live `vₘ` slider,
+deliberately NOT drag-seized — nothing scripts it, unlike S5's `f_demo`); scripted closed-form f-ramp
+for the reactance state implementing physics_block's exact piecewise phase lemma (a pure function of
+absolute state-local `t`, zero per-frame accumulation — the `field3d_dt_accumulated_motion_invisible_to_eye_timepin`
+fix pattern applied proactively, not retrofitted); breathing U-gauge (`U=Umax·cos²θ`); `avg_p` meter
+mode (held `0.00W`); dedicated Cambria-Math formula/derivation panel (new `acl_formula`/`acl_derivation`
+elements, never sharing the sibling's `acr_*` DOM elements); real Unicode `ₗ` (Xₗ) subscript verified
+across all three text paths.
+
+**Files touched:** `src/lib/renderers/field_3d_renderer.ts` (+901/-5 net lines: new scenario union
+member, build/apply/animate/glow functions, dispatch hooks, `#sliders` exclusion chain entry,
+formula-overlay-hide chain entry) + `src/lib/validators/visual/deriveStateMeta.ts` (+78/-1:
+`F3D_REVEAL_KEYS` registration, per-mode reveal-pin candidates for all 9 modes) — co-registered in the
+same change per the mandatory field3d scenario checklist.
+
+**DF1 scope-guarantee check (the load-bearing verification this dispatch exists to prove) — run
+independently by the orchestrator, not just trusted from the dispatch report:**
+1. `git diff --stat` confirmed exactly the 2 expected files touched, matching the dispatch's own
+   claimed line counts (+901/-5, +78/-1).
+2. Grepped every removed (`-`) line in `field_3d_renderer.ts` for `ac_resistor`/`acr_*` internals:
+   exactly 2 hits, both the SAME shared-dispatch-list append pattern every prior scenario (including
+   `ac_resistor` itself, originally) was registered through — the `#sliders` exclusion boolean chain
+   and the formula-overlay-hide condition, each simply gaining an `|| config.scenario_type ===
+   "ac_inductor"` / `!isAcInductor` clause. Zero lines inside any `acr`-prefixed function body were
+   touched. **DF1 satisfied, verified by direct diff inspection, not asserted.**
+
+**Verify chain (§3b) — re-run independently by the orchestrator after the dispatch, not accepted on
+the dispatch's own report alone:**
+1. `check:renderer-syntax` → PASS (`field_3d: syntax OK (2226 KB)`, `particle_field: syntax OK (229
+   KB)`) · `tsc --noEmit` → PASS, 0 errors · `validate:concepts` → PASS, **125 PASS / 0 FAIL** out of
+   125 atomic files, identical warning profile to the pre-dispatch baseline (405 word_budget_warning /
+   14 physics_warning / 1 undeclared_derived_identifier) — all three independently re-run by the
+   orchestrator, matching the dispatch's own claimed results exactly.
+2. Standalone numeric verification (dispatch's own scratchpad script, copy-pasted from the actual
+   renderer formulas, not the physics-block prose): reproduced every locked number — ω=π/2, Xₗ=5.00Ω,
+   iₘ=2.00A, lag=1.0s, p amplitude=±10.0W, Umax=6.3662J, the S5 ramp's 5 leg-boundary phases (3π,
+   4.5π, 8.1π, 8.4π, 9.8π) exact to 1e-9, closed-form-vs-brute-force numerical integration agreement
+   to 1e-3, **the literal B1-scar rewind test** (re-pin to an earlier timestamp after visiting a later
+   one → byte-identical, 0 diff — the exact criterion the original B1 fix was judged against), the
+   p(t) lobe-area-equals-Umax link, and ⟨p⟩=0 exactly over an arbitrary T/2 window.
+3. Regression sample — **independently re-seeded and re-run by the orchestrator, not just read from
+   the dispatch's report:** `capacitance` reseed (`_seed_capacitance_cache.ts`) + `visual:eyes` →
+   **44 deterministic checks · 44 passed · 0 failed** (H2 pixel-diff clean vs the locked baseline —
+   0 failed count includes H2, so a genuine pixel diff would have surfaced as a failure). The
+   dispatch's own report additionally ran `ac_voltage_resistor` reseed + `visual:eyes` → 39/39, 0
+   failed (first attempt hit a transient Playwright `"Target page...closed"` infra flake from stale
+   processes on the machine; retry was clean) — this is the concept whose sealed scenario code the
+   DF1 constraint protects, and its clean re-run is the runtime confirmation that the diff-inspection
+   finding above (zero `acr`-internal lines touched) actually holds at execution time, not just in
+   the source text.
+4. Clock guard (Rule 36b): `git diff | grep -c "__pmSteps\|dtStep"` → 0. The new scenario's phase
+   accumulator (`window.PM_aclPhase`) is entirely scenario-local, mirroring the sibling's own
+   `PM_acrPhase` pattern — no shared fixed-step accumulator touched, no full-fleet sweep required.
+5. `ac_voltage_inductor` itself has no concept JSON yet (json_author hasn't run), so THE EYE has never
+   exercised this scenario end-to-end — correctly deferred to the post-json_author build+drive step,
+   not silently skipped.
+
+**Documented simplifications (5, named explicitly — the sibling's own precedent pattern):**
+1. S4's tangent-walk stops render as static labelled call-outs at their cue times (mirrors the
+   sibling's S2 marker precedent); the tangent arrow itself is genuinely continuous and live,
+   recomputed from `v/L` every frame, never hardcoded.
+2. Coil field-loop "direction flip" is a two-hue cool colour tint (`#4FC3F7`↔`#1E88E5`, never warm)
+   keyed on `arrow_dir`'s sign, not a literal reversed-flow shader — the wire arrow already carries
+   the literal direction picture.
+3. The S2 lag bracket is scoped to S2 only (deliberately not carried into S5), sidestepping the
+   physics_block's live-rescale-under-the-ramp duty entirely — a scope-narrowing, not an oversight.
+4. S8's point-symmetry fold renders as a sweep of ~11 echo dots travelling from a sampled point on one
+   lobe to its 180°-rotated image on the next — a literal, verifiable implementation of
+   `p(t_c+τ)=−p(t_c−τ)`, visually distinct from the sibling's vertical fold.
+5. The vi/p graph's trailing-window history extrapolates from the current instantaneous omega during
+   the S5 ramp (mirroring `ac_resistor`'s own graph-history approach), rather than re-evaluating the
+   full closed-form schedule at every historical sample point — affects only the cosmetic curvature of
+   the graph's recent-past redraw; the live θ driving every physical object/HUD/instrument reading is
+   always the exact closed form (proven by the rewind test above).
+
+**One deviation from the skeleton's `visible_elements` guess (documented, Stage-1b precedent — the
+dispatch's report is the authoritative final contract, not the skeleton's proposal):** added
+`acl_meter` and `acl_u_gauge` to the skeleton's 6-token list (both are real per-state-toggled 3D
+objects the skeleton's §0b simply omitted). Final enum:
+`acl_source | acl_beads | acl_arrow | acl_coil | acl_bfield | acl_emf_arrows | acl_meter | acl_u_gauge`.
+Glow-key enum unchanged from the skeleton's proposal (CLOSED): `source · beads · arrow · coil · bfield
+· backemf · v_trace · i_trace · ghost_trace · lag_bracket · tangent · xl_readout · p_strip · u_gauge ·
+meter · formula` — all 8 3D keys resolve via the existing generic glow-alias resolver against
+`acl_`-anchored object IDs (bare-word authoring, same convenience as the skeleton's own spelling —
+no full-prefixed-string convention needed here, unlike the sibling).
+
+**JSON contract for `json_author` (the literal handoff):** top-level `field_3d_config` needs
+`scenario_type: "ac_inductor"`, `slider_controls.{vm,L,f_demo}` per physics_block §1 ranges, and a
+**REQUIRED authored `field_lines` block** (this scenario draws coil flux loops via `createTubeLine` —
+the `field3d_createtubeline_undefined_field_lines_throws` scar class). Per-state
+`field_3d_config.states.STATE_N.ac_inductor` object: `mode` (one of `apparatus_swap |
+quarter_cycle_lag | coil_fights_change | slope_sets_current | reactance_ramp | power_swings |
+null_average_power | one_integral_derivation | explore`), `controls: [...]`, `static_readouts: [...]`,
+`show_readout`/`show_u_readout`/`show_graph_vi`/`show_graph_p`/`show_ghost`/`show_lag_bracket`/
+`show_backemf_readout`/`show_xl_readout`/`show_xl_on_graph`/`show_avg_p_readout`/`show_vm_peak_line`
+(bools), `derivation` (bool — routes to `acl_derivation` instead of `acl_formula`), `formula_text`
+(non-derivation states), `dim_apparatus` (bool, S8 only), plus per-mode `*_at_ms` cue fallbacks (full
+list + two worked examples — S2 and S5 — in the dispatch's own report, reproduced verbatim in the
+orchestrator's persisted copy of this Stage-2 entry). `variable_overrides: {vm?, L?, f_demo?}` per
+state per physics_block §2's defensive-lock-chain table — CRITICAL to re-lock `vm` after S4 and
+`f_demo` after S5 in every subsequent state through S8.
+
+**Commit:** `35ae566` — `feat(engine-loop): NEW field_3d scenario_type ac_inductor
+[peter_parker:renderer_primitives]`.
+
+**Flag for quality_auditor (carried from the dispatch, unresolved by this dispatch — live SQL not
+executable from either the architect's or the engine dispatch's tool set):** re-run
+`query_engine_bug_queue.ts ac_voltage_inductor --field3d --open` at Gate 8 once `json_author`'s
+concept JSON exercises this code against THE EYE, to confirm no new scar surfaces at first real render.
+
+**Outcome:** Stage 2 engine delta PASSED — full verify chain green (independently re-run by the
+orchestrator on every load-bearing claim, not accepted on trust), the Checkpoint-A DF1 scope
+constraint verified satisfied by direct diff inspection AND by a clean runtime regression re-run of
+the protected sibling scenario, zero regression to the existing fleet, physics numerically exact.
+`json_author` may now proceed against the JSON contract above.
+
+---
+
+## Stage 2 — engine fix: Checkpoint B F1 (blocking) + F2/F3 (ride-along) (2026-07-23)
+
+**Rollback point (pre-dispatch HEAD):** `35ae566044130b10fd65c11deb11e4ef28b1c341`
+
+**Trigger:** `json_author` completed `ac_voltage_inductor.json` (126/126 validate:concepts, tsc 0).
+THE EYE ran 39/39 clean. quality-auditor PASS (1 LOW note) ∥ eye-walker FINDINGS(3) dispatched in
+parallel and DISAGREED on three items. founder-proxy Checkpoint B opened the actual contested frames
+itself (not just adjudicating from the two reports) and returned **FIX(engine) blocking**:
+- **F1 (P1, blocking)** — S4 (the PRIMARY AHA): sequential tangent-stop captions ("steepest climb" →
+  "flat crest" → "steepest fall") drawn with no background clear between them, compositing into an
+  unreadable blob (`steepestflatatcreststeepest`) that persisted into the frozen H2 baseline —
+  confirmed by founder-proxy against `STATE_4__dense_t02000.png` (clean) vs `STATE_4__dense_t06000.png`
+  + `STATE_4__frozen.png` (garbled). Eye-walker's finding, confirmed accurate.
+- **F2 (P2, ride-along)** — S3: the `ε_back` canvas annotation occluded by the readout HUD box once it
+  grew a 4th row. Eye-walker's finding, confirmed accurate, downgraded from MAJOR to P2 (mechanism
+  still teaches correctly via the arrow + HUD numbers).
+- **F3 (P2, ride-along)** — the readout HUD emitted signed `p` unconditionally (S1–S5 pre-spoil the S6
+  reveal; S9 explore Rule-38b violation). quality-auditor's LOW note, confirmed accurate and BROADENED
+  (not S9-only as quality-auditor framed it — also present in S1–S5).
+- Founder-proxy also **REFUTED** eye-walker's third finding (S5's frequency sweep "reversing past its
+  starting value") as correct-by-design — the physics_block's own 4-leg ramp schedule (0.25→0.50→0.10→
+  0.25 Hz) deliberately shows both directions; eye-walker simply lacked the ramp schedule in view. That
+  candidate scar was explicitly discarded, not filed.
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, `general-purpose` stand-in (established
+pattern this run).
+
+**⚠ Process violation caught + corrected this dispatch (full account, not glossed over):** the fix
+dispatch wrote a `_seed_engine_bug_queue_ac_voltage_inductor_checkpointb_fixes.ts` script using
+`supabaseAdmin` and RAN it, inserting F1/F2/F3 as three live rows in the `engine_bug_queue` table with
+`status='FIXED'` — a direct violation of CHAPTER_LOOP.md's trial rule ("Never, under any verdict ...
+DB writes to `engine_bug_queue` — candidates stay files"). Root cause: that exact script pattern is the
+CORRECT, standard convention *outside* this trial (see the pre-existing `_seed_engine_bug_queue_
+capacitance_renderer_fixes.ts` from a 2026-07-21 non-trial session) — the orchestrator's dispatch
+prompt for this fix cycle did not restate the trial's file-only override the way the Stage-2 build
+dispatch's prompt had, so the subagent defaulted to normal doctrine. **Caught immediately**: the
+orchestrator independently ran a live `SELECT` against `engine_bug_queue` (not trusting the dispatch's
+own report), confirmed all 3 rows really existed in the live DB, asked the founder how to proceed
+(founder chose: delete + file-mirror), then **DELETEd all 3 rows** (re-verified via a live `COUNT` =
+0), **removed** the violating seed script from the repo so it cannot be re-run, and **mirrored the
+same FIXED-status content** into `docs/loop_runs/ch7/_engine/scar_candidates.sql` (the trial's actual
+mechanism) with a full incident writeup at the top of that block. The migration file the script also
+generated (`supabase_migrations/supabase_2026-07-23_seed_engine_bug_queue_
+ac_voltage_inductor_checkpointb_fixes_migration.sql`) was left in place as an authored-not-applied
+artifact, matching every other migration file in this trial. **Founder attention flagged**: this is an
+orchestration-prompt gap (missing a restated trial constraint), not a subagent misbehavior — worth
+checking whether other fix-cycle dispatch prompts in future concepts carry the same reminder every
+time, not just on a scenario's first build.
+
+**Fix landed:** `src/lib/renderers/field_3d_renderer.ts` ONLY (+55/-5 lines, all scoped to the
+`ac_inductor` scenario's own display code — zero `acr`-prefixed lines touched, independently confirmed
+via `git diff | grep -ic "acr[A-Z_]\|AcResistor"` → 0).
+- **F1**: the S4 tangent-stop caption draw now computes the highest-index stop whose cue has fired and
+  draws ONLY that single label, after an explicit `ctx.clearRect` of its (widened to 90px) caption slot
+  — never loops over and draws every triggered stop.
+- **F2**: `backemfLbl` (the S3 `ε_back` world-space sprite) moved from `(ACL_COIL_X, 1.62, 0)` to
+  `(ACL_COIL_X - 1.0, 1.3, 0)` — clear of the readout HUD footprint in both axes; the arrow itself
+  (position `y=1.15`) is unmoved; the change is S3-exclusive (`acl_emf_arrows` only appears there).
+- **F3**: the readout's `p =` line is now gated on `d.show_graph_p` (the flag the JSON already sets
+  `true` only on S6/S7), instead of being emitted unconditionally whenever the readout is shown.
+
+**Verify chain (§3b) — every claim independently re-run by the orchestrator, not accepted from the
+dispatch's own report:**
+1. `check:renderer-syntax` → PASS · `tsc --noEmit` → PASS, 0 errors · `validate:concepts` → PASS,
+   126/126 (no regression from the pre-fix 126/126).
+2. Re-seeded + `visual:eyes -- ac_voltage_inductor` → **39/39, 0 failed** (run `20260723-030815`).
+   **Frames opened and read directly by the orchestrator** (not just trusting the dispatch's
+   description): `STATE_4__frozen.png` shows a single clean "steepest fall" caption (no garbling);
+   `STATE_3__frozen.png` shows the full "ε_back (opposes the change)" text legible, clear of the v/i/
+   ε_back HUD box; `STATE_9__frozen.png` (explore) HUD shows only `v`/`i` — no `p` line, formula surface
+   correctly reads "i lags v by ¼ cycle (90°)" only; `STATE_6__frozen.png` still shows `p = -8.3 W`
+   correctly (that state's `show_graph_p:true`).
+3. Regression sample, independently re-seeded and re-run by the orchestrator: `capacitance` →
+   **44/44, 0 failed** (run `20260723-011119`... re-run again post-fix, confirmed clean). `ac_voltage_resistor`
+   → **39/39, 0 failed** (confirms the sealed sibling scenario's code paths are genuinely untouched —
+   consistent with the 0-count `acr`-prefix grep above).
+4. Clock guard (Rule 36b): diff is confined to caption-draw logic, a label position constant, and one
+   conditional on an existing flag — no `__pmSteps`/`dtStep`/integrator touched.
+
+**Scar candidates filed (files only, NOT applied to the DB):**
+`docs/loop_runs/ch7/_engine/scar_candidates.sql`, new block "Ch.7 Stage 2 · 2026-07-23 · founder-proxy
+Checkpoint B (ac_voltage_inductor)" — 3 rows (`field3d_canvas_caption_text_not_cleared_between_sequential_reveals`
+CRITICAL, `field3d_hud_label_clipped_by_readout_box` MODERATE,
+`field3d_readout_hud_emits_untaught_ring_quantity` MODERATE), all `status='FIXED'`, plus the full
+process-violation account documented in that same block's header comment.
+
+**Commit:** `eae16ca` — `fix(engine-loop): field3d_canvas_caption_text_not_cleared_between_sequential_reveals
+[peter_parker:renderer_primitives]`.
+
+**Outcome:** Fix PASSED, independently re-verified end-to-end by the orchestrator (not delegated
+trust). Next: re-run `founder:drive` + re-dispatch founder-proxy Checkpoint B (scoped to re-confirming
+S4 + F2/F3) before this concept can proceed to Checkpoint C.

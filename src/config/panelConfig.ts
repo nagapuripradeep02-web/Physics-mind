@@ -1512,6 +1512,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    ac_voltage_inductor: {
+        concept_id: 'ac_voltage_inductor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_inductor',
+            label: 'AC Voltage on an Inductor — i lags v by ¼ cycle, Xₗ = ωL (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

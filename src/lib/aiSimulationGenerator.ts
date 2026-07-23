@@ -2944,6 +2944,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     inductance:                     "field_3d",
     ac_generator:                   "field_3d",
     ac_voltage_resistor:            "field_3d",
+    ac_voltage_inductor:            "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
 };

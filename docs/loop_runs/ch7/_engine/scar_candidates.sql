@@ -434,3 +434,100 @@ INSERT INTO engine_bug_queue (
   'ch7-stage1b-ac_voltage_resistor-checkpointB',
   'incident'
 );
+
+-- (end of Stage 1b records)
+
+
+-- =====================================================================
+-- Ch.7 Stage 2 · 2026-07-23 · founder-proxy Checkpoint B (ac_voltage_inductor)
+-- ⚠ PROCESS VIOLATION + CORRECTION — read this note before the three rows below.
+--
+-- The §3b engine-fix dispatch for F1/F2/F3 (this block) wrote these three rows
+-- DIRECTLY to the LIVE engine_bug_queue table via a `_seed_engine_bug_queue_*.ts`
+-- script using supabaseAdmin (status='FIXED' immediately) — a real violation of
+-- CHAPTER_LOOP.md's explicit trial rule ("Never, under any verdict ... DB writes
+-- to engine_bug_queue — candidates stay files"). Root cause: that script pattern
+-- is actually the CORRECT, standard convention OUTSIDE this trial (see the
+-- pre-existing precedent `_seed_engine_bug_queue_capacitance_renderer_fixes.ts`
+-- from 2026-07-21, a non-trial session) — the orchestrator's dispatch prompt for
+-- this specific fix cycle failed to restate the trial's file-only override that
+-- every other §3b dispatch this run carried, so the subagent defaulted to normal
+-- doctrine. Caught immediately via a live SELECT (2026-07-23, same session);
+-- the 3 rows were DELETEd from engine_bug_queue right after confirmation (0 rows
+-- remain, re-verified by COUNT), and the generating script
+-- `src/scripts/_seed_engine_bug_queue_ac_voltage_inductor_checkpointb_fixes.ts`
+-- was removed from the repo so it cannot be re-run by accident. The migration
+-- file `supabase_migrations/supabase_2026-07-23_seed_engine_bug_queue_
+-- ac_voltage_inductor_checkpointb_fixes_migration.sql` it also generated is left
+-- in place as an AUTHORED-NOT-APPLIED artifact (matching every other migration
+-- in this trial) — its content is reproduced as the three rows below, this file
+-- being the authoritative trial record. Founder: please note this as a process
+-- gap in the orchestration script, not a subagent misbehavior — flag if a
+-- similar gap should be pre-empted in future §3b dispatch prompts fleet-wide.
+--
+-- The three findings themselves are real, confirmed by founder-proxy opening
+-- the actual contested frames (see founder_proxy_report_checkpointB.md), and
+-- the code fixes landed + were independently re-verified (see ch7_engine_log.md
+-- Stage 2, engine-fix entry) — only the DB-write MECHANISM was wrong, not the
+-- content. NOT APPLIED to the live DB (trial: files only); founder rules at
+-- chapter end.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_canvas_caption_text_not_cleared_between_sequential_reveals',
+  'ac_inductor S4 (PRIMARY AHA): the three cue-gated tangent-stop call-outs ("steepest climb"->"flat crest"->"steepest fall") were drawn with successive ctx.fillText calls in 34px-wide slots far narrower than the label text itself, with NO gating to only the latest-triggered stop, so from ~t=6000ms they composited into an unreadable blob ("steepestflatatcreststeepest") that persisted through end-of-state AND into the frozen H2 baseline — destroying the verbal statement of the concept''s money moment.',
+  'CRITICAL',
+  'peter_parker:renderer_primitives',
+  'The per-frame draw loop in aclDrawViGraph iterated all 3 tangent-stop labels and drew EVERY one whose cue time had already fired (no upper bound), each in a fixed 34px-wide slot -- once more than one stop had triggered, their fillText calls overlapped within the same frame because the slot spacing was much narrower than the ~1.5-2x wider label text, compositing into overlapping glyphs. Confirmed worst at frozen because by state-hold time all three stops had fired.',
+  'Any state that fires >1 sequential cue-gated canvas caption in the same screen slot must draw ONLY the most-recently-triggered label (compute the active index, do not loop-and-draw every triggered one), and clear that slot''s background rect before drawing so a stale label can never composite with the current one. Verify the frozen baseline shows a single legible label, never the union of all fired labels.',
+  'manual',
+  'THE EYE: crop the caption band of a multi-sequential-caption state; assert the rendered-text ink at the frozen baseline equals ONE label''s extent. Fix verified in run 20260723-023646: STATE_4__dense_t02000 = clean "steepest climb"; STATE_4__dense_t06000 = clean "flat crest" (previously garbled with stop 1); STATE_4__frozen = clean "steepest fall" (previously all 3 stacked). Fix: aclDrawViGraph now computes activeStopIdx (highest-index stop whose cue has fired) and draws only that one label, after an explicit ctx.clearRect of its fixed 90px-wide caption slot.',
+  'FIXED',
+  ARRAY['ac_voltage_inductor']::text[],
+  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+  'ch7-stage2-ac_voltage_inductor-checkpointB',
+  'incident'
+);
+
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_hud_label_clipped_by_readout_box',
+  'ac_inductor S3: the red canvas annotation "eps_back (opposes the change)" was occluded by the top-right v/i/p/eps_back DOM readout box, rendering only "...opposes the ch" in every frame. Rule-34d overlay collision. The founder_drive collision probe reported collisions=0 because it only checks sim-overlay-vs-review-chrome, not this sim-internal canvas-annotation-vs-DOM-HUD pair — a gate blind spot.',
+  'MODERATE',
+  'peter_parker:renderer_primitives',
+  'backemfLbl (a createLabelSprite 3D world-space label near the coil, position (ACL_COIL_X, 1.62, 0)) was placed assuming a NARROW HUD; under S3''s own close-in camera_position ([2.3, 0.6, 5.0]) that world position projects into the screen''s top-right corner, the same corner acl_readout occupies. Once acl_readout grew a 4th row (eps_back, this scenario''s own addition) its taller/wider box started covering the label''s tail. No re-measure of the HUD footprint before placing the adjacent annotation.',
+  'When a scenario HUD gains/loses a row, re-measure (or conservatively over-clear) the HUD box footprint and place any adjacent world-space annotation clear of it in BOTH axes — never assume a fixed HUD width or height. Extend the founder_drive collision probe to also test sim-internal canvas/sprite-annotation vs DOM-HUD pairs (today it is chrome-only).',
+  'manual',
+  'MANUAL/EYE: STATE_3__frozen — the full "eps_back (opposes the change)" text must be legible with no HUD overlap. Fix verified in run 20260723-023646: backemfLbl moved from (ACL_COIL_X, 1.62, 0) to (ACL_COIL_X - 1.0, 1.3, 0) (S3-exclusive element, arrow itself unmoved); STATE_3__frozen now shows the full label clear of the v/i/eps_back HUD box.',
+  'FIXED',
+  ARRAY['ac_voltage_inductor']::text[],
+  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+  'ch7-stage2-ac_voltage_inductor-checkpointB',
+  'incident'
+);
+
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+  'field3d_readout_hud_emits_untaught_ring_quantity',
+  'ac_inductor: the acl_readout HUD emitted v, i AND signed p unconditionally whenever show_readout!==false. p is an extended-ring quantity first taught at S6, so it leaked into the HUD of S1-S5 (pre-spoiling the S6 "power swings both ways" reveal) and S9 (violating Rule 38b core-only explore; the concept DoD specifies "v/i/iₘ only"). S8 was unaffected (show_readout:false).',
+  'MODERATE',
+  'peter_parker:renderer_primitives',
+  'The readout render path hardcoded the v/i/p triple as always-on; only eps_back/Xl/avg_p lines were per-flag-gated. There was no per-state lever to suppress the p-line alone, so an extended-ring quantity appeared in core/early states that do not teach it.',
+  'A value-only readout must emit only quantities the current state teaches (its depth_ring / taught set). Gate an extended-ring readout line on the flag that already marks the state as teaching it (here, show_graph_p — true only where power is taught) rather than emitting it unconditionally; explore (core-ring) states must only ever surface core-ring quantities (Rule 38b).',
+  'manual',
+  'MANUAL/EYE: for each state, read the acl_readout HUD and assert no "p =" line unless show_graph_p is true. Fix verified in run 20260723-023646: p-line now gated on d.show_graph_p; STATE_1/STATE_2/STATE_3/STATE_5__frozen and STATE_9__frozen (explore) show only v/i(/eps_back or Xl as applicable), no p line; STATE_6__frozen and STATE_7__frozen still show p ("p = -8.3 W" / "p = +4.3 W" respectively), matching the JSON''s show_graph_p:true on exactly those two states.',
+  'FIXED',
+  ARRAY['ac_voltage_inductor']::text[],
+  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+  'ch7-stage2-ac_voltage_inductor-checkpointB',
+  'incident'
+);
