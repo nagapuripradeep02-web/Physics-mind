@@ -411,13 +411,21 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/transformer.json, field_3d
+    // 'transformer' scenario (Ch.7 #8, the LAST concept of the chapter).
+    // This entry REPLACES the legacy circuit_live 'transformer_circuit' stub
+    // (same pattern lc_oscillations/series_lcr_circuit/ac_power_factor each
+    // executed on their own prior slot). Class-B triage: the 'transformer'
+    // scenario engine build is dispatched SEPARATELY from this registration
+    // pass (peter_parker:renderer_primitives scope) — the concept JSON's
+    // field_3d_config IS the contract that dispatch builds against.
     transformer: {
         concept_id: 'transformer',
         layout: 'single',
         primary: {
-            renderer: 'circuit_live',
-            config_key: 'transformer_circuit',
-            label: 'Transformer',
+            renderer: 'field_3d',
+            config_key: 'transformer',
+            label: 'Transformer — Trading Voltage for Current (3D)',
         },
     },
 

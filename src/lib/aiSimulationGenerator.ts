@@ -2724,7 +2724,11 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     resistor_in_ac:                 "circuit_live",
     inductor_in_ac:                 "circuit_live",
     capacitor_in_ac:                "circuit_live",
-    transformer:                    "circuit_live",
+    // NOTE: transformer REMOVED from here — the real atomic concept
+    // (src/data/concepts/transformer.json) is field_3d, registered below
+    // alongside lc_oscillations/series_lcr_circuit/ac_power_factor. This
+    // stale circuit_live placeholder is retired (same pattern each prior
+    // Ch.7 sibling executed on its own prior slot).
     ac_basics:                      "graph_interactive",
     resonance_lcr:                  "graph_interactive",
     power_in_ac:                    "graph_interactive",
@@ -2965,6 +2969,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // dispatched separately from this JSON registration pass). NOT in
     // PCPL_CONCEPTS (that set is 2D parametric_renderer only).
     lc_oscillations:                "field_3d",
+    // src/data/concepts/transformer.json, field_3d 'transformer' scenario
+    // (Ch.7 #8, the LAST concept of the chapter — Class-B clone-sibling of
+    // lc_oscillation, engine build dispatched separately from this JSON
+    // registration pass). NOT in PCPL_CONCEPTS (that set is 2D
+    // parametric_renderer only).
+    transformer:                    "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
 };

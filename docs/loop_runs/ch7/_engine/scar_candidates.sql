@@ -1418,3 +1418,35 @@ INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,
  'manual',
  'FROZEN-FRAME watch (per-state expected values at the deriveStateMeta pins): S1 Phi=0.090 Wb, Vp=10.0 V, secondary dark/open, primary beads oscillating. S2 Vs=10.0 V, Is=0.40 A, Ip=0.40 A, lamp lit (i_s^2 extremum). S3 dPhi/dt=0 badge (no numeral), Ip=3.33 A DC steady (one-way beads), Vs=Is=0.00, lamp dark, loop CLOSED. S4 turns:100, bar 10.0 V, chip 100 x 0.100 V = 10.0 V. S5 Ns=200, Vs=20.0 V, chip Vs/Vp=Ns/Np=200/100=2, flux Phi_m unchanged 0.090. S6 Pp=Ps=16.0 W level bars, Ip=1.60 doubles Is=0.80, ghost struck, money chip 10.0x1.60=20.0x0.80=16.0 W. S7 loss 3.200 W -> 0.032 W (3dp), chip x10 V -> /100 loss. S8 Pp=16.8 W, eta=95%, 4 leak bars (0.4/0.2/0.1/0.1), ledger 16.0+0.8=16.8. S9 laminated half: eddy swirl slivers, retro chip. S10 derivation chain 6 links docked, apparatus dimmed. S11 free-runs, all 4 sliders live.',
  'OPEN',ARRAY['transformer']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts','src/lib/validators/visual/deriveStateMeta.ts']::text[],'ch7-stage8-transformer-build','probe_definition');
+
+-- ============================================================================
+-- Ch.7 Stage 8 · transformer · founder-proxy CHECKPOINT B (cycle 0), 2026-07-24.
+-- Two routed findings: F1 explore-state formula/HUD collision (engine),
+-- F2 derivation-state empty band container (authoring).
+-- NOT APPLIED — trial constraint: FILE only, no DB write. Pending founder ruling.
+-- ============================================================================
+INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,prevention_rule,probe_type,probe_logic,status,concepts_affected,fixed_in_files,discovered_in_session,row_type) VALUES
+('explore_state_formula_surface_clips_behind_growing_hud_panel',
+ 'transformer (tfr_ field_3d): tfr_formula is fixed at CSS top:40% (field_3d_renderer.ts:31490, inherited from the lco_ clone) while the tfr_readout HUD grows downward from top:52px as hud_show_* rows accumulate. STATE_11 (explore) is the only state with BOTH hud_show_turns:true AND hud_show_power:true -> 9 HUD rows -> the HUD bottom reaches ~top:40% and the single formula surface Vs/Vp=Ns/Np renders clipped behind the HUD bottom edge (subscripts cut). States with <=7 rows (e.g. S6) clear it; the collision is specific to the max-row explore state.',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'A fixed vertical anchor for the formula assumes a bounded HUD height. HUD rows only ever ACCUMULATE across a concept arc (never shrink), so the explore/final state is systematically the worst case and a fixed offset is a latent collision class for every field_3d scenario. tfr_formula/tfr_readout are transformer-scoped elements with their own inline CSS -> the fix is scoped to the tfr_ scenario (no locked EYE baseline, one concept) and does not touch any sealed scenario or the capacitance regression sample.',
+ 'A field_3d top-right formula surface must be positioned below the HUD panel DYNAMIC bottom edge (computed from the current-state tfr_readout rect), never a fixed y-offset; verify in whichever state has the MOST HUD rows. Never resolve by dropping a HUD row in authoring — the explore sandbox must keep every live readout, especially the turns readout it manipulates.',
+ 'js_eval',
+ 'At STATE_11 assert getBoundingClientRect of #tfr_formula does not vertically overlap #tfr_readout (formula.top >= readout.bottom + margin). Evidence 2026-07-24: .visual_runs/transformer/20260724-212106/STATE_11__frozen.png shows the clip; STATE_6__frozen.png (7 rows) clears. founder:drive overlayCollisions=[] does NOT cover this (chrome-only probe).',
+ 'FIXED',ARRAY['transformer']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage8-transformer-checkpointB','incident');
+-- RECONCILED OPEN->FIXED at Checkpoint C (2026-07-24): landed in commit a1e96e0 (tfrPositionFormula()
+-- docks the formula to #tfr_readout.getBoundingClientRect().bottom + 16). Pixel-verified at CpB cycle 1:
+-- STATE_11 ~23px overlap -> +15.9px clearance, subscripts intact; S6 unregressed; capacitance 44/44 H2 0.00%.
+
+INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,prevention_rule,probe_type,probe_logic,status,concepts_affected,fixed_in_files,discovered_in_session,row_type) VALUES
+('derivation_state_leaves_empty_graph_panel_container_rendered',
+ 'transformer STATE_10 (derivation): visible_elements lists "tfr_band" while transformer.band_content is "none", so the tfr_band canvas (created with background rgba(0,0,0,0.82)+border-radius, field_3d_renderer.ts:31481-31483) renders as an empty dark bordered box bottom-left for the entire ~22s state. The container display is gated purely on visible_elements membership (field_3d_renderer.ts:31582 want("tfr_band")); the band-draw early-out skips CONTENT only, not the container chrome.',
+ 'MODERATE','alex:json_author',
+ 'visible_elements is the container gate; band_content is the fill. STATE_10 is a dimmed derivation state that needs no band, but "tfr_band" was left in visible_elements while band_content:"none" was correctly set. The renderer is correct; the JSON is internally inconsistent (a leftover container token from the lc_oscillation clone source).',
+ 'A field_3d state whose band_content (or gauges_content) is "none" must NOT list that container token (tfr_band / tfr_gauges) in visible_elements — align the container gate with the content. Derivation/recap states after a band-using state are the high-risk site. Do not add a second engine gate on band_content; keep visible_elements as the single container gate.',
+ 'js_eval',
+ 'Lint every field_3d state: assert NOT (band_content in {undefined,"none"} AND visible_elements includes "tfr_band"); same for gauges_content/"tfr_gauges". In the built sim at STATE_10 assert computed display of #tfr_band === "none". Evidence 2026-07-24: STATE_10__frozen.png (+ dense t00000..t22000) shows the empty bordered box; config STATE_10.visible_elements includes "tfr_band" with band_content "none".',
+ 'FIXED',ARRAY['transformer']::text[],ARRAY['src/data/concepts/transformer.json']::text[],'ch7-stage8-transformer-checkpointB','incident');
+-- RECONCILED OPEN->FIXED at Checkpoint C (2026-07-24): STATE_10.visible_elements no longer lists
+-- "tfr_band" (band_content stays "none"); lands in the transformer seal commit. Pixel-verified at CpB
+-- cycle 1: the empty bordered box is gone from STATE_10__frozen.png, derivation chain intact.
