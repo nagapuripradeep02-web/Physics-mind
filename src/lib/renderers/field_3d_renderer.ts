@@ -30235,6 +30235,11 @@ export const FIELD_3D_RENDERER_CODE = `
     function dcUpdateSurface(s) {
         var mesh = dcFindById("dc_surface");
         if (!mesh) return;
+        // Single geometry authority: clamp the morph param to [0,1] (NaN -> flat) so the
+        // rendered silhouette is a monotonic, single-valued function of s for EVERY caller
+        // (build seed, state-entry seed, per-frame update) — depth ∝ s, flat disk at 0,
+        // fully bulged balloon at 1, never overshooting or reading a stale out-of-range s.
+        s = (typeof s === "number" && s === s) ? (s < 0 ? 0 : (s > 1 ? 1 : s)) : 0;
         var nR = mesh.userData.nR, nS = mesh.userData.nS;
         var pos = mesh.geometry.attributes.position;
         for (var r = 0; r <= nR; r++) {
@@ -30342,8 +30347,8 @@ export const FIELD_3D_RENDERER_CODE = `
         if (cd.mode === "same_loop_two_answers") {
             var st = cd.morph_start_at_ms != null ? cd.morph_start_at_ms : 2000;
             var du = cd.morph_duration_ms != null ? cd.morph_duration_ms : 6000;
-            if (ms < st) return 0;
-            if (ms > st + du) return 1;
+            if (ms <= st) return 0;          // flat disk before AND on the exact cue-boundary frame
+            if (ms >= st + du) return 1;     // fully bulged balloon at/after the ramp end
             var u = (ms - st) / du; return u * u * (3 - 2 * u);
         }
         if (cd.mode === "ampere_maxwell_ledger") return 0.5 + 0.5 * Math.sin(2 * Math.PI * ms / 6000);
@@ -30452,6 +30457,12 @@ export const FIELD_3D_RENDERER_CODE = `
             Ic = (cd.I_c != null) ? cd.I_c : 1.2;
         }
         var s = (ctrls.indexOf("s") >= 0 && window.PM_dcSDragged) ? window.PM_dcS : dcScriptedS(ms, cd);
+        // Monotonicity guard: the morph param the mesh renders is the SAME value the
+        // HUD/slider reports, bounded to [0,1] (NaN -> flat). Guarantees no single-frame
+        // non-monotonic "pop" at the morph_start cue boundary — the mesh silhouette,
+        // the ledger terms and the reported s can never disagree. Pure fn of state-local
+        // ms (no accumulator/integrator touched → SET_TIME_FREEZE byte-stable, Rule 36).
+        s = (typeof s === "number" && s === s) ? (s < 0 ? 0 : (s > 1 ? 1 : s)) : 0;
         var rCm = (ctrls.indexOf("r_cm") >= 0 && window.PM_dcRDragged) ? window.PM_dcRcm : dcScriptedR(ms, cd);
 
         var ph = dcPhase(ms, cd);
