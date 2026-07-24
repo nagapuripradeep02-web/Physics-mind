@@ -1299,3 +1299,41 @@ UPDATE engine_bug_queue
 -- Verify: tsc --noEmit 0 errors; validate:concepts 131/0; clock guard clean (no shared
 -- integrator touched). Cumulative EYE (S5/S6/S7/S9 frozen: total label legible, no garble)
 -- deferred to the orchestrator's single post-ride-along run (Amendment 4).
+
+-- ============================================================================
+-- Stage 7e · lc_oscillations CpB ride-along F5 — RECONCILE to FIXED (2026-07-24)
+-- F5 (RIDE-ALONG, MODERATE): the CpA-F2 forward-catch materialized — the bead/coil
+-- focal multiplier worked, but the S5 gauge-pane focal + S6 inset focal live channels
+-- had NO brightness multiplier (exemption + brightenOnly = a silent no-op). Renderer
+-- fix landed (field_3d_renderer.ts). FILE only — no DB. The AND discovered_in_session
+-- clause scopes this to the CpB incident row ONLY (the same bug_class also has the
+-- ac_voltage_capacitor origin row + the CpA forward-catch row, which stay untouched).
+-- ============================================================================
+
+-- F5 FIXED — pane-level focal brightening now emphasizes the WHOLE gauge pane (S5) and
+-- the WHOLE mass-spring inset (S6) as a real multiplier on each pane's own colour channel.
+UPDATE engine_bug_queue
+   SET status = 'FIXED',
+       fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[]
+ WHERE bug_class = 'glow_focal_on_live_driven_object_exempted_becomes_total_noop'
+   AND discovered_in_session = 'ch7-stage7-lc_oscillations-checkpointB';
+-- Fix (lcoPaneBrighten + lcoDrawGauges + lcoDrawInset): a new lcoPaneBrighten(hex,f) helper
+-- lerps a colour toward white by f (f>0 brightens, f=0 identity). Both live-draw panes now
+-- branch on their glow_focal: focal -> {briF:0.36, paneA:1.0}, non-focal -> {briF:0.0,
+-- paneA:0.55}. lcoDrawGauges (S5=gauges): pane stroke, E_total marker+line, every bar
+-- stroke/fill/label lerp by the SAME briF at paneA — so the WHOLE pane brightens as ONE unit
+-- and a shown-but-non-focal peer pane dims; both trading bars share ONE briF (no per-dominant-
+-- bar boost — an antiphase energy trade must not imply one store "matters more"). lcoDrawInset
+-- (S6=inset): rail, wall, spring, block AND labels lerp by the same briF at paneA (the old code
+-- brightened only spring+block, leaving rail/wall/labels at identity, so the pane never read as
+-- focal). Reused the bead/coil multiplier convention (beadFocal?1.4:1.0); no new emphasis
+-- mechanism; no sealed sibling path (acr_/acl_/acc_/phs_/slcr_/pwr_) touched; no shared
+-- integrator (__pmSteps/dtStep/stateStartTime) touched. 54 insertions, 15 deletions, 1 file.
+-- Self-verify (js_eval brightness probe on the exact fix logic): S5 focal pane Δlum present
+-- (pane-stroke Δ=99.3, E_C Δ=110.1, E_B Δ=105.7, all focal-brighter); S6 inset Δlum=106.4;
+-- height-independence proven (E_C fill rgb(159,245,203) identical at fr=0.80 and fr=0.20 —
+-- taller bar NOT brightened more); both bars share briF=0.36 (no differential emphasis).
+-- Verify: check:renderer-syntax OK (field_3d 2567 KB, 0 backticks); tsc --noEmit 0 errors;
+-- validate:concepts 131/0 (lc_oscillations PASS, warning profile unchanged). Clock guard clean.
+-- Cumulative EYE (S5/S6 focal-brighter vs S6/S7/S9 peer-dim) deferred to the orchestrator's
+-- single post-ride-along run (Amendment 4, after F6 lands).

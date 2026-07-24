@@ -30290,6 +30290,23 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var q = 0; q < ve.length; q++) { if (ve[q] === tok) return true; }
         return false;
     }
+    // Pane-level focal brightening for the CANVAS panes (gauge pane S5, mass-spring
+    // inset S6) that applyGlowEmphasis cannot reach — they draw their own live
+    // channel each frame, so the generic 3D glow pass never touches them and a
+    // glow_focal on "gauges"/"inset" was a silent no-op (scar
+    // glow_focal_on_live_driven_object_exempted_becomes_total_noop; the acc_
+    // sibling fixed this same class via accGlowFocalP, NOT inherited by this clone).
+    // The boost is a REAL multiplier on the pane's own colour channel: lerp a hex
+    // toward white by f (f>0 brightens; f=0 identity). The WHOLE pane shares ONE
+    // factor so the antiphase energy trade stays symmetric — both bars brighten
+    // equally, only their HEIGHT differs; never brighten the momentarily-taller bar.
+    function lcoPaneBrighten(hex, f) {
+        if (!f) return hex;
+        var h = (hex.charAt(0) === "#") ? hex.slice(1) : hex;
+        var r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+        r = Math.round(r + (255 - r) * f); g = Math.round(g + (255 - g) * f); b = Math.round(b + (255 - b) * f);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
 
     // ── Core physics (pure; sealed decimals, never hardcoded results) ──────────
     function lcoPhysics(V0, L, C, R) {
@@ -30706,24 +30723,33 @@ export const FIELD_3D_RENDERER_CODE = `
         var now = smp.qiAt(smp.tSec), Q0 = Math.max(phys.Q0, 1e-6);
         var cxL = LCO_INSET_X0, cxR = LCO_INSET_X1, midX = (cxL + cxR) / 2 + 8, railY = LCO_BAND_H - 42;
         var wallX = cxL + 12, xMax = 44, blockX = midX + xMax * (now.q / Q0);
-        var g = lcoGlowOn("inset");
+        // PANE-LEVEL focal (S6 = inset): the WHOLE mass-spring inset brightens as ONE
+        // unit — rail, wall, spring, block AND labels lerp toward white (briF) — while
+        // a shown-but-non-focal peer inset (S7, focal = strip) dims via paneA. Same
+        // CpA F2 discipline as the gauge pane: a real multiplier on the pane's own
+        // channel, never a per-element no-op (the old code brightened only spring+block
+        // and left rail/wall/labels at full identity, so the pane never read as focal).
+        var focal = lcoGlowOn("inset");
+        var briF = focal ? 0.36 : 0.0, paneA = focal ? 1.0 : 0.55;
+        ctx.globalAlpha = paneA;
         // rail + wall.
-        ctx.strokeStyle = "#546E7A"; ctx.lineWidth = 1.5;
+        ctx.strokeStyle = lcoPaneBrighten("#546E7A", briF); ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(wallX, railY - 34); ctx.lineTo(wallX, railY + 14); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(wallX, railY + 12); ctx.lineTo(cxR, railY + 12); ctx.stroke();
         // spring (zigzag) wall -> block.
-        ctx.strokeStyle = g ? "#B0BEC5" : LCO_COL_INSET; ctx.lineWidth = g ? 2 : 1.4;
+        ctx.strokeStyle = lcoPaneBrighten(LCO_COL_INSET, briF); ctx.lineWidth = focal ? 2 : 1.4;
         var coils = 6, sy = railY - 8, sx0 = wallX, sx1 = blockX - 12;
         ctx.beginPath(); ctx.moveTo(sx0, sy);
         for (var ci = 0; ci <= coils; ci++) { var fx = sx0 + (sx1 - sx0) * (ci / coils); var oy = (ci % 2 === 0) ? -6 : 6; ctx.lineTo(fx, sy + oy); }
         ctx.lineTo(sx1, sy); ctx.stroke();
         // block.
-        ctx.fillStyle = g ? "#CFD8DC" : LCO_COL_INSET; ctx.globalAlpha = g ? 1 : 0.9;
-        ctx.fillRect(blockX - 12, railY - 20, 24, 26); ctx.globalAlpha = 1;
+        ctx.fillStyle = lcoPaneBrighten(LCO_COL_INSET, briF);
+        ctx.fillRect(blockX - 12, railY - 20, 24, 26);
         // labels.
-        ctx.fillStyle = "#B0BEC5"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        ctx.fillStyle = lcoPaneBrighten("#B0BEC5", briF); ctx.font = "9px 'Cambria Math','Times New Roman',serif";
         ctx.textAlign = "center"; ctx.fillText("x", blockX, railY + 26);
         ctx.fillText("mass-spring twin", midX, 16); ctx.textAlign = "left";
+        ctx.globalAlpha = 1;
     }
 
     // Chips (S3 ghost/strike; S5 half-split). clearRect single-latest via the
@@ -30769,10 +30795,20 @@ export const FIELD_3D_RENDERER_CODE = `
     function lcoDrawGauges(d, qi, phys) {
         var gc = document.getElementById("lco_gauges"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
         var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
-        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
         var W = gc.width, H = gc.height, Etot = Math.max(phys.E_total, 1e-6);
         var showR = lcoVisHas("lco_gauges") && (d.mode === "damped" || (d.mode === "explore"));
-        var focal = lcoGlowOn("gauges"), a = focal ? 1.0 : 0.8;
+        // PANE-LEVEL focal (S5 = gauges): the WHOLE gauge pane brightens as ONE unit —
+        // fill AND stroke lerp toward white (briF) — while a shown-but-non-focal peer
+        // pane (S6/S7/S9, where the focal is inset/strip/formula) dims via paneA. The
+        // boost is a real multiplier on the pane's own channel (the CpA F2 discipline:
+        // an exemption + brightenOnly alone is a silent no-op). Both trading bars share
+        // the SAME briF/paneA, so only their HEIGHT differs — the antiphase trade stays
+        // symmetric; never brighten the momentarily-taller bar (would imply one energy
+        // store "matters more").
+        var focal = lcoGlowOn("gauges");
+        var briF = focal ? 0.36 : 0.0, paneA = focal ? 1.0 : 0.55;
+        ctx.globalAlpha = paneA;
+        ctx.strokeStyle = lcoPaneBrighten("#455A64", briF); ctx.strokeRect(0.5, 0.5, W - 1, H - 1);
         var bars = [
             { lbl: "E_C", val: qi.EC, col: LCO_COL_Q },
             { lbl: "E_B", val: qi.EB, col: LCO_COL_B }
@@ -30786,21 +30822,24 @@ export const FIELD_3D_RENDERER_CODE = `
         // own bar at topY-4) — so the fixed E_total never overprints the RIGHTMOST
         // bar's value in either the 2-bar (S5/S6) or 3-bar (S7/S9) variant
         // (energy_bar_chart_total_label_collides_with_last_bar_label).
-        ctx.strokeStyle = "rgba(236,239,241,0.85)"; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4;
+        ctx.globalAlpha = paneA * 0.85;
+        ctx.strokeStyle = lcoPaneBrighten("#ECEFF1", briF); ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4;
         ctx.beginPath(); ctx.moveTo(6, topY); ctx.lineTo(W - 6, topY); ctx.stroke(); ctx.setLineDash([]);
-        ctx.fillStyle = LCO_COL_TOT; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        ctx.globalAlpha = paneA;
+        ctx.fillStyle = lcoPaneBrighten(LCO_COL_TOT, briF); ctx.font = "9px 'Cambria Math','Times New Roman',serif";
         lcoFillComposed(ctx, "E_total = " + Etot.toFixed(2) + " J", 6, hdrY, "left");
         for (var b = 0; b < bars.length; b++) {
             var bx = 10 + b * (barW + gap), fr = Math.max(0, Math.min(1, bars[b].val / Etot));
-            ctx.strokeStyle = "#546E7A"; ctx.strokeRect(bx, topY, barW, fullH);
+            ctx.strokeStyle = lcoPaneBrighten("#546E7A", briF); ctx.strokeRect(bx, topY, barW, fullH);
             var fh = fr * fullH;
-            ctx.fillStyle = bars[b].col; ctx.globalAlpha = a;
-            ctx.fillRect(bx, baseY - fh, barW, fh); ctx.globalAlpha = 1;
-            ctx.fillStyle = bars[b].col; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillStyle = lcoPaneBrighten(bars[b].col, briF);
+            ctx.fillRect(bx, baseY - fh, barW, fh);
+            ctx.fillStyle = lcoPaneBrighten(bars[b].col, briF); ctx.font = "9px 'Cambria Math','Times New Roman',serif";
             lcoFillComposed(ctx, bars[b].lbl, bx + barW / 2, H - 12, "center");
-            ctx.fillStyle = "#ECEFF1"; ctx.font = "8px 'Cambria Math','Times New Roman',serif";
+            ctx.fillStyle = lcoPaneBrighten("#ECEFF1", briF); ctx.font = "8px 'Cambria Math','Times New Roman',serif";
             ctx.textAlign = "center"; ctx.fillText(bars[b].val.toFixed(2) + " J", bx + barW / 2, topY - 4); ctx.textAlign = "left";
         }
+        ctx.globalAlpha = 1;
     }
 
     // S8 derivation chain — links dock into the formula panel on their cues.

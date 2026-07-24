@@ -1461,3 +1461,52 @@ UNCOMMITTED (commit at concept seal).
 
 **Cumulative-EYE watch:** confirm the "6.36 J" E_total header label is legible and disjoint from
 every bar value label on S5/S6/S7/S9.
+
+## Stage 7e · 2026-07-24 · lc_oscillations Checkpoint-B ride-along F5 (`field3d-surgeon`)
+
+**F5 · `glow_focal_on_live_driven_object_exempted_becomes_total_noop` (MODERATE, RIDE-ALONG)**
+
+**Finding (CpB F5):** the CpA-F2 forward-catch materialized. The bead/coil focal multiplier
+(`field_3d_renderer.ts` `beadFocal ? 1.4 : 1.0`) worked, but the S5 **gauge-pane** focal and S6
+**mass-spring inset** focal live channels had NO brightness multiplier — height/marker only, no
+emphasis (Rule 32e — exactly one glow-focal element per instant; Rule 29 — emphasis = brightness).
+The lco_ glow pass applied the focal boost to the bead/coil channel only; the two canvas panes were
+left as exemption-only (exemption + `brightenOnly` = the exact no-op this bug_class names).
+
+**Root cause (diagnosed):** the gauge-pane and inset draw paths are live-driven CANVAS panes that
+`applyGlowEmphasis` (the generic 3D glow pass) can never reach, so a `glow_focal` on `"gauges"`/`"inset"`
+was silent. The acc_ sibling fixed this same class scenario-locally (`accGlowFocalP`); the lco_ clone
+did NOT inherit it.
+
+**Fix (minimal, additive, `field_3d_renderer.ts` only):** new `lcoPaneBrighten(hex, f)` helper lerps a
+colour toward white by `f` (`f>0` brightens, `f=0` identity). Both panes now branch on their
+`glow_focal`: focal → `{briF:0.36, paneA:1.0}`, non-focal → `{briF:0.0, paneA:0.55}`.
+- `lcoDrawGauges` (S5 = `gauges`): pane stroke, E_total marker+line, and every bar stroke/fill/label
+  lerp by the **same** `briF` at `paneA` — the WHOLE pane brightens as ONE unit; a shown-but-non-focal
+  peer pane (S6/S7/S9) dims. Both trading bars share ONE `briF` (no per-dominant-bar boost — an
+  antiphase energy trade must not imply one store "matters more").
+- `lcoDrawInset` (S6 = `inset`): rail, wall, spring, block AND labels lerp by the same `briF` at `paneA`
+  (the old code brightened only spring+block, leaving rail/wall/labels at identity, so the pane never
+  read as focal).
+
+Reused the bead/coil multiplier convention — no new emphasis mechanism. 54 insertions, 15 deletions,
+1 file. No sealed sibling path (`acr_`/`acl_`/`acc_`/`phs_`/`slcr_`/`pwr_`) and no shared integrator
+(`__pmSteps`/`dtStep`/`stateStartTime`) touched (contamination grep clean; only a comment cites the
+`acc_` precedent).
+
+**Verify chain (engine-agent self-verify; cumulative EYE deferred to orchestrator per Amendment 4):**
+check:renderer-syntax OK (field_3d 2567 KB, 0 backticks) · tsc --noEmit 0 errors · validate:concepts
+131/0 (lc_oscillations PASS, warning profile unchanged — legacy word-budget/physics warnings only).
+Clock guard: no shared integrator touched → no fleet sweep. js_eval brightness probe (on the exact
+fix logic): S5 focal pane Δlum present (pane-stroke Δ=99.3, E_C Δ=110.1, E_B Δ=105.7, all
+focal-brighter); S6 inset Δlum=106.4; height-independence proven (E_C fill `rgb(159,245,203)` identical
+at fr=0.80 and fr=0.20 — taller bar NOT brightened more); both bars share briF=0.36 (no differential
+emphasis). Cumulative EYE (S5/S6 focal-brighter vs peer-dim) deferred to the orchestrator's single
+post-ride-along run (after F6 lands).
+
+**Commits:** renderer fix + scar reconcile (Stage 7e) + this log entry commit together, renderer only.
+Concept JSON + registration sites + state file stay UNCOMMITTED (commit at concept seal).
+
+**Cumulative-EYE watch:** on S5 the gauge pane reads brighter (focal) while the inset/strip peers dim;
+on S6 the mass-spring inset reads brighter (focal) while the gauge pane dims; within the S5 gauge pane
+the two energy bars are brightened equally (no one bar glows more than the other).
