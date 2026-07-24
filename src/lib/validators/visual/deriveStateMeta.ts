@@ -1464,7 +1464,14 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         const mode = typeof lcOsc.mode === 'string' ? lcOsc.mode : '';
         if (mode === 'charge_up') candidates.push(asNum(lcOsc.charge_climb_start_at_ms, 0) + asNum(lcOsc.charge_climb_dur_ms, 2000) + 800);
         else if (mode === 'switch_throw') candidates.push(asNum(lcOsc.beads_start_at_ms, 1000) + 3500);
-        else if (mode === 'through_zero') candidates.push(asNum(lcOsc.flip_at_ms, 1000) + 1500);
+        // S3 (empty_is_not_over — the concept's PRIMARY AHA "q=0 yet i peaks"): the
+        // q/i zero-crossing is a RECURRING instantaneous event (theta = 90 deg/270 deg
+        // at t=1000/3000/5000 ms; T0=4000 ms). The old "flip_at_ms + 1500" landed at
+        // 2500 ms = theta=225 deg = q=-0.90 C / |i|=1.41 A — BETWEEN crossings, the
+        // OPPOSITE of the caption. Pin ON the second crossing (strike_at_ms + 2000 =
+        // 3000 ms = theta=270 deg = q=0.00 C / |i|=2.00 A, plates reversed, ghost
+        // already struck) so THE EYE photographs the crossing the state teaches.
+        else if (mode === 'through_zero') candidates.push(asNum(lcOsc.strike_at_ms, 1000) + 2000);
         else if (mode === 'free_run') candidates.push(asNum(lcOsc.f0_chip_at_ms, 5200) + 800);
         else if (mode === 'energy_slosh') candidates.push(asNum(lcOsc.half_split_chip_fire_at_ms, 500) + 2100);
         else if (mode === 'shm_twin') candidates.push(asNum(lcOsc.guard_clause_at_ms, 2600) + 1500);
