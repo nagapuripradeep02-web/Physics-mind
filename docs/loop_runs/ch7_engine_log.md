@@ -1510,3 +1510,58 @@ Concept JSON + registration sites + state file stay UNCOMMITTED (commit at conce
 **Cumulative-EYE watch:** on S5 the gauge pane reads brighter (focal) while the inset/strip peers dim;
 on S6 the mass-spring inset reads brighter (focal) while the gauge pane dims; within the S5 gauge pane
 the two energy bars are brightened equally (no one bar glows more than the other).
+
+## Stage 7f · 2026-07-24 · lc_oscillations Checkpoint-B ride-along F6 (`field3d-surgeon`)
+
+**F6 · `energy_readout_rounding_seam_vs_displayed_total` (MODERATE, RIDE-ALONG — the LAST ride-along for this concept)**
+
+**Finding (CpB F6):** on the conservation pivot the live component energy addends printed one
+half-LSB ABOVE the pinned total — S5 `E_C=2.20 + E_B=4.17 = 6.37` vs pinned `E_total=6.36` (also
+S2 `3.19+3.18`, S9 `0.40+5.97`, and the post-F1 three-bar S7 `0.04+0.00+6.33=6.37`). The TOTAL is
+correctly pinned (CpA F1 held — no total-line seam); ONLY the independently-rounded components seam.
+This is on PIVOT #2 whose whole lesson is "the numbers add up perfectly", so a visible seam
+contradicts the state's claim.
+
+**Root cause (diagnosed):** `E_C(t)`, `E_B(t)` (and `E_R(t)` in the 3-bar states) are each rounded
+to 2dp independently; on the 6.365 boundary their rounded sum lands 6.37 while the pinned total
+displays 6.36.
+
+**Fix (minimal, additive, `field_3d_renderer.ts` only):** new `lcoEnergyDisp(qi, phys, showR)` helper —
+round every component to 2dp, then absorb the ±0.01 rounding residual into ONE displayed component so
+`E_C+E_B(+E_R)` always close EXACTLY to the SAME pinned `E_total` (`phys.E_total.toFixed(2)` = 6.36,
+CpA F1 — never a live re-sum; physics_block FLAG 2). Wired into BOTH compose sites: the `lcoDrawGauges`
+bar value labels (`bars[b].disp`) and the `lco_readout` energy HUD. The total line itself is untouched.
+- **INTERPRETIVE REFINEMENT of the prescribed "display the LAST component as (total − Σ others)":** the
+  residual is absorbed into the **LARGEST** displayed component, NOT literal last-in-draw-order. When
+  `E_R ≈ 0` (undamped explore / 2-bar frames — e.g. S9 `0.40+5.97` where `E_C+E_B` alone round to 6.37)
+  the literal last-in-order rule would render `E_R = total−E_C−E_B = −0.01`, a NEW negative-heat artifact
+  on the exact conservation-pivot lesson the scar protects. Largest-absorbs stays ≥0 everywhere yet still
+  lands on `E_R` late in the damped swing (S7) where `E_R` IS the big remainder (there last == largest,
+  matching the prescription exactly). Same displayed-addend discipline as the sealed
+  `field3d_struck_sum_rounds_full_not_displayed_addends`.
+- Closure applies ONLY where the stores physically conserve to the pinned total
+  (`|E_C+E_B+E_R − E_total| < 1e-6`): during `charge_up` (tank still filling, `E_C+E_B < E_total` by
+  design) and the damped `E_R`-clamp initial transient (`E_C+E_B > E_total`), the physical sum ≠ pinned
+  total so closure is SKIPPED and honest independently-rounded values render — never fabricate energy to
+  force a premature/false sum.
+
+Label-compose only; +38 insertions, 4 lines changed, 1 file. No sealed sibling path
+(`acr_`/`acl_`/`acc_`/`phs_`/`slcr_`/`pwr_`) touched (contamination grep on added lines = NONE); no
+shared integrator (`__pmSteps`/`dtStep`/`stateStartTime`) touched; the F5 focal-glow code left intact.
+
+**Verify chain (engine-agent self-verify; cumulative EYE deferred to orchestrator per Amendment 4):**
+check:renderer-syntax OK (field_3d + particle_field, 0 backticks both templates) · tsc --noEmit 0 errors ·
+validate:concepts 131/0 (lc_oscillations PASS, warning profile unchanged — legacy word-budget/physics
+warnings only). Clock guard: label-compose fix, no integrator/step-accumulator touched → no fleet sweep.
+js_eval closure probe (on the exact `lcoEnergyDisp` logic against real `lcoPhysics`/`lcoQI` frames):
+1203 frames swept — **1195 conserving frames ALL close exactly to the pinned 6.36 (0 fails)**, 8
+damped-transient frames left untouched (honest rounding), 0 negatives, 565 raw independent-rounding
+seams closed. Named scar frames: S5 raw `2.20+4.17=6.37` → `2.20+4.16=6.36`; S7 raw `0.04+0.00+6.33=6.37`
+→ `0.04+0.00+6.32=6.36`; S9 raw `0.99+5.38=6.37` → `0.99+5.37=6.36` (`E_R` stays 0.00, no negative).
+
+**Commits:** renderer fix + scar reconcile (Stage 7f) + this log entry commit together, renderer only.
+Concept JSON + registration sites + state file stay UNCOMMITTED (commit at concept seal).
+
+**Cumulative-EYE watch:** on S5/S9/S2/S7 frozen frames, the displayed energy components must sum to
+`E_total = 6.36 J` EXACTLY (no `6.37` seam) and no component shows a negative value (`E_R ≥ 0` on the
+undamped explore/2-bar frames).

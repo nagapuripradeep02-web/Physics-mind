@@ -1337,3 +1337,53 @@ UPDATE engine_bug_queue
 -- validate:concepts 131/0 (lc_oscillations PASS, warning profile unchanged). Clock guard clean.
 -- Cumulative EYE (S5/S6 focal-brighter vs S6/S7/S9 peer-dim) deferred to the orchestrator's
 -- single post-ride-along run (Amendment 4, after F6 lands).
+
+-- ============================================================================
+-- Stage 7f · lc_oscillations CpB ride-along F6 — RECONCILE to FIXED (2026-07-24)
+-- F6 (RIDE-ALONG, MODERATE, the LAST ride-along for this concept): the live energy
+-- component addends printed one half-LSB ABOVE the pinned total on the conservation
+-- pivot (S5 2.20+4.17=6.37 vs pinned 6.36; also S2 3.19+3.18, S9 0.40+5.97, and the
+-- post-F1 three-bar S7 0.04+0.00+6.33=6.37). Renderer fix landed (field_3d_renderer.ts).
+-- FILE only — no DB. The AND discovered_in_session clause scopes this UPDATE to the CpB
+-- incident row only (upsert key = bug_class; NO duplicate INSERT).
+-- ============================================================================
+
+-- F6 FIXED — the visible energy components now close EXACTLY to the pinned total.
+UPDATE engine_bug_queue
+   SET status = 'FIXED',
+       fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[]
+ WHERE bug_class = 'energy_readout_rounding_seam_vs_displayed_total'
+   AND discovered_in_session = 'ch7-stage7-lc_oscillations-checkpointB';
+-- Fix (new lcoEnergyDisp helper + both compose call sites — lcoDrawGauges bar labels +
+-- the lco_readout energy HUD): round every component to 2dp, then absorb the ±0.01
+-- rounding residual into ONE displayed component so E_C+E_B(+E_R) always close EXACTLY
+-- to the SAME pinned E_total (CpA F1, phys.E_total.toFixed(2)=6.36 — never a live re-sum;
+-- physics_block FLAG 2). The total line itself is untouched.
+--   INTERPRETIVE REFINEMENT of the prescribed "display the LAST component as
+--   (total - Σ others)": the residual is absorbed into the LARGEST displayed component,
+--   NOT literal last-in-draw-order. Rationale: when E_R ≈ 0 (undamped explore/2-bar
+--   frames, e.g. S9 0.40+5.97 where E_C+E_B alone round to 6.37) the literal last-in-order
+--   rule would render E_R = total-E_C-E_B = -0.01 — a NEW negative-heat artifact on the
+--   very conservation-pivot lesson the scar protects. Largest-absorbs stays ≥0 everywhere,
+--   yet still lands on E_R late in the damped swing (S7) where E_R IS the big remainder
+--   (there last == largest, matching the prescription exactly). Same displayed-addend
+--   discipline as the sealed field3d_struck_sum_rounds_full_not_displayed_addends.
+--   Closure applies ONLY where the stores physically conserve to the pinned total
+--   (|E_C+E_B+E_R - E_total| < 1e-6): during charge_up (tank still filling, E_C+E_B<E_total
+--   by design) and the damped ER-clamp initial transient, the physical sum ≠ pinned total
+--   so closure is skipped and honest independently-rounded values render (never fabricate
+--   energy to force a premature sum). No sealed sibling (acr_/acl_/acc_/phs_/slcr_/pwr_)
+--   touched; no shared integrator (__pmSteps/dtStep/stateStartTime) touched; F5 focal-glow
+--   code untouched. Label-compose only; +38 insertions, 4 lines changed, 1 file.
+-- Self-verify (js_eval closure probe on the exact lcoEnergyDisp logic against real
+-- lcoPhysics/lcoQI frames): 1203 frames swept — 1195 conserving frames ALL close exactly
+-- to the pinned 6.36 (0 fails), 8 damped-transient frames left untouched (honest rounding),
+-- 0 negatives, 565 raw independent-rounding seams closed by the fix. Named scar frames:
+-- S5 raw 2.20+4.17=6.37 -> 2.20+4.16=6.36; S7 raw 0.04+0.00+6.33=6.37 -> 0.04+0.00+6.32=6.36;
+-- S9 raw 0.99+5.38=6.37 -> 0.99+5.37=6.36 (E_R stays 0.00, no negative).
+-- Verify: check:renderer-syntax OK (field_3d, 0 backticks both templates); tsc --noEmit
+-- 0 errors; validate:concepts 131/0 (lc_oscillations PASS, warning profile unchanged).
+-- Clock guard clean (label-compose fix; no integrator/step-accumulator touched).
+-- Cumulative EYE (S5/S9/S2/S7 frozen: components sum to 6.36) + capacitance regression +
+-- founder:drive deferred to the orchestrator's SINGLE post-ride-along run (Amendment 4,
+-- now that both F5 + F6 have landed).

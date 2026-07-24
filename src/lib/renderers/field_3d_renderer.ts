@@ -30270,6 +30270,44 @@ export const FIELD_3D_RENDERER_CODE = `
     // ac_power_factor_s10_signed_near_zero prevention).
     function lcoFx(v, dp) { return (Math.abs(v) < 0.5 * Math.pow(10, -dp) ? 0 : v).toFixed(dp); }
 
+    // Energy-readout CLOSURE (F6, energy_readout_rounding_seam_vs_displayed_total).
+    // Independently rounding E_C / E_B (/ E_R) lets their 2dp sum land one half-LSB
+    // ABOVE the pinned total on the 6.365 boundary (S5 2.20+4.17=6.37 vs pinned
+    // 6.36; also S2 3.19+3.18, S9 0.40+5.97, S7 0.04+0.00+6.33=6.37) — a visible
+    // seam that contradicts PIVOT #2's lesson ("the numbers add up perfectly").
+    // Fix (mirrors the sealed slcr struck-sum discipline): round every component,
+    // then absorb the ±0.01 rounding residual into ONE component so the VISIBLE
+    // parts always close EXACTLY to the pinned total. Uses the SAME pinned E_total
+    // (CpA F1), NEVER a live re-sum (a live sum lands 6.37 at the boundary —
+    // physics_block FLAG 2); the total itself is never touched.
+    //   • Residual → the LARGEST displayed component (not literal last-in-order):
+    //     when E_R ≈ 0 (undamped explore / 2-bar frames) last-in-order would render
+    //     E_R = −0.01 negative heat; largest-absorbs stays ≥0 and lands on E_R late
+    //     in the damped swing where E_R IS the big remainder (there last == largest).
+    //   • Applied ONLY where the stores physically conserve to the pinned total
+    //     (oscillation / switch-throw / damped / charged — PIVOT #2). During
+    //     charge_up the tank is still filling (E_C+E_B < E_total by design) so the
+    //     physical sum ≠ pinned total → closure is skipped and honest rounded
+    //     values render (never fabricate energy to force a premature sum).
+    function lcoEnergyDisp(qi, phys, showR) {
+        var tot = Number(phys.E_total.toFixed(2));
+        var ec = Number(qi.EC.toFixed(2)), eb = Number(qi.EB.toFixed(2)), er = Number(qi.ER.toFixed(2));
+        var physSum = qi.EC + qi.EB + (showR ? qi.ER : 0);
+        if (Math.abs(physSum - phys.E_total) < 1e-6) {
+            if (showR) {
+                var resid3 = Number((tot - ec - eb - er).toFixed(2));
+                if (er >= ec && er >= eb) er = Number((er + resid3).toFixed(2));
+                else if (eb >= ec) eb = Number((eb + resid3).toFixed(2));
+                else ec = Number((ec + resid3).toFixed(2));
+            } else {
+                var resid2 = Number((tot - ec - eb).toFixed(2));
+                if (eb >= ec) eb = Number((eb + resid2).toFixed(2));
+                else ec = Number((ec + resid2).toFixed(2));
+            }
+        }
+        return { EC: ec, EB: eb, ER: er, tot: tot };
+    }
+
     function lcoSc(key, dmin, dmax, dstep, ddef, dlabel) {
         var scfg = config.slider_controls || {};
         var o = scfg[key] || {};
@@ -30809,11 +30847,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var briF = focal ? 0.36 : 0.0, paneA = focal ? 1.0 : 0.55;
         ctx.globalAlpha = paneA;
         ctx.strokeStyle = lcoPaneBrighten("#455A64", briF); ctx.strokeRect(0.5, 0.5, W - 1, H - 1);
+        var eDisp = lcoEnergyDisp(qi, phys, showR);   // F6: labels close to pinned total
         var bars = [
-            { lbl: "E_C", val: qi.EC, col: LCO_COL_Q },
-            { lbl: "E_B", val: qi.EB, col: LCO_COL_B }
+            { lbl: "E_C", val: qi.EC, disp: eDisp.EC, col: LCO_COL_Q },
+            { lbl: "E_B", val: qi.EB, disp: eDisp.EB, col: LCO_COL_B }
         ];
-        if (showR) bars.push({ lbl: "E_R", val: qi.ER, col: LCO_COL_R });
+        if (showR) bars.push({ lbl: "E_R", val: qi.ER, disp: eDisp.ER, col: LCO_COL_R });
         var barW = 30, gap = (W - 20 - bars.length * barW) / Math.max(bars.length - 1, 1);
         var hdrY = 11, baseY = H - 26, topY = 30, fullH = baseY - topY;
         // FIXED total line at E_total (full height) — flat, never dips. The total-
@@ -30837,7 +30876,7 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.fillStyle = lcoPaneBrighten(bars[b].col, briF); ctx.font = "9px 'Cambria Math','Times New Roman',serif";
             lcoFillComposed(ctx, bars[b].lbl, bx + barW / 2, H - 12, "center");
             ctx.fillStyle = lcoPaneBrighten("#ECEFF1", briF); ctx.font = "8px 'Cambria Math','Times New Roman',serif";
-            ctx.textAlign = "center"; ctx.fillText(bars[b].val.toFixed(2) + " J", bx + barW / 2, topY - 4); ctx.textAlign = "left";
+            ctx.textAlign = "center"; ctx.fillText(bars[b].disp.toFixed(2) + " J", bx + barW / 2, topY - 4); ctx.textAlign = "left";
         }
         ctx.globalAlpha = 1;
     }
@@ -30995,9 +31034,11 @@ export const FIELD_3D_RENDERER_CODE = `
             if (d.hud_show_q) html += "<div style=\\"color:#69F0AE\\">q = " + lcoFx(qi.q, 2) + " C</div>";
             if (d.hud_show_i) html += "<div style=\\"color:#FFB300\\">i = " + lcoFx(Math.abs(qi.i), 2) + " A</div>";
             if (d.hud_show_energy) {
-                html += "<div style=\\"color:#69F0AE\\">E_C = " + qi.EC.toFixed(2) + " J</div>";
-                html += "<div style=\\"color:#B388FF\\">E_B = " + qi.EB.toFixed(2) + " J</div>";
-                if (lcoVisHas("lco_gauges") && (mode === "damped" || mode === "explore")) html += "<div style=\\"color:#FF6E40\\">E_R = " + qi.ER.toFixed(2) + " J</div>";
+                var hudShowR = lcoVisHas("lco_gauges") && (mode === "damped" || mode === "explore");
+                var hDisp = lcoEnergyDisp(qi, phys, hudShowR);   // F6: components close to pinned total
+                html += "<div style=\\"color:#69F0AE\\">E_C = " + hDisp.EC.toFixed(2) + " J</div>";
+                html += "<div style=\\"color:#B388FF\\">E_B = " + hDisp.EB.toFixed(2) + " J</div>";
+                if (hudShowR) html += "<div style=\\"color:#FF6E40\\">E_R = " + hDisp.ER.toFixed(2) + " J</div>";
                 html += "<div style=\\"color:#ECEFF1\\">E_total = " + phys.E_total.toFixed(2) + " J</div>";
             }
             if (d.hud_show_period) {
