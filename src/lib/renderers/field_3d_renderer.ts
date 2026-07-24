@@ -30827,6 +30827,23 @@ export const FIELD_3D_RENDERER_CODE = `
         var mode = d.mode || "", t = time - stateStartTime;
 
         var V0 = window.PM_lcoV0, L = window.PM_lcoL, C = window.PM_lcoC, R = window.PM_lcoR;
+        // STATE_7 (damped): the resistor is physically INSERTED over r_insert_dur_ms
+        // — ramp the EFFECTIVE R 0 -> target (default 2.0 \\u03a9, physics-block spec)
+        // as a PURE closed form of state-local t (Rule 36 / rewindable under a time-
+        // pin, never a += accumulator), so alpha = R/(2L) engages exactly when the
+        // damped branch begins (lcoQI: t2 = tau - rins). The local R flows into BOTH
+        // lcoPhysics (alpha) AND the syncThumb("R", R) below, so the slider thumb +
+        // "Resistance R" label track the ramp in lockstep (ghost_compare: cause and
+        // thumb move together, never a frozen thumb). Seized the instant a teacher
+        // drags R (PM_lcoRDragged); explore drives R live off the slider, not here.
+        if (mode === "damped" && !window.PM_lcoRDragged) {
+            var rTgt = (d.r_insert_target != null ? d.r_insert_target : 2.0);
+            var rStart = (d.r_insert_start_at_ms != null ? d.r_insert_start_at_ms : 0) / 1000;
+            var rDur = (d.r_insert_dur_ms != null ? d.r_insert_dur_ms : 500) / 1000;
+            var rFrac = Math.max(0, Math.min(1, (t - rStart) / Math.max(rDur, 1e-6)));
+            R = rTgt * rFrac;
+            window.PM_lcoR = R;   // keep the driver in lockstep (HUD/gauges/probe read PM_lcoR)
+        }
         var phys = lcoPhysics(V0, L, C, R);
 
         // Explore: read the live switch pose + release anchor; V0 amplitude gated
