@@ -317,6 +317,14 @@ export function deriveMotionExpectations(
             // by the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
             const lcOsc = state ? asObj(state.lc_oscillation) : null;
             if (lcOsc) { out[stateId] = (lcOsc.mode && lcOsc.mode !== 'explore') ? true : false; continue; }
+            // transformer (two-coil machine — Ch.7 §7.9, clone-sibling of
+            // lc_oscillation): every guided beat animates continuously (flux
+            // breathe / bead slosh / tick cascade / N_s ramp / power bars /
+            // transmission strip / lamination morph / derivation dock); the
+            // explore state (mode 'explore', S11) is user-driven -> static (relaxed
+            // by the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
+            const tfr = state ? asObj(state.transformer) : null;
+            if (tfr) { out[stateId] = (tfr.mode && tfr.mode !== 'explore') ? true : false; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -487,6 +495,12 @@ const F3D_REVEAL_KEYS = [
     // derivation / explore reveals for the source-free L-C circuit — Ch.7 §7.8.
     // Clone-sibling of ac_power — see field_3d_renderer.ts's scenario header comment).
     'lc_oscillation',
+    // transformer: the per-state `transformer` block (mode-driven flux_link /
+    // close_secondary / dc_dead / per_turn / turns_ramp / power_lock /
+    // transmission / loss_ledger / lamination / derivation / explore reveals for
+    // the two-coil machine — Ch.7 §7.9. Clone-sibling of lc_oscillation — see
+    // field_3d_renderer.ts's scenario header comment).
+    'transformer',
     // helix_in_uniform_field (helical_motion_charge_in_uniform_B): the per-state
     // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
     // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
@@ -1479,6 +1493,27 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'derivation') candidates.push(asNum(lcOsc.link4_at_ms, 6000) + 2000);
         else candidates.push(1500);                                       // explore / no timed reveal
     }
+    // transformer (two-coil machine — Ch.7 §7.9, clone-sibling of lc_oscillation).
+    // Every guided beat is a SCRIPTED reveal/ramp/cascade/morph that plays then
+    // HOLDS on the state's own clock (Rule 26); pin the frozen frame PAST the LAST
+    // payoff of each mode so THE EYE photographs the SETTLED beat at a v-extremum /
+    // dead-hold / cool phase / laminated half (never a recurring zero-crossing).
+    // Timings mirror the renderer's transformer block — keep in sync if either changes.
+    const tfr = asObj(state.transformer);
+    if (tfr) {
+        const mode = typeof tfr.mode === 'string' ? tfr.mode : '';
+        if (mode === 'flux_link') candidates.push(asNum(tfr.flux_breathe_start_at_ms, 2500) + 1500);
+        else if (mode === 'close_secondary') candidates.push(asNum(tfr.meters_settle_at_ms, 1600) + 1400);
+        else if (mode === 'dc_dead') candidates.push(asNum(tfr.fix_clause_at_ms, 2200) + 1500);
+        else if (mode === 'per_turn') candidates.push(asNum(tfr.cascade_chip_at_ms, 3500) + 800);
+        else if (mode === 'turns_ramp') candidates.push(asNum(tfr.naming_clause_at_ms, 3400) + 1200);
+        else if (mode === 'power_lock') candidates.push(asNum(tfr.chip_at_ms, 2700) + 1500);
+        else if (mode === 'transmission') candidates.push(asNum(tfr.loss_stepped_chip_at_ms, 10500) + 800);
+        else if (mode === 'loss_ledger') candidates.push(asNum(tfr.ledger_close_at_ms, 6000) + asNum(tfr.ledger_close_dur_ms, 1500) + 800);
+        else if (mode === 'lamination') candidates.push(asNum(tfr.retro_link_at_ms, 7000) + 1500);
+        else if (mode === 'derivation') candidates.push(asNum(tfr.link6_at_ms, 7000) + 2000);
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
     // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
     // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
     // ramp (S1 close / S3 open, mirrors switch_toggle in the renderer's animate
@@ -2392,6 +2427,19 @@ export function deriveHoldExpectations(
             const lcOscHold = asObj(state.lc_oscillation);
             if (lcOscHold) {
                 out[stateId] = (lcOscHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // transformer (Ch.7 §7.9): every state exposes at least the relevant
+            // slider row(s) (Rule 31 controls), so the generic show_sliders catch
+            // below would swallow S1-S10's guided reveal/ramp/hold beats into
+            // 'interactive' before they ever reach it. Classify explicitly (mirrors
+            // the lc_oscillation split above): the explore state (mode 'explore',
+            // S11) is user-driven -> interactive; every other mode is a guided beat
+            // that plays then settles to a HOLD (caught by maxRevealForField3dState
+            // above) -> reveal_hold.
+            const tfrHold = asObj(state.transformer);
+            if (tfrHold) {
+                out[stateId] = (tfrHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // magnetic_flux_loop: every state exposes at least the relevant

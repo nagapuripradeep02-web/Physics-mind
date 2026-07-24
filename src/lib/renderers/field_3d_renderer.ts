@@ -31072,6 +31072,876 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
     }
 
+    // ══════════════════════════════════════════════════════════════════════
+    //  transformer scenario (prefix tfr_) — Ch.7 §7.9 "Transformers", the
+    //  FINAL concept of Ch.7. A CLONE-SIBLING of lc_oscillation (chrome/band/
+    //  gauge family + the two-position switch assembly, INVERTED for an AC/DC
+    //  source selector). ADDITIVE ONLY — zero edits to any sealed scenario code
+    //  path (acr_/acl_/acc_/phs_/slcr_/pwr_/lco_ bodies).
+    //
+    //  Teaches the two-coil machine: ONE AC-driven flux circulating a closed
+    //  laminated iron core threads BOTH a primary (N_p=100, fixed) and a
+    //  secondary (N_s, live-growing) winding, inducing per turn an equal share
+    //  of EMF so V_s/V_p = N_s/N_p, passing power through unchanged
+    //  (V_p*I_p = V_s*I_s), working ONLY on CHANGING flux (S3 DC-dead pivot),
+    //  leaking a little in real cores (S8), fought by lamination (S9), and
+    //  thereby making high-voltage transmission possible (S7).
+    //
+    //  visible_elements enum (CLOSED): tfr_core · tfr_flux · tfr_primary ·
+    //    tfr_secondary · tfr_switch · tfr_beads · tfr_meters · tfr_lamp ·
+    //    tfr_band · tfr_gauges · tfr_chips · tfr_formula.
+    //  glow-key enum (CLOSED): core · flux · primary · secondary · switch ·
+    //    lamp · gauges · band · formula.
+    //  Modes: flux_link · close_secondary · dc_dead · per_turn · turns_ramp ·
+    //    power_lock · transmission · loss_ledger · lamination · derivation ·
+    //    explore.
+    //
+    //  ONE closed-form state-local phase clock drives flux tubes, beads, lamp,
+    //  meters, band traces, power bars and the HUD (Rule 32a / 36; no per-frame
+    //  accumulator anywhere — byte-stable under SET_TIME_FREEZE). theta(t) =
+    //  omega_deg*t (deg), theta0=0 at every guided entry. v_p/v_s/i_s/i_p are
+    //  ALL sin(theta) (in phase, no leakage reactance); Phi(t) = -Phi_m cos(theta)
+    //  (Faraday, 90deg behind — the concept's one genuine quadrature). The tick
+    //  cascade (S4), N_s ramp (S5), DC blip/hold (S3) and lamination morph (S9)
+    //  are closed-form clamp/smoothstep functions of state-local t (or a declared
+    //  sub-anchor). Colour law (from pvl_colors): amber=current/beads,
+    //  cyan=primary voltage, green=secondary voltage, violet=flux, warm=heat/loss,
+    //  warm-white=lamp.
+    //  SIMPLIFICATIONS (declared, never silent): the four meters render as
+    //  in-scene needle dials (real meshes, needle lerps to the rms value) with
+    //  their live NUMERALS in the value-only HUD (Rule 34b) — an honest split, not
+    //  an in-dial numeral sprite. The S9 lamination cutaway runs as a 3D swirl-
+    //  loop overlay ON the core (solid=wide loops -> laminated=slivers) rather than
+    //  a separate DOM zoom-lens. Winding loops are a declared x10 schematic bundle;
+    //  the N_p/N_s COUNTERS are authoritative.
+    // ══════════════════════════════════════════════════════════════════════
+    var TFR_BAND_W = 500, TFR_BAND_H = 150;
+    var TFR_GP_W = 190, TFR_GP_H = 110;
+    var TFR_TWIN = 8.0;                                   // band time window (2 cycles @ T=4s)
+    var TFR_NP = 100;                                     // primary turns (fixed)
+    // 3D apparatus geometry (home pose built ONCE, Rule 32d).
+    var TFR_CORE_LX = -1.15, TFR_CORE_RX = 1.15;         // left/right limb x
+    var TFR_CORE_TY = 1.35, TFR_CORE_BY = -1.35;         // top/bottom bar y
+    var TFR_BAR_HT = 0.22, TFR_BAR_DZ = 0.55;            // bar half-thickness / depth
+    var TFR_SRC_X = -3.05, TFR_LOAD_X = 3.05;            // source / load x
+    var TFR_LOOP_TY = 0.88, TFR_LOOP_BY = -0.88;         // circuit loop rails y
+    var TFR_PRIM_RINGS = 10, TFR_SEC_MAX_RINGS = 40;     // schematic x10 bundle
+    var TFR_BEAD_PER_LOOP = 12, TFR_BEAD_ARC = 1.35;     // bead count / swing
+    // Colour law (read from pvl_colors with fleet defaults).
+    var TFR_COL_I = "#FFB300", TFR_COL_VP = "#4FC3F7", TFR_COL_VS = "#66BB6A";
+    var TFR_COL_FLUX = "#B388FF", TFR_COL_HEAT = "#FF6E40", TFR_COL_LAMP = "#FFF8E1";
+    var TFR_COL_BATT = "#90A4AE", TFR_COL_TOT = "#ECEFF1";
+
+    var tfrFluxMats = [], tfrFluxArrows = [], tfrSecRings = [], tfrPrimRingMats = [];
+    var tfrLampMesh = null, tfrLampMat = null, tfrSrcRingGrp = null, tfrBatteryGrp = null;
+    var tfrSelBlade = null, tfrSecBlade = null, tfrEddyLoops = [], tfrCoreMats = [];
+    var tfrMeters = {};                                  // {vp,ip,vs,is}: {needle, max, frac}
+
+    // Primary/secondary circuit loop polylines (closed rectangles; two loops
+    // NEVER share a point — the no-bridge invariant).
+    var TFR_PRIM_PTS = [
+        [TFR_SRC_X, TFR_LOOP_TY, 0], [TFR_CORE_LX, TFR_LOOP_TY, 0],
+        [TFR_CORE_LX, TFR_LOOP_BY, 0], [TFR_SRC_X, TFR_LOOP_BY, 0]
+    ];
+    var TFR_SEC_PTS = [
+        [TFR_CORE_RX, TFR_LOOP_TY, 0], [TFR_LOAD_X, TFR_LOOP_TY, 0],
+        [TFR_LOAD_X, TFR_LOOP_BY, 0], [TFR_CORE_RX, TFR_LOOP_BY, 0]
+    ];
+    function tfrPolyLen(pts) {
+        var P = 0;
+        for (var i = 0; i < pts.length; i++) {
+            var a = pts[i], b = pts[(i + 1) % pts.length];
+            P += Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+        }
+        return P;
+    }
+    function tfrPolyAt(pts, s) {
+        var L = tfrPolyLen(pts), ss = ((s % L) + L) % L;
+        for (var i = 0; i < pts.length; i++) {
+            var a = pts[i], b = pts[(i + 1) % pts.length];
+            var seg = Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+            if (ss <= seg) { var fr = seg > 1e-9 ? ss / seg : 0; return [a[0] + (b[0] - a[0]) * fr, a[1] + (b[1] - a[1]) * fr, 0]; }
+            ss -= seg;
+        }
+        return [pts[0][0], pts[0][1], 0];
+    }
+
+    // ── tfr_-scoped styled-subscript compose routine (LOCAL clone so the sealed
+    //   chapter cannot regress). Handles BOTH letter (V_p -> Vₚ, U+209A/209B) AND
+    //   digit subscripts across ALL THREE text paths (DOM innerHTML, canvas
+    //   fillText, sprite labels); NEVER a literal underscore reaches the screen. ──
+    function tfrComposeSegments(text) {
+        var s = String(text == null ? "" : text);
+        var re = /([A-Za-z\\u03b1-\\u03c9])_([A-Za-z0-9]+)/g;
+        var segs = [], last = 0, m;
+        while ((m = re.exec(s)) !== null) {
+            if (m.index > last) segs.push({ t: s.slice(last, m.index), sub: false });
+            segs.push({ t: m[1], sub: m[2] });
+            last = m.index + m[0].length;
+        }
+        if (last < s.length) segs.push({ t: s.slice(last), sub: false });
+        return segs;
+    }
+    function tfrSubFont(fontStr, ratio) {
+        var mm = /(\\d+(?:\\.\\d+)?)px/.exec(fontStr);
+        if (!mm) return fontStr;
+        var newSize = Math.max(6, parseFloat(mm[1]) * ratio);
+        return fontStr.slice(0, mm.index) + newSize.toFixed(1) + "px" + fontStr.slice(mm.index + mm[0].length);
+    }
+    function tfrMeasureComposedWidth(ctx, text, baseFont, subRatio) {
+        var ratio = subRatio || 0.62, restoreFont = ctx.font, segs = tfrComposeSegments(text), total = 0;
+        for (var i = 0; i < segs.length; i++) {
+            ctx.font = baseFont; total += ctx.measureText(segs[i].t).width;
+            if (segs[i].sub) { ctx.font = tfrSubFont(baseFont, ratio); total += ctx.measureText(segs[i].sub).width; }
+        }
+        ctx.font = restoreFont; return total;
+    }
+    function tfrDrawComposedRun(ctx, text, x, y, baseFont, color, subRatio) {
+        var ratio = subRatio || 0.62, segs = tfrComposeSegments(text);
+        var sizeMatch = /(\\d+(?:\\.\\d+)?)px/.exec(baseFont);
+        var baseSize = sizeMatch ? parseFloat(sizeMatch[1]) : 16, drop = baseSize * 0.30;
+        var savedAlign = ctx.textAlign, savedBaseline = ctx.textBaseline;
+        ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+        var cx = x;
+        for (var i = 0; i < segs.length; i++) {
+            var seg = segs[i]; ctx.font = baseFont; ctx.fillStyle = color; ctx.fillText(seg.t, cx, y);
+            cx += ctx.measureText(seg.t).width;
+            if (seg.sub) { ctx.font = tfrSubFont(baseFont, ratio); ctx.fillText(seg.sub, cx, y + drop); cx += ctx.measureText(seg.sub).width; }
+        }
+        ctx.textAlign = savedAlign; ctx.textBaseline = savedBaseline; return cx - x;
+    }
+    function tfrFillComposed(ctx, text, x, y, align) {
+        var baseFont = ctx.font, color = ctx.fillStyle, startX = x;
+        if (align === "center" || align === "right") {
+            var w = tfrMeasureComposedWidth(ctx, text, baseFont, 0.62);
+            startX = (align === "center") ? (x - w / 2) : (x - w);
+        }
+        tfrDrawComposedRun(ctx, text, startX, y, baseFont, color, 0.62);
+    }
+    function tfrHtmlComposeSub(text) {
+        if (text == null) return "";
+        return String(text).replace(/([A-Za-z\\u03b1-\\u03c9])_([A-Za-z0-9]+)/g, "$1<sub>$2</sub>");
+    }
+    // Near-zero unsigned clamp (v/i/Phi cross zero every cycle).
+    function tfrFx(v, dp) { return (Math.abs(v) < 0.5 * Math.pow(10, -dp) ? 0 : v).toFixed(dp); }
+    function tfrSmooth(u) { var c = u < 0 ? 0 : (u > 1 ? 1 : u); return c * c * (3 - 2 * c); }
+    function tfrClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+    // Pane-level focal brightening (the F5 glow_pane_multiplier discipline: a REAL
+    // multiplier on a canvas pane's own channel, since applyGlowEmphasis cannot
+    // reach a self-drawn pane — an exemption+brightenOnly alone is a silent no-op).
+    function tfrPaneBrighten(hex, f) {
+        if (!f) return hex;
+        var h = (hex.charAt(0) === "#") ? hex.slice(1) : hex;
+        var r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+        r = Math.round(r + (255 - r) * f); g = Math.round(g + (255 - g) * f); b = Math.round(b + (255 - b) * f);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+    function tfrSc(key, dmin, dmax, dstep, ddef, dlabel) {
+        var scfg = config.slider_controls || {}, o = scfg[key] || {};
+        return {
+            min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+            step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+            label: o.label || dlabel
+        };
+    }
+    function tfrStateDef() { return (config.states && config.states[PM_currentState]) || {}; }
+    function tfrBlk() { return tfrStateDef().transformer || {}; }
+    function tfrVisHas(tok) {
+        var ve = tfrStateDef().visible_elements || [];
+        for (var q = 0; q < ve.length; q++) { if (ve[q] === tok) return true; }
+        return false;
+    }
+    function tfrGlowOn(key) {
+        if (glowTargets && glowTargets.indexOf(key) >= 0) return true;
+        var d = tfrBlk();
+        return !!(d && d.glow_focal === key);
+    }
+
+    // ── Core physics (pure; sealed decimals, never hardcoded results) ──────────
+    function tfrPhysics(N_s, V_p, f, R_load, sc) {
+        var omega = 2 * Math.PI * Math.max(f, 1e-4);
+        var Phi_m = Math.SQRT2 * V_p / (TFR_NP * Math.max(omega, 1e-6));
+        var per_turn = V_p / TFR_NP;
+        var V_s = sc * V_p * (N_s / TFR_NP);
+        var I_s = V_s / Math.max(R_load, 1e-6);
+        var P_s = V_s * I_s, P_p = P_s, I_p = (V_p > 1e-6) ? P_p / V_p : 0;
+        return { N_p: TFR_NP, N_s: N_s, V_p: V_p, f: f, R_load: R_load, omega: omega, omega_deg: 360 * Math.max(f, 1e-4),
+            Phi_m: Phi_m, per_turn: per_turn, V_s: V_s, I_s: I_s, P_s: P_s, P_p: P_p, I_p: I_p };
+    }
+    // Instantaneous closed forms (theta in DEGREES; sc gates the secondary).
+    function tfrInst(phys, thetaDeg, sc) {
+        var th = thetaDeg * Math.PI / 180;
+        var vp = Math.SQRT2 * phys.V_p * Math.sin(th);
+        var phi = -phys.Phi_m * Math.cos(th);
+        var vs = sc * Math.SQRT2 * phys.V_s * Math.sin(th);
+        var is = sc * Math.SQRT2 * phys.I_s * Math.sin(th);
+        var ip = (phys.N_s / phys.N_p) * is;
+        return { vp: vp, phi: phi, vs: vs, is: is, ip: ip };
+    }
+    var TFR_RP_DC = 3.0, TFR_VBATT_DC = 10.0;            // S3 narrative props (Preamble B2)
+
+    // ── Element builders ───────────────────────────────────────────────────────
+    function tfrBar(x, y, w, h) {
+        var mat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#546E7A"), emissive: hexToThreeColor("#37474F"), emissiveIntensity: 0.18 });
+        var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, TFR_BAR_DZ), mat);
+        m.position.set(x, y, 0); m.userData = { glowKey: "core" };
+        tfrCoreMats.push(mat); return m;
+    }
+    function tfrBuildCore(grp) {
+        tfrCoreMats = [];
+        var innerT = TFR_CORE_TY - TFR_BAR_HT, innerB = TFR_CORE_BY + TFR_BAR_HT;
+        var barW = (TFR_CORE_RX - TFR_CORE_LX) + 2 * TFR_BAR_HT;
+        grp.add(tfrBar((TFR_CORE_LX + TFR_CORE_RX) / 2, TFR_CORE_TY, barW, 2 * TFR_BAR_HT));   // top
+        grp.add(tfrBar((TFR_CORE_LX + TFR_CORE_RX) / 2, TFR_CORE_BY, barW, 2 * TFR_BAR_HT));   // bottom
+        grp.add(tfrBar(TFR_CORE_LX, 0, 2 * TFR_BAR_HT, (innerT - innerB)));                    // left limb
+        grp.add(tfrBar(TFR_CORE_RX, 0, 2 * TFR_BAR_HT, (innerT - innerB)));                    // right limb
+        // Lamination striations (the S9 payoff, present from S1): thin dark lines
+        // across the vertical limbs.
+        for (var s = 0; s < 6; s++) {
+            var yy = -1.05 + s * 0.42;
+            [TFR_CORE_LX, TFR_CORE_RX].forEach(function (lx) {
+                var ln = createTubeLine([[lx - TFR_BAR_HT, yy, TFR_BAR_DZ / 2 + 0.01], [lx + TFR_BAR_HT, yy, TFR_BAR_DZ / 2 + 0.01]], "#263238", 0.012);
+                if (ln) { ln.userData = { glowKey: "core" }; grp.add(ln); }
+            });
+        }
+        // S9 eddy swirl loops on the core face (solid = wide, laminated = slivers).
+        tfrEddyLoops = [];
+        for (var e = 0; e < 3; e++) {
+            var mat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(TFR_COL_HEAT), transparent: true, opacity: 0 });
+            var loop = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.02, 6, 24), mat);
+            loop.position.set(0, -0.5 + e * 0.5, TFR_BAR_DZ / 2 + 0.05);
+            loop.userData = { glowKey: "core", tfrEddy: true, baseY: -0.5 + e * 0.5 };
+            grp.add(loop); tfrEddyLoops.push(loop);
+        }
+    }
+    function tfrBuildWinding(grp, cx, ringCount, col, glowKey, store) {
+        var mats = [];
+        for (var r = 0; r < ringCount; r++) {
+            var mat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(col), emissive: hexToThreeColor(col), emissiveIntensity: 0.14 });
+            var ring = new THREE.Mesh(new THREE.TorusGeometry(0.40, 0.045, 8, 20), mat);
+            ring.rotation.x = Math.PI / 2;
+            ring.position.set(cx, -0.9 + r * (1.8 / Math.max(ringCount - 1, 1)), 0);
+            ring.userData = { glowKey: glowKey };
+            grp.add(ring);
+            if (store === "sec") tfrSecRings.push(ring);
+            else tfrPrimRingMats.push(mat);
+        }
+        return mats;
+    }
+    function tfrBuildFlux(grp) {
+        tfrFluxMats = []; tfrFluxArrows = [];
+        // Rounded-rectangle flux path along the core centreline (between limbs).
+        var cx0 = TFR_CORE_LX, cx1 = TFR_CORE_RX, cy0 = TFR_CORE_BY + TFR_BAR_HT / 2 + 0.5, cy1 = TFR_CORE_TY - TFR_BAR_HT / 2 - 0.5;
+        var segs = [
+            [[cx0, cy0, 0], [cx0, cy1, 0]], [[cx0, cy1, 0], [cx1, cy1, 0]],
+            [[cx1, cy1, 0], [cx1, cy0, 0]], [[cx1, cy0, 0], [cx0, cy0, 0]]
+        ];
+        for (var i = 0; i < segs.length; i++) {
+            var t = createTubeLine(segs[i], TFR_COL_FLUX, 0.05);
+            if (t) {
+                t.material = new THREE.MeshBasicMaterial({ color: hexToThreeColor(TFR_COL_FLUX), transparent: true, opacity: 0.0 });
+                t.userData = { glowKey: "flux" }; grp.add(t); tfrFluxMats.push(t.material);
+            }
+        }
+        // Direction cones (flip with sign of Phi).
+        var conePos = [[(cx0 + cx1) / 2, cy1, 0, 0], [(cx0 + cx1) / 2, cy0, 0, Math.PI]];
+        for (var c = 0; c < conePos.length; c++) {
+            var cm = new THREE.MeshBasicMaterial({ color: hexToThreeColor(TFR_COL_FLUX), transparent: true, opacity: 0 });
+            var cone = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.2, 12), cm);
+            cone.position.set(conePos[c][0], conePos[c][1], 0);
+            cone.userData = { glowKey: "flux", tfrArrowBase: conePos[c][3] };
+            grp.add(cone); tfrFluxArrows.push({ mesh: cone, mat: cm, base: conePos[c][3] });
+        }
+    }
+    function tfrBuildSource(grp) {
+        // AC source ring (~) — primary loop, far left.
+        tfrSrcRingGrp = new THREE.Group();
+        var rm = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0BEC5"), emissive: hexToThreeColor(TFR_COL_VP), emissiveIntensity: 0.2 });
+        var ring = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.04, 10, 28), rm);
+        ring.position.set(TFR_SRC_X, 0, 0); tfrSrcRingGrp.add(ring);
+        var sl = createLabelSprite("AC \\u223c", TFR_COL_VP, 0.26);
+        sl.position.set(TFR_SRC_X, -0.62, 0); tfrSrcRingGrp.add(sl);
+        grp.add(tfrSrcRingGrp);
+        // DC battery (swaps in at S3) — hidden until the throw.
+        tfrBatteryGrp = new THREE.Group();
+        var lp = createTubeLine([[TFR_SRC_X - 0.26, 0.14, 0], [TFR_SRC_X + 0.26, 0.14, 0]], "#FFD54F", 0.04);
+        if (lp) tfrBatteryGrp.add(lp);
+        var sp = createTubeLine([[TFR_SRC_X - 0.14, -0.1, 0], [TFR_SRC_X + 0.14, -0.1, 0]], "#FFD54F", 0.06);
+        if (sp) tfrBatteryGrp.add(sp);
+        var bl = createLabelSprite("DC", TFR_COL_BATT, 0.24);
+        bl.position.set(TFR_SRC_X, -0.62, 0); tfrBatteryGrp.add(bl);
+        tfrBatteryGrp.visible = false; grp.add(tfrBatteryGrp);
+        // Source-selector blade (Rule-27 tfr_switch) — pivots AC(A)->DC(B) at S3.
+        var pv = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#CFD8DC") }));
+        pv.position.set(TFR_SRC_X, 0.72, 0); grp.add(pv);
+        var bgeo = new THREE.BoxGeometry(0.34, 0.045, 0.045); bgeo.translate(0.17, 0, 0);
+        tfrSelBlade = new THREE.Mesh(bgeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#ECEFF1"), emissive: hexToThreeColor("#455A64"), emissiveIntensity: 0.3 }));
+        tfrSelBlade.position.set(TFR_SRC_X, 0.72, 0); tfrSelBlade.userData = { glowKey: "switch" };
+        grp.add(tfrSelBlade);
+    }
+    function tfrBuildLamp(grp) {
+        tfrLampMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(TFR_COL_LAMP), transparent: true, opacity: 0.35 });
+        tfrLampMesh = new THREE.Mesh(new THREE.SphereGeometry(0.22, 16, 16), tfrLampMat);
+        tfrLampMesh.position.set(TFR_LOAD_X, 0.35, 0); tfrLampMesh.userData = { glowKey: "lamp" };
+        grp.add(tfrLampMesh);
+        var ll = createLabelSprite("lamp", TFR_COL_LAMP, 0.22);
+        ll.position.set(TFR_LOAD_X, 0.72, 0); grp.add(ll);
+        // R_load resistor box.
+        var rm = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.18, 0.12), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#8D6E63") }));
+        rm.position.set(TFR_LOAD_X, -0.35, 0); rm.userData = { glowKey: "lamp" }; grp.add(rm);
+    }
+    function tfrBuildMeterDial(grp, cx, cy, label, col, maxVal, key) {
+        var ringMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#455A64"), emissive: hexToThreeColor(col), emissiveIntensity: 0.12 });
+        var ring = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.02, 8, 24), ringMat);
+        ring.position.set(cx, cy, 0); grp.add(ring);
+        var ngeo = new THREE.BoxGeometry(0.02, 0.18, 0.02); ngeo.translate(0, 0.09, 0);
+        var needle = new THREE.Mesh(ngeo, new THREE.MeshBasicMaterial({ color: hexToThreeColor(col) }));
+        needle.position.set(cx, cy, 0.03); grp.add(needle);
+        var lbl = createLabelSprite(label, col, 0.2);
+        lbl.position.set(cx, cy - 0.34, 0); grp.add(lbl);
+        tfrMeters[key] = { needle: needle, max: maxVal, frac: 0 };
+    }
+
+    function buildTransformer() {
+        var pc = config.pvl_colors || {};
+        if (pc.current) TFR_COL_I = pc.current;
+        if (pc.primary_voltage) TFR_COL_VP = pc.primary_voltage;
+        if (pc.secondary_voltage) TFR_COL_VS = pc.secondary_voltage;
+        if (pc.flux) TFR_COL_FLUX = pc.flux;
+        if (pc.heat) TFR_COL_HEAT = pc.heat;
+        if (pc.lamp) TFR_COL_LAMP = pc.lamp;
+        if (pc.battery_out) TFR_COL_BATT = pc.battery_out;
+        if (pc.total) TFR_COL_TOT = pc.total;
+        var textColor = pc.text || "#D4D4D8";
+        tfrSecRings = []; tfrPrimRingMats = [];
+
+        // Core.
+        var coreGrp = new THREE.Group(); coreGrp.userData = { elementType: "tfr_core", id: "tfr_core" };
+        tfrBuildCore(coreGrp); addToScene(coreGrp);
+        // Flux tubes.
+        var fluxGrp = new THREE.Group(); fluxGrp.userData = { elementType: "tfr_flux", id: "tfr_flux" };
+        tfrBuildFlux(fluxGrp); addToScene(fluxGrp);
+        // Primary side (winding + loop wires + source selector).
+        var primGrp = new THREE.Group(); primGrp.userData = { elementType: "tfr_primary", id: "tfr_primary" };
+        tfrBuildWinding(primGrp, TFR_CORE_LX, TFR_PRIM_RINGS, "#90CAF9", "primary", "prim");
+        for (var pi = 0; pi < TFR_PRIM_PTS.length; pi++) {
+            var pa = TFR_PRIM_PTS[pi], pb = TFR_PRIM_PTS[(pi + 1) % TFR_PRIM_PTS.length];
+            var pw = createTubeLine([pa, pb], "#B0BEC5", 0.024); if (pw) { pw.userData = { glowKey: "primary" }; primGrp.add(pw); }
+        }
+        var plbl = createLabelSprite("primary N_p = 100", TFR_COL_VP, 0.22);
+        plbl.position.set(TFR_CORE_LX, 1.05, 0); primGrp.add(plbl);
+        addToScene(primGrp);
+        var switchGrp = new THREE.Group(); switchGrp.userData = { elementType: "tfr_switch", id: "tfr_switch" };
+        tfrBuildSource(switchGrp); addToScene(switchGrp);
+        // Secondary side (winding built at MAX; per-frame count toggles visibility).
+        var secGrp = new THREE.Group(); secGrp.userData = { elementType: "tfr_secondary", id: "tfr_secondary" };
+        tfrBuildWinding(secGrp, TFR_CORE_RX, TFR_SEC_MAX_RINGS, "#A5D6A7", "secondary", "sec");
+        for (var si = 0; si < TFR_SEC_PTS.length; si++) {
+            var sa = TFR_SEC_PTS[si], sb = TFR_SEC_PTS[(si + 1) % TFR_SEC_PTS.length];
+            // skip the top-right stub segment where the secondary switch sits (drawn as blade).
+            var sw = createTubeLine([sa, sb], "#B0BEC5", 0.024); if (sw) { sw.userData = { glowKey: "secondary" }; secGrp.add(sw); }
+        }
+        // Secondary switch blade (closes at S2) at the top rail.
+        var sbgeo = new THREE.BoxGeometry(0.38, 0.045, 0.045); sbgeo.translate(0.19, 0, 0);
+        tfrSecBlade = new THREE.Mesh(sbgeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#ECEFF1"), emissive: hexToThreeColor("#455A64"), emissiveIntensity: 0.3 }));
+        tfrSecBlade.position.set(2.0, TFR_LOOP_TY, 0); tfrSecBlade.userData = { glowKey: "secondary" }; secGrp.add(tfrSecBlade);
+        var slbl = createLabelSprite("secondary N_s", TFR_COL_VS, 0.22);
+        slbl.position.set(TFR_CORE_RX, 1.05, 0); secGrp.add(slbl);
+        addToScene(secGrp);
+        // Lamp + load.
+        var lampGrp = new THREE.Group(); lampGrp.userData = { elementType: "tfr_lamp", id: "tfr_lamp" };
+        tfrBuildLamp(lampGrp); addToScene(lampGrp);
+        // Meters (needle dials; numerals live in the HUD).
+        var meterGrp = new THREE.Group(); meterGrp.userData = { elementType: "tfr_meters", id: "tfr_meters" };
+        tfrBuildMeterDial(meterGrp, TFR_SRC_X + 0.02, 1.25, "V_p", TFR_COL_VP, 25, "vp");
+        tfrBuildMeterDial(meterGrp, TFR_SRC_X + 0.02, -1.25, "I_p", TFR_COL_I, 4, "ip");
+        tfrBuildMeterDial(meterGrp, TFR_LOAD_X, 1.25, "V_s", TFR_COL_VS, 90, "vs");
+        tfrBuildMeterDial(meterGrp, TFR_LOAD_X, -1.25, "I_s", TFR_COL_I, 4, "is");
+        addToScene(meterGrp);
+        // Bead streams (primary loop + secondary loop).
+        function makeBeads(pts, loopName) {
+            var Lp = tfrPolyLen(pts);
+            for (var bi = 0; bi < TFR_BEAD_PER_LOOP; bi++) {
+                var home = (bi / TFR_BEAD_PER_LOOP) * Lp;
+                var p0 = tfrPolyAt(pts, home);
+                var bead = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10),
+                    new THREE.MeshBasicMaterial({ color: hexToThreeColor(TFR_COL_I), transparent: true, opacity: 0.85 }));
+                bead.position.set(p0[0], p0[1], p0[2]);
+                bead.userData = { elementType: "tfr_beads", id: "tfr_bead_" + loopName + "_" + bi, tfrBead: loopName, home: home };
+                addToScene(bead);
+            }
+        }
+        makeBeads(TFR_PRIM_PTS, "prim"); makeBeads(TFR_SEC_PTS, "sec");
+
+        // ── DOM overlays (geometry mirrors the proven lco_ chrome family). ──
+        var rp = document.createElement("div"); rp.id = "tfr_readout";
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:160px;display:none;";
+        document.body.appendChild(rp);
+        var gc = document.createElement("canvas"); gc.id = "tfr_band";
+        gc.width = TFR_BAND_W; gc.height = TFR_BAND_H;
+        gc.style.cssText = "position:fixed;bottom:210px;left:12px;width:" + TFR_BAND_W + "px;height:" + TFR_BAND_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+        var gp = document.createElement("canvas"); gp.id = "tfr_gauges";
+        gp.width = TFR_GP_W; gp.height = TFR_GP_H;
+        gp.style.cssText = "position:fixed;bottom:88px;left:12px;width:" + TFR_GP_W + "px;height:" + TFR_GP_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gp);
+        var ff = document.createElement("div"); ff.id = "tfr_formula";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFD54F;font:600 20px/1.5 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+        var spd = document.createElement("div"); spd.id = "tfr_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:240px;display:none;";
+        var scN = tfrSc("N_s", 25, 400, 25, 200, "Secondary turns N_s");
+        var scV = tfrSc("V_p", 2, 20, 1, 10.0, "Primary voltage V_p");
+        var scF = tfrSc("f", 0.10, 1.00, 0.05, 0.25, "Source frequency f");
+        var scR = tfrSc("R_load", 5, 100, 5, 25.0, "Load resistance R_load");
+        spd.innerHTML =
+            '<div id="tfr_N_s_row"><label>' + tfrHtmlComposeSub(scN.label) + ': <span id="tfr_N_s_val">' + scN.def.toFixed(0) + '</span></label>' +
+            '<input type="range" id="tfr_N_s_slider" min="' + scN.min + '" max="' + scN.max + '" step="' + scN.step + '" value="' + scN.def + '" style="width:100%"></div>' +
+            '<div id="tfr_V_p_row" style="margin-top:6px"><label>' + tfrHtmlComposeSub(scV.label) + ': <span id="tfr_V_p_val">' + scV.def.toFixed(1) + '</span> V</label>' +
+            '<input type="range" id="tfr_V_p_slider" min="' + scV.min + '" max="' + scV.max + '" step="' + scV.step + '" value="' + scV.def + '" style="width:100%"></div>' +
+            '<div id="tfr_f_row" style="margin-top:6px"><label>' + tfrHtmlComposeSub(scF.label) + ': <span id="tfr_f_val">' + scF.def.toFixed(2) + '</span> Hz</label>' +
+            '<input type="range" id="tfr_f_slider" min="' + scF.min + '" max="' + scF.max + '" step="' + scF.step + '" value="' + scF.def + '" style="width:100%"></div>' +
+            '<div id="tfr_R_load_row" style="margin-top:6px"><label>' + tfrHtmlComposeSub(scR.label) + ': <span id="tfr_R_load_val">' + scR.def.toFixed(1) + '</span> \\u03a9</label>' +
+            '<input type="range" id="tfr_R_load_slider" min="' + scR.min + '" max="' + scR.max + '" step="' + scR.step + '" value="' + scR.def + '" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        window.PM_tfrN_s = scN.def; window.PM_tfrV_p = scV.def; window.PM_tfrf = scF.def; window.PM_tfrR_load = scR.def;
+        window.PM_tfrN_sDragged = false; window.PM_tfrV_pDragged = false; window.PM_tfrfDragged = false; window.PM_tfrR_loadDragged = false;
+
+        function tfrEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "transformer_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        function tfrWire(key, dec) {
+            var sl = document.getElementById("tfr_" + key + "_slider"), vv = document.getElementById("tfr_" + key + "_val");
+            if (!sl) return;
+            sl.addEventListener("input", function (ev) {
+                var val = parseFloat(sl.value);
+                window["PM_tfr" + key] = val;
+                if (vv) vv.textContent = val.toFixed(dec);
+                if (ev && ev.isTrusted) window["PM_tfr" + key + "Dragged"] = true;
+                tfrEmit(key, val);
+            });
+        }
+        tfrWire("N_s", 0); tfrWire("V_p", 1); tfrWire("f", 2); tfrWire("R_load", 1);
+    }
+
+    // Per-state exact-match tfr_ visibility + variable_overrides seed + the
+    // per-state contextual-control panel (Rule 31).
+    function applyTransformerState(stateDef) {
+        var d = stateDef.transformer || {};
+        var vis = stateDef.visible_elements || [];
+        function want(tok) { for (var q = 0; q < vis.length; q++) { if (vis[q] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("tfr_") !== 0) continue;
+            if (ud.elementType === "tfr_beads") o.visible = want("tfr_beads");
+            else o.visible = want(ud.elementType);
+        }
+        // dim_apparatus (S10 derivation): dim to a present pose (E4 restore pattern).
+        var dimApp = !!d.dim_apparatus;
+        for (var pd = 0; pd < sceneObjects.length; pd++) {
+            var pdo = sceneObjects[pd], pdu = pdo.userData;
+            if (!pdu || !pdu.elementType || pdu.elementType.indexOf("tfr_") !== 0) continue;
+            pdo.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi = 0; mi < ms.length; mi++) {
+                    var mm = ms[mi];
+                    if (mm.__tfrOrigOpacity === undefined) { mm.__tfrOrigOpacity = mm.opacity; mm.__tfrOrigTransp = mm.transparent; }
+                    if (dimApp) { mm.transparent = true; mm.opacity = Math.min(mm.__tfrOrigOpacity, 0.35); }
+                    else { mm.transparent = mm.__tfrOrigTransp; mm.opacity = mm.__tfrOrigOpacity; }
+                }
+            });
+        }
+        // Seed drivers from variable_overrides (defensive re-locks — physics §2).
+        var ov = stateDef.variable_overrides || {};
+        var scfg = config.slider_controls || {};
+        function def(k, fb) { return (scfg[k] && scfg[k]["default"] != null) ? scfg[k]["default"] : fb; }
+        window.PM_tfrN_s = (typeof ov.N_s === "number") ? ov.N_s : def("N_s", 200);
+        window.PM_tfrV_p = (typeof ov.V_p === "number") ? ov.V_p : def("V_p", 10.0);
+        window.PM_tfrf = (typeof ov.f === "number") ? ov.f : def("f", 0.25);
+        window.PM_tfrR_load = (typeof ov.R_load === "number") ? ov.R_load : def("R_load", 25.0);
+        window.PM_tfrN_sDragged = false; window.PM_tfrV_pDragged = false; window.PM_tfrfDragged = false; window.PM_tfrR_loadDragged = false;
+        // meter needle state resets (settle from 0 on entry).
+        for (var mk in tfrMeters) { if (tfrMeters.hasOwnProperty(mk)) tfrMeters[mk].frac = 0; }
+
+        function syncS(key, v, dec) { var e = document.getElementById("tfr_" + key + "_slider"); if (e) e.value = String(v); var vEl = document.getElementById("tfr_" + key + "_val"); if (vEl) vEl.textContent = v.toFixed(dec); }
+        syncS("N_s", window.PM_tfrN_s, 0); syncS("V_p", window.PM_tfrV_p, 1); syncS("f", window.PM_tfrf, 2); syncS("R_load", window.PM_tfrR_load, 1);
+
+        // Per-state contextual-control panel (Rule 31): controls[] = live row(s).
+        var controls = d.controls || [], rowKeys = ["N_s", "V_p", "f", "R_load"], anyRow = false;
+        for (var rk = 0; rk < rowKeys.length; rk++) {
+            var wantRow = controls.indexOf(rowKeys[rk]) !== -1;
+            var rowEl = document.getElementById("tfr_" + rowKeys[rk] + "_row");
+            if (rowEl) rowEl.style.display = wantRow ? "block" : "none";
+            if (wantRow) anyRow = true;
+        }
+        var panelEl = document.getElementById("tfr_sliders"); if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
+        var roEl = document.getElementById("tfr_readout"); if (roEl) roEl.style.display = want("tfr_meters") ? "block" : "none";
+        var gcEl = document.getElementById("tfr_band"); if (gcEl) gcEl.style.display = want("tfr_band") ? "block" : "none";
+        var gpEl = document.getElementById("tfr_gauges"); if (gpEl) gpEl.style.display = want("tfr_gauges") ? "block" : "none";
+        var ffEl = document.getElementById("tfr_formula");
+        if (ffEl) {
+            if (d.mode === "derivation") { ffEl.innerHTML = ""; ffEl.style.display = want("tfr_formula") ? "block" : "none"; }
+            else {
+                var ftext = want("tfr_formula") ? (d.formula_text || stateDef.formula_overlay || "") : "";
+                ffEl.innerHTML = tfrHtmlComposeSub(ftext); ffEl.style.display = ftext ? "block" : "none";
+            }
+        }
+    }
+
+    // ── Band draw dispatch (content-gated per state; single-latest chips) ──────
+    function tfrWaveX(gc, sec, tNow) { var x0 = 176, x1 = gc.width - 14; return x0 + ((sec - (tNow - TFR_TWIN)) / TFR_TWIN) * (x1 - x0); }
+    function tfrDrawTwinWave(ctx, gc, d, phys, tNow, sc, fluxOnly) {
+        var cy = TFR_BAND_H / 2, x0 = 176, x1 = gc.width - 14, plotW = x1 - x0;
+        var t0 = Math.max(0, tNow - TFR_TWIN), step = TFR_TWIN / 220;
+        ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(x0, cy); ctx.lineTo(x1, cy); ctx.stroke();
+        function plot(fn, col, w) {
+            ctx.strokeStyle = col; ctx.lineWidth = w; ctx.beginPath(); var first = true;
+            for (var s = t0; s <= tNow + 1e-4; s += step) { var x = tfrWaveX(gc, s, tNow), y = fn(s); if (first) { ctx.moveTo(x, y); first = false; } else ctx.lineTo(x, y); }
+            ctx.stroke();
+        }
+        var vpAmp = Math.SQRT2 * phys.V_p, vpScale = 46 / Math.max(vpAmp, 1e-6);
+        if (fluxOnly) {
+            var phiScale = 52 / Math.max(phys.Phi_m, 1e-6);
+            plot(function (s) { return cy + phiScale * (phys.Phi_m * Math.cos(phys.omega_deg * s * Math.PI / 180)); }, TFR_COL_FLUX, tfrGlowOn("band") ? 3 : 2);
+            ctx.fillStyle = TFR_COL_FLUX; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            tfrFillComposed(ctx, "\\u03a6(t)", x0 - 2, 14, "left");
+            return;
+        }
+        plot(function (s) { return cy - vpScale * (vpAmp * Math.sin(phys.omega_deg * s * Math.PI / 180)); }, TFR_COL_VP, 2);
+        if (sc) {
+            var vsAmp = Math.SQRT2 * phys.V_s, vsScale = 46 / Math.max(vsAmp, 1e-6);
+            plot(function (s) { return cy - vsScale * (vsAmp * Math.sin(phys.omega_deg * s * Math.PI / 180)); }, TFR_COL_VS, tfrGlowOn("band") ? 3 : 2);
+        }
+        ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        ctx.fillStyle = TFR_COL_VP; tfrFillComposed(ctx, "v_p", x0 - 2, cy - 40, "left");
+        if (sc) { ctx.fillStyle = TFR_COL_VS; tfrFillComposed(ctx, "v_s", x0 - 2, cy + 48, "left"); }
+    }
+    function tfrDrawTickBar(ctx, gc, d, phys, tNow) {
+        var start = (d.tick_cascade_start_at_ms != null ? d.tick_cascade_start_at_ms : 1000) / 1000;
+        var dur = (d.tick_cascade_dur_ms != null ? d.tick_cascade_dur_ms : 2500) / 1000;
+        var u = tfrClamp((tNow - start) / Math.max(dur, 1e-6), 0, 1);
+        var count = Math.round(TFR_NP * tfrSmooth(u)), barV = count * phys.per_turn;
+        var bx = 200, by = 30, bw = 40, bh = 90;
+        ctx.strokeStyle = "#546E7A"; ctx.strokeRect(bx, by, bw, bh);
+        var fr = tfrClamp(barV / Math.max(phys.V_p, 1e-6), 0, 1);
+        ctx.fillStyle = TFR_COL_VP; ctx.fillRect(bx, by + bh - fr * bh, bw, fr * bh);
+        ctx.fillStyle = "#ECEFF1"; ctx.font = "12px 'Cambria Math','Times New Roman',serif"; ctx.textAlign = "left";
+        tfrFillComposed(ctx, "turns: " + count, bx + bw + 16, by + 24, "left");
+        ctx.fillStyle = TFR_COL_VP; tfrFillComposed(ctx, "bar: " + barV.toFixed(1) + " V", bx + bw + 16, by + 48, "left");
+        ctx.fillStyle = "#78909C"; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; tfrFillComposed(ctx, "0.100 V/turn", bx + bw + 16, by + 68, "left");
+    }
+    function tfrDrawTransmission(ctx, gc, d, phys, tNow) {
+        // station -> line (R_line=5) -> house; phase A (direct 20V) hot, phase B (x10) cool.
+        var swap = (d.step_up_swap_at_ms != null ? d.step_up_swap_at_ms : 6000) / 1000;
+        var phaseB = tNow >= swap;
+        var y = TFR_BAND_H / 2, x0 = 190, x1 = gc.width - 24;
+        var Vs = phys.V_s, Ps = phys.P_s;
+        var Iline = phaseB ? (Ps / (10 * Math.max(Vs, 1e-6))) : (Ps / Math.max(Vs, 1e-6));
+        var loss = Iline * Iline * 5.0;
+        // station box
+        ctx.fillStyle = "#455A64"; ctx.fillRect(x0, y - 14, 22, 28);
+        ctx.fillStyle = "#455A64"; ctx.fillRect(x1 - 22, y - 14, 22, 28);
+        // line with glow proportional to loss
+        var hot = tfrClamp(loss / 3.2, 0, 1);
+        ctx.strokeStyle = tfrPaneBrighten(TFR_COL_HEAT, hot * 0.6); ctx.lineWidth = 2 + 4 * hot;
+        ctx.beginPath(); ctx.moveTo(x0 + 22, y); ctx.lineTo(x1 - 22, y); ctx.stroke();
+        ctx.font = "9px 'Cambria Math','Times New Roman',serif"; ctx.fillStyle = "#B0BEC5"; ctx.textAlign = "center";
+        ctx.fillText("station", x0 + 11, y + 26); ctx.fillText("house", x1 - 11, y + 26); ctx.textAlign = "left";
+        tfrFillComposed(ctx, "R_line = 5.0 \\u03a9", (x0 + x1) / 2 - 30, y - 20, "left");
+        var send = phaseB ? "200 V" : "20 V";
+        ctx.fillStyle = TFR_COL_HEAT; ctx.font = "12px 'Cambria Math','Times New Roman',serif";
+        tfrFillComposed(ctx, "send " + send + "  \\u2192  loss = " + loss.toFixed(3) + " W", x0, TFR_BAND_H - 12, "left");
+    }
+    function tfrDrawFluxTrace(ctx, gc, d, mode, phys, tNow) {
+        if (mode === "dc_dead") {
+            var throwAt = (d.throw_at_ms != null ? d.throw_at_ms : 800) / 1000;
+            var blipDur = (d.blip_dur_ms != null ? d.blip_dur_ms : 400) / 1000;
+            var cy = TFR_BAND_H / 2, x0 = 176, x1 = gc.width - 14;
+            ctx.strokeStyle = TFR_COL_FLUX; ctx.lineWidth = 2; ctx.beginPath();
+            if (tNow >= throwAt + blipDur) { ctx.moveTo(x0, cy - 40); ctx.lineTo(x1, cy - 40); }
+            else { var first = true; for (var s = Math.max(0, tNow - TFR_TWIN); s <= tNow; s += TFR_TWIN / 200) { var x = tfrWaveX(gc, s, tNow), yv = cy + (52 / Math.max(phys.Phi_m, 1e-6)) * (phys.Phi_m * Math.cos(phys.omega_deg * s * Math.PI / 180)); if (first) { ctx.moveTo(x, yv); first = false; } else ctx.lineTo(x, yv); } }
+            ctx.stroke();
+            ctx.fillStyle = TFR_COL_FLUX; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; tfrFillComposed(ctx, "\\u03a6(t)", x0 - 2, 14, "left");
+            return;
+        }
+        tfrDrawTwinWave(ctx, gc, d, phys, tNow, 0, true);
+    }
+    function tfrDrawChips(ctx, gc, d, mode, phys, tNow) {
+        var sx = 12, sy = 22, ms = tNow * 1000; ctx.textAlign = "left";
+        function chip(text, col, y, sz) { ctx.fillStyle = col; ctx.font = (sz || 12) + "px 'Cambria Math','Times New Roman',serif"; tfrFillComposed(ctx, text, sx, y, "left"); }
+        // Narration-bound one-shots ride scenario_cue times (SET_CUE_TIME) with the
+        // authored *_at_ms as the fallback THE EYE uses (cueTriggerMs — never a bare
+        // hardcoded ms that desyncs after pacing trims; the unbound-one-shot scar).
+        if (mode === "dc_dead") {
+            if (ms >= cueTriggerMs("fix_clause", (d.chip_at_ms != null ? d.chip_at_ms : 1600))) chip("steady \\u03a6 \\u2192 nothing crosses", "#FFD54F", sy);
+        } else if (mode === "per_turn") {
+            if (ms >= cueTriggerMs("cascade_chip", (d.cascade_chip_at_ms != null ? d.cascade_chip_at_ms : 3500))) chip("100 \\u00d7 0.100 V = 10.0 V", "#FFD54F", sy);
+        } else if (mode === "turns_ramp") {
+            if (ms >= cueTriggerMs("ramp_chip", (d.ramp_chip_at_ms != null ? d.ramp_chip_at_ms : 3000))) chip("V_s/V_p = N_s/N_p = " + Math.round(phys.N_s) + "/100 = " + (phys.N_s / 100).toFixed(0), TFR_COL_VS, sy);
+        } else if (mode === "power_lock") {
+            var ghostAt = cueTriggerMs("ghost_latch", (d.ghost_latch_at_ms != null ? d.ghost_latch_at_ms : 1000)) / 1000;
+            var strikeAt = cueTriggerMs("strike", (d.strike_at_ms != null ? d.strike_at_ms : 2500)) / 1000;
+            if (tNow >= ghostAt) {
+                ctx.font = "12px 'Cambria Math','Times New Roman',serif"; ctx.fillStyle = "#EF5350";
+                var g = "step-up = free power?"; var w = tfrMeasureComposedWidth(ctx, g, ctx.font, 0.62);
+                tfrFillComposed(ctx, g, sx, sy, "left");
+                if (tNow >= strikeAt) { ctx.strokeStyle = "#EF5350"; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(sx, sy - 4); ctx.lineTo(sx + w, sy - 4); ctx.stroke(); }
+            }
+            if (tNow >= strikeAt) chip("10.0 \\u00d7 1.60 = 20.0 \\u00d7 0.80 = 16.0 W", TFR_COL_TOT, sy + 24, 11);
+        } else if (mode === "transmission") {
+            var stepMs = cueTriggerMs("step_up_swap", (d.step_up_swap_at_ms != null ? d.step_up_swap_at_ms : 6000));
+            if (ms >= (d.loss_direct_chip_at_ms != null ? d.loss_direct_chip_at_ms : 5500) && ms < stepMs) chip("loss = 3.200 W", TFR_COL_HEAT, sy);
+            if (ms >= (d.loss_stepped_chip_at_ms != null ? d.loss_stepped_chip_at_ms : 10500)) chip("\\u00d710 V \\u2192 \\u00f7100 loss", "#FFD54F", sy);
+        } else if (mode === "loss_ledger") {
+            if (ms >= cueTriggerMs("hum_clause", (d.ledger_close_at_ms != null ? d.ledger_close_at_ms : 6000))) { chip("16.0 + 0.8 = 16.8 \\u2713", TFR_COL_TOT, sy, 11); chip("\\u03b7 = 16.0/16.8 = 95%", TFR_COL_HEAT, sy + 22, 11); }
+        } else if (mode === "lamination") {
+            if (ms >= cueTriggerMs("retro_link", (d.retro_link_at_ms != null ? d.retro_link_at_ms : 7000))) chip("thin slices \\u2192 no wide loops", "#FFD54F", sy);
+        }
+    }
+    function tfrDrawBand(d, mode, phys, tNow, sc) {
+        var gc = document.getElementById("tfr_band"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var bc = d.band_content || "none";
+        if (bc === "flux_trace") tfrDrawFluxTrace(ctx, gc, d, mode, phys, tNow);
+        else if (bc === "vp_vs_waveform") tfrDrawTwinWave(ctx, gc, d, phys, tNow, sc, false);
+        else if (bc === "tick_bar") tfrDrawTickBar(ctx, gc, d, phys, tNow);
+        else if (bc === "transmission_strip") tfrDrawTransmission(ctx, gc, d, phys, tNow);
+        tfrDrawChips(ctx, gc, d, mode, phys, tNow);
+    }
+
+    // Power-bars gauge pane (F4 header-row total geometry; F5 pane-level focal).
+    function tfrDrawGauges(d, mode, phys) {
+        var gc = document.getElementById("tfr_gauges"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        var gcont = d.gauges_content || "none"; if (gcont === "none") return;
+        var withLeaks = (gcont === "power_bars_with_leaks");
+        var focal = tfrGlowOn("gauges");
+        var briF = (focal && d.glow_pane_multiplier) ? 0.34 : 0.0, paneA = focal ? 1.0 : 0.72;
+        var W = gc.width, H = gc.height;
+        var Ps = phys.P_s, Pp = withLeaks ? (Ps + 0.8) : phys.P_p;
+        var bars = [
+            { lbl: "P_p", val: Pp, dp: 1, col: TFR_COL_VP },
+            { lbl: "P_s", val: Ps, dp: 1, col: TFR_COL_VS }
+        ];
+        if (withLeaks) {
+            bars.push({ lbl: "Cu", val: 0.4, dp: 1, col: TFR_COL_HEAT });
+            bars.push({ lbl: "eddy", val: 0.2, dp: 1, col: TFR_COL_HEAT });
+            bars.push({ lbl: "hys", val: 0.1, dp: 1, col: TFR_COL_HEAT });
+            bars.push({ lbl: "stray", val: 0.1, dp: 1, col: TFR_COL_HEAT });
+        }
+        var maxV = Math.max(Pp, Ps, 0.001);
+        ctx.globalAlpha = paneA;
+        ctx.strokeStyle = tfrPaneBrighten("#455A64", briF); ctx.strokeRect(0.5, 0.5, W - 1, H - 1);
+        var barW = withLeaks ? 20 : 34, gap = (W - 20 - bars.length * barW) / Math.max(bars.length - 1, 1);
+        var hdrY = 11, baseY = H - 26, topY = 30, fullH = baseY - topY;
+        ctx.fillStyle = tfrPaneBrighten(TFR_COL_TOT, briF); ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        tfrFillComposed(ctx, "power (W)", 6, hdrY, "left");
+        for (var b = 0; b < bars.length; b++) {
+            var bx = 10 + b * (barW + gap), fr = tfrClamp(bars[b].val / maxV, 0, 1), fh = fr * fullH;
+            ctx.strokeStyle = tfrPaneBrighten("#546E7A", briF); ctx.strokeRect(bx, topY, barW, fullH);
+            ctx.fillStyle = tfrPaneBrighten(bars[b].col, briF); ctx.fillRect(bx, baseY - fh, barW, fh);
+            ctx.font = "8px 'Cambria Math','Times New Roman',serif";
+            ctx.fillStyle = tfrPaneBrighten(bars[b].col, briF); tfrFillComposed(ctx, bars[b].lbl, bx + barW / 2, H - 12, "center");
+            ctx.fillStyle = tfrPaneBrighten("#ECEFF1", briF); ctx.textAlign = "center"; ctx.fillText(bars[b].val.toFixed(bars[b].dp), bx + barW / 2, topY - 4); ctx.textAlign = "left";
+        }
+        ctx.globalAlpha = 1;
+    }
+
+    // S10 derivation chain — links dock into the formula panel on their cues.
+    function tfrUpdateDerivation(d, t) {
+        var ff = document.getElementById("tfr_formula"); if (!ff) return;
+        var links = [
+            "\\u03b5_p = \\u2212N_p\\u00b7d\\u03a6/dt",
+            "\\u03b5_s = \\u2212N_s\\u00b7d\\u03a6/dt   (same \\u03a6)",
+            "\\u03b5_s/\\u03b5_p = N_s/N_p",
+            "V_s/V_p = N_s/N_p",
+            "V_p\\u00b7I_p = V_s\\u00b7I_s \\u2192 I_p/I_s = N_s/N_p",
+            "200/100 = 2 \\u2192 20.0 V, 0.80 A"
+        ];
+        var keys = ["link1_at_ms", "link2_at_ms", "link3_at_ms", "link4_at_ms", "link5_at_ms", "link6_at_ms"];
+        var defaults = [0, 1500, 3000, 4000, 5500, 7000], out = [];
+        for (var i = 0; i < links.length; i++) { if (t * 1000 >= (d[keys[i]] != null ? d[keys[i]] : defaults[i])) out.push(tfrHtmlComposeSub(links[i])); }
+        ff.innerHTML = out.join("<br>");
+    }
+
+    // Per-frame update — closed-form phase (Rule 26/36; no accumulator).
+    function updateTransformerFrame() {
+        if (config.scenario_type !== "transformer") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.transformer || {}; var mode = d.mode || "", t = time - stateStartTime;
+        var sc = (d.secondary_closed != null ? d.secondary_closed : 1);
+        var N_s = window.PM_tfrN_s, V_p = window.PM_tfrV_p, f = window.PM_tfrf, R_load = window.PM_tfrR_load;
+
+        // S5 scripted N_s ramp (thumb + label lockstep — F1 prevention).
+        if (mode === "turns_ramp" && !window.PM_tfrN_sDragged) {
+            var rs = (d.ns_ramp_start_at_ms != null ? d.ns_ramp_start_at_ms : 0) / 1000;
+            var rd = (d.ns_ramp_dur_ms != null ? d.ns_ramp_dur_ms : 3000) / 1000;
+            var from = (d.ns_ramp_from != null ? d.ns_ramp_from : 100), to = (d.ns_ramp_to != null ? d.ns_ramp_to : 200);
+            N_s = Math.round(from + (to - from) * tfrSmooth((t - rs) / Math.max(rd, 1e-6)));
+            window.PM_tfrN_s = N_s;
+            var e = document.getElementById("tfr_N_s_slider"); if (e) e.value = String(N_s);
+            var vEl = document.getElementById("tfr_N_s_val"); if (vEl) vEl.textContent = String(N_s);
+        }
+        var phys = tfrPhysics(N_s, V_p, f, R_load, sc);
+        var theta = phys.omega_deg * t;
+
+        // DC-dead phase (S3).
+        var dcActive = false, dcAfterThrow = false, blipEnv = 0, throwAt = 0, blipDur = 0;
+        if (mode === "dc_dead") {
+            throwAt = (d.throw_at_ms != null ? d.throw_at_ms : 800) / 1000;
+            blipDur = (d.blip_dur_ms != null ? d.blip_dur_ms : 400) / 1000;
+            if (t >= throwAt) {
+                dcAfterThrow = true; var t1 = t - throwAt;
+                if (t1 < blipDur) blipEnv = Math.sin(Math.PI * tfrClamp(t1 / blipDur, 0, 1));
+                else dcActive = true;
+            }
+        }
+
+        var inst = tfrInst(phys, theta, sc);
+        var fluxFrac, fluxSign;
+        if (mode === "dc_dead" && dcAfterThrow) {
+            fluxFrac = (d.flux_density_frac_dc != null ? d.flux_density_frac_dc : 1.0); fluxSign = 1;
+            inst.is = 0; inst.vs = 0; if (dcActive) inst.ip = 0;
+        } else {
+            fluxFrac = Math.abs(Math.cos(theta * Math.PI / 180)); fluxSign = (inst.phi >= 0) ? 1 : -1;
+        }
+
+        // Flux tubes: opacity/thickness proxy ∝ |Phi|/Phi_m; cones flip with sign.
+        for (var fm = 0; fm < tfrFluxMats.length; fm++) tfrFluxMats[fm].opacity = 0.14 + 0.72 * fluxFrac;
+        for (var fa = 0; fa < tfrFluxArrows.length; fa++) {
+            var A = tfrFluxArrows[fa]; A.mat.opacity = 0.2 + 0.7 * fluxFrac;
+            A.mesh.rotation.z = (fa === 0 ? -Math.PI / 2 : Math.PI / 2) + (fluxSign < 0 ? Math.PI : 0);
+        }
+
+        // Secondary winding: visible ring count = round(N_s/10) (schematic bundle).
+        var showRings = Math.round(N_s / 10);
+        for (var sr = 0; sr < tfrSecRings.length; sr++) tfrSecRings[sr].visible = (sr < showRings);
+
+        // Beads.
+        var afp = tfrClamp(0.30 * (phys.I_p / 1.60), 0.08, 0.42);
+        var afs = tfrClamp(0.30 * (phys.I_s / 0.80), 0.08, 0.42);
+        var thr = theta * Math.PI / 180, dispP = afp * TFR_BEAD_ARC * Math.sin(thr);
+        var dispS = (sc && !(mode === "dc_dead")) ? afs * TFR_BEAD_ARC * Math.sin(thr) : 0;
+        var oneWay = (mode === "dc_dead" && dcActive);
+        var dcArc = oneWay ? (0.06 * (TFR_VBATT_DC / TFR_RP_DC) * (t - throwAt - blipDur) * tfrPolyLen(TFR_PRIM_PTS)) : 0;
+        var beadsShown = tfrVisHas("tfr_beads");
+        for (var bi = 0; bi < sceneObjects.length; bi++) {
+            var bo = sceneObjects[bi], bu = bo.userData; if (!bu || !bu.tfrBead) continue;
+            if (bu.tfrBead === "prim") {
+                var pOff = oneWay ? (bu.home + dcArc) : (bu.home + dispP);
+                var pp = tfrPolyAt(TFR_PRIM_PTS, pOff); bo.position.set(pp[0], pp[1], pp[2]);
+            } else {
+                bo.visible = beadsShown && (sc === 1);
+                var sOff = bu.home + dispS, ps = tfrPolyAt(TFR_SEC_PTS, sOff); bo.position.set(ps[0], ps[1], ps[2]);
+            }
+        }
+
+        // Lamp glow ∝ i_s² (honest 2f envelope); dark in DC; blip flash.
+        if (tfrLampMat) {
+            var isFrac = Math.min(1, (inst.is * inst.is) / Math.max(2 * phys.I_s * phys.I_s, 1e-6));
+            var lampOn = (sc === 1) && !(mode === "dc_dead" && dcAfterThrow);
+            var glow = lampOn ? (0.25 + 0.72 * isFrac) : 0.1;
+            if (mode === "dc_dead" && blipEnv > 0) glow = 0.25 + 0.72 * blipEnv;
+            tfrLampMat.opacity = tfrClamp(glow, 0.08, 1);
+        }
+
+        // Source/battery swap (S3 throw) + selector blade.
+        var isDcPose = (mode === "dc_dead" && dcAfterThrow);
+        if (tfrSrcRingGrp) tfrSrcRingGrp.traverse(function (n) { if (n.material) { n.material.transparent = true; n.material.opacity = isDcPose ? 0.25 : 1; } });
+        if (tfrBatteryGrp) tfrBatteryGrp.visible = isDcPose;
+        if (tfrSelBlade) { var bf = (mode === "dc_dead") ? tfrClamp((t - throwAt) / 0.4 + (dcAfterThrow ? 1 : 0), 0, 1) : 0; tfrSelBlade.rotation.z = -0.5 * (isDcPose ? 1 : 0); }
+
+        // Secondary switch blade (open at S1, closed S2+).
+        if (tfrSecBlade) {
+            var closeFrac = 1;
+            if (mode === "close_secondary") { var ca = (d.secondary_close_at_ms != null ? d.secondary_close_at_ms : 0) / 1000, cd = (d.release_beat_dur_ms != null ? d.release_beat_dur_ms : 1000) / 1000; closeFrac = tfrClamp((t - ca) / Math.max(cd, 1e-6), 0, 1); }
+            else if (sc === 0) closeFrac = 0;
+            tfrSecBlade.rotation.z = (1 - closeFrac) * 0.6;
+        }
+
+        // S9 eddy swirl loops: wide in solid_run, slivers after slice_swap.
+        if (mode === "lamination") {
+            var sliceAt = (d.slice_swap_at_ms != null ? d.slice_swap_at_ms : 5000) / 1000;
+            var solidStart = (d.solid_run_start_at_ms != null ? d.solid_run_start_at_ms : 1500) / 1000;
+            var sizeFrac = (t < sliceAt) ? 1.0 : Math.max(0.18, 1 - tfrClamp((t - sliceAt) / 1.0, 0, 1) * 0.82);
+            var vis = (t >= solidStart);
+            for (var el = 0; el < tfrEddyLoops.length; el++) {
+                var lp = tfrEddyLoops[el]; lp.scale.set(sizeFrac, sizeFrac * 0.5, 1);
+                lp.material.opacity = vis ? (0.35 + 0.4 * fluxFrac) * (sizeFrac > 0.5 ? 1 : 0.5) : 0;
+            }
+        } else {
+            for (var el2 = 0; el2 < tfrEddyLoops.length; el2++) tfrEddyLoops[el2].material.opacity = 0;
+        }
+
+        // Meters (needle settle-lerp to rms values; numerals in HUD).
+        function setMeter(key, target, max) {
+            var m = tfrMeters[key]; if (!m) return;
+            var tf = tfrClamp(target / Math.max(max, 1e-6), 0, 1);
+            m.frac += (tf - m.frac) * 0.12;
+            if (m.needle) m.needle.rotation.z = -1.2 + 2.4 * m.frac;
+        }
+        setMeter("vp", phys.V_p, tfrMeters.vp ? tfrMeters.vp.max : 25);
+        setMeter("ip", dcActive ? (TFR_VBATT_DC / TFR_RP_DC) : phys.I_p, 4);
+        setMeter("vs", isDcPose ? 0 : phys.V_s, tfrMeters.vs ? tfrMeters.vs.max : 90);
+        setMeter("is", isDcPose ? (blipEnv * 2) : phys.I_s, 4);
+
+        // Band + gauges + derivation.
+        tfrDrawBand(d, mode, phys, t, sc);
+        tfrDrawGauges(d, mode, phys);
+        if (mode === "derivation") tfrUpdateDerivation(d, t);
+
+        // HUD readout (value-only, ring-gated).
+        var roEl = document.getElementById("tfr_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var html = "", leaks = 0.8, PpReal = phys.P_s + leaks, eta = phys.P_s / Math.max(PpReal, 1e-6);
+            if (d.hud_show_flux) {
+                if (d.flux_numeral_hidden) html += "<div style=\\"color:#B388FF\\">d\\u03a6/dt = 0</div>";
+                else html += "<div style=\\"color:#B388FF\\">\\u03a6 = " + phys.Phi_m.toFixed(3) + " Wb</div>";
+            }
+            if (d.hud_show_vp) html += "<div style=\\"color:#4FC3F7\\">V_p = " + phys.V_p.toFixed(1) + " V</div>";
+            if (d.hud_show_vs_is) {
+                var vsH = isDcPose ? 0 : phys.V_s, isH = isDcPose ? 0 : phys.I_s;
+                html += "<div style=\\"color:#66BB6A\\">V_s = " + vsH.toFixed(1) + " V</div>";
+                html += "<div style=\\"color:#FFB300\\">I_s = " + tfrFx(isH, 2) + " A</div>";
+            }
+            if (d.hud_show_ip) html += "<div style=\\"color:#FFB300\\">I_p = " + (dcActive ? (TFR_VBATT_DC / TFR_RP_DC).toFixed(2) : phys.I_p.toFixed(2)) + " A</div>";
+            if (d.hud_show_turns) { html += "<div style=\\"color:#90CAF9\\">N_p = 100</div>"; html += "<div style=\\"color:#A5D6A7\\">N_s = " + Math.round(phys.N_s) + "</div>"; }
+            if (d.hud_show_power) {
+                var ppDisp = d.hud_show_eta ? PpReal : phys.P_p;
+                html += "<div style=\\"color:#4FC3F7\\">P_p = " + ppDisp.toFixed(1) + " W</div>";
+                html += "<div style=\\"color:#66BB6A\\">P_s = " + phys.P_s.toFixed(1) + " W</div>";
+            }
+            if (d.hud_show_eta) html += "<div style=\\"color:#FF6E40\\">\\u03b7 = " + Math.round(eta * 100) + "%</div>";
+            if (d.hud_show_lineloss) {
+                var Il1 = phys.P_s / Math.max(phys.V_s, 1e-6), Il2 = phys.P_s / Math.max(10 * phys.V_s, 1e-6);
+                html += "<div style=\\"color:#FF6E40\\">loss = " + (Il1 * Il1 * 5.0).toFixed(3) + " W \\u2192 " + (Il2 * Il2 * 5.0).toFixed(3) + " W</div>";
+            }
+            roEl.innerHTML = tfrHtmlComposeSub(html);
+        }
+    }
+
+    // Glow — 3D apparatus via applyGlowEmphasis (brightness only, Rule 29); the
+    // canvas panes glow inside their own draws via tfrGlowOn (multiplier on the
+    // pane's own live channel — F5); the DOM formula panel toggles glow-pulse.
+    function applyTransformerGlow() {
+        var glowActive = glowTargets.length > 0, glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {}, et = sud.elementType || "";
+            if (et.indexOf("tfr_") !== 0) continue;
+            var isFocal = (et === "tfr_core" && on("core")) || (et === "tfr_flux" && on("flux"))
+                || (et === "tfr_primary" && on("primary")) || (et === "tfr_secondary" && on("secondary"))
+                || (et === "tfr_switch" && on("switch")) || (et === "tfr_lamp" && on("lamp"))
+                || (et === "tfr_beads" && on("beads"));
+            applyGlowEmphasis(so, isFocal, glowActive, glowP, true);
+        }
+        var ffEl = document.getElementById("tfr_formula");
+        if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
+    }
 
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
@@ -37153,6 +38023,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildLcOsc();
                 break;
 
+            case "transformer":
+                buildTransformer();
+                break;
+
             case "magnetic_flux_loop":
                 buildMagneticFluxLoop();
                 break;
@@ -37626,6 +38500,19 @@ export const FIELD_3D_RENDERER_CODE = `
             applyLcOscState(stateDef);
         }
 
+        // transformer — NEW Ch.7 §7.9 two-coil scenario (clone-sibling of
+        // lc_oscillation's chrome/band/gauge family). Per-state tfr_ apparatus/
+        // flux/winding/switch/lamp/meter visibility + variable_overrides seed
+        // (N_s/V_p/f/R_load + secondary_closed) + the per-state contextual-control
+        // panel (N_s live at S5 post-ramp, ALL four at the S11 explore). The
+        // animate loop advances the closed-form phase clock, drives the flux tubes
+        // / bead streams / lamp / needle meters / source-DC swap / secondary switch
+        // / S9 eddy-swirl morph, paints the band (flux/twin-wave/tick-bar/
+        // transmission + chips) + power-bar gauges, and writes the ring-gated HUD.
+        if (config.scenario_type === "transformer") {
+            applyTransformerState(stateDef);
+        }
+
         // magnetic_flux_loop — per-state contextual-control row visibility
         // (B/A/theta live-vs-static-vs-hidden), theta_range bounds, and the
         // area-vector/theta-arc/RHR-hand/projection-shadow flags. The animate
@@ -37959,6 +38846,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // excluded here or the generic #sliders panel bleeds through (THE-EYE
         // "#sliders exclusion chain" — every dedicated panel excludes itself here).
         var isLco = config.scenario_type === "lc_oscillation";
+        // transformer owns its OWN #tfr_sliders panel (N_s/V_p/f/R_load) -- must
+        // be excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel excludes itself here).
+        var isTfr = config.scenario_type === "transformer";
         // magnetic_flux_loop owns its OWN #mfl_sliders panel (B/A/theta) -- must
         // be excluded here or the generic #sliders panel bleeds through
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
@@ -38007,7 +38898,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -38194,7 +39085,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -41447,6 +42338,14 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "lc_oscillation") {
             updateLcOscFrame();
             applyLcOscGlow();
+        }
+
+        // transformer — two coils on one closed core; closed-form phase clock
+        // (Rule 26/36) drives circulating flux tubes, twin bead loops, the lamp
+        // (∝ i_s²), needle meters, band traces + power bars, and the ring-gated HUD.
+        if (config.scenario_type === "transformer") {
+            updateTransformerFrame();
+            applyTransformerGlow();
         }
 
         // magnetic_flux_loop — stationary tiltable/resizable loop in a uniform B.

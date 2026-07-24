@@ -1565,3 +1565,77 @@ Concept JSON + registration sites + state file stay UNCOMMITTED (commit at conce
 **Cumulative-EYE watch:** on S5/S9/S2/S7 frozen frames, the displayed energy components must sum to
 `E_total = 6.36 J` EXACTLY (no `6.37` seam) and no component shows a negative value (`E_R ≥ 0` on the
 undamped explore/2-bar frames).
+
+---
+
+## Stage 8 · transformer (Ch.7 §7.9, concept 8/8 — CHAPTER END) · NEW field_3d scenario_type build · 2026-07-24 · [owner: peter_parker:renderer_primitives]
+
+**Dispatch:** NEW `scenario_type: "transformer"` (Class-B) — the last concept of Ch.7. Genuine new-scenario
+design work (not a diagnosed fix). Clone-sibling of the sealed `lc_oscillation` (chrome/band/gauge family +
+the two-position switch assembly, inverted for an AC/DC source selector). Prefix `tfr_`. Zero edits to any
+sealed sibling body (`acr_`/`acl_`/`acc_`/`phs_`/`slcr_`/`pwr_`/`lco_`).
+
+**Finding:** the authored `src/data/concepts/transformer.json` declares `field_3d_config.scenario_type =
+"transformer"` across 11 states, but `field_3d_renderer.ts` had no branch for it (only an incidental
+eddy-current label sprite at L21680, another scenario — untouched). Build required.
+
+**Build (additive, `field_3d_renderer.ts` + `deriveStateMeta.ts` only):**
+- New `tfr_` scenario block (~840 lines) inserted after `applyLcOscGlow`: physics (`tfrPhysics`/`tfrInst`,
+  N_p=100 fixed, Phi_m=√2·V_p/(N_p·ω), V_s=V_p·N_s/N_p, power-conservation I_p); ONE closed-form
+  state-local phase clock (theta=omega_deg·t, omega_deg=360f; v_p/v_s/i_s/i_p all sin, Phi=−cos — no
+  accumulator, byte-stable under SET_TIME_FREEZE). Apparatus: laminated rectangular core (4 bars + striations
+  + S9 eddy-swirl overlay), primary winding (10 rings) + secondary winding (built at 40, visible count =
+  round(N_s/10)), AC source ring + DC battery (S3 swap) + Rule-27 `tfr_switch` selector blade, secondary
+  switch blade (open S1 → closed S2), lamp (∝ i_s²) + R_load, four needle-dial meters, circulating violet
+  flux tubes (opacity ∝ |Phi|/Phi_m, direction cones flip with sign), two disjoint amber bead loops.
+  DOM overlays mirror the proven `lco_` chrome geometry verbatim (readout top:52px;right:12px · band
+  bottom:210px;left:12px · gauges bottom:88px;left:12px · Cambria formula top:40%;right:22px · sliders
+  bottom:12px;right:12px). `tfr_`-scoped subscript-compose clone (letter+digit, all three text paths);
+  near-zero unsigned clamp; pane-level focal multiplier (`tfrPaneBrighten`) for S6/S8 gauges.
+- Per-mode band (flux_trace / vp_vs_waveform / tick_bar / transmission_strip + single-latest chips), power
+  gauges (power_bars / power_bars_with_leaks, F4 header-row total geometry), S10 derivation chain.
+- Wiring (6 one-line dispatch sites): buildScenario case, applyState dispatch, animate dispatch,
+  #sliders exclusion NOT-list (`isTfr`), #formula_overlay suppression list. deriveStateMeta.ts (4 sites):
+  `deriveMotionExpectations`, `F3D_REVEAL_KEYS`, `maxRevealForField3dState` (per-mode settled pins),
+  `deriveHoldExpectations` (explore→interactive, else reveal_hold).
+
+**Declared simplifications (never silent):** (1) the four meters render as in-scene NEEDLE DIALS (real
+meshes, needle settle-lerps to the rms value) with their live NUMERALS in the value-only HUD — an honest
+split, not an in-dial numeral sprite (Rule 34b HUD-primary; matches the lco_/pwr_ HUD+pane fleet precedent).
+(2) The S9 lamination cutaway runs as a 3D swirl-loop overlay ON the core (solid=wide loops → laminated=
+slivers) rather than a separate DOM zoom-lens. (3) Winding loops are a declared ×10 schematic bundle; the
+N_p/N_s COUNTERS (HUD + label) are authoritative.
+
+**Scars honoured by construction:** two-zeros open-vs-closed-dead distinction (Preamble B4); no-bridge (two
+disjoint bead polylines, never share a point); S5 thumb-lockstep on the ramp (F1); S3 flux numeral hidden
+(dΦ/dt=0 badge only, never 0.090); S6/S8 pane-level focal (F5); one formula surface (F3, `#formula_overlay`
+suppressed); ASCII-token→Unicode subscript compose on all three paths (letter ₚ/ₛ verified); near-zero
+unsigned 0.00 clamp; overlays top:52px+.
+
+**Verify chain (engine-agent self-verify; cumulative EYE + capacitance regression DEFERRED to orchestrator
+per Amendment 4 — visual:eyes NOT run here):** check:renderer-syntax OK (field_3d 2627 KB + particle_field,
+0 backticks / 0 `${` in added renderer lines) · tsc --noEmit 0 errors · validate:concepts 132/132 PASS
+(transformer PASS; only a legacy word-budget WARN on S10 = 58 words, alex content territory, NOT acted on).
+Clock guard: NO `__pmSteps`/`dtStep`/shared-integrator touched → NO fleet sweep required. Contamination grep
+on added lines: only 2 COMMENT references to sealed prefixes, zero sealed-body edits.
+
+**Physics self-verify (node scratchpad, not committed):** ratio1 Vs=10.0/Is=0.40/Ip=0.40/P=4.0;
+ratio2 Vs=20.0/Is=0.80/Ip=1.60/P=16.0; Phi_m=0.090 (0.023 at f=1.0); leaks 0.8→Pp=16.8→η=95%;
+loss 3.200→0.032 (ratio 100.0 at 3dp); I_p_dc=3.33; per_turn=0.100 — all match the locked block.
+
+**Commit:** renderer + deriveStateMeta + this log entry + the scar-candidate append commit together.
+Concept JSON + registration sites (panelConfig/aiSimulationGenerator/intentClassifier) + state file stay
+UNCOMMITTED (commit at concept seal). CHAPTER END: transformer is 8/8 — with the seal, Ch.7 is complete.
+
+**Cumulative-EYE watch (per-state frozen-frame expectations at the deriveStateMeta pins):**
+S1 Φ=0.090 Wb, Vₚ=10.0 V, secondary dark/open, primary beads oscillating · S2 Vₛ=10.0 V, Iₛ=0.40 A,
+Iₚ=0.40 A, lamp lit · S3 dΦ/dt=0 badge (NO numeral), Iₚ=3.33 A DC (one-way beads), Vₛ=Iₛ=0.00, lamp dark,
+loop CLOSED · S4 turns:100, bar 10.0 V, chip 100×0.100 V=10.0 V · S5 Nₛ=200, Vₛ=20.0 V, chip Vₛ/Vₚ=Nₛ/Nₚ=
+200/100=2, Φₘ still 0.090 · S6 Pₚ=Pₛ=16.0 W level bars, Iₚ=1.60 doubles Iₛ=0.80, ghost struck, money chip
+10.0×1.60=20.0×0.80=16.0 W · S7 loss 3.200 W→0.032 W (3dp), chip ×10 V→÷100 loss · S8 Pₚ=16.8 W, η=95%,
+4 leak bars, ledger 16.0+0.8=16.8 · S9 laminated half (eddy slivers), retro chip · S10 derivation 6 links,
+apparatus dimmed · S11 free-runs, all 4 sliders live.
+
+**Authoring finding NOT acted on (handoff FYI, alex:json_author):** S10 narration is 58 EN words (>55
+Rule-31a budget) — a validator WARN, not fatal. Content-side; left for the concept-seal pass, not an
+engine edit.
