@@ -30131,6 +30131,845 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
     }
 
+    // ══════════════════════════════════════════════════════════════════════
+    //  lc_oscillation scenario (prefix lco_) — Ch.7 §7.8 "LC Oscillations".
+    //  A CLONE-SIBLING of ac_power (gauge/band/chrome family) + the element
+    //  apparatus. ADDITIVE ONLY — zero edits to any sealed scenario code path
+    //  (acr_/acl_/acc_/phs_/slcr_/pwr_ bodies); a clone, never an in-place
+    //  extension. Teaches the SOURCE-FREE circuit: a battery charges C, a
+    //  two-position switch removes the battery, and the L-C pair oscillates by
+    //  itself at omega0 = 1/sqrt(LC).
+    //
+    //  visible_elements enum (CLOSED): lco_circuit · lco_switch · lco_battery ·
+    //    lco_beads · lco_glyphs · lco_strip · lco_gauges · lco_inset · lco_chips ·
+    //    lco_formula.
+    //  glow-key enum (CLOSED): circuit · switch · battery · plates · coil · beads ·
+    //    strip · gauges · inset · chips · formula.
+    //  Modes: charge_up · switch_throw · through_zero · free_run · energy_slosh ·
+    //    shm_twin · damped · derivation · explore.
+    //
+    //  ONE closed-form phase clock per state drives beads, glyphs, gauges, pen,
+    //  inset and HUD (Rule 32a — "never let the twin agree by animation luck"):
+    //  q(t)=Q0 cos(w0 t), i(t)=-I0 sin(w0 t) [convention i:=dq/dt, HUD shows |i|].
+    //  No per-frame accumulator anywhere (B1 scar discipline; byte-stable under
+    //  SET_TIME_FREEZE). E_total is the ONE pinned constant 0.5*C*V0*V0 on every
+    //  surface (CpA F1); E_R is the complement (never an accumulator). The damped
+    //  envelope is the analytic e^(-alpha t). Colour law: green=q/plates/E_C,
+    //  amber=current/beads, violet=coil/E_B, warm=heat/E_R, white=total/HUD.
+    // ══════════════════════════════════════════════════════════════════════
+    var LCO_BAND_W = 500, LCO_BAND_H = 150;
+    var LCO_STRIP_X0 = 182, LCO_STRIP_X1 = LCO_BAND_W - 14;    // right region (q/i traces)
+    var LCO_INSET_X0 = 12, LCO_INSET_X1 = 168;                 // left region (mass-spring inset)
+    var LCO_TWIN = 8.0;                                        // strip time window (s)
+    var LCO_GP_W = 170, LCO_GP_H = 110;                        // gauge pane (under band, left:12)
+    // 3D apparatus — the L-C loop (coil branch left, capacitor right; battery +
+    // two-position switch tap at the top-left). Home pose built ONCE (32d).
+    var LCO_BAT_X = -3.4, LCO_L_X = -1.5, LCO_C_X = 2.4;
+    var LCO_TOP_Y = 1.05, LCO_BOT_Y = -1.05;
+    var LCO_CP = [-0.6, 1.30, 0];                              // switch common pole
+    var LCO_CONTACT_A = [-1.15, 1.55, 0];                      // -> battery (charging)
+    var LCO_CONTACT_B = [-1.15, 1.05, 0];                      // -> coil (oscillating)
+    var LCO_CTOP_Y = 0.18, LCO_CBOT_Y = -0.18;                 // capacitor plate y
+    var LCO_NGLYPH = 5;                                        // charge glyphs per plate
+    var LCO_BEAD_COUNT = 20, LCO_BEAD_AMP = 0.55;             // bead arclength swing at default I0
+    // Colour law (read from pvl_colors with fleet defaults).
+    var LCO_COL_Q = "#69F0AE", LCO_COL_I = "#FFB300", LCO_COL_B = "#B388FF";
+    var LCO_COL_R = "#FF6E40", LCO_COL_TOT = "#ECEFF1", LCO_COL_INSET = "#90A4AE";
+
+    var lcoCoilMats = [], lcoPlateMeshes = [];
+    var lcoBatteryGrp = null, lcoSwitchBlade = null;
+    var lcoGlyphTop = { plus: [], minus: [] }, lcoGlyphBot = { plus: [], minus: [] };
+    var lcoLastGlyphN = -1, lcoLastGlyphPol = 2;
+
+    // ── The bead path (pose B, the closed L-C loop): C-top plate -> up riser ->
+    //   switch common -> contact B -> coil top -> down through coil -> bottom rail
+    //   -> up to C-bottom plate. Beads slosh ± along it (back-and-forth current,
+    //   never circulating one way — the LC current reverses). ─────────────────
+    var LCO_LOOP_PTS = [
+        [LCO_C_X, LCO_CTOP_Y, 0], [LCO_C_X, LCO_CP[1], 0], [LCO_CP[0], LCO_CP[1], 0],
+        [LCO_CONTACT_B[0], LCO_CONTACT_B[1], 0], [LCO_L_X, LCO_CONTACT_B[1], 0],
+        [LCO_L_X, LCO_BOT_Y, 0], [LCO_C_X, LCO_BOT_Y, 0], [LCO_C_X, LCO_CBOT_Y, 0]
+    ];
+    function lcoLoopLen() {
+        var P = 0;
+        for (var i = 0; i < LCO_LOOP_PTS.length - 1; i++) {
+            var a = LCO_LOOP_PTS[i], b = LCO_LOOP_PTS[i + 1];
+            P += Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+        }
+        return P;
+    }
+    function lcoLoopAt(s) {
+        var L = lcoLoopLen(), ss = s < 0 ? 0 : (s > L ? L : s);
+        for (var i = 0; i < LCO_LOOP_PTS.length - 1; i++) {
+            var a = LCO_LOOP_PTS[i], b = LCO_LOOP_PTS[i + 1];
+            var segLen = Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+            if (ss <= segLen) { var fr = segLen > 1e-9 ? ss / segLen : 0; return [a[0] + (b[0] - a[0]) * fr, a[1] + (b[1] - a[1]) * fr, 0]; }
+            ss -= segLen;
+        }
+        return [LCO_LOOP_PTS[LCO_LOOP_PTS.length - 1][0], LCO_LOOP_PTS[LCO_LOOP_PTS.length - 1][1], 0];
+    }
+
+    // ── lco_-scoped styled-subscript compose routine (a LOCAL clone so the sealed
+    //   chapter cannot regress — founder rule-of-N default). Handles BOTH letter
+    //   AND DIGIT subscripts (the 5dc7ccd digit-subscript path: Q_0 I_0 V_0 T_0
+    //   f_0 omega_0 are all load-bearing here) across all THREE text paths (DOM
+    //   innerHTML, canvas fillText, sprite labels); NEVER a literal underscore. ──
+    function lcoComposeSegments(text) {
+        var s = String(text == null ? "" : text);
+        var re = /([A-Za-z\\u03b1-\\u03c9])_([A-Za-z0-9]+)/g;
+        var segs = [], last = 0, m;
+        while ((m = re.exec(s)) !== null) {
+            if (m.index > last) segs.push({ t: s.slice(last, m.index), sub: false });
+            segs.push({ t: m[1], sub: m[2] });
+            last = m.index + m[0].length;
+        }
+        if (last < s.length) segs.push({ t: s.slice(last), sub: false });
+        return segs;
+    }
+    function lcoSubFont(fontStr, ratio) {
+        var mm = /(\\d+(?:\\.\\d+)?)px/.exec(fontStr);
+        if (!mm) return fontStr;
+        var newSize = Math.max(6, parseFloat(mm[1]) * ratio);
+        return fontStr.slice(0, mm.index) + newSize.toFixed(1) + "px" + fontStr.slice(mm.index + mm[0].length);
+    }
+    function lcoMeasureComposedWidth(ctx, text, baseFont, subRatio) {
+        var ratio = subRatio || 0.62, restoreFont = ctx.font, segs = lcoComposeSegments(text), total = 0;
+        for (var i = 0; i < segs.length; i++) {
+            ctx.font = baseFont; total += ctx.measureText(segs[i].t).width;
+            if (segs[i].sub) { ctx.font = lcoSubFont(baseFont, ratio); total += ctx.measureText(segs[i].sub).width; }
+        }
+        ctx.font = restoreFont; return total;
+    }
+    function lcoDrawComposedRun(ctx, text, x, y, baseFont, color, subRatio) {
+        var ratio = subRatio || 0.62, segs = lcoComposeSegments(text);
+        var sizeMatch = /(\\d+(?:\\.\\d+)?)px/.exec(baseFont);
+        var baseSize = sizeMatch ? parseFloat(sizeMatch[1]) : 16, drop = baseSize * 0.30;
+        var savedAlign = ctx.textAlign, savedBaseline = ctx.textBaseline;
+        ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+        var cx = x;
+        for (var i = 0; i < segs.length; i++) {
+            var seg = segs[i]; ctx.font = baseFont; ctx.fillStyle = color; ctx.fillText(seg.t, cx, y);
+            cx += ctx.measureText(seg.t).width;
+            if (seg.sub) { ctx.font = lcoSubFont(baseFont, ratio); ctx.fillText(seg.sub, cx, y + drop); cx += ctx.measureText(seg.sub).width; }
+        }
+        ctx.textAlign = savedAlign; ctx.textBaseline = savedBaseline; return cx - x;
+    }
+    function lcoFillComposed(ctx, text, x, y, align) {
+        var baseFont = ctx.font, color = ctx.fillStyle, startX = x;
+        if (align === "center" || align === "right") {
+            var w = lcoMeasureComposedWidth(ctx, text, baseFont, 0.62);
+            startX = (align === "center") ? (x - w / 2) : (x - w);
+        }
+        lcoDrawComposedRun(ctx, text, startX, y, baseFont, color, 0.62);
+    }
+    function lcoHtmlComposeSub(text) {
+        if (text == null) return "";
+        return String(text).replace(/([A-Za-z\\u03b1-\\u03c9])_([A-Za-z0-9]+)/g, "$1<sub>$2</sub>");
+    }
+    // Near-zero unsigned clamp (q and i cross zero every cycle — the
+    // ac_power_factor_s10_signed_near_zero prevention).
+    function lcoFx(v, dp) { return (Math.abs(v) < 0.5 * Math.pow(10, -dp) ? 0 : v).toFixed(dp); }
+
+    function lcoSc(key, dmin, dmax, dstep, ddef, dlabel) {
+        var scfg = config.slider_controls || {};
+        var o = scfg[key] || {};
+        return {
+            min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+            step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+            label: o.label || dlabel
+        };
+    }
+    function lcoStateDef() { return (config.states && config.states[PM_currentState]) || {}; }
+    function lcoGlowOn(key) {
+        if (glowTargets && glowTargets.indexOf(key) >= 0) return true;
+        var d = lcoStateDef().lc_oscillation;
+        return !!(d && d.glow_focal === key);
+    }
+    function lcoVisHas(tok) {
+        var ve = lcoStateDef().visible_elements || [];
+        for (var q = 0; q < ve.length; q++) { if (ve[q] === tok) return true; }
+        return false;
+    }
+
+    // ── Core physics (pure; sealed decimals, never hardcoded results) ──────────
+    function lcoPhysics(V0, L, C, R) {
+        var LC = Math.max(L * C, 1e-12);
+        var omega0 = 1 / Math.sqrt(LC);
+        var f0 = omega0 / (2 * Math.PI);
+        var T0 = 1 / Math.max(f0, 1e-9);
+        var Q0 = C * V0;
+        var I0 = Q0 * omega0;                       // = V0*sqrt(C/L)
+        var E_total = 0.5 * C * V0 * V0;            // THE PIN (CpA F1) — left-to-right
+        var alpha = R / (2 * Math.max(L, 1e-9));
+        var omega_prime = Math.sqrt(Math.max(omega0 * omega0 - alpha * alpha, 0));
+        var phi_prime = Math.atan2(alpha, Math.max(omega_prime, 1e-9));
+        var R_crit = 2 * Math.sqrt(L / Math.max(C, 1e-12));
+        return { V0: V0, L: L, C: C, R: R, omega0: omega0, f0: f0, T0: T0, Q0: Q0, I0: I0,
+            E_total: E_total, alpha: alpha, omega_prime: omega_prime, phi_prime: phi_prime, R_crit: R_crit };
+    }
+
+    // ── The ONE closed-form state function (drives EVERYTHING; sec = state-local
+    //   seconds or a within-state sub-anchor). ampQ0/ampI0 override the amplitude
+    //   for the explore V0-re-throw gate (N1); null = live phys amplitude. ──────
+    function lcoQI(d, sec, phys, ampQ0, ampI0) {
+        var Q0 = (ampQ0 != null ? ampQ0 : phys.Q0), I0 = (ampI0 != null ? ampI0 : phys.I0);
+        var mode = d.mode || "", res = { q: Q0, i: 0, EC: 0, EB: 0, ER: 0, env: Q0 };
+        if (mode === "charge_up") {
+            var cd = (d.charge_climb_dur_ms != null ? d.charge_climb_dur_ms : 2000) / 1000;
+            var u = Math.max(0, Math.min(1, sec / Math.max(cd, 1e-6))), fr = u * u * (3 - 2 * u);
+            res.q = Q0 * fr; res.i = 0; res.EC = phys.E_total * fr * fr; res.EB = 0; res.ER = 0; res.env = Q0;
+            return res;
+        }
+        var tau = sec < 0 ? 0 : sec;
+        if (mode === "switch_throw") {
+            var rb = (d.release_beat_dur_ms != null ? d.release_beat_dur_ms : 1000) / 1000;
+            if (tau < rb) { res.q = Q0; res.i = 0; res.EC = phys.E_total; res.EB = 0; res.env = Q0; return res; }
+            tau = tau - rb;
+        }
+        var useDamped = false, t2 = tau;
+        if (mode === "damped") {
+            var rins = (d.r_insert_dur_ms != null ? d.r_insert_dur_ms : 500) / 1000;
+            if (tau >= rins) { useDamped = true; t2 = tau - rins; }
+        } else if (mode === "explore" && phys.R > 0.001) { useDamped = true; t2 = tau; }
+        if (useDamped) {
+            var env = Q0 * Math.exp(-phys.alpha * t2), thp = phys.omega_prime * t2;
+            res.q = env * Math.cos(thp);
+            res.i = -I0 * Math.exp(-phys.alpha * t2) * Math.sin(thp + phys.phi_prime);
+            res.EC = (res.q * res.q) / (2 * Math.max(phys.C, 1e-12));
+            res.EB = 0.5 * phys.L * res.i * res.i;
+            res.ER = Math.max(0, phys.E_total - res.EC - res.EB);
+            res.env = env; return res;
+        }
+        var th = phys.omega0 * tau;
+        res.q = Q0 * Math.cos(th); res.i = -I0 * Math.sin(th);
+        res.EC = (res.q * res.q) / (2 * Math.max(phys.C, 1e-12));
+        res.EB = 0.5 * phys.L * res.i * res.i;
+        res.ER = 0; res.env = Q0; return res;
+    }
+
+    // ── Element meshes ─────────────────────────────────────────────────────────
+    function lcoBuildCoil(grp) {
+        lcoCoilMats = [];
+        for (var ri = 0; ri < 7; ri++) {
+            var mat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#90CAF9"), emissive: hexToThreeColor(LCO_COL_B), emissiveIntensity: 0.12 });
+            var ring = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.045, 8, 20), mat);
+            ring.rotation.x = Math.PI / 2;
+            ring.position.set(LCO_L_X, LCO_BOT_Y + 0.28 + ri * 0.20, 0);
+            ring.userData = { glowKey: "coil" };
+            grp.add(ring); lcoCoilMats.push(mat);
+        }
+        var lbl = createLabelSprite("L", LCO_COL_B, 0.34);
+        lbl.position.set(LCO_L_X - 0.55, 0.1, 0); grp.add(lbl);
+    }
+    function lcoBuildPlates(grp) {
+        lcoPlateMeshes = [];
+        var mat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0BEC5") });
+        var top = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.08, 0.7), mat);
+        top.position.set(LCO_C_X, LCO_CTOP_Y, 0); top.userData = { glowKey: "plates" }; grp.add(top);
+        var bot = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.08, 0.7), mat.clone());
+        bot.position.set(LCO_C_X, LCO_CBOT_Y, 0); bot.userData = { glowKey: "plates" }; grp.add(bot);
+        lcoPlateMeshes.push(top, bot);
+        var lbl = createLabelSprite("C", LCO_COL_Q, 0.34);
+        lbl.position.set(LCO_C_X + 0.7, 0, 0); grp.add(lbl);
+    }
+    function lcoBuildBattery() {
+        lcoBatteryGrp = new THREE.Group();
+        lcoBatteryGrp.userData = { elementType: "lco_battery", id: "lco_battery" };
+        // long (+) and short (-) plates of a cell symbol.
+        var lp = createTubeLine([[LCO_BAT_X - 0.28, 0.18, 0], [LCO_BAT_X + 0.28, 0.18, 0]], "#FFD54F", 0.04);
+        if (lp) lcoBatteryGrp.add(lp);
+        var sp = createTubeLine([[LCO_BAT_X - 0.16, -0.1, 0], [LCO_BAT_X + 0.16, -0.1, 0]], "#FFD54F", 0.055);
+        if (sp) lcoBatteryGrp.add(sp);
+        var lp2 = createTubeLine([[LCO_BAT_X - 0.16, 0.46, 0], [LCO_BAT_X + 0.16, 0.46, 0]], "#FFD54F", 0.055);
+        if (lp2) lcoBatteryGrp.add(lp2);
+        var sp2 = createTubeLine([[LCO_BAT_X - 0.28, -0.38, 0], [LCO_BAT_X + 0.28, -0.38, 0]], "#FFD54F", 0.04);
+        if (sp2) lcoBatteryGrp.add(sp2);
+        var lbl = createLabelSprite("battery", "#FFCC80", 0.22);
+        lbl.position.set(LCO_BAT_X, -0.9, 0);
+        lbl.userData = { elementType: "lco_battery", id: "lco_battery_lbl" };
+        addToScene(lcoBatteryGrp); addToScene(lbl);
+    }
+    function lcoBuildSwitch() {
+        var swGrp = new THREE.Group();
+        swGrp.userData = { elementType: "lco_switch", id: "lco_switch" };
+        var pivot = new THREE.Mesh(new THREE.SphereGeometry(0.07, 10, 10), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#CFD8DC") }));
+        pivot.position.set(LCO_CP[0], LCO_CP[1], 0); swGrp.add(pivot);
+        var ca = new THREE.Mesh(new THREE.SphereGeometry(0.055, 8, 8), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#90A4AE") }));
+        ca.position.set(LCO_CONTACT_A[0], LCO_CONTACT_A[1], 0); swGrp.add(ca);
+        var cb = new THREE.Mesh(new THREE.SphereGeometry(0.055, 8, 8), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#90A4AE") }));
+        cb.position.set(LCO_CONTACT_B[0], LCO_CONTACT_B[1], 0); swGrp.add(cb);
+        // blade: a thin box pivoted at the common pole, oriented per state each frame.
+        var bladeLen = Math.sqrt((LCO_CONTACT_B[0] - LCO_CP[0]) * (LCO_CONTACT_B[0] - LCO_CP[0]) + (LCO_CONTACT_B[1] - LCO_CP[1]) * (LCO_CONTACT_B[1] - LCO_CP[1]));
+        var bladeGeo = new THREE.BoxGeometry(bladeLen, 0.05, 0.05); bladeGeo.translate(bladeLen / 2, 0, 0);
+        lcoSwitchBlade = new THREE.Mesh(bladeGeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#ECEFF1"), emissive: hexToThreeColor("#455A64"), emissiveIntensity: 0.3 }));
+        lcoSwitchBlade.position.set(LCO_CP[0], LCO_CP[1], 0);
+        lcoSwitchBlade.userData = { lcoBlade: true }; swGrp.add(lcoSwitchBlade);
+        var lbl = createLabelSprite("switch", "#B0BEC5", 0.2);
+        lbl.position.set(LCO_CP[0] - 0.1, LCO_CP[1] + 0.35, 0);
+        lbl.userData = { elementType: "lco_switch", id: "lco_switch_lbl" };
+        addToScene(swGrp); addToScene(lbl);
+        // blade length stored for the per-frame orientation.
+        lcoSwitchBlade.userData.bladeLen = bladeLen;
+    }
+    function lcoBuildGlyphs() {
+        lcoGlyphTop = { plus: [], minus: [] }; lcoGlyphBot = { plus: [], minus: [] };
+        function slots(plate, yOff, store) {
+            for (var g = 0; g < LCO_NGLYPH; g++) {
+                var gx = LCO_C_X - 0.34 + g * (0.68 / (LCO_NGLYPH - 1));
+                var pl = createLabelSprite("+", "#FF8A80", 0.30);
+                pl.position.set(gx, plate + yOff, 0.05);
+                pl.userData = { elementType: "lco_glyphs", id: "lco_glyph_p_" + store + "_" + g, glowKey: "plates" };
+                pl.visible = false; addToScene(pl); (store === "top" ? lcoGlyphTop : lcoGlyphBot).plus.push(pl);
+                var mi = createLabelSprite("\\u2212", "#82B1FF", 0.32);
+                mi.position.set(gx, plate + yOff, 0.05);
+                mi.userData = { elementType: "lco_glyphs", id: "lco_glyph_m_" + store + "_" + g, glowKey: "plates" };
+                mi.visible = false; addToScene(mi); (store === "top" ? lcoGlyphTop : lcoGlyphBot).minus.push(mi);
+            }
+        }
+        slots(LCO_CTOP_Y, 0.14, "top");
+        slots(LCO_CBOT_Y, -0.14, "bot");
+    }
+
+    function buildLcOsc() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var pc = config.pvl_colors || {};
+        if (pc.charge) LCO_COL_Q = pc.charge;
+        if (pc.current) LCO_COL_I = pc.current;
+        if (pc.magnetic) LCO_COL_B = pc.magnetic;
+        if (pc.heat) LCO_COL_R = pc.heat;
+        if (pc.total) LCO_COL_TOT = pc.total;
+        if (pc.inset) LCO_COL_INSET = pc.inset;
+
+        // 1. The L-C loop wires (coil branch left, capacitor right, rails).
+        var wSpec = [
+            [[LCO_L_X, LCO_TOP_Y, 0], [LCO_C_X, LCO_TOP_Y, 0], "lco_wire_top"],
+            [[LCO_C_X, LCO_TOP_Y, 0], [LCO_C_X, LCO_CTOP_Y, 0], "lco_wire_ctop"],
+            [[LCO_C_X, LCO_CBOT_Y, 0], [LCO_C_X, LCO_BOT_Y, 0], "lco_wire_cbot"],
+            [[LCO_C_X, LCO_BOT_Y, 0], [LCO_L_X, LCO_BOT_Y, 0], "lco_wire_bot"],
+            [[LCO_L_X, LCO_BOT_Y, 0], [LCO_L_X, LCO_BOT_Y + 0.28, 0], "lco_wire_coilb"],
+            [[LCO_L_X, LCO_BOT_Y + 0.28 + 6 * 0.20, 0], [LCO_L_X, LCO_CONTACT_B[1], 0], "lco_wire_coilt"],
+            [[LCO_L_X, LCO_CONTACT_B[1], 0], [LCO_CONTACT_B[0], LCO_CONTACT_B[1], 0], "lco_wire_bstub"],
+            [[LCO_CP[0], LCO_CP[1], 0], [LCO_C_X, LCO_CP[1], 0], "lco_wire_common"],
+            // battery tap (contact A): battery+ up and across to contact A; battery- to bottom rail.
+            [[LCO_BAT_X, 0.46, 0], [LCO_BAT_X, LCO_CONTACT_A[1], 0], "lco_wire_batp1"],
+            [[LCO_BAT_X, LCO_CONTACT_A[1], 0], [LCO_CONTACT_A[0], LCO_CONTACT_A[1], 0], "lco_wire_astub"],
+            [[LCO_BAT_X, -0.38, 0], [LCO_BAT_X, LCO_BOT_Y, 0], "lco_wire_batm"],
+            [[LCO_BAT_X, LCO_BOT_Y, 0], [LCO_L_X, LCO_BOT_Y, 0], "lco_wire_botleft"]
+        ];
+        for (var wi = 0; wi < wSpec.length; wi++) {
+            var w = createTubeLine([wSpec[wi][0], wSpec[wi][1]], "#B0BEC5", 0.026);
+            if (w) { w.userData = { elementType: "lco_circuit", id: wSpec[wi][2] }; addToScene(w); }
+        }
+        // coil + plates as circuit groups.
+        var coilGrp = new THREE.Group(); coilGrp.userData = { elementType: "lco_circuit", id: "lco_coil" };
+        lcoBuildCoil(coilGrp); addToScene(coilGrp);
+        var plateGrp = new THREE.Group(); plateGrp.userData = { elementType: "lco_circuit", id: "lco_cap" };
+        lcoBuildPlates(plateGrp); addToScene(plateGrp);
+
+        // 2. Battery + two-position switch.
+        lcoBuildBattery();
+        lcoBuildSwitch();
+
+        // 3. Charge glyphs (both plates).
+        lcoBuildGlyphs();
+
+        // 4. The ONE amber bead stream (pose B only; distributed off the ends).
+        var Lp = lcoLoopLen();
+        for (var bi = 0; bi < LCO_BEAD_COUNT; bi++) {
+            var bead = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor(LCO_COL_I), transparent: true, opacity: 0.8 }));
+            var home = 0.08 * Lp + (bi / (LCO_BEAD_COUNT - 1)) * 0.84 * Lp;
+            var p0 = lcoLoopAt(home);
+            bead.position.set(p0[0], p0[1], p0[2]);
+            bead.userData = { elementType: "lco_beads", id: "lco_bead_" + bi, lcoBead: true, home: home };
+            addToScene(bead);
+        }
+
+        // ── DOM overlays ──────────────────────────────────────────────────
+        var rp = document.createElement("div"); rp.id = "lco_readout";
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(rp);
+
+        var gc = document.createElement("canvas"); gc.id = "lco_band";
+        gc.width = LCO_BAND_W; gc.height = LCO_BAND_H;
+        gc.style.cssText = "position:fixed;bottom:210px;left:12px;width:" + LCO_BAND_W + "px;height:" + LCO_BAND_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+
+        var gp = document.createElement("canvas"); gp.id = "lco_gauges";
+        gp.width = LCO_GP_W; gp.height = LCO_GP_H;
+        gp.style.cssText = "position:fixed;bottom:88px;left:12px;width:" + LCO_GP_W + "px;height:" + LCO_GP_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gp);
+
+        var ff = document.createElement("div"); ff.id = "lco_formula";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFD54F;font:600 20px/1.5 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:350px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var spd = document.createElement("div"); spd.id = "lco_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        var scV0 = lcoSc("V0", 2, 20, 1, 10.0, "Peak voltage V\\u2080");
+        var scL = lcoSc("L", 1.0, 10.0, 0.1, 3.1831, "Inductance L");
+        var scC = lcoSc("C", 0.04, 0.40, 0.02, 0.1273, "Capacitance C");
+        var scR = lcoSc("R", 0, 10, 0.5, 0, "Resistance R");
+        spd.innerHTML =
+            '<div id="lco_V0_row"><label>' + scV0.label + ': <span id="lco_V0_val">' + scV0.def.toFixed(1) + '</span> V</label>' +
+            '<input type="range" id="lco_V0_slider" min="' + scV0.min + '" max="' + scV0.max + '" step="' + scV0.step + '" value="' + scV0.def + '" style="width:100%"></div>' +
+            '<div id="lco_L_row" style="margin-top:6px"><label>' + scL.label + ': <span id="lco_L_val">' + scL.def.toFixed(2) + '</span> H</label>' +
+            '<input type="range" id="lco_L_slider" min="' + scL.min + '" max="' + scL.max + '" step="' + scL.step + '" value="' + scL.def + '" style="width:100%"></div>' +
+            '<div id="lco_C_row" style="margin-top:6px"><label>' + scC.label + ': <span id="lco_C_val">' + scC.def.toFixed(2) + '</span> F</label>' +
+            '<input type="range" id="lco_C_slider" min="' + scC.min + '" max="' + scC.max + '" step="' + scC.step + '" value="' + scC.def + '" style="width:100%"></div>' +
+            '<div id="lco_R_row" style="margin-top:6px"><label>' + scR.label + ': <span id="lco_R_val">' + scR.def.toFixed(1) + '</span> \\u03a9</label>' +
+            '<input type="range" id="lco_R_slider" min="' + scR.min + '" max="' + scR.max + '" step="' + scR.step + '" value="' + scR.def + '" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        window.PM_lcoV0 = scV0.def; window.PM_lcoL = scL.def; window.PM_lcoC = scC.def; window.PM_lcoR = scR.def;
+        window.PM_lcoV0Dragged = false; window.PM_lcoLDragged = false; window.PM_lcoCDragged = false; window.PM_lcoRDragged = false;
+        window.PM_lcoSwitch = "B";          // explore switch pose (default released)
+        window.PM_lcoAnchorT = 0;           // explore: absolute time of last B-throw
+        window.PM_lcoQ0Run = scC.def * scV0.def;   // amplitude captured at last release (N1 gate)
+        window.PM_lcoI0Run = window.PM_lcoQ0Run * (1 / Math.sqrt(Math.max(scL.def * scC.def, 1e-12)));
+
+        function lcoEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "lc_oscillations_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        function lcoWire(key, dec) {
+            var sl = document.getElementById("lco_" + key + "_slider"), vv = document.getElementById("lco_" + key + "_val");
+            if (!sl) return;
+            sl.addEventListener("input", function (ev) {
+                var val = parseFloat(sl.value);
+                window["PM_lco" + key] = val;
+                if (vv) vv.textContent = val.toFixed(dec);
+                if (ev && ev.isTrusted) window["PM_lco" + key + "Dragged"] = true;
+                lcoEmit(key, val);
+            });
+        }
+        lcoWire("V0", 1); lcoWire("L", 2); lcoWire("C", 2); lcoWire("R", 1);
+    }
+
+    // Per-state exact-match lco_ visibility + variable_overrides seed + the
+    // per-state contextual-control panel (Rule 31).
+    function applyLcOscState(stateDef) {
+        var d = stateDef.lc_oscillation || {};
+        var vis = stateDef.visible_elements || [];
+        function want(tok) { for (var q = 0; q < vis.length; q++) { if (vis[q] === tok) return true; } return false; }
+        var showCircuit = want("lco_circuit"), showBeads = want("lco_beads");
+        var showSwitch = want("lco_switch"), showBattery = want("lco_battery"), showGlyphs = want("lco_glyphs");
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            if (ud.elementType === "lco_circuit") o.visible = showCircuit;
+            else if (ud.elementType === "lco_switch") o.visible = showSwitch;
+            else if (ud.elementType === "lco_battery") o.visible = showBattery;
+            else if (ud.elementType === "lco_beads") o.visible = showCircuit && showBeads;
+            else if (ud.elementType === "lco_glyphs") o.visible = false;   // per-frame count drives visibility
+        }
+
+        // dim_apparatus (S8 derivation): dim to a present pose (restore pattern).
+        var dimApp = !!d.dim_apparatus;
+        for (var pd = 0; pd < sceneObjects.length; pd++) {
+            var pdo = sceneObjects[pd], pdu = pdo.userData;
+            if (!pdu || !pdu.elementType || pdu.elementType.indexOf("lco_") !== 0) continue;
+            pdo.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi = 0; mi < ms.length; mi++) {
+                    var mm = ms[mi];
+                    if (mm.__lcoOrigOpacity === undefined) { mm.__lcoOrigOpacity = mm.opacity; mm.__lcoOrigTransp = mm.transparent; }
+                    if (dimApp) { mm.transparent = true; mm.opacity = 0.35; }
+                    else { mm.transparent = mm.__lcoOrigTransp; mm.opacity = mm.__lcoOrigOpacity; }
+                }
+            });
+        }
+
+        // Seed drivers from variable_overrides (defensive re-locks — physics §2).
+        var ov = stateDef.variable_overrides || {};
+        var scfg = config.slider_controls || {};
+        function def(k, fb) { return (scfg[k] && scfg[k]["default"] != null) ? scfg[k]["default"] : fb; }
+        window.PM_lcoV0 = (typeof ov.V0 === "number") ? ov.V0 : def("V0", 10.0);
+        window.PM_lcoL = (typeof ov.L === "number") ? ov.L : def("L", 3.1831);
+        window.PM_lcoC = (typeof ov.C === "number") ? ov.C : def("C", 0.1273);
+        window.PM_lcoR = (typeof ov.R === "number") ? ov.R : def("R", 0);
+        window.PM_lcoV0Dragged = false; window.PM_lcoLDragged = false; window.PM_lcoCDragged = false; window.PM_lcoRDragged = false;
+        window.PM_lcoSwitch = (d.mode === "charge_up") ? "A" : "B";
+        window.PM_lcoAnchorT = time;    // release anchor = this state's entry
+        window.PM_lcoQ0Run = window.PM_lcoC * window.PM_lcoV0;
+        window.PM_lcoI0Run = window.PM_lcoQ0Run * (1 / Math.sqrt(Math.max(window.PM_lcoL * window.PM_lcoC, 1e-12)));
+        lcoLastGlyphN = -1; lcoLastGlyphPol = 2;
+
+        function syncS(key, v, dec) { var e = document.getElementById("lco_" + key + "_slider"); if (e) e.value = String(v); var vEl = document.getElementById("lco_" + key + "_val"); if (vEl) vEl.textContent = v.toFixed(dec); }
+        syncS("V0", window.PM_lcoV0, 1); syncS("L", window.PM_lcoL, 2); syncS("C", window.PM_lcoC, 2); syncS("R", window.PM_lcoR, 1);
+
+        // Per-state contextual-control panel (Rule 31): controls[] = live row(s).
+        var controls = d.controls || [], rowKeys = ["V0", "L", "C", "R"], anyRow = false;
+        for (var rk = 0; rk < rowKeys.length; rk++) {
+            var wantRow = controls.indexOf(rowKeys[rk]) !== -1;
+            var rowEl = document.getElementById("lco_" + rowKeys[rk] + "_row");
+            if (rowEl) rowEl.style.display = wantRow ? "block" : "none";
+            if (wantRow) anyRow = true;
+        }
+        var panelEl = document.getElementById("lco_sliders"); if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
+
+        var roEl = document.getElementById("lco_readout"); if (roEl) roEl.style.display = "block";
+        // Band container: show when a state carries strip / inset / chips content.
+        var gcEl = document.getElementById("lco_band");
+        if (gcEl) {
+            var bandHasContent = want("lco_strip") || want("lco_inset") || want("lco_chips");
+            gcEl.style.display = bandHasContent ? "block" : "none";
+        }
+        var gpEl = document.getElementById("lco_gauges"); if (gpEl) gpEl.style.display = want("lco_gauges") ? "block" : "none";
+        var ffEl = document.getElementById("lco_formula");
+        if (ffEl) {
+            if (d.mode === "derivation") { ffEl.innerHTML = ""; ffEl.style.display = want("lco_formula") ? "block" : "none"; }
+            else {
+                var ftext = want("lco_formula") ? (d.formula_text || stateDef.formula_overlay || "") : "";
+                ffEl.innerHTML = lcoHtmlComposeSub(ftext); ffEl.style.display = ftext ? "block" : "none";
+            }
+        }
+    }
+
+    // ── Band draw: strip region (right) + inset region (left) + chips (over). ──
+    function lcoDrawBand(d, smp, phys) {
+        var gc = document.getElementById("lco_band"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        if (lcoVisHas("lco_inset")) lcoDrawInset(ctx, d, smp, phys);
+        if (lcoVisHas("lco_strip")) lcoDrawStrip(ctx, gc, d, smp, phys);
+        if (lcoVisHas("lco_chips")) lcoDrawChips(ctx, d, smp, phys);
+    }
+
+    // Strip (right region): q(t) pen (green) + i(t) pen (amber, S6+); dashed
+    // ±Q0 rails (or the shrinking decay envelope in S7); the S4 period bracket.
+    function lcoDrawStrip(ctx, gc, d, smp, phys) {
+        var cy = LCO_BAND_H / 2, x0 = LCO_STRIP_X0, x1 = LCO_STRIP_X1, plotW = x1 - x0;
+        var tSec = smp.tSec, tWin = LCO_TWIN;
+        var qScale = 44, iScale = 34, Q0 = Math.max(phys.Q0, 1e-6), I0 = Math.max(phys.I0, 1e-6);
+        var t0 = Math.max(0, tSec - tWin);
+        function xT(sec) { return x0 + ((sec - (tSec - tWin)) / tWin) * plotW; }
+        function yQ(v) { return cy - qScale * (v / Q0); }
+        function yI(v) { return cy - iScale * (v / I0); }
+        // zero axis.
+        ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(x0, cy); ctx.lineTo(x1, cy); ctx.stroke();
+        var step = tWin / 200;
+        // envelope rails (dashed): ±Q0 undamped, ±env(sec) damped.
+        var showI = lcoVisHas("lco_strip") && (d.mode === "shm_twin" || d.mode === "damped" || d.mode === "explore");
+        ctx.strokeStyle = "rgba(105,240,174,0.45)"; ctx.setLineDash([4, 3]); ctx.lineWidth = 1;
+        ctx.beginPath(); var fe1 = true;
+        for (var se = t0; se <= tSec + 1e-4; se += step) { var ev = smp.qiAt(se).env; var xe = xT(se), ye = yQ(ev); if (fe1) { ctx.moveTo(xe, ye); fe1 = false; } else ctx.lineTo(xe, ye); }
+        ctx.stroke();
+        ctx.beginPath(); var fe2 = true;
+        for (var se2 = t0; se2 <= tSec + 1e-4; se2 += step) { var ev2 = smp.qiAt(se2).env; var xe2 = xT(se2), ye2 = yQ(-ev2); if (fe2) { ctx.moveTo(xe2, ye2); fe2 = false; } else ctx.lineTo(xe2, ye2); }
+        ctx.stroke(); ctx.setLineDash([]);
+        // q pen (green).
+        ctx.strokeStyle = LCO_COL_Q; ctx.lineWidth = lcoGlowOn("strip") ? 3 : 2; ctx.beginPath();
+        var fq = true;
+        for (var s1 = t0; s1 <= tSec + 1e-4; s1 += step) { var xq = xT(s1), yq = yQ(smp.qiAt(s1).q); if (fq) { ctx.moveTo(xq, yq); fq = false; } else ctx.lineTo(xq, yq); }
+        ctx.stroke();
+        // i pen (amber, S6+).
+        if (showI) {
+            ctx.strokeStyle = LCO_COL_I; ctx.lineWidth = 2; ctx.beginPath();
+            var fi = true;
+            for (var s2 = t0; s2 <= tSec + 1e-4; s2 += step) { var xi = xT(s2), yi = yI(smp.qiAt(s2).i); if (fi) { ctx.moveTo(xi, yi); fi = false; } else ctx.lineTo(xi, yi); }
+            ctx.stroke();
+        }
+        // live pen dots.
+        var now = smp.qiAt(tSec);
+        ctx.fillStyle = LCO_COL_Q; ctx.beginPath(); ctx.arc(xT(tSec), yQ(now.q), 3.2, 0, 2 * Math.PI); ctx.fill();
+        if (showI) { ctx.fillStyle = LCO_COL_I; ctx.beginPath(); ctx.arc(xT(tSec), yI(now.i), 3.0, 0, 2 * Math.PI); ctx.fill(); }
+        // axis labels.
+        ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        ctx.fillStyle = LCO_COL_Q; lcoFillComposed(ctx, "q", x0 - 12, cy - qScale + 3, "left");
+        if (showI) { ctx.fillStyle = LCO_COL_I; lcoFillComposed(ctx, "i", x0 - 12, cy + iScale + 8, "left"); }
+        ctx.fillStyle = "#78909C"; lcoFillComposed(ctx, "Q_0", x1 - 22, cy - qScale - 2, "left");
+        // S4 period bracket + f0 chip (cue-gated).
+        if (d.mode === "free_run") {
+            var pmArm = cueTriggerMs("period_measure", (d.period_measure_fire_at_ms != null ? d.period_measure_fire_at_ms : 5000)) / 1000;
+            var fchipAt = cueTriggerMs("f0_chip", (d.f0_chip_at_ms != null ? d.f0_chip_at_ms : 5200)) / 1000;
+            if (tSec >= pmArm) {
+                var Tpx = (phys.T0 / tWin) * plotW, bx1 = xT(tSec) - Tpx, by = 20;
+                if (bx1 < x0) bx1 = x0;
+                ctx.strokeStyle = "#FFD54F"; ctx.lineWidth = 1.4;
+                ctx.beginPath(); ctx.moveTo(bx1, by); ctx.lineTo(xT(tSec), by); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(bx1, by - 4); ctx.lineTo(bx1, by + 4); ctx.moveTo(xT(tSec), by - 4); ctx.lineTo(xT(tSec), by + 4); ctx.stroke();
+                ctx.fillStyle = "#FFD54F"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+                lcoFillComposed(ctx, "T_0 = " + phys.T0.toFixed(2) + " s", (bx1 + xT(tSec)) / 2, by - 6, "center");
+            }
+            if (tSec >= fchipAt) {
+                ctx.fillStyle = "#FFD54F"; ctx.font = "11px 'Cambria Math','Times New Roman',serif";
+                lcoFillComposed(ctx, "f_0 = 1/" + phys.T0.toFixed(2) + " = " + phys.f0.toFixed(2) + " Hz", x0 + 6, LCO_BAND_H - 8, "left");
+            }
+        }
+    }
+
+    // Inset (left region, S6/S7): wall + spring + block on a rail; block position
+    // x = x_max·q(t)/Q0, phase-locked to the SAME clock (never independent). In
+    // S7 the swing decays inside the same envelope.
+    function lcoDrawInset(ctx, d, smp, phys) {
+        var now = smp.qiAt(smp.tSec), Q0 = Math.max(phys.Q0, 1e-6);
+        var cxL = LCO_INSET_X0, cxR = LCO_INSET_X1, midX = (cxL + cxR) / 2 + 8, railY = LCO_BAND_H - 42;
+        var wallX = cxL + 12, xMax = 44, blockX = midX + xMax * (now.q / Q0);
+        var g = lcoGlowOn("inset");
+        // rail + wall.
+        ctx.strokeStyle = "#546E7A"; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(wallX, railY - 34); ctx.lineTo(wallX, railY + 14); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(wallX, railY + 12); ctx.lineTo(cxR, railY + 12); ctx.stroke();
+        // spring (zigzag) wall -> block.
+        ctx.strokeStyle = g ? "#B0BEC5" : LCO_COL_INSET; ctx.lineWidth = g ? 2 : 1.4;
+        var coils = 6, sy = railY - 8, sx0 = wallX, sx1 = blockX - 12;
+        ctx.beginPath(); ctx.moveTo(sx0, sy);
+        for (var ci = 0; ci <= coils; ci++) { var fx = sx0 + (sx1 - sx0) * (ci / coils); var oy = (ci % 2 === 0) ? -6 : 6; ctx.lineTo(fx, sy + oy); }
+        ctx.lineTo(sx1, sy); ctx.stroke();
+        // block.
+        ctx.fillStyle = g ? "#CFD8DC" : LCO_COL_INSET; ctx.globalAlpha = g ? 1 : 0.9;
+        ctx.fillRect(blockX - 12, railY - 20, 24, 26); ctx.globalAlpha = 1;
+        // labels.
+        ctx.fillStyle = "#B0BEC5"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        ctx.textAlign = "center"; ctx.fillText("x", blockX, railY + 26);
+        ctx.fillText("mass-spring twin", midX, 16); ctx.textAlign = "left";
+    }
+
+    // Chips (S3 ghost/strike; S5 half-split). clearRect single-latest via the
+    // band's own clear each frame. cue-gated order.
+    function lcoDrawChips(ctx, d, smp, phys) {
+        var sx = LCO_STRIP_X0 + 6;
+        if (d.mode === "through_zero") {
+            var ghostAt = cueTriggerMs("ghost_latch", (d.ghost_latch_at_ms != null ? d.ghost_latch_at_ms : 200)) / 1000;
+            var strikeAt = cueTriggerMs("strike", (d.strike_at_ms != null ? d.strike_at_ms : 1000)) / 1000;
+            if (smp.tSec >= ghostAt) {
+                ctx.font = "12px 'Cambria Math','Times New Roman',serif"; ctx.fillStyle = "#EF5350";
+                var chip = "q = 0 \\u2192 i = 0 ?";
+                var w = lcoMeasureComposedWidth(ctx, chip, ctx.font, 0.62);
+                lcoFillComposed(ctx, chip, sx, 24, "left");
+                if (smp.tSec >= strikeAt) {
+                    ctx.strokeStyle = "#EF5350"; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(sx, 19); ctx.lineTo(sx + w, 19); ctx.stroke();
+                }
+            }
+            if (smp.tSec >= strikeAt) {
+                var now = smp.qiAt(smp.tSec);
+                ctx.fillStyle = LCO_COL_I; ctx.font = "13px 'Cambria Math','Times New Roman',serif";
+                lcoFillComposed(ctx, "i = " + lcoFx(Math.abs(now.i), 2) + " A", sx, 52, "left");
+                ctx.fillStyle = LCO_COL_Q;
+                lcoFillComposed(ctx, "q = " + lcoFx(now.q, 2) + " C", sx, 74, "left");
+                ctx.fillStyle = "#FFD54F"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+                lcoFillComposed(ctx, "empty \\u2014 yet current peaks", sx, 96, "left");
+            }
+        } else if (d.mode === "energy_slosh") {
+            var hsAt = cueTriggerMs("half_split_chip", (d.half_split_chip_fire_at_ms != null ? d.half_split_chip_fire_at_ms : 500)) / 1000;
+            if (smp.tSec >= hsAt) {
+                var half = phys.E_total / 2;
+                ctx.fillStyle = "#FFD54F"; ctx.font = "12px 'Cambria Math','Times New Roman',serif";
+                lcoFillComposed(ctx, half.toFixed(2) + " + " + half.toFixed(2) + " = " + phys.E_total.toFixed(2) + " J \\u2713", sx, 24, "left");
+            }
+        }
+    }
+
+    // Energy gauges (gauge pane): E_C (green) + E_B (violet) breathing antiphase
+    // under the FIXED total line (the pinned E_total, never a live sum). S7 adds
+    // the E_R (warm) heat bar. Bars NORMALIZED to E_total (explore re-scales).
+    // Live-driven focal (S5) — the glow boost is a MULTIPLIER on the bar's own
+    // fill channel (CpA F2: exemption + brightenOnly alone = a silent no-op).
+    function lcoDrawGauges(d, qi, phys) {
+        var gc = document.getElementById("lco_gauges"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, Etot = Math.max(phys.E_total, 1e-6);
+        var showR = lcoVisHas("lco_gauges") && (d.mode === "damped" || (d.mode === "explore"));
+        var focal = lcoGlowOn("gauges"), a = focal ? 1.0 : 0.8;
+        var bars = [
+            { lbl: "E_C", val: qi.EC, col: LCO_COL_Q },
+            { lbl: "E_B", val: qi.EB, col: LCO_COL_B }
+        ];
+        if (showR) bars.push({ lbl: "E_R", val: qi.ER, col: LCO_COL_R });
+        var barW = 30, gap = (W - 20 - bars.length * barW) / Math.max(bars.length - 1, 1);
+        var baseY = H - 26, topY = 26, fullH = baseY - topY;
+        // FIXED total line at E_total (full height) — flat, never dips.
+        ctx.strokeStyle = "rgba(236,239,241,0.85)"; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.moveTo(6, topY); ctx.lineTo(W - 6, topY); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = LCO_COL_TOT; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        ctx.textAlign = "right"; ctx.fillText(Etot.toFixed(2) + " J", W - 8, topY - 4); ctx.textAlign = "left";
+        for (var b = 0; b < bars.length; b++) {
+            var bx = 10 + b * (barW + gap), fr = Math.max(0, Math.min(1, bars[b].val / Etot));
+            ctx.strokeStyle = "#546E7A"; ctx.strokeRect(bx, topY, barW, fullH);
+            var fh = fr * fullH;
+            ctx.fillStyle = bars[b].col; ctx.globalAlpha = a;
+            ctx.fillRect(bx, baseY - fh, barW, fh); ctx.globalAlpha = 1;
+            ctx.fillStyle = bars[b].col; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            lcoFillComposed(ctx, bars[b].lbl, bx + barW / 2, H - 12, "center");
+            ctx.fillStyle = "#ECEFF1"; ctx.font = "8px 'Cambria Math','Times New Roman',serif";
+            ctx.textAlign = "center"; ctx.fillText(bars[b].val.toFixed(2) + " J", bx + barW / 2, topY - 4); ctx.textAlign = "left";
+        }
+    }
+
+    // S8 derivation chain — links dock into the formula panel on their cues.
+    function lcoUpdateDerivation(d, t, phys) {
+        var ff = document.getElementById("lco_formula"); if (!ff) return;
+        var links = [
+            "L\\u00b7di/dt + q/C = 0",
+            "d\\u00b2q/dt\\u00b2 = \\u2212q/(LC)",
+            "\\u03c9_0 = 1/\\u221a(LC)",
+            "\\u03c9_0 = 1/\\u221a(" + (phys.L * phys.C).toFixed(4) + ") = " + phys.omega0.toFixed(3) + " rad/s",
+            "f_0 = " + phys.f0.toFixed(3) + " Hz"
+        ];
+        var defaults = [0, 2000, 4000, 6000, 6000], cues = [];
+        for (var ci = 0; ci < links.length; ci++) {
+            cues.push(cueTriggerMs("link" + (ci + 1), (d["link" + (ci + 1) + "_at_ms"] != null ? d["link" + (ci + 1) + "_at_ms"] : defaults[ci])));
+        }
+        var out = [];
+        for (var i = 0; i < links.length; i++) { if (t * 1000 >= cues[i]) out.push(lcoHtmlComposeSub(links[i])); }
+        ff.innerHTML = out.join("<br>");
+    }
+
+    // Per-frame update — closed-form phase (Rule 26/36; no accumulator), drives
+    // the switch blade / battery grey / beads / coil glow / glyphs / gauges /
+    // band / inset / formula / HUD.
+    function updateLcOscFrame() {
+        if (config.scenario_type !== "lc_oscillation") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.lc_oscillation || {};
+        var mode = d.mode || "", t = time - stateStartTime;
+
+        var V0 = window.PM_lcoV0, L = window.PM_lcoL, C = window.PM_lcoC, R = window.PM_lcoR;
+        var phys = lcoPhysics(V0, L, C, R);
+
+        // Explore: read the live switch pose + release anchor; V0 amplitude gated
+        // on re-throw (N1) — L/C/R take effect live (the L/C period discovery).
+        var qi, secForStrip = t;
+        if (mode === "explore") {
+            if (window.PM_lcoSwitch === "A") {
+                // charging pose — glyphs full, beads off, no oscillation.
+                qi = { q: phys.Q0, i: 0, EC: phys.E_total, EB: 0, ER: 0, env: phys.Q0 };
+                secForStrip = 0;
+            } else {
+                var effT = time - window.PM_lcoAnchorT; secForStrip = effT;
+                qi = lcoQI(d, effT, phys, window.PM_lcoQ0Run, window.PM_lcoI0Run);
+            }
+        } else {
+            qi = lcoQI(d, t, phys);
+        }
+
+        // ── Switch blade orientation + battery grey (pose A -> B) ──
+        var bladeFrac = 1;                                   // 0 = pose A, 1 = pose B
+        if (mode === "charge_up") bladeFrac = 0;
+        else if (mode === "switch_throw") {
+            var throwAt = cueTriggerMs("throw", (d.throw_at_ms != null ? d.throw_at_ms : 0)) / 1000;
+            var thrDur = (d.release_beat_dur_ms != null ? d.release_beat_dur_ms : 1000) / 1000;
+            bladeFrac = Math.max(0, Math.min(1, (t - throwAt) / Math.max(thrDur, 1e-6)));
+        } else if (mode === "explore") bladeFrac = (window.PM_lcoSwitch === "A") ? 0 : 1;
+        else bladeFrac = 1;
+        if (lcoSwitchBlade) {
+            var ax = Math.atan2(LCO_CONTACT_A[1] - LCO_CP[1], LCO_CONTACT_A[0] - LCO_CP[0]);
+            var bx = Math.atan2(LCO_CONTACT_B[1] - LCO_CP[1], LCO_CONTACT_B[0] - LCO_CP[0]);
+            lcoSwitchBlade.rotation.z = ax + (bx - ax) * bladeFrac;
+        }
+        // battery greys as the blade leaves pose A (removed from the loop).
+        if (lcoBatteryGrp) {
+            var grey = bladeFrac;
+            lcoBatteryGrp.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi = 0; mi < ms.length; mi++) { ms[mi].transparent = true; ms[mi].opacity = 1 - 0.72 * grey; }
+            });
+        }
+
+        // ── Beads: home ± arc displacement ∝ q(t) (velocity ∝ i(t), true reversal);
+        //    brightness ∝ |i|; focal boost = multiplier on the live opacity. ──
+        var beadDisp = LCO_BEAD_AMP * (qi.q / Math.max(phys.Q0, 1e-6));
+        var iFrac = Math.min(1, Math.abs(qi.i) / Math.max(phys.I0, 1e-6));
+        var beadFocal = lcoGlowOn("beads");
+        for (var bi = 0; bi < sceneObjects.length; bi++) {
+            var bo = sceneObjects[bi], bu = bo.userData;
+            if (!bu || !bu.lcoBead) continue;
+            var pt = lcoLoopAt(bu.home + beadDisp);
+            bo.position.set(pt[0], pt[1], pt[2]);
+            if (bo.material) bo.material.opacity = Math.min(1, (0.4 + 0.45 * iFrac) * (beadFocal ? 1.4 : 1.0));
+        }
+
+        // ── Coil emissive ∝ i² (the magnetic store; live channel, always on). ──
+        for (var cm = 0; cm < lcoCoilMats.length; cm++) { lcoCoilMats[cm].emissiveIntensity = 0.12 + 0.7 * iFrac * iFrac; }
+
+        // ── Charge glyphs: count = round(N·|q|/Q0), polarity = sign(q) (both
+        //    plates flip). Toggle sprite sets only when count/polarity change. ──
+        var n = Math.round(LCO_NGLYPH * Math.min(1, Math.abs(qi.q) / Math.max(phys.Q0, 1e-6)));
+        var pol = (qi.q >= 0) ? 1 : -1; if (Math.abs(qi.q) < 0.005) pol = 0;
+        if (n !== lcoLastGlyphN || pol !== lcoLastGlyphPol) {
+            lcoLastGlyphN = n; lcoLastGlyphPol = pol;
+            var glyphsVisible = lcoVisHas("lco_glyphs");
+            // top plate shows +, bottom shows − when q>0 (pol 1); flipped when q<0.
+            var topPlus = glyphsVisible && (pol >= 0), botPlus = glyphsVisible && (pol < 0);
+            for (var g = 0; g < LCO_NGLYPH; g++) {
+                var on = g < n;
+                lcoGlyphTop.plus[g].visible = on && topPlus;
+                lcoGlyphTop.minus[g].visible = on && !topPlus && glyphsVisible;
+                lcoGlyphBot.plus[g].visible = on && botPlus;
+                lcoGlyphBot.minus[g].visible = on && !botPlus && glyphsVisible;
+            }
+        }
+
+        // Slider thumbs track when undragged.
+        function syncThumb(key, v, dec) {
+            if (window["PM_lco" + key + "Dragged"]) return;
+            var e = document.getElementById("lco_" + key + "_slider"); if (e) e.value = String(v);
+            var vEl = document.getElementById("lco_" + key + "_val"); if (vEl) vEl.textContent = v.toFixed(dec);
+        }
+        syncThumb("R", R, 1);
+
+        // ── Shared strip sampler (the SAME closed form beads/glyphs use — 32a). ──
+        var smp = {
+            tSec: secForStrip,
+            qiAt: (mode === "explore" && window.PM_lcoSwitch !== "A")
+                ? function (sec) { return lcoQI(d, sec, phys, window.PM_lcoQ0Run, window.PM_lcoI0Run); }
+                : function (sec) { return lcoQI(d, sec, phys); }
+        };
+        lcoDrawBand(d, smp, phys);
+        lcoDrawGauges(d, qi, phys);
+        if (mode === "derivation") lcoUpdateDerivation(d, t, phys);
+
+        // ── HUD readout — value-only, ring-gated ──
+        var roEl = document.getElementById("lco_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var html = "";
+            if (mode === "charge_up") {
+                var cd = (d.charge_climb_dur_ms != null ? d.charge_climb_dur_ms : 2000) / 1000;
+                var u = Math.max(0, Math.min(1, t / Math.max(cd, 1e-6))), fr = u * u * (3 - 2 * u);
+                html += "<div>V = " + (V0 * fr).toFixed(1) + " V</div>";
+            }
+            if (d.hud_show_q) html += "<div style=\\"color:#69F0AE\\">q = " + lcoFx(qi.q, 2) + " C</div>";
+            if (d.hud_show_i) html += "<div style=\\"color:#FFB300\\">i = " + lcoFx(Math.abs(qi.i), 2) + " A</div>";
+            if (d.hud_show_energy) {
+                html += "<div style=\\"color:#69F0AE\\">E_C = " + qi.EC.toFixed(2) + " J</div>";
+                html += "<div style=\\"color:#B388FF\\">E_B = " + qi.EB.toFixed(2) + " J</div>";
+                if (lcoVisHas("lco_gauges") && (mode === "damped" || mode === "explore")) html += "<div style=\\"color:#FF6E40\\">E_R = " + qi.ER.toFixed(2) + " J</div>";
+                html += "<div style=\\"color:#ECEFF1\\">E_total = " + phys.E_total.toFixed(2) + " J</div>";
+            }
+            if (d.hud_show_period) {
+                html += "<div style=\\"color:#4FC3F7\\">f_0 = " + phys.f0.toFixed(2) + " Hz</div>";
+                html += "<div style=\\"color:#4FC3F7\\">T_0 = " + phys.T0.toFixed(2) + " s</div>";
+            }
+            roEl.innerHTML = lcoHtmlComposeSub(html);
+        }
+    }
+
+    // Glow — 3D apparatus via applyGlowEmphasis (brightness only, Rule 29); the
+    // canvas panes glow inside their own draws via lcoGlowOn (multiplier on the
+    // pane's own live channel — the CpA F2 discipline); the DOM formula panel
+    // toggles glow-pulse.
+    function applyLcOscGlow() {
+        var glowActive = glowTargets.length > 0, glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et.indexOf("lco_") !== 0) continue;
+            var gk = sud.glowKey || "";
+            var isFocal = (gk && on(gk))
+                || (et === "lco_beads" && on("beads"))
+                || (et === "lco_switch" && on("switch"))
+                || (et === "lco_battery" && on("battery"))
+                || (et === "lco_circuit" && on("circuit"));
+            applyGlowEmphasis(so, isFocal, glowActive, glowP, true);
+        }
+        var ffEl = document.getElementById("lco_formula");
+        if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
+    }
+
 
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
@@ -36208,6 +37047,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildAcPower();
                 break;
 
+            case "lc_oscillation":
+                buildLcOsc();
+                break;
+
             case "magnetic_flux_loop":
                 buildMagneticFluxLoop();
                 break;
@@ -36669,6 +37512,18 @@ export const FIELD_3D_RENDERER_CODE = `
             applyAcPowerState(stateDef);
         }
 
+        // lc_oscillation — NEW Ch.7 §7.8 source-free scenario (clone-sibling of
+        // ac_power's gauge/band/chrome family). Per-state lco_ apparatus/switch/
+        // battery/glyph visibility + variable_overrides seed (V0/L/C/R) + the
+        // per-state contextual-control panel (V0 on S1, R on S7, ALL on the S9
+        // explore). The animate loop advances the closed-form phase clock, drives
+        // the switch blade / battery grey / bead stream / coil glow / plate glyphs,
+        // paints the band (strip + mass-spring inset + chips) + energy gauges, and
+        // writes the ring-gated HUD.
+        if (config.scenario_type === "lc_oscillation") {
+            applyLcOscState(stateDef);
+        }
+
         // magnetic_flux_loop — per-state contextual-control row visibility
         // (B/A/theta live-vs-static-vs-hidden), theta_range bounds, and the
         // area-vector/theta-arc/RHR-hand/projection-shadow flags. The animate
@@ -36998,6 +37853,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // excluded here or the generic #sliders panel bleeds through (THE-EYE
         // "#sliders exclusion chain" — every dedicated panel excludes itself here).
         var isAcPower = config.scenario_type === "ac_power";
+        // lc_oscillation owns its OWN #lco_sliders panel (V0/L/C/R) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel excludes itself here).
+        var isLco = config.scenario_type === "lc_oscillation";
         // magnetic_flux_loop owns its OWN #mfl_sliders panel (B/A/theta) -- must
         // be excluded here or the generic #sliders panel bleeds through
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
@@ -37046,7 +37905,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -40477,6 +41336,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyAcPowerGlow();
         }
 
+        // lc_oscillation — source-free L-C loop oscillating at omega0=1/sqrt(LC).
+        // Closed-form phase clock (Rule 26/36; q=Q0 cos, i=-I0 sin; damped leg the
+        // analytic e^(-alpha t); E_R the complement), one bead stream sloshing ±
+        // with true current reversal, plate charge glyphs flipping polarity, two
+        // antiphase energy gauges under a pinned flat total, the mass-spring inset,
+        // and the ring-gated HUD.
+        if (config.scenario_type === "lc_oscillation") {
+            updateLcOscFrame();
+            applyLcOscGlow();
+        }
+
         // magnetic_flux_loop — stationary tiltable/resizable loop in a uniform B.
         // Drives the idle-sweep-or-drag pose (theta/B/A, pure fn of the state
         // clock, Rule 26), the lagged Phi = B.A.cos(theta) readout + shrinking
@@ -43337,6 +44207,23 @@ export const FIELD_3D_RENDERER_CODE = `
                     // sends this, so its deterministic *_at_ms capture is unaffected.
                     if (data.cue && typeof data.at_ms === "number") {
                         scenarioCueTimes[data.cue] = data.at_ms;
+                    }
+                    break;
+
+                case "SET_LCO_SWITCH":
+                    // lc_oscillation explorer object (Rule 27 / V2 Professor-Pack
+                    // seed): throw the two-position battery switch. "A" = recharge
+                    // the capacitor to the current V0 (captures the run amplitude);
+                    // "B" = release into the free L-C loop (re-anchors the phase
+                    // clock so the swing restarts at full charge). data.position
+                    // is "A" | "B". Only meaningful on the S9 explore state.
+                    if (config.scenario_type === "lc_oscillation" && (data.position === "A" || data.position === "B")) {
+                        window.PM_lcoSwitch = data.position;
+                        if (data.position === "B") {
+                            window.PM_lcoAnchorT = time;
+                            window.PM_lcoQ0Run = window.PM_lcoC * window.PM_lcoV0;
+                            window.PM_lcoI0Run = window.PM_lcoQ0Run * (1 / Math.sqrt(Math.max(window.PM_lcoL * window.PM_lcoC, 1e-12)));
+                        }
                     }
                     break;
 

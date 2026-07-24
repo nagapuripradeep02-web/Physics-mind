@@ -310,6 +310,13 @@ export function deriveMotionExpectations(
             // the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
             const acPower = state ? asObj(state.ac_power) : null;
             if (acPower) { out[stateId] = (acPower.mode && acPower.mode !== 'explore') ? true : false; continue; }
+            // lc_oscillation (source-free L-C loop — Ch.7 §7.8, clone-sibling of
+            // ac_power's gauge/band/chrome family): every guided beat animates
+            // continuously (charge climb / bead slosh / gauges / strip pen / decay);
+            // the explore state (mode 'explore') is user-driven -> static (relaxed
+            // by the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
+            const lcOsc = state ? asObj(state.lc_oscillation) : null;
+            if (lcOsc) { out[stateId] = (lcOsc.mode && lcOsc.mode !== 'explore') ? true : false; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -475,6 +482,11 @@ const F3D_REVEAL_KEYS = [
     // of ac_resistor/ac_inductor/ac_capacitor — see field_3d_renderer.ts's
     // scenario header comment).
     'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator', 'ac_resistor', 'ac_inductor', 'ac_capacitor', 'ac_phasor', 'ac_series_lcr', 'ac_power',
+    // lc_oscillation: the per-state `lc_oscillation` block (mode-driven charge_up /
+    // switch_throw / through_zero / free_run / energy_slosh / shm_twin / damped /
+    // derivation / explore reveals for the source-free L-C circuit — Ch.7 §7.8.
+    // Clone-sibling of ac_power — see field_3d_renderer.ts's scenario header comment).
+    'lc_oscillation',
     // helix_in_uniform_field (helical_motion_charge_in_uniform_B): the per-state
     // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
     // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
@@ -1442,6 +1454,24 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'derivation') candidates.push(asNum(acPow.link5_at_ms, 8000) + 2000);
         else candidates.push(1500);                                       // explore / no timed reveal
     }
+    // lc_oscillation (source-free L-C loop — Ch.7 §7.8, clone-sibling of ac_power).
+    // Every guided beat is a SCRIPTED reveal/ramp/hold that plays then HOLDS on the
+    // state's own clock (Rule 26); pin the frozen frame PAST the LAST payoff of each
+    // mode so THE EYE photographs the SETTLED beat. Timings mirror the renderer's
+    // lc_oscillation block — keep in sync if either changes.
+    const lcOsc = asObj(state.lc_oscillation);
+    if (lcOsc) {
+        const mode = typeof lcOsc.mode === 'string' ? lcOsc.mode : '';
+        if (mode === 'charge_up') candidates.push(asNum(lcOsc.charge_climb_start_at_ms, 0) + asNum(lcOsc.charge_climb_dur_ms, 2000) + 800);
+        else if (mode === 'switch_throw') candidates.push(asNum(lcOsc.beads_start_at_ms, 1000) + 3500);
+        else if (mode === 'through_zero') candidates.push(asNum(lcOsc.flip_at_ms, 1000) + 1500);
+        else if (mode === 'free_run') candidates.push(asNum(lcOsc.f0_chip_at_ms, 5200) + 800);
+        else if (mode === 'energy_slosh') candidates.push(asNum(lcOsc.half_split_chip_fire_at_ms, 500) + 2100);
+        else if (mode === 'shm_twin') candidates.push(asNum(lcOsc.guard_clause_at_ms, 2600) + 1500);
+        else if (mode === 'damped') candidates.push(asNum(lcOsc.er_bar_at_ms, 500) + 8000);
+        else if (mode === 'derivation') candidates.push(asNum(lcOsc.link4_at_ms, 6000) + 2000);
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
     // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
     // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
     // ramp (S1 close / S3 open, mirrors switch_toggle in the renderer's animate
@@ -2342,6 +2372,19 @@ export function deriveHoldExpectations(
             const acPowerHold = asObj(state.ac_power);
             if (acPowerHold) {
                 out[stateId] = (acPowerHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // lc_oscillation: every state exposes at least the relevant slider
+            // row(s) (Rule 31 controls), so the generic show_sliders catch below
+            // would swallow S1-S8's guided reveal/ramp/hold beats into 'interactive'
+            // before they ever reach it. Classify explicitly (mirrors the ac_power/
+            // magnetic_flux_loop split above): the explore state (mode 'explore', S9)
+            // is user-driven -> interactive; every other mode is a guided beat that
+            // plays then settles to a HOLD (caught by maxRevealForField3dState
+            // above) -> reveal_hold.
+            const lcOscHold = asObj(state.lc_oscillation);
+            if (lcOscHold) {
+                out[stateId] = (lcOscHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // magnetic_flux_loop: every state exposes at least the relevant
