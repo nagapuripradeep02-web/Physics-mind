@@ -252,6 +252,13 @@ export function deriveMotionExpectations(
                 out[stateId] = (dc.reveal_hold === true || dc.mode === 'why_epsilon0_dphi_dt' || dc.mode === 'displacement_sandbox') ? false : true;
                 continue;
             }
+            // em_wave_propagation: every guided beat is a perpetually-moving wave
+            // (the E/B train phase-advances +x every frame — pulse or train), so it
+            // DECLARES motion. The explore sandbox (em_wave.interactive) is
+            // user-driven → declare static (its self-running train still moves pixels,
+            // but its frozen tail is relaxed by the show_sliders→interactive hold pass).
+            const emw = state ? asObj(state.em_wave) : null;
+            if (emw) { out[stateId] = (emw.interactive === true) ? false : true; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -374,6 +381,12 @@ const F3D_REVEAL_KEYS = [
     // physics_config that flattened field_3d_config.states is still recognised
     // as field_3d, not PCPL.
     'displacement_current',
+    // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3 engine ask):
+    // the per-state `em_wave` block (wave_mode pulse|train, source on/off, motes +
+    // vanish cue, receiver gauges, contextual ν/E₀/n/source controls). Listed here
+    // so a cached physics_config that flattened field_3d_config.states is still
+    // recognised as field_3d, not PCPL.
+    'em_wave',
     // electric_potential_dipole (dipole_potential) + the potential siblings: every
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
@@ -1329,6 +1342,23 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(Math.round(asNum(dcState.on_ms, 4500) * 0.6));
         }
     }
+    // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3): the trains
+    // move perpetually, but the STATE's one-shot cues (motes vanish → the "no
+    // change" chip pins, the pulse reaches the receiver and the needle kicks) land
+    // then HOLD. Pin the frozen frame PAST each cue so THE EYE's __frozen.png shows
+    // the settled reveal — the vanished motes + pinned chip (S3), the delivered
+    // needle-kick (S1) — the recurrence check for the OPEN scar
+    // field3d_scene_composition_annotation_silent_noop (these cues are scenario
+    // elements, so they must paint). Accumulator-free (pure fn of state-local t),
+    // so the snap-to-pin capture is byte-identical to crawling there.
+    const emwState = asObj(state.em_wave);
+    if (emwState) {
+        const push = (v: unknown, extra = 600) => { if (typeof v === 'number') candidates.push(v + extra); };
+        push(emwState.motes_vanish_at_ms, 1000);   // past the ~800 ms fade + a beat
+        push(emwState.nochange_at_ms, 700);
+        push(emwState.needle_kick_at_ms, 500);
+        push(emwState.source_off_at_ms, 1200);
+    }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
     // are one-shot timed gestures that then HOLD still — pin the frozen frame
     // past each payoff so the capture photographs the completed reveal, and so
@@ -2043,6 +2073,20 @@ export function deriveHoldExpectations(
             const dcHold = asObj(state.displacement_current);
             if (dcHold) {
                 out[stateId] = (dcHold.mode === 'displacement_sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // em_wave_propagation: every guided beat is LIVE (Rule 31 contextual
+            // rows on S6+), so the generic show_sliders catch below would swallow
+            // their genuine reveal-then-hold cues (motes vanish + chip pin, gate
+            // dock) into 'interactive' before they reach it. Classify explicitly
+            // (mirrors the displacement_current/capacitance split above): the explore
+            // sandbox (em_wave.interactive) is user-driven → interactive; every other
+            // beat's one-shot cue payoff (pinned in maxRevealForField3dState) settles
+            // to a HOLD over the perpetually-running train → reveal_hold, so D7/D1p
+            // permit the settled overlay tail.
+            const emwHold = asObj(state.em_wave);
+            if (emwHold) {
+                out[stateId] = (emwHold.interactive === true) ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

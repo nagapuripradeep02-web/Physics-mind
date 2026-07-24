@@ -52,7 +52,18 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'displacement_current';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'displacement_current' | 'em_wave_propagation';
+    // em_wave_propagation (Ch.8 §8.3 — a traveling transverse EM wave: an
+    // oscillating antenna charge launches a green E-train on ŷ + a blue B-train
+    // on ẑ that self-propagate +x at v = c/n; a receiver post reads live E (V/m)
+    // and B (µT). NEW scenario. Optional defaults for the axis geometry + the
+    // stylized playback clock; per-state behaviour (pulse|train, source on/off,
+    // motes, controls, cue times) rides the per-state `em_wave` block.
+    emw_defaults?: {
+        axis_length_m?: number;      // total propagation-axis length in metres (default 10)
+        lambda0_m?: number;          // vacuum wavelength at the default ν (default 3.0)
+        play_period_ms?: number;     // stylized wall-clock period of one wave cycle at ν₀ (default 2200)
+    };
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -30655,6 +30666,464 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ================================================================
+    // em_wave_propagation (Ch.8 §8.3 — the self-propagating transverse EM wave).
+    // NEW scenario, clean master. Increment 1 = the LOAD-BEARING CORE (skeleton
+    // §0b "Build staging", founder-proxy F1): emw_source (antenna rod + amber
+    // charge bead + ON/OFF switch), emw_axis (+x propagation axis, metre ticks,
+    // "direction of travel →" tag), emw_e_train (green E arrows + envelope line
+    // on ŷ), emw_b_train (blue B arrows + envelope line on ẑ), emw_receiver
+    // (dual live gauge E V/m + B µT, numeric + tracking needle — Rule 33d),
+    // emw_motes (~40 seeded gray dust motes, never displaced by the wave, with a
+    // a vanish cue — S3's null-result beat), + the per-state wave_mode pulse|train
+    // knob. Enough that S1–S3 render end-to-end.
+    //
+    // Physics (verified engine, never the LLM): phase advance x − v·t, v = c/n
+    // (n = 1 outside the slab). E(x,t) = E₀·sin(k(x − vt)) on ŷ; B = E/c on ẑ. λ =
+    // v/ν with ν continuous across a boundary. Every value is a PURE function of
+    // state-local ms (Rule 26/36 — rewindable, byte-stable under SET_TIME_FREEZE);
+    // 0–3 fixed 1/60 s steps upstream, no hardcoded per-frame delta touched here.
+    //
+    // Time-scaling license (declared, approved — FL3): distances are real metres,
+    // all readouts real SI; the wall-clock playback rate is stylized so one wave
+    // cycle takes ~EMW_PLAY_MS instead of 10 ns. All ratios preserved (λ/T = v,
+    // crest speed = c). Per-state add-ons (relay S2, triad S4, ghost/cursor S5,
+    // gates S6, tanks S8, slab S10, formula/HUD surfaces) layer in later
+    // increments per the staging note — NOT built in this core increment.
+    // ================================================================
+    var EMW_M = 0.8;                         // scene units per metre
+    var EMW_X0_M = -5, EMW_X1_M = 5;         // propagation-axis span (10 m)
+    var EMW_C_M = 2.998e8;                    // c (m/s) — locked
+    var EMW_LAMBDA0_M = 3.0;                  // vacuum wavelength at ν₀ = 100 MHz
+    var EMW_NU0 = 100;                         // default ν (MHz)
+    var EMW_E0_REF = 120;                      // reference field strength (V/m) — full-scale arrow
+    var EMW_PLAY_MS = 2200;                    // stylized wall-clock period of one wave cycle at ν₀
+    var EMW_VDISP = (EMW_LAMBDA0_M * EMW_M) / EMW_PLAY_MS;  // crest speed (scene/ms), represents c (constant)
+    var EMW_PULSE_MS = 8200;                   // pulse relaunch period (one traversal + reset)
+    var EMW_PULSE_W = 1.0;                     // pulse envelope half-width (scene)
+    var EMW_BURST_MS = 1400;                   // source wiggle-burst per pulse cycle (launches the packet)
+    var EMW_ARROW_MAX = 1.1;                   // max arrow / envelope amplitude (scene) at E₀_ref
+    var EMW_BEAD_A = 0.82;                     // source charge-bead oscillation amplitude (scene)
+    var EMW_N_ARROW = 13;                      // arrows per train
+    var EMW_N_MOTE = 40;
+    var EMW_NEEDLE_MAX = 0.9;                  // receiver needle max swing (rad)
+    var EMW_SRC_X = EMW_X0_M * EMW_M;          // source scene x (−4)
+    var EMW_RCV_X = EMW_X1_M * EMW_M;          // receiver scene x (+4)
+
+    // Stylized angular frequency (rad/ms) — ν continuous across any boundary, so
+    // this is region-independent; the local wavenumber k = ω/(v/n) shrinks λ by n
+    // inside a medium (slab increment). At ν₀ this is 2π/EMW_PLAY_MS.
+    function emwOmega(nu) { return 2 * Math.PI * nu / (EMW_NU0 * EMW_PLAY_MS); }
+    function emwK(nu, n) { return emwOmega(nu) / (EMW_VDISP / (n || 1)); }   // rad/scene
+    function emwPulseCenter(ms) { return EMW_SRC_X + EMW_VDISP * (ms % EMW_PULSE_MS); }
+    function emwEnv(xScene, ms, mode, launchGate) {
+        if (mode !== "pulse") return 1;
+        // Pulse launched only while the source was ON at this cycle's start
+        // (launchGate false ⇒ this cycle's packet never left the antenna).
+        if (launchGate === false) return 0;
+        var d = (xScene - emwPulseCenter(ms)) / EMW_PULSE_W;
+        return Math.exp(-d * d);
+    }
+    function emwFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+    // Unit +ŷ arrow (shaft base at y=0, tip at y=1); group.scale.y drives signed
+    // length — negative flips it to −ŷ (MeshBasicMaterial, so flipped normals are
+    // a non-issue). alongZ rotates local +y → world +z (the B train).
+    function emwArrow(color, alongZ) {
+        var g = new THREE.Group();
+        var shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 1, 6),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.95 }));
+        shaft.position.y = 0.5;
+        g.add(shaft);
+        var head = new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.2, 8),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.95 }));
+        head.position.y = 1.0;
+        g.add(head);
+        if (alongZ) g.rotation.x = Math.PI / 2;
+        return g;
+    }
+    // Receiver needle: a short pointer + hub; alongZ makes it point +ẑ (B gauge).
+    function emwNeedle(color, alongZ) {
+        var g = new THREE.Group();
+        var c = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 0.62, 6),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor(color) }));
+        if (alongZ) { c.rotation.x = Math.PI / 2; c.position.z = 0.31; } else { c.position.y = 0.31; }
+        g.add(c);
+        var hub = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor("#ECEFF1") }));
+        g.add(hub);
+        return g;
+    }
+    // Deterministic seeded [0,1) — motes are a pure function of index (Rule 36:
+    // zero per-frame randomness, so THE EYE's frozen baselines are byte-stable).
+    function emwHash(i, k) { var h = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453; return h - Math.floor(h); }
+
+    function emwBuildDom(config) {
+        var textColor = (config.colors && config.colors.text) || "#D4D4D8";
+        function mk(id, css) { var el = document.getElementById(id); if (el) return el; el = document.createElement("div"); el.id = id; el.style.cssText = css; document.body.appendChild(el); return el; }
+        // value-only HUD (top-right, clears the review-chrome Full-screen button at top:52px, Rule 34d)
+        mk("emw_hud", "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;");
+        // ONE formula surface (Cambria Math, bottom-center-left — Rule 34b)
+        mk("emw_formula", "position:fixed;bottom:64px;left:50%;transform:translateX(-70%);color:#FFF176;font:bold 21px/1.4 \\'Cambria Math\\',monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:420px;text-align:center;");
+        // S3 "no change" null-result chip (Rule 16a pivot #1) — a scenario element,
+        // NOT a scene_composition annotation (recurrence guard for the OPEN scar
+        // field3d_scene_composition_annotation_silent_noop): it PAINTS on the canvas.
+        var nc = mk("emw_nochange", "position:fixed;left:50%;bottom:20px;transform:translateX(-50%);color:#B0BEC5;font:italic 13px/1.4 monospace;opacity:0.85;background:rgba(0,0,0,0.45);padding:5px 12px;border-radius:6px;z-index:8;display:none;white-space:nowrap;");
+        nc.innerHTML = "no change";
+        // sliders panel (bottom-right) — Rule 39g <prefix>_<name>_row ids, inline
+        // position:fixed so the ⚙ widget engine auto-discovers each row.
+        var sp = document.getElementById("emw_sliders");
+        if (!sp) { sp = document.createElement("div"); sp.id = "emw_sliders"; document.body.appendChild(sp); }
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        sp.innerHTML =
+            '<div id="emw_freq_row" style="display:none"><label>Source frequency \\u03bd: <span id="emw_freq_val">100</span> MHz</label>' +
+            '<input type="range" id="emw_freq_slider" min="50" max="200" step="5" value="100" style="width:100%"></div>' +
+            '<div id="emw_e0_row" style="display:none;margin-top:6px"><label>Field strength: <span id="emw_e0_val">120</span> V/m</label>' +
+            '<input type="range" id="emw_e0_slider" min="40" max="200" step="5" value="120" style="width:100%"></div>' +
+            '<div id="emw_n_row" style="display:none;margin-top:6px"><label>Refractive index n: <span id="emw_n_val">1.50</span></label>' +
+            '<input type="range" id="emw_n_slider" min="1" max="2" step="0.05" value="1.5" style="width:100%"></div>' +
+            '<div id="emw_src_row" style="display:none;margin-top:6px"><label>Source: <span id="emw_src_val">ON</span></label>' +
+            '<input type="range" id="emw_src_slider" min="0" max="1" step="1" value="1" style="width:100%"></div>';
+        function emwEmit(param, value) { try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "em_wave_propagation_explorer"), param: param, value: value }, "*"); } catch (e) {} }
+        var fSl = document.getElementById("emw_freq_slider"), fV = document.getElementById("emw_freq_val");
+        var eSl = document.getElementById("emw_e0_slider"), eV = document.getElementById("emw_e0_val");
+        var nSl = document.getElementById("emw_n_slider"), nV = document.getElementById("emw_n_val");
+        var srcSl = document.getElementById("emw_src_slider"), srcV = document.getElementById("emw_src_val");
+        // Trusted-drag seize: only a REAL teacher gesture (ev.isTrusted) grabs a
+        // row into manual — THE EYE's untrusted events never seize, so scripted
+        // motion stays deterministic for frozen baselines.
+        if (fSl) fSl.addEventListener("input", function (ev) { window.PM_emwNu = parseFloat(fSl.value); if (fV) fV.textContent = String(Math.round(window.PM_emwNu)); if (ev && ev.isTrusted) window.PM_emwNuDragged = true; emwEmit("nu", window.PM_emwNu); });
+        if (eSl) eSl.addEventListener("input", function (ev) { window.PM_emwE0 = parseFloat(eSl.value); if (eV) eV.textContent = String(Math.round(window.PM_emwE0)); if (ev && ev.isTrusted) window.PM_emwE0Dragged = true; emwEmit("E0", window.PM_emwE0); });
+        if (nSl) nSl.addEventListener("input", function (ev) {
+            window.PM_emwN = parseFloat(nSl.value); if (nV) nV.textContent = window.PM_emwN.toFixed(2);
+            // FL1: S10 (into_a_medium) is manual_click, so Rule 37 does NOT free-run
+            // it — the player pins the clock at timeline end. A trusted n-drag must
+            // UN-PIN it (freezeAtTime = null) so the crest-bunching renders LIVE,
+            // never a frozen re-render (clone of the S7/S8 seize pattern).
+            if (ev && ev.isTrusted) { window.PM_emwNDragged = true; freezeAtTime = null; }
+            emwEmit("n", window.PM_emwN);
+        });
+        if (srcSl) srcSl.addEventListener("input", function (ev) { window.PM_emwSrc = parseFloat(srcSl.value); if (srcV) srcV.textContent = window.PM_emwSrc > 0.5 ? "ON" : "OFF"; if (ev && ev.isTrusted) window.PM_emwSrcDragged = true; emwEmit("source", window.PM_emwSrc); });
+    }
+
+    function buildEmWavePropagation(config) {
+        clearScene();
+        var eColor = "#66BB6A", bColor = "#42A5F5", srcColor = "#FFCA28";
+        var axColor = "#B0BEC5", moteColor = "#90A4AE", rodColor = "#78909C", rodEm = "#546E7A";
+
+        // ── propagation axis + metre ticks + direction tag ─────────────────
+        // Plain cylinder (NOT createTubeLine) so the axis never depends on a
+        // config.field_lines block being present (scar #9 spirit: a NEW helper
+        // reading config.* must guard — here we simply avoid the read).
+        var axisLen = (EMW_X1_M - EMW_X0_M) * EMW_M;
+        var axis = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, axisLen, 8),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor(axColor), transparent: true, opacity: 0.7 }));
+        axis.rotation.z = Math.PI / 2;                 // cylinder axis Y → X
+        axis.position.set((EMW_X0_M + EMW_X1_M) / 2 * EMW_M, 0, 0);
+        axis.userData = { elementType: "emw_axis", id: "emw_axis" };
+        addToScene(axis);
+        for (var t = EMW_X0_M; t <= EMW_X1_M; t++) {
+            var tk = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.16, 5),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor(axColor), transparent: true, opacity: 0.55 }));
+            tk.position.set(t * EMW_M, 0, 0);
+            tk.userData = { elementType: "emw_axis", id: "emw_tick_" + t };
+            addToScene(tk);
+        }
+        var dirTag = pmCreateAutoLabel("direction of travel \\u2192", "#CFD8DC", 0.34);
+        dirTag.position.set(1.2, -1.35, 0);
+        dirTag.userData = { elementType: "emw_axis", id: "emw_dir_tag" };
+        addToScene(dirTag);
+
+        // ── source: antenna rod + oscillating charge bead + ON/OFF switch ──
+        var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 2.0, 10),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(rodColor), emissive: hexToThreeColor(rodEm), emissiveIntensity: 0.25 }));
+        rod.position.set(EMW_SRC_X, 0, 0);
+        rod.userData = { elementType: "emw_source", id: "emw_rod" };
+        addToScene(rod);
+        var bead = new THREE.Mesh(new THREE.SphereGeometry(0.14, 16, 16),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor(srcColor) }));
+        bead.position.set(EMW_SRC_X, 0, 0);
+        bead.userData = { elementType: "emw_source", id: "emw_bead" };
+        addToScene(bead);
+        var sw = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.42, 8),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor("#66BB6A") }));
+        sw.position.set(EMW_SRC_X - 0.42, -1.18, 0);
+        sw.rotation.z = Math.PI / 2;                 // closed = horizontal
+        sw.userData = { elementType: "emw_source", id: "emw_switch" };
+        addToScene(sw);
+        var srcLbl = pmCreateAutoLabel("antenna", "#B0BEC5", 0.3);
+        srcLbl.position.set(EMW_SRC_X, 1.35, 0);
+        srcLbl.userData = { elementType: "emw_source", id: "emw_src_lbl" };
+        addToScene(srcLbl);
+
+        // ── E train (envelope line on ŷ) + B train (envelope line on ẑ) ────
+        var NSEG = 100;
+        function emwLine(color, elemType, id) {
+            var geo = new THREE.BufferGeometry();
+            var arr = new Float32Array((NSEG + 1) * 3);
+            for (var i = 0; i <= NSEG; i++) {
+                var xm = EMW_X0_M + 0.5 + (EMW_X1_M - EMW_X0_M - 1) * i / NSEG;
+                arr[i * 3] = xm * EMW_M; arr[i * 3 + 1] = 0; arr[i * 3 + 2] = 0;
+            }
+            geo.setAttribute("position", new THREE.BufferAttribute(arr, 3));
+            var ln = new THREE.Line(geo, new THREE.LineBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.9 }));
+            ln.frustumCulled = false;                // vertices move; never cull the wave
+            ln.userData = { elementType: elemType, id: id, nseg: NSEG };
+            addToScene(ln);
+        }
+        emwLine(eColor, "emw_e_train", "emw_e_line");
+        emwLine(bColor, "emw_b_train", "emw_b_line");
+        // arrow arrays (the vector reading) — fixed sample x's, length/sign per frame
+        var xa0 = -4.4, xa1 = 4.4;
+        for (var a = 0; a < EMW_N_ARROW; a++) {
+            var xam = (xa0 + (xa1 - xa0) * a / (EMW_N_ARROW - 1)) * EMW_M;
+            var ea = emwArrow(eColor, false); ea.position.set(xam, 0, 0);
+            ea.userData = { elementType: "emw_e_train", id: "emw_e_arrow_" + a, xs: xam };
+            addToScene(ea);
+            var ba = emwArrow(bColor, true); ba.position.set(xam, 0, 0);
+            ba.userData = { elementType: "emw_b_train", id: "emw_b_arrow_" + a, xs: xam };
+            addToScene(ba);
+        }
+
+        // ── receiver post + dual live gauge (E V/m green, B µT blue) + needles ──
+        var post = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 2.2, 10),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(rodColor), emissive: hexToThreeColor(rodEm), emissiveIntensity: 0.25 }));
+        post.position.set(EMW_RCV_X, 0, 0);
+        post.userData = { elementType: "emw_receiver", id: "emw_post" };
+        addToScene(post);
+        var eGauge = pmCreateAutoLabel("E = 120 V/m", eColor, 0.34);
+        eGauge.position.set(EMW_RCV_X + 0.15, 1.0, 0);
+        eGauge.userData = { elementType: "emw_receiver", id: "emw_e_gauge" };
+        addToScene(eGauge);
+        var bGauge = pmCreateAutoLabel("B = 0.40 \\u00b5T", bColor, 0.34);
+        bGauge.position.set(EMW_RCV_X + 0.15, 0.55, 0);
+        bGauge.userData = { elementType: "emw_receiver", id: "emw_b_gauge" };
+        addToScene(bGauge);
+        var eNeedle = emwNeedle(eColor, false); eNeedle.position.set(EMW_RCV_X, 0, 0);
+        eNeedle.userData = { elementType: "emw_receiver", id: "emw_e_needle" };
+        addToScene(eNeedle);
+        var bNeedle = emwNeedle(bColor, true); bNeedle.position.set(EMW_RCV_X, 0, 0);
+        bNeedle.userData = { elementType: "emw_receiver", id: "emw_b_needle" };
+        addToScene(bNeedle);
+
+        // ── motes (seeded gray dust; NEVER displaced by the wave; vanish cue) ──
+        for (var m = 0; m < EMW_N_MOTE; m++) {
+            var mx = (EMW_X0_M + 0.6 + (EMW_X1_M - EMW_X0_M - 1.2) * emwHash(m, 1)) * EMW_M;
+            var my = (emwHash(m, 2) - 0.5) * 2.3;
+            var mz = (emwHash(m, 3) - 0.5) * 2.0;
+            var mote = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor(moteColor), transparent: true, opacity: 0.55 }));
+            mote.position.set(mx, my, mz);
+            mote.userData = { elementType: "emw_motes", id: "emw_mote_" + m };
+            addToScene(mote);
+        }
+
+        emwBuildDom(config);
+
+        // hide everything; applyEmWavePropagationState is authoritative
+        for (var qi = 0; qi < sceneObjects.length; qi++) {
+            var qo = sceneObjects[qi];
+            if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("emw_") === 0) qo.visible = false;
+        }
+        window.PM_emwNu = 100; window.PM_emwE0 = 120; window.PM_emwN = 1.5; window.PM_emwSrc = 1;
+        window.PM_emwNuDragged = false; window.PM_emwE0Dragged = false; window.PM_emwNDragged = false; window.PM_emwSrcDragged = false;
+    }
+
+    function emwWidgetVis(key, wants) {
+        var ov = (window.PM_widgetVis || {})[key];
+        if (ov === "show") return true;
+        if (ov === "hide") return false;
+        return !!wants;
+    }
+    function emwApplyWidgetVis(ew) {
+        ew = ew || {};
+        var controls = ew.controls || [];
+        var rows = { nu: "emw_freq_row", E0: "emw_e0_row", n: "emw_n_row", src: "emw_src_row" };
+        var anyRow = false;
+        for (var key in rows) {
+            var vis = emwWidgetVis("slider_" + key, controls.indexOf(key) !== -1);
+            var rowEl = document.getElementById(rows[key]);
+            if (rowEl) rowEl.style.display = vis ? "block" : "none";
+            if (vis) anyRow = true;
+        }
+        var sp = document.getElementById("emw_sliders"); if (sp) sp.style.display = anyRow ? "block" : "none";
+        var hud = document.getElementById("emw_hud"); if (hud) hud.style.display = emwWidgetVis("readout", !!ew.show_hud) ? "block" : "none";
+        var ff = document.getElementById("emw_formula"); if (ff) ff.style.display = emwWidgetVis("formula", !!ew.show_formula && !!ew.formula) ? "block" : "none";
+        // "no change" chip is a pedagogical fixture (not a teacher widget) — mode-gated.
+        var nc = document.getElementById("emw_nochange"); if (nc) nc.style.display = !!ew.show_nochange ? "block" : "none";
+        try {
+            parent.postMessage({ type: "WIDGET_VIS_STATE", vis: {
+                slider_nu: document.getElementById("emw_freq_row") && document.getElementById("emw_freq_row").style.display !== "none",
+                slider_E0: document.getElementById("emw_e0_row") && document.getElementById("emw_e0_row").style.display !== "none",
+                slider_n: document.getElementById("emw_n_row") && document.getElementById("emw_n_row").style.display !== "none",
+                slider_src: document.getElementById("emw_src_row") && document.getElementById("emw_src_row").style.display !== "none",
+                readout: hud && hud.style.display !== "none", formula: ff && ff.style.display !== "none"
+            } }, "*");
+        } catch (e) {}
+    }
+
+    function applyEmWavePropagationState(stateDef) {
+        var ew = stateDef.em_wave || {};
+        window.PM_emwMode = ew.wave_mode || "train";
+        // State-entry seize reset (Rule 31 live-instrument model): a drag in a
+        // PRIOR state never bleeds into the next beat's scripted choreography.
+        window.PM_emwNuDragged = false; window.PM_emwE0Dragged = false; window.PM_emwNDragged = false; window.PM_emwSrcDragged = false;
+        window.PM_emwNu = (ew.nu != null) ? ew.nu : 100;
+        window.PM_emwE0 = (ew.E0 != null) ? ew.E0 : 120;
+        window.PM_emwN = (ew.n != null) ? ew.n : 1.5;
+        window.PM_emwSrc = (ew.source_on === false) ? 0 : 1;
+
+        var showMap = {
+            emw_axis: true, emw_source: true, emw_e_train: true, emw_b_train: true,
+            emw_receiver: ew.show_receiver !== false,
+            emw_motes: !!ew.show_motes
+        };
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("emw_") !== 0) continue;
+            if (ud.elementType in showMap) o.visible = showMap[ud.elementType];
+        }
+        emwApplyWidgetVis(ew);
+        // seed slider thumbs
+        var fSl = document.getElementById("emw_freq_slider"); if (fSl) fSl.value = String(window.PM_emwNu);
+        var fV = document.getElementById("emw_freq_val"); if (fV) fV.textContent = String(Math.round(window.PM_emwNu));
+        var eSl = document.getElementById("emw_e0_slider"); if (eSl) eSl.value = String(window.PM_emwE0);
+        var eV = document.getElementById("emw_e0_val"); if (eV) eV.textContent = String(Math.round(window.PM_emwE0));
+        var nSl = document.getElementById("emw_n_slider"); if (nSl) nSl.value = String(window.PM_emwN);
+        var nV = document.getElementById("emw_n_val"); if (nV) nV.textContent = window.PM_emwN.toFixed(2);
+        var srcSl = document.getElementById("emw_src_slider"); if (srcSl) srcSl.value = String(window.PM_emwSrc);
+        var srcV = document.getElementById("emw_src_val"); if (srcV) srcV.textContent = window.PM_emwSrc > 0.5 ? "ON" : "OFF";
+        // ONE formula surface (static per-state string; Rule 34b)
+        var ff = document.getElementById("emw_formula"); if (ff && ew.formula) ff.innerHTML = ew.formula;
+    }
+
+    function updateEmWavePropagationFrame(stateDef, held) {
+        var ew = stateDef.em_wave || {};
+        var ms = (time - stateStartTime) * 1000;
+        var mode = ew.wave_mode || "train";
+        var ctrls = ew.controls || [];
+        var nu = (ctrls.indexOf("nu") >= 0 && window.PM_emwNuDragged) ? window.PM_emwNu : ((ew.nu != null) ? ew.nu : 100);
+        var E0 = (ctrls.indexOf("E0") >= 0 && window.PM_emwE0Dragged) ? window.PM_emwE0 : ((ew.E0 != null) ? ew.E0 : 120);
+        // Core increment: no slab, so n = 1 everywhere (the slab increment reads ew.n
+        // for the mid-axis region only). Source on/off with an optional cue + S11 toggle.
+        var srcOn = (ew.source_on === false) ? false : true;
+        if (ew.source_off_at_ms != null && ms >= cueTriggerMs("source_off", ew.source_off_at_ms)) srcOn = false;
+        if (ctrls.indexOf("src") >= 0 && window.PM_emwSrcDragged) srcOn = window.PM_emwSrc > 0.5;
+
+        var omega = emwOmega(nu), k = emwK(nu, 1);
+        var ampNorm = E0 / EMW_E0_REF;
+        // pulse launch gate: this cycle's packet only exists if the source was ON
+        // when the cycle began (so switching OFF mid-flight lets the in-flight
+        // packet finish and no new one launches — the S2 "wave continues" beat).
+        var cycleStart = ms - (ms % EMW_PULSE_MS);
+        var offMs = (ew.source_off_at_ms != null) ? cueTriggerMs("source_off", ew.source_off_at_ms) : Infinity;
+        var launchGate = (mode === "pulse") ? (cycleStart <= offMs) : true;
+        function valNormAt(xScene) { return emwEnv(xScene, ms, mode, launchGate) * Math.sin(k * (xScene - EMW_SRC_X) - omega * ms); }
+
+        // ── envelope lines + arrow arrays ──────────────────────────────────
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            if (ud.id === "emw_e_line" || ud.id === "emw_b_line") {
+                var pos = o.geometry.attributes.position, ns = ud.nseg, isB = (ud.id === "emw_b_line");
+                for (var s = 0; s <= ns; s++) {
+                    var xs = pos.array[s * 3];
+                    var val = valNormAt(xs) * ampNorm * EMW_ARROW_MAX;
+                    pos.array[s * 3 + 1] = isB ? 0 : val;
+                    pos.array[s * 3 + 2] = isB ? val : 0;
+                }
+                pos.needsUpdate = true;
+            } else if (ud.elementType === "emw_e_train" && ud.id && ud.id.indexOf("emw_e_arrow_") === 0) {
+                o.scale.y = valNormAt(ud.xs) * ampNorm * EMW_ARROW_MAX;
+            } else if (ud.elementType === "emw_b_train" && ud.id && ud.id.indexOf("emw_b_arrow_") === 0) {
+                o.scale.y = valNormAt(ud.xs) * ampNorm * EMW_ARROW_MAX;
+            }
+        }
+
+        // ── source bead + switch ───────────────────────────────────────────
+        var bead = emwFindById("emw_bead");
+        if (bead) {
+            var beadY = 0;
+            if (srcOn) {
+                var osc = EMW_BEAD_A * (-Math.sin(omega * ms)) * ampNorm;
+                if (mode === "pulse") {
+                    var tau = ms % EMW_PULSE_MS;
+                    beadY = (tau < EMW_BURST_MS && launchGate) ? osc * (1 - tau / EMW_BURST_MS) : 0;
+                } else { beadY = osc; }
+            }
+            bead.position.set(EMW_SRC_X, beadY, 0);
+        }
+        var sw = emwFindById("emw_switch");
+        if (sw) {
+            sw.rotation.z = srcOn ? Math.PI / 2 : 0.7;   // closed horizontal / open lifted
+            if (sw.material) { sw.material.color = hexToThreeColor(srcOn ? "#66BB6A" : "#EF5350"); }
+        }
+
+        // ── receiver gauges + needles (Rule 33d live numeric + tracking needle) ──
+        var recvEnv = emwEnv(EMW_RCV_X, ms, mode, launchGate);
+        var recvSin = Math.sin(k * (EMW_RCV_X - EMW_SRC_X) - omega * ms);
+        var recvPeak = E0 * recvEnv;                       // amplitude arriving at the post
+        var eG = emwFindById("emw_e_gauge");
+        if (eG) updateLabelSpriteText(eG, "E = " + recvPeak.toFixed(0) + " V/m");
+        var bG = emwFindById("emw_b_gauge");
+        if (bG) updateLabelSpriteText(bG, "B = " + (recvPeak / EMW_C_M * 1e6).toFixed(2) + " \\u00b5T");
+        var eN = emwFindById("emw_e_needle"); if (eN) eN.rotation.z = recvEnv * recvSin * EMW_NEEDLE_MAX;
+        var bN = emwFindById("emw_b_needle"); if (bN) bN.rotation.y = recvEnv * recvSin * EMW_NEEDLE_MAX;
+
+        // ── motes: fixed positions (never displaced), fade out on the vanish cue ──
+        if (ew.show_motes) {
+            var vMs = (ew.motes_vanish_at_ms != null) ? cueTriggerMs("motes_vanish", ew.motes_vanish_at_ms) : Infinity;
+            var moteOp = (ms >= vMs) ? Math.max(0, 0.55 * (1 - (ms - vMs) / 800)) : 0.55;
+            for (var mi = 0; mi < sceneObjects.length; mi++) {
+                var mo = sceneObjects[mi];
+                if (mo.userData && mo.userData.elementType === "emw_motes" && mo.material) { mo.material.transparent = true; mo.material.opacity = moteOp; }
+            }
+        }
+
+        // ── S3 "no change" chip: pins from nochange_at_ms and holds ────────
+        var nc = document.getElementById("emw_nochange");
+        if (nc && nc.style.display !== "none") {
+            var cMs = (ew.nochange_at_ms != null) ? cueTriggerMs("nochange", ew.nochange_at_ms) : 0;
+            nc.style.visibility = (ms >= cMs) ? "visible" : "hidden";
+        }
+
+        // ── value-only HUD (per-state lines; Rule 34b — numbers only) ──────
+        var hud = document.getElementById("emw_hud");
+        if (hud && hud.style.display !== "none") {
+            var lines = [];
+            if (ew.show_lambda) lines.push("\\u03bb = " + (EMW_C_M / (nu * 1e6)).toFixed(2) + " m");
+            if (ew.show_nu) lines.push("\\u03bd = " + Math.round(nu) + " MHz");
+            hud.innerHTML = lines.join("<br>");
+        }
+        // keep slider readouts in sync with scripted (non-dragged) values
+        if (ctrls.indexOf("nu") >= 0 && !window.PM_emwNuDragged) { var fe = document.getElementById("emw_freq_val"); if (fe) fe.textContent = String(Math.round(nu)); var fs = document.getElementById("emw_freq_slider"); if (fs) fs.value = String(nu); }
+        if (ctrls.indexOf("E0") >= 0 && !window.PM_emwE0Dragged) { var ee = document.getElementById("emw_e0_val"); if (ee) ee.textContent = String(Math.round(E0)); var es = document.getElementById("emw_e0_slider"); if (es) es.value = String(E0); }
+    }
+
+    // Glow (Rule 29 — brightness only) from the closed enum. Only core objects
+    // (source · motes · receiver) exist yet; deferred focals (relay · triad ·
+    // cursor · gates · ratio · tanks · formula · slab) map to nothing → no-op.
+    var EMW_GLOW_ELS = { source: "emw_source", motes: "emw_motes", receiver: "emw_receiver" };
+    function applyEmWavePropagationGlow(stateDef) {
+        var focalTypes = {};
+        for (var g = 0; g < (glowTargets || []).length; g++) {
+            var key = glowTargets[g];
+            if (EMW_GLOW_ELS[key]) focalTypes[EMW_GLOW_ELS[key]] = true;
+        }
+        var anyScene = false;
+        for (var kk in focalTypes) if (focalTypes[kk]) anyScene = true;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("emw_") !== 0) continue;
+            if (o.visible === false) continue;
+            applyGlowEmphasis(o, !!focalTypes[ud.elementType], anyScene, 0.6, true);
+        }
+    }
+
     function buildScenario() {
         clearScene();
 
@@ -30716,6 +31185,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "displacement_current":
                 buildDisplacementCurrent(config);
+                break;
+
+            case "em_wave_propagation":
+                buildEmWavePropagation(config);
                 break;
 
             case "dipole_potential":
@@ -31361,6 +31834,16 @@ export const FIELD_3D_RENDERER_CODE = `
             applyDisplacementCurrentState(stateDef);
         }
 
+        // em_wave_propagation (traveling transverse EM wave) — authoritative
+        // per-state visibility (show_receiver/show_motes) + seize reset +
+        // contextual slider rows (ν / field strength / n / source) + DOM panel
+        // toggles (HUD / formula / no-change chip). The animate loop drives the
+        // pulse/train phase, the E/B envelope lines + arrow arrays, the source
+        // bead + switch, the receiver gauges + needles, and the mote vanish.
+        if (config.scenario_type === "em_wave_propagation") {
+            applyEmWavePropagationState(stateDef);
+        }
+
         // dipole_potential (electric_potential_dipole, V = k p cosθ/r²) —
         // authoritative per-state visibility (charges/p always on; probe / r-lines /
         // θ-arc / two-term + collapse callouts / equatorial disc + E arrow / curve
@@ -31573,6 +32056,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // "#sliders exclusion chain" — every dedicated panel adds itself to this
         // NOT-list, same as isCap/isMfl/isInductance/... above).
         var isDc = config.scenario_type === "displacement_current";
+        // em_wave_propagation owns its OWN #emw_sliders panel (ν/field-strength/n/
+        // source) -- must be excluded here or the generic #sliders panel bleeds
+        // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
+        // itself to this NOT-list, same as isDc/isCap/isMfl/... above).
+        var isEmw = config.scenario_type === "em_wave_propagation";
         var isDipolePotential = config.scenario_type === "dipole_potential";
         var isSystemOfCharges = config.scenario_type === "system_of_charges";
         var isSystemPeAssembly = config.scenario_type === "system_pe_assembly";
@@ -31605,7 +32093,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -32256,6 +32744,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // it would otherwise fall through to the bare "Drag to rotate" hint only,
         // but suppress explicitly for consistency with every 2026-07+ scenario).
         if (config.scenario_type === "capacitance") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // em_wave_propagation is a silent visual (Rule 24): the antenna + axis +
+        // green E-train / blue B-train + receiver dual gauge + motes + the ONE
+        // formula surface carry everything — suppress the generic point-charge
+        // legend (the scenario id has no "charge"/"magnet" substring so it would
+        // otherwise fall through to the bare "Drag to rotate" hint, but suppress
+        // explicitly for consistency with every 2026-07+ scenario).
+        if (config.scenario_type === "em_wave_propagation") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
@@ -34720,7 +35215,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation")) {
             // parallel_plates + dipole_potential are accumulator-free (every reveal +
             // sweep + the gap-widen morph is a pure function of time - stateStartTime),
             // so snapping to the pin is byte-identical to crawling — lets the visual
@@ -34791,6 +35286,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "displacement_current") {
             var dcStateDef = config.states[PM_currentState];
             if (dcStateDef) { updateDisplacementCurrentFrame(dcStateDef, heldAtPin); applyDisplacementCurrentGlow(dcStateDef); }
+        }
+
+        // em_wave_propagation — pulse/train phase (E-train on ŷ, B-train on ẑ),
+        // envelope lines + arrow arrays, source bead/switch, receiver gauges +
+        // needles, mote vanish. Accumulator-free (every value a pure fn of
+        // time - stateStartTime, Rule 26/36 — byte-stable under a pin).
+        if (config.scenario_type === "em_wave_propagation") {
+            var emwStateDef = config.states[PM_currentState];
+            if (emwStateDef) { updateEmWavePropagationFrame(emwStateDef, heldAtPin); applyEmWavePropagationGlow(emwStateDef); }
         }
 
         // dipole_potential — timed reveals, STATE_3/5 sweeps, signed-V recolor

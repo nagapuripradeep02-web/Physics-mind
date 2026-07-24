@@ -49,3 +49,36 @@ Every §3b engine dispatch: finding → fix commit → verify evidence. Founder 
 ---
 
 ### Engine-commit summary (this concept): `59cdd53` (scenario build) · `aa724f8` (S5 ghost tag) · `32f032d` (morph guard). 3 commits — below the ≥8 runaway-guard threshold. All grep-able via `git log --grep=engine-loop`.
+
+---
+
+## E1 · `em_wave_propagation_scenario` · [owner: peter_parker:renderer_primitives]
+**Concept:** `em_wave_propagation` (Ch.8 #2) · **Dispatch:** field3d-surgeon (Amendment 4 routing) · **Date:** 2026-07-24
+**Rollback point recorded before dispatch:** `4205e1a`
+
+**Finding / ask.** NEW `scenario_type: "em_wave_propagation"` — no existing field_3d scenario renders a translating transverse vector train with two orthogonal polarizations, a phase-speed clock, or a medium slab (registry verified against the union in `field_3d_renderer.ts`). Class-B new-scenario build, spec = skeleton §0b (design-gate `DESIGN_OK`). Staged core-first per founder-proxy finding F1.
+
+**Increment 1 (this commit) — the load-bearing core.** `emw_source` (antenna + amber charge bead + ON/OFF switch glyph) · `emw_axis` (+x, 10 m, metre ticks, direction tag; plain cylinder NOT createTubeLine, defensive per scar #9) · `emw_e_train` (green, y-hat) / `emw_b_train` (blue, z-hat) envelope polyline + 13-arrow array each, orthogonal, in phase · `emw_receiver` (dual live gauge E V/m + B uT, numeric + tracking needles, Rule 33d) · `emw_motes` (40 seeded-deterministic motes, never displaced, vanish cue) · per-state `wave_mode: pulse|train` · source on/off with launch-gate so an in-flight pulse continues after the switch opens (S2 seed).
+
+Physics: phase `x - v*t`, `v = c/n`; `E = E0*sin(k(x-vt))` on y-hat, `B = E/c` on z-hat; `omega = 2*pi*nu` region-independent (ready for the slab). **All values are pure functions of state-local ms** — no per-frame delta, no integrator touched (Rule 26/36).
+
+Same-change registration: union member · `emw_defaults?` config type · buildScenario/applyState/animate dispatch · accumulator-free freeze-snap list · `#sliders` NOT-list (`isEmw`) · generic-legend suppression (Rule 24) · closed glow enum with `brightenOnly` · 4 slider rows with trusted-drag seize, **`emw_n_row` seize sets `freezeAtTime = null` (FL1 — un-pins S10's manual_click clock so the n-drag drives live bunching)** · Rule 39g discovery conventions · NO backticks in the template body · `deriveStateMeta.ts`: `'em_wave'` in `F3D_REVEAL_KEYS`, motion block, cue-pins (motes_vanish / nochange / needle_kick / source_off), hold block (guided -> `reveal_hold`, `interactive:true` -> `interactive`).
+
+**Verify chain (ALL pass):**
+1. `check:renderer-syntax` -> field_3d syntax OK (2190 KB), particle_field syntax OK.
+2. `npx tsc --noEmit` -> **0 errors**.
+3. `npm run validate:concepts` -> **125 PASS, 0 FAIL**; warning profile unchanged.
+4. Regression sample (Amendment-5 DISJOINT ch8 pair) — re-seeded, then THE EYE: `magnetisation_and_intensity` **38/38**, all 12 H2 baselines 0.00% · `bar_magnet_as_dipole` **56/56**, all H2 0.00% except STATE_1__frozen 0.23% (within the 2.0% tolerance; pre-existing animation-tail jitter, not from this additive change).
+5. Live render smoke (throwaway Playwright, synthetic 3-state config, deleted after): SIM_READY fired, STATE_REACHED x3, wave_mode switched pulse->pulse->train, **ZERO** pageerror/console.error/SIM_ERROR; screenshot confirmed orthogonal E/B trains, antenna+bead, axis+direction tag, receiver `E = 120 V/m` / `B = 0.40 uT`, motes. **S1-S3 render end-to-end.**
+
+**Clock guard (Rule 36b):** diff does NOT touch `__pmSteps`, `dtStep`, or any shared integrator — only an additive entry in the accumulator-free freeze-snap OR. **No full-fleet sweep required.**
+
+**Scope proof:** diff = exactly `field_3d_renderer.ts` (+510/-3) + `deriveStateMeta.ts` (+44/-0). The 3 deletions are benign in-place extensions of shared one-line chains. Every dispatch branch guarded by `scenario_type === "em_wave_propagation"`; only the `emw_` prefix introduced; zero sibling logic altered.
+
+**Ceiling:** NOT hit. Stopped at the clean increment boundary (core complete, S1-S3 verified).
+
+**Interpretive calls flagged to founder-proxy:** (a) in-slab B amplitude keeps the vacuum ratio E/c — per the skeleton's F2-decline; (b) axis = plain cylinder rather than createTubeLine (defensive, deliberate); (c) `interactive: true` is a NEW per-state enum key on the `em_wave` block (explore-state discriminator, mirrors dc's `displacement_sandbox` split); (d) receiver gauge shows arriving PEAK amplitude (steady 120 V/m for a train, 0->120->0 ramp for a pulse = the S1 needle-kick-after-delay), needle tracks the signed instantaneous value.
+
+**Scar candidate:** 1 directive row (`field3d_traveling_vector_train_primitive`) written to `docs/loop_runs/ch8/_engine/scar_candidates.sql`. NOT applied to the DB (trial constraint).
+
+**Next increment (E2):** layer per-state add-ons in state order — `emw_relay` (S2) · `emw_triad` + RHR sweep-arc (S4) · `emw_ghostb` + `emw_cursor` (S5) · `emw_gates` + stopwatch + two-line `emw_formula` dock (S6, densest — honor the §10(h) overlay-zone map) · `emw_tanks` (S8, FL4 identical string) · `emw_slab` (S10, F2/FL5 both trains bunch, piecewise spatial-phase integration across the boundary).

@@ -74,3 +74,11 @@ INSERT INTO engine_bug_queue (bug_class, title, severity, owner_cluster, root_ca
 -- bespoke S5 element (pedagogical symptom resolved) but did NOT repair the fleet-wide annotation
 -- render path, so the CLASS is genuinely unfixed. FOUNDER APPLY-TIME CHECK: confirm the live
 -- engine_bug_queue severity CHECK constraint permits 'MAJOR' before INSERT (the two MAJOR rows).
+
+-- ============================================================================
+-- em_wave_propagation / E1 (increment 1: load-bearing core) — 2026-07-24
+-- Directive row (no incident; captures the reusable NEW primitive).
+-- TRIAL: NOT applied to the DB. Founder rules on this at chapter end.
+-- ============================================================================
+INSERT INTO engine_bug_queue (bug_class, title, severity, owner_cluster, root_cause, prevention_rule, probe_type, probe_logic, status, concepts_affected, fixed_in_files, discovered_in_session, row_type) VALUES
+('field3d_traveling_vector_train_primitive', 'em_wave_propagation: deterministic transverse dual-sinusoid vector train (E on y-hat, B on z-hat, phase x-vt)', 'MODERATE', 'peter_parker:renderer_primitives', 'No existing field_3d scenario rendered a translating transverse vector train with two orthogonal polarizations + a phase-speed clock; built NEW as a pure fn of state-local ms (envelope polyline + arrow array per train, scale.y-driven signed arrows), byte-stable under SET_TIME_FREEZE.', 'A traveling-wave train MUST be a closed-form fn of state-local t (never a += accumulator) so frozen baselines rewind; arrow sign via group.scale.y on MeshBasicMaterial (flipped normals are a non-issue); axis built as a plain cylinder, never createTubeLine, so it never hard-depends on config.field_lines.', 'manual', 'THE EYE __frozen.png at t=3000->9000->3000 ms byte-identical for any train/pulse state.', 'OPEN', ARRAY['em_wave_propagation']::text[], ARRAY['src/lib/renderers/field_3d_renderer.ts','src/lib/validators/visual/deriveStateMeta.ts']::text[], 'ch8-loop-2026-07-24-E1', 'directive');
