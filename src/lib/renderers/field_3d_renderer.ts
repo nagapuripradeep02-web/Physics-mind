@@ -29165,6 +29165,957 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
     }
 
+    // ══════════════════════════════════════════════════════════════════════
+    //  ac_power scenario (prefix pwr_) — Ch.7 §7.7 "Power in AC Circuits: The
+    //  Power Factor". A CLONE-SIBLING of ac_series_lcr + the element scenarios'
+    //  power machinery (acl_meter averaging meter / ac*_graph_p product pane /
+    //  acl_u_gauge energy gauge / the resistor product-walk cursor). ADDITIVE
+    //  ONLY — zero edits to any sealed scenario's code paths (acr_/acl_/acc_/
+    //  phs_/slcr_ bodies); this is a clone, never an in-place extension.
+    //
+    //  visible_elements enum (CLOSED): pwr_circuit · pwr_beads · pwr_meter ·
+    //    pwr_strip · pwr_ppane · pwr_fan · pwr_split · pwr_triangle · pwr_gauges ·
+    //    pwr_chips · pwr_formula.
+    //  glow-key enum (CLOSED): circuit · beads · meter · strip · p_pane · fan ·
+    //    i_split · triangle · gauges · chips · formula.
+    //  Modes: meter_dock · product_wave · wave_sinks · apparent_vs_real ·
+    //    current_split · wattless · energy_ledger · power_triangle · derivation ·
+    //    explore.
+    //
+    //  Every scripted motion (the S3 f-glide, the S6 R-cycle, theta(t), bead
+    //  disp, E_R(t), the S5 rotation-hold) is a PURE FUNCTION of absolute
+    //  state-local t (no per-frame accumulator anywhere — byte-stable under
+    //  SET_TIME_FREEZE by construction; B1 scar discipline). p(t) is the LITERAL
+    //  pointwise product of the SAME v/i samples the strip draws (32a caution).
+    //  Colour law: cyan=v, amber=i; NEW real-power hue = warm red-orange
+    //  #FF6E40 (contrast-checked vs amber #FFB300 — see the const below) threads
+    //  the p-curve / ⟨p⟩ line / meter needle+accent / P-leg / i∥ / heater glow;
+    //  reactive winner hue (violet X_L / green X_C) = i⊥ + Q-leg; S = cyan;
+    //  negative "returned" lobes = desaturated blue-grey.
+    // ══════════════════════════════════════════════════════════════════════
+    // Canvas geometry (§10h zone map). Band: bottom:210 + H:150 = 360px top edge
+    // (= the family scope envelope). Bottom row (p-pane + gauge pane) @ bottom:88,
+    // H:110 (88..198px, 12px clear of the band). The p-pane is screen-aligned
+    // UNDER the strip: band left:12 + strip x0 182 = screen 194 (binding — the S2
+    // multiply cursor is one vertical line through v, i, p).
+    var PWR_BAND_W = 500, PWR_BAND_H = 150;
+    var PWR_DISC_CX = 88, PWR_DISC_CY = 78, PWR_DISC_R = 54;
+    var PWR_STRIP_X0 = 182, PWR_STRIP_X1 = PWR_BAND_W - 14;      // right region x-range (182..486)
+    var PWR_TWIN = 8.0;                                          // strip/p-pane time window (s)
+    var PWR_PP_W = 304, PWR_PP_H = 110;                          // p-pane = strip plot width (486-182)
+    var PWR_PP_LEFT = 194, PWR_PP_BOTTOM = 88;                   // 12 (band left) + 182 (strip x0)
+    var PWR_PP_YMIN = -4, PWR_PP_YMAX = 21;                      // guided fixed y-range (W) — holds both work points
+    var PWR_GP_W = 170, PWR_GP_H = 110;                          // gauge pane (under the disc, left:12, S7 only)
+    // 3D apparatus band — the real machine a teacher points at (Rule 33 macro),
+    // inherited ASSEMBLED from the chapter home pose (no re-build/teleport, 32d).
+    var PWR_SRC_X = -3.4, PWR_R_X = -1.15, PWR_L_X = 0.55, PWR_C_X = 2.2, PWR_RIGHT_X = 3.3;
+    var PWR_TOP_Y = 1.1, PWR_BOT_Y = -1.1;
+    var PWR_BEAD_COUNT = 18;
+    var PWR_BEAD_AMP = 0.5;                                      // bead arclength swing at default current
+    var PWR_METER_FS = 12.0;                                     // wattmeter full-scale (W): resonance 10 W reads strong, work-point 3.08 W modest
+    var PWR_P_REF_R = 20.0;                                      // FIXED heater-glow reference (= vm*im = R*im^2 at resonance defaults)
+    // Colour law (chapter default + the NEW real-power hue).
+    var PWR_COL_V = "#4FC3F7", PWR_COL_I = "#FFB300";
+    var PWR_COL_P = "#FF6E40";                                   // real-power hue — warm red-orange. Contrast vs amber #FFB300: amber hue ~42deg (R255 G179 B0, gold); #FF6E40 hue ~17deg (R255 G110 B64, coral) — 25deg apart, green channel 179 vs 110, blue 0 vs 64: instantly distinguishable at overlay scale where i|| roots at the amber i-arrow.
+    var PWR_COL_XL = "#B388FF", PWR_COL_XC = "#69F0AE";         // reactive winner (violet X_L wins / green X_C wins)
+    var PWR_COL_S = "#4FC3F7";                                   // apparent power = cyan (inherits Z/source hue)
+    var PWR_COL_RET = "rgba(120,144,160,0.50)";                 // negative-lobe "returned" tint (desaturated blue-grey)
+    var PWR_COL_RETLINE = "#78909C";
+
+    var pwrSrcGrp = null, pwrElemR = null, pwrElemL = null, pwrElemC = null, pwrHeaterMat = null;
+    var pwrMeterNeedle = null, pwrGhostNeedle = null, pwrMeterLbl = null;
+
+    // ── pwr_-scoped styled-subscript compose routine (founder default (a): a
+    //   LOCAL rule-of-FOUR clone — NOT the shared-layer promotion — so the sealed
+    //   chapter cannot regress). Composes V_rms / I_rms / E_R / E_L / E_C / v_m /
+    //   i_m across all THREE text paths (DOM innerHTML, canvas fillText, sprite
+    //   labels); NEVER emits a literal underscore (Rule 34c). Native Unicode
+    //   subscript passes through untouched. ──────────────────────────────────
+    function pwrComposeSegments(text) {
+        var s = String(text == null ? "" : text);
+        var re = /([A-Za-z])_([A-Za-z]+)/g;
+        var segs = [], last = 0, m;
+        while ((m = re.exec(s)) !== null) {
+            if (m.index > last) segs.push({ t: s.slice(last, m.index), sub: false });
+            segs.push({ t: m[1], sub: m[2] });
+            last = m.index + m[0].length;
+        }
+        if (last < s.length) segs.push({ t: s.slice(last), sub: false });
+        return segs;
+    }
+    function pwrSubFont(fontStr, ratio) {
+        var mm = /(\d+(?:\.\d+)?)px/.exec(fontStr);
+        if (!mm) return fontStr;
+        var newSize = Math.max(6, parseFloat(mm[1]) * ratio);
+        return fontStr.slice(0, mm.index) + newSize.toFixed(1) + "px" + fontStr.slice(mm.index + mm[0].length);
+    }
+    function pwrMeasureComposedWidth(ctx, text, baseFont, subRatio) {
+        var ratio = subRatio || 0.62, restoreFont = ctx.font, segs = pwrComposeSegments(text), total = 0;
+        for (var i = 0; i < segs.length; i++) {
+            ctx.font = baseFont; total += ctx.measureText(segs[i].t).width;
+            if (segs[i].sub) { ctx.font = pwrSubFont(baseFont, ratio); total += ctx.measureText(segs[i].sub).width; }
+        }
+        ctx.font = restoreFont; return total;
+    }
+    function pwrDrawComposedRun(ctx, text, x, y, baseFont, color, subRatio) {
+        var ratio = subRatio || 0.62, segs = pwrComposeSegments(text);
+        var sizeMatch = /(\d+(?:\.\d+)?)px/.exec(baseFont);
+        var baseSize = sizeMatch ? parseFloat(sizeMatch[1]) : 16, drop = baseSize * 0.30;
+        var savedAlign = ctx.textAlign, savedBaseline = ctx.textBaseline;
+        ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+        var cx = x;
+        for (var i = 0; i < segs.length; i++) {
+            var seg = segs[i]; ctx.font = baseFont; ctx.fillStyle = color; ctx.fillText(seg.t, cx, y);
+            cx += ctx.measureText(seg.t).width;
+            if (seg.sub) { ctx.font = pwrSubFont(baseFont, ratio); ctx.fillText(seg.sub, cx, y + drop); cx += ctx.measureText(seg.sub).width; }
+        }
+        ctx.textAlign = savedAlign; ctx.textBaseline = savedBaseline; return cx - x;
+    }
+    function pwrFillComposed(ctx, text, x, y, align) {
+        var baseFont = ctx.font, color = ctx.fillStyle, startX = x;
+        if (align === "center" || align === "right") {
+            var w = pwrMeasureComposedWidth(ctx, text, baseFont, 0.62);
+            startX = (align === "center") ? (x - w / 2) : (x - w);
+        }
+        pwrDrawComposedRun(ctx, text, startX, y, baseFont, color, 0.62);
+    }
+    function pwrHtmlComposeSub(text) {
+        if (text == null) return "";
+        return String(text).replace(/([A-Za-z])_([A-Za-z]+)/g, "$1<sub>$2</sub>");
+    }
+
+    // ── Series-loop path geometry: ONE amber bead stream threads all three
+    //   elements in lockstep (never splitting, never pooling — the series fact
+    //   made visible), same displacement (one common current). ────────────────
+    var PWR_LOOP_PTS = [
+        [PWR_SRC_X, PWR_TOP_Y, 0], [PWR_RIGHT_X, PWR_TOP_Y, 0],
+        [PWR_RIGHT_X, PWR_BOT_Y, 0], [PWR_SRC_X, PWR_BOT_Y, 0]
+    ];
+    function pwrLoopPerimeter() {
+        var P = 0;
+        for (var i = 0; i < PWR_LOOP_PTS.length; i++) {
+            var a = PWR_LOOP_PTS[i], b = PWR_LOOP_PTS[(i + 1) % PWR_LOOP_PTS.length];
+            P += Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+        }
+        return P;
+    }
+    function pwrLoopAt(s) {
+        var P = pwrLoopPerimeter();
+        var ss = ((s % P) + P) % P;
+        for (var i = 0; i < PWR_LOOP_PTS.length; i++) {
+            var a = PWR_LOOP_PTS[i], b = PWR_LOOP_PTS[(i + 1) % PWR_LOOP_PTS.length];
+            var segLen = Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+            if (ss <= segLen) {
+                var fr = segLen > 1e-9 ? ss / segLen : 0;
+                return [a[0] + (b[0] - a[0]) * fr, a[1] + (b[1] - a[1]) * fr, 0];
+            }
+            ss -= segLen;
+        }
+        return [PWR_LOOP_PTS[0][0], PWR_LOOP_PTS[0][1], 0];
+    }
+
+    function pwrSc(key, dmin, dmax, dstep, ddef, dlabel) {
+        var scfg = config.slider_controls || {};
+        var o = scfg[key] || {};
+        return {
+            min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+            step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+            label: o.label || dlabel
+        };
+    }
+    function pwrGlowOn(key) {
+        if (glowTargets && glowTargets.indexOf(key) >= 0) return true;
+        var sd = config.states && config.states[PM_currentState];
+        var d = sd && sd.ac_power;
+        return !!(d && d.glow_focal === key);
+    }
+    function pwrVisHas(tok) {
+        var sd = config.states && config.states[PM_currentState];
+        var ve = (sd && sd.visible_elements) || [];
+        for (var q = 0; q < ve.length; q++) { if (ve[q] === tok) return true; }
+        return false;
+    }
+
+    // ── Core physics (pure; sealed decimals, never hardcoded results) ──────────
+    function pwrPhysics(vm, f, R, L, C) {
+        var omega = 2 * Math.PI * f;
+        var XL = omega * L, XC = 1 / (omega * Math.max(C, 1e-9));
+        var X = XL - XC, Z = Math.sqrt(R * R + X * X), im = vm / Math.max(Z, 1e-9);
+        var phi = Math.atan2(X, R) * 180 / Math.PI;
+        var cosphi = R / Math.max(Z, 1e-9), sinphi = X / Math.max(Z, 1e-9);
+        var Vrms = vm / Math.SQRT2, Irms = im / Math.SQRT2;
+        var P = Vrms * Irms * cosphi, S = Vrms * Irms, Q = Vrms * Irms * sinphi;
+        var ipar = Irms * cosphi, iperp = Irms * sinphi;
+        var VCpeak = im * XC, ELpeak = 0.5 * L * im * im, ECpeak = 0.5 * C * VCpeak * VCpeak;
+        return { omega: omega, XL: XL, XC: XC, X: X, Z: Z, im: im, phi: phi,
+            cosphi: cosphi, sinphi: sinphi, Vrms: Vrms, Irms: Irms, P: P, S: S, Q: Q,
+            ipar: ipar, iperp: iperp, VCpeak: VCpeak, ELpeak: ELpeak, ECpeak: ECpeak };
+    }
+    // ── Closed-form scripted ramps (pure fn of state-local t; B1 discipline) ──
+    function pwrSmooth(u) { var c = u < 0 ? 0 : (u > 1 ? 1 : u); return c * c * (3 - 2 * c); }
+    function pwrRampFreq(tSec, from, to, startS, durS) {
+        if (tSec <= startS) return from;
+        if (tSec >= startS + durS) return to;
+        return from + (to - from) * pwrSmooth((tSec - startS) / durS);
+    }
+    // Cumulative phase (deg) of a single smoothstep frequency ramp — analytic
+    // integral of 3u^2-2u^3 is u^3-0.5u^4 (identical form to slcrRampPhaseDeg).
+    function pwrRampPhaseDeg(tSec, theta0, from, to, startS, durS) {
+        var deg = theta0;
+        if (tSec <= startS) return deg + 360 * from * tSec;
+        deg += 360 * from * startS;
+        if (tSec >= startS + durS) {
+            deg += 360 * (from * durS + (to - from) * durS * 0.5);
+            deg += 360 * to * (tSec - (startS + durS));
+            return deg;
+        }
+        var u = (tSec - startS) / durS;
+        deg += 360 * (from * (tSec - startS) + (to - from) * durS * (u * u * u - 0.5 * u * u * u * u));
+        return deg;
+    }
+    // Closed-form cumulative energy dissipated in R since state entry (physics
+    // §1 E_R(t)) — NEVER an accumulator; monotone by construction (dE_R/dt=i^2R>=0).
+    function pwrEnergyR(P, omega, t) {
+        if (t <= 0) return 0;
+        return P * t - (P / (2 * Math.max(omega, 1e-9))) * Math.sin(2 * omega * t);
+    }
+
+    // ── Element meshes (each BUILT + registered; the heater carries an emissive
+    //   material the S7 ledger modulates by p_R_t/P_REF_R — coil/plates stay
+    //   cold, no comparable channel). ─────────────────────────────────────────
+    function pwrBuildHeater(grp) {
+        pwrHeaterMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0653C"), emissive: hexToThreeColor(PWR_COL_P), emissiveIntensity: 0.0 });
+        var body = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.5, 0.5), pwrHeaterMat);
+        body.position.set(PWR_R_X, PWR_TOP_Y, 0); grp.add(body);
+        for (var zi = 0; zi < 4; zi++) {
+            var seg = createTubeLine([[PWR_R_X - 0.32 + zi * 0.21, PWR_TOP_Y - 0.22, 0.26], [PWR_R_X - 0.32 + zi * 0.21, PWR_TOP_Y + 0.22, 0.26]], "#EF5350", 0.028);
+            if (seg) grp.add(seg);
+        }
+        var lbl = createLabelSprite("R", "#ECEFF1", 0.32);
+        lbl.position.set(PWR_R_X, PWR_TOP_Y + 0.62, 0); grp.add(lbl);
+    }
+    function pwrBuildCoil(grp) {
+        for (var ri = 0; ri < 5; ri++) {
+            var ring = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.05, 8, 20),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor("#90CAF9"), emissive: hexToThreeColor("#1E3A5F"), emissiveIntensity: 0.3 }));
+            ring.rotation.y = Math.PI / 2;
+            ring.position.set(PWR_L_X - 0.4 + ri * 0.2, PWR_TOP_Y, 0); grp.add(ring);
+        }
+        var lbl = createLabelSprite("L", PWR_COL_XL, 0.32);
+        lbl.position.set(PWR_L_X, PWR_TOP_Y + 0.62, 0); grp.add(lbl);
+    }
+    function pwrBuildPlates(grp) {
+        var mat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C") });
+        var top = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.09, 0.7), mat);
+        top.position.set(PWR_C_X, PWR_TOP_Y + 0.16, 0); grp.add(top);
+        var bot = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.09, 0.7), mat.clone());
+        bot.position.set(PWR_C_X, PWR_TOP_Y - 0.16, 0); grp.add(bot);
+        var lbl = createLabelSprite("C", PWR_COL_XC, 0.32);
+        lbl.position.set(PWR_C_X, PWR_TOP_Y + 0.62, 0); grp.add(lbl);
+    }
+
+    function buildAcPower() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+
+        // 1. AC source ring (chapter home pose, loop left edge).
+        pwrSrcGrp = new THREE.Group();
+        pwrSrcGrp.userData = { elementType: "pwr_apparatus", id: "pwr_source" };
+        var srcRing = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.09, 12, 28),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFB300"), emissive: hexToThreeColor("#7A4F00"), emissiveIntensity: 0.3 }));
+        srcRing.rotation.x = Math.PI / 2; pwrSrcGrp.add(srcRing);
+        pwrSrcGrp.position.set(PWR_SRC_X, 0, 0); addToScene(pwrSrcGrp);
+        var srcGlyph = createLabelSprite("\\u223f", "#FFEE58", 0.44);
+        srcGlyph.position.set(PWR_SRC_X, 0, 0.02);
+        srcGlyph.userData = { elementType: "pwr_apparatus", id: "pwr_source_glyph" }; addToScene(srcGlyph);
+        var srcLbl = createLabelSprite("AC source", "#FFCC80", 0.22);
+        srcLbl.position.set(PWR_SRC_X, -1.5, 0);
+        srcLbl.userData = { elementType: "pwr_apparatus", id: "pwr_source_lbl" }; addToScene(srcLbl);
+
+        // 2. Series-loop tubes (top edge carries the three elements).
+        var wSpec = [
+            [[PWR_SRC_X, PWR_TOP_Y, 0], [PWR_RIGHT_X, PWR_TOP_Y, 0], "pwr_wire_top"],
+            [[PWR_RIGHT_X, PWR_TOP_Y, 0], [PWR_RIGHT_X, PWR_BOT_Y, 0], "pwr_wire_right"],
+            [[PWR_RIGHT_X, PWR_BOT_Y, 0], [PWR_SRC_X, PWR_BOT_Y, 0], "pwr_wire_bot"],
+            [[PWR_SRC_X, PWR_TOP_Y, 0], [PWR_SRC_X, 0.5, 0], "pwr_wire_srctop"],
+            [[PWR_SRC_X, PWR_BOT_Y, 0], [PWR_SRC_X, -0.5, 0], "pwr_wire_srcbot"]
+        ];
+        for (var wi = 0; wi < wSpec.length; wi++) {
+            var w = createTubeLine([wSpec[wi][0], wSpec[wi][1]], "#B0BEC5", 0.028);
+            if (w) { w.userData = { elementType: "pwr_apparatus", id: wSpec[wi][2] }; addToScene(w); }
+        }
+
+        // 3. Elements — one group each (always registered).
+        pwrElemR = new THREE.Group(); pwrElemR.userData = { elementType: "pwr_apparatus", id: "pwr_elem_R" };
+        pwrBuildHeater(pwrElemR); addToScene(pwrElemR);
+        pwrElemL = new THREE.Group(); pwrElemL.userData = { elementType: "pwr_apparatus", id: "pwr_elem_L" };
+        pwrBuildCoil(pwrElemL); addToScene(pwrElemL);
+        pwrElemC = new THREE.Group(); pwrElemC.userData = { elementType: "pwr_apparatus", id: "pwr_elem_C" };
+        pwrBuildPlates(pwrElemC); addToScene(pwrElemC);
+
+        // 4. The ONE amber bead stream.
+        var P = pwrLoopPerimeter();
+        for (var bi = 0; bi < PWR_BEAD_COUNT; bi++) {
+            var bead = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor(PWR_COL_I), transparent: true, opacity: 0.85 }));
+            var home = (bi / PWR_BEAD_COUNT) * P;
+            var p0 = pwrLoopAt(home);
+            bead.position.set(p0[0], p0[1], p0[2]);
+            bead.userData = { elementType: "pwr_beads", id: "pwr_bead_" + bi, pwrBead: true, home: home };
+            addToScene(bead);
+        }
+
+        // 5. Averaging wattmeter — arc + real needle (power hue) + a ghost needle
+        //    (S4 one-shot at the naive V_rms*I_rms = S, cyan) + a live numeric
+        //    label. Never dimmed (the acl_meter/:25406 exemption). The real needle
+        //    reads the closed-form average power P directly (P IS the analytic
+        //    average); S1 reveals it via a closed-form climb.
+        var meterGrp = new THREE.Group();
+        meterGrp.userData = { elementType: "pwr_meter", id: "pwr_meter" };
+        meterGrp.position.set(-0.4, 2.15, 0);
+        var arcPts = [];
+        for (var mi = 0; mi <= 40; mi++) { var aa = Math.PI * (1 - mi / 40); arcPts.push(new THREE.Vector3(0.6 * Math.cos(aa), 0.6 * Math.sin(aa), 0)); }
+        var meterArc = new THREE.Line(new THREE.BufferGeometry().setFromPoints(arcPts), new THREE.LineBasicMaterial({ color: hexToThreeColor("#90A4AE") }));
+        meterGrp.add(meterArc);
+        var ghostGeo = new THREE.CylinderGeometry(0.010, 0.010, 0.56, 6); ghostGeo.translate(0, 0.28, 0);
+        pwrGhostNeedle = new THREE.Mesh(ghostGeo, new THREE.MeshBasicMaterial({ color: hexToThreeColor(PWR_COL_S), transparent: true, opacity: 0.5 }));
+        pwrGhostNeedle.visible = false; meterGrp.add(pwrGhostNeedle);
+        var needleGeo = new THREE.CylinderGeometry(0.014, 0.014, 0.56, 6); needleGeo.translate(0, 0.28, 0);
+        pwrMeterNeedle = new THREE.Mesh(needleGeo, new THREE.MeshBasicMaterial({ color: hexToThreeColor(PWR_COL_P) }));
+        meterGrp.add(pwrMeterNeedle);
+        addToScene(meterGrp);
+        var meterTitle = createLabelSprite("wattmeter", "#B0BEC5", 0.20);
+        meterTitle.position.set(-0.4, 1.5, 0);
+        meterTitle.userData = { elementType: "pwr_meter", id: "pwr_meter_title" }; addToScene(meterTitle);
+        pwrMeterLbl = pmCreateAutoLabel("P = 0.00 W", PWR_COL_P, 0.24);
+        pwrMeterLbl.position.set(-0.4, 2.95, 0);
+        pwrMeterLbl.userData = { elementType: "pwr_meter", id: "pwr_meter_lbl" }; addToScene(pwrMeterLbl);
+
+        // ── DOM overlays ──────────────────────────────────────────────────
+        var rp = document.createElement("div"); rp.id = "pwr_readout";
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(rp);
+
+        var gc = document.createElement("canvas"); gc.id = "pwr_band";
+        gc.width = PWR_BAND_W; gc.height = PWR_BAND_H;
+        gc.style.cssText = "position:fixed;bottom:210px;left:12px;width:" + PWR_BAND_W + "px;height:" + PWR_BAND_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+
+        var pp = document.createElement("canvas"); pp.id = "pwr_ppane";
+        pp.width = PWR_PP_W; pp.height = PWR_PP_H;
+        pp.style.cssText = "position:fixed;bottom:" + PWR_PP_BOTTOM + "px;left:" + PWR_PP_LEFT + "px;width:" + PWR_PP_W + "px;height:" + PWR_PP_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(pp);
+
+        var gp = document.createElement("canvas"); gp.id = "pwr_gauges";
+        gp.width = PWR_GP_W; gp.height = PWR_GP_H;
+        gp.style.cssText = "position:fixed;bottom:88px;left:12px;width:" + PWR_GP_W + "px;height:" + PWR_GP_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gp);
+
+        var ff = document.createElement("div"); ff.id = "pwr_formula";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFD54F;font:600 20px/1.5 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:350px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var spd = document.createElement("div"); spd.id = "pwr_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        var scVm = pwrSc("vm", 2, 20, 1, 10.0, "Peak voltage v\\u2098");
+        var scF = pwrSc("f_demo", 0.1, 0.5, 0.05, 0.25, "Frequency f");
+        var scR = pwrSc("R", 2, 20, 1, 5.0, "Resistance R");
+        var scL = pwrSc("L", 1.0, 10.0, 0.1, 3.1831, "Inductance L");
+        var scC = pwrSc("C", 0.04, 0.40, 0.02, 0.1273, "Capacitance C");
+        spd.innerHTML =
+            '<div id="pwr_vm_row"><label>' + scVm.label + ': <span id="pwr_vm_val">' + scVm.def.toFixed(1) + '</span> V</label>' +
+            '<input type="range" id="pwr_vm_slider" min="' + scVm.min + '" max="' + scVm.max + '" step="' + scVm.step + '" value="' + scVm.def + '" style="width:100%"></div>' +
+            '<div id="pwr_f_demo_row" style="margin-top:6px"><label>' + scF.label + ': <span id="pwr_f_demo_val">' + scF.def.toFixed(2) + '</span> Hz</label>' +
+            '<input type="range" id="pwr_f_demo_slider" min="' + scF.min + '" max="' + scF.max + '" step="' + scF.step + '" value="' + scF.def + '" style="width:100%"></div>' +
+            '<div id="pwr_R_row" style="margin-top:6px"><label>' + scR.label + ': <span id="pwr_R_val">' + scR.def.toFixed(1) + '</span> \\u03a9</label>' +
+            '<input type="range" id="pwr_R_slider" min="' + scR.min + '" max="' + scR.max + '" step="' + scR.step + '" value="' + scR.def + '" style="width:100%"></div>' +
+            '<div id="pwr_L_row" style="margin-top:6px"><label>' + scL.label + ': <span id="pwr_L_val">' + scL.def.toFixed(2) + '</span> H</label>' +
+            '<input type="range" id="pwr_L_slider" min="' + scL.min + '" max="' + scL.max + '" step="' + scL.step + '" value="' + scL.def + '" style="width:100%"></div>' +
+            '<div id="pwr_C_row" style="margin-top:6px"><label>' + scC.label + ': <span id="pwr_C_val">' + scC.def.toFixed(2) + '</span> F</label>' +
+            '<input type="range" id="pwr_C_slider" min="' + scC.min + '" max="' + scC.max + '" step="' + scC.step + '" value="' + scC.def + '" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        window.PM_pwrVm = scVm.def; window.PM_pwrF = scF.def;
+        window.PM_pwrR = scR.def; window.PM_pwrL = scL.def; window.PM_pwrC = scC.def;
+        window.PM_pwrVmDragged = false; window.PM_pwrFDragged = false;
+        window.PM_pwrRDragged = false; window.PM_pwrLDragged = false; window.PM_pwrCDragged = false;
+        window.PM_pwrStateT = 0;
+
+        function pwrEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "ac_power_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        function pwrWire(key, dec, unitScale) {
+            var sl = document.getElementById("pwr_" + key + "_slider"), vv = document.getElementById("pwr_" + key + "_val");
+            if (!sl) return;
+            sl.addEventListener("input", function (ev) {
+                var val = parseFloat(sl.value);
+                window["PM_pwr" + unitScale] = val;
+                if (vv) vv.textContent = val.toFixed(dec);
+                if (ev && ev.isTrusted) window["PM_pwr" + unitScale + "Dragged"] = true;
+                pwrEmit(key, val);
+            });
+        }
+        pwrWire("vm", 1, "Vm"); pwrWire("f_demo", 2, "F"); pwrWire("R", 1, "R");
+        pwrWire("L", 2, "L"); pwrWire("C", 2, "C");
+    }
+
+    // Per-state exact-match pwr_ visibility + variable_overrides seed (defensive
+    // re-locks) + the per-state contextual-control panel (Rule 31).
+    function applyAcPowerState(stateDef) {
+        var d = stateDef.ac_power || {};
+        var vis = stateDef.visible_elements || [];
+        var showCircuit = false, showBeads = false, showMeter = false;
+        for (var vi = 0; vi < vis.length; vi++) {
+            if (vis[vi] === "pwr_circuit") showCircuit = true;
+            if (vis[vi] === "pwr_beads") showBeads = true;
+            if (vis[vi] === "pwr_meter") showMeter = true;
+        }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            if (ud.elementType === "pwr_apparatus") o.visible = showCircuit;
+            else if (ud.elementType === "pwr_beads") o.visible = showCircuit && showBeads;
+            else if (ud.elementType === "pwr_meter") o.visible = showMeter;
+        }
+        if (pwrGhostNeedle) pwrGhostNeedle.visible = false;   // F1: cleared on entry; the frame turns it on only in apparent_vs_real
+
+        // dim_apparatus (S9 derivation): dim to a present pose (restore pattern);
+        // the wattmeter is NEVER dimmed (its live reading must stay legible).
+        var dimApp = !!d.dim_apparatus;
+        for (var pd = 0; pd < sceneObjects.length; pd++) {
+            var pdo = sceneObjects[pd], pdu = pdo.userData;
+            if (!pdu || (pdu.elementType !== "pwr_apparatus" && pdu.elementType !== "pwr_beads")) continue;
+            pdo.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi = 0; mi < ms.length; mi++) {
+                    var mm = ms[mi];
+                    if (mm.__pwrOrigOpacity === undefined) { mm.__pwrOrigOpacity = mm.opacity; mm.__pwrOrigTransp = mm.transparent; }
+                    if (dimApp) { mm.transparent = true; mm.opacity = 0.4; }
+                    else { mm.transparent = mm.__pwrOrigTransp; mm.opacity = mm.__pwrOrigOpacity; }
+                }
+            });
+        }
+
+        // Seed drivers from variable_overrides (defensive re-locks — physics §2).
+        var ov = stateDef.variable_overrides || {};
+        var scfg = config.slider_controls || {};
+        function def(k, fb) { return (scfg[k] && scfg[k]["default"] != null) ? scfg[k]["default"] : fb; }
+        window.PM_pwrVm = (typeof ov.vm === "number") ? ov.vm : def("vm", 10.0);
+        if (typeof ov.f_demo === "number") window.PM_pwrF = ov.f_demo;
+        else if (d.mode !== "wave_sinks") window.PM_pwrF = def("f_demo", 0.25);
+        window.PM_pwrR = (typeof ov.R === "number") ? ov.R : def("R", 5.0);
+        window.PM_pwrL = (typeof ov.L === "number") ? ov.L : def("L", 3.1831);
+        window.PM_pwrC = (typeof ov.C === "number") ? ov.C : def("C", 0.1273);
+        window.PM_pwrVmDragged = false; window.PM_pwrFDragged = false;
+        window.PM_pwrRDragged = false; window.PM_pwrLDragged = false; window.PM_pwrCDragged = false;
+
+        function syncS(key, v, dec) { var e = document.getElementById("pwr_" + key + "_slider"); if (e) e.value = String(v); var vEl = document.getElementById("pwr_" + key + "_val"); if (vEl) vEl.textContent = v.toFixed(dec); }
+        syncS("vm", window.PM_pwrVm, 1); syncS("f_demo", window.PM_pwrF, 2);
+        syncS("R", window.PM_pwrR, 1); syncS("L", window.PM_pwrL, 2); syncS("C", window.PM_pwrC, 2);
+
+        // Per-state contextual-control panel (Rule 31): controls[] = live row(s).
+        var controls = d.controls || [];
+        var rowKeys = ["vm", "f_demo", "R", "L", "C"];
+        var anyRow = false;
+        for (var rk = 0; rk < rowKeys.length; rk++) {
+            var want = controls.indexOf(rowKeys[rk]) !== -1;
+            var rowEl = document.getElementById("pwr_" + rowKeys[rk] + "_row");
+            if (rowEl) rowEl.style.display = want ? "block" : "none";
+            if (want) anyRow = true;
+        }
+        var panelEl = document.getElementById("pwr_sliders");
+        if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
+
+        var roEl = document.getElementById("pwr_readout"); if (roEl) roEl.style.display = (d.show_readout === false) ? "none" : "block";
+        // Band container (F6): show ONLY when a state carries disc/strip content.
+        var gcEl = document.getElementById("pwr_band");
+        if (gcEl) {
+            var bandToks = ["pwr_strip", "pwr_fan", "pwr_split", "pwr_triangle", "pwr_chips"];
+            var bandHasContent = false;
+            for (var bti = 0; bti < bandToks.length && !bandHasContent; bti++) { if (vis.indexOf(bandToks[bti]) !== -1) bandHasContent = true; }
+            gcEl.style.display = bandHasContent ? "block" : "none";
+        }
+        var ppEl = document.getElementById("pwr_ppane"); if (ppEl) ppEl.style.display = (vis.indexOf("pwr_ppane") !== -1) ? "block" : "none";
+        var gpEl = document.getElementById("pwr_gauges"); if (gpEl) gpEl.style.display = (vis.indexOf("pwr_gauges") !== -1) ? "block" : "none";
+        var ffEl = document.getElementById("pwr_formula");
+        if (ffEl) {
+            if (d.mode === "derivation") { ffEl.innerHTML = ""; ffEl.style.display = "block"; }
+            else { var ftext = d.formula_text || stateDef.formula_overlay || ""; ffEl.innerHTML = pwrHtmlComposeSub(ftext); ffEl.style.display = ftext ? "block" : "none"; }
+        }
+    }
+
+    // Small filled arrow (Rule 29: length reflects real magnitude only).
+    function pwrArrow(ctx, x0, y0, x1, y1, color, lw, dashed) {
+        ctx.strokeStyle = color; ctx.lineWidth = lw || 2.2;
+        if (dashed) ctx.setLineDash([4, 3]);
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+        if (dashed) ctx.setLineDash([]);
+        var ang = Math.atan2(y1 - y0, x1 - x0), hl = 7;
+        ctx.fillStyle = color; ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x1 - hl * Math.cos(ang - 0.4), y1 - hl * Math.sin(ang - 0.4));
+        ctx.lineTo(x1 - hl * Math.cos(ang + 0.4), y1 - hl * Math.sin(ang + 0.4));
+        ctx.closePath(); ctx.fill();
+    }
+
+    // ── The band canvas draw (disc region left + strip region right, ONE canvas,
+    //   FULL clearRect each frame so sequential captions never composite). ──────
+    function pwrDrawBand(d, smp, tSec, thetaDeg, phys) {
+        var gc = document.getElementById("pwr_band"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        if (pwrVisHas("pwr_strip")) pwrDrawStrip(ctx, gc, smp, tSec, phys);
+        if (pwrVisHas("pwr_fan")) pwrDrawFan(ctx, d, tSec, thetaDeg, phys);
+        if (pwrVisHas("pwr_triangle")) pwrDrawTriangle(ctx, d, tSec, phys);
+        if (pwrVisHas("pwr_chips") || d.mode === "apparent_vs_real") pwrDrawChips(ctx, d, tSec, phys);
+    }
+
+    // Strip (right region): source v-trace (cyan) + i-trace (amber), sampled from
+    // the SHARED smp closures (the SAME arrays the p-pane multiplies — 32a).
+    function pwrDrawStrip(ctx, gc, smp, tSec, phys) {
+        var cy = PWR_DISC_CY, plotW = PWR_STRIP_X1 - PWR_STRIP_X0;
+        var vm = window.PM_pwrVm;
+        var Lv = 40 * Math.min(1.0, 10.0 / Math.max(vm, 1e-6));      // volt vertical scale (px per v/vm)
+        var Li = 34;                                                  // amber vertical scale (px per i/im peak)
+        var vmax = Math.max(vm, 1e-6), imax = Math.max(phys.im, 1e-6);
+        function xT(sec) { return PWR_STRIP_X0 + ((sec - (tSec - PWR_TWIN)) / PWR_TWIN) * plotW; }
+        function yV(sec) { return cy - Lv * (smp.vAt(sec) / vmax); }
+        function yI(sec) { return cy - Li * (smp.iAt(sec) / imax); }
+        ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(PWR_STRIP_X0, cy); ctx.lineTo(PWR_STRIP_X1, cy); ctx.stroke();
+        var step = PWR_TWIN / 160;
+        ctx.strokeStyle = PWR_COL_V; ctx.lineWidth = pwrGlowOn("strip") ? 3 : 2; ctx.beginPath();
+        var f1 = true;
+        for (var s1 = tSec - PWR_TWIN; s1 <= tSec + 1e-4; s1 += step) { var xv = xT(s1), yv = yV(s1); if (f1) { ctx.moveTo(xv, yv); f1 = false; } else ctx.lineTo(xv, yv); }
+        ctx.stroke();
+        ctx.strokeStyle = PWR_COL_I; ctx.lineWidth = 2; ctx.beginPath();
+        var f2 = true;
+        for (var s2 = tSec - PWR_TWIN; s2 <= tSec + 1e-4; s2 += step) { var xi = xT(s2), yi = yI(s2); if (f2) { ctx.moveTo(xi, yi); f2 = false; } else ctx.lineTo(xi, yi); }
+        ctx.stroke();
+        ctx.fillStyle = PWR_COL_V; ctx.beginPath(); ctx.arc(xT(tSec), yV(tSec), 3.2, 0, 2 * Math.PI); ctx.fill();
+        ctx.fillStyle = PWR_COL_I; ctx.beginPath(); ctx.arc(xT(tSec), yI(tSec), 3.0, 0, 2 * Math.PI); ctx.fill();
+        ctx.fillStyle = PWR_COL_V; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; pwrFillComposed(ctx, "v", PWR_STRIP_X0 - 12, cy - Lv + 3, "left");
+        ctx.fillStyle = PWR_COL_I; pwrFillComposed(ctx, "i", PWR_STRIP_X0 - 12, cy + Li + 6, "left");
+    }
+
+    // Phasor fan (disc region): v cyan (+phi) + i amber (0deg ref). When pwr_split
+    // is listed (S5/S6), the amber i decomposes into i|| (along v, power hue) +
+    // i_perp (perpendicular, reactive-winner hue) with a projection guide. ONE
+    // theta(t) drives all arrows (never independently animated).
+    function pwrDrawFan(ctx, d, tSec, thetaDeg, phys) {
+        var cx = PWR_DISC_CX, cy = PWR_DISC_CY, R = PWR_DISC_R;
+        var Li = R / 2.4;                                            // amber per-unit (im peak)
+        var iLen = Li * phys.im, phi = phys.phi;
+        ctx.strokeStyle = pwrGlowOn("fan") ? "#78909C" : "#546E7A"; ctx.lineWidth = 1.3;
+        ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2 * Math.PI); ctx.stroke();
+        ctx.strokeStyle = "#37474F"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy); ctx.stroke();
+        function tip(offDeg, len) { var a = (thetaDeg + offDeg) * Math.PI / 180; return [cx + len * Math.cos(a), cy - len * Math.sin(a)]; }
+        // v (cyan, +phi) — drawn at the amber length so the two read as one clock.
+        var vT = tip(phi, iLen);
+        pwrArrow(ctx, cx, cy, vT[0], vT[1], PWR_COL_V, pwrGlowOn("fan") ? 3 : 2.4, false);
+        ctx.fillStyle = PWR_COL_V; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; pwrFillComposed(ctx, "v", vT[0] + 3, vT[1], "left");
+        // i (amber, 0deg reference).
+        var iT = tip(0, iLen);
+        pwrArrow(ctx, cx, cy, iT[0], iT[1], PWR_COL_I, 2.4, false);
+        ctx.fillStyle = PWR_COL_I; pwrFillComposed(ctx, "i", iT[0] + 3, iT[1] + 8, "left");
+        // Split components (S5/S6) — cue-gated reveal fractions.
+        if (pwrVisHas("pwr_split")) {
+            var parAt = cueTriggerMs("split_reveal_par", (d.split_reveal_par_at_ms != null ? d.split_reveal_par_at_ms : 1600)) / 1000;
+            var perpAt = cueTriggerMs("split_reveal_perp", (d.split_reveal_perp_at_ms != null ? d.split_reveal_perp_at_ms : 2400)) / 1000;
+            var winHue = phys.X >= 0 ? PWR_COL_XL : PWR_COL_XC;
+            // i|| = im*cosphi along v (angle phi); i_perp = im*sinphi perpendicular (angle phi-90).
+            var parLen = iLen * phys.cosphi, perpLen = iLen * Math.abs(phys.sinphi);
+            var fPar = Math.max(0, Math.min(1, (tSec - parAt) / 0.8));
+            var fPerp = Math.max(0, Math.min(1, (tSec - perpAt) / 0.8));
+            if (fPar > 0) {
+                var parT = tip(phi, parLen * fPar);
+                pwrArrow(ctx, cx, cy, parT[0], parT[1], PWR_COL_P, pwrGlowOn("i_split") ? 3 : 2.4, true);
+                // projection guide: dashed from i tip perpendicular onto v's line (to the full i|| tip).
+                if (fPar >= 1) {
+                    var parFull = tip(phi, parLen);
+                    ctx.strokeStyle = "rgba(255,110,64,0.55)"; ctx.setLineDash([3, 3]); ctx.lineWidth = 1.2;
+                    ctx.beginPath(); ctx.moveTo(iT[0], iT[1]); ctx.lineTo(parFull[0], parFull[1]); ctx.stroke(); ctx.setLineDash([]);
+                    ctx.fillStyle = PWR_COL_P; ctx.font = "8px 'Cambria Math','Times New Roman',serif"; pwrFillComposed(ctx, "I_rms cos \\u03c6", parFull[0] + 2, parFull[1] - 3, "left");
+                }
+            }
+            if (fPerp > 0) {
+                var perpAng = phi - 90;
+                var perpT0 = tip(perpAng, perpLen * fPerp);
+                pwrArrow(ctx, cx, cy, perpT0[0], perpT0[1], winHue, pwrGlowOn("i_split") ? 3 : 2.4, true);
+                if (fPerp >= 1) {
+                    ctx.fillStyle = winHue; ctx.font = "8px 'Cambria Math','Times New Roman',serif"; pwrFillComposed(ctx, "I_rms sin \\u03c6", perpT0[0] + 2, perpT0[1] + 2, "left");
+                }
+            }
+        }
+        // phi arc (live).
+        if (d.show_arc !== false && Math.abs(phi) > 0.5) {
+            var a0 = thetaDeg * Math.PI / 180, a1 = (thetaDeg + phi) * Math.PI / 180, arcR = 20;
+            ctx.strokeStyle = "#CE93D8"; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.arc(cx, cy, arcR, -a0, -a1, phi < 0); ctx.stroke();
+        }
+    }
+
+    // Impedance / power triangle (disc region). apparent_vs_real (S4): the Ohm
+    // triangle (R/X/Z) with its angle brightened — a callback, no morph.
+    // power_triangle (S8): the SAME triangle re-scaled x I_rms^2 in one morph,
+    // legs re-labelled Ohm -> W/VAR/VA. Right angle preserved; >=12px vertex
+    // margins BOTH winner cases (closes the slcr down-leg clip in-clone).
+    function pwrDrawTriangle(ctx, d, tSec, phys) {
+        var isPower = (d.mode === "power_triangle");
+        var ox = PWR_DISC_CX - 40, oy = PWR_DISC_CY + 34;           // origin (bottom-left of R leg)
+        var g = pwrGlowOn("triangle");
+        // Ohm figure: leg px = ohms * pxPerOhm. Power figure: leg px = watts * pxPerW.
+        var pxPerOhm = 5.6, pxPerW = pxPerOhm / Math.max(phys.Irms * phys.Irms, 1e-6); // x I_rms^2 keeps px lengths similar
+        var m = 1;
+        if (isPower) {
+            var mStart = cueTriggerMs("rescale_morph", (d.rescale_morph_at_ms != null ? d.rescale_morph_at_ms : 800)) / 1000;
+            m = Math.max(0, Math.min(1, (tSec - mStart) / 1.5));
+        }
+        // leg lengths in px (Ohm at m=0, Watt/VAR/VA at m=1) — a similar-triangle morph.
+        var rOhm = phys.Z > 0 ? phys.cosphi * phys.Z : 0;           // = R
+        var rPx0 = phys.Z * phys.cosphi * pxPerOhm;                  // R * pxPerOhm
+        var xPx0 = Math.abs(phys.X) * pxPerOhm;
+        var rPx1 = phys.P * pxPerW, xPx1 = Math.abs(phys.Q) * pxPerW;
+        var rLen = rPx0 + (rPx1 - rPx0) * m, xLen = xPx0 + (xPx1 - xPx0) * m;
+        // clamp so both winner orientations keep >=12px vertex margins in the disc.
+        var maxLeg = PWR_DISC_R * 1.35;
+        var sc = 1; if (rLen > maxLeg) sc = Math.min(sc, maxLeg / rLen); if (xLen > maxLeg) sc = Math.min(sc, maxLeg / xLen);
+        rLen *= sc; xLen *= sc;
+        var xWin = phys.X >= 0 ? PWR_COL_XL : PWR_COL_XC;
+        var xSign = phys.X >= 0 ? -1 : 1;                           // X_L wins -> up (screen -y)
+        var apex = [ox + rLen, oy + xSign * Math.abs(xLen)];
+        // R leg (power hue when power triangle, else white).
+        var rCol = isPower ? PWR_COL_P : "#ECEFF1";
+        pwrArrow(ctx, ox, oy, ox + rLen, oy, rCol, g ? 2.8 : 2.2, false);
+        // X leg (winner hue).
+        pwrArrow(ctx, ox + rLen, oy, apex[0], apex[1], xWin, g ? 2.8 : 2.2, false);
+        // hypotenuse (cyan).
+        pwrArrow(ctx, ox, oy, apex[0], apex[1], PWR_COL_S, g ? 3 : 2.4, false);
+        ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        if (!isPower) {
+            ctx.fillStyle = "#ECEFF1"; ctx.fillText("R", ox + rLen / 2 - 4, oy + 12);
+            ctx.fillStyle = PWR_COL_S; pwrFillComposed(ctx, "Z = " + phys.Z.toFixed(1) + " \\u03a9", ox + 2, oy + xSign * Math.abs(xLen) - 6, "left");
+            ctx.fillStyle = xWin; ctx.fillText("X", apex[0] + 5, oy + xSign * 15);
+        } else if (m >= 0.9) {
+            ctx.fillStyle = PWR_COL_P; ctx.fillText("P = " + phys.P.toFixed(2) + " W", ox, oy + 13);
+            ctx.fillStyle = xWin; ctx.fillText("Q = " + Math.abs(phys.Q).toFixed(2) + " VAR", apex[0] + 5, oy + xSign * Math.abs(xLen) / 2);
+            ctx.fillStyle = PWR_COL_S; ctx.fillText("S = " + phys.S.toFixed(2) + " VA", ox + 2, oy + xSign * Math.abs(xLen) - 6);
+            // cos phi = P/S check chip.
+            ctx.fillStyle = "#ECEFF1"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            pwrFillComposed(ctx, "cos \\u03c6 = P/S = " + phys.cosphi.toFixed(3), PWR_STRIP_X0, 20, "left");
+        }
+    }
+
+    // S4 arithmetic chips (disc/strip region): the naive V*I ghost prediction
+    // STRUCK beside the real needle's number, then the repair ratio -> cos phi.
+    // clearRect single-latest (caption-not-cleared discipline). cue-gated order.
+    function pwrDrawChips(ctx, d, tSec, phys) {
+        var sx = PWR_STRIP_X0 + 6;
+        var ghostAt = cueTriggerMs("ghost_swing", (d.ghost_swing_at_ms != null ? d.ghost_swing_at_ms : 0)) / 1000;
+        var strikeAt = cueTriggerMs("chip_strike", (d.chip_strike_at_ms != null ? d.chip_strike_at_ms : 1500)) / 1000;
+        var ratioAt = cueTriggerMs("ratio_reveal", (d.ratio_reveal_at_ms != null ? d.ratio_reveal_at_ms : 3000)) / 1000;
+        var nameAt = cueTriggerMs("naming", (d.naming_at_ms != null ? d.naming_at_ms : 6000)) / 1000;
+        // naive V*I chip at displayed addends (F7): 7.07 x 0.785 = 5.55 W? (struck).
+        if (tSec >= ghostAt) {
+            var vD = Number(phys.Vrms.toFixed(2)), iD = Number(phys.Irms.toFixed(3));
+            var naive = (vD * iD);
+            ctx.font = "11px 'Cambria Math','Times New Roman',serif"; ctx.fillStyle = "#EF5350";
+            var chip = phys.Vrms.toFixed(2) + " \\u00d7 " + phys.Irms.toFixed(3) + " = " + naive.toFixed(2) + " W?";
+            var w = pwrMeasureComposedWidth(ctx, chip, ctx.font, 0.62);
+            pwrFillComposed(ctx, chip, sx, 18, "left");
+            if (tSec >= strikeAt) {
+                ctx.strokeStyle = "#EF5350"; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(sx, 14); ctx.lineTo(sx + w, 14); ctx.stroke();
+            }
+        }
+        // repair ratio chip: 3.08 / 5.55 = 0.555.
+        if (tSec >= ratioAt) {
+            ctx.fillStyle = "#ECEFF1"; ctx.font = "11px 'Cambria Math','Times New Roman',serif";
+            pwrFillComposed(ctx, phys.P.toFixed(2) + " / " + phys.S.toFixed(2) + " = " + phys.cosphi.toFixed(3), sx, 36, "left");
+        }
+        // naming: cos phi = R/Z = 0.555 (same number).
+        if (tSec >= nameAt) {
+            ctx.fillStyle = "#FFD54F"; ctx.font = "11px 'Cambria Math','Times New Roman',serif";
+            pwrFillComposed(ctx, "cos \\u03c6 = R/Z = " + phys.cosphi.toFixed(3), sx, 54, "left");
+        }
+    }
+
+    // p-pane: p(t) = the LITERAL pointwise product of the SHARED v/i samples
+    // (32a), zero line, signed lobe fills (positive translucent power hue,
+    // negative "returned" blue-grey), dashed <p> line + chip, the S2/S3 walking
+    // multiply cursor, and (explore) a live auto-range (DUALPANEL_RANGE_OFF).
+    function pwrDrawPPane(d, smp, phys) {
+        var gc = document.getElementById("pwr_ppane"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, padL = 6, padR = 6, padT = 14, padB = 14;
+        var plotW = W - padL - padR, plotH = (H - padB) - padT;
+        var tSec = smp.tSec, tWin = smp.tWin;
+        // y-range: guided fixed -4..+21 W; explore auto-ranges to [P-S,P+S] +/-10%.
+        var yMin = PWR_PP_YMIN, yMax = PWR_PP_YMAX;
+        if (d.mode === "explore") {
+            var lo = Math.min(0, phys.P - phys.S), hi = phys.P + phys.S;
+            var pad = 0.10 * Math.max(hi - lo, 1e-6);
+            yMin = lo - pad; yMax = hi + pad;
+        }
+        function xPix(sec) { return padL + ((sec - (tSec - tWin)) / tWin) * plotW; }
+        function yP(val) { return (padT + plotH) - ((val - yMin) / Math.max(yMax - yMin, 1e-6)) * plotH; }
+        var zeroY = yP(0);
+        var step = tWin / 200;
+        // signed lobe fills (thin vertical strips: positive power hue, negative returned).
+        for (var sf = tSec - tWin; sf <= tSec + 1e-4; sf += step) {
+            var pv = smp.pAt(sf);
+            ctx.strokeStyle = (pv >= 0) ? "rgba(255,110,64,0.22)" : PWR_COL_RET;
+            ctx.beginPath(); ctx.moveTo(xPix(sf), zeroY); ctx.lineTo(xPix(sf), yP(pv)); ctx.stroke();
+        }
+        // zero baseline.
+        ctx.strokeStyle = "#607D8B"; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(padL, zeroY); ctx.lineTo(W - padR, zeroY); ctx.stroke(); ctx.lineWidth = 1;
+        // p-curve (power hue) — the pointwise product.
+        ctx.strokeStyle = PWR_COL_P; ctx.lineWidth = pwrGlowOn("p_pane") ? 3 : 2; ctx.beginPath();
+        var first = true;
+        for (var s = tSec - tWin; s <= tSec + 1e-4; s += step) { var xv = xPix(s), yv = yP(smp.pAt(s)); if (first) { ctx.moveTo(xv, yv); first = false; } else ctx.lineTo(xv, yv); }
+        ctx.stroke();
+        // dashed <p> average line at the closed-form P + chip.
+        ctx.strokeStyle = "rgba(255,110,64,0.85)"; ctx.setLineDash([3, 4]); ctx.beginPath();
+        ctx.moveTo(padL, yP(phys.P)); ctx.lineTo(W - padR, yP(phys.P)); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = PWR_COL_P; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        pwrFillComposed(ctx, "\\u27e8p\\u27e9 = " + phys.P.toFixed(2) + " W", padL + 3, yP(phys.P) - 3, "left");
+        // walking multiply cursor (S2 product_wave / S3 wave_sinks) — one vertical
+        // line through v/i/p at the cursor sample; the pen dot marks p there.
+        var walkModes = (d.mode === "product_wave" || d.mode === "wave_sinks");
+        if (walkModes) {
+            var wStart = cueTriggerMs("cursor_walk", (d.cursor_walk_at_ms != null ? d.cursor_walk_at_ms : 2000)) / 1000;
+            if (tSec >= wStart) {
+                var pNow = smp.pAt(tSec);
+                ctx.strokeStyle = "rgba(255,238,88,0.7)"; ctx.lineWidth = 1; ctx.setLineDash([2, 2]);
+                ctx.beginPath(); ctx.moveTo(xPix(tSec), padT); ctx.lineTo(xPix(tSec), padT + plotH); ctx.stroke(); ctx.setLineDash([]);
+                ctx.fillStyle = PWR_COL_P; ctx.beginPath(); ctx.arc(xPix(tSec), yP(pNow), 3.4, 0, 2 * Math.PI); ctx.fill();
+            }
+        }
+        // title + true-number chip (always honest even when explore auto-ranges).
+        ctx.fillStyle = "#90A4AE"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+        pwrFillComposed(ctx, "p = v\\u00b7i", padL + 3, 11, "left");
+        if (d.mode === "explore") {
+            ctx.fillStyle = "#B0BEC5"; ctx.textAlign = "right";
+            ctx.fillText("P = " + phys.P.toFixed(1) + " W", W - padR - 3, 11); ctx.textAlign = "left";
+        }
+    }
+
+    // Energy gauges (gauge pane, S7 only): 3 vertical bars E_L / E_C / E_R with
+    // live J readouts. E_L=ELpeak*sin^2 and E_C=ECpeak*cos^2 breathe (net zero,
+    // opposite phase); E_R = closed-form integral RATCHETS (+P*T per cycle). Each
+    // bar normalized to its OWN reference so the "L/C breathe, R only climbs"
+    // contrast reads; the numbers carry the true values.
+    function pwrDrawGauges(d, t, phys, thetaDeg) {
+        var gc = document.getElementById("pwr_gauges"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height;
+        var thR = thetaDeg * Math.PI / 180;
+        var EL = phys.ELpeak * Math.sin(thR) * Math.sin(thR);
+        var EC = phys.ECpeak * Math.cos(thR) * Math.cos(thR);
+        var ER = pwrEnergyR(phys.P, phys.omega, t);
+        var T = 1 / Math.max(window.PM_pwrF, 1e-6);
+        var ERref = Math.max(phys.P * T * 2.5, 1e-6);
+        var bars = [
+            { lbl: "E_L", val: EL, frac: (phys.ELpeak > 1e-6 ? EL / phys.ELpeak : 0), col: PWR_COL_XL },
+            { lbl: "E_C", val: EC, frac: (phys.ECpeak > 1e-6 ? EC / phys.ECpeak : 0), col: PWR_COL_XC },
+            { lbl: "E_R", val: ER, frac: Math.min(1, ER / ERref), col: PWR_COL_P }
+        ];
+        var barW = 30, gap = (W - 16 - bars.length * barW) / (bars.length - 1);
+        var baseY = H - 26, topY = 26, fullH = baseY - topY;
+        for (var b = 0; b < bars.length; b++) {
+            var bx = 8 + b * (barW + gap);
+            ctx.strokeStyle = "#546E7A"; ctx.strokeRect(bx, topY, barW, fullH);
+            var fh = Math.max(0, Math.min(1, bars[b].frac)) * fullH;
+            ctx.fillStyle = bars[b].col; ctx.globalAlpha = 0.85;
+            ctx.fillRect(bx, baseY - fh, barW, fh); ctx.globalAlpha = 1;
+            ctx.fillStyle = bars[b].col; ctx.font = "8px 'Cambria Math','Times New Roman',serif";
+            pwrFillComposed(ctx, bars[b].lbl, bx + barW / 2, H - 14, "center");
+            ctx.fillStyle = "#ECEFF1"; ctx.font = "8px 'Cambria Math','Times New Roman',serif";
+            ctx.textAlign = "center"; ctx.fillText(bars[b].val.toFixed(2) + " J", bx + barW / 2, topY - 4); ctx.textAlign = "left";
+        }
+        // ratchet note for E_R.
+        ctx.fillStyle = PWR_COL_P; ctx.font = "8px 'Cambria Math','Times New Roman',serif";
+        ctx.textAlign = "right"; ctx.fillText("+" + (phys.P * T).toFixed(2) + " J/cyc", W - 5, 11); ctx.textAlign = "left";
+    }
+
+    // S9 derivation chain — links dock into the formula panel on their cues.
+    function pwrUpdateDerivation(d, t, phys) {
+        var ff = document.getElementById("pwr_formula"); if (!ff) return;
+        var links = Array.isArray(d.chain_lines) ? d.chain_lines : [
+            "p = i \\u00b7 v = i\\u2098 sin\\u03b8 \\u00b7 v\\u2098 sin(\\u03b8+\\u03c6)",
+            "= (v\\u2098 i\\u2098 / 2) [cos \\u03c6 \\u2212 cos(2\\u03b8+\\u03c6)]",
+            "\\u27e8cos(2\\u03b8+\\u03c6)\\u27e9 = 0",
+            "\\u27e8p\\u27e9 = (v\\u2098 i\\u2098 / 2) cos \\u03c6 = V_rms I_rms cos \\u03c6",
+            "= " + phys.S.toFixed(2) + " \\u00d7 " + phys.cosphi.toFixed(3) + " = " + phys.P.toFixed(2) + " W"
+        ];
+        var defaults = [0, 2000, 4000, 6000, 8000];
+        var cues = [];
+        for (var ci = 0; ci < links.length; ci++) {
+            cues.push(cueTriggerMs("link" + (ci + 1), (d["link" + (ci + 1) + "_at_ms"] != null ? d["link" + (ci + 1) + "_at_ms"] : (defaults[ci] != null ? defaults[ci] : ci * 2000))));
+        }
+        var out = [];
+        for (var i = 0; i < links.length && i < cues.length; i++) {
+            if (t * 1000 >= cues[i]) out.push(pwrHtmlComposeSub(links[i]));
+        }
+        ff.innerHTML = out.join("<br>");
+    }
+
+    // Per-frame update — closed-form theta (Rule 26/36), S3 f-glide + S6 R-cycle
+    // (both pure fn of t), S5 rotation-hold (freeze-subtraction), drives beads /
+    // heater glow / meter needle + ghost / gauges / band / p-pane / HUD.
+    function updateAcPowerFrame() {
+        if (config.scenario_type !== "ac_power") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.ac_power || {};
+        var t = time - stateStartTime;
+        window.PM_pwrStateT = t * 1000;
+
+        var vm = window.PM_pwrVm, R = window.PM_pwrR, L = window.PM_pwrL, C = window.PM_pwrC;
+        var theta0 = (d.theta0_deg != null ? d.theta0_deg : 0);
+        var f = window.PM_pwrF, thetaDeg = theta0 + (f * 360) * t;
+
+        // ── S3 f-glide (wave_sinks) — closed-form ramp; drag-seize halts it ──
+        if (d.mode === "wave_sinks" && !window.PM_pwrFDragged) {
+            var s0 = (d.f_glide_start_at_ms != null ? d.f_glide_start_at_ms : 0) / 1000;
+            var du = (d.f_glide_dur_ms != null ? d.f_glide_dur_ms : 3000) / 1000;
+            var frm = (d.f_glide_from != null ? d.f_glide_from : 0.25), to = (d.f_glide_to != null ? d.f_glide_to : 0.50);
+            f = pwrRampFreq(t, frm, to, s0, du);
+            thetaDeg = pwrRampPhaseDeg(t, theta0, frm, to, s0, du);
+            window.PM_pwrF = f;
+        }
+        // ── S6 R-cycle (wattless) — value tween A->B->A' (R doesn't drive theta);
+        //    EASED at every leg boundary (never an instant snap). ──
+        else if (d.mode === "wattless" && !window.PM_pwrRDragged) {
+            var rs = (d.r_cycle_start_at_ms != null ? d.r_cycle_start_at_ms : 800) / 1000;
+            var dnD = (d.r_down_dur_ms != null ? d.r_down_dur_ms : 1200) / 1000;
+            var hD = (d.r_hold_dur_ms != null ? d.r_hold_dur_ms : 1000) / 1000;
+            var upD = (d.r_up_dur_ms != null ? d.r_up_dur_ms : 1200) / 1000;
+            var rTop = (d.r_cycle_top != null ? d.r_cycle_top : 5.0), rBot = (d.r_cycle_bot != null ? d.r_cycle_bot : 2.0);
+            if (t < rs) R = rTop;
+            else if (t < rs + dnD) R = rTop + (rBot - rTop) * pwrSmooth((t - rs) / dnD);
+            else if (t < rs + dnD + hD) R = rBot;
+            else if (t < rs + dnD + hD + upD) R = rBot + (rTop - rBot) * pwrSmooth((t - (rs + dnD + hD)) / upD);
+            else R = rTop;
+            window.PM_pwrR = R;
+        }
+        // ── S5 rotation-hold (current_split) — freeze-subtraction so theta holds
+        //    at the stop angle then resumes with NO jump (pure fn of t). ──
+        else if (d.mode === "current_split") {
+            var stopAt = (d.rotation_stop_at_ms != null ? d.rotation_stop_at_ms : 1000) / 1000;
+            var resumeAt = (d.rotation_resume_at_ms != null ? d.rotation_resume_at_ms : 3600) / 1000;
+            var thetaStop = theta0 + (f * 360) * stopAt;
+            if (t < stopAt) thetaDeg = theta0 + (f * 360) * t;
+            else if (t < resumeAt) thetaDeg = thetaStop;
+            else thetaDeg = theta0 + (f * 360) * (t - (resumeAt - stopAt));
+        }
+
+        var phys = pwrPhysics(vm, window.PM_pwrF, R, L, C);
+        var omegaDeg = 2 * Math.PI * window.PM_pwrF * 180 / Math.PI;
+
+        // ── Beads: ONE stream, common signed displacement = amp*sin(theta) ──
+        var beadAmp = PWR_BEAD_AMP * Math.max(0.15, Math.min(1.1, phys.im / 2.0));
+        var disp = beadAmp * Math.sin(thetaDeg * Math.PI / 180);
+        for (var bi = 0; bi < sceneObjects.length; bi++) {
+            var bo = sceneObjects[bi], bu = bo.userData;
+            if (!bu || !bu.pwrBead) continue;
+            var pt = pwrLoopAt(bu.home + disp);
+            bo.position.set(pt[0], pt[1], pt[2]);
+            if (bo.material) bo.material.opacity = 0.45 + 0.4 * Math.abs(Math.sin(thetaDeg * Math.PI / 180));
+        }
+
+        // ── Heater warm-glow (energy_ledger S7): p_R_t/P_REF_R, ALWAYS >= 0
+        //    (driven by i^2*R, never the signed total p). Coil/plates stay cold. ──
+        if (pwrHeaterMat) {
+            var iNow = phys.im * Math.sin(thetaDeg * Math.PI / 180);
+            var pR = iNow * iNow * R;
+            pwrHeaterMat.emissiveIntensity = (d.mode === "energy_ledger") ? Math.max(0, Math.min(1, pR / PWR_P_REF_R)) : 0.0;
+        }
+
+        // ── Wattmeter needle (reads closed-form P) + S1 climb reveal + S4 ghost ──
+        var meterReveal = 1;
+        if (d.mode === "meter_dock") {
+            var cs = (d.needle_climb_at_ms != null ? d.needle_climb_at_ms : 1500) / 1000;
+            var cd = (d.needle_climb_dur_ms != null ? d.needle_climb_dur_ms : 1500) / 1000;
+            meterReveal = pwrSmooth((t - cs) / Math.max(0.001, cd));
+        }
+        var Pdisp = phys.P * meterReveal;
+        var sweepHalf = Math.PI * 0.42;
+        if (pwrMeterNeedle) {
+            var fr = Math.max(0, Math.min(1, Pdisp / PWR_METER_FS));
+            pwrMeterNeedle.rotation.z = (0.5 - fr) * (2 * sweepHalf);
+        }
+        if (pwrGhostNeedle) {
+            var showGhost = (d.mode === "apparent_vs_real");
+            var ghostAt = cueTriggerMs("ghost_swing", (d.ghost_swing_at_ms != null ? d.ghost_swing_at_ms : 0)) / 1000;
+            pwrGhostNeedle.visible = showGhost && (t >= ghostAt);
+            if (pwrGhostNeedle.visible) {
+                var gfr = Math.max(0, Math.min(1, phys.S / PWR_METER_FS));
+                pwrGhostNeedle.rotation.z = (0.5 - gfr) * (2 * sweepHalf);
+            }
+        }
+        if (pwrMeterLbl) updateLabelSpriteText(pwrMeterLbl, "P = " + Pdisp.toFixed(2) + " W");
+
+        // Slider thumbs track when undragged.
+        if (!window.PM_pwrVmDragged) { var vs = document.getElementById("pwr_vm_slider"); if (vs) vs.value = String(vm); var vv = document.getElementById("pwr_vm_val"); if (vv) vv.textContent = vm.toFixed(1); }
+        if (!window.PM_pwrFDragged) { var fs = document.getElementById("pwr_f_demo_slider"); if (fs) fs.value = String(window.PM_pwrF); var fvv = document.getElementById("pwr_f_demo_val"); if (fvv) fvv.textContent = window.PM_pwrF.toFixed(2); }
+        if (!window.PM_pwrRDragged) { var rsl = document.getElementById("pwr_R_slider"); if (rsl) rsl.value = String(R); var rvv = document.getElementById("pwr_R_val"); if (rvv) rvv.textContent = R.toFixed(1); }
+
+        // ── Shared v/i samplers (the SAME closures the strip AND p-pane read —
+        //    p(t) is the LITERAL pointwise product, never an independent curve). ──
+        var thNow = thetaDeg * Math.PI / 180, phiR = phys.phi * Math.PI / 180, omBand = 2 * Math.PI * window.PM_pwrF;
+        var smp = {
+            tSec: t, tWin: PWR_TWIN,
+            vAt: function (sec) { return vm * Math.sin(thNow + phiR + omBand * (sec - t)); },
+            iAt: function (sec) { return phys.im * Math.sin(thNow + omBand * (sec - t)); }
+        };
+        smp.pAt = function (sec) { return smp.vAt(sec) * smp.iAt(sec); };
+
+        pwrDrawBand(d, smp, t, thetaDeg, phys);
+        pwrDrawPPane(d, smp, phys);
+        pwrDrawGauges(d, t, phys, thetaDeg);
+        if (d.mode === "derivation") pwrUpdateDerivation(d, t, phys);
+
+        // ── HUD readout — value-only, ring-gated ──
+        var roEl = document.getElementById("pwr_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var html = "";
+            html += "<div>f = " + window.PM_pwrF.toFixed(2) + " Hz</div>";
+            html += "<div>V_rms = " + phys.Vrms.toFixed(2) + " V</div>";
+            html += "<div>I_rms = " + phys.Irms.toFixed(3) + " A</div>";
+            if (d.hud_show_cosphi) html += "<div style=\\"color:#FFD54F\\">cos \\u03c6 = " + phys.cosphi.toFixed(3) + "</div>";
+            if (d.hud_show_p) html += "<div style=\\"color:#FF6E40\\">P = " + phys.P.toFixed(2) + " W</div>";
+            if (d.hud_show_components) {
+                html += "<div style=\\"color:#FF6E40\\">I_rms cos \\u03c6 = " + phys.ipar.toFixed(3) + " A</div>";
+                html += "<div style=\\"color:" + (phys.X >= 0 ? "#B388FF" : "#69F0AE") + "\\">I_rms sin \\u03c6 = " + phys.iperp.toFixed(3) + " A</div>";
+            }
+            roEl.innerHTML = pwrHtmlComposeSub(html);
+        }
+    }
+
+    // Glow — 3D apparatus/meter via applyGlowEmphasis (brightness only, Rule 29);
+    // the canvas panes glow inside their draws via pwrGlowOn; the DOM formula
+    // panel toggles glow-pulse. The heater's emissive is OWNED by the p_R_t
+    // modulation above (energy_ledger) — skip it (mirrors the acr_heater
+    // exemption) so its warm-glow story is never frozen.
+    function applyAcPowerGlow() {
+        var glowActive = glowTargets.length > 0, glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et !== "pwr_apparatus" && et !== "pwr_beads" && et !== "pwr_meter") continue;
+            if (sud.id === "pwr_elem_R") continue;   // heater emissive owned by the ledger modulation
+            var isFocal = on(sud.id)
+                || (et === "pwr_apparatus" && on("circuit"))
+                || (et === "pwr_beads" && on("beads"))
+                || (et === "pwr_meter" && on("meter"));
+            applyGlowEmphasis(so, isFocal, glowActive, glowP, true);
+        }
+        var ffEl = document.getElementById("pwr_formula");
+        if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
+    }
+
+
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
     //   precedent (concentric surface meshes + radial E-arrows + an HTML readout
@@ -35237,6 +36188,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildAcSeriesLcr();
                 break;
 
+            case "ac_power":
+                buildAcPower();
+                break;
+
             case "magnetic_flux_loop":
                 buildMagneticFluxLoop();
                 break;
@@ -35685,6 +36640,19 @@ export const FIELD_3D_RENDERER_CODE = `
             applyAcSeriesLcrState(stateDef);
         }
 
+        // ac_power — NEW Ch.7 §7.7 power/power-factor scenario (clone-sibling of
+        // ac_series_lcr + the element power machinery). Per-state pwr_ apparatus/
+        // meter visibility + variable_overrides seed (vm/f/R/L/C, defensive
+        // re-locks) + the per-state contextual-control panel (f on S3, R on S6,
+        // ALL on the S10 explore). The animate loop then advances the closed-form
+        // theta (S3 f-glide + S6 R-cycle + S5 rotation-hold, all pure fn of t),
+        // drives the bead stream / heater warm-glow / averaging wattmeter + ghost
+        // needle / energy gauges, paints the disc/strip band + the product-wave
+        // p-pane (pointwise product) + power triangle, and writes the ring-gated HUD.
+        if (config.scenario_type === "ac_power") {
+            applyAcPowerState(stateDef);
+        }
+
         // magnetic_flux_loop — per-state contextual-control row visibility
         // (B/A/theta live-vs-static-vs-hidden), theta_range bounds, and the
         // area-vector/theta-arc/RHR-hand/projection-shadow flags. The animate
@@ -36010,6 +36978,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // "#sliders exclusion chain" — every dedicated panel adds itself to this
         // NOT-list (every dedicated panel excludes itself here).
         var isAcSeriesLcr = config.scenario_type === "ac_series_lcr";
+        // ac_power owns its OWN #pwr_sliders panel (vm/f_demo/R/L/C) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel excludes itself here).
+        var isAcPower = config.scenario_type === "ac_power";
         // magnetic_flux_loop owns its OWN #mfl_sliders panel (B/A/theta) -- must
         // be excluded here or the generic #sliders panel bleeds through
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
@@ -36058,7 +37030,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -36245,7 +37217,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -36657,6 +37629,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // resonance plots + ring-gated HUD + dedicated formula panel carry
         // everything — suppress the generic legend.
         if (config.scenario_type === "ac_series_lcr") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // ac_power is a silent visual (Rule 24): the disc/strip band + product-wave
+        // p-pane + power triangle + energy gauges + averaging wattmeter + ring-gated
+        // HUD + dedicated formula panel carry everything — suppress the generic legend.
+        if (config.scenario_type === "ac_power") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // magnetic_flux_loop is a silent visual (Rule 24): the loop + B lattice +
         // the live Phi = B.A.cos(theta) readout carry everything — suppress the
         // generic legend (the scenario id would otherwise fall into no branch and
@@ -39472,6 +40448,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "ac_series_lcr") {
             updateAcSeriesLcrFrame();
             applyAcSeriesLcrGlow();
+        }
+
+        // ac_power — p(t)=v*i as a double-frequency wave riding the DC offset
+        // <p>=V_rms*I_rms*cosphi; the averaging wattmeter, current-component split,
+        // power triangle (impedance triangle x I_rms^2), and per-element energy
+        // gauges. Closed-form theta (Rule 26/36; S3 f-glide + S6 R-cycle + S5
+        // rotation-hold, all pure fn of t; E_R(t) a closed-form integral), one
+        // bead stream, heater warm-glow driven by p_R_t, ring-gated HUD.
+        if (config.scenario_type === "ac_power") {
+            updateAcPowerFrame();
+            applyAcPowerGlow();
         }
 
         // magnetic_flux_loop — stationary tiltable/resizable loop in a uniform B.
