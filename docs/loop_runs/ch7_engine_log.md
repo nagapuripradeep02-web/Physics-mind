@@ -1427,3 +1427,37 @@ field3d-surgeon: `deriveStateMeta.ts` +8/−1. S3 PRIMARY-AHA frozen frame off-c
 **Commits:** renderer fix landed as `840fcb0` (concurrent orchestrator/sibling, renderer only, provisional-named). This dispatch's doc reconcile (scar FIXED + canonical rename + this log) committed as `<doc-commit-sha>` — `fix(engine-loop): field3d_unauthored_bottomright_formula_echo_duplicates_authored_surface lc_oscillations S4/S6/S9 F3 ride-along [peter_parker:renderer_primitives]` (2 files: scar_candidates.sql + this log; the renderer was already committed by 840fcb0). Concept JSON + registration sites + state file stay UNCOMMITTED (commit at concept seal).
 
 **Cumulative-EYE watch:** confirm `STATE_4__frozen` top-right Cambria √ still renders and NO bottom-right formula panel appears (S4/S6/S9); resolves 34b+34c+34d together.
+
+---
+
+## Stage 7d · 2026-07-24 · lc_oscillations Checkpoint-B ride-along F4 (`field3d-surgeon`)
+
+**F4 · `energy_bar_chart_total_label_collides_with_last_bar_label` (MAJOR, RIDE-ALONG)**
+
+**Finding (CpB F4):** the gauge-pane fixed E_total marker label and the rightmost bar's live
+value label anchored at the same top-right row/x-zone → overprint garble ("4636 J") in the 2-bar
+(S5/S6) and 3-bar (S7/S9) variants. Canvas-internal → invisible to founder:drive's DOM-only
+collision probe (`overlayCollisions:[]`). Evidence: `.visual_runs/lc_oscillations/20260724-142012/STATE_5__frozen.png` (+ S6/S7/S9).
+
+**Root cause (diagnosed):** in `lcoDrawGauges` the fixed E_total marker label was right-aligned in
+the same row/x-zone as the rightmost bar value label, with no vertical or horizontal separation
+reserved.
+
+**Fix (minimal, additive, `field_3d_renderer.ts` only) — commit `c0651f4`:** the E_total marker
+moved to its own top-left header row (`E_total = X.XX J`, `hdrY=11`, left-aligned); bar chart
+`topY 26→30` so every bar value label sits one clean row below the header. Probe: the total-label
+box is disjoint from ALL bar-value boxes in BOTH x and y, verified on 2-bar (S5/S6) and 3-bar
+(S7/S9). 8 insertions, 3 deletions, 1 file.
+
+**Verify chain (engine-agent self-verify; cumulative EYE deferred to orchestrator per Amendment 4):**
+tsc --noEmit 0 errors · validate:concepts 131/0 (lc_oscillations PASS). Clock guard: no shared
+integrator touched → no fleet sweep. Cumulative EYE (S5/S6/S7/S9 frozen: total label legible, no
+garble) deferred to the orchestrator's single post-ride-along run.
+
+**Commits:** renderer fix landed as `c0651f4` (renderer only). The fix commit dropped its scar
+reconcile + this log entry; this Stage-7d entry + the scar FIXED reconcile close that audit gap
+(orchestrator doc reconcile, FILE only). Concept JSON + registration sites + state file stay
+UNCOMMITTED (commit at concept seal).
+
+**Cumulative-EYE watch:** confirm the "6.36 J" E_total header label is legible and disjoint from
+every bar value label on S5/S6/S7/S9.

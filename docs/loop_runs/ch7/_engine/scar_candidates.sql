@@ -1277,3 +1277,25 @@ UPDATE engine_bug_queue
 -- (lc_oscillations.json:522) and all lco code. No second echo draw exists.
 -- Verify: check:renderer-syntax OK (field_3d 2564 KB); tsc --noEmit 0 errors;
 -- validate:concepts 131/131 atomic PASS (warning profile unchanged, legacy word-budget only).
+
+-- ============================================================================
+-- Stage 7d · lc_oscillations CpB ride-along F4 — RECONCILE to FIXED (2026-07-24)
+-- F4 (RIDE-ALONG, MAJOR): energy-bar total-marker label overprinted the rightmost
+-- bar value label ("4636 J") in the 2-bar (S5/S6) + 3-bar (S7/S9) gauge pane.
+-- Renderer fix landed as c0651f4 (field_3d_renderer.ts, 1 file) WITHOUT its scar
+-- reconcile / engine-log entry; this block closes that audit gap. FILE only — no DB.
+-- ============================================================================
+
+-- F4 FIXED — the fixed E_total marker label now sits on its own top-left header row.
+UPDATE engine_bug_queue
+   SET status = 'FIXED',
+       fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[]
+ WHERE bug_class = 'energy_bar_chart_total_label_collides_with_last_bar_label'
+   AND discovered_in_session = 'ch7-stage7-lc_oscillations-checkpointB';
+-- Fix (c0651f4, lcoDrawGauges): the E_total marker moved to a dedicated top-left header
+-- row ('E_total = X.XX J', hdrY=11, left-aligned); bar chart topY 26->30 so every bar
+-- value label sits one clean row below the header. Probe: total-label box disjoint from
+-- ALL bar-value boxes in BOTH x and y, verified on 2-bar (S5/S6) and 3-bar (S7/S9).
+-- Verify: tsc --noEmit 0 errors; validate:concepts 131/0; clock guard clean (no shared
+-- integrator touched). Cumulative EYE (S5/S6/S7/S9 frozen: total label legible, no garble)
+-- deferred to the orchestrator's single post-ride-along run (Amendment 4).
