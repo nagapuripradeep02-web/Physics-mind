@@ -1358,6 +1358,17 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         push(emwState.nochange_at_ms, 700);
         push(emwState.needle_kick_at_ms, 500);
         push(emwState.source_off_at_ms, 1200);
+        // increment-2 per-state one-shots: pin the frozen frame PAST each state's
+        // LAST settled payoff (scar #5 — never mid-transition) so THE EYE's
+        // __frozen.png photographs the settled reveal.
+        push(emwState.relay_at_ms, 2000);          // S2: past the first hand-off cycle
+        push(emwState.trough_at_ms, 1000);         // S4: past the trough re-sweep
+        push(emwState.camera_back_at_ms, 800);     // S4: camera settled home
+        push(emwState.match_at_ms, 900);           // S6: the MATCH chip pinned
+        push(emwState.gate_b_at_ms, 600);          // S6: gate B ticked, Δt held
+        push(emwState.ghost_dissolve_at_ms, 1200); // S5: ghost dissolved, in-phase pose held
+        push(emwState.bunch_at_ms, 900);           // S10: crests fully bunched
+        push(emwState.slab_slide_at_ms, 1000);     // S10: slab settled in
     }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
     // are one-shot timed gestures that then HOLD still — pin the frozen frame

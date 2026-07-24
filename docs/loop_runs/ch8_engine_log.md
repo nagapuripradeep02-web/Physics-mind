@@ -82,3 +82,37 @@ Same-change registration: union member · `emw_defaults?` config type · buildSc
 **Scar candidate:** 1 directive row (`field3d_traveling_vector_train_primitive`) written to `docs/loop_runs/ch8/_engine/scar_candidates.sql`. NOT applied to the DB (trial constraint).
 
 **Next increment (E2):** layer per-state add-ons in state order — `emw_relay` (S2) · `emw_triad` + RHR sweep-arc (S4) · `emw_ghostb` + `emw_cursor` (S5) · `emw_gates` + stopwatch + two-line `emw_formula` dock (S6, densest — honor the §10(h) overlay-zone map) · `emw_tanks` (S8, FL4 identical string) · `emw_slab` (S10, F2/FL5 both trains bunch, piecewise spatial-phase integration across the boundary).
+
+---
+
+## E2 · `em_wave_propagation_scenario` (increment 2: per-state add-ons) · [owner: peter_parker:renderer_primitives]
+**Concept:** `em_wave_propagation` · **Dispatch:** field3d-surgeon · **Date:** 2026-07-24/25
+**Rollback point recorded before dispatch:** `961fe87` (E1)
+
+**Built — all 7 targets in one dispatch (ceiling NOT hit):**
+- `emw_relay` (S2) — marching leapfrog hand-off glyph (E-kink -> B-loop one step ahead -> chevron +x, period 2000 ms full cycle / 1000 ms per hand-off). HARD constraint honored: both fields stay continuously present and in phase; the relay glow is a HIGHLIGHT on top, never a sequential appear/disappear (an alternating treatment would plant the exact 90-degree misconception S5 exists to destroy).
+- `emw_triad` + RHR sweep-arc (S4) — x/y/z triad at P, E x B thrust arrow, animated sweep glyph, single camera round-trip to the axis-on view and back, trough re-sweep proving thrust STILL +x.
+- `emw_ghostb` + `emw_cursor` (S5) — desaturated-red 90-degree-shifted ghost train with `expected?` tag (clone of the proven dc S5 ghost pattern, aa724f8) + fixed-x phase cursor with live twin readouts.
+- `emw_gates` + stopwatch + two-line `emw_formula` dock (S6) — gates at x=2.0/8.0 m, `D = 6.00 m` line, ns stopwatch (gate A ~4500 ms, gate B ~7000 ms, holds at 20.0 ns). Rule 34b honored: `v = D/dt` docks INTO the surface, then the constant chips resolve as its SECOND line, ONE two-line surface + MATCH chip pinned to its own right edge.
+- `emw_tanks` (S8) — twin energy-density tanks, each computed from its OWN independent chain from unrounded internals (FL4).
+- `emw_slab` (S10) — translucent slab, scene x in [-1.6,+1.6] (physics 3-7 m). F2/FL5 honored: BOTH trains stay drawn and bunch together at v=c/n, nu continuous across the boundary. Phase uses the CUMULATIVE PIECEWISE form, so no boundary jump (physics_block section 6e trap avoided).
+- `emw_formula` / `emw_hud` surfaces incl. S9's chain-link derivation docking to `B_z = (E0/c)*sin(kx - omega*t)`.
+
+**Verify chain (ALL pass):**
+1. `check:renderer-syntax` -> field_3d syntax OK (2220 KB).
+2. `npx tsc --noEmit` -> **0 errors**.
+3. `npm run validate:concepts` -> **125 PASS, 0 FAIL**, warning profile unchanged.
+4. Regression sample (Amendment-5 DISJOINT ch8 pair, re-seeded then EYE): `magnetisation_and_intensity` **38/38**, `bar_magnet_as_dipole` **56/56** — identical to E1's baseline, **zero H2 regressions**.
+5. Live render smoke (throwaway Playwright, deleted): **0 console/SIM errors** across S2/S4/S5/S6/S7/S8/S9/S10 synthetic states; every overlay paints. Frames read: STATE_4_t3 (axis-on cross + triad + ExB), STATE_6_t3 (two-line dock + MATCH + dt=20.0 ns + gates), STATE_10_t2 (both trains bunched in the slab, nu continuous), STATE_2_t1 (relay kink+loop+chevron), STATE_5_t1 (red ghost + twin readouts same-sign), STATE_9_t3 (assembled B_z line).
+
+**Clock guard (Rule 36b):** NO `__pmSteps` / `dtStep` / integrator touched -> no fleet sweep required.
+
+**Scope proof:** contamination grep of added lines against every sibling scenario prefix = **0 matches**; only `emw_` introduced. Diff = `field_3d_renderer.ts` (+409/-9, entirely within the emw surface) + `deriveStateMeta.ts` (+11 cue pins: relay/trough/camera_back/match/gate_b/ghost_dissolve/bunch/slab_slide).
+
+**Scar candidate:** `field3d_equal_quantity_pair_needs_shared_exact_constant_not_rounded_display` (directive, MODERATE) — the FL4 twin-tank equality holds ONLY if u_B is computed from the EXACT `c = 1/sqrt(mu0*eps0)`; a rounded display `c` diverges the two independent chains at the last displayed digit (6.38 vs 6.37). Extends the dc-S8 unrounded-internals lesson from single-value to equal-PAIR rounding. Written to scar_candidates.sql, NOT applied.
+
+**Interpretive calls flagged to founder-proxy:** (a) S2 relay is a self-contained marching glyph, not centroid-tracked to the pulse packet (the core pulse has transited by the ~12 s relay beat); mechanism teaching + the both-fields-present constraint intact. (b) DOM-only glow focals (`ratio`/`tanks`/`formula`) deliberately absent from `EMW_GLOW_ELS` to avoid scar #33 (total-dim with nothing bright) — they carry their own DOM prominence. (c) S9's recall glow-walk is minimal; the progressive chain-dock is the primary mechanism, a timed triad->cursor->ratio brighten is left as optional polish.
+
+**LOOP CARRY-FORWARD to Checkpoint B (orchestrator note, not the surgeon's):** the smoke's FL4 check proved the twin tanks render an IDENTICAL string (`identical=true`) but sampled `6.31x10^-8`, i.e. a near-crest instant rather than a true crest. FL4's locked CREST value is `6.38x10^-8`. **Checkpoint B must confirm both tanks read exactly `6.38x10^-8 J/m^3` at a genuine crest** — identity alone is not the full requirement.
+
+**Engine work for this concept is COMPLETE** — no further increment needed. Next: json_author, then THE EYE on the real concept.
