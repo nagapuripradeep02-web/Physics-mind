@@ -1,0 +1,799 @@
+{
+  "concept_id": "ac_power_factor",
+  "concept_name": "Power in AC Circuits — The Power Factor",
+  "chapter": 7,
+  "section": "7.7",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.7 Power in AC Circuit: The Power Factor — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. Sixth of 8 in the founder-reordered Ch.7 map (ac_voltage_resistor -> ac_voltage_inductor -> ac_voltage_capacitor -> phasors -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer). This sim teaches the POWER consequence of the series-LCR circuit: instantaneous power p(t)=v*i as a double-frequency wave riding a non-zero DC offset; that offset <p> = V_rms*I_rms*cos(phi), the average (real) power; the power factor cos(phi) = R/Z as the fraction of apparent power S=V_rms*I_rms that is real; the wattless quadrature current I_rms*sin(phi) that flows without ever spending a joule; where the real power physically lands (P = I_rms^2*R -- all in the resistor, never the reactive elements); and the power triangle P/Q/S as the settled impedance triangle uniformly scaled by I_rms^2. Impedance, phase angle, and resonance arrive as one-clause SETTLED CALLBACKS from series_lcr_circuit, never re-derived. SCOPE: does not treat free LC energy oscillation with the source removed (deferred to lc_oscillations, which inherits this sim's energy-ledger instrument and its p<0=energy-returned sign convention), does not treat transmission-line voltage step-up or the wattless-current-on-transmission-lines motivation (deferred to transformer; transmission stays narration-only here, via the real-world anchor), and does not use complex power notation (out of syllabus scope). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the two power-factor misconceptions -- 'average AC power is V_rms times I_rms' and 'a bigger AC current always means bigger power' -- are confronted inside EPIC-L via Rule 16a misconception_watch at exactly STATE_4 and STATE_6, each a straightforward wrong-consequence-first contrast beat, never a predict-pause). Routed to the NEW field_3d 'ac_power' scenario (prefix pwr_) -- an ADDITIVE clone-sibling of the sealed ac_series_lcr scenario plus the element scenarios' power machinery (the averaging wattmeter, the p(t) product pane, the per-element energy gauge), built for this concept (engine log Stage 6, commit 9df14e3). Zero edits to any sealed scenario. Handoff FROM series_lcr_circuit: inherits the apparatus (heater/coil/plates docked in one series loop), the five-arrow phasor machinery (reused here as a two-arrow v/i fan with a current-component split), and the impedance triangle with phi as the circuit's own angle -- all one-clause callbacks. Handoff TO lc_oscillations (next): delivers the energy-ledger instrument (per-element E_L=1/2*L*i^2, E_C=1/2*C*v^2 gauges, borrow-and-return convention), the p<0=energy-returned sign convention, and the settled power vocabulary ('an ideal LC loop is ALL wattless -- nothing ever lands') -- withholds the UNDRIVEN circuit, free oscillation at a NATURAL frequency, the q(t)/i(t) SHM analogy, and any damped decay (none of that renders here; every energy gauge runs under the driven source).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "ac_power"
+    ]
+  },
+  "prerequisites": [
+    "series_lcr_circuit",
+    "ac_voltage_resistor",
+    "ac_voltage_inductor",
+    "ac_voltage_capacitor",
+    "phasors"
+  ],
+  "real_world_anchor": {
+    "primary": "The electricity grid's least-known enemy. A factory floor of electric motors draws current through kilometres of line. Motors are coils — inductive — so part of every motor's current is wattless: it flows, but delivers zero energy. The wires don't know the difference — they heat by I²R on the FULL current, working and wattless alike. That is why heavy machines carry a power-factor rating, why a poor power factor draws a financial penalty from a large consumer, and why equipment is rated in two numbers at once — the kilowatts actually delivered, and the larger kilovolt-amps the wires must be built to survive. The paradox this sim shows — more current, yet less power — is a grid engineer's daily arithmetic. Culture-neutral (motors and transmission lines exist everywhere) and physics-true at every depth.",
+    "secondary": "A compressor or motor nameplate reading '1.5 kW / 2.1 kVA' is quoting real power, apparent power, and — silently, in the ratio between them — the power factor. Mains frequency, where it matters at all, stays neutral ('the mains frequency'), never a fixed regional number."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "vm": { "name": "Peak (amplitude) source voltage", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "f_demo": { "name": "Demo-compressed AC frequency (real mains is tens of Hz)", "unit": "Hz", "min": 0.1, "max": 0.5, "default": 0.25, "step": 0.05, "role": "driver" },
+      "R": { "name": "Resistance of the heater element", "unit": "Ohm", "min": 2, "max": 20, "default": 5.0, "step": 1, "role": "driver" },
+      "L": { "name": "Self-inductance of the coil (off-grid default, snap-on-first-drag)", "unit": "H", "min": 1.0, "max": 10.0, "default": 3.1831, "step": 0.1, "role": "driver" },
+      "C": { "name": "Capacitance of the plates (off-grid default, snap-on-first-drag)", "unit": "F", "min": 0.04, "max": 0.40, "default": 0.1273, "step": 0.02, "role": "driver" },
+      "omega": { "name": "True angular frequency (rad/s) — used only inside closed-form calculus (E_R_t), never for on-screen degree display", "unit": "rad/s", "derived": "omega = 2*PI*f_demo" },
+      "omega_deg_per_s": { "name": "Angular speed in deg/s — drives the degree-native rendering clock theta(t)", "unit": "deg/s", "derived": "omega_deg_per_s = omega * 180/PI = 360*f_demo" },
+      "theta": { "name": "Instantaneous phase, the state's own clock (Rule 26), degree-native. theta0 = 0 in EVERY state.", "unit": "deg", "derived": "theta = omega_deg_per_s * t  [t = time since STATE ENTRY, pure closed form, no accumulator]" },
+      "T": { "name": "Period of one full AC cycle at the currently active f_demo", "unit": "s", "derived": "T = 1/f_demo" },
+      "X_L": { "name": "Inductive reactance (callback token from series_lcr_circuit)", "unit": "Ohm", "derived": "X_L = omega*L = 2*PI*f_demo*L" },
+      "X_C": { "name": "Capacitive reactance (callback token)", "unit": "Ohm", "derived": "X_C = 1/(omega*C) = 1/(2*PI*f_demo*C)" },
+      "X": { "name": "Net (signed) reactance — callback from series_lcr_circuit, winner-hue colour (violet X_L wins / green X_C wins)", "unit": "Ohm", "derived": "X = X_L - X_C" },
+      "Z": { "name": "Impedance — callback from series_lcr_circuit, the STATE_8 triangle hypotenuse before its power-triangle morph", "unit": "Ohm", "derived": "Z = sqrt(R^2 + X^2)" },
+      "im": { "name": "Peak (amplitude) current — the amber reference, callback from series_lcr_circuit", "unit": "A", "derived": "im = vm/Z" },
+      "phi": { "name": "Phase angle by which the SOURCE leads the current (positive = current lags = inductive dominant). Settled in series_lcr_circuit; re-used here without re-derivation.", "unit": "deg", "derived": "phi = atan2(X, R) * 180/PI" },
+      "cosphi": { "name": "Power factor — fraction of apparent power that is real. Dual-labeled once at STATE_4 (power factor cos phi), bare thereafter.", "unit": "dimensionless", "derived": "cosphi = R/Z  [= P/S identically, STATE_4 closure]" },
+      "sinphi": { "name": "Signed quadrature fraction (never separately named on-canvas; feeds Q and i_perp only)", "unit": "dimensionless", "derived": "sinphi = X/Z" },
+      "V_rms": { "name": "RMS source voltage — the DC-equivalent rating, callback from ac_voltage_resistor", "unit": "V", "derived": "V_rms = vm/sqrt(2)" },
+      "I_rms": { "name": "RMS current — displayed at 3dp so the STATE_4/5/7 displayed-addend chips close", "unit": "A", "derived": "I_rms = im/sqrt(2)" },
+      "v_t": { "name": "Instantaneous SOURCE voltage — strip cyan trace / fan cyan arrow projection", "unit": "V", "derived": "v_t = vm * sin(radians(theta + phi))" },
+      "i_t": { "name": "Instantaneous current — strip amber trace / fan amber arrow projection / bead-drive value", "unit": "A", "derived": "i_t = im * sin(radians(theta))" },
+      "p_t": { "name": "Instantaneous TOTAL circuit power p=v*i — SIGNED, can go negative off resonance (L/C returning energy). The literal pointwise product of v_t and i_t at the SAME theta sample — never an independently-computed curve that merely agrees (Rule 32a).", "unit": "W", "derived": "p_t = v_t * i_t" },
+      "p_R_t": { "name": "Instantaneous power actually DISSIPATED in R alone — ALWAYS >= 0, the correct driver for the heater glow. Distinct from the signed p_t, which includes the L/C borrowed-and-returned share.", "unit": "W", "derived": "p_R_t = i_t^2 * R" },
+      "P": { "name": "Average (real) power — the wattmeter's steady reading, the STATE_4/7/9 payoff.", "unit": "W", "derived": "P = V_rms*I_rms*cosphi = I_rms^2*R  [three equivalent routes, STATE_7 closure]" },
+      "S": { "name": "Apparent power — the naive volts-times-amps ceiling. Concept and value are CORE, debuting at STATE_4 (needed for the first misconception pivot); only the formal VA-unit power-triangle-leg treatment is extended, confined to STATE_8.", "unit": "VA", "derived": "S = V_rms*I_rms  [= I_rms^2*Z identically]" },
+      "Q": { "name": "Reactive power. Dual-labeled 'reactive power Q (VAR)' at first mention (STATE_8), NEVER 'Q factor' — this concept declares no f0/delta_f/sharpness-Q variable anywhere; that symbol belongs to series_lcr_circuit only.", "unit": "VAR", "derived": "Q = V_rms*I_rms*sinphi = I_rms^2*X" },
+      "i_par": { "name": "In-phase (power-hue) current component — the shadow that does work, STATE_5 primary aha", "unit": "A", "derived": "i_par = I_rms*cosphi" },
+      "i_perp": { "name": "Quadrature (wattless) current component — dual-labeled once at STATE_5/6 as 'wattless (idle) current'", "unit": "A", "derived": "i_perp = I_rms*sinphi" },
+      "V_C_t": { "name": "Instantaneous capacitor voltage — callback formula from series_lcr_circuit (lags i by 90deg), feeds E_C_t only", "unit": "V", "derived": "V_C_t = im*X_C*sin(radians(theta - 90))" },
+      "E_L_t": { "name": "Instantaneous inductor energy — breathes 0..E_L_peak, net zero per cycle (STATE_7)", "unit": "J", "derived": "E_L_t = 0.5*L*i_t^2" },
+      "E_L_peak": { "name": "Peak inductor energy at the current im", "unit": "J", "derived": "E_L_peak = 0.5*L*im^2" },
+      "E_C_t": { "name": "Instantaneous capacitor energy — breathes 0..E_C_peak, net zero per cycle, OPPOSITE phase from E_L_t (quadrature energy exchange)", "unit": "J", "derived": "E_C_t = 0.5*C*V_C_t^2" },
+      "E_C_peak": { "name": "Peak capacitor energy", "unit": "J", "derived": "E_C_peak = 0.5*C*(im*X_C)^2" },
+      "E_R_t": { "name": "Cumulative energy dissipated in R since STATE ENTRY (Rule 26 state-local clock) — closed-form integral of i(t)^2*R dt, never an accumulator. Monotone non-decreasing by construction.", "unit": "J", "derived": "E_R_t = P*t - (P/(2*omega))*sin(2*omega*t)   [t in s, sin argument in TRUE radians via omega=2*PI*f_demo]" },
+      "bead_frac": { "name": "Bead position along the shared loop path (heater-coil-plates, ONE stream, never splits/pools) — callback pattern from series_lcr_circuit", "unit": "dimensionless", "derived": "bead_frac = 0.5 - A_frac*cos(radians(theta))" },
+      "A_frac": { "name": "Bead-excursion visual scale, calibrated to 0.30 at defaults", "unit": "dimensionless", "derived": "A_frac = clamp(0.30 * (im/omega) / (2.00/1.5708), 0.08, 0.42)" },
+      "P_REF_R": { "name": "FIXED heater-glow reference (never self-normalized per-frame) — equals both vm*im and R*im^2 at resonance defaults (20.0 W)", "unit": "W", "constant": 20.0 },
+      "f_glide_deltaT": { "name": "STATE_3 f-glide schedule duration (0.25 to 0.50 Hz)", "unit": "s", "constant": 3.0 },
+      "R_cycle_down_deltaT": { "name": "STATE_6 R-cycle leg A duration (5.0 to 2.0 Ohm)", "unit": "s", "constant": 1.2 },
+      "R_cycle_hold_deltaT": { "name": "STATE_6 R-cycle paradox-hold beat at R=2.0 Ohm", "unit": "s", "constant": 1.0 },
+      "R_cycle_up_deltaT": { "name": "STATE_6 R-cycle leg A-prime duration (2.0 to 5.0 Ohm, EASED — never an instant snap)", "unit": "s", "constant": 1.2 }
+    },
+    "computed_outputs": {
+      "v_display": { "formula": "vm*Math.sin((theta+phi)*Math.PI/180)" },
+      "i_display": { "formula": "im*Math.sin(theta*Math.PI/180)" },
+      "p_display": { "formula": "v_display*i_display" },
+      "pR_display": { "formula": "i_display*i_display*R" },
+      "XL_display": { "formula": "2*Math.PI*f_demo*L" },
+      "XC_display": { "formula": "1/(2*Math.PI*f_demo*C)" },
+      "X_display": { "formula": "XL_display-XC_display" },
+      "Z_display": { "formula": "Math.sqrt(R*R+X_display*X_display)" },
+      "im_display": { "formula": "vm/Z_display" },
+      "phi_display": { "formula": "Math.atan2(X_display,R)*180/Math.PI" },
+      "cosphi_display": { "formula": "R/Z_display" },
+      "sinphi_display": { "formula": "X_display/Z_display" },
+      "Vrms_display": { "formula": "vm/Math.sqrt(2)" },
+      "Irms_display": { "formula": "im_display/Math.sqrt(2)" },
+      "P_display": { "formula": "Vrms_display*Irms_display*cosphi_display" },
+      "S_display": { "formula": "Vrms_display*Irms_display" },
+      "Q_display": { "formula": "Vrms_display*Irms_display*sinphi_display" },
+      "ipar_display": { "formula": "Irms_display*cosphi_display" },
+      "iperp_display": { "formula": "Irms_display*sinphi_display" },
+      "EL_display": { "formula": "0.5*L*i_display*i_display" },
+      "VC_display": { "formula": "im_display*XC_display*Math.sin((theta-90)*Math.PI/180)" },
+      "EC_display": { "formula": "0.5*C*VC_display*VC_display" },
+      "ER_display": { "formula": "P_display*t - (P_display/(2*(2*Math.PI*f_demo)))*Math.sin(2*(2*Math.PI*f_demo)*t)" },
+      "beadfrac_display": { "formula": "0.5 - A_frac*Math.cos(theta*Math.PI/180)" }
+    },
+    "formulas": {
+      "reference_convention": "i(t)=im sin(theta) is the 0-phase reference; v(t)=vm sin(theta+phi) is the SOURCE, offset +phi ahead — inherited verbatim from series_lcr_circuit's resolved convention",
+      "instantaneous_power": "p(t)=v(t)*i(t) — the literal pointwise product, sample-for-sample with the strip's own v/i traces (STATE_2/3)",
+      "resistor_power": "p_R(t)=i(t)^2*R >= 0 always — the ONLY power that ever actually lands (STATE_7); distinct from the SIGNED total p(t)=v*i which includes the L/C borrowed-and-returned share",
+      "average_power": "P = <p(t)> = V_rms*I_rms*cosphi = I_rms^2*R (STATE_4/7/9)",
+      "apparent_power": "S = V_rms*I_rms (STATE_4, CORE — the volts-times-amps ceiling)",
+      "power_factor": "cosphi = R/Z = P/S (STATE_4 callback to the delivered impedance triangle)",
+      "reactive_power": "Q = V_rms*I_rms*sinphi = I_rms^2*X (STATE_8, EXTENDED — dual-label 'reactive power Q (VAR)' once, never 'Q factor')",
+      "current_components": "i_par = I_rms*cosphi (power-hue, along v); i_perp = I_rms*sinphi (wattless, perpendicular to v); the vector sum i_par + i_perp = i (STATE_5)",
+      "energy_ledger": "E_L(t)=0.5*L*i(t)^2, E_C(t)=0.5*C*v_C(t)^2 both breathe (net zero per cycle, opposite phase); E_R(t)=P*t-(P/(2*omega))*sin(2*omega*t) ratchets monotonically (STATE_7)",
+      "power_triangle": "P=I_rms^2*R, Q=I_rms^2*X, S=I_rms^2*Z — literally the impedance triangle (R,X,Z) uniformly scaled by I_rms^2, right angle preserved (STATE_8)",
+      "derivation_chain": "p(t) = i(t)*v(t) = im*vm*sin(theta)*sin(theta+phi) = (vm*im/2)*[cos(phi) - cos(2*theta+phi)] -> average = (vm*im/2)*cos(phi) = V_rms*I_rms*cos(phi) (STATE_9)"
+    },
+    "constraints": [
+      "P = I_rms^2*R = V_rms*I_rms*cosphi at every steady state — three routes, one number.",
+      "S = V_rms*I_rms is the CEILING; P <= S always, with equality only at cosphi=1 (unity power factor, resonance in this build).",
+      "Q is never lost energy — it is borrowed and returned by L and C every cycle (net zero) — but the wires still carry the current that creates it.",
+      "cosphi = R/Z is bounded in [0,1] for any R>0, Z>=R>0 — never negative, never exceeds 1.",
+      "S^2 = P^2 + Q^2 is exact in TRUE (unrounded) values — the displayed 2dp addends do NOT close this identity; never render it as a chippable arithmetic equation.",
+      "p_R(t) = i(t)^2*R is never negative — the resistor never returns energy; only the TOTAL p(t)=v*i (which includes the L/C exchange) goes negative off resonance."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Only the current's in-phase shadow does work — the rest flows forever, spending nothing.",
+    "visual_confirmation": "The amber current arrow splits into two dashed components; only the one aligned with the voltage reproduces the meter's 3.08 W."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
+    "wattless": ["STATE_6", "STATE_7"],
+    "power_triangle": ["STATE_8"],
+    "derivation": ["STATE_9"],
+    "exploration": ["STATE_10"],
+    "exit_pills": {
+      "foundational_to_wattless": "So where do the other 0.653 amps go? →"
+    }
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during authoring, so zero external syllabus verification happened. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.7 content) — with ONE named exception: the STATE_8 power TRIANGLE (P/Q/S as a matched labeled trio, VAR unit) is a JEE-adjacent extension whose CBSE board-weighting is NOT independently confirmed, so treat STATE_8 as needs_teacher_verification even though the row overall is marked verified (the schema has no per-state sub-cell; this note is the honest record of that gap). Every other curriculum row carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.7 Power in AC Circuit: The Power Factor — instantaneous power p=vi, average power P=V_rms I_rms cos(phi), apparent power and the power factor cos(phi)=R/Z, wattless current, and the power triangle (STATE_8 is JEE-relevant but its CBSE-board weighting is NOT independently verified — do not read STATE_8 as verified alongside the rest of this row); STATE_9 is NCERT's own algebra (product-to-sum derivation of average power).",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "partial",
+        "syllabus_unit": "rms values and mean power in a purely resistive AC circuit are believed in-syllabus; power factor / reactive power for a general RLC circuit believed absent",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "No AC power-factor analysis believed present at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "absent",
+        "syllabus_unit": "AC power-factor analysis believed removed in the 2023 syllabus reform",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "DC circuits only, believed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "absent",
+        "syllabus_unit": "AC power-factor formalism believed beyond the CED",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "AC power factor believed not covered at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 10,
+    "states": {
+      "STATE_1": {
+        "title": "The wattmeter reads ten — volts times amps seems to work",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_top_label", "position": { "x": 380, "y": 60 }, "text": "A meter for watts", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s1_mid_label", "position": { "x": 200, "y": 250 }, "text": "7.07 V × 1.414 A = 10.0 W", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s1_focal_label", "position": { "x": 560, "y": 400 }, "text": "Same as the bare heater's own value — park that", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A wattmeter docks onto our familiar heater, coil, and capacitor loop.", "glow": "meter" },
+            { "id": "s1_2", "text_en": "Watch the needle climb, then settle right at ten watts.", "glow": "meter" },
+            { "id": "s1_3", "text_en": "Seven oh seven volts times one point four one four amps gives that number exactly.", "glow": "meter" },
+            { "id": "s1_4", "text_en": "A bare heater alone eats exactly this much; a lone coil eats none. Does volts times amps always work?", "glow": "meter" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Power is the instant product — a double-frequency wave",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_top_label", "position": { "x": 380, "y": 60 }, "text": "Multiply v and i", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s2_mid_label", "position": { "x": 200, "y": 250 }, "text": "p(t) = v(t) · i(t) — a double-frequency wave", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s2_focal_label", "position": { "x": 560, "y": 400 }, "text": "Average sits exactly on the needle — 10.0 W", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Beneath the loop, a matching pair of graphs appears: voltage and current, in step.", "glow": "strip" },
+            { "id": "s2_2", "text_en": "A cursor walks one full cycle, multiplying voltage and current together at every instant.", "glow": "p_pane", "scenario_cue": "cursor_walk" },
+            { "id": "s2_3", "text_en": "The result is a new wave at double the frequency, touching zero, never dipping below.", "glow": "p_pane" },
+            { "id": "s2_4", "text_en": "Its average sits exactly on the needle: ten watts, the same number.", "glow": "p_pane" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Off the home frequency, part of every cycle flows backward",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_top_label", "position": { "x": 380, "y": 60 }, "text": "The wave dips negative", "color": "#90A4AE" },
+          { "type": "annotation", "id": "s3_mid_label", "position": { "x": 200, "y": 250 }, "text": "Average slides 10.0 → 3.08 W", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s3_focal_label", "position": { "x": 560, "y": 400 }, "text": "Part of every cycle now flows back", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Slide the frequency away from home, and watch the beads slow down.", "glow": "p_pane" },
+            { "id": "s3_2", "text_en": "The current's crest visibly drifts late behind the voltage's: something in this loop pushes back.", "glow": "p_pane" },
+            { "id": "s3_3", "text_en": "Watch the wave beneath sink below zero; part of every cycle now flows backward.", "glow": "p_pane" },
+            { "id": "s3_4", "text_en": "The average slides from ten watts down toward three watts. Try the frequency yourself.", "glow": "p_pane" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Volts times amps is only apparent power",
+        "duration": 17,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["apparent_vs_real_power", "why_power_less_than_v_times_i", "volt_ampere_vs_watt_units"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_top_label", "position": { "x": 380, "y": 60 }, "text": "Real is apparent × cos φ", "color": "#EF5350" },
+          { "type": "annotation", "id": "s4_mid_label", "position": { "x": 200, "y": 250 }, "text": "7.07 × 0.785 = 5.55 W? — struck", "color": "#EF5350" },
+          { "type": "annotation", "id": "s4_focal_label", "position": { "x": 560, "y": 400 }, "text": "cos φ = R/Z = 0.555 — the power factor", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Volts times amps predicts five point five five watts.", "glow": "chips", "scenario_cue": "ghost_swing" },
+            { "id": "s4_2", "text_en": "The real needle holds at three point zero eight — that guess is struck out.", "glow": "chips", "scenario_cue": "chip_strike" },
+            { "id": "s4_3", "text_en": "Divide the two and you get zero point five five five.", "glow": "chips", "scenario_cue": "ratio_reveal" },
+            { "id": "s4_4", "text_en": "That's the circuit's own angle, cosine phi, the power factor — only that fraction survives as real power.", "glow": "chips", "scenario_cue": "naming" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Average AC power is simply V_rms times I_rms — the volts-times-amps product.",
+            "visual_counter": "A ghost needle swings to the naive 5.55 W prediction while the real needle holds at 3.08 W; the struck chip '7.07 × 0.785 = 5.55 W?' sits beside the unmoving real reading.",
+            "one_line_fix": "Volts times amps is only the apparent power — the ceiling; the real power is that times cos φ, the fraction that survives the circuit's own angle."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Only the in-phase shadow of the current does work",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["power_factor_physical_meaning", "in_phase_current_component", "cos_phi_as_projection"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_top_label", "position": { "x": 380, "y": 60 }, "text": "Split the current arrow", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s5_mid_label", "position": { "x": 200, "y": 250 }, "text": "I_rms cos φ = 0.435 A — does the work", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s5_focal_label", "position": { "x": 560, "y": 400 }, "text": "I_rms sin φ = 0.653 A — spends nothing", "color": "#B388FF" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Freeze the spinning current arrow, fifty six degrees behind the voltage.", "glow": "fan" },
+            { "id": "s5_2", "text_en": "It splits into two: one part lined up with the voltage, doing all the work.", "glow": "i_split", "scenario_cue": "split_reveal_par" },
+            { "id": "s5_3", "text_en": "The other part sits perpendicular; it flows, but spends nothing at all.", "glow": "i_split", "scenario_cue": "split_reveal_perp" },
+            { "id": "s5_4", "text_en": "Seven oh seven volts times that one working shadow gives three point zero eight watts again.", "glow": "i_split" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "More current, fewer watts — the wattless current",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_top_label", "position": { "x": 380, "y": 60 }, "text": "More amps, fewer watts", "color": "#EF5350" },
+          { "type": "annotation", "id": "s6_mid_label", "position": { "x": 200, "y": 250 }, "text": "I_rms: 0.785 → 0.911 A (up)", "color": "#FFB300" },
+          { "type": "annotation", "id": "s6_focal_label", "position": { "x": 560, "y": 400 }, "text": "P: 3.08 → 1.66 W (down) — wattless current", "color": "#FF6E40" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Watch resistance drop from five ohms to two; the beads speed up.", "glow": "meter" },
+            { "id": "s6_2", "text_en": "Current climbs to point nine one one amps.", "glow": "meter" },
+            { "id": "s6_3", "text_en": "Yet the needle falls to one point six six watts.", "glow": "meter" },
+            { "id": "s6_4", "text_en": "Here reactance dominates: at the home frequency, dropping resistance does the opposite.", "glow": "meter" },
+            { "id": "s6_5", "text_en": "These extra amps are wattless; they flow, but never spend a joule.", "glow": "meter" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A bigger AC current always means bigger power consumption.",
+            "visual_counter": "Resistance steps from 5.0 to 2.0 Ω: the current visibly climbs from 0.785 to 0.911 A while the wattmeter needle FALLS from 3.08 to 1.66 W, and the fan's perpendicular component visibly fattens.",
+            "one_line_fix": "Only the in-phase part of the current does work — the extra amps are wattless: they shuttle energy back and forth without ever spending it."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "All the real power lands in the heater",
+        "duration": 17,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_top_label", "position": { "x": 380, "y": 60 }, "text": "Only the heater keeps it", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s7_mid_label", "position": { "x": 200, "y": 250 }, "text": "E_L, E_C breathe — net zero every cycle", "color": "#B388FF" },
+          { "type": "annotation", "id": "s7_focal_label", "position": { "x": 560, "y": 400 }, "text": "E_R climbs +6.15 J every cycle, alone", "color": "#FF6E40" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Three energy gauges dock: coil, plates, and heater, side by side.", "glow": "gauges" },
+            { "id": "s7_2", "text_en": "Coil and plates breathe in and out each cycle; net zero, borrowed and returned.", "glow": "gauges" },
+            { "id": "s7_3", "text_en": "Only the heater climbs; six point one five joules, every cycle, never giving any back.", "glow": "gauges" },
+            { "id": "s7_4", "text_en": "That's three point zero eight watts again, the meter's number, a third way.", "glow": "gauges" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "The impedance triangle becomes the power triangle",
+        "duration": 18,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s8_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["power_triangle_pqs_relations", "reactive_power_var_meaning", "kva_vs_kw_rating"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_top_label", "position": { "x": 380, "y": 60 }, "text": "Same triangle, watt units", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s8_mid_label", "position": { "x": 200, "y": 250 }, "text": "P = 3.08 W · Q = 4.62 VAR · S = 5.55 VA", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s8_focal_label", "position": { "x": 560, "y": 400 }, "text": "cos φ = P/S = 0.555 — same number", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "The impedance triangle detaches; watch it rescale from ohms into watts.", "glow": "triangle" },
+            { "id": "s8_2", "text_en": "Its three legs relabel: three oh eight watts real, four six two reactive, five five five apparent.", "glow": "triangle", "scenario_cue": "rescale_morph" },
+            { "id": "s8_3", "text_en": "The reactive power isn't lost; it's borrowed and returned, but the wires still carry it.", "glow": "triangle" },
+            { "id": "s8_4", "text_en": "At the home frequency, this triangle collapses flat; every watt is real.", "glow": "triangle" }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "The average power, derived from first principles",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s9_focal_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_top_label", "position": { "x": 380, "y": 60 }, "text": "Average the product wave", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s9_mid_label", "position": { "x": 200, "y": 250 }, "text": "⟨p⟩ = (v_m i_m/2) cos φ", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s9_focal_label", "position": { "x": 560, "y": 400 }, "text": "5.55 × 0.555 = 3.08 W — the needle, in algebra", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Power is current times voltage, written out fully.", "glow": "formula", "scenario_cue": "link1" },
+            { "id": "s9_2", "text_en": "A product to sum identity splits that into a constant plus a wiggle.", "glow": "formula", "scenario_cue": "link2" },
+            { "id": "s9_3", "text_en": "That wiggle term averages to zero over a full cycle.", "glow": "formula", "scenario_cue": "link3" },
+            { "id": "s9_4", "text_en": "What survives is rms voltage times rms current times cosine phi.", "glow": "formula", "scenario_cue": "link4" },
+            { "id": "s9_5", "text_en": "Plug in our numbers, and it lands at three point zero eight watts.", "glow": "formula", "scenario_cue": "link5" }
+          ]
+        }
+      },
+      "STATE_10": {
+        "title": "Explore — the whole power story, live",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s10_focal_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s10_top_label", "position": { "x": 380, "y": 60 }, "text": "All yours", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s10_mid_label", "position": { "x": 200, "y": 250 }, "text": "Drag f, R, L, C, v_m — watch it all move", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s10_focal_label", "position": { "x": 560, "y": 400 }, "text": "P = V_rms · I_rms · cos φ", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s10_1", "text_en": "It's all yours — drag peak voltage, frequency, resistance, inductance, and capacitance, and watch the whole power story move together.", "glow": "formula" }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered AC power and the power factor when they can (1) explain that instantaneous power p(t)=v·i oscillates at double the source frequency around a non-zero average, and that an averaging wattmeter reads that average, not the swinging instant; (2) compute average power as P=V_rms·I_rms·cos φ and explain why this is always at most the apparent power V_rms·I_rms, with equality only at unity power factor; (3) explain the power factor cos φ = R/Z as the fraction of the current in phase with the voltage, and identify the wattless (out-of-phase) component I_rms sin φ that flows without delivering energy; (4) explain why a rising current does not always mean rising power, since a growing wattless share can make current and power move in opposite directions; (5) state that in a series LCR circuit all real power lands in the resistor alone (P=I_rms²R), while the inductor and capacitor only borrow and fully return energy each cycle; and (6) read the power triangle (P, Q, S) as the impedance triangle scaled by I_rms², with cos φ = P/S.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "In an AC circuit, a wattmeter's needle stays steady while the instant-by-instant power visibly swings up and down as you watch the product wave. What is actually happening?",
+        "options": {
+          "A": "The instantaneous power p(t)=v(t)i(t) genuinely oscillates at TWICE the source frequency about a steady, non-zero average — the needle reads that average, not the swinging instant value",
+          "B": "The oscillation happens at the same frequency as the source voltage, not double it",
+          "C": "The wattmeter must be broken, since a true power reading should never swing",
+          "D": "Power only ever equals the average value — it never actually swings instant to instant"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Squaring or multiplying a sine by itself doubles the frequency (sin²ωt ~ cos2ωt) — it's easy to assume the product wave simply mirrors the source's own frequency",
+          "C": "This treats a physically real double-frequency oscillation as an instrument fault rather than the true instantaneous behaviour",
+          "D": "This denies that p(t)=v·i is a genuine time-varying quantity — the meter's steady reading is only the cycle average, not the instant-by-instant truth"
+        },
+        "tested_idea": "Instantaneous power p(t)=v·i genuinely oscillates at double the source frequency about a non-zero average; a wattmeter reads that average, not the swinging instant.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "If you doubled the source frequency, would the product wave's own oscillation frequency also double?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A circuit's rms voltage is 7.07 V and its rms current is 0.785 A. A wattmeter, however, reads only 3.08 W. What explains the gap?",
+        "options": {
+          "A": "The average power is V_rms·I_rms·cos φ, not V_rms·I_rms alone — only the fraction of current in phase with the voltage, set by the power factor cos φ, delivers real power",
+          "B": "7.07 × 0.785 = 5.55 W is the true average power; the wattmeter itself is reading incorrectly",
+          "C": "Some of the power is lost as heat somewhere else in the circuit before reaching the meter",
+          "D": "The rms values themselves must be wrong if they don't multiply to the meter's reading"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — volts times amps is only the APPARENT power, the ceiling, not the delivered real power",
+          "C": "Nothing is 'lost' — the missing amount is the wattless portion of the current that never did work in the first place, not a heat leak",
+          "D": "The rms values are exactly right; it is the multiplication rule itself (real power equals apparent power alone) that fails whenever a phase angle exists"
+        },
+        "tested_idea": "Real (average) power equals apparent power times the power factor cos φ; volts times amps alone over-predicts whenever a phase angle exists.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "If the power factor were exactly 1, would the wattmeter's reading equal V_rms times I_rms exactly?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Why does only the current's in-phase component, I_rms cos φ, deliver power, while the perpendicular component I_rms sin φ does not?",
+        "options": {
+          "A": "Only the component of current IN PHASE with the voltage (the projection I_rms cos φ) delivers energy; the perpendicular component (I_rms sin φ) flows but is never aligned with the voltage doing work",
+          "B": "The perpendicular component is lost as heat in the coil and capacitor before it can do work",
+          "C": "cos φ is just efficiency — it measures how much of the current's energy the circuit wastes",
+          "D": "The split is arbitrary — any current could be divided this way, it's just a bookkeeping trick with no physical meaning"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Nothing is lost as heat in an ideal L or C — the perpendicular current is genuinely wattless, not dissipated, exactly as the energy ledger shows",
+          "C": "Efficiency implies energy is consumed and wasted; the perpendicular current is never consumed at all — it is simply out of step with the voltage",
+          "D": "The split is a real physical decomposition: only the in-phase projection lines up with the voltage doing work; it isn't an arbitrary choice"
+        },
+        "tested_idea": "Power delivery depends on the phase alignment between voltage and current; only the in-phase current projection (I_rms cos φ) actually does work.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "If the phase angle φ were 90°, what would I_rms cos φ equal, and what would that mean for the delivered power?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A circuit's resistance is lowered and the current rises noticeably, yet the wattmeter's reading falls. Is this possible?",
+        "options": {
+          "A": "Yes — a large current can carry mostly wattless (out-of-phase) current; lowering R here strengthens the reactance's dominance, so more amps flow while less real power is delivered",
+          "B": "No — more current in a circuit always means more power is being consumed",
+          "C": "No — this can only happen if the wattmeter is broken",
+          "D": "Yes, but only because some current is being lost through leakage before reaching the resistor"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — current and power move together only when the power factor stays fixed; when reactance dominates, they can move in OPPOSITE directions",
+          "C": "The meter reading is genuinely correct — physically, dropping R here increases the wattless (idle) share of the current, so real power really does fall",
+          "D": "There is no leakage in this circuit — every amp of current is real amperage, it is simply mostly wattless (out of phase), not physically vanishing"
+        },
+        "tested_idea": "A rising current does not guarantee rising power — when reactance dominates, more current can be almost entirely wattless, so power can fall even as current rises.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "At resonance, where reactance is already zero, would dropping R the same way raise or lower the power — and why is the answer different?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "In a series LCR circuit, where does the real (average) power actually get dissipated, and how is it calculated?",
+        "options": {
+          "A": "All of it lands in the resistor alone — P = I_rms²·R; the inductor and capacitor only borrow and fully return energy every cycle, dissipating nothing",
+          "B": "It is shared among the resistor, inductor, and capacitor in proportion to their reactances",
+          "C": "It is dissipated equally by all three elements, since they all oppose the current",
+          "D": "It depends only on the source voltage, not on which elements are present"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the demoted belief that reactive elements 'consume their share' — the energy ledger shows L and C returning every joule they borrow, net zero per cycle",
+          "C": "Opposing current (reactance) is not the same as dissipating energy — only a resistor actually converts electrical energy to heat",
+          "D": "The power delivered depends on BOTH the source and which elements are present — a different circuit at the same voltage dissipates a different amount"
+        },
+        "tested_idea": "In a series LCR circuit, ALL real power is dissipated in the resistor alone (P=I_rms²R); the inductor and capacitor borrow and fully return energy each cycle, dissipating nothing.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "If the resistor were removed entirely (a pure LC loop), what would the average power delivered by the source be, and why?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "At this circuit's resonant (home) frequency, a wattmeter reads exactly V_rms times I_rms. What does that tell you about the power factor there?",
+        "options": {
+          "A": "The power factor cos φ equals exactly 1 at resonance — impedance collapses to pure resistance, so the current is perfectly in phase with the voltage",
+          "B": "The power factor must be zero at resonance, since resonance is about the reactive elements cancelling",
+          "C": "The power factor cannot be determined from this observation alone",
+          "D": "Resonance has no effect on the power factor — it is set only by the resistor's value"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This confuses 'the reactances cancel' with 'the power factor vanishes' — cancelling reactance makes the circuit purely resistive, which gives the MAXIMUM power factor (1), not zero",
+          "C": "Watching the wattmeter reading equal V_rms·I_rms exactly IS the signature of cos φ = 1 — apparent power and real power coincide only when the power factor is unity",
+          "D": "The power factor depends on the whole circuit's impedance triangle (R, X, Z), and resonance directly sets X to zero, which directly sets cos φ to 1"
+        },
+        "tested_idea": "At resonance, net reactance is zero, impedance equals resistance alone, and the power factor is exactly 1 — apparent and real power coincide.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "Off resonance, is the power factor ever exactly 1 again for a different combination of L and C at the same frequency?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q6"],
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q1"],
+      "STATE_4": ["Q2"],
+      "STATE_5": ["Q3"],
+      "STATE_6": ["Q4"],
+      "STATE_7": ["Q5"]
+    },
+    "non_assessed_states": ["STATE_8", "STATE_9", "STATE_10"]
+  },
+  "field_3d_config": {
+    "scenario_type": "ac_power",
+    "explorer_id": "ac_power_factor_explorer",
+    "slider_controls": {
+      "vm": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Peak voltage vₘ" },
+      "f_demo": { "min": 0.1, "max": 0.5, "step": 0.05, "default": 0.25, "label": "Frequency f" },
+      "R": { "min": 2, "max": 20, "step": 1, "default": 5.0, "label": "Resistance R" },
+      "L": { "min": 1.0, "max": 10.0, "step": 0.1, "default": 3.1831, "label": "Inductance L" },
+      "C": { "min": 0.04, "max": 0.40, "step": 0.02, "default": 0.1273, "label": "Capacitance C" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "voltage": "#4FC3F7",
+      "current": "#FFB300",
+      "real_power": "#FF6E40",
+      "reactive_power": "#B388FF",
+      "apparent_power": "#4FC3F7"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "An averaging wattmeter docks — the needle climbs to exactly V_rms times I_rms",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "A meter for watts",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "meter_dock",
+          "controls": [],
+          "theta0_deg": 0,
+          "needle_climb_at_ms": 1500,
+          "needle_climb_dur_ms": 1500,
+          "hud_show_cosphi": false,
+          "hud_show_components": false,
+          "dim_apparatus": false,
+          "glow_focal": "meter",
+          "formula_text": ""
+        }
+      },
+      "STATE_2": {
+        "label": "p(t)=v·i built instant by instant — a double-frequency wave whose average is the meter's number",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_strip", "pwr_ppane", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Multiply v and i",
+        "show_sliders": true,
+        "formula_overlay": "p(t) = v(t) · i(t)",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "product_wave",
+          "controls": [],
+          "theta0_deg": 0,
+          "cursor_walk_at_ms": 2000,
+          "hud_show_cosphi": false,
+          "hud_show_components": false,
+          "dim_apparatus": false,
+          "glow_focal": "p_pane",
+          "formula_text": "p(t) = v(t) · i(t)"
+        }
+      },
+      "STATE_3": {
+        "label": "Off the home frequency the product wave sinks below zero — average slides 10.0 → 3.08 W",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_strip", "pwr_ppane"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "The wave dips negative",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "wave_sinks",
+          "controls": ["f_demo"],
+          "theta0_deg": 0,
+          "f_glide_start_at_ms": 0,
+          "f_glide_dur_ms": 3000,
+          "f_glide_from": 0.25,
+          "f_glide_to": 0.50,
+          "hud_show_cosphi": false,
+          "hud_show_components": false,
+          "dim_apparatus": false,
+          "glow_focal": "p_pane",
+          "formula_text": ""
+        }
+      },
+      "STATE_4": {
+        "label": "V_rms·I_rms over-predicts the measured power — the ratio is cos φ = R/Z, the power factor",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_triangle", "pwr_chips", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Real is apparent × cos φ",
+        "show_sliders": true,
+        "formula_overlay": "P = V_rms · I_rms · cos φ",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "apparent_vs_real",
+          "controls": [],
+          "theta0_deg": 0,
+          "ghost_swing_at_ms": 0,
+          "chip_strike_at_ms": 1500,
+          "ratio_reveal_at_ms": 3000,
+          "naming_at_ms": 6000,
+          "hud_show_cosphi": true,
+          "hud_show_components": false,
+          "dim_apparatus": false,
+          "glow_focal": "chips",
+          "formula_text": "P = V_rms · I_rms · cos φ"
+        }
+      },
+      "STATE_5": {
+        "label": "The current splits — only the in-phase shadow I_rms cos φ delivers power",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_fan", "pwr_split", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Split the current arrow",
+        "show_sliders": true,
+        "formula_overlay": "P = V_rms · (I_rms cos φ)",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "current_split",
+          "controls": [],
+          "theta0_deg": 0,
+          "rotation_stop_at_ms": 1000,
+          "rotation_resume_at_ms": 3600,
+          "split_reveal_par_at_ms": 1000,
+          "split_reveal_perp_at_ms": 1800,
+          "hud_show_cosphi": true,
+          "hud_show_components": true,
+          "dim_apparatus": false,
+          "glow_focal": "i_split",
+          "formula_text": "P = V_rms · (I_rms cos φ)"
+        }
+      },
+      "STATE_6": {
+        "label": "R steps down and current rises while the meter falls — the extra amps are wattless",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_fan", "pwr_split", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "More amps, fewer watts",
+        "show_sliders": true,
+        "formula_overlay": "I_wattless = I_rms sin φ",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "wattless",
+          "controls": ["R"],
+          "theta0_deg": 0,
+          "r_cycle_start_at_ms": 800,
+          "r_down_dur_ms": 1200,
+          "r_hold_dur_ms": 1000,
+          "r_up_dur_ms": 1200,
+          "r_cycle_top": 5.0,
+          "r_cycle_bot": 2.0,
+          "hud_show_cosphi": true,
+          "hud_show_components": true,
+          "dim_apparatus": false,
+          "glow_focal": "meter",
+          "formula_text": "I_wattless = I_rms sin φ"
+        }
+      },
+      "STATE_7": {
+        "label": "L and C only borrow and return energy each cycle — R alone ratchets, P = I_rms² R",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_gauges", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Only the heater keeps it",
+        "show_sliders": true,
+        "formula_overlay": "P = I_rms² · R",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "energy_ledger",
+          "controls": [],
+          "theta0_deg": 0,
+          "hud_show_cosphi": true,
+          "hud_show_components": false,
+          "dim_apparatus": false,
+          "glow_focal": "gauges",
+          "formula_text": "P = I_rms² · R"
+        }
+      },
+      "STATE_8": {
+        "label": "The impedance triangle × I_rms² becomes the power triangle — P, Q, and S",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_triangle", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Same triangle, watt units",
+        "show_sliders": true,
+        "formula_overlay": "S² = P² + Q²",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "power_triangle",
+          "controls": [],
+          "theta0_deg": 0,
+          "rescale_morph_at_ms": 800,
+          "hud_show_cosphi": true,
+          "hud_show_components": false,
+          "dim_apparatus": false,
+          "glow_focal": "triangle",
+          "formula_text": "S² = P² + Q²"
+        }
+      },
+      "STATE_9": {
+        "label": "The derivation: p=vₘiₘ sinθ sin(θ+φ) averages to V_rms I_rms cos φ",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_ppane", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Average the product wave",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_power": {
+          "mode": "derivation",
+          "controls": [],
+          "theta0_deg": 0,
+          "dim_apparatus": true,
+          "link1_at_ms": 0,
+          "link2_at_ms": 2000,
+          "link3_at_ms": 4000,
+          "link4_at_ms": 6000,
+          "link5_at_ms": 8000,
+          "hud_show_cosphi": true,
+          "hud_show_components": false,
+          "glow_focal": "formula",
+          "formula_text": ""
+        }
+      },
+      "STATE_10": {
+        "label": "Explore — the whole power story under the teacher's hands",
+        "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_strip", "pwr_ppane", "pwr_fan", "pwr_split", "pwr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "P = V_rms · I_rms · cos φ",
+        "ac_power": {
+          "mode": "explore",
+          "controls": ["vm", "f_demo", "R", "L", "C"],
+          "theta0_deg": 0,
+          "hud_show_cosphi": true,
+          "hud_show_components": true,
+          "hud_show_p": true,
+          "dim_apparatus": false,
+          "glow_focal": "formula",
+          "formula_text": "P = V_rms · I_rms · cos φ"
+        }
+      }
+    }
+  }
+}

@@ -1243,3 +1243,107 @@ whole-chapter grant; founder asleep, directed autonomous continuation).
 
 **Outcome:** all 6 findings fixed + verified. NEXT: fresh founder:drive → re-dispatch founder-proxy
 Checkpoint B cycle 1 to confirm the fixes hold (+ rule on the S7 clip observation) before the seal.
+
+---
+
+## Stage 6 · 2026-07-24 · NEW field_3d scenario_type `ac_power` (ac_power_factor build)
+
+**Rollback point (pre-dispatch HEAD):** `5bd401a`
+
+**Routing:** NOT a founder-proxy FAIL. Class-B triage from the architect skeleton
+(`docs/loop_runs/ch7/ac_power_factor/skeleton.md` §0b), founder-proxy Checkpoint A DESIGN_OK (no fix cycle).
+`json_author` was BLOCKED until this landed. `physics_block.md` supplied every functional form (incl.
+`p_R_t=i²R` heater-glow driver, fixed `P_REF_R=20.0`, closed-form `E_R(t)`).
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, general-purpose stand-in, trial file-only RESTATED.
+
+**Built:** `scenario_type: "ac_power"` (prefix `pwr_`, 10 states) — an ADDITIVE clone-sibling of `ac_series_lcr`
++ the element scenarios' power machinery (`acl_meter`/`ac*_graph_p`/`acl_u_gauge`), zero sealed-internal edits.
+Averaging wattmeter (never dimmed) reading closed-form P; p(t)=v·i product pane (pointwise product of the SAME
+strip sample arrays, time-axis pixel-aligned with the strip) with signed lobe fills + ⟨p⟩ line; current-
+component split (i∥/i⊥); the impedance triangle × I²ᵣₘₛ morph → power triangle (3 labeled legs, ≥12px vertex
+margins BOTH winner cases — closes the slcr clip class in-clone); 3 energy gauges (E_L/E_C net-zero, E_R
+closed-form ratchet); heater warm-glow on p_R_t vs fixed P_REF_R; S9 derivation chain. All motion closed-form
+of state-local t (B1).
+
+**Two founder decisions built with SAFE DEFAULTS:** (a) compose routine = LOCAL `pwr_` clone (NOT promotion) —
+now the FOURTH copy (acc/phs/slcr/pwr); filed as a directive scar (`field3d_subscript_compose_routine_cloned_
+four_times`, MODERATE/OPEN) for the founder's chapter-end promotion ruling. (b) real-power hue = warm coral
+`#FF6E40` contrast-checked vs amber i `#FFB300` (the i∥ roots at the amber arrow — A4); reactive-winner violet
+`#B388FF`/green `#69F0AE`; apparent S = cyan `#4FC3F7`.
+
+**Files touched:** `field_3d_renderer.ts` (+991/−2: 34 `pwr_` functions + 6 additive glue sites) +
+`deriveStateMeta.ts` (+41/−1: registration + per-mode pins for all 10 modes).
+
+**Verify chain (§3b) — independently re-run by the orchestrator:** check:renderer-syntax PASS (field_3d
+2507 KB) · tsc 0 · validate 129/129 PASS · diff scope exactly the 2 engine files, sibling-body contamination
+grep 0 (5 hits = comment attribution + the permitted `#sliders` exclusion NOT-list), 0 backticks, clock guard
+0 · regression reseed + visual:eyes capacitance 44/44 0-failed (H2 0.00% vs locked baseline) + series_lcr_circuit
+47/47 0-failed (the clone SOURCE) · standalone numeric check reproduces every physics_block number · THE EYE on
+ac_power_factor DEFERRED (no concept JSON — json_author next).
+
+**JSON contract for `json_author`:** scenario_type `ac_power`; `field_lines` NOT required; slider_controls
+vm 2/20/1/10.0 · f_demo 0.1/0.5/0.05/0.25 · R 2/20/1/5.0 · L 1.0/10.0/0.1/3.1831 (off-grid) · C 0.04/0.40/0.02/
+0.1273 (off-grid); CLOSED visible_elements {pwr_circuit,pwr_beads,pwr_meter,pwr_strip,pwr_ppane,pwr_fan,pwr_split,
+pwr_triangle,pwr_gauges,pwr_chips,pwr_formula} (circuit+beads+meter in EVERY state — 32d); CLOSED glow-keys
+{circuit,beads,meter,strip,p_pane,fan,i_split,triangle,gauges,chips,formula}; 10 modes {meter_dock,product_wave,
+wave_sinks,apparent_vs_real,current_split,wattless,energy_ledger,power_triangle,derivation,explore}; per-state
+display flags + cue `*_at_ms` per the dispatch report (persisted in this run's notes); compose ASCII tokens
+V_rms/I_rms/v_m/i_m/E_R/E_L/E_C. depth_ring core S1–S7,S10 / extended S8 / advanced S9.
+
+**Documented simplifications (5):** wattmeter reads closed-form P (no running trailing-average, B1-safe); strip
+quasi-static during S3 glide (slcr precedent); energy gauges are a 2D canvas pane (bars normalized, true J in
+the number); fan components peak-scaled (RMS in labels); ghost needle semi-transparent cyan (Three.js can't dash).
+
+**Commit:** `9df14e3` — `feat(engine-loop): NEW field_3d scenario_type ac_power [peter_parker:renderer_primitives]`.
+
+**Runaway guard:** engine-loop commit #17 this chapter run (past the §3b 8-commit guard, under the founder's
+whole-chapter grant; founder asleep, directed autonomous continuation through ac_power_factor).
+
+**Outcome:** Stage 6 engine delta PASSED — full verify chain green, zero regression, physics exact. `json_author`
+may now proceed against the JSON contract.
+
+---
+
+## Stage 6b · 2026-07-24 · Checkpoint B cycle-0 fix bundle `ac_power` (ac_power_factor)
+
+**Rollback point (pre-dispatch HEAD):** `9df14e3`
+
+**Trigger:** founder-proxy Checkpoint B cycle 0 = **FIX(engine)** — 1 BLOCKING + 3 ride-along, all in the
+`ac_power`/`pwr_` scenario. Both AI reviewers AGREED on the blocking finding (quality-auditor FAIL + eye-walker
+MAJOR); founder-proxy re-derived the rounding, confirmed it, routed the fix. F2 REFUTED (cues DO stage). F3
+CONFIRMED-absent-REFUTED-as-defect (dead JSON cue). Full adjudication:
+`docs/loop_runs/ch7/ac_power_factor/founder_proxy_report_checkpointB.md`.
+
+**Fixed (field_3d_renderer.ts, +26/−10, one file):**
+- **F1 (BLOCKING):** S4 apparent-power chip rendered `7.07 × 0.784 = 5.54` (true I_rms=0.784498 single-rounds
+  to 0.784, not the number-lock's double-rounded 0.785), contradicting S=5.55 in the ratio chip + S8 leg +
+  narration. Fix: `pwrDrawChips` (:29831) renders `"V_rms × I_rms = " + phys.S.toFixed(2) + " W?"` (symbolic
+  operands, S's canonical 5.55), still struck. Recurrence of series_lcr's S4 displayed-addend class (5dc7ccd).
+- **F4b (ride-along):** S3 `wave_sinks` p-pane auto-fits [P−S,P+S]±10% (negative lobe 9.9%→18.6%) + bolder
+  returned-fill; product_wave (S1/S2) fixed +20 W range untouched.
+- **F4a (ride-along):** new `pwrFxZero` clamps |v|<0.5·10⁻ᵈᵖ → clean 0.000 (S10 "−0.000 A" gone).
+- **F4d (ride-along):** wattmeter numeric enlarged (its sprite heightScale 0.24→0.34; shared helper untouched).
+- **F3 (json cleanup, not engine):** removed the dead `close_chip_at_ms:3200` from ac_power_factor.json S7
+  (renderer never read it — zero render change; folds into the seal commit).
+
+**Verify chain (§3b) — independently re-run by the orchestrator:** check:renderer-syntax PASS (field_3d 2509 KB)
+· tsc 0 · validate 130/0 · diff scope 1 file, sibling-body contamination grep 0, 0 backticks, clock guard 0,
+S4 chip source-confirmed · regression reseed + visual:eyes capacitance 44/44 0-failed (H2 0.00% vs locked
+baseline) · target reseed + visual:eyes ac_power_factor 43/43 0-failed deterministic-gates-clean (run
+20260724-091141; no NEW failures). THE EYE run via Start-Process DETACHED (the harness reaps
+harness-backgrounded visual:eyes — ops lesson recorded).
+
+**Design-doc correction:** physics_block §4.1 A8 + founder_proxy_report_checkpointA.md row 2 both said
+I_rms=0.785; ORCHESTRATOR-CORRECTION notes added (0.785→0.784). Filed as the design directive scar row.
+
+**Scar candidates filed (files only):** 5 rows in scar_candidates.sql block "Ch.7 · ac_power_factor · Checkpoint B"
+(F1 MAJOR FIXED; design-directive MODERATE OPEN; F4b/F4a/F3 MODERATE FIXED). 0 'MINOR' severity values.
+
+**Commit:** `f997ede` — `fix(engine-loop): ac_power S4 apparent-power chip 5.54→5.55 + 3 ride-alongs [peter_parker:renderer_primitives]`.
+
+**Runaway guard:** engine-loop commit #18 this chapter run (past the §3b 8-commit guard, under the founder's
+whole-chapter grant).
+
+**Outcome:** all 4 findings fixed + verified. NEXT: rebuild build:review + fresh founder:drive → founder-proxy
+Checkpoint B cycle 1 to confirm the S4 chip reads 5.55 consistently before the seal.

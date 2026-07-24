@@ -1050,3 +1050,75 @@ INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,
  'js_eval',
  'Crop STATE_7__frozen.png reserved band (approx x12..508,y362..537); assert the green X-leg + blue Z-hypotenuse pixels do not touch the band''s bottom edge (y=537). Regression guard: STATE_6__frozen.png triangle must be byte-identical to run 20260724-044111 (up-leg unchanged). Deferred at cycle 1; not yet fixed.',
  'OPEN',ARRAY['series_lcr_circuit']::text[],ARRAY[]::text[],'ch7-stage2b-series_lcr_circuit-checkpointB-cycle1','incident');
+
+-- =====================================================================
+-- Ch.7 Stage 6 · 2026-07-24 · ac_power engine build (ac_power_factor) — ONE directive
+-- NOT APPLIED (trial: files only; founder rules at chapter end). No engine DEFECT surfaced
+-- (clean additive clone, verify chain green). This is a compose-routine promotion directive
+-- the founder should rule on — the routine is now cloned FOUR times (rule-of-four).
+-- =====================================================================
+INSERT INTO engine_bug_queue (bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files, discovered_in_session, row_type)
+VALUES (
+ 'field3d_subscript_compose_routine_cloned_four_times',
+ 'The styled-subscript compose routine (composeSegments/subFont/measureComposedWidth/drawComposedRun/fillComposed/htmlComposeSub) is now duplicated verbatim across FOUR field_3d scope-pane scenarios: acc_ (ac_capacitor), phs_ (ac_phasor), slcr_ (ac_series_lcr), and now pwr_ (ac_power). ac_power built its own pwr_-scoped clone per founder default (a) (local clone, NOT shared-layer promotion, so the sealed chapter cannot regress). transformer (#8) will need it too, making five.',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'Founder default (a) mandates a LOCAL scoped clone per scenario until the founder explicitly approves promotion at an engine-dispatch boundary; four identical copies now exist.',
+ 'Promote the compose routine to ONE shared field_3d helper (composeSubSegments + fillComposedCanvas + htmlComposeSub) that all scope-pane scenarios call, ONLY on explicit founder approval — a shared-layer edit touches every sealed EYE baseline, so it must run as its own dispatch with a full-fleet regression sweep, never folded into a concept build.',
+ 'manual',
+ 'MANUAL (founder decision): at chapter end, grep field_3d_renderer.ts for the *ComposeSegments function family; count copies (currently 4: acc/phs/slcr/pwr). If the founder approves promotion, the after-proof is a full baseline-locked field_3d fleet EYE sweep with 0 H2 diffs.',
+ 'OPEN', ARRAY['ac_capacitor','ac_phasor','ac_series_lcr','ac_power']::text[],
+ ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch7-stage6-ac_power_factor-engine-build','directive');
+
+-- =====================================================================
+-- Ch.7 · ac_power_factor · founder-proxy Checkpoint B cycle-0 · NOT APPLIED (files only)
+-- Live CHECK enum = CRITICAL/MAJOR/MODERATE (no MINOR — founder-proxy already mapped).
+-- F1/F4a/F4b/F3 FIXED in commit f997ede (+ the F3 JSON edit); design-directive OPEN (founder ratifies).
+-- Full adjudication: docs/loop_runs/ch7/ac_power_factor/founder_proxy_report_checkpointB.md
+-- =====================================================================
+INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,prevention_rule,probe_type,probe_logic,status,concepts_affected,fixed_in_files,discovered_in_session,row_type) VALUES
+('field3d_displayed_addend_product_chip_disagrees_with_quantity_canonical_2dp',
+ 'ac_power_factor S4 (apparent_vs_real, misconception pivot #1): pwrDrawChips rendered the naive apparent-power chip as the literal product of DISPLAYED-rounded operands (7.07 x 0.784 = 5.54) while the SAME quantity S renders 5.55 in the ratio chip, the S8 triangle leg, and narration s4_1. Sibling/inverse of field3d_struck_sum_rounds_full_not_displayed_addends (series_lcr_circuit S4): there full-precision operands; here correct displayed operands, but the product still disagrees because S is displayed 2dp from full precision (5.547->5.55) while the displayed-operand product rounds to 5.54.',
+ 'MAJOR','peter_parker:renderer_primitives',
+ 'The F7 displayed-addend-closure design assumed I_rms would display 0.785 (7.07x0.785=5.55=S). True I_rms=0.784498 single-rounds to 0.784, so 7.07x0.784=5.5429->5.54 != S canonical 2dp 5.55.',
+ 'A chip presenting quantity Q as the literal product/sum of displayed-rounded operands must ALSO agree with Q own canonical toFixed display used anywhere else in the SAME concept; on a rounding-boundary quantity present Q by its canonical value with SYMBOLIC operands (V_rms x I_rms = 5.55 W? struck) rather than a numeric product that fails to close.',
+ 'js_eval',
+ 'FIXED f997ede: pwrDrawChips (field_3d_renderer.ts:29831) renders "V_rms x I_rms = " + phys.S.toFixed(2) + " W?" struck. Verified: S=5.547->5.55 across chip/ratio/S8/narration; target EYE 43/43 run 20260724-091141. Before: "7.07 x 0.784 = 5.54 W?" (STATE_4__frozen run 20260724-080840).',
+ 'FIXED',ARRAY['ac_power_factor']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-ac_power_factor-checkpointB','incident'),
+
+('design_numberlock_rounded_value_must_be_single_round_of_true_not_hand_copied',
+ 'ac_power_factor number-lock (physics_block section 4.1 A8 AND founder-proxy Checkpoint-A row 2) both asserted I_rms=0.785; true 0.784498 SINGLE-rounds to 0.784 (4th digit 4). The 0.785 double-rounding slip seeded the F7 chip-closure design and would also have broken the specced S7 close chip (true 0.784^2 x 5 = 3.07, not 3.08).',
+ 'MODERATE','alex:physics_author',
+ 'A design number-lock value was rounded from an already-rounded intermediate (0.7845->0.785) instead of single-rounding the true value.',
+ 'Every number-lock cell driving an on-canvas displayed-addend chip = ONE toFixed(dp) of the full-precision value (never round-then-round); flag any operand whose (dp+1)th digit is 4 or 5 as a rounding-boundary risk and confirm which way toFixed lands before locking chip text.',
+ 'manual',
+ 'ac_power_factor: I_rms 0.784498 -> 0.784 (NOT 0.785). CORRECTED inline 2026-07-24 in physics_block section 4.1 + founder_proxy_report_checkpointA.md (orchestrator-correction notes added). Directive stands for future concepts.',
+ 'OPEN',ARRAY['ac_power_factor']::text[],ARRAY[]::text[],'ch7-ac_power_factor-checkpointB','directive'),
+
+('field3d_ppane_fixed_range_buries_offresonance_negative_lobe',
+ 'ac_power_factor S3 (wave_sinks, delta cue "The wave dips negative"): the p-pane used a FIXED guided y-range -4..+21 W (sized for S1/S2 resonance p->+20 W). At f=0.50 the wave swings -2.47..+8.63 W so the negative "returned" lobe was a ~10%-height sliver — the backward-flow that IS the state teaching point read thin.',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'The guided p-pane y-range was one fixed span chosen for the resonance amplitude; off-resonance states reused it, compressing the smaller signed wave and burying the sub-zero excursion.',
+ 'A state whose delta cue is the negative excursion of a signed wave must render that excursion unmistakably: give the state its own tighter y-range (or a bolder returned-fill) so the dip is legible at classroom scale.',
+ 'js_eval',
+ 'FIXED f997ede: wave_sinks auto-fits [P-S,P+S]+-10% (lobe 9.9%->18.6% of pane height) + PWR_COL_RET darkened; product_wave (S1/S2) fixed range untouched. Frame STATE_3__frozen run 20260724-091141.',
+ 'FIXED',ARRAY['ac_power_factor']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-ac_power_factor-checkpointB','incident'),
+
+('field3d_hud_negative_zero_at_resonance_quadrature',
+ 'ac_power_factor S10 explore HUD rendered "I_rms sin phi = -0.000 A" at the resonance default (sin phi=-0.000188, i_perp=-0.000266 -> toFixed(3) kept the sign). Cosmetic but reads like a bug.',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'toFixed(3) of a tiny negative quadrature value retains the minus sign; near resonance X~-0.001 so i_perp/Q round to -0.000.',
+ 'Clamp near-zero magnitudes before display: if abs(v)<0.5*10^-dp render "0.000" (drop sign), or clamp |X| to 0 below an epsilon.',
+ 'js_eval',
+ 'FIXED f997ede: new pwrFxZero helper clamps abs(v)<0.5*10^-dp to a clean 0.000 (legit signs preserved), applied to iperp/ipar HUD lines. Frame STATE_10__frozen run 20260724-091141.',
+ 'FIXED',ARRAY['ac_power_factor']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-ac_power_factor-checkpointB','incident'),
+
+('ac_power_factor_s7_close_chip_at_ms_declared_but_no_renderer_cue',
+ 'ac_power_factor S7 JSON declared close_chip_at_ms:3200 but the ac_power renderer has NO close-chip draw path — a dead cue field. The "third way" close (E_R=+6.15 J/cyc / T=2s -> 3.08 W) is carried by the +6.15 J/cyc gauge + narration s7_3/s7_4 (sound, parallel to the S5 check-in-narration). NOT a teaching gap. CAUTION: any future visible S7 close chip must use canonical P (3.08) — the specced "0.785^2 x 5.0 = 3.08" is itself broken (true 0.784^2 x 5 = 3.07).',
+ 'MODERATE','alex:json_author',
+ 'A choreography cue named in the JSON (close_chip_at_ms) was never implemented in the ac_power scenario; the field was inert.',
+ 'Cross-check every *_at_ms / scenario_cue in a state block against an actual renderer draw path before ship; remove inert cue fields.',
+ 'manual',
+ 'FIXED 2026-07-24: removed the inert close_chip_at_ms:3200 from ac_power_factor.json STATE_7 (energy_ledger). Renderer never read it (grep: no close-chip draw path) so zero render change.',
+ 'FIXED',ARRAY['ac_power_factor']::text[],ARRAY['src/data/concepts/ac_power_factor.json']::text[],'ch7-ac_power_factor-checkpointB','incident');

@@ -2952,6 +2952,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // scenario (Ch.7 #5, engine build commit cec3a50). NOT in PCPL_CONCEPTS
     // (that set is 2D parametric_renderer only).
     series_lcr_circuit:             "field_3d",
+    // src/data/concepts/ac_power_factor.json, field_3d ac_power scenario
+    // (Ch.7 #6, engine build commit 9df14e3). NOT in PCPL_CONCEPTS (that
+    // set is 2D parametric_renderer only).
+    ac_power_factor:                "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
 };

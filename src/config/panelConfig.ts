@@ -1549,6 +1549,18 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/ac_power_factor.json, field_3d
+    // ac_power scenario (Ch.7 #6, engine build commit 9df14e3).
+    ac_power_factor: {
+        concept_id: 'ac_power_factor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_power_factor',
+            label: 'Power in AC Circuits — The Power Factor (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',
