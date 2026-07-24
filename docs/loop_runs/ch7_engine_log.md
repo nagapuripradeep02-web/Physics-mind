@@ -1347,3 +1347,83 @@ whole-chapter grant).
 
 **Outcome:** all 4 findings fixed + verified. NEXT: rebuild build:review + fresh founder:drive → founder-proxy
 Checkpoint B cycle 1 to confirm the S4 chip reads 5.55 consistently before the seal.
+
+---
+
+## Stage 7 · 2026-07-24 · NEW field_3d scenario_type `lc_oscillation` (lc_oscillations build)
+
+**Rollback point (pre-dispatch HEAD):** `950538a8a3cf9a0fa7a985c536f1ff01dfd8996c`
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, via the established `general-purpose` stand-in
+carrying `.claude/agents/renderer-primitives.md` as its operating spec (native dispatch type not registered
+at dispatch time). NOTE: the native `field3d-surgeon` dispatch type became available mid-stage (after this
+build) — future Ch.7 field_3d engine fixes route natively through it instead of the stand-in.
+
+**The ask (Class-B, from skeleton §0b):** implement the undriven-LC front door that none of the six sealed
+ac_* scenarios carry — source-disconnect two-position switch, initial-charge state, FREE oscillation at
+ω₀=1/√(LC) as a NATURAL frequency, q/i SHM analogy with a visible mass-spring twin, damped decay envelope.
+Clone-sibling of `ac_power` (additive, NOT in-place extension).
+
+**Fix (additive):** one contiguous `lco_`-prefixed block in `field_3d_renderer.ts` (~L30135–30974) —
+constants/geometry/bead-loop, a 5th local styled-subscript clone (digit subscripts Q₀/I₀/V₀/T₀/f₀/ω₀ on all
+three text paths), `lcoPhysics` (E_total = 0.5*C*V0*V0, the ONE canonical PIN), `lcoQI` (closed-form clock
+q=Q₀cos, i=−I₀sin shown as |i|, analytic damped leg, E_R = complement never accumulator), build/apply/draw
+helpers + `SET_LCO_SWITCH` message case (Rule-27 explorer, V₀ re-throw gate). `deriveStateMeta.ts` +43
+(motion pass, F3D_REVEAL_KEYS `'lc_oscillation'`, maxReveal pins past last payload, deriveHoldExpectations).
+NO sealed pwr_/acl_/acc_/phs_/slcr_/acr_ path edited; the ONLY non-additive line is the `#sliders` gate
+`&& !isLco` self-exclusion (no-op for non-lco). Binding constraints honored: E_total pin (never live-sum,
+which lands 6.37 at t=0.50 — physics_block FLAG 2), i:=dq/dt display |i| (FLAG 1), glow-focal MULTIPLIER on
+live channel (CpA F2), Unicode all paths, Cambria formula panel.
+
+**Verify chain (§3b) — engine agent self-verify + orchestrator regression:** check:renderer-syntax PASS
+(field_3d 2509→2563 KB, 0 backticks) · tsc 0 · validate 131/0 (lc_oscillations PASS) · clock guard: only a
+READ of `time`, no writes to `__pmSteps`/`dtStep`/`stateStartTime` → no full-fleet sweep · target reseed +
+visual:eyes lc_oscillations **39/39, 0 failed** deterministic-gates-clean (run 20260724-142012) · regression
+reseed + visual:eyes capacitance **44/44, 0 failed, H2 0.00% pixel diff across all baseline images** (run
+20260724-144256; faraday_law_induction NOT used — no committed baseline, Stage-6 corrective action). THE EYE
+run via Start-Process DETACHED + foreground poll (harness reaps harness-backgrounded visual:eyes — ops lesson).
+
+**Commit:** `0c24436` — `feat(engine-loop): NEW field_3d scenario_type lc_oscillation [peter_parker:renderer_primitives]`. 2 files.
+
+**Runaway guard:** engine-loop commit #19 this chapter run (well past the §3b 8-commit guard, under the
+founder's whole-chapter grant; every commit routed/verified/single-purpose — carried to the chapter-end packet).
+
+**Outcome:** NEW scenario built + verified, zero regression. NEXT: build:review + founder:drive →
+quality-auditor ∥ eye-walker → founder-proxy Checkpoint B.
+
+---
+
+## Stage 7b · 2026-07-24 · lc_oscillations Checkpoint-B fix cycle 0 — TWO BLOCKING (F1 + F2)
+
+**Rollback point (pre-fix HEAD):** `cdefae8` (after the founder's Amendment 4/5 commits). Amendment 4 in force: ONE bug per dispatch via `field3d-surgeon`; bundles banned; orchestrator owns the detached EYE + regression + commit.
+
+**F1 · `ghost_compare_cause_invisible_slider_frozen` (BLOCKING) · commit `056eb47`**
+field3d-surgeon: `field_3d_renderer.ts` +17/−0 in `updateLcOscFrame`. S7 damping never engaged (PM_lcoR stuck at the S7 override 0.0 → alpha=0). Fix: closed-form R ramp 0→2.0 Ω over [0,500ms], gated on `!PM_lcoRDragged`, feeds alpha + the existing `syncThumb("R",R,1)`. Clock guard clean (0 `__pmSteps`/`dtStep`); sealed siblings untouched (contamination grep 0). Surgeon probe: PM_lcoR→2.0 thumb-lockstep, |q| envelope decays (1.27→0.06), E_R→6.36 monotonic, ledger closes.
+
+**F2 · `pivot_frozen_frame_precedes_crossing_event` (BLOCKING) · commit `30b28d5`**
+field3d-surgeon: `deriveStateMeta.ts` +8/−1. S3 PRIMARY-AHA frozen frame off-crossing (`flip_at_ms+1500`=2500ms/θ225°/q=−0.90 vs caption "empty—current peaks"). Fix: `through_zero` pin → `strike_at_ms+2000` (=3000ms/θ270°/q=0.00,i=2.00). Scoped to the lco through_zero branch (other scenarios' pins unaffected). **Second half handed back to alex:json_author:** the live-player Rule-37 end-freeze is narration-derived (~24560ms), still off-crossing — a design/player decision, adjudicated at the blocking re-CpB.
+
+**Verify chain (orchestrator, §3b):** check:renderer-syntax OK · tsc 0 · validate 131/0 (both surgeons) · re-seed lc + `visual:eyes lc_oscillations` **39/39, 0 failed** (STATE_3 reveal_hold now 3000ms — F2 confirmed; run post-F1/F2) · re-seed capacitance + `visual:eyes capacitance` **44/44, 0 failed, H2 0.00%** across all baseline images (zero regression). Clock guard: no shared integrator touched → no fleet sweep. EYE runs via Start-Process DETACHED + foreground poll.
+
+**Runaway guard:** engine-loop commits now **21** (056eb47 = #20, 30b28d5 = #21) — well past the §3b 8-commit guard; a NEW scenario's first review naturally accrues fixes. Carried to the chapter-end packet.
+
+**NEXT:** rebuild review-site + fresh founder:drive → founder-proxy blocking re-CpB (re-review S3 + S7; adjudicate the F2 live-freeze half) → on APPROVE, the 4 ride-alongs (F3–F6) as their own queued field3d-surgeon dispatches, then Checkpoint C seal.
+
+---
+
+## Stage 7c · 2026-07-24 · lc_oscillations Checkpoint-B ride-along F3 (`field3d-surgeon`)
+
+**F3 · `field3d_unauthored_bottomright_formula_echo_duplicates_authored_surface` (MAJOR, RIDE-ALONG)**
+(founder-proxy provisional class `duplicate_formula_surface_bottom_right_broken_sqrt`, canonicalized to the field3d_ scar name in this fix).
+
+**Finding (CpB F3):** `STATE_4__frozen` — the authored mid-right Cambria `#lco_formula` `f₀=1/(2π√(LC))` renders correctly, but a bottom-right echo showed `1/(2πV(LC))` (√ collapsed to bare "V" — Rule 34c broken glyph, reads as a WRONG formula sound-off). `STATE_9__frozen` — that echo is occluded behind the slider panel (34d). `STATE_6__frozen` — a duplicate correspondence line (34b). Evidence: `.visual_runs/lc_oscillations/20260724-142012/STATE_{4,6,9}__frozen.png`.
+
+**Root cause (already diagnosed):** the GENERIC bottom-right `#formula_overlay` (`:1179` — `position:fixed; bottom:12px; right:12px; font: 13px/1.5 monospace`) was still rendering `stateDef.formula_overlay` for `lc_oscillation` (applyState else-branch `:38115`). The monospace DOM path has no U+221A glyph → √ shows as "V"; and it duplicates the authored `#lco_formula` (Cambria, `:30503`) surface. Every other field_3d scenario with its own formula panel already self-excludes from `#formula_overlay`; `lc_oscillation` was missing from that hide-list.
+
+**Fix (minimal, additive, `field_3d_renderer.ts` only):** added `config.scenario_type === "lc_oscillation"` to the generic `#formula_overlay` suppression list (applyState `:38112`) — 2-line diff. The renderer edit was already present uncommitted in the worktree and, mid-dispatch, was committed by a concurrent orchestrator/sibling as **`840fcb0`** (renderer file only, under the provisional class name `duplicate_formula_surface_bottom_right_broken_sqrt`); I verified that commit's diff is byte-identical to the intended fix and left it intact (no re-touch, no amend — cross-session renderer discipline). This Stage-7c entry + the scar FIXED reconcile canonicalize the class name and record the verification. **Confirmed SOLE echo:** grepped the whole `lco_` region — the only bottom-right formula element is `#formula_overlay`; `#lco_formula` (top:40% right:22px Cambria, correct √) is the authored surface; the lco band `f₀=1/T₀=… Hz` readout (`:30697`) is a bottom-LEFT numeric VALUE in the strip region, not a symbolic duplicate. No second echo draw exists. **scenario_type literal confirmed** `"lc_oscillation"` (singular) matches the concept JSON (`lc_oscillations.json:522`) and all lco code (`:30824/:37540/:37876/:41362/:44237`) — no silent no-op.
+
+**Verify chain (engine-agent self-verify; cumulative EYE deferred to orchestrator per Amendment 4):** check:renderer-syntax OK (field_3d 2564 KB, 0 backticks) · tsc --noEmit 0 errors · validate:concepts 131/131 atomic PASS, lc_oscillations PASS, warning profile unchanged (legacy word-budget only). Clock guard: no shared integrator touched (no `__pmSteps`/`dtStep` edit) → no fleet sweep. NOT run here (orchestrator owns the single cumulative EYE + regression after all four ride-alongs land): visual:eyes / regression / founder:drive.
+
+**Commits:** renderer fix landed as `840fcb0` (concurrent orchestrator/sibling, renderer only, provisional-named). This dispatch's doc reconcile (scar FIXED + canonical rename + this log) committed as `<doc-commit-sha>` — `fix(engine-loop): field3d_unauthored_bottomright_formula_echo_duplicates_authored_surface lc_oscillations S4/S6/S9 F3 ride-along [peter_parker:renderer_primitives]` (2 files: scar_candidates.sql + this log; the renderer was already committed by 840fcb0). Concept JSON + registration sites + state file stay UNCOMMITTED (commit at concept seal).
+
+**Cumulative-EYE watch:** confirm `STATE_4__frozen` top-right Cambria √ still renders and NO bottom-right formula panel appears (S4/S6/S9); resolves 34b+34c+34d together.

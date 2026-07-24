@@ -1122,3 +1122,158 @@ INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,
  'manual',
  'FIXED 2026-07-24: removed the inert close_chip_at_ms:3200 from ac_power_factor.json STATE_7 (energy_ledger). Renderer never read it (grep: no close-chip draw path) so zero render change.',
  'FIXED',ARRAY['ac_power_factor']::text[],ARRAY['src/data/concepts/ac_power_factor.json']::text[],'ch7-ac_power_factor-checkpointB','incident');
+
+-- ============================================================================
+-- Stage 7 · lc_oscillations (Ch.7 #7) — Checkpoint A design-gate (2026-07-24)
+-- founder_proxy_report_checkpointA.md §6 — 2 recurrence-carry rows (cycle 0).
+-- Both REUSE existing bug_classes (UPDATE, not INSERT — do not mint duplicates).
+-- Routed to alex:architect for the design amendment; trial = FILE only, never applied to DB.
+-- ============================================================================
+
+-- F1 · recurrence of an existing OPEN class at DESIGN stage (headline conserved number on 2dp boundary).
+UPDATE engine_bug_queue SET
+  concepts_affected = ARRAY['ac_power_factor','lc_oscillations']::text[],
+  root_cause = root_cause || ' RECURRENCE 2026-07-24 (lc_oscillations Checkpoint A, design stage): '
+    || 'E_total = 1/2 CV0^2 is EXACTLY 6.365 J (true value on the 2dp boundary; created by the design''s own '
+    || 'new work-point pick V0=10.0). The skeleton (S2/S10k(3)/Esc#5) asserts canonical display 6.36 J and '
+    || 'specifies the verification (0.5*0.1273*100).toFixed(2) === "6.36" — which actually returns "6.37" '
+    || '(node-verified). 0.5*C*V0*V0 returns "6.36". No single canonical float expression is pinned across '
+    || 'the S1 gauge-fill target, S5 total line, HUD E_total, half-split addends (3.18+3.18) and S7 E_R ceiling, '
+    || 'so a cross-surface seam (6.37 vs 6.36) can render on the exact state whose lesson is the flat total.'
+WHERE bug_class = 'design_numberlock_rounded_value_must_be_single_round_of_true_not_hand_copied';
+
+-- F2 · forward-catch: the EXISTING (ac_capacitor-FIXED, scenario-local) glow class WILL recur in the lco_ clone.
+UPDATE engine_bug_queue SET
+  status = 'OPEN',
+  concepts_affected = ARRAY['ac_voltage_capacitor','lc_oscillations']::text[],
+  prevention_rule = prevention_rule || ' DESIGN-STAGE CARRY (lc_oscillations Checkpoint A): the fix is '
+    || 'scenario-local (accApplyGlow), so the lco_ clone does NOT inherit it. The lc engine ask (S0b) declares '
+    || 'the exemptions (coil emissive ~ i^2, inset, gauges) but omits the multiplier requirement; S5 focal=gauges '
+    || 'and S6 focal=inset are both live-driven exempt objects, so both emphasize as no-ops unless the lco_ glow '
+    || 'pass applies the focal boost as a multiplier on the live channel. Name this in S0b before json_author.'
+WHERE bug_class = 'glow_focal_on_live_driven_object_exempted_becomes_total_noop';
+
+-- ============================================================================
+-- Stage 7 · lc_oscillations (Ch.7 #7) — Checkpoint B fix cycle 0 (2026-07-24)
+-- founder_proxy_report_checkpointB.md §5 — 6 rows (2 BLOCKING F1/F2 + 4 ride-along F3–F6).
+-- All FIX(engine) owner peter_parker:renderer_primitives (F2 = deriveStateMeta pin).
+-- Trial = FILE only, never applied to DB. F1/F5 reuse existing bug_classes — founder
+-- reconciles INSERT-vs-fold-into-existing at chapter-end ruling.
+-- ============================================================================
+
+-- F1 — reuse the established OPEN class; this instance is the WORSE (inverse) form.
+INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,prevention_rule,probe_type,probe_logic,status,concepts_affected,fixed_in_files,discovered_in_session,row_type) VALUES
+('ghost_compare_cause_invisible_slider_frozen',
+ 'lc_oscillations S7 (real_coils_leak): the scripted R-insert 0->2.0 Ohm never runs — PM_lcoR stays at the S7 override 0.0 across the full 18 s capture, so alpha=R/2L=0 and the oscillation is undamped; the state entire lesson (decay + E_R heat) never renders. Worse than the classic frozen-thumb form: not only is the DOM thumb static, the underlying scripted schedule that should drive BOTH the thumb and PM_lcoR is entirely absent. Manual R-drag (founder:drive 0->8.5) DOES drive clean decay (E_R=6.36, ledger closes) — the damped engine is correct; only the scripted ramp+syncThumb is missing.',
+ 'CRITICAL','peter_parker:renderer_primitives',
+ 'updateLcOscFrame/lcoQI damped mode reads alpha from PM_lcoR (:30303/:30829) but no code ramps PM_lcoR from the S7 override 0.0 to 2.0; r_insert_dur_ms only delays the damped-branch start (t2=tau-rins), it never raises R. So env=Q0*e^0=Q0, E_R=0 for the whole state.',
+ 'A state whose caption claims a parameter eases in during its reveal must run a scripted ramp that drives BOTH the dependent physics variable AND the DOM slider thumb+label in lockstep (syncThumb). Verify by dense-sampling the driven slider value AND the dependent readout across the FULL reveal window: a static slider + zero dependent readout at every dense frame = the binding never touched live physics.',
+ 'js_eval',
+ 'S7 dense t=3000/6000/9000ms: assert PM_lcoR ramps 0->2.0 over [0,500ms]; strip |q| peaks strictly decreasing; E_R strictly increasing toward 6.36 with E_C+E_B+E_R=6.36; R thumb/label read 2.0. Injection proof (pre-fix): PM_lcoR=2.0 -> E_R=5.85 climbing, ledger 0.51+0.00+5.85=6.36.',
+ 'OPEN',ARRAY['lc_oscillations']::text[],ARRAY[]::text[],'ch7-stage7-lc_oscillations-checkpointB','incident'),
+
+-- F2 — adopt eye-walker class NAME but CORRECT the owner (deriveStateMeta pin, not json_author reveal_hold).
+('pivot_frozen_frame_precedes_crossing_event',
+ 'lc_oscillations S3 (empty_is_not_over, PRIMARY AHA): the frozen/settled frame shows q=-0.90 C / i=1.41 A (theta=225 deg) while the caption says "empty — current peaks". The crossing (q=0/i=2.00) renders correctly in the LIVE oscillation (dense t=1000/3000ms), so the defect is purely the settled-frame pin phase. OWNER CORRECTION: not an authored reveal_hold — deriveStateMeta.ts:1467 computes the through_zero pin as flip_at_ms+1500 = 2500ms = theta 225 deg. Same class as field3d_slcr_reveal_hold_captures_transitional_r_family (a deriveStateMeta pin landing on the wrong phase).',
+ 'CRITICAL','peter_parker:renderer_primitives',
+ 'deriveStateMeta.ts:1467 through_zero pin = flip_at_ms(1000)+1500 = 2500ms. The crossing is a RECURRING instantaneous event (theta 90/270 deg at t=1000/3000ms), so the generic pin-past-the-last-payoff rule lands between crossings (theta 225 deg, q=-0.90). The money-moment still must land ON a crossing.',
+ 'When a state payload is a recurring instantaneous crossing, pin the frozen frame to a crossing instant (n*T/4 odd multiple), not last-payoff-plus-margin. Verify the frozen HUD equals the crossing values (q=0.00/i=2.00), not a between-crossings phase.',
+ 'js_eval',
+ 'STATE_3__frozen: assert q=0.00 C and i=2.00 A (theta 90 or 270 deg) with the crossing chip struck. Fix: through_zero pin flip_at_ms+1500 -> strike_at_ms+2000 (=3000ms). Also verify the live-player timeline-end freeze lands on a crossing.',
+ 'OPEN',ARRAY['lc_oscillations']::text[],ARRAY['src/lib/validators/visual/deriveStateMeta.ts']::text[],'ch7-stage7-lc_oscillations-checkpointB','incident'),
+
+-- F3 / F4 — reuse eye-walker class names (MAJOR).
+('duplicate_formula_surface_bottom_right_broken_sqrt',
+ 'lc_oscillations: an unauthored bottom-right formula echo duplicates the top-right authored lco_formula (Rule 34b), renders sqrt as bare "V" (Rule 34c: f0=1/(2piV(LC)) on S4), and is occluded by the slider panel on S9 (Rule 34d). The authored top-right Cambria panel renders sqrt correctly.',
+ 'MAJOR','peter_parker:renderer_primitives',
+ 'A second formula-draw path (clone artifact from the ac_power parent) emits the state formula at the bottom-right corner in a non-Cambria path that lacks the U+221A glyph and collides with the bottom-right slider/HUD zone.',
+ 'Each state renders exactly ONE formula surface (Rule 34b). Remove the duplicate echo; if any formula is drawn on canvas it must use the Cambria/Unicode-safe path and clear the slider/HUD zones.',
+ 'manual',
+ 'S4/S6/S9 frozen: assert exactly one formula surface per state; no sqrt->V; no occlusion by the slider panel. Fix: remove the bottom-right echo.',
+ 'OPEN',ARRAY['lc_oscillations']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage7-lc_oscillations-checkpointB','incident'),
+('energy_bar_chart_total_label_collides_with_last_bar_label',
+ 'lc_oscillations: the gauge-pane fixed E_total "6.36 J" marker label and the rightmost bar live value label anchor at the same top-right position in both 2-bar (S5/S6) and 3-bar (S7/S9) variants, garbling the total ("4636 J"). Canvas-internal, invisible to founder:drive DOM-only collision probe (overlayCollisions:[]).',
+ 'MAJOR','peter_parker:renderer_primitives',
+ 'The total-marker label and the last bar value label share a top-right anchor with no horizontal separation reserved.',
+ 'Reserve distinct offsets for the fixed total-marker label and every bar value label; verify by cropping the gauge pane on the tallest-rightmost-bar state.',
+ 'manual',
+ 'S5/S6/S7/S9 frozen: assert the "6.36 J" total label is legible and not overlapping any bar value label.',
+ 'OPEN',ARRAY['lc_oscillations']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage7-lc_oscillations-checkpointB','incident'),
+
+-- F5 — the CpA F2 class materialized (bead/coil multiplier present; gauge/inset absent).
+('glow_focal_on_live_driven_object_exempted_becomes_total_noop',
+ 'lc_oscillations: CpA-F2 prediction materialized. The bead/coil focal multiplier (:30882 beadFocal?1.4:1.0) works, but the S5 gauge-pane focal and S6 inset focal live channels have NO brightness multiplier — height/marker only, no emphasis (Rule 32e). Pedagogical nuance: apply the boost at the PANE level (whole gauge pane / inset brightens as focal, peers dim), NOT per-dominant-bar (brightening one bar of an antiphase trade misleads).',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'The lco_ glow pass applied the focal multiplier to the bead/coil channel only; the gauge-pane and inset live-draw channels were left as exemption-only (exemption + brightenOnly = no emphasis), the exact no-op this class describes.',
+ 'Every live-driven object used as a state glow_focal applies the boost as a multiplier on its own live channel. For a trading gauge pair, emphasize at the pane level (single focal), never per-dominant-bar.',
+ 'js_eval',
+ 'S5/S6: compare focal vs non-focal frames; assert a measurable brightness delta on the focal pane/inset and no brightness delta between the two trading bars.',
+ 'OPEN',ARRAY['ac_voltage_capacitor','lc_oscillations']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage7-lc_oscillations-checkpointB','incident'),
+
+-- F6 — reuse eye-walker class (MODERATE); extends the slcr displayed-addend discipline.
+('energy_readout_rounding_seam_vs_displayed_total',
+ 'lc_oscillations: the live component addends print one half-LSB above the pinned total on the conservation pivot — S5 E_C=2.20 + E_B=4.17 = 6.37 vs pinned E_total 6.36 (also S2 3.19+3.18, S9 0.40+5.97). The TOTAL is correctly pinned (CpA F1 held, no total-line seam); only the independently-rounded components seam.',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'E_C(t) and E_B(t) are each rounded independently; on the 6.365 boundary their rounded sum can be 6.37 while the pinned total is 6.36.',
+ 'Display the last component as (pinned_total - sum of already-rounded others) so the visible parts always close to the displayed total (same discipline as field3d_struck_sum_rounds_full_not_displayed_addends).',
+ 'js_eval',
+ 'S5/S9 HUD: assert E_C+E_B(+E_R) of the DISPLAYED values equals the displayed E_total (6.36) exactly.',
+ 'OPEN',ARRAY['lc_oscillations']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage7-lc_oscillations-checkpointB','incident');
+
+-- ============================================================================
+-- Stage 7b · lc_oscillations CpB fix cycle 0 — RECONCILE F1 + F2 to FIXED (2026-07-24)
+-- Two blocking engine fixes landed + verified (EYE lc 39/39, capacitance regression 44/44 H2 0.00%).
+-- F1 commit 056eb47 (field_3d_renderer.ts); F2 commit 30b28d5 (deriveStateMeta.ts). FILE only.
+-- ============================================================================
+
+-- F1 FIXED — the S7 R-insert ramp now drives alpha + the thumb in lockstep.
+UPDATE engine_bug_queue
+   SET status = 'FIXED',
+       fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[]
+ WHERE bug_class = 'ghost_compare_cause_invisible_slider_frozen'
+   AND discovered_in_session = 'ch7-stage7-lc_oscillations-checkpointB';
+-- Fix (056eb47): closed-form R = r_insert_target(2.0) * clamp((t - r_insert_start)/r_insert_dur, 0, 1)
+-- over [0,500ms] in updateLcOscFrame, gated on !PM_lcoRDragged; feeds alpha + existing syncThumb.
+-- Probe: PM_lcoR->2.0 (thumb+label lockstep), |q| envelope decays, E_R climbs to 6.36, ledger closes.
+
+-- F2 FIXED (EYE-pin half) — deriveStateMeta through_zero pin now lands ON a crossing.
+UPDATE engine_bug_queue
+   SET status = 'FIXED',
+       fixed_in_files = ARRAY['src/lib/validators/visual/deriveStateMeta.ts']::text[]
+ WHERE bug_class = 'pivot_frozen_frame_precedes_crossing_event';
+-- Fix (30b28d5): through_zero pin flip_at_ms+1500 (2500ms/theta225/q=-0.90) -> strike_at_ms+2000
+-- (3000ms/theta270/q=0.00,i=2.00). EYE STATE_3 reveal_hold now 3000ms; deterministic gate 39/39.
+-- OPEN FOLLOW-UP (separate half, routed alex:json_author): the live-player Rule-37 timeline-end
+-- freeze for STATE_3 is NARRATION-derived (~24560ms) and still lands off-crossing (theta~50, q~0.81).
+-- Aligning the duration field alone is insufficient (freeze time = narration length + TTS rate);
+-- needs narration-length alignment to a crossing OR a player/architect design decision (a
+-- recurring-crossing state's end-freeze snapping to a crossing). Adjudicated at the blocking re-CpB.
+
+-- ============================================================================
+-- Stage 7c · lc_oscillations CpB ride-along F3 — RECONCILE to FIXED (2026-07-24)
+-- F3 (RIDE-ALONG, MAJOR): unauthored bottom-right formula echo duplicated the
+-- authored surface. One engine fix landed (field_3d_renderer.ts). FILE only — no DB.
+-- Canonicalizes the eye-walker's provisional class name to the field3d_ scar name
+-- carried in the commit; one row per finding (upsert key), NO duplicate INSERT.
+-- ============================================================================
+
+-- F3 FIXED — the generic bottom-right #formula_overlay (monospace) is now suppressed
+-- for lc_oscillation, leaving the mid-right Cambria #lco_formula as the ONE formula
+-- surface. Provisional class renamed to the canonical field3d_ scar name.
+UPDATE engine_bug_queue
+   SET bug_class = 'field3d_unauthored_bottomright_formula_echo_duplicates_authored_surface',
+       status = 'FIXED',
+       fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+       prevention_rule = 'The generic bottom-right #formula_overlay (monospace, driven by stateDef.formula_overlay) is a DUPLICATE echo for ANY field_3d scenario that owns a dedicated formula panel: it re-renders the same formula in a non-Cambria path (U+221A sqrt collapses to a bare "V", Rule 34c) and collides with / is occluded by the bottom-right slider+HUD zone (34d). Every scenario_type with its own formula surface MUST add itself to the #formula_overlay suppression list in applyState (~:38112) so exactly ONE formula surface renders per state (34b).'
+ WHERE bug_class = 'duplicate_formula_surface_bottom_right_broken_sqrt'
+   AND discovered_in_session = 'ch7-stage7-lc_oscillations-checkpointB';
+-- Fix (renderer commit 840fcb0, concurrent/sibling, provisional-named): added
+-- `config.scenario_type === "lc_oscillation"` to the generic #formula_overlay
+-- hide-list (field_3d_renderer.ts applyState :38112). Confirmed SOLE echo — the only
+-- bottom-right formula element is #formula_overlay (bottom:12px right:12px monospace,
+-- :1179/:38112); #lco_formula (top:40% right:22px Cambria, correct sqrt, :30503) is the
+-- authored surface; the lco band f_0 readout (:30697) is a bottom-LEFT numeric VALUE, not
+-- a symbolic duplicate. scenario_type literal "lc_oscillation" matches the concept JSON
+-- (lc_oscillations.json:522) and all lco code. No second echo draw exists.
+-- Verify: check:renderer-syntax OK (field_3d 2564 KB); tsc --noEmit 0 errors;
+-- validate:concepts 131/131 atomic PASS (warning profile unchanged, legacy word-budget only).
