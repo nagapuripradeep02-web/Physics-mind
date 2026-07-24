@@ -977,3 +977,76 @@ INSERT INTO engine_bug_queue (
   'ch7-stage4-phasors-founder-review',
   'incident'
 );
+
+-- =====================================================================
+-- Ch.7 Stage 2b · 2026-07-24 · founder-proxy Checkpoint B cycle 0 (series_lcr_circuit)
+-- FIVE engine incidents, all owner peter_parker:renderer_primitives. FIXED + verified in
+-- commit 5dc7ccd (BLOCKING F1/F4/F2 + ride-along F5/F6/F7). NOT APPLIED (trial: files only;
+-- founder rules at chapter end). Adjudicated by founder-proxy opening the frames + reading
+-- renderer source (docs/loop_runs/ch7/series_lcr_circuit/founder_proxy_report_checkpointB.md).
+-- ORCHESTRATOR CORRECTION: founder-proxy emitted F6/F7 as severity 'MINOR', which the LIVE
+-- engine_bug_queue CHECK (severity IN 'CRITICAL','MAJOR','MODERATE') REJECTS — the known
+-- .agents/founder_proxy/CLAUDE.md enum bug (standing chapter-scope item). Mapped MINOR->MODERATE
+-- (nearest valid, phasors-CpC precedent). status OPEN->FIXED, fixed_in_files populated.
+-- Checkpoint B cycle 1 re-review confirms the fixes hold before seal.
+-- =====================================================================
+INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,prevention_rule,probe_type,probe_logic,status,concepts_affected,fixed_in_files,discovered_in_session,row_type) VALUES
+('field3d_slcr_reactance_value_never_rendered',
+ 'ac_series_lcr NEVER renders the net-reactance value: slcrDrawTriangle showChips wrote only "R=" and "Z=" labels (no "X=" leg), and slcrDrawResoPlot drew the f0 crossing marker but no merged "X_L=X_C" equality chip. The concept''s central taught quantity X=X_L-X_C=7.50 Ohm was invisible on S6/S7 triangles and the S8 crossing (S11 mini-triangle inherits it; collapsed X=0 at resonance, moot). Narration s6_2 speaks "net reactance seven point five" with nothing on screen to match.',
+ 'CRITICAL','peter_parker:renderer_primitives',
+ 'The triangle/reso-plot primitives were implemented to label only 2 of 3 legs (R, Z) and to mark the crossing only with f0 — the reactance chip family (X-leg numeral, X_L/X_C side-by-side, S8 X_L=X_C merged) was specced in physics_block S6/S7/S8 but never drawn. json_author correctly enables chips (R and Z render), so the gap is purely renderer-side.',
+ 'An impedance/reactance triangle primitive must label ALL legs it draws (not just hypotenuse+base) whenever chips are on; a reactance-vs-f plot must render the taught crossing equality chip, not only the f0 marker. Verify via a full-canvas text scan of the frozen frame (assert the reactance numeral is present), never by triangle-shape presence alone.',
+ 'js_eval',
+ 'Crop S6/S7 frozen triangle band and scan for the X-leg numeral (X=7.5 Omega S6, colour-flipped S7); crop S8 dense near the analytic crossing (t~3.0s) and assert a merged "X_L=X_C=5.00 Omega" chip renders. Fixed 5dc7ccd: slcrDrawTriangle adds the X-leg label + X_L/X_C chips; slcrDrawResoPlot adds the crossing equality chip. Verified run 20260724-044111.',
+ 'FIXED',ARRAY['series_lcr_circuit']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage2b-series_lcr_circuit-checkpointB','incident'),
+
+('field3d_ascii_underscore_f0_vm_in_renderer_hardcoded_text_paths',
+ 'RECURRENCE of field3d_rms_subscript_ascii_in_renderer_text_paths: the ac_series_lcr scenario hardcoded ASCII "f_0"/"v_m" (literal underscore) in the DOM HUD, canvas-fillText plot labels and the S10 derivation line, while the concept JSON authored f0 correctly as Unicode everywhere. The compose regex only matched a LETTER subscript, so f_0 (digit) never composed and leaked; the S4 source chip used raw fillText with no compose at all.',
+ 'CRITICAL','peter_parker:renderer_primitives',
+ 'A new field_3d scenario reintroduced the exact Rule-34c failure the Stage-1b rms scar warned about: renderer-hardcoded on-canvas text prefixes were written ASCII rather than Unicode, and the subscript sweep covered the JSON path but not the three renderer-hardcoded paths (HUD innerHTML, ctx.fillText, derivation surface). The compose regex additionally excluded digit subscripts.',
+ 'Every field_3d scenario''s renderer-hardcoded HUD/canvas/derivation label strings must use Unicode subscripts (f-subscript-zero U+2080, v-subscript-m U+2098) or route through a compose routine that handles DIGIT as well as letter subscripts, verified against the JSON formula surfaces across ALL THREE renderer text paths.',
+ 'js_eval',
+ 'Grep field_3d_renderer.ts string literals for a letter followed by underscore-digit on ac_series_lcr on-canvas text paths and assert none remain; in the built sim confirm HUD/plot/derivation render f-subscript-zero. Fixed 5dc7ccd: f_0->U+2080, v_m/i_m->U+2098 across all slcr text paths; leak-grep = 0. Verified run 20260724-044111.',
+ 'FIXED',ARRAY['series_lcr_circuit']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage2b-series_lcr_circuit-checkpointB','incident'),
+
+('field3d_slcr_reveal_hold_captures_transitional_r_family',
+ 'RECURRENCE of field3d_new_scenario_needs_deriveStateMeta_reveal_hold: S9 sharpness frozen/reveal-hold pin (4600ms) landed mid-way through the two-part R-family step (5->2->10 Ohm, settles ~5-6s), capturing transitional R=7.4 Ohm / Q=0.7 / im=1.36A — values never in the authored family (Q 1.0/2.5/0.5). Live teaching settled to R=10/Q=0.5 correctly.',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'The deriveStateMeta reveal_hold ms for a multi-step scripted sequence (S9 two R eases) was set shorter (2x r_step_dur) than the last step''s start+duration.',
+ 'For any multi-step scripted state, the registered reveal_hold ms must exceed the LAST step''s start+duration; verify the frozen frame''s live HUD/slider values equal the state''s documented final settled values, not just that a reveal_hold constant exists.',
+ 'js_eval',
+ 'Re-drive S9 frozen; assert slider R=10.0 Ohm, band Q=0.5, HUD im=1.00A. Fixed 5dc7ccd: deriveStateMeta sharpness pin 2*r_step_dur->3*r_step_dur (4600->5900ms > 5100ms completion). Verified reveal map STATE_9=5900ms.',
+ 'FIXED',ARRAY['series_lcr_circuit']::text[],ARRAY['src/lib/validators/visual/deriveStateMeta.ts']::text[],'ch7-stage2b-series_lcr_circuit-checkpointB','incident'),
+
+('field3d_slcr_empty_band_leaks_ac_source_mini_schematic',
+ 'The ac_series_lcr shared band container rendered a faint low-contrast "AC source" mini-schematic (L-shaped wire + two amber nodes) even on a state whose visible_elements omits all strip/fan/chain/plot content (S1), where the band should be empty. (founder-proxy rated MINOR; orchestrator mapped to MODERATE — live CHECK has no MINOR severity.)',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'The band-container draw path emitted a default AC-source glyph unconditionally instead of gating it on the state actually authoring band content.',
+ 'The reserved band renders nothing when a state''s visible_elements omits its strip/fan/chain/plot content; verify via a full crop of the reserved region on the one state that authors none of it (S1).',
+ 'manual',
+ 'Crop the reserved band on STATE_1__frozen.png and confirm empty. Fixed 5dc7ccd: applyAcSeriesLcrState gates band display on band-content tokens (strip/fan/chain/triangle/reso_plot/chips or kvl_stack); S1 band now hidden. Verified run 20260724-044111.',
+ 'FIXED',ARRAY['series_lcr_circuit']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage2b-series_lcr_circuit-checkpointB','incident'),
+
+('field3d_struck_sum_rounds_full_not_displayed_addends',
+ 'S4 struck-sum chip rendered the full-precision rounded sum (im*R+im*X_L+im*X_C = 19.41587 -> 19.42 V) instead of the sum of the displayed 2dp addends (5.55+11.09+2.77 = 19.41 V); disagreed with narration ("nineteen forty one") and the number-lock on the PIVOT-#1 arithmetic-honesty state. (quality-auditor F1 + founder-proxy F7; founder-proxy rated MINOR, orchestrator mapped to MODERATE — live CHECK has no MINOR.)',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'The struck total was computed from full-precision operands rather than from the displayed rounded chip values, producing a 0.01 V internal seam. Latent because the chip is symbolic on-screen and TTS is off by default.',
+ 'A struck/derived on-canvas sum shown alongside its rounded addends must be computed from those DISPLAYED rounded values, not full-precision operands, so the on-screen arithmetic is internally consistent.',
+ 'manual',
+ 'Read S4 frozen struck chip; assert it equals the sum of the displayed rounded addends (19.41), not the full-precision rounded sum (19.42). Fixed 5dc7ccd: slcrDrawKvl sums Number(x.toFixed(2)) addends -> 19.41. Verified run 20260724-044111.',
+ 'FIXED',ARRAY['series_lcr_circuit']::text[],ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],'ch7-stage2b-series_lcr_circuit-checkpointB','incident');
+
+-- Ch.7 Stage 2b · 2026-07-24 · founder-proxy Checkpoint B cycle 1 (series_lcr_circuit)
+-- ONE deferred cosmetic. NOT APPLIED (trial: files only). owner peter_parker:renderer_primitives.
+-- Deferred by the cycle-0 §3b pass (geometry change risks the S6 triangle); founder-proxy
+-- cycle-1 ruled it ACCEPTABLE (labels legible, vertex-tip clip only) and APPROVED the concept.
+-- Pedagogically P3/cosmetic; MODERATE only because the live CHECK has no MINOR (F6/F7 precedent).
+INSERT INTO engine_bug_queue (bug_class,title,severity,owner_cluster,root_cause,prevention_rule,probe_type,probe_logic,status,concepts_affected,fixed_in_files,discovered_in_session,row_type) VALUES
+('field3d_slcr_impedance_triangle_downleg_clips_band',
+ 'ac_series_lcr S7 impedance triangle: when X_C wins, the reactance leg points DOWN (~52px) and the leg tip + Z-hypotenuse vertex extend just below the 500x170 reserved band, clipping the vertex. Cosmetic only — all three leg labels (R=5.0, X=7.50, Z=9.0) + phi=56.3 remain legible (labels repositioned in 5dc7ccd). S6 (up-leg, inductive) does NOT clip. (founder-proxy rated P3/cosmetic; MODERATE = nearest valid live-CHECK severity.)',
+ 'MODERATE','peter_parker:renderer_primitives',
+ 'slcrDrawTriangle uses a fixed origin + pxPerOhm sized for the up-leg (inductive) orientation; the down-leg (capacitive) orientation has no symmetric vertical headroom, so a long X_C-dominant leg overshoots the band''s lower bound. The cycle-0 fix repositioned the labels to stay legible but left the geometry, deferring a true origin/scale fix because lowering the origin or shrinking pxPerOhm would move the just-fixed S6 render.',
+ 'A triangle/vector primitive drawn in a fixed band must size its origin + units so the maximum extent fits for BOTH leg orientations it can draw (up = inductive, down = capacitive), not only the orientation present when it was authored; verify by cropping the band on the orientation-flipped state (S7) and asserting no leg/hypotenuse pixel reaches the band border, WHILE re-confirming the other orientation (S6) is pixel-unchanged.',
+ 'js_eval',
+ 'Crop STATE_7__frozen.png reserved band (approx x12..508,y362..537); assert the green X-leg + blue Z-hypotenuse pixels do not touch the band''s bottom edge (y=537). Regression guard: STATE_6__frozen.png triangle must be byte-identical to run 20260724-044111 (up-leg unchanged). Deferred at cycle 1; not yet fixed.',
+ 'OPEN',ARRAY['series_lcr_circuit']::text[],ARRAY[]::text[],'ch7-stage2b-series_lcr_circuit-checkpointB-cycle1','incident');

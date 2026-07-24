@@ -2948,6 +2948,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // Supersedes the legacy 'phasors' -> graph_interactive stub removed
     // above (old retired scaffolding, never wired to a real concept JSON).
     phasors:                        "field_3d",
+    // src/data/concepts/series_lcr_circuit.json, field_3d ac_series_lcr
+    // scenario (Ch.7 #5, engine build commit cec3a50). NOT in PCPL_CONCEPTS
+    // (that set is 2D parametric_renderer only).
+    series_lcr_circuit:             "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
 };

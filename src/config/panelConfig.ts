@@ -1537,6 +1537,18 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/series_lcr_circuit.json, field_3d
+    // ac_series_lcr scenario (Ch.7 #5, engine build commit cec3a50).
+    series_lcr_circuit: {
+        concept_id: 'series_lcr_circuit',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'series_lcr_circuit',
+            label: 'Series LCR Circuit — Impedance and Resonance (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

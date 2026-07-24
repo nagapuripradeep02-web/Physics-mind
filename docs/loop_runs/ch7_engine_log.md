@@ -1107,3 +1107,139 @@ reviewed by the orchestrator, throwaway removed after.
 
 **Founder still hand-tests the live trusted picker at their leisure** — but the headless drive already
 confirms the physics + mesh swap on the real render.
+
+---
+
+## Stage 5 · 2026-07-24 · NEW field_3d scenario_type `ac_series_lcr` (series_lcr_circuit build)
+
+**Rollback point (pre-dispatch HEAD):** `ad3c87f`
+
+**Routing:** NOT a founder-proxy FAIL. Class-B triage from the architect skeleton
+(`docs/loop_runs/ch7/series_lcr_circuit/skeleton.md` §0b), founder-proxy Checkpoint A
+DESIGN_OK (no fix cycle) — same shape as the four sealed siblings' first-build dispatches.
+`json_author` was BLOCKED until this delta landed. `physics_block.md` supplied every exact
+functional form (§1) + per-state overrides (§2) + closed-form-of-t motion schedules (§3).
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, via the established `general-purpose`
+stand-in carrying `.claude/agents/renderer-primitives.md` (native type not in this session's
+roster). Dispatch prompt RESTATED the trial file-only constraint (Stage-2 violation lesson) —
+the build wrote zero DB rows and filed zero scar SQL itself.
+
+**Built:** `scenario_type: "ac_series_lcr"` — three-element series loop (heater+coil+plates,
+ONE amber current rocking all three in lockstep); five co-rooted disc phasors (source cyan /
+i amber / V_R white / V_L violet / V_C green); tip-to-tail chain assembly (S5) closing onto the
+ghosted source tip; impedance triangle as a similar-triangle V→Ω rescale (S6, Rule-29-exempt
+representation morph); lead/lag flip via a scripted closed-form f-step (S7); resonance sweep with
+X-vs-f + iₘ-vs-f plot pair + merged X_L=X_C crossing chip (S8); R-family sharpness overlay (S9);
+chain-link f₀ derivation (S10); five-slider explore sandbox (S11). All scripted motion a pure
+function of absolute state-local t (B1-scar pattern, rewind-test proven). Reactance subscripts
+(X_L/X_C/Z/φ/Ω) real Unicode across DOM + canvas + sprite paths via a LOCAL `slcr_`-scoped
+compose clone.
+
+**Two founder decisions built with SAFE DEFAULTS (both travel to chapter-end, un-resolved):**
+(a) compose routine = local `slcr_` clone, NOT fleet promotion; (b) colour law = cyan V / amber i
+(V_R white / V_L violet / V_C green / Z cyan). Sealed `ac_inductor` contradicts (b) — left untouched.
+
+**Files touched:** `field_3d_renderer.ts` (+980/−2: union member + 41 `slcr*` functions + 6 wiring
+sites) + `deriveStateMeta.ts` (+38/−1: F3D_REVEAL_KEYS + per-mode reveal pins for all 11 modes +
+motion-declaration + hold-classifier). Co-registered in the same change per the mandatory checklist.
+
+**Verify chain (§3b) — every claim INDEPENDENTLY re-run by the orchestrator, not trusted from the report:**
+1. `check:renderer-syntax` PASS (field_3d 2442 KB, particle_field 229 KB) · `tsc --noEmit` 0 errors ·
+   `validate:concepts` all PASS / 0 FAIL (128 atomic, warning profile unchanged — no JSON touched).
+2. Diff scope: exactly the 2 mandated files (+980/−2, +38/−1). Contamination grep on added lines =
+   1 hit = the permitted `#sliders` exclusion NOT-list at L965 (`…!isAcPhasor && !isAcSeriesLcr`);
+   0 sibling-prefix tokens (`acr_/acl_/acc_/phs_`) inside any `slcr*` function body. 0 added backticks.
+3. Clock guard (Rule 36b): `git diff | grep -c "__pmSteps\|dtStep"` → 0. Local scoped phase only —
+   no fleet sweep required.
+4. Regression, independently reseeded + re-run: `capacitance` 44/44 checks 0 failed (H2 pixel-diff
+   clean vs the locked baseline) · `ac_voltage_capacitor` 39/39 checks 0 failed (sealed sibling code
+   paths genuinely untouched; H2 Skips — no committed baseline this worktree, the pre-existing gap).
+5. Standalone numeric check reproduced every physics_block number: default f=0.25 → X_L=5.000/
+   X_C=5.001/Z=5.000/iₘ=2.000/φ≈0/f₀=0.25002; work f=0.50 → X_L=10.00/X_C=2.50/Z=9.0/iₘ=1.11/φ=56.3/
+   V_R=5.55/V_L=11.09/V_C=2.77/phasor-closure=10.00; S4 source-crest +3.08+9.23−2.31=10.00, i-crest=5.55;
+   mirror f=0.125 → φ=−56.3; S9 family 5.00/2.00/1.00 A · Δf 0.10/0.25/0.50 · Q 2.5/1.0/0.5.
+6. THE EYE on `series_lcr_circuit` itself DEFERRED (no concept JSON yet — json_author authors it next).
+
+**JSON contract for `json_author`:** recorded in the dispatch report (persisted in this run's
+notes) — `scenario_type: "ac_series_lcr"`; `field_lines` block NOT required (createTubeLine
+null-safe, scenario never reads it); slider_controls vm 2/20/1/10.0 · f_demo 0.1/0.5/0.05/0.25 ·
+R 2/20/1/5.0 · L 1.0/10.0/0.1/3.1831 (off-grid) · C 0.04/0.40/0.02/0.1273 (off-grid, snap-on-first-drag);
+CLOSED visible_elements {slcr_circuit, slcr_beads, slcr_fan, slcr_arc, slcr_chain, slcr_triangle,
+slcr_strip, slcr_reso_plot, slcr_chips, slcr_formula}; CLOSED glow-key {circuit, trace, fan,
+i_phasor, v_phasor, vr_phasor, vl_phasor, vc_phasor, chain, triangle, reso_plot, formula};
+11 modes {series_build, off_home, fan, kvl_stack, tip_to_tail, z_triangle, lead_lag_flip,
+resonance_sweep, sharpness, derivation, explore}; per-mode `*_at_ms` cue fallbacks + display flags
+per the report; compose tokens authored as plain ASCII (X_L/X_C/V_R/V_L/V_C/v_m/i_m). CheckpointB
+probes wired: `window.__PM_slcrProbe` (caption-order F7) + `window.__PM_slcrFreezeWindows()` (S4 freeze).
+
+**Documented simplifications (5, named):** (1) ramp-state strip trace quasi-static (instantaneous-f
+waveform, not swept-period history; beads+HUD driven by the honest closed-form phase); (2) S3 strip
+shows source-v + i only (three element voltages carried by the fan arrows); (3) S6 triangle "morph" =
+similar-triangle rescale+relabel (V→Ω), not a physical detach-slide; (4) beads rock in place (signed
+amp·sin θ, ∝ iₘ), not full circulation; (5) S5 chain rotation is a knob (`chain_angle_deg`).
+
+**Scar candidates:** NONE (clean new-scenario build; no existing-code defect surfaced, no new bug
+class created). No DB writes.
+
+**Commit:** `cec3a50` — `feat(engine-loop): NEW field_3d scenario_type ac_series_lcr [peter_parker:renderer_primitives]`.
+
+**Runaway guard:** engine-loop commit #15 this chapter run — past the §3b 8-commit guard, under the
+founder's whole-chapter scale-up grant. Surfaced at the boundary per the guard's intent (the founder
+is asleep; carried to the chapter-end packet, not a blocker).
+
+**Outcome:** Stage 5 engine delta PASSED — full verify chain green (independently re-run), zero
+regression, physics numerically exact. `json_author` may now proceed against the JSON contract.
+
+---
+
+## Stage 5b · 2026-07-24 · Checkpoint B fix bundle `ac_series_lcr` (series_lcr_circuit)
+
+**Rollback point (pre-dispatch HEAD):** `cec3a50`
+
+**Trigger:** founder-proxy Checkpoint B cycle 0 = **FIX(engine)** — 3 BLOCKING + 3 ride-along, all owner
+`peter_parker:renderer_primitives`. The two AI reviewers disagreed (quality-auditor PASS + 1 LOW ∥
+eye-walker FINDINGS(6)); founder-proxy opened the frames + read renderer source and adjudicated: F3
+(S3 un-staggered fan) REFUTED as a deliberate glow-tour, nothing routed to `alex:*`. Full adjudication:
+`docs/loop_runs/ch7/series_lcr_circuit/founder_proxy_report_checkpointB.md`.
+
+**Owner dispatched:** `peter_parker:renderer_primitives`, general-purpose stand-in, trial file-only
+constraint RESTATED (no DB writes; orchestrator files scars + commits).
+
+**Fixed (all in `ac_series_lcr`/`slcr*` paths + one deriveStateMeta S9 entry):**
+- **F1+F4 (BLOCKING):** net reactance X=X_L−X_C=7.50Ω was never rendered. `slcrDrawTriangle` now labels
+  the third (X) leg + X_L/X_C chips; `slcrDrawResoPlot` now draws the merged `X_L=X_C=5.00 Ω` crossing chip.
+- **F2 (BLOCKING):** `f_0`/`v_m` ASCII underscore across HUD/canvas/derivation (recurrence of the Stage-1b
+  rms scar; compose regex excluded digit subscripts) → `f₀`(U+2080)/`vₘ`(U+2098) swept across all paths.
+- **F5 (ride-along):** `deriveStateMeta` S9 reveal-hold 2×→3×`r_step_dur` (4600→5900ms) so the frozen pin
+  lands on the settled R=10/Q=0.5.
+- **F6 (ride-along):** S1 empty band gated on band-content tokens (no stray "AC source" glyph).
+- **F7 (ride-along):** S4 struck-sum computes from displayed rounded addends (→19.41, not 19.42).
+
+**Files touched:** `field_3d_renderer.ts` (+59/−? net) + `deriveStateMeta.ts` (+6/−?, guarded to
+`state.ac_series_lcr`).
+
+**Verify chain (§3b) — independently re-run by the orchestrator:** check:renderer-syntax PASS (field_3d
+2445 KB) · tsc --noEmit 0 · validate:concepts 129/129 PASS · diff scope exactly the 2 engine files,
+sibling-body contamination grep 0, 0 added backticks, 0 remaining ASCII subscript literals, clock guard 0 ·
+reseed + visual:eyes series_lcr_circuit 47/47 0-failed (run 20260724-044111; frozen frames changed = the
+fixes, no locked baseline) · regression reseed + visual:eyes capacitance 44/44 0-failed (H2 clean vs locked
+baseline → shared renderer byte-untouched).
+
+**Scar candidates filed (files only):** 5 rows in `docs/loop_runs/ch7/_engine/scar_candidates.sql` block
+"Ch.7 Stage 2b", all `status='FIXED'`. Orchestrator correction applied: founder-proxy emitted F6/F7 as
+`'MINOR'` (rejected by the live CHECK — the known `.agents/founder_proxy/CLAUDE.md` enum bug); mapped
+MINOR→MODERATE. No 'MINOR' severity value survives in the file.
+
+**Known pre-existing observation (deferred, NOT introduced):** on S7 the X-leg points down (X_C wins) and
+the triangle tip/hypotenuse clip just below the 500×170 band; a true fix (shrink pxPerOhm or lower origin)
+would alter the founder-validated S6 render → deferred to Checkpoint B cycle 1's judgment. All three S7 leg
+labels are legible.
+
+**Commit:** `5dc7ccd` — `fix(engine-loop): series_lcr reactance value never rendered + f₀/vₘ ASCII underscore [peter_parker:renderer_primitives]`.
+
+**Runaway guard:** engine-loop commit #16 this chapter run (past the §3b 8-commit guard, under the founder's
+whole-chapter grant; founder asleep, directed autonomous continuation).
+
+**Outcome:** all 6 findings fixed + verified. NEXT: fresh founder:drive → re-dispatch founder-proxy
+Checkpoint B cycle 1 to confirm the fixes hold (+ rule on the S7 clip observation) before the seal.

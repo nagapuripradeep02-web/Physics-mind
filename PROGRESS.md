@@ -12250,3 +12250,20 @@ vₘ·ωC). This was phasors engine-fix **#3** — past the founder's per-concep
 because the founder directed it explicitly on a confirmed defect (the guard targets runaway *autonomous*
 fixing). Filed as a file-only scar (`FIXED`); confirmed via a live SELECT that zero phasors rows exist in
 the live `engine_bug_queue` table (file-only discipline held). State recorded in `6d534b8`.
+
+
+---
+
+## 2026-07-24 — Ch.7 #5 `series_lcr_circuit` SEALED (autonomous chapter loop, founder asleep)
+
+**Concept 5/8 of Ch.7 (NCERT §7.6, AC Voltage Applied to a Series LCR Circuit)** — the synthesis concept, sealed on the `feat/ch7-alternating-current` trial branch via the full CHAPTER_LOOP pipeline. Founder granted autonomous continuation ("finish this one, then do ac_power_factor too, don't wait for me") and went to sleep; the loop ran the whole concept + is continuing to #6 without blocking.
+
+**Design (Class-B, NEW `ac_series_lcr` scenario, 11 states):** teaches at an off-resonance work-point (f=0.50 Hz) while the chapter's shared default (f=0.25 Hz) secretly sits AT resonance — a mystery-first spine paying off at S8. Reveals exactly what `phasors` withheld: tip-to-tail phasor addition (S5), the reactance numerals + impedance triangle (S6), the phase angle (S7), and resonance (S8, the primary aha). Checkpoint A DESIGN_OK with no fix cycle — founder-proxy re-derived the entire number lock from scratch, including the geometric-mean half-power points.
+
+**Engine build `cec3a50`** (`feat(engine-loop): NEW field_3d scenario_type ac_series_lcr`) — the largest kind of dispatch (11-mode scenario in the 37K-line shared renderer), built with the two founder-decision defaults (local `slcr_` compose clone; cyan=V/amber=i colour law). Verify chain green, zero regression (`capacitance` 44/44, sealed siblings untouched).
+
+**Machine gates all clean first pass** (THE EYE 47/47, founder:drive 0 collisions/flags/console, tsc 0, validate 129/129) — **yet the AI reviewers disagreed**: quality-auditor PASS+1LOW ∥ eye-walker FINDINGS(6). founder-proxy Checkpoint B cycle-0 opened the frames *and read the renderer source*, adjudicating **FIX(engine)**: both reviewers were half-right. The load-bearing catch — the concept's central taught quantity, the **net reactance X=7.50 Ω, was never rendered anywhere it is taught** (`slcrDrawTriangle` labeled only the R and Z legs; `slcrDrawResoPlot` drew no `X_L=X_C` crossing chip) — a core-claim contradiction the auditor missed by checking the formula surface not the triangle leg. Plus `f_0`/`v_m` rendering with literal ASCII underscores (a recurrence of the Stage-1b rms-subscript scar) + 3 ride-alongs. The S3 "un-staggered fan" finding was REFUTED as the deliberate glow-tour json-author authored.
+
+**Fix bundle `5dc7ccd`** fixed all six; Checkpoint B cycle-1 verified each landed against the pixels (three labeled legs, merged `X_L=X_C=5.00 Ω` crossing chip, `f₀` Unicode everywhere, S9 settled to R=10/Q=0.5, S1 band clean, S4 sum 19.41), no regression, and ruled the remaining S7 down-leg vertex-clip an acceptable P3 cosmetic (deferred to protect the just-fixed S6). Checkpoint C SEALED — every fix diffed in the real commit, all 6 scar rows schema-clean and apply-ready, cross-sim coherence with the 4 siblings intact.
+
+**Trial discipline held:** zero DB writes (all 6 scars filed as files; the Stage-2 file-only violation did not recur — every §3b dispatch restated the constraint); no visual:approve/tts/deploy/master-merge. **Engine-loop commit count is now 16** (past the §3b runaway guard) under the founder's whole-chapter grant — flagged for the chapter-end packet. Full per-concept packet: `docs/loop_runs/ch7/series_lcr_circuit/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 5 + 5b. **Next: `ac_power_factor` (#6).**
