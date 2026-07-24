@@ -15,6 +15,15 @@ batch. Prime directive for every decision: maximum simulation quality and teachi
 Indian AND international curricula together — speed and completion are never tiebreakers. **Shipping stays human**: nothing here runs
 `visual:approve`, TTS, PILOT_CONCEPTS, `build:pilot`, or any deploy — Rule 17 intact.
 
+> **Amendment 4 — token discipline (founder-approved 2026-07-24).** Driven by the Ch.7 token audit
+> (~1.13B tokens for 6 concepts; the E1–E10 fix bundle alone = 156M = 19% of all subagent spend).
+> Three structural changes: (i) ONE bug per engine dispatch + a per-dispatch ceiling (§3b);
+> (ii) one concept per SESSION — an outer wrapper (`scripts/ch7_loop.ps1`) relaunches a fresh
+> headless session at every concept boundary, so no session pays the growing cache-read tax (§0);
+> (iii) field_3d engine dispatches go to the specialist `field3d-surgeon` agent, not
+> general-purpose (§3b). Quality machinery — the verify chain, checkpoints, fix budgets — is
+> UNTOUCHED by this amendment.
+
 **The prompt that runs (or resumes) it, always the same one line:**
 
 > Continue the chapter loop for <chapter> per docs/CHAPTER_LOOP.md.
@@ -35,8 +44,16 @@ Indian AND international curricula together — speed and completion are never t
 3. **Concept boundary = checkpoint.** Only after commit + state-file update does the loop advance.
 4. **Clearing is always safe at a boundary, never mid-concept.** Re-orientation = CLAUDE.md
    (auto-loads) + this doc + the state file (~30 lines). Auto-compaction mid-run is harmless by
-   design; a founder `/clear` + the one-line prompt is the clean manual version; a crash/restart
-   resumes identically. Keep the session under ~50% context by clearing every 2–3 concepts.
+   design; a crash/restart resumes identically.
+5. **One concept per SESSION (Amendment 4 — supersedes "clear every 2–3 concepts").** The
+   orchestrating session completes exactly ONE concept — seal it (or park it per protocol), update
+   the state file, then EXIT. It never starts a second concept. The outer wrapper
+   (`scripts/ch7_loop.ps1`) owns the loop: it relaunches a fresh headless session per concept, so
+   every concept starts on an empty context window. Rationale (audit 2026-07-24): a long-lived
+   orchestrator pays cache-read on its whole history at every turn — one 20h session cost ~95M
+   tokens of pure overhead; a fresh session re-orients from disk for a tiny fraction of that.
+   Resuming an `in_flight` concept from its furthest disk artifact counts as that session's one
+   concept.
 
 ## 1 · Chapter state file — `docs/loop_runs/<chapter>_state.md`
 
@@ -102,7 +119,9 @@ then continue at `next`.
    a graduation behavior). Update the state file (incl. `checkpointA:` / `checkpointC:` markers);
    append the PROGRESS.md session line. Advance `next`. A Checkpoint-C `FIX` (a claimed fix didn't
    land) routes it back within the same budget; `ESCALATE` parks.
-6. Repeat. If context feels heavy at a boundary, this is the safe moment to compact/clear.
+6. **EXIT (Amendment 4).** The concept is sealed (or parked) and the state file updated — the
+   session's job is DONE. End the session; the wrapper launches a fresh one for the next concept.
+   Never start a second concept in the same session.
 
 **Never, under any verdict:** `visual:approve` · `tts:*` · PILOT_CONCEPTS · `build:pilot` /
 `deploy:*` · DB writes to `engine_bug_queue` (candidates stay files) · touching any other branch or
@@ -116,6 +135,31 @@ Routed engine findings (founder-proxy `FIX(engine)` or a quality-auditor FAIL ta
 FAIL-routing authority quality_auditor has always had — a routed, owner-tagged, evidence-carrying
 dispatch, never a cold-call. (Trial-branch amendment to hard rule 3; goes to doctrine only at
 graduation.)
+
+**Agent routing (Amendment 4):** engine work whose root cause lives in `field_3d_renderer.ts`
+(new scenario_type builds AND fixes) dispatches the **`field3d-surgeon`** agent — it carries the
+gotcha checklist, a region map of the renderer, and the verify chain in its own spec, so the
+dispatch prompt only needs the finding + evidence. particle_field / generator / cache work stays on
+general-purpose with the full inline template below.
+
+**ONE bug per dispatch (Amendment 4 — bundles are BANNED).** Each engine dispatch fixes exactly ONE
+`bug_class`. Multi-finding bundles (the E1–E10 pattern) are forbidden: N findings = N sequential
+dispatches, each starting fresh. Sole exception: two findings may share a dispatch only when they
+are in the SAME file AND share the SAME root cause. Ride-along findings each get their own queued
+dispatch after the concept's approve. Audit rationale: the bundled E1–E10 dispatch cost 156M tokens
+over 480 calls; the identically-shaped single-bug E11 dispatch cost 4.9M over 45 — per-turn cache
+reads compound with conversation length, so ten short dispatches are ~3× cheaper than one long one.
+
+**Per-dispatch ceiling (Amendment 4):** ~100 tool-calls or ~45 minutes, whichever first. On hitting
+it: STOP cleanly — write a handoff note to `docs/loop_runs/<chapter>/<concept>/engine_handoff.md`
+(what's done, what's verified, the exact next step) and exit; the loop re-dispatches FRESH with the
+note as input. Never push past the ceiling "to finish" — a fresh dispatch reading the note is
+cheaper than 50 more turns on a long context.
+
+**Effort guidance (Amendment 4):** when the finding already names the root cause (a diagnosed fix,
+not an investigation), the dispatch prompt says so explicitly: "Root cause is already diagnosed —
+execute the named fix; keep exploration minimal; do not re-derive the diagnosis." Reserve
+open-ended exploration for genuinely novel work (new scenario design, undiagnosed choreography).
 
 **Dispatch prompt must carry (peter_parker specs are NOT edited — constraints ride per-dispatch):**
 - The finding verbatim + its evidence (file/region, before/after expectation, the probe that proves it).
