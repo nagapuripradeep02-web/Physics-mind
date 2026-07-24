@@ -132,6 +132,23 @@ function loadSentences(conceptId: string): TtsSentence[] {
       if (s.id) out.push(s);
     }
   }
+  // GUARD (2026-07-24): sentence ids must be unique across the WHOLE concept —
+  // audio files + manifest clips are keyed `<id>_<lang>`, so per-state id reuse
+  // (the legacy `s1..s4`-in-every-state pattern) silently overwrites clips
+  // state-by-state and leaves the manifest holding only the last writer's
+  // text_hash (surfaced as 14/18 "STALE" on vector_addition_law's first voice).
+  // Refuse loudly instead of corrupting: rename to fleet-unique `s<state>_<n>`
+  // (faraday_law_induction pattern) before voicing.
+  const idCounts = new Map<string, number>();
+  for (const s of out) idCounts.set(s.id, (idCounts.get(s.id) ?? 0) + 1);
+  const dupes = [...idCounts.entries()].filter(([, n]) => n > 1).map(([id, n]) => `${id}×${n}`);
+  if (dupes.length > 0) {
+    throw new Error(
+      `Duplicate tts_sentence ids in ${conceptId}.json: ${dupes.join(', ')} — ` +
+      `clips are keyed by id, so duplicates overwrite each other. ` +
+      `Rename to fleet-unique s<state>_<n> ids before running TTS.`
+    );
+  }
   return out;
 }
 

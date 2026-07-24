@@ -1240,6 +1240,58 @@ function checkConceptWordBudget(data: unknown): WordBudgetFinding[] {
   return out;
 }
 
+// ─── Gate 7b — tts_sentence id uniqueness (concept-wide) ──────────────────────
+// Audio clips + manifest entries are keyed `<id>_<lang>` (generate_tts_audio.ts),
+// so per-state id reuse (the legacy `s1..s4`-in-every-state pattern) silently
+// overwrites clips state-by-state and leaves the manifest holding only the last
+// writer's text_hash — surfaced 2026-07-24 as 14/18 "STALE" on
+// vector_addition_law's first voice. Fleet convention: `s<state>_<n>`
+// (faraday_law_induction). WARN for the legacy fleet (~41 old-architecture
+// files, never voiced); FAIL when the concept opts into Rule-31/32 authorship
+// (motion_archetype/delta_cue declared) — same escalation logic as Gate 7.
+// generate_tts_audio.ts carries the hard refusal at voicing time regardless.
+
+function checkConceptTtsIdUniqueness(data: unknown): WordBudgetFinding[] {
+  const out: WordBudgetFinding[] = [];
+  const states = (data as { epic_l_path?: { states?: Record<string, unknown> } })
+    ?.epic_l_path?.states;
+  if (!states || typeof states !== 'object') return out;
+
+  const entries = Object.entries(states).filter(
+    (e): e is [string, Record<string, unknown>] => !!e[1] && typeof e[1] === 'object',
+  );
+  const rule31Marked = entries.some(
+    ([, s]) => 'motion_archetype' in s || 'delta_cue' in s,
+  );
+
+  const firstSeenIn = new Map<string, string>();
+  const dupes = new Map<string, Set<string>>();
+  for (const [stateId, state] of entries) {
+    const sentences = (state.teacher_script as { tts_sentences?: unknown[] } | undefined)
+      ?.tts_sentences;
+    if (!Array.isArray(sentences)) continue;
+    for (const s of sentences) {
+      const id = (s as { id?: unknown })?.id;
+      if (typeof id !== 'string' || id.length === 0) continue;
+      const prior = firstSeenIn.get(id);
+      if (prior === undefined) {
+        firstSeenIn.set(id, stateId);
+      } else {
+        if (!dupes.has(id)) dupes.set(id, new Set([prior]));
+        dupes.get(id)!.add(stateId);
+      }
+    }
+  }
+  for (const [id, stateIds] of dupes) {
+    out.push({
+      path: 'epic_l_path.states',
+      fatal: rule31Marked,
+      message: `duplicate tts_sentence id "${id}" across ${[...stateIds].join(', ')} — clips are keyed by id; rename to s<state>_<n> before voicing${rule31Marked ? '' : ' [legacy fleet — warning only]'}`,
+    });
+  }
+  return out;
+}
+
 // ─── Gate 8b — registration cross-check (fleet-level) ─────────────────────────
 // 5 of the 8 registration sites are hand-maintained duplicates of concept-JSON
 // fields, and a miss was previously SILENT (the PCPL miss shipped a chapter
@@ -1503,6 +1555,20 @@ function main(): void {
       else { boundsWarnCount++; boundsWarnFiles.add(file); }
     }
 
+    // Gate 7b — tts_sentence id uniqueness (WARN legacy; FAIL Rule-31/32-era).
+    let ttsIdFatalThisFile = 0;
+    const ttsIdFindings = checkConceptTtsIdUniqueness(data);
+    for (const w of ttsIdFindings) {
+      const tag = w.fatal ? 'FAIL' : 'WARN';
+      console.log(`  ${tag}  ${w.path}: ${w.message}`);
+      const cat = w.fatal ? 'tts_id_duplicate_fail' : 'tts_id_duplicate_warning';
+      categoryTally.set(cat, (categoryTally.get(cat) ?? 0) + 1);
+      if (!categoryFiles.has(cat)) categoryFiles.set(cat, new Set());
+      categoryFiles.get(cat)!.add(file);
+      if (w.fatal) ttsIdFatalThisFile++;
+      else { boundsWarnCount++; boundsWarnFiles.add(file); }
+    }
+
     // Gate 9 — WP-R5 choreography primitives (anchor_to chain order +
     // variable_choreography declaration; seizable-without-slider is a WARN).
     let choreoFatalThisFile = 0;
@@ -1529,7 +1595,7 @@ function main(): void {
     // failed.
     if (
       result.passed &&
-      (physicsCriticalThisFile + exprFatalThisFile + plainEnFatalThisFile + animFatalThisFile + wordBudgetFatalThisFile + choreoFatalThisFile) > 0
+      (physicsCriticalThisFile + exprFatalThisFile + plainEnFatalThisFile + animFatalThisFile + wordBudgetFatalThisFile + ttsIdFatalThisFile + choreoFatalThisFile) > 0
     ) {
       // Demote PASS → FAIL retroactively.
       passCount--;
