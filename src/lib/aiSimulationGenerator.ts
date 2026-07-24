@@ -2945,6 +2945,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     ac_generator:                   "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
+    // Ch.8 Electromagnetic Waves — displacement current (NCERT §8.2), the
+    // chapter's load-bearing opener. NEW field_3d "displacement_current"
+    // scenario (Alex pipeline, 2026-07-24). Ampère–Maxwell correction:
+    // I_d = ε₀ dΦ_E/dt fixes the two-surface contradiction at a charging
+    // capacitor's gap.
+    displacement_current:           "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────

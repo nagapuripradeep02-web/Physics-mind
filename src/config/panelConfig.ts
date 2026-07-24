@@ -1322,6 +1322,19 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.8 Electromagnetic Waves — displacement current (NCERT §8.2), the
+    // chapter's load-bearing opener. NEW field_3d "displacement_current"
+    // scenario (Alex pipeline, 2026-07-24).
+    displacement_current: {
+        concept_id: 'displacement_current',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'displacement_current',
+            label: 'Displacement Current (3D)',
+        },
+    },
+
     magnetic_field_solenoid: {
         concept_id: 'magnetic_field_solenoid',
         layout: 'single',

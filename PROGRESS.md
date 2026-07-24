@@ -12108,3 +12108,29 @@ DATABASE:
   simulation_cache row for parallel_plate_capacitor_field regenerated (reseed x2)
   engine_bug_queue: 2 new rows (see above)
 ```
+
+## 2026-07-24 — Ch.8 chapter-loop: `displacement_current` SEALED (concept #1, NEW field_3d scenario built in-loop)
+
+First Ch.8 (Electromagnetic Waves) concept authored autonomously via the trial chapter loop (`docs/CHAPTER_LOOP.md`, Amendments 4+5; wrapper `scripts/ch8_loop.ps1`, review port 8088). One concept per session then EXIT.
+
+**Concept:** `displacement_current` (NCERT §8.2 — Maxwell's displacement current / the Ampère–Maxwell correction). 10-state field_3d diamond: 6 core (S1 charge fills wires, gap stays empty → S2 flux rises → S3 Ampère loop+flat disk I_enc=1.2A → S4 same-loop balloon-surface I_enc=0? crisis → S5 probe refutation B=2.4µT → S6 I_d=I_c only-while-changing) / 1 extended (S7 B(r) peak at plate edge) / 2 advanced (S8 I_d=ε₀dΦ_E/dt derivation, S9 frozen Ampère–Maxwell ledger — the S4↔S9 surface-morph contrast pair) / core explore-last (S10 sandbox, 3 live sliders, Rule 37 continuous-run). Universal anchor (Rule 35): charging capacitor in a camera flash / touchscreen / defibrillator, narration-only.
+
+**Pipeline:** architect → CP-A founder-proxy DESIGN_OK → physics-author (all locked numbers independently verified) → json-author (8 registration sites, migration + seed authored, tsc 0 / validate 125 PASS). NEW `scenario_type: "displacement_current"` built in-loop by field3d-surgeon (§3b). quality-auditor PASS (all gates ✓/N/A) ∥ eye-walker (2 MODERATE findings). CP-B founder-proxy: cycle-1 FIX(engine,blocking) → cycle-2 APPROVE. CP-C SEALED.
+
+**Engine commits (3 — all engine-files-only, grep `git log --grep=engine-loop`):**
+```
+59cdd53  feat(engine-loop): displacement_current field_3d scenario   (E1 — new scenario; +dc_surface disk↔balloon vertex-morph primitive; deriveStateMeta reveal pins)
+aa724f8  fix(engine-loop): S5 wrong-expectation ghost tag            (E2 — CP-B blocking; renders "✗ Expected: no current → B̶=̶0̶" ghosted, mode-gated, wired to ghost_tag_at_ms hook)
+32f032d  fix(engine-loop): dc_surface vertex-morph monotonicity guard (E3 — CP-B ride-along; clamp01 + explicit flat-disk cue boundary)
+```
+Plus an in-build fix (found+fixed in E1): S5 forced sustained-charge so B never blips to zero (physics_author flag). Verify chain green throughout: EYE 43/43 on displacement_current; regression pair magnetisation_and_intensity 38/38 + bar_magnet_as_dipole 56/56 clean (Amendment-5 disjoint pair); founder_drive states=10 collisions=0 flags=0 consoleErrors=0. 3 commits < the ≥8 runaway-guard threshold; no clock touch → no fleet sweep.
+
+**Concept-seal commit (this session):** concept JSON + 3 registration sites (panelConfig, aiSimulationGenerator CONCEPT_RENDERER_MAP, intentClassifier VALID_CONCEPT_IDS+CLASSIFIER_PROMPT) + migration + seed script + docs/loop_runs/ch8/displacement_current/ (skeleton, physics_block, checkpoint_a/b/c reports, auditor + eye_walker reports) + docs/loop_runs/ch8/_engine/scar_candidates.sql + ch8_engine_log.md + ch8_state.md + this PROGRESS entry. Chapter branch only (feat/ch8-em-waves) — NO master merge (trial).
+
+**Trial constraints honored:** no visual:approve, no tts, no PILOT_CONCEPTS, no deploy, NO DB writes to engine_bug_queue (3 scar candidates are FILES in docs/loop_runs/ch8/_engine/scar_candidates.sql, pending founder ruling at graduation). Cache ops were scoped (`cache:clear:scoped` + concept re-seeds for THE EYE) — no unconditional 4-table wipe.
+
+**Founder chapter-end queue for this concept:** (a) 3 scar candidates (2 FIXED, 1 OPEN = the fleet-wide scene_composition-annotation silent-no-op render path); apply-time: confirm live severity CHECK permits 'MAJOR'. (b) 3 P3 polish notes: S9 per-term label `μ₀·I_c(1−s)=0.16 A` dimensionally loose → tidy to `I_c(1−s)`; S7 R/r/peak tag crowding (legible); fleet-wide annotation render is a broader engine item. (c) Founder hand-tests S10's 3 live-slider drags + trusted-drag seize (headless can't fire trusted events).
+
+**Blocker / hygiene:** `.founder_runs/` is not gitignored on this branch (`.visual_runs` + `review-site` are) — seal commit added files by explicit path to avoid committing it; founder may want a .gitignore entry.
+
+**Next session's first task:** `em_wave_propagation` (Ch.8 #2, NCERT §8.3) — fresh session, `cache:clear:scoped em_wave_propagation` → dispatch architect. Likely another NEW field_3d scenario (traveling transverse E&B sinusoids). No CLAUDE.md changes suggested this session.
