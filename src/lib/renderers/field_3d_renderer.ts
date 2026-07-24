@@ -38109,8 +38109,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula)
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
