@@ -24,6 +24,17 @@ Indian AND international curricula together — speed and completion are never t
 > general-purpose (§3b). Quality machinery — the verify chain, checkpoints, fix budgets — is
 > UNTOUCHED by this amendment.
 
+> **Amendment 5 — parallel-safety (founder-approved 2026-07-24).** Enables a SECOND chapter loop
+> (Ch.8 EM Waves) to run concurrently against the SAME dev Supabase without cache collisions. Two
+> changes, both behavior-neutral for a solo run: (i) the start-of-concept `simulation_cache` clear is
+> SCOPED to the concept_key (`npm run cache:clear:scoped -- <id>`) instead of an unconditional
+> full-table wipe — so one loop never clobbers the other's freshly-seeded concept mid-EYE (§3 step 1);
+> (ii) the field_3d regression sample is read from the state file's `regression_sample:` field so each
+> parallel chapter uses a DISJOINT locked pair (ch7 = faraday_law_induction + capacitance; ch8 =
+> magnetisation_and_intensity + bar_magnet_as_dipole) and the two never re-seed the same baseline at
+> once (§3b step 3). The serving-path tables (lesson/response/session_context) are not read by THE EYE,
+> so they are simply left alone by the scoped clear.
+
 **The prompt that runs (or resumes) it, always the same one line:**
 
 > Continue the chapter loop for <chapter> per docs/CHAPTER_LOOP.md.
@@ -84,8 +95,11 @@ then continue at `next`.
 
 ## 3 · Per-concept loop (autonomous, sequential)
 
-1. **Cache clear** — the 4 DELETEs (simulation_cache / lesson_cache / response_cache /
-   session_context), four separate queries (CLAUDE.md §6).
+1. **Cache clear (Amendment 5 — SCOPED).** `npm run cache:clear:scoped -- <id>` clears only THIS
+   concept's `simulation_cache` rows (concept_key + fingerprint_key), so a parallel chapter loop on
+   the same dev Supabase is never clobbered. (The old unconditional 4-table wipe —
+   `_scratch_cache_clear_4tables.mjs`, CLAUDE.md §6 — is retained for solo/manual use, but the loop
+   uses the scoped clear. The serving tables don't affect THE EYE, so they're left alone.)
 2. **Pipeline with Checkpoint A** — architect writes the skeleton → **dispatch founder-proxy at
    Checkpoint A (design gate)**: DESIGN_OK proceeds; DESIGN_FIX routes back to architect (max 2
    cycles, then park); ESCALATE parks. Only on DESIGN_OK: physics-author → json-author, each output
@@ -174,8 +188,10 @@ open-ended exploration for genuinely novel work (new scenario design, undiagnose
 1. `npm run check:renderer-syntax` (Rule 36c) → `npx tsc --noEmit` → `npm run validate:concepts`.
 2. Re-seed the target concept's `simulation_cache` (THE EYE reads cached HTML — skipping the reseed
    silently tests the OLD code) → `npm run visual:eyes -- <target>`.
-3. Regression sample — re-seed + EYE on baseline-locked concepts of the touched renderer:
-   field_3d → `faraday_law_induction` + `capacitance`; particle_field → `ohms_law` +
+3. Regression sample — re-seed + EYE on baseline-locked concepts of the touched renderer.
+   **field_3d = the state file's `regression_sample:` field** (Amendment 5 — default
+   `faraday_law_induction` + `capacitance`; a parallel chapter overrides to a DISJOINT locked pair so
+   two loops never re-seed the same baseline at once); particle_field → `ohms_law` +
    `wheatstone_bridge`. Any H2 diff vs locked baselines = regression = FAIL.
 4. **Clock guard (Rule 36b):** if the diff touches `__pmSteps` / `dtStep` / the p5 `deltaTime`
    accumulator / any integrator, the FULL fleet sweep runs NOW, not at chapter end.
