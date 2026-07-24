@@ -1405,7 +1405,11 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'z_triangle') candidates.push(asNum(acSlcr.morph_start_at_ms, 800) + 3000);
         else if (mode === 'lead_lag_flip') candidates.push(asNum(acSlcr.f_step_start_at_ms, 3000) + 2500);
         else if (mode === 'resonance_sweep') candidates.push(asNum(acSlcr.sweep_start_at_ms, 1000) + asNum(acSlcr.sweep_legA_ms, 5000) + asNum(acSlcr.sweep_legB_ms, 3000) + 500);
-        else if (mode === 'sharpness') candidates.push(asNum(acSlcr.r_step_start_at_ms, 1200) + 2 * asNum(acSlcr.r_step_dur_ms, 1300) + 800);
+        // F5: the R-family tween runs 5->2 (idx 1) then 2->10 (idx 2), the LAST
+        // step completing at r_step_start + 3*r_step_dur. Pin PAST that (was 2x,
+        // which landed mid-tween on the transitional R=7.4/Q=0.7) so THE EYE
+        // photographs the SETTLED R=10 / Q=0.5 / im=1.00 A frame.
+        else if (mode === 'sharpness') candidates.push(asNum(acSlcr.r_step_start_at_ms, 1200) + 3 * asNum(acSlcr.r_step_dur_ms, 1300) + 800);
         else if (mode === 'derivation') candidates.push(asNum(acSlcr.chain_4_at_ms, 6000) + 2000);
         else candidates.push(1500);                                       // explore / no timed reveal
     }

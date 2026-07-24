@@ -28687,7 +28687,16 @@ export const FIELD_3D_RENDERER_CODE = `
         if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
 
         var roEl = document.getElementById("slcr_readout"); if (roEl) roEl.style.display = (d.show_readout === false) ? "none" : "block";
-        var gcEl = document.getElementById("slcr_band"); if (gcEl) gcEl.style.display = "block";
+        // Band container (F6): show ONLY when the state carries band content
+        // (strip/fan/chain/triangle/plot/chips, or the S4 kvl_stack draw). A state
+        // that reserves it empty (S1) renders nothing — not even the border box.
+        var gcEl = document.getElementById("slcr_band");
+        if (gcEl) {
+            var bandToks = ["slcr_strip", "slcr_fan", "slcr_chain", "slcr_triangle", "slcr_reso_plot", "slcr_chips"];
+            var bandHasContent = (d.mode === "kvl_stack");
+            for (var bti = 0; bti < bandToks.length && !bandHasContent; bti++) { if (vis.indexOf(bandToks[bti]) !== -1) bandHasContent = true; }
+            gcEl.style.display = bandHasContent ? "block" : "none";
+        }
         var ffEl = document.getElementById("slcr_formula");
         if (ffEl) {
             if (d.mode === "derivation") { ffEl.innerHTML = ""; ffEl.style.display = "block"; }
@@ -28756,7 +28765,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // pen dots.
         ctx.fillStyle = SLCR_COL_V; ctx.beginPath(); ctx.arc(xT(tSec), yV(tSec), 3.2, 0, 2 * Math.PI); ctx.fill();
         ctx.fillStyle = SLCR_COL_I; ctx.beginPath(); ctx.arc(xT(tSec), yI(tSec), 3.0, 0, 2 * Math.PI); ctx.fill();
-        ctx.fillStyle = SLCR_COL_V; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, "v_m", SLCR_STRIP_X0 - 16, cy - Lv + 3, "left");
+        ctx.fillStyle = SLCR_COL_V; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, "v\\u2098", SLCR_STRIP_X0 - 16, cy - Lv + 3, "left");
     }
 
     // Five-arrow phasor fan (disc region): i amber (0deg ref), V_R white (along i),
@@ -28777,13 +28786,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (tag) { ctx.fillStyle = col; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, tag, tx + 3, ty, "left"); }
         }
         // arrows (draw amber i first as reference, then the three voltages, then source).
-        arrow(0, Li * phys.im, SLCR_COL_I, "i_phasor", "i_m");
+        arrow(0, Li * phys.im, SLCR_COL_I, "i_phasor", "i\\u2098");
         if (d.show_v_chips !== false) {
             arrow(0, Lv * phys.VR, SLCR_COL_VR, "vr_phasor", "V_R");
             arrow(90, Lv * phys.VL, SLCR_COL_VL, "vl_phasor", "V_L");
             arrow(-90, Lv * phys.VC, SLCR_COL_VC, "vc_phasor", "V_C");
         }
-        arrow(phi, Lv * phys.im * phys.Z, SLCR_COL_V, "v_phasor", "v_m");
+        arrow(phi, Lv * phys.im * phys.Z, SLCR_COL_V, "v_phasor", "v\\u2098");
         // phi arc (live) — numeral only when show_arc_numeral (withheld before S7).
         if (slcrVisHas("slcr_arc") && d.show_arc) {
             var a0 = th * Math.PI / 180, a1 = (th + phi) * Math.PI / 180, arcR = 22;
@@ -28802,14 +28811,17 @@ export const FIELD_3D_RENDERER_CODE = `
     function slcrDrawKvl(ctx, gc, d, tSec, thetaDeg, phys, freeze) {
         var sx = SLCR_STRIP_X0 + 6;
         // struck sum: V_R + V_L + V_C = 19.41 V?  beside the true source 10.0 V.
-        var wrong = phys.VR + phys.VL + phys.VC;
+        // (F7) sum the DISPLAYED 2dp addends (5.55 + 11.09 + 2.77 = 19.41), NOT the
+        // full-precision operands (19.41587 -> 19.42) — so the on-canvas arithmetic
+        // is internally consistent with the visible V chips + the narration.
+        var wrong = Number(phys.VR.toFixed(2)) + Number(phys.VL.toFixed(2)) + Number(phys.VC.toFixed(2));
         ctx.font = "10px 'Cambria Math','Times New Roman',serif"; ctx.fillStyle = "#EF5350";
         var chip = "V_R + V_L + V_C = " + wrong.toFixed(2) + " V?";
         var w = slcrMeasureComposedWidth(ctx, chip, ctx.font, 0.62);
         slcrFillComposed(ctx, chip, sx, 16, "left");
         ctx.strokeStyle = "#EF5350"; ctx.lineWidth = 1.1; ctx.beginPath(); ctx.moveTo(sx, 12.5); ctx.lineTo(sx + w, 12.5); ctx.stroke();
         ctx.fillStyle = "#80DEEA"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
-        ctx.fillText("source v_m = " + (phys.im * phys.Z).toFixed(1) + " V", sx, 30);
+        ctx.fillText("source v\\u2098 = " + (phys.im * phys.Z).toFixed(1) + " V", sx, 30);
         // freeze read-out (single-latest, full-cleared each frame).
         if (freeze && freeze.frozen && freeze.targetDeg != null) {
             var th = freeze.targetDeg, rad = th * Math.PI / 180;
@@ -28901,6 +28913,22 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.font = "9px 'Cambria Math','Times New Roman',serif";
             ctx.fillStyle = SLCR_COL_VR; ctx.fillText("R = " + window.PM_slcrR.toFixed(1) + " \\u03a9", ox, oy + 13);
             ctx.fillStyle = SLCR_COL_Z; slcrFillComposed(ctx, "Z = " + phys.Z.toFixed(1) + " \\u03a9", ox + rLen / 2 + 4, oy + xSign * Math.abs(xLen) / 2 - 4, "left");
+            // X leg (net reactance |X_L - X_C|, winner colour) — the TAUGHT quantity
+            // (F1): the third labeled leg so the triangle reads sound-off on
+            // S6/S7/S11 (collapses to 0.00 at the S8 resonance crossing — fine).
+            // anchored near the leg's base (oy end) — clear of the Z chip (mid
+            // hypotenuse) and, when the leg points DOWN (X_C wins, S7), clear of the
+            // R chip + fan phi numeral that crowd the band floor.
+            ctx.fillStyle = xWin; ctx.fillText("X = " + Math.abs(phys.X).toFixed(2) + " \\u03a9", apex[0] + 5, oy + xSign * 15);
+            // X_L / X_C individual values (the tug-of-war) — drawn in the otherwise
+            // -empty strip region on triangle states WITHOUT the resonance plot
+            // (S6/S7) so the f-step swap (10.00 <-> 2.50) is legible: the winner
+            // sets the sign (Rule 32c). Suppressed on S8/S11 where the plot owns it.
+            if (!slcrVisHas("slcr_reso_plot")) {
+                ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+                ctx.fillStyle = SLCR_COL_VL; slcrFillComposed(ctx, "X_L = " + phys.XL.toFixed(2) + " \\u03a9", SLCR_STRIP_X0, 20, "left");
+                ctx.fillStyle = SLCR_COL_VC; slcrFillComposed(ctx, "X_C = " + phys.XC.toFixed(2) + " \\u03a9", SLCR_STRIP_X0, 35, "left");
+            }
         }
     }
 
@@ -28942,11 +28970,18 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.strokeStyle = "rgba(236,239,241,0.5)"; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(fx(f0), upTop); ctx.lineTo(fx(f0), loBot); ctx.stroke(); ctx.setLineDash([]);
             ctx.fillStyle = "#ECEFF1"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
-            slcrFillComposed(ctx, "f_0 = " + f0.toFixed(2) + " Hz", fx(f0) + 3, upTop + 8, "left");
+            slcrFillComposed(ctx, "f\\u2080 = " + f0.toFixed(2) + " Hz", fx(f0) + 3, upTop + 8, "left");
+            // Merged crossing chip (F4): at f0 the two reactance curves meet, so X_L
+            // and X_C are EQUAL there — ONE equality chip (Rule 34/A6: never two
+            // separate chips, and no bare R chip beside it). Value = shared reactance
+            // at the crossing (2.pi.f0.L). A dot pins it to the true intersection.
+            var xCross = slcrXLof(f0, L), cyCross = yUp(xCross);
+            ctx.fillStyle = "#ECEFF1"; ctx.beginPath(); ctx.arc(fx(f0), cyCross, 2.6, 0, 2 * Math.PI); ctx.fill();
+            slcrFillComposed(ctx, "X_L = X_C = " + xCross.toFixed(2) + " \\u03a9", fx(f0) + 6, cyCross - 5, "left");
         } else {
             var edgeX = f0 < SLCR_FMIN ? x0 + 4 : x1 - 4;
             ctx.fillStyle = "#ECEFF1"; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; ctx.textAlign = f0 < SLCR_FMIN ? "left" : "right";
-            slcrFillComposed(ctx, (f0 < SLCR_FMIN ? "\\u2190 " : "") + "f_0 = " + f0.toFixed(2) + " Hz" + (f0 > SLCR_FMAX ? " \\u2192" : ""), edgeX, upTop + 8, f0 < SLCR_FMIN ? "left" : "right");
+            slcrFillComposed(ctx, (f0 < SLCR_FMIN ? "\\u2190 " : "") + "f\\u2080 = " + f0.toFixed(2) + " Hz" + (f0 > SLCR_FMAX ? " \\u2192" : ""), edgeX, upTop + 8, f0 < SLCR_FMIN ? "left" : "right");
             ctx.textAlign = "left";
         }
         // live dot on both curves at the current demo-f.
@@ -28961,7 +28996,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // axis labels.
         ctx.fillStyle = SLCR_COL_VL; ctx.font = "8px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, "X_L, X_C (\\u03a9)", x0, upTop + 6, "left");
-        ctx.fillStyle = SLCR_COL_I; slcrFillComposed(ctx, "i_m (A)", x0, loTop + 8, "left");
+        ctx.fillStyle = SLCR_COL_I; slcrFillComposed(ctx, "i\\u2098 (A)", x0, loTop + 8, "left");
     }
 
     // Per-frame update — closed-form theta (Rule 26/36), scripted ramps, freeze
@@ -29052,11 +29087,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var roEl = document.getElementById("slcr_readout");
         if (roEl && roEl.style.display !== "none") {
             var html = "";
-            html += "<div>i_m = " + phys.im.toFixed(2) + " A</div>";
+            html += "<div>i\\u2098 = " + phys.im.toFixed(2) + " A</div>";
             html += "<div>f = " + window.PM_slcrF.toFixed(2) + " Hz</div>";
             if (d.hud_show_z) html += "<div>Z = " + phys.Z.toFixed(1) + " \\u03a9</div>";
             if (d.hud_show_phi) html += "<div style=\\"color:#CE93D8\\">\\u03c6 = " + Math.abs(phys.phi).toFixed(1) + "\\u00b0 " + (phys.phi > 0.5 ? "(lag)" : phys.phi < -0.5 ? "(lead)" : "") + "</div>";
-            if (d.hud_show_f0) html += "<div>f_0 = " + phys.f0.toFixed(2) + " Hz</div>";
+            if (d.hud_show_f0) html += "<div>f\\u2080 = " + phys.f0.toFixed(2) + " Hz</div>";
             roEl.innerHTML = slcrHtmlComposeSub(html);
         }
     }
@@ -29099,7 +29134,7 @@ export const FIELD_3D_RENDERER_CODE = `
             "X_L = X_C",
             "\\u03c9L = 1/(\\u03c9C)",
             "\\u03c9\\u2080 = 1/\\u221a(LC)",
-            "f_0 = 1/(2\\u03c0\\u221a(LC)) = " + phys.f0.toFixed(3) + " Hz"
+            "f\\u2080 = 1/(2\\u03c0\\u221a(LC)) = " + phys.f0.toFixed(3) + " Hz"
         ];
         var cues = [
             cueTriggerMs("chain_1", (d.chain_1_at_ms != null ? d.chain_1_at_ms : 0)),
