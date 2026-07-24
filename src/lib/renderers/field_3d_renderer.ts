@@ -29219,7 +29219,7 @@ export const FIELD_3D_RENDERER_CODE = `
     var PWR_COL_P = "#FF6E40";                                   // real-power hue — warm red-orange. Contrast vs amber #FFB300: amber hue ~42deg (R255 G179 B0, gold); #FF6E40 hue ~17deg (R255 G110 B64, coral) — 25deg apart, green channel 179 vs 110, blue 0 vs 64: instantly distinguishable at overlay scale where i|| roots at the amber i-arrow.
     var PWR_COL_XL = "#B388FF", PWR_COL_XC = "#69F0AE";         // reactive winner (violet X_L wins / green X_C wins)
     var PWR_COL_S = "#4FC3F7";                                   // apparent power = cyan (inherits Z/source hue)
-    var PWR_COL_RET = "rgba(120,144,160,0.50)";                 // negative-lobe "returned" tint (desaturated blue-grey)
+    var PWR_COL_RET = "rgba(96,125,139,0.78)";                  // negative-lobe "returned" tint (F4b: darker/bolder blue-grey #607D8B @0.78, up from 120,144,160 @0.50 — the returned excursion reads as a solid filled band, not a faint sliver)
     var PWR_COL_RETLINE = "#78909C";
 
     var pwrSrcGrp = null, pwrElemR = null, pwrElemL = null, pwrElemC = null, pwrHeaterMat = null;
@@ -29282,6 +29282,12 @@ export const FIELD_3D_RENDERER_CODE = `
     function pwrHtmlComposeSub(text) {
         if (text == null) return "";
         return String(text).replace(/([A-Za-z])_([A-Za-z]+)/g, "$1<sub>$2</sub>");
+    }
+    // Drop a spurious negative sign when a value rounds to zero at the given dp
+    // (F4a: at resonance sinphi=-0.000188 -> i_perp/Q would render "-0.000"; the
+    // toFixed sign survives a value below the half-ULP round-to-zero threshold).
+    function pwrFxZero(v, dp) {
+        return (Math.abs(v) < 0.5 * Math.pow(10, -dp) ? 0 : v).toFixed(dp);
     }
 
     // ── Series-loop path geometry: ONE amber bead stream threads all three
@@ -29486,7 +29492,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var meterTitle = createLabelSprite("wattmeter", "#B0BEC5", 0.20);
         meterTitle.position.set(-0.4, 1.5, 0);
         meterTitle.userData = { elementType: "pwr_meter", id: "pwr_meter_title" }; addToScene(meterTitle);
-        pwrMeterLbl = pmCreateAutoLabel("P = 0.00 W", PWR_COL_P, 0.24);
+        pwrMeterLbl = pmCreateAutoLabel("P = 0.00 W", PWR_COL_P, 0.34);   // F4d: enlarged 0.24 -> 0.34 so the meter reading is legible at classroom scale
         pwrMeterLbl.position.set(-0.4, 2.95, 0);
         pwrMeterLbl.userData = { elementType: "pwr_meter", id: "pwr_meter_lbl" }; addToScene(pwrMeterLbl);
 
@@ -29814,12 +29820,15 @@ export const FIELD_3D_RENDERER_CODE = `
         var strikeAt = cueTriggerMs("chip_strike", (d.chip_strike_at_ms != null ? d.chip_strike_at_ms : 1500)) / 1000;
         var ratioAt = cueTriggerMs("ratio_reveal", (d.ratio_reveal_at_ms != null ? d.ratio_reveal_at_ms : 3000)) / 1000;
         var nameAt = cueTriggerMs("naming", (d.naming_at_ms != null ? d.naming_at_ms : 6000)) / 1000;
-        // naive V*I chip at displayed addends (F7): 7.07 x 0.785 = 5.55 W? (struck).
+        // naive V*I chip — SYMBOLIC operands + S's own canonical value (F1): the
+        // struck "V_rms x I_rms = 5.55 W?" reads identically to S8's "S = 5.55 VA",
+        // the ratio chip's 5.55, and narration. NOT the literal "7.07 x 0.784 = ..."
+        // (a visibly false multiplication: I_rms=0.784498 single-rounds to 0.784, and
+        // 7.07x0.784 = 5.54 != S's canonical 5.55). Kept STRUCK — the naive answer is
+        // still the wrong one; only the operand form changes, from numeric to symbolic.
         if (tSec >= ghostAt) {
-            var vD = Number(phys.Vrms.toFixed(2)), iD = Number(phys.Irms.toFixed(3));
-            var naive = (vD * iD);
             ctx.font = "11px 'Cambria Math','Times New Roman',serif"; ctx.fillStyle = "#EF5350";
-            var chip = phys.Vrms.toFixed(2) + " \\u00d7 " + phys.Irms.toFixed(3) + " = " + naive.toFixed(2) + " W?";
+            var chip = "V_rms \\u00d7 I_rms = " + phys.S.toFixed(2) + " W?";
             var w = pwrMeasureComposedWidth(ctx, chip, ctx.font, 0.62);
             pwrFillComposed(ctx, chip, sx, 18, "left");
             if (tSec >= strikeAt) {
@@ -29849,9 +29858,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var W = gc.width, H = gc.height, padL = 6, padR = 6, padT = 14, padB = 14;
         var plotW = W - padL - padR, plotH = (H - padB) - padT;
         var tSec = smp.tSec, tWin = smp.tWin;
-        // y-range: guided fixed -4..+21 W; explore auto-ranges to [P-S,P+S] +/-10%.
+        // y-range: guided fixed -4..+21 W; explore + wave_sinks (S3) auto-range to
+        // [P-S, P+S] +/-10%. F4b: the fixed +21 W range was sized for the S1/S2
+        // resonance +20 W peak (product_wave), which buried S3's sub-zero "returned"
+        // lobe (swing -2.47..+8.63 at the f=0.50 work point) to a ~10% sliver. During
+        // S3's f-glide P/S track the live f, so the pane starts tall (resonance
+        // 0..20, the +20 W humps still fit) and tightens as the wave sinks — making
+        // the negative "wave dips negative" lobe the prominent feature it teaches.
+        // product_wave (S1/S2) keeps the fixed range so its +20 W peak never clips.
         var yMin = PWR_PP_YMIN, yMax = PWR_PP_YMAX;
-        if (d.mode === "explore") {
+        if (d.mode === "explore" || d.mode === "wave_sinks") {
             var lo = Math.min(0, phys.P - phys.S), hi = phys.P + phys.S;
             var pad = 0.10 * Math.max(hi - lo, 1e-6);
             yMin = lo - pad; yMax = hi + pad;
@@ -30085,8 +30101,8 @@ export const FIELD_3D_RENDERER_CODE = `
             if (d.hud_show_cosphi) html += "<div style=\\"color:#FFD54F\\">cos \\u03c6 = " + phys.cosphi.toFixed(3) + "</div>";
             if (d.hud_show_p) html += "<div style=\\"color:#FF6E40\\">P = " + phys.P.toFixed(2) + " W</div>";
             if (d.hud_show_components) {
-                html += "<div style=\\"color:#FF6E40\\">I_rms cos \\u03c6 = " + phys.ipar.toFixed(3) + " A</div>";
-                html += "<div style=\\"color:" + (phys.X >= 0 ? "#B388FF" : "#69F0AE") + "\\">I_rms sin \\u03c6 = " + phys.iperp.toFixed(3) + " A</div>";
+                html += "<div style=\\"color:#FF6E40\\">I_rms cos \\u03c6 = " + pwrFxZero(phys.ipar, 3) + " A</div>";
+                html += "<div style=\\"color:" + (phys.X >= 0 ? "#B388FF" : "#69F0AE") + "\\">I_rms sin \\u03c6 = " + pwrFxZero(phys.iperp, 3) + " A</div>";
             }
             roEl.innerHTML = pwrHtmlComposeSub(html);
         }
