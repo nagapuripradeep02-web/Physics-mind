@@ -28186,6 +28186,950 @@ export const FIELD_3D_RENDERER_CODE = `
         return phsComputeFreeze(d, 1e6, omDeg, th0).windows;
     };
 
+    // ══════════════════════════════════════════════════════════════════════
+    //  ac_series_lcr scenario  —  NEW Ch.7 §7.6 series-LCR synthesis scenario.
+    //  Clean STANDALONE sibling of the Ch.7 scope-pane family (built by cloning
+    //  the family's VISUAL LANGUAGE only — zero sealed call sites touched). It
+    //  renders three elements (heater R / coil L / plates C) in ONE series loop,
+    //  a five-arrow phasor fan, tip-to-tail voltage addition, the impedance
+    //  triangle, phase angle, and the resonance sweep.
+    //
+    //  Colour law (chapter, founder default): cyan = voltage / amber = current;
+    //  V_R white · V_L violet · V_C green · Z cyan; the net-X leg takes the LIVE
+    //  winner's colour (violet when X_L wins, green when X_C wins).
+    //
+    //  Glow-key enum CLOSED to: circuit · trace · fan · i_phasor · v_phasor ·
+    //  vr_phasor · vl_phasor · vc_phasor · chain · triangle · reso_plot ·
+    //  formula.  visible_elements CLOSED to: slcr_circuit · slcr_beads ·
+    //  slcr_fan · slcr_arc · slcr_chain · slcr_triangle · slcr_strip ·
+    //  slcr_reso_plot · slcr_chips · slcr_formula.
+    //  Modes: series_build · off_home · fan · kvl_stack · tip_to_tail ·
+    //  z_triangle · lead_lag_flip · resonance_sweep · sharpness · derivation ·
+    //  explore.
+    //
+    //  Every scripted motion (the S2/S7/S8/S9 ramps, bead_frac(t), theta(t),
+    //  the S4 freezes) is a PURE FUNCTION of absolute state-local t (no per-frame
+    //  accumulator anywhere — byte-stable under SET_TIME_FREEZE by construction).
+    // ══════════════════════════════════════════════════════════════════════
+    // Canvas geometry (disc region left, resonance/sine strip right, ONE canvas;
+    // envelope: bottom:185 + H:170 = 355px <= the family scope's 360px top edge).
+    var SLCR_BAND_W = 500, SLCR_BAND_H = 170;
+    var SLCR_DISC_CX = 90, SLCR_DISC_CY = 86, SLCR_DISC_R = 56;
+    var SLCR_STRIP_X0 = 182, SLCR_STRIP_X1 = SLCR_BAND_W - 14;   // right region x-range
+    var SLCR_TWIN = 8.0;                                          // strip time window (s)
+    var SLCR_FREEZE_D = 1000;                                     // default freeze budget (ms each)
+    var SLCR_FLASH_D = 900;                                       // crossing-flash visible window (ms)
+    var SLCR_FMIN = 0.10, SLCR_FMAX = 0.50;                       // resonance-plot f-axis domain (Hz)
+    // 3D apparatus band — the real machine a teacher points at (Rule 33 macro).
+    var SLCR_SRC_X = -3.4, SLCR_R_X = -1.15, SLCR_L_X = 0.55, SLCR_C_X = 2.2, SLCR_RIGHT_X = 3.3;
+    var SLCR_TOP_Y = 1.1, SLCR_BOT_Y = -1.1;
+    var SLCR_BEAD_COUNT = 18;
+    var SLCR_BEAD_AMP = 0.5;                                      // bead arclength swing at default current
+    // Colour law (chapter default).
+    var SLCR_COL_V = "#4FC3F7", SLCR_COL_I = "#FFB300";
+    var SLCR_COL_VR = "#ECEFF1", SLCR_COL_VL = "#B388FF", SLCR_COL_VC = "#69F0AE", SLCR_COL_Z = "#4FC3F7";
+
+    var slcrSrcGrp = null, slcrElemR = null, slcrElemL = null, slcrElemC = null;
+
+    // ── slcr_-scoped styled-subscript compose routine (founder default (a): a
+    //   LOCAL scoped clone — NOT the shared-layer promotion — so the sealed
+    //   chapter cannot regress). Handles X_L / X_C / V_R / V_L / V_C / v_m / i_m
+    //   via the generalized token regex (native Unicode subscript ₘ passes
+    //   through untouched); NEVER emits a literal underscore (Rule 34c) on any of
+    //   the three text paths (DOM innerHTML, canvas fillText, sprite labels). ──
+    function slcrComposeSegments(text) {
+        var s = String(text == null ? "" : text);
+        var re = /([A-Za-z])_([A-Za-z]+)/g;
+        var segs = [], last = 0, m;
+        while ((m = re.exec(s)) !== null) {
+            if (m.index > last) segs.push({ t: s.slice(last, m.index), sub: false });
+            segs.push({ t: m[1], sub: m[2] });
+            last = m.index + m[0].length;
+        }
+        if (last < s.length) segs.push({ t: s.slice(last), sub: false });
+        return segs;
+    }
+    function slcrSubFont(fontStr, ratio) {
+        var mm = /(\d+(?:\.\d+)?)px/.exec(fontStr);
+        if (!mm) return fontStr;
+        var newSize = Math.max(6, parseFloat(mm[1]) * ratio);
+        return fontStr.slice(0, mm.index) + newSize.toFixed(1) + "px" + fontStr.slice(mm.index + mm[0].length);
+    }
+    function slcrMeasureComposedWidth(ctx, text, baseFont, subRatio) {
+        var ratio = subRatio || 0.62, restoreFont = ctx.font, segs = slcrComposeSegments(text), total = 0;
+        for (var i = 0; i < segs.length; i++) {
+            ctx.font = baseFont; total += ctx.measureText(segs[i].t).width;
+            if (segs[i].sub) { ctx.font = slcrSubFont(baseFont, ratio); total += ctx.measureText(segs[i].sub).width; }
+        }
+        ctx.font = restoreFont; return total;
+    }
+    function slcrDrawComposedRun(ctx, text, x, y, baseFont, color, subRatio) {
+        var ratio = subRatio || 0.62, segs = slcrComposeSegments(text);
+        var sizeMatch = /(\d+(?:\.\d+)?)px/.exec(baseFont);
+        var baseSize = sizeMatch ? parseFloat(sizeMatch[1]) : 16, drop = baseSize * 0.30;
+        var savedAlign = ctx.textAlign, savedBaseline = ctx.textBaseline;
+        ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+        var cx = x;
+        for (var i = 0; i < segs.length; i++) {
+            var seg = segs[i]; ctx.font = baseFont; ctx.fillStyle = color; ctx.fillText(seg.t, cx, y);
+            cx += ctx.measureText(seg.t).width;
+            if (seg.sub) { ctx.font = slcrSubFont(baseFont, ratio); ctx.fillText(seg.sub, cx, y + drop); cx += ctx.measureText(seg.sub).width; }
+        }
+        ctx.textAlign = savedAlign; ctx.textBaseline = savedBaseline; return cx - x;
+    }
+    // Canvas fillText path — reads current ctx.font/fillStyle as base style.
+    function slcrFillComposed(ctx, text, x, y, align) {
+        var baseFont = ctx.font, color = ctx.fillStyle, startX = x;
+        if (align === "center" || align === "right") {
+            var w = slcrMeasureComposedWidth(ctx, text, baseFont, 0.62);
+            startX = (align === "center") ? (x - w / 2) : (x - w);
+        }
+        slcrDrawComposedRun(ctx, text, startX, y, baseFont, color, 0.62);
+    }
+    // DOM/HTML path — the ONLY transform before innerHTML (never textContent).
+    function slcrHtmlComposeSub(text) {
+        if (text == null) return "";
+        return String(text).replace(/([A-Za-z])_([A-Za-z]+)/g, "$1<sub>$2</sub>");
+    }
+
+    // ── Series-loop path geometry: ONE amber bead stream threads all three
+    //   elements in lockstep (the same flow crest passes heater -> coil -> plates
+    //   -> never splitting, never pooling — the series fact made visible). Beads
+    //   sit at fixed home arclengths and all displace by the SAME signed amount
+    //   (one common current). Elements sit ON the top edge so beads pass through. ─
+    var SLCR_LOOP_PTS = [
+        [SLCR_SRC_X, SLCR_TOP_Y, 0], [SLCR_RIGHT_X, SLCR_TOP_Y, 0],
+        [SLCR_RIGHT_X, SLCR_BOT_Y, 0], [SLCR_SRC_X, SLCR_BOT_Y, 0]
+    ];
+    function slcrLoopPerimeter() {
+        var P = 0;
+        for (var i = 0; i < SLCR_LOOP_PTS.length; i++) {
+            var a = SLCR_LOOP_PTS[i], b = SLCR_LOOP_PTS[(i + 1) % SLCR_LOOP_PTS.length];
+            P += Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+        }
+        return P;
+    }
+    function slcrLoopAt(s) {
+        var P = slcrLoopPerimeter();
+        var ss = ((s % P) + P) % P;
+        for (var i = 0; i < SLCR_LOOP_PTS.length; i++) {
+            var a = SLCR_LOOP_PTS[i], b = SLCR_LOOP_PTS[(i + 1) % SLCR_LOOP_PTS.length];
+            var segLen = Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+            if (ss <= segLen) {
+                var fr = segLen > 1e-9 ? ss / segLen : 0;
+                return [a[0] + (b[0] - a[0]) * fr, a[1] + (b[1] - a[1]) * fr, 0];
+            }
+            ss -= segLen;
+        }
+        return [SLCR_LOOP_PTS[0][0], SLCR_LOOP_PTS[0][1], 0];
+    }
+
+    // Slider-control resolver.
+    function slcrSc(key, dmin, dmax, dstep, ddef, dlabel) {
+        var scfg = config.slider_controls || {};
+        var o = scfg[key] || {};
+        return {
+            min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+            step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+            label: o.label || dlabel
+        };
+    }
+    // glow_focal resolver — reads live glowTargets (SET_GLOW, empty under THE EYE)
+    // AND falls back to the state's authored glow_focal (Rule 29 brightness only).
+    function slcrGlowOn(key) {
+        if (glowTargets && glowTargets.indexOf(key) >= 0) return true;
+        var sd = config.states && config.states[PM_currentState];
+        var d = sd && sd.ac_series_lcr;
+        return !!(d && d.glow_focal === key);
+    }
+    function slcrVisHas(tok) {
+        var sd = config.states && config.states[PM_currentState];
+        var ve = (sd && sd.visible_elements) || [];
+        for (var q = 0; q < ve.length; q++) { if (ve[q] === tok) return true; }
+        return false;
+    }
+
+    // ── Core physics (pure; sealed decimals, never hardcoded results) ──────────
+    function slcrPhysics(vm, f, R, L, C) {
+        var omega = 2 * Math.PI * f;
+        var XL = omega * L, XC = 1 / (omega * Math.max(C, 1e-9));
+        var X = XL - XC, Z = Math.sqrt(R * R + X * X), im = vm / Math.max(Z, 1e-9);
+        var phi = Math.atan2(X, R) * 180 / Math.PI;
+        var f0 = 1 / (2 * Math.PI * Math.sqrt(Math.max(L * C, 1e-12)));
+        var deltaf = R / (2 * Math.PI * L), Q = (1 / Math.max(R, 1e-9)) * Math.sqrt(L / Math.max(C, 1e-9));
+        return { omega: omega, XL: XL, XC: XC, X: X, Z: Z, im: im, phi: phi,
+            VR: im * R, VL: im * XL, VC: im * XC, f0: f0, deltaf: deltaf, Q: Q };
+    }
+    function slcrXLof(fp, L) { return 2 * Math.PI * fp * L; }
+    function slcrXCof(fp, C) { return 1 / (2 * Math.PI * fp * Math.max(C, 1e-9)); }
+    function slcrIpeakOf(fp, vm, R, L, C) {
+        var x = 2 * Math.PI * fp * L - 1 / (2 * Math.PI * fp * Math.max(C, 1e-9));
+        return vm / Math.sqrt(R * R + x * x);
+    }
+
+    // ── Closed-form scripted ramps (pure fn of state-local t; B1 discipline) ──
+    function slcrSmooth(u) { var c = u < 0 ? 0 : (u > 1 ? 1 : u); return c * c * (3 - 2 * c); }
+    // Instantaneous demo-frequency of a {from,to,startS,durS} single ramp leg.
+    function slcrRampFreq(tSec, from, to, startS, durS) {
+        if (tSec <= startS) return from;
+        if (tSec >= startS + durS) return to;
+        return from + (to - from) * slcrSmooth((tSec - startS) / durS);
+    }
+    // Cumulative phase (deg) of a single ramp leg — analytic integral of the
+    // smoothstep frequency, so the fan/beads rotate continuously with NO
+    // accumulator (integral of 3u^2-2u^3 is u^3 - 0.5u^4).
+    function slcrRampPhaseDeg(tSec, theta0, from, to, startS, durS) {
+        var deg = theta0;
+        if (tSec <= startS) return deg + 360 * from * tSec;
+        deg += 360 * from * startS;
+        if (tSec >= startS + durS) {
+            deg += 360 * (from * durS + (to - from) * durS * 0.5);
+            deg += 360 * to * (tSec - (startS + durS));
+            return deg;
+        }
+        var u = (tSec - startS) / durS;
+        deg += 360 * (from * (tSec - startS) + (to - from) * durS * (u * u * u - 0.5 * u * u * u * u));
+        return deg;
+    }
+
+    // ── Deterministic freeze schedule (S4) — cue ARMS, phase FIRES (the
+    //   phase-time-subtraction contract: frozen ms are subtracted from the phase
+    //   clock so a freeze holds theta at its target then resumes with NO jump,
+    //   byte-stable under SET_TIME_FREEZE). Targets are computed LIVE from phi:
+    //   source-crest at theta = 90 - phi, current-crest at theta = 90. ──────────
+    function slcrFreezeSchedule(d, phi) {
+        var stops = [];
+        if (d.mode !== "kvl_stack") return stops;
+        var srcArm = cueTriggerMs("freeze_src_arm", (d.freeze_src_arm_at_ms != null ? d.freeze_src_arm_at_ms : 3000));
+        var iArm = cueTriggerMs("freeze_i_arm", (d.freeze_i_arm_at_ms != null ? d.freeze_i_arm_at_ms : 7000));
+        stops.push({ armMs: srcArm, targetDeg: 90 - phi, kind: "src" });
+        stops.push({ armMs: iArm, targetDeg: 90, kind: "i" });
+        stops.sort(function (a, b) { return (a.armMs - b.armMs) || (a.targetDeg - b.targetDeg); });
+        return stops;
+    }
+    function slcrComputeFreeze(d, tSec, omegaDeg, theta0Deg, phi) {
+        var res = { phaseSec: tSec, frozen: false, targetDeg: null, kind: null, windows: [] };
+        var stops = slcrFreezeSchedule(d, phi);
+        var D = (d.freeze_budget_ms_each != null ? d.freeze_budget_ms_each : SLCR_FREEZE_D);
+        if (!stops.length || !omegaDeg) return res;
+        var frozenTotalMs = 0, prevEndMs = 0, tMs = tSec * 1000, settled = false;
+        for (var k = 0; k < stops.length; k++) {
+            var s = stops[k];
+            var startMs = Math.max(s.armMs, prevEndMs);
+            var effStartSec = (startMs - frozenTotalMs) / 1000;
+            var phaseStart = theta0Deg + omegaDeg * effStartSec;
+            var n = Math.ceil((phaseStart - s.targetDeg) / 360);
+            var fireDeg = s.targetDeg + 360 * n;
+            var effFireSec = (fireDeg - theta0Deg) / omegaDeg;
+            var fireMs = effFireSec * 1000 + frozenTotalMs;
+            var endMs = fireMs + D;
+            res.windows.push([fireMs, endMs]);
+            if (!settled) {
+                if (tMs < fireMs) { res.phaseSec = (tMs - frozenTotalMs) / 1000; settled = true; }
+                else if (tMs < endMs) { res.frozen = true; res.targetDeg = s.targetDeg; res.kind = s.kind; res.phaseSec = effFireSec; settled = true; }
+            }
+            frozenTotalMs += D; prevEndMs = endMs;
+        }
+        if (!settled) res.phaseSec = (tMs - frozenTotalMs) / 1000;
+        return res;
+    }
+
+    // ── F7 caption-order probe (REQUIRED Checkpoint-B artifact) — wraps the
+    //   #slcr_band ctx.fillText, stamping each matching draw with the state-local
+    //   ms clock (window.PM_slcrStateT) so a Checkpoint-B pass can assert
+    //   first-appearance ORDER / window / overlap on the sequential-reveal states
+    //   (S4 struck+freezes, S5 chain legs, S8 crossing). THE EYE posts no cue
+    //   times, so canvas-internal caption ORDER is invisible to it — this hook is
+    //   the only gate that sees it. Invoked from the live player:
+    //     window.__PM_slcrProbe.start(); ... window.__PM_slcrProbe.dump(); ──────
+    window.__PM_slcrProbe = {
+        log: [], _orig: null, _ctx: null, on: false,
+        start: function () {
+            var gc = document.getElementById("slcr_band");
+            if (!gc || !gc.getContext) return false;
+            var ctx = gc.getContext("2d");
+            this.log = [];
+            if (this._orig) { this.on = true; return true; }
+            var self = this; this._ctx = ctx; this._orig = ctx.fillText;
+            ctx.fillText = function (txt, x, y) {
+                try { self._record(String(txt)); } catch (e) {}
+                return self._orig.call(ctx, txt, x, y);
+            };
+            this.on = true; return true;
+        },
+        stop: function () { if (this._orig && this._ctx) { this._ctx.fillText = this._orig; this._orig = null; this._ctx = null; } this.on = false; },
+        _record: function (txt) {
+            if (!txt) return;
+            var nowMs = (window.PM_slcrStateT != null) ? window.PM_slcrStateT : 0;
+            for (var i = this.log.length - 1; i >= 0; i--) {
+                if (this.log[i].text === txt) { this.log[i].last = nowMs; return; }
+            }
+            this.log.push({ text: txt, first: nowMs, last: nowMs });
+        },
+        dump: function () { return this.log.slice(); }
+    };
+    window.__PM_slcrFreezeWindows = function () {
+        var sd = config.states && config.states[PM_currentState];
+        var d = sd && sd.ac_series_lcr; if (!d) return [];
+        var f = window.PM_slcrF || 0.5, omDeg = 2 * Math.PI * f * 180 / Math.PI;
+        var th0 = (d.theta0_deg != null ? d.theta0_deg : 0);
+        var ph = slcrPhysics(window.PM_slcrVm || 10, f, window.PM_slcrR || 5, window.PM_slcrL || 3.1831, window.PM_slcrC || 0.1273);
+        return slcrComputeFreeze(d, 1e6, omDeg, th0, ph.phi).windows;
+    };
+
+    // ── Element meshes (each BUILT + registered in sceneObjects; a token/glow
+    //   passing never proves a mesh exists — presence-is-not-correctness). ──────
+    function slcrBuildHeater(grp) {
+        var body = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.5, 0.5),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0653C") }));
+        body.position.set(SLCR_R_X, SLCR_TOP_Y, 0); grp.add(body);
+        for (var zi = 0; zi < 4; zi++) {
+            var seg = createTubeLine([[SLCR_R_X - 0.32 + zi * 0.21, SLCR_TOP_Y - 0.22, 0.26], [SLCR_R_X - 0.32 + zi * 0.21, SLCR_TOP_Y + 0.22, 0.26]], "#EF5350", 0.028);
+            if (seg) grp.add(seg);
+        }
+        var lbl = createLabelSprite("R", SLCR_COL_VR, 0.32);
+        lbl.position.set(SLCR_R_X, SLCR_TOP_Y + 0.62, 0); grp.add(lbl);
+    }
+    function slcrBuildCoil(grp) {
+        for (var ri = 0; ri < 5; ri++) {
+            var ring = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.05, 8, 20),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor("#90CAF9"), emissive: hexToThreeColor("#1E3A5F"), emissiveIntensity: 0.3 }));
+            ring.rotation.y = Math.PI / 2;
+            ring.position.set(SLCR_L_X - 0.4 + ri * 0.2, SLCR_TOP_Y, 0); grp.add(ring);
+        }
+        var lbl = createLabelSprite("L", SLCR_COL_VL, 0.32);
+        lbl.position.set(SLCR_L_X, SLCR_TOP_Y + 0.62, 0); grp.add(lbl);
+    }
+    function slcrBuildPlates(grp) {
+        var mat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C") });
+        var top = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.09, 0.7), mat);
+        top.position.set(SLCR_C_X, SLCR_TOP_Y + 0.16, 0); grp.add(top);
+        var bot = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.09, 0.7), mat.clone());
+        bot.position.set(SLCR_C_X, SLCR_TOP_Y - 0.16, 0); grp.add(bot);
+        var lbl = createLabelSprite("C", SLCR_COL_VC, 0.32);
+        lbl.position.set(SLCR_C_X, SLCR_TOP_Y + 0.62, 0); grp.add(lbl);
+    }
+
+    function buildAcSeriesLcr() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+
+        // 1. AC source — the chapter home pose (source ring on the loop's left edge).
+        slcrSrcGrp = new THREE.Group();
+        slcrSrcGrp.userData = { elementType: "slcr_apparatus", id: "slcr_source" };
+        var srcRing = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.09, 12, 28),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFB300"), emissive: hexToThreeColor("#7A4F00"), emissiveIntensity: 0.3 }));
+        srcRing.rotation.x = Math.PI / 2; slcrSrcGrp.add(srcRing);
+        slcrSrcGrp.position.set(SLCR_SRC_X, 0, 0); addToScene(slcrSrcGrp);
+        var srcGlyph = createLabelSprite("\\u223f", "#FFEE58", 0.44);
+        srcGlyph.position.set(SLCR_SRC_X, 0, 0.02);
+        srcGlyph.userData = { elementType: "slcr_apparatus", id: "slcr_source_glyph" }; addToScene(srcGlyph);
+        var srcLbl = createLabelSprite("AC source", "#FFCC80", 0.22);
+        srcLbl.position.set(SLCR_SRC_X, -1.5, 0);
+        srcLbl.userData = { elementType: "slcr_apparatus", id: "slcr_source_lbl" }; addToScene(srcLbl);
+
+        // 2. The series loop tubes (top edge carries the three elements).
+        var wTop = createTubeLine([[SLCR_SRC_X, SLCR_TOP_Y, 0], [SLCR_RIGHT_X, SLCR_TOP_Y, 0]], "#B0BEC5", 0.028);
+        if (wTop) { wTop.userData = { elementType: "slcr_apparatus", id: "slcr_wire_top" }; addToScene(wTop); }
+        var wRight = createTubeLine([[SLCR_RIGHT_X, SLCR_TOP_Y, 0], [SLCR_RIGHT_X, SLCR_BOT_Y, 0]], "#B0BEC5", 0.028);
+        if (wRight) { wRight.userData = { elementType: "slcr_apparatus", id: "slcr_wire_right" }; addToScene(wRight); }
+        var wBot = createTubeLine([[SLCR_RIGHT_X, SLCR_BOT_Y, 0], [SLCR_SRC_X, SLCR_BOT_Y, 0]], "#B0BEC5", 0.028);
+        if (wBot) { wBot.userData = { elementType: "slcr_apparatus", id: "slcr_wire_bot" }; addToScene(wBot); }
+        var wTopL = createTubeLine([[SLCR_SRC_X, SLCR_TOP_Y, 0], [SLCR_SRC_X, 0.5, 0]], "#B0BEC5", 0.028);
+        if (wTopL) { wTopL.userData = { elementType: "slcr_apparatus", id: "slcr_wire_srctop" }; addToScene(wTopL); }
+        var wBotL = createTubeLine([[SLCR_SRC_X, SLCR_BOT_Y, 0], [SLCR_SRC_X, -0.5, 0]], "#B0BEC5", 0.028);
+        if (wBotL) { wBotL.userData = { elementType: "slcr_apparatus", id: "slcr_wire_srcbot" }; addToScene(wBotL); }
+
+        // 3. Elements — one group each (reveal-build one-shots fade them in at S1;
+        //    always registered so a per-frame updater / visible_elements token can
+        //    never resolve against a missing mesh).
+        slcrElemR = new THREE.Group(); slcrElemR.userData = { elementType: "slcr_apparatus", id: "slcr_elem_R" };
+        slcrBuildHeater(slcrElemR); addToScene(slcrElemR);
+        slcrElemL = new THREE.Group(); slcrElemL.userData = { elementType: "slcr_apparatus", id: "slcr_elem_L" };
+        slcrBuildCoil(slcrElemL); addToScene(slcrElemL);
+        slcrElemC = new THREE.Group(); slcrElemC.userData = { elementType: "slcr_apparatus", id: "slcr_elem_C" };
+        slcrBuildPlates(slcrElemC); addToScene(slcrElemC);
+
+        // 4. The ONE amber bead stream (built meshes with the per-frame loop
+        //    discriminator slcrBead + a home arclength; the update loop threads all
+        //    three elements in lockstep).
+        var P = slcrLoopPerimeter();
+        for (var bi = 0; bi < SLCR_BEAD_COUNT; bi++) {
+            var bead = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor(SLCR_COL_I), transparent: true, opacity: 0.85 }));
+            var home = (bi / SLCR_BEAD_COUNT) * P;
+            var p0 = slcrLoopAt(home);
+            bead.position.set(p0[0], p0[1], p0[2]);
+            bead.userData = { elementType: "slcr_beads", id: "slcr_bead_" + bi, slcrBead: true, home: home };
+            addToScene(bead);
+        }
+
+        // ── DOM overlays ──────────────────────────────────────────────────
+        var rp = document.createElement("div"); rp.id = "slcr_readout";
+        rp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(rp);
+
+        var gc = document.createElement("canvas"); gc.id = "slcr_band";
+        gc.width = SLCR_BAND_W; gc.height = SLCR_BAND_H;
+        gc.style.cssText = "position:fixed;bottom:185px;left:12px;width:" + SLCR_BAND_W + "px;height:" + SLCR_BAND_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+
+        var ff = document.createElement("div"); ff.id = "slcr_formula";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFD54F;font:600 20px/1.5 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:350px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var spd = document.createElement("div"); spd.id = "slcr_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        var scVm = slcrSc("vm", 2, 20, 1, 10.0, "Peak voltage v\\u2098");
+        var scF = slcrSc("f_demo", 0.1, 0.5, 0.05, 0.25, "Frequency f");
+        var scR = slcrSc("R", 2, 20, 1, 5.0, "Resistance R");
+        var scL = slcrSc("L", 1.0, 10.0, 0.1, 3.1831, "Inductance L");
+        var scC = slcrSc("C", 0.04, 0.40, 0.02, 0.1273, "Capacitance C");
+        spd.innerHTML =
+            '<div id="slcr_vm_row"><label>' + scVm.label + ': <span id="slcr_vm_val">' + scVm.def.toFixed(1) + '</span> V</label>' +
+            '<input type="range" id="slcr_vm_slider" min="' + scVm.min + '" max="' + scVm.max + '" step="' + scVm.step + '" value="' + scVm.def + '" style="width:100%"></div>' +
+            '<div id="slcr_f_demo_row" style="margin-top:6px"><label>' + scF.label + ': <span id="slcr_f_demo_val">' + scF.def.toFixed(2) + '</span> Hz</label>' +
+            '<input type="range" id="slcr_f_demo_slider" min="' + scF.min + '" max="' + scF.max + '" step="' + scF.step + '" value="' + scF.def + '" style="width:100%"></div>' +
+            '<div id="slcr_R_row" style="margin-top:6px"><label>' + scR.label + ': <span id="slcr_R_val">' + scR.def.toFixed(1) + '</span> \\u03a9</label>' +
+            '<input type="range" id="slcr_R_slider" min="' + scR.min + '" max="' + scR.max + '" step="' + scR.step + '" value="' + scR.def + '" style="width:100%"></div>' +
+            '<div id="slcr_L_row" style="margin-top:6px"><label>' + scL.label + ': <span id="slcr_L_val">' + scL.def.toFixed(2) + '</span> H</label>' +
+            '<input type="range" id="slcr_L_slider" min="' + scL.min + '" max="' + scL.max + '" step="' + scL.step + '" value="' + scL.def + '" style="width:100%"></div>' +
+            '<div id="slcr_C_row" style="margin-top:6px"><label>' + scC.label + ': <span id="slcr_C_val">' + scC.def.toFixed(2) + '</span> F</label>' +
+            '<input type="range" id="slcr_C_slider" min="' + scC.min + '" max="' + scC.max + '" step="' + scC.step + '" value="' + scC.def + '" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        window.PM_slcrVm = scVm.def; window.PM_slcrF = scF.def;
+        window.PM_slcrR = scR.def; window.PM_slcrL = scL.def; window.PM_slcrC = scC.def;
+        window.PM_slcrVmDragged = false; window.PM_slcrFDragged = false;
+        window.PM_slcrRDragged = false; window.PM_slcrLDragged = false; window.PM_slcrCDragged = false;
+        window.PM_slcrStateT = 0;
+
+        function slcrEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "ac_series_lcr_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        function slcrWire(key, dec, unitScale) {
+            var sl = document.getElementById("slcr_" + key + "_slider"), vv = document.getElementById("slcr_" + key + "_val");
+            if (!sl) return;
+            sl.addEventListener("input", function (ev) {
+                var val = parseFloat(sl.value);
+                window["PM_slcr" + unitScale] = val;
+                if (vv) vv.textContent = val.toFixed(dec);
+                if (ev && ev.isTrusted) window["PM_slcr" + unitScale + "Dragged"] = true;
+                slcrEmit(key, val);
+            });
+        }
+        slcrWire("vm", 1, "Vm"); slcrWire("f_demo", 2, "F"); slcrWire("R", 1, "R");
+        slcrWire("L", 2, "L"); slcrWire("C", 2, "C");
+    }
+
+    // Per-state exact-match slcr_ visibility + variable_overrides seed + the
+    // per-state contextual-control panel (Rule 31).
+    function applyAcSeriesLcrState(stateDef) {
+        var d = stateDef.ac_series_lcr || {};
+        var vis = stateDef.visible_elements || [];
+        var showCircuit = false, showBeads = false;
+        for (var vi = 0; vi < vis.length; vi++) { if (vis[vi] === "slcr_circuit") showCircuit = true; if (vis[vi] === "slcr_beads") showBeads = true; }
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            if (ud.elementType === "slcr_apparatus") o.visible = showCircuit;
+            else if (ud.elementType === "slcr_beads") o.visible = showCircuit && showBeads;
+        }
+
+        // dim_apparatus (S10 derivation): recede to a DIMMED-but-present pose (the
+        // restore pattern — never opacity 0). Each material's ORIGINAL opacity is
+        // cached once and restored when dim is off, so non-dim states stay
+        // pixel-identical across teacher state-reorders (Rule 25d).
+        var dimApp = !!d.dim_apparatus;
+        for (var pd = 0; pd < sceneObjects.length; pd++) {
+            var pdo = sceneObjects[pd], pdu = pdo.userData;
+            if (!pdu || (pdu.elementType !== "slcr_apparatus" && pdu.elementType !== "slcr_beads")) continue;
+            pdo.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi = 0; mi < ms.length; mi++) {
+                    var mm = ms[mi];
+                    if (mm.__slcrOrigOpacity === undefined) { mm.__slcrOrigOpacity = mm.opacity; mm.__slcrOrigTransp = mm.transparent; }
+                    if (dimApp) { mm.transparent = true; mm.opacity = 0.4; }
+                    else { mm.transparent = mm.__slcrOrigTransp; mm.opacity = mm.__slcrOrigOpacity; }
+                }
+            });
+        }
+
+        // Seed drivers from variable_overrides (defensive re-locks — physics §2).
+        var ov = stateDef.variable_overrides || {};
+        var scfg = config.slider_controls || {};
+        function def(k, fb) { return (scfg[k] && scfg[k]["default"] != null) ? scfg[k]["default"] : fb; }
+        window.PM_slcrVm = (typeof ov.vm === "number") ? ov.vm : def("vm", 10.0);
+        if (typeof ov.f_demo === "number") window.PM_slcrF = ov.f_demo;
+        else if (d.mode !== "off_home" && d.mode !== "resonance_sweep") window.PM_slcrF = def("f_demo", 0.25);
+        if (typeof ov.R === "number") window.PM_slcrR = ov.R;
+        if (typeof ov.L === "number") window.PM_slcrL = ov.L;
+        if (typeof ov.C === "number") window.PM_slcrC = ov.C;
+        window.PM_slcrVmDragged = false; window.PM_slcrFDragged = false;
+        window.PM_slcrRDragged = false; window.PM_slcrLDragged = false; window.PM_slcrCDragged = false;
+
+        function syncS(key, v, dec) { var e = document.getElementById("slcr_" + key + "_slider"); if (e) e.value = String(v); var vEl = document.getElementById("slcr_" + key + "_val"); if (vEl) vEl.textContent = v.toFixed(dec); }
+        syncS("vm", window.PM_slcrVm, 1); syncS("f_demo", window.PM_slcrF, 2);
+        syncS("R", window.PM_slcrR, 1); syncS("L", window.PM_slcrL, 2); syncS("C", window.PM_slcrC, 2);
+
+        // Per-state contextual-control panel (Rule 31): controls[] = live row(s).
+        var controls = d.controls || [];
+        var rowKeys = ["vm", "f_demo", "R", "L", "C"];
+        var anyRow = false;
+        for (var rk = 0; rk < rowKeys.length; rk++) {
+            var want = controls.indexOf(rowKeys[rk]) !== -1;
+            var rowEl = document.getElementById("slcr_" + rowKeys[rk] + "_row");
+            if (rowEl) rowEl.style.display = want ? "block" : "none";
+            if (want) anyRow = true;
+        }
+        var panelEl = document.getElementById("slcr_sliders");
+        if (panelEl) panelEl.style.display = anyRow ? "block" : "none";
+
+        var roEl = document.getElementById("slcr_readout"); if (roEl) roEl.style.display = (d.show_readout === false) ? "none" : "block";
+        var gcEl = document.getElementById("slcr_band"); if (gcEl) gcEl.style.display = "block";
+        var ffEl = document.getElementById("slcr_formula");
+        if (ffEl) {
+            if (d.mode === "derivation") { ffEl.innerHTML = ""; ffEl.style.display = "block"; }
+            else { var ftext = d.formula_text || stateDef.formula_overlay || ""; ffEl.innerHTML = slcrHtmlComposeSub(ftext); ffEl.style.display = ftext ? "block" : "none"; }
+        }
+    }
+
+    // Small filled arrow (Rule 29: length reflects real magnitude only).
+    function slcrArrow(ctx, x0, y0, x1, y1, color, lw) {
+        ctx.strokeStyle = color; ctx.lineWidth = lw || 2.2;
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+        var ang = Math.atan2(y1 - y0, x1 - x0), hl = 7;
+        ctx.fillStyle = color; ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x1 - hl * Math.cos(ang - 0.4), y1 - hl * Math.sin(ang - 0.4));
+        ctx.lineTo(x1 - hl * Math.cos(ang + 0.4), y1 - hl * Math.sin(ang + 0.4));
+        ctx.closePath(); ctx.fill();
+    }
+
+    // ── The band canvas draw (disc region + strip/plot region, ONE canvas,
+    //   FULL clearRect each frame so sequential captions can never composite). ──
+    function slcrDrawBand(d, tSec, thetaDeg, phys, freeze, ramp) {
+        var gc = document.getElementById("slcr_band"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var cx = SLCR_DISC_CX, cy = SLCR_DISC_CY, R = SLCR_DISC_R;
+
+        var showFan = slcrVisHas("slcr_fan"), showStrip = slcrVisHas("slcr_strip");
+        var showChain = slcrVisHas("slcr_chain"), showTri = slcrVisHas("slcr_triangle");
+        var showPlot = slcrVisHas("slcr_reso_plot"), showChips = slcrVisHas("slcr_chips") && !!d.show_chips;
+
+        if (showStrip) slcrDrawStrip(ctx, gc, d, tSec, thetaDeg, phys);
+        if (showPlot) slcrDrawResoPlot(ctx, gc, d, tSec, phys, ramp);
+        if (showFan) slcrDrawFan(ctx, d, tSec, thetaDeg, phys, freeze);
+        if (showChain) slcrDrawChain(ctx, d, tSec, thetaDeg, phys);
+        if (showTri) slcrDrawTriangle(ctx, d, tSec, phys, showChips);
+        if (d.mode === "kvl_stack") slcrDrawKvl(ctx, gc, d, tSec, thetaDeg, phys, freeze);
+    }
+
+    // Sine strip (right region): source v-trace (cyan) + i-trace (amber). At the
+    // locked-f states it is fully honest; during the S2 glide it draws the trace
+    // at the instantaneous demo-frequency (a quasi-static waveform — documented
+    // visual-fidelity simplification), so the crest-slip reads clearly.
+    function slcrDrawStrip(ctx, gc, d, tSec, thetaDeg, phys) {
+        var cy = SLCR_DISC_CY, R = SLCR_DISC_R;
+        var plotW = SLCR_STRIP_X1 - SLCR_STRIP_X0;
+        var Lv = R * Math.min(1.0, phys.im * phys.Z / 12.0);        // volt scale (vm)
+        var Li = R * Math.min(1.0, phys.im / 4.0);                   // amber scale (im)
+        function xT(sec) { return SLCR_STRIP_X0 + ((sec - (tSec - SLCR_TWIN)) / SLCR_TWIN) * plotW; }
+        var omBand = 2 * Math.PI * (window.PM_slcrF || 0.25);
+        var thNow = thetaDeg * Math.PI / 180, phiR = phys.phi * Math.PI / 180;
+        function yV(sec) { return cy - Lv * Math.sin(thNow + phiR + omBand * (sec - tSec)); }
+        function yI(sec) { return cy - Li * Math.sin(thNow + omBand * (sec - tSec)); }
+        ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(SLCR_STRIP_X0, cy); ctx.lineTo(SLCR_STRIP_X1, cy); ctx.stroke();
+        var step = SLCR_TWIN / 160;
+        // v-trace (cyan source).
+        ctx.strokeStyle = SLCR_COL_V; ctx.lineWidth = slcrGlowOn("trace") ? 3 : 2; ctx.beginPath();
+        var f1 = true;
+        for (var s1 = tSec - SLCR_TWIN; s1 <= tSec + 1e-4; s1 += step) { var xv = xT(s1), yv = yV(s1); if (f1) { ctx.moveTo(xv, yv); f1 = false; } else ctx.lineTo(xv, yv); }
+        ctx.stroke();
+        // i-trace (amber).
+        ctx.strokeStyle = SLCR_COL_I; ctx.lineWidth = 2; ctx.beginPath();
+        var f2 = true;
+        for (var s2 = tSec - SLCR_TWIN; s2 <= tSec + 1e-4; s2 += step) { var xi = xT(s2), yi = yI(s2); if (f2) { ctx.moveTo(xi, yi); f2 = false; } else ctx.lineTo(xi, yi); }
+        ctx.stroke();
+        // pen dots.
+        ctx.fillStyle = SLCR_COL_V; ctx.beginPath(); ctx.arc(xT(tSec), yV(tSec), 3.2, 0, 2 * Math.PI); ctx.fill();
+        ctx.fillStyle = SLCR_COL_I; ctx.beginPath(); ctx.arc(xT(tSec), yI(tSec), 3.0, 0, 2 * Math.PI); ctx.fill();
+        ctx.fillStyle = SLCR_COL_V; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, "v_m", SLCR_STRIP_X0 - 16, cy - Lv + 3, "left");
+    }
+
+    // Five-arrow phasor fan (disc region): i amber (0deg ref), V_R white (along i),
+    // V_L violet (+90), V_C green (-90), source v cyan (+phi). ONE theta(t) drives
+    // all five with locked constant offsets (never independently animated).
+    function slcrDrawFan(ctx, d, tSec, thetaDeg, phys, freeze) {
+        var cx = SLCR_DISC_CX, cy = SLCR_DISC_CY, R = SLCR_DISC_R;
+        var Lv = R / 12.0, Li = R / 4.0;                            // per-unit volt / amber scales
+        ctx.strokeStyle = slcrGlowOn("fan") ? "#78909C" : "#546E7A"; ctx.lineWidth = 1.3;
+        ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2 * Math.PI); ctx.stroke();
+        ctx.strokeStyle = "#37474F"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy); ctx.stroke();
+        var th = thetaDeg, phi = phys.phi;
+        function arrow(offDeg, len, col, glowKey, tag) {
+            var a = (th + offDeg) * Math.PI / 180;
+            var tx = cx + len * Math.cos(a), ty = cy - len * Math.sin(a);
+            var g = slcrGlowOn(glowKey);
+            slcrArrow(ctx, cx, cy, tx, ty, col, g ? 3 : 2.2);
+            if (tag) { ctx.fillStyle = col; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, tag, tx + 3, ty, "left"); }
+        }
+        // arrows (draw amber i first as reference, then the three voltages, then source).
+        arrow(0, Li * phys.im, SLCR_COL_I, "i_phasor", "i_m");
+        if (d.show_v_chips !== false) {
+            arrow(0, Lv * phys.VR, SLCR_COL_VR, "vr_phasor", "V_R");
+            arrow(90, Lv * phys.VL, SLCR_COL_VL, "vl_phasor", "V_L");
+            arrow(-90, Lv * phys.VC, SLCR_COL_VC, "vc_phasor", "V_C");
+        }
+        arrow(phi, Lv * phys.im * phys.Z, SLCR_COL_V, "v_phasor", "v_m");
+        // phi arc (live) — numeral only when show_arc_numeral (withheld before S7).
+        if (slcrVisHas("slcr_arc") && d.show_arc) {
+            var a0 = th * Math.PI / 180, a1 = (th + phi) * Math.PI / 180, arcR = 22;
+            ctx.strokeStyle = slcrGlowOn("fan") ? "#E1BEE7" : "#CE93D8"; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(cx, cy, arcR, -a0, -a1, phi < 0); ctx.stroke();
+            if (d.show_arc_numeral) {
+                ctx.fillStyle = "#CE93D8"; ctx.font = "11px 'Cambria Math','Times New Roman',serif";
+                ctx.fillText("\\u03c6 = " + Math.abs(phi).toFixed(1) + "\\u00b0", cx + 8, cy + R + 15);
+            }
+        }
+    }
+
+    // S4 kvl_stack — the struck arithmetic-sum chip (wrong, struck ONLY while
+    // wrong) + the two phase-fired freezes where signed instantaneous chips stack
+    // to the source's true instantaneous value.
+    function slcrDrawKvl(ctx, gc, d, tSec, thetaDeg, phys, freeze) {
+        var sx = SLCR_STRIP_X0 + 6;
+        // struck sum: V_R + V_L + V_C = 19.41 V?  beside the true source 10.0 V.
+        var wrong = phys.VR + phys.VL + phys.VC;
+        ctx.font = "10px 'Cambria Math','Times New Roman',serif"; ctx.fillStyle = "#EF5350";
+        var chip = "V_R + V_L + V_C = " + wrong.toFixed(2) + " V?";
+        var w = slcrMeasureComposedWidth(ctx, chip, ctx.font, 0.62);
+        slcrFillComposed(ctx, chip, sx, 16, "left");
+        ctx.strokeStyle = "#EF5350"; ctx.lineWidth = 1.1; ctx.beginPath(); ctx.moveTo(sx, 12.5); ctx.lineTo(sx + w, 12.5); ctx.stroke();
+        ctx.fillStyle = "#80DEEA"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+        ctx.fillText("source v_m = " + (phys.im * phys.Z).toFixed(1) + " V", sx, 30);
+        // freeze read-out (single-latest, full-cleared each frame).
+        if (freeze && freeze.frozen && freeze.targetDeg != null) {
+            var th = freeze.targetDeg, rad = th * Math.PI / 180;
+            var vR = phys.VR * Math.sin(rad), vL = phys.VL * Math.sin(rad + Math.PI / 2), vC = phys.VC * Math.sin(rad - Math.PI / 2);
+            var sum = vR + vL + vC;
+            function sgn(x) { return (x >= 0 ? "+" : "\\u2212") + Math.abs(x).toFixed(2); }
+            ctx.fillStyle = "#B0BEC5"; ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+            var lbl = (freeze.kind === "src") ? "source crest" : "current crest";
+            ctx.fillText("freeze @ " + lbl + ":", sx, 48);
+            ctx.fillStyle = "#80DEEA";
+            ctx.fillText(sgn(vR) + " " + sgn(vL) + " " + sgn(vC) + " = " + (sum >= 0 ? "+" : "\\u2212") + Math.abs(sum).toFixed(2) + " V \\u2713", sx, 64);
+        }
+    }
+
+    // S5 tip_to_tail — the phasor sum performed: ghost fan + solid chain
+    // (V_R along i, V_L +90 from V_R tip, V_C -90 from V_L tip); closure flash
+    // fires on a MEASURED tip-distance to the source-arrow tip (never a timer).
+    function slcrDrawChain(ctx, d, tSec, thetaDeg, phys) {
+        var cx = SLCR_DISC_CX, cy = SLCR_DISC_CY, R = SLCR_DISC_R;
+        var Lv = R / 12.0;
+        var thStop = (d.chain_angle_deg != null ? d.chain_angle_deg : thetaDeg);
+        var baseR = thStop * Math.PI / 180;
+        // extension fractions per cue.
+        var s2 = cueTriggerMs("chain_vr", (d.chain_vr_at_ms != null ? d.chain_vr_at_ms : 1200)) / 1000;
+        var s3 = cueTriggerMs("chain_vl", (d.chain_vl_at_ms != null ? d.chain_vl_at_ms : 2200)) / 1000;
+        var s4 = cueTriggerMs("chain_vc", (d.chain_vc_at_ms != null ? d.chain_vc_at_ms : 3200)) / 1000;
+        function frac(startS) { var dur = 0.9; return Math.max(0, Math.min(1, (tSec - startS) / dur)); }
+        // ghost source arrow (the closure target).
+        var srcA = (thStop + phys.phi) * Math.PI / 180, srcLen = Lv * phys.im * phys.Z;
+        ctx.strokeStyle = "rgba(79,195,247,0.4)"; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + srcLen * Math.cos(srcA), cy - srcLen * Math.sin(srcA)); ctx.stroke(); ctx.setLineDash([]);
+        // chain: V_R from root.
+        function dir(offDeg) { var a = (thStop + offDeg) * Math.PI / 180; return [Math.cos(a), -Math.sin(a)]; }
+        var px = cx, py = cy;
+        var dR = dir(0), fR = frac(s2), lenR = Lv * phys.VR * fR;
+        var nx = px + dR[0] * lenR, ny = py + dR[1] * lenR;
+        var g = slcrGlowOn("chain");
+        slcrArrow(ctx, px, py, nx, ny, SLCR_COL_VR, g ? 3 : 2.4); px = cx + dR[0] * Lv * phys.VR * (fR > 0 ? 1 : 0); py = cy + dR[1] * Lv * phys.VR * (fR > 0 ? 1 : 0);
+        // clamp base for next leg to the full V_R tip once it exists.
+        px = cx + dR[0] * Lv * phys.VR; py = cy + dR[1] * Lv * phys.VR;
+        var chainTipX = nx, chainTipY = ny;
+        if (fR >= 1) {
+            var dL = dir(90), fL = frac(s3), lenL = Lv * phys.VL * fL;
+            var lx = px + dL[0] * lenL, ly = py + dL[1] * lenL;
+            slcrArrow(ctx, px, py, lx, ly, SLCR_COL_VL, g ? 3 : 2.4);
+            chainTipX = lx; chainTipY = ly;
+            px += dL[0] * Lv * phys.VL; py += dL[1] * Lv * phys.VL;
+            if (fL >= 1) {
+                var dC = dir(-90), fC = frac(s4), lenC = Lv * phys.VC * fC;
+                var ccx = px + dC[0] * lenC, ccy = py + dC[1] * lenC;
+                slcrArrow(ctx, px, py, ccx, ccy, SLCR_COL_VC, g ? 3 : 2.4);
+                chainTipX = ccx; chainTipY = ccy;
+            }
+        }
+        // closure flash — measured tip distance to the ghost source tip.
+        var srcTipX = cx + srcLen * Math.cos(srcA), srcTipY = cy - srcLen * Math.sin(srcA);
+        var dist = Math.sqrt((chainTipX - srcTipX) * (chainTipX - srcTipX) + (chainTipY - srcTipY) * (chainTipY - srcTipY));
+        if (dist < 3.5) {
+            ctx.strokeStyle = "#FFF59D"; ctx.lineWidth = 2.4;
+            ctx.beginPath(); ctx.arc(srcTipX, srcTipY, 7, 0, 2 * Math.PI); ctx.stroke();
+        }
+    }
+
+    // S6/S7/S11 impedance triangle — R (white) / X (violet or green, live winner) /
+    // Z (cyan). unit-morph: a scale factor eases from the volt figure to the ohm
+    // figure over the morph window (a representation morph, Rule 29-exempt scripted
+    // shape change, NOT physical motion), then the chips relabel V -> Ohm.
+    function slcrDrawTriangle(ctx, d, tSec, phys, showChips) {
+        var ox = SLCR_DISC_CX - 44, oy = SLCR_DISC_CY + 40;    // triangle origin (bottom-left)
+        var pxPerOhm = 7.0;
+        var mStart = cueTriggerMs("morph_start", (d.morph_start_at_ms != null ? d.morph_start_at_ms : 800)) / 1000;
+        var mDur = 1.7;
+        var m = (d.mode === "z_triangle") ? Math.max(0, Math.min(1, (tSec - mStart) / mDur)) : 1;
+        // volt-figure legs (÷ im gives the ohm figure — a similar triangle).
+        var scaleV = pxPerOhm / Math.max(phys.im, 1e-6);
+        var legScale = scaleV + (pxPerOhm - scaleV) * m;         // volt px -> ohm px
+        var rLen = phys.VR * legScale, xLen = (phys.VL - phys.VC) * legScale;
+        var xWin = phys.X >= 0 ? SLCR_COL_VL : SLCR_COL_VC;
+        var xSign = phys.X >= 0 ? -1 : 1;                        // X_L wins -> leg above (screen up = -y)
+        var apex = [ox + rLen, oy + xSign * Math.abs(xLen)];
+        var g = slcrGlowOn("triangle");
+        // R leg (white, horizontal).
+        slcrArrow(ctx, ox, oy, ox + rLen, oy, SLCR_COL_VR, g ? 2.8 : 2.2);
+        // X leg (winner colour, vertical from R tip).
+        slcrArrow(ctx, ox + rLen, oy, apex[0], apex[1], xWin, g ? 2.8 : 2.2);
+        // Z hypotenuse (cyan).
+        slcrArrow(ctx, ox, oy, apex[0], apex[1], SLCR_COL_Z, g ? 3 : 2.4);
+        if (showChips) {
+            ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillStyle = SLCR_COL_VR; ctx.fillText("R = " + window.PM_slcrR.toFixed(1) + " \\u03a9", ox, oy + 13);
+            ctx.fillStyle = SLCR_COL_Z; slcrFillComposed(ctx, "Z = " + phys.Z.toFixed(1) + " \\u03a9", ox + rLen / 2 + 4, oy + xSign * Math.abs(xLen) / 2 - 4, "left");
+        }
+    }
+
+    // S8/S9/S11 resonance plot pair (right region): upper X-vs-f (X_L violet line
+    // rising, X_C green curve falling, crossing marked), lower i-vs-f (peak curve +
+    // live dot). Shared f-axis; the crossing and the peak are VERTICALLY ALIGNED.
+    function slcrDrawResoPlot(ctx, gc, d, tSec, phys, ramp) {
+        var x0 = SLCR_STRIP_X0, x1 = SLCR_STRIP_X1, w = x1 - x0;
+        var upTop = 12, upBot = 78, loTop = 90, loBot = SLCR_BAND_H - 16;
+        var xAxMax = 13, iAxMax = (d.plot_i_axis_max != null ? d.plot_i_axis_max : 2.2);
+        function fx(f) { return x0 + ((f - SLCR_FMIN) / (SLCR_FMAX - SLCR_FMIN)) * w; }
+        function yUp(v) { return upBot - (Math.min(v, xAxMax) / xAxMax) * (upBot - upTop); }
+        function yLo(v) { return loBot - (Math.min(v, iAxMax) / iAxMax) * (loBot - loTop); }
+        var L = window.PM_slcrL, C = window.PM_slcrC, vm = window.PM_slcrVm, Rr = window.PM_slcrR;
+        // axes.
+        ctx.strokeStyle = "#37474F"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x0, upBot); ctx.lineTo(x1, upBot); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x0, loBot); ctx.lineTo(x1, loBot); ctx.stroke();
+        // X_L rising line + X_C falling curve.
+        var stepF = (SLCR_FMAX - SLCR_FMIN) / 80;
+        ctx.strokeStyle = SLCR_COL_VL; ctx.lineWidth = slcrGlowOn("reso_plot") ? 2.4 : 1.8; ctx.beginPath();
+        var fa = true; for (var f = SLCR_FMIN; f <= SLCR_FMAX + 1e-9; f += stepF) { var xx = fx(f), yy = yUp(slcrXLof(f, L)); if (fa) { ctx.moveTo(xx, yy); fa = false; } else ctx.lineTo(xx, yy); } ctx.stroke();
+        ctx.strokeStyle = SLCR_COL_VC; ctx.beginPath();
+        var fb = true; for (var f2 = SLCR_FMIN; f2 <= SLCR_FMAX + 1e-9; f2 += stepF) { var xx2 = fx(f2), yy2 = yUp(slcrXCof(f2, C)); if (fb) { ctx.moveTo(xx2, yy2); fb = false; } else ctx.lineTo(xx2, yy2); } ctx.stroke();
+        // family-overlay ghosts (S9) — prior R curves drawn faint.
+        if (d.show_family_overlay && Array.isArray(d.family_R_ghosts)) {
+            for (var gi = 0; gi < d.family_R_ghosts.length; gi++) {
+                var Rg = d.family_R_ghosts[gi];
+                ctx.strokeStyle = "rgba(176,190,197,0.35)"; ctx.lineWidth = 1.2; ctx.beginPath();
+                var fg = true; for (var f3 = SLCR_FMIN; f3 <= SLCR_FMAX + 1e-9; f3 += stepF) { var xg = fx(f3), yg = yLo(slcrIpeakOf(f3, vm, Rg, L, C)); if (fg) { ctx.moveTo(xg, yg); fg = false; } else ctx.lineTo(xg, yg); } ctx.stroke();
+            }
+        }
+        // i-vs-f peak curve (live R).
+        ctx.strokeStyle = SLCR_COL_I; ctx.lineWidth = slcrGlowOn("reso_plot") ? 2.4 : 1.8; ctx.beginPath();
+        var fc = true; for (var f4 = SLCR_FMIN; f4 <= SLCR_FMAX + 1e-9; f4 += stepF) { var xc = fx(f4), yc = yLo(slcrIpeakOf(f4, vm, Rr, L, C)); if (fc) { ctx.moveTo(xc, yc); fc = false; } else ctx.lineTo(xc, yc); } ctx.stroke();
+        // crossing marker at f0 (if on-axis) or off-axis edge indicator + true number.
+        var f0 = phys.f0;
+        if (f0 >= SLCR_FMIN && f0 <= SLCR_FMAX) {
+            ctx.strokeStyle = "rgba(236,239,241,0.5)"; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(fx(f0), upTop); ctx.lineTo(fx(f0), loBot); ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillStyle = "#ECEFF1"; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            slcrFillComposed(ctx, "f_0 = " + f0.toFixed(2) + " Hz", fx(f0) + 3, upTop + 8, "left");
+        } else {
+            var edgeX = f0 < SLCR_FMIN ? x0 + 4 : x1 - 4;
+            ctx.fillStyle = "#ECEFF1"; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; ctx.textAlign = f0 < SLCR_FMIN ? "left" : "right";
+            slcrFillComposed(ctx, (f0 < SLCR_FMIN ? "\\u2190 " : "") + "f_0 = " + f0.toFixed(2) + " Hz" + (f0 > SLCR_FMAX ? " \\u2192" : ""), edgeX, upTop + 8, f0 < SLCR_FMIN ? "left" : "right");
+            ctx.textAlign = "left";
+        }
+        // live dot on both curves at the current demo-f.
+        var fdot = window.PM_slcrF;
+        if (fdot >= SLCR_FMIN && fdot <= SLCR_FMAX) {
+            ctx.fillStyle = SLCR_COL_I; ctx.beginPath(); ctx.arc(fx(fdot), yLo(slcrIpeakOf(fdot, vm, Rr, L, C)), 3.4, 0, 2 * Math.PI); ctx.fill();
+        }
+        // Q chips (S9 only).
+        if (d.show_q_chips) {
+            ctx.fillStyle = "#ECEFF1"; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; ctx.textAlign = "right";
+            ctx.fillText("Q = " + phys.Q.toFixed(1), x1 - 4, loTop + 8); ctx.textAlign = "left";
+        }
+        // axis labels.
+        ctx.fillStyle = SLCR_COL_VL; ctx.font = "8px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, "X_L, X_C (\\u03a9)", x0, upTop + 6, "left");
+        ctx.fillStyle = SLCR_COL_I; slcrFillComposed(ctx, "i_m (A)", x0, loTop + 8, "left");
+    }
+
+    // Per-frame update — closed-form theta (Rule 26/36), scripted ramps, freeze
+    // subtraction, drives beads + band + HUD (+ S10 derivation-chain progressive
+    // reveal into the formula panel).
+    function updateAcSeriesLcrFrame() {
+        if (config.scenario_type !== "ac_series_lcr") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.ac_series_lcr || {};
+        var t = time - stateStartTime;
+        window.PM_slcrStateT = t * 1000;
+
+        var vm = window.PM_slcrVm, R = window.PM_slcrR, L = window.PM_slcrL, C = window.PM_slcrC;
+        var theta0 = (d.theta0_deg != null ? d.theta0_deg : 0);
+
+        // ── Scripted frequency ramps (closed-form; drag-seize halts them) ──
+        var f = window.PM_slcrF, thetaDeg = theta0 + (f * 360) * t, ramp = null;
+        if (d.mode === "off_home" && !window.PM_slcrFDragged) {
+            var s0 = (d.f_glide_start_at_ms != null ? d.f_glide_start_at_ms : 0) / 1000;
+            var du = (d.f_glide_dur_ms != null ? d.f_glide_dur_ms : 3000) / 1000;
+            var frm = (d.f_glide_from != null ? d.f_glide_from : 0.25), to = (d.f_glide_to != null ? d.f_glide_to : 0.5);
+            f = slcrRampFreq(t, frm, to, s0, du);
+            thetaDeg = slcrRampPhaseDeg(t, theta0, frm, to, s0, du);
+            window.PM_slcrF = f; ramp = { kind: "glide" };
+        } else if (d.mode === "lead_lag_flip") {
+            var ls = (d.f_step_start_at_ms != null ? d.f_step_start_at_ms : cueTriggerMs("f_step", 3000)) / 1000;
+            var ld = (d.f_step_dur_ms != null ? d.f_step_dur_ms : 2000) / 1000;
+            var lf = (d.f_step_from != null ? d.f_step_from : 0.5), lt = (d.f_step_to != null ? d.f_step_to : 0.125);
+            f = slcrRampFreq(t, lf, lt, ls, ld);
+            thetaDeg = theta0 + (f * 360) * t; window.PM_slcrF = f;
+        } else if (d.mode === "resonance_sweep" && !window.PM_slcrFDragged) {
+            var as = (d.sweep_start_at_ms != null ? d.sweep_start_at_ms : 1000) / 1000;
+            var aDur = (d.sweep_legA_ms != null ? d.sweep_legA_ms : 5000) / 1000;
+            var bDur = (d.sweep_legB_ms != null ? d.sweep_legB_ms : 3000) / 1000;
+            var aFrom = (d.sweep_from != null ? d.sweep_from : 0.125), aTo = (d.sweep_to != null ? d.sweep_to : 0.5), bTo = (d.sweep_settle != null ? d.sweep_settle : 0.25);
+            if (t < as) f = aFrom;
+            else if (t < as + aDur) f = slcrRampFreq(t, aFrom, aTo, as, aDur);
+            else if (t < as + aDur + bDur) f = slcrRampFreq(t, aTo, bTo, as + aDur, bDur);
+            else f = bTo;
+            window.PM_slcrF = f; thetaDeg = theta0 + (f * 360) * t; ramp = { kind: "sweep" };
+        } else if (d.mode === "sharpness") {
+            // R-family value tween (R doesn't drive rotation, so a plain value tween).
+            if (!window.PM_slcrRDragged && Array.isArray(d.r_family) && d.r_family.length) {
+                var rs = (d.r_step_start_at_ms != null ? d.r_step_start_at_ms : 1200) / 1000;
+                var rStep = (d.r_step_dur_ms != null ? d.r_step_dur_ms : 1300) / 1000;
+                var idx = Math.floor((t - rs) / rStep);
+                if (idx < 0) idx = 0; if (idx >= d.r_family.length) idx = d.r_family.length - 1;
+                var from = d.r_family[Math.max(0, idx - 1)], toR = d.r_family[idx];
+                var fr = Math.max(0, Math.min(1, ((t - rs) - idx * rStep) / rStep));
+                R = from + (toR - from) * slcrSmooth(fr); window.PM_slcrR = R;
+            }
+            thetaDeg = theta0 + (f * 360) * t;
+        }
+
+        var phys = slcrPhysics(vm, window.PM_slcrF, R, L, C);
+        var omegaDeg = 2 * Math.PI * window.PM_slcrF * 180 / Math.PI;
+
+        // ── S4 freeze subtraction (pure fn of t) ──
+        var freeze = slcrComputeFreeze(d, t, omegaDeg, theta0, phys.phi);
+        if (d.mode === "kvl_stack") thetaDeg = theta0 + omegaDeg * freeze.phaseSec;
+
+        // ── Beads: ONE stream, common signed displacement = amp*sin(theta) ──
+        var docked = slcrRevealDock(d, t);
+        var beadAmp = SLCR_BEAD_AMP * Math.max(0.15, Math.min(1.1, phys.im / 2.0));
+        var disp = beadAmp * Math.sin(thetaDeg * Math.PI / 180) * (docked ? 1 : 0);
+        for (var bi = 0; bi < sceneObjects.length; bi++) {
+            var bo = sceneObjects[bi], bu = bo.userData;
+            if (!bu || !bu.slcrBead) continue;
+            var pt = slcrLoopAt(bu.home + disp);
+            bo.position.set(pt[0], pt[1], pt[2]);
+            if (bo.material) bo.material.opacity = 0.45 + 0.4 * Math.abs(Math.sin(thetaDeg * Math.PI / 180));
+        }
+
+        // ── S1 reveal-build element fade-in ──
+        slcrApplyRevealFade(d, t);
+
+        // Slider thumbs track when undragged.
+        if (!window.PM_slcrVmDragged) { var vs = document.getElementById("slcr_vm_slider"); if (vs) vs.value = String(vm); var vv = document.getElementById("slcr_vm_val"); if (vv) vv.textContent = vm.toFixed(1); }
+        if (!window.PM_slcrFDragged) { var fs = document.getElementById("slcr_f_demo_slider"); if (fs) fs.value = String(window.PM_slcrF); var fvv = document.getElementById("slcr_f_demo_val"); if (fvv) fvv.textContent = window.PM_slcrF.toFixed(2); }
+        if (!window.PM_slcrRDragged) { var rsl = document.getElementById("slcr_R_slider"); if (rsl) rsl.value = String(R); var rvv = document.getElementById("slcr_R_val"); if (rvv) rvv.textContent = R.toFixed(1); }
+
+        slcrDrawBand(d, freeze.phaseSec != null && d.mode === "kvl_stack" ? freeze.phaseSec : t, thetaDeg, phys, freeze, ramp);
+
+        // ── S10 derivation chain progressive reveal into the formula panel ──
+        if (d.mode === "derivation") slcrUpdateDerivation(d, t, phys);
+
+        // ── HUD readout — value-only, ring-gated ──
+        var roEl = document.getElementById("slcr_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var html = "";
+            html += "<div>i_m = " + phys.im.toFixed(2) + " A</div>";
+            html += "<div>f = " + window.PM_slcrF.toFixed(2) + " Hz</div>";
+            if (d.hud_show_z) html += "<div>Z = " + phys.Z.toFixed(1) + " \\u03a9</div>";
+            if (d.hud_show_phi) html += "<div style=\\"color:#CE93D8\\">\\u03c6 = " + Math.abs(phys.phi).toFixed(1) + "\\u00b0 " + (phys.phi > 0.5 ? "(lag)" : phys.phi < -0.5 ? "(lead)" : "") + "</div>";
+            if (d.hud_show_f0) html += "<div>f_0 = " + phys.f0.toFixed(2) + " Hz</div>";
+            roEl.innerHTML = slcrHtmlComposeSub(html);
+        }
+    }
+
+    // S1 reveal-build: elements dock (fade in) one at a time; beads start once the
+    // loop closes. Both are pure fns of state-local t.
+    function slcrRevealDock(d, t) {
+        if (d.mode !== "series_build") return true;
+        var start = (d.beads_start_at_ms != null ? d.beads_start_at_ms : 4000) / 1000;
+        return t >= start;
+    }
+    function slcrApplyRevealFade(d, t) {
+        if (d.mode !== "series_build") {
+            if (slcrElemR) slcrSetGroupOpacity(slcrElemR, 1);
+            if (slcrElemL) slcrSetGroupOpacity(slcrElemL, 1);
+            if (slcrElemC) slcrSetGroupOpacity(slcrElemC, 1);
+            return;
+        }
+        var rAt = cueTriggerMs("dock_r", (d.dock_r_at_ms != null ? d.dock_r_at_ms : 0)) / 1000;
+        var lAt = cueTriggerMs("dock_l", (d.dock_l_at_ms != null ? d.dock_l_at_ms : 1400)) / 1000;
+        var cAt = cueTriggerMs("dock_c", (d.dock_c_at_ms != null ? d.dock_c_at_ms : 2800)) / 1000;
+        function fade(startS) { return Math.max(0, Math.min(1, (t - startS) / 1.0)); }
+        if (slcrElemR) slcrSetGroupOpacity(slcrElemR, fade(rAt));
+        if (slcrElemL) slcrSetGroupOpacity(slcrElemL, fade(lAt));
+        if (slcrElemC) slcrSetGroupOpacity(slcrElemC, fade(cAt));
+    }
+    function slcrSetGroupOpacity(grp, op) {
+        grp.traverse(function (n) {
+            if (!n.material) return;
+            var ms = Array.isArray(n.material) ? n.material : [n.material];
+            for (var i = 0; i < ms.length; i++) { ms[i].transparent = true; ms[i].opacity = op; }
+        });
+    }
+
+    // S10 derivation chain — links dock into the formula panel on their cues
+    // (progressive reveal); the last link substitutes the sealed decimals.
+    function slcrUpdateDerivation(d, t, phys) {
+        var ff = document.getElementById("slcr_formula"); if (!ff) return;
+        var links = Array.isArray(d.chain_lines) ? d.chain_lines : [
+            "X_L = X_C",
+            "\\u03c9L = 1/(\\u03c9C)",
+            "\\u03c9\\u2080 = 1/\\u221a(LC)",
+            "f_0 = 1/(2\\u03c0\\u221a(LC)) = " + phys.f0.toFixed(3) + " Hz"
+        ];
+        var cues = [
+            cueTriggerMs("chain_1", (d.chain_1_at_ms != null ? d.chain_1_at_ms : 0)),
+            cueTriggerMs("chain_2", (d.chain_2_at_ms != null ? d.chain_2_at_ms : 2000)),
+            cueTriggerMs("chain_3", (d.chain_3_at_ms != null ? d.chain_3_at_ms : 4000)),
+            cueTriggerMs("chain_4", (d.chain_4_at_ms != null ? d.chain_4_at_ms : 6000))
+        ];
+        var out = [];
+        for (var i = 0; i < links.length && i < cues.length; i++) {
+            if (t * 1000 >= cues[i]) out.push(slcrHtmlComposeSub(links[i]));
+        }
+        ff.innerHTML = out.join("<br>");
+    }
+
+    // Glow — 3D apparatus via applyGlowEmphasis (brightness only, Rule 29); the
+    // canvas fan/chain/triangle/plots glow inside slcrDrawBand via slcrGlowOn; the
+    // DOM formula panel toggles glow-pulse.
+    function applyAcSeriesLcrGlow() {
+        var glowActive = glowTargets.length > 0, glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et !== "slcr_apparatus" && et !== "slcr_beads") continue;
+            applyGlowEmphasis(so, on("circuit") || on(sud.id), glowActive, glowP, true);
+        }
+        var ffEl = document.getElementById("slcr_formula");
+        if (ffEl) ffEl.classList.toggle("glow-pulse", on("formula"));
+    }
+
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
     //   precedent (concentric surface meshes + radial E-arrows + an HTML readout
@@ -34254,6 +35198,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildAcPhasor();
                 break;
 
+            case "ac_series_lcr":
+                buildAcSeriesLcr();
+                break;
+
             case "magnetic_flux_loop":
                 buildMagneticFluxLoop();
                 break;
@@ -34692,6 +35640,16 @@ export const FIELD_3D_RENDERER_CODE = `
             applyAcPhasorState(stateDef);
         }
 
+        // ac_series_lcr — per-state slcr_ apparatus visibility + variable_overrides
+        // seed (vm/f/R/L/C) + the per-state contextual-control panel. The animate
+        // loop advances the closed-form theta (scripted ramps for S2/S7/S8/S9,
+        // freeze-time subtracted for the S4 halts), drives the one bead stream +
+        // the combined disc/strip band (fan / chain / triangle / resonance plots),
+        // and writes the ring-gated HUD + S10 derivation chain.
+        if (config.scenario_type === "ac_series_lcr") {
+            applyAcSeriesLcrState(stateDef);
+        }
+
         // magnetic_flux_loop — per-state contextual-control row visibility
         // (B/A/theta live-vs-static-vs-hidden), theta_range bounds, and the
         // area-vector/theta-arc/RHR-hand/projection-shadow flags. The animate
@@ -35012,6 +35970,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // bleeds through (THE-EYE "#sliders exclusion chain" — every dedicated
         // panel adds itself to this NOT-list, same as isAcCapacitor/... above).
         var isAcPhasor = config.scenario_type === "ac_phasor";
+        // ac_series_lcr owns its OWN #slcr_sliders panel (vm/f_demo/R/L/C) -- must
+        // be excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to this
+        // NOT-list (every dedicated panel excludes itself here).
+        var isAcSeriesLcr = config.scenario_type === "ac_series_lcr";
         // magnetic_flux_loop owns its OWN #mfl_sliders panel (B/A/theta) -- must
         // be excluded here or the generic #sliders panel bleeds through
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
@@ -35060,7 +36023,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -35247,7 +36210,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -35655,6 +36618,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // the generic legend (would otherwise print the generic point-charge
         // legend text, which is wrong content here).
         if (config.scenario_type === "ac_phasor") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // ac_series_lcr is a silent visual (Rule 24): the disc/strip band +
+        // resonance plots + ring-gated HUD + dedicated formula panel carry
+        // everything — suppress the generic legend.
+        if (config.scenario_type === "ac_series_lcr") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // magnetic_flux_loop is a silent visual (Rule 24): the loop + B lattice +
         // the live Phi = B.A.cos(theta) readout carry everything — suppress the
         // generic legend (the scenario id would otherwise fall into no branch and
@@ -38461,6 +39428,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "ac_phasor") {
             updateAcPhasorFrame();
             applyAcPhasorGlow();
+        }
+
+        // ac_series_lcr — three elements in one series loop; a five-arrow fan,
+        // tip-to-tail voltage addition, the impedance triangle, phase angle, and
+        // the resonance sweep. Closed-form theta (Rule 26/36; scripted ramps +
+        // freeze-time subtraction), one bead stream, ring-gated HUD.
+        if (config.scenario_type === "ac_series_lcr") {
+            updateAcSeriesLcrFrame();
+            applyAcSeriesLcrGlow();
         }
 
         // magnetic_flux_loop — stationary tiltable/resizable loop in a uniform B.

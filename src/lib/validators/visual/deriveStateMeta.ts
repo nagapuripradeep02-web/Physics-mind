@@ -295,6 +295,13 @@ export function deriveMotionExpectations(
             // Rule 37 free-run keeps it moving anyway).
             const acPhasor = state ? asObj(state.ac_phasor) : null;
             if (acPhasor) { out[stateId] = (acPhasor.mode && acPhasor.mode !== 'explore') ? true : false; continue; }
+            // ac_series_lcr (three elements in one series loop; fan / chain /
+            // triangle / resonance sweep — Ch.7 §7.6, clean standalone sibling of
+            // the scope-pane family): every guided beat animates continuously; the
+            // explore state (mode 'explore') is user-driven -> static (relaxed by
+            // the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
+            const acSeriesLcr = state ? asObj(state.ac_series_lcr) : null;
+            if (acSeriesLcr) { out[stateId] = (acSeriesLcr.mode && acSeriesLcr.mode !== 'explore') ? true : false; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -459,7 +466,7 @@ const F3D_REVEAL_KEYS = [
     // for the phasor representation of AC — Ch.7 §7.5. Clean standalone sibling
     // of ac_resistor/ac_inductor/ac_capacitor — see field_3d_renderer.ts's
     // scenario header comment).
-    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator', 'ac_resistor', 'ac_inductor', 'ac_capacitor', 'ac_phasor',
+    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator', 'ac_resistor', 'ac_inductor', 'ac_capacitor', 'ac_phasor', 'ac_series_lcr',
     // helix_in_uniform_field (helical_motion_charge_in_uniform_B): the per-state
     // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
     // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
@@ -1381,6 +1388,27 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
         else candidates.push(1500);                                       // explore (S8) / no timed reveal
     }
+    // ac_series_lcr (three elements in one series loop; fan / chain / triangle /
+    // resonance sweep — Ch.7 §7.6, clean standalone sibling of the scope-pane
+    // family). Every guided beat is a SCRIPTED reveal/ramp/freeze that plays then
+    // HOLDS on the state's own clock (Rule 26); pin the frozen frame PAST the LAST
+    // payoff of each mode so THE EYE photographs the SETTLED beat. Timings mirror
+    // the renderer's ac_series_lcr block — keep in sync if either changes.
+    const acSlcr = asObj(state.ac_series_lcr);
+    if (acSlcr) {
+        const mode = typeof acSlcr.mode === 'string' ? acSlcr.mode : '';
+        if (mode === 'series_build') candidates.push(asNum(acSlcr.beads_start_at_ms, 4000) + 1500);
+        else if (mode === 'off_home') candidates.push(asNum(acSlcr.f_glide_start_at_ms, 0) + asNum(acSlcr.f_glide_dur_ms, 3000) + 2000);
+        else if (mode === 'fan') candidates.push(asNum(acSlcr.source_dock_at_ms, 6000) + 2000);
+        else if (mode === 'kvl_stack') candidates.push(asNum(acSlcr.freeze_i_arm_at_ms, 7000) + 2500);
+        else if (mode === 'tip_to_tail') candidates.push(asNum(acSlcr.chain_vc_at_ms, 3200) + 1500);
+        else if (mode === 'z_triangle') candidates.push(asNum(acSlcr.morph_start_at_ms, 800) + 3000);
+        else if (mode === 'lead_lag_flip') candidates.push(asNum(acSlcr.f_step_start_at_ms, 3000) + 2500);
+        else if (mode === 'resonance_sweep') candidates.push(asNum(acSlcr.sweep_start_at_ms, 1000) + asNum(acSlcr.sweep_legA_ms, 5000) + asNum(acSlcr.sweep_legB_ms, 3000) + 500);
+        else if (mode === 'sharpness') candidates.push(asNum(acSlcr.r_step_start_at_ms, 1200) + 2 * asNum(acSlcr.r_step_dur_ms, 1300) + 800);
+        else if (mode === 'derivation') candidates.push(asNum(acSlcr.chain_4_at_ms, 6000) + 2000);
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
     // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
     // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
     // ramp (S1 close / S3 open, mirrors switch_toggle in the renderer's animate
@@ -2263,6 +2291,14 @@ export function deriveHoldExpectations(
             const acPhasorHold = asObj(state.ac_phasor);
             if (acPhasorHold) {
                 out[stateId] = (acPhasorHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_series_lcr: every guided beat is a reveal/ramp/freeze-then-hold on
+            // the state's own clock; the explore state (mode 'explore') is
+            // user-driven -> interactive.
+            const acSeriesLcrHold = asObj(state.ac_series_lcr);
+            if (acSeriesLcrHold) {
+                out[stateId] = (acSeriesLcrHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // magnetic_flux_loop: every state exposes at least the relevant
