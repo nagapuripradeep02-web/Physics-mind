@@ -371,18 +371,18 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/lc_oscillations.json, field_3d
+    // lc_oscillation scenario (Ch.7 #7). This entry REPLACES the legacy
+    // circuit_live + graph_interactive dual-panel stub (same pattern
+    // series_lcr_circuit and ac_power_factor each executed on their own
+    // prior slot).
     lc_oscillations: {
         concept_id: 'lc_oscillations',
-        layout: 'dual_horizontal',
+        layout: 'single',
         primary: {
-            renderer: 'circuit_live',
-            config_key: 'lc_oscillations_circuit',
-            label: 'LC Circuit',
-        },
-        secondary: {
-            renderer: 'graph_interactive',
-            config_key: 'lc_oscillations_graph',
-            label: 'Charge & Current vs Time',
+            renderer: 'field_3d',
+            config_key: 'lc_oscillations',
+            label: "LC Oscillations — The Circuit's Own Rhythm (3D)",
         },
     },
 

@@ -2715,7 +2715,11 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     parallel_plate_capacitor_basic: "particle_field",
     parallel_plate_capacitor:       "particle_field",
     // Ch7 AC circuits — circuit_live for component/oscillation concepts, graph_interactive for analytical concepts
-    lc_oscillations:                "circuit_live",
+    // NOTE: lc_oscillations REMOVED from here — the real atomic concept
+    // (src/data/concepts/lc_oscillations.json) is field_3d, registered
+    // below alongside series_lcr_circuit/ac_power_factor. This stale
+    // circuit_live placeholder is retired (same pattern meter_bridge and
+    // wheatstone_bridge each executed on their own prior slot).
     lcr_series_circuit:             "circuit_live",
     resistor_in_ac:                 "circuit_live",
     inductor_in_ac:                 "circuit_live",
@@ -2956,6 +2960,11 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // (Ch.7 #6, engine build commit 9df14e3). NOT in PCPL_CONCEPTS (that
     // set is 2D parametric_renderer only).
     ac_power_factor:                "field_3d",
+    // src/data/concepts/lc_oscillations.json, field_3d lc_oscillation
+    // scenario (Ch.7 #7, Class-B clone-sibling of ac_power — engine build
+    // dispatched separately from this JSON registration pass). NOT in
+    // PCPL_CONCEPTS (that set is 2D parametric_renderer only).
+    lc_oscillations:                "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
 };
