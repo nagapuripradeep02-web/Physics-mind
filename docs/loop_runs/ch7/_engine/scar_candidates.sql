@@ -1387,3 +1387,16 @@ UPDATE engine_bug_queue
 -- Cumulative EYE (S5/S9/S2/S7 frozen: components sum to 6.36) + capacitance regression +
 -- founder:drive deferred to the orchestrator's SINGLE post-ride-along run (Amendment 4,
 -- now that both F5 + F6 have landed).
+
+-- ----------------------------------------------------------------------------
+-- Stage 7f-corr · lc_oscillations CpB F6 — prevention_rule CORRECTION (Checkpoint C, 2026-07-24)
+-- founder-proxy Checkpoint C §3 flagged that the F6 INSERT's prevention_rule still read the
+-- INFERIOR literal prescription ("display the LAST component as total - Σ others"), while the
+-- LANDED fix (e4505b8) absorbs the residual into the LARGEST displayed component. A future
+-- recurrence-fixer following the scar verbatim would re-introduce the negative-heat bug. This
+-- corrective UPDATE aligns the canonical ratchet text with the landed behaviour. FILE only — no DB.
+-- ----------------------------------------------------------------------------
+UPDATE engine_bug_queue
+   SET prevention_rule = 'When a struck/derived total is PINNED and its rounded component addends are displayed alongside it, absorb the ±rounding residual into the LARGEST displayed component so the visible parts always close EXACTLY to the pinned total — NEVER the literal last-in-draw-order component, which renders a NEGATIVE value (e.g. negative heat E_R = -0.01) whenever a component ≈ 0. Apply closure ONLY where the components physically conserve to the pinned total (skip it while a store is still filling, so energy is never fabricated). Same displayed-addend discipline as field3d_struck_sum_rounds_full_not_displayed_addends.'
+ WHERE bug_class = 'energy_readout_rounding_seam_vs_displayed_total'
+   AND discovered_in_session = 'ch7-stage7-lc_oscillations-checkpointB';
