@@ -30263,6 +30263,16 @@ export const FIELD_3D_RENDERER_CODE = `
         mk("dc_formula", "position:fixed;top:44%;right:20px;transform:translateY(-50%);color:#FFF176;font:bold 21px/1.4 \\'Cambria Math\\',monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:340px;text-align:right;");
         // ledger (S9) — two terms + frozen sum chip (left-centre)
         mk("dc_ledger", "position:fixed;top:40%;left:12px;transform:translateY(-50%);color:#E1BEE7;font:14px/1.7 monospace;background:rgba(0,0,0,0.8);padding:10px 14px;border-radius:8px;z-index:9;display:none;min-width:220px;");
+        // S5 wrong-expectation "ghost tag" (Rule 16a misconception confrontation):
+        // the belief being disproven, rendered SUBORDINATE / ghosted (Rule 29 —
+        // never a focal; the ONE S5 glow focal stays the probe, Rule 32e). Pinned
+        // bottom-centre near the gap, in a reserved zone clear of the probe readout
+        // (top), formula (right), ammeter/HUD (top corners) and the review chrome.
+        // b_lives_in_the_gap only (mode gate in dcApplyWidgetVis); wired to the
+        // authored ghost_tag_at_ms hook in-frame. On-canvas math is real Unicode
+        // (\\u2717 ✗, \\u2192 →), never ASCII (Rule 34c).
+        var gt = mk("dc_ghost_tag", "position:fixed;left:50%;bottom:20px;transform:translateX(-50%);color:#90A4AE;font:italic 13px/1.4 monospace;opacity:0.6;background:rgba(0,0,0,0.4);padding:5px 10px;border-radius:6px;z-index:8;display:none;white-space:nowrap;text-shadow:0 0 6px rgba(0,0,0,0.9);");
+        gt.innerHTML = "\\u2717 Expected: no current \\u2192 <span style=\\'text-decoration:line-through\\'>B = 0</span>";
         // sliders (bottom-right) — Rule 39g <prefix>_<name>_row ids
         var SC = config.slider_controls || {};
         var icD = (SC.I_c && SC.I_c["default"] != null) ? SC.I_c["default"] : 1.2;
@@ -30412,6 +30422,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var ag = document.getElementById("dc_amm_gap"); if (ag) ag.style.display = dcWidgetVis("amm_gap", !!cd.show_amm_gap) ? "block" : "none";
         var ff = document.getElementById("dc_formula"); if (ff) ff.style.display = dcWidgetVis("formula", !!cd.show_formula && !!cd.formula) ? "block" : "none";
         var lg = document.getElementById("dc_ledger"); if (lg) lg.style.display = dcWidgetVis("ledger", !!cd.show_ledger) ? "block" : "none";
+        // S5 ghost tag: a pedagogical fixture of b_lives_in_the_gap (not a teacher
+        // widget) — mode-gated on/off; the in-frame reveal honours ghost_tag_at_ms.
+        var gt = document.getElementById("dc_ghost_tag"); if (gt) gt.style.display = (cd.mode === "b_lives_in_the_gap") ? "block" : "none";
         try {
             parent.postMessage({ type: "WIDGET_VIS_STATE", vis: {
                 slider_I_c: document.getElementById("dc_ic_row") && document.getElementById("dc_ic_row").style.display !== "none",
@@ -30516,6 +30529,19 @@ export const FIELD_3D_RENDERER_CODE = `
             if (pl) { pl.position.set(px, py + 0.42, pz); updateLabelSpriteText(pl, "B = " + B_uT.toFixed(1) + " \\u00b5T"); }
             if (rline) { dcOrient(rline, [px, 0, pz], [px, py, pz]); }
             if (rlbl) { rlbl.position.set(px - 0.5, py / 2, pz); updateLabelSpriteText(rlbl, "r = " + rCm.toFixed(1) + " cm"); }
+        }
+
+        // ── S5 wrong-expectation ghost tag: pinned from ghost_tag_at_ms (0 =
+        //    from state entry) and HELD while the probe glides in — the Rule 16a
+        //    misconception ("no current → B = 0") standing disproven beside the
+        //    probe's live 2.4 µT. Deterministic under SET_TIME_FREEZE (pure fn of
+        //    state-local ms; no accumulator touched). ──────────────────────────
+        if (cd.mode === "b_lives_in_the_gap") {
+            var gtEl = document.getElementById("dc_ghost_tag");
+            if (gtEl && gtEl.style.display !== "none") {
+                var gtMs = (cd.ghost_tag_at_ms != null) ? cd.ghost_tag_at_ms : 0;
+                gtEl.style.visibility = (ms >= gtMs) ? "visible" : "hidden";
+            }
         }
 
         // ── S7 peak marker (pins at r=R and holds) ─────────────────────────
