@@ -30779,12 +30779,17 @@ export const FIELD_3D_RENDERER_CODE = `
         ];
         if (showR) bars.push({ lbl: "E_R", val: qi.ER, col: LCO_COL_R });
         var barW = 30, gap = (W - 20 - bars.length * barW) / Math.max(bars.length - 1, 1);
-        var baseY = H - 26, topY = 26, fullH = baseY - topY;
-        // FIXED total line at E_total (full height) — flat, never dips.
+        var hdrY = 11, baseY = H - 26, topY = 30, fullH = baseY - topY;
+        // FIXED total line at E_total (full height) — flat, never dips. The total-
+        // marker LABEL rides its own top-left header row (hdrY, left-aligned) — a
+        // DISTINCT x/y zone from every bar's live value label (each centred over its
+        // own bar at topY-4) — so the fixed E_total never overprints the RIGHTMOST
+        // bar's value in either the 2-bar (S5/S6) or 3-bar (S7/S9) variant
+        // (energy_bar_chart_total_label_collides_with_last_bar_label).
         ctx.strokeStyle = "rgba(236,239,241,0.85)"; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4;
         ctx.beginPath(); ctx.moveTo(6, topY); ctx.lineTo(W - 6, topY); ctx.stroke(); ctx.setLineDash([]);
         ctx.fillStyle = LCO_COL_TOT; ctx.font = "9px 'Cambria Math','Times New Roman',serif";
-        ctx.textAlign = "right"; ctx.fillText(Etot.toFixed(2) + " J", W - 8, topY - 4); ctx.textAlign = "left";
+        lcoFillComposed(ctx, "E_total = " + Etot.toFixed(2) + " J", 6, hdrY, "left");
         for (var b = 0; b < bars.length; b++) {
             var bx = 10 + b * (barW + gap), fr = Math.max(0, Math.min(1, bars[b].val / Etot));
             ctx.strokeStyle = "#546E7A"; ctx.strokeRect(bx, topY, barW, fullH);
