@@ -1639,3 +1639,64 @@ apparatus dimmed · S11 free-runs, all 4 sliders live.
 **Authoring finding NOT acted on (handoff FYI, alex:json_author):** S10 narration is 58 EN words (>55
 Rule-31a budget) — a validator WARN, not fatal. Content-side; left for the concept-seal pass, not an
 engine edit.
+
+---
+
+## Stage 8b · transformer · CHECKPOINT B fix F1 · `explore_state_formula_surface_clips_behind_growing_hud_panel` · 2026-07-24 · [owner: peter_parker:renderer_primitives]
+
+**Dispatch:** ONE routed `bug_class` (Amendment 4), severity MODERATE (founder-proxy P2), corroborated by
+eye-walker (MAJOR) + quality-auditor. Root cause ALREADY DIAGNOSED — executed the named fix, minimal
+exploration. Rollback point recorded: HEAD `34692a5` (the Stage-8 transformer build).
+
+**Finding (verbatim):** `tfr_formula` was pinned at a fixed CSS `top:40%` (`field_3d_renderer.ts`, inherited
+from the `lco_` clone) while `tfr_readout` grows DOWNWARD from `top:52px` as `hud_show_*` rows accumulate.
+STATE_11 (explore) is the only state with BOTH `hud_show_turns:true` AND `hud_show_power:true` → 9 HUD rows
+→ the HUD bottom reached ~`top:40%` and the single formula surface `Vₛ/Vₚ = Nₛ/Nₚ` rendered clipped behind
+the HUD bottom edge (subscripts cut) for the whole state. S6 (7 rows) cleared. Evidence:
+`.visual_runs/transformer/20260724-212106/STATE_11__frozen.png` (clip) + `STATE_11__dense_t10000.png`
+(persists) vs `STATE_6__frozen.png` (clears). `founder:drive overlayCollisions=[]` is chrome-only → blind
+to this.
+
+**Fix (layout-only, `field_3d_renderer.ts` `tfr_`-scope only, +29 lines):**
+- `tfr_formula` creation CSS: dropped `top:40%` + `transform:translateY(-50%)`; seeded `top:300px` (pre-layout
+  seed only, immediately overwritten).
+- New sibling helper `tfrPositionFormula()`: when the formula is shown, sets `formula.style.top =
+  round(tfr_readout.getBoundingClientRect().bottom + 16)` px; falls back to a centered `0.40·innerHeight`
+  default when the readout is hidden. Pure DOM read + `style.top` write.
+- Called from `applyTransformerState` (after formula content/display set — initial placement) AND from
+  `updateTransformerFrame` after `roEl.innerHTML` is set (docks below the ACTUAL current-state HUD bottom
+  every frame; self-corrects the one-frame stale-height case on state entry, since the readout's row count
+  is repopulated in the animate loop, not at apply-time).
+- Rejected the authoring workaround (dropping `hud_show_turns`) per founder-proxy: every explore readout
+  stays — the turns readout is the one a teacher manipulates. The LAYOUT moves, not the content.
+- Scoped to `tfr_` only (fleet-wide generalization is a separate later founder decision — NOT taken here).
+
+**Verify chain (ALL green):** check:renderer-syntax OK (field_3d 2629 KB + particle_field; 0 backticks) ·
+tsc --noEmit 0 errors · validate:concepts 132/132 PASS (warning profile unchanged — renderer-only change,
+no JSON touched). Contamination grep on added lines: ZERO sealed-sibling prefixes
+(`acr_/acl_/acc_/phs_/slcr_/pwr_/lco_`) outside the shared chains; only match was a comment string.
+Clock guard: layout-only — NO `__pmSteps`/`dtStep`/integrator touched (the sole `0.016`/`dt`/`__pmSteps`
+token in the diff is the clock-guard COMMENT) → NO fleet sweep required.
+
+**After-proof (throwaway Playwright DOM probe vs the built `review-site/transformer/sim.html`, 1280×720, NOT
+visual:eyes, NO cache re-seed; script deleted):**
+- STATE_11 (9 rows): `readout.bottom=296.1px`; OLD fixed `top:40%` ≈ 273px → OVERLAP ~23px (the clip);
+  AFTER `formula.top=312px` → **15.9px clear gap, PASS**, subscripts intact (`Vₛ/Vₚ = Nₛ/Nₚ`).
+- STATE_6 (7 rows): AFTER `formula.top=262px`, `readout.bottom=246.1px` → **15.9px clear gap, PASS**
+  (OLD top:40%≈273 also cleared; the formula moved UP 11px, still clear of the readout above and the
+  bottom-anchored sliders/left band — no worse drift).
+- STATE_1 (2 rows): formula correctly `display:none` → N/A, no spurious surface.
+No page errors; scene built (`PM_tfrN_s` defined, HUD repopulated with live values).
+
+**Scar:** F1 candidate row `explore_state_formula_surface_clips_behind_growing_hud_panel` already present in
+`docs/loop_runs/ch7/_engine/scar_candidates.sql` (founder-proxy Checkpoint B append) — NOT duplicated. This
+fix implements its `prevention_rule` verbatim (formula positioned below the HUD DYNAMIC bottom, never a fixed
+y-offset). Trial: no DB write; the orchestrator owns flipping that row OPEN→FIXED.
+
+**Orchestrator-owned (NOT run here):** THE EYE re-run + the `capacitance` H2 regression. `transformer` has NO
+approved H2 baseline (brand-new concept) → this layout change breaks no baseline and needs no `visual:approve`
+(barred anyway).
+
+**Commit:** renderer (`field_3d_renderer.ts`) + this log entry only. Concept JSON + registration sites
+(panelConfig/aiSimulationGenerator/intentClassifier) + state file + `scar_candidates.sql` (orchestrator's)
+stay UNCOMMITTED.

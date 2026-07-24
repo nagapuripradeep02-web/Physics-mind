@@ -31487,7 +31487,11 @@ export const FIELD_3D_RENDERER_CODE = `
         gp.style.cssText = "position:fixed;bottom:88px;left:12px;width:" + TFR_GP_W + "px;height:" + TFR_GP_H + "px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
         document.body.appendChild(gp);
         var ff = document.createElement("div"); ff.id = "tfr_formula";
-        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFD54F;font:600 20px/1.5 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;white-space:pre-line;";
+        // top is set dynamically by tfrPositionFormula() to sit below the live
+        // HUD readout bottom — NEVER a fixed top: the readout grows downward as
+        // hud rows accumulate (explore = 9 rows) and a fixed top:40% clipped the
+        // formula behind the HUD bottom edge. 300px is only the pre-layout seed.
+        ff.style.cssText = "position:fixed;top:300px;right:22px;color:#FFD54F;font:600 20px/1.5 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;white-space:pre-line;";
         document.body.appendChild(ff);
         var spd = document.createElement("div"); spd.id = "tfr_sliders";
         spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:240px;display:none;";
@@ -31589,6 +31593,25 @@ export const FIELD_3D_RENDERER_CODE = `
                 ffEl.innerHTML = tfrHtmlComposeSub(ftext); ffEl.style.display = ftext ? "block" : "none";
             }
         }
+        tfrPositionFormula();
+    }
+
+    // Anchor the single formula surface BELOW the live HUD readout's actual
+    // bottom edge (never a fixed top): the readout grows downward as hud rows
+    // accumulate, so the explore state's 9 rows previously clipped a top:40%
+    // formula behind the HUD bottom. Falls back to a centered default when the
+    // readout is hidden. Pure layout — reads a DOM rect + writes style.top only;
+    // touches no clock, no __pmSteps/dtStep, no integrator.
+    function tfrPositionFormula() {
+        var ffEl = document.getElementById("tfr_formula");
+        if (!ffEl || ffEl.style.display === "none") return;
+        var roEl = document.getElementById("tfr_readout");
+        var topPx = Math.round((window.innerHeight || 720) * 0.40);
+        if (roEl && roEl.style.display !== "none") {
+            var rr = roEl.getBoundingClientRect();
+            if (rr.height > 0) topPx = Math.round(rr.bottom + 16);
+        }
+        ffEl.style.top = topPx + "px";
     }
 
     // ── Band draw dispatch (content-gated per state; single-latest chips) ──────
@@ -31922,6 +31945,10 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             roEl.innerHTML = tfrHtmlComposeSub(html);
         }
+        // Dock the formula surface below the live HUD bottom every frame (row
+        // count is stable within a state; this also self-corrects the one-frame
+        // stale-height case at state entry). Layout-only, no clock touched.
+        tfrPositionFormula();
     }
 
     // Glow — 3D apparatus via applyGlowEmphasis (brightness only, Rule 29); the
