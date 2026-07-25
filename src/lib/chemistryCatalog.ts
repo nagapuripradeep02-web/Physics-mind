@@ -50,10 +50,10 @@ export const CHEMISTRY_GHOSTS: GhostSeed[] = [
     // §2.2 Atomic models — the first-simulation candidates
     { concept_id: 'thomson_model', concept_name: 'Thomson (Plum-Pudding) Model', chapter: 2, section: '2.2', class_level: 11, prerequisites: ['discovery_of_electron'] },
     { concept_id: 'rutherford_alpha_scattering', concept_name: 'Rutherford α-Particle Scattering', chapter: 2, section: '2.2', class_level: 11, prerequisites: ['thomson_model'], is_spine: true, why_learn: 'The experiment that discovered the nucleus — a few α-particles bouncing straight back proved the atom is almost entirely empty space with a tiny dense centre. Everything about atomic structure starts here.' },
-    { concept_id: 'bohr_model', concept_name: 'Bohr Model — Quantised Energy Levels', chapter: 2, section: '2.2', class_level: 11, prerequisites: ['rutherford_alpha_scattering'], is_spine: true, why_learn: 'Why atoms only emit certain colours of light: electrons live on fixed energy rungs and jump between them. The bridge from "planetary atom" to the quantum picture.' },
-    { concept_id: 'hydrogen_spectrum', concept_name: 'Hydrogen Emission Spectrum', chapter: 2, section: '2.2', class_level: 11, prerequisites: ['bohr_model'] },
+    { concept_id: 'bohr_model_energy_levels', concept_name: 'Bohr Model — Quantised Energy Levels', chapter: 2, section: '2.2', class_level: 11, prerequisites: ['rutherford_alpha_scattering'], is_spine: true, why_learn: 'Why atoms only emit certain colours of light: electrons live on fixed energy rungs and jump between them. The bridge from "planetary atom" to the quantum picture.' },
+    { concept_id: 'hydrogen_spectrum', concept_name: 'Hydrogen Emission Spectrum', chapter: 2, section: '2.2', class_level: 11, prerequisites: ['bohr_model_energy_levels'] },
 
     // §2.3 Quantum model — Phase-5 renderer scope (orbitals)
-    { concept_id: 'atomic_orbitals_spd', concept_name: 'Atomic Orbitals — s, p, d Shapes', chapter: 2, section: '2.3', class_level: 11, prerequisites: ['bohr_model'] },
+    { concept_id: 'atomic_orbitals_spd', concept_name: 'Atomic Orbitals — s, p, d Shapes', chapter: 2, section: '2.3', class_level: 11, prerequisites: ['bohr_model_energy_levels'] },
     { concept_id: 'electronic_configuration', concept_name: 'Electronic Configuration & Filling Rules', chapter: 2, section: '2.3', class_level: 11, prerequisites: ['atomic_orbitals_spd'], is_spine: true },
 ];
