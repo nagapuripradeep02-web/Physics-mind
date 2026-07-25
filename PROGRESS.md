@@ -12134,3 +12134,33 @@ Plus an in-build fix (found+fixed in E1): S5 forced sustained-charge so B never 
 **Blocker / hygiene:** `.founder_runs/` is not gitignored on this branch (`.visual_runs` + `review-site` are) — seal commit added files by explicit path to avoid committing it; founder may want a .gitignore entry.
 
 **Next session's first task:** `em_wave_propagation` (Ch.8 #2, NCERT §8.3) — fresh session, `cache:clear:scoped em_wave_propagation` → dispatch architect. Likely another NEW field_3d scenario (traveling transverse E&B sinusoids). No CLAUDE.md changes suggested this session.
+
+## 2026-07-25 — Ch.8 chapter-loop: `em_wave_propagation` SEALED (concept #2, 11-state field_3d diamond)
+
+**Concept #2 of the founder-approved Ch.8 map** (displacement_current → em_wave_propagation → electromagnetic_spectrum). Resumed mid-flight from disk artifacts (CP-B fix cycle 1 was in progress); sealed this session. Branch `feat/ch8-em-waves`, worktree `C:\Tutor\physics-mind-ch8`.
+
+**What it teaches (NCERT §8.3):** the coupled changing E↔B handshake self-propagating as a transverse wave — E⊥B⊥direction with E×B along travel at crest and trough alike, E and B strictly IN PHASE (the Rule-16a misconception pivot: *not* 90° apart), `c = 1/√(μ₀ε₀)` recognized as the measured speed and therefore light's own identity, `B₀ = E₀/c` with the ratio pinned at c regardless of amplitude, the exact half-and-half energy split (`u_E = u_B` despite B₀'s tiny number), and `v = c/n` in a medium with ν fixed and only λ shortening. Built directly on the sealed `displacement_current` ("changing E makes B") + Faraday ("changing B makes E") — prerequisites declared, never re-taught (Rule 25 clean). Classifier boundary reconciled both ways; the seeded siblings `em_wave_nature` + `speed_of_em_waves` absorbed via `CONCEPT_SYNONYMS`.
+
+**Checkpoint path:** CP-A DESIGN_OK (1 cycle) → JSON authored → CP-B cycle 1 **FIX(engine, BLOCKING)** → 5 fixes → CP-B cycle 2 **APPROVE** → CP-C **SEALED**.
+
+**The blocking finding (why it mattered):** S5's authored `ghost_dissolve_at_ms` was pushed to THE EYE's reveal pin but **never read by the renderer** — dead code. So the ✗-tagged wrong-phase red ghost never dissolved: a Rule-16a misconception pivot left its disproven belief standing as the last thing a sound-off teacher sees. It passed 47/47 deterministic gates *with the defect live* — THE EYE consults the freeze pins themselves and nothing asks "is the pinned frame the RIGHT frame." The eye-walker frame-walk caught it; the pin push actively masked it.
+
+**Engine commits this session (Amendment 4 — ONE bug_class per dispatch, no bundles):**
+
+```
+7bb26e2  fix(engine-loop): S5 ghost dissolve — wire ghost_dissolve_at_ms       (BLOCKING)
+1b5efa7  fix(engine-loop): S9 reveal pin — push link1/2/3 + assembled cues     (ride-along)
+8d2f826  fix(engine-loop): S1 pulse arrival — honor needle_kick_at_ms          (ride-along)
+c16383d  fix(engine-loop): S6 λ bracket — render the declared span marker      (ride-along)
+```
+Plus the S8 Rule-34c authoring fix (`u<sub>E</sub>`/`u<sub>B</sub>` — was literal ASCII beside subscript tank labels), in the concept JSON. Prior-session scenario commits: `961fe87` core + `6a0fa7f` per-state add-ons.
+
+Two of the four were "capture-is-wrong, not sim-is-wrong" (S1, S9) — formally ride-along, taken in the blocking round anyway so the eventual founder `visual:approve` cannot baseline a wrong frame. The S6 λ bracket also renders on S11 (shared `show_lambda`); founder-proxy ruled that core-ring appropriate under Rule 38b — c = νλ manipulation is exactly what the explore sandbox is for.
+
+**Verify chain green throughout:** `check:renderer-syntax` OK · `tsc` 0 · `validate:concepts` PASS · EYE **47/47** on em_wave_propagation · regression pair `magnetisation_and_intensity` 38/38 + `bar_magnet_as_dipole` 56/56, every H2 at 0.00% (Amendment-5 disjoint pair) · founder_drive `states=11 shots=33 drags=10 collisions=0 flags=0 consoleErrors=0` · auditor PASS · eye-walker all 5 findings CLOSED (S6 confirmed by pixel-diff bbox, not eyeballing).
+
+**Scar corpus:** 4 candidate rows filed to `docs/loop_runs/ch8/_engine/scar_candidates.sql` (**files only — never applied to the DB** per trial constraint). The F-S5 row was caught missing by the Checkpoint-C diff audit and filed in-loop at `CRITICAL` — the run's highest-severity defect would otherwise have gone un-ratcheted.
+
+**Founder chapter-end queue:** (a) confirm the live `engine_bug_queue` severity CHECK permits `'MAJOR'` (F-S1 row; same open item as displacement_current — F-S5 was deliberately filed `CRITICAL` to sidestep it). (b) FL1 hand-test: S10 n-drag un-pins the clock — wiring present, but THE EYE structurally cannot fire trusted drag events. (c) 2 P3 polish notes: ν renders as a Latin-"v" lookalike in the 13px monospace HUD/slider on S6+S11 (sharpened on S11 where the punchline is a *speed*); λ shown on both HUD and bracket label on S11. (d) decide inclusion of the excluded scratch artifacts (`continue_em_wave_v2.txt`, `.founder_runs/`, `docs/loop_runs/wrapper/`). Detail: `docs/loop_runs/ch8/em_wave_propagation/checkpoint_c_report.md`.
+
+**Concept-seal commit (this session):** concept JSON + 3 registration sites (panelConfig, aiSimulationGenerator `CONCEPT_RENDERER_MAP`, intentClassifier `VALID_CONCEPT_IDS`+`CLASSIFIER_PROMPT`) + migration + seed script + `docs/loop_runs/ch8/em_wave_propagation/` (skeleton, physics_block, engine_contract, checkpoint_a/b/b_cycle2/c reports, auditor + eye_walker reports ×2) + `scar_candidates.sql` + `ch8_state.md` + this PROGRESS entry. Chapter branch only — NO master merge (trial). Next: `electromagnetic_spectrum` in a FRESH session (Amendment 4 — one concept per session).

@@ -2951,6 +2951,14 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // I_d = ε₀ dΦ_E/dt fixes the two-surface contradiction at a charging
     // capacitor's gap.
     displacement_current:           "field_3d",
+    // Ch.8 Electromagnetic Waves — EM wave propagation (NCERT §8.3), the
+    // chapter's second diamond (Alex pipeline, 2026-07-25). NEW field_3d
+    // "em_wave_propagation" scenario: mutually regenerating E and B
+    // self-propagate through vacuum at c = 1/√(μ₀ε₀), the speed that
+    // identifies light itself as an electromagnetic wave. Absorbs the
+    // seeded siblings em_wave_nature + speed_of_em_waves (redirect-only —
+    // see CONCEPT_SYNONYMS in intentClassifier.ts).
+    em_wave_propagation:            "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────

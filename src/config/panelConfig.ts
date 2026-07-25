@@ -1335,6 +1335,20 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.8 Electromagnetic Waves — EM wave propagation (NCERT §8.3), the
+    // chapter's second diamond. NEW field_3d "em_wave_propagation" scenario
+    // (Alex pipeline, 2026-07-25). Absorbs the seeded siblings em_wave_nature
+    // + speed_of_em_waves (see CONCEPT_SYNONYMS in intentClassifier.ts).
+    em_wave_propagation: {
+        concept_id: 'em_wave_propagation',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'em_wave_propagation',
+            label: 'EM Wave Propagation (3D)',
+        },
+    },
+
     magnetic_field_solenoid: {
         concept_id: 'magnetic_field_solenoid',
         layout: 'single',
