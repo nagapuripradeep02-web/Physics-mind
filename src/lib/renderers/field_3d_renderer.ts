@@ -29255,6 +29255,16 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
     var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
     var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
+    var NLB_LANE_GAP = 0.85;              // world units of z between two INDEPENDENT side-by-side bodies.
+                                          //   Engine spec §1 promises "two bodies with NO pulley = independent,
+                                          //   side-by-side", but every body was pinned to z = 0, so the intended
+                                          //   same-start-line compare (both at the same initial_position_m) rendered
+                                          //   as ONE block with the two labels merged into an illegible blob until
+                                          //   integration pulled them apart. Staggering the start positions instead
+                                          //   is NOT a workaround — it puts them in one lane, so the faster body
+                                          //   overtakes and interpenetrates the slower one, and it destroys the
+                                          //   distance comparison the compare states exist to show. 1.55 × body size,
+                                          //   so the blocks read as clearly separate rows without splitting the eye.
     var NLB_SURFACE_THICK = 0.18;         // slab thickness; its TOP face sits at surface-local y = 0
     var NLB_SURFACE_DEPTH = 1.6;          // slab depth (z)
     var NLB_DEFAULT_LEN_M = 6;            // surface.length_m default (visible half-length, metres)
@@ -29494,6 +29504,29 @@ export const FIELD_3D_RENDERER_CODE = `
     // up-slope for a surface body (surface-group local +x, so the incline
     // rotation is applied for free), straight DOWN in world y for a hanging body
     // (which ignores theta by construction — spec section 1).
+    // Lane (z) offset for a body. ONLY independent, non-hanging, non-ghost bodies are
+    // separated; everything else stays on the centre line at z = 0, so this cannot move
+    // pixels in any already-baselined concept:
+    //   - coupled (pulley) states return 0 — one body is on the surface and one hangs,
+    //     so they never shared a lane to begin with;
+    //   - a single-real-body state returns 0 — free_body_diagram is 1 real body plus
+    //     ghosts, so its locked H2 baselines are untouched by construction;
+    //   - ghosts are excluded from the lane list AND get 0 themselves (they are authored
+    //     context at their own positions, not compare partners).
+    function nlbBodyLaneZ(bodyId) {
+        var eng = window.PM_nlbEngine;
+        if (!eng || !eng.order || eng.pulley) return 0;
+        var lanes = [];
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b && !b.hanging && !b.ghost) lanes.push(b.id);
+        }
+        if (lanes.length < 2) return 0;
+        var k = lanes.indexOf(bodyId);
+        if (k < 0) return 0;                       // ghost / hanging / unknown -> centre line
+        return (k - (lanes.length - 1) / 2) * NLB_LANE_GAP;
+    }
+
     function nlbSetBodyPosition(bodyId, s_m) {
         var mesh = nlbFindById("nlb_body_" + bodyId);
         if (!mesh) return;
@@ -29502,7 +29535,10 @@ export const FIELD_3D_RENDERER_CODE = `
             var a = nlbHangAnchor(bodyId);
             mesh.position.set(a.x, a.y - s * NLB_WORLD_PER_M, 0);
         } else {
-            mesh.position.set(s * NLB_WORLD_PER_M, NLB_BODY_SIZE / 2, 0);
+            // z is the lane, NOT a physics axis: the integrator is strictly 1-D along s,
+            // so a lane offset changes nothing numerical. nlbBodyWorldPos passes z through
+            // unrotated, so arrows and labels follow the body into its lane for free.
+            mesh.position.set(s * NLB_WORLD_PER_M, NLB_BODY_SIZE / 2, nlbBodyLaneZ(bodyId));
         }
         // SEAM E: the invisible pointer-pick proxy shares the body's PARENT (so the
         // surface rotation applies to both identically) and is carried here, in the
