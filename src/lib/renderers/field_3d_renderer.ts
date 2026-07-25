@@ -2672,6 +2672,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (swcHits && swcHits.length) return true;
             }
         }
+        // newtons_laws_body body proxies (SEAM E, spec site 4): one invisible sphere
+        // per body (nlb_body_<id>_hit), armed only in a trusted_drag_seizes state and
+        // only for a shown, non-ghost body — so this whole block is a no-op for every
+        // other scenario and every guided state. Unlike the single-probe scenarios
+        // above there may be SEVERAL candidates, so the pick also records WHICH body
+        // was grabbed for applyDragFrom to move.
+        if (nlbStateIsDraggable()) {
+            pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+            var nlbHitId = null;
+            for (var nli = 0; nli < nlbIndex.length; nli++) {
+                var nProxy = nlbIndex[nli];
+                if (!nProxy || !nProxy.visible || !nProxy.userData) continue;
+                if (nProxy.userData.elementType !== "nlb_body_hit") continue;
+                var nHits = pmRaycaster.intersectObject(nProxy, false);
+                if (nHits && nHits.length) { nlbHitId = nProxy.userData.bodyId; break; }
+            }
+            if (nlbHitId) { window.PM_nlbDragId = nlbHitId; return true; }
+        }
         return false;
     }
     // FIX 2 — hover-latch: while the pointer merely HOVERS the potential test-charge
@@ -2705,6 +2723,15 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyDragFrom(cx, cy) {
         var hit = pmDragPlaneHit(cx, cy);
         if (!hit) return;
+        // newtons_laws_body sandbox drag (SEAM E, spec site 5): reposition the
+        // grabbed body along its OWN signed axis, clamped through nlbBoundsM (the
+        // one pulley-aware bounds source), pushed through nlbSetBodyPosition so the
+        // rope re-fits, and emitted as body_position. Sets PM_nlbBodyDragged, which
+        // also permanently seizes idle_auto_sweep for this state (Rule 37).
+        if (nlbStateIsDraggable()) {
+            nlbApplyBodyDrag(hit);
+            return;
+        }
         // straight_wire_current compass_position draggable-azimuthal control
         // (magnetic_field_concept_B S4/S7): recompute the angle phi in the XZ
         // plane around the Y-axis wire from the pointer's hit point. The orbit
@@ -29471,6 +29498,13 @@ export const FIELD_3D_RENDERER_CODE = `
         } else {
             mesh.position.set(s * NLB_WORLD_PER_M, NLB_BODY_SIZE / 2, 0);
         }
+        // SEAM E: the invisible pointer-pick proxy shares the body's PARENT (so the
+        // surface rotation applies to both identically) and is carried here, in the
+        // ONE funnel every body move already goes through — build seeding, the
+        // integrator writeback, a slider write and the drag itself. No per-frame
+        // follow hook and therefore no clock code (Rule 36).
+        var hitP = nlbFindById("nlb_body_" + bodyId + "_hit");
+        if (hitP) hitP.position.copy(mesh.position);
     }
 
     // Rotate the ONE surface group + rescale it to the state's length, and
@@ -30164,6 +30198,32 @@ export const FIELD_3D_RENDERER_CODE = `
             if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
             nlbRegister(mesh);
 
+            // SEAM E — invisible, forgiving pointer-pick proxy (the pp_drag_hit /
+            // gsph_field_point_hit pattern: the raycaster skips visible:false, so
+            // the proxy is switched ON only in a trusted_drag_seizes state, and
+            // only for a body this state actually shows and does NOT ghost). Built
+            // for EVERY body id, not only the never-ghost ones, because ghost is a
+            // PER-STATE flag: a body may be decorative context in one state and the
+            // real subject in another, and the union def only remembers its FIRST
+            // appearance. Ghost-ness is therefore enforced where it is actually
+            // known — nlbSetDragProxies, on state entry — so a ghost is never
+            // pickable while it is a ghost.
+            // material.visible = false is the belt to the glow-exclusion's braces:
+            // the RENDERER honours it (projectObject drops the mesh) while the
+            // RAYCASTER does not read it at all, so the proxy can never become ink
+            // even if a later pass writes its opacity, and pickability stays gated
+            // exactly where it belongs — on mesh.visible, per state.
+            var hitMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+            hitMat.visible = false;
+            var hitP = new THREE.Mesh(new THREE.SphereGeometry(NLB_BODY_SIZE * 0.95, 14, 14), hitMat);
+            hitP.visible = false;
+            hitP.userData = {
+                elementType: "nlb_body_hit", id: "nlb_body_" + d.id + "_hit",
+                bodyId: d.id, hanging: !!d.hanging, draggable: true
+            };
+            if (d.hanging) { world.add(hitP); } else { surf.add(hitP); }
+            nlbRegister(hitP);
+
             // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
             // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
             var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
@@ -30202,12 +30262,15 @@ export const FIELD_3D_RENDERER_CODE = `
         sp.id = "nlb_sliders";
         sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
         document.body.appendChild(sp);
+        nlbBuildSliderRows(sp);            // SEAM E: the rows, ONCE (see nlbBuildSliderRows)
 
         // 7. Home pose: seed the surface from the FIRST state so the very first
         //    frame is already correct (applyNewtonsLawsBodyState re-seeds on entry).
         nlbApplySurface(nlbSurfaceThetaDeg(nlb0), nlbSurfaceLenM(nlb0));
         nlbPlacePulley();                  // SEAM D: bracket at the first state's post_position_m
         window.PM_nlbBodyDragged = false;
+        window.PM_nlbSweepSeized = false;  // SEAM E: Rule 37 idle-sweep seize latch
+        window.PM_nlbDragId = null;        // SEAM E: which body the pointer grabbed
     }
 
     // ── Rule 32e glow: read glow_focal, exact-match ONE id, dim the rest ──
@@ -30225,6 +30288,21 @@ export const FIELD_3D_RENDERER_CODE = `
         var glowActive = !!focal || glowTargets.length > 0;
         var glowP = glowEmphT(time);
         nlbEach(function (o, ud) {
+            // SEAM E: the invisible drag proxies are pick geometry, never ink. They
+            // are deliberately EXCLUDED from the one emphasis channel: both the
+            // focal branch (opacity -> 1.0) and the dim-peer branch (opacity ->
+            // GLOW_DIM_OPACITY) would write a nonzero opacity onto a zero-opacity
+            // sphere and paint a ball over the block the moment a state made it
+            // pickable. This is not a second emphasis channel — it is an exclusion.
+            // The two GROUP containers are excluded for the same reason and it is
+            // behaviour-preserving: applyGlowEmphasis TRAVERSES, so a pass on a
+            // group would reach the proxies through their parent, while every
+            // material-bearing descendant of both groups (slab, bodies + labels,
+            // pulley parts, ropes, arrows + labels, component groups, right-angle
+            // markers) is separately registered and gets its OWN pass later in this
+            // same loop — which, being later, already won.
+            if (ud.elementType === "nlb_body_hit" ||
+                ud.elementType === "nlb_surface_group" || ud.elementType === "nlb_world_group") return;
             if (ud.ghost) { applyGlowEmphasis(o, false, true, 0, false); return; }
             var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
             applyGlowEmphasis(o, isFocal, glowActive, glowP, false);
@@ -30233,6 +30311,368 @@ export const FIELD_3D_RENDERER_CODE = `
     // Name used by the spec's animate() call site (SEAM B) — one alias so the
     // two seams cannot disagree about the function name.
     function applyNewtonsLawsBodyGlow() { nlbApplyGlow(); }
+
+    // ══ SEAM E — the explorer surface (spec section 4, sites 3/4/5/11) ══════
+    //   Rule 31: the rows are built ONCE into seam A's #nlb_sliders container and
+    //   then only shown/hidden per state from controls_visible. Rule 32d: a row
+    //   NEVER moves between states — hidden rows keep their RESERVED SLOT
+    //   (visibility:hidden, which still occupies layout) rather than collapsing,
+    //   because the panel is bottom-anchored, so a display:none row would slide
+    //   every row above it down and the shared slider would visibly jump at a
+    //   state click. The slot reservation is scoped to the CONCEPT, not to the
+    //   seven-token vocabulary: only the tokens some state of THIS concept
+    //   actually names get a row at all (the nlbCollectBodyDefs union trick), so a
+    //   one-slider concept gets a one-row panel with no blank filler and its
+    //   explore state — which exposes every control the concept has — is exactly
+    //   the full panel with nothing left to grow into.
+    //   NO clock code lives in this seam (Rule 36): the only time-dependent thing
+    //   here, idle_auto_sweep, is a CLOSED FORM of the engine's own state-local
+    //   eng.t_ms (itself advanced only by the dt handed to
+    //   updateNewtonsLawsBodyFrame), so dt = 0 reproduces the previous value
+    //   exactly and a time-pin rewind is byte-identical.
+    var NLB_MATH_FONT = "'Cambria Math','Times New Roman',serif";
+    // Rule 34c: every glyph below is REAL Unicode — m₁ m₂ θ ° μₛ μₖ v₀ — never an
+    // ASCII transcription (no "theta", "mu_s", "m2", "m/s2", "deg"). The label span
+    // carries the math-serif stack because U+2081/U+2082/U+209B/U+2096/U+2080 are
+    // missing from most monospace faces (the merged-blob / tofu subscript scar).
+    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "theta", "mu_s", "mu_k", "v0"];
+    var NLB_SLIDER_SPEC = {
+        m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 2 },
+        m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 4 },
+        F:     { param: "applied_force",    slider: "nlb_f_slider",     row: "nlb_f_row",     val: "nlb_f_val",     lbl: "nlb_f_lbl",     glyph: "F",  unit: " N",   dp: 1, min: -20, max: 20, step: 0.5, def: 0 },
+        theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
+        mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
+        mu_k:  { param: "mu_k",             slider: "nlb_muk_slider",   row: "nlb_muk_row",   val: "nlb_muk_val",   lbl: "nlb_muk_lbl",   glyph: "μₖ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
+        v0:    { param: "initial_velocity", slider: "nlb_v0_slider",    row: "nlb_v0_row",    val: "nlb_v0_val",    lbl: "nlb_v0_lbl",    glyph: "v₀", unit: " m/s", dp: 1, min: -5,  max: 5,  step: 0.5, def: 0 }
+    };
+    // Per-concept min/max/step/default/label override, keyed by the SAME token the
+    // per-state controls_visible[] uses. Mirrors the acgSc / gauss_law_sphere idiom.
+    function nlbSc(token) {
+        var sp = NLB_SLIDER_SPEC[token];
+        var o = (config.slider_controls || {})[token] || {};
+        // Every numeric is coerced with a finite fallback: an authoring typo must
+        // never throw synchronously out of the builder (the createTubeLine scar —
+        // one throw inside build = blank scene, no SIM_READY, stalled clock).
+        function num(v, d) { var n = (v == null) ? d : Number(v); return isFinite(n) ? n : d; }
+        return {
+            min: num(o.min, sp.min),
+            max: num(o.max, sp.max),
+            step: num(o.step, sp.step),
+            def: num(o["default"], sp.def),
+            label: (typeof o.label === "string" && o.label) ? o.label : sp.glyph
+        };
+    }
+    // Which tokens this CONCEPT ever exposes (union over every state's
+    // controls_visible, in the canonical token order so the row ORDER on screen is
+    // identical no matter what order the states were authored in).
+    function nlbSliderTokensUsed() {
+        var want = {}, keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var nlb = (config.states[keys[i]] || {}).newtons_laws_body;
+            var cv = (nlb && nlb.controls_visible) || [];
+            for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        }
+        var out = [];
+        for (var t = 0; t < NLB_SLIDER_TOKENS.length; t++) { if (want[NLB_SLIDER_TOKENS[t]]) out.push(NLB_SLIDER_TOKENS[t]); }
+        return out;
+    }
+    // The tokens actually BUILT as rows (set once by nlbBuildSliderRows). Read
+    // through nlbRowsBuilt() so a SET_STATE that somehow arrives before the build
+    // is a clean no-op rather than a throw inside applyState.
+    var nlbSliderRowsBuilt = [];
+    function nlbRowsBuilt() { return nlbSliderRowsBuilt || []; }
+    function nlbBuildSliderRows(panel) {
+        nlbSliderRowsBuilt = nlbSliderTokensUsed();
+        if (!panel || !nlbSliderRowsBuilt.length) return;
+        var html = "";
+        for (var i = 0; i < nlbSliderRowsBuilt.length; i++) {
+            var tok = nlbSliderRowsBuilt[i], sp = NLB_SLIDER_SPEC[tok], sc = nlbSc(tok);
+            // visibility:hidden (NOT display:none) — the reserved slot, Rule 32d.
+            html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
+                '<label><span id="' + sp.lbl + '" style="font-family:' + NLB_MATH_FONT + '">' + sc.label + '</span> = ' +
+                '<span id="' + sp.val + '">' + sc.def.toFixed(sp.dp) + '</span>' + sp.unit + '</label>' +
+                '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
+                '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
+        }
+        panel.innerHTML = html;
+        for (var w = 0; w < nlbSliderRowsBuilt.length; w++) nlbWireSlider(nlbSliderRowsBuilt[w]);
+    }
+
+    // Rule 27 — the stable explorer id, one PARAM_UPDATE per change. Shape copied
+    // verbatim from acgEmit / mflEmit (the ac_generator + magnetic_flux_loop
+    // emitters); no new message format is introduced.
+    function nlbEmit(param, value) {
+        try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "newtons_laws_body_explorer"), param: param, value: value }, "*"); } catch (e) {}
+    }
+
+    // The first / second NON-ghost body of the live state, in authored order: the
+    // targets of mass_a / mass_b. A ghost is never integrated (spec section 3), so
+    // it can never be a slider target either.
+    function nlbSliderBodies() {
+        var eng = window.PM_nlbEngine, out = [null, null], n = 0;
+        if (!eng) return out;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost) continue;
+            if (n < 2) out[n] = b.id;
+            n++;
+        }
+        return out;
+    }
+    function nlbSurfaceBody() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return null;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b && !b.ghost && !b.hanging) return b;
+        }
+        return null;
+    }
+    // applied_force drives the Newton-III DRIVER when the pair is engaged, so the
+    // engine's per-frame mirror keeps the reaction exactly equal and opposite; with
+    // no pair engaged it drives the first non-ghost body.
+    function nlbForceTargetBody() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return null;
+        var ar = eng.action_reaction;
+        if (ar && ar.engaged && ar.driver_body_id && eng.bodies[ar.driver_body_id]) return eng.bodies[ar.driver_body_id];
+        var ids = nlbSliderBodies();
+        return ids[0] ? eng.bodies[ids[0]] : null;
+    }
+    // Write one param into the engine record. Everything downstream — the
+    // integrator, the force arrows (pure presentation of the record), the readouts
+    // and the rope — picks it up on the next tick with no extra wiring (the SEAM C
+    // contract). theta additionally re-poses the geometry through nlbApplySurface,
+    // which is the SEAM D contract: the pulley bracket and both rope segments then
+    // follow for free.
+    function nlbApplyParam(token, value) {
+        var eng = window.PM_nlbEngine;
+        if (!eng || !isFinite(value)) return;
+        var ids = nlbSliderBodies();
+        var bA = ids[0] ? eng.bodies[ids[0]] : null;
+        var bB = ids[1] ? eng.bodies[ids[1]] : null;
+        if (token === "m") { if (bA && value > 0) bA.m = value; }
+        else if (token === "m2") { if (bB && value > 0) bB.m = value; }
+        else if (token === "F") { var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value; }
+        else if (token === "theta") {
+            eng.theta_deg = value;
+            nlbApplySurface(value, eng.length_m);
+        }
+        else if (token === "mu_s" || token === "mu_k") {
+            // The coefficients belong to the CONTACT, so one slider sets every
+            // non-ghost body actually resting on the surface (a hanging body has
+            // N = 0 and no contact at all). Writing b.mu_* directly is sufficient
+            // even in a surface.frictionless state: frictionless is a SEED-time
+            // zeroing, the integrator only ever reads the per-body coefficients.
+            for (var i = 0; i < eng.order.length; i++) {
+                var b = eng.bodies[eng.order[i]];
+                if (!b || b.ghost || b.hanging) continue;
+                if (token === "mu_s") b.mu_s = value; else b.mu_k = value;
+            }
+        }
+        else if (token === "v0") {
+            if (bA) bA.v = value;
+            if (eng.coupled) eng.v_string = value;   // keep the string constraint consistent
+        }
+        else return;
+        // Re-pose from the LIVE positions: a theta write moves the incline (and with
+        // it every hanging body's anchor), so the bodies and the string must not be
+        // left a frame behind. Pure geometry, no integration (Rule 36).
+        for (var j = 0; j < eng.order.length; j++) {
+            var bj = eng.bodies[eng.order[j]];
+            if (bj) nlbSetBodyPosition(bj.id, bj.s);
+        }
+        nlbFitRopes();
+    }
+    // The AUTHORED/live truth for a token, read straight back off the engine record
+    // so a state entered after a drag or a sweep shows the state's own value.
+    function nlbSliderValueFromEngine(token) {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return null;
+        var ids = nlbSliderBodies();
+        var bA = ids[0] ? eng.bodies[ids[0]] : null;
+        var bB = ids[1] ? eng.bodies[ids[1]] : null;
+        if (token === "m") return bA ? bA.m : null;
+        if (token === "m2") return bB ? bB.m : null;
+        if (token === "F") { var tg = nlbForceTargetBody(); return tg ? tg.F_applied : null; }
+        if (token === "theta") return eng.theta_deg;
+        if (token === "mu_s") { var s1 = nlbSurfaceBody(); return s1 ? s1.mu_s : null; }
+        if (token === "mu_k") { var s2 = nlbSurfaceBody(); return s2 ? s2.mu_k : null; }
+        if (token === "v0") return bA ? bA.v : null;
+        return null;
+    }
+    // Thumb + numeric readout, kept in step with the engine. Called on state entry,
+    // on every slider input, and from the idle sweep (so the teacher watches the
+    // swept control move) — never from a clock.
+    function nlbSyncSliderRow(token, value) {
+        var sp = NLB_SLIDER_SPEC[token];
+        if (!sp || value == null || !isFinite(value)) return;
+        var el = document.getElementById(sp.slider);
+        if (el) el.value = String(value);
+        var vv = document.getElementById(sp.val);
+        if (vv) vv.textContent = nlbFx(value, sp.dp);
+    }
+    // The mass rows adopt the body's OWN authored Unicode label where there is one,
+    // so the slider reads exactly like the block it drives (m₁ / m₂ by default).
+    function nlbSyncSliderLabels(nlb) {
+        var bodies = nlb.bodies || [], ids = nlbSliderBodies();
+        function labelFor(bodyId) {
+            if (!bodyId) return null;
+            for (var i = 0; i < bodies.length; i++) { if (bodies[i] && bodies[i].id === bodyId && bodies[i].label) return bodies[i].label; }
+            return null;
+        }
+        var pairs = [["m", ids[0]], ["m2", ids[1]]];
+        for (var p = 0; p < pairs.length; p++) {
+            var sp = NLB_SLIDER_SPEC[pairs[p][0]];
+            var el = document.getElementById(sp.lbl);
+            if (!el) continue;
+            var txt = labelFor(pairs[p][1]) || nlbSc(pairs[p][0]).label;
+            if (el.textContent !== txt) el.textContent = txt;
+        }
+    }
+    // Rule 31 + Rule 32d, site 8's controls_visible half: show exactly this state's
+    // tokens, leave every other BUILT row occupying its reserved slot, and show the
+    // panel itself only when the state exposes at least one control. m2 additionally
+    // requires a real second body — a one-body state can never expose mass_b.
+    function nlbToggleSliderRows(nlb) {
+        var panel = document.getElementById("nlb_sliders");
+        var cv = nlb.controls_visible || [], want = {}, shown = 0;
+        for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        if (want.m2 && !nlbSliderBodies()[1]) want.m2 = false;
+        var built = nlbRowsBuilt();
+        for (var i = 0; i < built.length; i++) {
+            var tok = built[i], sp = NLB_SLIDER_SPEC[tok];
+            var row = document.getElementById(sp.row), el = document.getElementById(sp.slider);
+            var on = !!want[tok];
+            if (row) row.style.visibility = on ? "visible" : "hidden";
+            if (el) el.disabled = !on;      // a reserved slot is never keyboard-reachable
+            if (on) shown++;
+        }
+        if (panel) panel.style.display = shown ? "block" : "none";
+    }
+    // One trusted slider input seizes the state for the rest of the state (Rule 37:
+    // idle_auto_sweep animates ONLY until a real teacher input takes over). Mirrors
+    // the PM_acgManual / PM_dpUserDragged latch pattern; a SYNTHETIC input (the
+    // sweep's own sync, THE EYE's driver) is deliberately NOT a seizure.
+    function nlbWireSlider(token) {
+        var sp = NLB_SLIDER_SPEC[token];
+        var el = document.getElementById(sp.slider);
+        if (!el) return;
+        el.addEventListener("input", function (ev) {
+            var v = parseFloat(el.value);
+            if (!isFinite(v)) return;
+            if (ev && ev.isTrusted) window.PM_nlbSweepSeized = true;
+            nlbApplyParam(token, v);
+            nlbSyncSliderRow(token, v);
+            nlbEmit(sp.param, v);
+        });
+    }
+
+    // ── Site 3 — is the live state a trusted-drag state? ───────────────────
+    //   Mirrors gsphStateIsDraggable() / swcStateIsDraggable(): true ONLY where the
+    //   state's own newtons_laws_body block sets trusted_drag_seizes, so the pick
+    //   and the drag are both no-ops in every other scenario and every other state.
+    function nlbStateIsDraggable() {
+        var sd = config.states && config.states[PM_currentState];
+        var nn = sd && sd.newtons_laws_body;
+        return !!(nn && nn.trusted_drag_seizes);
+    }
+    // Switch the invisible pick proxies on for exactly the bodies this state shows
+    // and does NOT ghost, and only in a trusted-drag state (the raycaster skips
+    // visible:false, so this IS the pickability gate).
+    function nlbSetDragProxies(listed, on) {
+        nlbEach(function (o, ud) {
+            if (ud.elementType !== "nlb_body_hit") return;
+            var bd = listed[ud.bodyId];
+            o.visible = !!(on && bd && !bd.ghost);
+        });
+    }
+    // Pointer plane-hit -> the body's own signed axis coordinate s, in metres.
+    // A surface body's world position projected on its axis unit is exactly
+    // s * NLB_WORLD_PER_M (the NLB_BODY_SIZE/2 stand-off is perpendicular to that
+    // axis and drops out); a hanging body measures DOWN from its pulley anchor.
+    function nlbDragSFromHit(b, hit) {
+        if (b.hanging) {
+            var a = nlbHangAnchor(b.id);
+            return (a.y - hit.y) / NLB_WORLD_PER_M;
+        }
+        var ax = nlbAxisUnit(false, nlbFrameThetaDeg());
+        return (hit.x * ax.x + hit.y * ax.y + hit.z * ax.z) / NLB_WORLD_PER_M;
+    }
+    var nlbLastEmitS = null;
+    // ── Site 5 — the drag itself ──────────────────────────────────────────
+    function nlbApplyBodyDrag(hit) {
+        var eng = window.PM_nlbEngine;
+        var b = (eng && window.PM_nlbDragId) ? eng.bodies[window.PM_nlbDragId] : null;
+        if (!b || b.ghost) return;
+        // Clamp through nlbBoundsM — the ONE bounds source, already pulley-aware
+        // (SEAM D): never re-derive the clamp band here.
+        var bd = nlbBoundsM(b, eng.length_m);
+        var sNew = Math.max(bd.lo, Math.min(bd.hi, nlbDragSFromHit(b, hit)));
+        window.PM_nlbBodyDragged = true;
+        window.PM_nlbSweepSeized = true;      // a drag seizes the sweep too (Rule 37)
+        if (eng.coupled) {
+            // An inextensible string cannot have one end repositioned on its own:
+            // convert the grabbed body's delta into the shared along-string advance
+            // q (s_i = s_i0 + c_i*q) and carry every body with it, exactly as the
+            // branch-B integrator does. c_i is the sign factor the integrator wrote.
+            var cD = b._c || 1;
+            var q = (sNew - b.s) / cD;
+            for (var i = 0; i < eng.order.length; i++) {
+                var ob = eng.bodies[eng.order[i]];
+                if (!ob || ob.ghost) continue;
+                var cj = (ob.id === b.id) ? cD : (ob._c || 1);
+                var obd = nlbBoundsM(ob, eng.length_m);
+                ob.s = Math.max(obd.lo, Math.min(obd.hi, ob.s + cj * q));
+                ob.v = 0;
+                nlbSetBodyPosition(ob.id, ob.s);
+            }
+            eng.v_string = 0;
+        } else {
+            b.s = sNew; b.v = 0;
+            nlbSetBodyPosition(b.id, b.s);
+        }
+        nlbFitRopes();                        // SEAM D: the rope re-fits to the drop
+        if (nlbLastEmitS == null || Math.abs(b.s - nlbLastEmitS) > 0.01) {
+            nlbLastEmitS = b.s;
+            nlbEmit("body_position", { id: b.id, s_m: b.s });
+        }
+    }
+
+    // ── Rule 37 / idle_auto_sweep ─────────────────────────────────────────
+    //   Drives ONE named param back and forth until a trusted input seizes control.
+    //   Rule 36, explicitly: this is a CLOSED FORM of eng.t_ms — the engine's own
+    //   state-local sim time, advanced ONLY by the dt handed to
+    //   updateNewtonsLawsBodyFrame. So (a) dt = 0 leaves t_ms unchanged and the
+    //   sweep recomputes the SAME value, i.e. a SET_TIME_FREEZE frame is a no-op
+    //   and byte-stable; (b) a time-pin rewind to an earlier t reproduces the
+    //   earlier value exactly (no accumulator to un-wind); (c) folding N micro-steps
+    //   into one dtStep is exact, because t_ms is linear in dt and nothing else here
+    //   integrates. NLB_SWEEP_MS is a DURATION constant, not a frame delta.
+    //   AUTHORING CONTRACT (the spec left the sweep's phase open): the triangle
+    //   starts at range[0] at t = 0 and returns there every NLB_SWEEP_MS, so author
+    //   range[0] as the state's OWN authored value for that param if the first frame
+    //   must not step. The sweep needs no visible row — it drives the engine record
+    //   directly and only syncs a row if the concept built one.
+    var NLB_SWEEP_MS = 4000;              // one full there-and-back, in ms
+    function nlbRunIdleSweep(nlb, eng) {
+        var sw = nlb.idle_auto_sweep;
+        if (!sw || !sw.param || !sw.range || sw.range.length < 2) return;
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return;   // seized: stop for good
+        var tok = sw.param;
+        if (!NLB_SLIDER_SPEC[tok]) return;
+        var lo = sw.range[0], hi = sw.range[1];
+        if (!(isFinite(lo) && isFinite(hi))) return;
+        var u = (eng.t_ms % NLB_SWEEP_MS) / NLB_SWEEP_MS;
+        var tri = (u < 0.5) ? (u * 2) : (2 - u * 2);      // 0 -> 1 -> 0, triangle
+        var v = lo + (hi - lo) * tri;
+        // Churn guard (the seam C/D _nlbText / _nlbP0 pattern): theta re-tessellates
+        // the angle arc, so never re-write an unchanged value.
+        if (eng._sweep_last != null && Math.abs(v - eng._sweep_last) < 1e-4) return;
+        eng._sweep_last = v;
+        nlbApplyParam(tok, v);
+        nlbSyncSliderRow(tok, v);
+    }
 
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
     //   Seeds masses / theta / mu / F / initial position+velocity into the
@@ -30365,10 +30805,31 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbPlacePulley();
         nlbShowPulley(!!eng.coupled);
         nlbFitRopes();
-        // TODO(SEAM E): #nlb_sliders row toggling from nlb.controls_visible +
-        //   thumb/label sync to the seeded m / m2 / F / theta / mu_s / mu_k / v0,
-        //   plus nlb.trusted_drag_seizes / nlb.idle_auto_sweep wiring. The panel
-        //   container stays hidden until seam E owns it.
+        // SEAM E — the explorer surface for this state. Order matters:
+        //   1. clear the seize latches FIRST, so a drag or slider move in the
+        //      PREVIOUS state can never keep this state's idle_auto_sweep switched
+        //      off or leave a stale grabbed-body id armed;
+        //   2. re-sync every built row's thumb + numeric readout FROM the engine
+        //      record just seeded above — so a state entered after a drag/sweep
+        //      shows this state's AUTHORED value, never the dragged one;
+        //   3. show exactly this state's controls_visible rows (every other built
+        //      row keeps its reserved slot, Rule 32d) and the panel only when the
+        //      state exposes at least one control (Rule 31);
+        //   4. arm the invisible pick proxies iff the state sets trusted_drag_seizes.
+        window.PM_nlbSweepSeized = false;
+        window.PM_nlbDragId = null;
+        nlbLastEmitS = null;
+        var builtRows = nlbRowsBuilt();
+        for (var st = 0; st < builtRows.length; st++) {
+            var stok = builtRows[st];
+            nlbSyncSliderRow(stok, nlbSliderValueFromEngine(stok));
+        }
+        nlbSyncSliderLabels(nlb);
+        nlbToggleSliderRows(nlb);
+        // Read the flag off THIS stateDef, not via nlbStateIsDraggable()'s
+        // PM_currentState lookup, so the proxies can never be armed one state late
+        // if applyState ever runs before PM_currentState is committed.
+        nlbSetDragProxies(listed, !!nlb.trusted_drag_seizes);
 
         nlbApplyGlow();
     }
@@ -30527,6 +30988,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
         }
+
+        // SEAM E — Rule 37 idle_auto_sweep. Hooked at the INPUT stage, immediately
+        // after the action_reaction mirror (the function's own precedent for a
+        // pre-physics mutation of the engine record) rather than at the presentation
+        // tail: the sweep is an INPUT, exactly equivalent to a slider write, so
+        // running it before the branches keeps the step, the force arrows, the
+        // readouts and the rope all consistent within the SAME frame. At the tail a
+        // theta sweep would leave the arrows one frame behind the incline they are
+        // drawn on. It writes nothing when the state has no idle_auto_sweep, and
+        // nothing once a trusted slider input or a body drag has seized control.
+        // It reads ONLY eng.t_ms (closed form, no accumulator) — see nlbRunIdleSweep
+        // for the Rule 36 argument, dt = 0 included.
+        nlbRunIdleSweep(nlb, eng);
 
         if (!eng.coupled) {
             // ── Branch A — independent bodies (no pulley) ──────────────────
