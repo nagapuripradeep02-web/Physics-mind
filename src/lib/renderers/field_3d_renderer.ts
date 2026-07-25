@@ -29225,7 +29225,6 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_SURFACE_THICK = 0.18;         // slab thickness; its TOP face sits at surface-local y = 0
     var NLB_SURFACE_DEPTH = 1.6;          // slab depth (z)
     var NLB_DEFAULT_LEN_M = 6;            // surface.length_m default (visible half-length, metres)
-    var NLB_POST_H = 1.2;                 // world units — provisional pulley-post height; SEAM D owns the real post
     var NLB_SURFACE_COLOR = "#78909C";
     var NLB_REF_COLOR = "#546E7A";        // the horizontal reference the incline angle is measured from
     var NLB_ARC_COLOR = "#FFD54F";
@@ -29305,6 +29304,51 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_X_AXIS = new THREE.Vector3(1, 0, 0);
     var NLB_DOWN = new THREE.Vector3(0, -1, 0);
 
+    // ── SEAM D — pulley bracket + the two rope segments ────────────────────
+    //   Spec section 1's pulley block; spec section 6 honest-extension flag 1
+    //   (this asset class is genuinely new). GEOMETRY ONLY: nothing below reads a
+    //   clock, integrates anything or hardcodes a frame delta (Rule 36), and
+    //   nothing below is an emphasis channel — emphasis stays brightness-only
+    //   through nlbApplyGlow() -> applyGlowEmphasis() (Rules 29 / 32e).
+    //
+    //   Layout is expressed entirely in the SURFACE-LOCAL frame (x = up-slope,
+    //   y = perpendicular OUT of the surface with the top face at y = 0), and the
+    //   whole bracket is a CHILD of nlb_surface_group. So the one group rotation
+    //   stands it on the surface at every angle and theta = 0 runs the SAME code
+    //   path as an incline — there is no theta test anywhere in this seam:
+    //
+    //                            (O)   <- wheel, rim radius NLB_PULLEY_R
+    //          post top  ·———————·     <- axle arm, local +x, NLB_PULLEY_ARM long
+    //                    |             <- post column, NLB_PULLEY_HUB_H tall
+    //     ───────────────┴──────────   <- surface top face (y = 0) = post BASE
+    //
+    //   NLB_PULLEY_HUB_H is NOT a free choice: the wheel centre sits exactly one
+    //   rim radius above a body's CENTRE height (NLB_BODY_SIZE/2), so the rope
+    //   leaving the block runs exactly PARALLEL to the surface and meets the rim
+    //   at a true tangent point. That is what the physics assumes — branch B's
+    //   tension acts along the body's own axis, and the mg·sin θ decomposition
+    //   teaches that axis — so any other hub height would draw a string the
+    //   equations do not describe.
+    //   NLB_PULLEY_ARM cantilevers the wheel just PAST the post so that (a) the
+    //   along-surface rope leaves the slab's end face cleanly and (b) in the
+    //   Atwood case (both bodies hanging, one rope per rim SIDE) the near-side
+    //   rope and its body hang beyond the slab instead of through it.
+    var NLB_PULLEY_R = 0.30;              // wheel OUTER radius — the radius the rope rides on
+    var NLB_PULLEY_TUBE = 0.055;          // rim (torus) tube radius
+    var NLB_PULLEY_POST_R = 0.058;        // post column radius
+    var NLB_PULLEY_HUB_H = NLB_BODY_SIZE / 2 + NLB_PULLEY_R;          // 0.575 — pinned, see above
+    var NLB_PULLEY_ARM = NLB_PULLEY_R + NLB_BODY_SIZE / 2 + 0.05;     // 0.625 — see above
+    var NLB_PULLEY_STOP_M = (NLB_BODY_SIZE / 2 + NLB_PULLEY_POST_R) / NLB_WORLD_PER_M;
+    var NLB_PULLEY_COLOR = "#B0BEC5";     // bracket (post + arm + hub disc)
+    var NLB_PULLEY_RIM_COLOR = "#90A4AE";
+    var NLB_ROPE_COLOR = "#ECEFF1";
+    var NLB_ROPE_R = 0.021;               // an IDEAL string: thin, straight, taut — never a sag curve
+    var NLB_ROPE_MIN_LEN = 0.02;          // below this the segment is genuinely gone, so it HIDES
+    // The closest a hanging body may come to the wheel: its top face may not rise
+    // past the rim's lowest point, or the cube would swallow the wheel.
+    var NLB_HANG_MIN_M = (NLB_PULLEY_R + NLB_BODY_SIZE / 2) / NLB_WORLD_PER_M;
+    var NLB_Y_AXIS = new THREE.Vector3(0, 1, 0);
+
     // Explicit id registry. addToScene() only registers the object handed to it,
     // so child meshes (bodies parented to the rotated surface group) would never
     // be reachable from sceneObjects — the "child mesh never registered, updater
@@ -29358,18 +29402,59 @@ export const FIELD_3D_RENDERER_CODE = `
         return out;
     }
 
-    // Where a hanging body hangs FROM. Provisional: the far (+x) end of the
-    // surface line, lifted by NLB_POST_H. SEAM D replaces the height/offset with
-    // the real pulley-wheel rim; every caller goes through this one function so
-    // that swap is a one-line change.
-    function nlbHangAnchor() {
+    // ── SEAM D geometry — the pulley bracket's frame ───────────────────────
+    // Where the post stands, in metres along the surface (spec section 1: default
+    // = the surface's high end). Signed, exactly like every other position here,
+    // so a negative post_position_m legitimately stands the bracket at the other
+    // end and needs no branch.
+    function nlbPostM(nlb) {
+        var pul = (nlb && nlb.pulley) ? nlb.pulley : {};
+        return (pul.post_position_m != null) ? pul.post_position_m : nlbSurfaceLenM(nlb);
+    }
+    // The wheel centre (axle) in WORLD coordinates. The local point is rotated by
+    // the live theta analytically — the same rotation nlb_surface_group applies to
+    // the bracket meshes themselves — for the same reason nlbBodyWorldPos does it:
+    // matrixWorld is only refreshed at render time and would lag this tick.
+    function nlbPulleyHubWorld() {
         var nlb = nlbStateCfg();
-        var lenM = nlbSurfaceLenM(nlb);
-        var pul = nlb.pulley || {};
-        var postM = (pul.post_position_m != null) ? pul.post_position_m : lenM;
-        var th = nlbSurfaceThetaDeg(nlb) * Math.PI / 180;
-        var r = postM * NLB_WORLD_PER_M;
-        return { x: r * Math.cos(th), y: r * Math.sin(th) + NLB_POST_H };
+        var lx = nlbPostM(nlb) * NLB_WORLD_PER_M + NLB_PULLEY_ARM;
+        var ly = NLB_PULLEY_HUB_H;
+        var t = nlbFrameThetaDeg() * Math.PI / 180, c = Math.cos(t), s = Math.sin(t);
+        return new THREE.Vector3(lx * c - ly * s, lx * s + ly * c, 0);
+    }
+    // Which rim SIDE a hanging body's vertical rope leaves the wheel on. A
+    // vertical rope is tangent to the rim at hub.x ± R, so two hanging bodies (the
+    // Atwood case) MUST take opposite sides or they would share one point and
+    // overlap. The pulley's body_a_id takes the near (-x, surface) side, and only
+    // when BOTH coupled bodies hang: when body_a is the one on the surface
+    // (incline + hanging) the single hanging body takes the far side.
+    function nlbHangSide(bodyId) {
+        var nlb = nlbStateCfg();
+        var pul = nlb.pulley;
+        if (!pul || !bodyId || bodyId !== pul.body_a_id) return 1;
+        var bs = nlb.bodies || [], aH = false, bH = false;
+        for (var i = 0; i < bs.length; i++) {
+            if (!bs[i]) continue;
+            if (bs[i].id === pul.body_a_id) aH = !!bs[i].hanging;
+            if (bs[i].id === pul.body_b_id) bH = !!bs[i].hanging;
+        }
+        return (aH && bH) ? -1 : 1;
+    }
+    // Where a hanging body hangs FROM: the REAL wheel-rim tangent point of its
+    // vertical rope segment. This is SEAM D's designated swap of seam A's
+    // provisional NLB_POST_H anchor, and it is the ONE place the swap happens —
+    // hanging-body placement (nlbSetBodyPosition), every hanging force arrow
+    // (seam C drives arrows off nlbBodyWorldPos) and rope segment B all follow.
+    function nlbHangAnchor(bodyId) {
+        var hub = nlbPulleyHubWorld();
+        return { x: hub.x + nlbHangSide(bodyId) * NLB_PULLEY_R, y: hub.y };
+    }
+    // The tangent point of the ALONG-SURFACE segment: one rim radius on the
+    // INTO-the-surface side of the hub, i.e. exactly at body-centre height (that
+    // is what NLB_PULLEY_HUB_H is pinned for), so that segment is parallel to the
+    // surface at every theta with no special case.
+    function nlbSurfaceTangentWorld() {
+        return nlbPulleyHubWorld().addScaledVector(nlbPerpUnit(false, nlbFrameThetaDeg()), -NLB_PULLEY_R);
     }
 
     // Place a body from its signed position s (metres) along its OWN axis:
@@ -29381,7 +29466,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!mesh) return;
         var s = (typeof s_m === "number" && isFinite(s_m)) ? s_m : 0;
         if (mesh.userData.hanging) {
-            var a = nlbHangAnchor();
+            var a = nlbHangAnchor(bodyId);
             mesh.position.set(a.x, a.y - s * NLB_WORLD_PER_M, 0);
         } else {
             mesh.position.set(s * NLB_WORLD_PER_M, NLB_BODY_SIZE / 2, 0);
@@ -29851,6 +29936,88 @@ export const FIELD_3D_RENDERER_CODE = `
         parent.add(ra); nlbRegister(ra);
     }
 
+    // ── SEAM D — the two rope segments, fitted by TRANSFORM ────────────────
+    //   Each segment is one unit-height cylinder created ONCE (axis +y) and then
+    //   re-fitted between two world endpoints by position + quaternion + scale.
+    //   The geometry is NEVER rebuilt, and a frame where nothing moved writes
+    //   nothing at all (the seam-C nlbSetDashLen / nlbSetArrowLabelText churn-guard
+    //   idiom), so a frozen pin re-renders byte-identically.
+    //   NOTE for reviewers: scale.y here IS the segment's LENGTH — that is the
+    //   geometry of an inextensible string, NOT a Rule-29 emphasis bump. Nothing
+    //   about the rope's thickness, hue or brightness changes with it, and
+    //   emphasis stays brightness-only through nlbApplyGlow().
+    function nlbFitSegment(obj, p0, p1) {
+        if (!obj) return 0;
+        var dx = p1.x - p0.x, dy = p1.y - p0.y, dz = p1.z - p0.z;
+        var len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(len > NLB_ROPE_MIN_LEN)) { obj.visible = false; return 0; }
+        obj.visible = true;
+        if (obj._nlbP0 &&
+            obj._nlbP0.x === p0.x && obj._nlbP0.y === p0.y && obj._nlbP0.z === p0.z &&
+            obj._nlbP1.x === p1.x && obj._nlbP1.y === p1.y && obj._nlbP1.z === p1.z) return len;
+        if (!obj._nlbP0) { obj._nlbP0 = new THREE.Vector3(); obj._nlbP1 = new THREE.Vector3(); }
+        obj._nlbP0.set(p0.x, p0.y, p0.z);
+        obj._nlbP1.set(p1.x, p1.y, p1.z);
+        obj.position.set((p0.x + p1.x) / 2, (p0.y + p1.y) / 2, (p0.z + p1.z) / 2);
+        obj.scale.set(1, len, 1);
+        obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / len, dy / len, dz / len));
+        return len;
+    }
+    // One segment for one coupled body, from the LIVE body position:
+    //   hanging body -> the VERTICAL segment, from its own rim tangent point down
+    //                   to the body's TOP face;
+    //   surface body -> the ALONG-SURFACE segment, from the body's up-slope face
+    //                   to the surface tangent point (parallel to the surface).
+    // Returns the drawn length, which is what the inextensibility check sums.
+    function nlbFitRopeFor(ropeId, bodyId) {
+        var obj = nlbFindById(ropeId);
+        if (!obj) return 0;
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!mesh) { obj.visible = false; return 0; }
+        if (mesh.userData.hanging) {
+            var a = nlbHangAnchor(bodyId);
+            return nlbFitSegment(obj, new THREE.Vector3(a.x, a.y, 0),
+                new THREE.Vector3(a.x, mesh.position.y + NLB_BODY_SIZE / 2, 0));
+        }
+        var th = nlbFrameThetaDeg();
+        var face = nlbBodyWorldPos(bodyId).addScaledVector(nlbAxisUnit(false, th), NLB_BODY_SIZE / 2);
+        return nlbFitSegment(obj, face, nlbSurfaceTangentWorld());
+    }
+    // Both segments. Called on state ENTRY (so a coupled state's very first frame
+    // is already taut) and once per tick from updateNewtonsLawsBodyFrame AFTER the
+    // physics writeback — pure presentation of already-stepped values: it reads no
+    // time, takes no dt and integrates nothing (Rule 36).
+    //   The wrap over the rim is not a third segment: the rim itself IS the rope's
+    //   path between the two tangent points, so lenA + lenB + wrap is constant by
+    //   construction while the string moves (verified numerically, seam report).
+    function nlbFitRopes() {
+        var eng = window.PM_nlbEngine;
+        var ra = nlbFindById("nlb_rope_a"), rb = nlbFindById("nlb_rope_b");
+        var pul = (eng && eng.coupled && eng.pulley) ? eng.pulley : null;
+        if (!pul) { if (ra) ra.visible = false; if (rb) rb.visible = false; return; }
+        nlbFitRopeFor("nlb_rope_a", pul.body_a_id);
+        nlbFitRopeFor("nlb_rope_b", pul.body_b_id);
+    }
+    // Stand the bracket at this state's post_position_m. Only its POSITION varies
+    // per state (every dimension is fixed), and it is expressed in the
+    // surface-LOCAL frame, so the base sits exactly on the top face (y = 0) at
+    // theta = 0 and at any incline through the very same assignment.
+    function nlbPlacePulley() {
+        var pg = nlbFindById("nlb_pulley_group");
+        if (!pg) return;
+        pg.position.set(nlbPostM(nlbStateCfg()) * NLB_WORLD_PER_M, 0, 0);
+    }
+    // Show the WHOLE assembly or none of it. An uncoupled state has no string, so
+    // it shows no post, no wheel and no rope: a lone post standing there with no
+    // rope on it would read as apparatus that does nothing (and the pulley is the
+    // one apparatus whose presence IS the physics gate — spec section 1).
+    function nlbShowPulley(on) {
+        nlbEach(function (o, ud) {
+            if (ud.elementType === "nlb_pulley") o.visible = !!on;
+            else if (ud.elementType === "nlb_rope" && !on) o.visible = false;
+        });
+    }
+
     function buildNewtonsLawsBody() {
         nlbIndex = [];
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
@@ -29898,6 +30065,86 @@ export const FIELD_3D_RENDERER_CODE = `
         world.userData = { elementType: "nlb_world_group", id: "nlb_world_group" };
         addToScene(world);
         nlbRegister(world);
+
+        // 2b. SEAM D — the pulley bracket: post + axle arm + wheel + hub disc.
+        //     Built ONCE and hidden by default, and parented to the SURFACE group
+        //     so the single theta rotation stands it on the surface at every angle
+        //     (theta = 0 included) with no branch anywhere. Each mesh gets its OWN
+        //     material: applyGlowEmphasis caches its baseline ON the material, so a
+        //     shared instance would make a focal post fight a peer arm.
+        var pulleyGrp = new THREE.Group();
+        pulleyGrp.userData = { elementType: "nlb_pulley", id: "nlb_pulley_group" };
+        pulleyGrp.visible = false;
+        surf.add(pulleyGrp);
+        nlbRegister(pulleyGrp);
+
+        var post = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_PULLEY_POST_R, NLB_PULLEY_POST_R, NLB_PULLEY_HUB_H, 12),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_COLOR), emissive: hexToThreeColor(NLB_PULLEY_COLOR),
+                emissiveIntensity: 0.14, shininess: 50, transparent: true, opacity: 1.0
+            }));
+        // Cylinder geometry is centred on its own +y axis, so a height of
+        // NLB_PULLEY_HUB_H placed at half that height puts the BASE exactly on the
+        // surface's top face (local y = 0): standing on it, neither floating nor buried.
+        post.position.set(0, NLB_PULLEY_HUB_H / 2, 0);
+        post.userData = { elementType: "nlb_pulley", id: "nlb_pulley_post" };
+        pulleyGrp.add(post); nlbRegister(post);
+
+        var arm = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_PULLEY_POST_R * 0.7, NLB_PULLEY_POST_R * 0.7, NLB_PULLEY_ARM, 10),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_COLOR), emissive: hexToThreeColor(NLB_PULLEY_COLOR),
+                emissiveIntensity: 0.14, shininess: 50, transparent: true, opacity: 1.0
+            }));
+        arm.rotation.z = -Math.PI / 2;                    // the cylinder's +y axis onto local +x
+        arm.position.set(NLB_PULLEY_ARM / 2, NLB_PULLEY_HUB_H, 0);
+        arm.userData = { elementType: "nlb_pulley", id: "nlb_pulley_arm" };
+        pulleyGrp.add(arm); nlbRegister(arm);
+
+        // A real WHEEL, not a sphere: a torus rim whose OUTER radius is exactly
+        // NLB_PULLEY_R (the radius both ropes are tangent to) plus a hub disc
+        // inside it so it reads as a solid pulley rather than a hoop. Torus
+        // geometry already lies in its own XY plane — the bodies' plane — so the
+        // wheel needs no rotation to sit in the same vertical plane as them.
+        var wheel = new THREE.Mesh(
+            new THREE.TorusGeometry(NLB_PULLEY_R - NLB_PULLEY_TUBE, NLB_PULLEY_TUBE, 10, 28),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_RIM_COLOR), emissive: hexToThreeColor(NLB_PULLEY_RIM_COLOR),
+                emissiveIntensity: 0.16, shininess: 70, transparent: true, opacity: 1.0
+            }));
+        wheel.position.set(NLB_PULLEY_ARM, NLB_PULLEY_HUB_H, 0);
+        wheel.userData = { elementType: "nlb_pulley", id: "nlb_pulley_wheel" };
+        pulleyGrp.add(wheel); nlbRegister(wheel);
+
+        var whub = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_PULLEY_R - 2 * NLB_PULLEY_TUBE, NLB_PULLEY_R - 2 * NLB_PULLEY_TUBE, 0.05, 18),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_COLOR), emissive: hexToThreeColor(NLB_PULLEY_COLOR),
+                emissiveIntensity: 0.10, shininess: 40, transparent: true, opacity: 1.0
+            }));
+        whub.rotation.x = Math.PI / 2;                    // disc face toward the camera (axle along z)
+        whub.position.set(NLB_PULLEY_ARM, NLB_PULLEY_HUB_H, 0);
+        whub.userData = { elementType: "nlb_pulley", id: "nlb_pulley_hub" };
+        pulleyGrp.add(whub); nlbRegister(whub);
+
+        // 2c. SEAM D — the two rope segments. In the UN-rotated world group so both
+        //     are fitted from WORLD endpoints directly (segment B is world-vertical
+        //     by definition; segment A's endpoints come from the same analytic
+        //     rotation seam C already uses). Unit height, axis +y: nlbFitSegment
+        //     scales/orients them and never rebuilds the geometry.
+        var ropeIds = ["nlb_rope_a", "nlb_rope_b"];
+        for (var rp = 0; rp < ropeIds.length; rp++) {
+            var rope = new THREE.Mesh(
+                new THREE.CylinderGeometry(NLB_ROPE_R, NLB_ROPE_R, 1, 8),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(NLB_ROPE_COLOR), emissive: hexToThreeColor(NLB_ROPE_COLOR),
+                    emissiveIntensity: 0.22, shininess: 20, transparent: true, opacity: 1.0
+                }));
+            rope.userData = { elementType: "nlb_rope", id: ropeIds[rp] };
+            rope.visible = false;
+            world.add(rope); nlbRegister(rope);
+        }
 
         // 3. Body meshes — one per UNIQUE id across all states. Size is
         //    mass-INDEPENDENT (Rule 29): a heavier block is never a bigger cube.
@@ -29959,6 +30206,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // 7. Home pose: seed the surface from the FIRST state so the very first
         //    frame is already correct (applyNewtonsLawsBodyState re-seeds on entry).
         nlbApplySurface(nlbSurfaceThetaDeg(nlb0), nlbSurfaceLenM(nlb0));
+        nlbPlacePulley();                  // SEAM D: bracket at the first state's post_position_m
         window.PM_nlbBodyDragged = false;
     }
 
@@ -30105,8 +30353,18 @@ export const FIELD_3D_RENDERER_CODE = `
         //   updateNewtonsLawsBodyFrame then re-shows exactly the named kinds at
         //   their live magnitudes — and hides any whose force is genuinely zero.
         nlbHideAllArrows();
-        // TODO(SEAM D): pulley post/wheel/rope visibility from eng.coupled +
-        //   nlb.pulley.post_position_m (nlbHangAnchor() is the single seam point).
+        // SEAM D — the pulley bracket + its two rope segments. The assembly stands
+        //   at this state's pulley.post_position_m and is shown iff the state
+        //   declares a pulley: a coupled state shows post + arm + wheel + hub +
+        //   both ropes, an UNCOUPLED state shows none of them. Both ropes are then
+        //   fitted ONCE right here, from the home positions just seeded above, so
+        //   the very first frame of a coupled state is already taut and correct
+        //   before any tick has run (a rope fitted only per-frame would flash at
+        //   its build pose for one frame, and THE EYE's frozen pin could catch
+        //   exactly that frame).
+        nlbPlacePulley();
+        nlbShowPulley(!!eng.coupled);
+        nlbFitRopes();
         // TODO(SEAM E): #nlb_sliders row toggling from nlb.controls_visible +
         //   thumb/label sync to the seeded m / m2 / F / theta / mu_s / mu_k / v0,
         //   plus nlb.trusted_drag_seizes / nlb.idle_auto_sweep wiring. The panel
@@ -30165,15 +30423,30 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     // Surface-bound clamp band for a body, in metres along its own axis.
     function nlbBoundsM(b, lenM) {
-        if (!b.hanging) return { lo: -lenM, hi: lenM };
+        if (!b.hanging) {
+            // SEAM D (geometry, not physics): in a COUPLED state the up-slope end of
+            // the run is the pulley BRACKET, not the bare surface end — the post
+            // physically stops the block, and a block clamped at the surface end
+            // would otherwise stand with the post through its own centre. Uncoupled
+            // states are bit-for-bit unchanged.
+            var eng0 = window.PM_nlbEngine;
+            var hiS = lenM;
+            if (eng0 && eng0.coupled) {
+                var stop = nlbPostM(nlbStateCfg()) - NLB_PULLEY_STOP_M;
+                if (stop < hiS) hiS = stop;
+                if (!(hiS > -lenM)) hiS = -lenM;
+            }
+            return { lo: -lenM, hi: hiS };
+        }
         // A hanging body cannot climb THROUGH the pulley (lo), and stops when it
-        // reaches the ground (hi). NLB_POST_H is provisional (seam D owns the real
-        // post), so the descent bound is the MORE generous of the current anchor
-        // height and the surface length — a tight bound tied to the provisional
-        // post would clamp a legitimately authored initial_position_m on entry and
-        // freeze the whole string dead, which reads as a physics bug in THE EYE.
-        var a = nlbHangAnchor();
-        var lo = 0.2;
+        // reaches the ground (hi). SEAM D: lo is now the REAL wheel clearance —
+        // the body's top face may not rise past the rim's lowest point, or the cube
+        // swallows the wheel it hangs from. The descent bound stays the MORE
+        // generous of the anchor height and the surface length: a tight bound would
+        // clamp a legitimately authored initial_position_m on entry and freeze the
+        // whole string dead, which reads as a physics bug in THE EYE.
+        var a = nlbHangAnchor(b.id);
+        var lo = NLB_HANG_MIN_M;
         var hi = Math.max(lenM, (a.y - NLB_BODY_SIZE * 0.5) / NLB_WORLD_PER_M);
         if (!(hi > lo + 0.1)) hi = lo + 0.1;
         return { lo: lo, hi: hi };
@@ -30296,6 +30569,9 @@ export const FIELD_3D_RENDERER_CODE = `
             // every body (a ghost or an unlisted body gets its arrows hidden here),
             // so there is no second animate() branch and no clock code (Rule 36).
             nlbDriveArrows(eng);
+            // SEAM D — same contract: presentation AFTER the writeback. With no
+            // pulley this hides both segments (an uncoupled state has no string).
+            nlbFitRopes();
             return;
         }
 
@@ -30389,6 +30665,9 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // SEAM C — presentation only, AFTER the physics writeback (see branch A).
         nlbDriveArrows(eng);
+        // SEAM D — re-fit both rope segments to the live body positions, so the
+        // string stays visually taut and inextensible as the bodies move.
+        nlbFitRopes();
     }
 
     // ── Build scenario ────────────────────────────────────────────────────
