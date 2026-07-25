@@ -31313,7 +31313,33 @@ export const FIELD_3D_RENDERER_CODE = `
             var bdk = nlbBoundsM(bk, lenM);
             if (sk < bdk.lo || sk > bdk.hi) { blocked = true; break; }
         }
-        if (blocked) { sAdv = 0; vs1 = 0; aStr = 0; }
+        // The bound veto is a TRACK artifact, not a change in the physics: the
+        // string ran out of rail while every force stayed exactly as it was. So
+        // zero the MOTION (no body may leave its band) but NOT aStr — that is the
+        // DYNAMIC solution the HUD rows, the T/ΣF arrows and the state's whole
+        // taught claim are drawn from (engine_bug_queue
+        // nlb_coupled_readouts_revert_to_rest_values_on_bound_halt: connected_bodies
+        // STATE_3 ran its 1.11 s of track at the correct a = 3.27 / T = 13.07 N,
+        // then the halt recomputed with a = 0 and the HUD printed T = 19.60 N —
+        // exactly m₂g, the misconception the state exists to break — for the
+        // remaining ~19 s the teacher actually pauses on; STATE_6 likewise fell back
+        // to the two separate weights 20.58 / 19.60 instead of the one shared
+        // 20.08 N). The bodies still stop dead: the halt itself is the known,
+        // founder-visible finite-track gap and is NOT what this changes.
+        //   HELD BY RECOMPUTE, NOT BY A LATCHED SNAPSHOT. D, M, maxStatSum and
+        // mukNSum above are read fresh from the live masses / theta / mu every
+        // frame, and with v_string pinned to 0 the next frame re-derives the SAME
+        // solution the last moving frame had — so the value on screen is the
+        // achieved one, frame after frame, while a teacher dragging a slider on a
+        // halted state (the STATE_7 sandbox, and every guided state with
+        // controls_visible) still sees it update LIVE. A snapshot would have gone
+        // stale on exactly those drags. It also adds no history: nothing to rewind,
+        // so a SET_TIME_FREEZE pin stays byte-stable and nlbSeedKinematics() needs
+        // no extra clearing on entry / RESET_TRAJECTORY.
+        //   A genuinely held string is untouched — static friction takes the stuckB
+        // branch above (aStr = 0, F_fric = -D) and never reaches this veto, and the
+        // v-sign-reversal rest guard has already zeroed aStr on its own path.
+        if (blocked) { sAdv = 0; vs1 = 0; }
         eng.v_string = vs1;
         eng.a_string = aStr;
 
