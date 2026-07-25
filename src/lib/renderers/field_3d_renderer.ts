@@ -43,7 +43,8 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' |
+        'newtons_laws_body';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -843,6 +844,74 @@ export interface Field3DConfig {
             show_projection?: boolean;         // S4 aha: the shrinking effective-area A·cosθ silhouette
             show_hand?: boolean;               // RHR hand asset beat (S5 only)
             show_unit?: boolean;               // append "Wb" to the Φ readout (default: state_index ≥ 5)
+        };
+        // ── newtons_laws_body per-state config (Laws of Motion; NEW 2026-07-25) ──
+        // ONE scenario_type serving the whole 6-concept Laws of Motion chapter as
+        // pure JSON (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md, founder-approved).
+        // A surface (flat OR inclined — theta_deg = 0 is the SAME code path, never
+        // a special case) carrying 1–2 bodies, gravity resolved into components,
+        // optional friction, optional applied force, optional inextensible-string/
+        // pulley constraint, a force-arrow overlay and live numeric readouts. The
+        // variation across all six concepts is ENTIRELY parametric — presence of
+        // the `pulley` block gates the coupled (Atwood) integrator branch.
+        newtons_laws_body?: {
+            mode?: 'rest_equilibrium' | 'coast_no_force' | 'coast_with_friction' |
+                'accelerate_applied_force' | 'compare_mass_same_force' |
+                'compare_force_same_mass' | 'action_reaction_pair' | 'fbd_isolate' |
+                'incline_decompose' | 'incline_slide' | 'connected_atwood' |
+                'connected_incline_hanging' | 'sandbox';
+
+            surface?: {
+                theta_deg?: number;        // incline angle; 0 = flat ground, SAME code path
+                length_m?: number;         // visible half-length, default 6
+                frictionless?: boolean;    // hard-zeroes every body's mu_s/mu_k this state
+            };
+
+            // 1 or 2 bodies. Two bodies with NO `pulley` = independent, side-by-side
+            // (Newton II mass/force compare, Newton III pair) — each integrated as its
+            // own single-body case. Two bodies WITH `pulley` = the coupled Atwood case.
+            // A body `id` is STABLE across states: its mesh is built ONCE (union of
+            // every state's bodies) and only shown/hidden + re-seeded per state
+            // (Rule 32d home-pose persistence, never a mid-state rebuild). A given
+            // id's `hanging` flag must therefore be consistent across states.
+            bodies: Array<{
+                id: string;                        // stable, e.g. "A" | "B"
+                label?: string;                    // Unicode on-canvas label, e.g. "m₁"
+                mass_kg: number;
+                color?: string;
+                hanging?: boolean;                 // hangs vertically off the pulley; ignores theta, N forced 0
+                initial_position_m?: number;       // signed, along the body's OWN axis
+                initial_velocity_mps?: number;
+                mu_s?: number;                     // omit/0 = frictionless for this body
+                mu_k?: number;
+                applied_force_N?: number;          // signed, along the body's own positive axis
+                ghost?: boolean;                   // FBD decorative context body: dimmed, NEVER integrated
+            }>;
+
+            pulley?: {                             // presence IS the coupled-integrator gate
+                body_a_id: string;                 // the body on the surface/incline
+                body_b_id: string;                 // the hanging body
+                post_position_m?: number;          // default = surface.length_m
+            };
+
+            action_reaction?: {                    // Newton III: engine-enforced equal-and-opposite
+                engaged: boolean;
+                driver_body_id: string;            // the other body's applied_force_N is MIRRORED each frame
+            };
+
+            arrows?: Array<{
+                body_id: string;
+                show: Array<'weight' | 'normal' | 'friction' | 'applied' | 'tension' | 'net'>;
+                show_components?: boolean;         // resolve weight into mg·sinθ + mg·cosθ
+                labels?: Partial<Record<'weight' | 'normal' | 'friction' | 'applied' | 'tension' | 'net', string>>;
+            }>;
+
+            glow_focal?: string;                   // EXACTLY ONE per state (Rule 32e)
+            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied'>;      // Rule 33d live numerics
+            controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
+            trusted_drag_seizes?: boolean;         // sandbox state only
+            idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
+            phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; action?: string; glow_focal?: string }>;
         };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
         //    lorentz_force_uniform_field) ──────────────────────────────────
@@ -29127,6 +29196,433 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── newtons_laws_body scenario — SEAM A (scene skeleton) ──────────────
+    //   ONE scenario_type for the whole 6-concept Laws of Motion chapter
+    //   (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md, founder-approved 2026-07-25).
+    //   A surface carrying 1-2 bodies; theta_deg = 0 (flat ground) runs the SAME
+    //   code path as an incline — the surface is ONE group rotated about world Z,
+    //   never a special case. Every body mesh is built ONCE from the UNION of
+    //   every state's bodies[] and then only shown/hidden + re-seeded per state
+    //   (Rule 32d home-pose persistence — no mid-state rebuild, no teleport).
+    //
+    //   SEAM MAP (this file, this scenario):
+    //     SEAM A (here) : config surface, scene skeleton (surface + bodies +
+    //                     labels + ghost dimming + value-only HUD + the single
+    //                     Cambria-Math formula overlay + the empty slider
+    //                     container), nlbApplyGlow, per-state seeding, dispatch,
+    //                     and the #sliders exclusion chain.
+    //     SEAM B        : the fixed-step integrator (spec section 2) +
+    //                     updateNewtonsLawsBodyFrame(dtStep) + its animate() call.
+    //                     NO clock code exists in seam A (Rule 36).
+    //     SEAM C        : the force-arrow overlay (six ArrowHelpers/body +
+    //                     component decomposition + right-angle marker).
+    //     SEAM D        : pulley post + wheel + rope segments.
+    //     SEAM E        : the #nlb_sliders ROWS + PARAM_UPDATE emitters + drag.
+    var NLB_G = 9.8;                      // m/s^2 (a constant, NOT a clock — Rule 36)
+    var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
+    var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
+    var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
+    var NLB_SURFACE_THICK = 0.18;         // slab thickness; its TOP face sits at surface-local y = 0
+    var NLB_SURFACE_DEPTH = 1.6;          // slab depth (z)
+    var NLB_DEFAULT_LEN_M = 6;            // surface.length_m default (visible half-length, metres)
+    var NLB_POST_H = 1.2;                 // world units — provisional pulley-post height; SEAM D owns the real post
+    var NLB_SURFACE_COLOR = "#78909C";
+    var NLB_REF_COLOR = "#546E7A";        // the horizontal reference the incline angle is measured from
+    var NLB_ARC_COLOR = "#FFD54F";
+    var NLB_BODY_COLORS = ["#42A5F5", "#EF5350", "#66BB6A", "#AB47BC"];
+
+    // Explicit id registry. addToScene() only registers the object handed to it,
+    // so child meshes (bodies parented to the rotated surface group) would never
+    // be reachable from sceneObjects — the "child mesh never registered, updater
+    // never matches" scar. Every id-addressable nlb object goes through
+    // nlbRegister(), and every later seam MUST use it for its own objects.
+    var nlbIndex = [];
+    function nlbRegister(obj) { nlbIndex.push(obj); return obj; }
+    function nlbFindById(id) {
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            if (o && o.userData && o.userData.id === id) return o;
+        }
+        return null;
+    }
+    function nlbEach(fn) {
+        for (var i = 0; i < nlbIndex.length; i++) { if (nlbIndex[i]) fn(nlbIndex[i], nlbIndex[i].userData || {}); }
+    }
+
+    // The active state's newtons_laws_body block (never null).
+    function nlbStateCfg() {
+        var sd = (config.states && PM_currentState) ? config.states[PM_currentState] : null;
+        return (sd && sd.newtons_laws_body) ? sd.newtons_laws_body : {};
+    }
+    function nlbSurfaceLenM(nlb) {
+        var s = (nlb && nlb.surface) ? nlb.surface : {};
+        return (s.length_m != null) ? s.length_m : NLB_DEFAULT_LEN_M;
+    }
+    function nlbSurfaceThetaDeg(nlb) {
+        var s = (nlb && nlb.surface) ? nlb.surface : {};
+        return (s.theta_deg != null) ? s.theta_deg : 0;
+    }
+
+    // The UNION of every state's bodies[], in first-appearance order, so meshes
+    // are built once and reused. A body id keeps the hanging/colour/label of its
+    // FIRST appearance (a later state may re-label via updateLabelSpriteText);
+    // an id must therefore not flip hanging between states.
+    function nlbCollectBodyDefs() {
+        var out = [], seen = {};
+        var keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var sd = config.states[keys[i]] || {};
+            var nlb = sd.newtons_laws_body;
+            if (!nlb || !nlb.bodies) continue;
+            for (var b = 0; b < nlb.bodies.length; b++) {
+                var bd = nlb.bodies[b];
+                if (!bd || !bd.id || seen[bd.id]) continue;
+                seen[bd.id] = true;
+                out.push(bd);
+            }
+        }
+        return out;
+    }
+
+    // Where a hanging body hangs FROM. Provisional: the far (+x) end of the
+    // surface line, lifted by NLB_POST_H. SEAM D replaces the height/offset with
+    // the real pulley-wheel rim; every caller goes through this one function so
+    // that swap is a one-line change.
+    function nlbHangAnchor() {
+        var nlb = nlbStateCfg();
+        var lenM = nlbSurfaceLenM(nlb);
+        var pul = nlb.pulley || {};
+        var postM = (pul.post_position_m != null) ? pul.post_position_m : lenM;
+        var th = nlbSurfaceThetaDeg(nlb) * Math.PI / 180;
+        var r = postM * NLB_WORLD_PER_M;
+        return { x: r * Math.cos(th), y: r * Math.sin(th) + NLB_POST_H };
+    }
+
+    // Place a body from its signed position s (metres) along its OWN axis:
+    // up-slope for a surface body (surface-group local +x, so the incline
+    // rotation is applied for free), straight DOWN in world y for a hanging body
+    // (which ignores theta by construction — spec section 1).
+    function nlbSetBodyPosition(bodyId, s_m) {
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!mesh) return;
+        var s = (typeof s_m === "number" && isFinite(s_m)) ? s_m : 0;
+        if (mesh.userData.hanging) {
+            var a = nlbHangAnchor();
+            mesh.position.set(a.x, a.y - s * NLB_WORLD_PER_M, 0);
+        } else {
+            mesh.position.set(s * NLB_WORLD_PER_M, NLB_BODY_SIZE / 2, 0);
+        }
+    }
+
+    // Rotate the ONE surface group + rescale it to the state's length, and
+    // redraw the angle arc/label. theta = 0 is NOT special-cased: the same
+    // rotation runs, the arc simply collapses and hides.
+    function nlbApplySurface(thetaDeg, lenM) {
+        var grp = nlbFindById("nlb_surface_group");
+        var halfWorld = Math.max(0.2, lenM * NLB_WORLD_PER_M);
+        if (grp) {
+            grp.rotation.set(0, 0, thetaDeg * Math.PI / 180);
+            grp.userData.theta_deg = thetaDeg;
+            grp.userData.length_m = lenM;
+        }
+        var slab = nlbFindById("nlb_surface");
+        if (slab) slab.scale.set(halfWorld * 2, 1, 1);
+        var ref = nlbFindById("nlb_horizontal_ref");
+        if (ref) { ref.scale.set(halfWorld, 1, 1); ref.visible = Math.abs(thetaDeg) > 0.5; }
+        var arc = nlbFindById("nlb_theta_arc");
+        if (arc) {
+            if (arc.geometry) arc.geometry.dispose();
+            var R = 1.05, th = thetaDeg * Math.PI / 180;
+            var steps = Math.max(2, Math.round(Math.abs(thetaDeg) / 3));
+            var pts = [];
+            for (var i = 0; i <= steps; i++) { var s = th * (i / steps); pts.push(new THREE.Vector3(R * Math.cos(s), R * Math.sin(s), 0)); }
+            arc.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+            arc.visible = Math.abs(thetaDeg) > 0.5;
+        }
+        var lbl = nlbFindById("nlb_theta_label");
+        if (lbl) {
+            var mid = (thetaDeg * 0.5) * Math.PI / 180;
+            lbl.position.set(1.42 * Math.cos(mid), 1.42 * Math.sin(mid), 0);
+            updateLabelSpriteText(lbl, "θ = " + Math.round(thetaDeg) + "°");
+            lbl.visible = Math.abs(thetaDeg) > 0.5;
+        }
+    }
+
+    // ── Value-only HUD (Rule 33d live numerics, Rule 34b NO formula here) ──
+    //   Rows are rebuilt on STATE ENTRY only (bodies + readouts both vary per
+    //   state), never per frame. The panel container itself never moves
+    //   (Rule 32d) and clears the review-chrome "Full screen" button at
+    //   top:52px (Rule 34d). Per-frame writers use nlbSetReadout().
+    var NLB_READOUT_LABELS = {
+        N: "N", f: "f", a: "a", v: "v", T: "T", F_net: "ΣF", F_applied: "F"
+    };
+    var NLB_READOUT_UNITS = {
+        N: " N", f: " N", a: " m/s²", v: " m/s", T: " N", F_net: " N", F_applied: " N"
+    };
+    function nlbReadoutRowId(bodyId, key) { return "nlb_ro_" + bodyId + "_" + key; }
+    function nlbRebuildReadout(nlb) {
+        var el = document.getElementById("nlb_readout");
+        if (!el) return;
+        var keys = nlb.readouts || [];
+        var bodies = nlb.bodies || [];
+        if (!keys.length || !bodies.length) { el.innerHTML = ""; el.style.display = "none"; return; }
+        var h = "";
+        for (var b = 0; b < bodies.length; b++) {
+            var bd = bodies[b];
+            if (!bd || !bd.id || bd.ghost) continue;   // a ghost is decorative context: never integrated, never read out
+            if (bodies.length > 1) {
+                h += '<div style="opacity:0.7;margin-top:' + (b > 0 ? "7px" : "0") + '">' + (bd.label || bd.id) + '</div>';
+            }
+            for (var k = 0; k < keys.length; k++) {
+                var key = keys[k];
+                var lab = NLB_READOUT_LABELS[key] || key;
+                h += '<div id="' + nlbReadoutRowId(bd.id, key) + '">' +
+                    '<span id="' + nlbReadoutRowId(bd.id, key) + '_lbl">' + lab + '</span> = ' +
+                    '<span id="' + nlbReadoutRowId(bd.id, key) + '_val">--</span>' + (NLB_READOUT_UNITS[key] || "") + '</div>';
+            }
+        }
+        el.innerHTML = h;
+        el.style.display = h ? "block" : "none";
+    }
+    // Per-frame value write (SEAM B). labelOverride lets the friction row switch
+    // between the static and kinetic glyphs (fₛ / fₖ) without rebuilding the row.
+    function nlbSetReadout(bodyId, key, text, labelOverride) {
+        var v = document.getElementById(nlbReadoutRowId(bodyId, key) + "_val");
+        if (v) v.textContent = text;
+        if (labelOverride) {
+            var l = document.getElementById(nlbReadoutRowId(bodyId, key) + "_lbl");
+            if (l) l.textContent = labelOverride;
+        }
+    }
+
+    function buildNewtonsLawsBody() {
+        nlbIndex = [];
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var nlb0 = nlbStateCfg();
+
+        // 1. The surface: ONE group, rotated about world Z by theta_deg. Flat
+        //    ground is theta_deg = 0 through this SAME path (no branch).
+        var surf = new THREE.Group();
+        surf.userData = { elementType: "nlb_surface_group", id: "nlb_surface_group", theta_deg: 0, length_m: NLB_DEFAULT_LEN_M };
+        var slabMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(NLB_SURFACE_COLOR), emissive: hexToThreeColor(NLB_SURFACE_COLOR),
+            emissiveIntensity: 0.12, shininess: 30, transparent: true, opacity: 0.95
+        });
+        var slab = new THREE.Mesh(new THREE.BoxGeometry(1, NLB_SURFACE_THICK, NLB_SURFACE_DEPTH), slabMat);
+        slab.position.set(0, -NLB_SURFACE_THICK / 2, 0);   // top face at surface-local y = 0
+        slab.userData = { elementType: "nlb_surface", id: "nlb_surface" };
+        surf.add(slab);
+        addToScene(surf);
+        nlbRegister(surf); nlbRegister(slab);
+
+        // 1b. The horizontal reference + angle arc the incline angle is measured
+        //     from (world frame, NOT in the rotated group). Both collapse and
+        //     hide at theta = 0 — a real zero is hidden, never a stub.
+        var refGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(1, 0, 0)]);
+        var ref = new THREE.Line(refGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor(NLB_REF_COLOR), transparent: true, opacity: 0.75 }));
+        ref.userData = { elementType: "nlb_horizontal_ref", id: "nlb_horizontal_ref" };
+        ref.visible = false;
+        addToScene(ref); nlbRegister(ref);
+
+        var arcGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(1.05, 0, 0)]);
+        var arc = new THREE.Line(arcGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor(NLB_ARC_COLOR), transparent: true, opacity: 0.9 }));
+        arc.userData = { elementType: "nlb_theta_arc", id: "nlb_theta_arc" };
+        arc.visible = false;
+        addToScene(arc); nlbRegister(arc);
+
+        var thLbl = pmCreateAutoLabel("θ = 0°", NLB_ARC_COLOR, 0.36);
+        thLbl.position.set(1.42, 0, 0);
+        thLbl.userData = { elementType: "nlb_theta_label", id: "nlb_theta_label" };
+        thLbl.visible = false;
+        addToScene(thLbl); nlbRegister(thLbl);
+
+        // 2. World (un-rotated) group — hanging bodies live here so they ignore
+        //    theta by construction. SEAM D hangs the post/wheel/rope off it too.
+        var world = new THREE.Group();
+        world.userData = { elementType: "nlb_world_group", id: "nlb_world_group" };
+        addToScene(world);
+        nlbRegister(world);
+
+        // 3. Body meshes — one per UNIQUE id across all states. Size is
+        //    mass-INDEPENDENT (Rule 29): a heavier block is never a bigger cube.
+        var defs = nlbCollectBodyDefs();
+        for (var i = 0; i < defs.length; i++) {
+            var d = defs[i];
+            var col = d.color || NLB_BODY_COLORS[i % NLB_BODY_COLORS.length];
+            var mat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(col), emissive: hexToThreeColor(col),
+                emissiveIntensity: 0.18, shininess: 60, transparent: true, opacity: 1.0
+            });
+            var mesh = new THREE.Mesh(new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE), mat);
+            mesh.userData = {
+                elementType: "nlb_body", id: "nlb_body_" + d.id, bodyId: d.id,
+                hanging: !!d.hanging, ghost: !!d.ghost, baseColor: col
+            };
+            if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
+            nlbRegister(mesh);
+
+            // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
+            // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
+            var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
+            lbl.position.set(0, NLB_BODY_SIZE * 0.95, 0);
+            lbl.userData = { elementType: "nlb_body_label", id: "nlb_body_" + d.id + "_label", bodyId: d.id, ghost: !!d.ghost };
+            mesh.add(lbl);
+            nlbRegister(lbl);
+
+            nlbSetBodyPosition(d.id, d.initial_position_m || 0);
+        }
+
+        // 4. Value-only HUD (Rule 33d / 34b). top:52px clears the review-chrome
+        //    "Full screen" button (top:10px, right:10px, ~40px tall) — Rule 34d.
+        var ro = document.createElement("div");
+        ro.id = "nlb_readout";
+        ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(ro);
+
+        // 5. The SINGLE formula surface (Rule 34b) — math-serif Unicode, its own
+        //    zone, never duplicated by the generic #formula_overlay (which the
+        //    applyState hide-chain suppresses for this scenario).
+        var ff = document.createElement("div");
+        ff.id = "nlb_formula";
+        ff.style.cssText = "position:fixed;top:42%;right:22px;transform:translateY(-50%);color:#FFF176;font:600 22px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:340px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        // 6. Contextual control panel CONTAINER only — SEAM E builds the rows
+        //    (m / m2 / F / theta / mu_s / mu_k / v0) once and shows/hides them
+        //    per controls_visible, keeping each row at a fixed screen position.
+        var sp = document.createElement("div");
+        sp.id = "nlb_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        document.body.appendChild(sp);
+
+        // 7. Home pose: seed the surface from the FIRST state so the very first
+        //    frame is already correct (applyNewtonsLawsBodyState re-seeds on entry).
+        nlbApplySurface(nlbSurfaceThetaDeg(nlb0), nlbSurfaceLenM(nlb0));
+        window.PM_nlbBodyDragged = false;
+    }
+
+    // ── Rule 32e glow: read glow_focal, exact-match ONE id, dim the rest ──
+    //   Mirrors applyAcGeneratorGlow's shape. A ghost body is FORCED into the
+    //   dim-peer branch regardless of glow_focal, via the existing
+    //   applyGlowEmphasis dim branch — no new dimming primitive (spec section 3).
+    function nlbApplyGlow() {
+        var nlb = nlbStateCfg();
+        var focal = nlb.glow_focal || (glowTargets.length ? glowTargets[0] : "");
+        var glowActive = !!focal || glowTargets.length > 0;
+        var glowP = glowEmphT(time);
+        nlbEach(function (o, ud) {
+            if (ud.ghost) { applyGlowEmphasis(o, false, true, 0, false); return; }
+            var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
+            applyGlowEmphasis(o, isFocal, glowActive, glowP, false);
+        });
+    }
+    // Name used by the spec's animate() call site (SEAM B) — one alias so the
+    // two seams cannot disagree about the function name.
+    function applyNewtonsLawsBodyGlow() { nlbApplyGlow(); }
+
+    // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
+    //   Seeds masses / theta / mu / F / initial position+velocity into the
+    //   engine state object every seam reads, sets glow_focal, resets the
+    //   one-shot phase flags, and rebuilds the value-only HUD rows.
+    //   NO clock code and NO integration here (Rule 36 — SEAM B owns the step).
+    function applyNewtonsLawsBodyState(stateDef) {
+        var nlb = (stateDef && stateDef.newtons_laws_body) ? stateDef.newtons_laws_body : {};
+        var surface = nlb.surface || {};
+        var frictionless = !!surface.frictionless;
+        var thetaDeg = nlbSurfaceThetaDeg(nlb);
+        var lenM = nlbSurfaceLenM(nlb);
+        var bodies = nlb.bodies || [];
+        var pul = nlb.pulley || null;
+
+        // The single engine-state object every later seam reads/writes.
+        var eng = {
+            mode: nlb.mode || "sandbox",
+            theta_deg: thetaDeg,
+            length_m: lenM,
+            frictionless: frictionless,
+            coupled: !!pul,
+            pulley: pul,
+            action_reaction: nlb.action_reaction || null,
+            glow_focal: nlb.glow_focal || "",
+            order: [],
+            bodies: {},
+            v_string: 0,          // SEAM B branch B: the shared along-string speed
+            a_string: 0,
+            phase_fired: {}       // one-shot phase flags, reset on every state entry
+        };
+        for (var i = 0; i < bodies.length; i++) {
+            var d = bodies[i];
+            if (!d || !d.id) continue;
+            eng.order.push(d.id);
+            eng.bodies[d.id] = {
+                id: d.id,
+                m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
+                hanging: !!d.hanging,
+                ghost: !!d.ghost,
+                s: d.initial_position_m || 0,
+                v: d.initial_velocity_mps || 0,
+                a: 0,
+                mu_s: frictionless ? 0 : (d.mu_s || 0),
+                mu_k: frictionless ? 0 : (d.mu_k || 0),
+                F_applied: d.applied_force_N || 0,
+                N: 0, f: 0, T: 0, F_net: 0
+            };
+        }
+        window.PM_nlbEngine = eng;
+        window.PM_nlbBodyDragged = false;
+
+        // Surface pose + per-body visibility/label/colour + home position.
+        nlbApplySurface(thetaDeg, lenM);
+        var listed = {};
+        for (var j = 0; j < bodies.length; j++) { if (bodies[j] && bodies[j].id) listed[bodies[j].id] = bodies[j]; }
+        nlbEach(function (o, ud) {
+            // The apparatus is AUTHORITATIVE over the generic visible_elements
+            // matcher (which runs earlier in applyState and would blank the
+            // surface for any state whose token list does not happen to name it).
+            // The theta-gated ref line / arc / label are owned by nlbApplySurface
+            // (already run above), so they are deliberately not touched here.
+            if (ud.elementType === "nlb_surface_group" || ud.elementType === "nlb_world_group") { o.visible = true; return; }
+            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
+            var bd = listed[ud.bodyId];
+            o.visible = !!bd;
+            if (!bd) return;
+            ud.ghost = !!bd.ghost;
+            if (ud.elementType === "nlb_body") {
+                var col = bd.color || ud.baseColor;
+                if (o.material && o.material.color) o.material.color.set(hexToThreeColor(col));
+                if (o.material && o.material.emissive) o.material.emissive.set(hexToThreeColor(col));
+                if (o.material && o.material.userData) { o.material.userData._glowBaseCol = null; o.material.userData._glowBaseOp = null; }
+                nlbSetBodyPosition(bd.id, bd.initial_position_m || 0);
+            } else if (bd.label) {
+                updateLabelSpriteText(o, bd.label);
+            }
+        });
+
+        // The SINGLE formula surface for this state (Rule 34b).
+        var ff = document.getElementById("nlb_formula");
+        if (ff) {
+            var ftext = stateDef.formula_overlay || "";
+            ff.textContent = ftext;
+            ff.style.display = ftext ? "block" : "none";
+        }
+
+        // Value-only HUD rows for this state's bodies x readouts.
+        nlbRebuildReadout(nlb);
+
+        // TODO(SEAM C): force-arrow visibility from nlb.arrows[] (per body: which
+        //   of weight/normal/friction/applied/tension/net are shown this state,
+        //   show_components, per-kind Unicode label overrides). Arrows do not
+        //   exist yet in the scene, so there is nothing to toggle here.
+        // TODO(SEAM D): pulley post/wheel/rope visibility from eng.coupled +
+        //   nlb.pulley.post_position_m (nlbHangAnchor() is the single seam point).
+        // TODO(SEAM E): #nlb_sliders row toggling from nlb.controls_visible +
+        //   thumb/label sync to the seeded m / m2 / F / theta / mu_s / mu_k / v0,
+        //   plus nlb.trusted_drag_seizes / nlb.idle_auto_sweep wiring. The panel
+        //   container stays hidden until seam E owns it.
+
+        nlbApplyGlow();
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     function buildScenario() {
         clearScene();
@@ -29317,6 +29813,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "magnetic_flux_loop":
                 buildMagneticFluxLoop();
+                break;
+
+            case "newtons_laws_body":
+                buildNewtonsLawsBody();
                 break;
 
             case "gauss_law_sphere":
@@ -29716,6 +30216,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyMagneticFluxLoopState(stateDef);
         }
 
+        // newtons_laws_body — per-state seed of the Laws of Motion engine state
+        // (masses / theta / mu / F / initial s+v), the surface pose, per-body
+        // visibility + labels, the single Cambria-Math formula surface, the
+        // value-only HUD rows, and the Rule-32e glow focal. The integrator
+        // (SEAM B), the force-arrow overlay (SEAM C), the pulley geometry
+        // (SEAM D) and the slider rows (SEAM E) hook the same engine-state
+        // object (window.PM_nlbEngine) it seeds here.
+        if (config.scenario_type === "newtons_laws_body") {
+            applyNewtonsLawsBodyState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -30001,6 +30512,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
         // itself to this NOT-list, same as isMag/isFaraday/isAcGenerator/... above).
         var isMfl = config.scenario_type === "magnetic_flux_loop";
+        // newtons_laws_body owns its OWN #nlb_sliders panel (m/m2/F/theta/mu_s/
+        // mu_k/v0) -- must be excluded here or the generic #sliders panel bleeds
+        // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
+        // itself to this NOT-list, same as isMag/isFaraday/isMfl/... above).
+        var isNlb = config.scenario_type === "newtons_laws_body";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -30039,7 +30555,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isNlb) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -30226,8 +30742,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula)
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "newtons_laws_body")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
