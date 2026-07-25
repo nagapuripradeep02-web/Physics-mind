@@ -1531,6 +1531,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    newton_third_law: {
+        concept_id: 'newton_third_law',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'newton_third_law',
+            label: "Newton's Third Law — F₁₂ = -F₂₁ (3D)",
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

@@ -122,6 +122,20 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // or inclines (block_on_incline), or the vector/direction form of the
     // law (newton_second_law_direction).
     'newton_second_law',
+    // Newton's third law / action-reaction (Class 11 Ch.8.5 — third concept
+    // of the Laws of Motion field_3d chapter engine, newtons_laws_body
+    // scenario, docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). Forces come in
+    // pairs: when body 1 pushes body 2, body 2 simultaneously pushes body 1
+    // with EQUAL magnitude and OPPOSITE direction, and because the two
+    // forces act on DIFFERENT bodies they never cancel: a symmetric push
+    // (equal masses recoil equally), unequal masses (arrows stay identical,
+    // accelerations split 3:1), and isolating one body's own diagram (mg/N
+    // cancel because they share a body; the pair's partner force never
+    // does). Does NOT cover how much a force accelerates a body
+    // (newton_second_law), drawing complete force diagrams
+    // (free_body_diagram), friction or inclines (block_on_incline),
+    // string-coupled bodies (connected_bodies), or momentum conservation.
+    'newton_third_law',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -788,6 +802,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
   newton_first_law        ← law of inertia, ΣF=0 ⇔ v constant, why moving things need no force to keep moving, rest = balanced not absent forces
   newton_second_law       ← F = ma, a = ΣF/m, force sets acceleration not velocity, same force different mass, same mass different force
+  newton_third_law        ← action-reaction pair, F₁₂ = -F₂₁, forces always equal and opposite no matter the masses, why the pair never cancels (acts on different bodies), heavier object "pushes harder" myth
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -995,6 +1010,7 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
 - "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
 - "Newton's second law" / "F = ma" / "why does force cause acceleration not speed" / "does mass affect acceleration" / "same push heavier object" / "double the force what happens" → newton_second_law (NOT newton_second_law_direction — that concept is about the DIRECTION of a relative to F once a net force exists; this one is about the a = F/m proportionality itself, force sets a rate not a speed)
+- "Newton's third law" / "action and reaction" / "for every action there is an equal and opposite reaction" / "why don't equal and opposite forces cancel" / "does the heavier one push harder" / "does a wall push back" / "why can I still move if the reaction pushes back equally" → newton_third_law (NOT newton_second_law — that concept is about ONE body's a = F/m; this one is about the PAIR of forces on TWO different bodies and why they never cancel)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",
