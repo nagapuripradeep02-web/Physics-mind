@@ -30709,13 +30709,21 @@ export const FIELD_3D_RENDERER_CODE = `
     var EMW_NEEDLE_MAX = 0.9;                  // receiver needle max swing (rad)
     var EMW_SRC_X = EMW_X0_M * EMW_M;          // source scene x (−4)
     var EMW_RCV_X = EMW_X1_M * EMW_M;          // receiver scene x (+4)
+    var EMW_PULSE_ARRIVE0 = (EMW_RCV_X - EMW_SRC_X) / EMW_VDISP;  // ≈7333 ms default packet travel src→receiver
+    var EMW_pulseArrive = EMW_PULSE_ARRIVE0;                       // per-frame arrival (set from ew.needle_kick_at_ms)
 
     // Stylized angular frequency (rad/ms) — ν continuous across any boundary, so
     // this is region-independent; the local wavenumber k = ω/(v/n) shrinks λ by n
     // inside a medium (slab increment). At ν₀ this is 2π/EMW_PLAY_MS.
     function emwOmega(nu) { return 2 * Math.PI * nu / (EMW_NU0 * EMW_PLAY_MS); }
     function emwK(nu, n) { return emwOmega(nu) / (EMW_VDISP / (n || 1)); }   // rad/scene
-    function emwPulseCenter(ms) { return EMW_SRC_X + EMW_VDISP * (ms % EMW_PULSE_MS); }
+    // Pulse cycle period + envelope centre, both derived from the per-frame arrival
+    // time EMW_pulseArrive so the packet reaches the receiver exactly at the authored
+    // needle_kick cue. The period scales with arrival (same tail ratio as the default),
+    // so a SET_TIME_FREEZE pin lands ON the kick, never at a loop restart. When arrival
+    // is the default (≈7333 ms) this is byte-identical to the old constant form.
+    function emwPulsePeriod() { return EMW_pulseArrive * (EMW_PULSE_MS / EMW_PULSE_ARRIVE0); }
+    function emwPulseCenter(ms) { return EMW_SRC_X + (EMW_RCV_X - EMW_SRC_X) / EMW_pulseArrive * (ms % emwPulsePeriod()); }
     function emwEnv(xScene, ms, mode, launchGate) {
         if (mode !== "pulse") return 1;
         // Pulse launched only while the source was ON at this cycle's start
@@ -31201,6 +31209,13 @@ export const FIELD_3D_RENDERER_CODE = `
         var ms = (time - stateStartTime) * 1000;
         var mode = ew.wave_mode || "train";
         var ctrls = ew.controls || [];
+        // Retime the pulse so its packet ARRIVES at the receiver exactly when the
+        // needle kicks (authored needle_kick_at_ms) — honors S1's "after a delay"
+        // lesson AND puts a frozen pin on the kick instead of the post-reset trough.
+        // Pure fn of state-local ms (scar #1); train / cue-less pulse states default.
+        EMW_pulseArrive = (mode === "pulse")
+            ? cueTriggerMs("needle_kick", (ew.needle_kick_at_ms != null) ? ew.needle_kick_at_ms : EMW_PULSE_ARRIVE0)
+            : EMW_PULSE_ARRIVE0;
         var nu = (ctrls.indexOf("nu") >= 0 && window.PM_emwNuDragged) ? window.PM_emwNu : ((ew.nu != null) ? ew.nu : 100);
         var E0 = (ctrls.indexOf("E0") >= 0 && window.PM_emwE0Dragged) ? window.PM_emwE0 : ((ew.E0 != null) ? ew.E0 : 120);
         // Core increment: no slab, so n = 1 everywhere (the slab increment reads ew.n
@@ -31214,7 +31229,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // pulse launch gate: this cycle's packet only exists if the source was ON
         // when the cycle began (so switching OFF mid-flight lets the in-flight
         // packet finish and no new one launches — the S2 "wave continues" beat).
-        var cycleStart = ms - (ms % EMW_PULSE_MS);
+        var cycleStart = ms - (ms % emwPulsePeriod());
         var offMs = (ew.source_off_at_ms != null) ? cueTriggerMs("source_off", ew.source_off_at_ms) : Infinity;
         var launchGate = (mode === "pulse") ? (cycleStart <= offMs) : true;
         // ── slab-aware phase (S10) — the CUMULATIVE piecewise form (physics_block
@@ -31280,7 +31295,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (srcOn) {
                 var osc = EMW_BEAD_A * (-Math.sin(omega * ms)) * ampNorm;
                 if (mode === "pulse") {
-                    var tau = ms % EMW_PULSE_MS;
+                    var tau = ms % emwPulsePeriod();
                     beadY = (tau < EMW_BURST_MS && launchGate) ? osc * (1 - tau / EMW_BURST_MS) : 0;
                 } else { beadY = osc; }
             }
