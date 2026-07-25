@@ -34,6 +34,8 @@ import {
     assembleParticleFieldHtml,
     type ParticleFieldAuthoredConfig,
 } from '@/lib/renderers/particle_field_renderer';
+import { assembleParametricHtml } from '@/lib/renderers/parametric_renderer';
+import { buildParametricConfig } from './lib/buildParametricConfig';
 import {
     pilotHeadTags,
     isPilotConcept,
@@ -71,6 +73,15 @@ type ConceptJson = {
     default_flow?: string[];
     field_3d_config?: Field3DConfig;
     particle_field_config?: ParticleFieldAuthoredConfig;
+    // Parametric-family concepts (the 2D PCPL renderer — e.g. vector_head_to_tail,
+    // and chemistry archetype-L energy-ladder concepts) carry NO *_config block:
+    // the scene lives in epic_l_path.states + physics_engine_config. (2026-07-23,
+    // chemistry Wave-1 review-site path — see buildParametricConfig.)
+    renderer_pair?: { panel_a?: string; panel_b?: string };
+    physics_engine_config?: {
+        variables?: Record<string, { default?: number; constant?: number }>;
+    };
+    canvas_style?: 'default' | 'answer_sheet';
     epic_l_path?: {
         state_count?: number;
         states?: Record<
@@ -79,6 +90,8 @@ type ConceptJson = {
                 title?: string;
                 advance_mode?: string;
                 duration?: number;
+                scene_composition?: unknown[];
+                focal_primitive_id?: string;
                 teacher_script?: { tts_sentences?: TtsSentenceJson[] };
             }
         >;
@@ -3393,10 +3406,12 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
 /** Build the per-concept review files (sim.html + player + meta.json). Caller refreshes the catalog. */
 function buildOne(conceptId: string): void {
     const json = loadConcept(conceptId);
-    if (!json.field_3d_config && !json.particle_field_config) {
+    const isParametric = json.renderer_pair?.panel_a === 'parametric';
+    if (!json.field_3d_config && !json.particle_field_config && !isParametric) {
         console.error(
-            `✖ ${conceptId}: no field_3d_config or particle_field_config block — ` +
-            `only field_3d and particle_field diamonds are supported.`,
+            `✖ ${conceptId}: no field_3d_config or particle_field_config block, and ` +
+            `renderer_pair.panel_a is not "parametric" — only field_3d, particle_field, ` +
+            `and parametric diamonds are supported.`,
         );
         process.exit(1);
     }
@@ -3426,11 +3441,16 @@ function buildOne(conceptId: string): void {
     const conceptDir = join(OUT_DIR, conceptId);
     mkdirSync(conceptDir, { recursive: true });
 
-    // 1) the self-contained scene (field_3d = Three.js diamonds; particle_field = 2D p5 diamonds)
+    // 1) the self-contained scene (field_3d = Three.js diamonds; particle_field = 2D p5
+    //    diamonds; parametric = 2D PCPL/energy-ladder diamonds — no *_config block)
     const simHtml = vendorizeSimHtml(
         json.field_3d_config
             ? assembleField3DHtml(json.field_3d_config)
-            : assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig),
+            : json.particle_field_config
+                ? assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig)
+                : assembleParametricHtml(
+                    buildParametricConfig(conceptId, json, { responsiveFill: true }),
+                ),
     );
     writeFileSync(join(conceptDir, 'sim.html'), simHtml, 'utf-8');
 
