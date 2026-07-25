@@ -536,3 +536,59 @@ coverage_map
 }
 ```
 
+---
+
+## 11. Self-review checklist (REVISION 2)
+
+- [x] Every symbol referenced in the state narratives (F, a, v, m1, m2) appears in variables.
+- [x] Every formula uses radians() for the angle argument (theta constant at 0, future-proofed).
+- [x] Every state's live control(s) match the architect's control table exactly (S1 none, S2 m2,
+      S3 none, S4 m/F/v0). UNCHANGED by REVISION 2.
+- [x] variable_overrides (full bodies[] blocks) documented for all four states, each justified
+      against the Bug #1 leak class and Rule 32b (only the taught variable differs within a state) --
+      RE-JUSTIFIED with the new mass_kg / applied_force_N values in section 2.
+- [x] Board mark scheme: DEFERRED (Rule 20 [D]), nothing authored (section 4).
+- [x] Drill-down phrasings: 5 per cluster x 6 clusters, real student voice, no teacher-prose.
+      UNCHANGED (no phrase quotes a literal value).
+- [x] constraints block: now 7 short factual assertions (added the REVISION 2 arrow-floor
+      assertion; the other 6 are UNCHANGED).
+- [x] Numerical sanity checks RE-DERIVED IN FULL for all 4 states against the REVISION 2 values
+      (section 7) -- clamp-margin arithmetic re-shown, not merely asserted equal to REVISION 1;
+      tighter binding margin confirmed still 3.6 m (S2 body A / S3 body B), never near the +/-10 m
+      clamp.
+- [x] First-captured-frame check RE-VERIFIED for the new numbers: v = 0.00 at t=0 in every guided
+      state (all bodies still start from rest); a is correctly non-zero and pinned from t=0 with its
+      NEW value shown per state (S1: 0.10; S2: 0.20/0.10; S3: 0.10/0.20 -- numerically identical to
+      REVISION 1 as expected, but the underlying F_applied readout numbers changed from 0.20/0.40 to
+      15.00/30.00 and are called out explicitly so json_author/eye_walker check the right numbers).
+- [x] Within-state motion timeline written for every state; no two states share a motion beyond the
+      declared S2/S3 contrast pair; no static state. UNCHANGED structurally, arrow-visibility notes
+      added.
+- [x] Rule 32 sequencing verified: cause (F arrow/s, NOW GENUINELY VISIBLE) glows on a still body
+      before visible motion reads clearly in S1/S2/S3; only the taught variable differs within each
+      guided state (32b).
+- [x] Word budget: S1 = 47 (40-50), S2 = 49 (40-55), S3 = 49 (35-50), S4 = 0/open -- all compliant,
+      UNCHANGED (re-confirmed no narration sentence needed a numeric update).
+- [x] Assessment: 3 items, coverage_map complete, every wrong option carries a
+      distractor_misconception, correct option never keyed as a distractor, parallel_form_stem
+      present and physics-equivalent for all 3. UNCHANGED.
+- [x] Engine bug queue consulted; all relevant prevention rules satisfied, no exception needed --
+      PLUS the REVISION 2 arrow-render-floor scar explicitly added and closed (section: Engine bug
+      queue consultation, above).
+- [x] DC Pandey check: no import -- all formulas derived from the engine's own Branch A integrator
+      at theta=0, mu=0; no teaching method/example/figure imported. UNCHANGED.
+- [x] REVISION 2 hard requirements (coordinator's list) all satisfied: (1) F_min = 15 N in every
+      state, raw length 0.45 >= 1.5x floor, S3's 2:1 pair genuinely visible at 0.45/0.90; (2) clamp-
+      margin arithmetic fully re-derived in section 7, tightest case still 3.6 m; (3) pedagogy
+      preserved exactly (S1 single body/a pinned/v climbing; S2 same-F/m2=2*m1/2:1 a's; S3 same-m/
+      F_B=2*F_A/1:2 a's, mirror picture); (4) masses (75 kg/150 kg) are plausible loaded-luggage-
+      cart-scale values, not invented for convenience; (5) m/m2/F slider ranges and STATE_4's
+      idle_auto_sweep range all widened to cover the new values and stay clamp-safe; (6) first-
+      captured-frame v=0.00 re-verified, new a/F_applied readings stated per state; (7) narration
+      re-read, confirmed no literal-number sentence needed a word-count re-check.
+
+---
+Handoff: json_author -- build src/data/concepts/newton_second_law.json per this REVISION 2 physics
+block (the changelog table at the top of this file is the authoritative diff against the numbers
+json_author may have already started from) plus the architect skeleton, using the newtons_laws_body
+scenario blocks in sections 2/3/9/10 verbatim.
