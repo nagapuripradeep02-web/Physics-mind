@@ -1521,6 +1521,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    newton_second_law: {
+        concept_id: 'newton_second_law',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'newton_second_law',
+            label: "Newton's Second Law — a = ΣF/m (3D)",
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

@@ -2953,6 +2953,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
     newton_first_law:               "field_3d",
+    newton_second_law:              "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────

@@ -397,3 +397,53 @@ INSERT INTO engine_bug_queue (
     '2026-07-25 lom chapter loop cycle 1 — coast_body_halts_mid_state_despite_authored_length_m',
     'incident'
 );
+
+-- ============================================================
+-- CYCLE 2 (newton_second_law, lom-b, 2026-07-25) — eye_walker findings.
+-- Found by the frame read; INVISIBLE to all 19 deterministic EYE gates.
+-- NOT APPLIED. Founder reviews.
+-- ============================================================
+
+-- Candidate — CRITICAL. Two independent (no-pulley) bodies render fully coincident.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_two_body_lane_offset_missing_causes_full_occlusion',
+    'newtons_laws_body renders two independent bodies at the same z, so a shared start line fully occludes one body',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'nlbSetBodyPosition() (field_3d_renderer.ts ~L29497-29513) sets every non-hanging body mesh to (s*NLB_WORLD_PER_M, NLB_BODY_SIZE/2, 0) — z is hardcoded 0 for ALL bodies. The engine spec section 1 explicitly promises "Two bodies with NO pulley = independent, side-by-side", but they share one lane. Two bodies authored at the same initial_position_m (the intended same-start-line compare pattern) are pixel-coincident at reveal and stay visually merged until integration separates them. On newton_second_law STATE_2/STATE_3 only ONE block is visible at t=0 and the two Unicode labels render as an illegible merged blob for roughly the first third of the run. Worse, the H2 SET_TIME_FREEZE reveal-completeness baseline lands INSIDE the overlap window, so the frozen reference frame — the reveal-completeness reference — is illegible by construction. There is no authoring workaround: staggering the two initial_position_m values keeps both bodies in ONE lane, so the faster body overtakes and interpenetrates the slower one, which is worse than the occlusion.',
+    'Any scenario that renders two or more INDEPENDENT bodies must lay them out in distinct lanes — a small fixed per-body-index lateral offset centered about z=0, so a one-body state is bit-identical and two bodies can never be pixel-coincident even when their along-axis positions are exactly equal. The offset must carry to everything anchored to that body (mesh, label sprite, force arrows, drag hit proxy). A bring-up probe for a multi-body scenario must assert that the on-screen separation of any two independent bodies exceeds one body width at t=0, not merely that both meshes exist and are visible.',
+    'js_eval',
+    'For each state whose newtons_laws_body block declares 2+ bodies with no pulley: SET_STATE, then project each body mesh to screen space and assert the pairwise screen-space distance exceeds NLB_BODY_SIZE at t=0 and at the state reveal pin.',
+    'OPEN',
+    ARRAY['newton_second_law','newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop cycle 2 — newton_second_law eye_walker',
+    'incident'
+);
+
+-- Candidate — MAJOR. Authored forces below the arrow-length floor. ROUTED AS CONTENT, not engine:
+-- the floor is designed behavior (spec section 3), the defect was 0.2N/0.4N authored magnitudes.
+-- Kept here as a PREVENTION row so the next author does not repeat it.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio',
+    'Force magnitudes under the arrow-length floor render as invisible stubs and destroy any authored length ratio',
+    'MAJOR',
+    'alex:physics_author',
+    'The arrow overlay renders len = clamp(NLB_ARROW_MIN_LEN, NLB_ARROW_MAX_LEN, magnitudeN * NLB_ARROW_SCALE) with NLB_ARROW_SCALE = 0.030 world-units/N and NLB_ARROW_MIN_LEN = 0.30 (field_3d_renderer.ts ~L29272-29274). The clamp is DESIGNED behavior per engine spec section 3 ("a nonzero force is always at least readable"), so this is not an engine defect. But newton_second_law authored 0.2 N and 0.4 N — raw lengths 0.006 and 0.012, both far under the floor. Consequences: (a) STATE_1 applied-force arrow, the state sole glow_focal and the Rule 32a cause element, renders as a ~1px stub with no shaft or arrowhead at any captured frame; (b) STATE_3 doubled-force arrow, the state entire pedagogical payload and its Rule 29 magnitude-length exception, is destroyed because BOTH 0.2 N and 0.4 N clamp to the identical minimum, leaving no length difference to see. The physics block own section 6 flagged the small-numbers risk; it was realized, not hypothetical.',
+    'Any authored force intended to be SEEN must clear the arrow-length floor with margin: F >= 15 N at NLB_ARROW_SCALE = 0.030 (raw length 0.45, 1.5x the floor). Where two force magnitudes are compared on the same canvas for their LENGTH ratio, the SMALLER of the pair must clear the floor — otherwise the ratio is unrenderable. Scale masses (and surface.length_m / dwell) to hold the clamp-margin constraint at the larger forces, rather than shrinking forces to hold the accelerations down. Applies to idle_auto_sweep ranges too: a sandbox sweeping F over a sub-floor range shows a frozen stub arrow.',
+    'static_check',
+    'For every state, for every arrow declared in newtons_laws_body.arrows[].show, resolve its magnitude from the authored bodies/config and assert magnitude * NLB_ARROW_SCALE > NLB_ARROW_MIN_LEN. Additionally, where two arrows of the same kind appear in one state, assert both clear the floor before trusting any authored length ratio.',
+    'OPEN',
+    ARRAY['newton_second_law']::text[],
+    ARRAY['src/data/concepts/newton_second_law.json']::text[],
+    '2026-07-25 lom-b chapter loop cycle 2 — newton_second_law eye_walker',
+    'incident'
+);
