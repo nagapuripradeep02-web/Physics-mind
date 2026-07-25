@@ -2823,6 +2823,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     tension_in_string:              "mechanics_2d",
     hinge_force:                    "mechanics_2d",
     free_body_diagram:              "field_3d",   // RETROFIT 2026-07-25 onto newtons_laws_body (was mechanics_2d)
+    connected_bodies:                "field_3d",   // NEW 2026-07-25 — newtons_laws_body Branch B (coupled/pulley)
     uniform_circular_motion:        "mechanics_2d",
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",

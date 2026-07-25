@@ -534,6 +534,17 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Laws of Motion #2 — newtons_laws_body engine, Branch B (coupled/pulley).
+    connected_bodies: {
+        concept_id: 'connected_bodies',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'connected_bodies',
+            label: 'Connected Bodies — One Rope, One Tension, One Shared Acceleration (3D)',
+        },
+    },
+
     // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
     // Ch.1 "Vectors" — the DAG root). Single-panel PCPL sim, no panel_b_config.
     scalar_vs_vector: {

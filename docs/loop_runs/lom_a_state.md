@@ -1,11 +1,31 @@
 # lom-a loop state
 
-updated: 2026-07-25 (free_body_diagram SEALED - concept 1 of 3 done)
+updated: 2026-07-26 (connected_bodies SEALED - concept 2 of 3 done - LOOP PAUSED, runaway guard tripped)
+
+>> LOOP PAUSED - FOUNDER DECISION NEEDED BEFORE THE NEXT SESSION <<
+   Loop-phase engine commits now stand at 5 of 5, which is the CHAPTER_LOOP.md §3b runaway guard
+   ("if engine_commits reaches 5, PAUSE the loop and notify the founder"). connected_bodies sealed
+   cleanly, but it cost 3 engine fixes (5a07aa9, bc649d4, aa7daf5) on top of concept 1's 2.
+   READ docs/loop_runs/lom/connected_bodies/engine_gap.md - it is the notification, and it argues
+   the guard's own hypothesis ("Phase 0 under-generalized") is NOT quite what happened: the config
+   surface needed ZERO new keys, and all 3 defects were latent Branch-B bugs the Phase 0 bring-up
+   proof was too shallow to catch (it tested a fresh SET_STATE with default initial conditions).
+   block_on_incline is single-body-on-a-slope and touches NEITHER the coupled integrator NOR the
+   pulley geometry, so it is the least likely of the three to need engine work - EXCEPT for the
+   pre-approved param_ramp (§7.1), which is a missing FEATURE and would be engine commit #6.
+   Raise/reset the budget to continue, or re-examine the approach here. It is the last concept
+   in this worktree either way.
+
 review_port: 8089
 regression_sample: electric_flux, magnetic_flux
-next: connected_bodies - the coupled Branch B integrator + pulley/rope geometry (the second structural extreme, already proved in Phase 0 bring-up). Read docs/loop_runs/phase0_engine_report.md §6 (JSON authoring contract) AND docs/loop_runs/lom/free_body_diagram/engine_gap.md (3 gaps found in concept 1 - one of them, the missing monotonic parameter ramp, most likely bites block_on_incline next). TENSION IS THIS CONCEPT'S JOB: free_body_diagram deliberately dropped its hanging-body/tension state because an uncoupled hanging body has no string to carry T - connected_bodies owns the pulley/rope path and must cover the tension arrow.
+next: block_on_incline - HELD, see the pause notice above. When released: it shares the friction/
+  threshold path with connected_bodies, and its central beat ("tilt the ramp until the block breaks
+  away at tan theta = mu_s") REQUIRES the param_ramp engine knob that CHAPTER_LOOP.md §7.1 already
+  pre-approves - do not work around it by rewriting narration, and do not re-decide it. Read
+  docs/loop_runs/lom/connected_bodies/engine_gap.md first (3 fixes + 3 carried items), then §7.1.
 done: Phase 0 - newtons_laws_body field_3d engine (all 14 spec sites, both structural extremes proved, regression clean)
 done: free_body_diagram - 298f140 - 6 states, RETROFIT mechanics_2d -> field_3d, baselines locked
+done: connected_bodies - 7 states, coupled Branch B + pulley/rope + Atwood, baselines locked, auto-approved on quality-auditor PASS + eye-walker CLEAN
 parked: (none)
 in_flight: (none)
 engine_commits:
@@ -18,6 +38,10 @@ engine_commits:
   9c4438e  seam F - deriveStateMeta reveal + hold + F3D_REVEAL_KEYS (sites 12, 13, +13a)
   f921a3c  bring-up proof harness + hanging-body HUD stub fix
   cd8fe67  RESET_TRAJECTORY was a silent no-op for newtons_laws_body (concept-1 fix, 1 of the 5-commit runaway budget)
+  ff408ed  nlb two-body lane offset (concept-1 fix, 2 of 5)
+  5a07aa9  nlb_coupled_initial_velocity_never_seeded (concept-2 fix, 3 of 5)
+  bc649d4  nlb_coupled_readouts_revert_to_rest_values_on_bound_halt (concept-2 fix, 4 of 5)
+  aa7daf5  nlb_pulley_group_hidden_with_surface_in_atwood_mode (concept-2 fix, 5 of 5 - GUARD TRIPPED)
 
 engine_verify: check:renderer-syntax OK - tsc 0 errors - validate:concepts 125 PASS / 0 FAIL (after every seam)
 engine_regression: electric_flux 62/62 gates + magnetic_flux 38/38 gates, eye-walker NO REGRESSION on both (zero nlb_* leakage)
@@ -61,5 +85,30 @@ notes: Review-process lesson from concept 1, worth carrying through the chapter.
   worksheet disagree, PROBE THE RUNTIME rather than reasoning from either. A probe_definition scar row
   for the frozen-frame semantic is in docs/loop_runs/lom/_engine/scar_candidates.sql (text only, not
   applied) so the next concept does not pay for that dispatch again.
+
+notes: connected_bodies (concept 2) outcome, 2026-07-26. SEALED, 7 states, baselines locked by
+  auto-approve on quality-auditor PASS + eye-walker CLEAN (both explicitly recommended SEAL). Cost:
+  ONE content fix cycle (of 3) and THREE engine dispatches, each a genuinely distinct bug_class.
+  Full narrative in docs/loop_runs/lom/connected_bodies/engine_gap.md; SQL text (not applied) in
+  that dir's scar_candidates_connected_bodies.sql, also appended to lom/_engine/scar_candidates.sql.
+  THREE items ship UNFIXED and are yours to judge - both reviewers independently cleared all three:
+  (1) the sandbox F slider can drive a > g where a real rope would go slack, giving a magnitude-masked
+  impossible tension (needs deliberate extreme input; not JSON-fixable - the slider range is the
+  engine's shared panel); (2) STATE_7's m2 HUD bleeds into the slider panel, and its formula_overlay
+  was REMOVED rather than moved because the engine has no per-state positional override for those
+  hardcoded CSS zones; (3) STATE_6's pulley post base FLOATS now that the slab is hidden - that layer
+  had never rendered before the third fix, so nobody had ever seen it.
+
+notes: Two lessons from concept 2 worth carrying, both confirming concept 1's. FIRST: all three
+  defects passed 31/31 deterministic checks and were caught ONLY by the two reviewers reading the
+  runtime - eye-walker found the static S1/S2 in the pixels (byte-identical frames), quality-auditor
+  found a reverting HUD by probing readouts LATE in the state, and the invisible pulley was found
+  independently by BOTH. Keep them mandatory and parallel. SECOND, and this one paid for itself:
+  "probe the runtime rather than reason from either reviewer" - the first engine dispatch found that
+  the NAMED fix (seed the velocity) did not clear the symptom at all, and only a live probe revealed
+  the second link (the bounds veto zeroing the seed). A dispatch that trusted the diagnosis would
+  have reported success on a still-dead state. Unlike concept 1, neither reviewer produced a false
+  positive this time - both dispatch prompts listed concept 1's known false-positive classes
+  (frozen-frame semantics, the designed-around halt, the static incline) explicitly. Keep doing that.
 
 notes: Auto-approve is ON. quality-auditor PASS plus eye-walker clean (zero new engine_bug_queue rows) triggers npm run visual:approve automatically - no founder checkpoint. TTS, PILOT_CONCEPTS, build:pilot and deploy remain FOUNDER-GATED: the founder reviews each sealed concept, iterates anything wrong, and only then ships.
