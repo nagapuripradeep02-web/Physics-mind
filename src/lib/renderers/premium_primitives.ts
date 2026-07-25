@@ -20,7 +20,7 @@
 // Conventions matched to PARAMETRIC_RENDERER_CODE:
 //   - var (not let/const) — older browser-safe baseline
 //   - draw* function signature: (spec) => void
-//   - reads PM_animationGate / PM_focalPulseScale / PM_resolveAnchor / PM_hexToRgb
+//   - reads PM_animationGate / PM_focalEmphasis / PM_resolveAnchor / PM_hexToRgb
 //     from PARAMETRIC_RENDERER_CODE (those globals exist by the time these run)
 //   - reads PM_bodyRegistry / PM_surfaceRegistry / PM_currentState / PM_stateEnterTime
 //   - p5 globals: push/pop/translate/scale/stroke/fill/line/ellipse/etc.
@@ -144,15 +144,18 @@ function drawGlowFocus(spec) {
   var color = spec.color || '#FCD34D';      // amber-300 default
   var intensity = (typeof spec.intensity === 'number') ? spec.intensity : 0.55;
   var rgb = PM_hexToRgb(color);
-  var pulse = PM_focalPulseScale(spec);
-  var effectiveR = radius * pulse;
+  // Rule 29: emphasis is brightness, never size — the halo radius is CONSTANT;
+  // any focal/non-focal distinction modulates intensity (alpha) only.
+  var emph = PM_focalEmphasis(spec);
+  var effectiveR = radius;
+  var effectiveIntensity = intensity * emph.alphaMul;
   var ctx = drawingContext;
   push();
   // Radial gradient via canvas 2D context (drawingContext) — p5 doesn't expose
   // gradients directly. Center fully colored, edges transparent.
   var grad = ctx.createRadialGradient(center.x, center.y, 0, center.x, center.y, effectiveR);
-  grad.addColorStop(0,   'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + (intensity * gate.alpha).toFixed(3) + ')');
-  grad.addColorStop(0.6, 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + (intensity * 0.35 * gate.alpha).toFixed(3) + ')');
+  grad.addColorStop(0,   'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + (effectiveIntensity * gate.alpha).toFixed(3) + ')');
+  grad.addColorStop(0.6, 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + (effectiveIntensity * 0.35 * gate.alpha).toFixed(3) + ')');
   grad.addColorStop(1,   'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',0)');
   ctx.fillStyle = grad;
   ctx.beginPath();
@@ -309,11 +312,16 @@ function drawSoundCue(spec) {
   var key = spec.id || ('cue_' + (spec.sound || 'x') + '_' + (spec.appear_at_ms || 0));
   if (PM_soundCueFired[key]) return;
   // Wait for appear_at_ms before firing.
-  var elapsed = millis() - PM_stateEnterTime;
+  // Honour the host's clock pin when one exists (SET_TIME_FREEZE / Pause —
+  // root CLAUDE.md §6, Rule 26b). typeof-guarded: renderers that concatenate
+  // this file without the clock contract fall back to raw wall-clock.
+  var elapsed = (typeof PM_now === 'function') ? PM_now() : (millis() - PM_stateEnterTime);
   var trigger = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
   if (elapsed < trigger) return;
   PM_soundCueFired[key] = true;
   if (!PM_audioUnlocked) return;  // gesture-unlock not yet received
+  // Rule 26a — MUTE silences audio only; the clock above keeps running.
+  if (typeof PM_muted !== 'undefined' && PM_muted) return;
   var volume = (typeof spec.volume === 'number') ? spec.volume : 0.3;
   var sound = spec.sound || 'click';
   if (sound === 'whoosh') PM_playWhoosh(volume);

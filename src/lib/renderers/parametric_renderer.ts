@@ -25,6 +25,11 @@ export interface ParametricConfig {
     // Populated by applyBoardMode() in aiSimulationGenerator.ts when
     // examMode === 'board'.
     canvas_style?: 'default' | 'answer_sheet';
+    // Review-site path only (build_review_site.ts, 2026-07-23): fill the iframe
+    // and fit+center the 760×500 design space (letterboxed). Absent on the
+    // app/admin paths → fixed 760×500 canvas, behavior unchanged. Never combine
+    // with canvas_style 'answer_sheet'.
+    responsive_fill?: boolean;
 }
 
 // Rotate a math-frame force vector (fx, fy) into axes aligned at axisDeg.
@@ -350,6 +355,7 @@ function computePhysics(conceptId, vars) {
   if (conceptId === 'pressure_scalar') return computePhysics_pressure_scalar(vars);
   if (conceptId === 'vector_head_to_tail') return computePhysics_vector_head_to_tail(vars);
   if (conceptId === 'newton_second_law_direction') return computePhysics_newton_second_law_direction(vars);
+  if (conceptId === 'bohr_model_energy_levels') return computePhysics_bohr_model_energy_levels(vars);
   return null;
 }
 
@@ -367,6 +373,46 @@ function computePhysics_vector_head_to_tail(vars) {
     concept_id: 'vector_head_to_tail',
     variables: { d_east: d_east, d_north: d_north },
     derived: { d_resultant_mag: d_resultant_mag, theta_resultant_deg: theta_resultant_deg },
+    forces: []
+  };
+}
+
+// bohr_model_energy_levels — first CHEMISTRY concept through the pipeline
+// (Wave 1, 2026-07-23). Iframe-side fallback in case PM_PRECOMPUTED_PHYSICS
+// isn't injected. Mirrors the TS engine (bohrModelEnergyLevelsEngine in
+// physicsEngine/concepts/). Hydrogen Bohr energy levels: Eₙ = -13.6/n² eV.
+// A transition between n_start and n_end absorbs (n_end > n_start) or emits
+// (n_end < n_start) a photon of ΔE = |E_hi - E_lo| eV; λ = hc/ΔE using the
+// teaching-rounded hc = 1240 eV·nm constant (never propagated into stored ΔE).
+// delta_E_ev is pre-rounded to 2dp and lambda_nm to whole-nm so JSON labels
+// can reference {delta_E_ev} / {lambda_nm} directly without .toFixed().
+function computePhysics_bohr_model_energy_levels(vars) {
+  var n_start = (vars && vars.n_start != null) ? vars.n_start : 3;
+  var n_end = (vars && vars.n_end != null) ? vars.n_end : 2;
+  var n_hi = Math.max(n_start, n_end);
+  var n_lo = Math.min(n_start, n_end);
+  var E_hi = -13.6 / (n_hi * n_hi);
+  var E_lo = -13.6 / (n_lo * n_lo);
+  // Precise (unrounded) delta drives lambda -- rounding delta_E_ev to 2dp
+  // BEFORE dividing drifts lambda by up to 1 nm off the verified ledger
+  // (e.g. 6 to 2 gives 411 nm instead of the verified 410 nm). Round only
+  // for the DISPLAYED delta_E_ev, never for the lambda division itself.
+  var deltaEPrecise = Math.abs(E_hi - E_lo);
+  var delta_E_ev = Math.round(deltaEPrecise * 100) / 100;
+  var direction = (n_end > n_start) ? 'absorb' : ((n_end < n_start) ? 'emit' : 'none');
+  var lambda_nm = (deltaEPrecise > 0) ? Math.round(1240 / deltaEPrecise) : null;
+  var spectral_region = (lambda_nm == null) ? 'none' : ((lambda_nm < 400) ? 'UV' : ((lambda_nm <= 700) ? 'VISIBLE' : 'IR'));
+  return {
+    concept_id: 'bohr_model_energy_levels',
+    variables: { n_start: n_start, n_end: n_end },
+    derived: {
+      delta_E_ev: delta_E_ev,
+      lambda_nm: lambda_nm,
+      direction: direction,
+      spectral_region: spectral_region,
+      n_hi: n_hi,
+      n_lo: n_lo
+    },
     forces: []
   };
 }
@@ -421,7 +467,7 @@ function PM_animationGate(spec) {
   var disappearAt = (typeof spec.disappear_at_ms === 'number') ? spec.disappear_at_ms : Infinity;
   var fadeOutMs = (typeof spec.fade_out_ms === 'number') ? spec.fade_out_ms : 0;
   if (appearAt <= 0 && animMs <= 0 && disappearAt === Infinity) return { visible: true, alpha: 1 };
-  var elapsed = millis() - PM_stateEnterTime;
+  var elapsed = PM_now();
   if (elapsed < appearAt) return { visible: false, alpha: 0 };
   // Fade-out phase (after disappear_at_ms): alpha lerps 1 → 0 over fade_out_ms,
   // then visible=false. Lets STATE_6 fade out the trajectory + ghost balls + cannon
@@ -437,18 +483,24 @@ function PM_animationGate(spec) {
   return { visible: true, alpha: progress };
 }
 
-// ── Focal-primitive pulse ─────────────────────────────────────────────────
-// When the current state's focal primitive matches spec.id, apply a continuous
-// sine pulse (1 + 0.12 * sin wave) so the student's eye follows the narration.
-// Focal source priority:
+// ── Focal-primitive emphasis (Rule 29: brightness, NEVER size) ────────────
+// When the current state's focal primitive matches spec.id, emphasize it via
+// alpha + glow (drawingContext.shadowBlur/shadowColor) — never by scaling
+// geometry. Non-focal peers dim slightly so the eye is drawn to the focal
+// element; if the state declares no focal at all, nobody dims.
+// Focal source priority (unchanged from the old pulse mechanism):
 //   1. focal_sequence[] — timed per-sentence switching (highlight_primitive_id + duration_ms)
 //   2. focal_primitive_id — static fallback for the whole state
-// Returns a scale multiplier ≥1. Non-focal primitives return 1.0.
-function PM_focalPulseScale(spec) {
-  if (!spec || !spec.id) return 1;
+// Returns { isFocal, alphaMul, glowPx }. Callers multiply alphaMul into their
+// existing alpha channel and, when glowPx > 0, set+reset drawingContext's
+// shadowBlur/shadowColor around their draw calls (must reset — a leaked
+// shadow bleeds into every primitive drawn after it).
+function PM_focalEmphasis(spec) {
+  var NONE = { isFocal: false, alphaMul: 1, glowPx: 0 };
+  if (!spec || !spec.id) return NONE;
   var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
-  if (!stateData) return 1;
-  var elapsed = millis() - PM_stateEnterTime;
+  if (!stateData) return NONE;
+  var elapsed = PM_now();
 
   // Priority 1: focal_sequence — cycle through highlight_primitive_id by time
   var seq = stateData.focal_sequence;
@@ -466,9 +518,11 @@ function PM_focalPulseScale(spec) {
   // Priority 2: static focal_primitive_id
   if (!focalId) focalId = stateData.focal_primitive_id;
 
-  if (!focalId || focalId !== spec.id) return 1;
-  // Continuous sine pulse so the active arrow always glows while it is focal.
-  return 1 + 0.12 * Math.sin(elapsed / 400 * Math.PI);
+  // No focal declared for this state → nobody dims, nobody glows.
+  if (!focalId) return NONE;
+
+  if (focalId === spec.id) return { isFocal: true, alphaMul: 1, glowPx: 12 };
+  return { isFocal: false, alphaMul: 0.6, glowPx: 0 };
 }
 
 // ── Annotation overlap resolver ───────────────────────────────────────────
@@ -548,6 +602,20 @@ function PM_buildEvalScope(vars) {
     }
   }
   return { keys: keys, vals: vals };
+}
+
+// Current live vars for expression evaluation — slider values + derived
+// outputs merged, the same source PM_interpolate reads. Used by position_expr
+// (drawBody) so positional bindings see exactly what text bindings see.
+function PM_liveExprVars() {
+  var baseVars = (PM_physics && PM_physics.variables)
+    || (PM_config && PM_config.default_variables)
+    || {};
+  var derivedVars = (PM_physics && PM_physics.derived) || {};
+  var vars = {};
+  for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
+  for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  return vars;
 }
 
 // Safe-eval a JS expression with current vars in scope. Returns NaN on failure.
@@ -696,6 +764,21 @@ function drawBody(spec) {
 
   var pos = attachedPos || spec._resolvedPosition || spec.position || { x: 200, y: 200 };
 
+  // position_expr — live variable-driven position, the positional sibling of
+  // label_expr/text_expr (2026-07-24, chemistry explore states — GAP-2).
+  // Shape: { x: 'expr', y: 'expr' } — each expr evaluated against current
+  // slider/derived vars (+ Math) via PM_safeEval, so a body tracks its variable
+  // on drag (e.g. the Bohr electron riding its n-level rung). Physics overrides
+  // (attach_to_surface, motion integrator) win — they ARE the position. A
+  // non-finite eval keeps the static pos: a bad expr never blanks the body.
+  // Registered into PM_bodyRegistry downstream, so glow_focus tracks for free.
+  if (!attachedPos && !(spec.id && PM_motionState[spec.id]) && spec.position_expr) {
+    var peVars = PM_liveExprVars();
+    var peX = (spec.position_expr.x != null) ? PM_safeEval(String(spec.position_expr.x), peVars) : pos.x;
+    var peY = (spec.position_expr.y != null) ? PM_safeEval(String(spec.position_expr.y), peVars) : pos.y;
+    if (isFinite(peX) && isFinite(peY)) pos = { x: peX, y: peY };
+  }
+
   // Physics-driven animation delta. Engines learn nothing — JSONs declare the
   // animation shape and the renderer applies the equation.
   //   free_fall: y grows as 0.5·g·t²·PPM (true acceleration under gravity).
@@ -709,7 +792,7 @@ function drawBody(spec) {
   if (spec.animation && spec.animation.type === 'fade_in') {
     var faDelay = spec.animation.delay_sec || 0;
     var faDur = spec.animation.duration_sec || 0.8;
-    var faT = (millis() - PM_stateEnterTime) / 1000;
+    var faT = PM_now() / 1000;
     var faP = Math.max(0, Math.min(1, (faT - faDelay) / faDur));
     animOpacityMultiplier = faP;
   }
@@ -719,7 +802,7 @@ function drawBody(spec) {
   // slide compose correctly.
   if (spec.animation && (spec.animation.type === 'slide_horizontal'
        || spec.animation.type === 'slide_when_kinetic')) {
-    var slideTSec = (millis() - PM_stateEnterTime) / 1000;
+    var slideTSec = PM_now() / 1000;
     var slideAcc = 0;
     // Track whether accel came from an expression in m/s² (so we can do
     // directional decomposition correctly using the same px/m scale).
@@ -796,7 +879,7 @@ function drawBody(spec) {
   }
 
   if (!attachedPos && spec.animation && spec.animation.type) {
-    var tSec = (millis() - PM_stateEnterTime) / 1000;
+    var tSec = PM_now() / 1000;
     if (spec.animation.type === 'free_fall') {
       var durS = (spec.animation.duration_ms || 2500) / 1000;
       var tEff = Math.min(tSec, durS);
@@ -1093,22 +1176,31 @@ function drawLabel(spec) {
   if (!resolved) return;
   // Phase 2 solver: prefer solver-resolved position when host wrote one.
   var pos = spec._solverPosition || spec.position;
-  var size = (spec.font_size || 14) * PM_focalPulseScale(spec);
+  var size = spec.font_size || 14; // Rule 29: focal never changes size — brightness only.
   var color = spec.color || '#D4D4D8';
   var rgb = PM_hexToRgb(color);
+  var emph = PM_focalEmphasis(spec);
 
   push();
   noStroke();
-  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha);
+  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
   textSize(size);
   textAlign(CENTER, CENTER);
   if (spec.bold) textStyle(BOLD); else textStyle(NORMAL);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = color;
+    drawingContext.shadowBlur = emph.glowPx;
+  }
 
   var lines = String(resolved).split('\\n');
   var lineH = size * 1.25;
   var startY = pos.y - ((lines.length - 1) * lineH) / 2;
   for (var i = 0; i < lines.length; i++) {
     text(lines[i], pos.x, startY + i * lineH);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   textStyle(NORMAL);
   pop();
@@ -1121,15 +1213,15 @@ function drawAnnotation(spec) {
   var resolved = PM_interpolate(spec.text || '');
   if (!resolved) return;
   var pos = spec._solverPosition || spec.position;
-  var size = 12;
-  var pulseS = PM_focalPulseScale(spec);
+  var size = 12; // Rule 29: focal never changes size — brightness only.
   var color = spec.color || '#94A3B8';
   var rgb = PM_hexToRgb(color);
+  var emph = PM_focalEmphasis(spec);
   var lines = String(resolved).split('\\n');
   var lineH = size * 1.35;
 
   push();
-  textSize(size * pulseS);
+  textSize(size);
   textAlign(LEFT, TOP);
   textStyle(NORMAL);
 
@@ -1162,9 +1254,17 @@ function drawAnnotation(spec) {
   }
 
   noStroke();
-  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha);
+  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = color;
+    drawingContext.shadowBlur = emph.glowPx;
+  }
   for (var j = 0; j < lines.length; j++) {
     text(lines[j], annX, annY + j * lineH);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
@@ -1296,11 +1396,13 @@ function drawForceArrow(spec, physics, origin) {
 
   var gate = PM_animationGate(spec);
   if (!gate.visible) return;
-  var pulseS = PM_focalPulseScale(spec);
 
   var scale = spec.scale_pixels_per_unit || 5;
   var color = spec.color || force.color || '#EF4444';
+  // Rule 29: focal emphasis is alpha + glow; the arrow's geometry
+  // (stroke weight, arrowhead, label size) is invariant.
   var rgb = PM_hexToRgb(color);
+  var emph = PM_focalEmphasis(spec);
 
   // Physics y-up → canvas y-down: flip y. Multiply by gate.alpha so the arrow
   // grows from its origin to its tip as it reveals.
@@ -1310,11 +1412,15 @@ function drawForceArrow(spec, physics, origin) {
   var x2 = x1 + dx, y2 = y1 + dy;
 
   push();
-  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha); strokeWeight(2 * pulseS);
-  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha);
+  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul); strokeWeight(2);
+  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = color;
+    drawingContext.shadowBlur = emph.glowPx;
+  }
 
   var angle = Math.atan2(dy, dx);
-  var headLen = 12 * pulseS;
+  var headLen = 12;
   var hx1 = x2 - headLen * Math.cos(angle - Math.PI / 6);
   var hy1 = y2 - headLen * Math.sin(angle - Math.PI / 6);
   var hx2 = x2 - headLen * Math.cos(angle + Math.PI / 6);
@@ -1328,7 +1434,7 @@ function drawForceArrow(spec, physics, origin) {
   // spec.label_position: 'perpendicular' places label at arrow midpoint
   //   offset perpendicular to the arrow direction — use for cramped FBDs where
   //   multiple arrows share an origin.
-  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha); noStroke(); textSize(12 * pulseS);
+  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul); noStroke(); textSize(12);
   // Label priority (tightest wins):
   //   1. spec.label_override — interpolated template, dynamic per state
   //   2. spec.label          — author's literal label from the concept JSON
@@ -1357,6 +1463,10 @@ function drawForceArrow(spec, physics, origin) {
     if (typeof spec.label_offset.dy === 'number') ly += spec.label_offset.dy;
   }
   text(arrowLabel, lx, ly);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
   pop();
 }
 
@@ -1436,7 +1546,7 @@ function drawForceComponents(spec, physics) {
 
   // Entry animation
   var animMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 600;
-  var elapsed = millis() - PM_stateEnterTime;
+  var elapsed = PM_now();
   var progress = animMs > 0 ? Math.min(1, Math.max(0, elapsed / animMs)) : 1;
 
   var pDelta = p * scale * progress;
@@ -1913,12 +2023,12 @@ function drawFormulaBox(spec) {
   var pos = spec._solverPosition || spec.position || { x: 500, y: 300 };
   var textStr = PM_interpolate(String(src));
   var lines = textStr.split('\\n');
-  var pulseS = PM_focalPulseScale(spec);
-  var lineHeight = 18 * pulseS;
+  // Rule 29: focal never changes size — geometry constant, brightness only.
+  var lineHeight = 18;
   var padding = 10;
 
   push();
-  textSize(14 * pulseS);
+  textSize(14);
   textStyle(BOLD);
   var maxW = 0;
   for (var i = 0; i < lines.length; i++) {
@@ -1927,7 +2037,9 @@ function drawFormulaBox(spec) {
   }
   var boxW = maxW + padding * 2;
   var boxH = lines.length * lineHeight + padding * 2;
-  var rgb = PM_hexToRgb(spec.border_color || '#3B82F6');
+  var fbColor = spec.border_color || '#3B82F6';
+  var rgb = PM_hexToRgb(fbColor);
+  var emph = PM_focalEmphasis(spec);
 
   // Right-edge clamp: canvas is 760px wide. If the computed box would overflow
   // past 760-10 (10px margin), shift the whole box left so the equation is
@@ -1940,15 +2052,23 @@ function drawFormulaBox(spec) {
 
   // Dark background for contrast
   fill(15, 23, 42, 230 * gate.alpha);
-  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha);
+  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
   strokeWeight(1.5);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = fbColor;
+    drawingContext.shadowBlur = emph.glowPx;
+  }
   rect(pos.x, pos.y, boxW, boxH, 4);
 
   noStroke();
-  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha);
+  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
   textAlign(LEFT, TOP);
   for (var j = 0; j < lines.length; j++) {
     text(lines[j], pos.x + padding, pos.y + padding + j * lineHeight);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
@@ -1966,7 +2086,7 @@ function drawDerivationStep(spec) {
   var alpha = 255;
   var animate = spec.animate_in || 'none';
   if (animate !== 'none') {
-    var elapsed = millis() - PM_stateEnterTime;
+    var elapsed = PM_now();
     if (animate === 'handwriting') {
       var charsPerSec = 28;
       var charsToShow = Math.min(displayText.length, Math.floor((elapsed / 1000) * charsPerSec));
@@ -2201,10 +2321,13 @@ function drawCanvasSlider(spec, idx, total) {
   pop();
 
   // Drag handling — single-slider-at-a-time to avoid cross-interference.
+  // Mouse mapped into 760×500 design space (identity unless responsive_fill).
+  var dMouseX = PM_mouseXd();
+  var dMouseY = PM_mouseYd();
   var hit = mouseIsPressed
-    && Math.abs(mouseY - slot.y) < 18
-    && mouseX > slot.x - 8
-    && mouseX < slot.x + slot.w + 8;
+    && Math.abs(dMouseY - slot.y) < 18
+    && dMouseX > slot.x - 8
+    && dMouseX < slot.x + slot.w + 8;
 
   // Claim active slider on press (prevents two sliders claiming the same drag).
   if (hit && PM_activeSliderId == null) {
@@ -2216,7 +2339,7 @@ function drawCanvasSlider(spec, idx, total) {
   var isActive = PM_activeSliderId === (spec.id || spec.variable);
 
   if (hit && isActive) {
-    var newFrac = Math.max(0, Math.min(1, (mouseX - slot.x) / slot.w));
+    var newFrac = Math.max(0, Math.min(1, (dMouseX - slot.x) / slot.w));
     var rawVal = minV + newFrac * (maxV - minV);
     var step = (typeof spec.step === 'number' && spec.step > 0) ? spec.step : (maxV - minV) / 100;
     var snapped = Math.round(rawVal / step) * step;
@@ -2266,6 +2389,46 @@ var PM_currentState = 'STATE_1';
 var PM_bodyRegistry = {};
 var PM_surfaceRegistry = {};
 var PM_stateEnterTime = 0; // millis() at last STATE ENTER — used by animated primitives
+
+// ─── Player clock contract (root CLAUDE.md §6 · Rule 26b) ───────────────────
+// PM_clockPinMs !== null  ⇒ the state-local clock is PINNED at that value.
+// EVERY animation gate reads PM_now(), never millis() directly, so one pin
+// freezes the entire scene deterministically. Two consumers depend on this:
+//   • THE EYE  — SET_TIME_FREEZE {at_ms} is its capture pin; without it the
+//     frozen baselines are not reproducible and the family cannot be gated.
+//   • Pause    — Rule 26b freezes clock + audio together; audio-only pause
+//     while the canvas keeps animating means a teacher cannot hold a frame.
+// Added 2026-07-24: this renderer previously honoured only USER_GESTURE /
+// SET_STATE / PARAM_UPDATE, so Play / Pause / Replay were inert on the whole
+// parametric family (engine_bug_queue: parametric_renderer_ignores_player_clock_contract).
+var PM_clockPinMs = null;
+
+// Rule 26a — MUTE is audio-only; the clock keeps running. Read by the
+// sound_cue play path in premium_primitives (guarded by typeof, since other
+// renderers concatenate that file without declaring this).
+var PM_muted = false;
+
+function PM_now() {
+  if (PM_clockPinMs !== null) return PM_clockPinMs;
+  return millis() - PM_stateEnterTime;
+}
+
+/** Release a pin, resuming from where it was pinned (never a jump forward). */
+function PM_releaseClockPin() {
+  if (PM_clockPinMs === null) return;
+  PM_stateEnterTime = millis() - PM_clockPinMs;
+  PM_clockPinMs = null;
+}
+
+/** Rewind this state's choreography to t=0 and run (Play / Replay / Reset). */
+function PM_restartStateClock() {
+  PM_clockPinMs = null;
+  PM_stateEnterTime = millis();
+  PM_motionState = {};
+  PM_motionConfig = {};
+  PM_lastFrameMs = 0;
+  PM_motionNeedsInit = true;
+}
 var PM_sliderValues = {}; // { [variable]: number } — canvas-slider live values, seeded from default_variables
 var PM_sliderLastEmitted = {}; // { [variable]: number } — debounce PARAM_UPDATE to value changes only
 var PM_activeSliderId = null; // id of slider currently being dragged (single-touch)
@@ -2428,9 +2591,44 @@ function PM_resolveForceOrigin(spec, force, fallback) {
   return { x: b.cx + dx, y: b.cy + dy };
 }
 
+// ─── Responsive fill (opt-in via config.responsive_fill — review-site path) ──
+// The design space stays 760×500 (every authored coordinate, zone table, and
+// clamp in this file assumes it). When responsive_fill is set, the canvas is
+// created at the full iframe size and draw() wraps the design space in a
+// translate+scale that FITS and CENTERS it (letterboxed on the uniform dark
+// background). Mouse coords are mapped back into design space for the canvas
+// slider hit-testing. When the flag is absent (app/admin/legacy paths) every
+// branch below is a no-op: fixed 760×500 canvas, scale 1, offset 0 — behavior
+// identical to before this block existed. NOT used with canvas_style
+// 'answer_sheet' (board-mode rules draw outside the fit transform).
+var PM_responsive = false;
+var PM_fitScale = 1, PM_fitX = 0, PM_fitY = 0;
+function PM_beginFitTransform() {
+  if (!PM_responsive) { PM_fitScale = 1; PM_fitX = 0; PM_fitY = 0; return; }
+  PM_fitScale = Math.min(width / 760, height / 500);
+  PM_fitX = (width - 760 * PM_fitScale) / 2;
+  PM_fitY = (height - 500 * PM_fitScale) / 2;
+  push();
+  translate(PM_fitX, PM_fitY);
+  scale(PM_fitScale);
+}
+function PM_endFitTransform() {
+  if (PM_responsive) pop();
+}
+function PM_mouseXd() { return (mouseX - PM_fitX) / PM_fitScale; }
+function PM_mouseYd() { return (mouseY - PM_fitY) / PM_fitScale; }
+function windowResized() {
+  if (PM_responsive) resizeCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
-  createCanvas(760, 500);
   PM_config = window.SIM_CONFIG || {};
+  PM_responsive = !!PM_config.responsive_fill;
+  if (PM_responsive) {
+    createCanvas(windowWidth, windowHeight);
+  } else {
+    createCanvas(760, 500);
+  }
   PM_currentState = PM_config.current_state || 'STATE_1';
   PM_physics = window.PM_PRECOMPUTED_PHYSICS || computePhysics(PM_config.concept_id, PM_resolveStateVars(PM_currentState));
   PM_stateEnterTime = millis();
@@ -2442,7 +2640,7 @@ function draw() {
   // headless screenshotter can poll for reveals to fire. Parametric gates reveals
   // on millis() (wall-clock), so this is already correct under throttling — exposed
   // for a uniform poll path with field_3d (which is frame-count-based and DOES lag).
-  window.PM_simTimeMs = millis() - PM_stateEnterTime;
+  window.PM_simTimeMs = PM_now();
   var isAnswerSheet = PM_config && PM_config.canvas_style === 'answer_sheet';
   if (isAnswerSheet) {
     background(253, 251, 244); // off-white paper
@@ -2480,6 +2678,12 @@ function draw() {
     text('Unknown concept: ' + (PM_config && PM_config.concept_id), 380, 250);
     return;
   }
+
+  // Responsive-fill open — maps the 760×500 design space onto the real canvas
+  // (fit + center). No-op unless config.responsive_fill. Placed AFTER the
+  // early-return so a leaked push() can't escape; matched by
+  // PM_endFitTransform() at the very end of draw().
+  PM_beginFitTransform();
 
   // smooth_camera open — wraps the rest of draw() in a push()/translate/scale.
   // Placed AFTER the !PM_physics early-return so a leaked push() can't escape.
@@ -2615,6 +2819,8 @@ function draw() {
     }
   }
   // (Concept debug badge removed — was leaking as "[pcpl] …" into the student UI.)
+  // Responsive-fill close — matches PM_beginFitTransform() near the top of draw().
+  PM_endFitTransform();
 }
 
 window.addEventListener('message', function(e) {
@@ -2628,6 +2834,46 @@ window.addEventListener('message', function(e) {
     if (ctxResumeTarget && ctxResumeTarget.state === 'suspended') {
       try { ctxResumeTarget.resume(); } catch (err) {}
     }
+    return;
+  }
+  // ── Player clock contract (root CLAUDE.md §6 · Rule 26b) ──────────────────
+  // SET_TIME_FREEZE {at_ms}      → pin the state-local clock (THE EYE capture
+  //                                pin; also the review player's Pause).
+  // SET_TIME_FREEZE {frozen:false} → release, resuming from the pinned value.
+  if (e.data.type === 'SET_TIME_FREEZE') {
+    if (e.data.frozen === false) {
+      PM_releaseClockPin();
+    } else {
+      PM_clockPinMs = (typeof e.data.at_ms === 'number')
+        ? e.data.at_ms
+        : PM_now();
+    }
+    return;
+  }
+  // Play / Replay / Reset — rewind this state's choreography to t=0 and run.
+  // The player fires RESET_TRAJECTORY + REPLAY_ANIMATIONS together on ▶ Play.
+  if (e.data.type === 'RESET_TRAJECTORY' || e.data.type === 'REPLAY_ANIMATIONS') {
+    PM_restartStateClock();
+    return;
+  }
+  // Rule 26b — PAUSE/RESUME move the clock AND audio together. (The review
+  // player drives pause via SET_TIME_FREEZE above; these are honoured too so
+  // the family satisfies the full §6 contract for any host.)
+  if (e.data.type === 'PAUSE') {
+    if (PM_clockPinMs === null) PM_clockPinMs = PM_now();
+    var ctxPause = PM_ensureAudioCtx();
+    if (ctxPause && ctxPause.state === 'running') { try { ctxPause.suspend(); } catch (err) {} }
+    return;
+  }
+  if (e.data.type === 'RESUME') {
+    PM_releaseClockPin();
+    var ctxResume = PM_ensureAudioCtx();
+    if (ctxResume && ctxResume.state === 'suspended') { try { ctxResume.resume(); } catch (err) {} }
+    return;
+  }
+  // MUTE — audio only; the clock keeps running (Rule 26a).
+  if (e.data.type === 'MUTE') {
+    PM_muted = !!e.data.muted;
     return;
   }
   if (e.data.type === 'SET_STATE') {
