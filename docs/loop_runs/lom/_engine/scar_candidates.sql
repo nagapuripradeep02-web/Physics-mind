@@ -353,3 +353,36 @@ INSERT INTO engine_bug_queue (
     '2026-07-25 lom chapter loop cycle 1 — coast_body_halts_mid_state_despite_authored_length_m',
     'incident'
 );
+
+-- ── lom-a / free_body_diagram cycle 3 (2026-07-25) — frame-reading protocol, NOT a code defect ──
+-- Raised after eye-walker opened a MAJOR "body jumps backward" finding on free_body_diagram STATE_3
+-- that a runtime probe + pixel-centroid measurement disproved (dense_t10000 is at x=826px, the dense
+-- series is linear, and the frozen frame is a re-entered state pinned at maxRevealMs by construction).
+-- Costs a full engine dispatch each time it recurs, so it is worth a permanent probe.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'frozen_frame_read_as_dense_series_continuation_on_translating_body',
+    'A __frozen frame is a RE-ENTERED state pinned at maxRevealMs, not the end-of-timeline pose — reading it as the dense series'' last sample mints a phantom "body jumped backward" defect on any continuously-translating scenario',
+    'MODERATE',
+    'ambiguous',
+    'captureFrozenFrame() posts RESET_TRAJECTORY + REPLAY_ANIMATIONS + SET_TIME_FREEZE{at_ms: maxRevealMs} BEFORE its screenshot, so the frozen frame shows the state re-run from its own t=0 and held at the reveal pin. For every legacy field_3d scenario the reveal SATURATES (the picture stops changing once revealed), so frozen is pixel-identical to every later dense frame and the semantic is invisible. A scenario whose taught motion is a continuous translation (newtons_laws_body coast/accelerate modes) has NO settled beat: its frozen frame is legitimately BEHIND the last dense frame by (denseDuration - revealMs) x v. free_body_diagram STATE_3 (v=1 m/s, reveal 3000ms, dense 10000ms) reads as a backward jump, and lands beside a ghost body parked at -3 m, which makes the artifact look like a wrap/reset defect. Sibling STATE_4 (no ghost, reveal 4000ms) shows the identical numeric behaviour and was reported clean.',
+    'When judging a translating-body scenario, compare frozen ONLY against the dense frame at that state''s own maxRevealMs (derived in deriveStateMeta), never against dense''s last sample. Before opening a "position jumped/wrapped" finding on any integrating scenario, measure the body centroid across the WHOLE dense series: a wrap is a non-monotonic step INSIDE the series. Frame-reading reports must state which capture role (state_panel_a / dense_tNNNNN / frozen) each cited position came from.',
+    'js_eval',
+    'Drive THE EYE message order against the real config; assert the dense samples of s are monotonic and equal s0 + v*t within one 16ms step, and assert frozen s == dense s at t = maxRevealMs. Divergence between those two assertions distinguishes a real wrap from the frozen-pin semantic.',
+    'OPEN',
+    ARRAY['free_body_diagram','connected_bodies','block_on_incline']::text[],
+    ARRAY[]::text[],
+    'lom-a cycle 3 free_body_diagram coast_position_wraps triage 2026-07-25',
+    'probe_definition'
+);
+
+-- FOUNDER DECISION (deferred, not applied): free_body_diagram STATE_3's frozen frame — the canonical
+-- reviewer screenshot AND the H2 baseline — pins at 3000 ms, which leaves the coasting body still
+-- overlapping the ghost, under-selling the state's teaching point (the GROWING GAP between the moving
+-- body and the frozen ghost is the whole idea). Nudging coast_no_force's reveal candidate later (e.g.
+-- 6000 ms -> s = +1 m, a clear 4 m gap) is a one-line change in deriveStateMeta.ts, but it moves H2
+-- pixels and is a legibility judgment, so it was NOT taken in the loop. Same applies to
+-- coast_with_friction (STATE_4, 4000 ms). Raised by field3d-surgeon 2026-07-25.

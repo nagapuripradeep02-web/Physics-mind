@@ -526,9 +526,12 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
 
     free_body_diagram: {
         concept_id: 'free_body_diagram',
-        layout: 'dual_horizontal',
-        primary: { renderer: 'mechanics_2d', config_key: 'free_body_diagram', label: 'Free Body Diagram' },
-        secondary: { renderer: 'graph_interactive', config_key: 'fbd_graph', label: 'Force Balance' },
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'free_body_diagram',
+            label: 'Free Body Diagram — Isolate One Body, Draw Every Force (3D)',
+        },
     },
 
     // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics

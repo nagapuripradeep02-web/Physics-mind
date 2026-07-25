@@ -760,7 +760,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline
   tension_in_string       ← rope tension, Atwood machine, T = 2m₁m₂g/(m₁+m₂)
   hinge_force             ← pin joint, rod on wall, hinge reaction
-  free_body_diagram       ← FBD, isolate body, force diagram
+  free_body_diagram       ← FBD, isolate body, force diagram, N = mg cosθ on incline, string tension T = mg
   friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
 
@@ -965,7 +965,7 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "friction and normal force together" → contact_forces
 - "tension in rope" / "Atwood machine" → tension_in_string
 - "hinge force on rod" → hinge_force
-- "draw FBD" / "free body diagram" / "forces on block" → free_body_diagram
+- "draw FBD" / "free body diagram" / "forces on block" / "isolate the body" / "why is N smaller on an incline" / "tension instead of normal force" → free_body_diagram
 - "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
 
