@@ -30807,6 +30807,11 @@ export const FIELD_3D_RENDERER_CODE = `
 
         window.PM_nlbEngine = eng;
         window.PM_nlbBodyDragged = false;
+        // Branch B seeds the SHARED string speed from the authored v0 (see
+        // nlbSeedKinematics) — a per-body b.v alone is discarded on the first
+        // coupled tick. No-op for an uncoupled state beyond the v_string/a_string
+        // zeroing the engine literal already did.
+        nlbSeedKinematics();
 
         // Surface pose + per-body visibility/label/colour + home position.
         nlbApplySurface(thetaDeg, lenM);
@@ -30833,7 +30838,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (o.material && o.material.color) o.material.color.set(hexToThreeColor(col));
                 if (o.material && o.material.emissive) o.material.emissive.set(hexToThreeColor(col));
                 if (o.material && o.material.userData) { o.material.userData._glowBaseCol = null; o.material.userData._glowBaseOp = null; }
-                nlbSetBodyPosition(bd.id, bd.initial_position_m || 0);
+                // From the ENGINE record, not the raw JSON: a coupled seed may have
+                // been pulled inside its own clamp band by nlbSeedKinematics (a
+                // hanging body authored at s = 0 sits below the pulley clearance),
+                // and re-placing the mesh at the raw authored value would put it
+                // back out of bounds for the state's first rendered frame.
+                var seededB = eng.bodies[bd.id];
+                nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
             } else if (bd.label) {
                 updateLabelSpriteText(o, bd.label);
             }
@@ -30899,6 +30910,89 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbApplyGlow();
     }
 
+    // ── Coupled seed — the authored initial conditions -> the string state ──────
+    //   Two seeds, one entry path: (1) every coupled body's start position pulled
+    //   inside its own clamp band, (2) the authored initial_velocity_mps converted
+    //   into the SHARED along-string speed. Both are required to make an authored
+    //   coupled glide actually start — see the numbered blocks below.
+    //   Branch B integrates ONE scalar q along the string and derives every body's
+    //   velocity as v_i = c_i*q, overwriting b.v on every tick — so a per-body v
+    //   seeded from initial_velocity_mps alone is thrown away on the first frame
+    //   and a coupled state authored as a constant-velocity glide never starts
+    //   (engine_bug_queue nlb_coupled_initial_velocity_never_seeded:
+    //   connected_bodies STATE_1/STATE_2 author v0 = 0.35 m/s and sat at
+    //   s = -4.2 m, v = 0.00 for the whole state — a byte-identical scene from
+    //   t = 0 to t = 15000 ms). The seed must therefore be converted INTO q here.
+    //   c_i convention is EXACTLY branch B's (keep the two in step): the ref body
+    //   is pulley.body_a_id when present and non-ghost else the first non-ghost
+    //   body, c_ref = +1, and every other body takes c_i = -(sigma_ref*sigma_i)
+    //   with sigma = +1 hanging / -1 on the surface.
+    //   The string carries ONE speed, so the FIRST non-ghost body in authored
+    //   order with a non-zero v0 defines it — a second, inconsistent v0 cannot
+    //   physically be honoured. Every body's live v is then written back as c_i*q
+    //   so the pre-tick HUD/arrows already agree with the first integrated frame.
+    //   Pure seeding: no clock, no dt, no integration (Rule 36) — it runs on state
+    //   entry and on RESET_TRAJECTORY only, so a frozen pin stays byte-stable and
+    //   a replayed state rewinds velocity as well as position. The v0 SLIDER path
+    //   (nlbApplyParam) already wrote eng.v_string itself and is unchanged.
+    //   Uncoupled states are bit-for-bit unchanged (v_string/a_string = 0, b.v
+    //   untouched).
+    function nlbSeedKinematics() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return;
+        eng.a_string = 0;
+        if (!eng.coupled) { eng.v_string = 0; return; }
+        var pul = eng.pulley || {};
+        var refId = (pul.body_a_id && eng.bodies[pul.body_a_id] && !eng.bodies[pul.body_a_id].ghost) ? pul.body_a_id : null;
+        if (!refId) {
+            for (var r = 0; r < eng.order.length; r++) {
+                var rb = eng.bodies[eng.order[r]];
+                if (rb && !rb.ghost) { refId = rb.id; break; }
+            }
+        }
+        if (!refId) { eng.v_string = 0; return; }
+        var sigRef = eng.bodies[refId].hanging ? 1 : -1;
+        // (1) POSITION — pull every coupled seed INSIDE its own clamp band FIRST.
+        //   Branch B bounds the STRING, not the bodies: if ANY body's next position
+        //   would leave its band the whole step is vetoed (sAdv = 0, v_string = 0).
+        //   A hanging body authored with no initial_position_m starts at s = 0,
+        //   which is BELOW the pulley-clearance bound (NLB_HANG_MIN_M = 1.15 m), so
+        //   frame 1 vetoed unconditionally and ZEROED the string speed seeded just
+        //   below — the authored glide died before it took a single step (probe:
+        //   entry left B snapped to s = 1.150, v_string = 0; hand-writing s = 1.2 +
+        //   v_string = 0.35 into the live engine made both bodies glide at exactly
+        //   0.350 m/s). The clamp only anticipates the snap the integrator performs
+        //   on its own first frame, so the settled pose is identical — it just
+        //   removes the spurious veto (and the one frame where a hanging body was
+        //   drawn swallowing the wheel). s0 is clamped with s so RESET_TRAJECTORY
+        //   restores a LEGAL seed. Uncoupled states never reach this (returned above).
+        for (var p = 0; p < eng.order.length; p++) {
+            var bp = eng.bodies[eng.order[p]];
+            if (!bp || bp.ghost) continue;
+            var bdp = nlbBoundsM(bp, eng.length_m);
+            var sp = bp.s;
+            if (sp < bdp.lo) sp = bdp.lo; else if (sp > bdp.hi) sp = bdp.hi;
+            bp.s = sp; bp.s0 = sp;
+            nlbSetBodyPosition(bp.id, sp);
+        }
+        // (2) VELOCITY — the authored v0 -> the shared scalar q.
+        var q = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost) continue;
+            var ci = (b.id === refId) ? 1 : -(sigRef * (b.hanging ? 1 : -1));
+            var bv0 = (b.v0 != null) ? b.v0 : 0;
+            if (bv0) { q = ci * bv0; break; }      // |c_i| = 1, so q = v_i / c_i = c_i * v_i
+        }
+        eng.v_string = q;
+        for (var k = 0; k < eng.order.length; k++) {
+            var bk = eng.bodies[eng.order[k]];
+            if (!bk || bk.ghost) continue;
+            var ck = (bk.id === refId) ? 1 : -(sigRef * (bk.hanging ? 1 : -1));
+            bk.v = ck * q;
+        }
+    }
+
     // ── RESET_TRAJECTORY — rewind THIS state to its own t = 0 ─────────────
     //   Every other field_3d scenario poses from a closed form of
     //   (time - stateStartTime), so the shared RESET_TRAJECTORY handler rebasing
@@ -30926,7 +31020,10 @@ export const FIELD_3D_RENDERER_CODE = `
             b.a = 0; b.F_net = 0; b._stuck = false;
             nlbSetBodyPosition(b.id, b.s);
         }
-        eng.v_string = 0; eng.a_string = 0;
+        // The shared string speed rewinds to the SAME seed state entry uses (the
+        // authored v0, or the teacher's v0-slider value, which nlbApplyParam wrote
+        // into b.v0) — a hard zero here left a replayed coupled glide dead still.
+        nlbSeedKinematics();
         eng.t_ms = 0;                       // state-local sim clock, back to 0
         window.PM_nlbTimeMs = 0;
         eng.phase_fired = {};               // one-shots re-arm, exactly as on entry
