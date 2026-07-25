@@ -1,6 +1,6 @@
 # lom-a loop state
 
-updated: 2026-07-26 (connected_bodies SEALED - concept 2 of 3 done - LOOP PAUSED, runaway guard tripped)
+updated: 2026-07-26 (LOOP RELEASED by founder - runaway guard cleared, block_on_incline authorized to run)
 
 >> LOOP PAUSED - FOUNDER DECISION NEEDED BEFORE THE NEXT SESSION <<
    Loop-phase engine commits now stand at 5 of 5, which is the CHAPTER_LOOP.md §3b runaway guard
@@ -18,7 +18,7 @@ updated: 2026-07-26 (connected_bodies SEALED - concept 2 of 3 done - LOOP PAUSED
 
 review_port: 8089
 regression_sample: electric_flux, magnetic_flux
-next: block_on_incline - HELD, see the pause notice above. When released: it shares the friction/
+next: block_on_incline - RELEASED (founder 2026-07-26). Single body on a slope: no coupling, no second body, no pulley - the simplest remaining path and one already exercised by three sealed concepts. Author it normally per CHAPTER_LOOP section 3.
   threshold path with connected_bodies, and its central beat ("tilt the ramp until the block breaks
   away at tan theta = mu_s") REQUIRES the param_ramp engine knob that CHAPTER_LOOP.md §7.1 already
   pre-approves - do not work around it by rewriting narration, and do not re-decide it. Read
@@ -112,3 +112,9 @@ notes: Two lessons from concept 2 worth carrying, both confirming concept 1's. F
   (frozen-frame semantics, the designed-around halt, the static incline) explicitly. Keep doing that.
 
 notes: Auto-approve is ON. quality-auditor PASS plus eye-walker clean (zero new engine_bug_queue rows) triggers npm run visual:approve automatically - no founder checkpoint. TTS, PILOT_CONCEPTS, build:pilot and deploy remain FOUNDER-GATED: the founder reviews each sealed concept, iterates anything wrong, and only then ships.
+
+notes: 2026-07-26 RUNAWAY GUARD RELEASED BY FOUNDER. The guard tripped at 5 loop-phase engine commits and correctly paused before block_on_incline. Founder reviewed the breakdown and released it. Rationale on the record: the guard exists to catch the Ch.7 pattern of EXTENDING THE ENGINE PER CONCEPT (28 commits across 8 concepts). That is not what these 5 were. Four were genuine shared-engine defects concentrated in the coupled Branch B path - RESET_TRAJECTORY no-op, two-body lane occlusion, coupled v0 never seeded, coupled readouts reverting on a bound halt - and Branch B is exercised by exactly ONE concept, connected_bodies, which is now SEALED. The fifth was a founder-introduced regression, not an engine gap: the surface.hidden fix suppressed nlb_surface_group, which is also the pulley bracket's parent, so hiding the table took the pulley with it. Across all 5 sealed concepts, ZERO renderer edits appear inside any concept commit - the design claim held.
+
+notes: ENGINE-FIX BUDGET RESET to 0 for block_on_incline. Fresh guard: pause again at 3 NEW engine commits during this concept. It is a single body on a slope - no coupling, no second body, no pulley - so it uses the simplest path in the engine and 3 fixes would genuinely indicate something systemic.
+
+notes: param_ramp IS PRE-AUTHORIZED and does NOT count against the fresh 3-commit budget (see CHAPTER_LOOP.md section 7.1). It is a deliberate, named ENGINE ADDITION, not a defect: the engine has no monotonic parameter reveal for a guided state (idle_auto_sweep is a repeating triangle, phases[] drives glow only), and tilt-until-break-away at tan(theta) = mu_s IS this concept's central beat. free_body_diagram STATE_5 was allowed to author around a static incline because tilt was not its point; block_on_incline is NOT allowed to. Do not rewrite the narration to dodge it - dispatch field3d-surgeon per section 7.1, and if the addition fails twice, PARK the concept and report rather than shipping a weakened break-away beat.
