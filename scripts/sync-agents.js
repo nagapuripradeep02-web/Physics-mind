@@ -50,6 +50,10 @@ const ROLES = [
   { canonical: 'eye_walker',          emission: 'eye-walker'          },
   { canonical: 'retrofit_surgeon',    emission: 'retrofit-surgeon'    },
   { canonical: 'shipper',             emission: 'shipper'             },
+  // added 2026-07-25 — field3d_surgeon (Laws of Motion chapter loop; engine specialist).
+  // Kept because it averages ~3.4M tokens/dispatch on field_3d engine work versus ~25M for a
+  // general-purpose dispatch doing the same job. founder_proxy is deliberately NOT on this branch.
+  { canonical: 'field3d_surgeon',     emission: 'field3d-surgeon'     },
 ];
 
 const H1 = /^#\s/; // a markdown H1 line ("# ...")
