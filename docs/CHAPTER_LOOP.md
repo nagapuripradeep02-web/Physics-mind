@@ -179,3 +179,42 @@ There is no completion incentive in this loop. A parked concept is a normal, cor
 concept shipped past a real defect is not. Budget caps exist to force a PARK, never to lower the bar.
 The founder's own review is the real gate — auto-approve (Amendment 6) speeds the loop up, it does
 not replace their judgment.
+
+---
+
+## §7 — Known engine gaps and PRE-APPROVED fixes
+
+Findings carried forward from an earlier concept in this chapter. These are founder-visible and the
+listed fix is **already authorized** — do not spend a cycle re-deciding, and do not work around one by
+rewriting narration when it is the concept's central beat.
+
+### 7.1 — `param_ramp`: no monotonic parameter reveal in a guided state
+
+**Found on** `free_body_diagram` STATE_5 (2026-07-25). The engine has no way to sweep a physical
+parameter monotonically across a guided state's reveal window: `idle_auto_sweep` is a ~4 s triangle
+(it comes back down) and `phases[]` drives glow only, never physics. STATE_5 therefore ships a STATIC
+θ = 30° incline instead of the intended 0° → 30° tilt, and its narration was rewritten so nothing
+promises a tilt the student never sees. Acceptable there — the tilt was not that concept's point.
+
+**It is NOT acceptable on `block_on_incline`.** "Tilt the ramp until the block breaks away at
+tan θ = μs" IS that concept's central beat. A static incline cannot show it, and rewriting the
+narration around it would gut the concept.
+
+**PRE-APPROVED:** when authoring `block_on_incline`, treat this as a §3b engine item and dispatch
+**field3d-surgeon** to add a minimal monotonic `param_ramp` knob (one parameter, start → end, over a
+declared window, driving real physics, one-shot per state entry — NOT a repeating sweep). Constraints
+are unchanged: ONE bug_class, minimal diff, linear in `dt`, byte-stable under `SET_TIME_FREEZE`
+(Rule 36), and the `interaction_complete` sandbox state must keep free-running (Rule 37). Rebase it
+on state entry the same way `nlbResetTrajectory()` already rebases the integrator.
+
+Do **not** work around this one. If the fix fails twice, park the concept and report — a weakened
+break-away beat is worse than a parked concept.
+
+### 7.2 — Deferred to founder review, do NOT act on in-loop
+
+- **STATE_3-style frozen-pin timing on coast states.** The canonical reviewer screenshot can pin while
+  a coasting body still overlaps its ghost, under-selling a growing-gap idea. The fix is a one-line
+  `deriveStateMeta` reveal-candidate nudge, but it moves H2 baseline pixels for every affected concept,
+  so it is a founder call. Noted at the end of `scar_candidates.sql`.
+- **Uncoupled-body tension.** `hanging` means "hangs off the pulley", so an uncoupled body genuinely has
+  no string and T = 0. Tension is `connected_bodies`' job. Do not try to rescue tension elsewhere.
