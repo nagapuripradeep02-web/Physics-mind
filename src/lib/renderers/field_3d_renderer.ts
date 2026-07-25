@@ -30155,7 +30155,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // 2b. SEAM D — the pulley bracket: post + axle arm + wheel + hub disc.
         //     Built ONCE and hidden by default, and parented to the SURFACE group
         //     so the single theta rotation stands it on the surface at every angle
-        //     (theta = 0 included) with no branch anywhere. Each mesh gets its OWN
+        //     (theta = 0 included) with no branch anywhere. Being the SLAB's sibling
+        //     (not its child) is what lets surface.hidden drop the table under an
+        //     Atwood state while the bracket keeps standing — see the scoped hide in
+        //     applyNewtonsLawsBodyState. Each mesh gets its OWN
         //     material: applyGlowEmphasis caches its baseline ON the material, so a
         //     shared instance would make a focal post fight a peer arm.
         var pulleyGrp = new THREE.Group();
@@ -30824,9 +30827,16 @@ export const FIELD_3D_RENDERER_CODE = `
             // The theta-gated ref line / arc / label are owned by nlbApplySurface
             // (already run above), so they are deliberately not touched here.
             // surface.hidden lets a both-hanging (Atwood) state drop the slab entirely — there
-            // is physically no table there. The world group always stays visible (it carries the
-            // bodies, pulley and rope); only the surface slab itself is suppressed.
-            if (ud.elementType === "nlb_surface_group") { o.visible = !surface.hidden; return; }
+            // is physically no table there. The suppression is scoped to the SLAB MESH and must
+            // NEVER be applied to the surface GROUP: that group is also the pulley bracket's
+            // parent (build step 2b — one theta rotation stands the post on the incline with no
+            // branch anywhere), so hiding the group took the pulley down with the slab and the
+            // Atwood state rendered two ropes ending in open space. The group therefore always
+            // stays visible; every child it carries already has its OWN per-state visibility
+            // gate — the non-hanging body meshes below, their pick proxies in nlbSetDragProxies,
+            // the whole pulley assembly in nlbShowPulley.
+            if (ud.elementType === "nlb_surface_group") { o.visible = true; return; }
+            if (ud.elementType === "nlb_surface") { o.visible = !surface.hidden; return; }
             if (ud.elementType === "nlb_world_group") { o.visible = true; return; }
             if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
             var bd = listed[ud.bodyId];
