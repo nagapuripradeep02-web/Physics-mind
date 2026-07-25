@@ -342,6 +342,7 @@ INSERT INTO engine_bug_queue (
 -- Candidate — CRITICAL. Engine DEFECT (not an under-generalization): the nlb
 -- physics clock is inconsistent with the RESET_TRAJECTORY contract every other
 -- field_3d reveal timeline honours. Routed to field3d-surgeon this session.
+-- Cycle 1 (2026-07-25) — LIVE failure caught by THE EYE on free_body_diagram STATE_3.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -382,5 +383,17 @@ INSERT INTO engine_bug_queue (
     ARRAY['newton_first_law: STATE_3']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
     '2026-07-25 lom-b chapter loop — newton_first_law',
+    'field3d_integrating_scenario_ignores_reset_trajectory_and_carries_stale_accumulator',
+    'An INTEGRATING field_3d scenario ignores RESET_TRAJECTORY, so every later capture/replay starts downrange from the previous one',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The shared RESET_TRAJECTORY handler only rebases stateStartTime (+ the lorentz trail). Every pose-from-closed-form scenario rewinds for free because it renders f(time - stateStartTime). newtons_laws_body is a genuine INTEGRATOR: b.s, b.v and eng.t_ms are accumulators seeded ONLY by applyNewtonsLawsBodyState (i.e. by SET_STATE), so the rebase was a silent no-op for it. THE EYE runs RESET_TRAJECTORY -> pin(revealMs) -> capture -> RESET_TRAJECTORY -> dense 0..10000 -> RESET_TRAJECTORY -> frozen(revealMs); with the reset inert the body kept the reveal pin''s ~3 s of travel, so the dense series began ~6 m downrange and hit the authored +22 m surface bound mid-series. On free_body_diagram STATE_3 (coast_no_force, v0 = 2 m/s) the HUD read v = 0.00 from dense t10000 onward and the frozen frame showed an EMPTY track with v = 0.00, directly contradicting the state''s own "Moving - no forward force / SigmaF = 0" caption. Production rollTimeline() sends RESET_TRAJECTORY on every state entry/replay, so a teacher replaying the state saw the same non-rewinding body. Authoring a larger surface.length_m only moves the halt later - it can never remove it, because the defect is a stale clock, not a short track.',
+    'Any scenario that INTEGRATES (keeps per-frame accumulators rather than posing from a closed form of state-local t) MUST implement RESET_TRAJECTORY explicitly: restore each accumulator to its seed, zero the scenario-local clock, re-arm one-shot latches, and hand the focal back. Store the kinematic seed (s0/v0) beside the live value at seed time, and have any slider that writes an INITIAL CONDITION write the seed too, so a rewind preserves teacher input instead of snapping to the authored value. Bring-up proof for a new integrating scenario must include a rewind test that drives THE EYE''s real message order (RESET -> pin -> RESET -> dense -> RESET -> frozen) and asserts the scenario clock tracks PM_simTimeMs, not just a single fresh SET_STATE run.',
+    'js_eval',
+    'Drive the assembled sim: SET_STATE <s>; post RESET_TRAJECTORY; read the scenario-local clock and every integrated accumulator. Assert clock === 0 and each accumulator === its seed. Then post SET_TIME_FREEZE{at_ms:R}, poll to R, post RESET_TRAJECTORY, crawl a dense series and assert abs(scenarioClockMs - PM_simTimeMs) < 100 at every sample.',
+    'FIXED',
+    ARRAY['free_body_diagram']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom chapter loop cycle 1 — coast_body_halts_mid_state_despite_authored_length_m',
     'incident'
 );
