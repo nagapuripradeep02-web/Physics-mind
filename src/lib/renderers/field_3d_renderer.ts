@@ -917,6 +917,29 @@ export interface Field3DConfig {
             controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
             trusted_drag_seizes?: boolean;         // sandbox state only
             idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
+            // ── §7.1 pre-approved fix (docs/CHAPTER_LOOP.md, block_on_incline) ──
+            // ONE-SHOT monotonic parameter reveal across a GUIDED state's window —
+            // the deliberate opposite of idle_auto_sweep's repeating triangle: value
+            // = `from` for elapsed < start_ms, linearly interpolates from -> to
+            // across [start_ms, end_ms], then HOLDS at `to` forever — it never
+            // returns toward `from`. Drives REAL PHYSICS through the SAME
+            // nlbApplyParam() write-path a trusted slider drag uses (so N, drive,
+            // the arrows, the HUD and — for theta — the incline geometry all move
+            // together; there is no parallel physics path to drift out of sync).
+            // A trusted slider input or body drag seizes control and cancels the
+            // ramp for the rest of the state (Rule 37, same PM_nlbSweepSeized /
+            // PM_nlbBodyDragged flags idle_auto_sweep already uses). NEVER runs in
+            // a `mode: 'sandbox'` state (that state free-runs continuously under
+            // the teacher, per Rule 37). Author the state's own surface/body value
+            // for this param equal to `from` so state entry does not visibly jump
+            // (same authoring contract idle_auto_sweep's range[0] note documents).
+            param_ramp?: {
+                param: 'theta' | 'F' | 'mu_s' | 'mu_k' | 'm';
+                from: number;
+                to: number;
+                start_ms?: number;   // default 0
+                end_ms: number;      // linear ramp over [start_ms, end_ms], then holds at `to`
+            };
             phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; action?: string; glow_focal?: string }>;
         };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
@@ -30732,6 +30755,51 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbSyncSliderRow(tok, v);
     }
 
+    // ── §7.1 pre-approved fix — param_ramp ─────────────────────────────────
+    //   ONE-SHOT monotonic reveal: value = "from" for t_ms < start_ms, linearly
+    //   interpolates from -> to across [start_ms, end_ms], then HOLDS at "to"
+    //   forever — the deliberate opposite of nlbRunIdleSweep's repeating
+    //   triangle above (which this function otherwise mirrors line for line).
+    //   Rule 36: reads ONLY eng.t_ms, a closed form of the engine's own
+    //   state-local sim time advanced solely by the dt handed to
+    //   updateNewtonsLawsBodyFrame — so dt = 0 (SET_TIME_FREEZE) leaves t_ms
+    //   unchanged and this recomputes the SAME value (byte-stable frozen
+    //   frames), a time-pin rewind reproduces the earlier value exactly (no
+    //   accumulator to un-wind), and folding N micro-steps into one dtStep is
+    //   exact (t_ms is linear in dt; nothing here re-integrates it).
+    //   Writes through nlbApplyParam — the SAME shared write-path a trusted
+    //   slider drag uses — so real physics (N, drive, the arrows, the HUD, and
+    //   for theta the incline geometry via nlbApplySurface) moves exactly as
+    //   it would for a teacher's own scrub; there is no parallel physics path.
+    //   Rule 37: NEVER runs in a "mode: 'sandbox'" state (that state free-runs
+    //   continuously under the teacher, never a scripted reveal), and a
+    //   trusted slider input or body drag seizes control for the rest of the
+    //   state via the SAME PM_nlbSweepSeized / PM_nlbBodyDragged flags
+    //   idle_auto_sweep already uses (a teacher scrubbing theta is never
+    //   fought by the ramp).
+    function nlbRunParamRamp(nlb, eng) {
+        var pr = nlb.param_ramp;
+        if (!pr || !pr.param) return;
+        if (!(isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms))) return;
+        if (eng.mode === "sandbox") return;                              // Rule 37
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return; // seized: stop for good
+        var tok = pr.param;
+        if (!NLB_SLIDER_SPEC[tok]) return;
+        var t0 = (typeof pr.start_ms === "number" && isFinite(pr.start_ms)) ? pr.start_ms : 0;
+        var t1 = pr.end_ms;
+        var tMs = eng.t_ms || 0;
+        var v;
+        if (tMs <= t0) v = pr.from;
+        else if (tMs >= t1) v = pr.to;               // HOLDS at "to" — never returns toward "from"
+        else v = pr.from + (pr.to - pr.from) * ((t1 > t0) ? (tMs - t0) / (t1 - t0) : 1);
+        // Churn guard (mirrors _sweep_last): theta re-tessellates the angle arc
+        // on every write, so an unchanged value must never re-fire.
+        if (eng._ramp_last != null && Math.abs(v - eng._ramp_last) < 1e-4) return;
+        eng._ramp_last = v;
+        nlbApplyParam(tok, v);
+        nlbSyncSliderRow(tok, v);
+    }
+
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
     //   Seeds masses / theta / mu / F / initial position+velocity into the
     //   engine state object every seam reads, sets glow_focal, resets the
@@ -30760,6 +30828,8 @@ export const FIELD_3D_RENDERER_CODE = `
             bodies: {},
             v_string: 0,          // SEAM B branch B: the shared along-string speed
             a_string: 0,
+            t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
+            _ramp_last: null,     // §7.1 param_ramp churn guard, rebased on every entry
             phase_fired: {}       // one-shot phase flags, reset on every state entry
         };
         for (var i = 0; i < bodies.length; i++) {
@@ -31041,6 +31111,7 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.phase_action = "";
         if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
         eng._sweep_last = null;             // the idle sweep is a closed form of t_ms
+        eng._ramp_last = null;              // §7.1 param_ramp is likewise a closed form of t_ms
         nlbLastEmitS = null;
         nlbFitRopes();
         nlbApplyGlow();
@@ -31213,6 +31284,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // It reads ONLY eng.t_ms (closed form, no accumulator) — see nlbRunIdleSweep
         // for the Rule 36 argument, dt = 0 included.
         nlbRunIdleSweep(nlb, eng);
+        // §7.1 pre-approved fix — the ONE-SHOT monotonic sibling of the sweep
+        // above. Same input-stage placement (before the integrator branches)
+        // for the same reason: a theta ramp must not leave the arrows/rope one
+        // frame behind the incline they are drawn on.
+        nlbRunParamRamp(nlb, eng);
 
         if (!eng.coupled) {
             // ── Branch A — independent bodies (no pulley) ──────────────────

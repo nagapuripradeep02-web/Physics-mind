@@ -1725,6 +1725,18 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(at + nlbCushion);
             }
         }
+        // §7.1 pre-approved fix — param_ramp (block_on_incline's tilt-until-
+        // break-away beat) completes and HOLDS at `to` at end_ms; pin PAST it
+        // (+ cushion) so the frozen frame photographs the settled break-away
+        // pose, never a mid-ramp angle
+        // (field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_predates_scripted_reveal).
+        // Independent of phases[] — a ramp state may or may not also author a
+        // phases[] glow script.
+        const pr = asObj(nlb.param_ramp);
+        if (pr && typeof pr.end_ms === 'number' && Number.isFinite(pr.end_ms)) {
+            phaseFound = true;   // a ramp IS a scripted reveal; skip the mode floor below
+            candidates.push(pr.end_ms + nlbCushion);
+        }
         if (!phaseFound) {
             // No authored script this state: fall back per `mode`. These are pure
             // FLOORS used only when phases[] is absent (an authored phase always

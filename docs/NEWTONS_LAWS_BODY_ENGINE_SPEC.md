@@ -79,6 +79,20 @@ newtons_laws_body?: {
     controls_visible?: Array<'m'|'m2'|'F'|'theta'|'mu_s'|'mu_k'|'v0'>;  // Rule 31 contextual controls
     trusted_drag_seizes?: boolean;         // sandbox state only
     idle_auto_sweep?: { param: 'F'|'theta'|'m'; range: [number, number] };
+    // §7.1 pre-approved fix (docs/CHAPTER_LOOP.md, block_on_incline, landed
+    // 2026-07-26). ONE-SHOT monotonic reveal for a GUIDED state — the
+    // deliberate opposite of idle_auto_sweep's repeating triangle: value =
+    // `from` for elapsed < start_ms, linear interpolation from -> to across
+    // [start_ms, end_ms], then HOLDS at `to` forever (never returns toward
+    // `from`). Writes through the SAME nlbApplyParam() path a slider drag
+    // uses (real physics — N, drive, arrows, HUD, and for theta the incline
+    // geometry — all move together). A trusted slider input or body drag
+    // seizes control and cancels the ramp for the state (Rule 37, same
+    // PM_nlbSweepSeized/PM_nlbBodyDragged flags idle_auto_sweep uses); NEVER
+    // runs in a `mode: 'sandbox'` state. Author the state's own surface/body
+    // value for this param equal to `from` (idle_auto_sweep's range[0]
+    // authoring contract applies identically here).
+    param_ramp?: { param: 'theta'|'F'|'mu_s'|'mu_k'|'m'; from: number; to: number; start_ms?: number; end_ms: number };
     phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; action?: string; glow_focal?: string }>;
 };
 ```
