@@ -865,6 +865,12 @@ export interface Field3DConfig {
                 theta_deg?: number;        // incline angle; 0 = flat ground, SAME code path
                 length_m?: number;         // visible half-length, default 6
                 frictionless?: boolean;    // hard-zeroes every body's mu_s/mu_k this state
+                // Hide the surface slab entirely. In a both-hanging (Atwood) state there is
+                // physically no table, and an empty 12 m plank would be the largest object on
+                // screen. Physics is unaffected: a hanging body already computes N = 0 in its
+                // own axis, so this is purely the visual apparatus. Added 2026-07-25 (founder
+                // call) — it is what keeps connected_bodies expressible with ZERO renderer edits.
+                hidden?: boolean;
             };
 
             // 1 or 2 bodies. Two bodies with NO `pulley` = independent, side-by-side
@@ -30767,7 +30773,11 @@ export const FIELD_3D_RENDERER_CODE = `
             // surface for any state whose token list does not happen to name it).
             // The theta-gated ref line / arc / label are owned by nlbApplySurface
             // (already run above), so they are deliberately not touched here.
-            if (ud.elementType === "nlb_surface_group" || ud.elementType === "nlb_world_group") { o.visible = true; return; }
+            // surface.hidden lets a both-hanging (Atwood) state drop the slab entirely — there
+            // is physically no table there. The world group always stays visible (it carries the
+            // bodies, pulley and rope); only the surface slab itself is suppressed.
+            if (ud.elementType === "nlb_surface_group") { o.visible = !surface.hidden; return; }
+            if (ud.elementType === "nlb_world_group") { o.visible = true; return; }
             if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
             var bd = listed[ud.bodyId];
             o.visible = !!bd;
