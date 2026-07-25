@@ -29568,6 +29568,16 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             for (var k = 0; k < keys.length; k++) {
                 var key = keys[k];
+                // A HANGING body has N forced to 0 (spec section 1) and therefore
+                // f == 0 on EVERY friction path (all of them multiply by N), so an
+                // "N = 0.00 N" / "fₖ = 0.00 N" row is a zero STUB, not a reading —
+                // exactly what the arrow layer already refuses to draw ("a real
+                // zero force HIDES the arrow, never a stub", spec section 3). The
+                // readouts[] enum is state-level, not per-body, so without this the
+                // one state that legitimately reads N + f off the SURFACE body of a
+                // connected pair is forced to print two permanent zeros against the
+                // hanging one (Rule 34b value-only HUD / the untaught-quantity scar).
+                if (bd.hanging && (key === "N" || key === "f")) continue;
                 var lab = NLB_READOUT_LABELS[key] || key;
                 h += '<div id="' + nlbReadoutRowId(bd.id, key) + '">' +
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_lbl">' + lab + '</span> = ' +

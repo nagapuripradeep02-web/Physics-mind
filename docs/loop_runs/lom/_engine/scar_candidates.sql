@@ -218,3 +218,117 @@ INSERT INTO engine_bug_queue (
     '2026-07-25 lom chapter loop — seam F',
     'directive'
 );
+
+-- ============================================================
+-- BRING-UP PROOF (spec section 7 step 2) — the two structural extremes driven
+-- against the REAL renderer in chromium. Founder review, NOT applied.
+-- ============================================================
+
+-- Candidate — MODERATE. FOUND LIVE and FIXED in this session: the hanging body
+-- of a connected pair printed "N = 0.00 N" and "fk = 0.00 N" permanently.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_state_level_readout_enum_prints_zero_stub_rows_for_a_body_the_quantity_cannot_apply_to',
+    'A STATE-level readout enum applied to every body prints permanent zero stub rows on the body the quantity is identically zero for',
+    'MODERATE',
+    'peter_parker:renderer_primitives',
+    'newtons_laws_body declares readouts as a per-STATE array of quantity keys, while arrows are declared PER BODY. The HUD builder therefore emitted every declared key against every non-ghost body. A hanging body has N forced to 0 by construction (spec section 1) and consequently f == 0 on every friction path (all of them multiply by N), so the one state of connected_bodies that legitimately reads N and f off the SURFACE block was forced to also print "N = 0.00 N" and "fk = 0.00 N" against the hanging weight, forever. The arrow layer already refuses exactly this ("a real zero force HIDES the arrow, never a stub", spec section 3) — the HUD contradicted its own scenario rule, and the author had no per-body switch to opt out with.',
+    'Where a config enum is coarser than the thing it drives (state-level readouts vs per-body physics), the ENGINE must drop the rows that are zero BY CONSTRUCTION rather than expecting the author to avoid the combination — the author cannot, without losing the row on the body that needs it. Skip N and f for a hanging body in the HUD builder, mirroring the arrow layer zero-hides rule. General form: any value-only HUD row whose quantity is identically zero for a given object class must not be built for that class.',
+    'js_eval',
+    'For every state that declares a readout key which is identically zero for some object class present in that state (N or f on a hanging body), assert no HUD row element exists for that (body, key) pair, and assert every row that DOES exist shows a value that changes across the state clock or is a real non-zero reading.',
+    'OPEN',
+    ARRAY['newtons_laws_body scenario: connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    'incident'
+);
+
+-- Candidate — MAJOR. FOUND LIVE by a fixture that violated a documented
+-- contract: the engine mis-rendered SILENTLY, with correct physics.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_build_once_body_reads_a_per_state_flag_from_the_union_def_and_mis_renders_silently',
+    'A build-once mesh whose PARENT and placement branch on a per-state flag read from the union def renders in the wrong place for every state that changes the flag',
+    'MAJOR',
+    'peter_parker:renderer_primitives',
+    'newtons_laws_body builds one mesh per unique body id from the UNION of every state bodies list (Rule 32d home-pose persistence), and at build time it chooses that mesh PARENT GROUP from the body hanging flag — world group for a hanging body, the rotating surface group for a surface body — and the placement helper then branches on mesh.userData.hanging. The flag is authored PER STATE, so a body id that hangs in one state (an Atwood beat) and sits on the surface in another (an incline-plus-hanging beat) keeps the FIRST state parent and placement branch forever: the block is drawn dangling from the pulley while the integrator, which reads the per-state engine record, correctly treats it as a surface body. Every numeric probe passes — position, acceleration, tension, the rope length invariant — because the rope is fitted through the same wrong branch, so the drawn picture is self-consistent and simply wrong. The interface comment documents the constraint (a given id hanging flag must be consistent across states) but nothing enforces or warns.',
+    'A per-state flag must never select a build-time parent or a build-time code branch for a build-once mesh. Either (a) build a SEPARATE mesh per (id, flag) combination — the cheap fix, since the author can simply use distinct ids — or (b) refresh the flag on state entry AND re-parent there. Until then the engine must FAIL LOUD: on build, detect a body id appearing with conflicting values of any build-time-consumed flag and post a SIM_ERROR rather than rendering plausibly. Authoring side: give the Atwood pair its own body ids, never reuse the incline block id.',
+    'js_eval',
+    'At build time, collect for each body id the set of values of every flag consumed at build time (hanging); assert every set has size 1. At runtime, for each state assert each visible body mesh parent group matches its live engine record flag, and assert a hanging body world x equals its pulley rim anchor x while a surface body world position lies on the surface axis.',
+    'OPEN',
+    ARRAY['newtons_laws_body scenario: connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    'directive'
+);
+
+-- Candidate — MODERATE. FOUND IN PIXELS ONLY. The world-space de-collision pass
+-- added by seam C is correct in 3D and still collides on screen.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_world_space_label_decollision_is_projection_blind_and_collides_on_screen',
+    'A world-space minimum-separation pass on 3D labels proves nothing about the SCREEN: perspective collapses the separation it just enforced',
+    'MODERATE',
+    'peter_parker:renderer_primitives',
+    'A de-collision pass that pushes overlay labels apart until their WORLD distance exceeds a minimum separation is deterministic and cheap, but the reader sees the PROJECTION. Under the default oblique field_3d camera, two labels separated by more than the enforced world minimum can land within a few screen pixels whenever the separating direction runs close to the view axis — which is exactly what happens to the weight / mg-cos-theta pair on an incline (their tips differ by the incline angle, and the default camera looks along a direction that foreshortens precisely that tilt). Observed on the bring-up fixtures: mg and mg-cos-theta overlap as a single blob, and the body label overlaps the mg-sin-theta label, in states where the world-space pass reports every pair comfortably separated. Neither the mocked node driver nor a value-level probe can see it, and founder_drive DOM collision probe is blind to 3D sprites entirely.',
+    'A label layout for a 3D scene is only proved once the assertion is made in SCREEN space: project every visible label with the state live camera and assert the pairwise screen-space gap exceeds the rendered glyph box, for every camera the concept authors. Corollary for authoring: every state of a 3D mechanics scenario MUST author its own camera_position (a near side-on view for a free-body diagram) — the shared default camera is an oblique three-quarter view chosen for field/flux scenarios and it foreshortens exactly the angles a force decomposition exists to show.',
+    'js_eval',
+    'For each state, project every visible label sprite through the live camera to normalized device coordinates, convert to pixels at the capture viewport, and assert the minimum pairwise axis-aligned gap between label bounding boxes is >= 4 px; repeat for each authored camera_position.',
+    'OPEN',
+    ARRAY['newtons_laws_body scenario: free_body_diagram, block_on_incline, connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    'incident'
+);
+
+-- Candidate — MODERATE. FOUND IN PIXELS ONLY. Rule 34d overlay collision.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_edge_anchored_formula_surface_wraps_back_over_the_apparatus_for_a_long_equation',
+    'An edge-anchored single formula surface with no width bound wraps back across the scene the moment the authored equation is long',
+    'MODERATE',
+    'peter_parker:renderer_primitives',
+    'Rule 34b gives each state ONE dedicated formula overlay, and the field_3d convention anchors it to a screen edge so it occupies a zone distinct from the HUD and the slider panel (Rule 34d). With no max-width and no reserved zone, the element box simply grows toward the middle of the canvas: a short equation sits harmlessly in the margin while a long one — a = (m2*g - m1*g*sin(theta) - mu_k*m1*g*cos(theta)) / (m1 + m2), which is the CENTRAL equation of the connected-bodies concept — wraps to two lines and runs straight through the pulley wheel and post. The zone is only distinct for the equation the engine author happened to test with, and the failure is invisible to every value-level probe: the overlay text is correct, the meshes are correct, only the composite frame is unreadable.',
+    'An edge-anchored overlay zone must be BOUNDED, not merely anchored: give the formula surface an explicit max-width (a fraction of the canvas) plus the wrap behaviour that follows from it, and reserve that rectangle so no scenario geometry is framed into it — or scale the font down for a long string. Verify with the LONGEST equation any state of the concept authors, in pixels, never with a representative short one.',
+    'js_eval',
+    'For each state, take the formula overlay getBoundingClientRect() and assert it does not intersect the screen-space bounding box of the scenario apparatus (project the apparatus mesh world bounds through the live camera), nor the HUD or slider-panel rects. Run it with the longest formula_overlay string in the concept.',
+    'OPEN',
+    ARRAY['newtons_laws_body scenario: connected_bodies, block_on_incline']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    'incident'
+);
+
+-- Candidate — MODERATE. UNDER-GENERALIZATION, reported not fixed (spec section 7
+-- makes adding a config key a STOP-and-report condition, not a silent extension).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_newtons_laws_body_surface_slab_cannot_be_hidden_for_a_both_hanging_atwood_state',
+    'newtons_laws_body has no way to hide the surface slab, so the Atwood (both-hanging) state renders a large empty plank as the biggest object on screen',
+    'MODERATE',
+    'peter_parker:renderer_primitives',
+    'The scenario whole generalization argument is that theta_deg = 0 gives flat ground through the same code path as an incline, so the surface is unconditional apparatus: the surface group is forced visible inside applyNewtonsLawsBodyState (correctly, to beat the generic visible_elements matcher), and there is no surface.hidden flag. A connected_atwood state has NO table and NO incline — two bodies hang from a pulley — yet a 12 m slab renders under them and, at the default camera, dominates the frame while carrying nothing. The only expressible workaround is surface.length_m = 0 with pulley.post_position_m set independently, which still leaves a 0.4-world-unit stub (the slab half-length is clamped to a 0.2 minimum) and reads as a fragment of apparatus rather than an absence.',
+    'FOUNDER DECISION REQUIRED — do not add the key unilaterally. The minimal generalization is one optional boolean on the existing surface block (surface.hidden, default false) honoured in the one place that forces the surface group visible, which keeps every other concept bit-identical. The alternative (author the Atwood beat with surface.length_m = 0) is available today at the cost of a visible stub. Either way the decision belongs in the chapter authoring pass, with the real Atwood state on screen.',
+    'manual',
+    'Open the frozen frame of any connected_atwood state and confirm no unoccupied surface slab is visible; the only apparatus should be post, wheel, both rope segments and the two hanging bodies.',
+    'OPEN',
+    ARRAY['newtons_laws_body scenario: connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    'directive'
+);
