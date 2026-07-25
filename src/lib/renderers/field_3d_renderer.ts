@@ -31098,6 +31098,28 @@ export const FIELD_3D_RENDERER_CODE = `
         slabVL.userData = { id: "emw_slab_vlbl" }; slabGrp.add(slabVL);
         addToScene(slabGrp);
 
+        // ── S6/S11 emw_lambda: a graphical span bracket marking exactly ONE
+        //    on-screen wavelength — the companion to the λ HUD readout so a
+        //    teacher sees WHERE λ is measured, not just its number (F-S6). The
+        //    ⊓ span = 2π/k (the drawn wave's own wavenumber) so it matches the
+        //    train by construction; geometry is a PURE fn of ν (no ms term) →
+        //    byte-stable under a freeze pin (scar #1). It lives in a reserved
+        //    band ABOVE the wave + gate labels (Rule 34d): top bar at y=2.05,
+        //    down-ticks to y=1.80, label at y=2.42 — clears the E-envelope
+        //    (≤1.1), the gate bars (top 1.4) and the gate A/B labels (y=1.65)
+        //    at every ν in the 50–200 MHz slider range, and sits upper-CENTRE
+        //    so it never reaches the top-right HUD or the bottom formula dock. ──
+        var lamGeo = new THREE.BufferGeometry();
+        lamGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(4 * 3), 3));
+        var lamBar = new THREE.Line(lamGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor("#CE93D8"), transparent: true, opacity: 0.95 }));
+        lamBar.frustumCulled = false;                // vertices move; never cull
+        lamBar.userData = { elementType: "emw_lambda", id: "emw_lambda_bar" };
+        addToScene(lamBar);
+        var lamLbl = pmCreateAutoLabel("\\u03bb = 3.00 m", "#CE93D8", 0.32);
+        lamLbl.position.set(0, 2.42, 0);
+        lamLbl.userData = { elementType: "emw_lambda", id: "emw_lambda_lbl" };
+        addToScene(lamLbl);
+
         emwBuildDom(config);
 
         // hide everything; applyEmWavePropagationState is authoritative
@@ -31168,7 +31190,8 @@ export const FIELD_3D_RENDERER_CODE = `
             emw_ghostb: !!ew.show_ghostb,
             emw_cursor: !!ew.show_cursor,
             emw_gates: !!ew.show_gates,
-            emw_slab: !!ew.show_slab
+            emw_slab: !!ew.show_slab,
+            emw_lambda: !!ew.show_lambda
         };
         for (var i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i], ud = o.userData;
@@ -31447,6 +31470,25 @@ export const FIELD_3D_RENDERER_CODE = `
                 ffd.innerHTML = dHtml;
             }
         }
+
+        // ── S6/S11 emw_lambda: the span bracket = ONE on-screen wavelength.
+        //    span = 2π/k (k already resolved above from the live ν, n=1) so the
+        //    ⊓ matches the drawn wave exactly and re-scales live as ν is dragged
+        //    (λ = c/ν). No ms term → byte-stable under a freeze pin (scar #1).
+        //    The label mirrors the HUD λ line character-for-character (Rule 34c
+        //    Unicode λ). Reserved upper-centre band clears every S6 overlay. ──
+        var lamBar = emwFindById("emw_lambda_bar");
+        if (lamBar && lamBar.visible !== false && lamBar.geometry) {
+            var lamHalf = Math.PI / k;               // half of the on-screen wavelength 2π/k
+            var lp = lamBar.geometry.attributes.position.array;
+            lp[0] = -lamHalf; lp[1] = 1.80; lp[2] = 0;   // left down-tick bottom
+            lp[3] = -lamHalf; lp[4] = 2.05; lp[5] = 0;   // left tick top
+            lp[6] = lamHalf; lp[7] = 2.05; lp[8] = 0;    // across the top
+            lp[9] = lamHalf; lp[10] = 1.80; lp[11] = 0;  // right down-tick bottom
+            lamBar.geometry.attributes.position.needsUpdate = true;
+        }
+        var lamLbl = emwFindById("emw_lambda_lbl");
+        if (lamLbl && lamLbl.visible !== false) updateLabelSpriteText(lamLbl, "\\u03bb = " + (EMW_C_M / (nu * 1e6)).toFixed(2) + " m");
 
         // ── S9 emw_formula chain-link derivation: under the GIVEN E_y, three recall
         //    links (direction ẑ · same phase · amplitude E₀/c) dock in turn, then the
