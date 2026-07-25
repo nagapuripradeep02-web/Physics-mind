@@ -23,3 +23,29 @@ INSERT INTO engine_bug_queue (
     'lom-a Phase 0 seam A (newtons_laws_body engine build) 2026-07-25',
     'directive'
 );
+
+-- ============================================================
+-- SEAM B (integrator) — founder review, NOT applied
+-- ============================================================
+
+-- Candidate 2 — MAJOR. Spec asserted Rule-36 fold-exactness while prescribing
+-- s += v_new*dt, whose folded-position error is 1.5*a*N*(N-1)*h^2
+-- (measured 2.3 mm at 120 Hz for a = 3 m/s^2). Engine ships
+-- s += 0.5*(v_old+v_new)*dt instead, which folds exactly (delta = 0).
+-- Prevention: a new integrator's dt-fold test must compare POSITION as well
+-- as velocity at 1e-9, not velocity alone.
+INSERT INTO engine_bug_queue (bug_class, severity, owner_cluster, row_type, probe_type, status, notes)
+VALUES ('spec_semi_implicit_euler_position_not_step_count_invariant', 'MAJOR',
+        'peter_parker:renderer_primitives', 'incident', 'js_eval', 'OPEN',
+        'newtons_laws_body seam B, 2026-07-25. Rule 36 fold-exactness requires the trapezoid position update.');
+
+-- Candidate 3 — MODERATE. A per-body SIGNED axis whose gravity term is written
+-- in the opposite axis passes visual inspection on every flat-ground state and
+-- only breaks on the one coupled concept. Spec said theta_i = hanging ? 90,
+-- which makes a free hanging body accelerate UPWARD and fails both of the
+-- spec's own checksums. Prevention: execute every physics_block checksum
+-- against the renderer's own formulas before closing a seam.
+INSERT INTO engine_bug_queue (bug_class, severity, owner_cluster, row_type, probe_type, status, notes)
+VALUES ('field3d_hanging_body_gravity_sign_inverted_vs_own_axis', 'MODERATE',
+        'peter_parker:renderer_primitives', 'ambiguous', 'js_eval', 'OPEN',
+        'newtons_laws_body seam B, 2026-07-25. Caught by running the spec checksums numerically.');

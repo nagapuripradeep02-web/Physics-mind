@@ -29507,7 +29507,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //   applyGlowEmphasis dim branch — no new dimming primitive (spec section 3).
     function nlbApplyGlow() {
         var nlb = nlbStateCfg();
-        var focal = nlb.glow_focal || (glowTargets.length ? glowTargets[0] : "");
+        // SEAM B hook: a phases[] entry may hand the focal to another element for
+        // a window (eng.glow_focal), which applyNewtonsLawsBodyState seeds FROM
+        // nlb.glow_focal — so with no phase override this is byte-identical to
+        // reading the state config directly.
+        var eng0 = window.PM_nlbEngine;
+        var focal = (eng0 && eng0.glow_focal) || nlb.glow_focal || (glowTargets.length ? glowTargets[0] : "");
         var glowActive = !!focal || glowTargets.length > 0;
         var glowP = glowEmphT(time);
         nlbEach(function (o, ud) {
@@ -29621,6 +29626,273 @@ export const FIELD_3D_RENDERER_CODE = `
         //   container stays hidden until seam E owns it.
 
         nlbApplyGlow();
+    }
+
+    // ── SEAM B — the fixed-step integrator (spec section 2) ────────────────
+    //   ONE frame function, called ONCE per tick from animate() with the
+    //   COMBINED dtStep (already 0.016 * __pmSteps). There is NO internal loop
+    //   over __pmSteps and NO sub-stepping anywhere below (Rule 36): the update
+    //   is exactly step-count invariant, so folding N micro-steps into one
+    //   dtStep is numerically identical to taking them one at a time.
+    //     v_new = v + a*dt                       (linear in dt)
+    //     s_new = s + 0.5*(v + v_new)*dt         (= v*dt + 0.5*a*dt^2, EXACT for
+    //                                             constant a, hence fold-exact)
+    //   NOTE (deliberate correction to spec section 2's literal "s += v_new*dt"):
+    //   the plain semi-implicit position update is NOT step-count invariant —
+    //   3 steps of h give s0 + 3h*v0 + 6a*h^2 while one step of 3h gives
+    //   s0 + 3h*v0 + 9a*h^2. The trapezoidal form above is what actually
+    //   DELIVERS the Rule 36 property the spec asserts twice, and it is also the
+    //   exact kinematic result for constant acceleration. Velocity, the stick
+    //   test, the friction sign logic and every reported quantity are unchanged.
+    //   With dt = 0 (SET_TIME_FREEZE / heldAtPin) v_new === v and s_new === s
+    //   identically, with NO special-case branch — frozen frames are byte-stable
+    //   by construction.
+    function nlbSgn(x) { return x > 0 ? 1 : (x < 0 ? -1 : 0); }
+    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar).
+    function nlbFx(v, dp) {
+        var d = (dp == null) ? 2 : dp;
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
+        return n.toFixed(d);
+    }
+    // Gravity component along the body's OWN positive axis, in newtons.
+    //   surface body: +axis is UP-slope  → -m*g*sin(theta)
+    //   hanging body: +axis is DOWNWARD (nlbSetBodyPosition places it at
+    //                 anchor.y - s*scale) → +m*g
+    // Spec section 2 writes this as "F - m*g*sin(theta_i)" with theta_i = 90 for a
+    // hanging body, which is the gravity component along UP for that body and so
+    // flips its sign relative to the axis the same block then integrates. Taken
+    // literally it makes a free hanging body accelerate upward and it fails BOTH
+    // of the spec's own checksums (Atwood -> T = m(g+a) instead of m(g-a);
+    // incline+hanging -> a of the wrong sign). Resolving it in the body's own axis
+    // (equivalently theta_i = -90 for a hanging body) reproduces both checksums
+    // exactly and is identical to the spec for every non-hanging body — i.e. for
+    // 5 of the 6 concepts. Flagged in the seam report.
+    function nlbGravAlong(b, thetaDeg) {
+        if (b.hanging) return b.m * NLB_G;
+        return -b.m * NLB_G * Math.sin(thetaDeg * Math.PI / 180);
+    }
+    function nlbNormal(b, thetaDeg) {
+        if (b.hanging) return 0;   // spec section 1: a hanging body has N forced to 0
+        return b.m * NLB_G * Math.cos(thetaDeg * Math.PI / 180);
+    }
+    // Surface-bound clamp band for a body, in metres along its own axis.
+    function nlbBoundsM(b, lenM) {
+        if (!b.hanging) return { lo: -lenM, hi: lenM };
+        // A hanging body cannot climb THROUGH the pulley (lo), and stops when it
+        // reaches the ground (hi). NLB_POST_H is provisional (seam D owns the real
+        // post), so the descent bound is the MORE generous of the current anchor
+        // height and the surface length — a tight bound tied to the provisional
+        // post would clamp a legitimately authored initial_position_m on entry and
+        // freeze the whole string dead, which reads as a physics bug in THE EYE.
+        var a = nlbHangAnchor();
+        var lo = 0.2;
+        var hi = Math.max(lenM, (a.y - NLB_BODY_SIZE * 0.5) / NLB_WORLD_PER_M);
+        if (!(hi > lo + 0.1)) hi = lo + 0.1;
+        return { lo: lo, hi: hi };
+    }
+    // Live per-frame HUD write for one body (only the keys this state readouts).
+    function nlbWriteReadouts(nlb, b, stuck) {
+        var keys = nlb.readouts || [];
+        for (var k = 0; k < keys.length; k++) {
+            var key = keys[k];
+            if (key === "N") nlbSetReadout(b.id, key, nlbFx(b.N, 2));
+            else if (key === "f") {
+                // fₛ while statically stuck, fₖ while sliding (seam A ships a plain
+                // "f" and delegates the glyph here). U+209B / U+2096 are missing
+                // from most monospace faces (the merged-blob / tofu subscript scar),
+                // so the label span alone gets the math-serif stack — written ONCE
+                // per rebuilt row, not every frame.
+                nlbSetReadout(b.id, key, nlbFx(Math.abs(b.f), 2), stuck ? "fₛ" : "fₖ");
+                var fl = document.getElementById(nlbReadoutRowId(b.id, key) + "_lbl");
+                if (fl && !fl.style.fontFamily) fl.style.fontFamily = "'Cambria Math','Times New Roman',serif";
+            }
+            else if (key === "a") nlbSetReadout(b.id, key, nlbFx(b.a, 2));
+            else if (key === "v") nlbSetReadout(b.id, key, nlbFx(b.v, 2));
+            else if (key === "T") nlbSetReadout(b.id, key, nlbFx(Math.abs(b.T), 2));
+            else if (key === "F_net") nlbSetReadout(b.id, key, nlbFx(b.F_net, 2));
+            else if (key === "F_applied") nlbSetReadout(b.id, key, nlbFx(b.F_applied, 2));
+        }
+    }
+    // phases[] one-shots. Fired off the engine's own accumulated state-local sim
+    // time (reset to 0 on every state entry, advanced ONLY by the dt this
+    // function is handed — so it is identical to (time - stateStartTime)*1000 and
+    // freezes with the pin). phase_fired makes every side effect idempotent.
+    function nlbRunPhases(nlb, eng, tMs) {
+        var phs = nlb.phases || [];
+        if (!phs.length) return;
+        if (eng.base_glow_focal == null) eng.base_glow_focal = eng.glow_focal || "";
+        eng.phase_active = eng.phase_active || {};
+        for (var i = 0; i < phs.length; i++) {
+            var ph = phs[i];
+            if (!ph || !ph.id) continue;
+            var t0 = (ph.at_ms != null) ? ph.at_ms : 0;
+            var open = (ph.until_ms == null) || (tMs < ph.until_ms);
+            var active = (tMs >= t0) && open;
+            eng.phase_active[ph.id] = active;
+            if (active && !eng.phase_fired[ph.id]) {
+                eng.phase_fired[ph.id] = true;
+                eng.phase_action = ph.action || "";
+                if (ph.glow_focal) eng.glow_focal = ph.glow_focal;
+            } else if (!active && eng.phase_fired[ph.id] && ph.until_ms != null && tMs >= ph.until_ms) {
+                // A windowed phase that owned the focal hands it back to the state.
+                if (ph.glow_focal && eng.glow_focal === ph.glow_focal) eng.glow_focal = eng.base_glow_focal;
+            }
+        }
+    }
+    function updateNewtonsLawsBodyFrame(dt) {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return;                                  // build ran, no state seeded yet
+        var h = (typeof dt === "number" && isFinite(dt) && dt > 0) ? dt : 0;
+        var nlb = nlbStateCfg();
+        var lenM = eng.length_m;
+        var thetaSurf = eng.theta_deg;
+
+        if (eng.t_ms == null) eng.t_ms = 0;
+        eng.t_ms += h * 1000;
+        window.PM_nlbTimeMs = eng.t_ms;
+        nlbRunPhases(nlb, eng, eng.t_ms);
+
+        // Newton III: the engine ENFORCES equal-and-opposite every frame, so the
+        // pair can never drift out of Newton's third law no matter what a slider
+        // (or a later seam) does to the driver's applied force.
+        var ar = eng.action_reaction;
+        if (ar && ar.engaged && ar.driver_body_id) {
+            var drv = eng.bodies[ar.driver_body_id];
+            if (drv) {
+                for (var oi = 0; oi < eng.order.length; oi++) {
+                    var ob = eng.bodies[eng.order[oi]];
+                    if (!ob || ob.ghost || ob.id === drv.id) continue;
+                    ob.F_applied = -drv.F_applied;
+                }
+            }
+        }
+
+        if (!eng.coupled) {
+            // ── Branch A — independent bodies (no pulley) ──────────────────
+            for (var i = 0; i < eng.order.length; i++) {
+                var b = eng.bodies[eng.order[i]];
+                if (!b || b.ghost) continue;               // spec section 3: a ghost is NEVER integrated
+                var th = b.hanging ? 90 : thetaSurf;
+                var N = nlbNormal(b, th);
+                var drive = b.F_applied + nlbGravAlong(b, th);
+                var maxStat = b.mu_s * N;
+                var stuck = (Math.abs(b.v) < NLB_STOP_EPS_V) && (Math.abs(drive) <= maxStat);
+                var a, f;
+                if (stuck) {
+                    a = 0; b.v = 0;
+                    f = -drive;                            // static friction: reported, never integrated
+                } else {
+                    var vSign = (Math.abs(b.v) > NLB_STOP_EPS_V) ? nlbSgn(b.v) : nlbSgn(drive);
+                    f = -vSign * b.mu_k * N;
+                    a = (drive + f) / b.m;
+                }
+                var v0 = b.v;
+                var v1 = v0 + a * h;
+                // Kinetic friction must not jitter the body back and forth across
+                // v = 0 — if the step reversed the sign and the drive cannot beat
+                // static friction, the body has come to REST.
+                if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
+                var s1 = b.s + 0.5 * (v0 + v1) * h;
+                var bd = nlbBoundsM(b, lenM);
+                if (s1 < bd.lo) { s1 = bd.lo; v1 = 0; a = 0; }
+                else if (s1 > bd.hi) { s1 = bd.hi; v1 = 0; a = 0; }
+                b.a = a; b.v = v1; b.s = s1;
+                b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
+                nlbSetBodyPosition(b.id, b.s);
+                nlbWriteReadouts(nlb, b, stuck);
+            }
+            eng.v_string = 0; eng.a_string = 0;
+            return;
+        }
+
+        // ── Branch B — coupled (pulley present): ONE shared scalar along the
+        //   string, per-body sign factor c_i in {+1,-1}. c_i comes from the
+        //   inextensible-string constraint, NOT from a hardcoded pair:
+        //   a body's string segment shortens as s grows on the surface
+        //   (L = post - s, sigma = -1) and lengthens as s grows when hanging
+        //   (L = s, sigma = +1); sum(dL) = 0 with s_i = c_i*q gives
+        //   c_i = -(sigma_ref * sigma_i) for every non-reference body.
+        //   => surface + hanging: c = (+1, +1)  (block up-slope <=> weight falls)
+        //   => Atwood (both hanging): c = (+1, -1)
+        var pul = eng.pulley || {};
+        var refId = (pul.body_a_id && eng.bodies[pul.body_a_id] && !eng.bodies[pul.body_a_id].ghost) ? pul.body_a_id : null;
+        if (!refId) {
+            for (var r = 0; r < eng.order.length; r++) {
+                var rb = eng.bodies[eng.order[r]];
+                if (rb && !rb.ghost) { refId = rb.id; break; }
+            }
+        }
+        if (!refId) return;
+        var sigRef = eng.bodies[refId].hanging ? 1 : -1;
+
+        var act = [], D = 0, M = 0, maxStatSum = 0, mukNSum = 0;
+        for (var j = 0; j < eng.order.length; j++) {
+            var bj = eng.bodies[eng.order[j]];
+            if (!bj || bj.ghost) continue;                 // spec section 3: never integrated
+            var cj = (bj.id === refId) ? 1 : -(sigRef * (bj.hanging ? 1 : -1));
+            var thj = bj.hanging ? 90 : thetaSurf;
+            var Nj = nlbNormal(bj, thj);
+            bj.N = Nj;
+            bj._drive = bj.F_applied + nlbGravAlong(bj, thj);
+            bj._c = cj;
+            act.push(bj);
+            D += cj * bj._drive;
+            M += bj.m;                                     // ideal massless string + pulley
+            maxStatSum += bj.mu_s * Nj;
+            mukNSum += bj.mu_k * Nj;
+        }
+        if (!act.length || !(M > 0)) return;
+
+        var vStr = eng.v_string || 0;
+        var stuckB = (Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum);
+        var aStr = 0, Ffric = 0, vSignB = 0;
+        if (stuckB) {
+            aStr = 0; vStr = 0; Ffric = -D;                 // held by static friction
+        } else {
+            vSignB = (Math.abs(vStr) > NLB_STOP_EPS_V) ? nlbSgn(vStr) : nlbSgn(D);
+            Ffric = -vSignB * mukNSum;
+            aStr = (D + Ffric) / M;
+        }
+        var vs0 = vStr;
+        var vs1 = vs0 + aStr * h;
+        if (nlbSgn(vs0) !== nlbSgn(vs1) && Math.abs(D) <= maxStatSum) { vs1 = 0; aStr = 0; }
+
+        // Bound the STRING, not each body independently — clamping one body alone
+        // would silently break the inextensible-string constraint.
+        var sAdv = 0.5 * (vs0 + vs1) * h;                   // same fold-exact form as branch A
+        var blocked = false;
+        for (var k2 = 0; k2 < act.length; k2++) {
+            var bk = act[k2];
+            var sk = bk.s + bk._c * sAdv;
+            var bdk = nlbBoundsM(bk, lenM);
+            if (sk < bdk.lo || sk > bdk.hi) { blocked = true; break; }
+        }
+        if (blocked) { sAdv = 0; vs1 = 0; aStr = 0; }
+        eng.v_string = vs1;
+        eng.a_string = aStr;
+
+        for (var m2 = 0; m2 < act.length; m2++) {
+            var bb = act[m2];
+            var cb = bb._c;
+            var ab = cb * aStr;
+            bb.a = ab;
+            bb.v = cb * vs1;
+            var sb = bb.s + cb * sAdv;
+            var bdb = nlbBoundsM(bb, lenM);
+            if (sb < bdb.lo) sb = bdb.lo; else if (sb > bdb.hi) sb = bdb.hi;
+            bb.s = sb;
+            // Friction on THIS body opposes ITS motion; summed over the string
+            // this is exactly the F_fric used above (|c_i| = 1).
+            bb.f = stuckB
+                ? (maxStatSum > 0 ? -cb * D * ((bb.mu_s * bb.N) / maxStatSum) : 0)
+                : -(cb * vSignB) * bb.mu_k * bb.N;
+            // Tension from THIS body's own equation of motion: m*a = drive + f + T.
+            bb.T = bb.m * ab - bb._drive - bb.f;
+            bb.F_net = bb.m * ab;
+            nlbSetBodyPosition(bb.id, bb.s);
+            nlbWriteReadouts(nlb, bb, stuckB);
+        }
     }
 
     // ── Build scenario ────────────────────────────────────────────────────
@@ -33974,6 +34246,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "cyclotron_period") {
             updateCyclotronPeriodFrame(heldAtPin ? 0 : dtStep);
             applyCyclotronPeriodGlow();
+        }
+
+        // newtons_laws_body — the whole Laws of Motion chapter. ONE call per tick
+        // with the COMBINED dtStep (0.016 * __pmSteps): the step is exactly
+        // fold-invariant (v += a*dt; s += 0.5*(v+v_new)*dt), so there is NO loop
+        // over __pmSteps here or inside the function (Rule 36). Under a pin
+        // dt = 0 leaves v and s bit-identical with no special-case branch, so
+        // frozen EYE frames are byte-stable by construction.
+        if (config.scenario_type === "newtons_laws_body") {
+            updateNewtonsLawsBodyFrame(heldAtPin ? 0 : dtStep);
+            applyNewtonsLawsBodyGlow();
         }
 
         // Electric diamond STATE_5 — the density↔strength aha, in motion.
