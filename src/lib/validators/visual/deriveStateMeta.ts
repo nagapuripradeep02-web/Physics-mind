@@ -1369,6 +1369,16 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         push(emwState.ghost_dissolve_at_ms, 1200); // S5: ghost dissolved, in-phase pose held
         push(emwState.bunch_at_ms, 900);           // S10: crests fully bunched
         push(emwState.slab_slide_at_ms, 1000);     // S10: slab settled in
+        // S9 formula-chain derivation: three recall links dock in turn under the
+        // GIVEN E_y, then the assembled B_z line lights (renderer emw_formula chain,
+        // ~L31440). The pin must land PAST the LAST payoff (assembled) — scar #5,
+        // never mid-transition — else it falls back to DEFAULT_REVEAL_MS ≈ 1500 and
+        // photographs only E_y with no links docked. +2000 on assembled_at_ms lands
+        // at 18000 ms, matching the verified-correct STATE_9 dense_t18000 capture.
+        push(emwState.link1_at_ms, 600);           // S9: direction ẑ link docked
+        push(emwState.link2_at_ms, 600);           // S9: same-phase link docked
+        push(emwState.link3_at_ms, 600);           // S9: amplitude E₀/c link docked
+        push(emwState.assembled_at_ms, 2000);      // S9: B_z assembled line settled
     }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
     // are one-shot timed gestures that then HOLD still — pin the frozen frame
