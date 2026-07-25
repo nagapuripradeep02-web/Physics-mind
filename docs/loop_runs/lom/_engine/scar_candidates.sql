@@ -189,3 +189,32 @@ INSERT INTO engine_bug_queue (
     '2026-07-25 lom chapter loop — seam E',
     'directive'
 );
+
+-- ============================================================
+-- SEAM F (deriveStateMeta reveal-pin + hold classification) — founder review, NOT applied
+-- ============================================================
+
+-- Candidate — MAJOR. The engine spec listed exactly TWO deriveStateMeta sites
+-- (reveal-ms block, hold classification) and called them sufficient ("Both 12
+-- and 13 are REQUIRED or THE EYE false-fails"). There is a THIRD mandatory site
+-- in the same file — the F3D_REVEAL_KEYS scenario-key registry — and missing it
+-- silently routes a field_3d state down the PCPL derivation path.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'derivestatemeta_new_scenario_key_absent_from_f3d_reveal_keys_falls_through_to_pcpl',
+    'A new field_3d scenario key missing from F3D_REVEAL_KEYS makes a cached physics_config derive PCPL reveal pins and PCPL hold classes',
+    'MAJOR',
+    'peter_parker:renderer_primitives',
+    'deriveStateMeta resolves field_3d states from EITHER the concept JSON (config.field_3d_config.states) OR a cached physics_config that already flattened field_3d_config to the top level. The second path is recognised ONLY by hasField3dTiming(), which tests whether a state object carries one of the hardcoded F3D_REVEAL_KEYS scenario keys. THE EYE reads the CACHED row, so a new scenario whose per-state config key is not in that list resolves as NOT field_3d: resolveField3dStates returns null, deriveMaxRevealTimeMs falls through to the PCPL branch (pcplRevealMs/pcplSceneRevealMs, structurally 0 on any Rule-31 concept => DEFAULT_REVEAL_MS 1500 for every state), and deriveHoldExpectations classifies via isPcplInteractive instead of the scenario''s own mode. Both new per-scenario blocks are then dead code on the exact path that matters, and the frozen pin lands at 1500 ms mid-script — the same self-contradictory baseline the missing-maxReveal scar describes, but with both required sites correctly implemented.',
+    'A new field_3d scenario_type touches THREE sites in deriveStateMeta.ts, not two: (1) append its per-state config key to F3D_REVEAL_KEYS, (2) add its reveal-ms block in maxRevealForField3dState, (3) add its hold classification in deriveHoldExpectations. Prove site 1 by deriving against the FLATTENED shape ({ scenario_type, states }) as well as the concept-JSON shape and asserting both give identical per-state reveal ms and hold classes.',
+    'js_eval',
+    'Build a minimal config in both shapes — { field_3d_config: { scenario_type, states } } and the flattened { scenario_type, states } — with one state whose reveal pin is provably not DEFAULT_REVEAL_MS. Assert deriveMaxRevealTimeMs and deriveHoldExpectations return byte-identical maps for the two shapes, and that the pinned state is not 1500.',
+    'OPEN',
+    ARRAY['newtons_laws_body scenario: all six Laws of Motion concepts']::text[],
+    ARRAY['src/lib/validators/visual/deriveStateMeta.ts']::text[],
+    '2026-07-25 lom chapter loop — seam F',
+    'directive'
+);

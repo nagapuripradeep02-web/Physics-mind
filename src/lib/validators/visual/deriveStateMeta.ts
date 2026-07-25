@@ -390,6 +390,14 @@ const F3D_REVEAL_KEYS = [
     // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
     // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
     'helix', 'isolate_perp', 'isolate_par',
+    // Laws of Motion (newtons_laws_body): the per-state `newtons_laws_body` block
+    // (mode-driven rest/coast/accelerate/compare/action-reaction/FBD/incline/
+    // connected beats + its `phases[]` one-shot script). Registered here so a
+    // cached physics_config that flattened field_3d_config.states to the top
+    // level is still recognised as field_3d rather than falling through to the
+    // PCPL branch (which would derive a wall-clock reveal pin and a PCPL hold
+    // classification for a field_3d state).
+    'newtons_laws_body',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -1679,6 +1687,69 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
     }
 
+    // newtons_laws_body (the Laws of Motion chapter engine, prefix `nlb`): the
+    // guided beats run on the state's OWN clock (`eng.t_ms` — reset to 0 on state
+    // entry, advanced only by the dt handed to updateNewtonsLawsBodyFrame, so it
+    // freezes with the SET_TIME_FREEZE pin). The scripted script is the per-state
+    // `phases[]` array, fired by nlbRunPhases: a phase is ACTIVE over
+    // [at_ms, until_ms) — its side effect (action + optional phase-owned
+    // glow_focal) lands INSTANTLY at `at_ms` (no ease/fade), and at `until_ms`
+    // the window closes and the focal is handed back to the state's base focal.
+    // So the state's reveal completes at the LAST phase's fire time.
+    //
+    // Two scars govern the pin:
+    //   • pin PAST the fire instant (+ cushion) so the frozen frame photographs
+    //     the fired pose, never the pre-fire scene, and so deriveHoldExpectations
+    //     sees a settled beat (field3d_scenario_missing_maxreveal_block_... — a
+    //     missing block pins at DEFAULT_REVEAL_MS mid-script);
+    //   • but keep the pin INSIDE a windowed phase's own band
+    //     (eye_frozen_candidate_offset_falls_outside_engine_display_band) — a
+    //     phase with `until_ms` set displays only while open, so overshooting it
+    //     would photograph the handed-back pose and lose coverage of that beat.
+    const nlb = asObj(state.newtons_laws_body);
+    if (nlb) {
+        const nlbCushion = 500;
+        const phases = Array.isArray(nlb.phases) ? nlb.phases : [];
+        let phaseFound = false;
+        for (const phRaw of phases) {
+            const ph = asObj(phRaw);
+            if (!ph || typeof ph.id !== 'string' || ph.id.length === 0) continue;   // mirrors nlbRunPhases' skip
+            phaseFound = true;
+            const at = asNum(ph.at_ms, 0);
+            const until = typeof ph.until_ms === 'number' && Number.isFinite(ph.until_ms) ? ph.until_ms : null;
+            if (until != null && until > at) {
+                // Land inside [at_ms, until_ms): at + cushion, pulled back to
+                // 200ms before the window closes when the band is short.
+                candidates.push(Math.max(at, Math.min(at + nlbCushion, until - 200)));
+            } else {
+                candidates.push(at + nlbCushion);
+            }
+        }
+        if (!phaseFound) {
+            // No authored script this state: fall back per `mode`. These are pure
+            // FLOORS used only when phases[] is absent (an authored phase always
+            // decides, so the floor can never push the pin outside a phase band).
+            //   • the static/overlay beats (rest_equilibrium, fbd_isolate,
+            //     incline_decompose, action_reaction_pair) are correct from t=0 —
+            //     nothing to wait for, so DEFAULT_REVEAL_MS stands;
+            //   • the integrating beats need a couple of seconds of real
+            //     displacement before the picture reads (the mass/force compare
+            //     needs visible separation, the incline/Atwood needs travel);
+            //   • coast_with_friction's payoff is the body having STOPPED, which
+            //     is the latest settle in the chapter;
+            //   • sandbox is user-driven (deriveHoldExpectations → 'interactive');
+            //     its idle_auto_sweep is supplementary motion, NEVER folded into a
+            //     reveal pin.
+            const nlbMode = typeof nlb.mode === 'string' ? nlb.mode : '';
+            if (nlbMode === 'coast_with_friction') candidates.push(4000);
+            else if (nlbMode === 'coast_no_force' || nlbMode === 'accelerate_applied_force'
+                || nlbMode === 'compare_mass_same_force' || nlbMode === 'compare_force_same_mass'
+                || nlbMode === 'incline_slide' || nlbMode === 'connected_atwood'
+                || nlbMode === 'connected_incline_hanging') candidates.push(3000);
+            else candidates.push(DEFAULT_REVEAL_MS);   // static/overlay beats + sandbox
+        }
+    }
+
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
@@ -2077,6 +2148,24 @@ export function deriveHoldExpectations(
             const mflHold = asObj(state.magnetic_flux_loop);
             if (mflHold) {
                 out[stateId] = (mflHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // newtons_laws_body (Laws of Motion): every state exposes its own
+            // contextual slider row(s) (Rule 31 `controls_visible`), so a generic
+            // catch must never decide these. Classify explicitly per mode (mirrors
+            // the ac_generator/inductance/mfl guided-vs-sandbox split above): the
+            // final sandbox state (mode: 'sandbox', trusted_drag_seizes, Rule 37
+            // free-run) is user-driven → interactive; every other mode is a guided
+            // beat that either settles to a HOLD (rest_equilibrium, coast_with_
+            // friction's stop, the FBD/incline arrow overlays) or runs its
+            // integrator steadily on the state's own clock after the phases[]
+            // script has fired → reveal_hold, so D7 (stuck tail) / D1p (frozen)
+            // permit the settled tail instead of false-failing it. Both branches
+            // are pure RELAXATIONS in pixelGate — neither asserts stillness, so a
+            // continuously-accelerating beat is not mis-gated by reveal_hold.
+            const nlbHold = asObj(state.newtons_laws_body);
+            if (nlbHold) {
+                out[stateId] = (nlbHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE
