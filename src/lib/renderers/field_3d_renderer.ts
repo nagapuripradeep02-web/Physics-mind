@@ -31175,7 +31175,12 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // wrong-expectation ghost tag text (S5 phase / S8 energy) — authored per state.
         var gtg = document.getElementById("emw_ghost_tag");
-        if (gtg) gtg.innerHTML = ew.ghost_tag_text || "\\u2717 expected: B peaks 90\\u00b0 after E";
+        if (gtg) { gtg.innerHTML = ew.ghost_tag_text || "\\u2717 expected: B peaks 90\\u00b0 after E"; gtg.style.opacity = "0.75"; }
+        // Reset the S5 ghost fade on EVERY entry: the DOM ✗-tag is SHARED with S8
+        // (energy) and the 3D ghost line's opacity is driven in-frame — a prior
+        // state's dissolve must never leave either faded-invisible on re-entry.
+        var ghR = emwFindById("emw_ghost_line");
+        if (ghR && ghR.material) { ghR.material.transparent = true; ghR.material.opacity = 0.65; }
         emwApplyWidgetVis(ew);
         // seed slider thumbs
         var fSl = document.getElementById("emw_freq_slider"); if (fSl) fSl.value = String(window.PM_emwNu);
@@ -31381,6 +31386,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 var eNow = E0 * curVal, bNow = eNow / EMW_C_M * 1e6;
                 cro.innerHTML = "<span style=\\'color:#66BB6A\\'>E = " + eNow.toFixed(0) + " V/m</span><br><span style=\\'color:#42A5F5\\'>B = " + bNow.toFixed(2) + " \\u00b5T</span>";
             }
+        }
+
+        // ── S5 ghost DISSOLVE (Rule 16a — the disproven belief must not be left
+        //    standing at the end of a misconception pivot). Wires the authored
+        //    ghost_dissolve_at_ms hook (dead until now): once the real in-phase
+        //    twin readouts have contradicted the wrong 90°-shifted B, the ghost
+        //    is DEFEATED and removed. A closed-form ~1 s fade that is a PURE fn of
+        //    state-local ms (no accumulator → byte-identical every run + stable
+        //    under SET_TIME_FREEZE, scar #1). Fades the 3D ghost line AND its DOM
+        //    ✗-expected tag together so both vanish as one; opacity 0 thereafter.
+        //    Mirrors the proven displacement_current S5 ghost pattern + emw_motes. ──
+        if (ew.show_ghostb && ew.ghost_dissolve_at_ms != null) {
+            var gdMs = cueTriggerMs("ghost_dissolve", ew.ghost_dissolve_at_ms);
+            var ghFade = (ms >= gdMs) ? Math.max(0, 1 - (ms - gdMs) / 1000) : 1;
+            var ghL = emwFindById("emw_ghost_line");
+            if (ghL && ghL.material) { ghL.material.transparent = true; ghL.material.opacity = 0.65 * ghFade; }
+            var gtgF = document.getElementById("emw_ghost_tag");
+            if (gtgF && gtgF.style.display !== "none") gtgF.style.opacity = (0.75 * ghFade).toFixed(3);
         }
 
         // ── S6 emw_gates: gate A/B tick flash + stopwatch (Δt in the HUD) + the
