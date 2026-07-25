@@ -332,3 +332,55 @@ INSERT INTO engine_bug_queue (
     '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
     'directive'
 );
+
+-- ============================================================================
+-- Session: 2026-07-25 lom-b chapter loop — concept 1, newton_first_law
+-- Found by eye_walker on .visual_runs/newton_first_law/20260725-191906/.
+-- Report only — NOT inserted (chapter-loop sessions are forbidden DB writes).
+-- ============================================================================
+
+-- Candidate — CRITICAL. Engine DEFECT (not an under-generalization): the nlb
+-- physics clock is inconsistent with the RESET_TRAJECTORY contract every other
+-- field_3d reveal timeline honours. Routed to field3d-surgeon this session.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_physics_clock_not_state_local',
+    'newtons_laws_body integrates from SET_STATE instead of from the state-local reveal start, so a body silently moves (or fully decelerates) before the state visibly begins',
+    'CRITICAL',
+    'peter_parker:renderer_primitives',
+    'updateNewtonsLawsBodyFrame accumulates eng.t_ms from a per-tick real wall-clock dtStep that is never rebased by RESET_TRAJECTORY, unlike every other reveal timeline in field_3d_renderer.ts, which is a pure function of (time - stateStartTime) and IS rebased. The body starts integrating the instant applyNewtonsLawsBodyState builds a fresh eng object at SET_STATE, before the player/harness sends RESET_TRAJECTORY and the state-local reveal window begins. Any real-time gap between state entry and reveal start (THE EYE per-frame screenshot/encode overhead, ~1-4 s observed; equally a teacher pausing before pressing Play) lets the body advance by an uncontrolled amount. Symptom A: STATE_1 coast_no_force (frictionless, a=0) reads v=1.00 correctly through dense_t15000 but the H2 frozen pin reads v=0.00 — the block hit the +10 m bound, contradicting the never-slows delta cue at exactly the frame a teacher leaves frozen. Symptom B (worse): STATE_2 coast_with_friction reads v=0.02 m/s in its FIRST capture (98 percent decelerated from v0=1.0), so the ~4 s deceleration the state exists to teach happens entirely before the reveal clock starts and the state renders as a static block for its full ~14 s.',
+    'Gate the nlb integrator on the same state-local basis (time - stateStartTime) the other reveal systems use, or hold the nlb engine at dt=0 from SET_STATE until the first RESET_TRAJECTORY / Play. Any new scenario carrying its own integrator must rebase on RESET_TRAJECTORY — a free-running physics clock is invisible to every deterministic gate.',
+    'manual',
+    'Open the first captured frame and the frozen frame of a coast state: v at the first frame must equal the authored initial_velocity_mps, and the frozen frame must match the authored trajectory at the state duration (not the motion bound).',
+    'OPEN',
+    ARRAY['newton_first_law: STATE_1, STATE_2']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop — newton_first_law',
+    'incident'
+);
+
+-- Candidate — MODERATE. Owner ambiguous (renderer glow application vs authored
+-- phase tuning). Reported, NOT dispatched this session (Amendment 4: one
+-- bug_class per engine dispatch; the CRITICAL row took this concept's budget).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_phase_glow_handoff_not_visible',
+    'newtons_laws_body phases[] glow_focal handoff fires in code but produces no perceptible brightness delta between two force arrows',
+    'MODERATE',
+    'ambiguous',
+    'The rest_equilibrium handoff (nlb_arrow_A_weight -> nlb_arrow_A_normal at 4000 ms) fires per nlbRunPhases (phase_fired and the glow_focal swap are confirmed in code), but frames before and after the handoff are visually identical: mg and N read at the same brightness in STATE_3 dense_t03000 vs dense_t04000/t05000/frozen. Either applyNewtonsLawsBodyGlow does not differentiate brightness for arrow-kind meshes, or the effect is too subtle at this render scale to read as exactly-one-glow-focal per Rule 32e.',
+    'FOUNDER TRIAGE — owner is genuinely ambiguous between peter_parker:renderer_primitives (a real glow-application gap on arrow meshes) and alex:json_author (phase timing/magnitude tuning). Confirm which by checking whether ANY nlb concept has ever produced a visible arrow-glow delta before assigning.',
+    'manual',
+    'Capture the frames either side of an authored phases[] glow handoff and confirm a visible brightness difference between the outgoing and incoming focal arrows.',
+    'OPEN',
+    ARRAY['newton_first_law: STATE_3']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop — newton_first_law',
+    'incident'
+);

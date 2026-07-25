@@ -1511,6 +1511,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    newton_first_law: {
+        concept_id: 'newton_first_law',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'newton_first_law',
+            label: "Newton's First Law — ΣF = 0 ⇔ v constant (3D)",
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

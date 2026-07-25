@@ -99,6 +99,17 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'hinge_force', 'free_body_diagram',
     // Friction (Ch.8.5)
     'friction_static_kinetic',
+    // Newton's first law / inertia (Class 11 Ch.8.2 — first concept of the new
+    // Laws of Motion field_3d chapter engine, newtons_laws_body scenario,
+    // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). A body's velocity stays exactly
+    // constant (including v=0) unless a NET external force acts on it: a
+    // frictionless coast at constant v (F_net = 0.00), the same launch with
+    // friction switched on (a real backward force stops it, not "motion
+    // wearing off"), and rest as the v=0 case of the SAME law (N = mg,
+    // ΣF = 0, balanced not absent forces). Does NOT cover how much a net
+    // force changes velocity (newton_second_law), force pairs
+    // (newton_third_law), or the friction threshold model (block_on_incline).
+    'newton_first_law',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -763,6 +774,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   free_body_diagram       ← FBD, isolate body, force diagram
   friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
+  newton_first_law        ← law of inertia, ΣF=0 ⇔ v constant, why moving things need no force to keep moving, rest = balanced not absent forces
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -968,6 +980,7 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "draw FBD" / "free body diagram" / "forces on block" → free_body_diagram
 - "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
+- "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",
