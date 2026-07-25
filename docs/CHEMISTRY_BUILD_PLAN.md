@@ -21,7 +21,7 @@
 | 2 | Authoring layer ready (`chemistry_author` + architect sources) | low | ✅ 2026-07-23 (tripwire green: tsc 0 · 124/124 · 288/288 · 11/11 emissions) |
 | 1 | Curriculum plumbing (subject first-class) | low-med | ✅ 2026-07-23 (physics catalog proven byte-identical; tripwire green) |
 | 2.5 | Parity hardening (founder audit: 4 shared specs chemistry-aware, shared JSON resolver, validate:chemistry v0, SOP + manual addenda, PROGRESS entry) | low | ✅ 2026-07-23 (audit findings + fixes; physics untouched) |
-| 3 | First concept — vertical slice | medium | ☐ (blocked on concept decision; preconditions now met: resolver + validate:chemistry live) |
+| 3 | First concept — vertical slice | medium | 🟡 2026-07-23 — **`bohr_model_energy_levels` built** (pivoted from Rutherford, archetype L, `parametric` renderer). Authored → validated (tsc 0 · 124/124 · chem 1/1) → renders on the review surface (added the parametric branch to `build_review_site.ts`). Remaining: formal `quality_auditor` + Asmi review + THE EYE (needs chemistry cache-seed). Rutherford = Wave-1.5 ([NEEDS-SCENARIO]). |
 | 4 | Chemistry validator + visual gate + CI | medium | ☐ |
 | 5 | Dedicated chemistry renderer (3D) | high | ☐ (founder-gated) |
 

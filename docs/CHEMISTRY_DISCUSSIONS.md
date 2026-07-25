@@ -6,6 +6,38 @@
 
 ---
 
+## Session C4 — First diamond built (Bohr): the archetype→renderer map is systematically optimistic; verify against code before scheduling (2026-07-23)
+
+**The recurring finding.** Three of the five chemistry archetypes in `docs/patterns/chemistry.md` v0.1
+were marked more renderer-ready than the code supports — and each was caught only by reading the
+actual renderer:
+- **M (particle-box):** claimed [LIVE]; `particle_field_renderer` is entirely circuit-shaped, no
+  gas-collision box. → corrected to [NEEDS-SCENARIO] (Session C3).
+- **K (particle scattering):** claimed [LIVE] via `magnetic_force_moving_charge` reuse; that machinery
+  is hardcoded closed-form circle/helix with NO general force integrator, so Rutherford's 1/r²
+  hyperbolic scattering needs a new ~200–400-line `field_3d` scenario. → split: in-field
+  circular/helical = [LIVE]; scattering = [NEEDS-SCENARIO] (this session).
+- **L (energy ladder):** genuinely [LIVE] on the `parametric` renderer — BUT "no new engine code" was
+  wrong twice: (a) every parametric concept needs its own ~15-line `computePhysics_<id>` (hardcoded
+  per-id dispatch, the §9 "low engine cost"); (b) the review site (`build_review_site.ts`) never
+  supported the parametric renderer AT ALL — it hard-gated on field_3d/particle_field, so even physics
+  parametric concepts had no teacher-surface path. Both closed additively this session.
+
+**Doctrine takeaway (captured):** an archetype's [LIVE] tier is a CLAIM about renderer readiness, and
+like Rule 38g curriculum tags it must be VERIFIED against the code before a concept is scheduled — not
+trusted from the pattern doc. The architect/chemistry_author now cite the tier; a `[LIVE]` that hasn't
+been code-verified for the SPECIFIC motion the concept needs is a scheduling risk. The cost ladder was
+worth it: reading the renderer first (an Explore pass) turned two potential dead-end pipeline runs
+(Rutherford; a "zero-code" Bohr that renders literal `{…}` labels) into one clean, correct, viewable
+first diamond.
+
+**GAP 2 (parametric live-position) noted as the one genuine renderer limitation** — text binds to live
+vars, positions don't; a `renderer_primitives` follow-up if drag-driven explore motion is wanted.
+Guided teaching is unaffected. Detail: `PROGRESS_CHEMISTRY.md` (this session) + `patterns/chemistry.md`
+archetype L.
+
+---
+
 ## Session C3 — International-first build FLOW: build by renderer archetype, not by chapter; the "universal passport" cluster; prove-first / Rutherford decision (2026-07-23)
 
 **The question (founder):** "We serve international curricula AND NCERT at the same time. In what FLOW

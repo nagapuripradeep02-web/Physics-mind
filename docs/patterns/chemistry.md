@@ -7,10 +7,18 @@
 > at a time. Consumers: `architect` (skeleton archetype declarations), `chemistry_author`
 > (Rule 31 timelines must cite an archetype here), `quality_auditor` (audits the declaration).
 >
-> **Hard interim rule (until Phase 5 builds the chemistry render surface):** only archetypes marked
-> **[LIVE]** may appear in a skeleton — they map to renderers that exist today. **[PHASE-5]**
-> archetypes are design targets; a concept needing one is not buildable yet and must not be
-> scheduled ahead of the Phase-5 renderer work.
+> **Hard interim rule (until Phase 5 builds the chemistry render surface) — THREE tiers, corrected
+> 2026-07-23 per CHEMISTRY_DISCUSSIONS §C3.4 (the renderer reality-check):**
+> - **[LIVE]** — maps to a renderer + scenario that EXISTS today; may appear in a skeleton now.
+> - **[NEEDS-SCENARIO]** — the renderer exists but the specific scenario does NOT (e.g. no gas-particle
+>   collision box exists in `particle_field_renderer`, which is entirely circuit-shaped). A modest
+>   `renderer_primitives` build (one scenario, not the big Phase-5 Three.js surface) unlocks it. A
+>   concept needing one is NOT buildable until that scenario ships — do not schedule it ahead of the build.
+> - **[PHASE-5]** — needs the net-new Three.js molecule/orbital render surface (`CHEMISTRY_ARCHITECTURE.md`
+>   §5c). Design target only; never schedule ahead of Phase-5 renderer work.
+>
+> Only **[LIVE]** archetypes may appear in a skeleton today. Archetype M was mislabeled [LIVE] in v0.1;
+> the code check found NO gas-collision scenario anywhere — it is **[NEEDS-SCENARIO]** (Wave-2 build).
 
 ---
 
@@ -29,30 +37,66 @@ without the particles. This is Rule 33 (macro↔micro) with a third vertex:
 
 ## 1. Archetype catalog
 
-### K — Particle trajectory / scattering **[LIVE]**
+### K — Particle trajectory / scattering **[SPLIT — see status]**
 Charged or neutral particles fly through a field/target region; paths bend, bounce, or pass.
-- **Maps to:** the force-in-field trajectory machinery proven in `magnetic_force_moving_charge`
-  (field_3d) and the particle stream machinery in `particle_field_renderer`.
-- **Serves (NCERT Cl.11 Ch.2 + kinetics):** Rutherford α-scattering, charged-particle deflection
-  (Thomson), collision-theory beats in kinetics.
-- **Signature beats:** aim → fly → deflect (cause: the nucleus/charge, visible BEFORE the path
-  bends); rare-event contrast (most pass straight ↔ few bounce back).
+- **Renderer reality-check (verified 2026-07-23 against `field_3d_renderer.ts`):** the
+  `magnetic_force_moving_charge` machinery is **[LIVE] only for closed-form in-field trajectories**
+  (`trajectory_mode: circle/helix/static`, computed parametrically at `field_3d_renderer.ts:36186+`).
+  It has **NO general force integrator** — it cannot represent a **1/r² hyperbolic SCATTERING** path
+  off a fixed central nucleus, and no Coulomb scenario animates a moving particle. So **Rutherford
+  α-scattering (aim→fly→deflect off a fixed nucleus, multi-particle beam) is [NEEDS-SCENARIO]** — a
+  modest new `field_3d` scenario (~200–400 lines, `renderer_primitives`), NOT a free reuse. This was
+  mislabeled [LIVE] in v0.1 (same error class as archetype M); corrected here.
+- **[LIVE] today:** in-field circular/helical charged-particle deflection (the magnetic machinery
+  as-is). **[NEEDS-SCENARIO]:** hyperbolic scattering / fixed-scatterer beams (Rutherford, Thomson
+  deflection, collision-theory trajectories) — deferred to a Wave-1.5 scenario build.
+- **Signature beats (once the scenario ships):** aim → fly → deflect (cause: the nucleus/charge,
+  visible BEFORE the path bends); rare-event contrast (most pass straight ↔ few bounce back).
 
-### L — Energy-level ladder / transitions **[LIVE]**
+### L — Energy-level ladder / transitions **[LIVE — verified 2026-07-23]**
 A vertical ladder of discrete levels; a marker (electron) jumps between rungs; each jump pairs with
 an emitted/absorbed quantum (arrow/flash) and a real number (ΔE, wavelength).
-- **Maps to:** 2D primitive composition (`body`/`label`/`formula_box`/`animated_path`/`glow_focus`
-  on `parametric_renderer`) — no new engine code; graph panel-B for spectra.
+- **Maps to:** 2D primitive composition on the `parametric` renderer (`renderer_pair.panel_a:
+  "parametric"`) — no new engine code. Renderer + vocabulary CONFIRMED against
+  `parametric_renderer.ts` and two shipped concepts (`vector_head_to_tail`,
+  `newton_second_law_direction`): `body`, `label`, `annotation`, `animated_path` (straight from→to
+  lerp — exactly a rung-to-rung jump / a photon arrow), `glow_focus`, `formula_box`,
+  `comparison_panel`, `axes`, `derivation_step`, `smooth_camera`, canvas `slider`. Spectra via a
+  `graph_interactive` panel-B or a body-strip in panel-A. **This is the Wave-1 zero-*renderer* path
+  (Bohr, built 2026-07-23).**
+- **Two build-proven caveats (Bohr, 2026-07-23) — "zero renderer" ≠ "zero code":**
+  (1) **Each parametric concept still needs its own ~15-line `computePhysics_<id>`** in
+  `parametric_renderer.ts` (iframe-side, for live labels) + a TS engine in
+  `src/lib/physicsEngine/concepts/` — `computePhysics()` is a hardcoded per-id dispatch, not a generic
+  evaluator. This is the "low engine cost" `CHEMISTRY_ARCHITECTURE.md` §9 forecast: additive,
+  concept-gated, physics-neutral — NOT a new renderer. Without it, `{derived}` labels render as literal
+  `{…}`. (2) **`smooth_camera` zooms the WHOLE draw pass** — on a canvas already ~90% full it clips
+  content off-screen (killed Bohr S2's top rungs); use it only with real slack, or omit.
+- **Known renderer limit (GAP 2, `peter_parker:renderer_primitives` follow-up):** the parametric
+  renderer binds only TEXT (`label_expr`/`text_expr`) to live variables — `body`/`animated_path`
+  POSITIONS are static per state. So a slider-driven explore state updates its numeric readouts live
+  but the moving glyph does NOT re-jump on drag (guided one-shot animations are unaffected). Author
+  explore states knowing this until a live-position-expr primitive lands.
+- **Serving:** the review-site path (`build_review_site.ts`) gained a `parametric` branch 2026-07-23
+  (`buildParametricConfig` + `assembleParametricHtml`) — parametric concepts now render on the teacher
+  surface (previously field_3d/particle_field only). THE EYE still needs a chemistry cache-seed
+  (`simulation_cache`) before `visual:eyes`.
 - **Serves:** Bohr model, atomic spectra, ionisation energy trends; later: activation-energy
   profiles (the "ladder" rotated into a reaction-coordinate hill).
 - **Signature beats:** quantised-jump (no between-rung stops — the misconception counter), absorb
   vs emit contrast pair, level-spacing → line-spectrum link.
 
-### M — Particulate box (2D kinetic view) **[LIVE]**
+### M — Particulate box (2D kinetic view) **[NEEDS-SCENARIO]**
 A closed 2D region of moving particles; the taught variable (T, P, V, concentration) changes and
 the particle behavior responds (speed, collision frequency, density).
-- **Maps to:** `particle_field` premium primitive + the kinetic-theory archetype
-  (`docs/catalog/pilot-topic-27-kinetic-theory.md` machinery).
+- **Renderer status (verified 2026-07-23):** `particle_field_renderer` is entirely circuit-shaped
+  (bridge/wire/meter_bridge topologies; resistor/emf/power scenarios) — there is NO gas-particle
+  collision box anywhere. This archetype needs a modest gas-collision-box scenario built ONCE (a
+  Wave-2 `renderer_primitives` task, not the Phase-5 Three.js build); it then serves the whole
+  physical-chemistry passport cluster (kinetic theory + diffusion + rates + equilibrium) — best ROI
+  in the roadmap. NOT buildable until that scenario ships.
+- **Maps to (once built):** a new `particle_field` gas-collision scenario + the kinetic-theory
+  archetype design (`docs/catalog/pilot-topic-27-kinetic-theory.md` machinery).
 - **Serves:** states of matter, gas laws, diffusion, collision theory, Le Chatelier concentration/
   pressure beats. ⚠ syllabus-check states-of-matter topics against the rationalised 2023+ NCERT.
 - **Signature beats:** heat-the-box (T slider → speed distribution), crowd-the-box (V/concentration
