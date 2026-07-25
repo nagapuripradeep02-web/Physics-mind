@@ -3,11 +3,22 @@
 updated: 2026-07-25 (worktree created, Phase 0 engine build starting)
 review_port: 8089
 regression_sample: electric_flux, magnetic_flux
-next: (Phase 0 engine build - no concept until newtons_laws_body is committed)
-done: (none)
+next: Phase 1 - author free_body_diagram (the RETROFIT per spec 8.8) using the shipped engine. Read docs/loop_runs/phase0_engine_report.md first: it carries the JSON authoring contract and 3 open founder decisions.
+done: Phase 0 - newtons_laws_body field_3d engine (all 14 spec sites, both structural extremes proved, regression clean)
 parked: (none)
 in_flight: (none)
-engine_commits: (none yet)
+engine_commits:
+  2ca62ad  chore(lom-a): Phase 0 scaffolding - engine spec, field3d-surgeon agent, loop state
+  6c7a319  seam A - types + config surface + scene build + dispatch + #sliders exclusion (sites 1,2,6-partial,7,8-partial,9)
+  e642bc5  seam B - integrator, both branches + animate() frame call site (sites 10, 8-physics)
+  be12f32  seam C - force-arrow overlay, 6 kinds + components + ghost (site 6-arrows, 8-arrows)
+  349e1af  seam D - pulley post/wheel/rope geometry + real hang anchor (site 6-pulley, 8-pulley)
+  9c413f8  seam E - sliders/explorer/PARAM_UPDATE/trusted drag/idle sweep (sites 3,4,5,11,8-controls)
+  9c4438e  seam F - deriveStateMeta reveal + hold + F3D_REVEAL_KEYS (sites 12, 13, +13a)
+  f921a3c  bring-up proof harness + hanging-body HUD stub fix
+
+engine_verify: check:renderer-syntax OK - tsc 0 errors - validate:concepts 125 PASS / 0 FAIL (after every seam)
+engine_regression: electric_flux 62/62 gates + magnetic_flux 38/38 gates, eye-walker NO REGRESSION on both (zero nlb_* leakage)
 chapter_map (founder-approved 2026-07-25): free_body_diagram, connected_bodies, block_on_incline
 
 notes: This worktree is HALF of the Laws of Motion chapter. The other half (newton_first_law, newton_second_law, newton_third_law) runs concurrently in C:\Tutor\physics-mind-lom-b on branch feat/lom-b. Two worktrees because git cannot check out one branch twice and two sessions must never race the same working tree.
