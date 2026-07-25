@@ -30487,7 +30487,10 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
         else if (token === "v0") {
-            if (bA) bA.v = value;
+            // v0 is an INITIAL CONDITION, so a teacher's slider value must survive a
+            // replay: write the live v AND the replay seed together, or
+            // RESET_TRAJECTORY would silently snap the body back to the authored v.
+            if (bA) { bA.v = value; bA.v0 = value; }
             if (eng.coupled) eng.v_string = value;   // keep the string constraint consistent
         }
         else return;
@@ -30732,6 +30735,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 s: d.initial_position_m || 0,
                 v: d.initial_velocity_mps || 0,
                 a: 0,
+                // Kinematic SEED, kept alongside the live s/v so RESET_TRAJECTORY can
+                // rewind this state to t = 0 (nlbResetTrajectory below). s0/v0 are the
+                // ONLY replay-relevant initial conditions; every other field (m, F,
+                // theta, mu) is a live teacher control that a rewind must NOT stomp.
+                s0: d.initial_position_m || 0,
+                v0: d.initial_velocity_mps || 0,
                 mu_s: frictionless ? 0 : (d.mu_s || 0),
                 mu_k: frictionless ? 0 : (d.mu_k || 0),
                 F_applied: d.applied_force_N || 0,
@@ -30851,6 +30860,46 @@ export const FIELD_3D_RENDERER_CODE = `
         // if applyState ever runs before PM_currentState is committed.
         nlbSetDragProxies(listed, !!nlb.trusted_drag_seizes);
 
+        nlbApplyGlow();
+    }
+
+    // ── RESET_TRAJECTORY — rewind THIS state to its own t = 0 ─────────────
+    //   Every other field_3d scenario poses from a closed form of
+    //   (time - stateStartTime), so the shared RESET_TRAJECTORY handler rebasing
+    //   stateStartTime rewinds them for free. This engine is a genuine INTEGRATOR:
+    //   b.s / b.v / eng.t_ms are accumulators seeded only by applyNewtonsLawsBodyState,
+    //   so a stateStartTime rebase left them running and the body carried the
+    //   PREVIOUS capture's travel into the next one (engine_bug_queue
+    //   coast_body_halts_mid_state_despite_authored_length_m: THE EYE's reveal pin
+    //   advanced free_body_diagram STATE_3 ~3 s, so the dense series that followed
+    //   started 6 m downrange and hit the +22 m surface bound mid-series — the body
+    //   halting under a "ΣF = 0, still moving" caption). Production's rollTimeline()
+    //   sends RESET_TRAJECTORY on every state entry/replay, so the same stale
+    //   accumulator hit a teacher replaying a state.
+    //   Restores ONLY the kinematics + the state-local clock + the one-shot latches.
+    //   Live teacher controls (m, F, theta, mu — and v0, whose slider writes the seed
+    //   itself) are deliberately preserved: this is a rewind, not a re-seed.
+    function nlbResetTrajectory() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b) continue;
+            b.s = (b.s0 != null) ? b.s0 : 0;
+            b.v = (b.v0 != null) ? b.v0 : 0;
+            b.a = 0; b.F_net = 0; b._stuck = false;
+            nlbSetBodyPosition(b.id, b.s);
+        }
+        eng.v_string = 0; eng.a_string = 0;
+        eng.t_ms = 0;                       // state-local sim clock, back to 0
+        window.PM_nlbTimeMs = 0;
+        eng.phase_fired = {};               // one-shots re-arm, exactly as on entry
+        eng.phase_active = {};
+        eng.phase_action = "";
+        if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
+        eng._sweep_last = null;             // the idle sweep is a closed form of t_ms
+        nlbLastEmitS = null;
+        nlbFitRopes();
         nlbApplyGlow();
     }
 
@@ -38158,6 +38207,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     // path matches the replayed motion.
                     stateStartTime = time;
                     lorentzTrailResetPending = true;
+                    // newtons_laws_body integrates instead of posing from a closed
+                    // form of (time - stateStartTime), so the rebase above cannot
+                    // rewind it — its accumulators are rewound explicitly.
+                    nlbResetTrajectory();
                     break;
 
                 case "SET_GLOW":
