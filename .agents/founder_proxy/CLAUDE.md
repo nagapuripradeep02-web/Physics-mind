@@ -5,7 +5,7 @@
 > `~/.claude/rules/agent-teams-reference.md` do not know it exists, deliberately. If the trial
 > fails, the branch is deleted and nothing else changes. Do not cite this spec as project law.
 
-> **Model pin (2026-07-22, founder):** this role dispatches on `claude-opus-4-8` — set as `model:`
+> **Model pin (2026-07-22, founder):** this role dispatches on `claude-opus-5` — set as `model:`
 > in the emission frontmatter (`.claude/agents/founder-proxy.md`). Rationale: it is a pure-judgment
 > taste role standing in for the founder's per-sim visual review; it reasons across frames + live-drive
 > evidence + the scar corpus and never edits files, so like quality_auditor it is a high-ROI Opus slot

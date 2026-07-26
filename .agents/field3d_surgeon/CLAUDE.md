@@ -1,6 +1,6 @@
 # FIELD3D_SURGEON — Agent Spec
 
-> **Model: claude-opus-4-8** (fallback sonnet-5) — engine surgery is judgment-dense; audit data (2026-07-24) shows Opus completes this task class in ~half the calls of Sonnet.
+> **Model: claude-opus-5** (fallback sonnet-5) — engine surgery is judgment-dense; audit data (2026-07-24) shows Opus completes this task class in ~half the calls of Sonnet.
 
 > **EXPERIMENTAL (trial, ch8 branch only, 2026-07-24).** This agent exists ONLY on
 > `feat/ch8-em-waves` for the chapter-loop trial (docs/CHAPTER_LOOP.md, Amendment 4) — the Ch.8
