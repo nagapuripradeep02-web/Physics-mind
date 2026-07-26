@@ -30853,7 +30853,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 mu_s: frictionless ? 0 : (d.mu_s || 0),
                 mu_k: frictionless ? 0 : (d.mu_k || 0),
                 F_applied: d.applied_force_N || 0,
-                N: 0, f: 0, T: 0, F_net: 0
+                N: 0, f: 0, T: 0, F_net: 0,
+                _boundArrestedSliding: false   // Branch A bound-halt readout latch — see SEAM B
             };
         }
         // SEAM C — the force-arrow contract for this state, per body: which of the
@@ -31098,6 +31099,7 @@ export const FIELD_3D_RENDERER_CODE = `
             b.s = (b.s0 != null) ? b.s0 : 0;
             b.v = (b.v0 != null) ? b.v0 : 0;
             b.a = 0; b.F_net = 0; b._stuck = false;
+            b._boundArrestedSliding = false;   // Branch A bound-halt readout latch — see SEAM B
             nlbSetBodyPosition(b.id, b.s);
         }
         // The shared string speed rewinds to the SAME seed state entry uses (the
@@ -31299,7 +31301,26 @@ export const FIELD_3D_RENDERER_CODE = `
                 var N = nlbNormal(b, th);
                 var drive = b.F_applied + nlbGravAlong(b, th);
                 var maxStat = b.mu_s * N;
-                var stuck = (Math.abs(b.v) < NLB_STOP_EPS_V) && (Math.abs(drive) <= maxStat);
+                var bd = nlbBoundsM(b, lenM);
+                // A body already ARRESTED AT ITS SURFACE BOUND while still sliding must
+                // not be reclassified "stuck" just because the clamp below forced
+                // v = 0 — that zero is a TRACK artifact, not a force-balance rest
+                // (engine_bug_queue nlb_uncoupled_readouts_revert_to_static_friction_
+                // on_bound_halt, the Branch A twin of nlb_coupled_readouts_revert_to_
+                // rest_values_on_bound_halt / bc649d4). This shape is exactly the
+                // normal mu_s > mu_k case: a body given an initial slide never
+                // decelerates to rest on its own (kinetic friction stays the loser
+                // every frame, a keeps the same sign as v) so it is still sliding at
+                // full speed when it runs out of finite track — the v = 0 the clamp
+                // then imposes would otherwise satisfy the REST test below and flip
+                // fₖ to fₛ on the very next frame (block_on_incline STATE_4: both
+                // blocks' HUD rows went byte-identical the instant B hit the end of
+                // its track). _boundArrestedSliding latches once a clamp fires on a
+                // frame that was genuinely sliding (stuck === false) and only
+                // releases once the body's position leaves the bound band again.
+                var boundPin = !!b._boundArrestedSliding &&
+                    (b.s <= bd.lo + 1e-9 || b.s >= bd.hi - 1e-9);
+                var stuck = !boundPin && (Math.abs(b.v) < NLB_STOP_EPS_V) && (Math.abs(drive) <= maxStat);
                 var a, f;
                 if (stuck) {
                     a = 0; b.v = 0;
@@ -31316,9 +31337,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 // static friction, the body has come to REST.
                 if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
                 var s1 = b.s + 0.5 * (v0 + v1) * h;
-                var bd = nlbBoundsM(b, lenM);
-                if (s1 < bd.lo) { s1 = bd.lo; v1 = 0; a = 0; }
-                else if (s1 > bd.hi) { s1 = bd.hi; v1 = 0; a = 0; }
+                if (s1 < bd.lo) s1 = bd.lo;
+                else if (s1 > bd.hi) s1 = bd.hi;
+                if (s1 <= bd.lo + 1e-9 || s1 >= bd.hi - 1e-9) {
+                    // Sitting exactly at a surface bound (just clamped, or still
+                    // pinned from a prior frame). v/a legitimately settle to 0 here —
+                    // there is nothing left to integrate against a wall — but the
+                    // friction TYPE stays whatever it genuinely was the instant
+                    // before the wall, never silently upgraded to static.
+                    v1 = 0; a = 0;
+                    b._boundArrestedSliding = !stuck;
+                } else {
+                    b._boundArrestedSliding = false;
+                }
                 b.a = a; b.v = v1; b.s = s1;
                 b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
                 b._stuck = stuck;          // SEAM C reads this so the friction ARROW's

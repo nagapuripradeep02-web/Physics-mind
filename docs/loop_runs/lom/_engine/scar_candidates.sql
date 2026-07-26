@@ -506,3 +506,52 @@ INSERT INTO engine_bug_queue (
 -- floats in open space - it mounts to nothing. That layer never rendered before aa7daf5, so it had
 -- never been reviewed. eye-walker reads it as standard textbook Atwood-diagram convention;
 -- quality-auditor calls it "looks slightly unfinished, not wrong". Both cleared it to ship.
+
+-- ============================================================================
+-- block_on_incline (concept 3, lom-a, 2026-07-26) -- text only, NOT applied.
+-- ============================================================================
+
+-- DIRECTIVE row proposed by field3d-surgeon alongside the pre-approved param_ramp
+-- addition (commit ada18a4). Authoring contract, not a defect.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_param_ramp_authoring_contract',
+    'A param_ramp state must author its own surface/body value for the ramped param equal to `from`, or state entry visibly jumps before the ramp starts',
+    'LOW',
+    'peter_parker:field3d_surgeon',
+    'param_ramp evaluates value(t) from `from` -> `to` off the state clock, but the scene is posed at state entry from the authored surface.theta_deg / body field. If the authored value differs from `from`, the first ramp frame snaps the geometry to `from` - a visible jump the author never intended. Same contract idle_auto_sweep already carries for range[0].',
+    'A monotonic reveal knob and the authored initial pose are two independent sources of truth for the same quantity; the author must keep them equal, or the engine must derive the pose from the ramp. Documented in NEWTONS_LAWS_BODY_ENGINE_SPEC.md section 1.',
+    'json_probe',
+    'For every state with newtons_laws_body.param_ramp, assert the authored value of the ramped param (surface.theta_deg for theta; the matching body field otherwise) equals param_ramp.from.',
+    'OPEN',
+    ARRAY['block_on_incline']::text[],
+    ARRAY[]::text[],
+    'lom-a block_on_incline - param_ramp addition 2026-07-26',
+    'directive'
+);
+
+-- FIXED row for the Branch A (uncoupled) twin of bc649d4. Found by eye-walker reading
+-- block_on_incline STATE_4 frames at cycle 0 (both blocks' HUD rows went byte-identical
+-- the instant B ran out of track); invisible to all 23 deterministic checks.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_uncoupled_readouts_flip_to_static_on_bound_halt',
+    'A sliding uncoupled body arrested at its surface bound silently re-derived STATIC friction, collapsing its readouts onto a never-moving body''s',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'The Branch A position clamp at bd.lo/bd.hi forced v = 0 to stop the body at the end of finite track. That zero is a TRACK artifact, not a force-balance rest, but the next frame''s rest test (|v| < NLB_STOP_EPS_V && |drive| <= mu_s*N) could not tell the difference and reclassified the body stuck, flipping f from kinetic to static. In the normal mu_s > mu_k case a body given an initial slide never decelerates to rest on its own, so it is always still sliding at full speed when it hits the bound - the flip was reachable on every such state.',
+    'A velocity zeroed by a geometric clamp must never feed a physics rest test. Latch the fact that the halt was a wall (_boundArrestedSliding, set only when the clamping frame was genuinely sliding) and release it only when the body leaves the bound band; pin position and zero v/a at a wall, but never upgrade the friction TYPE.',
+    'runtime_probe',
+    'Drive a state with a body seeded moving under mu_k until it reaches its track bound, then read the HUD LATE (past the halt instant): the friction glyph must still read fk, and the row must not be byte-identical to a co-present static body''s.',
+    'FIXED',
+    ARRAY['block_on_incline']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a block_on_incline fix cycle 1 2026-07-26',
+    'scar'
+);
