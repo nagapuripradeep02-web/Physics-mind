@@ -4,7 +4,7 @@ window.BRAND = {
   sub: "For Teachers",
   tagline: "The moving picture you can’t draw on a whiteboard.",
   description:
-    "{name} gives physics teachers accurate, manipulable 2D and 3D simulations for Class 10–12 — NCERT-mapped, for JEE, NEET and CBSE — driven live in class. One week free, then ₹499/month for founding teachers.",
+    "{name} gives physics teachers accurate, manipulable 2D and 3D simulations for any curriculum — CBSE, ICSE, IGCSE, IB, AP Physics, A-Level and more — driven live in class. One week free, then ₹499/month for founding teachers.",
   email: "pradeep@viditra.co",
   seatsTotal: 25,
   seatsTaken: 15              // founder-updated as founding seats fill; site renders "X of 25 left"

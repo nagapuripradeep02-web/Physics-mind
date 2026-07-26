@@ -1151,9 +1151,9 @@ function welcomeHtml(): string {
       <label for="sc">School / institute</label>
       <input id="sc" type="text" maxlength="120">
       <label for="tc">What you teach</label>
-      <input id="tc" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
+      <input id="tc" type="text" maxlength="120" placeholder="e.g. AP Physics C, IB DP Physics, CBSE Class 12">
       <label for="ch">Which chapter are you teaching next?</label>
-      <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other / Class 11</option></select>
+      <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other</option></select>
     </details>
   </form>
   <div class="err" id="errBox"></div>
