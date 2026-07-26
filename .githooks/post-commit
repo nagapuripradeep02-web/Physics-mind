@@ -1,0 +1,177 @@
+#!/usr/bin/env bash
+# PM-MANAGED-HOOK v1
+# ---------------------------------------------------------------------------
+# post-commit — fire-and-forget backup push.
+#
+# SOURCE OF TRUTH : .githooks/post-commit  (tracked; reaches every clone)
+# INSTALLED COPY  : <common .git>/hooks/post-commit
+#                   (written by `node scripts/install-git-hooks.js`;
+#                    the shared hook dir is branch- AND worktree-independent,
+#                    so one install covers all 13 worktrees on every branch)
+#
+# Why this exists: on 2026-07-26 this repo held 110 commits that existed on
+# exactly one disk in the world, across 5 branches, because "push" was a
+# habit rather than a mechanism.
+#
+# Contract:
+#   * never delays the commit    -> foreground spawns ZERO subprocesses
+#   * never fails the commit     -> always exits 0
+#   * never rewrites history     -> no --force / --force-with-lease, ever
+#   * never fires mid-replay     -> rebase / am / cherry-pick / revert / bisect
+#
+# Opt out:  PM_NO_AUTOPUSH=1                     (env, one commit)
+#           touch "$GIT_DIR/autopush.off"        (per-worktree, persistent)
+# Opt in for master:  PM_AUTOPUSH_MASTER=1
+# ---------------------------------------------------------------------------
+
+# ===================== FOREGROUND: NO SUBPROCESSES =========================
+# Git exports GIT_DIR into every hook, already correct for this worktree
+# (verified: a linked worktree gets .git/worktrees/<name>). Using it directly
+# avoids six `git rev-parse` spawns, which cost 30-60 ms each on Windows.
+
+GD="${GIT_DIR:-}"
+if [ -z "$GD" ]; then
+  GD="$(git rev-parse --absolute-git-dir 2>/dev/null)" || exit 0
+fi
+[ -d "$GD" ] || exit 0
+
+[ -n "${PM_NO_AUTOPUSH:-}" ] && exit 0
+[ -e "$GD/autopush.off" ]    && exit 0
+
+# Surface the PREVIOUS push failure, then clear it. A background push that
+# fails silently is worse than no push at all — this is the feedback channel.
+if [ -f "$GD/autopush.status" ]; then
+  while IFS= read -r _l || [ -n "$_l" ]; do printf '%s\n' "$_l"; done < "$GD/autopush.status"
+  rm -f "$GD/autopush.status" 2>/dev/null
+fi
+
+# HARD SKIP while any multi-commit replay operation is in flight.
+#   rebase-merge -> `git rebase` (default backend) AND the window where you
+#                   resolve a conflict and run `git commit` yourself — that IS
+#                   a normal commit and WOULD otherwise fire this hook
+#   rebase-apply -> `git rebase --apply`, `git am`
+#   sequencer    -> multi-commit cherry-pick / revert / `rebase -i` todo
+#   *_HEAD       -> merge/pick/revert mid-flight
+#   BISECT_LOG   -> a bisect session (e.g. `git bisect run` that commits)
+# These paths persist for the WHOLE operation, so a 50-commit ch7 rebase can
+# never produce 50 pushes.
+for _s in rebase-merge rebase-apply sequencer \
+          MERGE_HEAD CHERRY_PICK_HEAD REVERT_HEAD BISECT_LOG; do
+  [ -e "$GD/$_s" ] && exit 0
+done
+
+# Detached HEAD -> no branch to push. Parse HEAD directly, no subprocess.
+_head=''
+IFS= read -r _head < "$GD/HEAD" 2>/dev/null || exit 0
+_head="${_head%$'\r'}"
+case "$_head" in
+  'ref: refs/heads/'*) BRANCH="${_head#ref: refs/heads/}" ;;
+  *)                   exit 0 ;;
+esac
+[ -n "$BRANCH" ] || exit 0
+
+# Integration branches are published deliberately, not automatically.
+# master is empirically NOT where the problem is (it was in sync; the 110
+# unpushed commits were all on feature branches), and it gates CI.
+case "$BRANCH" in
+  master|main)
+    if [ -z "${PM_AUTOPUSH_MASTER:-}" ]; then
+      printf 'post-commit: %s is not auto-pushed. Run `git push` when ready.\n' "$BRANCH"
+      exit 0
+    fi
+    ;;
+esac
+
+# ================= BACKGROUND: everything expensive, detached ===============
+
+_pm_autopush() {
+  local TOP
+  TOP="$(git rev-parse --show-toplevel 2>/dev/null)" || return 0
+
+  # Scrub the inherited hook environment before any long-lived git call.
+  #  GIT_INDEX_FILE — for `git commit <path>` / `-o`, git passes a TEMPORARY
+  #                   index that it deletes as soon as the commit finishes.
+  #                   Inheriting a path to a dead file is the classic
+  #                   commit-from-a-hook bug.
+  #  GIT_ASKPASS    — here it is VS Code's askpass shim. A DETACHED process
+  #                   invoking it can block forever on an IPC channel to an
+  #                   editor that may already be gone.
+  #  GIT_DIR        — correct, but we pin to `git -C "$TOP"` so the detached
+  #                   process can never be ambiguous.
+  unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX GIT_QUARANTINE_PATH
+  unset GIT_ASKPASS SSH_ASKPASS GIT_EDITOR GIT_CONFIG_PARAMETERS
+  export GIT_TERMINAL_PROMPT=0   # never prompt on a tty
+  export GCM_INTERACTIVE=never   # never pop a Git Credential Manager window
+  export GIT_OPTIONAL_LOCKS=0    # never contend for index.lock with foreground git
+
+  # One push at a time per worktree. Git guarantees one branch per worktree, so
+  # this is exactly a per-branch lock. mkdir is the atomic primitive — flock is
+  # NOT shipped with Git for Windows.
+  local LOCK="$GD/autopush.lock"
+  if ! mkdir "$LOCK" 2>/dev/null; then
+    if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +10 2>/dev/null)" ]; then
+      rmdir "$LOCK" 2>/dev/null
+      mkdir "$LOCK" 2>/dev/null || return 0
+    else
+      # A push is already in flight. Pushes are CUMULATIVE — that one, or the
+      # next commit's, carries this commit too. Nothing is lost by returning.
+      return 0
+    fi
+  fi
+  trap 'rmdir "$LOCK" 2>/dev/null' EXIT INT TERM
+
+  local TMO=''
+  command -v timeout >/dev/null 2>&1 && TMO='timeout 300'
+
+  local attempt sha rc now
+  for attempt in 1 2 3; do
+    sha="$(git -C "$TOP" rev-parse --verify -q "refs/heads/$BRANCH")" || return 0
+    now="$(date '+%F %T')"
+
+    # NEVER force. If origin/<branch> is not an ancestor of our tip, history was
+    # rewritten (amend / reset --hard / local rebase) and a plain push would be
+    # rejected. Report it rather than hammering the network on every commit —
+    # and never do something irreversible on the user's behalf.
+    if git -C "$TOP" rev-parse --verify -q "refs/remotes/origin/$BRANCH" >/dev/null; then
+      if ! git -C "$TOP" merge-base --is-ancestor "refs/remotes/origin/$BRANCH" "$sha"; then
+        printf '%s [%s] SKIP: diverged from origin/%s (history rewritten)\n' "$now" "$BRANCH" "$BRANCH"
+        printf 'post-commit: auto-push SKIPPED — %s has diverged from origin/%s.\n  This hook never force-pushes. Review, then:\n    git push --force-with-lease origin %s\n' \
+               "$BRANCH" "$BRANCH" "$BRANCH" > "$GD/autopush.status"
+        return 0
+      fi
+    fi
+
+    printf '%s [%s] pushing %s (attempt %s)\n' "$now" "$BRANCH" "${sha:0:8}" "$attempt"
+    if git -C "$TOP" rev-parse --verify -q "$BRANCH@{upstream}" >/dev/null; then
+      $TMO git -C "$TOP" -c credential.interactive=false push --quiet
+    else
+      $TMO git -C "$TOP" -c credential.interactive=false push --quiet --set-upstream origin "$BRANCH"
+    fi
+    rc=$?
+
+    if [ $rc -ne 0 ]; then
+      printf '%s [%s] FAILED rc=%s\n' "$(date '+%F %T')" "$BRANCH" "$rc"
+      printf 'post-commit: auto-push of %s FAILED (rc=%s). Your commit is safe locally.\n  Log: %s\n' \
+             "$BRANCH" "$rc" "$GD/autopush.log" > "$GD/autopush.status"
+      return 0
+    fi
+
+    # Did another commit land while we were pushing? Then push again.
+    if [ "$(git -C "$TOP" rev-parse --verify -q "refs/heads/$BRANCH")" = "$sha" ]; then
+      printf '%s [%s] ok\n' "$(date '+%F %T')" "$BRANCH"
+      return 0
+    fi
+  done
+}
+
+# Detach. Verified on Git for Windows 2.51.2 / MSYS2 bash 5.2.37: git does NOT
+# wait for a backgrounded grandchild (hook returns in ~0.11s while the child
+# sleeps 5s), a consumer reading git's stdout does not block either, and the
+# orphan is reparented to PID 1 and survives.
+# The redirects are still mandatory: they make it structurally impossible for
+# any caller — VS Code's git integration, a CI shell, an agent tool wrapper —
+# to end up waiting on a handle this orphan holds open.
+_pm_autopush >>"$GD/autopush.log" 2>&1 </dev/null &
+disown 2>/dev/null || true
+
+exit 0
