@@ -35,6 +35,23 @@ if [ -z "$GD" ]; then
 fi
 [ -d "$GD" ] || exit 0
 
+# Chain to any hook we displaced at install time (Git LFS installs its own
+# post-commit, and both laptops have git-lfs). Installing ours must never
+# silently disable someone else's — that is the exact class of failure this
+# whole setup exists to prevent.
+#
+# Path is resolved with file tests rather than `git rev-parse --git-path
+# hooks` to keep the foreground path subprocess-free: in the main worktree
+# GIT_DIR is .git, in a linked worktree it is .git/worktrees/<name>.
+# A failure in the chained hook must never fail the commit.
+for _prev in "$GD/hooks/post-commit.pre-githooks.bak" \
+             "$GD/../../hooks/post-commit.pre-githooks.bak"; do
+  if [ -f "$_prev" ]; then
+    "$_prev" "$@" || true
+    break
+  fi
+done
+
 [ -n "${PM_NO_AUTOPUSH:-}" ] && exit 0
 [ -e "$GD/autopush.off" ]    && exit 0
 
