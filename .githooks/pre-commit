@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# PM-MANAGED-HOOK v1
+# ---------------------------------------------------------------------------
+# pre-commit — block the commit if any agent emission is stale vs its canonical.
+#
+# SOURCE OF TRUTH : .githooks/pre-commit   (tracked; reaches every clone)
+# INSTALLED COPY  : <common .git>/hooks/pre-commit
+#                   (written by `node scripts/install-git-hooks.js`)
+#
+# Escape hatch (emergencies only):
+#   PM_NO_HOOKS=1 git commit ...      or      git commit --no-verify
+# ---------------------------------------------------------------------------
+
+[ -n "${PM_NO_HOOKS:-}" ] && exit 0
+
+REPO_ROOT="$(git rev-parse --show-toplevel)" || exit 0
+
+# Only run where the agent directory exists. This hook now lives in the SHARED
+# hook dir, so it fires on every branch — including ones authored before the
+# agent fleet existed.
+if [ ! -d "$REPO_ROOT/.agents" ]; then
+  exit 0
+fi
+
+# A branch may have .agents/ but not the sync script. Skip, never explode.
+if [ ! -f "$REPO_ROOT/scripts/sync-agents.js" ]; then
+  exit 0
+fi
+
+# Never block a commit merely because node is missing from THIS shell's PATH.
+# Without this guard, a GUI git client launched without the usual environment
+# gets exit 127 and every commit on that machine fails.
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node not on PATH — skipping the agent-emission check."
+  exit 0
+fi
+
+if ! node "$REPO_ROOT/scripts/sync-agents.js" --check; then
+  echo ""
+  echo "  Fix: npm run sync:agents"
+  echo "  Then re-stage the updated emission files and commit again."
+  exit 1
+fi
+
+exit 0

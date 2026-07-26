@@ -1,0 +1,153 @@
+# Git workflow — PhysicsMind
+
+*Written 2026-07-26, after a week in which the same renderer fix was built twice
+and 110 commits sat on a single hard drive with no backup.*
+
+Two people work in this repo: physics on one laptop (13 git worktrees),
+chemistry on another. This document is the shared contract.
+
+---
+
+## 1. Your code lives in four places
+
+```
+1. Working tree   — the files on disk, as you edit them
+2. Staging area   — what you've marked to include        (git add)
+3. Local repo     — saved checkpoints on YOUR laptop     (git commit)
+4. GitHub         — the shared copy everyone can see     (git push)
+```
+
+**`git commit` does not back anything up.** On 2026-07-26 this repo had 110
+commits across 5 branches that existed on exactly one disk in the world. They
+were all committed. Backup happens at step 4, never step 3.
+
+| Command | Does | Risk to others |
+|---|---|---|
+| `git commit` | Saves a checkpoint locally | none |
+| `git push` | Copies commits to GitHub | **none** — cannot break anyone's work |
+| `git merge` | Combines two lines of work | this is where conflicts live |
+
+Push and merge are unrelated operations. Pushing a branch merges nothing.
+
+---
+
+## 2. The rhythm
+
+**Commit — when one thing works.** Not on a timer. The test: *"would I ever
+want to undo exactly this, by itself?"* One concept = one commit. One engine
+fix = its own commit.
+
+Always look at what you're about to commit:
+
+```bash
+git status              # BEFORE `git add`
+git diff --cached       # AFTER staging, BEFORE committing
+```
+
+This is not ceremony. A stray staged rename from a previous session once got
+swept into a commit that was supposed to be a single isolated file.
+
+**Push — every day, minimum.** The auto-push hook (§4) does this for you on
+feature branches. The rule behind it: **never end a session with unpushed
+commits.** A messy pushed commit beats a perfect lost one.
+
+**Merge — two directions, two cadences:**
+
+- **master → your branch: every morning.** This is the one everyone skips.
+  A daily merge is a 2-minute no-op; a 23-commit-behind merge is an hour.
+- **your branch → master: when the unit is done.** A finished concept or
+  chapter — not a half-built one.
+
+---
+
+## 3. Conflicts
+
+A conflict is only ever: **two branches changed the same lines, and Git won't
+guess.** Nothing is lost, nothing is corrupted — Git stops and asks.
+
+Nearly all conflicts here are the easy kind: *both sides appended a new entry
+to the same list.* Keep both, done.
+
+**But verify before you commit the resolution.** A keep-both merge once left an
+unbalanced brace — both sides opened an `if` block and there was only one
+closing brace below the conflict. `tsc` caught it in seconds; committing first
+would have put the breakage in history.
+
+```bash
+npm run check:renderer-syntax
+npx tsc --noEmit
+npm run validate:concepts
+# only now: git add + git commit
+```
+
+---
+
+## 4. What is automated (and what is not)
+
+**Automated — you do nothing:**
+
+| Mechanism | What it does |
+|---|---|
+| `post-commit` hook | Auto-pushes feature branches in the background. Never blocks the commit, never force-pushes, never fires mid-rebase. Skips `master`. |
+| `pre-commit` hook | Blocks a commit if an agent emission is stale vs its canonical. |
+| GitHub Actions `verify` | On every push: renderer syntax, agent sync, scenarios, concept schema, unit tests, type check. Lint is advisory. |
+
+Install the hooks **once per machine**:
+
+```bash
+node scripts/install-git-hooks.js
+```
+
+They land in the shared `.git/hooks`, so one install covers all worktrees on
+every branch. Opt out of a single auto-push with `PM_NO_AUTOPUSH=1 git commit`.
+
+**Not automated — this needs a human:**
+
+Engine files (`parametric_renderer.ts`, `field_3d_renderer.ts`,
+`particle_field_renderer.ts`, `premium_primitives.ts`, `deriveStateMeta.ts`,
+`build_review_site.ts`, `validators/visual/*`) are **platform**, shared by every
+chapter and both subjects. Land changes to them on master **separately and
+immediately** — never buried inside a chapter branch where they stay invisible
+until merge.
+
+Before building any engine-level mechanism, check it doesn't already exist:
+
+```bash
+git fetch origin && git log --all -S "PM_someSymbol" --oneline
+```
+
+Ten seconds. Skipping it is why `PM_focalEmphasis` and `PM_focalPulseBoost`
+were built independently, on the same day, to solve the same problem.
+
+---
+
+## 5. Namespacing — why content never conflicts
+
+Concept JSONs live in per-subject directories (`src/data/concepts/` for
+physics, `src/data/concepts/chemistry/` for chemistry). No two people write the
+same file, so **zero conflicts have ever come from concept content.**
+
+Every collision so far has been in the ~6 shared engine files above. That's the
+cost of one repo with a shared engine, and it's the right trade — but it's why
+§4's engine rule exists.
+
+---
+
+## 6. Quick reference
+
+```bash
+# every morning
+git fetch origin && git merge origin/master
+
+# during work — commit small, the hook pushes for you
+git status && git add <paths> && git diff --cached && git commit
+
+# before merging your branch to master
+npm run check:renderer-syntax && npx tsc --noEmit && npm run validate:concepts
+
+# "does this already exist?"
+git fetch origin && git log --all -S "<symbol>" --oneline
+
+# where is unpushed work hiding?
+git rev-list --count --branches --not --remotes     # must be 0
+```
