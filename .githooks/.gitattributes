@@ -1,0 +1,17 @@
+# Hook scripts are executed by Git for Windows' bash. A CRLF-terminated
+# shebang makes the exec layer look for an interpreter literally named
+# "bash\r":
+#
+#   $ /usr/bin/env $'bash\r' -c 'echo x'
+#   /usr/bin/env: 'bash\r': No such file or directory      exit=127
+#
+# On pre-commit that non-zero exit BLOCKS EVERY COMMIT on that machine, with
+# an error message that makes no sense to the person hitting it.
+#
+# This repo has core.autocrlf=true and it is demonstrably converting
+# (`git ls-files --eol` reports package.json as i/lf w/crlf), so without this
+# rule a fresh clone would check these hooks out with CRLF.
+#
+# Scoped to this directory rather than the root .gitattributes so it is a
+# brand-new file that no outstanding branch can conflict on.
+* text eol=lf
