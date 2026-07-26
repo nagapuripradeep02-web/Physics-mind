@@ -238,6 +238,27 @@ export function deriveMotionExpectations(
             // below — but the coil auto-sweeps there too, so it never truly freezes).
             const acg = state ? asObj(state.ac_generator) : null;
             if (acg) { out[stateId] = (acg.mode && acg.mode !== 'sandbox') ? true : false; continue; }
+            // displacement_current: every guided beat animates (charge-loop bead
+            // flow + dot/flux ramp, surface disk↔balloon morph, probe glide/sweep,
+            // throttle on/off, B-ring pulse). STATE_8 (why_epsilon0_dphi_dt) is a
+            // reveal_hold frozen snapshot — nothing physically moves, the glow-walk
+            // + docking chain carry it → declare non-motion (false) so D5 does not
+            // false-fail "motion died". STATE_10 (displacement_sandbox) is user-
+            // driven → declare static; its idle I_c auto-sweep still moves pixels,
+            // but its frozen tail is relaxed by the show_sliders→interactive hold
+            // pass below.
+            const dc = state ? asObj(state.displacement_current) : null;
+            if (dc) {
+                out[stateId] = (dc.reveal_hold === true || dc.mode === 'why_epsilon0_dphi_dt' || dc.mode === 'displacement_sandbox') ? false : true;
+                continue;
+            }
+            // em_wave_propagation: every guided beat is a perpetually-moving wave
+            // (the E/B train phase-advances +x every frame — pulse or train), so it
+            // DECLARES motion. The explore sandbox (em_wave.interactive) is
+            // user-driven → declare static (its self-running train still moves pixels,
+            // but its frozen tail is relaxed by the show_sliders→interactive hold pass).
+            const emw = state ? asObj(state.em_wave) : null;
+            if (emw) { out[stateId] = (emw.interactive === true) ? false : true; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -354,6 +375,18 @@ const F3D_REVEAL_KEYS = [
     // physics_config that flattened field_3d_config.states is still recognised
     // as field_3d, not PCPL.
     'capacitance',
+    // displacement_current (I_d = ε₀ dΦ_E/dt — Ch.8 §8.2 engine ask): the per-state
+    // `displacement_current` block (charge-loop / surface-morph / probe-sweep /
+    // chain-link derivation / ledger reveals). Listed here so a cached
+    // physics_config that flattened field_3d_config.states is still recognised
+    // as field_3d, not PCPL.
+    'displacement_current',
+    // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3 engine ask):
+    // the per-state `em_wave` block (wave_mode pulse|train, source on/off, motes +
+    // vanish cue, receiver gauges, contextual ν/E₀/n/source controls). Listed here
+    // so a cached physics_config that flattened field_3d_config.states is still
+    // recognised as field_3d, not PCPL.
+    'em_wave',
     // electric_potential_dipole (dipole_potential) + the potential siblings: every
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
@@ -1272,6 +1305,81 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             if (typeof lastCue === 'number') candidates.push(lastCue + 800);
         }
     }
+    // displacement_current (I_d = ε₀ dΦ_E/dt — Ch.8 §8.2): every guided beat's
+    // one-shot cues (switch-close, loop-draw/disk-fill/I_enc-dock, surface morph
+    // + I_enc flip, probe glide + needle hold + B-ring appear, peak-marker pin,
+    // three derivation link cues) land then HOLD. Pin the frozen frame past the
+    // LAST cue's payoff so THE EYE photographs the settled reveal — the docked
+    // I_enc, the flipped 0, the pinned peak, the closed chain — not a mid-cue
+    // frame. The renderer is accumulator-free (pure fn of state-local t), so the
+    // snap-to-pin capture is byte-identical to crawling there. S10
+    // (displacement_sandbox) is user-driven — handled in deriveHoldExpectations
+    // as interactive, not pinned here.
+    const dcState = asObj(state.displacement_current);
+    if (dcState) {
+        const push = (v: unknown, extra = 500) => { if (typeof v === 'number') candidates.push(v + extra); };
+        push(dcState.switch_close_at_ms, 2500);         // land inside the charge window
+        push(dcState.loop_draw_at_ms, 400);
+        push(dcState.disk_fill_at_ms, 600);
+        push(dcState.ienc_dock_at_ms, 800);
+        if (typeof dcState.morph_start_at_ms === 'number') {
+            candidates.push(asNum(dcState.morph_start_at_ms, 2000) + asNum(dcState.morph_duration_ms, 6000) + 500);
+        }
+        push(dcState.ienc_flip_at_ms, 800);
+        if (typeof dcState.probe_glide_start_at_ms === 'number') {
+            candidates.push(asNum(dcState.probe_glide_start_at_ms, 2000) + asNum(dcState.probe_glide_duration_ms, 8000) + 500);
+        }
+        push(dcState.needle_hold_at_ms, 500);
+        push(dcState.bring_gap_appear_at_ms, 700);
+        push(dcState.peak_marker_pin_at_ms, 800);
+        if (Array.isArray(dcState.link_cues_at_ms) && dcState.link_cues_at_ms.length > 0) {
+            const last = dcState.link_cues_at_ms[dcState.link_cues_at_ms.length - 1];
+            if (typeof last === 'number') candidates.push(last + 900);
+        }
+        // S6 throttle: pin inside the FIRST on-window so the frozen frame shows
+        // both meters live (I_c = I_d = 1.20), not the off-phase zeros.
+        if (dcState.mode === 'flux_acts_as_current') {
+            candidates.push(Math.round(asNum(dcState.on_ms, 4500) * 0.6));
+        }
+    }
+    // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3): the trains
+    // move perpetually, but the STATE's one-shot cues (motes vanish → the "no
+    // change" chip pins, the pulse reaches the receiver and the needle kicks) land
+    // then HOLD. Pin the frozen frame PAST each cue so THE EYE's __frozen.png shows
+    // the settled reveal — the vanished motes + pinned chip (S3), the delivered
+    // needle-kick (S1) — the recurrence check for the OPEN scar
+    // field3d_scene_composition_annotation_silent_noop (these cues are scenario
+    // elements, so they must paint). Accumulator-free (pure fn of state-local t),
+    // so the snap-to-pin capture is byte-identical to crawling there.
+    const emwState = asObj(state.em_wave);
+    if (emwState) {
+        const push = (v: unknown, extra = 600) => { if (typeof v === 'number') candidates.push(v + extra); };
+        push(emwState.motes_vanish_at_ms, 1000);   // past the ~800 ms fade + a beat
+        push(emwState.nochange_at_ms, 700);
+        push(emwState.needle_kick_at_ms, 500);
+        push(emwState.source_off_at_ms, 1200);
+        // increment-2 per-state one-shots: pin the frozen frame PAST each state's
+        // LAST settled payoff (scar #5 — never mid-transition) so THE EYE's
+        // __frozen.png photographs the settled reveal.
+        push(emwState.relay_at_ms, 2000);          // S2: past the first hand-off cycle
+        push(emwState.trough_at_ms, 1000);         // S4: past the trough re-sweep
+        push(emwState.camera_back_at_ms, 800);     // S4: camera settled home
+        push(emwState.match_at_ms, 900);           // S6: the MATCH chip pinned
+        push(emwState.gate_b_at_ms, 600);          // S6: gate B ticked, Δt held
+        push(emwState.ghost_dissolve_at_ms, 1200); // S5: ghost dissolved, in-phase pose held
+        push(emwState.bunch_at_ms, 900);           // S10: crests fully bunched
+        push(emwState.slab_slide_at_ms, 1000);     // S10: slab settled in
+        // S9 formula-chain derivation: three recall links dock in turn under the
+        // GIVEN E_y, then the assembled B_z line lights (renderer emw_formula chain,
+        // ~L31440). The pin must land PAST the LAST payoff (assembled) — scar #5,
+        // never mid-transition — else it falls back to DEFAULT_REVEAL_MS ≈ 1500 and
+        // photographs only E_y with no links docked. +2000 on assembled_at_ms lands
+        // at 18000 ms, matching the verified-correct STATE_9 dense_t18000 capture.
+        push(emwState.link1_at_ms, 600);           // S9: direction ẑ link docked
+        push(emwState.link2_at_ms, 600);           // S9: same-phase link docked
+        push(emwState.link3_at_ms, 600);           // S9: amplitude E₀/c link docked
+        push(emwState.assembled_at_ms, 2000);      // S9: B_z assembled line settled
+    }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
     // are one-shot timed gestures that then HOLD still — pin the frozen frame
     // past each payoff so the capture photographs the completed reveal, and so
@@ -1972,6 +2080,34 @@ export function deriveHoldExpectations(
             const capHold = asObj(state.capacitance);
             if (capHold) {
                 out[stateId] = (capHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // displacement_current: every state is LIVE (show_sliders true — Rule
+            // 31), so the generic show_sliders catch below would swallow S1-S9's
+            // genuine reveal-then-hold beats into 'interactive' before they ever
+            // reach it. Classify explicitly (mirrors the capacitance/ac_generator
+            // split above): the sandbox explore state (displacement_sandbox, S10)
+            // is user-driven → interactive; every other mode is a guided beat whose
+            // one-shot payoff (pinned in maxRevealForField3dState) then settles to a
+            // HOLD → reveal_hold, so D7/D1p permit the settled tail (S8 is a
+            // reveal_hold frozen snapshot by construction).
+            const dcHold = asObj(state.displacement_current);
+            if (dcHold) {
+                out[stateId] = (dcHold.mode === 'displacement_sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // em_wave_propagation: every guided beat is LIVE (Rule 31 contextual
+            // rows on S6+), so the generic show_sliders catch below would swallow
+            // their genuine reveal-then-hold cues (motes vanish + chip pin, gate
+            // dock) into 'interactive' before they reach it. Classify explicitly
+            // (mirrors the displacement_current/capacitance split above): the explore
+            // sandbox (em_wave.interactive) is user-driven → interactive; every other
+            // beat's one-shot cue payoff (pinned in maxRevealForField3dState) settles
+            // to a HOLD over the perpetually-running train → reveal_hold, so D7/D1p
+            // permit the settled overlay tail.
+            const emwHold = asObj(state.em_wave);
+            if (emwHold) {
+                out[stateId] = (emwHold.interactive === true) ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

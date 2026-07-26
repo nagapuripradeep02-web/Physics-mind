@@ -50,6 +50,10 @@ const ROLES = [
   { canonical: 'eye_walker',          emission: 'eye-walker'          },
   { canonical: 'retrofit_surgeon',    emission: 'retrofit-surgeon'    },
   { canonical: 'shipper',             emission: 'shipper'             },
+  // EXPERIMENTAL 2026-07-22 — founder_proxy (chapter-loop trial, ch7 branch only)
+  { canonical: 'founder_proxy',       emission: 'founder-proxy'       },
+  // EXPERIMENTAL 2026-07-24 — field3d_surgeon (Amendment 4 engine specialist, ch7 branch only)
+  { canonical: 'field3d_surgeon',     emission: 'field3d-surgeon'     },
 ];
 
 const H1 = /^#\s/; // a markdown H1 line ("# ...")
