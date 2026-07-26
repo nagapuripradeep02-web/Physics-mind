@@ -1,6 +1,6 @@
 # QUALITY_AUDITOR — Agent Spec
 
-> **Model pin (2026-07-08, founder):** this role dispatches on `claude-opus-4-8` (upgraded from
+> **Model pin (2026-07-08, founder):** this role dispatches on `claude-opus-5` (upgraded from
 > `claude-sonnet-5`) — set as `model:` in the emission frontmatter (`.claude/agents/quality-auditor.md`).
 > Rationale: the final adversarial pre-founder gate reasons across the whole pipeline (skeleton + physics
 > block + JSON + THE EYE + eye_walker findings + FAIL routing) and never edits files, so it is the

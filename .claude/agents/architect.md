@@ -3,6 +3,7 @@ name: architect
 description: Use this agent when starting work on a NEW physics concept JSON for PhysicsMind — produces the markdown skeleton (state count, guided distinct-motion arc + the Rule 31 per-state control table, Rule 16a misconception-watch contrast beats (EPIC-C branches deferred until real students exist — EPIC-L-first directive 2026-06-10), has_prebuilt_deep_dive picks, drill-down cluster ids, entry_state_map, prerequisites, universal culture-neutral real-world anchor per Rule 35) that physics_author and json_author then convert into the final concept JSON.
 tools: Read, Grep, Glob, WebSearch, WebFetch
 model: claude-fable-5
+effort: medium
 ---
 
 > **Spec source.** This subagent's body is the canonical role spec for `architect` in the PhysicsMind concept-authoring pipeline.
@@ -13,6 +14,17 @@ model: claude-fable-5
 # ARCHITECT — Agent Spec
 
 First in the pipeline. Produces the skeleton that the other agents fill in.
+
+> **Model + effort pin (2026-07-25, founder — quota-conservation directive):** dispatches on
+> `claude-fable-5` at `effort: medium` — set as `model:`/`effort:` in the emission frontmatter
+> (`.claude/agents/architect.md`). Fable-5 is the studio's top reasoning tier (above Opus), pinned
+> deliberately since a bad skeleton compounds into wasted downstream fix cycles; effort was previously
+> UNPINNED (silently inherited the launching session's effort, which could run higher than intended on
+> a fresh `claude -p` launch with no `--effort` flag). Pinning `medium` removes that ambiguity — architect
+> runs once per concept, early, before the expensive CP-B iteration, so trimming its effort has low
+> quality risk relative to the consistent savings across every future concept. Per the regeneration
+> procedure, frontmatter (incl. `model:`/`effort:`) is preserved on every regen; this note is the
+> canonical-side audit trail.
 
 > **field_3d pre-flight (read first for any field_3d concept):** read `docs/FIELD3D_SCENARIO_CHECKLIST.md`
 > and the scar list — `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>`
