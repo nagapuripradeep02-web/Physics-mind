@@ -84,31 +84,21 @@ No engine code is changed in that case.
 
 The cluster owns these files end-to-end. Bugs routed here land on one of these. If a fix would require editing anything else, stop and escalate.
 
-**Live renderers — the current product surface (2026-07-12 doctrine sync)**
-- [src/lib/renderers/field_3d_renderer.ts](../../src/lib/renderers/field_3d_renderer.ts) — Three.js 3D sims (ALL current diamonds). The PRIMARY live surface: scenario engines, sprite labels (`createLabelSprite`/`createWideLabelSprite`), glow/choreography, postMessage consumer side. No backticks inside its template-literal body.
+**Live renderers — the current product surface (three live renderers; 2026-07-23 doctrine sync)**
+- [src/lib/renderers/field_3d_renderer.ts](../../src/lib/renderers/field_3d_renderer.ts) — Three.js 3D sims (ALL current diamonds, Kinematics onward). The PRIMARY live surface: scenario engines, sprite labels (`createLabelSprite`/`createWideLabelSprite`), glow/choreography, postMessage consumer side. No backticks inside its template-literal body.
 - [src/lib/renderers/particle_field_renderer.ts](../../src/lib/renderers/particle_field_renderer.ts) — p5 2D renderer (Ch.3 current electricity): circuit/KCL scenario engine, `macro_view` split canvas (Rule 33), V–I graph surface.
-- [src/lib/validators/visual/deriveStateMeta.ts](../../src/lib/validators/visual/deriveStateMeta.ts) — **MUST be co-edited in the SAME change** whenever a new scenario, one-shot, or `*_at_ms` field is added to either live renderer; otherwise THE EYE mis-classifies the state and false-fails (see the 2026-07-08 silent-failure catalog row).
+- [src/lib/renderers/parametric_renderer.ts](../../src/lib/renderers/parametric_renderer.ts) — **PCPL 2D — the LIVE engine for the Class-11 Vectors chapter** (concepts are pure JSON with pixel coordinates; reference concept `scalar_vs_vector`). ~3488 lines. Hardened to doctrine parity in commit `2435706` (fixed-step `PM_simClockMs` clock — Rule 36; full `SET_TIME_FREEZE`/PAUSE/RESUME/MUTE contract + `__PM_supportsTimePin`; brightness-only `PM_focalEmphasis` — Rule 29; 4 choreography primitives). This cluster owns:
+  - `drawForceArrow()` (~L1495), `drawVector()` (~L1792), `drawAngleArc()` (~L2143), and the other primitive draw helpers (line numbers drift as the file grows — grep the symbol).
+  - `assembleParametricHtml()` (~L3444) and the subscene iframe assembly.
+  - PostMessage listeners (`SET_STATE` ~L3277, `PARAM_UPDATE` ~L3356) and the SET_TIME_FREEZE/PAUSE/RESUME/MUTE/SET_CLEAN_MODE/SET_GLOW handlers.
+  - Focal Attention (`PM_focalEmphasis`) highlight draw calls; animation gate (`PM_animationGate`), transition, and fade helpers.
+  - The PCPL primitive library is now **folded IN-FILE** (the old `src/lib/pcplRenderer/primitives/` 14-file tree + `index.ts` were DELETED in `729042a`/`2435706` — DO NOT reference them; they no longer exist). Primitive draw + assembly live here and in [src/lib/renderers/premium_primitives.ts](../../src/lib/renderers/premium_primitives.ts) (`drawSoundCue` etc.). The accepted-primitive-type list is the `drawSubScene` type switch — see the Renderer-behavior section below.
+  - **Explicitly NOT owned:** inline `computePhysics_<concept>` functions at ~L65–480. Those belong to `runtime_generation` even though they live in this file. Read-only here.
+- [src/lib/validators/visual/deriveStateMeta.ts](../../src/lib/validators/visual/deriveStateMeta.ts) — **MUST be co-edited in the SAME change** whenever a new scenario, one-shot, `*_at_ms` field, or PCPL animation/choreography type is added to ANY of the three live renderers; otherwise THE EYE mis-classifies the state and false-fails (see the 2026-07-08 silent-failure catalog row).
 
-**[LEGACY — PCPL/old 2D stack below (parametric display layer, graph_interactive, the 14 PCPL primitives); NOT the current product surface. Kept editable for legacy fixes only.]**
-
-**Display-layer of the parametric renderer**
-- [src/lib/renderers/parametric_renderer.ts](../../src/lib/renderers/parametric_renderer.ts) — ~2383 lines. This cluster owns:
-  - `drawForceArrow()` (line ~989), `drawVector()` (line ~1222), `drawAngleArc()` (line ~1459).
-  - `assembleParametricHtml()` and the subscene iframe assembly.
-  - PostMessage listeners at lines 2002–2003, 2167 (`SET_STATE`, `PARAM_UPDATE`).
-  - Focal Attention highlight draw calls.
-  - Animation gate, transition, and fade helpers.
-  - **Explicitly NOT owned:** inline `computePhysics_<concept>` functions at lines 47–250. Those belong to `runtime_generation` even though they live in this file. Read-only here.
-
-**Fallback and mode-specific renderers**
-- [src/lib/renderers/mechanics_2d_renderer.ts](../../src/lib/renderers/mechanics_2d_renderer.ts) — ~5752 lines, 10+ scenarios. Fallback for concepts not yet on PCPL.
+**Fallback and mode-specific renderers [LEGACY — not the current product surface; kept editable for legacy fixes only]**
+- [src/lib/renderers/mechanics_2d_renderer.ts](../../src/lib/renderers/mechanics_2d_renderer.ts) — ~5752 lines, 10+ scenarios. Separate, live-but-dormant scenario engine behind the old vectors/kinematics/forces JSONs (NOT product). Naming trap: PCPL concept JSONs write `renderer_pair.panel_a:"mechanics_2d"`, but `PCPL_CONCEPTS` overrides that at the sim-assembler, so that string does NOT mean this file runs.
 - [src/lib/renderers/graph_interactive_renderer.ts](../../src/lib/renderers/graph_interactive_renderer.ts) **[LEGACY]** — emits `GRAPH_INTERACTIVE_RENDERER_CODE`; reads `panel_b_config` from concept JSON; bilateral sync with Panel A via `PARAM_UPDATE`.
-
-**PCPL primitive library [LEGACY]** — [src/lib/pcplRenderer/primitives/](../../src/lib/pcplRenderer/primitives/), 14 files:
-`angle_arc.ts`, `annotation.ts`, `body.ts`, `comparison_panel.ts`, `derivation_step.ts`, `force_arrow.ts`, `formula_box.ts`, `label.ts`, `mark_badge.ts`, `motion_path.ts`, `projection_shadow.ts`, `slider.ts`, `surface.ts`, `vector.ts`.
-
-**PCPL core**
-- [src/lib/pcplRenderer/index.ts](../../src/lib/pcplRenderer/index.ts) — `resolvePositions()`, `computeSurfaceEndpoints()`, `RenderEngines` interface.
 
 **Rendering engines**
 - [src/lib/engines/anchor-resolver/index.ts](../../src/lib/engines/anchor-resolver/index.ts) — `AnchorResolverEngine` (zone anchors, surface parametric, surface named, body anchors).

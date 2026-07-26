@@ -53,6 +53,11 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // Atomic splits from former vector_basics bundle (Ch.5.2)
     'unit_vector', 'angle_between_vectors', 'scalar_multiplication',
     'negative_vector', 'equal_vs_parallel',
+    // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
+    // Ch.1 "Vectors" — the DAG root; prerequisites: []). It is NOT a redirect
+    // to current_not_vector anymore — see CONCEPT_SYNONYMS below, that alias
+    // was removed 2026-07-23.
+    'scalar_vs_vector',
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
     'current_not_vector', 'parallelogram_law_test', 'pressure_scalar',
     'area_vector',
@@ -808,7 +813,6 @@ export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     vector_basics: 'unit_vector',
     vector_addition: 'resultant_formula',
     vector_components: 'vector_resolution',
-    scalar_vs_vector: 'current_not_vector',
     distance_vs_displacement: 'distance_displacement_basics',
     uniform_acceleration: 'three_cases',
     non_uniform_acceleration: 'a_function_of_t',
@@ -943,6 +947,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   combination_of_cells   ← joining real cells (each its own emf epsilon and internal r) in SERIES adds both the pushes and the tolls — epsilon_eq = sum of the emfs signed by polarity, r_eq = sum of the r's always (even a reversed, cancelled cell still adds its own r — a dead circuit can hold two live cells); joining IDENTICAL cells in PARALLEL keeps the push but SHARES the toll — epsilon_eq = epsilon unchanged, r_eq = r/m — so which grouping actually helps depends on the load: series wins when R is much bigger than r, parallel wins when R is comparable to or smaller than r, and "more cells" is never automatically "more current" — direct sequel of emf_definition/internal_resistance, same home cell multiplied (aspects: foundational=baseline through both groupings to the PRIMARY load-matching aha, series=emfs and r's add + the reversed-cell trap, parallel=voltage unchanged + current sharing via r/m, grouping_choice=the decision rule + explore)
 
   ── Vectors (Ch.5) ── atomic splits
+  scalar_vs_vector         ← the general TEST for whether a quantity is a scalar or a vector — magnitude+direction is necessary but NOT sufficient, it must also add by the triangle/parallelogram law (3 km + 4 km at a right angle gives 5 km, not 7); mass on a scale adds as a plain number regardless of orientation/angle. The general classification test — NOT a specific worked trap (current_not_vector, pressure_scalar are the specific applications of this same test).
   vector_resolution        ← resolving a force/vector at an angle into axes
   unit_vector              ← definition, magnitude, direction of unit vector
   angle_between_vectors
@@ -1237,6 +1242,12 @@ CRITICAL DISAMBIGUATION (magnetism, Ch.4):
 - DISAMBIGUATION (bar magnet IDENTITY/FIELD vs bar magnet IN A FIELD vs GAUSS-FOR-MAGNETISM vs EARTH'S-MAGNETISM vs loop-as-dipole): if the question is about what a bar magnet IS or its own field — closed-loop lines, no monopole, moment m, equivalent solenoid, axial/equatorial 1/r³ → bar_magnet_as_dipole; if it is about a bar magnet's torque/oscillation/energy placed IN an external field (τ = m×B, U = −m·B, T = 2π√(I/mB)) → bar_magnet_in_uniform_field; if it is about the NET MAGNETIC FLUX through a CLOSED SURFACE being zero (∮B·dA = 0, no monopole as a flux law) → gauss_law_magnetism; if it is about the EARTH as a tilted magnet — declination D, angle of dip I, the horizontal/vertical field components, dip vs latitude → earths_magnetism; if it is about ELECTRIC flux / charge enclosed (∮E·dA = q/ε₀) → gauss_law or electric_flux; if it is about a CURRENT LOOP being a magnetic dipole (m = NIA) → current_loop_acts_as_dipole.
 - "force between two parallel wires" / "two wires carrying current attract or repel" / "F/L = μ₀I₁I₂/2πd" / "parallel currents attract" / "why does the ampere get defined this way" → parallel_currents_force
 - "solenoid" / "B inside a solenoid" / "B = μ₀nI" / "turns per metre" / "RHR for solenoid" / "field of a coil" → magnetic_field_solenoid
+
+CRITICAL DISAMBIGUATION (vectors, Ch.5.1):
+- "is X a scalar or a vector" / "how do you tell if something is a vector" / "does having a direction make it a vector" / "two conditions for a vector" / "3 km + 4 km at 90 degrees" / "why doesn't 3+4=7 on the ground" / "does spinning/rotating something change what it weighs" / "triangle law vs plain addition" → scalar_vs_vector (the GENERAL test — magnitude+direction is necessary but not sufficient, must also add by the triangle/parallelogram law)
+- "why is current not a vector" / "current has direction but is scalar" → current_not_vector (a SPECIFIC worked application of the scalar_vs_vector test)
+- "why is pressure a scalar" / "pressure pushes in all directions" → pressure_scalar (a SPECIFIC worked application of the scalar_vs_vector test)
+- "two conditions for a vector, formally, with more examples" / "surface tension / finite rotation / polar vs axial" → parallelogram_law_test
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "gravitational force" / "weight of object" → field_forces

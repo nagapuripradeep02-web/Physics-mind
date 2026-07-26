@@ -415,6 +415,26 @@ export function deriveMotionExpectations(
             out[stateId] = true;
             continue;
         }
+        // PCPL (WP-T1, 2026-07-23): a looping/ping-ponging variable_choreography
+        // entry, a rotate_continuous / pendulum / door_swing / looping-projectile
+        // scene primitive, is genuinely ongoing motion (the sweep/spin never
+        // settles) — declare motion=true so D5/D6 expect continuous pixel movement
+        // instead of D7 demanding stillness from a state that legitimately never
+        // stops (e.g. scalar_vs_vector's S2 psi_pointer loop). A 'once' entry is
+        // NOT matched here — it settles (reveal_hold below), not ongoing motion.
+        if (pcplHasContinuousMotion(state)) {
+            out[stateId] = true;
+            continue;
+        }
+        // PCPL parity (2026-07-23): a scene body animation that plays once and
+        // SETTLES (free_fall / atwood / translate / slide / one-shot projectile)
+        // is real motion during its reveal window — declare motion=true so D5
+        // confirms it visibly played; deriveHoldExpectations still marks the
+        // settled tail a reveal_hold (dual classification) so D7 stays green.
+        if (pcplHasTransientBodyMotion(state)) {
+            out[stateId] = true;
+            continue;
+        }
         out[stateId] = undefined;
     }
     return out;
@@ -2199,7 +2219,14 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
-/** PCPL proxy: narration-complete ≈ sum of the state's tts_sentences pauses. */
+/**
+ * PCPL narration proxy: sum of the state's tts_sentences `pause_after_ms`.
+ * LEGACY signal — `pause_after_ms` is forbidden on new concepts (Rule 31), so
+ * this is structurally 0 (→ DEFAULT_REVEAL_MS) for every modern PCPL state.
+ * Kept as a lower bound for any pre-Rule-31 PCPL concept that still authors
+ * pauses; `pcplSceneRevealMs` below is the real signal for current concepts.
+ * Combined at the single call site in deriveMaxRevealTimeMs (WP-T1).
+ */
 function pcplRevealMs(state: Record<string, unknown>): number {
     const ts = asObj(state.teacher_script);
     const sentences = ts && Array.isArray(ts.tts_sentences) ? ts.tts_sentences : null;
@@ -2210,6 +2237,191 @@ function pcplRevealMs(state: Record<string, unknown>): number {
         if (so) sum += asNum(so.pause_after_ms, 0);
     }
     return sum > 0 ? sum : DEFAULT_REVEAL_MS;
+}
+
+/**
+ * PCPL scene-derived reveal-complete time (WP-T1, 2026-07-23). The real fix
+ * for the bug pcplRevealMs() above can't see: `pause_after_ms` is forbidden
+ * on new concepts (Rule 31), so pcplRevealMs is always 0 → DEFAULT_REVEAL_MS
+ * for every modern PCPL state, which makes the reveal_hold classification
+ * (`reveal > DEFAULT_REVEAL_MS`, deriveHoldExpectations below) structurally
+ * unreachable and false-fails D7 on every correctly-authored reveal-then-hold
+ * state (scar: pcpl_reveal_hold_unreachable_under_rule31).
+ *
+ * Walks the state's scene_composition + state-level variable_choreography and
+ * returns the LATEST sim-time (state-local ms) at which every scripted reveal
+ * has settled — mirroring parametric_renderer.ts's OWN timing contracts
+ * exactly (re-locate by grep anchor, not line number — that file is edited
+ * often):
+ *   - PM_animationGate — GENERIC to every primitive type (drawBody,
+ *     drawForceArrow, drawSurface, drawAngleArc, drawVector, drawLocusTrace,
+ *     drawFormulaBox, ... — 7 call sites, none type-gated): a primitive
+ *     authored with appear_at_ms/animate_in_ms finishes fading IN at
+ *     appear_at_ms + animate_in_ms; one authored with a finite
+ *     disappear_at_ms finishes fading OUT at disappear_at_ms + fade_out_ms.
+ *   - spec.animation.{delay_sec, duration_sec} — the one-shot `fade_in` and
+ *     `translate` body-animation kinds (the only two ANIMATION_TYPES that
+ *     declare these two fields) settle at (delay_sec+duration_sec)*1000. Read
+ *     generically off the field NAMES, not gated to a type list — an
+ *     animation kind that never sets these fields (rotate_continuous,
+ *     pendulum, atwood, door_swing, ...) simply contributes nothing here.
+ *   - animation.type === 'rotate_continuous' (WP-R5, PM_rotateContinuousDeg)
+ *     — a decorative spin that never settles; contributes one period_ms so
+ *     the frozen pin lands a full revolution past state entry rather than at
+ *     a meaningless 0.
+ *   - type: 'locus_trace' (WP-R5, drawLocusTrace) — a resampled historical
+ *     trail, complete at its own end_ms (the renderer never samples past it).
+ *   - state-level variable_choreography[] (WP-R5, PM_choreoValue /
+ *     PM_choreoBuildSegments — NOT a scene_composition primitive, read off
+ *     the state directly): a `mode: 'once'` entry's segments sum to
+ *     duration_ms PLUS every hold's hold_ms (each hold is inserted as its OWN
+ *     timeline segment, never carved out of duration_ms), so it settles at
+ *     start_ms + duration_ms + sum(holds[].hold_ms). `loop`/`ping_pong`
+ *     entries never settle — excluded here; deriveMotionExpectations declares
+ *     those states in continuous motion instead (pcplHasContinuousChoreography
+ *     below).
+ *
+ * Returns 0 (not DEFAULT_REVEAL_MS) when no timed reveal is found — the
+ * single call site takes Math.max(pcplRevealMs, pcplSceneRevealMs) and
+ * clampReveal() floors the combined result, so a bare 0 here defers cleanly to
+ * whatever the narration proxy (or the floor) contributes.
+ */
+function pcplSceneRevealMs(state: Record<string, unknown>): number {
+    const candidates: number[] = [];
+
+    const scene = Array.isArray(state.scene_composition) ? state.scene_composition : [];
+    for (const primRaw of scene) {
+        const prim = asObj(primRaw);
+        if (!prim) continue;
+
+        // PM_animationGate contract — generic across every primitive type.
+        candidates.push(asNum(prim.appear_at_ms, 0) + asNum(prim.animate_in_ms, 0));
+        const disappearAt = prim.disappear_at_ms;
+        if (typeof disappearAt === 'number') {
+            candidates.push(disappearAt + asNum(prim.fade_out_ms, 0));
+        }
+
+        const anim = asObj(prim.animation);
+        if (anim) {
+            if (typeof anim.delay_sec === 'number' || typeof anim.duration_sec === 'number') {
+                candidates.push(asNum(anim.delay_sec, 0) * 1000 + asNum(anim.duration_sec, 0) * 1000);
+            }
+            // rotate_continuous (WP-R5): decorative continuous spin, never
+            // settles — contribute one period so the pin lands past a full
+            // revolution instead of at a meaningless 0.
+            if (anim.type === 'rotate_continuous') {
+                candidates.push(asNum(anim.period_ms, 2000));
+            }
+        }
+
+        // locus_trace (WP-R5): a resampled historical trail, complete at its
+        // own end_ms (drawLocusTrace never samples past it).
+        if (prim.type === 'locus_trace') {
+            const startMs = asNum(prim.start_ms, 0);
+            candidates.push(asNum(prim.end_ms, startMs + 2000));
+        }
+    }
+
+    // variable_choreography (WP-R5, state-level — NOT a scene_composition
+    // primitive). Mirrors PM_choreoValue's own default: an entry with no
+    // `mode` field behaves as 'once' in the renderer, so it's treated as
+    // 'once' here too.
+    const choreo = Array.isArray(state.variable_choreography) ? state.variable_choreography : [];
+    for (const specRaw of choreo) {
+        const spec = asObj(specRaw);
+        if (!spec) continue;
+        const mode = typeof spec.mode === 'string' ? spec.mode : 'once';
+        if (mode !== 'once') continue; // loop/ping_pong never settle — motion, not reveal
+        const holds = Array.isArray(spec.holds) ? spec.holds : [];
+        let holdSum = 0;
+        for (const holdRaw of holds) {
+            const hold = asObj(holdRaw);
+            if (hold) holdSum += asNum(hold.hold_ms, 0);
+        }
+        candidates.push(asNum(spec.start_ms, 0) + asNum(spec.duration_ms, 0) + holdSum);
+    }
+
+    return candidates.length > 0 ? Math.max(...candidates) : 0;
+}
+
+/**
+ * PCPL (WP-T1, WP-R5 field names): does this state declare a scripted
+ * variable sweep or spin that runs FOREVER? Two shapes, both pure functions
+ * of PM_simClockMs in the renderer so they're genuinely ongoing, not a
+ * settle-then-freeze reveal:
+ *   - a state-level variable_choreography entry with mode 'loop' or
+ *     'ping_pong' (PM_choreoValue cycles it on the state clock indefinitely).
+ *   - a scene_composition primitive with animation.type ===
+ *     'rotate_continuous' (PM_rotateContinuousDeg — decorative spin, no
+ *     settle time).
+ * Used by deriveMotionExpectations to declare motion=true instead of letting
+ * D7 demand stillness from a state that legitimately never stops (e.g.
+ * scalar_vs_vector's S2 psi_pointer loop, once WP-F1 restores it). A 'once'
+ * entry is deliberately excluded — it settles (pcplSceneRevealMs above), so
+ * its post-settle tail is a reveal_hold, not motion.
+ */
+function pcplHasContinuousChoreography(state: Record<string, unknown>): boolean {
+    const choreo = Array.isArray(state.variable_choreography) ? state.variable_choreography : [];
+    for (const specRaw of choreo) {
+        const spec = asObj(specRaw);
+        if (spec && (spec.mode === 'loop' || spec.mode === 'ping_pong')) return true;
+    }
+    const scene = Array.isArray(state.scene_composition) ? state.scene_composition : [];
+    for (const primRaw of scene) {
+        const prim = asObj(primRaw);
+        const anim = prim ? asObj(prim.animation) : null;
+        if (anim && anim.type === 'rotate_continuous') return true;
+    }
+    return false;
+}
+
+// PCPL body-animation categories — mirror parametric_renderer.ts animatePrimitive
+// (~L1027). CONTINUOUS types oscillate/spin forever (never settle → D7 stays strict,
+// no still tail allowed); TRANSIENT types play once and settle (free_fall lands, a
+// block slides to rest → the settled tail is a reveal_hold, D7 tolerant, but D5 still
+// enforces the animation visibly PLAYED). A 'projectile' loops iff loop_period_sec>0.
+const PCPL_CONTINUOUS_ANIM = new Set(['rotate_continuous', 'pendulum', 'door_swing']);
+const PCPL_TRANSIENT_ANIM = new Set(['free_fall', 'atwood', 'translate', 'slide_horizontal', 'slide_when_kinetic']);
+
+/** Scene-primitive animation blocks with a string type, for the categorizers below. */
+function pcplSceneAnims(state: Record<string, unknown>): Array<Record<string, unknown>> {
+    const scene = Array.isArray(state.scene_composition) ? state.scene_composition : [];
+    const anims: Array<Record<string, unknown>> = [];
+    for (const primRaw of scene) {
+        const prim = asObj(primRaw);
+        const anim = prim ? asObj(prim.animation) : null;
+        if (anim && typeof anim.type === 'string') anims.push(anim);
+    }
+    return anims;
+}
+
+/** A scene body animation that oscillates/spins forever (never settles). */
+function pcplHasContinuousBodyAnim(state: Record<string, unknown>): boolean {
+    for (const anim of pcplSceneAnims(state)) {
+        if (PCPL_CONTINUOUS_ANIM.has(anim.type as string)) return true;
+        if (anim.type === 'projectile' && asNum(anim.loop_period_sec, 0) > 0) return true;
+    }
+    return false;
+}
+
+/**
+ * A scene body animation that plays ONCE and settles (free_fall / atwood / translate /
+ * slide / one-shot projectile). Declared motion=true so D5 confirms it visibly moved,
+ * while deriveHoldExpectations keeps the settled tail a reveal_hold (dual classification,
+ * mirroring the field_3d pef/dipole sweep). Closes the G3 coverage hole where an animated
+ * PCPL state with neither auto_after_animation nor a loop silently skipped D5.
+ */
+function pcplHasTransientBodyMotion(state: Record<string, unknown>): boolean {
+    for (const anim of pcplSceneAnims(state)) {
+        if (PCPL_TRANSIENT_ANIM.has(anim.type as string)) return true;
+        if (anim.type === 'projectile' && asNum(anim.loop_period_sec, 0) <= 0) return true;
+    }
+    return false;
+}
+
+/** Motion that never settles — state-level loop/ping_pong choreography OR a continuous body anim. */
+function pcplHasContinuousMotion(state: Record<string, unknown>): boolean {
+    return pcplHasContinuousChoreography(state) || pcplHasContinuousBodyAnim(state);
 }
 
 function clampReveal(ms: number): number {
@@ -2251,9 +2463,12 @@ export function deriveMaxRevealTimeMs(
     }
 
     // PCPL fallback (parametric is already wall-clock-correct; this keeps the
-    // frozen-frame target consistent across renderers).
+    // frozen-frame target consistent across renderers). WP-T1 (2026-07-23):
+    // pcplRevealMs alone is structurally 0 (→ DEFAULT_REVEAL_MS) on every
+    // Rule-31 concept, so take the scene-derived reveal time too and pin to
+    // whichever signal lands later.
     for (const [stateId, state] of Object.entries(resolveStates(config))) {
-        out[stateId] = clampReveal(pcplRevealMs(state));
+        out[stateId] = clampReveal(Math.max(pcplRevealMs(state), pcplSceneRevealMs(state)));
     }
     return out;
 }
@@ -2814,11 +3029,19 @@ export function deriveHoldExpectations(
     }
 
     // PCPL — parametric is wall-clock-correct, but interactive/reveal-hold states
-    // still false-trip the motion gates.
-    const motion = deriveMotionExpectations(config);
+    // still false-trip the motion gates. Classification by settle behaviour:
+    //   • never settles (loop/ping_pong choreography, or an oscillating/spinning
+    //     body anim) → D7 stays STRICT (undefined) — expect ongoing motion.
+    //   • SETTLES (a one-shot body anim, or auto_after_animation, or any timed
+    //     reveal past the floor) → reveal_hold, so D7 tolerates the still tail
+    //     even when the state is ALSO declared motion=true (dual classification,
+    //     mirroring the field_3d pef/dipole sweep). D5 reads the motion map, not
+    //     this one, so the two coexist.
     for (const [stateId, state] of Object.entries(resolveStates(config))) {
         if (isPcplInteractive(state)) { out[stateId] = 'interactive'; continue; }
-        out[stateId] = (reveal[stateId] ?? 0) > DEFAULT_REVEAL_MS && motion[stateId] !== true
+        if (pcplHasContinuousMotion(state)) { out[stateId] = undefined; continue; }
+        const settles = pcplHasTransientBodyMotion(state) || state.advance_mode === 'auto_after_animation';
+        out[stateId] = settles || (reveal[stateId] ?? 0) > DEFAULT_REVEAL_MS
             ? 'reveal_hold'
             : undefined;
     }

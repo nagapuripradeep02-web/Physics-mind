@@ -812,8 +812,11 @@ const DENSE_DEFAULT_MAX_FRAMES = 61;
  * one rAF frame at a time up to the pin, so per-frame accumulators (particle
  * trail, equal-arc dots, current drift) fill exactly as in a live run —
  * deterministic pixels, full sim-time coverage, no baseline churn (dense is never
- * compared to a baseline). Renderers without PM_simTimeMs (PCPL / mechanics_2d)
- * take the legacy wall-clock fallback so they never burn a poll cap per frame.
+ * compared to a baseline). field_3d AND parametric/PCPL both declare
+ * __PM_supportsTimePin and take this pinned path (parametric got the fixed-step
+ * clock + SET_TIME_FREEZE catch-up in commit 2435706); any renderer that does not
+ * declare the flag (e.g. mechanics_2d) takes the legacy wall-clock fallback so it
+ * never burns a poll cap per frame.
  */
 async function captureDenseSeries(
     page: Page, stateId: string, opts: DenseCaptureOptions,
@@ -827,13 +830,14 @@ async function captureDenseSeries(
     const frames: string[] = [];
     const captureTimes: number[] = [];
 
-    // Capability probe: only the field_3d renderer supports SET_TIME_FREEZE
-    // sim-time pinning, which it declares via window.__PM_supportsTimePin. NOTE:
-    // the parametric/PCPL renderer ALSO exposes window.PM_simTimeMs (a wall-clock
-    // millis() value) but has no freeze handler — so a PM_simTimeMs type-check
-    // would wrongly take the pinned path and burn a full poll cap on every frame
-    // (~5s/frame). Gate on the explicit capability flag instead; everything else
-    // keeps the legacy free-run path.
+    // Capability probe: field_3d AND parametric/PCPL both support SET_TIME_FREEZE
+    // sim-time pinning (parametric since commit 2435706 — deterministic clock reset
+    // + fixed-step catch-up), which each declares via window.__PM_supportsTimePin.
+    // Gate on that explicit capability flag, NOT on the presence of PM_simTimeMs: a
+    // renderer could expose a wall-clock PM_simTimeMs without a freeze handler, and a
+    // type-check alone would wrongly take the pinned path and burn a full poll cap on
+    // every frame (~5s/frame). Anything that does not declare the flag keeps the
+    // legacy free-run path.
     let pinnable = false;
     const probeFrame = getFrame(page, 'panel_a');
     if (probeFrame) {
