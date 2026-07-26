@@ -333,12 +333,56 @@ INSERT INTO engine_bug_queue (
     'directive'
 );
 
+-- ============================================================================
+-- Session: 2026-07-25 lom-b chapter loop — concept 1, newton_first_law
+-- Found by eye_walker on .visual_runs/newton_first_law/20260725-191906/.
+-- Report only — NOT inserted (chapter-loop sessions are forbidden DB writes).
+-- ============================================================================
+
+-- Candidate — CRITICAL. Engine DEFECT (not an under-generalization): the nlb
+-- physics clock is inconsistent with the RESET_TRAJECTORY contract every other
+-- field_3d reveal timeline honours. Routed to field3d-surgeon this session.
 -- Cycle 1 (2026-07-25) — LIVE failure caught by THE EYE on free_body_diagram STATE_3.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
     discovered_in_session, row_type
 ) VALUES (
+    'field3d_nlb_physics_clock_not_state_local',
+    'newtons_laws_body integrates from SET_STATE instead of from the state-local reveal start, so a body silently moves (or fully decelerates) before the state visibly begins',
+    'CRITICAL',
+    'peter_parker:renderer_primitives',
+    'updateNewtonsLawsBodyFrame accumulates eng.t_ms from a per-tick real wall-clock dtStep that is never rebased by RESET_TRAJECTORY, unlike every other reveal timeline in field_3d_renderer.ts, which is a pure function of (time - stateStartTime) and IS rebased. The body starts integrating the instant applyNewtonsLawsBodyState builds a fresh eng object at SET_STATE, before the player/harness sends RESET_TRAJECTORY and the state-local reveal window begins. Any real-time gap between state entry and reveal start (THE EYE per-frame screenshot/encode overhead, ~1-4 s observed; equally a teacher pausing before pressing Play) lets the body advance by an uncontrolled amount. Symptom A: STATE_1 coast_no_force (frictionless, a=0) reads v=1.00 correctly through dense_t15000 but the H2 frozen pin reads v=0.00 — the block hit the +10 m bound, contradicting the never-slows delta cue at exactly the frame a teacher leaves frozen. Symptom B (worse): STATE_2 coast_with_friction reads v=0.02 m/s in its FIRST capture (98 percent decelerated from v0=1.0), so the ~4 s deceleration the state exists to teach happens entirely before the reveal clock starts and the state renders as a static block for its full ~14 s.',
+    'Gate the nlb integrator on the same state-local basis (time - stateStartTime) the other reveal systems use, or hold the nlb engine at dt=0 from SET_STATE until the first RESET_TRAJECTORY / Play. Any new scenario carrying its own integrator must rebase on RESET_TRAJECTORY — a free-running physics clock is invisible to every deterministic gate.',
+    'manual',
+    'Open the first captured frame and the frozen frame of a coast state: v at the first frame must equal the authored initial_velocity_mps, and the frozen frame must match the authored trajectory at the state duration (not the motion bound).',
+    'OPEN',
+    ARRAY['newton_first_law: STATE_1, STATE_2']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop — newton_first_law',
+    'incident'
+);
+
+-- Candidate — MODERATE. Owner ambiguous (renderer glow application vs authored
+-- phase tuning). Reported, NOT dispatched this session (Amendment 4: one
+-- bug_class per engine dispatch; the CRITICAL row took this concept's budget).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_phase_glow_handoff_not_visible',
+    'newtons_laws_body phases[] glow_focal handoff fires in code but produces no perceptible brightness delta between two force arrows',
+    'MODERATE',
+    'ambiguous',
+    'The rest_equilibrium handoff (nlb_arrow_A_weight -> nlb_arrow_A_normal at 4000 ms) fires per nlbRunPhases (phase_fired and the glow_focal swap are confirmed in code), but frames before and after the handoff are visually identical: mg and N read at the same brightness in STATE_3 dense_t03000 vs dense_t04000/t05000/frozen. Either applyNewtonsLawsBodyGlow does not differentiate brightness for arrow-kind meshes, or the effect is too subtle at this render scale to read as exactly-one-glow-focal per Rule 32e.',
+    'FOUNDER TRIAGE — owner is genuinely ambiguous between peter_parker:renderer_primitives (a real glow-application gap on arrow meshes) and alex:json_author (phase timing/magnitude tuning). Confirm which by checking whether ANY nlb concept has ever produced a visible arrow-glow delta before assigning.',
+    'manual',
+    'Capture the frames either side of an authored phases[] glow handoff and confirm a visible brightness difference between the outgoing and incoming focal arrows.',
+    'OPEN',
+    ARRAY['newton_first_law: STATE_3']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop — newton_first_law',
     'field3d_integrating_scenario_ignores_reset_trajectory_and_carries_stale_accumulator',
     'An INTEGRATING field_3d scenario ignores RESET_TRAJECTORY, so every later capture/replay starts downrange from the previous one',
     'MAJOR',
@@ -359,6 +403,13 @@ INSERT INTO engine_bug_queue (
 -- that a runtime probe + pixel-centroid measurement disproved (dense_t10000 is at x=826px, the dense
 -- series is linear, and the frozen frame is a re-entered state pinned at maxRevealMs by construction).
 -- Costs a full engine dispatch each time it recurs, so it is worth a permanent probe.
+-- ============================================================
+-- CYCLE 2 (newton_second_law, lom-b, 2026-07-25) — eye_walker findings.
+-- Found by the frame read; INVISIBLE to all 19 deterministic EYE gates.
+-- NOT APPLIED. Founder reviews.
+-- ============================================================
+
+-- Candidate — CRITICAL. Two independent (no-pulley) bodies render fully coincident.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -418,6 +469,24 @@ INSERT INTO engine_bug_queue (
 );
 
 -- FIXED bc649d4 -- a geometry veto must zero motion, never the force solution.
+    'field3d_nlb_two_body_lane_offset_missing_causes_full_occlusion',
+    'newtons_laws_body renders two independent bodies at the same z, so a shared start line fully occludes one body',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'nlbSetBodyPosition() (field_3d_renderer.ts ~L29497-29513) sets every non-hanging body mesh to (s*NLB_WORLD_PER_M, NLB_BODY_SIZE/2, 0) — z is hardcoded 0 for ALL bodies. The engine spec section 1 explicitly promises "Two bodies with NO pulley = independent, side-by-side", but they share one lane. Two bodies authored at the same initial_position_m (the intended same-start-line compare pattern) are pixel-coincident at reveal and stay visually merged until integration separates them. On newton_second_law STATE_2/STATE_3 only ONE block is visible at t=0 and the two Unicode labels render as an illegible merged blob for roughly the first third of the run. Worse, the H2 SET_TIME_FREEZE reveal-completeness baseline lands INSIDE the overlap window, so the frozen reference frame — the reveal-completeness reference — is illegible by construction. There is no authoring workaround: staggering the two initial_position_m values keeps both bodies in ONE lane, so the faster body overtakes and interpenetrates the slower one, which is worse than the occlusion.',
+    'Any scenario that renders two or more INDEPENDENT bodies must lay them out in distinct lanes — a small fixed per-body-index lateral offset centered about z=0, so a one-body state is bit-identical and two bodies can never be pixel-coincident even when their along-axis positions are exactly equal. The offset must carry to everything anchored to that body (mesh, label sprite, force arrows, drag hit proxy). A bring-up probe for a multi-body scenario must assert that the on-screen separation of any two independent bodies exceeds one body width at t=0, not merely that both meshes exist and are visible.',
+    'js_eval',
+    'For each state whose newtons_laws_body block declares 2+ bodies with no pulley: SET_STATE, then project each body mesh to screen space and assert the pairwise screen-space distance exceeds NLB_BODY_SIZE at t=0 and at the state reveal pin.',
+    'OPEN',
+    ARRAY['newton_second_law','newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop cycle 2 — newton_second_law eye_walker',
+    'incident'
+);
+
+-- Candidate — MAJOR. Authored forces below the arrow-length floor. ROUTED AS CONTENT, not engine:
+-- the floor is designed behavior (spec section 3), the defect was 0.2N/0.4N authored magnitudes.
+-- Kept here as a PREVENTION row so the next author does not repeat it.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -554,4 +623,18 @@ INSERT INTO engine_bug_queue (
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
     'lom-a block_on_incline fix cycle 1 2026-07-26',
     'scar'
+);
+    'field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio',
+    'Force magnitudes under the arrow-length floor render as invisible stubs and destroy any authored length ratio',
+    'MAJOR',
+    'alex:physics_author',
+    'The arrow overlay renders len = clamp(NLB_ARROW_MIN_LEN, NLB_ARROW_MAX_LEN, magnitudeN * NLB_ARROW_SCALE) with NLB_ARROW_SCALE = 0.030 world-units/N and NLB_ARROW_MIN_LEN = 0.30 (field_3d_renderer.ts ~L29272-29274). The clamp is DESIGNED behavior per engine spec section 3 ("a nonzero force is always at least readable"), so this is not an engine defect. But newton_second_law authored 0.2 N and 0.4 N — raw lengths 0.006 and 0.012, both far under the floor. Consequences: (a) STATE_1 applied-force arrow, the state sole glow_focal and the Rule 32a cause element, renders as a ~1px stub with no shaft or arrowhead at any captured frame; (b) STATE_3 doubled-force arrow, the state entire pedagogical payload and its Rule 29 magnitude-length exception, is destroyed because BOTH 0.2 N and 0.4 N clamp to the identical minimum, leaving no length difference to see. The physics block own section 6 flagged the small-numbers risk; it was realized, not hypothetical.',
+    'Any authored force intended to be SEEN must clear the arrow-length floor with margin: F >= 15 N at NLB_ARROW_SCALE = 0.030 (raw length 0.45, 1.5x the floor). Where two force magnitudes are compared on the same canvas for their LENGTH ratio, the SMALLER of the pair must clear the floor — otherwise the ratio is unrenderable. Scale masses (and surface.length_m / dwell) to hold the clamp-margin constraint at the larger forces, rather than shrinking forces to hold the accelerations down. Applies to idle_auto_sweep ranges too: a sandbox sweeping F over a sub-floor range shows a frozen stub arrow.',
+    'static_check',
+    'For every state, for every arrow declared in newtons_laws_body.arrows[].show, resolve its magnitude from the authored bodies/config and assert magnitude * NLB_ARROW_SCALE > NLB_ARROW_MIN_LEN. Additionally, where two arrows of the same kind appear in one state, assert both clear the floor before trusting any authored length ratio.',
+    'OPEN',
+    ARRAY['newton_second_law']::text[],
+    ARRAY['src/data/concepts/newton_second_law.json']::text[],
+    '2026-07-25 lom-b chapter loop cycle 2 — newton_second_law eye_walker',
+    'incident'
 );
