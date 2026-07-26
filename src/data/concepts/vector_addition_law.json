@@ -1,0 +1,1020 @@
+{
+  "concept_id": "vector_addition_law",
+  "concept_name": "Vector Addition: the Triangle/Parallelogram Law",
+  "chapter": 1,
+  "section": "1.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "First-principles authoring (triangle/parallelogram law of vector addition). DC Pandey Vol.1 Ch.5 used for syllabus scope only.",
+  "prerequisites": [
+    "scalar_vs_vector"
+  ],
+  "concept_tier": "medium",
+  "cognitive_limits": {
+    "max_primitives_per_state": 15,
+    "max_labels_per_state": 6,
+    "max_words_per_tts_sentence": 20
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Carry B tip-to-tail onto A's head — the straight arrow start-to-finish is the sum.",
+    "visual_confirmation": "resultant_R"
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_2"
+    },
+    "parallelogram": {
+      "start": "STATE_3",
+      "end": "STATE_3"
+    },
+    "magnitude": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "exploration": {
+      "start": "STATE_5",
+      "end": "STATE_5"
+    }
+  },
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A map app that shows two different numbers for the same two-leg walk: the route distance the trip-meter adds up (7 km), and the straight-line distance 'as the crow flies' (5 km).",
+    "secondary": "Two tugboats towing one ship at an angle. The ship surges along the diagonal between the two tow ropes, not along the arithmetic sum of the two rope tensions."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "a": {
+        "name": "Length of leg A (walked/drawn first, reference direction)",
+        "unit": "km",
+        "min": 1,
+        "max": 6,
+        "step": 0.5,
+        "default": 3
+      },
+      "b": {
+        "name": "Length of leg B (carried tip-to-tail onto A)",
+        "unit": "km",
+        "min": 1,
+        "max": 6,
+        "step": 0.5,
+        "default": 4
+      },
+      "theta": {
+        "name": "Angle between vector A and vector B (both measured from a common tail)",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "step": 5,
+        "default": 90
+      },
+      "walk_phase": {
+        "name": "STATE_1-only choreography driver: 0=start, 1=corner (end of leg A), 2=finish (end of leg B). Internal only, never a UI control.",
+        "unit": "leg",
+        "min": 0,
+        "max": 2,
+        "default": 0
+      }
+    },
+    "formulas": {
+      "triangle_law": "R = sqrt(a^2 + b^2 + 2 a b cos(theta))",
+      "range_inequality": "|a - b| <= R <= a + b",
+      "scalar_sum": "sum_scalar = a + b, always, regardless of theta"
+    },
+    "computed_outputs": {
+      "R_mag": {
+        "formula": "sqrt(a*a + b*b + 2*a*b*cos(theta*PI/180))"
+      },
+      "R_dir_deg": {
+        "formula": "atan2(b*sin(theta*PI/180), a + b*cos(theta*PI/180)) * 180/PI"
+      },
+      "sum_scalar": {
+        "formula": "a + b"
+      },
+      "P1_x": {
+        "formula": "a"
+      },
+      "P1_y": {
+        "formula": "0"
+      },
+      "P2_x": {
+        "formula": "a + b*cos(theta*PI/180)"
+      },
+      "P2_y": {
+        "formula": "b*sin(theta*PI/180)"
+      },
+      "trip_meter": {
+        "formula": "a*min(walk_phase,1) + b*max(walk_phase-1,0)"
+      },
+      "walk_x": {
+        "formula": "min(walk_phase,1)*a + max(walk_phase-1,0)*b*cos(theta*PI/180)"
+      },
+      "walk_y": {
+        "formula": "max(walk_phase-1,0)*b*sin(theta*PI/180)"
+      }
+    },
+    "derived_fields_declared": [
+      "R_mag",
+      "R_dir_deg",
+      "sum_scalar",
+      "P1_x",
+      "P1_y",
+      "P2_x",
+      "P2_y",
+      "trip_meter",
+      "walk_x",
+      "walk_y"
+    ],
+    "constraints": [
+      "R never equals a+b except exactly at theta=0; |a-b| <= R <= a+b always",
+      "theta is the angle BETWEEN vector A and vector B (both measured from a common tail), matching the physics_engine_config used across the vectors track",
+      "walk_phase drives ONLY the STATE_1 trip-meter/locus choreography; it is never a live slider and is not read anywhere else",
+      "R_dir_deg feeds direction_deg_expr on the R arrow/angle only — this concept never surfaces an alpha=tan^-1(...) direction formula (deferred to the future sibling resultant_direction)",
+      "zero-length R (degenerate a=b, theta=180, reachable in STATE_5) is correct physics and renders as a genuine vanishing arrow, never clamped"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Numbers Lie",
+        "duration": 16,
+        "focal_primitive_id": "ruler_chord",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4,
+          "theta": 90,
+          "walk_phase": 0
+        },
+        "misconception_watch": [
+          {
+            "belief": "two magnitudes just add — the answer is 7",
+            "visual_counter": "the trip-meter honestly counts to 7 while the ruler laid straight back to camp reads only 5",
+            "one_line_fix": "the meter adds the path walked; displacement adds tip-to-tail — 7 is the path, 5 is the sum"
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "trailhead_marker",
+            "shape": "circle",
+            "size": 16,
+            "position": {
+              "x": 200,
+              "y": 380
+            },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "body",
+            "id": "turn_marker",
+            "shape": "circle",
+            "size": 16,
+            "position": {
+              "x": 290,
+              "y": 380
+            },
+            "fill_color": "#64748B",
+            "label": "turn",
+            "label_below": true,
+            "appear_at_ms": 3600,
+            "animate_in_ms": 200
+          },
+          {
+            "type": "body",
+            "id": "hiker_leg1",
+            "shape": "stickman",
+            "size": 44,
+            "position": {
+              "x": 200,
+              "y": 380
+            },
+            "fill_color": "#E2E8F0",
+            "disappear_at_ms": 4000,
+            "animation": {
+              "type": "translate",
+              "dx_px": 90,
+              "dy_px": 0,
+              "delay_sec": 0.4,
+              "duration_sec": 3.2
+            }
+          },
+          {
+            "type": "body",
+            "id": "hiker_leg2",
+            "shape": "stickman",
+            "size": 44,
+            "position": {
+              "x": 290,
+              "y": 380
+            },
+            "fill_color": "#E2E8F0",
+            "appear_at_ms": 4000,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": -120,
+              "delay_sec": 4,
+              "duration_sec": 3.6
+            }
+          },
+          {
+            "type": "locus_trace",
+            "id": "walk_trail",
+            "x_expr": "200 + walk_x * 30",
+            "y_expr": "380 - walk_y * 30",
+            "start_ms": 400,
+            "end_ms": 7600,
+            "color": "#FCD34D",
+            "stroke_weight": 2,
+            "fade_tail": false
+          },
+          {
+            "type": "formula_box",
+            "id": "trip_meter_box",
+            "equation_expr": "path = {trip_meter.toFixed(1)} km",
+            "position": {
+              "x": 560,
+              "y": 70
+            },
+            "border_color": "#F59E0B"
+          },
+          {
+            "type": "angle_arc",
+            "id": "scalar_arc",
+            "center": {
+              "x": 200,
+              "y": 380
+            },
+            "from_deg": 0,
+            "to_deg": 95,
+            "radius": 210,
+            "color": "#F87171",
+            "label": "7 km reach"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_q",
+            "equation": "3 + 4 = 7 ?",
+            "position": {
+              "x": 560,
+              "y": 140
+            },
+            "border_color": "#F87171",
+            "disappear_at_ms": 11200
+          },
+          {
+            "type": "force_arrow",
+            "id": "ruler_chord",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "R_dir_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular",
+            "appear_at_ms": 9800,
+            "animate_in_ms": 1400
+          },
+          {
+            "type": "annotation",
+            "id": "verdict_annotation",
+            "text": "3 + 4 = 7 km?  NO.",
+            "position": {
+              "x": 560,
+              "y": 140
+            },
+            "color": "#F87171",
+            "appear_at_ms": 11200
+          },
+          {
+            "type": "formula_box",
+            "id": "correct_readout",
+            "equation_expr": "|R| = {R_mag.toFixed(1)} km",
+            "position": {
+              "x": 560,
+              "y": 210
+            },
+            "border_color": "#10B981",
+            "appear_at_ms": 11700
+          },
+          {
+            "type": "annotation",
+            "id": "finish_tag",
+            "text": "finish",
+            "position": {
+              "x": 310,
+              "y": 270
+            },
+            "color": "#E2E8F0",
+            "appear_at_ms": 7600
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "walk_phase",
+            "mode": "once",
+            "from": 0,
+            "to": 2,
+            "start_ms": 400,
+            "duration_ms": 7200,
+            "holds": [
+              {
+                "at_value": 1,
+                "hold_ms": 400
+              }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Walk three kilometres east, then turn and walk four kilometres north."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "The trip meter honestly counts every step — three plus four is seven."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "But a ruler straight back to camp, like a map app's straight-line reading, shows only five kilometres."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "Same three and four, two different totals: seven walked, five displaced."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Tip to Tail",
+        "duration": 18,
+        "focal_primitive_id": "resultant_R",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4,
+          "theta": 90
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_tail_on_head_not_tail_to_tail",
+          "does_sliding_change_the_vector",
+          "resultant_from_start_or_junction"
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "trailhead_marker2",
+            "shape": "circle",
+            "size": 16,
+            "position": {
+              "x": 200,
+              "y": 380
+            },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label": "A = 3 km"
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B",
+            "from": {
+              "x": 380,
+              "y": 250
+            },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km",
+            "animation": {
+              "type": "translate",
+              "delay_sec": 0.3,
+              "duration_sec": 2.3,
+              "dx_px": -90,
+              "dy_px": 130
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "dock_note",
+            "text": "tail on head",
+            "position": {
+              "x": 300,
+              "y": 400
+            },
+            "color": "#FCD34D",
+            "appear_at_ms": 2600,
+            "disappear_at_ms": 4600
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "R_dir_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular",
+            "appear_at_ms": 3400,
+            "animate_in_ms": 1700
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s2",
+            "equation": "R = A + B  (tip → tail)",
+            "position": {
+              "x": 560,
+              "y": 70
+            },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "formula_box",
+            "id": "resultant_readout",
+            "equation_expr": "|R| = {R_mag.toFixed(1)} km",
+            "position": {
+              "x": 560,
+              "y": 140
+            },
+            "border_color": "#10B981",
+            "appear_at_ms": 5100
+          },
+          {
+            "type": "annotation",
+            "id": "finish_tag2",
+            "text": "finish",
+            "position": {
+              "x": 300,
+              "y": 245
+            },
+            "color": "#E2E8F0",
+            "appear_at_ms": 5100
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Carry vector B, keeping its length and direction fixed, and dock its tail on vector A's head."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Tip to tail — that is the whole rule."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Draw one straight arrow from start to finish — that arrow is the resultant, R."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Same three and four, same ninety-degree turn — the answer is exactly five kilometres."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Either Order",
+        "duration": 17,
+        "focal_primitive_id": "parallelogram_outline",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4,
+          "theta": 90
+        },
+        "misconception_watch": [
+          {
+            "belief": "triangle and parallelogram are different rules",
+            "visual_counter": "both orders land on the same corner, and the parallelogram closes with one shared diagonal",
+            "one_line_fix": "one law, two drawings"
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "trailhead_marker3",
+            "shape": "circle",
+            "size": 16,
+            "position": {
+              "x": 200,
+              "y": 380
+            },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A3",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label": "A"
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B3",
+            "anchor_to": {
+              "primitive_id": "leg_A3",
+              "point": "tip"
+            },
+            "magnitude": 4,
+            "direction_deg": 90,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label": "B"
+          },
+          {
+            "type": "force_arrow",
+            "id": "ghost_B_prime",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "B′",
+            "appear_at_ms": 3000,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "force_arrow",
+            "id": "ghost_A_prime",
+            "anchor_to": {
+              "primitive_id": "ghost_B_prime",
+              "point": "tip"
+            },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "appear_at_ms": 4600,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "force_arrow",
+            "id": "parallelogram_outline",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "R_dir_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular",
+            "appear_at_ms": 6700,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s3",
+            "equation": "A + B = B + A",
+            "position": {
+              "x": 560,
+              "y": 70
+            },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "annotation",
+            "id": "same_corner_note",
+            "text": "Both orders land here",
+            "position": {
+              "x": 330,
+              "y": 295
+            },
+            "color": "#FCD34D",
+            "appear_at_ms": 5600
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Add them the other way round — walk vector B first, then carry vector A onto B's tip."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Different order, same starting corner, same finishing point."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Trace all four sides and they close into a parallelogram, with one shared diagonal."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "A plus B always equals B plus A — one law, two equivalent drawings."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "The Angle Dials the Sum",
+        "duration": 18,
+        "focal_primitive_id": "live_readout_R",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "where_does_2ab_cos_theta_come_from",
+          "when_is_the_sum_smaller_than_both",
+          "resultant_range_bounds"
+        ],
+        "misconception_watch": [
+          {
+            "belief": "the sum of 3 and 4 can't be smaller than 3",
+            "visual_counter": "at theta=180 the resultant shrinks to 1.0 km — shorter than both input arrows on screen",
+            "one_line_fix": "R runs the whole range |A-B| to A+B — opposite directions cancel, they don't accumulate"
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "trailhead_marker4",
+            "shape": "circle",
+            "size": 16,
+            "position": {
+              "x": 200,
+              "y": 380
+            },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A4",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label": "A = 3 km"
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B4",
+            "anchor_to": {
+              "primitive_id": "leg_A4",
+              "point": "tip"
+            },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc4",
+            "anchor_to": {
+              "primitive_id": "leg_A4",
+              "point": "tip"
+            },
+            "from_deg": 0,
+            "to_deg_expr": "theta",
+            "radius": 28,
+            "color": "#93C5FD",
+            "label": "{theta < 10 ? '' : 'θ = ' + theta.toFixed(0) + '°'}"
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R4",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "R_dir_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular",
+            "label_perp_offset": 24
+          },
+          {
+            "type": "formula_box",
+            "id": "live_readout_R",
+            "equation_expr": "|R| = {R_mag.toFixed(1)} km",
+            "position": {
+              "x": 560,
+              "y": 90
+            },
+            "border_color": "#10B981"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s4",
+            "equation": "R = √(A² + B² + 2AB·cos θ)",
+            "position": {
+              "x": 560,
+              "y": 155
+            },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "annotation",
+            "id": "pinned_card",
+            "text": "3 + 4 = 7, always",
+            "position": {
+              "x": 560,
+              "y": 220
+            },
+            "style": "callout",
+            "color": "#F87171"
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider",
+            "variable": "theta",
+            "min": 0,
+            "max": 180,
+            "step": 5,
+            "default": 90,
+            "label": "angle θ",
+            "unit": "deg",
+            "position": "bottom"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "once",
+            "from": 0,
+            "to": 180,
+            "start_ms": 800,
+            "duration_ms": 2200,
+            "seizable": true,
+            "holds": [
+              {
+                "at_value": 0,
+                "hold_ms": 900
+              },
+              {
+                "at_value": 60,
+                "hold_ms": 900
+              },
+              {
+                "at_value": 90,
+                "hold_ms": 900
+              },
+              {
+                "at_value": 180,
+                "hold_ms": 900
+              }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Turn the angle knob — two tugboats towing one ship show how their pulls combine."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "At zero degrees the pulls add straight to seven. At ninety, five. At one-eighty, only one."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The three-plus-four-equals-seven card never moves, but the resultant keeps changing."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "One kilometre is smaller than both three and four — opposite pulls nearly cancel."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "All Yours",
+        "duration": 0,
+        "focal_primitive_id": "live_readout_R",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "trailhead_marker5",
+            "shape": "circle",
+            "size": 16,
+            "position": {
+              "x": 200,
+              "y": 380
+            },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A_live",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "A = {a.toFixed(1)} km"
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B_live",
+            "anchor_to": {
+              "primitive_id": "leg_A_live",
+              "point": "tip"
+            },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc_live",
+            "anchor_to": {
+              "primitive_id": "leg_A_live",
+              "point": "tip"
+            },
+            "from_deg": 0,
+            "to_deg_expr": "theta",
+            "radius": 26,
+            "color": "#93C5FD",
+            "label": "θ = {theta.toFixed(0)}°"
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R_live",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "R_dir_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "force_arrow",
+            "id": "ghost_B_prime_live",
+            "from": {
+              "x": 200,
+              "y": 380
+            },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "force_arrow",
+            "id": "ghost_A_prime_live",
+            "anchor_to": {
+              "primitive_id": "ghost_B_prime_live",
+              "point": "tip"
+            },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "formula_box",
+            "id": "live_readout_R",
+            "equation_expr": "|R| = {R_mag.toFixed(1)} km   (A+B = {(a+b).toFixed(1)} km)",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#10B981"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s5",
+            "equation": "R = √(A² + B² + 2AB·cos θ)",
+            "position": {
+              "x": 560,
+              "y": 150
+            },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "slider",
+            "id": "a_slider",
+            "variable": "a",
+            "min": 1,
+            "max": 6,
+            "step": 0.5,
+            "default": 3,
+            "label": "leg A length",
+            "unit": "km",
+            "position": "bottom"
+          },
+          {
+            "type": "slider",
+            "id": "b_slider",
+            "variable": "b",
+            "min": 1,
+            "max": 6,
+            "step": 0.5,
+            "default": 4,
+            "label": "leg B length",
+            "unit": "km",
+            "position": "bottom"
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider5",
+            "variable": "theta",
+            "min": 0,
+            "max": 180,
+            "step": 5,
+            "default": 90,
+            "label": "angle θ",
+            "unit": "deg",
+            "position": "bottom"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Drag any slider — leg A, leg B, or the angle theta."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Watch the resultant R and the parallelogram respond instantly."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "var_river_ferry",
+      "type": "world",
+      "label": "River Ferry Crossing",
+      "physical_world": "A ferry crosses one stretch of river, turns, then crosses a second stretch to reach the far dock.",
+      "same_physics": "Same triangle/parallelogram law: the two crossing legs add tip-to-tail, and the direct dock-to-dock distance is the resultant, never the sum of the two leg lengths.",
+      "entry_state": "STATE_1"
+    },
+    {
+      "variant_id": "var_delivery_route",
+      "type": "world",
+      "label": "Delivery Bike Route",
+      "physical_world": "A delivery rider bikes one leg to a corner, turns, then bikes a second leg to the drop-off point.",
+      "same_physics": "Same tip-to-tail addition: the straight-line distance back to the depot is the resultant of the two ride legs, never their arithmetic sum.",
+      "entry_state": "STATE_1"
+    }
+  ]
+}

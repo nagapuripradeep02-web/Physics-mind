@@ -524,9 +524,35 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
 
     free_body_diagram: {
         concept_id: 'free_body_diagram',
-        layout: 'dual_horizontal',
-        primary: { renderer: 'mechanics_2d', config_key: 'free_body_diagram', label: 'Free Body Diagram' },
-        secondary: { renderer: 'graph_interactive', config_key: 'fbd_graph', label: 'Force Balance' },
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'free_body_diagram',
+            label: 'Free Body Diagram — Isolate One Body, Draw Every Force (3D)',
+        },
+    },
+
+    // Laws of Motion #2 — newtons_laws_body engine, Branch B (coupled/pulley).
+    connected_bodies: {
+        concept_id: 'connected_bodies',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'connected_bodies',
+            label: 'Connected Bodies — One Rope, One Tension, One Shared Acceleration (3D)',
+        },
+    },
+
+    // Laws of Motion #3 — newtons_laws_body engine, Branch A (single body incline
+    // friction threshold + two-fate contrast). param_ramp's first live exercise.
+    block_on_incline: {
+        concept_id: 'block_on_incline',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'block_on_incline',
+            label: 'Block on an Incline — Static Friction Adjusts Until Grip Fails (3D)',
+        },
     },
 
     // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
@@ -535,6 +561,17 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         concept_id: 'scalar_vs_vector',
         layout: 'single',
         primary: { renderer: 'mechanics_2d', config_key: 'scalar_vs_vector', label: 'Scalar vs Vector Quantities' },
+    },
+
+    // vector_addition_law — concept #2 of the new Class 11 Mechanics Ch.1
+    // "Vectors" DAG track (prerequisite: scalar_vs_vector). Single-panel PCPL
+    // sim, no panel_b_config authored — same missing-panel_b_config defect
+    // class as scalar_vs_vector (default_panel_count=1 forced via the
+    // concept_panel_config Supabase row, see supabase_migrations/).
+    vector_addition_law: {
+        concept_id: 'vector_addition_law',
+        layout: 'single',
+        primary: { renderer: 'mechanics_2d', config_key: 'vector_addition_law', label: 'Vector Addition: Triangle/Parallelogram Law' },
     },
 
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)

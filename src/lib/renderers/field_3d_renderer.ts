@@ -52,7 +52,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body';
     // em_wave_propagation (Ch.8 §8.3 — a traveling transverse EM wave: an
     // oscillating antenna charge launches a green E-train on ŷ + a blue B-train
     // on ẑ that self-propagate +x at v = c/n; a receiver post reads live E (V/m)
@@ -863,6 +863,103 @@ export interface Field3DConfig {
             show_projection?: boolean;         // S4 aha: the shrinking effective-area A·cosθ silhouette
             show_hand?: boolean;               // RHR hand asset beat (S5 only)
             show_unit?: boolean;               // append "Wb" to the Φ readout (default: state_index ≥ 5)
+        };
+        // ── newtons_laws_body per-state config (Laws of Motion; NEW 2026-07-25) ──
+        // ONE scenario_type serving the whole 6-concept Laws of Motion chapter as
+        // pure JSON (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md, founder-approved).
+        // A surface (flat OR inclined — theta_deg = 0 is the SAME code path, never
+        // a special case) carrying 1–2 bodies, gravity resolved into components,
+        // optional friction, optional applied force, optional inextensible-string/
+        // pulley constraint, a force-arrow overlay and live numeric readouts. The
+        // variation across all six concepts is ENTIRELY parametric — presence of
+        // the `pulley` block gates the coupled (Atwood) integrator branch.
+        newtons_laws_body?: {
+            mode?: 'rest_equilibrium' | 'coast_no_force' | 'coast_with_friction' |
+                'accelerate_applied_force' | 'compare_mass_same_force' |
+                'compare_force_same_mass' | 'action_reaction_pair' | 'fbd_isolate' |
+                'incline_decompose' | 'incline_slide' | 'connected_atwood' |
+                'connected_incline_hanging' | 'sandbox';
+
+            surface?: {
+                theta_deg?: number;        // incline angle; 0 = flat ground, SAME code path
+                length_m?: number;         // visible half-length, default 6
+                frictionless?: boolean;    // hard-zeroes every body's mu_s/mu_k this state
+                // Hide the surface slab entirely. In a both-hanging (Atwood) state there is
+                // physically no table, and an empty 12 m plank would be the largest object on
+                // screen. Physics is unaffected: a hanging body already computes N = 0 in its
+                // own axis, so this is purely the visual apparatus. Added 2026-07-25 (founder
+                // call) — it is what keeps connected_bodies expressible with ZERO renderer edits.
+                hidden?: boolean;
+            };
+
+            // 1 or 2 bodies. Two bodies with NO `pulley` = independent, side-by-side
+            // (Newton II mass/force compare, Newton III pair) — each integrated as its
+            // own single-body case. Two bodies WITH `pulley` = the coupled Atwood case.
+            // A body `id` is STABLE across states: its mesh is built ONCE (union of
+            // every state's bodies) and only shown/hidden + re-seeded per state
+            // (Rule 32d home-pose persistence, never a mid-state rebuild). A given
+            // id's `hanging` flag must therefore be consistent across states.
+            bodies: Array<{
+                id: string;                        // stable, e.g. "A" | "B"
+                label?: string;                    // Unicode on-canvas label, e.g. "m₁"
+                mass_kg: number;
+                color?: string;
+                hanging?: boolean;                 // hangs vertically off the pulley; ignores theta, N forced 0
+                initial_position_m?: number;       // signed, along the body's OWN axis
+                initial_velocity_mps?: number;
+                mu_s?: number;                     // omit/0 = frictionless for this body
+                mu_k?: number;
+                applied_force_N?: number;          // signed, along the body's own positive axis
+                ghost?: boolean;                   // FBD decorative context body: dimmed, NEVER integrated
+            }>;
+
+            pulley?: {                             // presence IS the coupled-integrator gate
+                body_a_id: string;                 // the body on the surface/incline
+                body_b_id: string;                 // the hanging body
+                post_position_m?: number;          // default = surface.length_m
+            };
+
+            action_reaction?: {                    // Newton III: engine-enforced equal-and-opposite
+                engaged: boolean;
+                driver_body_id: string;            // the other body's applied_force_N is MIRRORED each frame
+            };
+
+            arrows?: Array<{
+                body_id: string;
+                show: Array<'weight' | 'normal' | 'friction' | 'applied' | 'tension' | 'net'>;
+                show_components?: boolean;         // resolve weight into mg·sinθ + mg·cosθ
+                labels?: Partial<Record<'weight' | 'normal' | 'friction' | 'applied' | 'tension' | 'net', string>>;
+            }>;
+
+            glow_focal?: string;                   // EXACTLY ONE per state (Rule 32e)
+            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied'>;      // Rule 33d live numerics
+            controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
+            trusted_drag_seizes?: boolean;         // sandbox state only
+            idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
+            // ── §7.1 pre-approved fix (docs/CHAPTER_LOOP.md, block_on_incline) ──
+            // ONE-SHOT monotonic parameter reveal across a GUIDED state's window —
+            // the deliberate opposite of idle_auto_sweep's repeating triangle: value
+            // = `from` for elapsed < start_ms, linearly interpolates from -> to
+            // across [start_ms, end_ms], then HOLDS at `to` forever — it never
+            // returns toward `from`. Drives REAL PHYSICS through the SAME
+            // nlbApplyParam() write-path a trusted slider drag uses (so N, drive,
+            // the arrows, the HUD and — for theta — the incline geometry all move
+            // together; there is no parallel physics path to drift out of sync).
+            // A trusted slider input or body drag seizes control and cancels the
+            // ramp for the rest of the state (Rule 37, same PM_nlbSweepSeized /
+            // PM_nlbBodyDragged flags idle_auto_sweep already uses). NEVER runs in
+            // a `mode: 'sandbox'` state (that state free-runs continuously under
+            // the teacher, per Rule 37). Author the state's own surface/body value
+            // for this param equal to `from` so state entry does not visibly jump
+            // (same authoring contract idle_auto_sweep's range[0] note documents).
+            param_ramp?: {
+                param: 'theta' | 'F' | 'mu_s' | 'mu_k' | 'm';
+                from: number;
+                to: number;
+                start_ms?: number;   // default 0
+                end_ms: number;      // linear ramp over [start_ms, end_ms], then holds at `to`
+            };
+            phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; action?: string; glow_focal?: string }>;
         };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
         //    lorentz_force_uniform_field) ──────────────────────────────────
@@ -2640,6 +2737,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (swcHits && swcHits.length) return true;
             }
         }
+        // newtons_laws_body body proxies (SEAM E, spec site 4): one invisible sphere
+        // per body (nlb_body_<id>_hit), armed only in a trusted_drag_seizes state and
+        // only for a shown, non-ghost body — so this whole block is a no-op for every
+        // other scenario and every guided state. Unlike the single-probe scenarios
+        // above there may be SEVERAL candidates, so the pick also records WHICH body
+        // was grabbed for applyDragFrom to move.
+        if (nlbStateIsDraggable()) {
+            pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+            var nlbHitId = null;
+            for (var nli = 0; nli < nlbIndex.length; nli++) {
+                var nProxy = nlbIndex[nli];
+                if (!nProxy || !nProxy.visible || !nProxy.userData) continue;
+                if (nProxy.userData.elementType !== "nlb_body_hit") continue;
+                var nHits = pmRaycaster.intersectObject(nProxy, false);
+                if (nHits && nHits.length) { nlbHitId = nProxy.userData.bodyId; break; }
+            }
+            if (nlbHitId) { window.PM_nlbDragId = nlbHitId; return true; }
+        }
         return false;
     }
     // FIX 2 — hover-latch: while the pointer merely HOVERS the potential test-charge
@@ -2673,6 +2788,15 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyDragFrom(cx, cy) {
         var hit = pmDragPlaneHit(cx, cy);
         if (!hit) return;
+        // newtons_laws_body sandbox drag (SEAM E, spec site 5): reposition the
+        // grabbed body along its OWN signed axis, clamped through nlbBoundsM (the
+        // one pulley-aware bounds source), pushed through nlbSetBodyPosition so the
+        // rope re-fits, and emitted as body_position. Sets PM_nlbBodyDragged, which
+        // also permanently seizes idle_auto_sweep for this state (Rule 37).
+        if (nlbStateIsDraggable()) {
+            nlbApplyBodyDrag(hit);
+            return;
+        }
         // straight_wire_current compass_position draggable-azimuthal control
         // (magnetic_field_concept_B S4/S7): recompute the angle phi in the XZ
         // plane around the Y-axis wire from the pointer's hit point. The orbit
@@ -37841,6 +37965,2243 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── newtons_laws_body scenario — SEAM A (scene skeleton) ──────────────
+    //   ONE scenario_type for the whole 6-concept Laws of Motion chapter
+    //   (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md, founder-approved 2026-07-25).
+    //   A surface carrying 1-2 bodies; theta_deg = 0 (flat ground) runs the SAME
+    //   code path as an incline — the surface is ONE group rotated about world Z,
+    //   never a special case. Every body mesh is built ONCE from the UNION of
+    //   every state's bodies[] and then only shown/hidden + re-seeded per state
+    //   (Rule 32d home-pose persistence — no mid-state rebuild, no teleport).
+    //
+    //   SEAM MAP (this file, this scenario):
+    //     SEAM A (here) : config surface, scene skeleton (surface + bodies +
+    //                     labels + ghost dimming + value-only HUD + the single
+    //                     Cambria-Math formula overlay + the empty slider
+    //                     container), nlbApplyGlow, per-state seeding, dispatch,
+    //                     and the #sliders exclusion chain.
+    //     SEAM B        : the fixed-step integrator (spec section 2) +
+    //                     updateNewtonsLawsBodyFrame(dtStep) + its animate() call.
+    //                     NO clock code exists in seam A (Rule 36).
+    //     SEAM C        : the force-arrow overlay (six ArrowHelpers/body +
+    //                     component decomposition + right-angle marker).
+    //     SEAM D        : pulley post + wheel + rope segments.
+    //     SEAM E        : the #nlb_sliders ROWS + PARAM_UPDATE emitters + drag.
+    var NLB_G = 9.8;                      // m/s^2 (a constant, NOT a clock — Rule 36)
+    var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
+    var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
+    var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
+    var NLB_LANE_GAP = 0.85;              // world units of z between two INDEPENDENT side-by-side bodies.
+                                          //   Engine spec §1 promises "two bodies with NO pulley = independent,
+                                          //   side-by-side", but every body was pinned to z = 0, so the intended
+                                          //   same-start-line compare (both at the same initial_position_m) rendered
+                                          //   as ONE block with the two labels merged into an illegible blob until
+                                          //   integration pulled them apart. Staggering the start positions instead
+                                          //   is NOT a workaround — it puts them in one lane, so the faster body
+                                          //   overtakes and interpenetrates the slower one, and it destroys the
+                                          //   distance comparison the compare states exist to show. 1.55 × body size,
+                                          //   so the blocks read as clearly separate rows without splitting the eye.
+    var NLB_SURFACE_THICK = 0.18;         // slab thickness; its TOP face sits at surface-local y = 0
+    var NLB_SURFACE_DEPTH = 1.6;          // slab depth (z)
+    var NLB_DEFAULT_LEN_M = 6;            // surface.length_m default (visible half-length, metres)
+    var NLB_SURFACE_COLOR = "#78909C";
+    var NLB_REF_COLOR = "#546E7A";        // the horizontal reference the incline angle is measured from
+    var NLB_ARC_COLOR = "#FFD54F";
+    var NLB_BODY_COLORS = ["#42A5F5", "#EF5350", "#66BB6A", "#AB47BC"];
+
+    // ── SEAM C — force-arrow overlay constants (spec section 3) ────────────
+    //   Rule 29, the DELIBERATE exception: an arrow's LENGTH tracks its real
+    //   magnitude in newtons (same licence as tauThrob). Emphasis of the
+    //   teaching focus is BRIGHTNESS ONLY, through nlbApplyGlow() ->
+    //   applyGlowEmphasis(). There is NO scale/size bump anywhere below, and no
+    //   second emphasis channel (Rule 32e).
+    var NLB_ARROW_SCALE = 0.030;          // world units PER NEWTON (1 kg weight = 9.8 N -> 0.29)
+    var NLB_ARROW_MIN_LEN = 0.30;         // a nonzero force is always at least readable
+    var NLB_ARROW_MAX_LEN = 2.40;         // and never longer than the visible surface
+    var NLB_ARROW_EPS = 0.05;             // newtons. At or below this the force IS zero:
+                                          // the arrow HIDES. Never a stub (spec section 3).
+    var NLB_ARROW_LABEL_H = 0.26;         // label sprite glyph height (< every lane gap below)
+    var NLB_ARROW_LABEL_GAP = 0.24;       // world units past the arrow tip
+    var NLB_ARROW_KINDS = ["weight", "normal", "friction", "applied", "tension", "net"];
+    var NLB_ARROW_COLORS = {
+        weight: "#FFD54F", normal: "#4DD0E1", friction: "#F06292",
+        applied: "#81C784", tension: "#BA68C8", net: "#E0E0E0"
+    };
+    // net is a light GREY, not pure white, deliberately: applyGlowEmphasis brightens
+    // a focal by lerping its own hue toward white, so a pure-white arrow as
+    // glow_focal would brighten by nothing at all and the Rule-29 emphasis would be
+    // a total no-op on exactly the arrow states most want to point at.
+    // Rule 34c: REAL Unicode, never ASCII transcription. The friction glyph is
+    // resolved live to fₛ / fₖ (U+209B / U+2096) by nlbArrowLabelFor().
+    var NLB_ARROW_DEFAULT_LABELS = {
+        weight: "mg", normal: "N", friction: "f", applied: "F", tension: "T", net: "ΣF"
+    };
+    // Rule 34d: four of the six arrows (friction / applied / tension / net) are
+    // COLLINEAR with the body's own axis and can be exactly equal in length
+    // (frictionless: ΣF === F_applied), so drawing them all from the body centre
+    // would superimpose both the shafts AND the labels. Each therefore gets its
+    // own perpendicular LANE, measured from the body centre along the outward
+    // surface normal, and its label an extra perpendicular nudge — every
+    // resulting label-to-label gap is >= 0.34 world units against a 0.26 glyph
+    // height, so no two can ever touch. Lanes are chosen to miss the slab too
+    // (the slab occupies surface-local y in [-0.18, 0], i.e. body-relative
+    // perpendicular [-0.455, -0.275]): friction sits just ABOVE the contact face
+    // and tension/net just BELOW the slab, so no arrow is ever buried in geometry.
+    //   The two perpendicular arrows are placed where they read: weight from the
+    //   centre straight down, normal from the body's TOP face outward (a normal
+    //   drawn from the contact face would be entirely INSIDE the opaque cube and
+    //   therefore invisible — the "declares the element but never shows it" trap).
+    var NLB_ARROW_LANE = {
+        weight: 0, normal: NLB_BODY_SIZE / 2, friction: -0.24,
+        applied: 0, tension: -0.62, net: -0.96
+    };
+    var NLB_ARROW_LABEL_LANE = {
+        weight: 0, normal: 0, friction: -0.18, applied: 0, tension: -0.16, net: -0.16
+    };
+    var NLB_ARROW_LABEL_SIDE_W = 0.44;    // weight label, sideways off its own shaft
+    var NLB_ARROW_LABEL_SIDE_N = 0.34;    // normal label, sideways off its own shaft
+    // Rule 34d GUARANTEE. The lanes above are necessary but NOT sufficient: the
+    // weight label sits at mg·NLB_ARROW_SCALE + gap from the body, and m is an
+    // authorable slider, so as the mass changes that label SWEEPS across every
+    // axis lane in turn — a static layout cannot be proved collision-free (an
+    // exhaustive theta -60..60 x sign x mass sweep finds gaps as small as 0.016).
+    // So a final deterministic pass pushes any label that lands too close to an
+    // already-placed one further out ALONG ITS OWN arrow. See nlbDeCollideLabels.
+    var NLB_LABEL_MIN_SEP = 0.30;         // > NLB_ARROW_LABEL_H (0.26 glyph height)
+    var NLB_LABEL_PUSH = 0.20;
+    var NLB_LABEL_ORDER = ["weight", "normal", "friction", "applied", "tension", "net",
+                           "component_sin", "component_cos"];
+    // Components of the weight (show_components) — dashed + thin, in the WEIGHT
+    // hue because that is exactly what they are: mg resolved.
+    var NLB_COMP_COLOR = "#FFD54F";
+    var NLB_COMP_DASH = 0.10;             // world units of ink ...
+    var NLB_COMP_GAP = 0.07;              // ... and of gap, REBUILT only when the length changes
+    var NLB_COMP_HEAD_LEN = 0.14;
+    var NLB_COMP_HEAD_R = 0.055;
+    var NLB_RA_SIZE = 0.17;               // right-angle marker leg length
+    var NLB_COMP_MIN_THETA = 0.5;         // degrees. Below this there is nothing to resolve.
+    var NLB_X_AXIS = new THREE.Vector3(1, 0, 0);
+    var NLB_DOWN = new THREE.Vector3(0, -1, 0);
+
+    // ── SEAM D — pulley bracket + the two rope segments ────────────────────
+    //   Spec section 1's pulley block; spec section 6 honest-extension flag 1
+    //   (this asset class is genuinely new). GEOMETRY ONLY: nothing below reads a
+    //   clock, integrates anything or hardcodes a frame delta (Rule 36), and
+    //   nothing below is an emphasis channel — emphasis stays brightness-only
+    //   through nlbApplyGlow() -> applyGlowEmphasis() (Rules 29 / 32e).
+    //
+    //   Layout is expressed entirely in the SURFACE-LOCAL frame (x = up-slope,
+    //   y = perpendicular OUT of the surface with the top face at y = 0), and the
+    //   whole bracket is a CHILD of nlb_surface_group. So the one group rotation
+    //   stands it on the surface at every angle and theta = 0 runs the SAME code
+    //   path as an incline — there is no theta test anywhere in this seam:
+    //
+    //                            (O)   <- wheel, rim radius NLB_PULLEY_R
+    //          post top  ·———————·     <- axle arm, local +x, NLB_PULLEY_ARM long
+    //                    |             <- post column, NLB_PULLEY_HUB_H tall
+    //     ───────────────┴──────────   <- surface top face (y = 0) = post BASE
+    //
+    //   NLB_PULLEY_HUB_H is NOT a free choice: the wheel centre sits exactly one
+    //   rim radius above a body's CENTRE height (NLB_BODY_SIZE/2), so the rope
+    //   leaving the block runs exactly PARALLEL to the surface and meets the rim
+    //   at a true tangent point. That is what the physics assumes — branch B's
+    //   tension acts along the body's own axis, and the mg·sin θ decomposition
+    //   teaches that axis — so any other hub height would draw a string the
+    //   equations do not describe.
+    //   NLB_PULLEY_ARM cantilevers the wheel just PAST the post so that (a) the
+    //   along-surface rope leaves the slab's end face cleanly and (b) in the
+    //   Atwood case (both bodies hanging, one rope per rim SIDE) the near-side
+    //   rope and its body hang beyond the slab instead of through it.
+    var NLB_PULLEY_R = 0.30;              // wheel OUTER radius — the radius the rope rides on
+    var NLB_PULLEY_TUBE = 0.055;          // rim (torus) tube radius
+    var NLB_PULLEY_POST_R = 0.058;        // post column radius
+    var NLB_PULLEY_HUB_H = NLB_BODY_SIZE / 2 + NLB_PULLEY_R;          // 0.575 — pinned, see above
+    var NLB_PULLEY_ARM = NLB_PULLEY_R + NLB_BODY_SIZE / 2 + 0.05;     // 0.625 — see above
+    var NLB_PULLEY_STOP_M = (NLB_BODY_SIZE / 2 + NLB_PULLEY_POST_R) / NLB_WORLD_PER_M;
+    var NLB_PULLEY_COLOR = "#B0BEC5";     // bracket (post + arm + hub disc)
+    var NLB_PULLEY_RIM_COLOR = "#90A4AE";
+    var NLB_ROPE_COLOR = "#ECEFF1";
+    var NLB_ROPE_R = 0.021;               // an IDEAL string: thin, straight, taut — never a sag curve
+    var NLB_ROPE_MIN_LEN = 0.02;          // below this the segment is genuinely gone, so it HIDES
+    // The closest a hanging body may come to the wheel: its top face may not rise
+    // past the rim's lowest point, or the cube would swallow the wheel.
+    var NLB_HANG_MIN_M = (NLB_PULLEY_R + NLB_BODY_SIZE / 2) / NLB_WORLD_PER_M;
+    var NLB_Y_AXIS = new THREE.Vector3(0, 1, 0);
+
+    // Explicit id registry. addToScene() only registers the object handed to it,
+    // so child meshes (bodies parented to the rotated surface group) would never
+    // be reachable from sceneObjects — the "child mesh never registered, updater
+    // never matches" scar. Every id-addressable nlb object goes through
+    // nlbRegister(), and every later seam MUST use it for its own objects.
+    var nlbIndex = [];
+    function nlbRegister(obj) { nlbIndex.push(obj); return obj; }
+    function nlbFindById(id) {
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            if (o && o.userData && o.userData.id === id) return o;
+        }
+        return null;
+    }
+    function nlbEach(fn) {
+        for (var i = 0; i < nlbIndex.length; i++) { if (nlbIndex[i]) fn(nlbIndex[i], nlbIndex[i].userData || {}); }
+    }
+
+    // The active state's newtons_laws_body block (never null).
+    function nlbStateCfg() {
+        var sd = (config.states && PM_currentState) ? config.states[PM_currentState] : null;
+        return (sd && sd.newtons_laws_body) ? sd.newtons_laws_body : {};
+    }
+    function nlbSurfaceLenM(nlb) {
+        var s = (nlb && nlb.surface) ? nlb.surface : {};
+        return (s.length_m != null) ? s.length_m : NLB_DEFAULT_LEN_M;
+    }
+    function nlbSurfaceThetaDeg(nlb) {
+        var s = (nlb && nlb.surface) ? nlb.surface : {};
+        return (s.theta_deg != null) ? s.theta_deg : 0;
+    }
+
+    // The UNION of every state's bodies[], in first-appearance order, so meshes
+    // are built once and reused. A body id keeps the hanging/colour/label of its
+    // FIRST appearance (a later state may re-label via updateLabelSpriteText);
+    // an id must therefore not flip hanging between states.
+    function nlbCollectBodyDefs() {
+        var out = [], seen = {};
+        var keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var sd = config.states[keys[i]] || {};
+            var nlb = sd.newtons_laws_body;
+            if (!nlb || !nlb.bodies) continue;
+            for (var b = 0; b < nlb.bodies.length; b++) {
+                var bd = nlb.bodies[b];
+                if (!bd || !bd.id || seen[bd.id]) continue;
+                seen[bd.id] = true;
+                out.push(bd);
+            }
+        }
+        return out;
+    }
+
+    // ── SEAM D geometry — the pulley bracket's frame ───────────────────────
+    // Where the post stands, in metres along the surface (spec section 1: default
+    // = the surface's high end). Signed, exactly like every other position here,
+    // so a negative post_position_m legitimately stands the bracket at the other
+    // end and needs no branch.
+    function nlbPostM(nlb) {
+        var pul = (nlb && nlb.pulley) ? nlb.pulley : {};
+        return (pul.post_position_m != null) ? pul.post_position_m : nlbSurfaceLenM(nlb);
+    }
+    // The wheel centre (axle) in WORLD coordinates. The local point is rotated by
+    // the live theta analytically — the same rotation nlb_surface_group applies to
+    // the bracket meshes themselves — for the same reason nlbBodyWorldPos does it:
+    // matrixWorld is only refreshed at render time and would lag this tick.
+    function nlbPulleyHubWorld() {
+        var nlb = nlbStateCfg();
+        var lx = nlbPostM(nlb) * NLB_WORLD_PER_M + NLB_PULLEY_ARM;
+        var ly = NLB_PULLEY_HUB_H;
+        var t = nlbFrameThetaDeg() * Math.PI / 180, c = Math.cos(t), s = Math.sin(t);
+        return new THREE.Vector3(lx * c - ly * s, lx * s + ly * c, 0);
+    }
+    // Which rim SIDE a hanging body's vertical rope leaves the wheel on. A
+    // vertical rope is tangent to the rim at hub.x ± R, so two hanging bodies (the
+    // Atwood case) MUST take opposite sides or they would share one point and
+    // overlap. The pulley's body_a_id takes the near (-x, surface) side, and only
+    // when BOTH coupled bodies hang: when body_a is the one on the surface
+    // (incline + hanging) the single hanging body takes the far side.
+    function nlbHangSide(bodyId) {
+        var nlb = nlbStateCfg();
+        var pul = nlb.pulley;
+        if (!pul || !bodyId || bodyId !== pul.body_a_id) return 1;
+        var bs = nlb.bodies || [], aH = false, bH = false;
+        for (var i = 0; i < bs.length; i++) {
+            if (!bs[i]) continue;
+            if (bs[i].id === pul.body_a_id) aH = !!bs[i].hanging;
+            if (bs[i].id === pul.body_b_id) bH = !!bs[i].hanging;
+        }
+        return (aH && bH) ? -1 : 1;
+    }
+    // Where a hanging body hangs FROM: the REAL wheel-rim tangent point of its
+    // vertical rope segment. This is SEAM D's designated swap of seam A's
+    // provisional NLB_POST_H anchor, and it is the ONE place the swap happens —
+    // hanging-body placement (nlbSetBodyPosition), every hanging force arrow
+    // (seam C drives arrows off nlbBodyWorldPos) and rope segment B all follow.
+    function nlbHangAnchor(bodyId) {
+        var hub = nlbPulleyHubWorld();
+        return { x: hub.x + nlbHangSide(bodyId) * NLB_PULLEY_R, y: hub.y };
+    }
+    // The tangent point of the ALONG-SURFACE segment: one rim radius on the
+    // INTO-the-surface side of the hub, i.e. exactly at body-centre height (that
+    // is what NLB_PULLEY_HUB_H is pinned for), so that segment is parallel to the
+    // surface at every theta with no special case.
+    function nlbSurfaceTangentWorld() {
+        return nlbPulleyHubWorld().addScaledVector(nlbPerpUnit(false, nlbFrameThetaDeg()), -NLB_PULLEY_R);
+    }
+
+    // Place a body from its signed position s (metres) along its OWN axis:
+    // up-slope for a surface body (surface-group local +x, so the incline
+    // rotation is applied for free), straight DOWN in world y for a hanging body
+    // (which ignores theta by construction — spec section 1).
+    // Lane (z) offset for a body. ONLY independent, non-hanging, non-ghost bodies are
+    // separated; everything else stays on the centre line at z = 0, so this cannot move
+    // pixels in any already-baselined concept:
+    //   - coupled (pulley) states return 0 — one body is on the surface and one hangs,
+    //     so they never shared a lane to begin with;
+    //   - a single-real-body state returns 0 — free_body_diagram is 1 real body plus
+    //     ghosts, so its locked H2 baselines are untouched by construction;
+    //   - ghosts are excluded from the lane list AND get 0 themselves (they are authored
+    //     context at their own positions, not compare partners).
+    function nlbBodyLaneZ(bodyId) {
+        var eng = window.PM_nlbEngine;
+        if (!eng || !eng.order || eng.pulley) return 0;
+        var lanes = [];
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b && !b.hanging && !b.ghost) lanes.push(b.id);
+        }
+        if (lanes.length < 2) return 0;
+        var k = lanes.indexOf(bodyId);
+        if (k < 0) return 0;                       // ghost / hanging / unknown -> centre line
+        return (k - (lanes.length - 1) / 2) * NLB_LANE_GAP;
+    }
+
+    function nlbSetBodyPosition(bodyId, s_m) {
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!mesh) return;
+        var s = (typeof s_m === "number" && isFinite(s_m)) ? s_m : 0;
+        if (mesh.userData.hanging) {
+            var a = nlbHangAnchor(bodyId);
+            mesh.position.set(a.x, a.y - s * NLB_WORLD_PER_M, 0);
+        } else {
+            // z is the lane, NOT a physics axis: the integrator is strictly 1-D along s,
+            // so a lane offset changes nothing numerical. nlbBodyWorldPos passes z through
+            // unrotated, so arrows and labels follow the body into its lane for free.
+            mesh.position.set(s * NLB_WORLD_PER_M, NLB_BODY_SIZE / 2, nlbBodyLaneZ(bodyId));
+        }
+        // SEAM E: the invisible pointer-pick proxy shares the body's PARENT (so the
+        // surface rotation applies to both identically) and is carried here, in the
+        // ONE funnel every body move already goes through — build seeding, the
+        // integrator writeback, a slider write and the drag itself. No per-frame
+        // follow hook and therefore no clock code (Rule 36).
+        var hitP = nlbFindById("nlb_body_" + bodyId + "_hit");
+        if (hitP) hitP.position.copy(mesh.position);
+    }
+
+    // Rotate the ONE surface group + rescale it to the state's length, and
+    // redraw the angle arc/label. theta = 0 is NOT special-cased: the same
+    // rotation runs, the arc simply collapses and hides.
+    function nlbApplySurface(thetaDeg, lenM) {
+        var grp = nlbFindById("nlb_surface_group");
+        var halfWorld = Math.max(0.2, lenM * NLB_WORLD_PER_M);
+        if (grp) {
+            grp.rotation.set(0, 0, thetaDeg * Math.PI / 180);
+            grp.userData.theta_deg = thetaDeg;
+            grp.userData.length_m = lenM;
+        }
+        var slab = nlbFindById("nlb_surface");
+        if (slab) slab.scale.set(halfWorld * 2, 1, 1);
+        var ref = nlbFindById("nlb_horizontal_ref");
+        if (ref) { ref.scale.set(halfWorld, 1, 1); ref.visible = Math.abs(thetaDeg) > 0.5; }
+        var arc = nlbFindById("nlb_theta_arc");
+        if (arc) {
+            if (arc.geometry) arc.geometry.dispose();
+            var R = 1.05, th = thetaDeg * Math.PI / 180;
+            var steps = Math.max(2, Math.round(Math.abs(thetaDeg) / 3));
+            var pts = [];
+            for (var i = 0; i <= steps; i++) { var s = th * (i / steps); pts.push(new THREE.Vector3(R * Math.cos(s), R * Math.sin(s), 0)); }
+            arc.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+            arc.visible = Math.abs(thetaDeg) > 0.5;
+        }
+        var lbl = nlbFindById("nlb_theta_label");
+        if (lbl) {
+            var mid = (thetaDeg * 0.5) * Math.PI / 180;
+            lbl.position.set(1.42 * Math.cos(mid), 1.42 * Math.sin(mid), 0);
+            updateLabelSpriteText(lbl, "θ = " + Math.round(thetaDeg) + "°");
+            lbl.visible = Math.abs(thetaDeg) > 0.5;
+        }
+    }
+
+    // ── Value-only HUD (Rule 33d live numerics, Rule 34b NO formula here) ──
+    //   Rows are rebuilt on STATE ENTRY only (bodies + readouts both vary per
+    //   state), never per frame. The panel container itself never moves
+    //   (Rule 32d) and clears the review-chrome "Full screen" button at
+    //   top:52px (Rule 34d). Per-frame writers use nlbSetReadout().
+    var NLB_READOUT_LABELS = {
+        N: "N", f: "f", a: "a", v: "v", T: "T", F_net: "ΣF", F_applied: "F"
+    };
+    var NLB_READOUT_UNITS = {
+        N: " N", f: " N", a: " m/s²", v: " m/s", T: " N", F_net: " N", F_applied: " N"
+    };
+    function nlbReadoutRowId(bodyId, key) { return "nlb_ro_" + bodyId + "_" + key; }
+    function nlbRebuildReadout(nlb) {
+        var el = document.getElementById("nlb_readout");
+        if (!el) return;
+        var keys = nlb.readouts || [];
+        var bodies = nlb.bodies || [];
+        if (!keys.length || !bodies.length) { el.innerHTML = ""; el.style.display = "none"; return; }
+        var h = "";
+        for (var b = 0; b < bodies.length; b++) {
+            var bd = bodies[b];
+            if (!bd || !bd.id || bd.ghost) continue;   // a ghost is decorative context: never integrated, never read out
+            if (bodies.length > 1) {
+                h += '<div style="opacity:0.7;margin-top:' + (b > 0 ? "7px" : "0") + '">' + (bd.label || bd.id) + '</div>';
+            }
+            for (var k = 0; k < keys.length; k++) {
+                var key = keys[k];
+                // A HANGING body has N forced to 0 (spec section 1) and therefore
+                // f == 0 on EVERY friction path (all of them multiply by N), so an
+                // "N = 0.00 N" / "fₖ = 0.00 N" row is a zero STUB, not a reading —
+                // exactly what the arrow layer already refuses to draw ("a real
+                // zero force HIDES the arrow, never a stub", spec section 3). The
+                // readouts[] enum is state-level, not per-body, so without this the
+                // one state that legitimately reads N + f off the SURFACE body of a
+                // connected pair is forced to print two permanent zeros against the
+                // hanging one (Rule 34b value-only HUD / the untaught-quantity scar).
+                if (bd.hanging && (key === "N" || key === "f")) continue;
+                var lab = NLB_READOUT_LABELS[key] || key;
+                h += '<div id="' + nlbReadoutRowId(bd.id, key) + '">' +
+                    '<span id="' + nlbReadoutRowId(bd.id, key) + '_lbl">' + lab + '</span> = ' +
+                    '<span id="' + nlbReadoutRowId(bd.id, key) + '_val">--</span>' + (NLB_READOUT_UNITS[key] || "") + '</div>';
+            }
+        }
+        el.innerHTML = h;
+        el.style.display = h ? "block" : "none";
+    }
+    // Per-frame value write (SEAM B). labelOverride lets the friction row switch
+    // between the static and kinetic glyphs (fₛ / fₖ) without rebuilding the row.
+    function nlbSetReadout(bodyId, key, text, labelOverride) {
+        var v = document.getElementById(nlbReadoutRowId(bodyId, key) + "_val");
+        if (v) v.textContent = text;
+        if (labelOverride) {
+            var l = document.getElementById(nlbReadoutRowId(bodyId, key) + "_lbl");
+            if (l) l.textContent = labelOverride;
+        }
+    }
+
+    // ── SEAM C — the force-arrow overlay (spec section 3) ──────────────────
+    //   This is what makes free_body_diagram config-only. Six ArrowHelpers +
+    //   Unicode label sprites per body, plus the dashed mg·sin θ / mg·cos θ
+    //   component pair and its right-angle marker, ALL built once and hidden by
+    //   default; per-frame the enabled kinds are driven from the live engine
+    //   values written by SEAM B. There is NO clock code below (Rule 36): every
+    //   function here is pure presentation of already-stepped state, reads no
+    //   time, integrates nothing, and hardcodes no frame delta.
+    //
+    //   Frame convention (all world-space; arrows live in the UN-rotated
+    //   nlb_world_group so position/direction are world coordinates directly):
+    //     axisUnit = the body's OWN positive axis  — up-slope for a surface body
+    //                (the axis s / v / a / f / T / F_net are all signed in),
+    //                straight DOWN for a hanging body.
+    //     perpUnit = the outward surface normal for a surface body; world +x for
+    //                a hanging body (any perpendicular will do — it only spaces
+    //                the FBD lanes out).
+    function nlbFrameThetaDeg() {
+        var e = window.PM_nlbEngine;
+        if (e && typeof e.theta_deg === "number" && isFinite(e.theta_deg)) return e.theta_deg;
+        return nlbSurfaceThetaDeg(nlbStateCfg());
+    }
+    function nlbAxisUnit(hanging, thDeg) {
+        if (hanging) return new THREE.Vector3(0, -1, 0);
+        var t = thDeg * Math.PI / 180;
+        return new THREE.Vector3(Math.cos(t), Math.sin(t), 0);
+    }
+    function nlbPerpUnit(hanging, thDeg) {
+        if (hanging) return new THREE.Vector3(1, 0, 0);
+        var t = thDeg * Math.PI / 180;
+        return new THREE.Vector3(-Math.sin(t), Math.cos(t), 0);
+    }
+    // The body's WORLD position. Computed analytically rather than read from
+    // mesh.matrixWorld because matrixWorld is only refreshed at render time and
+    // would therefore lag the step that just moved the body by a whole frame
+    // (arrows visibly trailing their body). nlb_surface_group carries the ONE
+    // theta rotation about world Z and no translation/scale, so the rotation of
+    // the group-local position IS the world position, exactly.
+    function nlbBodyWorldPos(bodyId) {
+        var out = new THREE.Vector3(0, 0, 0);
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!mesh) return out;
+        if (mesh.userData.hanging) { out.copy(mesh.position); return out; }
+        var t = nlbFrameThetaDeg() * Math.PI / 180;
+        var c = Math.cos(t), s = Math.sin(t);
+        out.set(mesh.position.x * c - mesh.position.y * s,
+                mesh.position.x * s + mesh.position.y * c,
+                mesh.position.z);
+        return out;
+    }
+    function nlbArrowLen(magN) {
+        var L = (typeof magN === "number" && isFinite(magN)) ? Math.abs(magN) * NLB_ARROW_SCALE : 0;
+        if (L < NLB_ARROW_MIN_LEN) L = NLB_ARROW_MIN_LEN;
+        if (L > NLB_ARROW_MAX_LEN) L = NLB_ARROW_MAX_LEN;
+        return L;
+    }
+    // Direction of a SIGNED quantity along the body's own axis. Seam B stores f,
+    // T, F_net and F_applied signed in that axis (a negative T pulls opposite +s,
+    // i.e. UP for a hanging body — which is exactly "toward the pulley"), so the
+    // physical direction is read off the sign; nothing is recomputed here.
+    function nlbSignedDir(axisUnit, signedValue) {
+        var d = axisUnit.clone();
+        if (signedValue < 0) d.negate();
+        return d;
+    }
+    function nlbArrowOrigin(bodyId, kind, hanging, thDeg) {
+        var p = nlbBodyWorldPos(bodyId);
+        var lane = NLB_ARROW_LANE[kind] || 0;
+        if (lane) p.addScaledVector(nlbPerpUnit(hanging, thDeg), lane);
+        return p;
+    }
+    // Rule 34d: the extra nudge that keeps the six labels apart. The four
+    // axis-collinear kinds get a perpendicular nudge on top of their lane
+    // (label perpendiculars land at 0 / -0.42 / -0.78 / -1.12 => every gap
+    // >= 0.34 against a 0.26 glyph height); the two perpendicular kinds get a
+    // SIDEWAYS nudge instead, so mg's label clears the ramp and N's label clears
+    // the body's own name sprite (which sits ~0.52 above the body centre).
+    function nlbArrowLabelExtra(kind, hanging, thDeg) {
+        if (kind === "weight") return NLB_X_AXIS.clone().multiplyScalar(NLB_ARROW_LABEL_SIDE_W);
+        if (kind === "normal") return nlbAxisUnit(hanging, thDeg).multiplyScalar(NLB_ARROW_LABEL_SIDE_N);
+        return nlbPerpUnit(hanging, thDeg).multiplyScalar(NLB_ARROW_LABEL_LANE[kind] || 0);
+    }
+    function nlbLabelObj(bodyId, key) {
+        if (key === "component_sin") return nlbFindById("nlb_complbl_" + bodyId + "_sin");
+        if (key === "component_cos") return nlbFindById("nlb_complbl_" + bodyId + "_cos");
+        return nlbFindById("nlb_arrowlbl_" + bodyId + "_" + key);
+    }
+    // Rule 34d, the guarantee (see NLB_LABEL_MIN_SEP). Walk this body's VISIBLE
+    // labels in a FIXED order and push any that lands within NLB_LABEL_MIN_SEP of
+    // an already-placed one further out along its OWN arrow direction, so it still
+    // unambiguously reads as that arrow's label. Deterministic — same magnitudes
+    // in, same pixels out — so SET_TIME_FREEZE frames stay byte-stable.
+    function nlbDeCollideLabels(bodyId) {
+        var placed = [];
+        for (var i = 0; i < NLB_LABEL_ORDER.length; i++) {
+            var lb = nlbLabelObj(bodyId, NLB_LABEL_ORDER[i]);
+            if (!lb || !lb.visible) continue;
+            for (var tries = 0; tries < 6; tries++) {
+                var bad = false;
+                for (var p = 0; p < placed.length; p++) {
+                    if (lb.position.distanceTo(placed[p]) < NLB_LABEL_MIN_SEP) { bad = true; break; }
+                }
+                if (!bad || !lb._nlbDir) break;
+                lb.position.addScaledVector(lb._nlbDir, NLB_LABEL_PUSH);
+            }
+            placed.push(lb.position.clone());
+        }
+    }
+    // Redraw a label sprite ONLY when its text actually changed — pmCreateAutoLabel
+    // re-measures and can re-allocate the canvas texture, which must never happen
+    // 60 times a second.
+    function nlbSetArrowLabelText(lbl, text) {
+        if (!lbl) return;
+        var t = (text == null || text === "") ? "" : String(text);
+        if (lbl._nlbText === t) return;
+        lbl._nlbText = t;
+        updateLabelSpriteText(lbl, t);
+    }
+    function nlbHideArrowKind(bodyId, kind) {
+        var a = nlbFindById("nlb_arrow_" + bodyId + "_" + kind); if (a) a.visible = false;
+        var l = nlbFindById("nlb_arrowlbl_" + bodyId + "_" + kind); if (l) l.visible = false;
+    }
+    function nlbShowComponents(bodyId, on) {
+        var ids = ["nlb_comp_" + bodyId + "_sin", "nlb_comp_" + bodyId + "_cos",
+                   "nlb_complbl_" + bodyId + "_sin", "nlb_complbl_" + bodyId + "_cos",
+                   "nlb_ra_" + bodyId];
+        for (var i = 0; i < ids.length; i++) { var o = nlbFindById(ids[i]); if (o) o.visible = !!on; }
+    }
+    function nlbHideBodyArrows(bodyId) {
+        for (var k = 0; k < NLB_ARROW_KINDS.length; k++) nlbHideArrowKind(bodyId, NLB_ARROW_KINDS[k]);
+        nlbShowComponents(bodyId, false);
+    }
+    // Every arrow surface off. Called on STATE ENTRY so a body dropped from this
+    // state's arrows[] (or turned ghost) can never keep a stale arrow alive — the
+    // per-frame pass then re-shows exactly what this state named.
+    function nlbHideAllArrows() {
+        nlbEach(function (o, ud) {
+            if (ud.elementType === "nlb_arrow" || ud.elementType === "nlb_arrow_label" ||
+                ud.elementType === "nlb_comp" || ud.elementType === "nlb_comp_label" ||
+                ud.elementType === "nlb_right_angle") o.visible = false;
+        });
+    }
+
+    // The spec-section-3 update primitive. magnitudeN is in NEWTONS; a real zero
+    // force HIDES the arrow (and its label) rather than drawing a stub, so
+    // "ΣF = 0" and "no friction" read as the absence of a force, which is the
+    // whole teaching point of Newton I and of a statically held block.
+    function nlbUpdateArrow(bodyId, kind, originWorld, dirUnit, magnitudeN, labelText) {
+        var arrow = nlbFindById("nlb_arrow_" + bodyId + "_" + kind);
+        var lbl = nlbFindById("nlb_arrowlbl_" + bodyId + "_" + kind);
+        if (!arrow) return;
+        var mag = (typeof magnitudeN === "number" && isFinite(magnitudeN)) ? Math.abs(magnitudeN) : 0;
+        var vis = mag > NLB_ARROW_EPS;
+        arrow.visible = vis;
+        if (lbl) lbl.visible = vis;
+        if (!vis) return;
+        // Rule 29 exception: LENGTH is the magnitude. Nothing here scales the
+        // arrow for emphasis — emphasis is brightness, via nlbApplyGlow() only.
+        var len = nlbArrowLen(mag);
+        var headLen = Math.min(0.20, len * 0.34);
+        arrow.position.copy(originWorld);
+        arrow.setDirection(dirUnit);
+        arrow.setLength(len, headLen, headLen * 0.62);
+        if (lbl) {
+            var hanging = !!(arrow.userData && arrow.userData.hanging);
+            var th = nlbFrameThetaDeg();
+            lbl.position.copy(originWorld)
+                .addScaledVector(dirUnit, len + NLB_ARROW_LABEL_GAP)
+                .add(nlbArrowLabelExtra(kind, hanging, th));
+            // remembered for nlbDeCollideLabels — never mutate dirUnit itself
+            // (NLB_DOWN and friends are shared read-only constants).
+            if (!lbl._nlbDir) lbl._nlbDir = new THREE.Vector3();
+            lbl._nlbDir.copy(dirUnit);
+            nlbSetArrowLabelText(lbl, labelText || NLB_ARROW_DEFAULT_LABELS[kind] || kind);
+        }
+    }
+
+    // Dashed component shaft: the dash pattern is world-sized, so the segment
+    // geometry is REBUILT when the length changes — and only then. mg·sin θ /
+    // mg·cos θ are constant while a state plays (they move only when theta or a
+    // mass does), so this is zero churn per frame.
+    function nlbSetDashLen(segs, len) {
+        if (!segs) return;
+        if (segs.userData._dashLen != null && Math.abs(segs.userData._dashLen - len) < 0.01) return;
+        segs.userData._dashLen = len;
+        var pts = [], x = 0, step = NLB_COMP_DASH + NLB_COMP_GAP, guard = 0;
+        while (x < len - 0.001 && guard < 64) {
+            var x2 = Math.min(len, x + NLB_COMP_DASH);
+            pts.push(new THREE.Vector3(x, 0, 0));
+            pts.push(new THREE.Vector3(x2, 0, 0));
+            x += step; guard++;
+        }
+        if (!pts.length) { pts.push(new THREE.Vector3(0, 0, 0)); pts.push(new THREE.Vector3(Math.max(0.01, len), 0, 0)); }
+        if (segs.geometry) segs.geometry.dispose();
+        segs.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+    }
+    function nlbUpdateComponentArrow(bodyId, which, enabled, originWorld, dirUnit, magnitudeN, labelExtra, labelText) {
+        var grp = nlbFindById("nlb_comp_" + bodyId + "_" + which);
+        var lbl = nlbFindById("nlb_complbl_" + bodyId + "_" + which);
+        if (!grp) return;
+        var mag = (typeof magnitudeN === "number" && isFinite(magnitudeN)) ? Math.abs(magnitudeN) : 0;
+        var vis = !!enabled && mag > NLB_ARROW_EPS;
+        grp.visible = vis;
+        if (lbl) lbl.visible = vis;
+        if (!vis) return;
+        var len = nlbArrowLen(mag);
+        grp.position.copy(originWorld);
+        grp.quaternion.setFromUnitVectors(NLB_X_AXIS, dirUnit);
+        nlbSetDashLen(grp.userData._shaft, Math.max(0.02, len - NLB_COMP_HEAD_LEN));
+        if (grp.userData._head) grp.userData._head.position.set(len - NLB_COMP_HEAD_LEN / 2, 0, 0);
+        if (lbl) {
+            lbl.position.copy(originWorld).addScaledVector(dirUnit, len + NLB_ARROW_LABEL_GAP).add(labelExtra);
+            if (!lbl._nlbDir) lbl._nlbDir = new THREE.Vector3();
+            lbl._nlbDir.copy(dirUnit);
+            nlbSetArrowLabelText(lbl, labelText);
+        }
+    }
+
+    // Drive one body's enabled arrow kinds from the LIVE engine values. Reads
+    // only; recomputes no physics (seam B owns every number here).
+    function nlbDriveArrowsForBody(b) {
+        var eng = window.PM_nlbEngine;
+        if (!eng || !b || !b.id) return;
+        var spec = (eng.arrows && eng.arrows[b.id]) ? eng.arrows[b.id] : null;
+        // A ghost is decorative FBD context: never integrated (seam B) and never
+        // carries arrows (spec section 3) — its numbers would all be stale zeros.
+        if (!spec || b.ghost) { nlbHideBodyArrows(b.id); return; }
+        var th = eng.theta_deg;
+        var axis = nlbAxisUnit(b.hanging, th);
+        var perp = nlbPerpUnit(b.hanging, th);
+        var show = spec.show || {};
+        var lab = spec.labels || {};
+        var stuck = !!b._stuck;
+
+        // weight — straight DOWN in world space, m·g, INDEPENDENT of theta: this
+        // is the true weight vector, never one of its components.
+        if (show.weight) nlbUpdateArrow(b.id, "weight", nlbArrowOrigin(b.id, "weight", b.hanging, th), NLB_DOWN, b.m * NLB_G, lab.weight || "mg");
+        else nlbHideArrowKind(b.id, "weight");
+
+        // normal — outward perpendicular to the surface. A hanging body has
+        // N === 0 (seam B forces it), so its arrow hides with no special case.
+        if (show.normal) nlbUpdateArrow(b.id, "normal", nlbArrowOrigin(b.id, "normal", b.hanging, th), perp, b.N, lab.normal || "N");
+        else nlbHideArrowKind(b.id, "normal");
+
+        // friction — along the surface, direction from the SIGN of the stored f.
+        // The glyph follows the SAME stuck flag the HUD row uses, so the arrow
+        // and the readout can never disagree about fₛ vs fₖ.
+        if (show.friction) nlbUpdateArrow(b.id, "friction", nlbArrowOrigin(b.id, "friction", b.hanging, th), nlbSignedDir(axis, b.f), b.f, lab.friction || (stuck ? "fₛ" : "fₖ"));
+        else nlbHideArrowKind(b.id, "friction");
+
+        // applied — along the body's own axis, direction from the sign of F_applied.
+        if (show.applied) nlbUpdateArrow(b.id, "applied", nlbArrowOrigin(b.id, "applied", b.hanging, th), nlbSignedDir(axis, b.F_applied), b.F_applied, lab.applied || "F");
+        else nlbHideArrowKind(b.id, "applied");
+
+        // tension — along the string TOWARD the pulley. Seam B's signed T is in
+        // the body's own axis, so sign(T)·axis IS the string direction (negative
+        // T on a hanging body points up, i.e. at the pulley).
+        if (show.tension) nlbUpdateArrow(b.id, "tension", nlbArrowOrigin(b.id, "tension", b.hanging, th), nlbSignedDir(axis, b.T), b.T, lab.tension || "T");
+        else nlbHideArrowKind(b.id, "tension");
+
+        // net — the resultant, along the body's own axis. A statically stuck body
+        // has F_net === 0, so the arrow HIDES: exactly the correct teaching
+        // picture (nothing is pushing it anywhere).
+        if (show.net) nlbUpdateArrow(b.id, "net", nlbArrowOrigin(b.id, "net", b.hanging, th), nlbSignedDir(axis, b.F_net), b.F_net, lab.net || "ΣF");
+        else nlbHideArrowKind(b.id, "net");
+
+        // show_components — mg resolved. Both components originate at the body
+        // CENTRE (that is what makes them read as one vector split in two) and
+        // BOTH hide on flat ground, where there is nothing to resolve.
+        var comps = !!spec.show_components && !b.hanging && Math.abs(th) > NLB_COMP_MIN_THETA;
+        var origin = nlbBodyWorldPos(b.id);
+        var gAlong = nlbGravAlong(b, th);                                  // = -m·g·sin θ, signed in the body axis
+        var gPerp = b.m * NLB_G * Math.cos(th * Math.PI / 180);            // = m·g·cos θ, into the surface
+        nlbUpdateComponentArrow(b.id, "sin", comps, origin, nlbSignedDir(axis, gAlong), gAlong,
+            perp.clone().multiplyScalar(0.32), "mg·sin θ");
+        nlbUpdateComponentArrow(b.id, "cos", comps, origin, perp.clone().negate(), gPerp,
+            axis.clone().multiplyScalar(0.34), "mg·cos θ");
+        // The right-angle marker between the two components. A SEPARATE, smaller
+        // marker at the body — NOT the surface angle arc, which seam A owns at
+        // the ramp's foot (nlb_theta_arc / nlb_theta_label).
+        var ra = nlbFindById("nlb_ra_" + b.id);
+        if (ra) {
+            ra.visible = comps;
+            if (comps) {
+                ra.position.copy(origin);
+                // local +x -> down-slope (-axis), local +y -> into-surface (-perp)
+                ra.rotation.set(0, 0, th * Math.PI / 180 + Math.PI);
+            }
+        }
+
+        // Rule 34d: the final separation guarantee, after every label of this body
+        // has been placed.
+        nlbDeCollideLabels(b.id);
+    }
+    function nlbDriveArrows(eng) {
+        if (!eng || !eng.order) return;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b) nlbDriveArrowsForBody(b);
+        }
+    }
+
+    // Build the whole overlay for one body: six ArrowHelpers + six label
+    // sprites, the dashed component pair + its two labels, and the right-angle
+    // marker. ALL hidden by default. Every object goes into the UN-rotated world
+    // group as a CHILD (never addToScene — the generic visible_elements matcher
+    // runs earlier than the per-scenario apply and substring-matches, so anything
+    // in sceneObjects gets blanked on states that do not name it) and is
+    // registered with nlbRegister so nlbApplyGlow can reach it: userData carries
+    // id = "nlb_arrow_" + bodyId + "_" + kind plus bodyId, so a glow_focal naming
+    // either the arrow or its body matches exactly one channel.
+    function nlbBuildArrowsForBody(bodyId, hanging, parent) {
+        for (var k = 0; k < NLB_ARROW_KINDS.length; k++) {
+            var kind = NLB_ARROW_KINDS[k];
+            var col = NLB_ARROW_COLORS[kind];
+            var ar = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0),
+                NLB_ARROW_MIN_LEN, col, 0.18, 0.11);
+            ar.userData = {
+                elementType: "nlb_arrow", id: "nlb_arrow_" + bodyId + "_" + kind,
+                bodyId: bodyId, kind: kind, hanging: !!hanging
+            };
+            ar.visible = false;
+            parent.add(ar); nlbRegister(ar);
+
+            var lb = pmCreateAutoLabel(NLB_ARROW_DEFAULT_LABELS[kind], col, NLB_ARROW_LABEL_H);
+            lb._nlbText = NLB_ARROW_DEFAULT_LABELS[kind];
+            lb.userData = {
+                elementType: "nlb_arrow_label", id: "nlb_arrowlbl_" + bodyId + "_" + kind,
+                bodyId: bodyId, kind: kind
+            };
+            lb.visible = false;
+            parent.add(lb); nlbRegister(lb);
+        }
+
+        // The mg·sin θ / mg·cos θ pair — dashed + THIN so they read as a
+        // construction on the weight, never as two extra independent forces.
+        var whichList = ["sin", "cos"];
+        for (var c = 0; c < whichList.length; c++) {
+            var which = whichList[c];
+            var grp = new THREE.Group();
+            var shaft = new THREE.LineSegments(
+                new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0.01, 0, 0)]),
+                new THREE.LineBasicMaterial({ color: hexToThreeColor(NLB_COMP_COLOR), transparent: true, opacity: 0.9 })
+            );
+            var head = new THREE.Mesh(
+                new THREE.ConeGeometry(NLB_COMP_HEAD_R, NLB_COMP_HEAD_LEN, 10),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor(NLB_COMP_COLOR), transparent: true, opacity: 0.9 })
+            );
+            head.rotation.z = -Math.PI / 2;          // ConeGeometry points +y; aim it along the group's +x
+            grp.add(shaft); grp.add(head);
+            grp.userData = {
+                elementType: "nlb_comp", id: "nlb_comp_" + bodyId + "_" + which,
+                bodyId: bodyId, kind: "component_" + which, _shaft: shaft, _head: head
+            };
+            grp.visible = false;
+            parent.add(grp); nlbRegister(grp);
+
+            var cl = pmCreateAutoLabel(which === "sin" ? "mg·sin θ" : "mg·cos θ", NLB_COMP_COLOR, NLB_ARROW_LABEL_H);
+            cl._nlbText = which === "sin" ? "mg·sin θ" : "mg·cos θ";
+            cl.userData = {
+                elementType: "nlb_comp_label", id: "nlb_complbl_" + bodyId + "_" + which,
+                bodyId: bodyId, kind: "component_" + which
+            };
+            cl.visible = false;
+            parent.add(cl); nlbRegister(cl);
+        }
+
+        // Right-angle marker: an L at the body, in the corner between the two
+        // components. Small and separate from seam A's surface angle arc.
+        var raGeo = new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(NLB_RA_SIZE, 0, 0),
+            new THREE.Vector3(NLB_RA_SIZE, NLB_RA_SIZE, 0),
+            new THREE.Vector3(0, NLB_RA_SIZE, 0)
+        ]);
+        var ra = new THREE.Line(raGeo, new THREE.LineBasicMaterial({
+            color: hexToThreeColor(NLB_COMP_COLOR), transparent: true, opacity: 0.85
+        }));
+        ra.userData = { elementType: "nlb_right_angle", id: "nlb_ra_" + bodyId, bodyId: bodyId };
+        ra.visible = false;
+        parent.add(ra); nlbRegister(ra);
+    }
+
+    // ── SEAM D — the two rope segments, fitted by TRANSFORM ────────────────
+    //   Each segment is one unit-height cylinder created ONCE (axis +y) and then
+    //   re-fitted between two world endpoints by position + quaternion + scale.
+    //   The geometry is NEVER rebuilt, and a frame where nothing moved writes
+    //   nothing at all (the seam-C nlbSetDashLen / nlbSetArrowLabelText churn-guard
+    //   idiom), so a frozen pin re-renders byte-identically.
+    //   NOTE for reviewers: scale.y here IS the segment's LENGTH — that is the
+    //   geometry of an inextensible string, NOT a Rule-29 emphasis bump. Nothing
+    //   about the rope's thickness, hue or brightness changes with it, and
+    //   emphasis stays brightness-only through nlbApplyGlow().
+    function nlbFitSegment(obj, p0, p1) {
+        if (!obj) return 0;
+        var dx = p1.x - p0.x, dy = p1.y - p0.y, dz = p1.z - p0.z;
+        var len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(len > NLB_ROPE_MIN_LEN)) { obj.visible = false; return 0; }
+        obj.visible = true;
+        if (obj._nlbP0 &&
+            obj._nlbP0.x === p0.x && obj._nlbP0.y === p0.y && obj._nlbP0.z === p0.z &&
+            obj._nlbP1.x === p1.x && obj._nlbP1.y === p1.y && obj._nlbP1.z === p1.z) return len;
+        if (!obj._nlbP0) { obj._nlbP0 = new THREE.Vector3(); obj._nlbP1 = new THREE.Vector3(); }
+        obj._nlbP0.set(p0.x, p0.y, p0.z);
+        obj._nlbP1.set(p1.x, p1.y, p1.z);
+        obj.position.set((p0.x + p1.x) / 2, (p0.y + p1.y) / 2, (p0.z + p1.z) / 2);
+        obj.scale.set(1, len, 1);
+        obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / len, dy / len, dz / len));
+        return len;
+    }
+    // One segment for one coupled body, from the LIVE body position:
+    //   hanging body -> the VERTICAL segment, from its own rim tangent point down
+    //                   to the body's TOP face;
+    //   surface body -> the ALONG-SURFACE segment, from the body's up-slope face
+    //                   to the surface tangent point (parallel to the surface).
+    // Returns the drawn length, which is what the inextensibility check sums.
+    function nlbFitRopeFor(ropeId, bodyId) {
+        var obj = nlbFindById(ropeId);
+        if (!obj) return 0;
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!mesh) { obj.visible = false; return 0; }
+        if (mesh.userData.hanging) {
+            var a = nlbHangAnchor(bodyId);
+            return nlbFitSegment(obj, new THREE.Vector3(a.x, a.y, 0),
+                new THREE.Vector3(a.x, mesh.position.y + NLB_BODY_SIZE / 2, 0));
+        }
+        var th = nlbFrameThetaDeg();
+        var face = nlbBodyWorldPos(bodyId).addScaledVector(nlbAxisUnit(false, th), NLB_BODY_SIZE / 2);
+        return nlbFitSegment(obj, face, nlbSurfaceTangentWorld());
+    }
+    // Both segments. Called on state ENTRY (so a coupled state's very first frame
+    // is already taut) and once per tick from updateNewtonsLawsBodyFrame AFTER the
+    // physics writeback — pure presentation of already-stepped values: it reads no
+    // time, takes no dt and integrates nothing (Rule 36).
+    //   The wrap over the rim is not a third segment: the rim itself IS the rope's
+    //   path between the two tangent points, so lenA + lenB + wrap is constant by
+    //   construction while the string moves (verified numerically, seam report).
+    function nlbFitRopes() {
+        var eng = window.PM_nlbEngine;
+        var ra = nlbFindById("nlb_rope_a"), rb = nlbFindById("nlb_rope_b");
+        var pul = (eng && eng.coupled && eng.pulley) ? eng.pulley : null;
+        if (!pul) { if (ra) ra.visible = false; if (rb) rb.visible = false; return; }
+        nlbFitRopeFor("nlb_rope_a", pul.body_a_id);
+        nlbFitRopeFor("nlb_rope_b", pul.body_b_id);
+    }
+    // Stand the bracket at this state's post_position_m. Only its POSITION varies
+    // per state (every dimension is fixed), and it is expressed in the
+    // surface-LOCAL frame, so the base sits exactly on the top face (y = 0) at
+    // theta = 0 and at any incline through the very same assignment.
+    function nlbPlacePulley() {
+        var pg = nlbFindById("nlb_pulley_group");
+        if (!pg) return;
+        pg.position.set(nlbPostM(nlbStateCfg()) * NLB_WORLD_PER_M, 0, 0);
+    }
+    // Show the WHOLE assembly or none of it. An uncoupled state has no string, so
+    // it shows no post, no wheel and no rope: a lone post standing there with no
+    // rope on it would read as apparatus that does nothing (and the pulley is the
+    // one apparatus whose presence IS the physics gate — spec section 1).
+    function nlbShowPulley(on) {
+        nlbEach(function (o, ud) {
+            if (ud.elementType === "nlb_pulley") o.visible = !!on;
+            else if (ud.elementType === "nlb_rope" && !on) o.visible = false;
+        });
+    }
+
+    function buildNewtonsLawsBody() {
+        nlbIndex = [];
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var nlb0 = nlbStateCfg();
+
+        // 1. The surface: ONE group, rotated about world Z by theta_deg. Flat
+        //    ground is theta_deg = 0 through this SAME path (no branch).
+        var surf = new THREE.Group();
+        surf.userData = { elementType: "nlb_surface_group", id: "nlb_surface_group", theta_deg: 0, length_m: NLB_DEFAULT_LEN_M };
+        var slabMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(NLB_SURFACE_COLOR), emissive: hexToThreeColor(NLB_SURFACE_COLOR),
+            emissiveIntensity: 0.12, shininess: 30, transparent: true, opacity: 0.95
+        });
+        var slab = new THREE.Mesh(new THREE.BoxGeometry(1, NLB_SURFACE_THICK, NLB_SURFACE_DEPTH), slabMat);
+        slab.position.set(0, -NLB_SURFACE_THICK / 2, 0);   // top face at surface-local y = 0
+        slab.userData = { elementType: "nlb_surface", id: "nlb_surface" };
+        surf.add(slab);
+        addToScene(surf);
+        nlbRegister(surf); nlbRegister(slab);
+
+        // 1b. The horizontal reference + angle arc the incline angle is measured
+        //     from (world frame, NOT in the rotated group). Both collapse and
+        //     hide at theta = 0 — a real zero is hidden, never a stub.
+        var refGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(1, 0, 0)]);
+        var ref = new THREE.Line(refGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor(NLB_REF_COLOR), transparent: true, opacity: 0.75 }));
+        ref.userData = { elementType: "nlb_horizontal_ref", id: "nlb_horizontal_ref" };
+        ref.visible = false;
+        addToScene(ref); nlbRegister(ref);
+
+        var arcGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(1.05, 0, 0)]);
+        var arc = new THREE.Line(arcGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor(NLB_ARC_COLOR), transparent: true, opacity: 0.9 }));
+        arc.userData = { elementType: "nlb_theta_arc", id: "nlb_theta_arc" };
+        arc.visible = false;
+        addToScene(arc); nlbRegister(arc);
+
+        var thLbl = pmCreateAutoLabel("θ = 0°", NLB_ARC_COLOR, 0.36);
+        thLbl.position.set(1.42, 0, 0);
+        thLbl.userData = { elementType: "nlb_theta_label", id: "nlb_theta_label" };
+        thLbl.visible = false;
+        addToScene(thLbl); nlbRegister(thLbl);
+
+        // 2. World (un-rotated) group — hanging bodies live here so they ignore
+        //    theta by construction. SEAM D hangs the post/wheel/rope off it too.
+        var world = new THREE.Group();
+        world.userData = { elementType: "nlb_world_group", id: "nlb_world_group" };
+        addToScene(world);
+        nlbRegister(world);
+
+        // 2b. SEAM D — the pulley bracket: post + axle arm + wheel + hub disc.
+        //     Built ONCE and hidden by default, and parented to the SURFACE group
+        //     so the single theta rotation stands it on the surface at every angle
+        //     (theta = 0 included) with no branch anywhere. Being the SLAB's sibling
+        //     (not its child) is what lets surface.hidden drop the table under an
+        //     Atwood state while the bracket keeps standing — see the scoped hide in
+        //     applyNewtonsLawsBodyState. Each mesh gets its OWN
+        //     material: applyGlowEmphasis caches its baseline ON the material, so a
+        //     shared instance would make a focal post fight a peer arm.
+        var pulleyGrp = new THREE.Group();
+        pulleyGrp.userData = { elementType: "nlb_pulley", id: "nlb_pulley_group" };
+        pulleyGrp.visible = false;
+        surf.add(pulleyGrp);
+        nlbRegister(pulleyGrp);
+
+        var post = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_PULLEY_POST_R, NLB_PULLEY_POST_R, NLB_PULLEY_HUB_H, 12),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_COLOR), emissive: hexToThreeColor(NLB_PULLEY_COLOR),
+                emissiveIntensity: 0.14, shininess: 50, transparent: true, opacity: 1.0
+            }));
+        // Cylinder geometry is centred on its own +y axis, so a height of
+        // NLB_PULLEY_HUB_H placed at half that height puts the BASE exactly on the
+        // surface's top face (local y = 0): standing on it, neither floating nor buried.
+        post.position.set(0, NLB_PULLEY_HUB_H / 2, 0);
+        post.userData = { elementType: "nlb_pulley", id: "nlb_pulley_post" };
+        pulleyGrp.add(post); nlbRegister(post);
+
+        var arm = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_PULLEY_POST_R * 0.7, NLB_PULLEY_POST_R * 0.7, NLB_PULLEY_ARM, 10),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_COLOR), emissive: hexToThreeColor(NLB_PULLEY_COLOR),
+                emissiveIntensity: 0.14, shininess: 50, transparent: true, opacity: 1.0
+            }));
+        arm.rotation.z = -Math.PI / 2;                    // the cylinder's +y axis onto local +x
+        arm.position.set(NLB_PULLEY_ARM / 2, NLB_PULLEY_HUB_H, 0);
+        arm.userData = { elementType: "nlb_pulley", id: "nlb_pulley_arm" };
+        pulleyGrp.add(arm); nlbRegister(arm);
+
+        // A real WHEEL, not a sphere: a torus rim whose OUTER radius is exactly
+        // NLB_PULLEY_R (the radius both ropes are tangent to) plus a hub disc
+        // inside it so it reads as a solid pulley rather than a hoop. Torus
+        // geometry already lies in its own XY plane — the bodies' plane — so the
+        // wheel needs no rotation to sit in the same vertical plane as them.
+        var wheel = new THREE.Mesh(
+            new THREE.TorusGeometry(NLB_PULLEY_R - NLB_PULLEY_TUBE, NLB_PULLEY_TUBE, 10, 28),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_RIM_COLOR), emissive: hexToThreeColor(NLB_PULLEY_RIM_COLOR),
+                emissiveIntensity: 0.16, shininess: 70, transparent: true, opacity: 1.0
+            }));
+        wheel.position.set(NLB_PULLEY_ARM, NLB_PULLEY_HUB_H, 0);
+        wheel.userData = { elementType: "nlb_pulley", id: "nlb_pulley_wheel" };
+        pulleyGrp.add(wheel); nlbRegister(wheel);
+
+        var whub = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_PULLEY_R - 2 * NLB_PULLEY_TUBE, NLB_PULLEY_R - 2 * NLB_PULLEY_TUBE, 0.05, 18),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_PULLEY_COLOR), emissive: hexToThreeColor(NLB_PULLEY_COLOR),
+                emissiveIntensity: 0.10, shininess: 40, transparent: true, opacity: 1.0
+            }));
+        whub.rotation.x = Math.PI / 2;                    // disc face toward the camera (axle along z)
+        whub.position.set(NLB_PULLEY_ARM, NLB_PULLEY_HUB_H, 0);
+        whub.userData = { elementType: "nlb_pulley", id: "nlb_pulley_hub" };
+        pulleyGrp.add(whub); nlbRegister(whub);
+
+        // 2c. SEAM D — the two rope segments. In the UN-rotated world group so both
+        //     are fitted from WORLD endpoints directly (segment B is world-vertical
+        //     by definition; segment A's endpoints come from the same analytic
+        //     rotation seam C already uses). Unit height, axis +y: nlbFitSegment
+        //     scales/orients them and never rebuilds the geometry.
+        var ropeIds = ["nlb_rope_a", "nlb_rope_b"];
+        for (var rp = 0; rp < ropeIds.length; rp++) {
+            var rope = new THREE.Mesh(
+                new THREE.CylinderGeometry(NLB_ROPE_R, NLB_ROPE_R, 1, 8),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(NLB_ROPE_COLOR), emissive: hexToThreeColor(NLB_ROPE_COLOR),
+                    emissiveIntensity: 0.22, shininess: 20, transparent: true, opacity: 1.0
+                }));
+            rope.userData = { elementType: "nlb_rope", id: ropeIds[rp] };
+            rope.visible = false;
+            world.add(rope); nlbRegister(rope);
+        }
+
+        // 3. Body meshes — one per UNIQUE id across all states. Size is
+        //    mass-INDEPENDENT (Rule 29): a heavier block is never a bigger cube.
+        var defs = nlbCollectBodyDefs();
+        for (var i = 0; i < defs.length; i++) {
+            var d = defs[i];
+            var col = d.color || NLB_BODY_COLORS[i % NLB_BODY_COLORS.length];
+            var mat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(col), emissive: hexToThreeColor(col),
+                emissiveIntensity: 0.18, shininess: 60, transparent: true, opacity: 1.0
+            });
+            var mesh = new THREE.Mesh(new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE), mat);
+            mesh.userData = {
+                elementType: "nlb_body", id: "nlb_body_" + d.id, bodyId: d.id,
+                hanging: !!d.hanging, ghost: !!d.ghost, baseColor: col
+            };
+            if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
+            nlbRegister(mesh);
+
+            // SEAM E — invisible, forgiving pointer-pick proxy (the pp_drag_hit /
+            // gsph_field_point_hit pattern: the raycaster skips visible:false, so
+            // the proxy is switched ON only in a trusted_drag_seizes state, and
+            // only for a body this state actually shows and does NOT ghost). Built
+            // for EVERY body id, not only the never-ghost ones, because ghost is a
+            // PER-STATE flag: a body may be decorative context in one state and the
+            // real subject in another, and the union def only remembers its FIRST
+            // appearance. Ghost-ness is therefore enforced where it is actually
+            // known — nlbSetDragProxies, on state entry — so a ghost is never
+            // pickable while it is a ghost.
+            // material.visible = false is the belt to the glow-exclusion's braces:
+            // the RENDERER honours it (projectObject drops the mesh) while the
+            // RAYCASTER does not read it at all, so the proxy can never become ink
+            // even if a later pass writes its opacity, and pickability stays gated
+            // exactly where it belongs — on mesh.visible, per state.
+            var hitMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+            hitMat.visible = false;
+            var hitP = new THREE.Mesh(new THREE.SphereGeometry(NLB_BODY_SIZE * 0.95, 14, 14), hitMat);
+            hitP.visible = false;
+            hitP.userData = {
+                elementType: "nlb_body_hit", id: "nlb_body_" + d.id + "_hit",
+                bodyId: d.id, hanging: !!d.hanging, draggable: true
+            };
+            if (d.hanging) { world.add(hitP); } else { surf.add(hitP); }
+            nlbRegister(hitP);
+
+            // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
+            // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
+            var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
+            lbl.position.set(0, NLB_BODY_SIZE * 0.95, 0);
+            lbl.userData = { elementType: "nlb_body_label", id: "nlb_body_" + d.id + "_label", bodyId: d.id, ghost: !!d.ghost };
+            mesh.add(lbl);
+            nlbRegister(lbl);
+
+            nlbSetBodyPosition(d.id, d.initial_position_m || 0);
+
+            // SEAM C: this body's force-arrow overlay. Built into the UN-rotated
+            // world group so every arrow origin/direction is world-space, hidden
+            // until a state's arrows[] names its kind.
+            nlbBuildArrowsForBody(d.id, !!d.hanging, world);
+        }
+
+        // 4. Value-only HUD (Rule 33d / 34b). top:52px clears the review-chrome
+        //    "Full screen" button (top:10px, right:10px, ~40px tall) — Rule 34d.
+        var ro = document.createElement("div");
+        ro.id = "nlb_readout";
+        ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(ro);
+
+        // 5. The SINGLE formula surface (Rule 34b) — math-serif Unicode, its own
+        //    zone, never duplicated by the generic #formula_overlay (which the
+        //    applyState hide-chain suppresses for this scenario).
+        var ff = document.createElement("div");
+        ff.id = "nlb_formula";
+        ff.style.cssText = "position:fixed;top:42%;right:22px;transform:translateY(-50%);color:#FFF176;font:600 22px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:340px;text-align:right;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        // 6. Contextual control panel CONTAINER only — SEAM E builds the rows
+        //    (m / m2 / F / theta / mu_s / mu_k / v0) once and shows/hides them
+        //    per controls_visible, keeping each row at a fixed screen position.
+        var sp = document.createElement("div");
+        sp.id = "nlb_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        document.body.appendChild(sp);
+        nlbBuildSliderRows(sp);            // SEAM E: the rows, ONCE (see nlbBuildSliderRows)
+
+        // 7. Home pose: seed the surface from the FIRST state so the very first
+        //    frame is already correct (applyNewtonsLawsBodyState re-seeds on entry).
+        nlbApplySurface(nlbSurfaceThetaDeg(nlb0), nlbSurfaceLenM(nlb0));
+        nlbPlacePulley();                  // SEAM D: bracket at the first state's post_position_m
+        window.PM_nlbBodyDragged = false;
+        window.PM_nlbSweepSeized = false;  // SEAM E: Rule 37 idle-sweep seize latch
+        window.PM_nlbDragId = null;        // SEAM E: which body the pointer grabbed
+    }
+
+    // ── Rule 32e glow: read glow_focal, exact-match ONE id, dim the rest ──
+    //   Mirrors applyAcGeneratorGlow's shape. A ghost body is FORCED into the
+    //   dim-peer branch regardless of glow_focal, via the existing
+    //   applyGlowEmphasis dim branch — no new dimming primitive (spec section 3).
+    function nlbApplyGlow() {
+        var nlb = nlbStateCfg();
+        // SEAM B hook: a phases[] entry may hand the focal to another element for
+        // a window (eng.glow_focal), which applyNewtonsLawsBodyState seeds FROM
+        // nlb.glow_focal — so with no phase override this is byte-identical to
+        // reading the state config directly.
+        var eng0 = window.PM_nlbEngine;
+        var focal = (eng0 && eng0.glow_focal) || nlb.glow_focal || (glowTargets.length ? glowTargets[0] : "");
+        var glowActive = !!focal || glowTargets.length > 0;
+        var glowP = glowEmphT(time);
+        nlbEach(function (o, ud) {
+            // SEAM E: the invisible drag proxies are pick geometry, never ink. They
+            // are deliberately EXCLUDED from the one emphasis channel: both the
+            // focal branch (opacity -> 1.0) and the dim-peer branch (opacity ->
+            // GLOW_DIM_OPACITY) would write a nonzero opacity onto a zero-opacity
+            // sphere and paint a ball over the block the moment a state made it
+            // pickable. This is not a second emphasis channel — it is an exclusion.
+            // The two GROUP containers are excluded for the same reason and it is
+            // behaviour-preserving: applyGlowEmphasis TRAVERSES, so a pass on a
+            // group would reach the proxies through their parent, while every
+            // material-bearing descendant of both groups (slab, bodies + labels,
+            // pulley parts, ropes, arrows + labels, component groups, right-angle
+            // markers) is separately registered and gets its OWN pass later in this
+            // same loop — which, being later, already won.
+            if (ud.elementType === "nlb_body_hit" ||
+                ud.elementType === "nlb_surface_group" || ud.elementType === "nlb_world_group") return;
+            if (ud.ghost) { applyGlowEmphasis(o, false, true, 0, false); return; }
+            var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
+            applyGlowEmphasis(o, isFocal, glowActive, glowP, false);
+        });
+    }
+    // Name used by the spec's animate() call site (SEAM B) — one alias so the
+    // two seams cannot disagree about the function name.
+    function applyNewtonsLawsBodyGlow() { nlbApplyGlow(); }
+
+    // ══ SEAM E — the explorer surface (spec section 4, sites 3/4/5/11) ══════
+    //   Rule 31: the rows are built ONCE into seam A's #nlb_sliders container and
+    //   then only shown/hidden per state from controls_visible. Rule 32d: a row
+    //   NEVER moves between states — hidden rows keep their RESERVED SLOT
+    //   (visibility:hidden, which still occupies layout) rather than collapsing,
+    //   because the panel is bottom-anchored, so a display:none row would slide
+    //   every row above it down and the shared slider would visibly jump at a
+    //   state click. The slot reservation is scoped to the CONCEPT, not to the
+    //   seven-token vocabulary: only the tokens some state of THIS concept
+    //   actually names get a row at all (the nlbCollectBodyDefs union trick), so a
+    //   one-slider concept gets a one-row panel with no blank filler and its
+    //   explore state — which exposes every control the concept has — is exactly
+    //   the full panel with nothing left to grow into.
+    //   NO clock code lives in this seam (Rule 36): the only time-dependent thing
+    //   here, idle_auto_sweep, is a CLOSED FORM of the engine's own state-local
+    //   eng.t_ms (itself advanced only by the dt handed to
+    //   updateNewtonsLawsBodyFrame), so dt = 0 reproduces the previous value
+    //   exactly and a time-pin rewind is byte-identical.
+    var NLB_MATH_FONT = "'Cambria Math','Times New Roman',serif";
+    // Rule 34c: every glyph below is REAL Unicode — m₁ m₂ θ ° μₛ μₖ v₀ — never an
+    // ASCII transcription (no "theta", "mu_s", "m2", "m/s2", "deg"). The label span
+    // carries the math-serif stack because U+2081/U+2082/U+209B/U+2096/U+2080 are
+    // missing from most monospace faces (the merged-blob / tofu subscript scar).
+    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "theta", "mu_s", "mu_k", "v0"];
+    var NLB_SLIDER_SPEC = {
+        m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 2 },
+        m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 4 },
+        F:     { param: "applied_force",    slider: "nlb_f_slider",     row: "nlb_f_row",     val: "nlb_f_val",     lbl: "nlb_f_lbl",     glyph: "F",  unit: " N",   dp: 1, min: -20, max: 20, step: 0.5, def: 0 },
+        theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
+        mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
+        mu_k:  { param: "mu_k",             slider: "nlb_muk_slider",   row: "nlb_muk_row",   val: "nlb_muk_val",   lbl: "nlb_muk_lbl",   glyph: "μₖ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
+        v0:    { param: "initial_velocity", slider: "nlb_v0_slider",    row: "nlb_v0_row",    val: "nlb_v0_val",    lbl: "nlb_v0_lbl",    glyph: "v₀", unit: " m/s", dp: 1, min: -5,  max: 5,  step: 0.5, def: 0 }
+    };
+    // Per-concept min/max/step/default/label override, keyed by the SAME token the
+    // per-state controls_visible[] uses. Mirrors the acgSc / gauss_law_sphere idiom.
+    function nlbSc(token) {
+        var sp = NLB_SLIDER_SPEC[token];
+        var o = (config.slider_controls || {})[token] || {};
+        // Every numeric is coerced with a finite fallback: an authoring typo must
+        // never throw synchronously out of the builder (the createTubeLine scar —
+        // one throw inside build = blank scene, no SIM_READY, stalled clock).
+        function num(v, d) { var n = (v == null) ? d : Number(v); return isFinite(n) ? n : d; }
+        return {
+            min: num(o.min, sp.min),
+            max: num(o.max, sp.max),
+            step: num(o.step, sp.step),
+            def: num(o["default"], sp.def),
+            label: (typeof o.label === "string" && o.label) ? o.label : sp.glyph
+        };
+    }
+    // Which tokens this CONCEPT ever exposes (union over every state's
+    // controls_visible, in the canonical token order so the row ORDER on screen is
+    // identical no matter what order the states were authored in).
+    function nlbSliderTokensUsed() {
+        var want = {}, keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var nlb = (config.states[keys[i]] || {}).newtons_laws_body;
+            var cv = (nlb && nlb.controls_visible) || [];
+            for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        }
+        var out = [];
+        for (var t = 0; t < NLB_SLIDER_TOKENS.length; t++) { if (want[NLB_SLIDER_TOKENS[t]]) out.push(NLB_SLIDER_TOKENS[t]); }
+        return out;
+    }
+    // The tokens actually BUILT as rows (set once by nlbBuildSliderRows). Read
+    // through nlbRowsBuilt() so a SET_STATE that somehow arrives before the build
+    // is a clean no-op rather than a throw inside applyState.
+    var nlbSliderRowsBuilt = [];
+    function nlbRowsBuilt() { return nlbSliderRowsBuilt || []; }
+    function nlbBuildSliderRows(panel) {
+        nlbSliderRowsBuilt = nlbSliderTokensUsed();
+        if (!panel || !nlbSliderRowsBuilt.length) return;
+        var html = "";
+        for (var i = 0; i < nlbSliderRowsBuilt.length; i++) {
+            var tok = nlbSliderRowsBuilt[i], sp = NLB_SLIDER_SPEC[tok], sc = nlbSc(tok);
+            // visibility:hidden (NOT display:none) — the reserved slot, Rule 32d.
+            html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
+                '<label><span id="' + sp.lbl + '" style="font-family:' + NLB_MATH_FONT + '">' + sc.label + '</span> = ' +
+                '<span id="' + sp.val + '">' + sc.def.toFixed(sp.dp) + '</span>' + sp.unit + '</label>' +
+                '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
+                '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
+        }
+        panel.innerHTML = html;
+        for (var w = 0; w < nlbSliderRowsBuilt.length; w++) nlbWireSlider(nlbSliderRowsBuilt[w]);
+    }
+
+    // Rule 27 — the stable explorer id, one PARAM_UPDATE per change. Shape copied
+    // verbatim from acgEmit / mflEmit (the ac_generator + magnetic_flux_loop
+    // emitters); no new message format is introduced.
+    function nlbEmit(param, value) {
+        try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "newtons_laws_body_explorer"), param: param, value: value }, "*"); } catch (e) {}
+    }
+
+    // The first / second NON-ghost body of the live state, in authored order: the
+    // targets of mass_a / mass_b. A ghost is never integrated (spec section 3), so
+    // it can never be a slider target either.
+    function nlbSliderBodies() {
+        var eng = window.PM_nlbEngine, out = [null, null], n = 0;
+        if (!eng) return out;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost) continue;
+            if (n < 2) out[n] = b.id;
+            n++;
+        }
+        return out;
+    }
+    function nlbSurfaceBody() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return null;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b && !b.ghost && !b.hanging) return b;
+        }
+        return null;
+    }
+    // applied_force drives the Newton-III DRIVER when the pair is engaged, so the
+    // engine's per-frame mirror keeps the reaction exactly equal and opposite; with
+    // no pair engaged it drives the first non-ghost body.
+    function nlbForceTargetBody() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return null;
+        var ar = eng.action_reaction;
+        if (ar && ar.engaged && ar.driver_body_id && eng.bodies[ar.driver_body_id]) return eng.bodies[ar.driver_body_id];
+        var ids = nlbSliderBodies();
+        return ids[0] ? eng.bodies[ids[0]] : null;
+    }
+    // Write one param into the engine record. Everything downstream — the
+    // integrator, the force arrows (pure presentation of the record), the readouts
+    // and the rope — picks it up on the next tick with no extra wiring (the SEAM C
+    // contract). theta additionally re-poses the geometry through nlbApplySurface,
+    // which is the SEAM D contract: the pulley bracket and both rope segments then
+    // follow for free.
+    function nlbApplyParam(token, value) {
+        var eng = window.PM_nlbEngine;
+        if (!eng || !isFinite(value)) return;
+        var ids = nlbSliderBodies();
+        var bA = ids[0] ? eng.bodies[ids[0]] : null;
+        var bB = ids[1] ? eng.bodies[ids[1]] : null;
+        if (token === "m") { if (bA && value > 0) bA.m = value; }
+        else if (token === "m2") { if (bB && value > 0) bB.m = value; }
+        else if (token === "F") { var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value; }
+        else if (token === "theta") {
+            eng.theta_deg = value;
+            nlbApplySurface(value, eng.length_m);
+        }
+        else if (token === "mu_s" || token === "mu_k") {
+            // The coefficients belong to the CONTACT, so one slider sets every
+            // non-ghost body actually resting on the surface (a hanging body has
+            // N = 0 and no contact at all). Writing b.mu_* directly is sufficient
+            // even in a surface.frictionless state: frictionless is a SEED-time
+            // zeroing, the integrator only ever reads the per-body coefficients.
+            for (var i = 0; i < eng.order.length; i++) {
+                var b = eng.bodies[eng.order[i]];
+                if (!b || b.ghost || b.hanging) continue;
+                if (token === "mu_s") b.mu_s = value; else b.mu_k = value;
+            }
+        }
+        else if (token === "v0") {
+            // v0 is an INITIAL CONDITION, so a teacher's slider value must survive a
+            // replay: write the live v AND the replay seed together, or
+            // RESET_TRAJECTORY would silently snap the body back to the authored v.
+            if (bA) { bA.v = value; bA.v0 = value; }
+            if (eng.coupled) eng.v_string = value;   // keep the string constraint consistent
+        }
+        else return;
+        // Re-pose from the LIVE positions: a theta write moves the incline (and with
+        // it every hanging body's anchor), so the bodies and the string must not be
+        // left a frame behind. Pure geometry, no integration (Rule 36).
+        for (var j = 0; j < eng.order.length; j++) {
+            var bj = eng.bodies[eng.order[j]];
+            if (bj) nlbSetBodyPosition(bj.id, bj.s);
+        }
+        nlbFitRopes();
+    }
+    // The AUTHORED/live truth for a token, read straight back off the engine record
+    // so a state entered after a drag or a sweep shows the state's own value.
+    function nlbSliderValueFromEngine(token) {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return null;
+        var ids = nlbSliderBodies();
+        var bA = ids[0] ? eng.bodies[ids[0]] : null;
+        var bB = ids[1] ? eng.bodies[ids[1]] : null;
+        if (token === "m") return bA ? bA.m : null;
+        if (token === "m2") return bB ? bB.m : null;
+        if (token === "F") { var tg = nlbForceTargetBody(); return tg ? tg.F_applied : null; }
+        if (token === "theta") return eng.theta_deg;
+        if (token === "mu_s") { var s1 = nlbSurfaceBody(); return s1 ? s1.mu_s : null; }
+        if (token === "mu_k") { var s2 = nlbSurfaceBody(); return s2 ? s2.mu_k : null; }
+        if (token === "v0") return bA ? bA.v : null;
+        return null;
+    }
+    // Thumb + numeric readout, kept in step with the engine. Called on state entry,
+    // on every slider input, and from the idle sweep (so the teacher watches the
+    // swept control move) — never from a clock.
+    function nlbSyncSliderRow(token, value) {
+        var sp = NLB_SLIDER_SPEC[token];
+        if (!sp || value == null || !isFinite(value)) return;
+        var el = document.getElementById(sp.slider);
+        if (el) el.value = String(value);
+        var vv = document.getElementById(sp.val);
+        if (vv) vv.textContent = nlbFx(value, sp.dp);
+    }
+    // The mass rows adopt the body's OWN authored Unicode label where there is one,
+    // so the slider reads exactly like the block it drives (m₁ / m₂ by default).
+    function nlbSyncSliderLabels(nlb) {
+        var bodies = nlb.bodies || [], ids = nlbSliderBodies();
+        function labelFor(bodyId) {
+            if (!bodyId) return null;
+            for (var i = 0; i < bodies.length; i++) { if (bodies[i] && bodies[i].id === bodyId && bodies[i].label) return bodies[i].label; }
+            return null;
+        }
+        var pairs = [["m", ids[0]], ["m2", ids[1]]];
+        for (var p = 0; p < pairs.length; p++) {
+            var sp = NLB_SLIDER_SPEC[pairs[p][0]];
+            var el = document.getElementById(sp.lbl);
+            if (!el) continue;
+            var txt = labelFor(pairs[p][1]) || nlbSc(pairs[p][0]).label;
+            if (el.textContent !== txt) el.textContent = txt;
+        }
+    }
+    // Rule 31 + Rule 32d, site 8's controls_visible half: show exactly this state's
+    // tokens, leave every other BUILT row occupying its reserved slot, and show the
+    // panel itself only when the state exposes at least one control. m2 additionally
+    // requires a real second body — a one-body state can never expose mass_b.
+    function nlbToggleSliderRows(nlb) {
+        var panel = document.getElementById("nlb_sliders");
+        var cv = nlb.controls_visible || [], want = {}, shown = 0;
+        for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        if (want.m2 && !nlbSliderBodies()[1]) want.m2 = false;
+        var built = nlbRowsBuilt();
+        for (var i = 0; i < built.length; i++) {
+            var tok = built[i], sp = NLB_SLIDER_SPEC[tok];
+            var row = document.getElementById(sp.row), el = document.getElementById(sp.slider);
+            var on = !!want[tok];
+            if (row) row.style.visibility = on ? "visible" : "hidden";
+            if (el) el.disabled = !on;      // a reserved slot is never keyboard-reachable
+            if (on) shown++;
+        }
+        if (panel) panel.style.display = shown ? "block" : "none";
+    }
+    // One trusted slider input seizes the state for the rest of the state (Rule 37:
+    // idle_auto_sweep animates ONLY until a real teacher input takes over). Mirrors
+    // the PM_acgManual / PM_dpUserDragged latch pattern; a SYNTHETIC input (the
+    // sweep's own sync, THE EYE's driver) is deliberately NOT a seizure.
+    function nlbWireSlider(token) {
+        var sp = NLB_SLIDER_SPEC[token];
+        var el = document.getElementById(sp.slider);
+        if (!el) return;
+        el.addEventListener("input", function (ev) {
+            var v = parseFloat(el.value);
+            if (!isFinite(v)) return;
+            if (ev && ev.isTrusted) window.PM_nlbSweepSeized = true;
+            nlbApplyParam(token, v);
+            nlbSyncSliderRow(token, v);
+            nlbEmit(sp.param, v);
+        });
+    }
+
+    // ── Site 3 — is the live state a trusted-drag state? ───────────────────
+    //   Mirrors gsphStateIsDraggable() / swcStateIsDraggable(): true ONLY where the
+    //   state's own newtons_laws_body block sets trusted_drag_seizes, so the pick
+    //   and the drag are both no-ops in every other scenario and every other state.
+    function nlbStateIsDraggable() {
+        var sd = config.states && config.states[PM_currentState];
+        var nn = sd && sd.newtons_laws_body;
+        return !!(nn && nn.trusted_drag_seizes);
+    }
+    // Switch the invisible pick proxies on for exactly the bodies this state shows
+    // and does NOT ghost, and only in a trusted-drag state (the raycaster skips
+    // visible:false, so this IS the pickability gate).
+    function nlbSetDragProxies(listed, on) {
+        nlbEach(function (o, ud) {
+            if (ud.elementType !== "nlb_body_hit") return;
+            var bd = listed[ud.bodyId];
+            o.visible = !!(on && bd && !bd.ghost);
+        });
+    }
+    // Pointer plane-hit -> the body's own signed axis coordinate s, in metres.
+    // A surface body's world position projected on its axis unit is exactly
+    // s * NLB_WORLD_PER_M (the NLB_BODY_SIZE/2 stand-off is perpendicular to that
+    // axis and drops out); a hanging body measures DOWN from its pulley anchor.
+    function nlbDragSFromHit(b, hit) {
+        if (b.hanging) {
+            var a = nlbHangAnchor(b.id);
+            return (a.y - hit.y) / NLB_WORLD_PER_M;
+        }
+        var ax = nlbAxisUnit(false, nlbFrameThetaDeg());
+        return (hit.x * ax.x + hit.y * ax.y + hit.z * ax.z) / NLB_WORLD_PER_M;
+    }
+    var nlbLastEmitS = null;
+    // ── Site 5 — the drag itself ──────────────────────────────────────────
+    function nlbApplyBodyDrag(hit) {
+        var eng = window.PM_nlbEngine;
+        var b = (eng && window.PM_nlbDragId) ? eng.bodies[window.PM_nlbDragId] : null;
+        if (!b || b.ghost) return;
+        // Clamp through nlbBoundsM — the ONE bounds source, already pulley-aware
+        // (SEAM D): never re-derive the clamp band here.
+        var bd = nlbBoundsM(b, eng.length_m);
+        var sNew = Math.max(bd.lo, Math.min(bd.hi, nlbDragSFromHit(b, hit)));
+        window.PM_nlbBodyDragged = true;
+        window.PM_nlbSweepSeized = true;      // a drag seizes the sweep too (Rule 37)
+        if (eng.coupled) {
+            // An inextensible string cannot have one end repositioned on its own:
+            // convert the grabbed body's delta into the shared along-string advance
+            // q (s_i = s_i0 + c_i*q) and carry every body with it, exactly as the
+            // branch-B integrator does. c_i is the sign factor the integrator wrote.
+            var cD = b._c || 1;
+            var q = (sNew - b.s) / cD;
+            for (var i = 0; i < eng.order.length; i++) {
+                var ob = eng.bodies[eng.order[i]];
+                if (!ob || ob.ghost) continue;
+                var cj = (ob.id === b.id) ? cD : (ob._c || 1);
+                var obd = nlbBoundsM(ob, eng.length_m);
+                ob.s = Math.max(obd.lo, Math.min(obd.hi, ob.s + cj * q));
+                ob.v = 0;
+                nlbSetBodyPosition(ob.id, ob.s);
+            }
+            eng.v_string = 0;
+        } else {
+            b.s = sNew; b.v = 0;
+            nlbSetBodyPosition(b.id, b.s);
+        }
+        nlbFitRopes();                        // SEAM D: the rope re-fits to the drop
+        if (nlbLastEmitS == null || Math.abs(b.s - nlbLastEmitS) > 0.01) {
+            nlbLastEmitS = b.s;
+            nlbEmit("body_position", { id: b.id, s_m: b.s });
+        }
+    }
+
+    // ── Rule 37 / idle_auto_sweep ─────────────────────────────────────────
+    //   Drives ONE named param back and forth until a trusted input seizes control.
+    //   Rule 36, explicitly: this is a CLOSED FORM of eng.t_ms — the engine's own
+    //   state-local sim time, advanced ONLY by the dt handed to
+    //   updateNewtonsLawsBodyFrame. So (a) dt = 0 leaves t_ms unchanged and the
+    //   sweep recomputes the SAME value, i.e. a SET_TIME_FREEZE frame is a no-op
+    //   and byte-stable; (b) a time-pin rewind to an earlier t reproduces the
+    //   earlier value exactly (no accumulator to un-wind); (c) folding N micro-steps
+    //   into one dtStep is exact, because t_ms is linear in dt and nothing else here
+    //   integrates. NLB_SWEEP_MS is a DURATION constant, not a frame delta.
+    //   AUTHORING CONTRACT (the spec left the sweep's phase open): the triangle
+    //   starts at range[0] at t = 0 and returns there every NLB_SWEEP_MS, so author
+    //   range[0] as the state's OWN authored value for that param if the first frame
+    //   must not step. The sweep needs no visible row — it drives the engine record
+    //   directly and only syncs a row if the concept built one.
+    var NLB_SWEEP_MS = 4000;              // one full there-and-back, in ms
+    function nlbRunIdleSweep(nlb, eng) {
+        var sw = nlb.idle_auto_sweep;
+        if (!sw || !sw.param || !sw.range || sw.range.length < 2) return;
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return;   // seized: stop for good
+        var tok = sw.param;
+        if (!NLB_SLIDER_SPEC[tok]) return;
+        var lo = sw.range[0], hi = sw.range[1];
+        if (!(isFinite(lo) && isFinite(hi))) return;
+        var u = (eng.t_ms % NLB_SWEEP_MS) / NLB_SWEEP_MS;
+        var tri = (u < 0.5) ? (u * 2) : (2 - u * 2);      // 0 -> 1 -> 0, triangle
+        var v = lo + (hi - lo) * tri;
+        // Churn guard (the seam C/D _nlbText / _nlbP0 pattern): theta re-tessellates
+        // the angle arc, so never re-write an unchanged value.
+        if (eng._sweep_last != null && Math.abs(v - eng._sweep_last) < 1e-4) return;
+        eng._sweep_last = v;
+        nlbApplyParam(tok, v);
+        nlbSyncSliderRow(tok, v);
+    }
+
+    // ── §7.1 pre-approved fix — param_ramp ─────────────────────────────────
+    //   ONE-SHOT monotonic reveal: value = "from" for t_ms < start_ms, linearly
+    //   interpolates from -> to across [start_ms, end_ms], then HOLDS at "to"
+    //   forever — the deliberate opposite of nlbRunIdleSweep's repeating
+    //   triangle above (which this function otherwise mirrors line for line).
+    //   Rule 36: reads ONLY eng.t_ms, a closed form of the engine's own
+    //   state-local sim time advanced solely by the dt handed to
+    //   updateNewtonsLawsBodyFrame — so dt = 0 (SET_TIME_FREEZE) leaves t_ms
+    //   unchanged and this recomputes the SAME value (byte-stable frozen
+    //   frames), a time-pin rewind reproduces the earlier value exactly (no
+    //   accumulator to un-wind), and folding N micro-steps into one dtStep is
+    //   exact (t_ms is linear in dt; nothing here re-integrates it).
+    //   Writes through nlbApplyParam — the SAME shared write-path a trusted
+    //   slider drag uses — so real physics (N, drive, the arrows, the HUD, and
+    //   for theta the incline geometry via nlbApplySurface) moves exactly as
+    //   it would for a teacher's own scrub; there is no parallel physics path.
+    //   Rule 37: NEVER runs in a "mode: 'sandbox'" state (that state free-runs
+    //   continuously under the teacher, never a scripted reveal), and a
+    //   trusted slider input or body drag seizes control for the rest of the
+    //   state via the SAME PM_nlbSweepSeized / PM_nlbBodyDragged flags
+    //   idle_auto_sweep already uses (a teacher scrubbing theta is never
+    //   fought by the ramp).
+    function nlbRunParamRamp(nlb, eng) {
+        var pr = nlb.param_ramp;
+        if (!pr || !pr.param) return;
+        if (!(isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms))) return;
+        if (eng.mode === "sandbox") return;                              // Rule 37
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return; // seized: stop for good
+        var tok = pr.param;
+        if (!NLB_SLIDER_SPEC[tok]) return;
+        var t0 = (typeof pr.start_ms === "number" && isFinite(pr.start_ms)) ? pr.start_ms : 0;
+        var t1 = pr.end_ms;
+        var tMs = eng.t_ms || 0;
+        var v;
+        if (tMs <= t0) v = pr.from;
+        else if (tMs >= t1) v = pr.to;               // HOLDS at "to" — never returns toward "from"
+        else v = pr.from + (pr.to - pr.from) * ((t1 > t0) ? (tMs - t0) / (t1 - t0) : 1);
+        // Churn guard (mirrors _sweep_last): theta re-tessellates the angle arc
+        // on every write, so an unchanged value must never re-fire.
+        if (eng._ramp_last != null && Math.abs(v - eng._ramp_last) < 1e-4) return;
+        eng._ramp_last = v;
+        nlbApplyParam(tok, v);
+        nlbSyncSliderRow(tok, v);
+    }
+
+    // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
+    //   Seeds masses / theta / mu / F / initial position+velocity into the
+    //   engine state object every seam reads, sets glow_focal, resets the
+    //   one-shot phase flags, and rebuilds the value-only HUD rows.
+    //   NO clock code and NO integration here (Rule 36 — SEAM B owns the step).
+    function applyNewtonsLawsBodyState(stateDef) {
+        var nlb = (stateDef && stateDef.newtons_laws_body) ? stateDef.newtons_laws_body : {};
+        var surface = nlb.surface || {};
+        var frictionless = !!surface.frictionless;
+        var thetaDeg = nlbSurfaceThetaDeg(nlb);
+        var lenM = nlbSurfaceLenM(nlb);
+        var bodies = nlb.bodies || [];
+        var pul = nlb.pulley || null;
+
+        // The single engine-state object every later seam reads/writes.
+        var eng = {
+            mode: nlb.mode || "sandbox",
+            theta_deg: thetaDeg,
+            length_m: lenM,
+            frictionless: frictionless,
+            coupled: !!pul,
+            pulley: pul,
+            action_reaction: nlb.action_reaction || null,
+            glow_focal: nlb.glow_focal || "",
+            order: [],
+            bodies: {},
+            v_string: 0,          // SEAM B branch B: the shared along-string speed
+            a_string: 0,
+            t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
+            _ramp_last: null,     // §7.1 param_ramp churn guard, rebased on every entry
+            phase_fired: {}       // one-shot phase flags, reset on every state entry
+        };
+        for (var i = 0; i < bodies.length; i++) {
+            var d = bodies[i];
+            if (!d || !d.id) continue;
+            eng.order.push(d.id);
+            eng.bodies[d.id] = {
+                id: d.id,
+                m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
+                hanging: !!d.hanging,
+                ghost: !!d.ghost,
+                s: d.initial_position_m || 0,
+                v: d.initial_velocity_mps || 0,
+                a: 0,
+                // Kinematic SEED, kept alongside the live s/v so RESET_TRAJECTORY can
+                // rewind this state to t = 0 (nlbResetTrajectory below). s0/v0 are the
+                // ONLY replay-relevant initial conditions; every other field (m, F,
+                // theta, mu) is a live teacher control that a rewind must NOT stomp.
+                s0: d.initial_position_m || 0,
+                v0: d.initial_velocity_mps || 0,
+                mu_s: frictionless ? 0 : (d.mu_s || 0),
+                mu_k: frictionless ? 0 : (d.mu_k || 0),
+                F_applied: d.applied_force_N || 0,
+                N: 0, f: 0, T: 0, F_net: 0,
+                _boundArrestedSliding: false   // Branch A bound-halt readout latch — see SEAM B
+            };
+        }
+        // SEAM C — the force-arrow contract for this state, per body: which of the
+        // six kinds are shown, whether the weight is resolved into components, and
+        // any Unicode label override. An unknown kind string is DROPPED here (the
+        // enum is CLOSED) rather than silently creating a token that renders
+        // nothing. A body absent from arrows[] simply has no entry and every one
+        // of its arrows stays hidden.
+        eng.arrows = {};
+        var arrSpecs = nlb.arrows || [];
+        for (var ai = 0; ai < arrSpecs.length; ai++) {
+            var as = arrSpecs[ai];
+            if (!as || !as.body_id) continue;
+            var showMap = {}, sh = as.show || [];
+            for (var si = 0; si < sh.length; si++) {
+                if (NLB_ARROW_LANE[sh[si]] !== undefined) showMap[sh[si]] = true;
+            }
+            eng.arrows[as.body_id] = {
+                show: showMap,
+                show_components: !!as.show_components,
+                labels: as.labels || {}
+            };
+        }
+
+        window.PM_nlbEngine = eng;
+        window.PM_nlbBodyDragged = false;
+        // Branch B seeds the SHARED string speed from the authored v0 (see
+        // nlbSeedKinematics) — a per-body b.v alone is discarded on the first
+        // coupled tick. No-op for an uncoupled state beyond the v_string/a_string
+        // zeroing the engine literal already did.
+        nlbSeedKinematics();
+
+        // Surface pose + per-body visibility/label/colour + home position.
+        nlbApplySurface(thetaDeg, lenM);
+        var listed = {};
+        for (var j = 0; j < bodies.length; j++) { if (bodies[j] && bodies[j].id) listed[bodies[j].id] = bodies[j]; }
+        nlbEach(function (o, ud) {
+            // The apparatus is AUTHORITATIVE over the generic visible_elements
+            // matcher (which runs earlier in applyState and would blank the
+            // surface for any state whose token list does not happen to name it).
+            // The theta-gated ref line / arc / label are owned by nlbApplySurface
+            // (already run above), so they are deliberately not touched here.
+            // surface.hidden lets a both-hanging (Atwood) state drop the slab entirely — there
+            // is physically no table there. The suppression is scoped to the SLAB MESH and must
+            // NEVER be applied to the surface GROUP: that group is also the pulley bracket's
+            // parent (build step 2b — one theta rotation stands the post on the incline with no
+            // branch anywhere), so hiding the group took the pulley down with the slab and the
+            // Atwood state rendered two ropes ending in open space. The group therefore always
+            // stays visible; every child it carries already has its OWN per-state visibility
+            // gate — the non-hanging body meshes below, their pick proxies in nlbSetDragProxies,
+            // the whole pulley assembly in nlbShowPulley.
+            if (ud.elementType === "nlb_surface_group") { o.visible = true; return; }
+            if (ud.elementType === "nlb_surface") { o.visible = !surface.hidden; return; }
+            if (ud.elementType === "nlb_world_group") { o.visible = true; return; }
+            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
+            var bd = listed[ud.bodyId];
+            o.visible = !!bd;
+            if (!bd) return;
+            ud.ghost = !!bd.ghost;
+            if (ud.elementType === "nlb_body") {
+                var col = bd.color || ud.baseColor;
+                if (o.material && o.material.color) o.material.color.set(hexToThreeColor(col));
+                if (o.material && o.material.emissive) o.material.emissive.set(hexToThreeColor(col));
+                if (o.material && o.material.userData) { o.material.userData._glowBaseCol = null; o.material.userData._glowBaseOp = null; }
+                // From the ENGINE record, not the raw JSON: a coupled seed may have
+                // been pulled inside its own clamp band by nlbSeedKinematics (a
+                // hanging body authored at s = 0 sits below the pulley clearance),
+                // and re-placing the mesh at the raw authored value would put it
+                // back out of bounds for the state's first rendered frame.
+                var seededB = eng.bodies[bd.id];
+                nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
+            } else if (bd.label) {
+                updateLabelSpriteText(o, bd.label);
+            }
+        });
+
+        // The SINGLE formula surface for this state (Rule 34b).
+        var ff = document.getElementById("nlb_formula");
+        if (ff) {
+            var ftext = stateDef.formula_overlay || "";
+            ff.textContent = ftext;
+            ff.style.display = ftext ? "block" : "none";
+        }
+
+        // Value-only HUD rows for this state's bodies x readouts.
+        nlbRebuildReadout(nlb);
+
+        // SEAM C — force-arrow overlay. Enabled kinds + component flag + label
+        //   overrides were seeded into eng.arrows above; EVERY arrow surface is
+        //   blanked here on entry so a body dropped from this state's arrows[]
+        //   (or turned ghost, or removed from the state entirely) can never keep a
+        //   stale arrow from the previous state on screen. The per-frame pass in
+        //   updateNewtonsLawsBodyFrame then re-shows exactly the named kinds at
+        //   their live magnitudes — and hides any whose force is genuinely zero.
+        nlbHideAllArrows();
+        // SEAM D — the pulley bracket + its two rope segments. The assembly stands
+        //   at this state's pulley.post_position_m and is shown iff the state
+        //   declares a pulley: a coupled state shows post + arm + wheel + hub +
+        //   both ropes, an UNCOUPLED state shows none of them. Both ropes are then
+        //   fitted ONCE right here, from the home positions just seeded above, so
+        //   the very first frame of a coupled state is already taut and correct
+        //   before any tick has run (a rope fitted only per-frame would flash at
+        //   its build pose for one frame, and THE EYE's frozen pin could catch
+        //   exactly that frame).
+        nlbPlacePulley();
+        nlbShowPulley(!!eng.coupled);
+        nlbFitRopes();
+        // SEAM E — the explorer surface for this state. Order matters:
+        //   1. clear the seize latches FIRST, so a drag or slider move in the
+        //      PREVIOUS state can never keep this state's idle_auto_sweep switched
+        //      off or leave a stale grabbed-body id armed;
+        //   2. re-sync every built row's thumb + numeric readout FROM the engine
+        //      record just seeded above — so a state entered after a drag/sweep
+        //      shows this state's AUTHORED value, never the dragged one;
+        //   3. show exactly this state's controls_visible rows (every other built
+        //      row keeps its reserved slot, Rule 32d) and the panel only when the
+        //      state exposes at least one control (Rule 31);
+        //   4. arm the invisible pick proxies iff the state sets trusted_drag_seizes.
+        window.PM_nlbSweepSeized = false;
+        window.PM_nlbDragId = null;
+        nlbLastEmitS = null;
+        var builtRows = nlbRowsBuilt();
+        for (var st = 0; st < builtRows.length; st++) {
+            var stok = builtRows[st];
+            nlbSyncSliderRow(stok, nlbSliderValueFromEngine(stok));
+        }
+        nlbSyncSliderLabels(nlb);
+        nlbToggleSliderRows(nlb);
+        // Read the flag off THIS stateDef, not via nlbStateIsDraggable()'s
+        // PM_currentState lookup, so the proxies can never be armed one state late
+        // if applyState ever runs before PM_currentState is committed.
+        nlbSetDragProxies(listed, !!nlb.trusted_drag_seizes);
+
+        nlbApplyGlow();
+    }
+
+    // ── Coupled seed — the authored initial conditions -> the string state ──────
+    //   Two seeds, one entry path: (1) every coupled body's start position pulled
+    //   inside its own clamp band, (2) the authored initial_velocity_mps converted
+    //   into the SHARED along-string speed. Both are required to make an authored
+    //   coupled glide actually start — see the numbered blocks below.
+    //   Branch B integrates ONE scalar q along the string and derives every body's
+    //   velocity as v_i = c_i*q, overwriting b.v on every tick — so a per-body v
+    //   seeded from initial_velocity_mps alone is thrown away on the first frame
+    //   and a coupled state authored as a constant-velocity glide never starts
+    //   (engine_bug_queue nlb_coupled_initial_velocity_never_seeded:
+    //   connected_bodies STATE_1/STATE_2 author v0 = 0.35 m/s and sat at
+    //   s = -4.2 m, v = 0.00 for the whole state — a byte-identical scene from
+    //   t = 0 to t = 15000 ms). The seed must therefore be converted INTO q here.
+    //   c_i convention is EXACTLY branch B's (keep the two in step): the ref body
+    //   is pulley.body_a_id when present and non-ghost else the first non-ghost
+    //   body, c_ref = +1, and every other body takes c_i = -(sigma_ref*sigma_i)
+    //   with sigma = +1 hanging / -1 on the surface.
+    //   The string carries ONE speed, so the FIRST non-ghost body in authored
+    //   order with a non-zero v0 defines it — a second, inconsistent v0 cannot
+    //   physically be honoured. Every body's live v is then written back as c_i*q
+    //   so the pre-tick HUD/arrows already agree with the first integrated frame.
+    //   Pure seeding: no clock, no dt, no integration (Rule 36) — it runs on state
+    //   entry and on RESET_TRAJECTORY only, so a frozen pin stays byte-stable and
+    //   a replayed state rewinds velocity as well as position. The v0 SLIDER path
+    //   (nlbApplyParam) already wrote eng.v_string itself and is unchanged.
+    //   Uncoupled states are bit-for-bit unchanged (v_string/a_string = 0, b.v
+    //   untouched).
+    function nlbSeedKinematics() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return;
+        eng.a_string = 0;
+        if (!eng.coupled) { eng.v_string = 0; return; }
+        var pul = eng.pulley || {};
+        var refId = (pul.body_a_id && eng.bodies[pul.body_a_id] && !eng.bodies[pul.body_a_id].ghost) ? pul.body_a_id : null;
+        if (!refId) {
+            for (var r = 0; r < eng.order.length; r++) {
+                var rb = eng.bodies[eng.order[r]];
+                if (rb && !rb.ghost) { refId = rb.id; break; }
+            }
+        }
+        if (!refId) { eng.v_string = 0; return; }
+        var sigRef = eng.bodies[refId].hanging ? 1 : -1;
+        // (1) POSITION — pull every coupled seed INSIDE its own clamp band FIRST.
+        //   Branch B bounds the STRING, not the bodies: if ANY body's next position
+        //   would leave its band the whole step is vetoed (sAdv = 0, v_string = 0).
+        //   A hanging body authored with no initial_position_m starts at s = 0,
+        //   which is BELOW the pulley-clearance bound (NLB_HANG_MIN_M = 1.15 m), so
+        //   frame 1 vetoed unconditionally and ZEROED the string speed seeded just
+        //   below — the authored glide died before it took a single step (probe:
+        //   entry left B snapped to s = 1.150, v_string = 0; hand-writing s = 1.2 +
+        //   v_string = 0.35 into the live engine made both bodies glide at exactly
+        //   0.350 m/s). The clamp only anticipates the snap the integrator performs
+        //   on its own first frame, so the settled pose is identical — it just
+        //   removes the spurious veto (and the one frame where a hanging body was
+        //   drawn swallowing the wheel). s0 is clamped with s so RESET_TRAJECTORY
+        //   restores a LEGAL seed. Uncoupled states never reach this (returned above).
+        for (var p = 0; p < eng.order.length; p++) {
+            var bp = eng.bodies[eng.order[p]];
+            if (!bp || bp.ghost) continue;
+            var bdp = nlbBoundsM(bp, eng.length_m);
+            var sp = bp.s;
+            if (sp < bdp.lo) sp = bdp.lo; else if (sp > bdp.hi) sp = bdp.hi;
+            bp.s = sp; bp.s0 = sp;
+            nlbSetBodyPosition(bp.id, sp);
+        }
+        // (2) VELOCITY — the authored v0 -> the shared scalar q.
+        var q = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost) continue;
+            var ci = (b.id === refId) ? 1 : -(sigRef * (b.hanging ? 1 : -1));
+            var bv0 = (b.v0 != null) ? b.v0 : 0;
+            if (bv0) { q = ci * bv0; break; }      // |c_i| = 1, so q = v_i / c_i = c_i * v_i
+        }
+        eng.v_string = q;
+        for (var k = 0; k < eng.order.length; k++) {
+            var bk = eng.bodies[eng.order[k]];
+            if (!bk || bk.ghost) continue;
+            var ck = (bk.id === refId) ? 1 : -(sigRef * (bk.hanging ? 1 : -1));
+            bk.v = ck * q;
+        }
+    }
+
+    // ── RESET_TRAJECTORY — rewind THIS state to its own t = 0 ─────────────
+    //   Every other field_3d scenario poses from a closed form of
+    //   (time - stateStartTime), so the shared RESET_TRAJECTORY handler rebasing
+    //   stateStartTime rewinds them for free. This engine is a genuine INTEGRATOR:
+    //   b.s / b.v / eng.t_ms are accumulators seeded only by applyNewtonsLawsBodyState,
+    //   so a stateStartTime rebase left them running and the body carried the
+    //   PREVIOUS capture's travel into the next one (engine_bug_queue
+    //   coast_body_halts_mid_state_despite_authored_length_m: THE EYE's reveal pin
+    //   advanced free_body_diagram STATE_3 ~3 s, so the dense series that followed
+    //   started 6 m downrange and hit the +22 m surface bound mid-series — the body
+    //   halting under a "ΣF = 0, still moving" caption). Production's rollTimeline()
+    //   sends RESET_TRAJECTORY on every state entry/replay, so the same stale
+    //   accumulator hit a teacher replaying a state.
+    //   Restores ONLY the kinematics + the state-local clock + the one-shot latches.
+    //   Live teacher controls (m, F, theta, mu — and v0, whose slider writes the seed
+    //   itself) are deliberately preserved: this is a rewind, not a re-seed.
+    function nlbResetTrajectory() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b) continue;
+            b.s = (b.s0 != null) ? b.s0 : 0;
+            b.v = (b.v0 != null) ? b.v0 : 0;
+            b.a = 0; b.F_net = 0; b._stuck = false;
+            b._boundArrestedSliding = false;   // Branch A bound-halt readout latch — see SEAM B
+            nlbSetBodyPosition(b.id, b.s);
+        }
+        // The shared string speed rewinds to the SAME seed state entry uses (the
+        // authored v0, or the teacher's v0-slider value, which nlbApplyParam wrote
+        // into b.v0) — a hard zero here left a replayed coupled glide dead still.
+        nlbSeedKinematics();
+        eng.t_ms = 0;                       // state-local sim clock, back to 0
+        window.PM_nlbTimeMs = 0;
+        eng.phase_fired = {};               // one-shots re-arm, exactly as on entry
+        eng.phase_active = {};
+        eng.phase_action = "";
+        if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
+        eng._sweep_last = null;             // the idle sweep is a closed form of t_ms
+        eng._ramp_last = null;              // §7.1 param_ramp is likewise a closed form of t_ms
+        nlbLastEmitS = null;
+        nlbFitRopes();
+        nlbApplyGlow();
+    }
+
+    // ── SEAM B — the fixed-step integrator (spec section 2) ────────────────
+    //   ONE frame function, called ONCE per tick from animate() with the
+    //   COMBINED dtStep (already 0.016 * __pmSteps). There is NO internal loop
+    //   over __pmSteps and NO sub-stepping anywhere below (Rule 36): the update
+    //   is exactly step-count invariant, so folding N micro-steps into one
+    //   dtStep is numerically identical to taking them one at a time.
+    //     v_new = v + a*dt                       (linear in dt)
+    //     s_new = s + 0.5*(v + v_new)*dt         (= v*dt + 0.5*a*dt^2, EXACT for
+    //                                             constant a, hence fold-exact)
+    //   NOTE (deliberate correction to spec section 2's literal "s += v_new*dt"):
+    //   the plain semi-implicit position update is NOT step-count invariant —
+    //   3 steps of h give s0 + 3h*v0 + 6a*h^2 while one step of 3h gives
+    //   s0 + 3h*v0 + 9a*h^2. The trapezoidal form above is what actually
+    //   DELIVERS the Rule 36 property the spec asserts twice, and it is also the
+    //   exact kinematic result for constant acceleration. Velocity, the stick
+    //   test, the friction sign logic and every reported quantity are unchanged.
+    //   With dt = 0 (SET_TIME_FREEZE / heldAtPin) v_new === v and s_new === s
+    //   identically, with NO special-case branch — frozen frames are byte-stable
+    //   by construction.
+    function nlbSgn(x) { return x > 0 ? 1 : (x < 0 ? -1 : 0); }
+    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar).
+    function nlbFx(v, dp) {
+        var d = (dp == null) ? 2 : dp;
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
+        return n.toFixed(d);
+    }
+    // Gravity component along the body's OWN positive axis, in newtons.
+    //   surface body: +axis is UP-slope  → -m*g*sin(theta)
+    //   hanging body: +axis is DOWNWARD (nlbSetBodyPosition places it at
+    //                 anchor.y - s*scale) → +m*g
+    // Spec section 2 writes this as "F - m*g*sin(theta_i)" with theta_i = 90 for a
+    // hanging body, which is the gravity component along UP for that body and so
+    // flips its sign relative to the axis the same block then integrates. Taken
+    // literally it makes a free hanging body accelerate upward and it fails BOTH
+    // of the spec's own checksums (Atwood -> T = m(g+a) instead of m(g-a);
+    // incline+hanging -> a of the wrong sign). Resolving it in the body's own axis
+    // (equivalently theta_i = -90 for a hanging body) reproduces both checksums
+    // exactly and is identical to the spec for every non-hanging body — i.e. for
+    // 5 of the 6 concepts. Flagged in the seam report.
+    function nlbGravAlong(b, thetaDeg) {
+        if (b.hanging) return b.m * NLB_G;
+        return -b.m * NLB_G * Math.sin(thetaDeg * Math.PI / 180);
+    }
+    function nlbNormal(b, thetaDeg) {
+        if (b.hanging) return 0;   // spec section 1: a hanging body has N forced to 0
+        return b.m * NLB_G * Math.cos(thetaDeg * Math.PI / 180);
+    }
+    // Surface-bound clamp band for a body, in metres along its own axis.
+    function nlbBoundsM(b, lenM) {
+        if (!b.hanging) {
+            // SEAM D (geometry, not physics): in a COUPLED state the up-slope end of
+            // the run is the pulley BRACKET, not the bare surface end — the post
+            // physically stops the block, and a block clamped at the surface end
+            // would otherwise stand with the post through its own centre. Uncoupled
+            // states are bit-for-bit unchanged.
+            var eng0 = window.PM_nlbEngine;
+            var hiS = lenM;
+            if (eng0 && eng0.coupled) {
+                var stop = nlbPostM(nlbStateCfg()) - NLB_PULLEY_STOP_M;
+                if (stop < hiS) hiS = stop;
+                if (!(hiS > -lenM)) hiS = -lenM;
+            }
+            return { lo: -lenM, hi: hiS };
+        }
+        // A hanging body cannot climb THROUGH the pulley (lo), and stops when it
+        // reaches the ground (hi). SEAM D: lo is now the REAL wheel clearance —
+        // the body's top face may not rise past the rim's lowest point, or the cube
+        // swallows the wheel it hangs from. The descent bound stays the MORE
+        // generous of the anchor height and the surface length: a tight bound would
+        // clamp a legitimately authored initial_position_m on entry and freeze the
+        // whole string dead, which reads as a physics bug in THE EYE.
+        var a = nlbHangAnchor(b.id);
+        var lo = NLB_HANG_MIN_M;
+        var hi = Math.max(lenM, (a.y - NLB_BODY_SIZE * 0.5) / NLB_WORLD_PER_M);
+        if (!(hi > lo + 0.1)) hi = lo + 0.1;
+        return { lo: lo, hi: hi };
+    }
+    // Live per-frame HUD write for one body (only the keys this state readouts).
+    function nlbWriteReadouts(nlb, b, stuck) {
+        var keys = nlb.readouts || [];
+        for (var k = 0; k < keys.length; k++) {
+            var key = keys[k];
+            if (key === "N") nlbSetReadout(b.id, key, nlbFx(b.N, 2));
+            else if (key === "f") {
+                // fₛ while statically stuck, fₖ while sliding (seam A ships a plain
+                // "f" and delegates the glyph here). U+209B / U+2096 are missing
+                // from most monospace faces (the merged-blob / tofu subscript scar),
+                // so the label span alone gets the math-serif stack — written ONCE
+                // per rebuilt row, not every frame.
+                nlbSetReadout(b.id, key, nlbFx(Math.abs(b.f), 2), stuck ? "fₛ" : "fₖ");
+                var fl = document.getElementById(nlbReadoutRowId(b.id, key) + "_lbl");
+                if (fl && !fl.style.fontFamily) fl.style.fontFamily = "'Cambria Math','Times New Roman',serif";
+            }
+            else if (key === "a") nlbSetReadout(b.id, key, nlbFx(b.a, 2));
+            else if (key === "v") nlbSetReadout(b.id, key, nlbFx(b.v, 2));
+            else if (key === "T") nlbSetReadout(b.id, key, nlbFx(Math.abs(b.T), 2));
+            else if (key === "F_net") nlbSetReadout(b.id, key, nlbFx(b.F_net, 2));
+            else if (key === "F_applied") nlbSetReadout(b.id, key, nlbFx(b.F_applied, 2));
+        }
+    }
+    // phases[] one-shots. Fired off the engine's own accumulated state-local sim
+    // time (reset to 0 on every state entry, advanced ONLY by the dt this
+    // function is handed — so it is identical to (time - stateStartTime)*1000 and
+    // freezes with the pin). phase_fired makes every side effect idempotent.
+    function nlbRunPhases(nlb, eng, tMs) {
+        var phs = nlb.phases || [];
+        if (!phs.length) return;
+        if (eng.base_glow_focal == null) eng.base_glow_focal = eng.glow_focal || "";
+        eng.phase_active = eng.phase_active || {};
+        for (var i = 0; i < phs.length; i++) {
+            var ph = phs[i];
+            if (!ph || !ph.id) continue;
+            var t0 = (ph.at_ms != null) ? ph.at_ms : 0;
+            var open = (ph.until_ms == null) || (tMs < ph.until_ms);
+            var active = (tMs >= t0) && open;
+            eng.phase_active[ph.id] = active;
+            if (active && !eng.phase_fired[ph.id]) {
+                eng.phase_fired[ph.id] = true;
+                eng.phase_action = ph.action || "";
+                if (ph.glow_focal) eng.glow_focal = ph.glow_focal;
+            } else if (!active && eng.phase_fired[ph.id] && ph.until_ms != null && tMs >= ph.until_ms) {
+                // A windowed phase that owned the focal hands it back to the state.
+                if (ph.glow_focal && eng.glow_focal === ph.glow_focal) eng.glow_focal = eng.base_glow_focal;
+            }
+        }
+    }
+    function updateNewtonsLawsBodyFrame(dt) {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return;                                  // build ran, no state seeded yet
+        var h = (typeof dt === "number" && isFinite(dt) && dt > 0) ? dt : 0;
+        var nlb = nlbStateCfg();
+        var lenM = eng.length_m;
+        var thetaSurf = eng.theta_deg;
+
+        if (eng.t_ms == null) eng.t_ms = 0;
+        eng.t_ms += h * 1000;
+        window.PM_nlbTimeMs = eng.t_ms;
+        nlbRunPhases(nlb, eng, eng.t_ms);
+
+        // Newton III: the engine ENFORCES equal-and-opposite every frame, so the
+        // pair can never drift out of Newton's third law no matter what a slider
+        // (or a later seam) does to the driver's applied force.
+        var ar = eng.action_reaction;
+        if (ar && ar.engaged && ar.driver_body_id) {
+            var drv = eng.bodies[ar.driver_body_id];
+            if (drv) {
+                for (var oi = 0; oi < eng.order.length; oi++) {
+                    var ob = eng.bodies[eng.order[oi]];
+                    if (!ob || ob.ghost || ob.id === drv.id) continue;
+                    ob.F_applied = -drv.F_applied;
+                }
+            }
+        }
+
+        // SEAM E — Rule 37 idle_auto_sweep. Hooked at the INPUT stage, immediately
+        // after the action_reaction mirror (the function's own precedent for a
+        // pre-physics mutation of the engine record) rather than at the presentation
+        // tail: the sweep is an INPUT, exactly equivalent to a slider write, so
+        // running it before the branches keeps the step, the force arrows, the
+        // readouts and the rope all consistent within the SAME frame. At the tail a
+        // theta sweep would leave the arrows one frame behind the incline they are
+        // drawn on. It writes nothing when the state has no idle_auto_sweep, and
+        // nothing once a trusted slider input or a body drag has seized control.
+        // It reads ONLY eng.t_ms (closed form, no accumulator) — see nlbRunIdleSweep
+        // for the Rule 36 argument, dt = 0 included.
+        nlbRunIdleSweep(nlb, eng);
+        // §7.1 pre-approved fix — the ONE-SHOT monotonic sibling of the sweep
+        // above. Same input-stage placement (before the integrator branches)
+        // for the same reason: a theta ramp must not leave the arrows/rope one
+        // frame behind the incline they are drawn on.
+        nlbRunParamRamp(nlb, eng);
+
+        if (!eng.coupled) {
+            // ── Branch A — independent bodies (no pulley) ──────────────────
+            for (var i = 0; i < eng.order.length; i++) {
+                var b = eng.bodies[eng.order[i]];
+                if (!b || b.ghost) continue;               // spec section 3: a ghost is NEVER integrated
+                var th = b.hanging ? 90 : thetaSurf;
+                var N = nlbNormal(b, th);
+                var drive = b.F_applied + nlbGravAlong(b, th);
+                var maxStat = b.mu_s * N;
+                var bd = nlbBoundsM(b, lenM);
+                // A body already ARRESTED AT ITS SURFACE BOUND while still sliding must
+                // not be reclassified "stuck" just because the clamp below forced
+                // v = 0 — that zero is a TRACK artifact, not a force-balance rest
+                // (engine_bug_queue nlb_uncoupled_readouts_revert_to_static_friction_
+                // on_bound_halt, the Branch A twin of nlb_coupled_readouts_revert_to_
+                // rest_values_on_bound_halt / bc649d4). This shape is exactly the
+                // normal mu_s > mu_k case: a body given an initial slide never
+                // decelerates to rest on its own (kinetic friction stays the loser
+                // every frame, a keeps the same sign as v) so it is still sliding at
+                // full speed when it runs out of finite track — the v = 0 the clamp
+                // then imposes would otherwise satisfy the REST test below and flip
+                // fₖ to fₛ on the very next frame (block_on_incline STATE_4: both
+                // blocks' HUD rows went byte-identical the instant B hit the end of
+                // its track). _boundArrestedSliding latches once a clamp fires on a
+                // frame that was genuinely sliding (stuck === false) and only
+                // releases once the body's position leaves the bound band again.
+                var boundPin = !!b._boundArrestedSliding &&
+                    (b.s <= bd.lo + 1e-9 || b.s >= bd.hi - 1e-9);
+                var stuck = !boundPin && (Math.abs(b.v) < NLB_STOP_EPS_V) && (Math.abs(drive) <= maxStat);
+                var a, f;
+                if (stuck) {
+                    a = 0; b.v = 0;
+                    f = -drive;                            // static friction: reported, never integrated
+                } else {
+                    var vSign = (Math.abs(b.v) > NLB_STOP_EPS_V) ? nlbSgn(b.v) : nlbSgn(drive);
+                    f = -vSign * b.mu_k * N;
+                    a = (drive + f) / b.m;
+                }
+                var v0 = b.v;
+                var v1 = v0 + a * h;
+                // Kinetic friction must not jitter the body back and forth across
+                // v = 0 — if the step reversed the sign and the drive cannot beat
+                // static friction, the body has come to REST.
+                if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
+                var s1 = b.s + 0.5 * (v0 + v1) * h;
+                if (s1 < bd.lo) s1 = bd.lo;
+                else if (s1 > bd.hi) s1 = bd.hi;
+                if (s1 <= bd.lo + 1e-9 || s1 >= bd.hi - 1e-9) {
+                    // Sitting exactly at a surface bound (just clamped, or still
+                    // pinned from a prior frame). v/a legitimately settle to 0 here —
+                    // there is nothing left to integrate against a wall — but the
+                    // friction TYPE stays whatever it genuinely was the instant
+                    // before the wall, never silently upgraded to static.
+                    v1 = 0; a = 0;
+                    b._boundArrestedSliding = !stuck;
+                } else {
+                    b._boundArrestedSliding = false;
+                }
+                b.a = a; b.v = v1; b.s = s1;
+                b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
+                b._stuck = stuck;          // SEAM C reads this so the friction ARROW's
+                                           // fₛ/fₖ glyph can never disagree with the HUD row
+                nlbSetBodyPosition(b.id, b.s);
+                nlbWriteReadouts(nlb, b, stuck);
+            }
+            eng.v_string = 0; eng.a_string = 0;
+            // SEAM C — presentation only, AFTER the physics writeback. One pass over
+            // every body (a ghost or an unlisted body gets its arrows hidden here),
+            // so there is no second animate() branch and no clock code (Rule 36).
+            nlbDriveArrows(eng);
+            // SEAM D — same contract: presentation AFTER the writeback. With no
+            // pulley this hides both segments (an uncoupled state has no string).
+            nlbFitRopes();
+            return;
+        }
+
+        // ── Branch B — coupled (pulley present): ONE shared scalar along the
+        //   string, per-body sign factor c_i in {+1,-1}. c_i comes from the
+        //   inextensible-string constraint, NOT from a hardcoded pair:
+        //   a body's string segment shortens as s grows on the surface
+        //   (L = post - s, sigma = -1) and lengthens as s grows when hanging
+        //   (L = s, sigma = +1); sum(dL) = 0 with s_i = c_i*q gives
+        //   c_i = -(sigma_ref * sigma_i) for every non-reference body.
+        //   => surface + hanging: c = (+1, +1)  (block up-slope <=> weight falls)
+        //   => Atwood (both hanging): c = (+1, -1)
+        var pul = eng.pulley || {};
+        var refId = (pul.body_a_id && eng.bodies[pul.body_a_id] && !eng.bodies[pul.body_a_id].ghost) ? pul.body_a_id : null;
+        if (!refId) {
+            for (var r = 0; r < eng.order.length; r++) {
+                var rb = eng.bodies[eng.order[r]];
+                if (rb && !rb.ghost) { refId = rb.id; break; }
+            }
+        }
+        if (!refId) return;
+        var sigRef = eng.bodies[refId].hanging ? 1 : -1;
+
+        var act = [], D = 0, M = 0, maxStatSum = 0, mukNSum = 0;
+        for (var j = 0; j < eng.order.length; j++) {
+            var bj = eng.bodies[eng.order[j]];
+            if (!bj || bj.ghost) continue;                 // spec section 3: never integrated
+            var cj = (bj.id === refId) ? 1 : -(sigRef * (bj.hanging ? 1 : -1));
+            var thj = bj.hanging ? 90 : thetaSurf;
+            var Nj = nlbNormal(bj, thj);
+            bj.N = Nj;
+            bj._drive = bj.F_applied + nlbGravAlong(bj, thj);
+            bj._c = cj;
+            act.push(bj);
+            D += cj * bj._drive;
+            M += bj.m;                                     // ideal massless string + pulley
+            maxStatSum += bj.mu_s * Nj;
+            mukNSum += bj.mu_k * Nj;
+        }
+        if (!act.length || !(M > 0)) return;
+
+        var vStr = eng.v_string || 0;
+        var stuckB = (Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum);
+        var aStr = 0, Ffric = 0, vSignB = 0;
+        if (stuckB) {
+            aStr = 0; vStr = 0; Ffric = -D;                 // held by static friction
+        } else {
+            vSignB = (Math.abs(vStr) > NLB_STOP_EPS_V) ? nlbSgn(vStr) : nlbSgn(D);
+            Ffric = -vSignB * mukNSum;
+            aStr = (D + Ffric) / M;
+        }
+        var vs0 = vStr;
+        var vs1 = vs0 + aStr * h;
+        if (nlbSgn(vs0) !== nlbSgn(vs1) && Math.abs(D) <= maxStatSum) { vs1 = 0; aStr = 0; }
+
+        // Bound the STRING, not each body independently — clamping one body alone
+        // would silently break the inextensible-string constraint.
+        var sAdv = 0.5 * (vs0 + vs1) * h;                   // same fold-exact form as branch A
+        var blocked = false;
+        for (var k2 = 0; k2 < act.length; k2++) {
+            var bk = act[k2];
+            var sk = bk.s + bk._c * sAdv;
+            var bdk = nlbBoundsM(bk, lenM);
+            if (sk < bdk.lo || sk > bdk.hi) { blocked = true; break; }
+        }
+        // The bound veto is a TRACK artifact, not a change in the physics: the
+        // string ran out of rail while every force stayed exactly as it was. So
+        // zero the MOTION (no body may leave its band) but NOT aStr — that is the
+        // DYNAMIC solution the HUD rows, the T/ΣF arrows and the state's whole
+        // taught claim are drawn from (engine_bug_queue
+        // nlb_coupled_readouts_revert_to_rest_values_on_bound_halt: connected_bodies
+        // STATE_3 ran its 1.11 s of track at the correct a = 3.27 / T = 13.07 N,
+        // then the halt recomputed with a = 0 and the HUD printed T = 19.60 N —
+        // exactly m₂g, the misconception the state exists to break — for the
+        // remaining ~19 s the teacher actually pauses on; STATE_6 likewise fell back
+        // to the two separate weights 20.58 / 19.60 instead of the one shared
+        // 20.08 N). The bodies still stop dead: the halt itself is the known,
+        // founder-visible finite-track gap and is NOT what this changes.
+        //   HELD BY RECOMPUTE, NOT BY A LATCHED SNAPSHOT. D, M, maxStatSum and
+        // mukNSum above are read fresh from the live masses / theta / mu every
+        // frame, and with v_string pinned to 0 the next frame re-derives the SAME
+        // solution the last moving frame had — so the value on screen is the
+        // achieved one, frame after frame, while a teacher dragging a slider on a
+        // halted state (the STATE_7 sandbox, and every guided state with
+        // controls_visible) still sees it update LIVE. A snapshot would have gone
+        // stale on exactly those drags. It also adds no history: nothing to rewind,
+        // so a SET_TIME_FREEZE pin stays byte-stable and nlbSeedKinematics() needs
+        // no extra clearing on entry / RESET_TRAJECTORY.
+        //   A genuinely held string is untouched — static friction takes the stuckB
+        // branch above (aStr = 0, F_fric = -D) and never reaches this veto, and the
+        // v-sign-reversal rest guard has already zeroed aStr on its own path.
+        if (blocked) { sAdv = 0; vs1 = 0; }
+        eng.v_string = vs1;
+        eng.a_string = aStr;
+
+        for (var m2 = 0; m2 < act.length; m2++) {
+            var bb = act[m2];
+            var cb = bb._c;
+            var ab = cb * aStr;
+            bb.a = ab;
+            bb.v = cb * vs1;
+            var sb = bb.s + cb * sAdv;
+            var bdb = nlbBoundsM(bb, lenM);
+            if (sb < bdb.lo) sb = bdb.lo; else if (sb > bdb.hi) sb = bdb.hi;
+            bb.s = sb;
+            // Friction on THIS body opposes ITS motion; summed over the string
+            // this is exactly the F_fric used above (|c_i| = 1).
+            bb.f = stuckB
+                ? (maxStatSum > 0 ? -cb * D * ((bb.mu_s * bb.N) / maxStatSum) : 0)
+                : -(cb * vSignB) * bb.mu_k * bb.N;
+            // Tension from THIS body's own equation of motion: m*a = drive + f + T.
+            bb.T = bb.m * ab - bb._drive - bb.f;
+            bb.F_net = bb.m * ab;
+            bb._stuck = stuckB;            // SEAM C: shared fₛ/fₖ glyph source (see branch A)
+            nlbSetBodyPosition(bb.id, bb.s);
+            nlbWriteReadouts(nlb, bb, stuckB);
+        }
+        // SEAM C — presentation only, AFTER the physics writeback (see branch A).
+        nlbDriveArrows(eng);
+        // SEAM D — re-fit both rope segments to the live body positions, so the
+        // string stays visually taut and inextensible as the bodies move.
+        nlbFitRopes();
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     // ================================================================
     // displacement_current (Ch.8 §8.2 — I_d = ε₀ dΦ_E/dt, the
@@ -39700,6 +42061,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildMagneticFluxLoop();
                 break;
 
+            case "newtons_laws_body":
+                buildNewtonsLawsBody();
+                break;
+
             case "gauss_law_sphere":
                 buildGaussSphereField();
                 break;
@@ -40191,6 +42556,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyMagneticFluxLoopState(stateDef);
         }
 
+        // newtons_laws_body — per-state seed of the Laws of Motion engine state
+        // (masses / theta / mu / F / initial s+v), the surface pose, per-body
+        // visibility + labels, the single Cambria-Math formula surface, the
+        // value-only HUD rows, and the Rule-32e glow focal. The integrator
+        // (SEAM B), the force-arrow overlay (SEAM C), the pulley geometry
+        // (SEAM D) and the slider rows (SEAM E) hook the same engine-state
+        // object (window.PM_nlbEngine) it seeds here.
+        if (config.scenario_type === "newtons_laws_body") {
+            applyNewtonsLawsBodyState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -40544,6 +42920,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
         // itself to this NOT-list, same as isMag/isFaraday/isAcGenerator/... above).
         var isMfl = config.scenario_type === "magnetic_flux_loop";
+        // newtons_laws_body owns its OWN #nlb_sliders panel (m/m2/F/theta/mu_s/
+        // mu_k/v0) -- must be excluded here or the generic #sliders panel bleeds
+        // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
+        // itself to this NOT-list, same as isMag/isFaraday/isMfl/... above).
+        var isNlb = config.scenario_type === "newtons_laws_body";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -40597,7 +42978,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -40784,8 +43165,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -44184,6 +46565,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyCyclotronPeriodGlow();
         }
 
+        // newtons_laws_body — the whole Laws of Motion chapter. ONE call per tick
+        // with the COMBINED dtStep (0.016 * __pmSteps): the step is exactly
+        // fold-invariant (v += a*dt; s += 0.5*(v+v_new)*dt), so there is NO loop
+        // over __pmSteps here or inside the function (Rule 36). Under a pin
+        // dt = 0 leaves v and s bit-identical with no special-case branch, so
+        // frozen EYE frames are byte-stable by construction.
+        if (config.scenario_type === "newtons_laws_body") {
+            updateNewtonsLawsBodyFrame(heldAtPin ? 0 : dtStep);
+            applyNewtonsLawsBodyGlow();
+        }
+
         // Electric diamond STATE_5 — the density↔strength aha, in motion.
         // A probe sweeps radially out and back; its E-arrow shrinks as kQ/r²
         // (strength), and the field lines around it brighten where they crowd
@@ -46814,6 +49206,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     // path matches the replayed motion.
                     stateStartTime = time;
                     lorentzTrailResetPending = true;
+                    // newtons_laws_body integrates instead of posing from a closed
+                    // form of (time - stateStartTime), so the rebase above cannot
+                    // rewind it — its accumulators are rewound explicitly.
+                    nlbResetTrajectory();
                     break;
 
                 case "SET_GLOW":

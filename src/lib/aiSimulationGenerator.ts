@@ -2737,6 +2737,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // Ch.1 "Vectors" — the DAG root, prerequisites: []). Also in PCPL_CONCEPTS
     // below (parametric_renderer, matches current_not_vector/pressure_scalar).
     scalar_vs_vector:                "mechanics_2d",
+    // vector_addition_law — concept #2 of the new Class 11 Mechanics Ch.1
+    // "Vectors" DAG track (prerequisite: scalar_vs_vector). Also in
+    // PCPL_CONCEPTS below (parametric_renderer, matches scalar_vs_vector).
+    vector_addition_law:            "mechanics_2d",
     dot_product:                    "mechanics_2d",
     // Atomic splits from former vector_basics bundle
     unit_vector:                    "mechanics_2d",
@@ -2825,7 +2829,9 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     normal_reaction:                "mechanics_2d",
     tension_in_string:              "mechanics_2d",
     hinge_force:                    "mechanics_2d",
-    free_body_diagram:              "mechanics_2d",
+    free_body_diagram:              "field_3d",   // RETROFIT 2026-07-25 onto newtons_laws_body (was mechanics_2d)
+    connected_bodies:                "field_3d",   // NEW 2026-07-25 — newtons_laws_body Branch B (coupled/pulley)
+    block_on_incline:               "field_3d",   // NEW 2026-07-26 — newtons_laws_body Branch A (incline friction threshold)
     uniform_circular_motion:        "mechanics_2d",
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",
@@ -3067,6 +3073,9 @@ const PCPL_CONCEPTS = new Set<string>([
     // the new Vectors track (prerequisites: []). Alex pipeline, authored
     // 2026-07-23.
     'scalar_vs_vector',
+    // vector_addition_law — concept #2 of the Vectors DAG track
+    // (prerequisite: scalar_vs_vector). Alex pipeline, authored 2026-07-24.
+    'vector_addition_law',
     // Ch.5.4 Phase 0 validation demo Sim 1 (session 56 — first concept using premium primitives:
     // glow_focus + animated_path + sound_cue)
     'vector_head_to_tail',

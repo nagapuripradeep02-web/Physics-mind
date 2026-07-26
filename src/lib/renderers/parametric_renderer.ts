@@ -460,6 +460,35 @@ function computePhysics_direction_of_resultant(vars) {
   };
 }
 
+function computePhysics_vector_addition_law(vars) {
+  var a = (vars && vars.a != null) ? vars.a : 3;
+  var b = (vars && vars.b != null) ? vars.b : 4;
+  var theta = (vars && vars.theta != null) ? vars.theta : 90;
+  var walk_phase = (vars && vars.walk_phase != null) ? vars.walk_phase : 0;
+  var theta_rad = theta * Math.PI / 180;
+  var R_mag = Math.sqrt(a * a + b * b + 2 * a * b * Math.cos(theta_rad));
+  var R_dir_deg = Math.atan2(b * Math.sin(theta_rad), a + b * Math.cos(theta_rad)) * 180 / Math.PI;
+  var wp1 = Math.min(walk_phase, 1);
+  var wp2 = Math.max(walk_phase - 1, 0);
+  return {
+    concept_id: 'vector_addition_law',
+    variables: { a: a, b: b, theta: theta, walk_phase: walk_phase },
+    derived: {
+      R_mag: R_mag,
+      R_dir_deg: R_dir_deg,
+      sum_scalar: a + b,
+      P1_x: a,
+      P1_y: 0,
+      P2_x: a + b * Math.cos(theta_rad),
+      P2_y: b * Math.sin(theta_rad),
+      trip_meter: a * wp1 + b * wp2,
+      walk_x: wp1 * a + wp2 * b * Math.cos(theta_rad),
+      walk_y: wp2 * b * Math.sin(theta_rad)
+    },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -477,6 +506,7 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'vector_head_to_tail') result = computePhysics_vector_head_to_tail(vars);
   else if (conceptId === 'newton_second_law_direction') result = computePhysics_newton_second_law_direction(vars);
   else if (conceptId === 'scalar_vs_vector') result = computePhysics_scalar_vs_vector(vars);
+  else if (conceptId === 'vector_addition_law') result = computePhysics_vector_addition_law(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
@@ -1712,6 +1742,29 @@ function drawForceArrow(spec, physics, origin) {
   if (!gate.visible) return;
   var emph = PM_focalEmphasis(spec);
 
+  // spec.animation.type === 'translate' (peter_parker:renderer_primitives,
+  // 2026-07-24 — "carry a vector parallel to itself" beat, e.g.
+  // vector_addition_law STATE_2's tail-on-head B carry). Offsets the
+  // ALREADY-RESOLVED origin only — magnitude/direction below are computed
+  // purely from force.vector and never touched, so the arrow's length and
+  // heading stay visibly frozen while it rigidly slides. Mirrors drawBody's
+  // 'translate' branch's easing/delay/duration/clamp conventions exactly
+  // (one timing vocabulary across primitive types) and is a pure function
+  // of PM_simClockMs (Rule 36) so SET_TIME_FREEZE frozen captures stay
+  // deterministic by construction. Composes with every origin-resolution
+  // path (from literal / origin_body_id / anchor_to / *_expr) because it
+  // offsets the caller-resolved 'origin' param, not any one resolution path.
+  var arrowAnimDx = 0, arrowAnimDy = 0;
+  if (spec.animation && spec.animation.type === 'translate') {
+    var faTSec = PM_simClockMs / 1000;
+    var faTrDelay = spec.animation.delay_sec || 0;
+    var faTrDur = spec.animation.duration_sec || 1.2;
+    var faTrT = Math.max(0, Math.min(1, (faTSec - faTrDelay) / faTrDur));
+    var faTrEase = 1 - Math.pow(1 - faTrT, 3); // ease-out cubic — same as drawBody
+    arrowAnimDx = (spec.animation.dx_px || 0) * faTrEase;
+    arrowAnimDy = (spec.animation.dy_px || 0) * faTrEase;
+  }
+
   var scale = spec.scale_pixels_per_unit || 5;
   var color = spec.color || force.color || '#EF4444';
   var rgb = PM_hexToRgb(color);
@@ -1720,7 +1773,7 @@ function drawForceArrow(spec, physics, origin) {
   // grows from its origin to its tip as it reveals.
   var dx = force.vector.x * scale * gate.alpha;
   var dy = -force.vector.y * scale * gate.alpha;
-  var x1 = origin.x, y1 = origin.y;
+  var x1 = origin.x + arrowAnimDx, y1 = origin.y + arrowAnimDy;
   var x2 = x1 + dx, y2 = y1 + dy;
 
   // WP-R5 (D5 anchor_to) — register this arrow's live endpoints so a LATER
