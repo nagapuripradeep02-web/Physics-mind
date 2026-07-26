@@ -545,6 +545,18 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Laws of Motion #3 — newtons_laws_body engine, Branch A (single body incline
+    // friction threshold + two-fate contrast). param_ramp's first live exercise.
+    block_on_incline: {
+        concept_id: 'block_on_incline',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'block_on_incline',
+            label: 'Block on an Incline — Static Friction Adjusts Until Grip Fails (3D)',
+        },
+    },
+
     // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
     // Ch.1 "Vectors" — the DAG root). Single-panel PCPL sim, no panel_b_config.
     scalar_vs_vector: {

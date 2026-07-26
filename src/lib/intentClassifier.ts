@@ -99,6 +99,8 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'hinge_force', 'free_body_diagram',
     // Laws of Motion #2 — connected bodies / pulleys (newtons_laws_body field_3d engine)
     'connected_bodies',
+    // Laws of Motion #3 — block on an incline, static friction threshold (newtons_laws_body field_3d engine)
+    'block_on_incline',
     // Friction (Ch.8.5)
     'friction_static_kinetic',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
@@ -764,6 +766,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   hinge_force             ← pin joint, rod on wall, hinge reaction
   free_body_diagram       ← FBD, isolate body, force diagram, N = mg cosθ on incline, string tension T = mg
   connected_bodies        ← two blocks joined by a rope over a pulley, ONE shared acceleration + ONE tension, T ≠ hanging weight unless a=0, Atwood machine, block on table + hanging mass, incline + hanging mass
+  block_on_incline        ← single block on a rough incline, static friction tracks mg sinθ up to μₛN, breaks away exactly at tan θ = μₛ (mass cancels), then slides with a = g(sinθ − μₖ cosθ); μₖ < μₛ so kinetic friction is weaker once moving
   friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
 
@@ -970,6 +973,7 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "hinge force on rod" → hinge_force
 - "draw FBD" / "free body diagram" / "forces on block" / "isolate the body" / "why is N smaller on an incline" / "tension instead of normal force" → free_body_diagram
 - "two blocks connected by a string over a pulley" / "Atwood machine" / "why isn't tension equal to the hanging weight" / "block on table connected to a hanging mass" / "block on incline connected over a pulley" / "counterweight problem" → connected_bodies (NOT tension_in_string — that concept is the bare formula lookup; connected_bodies teaches the shared-constraint + elimination METHOD with a live coupled sim)
+- "block on an incline with friction" / "when does a block start to slide on a ramp" / "why does it slip at exactly that angle" / "tan theta equals mu" / "does mass affect when it slips" / "static vs kinetic friction on a slope" / "block slipping down a ramp" (NO pulley, NO second body connected by a rope) → block_on_incline (NOT connected_bodies — that concept requires a rope/pulley; this one is a single uncoupled block, T is never authored)
 - "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
 

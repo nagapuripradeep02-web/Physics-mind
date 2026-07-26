@@ -1,0 +1,239 @@
+/**
+ * SCRATCH — param_ramp (§7.1 pre-approved fix) runtime proof.
+ * NOT product code. Not a concept. Written to src/scripts/ during the
+ * field3d_surgeon dispatch that added param_ramp, then RELOCATED here per the
+ * output contract ("never leave scratch files in src/"); results are captured
+ * in the dispatch report / engine log, this file is kept only for re-run
+ * reproducibility.
+ *
+ * To re-run: copy this file back to src/scripts/_scratch_nlb_ramp_probe.ts
+ * (or fix the relative import below to point at the real
+ * src/lib/renderers/field_3d_renderer.ts from wherever you run it), then
+ * `npx tsx <path-to-this-file>`.
+ *
+ * Drives the REAL renderer via assembleField3DHtml() -> Playwright chromium,
+ * exactly mirroring the committed _scratch_nlb_bringup.ts harness pattern
+ * (deterministic virtual clock + manual rAF pump so __pmSteps is drivable
+ * exactly). Proves, for a guided state with
+ *   param_ramp: { param: 'theta', from: 0, to: 35, end_ms: 6000 }, mu_s = 0.45
+ * (tan^-1 0.45 ~= 24.2277 deg):
+ *   (a) theta is monotonically non-decreasing across the window and HOLDS at
+ *       35 after end_ms;
+ *   (b) body v stays exactly 0 while theta < 24.2277 deg and becomes non-zero
+ *       after theta passes it;
+ *   (c) with dt forced to 0 (SET_TIME_FREEZE), theta does not advance;
+ *   (d) N steps of 0.016s give the same theta as one step of 0.016*N s
+ *       (linearity in dt).
+ *
+ * Actual run (2026-07-26, from src/scripts/_scratch_nlb_ramp_probe.ts):
+ *   monotonic=true, holdsAt35=true, stuckWhileBelow=true, movesAfterBreak=true,
+ *   thetaAtFirstMove=24.64 (first ~100ms sample past the 24.2277 threshold),
+ *   freezeStable=true (atPin1 === atPin2 byte-identical), foldDeltaTheta=0,
+ *   foldDeltaTms=0, sandboxThetaFixed=true (ramp never ran in mode:'sandbox'),
+ *   errors=[]. Full result.json reproduced in the dispatch report.
+ */
+import { chromium } from '@playwright/test';
+import * as fs from 'fs';
+import * as path from 'path';
+import { assembleField3DHtml, type Field3DConfig } from '../../../../src/lib/renderers/field_3d_renderer';
+
+const OUT = path.join(process.cwd(), '.scratch_nlb_ramp');
+const MU_S = 0.45;
+const BREAK_DEG = Math.atan(MU_S) * 180 / Math.PI;
+
+const CFG: Field3DConfig = {
+    scenario_type: 'newtons_laws_body',
+    explorer_id: 'newtons_laws_body_explorer',
+    field_lines: { count: 0, color_positive: '#FF6B6B', color_negative: '#4ECDC4', opacity: 0, arrow_spacing: 0 },
+    states: {
+        // The guided ramp state under test.
+        STATE_1: {
+            label: 'Tilt until it breaks away',
+            visible_elements: ['nlb_body_A', 'nlb_surface'],
+            caption: 'Tilt the ramp',
+            formula_overlay: 'tan θ = μₛ',
+            newtons_laws_body: {
+                mode: 'incline_slide',
+                surface: { theta_deg: 0, length_m: 8 },   // 0 == param_ramp.from — no entry jump
+                bodies: [{ id: 'A', label: 'm', mass_kg: 4, mu_s: MU_S, mu_k: 0.35, initial_position_m: 0 }],
+                arrows: [{ body_id: 'A', show: ['weight', 'normal', 'friction', 'net'], show_components: true }],
+                glow_focal: 'nlb_body_A',
+                readouts: ['N', 'f', 'a', 'v'],
+                controls_visible: ['theta'],
+                param_ramp: { param: 'theta', from: 0, to: 35, end_ms: 6000 },
+            },
+        },
+        // A second state used ONLY for the fold test (isolated from STATE_1's
+        // own accumulated t_ms — SET_STATE re-seeds a fresh eng each entry).
+        STATE_FOLD: {
+            label: 'Fold check',
+            visible_elements: ['nlb_body_A', 'nlb_surface'],
+            caption: 'fold',
+            formula_overlay: 'tan θ = μₛ',
+            newtons_laws_body: {
+                mode: 'incline_slide',
+                surface: { theta_deg: 0, length_m: 8 },
+                bodies: [{ id: 'A', label: 'm', mass_kg: 4, mu_s: MU_S, mu_k: 0.35, initial_position_m: 0 }],
+                arrows: [{ body_id: 'A', show: ['weight', 'normal', 'friction', 'net'] }],
+                glow_focal: 'nlb_body_A',
+                readouts: ['N', 'f', 'a', 'v'],
+                controls_visible: ['theta'],
+                param_ramp: { param: 'theta', from: 0, to: 35, end_ms: 6000 },
+            },
+        },
+        // A sandbox state — proves the ramp NEVER runs here (Rule 37): theta
+        // must stay pinned at its authored surface.theta_deg the whole time.
+        STATE_SANDBOX: {
+            label: 'Explore',
+            visible_elements: ['nlb_body_A', 'nlb_surface'],
+            caption: 'Try it',
+            formula_overlay: 'tan θ = μₛ',
+            newtons_laws_body: {
+                mode: 'sandbox',
+                surface: { theta_deg: 10, length_m: 8 },
+                bodies: [{ id: 'A', label: 'm', mass_kg: 4, mu_s: MU_S, mu_k: 0.35, initial_position_m: 0 }],
+                arrows: [{ body_id: 'A', show: ['weight', 'normal', 'friction', 'net'] }],
+                glow_focal: 'nlb_body_A',
+                readouts: ['N', 'f', 'a', 'v'],
+                controls_visible: ['theta'],
+                trusted_drag_seizes: true,
+                param_ramp: { param: 'theta', from: 0, to: 35, end_ms: 6000 },
+            },
+        },
+    },
+};
+
+function writeFixture(name: string, config: Field3DConfig): string {
+    const html = assembleField3DHtml(config);
+    fs.mkdirSync(OUT, { recursive: true });
+    const f = path.join(OUT, name + '.html');
+    fs.writeFileSync(f, html, 'utf8');
+    return f;
+}
+
+// Same deterministic virtual clock as _scratch_nlb_bringup.ts.
+const CLOCK_INIT = `(function () {
+  var vclock = 0, q = [];
+  window.requestAnimationFrame = function (cb) { q.push(cb); return q.length; };
+  window.cancelAnimationFrame = function () {};
+  try { performance.now = function () { return vclock; }; } catch (e) {}
+  window.__NLB_TICK = function (dtMs, n) {
+    var count = n || 1;
+    for (var k = 0; k < count; k++) {
+      vclock += dtMs;
+      var cur = q; q = [];
+      for (var i = 0; i < cur.length; i++) {
+        try { cur[i](vclock); } catch (e) { window.__NLB_TICK_ERR = String(e && e.message || e); }
+      }
+    }
+    return vclock;
+  };
+})()`;
+
+const READ = `(function () {
+  var eng = window.PM_nlbEngine;
+  if (!eng) return null;
+  var b = eng.bodies['A'];
+  return { t_ms: eng.t_ms, theta: eng.theta_deg, v: b ? b.v : null, s: b ? b.s : null, a: b ? b.a : null };
+})()`;
+
+async function main() {
+    const browser = await chromium.launch();
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    const errors: string[] = [];
+    page.on('pageerror', e => errors.push('pageerror: ' + e.message));
+    page.on('console', m => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
+    await page.addInitScript(CLOCK_INIT);
+    const file = writeFixture('nlb_ramp_probe', CFG);
+    await page.goto('file:///' + file.replace(/\\/g, '/'));
+    await page.waitForFunction('typeof window.__NLB_TICK === "function"', null, { timeout: 20000, polling: 100 });
+
+    const tick = (dtMs: number, n = 1) => page.evaluate(
+        ([d, k]) => (window as any).__NLB_TICK(d, k), [dtMs, n] as [number, number]);
+    const setState = (s: string) => page.evaluate(
+        st => window.postMessage({ type: 'SET_STATE', state: st }, '*'), s);
+    const pin = (ms: number) => page.evaluate(
+        at => window.postMessage({ type: 'SET_TIME_FREEZE', at_ms: at }, '*'), ms);
+    const read = () => page.evaluate(READ);
+
+    for (let i = 0; i < 40; i++) {
+        await tick(16.7, 4);
+        const ok = await page.evaluate(() => typeof (window as any).PM_nlbEngine !== 'undefined');
+        if (ok) break;
+        await page.waitForTimeout(100);
+    }
+
+    // ── (a) + (b): drive STATE_1 through the whole window, sample every ~100ms ──
+    await setState('STATE_1');
+    const series: any[] = [];
+    // 16.7ms per tick, sample every ~6 ticks (~100ms), out to 8000ms (past end_ms=6000).
+    for (let i = 0; i < 80; i++) {
+        await tick(16.7, 6);
+        series.push(await read());
+    }
+    let monotonic = true;
+    let prevTheta = -Infinity;
+    for (const row of series) {
+        if (row.theta < prevTheta - 1e-6) monotonic = false;
+        prevTheta = row.theta;
+    }
+    const lastFew = series.slice(-5);
+    const holdsAt35 = lastFew.every(r => Math.abs(r.theta - 35) < 0.05);
+    const stuckWhileBelow = series.filter(r => r.theta < BREAK_DEG - 0.3).every(r => Math.abs(r.v) < 1e-9);
+    const movesAfterBreak = series.some(r => r.theta > BREAK_DEG + 1 && Math.abs(r.v) > 1e-6);
+    const firstMoveIdx = series.findIndex(r => Math.abs(r.v) > 1e-6);
+    const thetaAtFirstMove = firstMoveIdx >= 0 ? series[firstMoveIdx].theta : null;
+
+    // ── (c): freeze test — pin mid-ramp, tick many more times, theta unchanged ──
+    await setState('STATE_1');
+    await pin(3000);
+    for (let i = 0; i < 60; i++) {
+        await tick(16.7, 8);
+        const t = await page.evaluate(() => (window as any).PM_simTimeMs);
+        if (typeof t === 'number' && t >= 2999) break;
+    }
+    const atPin1 = await read();
+    await tick(16.7, 30);   // many more frames AT the pin — dt forced to 0
+    const atPin2 = await read();
+    const freezeStable = atPin1 && atPin2 && Math.abs(atPin1.theta - atPin2.theta) < 1e-9
+        && atPin1.t_ms === atPin2.t_ms;
+
+    // ── (d): fold test — N x 0.016 vs 1 x (0.016*N), from a fresh state entry ──
+    await pin(1); await tick(16.7, 2);
+    await setState('STATE_FOLD');
+    await tick(16.7, 21);                 // 1 warm-up frame (0 steps) + 20 x 1 step @ 16.7ms
+    const single = await read();
+    await pin(1); await tick(16.7, 2);
+    await setState('STATE_FOLD');
+    await tick(33.4, 11);                 // 1 warm-up frame (0 steps) + 10 x 2 steps @ 33.4ms
+    const folded = await read();
+    const foldDeltaTheta = single && folded ? Math.abs(single.theta - folded.theta) : null;
+    const foldDeltaTms = single && folded ? Math.abs(single.t_ms - folded.t_ms) : null;
+
+    // ── bonus: Rule 37 — the ramp NEVER runs in the sandbox state ──
+    await setState('STATE_SANDBOX');
+    const sandboxBefore = await read();
+    for (let i = 0; i < 30; i++) await tick(16.7, 8);
+    const sandboxAfter = await read();
+    const sandboxThetaFixed = sandboxBefore && sandboxAfter
+        && sandboxBefore.theta === 10 && sandboxAfter.theta === 10;
+
+    const result = {
+        break_deg_expected: BREAK_DEG,
+        monotonic, holdsAt35, stuckWhileBelow, movesAfterBreak,
+        thetaAtFirstMove, firstMoveIdx,
+        freeze: { atPin1, atPin2, freezeStable },
+        fold: { single, folded, foldDeltaTheta, foldDeltaTms },
+        sandbox: { sandboxBefore, sandboxAfter, sandboxThetaFixed },
+        series_head: series.slice(0, 6),
+        series_around_break: series.filter(r => r.theta > BREAK_DEG - 2 && r.theta < BREAK_DEG + 2),
+        series_tail: series.slice(-6),
+        errors,
+    };
+    fs.mkdirSync(OUT, { recursive: true });
+    fs.writeFileSync(path.join(OUT, 'result.json'), JSON.stringify(result, null, 1), 'utf8');
+    console.log(JSON.stringify(result, null, 1));
+    await browser.close();
+}
+
+main().catch(e => { console.error(e); process.exit(1); });
