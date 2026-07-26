@@ -1,31 +1,21 @@
 # lom-a loop state
 
-updated: 2026-07-26 (LOOP RELEASED by founder - runaway guard cleared, block_on_incline authorized to run)
+updated: 2026-07-26 (CHAPTER COMPLETE - block_on_incline SEALED; all 3 lom-a concepts done)
 
->> LOOP PAUSED - FOUNDER DECISION NEEDED BEFORE THE NEXT SESSION <<
-   Loop-phase engine commits now stand at 5 of 5, which is the CHAPTER_LOOP.md §3b runaway guard
-   ("if engine_commits reaches 5, PAUSE the loop and notify the founder"). connected_bodies sealed
-   cleanly, but it cost 3 engine fixes (5a07aa9, bc649d4, aa7daf5) on top of concept 1's 2.
-   READ docs/loop_runs/lom/connected_bodies/engine_gap.md - it is the notification, and it argues
-   the guard's own hypothesis ("Phase 0 under-generalized") is NOT quite what happened: the config
-   surface needed ZERO new keys, and all 3 defects were latent Branch-B bugs the Phase 0 bring-up
-   proof was too shallow to catch (it tested a fresh SET_STATE with default initial conditions).
-   block_on_incline is single-body-on-a-slope and touches NEITHER the coupled integrator NOR the
-   pulley geometry, so it is the least likely of the three to need engine work - EXCEPT for the
-   pre-approved param_ramp (§7.1), which is a missing FEATURE and would be engine commit #6.
-   Raise/reset the budget to continue, or re-examine the approach here. It is the last concept
-   in this worktree either way.
+>> LOOP COMPLETE FOR THIS WORKTREE - NOTHING IN FLIGHT <<
+   All three chapter_map concepts are SEALED with baselines locked. The remaining work is
+   FOUNDER-GATED and deliberately not done here: founder review of each sealed concept, then
+   TTS, PILOT_CONCEPTS, build:pilot, deploy, and the merge of feat/lom-a (expect the 2-3 trivial
+   scenario-union/dispatch-switch conflicts noted below). The other half of the chapter
+   (newton_first_law, newton_second_law, newton_third_law) is in C:\Tutor\physics-mind-lom-b.
 
 review_port: 8089
 regression_sample: electric_flux, magnetic_flux
-next: block_on_incline - RELEASED (founder 2026-07-26). Single body on a slope: no coupling, no second body, no pulley - the simplest remaining path and one already exercised by three sealed concepts. Author it normally per CHAPTER_LOOP section 3.
-  threshold path with connected_bodies, and its central beat ("tilt the ramp until the block breaks
-  away at tan theta = mu_s") REQUIRES the param_ramp engine knob that CHAPTER_LOOP.md §7.1 already
-  pre-approves - do not work around it by rewriting narration, and do not re-decide it. Read
-  docs/loop_runs/lom/connected_bodies/engine_gap.md first (3 fixes + 3 carried items), then §7.1.
+next: (none - chapter complete; founder review + merge is the next action, and it is founder-gated)
 done: Phase 0 - newtons_laws_body field_3d engine (all 14 spec sites, both structural extremes proved, regression clean)
 done: free_body_diagram - 298f140 - 6 states, RETROFIT mechanics_2d -> field_3d, baselines locked
 done: connected_bodies - 7 states, coupled Branch B + pulley/rope + Atwood, baselines locked, auto-approved on quality-auditor PASS + eye-walker CLEAN
+done: block_on_incline - ab34ffe - 5 states, param_ramp break-away beat, baselines locked, auto-approved on quality-auditor PASS + eye-walker CLEAN (both recommended SEAL)
 parked: (none)
 in_flight: (none)
 engine_commits:
@@ -42,6 +32,8 @@ engine_commits:
   5a07aa9  nlb_coupled_initial_velocity_never_seeded (concept-2 fix, 3 of 5)
   bc649d4  nlb_coupled_readouts_revert_to_rest_values_on_bound_halt (concept-2 fix, 4 of 5)
   aa7daf5  nlb_pulley_group_hidden_with_surface_in_atwood_mode (concept-2 fix, 5 of 5 - GUARD TRIPPED)
+  ada18a4  nlb_param_ramp monotonic guided-state parameter reveal (concept-3, PRE-AUTHORIZED per CHAPTER_LOOP.md 7.1 - does NOT count against the budget)
+  37d6e68  nlb_uncoupled_readouts_flip_to_static_on_bound_halt (concept-3 fix, 1 of the fresh 3 - budget NOT exhausted, 2 unused)
 
 engine_verify: check:renderer-syntax OK - tsc 0 errors - validate:concepts 125 PASS / 0 FAIL (after every seam)
 engine_regression: electric_flux 62/62 gates + magnetic_flux 38/38 gates, eye-walker NO REGRESSION on both (zero nlb_* leakage)
@@ -118,3 +110,38 @@ notes: 2026-07-26 RUNAWAY GUARD RELEASED BY FOUNDER. The guard tripped at 5 loop
 notes: ENGINE-FIX BUDGET RESET to 0 for block_on_incline. Fresh guard: pause again at 3 NEW engine commits during this concept. It is a single body on a slope - no coupling, no second body, no pulley - so it uses the simplest path in the engine and 3 fixes would genuinely indicate something systemic.
 
 notes: param_ramp IS PRE-AUTHORIZED and does NOT count against the fresh 3-commit budget (see CHAPTER_LOOP.md section 7.1). It is a deliberate, named ENGINE ADDITION, not a defect: the engine has no monotonic parameter reveal for a guided state (idle_auto_sweep is a repeating triangle, phases[] drives glow only), and tilt-until-break-away at tan(theta) = mu_s IS this concept's central beat. free_body_diagram STATE_5 was allowed to author around a static incline because tilt was not its point; block_on_incline is NOT allowed to. Do not rewrite the narration to dodge it - dispatch field3d-surgeon per section 7.1, and if the addition fails twice, PARK the concept and report rather than shipping a weakened break-away beat.
+
+notes: block_on_incline (concept 3) outcome, 2026-07-26. SEALED at ab34ffe, 5 states, baselines locked
+  by auto-approve on quality-auditor PASS + eye-walker CLEAN (both explicitly recommended SEAL). Cost:
+  ONE content fix cycle (of 3) and ONE engine fix (37d6e68) on top of the pre-authorized param_ramp
+  (ada18a4). The fresh 3-commit guard was NOT exhausted - two unused. The founder's release rationale
+  held: a single body on a slope really is the simplest engine path, and it needed one fix, not five.
+  THE CENTRAL BEAT SHIPPED AS SPECIFIED - STATE_3's ramp tilts monotonically 0 -> 35 deg, the block is
+  EXACTLY stuck (v = 0.0000, stuck = true) at every sample while theta < 24.23 deg, and break-away is
+  bracketed at t ~ 8307 ms, theta_c = tan-1(mu_s). No static incline, no narration written around a
+  missing tilt. param_ramp is now proven in both a guided state and (correctly inert) in a sandbox.
+  ONE residual ships unfixed, cleared by BOTH reviewers: the S2/S3 friction-arrow ~15 N length floor,
+  where a sub-floor force renders as a clamped stub rather than being suppressed. Mitigated by design
+  (glow_focal only walks to the friction arrow at 6112 ms, once it renders floor-faithfully). The true
+  fix is per-kind arrow-visibility gating in phases[] - an engine change, text-only scar candidate
+  logged as field3d_phases_cannot_gate_per_kind_arrow_visibility.
+
+notes: Concept 3 confirms the chapter's review lesson for the THIRD time, now with zero ambiguity. The
+  one defect that mattered - STATE_4's sliding block B collapsing onto the static block A's HUD row the
+  instant it ran out of track - passed 23/23 deterministic checks AND a full quality-auditor gate 0-20
+  PASS at cycle 0. The auditor had actually SEEN the post-bound readouts and certified them ("physically
+  correct, the accepted designed halt"); only eye-walker reading the pixels caught that B's row had gone
+  byte-identical to A's, inverting the two-fates beat the state exists to teach. Neither reviewer
+  produced a false positive this cycle - both dispatch prompts again listed the known false-positive
+  classes (frozen-frame semantics, the designed end-of-run halt, N/A-DORMANT registry, absent audio)
+  explicitly. Three for three: keep both reviewers, mandatory and parallel, and keep naming the
+  false-positive classes in the prompt.
+
+notes: The root cause was worth the commit and generalizes beyond this chapter. A velocity zeroed by a
+  GEOMETRIC clamp (a body hitting the end of finite track) was being fed straight into a PHYSICS rest
+  test, which could not tell a wall from a force balance and upgraded kinetic friction to static. In the
+  normal mu_s > mu_k case a sliding body never decelerates to rest on its own, so it is ALWAYS still
+  sliding when it hits the bound - the flip was reachable on every such state, not an edge case. This is
+  the exact Branch A twin of the coupled bug bc649d4 found in concept 2; the same class surfaced
+  independently in both integrator branches, which is the strongest argument in this chapter for the
+  scar list being kept as a real artifact rather than a per-concept note.
