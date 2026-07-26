@@ -245,6 +245,16 @@ export function deriveMotionExpectations(
             // relaxed by the show_sliders→interactive hold pass).
             const swc = state ? asObj(state.swc) : null;
             if (swc) { out[stateId] = (swc.mode && swc.mode !== 'sandbox') ? true : false; continue; }
+            // kinematics_1d_track (displacement_vs_distance, first 1D-
+            // straight-line-motion scenario, greenfield build 2026-07-25):
+            // every guided beat animates the runner (step / jog / pivot+
+            // return / sign-flip walk / lap sweep); the sandbox explore
+            // state (mode: 'sandbox') is user-driven → declare static (its
+            // frozen tail is relaxed by the show_sliders→interactive hold
+            // pass below, and its own idle-auto-sweep never truly freezes
+            // anyway).
+            const kt = state ? asObj(state.track) : null;
+            if (kt) { out[stateId] = (kt.mode && kt.mode !== 'sandbox') ? true : false; continue; }
             // bar_magnet_as_dipole: STATE_2's loop trace + STATE_3's break
             // genuinely CYCLE (the payoff is the repetition — "cut it
             // again, still two dipoles"), so they declare ongoing motion. Every
@@ -1679,6 +1689,45 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
     }
 
+    // kinematics_1d_track (displacement_vs_distance, first 1D-straight-line-
+    // motion scenario, greenfield build 2026-07-25): the per-state `track`
+    // block's `phases[]` is the full authored choreography timeline (see
+    // engine_build_spec in the concept JSON) — each phase carries at_ms/
+    // until_ms EXCEPT STATE_5's lap-sweep trio (sweep_laps/final_settle/
+    // endpoint_callout), whose renderer-side duration depends on the LIVE
+    // extra_laps slider (never a runtime string-eval — the renderer computes
+    // this directly; mirrored here using the state's AUTHORED extra_laps
+    // default, same convention as every other slider-dependent reveal
+    // estimate in this file — keep these three formulas in sync with
+    // field_3d_renderer.ts's updateKinematics1dTrackFrame if ever changed).
+    // STATE_6 (mode: 'sandbox') is the explore state — its idle-auto-sweep
+    // never settles, so it is excluded here and classified 'interactive' in
+    // deriveHoldExpectations below.
+    const kt = asObj(state.track);
+    if (kt && kt.mode !== 'sandbox' && Array.isArray(kt.phases)) {
+        const extraLaps = asNum(kt.extra_laps, 1);
+        let ktMax = 0;
+        for (const rawPhase of kt.phases) {
+            const ph = asObj(rawPhase);
+            if (!ph) continue;
+            if (ph.id === 'sweep_laps') {
+                ktMax = Math.max(ktMax, asNum(ph.at_ms, 2100) + 3000 * extraLaps);
+                continue;
+            }
+            if (ph.id === 'final_settle') {
+                ktMax = Math.max(ktMax, 2100 + 3000 * extraLaps + asNum(ph.duration_ms, 1000));
+                continue;
+            }
+            if (ph.id === 'endpoint_callout') {
+                ktMax = Math.max(ktMax, 2100 + 3000 * extraLaps + 1300 + asNum(ph.duration_ms, 1000));
+                continue;
+            }
+            if (typeof ph.until_ms === 'number') { ktMax = Math.max(ktMax, ph.until_ms); continue; }
+            if (typeof ph.at_ms === 'number') { ktMax = Math.max(ktMax, ph.at_ms); continue; }
+        }
+        if (ktMax > 0) candidates.push(ktMax + 500);
+    }
+
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
@@ -2077,6 +2126,20 @@ export function deriveHoldExpectations(
             const mflHold = asObj(state.magnetic_flux_loop);
             if (mflHold) {
                 out[stateId] = (mflHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // kinematics_1d_track (displacement_vs_distance): every state is
+            // LIVE (show_sliders true — Rule 31), so the generic show_sliders
+            // catch below would swallow S1-S5's guided choreograph-then-HOLD
+            // beats into 'interactive' before they ever reach it. Classify
+            // explicitly (mirrors the ac_generator/inductance/mfl guided-vs-
+            // sandbox split above): the explore state (mode: 'sandbox', S6)
+            // is user-driven → interactive; every other mode is a guided beat
+            // that settles to a HOLD (caught by maxRevealForField3dState
+            // above) → reveal_hold.
+            const ktHold = asObj(state.track);
+            if (ktHold) {
+                out[stateId] = (ktHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

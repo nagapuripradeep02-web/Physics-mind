@@ -43,7 +43,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'kinematics_1d_track';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -843,6 +843,36 @@ export interface Field3DConfig {
             show_projection?: boolean;         // S4 aha: the shrinking effective-area A·cosθ silhouette
             show_hand?: boolean;               // RHR hand asset beat (S5 only)
             show_unit?: boolean;               // append "Wb" to the Φ readout (default: state_index ≥ 5)
+        };
+        // ── kinematics_1d_track per-state config (displacement_vs_distance,
+        //    first 1D-straight-line-motion scenario; greenfield build
+        //    2026-07-25 — see engine_build_spec in the concept JSON for the
+        //    full renderer_primitives contract). A straight horizontal ground
+        //    track (-50..+50 m); the runner's x(t) is the only thing that
+        //    moves. `mode` selects the per-state choreography archetype;
+        //    `phases[]` is the full authored timeline (at_ms/until_ms/action/
+        //    glow_focal/scenario_cue per beat) — the renderer drives every
+        //    reveal as a PURE function of the state clock (Rule 26), never a
+        //    runtime string-eval (STATE_5's lap-sweep timing is computed
+        //    directly from the live extra_laps slider, not from a formula
+        //    string — see updateKinematics1dTrackFrame). `mode: 'sandbox'`
+        //    (S6) is the explore state — idle-auto-sweeps forever until a
+        //    trusted drag seizes the runner (Rule 37: never freezes).
+        track?: {
+            mode?: 'position_intro' | 'one_way_lockstep' | 'round_trip_divergence' |
+                'signed_direction' | 'endpoint_law_sweep' | 'sandbox';
+            x0?: number; x_f?: number; turnaround_x?: number; speed?: number; extra_laps?: number;
+            target_x?: number;
+            controls_visible?: Array<'target_x' | 'turnaround_x' | 'speed' | 'extra_laps'>;
+            show_readout?: boolean;
+            idle_auto_sweep?: { range?: [number, number]; speed_ref?: string };
+            trusted_drag_seizes?: boolean;
+            d_readout_persists_across_session?: boolean;
+            phases?: Array<{
+                id: string; at_ms?: number; until_ms?: number | null; action?: string;
+                glow_focal?: string; scenario_cue?: string;
+                duration_ms_formula?: string; at_ms_formula?: string; duration_ms?: number;
+            }>;
         };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
         //    lorentz_force_uniform_field) ──────────────────────────────────
@@ -1902,7 +1932,7 @@ body.pm-clean [style*="position: fixed"] {
             </div>
         </div>
     </div>
-    <div class="palm-footer">NCERT / DC Pandey: right-hand rule for v × B. Same hand both cases — only F's sign flips with q.</div>
+    <div class="palm-footer">Right-hand rule for v × B. Same hand both cases — only F's sign flips with q.</div>
 </div>
 <div id="fleming_overlay" class="pm_hud">
     <div class="fleming-title">Fleming's Left-Hand Rule</div>
@@ -2603,6 +2633,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (swcHits && swcHits.length) return true;
             }
         }
+        // kinematics_1d_track runner proxy (STATE_6 sandbox — trusted_drag_seizes).
+        if (ktStateIsDraggable()) {
+            var ktProxy = ktFindById("kt_runner_hit");
+            if (ktProxy && ktProxy.visible) {
+                pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+                var ktHits = pmRaycaster.intersectObject(ktProxy, false);
+                if (ktHits && ktHits.length) return true;
+            }
+        }
         return false;
     }
     // FIX 2 — hover-latch: while the pointer merely HOVERS the potential test-charge
@@ -2772,6 +2811,27 @@ export const FIELD_3D_RENDERER_CODE = `
                     }, "*");
                 } catch (e) {}
             }
+            return;
+        }
+        // kinematics_1d_track explorer (STATE_6 sandbox): grab the runner and
+        // slide it along the track's world-X axis (camera-right = +x, locked —
+        // engine_build_spec constraint). A trusted drag seizes control from the
+        // idle auto-sweep / any live target_x chase (Rule 31 live-instrument
+        // model) until the state resets on next entry.
+        if (ktStateIsDraggable()) {
+            var ktM = Math.max(-50, Math.min(50, hit.x / KT_SCALE));
+            window.PM_ktRunnerDragged = true;
+            window.PM_ktTargetDragged = false;
+            window.PM_ktDragX = ktM;
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "kinematics_1d_track_explorer"),
+                    param: "runner_position",
+                    value: ktM,
+                    point: [hit.x, hit.y, hit.z]
+                }, "*");
+            } catch (e) {}
             return;
         }
         var rsc = (config.slider_controls && config.slider_controls.r_gauss) || { min: 0.3, max: 4.0 };
@@ -22955,6 +23015,785 @@ export const FIELD_3D_RENDERER_CODE = `
         return idx >= 0 ? idx + 1 : 1;
     }
 
+    // ── kinematics_1d_track scenario (displacement_vs_distance; Δx=x_f-x0 vs
+    //    d = accumulated path length. First 1D-straight-line-motion scenario in
+    //    this renderer — greenfield build, 2026-07-25; see engine_build_spec in
+    //    the concept JSON for the full contract.) A single straight horizontal
+    //    ground track spanning -50..+50 m. Camera-right = +x is LOCKED across
+    //    all six states — every camera_position this concept authors keeps
+    //    world +X mapping to screen-right (camera.lookAt(0,0,0) + the spherical
+    //    convention above always projects +X to camera-right when the camera's
+    //    x-offset stays small, which every authored state does), so every
+    //    object below is placed directly on the world X axis with NO rotation
+    //    ever applied (no radians() anywhere — pure 1D translation; the
+    //    STATE_4 arrow "flip" is a discrete +-x orientation swap, never a
+    //    rotation). d(t) is a path-length integral — NEVER a closed-form
+    //    |x_f-x0|; the JSON's distance_when_monotonic/round_trip_distance/
+    //    lap_sweep_distance formulas are per-state CHECKSUMS for verifying it,
+    //    not the implementation (engine_build_spec constraints list, which
+    //    explicitly allows "per-leg schedule summed at boundaries" as an
+    //    alternative to a raw frame accumulator). GUIDED states (S1-S5) use
+    //    exactly that: ktDistanceM below sums |Δx| across the authored
+    //    ktPositionM schedule's breakpoints — a PURE function of state-local
+    //    ms, immune to THE EYE's non-monotonic dense/frozen capture seek
+    //    order (2026-07-25 fix — see ktDistanceM's own comment for the
+    //    accumulator bug this replaced). STATE_6 (sandbox) is the one
+    //    exception: window.PM_ktD += |x(t)-x(t-1)| every frame, because its
+    //    motion is live human drag input with no closed form, and its
+    //    odometer is a TRUE persistent session total that never resets.
+    var KT_SCALE = 0.11;                 // world units per metre (50 m -> 5.5 units)
+    var KT_GROUND_Y = -1.1;
+    var KT_ARROW_Y = KT_GROUND_Y + 0.95;  // kt_disp_arrow lane
+    var KT_GHOST_Y = KT_ARROW_Y + 0.55;   // kt_ghost_arrow — parallel offset lane, never occludes kt_disp_arrow
+    var KT_ARROW_MIN_LEN = 0.05;          // a real zero-length arrow renders as a dot, not nothing
+
+    function ktX(m) { return m * KT_SCALE; }
+    function ktClamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function ktSmooth(p) { p = ktClamp(p, 0, 1); return p * p * (3 - 2 * p); }
+    function ktFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+    function ktStateIsDraggable() {
+        var sd = config.states && config.states[PM_currentState];
+        var kt = sd && sd.track;
+        return !!(kt && kt.trusted_drag_seizes);
+    }
+    // The phase ACTIVE at a given state-local ms — the last phase whose
+    // at_ms <= tMs (phases[] is authored in chronological order). Drives the
+    // exactly-one-glow-focal-at-a-time emphasis (Rule 32e) directly off the
+    // authored choreography timeline, independent of the TTS SET_GLOW channel
+    // (this scenario's teacher_script glow ids reference scene_composition
+    // annotation labels, which field_3d never renders — see the
+    // "field3d_oncanvas_text_source" gotcha; track.phases[].glow_focal is the
+    // authoritative source here).
+    function ktActivePhase(phases, tMs) {
+        if (!phases || !phases.length) return null;
+        var active = null;
+        for (var i = 0; i < phases.length; i++) {
+            var ph = phases[i];
+            var at = (typeof ph.at_ms === "number") ? ph.at_ms : 0;
+            if (tMs >= at) active = ph;
+        }
+        return active;
+    }
+    function ktApplyGlow(phases, tMs) {
+        var ph = ktActivePhase(phases, tMs);
+        var focal = (ph && ph.glow_focal) || null;
+        var domIds = ["kt_x_readout", "kt_d_readout", "kt_dx_readout", "kt_lap_counter"];
+        for (var d = 0; d < domIds.length; d++) {
+            var el = document.getElementById(domIds[d]);
+            if (el) el.classList.toggle("glow-pulse", focal === domIds[d]);
+        }
+        var meshIds = ["kt_runner", "kt_disp_arrow", "kt_ghost_arrow", "kt_turnaround_post"];
+        for (var m = 0; m < meshIds.length; m++) {
+            var o = ktFindById(meshIds[m]);
+            if (!o) continue;
+            applyGlowEmphasis(o, focal === meshIds[m], !!focal, 0.85, true);
+        }
+    }
+
+    function buildKinematics1dTrack() {
+        var trackColor = (config.pvl_colors && config.pvl_colors.track) || "#90A4AE";
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var posColor = (config.pvl_colors && config.pvl_colors.displacement_positive) || "#66BB6A";
+        var negColor = (config.pvl_colors && config.pvl_colors.displacement_negative) || "#EF5350";
+        var distColor = (config.pvl_colors && config.pvl_colors.distance) || "#FFD54F";
+        var runnerColor = "#FFCA28";
+
+        // 1. Track — wipes in during STATE_1's track_wipe phase (0-1200ms via
+        //    scale.x), static full-length in every other state.
+        var trackGeo = new THREE.BoxGeometry(100 * KT_SCALE, 0.05, 0.5);
+        var trackMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(trackColor) });
+        var track = new THREE.Mesh(trackGeo, trackMat);
+        track.position.set(0, KT_GROUND_Y, 0);
+        track.userData = { elementType: "kt_track", id: "kt_track" };
+        addToScene(track);
+
+        // 2. Tick marks every 10 m, -50..+50 (11 ticks) — static with the track.
+        var ticksGrp = new THREE.Group();
+        ticksGrp.userData = { elementType: "kt_ticks", id: "kt_ticks" };
+        for (var tm = -50; tm <= 50; tm += 10) {
+            var tickGeo = new THREE.BoxGeometry(0.02, 0.16, 0.16);
+            var tickMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(trackColor) });
+            var tick = new THREE.Mesh(tickGeo, tickMat);
+            tick.position.set(ktX(tm), KT_GROUND_Y + 0.08, 0.32);
+            tick.userData = { elementType: "kt_ticks", id: "kt_tick_" + tm };
+            ticksGrp.add(tick);
+        }
+        addToScene(ticksGrp);
+
+        // Camera-right = +x axis cue (billboarded orientation is unnecessary —
+        // the label is flat text always facing the fixed-ish frontal cameras
+        // every state authors; createLabelSprite is already a camera-facing
+        // sprite, so it billboards for free).
+        var axisArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(ktX(-50), KT_GROUND_Y - 0.5, 0), 0.9, hexToThreeColor(textColor), 0.16, 0.09);
+        axisArrow.userData = { elementType: "kt_track", id: "kt_axis_arrow" };
+        addToScene(axisArrow);
+        var axisLbl = createLabelSprite("+x", textColor, 0.3);
+        axisLbl.position.set(ktX(-50) + 1.15, KT_GROUND_Y - 0.5, 0);
+        axisLbl.userData = { elementType: "kt_track", id: "kt_lbl_axis" };
+        addToScene(axisLbl);
+
+        // 3. Origin flag at x=0 — drop/bounce during STATE_1, static after.
+        var flagGrp = new THREE.Group();
+        flagGrp.userData = { elementType: "kt_origin_flag", id: "kt_origin_flag" };
+        var poleGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.7, 8);
+        var poleMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(posColor) });
+        var pole = new THREE.Mesh(poleGeo, poleMat);
+        pole.position.set(0, 0.35, 0);
+        flagGrp.add(pole);
+        var flagGeo = new THREE.PlaneGeometry(0.32, 0.2);
+        var flagMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(posColor), side: THREE.DoubleSide, transparent: true, opacity: 0.92 });
+        var flagMesh = new THREE.Mesh(flagGeo, flagMat);
+        flagMesh.position.set(0.17, 0.62, 0);
+        flagGrp.add(flagMesh);
+        flagGrp.position.set(0, KT_GROUND_Y, 0);
+        addToScene(flagGrp);
+        var oLbl = createLabelSprite("O", posColor, 0.34);
+        oLbl.position.set(0, KT_GROUND_Y - 0.32, 0);
+        oLbl.userData = { elementType: "kt_origin_flag", id: "kt_lbl_O" };
+        addToScene(oLbl);
+
+        // 4. Runner figure — the ONLY thing whose position changes.
+        var runnerGrp = new THREE.Group();
+        runnerGrp.userData = { elementType: "kt_runner", id: "kt_runner" };
+        var bodyGeo = new THREE.CylinderGeometry(0.09, 0.11, 0.5, 10);
+        var bodyMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(runnerColor), emissive: hexToThreeColor(runnerColor), emissiveIntensity: 0.15 });
+        var bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+        bodyMesh.position.set(0, 0.28, 0);
+        runnerGrp.add(bodyMesh);
+        var headGeo = new THREE.SphereGeometry(0.13, 14, 14);
+        var headMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(runnerColor), emissive: hexToThreeColor(runnerColor), emissiveIntensity: 0.15 });
+        var headMesh = new THREE.Mesh(headGeo, headMat);
+        headMesh.position.set(0, 0.66, 0);
+        runnerGrp.add(headMesh);
+        runnerGrp.position.set(0, KT_GROUND_Y, 0);
+        addToScene(runnerGrp);
+
+        // Forgiving invisible drag proxy around the runner (STATE_6 sandbox
+        // only — applyKinematics1dTrackState toggles .visible per state;
+        // raycaster skips visible:false everywhere else, mirrors pm_drag_hit).
+        var hitGeo = new THREE.SphereGeometry(0.55, 10, 10);
+        var hitMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+        var hitMesh = new THREE.Mesh(hitGeo, hitMat);
+        hitMesh.position.set(0, KT_GROUND_Y + 0.35, 0);
+        hitMesh.visible = false;
+        hitMesh.userData = { elementType: "kt_runner_hit", id: "kt_runner_hit", draggable: true };
+        addToScene(hitMesh);
+
+        // 5. Displacement arrow — rooted at x0, tip at x(t); a live continuous
+        //    tracker (updated every frame in updateKinematics1dTrackFrame).
+        var dispArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, KT_ARROW_Y, 0), KT_ARROW_MIN_LEN, hexToThreeColor(posColor), 0.14, 0.08);
+        dispArrow.userData = { elementType: "kt_disp_arrow", id: "kt_disp_arrow" };
+        addToScene(dispArrow);
+        var dxArrowLbl = createLabelSprite("\\u0394x", posColor, 0.3);
+        dxArrowLbl.position.set(0, KT_ARROW_Y + 0.35, 0);
+        dxArrowLbl.userData = { elementType: "kt_disp_arrow", id: "kt_lbl_dxarrow" };
+        addToScene(dxArrowLbl);
+
+        // 6. Ghost arrow (STATE_3 only) — dim/desaturated, offset parallel lane
+        //    ABOVE kt_disp_arrow (never occludes it); grows at the naive d(t)
+        //    rate, then gets struck through.
+        var ghostArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, KT_GHOST_Y, 0), KT_ARROW_MIN_LEN, hexToThreeColor(distColor), 0.12, 0.07);
+        ghostArrow.userData = { elementType: "kt_ghost_arrow", id: "kt_ghost_arrow" };
+        ghostArrow.visible = false;
+        addToScene(ghostArrow);
+        ghostArrow.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = 0.55; } });
+        var strikeGeo1 = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-0.15, -0.15, 0), new THREE.Vector3(0.15, 0.15, 0)]);
+        var strikeGeo2 = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-0.15, 0.15, 0), new THREE.Vector3(0.15, -0.15, 0)]);
+        var strikeMat1 = new THREE.LineBasicMaterial({ color: hexToThreeColor(negColor), transparent: true, opacity: 0, linewidth: 2 });
+        var strikeMat2 = strikeMat1.clone();
+        var strike1 = new THREE.Line(strikeGeo1, strikeMat1);
+        var strike2 = new THREE.Line(strikeGeo2, strikeMat2);
+        var strikeGrp = new THREE.Group();
+        strikeGrp.add(strike1); strikeGrp.add(strike2);
+        strikeGrp.position.set(0, KT_GHOST_Y, 0);
+        strikeGrp.userData = { elementType: "kt_ghost_arrow", id: "kt_ghost_strike" };
+        strikeGrp.visible = false;
+        addToScene(strikeGrp);
+
+        // 7. Turnaround post + "L" label (STATE_3 primary; STATE_6 on demand).
+        var postGrp = new THREE.Group();
+        postGrp.userData = { elementType: "kt_turnaround_post", id: "kt_turnaround_post" };
+        var postPoleGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.85, 8);
+        var postPoleMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(distColor), emissive: hexToThreeColor(distColor), emissiveIntensity: 0.2 });
+        var postPole = new THREE.Mesh(postPoleGeo, postPoleMat);
+        postPole.position.set(0, 0.42, 0);
+        postGrp.add(postPole);
+        postGrp.position.set(ktX(40), KT_GROUND_Y, 0);
+        postGrp.visible = false;
+        addToScene(postGrp);
+        var postLbl = createLabelSprite("L", distColor, 0.32);
+        postLbl.position.set(0, 1.0, 0);
+        postLbl.userData = { elementType: "kt_turnaround_post", id: "kt_lbl_L" };
+        postGrp.add(postLbl);
+
+        // 8. Sweep-zone bound markers at the CONSTANT sweep_min/sweep_max
+        //    (+10/+30 m) — STATE_5/STATE_6, static for the state.
+        var sweepGrp = new THREE.Group();
+        sweepGrp.userData = { elementType: "kt_sweep_markers", id: "kt_sweep_markers" };
+        [10, 30].forEach(function (m) {
+            var g = new THREE.CylinderGeometry(0.02, 0.02, 0.55, 8);
+            var mm = new THREE.MeshPhongMaterial({ color: hexToThreeColor(runnerColor), transparent: true, opacity: 0.75 });
+            var mesh = new THREE.Mesh(g, mm);
+            mesh.position.set(ktX(m), KT_GROUND_Y + 0.28, 0);
+            sweepGrp.add(mesh);
+        });
+        sweepGrp.visible = false;
+        addToScene(sweepGrp);
+
+        // 9. x0 / x_f small tick labels.
+        var x0Lbl = createLabelSprite("x\\u2080", posColor, 0.28);
+        x0Lbl.position.set(0, KT_GROUND_Y + 0.42, -0.35);
+        x0Lbl.userData = { elementType: "kt_x0_marker", id: "kt_x0_marker" };
+        x0Lbl.visible = false;
+        addToScene(x0Lbl);
+        var xfLbl = createLabelSprite("x_f", posColor, 0.28);
+        xfLbl.position.set(0, KT_GROUND_Y + 0.42, -0.35);
+        xfLbl.userData = { elementType: "kt_xf_marker", id: "kt_xf_marker" };
+        xfLbl.visible = false;
+        addToScene(xfLbl);
+
+        // 10. HUD readouts — top-anchored >=52px, clearing the review-chrome
+        //     Full-screen button + pen bar (field3d_sliders_panel_top12_vs_
+        //     fsbtn_top10 scar). Value-only (Rule 34b) — a live number, no
+        //     re-derivation of the formula here.
+        // kt_x_readout — plain position HUD, STATE_1 ONLY (before Δx is
+        // introduced — the earlier pre-spoil fix). Occupies the SAME screen
+        // slot kt_dx_readout takes over from STATE_2 onward (top:52px;
+        // right:12px) — it's the same physical instrument, relabelled, so
+        // the panel reads as one continuous readout across the state cut
+        // (Rule 32d home-pose/instrument continuity), never both at once
+        // (visible_elements is exact-match exclusive between the two ids).
+        var xRp = document.createElement("div");
+        xRp.id = "kt_x_readout";
+        xRp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + posColor + ";padding:9px 13px;border-radius:8px;font:14px/1.6 monospace;z-index:10;min-width:140px;display:none;text-align:right;";
+        document.body.appendChild(xRp);
+        var dRp = document.createElement("div");
+        dRp.id = "kt_d_readout";
+        dRp.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.82);color:" + distColor + ";padding:9px 13px;border-radius:8px;font:14px/1.6 monospace;z-index:10;min-width:140px;display:none;";
+        document.body.appendChild(dRp);
+        var dxRp = document.createElement("div");
+        dxRp.id = "kt_dx_readout";
+        dxRp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + posColor + ";padding:9px 13px;border-radius:8px;font:14px/1.6 monospace;z-index:10;min-width:140px;display:none;text-align:right;";
+        document.body.appendChild(dxRp);
+        var lapRp = document.createElement("div");
+        lapRp.id = "kt_lap_counter";
+        lapRp.style.cssText = "position:fixed;top:104px;left:12px;background:rgba(0,0,0,0.82);color:" + runnerColor + ";padding:7px 12px;border-radius:8px;font:12px/1.5 monospace;z-index:10;display:none;";
+        document.body.appendChild(lapRp);
+
+        // 11. Dedicated formula surface — Cambria Math serif, NOT the generic
+        //     #formula_overlay (13px monospace; OPEN scar field3d_formula_
+        //     overlay_generic_not_cambria_math applies directly to this
+        //     concept per quality_auditor's STATE_3 screenshot finding).
+        var fEl = document.createElement("div");
+        fEl.id = "kt_formula";
+        fEl.style.cssText = "position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(10,10,26,0.85);color:#FFF176;padding:9px 20px;border-radius:8px;font:600 19px/1.5 'Cambria Math','Times New Roman',serif;z-index:11;display:none;white-space:nowrap;text-align:center;";
+        document.body.appendChild(fEl);
+
+        // 12. Per-state contextual control panel (Rule 31) — rows built ONCE
+        //     (#kt_target_row/#kt_turn_row/#kt_speed_row/#kt_laps_row), shown/
+        //     hidden per state's track.controls_visible, same screen position
+        //     always. Owns its own #kt_sliders panel — excluded from the
+        //     generic #sliders panel via the isKt flag in applyState.
+        var scfg = config.slider_controls || {};
+        function ktSc(key, dmin, dmax, dstep, ddef, dlabel) {
+            var o = scfg[key] || {};
+            return { min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax), step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef), label: o.label || dlabel };
+        }
+        var scTarget = ktSc("target_x", -50, 50, 1, 20, "Target position (m)");
+        var scTurn = ktSc("turnaround_x", 10, 50, 1, 40, "Turnaround post L (m)");
+        var scSpeed = ktSc("speed", 0.5, 5, 0.1, 2, "Runner speed (m/s)");
+        var scLaps = ktSc("extra_laps", 0, 5, 1, 1, "Sweep laps");
+        window.PM_ktTargetX = scTarget.def; window.PM_ktTurnaroundX = scTurn.def;
+        window.PM_ktSpeed = scSpeed.def; window.PM_ktExtraLaps = scLaps.def;
+        window.PM_ktTargetDragged = false; window.PM_ktRunnerDragged = false; window.PM_ktDragX = 0;
+        window.PM_ktD = 0; window.PM_ktLastX = 0; window.PM_ktLapsCompleted = 0;
+
+        var sp = document.createElement("div");
+        sp.id = "kt_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:220px;display:none;";
+        sp.innerHTML =
+            '<div id="kt_target_row" style="display:none"><label>' + scTarget.label + ': <span id="kt_target_val">' + scTarget.def.toFixed(0) + '</span> m</label>' +
+            '<input type="range" id="kt_target_slider" min="' + scTarget.min + '" max="' + scTarget.max + '" step="' + scTarget.step + '" value="' + scTarget.def + '" style="width:100%"></div>' +
+            '<div id="kt_turn_row" style="display:none;margin-top:6px"><label>' + scTurn.label + ': <span id="kt_turn_val">' + scTurn.def.toFixed(0) + '</span> m</label>' +
+            '<input type="range" id="kt_turn_slider" min="' + scTurn.min + '" max="' + scTurn.max + '" step="' + scTurn.step + '" value="' + scTurn.def + '" style="width:100%"></div>' +
+            '<div id="kt_speed_row" style="display:none;margin-top:6px"><label>' + scSpeed.label + ': <span id="kt_speed_val">' + scSpeed.def.toFixed(1) + '</span> m/s</label>' +
+            '<input type="range" id="kt_speed_slider" min="' + scSpeed.min + '" max="' + scSpeed.max + '" step="' + scSpeed.step + '" value="' + scSpeed.def + '" style="width:100%"></div>' +
+            '<div id="kt_laps_row" style="display:none;margin-top:6px"><label>' + scLaps.label + ': <span id="kt_laps_val">' + scLaps.def + '</span></label>' +
+            '<input type="range" id="kt_laps_slider" min="' + scLaps.min + '" max="' + scLaps.max + '" step="' + scLaps.step + '" value="' + scLaps.def + '" style="width:100%"></div>';
+        document.body.appendChild(sp);
+
+        function ktEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "kinematics_1d_track_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var targetSl = document.getElementById("kt_target_slider"), targetV = document.getElementById("kt_target_val");
+        var turnSl = document.getElementById("kt_turn_slider"), turnV = document.getElementById("kt_turn_val");
+        var speedSl = document.getElementById("kt_speed_slider"), speedV = document.getElementById("kt_speed_val");
+        var lapsSl = document.getElementById("kt_laps_slider"), lapsV = document.getElementById("kt_laps_val");
+        if (targetSl) targetSl.addEventListener("input", function (ev) {
+            window.PM_ktTargetX = parseFloat(targetSl.value);
+            if (targetV) targetV.textContent = window.PM_ktTargetX.toFixed(0);
+            if (ev && ev.isTrusted) {
+                window.PM_ktTargetDragged = true;
+                window.PM_ktRunnerDragged = false;
+                window.PM_ktTargetDragStartX = window.PM_ktLastX;
+                window.PM_ktTargetDragStartT = time;
+            }
+            ktEmit("target_x", window.PM_ktTargetX);
+        });
+        if (turnSl) turnSl.addEventListener("input", function () {
+            window.PM_ktTurnaroundX = parseFloat(turnSl.value);
+            if (turnV) turnV.textContent = window.PM_ktTurnaroundX.toFixed(0);
+            ktEmit("turnaround_x", window.PM_ktTurnaroundX);
+        });
+        if (speedSl) speedSl.addEventListener("input", function () {
+            window.PM_ktSpeed = parseFloat(speedSl.value);
+            if (speedV) speedV.textContent = window.PM_ktSpeed.toFixed(1);
+            ktEmit("speed", window.PM_ktSpeed);
+        });
+        if (lapsSl) lapsSl.addEventListener("input", function () {
+            window.PM_ktExtraLaps = parseInt(lapsSl.value, 10);
+            if (lapsV) lapsV.textContent = String(window.PM_ktExtraLaps);
+            ktEmit("extra_laps", window.PM_ktExtraLaps);
+        });
+    }
+
+    // Per-state seed: home pose, panel row visibility (Rule 31), readout DOM
+    // visibility (mirrors visible_elements exactly — kt_x_readout/kt_d_
+    // readout/kt_dx_readout/kt_lap_counter are DOM overlays, so the generic sceneObjects
+    // visible_elements pass above never touches them), and the one-shot-
+    // reveal elements (ghost/strike/xf_marker) forced hidden so the animate
+    // loop can reveal them at their authored moment even though the generic
+    // pass already flipped their 3D group visible for this state.
+    function applyKinematics1dTrackState(stateDef) {
+        var track = stateDef.track || {};
+        var isSandbox = track.mode === "sandbox";
+        var scfg = config.slider_controls || {};
+        var defTarget = (scfg.target_x && scfg.target_x["default"] != null) ? scfg.target_x["default"] : 20;
+        var defTurn = (scfg.turnaround_x && scfg.turnaround_x["default"] != null) ? scfg.turnaround_x["default"] : 40;
+        var defSpeed = (scfg.speed && scfg.speed["default"] != null) ? scfg.speed["default"] : 2;
+        var defLaps = (scfg.extra_laps && scfg.extra_laps["default"] != null) ? scfg.extra_laps["default"] : 1;
+
+        var x0 = (typeof track.x0 === "number") ? track.x0 : 0;
+        var xf = (typeof track.x_f === "number") ? track.x_f : defTarget;
+        var turnX = (typeof track.turnaround_x === "number") ? track.turnaround_x : defTurn;
+        var speed = (typeof track.speed === "number") ? track.speed : defSpeed;
+        var laps = (typeof track.extra_laps === "number") ? track.extra_laps : defLaps;
+        var targetX = (typeof track.target_x === "number") ? track.target_x : defTarget;
+
+        window.PM_ktX0 = x0; window.PM_ktXf = xf; window.PM_ktTurnaroundX = turnX;
+        window.PM_ktSpeed = speed; window.PM_ktExtraLaps = laps; window.PM_ktTargetX = targetX;
+        window.PM_ktTargetDragged = false;
+        window.PM_ktRunnerDragged = false;
+        window.PM_ktLapsCompleted = isSandbox ? (window.PM_ktLapsCompleted || 0) : 0;
+
+        // d(t) accumulator: every guided state (S1-S5) is a reproducible
+        // preset that replays identically on every entry (Rule 31 instrument
+        // model), EXCEPT the S6 sandbox, whose odometer is a TRUE persistent
+        // session total that never resets (engine_build_spec: "d_readout
+        // NEVER resets across the session").
+        if (!isSandbox) window.PM_ktD = 0;
+        window.PM_ktLastX = x0;
+        // dx(t) in STATE_6 is relative to the runner's position when
+        // STATE_6's clock STARTED (captured once here) — not the guided
+        // x0 convention every other state uses.
+        window.PM_ktSessionX0 = x0;
+
+        var runner = ktFindById("kt_runner");
+        if (runner) runner.position.x = ktX(x0);
+        var hit = ktFindById("kt_runner_hit");
+        if (hit) { hit.visible = !!track.trusted_drag_seizes; hit.position.x = ktX(x0); }
+        var post = ktFindById("kt_turnaround_post");
+        if (post) post.position.x = ktX(turnX);
+
+        var ghost = ktFindById("kt_ghost_arrow");
+        if (ghost) { ghost.visible = false; ghost.setLength(KT_ARROW_MIN_LEN, 0.12, 0.07); }
+        var strike = ktFindById("kt_ghost_strike");
+        if (strike) { strike.visible = false; strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = 0; }); }
+        var x0Lbl = ktFindById("kt_x0_marker");
+        if (x0Lbl) x0Lbl.position.x = ktX(x0);
+        var xfLbl = ktFindById("kt_xf_marker");
+        if (xfLbl) { xfLbl.visible = false; xfLbl.position.x = ktX(xf); }
+        var track3d = ktFindById("kt_track");
+        if (track3d) track3d.scale.x = (track.mode === "position_intro") ? 0 : 1;
+        var flagGrp = ktFindById("kt_origin_flag");
+        if (flagGrp) flagGrp.scale.setScalar((track.mode === "position_intro") ? 0 : 1);
+
+        // Per-state contextual control panel (Rule 31) — rows shown only for
+        // the control(s) THIS beat exposes; the explore state (S6) exposes
+        // all four (interaction_complete progressive disclosure).
+        var controlsVisible = track.controls_visible || [];
+        var rowIds = { target_x: "kt_target_row", turnaround_x: "kt_turn_row", speed: "kt_speed_row", extra_laps: "kt_laps_row" };
+        for (var key in rowIds) {
+            var rowEl = document.getElementById(rowIds[key]);
+            if (rowEl) rowEl.style.display = (controlsVisible.indexOf(key) !== -1) ? "block" : "none";
+        }
+        var targetSl = document.getElementById("kt_target_slider"), targetV = document.getElementById("kt_target_val");
+        if (targetSl) targetSl.value = String(targetX);
+        if (targetV) targetV.textContent = targetX.toFixed(0);
+        var turnSl = document.getElementById("kt_turn_slider"), turnV = document.getElementById("kt_turn_val");
+        if (turnSl) turnSl.value = String(turnX);
+        if (turnV) turnV.textContent = turnX.toFixed(0);
+        var speedSl = document.getElementById("kt_speed_slider"), speedV = document.getElementById("kt_speed_val");
+        if (speedSl) speedSl.value = String(speed);
+        if (speedV) speedV.textContent = speed.toFixed(1);
+        var lapsSl = document.getElementById("kt_laps_slider"), lapsV = document.getElementById("kt_laps_val");
+        if (lapsSl) lapsSl.value = String(laps);
+        if (lapsV) lapsV.textContent = String(laps);
+
+        var panelEl = document.getElementById("kt_sliders");
+        if (panelEl) panelEl.style.display = (controlsVisible.length > 0) ? "block" : "none";
+
+        // Readout DOM visibility mirrors visible_elements exactly (the same
+        // array the generic 3D pass in applyState already read).
+        var vis = stateDef.visible_elements || [];
+        function ktHas(tok) { return vis.indexOf(tok) !== -1; }
+        var xRp = document.getElementById("kt_x_readout");
+        if (xRp) xRp.style.display = ktHas("kt_x_readout") ? "block" : "none";
+        var dRp = document.getElementById("kt_d_readout");
+        if (dRp) dRp.style.display = ktHas("kt_d_readout") ? "block" : "none";
+        var dxRp = document.getElementById("kt_dx_readout");
+        if (dxRp) dxRp.style.display = ktHas("kt_dx_readout") ? "block" : "none";
+        var lapRp = document.getElementById("kt_lap_counter");
+        if (lapRp) lapRp.style.display = ktHas("kt_lap_counter") ? "block" : "none";
+
+        var fEl = document.getElementById("kt_formula");
+        if (fEl) {
+            var ftext = stateDef.formula_overlay || "";
+            fEl.textContent = ftext;
+            fEl.style.display = ftext ? "block" : "none";
+        }
+    }
+
+    // Pure fn of state-local ms -> runner position in metres, per authored
+    // mode. STATE_5's lap-sweep timing reads the LIVE extra_laps slider
+    // directly (never a runtime string-eval of the JSON's duration_ms_formula/
+    // at_ms_formula fields — those stay documentation-only; this arithmetic
+    // mirrors them exactly and MUST stay in sync with deriveStateMeta.ts's
+    // maxRevealForField3dState if the timing constants ever change).
+    function ktPositionM(mode, tMs, x0, xf, turnX, laps) {
+        if (mode === "position_intro") {
+            if (tMs < 1800) return x0;
+            if (tMs < 3600) return x0 + (xf - x0) * ktSmooth((tMs - 1800) / 1800);
+            return xf;
+        }
+        if (mode === "one_way_lockstep") {
+            if (tMs < 500) return x0;
+            if (tMs < 5500) return x0 + (xf - x0) * ktClamp((tMs - 500) / 5000, 0, 1);
+            return xf;
+        }
+        if (mode === "round_trip_divergence") {
+            if (tMs < 500) return x0;
+            if (tMs < 3500) return x0 + (turnX - x0) * ktClamp((tMs - 500) / 3000, 0, 1);
+            if (tMs < 4100) return turnX;
+            if (tMs < 7100) return turnX + (x0 - turnX) * ktClamp((tMs - 4100) / 3000, 0, 1);
+            return x0;
+        }
+        if (mode === "signed_direction") {
+            var earlyTarget = x0 + (xf - x0) * 0.15; // "first visible steps" (cause_steps beat)
+            if (tMs < 600) return x0;
+            if (tMs < 1000) return x0 + (earlyTarget - x0) * ktSmooth((tMs - 600) / 400);
+            if (tMs < 1500) return earlyTarget;
+            if (tMs < 4100) return earlyTarget + (xf - earlyTarget) * ktClamp((tMs - 1500) / 2600, 0, 1);
+            return xf;
+        }
+        if (mode === "endpoint_law_sweep") {
+            var sweepMin = 10, sweepMax = 30;
+            if (tMs < 600) return x0;
+            if (tMs < 1600) return x0 + (sweepMin - x0) * ktClamp((tMs - 600) / 1000, 0, 1);
+            if (tMs < 2100) return sweepMin;
+            var sweepEndMs = 2100 + 3000 * laps;
+            if (tMs < sweepEndMs) {
+                var elapsed = tMs - 2100;
+                var within = elapsed % 3000;
+                if (within < 1500) return sweepMin + (sweepMax - sweepMin) * (within / 1500);
+                return sweepMax + (sweepMin - sweepMax) * ((within - 1500) / 1500);
+            }
+            var settleEndMs = sweepEndMs + 1000;
+            if (tMs < settleEndMs) return sweepMin + (xf - sweepMin) * ktClamp((tMs - sweepEndMs) / 1000, 0, 1);
+            return xf;
+        }
+        return x0;
+    }
+
+    // ── d(t) as a PURE function of state-local ms (Bug-3 fix, 2026-07-25) ──
+    // The original design used a mutable frame-to-frame accumulator
+    // (PM_ktD += |x(t)-x(t-1)| every animate() tick) documented as
+    // intentional in the engine_build_spec ("d is a path integral, NOT a
+    // closed-form"). That accumulator is correct ONLY if every intermediate
+    // frame is actually visited in increasing time order. THE EYE's dense +
+    // frozen capture pins one long-lived page session per state and does NOT
+    // guarantee monotonically increasing at_ms requests (a frozen/settled
+    // capture can land before or after a dense t-pin) — SET_TIME_FREEZE
+    // (renderer's postMessage handler above) sets freezeAtTime directly; if
+    // the new target is BEHIND the clock's current position, the animate loop
+    // SNAPS backward in one frame (time = freezeAtTime, no crawl), and the
+    // accumulator then adds |x(newTarget)-x(oldTarget)| as if that were real
+    // motion — a fictitious distance that permanently inflates PM_ktD for
+    // every subsequent read in that state. Root cause confirmed 2026-07-25:
+    // this is a genuine capture-harness-interaction bug (verified against a
+    // live continuous Playwright click-through, which read correctly), not a
+    // live-playback bug — but since THE EYE is a mandatory permanent gate
+    // (CLAUDE.md §5), it still had to be fixed here, not worked around there.
+    // The robust fix: every GUIDED state's motion (S1-S5) is already a
+    // reproducible piecewise schedule (ktPositionM above) — so d(t) can be
+    // computed directly as a closed-form path integral of that SAME schedule,
+    // immune to seek/jump/re-entry order by construction (Rule 26: a pure
+    // function of the state clock). Each inter-breakpoint segment below is
+    // monotonic in x (verified per-mode against ktPositionM's own easing —
+    // smootherstep/linear ramps never overshoot), so a segment's full-path
+    // contribution is exactly |x(segEnd)-x(segStart)| regardless of its ease
+    // curve, and the in-progress (final, partial) segment's contribution is
+    // just |x(t)-x(segStart)| evaluated via ktPositionM itself — so this
+    // never duplicates the position logic, it only re-walks its breakpoints.
+    // STATE_6 (sandbox) is NOT covered here — its odometer is a genuine
+    // persistent session total driven by live human drag input with no
+    // closed form, and THE EYE cannot fire trusted drag events there anyway
+    // (untestable by the visual gate), so it keeps the frame accumulator.
+    function ktBreakpoints(mode, x0, xf, turnX, laps) {
+        if (mode === "position_intro") return [0, 1800, 3600, 999999];
+        if (mode === "one_way_lockstep") return [0, 500, 5500, 999999];
+        if (mode === "round_trip_divergence") return [0, 500, 3500, 4100, 7100, 999999];
+        if (mode === "signed_direction") return [0, 600, 1000, 1500, 4100, 999999];
+        if (mode === "endpoint_law_sweep") {
+            var bps = [0, 600, 1600, 2100];
+            var lapsN = Math.max(0, laps || 0);
+            var totalHalves = Math.round(2 * lapsN);
+            for (var k = 1; k <= totalHalves; k++) bps.push(2100 + k * 1500);
+            var sweepEndMs = 2100 + 3000 * lapsN;
+            if (bps[bps.length - 1] < sweepEndMs) bps.push(sweepEndMs);
+            bps.push(sweepEndMs + 1000);
+            bps.push(999999);
+            return bps;
+        }
+        return [0, 999999];
+    }
+    function ktDistanceM(mode, tMs, x0, xf, turnX, laps) {
+        var bps = ktBreakpoints(mode, x0, xf, turnX, laps);
+        var d = 0;
+        for (var i = 0; i < bps.length - 1; i++) {
+            var segStart = bps[i], segEnd = bps[i + 1];
+            if (segEnd <= segStart) continue;
+            if (tMs >= segEnd) {
+                d += Math.abs(ktPositionM(mode, segEnd, x0, xf, turnX, laps) - ktPositionM(mode, segStart, x0, xf, turnX, laps));
+            } else if (tMs > segStart) {
+                d += Math.abs(ktPositionM(mode, tMs, x0, xf, turnX, laps) - ktPositionM(mode, segStart, x0, xf, turnX, laps));
+                break;
+            } else {
+                break;
+            }
+        }
+        return d;
+    }
+
+    function updateKinematics1dTrackFrame() {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var track = stateDef.track || {};
+        var mode = track.mode || "position_intro";
+        var isSandbox = mode === "sandbox";
+        var t = time - stateStartTime;   // state-local seconds (Rule 26)
+        var tMs = t * 1000;
+        var posColor = (config.pvl_colors && config.pvl_colors.displacement_positive) || "#66BB6A";
+        var negColor = (config.pvl_colors && config.pvl_colors.displacement_negative) || "#EF5350";
+
+        var x0 = (typeof track.x0 === "number") ? track.x0 : window.PM_ktSessionX0;
+        var xf = (typeof track.x_f === "number") ? track.x_f : window.PM_ktTargetX;
+        var turnX = window.PM_ktTurnaroundX;
+        var laps = window.PM_ktExtraLaps;
+
+        // Track wipe-in + origin-flag drop (STATE_1 only; static elsewhere).
+        if (mode === "position_intro") {
+            var track3d = ktFindById("kt_track");
+            if (track3d) track3d.scale.x = ktSmooth(tMs / 1200);
+            var flagGrp = ktFindById("kt_origin_flag");
+            if (flagGrp) flagGrp.scale.setScalar(tMs < 1000 ? 0 : ktClamp((tMs - 1000) / 600, 0, 1));
+        }
+
+        // ── Runner position: dragged (S6 trusted grab) > commanded target
+        //    chase (S6 target_x drag) > idle auto-sweep (S6 default) > the
+        //    authored guided choreography (S1-S5).
+        var xNow;
+        if (isSandbox) {
+            if (window.PM_ktRunnerDragged) {
+                xNow = ktClamp(window.PM_ktDragX, -50, 50);
+            } else if (window.PM_ktTargetDragged) {
+                var startX = (window.PM_ktTargetDragStartX != null) ? window.PM_ktTargetDragStartX : window.PM_ktSessionX0;
+                var startT = (window.PM_ktTargetDragStartT != null) ? window.PM_ktTargetDragStartT : time;
+                var dist = Math.abs(window.PM_ktTargetX - startX);
+                var dur = Math.max(0.2, dist / Math.max(0.2, window.PM_ktSpeed));
+                var p = ktClamp((time - startT) / dur, 0, 1);
+                xNow = startX + (window.PM_ktTargetX - startX) * p;
+            } else {
+                // Idle auto-sweep (Rule 37: never freezes, needs no input) —
+                // a continuous triangle wave across the full track, PHASE-
+                // ANCHORED so it starts exactly at the runner's session-start
+                // position at t=0 (no teleport, Rule 32d) and rises toward
+                // +x first (cause-before-effect, consistent first motion).
+                var range0 = -40, range1 = 40, span = range1 - range0;
+                var s0 = ktClamp(window.PM_ktSessionX0 - range0, 0, span);
+                var sNow = s0 + Math.max(0, window.PM_ktSpeed) * t;
+                var sw = sNow % (2 * span);
+                if (sw < 0) sw += 2 * span;
+                xNow = range0 + span - Math.abs(sw - span);
+            }
+        } else {
+            xNow = ktPositionM(mode, tMs, x0, xf, turnX, laps);
+        }
+
+        var runner = ktFindById("kt_runner");
+        if (runner) runner.position.x = ktX(xNow);
+        var hit = ktFindById("kt_runner_hit");
+        if (hit) hit.position.x = ktX(xNow);
+
+        // d(t): guided states (S1-S5) read a CLOSED-FORM path integral of the
+        // authored ktPositionM schedule (ktDistanceM above) — a pure function
+        // of tMs, immune to THE EYE's non-monotonic dense/frozen capture seek
+        // order (see the ktDistanceM comment for the accumulator bug this
+        // replaces). STATE_6 (sandbox) keeps the frame-to-frame accumulator —
+        // its motion is live human drag input with no closed form, and it's
+        // the one true persistent odometer that must never reset mid-session.
+        if (isSandbox) {
+            var lastX = (window.PM_ktLastX != null) ? window.PM_ktLastX : xNow;
+            window.PM_ktD = (window.PM_ktD || 0) + Math.abs(xNow - lastX);
+            window.PM_ktLastX = xNow;
+        } else {
+            window.PM_ktD = ktDistanceM(mode, tMs, x0, xf, turnX, laps);
+            window.PM_ktLastX = xNow;
+        }
+
+        // dx(t) = x(t) - x0 at every instant (endpoints only — Rule/formula
+        // delta_x). S6 measures from the position STATE_6's clock started at.
+        var dxOrigin = isSandbox ? window.PM_ktSessionX0 : x0;
+        var dxNow = xNow - dxOrigin;
+
+        // ── Displacement arrow ─────────────────────────────────────────
+        var dispArrow = ktFindById("kt_disp_arrow");
+        if (dispArrow) {
+            // STATE_4 (signed_direction) deliberately shows a naive default
+            // "+x stub" until the discrete flip beat (Rule 32a cause-then-
+            // effect readable gap) — the misconception_watch counter-visual.
+            var suppressedFlip = (mode === "signed_direction") && (tMs < cueTriggerMs("s4_flip", 1500));
+            var arrowRootM = suppressedFlip ? x0 : dxOrigin;
+            var arrowDx = suppressedFlip ? 0 : dxNow;
+            var dir = arrowDx >= 0 ? 1 : -1;
+            var len = suppressedFlip ? KT_ARROW_MIN_LEN * 3 : Math.max(KT_ARROW_MIN_LEN, ktX(Math.abs(arrowDx)));
+            dispArrow.position.set(ktX(arrowRootM), KT_ARROW_Y, 0);
+            dispArrow.setDirection(new THREE.Vector3(dir, 0, 0));
+            dispArrow.setLength(len, Math.min(0.14, Math.max(0.05, len * 0.35)), Math.min(0.08, Math.max(0.03, len * 0.28)));
+            dispArrow.setColor(hexToThreeColor((suppressedFlip || arrowDx >= 0) ? posColor : negColor));
+            var dxArrowLbl = ktFindById("kt_lbl_dxarrow");
+            if (dxArrowLbl) dxArrowLbl.position.x = ktX(arrowRootM) + (dir * len) / 2;
+        }
+
+        // ── STATE_3 ghost arrow — appears at t=4100ms, shows the FULL d(t)
+        //    (total path length so far, the naive "distance IS displacement"
+        //    expectation), rooted at x0, then gets struck through at 7100ms.
+        //    Reads window.PM_ktD directly (already the pure ktDistanceM value
+        //    for this non-sandbox mode) rather than a separately-cached
+        //    "growth since 4100ms" baseline — the old PM_ktGhostBaseD cache
+        //    was itself jump-order-dependent (captured whatever PM_ktD held
+        //    on the FIRST frame tMs happened to cross 4100, which a direct
+        //    seek to e.g. 6500ms would never do, corrupting the baseline).
+        //    A pure function of tMs is immune to seek order by construction.
+        if (mode === "round_trip_divergence") {
+            var ghost = ktFindById("kt_ghost_arrow");
+            var strike = ktFindById("kt_ghost_strike");
+            // Both branches are explicit (visible=true AND visible=false) — a
+            // one-sided "if tMs>=X set visible=true" leaves a stale TRUE from
+            // a later capture on screen when THE EYE seeks BACKWARD to an
+            // earlier tMs within the same state entry (the same non-
+            // monotonic dense/frozen capture order that caused the Bug-3
+            // PM_ktD desync). Every reveal here must be a pure function of
+            // tMs in BOTH directions, not just forward (Rule 26).
+            if (tMs >= 4100) {
+                var ghostD = window.PM_ktD;
+                if (ghost) {
+                    ghost.visible = true;
+                    ghost.position.set(ktX(x0), KT_GHOST_Y, 0);
+                    var gLen = Math.max(KT_ARROW_MIN_LEN, ktX(ghostD));
+                    ghost.setDirection(new THREE.Vector3(1, 0, 0));
+                    ghost.setLength(gLen, Math.min(0.12, Math.max(0.05, gLen * 0.3)), Math.min(0.07, Math.max(0.03, gLen * 0.25)));
+                }
+                if (tMs >= cueTriggerMs("s3_reveal", 7100) && strike) {
+                    strike.visible = true;
+                    var gLenNow = Math.max(KT_ARROW_MIN_LEN, ktX(ghostD));
+                    strike.position.x = ktX(x0) + gLenNow / 2;
+                    var strikeOp = ktClamp((tMs - cueTriggerMs("s3_reveal", 7100)) / 500, 0, 1);
+                    strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = strikeOp; });
+                } else if (strike) {
+                    strike.visible = false;
+                    strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = 0; });
+                }
+            } else {
+                if (ghost) { ghost.visible = false; ghost.setLength(KT_ARROW_MIN_LEN, 0.12, 0.07); }
+                if (strike) { strike.visible = false; strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = 0; }); }
+            }
+        }
+
+        // ── STATE_5 / STATE_6 lap counter.
+        var lapRp = document.getElementById("kt_lap_counter");
+        if (mode === "endpoint_law_sweep") {
+            var completed = 0;
+            if (tMs >= 2100) completed = Math.min(laps, Math.floor((tMs - 2100) / 3000));
+            window.PM_ktLapsCompleted = completed;
+            if (lapRp) {
+                var sweepEndMs2 = 2100 + 3000 * laps;
+                var settleEndMs2 = sweepEndMs2 + 1000;
+                var lapsHtml = "laps: " + completed;
+                if (tMs >= settleEndMs2 + 300) lapsHtml += " (" + laps + "\\u00D7 40 m = " + (laps * 40) + " m)";
+                lapRp.innerHTML = lapsHtml;
+                var xfLbl = ktFindById("kt_xf_marker");
+                if (xfLbl) xfLbl.visible = tMs >= settleEndMs2;
+            }
+        } else if (isSandbox) {
+            if (lapRp) lapRp.innerHTML = "laps: " + (window.PM_ktLapsCompleted || 0);
+        }
+
+        // ── S6 live control positions (turnaround post / sweep markers track
+        //    their slider values continuously — Rule 31 live-instrument model).
+        if (isSandbox) {
+            var post = ktFindById("kt_turnaround_post");
+            if (post) post.position.x = ktX(window.PM_ktTurnaroundX);
+            // Sync slider UI from the SAME live value driving the scene, every
+            // frame — not only on drag/entry (mirrors the mflSyncSliderUI fix).
+            var targetSlU = document.getElementById("kt_target_slider"), targetVU = document.getElementById("kt_target_val");
+            if (targetSlU && !window.PM_ktTargetDragged) { targetSlU.value = String(window.PM_ktTargetX); if (targetVU) targetVU.textContent = window.PM_ktTargetX.toFixed(0); }
+        }
+
+        // ── HUD readouts (value-only, Rule 34b) ─────────────────────────
+        var dRp = document.getElementById("kt_d_readout");
+        if (dRp) dRp.innerHTML = "d = " + window.PM_ktD.toFixed(1) + " m";
+        var dxRp = document.getElementById("kt_dx_readout");
+        if (dxRp) {
+            // Live continuous tracker in every state that shows it (STATE_2
+            // onward) — the ONE discrete reveal-gap this scenario teaches
+            // lives in kt_x_readout below (STATE_1 only), not here.
+            var dxTxt = (dxNow >= 0 ? "+" : "") + dxNow.toFixed(1) + " m";
+            dxRp.innerHTML = "\\u0394x = " + dxTxt;
+            dxRp.style.color = dxNow >= 0 ? posColor : negColor;
+        }
+        var xRp = document.getElementById("kt_x_readout");
+        if (xRp && mode === "position_intro") {
+            // STATE_1's ONE explicit reveal-gap (engine_build_spec continuous_
+            // tracker_note): the digit-roll counts 0 -> +30 during 4100-4600ms,
+            // a readable beat AFTER the runner's own arrival at 3600ms — a
+            // plain position "x" readout, deliberately NOT labelled Δx (that
+            // label is introduced STATE_2 onward via kt_dx_readout, so it
+            // doesn't get pre-spoiled in STATE_1 before displacement exists).
+            var xDisplay;
+            if (tMs < 4100) xDisplay = x0;
+            else if (tMs < 4600) xDisplay = x0 + (xf - x0) * ((tMs - 4100) / 500);
+            else xDisplay = xf;
+            var xTxt = (xDisplay >= 0 ? "+" : "") + xDisplay.toFixed(1) + " m";
+            xRp.innerHTML = "x = " + xTxt;
+            xRp.style.color = xDisplay >= 0 ? posColor : negColor;
+        }
+        var x0Lbl = ktFindById("kt_x0_marker");
+        if (x0Lbl) x0Lbl.visible = (mode === "position_intro") && tMs >= 4100;
+
+        ktApplyGlow(track.phases, tMs);
+    }
+
     // Authoritative per-state exact-match visibility + seed (locked B/A/N/omega)
     // + per-state contextual-control panel (Rule 31). Runs after the generic
     // visible_elements matcher and fully overrides it (mirrors applyFaradayState).
@@ -29351,11 +30190,27 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildCyclotronPeriod();
                 break;
 
+            case "kinematics_1d_track":
+                buildKinematics1dTrack();
+                break;
+
             default:
-                // Fallback: show a single positive charge
+                // Fallback: show a single positive charge. Hardening fix
+                // (engine_bug_queue field3d_unknown_scenario_field_lines_crash,
+                // 2026-07-25): a concept authored against a scenario_type this
+                // switch does not (yet) implement used to hard-crash HERE —
+                // config.field_lines is undefined for non-field-line scenarios
+                // (e.g. kinematics_1d_track before this case existed), and
+                // dereferencing .count on undefined threw before SIM_READY ever
+                // fired, so EVERY state rendered a black canvas with no error
+                // surfaced to the player. Guard with the same
+                // "config.field_lines && config.field_lines.count" pattern
+                // already used everywhere else in this switch, so a FUTURE
+                // still-unimplemented scenario_type degrades to the visible
+                // charge fallback instead of killing the whole sim.
                 buildPointChargeField(
                     { id: "q1", sign: 1, magnitude: 1, position: [0,0,0], label: "+q", color: "#EF5350" },
-                    config.field_lines.count || 12
+                    (config.field_lines && config.field_lines.count) || 12
                 );
         }
 
@@ -29716,6 +30571,19 @@ export const FIELD_3D_RENDERER_CODE = `
             applyMagneticFluxLoopState(stateDef);
         }
 
+        // kinematics_1d_track — per-state seeding of the straight-line-motion
+        // scene: x0/x_f/turnaround_x/speed/extra_laps, the per-state
+        // contextual-control panel (target_x/turnaround_x/speed/extra_laps,
+        // Rule 31), the d(t) path-length accumulator reset (kept running
+        // across STATE_6 re-entries — a true odometer), and the ghost-arrow /
+        // turnaround-post / sweep-marker visibility. The animate loop then
+        // drives the runner's x(t), the live disp_arrow + d/dx readouts, the
+        // STATE_3 ghost-arrow + strike-through, and the STATE_6 idle-sweep-
+        // or-drag sandbox.
+        if (config.scenario_type === "kinematics_1d_track") {
+            applyKinematics1dTrackState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -30001,6 +30869,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
         // itself to this NOT-list, same as isMag/isFaraday/isAcGenerator/... above).
         var isMfl = config.scenario_type === "magnetic_flux_loop";
+        // kinematics_1d_track owns its OWN #kt_sliders panel (target_x/
+        // turnaround_x/speed/extra_laps) -- must be excluded here or the
+        // generic #sliders panel bleeds through with its straight-wire-
+        // current defaults (I = 5.0 A / r = 5 cm / B = 20.0 uT — the exact
+        // leak quality_auditor caught on every state of this concept) (THE-
+        // EYE "#sliders exclusion chain" — every dedicated panel adds itself
+        // to this NOT-list, same as isMag/isFaraday/isMfl/... above).
+        var isKt = config.scenario_type === "kinematics_1d_track";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -30039,7 +30915,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isKt) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -30226,8 +31102,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula)
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "kinematics_1d_track")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #kt_formula)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -33356,6 +34232,17 @@ export const FIELD_3D_RENDERER_CODE = `
         // Rule 29).
         if (config.scenario_type === "magnetic_flux_loop") {
             updateMagneticFluxLoopFrame();
+        }
+
+        // kinematics_1d_track — the runner's x(t) (pure fn of the state clock,
+        // Rule 26) drives the live disp_arrow tip/orientation, the d(t)
+        // path-integral odometer (Rule 36-linear accumulation, NEVER a
+        // closed-form |x_f-x0|), the dx(t)=x(t)-x0 signed readout, the
+        // STATE_3 ghost-arrow growth + strike-through, the STATE_4 discrete
+        // arrow flip, the STATE_5 lap counter + endpoint-law callout, and the
+        // STATE_6 idle-sweep-or-drag sandbox (never freezes, Rule 37).
+        if (config.scenario_type === "kinematics_1d_track") {
+            updateKinematics1dTrackFrame();
         }
 
         // gauss_law_sphere — charged-shell field. Drives the Gaussian-sphere
