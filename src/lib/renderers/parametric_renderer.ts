@@ -1178,8 +1178,15 @@ function drawBody(spec) {
     ? PM_interpolate(String(spec.label_expr))
     : (spec.label != null ? PM_interpolate(String(spec.label)) : '');
 
+  // peter_parker:renderer_primitives, 2026-07-24 —
+  // pcpl_angle_arc_no_focal_glow_channel: fetch AFTER labelText resolves,
+  // right before the single push()/pop() that wraps every shape branch below,
+  // so the emph.glowPx set/reset brackets the whole body (shape + label) —
+  // mirrors drawLabel/drawAnnotation/drawForceArrow/drawFormulaBox exactly.
+  var emph = PM_focalEmphasis(spec);
+
   push();
-  var effectiveOpacity = (spec.opacity != null ? spec.opacity : 1) * animOpacityMultiplier;
+  var effectiveOpacity = (spec.opacity != null ? spec.opacity : 1) * animOpacityMultiplier * emph.alphaMul;
   fill(rgb[0], rgb[1], rgb[2], effectiveOpacity * 255);
   if (spec.border_color) {
     var brgb = PM_hexToRgb(spec.border_color);
@@ -1187,6 +1194,10 @@ function drawBody(spec) {
     strokeWeight(spec.border_width || 1);
   } else {
     noStroke();
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.fill_color || spec.border_color || '#6B7280';
+    drawingContext.shadowBlur = emph.glowPx;
   }
 
   var cx, cy;
@@ -1332,6 +1343,10 @@ function drawBody(spec) {
       else labelY = cy;
       text(labelText, cx, labelY);
     }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 
@@ -2021,10 +2036,18 @@ function drawLocusTrace(spec) {
   var rgb = PM_hexToRgb(spec.color || '#8B5CF6');
   var sw = (typeof spec.stroke_weight === 'number') ? spec.stroke_weight : 2;
   var fadeTail = !!spec.fade_tail;
+  // peter_parker:renderer_primitives, 2026-07-24 —
+  // pcpl_angle_arc_no_focal_glow_channel companion fix (same missing-channel
+  // class; drawLocusTrace never asked either).
+  var emph = PM_focalEmphasis(spec);
 
   push();
   noFill();
   strokeWeight(sw);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#8B5CF6';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
   var prevPt = null;
   for (var i = 0; i < sampleCount; i++) {
     var tSample = startMs + i * step;
@@ -2035,10 +2058,14 @@ function drawLocusTrace(spec) {
     if (prevPt) {
       var alphaMul = 1;
       if (fadeTail && sampleCount > 1) alphaMul = 0.25 + 0.75 * (i / (sampleCount - 1));
-      stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * alphaMul);
+      stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * alphaMul * emph.alphaMul);
       line(prevPt.x, prevPt.y, x, y);
     }
     prevPt = { x: x, y: y };
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
@@ -2256,6 +2283,11 @@ function drawAngleArc(spec) {
   // the arc itself but still render the label so the student sees "θ = 0°"
   // without a zero-width arc artifact.
   if (Math.abs(toDeg - fromDeg) < 0.5 && !spec.label) return;
+  // Placed AFTER the degenerate-return so a visible arc always reaches this
+  // fetch (peter_parker:renderer_primitives, 2026-07-24 —
+  // pcpl_angle_arc_no_focal_glow_channel; mirrors drawLabel/drawAnnotation/
+  // drawForceArrow/drawFormulaBox's PM_focalEmphasis consumption).
+  var emph = PM_focalEmphasis(spec);
   var rgb = PM_hexToRgb(spec.color || '#F59E0B');
 
   // Math CCW → canvas CW: p5 arc takes angles in canvas (CW positive).
@@ -2265,7 +2297,11 @@ function drawAngleArc(spec) {
 
   push();
   noFill();
-  stroke(rgb[0], rgb[1], rgb[2], 220);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#F59E0B';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  stroke(rgb[0], rgb[1], rgb[2], 220 * emph.alphaMul);
   strokeWeight(1.5);
   arc(center.x, center.y, radius * 2, radius * 2, startRad, endRad);
 
@@ -2276,10 +2312,14 @@ function drawAngleArc(spec) {
     var lx = center.x + labelR * Math.cos(midCanvasRad);
     var ly = center.y + labelR * Math.sin(midCanvasRad);
     noStroke();
-    fill(rgb[0], rgb[1], rgb[2]);
+    fill(rgb[0], rgb[1], rgb[2], 255 * emph.alphaMul);
     textSize(12);
     textAlign(CENTER, CENTER);
     text(PM_interpolate(String(spec.label)), lx, ly);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
