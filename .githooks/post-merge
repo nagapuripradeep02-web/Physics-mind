@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# PM-MANAGED-HOOK v1
+# ---------------------------------------------------------------------------
+# post-merge — back up a merge the same way post-commit backs up a commit.
+#
+# WHY THIS EXISTS: `git merge` and `git pull` do NOT run post-commit — they run
+# post-merge. Without this hook, the single most-prescribed daily action in
+# docs/GIT_WORKFLOW.md ("merge master into your branch every morning") would
+# produce a merge commit that sits unpushed all day. Found by testing the
+# hook rather than assuming it covered merges.
+#
+# All the real logic (skip-guards, locking, no-force, retry, logging) lives in
+# post-commit; this delegates so there is exactly ONE implementation.
+# ---------------------------------------------------------------------------
+
+# Chain to any post-merge we displaced at install time (Git LFS installs one).
+# Its failure must never affect the merge.
+GD="${GIT_DIR:-}"
+if [ -z "$GD" ]; then
+  GD="$(git rev-parse --absolute-git-dir 2>/dev/null)" || exit 0
+fi
+for _prev in "$GD/hooks/post-merge.pre-githooks.bak" \
+             "$GD/../../hooks/post-merge.pre-githooks.bak"; do
+  if [ -f "$_prev" ]; then
+    "$_prev" "$@" || true
+    break
+  fi
+done
+
+# Delegate to post-commit for the push itself. PM_SKIP_CHAIN stops it from
+# also running the post-COMMIT chain target (the LFS post-commit hook), which
+# has nothing to do with a merge.
+_dir="$(dirname "$0")"
+if [ -x "$_dir/post-commit" ]; then
+  PM_SKIP_CHAIN=1 "$_dir/post-commit" || true
+fi
+
+exit 0

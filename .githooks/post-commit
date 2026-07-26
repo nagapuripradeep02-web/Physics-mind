@@ -44,13 +44,17 @@ fi
 # hooks` to keep the foreground path subprocess-free: in the main worktree
 # GIT_DIR is .git, in a linked worktree it is .git/worktrees/<name>.
 # A failure in the chained hook must never fail the commit.
-for _prev in "$GD/hooks/post-commit.pre-githooks.bak" \
-             "$GD/../../hooks/post-commit.pre-githooks.bak"; do
-  if [ -f "$_prev" ]; then
-    "$_prev" "$@" || true
-    break
-  fi
-done
+# PM_SKIP_CHAIN is set when post-merge delegates here — the displaced
+# post-COMMIT hook has nothing to do with a merge.
+if [ -z "${PM_SKIP_CHAIN:-}" ]; then
+  for _prev in "$GD/hooks/post-commit.pre-githooks.bak" \
+               "$GD/../../hooks/post-commit.pre-githooks.bak"; do
+    if [ -f "$_prev" ]; then
+      "$_prev" "$@" || true
+      break
+    fi
+  done
+fi
 
 [ -n "${PM_NO_AUTOPUSH:-}" ] && exit 0
 [ -e "$GD/autopush.off" ]    && exit 0
