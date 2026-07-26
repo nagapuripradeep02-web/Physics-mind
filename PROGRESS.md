@@ -1,5 +1,32 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔁 SESSION — Ch.7 chapter map reordered + `ac_voltage_inductor` SEALED via CHAPTER_LOOP (2026-07-23, branch `feat/ch7-alternating-current`)
+
+**Founder reviewed `ac_voltage_resistor` SEALED + its 5 engine-loop diffs and granted scale-up per §7 of the trust ladder.** Chapter map reordered first: `ac_voltage_resistor (done) → ac_voltage_inductor → ac_voltage_capacitor → phasors → series_lcr_circuit → ac_power_factor → lc_oscillations → transformer` (phasors moved from position 2 to position 4, after the three individual R/L/C element concepts, so it introduces the combining tool once students have seen what's being combined). Then ran the full CHAPTER_LOOP pipeline on `ac_voltage_inductor` (Ch.7 #2) end-to-end.
+
+- **Checkpoint A (design gate), 1 fix cycle:** architect skeleton (9-state ghost-compare → mechanism → slope → reactance → power-slosh → derivation arc; PRIMARY aha at S4 "voltage sets the slope"). founder-proxy DESIGN_FIX on cycle 0 — the skeleton's engine-ask over-reached, declaring cross-concept helper-factoring "binding" in a way that risked an autonomous dispatch refactoring the SEALED `ac_resistor` scenario. Architect cycle-1 fix: reuse manifest downgraded to advisory-only, build scoped to a clean standalone sibling, `ac_resistor` refactor explicitly forbidden; also added a live `vm` slider at the PRIMARY-AHA state (S4) per a secondary P3 finding. DESIGN_OK on cycle 1.
+- **Engine build:** NEW `field_3d` `scenario_type: "ac_inductor"` (commit `35ae566`) — coil apparatus, back-emf arrow pair, ghost-compare ¼-cycle lag trace, signed power strip, closed-form scripted frequency ramp (proactively built to the `field3d_dt_accumulated_motion_invisible_to_eye_timepin` fix pattern rather than needing a retrofit), breathing U-gauge. Verify chain independently re-run by the orchestrator (not trusted from the dispatch): tsc/syntax/validate clean, `capacitance` 44/44 H2 0.00%, `ac_voltage_resistor` 39/39 — confirming the sealed sibling's code paths genuinely untouched.
+- **json_author + Checkpoint B, 1 fix cycle:** concept JSON built (126/126 validate:concepts), THE EYE 39/39. quality-auditor PASS (1 LOW) ∥ eye-walker FINDINGS(3) disagreed on three items; founder-proxy opened the actual contested frames itself rather than averaging the reports — confirmed a blocking defect on the PRIMARY AHA state (S4's sequential tangent-stop captions stacking into an unreadable blob on the frozen baseline) plus two ride-alongs (an S3 label clipped behind the HUD; the HUD leaking a signed power reading into states that hadn't taught power yet, including the explore state), and correctly REFUTED eye-walker's third finding (an S5 frequency sweep that "reverses" — actually the deliberately-authored two-direction ramp). Engine fix landed (commit `eae16ca`), independently re-verified by the orchestrator against the actual re-captured frames (not the fix description), zero regression. Checkpoint B re-review: APPROVE.
+- **Checkpoint C: SEALED.** founder-proxy diffed every claimed Checkpoint-A/B fix against the real committed artifacts (not trusted), validated the scar-candidate schema, and confirmed the cross-concept coherence claim with the sibling concept (the S2 "ghost" trace equals the sibling's own default in-phase current trace) is arithmetically exact, not narrative decoration.
+- **⚠ Process violation caught + corrected mid-run:** during the F1/F2/F3 engine-fix dispatch, the subagent wrote three findings directly into the LIVE `engine_bug_queue` Supabase table via a `_seed_engine_bug_queue_*.ts` script — a real breach of this trial's explicit file-only rule ("candidates stay files, never DB writes"). Root cause: that script pattern is the CORRECT, normal convention *outside* this trial (used for `capacitance` on 2026-07-21); this specific fix-cycle dispatch prompt failed to restate the trial's override the way every other dispatch this run had. Caught via an independent live `SELECT` (not trusting the dispatch's own report), the founder was asked how to proceed (chose: delete + file-mirror), the 3 rows were `DELETE`d and re-verified `COUNT=0`, the violating script was removed from the repo, and the same content was mirrored into `docs/loop_runs/ch7/_engine/scar_candidates.sql` (the trial's actual mechanism) with a full incident writeup. **Flag for future sessions: every §3b dispatch prompt — including fix cycles, not just first-builds — must restate the trial's "no DB writes" override explicitly**, since the underlying script pattern is correct doctrine outside the trial and subagents will otherwise default to it.
+- **Files:** `src/data/concepts/ac_voltage_inductor.json` + 8 registration sites + 2 migration files (file-only) + seed script; `src/lib/renderers/field_3d_renderer.ts` (+901/-5 build, +55/-5 fix) + `src/lib/validators/visual/deriveStateMeta.ts` (+78/-1); full pipeline artifacts under `docs/loop_runs/ch7/ac_voltage_inductor/` (skeleton, physics block, auditor/eye-walker/founder-proxy reports for all three checkpoints); `docs/loop_runs/ch7_engine_log.md` (2 new Stage-2 entries) + `docs/loop_runs/ch7_state.md` (chapter map reordered, `ac_voltage_inductor` moved to done, `next: ac_voltage_capacitor`).
+- **Trial constraints held** (after the one caught-and-corrected exception above): no `visual:approve`, no TTS, no `PILOT_CONCEPTS`, no deploy, no merge to master. 2 engine-loop commits this concept (`35ae566`, `eae16ca`), well under the 8-commit runaway-guard threshold; 7 total this chapter run so far.
+- **Next:** `ac_voltage_capacitor` (Ch.7 #3) — the architect skeleton should mirror `ac_voltage_inductor`'s arc (ghost-compare → mechanism → slope/lead → reactance → power slosh) per the handoff seed left in this concept's skeleton §Escalations, for a cheap L↔C symmetry `series_lcr_circuit` can later exploit.
+
+---
+
+## 🔁 SESSION — EXPERIMENTAL chapter-loop trial built: founder-proxy (11th agent) + founder_drive + CHAPTER_LOOP.md, isolated to this branch (2026-07-22, branch `feat/ch7-alternating-current`)
+
+**Goal:** close the AUTHORING loop (not the shipping loop — Rule 17 untouched) so a whole chapter authors autonomously with an agent playing the founder's per-sim taste review; human founder batch-reviews at chapter end. Full design at `~/.claude/plans/hashed-puzzling-avalanche.md`; trial-isolated per founder directive — keep/advance/modify/discard decided after the trust ladder.
+
+- **Parallel-worktree infrastructure (on master):** created `C:\Tutor\physics-mind-ch7` (`feat/ch7-alternating-current`) + `C:\Tutor\physics-mind-ch8` (`feat/ch8-em-waves`), real `npm ci` each (node_modules junction BREAKS Next 16 Turbopack — "symlink points out of filesystem root"; junctions remain fine for build:review-only worktrees), dev servers 3001/3002, `.gitattributes` `merge=union` for PROGRESS.md + DISCUSSIONS.md (committed to master, `10d6031`).
+- **founder-proxy agent (EXPERIMENTAL, this branch only):** `.agents/founder_proxy/CLAUDE.md` + emission + sync-agents ROLES entry (11 roles, `--check` clean). Opus-pinned, reject-biased; verdicts APPROVE (authoring sign-off ONLY — never ship) / FIX (one `alex:*` owner per finding, max 3 cycles) / ESCALATE (renderer-edit needed | physics doubt | budget exceeded → park-and-continue). Reports only; scar candidates are FILES (`scar_candidates.sql`), never DB writes, during the trial.
+- **founder_drive.ts (`npm run founder:drive`):** deterministic Playwright drive of the real review player — clicks every rail card, plays each state (t0/mid/late shots stamped with live `PM_simTimeMs`), TRUSTED mouse drags on every explore slider (the path THE EYE's synthetic events can't test), Rule-37 frozen-explore byte-probe. **Smoke-tested on ac_generator: 7 states, 21 shots, 4/4 sliders moved (e.g. acg_n 100→260), clock advanced 1500→5920 ms, motion probe alive, 0 flags / 0 console errors.**
+- **docs/CHAPTER_LOOP.md:** the loop SOP — stateless-orchestrator law ("nothing the next concept needs may exist only in the conversation"), `docs/loop_runs/<chapter>_state.md` state file, founder-involved pre-flight (chapter map + engine audit), autonomous per-concept loop, park-and-continue escalations, chapter-end push notification + founder batch review, trust ladder Stage 0→3.
+- **Trial isolation verified:** everything on this branch; master, main tree, ch8, doctrine files (CLAUDE.md / .agents/CLAUDE.md / agent-teams-reference) all untouched. Kill switch = reset branch + delete `docs/loop_runs/` + `.founder_runs/`.
+- **Next session (in THIS worktree, fresh `claude` session — new agent types dispatch only from the next session): Stage 0 calibration** — founder:drive + founder-proxy on `capacitance` + `wheatstone_bridge` (already-founder-reviewed sims), compare findings vs the real scar rows, report taste-match to founder. Then Ch.7 pre-flight (chapter map + phasor/LCR engine audit) WITH founder.
+- **Housekeeping:** detached http-server on :8093 serving the main tree's review-site (smoke test) — kill or reuse for Stage 0.
+
 ## ⚙ SESSION — Rule 39g: per-widget teacher toggles go FLEET-WIDE (both renderers) → merged to master → app.viditra.co + viditra.co/demo deployed (2026-07-21)
 
 **Bottom line: the founder asked two things — (a) "should we rebuild the 48 sims to the capacitance-era rules, or just filter by curriculum?" and (b) "make the widget settings show on every simulation, in the production app and all upcoming ones". (a) was answered from the record (Session 86 already deferred the fleet retrofit behind a named gate — recommendation: don't rebuild; ship coverage, tag per curriculum as claims, retrofit per-chapter only when a real teacher of that curriculum signs up). (b) was BUILT, verified, merged to master, and deployed to production + the public demo. 4 commits on `feat/widget-settings-fleet` → merged `bd83ec0` → demo fix `00cef44`. NOT pushed to origin (4 commits ahead).**
@@ -12164,3 +12191,183 @@ Two of the four were "capture-is-wrong, not sim-is-wrong" (S1, S9) — formally 
 **Founder chapter-end queue:** (a) confirm the live `engine_bug_queue` severity CHECK permits `'MAJOR'` (F-S1 row; same open item as displacement_current — F-S5 was deliberately filed `CRITICAL` to sidestep it). (b) FL1 hand-test: S10 n-drag un-pins the clock — wiring present, but THE EYE structurally cannot fire trusted drag events. (c) 2 P3 polish notes: ν renders as a Latin-"v" lookalike in the 13px monospace HUD/slider on S6+S11 (sharpened on S11 where the punchline is a *speed*); λ shown on both HUD and bracket label on S11. (d) decide inclusion of the excluded scratch artifacts (`continue_em_wave_v2.txt`, `.founder_runs/`, `docs/loop_runs/wrapper/`). Detail: `docs/loop_runs/ch8/em_wave_propagation/checkpoint_c_report.md`.
 
 **Concept-seal commit (this session):** concept JSON + 3 registration sites (panelConfig, aiSimulationGenerator `CONCEPT_RENDERER_MAP`, intentClassifier `VALID_CONCEPT_IDS`+`CLASSIFIER_PROMPT`) + migration + seed script + `docs/loop_runs/ch8/em_wave_propagation/` (skeleton, physics_block, engine_contract, checkpoint_a/b/b_cycle2/c reports, auditor + eye_walker reports ×2) + `scar_candidates.sql` + `ch8_state.md` + this PROGRESS entry. Chapter branch only — NO master merge (trial). Next: `electromagnetic_spectrum` in a FRESH session (Amendment 4 — one concept per session).
+## 2026-07-22 — CHAPTER_LOOP trial: Stage 1a + Stage 1b, `ac_voltage_resistor` SEALED (Ch.7 concept 1/8)
+
+**EXPERIMENTAL** — `docs/CHAPTER_LOOP.md`, branch `feat/ch7-alternating-current`, worktree
+`C:\Tutor\physics-mind-ch7`. Not doctrine; trial-only until founder graduation.
+
+**Stage 1a (engine-loop shakedown, PASSED):** ran the full §3b engine loop end-to-end on a KNOWN defect
+— `particle_field`'s `#pm-sliders` panel collided with the review chrome (Rule 34d class, `field_3d`
+already fixed, `particle_field` never migrated). Landed a chrome-aware conditional fix
+(`pfInReviewChrome()`) rather than a hardcoded `top:52px`, specifically to keep THE EYE's 13
+raw-capture baselines byte-identical (trial forbids `visual:approve` re-lock). Verify chain full green;
+commit `9c2c64e`. Proved dispatch + verify chain + rollback-readiness + commit discipline before novel
+content work.
+
+**Stage 1b (one concept through the full closed loop, SEALED):** `ac_voltage_resistor` (NCERT §7.2,
+"AC voltage applied to a resistor") — chapter map approved by the founder: `ac_voltage_resistor,
+phasors, ac_voltage_inductor, ac_voltage_capacitor, series_lcr_circuit, ac_power_factor,
+lc_oscillations, transformer`.
+
+- **Checkpoint A (design gate):** architect skeleton (9-state field_3d, NEW `scenario_type:
+  "ac_resistor"`) → 1 DESIGN_FIX cycle (drag-seize guard + S6 thumb-lockstep; S7 "fold" corrected to
+  explicit squaring y→y² vs S8's genuine point-symmetry fold; heater `applyGlowEmphasis` exemption;
+  dedicated Cambria-Math formula panel) → cycle 1 `DESIGN_OK`.
+- **Engine build:** the `ac_resistor` scenario did not exist — built in-loop (`field_3d_renderer.ts`
+  +789 lines, `deriveStateMeta.ts` +71 lines) per the Class-B triage. Full verify chain green; commit
+  `6b97ede`.
+- **In-loop engine fix (`createTubeLine` crash):** post-build THE EYE run hit a `TypeError` — the
+  shared 90-call-site `createTubeLine()` helper unconditionally read `config.field_lines.opacity`,
+  throwing when `ac_voltage_resistor.json` correctly omitted a `field_lines` block. This killed the
+  entire scene-construction loop (no `SIM_READY`, clock never advanced) on all 9 states. Hardened the
+  shared helper (one-line null-guard) rather than patching just this concept, since the rest of Ch.7
+  reuses this scope-pane family. Verify chain green incl. runtime re-probe + regression on
+  `faraday_law_induction`/`capacitance`; commit `d26d139`. Re-ran THE EYE clean: **39/39, 0 failed.**
+- **quality-auditor ∥ eye-walker:** auditor PASS (1 LOW cosmetic note); eye-walker FINDINGS(3),
+  including one rated CRITICAL (S8's fold pane allegedly never renders). The two reports disagreed.
+- **Checkpoint B (build gate):** founder-proxy opened the contested frames itself rather than average
+  the two reports — refuted all 3 of eye-walker's findings with pixel/byte-size evidence (S8's fold
+  pane does render and animate; the S1 "desync" was a frozen-vs-dense frame mismatch; S6's DC-twin
+  does drift live, just invisibly to THE EYE's frozen capture). Verdict **APPROVE** + 2 ride-along
+  `FIX(engine)`: DC-twin drift is a `dt`-accumulator invisible to THE EYE's time-pin (MODERATE), and an
+  ASCII-`rms`-subscript gap across 4 renderer text paths the JSON's own Unicode formulas don't share
+  (MINOR, meter-sprite truncation noted too).
+- **Checkpoint C (handover gate):** independently re-diffed all 4 Checkpoint-A fixes against the built
+  renderer (not the reports' say-so) and re-opened the single most-contested S8 frame itself — verdict
+  **SEALED**. Highest-value-achievable sentence: yes, physics numerically exact end-to-end, 39/39 EYE,
+  zero collision/flag/console-error on live drive; the only gap is the two named ride-along polish
+  items, neither touching correctness or legibility.
+
+**Commits this session:** `9c2c64e` (Stage 1a fix) · `6b97ede` (ac_resistor scenario build) ·
+`d26d139` (createTubeLine fix) · a seal commit for `ac_voltage_resistor`'s authoring artifacts follows
+this entry · 2 more engine-loop commits (B1, B2 ride-alongs) to follow before `phasors` starts, per
+§3b's ride-along ordering.
+
+**Trial constraints held throughout:** no `visual:approve`, no `tts:*`, no `PILOT_CONCEPTS`, no
+deploy, no DB writes to `engine_bug_queue` (all findings filed as files in
+`docs/loop_runs/ch7/_engine/scar_candidates.sql`, pending founder ruling at chapter end), no merge to
+master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
+`docs/loop_runs/ch7/ac_voltage_resistor/*`.
+
+---
+
+## 2026-07-23 · Ch.7 chapter loop · `phasors` (concept 4/8) — SEALED
+
+Fourth concept of the autonomous Ch.7 run (NCERT 7.5, phasor representation). NEW `field_3d`
+scenario_type `ac_phasor`. Full pipeline + all three founder-proxy checkpoints.
+
+- **Checkpoint A (design):** DESIGN_FIX (11 findings, 5×P1) → 44-patch architect revision → **DESIGN_OK**
+  on cycle 1. Two founder-visible decisions recorded: (F1) the phasor disc was specced against a scope
+  pane position that does not exist in the built renderer — resolved to ONE combined left-band canvas
+  `phs_band`; (F4) the `R = X_L = X_C = 5.0 Ω` scoreboard silently displayed the resonance condition
+  `series_lcr_circuit` opens with — resolved by dropping the Ω chips (angles-only scoreboard), which also
+  retired the sole stated trigger for the compose-routine promotion.
+- **Pipeline:** physics_block (R3/R4/R5 residuals resolved, numbers independently re-derived) →
+  json_author (`phasors.json` + 8 registration sites + migration; tsc 0, validate PASS) → engine build
+  `62911da` (`ac_phasor`, closed-form θ(t)/Rule-36, freeze contract, F7 caption-order probe; a
+  scenario-scoped `phs_` compose clone, NOT the shared-layer promotion — F4 removed its trigger, so the
+  fleet-wide promotion is now a decoupled founder decision).
+- **Checkpoint B (build):** the two AI reviewers DISAGREED — quality-auditor PASS vs eye-walker
+  FINDINGS(2). founder-proxy opened the frames itself and ruled **eye-walker correct on both**:
+  **F2 (BLOCKING, CRITICAL)** — S7 (θ=ωt derivation) set `element:"generic"`, which rendered no element,
+  leaving a physically impossible open circuit with current flowing through a visible gap; **F1
+  (ride-along)** — the S5 frozen H2 baseline was pinned mid-flip (φ=15° in the HUD vs 90° in the formula
+  overlay). Both fixed via §3b: `9c50ad5` (a neutral closed generic element bridging the slot + a real
+  E4 `dim_apparatus`, general ∓ derivation preserved) and `04185ac` (the missing `ac_phasor`
+  `maxRevealForField3dState` block). Checkpoint-B re-review **APPROVE** — both resolved on the pixels,
+  regression clean, S8 explore ships bright. F3/F4 cosmetic JSON cleanups done by the loop session.
+- **Checkpoint C (handover):** diffed every A/B fix against the real commits, validated the 7-row scar
+  block against the LIVE CHECK constraints (applies clean, 0 collisions), confirmed sibling coherence
+  (X_L 5.000 / X_C 5.001 Ω at defaults, resonance withheld for `series_lcr`). One loop-fixable artifact
+  (state-file `engine_commits` omitted `04185ac`) fixed by the loop session, no cycle → **SEALED**.
+
+**Commits this session (this concept):** `62911da` (ac_phasor scenario build) · `9c50ad5` (F2 S7
+open-circuit fix) · `04185ac` (F1 frozen-pin fix) · this seal commit for the authoring artifacts.
+Phasors spent its full 2/2 per-concept engine-fix budget (guard NOT tripped). Verify chain green
+throughout, independently re-run by the orchestrator: EYE 35/35, capacitance regression 44/44 @ 0.00% H2.
+
+**Trial constraints held:** no `visual:approve`, no `tts:*`, no `PILOT_CONCEPTS`, no deploy, zero live
+`engine_bug_queue` writes (7 phasors scar rows filed as files, pending founder ruling), no merge to
+master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
+`docs/loop_runs/ch7/phasors/*`. **Next: `series_lcr_circuit` (concept 5/8).**
+
+**POST-SEAL — founder screen-review fix (same day):** the founder hand-reviewed the sealed sim and found
+a real bug in the S8 sandbox — the R/L/C picker was inert: switching element changed neither the trace
+phase nor amplitude, only the R value-slider moved the graph, and the physical component never swapped.
+Root cause (two coupled defects, ac_phasor block only): `updateAcPhasorFrame` read the authored
+`d.element` (always "R" in S8) instead of the live `window.PM_phsElem` the picker writes; and
+`phsPickElement` never toggled the element mesh. Fixed (+12/−1, commit `b0a9cf0`): the frame reads the
+live element (byte-safe for guided S1–S7, which sync `PM_phsElem=d.element` on entry), and the picker
+mirrors the entry-path mesh toggle. Verified: tsc 0, validate PASS, EYE 35/35 (guided unchanged),
+capacitance 44/44, **plus a live headless Playwright drive of the trusted picker** (R→φ=0° in phase; L→φ=−90°
+lags + coil in slot; C→φ=+90° leads + plates in slot; on C, raising f 0.25→0.45 Hz raised iₘ 2.0→3.60 A =
+vₘ·ωC). This was phasors engine-fix **#3** — past the founder's per-concept "pause if >2" guard — proceeded
+because the founder directed it explicitly on a confirmed defect (the guard targets runaway *autonomous*
+fixing). Filed as a file-only scar (`FIXED`); confirmed via a live SELECT that zero phasors rows exist in
+the live `engine_bug_queue` table (file-only discipline held). State recorded in `6d534b8`.
+
+
+---
+
+## 2026-07-24 — Ch.7 #5 `series_lcr_circuit` SEALED (autonomous chapter loop, founder asleep)
+
+**Concept 5/8 of Ch.7 (NCERT §7.6, AC Voltage Applied to a Series LCR Circuit)** — the synthesis concept, sealed on the `feat/ch7-alternating-current` trial branch via the full CHAPTER_LOOP pipeline. Founder granted autonomous continuation ("finish this one, then do ac_power_factor too, don't wait for me") and went to sleep; the loop ran the whole concept + is continuing to #6 without blocking.
+
+**Design (Class-B, NEW `ac_series_lcr` scenario, 11 states):** teaches at an off-resonance work-point (f=0.50 Hz) while the chapter's shared default (f=0.25 Hz) secretly sits AT resonance — a mystery-first spine paying off at S8. Reveals exactly what `phasors` withheld: tip-to-tail phasor addition (S5), the reactance numerals + impedance triangle (S6), the phase angle (S7), and resonance (S8, the primary aha). Checkpoint A DESIGN_OK with no fix cycle — founder-proxy re-derived the entire number lock from scratch, including the geometric-mean half-power points.
+
+**Engine build `cec3a50`** (`feat(engine-loop): NEW field_3d scenario_type ac_series_lcr`) — the largest kind of dispatch (11-mode scenario in the 37K-line shared renderer), built with the two founder-decision defaults (local `slcr_` compose clone; cyan=V/amber=i colour law). Verify chain green, zero regression (`capacitance` 44/44, sealed siblings untouched).
+
+**Machine gates all clean first pass** (THE EYE 47/47, founder:drive 0 collisions/flags/console, tsc 0, validate 129/129) — **yet the AI reviewers disagreed**: quality-auditor PASS+1LOW ∥ eye-walker FINDINGS(6). founder-proxy Checkpoint B cycle-0 opened the frames *and read the renderer source*, adjudicating **FIX(engine)**: both reviewers were half-right. The load-bearing catch — the concept's central taught quantity, the **net reactance X=7.50 Ω, was never rendered anywhere it is taught** (`slcrDrawTriangle` labeled only the R and Z legs; `slcrDrawResoPlot` drew no `X_L=X_C` crossing chip) — a core-claim contradiction the auditor missed by checking the formula surface not the triangle leg. Plus `f_0`/`v_m` rendering with literal ASCII underscores (a recurrence of the Stage-1b rms-subscript scar) + 3 ride-alongs. The S3 "un-staggered fan" finding was REFUTED as the deliberate glow-tour json-author authored.
+
+**Fix bundle `5dc7ccd`** fixed all six; Checkpoint B cycle-1 verified each landed against the pixels (three labeled legs, merged `X_L=X_C=5.00 Ω` crossing chip, `f₀` Unicode everywhere, S9 settled to R=10/Q=0.5, S1 band clean, S4 sum 19.41), no regression, and ruled the remaining S7 down-leg vertex-clip an acceptable P3 cosmetic (deferred to protect the just-fixed S6). Checkpoint C SEALED — every fix diffed in the real commit, all 6 scar rows schema-clean and apply-ready, cross-sim coherence with the 4 siblings intact.
+
+**Trial discipline held:** zero DB writes (all 6 scars filed as files; the Stage-2 file-only violation did not recur — every §3b dispatch restated the constraint); no visual:approve/tts/deploy/master-merge. **Engine-loop commit count is now 16** (past the §3b runaway guard) under the founder's whole-chapter grant — flagged for the chapter-end packet. Full per-concept packet: `docs/loop_runs/ch7/series_lcr_circuit/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 5 + 5b. **Next: `ac_power_factor` (#6).**
+
+
+---
+
+## 2026-07-24 — Ch.7 #6 `ac_power_factor` SEALED (autonomous chapter loop, founder asleep)
+
+**Concept 6/8 of Ch.7 (NCERT §7.7, Power in AC Circuit / the power factor)** — sealed on `feat/ch7-alternating-current` via the full CHAPTER_LOOP pipeline, immediately after `series_lcr_circuit`, under the founder's "finish this one then do ac_power_factor too, don't wait for me" directive.
+
+**Design (Class-B, NEW `ac_power` scenario, 10 states):** the power consequence of the series-LCR circuit — p(t)=v·i as a double-frequency wave riding a DC offset ⟨p⟩=V_rms·I_rms·cosφ; the power factor cosφ=R/Z; wattless (quadrature) current; the impedance triangle × I²ᵣₘₛ → the power triangle (P/Q/S). Spine: the naive "power = V×I" works at the home setting (secretly resonance, P=10 W = the bare heater's number) → fails off-resonance (meter 3.08 W vs V×I 5.55) → cosφ. Two 16a pivots (S4 apparent-vs-real, S6 wattless). The `ac_power` scenario is an ADDITIVE clone of `ac_series_lcr` + the element scenarios' power machinery (averaging wattmeter `acl_meter`, p(t) pane `ac*_graph_p`, energy gauges `acl_u_gauge`) — a new averaging wattmeter, product-wave pane, current-component split, ×I²ᵣₘₛ triangle morph, and per-element energy gauges (E_L/E_C breathe net-zero, E_R ratchets +6.15 J/cyc; heater warm-glows on p_R_t=i²R). Engine build `9df14e3`, verify green, zero regression.
+
+**The review caught a real display-precision defect — and both reviewers AGREED on it** (unlike series_lcr, where they diverged). Machine gates were all clean first pass (THE EYE 43/43, drive 0 collisions/flags/console). quality-auditor FAIL + eye-walker MAJOR both flagged **S4 apparent power rendering as 5.54 AND 5.55 in the same panel.** founder-proxy Checkpoint B re-derived it: true I_rms=0.784498 correctly single-rounds to **0.784** (the number-lock — and founder-proxy's own CpA — had a **double-rounding slip to 0.785**), so the S4 chip's literal `7.07 × 0.784 = 5.54` contradicted S=5.55 in the ratio chip, the S8 triangle, and the narration — a self-contradiction on the flagship misconception pivot, and a recurrence of `series_lcr`'s S4 displayed-addend class. **Fix `f997ede`:** the chip now renders apparent power symbolically as `V_rms × I_rms = 5.55 W?` (S's own canonical value), still struck — so apparent power reads one value everywhere. Plus 3 ride-alongs (S3 buried negative lobe → auto-range + bolder fill; S10 −0.000 → clamp; wattmeter numeric enlarged) and F3 (a dead JSON cue removed). Physics was **100% correct throughout** — this was purely a display-consistency fix. CpB cycle-1 APPROVE (all fixes pixel-verified, 5.55 uniform across S4/S8/S9/ratio/HUD), CpC SEALED. Design docs corrected 0.785→0.784.
+
+**Trial discipline held:** zero DB writes (5 scars + a compose-rule-of-four directive filed as files; every §3b dispatch restated the file-only constraint — no recurrence of the Stage-2 violation); no visual:approve/tts/deploy/master-merge. **Engine-loop commit count now 18** (past the §3b runaway guard) under the whole-chapter grant — flagged for chapter-end. **Ops note:** the harness reaps backgrounded `visual:eyes`/`founder:drive`; ran them OS-detached via `Start-Process` + foreground log-poll. Full packet: `docs/loop_runs/ch7/ac_power_factor/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 6 + 6b. **Next: `lc_oscillations` (#7).**
+
+---
+
+## 2026-07-24 — Ch.7 #7 `lc_oscillations` SEALED (autonomous chapter loop, resumed mid-flight)
+
+**Concept 7/8 of Ch.7 (NCERT §7.8, LC Oscillations / the circuit's own rhythm)** — sealed on `feat/ch7-alternating-current` via the full CHAPTER_LOOP pipeline. This session RESUMED an in-flight concept: the pipeline (architect A:fix-1 DESIGN_OK, physics-author, json-author), the NEW-scenario engine build, and the Checkpoint-B blocking fixes had already landed in prior sessions; this session picked up at the ride-along stage and drove it to seal.
+
+**Design (Class-B, NEW `lc_oscillation` scenario, 9 states):** the FREE (source-removed) circuit — a capacitor charged to V₀ connected to an inductor with the battery physically removed (a two-position switch throws the source out of the loop); the L–C pair then oscillates at its own NATURAL frequency ω₀=1/√(LC)=1.571 rad/s → f₀=0.25 Hz (revealed as the same number the driven series-LCR favoured at resonance, now the circuit's OWN property). Primary aha: current is MAXIMUM exactly when charge is zero (the coil's inertia drives current through an empty capacitor and recharges it reversed — breaking "q=0 ⇒ i=0"). Energy sloshes intact between ½q²/C and ½Li² under a pinned total E_total=6.36 J (an all-wattless exchange — nothing spent until R is added). Mass-spring twin (q↔x, i↔v, L↔mass, 1/C↔k). Damped decay when R is inserted. Engine build `0c24436`.
+
+**Checkpoint B cycle-0 = FIX(engine), 2 BLOCKING + 4 ride-along** (no authoring findings, no ESCALATE). The two blocking defects each contradicted a state's core claim on screen and were fixed via one-bug `field3d-surgeon` dispatches (Amendment 4): **F1** (`056eb47`) — S7's entire "real coils leak" lesson never rendered because the scripted R-insert ramp 0→2.0 Ω never engaged (PM_lcoR stuck at 0 → α=0); fix = a closed-form R ramp over [0,500ms] driving α + the slider thumb in lockstep. **F2** (`30b28d5`) — the S3 PRIMARY-AHA frozen frame showed q=−0.90/θ=225° while its caption said "empty — current peaks"; fix = the deriveStateMeta `through_zero` pin moved from `flip_at_ms+1500`(2500ms) to `strike_at_ms+2000`(3000ms/θ270°/q=0.00,i=2.00), landing ON a crossing. Blocking re-CpB (cycle-1) = **APPROVE**. F2's *second half* (the live-player Rule-37 narration-end freeze still lands off-crossing) was adjudicated NON-BLOCKING and routed to `alex:architect` as a fleet-wide player invariant (recurring-crossing states snap the end-freeze to the nearest crossing) — the fragile narration-length hack was REJECTED per Rule 26 → founder chapter-end packet.
+
+**Four ride-alongs, each its own one-bug `field3d-surgeon` dispatch (this session):** F3 (`840fcb0`+`91c8af0`) removed an unauthored bottom-right `#formula_overlay` echo that rendered √→"V" (S4) and was occluded (S9), leaving the one Cambria surface; F4 (`c0651f4`; scar/log reconcile `9b3b8dc`) moved the E_total marker to its own header row so it stops overprinting the last bar's value label ("4636 J"); F5 (`749e625`) added pane-level focal glow (whole gauge pane / inset brightens as focal, peers dim — NOT per-dominant-bar, preserving antiphase-trade symmetry); F6 (`e4505b8`) closed the component-addend rounding seam (2.20+4.17=6.37 vs pinned 6.36). **F6 interpretive refinement:** the surgeon absorbed the ±0.01 residual into the LARGEST displayed component rather than the literal "last" — because on undamped frames where E_R≈0 the literal rule renders E_R=−0.01 (negative heat on the conservation lesson). Closure probe swept 1203 real frames: 1195 conserving frames close exactly to 6.36, 0 negatives. founder-proxy Checkpoint C ACCEPTED it as higher-quality than the prescription, and I corrected the F6 scar `prevention_rule` to match the landed behaviour (`b1bcace`).
+
+**Cumulative verify (Amendment-4 single post-ride-along run):** re-seed + THE EYE lc_oscillations **39/39, 0 failed**; capacitance regression **44/44, 0 failed, H2 0.00%** (F5+F6 shared-renderer edits, zero regression); founder:drive **states=9, 0 collisions, 0 flags, 0 console errors**; tsc 0, validate 131/0. Clock guard clean (no integrator touched → no fleet sweep). **Checkpoint C = SEALED** — all 6 fixes diff-verified against their commits (no silent skips), scar schema valid (`MAJOR` legal per the live CHECK), no grade drift.
+
+**Trial discipline held:** zero DB writes (6 scars filed to `docs/loop_runs/ch7/_engine/scar_candidates.sql`, pending founder ruling; every §3b dispatch restated the file-only constraint — 0 violations); no visual:approve/tts/deploy/master-merge. **Engine-loop feat/fix commit count now 27** (past the §3b runaway guard) under the whole-chapter grant — flagged for chapter-end. **Ops:** ran EYE/drive OS-detached via `Start-Process` + foreground poll (the harness reaps backgrounded long tasks). Full packet: `docs/loop_runs/ch7/lc_oscillations/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 7–7f. **One concept per session (Amendment 4): STOPPING here — the wrapper launches `transformer` (#8) fresh.**
+
+---
+
+## 2026-07-24 — Ch.7 #8 `transformer` SEALED — **CHAPTER 7 AUTHORING COMPLETE (8/8, 0 parked)**
+
+**Concept 8/8 of Ch.7 (NCERT §7.9, Transformers)** — sealed on `feat/ch7-alternating-current` via the full CHAPTER_LOOP pipeline. This session RESUMED an in-flight concept at `stage=engine-build`. Resume triage found the skeleton, physics block, `transformer.json` (11 states) and 7 registration sites already on disk, but the renderer scenario **not built** (a single incidental `transformer` string in `field_3d_renderer.ts`, belonging to another scenario) and **no `engine_handoff.md`** — so the prior surgeon dispatch had produced nothing. Per the state file's own resume rule, re-dispatched `field3d-surgeon` fresh; no completed pipeline stage was re-run.
+
+**Design (Class-B, NEW `transformer` scenario_type, 11 states, clone-sibling `lc_oscillation`):** the two-coil machine — one flux links two coils that touch nothing (S1) → power crosses with no wire back (S2) → **DC-dead pivot** (S3: primary carries a steady 3.33 A and the flux is full, but dΦ/dt=0 so the secondary reads exactly zero — the "two zeros" distinction against S1's open switch) → per-turn voltage share (S4) → turns set the voltage (S5) → **PRIMARY aha: volts up, amps down, Pₚ=Pₛ=16.0 W dead level — a trade, not a gift** (S6, the "step-up = free power?" ghost struck) → the grid-transmission payoff (S7: step up ×10 → I²R loss collapses ×100, 3.200→0.032 W) → real losses, η=95% (S8) → the eddy/lamination interior (S9, the chapter's one true Rule-33 cutaway) → derivation (S10) → explore (S11). Engine build `34692a5` (+903 renderer lines, 4 `deriveStateMeta` sites).
+
+**Pre-EYE authoring fix:** `transformer.json`'s only validator warning was STATE_10 narration at 58 EN words (>55, Rule 31a). The `[legacy fleet — warning only]` tag is a fleet-wide suppression for pre-budget concepts, not a pass for a new one, so `json-author` trimmed connective padding 58→54 words with every physics claim retained. **The file now ships with ZERO warnings.**
+
+**Checkpoint B cycle-0 = FIX ×2** (no authoring-quality failure, no ESCALATE). quality-auditor and eye-walker **independently found the same defect** — the S11 explore formula surface clipped behind the HUD — but disagreed on owner. **The adjudication is the notable part:** the auditor proposed the cheap authoring workaround (drop `hud_show_turns`) citing a "shared field_3d layout → full regression" blast radius; founder-proxy **disproved that from renderer source** (`tfr_formula` is `tfr_`-scoped; capacitance is a different `scenario_type`) and routed the durable **engine** fix instead, because the workaround would strip the turns readout from the one state where a teacher manipulates Nₛ. **F1** (`a1e96e0`, `peter_parker:renderer_primitives`): replaced the fixed `top:40%` anchor with `tfrPositionFormula()` docking to `#tfr_readout.getBoundingClientRect().bottom + 16`, called from both apply and the animate loop (the HUD's row count is repopulated per-frame, so an apply-only fix reads a stale height). Overlap probe: STATE_11 went from ~23px overlap to **+15.9px clearance**, subscripts intact, and the formula now tracks the HUD monotonically across every state (4-row→y200 … 9-row→y328). **F2** (`alex:json_author`, in this seal commit): removed the leftover `"tfr_band"` container token from `STATE_10.visible_elements` (its `band_content` was already `"none"`), killing a dead empty bordered box that rendered for the state's full 22 s. Both landed → **cycle-1 APPROVE**, with founder-proxy pixel-verifying each rather than trusting the agents' reports, plus an animate-loop jitter probe (t0 ≡ settled) and a full 11-state collateral sweep.
+
+**A third item was surfaced and deliberately NOT fixed:** json-author's lint sweep found the *inverse* mismatch at STATE_7 — `gauges_content:"power_bars"` set while `tfr_gauges` is absent from `visible_elements`, so that pane is inert. All three reviewers had already passed S7's frames, so this is dead config, not a visible defect; founder-proxy ruled that adding the token would inject a redundant S6-duplicate power-bars pane onto a passed state — **a regression, not a fix**. Filed as a P3 founder-discretion tidy.
+
+**Verify:** THE EYE `transformer` **47/47** (both before and after the fixes) · `capacitance` regression **44/44, every H2 diff 0.00%** (re-run after the shared-renderer edit) · `founder:drive` **11 states, 33 shots, 9 drags, 0 collisions / 0 flags / 0 console errors** · `tsc` 0 · `validate:concepts` **132/132 PASS, transformer zero warnings**. Clock guard clean (layout-only; no integrator touched → no fleet sweep). **Checkpoint C = SEALED** — every A/B fix diff-verified present (incl. the Checkpoint-A STATE_3 physics-consistency fix), scar schema valid, and the chapter arc's promised payoff confirmed to cash: `ac_power_factor` explicitly defers transmission step-up to `transformer`, and S7 delivers it.
+
+**Trial discipline held:** zero DB writes (3 scars filed to `docs/loop_runs/ch7/_engine/scar_candidates.sql` — the two incident rows reconciled OPEN→FIXED at Checkpoint C with landed evidence; the `probe_definition` forward-invariant row correctly stays OPEN, since a watch is never "fixed"); no `visual:approve` (and **none needed** — a brand-new scenario_type has no approved baseline, so Rule 34e's re-baseline path doesn't apply); no tts, PILOT_CONCEPTS, build:pilot, deploy, or master merge. **Engine-loop feat/fix commit count closed the chapter at 28** (§3b's guard is 8) under the whole-chapter grant — measured exactly at seal: `feat(engine-loop)`=**8**, `fix(engine-loop)`=**20**. The feat count being exactly 8, one NEW `scenario_type` per Class-B concept for 8 concepts, is the quantitative proof that the breach is inherent rather than runaway — the irreducible floor was 8, so the genuine fix load was 20 across 8 concepts (2.5/concept). It remains the founder's to ratify. (This supersedes the Checkpoint-C report's estimate of 29, which extrapolated from a running tally instead of counting; a bare `git log --grep=engine-loop` returns 35, including 2 docs reconciles, seal commits mentioning the loop, and the Amendment commit.)
+
+**⛳ Ch.7 authoring is COMPLETE — 8/8 sealed, 0 parked.** The per-concept loop has nothing left to run. **The top remaining task is CHAPTER-END §4 step 1: the full-fleet re-seed + THE EYE sweep across all baseline-locked concepts**, deliberately NOT run this session (Amendment 4 caps a session at one concept; a fleet sweep is chapter-level). This matters — the chapter added ~2900 lines of new scenario code across 8 new `scenario_type`s plus a layout edit to a *shared* renderer, and the only regression anchor available all run was `capacitance` (`faraday_law_induction` has no committed H2 baseline in this worktree). **Do not treat the whole-chapter regression as proven until that sweep runs.** Full packet: `docs/loop_runs/ch7/transformer/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 8 + 8b. **Session ends here per Amendment 4 — and the chapter map is exhausted, so there is no next concept for the wrapper to launch.**

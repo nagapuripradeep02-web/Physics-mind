@@ -22,7 +22,7 @@ Indian AND international curricula together — speed and completion are never t
 > **Amendment 4 — token discipline (founder-approved 2026-07-24).** Driven by the Ch.7 token audit
 > (~1.13B tokens for 6 concepts; the E1–E10 fix bundle alone = 156M = 19% of all subagent spend).
 > Three structural changes: (i) ONE bug per engine dispatch + a per-dispatch ceiling (§3b);
-> (ii) one concept per SESSION — an outer wrapper (`scripts/ch8_loop.ps1`) relaunches a fresh
+> (ii) one concept per SESSION — an outer wrapper (`scripts/ch7_loop.ps1 or scripts/ch8_loop.ps1`) relaunches a fresh
 > headless session at every concept boundary, so no session pays the growing cache-read tax (§0);
 > (iii) field_3d engine dispatches go to the specialist `field3d-surgeon` agent, not
 > general-purpose (§3b). Quality machinery — the verify chain, checkpoints, fix budgets — is
@@ -63,7 +63,7 @@ Indian AND international curricula together — speed and completion are never t
 5. **One concept per SESSION (Amendment 4 — supersedes "clear every 2–3 concepts").** The
    orchestrating session completes exactly ONE concept — seal it (or park it per protocol), update
    the state file, then EXIT. It never starts a second concept. The outer wrapper
-   (`scripts/ch8_loop.ps1`) owns the loop: it relaunches a fresh headless session per concept, so
+   (`scripts/ch7_loop.ps1 or scripts/ch8_loop.ps1`) owns the loop: it relaunches a fresh headless session per concept, so
    every concept starts on an empty context window. Rationale (audit 2026-07-24): a long-lived
    orchestrator pays cache-read on its whole history at every turn — one 20h session cost ~95M
    tokens of pure overhead; a fresh session re-orients from disk for a tiny fraction of that.

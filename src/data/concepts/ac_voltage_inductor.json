@@ -1,0 +1,773 @@
+{
+  "concept_id": "ac_voltage_inductor",
+  "concept_name": "AC Voltage Applied to an Inductor",
+  "chapter": 7,
+  "section": "7.3",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.3 AC Voltage Applied to an Inductor — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. Second of 8 in the founder-reordered Ch.7 map (ac_voltage_resistor -> ac_voltage_inductor -> ac_voltage_capacitor -> phasors -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer; phasors now sits AFTER the three individual element concepts, so this diamond must stand entirely on time-domain reasoning -- no rotating-vector diagram appears anywhere). The atomic idea: a pure inductor's current lags its applied sinusoidal voltage by EXACTLY a quarter cycle (90 degrees) because voltage sets the current's SLOPE (v = L di/dt, the coil's own back-emf fighting every change) rather than its size, so the current is geometrically forced to crest exactly where the voltage vanishes; the opposition is frequency-made reactance Xl = omega*L (the same coil chokes fast AC harder than slow AC, unlike a resistor's fixed R); and the average power is EXACTLY zero -- every joule borrowed into the magnetic field during one quarter cycle is fully returned during the next, twice per cycle (the anti-resistor: opposition without consumption). SCOPE: the capacitor's mirror behaviour (deferred to ac_voltage_capacitor), the rotating-vector/phasor formalism (deferred to phasors -- the '1.0 s = quarter cycle = 90 degrees' bracket is the deliberate seed for that later formalization), inductor DC transients/LR time constants (already taught in the shipped inductance concept, callback only), and combining L with R and C (deferred to series_lcr_circuit). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions -- 'voltage and current always move together', 'a component's opposition is fixed like resistance', and 'fighting the current all cycle must burn energy' -- are confronted inside EPIC-L via Rule 16a misconception_watch at exactly S2, S5, S7, each a straightforward contrast beat, no predict->reveal). Routed to the NEW field_3d 'ac_inductor' scenario -- a coil apparatus (not a heater) with cool blue-cyan breathing field loops, a back-emf arrow pair independently timed from the wire-current arrow (a deliberate 1.0s stagger that makes the lag mechanically visible), a dual-strip scope pane (a clock-drawn i-trace plus a static dashed in-phase 'ghost' hypothesis and a lag bracket), a SIGNED p-strip crossing zero, a tangent-walk cursor for the PRIMARY-aha state, a scripted closed-form f-ramp for the reactance state, a breathing U = half*L*i-squared stored-energy gauge, and a re-tasked avg_p meter held dead at 0.00 W -- built in-loop for this concept (docs/loop_runs/ch7_engine_log.md, Stage 2, commit 35ae566) as a CLEAN STANDALONE SIBLING of the sealed ac_resistor scenario (no acr_-prefixed code touched); renderer contract quoted verbatim from that engine-log handoff. entry_state_map's PRIMARY aha (S4, the voltage-sets-the-slope insight) sits INSIDE the foundational slice (S1-S4), so no mandatory exit-pill is required; optional cross-slice pills route foundational -> reactance (S5) -> power (S6-S7) -> derivation (S8). Every state is live (show_sliders true, Rule 31) but exposes only its own relevant control row(s): vm at S4 (plain live, no scripted driver), f_demo at S5 (scripted ramp + drag-seize + thumb-lockstep), ALL THREE (vm/f_demo/L) at S9 (explore). Frequency is deliberately LOCKED in S1-S4 -- unlike the sibling, dragging f here changes the current's amplitude and would pre-spoil S5's own reveal; the lock IS the lesson's shape. Handoff to ac_voltage_capacitor (next concept): this diamond ends with a time-domain lag bracket and no phasor arrow anywhere -- the capacitor sibling mirrors this exact arc (ghost-compare -> mechanism -> slope/lead -> reactance -> power slosh) for a cheap L<->C symmetry that series_lcr_circuit will exploit; no fix cycle on this concept may ever add a phasor arrow.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "ac_inductor"
+    ]
+  },
+  "prerequisites": [
+    "ac_voltage_resistor",
+    "inductance",
+    "faraday_law_induction"
+  ],
+  "real_world_anchor": {
+    "primary": "Inside almost every two-way loudspeaker sits a plain coil of wire in front of the bass driver. It lets the drumbeat through and chokes the treble — the SAME coil, opposing different frequencies by different amounts, exactly Xₗ = ωL doing its job. And it does this without warming up: a resistor placed there would waste the music as heat; the coil merely borrows energy and hands it back, twice every cycle.",
+    "secondary": "The choke — the current-limiting coil found in fluorescent-tube ballasts, LED drivers, and motor soft-starters. Engineers reach for a coil precisely when they need to hold AC current back WITHOUT paying the resistor's heat bill; the name 'choke' is the concept in one word. Mains frequency is phrased neutrally throughout — 'the mains frequency', never a fixed regional number."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "vm": { "name": "Peak (amplitude) voltage across the inductor", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "L": { "name": "Self-inductance of the coil", "unit": "H", "min": 1.0, "max": 10.0, "default": 3.1831, "step": 0.1, "role": "driver" },
+      "f_demo": { "name": "Demo-compressed AC frequency (real mains is tens of Hz)", "unit": "Hz", "min": 0.1, "max": 0.5, "default": 0.25, "step": 0.05, "role": "driver" },
+      "omega": { "name": "Angular frequency", "unit": "rad/s", "derived": "omega = 2*PI*f_demo" },
+      "theta": { "name": "Instantaneous phase — native radians, state-local clock (Rule 26)", "unit": "rad", "derived": "theta = omega * t   [EXCEPT S5 while undragged, which uses the closed-form ramp-phase accumulator of the S5 lemma in place of omega*t]" },
+      "Xl": { "name": "Inductive reactance — the coil's frequency-made opposition", "unit": "Ω", "derived": "Xl = omega * L" },
+      "im": { "name": "Peak (amplitude) current", "unit": "A", "derived": "im = vm / Xl" },
+      "v": { "name": "Instantaneous voltage across the inductor", "unit": "V", "derived": "v = vm * sin(theta)" },
+      "i": { "name": "Instantaneous current", "unit": "A", "derived": "i = im * sin(theta - PI/2) = -im * cos(theta)   [lags v by exactly PI/2 rad = 90° = T/4, always]" },
+      "slope_i": { "name": "Instantaneous slope of the current — the S4 PRIMARY-aha value, the tangent-walk cursor's live number", "unit": "A/s", "derived": "slope_i = v / L   [exact at every instant — v = L di/dt rearranged; NEVER a hardcoded 3.14, since v (and hence slope_i) is live-draggable at S4]" },
+      "eps_back": { "name": "Back-emf induced across the coil's own turns (S3)", "unit": "V", "derived": "eps_back = -v   [Lenz: opposes the applied voltage volt-for-volt, at every instant, both while i rises AND falls]" },
+      "p": { "name": "Instantaneous power delivered TO the inductor (S6/S8) — SIGNED, unlike ac_voltage_resistor's p", "unit": "W", "derived": "p = v * i = -(vm*im/2) * sin(2*theta)   [+ = storing into the field, − = field returning energy to the source]" },
+      "p_amp": { "name": "Amplitude of the power oscillation", "unit": "W", "derived": "p_amp = vm*im/2" },
+      "p_avg": { "name": "Cycle-average power — EXACT zero, over any interval as short as T/2 = π/ω (p's own period), not just a full T", "unit": "W", "derived": "p_avg = 0" },
+      "U": { "name": "Energy stored in the inductor's magnetic field, instantaneous — the U-gauge value", "unit": "J", "derived": "U = 0.5 * L * i^2 = Umax * cos(theta)^2   [breathes 0 <-> Umax TWICE per source period T; dU/dt = p(t) exactly]" },
+      "Umax": { "name": "Maximum stored energy — the U-gauge's ceiling AND the p-strip store-lobe's shaded area", "unit": "J", "derived": "Umax = 0.5 * L * im * im" },
+      "lag_seconds": { "name": "Time lag between the v-peak and the i-peak — the S2 bracket's number", "unit": "s", "derived": "lag_seconds = T/4 = 1/(4*f_demo)   [shrinks as f_demo rises]" },
+      "lag_degrees": { "name": "Phase lag in degrees — frequency-INDEPENDENT, always exactly a quarter cycle", "unit": "deg", "constant": 90 },
+      "bead_frac": { "name": "Micro-band wire-bead position fraction, 0/1=ends 0.5=home (Rule 33b)", "unit": "dimensionless", "derived": "bead_frac = 0.5 - A_frac * sin(theta)   [beads are momentarily AT REST exactly when i=0 — i.e. at the v-PEAK instants — the S1 plant]" },
+      "A_frac": { "name": "Bead-excursion visual scale, calibrated to 0.30 at defaults", "unit": "dimensionless", "derived": "A_frac = clamp(0.30 * (im/omega) / (2.00/1.5708), 0.08, 0.42)" },
+      "field_brightness": { "name": "Coil field-loop brightness/density — cool blue-cyan geometry ONLY, the coil BODY never receives this or any emissive (Rule 33d)", "unit": "dimensionless (0-1)", "derived": "field_brightness = U/Umax = cos(theta)^2   [max exactly when i is at ITS OWN peak, i.e. at v=0 — the S1 plant; self-normalized to that state's own Umax]" },
+      "arrow_dir": { "name": "Wire-current arrow direction / field-loop circulation sense", "unit": "sign (±1)", "derived": "arrow_dir = sign(i) = -sign(cos(theta))   [flips at i's zero crossings: t = T/4, 3T/4, ... i.e. AT THE v-PEAK instants — the OPPOSITE timing from ac_voltage_resistor's arrow, which flips at v-zero]" }
+    },
+    "computed_outputs": {
+      "v_display": { "formula": "vm*Math.sin(omega*t)" },
+      "i_display": { "formula": "-im*Math.cos(omega*t)" },
+      "im_display": { "formula": "vm/(omega*L)" },
+      "Xl_display": { "formula": "omega*L" },
+      "slope_display": { "formula": "vm*Math.sin(omega*t)/L" },
+      "eps_back_display": { "formula": "-vm*Math.sin(omega*t)" },
+      "p_display": { "formula": "-(vm*im/2)*Math.sin(2*omega*t)" },
+      "U_display": { "formula": "0.5*L*im*im*Math.cos(omega*t)*Math.cos(omega*t)" },
+      "Umax_display": { "formula": "0.5*L*im*im" },
+      "field_brightness_display": { "formula": "Math.cos(omega*t)*Math.cos(omega*t)" },
+      "bead_frac_display": { "formula": "0.5 - A_frac*Math.sin(omega*t)" },
+      "lag_seconds_display": { "formula": "1/(4*f_demo)" },
+      "avg_p_display": { "formula": "0.0" }
+    },
+    "formulas": {
+      "instantaneous_voltage": "v = vₘ sin(ωt) — the applied AC voltage, ω = 2πf_demo",
+      "faraday_relation": "v = L·(di/dt) — the defining law: voltage sets the current's SLOPE, not its size (S4 PRIMARY aha)",
+      "instantaneous_current": "i = iₘ sin(ωt − 90°) = −iₘ cos(ωt), iₘ = vₘ/Xₗ — current lags voltage by exactly a quarter cycle",
+      "back_emf": "ε_back = −v — the coil's induced emf opposes the applied voltage volt-for-volt at every instant (S3)",
+      "reactance": "Xₗ = ωL — the frequency-made opposition; Xₗ→0 as ω→0 (a DC-steady inductor is an ideal short)",
+      "instantaneous_power": "p = v·i = −(vₘiₘ/2) sin(2ωt) — SIGNED, symmetric about zero, twice the source frequency",
+      "average_power": "⟨p⟩ = 0 EXACTLY — not approximately — over any interval that is a whole multiple of T/2 = π/ω",
+      "stored_energy": "U = ½Li² = Umax cos²(ωt), Umax = ½Liₘ² — breathes 0↔Umax twice per source period; dU/dt = p(t) exactly",
+      "lobe_area_link": "∫ p dt over any store quarter = Umax exactly",
+      "point_symmetry_fold": "p(t_c+τ) = −p(t_c−τ) at ANY zero crossing t_c of p(t) — every positive lobe is the EXACT 180°-point-rotation of its trailing negative lobe about their shared zero crossing (S8's fold)",
+      "closed_form_derivation": "v=L di/dt → i=−(vₘ/ωL)cos ωt = iₘ sin(ωt−π/2); the ω in the denominator IS Xₗ's frequency-dependence, and the −cos IS the 90° lag — one integration yields both headline results (S8)"
+    },
+    "constraints": [
+      "i(t) = im sin(ωt − π/2) lags v(t) = vm sin(ωt) by EXACTLY π/2 rad (90°, T/4) at every instant — never leads, never in-phase, for a pure ideal inductor.",
+      "v = L di/dt exactly, at every instant — the SLOPE of i is what v sets, never i's value directly (this is the entire content of the PRIMARY aha).",
+      "Xl = ωL grows linearly with frequency; Xl → 0 as ω → 0 (an ideal short at steady DC — consistent with the shipped inductance concept's 'current never jumps').",
+      "p(t) = v(t)·i(t) = −(vm·im/2)·sin(2ωt) is exactly odd-symmetric about every one of its own zero crossings — store and return lobe areas cancel PAIRWISE and exactly, never approximately, so ⟨p⟩ = 0.",
+      "U(t) = ½Li(t)² ≥ 0 always; dU/dt = p(t) exactly — the U-gauge and the p-strip are the SAME physics, never independently scripted.",
+      "An ideal inductor has zero resistance — it dissipates NOTHING; every joule delivered to it over any quarter cycle is returned in the following quarter cycle exactly."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Voltage sets the current's slope, not its size — the lag is pure geometry.",
+    "visual_confirmation": "The tangent cursor steepens exactly at the voltage peak and goes flat exactly at the current's crest — the lag falls straight out of the slope relationship, not the coil's material."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "reactance": ["STATE_5"],
+    "power": ["STATE_6", "STATE_7"],
+    "derivation": ["STATE_8"],
+    "exploration": ["STATE_9"]
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during the architect dispatch, so zero external syllabus verification happened. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.3 content). Every other cell carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.3 AC Voltage Applied to an Inductor — lag, Xₗ = ωL, zero average power; S8 = the §7.3 integration itself",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "absent",
+        "syllabus_unit": "9702's AC topic is rms + rectification; reactance/phase believed not in syllabus",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "No AC circuit element analysis believed present at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "absent",
+        "syllabus_unit": "AC circuit analysis believed removed in the 2023 syllabus reform",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "The AP Physics 2 CED's circuits content is believed DC-only",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "partial",
+        "syllabus_unit": "Inductance + back-emf (the S1-S4 conceptual arc) sits in the CED; sinusoidal reactance/AC steady-state analysis believed beyond it",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "AC reactance analysis believed not covered at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Same source, new component: an ideal coil",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_field_peak_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_source_label", "position": { "x": 380, "y": 60 }, "text": "same alternating source as before", "color": "#FFCC80" },
+          { "type": "annotation", "id": "s1_beads_pause_label", "position": { "x": 200, "y": 250 }, "text": "charges pause exactly at the voltage peak", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s1_field_peak_label", "position": { "x": 560, "y": 400 }, "text": "coil field swells brightest at zero voltage", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Same alternating source, but now it feeds a coil instead of a heater — everything still swings.", "glow": "source" },
+            { "id": "s1_2", "text_en": "Watch the charges pause and turn exactly when the voltage peaks, not when it's zero.", "glow": "beads" },
+            { "id": "s1_3", "text_en": "The coil's field swells brightest exactly when the voltage crosses zero instead — hold that thought.", "glow": "bfield" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The current lags the voltage by a quarter cycle",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_real_sweep_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["why_lag_not_lead", "current_max_when_voltage_zero", "quarter_cycle_90_degrees_meaning"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_ghost_label", "position": { "x": 380, "y": 60 }, "text": "dashed guess: a resistor's in-phase rhythm", "color": "#B0BEC5" },
+          { "type": "annotation", "id": "s2_real_sweep_label", "position": { "x": 200, "y": 250 }, "text": "real current sweeps in, arriving late", "color": "#FFB300" },
+          { "type": "annotation", "id": "s2_lag_label", "position": { "x": 560, "y": 400 }, "text": "1.0 s = one quarter cycle = 90 degrees", "color": "#FFEE58" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Here's what a resistor's current would do — the dashed guess, copying voltage instantly.", "glow": "ghost_trace" },
+            { "id": "s2_2", "text_en": "But this coil's charges won't obey — they pause where the guess claims maximum flow.", "glow": "beads" },
+            { "id": "s2_3", "text_en": "Watch the real current sweep in — same size, but arriving late.", "glow": "i_trace", "scenario_cue": "real_sweep_start" },
+            { "id": "s2_4", "text_en": "It peaks a full quarter cycle after the voltage — ninety degrees behind, always.", "glow": "lag_bracket", "scenario_cue": "lag_bracket_land" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Voltage and current always move together — Ohm's rhythm is universal.",
+            "visual_counter": "The dashed in-phase ghost trace docks first, the beads visibly disobey it, and the real current peaks a full quarter cycle later with the lag bracket confirming one quarter cycle equals ninety degrees.",
+            "one_line_fix": "Only the resistor is that obedient — a coil's current always runs a quarter-cycle behind."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "The coil fights every change with an opposing back-emf",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_mirror_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_rising_label", "position": { "x": 380, "y": 60 }, "text": "current rising: back voltage opposes it", "color": "#FFCC80" },
+          { "type": "annotation", "id": "s3_falling_label", "position": { "x": 200, "y": 250 }, "text": "current falling: back voltage flips to help", "color": "#EF5350" },
+          { "type": "annotation", "id": "s3_mirror_label", "position": { "x": 560, "y": 400 }, "text": "back voltage always equal and opposite", "color": "#EF5350" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Zoom into the coil: as current rises, its own field induces a back voltage opposing the rise.", "glow": "coil" },
+            { "id": "s3_2", "text_en": "As current falls, that back voltage flips — now it props the current up instead.", "glow": "backemf" },
+            { "id": "s3_3", "text_en": "The back voltage always mirrors the source, equal and opposite — fighting the change, never the current itself.", "glow": "backemf" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Voltage sets the slope — the PRIMARY aha",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_flat_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["slope_vs_value_confusion", "v_equals_L_didt_meaning", "why_exactly_quarter_cycle"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_rule_label", "position": { "x": 380, "y": 60 }, "text": "voltage sets the slope, not the size", "color": "#E0F7FA" },
+          { "type": "annotation", "id": "s4_steepest_label", "position": { "x": 200, "y": 250 }, "text": "voltage at peak: current climbs steepest", "color": "#80DEEA" },
+          { "type": "annotation", "id": "s4_flat_label", "position": { "x": 560, "y": 400 }, "text": "voltage at zero: current crests, flat slope", "color": "#FFB300" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Here's the rule: voltage doesn't set the current's size, it sets its slope — how fast it's changing.", "glow": "tangent" },
+            { "id": "s4_2", "text_en": "Where voltage peaks, the current climbs its steepest.", "glow": "tangent", "scenario_cue": "tangent_stop_1" },
+            { "id": "s4_3", "text_en": "Where voltage is zero, the slope goes flat — exactly where the current crests.", "glow": "tangent", "scenario_cue": "tangent_stop_2" },
+            { "id": "s4_4", "text_en": "Drag the peak voltage: every tangent steepens, but the crest never moves — pure geometry.", "glow": "tangent", "scenario_cue": "tangent_stop_3" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Reactance grows with frequency",
+        "duration": 15,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s5_reactance_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_reactance_label", "position": { "x": 380, "y": 60 }, "text": "reactance equals angular frequency times inductance", "color": "#80DEEA" },
+          { "type": "annotation", "id": "s5_shrink_label", "position": { "x": 200, "y": 250 }, "text": "faster swing: current shrinks", "color": "#EF9A9A" },
+          { "type": "annotation", "id": "s5_swell_label", "position": { "x": 560, "y": 400 }, "text": "slower swing: current swells", "color": "#A5D6A7" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "The coil's opposition isn't fixed like a resistor's — frequency makes it: reactance equals angular frequency times inductance.", "glow": "xl_readout" },
+            { "id": "s5_2", "text_en": "Watch faster swings choke harder: current shrinks and the beads barely move before turning back.", "glow": "xl_readout", "scenario_cue": "ramp_window_start" },
+            { "id": "s5_3", "text_en": "Slow it back down and the current swells right back up.", "glow": "coil" },
+            { "id": "s5_4", "text_en": "Same trick lets a speaker coil pass bass, choke treble.", "glow": "xl_readout" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A component's opposition is a fixed property, like resistance.",
+            "visual_counter": "The same coil, nothing about it changed, quintuples its opposition as frequency ramps — the reactance readout climbs from 2.0 to 10.0 ohms while the peak current collapses from 5.0 to 1.0 amps.",
+            "one_line_fix": "A coil's opposition isn't built in — frequency makes it fresh: reactance equals angular frequency times inductance."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Power swings both ways",
+        "duration": 15,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s6_area_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_multiply_label", "position": { "x": 380, "y": 60 }, "text": "power equals voltage times current, every instant", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s6_signs_label", "position": { "x": 200, "y": 250 }, "text": "same sign: storing — opposite sign: returning", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s6_area_label", "position": { "x": 560, "y": 400 }, "text": "shaded area equals the gauge's peak: 6.37 J", "color": "#FFEE58" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Multiply voltage by current — power swings both positive and negative.", "glow": "p_strip" },
+            { "id": "s6_2", "text_en": "When they share a sign, power is positive — energy pours into the field, the gauge fills.", "glow": "u_gauge", "scenario_cue": "product_walk_start" },
+            { "id": "s6_3", "text_en": "When they disagree, power turns negative — the field gives that energy back.", "glow": "u_gauge" },
+            { "id": "s6_4", "text_en": "That shaded area equals what the gauge just filled — nothing lost.", "glow": "p_strip", "scenario_cue": "area_label" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Nothing is consumed — average power is exactly zero",
+        "duration": 13,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_meter_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["reactance_vs_resistance_heating", "where_stored_energy_goes", "zero_power_but_current_flows"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_meter_label", "position": { "x": 380, "y": 60 }, "text": "average-power meter: dead at zero", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s7_alive_label", "position": { "x": 200, "y": 250 }, "text": "current still flows, field still breathes", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s7_cold_label", "position": { "x": 560, "y": 400 }, "text": "coil body: never warms", "color": "#90A4AE" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Here's an averaging wattmeter — watch it stay dead at zero, cycle after cycle.", "glow": "meter" },
+            { "id": "s7_2", "text_en": "Current is clearly flowing, the field keeps breathing, and the gauge keeps filling and draining.", "glow": "coil" },
+            { "id": "s7_3", "text_en": "But the coil never warms — it borrows energy and hands back every joule; only resistance actually eats it.", "glow": "meter" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The coil fights the current all cycle, so it must be burning energy — reactance heats like resistance.",
+            "visual_counter": "The wattmeter needle stays dead at 0.00 watts while peak current visibly flows and the coil body stays cold, unlike the resistor's steady 10.0 watt glow on the same source.",
+            "one_line_fix": "Reactance stores and returns; only resistance eats."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "One integral gives both results",
+        "duration": 16,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s8_lag_reactance_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_integral_label", "position": { "x": 380, "y": 60 }, "text": "one integration of voltage equals inductance times rate of current change", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s8_lag_reactance_label", "position": { "x": 200, "y": 250 }, "text": "out falls both the 90-degree lag and the reactance", "color": "#80DEEA" },
+          { "type": "annotation", "id": "s8_fold_label", "position": { "x": 560, "y": 400 }, "text": "each power lobe rotates onto the next — average exactly zero", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Nothing moves here — just one integration of voltage equals inductance times current's rate of change.", "glow": "formula", "scenario_cue": "fold_start" },
+            { "id": "s8_2", "text_en": "Out falls a negative cosine — the quarter-cycle lag — with angular frequency times inductance beneath it, the reactance.", "glow": "formula", "scenario_cue": "fold_end" },
+            { "id": "s8_3", "text_en": "The power curve folds exactly: each lobe rotates a half turn onto the next, canceling pair by pair.", "glow": "p_strip", "scenario_cue": "identity_dock" }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — the whole inductor circuit, live",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s9_formula_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_drag_label", "position": { "x": 380, "y": 60 }, "text": "drag peak voltage, frequency, inductance", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s9_watch_label", "position": { "x": 200, "y": 250 }, "text": "watch the lag, the field, the current respond live", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s9_formula_label", "position": { "x": 560, "y": 400 }, "text": "current lags voltage by one quarter cycle (90 degrees)", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "It's all yours now — drag peak voltage, frequency, and inductance, and watch the lag, the field, and the current respond live.", "glow": "formula" }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered AC voltage on an inductor when they can (1) state that a pure inductor's current lags its applied sinusoidal voltage by exactly a quarter cycle (90 degrees), never leads and is never in phase; (2) explain WHY the lag exists — the coil's own changing flux induces a back-emf that opposes the change, so the applied voltage sets the current's SLOPE (v = L di/dt) rather than its instantaneous size; (3) read off the current's instantaneous behaviour at any point in the voltage cycle — zero and changing steepest where voltage peaks, at its own peak where voltage is zero; (4) compute the peak current from the reactance, im = vm/Xl with Xl = omega*L, and predict how doubling the frequency (or the inductance) changes it; (5) state that the cycle-average power delivered to a pure inductor is exactly zero, and explain where the energy goes — stored in the magnetic field, then fully returned; (6) contrast reactance with resistance — a coil opposes current without ever dissipating energy, unlike a resistor; and (7) derive, from v = L di/dt, both the 90-degree lag and the reactance Xl = omega*L in one integration, and show that the resulting power p = v*i averages to exactly zero.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A pure inductor (near-zero resistance) carries a sinusoidal AC voltage. Compared to the voltage, how does the current behave?",
+        "options": {
+          "A": "The current peaks exactly a quarter cycle (90°) AFTER the voltage — it lags",
+          "B": "The current peaks exactly a quarter cycle (90°) BEFORE the voltage — it leads",
+          "C": "The current peaks at exactly the same instant as the voltage — zero phase difference",
+          "D": "The current and voltage have no fixed timing relationship — it depends on the resistor value"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports the capacitor's lead behaviour (a later sibling concept) onto an inductor",
+          "C": "imports the resistor's in-phase rhythm — the exact prior belief this concept confronts",
+          "D": "misses that an ideal (near-zero-resistance) inductor has no resistor value governing the timing — the lag is fixed at exactly 90° by the coil's own geometry"
+        },
+        "tested_idea": "For a pure inductor, current lags voltage by exactly a quarter cycle (90°) — never leads, never in phase.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A student says an inductor's current 'copies the voltage but a bit late.' State the exact phase relationship, in degrees, and name which quantity is ahead."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "WHY does an inductor's current lag its voltage by exactly a quarter cycle?",
+        "options": {
+          "A": "The coil's own changing flux induces a back-voltage that opposes the change, so the applied voltage only ever controls how FAST the current is changing — its slope — never its instantaneous size",
+          "B": "The coil physically slows the electrons down as they travel through its turns",
+          "C": "The coil stores charge like a capacitor and releases it later",
+          "D": "The lag is just how AC works, no different from a plain wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a mechanical electron-slowing mechanism with no physical basis — inductors don't impede electron speed",
+          "C": "confuses an inductor's field-energy storage with a capacitor's charge storage — different mechanism, different physics",
+          "D": "denies the coil-specific mechanism entirely, missing that a plain wire (near-zero inductance) shows no lag at all"
+        },
+        "tested_idea": "The lag exists because the coil's induced back-emf makes voltage set the current's SLOPE, not its size.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain in one sentence why an inductor's current can't simply track the applied voltage the way a resistor's does."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "At the exact instant a pure inductor's voltage is at its POSITIVE PEAK, what is happening to the current?",
+        "options": {
+          "A": "The current is exactly zero, but changing at its fastest rate — climbing through zero at its steepest slope",
+          "B": "The current is also at its positive peak",
+          "C": "The current is at its negative peak",
+          "D": "The current cannot be determined without knowing the resistance"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports the resistor's in-phase behaviour onto an inductor",
+          "C": "confuses 'voltage at peak' with 'current at peak' — the two peaks are a quarter cycle apart, not opposite",
+          "D": "misses that for a pure inductor the current's value depends only on inductance and frequency, not on any resistance"
+        },
+        "tested_idea": "Voltage sets the SLOPE of the current: at voltage's peak, current is zero but changing steepest; at voltage's zero, current is at its own peak.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "At the instant a pure inductor's voltage crosses zero, what is true of the current at that same instant?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A pure inductor's peak current is im = vm/(omega*L). If the frequency of the applied AC is doubled (voltage amplitude and inductance unchanged), what happens to the peak current?",
+        "options": {
+          "A": "It halves — the reactance doubles, so the same peak voltage drives half the peak current",
+          "B": "It doubles — a faster swing should drive more current",
+          "C": "It stays the same — frequency doesn't affect a pure inductor",
+          "D": "It quadruples — reactance depends on frequency squared"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes 'faster' means 'more current,' the opposite of how reactance actually works",
+          "C": "the confronted misconception — believes a component's opposition is a fixed property, missing that reactance is frequency-made",
+          "D": "misremembers the reactance formula as frequency-squared rather than linear in frequency"
+        },
+        "tested_idea": "Reactance Xl = omega*L grows linearly with frequency, so peak current im = vm/Xl shrinks as frequency rises.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil chokes a 0.5 Hz signal to 1.0 A peak. Using the same coil and voltage, estimate the peak current at 0.1 Hz, and explain the trend."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A pure inductor carries AC continuously. What is its average power consumption over a full cycle, and where does the energy delivered during part of the cycle go?",
+        "options": {
+          "A": "Average power is exactly zero — every joule stored in the magnetic field during one quarter cycle is returned to the source during the next",
+          "B": "Average power is exactly zero because no current is actually flowing",
+          "C": "Average power is positive but small, since the coil has some resistance",
+          "D": "Average power equals the peak instantaneous power, since current is always flowing somewhere in the circuit"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses 'zero average power' with 'zero current' — current visibly flows at up to its peak value the whole time",
+          "C": "imports resistive heating onto an IDEAL inductor, which by definition has zero resistance",
+          "D": "confuses average power with peak power — very different numbers"
+        },
+        "tested_idea": "A pure inductor's average power is EXACTLY zero — energy is stored in the field and fully returned, never dissipated.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A wattmeter reads a steady 0.00 W on a coil while an ammeter shows 2.00 A of current flowing. Explain how both readings can be true at once."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Starting from v = L(di/dt) for a pure inductor with v = vm*sin(omega*t), which pair of results falls out of ONE integration?",
+        "options": {
+          "A": "i = im*sin(omega*t − pi/2), where im = vm/(omega*L) — the 90° lag AND the reactance omega*L both appear in the same expression",
+          "B": "i = im*sin(omega*t), with no phase shift at all",
+          "C": "i = im*cos(omega*t), with the reactance appearing as omega*L squared in the denominator",
+          "D": "i = im*sin(omega*t + pi/2), leading the voltage by 90°"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the phase shift entirely — imports the resistor's in-phase result",
+          "C": "misremembers reactance as omega*L squared rather than the linear omega*L that the integration actually produces",
+          "D": "gets the SIGN of the phase shift backwards — a lag, not a lead (that's the capacitor's later result)"
+        },
+        "tested_idea": "One integration of v = L di/dt yields both the 90° lag (the −cos term) and the reactance omega*L (the denominator) together.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Starting from v = L di/dt, derive the expression for instantaneous power p(t) and show that its cycle-average is exactly zero."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q2", "Q3"],
+      "STATE_5": ["Q4"],
+      "STATE_6": ["Q5"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_9"]
+  },
+  "field_3d_config": {
+    "scenario_type": "ac_inductor",
+    "explorer_id": "ac_inductor_explorer",
+    "slider_controls": {
+      "vm": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Peak voltage vₘ" },
+      "L": { "min": 1.0, "max": 10.0, "step": 0.1, "default": 3.1831, "label": "Inductance L" },
+      "f_demo": { "min": 0.1, "max": 0.5, "step": 0.05, "default": 0.25, "label": "Frequency f" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#4FC3F7"
+    },
+    "field_lines": {
+      "color_positive": "#4FC3F7",
+      "color_negative": "#1E88E5",
+      "opacity": 0.8,
+      "count": 6
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Same source, new component — an ideal coil, everything still oscillates",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Heater out, coil in",
+        "show_sliders": true,
+        "formula_overlay": "v = vₘ sin(ωt)",
+        "variable_overrides": { "vm": 10.0, "L": 3.1831, "f_demo": 0.25 },
+        "ac_inductor": {
+          "mode": "apparatus_swap",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": false,
+          "show_xl_readout": false,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "v = vₘ sin(ωt)"
+        }
+      },
+      "STATE_2": {
+        "label": "The current lags the voltage by a quarter cycle — the resistor's rhythm confronted",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Current arrives quarter-cycle late",
+        "show_sliders": true,
+        "formula_overlay": "i = iₘ sin(ωt − 90°)",
+        "variable_overrides": { "vm": 10.0, "L": 3.1831, "f_demo": 0.25 },
+        "ac_inductor": {
+          "mode": "quarter_cycle_lag",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": true,
+          "show_lag_bracket": true,
+          "show_backemf_readout": false,
+          "show_xl_readout": false,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "i = iₘ sin(ωt − 90°)"
+        }
+      },
+      "STATE_3": {
+        "label": "The coil fights every change — back-emf opposes rise, props up fall",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield", "acl_emf_arrows"],
+        "camera_position": [2.3, 0.6, 5.0],
+        "caption": "Coil fights every change",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "L": 3.1831, "f_demo": 0.25 },
+        "ac_inductor": {
+          "mode": "coil_fights_change",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": true,
+          "show_xl_readout": false,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": ""
+        }
+      },
+      "STATE_4": {
+        "label": "PRIMARY AHA — voltage sets the slope of the current, not its size",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Voltage sets the slope",
+        "show_sliders": true,
+        "formula_overlay": "v = L × (slope of i)",
+        "variable_overrides": { "L": 3.1831, "f_demo": 0.25 },
+        "ac_inductor": {
+          "mode": "slope_sets_current",
+          "controls": ["vm"],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": false,
+          "show_xl_readout": false,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "v = L × (slope of i)"
+        }
+      },
+      "STATE_5": {
+        "label": "Reactance grows with frequency — the same coil chokes fast AC harder",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Faster swing, stronger choke",
+        "show_sliders": true,
+        "formula_overlay": "Xₗ = ωL\niₘ = vₘ/Xₗ",
+        "variable_overrides": { "vm": 10.0, "L": 3.1831 },
+        "ac_inductor": {
+          "mode": "reactance_ramp",
+          "controls": ["f_demo"],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": false,
+          "show_xl_readout": true,
+          "show_xl_on_graph": true,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "Xₗ = ωL\niₘ = vₘ/Xₗ"
+        }
+      },
+      "STATE_6": {
+        "label": "Power swings both ways — store quarters alternate with return quarters",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield", "acl_u_gauge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Power flows both ways",
+        "show_sliders": true,
+        "formula_overlay": "p = v·i",
+        "variable_overrides": { "vm": 10.0, "L": 3.1831, "f_demo": 0.25 },
+        "ac_inductor": {
+          "mode": "power_swings",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": true,
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": false,
+          "show_xl_readout": true,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "p = v·i"
+        }
+      },
+      "STATE_7": {
+        "label": "Nothing consumed — the meter sits dead at zero while current visibly flows",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield", "acl_meter", "acl_u_gauge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Average power: exactly zero",
+        "show_sliders": true,
+        "formula_overlay": "⟨p⟩ = 0\nU = ½Li²",
+        "variable_overrides": { "vm": 10.0, "L": 3.1831, "f_demo": 0.25 },
+        "ac_inductor": {
+          "mode": "null_average_power",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": true,
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": false,
+          "show_xl_readout": true,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": true,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "⟨p⟩ = 0\nU = ½Li²"
+        }
+      },
+      "STATE_8": {
+        "label": "One integration of v = L di/dt yields both the lag and the reactance",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield"],
+        "camera_position": [1.4, 0.9, 10.5],
+        "caption": "One integral, both results",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "L": 3.1831, "f_demo": 0.25 },
+        "ac_inductor": {
+          "mode": "one_integral_derivation",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": false,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": false,
+          "show_xl_readout": false,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": false,
+          "derivation": true,
+          "dim_apparatus": true
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — the whole inductor circuit, live",
+        "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "i lags v by ¼ cycle (90°)",
+        "ac_inductor": {
+          "mode": "explore",
+          "controls": ["vm", "f_demo", "L"],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lag_bracket": false,
+          "show_backemf_readout": false,
+          "show_xl_readout": false,
+          "show_xl_on_graph": false,
+          "show_avg_p_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "i lags v by ¼ cycle (90°)"
+        }
+      }
+    }
+  }
+}

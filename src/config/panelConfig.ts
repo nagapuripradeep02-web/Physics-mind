@@ -371,18 +371,18 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/lc_oscillations.json, field_3d
+    // lc_oscillation scenario (Ch.7 #7). This entry REPLACES the legacy
+    // circuit_live + graph_interactive dual-panel stub (same pattern
+    // series_lcr_circuit and ac_power_factor each executed on their own
+    // prior slot).
     lc_oscillations: {
         concept_id: 'lc_oscillations',
-        layout: 'dual_horizontal',
+        layout: 'single',
         primary: {
-            renderer: 'circuit_live',
-            config_key: 'lc_oscillations_circuit',
-            label: 'LC Circuit',
-        },
-        secondary: {
-            renderer: 'graph_interactive',
-            config_key: 'lc_oscillations_graph',
-            label: 'Charge & Current vs Time',
+            renderer: 'field_3d',
+            config_key: 'lc_oscillations',
+            label: "LC Oscillations — The Circuit's Own Rhythm (3D)",
         },
     },
 
@@ -411,23 +411,21 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/transformer.json, field_3d
+    // 'transformer' scenario (Ch.7 #8, the LAST concept of the chapter).
+    // This entry REPLACES the legacy circuit_live 'transformer_circuit' stub
+    // (same pattern lc_oscillations/series_lcr_circuit/ac_power_factor each
+    // executed on their own prior slot). Class-B triage: the 'transformer'
+    // scenario engine build is dispatched SEPARATELY from this registration
+    // pass (peter_parker:renderer_primitives scope) — the concept JSON's
+    // field_3d_config IS the contract that dispatch builds against.
     transformer: {
         concept_id: 'transformer',
         layout: 'single',
         primary: {
-            renderer: 'circuit_live',
-            config_key: 'transformer_circuit',
-            label: 'Transformer',
-        },
-    },
-
-    phasors: {
-        concept_id: 'phasors',
-        layout: 'single',
-        primary: {
-            renderer: 'graph_interactive',
-            config_key: 'phasors_graph',
-            label: 'Phasor Diagram',
+            renderer: 'field_3d',
+            config_key: 'transformer',
+            label: 'Transformer — Trading Voltage for Current (3D)',
         },
     },
 
@@ -1526,6 +1524,75 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'ac_generator',
             label: 'AC Generator — ε = NBAω·sin(ωt) (3D)',
+        },
+    },
+
+    ac_voltage_resistor: {
+        concept_id: 'ac_voltage_resistor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_resistor',
+            label: 'AC Voltage on a Resistor — i = v/R, in phase, Vᵣₘₛ = vₘ/√2 (3D)',
+        },
+    },
+
+    ac_voltage_inductor: {
+        concept_id: 'ac_voltage_inductor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_inductor',
+            label: 'AC Voltage on an Inductor — i lags v by ¼ cycle, Xₗ = ωL (3D)',
+        },
+    },
+
+    ac_voltage_capacitor: {
+        concept_id: 'ac_voltage_capacitor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_capacitor',
+            label: 'AC Voltage on a Capacitor — i leads v by ¼ cycle, X_C = 1/(ωC) (3D)',
+        },
+    },
+
+    // Supersedes a legacy pre-field_3d 'phasors' -> graph_interactive stub
+    // (old retired 44-engine-OS scaffolding, never wired to a real concept
+    // JSON — see CLAUDE.md's note on superseded chat/particle_field/
+    // graph_interactive architecture). The real atomic concept now lives at
+    // src/data/concepts/phasors.json, field_3d ac_phasor scenario (Ch.7 #4).
+    phasors: {
+        concept_id: 'phasors',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'phasors',
+            label: 'Phasors — Rotating Vectors for AC (3D)',
+        },
+    },
+
+    // Real atomic concept: src/data/concepts/series_lcr_circuit.json, field_3d
+    // ac_series_lcr scenario (Ch.7 #5, engine build commit cec3a50).
+    series_lcr_circuit: {
+        concept_id: 'series_lcr_circuit',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'series_lcr_circuit',
+            label: 'Series LCR Circuit — Impedance and Resonance (3D)',
+        },
+    },
+
+    // Real atomic concept: src/data/concepts/ac_power_factor.json, field_3d
+    // ac_power scenario (Ch.7 #6, engine build commit 9df14e3).
+    ac_power_factor: {
+        concept_id: 'ac_power_factor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_power_factor',
+            label: 'Power in AC Circuits — The Power Factor (3D)',
         },
     },
 

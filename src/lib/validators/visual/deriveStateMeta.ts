@@ -259,6 +259,93 @@ export function deriveMotionExpectations(
             // but its frozen tail is relaxed by the show_sliders→interactive hold pass).
             const emw = state ? asObj(state.em_wave) : null;
             if (emw) { out[stateId] = (emw.interactive === true) ? false : true; continue; }
+            // ac_resistor (v=vm*sin(wt) applied to R — Ch.7 CHAPTER_LOOP Stage-1b
+            // engine ask): every guided beat animates continuously (oscillating
+            // beads / flipping current arrow / p(t)-modulated heater emissive,
+            // all driven by the accumulated phase on the state clock) — declare
+            // motion so D5/D6 expect ongoing pixel movement even in S7/S8 where
+            // the 3D apparatus itself holds pose (their motion lives on the scope
+            // pane, which the pixel-diff motion probe still sees). The S9 sandbox
+            // (mode 'explore') is user-driven → declare static (relaxed by the
+            // show_sliders→interactive hold pass below — the AC cycle still
+            // free-runs per Rule 37, so it never truly freezes either).
+            const acr = state ? asObj(state.ac_resistor) : null;
+            if (acr) { out[stateId] = (acr.mode && acr.mode !== 'explore') ? true : false; continue; }
+            // ac_inductor (i=im*sin(wt-pi/2) LAGS an inductor's applied AC
+            // voltage — Ch.7 §7.3, clean standalone sibling of ac_resistor):
+            // every guided beat animates continuously (oscillating beads /
+            // flipping current arrow / breathing field loops / back-emf
+            // arrow pair / U-gauge, all driven by the accumulated/closed-
+            // form phase on the state clock) — declare motion so D5/D6
+            // expect ongoing pixel movement. S8 (one_integral_derivation)
+            // intentionally SKIPS the 3D apparatus (Rule 26 motion carried
+            // entirely by the scope-pane fold + derivation dock instead) but
+            // STILL declares motion=true, since those panes keep moving. The
+            // S9 sandbox (mode 'explore') is user-driven → declare static
+            // (relaxed by the show_sliders→interactive hold pass below — the
+            // AC cycle still free-runs per Rule 37, so it never truly
+            // freezes either).
+            const acInd = state ? asObj(state.ac_inductor) : null;
+            if (acInd) { out[stateId] = (acInd.mode && acInd.mode !== 'explore') ? true : false; continue; }
+            // ac_capacitor (i=im*sin(wt+pi/2) LEADS a capacitor's applied AC
+            // voltage — Ch.7 §7.4, clean standalone sibling of ac_resistor/
+            // ac_inductor): every guided beat animates continuously
+            // (oscillating beads / flipping current arrow / breathing inter-
+            // plate field / charge-glyph pools / U-gauge, all driven by the
+            // accumulated/closed-form phase on the state clock) — declare
+            // motion so D5/D6 expect ongoing pixel movement. S8
+            // (one_derivative_derivation) intentionally SKIPS the 3D
+            // apparatus (Rule 26 motion carried entirely by the scope-pane
+            // fold + derivation dock instead) but STILL declares motion=true,
+            // since those panes keep moving. The S9 sandbox (mode 'explore')
+            // is user-driven → declare static (relaxed by the show_sliders→
+            // interactive hold pass below — the AC cycle still free-runs per
+            // Rule 37, so it never truly freezes either).
+            const acCap = state ? asObj(state.ac_capacitor) : null;
+            if (acCap) { out[stateId] = (acCap.mode && acCap.mode !== 'explore') ? true : false; continue; }
+            // ac_phasor (a rotating v-arrow's shadow pen-draws the AC trace; a
+            // co-rooted i-arrow rides one shared clock at a locked offset —
+            // Ch.7 §7.5, clean standalone sibling of ac_resistor/ac_inductor/
+            // ac_capacitor): every guided beat animates continuously (the disc
+            // rotates, the pen draws, the beads oscillate — all on the closed-
+            // form state clock) — declare motion so D5/D6 expect ongoing pixel
+            // movement (the S2/S4 freeze windows are bounded <=1s halts, and
+            // S6 eases to a scoreboard hold, both permitted by reveal_hold
+            // below). The S8 sandbox (mode 'explore') is user-driven → declare
+            // static (relaxed by the show_sliders→interactive hold pass below —
+            // Rule 37 free-run keeps it moving anyway).
+            const acPhasor = state ? asObj(state.ac_phasor) : null;
+            if (acPhasor) { out[stateId] = (acPhasor.mode && acPhasor.mode !== 'explore') ? true : false; continue; }
+            // ac_series_lcr (three elements in one series loop; fan / chain /
+            // triangle / resonance sweep — Ch.7 §7.6, clean standalone sibling of
+            // the scope-pane family): every guided beat animates continuously; the
+            // explore state (mode 'explore') is user-driven -> static (relaxed by
+            // the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
+            const acSeriesLcr = state ? asObj(state.ac_series_lcr) : null;
+            if (acSeriesLcr) { out[stateId] = (acSeriesLcr.mode && acSeriesLcr.mode !== 'explore') ? true : false; continue; }
+            // ac_power (p=v*i product wave / averaging wattmeter / current split /
+            // power triangle / energy gauges — Ch.7 §7.7, clone-sibling of
+            // ac_series_lcr + the element power machinery): every guided beat
+            // animates continuously (beads / product-wave p-pane / gauges); the
+            // explore state (mode 'explore') is user-driven -> static (relaxed by
+            // the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
+            const acPower = state ? asObj(state.ac_power) : null;
+            if (acPower) { out[stateId] = (acPower.mode && acPower.mode !== 'explore') ? true : false; continue; }
+            // lc_oscillation (source-free L-C loop — Ch.7 §7.8, clone-sibling of
+            // ac_power's gauge/band/chrome family): every guided beat animates
+            // continuously (charge climb / bead slosh / gauges / strip pen / decay);
+            // the explore state (mode 'explore') is user-driven -> static (relaxed
+            // by the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
+            const lcOsc = state ? asObj(state.lc_oscillation) : null;
+            if (lcOsc) { out[stateId] = (lcOsc.mode && lcOsc.mode !== 'explore') ? true : false; continue; }
+            // transformer (two-coil machine — Ch.7 §7.9, clone-sibling of
+            // lc_oscillation): every guided beat animates continuously (flux
+            // breathe / bead slosh / tick cascade / N_s ramp / power bars /
+            // transmission strip / lamination morph / derivation dock); the
+            // explore state (mode 'explore', S11) is user-driven -> static (relaxed
+            // by the show_sliders->interactive hold pass; Rule 37 free-run moves anyway).
+            const tfr = state ? asObj(state.transformer) : null;
+            if (tfr) { out[stateId] = (tfr.mode && tfr.mode !== 'explore') ? true : false; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -412,7 +499,41 @@ const F3D_REVEAL_KEYS = [
     // ac_generator: the per-state `ac_generator` block (mode-driven machine
     // overview / flux-cosine trace / EMF-sine phase / peak-dependence reshape /
     // slip-ring current flip / sandbox reveals for the rotating-coil AC generator).
-    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator',
+    // ac_resistor: the per-state `ac_resistor` block (mode-driven oscillate-
+    // track / reveal-build / cycle-compare / trace-product / null-result-hold /
+    // twin-compare / square-and-settle / chain-link-derivation / drag-sandbox
+    // reveals for AC voltage applied to a resistor — Ch.7 §7.2).
+    // ac_inductor: the per-state `ac_inductor` block (mode-driven apparatus-
+    // swap / ghost-overlay-compare / cycle-compare / tangent-walk / ramp-
+    // response / trace-product / null-result-hold / chain-link-derivation /
+    // drag-sandbox reveals for AC voltage applied to an inductor — Ch.7 §7.3.
+    // Clean standalone sibling of ac_resistor — see field_3d_renderer.ts's
+    // scenario header comment).
+    // ac_capacitor: the per-state `ac_capacitor` block (mode-driven
+    // apparatus-swap / quarter-cycle-lead ghost-compare / plates-push-back
+    // cycle-compare / slope-feeds-current tangent-walk / reactance-ramp /
+    // power-swings trace-product / null-average-power / one-derivative-
+    // derivation / drag-sandbox reveals for AC voltage applied to a
+    // capacitor — Ch.7 §7.4. Clean standalone sibling of ac_resistor/
+    // ac_inductor — see field_3d_renderer.ts's scenario header comment).
+    // ac_phasor: the per-state `ac_phasor` block (mode-driven spin_draws_sine /
+    // arrow_vs_shadow / two_arrows_one_clock / lag_becomes_angle /
+    // lead_mirror_flip / reading_order / radians_derivation / explore reveals
+    // for the phasor representation of AC — Ch.7 §7.5. Clean standalone sibling
+    // of ac_resistor/ac_inductor/ac_capacitor — see field_3d_renderer.ts's
+    // scenario header comment).
+    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator', 'ac_resistor', 'ac_inductor', 'ac_capacitor', 'ac_phasor', 'ac_series_lcr', 'ac_power',
+    // lc_oscillation: the per-state `lc_oscillation` block (mode-driven charge_up /
+    // switch_throw / through_zero / free_run / energy_slosh / shm_twin / damped /
+    // derivation / explore reveals for the source-free L-C circuit — Ch.7 §7.8.
+    // Clone-sibling of ac_power — see field_3d_renderer.ts's scenario header comment).
+    'lc_oscillation',
+    // transformer: the per-state `transformer` block (mode-driven flux_link /
+    // close_secondary / dc_dead / per_turn / turns_ramp / power_lock /
+    // transmission / loss_ledger / lamination / derivation / explore reveals for
+    // the two-coil machine — Ch.7 §7.9. Clone-sibling of lc_oscillation — see
+    // field_3d_renderer.ts's scenario header comment).
+    'transformer',
     // helix_in_uniform_field (helical_motion_charge_in_uniform_B): the per-state
     // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
     // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
@@ -1164,6 +1285,267 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'peak_dependence') candidates.push(5000); // sine on the fixed axis
         else if (mode === 'slip_rings') candidates.push(5000);    // current arrow mid-cycle, flip pulse (4000ms) mid-fade
         else candidates.push(1500);                               // sandbox / no timed reveal
+    }
+    // ac_resistor (v=vm*sin(wt) on a resistor — Ch.7 §7.2 CHAPTER_LOOP Stage-1b
+    // engine ask): every guided beat's payoff lands on a cue-gated beat
+    // (renderer defaults mirrored here — keep in sync if those *_at_ms
+    // fallbacks in field_3d_renderer.ts ever change: updateAcResistorFrame /
+    // acrDrawViGraph / acrDrawPGraph / acrUpdateDerivation). Pin the frozen
+    // frame past the LAST payoff of each mode so THE EYE photographs the
+    // completed beat, never a mid-reveal frame.
+    const acr = asObj(state.ac_resistor);
+    if (acr) {
+        const mode = typeof acr.mode === 'string' ? acr.mode : '';
+        if (mode === 'ac_swings_both_ways') candidates.push(2000);        // vm peak line landed (~T/4 at default f)
+        else if (mode === 'ohm_at_every_instant') {
+            // three cursor samples (default 500/2000/3500ms) then the i-sweep
+            // (default i_sweep_start_at_ms=5000) — pin past the sweep settle.
+            candidates.push(asNum(acr.i_sweep_start_at_ms, 5000) + 1200);
+        }
+        else if (mode === 'both_halves_heat') candidates.push(3000);      // mid-B-half, glow + E established
+        else if (mode === 'power_never_negative') {
+            candidates.push(asNum(acr.product_walk_highlight_at_ms, 6500) + 500);
+        }
+        else if (mode === 'zero_average') {
+            candidates.push(asNum(acr.avg_zero_reveal_at_ms, 1500) + 500);
+        }
+        else if (mode === 'rms_dc_equivalent') {
+            // twin dock + the scripted V_dc dial-down window + the match reveal —
+            // pin past whichever payoff lands last.
+            candidates.push(asNum(acr.dial_down_end_at_ms, 5000) + 700);
+            candidates.push(asNum(acr.match_reveal_at_ms, 5200) + 500);
+        }
+        else if (mode === 'square_mean_root') {
+            candidates.push(asNum(acr.avg_power_dock_at_ms, 6000) + 500);
+        }
+        else if (mode === 'why_half') {
+            candidates.push(asNum(acr.identity_dock_at_ms, 3500) + 800);
+        }
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
+    // ac_inductor (i=im*sin(wt-pi/2) on an inductor — Ch.7 §7.3, clean
+    // standalone sibling of ac_resistor): every guided beat's payoff lands
+    // on a cue-gated beat (renderer defaults mirrored here — keep in sync if
+    // those *_at_ms fallbacks in field_3d_renderer.ts ever change:
+    // updateAcInductorFrame / aclDrawViGraph / aclDrawPGraph /
+    // aclUpdateDerivation). Pin the frozen frame past the LAST payoff of
+    // each mode so THE EYE photographs the completed beat, never a mid-
+    // reveal frame.
+    const acInd = asObj(state.ac_inductor);
+    if (acInd) {
+        const mode = typeof acInd.mode === 'string' ? acInd.mode : '';
+        if (mode === 'apparatus_swap') candidates.push(2000);              // both strangenesses (bead pause / field peak) established
+        else if (mode === 'quarter_cycle_lag') {
+            candidates.push(asNum(acInd.lag_bracket_land_at_ms, 5000) + 700);
+        }
+        else if (mode === 'coil_fights_change') candidates.push(4500);     // one full A->B->A' loop (T=4.0s at defaults) established
+        else if (mode === 'slope_sets_current') {
+            // three cue-gated tangent-walk dwell stops (default [1500,4500,7500]).
+            const stops = Array.isArray(acInd.tangent_stops_at_ms) ? acInd.tangent_stops_at_ms as unknown[] : null;
+            const lastStop = stops && stops.length === 3 && typeof stops[2] === 'number' ? (stops[2] as number) : 7500;
+            candidates.push(lastStop + 800);
+        }
+        else if (mode === 'reactance_ramp') {
+            // scripted f-ramp: rampStart + the full 17.0s multi-leg schedule
+            // (physics_block §3 S5 — 4.0+1.5+6.0+1.5+4.0) + a settle cushion.
+            candidates.push(asNum(acInd.ramp_window_start_at_ms, 2000) + 17000 + 800);
+        }
+        else if (mode === 'power_swings') {
+            candidates.push(asNum(acInd.area_label_at_ms, 3000) + 600);
+        }
+        else if (mode === 'null_average_power') candidates.push(3000);     // dead needle + live beads/field/gauge established
+        else if (mode === 'one_integral_derivation') {
+            candidates.push(asNum(acInd.identity_dock_at_ms, 3500) + 800);
+        }
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
+    // ac_capacitor (i=im*sin(wt+pi/2) on a capacitor — Ch.7 §7.4, clean
+    // standalone sibling of ac_resistor/ac_inductor): every guided beat's
+    // payoff lands on a cue-gated beat (renderer defaults mirrored here —
+    // keep in sync if those *_at_ms fallbacks in field_3d_renderer.ts ever
+    // change: updateAcCapacitorFrame / accDrawViGraph / accDrawPGraph /
+    // accUpdateDerivation). Pin the frozen frame past the LAST payoff of
+    // each mode so THE EYE photographs the completed beat, never a mid-
+    // reveal frame.
+    const acCap = asObj(state.ac_capacitor);
+    if (acCap) {
+        const mode = typeof acCap.mode === 'string' ? acCap.mode : '';
+        if (mode === 'apparatus_swap') candidates.push(2000);              // both strangenesses (full-flood-at-zero / frozen-at-crest) established
+        else if (mode === 'quarter_cycle_lead') {
+            candidates.push(asNum(acCap.lead_bracket_land_at_ms, 5000) + 700);
+        }
+        else if (mode === 'plates_push_back') candidates.push(4500);      // one full A->B->A' loop (T=4.0s at defaults) established
+        else if (mode === 'slope_feeds_current') {
+            // three cue-gated tangent-walk dwell stops (default [1500,4500,7500]).
+            const stops = Array.isArray(acCap.tangent_stops_at_ms) ? acCap.tangent_stops_at_ms as unknown[] : null;
+            const lastStop = stops && stops.length === 3 && typeof stops[2] === 'number' ? (stops[2] as number) : 7500;
+            candidates.push(lastStop + 800);
+        }
+        else if (mode === 'reactance_ramp') {
+            // scripted f-ramp: rampStart + the full 17.0s multi-leg schedule
+            // (physics_block §3 S5 — 4.0+1.5+6.0+1.5+4.0) + a settle cushion.
+            candidates.push(asNum(acCap.ramp_window_start_at_ms, 2000) + 17000 + 800);
+        }
+        else if (mode === 'power_swings') {
+            candidates.push(asNum(acCap.area_label_at_ms, 3000) + 600);
+        }
+        else if (mode === 'null_average_power') candidates.push(3000);     // dead needle + live beads/field/gauge established
+        else if (mode === 'one_derivative_derivation') {
+            candidates.push(asNum(acCap.identity_dock_at_ms, 3500) + 800);
+        }
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
+    // ac_phasor (a spinning phasor's shadow draws v = vₘ sin(ωt); the i-arrow's
+    // constant lead/lag angle IS the phase φ — Ch.7 §7.5, clean standalone
+    // sibling of ac_resistor/ac_inductor/ac_capacitor). Every guided beat is a
+    // SCRIPTED one-shot (trace-congruence naming / theta freeze demo / mirror
+    // flip / crossing-order scoreboard / derivation chain) that plays ONCE then
+    // HOLDS on the state's own clock (Rule 26); deriveHoldExpectations marks each
+    // guided mode reveal_hold below. Pin the frozen frame PAST the LAST scripted
+    // payoff of each mode so THE EYE photographs the SETTLED beat, never a mid-
+    // transition frame — the F1 defect this fixes: at the 1500ms DEFAULT_REVEAL_MS
+    // fallback the S5 flip is only (1500−800)/1200 = 15/90ths done, so the HUD
+    // reads φ = 15° while the static formula overlay reads the relocked 90°.
+    // Timings mirror the renderer's ac_phasor block (field_3d_renderer.ts:
+    // phsComputeFreeze / the hardcoded flipDur = 1.2s scripted flip) and
+    // phasors.json's per-state ac_phasor.*_at_ms — keep in sync if either changes.
+    const acPh = asObj(state.ac_phasor);
+    if (acPh) {
+        const mode = typeof acPh.mode === 'string' ? acPh.mode : '';
+        if (mode === 'spin_draws_sine') {
+            // S1: the spinning disc's sine trace is NAMED congruent with the live
+            // shadow (the payoff) at congruence_named_at_ms; pin just past it.
+            candidates.push(asNum(acPh.congruence_named_at_ms, 13000) + 500);
+        }
+        else if (mode === 'arrow_vs_shadow') {
+            // S2: three chronological θ freezes (45/90/180) that ARM at their
+            // *_at_ms then FIRE at the next target crossing (up to ~one revolution
+            // later) and hold freeze_budget_ms_each. At the captured f_demo = 0.25
+            // (T = 4.0s; phsComputeFreeze) the last (180°) stop fires ~16.0s and its
+            // 1.0s budget completes ~17.0s — pin past the whole freeze demo.
+            candidates.push(asNum(acPh.freeze_180_arm_at_ms, 13000) + 4500);
+        }
+        else if (mode === 'two_arrows_one_clock') {
+            // S3: the φ-arc opens (arc_open_at_ms) then the f-drag invite appears
+            // (f_invite_at_ms, the last reveal); pin past the invite.
+            candidates.push(asNum(acPh.f_invite_at_ms, 13800) + 500);
+        }
+        else if (mode === 'lag_becomes_angle') {
+            // S4: the freeze TRIO (30/150/240) all ARM together at
+            // freeze_trio_arm_at_ms then fire+hold sequentially; at the captured
+            // f_demo = 0.25 all three complete ~9.7s (phsComputeFreeze). Pin past.
+            candidates.push(asNum(acPh.freeze_trio_arm_at_ms, 4300) + 6000);
+        }
+        else if (mode === 'lead_mirror_flip') {
+            // S5: the SCRIPTED one-shot mirror flip — φ ramps flip_relock_from_deg
+            // → _to_deg (−90 → +90) over the renderer's hardcoded flipDur = 1200ms
+            // starting at flip_start_at_ms. Pin PAST the settle (800 + 1200 = 2000)
+            // so the frozen frame reads the relocked +90°, not a mid-flip +15°.
+            candidates.push(asNum(acPh.flip_start_at_ms, 800) + 1200 + 200);
+        }
+        else if (mode === 'reading_order') {
+            // S6: the upper-crossing flashes fire early (i_cross/v_cross_arm), then
+            // the R/L/C scoreboard SPLITS (scoreboard_split_at_ms, the last payoff).
+            candidates.push(asNum(acPh.scoreboard_split_at_ms, 9000) + 800);
+        }
+        else if (mode === 'radians_derivation') {
+            // S7: the four-line θ = ωt derivation writes in chain_1..chain_4_at_ms;
+            // pin past the last chain line's write-in.
+            candidates.push(asNum(acPh.chain_4_at_ms, 15700) + 800);
+        }
+        else candidates.push(1500);                                       // explore (S8) / no timed reveal
+    }
+    // ac_series_lcr (three elements in one series loop; fan / chain / triangle /
+    // resonance sweep — Ch.7 §7.6, clean standalone sibling of the scope-pane
+    // family). Every guided beat is a SCRIPTED reveal/ramp/freeze that plays then
+    // HOLDS on the state's own clock (Rule 26); pin the frozen frame PAST the LAST
+    // payoff of each mode so THE EYE photographs the SETTLED beat. Timings mirror
+    // the renderer's ac_series_lcr block — keep in sync if either changes.
+    const acSlcr = asObj(state.ac_series_lcr);
+    if (acSlcr) {
+        const mode = typeof acSlcr.mode === 'string' ? acSlcr.mode : '';
+        if (mode === 'series_build') candidates.push(asNum(acSlcr.beads_start_at_ms, 4000) + 1500);
+        else if (mode === 'off_home') candidates.push(asNum(acSlcr.f_glide_start_at_ms, 0) + asNum(acSlcr.f_glide_dur_ms, 3000) + 2000);
+        else if (mode === 'fan') candidates.push(asNum(acSlcr.source_dock_at_ms, 6000) + 2000);
+        else if (mode === 'kvl_stack') candidates.push(asNum(acSlcr.freeze_i_arm_at_ms, 7000) + 2500);
+        else if (mode === 'tip_to_tail') candidates.push(asNum(acSlcr.chain_vc_at_ms, 3200) + 1500);
+        else if (mode === 'z_triangle') candidates.push(asNum(acSlcr.morph_start_at_ms, 800) + 3000);
+        else if (mode === 'lead_lag_flip') candidates.push(asNum(acSlcr.f_step_start_at_ms, 3000) + 2500);
+        else if (mode === 'resonance_sweep') candidates.push(asNum(acSlcr.sweep_start_at_ms, 1000) + asNum(acSlcr.sweep_legA_ms, 5000) + asNum(acSlcr.sweep_legB_ms, 3000) + 500);
+        // F5: the R-family tween runs 5->2 (idx 1) then 2->10 (idx 2), the LAST
+        // step completing at r_step_start + 3*r_step_dur. Pin PAST that (was 2x,
+        // which landed mid-tween on the transitional R=7.4/Q=0.7) so THE EYE
+        // photographs the SETTLED R=10 / Q=0.5 / im=1.00 A frame.
+        else if (mode === 'sharpness') candidates.push(asNum(acSlcr.r_step_start_at_ms, 1200) + 3 * asNum(acSlcr.r_step_dur_ms, 1300) + 800);
+        else if (mode === 'derivation') candidates.push(asNum(acSlcr.chain_4_at_ms, 6000) + 2000);
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
+    // ac_power (p=v*i product wave / averaging wattmeter / current split / power
+    // triangle / energy gauges — Ch.7 §7.7, clone-sibling of ac_series_lcr + the
+    // element power machinery). Every guided beat is a SCRIPTED reveal/ramp/hold
+    // that plays then HOLDS on the state's own clock (Rule 26); pin the frozen
+    // frame PAST the LAST payoff of each mode so THE EYE photographs the SETTLED
+    // beat. Timings mirror the renderer's ac_power block — keep in sync if either
+    // changes.
+    const acPow = asObj(state.ac_power);
+    if (acPow) {
+        const mode = typeof acPow.mode === 'string' ? acPow.mode : '';
+        if (mode === 'meter_dock') candidates.push(asNum(acPow.needle_climb_at_ms, 1500) + asNum(acPow.needle_climb_dur_ms, 1500) + 500);
+        else if (mode === 'product_wave') candidates.push(asNum(acPow.cursor_walk_at_ms, 2000) + 5000);
+        else if (mode === 'wave_sinks') candidates.push(asNum(acPow.f_glide_start_at_ms, 0) + asNum(acPow.f_glide_dur_ms, 3000) + 2000);
+        else if (mode === 'apparent_vs_real') candidates.push(asNum(acPow.naming_at_ms, 6000) + 1200);
+        else if (mode === 'current_split') candidates.push(asNum(acPow.rotation_resume_at_ms, 3600) + 1500);
+        else if (mode === 'wattless') candidates.push(asNum(acPow.r_cycle_start_at_ms, 800) + asNum(acPow.r_down_dur_ms, 1200) + asNum(acPow.r_hold_dur_ms, 1000) + asNum(acPow.r_up_dur_ms, 1200) + 800);
+        else if (mode === 'energy_ledger') candidates.push(asNum(acPow.close_chip_at_ms, 4000) + 1000);
+        else if (mode === 'power_triangle') candidates.push(asNum(acPow.rescale_morph_at_ms, 800) + 4000);
+        else if (mode === 'derivation') candidates.push(asNum(acPow.link5_at_ms, 8000) + 2000);
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
+    // lc_oscillation (source-free L-C loop — Ch.7 §7.8, clone-sibling of ac_power).
+    // Every guided beat is a SCRIPTED reveal/ramp/hold that plays then HOLDS on the
+    // state's own clock (Rule 26); pin the frozen frame PAST the LAST payoff of each
+    // mode so THE EYE photographs the SETTLED beat. Timings mirror the renderer's
+    // lc_oscillation block — keep in sync if either changes.
+    const lcOsc = asObj(state.lc_oscillation);
+    if (lcOsc) {
+        const mode = typeof lcOsc.mode === 'string' ? lcOsc.mode : '';
+        if (mode === 'charge_up') candidates.push(asNum(lcOsc.charge_climb_start_at_ms, 0) + asNum(lcOsc.charge_climb_dur_ms, 2000) + 800);
+        else if (mode === 'switch_throw') candidates.push(asNum(lcOsc.beads_start_at_ms, 1000) + 3500);
+        // S3 (empty_is_not_over — the concept's PRIMARY AHA "q=0 yet i peaks"): the
+        // q/i zero-crossing is a RECURRING instantaneous event (theta = 90 deg/270 deg
+        // at t=1000/3000/5000 ms; T0=4000 ms). The old "flip_at_ms + 1500" landed at
+        // 2500 ms = theta=225 deg = q=-0.90 C / |i|=1.41 A — BETWEEN crossings, the
+        // OPPOSITE of the caption. Pin ON the second crossing (strike_at_ms + 2000 =
+        // 3000 ms = theta=270 deg = q=0.00 C / |i|=2.00 A, plates reversed, ghost
+        // already struck) so THE EYE photographs the crossing the state teaches.
+        else if (mode === 'through_zero') candidates.push(asNum(lcOsc.strike_at_ms, 1000) + 2000);
+        else if (mode === 'free_run') candidates.push(asNum(lcOsc.f0_chip_at_ms, 5200) + 800);
+        else if (mode === 'energy_slosh') candidates.push(asNum(lcOsc.half_split_chip_fire_at_ms, 500) + 2100);
+        else if (mode === 'shm_twin') candidates.push(asNum(lcOsc.guard_clause_at_ms, 2600) + 1500);
+        else if (mode === 'damped') candidates.push(asNum(lcOsc.er_bar_at_ms, 500) + 8000);
+        else if (mode === 'derivation') candidates.push(asNum(lcOsc.link4_at_ms, 6000) + 2000);
+        else candidates.push(1500);                                       // explore / no timed reveal
+    }
+    // transformer (two-coil machine — Ch.7 §7.9, clone-sibling of lc_oscillation).
+    // Every guided beat is a SCRIPTED reveal/ramp/cascade/morph that plays then
+    // HOLDS on the state's own clock (Rule 26); pin the frozen frame PAST the LAST
+    // payoff of each mode so THE EYE photographs the SETTLED beat at a v-extremum /
+    // dead-hold / cool phase / laminated half (never a recurring zero-crossing).
+    // Timings mirror the renderer's transformer block — keep in sync if either changes.
+    const tfr = asObj(state.transformer);
+    if (tfr) {
+        const mode = typeof tfr.mode === 'string' ? tfr.mode : '';
+        if (mode === 'flux_link') candidates.push(asNum(tfr.flux_breathe_start_at_ms, 2500) + 1500);
+        else if (mode === 'close_secondary') candidates.push(asNum(tfr.meters_settle_at_ms, 1600) + 1400);
+        else if (mode === 'dc_dead') candidates.push(asNum(tfr.fix_clause_at_ms, 2200) + 1500);
+        else if (mode === 'per_turn') candidates.push(asNum(tfr.cascade_chip_at_ms, 3500) + 800);
+        else if (mode === 'turns_ramp') candidates.push(asNum(tfr.naming_clause_at_ms, 3400) + 1200);
+        else if (mode === 'power_lock') candidates.push(asNum(tfr.chip_at_ms, 2700) + 1500);
+        else if (mode === 'transmission') candidates.push(asNum(tfr.loss_stepped_chip_at_ms, 10500) + 800);
+        else if (mode === 'loss_ledger') candidates.push(asNum(tfr.ledger_close_at_ms, 6000) + asNum(tfr.ledger_close_dur_ms, 1500) + 800);
+        else if (mode === 'lamination') candidates.push(asNum(tfr.retro_link_at_ms, 7000) + 1500);
+        else if (mode === 'derivation') candidates.push(asNum(tfr.link6_at_ms, 7000) + 2000);
+        else candidates.push(1500);                                       // explore / no timed reveal
     }
     // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
     // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
@@ -2053,6 +2435,119 @@ export function deriveHoldExpectations(
             const acgHold = asObj(state.ac_generator);
             if (acgHold) {
                 out[stateId] = (acgHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_resistor: every state is LIVE (show_sliders true — Rule 31), so
+            // the generic show_sliders catch below would swallow S1-S8's genuine
+            // reveal-then-hold beats into 'interactive' before they ever reach
+            // it. Classify explicitly (mirrors the ac_generator/inductance/mfl/
+            // capacitance guided-vs-explore split above): the S9 sandbox (mode
+            // 'explore') is user-driven → interactive; every other mode is a
+            // guided beat whose payoff (cursor sample / product walk / twin
+            // match / square-settle / fold) is established and then runs
+            // steadily on the state's own clock (beads/heater keep moving even
+            // after the payoff, per the checklist's "no frozen tail" —
+            // reveal_hold permits exactly that settled-but-still-live tail).
+            const acrHold = asObj(state.ac_resistor);
+            if (acrHold) {
+                out[stateId] = (acrHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_inductor: every state is LIVE (show_sliders true — Rule 31),
+            // so the generic show_sliders catch below would swallow S1-S8's
+            // genuine reveal-then-hold beats into 'interactive' before they
+            // ever reach it. Classify explicitly (mirrors the ac_resistor/
+            // ac_generator/inductance split above): the S9 sandbox (mode
+            // 'explore') is user-driven → interactive; every other mode is a
+            // guided beat whose payoff (ghost-compare / tangent stop / ramp
+            // plateau / product walk / fold) is established and then runs
+            // steadily on the state's own clock → reveal_hold, so D7/D1p
+            // permit the settled-but-still-live tail (S8's own 3D apparatus
+            // intentionally holds a static dimmed pose per physics_block §3
+            // S8, but its scope panes keep moving — still a legitimate
+            // reveal_hold, not a frozen tail).
+            const acIndHold = asObj(state.ac_inductor);
+            if (acIndHold) {
+                out[stateId] = (acIndHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_capacitor: every state is LIVE (show_sliders true — Rule 31),
+            // so the generic show_sliders catch below would swallow S1-S8's
+            // genuine reveal-then-hold beats into 'interactive' before they
+            // ever reach it. Classify explicitly (mirrors the ac_inductor/
+            // ac_resistor/ac_generator/inductance split above): the S9
+            // sandbox (mode 'explore') is user-driven → interactive; every
+            // other mode is a guided beat whose payoff (ghost-compare / lead
+            // bracket / fill-spill loop / tangent stop / ramp plateau /
+            // product walk / fold) is established and then runs steadily on
+            // the state's own clock → reveal_hold, so D7/D1p permit the
+            // settled-but-still-live tail (S8's own 3D apparatus
+            // intentionally holds a static dimmed pose per physics_block §3
+            // S8, but its scope panes keep moving — still a legitimate
+            // reveal_hold, not a frozen tail).
+            const acCapHold = asObj(state.ac_capacitor);
+            if (acCapHold) {
+                out[stateId] = (acCapHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_phasor: every state is LIVE (show_sliders true — Rule 31), so
+            // the generic show_sliders catch below would swallow S1-S7's genuine
+            // reveal/freeze-then-hold beats into 'interactive' before they ever
+            // reach it. Classify explicitly (mirrors the ac_capacitor/ac_inductor
+            // split above): the S8 sandbox (mode 'explore') is user-driven →
+            // interactive; every other mode is a guided beat whose payoff (the
+            // congruent trace / frozen 90° angle / mirror flip / crossing order /
+            // scoreboard / chain) is established and then holds on the state's
+            // own clock → reveal_hold, so D7/D1p permit the settled-but-live tail
+            // (the S2/S4 bounded freezes + S6's scoreboard hold are legitimate
+            // reveal_hold, not frozen tails).
+            const acPhasorHold = asObj(state.ac_phasor);
+            if (acPhasorHold) {
+                out[stateId] = (acPhasorHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_series_lcr: every guided beat is a reveal/ramp/freeze-then-hold on
+            // the state's own clock; the explore state (mode 'explore') is
+            // user-driven -> interactive.
+            const acSeriesLcrHold = asObj(state.ac_series_lcr);
+            if (acSeriesLcrHold) {
+                out[stateId] = (acSeriesLcrHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_power: every guided beat is a reveal/ramp/hold on the state's own
+            // clock (the meter climb / product-wave build / f-glide / ghost-strike /
+            // component split / R-cycle / energy ledger / triangle morph / chain all
+            // settle then hold); the explore state (mode 'explore') is user-driven
+            // -> interactive.
+            const acPowerHold = asObj(state.ac_power);
+            if (acPowerHold) {
+                out[stateId] = (acPowerHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // lc_oscillation: every state exposes at least the relevant slider
+            // row(s) (Rule 31 controls), so the generic show_sliders catch below
+            // would swallow S1-S8's guided reveal/ramp/hold beats into 'interactive'
+            // before they ever reach it. Classify explicitly (mirrors the ac_power/
+            // magnetic_flux_loop split above): the explore state (mode 'explore', S9)
+            // is user-driven -> interactive; every other mode is a guided beat that
+            // plays then settles to a HOLD (caught by maxRevealForField3dState
+            // above) -> reveal_hold.
+            const lcOscHold = asObj(state.lc_oscillation);
+            if (lcOscHold) {
+                out[stateId] = (lcOscHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // transformer (Ch.7 §7.9): every state exposes at least the relevant
+            // slider row(s) (Rule 31 controls), so the generic show_sliders catch
+            // below would swallow S1-S10's guided reveal/ramp/hold beats into
+            // 'interactive' before they ever reach it. Classify explicitly (mirrors
+            // the lc_oscillation split above): the explore state (mode 'explore',
+            // S11) is user-driven -> interactive; every other mode is a guided beat
+            // that plays then settles to a HOLD (caught by maxRevealForField3dState
+            // above) -> reveal_hold.
+            const tfrHold = asObj(state.transformer);
+            if (tfrHold) {
+                out[stateId] = (tfrHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // magnetic_flux_loop: every state exposes at least the relevant

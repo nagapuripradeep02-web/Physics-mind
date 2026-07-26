@@ -2,14 +2,17 @@
 
 > **Model: claude-opus-5** (fallback sonnet-5) — engine surgery is judgment-dense; audit data (2026-07-24) shows Opus completes this task class in ~half the calls of Sonnet.
 
-> **EXPERIMENTAL (trial, ch8 branch only, 2026-07-24).** This agent exists ONLY on
-> `feat/ch8-em-waves` for the chapter-loop trial (docs/CHAPTER_LOOP.md, Amendment 4) — the Ch.8
-> EM-Waves replica of the ch7 field3d_surgeon, same standing as `founder_proxy`. Not project
-> doctrine; it graduates (or dies) with the trial.
+> **POST-MERGE (2026-07-26):** ch7 AND ch8 are now both merged to master; the renderer is
+> 47,461 lines. EVERY line number/region below is STALE — re-grep the named symbol before
+> reading. Both chapters' scenario prefixes now coexist on master.
+
+> **EXPERIMENTAL (trial, ch7 branch only, 2026-07-24).** This agent exists ONLY on
+> `feat/ch7-alternating-current` for the chapter-loop trial (docs/CHAPTER_LOOP.md, Amendment 4) —
+> same standing as `founder_proxy`. Not project doctrine; it graduates (or dies) with the trial.
 
 ## Role
 
-The specialist engine agent for `src/lib/renderers/field_3d_renderer.ts` (~37.6K lines on this ch8 branch): NEW
+The specialist engine agent for `src/lib/renderers/field_3d_renderer.ts` (~44.7K lines): NEW
 `scenario_type` builds and routed `[owner: peter_parker:*]` fixes whose root cause lives in this
 file, plus its MANDATORY co-edit `src/lib/validators/visual/deriveStateMeta.ts`. The gap it fills:
 
@@ -41,39 +44,33 @@ un-reproducible finding → report back for tightening; do not guess.
 
 ## Region map — `field_3d_renderer.ts`
 
-**ch8's `field_3d_renderer.ts` is the CLEAN MASTER version** (snapshot 2026-07-24, 37,601 lines) —
-it carries every electrostatics / magnetism / EMI / Gauss scenario through `ac_generator`,
-`magnetic_flux_loop`, and the Gauss trio, but NONE of the ch7-branch-only AC-analysis blocks
-(`ac_resistor` `acr_`, `ac_inductor`, `ac_capacitor` `acc_`, `ac_phasor` `phs_`, `ac_series_lcr`
-`slcr_`, `ac_power` `pwr_`, `lc_oscillation` `lco_`) — those exist ONLY on the ch7 branch. **Naming
-trap:** in ch8 master `acl_` is the `amperes_circuital_law` scenario (Ampère's ∮B·dl = μ₀ I_enc),
-NOT ac_inductor — a naive `acl_` grep here hits a MASTER scenario, so scar #34's contamination grep
-must use the prefixes YOU introduce, never the ch7 sibling list (see scar #34). This chapter's
-EM-wave scenario_types (for `displacement_current`, `em_wave_propagation`,
-`electromagnetic_spectrum`) DO NOT EXIST YET — you BUILD them in-loop, and they establish ch8's own
-scenario regions/prefixes (e.g. `emw_`, `dcur_`).
-
-**Line numbers DRIFT with every edit.** Ranges are approximate anchors — always re-grep the named
-symbol to localize before Reading a targeted chunk. Never Read the file whole.
+**Line numbers DRIFT with every edit.** Ranges are approximate anchors (snapshot 2026-07-24,
+44,736 lines) — always re-grep the named symbol to localize before Reading a targeted chunk.
+Never Read the file whole.
 
 | Region | ~Lines | What lives there |
 |---|---|---|
-| TS wrapper + HTML/CSS shell | 1–2151 | postMessage contract header (~10–42); `scenario_type` union (42–55); per-scenario TS config types incl. `acl_defaults`/biot/amperes (68–780); `.pmWgHide`/`.pmWgShow` widget classes (1790); `#acl_eq_panel`/`#acl_stage` amperes HUD (1811); `${FIELD_3D_RENDERER_CODE}` splice (2145) |
+| TS wrapper + HTML/CSS shell | 1–2151 | postMessage contract header (~21–40); `#sliders` CSS (1165); `.pmWgHide`/`.pmWgShow` widget classes (1790); `${FIELD_3D_RENDERER_CODE}` splice (2145) |
 | Template-literal start | 2152 | `export const FIELD_3D_RENDERER_CODE = \`` — EVERYTHING below is inside one template literal: NO backticks, ever (Rule 14 escapes: `\\u0027`) |
-| Shared display helpers | 2233–4578 | `applyGlowEmphasis` (2233); SET_TIME_FREEZE contract comment (2319); `cueTriggerMs` (2431); `animateCameraTo` + camera/drag (2909); `createTubeLine` (2975 — `field_lines` null-safe); articulated hand (~3164); `createLabelSprite` (3827) / `updateLabelSpriteText` (3879) / `pmCreateAutoLabel` (3934) / `createWideLabelSprite` (3974); `applyExtras` (4166) |
-| Electrostatics scenarios | 4579–8183 | `buildPointChargeField` (4579); `buildParallelPlatesField` (4806); `buildCapacitanceField` (5386; `capDrawGraph` 5843); `buildDipolePotential` (6171; inline `dpot_sliders` 6312); `buildSystemOfCharges` (6877; inline `soc_sliders` 6959); system_pe_assembly (~7266); pe_external_field (~7675) |
-| Magnetism scenarios | 8184–20858 | `buildSolenoidField` (8184); straight_wire_current (8729/9340); `buildBiotSavartField` (9506); `buildAmperesCircuitalLaw` (9911 — `acl_` prefix = **Ampère**, NOT ac_inductor); lorentz (~10324); rhr_force (10713); torque_on_loop (11276–12150); circular_loop (12948); galvanometers (13530, 14022); bar_magnet_as_dipole (14429); dipole/bar_in_field (15213/15609/15645); force_on_current_wire (17401); charge_distribution (18003); electric_flux (18209); gauss_law (18840); gauss_law_magnetism (19448); earths_magnetism (20131); magnetisation (20559) |
-| EMI + ac_generator | 20859–23408 | faraday (20859); motional_emf_rod (21245); eddy_current_pendulum (21871); inductance (22496); `buildAcGenerator` (23009; update 23833) — cue-heavy (`cueTriggerMs`/`SET_CUE_TIME` call sites throughout) |
-| magnetic_flux_loop | 23409–24118 | build + PARAM_UPDATE explorer (23412) |
-| Gauss trio + particle motion | 24119–29583 | gauss_law_sphere (24119; r_gauss slider 24523) / line (25539; 25864) / sheet (26424; 26845); magnetic_no_work apply (28148); helix (28468); radius (28888) |
-| cyclotron_period | 29585–29963 | cyclotron build/update (29585) |
-| `buildScenario()` dispatch | 29964–30264 | the `scenario_type` → builder `switch` (29970); `biot_savart_element`/`amperes_circuital_law` cases (30055/30059) |
-| `applyState()` + apply dispatch | 30265–30805 | per-scenario apply chain (30338–30800) |
-| `#sliders` exclusion chain | 30806–30975 | `getElementById("sliders")` (30806) + the `isX` boolean NOT-list (30895) — every dedicated panel excludes itself here or the generic panel bleeds through; lorentz/rhr dedicated sliders (30924–30971) |
-| Per-scenario apply + overlays | 30976–33968 | amperes screen-space overlays (31133; legend hide 31492) + biot `refreshBiotExplorer` (31720); amperes/biot Rule-31 r-slider grab (32736/32878); earths_magnetism `df_theta_slider` decl slider (33193). NB: dedicated slider panels are built INLINE inside each scenario's build fn (`dpot_sliders`, `soc_sliders`, …), NOT in a central rebuild region |
-| `animate()` + master clock | 33969–~35900 | `__pmAccumMs`/`__pmSteps` 0–3 fixed 1/60 s steps (33969–33991); `dtStep = 0.016 * __pmSteps` (33993); freeze pin-by-target (34017); per-scenario `heldAtPin ? 0 : dtStep` frame-update calls (34041–34340); biot/amperes frame update (35648/35864) |
-| Message handler | 36927–37205 | `__PM_supportsTimePin` (36927); listener (36928): INIT_CONFIG 36933 / SET_STATE 36946 / SET_TIME_FREEZE 37044 / SET_TIME_JUMP 37057 / SET_CUE_TIME 37078 / SET_CLEAN_MODE 37154 / SET_WIDGET_VIS 37166 / WIDGET_PING 37181 |
-| Generic widget engine | 37207–37600 | `PM_WG_STATIC_IDS` (37222); `pmWg*` generic widget engine (37229–37432); `pmSimReadyMsg` (37434); final `parent.postMessage(pmSimReadyMsg())` SIM_READY (37597) |
+| Shared display helpers | 2233–4578 | `applyGlowEmphasis` (2233); SET_TIME_FREEZE contract comment (2319); `cueTriggerMs` (2431); camera/drag (2662–2974); `createTubeLine` (2975 — `field_lines` null-safe since `d26d139`); articulated hand (3194); `createLabelSprite` (3827) / `updateLabelSpriteText` (3879) / `pmCreateAutoLabel` (3934) / `createWideLabelSprite` (3974); `applyExtras` (4166) |
+| Electrostatics scenarios | 4579–8183 | point/dipole fields; parallel_plates (4806); capacitance (5386; `capDrawGraph` 5843); dipole_potential (6171); system_of_charges (6877); system_pe_assembly (7266); pe_external_field (7675) |
+| Magnetism scenarios | 8184–20600 | solenoid (8184); bar magnet (8664); straight wire (8729); parallel_currents (8890); biot_savart (9506); ampere (9911); lorentz (10324); rhr_force (10502); magnetic_no_work (10776); torque_on_loop (11276); loop_as_dipole (12216); circular_loop (12549); galvanometers (13222, 13794); bar_magnet_as_dipole (14188); dipole/bar_in_field (14760/14972); equipotential (15774); potential_meaning (15965); force_on_current_wire (17401); charge_distribution (18003); electric_flux (18209); gauss_law (18840); gauss_law_magnetism (19448); earths_magnetism (19941); magnetisation (20434) |
+| EMI scenarios | ~20600–23008 | faraday, motional_emf_rod, eddy_current_pendulum, inductance — cue-heavy (`cueTriggerMs` call sites throughout) |
+| ac_generator | 23009–24241 | build 23009 / apply 23794 / update 23832 / glow 24086 |
+| ac_resistor (`acr_`) | 24242–25114 | build/apply/update/glow 24242/24441/24712/24912 — SEALED |
+| ac_inductor (`acl_`) | 25115–26308 | 25115/25339/25656/25820 — SEALED |
+| ac_capacitor (`acc_`) | 26309–27624 | 26309/26585/27025/27302; `acc*` subscript-compose clone — SEALED |
+| ac_phasor (`phs_`) | 27625–28481 | 27625/27772/28077/28168; `__PM_phsProbe` caption-order probe; `__PM_phsFreezeWindows()` |
+| ac_series_lcr (`slcr_`) | 28482–29422 | 28513/28626/29005/29155; `slcr*` compose clone |
+| ac_power (`pwr_`) | 29423–30134 | 29423/29569/29982/30116; `pwrFxZero` −0.000 clamp |
+| lc_oscillation (`lco_`) | 30135–31116 | `lco*` compose clone + physics + builders; glow 30954 |
+| Gauss trio + particle motion | 31117–36834 | gauss_law_sphere (31117) / line (32518) / sheet (33407); magnetic_no_work apply (34408); helix (35157); radius (35503); cyclotron (36206) |
+| `buildScenario()` dispatch | 36835–37163 | the `scenario_type` → builder case chain |
+| `applyState()` + apply dispatch | 37164–37769 | per-scenario apply chain (37301–37690) |
+| `#sliders` exclusion chain | 37770–38143 | `getElementById("sliders")` + the `isX` boolean NOT-list — every dedicated panel excludes itself here or the generic panel bleeds through; Rule-31 generic rows (38122) |
+| Sandbox slider rebuilds | 39785–40330 | per-scenario `#sliders` explorer rebuilds (plates / galvanometer / charges / parallel-currents …) |
+| `animate()` + master clock | 41013–41400 | `__pmAccumMs`/`__pmSteps` 0–3 fixed 1/60 s steps; `dtStep = 0.016 * __pmSteps` (~41034); freeze pin-by-target; per-scenario frame-update calls |
+| Message handler + widget engine | 44045–44736 | `__PM_supportsTimePin` (44045); listener (44046): SET_STATE 44064 / SET_TIME_FREEZE 44162 / SET_CUE_TIME 44196 / SET_WIDGET_VIS 44301 / WIDGET_PING 44316; `pmWg*` generic widget engine (44352–44560); `pmSimReadyMsg` (44569) |
 
 Co-edit file: `src/lib/validators/visual/deriveStateMeta.ts` — `F3D_REVEAL_KEYS`, per-scenario
 `maxRevealForField3dState` blocks, `deriveMotionExpectations`, `deriveHoldExpectations`.
@@ -208,11 +205,11 @@ failure mode (E3 recurred ONE commit after its fix) — a recurrence reopens/UPD
 34. Sealed-scenario protection (DF1) — a new clone-sibling touches sealed blocks ONLY via the
     shared one-line chains (scenario union, buildScenario/apply/animate dispatch, `#sliders`
     NOT-list, formula-overlay hide, `F3D_REVEAL_KEYS`). Prove it: contamination grep of your diff's
-    changed lines for sibling prefixes = 0 outside those chains. ch8 has no sibling scenario
-    prefixes YET; when you build EM scenarios, grep your diff's changed lines for the prefixes YOU
-    introduce (e.g. `emw_`, `dcur_`) to avoid cross-contaminating sibling scenarios. (NB: `acl_` in
-    ch8 master is `amperes_circuital_law`, a MASTER scenario — NOT a sibling of yours; never grep
-    the ch7 `acr_|acl_|acc_|phs_|slcr_|pwr_|lco_` list here.)
+    changed lines for sibling prefixes (`acr_|acl_|acc_|phs_|slcr_|pwr_|lco_` as applicable) = 0
+    outside those chains.
+    **Naming trap (post-merge):** `acl_` is AMBIGUOUS on master — it is both
+    `amperes_circuital_law` (Ampère ∮B·dl = μ₀I_enc, a long-standing MASTER scenario)
+    and ch7's `ac_inductor`. Never grep `acl_` alone; disambiguate by surrounding symbol.
 35. Root-cause from ACTUAL EYE pixels (`.visual_runs/` frames), never from the mocked node driver
     alone — it verifies values but is blind to viewport clipping, occlusion, camera framing,
     trusted-drag paths, cue ordering, and cross-state order (the dim bug shipped IN a minted
@@ -226,7 +223,7 @@ failure mode (E3 recurred ONE commit after its fix) — a recurrence reopens/UPD
 Same-change registration duties (miss one = silent failure or THE EYE false-fail):
 1. `deriveStateMeta.ts`: `F3D_REVEAL_KEYS` + per-mode reveal-pin block + motion expectations
    (guided→motion, explore→static) + hold classifier (guided→`reveal_hold`, explore→`interactive`).
-2. `#sliders` exclusion NOT-list entry (region ~30806–30975) for the scenario's dedicated panel.
+2. `#sliders` exclusion NOT-list entry (region ~37770–38143) for the scenario's dedicated panel.
 3. Formula-overlay hide chain + generic-legend suppression entries.
 4. Wiring: scenario union member, `buildScenario()` case, `applyState` dispatch, `animate()` frame
    call, glow dispatch — the ~6 one-line glue sites every sibling used.
