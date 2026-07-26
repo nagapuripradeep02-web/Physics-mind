@@ -1,0 +1,31 @@
+{
+  "approved_at": "2026-07-25T13:22:16.214Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\displacement_vs_distance\\20260725-152044",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

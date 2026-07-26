@@ -1,0 +1,801 @@
+{
+  "concept_id": "displacement_vs_distance",
+  "concept_name": "Displacement vs Distance — Δx = x_f − x₀",
+  "chapter": 2,
+  "section": "2.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Ch.3 Motion in a Straight Line §3.3-3.4 (Position, path length and displacement) — table-of-contents reference only; teaching authored from first principles. Atomic claim: displacement Δx = x_f − x₀ is the signed, endpoint-only change of position (a vector; sign = direction in 1D); distance is the always-positive accumulated path length — equal only for one-directional motion, diverging the instant motion reverses. Does NOT cover average speed vs velocity, x-t graphs, or 2D path-vs-chord (deferred/owned elsewhere). First concept of the Class 11 Kinematics 'Motion in a Straight Line' DAG track (chapter:2, field_3d), prerequisite scalar_vs_vector (chapter:1, Vectors DAG). Engine flag: authored against the field_3d scenario 'kinematics_1d_track', implemented 2026-07-25 — see field_3d_config.engine_build_spec below for the renderer_primitives contract.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "kinematics_1d_track"
+    ]
+  },
+  "prerequisites": [
+    "scalar_vs_vector"
+  ],
+  "real_world_anchor": {
+    "primary": "The fitness-tracker paradox: jog a straight waterfront path out to a turnaround post and back to your front door. Your fitness tracker reads '4.0 km' — yet you are standing exactly where you started. Displacement for the whole run is zero.",
+    "secondary": "An elevator car rides up to the top floor and back down to the ground floor. The cable ran many metres carrying it up and down, but the car's displacement for the whole trip is zero — it ends exactly where it began."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "x0": {
+        "name": "journey start position",
+        "unit": "m",
+        "min": -50,
+        "max": 50,
+        "default": 0
+      },
+      "x_f": {
+        "name": "journey end position (this state's authored/live endpoint)",
+        "unit": "m",
+        "min": -50,
+        "max": 50,
+        "default": 30,
+        "derived": "STATE_1 default = +30 m; every other guided state overrides x_f explicitly (see field_3d_config.states[*].track). In STATE_6 x_f tracks the live runner position each frame."
+      },
+      "turnaround_x": {
+        "name": "turnaround post position (on-canvas label L)",
+        "unit": "m",
+        "min": 10,
+        "max": 50,
+        "default": 40
+      },
+      "sweep_min": {
+        "name": "lap sweep zone near bound",
+        "unit": "m",
+        "constant": 10
+      },
+      "sweep_max": {
+        "name": "lap sweep zone far bound",
+        "unit": "m",
+        "constant": 30
+      },
+      "speed": {
+        "name": "runner speed",
+        "unit": "m/s",
+        "min": 0.5,
+        "max": 5,
+        "default": 2
+      },
+      "extra_laps": {
+        "name": "back-and-forth sweep laps",
+        "unit": "count",
+        "min": 0,
+        "max": 5,
+        "default": 1
+      },
+      "target_x": {
+        "name": "commanded/drag destination (STATE_6 only)",
+        "unit": "m",
+        "min": -50,
+        "max": 50,
+        "default": 20
+      },
+      "d": {
+        "name": "distance travelled (path length)",
+        "unit": "m",
+        "derived": "d = sum of |Δx_leg| over EVERY leg of the actual path — a running odometer, NOT a closed algebraic function of (x0, x_f) alone. Accumulator required (see constraints)."
+      },
+      "dx": {
+        "name": "displacement",
+        "unit": "m",
+        "derived": "dx = x_f - x0 (endpoints only — independent of the path taken between them)"
+      }
+    },
+    "computed_outputs": {
+      "d_display": {
+        "formula": "d.toFixed(0) + ' m'"
+      },
+      "delta_x_display": {
+        "formula": "(dx >= 0 ? '+' : '') + dx.toFixed(0) + ' m'"
+      },
+      "equal_check": {
+        "formula": "abs(dx) === d"
+      }
+    },
+    "formulas": {
+      "delta_x": "x_f - x0",
+      "distance_when_monotonic": "abs(x_f - x0)",
+      "round_trip_distance": "2 * turnaround_x",
+      "lap_sweep_distance": "(sweep_min - x0) + 40 * extra_laps + (x_f - sweep_min)",
+      "lap_distance_contribution": "40 * extra_laps"
+    },
+    "constraints": [
+      "dx = x_f - x0 at every instant, regardless of the path taken between them",
+      "d >= abs(dx) always, with equality iff the runner never reverses direction (monotonic single-directional path)",
+      "d is monotonically non-decreasing during forward playback and is never negative",
+      "dx may be positive, negative, or exactly zero; d may never be negative",
+      "position x is measured along one 1D axis from a single fixed origin O; camera-right is always +x across all six states (no left-right flip between states)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 25
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "A round trip: distance climbs the whole way, but displacement lands back at zero.",
+    "visual_confirmation": "The odometer reads 80 m while the displacement arrow shrinks to a zero stub next to the struck-out ghost arrow."
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "direction_sign": { "start": "STATE_4", "end": "STATE_4" },
+    "path_independence": { "start": "STATE_5", "end": "STATE_5" }
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Position needs an origin",
+        "duration": 5,
+        "focal_primitive_id": "origin_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "Position needs an origin",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "origin_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "O = origin, position measured from here",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "step_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "runner steps O → +30 m",
+            "color": "#FFCC80"
+          },
+          {
+            "type": "annotation",
+            "id": "position_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "x = position, measured from O",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Every position needs a starting point. Call it the origin, O.",
+              "glow": "origin_label"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch the runner step thirty metres along the track, from O toward positive x.",
+              "glow": "step_label"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "The reading you see is position x, measured straight from the origin — not how far the feet have travelled.",
+              "glow": "position_label"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "One-way motion: distance and displacement match",
+        "duration": 6,
+        "focal_primitive_id": "equal_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "One way: readouts match",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "lockstep_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "one-way: d and Δx match",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "jog_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "runner jogs O → +40 m, no turns",
+            "color": "#FFCC80"
+          },
+          {
+            "type": "annotation",
+            "id": "equal_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "d = |Δx| while motion stays one-directional",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now the runner jogs straight ahead, from O all the way to forty metres, never turning back.",
+              "glow": "jog_label"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the arrow tip and the odometer both climb together, step for step.",
+              "glow": "lockstep_label"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "As long as the motion stays one-directional, distance and displacement read the exact same number.",
+              "glow": "equal_label"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "The turnaround: distance climbs, displacement returns to zero",
+        "duration": 8,
+        "focal_primitive_id": "displacement_zero_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through (declared contrast pair with STATE_2)",
+        "delta_cue": "Return: distance keeps climbing",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["round_trip_zero_displacement", "distance_always_grows", "when_are_they_equal"],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "turn_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "turnaround post at L = 40 m",
+            "color": "#FFCC80"
+          },
+          {
+            "type": "annotation",
+            "id": "distance_climb_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "d keeps climbing: 0 → 80 m",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "displacement_zero_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Δx shrinks back to 0",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "The runner reaches the post at forty metres and turns back the way she came.",
+              "glow": "turn_label",
+              "scenario_cue": "s3_pivot"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch the odometer keep climbing past forty toward eighty, while the displacement arrow shrinks back down to nothing.",
+              "glow": "distance_climb_label"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "A ghost arrow keeps growing like distance would — then it's struck out, because displacement only compares start and end.",
+              "glow": "displacement_zero_label",
+              "scenario_cue": "s3_reveal"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "the displacement after a round trip equals the total distance walked",
+            "visual_counter": "the ghost arrow growing at odometer rate struck out as the real arrow collapses to a zero stub while d reads 80 m",
+            "one_line_fix": "Distance counts every step; displacement only compares where you ended with where you began."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Displacement carries a sign",
+        "duration": 5,
+        "focal_primitive_id": "sign_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "rotate/flip",
+        "delta_cue": "Displacement carries a sign",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sign_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Δx carries a sign; d never does",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "walk_neg_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "runner walks O → −20 m",
+            "color": "#FFCC80"
+          },
+          {
+            "type": "annotation",
+            "id": "readouts_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "d = 20 m, Δx = −20 m",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "This time the runner starts at O and walks twenty metres toward negative x.",
+              "glow": "walk_neg_label"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Watch the arrow flip to point the other way, and the displacement reading turn negative — minus twenty metres.",
+              "glow": "sign_label",
+              "scenario_cue": "s4_flip"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The odometer still only climbs, reading positive twenty — distance never carries a sign, but displacement always does.",
+              "glow": "readouts_label",
+              "scenario_cue": "s4_settle"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "both readouts should go negative when you walk the other way (or neither can)",
+            "visual_counter": "the Δx readout flipping to −20 m with the reversed arrow while d ticks up positive on the same screen",
+            "one_line_fix": "The sign is the direction — displacement carries it, distance never does."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Endpoints only: Δx = x_f − x₀",
+        "duration": 7,
+        "focal_primitive_id": "endpoint_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "oscillate/track",
+        "delta_cue": "Only endpoints set Δx",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["endpoint_subtraction_mechanics", "path_independence_of_displacement", "magnitude_vs_signed_value"],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "endpoint_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Δx = x_f − x₀ only",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "sweep_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "runner sweeps between 10 m and 30 m",
+            "color": "#FFCC80"
+          },
+          {
+            "type": "annotation",
+            "id": "lap_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "laps add to d, never to Δx",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Now the runner sweeps back and forth between ten and thirty metres, again and again.",
+              "glow": "sweep_label"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The odometer keeps climbing with every lap, but the displacement swings back and forth, always settling where she actually stops.",
+              "glow": "lap_label",
+              "scenario_cue": "s5_lap_intro"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "However many laps she runs, displacement only depends on the start and final positions — the path between never matters.",
+              "glow": "endpoint_label",
+              "scenario_cue": "s5_endpoint_law"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Explore: drive the runner yourself",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "All yours",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "drag the runner · try every dial",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "d only climbs · Δx tracks x_f − x₀",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "distance ≠ displacement, in general",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Your turn. Drag the runner anywhere on the track, or use the dials for target position, turnaround post, speed, and laps.",
+              "glow": "explore_label"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Watch both readouts and the arrow track the runner live — distance always climbing, displacement always the signed gap from where you began.",
+              "glow": "try_label"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "One law ties it together: displacement equals final position minus starting position, no matter which path the runner takes to get there.",
+              "glow": "key_label"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "elevator_shaft",
+      "type": "same_physics_different_world",
+      "label": "Elevator shaft — same round-trip zero-displacement physics, vertical axis",
+      "physical_world": "An elevator cable runs many metres as the car rises to the top floor and returns to the ground floor.",
+      "same_physics": "Same Δx = x_f − x₀ endpoint law; same d = accumulated cable length; the elevator's round trip mirrors the runner's round trip exactly, just along a vertical axis instead of horizontal.",
+      "scene_hint": "Vertical 1D track (elevator shaft) replacing the horizontal ground track; floor markers replace tick marks; the car replaces the runner."
+    },
+    {
+      "variant_id": "cargo_conveyor",
+      "type": "same_physics_different_world",
+      "label": "Warehouse conveyor belt — same endpoint law, industrial setting",
+      "physical_world": "A tagged crate rides a conveyor belt that shuttles forward, pauses, and partially reverses before reaching the packing station.",
+      "same_physics": "Same distance-vs-displacement split; the crate's odometer (belt length run) and its signed position relative to the loading dock behave identically to the runner's d and Δx.",
+      "scene_hint": "Horizontal conveyor belt track replacing the ground track; a crate icon replaces the runner figure."
+    }
+  ],
+  "assessment": {
+    "mastery_definition": "A student can, without rewatching the sim, correctly state that displacement is the signed straight-line change from start to end position (Δx = x_f − x₀) while distance is the always-positive total path length; can predict that a round trip gives zero displacement despite a large distance; can assign the correct sign to displacement when motion reverses direction; and can compute displacement from any two endpoints regardless of the path taken between them.",
+    "questions": [
+      {
+        "q_id": "Q1_origin",
+        "stem": "A hiker stands at a point the tracker labels '+30 m'. What does this +30 m actually tell you?",
+        "options": {
+          "A": "The hiker's position, measured from the chosen origin O",
+          "B": "The total distance the hiker has walked so far",
+          "C": "The hiker's average speed over the walk",
+          "D": "The time the hiker has been walking"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes a position reading and the distance walked are always the same number (true only for one-directional motion from the origin) — treats every coordinate as an odometer reading.",
+          "C": "Confuses a position coordinate (a place) with a speed reading (a rate).",
+          "D": "Confuses a spatial coordinate with an elapsed-time reading."
+        },
+        "tested_idea": "position_defined_from_origin",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A drone hovers at a point its display marks '+30 m'. What does this +30 m actually tell you?"
+      },
+      {
+        "q_id": "Q2_one_way",
+        "stem": "A cyclist rides in a straight line, only ever moving forward, from a lamppost to a shop 40 m away. How do the distance travelled and the displacement compare?",
+        "options": {
+          "A": "They are equal, both 40 m",
+          "B": "Displacement is larger than distance because it also counts direction",
+          "C": "Distance is always larger than displacement, even here",
+          "D": "They can't be compared because they're different kinds of quantities"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes adding 'direction' automatically makes displacement numerically bigger than distance.",
+          "C": "Believes distance is always strictly greater than displacement, treating it as a universal rule even for one-directional motion.",
+          "D": "Believes distance and displacement are incomparable, unrelated quantities rather than two measures of the same journey."
+        },
+        "tested_idea": "one_directional_distance_equals_displacement",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A boat crosses a calm lake in a single straight line from a dock to an island 500 m away, never turning back. How do the distance travelled and the displacement compare?"
+      },
+      {
+        "q_id": "Q3_round_trip",
+        "stem": "A jogger runs from home straight out to a lamppost 40 m away, then straight back home along the same path. What are the distance travelled and the displacement for the whole trip?",
+        "options": {
+          "A": "Distance = 80 m, Displacement = 0 m",
+          "B": "Distance = 80 m, Displacement = 80 m",
+          "C": "Distance = 0 m, Displacement = 0 m",
+          "D": "Distance = 40 m, Displacement = 0 m"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes displacement must equal distance whenever the motion covers 'a lot' of ground — never re-checks the endpoints once the runner reverses.",
+          "C": "Believes returning to the start erases the distance too, not just the displacement.",
+          "D": "Counts only the outbound leg toward distance, forgetting the return leg also adds path length."
+        },
+        "tested_idea": "round_trip_zero_displacement",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A swimmer swims from one end of a 25 m pool to the other and straight back to the start. What are the total distance and displacement for the round trip?"
+      },
+      {
+        "q_id": "Q4_distance_never_shrinks",
+        "stem": "While a runner is jogging back toward the starting point, retracing the outbound path, what happens to the odometer reading for total distance?",
+        "options": {
+          "A": "It keeps increasing, exactly as it did on the way out",
+          "B": "It decreases back toward zero as the runner returns",
+          "C": "It stays frozen at the outbound value until the runner arrives",
+          "D": "It resets to zero the moment the runner turns around"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes distance can 'unwind' when motion reverses, treating it like a signed displacement instead of an accumulated path length.",
+          "C": "Believes distance only updates during the outbound leg, not the return leg.",
+          "D": "Believes a direction reversal restarts the distance count from zero."
+        },
+        "tested_idea": "distance_never_decreases",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "parallel_form_stem": "While an elevator car is descending back to the ground floor after reaching the top, what happens to the total cable-distance-travelled reading?"
+      },
+      {
+        "q_id": "Q5_signed_displacement",
+        "stem": "A hiker starts at origin O and walks 20 m in the negative-x direction. What are the distance travelled and the displacement?",
+        "options": {
+          "A": "Distance = 20 m, Displacement = −20 m",
+          "B": "Distance = −20 m, Displacement = −20 m",
+          "C": "Distance = 20 m, Displacement = +20 m",
+          "D": "Distance = −20 m, Displacement = 20 m"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes distance can be negative because the motion itself was 'backward'.",
+          "C": "Believes displacement can't carry a sign, so drops the direction and reports a bare magnitude.",
+          "D": "Confuses which of the two quantities — distance or displacement — is allowed to be signed."
+        },
+        "tested_idea": "displacement_sign_shows_direction",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A submarine starts at the surface (position 0) and descends 20 m straight down, taken as the negative direction. What are the distance travelled and the displacement?"
+      },
+      {
+        "q_id": "Q6_endpoint_formula",
+        "stem": "A student walks back and forth several times between two posts before finally stopping 20 m from where they started. Which formula correctly gives their displacement?",
+        "options": {
+          "A": "Δx = x_f − x₀, using only the start and final positions",
+          "B": "Δx = the sum of every leg of the back-and-forth walk",
+          "C": "Δx = the total distance walked divided by the number of trips",
+          "D": "Δx = the distance of the longest single leg walked"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes displacement must add up every leg the way distance does, confusing the two formulas.",
+          "C": "Invents an averaging rule with no grounding in the endpoint definition.",
+          "D": "Picks out one 'representative' leg instead of using the two true endpoints."
+        },
+        "tested_idea": "displacement_depends_only_on_endpoints",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A drone flies a zig-zag inspection route around a warehouse before finally landing 15 m from its takeoff point. Which formula correctly gives its displacement for the whole flight?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1_origin"],
+      "STATE_2": ["Q2_one_way"],
+      "STATE_3": ["Q3_round_trip", "Q4_distance_never_shrinks"],
+      "STATE_4": ["Q5_signed_displacement"],
+      "STATE_5": ["Q6_endpoint_formula"]
+    },
+    "non_assessed_states": ["STATE_6"]
+  },
+  "field_3d_config": {
+    "scenario_type": "kinematics_1d_track",
+    "label_legend": {
+      "O": "origin marker",
+      "+x →": "position axis arrow, billboarded camera-right (locked across all six states, never flips)",
+      "x": "instantaneous position (live)",
+      "x0": "start position, on-canvas label x₀",
+      "x_f": "final position, on-canvas label x_f (shown STATE_5 only, once settled)",
+      "dx": "displacement, signed readout + arrow label, on-canvas Δx",
+      "d": "distance, odometer readout",
+      "L": "turnaround post label (STATE_3 only, enables d = 2L)"
+    },
+    "slider_controls": {
+      "target_x": { "min": -50, "max": 50, "step": 1, "default": 20, "label": "Target position (m)" },
+      "turnaround_x": { "min": 10, "max": 50, "step": 1, "default": 40, "label": "Turnaround post L (m)" },
+      "speed": { "min": 0.5, "max": 5, "step": 0.1, "default": 2, "label": "Runner speed (m/s)" },
+      "extra_laps": { "min": 0, "max": 5, "step": 1, "default": 1, "label": "Sweep laps" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "track": "#90A4AE",
+      "displacement_positive": "#66BB6A",
+      "displacement_negative": "#EF5350",
+      "distance": "#FFD54F"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Position needs an origin",
+        "visible_elements": ["kt_track", "kt_ticks", "kt_origin_flag", "kt_runner", "kt_x_readout", "kt_x0_marker"],
+        "camera_position": [0, 2.2, 8.0],
+        "caption": "Position needs an origin",
+        "show_sliders": true,
+        "formula_overlay": null,
+        "track": {
+          "mode": "position_intro",
+          "x0": 0, "x_f": 30, "turnaround_x": 40, "speed": 2, "extra_laps": 0,
+          "controls_visible": [],
+          "show_readout": true,
+          "phases": [
+            { "id": "track_wipe", "at_ms": 0, "until_ms": 1200, "action": "track + tick marks wipe in left to right" },
+            { "id": "origin_drop", "at_ms": 1000, "until_ms": 1600, "action": "origin flag drops/bounces at x=0 (slight overlap with track wipe)" },
+            { "id": "runner_step", "at_ms": 1800, "until_ms": 3600, "action": "runner steps O -> +30 m, ease-out", "glow_focal": "kt_runner" },
+            { "id": "readout_count", "at_ms": 4100, "until_ms": 4600, "action": "x readout digit-rolls 0 -> +30 m; x0_marker fades in at O (0.5s gap after step completes — the ONE explicit discrete reveal-gap this state teaches)", "glow_focal": "kt_x_readout" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "One-way motion: readouts match",
+        "visible_elements": ["kt_track", "kt_ticks", "kt_origin_flag", "kt_runner", "kt_disp_arrow", "kt_d_readout", "kt_dx_readout"],
+        "camera_position": [0, 2.2, 8.0],
+        "caption": "One way: readouts match",
+        "show_sliders": true,
+        "formula_overlay": "d = |Δx|",
+        "track": {
+          "mode": "one_way_lockstep",
+          "x0": 0, "x_f": 40, "turnaround_x": 40, "speed": 2, "extra_laps": 0,
+          "controls_visible": [],
+          "show_readout": true,
+          "phases": [
+            { "id": "home_reset", "at_ms": 0, "until_ms": 300, "action": "runner snaps to O quietly; track/ticks/flag persist static (home pose)" },
+            { "id": "jog_out", "at_ms": 500, "until_ms": 5500, "action": "runner jogs O -> +40 m at a steady linear pace (no ease — constant speed is the point); disp_arrow tip + d_readout + dx_readout track live, staying visibly EQUAL throughout", "glow_focal": "kt_disp_arrow" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "The turnaround",
+        "visible_elements": ["kt_track", "kt_ticks", "kt_origin_flag", "kt_runner", "kt_disp_arrow", "kt_ghost_arrow", "kt_d_readout", "kt_dx_readout", "kt_turnaround_post"],
+        "camera_position": [0, 2.2, 11.0],
+        "caption": "Return: distance keeps climbing",
+        "show_sliders": true,
+        "formula_overlay": "d = 2L, Δx = 0",
+        "scenario_cue": "s3_pivot",
+        "track": {
+          "mode": "round_trip_divergence",
+          "x0": 0, "x_f": 0, "turnaround_x": 40, "speed": 2, "extra_laps": 0,
+          "controls_visible": [],
+          "show_readout": true,
+          "phases": [
+            { "id": "home_reset", "at_ms": 0, "until_ms": 300, "action": "runner snaps to O; turnaround_post fades in at +40 m" },
+            { "id": "outbound", "at_ms": 500, "until_ms": 3500, "action": "runner jogs O -> +40 m; disp_arrow grows +x live; d_readout ticks 0 -> 40", "glow_focal": "kt_disp_arrow" },
+            { "id": "pivot", "at_ms": 3500, "until_ms": 3900, "action": "discrete pivot: turnaround_post glow-pulses as runner touches/turns", "glow_focal": "kt_turnaround_post", "scenario_cue": "s3_pivot" },
+            { "id": "return", "at_ms": 4100, "until_ms": 7100, "action": "return leg (0.2s gap after pivot): runner jogs +40 -> 0; disp_arrow SHRINKS live to a zero-length stub at O; ghost_arrow appears at t=4100ms, growing at the d(t) rate in an offset parallel lane above disp_arrow (never occludes it); d_readout ticks 40 -> 80", "glow_focal": "kt_ghost_arrow" },
+            { "id": "reveal", "at_ms": 7100, "until_ms": 7600, "action": "ghost_arrow gets a strike-through (X) animation (0.5s gap after arrival); glow_focal moves from ghost_arrow to dx_readout, which locks at '0 m' with an emphasis pulse — exactly one glow focal at any instant", "glow_focal": "kt_dx_readout", "scenario_cue": "s3_reveal" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Displacement carries a sign",
+        "visible_elements": ["kt_track", "kt_ticks", "kt_origin_flag", "kt_runner", "kt_disp_arrow", "kt_d_readout", "kt_dx_readout"],
+        "camera_position": [0, 2.2, 8.0],
+        "caption": "Displacement carries a sign",
+        "show_sliders": true,
+        "formula_overlay": "Δx < 0 ⇒ motion along −x",
+        "scenario_cue": "s4_flip",
+        "track": {
+          "mode": "signed_direction",
+          "x0": 0, "x_f": -20, "turnaround_x": 40, "speed": 2, "extra_laps": 0,
+          "controls_visible": [],
+          "show_readout": true,
+          "phases": [
+            { "id": "home_reset", "at_ms": 0, "until_ms": 400, "action": "runner snaps to O; disp_arrow resets to a short default +x stub; turnaround_post hidden" },
+            { "id": "cause_steps", "at_ms": 600, "until_ms": 1000, "action": "cause beat: runner takes first visible steps in the -x direction (ease-in ~0.4s)", "glow_focal": "kt_runner" },
+            { "id": "effect_flip", "at_ms": 1500, "until_ms": 1500, "action": "effect beat (0.5-0.9s readable gap after the cause beat): disp_arrow discretely flips to -x rooted at O; dx_readout begins ticking negative from 0", "glow_focal": "kt_disp_arrow", "scenario_cue": "s4_flip" },
+            { "id": "continue_neg", "at_ms": 1500, "until_ms": 4100, "action": "runner continues O -> -20 m; arrow tip + dx_readout track live, continuously negative, down to -20 m; d_readout ticks 0 -> 20 (positive)", "glow_focal": "kt_dx_readout" },
+            { "id": "settle", "at_ms": 4300, "until_ms": 4600, "action": "settle gap (0.2s): emphasis pulse on dx_readout (-20 m) paired with the 'sign = direction' delta cue", "glow_focal": "kt_dx_readout", "scenario_cue": "s4_settle" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "Only endpoints set Δx",
+        "visible_elements": ["kt_track", "kt_ticks", "kt_origin_flag", "kt_runner", "kt_disp_arrow", "kt_d_readout", "kt_dx_readout", "kt_sweep_markers", "kt_lap_counter", "kt_xf_marker"],
+        "camera_position": [0, 2.2, 8.5],
+        "caption": "Only endpoints set Δx",
+        "show_sliders": true,
+        "formula_overlay": "Δx = x_f − x₀",
+        "scenario_cue": "s5_lap_intro",
+        "track": {
+          "mode": "endpoint_law_sweep",
+          "x0": 0, "x_f": 20, "turnaround_x": 40, "speed": 2, "extra_laps": 1,
+          "controls_visible": ["extra_laps"],
+          "show_readout": true,
+          "phases": [
+            { "id": "home_reset", "at_ms": 0, "until_ms": 400, "action": "runner at O; sweep_bound_markers fade in at +10 m and +30 m, persist for the whole state" },
+            { "id": "enter_zone", "at_ms": 600, "until_ms": 1600, "action": "runner jogs O -> +10 m entering the sweep zone; d/dx readouts track live 0 -> 10" },
+            { "id": "lap_counter_intro", "at_ms": 1600, "until_ms": 1900, "action": "lap_counter appears, pulses to 'laps: 0' (0.3s gap after entering the zone)", "glow_focal": "kt_lap_counter", "scenario_cue": "s5_lap_intro" },
+            { "id": "sweep_laps", "at_ms": 2100, "duration_ms_formula": "3000 * extra_laps", "action": "per lap (1.5s out +10->+30, 1.5s back +30->+10) x extra_laps: runner sweeps the [+10,+30] zone; dx_readout genuinely OSCILLATES live with x(t); d_readout climbs monotonically (+40 per completed lap); lap_counter increments +1 at the end of each completed lap (0.3s pulse)", "glow_focal": "kt_dx_readout" },
+            { "id": "final_settle", "at_ms_formula": "2100 + 3000*extra_laps", "duration_ms": 1000, "action": "final settle leg: runner +10 -> +20 m; dx_readout live-tracks to and RESTS at +20 m; xf_marker fades in at +20" },
+            { "id": "endpoint_callout", "at_ms_formula": "2100 + 3000*extra_laps + 1300", "duration_ms": 1000, "action": "readable gap (0.3s) then a lap-distance callout ('extra_laps × 40 m') pulses beside lap_counter, THEN glow shifts sequentially to dx_readout, re-emphasizing its UNCHANGED +20 m regardless of lap count", "glow_focal": "kt_dx_readout", "scenario_cue": "s5_endpoint_law" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "Explore",
+        "visible_elements": ["kt_track", "kt_ticks", "kt_origin_flag", "kt_runner", "kt_disp_arrow", "kt_d_readout", "kt_dx_readout", "kt_sweep_markers", "kt_lap_counter", "kt_turnaround_post"],
+        "camera_position": [0, 2.6, 10.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": null,
+        "track": {
+          "mode": "sandbox",
+          "target_x": 20, "turnaround_x": 40, "speed": 2, "extra_laps": 0,
+          "controls_visible": ["target_x", "turnaround_x", "speed", "extra_laps"],
+          "show_readout": true,
+          "idle_auto_sweep": { "range": [-40, 40], "speed_ref": "speed" },
+          "trusted_drag_seizes": true,
+          "d_readout_persists_across_session": true,
+          "phases": [
+            { "id": "idle_loop", "at_ms": 0, "until_ms": null, "action": "runner idle-auto-sweeps the full track (-40..+40 m) at 'speed', looping forever (Rule 37: never freezes, needs no input); any control change drives the corresponding live behaviour; a trusted mouse-drag on the runner seizes over the idle sweep / slider-driven demo; d_readout NEVER resets across the session (true odometer); dx_readout is relative to the runner's position when STATE_6's clock started; turnaround_post / sweep_bound_markers / lap_counter re-instantiate on demand when turnaround_x / extra_laps are touched" }
+          ]
+        }
+      }
+    },
+    "engine_build_spec": {
+      "status": "Implemented 2026-07-25. The field_3d scenario 'kinematics_1d_track' exists in src/lib/renderers/field_3d_renderer.ts. This block remains the reference contract for the scenario's objects/phases for peter_parker:renderer_primitives maintenance.",
+      "objects": {
+        "kt_track": "straight horizontal ground track, -50..+50 m; static, draws in once (STATE_1)",
+        "kt_ticks": "tick mark every 10 m along the track; static, with the track",
+        "kt_origin_flag": "flag at x=0; static after the STATE_1 drop-in, persists every state",
+        "kt_runner": "the walker/runner figure; x(t) — position, the only thing that moves the figure",
+        "kt_disp_arrow": "displacement vector, rooted at x0, tip at x(t), orientation = sign(dx); dx(t) = x(t) - x0, a live continuous tracker",
+        "kt_ghost_arrow": "STATE_3 only — dim/desaturated duplicate arrow, offset parallel lane above kt_disp_arrow (never occludes it); grows at d(t) rate (the naive expectation), then gets struck through",
+        "kt_x_readout": "position HUD, top-anchored >= 52px clearance; x(t) instantaneous position readout, labelled x — STATE_1 only, before displacement/Δx is introduced",
+        "kt_d_readout": "odometer HUD, top-anchored >= 52px clearance; d(t) accumulator (path integral, see constraints)",
+        "kt_dx_readout": "signed displacement HUD, top-anchored >= 52px clearance; dx(t) = x(t) - x0 — introduced STATE_2 onward (STATE_1 shows kt_x_readout instead, to avoid pre-spoiling Δx)",
+        "kt_turnaround_post": "post/flag at turnaround_x, label 'L'; STATE_3 only (STATE_6 on demand)",
+        "kt_sweep_markers": "two posts at sweep_min(+10) / sweep_max(+30); STATE_5 only, static for the state",
+        "kt_lap_counter": "HUD integer 'laps: N'; increments once per completed full sweep in STATE_5/STATE_6",
+        "kt_x0_marker": "small tick label x₀ at the journey start; STATE_1",
+        "kt_xf_marker": "small tick label x_f at the journey end; STATE_5, once settled"
+      },
+      "continuous_tracker_note": "displacement_arrow.length/tip, d_readout, and dx_readout update on the SAME frame as the runner's position in every state (a physically-linked instrument, not a discrete effect) — Rule 32a's readable-gap requirement is satisfied by the ONE explicit discrete demo in STATE_1 (step, then a 0.5s gap, then the readout counts up). Subsequent continuous trackers correctly read as 'the instrument simply reporting live'. Discrete events (the STATE_3 pivot, the STATE_3 ghost strike-out, the STATE_4 direction-establishing beat) still get explicit readable gaps as authored in each state's phases[].",
+      "constraints": [
+        "d is a path integral, NOT a closed-form f(x0,x_f) — the engine MUST accumulate d += |x(t)-x(t-1)| each step, or per-leg schedule summed at boundaries; the 'distance_when_monotonic'/'round_trip_distance'/'lap_sweep_distance' formulas in physics_engine_config.formulas are per-state closed-form CHECKSUMS for verifying the accumulator, NOT the implementation itself.",
+        "No radians() anywhere — pure 1D translation, no angles; the STATE_4 arrow 'flip' is a discrete +-x orientation swap, not a rotation formula.",
+        "Sign/camera convention is locked: camera-right = +x in ALL six states, never flips.",
+        "kt_ghost_arrow (STATE_3) must render in a parallel offset lane, never colliding with or occluding kt_disp_arrow.",
+        "HUD anchoring: kt_d_readout / kt_dx_readout / kt_lap_counter top-anchored at top:52px+ on whichever corner(s), clearing the review-chrome Full-screen button and pen bar.",
+        "extra_laps is an integer slider (step:1); target_x/turnaround_x use step:1 (whole metres).",
+        "Every quantity narration names (the ghost's growth, the arrow's flip, the lap count) MUST be a rendered moving object at the moment it's named — never asserted only in teacher_script text."
+      ]
+    }
+  }
+}

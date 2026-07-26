@@ -429,6 +429,38 @@ function computePhysics_vector_addition_law(vars) {
   };
 }
 
+function computePhysics_resultant_direction(vars) {
+  var a = (vars && vars.a != null) ? vars.a : 3;
+  var b = (vars && vars.b != null) ? vars.b : 4;
+  var theta = (vars && vars.theta != null) ? vars.theta : 60;
+  var probe_heading_deg = (vars && vars.probe_heading_deg != null) ? vars.probe_heading_deg : 0;
+  var tracer_t = (vars && vars.tracer_t != null) ? vars.tracer_t : 0;
+  var theta_rad = theta * Math.PI / 180;
+  var shadow = b * Math.cos(theta_rad);
+  var riser = b * Math.sin(theta_rad);
+  var base = a + shadow;
+  var R_mag = Math.sqrt(a * a + b * b + 2 * a * b * Math.cos(theta_rad));
+  var alpha_deg = Math.atan2(riser, base) * 180 / Math.PI;   // quadrant-safe, never atan(riser/base)
+  var tan_alpha = riser / base;
+  return {
+    concept_id: 'resultant_direction',
+    variables: { a: a, b: b, theta: theta, probe_heading_deg: probe_heading_deg, tracer_t: tracer_t },
+    derived: {
+      shadow: shadow,
+      riser: riser,
+      base: base,
+      R_mag: R_mag,
+      alpha_deg: alpha_deg,
+      tan_alpha: tan_alpha,
+      P1_x: a,
+      P1_y: 0,
+      P2_x: a + shadow,
+      P2_y: riser
+    },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -445,6 +477,7 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'newton_second_law_direction') result = computePhysics_newton_second_law_direction(vars);
   else if (conceptId === 'scalar_vs_vector') result = computePhysics_scalar_vs_vector(vars);
   else if (conceptId === 'vector_addition_law') result = computePhysics_vector_addition_law(vars);
+  else if (conceptId === 'resultant_direction') result = computePhysics_resultant_direction(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
