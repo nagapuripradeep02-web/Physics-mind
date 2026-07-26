@@ -40,7 +40,8 @@
     "sync:agents": "node scripts/sync-agents.js",
     "check:agents": "node scripts/sync-agents.js --check",
     "test": "vitest run",
-    "build:pilot": "npx tsx src/scripts/build_review_site.ts --pilot"
+    "build:pilot": "npx tsx src/scripts/build_review_site.ts --pilot",
+    "grant:paid": "npx tsx --env-file=.env.local src/scripts/grant_paid.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
