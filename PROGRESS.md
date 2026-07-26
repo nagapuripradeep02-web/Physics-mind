@@ -1,5 +1,35 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚂 SESSION — Kinematics chapter OPENS: `displacement_vs_distance` SHIPPED (first field_3d kinematics concept, new `kinematics_1d_track` engine scenario built from scratch) — baselines locked (2026-07-25)
+
+**Bottom line: authored `displacement_vs_distance` (Class-11 Ch.2 Kinematics #1, prerequisite `scalar_vs_vector`, field_3d) through the full Alex pipeline — architect → physics-author → json-author → quality-auditor → renderer-primitives → runtime-generation → eye-walker ∥ quality-auditor, across THREE FAIL→fix→re-verify rounds — ending ALL-GREEN: tsc 0, validate 126/126, THE EYE 27/27 deterministic ×3 runs, eye-walker independent re-verify CLEAN, quality-auditor independent re-verify PASS, 6/6 baselines approved (`visual:approve` run, NOT yet `git add`ed). Founder directive at session start: stop authoring Vectors (Ch.1, stays PCPL), open Kinematics on field_3d per the 2026-07-23 chapter-track decision — this concept is that opener.**
+
+- **The concept (6 states):** the "fitness-tracker paradox" anchor (jog out-and-back, tracker reads 4.0 km, displacement = 0) — origin/position setup → one-way jog (d=|Δx|, the "safe case") → **PRIMARY aha**: round-trip return leg where a dim ghost arrow grows at the odometer's rate and gets struck through as the real displacement arrow shrinks to a zero-length stub at O while d keeps climbing to 80m → signed displacement (sign-flip crossing origin, scalar_vs_vector callback) → lap-sweep oscillation proving Δx = x_f − x₀ depends only on endpoints → open sandbox (Rule 37 continuous idle-sweep + trusted-drag).
+- **Brand-new field_3d scenario `kinematics_1d_track` built from scratch** in `field_3d_renderer.ts` (first-ever 1D-straight-line-motion scenario — no prior scenario to reuse): track/ticks/origin-flag/runner/displacement-arrow/ghost-arrow-with-strikethrough/turnaround-post/sweep-markers/lap-counter/HUD readouts, registered in `deriveStateMeta.ts`, `#sliders` exclusion-chain entry, `top:52px+` HUD anchoring, dedicated Cambria-Math formula panel.
+- **Three FAIL rounds, each root-caused properly, not patched around:**
+  1. Missing scenario → crash on `config.field_lines.count` (unknown-scenario-type fallback bug, now hardened fleet-wide with an optional-chain guard).
+  2. `kt_x_readout` (STATE_1's position HUD) spec'd but never implemented; duplicate formula overlay (`#formula_overlay` + new `#kt_formula` both rendering); distance accumulator (`PM_ktD`) desyncing badly *specifically under THE EYE's capture harness* (`SET_TIME_FREEZE`'s backward clock jumps broke a frame-diff accumulator) — fixed architecturally by making `d(t)` a closed-form pure function of state-clock time for the 5 guided states (immune to seek order), keeping a live frame accumulator only on STATE_6's human-driven sandbox.
+  3. Two cosmetic camera notes (STATE_3 ghost-arrow clipping in narrow windowed layouts, STATE_5's oblique tilt vs the other states' flat home pose) — the STATE_5 "fix" appeared not to work on first attempt because **THE EYE reads `simulation_cache`, not the live JSON**, and nobody re-seeded after the json_author edit; re-running the concept's `_seed_<id>_cache.ts` resolved it with zero renderer code changes. New reusable lesson: `[[reference_visual_gate_ops]]` (memory) now documents this `build:review`-vs-`visual:eyes` cache-source trap explicitly.
+- **Not yet founder-reviewed** (Asmi review, §5 stage ④, still pending) — baselines locked but `visual_baselines/displacement_vs_distance/` not yet `git add`ed/committed. Migration SQL authored, not applied. `text_hi` not yet authored (Rule 30i — FYI, not a blocker; do via the Rule 30g Sonnet-5 sub-agent step before `shipper`). Not yet added to `PILOT_CONCEPTS`.
+
+**Next (fresh context):** founder reviews at `http://localhost:8080/displacement_vs_distance/`, decides whether to `git add`/commit the baselines + JSON + renderer diff. Second Kinematics concept (`avg_vs_instantaneous_velocity` or similar, per the chapter's teaching-order dependency graph) can reuse the now-hardened `kinematics_1d_track` scenario patterns if its motion is also straight-line — check first whether it needs a new scenario or can extend this one.
+
+## ➕ SESSION — Vectors #3 `resultant_direction` SHIPPED (full pipeline + 2 fix rounds) + PCPL focal-glow channel completed engine-wide (2026-07-24, second session)
+
+**Bottom line: authored `resultant_direction` (Class-11 Ch.1 Vectors DAG child #3, prerequisite `vector_addition_law`, PCPL) through the full Alex pipeline — architect → physics-author → json-author → eye-walker ∥ quality-auditor — with a genuine auditor FAIL→fix→re-verify round plus a second surgical fix round, ending ALL-GREEN: tsc 0, validate 126/126 (zero target warnings), THE EYE 27/27 deterministic ×3 runs, eye-walker re-verify all-RESOLVED, review site serving HTTP 200. This cashes out the direction formula α = tan⁻¹(B sin θ/(A + B cos θ)) that `vector_addition_law` line 136 explicitly deferred here. Fresh concept_id per the standing founder call — the broken legacy `direction_of_resultant.json`/`resultant_formula.json` stay byte-untouched, no synonym redirect. NOT yet founder-reviewed; baselines NOT locked (`visual:approve` untouched); migration authored NOT applied.**
+
+- **The concept (6 states, 6 unique archetypes):** S1 sweep-and-lock hook ("6 km — which way?") · S2 perpendicular-drop decomposition (B cos θ shadow + B sin θ riser) · S3 PRIMARY aha — wrong-base ghost overshoots at 49.1°, tracer beads run base+riser, true α arc lands at 34.7° (denominator misconception beat) · S4 bisector-belief earned at b=a then broken by b ping-pong ("R leans toward bigger") · S5 θ-sweep with landmark holds (90° formula collapse to B/A; base-zero → α=90° at θ≈138.6°; 180° flip) · S6 full sandbox. Home pose = parent's finished triangle at θ=60° (chosen so the shadow is visible; 90° would zero it). New pink α arc distinguishes α from θ. misconception_watch on S3+S4 only.
+- **Registration complete (all 8 sites + engine):** concept JSON · `PCPL_CONCEPTS` + `CONCEPT_RENDERER_MAP` · `VALID_CONCEPT_IDS` + `CLASSIFIER_PROMPT` (+ disambiguation line vs the legacy ids) · `CONCEPT_PANEL_MAP` · `computePhysics_resultant_direction` + dispatcher line in `parametric_renderer.ts` (parent-precedent registration edit — atan2 quadrant-safe, no server-side ENGINES entry needed, matching the parent) · clusters+panel SQL migration authored (`supabase_2026-07-24_seed_resultant_direction_clusters_migration.sql`, NOT applied). Seed script `_seed_resultant_direction_cache.ts` cloned from the parent's.
+- **Audit round (the pipeline worked):** quality-auditor FAILed on ONE blocker — ASCII-minus regression of the FIXED scar `ascii_minus_in_oncanvas_math_from_tofixed` in S6's `tan α` HUD (negative only at θ≥140°, structurally invisible to THE EYE — a clean Gate-8 static-scan win) → routed alex:json_author, fixed with `.toFixed(2).replace('-','−')`. Auditor verified json_author's two documented engine-capability deviations SOUND against renderer source (angle_arc has no timing gate → S1 arc bound to the sweep variable; variable_choreography is last-entry-wins → single-entry redesigns for S4/S5).
+- **Eye-walker round-1 finds (all fixed same session):** (1) "A = 3.0 kmB cos θ" merged-label collision S2/S3/S6 — the solver-blind hand-placement scar, fixed round 1 (perpendicular label mode) + round 2 residual (A's label on the shadow arrowhead → moved below the shaft, gap WIDENS with a so the S6 extreme is safe); (2) S3 tracer invisible in all dense frames — root cause: `locus_trace` is a trail with no mover, and the authored path retraced static arrow pixels → fixed with two cyan `body`+translate beads (parent's own pattern); (3) S5 frozen tail (motion 31% of duration) → retimed to 88.9% coverage with all landmark holds preserved.
+- **Glow-focal triage (main-session Playwright probe, decisive):** `PM_focalEmphasis` verified WORKING at runtime ({isFocal:true, glowPx:12} for the S2 riser; peers 0.6-dimmed — eye-walker's own pixel numbers confirm the dimming). The real gap: **`drawAngleArc` never consumes `PM_focalEmphasis`** — S3/S5's declared arc focals dim every peer but can't glow themselves (drawBody/drawLocusTrace share the gap). Logged OPEN for `peter_parker:renderer_primitives`; founder decision whether to dispatch.
+- **`engine_bug_queue`: 4 rows + 1 append this session** (`_seed_engine_bug_queue_resultant_direction_build.ts`): `pcpl_radians_helper_missing` (probe_definition OPEN — PCPL eval scope has NO `radians()`, silent NaN→0; the generic "wrap in radians()" spec guidance is field_3d dialect only — physics_author caught it pre-ship by reading renderer source) · `pcpl_locus_trace_no_visible_mover` (FIXED) · `pcpl_solver_blind_label_hand_placement_collisions` (FIXED) · `pcpl_angle_arc_no_focal_glow_channel` (OPEN, peter_parker) · appended `resultant_direction` to the pre-existing OPEN `pcpl_slider_label_stale_under_choreography` (S4/S5 slider captions lag choreography — known cosmetic, NOT re-filed).
+- **Ops note:** the port-8080 review server was found serving a STALE `review-site` copy from a different cwd (both new + parent pages 404 while root served 200) — killed PID and relaunched from `C:\Tutor\physics-mind`; if review pages 404 after a build, check the server's cwd before debugging the build.
+- **SHIPPED (founder "okay gahead" 2026-07-24):** (1) **Glow-channel engine fix landed first** (founder-directed `peter_parker:renderer_primitives` dispatch — deliberately BEFORE the baseline lock so no re-baseline cycle): `drawAngleArc`/`drawBody`/`drawLocusTrace` now consume `PM_focalEmphasis` mirroring the 4 existing call sites (alphaMul into alpha, shadowBlur set+reset, geometry untouched); verified by real-browser pixel sampling (arc halo 20 vs 0 pre-fix, peer dim 0.6, zero shadow leak), 3 new vitest string guards (13/13), THE EYE 27/27; scar row flipped FIXED. Process scar self-reported by the agent: a `git stash` of the shared renderer briefly wiped this session's other uncommitted edits — caught + popped immediately, final `git diff` verified intended-edits-only. (2) **Shipper chain complete:** `visual:approve` locked 6 baselines (12 PNGs, live+frozen) · `tts:generate --langs=en` voiced **21/21 EN clips, 0 stale** (fresh Sarvam spend) · build:review rebuilt with the audio strip · verify: manifest 21=21, HTTP 200, validate PASS. English-only per Rule 30i. **Correction to shipper's report: the concept is NOT on app.viditra.co** — no Vectors concept is in `PILOT_CONCEPTS`; opening the Class-11 Vectors chapter in the deployed catalog is a separate founder decision.
+- **NEXT:** (1) Founder decision: open the Class-11 Vectors chapter in `PILOT_CONCEPTS` (would be the pilot's first Class-11 content — scalar_vs_vector + vector_addition_law + resultant_direction all baseline-locked) + `build:pilot`/`deploy:app`. (2) Vectors #4 — next chapter sibling (components territory — needs a FRESH id, the legacy `vector_resolution` registration collides). (3) Apply the clusters migration when drill-down activates (dormant). (4) `text_hi` authoring (Rule 30i Sonnet-5 sub-agent) whenever narration languages matter. (5) Commit this session's work (concept + registrations + renderer glow/carry edits + baselines + scar scripts) — NOTE the working tree also carries UNRELATED uncommitted files (field_3d_renderer.ts, website/*, pilot_site_assets.ts) from other sessions: commit selectively, never `git add -A`.
+
+---
+
 ## ➕ SESSION — Vectors #2 `vector_addition_law` SHIPPED (full pipeline + 2 fix rounds) + NEW PCPL `force_arrow` translate animation (the "carry" primitive) (2026-07-24)
 
 **Bottom line: authored `vector_addition_law` (Class-11 Ch.1 Vectors DAG child #2, prerequisite `scalar_vs_vector`, PCPL) through the full Alex pipeline — architect → physics-author → json-author → eye-walker ∥ quality-auditor — with a genuine auditor FAIL→fix→re-verify round, then closed a REAL engine gap the audit surfaced (`drawForceArrow` couldn't animate → STATE_2's "carry B" was a blink, not a glide) via a founder-directed `peter_parker:renderer_primitives` dispatch, and ran the founder-approved shipper release chain to completion after diagnosing its blocker in-session. Final state: THE EYE 32/32 (23 checks + 9 H2 vs locked baselines, 0.00% drift), baselines LOCKED (`visual:approve`), 18/18 EN clips voiced + manifest clean, build:review verified HTTP 200, tsc 0, validate 125/125. Founder decisions this session: (1) defer the broken `direction_of_resultant`/`resultant_formula` (confirmed NOT in PILOT_CONCEPTS → not teacher-reachable, latent only); (2) fresh concept_id — the old `parallelogram_law_test.json` stays byte-untouched, no synonym redirect.**
@@ -12161,3 +12191,131 @@ DATABASE:
   simulation_cache row for parallel_plate_capacitor_field regenerated (reseed x2)
   engine_bug_queue: 2 new rows (see above)
 ```
+
+---
+
+## Session 2026-07-25 — renderer_primitives: `displacement_vs_distance` second fix round (`kinematics_1d_track`)
+
+Second fix round on the `kinematics_1d_track` field_3d scenario (`displacement_vs_distance`), following
+independent post-fix findings from quality_auditor's Playwright re-audit and eye-walker's THE EYE frame
+walk. Three real defects, all rooted and fixed in `src/lib/renderers/field_3d_renderer.ts`.
+
+### Bug 1 (CRITICAL, fixed) — `kt_x_readout` spec'd but never implemented
+
+`buildKinematics1dTrack()` only built three DOM readouts (`kt_d_readout`/`kt_dx_readout`/`kt_lap_counter`);
+`kt_x_readout` — the STATE_1 plain-position HUD json_author added to fix an earlier Δx pre-spoil bug — had
+no matching `createElement` anywhere, so STATE_1 rendered zero numeric readout for its whole reveal + hold,
+and `glow_focal: "kt_x_readout"` lit nothing. Fix: added the `#kt_x_readout` DOM element (same screen slot
+`kt_dx_readout` takes over from STATE_2 onward — one continuous instrument, relabelled), added it to
+`ktApplyGlow`'s domIds, and moved the STATE_1 digit-roll logic off `kt_dx_readout` (labelled "Δx") onto
+`kt_x_readout` (labelled "x") — `kt_dx_readout` is now a plain live continuous tracker from STATE_2 on,
+with no state-specific special-casing left in its own block.
+
+### Bug 2 (MAJOR, fixed) — duplicate formula overlay
+
+`kinematics_1d_track` built its own dedicated Cambria-Math `#kt_formula` panel but the generic
+`#formula_overlay` suppression allowlist (`magnetisation`/`motional_emf_rod`/`ac_generator`) omitted the
+new scenario_type, so both rendered the same string at once (also the direct cause of the STATE_5 Gate 9
+`kt_sliders` x `formula_overlay` collision). Fix: added `config.scenario_type === "kinematics_1d_track"`
+to the suppression condition (~L30978 pre-fix line numbers). Collision cleared as a consequence — no
+separate layout fix needed.
+
+### Bug 3 (CRITICAL, fixed) — `PM_ktD` accumulator desynced under THE EYE's non-monotonic capture order
+
+Investigated per the task's explicit instruction (live click-through first, THE EYE second) before
+patching. **Live continuous Playwright probe (clean sequential `SET_STATE`, one settle read per state,
+mirroring quality_auditor's method) read PM_ktD CORRECTLY on all 6 states** — confirming this is a genuine
+capture-harness-interaction bug, not a live-playback bug. Root cause: `animate()`'s `SET_TIME_FREEZE`
+handling crawls `time` forward toward `freezeAtTime` one frame at a time, but if a NEW target is BEHIND
+the clock's current position (THE EYE's dense-then-frozen, or out-of-order dense, pin requests are not
+guaranteed monotonic within one long-lived per-state session), the very next frame's
+`time + dtStep >= freezeAtTime` check is already true, so `time` SNAPS backward in a single frame — no
+intermediate frames visited. The old accumulator (`PM_ktD += |x(t)-x(t-1)|`) cannot distinguish that jump
+from real motion, so it added the full backward displacement as fictitious distance, permanently inflating
+`d` for the rest of that state's captures (STATE_2 dense read `d=80` at `t=0`, STATE_3 climbed to `d=240`
+vs the true cap 80, ghost arrow ran toward the frame edge).
+
+Chose the architectural fix over a band-aid (per the task's own recommendation): guided states (S1–S5) now
+compute `d(t)` as a **closed-form path integral** of the authored `ktPositionM` schedule (new `ktBreakpoints`
++ `ktDistanceM` helpers) — summing `|Δx|` across the schedule's known breakpoints (each inter-breakpoint
+segment is monotonic, verified per-mode against `ktPositionM`'s own easing, so a completed segment's
+contribution is exactly `|x(segEnd)-x(segStart)|`, and the in-progress segment's contribution is
+`|x(t)-x(segStart)|` evaluated via `ktPositionM` itself). A pure function of `tMs` is immune to seek/jump/
+re-entry order by construction (Rule 26). STATE_6 (sandbox) keeps the original frame accumulator — its
+motion is live human drag input with no closed form, and THE EYE cannot fire trusted drag events there
+anyway (untestable by the visual gate per prior session notes), so it was out of scope and unaffected.
+
+The STATE_3 ghost arrow was rewired to match: it now reads `window.PM_ktD` (the pure value) directly
+instead of a separately-cached "growth since 4100ms" baseline (`PM_ktGhostBaseD`, removed) — that cache was
+itself jump-order-dependent (captured whatever `PM_ktD` held on the FIRST frame `tMs` happened to cross
+4100, which a direct seek to e.g. 6500ms would never do). Per the task's explicit design note, the ghost
+now shows the FULL `d(t)` rooted at `x0` (extending past the turnaround post to the true 80m cap before
+the strike-through), matching the "distance IS displacement the whole time" misconception more faithfully
+than the old "growth since the return leg started" partial view.
+
+**Secondary latent bug found and fixed while re-verifying:** once `PM_ktD` itself became seek-order-safe,
+a fresh THE EYE run exposed that `kt_ghost_arrow`/`kt_ghost_strike` used one-sided
+`if (tMs >= X) obj.visible = true` toggles with no `else obj.visible = false` — so a backward seek within
+a state left them visibly stuck ON from a later capture (visible at `STATE_3__dense_t00000.png` even
+though `d` itself now correctly read 0.0). Added the explicit `else` branches (reset visible/length/opacity)
+so both ghost and strike are now pure functions of `tMs` in both directions, not just forward.
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors (both fix iterations).
+- `npm run check:renderer-syntax` → clean (both fix iterations).
+- Live Playwright probe (`sim.html` direct, sequential `SET_STATE` walk, one settle read/state) —
+  **all correct**: STATE_1 `x = +30.0 m` (glowing, no d/dx shown); STATE_2 `d=40.0 / Δx=+40.0` + exactly
+  ONE visible formula (`kt_formula: d = |Δx|`); STATE_3 `d=80.0 / Δx=+0.0` + one formula (`d = 2L, Δx = 0`);
+  STATE_4 `d=20.0 / Δx=-20.0`; STATE_5 `d=60.0 / Δx=+20.0`, `laps: 1 (1× 40 m = 40 m)`; every guided state
+  showed exactly one visible formula overlay, zero on STATE_1/STATE_6 (both author `formula_overlay: null`).
+- `npm run visual:eyes -- displacement_vs_distance` — **27/27 deterministic checks passed** on both the
+  pre-ghost-fix and post-ghost-fix runs (`.visual_runs/displacement_vs_distance/20260725-141148/` and
+  `.../20260725-141717/`). Frames read directly: `STATE_1__frozen.png` shows `x = +30.0 m` glowing;
+  `STATE_2__dense_t00000.png` shows `d = 0.0 m` (was `d=80.0` pre-fix); `STATE_3__frozen.png` and
+  `STATE_3__dense_t00000.png` both show `d = 80.0 m` (was `d=240.0` pre-fix) with the ghost arrow correctly
+  capped at the true 80m distance (not running off-canvas); the post-ghost-fix run's
+  `STATE_3__dense_t00000.png` additionally confirms the ghost/strike no longer bleed into `t=0` (previously
+  visible there despite `tMs < 4100`).
+
+### RENDERER REGEN DIRECTIVE
+- cluster: renderer_primitives
+- fix_summary: kt_x_readout DOM element built + wired to STATE_1's digit-roll + glow (was spec'd, never implemented); kinematics_1d_track added to the #formula_overlay suppression allowlist (was duplicating #kt_formula); PM_ktD path-length odometer converted from a per-frame accumulator to a closed-form ktDistanceM(mode, tMs, ...) function for guided states S1-S5 (immune to THE EYE's non-monotonic SET_TIME_FREEZE seek order — sandbox S6 unaffected/unchanged); STATE_3 ghost arrow/strike now read PM_ktD directly (PM_ktGhostBaseD cache removed) and gained explicit else-branch visibility resets
+- affected_cache_tables: [simulation_cache]
+- affected_concept_ids: [displacement_vs_distance]
+- affected_modes: [conceptual]
+- handoff_to: runtime_generation
+
+### engine_bug_queue
+
+Three new incident rows inserted via `src/scripts/_seed_engine_bug_queue_displacement_vs_distance_fix2.ts`
+(all CRITICAL/MAJOR, all FIXED): `field3d_kt_x_readout_spec_not_implemented`,
+`field3d_kt_dual_formula_overlay_not_suppressed`, `field3d_kt_distance_accumulator_seek_order_dependent`.
+Archival SQL:
+`supabase_migrations/supabase_2026-07-25_seed_engine_bug_queue_displacement_vs_distance_fix2_migration.sql`.
+Same caveat as prior sessions: the `.agents/renderer_primitives/CLAUDE.md` silent-failure catalog table was
+NOT hand-edited (this role's own Tools Forbidden list bars `.agents/**` edits) — the queue rows above are
+the durable record pending a founder/architect-level catalog sync. Recommended catalog additions (for
+whoever performs that sync) mirror the queue rows' `title`/`DO` text verbatim, plus one general-purpose
+prevention note worth folding into the spec's Rule-36/capture-harness guidance: **any per-frame
+accumulator authored for a reproducible (non-live-input) state must instead be a closed-form function of
+state-local ms** — THE EYE's capture pattern is not guaranteed monotonic within a state.
+
+### Files modified
+
+```
+MODIFIED:
+  src/lib/renderers/field_3d_renderer.ts   (kt_x_readout DOM element + glow wiring + STATE_1 digit-roll retarget;
+                                             #formula_overlay suppression allowlist +kinematics_1d_track;
+                                             ktBreakpoints/ktDistanceM closed-form helpers added; PM_ktD
+                                             switched to closed-form for guided states; ghost arrow/strike
+                                             rewired off PM_ktD directly + explicit else-branch visibility resets)
+CREATED:
+  src/scripts/_seed_engine_bug_queue_displacement_vs_distance_fix2.ts
+  supabase_migrations/supabase_2026-07-25_seed_engine_bug_queue_displacement_vs_distance_fix2_migration.sql
+DATABASE:
+  simulation_cache row for displacement_vs_distance regenerated (reseed x2, via existing
+  _seed_displacement_vs_distance_cache.ts prewarm script from the first fix round)
+  engine_bug_queue: 3 new rows (see above)
+```
+
