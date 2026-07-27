@@ -62,21 +62,31 @@ which is the buy-trigger (CLAUDE.md §3), not concept count.
 
 **Locked rule: compounding is a tie-breaker between diamonds, never a reason to build a demo.**
 
-### 4. State count gets a second axis (proposed refinement to Rule 31 / §5)
+### 4. State count stays COMPLEXITY-driven — a tier cap was proposed and REJECTED (founder, 2026-07-27)
 
-Rule 31 sets state count by *complexity*. The founder's observation — that a teacher would use only
-the last state — exposes a second axis: **irreplaceability**. When a sim's value concentrates in one
-or two beats, building seven is wasted effort and dilutes the teacher's attention.
+**Proposed and withdrawn the same session.** I suggested a second axis on state count: diamonds get
+the full arc, demo-tier concepts cap at 2–3 states. **The founder rejected it, and was right on two
+counts.**
 
-- **Diamond** → full complexity-driven arc (the current rule).
-- **Strong** → trimmed arc, only the states carrying un-drawable content.
-- **Demo (built only if a syllabus gap forces it)** → **2–3 states maximum**, built around the single
-  beat that passes the whiteboard test, plus explore.
+1. **It contradicted Rule 11** — *"never hardcode state count; it is complexity-driven."* A per-tier
+   cap is exactly that hardcoding, wearing a different hat.
+2. **It confused two independent questions.** Tier answers *whether and when we build a concept*.
+   Complexity answers *how many states it needs once we have decided to build it.* Those must not be
+   collapsed.
 
-`law_of_conservation_of_mass` under this rule would have been ~3 states (the open/sealed contrast,
-the atom shuttle, explore) at roughly 40% of the cost. **Not retrofitted** — it is built, approved,
-baseline-locked and voiced; it stays as-is and serves as the ledger-choreography reference. The rule
-applies from the next concept onward.
+**The locked position:** state count is set by the concept's own complexity, **identically to
+physics** — a complex concept or a complex simulation earns more states, a simple one fewer, and
+**every state must teach something genuinely important** (Rule 31: ONE idea + ONE complete motion,
+no filler, no static state). A scheduled concept gets the full, traditional treatment it deserves.
+Nothing about the authoring pipeline, the state-design method, or the quality bar changes.
+
+**The ONLY thing this session changes is BUILD ORDER: diamonds first, then strong, then demo.**
+
+This also gives a cleaner reading of `law_of_conservation_of_mass` than my original one. Its problem
+was never that it has 7 states — if it is worth building, 7 may well be what it needs. Its problem is
+that it should not have been at the front of the queue. The fix is sequencing, not shrinking.
+It stays exactly as built — approved, baseline-locked, voiced — and serves as the archetype-O
+ledger-choreography reference.
 
 ### 5. "Dependable" is a SEPARATE axis from "impactful"
 
@@ -153,12 +163,16 @@ Phase 5). Schedule after P1 proves the particle-box compounding thesis.
 | 21 | **Electrolysis** | 💎 | Cl.12 Ch.2 | IGCSE (heavy) · A-level | |
 | 22 | **Titration apparatus + indicator** | ⭐ | Cl.11 Ch.6 | all boards | Completes #8 |
 
-#### DEPRIORITISED — the demo tier (build ONLY if a syllabus gap forces it, and then at 2–3 states)
+#### DEPRIORITISED — the demo tier (build LAST, or only when a syllabus gap forces it)
 
 Mole concept · stoichiometry · limiting reagent · percentage composition · empirical/molecular
 formula · balancing equations · nomenclature · descriptive inorganic · qualitative analysis ·
 metallurgy · biomolecules. **These are whiteboard jobs.** `law_of_conservation_of_mass` (built) is the
-reference for what this tier looks like and why we are not building more of it.
+reference for what this tier looks like and why the rest of it waits.
+
+**To be unambiguous (§4):** deprioritised means *later in the queue*, NOT *smaller when built*. If one
+of these is eventually scheduled, it gets the same complexity-driven state count and the same quality
+bar as any other concept. We are changing the order, not lowering the standard.
 
 ### 7. What changes immediately
 
@@ -168,6 +182,10 @@ reference for what this tier looks like and why we are not building more of it.
    justification in §1 of the skeleton, before state design begins.
 4. `CHEMISTRY_BUILD_PLAN.md`'s phase tracker should point here for concept ORDER; it remains the
    authority on phase *mechanics*.
+5. **Nothing else changes.** State design, the Alex pipeline, Rules 11/31/32/33/34/38, the quality
+   bar and the gates are untouched — chemistry is authored exactly as physics is. This session
+   changed the ORDER of the queue and nothing about how a concept is built once it reaches the front
+   of it (§4).
 
 ---
 
