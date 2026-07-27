@@ -72,11 +72,23 @@ an emitted/absorbed quantum (arrow/flash) and a real number (ΔE, wavelength).
   concept-gated, physics-neutral — NOT a new renderer. Without it, `{derived}` labels render as literal
   `{…}`. (2) **`smooth_camera` zooms the WHOLE draw pass** — on a canvas already ~90% full it clips
   content off-screen (killed Bohr S2's top rungs); use it only with real slack, or omit.
-- **Known renderer limit (GAP 2, `peter_parker:renderer_primitives` follow-up):** the parametric
-  renderer binds only TEXT (`label_expr`/`text_expr`) to live variables — `body`/`animated_path`
-  POSITIONS are static per state. So a slider-driven explore state updates its numeric readouts live
-  but the moving glyph does NOT re-jump on drag (guided one-shot animations are unaffected). Author
-  explore states knowing this until a live-position-expr primitive lands.
+- **~~Known renderer limit (GAP 2)~~ — CLOSED 2026-07-27, verify before trusting any claim here.**
+  GAP 2 said: "the parametric renderer binds only TEXT (`label_expr`/`text_expr`) to live variables —
+  `body`/`animated_path` POSITIONS are static per state, so a slider-driven explore state updates its
+  numeric readouts live but the moving glyph does NOT re-jump on drag." **That is no longer true.**
+  `position_expr` landed in commit `369e263` (`feat(parametric): position_expr — bind a body's
+  position to live variables`) and is consumed at `parametric_renderer.ts:1185-1188` inside
+  `drawBody`; `from_expr`/`to_expr` on arrows are likewise consumed now
+  (`PM_resolveArrowPoint` at `:1780-1781`, `PM_safeEvalPoint` at `:2152-2163`), which also makes the
+  `parametric_from_expr_to_expr_never_consumed` scar row STALE. **A slider-driven explore state CAN
+  now move glyphs, not just numbers.**
+  *How this was found, and the lesson:* the `law_of_conservation_of_mass` build (2026-07-27) designed
+  its whole explore state around GAP 2 — architect, chemistry_author and json_author each inherited it
+  from this file — and the limitation had been closed days earlier on a branch that had since merged.
+  No defect resulted (the workarounds are valid), but S7 shipped weaker than the engine allowed. This
+  is the SAME failure class as the archetype-`[LIVE]` scar at the top of this file: **a renderer
+  claim in this document is a CLAIM, and it decays.** Re-verify against renderer code before you let
+  one constrain a design — `git log -S "<symbol>" --oneline` takes ten seconds.
 - **Serving:** the review-site path (`build_review_site.ts`) gained a `parametric` branch 2026-07-23
   (`buildParametricConfig` + `assembleParametricHtml`) — parametric concepts now render on the teacher
   surface (previously field_3d/particle_field only). THE EYE still needs a chemistry cache-seed
