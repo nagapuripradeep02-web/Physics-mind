@@ -1,0 +1,527 @@
+{
+  "concept_id": "law_of_conservation_of_mass",
+  "concept_name": "Law of Conservation of Mass — Atoms Rearranged, Never Destroyed",
+  "chapter": 1,
+  "section": "Class 11 Chemistry Ch.1 'Some Basic Concepts of Chemistry', §1.3 Laws of Chemical Combination — Law of Conservation of Mass",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Chemistry Class 11, Ch.1 'Some Basic Concepts of Chemistry', §1.3 — chapter-index scope reference only; teaching, examples, and phrasing authored from first principles. NCERT Exemplar consulted for misconception beliefs only (M1-M3), no problem text imported. Second chemistry concept through the pipeline.",
+  "renderer_pair": {
+    "panel_a": "parametric",
+    "panel_b": "graph_interactive"
+  },
+  "available_renderer_scenarios": {
+    "parametric": ["reaction_ledger_mass_conservation"]
+  },
+  "prerequisites": [],
+  "concept_tier": "medium",
+  "real_world_anchor": {
+    "primary": "Charcoal on a barbecue grate or campfire burns down to a handful of ash that weighs almost nothing — anyone who has grilled or sat by a fire has watched kilograms seem to vanish into the air. That lived 'mass disappears' feeling is exactly the belief this concept breaks.",
+    "secondary": "A sealed zip-top bag with baking soda and vinegar fizzes and swells, yet a kitchen scale reads the identical number before and after — a home-replicable proof that a closed system's mass never changes."
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_4" },
+    "mass_gain_paradox": { "start": "STATE_5", "end": "STATE_5" },
+    "why_conserved": { "start": "STATE_6", "end": "STATE_6" },
+    "exploration": { "start": "STATE_7", "end": "STATE_7" }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "m_C": { "name": "mass of carbon sample", "unit": "g", "min": 1, "max": 24, "default": 12, "step": 1, "role": "integer_snap_required — rounding-robustness lock (chemistry block §3): a fractional step breaks the m_C + m_O2 = m_CO2 rounding identity" },
+      "vessel_sealed": { "name": "vessel sealed (1) or open (0)", "unit": "", "min": 0, "max": 1, "default": 1, "step": 1, "role": "boolean_toggle" },
+      "tare": { "name": "balance + flask hardware mass", "unit": "g", "constant": 38.0 },
+      "M_C": { "name": "atomic mass of carbon (teaching-rounded, IUPAC 12.011)", "unit": "g/mol", "constant": 12 },
+      "M_O": { "name": "atomic mass of oxygen (teaching-rounded, IUPAC 15.999)", "unit": "g/mol", "constant": 16 },
+      "M_O2": { "name": "molar mass of O2", "unit": "g/mol", "constant": 32 },
+      "M_CO2": { "name": "molar mass of CO2", "unit": "g/mol", "constant": 44 },
+      "M_Fe": { "name": "atomic mass of iron (teaching-rounded, IUPAC 55.85) — STATE_5 only", "unit": "g/mol", "constant": 56 },
+      "N_A": { "name": "Avogadro constant", "unit": "/mol", "constant": 6.022e23 },
+      "m_Fe_before_S5": { "name": "STATE_5 staged constant — iron before rusting", "unit": "g", "constant": 10.0 },
+      "m_gas_before_S5": { "name": "STATE_5 staged constant — sealed O2 reservoir before", "unit": "g", "constant": 5.0 },
+      "m_O2_reacted_S5": { "name": "STATE_5 staged constant — oxygen mass that joins the solid", "unit": "g", "constant": 0.6 },
+      "m_Fe_reacted_S5": { "name": "STATE_5 staged constant — iron mass consumed (= 0.6 × 7/3)", "unit": "g", "constant": 1.4 }
+    },
+    "formulas": {
+      "m_O2": "m_C * 32 / 12",
+      "m_CO2": "m_C * 44 / 12",
+      "n_C": "m_C / 12",
+      "m_reactants": "m_C + m_O2",
+      "m_products": "m_CO2",
+      "reading_initial": "tare + m_C + (vessel_sealed ? m_O2 : 0)",
+      "reading_final": "tare + (vessel_sealed ? (m_C + m_O2) : 0)",
+      "delta_reading": "reading_final - reading_initial",
+      "m_solid_after_S5": "m_Fe_before_S5 + m_O2_reacted_S5",
+      "m_gas_after_S5": "m_gas_before_S5 - m_O2_reacted_S5",
+      "m_total_S5": "m_Fe_before_S5 + m_gas_before_S5",
+      "atoms_scale_label": "'≈ ' + n_C.toFixed(2) + ' × 6.022×10²³ atoms'"
+    },
+    "computed_outputs": {
+      "m_O2": { "formula": "m_C × 32/12 g — mass of oxygen consumed" },
+      "m_CO2": { "formula": "m_C × 44/12 g — mass of carbon dioxide formed" },
+      "n_C": { "formula": "m_C / 12 mol — moles of carbon" },
+      "m_reactants": { "formula": "m_C + m_O2 g — total reactant mass" },
+      "m_products": { "formula": "m_CO2 g — total product mass" },
+      "reading_initial": { "formula": "tare + m_C + (sealed ? m_O2 : 0) g — balance reading before reaction" },
+      "reading_final": { "formula": "tare + (sealed ? m_C + m_O2 : 0) g — balance reading after reaction" },
+      "delta_reading": { "formula": "reading_final − reading_initial g — net change (0 sealed, −m_CO2 open)" },
+      "m_solid_after_S5": { "formula": "m_Fe_before_S5 + m_O2_reacted_S5 g — STATE_5 solid readout after rusting" },
+      "m_gas_after_S5": { "formula": "m_gas_before_S5 − m_O2_reacted_S5 g — STATE_5 gas-reservoir readout after rusting" },
+      "m_total_S5": { "formula": "m_Fe_before_S5 + m_gas_before_S5 g — STATE_5 TOTAL, constant" },
+      "atoms_scale_label": { "formula": "'≈ ' + n_C.toFixed(2) + ' × 6.022×10²³ atoms' — STATE_7 scale-factor readout" }
+    },
+    "constraints": [
+      "atoms of each element: LHS count = RHS count in every displayed equation (C 1→1, O 2→2 for the symbol form)",
+      "total charge: LHS = RHS (= 0) in every displayed equation — no ions anywhere in this concept",
+      "no atom ever fades in or out on screen — atoms only MOVE between tiles (archetype-O signature); a departing gas atom must be shown leaving the frame, never disappearing in place",
+      "m_reactants ≡ m_CO2 identically, for every value of m_C — the STATE_4 balance needle centers at 0° deviation regardless of slider position",
+      "open-system reading_final = tare exactly (all reacted mass has left as escaped gas); sealed reading_initial = sealed reading_final = tare + m_C + m_O2 at every instant, not just at the two endpoints",
+      "no stoichiometric coefficient ever appears on screen — STATE_3/4/7's C(s)+O₂(g)→CO₂(g) is coefficient-free by construction (1:1:1); STATE_5's word equation never becomes a symbol equation",
+      "no oxidation-number label or redox electron-transfer ledger appears anywhere — both displayed reactions are technically redox but that analysis is out of scope, deferred to the redox chapter",
+      "m_C slider step is fixed at 1 (integer grams) — the displayed 1-dp closure of m_C + m_O2 = m_CO2 depends on this; a fractional step will produce a visible rounding mismatch"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Burning Charcoal — The Reading Falls",
+        "duration": 16,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "reading_label_48_1",
+        "scene_composition": [
+          { "type": "label", "id": "delta_cue", "text": "Burning: reading falls", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
+          { "type": "body", "id": "balance_base", "shape": "rect", "position": { "x": 175, "y": 448 }, "size": { "w": 150, "h": 16 }, "fill_color": "#334155", "border_color": "#1E293B" },
+          { "type": "body", "id": "balance_column", "shape": "rect", "position": { "x": 175, "y": 420 }, "size": { "w": 16, "h": 30 }, "fill_color": "#475569" },
+          { "type": "body", "id": "balance_housing", "shape": "rect", "position": { "x": 175, "y": 388 }, "size": { "w": 120, "h": 34 }, "fill_color": "#0B1120", "border_color": "#334155" },
+          { "type": "body", "id": "balance_pan", "shape": "rect", "position": { "x": 175, "y": 330 }, "size": { "w": 110, "h": 10 }, "fill_color": "#94A3B8", "border_color": "#64748B" },
+          { "type": "vector", "id": "needle_guide", "from": { "x": 155, "y": 352 }, "to": { "x": 195, "y": 352 }, "color": "#475569", "style": "dashed" },
+          { "type": "force_arrow", "id": "needle_center", "from": { "x": 175, "y": 352 }, "to": { "x": 175, "y": 328 }, "color": "#E2E8F0", "appear_at_ms": 0, "disappear_at_ms": 2900, "fade_out_ms": 200 },
+          { "type": "force_arrow", "id": "needle_tilt1", "from": { "x": 175, "y": 352 }, "to": { "x": 158, "y": 333 }, "color": "#E2E8F0", "appear_at_ms": 2900, "animate_in_ms": 300, "disappear_at_ms": 7100, "fade_out_ms": 200 },
+          { "type": "force_arrow", "id": "needle_tilt2", "from": { "x": 175, "y": 352 }, "to": { "x": 145, "y": 338 }, "color": "#E2E8F0", "appear_at_ms": 7100, "animate_in_ms": 300 },
+          { "type": "body", "id": "charcoal_lump_1", "shape": "circle", "position": { "x": 175, "y": 295 }, "size": 46, "fill_color": "#7C2D12", "border_color": "#451A03", "label": "charcoal", "label_below": true, "appear_at_ms": 0, "disappear_at_ms": 2200, "fade_out_ms": 200 },
+          { "type": "body", "id": "charcoal_lump_2", "shape": "circle", "position": { "x": 175, "y": 300 }, "size": 36, "fill_color": "#92400E", "border_color": "#451A03", "appear_at_ms": 2200, "animate_in_ms": 300, "disappear_at_ms": 6400, "fade_out_ms": 200 },
+          { "type": "body", "id": "charcoal_lump_3", "shape": "circle", "position": { "x": 175, "y": 304 }, "size": 26, "fill_color": "#B45309", "border_color": "#451A03", "appear_at_ms": 6400, "animate_in_ms": 300 },
+          { "type": "animated_path", "id": "smoke_wisp_1", "from": { "x": 175, "y": 280 }, "to": { "x": 175, "y": 55 }, "color": "#94A3B8", "arrow_head": false, "appear_at_ms": 2900, "duration_ms": 1300, "disappear_at_ms": 4200, "fade_out_ms": 300 },
+          { "type": "animated_path", "id": "smoke_wisp_2", "from": { "x": 175, "y": 280 }, "to": { "x": 175, "y": 55 }, "color": "#94A3B8", "arrow_head": false, "appear_at_ms": 7100, "duration_ms": 1300, "disappear_at_ms": 8400, "fade_out_ms": 300 },
+          { "type": "label", "id": "reading_label_50", "text": "50.0 g", "position": { "x": 175, "y": 388 }, "font_size": 20, "color": "#4ADE80", "appear_at_ms": 0, "disappear_at_ms": 2900, "fade_out_ms": 200 },
+          { "type": "label", "id": "reading_label_49_2", "text": "49.2 g", "position": { "x": 175, "y": 388 }, "font_size": 20, "color": "#4ADE80", "appear_at_ms": 2900, "animate_in_ms": 300, "disappear_at_ms": 7100, "fade_out_ms": 200 },
+          { "type": "label", "id": "reading_label_48_1", "text": "48.1 g", "position": { "x": 175, "y": 388 }, "font_size": 20, "color": "#4ADE80", "appear_at_ms": 7100, "animate_in_ms": 300 },
+          { "type": "annotation", "id": "anchor_annotation", "text": "like charcoal burning down to ash on a grill", "position": { "x": 380, "y": 468 }, "color": "#94A3B8", "appear_at_ms": 0, "animate_in_ms": 500 },
+          { "type": "glow_focus", "id": "glow_reading_hold", "primitive_id": "reading_label_49_2", "halo_radius_px": 40, "color": "#4ADE80", "intensity": 0.35, "appear_at_ms": 4200, "disappear_at_ms": 6400, "fade_out_ms": 200 },
+          { "type": "glow_focus", "id": "glow_reading_final", "primitive_id": "reading_label_48_1", "halo_radius_px": 45, "color": "#4ADE80", "intensity": 0.4, "appear_at_ms": 9500, "disappear_at_ms": 16000, "fade_out_ms": 400 }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Charcoal burns in an open pan sitting on a balance — like grilling over a campfire." },
+            { "id": "s2", "text_en": "Watch the reading: fifty point zero grams, forty-nine point two, now forty-eight point one grams." },
+            { "id": "s3", "text_en": "Almost two grams simply vanished from the scale — where did that mass go?" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Seal It — The Reading Holds Level",
+        "duration": 18,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sealed_reading_82",
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": ["where_did_the_ash_mass_go", "candle_losing_weight", "open_vs_closed_system"],
+        "scene_composition": [
+          { "type": "label", "id": "delta_cue", "text": "Sealed: reading holds level", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
+          {
+            "type": "comparison_panel",
+            "id": "open_vs_sealed",
+            "left_label": "Open pan",
+            "right_label": "Sealed flask",
+            "left_scene": [
+              { "type": "body", "id": "pan_open", "shape": "rect", "position": { "x": 100, "y": 60 }, "size": { "w": 70, "h": 8 }, "fill_color": "#94A3B8" },
+              { "type": "body", "id": "lump_open_full", "shape": "circle", "position": { "x": 100, "y": 42 }, "size": 28, "fill_color": "#7C2D12", "border_color": "#451A03", "appear_at_ms": 0, "disappear_at_ms": 3200, "fade_out_ms": 200 },
+              { "type": "body", "id": "lump_open_small", "shape": "circle", "position": { "x": 100, "y": 46 }, "size": 20, "fill_color": "#92400E", "border_color": "#451A03", "appear_at_ms": 3200, "animate_in_ms": 300 },
+              { "type": "body", "id": "housing_open", "shape": "rect", "position": { "x": 100, "y": 95 }, "size": { "w": 60, "h": 18 }, "fill_color": "#0B1120", "border_color": "#334155" },
+              { "type": "body", "id": "base_open", "shape": "rect", "position": { "x": 100, "y": 112 }, "size": { "w": 80, "h": 8 }, "fill_color": "#334155" }
+            ],
+            "right_scene": [
+              { "type": "body", "id": "pan_sealed", "shape": "rect", "position": { "x": 100, "y": 60 }, "size": { "w": 70, "h": 8 }, "fill_color": "#94A3B8" },
+              { "type": "body", "id": "lump_sealed_full", "shape": "circle", "position": { "x": 100, "y": 42 }, "size": 28, "fill_color": "#7C2D12", "border_color": "#451A03", "appear_at_ms": 0, "disappear_at_ms": 6400, "fade_out_ms": 200 },
+              { "type": "body", "id": "lump_sealed_small", "shape": "circle", "position": { "x": 100, "y": 46 }, "size": 20, "fill_color": "#92400E", "border_color": "#451A03", "appear_at_ms": 6400, "animate_in_ms": 300 },
+              { "type": "body", "id": "flask_wall_mini", "shape": "rect", "position": { "x": 100, "y": 50 }, "size": { "w": 70, "h": 75 }, "fill_color": "#1E3A5F", "border_color": "#38BDF8", "opacity": 0.18, "appear_at_ms": 4000, "animate_in_ms": 700 },
+              { "type": "body", "id": "housing_sealed", "shape": "rect", "position": { "x": 100, "y": 95 }, "size": { "w": 60, "h": 18 }, "fill_color": "#0B1120", "border_color": "#334155" },
+              { "type": "body", "id": "base_sealed", "shape": "rect", "position": { "x": 100, "y": 112 }, "size": { "w": 80, "h": 8 }, "fill_color": "#334155" }
+            ]
+          },
+          { "type": "label", "id": "open_reading_50", "text": "50.0 g", "position": { "x": 150, "y": 260 }, "font_size": 16, "color": "#4ADE80", "appear_at_ms": 0, "disappear_at_ms": 3200, "fade_out_ms": 200 },
+          { "type": "label", "id": "open_reading_48_1", "text": "48.1 g", "position": { "x": 150, "y": 260 }, "font_size": 16, "color": "#4ADE80", "appear_at_ms": 3200, "animate_in_ms": 300 },
+          { "type": "label", "id": "sealed_reading_82", "text": "82.0 g", "position": { "x": 510, "y": 260 }, "font_size": 16, "color": "#4ADE80", "appear_at_ms": 0 },
+          { "type": "force_arrow", "id": "needle_open_center", "from": { "x": 150, "y": 235 }, "to": { "x": 150, "y": 213 }, "color": "#E2E8F0", "appear_at_ms": 0, "disappear_at_ms": 3200, "fade_out_ms": 200 },
+          { "type": "force_arrow", "id": "needle_open_tilt", "from": { "x": 150, "y": 235 }, "to": { "x": 135, "y": 218 }, "color": "#E2E8F0", "appear_at_ms": 3200, "animate_in_ms": 300 },
+          { "type": "force_arrow", "id": "needle_sealed_center", "from": { "x": 510, "y": 235 }, "to": { "x": 510, "y": 213 }, "color": "#E2E8F0", "appear_at_ms": 0 },
+          { "type": "glow_focus", "id": "glow_sealed_reading", "primitive_id": "sealed_reading_82", "halo_radius_px": 45, "color": "#4ADE80", "intensity": 0.4, "appear_at_ms": 6400 },
+          { "type": "annotation", "id": "m1_fix_annotation", "text": "Mass never leaves the universe,\nnever arrives from nowhere — seal\nthe system and nothing is lost or gained.", "position": { "x": 110, "y": 390 }, "color": "#FDE047", "appear_at_ms": 7100, "animate_in_ms": 600, "disappear_at_ms": 17500, "fade_out_ms": 300 },
+          { "type": "annotation", "id": "anchor_annotation_secondary", "text": "sealed snack bag: soda + vinegar fizzes, scale doesn't move", "position": { "x": 34, "y": 64 }, "color": "#94A3B8", "appear_at_ms": 0, "animate_in_ms": 500 }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Same burn, twice: one pan open to the air, one sealed like a fizzing soda-and-vinegar bag." },
+            { "id": "s2", "text_en": "The open pan's reading keeps falling, just like before." },
+            { "id": "s3", "text_en": "The sealed side never moves, not even a tenth of a gram." },
+            { "id": "s4", "text_en": "Mass never leaves the universe, never arrives from nowhere: seal the system and nothing is lost or gained." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Burning destroys matter — the mass just disappears.",
+            "visual_counter": "The identical burn replayed sealed: the reading holds dead level while the open twin drops — the escaping wisps ARE the missing grams.",
+            "one_line_fix": "Mass never leaves the universe and never arrives from nowhere — seal the system and nothing is lost, nothing is gained."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Inside the Flask — Atoms Swap Partners",
+        "duration": 18,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "atom_C",
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": ["do_atoms_ever_get_destroyed", "counting_atoms_both_sides", "why_gas_has_mass"],
+        "scene_composition": [
+          { "type": "label", "id": "delta_cue", "text": "Atoms move, never vanish", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
+          { "type": "body", "id": "balance_base", "shape": "rect", "position": { "x": 175, "y": 448 }, "size": { "w": 150, "h": 16 }, "fill_color": "#334155", "border_color": "#1E293B" },
+          { "type": "body", "id": "balance_column", "shape": "rect", "position": { "x": 175, "y": 420 }, "size": { "w": 16, "h": 30 }, "fill_color": "#475569" },
+          { "type": "body", "id": "balance_housing", "shape": "rect", "position": { "x": 175, "y": 388 }, "size": { "w": 120, "h": 34 }, "fill_color": "#0B1120", "border_color": "#334155" },
+          { "type": "body", "id": "balance_pan", "shape": "rect", "position": { "x": 175, "y": 330 }, "size": { "w": 110, "h": 10 }, "fill_color": "#94A3B8", "border_color": "#64748B" },
+          { "type": "body", "id": "flask_wall", "shape": "rect", "position": { "x": 175, "y": 290 }, "size": { "w": 90, "h": 110 }, "fill_color": "#1E3A5F", "border_color": "#38BDF8", "opacity": 0.18 },
+          { "type": "label", "id": "reading_label_sealed", "text": "82.0 g", "position": { "x": 175, "y": 388 }, "font_size": 20, "color": "#4ADE80" },
+          { "type": "annotation", "id": "prereq_annotation", "text": "Every substance is built from atoms — tiny\nparticles, each with its own fixed mass.", "position": { "x": 380, "y": 60 }, "color": "#CBD5E1", "appear_at_ms": 0, "animate_in_ms": 500, "disappear_at_ms": 2200, "fade_out_ms": 300 },
+          { "type": "body", "id": "zoom_box", "shape": "rect", "position": { "x": 560, "y": 230 }, "size": { "w": 280, "h": 200 }, "fill_color": "#0F172A", "border_color": "#475569", "opacity": 0.4, "appear_at_ms": 1500, "animate_in_ms": 700 },
+          { "type": "vector", "id": "zoom_connector_1", "from": { "x": 220, "y": 270 }, "to": { "x": 420, "y": 150 }, "color": "#475569", "style": "dashed" },
+          { "type": "vector", "id": "zoom_connector_2", "from": { "x": 220, "y": 310 }, "to": { "x": 420, "y": 330 }, "color": "#475569", "style": "dashed" },
+          { "type": "body", "id": "atom_C", "shape": "circle", "position": { "x": 470, "y": 230 }, "size": 26, "fill_color": "#78716C", "border_color": "#44403C", "label": "C", "label_below": true, "appear_at_ms": 2200, "animate_in_ms": 400, "animation": { "type": "translate", "dx_px": 115, "dy_px": 0, "delay_sec": 3.5, "duration_sec": 1.7 } },
+          { "type": "body", "id": "atom_O1", "shape": "circle", "position": { "x": 610, "y": 205 }, "size": 22, "fill_color": "#F87171", "border_color": "#7F1D1D", "label": "O", "label_below": true, "appear_at_ms": 2200, "animate_in_ms": 400 },
+          { "type": "body", "id": "atom_O2", "shape": "circle", "position": { "x": 610, "y": 255 }, "size": 22, "fill_color": "#F87171", "border_color": "#7F1D1D", "label": "O", "label_below": true, "appear_at_ms": 2200, "animate_in_ms": 400 },
+          { "type": "annotation", "id": "audit_header", "text": "ATOM AUDIT", "position": { "x": 650, "y": 100 }, "color": "#E2E8F0", "appear_at_ms": 5200, "animate_in_ms": 300 },
+          { "type": "annotation", "id": "audit_c_row", "text": "C:  1 → 1", "position": { "x": 650, "y": 132 }, "color": "#CBD5E1", "appear_at_ms": 5200, "animate_in_ms": 300 },
+          { "type": "annotation", "id": "audit_o_row", "text": "O:  2 → 2", "position": { "x": 650, "y": 164 }, "color": "#CBD5E1", "appear_at_ms": 5900, "animate_in_ms": 300 },
+          { "type": "formula_box", "id": "equation_s3", "equation": "C(s)  +  O₂(g)  →  CO₂(g)", "position": { "x": 290, "y": 450 }, "border_color": "#3B82F6", "appear_at_ms": 6500, "animate_in_ms": 600 },
+          { "type": "glow_focus", "id": "glow_atom_c", "primitive_id": "atom_C", "halo_radius_px": 35, "color": "#FDE047", "intensity": 0.45, "appear_at_ms": 3500, "disappear_at_ms": 6500, "fade_out_ms": 300 },
+          { "type": "glow_focus", "id": "glow_equation_s3_final", "primitive_id": "equation_s3", "halo_radius_px": 45, "color": "#3B82F6", "intensity": 0.3, "appear_at_ms": 14000, "disappear_at_ms": 17500, "fade_out_ms": 400 }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Every substance is built from atoms — tiny particles, each with its own fixed mass." },
+            { "id": "s2", "text_en": "Inside the sealed flask, one carbon atom C sits beside two oxygen atoms." },
+            { "id": "s3", "text_en": "Watch carbon travel over and dock right between them — three atoms, same as before, just new partners." },
+            { "id": "s4", "text_en": "Same atoms, new partners — that's carbon dioxide." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "New substances mean new atoms — CO₂'s atoms are freshly made.",
+            "visual_counter": "The CO₂ tile is built from the very same three atoms the reactants held.",
+            "one_line_fix": "Same atoms, new partners."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The Ledger — 12 g + 32 g = 44 g",
+        "duration": 14,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "ledger_sum_live",
+        "scene_composition": [
+          { "type": "label", "id": "delta_cue", "text": "12 g + 32 g = 44 g", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
+          { "type": "body", "id": "balance_base", "shape": "rect", "position": { "x": 175, "y": 448 }, "size": { "w": 150, "h": 16 }, "fill_color": "#334155", "border_color": "#1E293B" },
+          { "type": "body", "id": "balance_column", "shape": "rect", "position": { "x": 175, "y": 420 }, "size": { "w": 16, "h": 30 }, "fill_color": "#475569" },
+          { "type": "body", "id": "balance_housing", "shape": "rect", "position": { "x": 175, "y": 388 }, "size": { "w": 120, "h": 34 }, "fill_color": "#0B1120", "border_color": "#334155" },
+          { "type": "body", "id": "balance_pan", "shape": "rect", "position": { "x": 175, "y": 330 }, "size": { "w": 110, "h": 10 }, "fill_color": "#94A3B8", "border_color": "#64748B" },
+          { "type": "force_arrow", "id": "needle_balanced", "from": { "x": 175, "y": 352 }, "to": { "x": 175, "y": 320 }, "color": "#E2E8F0" },
+          { "type": "body", "id": "tile_C", "shape": "rect", "position": { "x": 260, "y": 200 }, "size": { "w": 80, "h": 56 }, "fill_color": "#1E293B", "border_color": "#78716C", "label": "C(s)" },
+          { "type": "label", "id": "plus_label", "text": "+", "position": { "x": 320, "y": 200 }, "font_size": 22, "color": "#E2E8F0" },
+          { "type": "body", "id": "tile_O2", "shape": "rect", "position": { "x": 380, "y": 200 }, "size": { "w": 80, "h": 56 }, "fill_color": "#1E293B", "border_color": "#F87171", "label": "O₂(g)" },
+          { "type": "label", "id": "arrow_label", "text": "→", "position": { "x": 445, "y": 200 }, "font_size": 22, "color": "#E2E8F0" },
+          { "type": "body", "id": "tile_CO2", "shape": "rect", "position": { "x": 520, "y": 200 }, "size": { "w": 100, "h": 56 }, "fill_color": "#1E293B", "border_color": "#4ADE80", "label": "CO₂(g)" },
+          { "type": "label", "id": "c_tag_literal", "text": "12 g", "position": { "x": 260, "y": 245 }, "font_size": 14, "color": "#4ADE80", "appear_at_ms": 200, "animate_in_ms": 400, "disappear_at_ms": 4400, "fade_out_ms": 200 },
+          { "type": "label", "id": "c_tag_live", "text_expr": "{m_C.toFixed(1)} g", "position": { "x": 260, "y": 245 }, "font_size": 14, "color": "#4ADE80", "appear_at_ms": 4400, "animate_in_ms": 300 },
+          { "type": "label", "id": "o2_tag_literal", "text": "32.0 g", "position": { "x": 380, "y": 245 }, "font_size": 14, "color": "#4ADE80", "appear_at_ms": 1000, "animate_in_ms": 400, "disappear_at_ms": 4400, "fade_out_ms": 200 },
+          { "type": "label", "id": "o2_tag_live", "text_expr": "{m_O2.toFixed(1)} g", "position": { "x": 380, "y": 245 }, "font_size": 14, "color": "#4ADE80", "appear_at_ms": 4400, "animate_in_ms": 300 },
+          { "type": "label", "id": "co2_tag_literal", "text": "44.0 g", "position": { "x": 520, "y": 245 }, "font_size": 14, "color": "#4ADE80", "appear_at_ms": 3200, "animate_in_ms": 400, "disappear_at_ms": 4400, "fade_out_ms": 200 },
+          { "type": "label", "id": "co2_tag_live", "text_expr": "{m_CO2.toFixed(1)} g", "position": { "x": 520, "y": 245 }, "font_size": 14, "color": "#4ADE80", "appear_at_ms": 4400, "animate_in_ms": 300 },
+          { "type": "annotation", "id": "ledger_sum_literal", "text": "12.0 + 32.0 = 44.0 g ✓", "position": { "x": 330, "y": 300 }, "color": "#FDE047", "appear_at_ms": 3200, "animate_in_ms": 500, "disappear_at_ms": 4400, "fade_out_ms": 200 },
+          { "type": "annotation", "id": "ledger_sum_live", "text": "{m_C.toFixed(1)} + {m_O2.toFixed(1)} = {m_CO2.toFixed(1)} g ✓ — any amount balances", "position": { "x": 280, "y": 300 }, "color": "#FDE047", "appear_at_ms": 4400, "animate_in_ms": 400 },
+          { "type": "slider", "id": "m_C_slider", "variable": "m_C", "min": 1, "max": 24, "step": 1, "default": 12, "unit": "g", "label": "Carbon mass m(C)", "position": "bottom", "appear_at_ms": 4400 },
+          { "type": "glow_focus", "id": "glow_ledger_live", "primitive_id": "ledger_sum_live", "halo_radius_px": 45, "color": "#FDE047", "intensity": 0.35, "appear_at_ms": 4400, "disappear_at_ms": 12500, "fade_out_ms": 400 }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Twelve grams of carbon plus thirty-two grams of oxygen makes forty-four grams of carbon dioxide." },
+            { "id": "s2", "text_en": "The ledger balances exactly — reactant mass equals product mass." },
+            { "id": "s3", "text_en": "Drag the carbon slider — any amount you pick, the two sides still match." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Rusting — The Solid Gains, the Gas Loses",
+        "duration": 18,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "total_reading",
+        "scene_composition": [
+          { "type": "label", "id": "delta_cue", "text": "Rust gains oxygen's mass", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
+          { "type": "body", "id": "balance_base", "shape": "rect", "position": { "x": 175, "y": 448 }, "size": { "w": 150, "h": 16 }, "fill_color": "#334155", "border_color": "#1E293B" },
+          { "type": "body", "id": "balance_column", "shape": "rect", "position": { "x": 175, "y": 420 }, "size": { "w": 16, "h": 30 }, "fill_color": "#475569" },
+          { "type": "body", "id": "balance_housing", "shape": "rect", "position": { "x": 175, "y": 388 }, "size": { "w": 120, "h": 34 }, "fill_color": "#0B1120", "border_color": "#334155" },
+          { "type": "body", "id": "balance_pan", "shape": "rect", "position": { "x": 175, "y": 330 }, "size": { "w": 110, "h": 10 }, "fill_color": "#94A3B8", "border_color": "#64748B" },
+          { "type": "body", "id": "sealed_jar", "shape": "rect", "position": { "x": 175, "y": 270 }, "size": { "w": 90, "h": 120 }, "fill_color": "#1E3A5F", "border_color": "#38BDF8", "opacity": 0.18 },
+          { "type": "body", "id": "iron_nail", "shape": "rect", "position": { "x": 175, "y": 295 }, "size": { "w": 14, "h": 60 }, "fill_color": "#78716C", "border_color": "#44403C", "label": "Fe", "label_below": true },
+          { "type": "body", "id": "o_gas_1", "shape": "circle", "position": { "x": 150, "y": 225 }, "size": 18, "fill_color": "#F87171", "border_color": "#7F1D1D", "label": "O", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 25, "dy_px": 45, "delay_sec": 2.9, "duration_sec": 1.2 } },
+          { "type": "body", "id": "o_gas_2", "shape": "circle", "position": { "x": 200, "y": 225 }, "size": 18, "fill_color": "#F87171", "border_color": "#7F1D1D", "label": "O", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": -25, "dy_px": 45, "delay_sec": 3.4, "duration_sec": 1.2 } },
+          { "type": "label", "id": "solid_reading_10", "text": "10.0 g", "position": { "x": 175, "y": 388 }, "font_size": 18, "color": "#4ADE80", "appear_at_ms": 0, "disappear_at_ms": 4600, "fade_out_ms": 200 },
+          { "type": "label", "id": "solid_reading_10_6", "text": "10.6 g", "position": { "x": 175, "y": 388 }, "font_size": 18, "color": "#4ADE80", "appear_at_ms": 4600, "animate_in_ms": 300 },
+          { "type": "label", "id": "gas_reading_5", "text": "5.0 g", "position": { "x": 175, "y": 215 }, "font_size": 14, "color": "#7DD3FC", "appear_at_ms": 0, "disappear_at_ms": 4600, "fade_out_ms": 200 },
+          { "type": "label", "id": "gas_reading_4_4", "text": "4.4 g", "position": { "x": 175, "y": 215 }, "font_size": 14, "color": "#7DD3FC", "appear_at_ms": 4600, "animate_in_ms": 300 },
+          { "type": "label", "id": "total_reading", "text": "TOTAL: 15.0 g", "position": { "x": 480, "y": 250 }, "font_size": 18, "color": "#FDE047", "appear_at_ms": 0 },
+          { "type": "glow_focus", "id": "glow_total_reading", "primitive_id": "total_reading", "halo_radius_px": 45, "color": "#FDE047", "intensity": 0.4, "appear_at_ms": 4600, "disappear_at_ms": 17000, "fade_out_ms": 400 },
+          { "type": "formula_box", "id": "equation_s5", "equation": "iron  +  oxygen  →  iron oxide (rust)", "position": { "x": 260, "y": 450 }, "border_color": "#F59E0B", "appear_at_ms": 5300, "animate_in_ms": 600 },
+          { "type": "annotation", "id": "scale_note", "text": "2 atoms shown — representative; a\nreal nail involves billions", "position": { "x": 460, "y": 120 }, "color": "#94A3B8", "appear_at_ms": 800, "animate_in_ms": 400 },
+          { "type": "annotation", "id": "continuity_note", "text": "Same flask, now an iron nail + sealed oxygen", "position": { "x": 380, "y": 60 }, "color": "#CBD5E1", "appear_at_ms": 0, "disappear_at_ms": 2200, "fade_out_ms": 300 }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "An iron nail sits sealed inside a jar of oxygen, rusting instead of burning." },
+            { "id": "s2", "text_en": "Oxygen atoms leave the gas and dock onto the iron's surface, one by one." },
+            { "id": "s3", "text_en": "The solid gets heavier while the gas gets lighter, by the exact same amount." },
+            { "id": "s4", "text_en": "The total never moves — the gain is oxygen's own mass changing address." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Rusting (or burning a metal) creates mass out of nowhere.",
+            "visual_counter": "Oxygen atoms visibly dock onto the iron while the gas-side reading falls by exactly as much as the solid rises; the TOTAL never moves.",
+            "one_line_fix": "The gain is oxygen's own mass changing address."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Why It Holds — Mass Rides on Atoms",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "conclusion_line",
+        "scene_composition": [
+          { "type": "label", "id": "delta_cue", "text": "Mass = count × atom mass", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
+          { "type": "body", "id": "atom_c_mini", "shape": "circle", "position": { "x": 150, "y": 170 }, "size": 18, "fill_color": "#78716C", "border_color": "#44403C", "label": "C" },
+          { "type": "body", "id": "atom_o_mini1", "shape": "circle", "position": { "x": 150, "y": 220 }, "size": 16, "fill_color": "#F87171", "border_color": "#7F1D1D", "label": "O" },
+          { "type": "body", "id": "atom_o_mini2", "shape": "circle", "position": { "x": 150, "y": 250 }, "size": 16, "fill_color": "#F87171", "border_color": "#7F1D1D", "label": "O" },
+          { "type": "formula_box", "id": "formula_box_main", "equation": "m = Σ(nᵢ × mᵢ)", "position": { "x": 300, "y": 80 }, "border_color": "#3B82F6", "appear_at_ms": 0, "animate_in_ms": 600 },
+          { "type": "annotation", "id": "reactants_line", "text": "Reactants:  1×12 + 2×16 = 44 g", "position": { "x": 250, "y": 170 }, "color": "#CBD5E1", "appear_at_ms": 1800, "animate_in_ms": 500 },
+          { "type": "annotation", "id": "products_line", "text": "Products:    1×12 + 2×16 = 44 g", "position": { "x": 250, "y": 220 }, "color": "#CBD5E1", "appear_at_ms": 4700, "animate_in_ms": 500 },
+          { "type": "annotation", "id": "conclusion_line", "text": "m(before) = m(after)", "position": { "x": 250, "y": 280 }, "color": "#4ADE80", "appear_at_ms": 6900, "animate_in_ms": 500 },
+          { "type": "annotation", "id": "scope_note", "text": "chemical reactions only — nuclear reactions are a different story", "position": { "x": 250, "y": 340 }, "color": "#94A3B8", "appear_at_ms": 7600, "animate_in_ms": 500 },
+          { "type": "glow_focus", "id": "glow_conclusion", "primitive_id": "conclusion_line", "halo_radius_px": 45, "color": "#4ADE80", "intensity": 0.4, "appear_at_ms": 6900, "disappear_at_ms": 17000, "fade_out_ms": 400 }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Mass is just the sum: each atom's count times its atomic mass." },
+            { "id": "s2", "text_en": "Before: one carbon at twelve, two oxygens at sixteen each, forty-four grams total." },
+            { "id": "s3", "text_en": "The same count of atoms gives the same forty-four grams afterward." },
+            { "id": "s4", "text_en": "The counts never change, so the mass never changes, true for chemical reactions, not nuclear ones." }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Explore — Any Amount, Sealed or Open",
+        "duration": 0,
+        "depth_ring": "core",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "reading_label",
+        "scene_composition": [
+          { "type": "label", "id": "delta_cue", "text": "All yours — try breaking it", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
+          { "type": "body", "id": "balance_base", "shape": "rect", "position": { "x": 175, "y": 448 }, "size": { "w": 150, "h": 16 }, "fill_color": "#334155", "border_color": "#1E293B" },
+          { "type": "body", "id": "balance_column", "shape": "rect", "position": { "x": 175, "y": 420 }, "size": { "w": 16, "h": 30 }, "fill_color": "#475569" },
+          { "type": "body", "id": "balance_housing", "shape": "rect", "position": { "x": 175, "y": 388 }, "size": { "w": 120, "h": 34 }, "fill_color": "#0B1120", "border_color": "#334155" },
+          { "type": "body", "id": "balance_pan", "shape": "rect", "position": { "x": 175, "y": 330 }, "size": { "w": 110, "h": 10 }, "fill_color": "#94A3B8", "border_color": "#64748B" },
+          { "type": "body", "id": "flask_wall", "shape": "rect", "position": { "x": 175, "y": 290 }, "size": { "w": 90, "h": 110 }, "fill_color": "#1E3A5F", "border_color": "#38BDF8", "opacity": 0.18 },
+          { "type": "body", "id": "lump_explore", "shape": "circle", "position": { "x": 175, "y": 295 }, "size": 30, "fill_color": "#92400E", "border_color": "#451A03", "label": "C(s)+O₂", "label_below": true },
+          { "type": "label", "id": "reading_label", "text_expr": "{reading_final.toFixed(1)} g", "position": { "x": 175, "y": 388 }, "font_size": 20, "color": "#4ADE80" },
+          { "type": "label", "id": "delta_label", "text_expr": "Δ {delta_reading.toFixed(1)} g", "position": { "x": 270, "y": 388 }, "font_size": 14, "color": "#7DD3FC" },
+          { "type": "label", "id": "sealed_open_indicator", "text_expr": "{vessel_sealed > 0.5 ? 'SEALED (closed system)' : 'OPEN (mass can escape)'}", "position": { "x": 175, "y": 195 }, "font_size": 13, "color": "#E2E8F0" },
+          { "type": "label", "id": "atoms_scale_display", "text_expr": "{atoms_scale_label}", "position": { "x": 500, "y": 180 }, "font_size": 13, "color": "#94A3B8" },
+          { "type": "force_arrow", "id": "needle_live", "from": { "x": 175, "y": 352 }, "magnitude": 22, "direction_deg_expr": "30 + ((reading_final - 38) / 88) * 120", "color": "#E2E8F0" },
+          { "type": "formula_box", "id": "live_equation", "equation_expr": "{m_C.toFixed(1)} g C  +  {m_O2.toFixed(1)} g O₂  →  {m_CO2.toFixed(1)} g CO₂", "position": { "x": 230, "y": 440 }, "border_color": "#3B82F6" },
+          { "type": "glow_focus", "id": "glow_reading_explore", "primitive_id": "reading_label", "halo_radius_px": 40, "color": "#4ADE80", "intensity": 0.25 },
+          { "type": "slider", "id": "m_C_slider_explore", "variable": "m_C", "min": 1, "max": 24, "step": 1, "default": 12, "unit": "g", "label": "Carbon mass m(C)", "position": "bottom" },
+          { "type": "slider", "id": "vessel_sealed_slider", "variable": "vessel_sealed", "min": 0, "max": 1, "step": 1, "default": 1, "unit": "", "label": "Sealed (1) / Open (0)", "position": "bottom" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Drag carbon's mass and toggle sealed or open — watch every number update live, and the law hold." }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same law, a brighter burn (magnesium ribbon instead of charcoal)",
+      "physical_world": "A magnesium ribbon burns in air with a bright white flame instead of charcoal; the same open-vs-sealed contrast and mass-ledger logic apply, just with magnesium's own ratios — the anchor reaction changes, not the law.",
+      "same_physics": "Identical conservation-of-mass reasoning: a sealed system holds steady, an open system loses the escaped or absorbed gas's mass; atoms rearrange, never vanish."
+    }
+  ],
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Seal the flask and the balance doesn't move — matter is only rearranged, never destroyed.",
+    "visual_confirmation": "sealed reading holds flat at 82.0 g while the open reading drops to 48.1 g"
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 40,
+    "max_labels_per_state": 20,
+    "max_words_per_tts_sentence": 40
+  },
+  "assessment": {
+    "mastery_definition": "A student who reaches 80–85% understands: in a closed system, total mass is exactly conserved because a chemical reaction only rearranges atoms — it never creates or destroys them; an apparent mass loss (burning in open air) means a gaseous product escaped unweighed, and an apparent mass gain (rusting) means a gas's own mass transferred onto a solid; the same fixed 12:32:44-style ratio scales proportionally for any reactant amount; and the law holds because each atom's count and mass never change, valid for chemical (not nuclear) reactions.",
+    "questions": [
+      {
+        "q_id": "q1",
+        "stem": "A charcoal lump burns completely in an OPEN pan sitting on a kitchen scale. The reading falls from 50.0 g to 38.0 g. What happened to the missing 12.0 g?",
+        "options": {
+          "A": "It was destroyed by the fire — burning converts some mass into pure energy.",
+          "B": "It escaped as invisible gas (carbon dioxide) that the open pan never weighed.",
+          "C": "It evaporated into heat and light, which have no mass.",
+          "D": "The scale simply drifted; no mass actually left the system."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "the burning-destroys-mass misconception (M1) — believes matter converts to energy in an ordinary chemical reaction",
+          "C": "confuses heat/light (energy) with mass loss — no mass is carried away as heat",
+          "D": "denies the observation instead of explaining it — evades the physics"
+        },
+        "tested_idea": "an escaping gaseous product carries mass away in an open system",
+        "teaches_state": "STATE_1",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "q2",
+        "stem": "The same burn is repeated inside a SEALED flask. What happens to the balance reading?",
+        "options": {
+          "A": "It falls by the same 12.0 g as the open pan, since burning still destroys mass.",
+          "B": "It holds perfectly steady — nothing can leave a closed system, so total mass cannot change.",
+          "C": "It falls, but by less than the open pan, since some gas is trapped.",
+          "D": "It rises, since the trapped gas adds weight to the flask."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "the burning-destroys-mass misconception (M1), untouched by the sealed-system evidence",
+          "C": "invents partial escape from a system that is, by definition, sealed",
+          "D": "confuses 'trapped gas exists' with 'trapped gas adds NEW mass' — the gas's mass was already counted in the reactants"
+        },
+        "tested_idea": "closed system ⇒ total mass is exactly conserved, not just approximately",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A student burns identical wood samples in an open fireplace and inside a sealed glass jar. Which reading changes, and why?"
+      },
+      {
+        "q_id": "q3",
+        "stem": "In C(s) + O₂(g) → CO₂(g), where do the atoms in the CO₂ molecule come from?",
+        "options": {
+          "A": "They are newly created when the bond forms.",
+          "B": "They are the exact same carbon and oxygen atoms that were in the reactants, just rearranged.",
+          "C": "Only the oxygen atoms are new; carbon is destroyed.",
+          "D": "Half the atoms are created and half survive from the reactants."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "the products-are-built-from-new-matter misconception (M3)",
+          "C": "invents an atom being destroyed mid-reaction",
+          "D": "invents a partial-creation compromise with no basis in the reaction"
+        },
+        "tested_idea": "atoms are rearranged, never created or destroyed, in a chemical reaction",
+        "teaches_state": "STATE_3",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "q4",
+        "stem": "18.0 g of carbon burns completely in oxygen. Using the fixed ratio 12 g C : 32 g O₂ : 44 g CO₂, how much CO₂ forms, and how much O₂ was used?",
+        "options": {
+          "A": "48.0 g O₂ used; 66.0 g CO₂ formed.",
+          "B": "32.0 g O₂ used; 44.0 g CO₂ formed (same as the 12 g case).",
+          "C": "18.0 g O₂ used; 30.0 g CO₂ formed.",
+          "D": "There isn't enough information — the ratio only works for exactly 12 g of carbon."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes the 12:32:44 ratio is a fixed absolute, not a scalable ratio — reuses the default numbers regardless of the actual carbon mass",
+          "C": "a proportional-reasoning slip — scales carbon linearly but miscalculates the O₂ and CO₂ amounts",
+          "D": "believes the conservation ratio is a special case rather than a general proportional law"
+        },
+        "tested_idea": "the 12:32:44 mass ratio scales proportionally for any amount of carbon",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "6.0 g of carbon burns completely. How much oxygen is used and how much CO₂ forms?"
+      },
+      {
+        "q_id": "q5",
+        "stem": "An iron nail rusts inside a sealed jar of oxygen. The solid iron/rust reading rises by 0.6 g. What happened to the sealed gas reading?",
+        "options": {
+          "A": "It also rose by 0.6 g, since oxygen was added to the system.",
+          "B": "It fell by exactly 0.6 g — the same oxygen atoms that joined the solid left the gas.",
+          "C": "It stayed the same, since rusting doesn't consume any gas.",
+          "D": "It fell by more than 0.6 g, since rusting also releases some gas."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "the mass-creation misconception (M2) — believes rusting manufactures new mass instead of transferring it",
+          "C": "denies that rusting consumes oxygen gas at all",
+          "D": "invents an extra gas-release process with no basis in this reaction"
+        },
+        "tested_idea": "a solid's mass gain during rusting is exactly balanced by the gas's mass loss — transfer, not creation",
+        "teaches_state": "STATE_5",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "q6",
+        "stem": "WHY does total mass stay exactly the same before and after any chemical reaction?",
+        "options": {
+          "A": "Because energy released by the reaction exactly cancels any mass change.",
+          "B": "Because the number of atoms of each element, and each atom's mass, never changes — only their partners change.",
+          "C": "Because chemical reactions are always too slow to lose measurable mass.",
+          "D": "Because most reactions happen in sealed containers by default."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "invents an energy-mass cancellation with no basis for ordinary chemical reactions — that is a nuclear-scale effect, outside this law's scope",
+          "C": "confuses reaction RATE with mass conservation — irrelevant to the physics",
+          "D": "reverses cause and effect — sealing is what lets us OBSERVE conservation, not the reason it holds"
+        },
+        "tested_idea": "mass conservation follows from fixed atom counts and fixed atomic masses, valid for chemical (non-nuclear) reactions",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A teacher says mass conservation would fail inside a nuclear reactor. Is this consistent with what this law claims?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1"],
+      "STATE_2": ["q2"],
+      "STATE_3": ["q3"],
+      "STATE_4": ["q4"],
+      "STATE_5": ["q5"],
+      "STATE_6": ["q6"]
+    },
+    "non_assessed_states": ["STATE_7"]
+  },
+  "curriculum_tags": {
+    "entries": [
+      { "curriculum": "CBSE/NCERT", "coverage": "full", "syllabus_unit": "Class 11 Chemistry, Ch.1 'Some Basic Concepts of Chemistry', §1.3 — Law of Conservation of Mass", "verified": true, "needs_teacher_verification": false },
+      { "curriculum": "Cambridge IGCSE Chemistry", "coverage": "partial", "syllabus_unit": "Conservation of mass in chemical reactions", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "IB DP Chemistry", "coverage": "partial", "syllabus_unit": "Structure 2.1 — mass conservation in reaction stoichiometry", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "AP Chemistry", "coverage": "partial", "syllabus_unit": "Unit 4 — Chemical Reactions (mass conservation, stoichiometry)", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "A-level Chemistry (UK)", "coverage": "partial", "syllabus_unit": "Atoms, moles and equations — conservation of mass", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "NGSS MS-PS1-5", "coverage": "partial", "syllabus_unit": "MS-PS1-5 — conservation of matter in chemical reactions", "verified": false, "needs_teacher_verification": true }
+    ]
+  }
+}
