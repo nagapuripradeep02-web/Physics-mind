@@ -101,6 +101,15 @@ classroom reliability**). A diamond that a teacher does not trust in front of a 
 
 ### 6. THE RANKED PRIORITY LIST
 
+> **⚠ THE ORDER IS FLEXIBLE — it is a default, not a contract (founder, 2026-07-27).** This list
+> encodes the best reasoning available today; it is not a commitment and it may be re-ordered at any
+> time, for any reason — a teacher request, a pilot signal, a syllabus change, a market opening, a
+> renderer landing early, or simply the founder's call on the day. **Do not treat a position in this
+> table as an argument against building something else.** If the founder asks for a concept out of
+> order, build it — the list informs the decision, it does not override it. What is durable is the
+> *reasoning* (the whiteboard test, §1–§5); the sequence below is that reasoning applied to today's
+> facts, and facts move.
+
 Ordering = **(irreplaceability tier) × (curriculum weight) ÷ (renderer dependency)**, with
 prerequisite chains respected inside each wave. Curriculum cells are **Rule 38g CLAIMS** — only
 CBSE/NCERT is author-verified; every international cell needs a real teacher of that board to confirm.
