@@ -15,6 +15,14 @@
 
 ## Phase tracker (living — update as phases complete)
 
+> **Concept ORDER is not decided here.** It lives in `docs/CHEMISTRY_DISCUSSIONS.md` **Session C5 §6
+> (the ranked priority list)**, locked 2026-07-27 by the whiteboard test: a concept earns a build only
+> if a teacher with a whiteboard and 60 seconds *cannot* produce the same understanding. This doc
+> remains the authority on phase *mechanics* (tasks, exit criteria, rollback, tripwire).
+> Two consequences already applied: the **next chemistry action is the P0 particle-box scenario
+> build, not another concept**, and the Ch.1 ledger harvest (mole → stoichiometry → limiting reagent)
+> is **cancelled** as demo-tier.
+
 | Phase | Name | Risk | Status |
 |---|---|---|---|
 | 0 | Safety baseline | none | ✅ 2026-07-23 |
