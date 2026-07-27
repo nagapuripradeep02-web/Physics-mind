@@ -3748,6 +3748,29 @@ window.addEventListener('message', function(e) {
     }
   }
 
+  // ▶ Play / Replay (root CLAUDE.md §6). The review player's rollTimeline()
+  // fires RESET_TRAJECTORY then REPLAY_ANIMATIONS then an explicit unpin, so
+  // both mean the same thing here: rewind THIS state's choreography to t=0 and
+  // let it run. Without these the family had no Play path at all — selecting a
+  // state ran its choreography once and ▶ Play did nothing, because the only
+  // clock writes the renderer honoured were SET_TIME_FREEZE's.
+  //
+  // Releasing the pin is defensive, not redundant: onTimelineEnd() pins the
+  // clock to hold a clean final frame, so a reset that left PM_frozen set would
+  // rewind to 0 and stay stopped there. The player does send its own unpin
+  // immediately after (idempotent), but a host that sends only RESET_TRAJECTORY
+  // must still get motion.
+  //
+  // Deliberately does NOT touch PM_paused: PAUSE/RESUME is a separate host-level
+  // control that moves clock and audio together (Rule 26b), and a teacher who
+  // paused should stay paused until they resume. THE EYE never sends either
+  // message, so frozen baselines are unaffected.
+  if (e.data.type === 'RESET_TRAJECTORY' || e.data.type === 'REPLAY_ANIMATIONS') {
+    PM_frozen = false;
+    PM_pinCatchupPending = false;
+    PM_resetSimClock();
+  }
+
   if (e.data.type === 'SET_CUE_TIME') {
     if (e.data.cue) PM_cueOverrides[e.data.cue] = e.data.at_ms;
   }
