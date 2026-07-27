@@ -191,7 +191,9 @@
           { "type": "body", "id": "electron_phase1", "shape": "circle", "position": { "x": 140, "y": 430 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 0, "dy_px": -87, "delay_sec": 10.937, "duration_sec": 0.3 }, "disappear_at_ms": 12200, "fade_out_ms": 0 },
           { "type": "body", "id": "electron_phase2", "shape": "circle", "position": { "x": 140, "y": 343 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 12200, "animation": { "type": "translate", "dx_px": 0, "dy_px": 87, "delay_sec": 12.5, "duration_sec": 0.3 } },
           { "type": "glow_focus", "id": "glow_phase1", "primitive_id": "electron_phase1", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.45, "appear_at_ms": 11237, "disappear_at_ms": 12200 },
-          { "type": "glow_focus", "id": "glow_phase2", "primitive_id": "electron_phase2", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.45, "appear_at_ms": 12800, "animate_in_ms": 5771 }
+          { "type": "glow_focus", "id": "glow_phase2", "primitive_id": "electron_phase2", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.45, "appear_at_ms": 12800, "animate_in_ms": 5771 },
+          { "type": "label", "id": "verdict_ramp", "text": "✗  smooth ramp", "position": { "x": 528, "y": 206 }, "font_size": 15, "color": "#F87171", "appear_at_ms": 13500, "animate_in_ms": 400 },
+          { "type": "label", "id": "verdict_staircase", "text": "✓  fixed rungs only", "position": { "x": 528, "y": 234 }, "font_size": 15, "color": "#4ADE80", "appear_at_ms": 13500, "animate_in_ms": 400 }
         ],
         "teacher_script": {
           "tts_sentences": [
@@ -345,6 +347,10 @@
           { "type": "body", "id": "line_434_solid", "shape": "rect", "position": { "x": 163, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 1.0, "appear_at_ms": 5350, "animate_in_ms": 300 },
           { "type": "body", "id": "line_410_ghost", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 0.15, "appear_at_ms": 0, "disappear_at_ms": 8000, "fade_out_ms": 300 },
           { "type": "body", "id": "line_410_solid", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 1.0, "appear_at_ms": 8000, "animate_in_ms": 300 },
+          { "type": "label", "id": "line_label_656", "text": "656", "position": { "x": 607, "y": 462 }, "font_size": 11, "color": "#EF4444" },
+          { "type": "label", "id": "line_label_486", "text": "486", "position": { "x": 267, "y": 462 }, "font_size": 11, "color": "#22D3EE", "appear_at_ms": 2350, "animate_in_ms": 300 },
+          { "type": "label", "id": "line_label_434", "text": "434", "position": { "x": 163, "y": 462 }, "font_size": 11, "color": "#3B82F6", "appear_at_ms": 5350, "animate_in_ms": 300 },
+          { "type": "label", "id": "line_label_410", "text": "410", "position": { "x": 115, "y": 462 }, "font_size": 11, "color": "#8B5CF6", "appear_at_ms": 8000, "animate_in_ms": 300 },
           { "type": "body", "id": "electron_drop_4to2", "shape": "circle", "position": { "x": 140, "y": 228 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 0, "dy_px": 115, "delay_sec": 0.1, "duration_sec": 0.5 }, "disappear_at_ms": 2200, "fade_out_ms": 200 },
           { "type": "animated_path", "id": "photon_4to2", "from": { "x": 140, "y": 343 }, "to": { "x": 267, "y": 452 }, "color": "#22D3EE", "appear_at_ms": 1200, "duration_ms": 800, "disappear_at_ms": 2350, "fade_out_ms": 300, "arrow_head": true },
           { "type": "label", "id": "photon_4to2_label", "text": "2.55 eV", "position": { "x": 205, "y": 380 }, "font_size": 12, "color": "#22D3EE", "appear_at_ms": 1600, "disappear_at_ms": 2350, "fade_out_ms": 300 },
