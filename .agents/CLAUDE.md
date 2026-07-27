@@ -1,6 +1,6 @@
 # CLAUDE.md — `.agents/` (canonical agent specs)
 
-Umbrella governance for the ten canonical agent specifications (seven original + three added 2026-07-04: `eye_walker`, `retrofit_surgeon`, `shipper`). This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
+Umbrella governance for the eleven canonical agent specifications (seven original + three added 2026-07-04: `eye_walker`, `retrofit_surgeon`, `shipper`; + `chemistry_author` added 2026-07-23 — CHEMISTRY_BUILD_PLAN.md Phase 2). This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
 
 ## Canonical source vs dispatch wrapper
 
@@ -28,12 +28,13 @@ Frontmatter (`name:`, `description:`, `model:`, `tools:`) is hand-maintained IN 
 
 Naming reminder: emission filename and `name:` field use **hyphenated** form (`json-author`). Bug-queue ownership tags and FAIL routing use **underscored cluster-prefixed** form (`alex:json_author`). Both intentional. See `~/.claude/rules/agent-teams-reference.md`.
 
-## The ten roles (2026-07-04: adds `eye_walker`, `retrofit_surgeon`, `shipper` + the Release cluster)
+## The eleven roles (2026-07-04: adds `eye_walker`, `retrofit_surgeon`, `shipper` + the Release cluster; 2026-07-23: adds `chemistry_author`)
 
 | Cluster | Role (canonical dir) | Pattern | One-line summary |
 |---|---|---|---|
 | Alex | `architect` | pipelined #1 | Produces 9-section skeleton + Pass-1 strategic checklist (v2.3). Model-pinned `claude-fable-5` (2026-07-08 — the creative pedagogy/choreography role; watch the first dispatch's token cost, fallback = revert pin to sonnet-5). |
 | Alex | `physics_author` | pipelined #2 | Produces physics block (variables, formulas, constraints, reveals). Model-pinned `claude-sonnet-5` (2026-07-04). |
+| Alex | `chemistry_author` | pipelined #2 (chemistry) | Chemistry sibling of `physics_author` (added 2026-07-23): produces the chemistry block (balanced-equation ledger, quantities with units, formulas, constraints, Rule 31 timelines) for chemistry concepts — the chemistry sequence substitutes it at position #2. Model-pinned `claude-sonnet-5`. |
 | Alex | `json_author` | pipelined #3 | Produces the `.json` + 8 registration sites + SQL migration. Model-pinned `claude-sonnet-5` (2026-07-08). |
 | Alex | `quality_auditor` | pipelined #4 (gate) | Per-gate PASS/FAIL verdict + return-to-author FAIL routing. Reports only, never edits. Model-pinned `claude-opus-5` (2026-07-08 — upgraded from sonnet-5; founder call: the final adversarial pre-founder gate reasons across skeleton+physics+JSON+THE EYE+eye_walker+routing and never edits files, so it is the highest-ROI single Opus slot / zero blast radius. Fallback = revert pin to sonnet-5). |
 | Alex | `eye_walker` | parallel verification (frames) | Reads THE EYE frame dumps in its own context; per-state verdict table + ≤5 frames for founder eyes. Curates, never approves. Dispatched alongside quality_auditor. |
@@ -58,6 +59,8 @@ a real handoff protocol). Owner-tag form: `release:shipper`.
 5. `.agents/<role>/CLAUDE.md` is the canonical source. `.claude/agents/<role>.md` is the emission. Never edit the emission directly.
 6. Anchor checking (UNIVERSAL culture-neutral anchor per Rule 35 — founder 2026-07-10, supersedes the old "Indian context" requirement; plain English, no Hinglish) is folded into quality_auditor's anti-plagiarism probe. Do not create a separate anchor-checker agent.
 7. *(added 2026-07-04)* `shipper` dispatches ONLY on explicit founder approval (Rule 17 gate — quality_auditor PASS / THE EYE clean are NOT approval); `eye_walker` curates frames but never approves (`visual:approve` stays founder-triggered); `retrofit_surgeon` never touches registration sites, renderer code, or a second file — it escalates instead.
+
+**Chemistry addendum (2026-07-23, repo-local — not yet mirrored in `~/.claude/rules/agent-teams-reference.md`):** chemistry concepts run rule 1's pipeline with `chemistry_author` substituted at position #2 (`architect → chemistry_author → json_author → quality_auditor`); all other hard rules apply unchanged. Chemistry concept JSONs live ONLY in `src/data/concepts/chemistry/` (isolation contract — `docs/CHEMISTRY_ARCHITECTURE.md` §7).
 
 ## Versioning convention
 

@@ -489,6 +489,40 @@ function computePhysics_vector_addition_law(vars) {
   };
 }
 
+// ── Chemistry namespace ───────────────────────────────────────────────────
+// Bohr hydrogen energy levels: E_n = -13.6/n^2 eV, photon lambda = hc/dE.
+// Concept-gated in the dispatcher below — never runs for a physics concept.
+function computePhysics_bohr_model_energy_levels(vars) {
+  var n_start = (vars && vars.n_start != null) ? vars.n_start : 3;
+  var n_end = (vars && vars.n_end != null) ? vars.n_end : 2;
+  var n_hi = Math.max(n_start, n_end);
+  var n_lo = Math.min(n_start, n_end);
+  var E_hi = -13.6 / (n_hi * n_hi);
+  var E_lo = -13.6 / (n_lo * n_lo);
+  // Precise (unrounded) delta drives lambda -- rounding delta_E_ev to 2dp
+  // BEFORE dividing drifts lambda by up to 1 nm off the verified ledger
+  // (e.g. 6 to 2 gives 411 nm instead of the verified 410 nm). Round only
+  // for the DISPLAYED delta_E_ev, never for the lambda division itself.
+  var deltaEPrecise = Math.abs(E_hi - E_lo);
+  var delta_E_ev = Math.round(deltaEPrecise * 100) / 100;
+  var direction = (n_end > n_start) ? 'absorb' : ((n_end < n_start) ? 'emit' : 'none');
+  var lambda_nm = (deltaEPrecise > 0) ? Math.round(1240 / deltaEPrecise) : null;
+  var spectral_region = (lambda_nm == null) ? 'none' : ((lambda_nm < 400) ? 'UV' : ((lambda_nm <= 700) ? 'VISIBLE' : 'IR'));
+  return {
+    concept_id: 'bohr_model_energy_levels',
+    variables: { n_start: n_start, n_end: n_end },
+    derived: {
+      delta_E_ev: delta_E_ev,
+      lambda_nm: lambda_nm,
+      direction: direction,
+      spectral_region: spectral_region,
+      n_hi: n_hi,
+      n_lo: n_lo
+    },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -507,6 +541,9 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'newton_second_law_direction') result = computePhysics_newton_second_law_direction(vars);
   else if (conceptId === 'scalar_vs_vector') result = computePhysics_scalar_vs_vector(vars);
   else if (conceptId === 'vector_addition_law') result = computePhysics_vector_addition_law(vars);
+  // Chemistry namespace (src/data/concepts/chemistry/) — concept-gated, fires
+  // only for this id; the physics dispatch above is byte-unchanged.
+  else if (conceptId === 'bohr_model_energy_levels') result = computePhysics_bohr_model_energy_levels(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a

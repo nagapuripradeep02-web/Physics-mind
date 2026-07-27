@@ -41,6 +41,7 @@ N. **<Title>.** <One-line description with file:line citation if known>. [owner:
 Valid owner tags:
 - `alex:architect`
 - `alex:physics_author`
+- `alex:chemistry_author` (added 2026-07-23 — chemistry-pipeline sibling of physics_author)
 - `alex:json_author`
 - `peter_parker:renderer_primitives`
 - `peter_parker:runtime_generation`

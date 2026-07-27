@@ -34,6 +34,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 
 // ── Config ───────────────────────────────────────────────────────────────────
 const ROOT = process.cwd();
@@ -116,9 +117,10 @@ function parseArgs() {
 
 // ── Concept loading ──────────────────────────────────────────────────────────
 function loadSentences(conceptId: string): TtsSentence[] {
-  const path = join(CONCEPTS_DIR, `${conceptId}.json`);
-  if (!existsSync(path)) throw new Error(`Concept JSON not found: ${path}`);
-  const json = JSON.parse(readFileSync(path, 'utf-8')) as {
+  // Subject-aware resolution (flat physics dir first, then chemistry/ — Phase 2.5).
+  const resolved = resolveConceptJsonPath(conceptId);
+  if (!resolved) throw new Error(`Concept JSON not found: checked ${join(CONCEPTS_DIR, `${conceptId}.json`)} and src/data/concepts/chemistry/${conceptId}.json`);
+  const json = JSON.parse(readFileSync(resolved.path, 'utf-8')) as {
     epic_l_path?: { states?: Record<string, { teacher_script?: { tts_sentences?: TtsSentence[] } }> };
   };
   const states = json.epic_l_path?.states ?? {};

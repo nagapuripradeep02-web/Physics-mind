@@ -11,6 +11,7 @@ import { newtonSecondLawDirectionEngine } from './concepts/newton_second_law_dir
 import { magneticFieldWireEngine } from './concepts/magnetic_field_wire';
 import { magneticForceMovingChargeEngine } from './concepts/magnetic_force_moving_charge';
 import { torqueOnCurrentLoopInFieldEngine } from './concepts/torque_on_current_loop_in_field';
+import { bohrModelEnergyLevelsEngine } from './concepts/bohr_model_energy_levels';
 import type { ConceptPhysicsEngine, PhysicsResult } from './types';
 
 const ENGINES: Record<string, ConceptPhysicsEngine> = {
@@ -27,6 +28,7 @@ const ENGINES: Record<string, ConceptPhysicsEngine> = {
   magnetic_field_wire: magneticFieldWireEngine,
   magnetic_force_moving_charge: magneticForceMovingChargeEngine,
   torque_on_current_loop_in_field: torqueOnCurrentLoopInFieldEngine,
+  bohr_model_energy_levels: bohrModelEnergyLevelsEngine,
 };
 
 export function computePhysics(

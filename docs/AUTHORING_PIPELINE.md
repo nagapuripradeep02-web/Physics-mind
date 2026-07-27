@@ -255,3 +255,25 @@ rewrite a lesson.
 student) wired but empty — 0 students; `proposal_queue` and `engine_bug_queue` tables EXIST
 (migrations 2026-06-10 / 2026-04-25), Tier-8 agents are markdown specs. The professor gate (④) is the human comprehension/pedagogy gate that lets the loop
 close NOW on 1–2 reviewers instead of waiting for 2,000 students. See Session 59 audit.*
+
+---
+
+## Chemistry addendum (2026-07-23 — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+The SOP above applies to CHEMISTRY concepts (`src/data/concepts/chemistry/`) with three
+substitutions; full doctrine in `docs/CHEMISTRY_ARCHITECTURE.md` + `docs/CHEMISTRY_BUILD_PLAN.md`:
+
+1. **Pipeline:** `architect → chemistry_author → json_author → quality_auditor` —
+   `chemistry_author` substitutes at position #2 (`.agents/chemistry_author/CLAUDE.md`); its output
+   is a "chemistry block" (balanced-equation ledger, quantities with chemistry units, Rule 31
+   timelines) consumed by json_author identically to a physics block.
+2. **Source roles (Stage ①):** NCERT **Chemistry** = syllabus backbone (chapter indexes only) ·
+   NCERT **Exemplar** = misconception beliefs (belief only) · teaching authored from first
+   principles; universal anchors per Rule 35 (rusting, soda fizz, electroplating). The HCV/DCP
+   triad is physics-only.
+3. **Stage ② DoD chemistry variant:** the right-hand-rule plan is replaced by the
+   balanced-equation-ledger plan (state symbols, oxidation numbers where redox, particle
+   scale-factor label); archetypes declared from `docs/patterns/chemistry.md` §1 ([LIVE] only until
+   Phase 5). Stage ③ THE EYE + eye_walker run unchanged, with the chemistry visual-sanity checklist
+   in `.agents/eye_walker/CLAUDE.md` §Chemistry; validation = `npm run validate:chemistry`
+   (the flat `validate:concepts` never scans the chemistry dir, by design).

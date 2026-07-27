@@ -1,5 +1,10 @@
 export type StudentClass = 'Class 10' | 'Class 11' | 'Class 12';
 export type ClassLevel = 10 | 11 | 12;
+// Subject is the second curriculum dimension alongside ClassLevel (added 2026-07-23,
+// CHEMISTRY_BUILD_PLAN.md Phase 1). Defined here — the client-safe types module — so both
+// server (conceptCatalog) and client ("use client" pages) can import it without pulling in
+// the `server-only` catalog module. Catalog routing defaults to 'physics' everywhere.
+export type Subject = 'physics' | 'chemistry';
 export type StudentBoard = 'CBSE' | 'Telangana Board' | 'AP Board' | 'Maharashtra Board' | 'Other State Board';
 export type StudentGoal = 'Board Exam' | 'JEE' | 'NEET' | 'Just Learning';
 export type AppMode = 'learn' | 'practice';

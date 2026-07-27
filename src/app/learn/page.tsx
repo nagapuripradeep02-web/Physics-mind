@@ -4,7 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useProfile } from "@/contexts/ProfileContext";
 import { resolveClassLevels } from "@/types/student";
+import type { Subject } from "@/types/student";
 import type { CatalogChapter } from "@/lib/conceptCatalog";
+
+// Subject dimension (CHEMISTRY_BUILD_PLAN.md Phase 1). Held constant at 'physics'
+// for now — the subject TOGGLE lands in Phase 3, gated on ≥1 live chemistry concept
+// existing (nothing user-visible changes until then). Un-hardcoding the label + wiring
+// the API param here makes the page subject-ready with byte-identical physics output.
+const SUBJECT_LABEL: Record<Subject, string> = { physics: "Physics", chemistry: "Chemistry" };
 import TopNav from "@/components/TopNav";
 import CatalogTree from "@/components/CatalogTree";
 import GuidedPath from "@/components/GuidedPath";
@@ -19,6 +26,7 @@ export default function LearnPage() {
     const [fetching, setFetching] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [view, setView] = useState<View>("path");
+    const subject: Subject = "physics"; // Phase 3 turns this into state + a toggle
 
     // Restore view preference on mount; persist whenever it changes.
     useEffect(() => {
@@ -50,7 +58,7 @@ export default function LearnPage() {
         let cancelled = false;
         setFetching(true);
         setError(null);
-        fetch(`/api/catalog?levels=${levelsKey}`)
+        fetch(`/api/catalog?levels=${levelsKey}&subject=${subject}`)
             .then(res => {
                 if (!res.ok) throw new Error(`Catalog fetch failed: ${res.status}`);
                 return res.json();
@@ -69,7 +77,7 @@ export default function LearnPage() {
         return () => {
             cancelled = true;
         };
-    }, [loading, profile?.onboardingComplete, levelsKey, router, classLevels.length]);
+    }, [loading, profile?.onboardingComplete, levelsKey, subject, router, classLevels.length]);
 
     if (loading || !profile) {
         return (
@@ -93,7 +101,7 @@ export default function LearnPage() {
                         {view === "path" ? "Today's Path" : "All Topics"}
                     </div>
                     <h1 className="text-2xl font-bold text-white">
-                        {view === "path" ? `${classLabel} · Learn Physics` : `${classLabel} Catalog`}
+                        {view === "path" ? `${classLabel} · Learn ${SUBJECT_LABEL[subject]}` : `${classLabel} Catalog`}
                     </h1>
                     {view === "all" && (
                         <button
