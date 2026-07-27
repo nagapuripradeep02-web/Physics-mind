@@ -523,6 +523,54 @@ function computePhysics_bohr_model_energy_levels(vars) {
   };
 }
 
+// law_of_conservation_of_mass: closed-system mass ledger for C(s) + O2(g) -> CO2(g),
+// plus the STATE_5 rusting twin-misconception constants. tare/M_x are the
+// declared physics_engine_config constants (see the JSON's variables block);
+// re-declared here as literals since computePhysics_<id> never reads
+// physics_engine_config directly (Bohr precedent). Concept-gated — never runs
+// for a physics concept.
+function computePhysics_law_of_conservation_of_mass(vars) {
+  var m_C = (vars && vars.m_C != null) ? vars.m_C : 12;
+  var vessel_sealed = (vars && vars.vessel_sealed != null) ? vars.vessel_sealed : 1;
+  var tare = 38.0;
+  var m_O2 = m_C * 32 / 12;
+  var m_CO2 = m_C * 44 / 12;
+  var n_C = m_C / 12;
+  var m_reactants = m_C + m_O2;
+  var m_products = m_CO2;
+  var reading_initial = tare + m_C + (vessel_sealed ? m_O2 : 0);
+  var reading_final = tare + (vessel_sealed ? (m_C + m_O2) : 0);
+  var delta_reading = reading_final - reading_initial;
+  // STATE_5 rusting ledger — fixed staged constants (chemistry block §1/§2),
+  // independent of the m_C/vessel_sealed sliders.
+  var m_Fe_before_S5 = 10.0;
+  var m_gas_before_S5 = 5.0;
+  var m_O2_reacted_S5 = 0.6;
+  var m_solid_after_S5 = m_Fe_before_S5 + m_O2_reacted_S5;
+  var m_gas_after_S5 = m_gas_before_S5 - m_O2_reacted_S5;
+  var m_total_S5 = m_Fe_before_S5 + m_gas_before_S5;
+  var atoms_scale_label = '≈ ' + n_C.toFixed(2) + ' × 6.022×10²³ atoms';
+  return {
+    concept_id: 'law_of_conservation_of_mass',
+    variables: { m_C: m_C, vessel_sealed: vessel_sealed },
+    derived: {
+      m_O2: m_O2,
+      m_CO2: m_CO2,
+      n_C: n_C,
+      m_reactants: m_reactants,
+      m_products: m_products,
+      reading_initial: reading_initial,
+      reading_final: reading_final,
+      delta_reading: delta_reading,
+      m_solid_after_S5: m_solid_after_S5,
+      m_gas_after_S5: m_gas_after_S5,
+      m_total_S5: m_total_S5,
+      atoms_scale_label: atoms_scale_label
+    },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -544,6 +592,7 @@ function computePhysics(conceptId, vars) {
   // Chemistry namespace (src/data/concepts/chemistry/) — concept-gated, fires
   // only for this id; the physics dispatch above is byte-unchanged.
   else if (conceptId === 'bohr_model_energy_levels') result = computePhysics_bohr_model_energy_levels(vars);
+  else if (conceptId === 'law_of_conservation_of_mass') result = computePhysics_law_of_conservation_of_mass(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
