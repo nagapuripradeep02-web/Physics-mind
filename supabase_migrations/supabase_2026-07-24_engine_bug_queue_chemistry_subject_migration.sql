@@ -28,9 +28,32 @@
 -- discovered in this session by name.
 -- ─────────────────────────────────────────────────────────────────────────────
 
+-- ═══════════════════════════════════════════════════════════════════════════
+-- APPLIED 2026-07-27 to project dxwpkjfypzxrzgbevfnx (dev) via the Supabase MCP,
+-- as migration `engine_bug_queue_chemistry_subject_and_owner_clusters`.
+-- Verified after: 351/351 rows intact, all defaulted to subject='physics',
+-- both CHECK constraints present, idx_ebq_subject created.
+-- NOT applied to physicsmind-pilot (production) — engine_bug_queue is dev-only.
+--
+-- ONE DEVIATION from the text below, decided at apply time against live data:
+-- `peter_parker:field3d_surgeon` was ALSO added to the owner_cluster CHECK. That
+-- role landed on master after this file was written and is already in active use
+-- as an owner tag ([owner: peter_parker:field3d_surgeon] appears in shipped
+-- commits), so applying the list verbatim would have fixed the chemistry_author
+-- gap while recreating the identical latent bug for field3d_surgeon.
+-- ═══════════════════════════════════════════════════════════════════════════
+
 -- ── Step 1: allow the chemistry author as an owner cluster ───────────────────
 -- Mirrors the 2026-04-27 visual_validator extension. Full list restated (a
--- CHECK cannot be extended in place) — keep in sync with the admin OWNERS array.
+-- CHECK cannot be extended in place).
+--
+-- Pre-flight check run before applying: all 351 rows use one of the 7
+-- previously-allowed values, so restating the list invalidates nothing.
+--
+-- NOTE — do NOT blindly "keep in sync with the admin OWNERS array" as originally
+-- written here: that array no longer lists `peter_parker:visual_validator`, yet
+-- 39 live rows use it. Syncing the CHECK to the UI would invalidate them. The UI
+-- is the stale side; the DB list below is authoritative.
 ALTER TABLE engine_bug_queue
     DROP CONSTRAINT IF EXISTS engine_bug_queue_owner_cluster_check;
 
@@ -39,11 +62,12 @@ ALTER TABLE engine_bug_queue
         CHECK (owner_cluster IN (
             'alex:architect',
             'alex:physics_author',
-            'alex:chemistry_author',   -- added 2026-07-24 (Phase-2 role, DB gap)
+            'alex:chemistry_author',        -- added 2026-07-24 (Phase-2 role, DB gap)
             'alex:json_author',
             'peter_parker:renderer_primitives',
             'peter_parker:runtime_generation',
-            'peter_parker:visual_validator',
+            'peter_parker:visual_validator', -- 39 rows depend on this; UI dropped it
+            'peter_parker:field3d_surgeon',  -- added 2026-07-27 (active on master)
             'ambiguous'
         ));
 
