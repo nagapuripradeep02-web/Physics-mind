@@ -8,6 +8,40 @@ chemistry on another. This document is the shared contract.
 
 ---
 
+## 0. New machine? Run this FIRST
+
+```bash
+node scripts/install-git-hooks.js     # once per machine — installs the auto-push hooks
+```
+
+**Do this before your first commit, not after.** The hooks live in `.git/hooks`,
+which git does **not** track — so they do not arrive with a clone, a fetch, or a
+new worktree. A fresh machine has no backup automation at all, and nothing tells
+you that. You keep committing, everything looks normal, and the work sits on one
+disk exactly as it did on 2026-07-26.
+
+Confirm it took:
+
+```bash
+ls .git/hooks/post-commit                        # should exist
+git rev-list --count --branches --not --remotes  # must be 0 — nothing unpushed
+```
+
+That second command is the real test, and it is worth running at the end of any
+session. **The hook is a convenience, not a guarantee** — it has been observed to
+skip a push after a large merge (chemistry branch, 2026-07-27: the count read 4,
+not 0, and the branch was pushed by hand). Trust the count, not the hook.
+
+One install covers every worktree on every branch, because `.git/hooks` is shared.
+It chains to any hook it displaces (Git LFS, an existing pre-commit) rather than
+replacing it. Opt out of a single auto-push with `PM_NO_AUTOPUSH=1 git commit`, or
+persistently for one worktree with `touch "$(git rev-parse --git-dir)/autopush.off"`.
+
+If a background push ever fails, it writes `autopush.status` and prints the failure
+on your next commit — a silent failed push would be worse than no push at all.
+
+---
+
 ## 1. Your code lives in four places
 
 ```
@@ -92,14 +126,8 @@ npm run validate:concepts
 | `pre-commit` hook | Blocks a commit if an agent emission is stale vs its canonical. |
 | GitHub Actions `verify` | On every push: renderer syntax, agent sync, scenarios, concept schema, unit tests, type check. Lint is advisory. |
 
-Install the hooks **once per machine**:
-
-```bash
-node scripts/install-git-hooks.js
-```
-
-They land in the shared `.git/hooks`, so one install covers all worktrees on
-every branch. Opt out of a single auto-push with `PM_NO_AUTOPUSH=1 git commit`.
+**None of the hook rows above are active until you install them** — see §0. They
+are not tracked by git, so a new machine or a fresh clone has none of this.
 
 **Not automated — this needs a human:**
 
@@ -136,6 +164,9 @@ cost of one repo with a shared engine, and it's the right trade — but it's why
 ## 6. Quick reference
 
 ```bash
+# ONCE per machine, before your first commit (§0) — nothing below is automatic without it
+node scripts/install-git-hooks.js
+
 # every morning
 git fetch origin && git merge origin/master
 
