@@ -1,0 +1,1198 @@
+{
+  "concept_id": "vsepr_molecular_shapes",
+  "concept_name": "VSEPR — Electron Domains Repel, and That Is the Molecule's Shape",
+  "chapter": 4,
+  "section": "Class 11 Chemistry Ch.4 'Chemical Bonding and Molecular Structure', §4.6 — Valence Shell Electron Pair Repulsion (VSEPR) theory: predicting molecular geometry",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Chemistry Class 11, Ch.4 'Chemical Bonding and Molecular Structure', §4.6 — chapter-index scope reference only; teaching, sequence, examples and phrasing authored from first principles. NCERT Exemplar consulted for misconception beliefs only (M1-M3); no problem text, figure or prose imported. Third chemistry concept through the pipeline, and the first on the field_3d molecular_geometry surface.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "molecular_geometry"
+    ]
+  },
+  "prerequisites": [],
+  "real_world_anchor": {
+    "primary": "Water's shape is why water behaves like water. Its two O-H bonds sit at 104.5 degrees instead of in a straight line, so their pulls do not cancel and the molecule ends up with a positive end and a negative end. That is why water dissolves salt, why it climbs inside a plant, and why ice floats. If the same three atoms were arranged straight, none of that would be true — shape is not decoration, it decides what a substance does.",
+    "secondary": "Methane's four bonds point at the corners of a tetrahedron, perfectly balanced, so the molecule has no positive or negative end at all — which is why natural gas will not dissolve in water and why it mixes freely through air. Same logic, opposite outcome, from geometry alone."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_3"
+    },
+    "lone_pair_effect": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "shape_vs_geometry": {
+      "start": "STATE_5",
+      "end": "STATE_5"
+    },
+    "expanded_geometries": {
+      "start": "STATE_6",
+      "end": "STATE_6"
+    },
+    "exploration": {
+      "start": "STATE_7",
+      "end": "STATE_7"
+    }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "n_domains": {
+        "name": "number of electron domains around the central atom (bonding pairs + lone pairs; a double or triple bond counts as ONE domain)",
+        "unit": "",
+        "min": 2,
+        "max": 6,
+        "default": 4,
+        "step": 1,
+        "role": "driver"
+      },
+      "n_lone": {
+        "name": "number of those domains that are lone pairs",
+        "unit": "",
+        "min": 0,
+        "max": 2,
+        "default": 0,
+        "step": 1,
+        "role": "driver"
+      },
+      "theta": {
+        "name": "bond angle X-A-X measured between two bonding domains",
+        "unit": "deg",
+        "min": 90,
+        "max": 180,
+        "default": 109.5,
+        "step": 0.5,
+        "role": "computed_display"
+      },
+      "spin_rate": {
+        "name": "rate the molecule turns so its three-dimensional shape can be read",
+        "unit": "rad/s",
+        "min": 0,
+        "max": 0.6,
+        "default": 0.16,
+        "step": 0.02,
+        "role": "presentation_only"
+      },
+      "r_CH": {
+        "name": "carbon-hydrogen bond length in methane (teaching-rounded, experimental 108.7 pm)",
+        "unit": "pm",
+        "constant": 109
+      },
+      "r_NH": {
+        "name": "nitrogen-hydrogen bond length in ammonia (teaching-rounded, experimental 101.2 pm)",
+        "unit": "pm",
+        "constant": 101
+      },
+      "r_OH": {
+        "name": "oxygen-hydrogen bond length in water (teaching-rounded, experimental 95.8 pm)",
+        "unit": "pm",
+        "constant": 96
+      },
+      "theta_linear": {
+        "name": "ideal bond angle for 2 domains",
+        "unit": "deg",
+        "constant": 180
+      },
+      "theta_trigonal": {
+        "name": "ideal bond angle for 3 domains",
+        "unit": "deg",
+        "constant": 120
+      },
+      "theta_tetrahedral": {
+        "name": "ideal bond angle for 4 domains, exactly arccos(-1/3) = 109.4712 deg",
+        "unit": "deg",
+        "constant": 109.5
+      },
+      "theta_NH3": {
+        "name": "experimental H-N-H angle in ammonia (one lone pair)",
+        "unit": "deg",
+        "constant": 107
+      },
+      "theta_H2O": {
+        "name": "experimental H-O-H angle in water (two lone pairs)",
+        "unit": "deg",
+        "constant": 104.5
+      },
+      "theta_octahedral": {
+        "name": "ideal neighbour angle for 6 domains",
+        "unit": "deg",
+        "constant": 90
+      }
+    },
+    "formulas": {
+      "separation_principle": "the domains adopt the arrangement that MAXIMISES the minimum angle between any two of them",
+      "domain_count": "n_domains = bonding_domains + n_lone   (a multiple bond is ONE domain)",
+      "theta_2_domains": "theta = 180 deg (linear)",
+      "theta_3_domains": "theta = 120 deg (trigonal planar)",
+      "theta_4_domains": "theta = arccos(-1/3) = 109.4712 deg (tetrahedral, displayed 109.5)",
+      "theta_5_domains": "theta = 120 deg equatorial-equatorial, 90 deg axial-equatorial (trigonal bipyramidal)",
+      "theta_6_domains": "theta = 90 deg between neighbours (octahedral)",
+      "repulsion_order": "lone-lone > lone-bond > bond-bond",
+      "lone_pair_compression": "each lone pair closes the bond angle by roughly 2.5 deg: 109.5 -> 107 (NH3) -> 104.5 (H2O)",
+      "tripod_closed_form": "for 3 symmetric bonds at axis angle beta: cos(theta) = 1.5*cos(beta)^2 - 0.5",
+      "pair_closed_form": "for 2 symmetric bonds: beta = theta / 2 measured from their bisector",
+      "ligand_span": "d(X...X) = 2 * r(A-X) * sin(theta / 2)",
+      "span_flat_vs_real": "flat 90 deg: 2*109*sin(45) = 154 pm; real 109.5 deg: 2*109*sin(54.7356) = 178 pm"
+    },
+    "computed_outputs": {
+      "theta_deg": {
+        "formula": "theta_deg = angle between the two bonding domains the arc measures",
+        "unit": "deg",
+        "precision": 1
+      },
+      "span_pm": {
+        "formula": "span_pm = 2 * r(A-X) * sin(theta_deg / 2)",
+        "unit": "pm",
+        "precision": 0
+      },
+      "e_geometry": {
+        "formula": "e_geometry = name of the arrangement of ALL n_domains",
+        "unit": ""
+      },
+      "shape": {
+        "formula": "shape = name of the arrangement of the BONDED ATOMS only",
+        "unit": ""
+      }
+    },
+    "derived_fields_declared": [
+      "theta_deg",
+      "span_pm",
+      "n_domains",
+      "n_lone",
+      "e_geometry",
+      "shape"
+    ],
+    "constraints": [
+      "A multiple bond counts as ONE electron domain, not two or three — the domain count, never the bond count, sets the arrangement.",
+      "109.5 deg is a display rounding of the exact tetrahedral angle arccos(-1/3) = 109.4712 deg; the renderer computes the exact value and rounds only at the label.",
+      "107 deg (NH3) and 104.5 deg (H2O) are EXPERIMENTAL values, not VSEPR-derived — VSEPR predicts the direction of the effect (lone pairs close the angle), and the engine is pinned to the measured numbers rather than to an approximation.",
+      "Electron geometry counts all domains; molecular shape counts only the bonded atoms. The two names differ exactly when lone pairs are present, and both must be reported.",
+      "VSEPR predicts shape only. It says nothing about bond length, bond strength, or polarity — polarity follows from shape plus electronegativity, which is a separate concept.",
+      "Every angle rendered by this concept is the real textbook value, verified numerically against the geometry generator before the states were authored: BeCl2 180.0, BF3 120.0, CH4 109.471, NH3 107.0, H2O 104.5, PCl5 120.0/90.0, SF6 90.0."
+    ]
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "The flat cross on paper is a convention — the real methane leaves the page.",
+    "visual_confirmation": "the 90.0 degree arc opens to 109.5 degrees as the bonds lift out of the sketch plane, and the H...H readout counts 154 pm up to 178 pm while the plane itself fades away"
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 30,
+    "max_labels_per_state": 14,
+    "max_words_per_tts_sentence": 34
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A molecule is a three-dimensional object",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_angle_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_build_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "four bonds grow out",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_angle_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "every angle 109.5°",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_turn_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "turn it — shape holds",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Methane is one carbon with four hydrogens. Watch where those bonds actually go.",
+              "glow": "central",
+              "scenario_cue": "assemble"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "They do not lie flat. Each one points at a corner of a tetrahedron, and every angle between them is identical: one hundred nine point five degrees.",
+              "glow": "arc"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Turn it, and the shape stays the shape.",
+              "glow": "bonds"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The flat sketch is a convention, not the molecule",
+        "duration": 21,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_span_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_board_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "the board sketch: 90°",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_leave_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "it leaves the page",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_span_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "H···H 154 → 178 pm",
+            "color": "#FFCA28"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "On a board we draw methane as a cross: four bonds, ninety degree corners. That picture is convenient, and it is wrong.",
+              "glow": "arc"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch it leave the page. The angle opens to one hundred nine point five degrees, and the hydrogens spread from one hundred fifty four picometres to one hundred seventy eight.",
+              "glow": "span",
+              "scenario_cue": "relax"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A molecule has the shape its Lewis diagram is drawn in — flat, with ninety degree corners.",
+            "visual_counter": "The flat cross is shown first, sitting in a visible sketch plane with its H···H distance labelled 154 pm; then the bonds lift out of that plane, the arc counts up to 109.5°, and the same H···H readout climbs to 178 pm as the plane fades.",
+            "one_line_fix": "The flat drawing is a way of recording which atoms are joined, not a picture of where they sit — the real molecule uses all three dimensions and spreads its atoms further apart."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Why that shape — domains push each other as far apart as they can",
+        "duration": 23,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_spread_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_two_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "2 domains → 180°",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_three_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "3 domains → 120°",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_spread_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "4 cannot stay flat",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Why that shape? Each bonding pair is a cloud of negative charge, and clouds push apart.",
+              "glow": "bonds"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Two domains get as far apart as possible: a straight line, one hundred eighty degrees.",
+              "glow": "arc",
+              "scenario_cue": "spread_0"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Three flatten into a triangle at one hundred twenty. Four cannot stay flat — they go three dimensional at one hundred nine point five.",
+              "glow": "arc",
+              "scenario_cue": "spread_1"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "A lone pair pushes harder than a bonding pair",
+        "duration": 22,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_squeeze_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_swap_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "a bond becomes a lobe",
+            "color": "#B39DDB"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_wider_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "the lobe takes more room",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_squeeze_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "109.5° → 107° → 104.5°",
+            "color": "#FFCA28"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now swap a bond for a lone pair — two electrons that belong to the central atom alone.",
+              "glow": "lone_pairs",
+              "scenario_cue": "squeeze_0"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "A lone pair sits closer in and spreads wider, so it pushes harder than a bond does.",
+              "glow": "lone_pairs"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Methane's angle closes to one hundred seven in ammonia, then one hundred four point five in water.",
+              "glow": "arc",
+              "scenario_cue": "squeeze_1"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A lone pair is just an unused bond, so it takes up the same amount of room.",
+            "visual_counter": "The lone pair renders as a lobe that is visibly fatter than a bond and sits closer to the central atom, and the surviving bond angle measurably closes twice — 109.5° to 107° to 104.5° — once per lone pair added.",
+            "one_line_fix": "A lone pair is held by one atom instead of shared between two, so it stays closer in and spreads wider — and it squeezes the bonds together."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Electron geometry and molecular shape are two different answers",
+        "duration": 17,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_shape_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_cage_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "4 domains: tetrahedral",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_hide_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "hide the lone pairs",
+            "color": "#B39DDB"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_shape_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "what is left is bent",
+            "color": "#FFCA28"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Exams separate two questions. Count all four domains and the electron geometry is tetrahedral.",
+              "glow": "ghost",
+              "scenario_cue": "hull"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "But you only ever see atoms. Hide the lone pairs, and what is left is bent — that is water's shape.",
+              "glow": "ligands",
+              "scenario_cue": "hide_lone"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Same cage, different name.",
+              "glow": "arc"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Water is tetrahedral — or, the other way round, water is bent so it must have three domains.",
+            "visual_counter": "The ghost cage counts four domains around the oxygen while only three atoms exist in the picture; hiding the two lone pairs leaves the bent three-atom shape inside the same unchanged cage.",
+            "one_line_fix": "Water's electron geometry is tetrahedral and its molecular shape is bent — four domains, three atoms, and both answers are correct to different questions."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Beyond four — five and six domains",
+        "duration": 16,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s6_octa_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_five_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "5: axial and equatorial",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_angles_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "two angle families",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_octa_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "6 → all neighbours 90°",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Past four, two new families appear. Five domains split into three around the equator at one hundred twenty degrees and two on the axis.",
+              "glow": "arc"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Six domains give the octahedron, where every neighbour sits at ninety degrees.",
+              "glow": "bonds",
+              "scenario_cue": "compare"
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Explore — pick a molecule and turn it",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_yours_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_pick_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "pick a molecule",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_turn_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "drag to turn it",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_yours_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "all yours",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now it's yours. Pick a molecule, turn it, and hide the lone pairs to see the shape underneath.",
+              "glow": "ligands"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "molecular_geometry",
+    "explorer_id": "vsepr_explorer",
+    "field_lines": {
+      "opacity": 0.5,
+      "color": "#66BB6A"
+    },
+    "slider_controls": {
+      "molecule": {
+        "default": "CH4",
+        "label": "Molecule"
+      },
+      "spin": {
+        "min": 0,
+        "max": 0.6,
+        "step": 0.02,
+        "default": 0.16,
+        "label": "Turn speed"
+      }
+    },
+    "colors": {
+      "bond": "#CFD8DC",
+      "lone_pair": "#B39DDB",
+      "arc": "#FFCA28",
+      "ghost": "#546E7A",
+      "span": "#4FC3F7",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Methane assembles — four bonds, one tetrahedron",
+        "visible_elements": [
+          "mg_central",
+          "mg_bond",
+          "mg_ligand",
+          "mg_arc",
+          "s1_build_label",
+          "s1_angle_label",
+          "s1_turn_label"
+        ],
+        "camera_position": [
+          4.6,
+          3,
+          6.6
+        ],
+        "caption": "Four bonds, one shape",
+        "molecular_geometry": {
+          "mode": "assemble",
+          "molecule": "CH4",
+          "assemble_at_ms": 1200,
+          "assemble_duration_ms": 10500,
+          "spin_start_ms": 12400,
+          "spin_rate": 0.16,
+          "arc_pair": [
+            0,
+            1
+          ],
+          "show_angle_arc": true,
+          "show_atom_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "angle",
+            "domains"
+          ],
+          "show_formula": true,
+          "formula": "4 bonding pairs → 109.5°",
+          "controls": [],
+          "static_readouts": [
+            "spin"
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "The flat board sketch relaxes into the real tetrahedron",
+        "visible_elements": [
+          "mg_central",
+          "mg_bond",
+          "mg_ligand",
+          "mg_arc",
+          "mg_span",
+          "mg_plane",
+          "s2_board_label",
+          "s2_leave_label",
+          "s2_span_label"
+        ],
+        "camera_position": [
+          0,
+          0.8,
+          9.2
+        ],
+        "caption": "Flat sketch, then real",
+        "molecular_geometry": {
+          "mode": "flat_vs_real",
+          "molecule": "CH4",
+          "flat_hold_ms": 7500,
+          "relax_duration_ms": 8000,
+          "spin_start_ms": 16300,
+          "spin_rate": 0.14,
+          "arc_pair": [
+            0,
+            3
+          ],
+          "show_angle_arc": true,
+          "show_span": true,
+          "show_flat_plane": true,
+          "show_atom_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "angle",
+            "span"
+          ],
+          "show_formula": true,
+          "formula": "flat 90° → real 109.5°",
+          "controls": [
+            "spin"
+          ],
+          "static_readouts": []
+        }
+      },
+      "STATE_3": {
+        "label": "Two, three, then four domains — each spreads to maximum separation",
+        "visible_elements": [
+          "mg_central",
+          "mg_bond",
+          "mg_ligand",
+          "mg_arc",
+          "s3_two_label",
+          "s3_three_label",
+          "s3_spread_label"
+        ],
+        "camera_position": [
+          4,
+          2.6,
+          7.2
+        ],
+        "caption": "More domains, wider spread",
+        "molecular_geometry": {
+          "mode": "domain_spread",
+          "molecule": "BeCl2",
+          "spread_steps": [
+            {
+              "at_ms": 800,
+              "molecule": "BeCl2",
+              "duration_ms": 1400
+            },
+            {
+              "at_ms": 6200,
+              "molecule": "BF3",
+              "duration_ms": 2000
+            },
+            {
+              "at_ms": 12000,
+              "molecule": "CH4",
+              "duration_ms": 2200
+            }
+          ],
+          "spin_start_ms": 14400,
+          "spin_rate": 0.12,
+          "arc_pair": [
+            0,
+            1
+          ],
+          "show_angle_arc": true,
+          "show_atom_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "domains",
+            "angle",
+            "shape"
+          ],
+          "show_formula": true,
+          "formula": "domains repel → maximum separation",
+          "controls": [],
+          "static_readouts": [
+            "spin"
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "CH₄ → NH₃ → H₂O: each lone pair closes the bond angle",
+        "visible_elements": [
+          "mg_central",
+          "mg_bond",
+          "mg_ligand",
+          "mg_lone",
+          "mg_arc",
+          "s4_swap_label",
+          "s4_wider_label",
+          "s4_squeeze_label"
+        ],
+        "camera_position": [
+          4.4,
+          2.8,
+          6.8
+        ],
+        "caption": "Lone pairs push harder",
+        "molecular_geometry": {
+          "mode": "lone_squeeze",
+          "molecule": "CH4",
+          "squeeze_steps": [
+            {
+              "at_ms": 5000,
+              "convert_ms": 1000,
+              "duration_ms": 2600,
+              "molecule": "NH3"
+            },
+            {
+              "at_ms": 11000,
+              "convert_ms": 1000,
+              "duration_ms": 2600,
+              "molecule": "H2O"
+            }
+          ],
+          "spin_start_ms": 15400,
+          "spin_rate": 0.14,
+          "arc_pair": [
+            0,
+            1
+          ],
+          "show_angle_arc": true,
+          "show_lone_pairs": true,
+          "show_lone_label": true,
+          "show_atom_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "angle",
+            "domains"
+          ],
+          "show_formula": true,
+          "formula": "lone pair repels more than bond pair",
+          "controls": [
+            "spin"
+          ],
+          "static_readouts": []
+        }
+      },
+      "STATE_5": {
+        "label": "Water: four domains in the cage, two atoms in the shape",
+        "visible_elements": [
+          "mg_central",
+          "mg_bond",
+          "mg_ligand",
+          "mg_lone",
+          "mg_ghost",
+          "mg_hull",
+          "mg_arc",
+          "s5_cage_label",
+          "s5_hide_label",
+          "s5_shape_label"
+        ],
+        "camera_position": [
+          4.2,
+          2.6,
+          7
+        ],
+        "caption": "Count domains, name shape",
+        "molecular_geometry": {
+          "mode": "shape_vs_geometry",
+          "molecule": "H2O",
+          "hull_at_ms": 2200,
+          "hide_lone_at_ms": 9000,
+          "spin_start_ms": 0,
+          "spin_rate": 0.12,
+          "arc_pair": [
+            0,
+            1
+          ],
+          "show_angle_arc": true,
+          "show_lone_pairs": true,
+          "show_lone_label": true,
+          "show_domain_ghost": true,
+          "show_domain_hull": true,
+          "show_atom_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "domains",
+            "e_geom",
+            "shape",
+            "angle"
+          ],
+          "show_formula": true,
+          "formula": "4 domains, 2 atoms → bent",
+          "controls": [
+            "spin",
+            "lone"
+          ],
+          "static_readouts": []
+        }
+      },
+      "STATE_6": {
+        "label": "PCl₅ then SF₆ — the five- and six-domain families",
+        "visible_elements": [
+          "mg_central",
+          "mg_bond",
+          "mg_ligand",
+          "mg_arc",
+          "s6_five_label",
+          "s6_angles_label",
+          "s6_octa_label"
+        ],
+        "camera_position": [
+          4.8,
+          2.4,
+          7.4
+        ],
+        "caption": "Five, then six domains",
+        "molecular_geometry": {
+          "mode": "expanded",
+          "molecule": "PCl5",
+          "compare_at_ms": 9000,
+          "compare_molecule": "SF6",
+          "spin_start_ms": 0,
+          "spin_rate": 0.12,
+          "show_angle_arc": true,
+          "show_atom_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "domains",
+            "angle",
+            "shape"
+          ],
+          "show_formula": true,
+          "formula": "5 → 120° and 90° · 6 → 90°",
+          "controls": [
+            "spin"
+          ],
+          "static_readouts": []
+        }
+      },
+      "STATE_7": {
+        "label": "Explore — molecule, turn speed, lone pairs on or off",
+        "visible_elements": [
+          "mg_central",
+          "mg_bond",
+          "mg_ligand",
+          "mg_lone",
+          "mg_arc",
+          "s7_pick_label",
+          "s7_turn_label",
+          "s7_yours_label"
+        ],
+        "camera_position": [
+          4.4,
+          2.8,
+          7
+        ],
+        "caption": "All yours",
+        "molecular_geometry": {
+          "mode": "explore",
+          "molecule": "CH4",
+          "spin_start_ms": 0,
+          "spin_rate": 0.16,
+          "show_angle_arc": true,
+          "show_lone_pairs": true,
+          "show_atom_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "formula",
+            "domains",
+            "e_geom",
+            "shape",
+            "angle"
+          ],
+          "show_formula": true,
+          "formula": "domains → shape",
+          "controls": [
+            "molecule",
+            "spin",
+            "lone"
+          ],
+          "static_readouts": []
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same rule, the sulphur family (SO₂ bent from three domains instead of H₂O bent from four)",
+      "physical_world": "Sulphur dioxide has three electron domains — two bonding, one lone pair — so it is also bent, but at about 119 degrees rather than water's 104.5. Same counting rule, a different starting geometry, and a visibly different bend.",
+      "same_physics": "Identical VSEPR reasoning: count the domains, take the maximum-separation arrangement, then let the lone pair close the angle and read the shape from the atoms alone."
+    }
+  ],
+  "assessment": {
+    "mastery_definition": "A student who reaches 80-85% understands: the electron domains around a central atom (bonding pairs plus lone pairs, with a multiple bond counting as one domain) repel into whichever arrangement puts them furthest apart, and that arrangement is what fixes the molecule's three-dimensional shape; that the flat Lewis drawing records connectivity, not geometry; that 2, 3, 4, 5 and 6 domains give 180, 120, 109.5, 120-and-90, and 90 degrees respectively; that a lone pair repels more strongly than a bonding pair, closing the bond angle step by step from 109.5 to 107 to 104.5 degrees; and that electron geometry (all domains) and molecular shape (bonded atoms only) are different questions with different answers whenever a lone pair is present.",
+    "questions": [
+      {
+        "q_id": "q1",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "stem": "A Lewis structure for methane is drawn on the board as a cross — the four C-H bonds at ninety degrees to each other. What does that drawing tell you about the real molecule's shape?",
+        "options": {
+          "A": "The bonds really are at ninety degrees; methane is a flat, square molecule.",
+          "B": "Nothing about the angles — it records which atoms are joined, while the real bonds sit at 109.5 degrees in three dimensions.",
+          "C": "The angles are roughly right but the drawing is not to scale in length.",
+          "D": "It shows the shape correctly only for methane; other molecules are three dimensional."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "the flat-molecule misconception (M1) — reads a two-dimensional bookkeeping diagram as a picture of geometry",
+          "C": "concedes the diagram is imperfect but keeps the wrong ninety degree angles, which is the part that matters",
+          "D": "treats three-dimensionality as a special case rather than the norm"
+        },
+        "tested_idea": "a Lewis diagram carries connectivity, not geometry"
+      },
+      {
+        "q_id": "q2",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "stem": "Why do four electron domains around a central atom adopt a tetrahedral arrangement rather than a flat square one?",
+        "options": {
+          "A": "Because carbon always forms tetrahedra, whatever it is bonded to.",
+          "B": "Because a tetrahedron puts the domains further apart — 109.5 degrees, against 90 degrees for a flat square.",
+          "C": "Because the bonds are different lengths, so a flat arrangement will not close up.",
+          "D": "Because the nucleus pulls one bond out of the plane."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "memorises the outcome for one element instead of the rule that produces it",
+          "C": "invents an unequal-bond-length reason; methane's four bonds are identical",
+          "D": "attributes the geometry to nuclear attraction rather than to repulsion between domains"
+        },
+        "tested_idea": "the mechanism is maximum separation of mutually repelling domains"
+      },
+      {
+        "q_id": "q3",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "stem": "Methane, ammonia and water all have four electron domains, yet their bond angles are 109.5, 107 and 104.5 degrees. What accounts for the decrease?",
+        "options": {
+          "A": "The central atoms get heavier, which pulls the bonds inward.",
+          "B": "Ammonia and water have fewer atoms, so there is less crowding.",
+          "C": "Each lone pair repels more strongly than a bonding pair, squeezing the remaining bonds closer together.",
+          "D": "The bond lengths shorten from methane to water, which reduces the angle."
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "invokes atomic mass, which plays no part in VSEPR",
+          "B": "the lone-pair-is-just-an-empty-slot misconception (M2) — treats a missing atom as a missing domain",
+          "D": "confuses bond length with bond angle; the two are independent here"
+        },
+        "tested_idea": "lone-pair repulsion exceeds bond-pair repulsion"
+      },
+      {
+        "q_id": "q4",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "stem": "For water, what are the electron geometry and the molecular shape?",
+        "options": {
+          "A": "Both are bent.",
+          "B": "Both are tetrahedral.",
+          "C": "Electron geometry tetrahedral, molecular shape bent.",
+          "D": "Electron geometry bent, molecular shape tetrahedral."
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "counts only the atoms and so loses the four-domain arrangement that explains the angle",
+          "B": "counts only the domains and so reports a shape nobody can observe",
+          "D": "inverts the two definitions"
+        },
+        "tested_idea": "electron geometry counts all domains, molecular shape counts bonded atoms"
+      },
+      {
+        "q_id": "q5",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "stem": "Carbon dioxide has two double bonds on a central carbon and no lone pairs on it. What shape does VSEPR predict, and why?",
+        "options": {
+          "A": "Bent, because each double bond counts as two domains, giving four in total.",
+          "B": "Linear, because a double bond counts as ONE domain — two domains, 180 degrees.",
+          "C": "Trigonal planar, because there are three bonds in total.",
+          "D": "Tetrahedral, because carbon is always tetrahedral."
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "the multiple-bond-counting error — counts bonds rather than domains",
+          "C": "counts individual bonds (four) or atoms incorrectly instead of domains",
+          "D": "over-generalises methane's geometry to every carbon compound"
+        },
+        "tested_idea": "a multiple bond is one electron domain"
+      },
+      {
+        "q_id": "q6",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "stem": "Sulphur hexafluoride has six bonding domains and no lone pairs. What angle separates two neighbouring S-F bonds?",
+        "options": {
+          "A": "60 degrees",
+          "B": "90 degrees",
+          "C": "109.5 degrees",
+          "D": "120 degrees"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "divides 360 by six as though the domains were coplanar",
+          "C": "carries the tetrahedral angle over to a geometry it does not belong to",
+          "D": "uses the trigonal-planar or equatorial angle instead of the octahedral one"
+        },
+        "tested_idea": "six domains give an octahedron with 90 degree neighbours"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": [
+        "q1"
+      ],
+      "STATE_2": [
+        "q1"
+      ],
+      "STATE_3": [
+        "q2",
+        "q5"
+      ],
+      "STATE_4": [
+        "q3"
+      ],
+      "STATE_5": [
+        "q4"
+      ],
+      "STATE_6": [
+        "q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_7"
+    ],
+    "notes": "q5 (carbon dioxide, a multiple bond counting as one domain) is a transfer question deliberately not staged by any single state — it tests whether the domain-counting rule taught in STATE_3 generalises beyond the single-bonded molecules shown."
+  },
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Ch.4 'Chemical Bonding and Molecular Structure', §4.6 — VSEPR theory and the geometry of simple molecules",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "Covalent bonding — shapes of simple molecules (treated qualitatively; the 5- and 6-domain extended ring is beyond scope)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Structure 2.2 — the covalent model: VSEPR, electron domains, molecular geometry and bond angles",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Unit 2 — Molecular and Ionic Compound Structure and Properties: VSEPR and molecular geometry",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Chemistry (UK)",
+        "coverage": "full",
+        "syllabus_unit": "Bonding and structure — electron pair repulsion theory and the shapes of molecules and ions",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NGSS HS-PS1-3",
+        "coverage": "partial",
+        "syllabus_unit": "HS-PS1-3 — structure and properties of matter (molecular structure as a determinant of bulk properties)",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ],
+    "notes": "Rule 38g: every non-CBSE cell is a CLAIM. Only CBSE/NCERT is author-verified against the live syllabus; no preset goes teacher-visible until a teacher of that curriculum confirms its row."
+  }
+}
