@@ -10,6 +10,7 @@
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id>
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner peter_parker:renderer_primitives
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --field3d        # all field_3d concepts
+ *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --pcpl           # all PCPL/parametric concepts
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --row-type directive
  *   add --open to show only OPEN/DEFERRED rows (the unresolved scars to watch).
  *
@@ -31,6 +32,17 @@ const FIELD3D = [
   'faraday_law_induction', 'motional_emf', 'eddy_currents', 'inductance', 'ac_generator',
 ];
 
+// PCPL / parametric_renderer.ts fleet (the Class-11 Vectors track + the legacy
+// forces/vectors concepts on the parametric engine). Mirror of PCPL_CONCEPTS in
+// aiSimulationGenerator.ts — keep in sync when a PCPL concept ships.
+const PCPL = [
+  'field_forces', 'contact_forces', 'normal_reaction', 'tension_in_string',
+  'hinge_force', 'free_body_diagram', 'vector_resolution', 'resultant_formula',
+  'direction_of_resultant', 'umbrella_tilt_angle', 'friction_static_kinetic',
+  'current_not_vector', 'pressure_scalar', 'scalar_vs_vector',
+  'vector_head_to_tail', 'newton_second_law_direction',
+];
+
 interface Row {
   bug_class: string; title: string; severity: string; status: string;
   owner_cluster: string; row_type: string; concepts_affected: string[];
@@ -49,6 +61,7 @@ async function main(): Promise<void> {
   const rowType = arg('--row-type');
   const concept = argv.find((a) => !a.startsWith('--') && a !== owner && a !== rowType);
   const field3d = argv.includes('--field3d');
+  const pcpl = argv.includes('--pcpl');
 
   let q = supabaseAdmin
     .from('engine_bug_queue')
@@ -57,6 +70,7 @@ async function main(): Promise<void> {
 
   if (concept) q = q.contains('concepts_affected', [concept]);
   else if (field3d) q = q.overlaps('concepts_affected', FIELD3D);
+  else if (pcpl) q = q.overlaps('concepts_affected', PCPL);
   if (owner) q = q.eq('owner_cluster', owner);
   if (rowType) q = q.eq('row_type', rowType);
   if (openOnly) q = q.in('status', ['OPEN', 'DEFERRED']);
@@ -66,7 +80,7 @@ async function main(): Promise<void> {
   const rows = (data ?? []) as Row[];
   if (rows.length === 0) { console.log('No matching engine_bug_queue rows.'); return; }
 
-  const scope = concept ?? (field3d ? 'all field_3d concepts' : owner ?? rowType ?? 'all');
+  const scope = concept ?? (field3d ? 'all field_3d concepts' : pcpl ? 'all PCPL/parametric concepts' : owner ?? rowType ?? 'all');
   console.log(`\nengine_bug_queue — ${rows.length} row(s) for: ${scope}${openOnly ? ' (OPEN/DEFERRED only)' : ''}\n`);
   for (const r of rows) {
     const tag = r.row_type === 'directive' ? 'DIRECTIVE' : r.severity;

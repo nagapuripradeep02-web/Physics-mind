@@ -28,14 +28,12 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, copyFileSync, cpSync } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
-import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
 import {
     assembleParticleFieldHtml,
     type ParticleFieldAuthoredConfig,
 } from '@/lib/renderers/particle_field_renderer';
-import { assembleParametricHtml } from '@/lib/renderers/parametric_renderer';
-import { buildParametricConfig } from './lib/buildParametricConfig';
+import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
 import {
     pilotHeadTags,
     isPilotConcept,
@@ -73,15 +71,12 @@ type ConceptJson = {
     default_flow?: string[];
     field_3d_config?: Field3DConfig;
     particle_field_config?: ParticleFieldAuthoredConfig;
-    // Parametric-family concepts (the 2D PCPL renderer — e.g. vector_head_to_tail,
-    // and chemistry archetype-L energy-ladder concepts) carry NO *_config block:
-    // the scene lives in epic_l_path.states + physics_engine_config. (2026-07-23,
-    // chemistry Wave-1 review-site path — see buildParametricConfig.)
-    renderer_pair?: { panel_a?: string; panel_b?: string };
+    // mechanics_2d / PCPL diamonds (the third live renderer — CLAUDE.md §0/§8) carry their
+    // physics + control declarations here; `assembleParametricHtml()` reads a ParametricConfig
+    // assembled below (buildParametricConfig), not this block directly (shapes differ).
     physics_engine_config?: {
         variables?: Record<string, { default?: number; constant?: number }>;
     };
-    canvas_style?: 'default' | 'answer_sheet';
     epic_l_path?: {
         state_count?: number;
         states?: Record<
@@ -90,9 +85,11 @@ type ConceptJson = {
                 title?: string;
                 advance_mode?: string;
                 duration?: number;
+                teacher_script?: { tts_sentences?: TtsSentenceJson[] };
+                // PCPL-only fields (ignored by the field_3d/particle_field branches).
                 scene_composition?: unknown[];
                 focal_primitive_id?: string;
-                teacher_script?: { tts_sentences?: TtsSentenceJson[] };
+                focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
             }
         >;
     };
@@ -284,14 +281,47 @@ function embedJson(value: unknown): string {
 }
 
 function loadConcept(conceptId: string): ConceptJson {
-    // Subject-aware resolution (flat physics dir first, then chemistry/ — Phase 2.5).
-    const resolved = resolveConceptJsonPath(conceptId);
-    if (!resolved) {
-        throw new Error(
-            `Concept JSON not found: checked ${join(CONCEPTS_DIR, `${conceptId}.json`)} and src/data/concepts/chemistry/${conceptId}.json`,
-        );
+    const path = join(CONCEPTS_DIR, `${conceptId}.json`);
+    if (!existsSync(path)) {
+        throw new Error(`Concept JSON not found: ${path}`);
     }
-    return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
+    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+}
+
+// ── PCPL (mechanics_2d) adapter ───────────────────────────────────────────────
+// assembleParametricHtml() takes a ParametricConfig, not the concept JSON's own
+// physics_engine_config/epic_l_path shapes — those are the authored source; this
+// is the runtime shape the renderer template consumes (mirrors the ad-hoc
+// buildConfigForState() in src/app/admin/test-scalar-vs-vector/page.tsx, but
+// assembles EVERY state into ONE config so a single sim.html can switch between
+// them via SET_STATE — same contract as the field_3d/particle_field branches —
+// instead of one throwaway srcDoc iframe per state as that admin scratch page does).
+function buildParametricConfig(conceptId: string, json: ConceptJson): ParametricConfig {
+    const declaredVars = json.physics_engine_config?.variables ?? {};
+    const default_variables: Record<string, number> = {};
+    for (const [name, spec] of Object.entries(declaredVars)) {
+        if (typeof spec.default === 'number') default_variables[name] = spec.default;
+        else if (typeof spec.constant === 'number') default_variables[name] = spec.constant;
+    }
+    const epicStates = json.epic_l_path?.states ?? {};
+    const stateIds = Object.keys(epicStates).sort((a, b) => stateNumber(a) - stateNumber(b));
+    const states: NonNullable<ParametricConfig['states']> = {};
+    for (const id of stateIds) {
+        const st = epicStates[id];
+        states[id] = {
+            scene_composition: st.scene_composition ?? [],
+            ...(st.focal_primitive_id ? { focal_primitive_id: st.focal_primitive_id } : {}),
+            ...(st.focal_sequence ? { focal_sequence: st.focal_sequence } : {}),
+        };
+    }
+    const firstStateId = stateIds[0];
+    return {
+        concept_id: conceptId,
+        scene_composition: firstStateId ? epicStates[firstStateId].scene_composition ?? [] : [],
+        states,
+        default_variables,
+        current_state: firstStateId,
+    };
 }
 
 function extractStates(
@@ -2616,7 +2646,7 @@ ${pilotHeadTags(0)}
     </div>
   </div>
   <h1 id="catTitle">Simulation Library</h1>
-  <p class="sub">Class 12 Physics &middot; ${entries.length} simulation${entries.length === 1 ? '' : 's'} &middot; open one and teach with it.</p>
+  <p class="sub">${entries.length} simulation${entries.length === 1 ? '' : 's'} &middot; open one and teach with it.</p>
   <div id="earlyNote" hidden>
     <span class="txt"><b>Early access</b> &mdash; new simulations are added regularly, and your feedback shapes what we build next.</span>
     <button id="earlyNoteX" title="Dismiss" aria-label="Dismiss">&times;</button>
@@ -2647,9 +2677,9 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
   <label for="pfSchool">School / institute</label>
   <input id="pfSchool" type="text" maxlength="120">
   <label for="pfTeaches">What you teach</label>
-  <input id="pfTeaches" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
+  <input id="pfTeaches" type="text" maxlength="120" placeholder="e.g. AP Physics C, IB DP Physics, CBSE Class 12">
   <label for="pfChapter">Teaching next</label>
-  <select id="pfChapter"><option value="">Choose…</option>${profileChapterOptions}<option value="Other">Other / Class 11</option></select>
+  <select id="pfChapter"><option value="">Choose…</option>${profileChapterOptions}<option value="Other">Other</option></select>
   <div class="pTrial" id="pfTrial"></div>
   <div id="pmProfErr"></div>
   <div id="pmProfOk"></div>
@@ -3406,12 +3436,10 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
 /** Build the per-concept review files (sim.html + player + meta.json). Caller refreshes the catalog. */
 function buildOne(conceptId: string): void {
     const json = loadConcept(conceptId);
-    const isParametric = json.renderer_pair?.panel_a === 'parametric';
-    if (!json.field_3d_config && !json.particle_field_config && !isParametric) {
+    if (!json.field_3d_config && !json.particle_field_config && !json.physics_engine_config) {
         console.error(
-            `✖ ${conceptId}: no field_3d_config or particle_field_config block, and ` +
-            `renderer_pair.panel_a is not "parametric" — only field_3d, particle_field, ` +
-            `and parametric diamonds are supported.`,
+            `✖ ${conceptId}: no field_3d_config, particle_field_config, or physics_engine_config block — ` +
+            `only field_3d, particle_field, and mechanics_2d (PCPL) diamonds are supported.`,
         );
         process.exit(1);
     }
@@ -3441,16 +3469,14 @@ function buildOne(conceptId: string): void {
     const conceptDir = join(OUT_DIR, conceptId);
     mkdirSync(conceptDir, { recursive: true });
 
-    // 1) the self-contained scene (field_3d = Three.js diamonds; particle_field = 2D p5
-    //    diamonds; parametric = 2D PCPL/energy-ladder diamonds — no *_config block)
+    // 1) the self-contained scene (field_3d = Three.js diamonds; particle_field = 2D p5 diamonds;
+    //    physics_engine_config = mechanics_2d/PCPL — also a p5 sketch, via a different renderer file)
     const simHtml = vendorizeSimHtml(
         json.field_3d_config
             ? assembleField3DHtml(json.field_3d_config)
             : json.particle_field_config
                 ? assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig)
-                : assembleParametricHtml(
-                    buildParametricConfig(conceptId, json, { responsiveFill: true }),
-                ),
+                : assembleParametricHtml(buildParametricConfig(conceptId, json)),
     );
     writeFileSync(join(conceptDir, 'sim.html'), simHtml, 'utf-8');
 

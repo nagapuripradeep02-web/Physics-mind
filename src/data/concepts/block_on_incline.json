@@ -1,0 +1,653 @@
+{
+  "concept_id": "block_on_incline",
+  "concept_name": "Block on an Incline — Static Friction Adjusts Until Grip Fails at tan θ = μₛ",
+  "chapter": 8,
+  "section": "8.4",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.5 (Laws of Motion) — table-of-contents scope only, teaching authored from first principles. The atomic concept: a single block on an incline — gravity resolved along/perpendicular to the slope, static friction adjusting up to its ceiling until tan θ = μₛ (break-away, mass-independent), then kinetic sliding at a = g(sin θ − μₖ·cos θ). Does NOT cover drawing the FBD itself (prerequisite free_body_diagram), coupled/pulley systems (connected_bodies), or work/energy on inclines (later chapter). Built on the newtons_laws_body field_3d engine (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md), pure configuration plus the pre-approved param_ramp one-shot knob (CHAPTER_LOOP §7.1), zero renderer edits.",
+
+  "prerequisites": [
+    "free_body_diagram",
+    "normal_reaction",
+    "newton_second_law",
+    "vector_resolution"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A box on a delivery van's loading ramp. Set the ramp shallow and the box sits still; raise the ramp end slowly and nothing happens, nothing happens — then at one exact angle the box lets go and slides the rest of the way down, faster and faster. Every mover on Earth angles the ramp by this same physics.",
+    "secondary": "A phone on an adjustable dashboard or desk stand. Tilt the stand past one point and the phone suddenly slips off, and once slipping it never re-grips — the moving friction that let it go is weaker than the static grip that just failed.",
+    "tertiary": "Every exam problem with a block on a rough incline — find the angle it starts to slide, find the acceleration once sliding, does a heavier block behave differently — starts with the same two facts: the grip has a ceiling μₛN, and mass cancels out of the angle where that ceiling is reached."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "m": {
+        "name": "mass of the block",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 10,
+        "step": 0.5,
+        "default": 5
+      },
+      "theta": {
+        "name": "incline angle",
+        "unit": "degrees",
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "default": 20
+      },
+      "mu_s": {
+        "name": "static friction coefficient",
+        "unit": "",
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "default": 0.45
+      },
+      "mu_k": {
+        "name": "kinetic friction coefficient",
+        "unit": "",
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "default": 0.38
+      },
+      "v0": {
+        "name": "initial velocity along the slope",
+        "unit": "m/s",
+        "min": -5,
+        "max": 5,
+        "step": 0.5,
+        "default": 0
+      },
+      "g": {
+        "name": "gravitational acceleration",
+        "unit": "m/s²",
+        "constant": 9.8
+      }
+    },
+    "computed_outputs": {
+      "N": {
+        "formula": "normal reaction, N — mg·cos θ"
+      },
+      "f": {
+        "formula": "friction magnitude, N — f_s while sticking, f_k while sliding"
+      },
+      "a": {
+        "formula": "acceleration along the slope, m/s²"
+      },
+      "v": {
+        "formula": "speed along the slope, m/s"
+      },
+      "F_net": {
+        "formula": "net force on the block, N — 0 while sticking, m·a while sliding"
+      }
+    },
+    "formulas": {
+      "normal": "N = m·g·cos θ",
+      "drive": "drive = −m·g·sin θ (down-slope component of gravity)",
+      "max_static": "maxStat = μₛ·N",
+      "static_friction": "f_s = m·g·sin θ — while |drive| ≤ maxStat, friction answers the drive exactly",
+      "kinetic_friction": "f_k = μₖ·N — once sliding",
+      "break_away": "tan θc = μₛ — mass cancels out of this condition entirely",
+      "sliding_acceleration": "a = g·(sin θ − μₖ·cos θ) — only while sliding"
+    },
+    "constraints": [
+      "N = m*g*cos(theta) at all times — never m*g alone once theta != 0",
+      "f_s <= mu_s*N always; the reported friction never exceeds its own ceiling",
+      "break-away occurs exactly at tan(theta) = mu_s — mass cancels out of this condition entirely",
+      "once sliding, f_k = mu_k*N < mu_s*N at the same theta (mu_k < mu_s) — kinetic friction is strictly weaker",
+      "a = g*(sin(theta) - mu_k*cos(theta)) only while sliding; a = 0 while sticking",
+      "T = 0 everywhere in this concept — no tension, no pulley, no hanging body (single/independent surface bodies only)"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "The block lets go exactly at tan θc = μₛ — mass never enters.",
+    "visual_confirmation": "As the ramp tilts from flat, the N readout falls the whole time (49.0 → 40.1 N) while the friction demand rises — at exactly 24.23° the block releases and slides."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "kinetic_sliding": { "start": "STATE_4", "end": "STATE_4" }
+  },
+
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Gravity Splits — mg Never Tilts, It Resolves",
+        "duration": 10,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Gravity splits on the slope",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "mg always straight down\nnever along the slope",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "arrow_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "N matches only\nthe cos θ part",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A delivery box sits on a tilted ramp; its weight always points straight down, never along the slope." },
+            { "id": "s1_2", "text_en": "The ramp splits that weight into two dashed parts — one presses in as N, one runs along the slope." },
+            { "id": "s1_3", "text_en": "N only matches the part pressing in, mg cos theta — not the full weight." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The block slides because gravity pulls it down the slope.",
+            "visual_counter": "The weight arrow stays exactly vertical while the dashed along/into pair draws out of it.",
+            "one_line_fix": "Gravity never tilts; the slope splits its effect."
+          }
+        ]
+      },
+
+      "STATE_2": {
+        "title": "Static Friction Answers — Tracking mg sin θ in Lockstep",
+        "duration": 12,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Friction rises to match",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "fₛ = mg·sin θ\n16.76 → 19.54 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "earned_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "ΣF = 0.00 N\nfriction is answering, not fixed",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Tilt the ramp slowly from twenty degrees toward twenty-three and a half." },
+            { "id": "s2_2", "text_en": "Friction rises to match the sliding pull exactly, every step of the tilt — the box never moves." },
+            { "id": "s2_3", "text_en": "Net force reads zero the whole time: friction is answering the demand, not fixed." }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "The Break-Away — Grip Fails at tan θc = μₛ",
+        "duration": 15,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "tan_theta_equals_mu_threshold",
+          "mass_cancels_in_breakaway_angle",
+          "static_friction_maximum_vs_actual"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Tilt until grip fails",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "tan θc = μₛ\nθc = 24.23°",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "counter_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "N falls the whole tilt\n49.0 → 40.1 N",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Tilt the ramp from flat all the way up and watch the normal force reading fall." },
+            { "id": "s3_2", "text_en": "The box sits still for over eight seconds while friction keeps answering, right up to its limit." },
+            { "id": "s3_3", "text_en": "At exactly tan theta equals mu_s the grip runs out — the box lets go and slides faster down the ramp." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A steeper ramp grips more.",
+            "visual_counter": "The N readout visibly falls from 49.0 to 40.1 N across the whole tilt, and at exactly 24.23° the block still lets go.",
+            "one_line_fix": "Tilting steals from N, and friction's ceiling is μₛN."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Kinetic Less Than Static — Two Fates, Same Tilt",
+        "duration": 8,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "kinetic_less_than_static",
+          "a_equals_g_sin_minus_mu_cos",
+          "friction_direction_on_incline"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Moving friction is weaker",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "fₖ = μₖ·N\n18.35 N held, 17.26 N slides",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "contrast_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "same 22° tilt\ntwo different fates",
+            "color": "#81C784"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Same twenty-two degree tilt, two identical boxes: one resting, one already sliding from a small push." },
+            { "id": "s4_2", "text_en": "The resting box holds forever — static friction still meets the demand at this angle." },
+            { "id": "s4_3", "text_en": "But the sliding box keeps speeding up: once moving, friction drops below its static limit and can no longer catch it." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Friction is one fixed force.",
+            "visual_counter": "Two identical blocks at the same 22°: the resting one is held by fₛ = 18.35 N while the moving one gets only fₖ = 17.26 N and keeps speeding up.",
+            "one_line_fix": "Static friction adjusts up to μₛN; sliding friction is a smaller, fixed μₖN."
+          }
+        ]
+      },
+
+      "STATE_5": {
+        "title": "Explore — Every Control, All Yours",
+        "duration": 0,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "All yours",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_note",
+            "position": { "x": 380, "y": 250 },
+            "text": "change mass, tilt, μₛ, μₖ, v₀\nwatch every arrow answer",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_note",
+            "position": { "x": 380, "y": 440 },
+            "text": "a = g(sin θ − μₖ·cos θ)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Everything is yours now — change the mass, the tilt, both friction values, even the starting push, and watch the block answer." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "phone_on_tilt_stand",
+      "type": "B",
+      "label": "Phone on an Adjustable Stand — Tilt Until It Slips",
+      "physical_world": "A phone rests on an adjustable desk or dashboard stand. Tilt the stand slowly and the phone sits still, its own weight resolved along and into the stand — until one exact tilt, where it suddenly slips and slides off.",
+      "same_physics": "Identical decomposition and threshold: N = mg·cos θ, static friction tracks mg·sin θ up to its ceiling μₛN, and the phone releases at exactly tan θ = μₛ, independent of the phone's own mass.",
+      "scene_hint": "Same single-body rig, same incline geometry — only the labeled world changes from a generic block to a phone on a stand."
+    },
+    {
+      "variant_id": "crate_on_forklift_ramp",
+      "type": "B",
+      "label": "Crate on a Forklift Loading Ramp",
+      "physical_world": "A crate sits on a forklift's tilting loading ramp. As the ramp angle increases toward the truck bed, the crate holds until one exact angle, then slides down under gravity and kinetic friction.",
+      "same_physics": "Same break-away condition tan θc = μₛ and the same post-release kinematics a = g(sin θ − μₖ·cos θ) — only the labeled world changes.",
+      "scene_hint": "Same rig, same physics — the ramp and block are relabeled as a forklift ramp and crate."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student has mastered block-on-incline dynamics when they can (1) state that weight mg never rotates with the surface — the incline splits it into mg·sin θ (along the slope) and mg·cos θ (into the slope), and N matches only the second part; (2) recognize that static friction is not a fixed number but an answering force that tracks the sliding demand mg·sin θ exactly, up to its own ceiling μₛN; (3) derive and apply the break-away condition tan θc = μₛ, and explain why the block's mass cancels out of it entirely; (4) explain why the normal force — and therefore the friction ceiling — falls as the incline steepens, confronting the 'steeper grips more' misconception; (5) recognize that once sliding, kinetic friction μₖN is strictly weaker than the static ceiling μₛN, so grip lost at break-away never returns; (6) apply a = g(sin θ − μₖ·cos θ) for the sliding acceleration.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A 5 kg block rests on a 20° incline. Weight mg is 49.0 N. What is the normal force N, and why isn't it just 49.0 N?",
+        "options": {
+          "A": "N = mg·cos20° ≈ 46.0 N — only the component of weight perpendicular to the slope presses into it, since weight itself never rotates with the surface",
+          "B": "N = mg = 49.0 N, unchanged, since the block's mass and gravity haven't changed",
+          "C": "N = mg·sin20°, because the along-slope component is what presses into the ramp",
+          "D": "N cannot be found without knowing the coefficient of friction"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the core misconception this state confronts — assumes N always equals mg regardless of the surface's tilt",
+          "C": "swaps sine and cosine — the perpendicular (normal-facing) component uses cosine, not sine",
+          "D": "confuses N (a geometric consequence of weight and tilt) with friction, which is a separate, unrelated quantity"
+        },
+        "tested_idea": "Weight mg never rotates with the surface; the incline splits it into mg·sin θ (along) and mg·cos θ (into), and N matches only the perpendicular part.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why the normal force on a block resting on a tilted ramp is smaller than its weight, even though nothing about the block has changed."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A block rests on an incline whose angle is slowly increased from 20° to 23.5°, well below its slipping angle. What happens to the static friction force during this tilt, and to the net force on the block?",
+        "options": {
+          "A": "Static friction rises to keep matching mg·sin θ exactly at every instant, and the net force stays zero the whole time since the block never moves",
+          "B": "Static friction stays fixed at its value from 20°, since friction is a constant property of the surfaces in contact",
+          "C": "Static friction decreases as the tilt increases, since the normal force is falling",
+          "D": "The net force grows steadily as the tilt increases, since more of gravity now acts along the slope"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic 'friction is one fixed number' misconception — static friction is an ANSWERING force, not a constant",
+          "C": "confuses the falling ceiling μₛN with the actual friction force, which is rising to match demand, not falling",
+          "D": "forgets that a stationary block has zero net force by definition — the rising demand is met exactly by rising friction, not left unbalanced"
+        },
+        "tested_idea": "Static friction is not a fixed number — it is an answering force that tracks the sliding demand mg·sin θ exactly, up to its own ceiling.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A block sits on a ramp whose tilt is increased gradually but stays below the slipping angle. Explain why the net force on the block remains zero throughout."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A block on an incline begins to slip when the angle reaches exactly 24°. What determines this exact break-away angle?",
+        "options": {
+          "A": "tan θc = μₛ — the break-away angle depends only on the coefficient of static friction, since the block's mass cancels out of the condition entirely",
+          "B": "The break-away angle depends on both the block's mass and μₛ — a heavier block slips at a steeper angle",
+          "C": "The break-away angle depends only on the block's mass; friction plays no role in exactly when it slips",
+          "D": "There is no exact break-away angle — slipping is a gradual, probabilistic process"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the mass-dependence misconception this state directly confronts — mg·sin θ ≤ μₛ·mg·cos θ reduces to tan θ ≤ μₛ with mass cancelling exactly",
+          "C": "denies friction's central role in setting the threshold, when μₛ is the ONLY thing the condition depends on",
+          "D": "contradicts the observed sharp, one-angle release the sim demonstrates repeatably"
+        },
+        "tested_idea": "The break-away angle is set exactly by tan θc = μₛ — the block's mass cancels out of the condition entirely.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A block starts to slide down a ramp at a certain angle. Explain, from the force balance, why that angle does not depend on the block's mass."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "If a 10 kg block replaces a 5 kg block on the same incline with the same μₛ, does the break-away angle change?",
+        "options": {
+          "A": "No — mg·sin θ and μₛ·mg·cos θ both scale by the same factor of mass, so the mass cancels and the break-away angle tan θc = μₛ is identical",
+          "B": "Yes, the heavier block slips at a smaller angle, since it presses harder into the ramp",
+          "C": "Yes, the heavier block slips at a larger angle, since more force is needed to overcome its greater weight",
+          "D": "It depends on the ramp's material, not on the masses being compared"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes a heavier block's larger N somehow lowers the threshold, missing that the driving force mg·sinθ grows by the exact same factor",
+          "C": "assumes 'more weight needs more force to slip' without noticing that ceiling μₛN also grows proportionally, leaving the ratio (and the angle) unchanged",
+          "D": "correctly notes the ramp's μₛ matters but wrongly implies mass also matters when it provably cancels"
+        },
+        "tested_idea": "Mass cancels out of the break-away condition tan θc = μₛ — a heavier or lighter block slips at exactly the same angle.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why doubling a block's mass does not change the angle at which it starts to slide down a rough incline."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Two identical blocks sit on the same 22° incline: one is at rest, the other was given a small push and is already sliding. Both angles are inside the incline's 'sticks-from-rest, but keeps-sliding-once-moving' window. What happens to each?",
+        "options": {
+          "A": "The resting block stays put, held by static friction at 18.35 N; the sliding block keeps accelerating, since it only receives the smaller kinetic friction of 17.26 N",
+          "B": "Both blocks behave identically, since friction depends only on the incline angle and the coefficients, not on whether the block is moving",
+          "C": "The resting block starts to slide too, since the sliding block's motion proves the incline is steep enough to overcome static friction",
+          "D": "The sliding block slows down and stops, since kinetic friction is always larger than static friction"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the 'friction is one fixed force' misconception this state directly confronts — the two friction VALUES differ once one body is moving",
+          "C": "wrongly assumes one block's motion changes the OTHER block's own static force balance, which depends only on its own weight and μₛ",
+          "D": "inverts the actual relationship — μₖ < μₛ, so kinetic friction is smaller, not larger, letting the moving block keep accelerating"
+        },
+        "tested_idea": "Kinetic friction μₖN is strictly weaker than the static ceiling μₛN at the same angle — grip lost at break-away never returns.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why a block nudged into motion on a rough incline keeps sliding, while an identical resting block at the same angle stays still."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A block slides down a rough 22° incline with μₖ = 0.38. What is its acceleration, and where does the −μₖ·cos θ term come from?",
+        "options": {
+          "A": "a = g(sin22° − 0.38·cos22°) ≈ 0.22 m/s² — kinetic friction acts up-slope, opposing the slide, so it subtracts from gravity's down-slope pull",
+          "B": "a = g·sin22° ≈ 3.67 m/s² — friction is irrelevant once the block is already moving",
+          "C": "a = g(sin22° + 0.38·cos22°) — friction adds to gravity's pull since both act on the moving block",
+          "D": "a = g·cos22° − 0.38·g·sin22°, swapping which component gets which trig function"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "forgets that kinetic friction acts on a sliding body too, and always opposes the direction of sliding",
+          "C": "gets the friction direction backwards — kinetic friction opposes the slide (up-slope here), so it must subtract, not add",
+          "D": "swaps which trig function belongs to which term — sin θ is the down-slope drive, cos θ sets the normal force that friction depends on"
+        },
+        "tested_idea": "Once sliding, a = g(sin θ − μₖ·cos θ): kinetic friction acts up-slope, opposing the slide, so it subtracts from gravity's along-slope pull.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A block slides down a rough incline. Write its acceleration and explain the physical meaning of each term."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q3", "Q4"],
+      "STATE_4": ["Q5", "Q6"]
+    },
+    "non_assessed_states": ["STATE_5"]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Gravity splits on the slope: mg never tilts",
+        "visible_elements": [],
+        "camera_position": [0.0, 2.4, 14.0],
+        "caption": "Gravity splits on the slope",
+        "show_sliders": true,
+        "formula_overlay": "N = mg·cos θ",
+        "newtons_laws_body": {
+          "mode": "incline_decompose",
+          "surface": { "theta_deg": 20, "length_m": 7 },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "color": "#42A5F5", "mu_s": 0.45, "mu_k": 0.38, "initial_position_m": 2 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction"], "show_components": true }
+          ],
+          "glow_focal": "nlb_comp_A_sin",
+          "phases": [
+            { "id": "weight_focus", "at_ms": 0, "until_ms": 3000, "glow_focal": "nlb_arrow_A_weight" },
+            { "id": "components_focus", "at_ms": 3000, "until_ms": 7500, "glow_focal": "nlb_comp_A_sin" },
+            { "id": "normal_focus", "at_ms": 7500, "glow_focal": "nlb_arrow_A_normal" }
+          ],
+          "readouts": ["N"],
+          "controls_visible": []
+        }
+      },
+      "STATE_2": {
+        "label": "Static friction is an answer, not a number: fₛ tracks mg sin θ",
+        "visible_elements": [],
+        "camera_position": [0.0, 2.4, 14.0],
+        "caption": "Friction rises to match",
+        "show_sliders": true,
+        "formula_overlay": "fₛ = mg·sin θ",
+        "newtons_laws_body": {
+          "mode": "incline_decompose",
+          "surface": { "theta_deg": 20, "length_m": 7 },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "color": "#42A5F5", "mu_s": 0.45, "mu_k": 0.38, "initial_position_m": 2 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction"], "show_components": true }
+          ],
+          "glow_focal": "nlb_arrow_A_friction",
+          "param_ramp": { "param": "theta", "from": 20, "to": 23.5, "start_ms": 1000, "end_ms": 8000 },
+          "readouts": ["f", "F_net"],
+          "controls_visible": ["theta"]
+        }
+      },
+      "STATE_3": {
+        "label": "The break-away: grip fails at exactly tan θc = μₛ",
+        "visible_elements": [],
+        "camera_position": [0.0, 2.4, 14.0],
+        "caption": "Tilt until grip fails",
+        "show_sliders": true,
+        "formula_overlay": "tan θc = μₛ",
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 0, "length_m": 7 },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "color": "#42A5F5", "mu_s": 0.45, "mu_k": 0.38, "initial_position_m": 4.5, "initial_velocity_mps": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction"] }
+          ],
+          "glow_focal": "nlb_body_A",
+          "param_ramp": { "param": "theta", "from": 0, "to": 35, "start_ms": 0, "end_ms": 12000 },
+          "phases": [
+            { "id": "friction_appear", "at_ms": 6112, "glow_focal": "nlb_arrow_A_friction" }
+          ],
+          "readouts": ["N", "f", "a"],
+          "controls_visible": ["mu_s"]
+        }
+      },
+      "STATE_4": {
+        "label": "Kinetic friction is weaker: two identical blocks, two fates",
+        "visible_elements": [],
+        "camera_position": [0.0, 2.4, 14.0],
+        "caption": "Moving friction is weaker",
+        "show_sliders": true,
+        "formula_overlay": "fₖ = μₖ·N",
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 22, "length_m": 7 },
+          "bodies": [
+            { "id": "A", "label": "A", "mass_kg": 5, "color": "#42A5F5", "mu_s": 0.45, "mu_k": 0.38, "initial_position_m": 1.5, "initial_velocity_mps": 0 },
+            { "id": "B", "label": "B", "mass_kg": 5, "color": "#EF5350", "mu_s": 0.45, "mu_k": 0.38, "initial_position_m": 4.5, "initial_velocity_mps": -0.4 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction"] },
+            { "body_id": "B", "show": ["weight", "normal", "friction"] }
+          ],
+          "glow_focal": "nlb_arrow_B_friction",
+          "phases": [
+            { "id": "gap_widens", "at_ms": 6600, "glow_focal": "nlb_arrow_B_friction" }
+          ],
+          "readouts": ["f", "a", "v"],
+          "controls_visible": ["mu_k"]
+        }
+      },
+      "STATE_5": {
+        "label": "Explore: every control, all yours",
+        "visible_elements": [],
+        "camera_position": [0.0, 2.4, 14.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "a = g(sin θ − μₖ·cos θ)",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 20, "length_m": 7 },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "color": "#42A5F5", "mu_s": 0.45, "mu_k": 0.38, "initial_position_m": 0, "initial_velocity_mps": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction", "net"], "show_components": true }
+          ],
+          "glow_focal": "nlb_body_A",
+          "readouts": ["N", "f", "a", "v"],
+          "controls_visible": ["m", "theta", "mu_s", "mu_k", "v0"],
+          "trusted_drag_seizes": true,
+          "idle_auto_sweep": { "param": "theta", "range": [20, 35] }
+        }
+      }
+    }
+  }
+}

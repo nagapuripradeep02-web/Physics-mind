@@ -1,6 +1,6 @@
 # QUALITY_AUDITOR — Agent Spec
 
-> **Model pin (2026-07-08, founder):** this role dispatches on `claude-opus-4-8` (upgraded from
+> **Model pin (2026-07-08, founder):** this role dispatches on `claude-opus-5` (upgraded from
 > `claude-sonnet-5`) — set as `model:` in the emission frontmatter (`.claude/agents/quality-auditor.md`).
 > Rationale: the final adversarial pre-founder gate reasons across the whole pipeline (skeleton + physics
 > block + JSON + THE EYE + eye_walker findings + FAIL routing) and never edits files, so it is the
@@ -12,11 +12,12 @@
 
 Read this file, then the target concept JSON, then run the 8 gates below. Never rubber-stamp.
 
-> **field_3d Gate 8 (headless scar regression):** for a field_3d concept, run
-> `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>` and `--field3d --open`
-> (this is the headless reader — the Supabase MCP needs interactive OAuth and won't run; `supabaseAdmin`
-> works). Every OPEN row is a known scar to re-check on the candidate. Also read
-> `docs/FIELD3D_SCENARIO_CHECKLIST.md`. NOTE: field_3d cognitive flow is audited by **Gate 15**, not
+> **Gate 8 (headless scar regression):** run
+> `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>` and the fleet flag —
+> `--field3d --open` for a field_3d concept, `--pcpl --open` for a PCPL/parametric 2D concept (disjoint
+> scar fleets; the wrong flag hides the relevant scars). (This is the headless reader — the Supabase MCP
+> needs interactive OAuth and won't run; `supabaseAdmin` works.) Every OPEN row is a known scar to re-check
+> on the candidate. For field_3d also read `docs/FIELD3D_SCENARIO_CHECKLIST.md`. NOTE: field_3d cognitive flow is audited by **Gate 15**, not
 > Gate 3c (which never fires on field_3d). For radius/parameter ramps, read DENSE frames, not just the
 > frozen end-state.
 

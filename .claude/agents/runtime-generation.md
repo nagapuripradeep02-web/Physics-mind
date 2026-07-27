@@ -83,7 +83,7 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 ## Tools forbidden
 
 - `Edit` / `Write` on any `.json` in `src/data/concepts/`. Content belongs to Alex.
-- `Edit` / `Write` on `src/lib/pcplRenderer/**`, `src/lib/renderers/mechanics_2d_renderer.ts`, `src/lib/renderers/graph_interactive_renderer.ts`, primitive files, or the display-side of `parametric_renderer.ts` (drawForceArrow, drawVector, drawAngleArc, subscene assembly, postMessage listeners). Renderer territory.
+- `Edit` / `Write` on `src/lib/renderers/mechanics_2d_renderer.ts`, `src/lib/renderers/graph_interactive_renderer.ts`, `src/lib/renderers/premium_primitives.ts`, or the display-side of `parametric_renderer.ts` (drawForceArrow, drawVector, drawAngleArc, the folded-in primitive draw helpers, subscene assembly, postMessage listeners). Renderer territory. (The old `src/lib/pcplRenderer/**` tree was DELETED in `729042a` — its 14 primitives are now in-file in `parametric_renderer.ts`; you still own the inline `computePhysics_<concept>` functions there.)
 - `Edit` / `Write` on `src/lib/engines/anchor-resolver/**`, `src/lib/engines/choreography/**`, `src/lib/engines/zone-layout/**`, `src/lib/engines/scale/**`, `src/lib/subSimSolverHost.ts`. Renderer territory.
 - `apply_migration`. Schema changes escalate to founder.
 - `Edit` / `Write` on any `.agents/**` spec file.
@@ -255,7 +255,7 @@ After fixing a bug, the queue is the durable home for the prevention rule. Updat
 - [ ] **[LEGACY probe — retired chat stack; only when a legacy parametric/PCPL concept was touched]** `/api/chat` probe against the modified concept no longer returns "no physics constants"; response references at least one formula symbol (bug #8/#9 regression guard). Not run for field_3d/particle_field concepts.
 - [ ] Cache regen executed: Step 1 count logged, Step 2 DELETE confirmed, Step 3 prewarm done, Step 4 warm-hit latency < 200 ms.
 - [ ] `REGEN EXECUTION LOG` written to PROGRESS.md for this session.
-- [ ] No edits under `src/data/concepts/`, `src/lib/pcplRenderer/**`, `src/lib/engines/**`, `src/lib/subSimSolverHost.ts`, the display-side of `parametric_renderer.ts`.
+- [ ] No edits under `src/data/concepts/`, `src/lib/engines/**`, `src/lib/subSimSolverHost.ts`, the display-side of `parametric_renderer.ts` (the inline `computePhysics_<concept>` functions there ARE yours).
 - [ ] No Sonnet invocation added on `/api/chat` or `/api/generate-lesson` (Rule 18).
 - [ ] If fix touched a sub-sim generator, `pending_review` badge still appears on first-call response.
 - [ ] No sacred-table writes (CLAUDE.md §6 list).

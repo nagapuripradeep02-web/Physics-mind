@@ -1,0 +1,1022 @@
+{
+  "concept_id": "transformer",
+  "concept_name": "Transformer — Trading Voltage for Current",
+  "chapter": 7,
+  "section": "7.9",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.9 Transformers — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. EIGHTH and LAST of 8 in the founder-reordered Ch.7 map (ac_voltage_resistor -> ac_voltage_inductor -> ac_voltage_capacitor -> phasors -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer). This sim teaches the two-coil machine: one AC-driven flux circulating a closed iron core threads BOTH a primary and a secondary winding, inducing in each turn an equal share of EMF so that Vs/Vp = Ns/Np, while an ideal transformer passes power through unchanged (Vp*Ip = Vs*Is, so voltage up means current down); it works ONLY on CHANGING flux, never steady DC (the null-result PIVOT #2, STATE_3); real cores leak a little (copper heat, eddy currents fought by lamination, hysteresis, stray flux, STATE_8-9); and it thereby makes long-distance power transmission possible — step up to cut I^2R line loss, step down for safe use (STATE_7, cashing ac_power_factor's grid-transmission anchor seed). SCOPE: does not re-derive Faraday's law, rms values, real power, or I^2R heating (settled one-clause callbacks from the sealed siblings), does not quantify mutual inductance M in henries (Ch.6's inductance atomic), does not treat loaded-primary back-EMF regulation or magnetizing current (beyond syllabus; declared honest-unnarrated behaviour), and does not treat rectification or switch-mode electronics (out of scope). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the two genuine transformer misconceptions -- 'step-up is free power' and 'a transformer works on DC too' -- are confronted inside EPIC-L via Rule 16a misconception_watch at exactly STATE_6 (PRIMARY) and STATE_3 (second pivot), each a straightforward wrong-consequence-first contrast beat, never a predict-pause). Routed to the NEW field_3d 'transformer' scenario (prefix tfr_) -- a Class-B clone-sibling of the sealed lc_oscillation scenario (inherits its chrome-family CSS geometry, battery+switch assembly inverted for an AC/DC source selector, bar-gauge pane, band/strip machinery) plus coil/source-ring assets from the element scenarios. The genuinely NEW machinery is the rectangular laminated core with circulating violet flux tubes, TWO electrically-disjoint windings (primary fixed at Np=100, secondary a live-growing Ns), the AC/DC source throw with its single blip then a steady DC dead-hold, the per-turn tick cascade, the scripted Ns turns ramp with thumb-lockstep, the lamp+four-meter instrument set, the Pp|Ps power-bar ledger with four named leak branches, the transmission strip (direct-send vs stepped-up phases), and the STATE_9 lamination zoom-lens cutaway (the concept's one true Rule-33 interior view). Zero edits to any sealed scenario (engine build tracked separately from this JSON authoring pass; renderer implementation is peter_parker:renderer_primitives scope, not json_author's -- the field_3d_config below IS the contract the engine dispatch builds against). Handoff FROM lc_oscillations: inherits the chapter's completed energy story ('an ideal element pair spends nothing; only real resistance/leaks spend') and the settled chapter apparatus conventions -- withholds mutual inductance, turns ratio, and voltage step-up/down entirely (this concept's own front door). CHAPTER END: transformer is concept 8 of 8 -- with this JSON, Ch.7 Alternating Current is COMPLETE. No further concept handoff; no DELIVERS/WITHHOLDS seed is emitted.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "transformer"
+    ]
+  },
+  "prerequisites": [
+    "faraday_law_induction",
+    "ac_voltage_resistor",
+    "ac_power_factor",
+    "electrical_power_in_resistor",
+    "ac_voltage_inductor"
+  ],
+  "real_world_anchor": {
+    "primary": "The journey every watt makes to reach a wall socket. ac_power_factor seeded the grid-transmission story; this concept cashes it. Between any power station and any home stand transformers — the voltage is stepped UP to a very high value at the station (STATE_7's ×100 loss-collapse arithmetic is the entire reason), carried across country on transmission lines at a current too small to waste itself as wire heat, then stepped DOWN — stage by stage — finally to the mains voltage at the street, before it reaches a socket. Culture-neutral (no country, no named utility; 'the mains voltage' phrased neutrally, Rule 35b), the widest-syllabus-overlap device there is, and physics-true at depth.",
+    "secondary": "The small warm brick that charges a phone works the same turns trick — at a much faster rhythm than the mains, by design — to step the wall's voltage down to the few volts a phone can drink. And the low hum audible near any large transformer is STATE_8's flexing core, made real. Nothing anchor-shaped is drawn (Rule 24; anchors live in narration); no regional constant is ever numeralized (35b)."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "N_p": { "name": "Primary turn count — FIXED, never a slider (the reference winding)", "unit": "turns", "constant": 100 },
+      "N_s": { "name": "Secondary turn count — the ONE live guided control in the whole concept (STATE_5 post-ramp only; STATE_11 all four sliders live)", "unit": "turns", "min": 25, "max": 400, "default": 200, "step": 25, "role": "driver" },
+      "V_p": { "name": "Primary supply voltage — RMS (every meter in this sim reads rms). NEW declared work point (10.0 V rms), reconciled against the chapter's own vm=10 V peak and the siblings' 7.07 V rms work point — neither the peak nor the sibling rms value is rendered here.", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "f": { "name": "Source frequency — the chapter's watchable flux rhythm; the real mains rate is phrased neutrally and never numeralized (35b)", "unit": "Hz", "min": 0.10, "max": 1.00, "default": 0.25, "step": 0.05, "role": "driver" },
+      "R_load": { "name": "Secondary load resistance — the lamp/resistive load", "unit": "Ohm", "min": 5, "max": 100, "default": 25.0, "step": 5, "role": "driver" },
+      "R_line": { "name": "Transmission-line resistance — STATE_7 ONLY, narrative constant, never a slider; chosen so BOTH loss displays land exact at the declared 3dp precision. Numerically equals the chapter's retired series R — a different object (a transmission line), never juxtaposed.", "unit": "Ohm", "constant": 5.0 },
+      "omega": { "name": "True angular frequency — feeds ONLY the Phi_m closed form, never on-screen degree display", "unit": "rad/s", "derived": "omega = 2*PI*f" },
+      "omega_deg_per_s": { "name": "Angular speed in deg/s — the degree-native rendering clock theta(t) (fleet dialect)", "unit": "deg/s", "derived": "omega_deg_per_s = omega*180/PI = 360*f" },
+      "theta": { "name": "Instantaneous phase, the state's OWN clock (Rule 26). theta0=0 at EVERY guided state's entry.", "unit": "deg", "derived": "theta = omega_deg_per_s * t   [t = time since STATE ENTRY, pure closed form, zero accumulators]" },
+      "T": { "name": "Period of one full AC cycle at the active f (T=4.00s at defaults, the chapter rate)", "unit": "s", "derived": "T = 1/f" },
+      "per_turn": { "name": "EMF per turn — the STATE_4 SUPPORTING result. Dual-labeled once 'volts per turn' at STATE_4, bare thereafter (38d). IDENTICAL on both windings at every ratio (verified: 0.100 V/turn at ratio 1 AND ratio 2).", "unit": "V/turn", "derived": "per_turn = V_p/N_p" },
+      "Phi_m": { "name": "Peak flux amplitude threading the closed core — depends ONLY on V_p, N_p, f; independent of N_s and R_load (the STATE_5 invariant, debuts STATE_1)", "unit": "Wb", "derived": "Phi_m = sqrt(2)*V_p/(N_p*omega)" },
+      "secondary_closed": { "name": "Mechanical gate — a scene/apparatus pose flag, NOT a slider. 0 at STATE_1 ONLY (secondary mechanically open). 1 from STATE_2 onward, including STATE_3's DC dead-hold — the loop stays a rendered CLOSED path even while dead (Preamble B4: distinct from STATE_1's open pose).", "unit": "dimensionless (0|1)", "constant": 1 },
+      "V_s": { "name": "Secondary voltage (rms), AC states only — THE transformer law, core-ring result debuted STATE_5. Gated to 0 by secondary_closed=0 at STATE_1; STATE_3's DC hold uses I_p_dc instead (never this formula).", "unit": "V", "derived": "V_s = secondary_closed * V_p*(N_s/N_p)" },
+      "I_s": { "name": "Secondary current (rms), AC states only — set by the load alone", "unit": "A", "derived": "I_s = V_s/R_load" },
+      "P_s": { "name": "Secondary (load) power — what the secondary actually delivers", "unit": "W", "derived": "P_s = V_s*I_s" },
+      "P_p": { "name": "Primary power, IDEAL (no loss) — equals P_s exactly, the STATE_6 PRIMARY-aha quantity, used STATE_1-7/10/11. STATE_8 ALONE substitutes the separate REAL P_p_real — never conflate the two (Section 6 binding item 15).", "unit": "W", "derived": "P_p = P_s" },
+      "I_p": { "name": "Primary current (rms), IDEAL — set by power conservation, never independently chosen", "unit": "A", "derived": "I_p = P_p/V_p" },
+      "v_p_t": { "name": "Instantaneous primary voltage — the 0-phase reference (Preamble A). Continues even with the secondary open/dead (STATE_1/3) — the source keeps driving the primary loop regardless of the secondary's state.", "unit": "V", "derived": "v_p_t = sqrt(2)*V_p*sin(radians(theta))" },
+      "Phi_t": { "name": "Instantaneous flux, AC states — LAGS v_p_t by 90deg (Faraday, Preamble A). NOT active during STATE_3's DC hold (see flux_density_frac_dc) — never evaluate this formula during the dc_hold cue window.", "unit": "Wb", "derived": "Phi_t = -Phi_m*cos(radians(theta))" },
+      "v_s_t": { "name": "Instantaneous secondary voltage — IN PHASE with v_p_t (ideal, same-sense convention, no leakage reactance, Preamble A)", "unit": "V", "derived": "v_s_t = secondary_closed*sqrt(2)*V_s*sin(radians(theta))" },
+      "i_s_t": { "name": "Instantaneous secondary current — resistive load, in phase with v_s_t", "unit": "A", "derived": "i_s_t = secondary_closed*sqrt(2)*I_s*sin(radians(theta))" },
+      "i_p_t": { "name": "Instantaneous primary current — by turns-ratio + power conservation, SAME phase as i_s_t", "unit": "A", "derived": "i_p_t = (N_s/N_p)*i_s_t" },
+      "p_p_t": { "name": "Instantaneous primary power — LITERAL pointwise product (32a caution), never an independently-animated curve that merely agrees", "unit": "W", "derived": "p_p_t = v_p_t*i_p_t" },
+      "p_s_t": { "name": "Instantaneous secondary power — LITERAL pointwise product", "unit": "W", "derived": "p_s_t = v_s_t*i_s_t" },
+      "bead_frac_p_t": { "name": "Primary-loop bead position — oscillates about home 0.5, phase-locked to i_p_t (fleet oscillating-bead convention)", "unit": "dimensionless", "derived": "bead_frac_p_t = 0.5 + A_frac_p*sin(radians(theta))" },
+      "bead_frac_s_t": { "name": "Secondary-loop bead position — SAME theta, own amplitude scale, ZERO before STATE_2's closure and during STATE_3's DC dead-hold (secondary_closed / DC-null gates apply upstream via i_s_t)", "unit": "dimensionless", "derived": "bead_frac_s_t = 0.5 + A_frac_s*sin(radians(theta))" },
+      "A_frac_p": { "name": "Primary bead-excursion visual scale, calibrated at defaults, clamped for explore extremes", "unit": "dimensionless", "derived": "A_frac_p = clamp(0.30*(I_p/1.60), 0.08, 0.42)" },
+      "A_frac_s": { "name": "Secondary bead-excursion visual scale, calibrated at defaults, clamped for explore extremes", "unit": "dimensionless", "derived": "A_frac_s = clamp(0.30*(I_s/0.80), 0.08, 0.42)" },
+      "release_beat_deltaT": { "name": "STATE_2 switch-closes-to-loop-wakes readable beat (32a cause-first gap)", "unit": "s", "constant": 1.0 },
+      "throw_deltaT": { "name": "STATE_3 blade-swing duration, AC pose to DC pose, before the blip fires", "unit": "s", "constant": 0.8 },
+      "blip_deltaT": { "name": "STATE_3 throw-instant transient bump duration (needle-kick + lamp-flash, Preamble B3 — no numeral)", "unit": "s", "constant": 0.4 },
+      "tick_cascade_deltaT": { "name": "STATE_4 turn-by-turn lighting schedule duration", "unit": "s", "constant": 2.5 },
+      "turns_ramp_deltaT": { "name": "STATE_5 scripted N_s ramp duration (100->200, thumb+label lockstep, F1 scar duty)", "unit": "s", "constant": 3.0 },
+      "turn_count_t": { "name": "STATE_4 running turn counter — closed form, 0..N_p", "unit": "turns", "derived": "turn_count_t = round(N_p*smoothstep(clamp(t/tick_cascade_deltaT,0,1)))   [smoothstep(u)=3u^2-2u^3]" },
+      "turn_bar_V_t": { "name": "STATE_4 voltage bar fill — lockstep with the counter, reuses per_turn exactly (never a second independent computation)", "unit": "V", "derived": "turn_bar_V_t = turn_count_t*per_turn" },
+      "N_s_ramp_t": { "name": "STATE_5 scripted turns ramp — 100 to 200. N_s goes plain-live (drag-seize) at script end; thumb+label MUST move in lockstep with this exact value (F1 ghost_compare_cause_invisible_slider_frozen prevention).", "unit": "turns", "derived": "N_s_ramp_t = 100 + 100*smoothstep(clamp(t/turns_ramp_deltaT,0,1))" },
+      "R_p_dc_demo": { "name": "STATE_3-ONLY narrative prop (Preamble B2) — a small primary-winding DC resistance chosen for a legible demo current. Explicitly NOT the quantity behind STATE_8's copper-loss figure — never render this symbol on canvas.", "unit": "Ohm", "constant": 3.0 },
+      "V_batt_dc": { "name": "STATE_3 battery voltage — reuses the SAME dial numeral as V_p's default (the prop swap, not a new unexplained voltage)", "unit": "V", "constant": 10.0 },
+      "I_p_dc": { "name": "STATE_3 steady one-way primary DC current (Preamble B2, Ohm's-law callback) — 3.33 A, collision-checked against every other locked numeral in this concept", "unit": "A", "derived": "I_p_dc = V_batt_dc/R_p_dc_demo" },
+      "dc_bead_rate": { "name": "STATE_3 uniform one-way bead advance rate — visual only, proportional in spirit to I_p_dc", "unit": "1/s", "derived": "dc_bead_rate = 0.06*I_p_dc" },
+      "bead_frac_p_dc_t": { "name": "STATE_3 primary-loop bead position — advances UNIFORMLY in ONE direction (never oscillates), a closed form of the post-blip sub-clock t2. Distinct formula from every AC state's bead_frac_p_t (32b no-teleport discipline).", "unit": "dimensionless", "derived": "bead_frac_p_dc_t = frac(0.5 + dc_bead_rate*t2)   [frac(x)=x-floor(x); t2 = max(t1-blip_deltaT,0), t1 = time since the throw-complete instant]" },
+      "blip_env_t": { "name": "STATE_3 throw-instant transient bump — drives ONLY the needle-kick + lamp-flash pose (Preamble B3, no numeral rendered anywhere)", "unit": "dimensionless", "derived": "blip_env_t = (t1<blip_deltaT) ? sin(PI*clamp(t1/blip_deltaT,0,1)) : 0" },
+      "flux_density_frac_dc": { "name": "STATE_3 flux-tube visual density during the DC hold — PINNED at full (1.0) once the blip completes (Preamble B1); breathing amplitude -> 0. NEVER driven by Phi_t during STATE_3.", "unit": "dimensionless", "constant": 1.0 },
+      "I_line_direct": { "name": "STATE_7 phase-A line current — direct send at the transformer's OWN secondary voltage (20.0 V at the ratio-2 work point), no further step-up", "unit": "A", "derived": "I_line_direct = P_s/V_s" },
+      "I_line_stepped": { "name": "STATE_7 phase-B line current — a SEPARATE transmission-side step-up lifts the send voltage x10 (to 200 V) before the line", "unit": "A", "derived": "I_line_stepped = P_s/(10*V_s)" },
+      "loss_direct": { "name": "STATE_7 phase-A line loss", "unit": "W", "derived": "loss_direct = I_line_direct^2 * R_line" },
+      "loss_stepped": { "name": "STATE_7 phase-B line loss", "unit": "W", "derived": "loss_stepped = I_line_stepped^2 * R_line" },
+      "loss_ratio": { "name": "STATE_7 chip — EXACT ONLY at the declared 3dp precision (2dp form 3.20/0.03=106 is FORBIDDEN)", "unit": "dimensionless", "derived": "loss_ratio = loss_direct/loss_stepped" },
+      "i_line_t": { "name": "STATE_7 instantaneous line current — SAME theta clock; amplitude = I_line_direct (phase A) or I_line_stepped (phase B); drives the line glow, never independently animated (32a)", "unit": "A", "derived": "i_line_t = sqrt(2)*I_line_phase*sin(radians(theta))   [I_line_phase = I_line_direct in phase A, I_line_stepped in phase B]" },
+      "line_glow_t": { "name": "STATE_7 line-glow drive — the honest heat proxy, averages to the exact loss_direct/loss_stepped values over a full cycle", "unit": "W", "derived": "line_glow_t = i_line_t^2 * R_line" },
+      "copper_loss": { "name": "STATE_8 declared pedagogical constant, valid ONLY at the ratio-2 work point (N_s=200,V_p=10.0,f=0.25,R_load=25.0). AUTHORED, not derived (no per-mechanism resistive model built in this concept).", "unit": "W", "constant": 0.4 },
+      "eddy_loss": { "name": "STATE_8 declared constant (STATE_9 opens this one qualitatively)", "unit": "W", "constant": 0.2 },
+      "hysteresis_loss": { "name": "STATE_8 declared constant", "unit": "W", "constant": 0.1 },
+      "stray_loss": { "name": "STATE_8 declared constant (breaks STATE_4's 'ALL flux threads EVERY turn' ideal promise — retro-link)", "unit": "W", "constant": 0.1 },
+      "P_p_real": { "name": "STATE_8 ONLY — the REAL primary draw. Never conflate with the ideal P_p used everywhere else (Section 6 binding item 15).", "unit": "W", "derived": "P_p_real = P_s + copper_loss + eddy_loss + hysteresis_loss + stray_loss" },
+      "eta": { "name": "STATE_8 efficiency — displayed as integer percent (eta*100)", "unit": "dimensionless", "derived": "eta = P_s/P_p_real" }
+    },
+    "computed_outputs": {
+      "Vs_display": { "formula": "secondary_closed*V_p*(N_s/N_p)" },
+      "Is_display": { "formula": "Vs_display/R_load" },
+      "Ps_display": { "formula": "Vs_display*Is_display" },
+      "Ip_display": { "formula": "Ps_display/V_p" },
+      "PhiM_display": { "formula": "Math.SQRT2*V_p/(N_p*2*Math.PI*f)" },
+      "perTurn_display": { "formula": "V_p/N_p" },
+      "PpReal_display": { "formula": "Ps_display + 0.4 + 0.2 + 0.1 + 0.1" },
+      "eta_display": { "formula": "Ps_display/PpReal_display" },
+      "IlineDirect_display": { "formula": "Ps_display/Vs_display" },
+      "IlineStepped_display": { "formula": "Ps_display/(10*Vs_display)" },
+      "lossDirect_display": { "formula": "Math.pow(Ps_display/Vs_display,2)*5.0" },
+      "lossStepped_display": { "formula": "Math.pow(Ps_display/(10*Vs_display),2)*5.0" },
+      "IpDc_display": { "formula": "10.0/3.0" }
+    },
+    "formulas": {
+      "faraday_shared_flux": "v_p(t) = N_p*dPhi/dt (STATE_1 mechanism, STATE_10 derivation link 1) -- Phi(t)=-Phi_m*cos(theta) is the unique closed form consistent with v_p(t)=sqrt(2)*V_p*sin(theta) (verified, Preamble A)",
+      "turns_ratio_law": "V_s/V_p = N_s/N_p (STATE_5 core-ring result, measured before it is derived)",
+      "power_conservation_law": "V_p*I_p = V_s*I_s exactly, ideal (STATE_6 PRIMARY aha) -- nothing amplified, volts traded for amps",
+      "dc_null_result": "Under steady DC, dPhi/dt=0 -> induced EMF=0 in every turn regardless of flux magnitude (STATE_3 PIVOT #2) -- the throw itself was the last CHANGE this loop ever saw",
+      "per_turn_share": "per_turn = V_p/N_p = V_s/N_s identically at every ratio (STATE_4 SUPPORTING result, verified: both equal 0.100 V/turn at ratio 1 AND ratio 2)",
+      "transmission_loss_law": "P_loss = I^2*R_line, I=P/V -- stepping V up by k drops I by k and P_loss by k^2 (STATE_7, the grid's entire reason)",
+      "efficiency_law": "eta = P_s/P_p_real = P_s/(P_s + sum of leaks) (STATE_8, real-device digression, extended ring only)",
+      "derivation_chain": "eps_p=-N_p*dPhi/dt, eps_s=-N_s*dPhi/dt (SAME Phi) -> eps_s/eps_p=N_s/N_p -> V_s/V_p=N_s/N_p -> V_p*I_p=V_s*I_s -> I_p/I_s=N_s/N_p (STATE_10)"
+    },
+    "constraints": [
+      "V_s/V_p = N_s/N_p at every instant -- the ideal transformer law (STATE_5).",
+      "V_p*I_p = V_s*I_s exactly under the ideal (no-loss) model used STATE_1-7/10/11 -- power passes through unchanged (STATE_6). Only STATE_8's separate P_p_real substitutes real leaks.",
+      "Phi_m = sqrt(2)*V_p/(N_p*omega) depends on V_p, N_p, f ALONE -- never on N_s or R_load (the STATE_5 invariant, verified unchanged across the entire N_s ramp).",
+      "A transformer transfers power ONLY via CHANGING flux -- steady DC sustains flux but induces zero secondary EMF (dPhi/dt=0 -> eps=0), regardless of how large or how long-sustained that flux is (STATE_3).",
+      "Real transformers always have P_p_real > P_s (eta<1) from copper/eddy/hysteresis/stray losses -- eta is bounded in (0,1), never negative, never exceeding 1 (STATE_8).",
+      "per_turn = V_p/N_p = V_s/N_s identically, on EITHER winding, at EVERY turns ratio -- verified 0.100 V/turn at both ratio 1 and ratio 2 (STATE_4)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "A transformer trades volts for amps — never hands out free power.",
+    "visual_confirmation": "Iₚ visibly doubles Iₛ while the level Pₚ|Pₛ bars sit dead level at 16.0 W."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
+    "turns_ratio": ["STATE_4", "STATE_5"],
+    "power": ["STATE_6"],
+    "transmission": ["STATE_7"],
+    "losses": ["STATE_8", "STATE_9"],
+    "derivation": ["STATE_10"],
+    "exploration": ["STATE_11"],
+    "exit_pills": {
+      "foundational_to_transmission": "So why are the pylon cables at such high voltages? →"
+    }
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during authoring. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.9 content). Every other curriculum row carries verified:false + needs_teacher_verification:true rather than a guess (Rule 38g — tag honesty).",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.9 Transformers — the shared-flux principle, the turns relation Vs/Vp=Ns/Np, step-up/step-down identification, ideal power conservation VpIp=VsIs, all four real losses (copper, eddy, hysteresis, stray flux) including lamination and hum, and high-voltage transmission to cut I²R line loss; JEE/NEET weighting on turns-ratio and power-conservation numericals.",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "partial",
+        "syllabus_unit": "Believed FULL: the ideal transformer equation and high-voltage transmission motivation are believed present in the syllabus",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "partial",
+        "syllabus_unit": "Believed PRESENT: transformer equation and transmission qualitative; the real-loss treatment is believed lighter than NCERT's",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Believed PRESENT pre-2023 syllabus reform, possibly trimmed since — unconfirmed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "Believed marginal: electromagnetic induction is covered but the transformer device treatment is believed thin or absent",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "absent",
+        "syllabus_unit": "Believed absent as a dedicated device topic",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "Believed absent at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 11,
+    "states": {
+      "STATE_1": {
+        "title": "One flux, driven by the primary, threads both windings — the secondary sits open and dark",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_top_label", "position": { "x": 380, "y": 60 }, "text": "One flux, two coils", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s1_mid_label", "position": { "x": 200, "y": 250 }, "text": "Vₚ = 10.0 V  ·  Φₘ = 0.090 Wb", "color": "#B388FF" },
+          { "type": "annotation", "id": "s1_focal_label", "position": { "x": 560, "y": 400 }, "text": "No wire joins them — only the flux does", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Two coils sit on one closed iron core, touching nothing.", "glow": "flux", "scenario_cue": "apparatus_dock" },
+            { "id": "s1_2", "text_en": "The primary carries an alternating current, and the changing flux it makes circulates through the whole core — threading both windings equally.", "glow": "flux", "scenario_cue": "flux_build" },
+            { "id": "s1_3", "text_en": "Right now the secondary's switch is open: no current flows there, no matter how strong the flux.", "glow": "flux", "scenario_cue": "dark_secondary_plant" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "SUPPORTING aha — a closed loop riding a changing flux carries current, with no wires",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_top_label", "position": { "x": 380, "y": 60 }, "text": "No wires — power crosses", "color": "#FFB300" },
+          { "type": "annotation", "id": "s2_mid_label", "position": { "x": 200, "y": 250 }, "text": "Vₛ = 10.0 V  ·  Iₛ = 0.40 A", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s2_focal_label", "position": { "x": 560, "y": 400 }, "text": "A changing flux through a loop drives an EMF", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Close the secondary's own switch — and current flows, with no wire back to the source.", "glow": "lamp", "scenario_cue": "secondary_close" },
+            { "id": "s2_2", "text_en": "A changing flux through a loop drives an EMF: the same law that kicked a needle in the induction chapter.", "glow": "lamp", "scenario_cue": "loop_wake" },
+            { "id": "s2_3", "text_en": "The lamp lights; the meters agree — ten volts, point four amps, on both sides.", "glow": "lamp", "scenario_cue": "meters_settle" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "PIVOT #2 — a transformer needs CHANGING flux; steady DC, however large, hands over nothing",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["why_transformer_needs_ac", "dc_switch_on_blip_explained", "steady_flux_zero_emf"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_top_label", "position": { "x": 380, "y": 60 }, "text": "Steady flux — nothing crosses", "color": "#90A4AE" },
+          { "type": "annotation", "id": "s3_mid_label", "position": { "x": 200, "y": 250 }, "text": "Iₚ = 3.33 A (steady DC)  ·  dΦ/dt = 0", "color": "#FFB300" },
+          { "type": "annotation", "id": "s3_focal_label", "position": { "x": 560, "y": 400 }, "text": "Only CHANGE crosses — that's why the grid is AC", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Swap in a steady battery.", "glow": "switch", "scenario_cue": "throw_armed" },
+            { "id": "s3_2", "text_en": "At the throw, one blip — then the secondary dies.", "glow": "switch", "scenario_cue": "blip" },
+            { "id": "s3_3", "text_en": "The primary still carries current, sustaining a huge, frozen flux — current flowing, flux present, nothing changing.", "glow": "switch", "scenario_cue": "dc_hold" },
+            { "id": "s3_4", "text_en": "So the secondary gets nothing.", "glow": "switch", "scenario_cue": "dc_hold" },
+            { "id": "s3_5", "text_en": "Only changing flux crosses; that is why the grid runs on AC.", "glow": "switch", "scenario_cue": "fix_clause" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A transformer works on DC too — steady current still makes flux.",
+            "visual_counter": "The DC throw gives ONE blip (secondary needles kick, lamp flashes — the change itself), then the primary keeps a steady one-way current flowing (Iₚ steady nonzero, beads streaming) sustaining flux tubes frozen at FULL density — while Iₛ = Vₛ = 0.00 and the lamp is dark: current still flowing, flux still there, nothing crossing.",
+            "one_line_fix": "The current is still flowing and the flux is still there — but nothing CHANGES, so the secondary gets nothing; only change crosses, and that is why transformers, and the grid, live on AC."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Every turn rides the same flux and earns the same equal share",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_top_label", "position": { "x": 380, "y": 60 }, "text": "Every turn, equal share", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s4_mid_label", "position": { "x": 200, "y": 250 }, "text": "Vₚ/Nₚ = 0.100 V/turn  ·  100 × 0.100 = 10.0 V", "color": "#69F0AE" },
+          { "type": "annotation", "id": "s4_focal_label", "position": { "x": 560, "y": 400 }, "text": "Every turn drinks the same equal share", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Every turn rides the same changing flux, so every turn earns the same tenth of a volt.", "glow": "primary", "scenario_cue": "ac_restore" },
+            { "id": "s4_2", "text_en": "Watch a hundred turns light one by one — a running counter, a bar filling to ten volts, in lockstep.", "glow": "primary", "scenario_cue": "tick_cascade" },
+            { "id": "s4_3", "text_en": "The secondary's own hundred turns ride that same flux — which is why it also reads ten volts.", "glow": "primary", "scenario_cue": "cascade_chip" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Crank the turns and watch the voltage obey: Vₛ/Vₚ = Nₛ/Nₚ",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["turns_ratio_numericals", "step_up_vs_step_down_identify", "volts_per_turn_design"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_top_label", "position": { "x": 380, "y": 60 }, "text": "Turns set the voltage", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s5_mid_label", "position": { "x": 200, "y": 250 }, "text": "Vₛ/Vₚ = Nₛ/Nₚ = 200/100 = 2", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s5_focal_label", "position": { "x": 560, "y": 400 }, "text": "More turns than the primary — a step-up transformer", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Watch the secondary gain turns — a hundred climbing to two hundred, live.", "glow": "secondary", "scenario_cue": "ns_ramp" },
+            { "id": "s5_2", "text_en": "The voltage climbs with it: ten volts to twenty.", "glow": "secondary", "scenario_cue": "ns_ramp" },
+            { "id": "s5_3", "text_en": "The flux never changed — only how many turns ride it.", "glow": "secondary", "scenario_cue": "invariant_clause" },
+            { "id": "s5_4", "text_en": "More turns than the primary makes a step-up transformer; wind fewer, and it steps down.", "glow": "secondary", "scenario_cue": "ramp_chip" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "PRIMARY aha — nothing is amplified: VₚIₚ = VₛIₛ, volts up means amps down",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["power_conservation_current_inverse", "step_up_free_energy_error", "primary_current_feels_the_load"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_top_label", "position": { "x": 380, "y": 60 }, "text": "Volts up, amps down", "color": "#FFB300" },
+          { "type": "annotation", "id": "s6_mid_label", "position": { "x": 200, "y": 250 }, "text": "Pₚ = Pₛ = 16.0 W", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s6_focal_label", "position": { "x": 560, "y": 400 }, "text": "A trade, not a gift — nothing is amplified", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Twenty volts looks like a win — but watch the current: point eight amps, half of the primary's one point six.", "glow": "gauges", "scenario_cue": "ghost_latch" },
+            { "id": "s6_2", "text_en": "Sixteen watts goes in; sixteen watts comes out — no more, no less.", "glow": "gauges", "scenario_cue": "strike" },
+            { "id": "s6_3", "text_en": "A transformer trades volts for amps; it never hands out free power.", "glow": "gauges", "scenario_cue": "trade_clause" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Step-up = free power: if the voltage doubled, the secondary delivers more than the primary draws.",
+            "visual_counter": "The dimmed ghost chip 'step-up = free power?' latched beside the four live meters — struck as Iₚ = 1.60 A visibly DOUBLES Iₛ = 0.80 A and the Pₚ|Pₛ bars sit dead level at 16.0 W; chip 10.0 × 1.60 = 20.0 × 0.80 = 16.0 W.",
+            "one_line_fix": "A transformer trades volts for amps — every watt the secondary delivers, the primary drew; nothing is amplified."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Step up, lose less — the line runs a hundred times cooler",
+        "duration": 22,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_top_label", "position": { "x": 380, "y": 60 }, "text": "Step up, lose less", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s7_mid_label", "position": { "x": 200, "y": 250 }, "text": "loss = 3.200 W → 0.032 W", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s7_focal_label", "position": { "x": 560, "y": 400 }, "text": "×10 volts → ÷100 line loss", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Send sixteen watts down a line directly at twenty volts: point eight amps, and the wire burns three point two watts as heat — a fifth of everything.", "glow": "band", "scenario_cue": "phase_a" },
+            { "id": "s7_2", "text_en": "Step it up tenfold to two hundred volts first: point zero eight amps, and the loss collapses to point zero three two watts — a hundredth.", "glow": "band", "scenario_cue": "step_up_swap" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Real transformers leak: copper heat, eddy currents, hysteresis, stray flux — η = 95%",
+        "duration": 20,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s8_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_top_label", "position": { "x": 380, "y": 60 }, "text": "Real transformers leak", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s8_mid_label", "position": { "x": 200, "y": 250 }, "text": "Pₚ = 16.8 W  ·  η = 95%", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s8_focal_label", "position": { "x": 560, "y": 400 }, "text": "16.0 + 0.8 = 16.8 — the ledger closes", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Real transformers leak.", "glow": "gauges", "scenario_cue": "gap_open" },
+            { "id": "s8_2", "text_en": "The primary now draws sixteen point eight watts, but only sixteen reach the secondary.", "glow": "gauges", "scenario_cue": "branches_peel" },
+            { "id": "s8_3", "text_en": "Copper heat, eddy currents, a magnet-flipping hysteresis cost, and stray flux each take a small share — ninety-five percent efficient.", "glow": "gauges", "scenario_cue": "branches_peel" },
+            { "id": "s8_4", "text_en": "That faint hum near a big transformer is the core itself flexing.", "glow": "gauges", "scenario_cue": "hum_clause" }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Inside the core: solid metal breeds wide eddy whirlpools; lamination quenches them",
+        "duration": 20,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s9_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_top_label", "position": { "x": 380, "y": 60 }, "text": "Thin slices stop eddies", "color": "#B388FF" },
+          { "type": "annotation", "id": "s9_mid_label", "position": { "x": 200, "y": 250 }, "text": "solid → wide loops  ·  laminated → slivers", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s9_focal_label", "position": { "x": 560, "y": 400 }, "text": "Every real core you'll ever see is laminated", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Inside a solid core, the changing flux drives wide eddy whirlpools — wasted heat, going nowhere.", "glow": "core", "scenario_cue": "solid_run" },
+            { "id": "s9_2", "text_en": "Slice the same metal into thin, insulated layers, and the whirlpools shrink to slivers; the heat collapses.", "glow": "core", "scenario_cue": "slice_swap" },
+            { "id": "s9_3", "text_en": "That is why every real transformer core you will ever see is laminated.", "glow": "core", "scenario_cue": "retro_link" }
+          ]
+        }
+      },
+      "STATE_10": {
+        "title": "Derivation: the same dΦ/dt in every turn gives the ratio and the current law",
+        "duration": 22,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s10_focal_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s10_top_label", "position": { "x": 380, "y": 60 }, "text": "The ratio, derived", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s10_mid_label", "position": { "x": 200, "y": 250 }, "text": "εₛ/εₚ = Nₛ/Nₚ → Vₛ/Vₚ = Nₛ/Nₚ", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s10_focal_label", "position": { "x": 560, "y": 400 }, "text": "Iₚ/Iₛ = Nₛ/Nₚ = 2 → 20.0 V, 0.80 A", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s10_1", "text_en": "Both coils sit on the same flux, so εₚ equals minus Nₚ dΦ by dt, and εₛ equals minus Nₛ dΦ by dt.", "glow": "formula", "scenario_cue": "link1_2" },
+            { "id": "s10_2", "text_en": "Divide: εₛ over εₚ equals Nₛ over Nₚ.", "glow": "formula", "scenario_cue": "link3" },
+            { "id": "s10_3", "text_en": "With no losses, power passes through unchanged, so Iₚ over Iₛ equals Nₛ over Nₚ — twenty volts, point eight amps, as measured.", "glow": "formula", "scenario_cue": "link4_5_6" }
+          ]
+        }
+      },
+      "STATE_11": {
+        "title": "Explore — the transformer under the teacher's hands",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s11_focal_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s11_top_label", "position": { "x": 380, "y": 60 }, "text": "All yours", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s11_mid_label", "position": { "x": 200, "y": 250 }, "text": "Vₛ/Vₚ = Nₛ/Nₚ", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s11_focal_label", "position": { "x": 560, "y": 400 }, "text": "Drag Nₛ · Vₚ · f · R_load", "color": "#FFCA28" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s11_1", "text_en": "It's all yours — drag the turns, the voltage, the frequency, and the load, and watch the ratio, the currents, and the lamp respond live." }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the transformer when they can (1) explain that a changing flux threading a shared closed core links two electrically-disjoint windings, so energy crosses with no wire between them (Faraday's law, no direct conduction); (2) apply the ideal turns-ratio law Vs/Vp = Ns/Np to identify step-up vs step-down and compute the secondary voltage; (3) explain ideal power conservation Vp*Ip = Vs*Is — a transformer trades volts for amps, never amplifying power, and a real transformer draws slightly MORE than the ideal value due to internal losses; (4) explain that a transformer requires CHANGING flux — steady DC sustains a flux but induces zero secondary EMF, producing only a single transient blip at switch-on; (5) explain why real cores are laminated — thin insulated sheets chop the wide eddy-current loops that would otherwise waste energy as heat in a solid core; and (6) explain why long-distance transmission runs at high voltage — stepping up voltage lowers the line current (I=P/V), and since line loss is I²R, the loss collapses by the square of the voltage ratio.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A primary coil carries alternating current, and a secondary coil sits on the same closed iron core with no wire joining the two circuits. How does energy reach the secondary coil?",
+        "options": {
+          "A": "The primary's changing magnetic flux threads the secondary through the shared core and induces an EMF there — Faraday's law, with no direct electrical contact at all",
+          "B": "Free electrons conduct directly through the solid iron core from the primary winding into the secondary winding",
+          "C": "The two coils are close enough that static charge simply jumps the air gap between them",
+          "D": "Sound vibrations from the primary coil physically shake the secondary coil's charges into motion"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — the two loop meshes are electrically disjoint; no electron ever crosses from one winding to the other. Only the changing flux threading the shared core links them, not conduction.",
+          "C": "There is no electrostatic jump between the windings — this is an electromagnetic induction effect through the shared changing flux, not a static-discharge phenomenon.",
+          "D": "Sound has no role here — the coupling is purely electromagnetic, through the changing magnetic flux linking both windings via the shared core."
+        },
+        "tested_idea": "Two magnetically-coupled but electrically-disjoint circuits transfer energy via a shared changing flux (Faraday's law), never by direct conduction.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "If a thick copper bar bridged the primary and secondary windings, would that be what actually carries the current across in a transformer?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A transformer has Nₚ = 100 turns on the primary and Nₛ = 200 turns on the secondary, running from a 10.0 V rms AC supply. Is this step-up or step-down, and what is the secondary voltage?",
+        "options": {
+          "A": "Step-up transformer (more secondary turns); Vₛ = Vₚ×(Nₛ/Nₚ) = 10.0×(200/100) = 20.0 V",
+          "B": "The voltage stays 10.0 V no matter the turns — voltage can't change without a direct wire connection between the windings",
+          "C": "Step-down transformer, since twice as many turns means the voltage is halved to 5.0 V",
+          "D": "The turns ratio only matters for current, not voltage — Vₛ is undefined without knowing the resistances"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — voltage transforms perfectly well with no direct wire at all; the shared changing flux does the job. More secondary turns means more induced EMF, not zero.",
+          "C": "More secondary turns than primary turns makes it step-UP, not step-down — the ratio direction is flipped here. Twice the turns gives twice the voltage, not half.",
+          "D": "The turns ratio sets the VOLTAGE ratio directly (Vₛ/Vₚ = Nₛ/Nₚ), independent of load resistance — resistance only affects how much current the secondary draws once Vₛ is fixed."
+        },
+        "tested_idea": "The ideal transformer voltage law Vₛ/Vₚ = Nₛ/Nₚ: more secondary turns steps voltage up, fewer steps it down.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "The same transformer instead has Nₛ = 50 turns — is it now step-up or step-down, and what is Vₛ?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "An ideal transformer's secondary delivers 16.0 W to its load. How much power does the primary draw from the supply?",
+        "options": {
+          "A": "16.0 W exactly (ideal, no losses) — a little more than 16.0 W in a real transformer, due to small internal leaks",
+          "B": "8.0 W — the transformer must be losing half the power somewhere, since the current dropped",
+          "C": "32.0 W — a step-up transformer doubles the power along with the voltage",
+          "D": "It cannot be determined without knowing the exact resistances of both windings"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception's mirror — a smaller secondary current does NOT mean less power arrived; power conservation, VₚIₚ = VₛIₛ, holds exactly in the ideal case. The primary draws the full 16.0 W, not half.",
+          "C": "This is the PRIMARY confronted misconception — a transformer trades volts for amps; it never multiplies power. Doubling voltage halves current, and the product (power) stays fixed at 16.0 W ideal.",
+          "D": "Power conservation alone (VₚIₚ = VₛIₛ) fixes the ideal primary power at exactly the secondary's 16.0 W — no winding resistance value is needed for the ideal case."
+        },
+        "tested_idea": "Ideal power conservation across a transformer: VₚIₚ = VₛIₛ exactly — nothing is amplified, and real transformers draw slightly MORE than the ideal value due to internal losses.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "If the secondary instead delivers 4.0 W to its load, how much power does an ideal primary draw?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "The same transformer's primary is connected to a steady 10 V battery instead of the AC supply. What happens, and why?",
+        "options": {
+          "A": "One brief blip at the moment of connection, then nothing — a steady flux, however large, induces zero EMF in the secondary because the flux is no longer CHANGING",
+          "B": "The transformer works exactly the same on DC as on AC, just with a steady output voltage",
+          "C": "Nothing happens at all, not even a blip, because DC current can never create any magnetic flux",
+          "D": "The secondary catches fire because the DC current is far more dangerous than AC in a transformer"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — a transformer needs CHANGING flux to induce anything; a steady DC current sustains a steady flux, but induces exactly zero EMF in the secondary once settled.",
+          "C": "A steady DC current absolutely does create a magnetic flux (Ampere's/Biot-Savart physics) — the flux is real and large; it is only the CHANGE in flux that induces an EMF, and a steady flux has none.",
+          "D": "This overstates the effect with no physical basis here — the concept's actual point is a quiet, instructive null result (secondary reads zero), not a dramatic failure."
+        },
+        "tested_idea": "A transformer requires CHANGING flux — steady DC sustains flux but induces zero secondary EMF (dΦ/dt = 0), regardless of the flux's size.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Why does the secondary needle kick once at the exact instant the switch is thrown, but never again afterward?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Why is a real transformer's iron core built as a stack of thin, insulated laminations rather than one solid block of iron?",
+        "options": {
+          "A": "Thin insulated laminations chop the wide eddy-current whirlpools that would otherwise form in a solid core, cutting the wasted heat they cause",
+          "B": "Laminating the core increases the magnetic flux it can carry, boosting the voltage produced",
+          "C": "It is purely a manufacturing convenience — laminated sheets are cheaper to produce than a solid block",
+          "D": "Laminations are needed so the primary and secondary windings don't touch each other"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Lamination doesn't increase the flux the core carries — Φₘ is set by the supply voltage, turns, and frequency alone; lamination only reduces a specific real-device LOSS (eddy currents), not the ideal flux.",
+          "C": "This isn't primarily a cost/manufacturing choice — it's a genuine physics fix: chopping the conducting loops available to eddy currents, which drains real energy as heat in a solid core.",
+          "D": "Winding separation has nothing to do with core lamination — the primary and secondary never touch regardless of whether the core is solid or laminated; lamination is entirely about suppressing eddy currents."
+        },
+        "tested_idea": "Laminating the core breaks up the wide conducting loops available to eddy currents, cutting a real (non-ideal) energy loss without changing the ideal flux.",
+        "teaches_state": "STATE_9",
+        "difficulty": "core",
+        "parallel_form_stem": "If a transformer core were doubled in thickness but kept solid (not laminated), would the eddy-current heating go up or down?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "The same 16.0 W is sent down a 5.0 Ω transmission line, once directly at 20 V and once after being stepped up tenfold to 200 V. Why does the high-voltage line lose far less power as heat?",
+        "options": {
+          "A": "Stepping up the voltage tenfold drops the line current tenfold; since line loss is I²R, the loss falls by a factor of 100",
+          "B": "Higher voltage makes the current travel faster down the line, so it spends less time being resistively heated",
+          "C": "The transmission line itself has less resistance when carrying a higher voltage",
+          "D": "Power and voltage are unrelated to line loss — the loss depends only on the fixed line resistance, which never changes"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Signal speed on a wire is not the relevant mechanism here — the loss is I²R, purely a function of the CURRENT magnitude and the fixed line resistance, not how 'fast' charge moves.",
+          "C": "The line's resistance R_line = 5.0 Ω is a fixed property of the wire — it does not change with the voltage or current flowing through it.",
+          "D": "Line loss depends directly on the current squared (P_loss = I²R_line) — since I = P/V, raising V for the same power P lowers I, and therefore lowers the loss, even with a fixed R_line."
+        },
+        "tested_idea": "Transmission-line loss scales as I²R; stepping up the send voltage lowers the current (I = P/V) and collapses the I²R loss by the square of the voltage ratio.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "If the send voltage were stepped up by a factor of 5 instead of 10, by what factor would the line loss fall?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q4"],
+      "STATE_4": ["Q2"],
+      "STATE_5": ["Q2"],
+      "STATE_6": ["Q3"],
+      "STATE_7": ["Q6"],
+      "STATE_8": ["Q3"],
+      "STATE_9": ["Q5"]
+    },
+    "non_assessed_states": ["STATE_10", "STATE_11"]
+  },
+  "field_3d_config": {
+    "scenario_type": "transformer",
+    "explorer_id": "transformer_explorer",
+    "slider_controls": {
+      "N_s": { "min": 25, "max": 400, "step": 25, "default": 200, "label": "Secondary turns Nₛ" },
+      "V_p": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Primary voltage Vₚ" },
+      "f": { "min": 0.10, "max": 1.00, "step": 0.05, "default": 0.25, "label": "Source frequency f" },
+      "R_load": { "min": 5, "max": 100, "step": 5, "default": 25.0, "label": "Load resistance R_load" }
+    },
+    "switch_control": {
+      "id": "tfr_switch",
+      "param": "position",
+      "values": ["A", "B"],
+      "default": "A",
+      "label": "Primary source selector (A = AC supply, B = DC battery)",
+      "postmessage_drivable": false,
+      "note": "Rule-27 stable ID. SCRIPTED-ONLY at STATE_3 (the AC->DC throw is a one-shot scripted event, never teacher-draggable at that state). NOT part of STATE_11's live control set (physics_block Section 6 item 13) -- STATE_11's controls are N_s/V_p/f/R_load only; do not wire this as an explore-draggable object."
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "current": "#FFB300",
+      "primary_voltage": "#4FC3F7",
+      "secondary_voltage": "#66BB6A",
+      "flux": "#B388FF",
+      "heat": "#FF6E40",
+      "lamp": "#FFF8E1",
+      "battery_out": "#90A4AE",
+      "total": "#ECEFF1"
+    },
+    "engine_contract": {
+      "note": "Binding implementation notes for the field3d-surgeon (peter_parker:renderer_primitives) consuming this config -- transcribed from physics_author's physics_block Preambles A/B and Section 6 constraint callouts. Not renderer code; a spec for the NEW 'transformer' scenario_type.",
+      "phase_convention": "ONE state-local theta(t) clock; v_p_t, v_s_t, i_s_t, i_p_t are ALL sin(theta) -- in phase, no leakage reactance modeled; Phi_t alone is -cos(theta), 90deg behind (Faraday's law itself, Preamble A). NEVER introduce a phi/lag variable anywhere in this concept.",
+      "radians_wrap": "Every sin/cos call wraps its degree-native angle in radians(...) -- theta in every AC formula; blip_env_t's PI*clamp(...) argument is already radian-native, no wrap needed there.",
+      "s3_flux_hide": "STATE_3 renders NO Phi numeral, ever -- only the qualitative badge 'dPhi/dt = 0'. flux_density_frac_dc=1.0 (constant) drives tube opacity/thickness during the DC hold. Phi_t (AC-only formula) must NOT be evaluated during STATE_3's dc_hold cue window (Preamble B1).",
+      "s3_blip_no_numeral": "blip_env_t drives ONLY the needle-kick pose and lamp-flash brightness -- no HUD/chip numeral is ever attached to it (Preamble B3). Do not invent one.",
+      "s3_two_zeros": "STATE_1's dark secondary (secondary_closed=0, mechanically open) and STATE_3's dead secondary (secondary_closed=1, zero EMF) MUST render visibly differently -- STATE_3's loop stays rendered CLOSED throughout (Preamble B4, binding on the engine AND eye-walker).",
+      "s8_declared_leak_constants": "copper_loss/eddy_loss/hysteresis_loss/stray_loss are hand-authored 1dp constants valid ONLY at the ratio-2 work point (N_s=200,V_p=10.0,f=0.25,R_load=25.0) -- never wire them to a general formula that would also fire in STATE_11 explore (explore excludes leak bars entirely, ring gate 38b).",
+      "glow_pane_multiplier": "STATE_6 and STATE_8's 'gauges' glow_focal must brighten the WHOLE gauge pane as a multiplier on its own live channel -- never per-bar (a Pp/Ps pair, or the leak ledger, must never visually imply one side 'matters more'). See glow_pane_multiplier:true on those two states.",
+      "subscript_compose": "Pinned ASCII tokens V_p/V_s/I_p/I_s/N_p/N_s/P_p/P_s/Phi/eta compose-sweep to Vₚ Vₛ Iₚ Iₛ Nₚ Nₛ Pₚ Pₛ Φ η on ALL THREE text paths (DOM HUD innerHTML, canvas ctx.fillText, sprite labels). R_line stays literal (no subscript compose). Verify the compose regex handles LETTER subscripts (U+209A/U+209B) -- a NEW surface for the fleet (previously only digit/other-letter subscripts existed).",
+      "near_zero_clamp": "|v_p_t|, |v_s_t|, |i_s_t|, |i_p_t|, |Phi_t| < half-LSB render unsigned 0.00 (crosses zero every cycle in every AC state).",
+      "s5_thumb_lockstep": "During the scripted N_s ramp (STATE_5, ns_ramp_start_at_ms..+ns_ramp_dur_ms), the DOM slider thumb position + numeric label MUST move in lockstep with N_s_ramp_t -- never just the underlying physics/visual while the thumb sits frozen (F1 ghost_compare_cause_invisible_slider_frozen prevention).",
+      "s7_precision_exception": "Loss values render at 3dp ONLY in STATE_7 (line_loss_precision_dp:3) -- nowhere else in the concept needs 3dp precision; do not propagate this exception to other states' I/P displays.",
+      "explorer_objects": "tfr_switch (AC/DC source selector, Rule-27 stable ID, position 'A'|'B') is SCRIPTED-ONLY at STATE_3 -- do NOT add it as an explore-draggable object in STATE_11. The secondary switch closes ONCE at STATE_2 (scripted one-shot) and stays closed STATE_3-STATE_11 (secondary_closed=1) -- never re-opened, never independently draggable.",
+      "p_p_vs_p_p_real": "P_p (ideal, = P_s) is used STATE_1-7/10/11; P_p_real (= P_s + leaks) is used ONLY at STATE_8. Keep them as two distinct physics_engine_config variables (already separate above) -- a single shared variable would silently break either STATE_6's 'nothing amplified' equality or STATE_8's '0.8W gap'.",
+      "no_bridge_invariant": "The two loop meshes (primary, secondary) are electrically disjoint at every state -- no bead ever crosses between loops, no conductive path intersects both. Probe this at every state.",
+      "settled_pin_discipline": "Every guided state's settled/frozen pose is PHASE-pinned (a v-extremum, the dead-hold, the cool phase, the laminated half) -- never a recurring instantaneous zero-crossing. No state freezes the master clock mid-guided; STATE_10 dims via E4 restore (reveal_hold), STATE_11 free-runs forever (Rule 37)."
+    },
+    "states": {
+      "STATE_1": {
+        "label": "One AC-driven flux circulates the closed core and threads BOTH windings — the secondary sits open and dark",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_band"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "One flux, two coils",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "N_s": 100, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 0 },
+        "transformer": {
+          "mode": "flux_link",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 0,
+          "apparatus_dock_at_ms": 0,
+          "apparatus_dock_dur_ms": 1200,
+          "flux_build_at_ms": 1200,
+          "flux_build_dur_ms": 1300,
+          "flux_breathe_start_at_ms": 2500,
+          "dark_secondary_plant_at_ms": 2500,
+          "band_content": "flux_trace",
+          "gauges_content": "none",
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": false,
+          "hud_show_ip": false,
+          "hud_show_turns": false,
+          "hud_show_power": false,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "flux_numeral_hidden": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "flux",
+          "formula_text": ""
+        }
+      },
+      "STATE_2": {
+        "label": "SUPPORTING aha — close the secondary's own loop: current flows and the lamp lights, with NO wire to the source",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "No wires — power crosses",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "N_s": 100, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "close_secondary",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "secondary_close_at_ms": 0,
+          "release_beat_dur_ms": 1000,
+          "loop_wake_at_ms": 1000,
+          "meters_settle_at_ms": 1600,
+          "band_content": "flux_trace",
+          "gauges_content": "none",
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": true,
+          "hud_show_ip": true,
+          "hud_show_turns": false,
+          "hud_show_power": false,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "lamp",
+          "formula_text": ""
+        }
+      },
+      "STATE_3": {
+        "label": "PIVOT #2 — swap in a DC battery: one blip at the throw, then a large STEADY flux hands over nothing",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Steady flux — nothing crosses",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "N_s": 100, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "dc_dead",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "ac_leg_dur_ms": 800,
+          "throw_at_ms": 800,
+          "blip_start_at_ms": 800,
+          "blip_dur_ms": 400,
+          "dc_hold_start_at_ms": 1200,
+          "chip_at_ms": 1600,
+          "fix_clause_at_ms": 2200,
+          "flux_density_frac_dc": 1.0,
+          "flux_numeral_hidden": true,
+          "dc_hold": true,
+          "band_content": "flux_trace",
+          "gauges_content": "none",
+          "hud_show_flux": true,
+          "hud_show_vp": false,
+          "hud_show_vs_is": true,
+          "hud_show_ip": true,
+          "hud_show_turns": false,
+          "hud_show_power": false,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dim_apparatus": false,
+          "glow_focal": "switch",
+          "formula_text": ""
+        }
+      },
+      "STATE_4": {
+        "label": "Each turn rides the same changing flux, so every turn contributes the SAME 0.100 V; turns in series stack",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips", "tfr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Every turn, equal share",
+        "show_sliders": true,
+        "formula_overlay": "Vₚ/Nₚ = 0.100 V/turn",
+        "variable_overrides": { "N_s": 100, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "per_turn",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "ac_restore_at_ms": 0,
+          "ac_restore_dur_ms": 1000,
+          "tick_cascade_start_at_ms": 1000,
+          "tick_cascade_dur_ms": 2500,
+          "cascade_chip_at_ms": 3500,
+          "band_content": "tick_bar",
+          "gauges_content": "none",
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": false,
+          "hud_show_ip": false,
+          "hud_show_turns": true,
+          "hud_show_power": false,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "primary",
+          "formula_text": "Vₚ/Nₚ = 0.100 V/turn"
+        }
+      },
+      "STATE_5": {
+        "label": "Crank Nₛ 100→200 and Vₛ obeys: Vₛ/Vₚ = Nₛ/Nₚ (step-up; fewer turns = step-down)",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips", "tfr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Turns set the voltage",
+        "show_sliders": true,
+        "formula_overlay": "Vₛ/Vₚ = Nₛ/Nₚ",
+        "variable_overrides": { "N_s": 100, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "turns_ramp",
+          "controls": ["N_s"],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "ns_ramp_start_at_ms": 0,
+          "ns_ramp_dur_ms": 3000,
+          "ns_ramp_from": 100,
+          "ns_ramp_to": 200,
+          "ns_thumb_lockstep": true,
+          "invariant_clause_at_ms": 1500,
+          "ramp_chip_at_ms": 3000,
+          "naming_clause_at_ms": 3400,
+          "ns_ungate_at_ms": 3000,
+          "band_content": "vp_vs_waveform",
+          "gauges_content": "none",
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": true,
+          "hud_show_ip": false,
+          "hud_show_turns": true,
+          "hud_show_power": false,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "secondary",
+          "formula_text": "Vₛ/Vₚ = Nₛ/Nₚ"
+        }
+      },
+      "STATE_6": {
+        "label": "PRIMARY aha — the volts doubled but the amps halved: VₚIₚ = VₛIₛ, the watts pass through untouched",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_gauges", "tfr_chips", "tfr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Volts up, amps down",
+        "show_sliders": true,
+        "formula_overlay": "Vₚ·Iₚ = Vₛ·Iₛ",
+        "variable_overrides": { "N_s": 200, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "power_lock",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "meter_focus_at_ms": 0,
+          "meter_focus_dur_ms": 1000,
+          "ghost_latch_at_ms": 1000,
+          "ghost_latch_dur_ms": 1500,
+          "strike_at_ms": 2500,
+          "chip_at_ms": 2700,
+          "band_content": "vp_vs_waveform",
+          "gauges_content": "power_bars",
+          "glow_pane_multiplier": true,
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": true,
+          "hud_show_ip": true,
+          "hud_show_turns": false,
+          "hud_show_power": true,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "gauges",
+          "formula_text": "Vₚ·Iₚ = Vₛ·Iₛ"
+        }
+      },
+      "STATE_7": {
+        "label": "Step up → tiny current → the line loss collapses ×100; step down at the house — why the grid exists",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips", "tfr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Step up, lose less",
+        "show_sliders": true,
+        "formula_overlay": "P_loss = I² · R_line",
+        "variable_overrides": { "N_s": 200, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "transmission",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "strip_swap_at_ms": 0,
+          "strip_swap_dur_ms": 1500,
+          "phase_a_start_at_ms": 1500,
+          "phase_a_dur_ms": 4500,
+          "loss_direct_chip_at_ms": 5500,
+          "step_up_swap_at_ms": 6000,
+          "step_up_swap_dur_ms": 1000,
+          "phase_b_start_at_ms": 7000,
+          "phase_b_dur_ms": 4500,
+          "loss_stepped_chip_at_ms": 10500,
+          "house_clause_at_ms": 9000,
+          "line_loss_precision_dp": 3,
+          "band_content": "transmission_strip",
+          "gauges_content": "power_bars",
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": true,
+          "hud_show_ip": true,
+          "hud_show_turns": false,
+          "hud_show_power": true,
+          "hud_show_eta": false,
+          "hud_show_lineloss": true,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "band",
+          "formula_text": "P_loss = I² · R_line"
+        }
+      },
+      "STATE_8": {
+        "label": "Real transformers leak a little: four named losses; η = Pₛ/Pₚ ≈ 95%",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_gauges", "tfr_chips", "tfr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Real transformers leak",
+        "show_sliders": true,
+        "formula_overlay": "η = Pₛ/Pₚ",
+        "variable_overrides": { "N_s": 200, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "loss_ledger",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "gap_open_at_ms": 0,
+          "gap_open_dur_ms": 1500,
+          "branches_peel_start_at_ms": 1500,
+          "branches_peel_dur_ms": 4500,
+          "ledger_close_at_ms": 6000,
+          "ledger_close_dur_ms": 1500,
+          "hum_clause_at_ms": 6500,
+          "leak_precision_dp": 1,
+          "band_content": "vp_vs_waveform",
+          "gauges_content": "power_bars_with_leaks",
+          "glow_pane_multiplier": true,
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": true,
+          "hud_show_ip": true,
+          "hud_show_turns": false,
+          "hud_show_power": true,
+          "hud_show_eta": true,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "gauges",
+          "formula_text": "η = Pₛ/Pₚ"
+        }
+      },
+      "STATE_9": {
+        "label": "Inside the core: solid metal breeds wide eddy whirlpools; lamination chops them — the leak quenched",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Thin slices stop eddies",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "N_s": 200, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "lamination",
+          "controls": [],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "lens_open_at_ms": 0,
+          "lens_open_dur_ms": 1500,
+          "solid_run_start_at_ms": 1500,
+          "solid_run_dur_ms": 3500,
+          "slice_swap_at_ms": 5000,
+          "slice_swap_dur_ms": 1000,
+          "laminated_run_start_at_ms": 6000,
+          "laminated_run_dur_ms": 3000,
+          "retro_link_at_ms": 7000,
+          "band_content": "vp_vs_waveform",
+          "gauges_content": "none",
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": true,
+          "hud_show_ip": true,
+          "hud_show_turns": false,
+          "hud_show_power": false,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "core",
+          "formula_text": ""
+        }
+      },
+      "STATE_10": {
+        "label": "Derivation: ε = −N·dΦ/dt on the SAME Φ → εₛ/εₚ = Nₛ/Nₚ; ideal power → Iₚ/Iₛ = Nₛ/Nₚ",
+        "visible_elements": ["tfr_core", "tfr_primary", "tfr_secondary", "tfr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "The ratio, derived",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "N_s": 200, "V_p": 10.0, "f": 0.25, "R_load": 25.0, "secondary_closed": 1 },
+        "transformer": {
+          "mode": "derivation",
+          "controls": [],
+          "theta0_deg": 0,
+          "dim_apparatus": true,
+          "link1_at_ms": 0,
+          "link2_at_ms": 1500,
+          "link3_at_ms": 3000,
+          "link4_at_ms": 4000,
+          "link5_at_ms": 5500,
+          "link6_at_ms": 7000,
+          "band_content": "none",
+          "gauges_content": "none",
+          "hud_show_flux": false,
+          "hud_show_vp": false,
+          "hud_show_vs_is": false,
+          "hud_show_ip": false,
+          "hud_show_turns": false,
+          "hud_show_power": false,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "glow_focal": "formula",
+          "formula_text": "εₚ = −Nₚ·dΦ/dt → εₛ = −Nₛ·dΦ/dt → εₛ/εₚ = Nₛ/Nₚ → Vₛ/Vₚ = Nₛ/Nₚ → Iₚ/Iₛ = Nₛ/Nₚ"
+        }
+      },
+      "STATE_11": {
+        "label": "Explore — the machine under the teacher's hands: turns, voltage, frequency, load",
+        "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_gauges", "tfr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "Vₛ/Vₚ = Nₛ/Nₚ",
+        "transformer": {
+          "mode": "explore",
+          "controls": ["N_s", "V_p", "f", "R_load"],
+          "theta0_deg": 0,
+          "secondary_closed": 1,
+          "band_content": "vp_vs_waveform",
+          "gauges_content": "power_bars",
+          "hud_show_flux": true,
+          "hud_show_vp": true,
+          "hud_show_vs_is": true,
+          "hud_show_ip": true,
+          "hud_show_turns": true,
+          "hud_show_power": true,
+          "hud_show_eta": false,
+          "hud_show_lineloss": false,
+          "dc_hold": false,
+          "dim_apparatus": false,
+          "glow_focal": "formula",
+          "formula_text": "Vₛ/Vₚ = Nₛ/Nₚ"
+        }
+      }
+    }
+  }
+}

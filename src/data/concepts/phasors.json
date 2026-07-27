@@ -1,0 +1,744 @@
+{
+  "concept_id": "phasors",
+  "concept_name": "Phasors — Rotating Vectors for AC",
+  "chapter": 7,
+  "section": "7.5",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.5 Representation of AC Current and Voltage by Rotating Vectors — Phasors — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. Fourth of 8 in the founder-reordered Ch.7 map (ac_voltage_resistor -> ac_voltage_inductor -> ac_voltage_capacitor -> phasors -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer). This sim teaches REPRESENTATION, not new physics: a sinusoid is the vertical shadow of an arrow rotating steadily at omega, amplitude becomes the arrow's length, instantaneous value becomes its shadow, and the chapter's three settled phase facts (R in step, L a quarter behind, C a quarter ahead) become three frozen angles readable in one glance because every phasor of a circuit rides one shared clock. SCOPE: no phasor ADDITION anywhere (no tip-to-tail, ever -- deferred to series_lcr_circuit), no impedance, no complex numbers, no CIVIL-style mnemonic, no reactance numeral or symbol (X_L, X_C) renders anywhere in this sim in any state or curriculum cut -- the R = X_L = X_C = 5.0 ohm coincidence at the chapter's shared defaults (the resonance condition) is withheld whole for series_lcr_circuit. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the two misconceptions -- 'the arrow is the physical quantity, something in the circuit is rotating' and 'phase difference is a time delay you can only see by watching traces over a whole cycle' -- are confronted inside EPIC-L via Rule 16a misconception_watch at exactly S2 and S4, each a straightforward contrast beat, no predict->reveal). Routed to the NEW field_3d 'ac_phasor' scenario -- a clean standalone sibling of the sealed ac_resistor/ac_inductor/ac_capacitor scenarios, built around a combined left-band canvas (disc region + sine strip, shared internal y-axis, horizontal projection tie-line) that this concept's engine dispatch builds AFTER this JSON is authored (Class-B triage, engine delta first per the architect skeleton section 0b). Every state is live (show_sliders true, Rule 31) but exposes only its own relevant control row(s): vm at S2 (plain live), f_demo at S3 (plain live, then RE-LOCKED S4-S7 since a live f there would re-scale i_m via reactance and drag the withheld reactance fact back on stage), ALL FOUR (vm, f_demo, element picker R/L/C, element-value row-swap slider) at S8 (explore). The element carousel swaps heater(R)->coil(L)->plates(C) across S3->S4->S5, consuming the SEALED sibling decimals R=5.0 ohm / L=3.1831 H / C=0.1273 F verbatim (never the 10/pi, 0.4/pi fractions, which are design intent only). Handoff to series_lcr_circuit (next): delivers the disc pane + rigid same-omega rotation + the reading convention (ahead=peaks-first, CCW) + the three element angles as settled diagram facts; withholds the reactance numerals themselves, phasor addition, impedance, and the resonance observation.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "ac_phasor"
+    ]
+  },
+  "prerequisites": [
+    "ac_voltage_resistor",
+    "ac_voltage_inductor",
+    "ac_voltage_capacitor"
+  ],
+  "real_world_anchor": {
+    "primary": "Stand beside a bicycle and the pedal traces a clean circle at a steady rate. Stand directly behind it, edge-on, and the same pedal just bobs up and down — smoothly, fastest through the middle, pausing at top and bottom: a pure sinusoid. Nothing about the motion changed; only the viewpoint did. That is the entire phasor idea: the scope has been showing the chapter's circuits edge-on, and the disc pane simply walks around to the side view. And the two pedals of one crank are welded 180° apart — they turn together forever, their angle never changing however fast you ride: rigid co-rotation with a locked relative angle, which is exactly why one frozen glance at a phasor pair tells the whole timing story.",
+    "secondary": "A fan blade's tip watched exactly edge-on shows the same bob, only faster — the chapter's slowed-for-watching discipline, called back. Mains frequency, where mentioned, stays neutral ('the mains frequency'), never a fixed regional number."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "vm": { "name": "Peak (amplitude) voltage — the v-arrow's length, on its own cyan scale", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "f_demo": { "name": "Demo-compressed AC frequency (real mains is tens of Hz)", "unit": "Hz", "min": 0.1, "max": 0.5, "default": 0.25, "step": 0.05, "role": "driver" },
+      "R": { "name": "Resistance of the heater element — the R branch (S1-S3)", "unit": "Ohm", "min": 2, "max": 20, "default": 5.0, "step": 1, "role": "driver" },
+      "L": { "name": "Self-inductance of the coil — the L branch (S4)", "unit": "H", "min": 1.0, "max": 10.0, "default": 3.1831, "step": 0.1, "role": "driver" },
+      "C": { "name": "Capacitance of the plates — the C branch (S5-S6)", "unit": "F", "min": 0.04, "max": 0.40, "default": 0.1273, "step": 0.02, "role": "driver" },
+      "element": { "name": "Active circuit element in the slot — state-scripted R (S1-S3) -> L (S4) -> C (S5-S6) -> generic (S7, element-agnostic derivation); S8 is the live 3-way picker (R/L/C), never a slider", "unit": "categorical (R|L|C|generic)" },
+      "omega": { "name": "Angular frequency of the shared rotating clock", "unit": "rad/s", "derived": "omega = 2*PI*f_demo" },
+      "omega_deg_per_s": { "name": "Angular speed in degrees/second — the arithmetic gift at defaults", "unit": "deg/s", "derived": "omega_deg_per_s = omega * 180/PI  [= 90.000 exactly at f_demo=0.25]" },
+      "T": { "name": "Period of one full revolution = one full AC cycle (first TAUGHT at S6, co-located with its only formula use)", "unit": "s", "derived": "T = 1/f_demo" },
+      "theta0": { "name": "Per-state closed-form phase-ANCHOR — a constant, never a free-running second integrator. Zero for every state except S6.", "unit": "deg", "derived": "theta0 = 0 for S1-S5,S7,S8; theta0 = -90 for S6 ONLY (the F2 entry offset that produces the ~1.0s/~2.0s crossing timing)" },
+      "theta_v": { "name": "v-arrow rotation angle — pure function of the state's own clock (Rule 26), rewindable under SET_TIME_FREEZE, never a dt-accumulator", "unit": "deg", "derived": "theta_v(t) = theta0(state) + omega_deg_per_s * t" },
+      "phi": { "name": "Constant angular offset of the i-arrow from the v-arrow, set by the ACTIVE element only (never f_demo or vm). Same quantity as the phase-difference arc reading.", "unit": "deg", "derived": "phi = 0 (R, S1-S3) | -90 (L lag, S4) | +90 (C lead, S5-S6)   [state-scripted via variable_overrides, NOT a slider]" },
+      "theta_i": { "name": "i-arrow rotation angle — rigidly co-rotating with theta_v at a LOCKED offset (ONE closed-form clock, per-arrow constant offsets — never two independent phase integrators)", "unit": "deg", "derived": "theta_i(t) = theta_v(t) + phi" },
+      "v": { "name": "Instantaneous voltage — the v-arrow's vertical projection (the shadow), the S1/S2 taught quantity", "unit": "V", "derived": "v = vm * sin(radians(theta_v))" },
+      "im": { "name": "Peak current for the ACTIVE element (own amber scale, never length-compared to vm)", "unit": "A", "derived": "im = vm/R (R active) | vm/(omega*L) (L active) | vm*omega*C (C active)" },
+      "i": { "name": "Instantaneous current — the i-arrow's vertical projection", "unit": "A", "derived": "i = im * sin(radians(theta_i))" },
+      "theta_v_readout_deg": { "name": "Live theta HUD value, degrees (S2 first-taught; radians only from S7)", "unit": "deg", "derived": "((theta_v % 360) + 360) % 360" },
+      "phi_arc_deg": { "name": "Live phase-difference arc numeric (S3 first-taught, magnitude convention: 0/90/90)", "unit": "deg", "derived": "abs(phi)" },
+      "delta_t": { "name": "S6 angle-to-time conversion — the taught quantity of the Delta t formula surface (T itself first tabled HERE, co-located)", "unit": "s", "derived": "delta_t = (abs(phi)/360) * T" },
+      "arrow_upper_crossing": { "name": "True exactly when an arrow's rotation angle passes through the finish-line direction (S6 flash trigger) — the trough (270 deg) is the companion NEVER-flash instant", "unit": "boolean", "derived": "(theta mod 360) crosses 90 deg, increasing" }
+    },
+    "computed_outputs": {
+      "v_display": { "formula": "vm*Math.sin((theta0 + omega_deg_per_s*t)*Math.PI/180)" },
+      "i_display": { "formula": "im*Math.sin((theta0 + omega_deg_per_s*t + phi)*Math.PI/180)" },
+      "im_display": { "formula": "element==='R' ? vm/R : element==='L' ? vm/(omega*L) : vm*omega*C" },
+      "theta_readout_display": { "formula": "((theta0 + omega_deg_per_s*t) % 360 + 360) % 360" },
+      "phi_arc_display": { "formula": "Math.abs(phi)" },
+      "delta_t_display": { "formula": "(Math.abs(phi)/360) * T" },
+      "T_display": { "formula": "1/f_demo" },
+      "omega_rad_display": { "formula": "2*Math.PI*f_demo" }
+    },
+    "formulas": {
+      "master_rotation": "theta_v = theta0 + omega*t — ONE closed-form clock per state (theta0 = 0 except S6, where theta0 = -90 deg); theta is identically omega*t from the moment it is drawn (S1)",
+      "voltage_projection": "v = vm sin(theta_v) — the arrow's vertical shadow IS the instantaneous voltage (S1)",
+      "shadow_reading": "shadow = vm sin(theta) — S2's own phrasing: length (vm) is constant, shadow (v) is not",
+      "rigid_pair_offset": "theta_i = theta_v + phi — the i-arrow rides the SAME clock at a LOCKED constant offset phi, never a second free-running phase (S3-S5)",
+      "current_projection": "i = im sin(theta_i), im = vm/R (R) | vm/(omega L) (L) | vm*omega*C (C) — phi = 0/-90/+90 deg respectively",
+      "phase_difference": "phi = angle(v-arrow, i-arrow) — R: 0 deg in phase (S3) | L: 90 deg behind (S4) | C: 90 deg ahead (S5)",
+      "angle_time_conversion": "Delta t = (phi/360deg) * T — the reading convention as algebra, degree-native, T = 4.0 s here (S6)",
+      "derivation_chain": "theta = omega*t -> one turn = 2 pi rad = one period T -> omega = 2 pi/T = 2 pi f = pi/2 rad/s here -> v = vm sin ωt ; i = im sin(ωt -+ pi/2) (S7; minus for L lag, plus for C lead)",
+      "explore_formula": "phi = angle(v, i) — the whole concept in one symbol (S8, core-ring gloss spoken)"
+    },
+    "constraints": [
+      "theta_v(t) = theta0(state) + omega*t at every instant — a pure function of the state's own clock (Rule 26); theta0 = 0 for every state except S6 (theta0 = -90 deg, a declared closed-form phase anchor, never a free-running independent integrator).",
+      "The v-arrow's LENGTH is vm and never changes with time inside a state — only its vertical projection (the shadow, v) changes; conflating the two is the S2 pivot misconception.",
+      "theta_i(t) = theta_v(t) + phi with phi fixed by the active element alone (0/-90/+90 deg) — the angle between the co-rooted v- and i-arrows is CONSTANT at every instant within a state; it never breathes, and it never depends on omega or vm (S3's f-drag proves this live).",
+      "The v-arrow and i-arrow are CO-ROOTED at the disc centre in every multi-arrow state — never chained tip-to-tail (that is series_lcr_circuit's front door, never shown here).",
+      "An arrow's upper (peak-line) crossing occurs exactly when its rotation angle is 90 deg (mod 360); the trough crossing (270 deg) is the physically real companion event and NEVER flashes (S6).",
+      "No reactance numeral or symbol (X_L, X_C) renders anywhere in this sim, in any state or curriculum cut — the R = X_L = X_C = 5.0 Ohm coincidence at these defaults (the resonance condition) is withheld whole for series_lcr_circuit."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "A quarter-cycle lag freezes into a right angle that never changes.",
+    "visual_confirmation": "Three freezes at three different instants — both arrows point somewhere new every time, yet the arc reads ninety degrees at all three."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "reading_diagrams": ["STATE_5", "STATE_6"],
+    "derivation": ["STATE_7"],
+    "exploration": ["STATE_8"]
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during the architect dispatch, so zero external syllabus verification happened. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.5 content). Every other cell carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.5 Representation of AC Current and Voltage by Rotating Vectors — Phasors: rotating-vector representation, phasor diagrams for R/L/C; S7 = the ωt formalism itself",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "absent",
+        "syllabus_unit": "9702's AC topic is rms + rectification; phasor diagrams believed not required",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "No AC circuit analysis believed present at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "absent",
+        "syllabus_unit": "AC analysis believed removed in the 2023 syllabus reform",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "DC circuits only, believed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "absent",
+        "syllabus_unit": "AC steady-state/phasor formalism believed beyond the CED",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "Phasor representation believed not covered at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "A sinusoid is the shadow of a steadily rotating arrow",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_congruence_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["circle_to_sine_projection", "what_actually_rotates_phasor", "one_turn_one_cycle"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_arrow_label", "position": { "x": 380, "y": 60 }, "text": "spinning arrow, angle tagged ωt", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s1_ghost_label", "position": { "x": 200, "y": 250 }, "text": "dashed ghost: the trace you measured (lesson 1)", "color": "#B0BEC5" },
+          { "type": "annotation", "id": "s1_congruence_label", "position": { "x": 560, "y": 400 }, "text": "shadow lands exactly on the measured wave, crest for crest", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "The same resistor circuit, but now an arrow spins beside it, angle tagged ωt.", "glow": "v_phasor" },
+            { "id": "s1_2", "text_en": "Its tip casts a shadow straight down onto the scope, and that shadow starts drawing.", "glow": "projection" },
+            { "id": "s1_3", "text_en": "One turn later, the shadow lands exactly on the wave you already measured.", "glow": "v_trace" },
+            { "id": "s1_4", "text_en": "This spinning arrow is called a phasor — one turn is one full cycle.", "glow": "v_phasor" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The arrow is bookkeeping — length is the peak, shadow is the now",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_struck_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_bookkeeping_label", "position": { "x": 380, "y": 60 }, "text": "arrow is bookkeeping — nothing in the circuit spins", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s2_struck_label", "position": { "x": 200, "y": 250 }, "text": "struck: v = 10 V? (wrong at 45°) — true shadow +7.1 V", "color": "#EF5350" },
+          { "type": "annotation", "id": "s2_agree_label", "position": { "x": 560, "y": 400 }, "text": "at 90°: length and shadow agree — 10.0 V, only here", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "That arrow is bookkeeping — nothing in the circuit itself spins.", "glow": "v_phasor" },
+            { "id": "s2_2", "text_en": "Freeze at forty-five: length reads ten volts — wrong, the true shadow is seven point one.", "glow": "v_phasor", "scenario_cue": "freeze_45_arm" },
+            { "id": "s2_3", "text_en": "At ninety, length and shadow finally agree — ten volts, only here.", "glow": "v_phasor", "scenario_cue": "freeze_90_arm" },
+            { "id": "s2_4", "text_en": "At a hundred eighty, shadow reads zero — the arrow's still ten volts long.", "glow": "v_phasor", "scenario_cue": "freeze_180_arm" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The arrow is the physical quantity — something in the circuit is rotating, and the arrow's size is the value right now.",
+            "visual_counter": "The struck wrong-readout (v = 10 V? struck) beside the true HUD v = +7.1 V at θ = 45° — the arrow visibly still full length — while the circuit band does exactly what it did all chapter (straight bead oscillation, nothing circular anywhere).",
+            "one_line_fix": "The arrow is bookkeeping — its length is the peak, its shadow is the now; nothing in the circuit spins."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Two arrows, one clock — the angle between them is the phase difference",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_arc_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_i_arrow_label", "position": { "x": 380, "y": 60 }, "text": "amber current arrow docks, locked in step with voltage", "color": "#FFB300" },
+          { "type": "annotation", "id": "s3_scale_label", "position": { "x": 200, "y": 250 }, "text": "volt-arrows and amp-arrows never compare lengths, only angle", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s3_arc_label", "position": { "x": 560, "y": 400 }, "text": "phase difference φ = 0.0° — in step together", "color": "#CE93D8" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "A second arrow joins — amber for current — locked in step with voltage.", "glow": "i_phasor", "scenario_cue": "i_arrow_dock" },
+            { "id": "s3_2", "text_en": "It's two amps on its own scale — volt-arrows and amp-arrows never compare lengths, only angle.", "glow": "i_phasor" },
+            { "id": "s3_3", "text_en": "That angle is the phase difference φ — zero here, in step together.", "glow": "angle_arc", "scenario_cue": "arc_open" },
+            { "id": "s3_4", "text_en": "Speed up the clock: both spin faster, the lock never opens.", "glow": "i_phasor", "scenario_cue": "f_invite" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Lag becomes an angle — the PRIMARY aha",
+        "duration": 17,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_freeze_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["angle_vs_time_delay_conversion", "frozen_diagram_still_shows_lag", "why_angle_never_changes"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_swap_label", "position": { "x": 380, "y": 60 }, "text": "heater out, coil in — current snaps 90° behind voltage", "color": "#FFB300" },
+          { "type": "annotation", "id": "s4_freeze_label", "position": { "x": 200, "y": 250 }, "text": "freeze anywhere: 30°, 150°, 240° — arc always reads 90.0°", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s4_plant_label", "position": { "x": 560, "y": 400 }, "text": "ahead in the spin peaks first — this quarter turn was last lesson's one second of lateness", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Heater out, coil in — the current arrow snaps ninety degrees behind voltage.", "glow": "i_phasor", "scenario_cue": "coil_swap" },
+            { "id": "s4_2", "text_en": "Freeze anywhere — thirty, a hundred fifty, two forty — the angle always reads ninety.", "glow": "angle_arc", "scenario_cue": "freeze_trio_arm" },
+            { "id": "s4_3", "text_en": "One shared clock, one locked angle: timing has frozen into geometry.", "glow": "angle_arc" },
+            { "id": "s4_4", "text_en": "Whichever arrow's ahead in the spin peaks first — that quarter turn is last lesson's one second of lateness.", "glow": "angle_arc" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Phase difference is a time delay you can only see by watching traces over a whole cycle — a frozen diagram can't hold timing.",
+            "visual_counter": "Three freezes at three different instants — both arrows point somewhere new every time, yet the arc reads φ = 90.0° at every single one.",
+            "one_line_fix": "Both arrows ride one clock, so the angle between them never changes — one snapshot holds the whole timing story."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Lead is the mirror — the capacitor flips the angle to the other side",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_mirror_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_swap_label", "position": { "x": 380, "y": 60 }, "text": "coil out, plates in — current arrow flips across voltage", "color": "#FFB300" },
+          { "type": "annotation", "id": "s5_mirror_label", "position": { "x": 200, "y": 250 }, "text": "same right angle, mirror side — current now leads instead of lags", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s5_still_label", "position": { "x": 560, "y": 400 }, "text": "everything else holds still — only that one angle flipped", "color": "#FFCA28" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Coil out, plates in — watch the current arrow sweep clean across, from ninety behind to ninety ahead.", "glow": "i_phasor", "scenario_cue": "flip_start" },
+            { "id": "s5_2", "text_en": "Same right angle, just the mirror side — the capacitor's current now leads instead of lags.", "glow": "angle_arc" },
+            { "id": "s5_3", "text_en": "Everything else holds still — only that one angle flipped.", "glow": "i_phasor" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Reading the frozen diagram — ahead in the spin means first past the line",
+        "duration": 17,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s6_scoreboard_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["which_phasor_leads_on_diagram", "rotation_direction_convention_ccw", "arrow_length_across_units_trap"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_line_label", "position": { "x": 380, "y": 60 }, "text": "vertical line is the finish line — first past it, peaks first", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s6_cross_label", "position": { "x": 200, "y": 250 }, "text": "current crosses first at ≈1.0 s — a quarter of the 4.0 s period T", "color": "#FFB300" },
+          { "type": "annotation", "id": "s6_scoreboard_label", "position": { "x": 560, "y": 400 }, "text": "three frozen diagrams: resistor in step, coil behind, capacitor ahead", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "That vertical line is the finish line — first past it, peaks first.", "glow": "finish_line", "scenario_cue": "line_brighten" },
+            { "id": "s6_2", "text_en": "Watch current cross first, one second in — a quarter of the four-second period, T.", "glow": "finish_line", "scenario_cue": "i_cross_arm" },
+            { "id": "s6_3", "text_en": "Voltage follows a quarter turn later, at two seconds — crossing order is cresting order.", "glow": "finish_line", "scenario_cue": "v_cross_arm" },
+            { "id": "s6_4", "text_en": "The whole chapter fits in three frozen diagrams: resistor in step, coil behind, capacitor ahead.", "glow": "element", "scenario_cue": "scoreboard_split" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "The angle is ωt — one turn is one period, written as algebra",
+        "duration": 17,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s7_chain3_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_chain1_label", "position": { "x": 380, "y": 60 }, "text": "θ = ωt — one turn is 2π radians, one period", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s7_chain2_label", "position": { "x": 200, "y": 250 }, "text": "ω = 2π/T = 2πf = π/2 rad/s here", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s7_chain3_label", "position": { "x": 560, "y": 400 }, "text": "v = vₘ sin ωt; i = iₘ sin(ωt ∓ π/2) — the same arrow, started ∓90° around the circle", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "The angle is simply ωt — one turn is two pi radians, one period.", "glow": "formula", "scenario_cue": "chain_1" },
+            { "id": "s7_2", "text_en": "Here that's omega equals two pi over T — pi over two radians a second.", "glow": "formula", "scenario_cue": "chain_2" },
+            { "id": "s7_3", "text_en": "Voltage is vₘ sine ωt; current is iₘ sine of ωt, plus or minus pi over two.", "glow": "formula", "scenario_cue": "chain_3" },
+            { "id": "s7_4", "text_en": "Same arrow, started ninety degrees earlier or later around the circle.", "glow": "formula", "scenario_cue": "chain_4" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Explore — the whole phasor machine, live",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s8_formula_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_drag_label", "position": { "x": 380, "y": 60 }, "text": "drag peak voltage, frequency, and pick the element", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s8_watch_label", "position": { "x": 200, "y": 250 }, "text": "watch the angle hold rock steady while everything else responds live", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s8_formula_label", "position": { "x": 560, "y": 400 }, "text": "φ = ∠(v, i) — the whole concept in one symbol", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "It's all yours — drag peak voltage, frequency, and pick the element; watch the angle hold rock steady while everything else responds live.", "glow": "formula" }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered phasors when they can (1) explain that a phasor's LENGTH is the constant peak amplitude and its vertical SHADOW is the changing instantaneous value, never confusing the two; (2) explain WHY a single frozen phasor diagram fully captures a phase relationship — every phasor in a circuit rides one shared clock, so the angle between two co-rooted arrows never changes; (3) read a frozen diagram correctly — the arrow ahead in the rotation direction (counterclockwise) always reaches the peak reference line first, i.e. peaks first in time; (4) identify that the capacitor's lead is the exact mirror-image of the inductor's lag (same 90°, opposite side of the voltage arrow); (5) convert an angle to a time interval using Δt = (φ/360°)·T for a given period; and (6) state θ = ωt with ω = 2π/T = 2πf, and recognize sin(ωt ± π/2) as the algebra of the frozen diagrams they have already read.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A phasor diagram shows a voltage arrow of length vₘ, spinning at a steady angular speed. What do the arrow's LENGTH and its vertical SHADOW each represent at a given instant?",
+        "options": {
+          "A": "Length = the peak (amplitude) voltage, constant; shadow = the instantaneous voltage, which changes",
+          "B": "Length = the instantaneous voltage right now; shadow = the peak voltage",
+          "C": "Both the length and the shadow represent the instantaneous voltage",
+          "D": "The length has no physical meaning; only the shadow matters"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports the length-is-now misconception the S2 pivot confronts — the arrow is bookkeeping, not the live value",
+          "C": "conflates a constant quantity (length) with a changing one (shadow) — collapses the entire bookkeeping distinction",
+          "D": "denies that the arrow's own length carries information at all — the length IS the amplitude, essential to reading the diagram"
+        },
+        "tested_idea": "The phasor's length is the peak amplitude (constant); its vertical projection (shadow) is the instantaneous value (changing).",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "At the instant a phasor's shadow reads zero, is the arrow itself zero length, full length, or somewhere in between? Explain."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Why does a single frozen phasor diagram — just one snapshot in time — fully capture the phase relationship between two AC quantities in a circuit?",
+        "options": {
+          "A": "Because both phasors rotate at the SAME angular speed (one shared clock), so the angle between them is constant and never changes — one snapshot shows it for all time",
+          "B": "Because AC quantities don't actually change over time once you draw them as phasors",
+          "C": "Because the diagram is only valid at the instant it was drawn; you need many snapshots to know the phase",
+          "D": "Because phasor length, not angle, is what determines the phase relationship"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "wrongly claims the physical quantities stop varying — it's the ANGLE that's constant, not v and i themselves",
+          "C": "the confronted misconception — a frozen diagram DOES hold the whole timing story because the angle never breathes",
+          "D": "confuses length (amplitude) with angle (phase) — two independent facts on the same diagram"
+        },
+        "tested_idea": "Because every phasor in a circuit shares one clock, the angle between them is constant, so a single frozen diagram fully encodes the phase relationship.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A student speeds up the AC frequency while watching a resistor's phasor pair. What happens to the angle between the v- and i-arrows, and why?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "On a phasor diagram (rotation counterclockwise), the current phasor is drawn 90° BEHIND the voltage phasor. Which element is this, and which quantity peaks first in time?",
+        "options": {
+          "A": "An inductor; voltage peaks first (current, being behind in the spin, reaches the peak line later)",
+          "B": "A capacitor; current peaks first",
+          "C": "A resistor; they peak together",
+          "D": "An inductor; current peaks first"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "swaps in the capacitor's lead behaviour for the inductor's lag",
+          "C": "imports the resistor's in-phase (0°) diagram, ignoring the drawn 90° gap",
+          "D": "identifies the right element but gets the peaking ORDER backwards — behind in the spin means LATER past the peak line, not earlier"
+        },
+        "tested_idea": "Ahead-in-the-spin means first-past-the-peak-line: the arrow ahead in rotation always crests first.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "Two phasors cross the peak reference line 1.0 s apart. Which one leads, and how do you tell purely from the crossing order?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A phasor diagram shows the current 90° AHEAD of the voltage. Which circuit element produces this, and what does the L↔C symmetry tell you about the inductor's own diagram?",
+        "options": {
+          "A": "A capacitor; the inductor's diagram is the exact mirror — current 90° behind instead of ahead, same right angle, opposite side",
+          "B": "An inductor; the capacitor's diagram would show the same angle on the same side",
+          "C": "A resistor with a phase-shifting network; there's no mirror relationship",
+          "D": "A capacitor; doubling the frequency would change this 90° angle"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "swaps the element identity and denies that the mirror flips SIDES, not just labels",
+          "C": "invents a resistor mechanism that plays no role in a pure element's phasor diagram",
+          "D": "the angle is fixed by the element type alone, never by frequency — this is exactly the shared-clock invariance taught at S3/S4"
+        },
+        "tested_idea": "The capacitor's lead is the exact mirror-image reflection of the inductor's lag — same right angle, other side.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Describe, in one sentence, how the capacitor's phasor diagram differs from the inductor's — and how it is the same."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "At the shared demo frequency (period T = 4.0 s), a phasor pair is drawn 90° apart. How many seconds of real time does that angle correspond to?",
+        "options": {
+          "A": "1.0 second — exactly one quarter of the 4.0 s period",
+          "B": "4.0 seconds — a full period, since 90° looks like a large angle",
+          "C": "2.0 seconds — half the period",
+          "D": "0.5 seconds — it depends on which element is in the circuit"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the FULL circle (360°, one period) with a quarter of it",
+          "C": "halves incorrectly — 180° (half-turn) would be 2.0 s, not 90°",
+          "D": "the angle-to-time conversion depends only on the angle and the period, never on which element — a student might overgeneralize from the element-dependent AMPLITUDE"
+        },
+        "tested_idea": "Angle-to-time conversion: Δt = (φ/360°)·T — 90° of a 4.0 s period is exactly 1.0 s, regardless of element.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "If the period were doubled to 8.0 s, how many seconds would a 90° phase angle now correspond to?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Starting from θ = ωt with ω = 2πf, and given i = iₘ sin(ωt ∓ π/2) for an inductor/capacitor, which statement is correct?",
+        "options": {
+          "A": "θ = ωt directly gives one full turn (2π rad) equal to one period T; the ∓π/2 in i's formula is exactly the 90° phase angle read off the frozen phasor diagram",
+          "B": "θ = ωt has no connection to the period; ∓π/2 is an arbitrary constant with no diagram meaning",
+          "C": "ω = 2πf only applies to the voltage phasor, not the current phasor",
+          "D": "The ∓π/2 term means the current phasor's LENGTH changes by an amount worth 90°"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "denies the derivation's whole point — ω = 2π/T IS the turn-to-period link, and ∓π/2 IS the diagram's angle written as algebra",
+          "C": "both phasors share the SAME ω — the whole shared-clock teaching of S3",
+          "D": "confuses an ANGLE (∓π/2, a phase) with a LENGTH (amplitude) — two independent quantities on the diagram"
+        },
+        "tested_idea": "θ = ωt formalizes one turn = one period (ω = 2π/T = 2πf), and the sin(ωt ± π/2) forms ARE the frozen phasor diagrams written as algebra.",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Write i(t) for a capacitor branch using ω and iₘ, and state which sign (plus or minus) applies and why."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q5"],
+      "STATE_5": ["Q4"],
+      "STATE_6": ["Q3"],
+      "STATE_7": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_8"]
+  },
+  "field_3d_config": {
+    "scenario_type": "ac_phasor",
+    "explorer_id": "ac_phasor_explorer",
+    "slider_controls": {
+      "vm": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Peak voltage vₘ" },
+      "f_demo": { "min": 0.1, "max": 0.5, "step": 0.05, "default": 0.25, "label": "Frequency f" },
+      "R": { "min": 2, "max": 20, "step": 1, "default": 5.0, "label": "Resistance R" },
+      "L": { "min": 1.0, "max": 10.0, "step": 0.1, "default": 3.1831, "label": "Inductance L" },
+      "C": { "min": 0.04, "max": 0.40, "step": 0.02, "default": 0.1273, "label": "Capacitance C" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "voltage": "#4FC3F7",
+      "current": "#FFB300",
+      "ghost": "#B0BEC5",
+      "finish_line": "#ECEFF1",
+      "angle_arc": "#CE93D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Same resistor circuit — a spinning arrow's shadow draws the wave",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_projection", "phs_ghost"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Spin's shadow draws the wave",
+        "show_sliders": true,
+        "formula_overlay": "v = vₘ sin(ωt)",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "R": 5.0, "element": "R", "theta0": 0 },
+        "ac_phasor": {
+          "mode": "spin_draws_sine",
+          "controls": [],
+          "element": "R",
+          "theta0_deg": 0,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": false,
+          "show_phi_arc": false,
+          "show_ghost": true,
+          "show_scoreboard": false,
+          "show_crossing_flashes": false,
+          "show_finish_line_bright": false,
+          "apparatus_swap": null,
+          "dim_apparatus": false,
+          "glow_focal": "projection",
+          "formula_text": "v = vₘ sin(ωt)",
+          "tie_line_wire_at_ms": 700,
+          "congruence_named_at_ms": 13000
+        }
+      },
+      "STATE_2": {
+        "label": "The arrow is bookkeeping — length stays the peak, the shadow is now",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Arrow is bookkeeping, not circuit",
+        "show_sliders": true,
+        "formula_overlay": "shadow = vₘ sin θ",
+        "variable_overrides": { "f_demo": 0.25, "R": 5.0, "element": "R", "theta0": 0 },
+        "ac_phasor": {
+          "mode": "arrow_vs_shadow",
+          "controls": ["vm"],
+          "element": "R",
+          "theta0_deg": 0,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": true,
+          "theta_readout_compose": "θ = {theta}° (≡ ωt) on FIRST appearance this state (R4 label-level identity, zero narration cost); bare θ = {theta}° thereafter (Rule 38d dual-label-once)",
+          "show_phi_arc": false,
+          "show_ghost": false,
+          "show_scoreboard": false,
+          "show_crossing_flashes": false,
+          "show_finish_line_bright": false,
+          "apparatus_swap": null,
+          "dim_apparatus": false,
+          "glow_focal": "v_phasor",
+          "formula_text": "shadow = vₘ sin θ",
+          "freeze_45_arm_at_ms": 3500,
+          "freeze_90_arm_at_ms": 9000,
+          "freeze_180_arm_at_ms": 13000,
+          "freeze_targets_theta_deg": [45, 90, 180],
+          "freeze_budget_ms_each": 1000,
+          "freeze_budget_ms_total": 3000,
+          "freeze_1_strike": true,
+          "freeze_2_strike": false,
+          "note_dwell": "R3 resolution (physics_block section 3): actual observable dwell may legitimately extend to ~32s worst-case (20s narration + up to 12s cumulative arm-slip across the 3 chronological freezes) — do not cap the freeze-arm mechanism by the duration field; THE EYE capture window for this state must be sized >= 32s."
+        }
+      },
+      "STATE_3": {
+        "label": "Two arrows, one clock — the angle between them is the phase difference",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_i_arrow", "phs_angle_arc", "phs_projection", "phs_ghost"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Two arrows, one clock",
+        "show_sliders": true,
+        "formula_overlay": "φ = 0° — in phase",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "element": "R", "theta0": 0 },
+        "ac_phasor": {
+          "mode": "two_arrows_one_clock",
+          "controls": ["f_demo"],
+          "element": "R",
+          "theta0_deg": 0,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": true,
+          "show_phi_arc": true,
+          "show_ghost": true,
+          "show_scoreboard": false,
+          "show_crossing_flashes": false,
+          "show_finish_line_bright": false,
+          "apparatus_swap": null,
+          "dim_apparatus": false,
+          "glow_focal": "i_phasor",
+          "formula_text": "φ = 0° — in phase",
+          "i_arrow_dock_at_ms": 0,
+          "arc_open_at_ms": 9500,
+          "f_invite_at_ms": 13800
+        }
+      },
+      "STATE_4": {
+        "label": "The coil's lag freezes into a constant ninety-degree angle — PRIMARY aha",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_i_arrow", "phs_angle_arc", "phs_projection", "phs_ghost"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Lag freezes into an angle",
+        "show_sliders": true,
+        "formula_overlay": "φ = 90° — i behind v",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "L": 3.1831, "element": "L", "theta0": 0 },
+        "ac_phasor": {
+          "mode": "lag_becomes_angle",
+          "controls": [],
+          "element": "L",
+          "theta0_deg": 0,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": true,
+          "show_phi_arc": true,
+          "show_ghost": true,
+          "show_scoreboard": false,
+          "show_crossing_flashes": false,
+          "show_finish_line_bright": false,
+          "apparatus_swap": "heater_to_coil",
+          "dim_apparatus": false,
+          "glow_focal": "angle_arc",
+          "formula_text": "φ = 90° — i behind v",
+          "coil_swap_at_ms": 0,
+          "freeze_trio_arm_at_ms": 4300,
+          "freeze_trio_targets_theta_deg": [30, 150, 240],
+          "freeze_budget_ms_each": 1000,
+          "freeze_budget_ms_total": 3000,
+          "note_dwell": "R3-confirmed safe by construction (physics_block section 3): all three freeze targets arm TOGETHER at one sentence (s4_2), so the whole trio necessarily completes within one subsequent revolution — no dwell resizing needed."
+        }
+      },
+      "STATE_5": {
+        "label": "The capacitor mirrors the angle to the other side — ninety ahead",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_i_arrow", "phs_angle_arc", "phs_projection", "phs_ghost"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Capacitor flips the angle",
+        "show_sliders": true,
+        "formula_overlay": "φ = 90° — i ahead of v",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273, "element": "C", "theta0": 0 },
+        "ac_phasor": {
+          "mode": "lead_mirror_flip",
+          "controls": [],
+          "element": "C",
+          "theta0_deg": 0,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": true,
+          "show_phi_arc": true,
+          "show_ghost": true,
+          "show_scoreboard": false,
+          "show_crossing_flashes": false,
+          "show_finish_line_bright": false,
+          "apparatus_swap": "coil_to_plates",
+          "dim_apparatus": false,
+          "glow_focal": "i_phasor",
+          "formula_text": "φ = 90° — i ahead of v",
+          "plate_swap_at_ms": 0,
+          "flip_start_at_ms": 800,
+          "flip_relock_from_deg": -90,
+          "flip_relock_to_deg": 90,
+          "flip_is_scripted_one_shot": true
+        }
+      },
+      "STATE_6": {
+        "label": "Reading the frozen diagram — ahead in the spin means first past the line",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_i_arrow", "phs_angle_arc", "phs_finish_line"],
+        "camera_position": [1.0, 1.35, 9.0],
+        "caption": "First past the line",
+        "show_sliders": true,
+        "formula_overlay": "Δt = (φ/360°) · T",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273, "element": "C", "theta0": -90 },
+        "ac_phasor": {
+          "mode": "reading_order",
+          "controls": [],
+          "element": "C",
+          "theta0_deg": -90,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": true,
+          "show_phi_arc": true,
+          "show_ghost": false,
+          "show_scoreboard": true,
+          "show_crossing_flashes": true,
+          "show_finish_line_bright": true,
+          "apparatus_swap": null,
+          "dim_apparatus": false,
+          "glow_focal": "finish_line",
+          "formula_text": "Δt = (φ/360°) · T",
+          "line_brighten_at_ms": 0,
+          "i_cross_arm_at_ms": 300,
+          "v_cross_arm_at_ms": 1500,
+          "scoreboard_split_at_ms": 9000,
+          "expected_i_cross_s": 1.0,
+          "expected_v_cross_s": 2.0,
+          "expected_delta_t_s": 1.0,
+          "upper_crossing_only": true,
+          "trough_never_flashes": true,
+          "scoreboard_content": ["R: φ = 0°", "L: i 90° behind", "C: i 90° ahead"],
+          "scoreboard_no_numerals_note": "R6 (founder-proxy cycle-1 residual, routed to json_author): scoreboard carries ANGLE labels + element glyphs ONLY. The angle VALUES themselves (0°, 90° behind, 90° ahead) ARE numerals and are authored — what is banned (F4) is any reactance numeral/symbol (no '5.0 Ω' chips, no X_L/X_C anywhere in this sim, in any state).",
+          "note_arm_timing": "Flag for the engine build (physics_block gives no explicit resolution here): s6_2's narration ('one second in') asserts the i-crossing is observed near t=1.0s of the state clock. For that to hold under cue-ARMS/phase-FIRES with theta0=-90 (crossing at t=1.0s from state entry), i_cross_arm should arm EARLY (near state entry, not after s6_1's full TTS duration) — the small at_ms fallback above (300ms) reflects this intent. Verify against the live cue-arm mechanism (F7 fillText-interception probe) during Checkpoint B; if arming is strictly tied to sentence-open wall-clock time and s6_1 (12 words, ~4s TTS) delays s6_2's arm past t=1.0s, the flash will legitimately fire on the NEXT i-upper-crossing (t≈5.0s) per the declared fallback rule, and the narration's 'one second in' claim would then describe the flash's DERIVED timestamp inaccurately in the live-narration path (though THE EYE's frozen-frame capture, which does not wait for TTS, should still see it correctly near t=1.0s). Recommend the engine treat this as an explicit design check, not an assumption."
+        }
+      },
+      "STATE_7": {
+        "label": "The angle is ωt — one turn is one period, written as algebra",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_i_arrow", "phs_angle_arc"],
+        "camera_position": [1.4, 0.9, 10.5],
+        "caption": "The angle is ωt",
+        "show_sliders": true,
+        "formula_overlay": "θ = ωt\nω = 2π/T = 2πf\nv = vₘ sin ωt\ni = iₘ sin(ωt ∓ π/2)",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "element": "generic", "theta0": 0 },
+        "ac_phasor": {
+          "mode": "radians_derivation",
+          "controls": [],
+          "element": "generic",
+          "theta0_deg": 0,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": true,
+          "theta_readout_unit": "rad",
+          "show_phi_arc": false,
+          "show_ghost": false,
+          "show_scoreboard": false,
+          "show_crossing_flashes": false,
+          "show_finish_line_bright": false,
+          "apparatus_swap": null,
+          "dim_apparatus": true,
+          "glow_focal": "formula",
+          "formula_text": "θ = ωt\nω = 2π/T = 2πf\nv = vₘ sin ωt\ni = iₘ sin(ωt ∓ π/2)",
+          "chain_1_at_ms": 0,
+          "chain_2_at_ms": 4600,
+          "chain_3_at_ms": 9600,
+          "chain_4_at_ms": 15700
+        }
+      },
+      "STATE_8": {
+        "label": "Explore — the whole phasor machine, live",
+        "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_i_arrow", "phs_angle_arc", "phs_projection"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "φ = ∠(v, i)",
+        "ac_phasor": {
+          "mode": "explore",
+          "controls": ["vm", "f_demo", "element", "R", "L", "C"],
+          "element": "R",
+          "theta0_deg": 0,
+          "disc_angle_tag": "ωt",
+          "show_theta_readout": false,
+          "show_phi_arc": true,
+          "show_ghost": false,
+          "show_scoreboard": false,
+          "show_crossing_flashes": false,
+          "show_finish_line_bright": false,
+          "apparatus_swap": null,
+          "dim_apparatus": false,
+          "glow_focal": "formula",
+          "formula_text": "φ = ∠(v, i)",
+          "element_value_row_swap_note": "F8: the picker (R/L/C) shows exactly one value-row at a time — R 2-20 Ω step 1 (on-grid at default 5.0) · L 1.0-10.0 H step 0.1 (OFF-grid at sealed default 3.1831 — confirmed fleet precedent, do not round) · C 0.04-0.40 F step 0.02 (OFF-grid at sealed default 0.1273 — confirmed fleet precedent, do not round). Off-grid initial value with true-number HUD, snap on first drag, is the already-shipped fleet behaviour (ac_voltage_inductor/ac_voltage_capacitor sealed sliders)."
+        }
+      }
+    }
+  }
+}

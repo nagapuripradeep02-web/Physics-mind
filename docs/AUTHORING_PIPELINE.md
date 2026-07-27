@@ -135,6 +135,13 @@ every week.
 - **Timing** (curl, reveal, stagger) → explicit phase fractions, not eyeballed.
 - **Orientation** → `makeBasis` / quaternion with a determinant/handedness check (det = +1 = a true right hand, never mirrored — a mirrored RHR teaches the wrong physics).
 
+**PCPL / parametric variant (the Class-11 Vectors track — `parametric_renderer.ts`, reference `scalar_vs_vector`).** The Vectors chapter is a flat, pure-JSON, **pixel-coordinate 760×500** 2D canvas, NOT a 3D field sim — so the three field_3d compute rules above map differently:
+- **Screen position** → author **pixel coordinates directly** (origin top-left, x∈[40,720] y∈[40,460] to stay on-canvas), or better, a **zone anchor** — `zone: "CALLOUT_ZONE_R", anchor: "top_left"` over MAIN_ZONE / CALLOUT_ZONE_R / FORMULA_ZONE / CONTROL_ZONE / TITLE_ZONE (PM_ZONES) — which survives layout changes. There is **no camera and no zoom**: never author a "zoom into X" beat; use a `comparison_panel` split or a banner annotation, or escalate to `renderer_primitives`.
+- **Orientation** → there is **no 3D handedness**; the RHR/`makeBasis` DoD row is **N/A**. A vector's `direction_deg` / `from`→`to` endpoints are authored in the 2D plane.
+- **Motion** → each moving body names an `animation.type` from the whitelist (`free_fall`/`pendulum`/`atwood`/`translate`/`slide_horizontal`/`projectile`/`rotate_continuous`/…) or a `variable_choreography` sweep (`loop`/`ping_pong`/`once`); emphasis is **brightness-only** (`PM_focalEmphasis`, Rule 29) — never size/zoom.
+- **Routing** → write `renderer_pair.panel_a:"mechanics_2d"` AND add the concept_id to `PCPL_CONCEPTS` (registration site #7) + a `computePhysics_<id>` in `parametric_renderer.ts`; the `"mechanics_2d"` string does NOT select `mechanics_2d_renderer.ts` (PCPL_CONCEPTS overrides it), but MISS site #7 and the concept silently falls back to the legacy renderer.
+- **Verify** → THE EYE (`visual:eyes`) runs on parametric at full parity (sim-time-pinned dense + frozen frames); clone `scalar_vs_vector`'s shape, not a field_3d skeleton.
+
 **Iteration budget.** The irreducible loop is ONE compute + ONE visual-verify pass (stage ③ requires actually looking — you cannot trust framing you have not rendered). Target **2–3 rounds total, not 7.** Iteration is the *method*; guess-and-recapture and piecemeal-spec are the *waste*.
 
 ---

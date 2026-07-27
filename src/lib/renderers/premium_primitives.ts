@@ -22,13 +22,15 @@
 //   - draw* function signature: (spec) => void
 //   - reads PM_animationGate / PM_focalEmphasis / PM_resolveAnchor / PM_hexToRgb
 //     from PARAMETRIC_RENDERER_CODE (those globals exist by the time these run)
-//   - reads PM_bodyRegistry / PM_surfaceRegistry / PM_currentState / PM_stateEnterTime
+//   - reads PM_bodyRegistry / PM_surfaceRegistry / PM_currentState / PM_simClockMs /
+//     PM_muted / PM_cueOverrides (Rule 36 fixed-step sim clock + message contract)
 //   - p5 globals: push/pop/translate/scale/stroke/fill/line/ellipse/etc.
 //
 // Audio / camera state lives in module-scope vars inside the template (PM_audio*,
 // PM_camState, PM_particleSystems, PM_soundCueFired). State persists across
 // frames; resets on state switch via the existing window message handler in
-// PARAMETRIC_RENDERER_CODE.
+// PARAMETRIC_RENDERER_CODE, and on any PM_resetSimClock() call (SET_TIME_FREEZE,
+// same-state variable rewind) via PM_lastSeenStateForPremium.
 // ============================================================================
 
 export const PREMIUM_PRIMITIVES_CODE = `
@@ -311,17 +313,16 @@ function drawSoundCue(spec) {
   PM_resetPremiumStateIfNeeded();
   var key = spec.id || ('cue_' + (spec.sound || 'x') + '_' + (spec.appear_at_ms || 0));
   if (PM_soundCueFired[key]) return;
-  // Wait for appear_at_ms before firing.
-  // Honour the host's clock pin when one exists (SET_TIME_FREEZE / Pause —
-  // root CLAUDE.md §6, Rule 26b). typeof-guarded: renderers that concatenate
-  // this file without the clock contract fall back to raw wall-clock.
-  var elapsed = (typeof PM_now === 'function') ? PM_now() : (millis() - PM_stateEnterTime);
-  var trigger = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
-  if (elapsed < trigger) return;
+  // Wait for appear_at_ms before firing — a SET_CUE_TIME override (keyed the
+  // same as PM_soundCueFired) takes precedence so a narration re-time doesn't
+  // need a JSON edit. Rule 36: PM_simClockMs is the sim clock, never millis().
+  var trigger = (PM_cueOverrides && PM_cueOverrides[key] !== undefined)
+    ? PM_cueOverrides[key]
+    : ((typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0);
+  if (PM_simClockMs < trigger) return;
   PM_soundCueFired[key] = true;
   if (!PM_audioUnlocked) return;  // gesture-unlock not yet received
-  // Rule 26a — MUTE silences audio only; the clock above keeps running.
-  if (typeof PM_muted !== 'undefined' && PM_muted) return;
+  if (PM_muted) return;           // Rule 26a — MUTE gates playback only, never the clock
   var volume = (typeof spec.volume === 'number') ? spec.volume : 0.3;
   var sound = spec.sound || 'click';
   if (sound === 'whoosh') PM_playWhoosh(volume);
@@ -354,7 +355,7 @@ function PM_initParticleSystem(spec) {
   }
   PM_particleSystems[spec.id || 'default'] = {
     particles: particles,
-    lastFrameMs: millis()
+    lastTickMs: PM_simClockMs   // Rule 36 — sim-clock time, never millis()
   };
 }
 
@@ -365,10 +366,13 @@ function drawParticleField(spec) {
   var key = spec.id || 'default';
   if (!PM_particleSystems[key]) PM_initParticleSystem(spec);
   var sys = PM_particleSystems[key];
-  var now = millis();
-  var dtMs = now - sys.lastFrameMs;
-  sys.lastFrameMs = now;
-  var dt = Math.min(dtMs / 1000, 0.05);  // clamp for tab-switch jumps
+  var dtMs = PM_simClockMs - sys.lastTickMs;
+  sys.lastTickMs = PM_simClockMs;
+  // Clamp to [0, 0.05]: the upper bound absorbs tab-switch jumps; the lower
+  // bound absorbs a SET_TIME_FREEZE clock reset landing sys.lastTickMs AHEAD
+  // of the freshly-zeroed PM_simClockMs (negative dt would run particles
+  // backwards instead of just holding them for one frame).
+  var dt = Math.max(0, Math.min(dtMs / 1000, 0.05));
   var src = PM_resolveEndpoint(spec.source);
   var sink = spec.sink ? PM_resolveEndpoint(spec.sink) : null;
   var driftSpeed = (typeof spec.drift_speed === 'number') ? spec.drift_speed : 60;
@@ -438,7 +442,7 @@ function PM_beginSmoothCameraIfActive(scene) {
   // state entry. Used by STATE_6 of newton_second_law_direction so the wide
   // projectile view plays first, THEN the camera zooms in on the ball.
   var camAppearAt = (typeof cam.appear_at_ms === 'number') ? cam.appear_at_ms : 0;
-  var stateElapsed = millis() - PM_stateEnterTime;
+  var stateElapsed = PM_simClockMs;   // Rule 36 — sim-clock time, never millis()
   if (stateElapsed < camAppearAt) { PM_camState.active = false; return; }
   PM_resetPremiumStateIfNeeded();
   // Latch target on first sight per state.
@@ -459,7 +463,7 @@ function PM_beginSmoothCameraIfActive(scene) {
     PM_camState.targetZoom = targetZoom;
     PM_camState.targetPanX = desiredPanX;
     PM_camState.targetPanY = desiredPanY;
-    PM_camState.lerpStartMs = millis();
+    PM_camState.lerpStartMs = PM_simClockMs;   // Rule 36 — sim-clock time, never millis()
     PM_camState.lerpDurMs = (typeof cam.duration_ms === 'number') ? cam.duration_ms : 800;
     PM_camState.active = true;
   } else {
@@ -468,7 +472,7 @@ function PM_beginSmoothCameraIfActive(scene) {
     PM_camState.targetPanX = desiredPanX;
     PM_camState.targetPanY = desiredPanY;
   }
-  var elapsed = millis() - PM_camState.lerpStartMs;
+  var elapsed = PM_simClockMs - PM_camState.lerpStartMs;
   var t = PM_camState.lerpDurMs > 0 ? Math.min(elapsed / PM_camState.lerpDurMs, 1) : 1;
   var eased = PM_ease(t, 'ease_in_out');
   var z = 1 + (PM_camState.targetZoom - 1) * eased;
@@ -576,7 +580,7 @@ function drawUmbrellaScene(spec) {
   stroke(rainColor[0], rainColor[1], rainColor[2], 200);
   strokeWeight(1.5 * scale);
   noFill();
-  var t = (millis() / 1000);
+  var t = PM_simClockMs / 1000;   // Rule 36 — sim-clock time, never millis()
   var rainSpan = 130 * scale;
   var rainTopY = headCenterY - 100 * scale;
   var rainBottomY = headCenterY - headR - 4;

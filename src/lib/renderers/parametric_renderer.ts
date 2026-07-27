@@ -2,6 +2,19 @@
 // Parametric Renderer (PCPL — Ch.8 only)
 // String template following the same pattern as MECHANICS_2D_RENDERER_CODE.
 // Independent of mechanics_2d_renderer.ts. Do not import from it.
+//
+// MESSAGE CONTRACT (WP-R1, Rule 36 fixed-step sim clock — 2026-07-23):
+//   IN:  SET_STATE {state}          → applies the state; releases any freeze pin
+//        SET_TIME_FREEZE {at_ms}    → deterministic re-sim from state entry, hold
+//        SET_TIME_FREEZE {frozen:false} → release the pin, clock resumes
+//        SET_CUE_TIME {cue, at_ms} → re-time a sound_cue to the narrated beat
+//        PAUSE / RESUME            → clock + Engine 20 motion freeze/resume (26b)
+//        MUTE {muted}              → gates sound_cue playback only (26a)
+//        PARAM_UPDATE {key, value} → live slider/physics recompute
+//   OUT: SIM_READY (on load), STATE_REACHED (on state apply)
+//   window.PM_simTimeMs             → state-local sim clock, read by the player
+//                                      and THE EYE's dense/frozen capture paths
+//   window.__PM_supportsTimePin     → true (declares SET_TIME_FREEZE support)
 // ============================================================================
 
 import { computePhysics } from '@/lib/physicsEngine';
@@ -25,11 +38,6 @@ export interface ParametricConfig {
     // Populated by applyBoardMode() in aiSimulationGenerator.ts when
     // examMode === 'board'.
     canvas_style?: 'default' | 'answer_sheet';
-    // Review-site path only (build_review_site.ts, 2026-07-23): fill the iframe
-    // and fit+center the 760×500 design space (letterboxed). Absent on the
-    // app/admin paths → fixed 760×500 canvas, behavior unchanged. Never combine
-    // with canvas_style 'answer_sheet'.
-    responsive_fill?: boolean;
 }
 
 // Rotate a math-frame force vector (fx, fy) into axes aligned at axisDeg.
@@ -106,6 +114,13 @@ function computePhysics_contact_forces(vars) {
 function computePhysics_normal_reaction(vars) {
   var m = (vars && vars.m != null) ? vars.m : 2;
   var theta = (vars && vars.theta != null) ? vars.theta : 30;
+  // WP-F2: declared (elevator "frame_acceleration", default 0) but never
+  // echoed -- currently dead in every authored state (the epic_c elevator
+  // branch is fully hardcoded, no {a}/_expr reads it yet), so this is a
+  // preventive fix, not an active-bug fix like psi_pointer above. Read-only
+  // echo; does NOT add the elevator N=m(g+a) computation (out of this
+  // task's scope -- that would be new physics, not an echo completion).
+  var a = (vars && vars.a != null) ? vars.a : 0;
   var rad = theta * Math.PI / 180;
   var W = m * PM_G;
   var N = m * PM_G * Math.cos(rad);
@@ -123,8 +138,18 @@ function computePhysics_normal_reaction(vars) {
     vector: wVec, color: '#EF4444', draw_from: 'body_center', show: true };
   return {
     concept_id: 'normal_reaction',
-    variables: { m: m, theta: theta },
-    derived: { N: N, W: W, g: PM_G },
+    variables: { m: m, theta: theta, a: a },
+    // derived now also EXPORTS the concept's declared computed_outputs names
+    // (N_value/mg_parallel/mg_perpendicular/apparent_weight) so a label/formula/
+    // graph *_expr referencing them resolves instead of NaN-ing to 0 — the
+    // STATE_5 computed_outputs name mismatch (PM_G=9.8 matches the JSON formulas).
+    derived: {
+      N: N, W: W, g: PM_G,
+      N_value: N,
+      mg_perpendicular: N,
+      mg_parallel: m * PM_G * Math.sin(rad),
+      apparent_weight: m * (PM_G + a)
+    },
     forces: [
       nForce,
       { id: 'N1', label: 'N\\u2081 = ' + W.toFixed(1) + ' N',
@@ -262,7 +287,13 @@ function computePhysics_friction_static_kinetic(vars) {
   var mu_s = (vars && vars.mu_s != null) ? vars.mu_s : 0.5;
   var mu_k = (vars && vars.mu_k != null) ? vars.mu_k : 0.3;
   var F = (vars && vars.F != null) ? vars.F : 15;
-  var mg = m * PM_G;
+  // WP-F2: declared ("constant": 9.8, same shape as pressure_scalar's own g)
+  // but never echoed -- previously read off the bare PM_G global instead of
+  // vars, so it was invisible to any future {g}/_expr reference. Same
+  // numeric value (9.8) either way -- behaviorally inert today, closes the
+  // landmine for tomorrow.
+  var g = (vars && vars.g != null) ? vars.g : 9.8;
+  var mg = m * g;
   var N = mg;
   var fs_max = mu_s * N;
   var fk = mu_k * N;
@@ -276,7 +307,7 @@ function computePhysics_friction_static_kinetic(vars) {
     derived: {
       mg: mg, N: N, fs_max: fs_max, fk: fk, fs_actual: fs_actual,
       net_force: net_force, acceleration: acceleration,
-      is_slipping: is_slipping ? 1 : 0
+      is_slipping: is_slipping ? 1 : 0, g: g
     },
     forces: [
       { id: 'weight', label: 'mg = ' + mg.toFixed(1) + ' N',
@@ -342,50 +373,125 @@ function computePhysics_pressure_scalar(vars) {
   };
 }
 
-function computePhysics(conceptId, vars) {
-  if (conceptId === 'field_forces') return computePhysics_field_forces(vars);
-  if (conceptId === 'contact_forces') return computePhysics_contact_forces(vars);
-  if (conceptId === 'normal_reaction') return computePhysics_normal_reaction(vars);
-  if (conceptId === 'tension_in_string') return computePhysics_tension_in_string(vars);
-  if (conceptId === 'vector_resolution') return computePhysics_vector_resolution(vars);
-  if (conceptId === 'hinge_force') return computePhysics_hinge_force(vars);
-  if (conceptId === 'free_body_diagram') return computePhysics_free_body_diagram(vars);
-  if (conceptId === 'friction_static_kinetic') return computePhysics_friction_static_kinetic(vars);
-  if (conceptId === 'current_not_vector') return computePhysics_current_not_vector(vars);
-  if (conceptId === 'pressure_scalar') return computePhysics_pressure_scalar(vars);
-  if (conceptId === 'vector_head_to_tail') return computePhysics_vector_head_to_tail(vars);
-  if (conceptId === 'newton_second_law_direction') return computePhysics_newton_second_law_direction(vars);
-  if (conceptId === 'bohr_model_energy_levels') return computePhysics_bohr_model_energy_levels(vars);
-  return null;
-}
-
-// vector_head_to_tail — Phase 0 validation demo Sim 1 (session 56). Iframe-side
-// fallback in case PM_PRECOMPUTED_PHYSICS isn't injected. Returns the same
-// shape as the TS engine (vectorHeadToTailEngine in physicsEngine/concepts/).
-// Pure DC Pandey Ch.5.4 displacement framing: walk d_east m east, then
-// d_north m north → resultant = sqrt(d_east² + d_north²).
-function computePhysics_vector_head_to_tail(vars) {
-  var d_east = (vars && vars.d_east != null) ? vars.d_east : 3;
-  var d_north = (vars && vars.d_north != null) ? vars.d_north : 4;
-  var d_resultant_mag = Math.sqrt(d_east * d_east + d_north * d_north);
-  var theta_resultant_deg = Math.atan2(d_north, d_east) * 180 / Math.PI;
+function computePhysics_scalar_vs_vector(vars) {
+  var a = (vars && vars.a != null) ? vars.a : 3;
+  var b = (vars && vars.b != null) ? vars.b : 4;
+  var theta = (vars && vars.theta != null) ? vars.theta : 90;
+  var d_hook = (vars && vars.d_hook != null) ? vars.d_hook : 5;
+  var phi_hook = (vars && vars.phi_hook != null) ? vars.phi_hook : 0;
+  var m1 = (vars && vars.m1 != null) ? vars.m1 : 3;
+  var m2 = (vars && vars.m2 != null) ? vars.m2 : 4;
+  // WP-F2: declared in physics_engine_config.variables but previously never
+  // read/echoed here -- direction_deg_expr: "psi_pointer" (STATE_2) resolved
+  // to NaN (PM_safeEval ReferenceError -> caught -> 0), freezing the
+  // spinning-pointer choreography at due-east forever (THE EYE D5 STATE_2).
+  var m_pack = (vars && vars.m_pack != null) ? vars.m_pack : 8;
+  var psi_pointer = (vars && vars.psi_pointer != null) ? vars.psi_pointer : 0;
+  var theta_rad = theta * Math.PI / 180;
+  var phi_hook_rad = phi_hook * Math.PI / 180;
+  var R_mag = Math.sqrt(a * a + b * b + 2 * a * b * Math.cos(theta_rad));
+  var R_dir_deg = Math.atan2(b * Math.sin(theta_rad), a + b * Math.cos(theta_rad)) * 180 / Math.PI;
   return {
-    concept_id: 'vector_head_to_tail',
-    variables: { d_east: d_east, d_north: d_north },
-    derived: { d_resultant_mag: d_resultant_mag, theta_resultant_deg: theta_resultant_deg },
+    concept_id: 'scalar_vs_vector',
+    variables: { a: a, b: b, theta: theta, d_hook: d_hook, phi_hook: phi_hook, m1: m1, m2: m2, m_pack: m_pack, psi_pointer: psi_pointer },
+    derived: {
+      R_mag: R_mag,
+      R_dir_deg: R_dir_deg,
+      sum_scalar: a + b,
+      mass_sum: m1 + m2,
+      P1_x: a,
+      P1_y: 0,
+      P2_x: a + b * Math.cos(theta_rad),
+      P2_y: b * Math.sin(theta_rad),
+      hook_x: d_hook * Math.cos(phi_hook_rad),
+      hook_y: d_hook * Math.sin(phi_hook_rad)
+    },
     forces: []
   };
 }
 
-// bohr_model_energy_levels — first CHEMISTRY concept through the pipeline
-// (Wave 1, 2026-07-23). Iframe-side fallback in case PM_PRECOMPUTED_PHYSICS
-// isn't injected. Mirrors the TS engine (bohrModelEnergyLevelsEngine in
-// physicsEngine/concepts/). Hydrogen Bohr energy levels: Eₙ = -13.6/n² eV.
-// A transition between n_start and n_end absorbs (n_end > n_start) or emits
-// (n_end < n_start) a photon of ΔE = |E_hi - E_lo| eV; λ = hc/ΔE using the
-// teaching-rounded hc = 1240 eV·nm constant (never propagated into stored ΔE).
-// delta_E_ev is pre-rounded to 2dp and lambda_nm to whole-nm so JSON labels
-// can reference {delta_E_ev} / {lambda_nm} directly without .toFixed().
+// resultant_formula (Ch.5 Vectors) — the parallelogram-law MAGNITUDE:
+// R = sqrt(A^2 + B^2 + 2AB cos theta). Registered in PCPL_CONCEPTS but had no
+// computePhysics entry, so the dispatcher returned null and the whole sim drew
+// "Unknown concept" (fixed 2026-07-23, PCPL parity). Labels are authored static;
+// derived values feed any *_expr, the value-only HUD, and the explore-state sliders.
+function computePhysics_resultant_formula(vars) {
+  var A = (vars && vars.A != null) ? vars.A : 4;
+  var B = (vars && vars.B != null) ? vars.B : 3;
+  var theta_deg = (vars && vars.theta_deg != null) ? vars.theta_deg : 60;
+  var theta_rad = theta_deg * Math.PI / 180;
+  var R_mag = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(theta_rad));
+  var alpha_deg = Math.atan2(B * Math.sin(theta_rad), A + B * Math.cos(theta_rad)) * 180 / Math.PI;
+  return {
+    concept_id: 'resultant_formula',
+    variables: { A: A, B: B, theta_deg: theta_deg },
+    derived: {
+      A: A, B: B, theta_deg: theta_deg,
+      R_mag: R_mag, R: R_mag, alpha_deg: alpha_deg,
+      Rx: A + B * Math.cos(theta_rad),
+      Ry: B * Math.sin(theta_rad)
+    },
+    forces: []
+  };
+}
+
+// direction_of_resultant (Ch.5 Vectors) — the parallelogram-law DIRECTION:
+// alpha = atan2(B sin theta, A + B cos theta), the angle of R measured from A.
+// Same missing-computePhysics "Unknown concept" bug as resultant_formula (fixed
+// 2026-07-23). Also carries R_mag so a shared HUD/formula reads consistently.
+function computePhysics_direction_of_resultant(vars) {
+  var A = (vars && vars.A != null) ? vars.A : 4;
+  var B = (vars && vars.B != null) ? vars.B : 3;
+  var theta_deg = (vars && vars.theta_deg != null) ? vars.theta_deg : 60;
+  var theta_rad = theta_deg * Math.PI / 180;
+  var Rx = A + B * Math.cos(theta_rad);
+  var Ry = B * Math.sin(theta_rad);
+  var alpha_deg = Math.atan2(Ry, Rx) * 180 / Math.PI;
+  var R_mag = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(theta_rad));
+  return {
+    concept_id: 'direction_of_resultant',
+    variables: { A: A, B: B, theta_deg: theta_deg },
+    derived: {
+      A: A, B: B, theta_deg: theta_deg,
+      alpha_deg: alpha_deg, alpha: alpha_deg,
+      R_mag: R_mag, R: R_mag, Rx: Rx, Ry: Ry
+    },
+    forces: []
+  };
+}
+
+function computePhysics_vector_addition_law(vars) {
+  var a = (vars && vars.a != null) ? vars.a : 3;
+  var b = (vars && vars.b != null) ? vars.b : 4;
+  var theta = (vars && vars.theta != null) ? vars.theta : 90;
+  var walk_phase = (vars && vars.walk_phase != null) ? vars.walk_phase : 0;
+  var theta_rad = theta * Math.PI / 180;
+  var R_mag = Math.sqrt(a * a + b * b + 2 * a * b * Math.cos(theta_rad));
+  var R_dir_deg = Math.atan2(b * Math.sin(theta_rad), a + b * Math.cos(theta_rad)) * 180 / Math.PI;
+  var wp1 = Math.min(walk_phase, 1);
+  var wp2 = Math.max(walk_phase - 1, 0);
+  return {
+    concept_id: 'vector_addition_law',
+    variables: { a: a, b: b, theta: theta, walk_phase: walk_phase },
+    derived: {
+      R_mag: R_mag,
+      R_dir_deg: R_dir_deg,
+      sum_scalar: a + b,
+      P1_x: a,
+      P1_y: 0,
+      P2_x: a + b * Math.cos(theta_rad),
+      P2_y: b * Math.sin(theta_rad),
+      trip_meter: a * wp1 + b * wp2,
+      walk_x: wp1 * a + wp2 * b * Math.cos(theta_rad),
+      walk_y: wp2 * b * Math.sin(theta_rad)
+    },
+    forces: []
+  };
+}
+
+// ── Chemistry namespace ───────────────────────────────────────────────────
+// Bohr hydrogen energy levels: E_n = -13.6/n^2 eV, photon lambda = hc/dE.
+// Concept-gated in the dispatcher below — never runs for a physics concept.
 function computePhysics_bohr_model_energy_levels(vars) {
   var n_start = (vars && vars.n_start != null) ? vars.n_start : 3;
   var n_end = (vars && vars.n_end != null) ? vars.n_end : 2;
@@ -413,6 +519,75 @@ function computePhysics_bohr_model_energy_levels(vars) {
       n_hi: n_hi,
       n_lo: n_lo
     },
+    forces: []
+  };
+}
+
+function computePhysics(conceptId, vars) {
+  var result = null;
+  if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
+  else if (conceptId === 'contact_forces') result = computePhysics_contact_forces(vars);
+  else if (conceptId === 'normal_reaction') result = computePhysics_normal_reaction(vars);
+  else if (conceptId === 'tension_in_string') result = computePhysics_tension_in_string(vars);
+  else if (conceptId === 'vector_resolution') result = computePhysics_vector_resolution(vars);
+  else if (conceptId === 'resultant_formula') result = computePhysics_resultant_formula(vars);
+  else if (conceptId === 'direction_of_resultant') result = computePhysics_direction_of_resultant(vars);
+  else if (conceptId === 'hinge_force') result = computePhysics_hinge_force(vars);
+  else if (conceptId === 'free_body_diagram') result = computePhysics_free_body_diagram(vars);
+  else if (conceptId === 'friction_static_kinetic') result = computePhysics_friction_static_kinetic(vars);
+  else if (conceptId === 'current_not_vector') result = computePhysics_current_not_vector(vars);
+  else if (conceptId === 'pressure_scalar') result = computePhysics_pressure_scalar(vars);
+  else if (conceptId === 'vector_head_to_tail') result = computePhysics_vector_head_to_tail(vars);
+  else if (conceptId === 'newton_second_law_direction') result = computePhysics_newton_second_law_direction(vars);
+  else if (conceptId === 'scalar_vs_vector') result = computePhysics_scalar_vs_vector(vars);
+  else if (conceptId === 'vector_addition_law') result = computePhysics_vector_addition_law(vars);
+  // Chemistry namespace (src/data/concepts/chemistry/) — concept-gated, fires
+  // only for this id; the physics dispatch above is byte-unchanged.
+  else if (conceptId === 'bohr_model_energy_levels') result = computePhysics_bohr_model_energy_levels(vars);
+
+  // WP-F2 echo safety net — structural complement to the hand-listed reads
+  // above (hand-listing itself must stay: no concept JSON here authors a
+  // top-level default_variables block, so a per-variable default has no
+  // source of truth except each function's own literal fallback; a fully
+  // generic 'spread vars' replacement would lose those defaults whenever a
+  // key is absent from vars). This net only ADDS keys the caller already
+  // supplied in vars that the concept-specific fn's own 'variables' object
+  // doesn't already contain — it never overwrites a key the function
+  // computed, and 'derived' always wins downstream anyway
+  // (PM_liveVarsWithDerived / PM_interpolate apply derived last), so a
+  // deliberately-recomputed value can never be masked by this merge.
+  // This is exactly what would have auto-caught the scalar_vs_vector
+  // psi_pointer bug: PM_applyChoreography() merges the freshly-stepped
+  // choreography value into vars every frame regardless of whether the
+  // per-concept function reads it, so any future variable a concept's
+  // author wires into a slider/variable_choreography but forgets to echo
+  // is still surfaced to PM_safeEval/PM_interpolate.
+  if (result && vars) {
+    if (!result.variables) result.variables = {};
+    for (var k in vars) {
+      if (Object.prototype.hasOwnProperty.call(vars, k) &&
+          !Object.prototype.hasOwnProperty.call(result.variables, k)) {
+        result.variables[k] = vars[k];
+      }
+    }
+  }
+  return result;
+}
+
+// vector_head_to_tail — Phase 0 validation demo Sim 1 (session 56). Iframe-side
+// fallback in case PM_PRECOMPUTED_PHYSICS isn't injected. Returns the same
+// shape as the TS engine (vectorHeadToTailEngine in physicsEngine/concepts/).
+// Pure DC Pandey Ch.5.4 displacement framing: walk d_east m east, then
+// d_north m north → resultant = sqrt(d_east² + d_north²).
+function computePhysics_vector_head_to_tail(vars) {
+  var d_east = (vars && vars.d_east != null) ? vars.d_east : 3;
+  var d_north = (vars && vars.d_north != null) ? vars.d_north : 4;
+  var d_resultant_mag = Math.sqrt(d_east * d_east + d_north * d_north);
+  var theta_resultant_deg = Math.atan2(d_north, d_east) * 180 / Math.PI;
+  return {
+    concept_id: 'vector_head_to_tail',
+    variables: { d_east: d_east, d_north: d_north },
+    derived: { d_resultant_mag: d_resultant_mag, theta_resultant_deg: theta_resultant_deg },
     forces: []
   };
 }
@@ -463,11 +638,21 @@ function PM_hexToRgb(hex) {
 function PM_animationGate(spec) {
   if (!spec) return { visible: true, alpha: 1 };
   var appearAt = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
+  // Narration-bound reveal (R-E): a primitive may bind its appear time to a
+  // scenario_cue via spec.reveal_cue. When the player posts that cue's start
+  // (SET_CUE_TIME), the visual one-shot re-times to the ACTUAL narration beat
+  // (matching field_3d's cueTriggerMs) instead of a fixed appear_at_ms that
+  // desyncs after pacing trims. appear_at_ms stays the fallback — THE EYE never
+  // posts SET_CUE_TIME, so PM_cueOverrides is empty and frozen frames stay
+  // deterministic on the authored time.
+  if (typeof spec.reveal_cue === 'string' && typeof PM_cueOverrides[spec.reveal_cue] === 'number') {
+    appearAt = PM_cueOverrides[spec.reveal_cue];
+  }
   var animMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 0;
   var disappearAt = (typeof spec.disappear_at_ms === 'number') ? spec.disappear_at_ms : Infinity;
   var fadeOutMs = (typeof spec.fade_out_ms === 'number') ? spec.fade_out_ms : 0;
   if (appearAt <= 0 && animMs <= 0 && disappearAt === Infinity) return { visible: true, alpha: 1 };
-  var elapsed = PM_now();
+  var elapsed = PM_simClockMs;
   if (elapsed < appearAt) return { visible: false, alpha: 0 };
   // Fade-out phase (after disappear_at_ms): alpha lerps 1 → 0 over fade_out_ms,
   // then visible=false. Lets STATE_6 fade out the trajectory + ghost balls + cannon
@@ -500,7 +685,20 @@ function PM_focalEmphasis(spec) {
   if (!spec || !spec.id) return NONE;
   var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
   if (!stateData) return NONE;
-  var elapsed = PM_now();
+  var elapsed = PM_simClockMs;
+
+  // Priority 0: SET_GLOW narration-beat override (per-sentence). Wins over the
+  // authored focal so the spotlight can re-target on each narrated sentence
+  // (field_3d parity). null = fall through to the authored focal below. THE EYE
+  // never posts SET_GLOW, so frozen baselines always use the authored focal (no churn).
+  if (PM_glowOverride != null) {
+    var isGlowFocal = (typeof PM_glowOverride === 'string')
+      ? (PM_glowOverride === spec.id)
+      : (Array.isArray(PM_glowOverride) && PM_glowOverride.indexOf(spec.id) !== -1);
+    return isGlowFocal
+      ? { isFocal: true, alphaMul: 1, glowPx: 12 }
+      : { isFocal: false, alphaMul: 0.6, glowPx: 0 };
+  }
 
   // Priority 1: focal_sequence — cycle through highlight_primitive_id by time
   var seq = stateData.focal_sequence;
@@ -523,6 +721,20 @@ function PM_focalEmphasis(spec) {
 
   if (focalId === spec.id) return { isFocal: true, alphaMul: 1, glowPx: 12 };
   return { isFocal: false, alphaMul: 0.6, glowPx: 0 };
+}
+
+// ── rotate_continuous (WP-R5, D5) ─────────────────────────────────────────
+// Decorative continuous spin for a body NOT tied to a physics variable (e.g.
+// a compass-style pointer). Pure function of PM_simClockMs — same
+// freeze-determinism guarantee as every other timer in this renderer (Rule
+// 36). animSpec is spec.animation: { period_ms, from_deg?, direction? }.
+function PM_rotateContinuousDeg(animSpec) {
+  var period = (typeof animSpec.period_ms === 'number' && animSpec.period_ms > 0)
+    ? animSpec.period_ms : 2000;
+  var fromDeg = (typeof animSpec.from_deg === 'number') ? animSpec.from_deg : 0;
+  var dir = (animSpec.direction === 'ccw') ? -1 : 1;
+  var frac = (PM_simClockMs % period) / period;
+  return fromDeg + dir * frac * 360;
 }
 
 // ── Annotation overlap resolver ───────────────────────────────────────────
@@ -604,20 +816,6 @@ function PM_buildEvalScope(vars) {
   return { keys: keys, vals: vals };
 }
 
-// Current live vars for expression evaluation — slider values + derived
-// outputs merged, the same source PM_interpolate reads. Used by position_expr
-// (drawBody) so positional bindings see exactly what text bindings see.
-function PM_liveExprVars() {
-  var baseVars = (PM_physics && PM_physics.variables)
-    || (PM_config && PM_config.default_variables)
-    || {};
-  var derivedVars = (PM_physics && PM_physics.derived) || {};
-  var vars = {};
-  for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
-  for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
-  return vars;
-}
-
 // Safe-eval a JS expression with current vars in scope. Returns NaN on failure.
 // Used by animations that need dynamic accel/sign expressions (e.g. atwood).
 function PM_safeEval(expr, vars) {
@@ -629,6 +827,50 @@ function PM_safeEval(expr, vars) {
   } catch (e) {
     return NaN;
   }
+}
+
+// Point-returning sibling of PM_safeEval: evaluates a *_expr that yields a POINT
+// object, e.g. from_expr/to_expr = "{x: 310, y: 370 - N * 4}". PM_safeEval coerces
+// its result to a number (→NaN for objects), so geometric endpoints need this.
+function PM_safeEvalPoint(expr, vars) {
+  try {
+    var scope = PM_buildEvalScope(vars);
+    var fn = new Function(scope.keys.join(','), 'return (' + expr + ');');
+    var r = fn.apply(null, scope.vals);
+    if (r && typeof r.x === 'number' && typeof r.y === 'number' && isFinite(r.x) && isFinite(r.y)) {
+      return { x: r.x, y: r.y };
+    }
+  } catch (e) { /* fall through */ }
+  return null;
+}
+
+// Resolve a force_arrow / vector endpoint from a literal {x,y} or a point-expr string.
+function PM_resolveArrowPoint(literal, exprStr, vars) {
+  if (literal && typeof literal.x === 'number' && typeof literal.y === 'number') {
+    return { x: literal.x, y: literal.y };
+  }
+  if (typeof exprStr === 'string') return PM_safeEvalPoint(exprStr, vars);
+  return null;
+}
+
+// Live eval scope for *_expr fields (magnitude_expr, direction_deg_expr, accel_expr,
+// sign_expr, to_deg_expr, angle_value_expr, ...) evaluated via PM_safeEval outside of
+// PM_interpolate (drawForceArrow, drawVector, drawAngleArc, drawBody animations).
+// Merges PM_physics.derived (computed_outputs like R_mag, force_magnitude, pressure)
+// on top of PM_physics.variables / PM_config.default_variables — same idiom as
+// PM_interpolate's baseVars/derivedVars merge below — so an expression can reference
+// a derived field directly instead of only raw slider variables. Without this merge,
+// PM_safeEval silently returns NaN for any expr naming a derived-only field and the
+// caller's isFinite() guard falls back to 0 (an invisible zero-length arrow).
+function PM_liveVarsWithDerived() {
+  var baseVars = (PM_physics && PM_physics.variables)
+    || (PM_config && PM_config.default_variables)
+    || {};
+  var derivedVars = (PM_physics && PM_physics.derived) || {};
+  var vars = {};
+  for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
+  for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  return vars;
 }
 
 function PM_interpolate(text) {
@@ -701,6 +943,104 @@ function PM_resolveStateVars(stateKey) {
   return merged;
 }
 
+// ── Variable Choreography evaluator (WP-R5, D5) ───────────────────────────
+// Pure functions of a supplied tMs (always PM_simClockMs — the state-local
+// sim clock — or, for locus_trace's historical resampling, a past tMs on
+// the SAME clock). No wall-clock reads, no accumulated/mutated state: given
+// the same spec and the same tMs this always returns the same value, which
+// is what makes SET_TIME_FREEZE reproduce byte-identical frames (Rule 36).
+//
+// PM_choreoBuildSegments turns a one-directional sweep (from -> to over
+// duration_ms) plus a list of {at_value, hold_ms} holds into a piecewise
+// timeline: ramp, hold, ramp, hold, ..., ramp. Holds are located by WHERE
+// their at_value falls along the from->to span (as a 0..1 fraction of
+// duration_ms), not by any separate time field — so "hold at 90 degrees"
+// means exactly that, regardless of how fast the sweep runs.
+function PM_choreoBuildSegments(from, to, durationMs, holds) {
+  var span = to - from;
+  var checkpoints = [];
+  var holdList = holds || [];
+  for (var hi = 0; hi < holdList.length; hi++) {
+    var hold = holdList[hi];
+    if (!hold || typeof hold.at_value !== 'number') continue;
+    var frac = (span !== 0) ? (hold.at_value - from) / span : 0;
+    if (frac < 0 || frac > 1) continue; // outside this sweep's own direction/range
+    checkpoints.push({ frac: frac, hold_ms: hold.hold_ms || 0, value: hold.at_value });
+  }
+  checkpoints.sort(function(a, b) { return a.frac - b.frac; });
+
+  var segments = [];
+  var prevFrac = 0;
+  var prevValue = from;
+  for (var ci = 0; ci < checkpoints.length; ci++) {
+    var cp = checkpoints[ci];
+    var rampDur = (cp.frac - prevFrac) * durationMs;
+    if (rampDur > 0) segments.push({ kind: 'ramp', fromV: prevValue, toV: cp.value, dur: rampDur });
+    if (cp.hold_ms > 0) segments.push({ kind: 'hold', value: cp.value, dur: cp.hold_ms });
+    prevFrac = cp.frac;
+    prevValue = cp.value;
+  }
+  var tailDur = (1 - prevFrac) * durationMs;
+  if (tailDur > 0 || segments.length === 0) {
+    segments.push({ kind: 'ramp', fromV: prevValue, toV: to, dur: Math.max(0, tailDur) });
+  }
+  return segments;
+}
+
+function PM_choreoSampleSegments(segments, t) {
+  var acc = 0;
+  for (var i = 0; i < segments.length; i++) {
+    var seg = segments[i];
+    var isLast = (i === segments.length - 1);
+    if (t <= acc + seg.dur || isLast) {
+      if (seg.kind === 'hold') return seg.value;
+      var segT = seg.dur > 0 ? Math.min(1, Math.max(0, (t - acc) / seg.dur)) : 1;
+      return seg.fromV + (seg.toV - seg.fromV) * segT;
+    }
+    acc += seg.dur;
+  }
+  return 0; // unreachable — PM_choreoBuildSegments always emits >= 1 segment
+}
+
+// spec: { variable, mode: 'once'|'loop'|'ping_pong', from, to, start_ms,
+//         duration_ms, holds?: [{at_value, hold_ms}] }. Before start_ms the
+// value is simply 'from' (nothing has begun sweeping yet).
+function PM_choreoValue(spec, tMs) {
+  var from = spec.from;
+  var to = spec.to;
+  var startMs = (typeof spec.start_ms === 'number') ? spec.start_ms : 0;
+  var durationMs = (typeof spec.duration_ms === 'number' && spec.duration_ms > 0) ? spec.duration_ms : 1000;
+  var holds = spec.holds || [];
+  var mode = spec.mode || 'once';
+
+  if (tMs < startMs) return from;
+  var localT = tMs - startMs;
+
+  var forward = PM_choreoBuildSegments(from, to, durationMs, holds);
+  var forwardDur = 0;
+  for (var fi = 0; fi < forward.length; fi++) forwardDur += forward[fi].dur;
+
+  if (mode === 'once') {
+    return PM_choreoSampleSegments(forward, Math.min(localT, forwardDur));
+  }
+  if (mode === 'loop') {
+    var cyc = forwardDur > 0 ? (localT % forwardDur) : 0;
+    return PM_choreoSampleSegments(forward, cyc);
+  }
+  // ping_pong — build the return leg (to -> from) with the SAME holds (they
+  // re-locate automatically since PM_choreoBuildSegments re-derives each
+  // checkpoint's fraction from the new from/to span) so the pause happens at
+  // the same physical value on the way back too.
+  var backward = PM_choreoBuildSegments(to, from, durationMs, holds);
+  var backwardDur = 0;
+  for (var bi = 0; bi < backward.length; bi++) backwardDur += backward[bi].dur;
+  var fullPeriod = forwardDur + backwardDur;
+  if (fullPeriod <= 0) return from;
+  var cycT = localT % fullPeriod;
+  if (cycT < forwardDur) return PM_choreoSampleSegments(forward, cycT);
+  return PM_choreoSampleSegments(backward, cycT - forwardDur);
+}
+
 // Draws a stick-figure human with feet at (x, y) when rotation is 0.
 // Called inside a push() scope; the caller owns transforms.
 function drawStickman(x, y, size, rgb) {
@@ -764,21 +1104,6 @@ function drawBody(spec) {
 
   var pos = attachedPos || spec._resolvedPosition || spec.position || { x: 200, y: 200 };
 
-  // position_expr — live variable-driven position, the positional sibling of
-  // label_expr/text_expr (2026-07-24, chemistry explore states — GAP-2).
-  // Shape: { x: 'expr', y: 'expr' } — each expr evaluated against current
-  // slider/derived vars (+ Math) via PM_safeEval, so a body tracks its variable
-  // on drag (e.g. the Bohr electron riding its n-level rung). Physics overrides
-  // (attach_to_surface, motion integrator) win — they ARE the position. A
-  // non-finite eval keeps the static pos: a bad expr never blanks the body.
-  // Registered into PM_bodyRegistry downstream, so glow_focus tracks for free.
-  if (!attachedPos && !(spec.id && PM_motionState[spec.id]) && spec.position_expr) {
-    var peVars = PM_liveExprVars();
-    var peX = (spec.position_expr.x != null) ? PM_safeEval(String(spec.position_expr.x), peVars) : pos.x;
-    var peY = (spec.position_expr.y != null) ? PM_safeEval(String(spec.position_expr.y), peVars) : pos.y;
-    if (isFinite(peX) && isFinite(peY)) pos = { x: peX, y: peY };
-  }
-
   // Physics-driven animation delta. Engines learn nothing — JSONs declare the
   // animation shape and the renderer applies the equation.
   //   free_fall: y grows as 0.5·g·t²·PPM (true acceleration under gravity).
@@ -792,7 +1117,7 @@ function drawBody(spec) {
   if (spec.animation && spec.animation.type === 'fade_in') {
     var faDelay = spec.animation.delay_sec || 0;
     var faDur = spec.animation.duration_sec || 0.8;
-    var faT = PM_now() / 1000;
+    var faT = (PM_simClockMs) / 1000;
     var faP = Math.max(0, Math.min(1, (faT - faDelay) / faDur));
     animOpacityMultiplier = faP;
   }
@@ -802,7 +1127,7 @@ function drawBody(spec) {
   // slide compose correctly.
   if (spec.animation && (spec.animation.type === 'slide_horizontal'
        || spec.animation.type === 'slide_when_kinetic')) {
-    var slideTSec = PM_now() / 1000;
+    var slideTSec = (PM_simClockMs) / 1000;
     var slideAcc = 0;
     // Track whether accel came from an expression in m/s² (so we can do
     // directional decomposition correctly using the same px/m scale).
@@ -815,8 +1140,7 @@ function drawBody(spec) {
       // pass accel_expr like "F / m" -- evaluated each frame against the
       // latest variables, then scaled by px_per_meter.
       if (typeof spec.animation.accel_expr === 'string') {
-        var liveVarsSlide = (PM_physics && PM_physics.variables)
-          || (PM_config && PM_config.default_variables) || {};
+        var liveVarsSlide = PM_liveVarsWithDerived();
         var aSlideMs2 = PM_safeEval(spec.animation.accel_expr, liveVarsSlide);
         if (isFinite(aSlideMs2) && aSlideMs2 >= 0) {
           slideAcc = aSlideMs2 * slidePxPerMeter;
@@ -830,8 +1154,7 @@ function drawBody(spec) {
       }
     } else {
       // slide_when_kinetic: accel = (F - mu_k * m * g) / m, only when F > mu_s * m * g
-      var liveVarsK = (PM_physics && PM_physics.variables)
-        || (PM_config && PM_config.default_variables) || {};
+      var liveVarsK = PM_liveVarsWithDerived();
       var Fv = liveVarsK.F || 0;
       var muS = liveVarsK.mu_s || 0;
       var muK = liveVarsK.mu_k || 0;
@@ -860,8 +1183,7 @@ function drawBody(spec) {
     // When present, decompose the kinematic distance into x/y components so the block
     // slides at angle θ from horizontal — needed for STATE_7's theta_F slider.
     if (typeof spec.animation.direction_deg_expr === 'string') {
-      var liveVarsDir = (PM_physics && PM_physics.variables)
-        || (PM_config && PM_config.default_variables) || {};
+      var liveVarsDir = PM_liveVarsWithDerived();
       var thetaDirDeg = PM_safeEval(spec.animation.direction_deg_expr, liveVarsDir);
       if (isFinite(thetaDirDeg)) {
         var thetaDirRad = thetaDirDeg * Math.PI / 180;
@@ -879,7 +1201,7 @@ function drawBody(spec) {
   }
 
   if (!attachedPos && spec.animation && spec.animation.type) {
-    var tSec = PM_now() / 1000;
+    var tSec = (PM_simClockMs) / 1000;
     if (spec.animation.type === 'free_fall') {
       var durS = (spec.animation.duration_ms || 2500) / 1000;
       var tEff = Math.min(tSec, durS);
@@ -898,8 +1220,7 @@ function drawBody(spec) {
       animDx = L * Math.sin(thetaNow);
       animDy = -L * (1 - Math.cos(thetaNow));
     } else if (spec.animation.type === 'atwood') {
-      var liveVars = (PM_physics && PM_physics.variables)
-        || (PM_config && PM_config.default_variables) || {};
+      var liveVars = PM_liveVarsWithDerived();
       var aPx = spec.animation.accel_px_per_sec2 || 60;
       if (typeof spec.animation.accel_expr === 'string') {
         var evalA = PM_safeEval(spec.animation.accel_expr, liveVars);
@@ -978,7 +1299,9 @@ function drawBody(spec) {
   var rotDeg;
   if (typeof spec.rotation_deg === 'number') rotDeg = spec.rotation_deg;
   else if (attachedPos) rotDeg = -surfaceAngleDeg;
-  else rotDeg = 0;
+  else if (spec.animation && spec.animation.type === 'rotate_continuous') {
+    rotDeg = PM_rotateContinuousDeg(spec.animation);
+  } else rotDeg = 0;
   var rotRad = rotDeg * Math.PI / 180;
 
   var bw = 60, bh = 60;
@@ -1176,7 +1499,7 @@ function drawLabel(spec) {
   if (!resolved) return;
   // Phase 2 solver: prefer solver-resolved position when host wrote one.
   var pos = spec._solverPosition || spec.position;
-  var size = spec.font_size || 14; // Rule 29: focal never changes size — brightness only.
+  var size = spec.font_size || 14;
   var color = spec.color || '#D4D4D8';
   var rgb = PM_hexToRgb(color);
   var emph = PM_focalEmphasis(spec);
@@ -1213,10 +1536,10 @@ function drawAnnotation(spec) {
   var resolved = PM_interpolate(spec.text || '');
   if (!resolved) return;
   var pos = spec._solverPosition || spec.position;
-  var size = 12; // Rule 29: focal never changes size — brightness only.
+  var size = 12;
+  var emph = PM_focalEmphasis(spec);
   var color = spec.color || '#94A3B8';
   var rgb = PM_hexToRgb(color);
-  var emph = PM_focalEmphasis(spec);
   var lines = String(resolved).split('\\n');
   var lineH = size * 1.35;
 
@@ -1244,21 +1567,22 @@ function drawAnnotation(spec) {
   }
   var annY = pos.y;
 
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = color;
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+
   if (spec.style === 'callout') {
     noStroke();
-    fill(20, 25, 40, 210 * gate.alpha);
+    fill(20, 25, 40, 210 * gate.alpha * emph.alphaMul);
     rect(annX - padX, annY - padY, boxW, boxH, 6);
-    stroke(rgb[0], rgb[1], rgb[2], 180 * gate.alpha); strokeWeight(1);
+    stroke(rgb[0], rgb[1], rgb[2], 180 * gate.alpha * emph.alphaMul); strokeWeight(1);
     noFill();
     rect(annX - padX, annY - padY, boxW, boxH, 6);
   }
 
   noStroke();
   fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
-  if (emph.glowPx > 0) {
-    drawingContext.shadowColor = color;
-    drawingContext.shadowBlur = emph.glowPx;
-  }
   for (var j = 0; j < lines.length; j++) {
     text(lines[j], annX, annY + j * lineH);
   }
@@ -1284,9 +1608,7 @@ function drawSurface(spec) {
   var angle = 0;
   if (typeof spec.angle === 'number') angle = spec.angle;
   else if (typeof spec.angle_expr === 'string') {
-    var vars = (PM_physics && PM_physics.variables)
-      || (PM_config && PM_config.default_variables)
-      || {};
+    var vars = PM_liveVarsWithDerived();
     angle = (typeof vars[spec.angle_expr] === 'number') ? vars[spec.angle_expr] : 30;
   }
 
@@ -1355,6 +1677,66 @@ function drawForceArrow(spec, physics, origin) {
   //      engine, e.g. "external load F_ext = 30 N" prop in STATE_3).
   //   3. Fall back to the first physics force (legacy compat — avoid relying
   //      on this; prefer 1 or 2).
+  //   0. (checked FIRST) explicit geometry — from/from_expr → to/to_expr — a
+  //      literal segment between two resolved points. See the block below.
+
+  // Path 0 — explicit geometry (highest priority). An arrow authored with an
+  // endpoint pair (from/from_expr → to/to_expr) is a LITERAL segment between two
+  // resolved points: contact_forces STATE_4's FBD components (N/f/F, each a
+  // distinct from→to), and normal_reaction's "{x: 310, y: 370 - N*4}" stacked
+  // reactions. These carry no force_id match and no magnitude, so the physics
+  // paths below would collapse ALL of them onto physics.forces[0] (the bug). Draw
+  // the segment directly and return. Only force_arrows that authored to/to_expr
+  // enter here, so magnitude-driven arrows are unaffected.
+  var _hasGeomTo = (spec.to && typeof spec.to.x === 'number' && typeof spec.to.y === 'number')
+    || (typeof spec.to_expr === 'string');
+  if (_hasGeomTo) {
+    var gLive = PM_liveVarsWithDerived();
+    var gFrom = PM_resolveArrowPoint(spec.from, spec.from_expr, gLive) || { x: origin.x, y: origin.y };
+    var gTo = PM_resolveArrowPoint(spec.to, spec.to_expr, gLive);
+    if (!gTo) return;                              // unresolvable endpoint → draw nothing, not a wrong arrow
+    var gGate = PM_animationGate(spec);
+    if (!gGate.visible) return;
+    var gEmph = PM_focalEmphasis(spec);
+    var gColor = spec.color || '#EF4444';
+    var gRgb = PM_hexToRgb(gColor);
+    var gx1 = gFrom.x, gy1 = gFrom.y;              // grow from origin toward the endpoint as the reveal gate opens
+    var gx2 = gFrom.x + (gTo.x - gFrom.x) * gGate.alpha;
+    var gy2 = gFrom.y + (gTo.y - gFrom.y) * gGate.alpha;
+    if (spec.id) PM_endpointRegistry[spec.id] = { origin: { x: gx1, y: gy1 }, tip: { x: gx2, y: gy2 } };
+    var gA = 255 * gGate.alpha * gEmph.alphaMul;
+    push();
+    if (gEmph.glowPx > 0) { drawingContext.shadowColor = gColor; drawingContext.shadowBlur = gEmph.glowPx; }
+    stroke(gRgb[0], gRgb[1], gRgb[2], gA); strokeWeight(2);
+    fill(gRgb[0], gRgb[1], gRgb[2], gA);
+    var gAng = Math.atan2(gy2 - gy1, gx2 - gx1);
+    var gHead = 12;
+    line(gx1, gy1, gx2, gy2);
+    noStroke();
+    triangle(gx2, gy2,
+      gx2 - gHead * Math.cos(gAng - Math.PI / 6), gy2 - gHead * Math.sin(gAng - Math.PI / 6),
+      gx2 - gHead * Math.cos(gAng + Math.PI / 6), gy2 - gHead * Math.sin(gAng + Math.PI / 6));
+    fill(gRgb[0], gRgb[1], gRgb[2], gA); noStroke(); textSize(12);
+    var gLabel = spec.label_override ? PM_interpolate(spec.label_override)
+      : (typeof spec.label === 'string' && spec.label.length > 0) ? spec.label
+      : (spec.label_expr ? PM_interpolate(String(spec.label_expr)) : '');
+    var glx, gly;
+    if (spec.label_position === 'perpendicular') {
+      var gmx = (gx1 + gx2) / 2, gmy = (gy1 + gy2) / 2;
+      var gperp = (typeof spec.label_perp_offset === 'number') ? spec.label_perp_offset : 14;
+      glx = gmx + -Math.sin(gAng) * gperp; gly = gmy + Math.cos(gAng) * gperp;
+      textAlign(CENTER, CENTER);
+    } else { glx = gx2 + 6; gly = gy2; textAlign(LEFT, CENTER); }
+    if (spec.label_offset && typeof spec.label_offset === 'object') {
+      if (typeof spec.label_offset.dx === 'number') glx += spec.label_offset.dx;
+      if (typeof spec.label_offset.dy === 'number') gly += spec.label_offset.dy;
+    }
+    text(gLabel, glx, gly);
+    if (gEmph.glowPx > 0) { drawingContext.shadowColor = 'transparent'; drawingContext.shadowBlur = 0; }
+    pop();
+    return;
+  }
+
   var force = null;
   for (var i = 0; i < physics.forces.length; i++) {
     if (physics.forces[i].id === spec.force_id || physics.forces[i].id === spec.id) { force = physics.forces[i]; break; }
@@ -1363,8 +1745,7 @@ function drawForceArrow(spec, physics, origin) {
     || (typeof spec.magnitude_expr === 'string');
   if (!force && specHasMagnitude) {
     // Build a self-contained force from spec.magnitude + spec.direction_deg.
-    var liveVars = (PM_physics && PM_physics.variables)
-      || (PM_config && PM_config.default_variables) || {};
+    var liveVars = PM_liveVarsWithDerived();
     var mag;
     if (typeof spec.magnitude_expr === 'string') {
       var mEval = PM_safeEval(spec.magnitude_expr, liveVars);
@@ -1396,28 +1777,58 @@ function drawForceArrow(spec, physics, origin) {
 
   var gate = PM_animationGate(spec);
   if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // spec.animation.type === 'translate' (peter_parker:renderer_primitives,
+  // 2026-07-24 — "carry a vector parallel to itself" beat, e.g.
+  // vector_addition_law STATE_2's tail-on-head B carry). Offsets the
+  // ALREADY-RESOLVED origin only — magnitude/direction below are computed
+  // purely from force.vector and never touched, so the arrow's length and
+  // heading stay visibly frozen while it rigidly slides. Mirrors drawBody's
+  // 'translate' branch's easing/delay/duration/clamp conventions exactly
+  // (one timing vocabulary across primitive types) and is a pure function
+  // of PM_simClockMs (Rule 36) so SET_TIME_FREEZE frozen captures stay
+  // deterministic by construction. Composes with every origin-resolution
+  // path (from literal / origin_body_id / anchor_to / *_expr) because it
+  // offsets the caller-resolved 'origin' param, not any one resolution path.
+  var arrowAnimDx = 0, arrowAnimDy = 0;
+  if (spec.animation && spec.animation.type === 'translate') {
+    var faTSec = PM_simClockMs / 1000;
+    var faTrDelay = spec.animation.delay_sec || 0;
+    var faTrDur = spec.animation.duration_sec || 1.2;
+    var faTrT = Math.max(0, Math.min(1, (faTSec - faTrDelay) / faTrDur));
+    var faTrEase = 1 - Math.pow(1 - faTrT, 3); // ease-out cubic — same as drawBody
+    arrowAnimDx = (spec.animation.dx_px || 0) * faTrEase;
+    arrowAnimDy = (spec.animation.dy_px || 0) * faTrEase;
+  }
 
   var scale = spec.scale_pixels_per_unit || 5;
   var color = spec.color || force.color || '#EF4444';
-  // Rule 29: focal emphasis is alpha + glow; the arrow's geometry
-  // (stroke weight, arrowhead, label size) is invariant.
   var rgb = PM_hexToRgb(color);
-  var emph = PM_focalEmphasis(spec);
 
   // Physics y-up → canvas y-down: flip y. Multiply by gate.alpha so the arrow
   // grows from its origin to its tip as it reveals.
   var dx = force.vector.x * scale * gate.alpha;
   var dy = -force.vector.y * scale * gate.alpha;
-  var x1 = origin.x, y1 = origin.y;
+  var x1 = origin.x + arrowAnimDx, y1 = origin.y + arrowAnimDy;
   var x2 = x1 + dx, y2 = y1 + dy;
 
+  // WP-R5 (D5 anchor_to) — register this arrow's live endpoints so a LATER
+  // primitive in the same state's scene_composition can chain off them (a
+  // second leg vector's origin = this arrow's tip). Registered post-resolve
+  // so a synthesized spec.magnitude/spec.direction_deg arrow exposes the
+  // point it actually draws to, not a re-derivation of it.
+  if (spec.id) {
+    PM_endpointRegistry[spec.id] = { origin: { x: x1, y: y1 }, tip: { x: x2, y: y2 } };
+  }
+
   push();
-  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul); strokeWeight(2);
-  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
   if (emph.glowPx > 0) {
     drawingContext.shadowColor = color;
     drawingContext.shadowBlur = emph.glowPx;
   }
+  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul); strokeWeight(2);
+  fill(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
 
   var angle = Math.atan2(dy, dx);
   var headLen = 12;
@@ -1508,7 +1919,14 @@ function drawForceComponents(spec, physics) {
 
   var scale = spec.scale_pixels_per_unit || 5;
   var origin = PM_resolveForceOrigin(
-    { draw_from: spec.origin_anchor || force.draw_from || 'body_bottom', body_id: spec.origin_body_id },
+    {
+      draw_from: spec.origin_anchor || force.draw_from || 'body_bottom',
+      body_id: spec.origin_body_id,
+      // WP-R4 (D4): thread the literal from through so force_components
+      // built around a literal {x,y} origin aren't silently dropped the
+      // same way bare force_arrow primitives were.
+      from: spec.from
+    },
     force,
     { x: 380, y: 350 }
   );
@@ -1546,7 +1964,7 @@ function drawForceComponents(spec, physics) {
 
   // Entry animation
   var animMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 600;
-  var elapsed = PM_now();
+  var elapsed = PM_simClockMs;
   var progress = animMs > 0 ? Math.min(1, Math.max(0, elapsed / animMs)) : 1;
 
   var pDelta = p * scale * progress;
@@ -1639,15 +2057,27 @@ function drawVector(spec, ox, oy) {
   // spec.direction_deg are provided, synthesize to = from + (cos, -sin) * mag
   // using the same physics-y-up convention as drawForceArrow
   // (0 deg = +x, 90 deg = visually up on canvas).
-  var from = spec.from || { x: 0, y: 0 };
-  if (typeof from === 'string') from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+  // from/to may also be a point-EXPR string, e.g. from_expr:"{x: 310, y: 370 - N*4}"
+  // (contact_forces' N-stacked reaction). Previously unread → the vector collapsed
+  // to (0,0). Resolve it via PM_safeEvalPoint (literal/anchor paths unchanged).
+  var vLive = null;
+  var from = spec.from;
+  if (typeof from === 'string') {
+    from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+  } else if ((from == null || typeof from.x !== 'number') && typeof spec.from_expr === 'string') {
+    vLive = vLive || PM_liveVarsWithDerived();
+    from = PM_safeEvalPoint(spec.from_expr, vLive);
+  }
+  if (!from || typeof from.x !== 'number') from = { x: 0, y: 0 };
   var to;
   if (spec.to != null) {
     to = spec.to;
     if (typeof to === 'string') to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry);
+  } else if (typeof spec.to_expr === 'string') {
+    vLive = vLive || PM_liveVarsWithDerived();
+    to = PM_safeEvalPoint(spec.to_expr, vLive) || { x: from.x, y: from.y };
   } else if (typeof spec.magnitude === 'number' || typeof spec.magnitude_expr === 'string') {
-    var liveVarsV = (PM_physics && PM_physics.variables)
-      || (PM_config && PM_config.default_variables) || {};
+    var liveVarsV = PM_liveVarsWithDerived();
     var magV = (typeof spec.magnitude_expr === 'string')
       ? PM_safeEval(spec.magnitude_expr, liveVarsV)
       : spec.magnitude;
@@ -1701,7 +2131,7 @@ function drawVector(spec, ox, oy) {
 // pcplRenderer/primitives/motion_path.ts. Ships without animation; style:
 // 'animated' is treated as 'solid'. path: 'parabolic' | 'circular' is
 // silently ignored (JSONs currently only use 'linear').
-// TODO: wire per-frame position interpolation via PM_stateEnterTime.
+// TODO: wire per-frame position interpolation via PM_simClockMs.
 function drawMotionPath(spec, ox, oy) {
   ox = ox || 0; oy = oy || 0;
   var start = spec.start || { x: 0, y: 0 };
@@ -1735,6 +2165,100 @@ function drawMotionPath(spec, ox, oy) {
   rotate(mangle);
   triangle(0, 0, -10, 4, -10, -4);
   pop();
+  pop();
+}
+
+// Recomputes the full physics vars+derived scope AS THEY WOULD BE at a given
+// virtual sim-clock time tMs — i.e. runs every declared variable_choreography
+// entry through PM_choreoValue(spec, tMs) instead of reading the live
+// PM_choreoValues cache (which only ever reflects "now"). Used by
+// drawLocusTrace to recompute its whole historical path from scratch every
+// frame — no accumulated trail state to desync under SET_TIME_FREEZE
+// (WP-R5, D5: "recompute-from-zero is what makes it freeze-deterministic").
+function PM_choreoVarsAtTime(tMs) {
+  var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
+  var choreo = (stateData && stateData.variable_choreography) || [];
+  var scene = (stateData && stateData.scene_composition) || [];
+  var stateSliderVars = {};
+  for (var si = 0; si < scene.length; si++) {
+    var sp = scene[si];
+    if (sp && sp.type === 'slider' && sp.variable) stateSliderVars[sp.variable] = true;
+  }
+  var vars = PM_resolveStateVars(PM_currentState) || {};
+  for (var sk in PM_sliderValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
+      vars[sk] = PM_sliderValues[sk];
+    }
+  }
+  for (var ci = 0; ci < choreo.length; ci++) {
+    var cspec = choreo[ci];
+    if (!cspec || typeof cspec.variable !== 'string') continue;
+    if (PM_userTouched[cspec.variable]) continue; // seized — the slider value above already wins
+    vars[cspec.variable] = PM_choreoValue(cspec, tMs);
+  }
+  var derived = {};
+  try {
+    var ph = computePhysics(PM_config.concept_id, vars);
+    derived = (ph && ph.derived) || {};
+  } catch (err) {
+    derived = {};
+  }
+  var out = {};
+  for (var vk in vars) if (Object.prototype.hasOwnProperty.call(vars, vk)) out[vk] = vars[vk];
+  for (var dk in derived) if (Object.prototype.hasOwnProperty.call(derived, dk)) out[dk] = derived[dk];
+  return out;
+}
+
+// drawLocusTrace (WP-R5, D5) — progressive trail of a moving point, e.g. the
+// 5 km circle a continuously-sweeping heading traces out. Recomputed FROM
+// SCRATCH every frame by resampling x_expr/y_expr at 'sample_ms' steps from
+// start_ms to min(now, end_ms), capped at MAX_SAMPLES — never an
+// accumulated array, so a SET_TIME_FREEZE re-pin to the same at_ms always
+// redraws byte-identical pixels. Each sample evaluates against
+// PM_choreoVarsAtTime(tSample), so the trace reflects what
+// variable_choreography would have driven at that historical instant, not
+// just the current live value.
+var PM_LOCUS_TRACE_MAX_SAMPLES = 240;
+
+function drawLocusTrace(spec) {
+  if (!spec || typeof spec.x_expr !== 'string' || typeof spec.y_expr !== 'string') return;
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+
+  var startMs = (typeof spec.start_ms === 'number') ? spec.start_ms : 0;
+  var endMs = (typeof spec.end_ms === 'number') ? spec.end_ms : (startMs + 2000);
+  var sampleMs = (typeof spec.sample_ms === 'number' && spec.sample_ms > 0) ? spec.sample_ms : 50;
+  var nowMs = Math.min(PM_simClockMs, endMs);
+  if (nowMs <= startMs) return; // nothing traced yet
+
+  var span = nowMs - startMs;
+  var sampleCount = Math.floor(span / sampleMs) + 1;
+  if (sampleCount > PM_LOCUS_TRACE_MAX_SAMPLES) sampleCount = PM_LOCUS_TRACE_MAX_SAMPLES;
+  if (sampleCount < 2) return;
+  var step = span / (sampleCount - 1);
+
+  var rgb = PM_hexToRgb(spec.color || '#8B5CF6');
+  var sw = (typeof spec.stroke_weight === 'number') ? spec.stroke_weight : 2;
+  var fadeTail = !!spec.fade_tail;
+
+  push();
+  noFill();
+  strokeWeight(sw);
+  var prevPt = null;
+  for (var i = 0; i < sampleCount; i++) {
+    var tSample = startMs + i * step;
+    var sampleVars = PM_choreoVarsAtTime(tSample);
+    var x = PM_safeEval(spec.x_expr, sampleVars);
+    var y = PM_safeEval(spec.y_expr, sampleVars);
+    if (!isFinite(x) || !isFinite(y)) { prevPt = null; continue; }
+    if (prevPt) {
+      var alphaMul = 1;
+      if (fadeTail && sampleCount > 1) alphaMul = 0.25 + 0.75 * (i / (sampleCount - 1));
+      stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * alphaMul);
+      line(prevPt.x, prevPt.y, x, y);
+    }
+    prevPt = { x: x, y: y };
+  }
   pop();
 }
 
@@ -1890,19 +2414,29 @@ function PM_drawSubScene(prims, ox, oy) {
 // vector_resolution to visualize α and by normal_reaction for θ indicators.
 function drawAngleArc(spec) {
   // Vertex resolution priority:
+  //   0. spec.anchor_to (WP-R5, D5) → PM_endpointRegistry lookup. Wins over
+  //      everything below when the target primitive has already been
+  //      registered THIS frame — chains this arc's vertex onto a
+  //      force_arrow/angle_arc drawn earlier in the same state's
+  //      scene_composition (e.g. an angle arc pinned to a leg vector's tip).
   //   1. spec.center (explicit {x, y} literal) — author-placed.
   //   2. spec.surface_id  → resolve to the surface's (x0, y0) from PM_surfaceRegistry.
   //   3. spec.vertex_anchor (string like "floor.start" or "block.bottom") →
   //      PM_resolveAnchor.
   //   4. Legacy fallback (250, 300) — only hits when none of the above resolved.
   var center = null;
-  if (spec.center && typeof spec.center === 'object'
+  if (spec.anchor_to && typeof spec.anchor_to === 'object' && typeof spec.anchor_to.primitive_id === 'string') {
+    center = PM_resolveAnchorTo(spec.anchor_to);
+  }
+  if (!center && spec.center && typeof spec.center === 'object'
       && typeof spec.center.x === 'number' && typeof spec.center.y === 'number') {
     center = spec.center;
-  } else if (spec.surface_id && PM_surfaceRegistry && PM_surfaceRegistry[spec.surface_id]) {
+  }
+  if (!center && spec.surface_id && PM_surfaceRegistry && PM_surfaceRegistry[spec.surface_id]) {
     var surfA = PM_surfaceRegistry[spec.surface_id];
     center = { x: surfA.x0, y: surfA.y0 };
-  } else if (typeof spec.vertex_anchor === 'string') {
+  }
+  if (!center && typeof spec.vertex_anchor === 'string') {
     center = PM_resolveAnchor(spec.vertex_anchor, PM_bodyRegistry, PM_surfaceRegistry);
   }
   if (!center) center = { x: 250, y: 300 };
@@ -1910,8 +2444,7 @@ function drawAngleArc(spec) {
   var fromDeg = (typeof spec.from_deg === 'number') ? spec.from_deg : 0;
   var toDeg;
   if (typeof spec.to_deg_expr === 'string') {
-    var vars = (PM_physics && PM_physics.variables)
-      || (PM_config && PM_config.default_variables) || {};
+    var vars = PM_liveVarsWithDerived();
     toDeg = (typeof vars[spec.to_deg_expr] === 'number') ? vars[spec.to_deg_expr] : 45;
   } else if (typeof spec.to_deg === 'number') {
     toDeg = spec.to_deg;
@@ -1920,13 +2453,24 @@ function drawAngleArc(spec) {
     // Drives to_deg so an inclined surface with angle=30 shows a 0 to 30 arc.
     toDeg = spec.angle_value;
   } else if (typeof spec.angle_value_expr === 'string') {
-    var varsA = (PM_physics && PM_physics.variables)
-      || (PM_config && PM_config.default_variables) || {};
+    var varsA = PM_liveVarsWithDerived();
     var av = PM_safeEval(spec.angle_value_expr, varsA);
     toDeg = isFinite(av) ? av : 45;
   } else {
     toDeg = 45;
   }
+
+  // WP-R5 (D5 anchor_to) — register this arc's vertex + its to_deg endpoint
+  // point so a LATER primitive can chain off it, even on a degenerate arc
+  // that returns early below without drawing anything.
+  if (spec.id) {
+    var arcTipRad = -toDeg * Math.PI / 180; // canvas CW convention (matches the arc() call below)
+    PM_endpointRegistry[spec.id] = {
+      origin: { x: center.x, y: center.y },
+      tip: { x: center.x + radius * Math.cos(arcTipRad), y: center.y + radius * Math.sin(arcTipRad) }
+    };
+  }
+
   // Degenerate arc (e.g. a horizontal surface labelled angle=0°): skip drawing
   // the arc itself but still render the label so the student sees "θ = 0°"
   // without a zero-width arc artifact.
@@ -2023,11 +2567,15 @@ function drawFormulaBox(spec) {
   var pos = spec._solverPosition || spec.position || { x: 500, y: 300 };
   var textStr = PM_interpolate(String(src));
   var lines = textStr.split('\\n');
-  // Rule 29: focal never changes size — geometry constant, brightness only.
+  var emph = PM_focalEmphasis(spec);
   var lineHeight = 18;
   var padding = 10;
 
   push();
+  // Rule 34b — the ONE formula surface is math-serif Unicode (Φ ω ε ε₀ θ …), not
+  // the p5 default sans. CSS font stack falls back gracefully if 'Cambria Math' is
+  // absent. Set before textWidth() so box sizing measures the actual glyphs.
+  textFont("'Cambria Math','STIX Two Math','Times New Roman',serif");
   textSize(14);
   textStyle(BOLD);
   var maxW = 0;
@@ -2037,9 +2585,7 @@ function drawFormulaBox(spec) {
   }
   var boxW = maxW + padding * 2;
   var boxH = lines.length * lineHeight + padding * 2;
-  var fbColor = spec.border_color || '#3B82F6';
-  var rgb = PM_hexToRgb(fbColor);
-  var emph = PM_focalEmphasis(spec);
+  var rgb = PM_hexToRgb(spec.border_color || '#3B82F6');
 
   // Right-edge clamp: canvas is 760px wide. If the computed box would overflow
   // past 760-10 (10px margin), shift the whole box left so the equation is
@@ -2050,14 +2596,15 @@ function drawFormulaBox(spec) {
     pos = { x: newX, y: pos.y };
   }
 
-  // Dark background for contrast
-  fill(15, 23, 42, 230 * gate.alpha);
-  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
-  strokeWeight(1.5);
   if (emph.glowPx > 0) {
-    drawingContext.shadowColor = fbColor;
+    drawingContext.shadowColor = spec.border_color || '#3B82F6';
     drawingContext.shadowBlur = emph.glowPx;
   }
+
+  // Dark background for contrast
+  fill(15, 23, 42, 230 * gate.alpha * emph.alphaMul);
+  stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * emph.alphaMul);
+  strokeWeight(1.5);
   rect(pos.x, pos.y, boxW, boxH, 4);
 
   noStroke();
@@ -2074,8 +2621,8 @@ function drawFormulaBox(spec) {
 }
 
 // ─── Engine 19 primitives: derivation_step + mark_badge (board mode) ───────
-// Handwriting animation uses PM_stateEnterTime so the reveal restarts on
-// every state transition. Hex-colour parsing uses p5's color()/red()/...
+// Handwriting animation uses PM_simClockMs so the reveal restarts on
+// every state transition (Rule 36). Hex-colour parsing uses p5's color()/red()/...
 function drawDerivationStep(spec) {
   if (!spec.position) return;
   var col = color(spec.color || '#1F2937');
@@ -2086,7 +2633,7 @@ function drawDerivationStep(spec) {
   var alpha = 255;
   var animate = spec.animate_in || 'none';
   if (animate !== 'none') {
-    var elapsed = PM_now();
+    var elapsed = PM_simClockMs;
     if (animate === 'handwriting') {
       var charsPerSec = 28;
       var charsToShow = Math.min(displayText.length, Math.floor((elapsed / 1000) * charsPerSec));
@@ -2145,7 +2692,6 @@ function drawMarkBadge(spec) {
 function initMotionState() {
   PM_motionState = {};
   PM_motionConfig = {};
-  PM_lastFrameMs = 0;
   if (!PM_config || !PM_config.states) return;
   var stateData = PM_config.states[PM_currentState];
   if (!stateData) return;
@@ -2162,7 +2708,7 @@ function initMotionState() {
     // can run BEFORE the first draw, so recompute here from registry.
     var surf = PM_surfaceRegistry[surfaceId];
     // If registry not yet populated (first frame of a new state), defer:
-    // stepMotionIntegrator will skip bodies with no state entry and we'll
+    // stepMotionIntegratorTick will skip bodies with no state entry and we'll
     // retry on next init trigger (PARAM_UPDATE always runs after registry).
     var initialX, initialY;
     if (surf) {
@@ -2193,17 +2739,13 @@ function initMotionState() {
   }
 }
 
-function stepMotionIntegrator() {
-  // First-frame guard: establish time baseline, skip integration.
-  if (PM_lastFrameMs === 0) {
-    PM_lastFrameMs = millis();
-    return;
-  }
-  var now = millis();
-  var dt = (now - PM_lastFrameMs) / 1000;
-  PM_lastFrameMs = now;
-  if (dt <= 0) return;
-  if (dt > PM_MAX_DT) dt = PM_MAX_DT;
+function stepMotionIntegratorTick() {
+  // Fixed dt = 1/60s (Rule 36) — called once per PM_simClockMs tick, 0-3 times
+  // per real frame in normal play, or in a tight loop during a SET_TIME_FREEZE
+  // deterministic catch-up. Replaces the old millis()-based variable-dt
+  // integration so N ticks x dt is always the same total displacement
+  // regardless of real frame timing (60 Hz vs 120 Hz+, or a throttled tab).
+  var dt = 1 / 60;
 
   for (var bodyId in PM_motionConfig) {
     if (!Object.prototype.hasOwnProperty.call(PM_motionConfig, bodyId)) continue;
@@ -2268,6 +2810,48 @@ function stepMotionIntegrator() {
 //   3. Posts { type:'PARAM_UPDATE', key, value } upward — DualPanelSimulation relays to Panel B
 // Position resolution: SliderSpec.position is 'bottom' | 'bottom_left' | 'bottom_right'.
 // CONTROL_ZONE = { x:30, y:460, w:700, h:40 } (from PM_ZONES).
+// Rule 31 muscle-memory: a slider shared across states must keep the SAME screen
+// position. Per-state idx/total (below) would move a variable that's alone in one
+// state but 2nd-of-3 in another. So assign each 'bottom' slider variable a STABLE
+// slot from a single scan of all states (first-appearance order; total = the count
+// of distinct 'bottom' sliders = what the explore state shows), cached once — the
+// panel is effectively "built once, rows shown/hidden per state" (Rule 31c).
+var PM_sliderSlotMap = null;
+function PM_ensureSliderSlotMap() {
+  if (PM_sliderSlotMap) return PM_sliderSlotMap;
+  var states = (PM_config && PM_config.states) || {};
+  var collect = function(sk) {
+    var out = [];
+    var scene = (states[sk] && states[sk].scene_composition) || [];
+    for (var i = 0; i < scene.length; i++) {
+      var p = scene[i];
+      if (p && p.type === 'slider' && p.variable && (p.position || 'bottom') === 'bottom') out.push(p.variable);
+    }
+    return out;
+  };
+  // Canonical order = the state with the MOST 'bottom' sliders (the explore
+  // sandbox, where the teacher lives), so its layout reads exactly as authored;
+  // every subset state then places its sliders at those same slots (no jump).
+  var bestList = [];
+  for (var sk in states) {
+    if (!Object.prototype.hasOwnProperty.call(states, sk)) continue;
+    var lst = collect(sk);
+    if (lst.length > bestList.length) bestList = lst;
+  }
+  var order = [], seen = {};
+  for (var b = 0; b < bestList.length; b++) if (!seen[bestList[b]]) { seen[bestList[b]] = true; order.push(bestList[b]); }
+  // append any variable that appears ONLY in other (non-max) states
+  for (var sk2 in states) {
+    if (!Object.prototype.hasOwnProperty.call(states, sk2)) continue;
+    var lst2 = collect(sk2);
+    for (var k = 0; k < lst2.length; k++) if (!seen[lst2[k]]) { seen[lst2[k]] = true; order.push(lst2[k]); }
+  }
+  var map = {};
+  for (var j = 0; j < order.length; j++) map[order[j]] = { index: j, total: order.length };
+  PM_sliderSlotMap = map;
+  return map;
+}
+
 function PM_resolveSliderSlot(pos, idx, total) {
   var zone = PM_ZONES.CONTROL_ZONE;
   if (pos === 'bottom_left') return { x: zone.x + 30, y: zone.y + 20, w: 220 };
@@ -2283,7 +2867,18 @@ function PM_resolveSliderSlot(pos, idx, total) {
 
 function drawCanvasSlider(spec, idx, total) {
   if (!spec || !spec.variable) return;
-  var slot = PM_resolveSliderSlot(spec.position || 'bottom', idx || 0, total || 1);
+  // 'bottom' sliders use the STABLE per-variable slot (so a shared slider keeps its
+  // screen position across states); explicit bottom_left/bottom_right and any
+  // variable not in the map fall back to the per-state idx/total distribution.
+  var sPos = spec.position || 'bottom';
+  var slot;
+  if (sPos === 'bottom') {
+    var sm = PM_ensureSliderSlotMap()[spec.variable];
+    slot = sm ? PM_resolveSliderSlot('bottom', sm.index, sm.total)
+              : PM_resolveSliderSlot('bottom', idx || 0, total || 1);
+  } else {
+    slot = PM_resolveSliderSlot(sPos, idx || 0, total || 1);
+  }
   var minV = (typeof spec.min === 'number') ? spec.min : 0;
   var maxV = (typeof spec.max === 'number') ? spec.max : 10;
   var defV = (typeof spec.default === 'number') ? spec.default : minV;
@@ -2310,7 +2905,11 @@ function drawCanvasSlider(spec, idx, total) {
   fill(210, 215, 228);
   textSize(11);
   textAlign(LEFT, CENTER);
-  var labelText = (spec.label || spec.variable) + ': ' + Number(val).toFixed(spec.step && spec.step < 1 ? 1 : 0) + (spec.unit ? (' ' + spec.unit) : '');
+  // Rule 34c — real Unicode, not ASCII. 'deg' joins tight (90°, no space);
+  // every other unit keeps the existing ' <unit>' join (survey found no other
+  // ASCII-math unit on an authored type:'slider' primitive — see WP-R2 report).
+  var pmUnitSuffix = (spec.unit === 'deg') ? '°' : (spec.unit ? (' ' + spec.unit) : '');
+  var labelText = (spec.label || spec.variable) + ': ' + Number(val).toFixed(spec.step && spec.step < 1 ? 1 : 0) + pmUnitSuffix;
   text(labelText, slot.x, slot.y - 14);
 
   // Draw knob
@@ -2321,13 +2920,10 @@ function drawCanvasSlider(spec, idx, total) {
   pop();
 
   // Drag handling — single-slider-at-a-time to avoid cross-interference.
-  // Mouse mapped into 760×500 design space (identity unless responsive_fill).
-  var dMouseX = PM_mouseXd();
-  var dMouseY = PM_mouseYd();
   var hit = mouseIsPressed
-    && Math.abs(dMouseY - slot.y) < 18
-    && dMouseX > slot.x - 8
-    && dMouseX < slot.x + slot.w + 8;
+    && Math.abs(mouseY - slot.y) < 18
+    && mouseX > slot.x - 8
+    && mouseX < slot.x + slot.w + 8;
 
   // Claim active slider on press (prevents two sliders claiming the same drag).
   if (hit && PM_activeSliderId == null) {
@@ -2339,7 +2935,14 @@ function drawCanvasSlider(spec, idx, total) {
   var isActive = PM_activeSliderId === (spec.id || spec.variable);
 
   if (hit && isActive) {
-    var newFrac = Math.max(0, Math.min(1, (dMouseX - slot.x) / slot.w));
+    // WP-R5 (D5 seizure) — a REAL drag (genuine mouseIsPressed, this exact
+    // branch) permanently hands this variable's variable_choreography (if
+    // any) over to the teacher for the rest of this state. Synthetic
+    // postMessage traffic (THE EYE, PARAM_UPDATE) never reaches this branch
+    // because it can't move p5's own mouseX/mouseY — that's deliberate;
+    // see PM_userTouched's declaration.
+    PM_userTouched[spec.variable] = true;
+    var newFrac = Math.max(0, Math.min(1, (mouseX - slot.x) / slot.w));
     var rawVal = minV + newFrac * (maxV - minV);
     var step = (typeof spec.step === 'number' && spec.step > 0) ? spec.step : (maxV - minV) / 100;
     var snapped = Math.round(rawVal / step) * step;
@@ -2369,7 +2972,6 @@ function drawCanvasSlider(spec, idx, total) {
       // visual regression observed during drag.
       PM_motionState = {};
       PM_motionConfig = {};
-      PM_lastFrameMs = 0;
       PM_motionNeedsInit = true;
 
       if (PM_sliderLastEmitted[spec.variable] !== snapped) {
@@ -2388,50 +2990,50 @@ var PM_physics = null;
 var PM_currentState = 'STATE_1';
 var PM_bodyRegistry = {};
 var PM_surfaceRegistry = {};
-var PM_stateEnterTime = 0; // millis() at last STATE ENTER — used by animated primitives
-
-// ─── Player clock contract (root CLAUDE.md §6 · Rule 26b) ───────────────────
-// PM_clockPinMs !== null  ⇒ the state-local clock is PINNED at that value.
-// EVERY animation gate reads PM_now(), never millis() directly, so one pin
-// freezes the entire scene deterministically. Two consumers depend on this:
-//   • THE EYE  — SET_TIME_FREEZE {at_ms} is its capture pin; without it the
-//     frozen baselines are not reproducible and the family cannot be gated.
-//   • Pause    — Rule 26b freezes clock + audio together; audio-only pause
-//     while the canvas keeps animating means a teacher cannot hold a frame.
-// Added 2026-07-24: this renderer previously honoured only USER_GESTURE /
-// SET_STATE / PARAM_UPDATE, so Play / Pause / Replay were inert on the whole
-// parametric family (engine_bug_queue: parametric_renderer_ignores_player_clock_contract).
-var PM_clockPinMs = null;
-
-// Rule 26a — MUTE is audio-only; the clock keeps running. Read by the
-// sound_cue play path in premium_primitives (guarded by typeof, since other
-// renderers concatenate that file without declaring this).
-var PM_muted = false;
-
-function PM_now() {
-  if (PM_clockPinMs !== null) return PM_clockPinMs;
-  return millis() - PM_stateEnterTime;
-}
-
-/** Release a pin, resuming from where it was pinned (never a jump forward). */
-function PM_releaseClockPin() {
-  if (PM_clockPinMs === null) return;
-  PM_stateEnterTime = millis() - PM_clockPinMs;
-  PM_clockPinMs = null;
-}
-
-/** Rewind this state's choreography to t=0 and run (Play / Replay / Reset). */
-function PM_restartStateClock() {
-  PM_clockPinMs = null;
-  PM_stateEnterTime = millis();
-  PM_motionState = {};
-  PM_motionConfig = {};
-  PM_lastFrameMs = 0;
-  PM_motionNeedsInit = true;
-}
+// WP-R5 (D5 anchor_to) — { [primitive_id]: { origin: {x,y}, tip: {x,y} } },
+// refilled every draw() frame by drawForceArrow/drawAngleArc (array order =
+// PM_resolveAnchorTo's "must precede" contract). Cleared on true SET_STATE.
+var PM_endpointRegistry = {};
 var PM_sliderValues = {}; // { [variable]: number } — canvas-slider live values, seeded from default_variables
 var PM_sliderLastEmitted = {}; // { [variable]: number } — debounce PARAM_UPDATE to value changes only
 var PM_activeSliderId = null; // id of slider currently being dragged (single-touch)
+// WP-R5 (D5 variable_choreography) — { [variable]: number }, the last
+// choreography-stepped value applied to PM_physics (epsilon-diffed each
+// frame so recompute only fires on real movement). Cleared alongside the
+// sim clock (PM_resetSimClock) so a state re-entry / freeze re-pin always
+// re-derives from t=0 instead of comparing against a stale prior value.
+var PM_choreoValues = {};
+// WP-R5 (D5 seizure) — { [variable]: true }, set ONLY inside
+// drawCanvasSlider's genuine-drag branch (real mouseIsPressed). A seized
+// variable's variable_choreography stops advancing for the rest of this
+// state. Synthetic postMessage traffic cannot move the p5 mouse, so THE EYE
+// structurally cannot trigger this — captures stay deterministic. Cleared
+// only on a true SET_STATE (NOT on SET_TIME_FREEZE re-pins).
+var PM_userTouched = {};
+
+// ── WP-R2 (D1) — canvas scale-to-fit ──────────────────────────────────────
+// last pixelDensity() applied by PM_fitCanvas's optional crispness rider.
+var PM_lastCanvasDensity = 1;
+
+// ── Rule 36 — fixed-step sim clock ────────────────────────────────────────
+// PM_simClockMs is the ONLY elapsed-time source in this renderer — every
+// animation that used to read 'millis() - PM_stateEnterTime' now reads this
+// instead. It advances in fixed 1000/60ms ticks (0-3 per real frame,
+// accumulated from p5's deltaTime in draw()), so N ticks always cover the
+// same simulated time regardless of real frame-rate (60 Hz vs 120 Hz+), and a
+// SET_TIME_FREEZE deterministic catch-up (see draw()) reproduces byte-identical
+// frames no matter how long the real wall-clock took to reach it.
+var PM_simClockMs = 0;
+var PM_clockAccumMs = 0;          // real-ms accumulator feeding the fixed tick loop
+var PM_paused = false;            // PAUSE/RESUME — clock + Engine 20 motion freeze together (Rule 26b)
+var PM_frozen = false;            // SET_TIME_FREEZE pin — draw() stops stepping; catch-up lands the clock
+var PM_pinTargetMs = 0;           // SET_TIME_FREEZE {at_ms} target for the catch-up below
+var PM_pinCatchupPending = false; // true for exactly one draw() frame after a fresh pin request
+var PM_muted = false;             // MUTE — gates sound_cue playback only, never the clock (Rule 26a)
+var PM_cueOverrides = {};         // sound_cue id -> at_ms override from SET_CUE_TIME; cleared on state switch
+var PM_cleanMode = false;         // SET_CLEAN_MODE — teacher Clean/full-screen: strip on-canvas chrome (formula/sliders/callouts/HUD), keep the physical picture
+var PM_glowOverride = null;       // SET_GLOW — narration-beat focal-id override (primitive id) feeding PM_focalEmphasis; null = use the state's authored focal
+var PM_simReadyFired = false;     // guards the CDN-failure watchdog at the bottom of this file
 
 // ── Engine 20 — Motion Integrator state ───────────────────────────────────
 // Per-body dynamic state: { x, y, vx, vy, initialX, initialY, stopped }.
@@ -2440,8 +3042,6 @@ var PM_activeSliderId = null; // id of slider currently being dragged (single-to
 var PM_motionState = {};
 // Per-body integrator config: { behavior, surface_id, body_w, body_h, initialAnchor }
 var PM_motionConfig = {};
-// Last frame timestamp (millis()) — used to compute dt. 0 means "first frame".
-var PM_lastFrameMs = 0;
 // Signal that motion state must be re-initialized at the NEXT draw() frame
 // (after Pass 0 has populated PM_surfaceRegistry with up-to-date geometry).
 // Deferring init to draw() guarantees the surface registry is current —
@@ -2452,9 +3052,6 @@ var PM_INTEGRATOR_G = 9.8;
 // Visual tuning: pixels per (m/s²) for canvas rendering. 60 means an
 // acceleration of 3 m/s² moves ~180 px in the first second. Adjustable.
 var PM_PX_PER_M_S2 = 60;
-// Max dt per frame in seconds (clamp so a throttled background tab doesn't
-// produce a single 3-second jump on resume).
-var PM_MAX_DT = 1 / 30;
 
 var PM_ZONES = {
   MAIN_ZONE:      { x:30,  y:80,  w:430, h:380 },
@@ -2529,9 +3126,33 @@ function PM_resolveAnchor(anchor, bodyRegistry, surfaceRegistry) {
 //   spec._resolvedPosition = resolved;
 // }
 
+// WP-R5 (D5 anchor_to) — resolves { primitive_id, point: 'tip'|'origin' }
+// against PM_endpointRegistry. Returns null (never throws, never fabricates
+// a fallback point) when the target hasn't been registered this frame —
+// callers fall through to their own normal resolution chain in that case.
+// point defaults to 'tip' for any value other than the literal 'origin'.
+function PM_resolveAnchorTo(anchorTo) {
+  var entry = PM_endpointRegistry[anchorTo.primitive_id];
+  if (!entry) return null;
+  var point = (anchorTo.point === 'origin') ? entry.origin : entry.tip;
+  if (!point || typeof point.x !== 'number' || typeof point.y !== 'number') return null;
+  return { x: point.x, y: point.y };
+}
+
 // Resolve a force-arrow origin from draw_from keyword against a registered body.
 // Handles rotation by rotating the local offset around the body center.
 function PM_resolveForceOrigin(spec, force, fallback) {
+  // anchor_to (WP-R5, D5) — highest priority: an author who wrote this
+  // explicitly wants the arrow's origin to CHASE another primitive's live
+  // endpoint, so it wins over origin_body_id / literal from / everything
+  // below. Falls through to the rest of this function when the target
+  // hasn't been registered yet (validate-concepts.ts's Gate 9 catches the
+  // authoring mistake that would cause this at author time).
+  if (spec.anchor_to && typeof spec.anchor_to === 'object' && typeof spec.anchor_to.primitive_id === 'string') {
+    var anchoredOrigin = PM_resolveAnchorTo(spec.anchor_to);
+    if (anchoredOrigin) return anchoredOrigin;
+  }
+
   // Support compound spec.from strings like mango_center, block_top_center,
   // earth_top. Split into body_id + draw_from anchor when the explicit
   // body_id / draw_from fields are absent. Longest matching suffix wins so
@@ -2569,6 +3190,20 @@ function PM_resolveForceOrigin(spec, force, fallback) {
     || (typeof drawFrom === 'string' && drawFrom.indexOf('body_') !== 0 ? drawFrom : null);
   var b = null;
   if (bodyId && PM_bodyRegistry[bodyId]) b = PM_bodyRegistry[bodyId];
+  // Literal {x,y} origin (WP-R4, D4 — 2026-07-23). Only reached when no
+  // body_id / origin_body_id resolved a registered body above, so arrows
+  // that already work via origin_body_id are untouched — this ONLY rescues
+  // arrows that were previously falling through to the first-registered-body
+  // / hardcoded-{380,350} fallbacks below. Audit (55 arrows / 7 PCPL
+  // concepts: contact_forces, current_not_vector, direction_of_resultant,
+  // hinge_force, pressure_scalar, resultant_formula, tension_in_string)
+  // confirmed every one of those arrows was already rendering at the wrong
+  // (stacked) point pre-fix.
+  if (!b && spec.from && typeof spec.from === 'object' && !Array.isArray(spec.from)
+      && typeof spec.from.x === 'number' && isFinite(spec.from.x)
+      && typeof spec.from.y === 'number' && isFinite(spec.from.y)) {
+    return { x: spec.from.x, y: spec.from.y };
+  }
   if (!b) {
     var keys = Object.keys(PM_bodyRegistry);
     if (keys.length > 0) b = PM_bodyRegistry[keys[0]];
@@ -2591,56 +3226,166 @@ function PM_resolveForceOrigin(spec, force, fallback) {
   return { x: b.cx + dx, y: b.cy + dy };
 }
 
-// ─── Responsive fill (opt-in via config.responsive_fill — review-site path) ──
-// The design space stays 760×500 (every authored coordinate, zone table, and
-// clamp in this file assumes it). When responsive_fill is set, the canvas is
-// created at the full iframe size and draw() wraps the design space in a
-// translate+scale that FITS and CENTERS it (letterboxed on the uniform dark
-// background). Mouse coords are mapped back into design space for the canvas
-// slider hit-testing. When the flag is absent (app/admin/legacy paths) every
-// branch below is a no-op: fixed 760×500 canvas, scale 1, offset 0 — behavior
-// identical to before this block existed. NOT used with canvas_style
-// 'answer_sheet' (board-mode rules draw outside the fit transform).
-var PM_responsive = false;
-var PM_fitScale = 1, PM_fitX = 0, PM_fitY = 0;
-function PM_beginFitTransform() {
-  if (!PM_responsive) { PM_fitScale = 1; PM_fitX = 0; PM_fitY = 0; return; }
-  PM_fitScale = Math.min(width / 760, height / 500);
-  PM_fitX = (width - 760 * PM_fitScale) / 2;
-  PM_fitY = (height - 500 * PM_fitScale) / 2;
-  push();
-  translate(PM_fitX, PM_fitY);
-  scale(PM_fitScale);
+// Rule 36 — resets the state-local sim clock (+ tick accumulator) together
+// with Engine 20's motion integrator and premium_primitives.ts's per-state
+// caches (particle systems, sound-cue fired flags, camera lerp — all keyed off
+// PM_lastSeenStateForPremium). Every timer in this renderer reads PM_simClockMs,
+// so zeroing it here reproduces the old "PM_stateEnterTime = millis()" rewind
+// idiom — but frame-rate independent and deterministic under SET_TIME_FREEZE
+// re-sim (repeated same-target pins always replay the identical tick sequence).
+function PM_resetSimClock() {
+  PM_simClockMs = 0;
+  PM_clockAccumMs = 0;
+  window.PM_simTimeMs = 0;
+  PM_motionState = {};
+  PM_motionConfig = {};
+  PM_motionNeedsInit = true;
+  PM_lastSeenStateForPremium = null;
+  // WP-R5 — invalidate the choreography cache so the next PM_applyChoreography()
+  // call always recomputes at the (possibly jumped) new t=0 instead of
+  // epsilon-comparing against a value from before the reset. Deliberately
+  // does NOT touch PM_userTouched — seizure survives a SET_TIME_FREEZE
+  // re-pin within the same state; it's cleared only on a true SET_STATE.
+  PM_choreoValues = {};
 }
-function PM_endFitTransform() {
-  if (PM_responsive) pop();
+
+// WP-R5 (D5) — steps every declared variable_choreography entry for the
+// current state and, if any non-seized value actually moved (beyond a small
+// epsilon — avoids recomputing computePhysics() every single frame for
+// nothing), recomputes PM_physics with the new values merged in. Mirrors the
+// exact vars-merge idiom used by the SET_STATE / PARAM_UPDATE handlers and
+// drawCanvasSlider: state defaults+overrides, then any live slider value for
+// a variable this state actually authors as a slider (so an unrelated
+// slider's drag survives), then the freshly-stepped choreography value for
+// every variable that is NOT currently seized (a seized variable keeps
+// whatever the slider merge above just gave it).
+function PM_applyChoreography() {
+  var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
+  var choreo = stateData && stateData.variable_choreography;
+  if (!Array.isArray(choreo) || choreo.length === 0) return;
+
+  var nowMs = PM_simClockMs;
+  var changed = false;
+  for (var i = 0; i < choreo.length; i++) {
+    var spec = choreo[i];
+    if (!spec || typeof spec.variable !== 'string') continue;
+    if (PM_userTouched[spec.variable]) continue; // seized by a real drag — choreography stands down
+    var val = PM_choreoValue(spec, nowMs);
+    var prev = PM_choreoValues[spec.variable];
+    if (prev === undefined || Math.abs(val - prev) > 1e-4) {
+      PM_choreoValues[spec.variable] = val;
+      changed = true;
+    }
+  }
+  if (!changed) return;
+
+  var scene = (stateData && stateData.scene_composition) || [];
+  var stateSliderVars = {};
+  for (var si = 0; si < scene.length; si++) {
+    var sp = scene[si];
+    if (sp && sp.type === 'slider' && sp.variable) stateSliderVars[sp.variable] = true;
+  }
+  var vars = PM_resolveStateVars(PM_currentState) || {};
+  for (var sk in PM_sliderValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
+      vars[sk] = PM_sliderValues[sk];
+    }
+  }
+  for (var ck in PM_choreoValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_choreoValues, ck) && !PM_userTouched[ck]) {
+      vars[ck] = PM_choreoValues[ck];
+    }
+  }
+  try {
+    PM_physics = computePhysics(PM_config.concept_id, vars);
+  } catch (err) {
+    // Keep last good PM_physics — a transient bad choreo value must not crash the sketch.
+  }
 }
-function PM_mouseXd() { return (mouseX - PM_fitX) / PM_fitScale; }
-function PM_mouseYd() { return (mouseY - PM_fitY) / PM_fitScale; }
+
+// ── WP-R2 (D1) — canvas scale-to-fit + centering ──────────────────────────
+// The 760x500 LOGICAL coordinate space passed to createCanvas() below is
+// fixed — every authored concept JSON positions primitives in it (CLAUDE.md
+// Sec.6). This function only rescales the canvas ELEMENT's CSS box to
+// fill/center whatever iframe viewport the review player gives it; it never
+// touches createCanvas()'s width/height and never uses CSS transform (which
+// would desync p5 1.9.4's scrollWidth-based mouse compensation — see
+// getMousePos in the vendored p5 source, ~line 90670 — and silently break
+// every drawCanvasSlider drag). Style-only resize keeps mouseX/mouseY in
+// 760x500 logical space with ZERO mouse-mapping code anywhere else.
+function PM_fitCanvas() {
+  var cv = document.querySelector('canvas');
+  if (!cv) return;
+  var s = Math.min(window.innerWidth / 760, window.innerHeight / 500);
+  if (!isFinite(s) || s <= 0) s = 1;
+  cv.style.width = (760 * s) + 'px';
+  cv.style.height = (500 * s) + 'px';
+
+  // Crispness rider (optional, Rule 34-adjacent): raise the render backing
+  // resolution on a scaled-UP canvas so text/lines don't blur. Skipped
+  // entirely at native size (s within 1% of 1.0) so the baseline-safety
+  // guarantee — byte-identical output at 760x500 — holds regardless of the
+  // host browser's devicePixelRatio; pixelDensity() is never called there,
+  // so behaviour at native size is unchanged from before this function
+  // existed. Re-applied only on a >2% density change (pixelDensity() is a
+  // real GPU backing-buffer resize, not cheap on every resize tick) and the
+  // style write above must be redone right after — pixelDensity() resets it.
+  if (Math.abs(s - 1) > 0.01) {
+    var targetDensity = Math.min(3, s * (window.devicePixelRatio || 1));
+    if (Math.abs(targetDensity - PM_lastCanvasDensity) / PM_lastCanvasDensity > 0.02) {
+      pixelDensity(targetDensity);
+      PM_lastCanvasDensity = targetDensity;
+      cv.style.width = (760 * s) + 'px';
+      cv.style.height = (500 * s) + 'px';
+    }
+  }
+}
+
 function windowResized() {
-  if (PM_responsive) resizeCanvas(windowWidth, windowHeight);
+  PM_fitCanvas();
 }
 
 function setup() {
+  createCanvas(760, 500);
+  PM_fitCanvas();
   PM_config = window.SIM_CONFIG || {};
-  PM_responsive = !!PM_config.responsive_fill;
-  if (PM_responsive) {
-    createCanvas(windowWidth, windowHeight);
-  } else {
-    createCanvas(760, 500);
-  }
   PM_currentState = PM_config.current_state || 'STATE_1';
+  window.PM_currentState = PM_currentState;   // mirror to window (field_3d/particle_field parity)
   PM_physics = window.PM_PRECOMPUTED_PHYSICS || computePhysics(PM_config.concept_id, PM_resolveStateVars(PM_currentState));
-  PM_stateEnterTime = millis();
+  PM_resetSimClock();
+  PM_simReadyFired = true;
+  // Declares the deterministic SET_TIME_FREEZE re-sim capability (WP-R1) so THE
+  // EYE's dense/frozen capture harness takes the sim-time-pinned path instead
+  // of the legacy wall-clock free-run fallback (screenshotter.ts's pinnable
+  // probe reads this flag). Set LAST, only once the freeze handler is proven —
+  // see parametric_renderer.ts's WP-R1 header comment for the full contract.
+  window.__PM_supportsTimePin = true;
   try { window.parent.postMessage({ type: 'SIM_READY' }, '*'); } catch (e) {}
 }
 
 function draw() {
-  // Visual-validator capture hook: expose the state-local SIM-TIME clock so the
-  // headless screenshotter can poll for reveals to fire. Parametric gates reveals
-  // on millis() (wall-clock), so this is already correct under throttling — exposed
-  // for a uniform poll path with field_3d (which is frame-count-based and DOES lag).
-  window.PM_simTimeMs = PM_now();
+  // Rule 36 — fixed-step sim clock. Accumulate real elapsed ms (p5's deltaTime)
+  // and run 0-3 fixed 1000/60ms ticks per frame; Engine 20's motion integrator
+  // advances exactly once per tick (never once per variable-length draw() call),
+  // so it's numerically identical at 60 Hz and rate-correct on 120 Hz+ hardware.
+  // Frozen (SET_TIME_FREEZE) or paused (Rule 26b) frames render but don't step —
+  // the deterministic catch-up for a fresh pin runs later in this function,
+  // after Pass 0 has registered the state's surfaces (Engine 20 needs current
+  // surface geometry to integrate correctly).
+  if (!PM_frozen && !PM_paused) {
+    PM_clockAccumMs += Math.min(50, deltaTime); // clamp tab-background gaps to 3 catch-up ticks
+    var pmTicks = 0;
+    while (PM_clockAccumMs >= 1000 / 60 && pmTicks < 3) {
+      PM_simClockMs += 1000 / 60;
+      stepMotionIntegratorTick();
+      PM_clockAccumMs -= 1000 / 60;
+      pmTicks++;
+    }
+  }
+  // Visual-validator capture hook: expose the state-local sim clock so the
+  // headless screenshotter can poll for reveals to fire (also read by the
+  // review player). Kept current every frame, even while frozen/paused.
+  window.PM_simTimeMs = PM_simClockMs;
   var isAnswerSheet = PM_config && PM_config.canvas_style === 'answer_sheet';
   if (isAnswerSheet) {
     background(253, 251, 244); // off-white paper
@@ -2657,11 +3402,6 @@ function draw() {
   } else {
     background(15, 15, 26);
   }
-  // Engine 20 — advance physics integration one frame.
-  // Note: the init-after-Pass-0 hook below (inside the surface loop) ensures
-  // PM_motionState is seeded with correct incline geometry BEFORE we start
-  // integrating on a brand-new state, so this call is always safe.
-  stepMotionIntegrator();
   var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
   var rawScene = (stateData && stateData.scene_composition) || (PM_config && PM_config.scene_composition) || [];
   // De-overlap annotations BEFORE primitives read positions. Resolver returns a
@@ -2678,12 +3418,6 @@ function draw() {
     text('Unknown concept: ' + (PM_config && PM_config.concept_id), 380, 250);
     return;
   }
-
-  // Responsive-fill open — maps the 760×500 design space onto the real canvas
-  // (fit + center). No-op unless config.responsive_fill. Placed AFTER the
-  // early-return so a leaked push() can't escape; matched by
-  // PM_endFitTransform() at the very end of draw().
-  PM_beginFitTransform();
 
   // smooth_camera open — wraps the rest of draw() in a push()/translate/scale.
   // Placed AFTER the !PM_physics early-return so a leaked push() can't escape.
@@ -2703,6 +3437,43 @@ function draw() {
     initMotionState();
     PM_motionNeedsInit = false;
   }
+
+  // SET_TIME_FREEZE deterministic catch-up (Rule 36): the message handler
+  // already zeroed the clock via PM_resetSimClock() and armed a fresh motion
+  // init above; step forward exactly enough fixed 1000/60ms ticks to land
+  // >= the requested pin, all inside this one frame — repeated pins to the
+  // same at_ms always reproduce the identical frame (THE EYE baselines),
+  // independent of how long the real wall-clock took to deliver the message.
+  if (PM_pinCatchupPending) {
+    var pmPinSteps = Math.ceil((PM_pinTargetMs - PM_simClockMs) / (1000 / 60));
+    for (var pmPinI = 0; pmPinI < pmPinSteps; pmPinI++) {
+      PM_simClockMs += 1000 / 60;
+      stepMotionIntegratorTick();
+    }
+    // Precision snap: repeated 1000/60 addition is not exact in binary
+    // floating point, so after pmPinSteps ticks PM_simClockMs can land a
+    // hair (~1e-12ms) BELOW PM_pinTargetMs even though pmPinSteps was chosen
+    // via Math.ceil specifically to guarantee landing at-or-past it (e.g.
+    // target=1000 -> 999.9999999999991). Math.max never moves the clock
+    // BACKWARD — it only corrects that rare sub-tick undershoot; the normal
+    // (correctly overshooting) value from the loop above is left untouched.
+    // The integrator already ran exactly pmPinSteps ticks above; this line
+    // only corrects the REPORTED clock value, so it adds or skips no tick —
+    // two page loads pinned to the same at_ms still run the identical tick
+    // count and stay byte-identical.
+    PM_simClockMs = Math.max(PM_simClockMs, PM_pinTargetMs);
+    window.PM_simTimeMs = PM_simClockMs;
+    PM_pinCatchupPending = false;
+  }
+
+  // WP-R5 (D5) — step variable_choreography for the now-current PM_simClockMs
+  // (whether it just advanced normally or landed via the freeze catch-up
+  // above) BEFORE any pass that reads PM_physics (bodies/force arrows/labels).
+  // Deliberately after Pass 0 (surfaces already drew this frame with
+  // whatever angle they had) — same one-frame-lag tradeoff Engine 20 already
+  // accepts elsewhere in this function; no authored surface uses a
+  // choreographed angle_expr today.
+  PM_applyChoreography();
 
   // Pass 0.5 — resolve attach_to_surface for bodies (non-mutating: store on a clone).
   // Must run after surfaces registered but before bodies drawn.
@@ -2782,6 +3553,12 @@ function draw() {
   for (var l = 0; l < scene.length; l++) {
     var lPrim = scene[l];
     if (!lPrim) continue;
+    // Clean mode (SET_CLEAN_MODE) — strip on-canvas TEXT CHROME (formula surface,
+    // sliders, callout captions, board marks) for a bare full-screen picture;
+    // keep the physical scene + object labels + geometry (angle_arc/axes/vector).
+    if (PM_cleanMode && (lPrim.type === 'formula_box' || lPrim.type === 'slider'
+        || lPrim.type === 'annotation' || lPrim.type === 'derivation_step'
+        || lPrim.type === 'mark_badge')) continue;
     if (lPrim.type === 'label') drawLabel(lPrim);
     else if (lPrim.type === 'annotation') drawAnnotation(lPrim);
     else if (lPrim.type === 'angle_arc') drawAngleArc(lPrim);
@@ -2789,6 +3566,7 @@ function draw() {
     else if (lPrim.type === 'axes') drawAxes(lPrim);
     else if (lPrim.type === 'vector') drawVector(lPrim);
     else if (lPrim.type === 'motion_path') drawMotionPath(lPrim);
+    else if (lPrim.type === 'locus_trace') drawLocusTrace(lPrim);
     else if (lPrim.type === 'comparison_panel') drawComparisonPanel(lPrim);
     else if (lPrim.type === 'derivation_step') drawDerivationStep(lPrim);
     else if (lPrim.type === 'mark_badge') drawMarkBadge(lPrim);
@@ -2807,7 +3585,7 @@ function draw() {
   // Diagnostic text top-right — opt-in via PM_config.show_diagnostic. Off by
   // default so STATE_1 doesn't pre-answer the pedagogical question with a
   // "w = 19.60" readout before weight has been introduced.
-  if (PM_config && PM_config.show_diagnostic) {
+  if (PM_config && PM_config.show_diagnostic && !PM_cleanMode) {
     fill(200); noStroke(); textSize(11); textAlign(RIGHT, TOP);
     var d = PM_physics.derived || {};
     var diagY = 10;
@@ -2819,8 +3597,6 @@ function draw() {
     }
   }
   // (Concept debug badge removed — was leaking as "[pcpl] …" into the student UI.)
-  // Responsive-fill close — matches PM_beginFitTransform() near the top of draw().
-  PM_endFitTransform();
 }
 
 window.addEventListener('message', function(e) {
@@ -2836,57 +3612,26 @@ window.addEventListener('message', function(e) {
     }
     return;
   }
-  // ── Player clock contract (root CLAUDE.md §6 · Rule 26b) ──────────────────
-  // SET_TIME_FREEZE {at_ms}      → pin the state-local clock (THE EYE capture
-  //                                pin; also the review player's Pause).
-  // SET_TIME_FREEZE {frozen:false} → release, resuming from the pinned value.
-  if (e.data.type === 'SET_TIME_FREEZE') {
-    if (e.data.frozen === false) {
-      PM_releaseClockPin();
-    } else {
-      PM_clockPinMs = (typeof e.data.at_ms === 'number')
-        ? e.data.at_ms
-        : PM_now();
-    }
-    return;
-  }
-  // Play / Replay / Reset — rewind this state's choreography to t=0 and run.
-  // The player fires RESET_TRAJECTORY + REPLAY_ANIMATIONS together on ▶ Play.
-  if (e.data.type === 'RESET_TRAJECTORY' || e.data.type === 'REPLAY_ANIMATIONS') {
-    PM_restartStateClock();
-    return;
-  }
-  // Rule 26b — PAUSE/RESUME move the clock AND audio together. (The review
-  // player drives pause via SET_TIME_FREEZE above; these are honoured too so
-  // the family satisfies the full §6 contract for any host.)
-  if (e.data.type === 'PAUSE') {
-    if (PM_clockPinMs === null) PM_clockPinMs = PM_now();
-    var ctxPause = PM_ensureAudioCtx();
-    if (ctxPause && ctxPause.state === 'running') { try { ctxPause.suspend(); } catch (err) {} }
-    return;
-  }
-  if (e.data.type === 'RESUME') {
-    PM_releaseClockPin();
-    var ctxResume = PM_ensureAudioCtx();
-    if (ctxResume && ctxResume.state === 'suspended') { try { ctxResume.resume(); } catch (err) {} }
-    return;
-  }
-  // MUTE — audio only; the clock keeps running (Rule 26a).
-  if (e.data.type === 'MUTE') {
-    PM_muted = !!e.data.muted;
-    return;
-  }
   if (e.data.type === 'SET_STATE') {
     var newState = e.data.state;
     var isNewState = newState !== PM_currentState;
     PM_currentState = newState;
+    window.PM_currentState = PM_currentState;   // mirror to window (field_3d/particle_field parity)
+    // Rule 36 / 26b: any fresh SET_STATE releases an existing freeze pin — the
+    // player re-pins with its own SET_TIME_FREEZE if it wants one.
+    PM_frozen = false;
+    PM_pinCatchupPending = false;
     // Only reset registries + re-trigger entry animations when truly switching state.
     // Same-state SET_STATE (from a slider drag carrying updated variables) must NOT
     // re-animate force_components — it should just flow smoothly with new magnitudes.
     if (isNewState) {
       PM_bodyRegistry = {};
       PM_surfaceRegistry = {};
-      PM_stateEnterTime = millis();
+      PM_endpointRegistry = {}; // WP-R5 — stale anchor_to targets don't survive a real state switch
+      PM_cueOverrides = {};   // player re-sends SET_CUE_TIME after SET_STATE
+      PM_glowOverride = null; // SET_GLOW is per-sentence; a fresh state starts on its authored focal
+      PM_resetSimClock();     // clock 0 + accum 0 + Engine 20 motion wipe (Rule 36) + choreo cache wipe
+      PM_userTouched = {};    // WP-R5 — seizure is per-state only; a fresh state starts un-seized
     }
     // Deep-dive sub-state hook: if the host passes an inline scene in the
     // SET_STATE message, shadow the corresponding entry in PM_config.states
@@ -2932,19 +3677,14 @@ window.addEventListener('message', function(e) {
     }
     PM_physics = computePhysics(PM_config.concept_id, vars);
     // Same-state SET_STATE carrying new variables (slider drag) — rewind the
-    // animation clock so time-driven motions (atwood, free_fall, pendulum)
-    // re-run with the new values. Skips re-entry registries so force labels
-    // transition smoothly.
+    // sim clock so time-driven motions (atwood, free_fall, pendulum) re-run
+    // with the new values, and re-seed Engine 20's motion state so a sliding
+    // body restarts from its home pose under the new variables. Skips
+    // re-entry registries so force labels transition smoothly. (The
+    // isNewState case already reset the clock + motion above via
+    // PM_resetSimClock().)
     if (!isNewState && e.data.variables) {
-      PM_stateEnterTime = millis();
-    }
-    // Engine 20: state switch wipes motion state; re-seed on next draw()
-    // after Pass 0 has registered the new state's surfaces.
-    if (isNewState) {
-      PM_motionState = {};
-      PM_motionConfig = {};
-      PM_lastFrameMs = 0;
-      PM_motionNeedsInit = true;
+      PM_resetSimClock();
     }
     try { window.parent.postMessage({ type: 'STATE_REACHED', state: newState }, '*'); } catch (err) {}
   }
@@ -2989,9 +3729,74 @@ window.addEventListener('message', function(e) {
     // angle (re-registered by Pass 0) flows into the initial position math.
     PM_motionState = {};
     PM_motionConfig = {};
-    PM_lastFrameMs = 0;
     PM_motionNeedsInit = true;
   }
+
+  if (e.data.type === 'SET_TIME_FREEZE') {
+    // Rule 36 determinism: a pin request resets the clock + Engine 20 motion
+    // to a clean t=0 and arms the deterministic catch-up that runs inside
+    // draw() (after Pass 0 re-registers this state's surfaces) — see
+    // PM_pinCatchupPending above. Nothing here depends on wall-clock time, so
+    // repeated requests for the SAME at_ms always reproduce the SAME frame.
+    if (e.data.frozen === false) {
+      PM_frozen = false;
+    } else if (typeof e.data.at_ms === 'number') {
+      PM_pinTargetMs = Math.max(0, e.data.at_ms);
+      PM_resetSimClock();
+      PM_frozen = true;
+      PM_pinCatchupPending = true;
+    }
+  }
+
+  if (e.data.type === 'SET_CUE_TIME') {
+    if (e.data.cue) PM_cueOverrides[e.data.cue] = e.data.at_ms;
+  }
+
+  if (e.data.type === 'PAUSE') {
+    PM_paused = true;   // clock + Engine 20 motion freeze together (Rule 26b)
+  }
+
+  if (e.data.type === 'RESUME') {
+    PM_paused = false;
+  }
+
+  if (e.data.type === 'MUTE') {
+    PM_muted = !!e.data.muted;   // Rule 26a — gates sound_cue playback only, never the clock
+  }
+
+  if (e.data.type === 'SET_CLEAN_MODE') {
+    // Teacher Clean / full-screen (build_review_site.ts fsCleanBtn → sendCleanMode).
+    // field_3d strips its DOM caption/formula/HUD/sliders via body.pm-clean CSS;
+    // parametric's overlays are canvas-drawn, so draw() skips the chrome primitives
+    // (formula_box / slider / annotation callouts / diagnostic / board marks) when
+    // PM_cleanMode is on, leaving the bare physical picture (bodies/arrows/vectors/
+    // arcs/axes/object labels). The player already hides its own #capStrip subtitle.
+    PM_cleanMode = !!e.data.on;
+  }
+
+  if (e.data.type === 'SET_GLOW') {
+    // Per-sentence narration-beat glow (build_review_site.ts sendGlow → s.glow).
+    // target is a primitive id, an array of ids, or null to clear. Feeds
+    // PM_focalEmphasis so the focal element can re-target on every narrated
+    // sentence (field_3d parity); null falls back to the state's authored focal.
+    var gt = e.data.target;
+    PM_glowOverride = (gt == null) ? null : gt;
+  }
+});
+
+// ─── SIM_READY fallback (p5 CDN failure watchdog) ───────────────────────────
+// Mirrors particle_field_renderer.ts: if the p5 CDN script tag fails to load
+// (offline classroom wifi, ad-blocker, etc.) setup() never runs and the parent
+// player waits forever for SIM_READY. Fire a fallback after 3s so the player
+// at least unblocks (with a broken sim) instead of hanging silently.
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    if (!PM_simReadyFired) {
+      PM_simReadyFired = true;
+      window.parent.postMessage({ type: 'SIM_READY' }, '*');
+      console.error('[Renderer] p5 setup never ran (CDN failure?) — fallback SIM_READY fired');
+    }
+  }, 3000);
 });
 `;
 
@@ -3025,6 +3830,7 @@ export function assembleParametricHtml(config: ParametricConfig): string {
 ${fontLink}
 <style>
 html, body { margin: 0; padding: 0; overflow: hidden; ${bodyStyle} }
+body { display: flex; align-items: center; justify-content: center; height: 100vh; }
 canvas { display: block; }
 </style>
 </head><body>

@@ -92,9 +92,14 @@ A single compact markdown report (this is your final message — raw data, not p
 ## Engine bug queue consultation (pre-walk)
 
 Before reading frames, run
-`npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id> --field3d --open` and
+`npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id> <fleet-flag> --open` and
 carry every OPEN/DEFERRED prevention_rule into the walk as an explicit thing to look for. A recurrence of a
-known scar is a MAJOR finding even if it looks minor on screen.
+known scar is a MAJOR finding even if it looks minor on screen. **Pick the fleet flag by renderer:** `--field3d`
+for a field_3d 3D concept, `--pcpl` for a PCPL/parametric 2D concept (the Class-11 Vectors track, e.g.
+`scalar_vs_vector`) — the two fleets have disjoint scar lists, so the wrong flag surfaces irrelevant scars and
+hides the ones that matter. PCPL frames also read differently: pixel-coordinate 760×500 canvas, zone-anchored
+labels/callouts (MAIN/CALLOUT_ZONE_R/FORMULA/CONTROL/TITLE), `comparison_panel` splits, and thin vector/arrow
+primitives — check for off-canvas primitives, label↔arrow collisions, and the delta-cue caption per state.
 
 ## Tools allowed
 

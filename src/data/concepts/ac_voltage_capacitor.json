@@ -1,0 +1,807 @@
+{
+  "concept_id": "ac_voltage_capacitor",
+  "concept_name": "AC Voltage Applied to a Capacitor",
+  "chapter": 7,
+  "section": "7.4",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.4 AC Voltage Applied to a Capacitor — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. Third of 8 in the founder-reordered Ch.7 map (ac_voltage_resistor -> ac_voltage_inductor -> ac_voltage_capacitor -> phasors -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer; phasors sits AFTER all three individual element concepts, so this diamond must stand entirely on time-domain reasoning -- no rotating-vector diagram appears anywhere). The atomic idea: a pure capacitor's current LEADS its applied sinusoidal voltage by EXACTLY a quarter cycle (90 degrees) because charge must flow onto the plates before the plate voltage can build (i = C dv/dt: the current is the voltage's SLOPE, not its size), so the current is geometrically forced to crest exactly where the voltage's slope is steepest; the opposition is a frequency-made reactance X_C = 1/(omega*C) which FALLS as frequency rises (the opposite of the inductor's reactance) and blocks DC outright; and the average power is EXACTLY zero -- every joule parked in the field between the plates during one quarter cycle is fully returned during the next. SCOPE: the inductor's mirror (lagging) behaviour (taught in ac_voltage_inductor, sealed), the rotating-vector/phasor formalism (deferred to phasors -- next), capacitor DC charging transients / RC time constants (already taught in the shipped capacitance concept, callback only), and combining C with R and L (deferred to series_lcr_circuit). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions -- 'reactive components delay the current, so this must lag like the coil', 'opposition grows with frequency and size, the way it did for the coil', and 'the plates pushing back all cycle must cost energy like a resistor' -- are confronted inside EPIC-L via Rule 16a misconception_watch at exactly S2, S5, S7, each a straightforward contrast beat, no predict->reveal). Routed to the NEW field_3d 'ac_capacitor' scenario -- a parallel-plate apparatus (not a coil) with cool blue-cyan breathing inter-plate field lines, charge glyphs that pile INTO one plate and drain OUT of the other (never crossing the gap), a dual-strip scope pane (a clock-drawn i-trace LEADING plus a static dashed quarter-LATE 'ghost' hypothesis -- literally the inductor's own current trace -- plus an explicit time-order LEAD bracket with a drawn arrow), a SIGNED p-strip crossing zero, a tangent-walk cursor riding the V-TRACE (the cause) for the PRIMARY-aha state, a scripted closed-form f-ramp for the reactance state (response INVERTED from the inductor's: the current envelope SWELLS as frequency rises), a breathing U = half*C*v-squared stored-energy gauge peaking at the voltage's OWN crest, and a re-tasked avg_p meter held dead at 0.00 W -- built in-loop for this concept (docs/loop_runs/ch7_engine_log.md, commit 21e1f0f) as a CLEAN STANDALONE SIBLING of the sealed ac_resistor and ac_inductor scenarios (no acr_/acl_-prefixed code touched). entry_state_map's PRIMARY aha (S4, the current-copies-the-slope insight) sits INSIDE the foundational slice (S1-S4), so no mandatory exit-pill is required; optional cross-slice pills route foundational -> reactance (S5) -> power (S6-S7) -> derivation (S8). Every state is live (show_sliders true, Rule 31) but exposes only its own relevant control row(s): vm at S4 (plain live, no scripted driver), f_demo at S5 (scripted ramp + drag-seize + thumb-lockstep), ALL THREE (vm/f_demo/C) at S9 (explore). Frequency is deliberately LOCKED in S1-S4 -- dragging f here changes the current's amplitude and would pre-spoil S5's own reveal; capacitance C is LOCKED until S9 -- its own inversion (bigger C = less opposition) is a narration clause at S5, explored live only in the sandbox. Handoff from ac_voltage_inductor (prior concept): this diamond mirrors that exact arc (ghost-compare -> mechanism -> slope/lead -> reactance -> power slosh) for a cheap L<->C symmetry that series_lcr_circuit will exploit -- X_L = X_C = 5.00 ohms at the chapter's shared defaults is deliberate and unmentioned here (the S7 'same size, opposite clock' clause is the only permitted whisper); no fix cycle on this concept may ever add a phasor arrow.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "ac_capacitor"
+    ]
+  },
+  "prerequisites": [
+    "ac_voltage_inductor",
+    "ac_voltage_resistor",
+    "capacitance"
+  ],
+  "real_world_anchor": {
+    "primary": "Inside the same two-way loudspeaker whose coil guards the bass driver, a capacitor sits in front of the tweeter. It is the coil's exact mirror: it lets the treble through and blocks the bass — the SAME capacitor, opposing different frequencies by different amounts, X_C = 1/(ωC) doing its job in the opposite direction. And like the coil, it does this without warming up: a resistor there would waste the music as heat; the capacitor merely borrows energy into the field between its plates and hands it back.",
+    "secondary": "The smoothing capacitor inside every phone charger, placed across the output precisely because fast ripple slips through it easily while steady DC cannot pass at all — the 'blocks DC, welcomes fast AC' limit as a device every student owns. Mains frequency is phrased neutrally throughout — 'the mains frequency', never a fixed regional number."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "vm": { "name": "Peak (amplitude) voltage across the capacitor", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "C": { "name": "Capacitance of the plates", "unit": "F", "min": 0.04, "max": 0.40, "default": 0.1273, "step": 0.02, "role": "driver" },
+      "f_demo": { "name": "Demo-compressed AC frequency (real mains is tens of Hz)", "unit": "Hz", "min": 0.1, "max": 0.5, "default": 0.25, "step": 0.05, "role": "driver" },
+      "omega": { "name": "Angular frequency", "unit": "rad/s", "derived": "omega = 2*PI*f_demo" },
+      "theta": { "name": "Instantaneous phase — native radians, state-local clock (Rule 26)", "unit": "rad", "derived": "theta = omega * t   [EXCEPT S5 while undragged, which uses the closed-form ramp-phase accumulator of the S5 lemma in place of omega*t]" },
+      "X_C": { "name": "Capacitive reactance — the capacitor's frequency-made opposition (source-string token: literal ASCII X_C, capital C, underscore)", "unit": "Ω", "derived": "X_C = 1 / (omega * C)" },
+      "im": { "name": "Peak (amplitude) current", "unit": "A", "derived": "im = vm / X_C = omega * C * vm" },
+      "v": { "name": "Instantaneous source/capacitor voltage", "unit": "V", "derived": "v = vm * sin(theta)" },
+      "v_C": { "name": "Instantaneous plate voltage (ideal capacitor: identically equals v)", "unit": "V", "derived": "v_C = v   [an ideal capacitor's own voltage always answers the source EXACTLY, at every instant — this identity is WHY i must equal C*dv/dt: v_C has no independent freedom to lag or smooth]" },
+      "i": { "name": "Instantaneous current", "unit": "A", "derived": "i = im * sin(theta + PI/2) = im * cos(theta)   [LEADS v by exactly PI/2 rad = 90° = T/4, always]" },
+      "slope_v": { "name": "Instantaneous slope of v — the S4 PRIMARY-aha value, the tangent-walk cursor's live number", "unit": "V/s", "derived": "slope_v = vm * omega * cos(theta)   [= dv/dt exactly; i = C * slope_v identically, since C*vm*omega*cos(theta) = im*cos(theta) — NEVER a hardcoded 15.7, since vm is live-draggable at S4]" },
+      "q": { "name": "Instantaneous charge on the plates (signed)", "unit": "C", "derived": "q = C * v = q_max * sin(theta)" },
+      "q_max": { "name": "Maximum plate charge — the S5 constant-cargo readout, frequency-INDEPENDENT", "unit": "C", "derived": "q_max = C * vm" },
+      "p": { "name": "Instantaneous power delivered TO the capacitor (S6/S8) — SIGNED, opposite sign convention from ac_voltage_inductor's p", "unit": "W", "derived": "p = v * i = (vm*im/2) * sin(2*theta)   [+ = storing into the field, − = field returning energy to the source; STORE-quarter-first]" },
+      "p_amp": { "name": "Amplitude of the power oscillation", "unit": "W", "derived": "p_amp = vm*im/2" },
+      "p_avg": { "name": "Cycle-average power — EXACT zero, over an interval as short as T/2 = π/ω", "unit": "W", "derived": "p_avg = 0" },
+      "U": { "name": "Energy stored in the capacitor's E-field, instantaneous — the U-gauge value", "unit": "J", "derived": "U = 0.5 * C * v^2 = Umax * sin(theta)^2   [breathes 0 <-> Umax TWICE per source period T, peaking at v's OWN crest — dU/dt = p(t) exactly]" },
+      "Umax": { "name": "Maximum stored energy — the U-gauge's ceiling AND the p-strip store-lobe's shaded area", "unit": "J", "derived": "Umax = 0.5 * C * vm^2" },
+      "lead_seconds": { "name": "Time lead between the i-peak and the next v-peak — the S2 bracket's number", "unit": "s", "derived": "lead_seconds = T/4 = 1/(4*f_demo)   [shrinks as f_demo rises]" },
+      "lead_degrees": { "name": "Phase lead in degrees — frequency-INDEPENDENT, always exactly a quarter cycle", "unit": "deg", "constant": 90 },
+      "bead_frac": { "name": "Micro-band wire-bead position fraction, 0/1=ends 0.5=home (Rule 33b)", "unit": "dimensionless", "derived": "bead_frac = 0.5 + A_frac * sin(theta)   [beads are at MAXIMUM speed exactly at theta=0 (v=0, i=im, the S1 'full flood' plant) and MOMENTARILY AT REST exactly at theta=pi/2 (v-crest, i=0, the S1 'frozen' plant)]" },
+      "A_frac": { "name": "Bead-excursion visual scale, calibrated to 0.30 at defaults", "unit": "dimensionless", "derived": "A_frac = clamp(0.30 * (im/omega) / (2.00/1.5708), 0.08, 0.42)" },
+      "charge_glyph_frac": { "name": "Plate charge-glyph density fraction, 0=empty 1=full (Rule 33c)", "unit": "dimensionless", "derived": "charge_glyph_frac = abs(sin(theta))   [= |q|/q_max; polarity/direction = sign(q) = sign(sin(theta)) — glyphs pile INTO one plate and drain OUT of the other, NEVER cross the gap]" },
+      "field_brightness": { "name": "Inter-plate E-field brightness/density — cool blue/geometric ONLY, the plates BODY never receives this or any emissive (Rule 33d)", "unit": "dimensionless (0-1)", "derived": "field_brightness = U/Umax = sin(theta)^2 = v^2/vm^2   [peaks EXACTLY at v's own crest — the 'field brightest while beads freeze' S1 plant; = 0 exactly at v=0 — the companion 'beads at full flood while the plates are empty' half of the same plant]" },
+      "arrow_dir": { "name": "Wire-current arrow direction / charge-glyph polarity sense", "unit": "sign (±1)", "derived": "arrow_dir = sign(i) = sign(cos(theta))   [flips at i's own zero crossings — the v-crest/trough instants — a full quarter-cycle BEFORE v's own zero crossings. ONE flip schedule drives BOTH the wire arrow and the plate charge-glyph polarity here]" }
+    },
+    "computed_outputs": {
+      "v_display": { "formula": "vm*Math.sin(omega*t)" },
+      "vC_display": { "formula": "vm*Math.sin(omega*t)" },
+      "i_display": { "formula": "im*Math.cos(omega*t)" },
+      "im_display": { "formula": "omega*C*vm" },
+      "Xc_display": { "formula": "1/(omega*C)" },
+      "slope_display": { "formula": "vm*omega*Math.cos(omega*t)" },
+      "q_display": { "formula": "C*vm*Math.sin(omega*t)" },
+      "qmax_display": { "formula": "C*vm" },
+      "p_display": { "formula": "(vm*im/2)*Math.sin(2*omega*t)" },
+      "U_display": { "formula": "0.5*C*vm*vm*Math.sin(omega*t)*Math.sin(omega*t)" },
+      "Umax_display": { "formula": "0.5*C*vm*vm" },
+      "field_brightness_display": { "formula": "Math.sin(omega*t)*Math.sin(omega*t)" },
+      "bead_frac_display": { "formula": "0.5 + A_frac*Math.sin(omega*t)" },
+      "lead_seconds_display": { "formula": "1/(4*f_demo)" },
+      "avg_p_display": { "formula": "0.0" }
+    },
+    "formulas": {
+      "instantaneous_voltage": "v = vₘ sin(ωt) — the applied AC voltage, ω = 2πf_demo",
+      "plate_voltage_tracks_source": "v_C = v — an ideal capacitor's own voltage answers the source EXACTLY, at every instant (S3)",
+      "defining_relation": "i = C·(dv/dt) — the defining law: current is the RATE charge must arrive, never v's size (S4 PRIMARY aha)",
+      "instantaneous_current": "i = iₘ sin(ωt + 90°) = iₘ cos(ωt), iₘ = vₘ/X_C — current LEADS voltage by exactly a quarter cycle",
+      "reactance": "X_C = 1/(ωC) — the frequency-made opposition; X_C FALLS as ω rises (opposite the coil) and X_C→∞ as ω→0 (a steady/DC capacitor draws no current — blocks DC outright)",
+      "plate_charge": "q = Cv, q_max = Cvₘ — frequency-INDEPENDENT (S5's constant-cargo number)",
+      "instantaneous_power": "p = v·i = +(vₘiₘ/2) sin(2ωt) — SIGNED, symmetric about zero, twice the source frequency; STORE-quarter-first (opposite sign from ac_voltage_inductor's p)",
+      "average_power": "⟨p⟩ = 0 EXACTLY — not approximately — over any interval that is a whole multiple of T/2 = π/ω",
+      "stored_energy": "U = ½Cv² = Umax sin²(ωt), Umax = ½Cvₘ² — breathes 0↔Umax twice per source period, peaking at v's OWN crest; dU/dt = p(t) exactly",
+      "lobe_area_link": "∫ p dt over any store quarter = Umax exactly",
+      "point_symmetry_fold": "p(t_c+τ) = −p(t_c−τ) at any zero crossing t_c of p(t) — every positive STORE lobe is the exact 180°-point-rotation of its trailing negative RETURN lobe about their shared zero crossing (S8's fold)",
+      "closed_form_derivation": "q = Cv → i = C·dv/dt = ωCvₘ cos ωt = iₘ sin(ωt + π/2); the ω landing UPSTAIRS (multiplying) IS X_C's falling-with-frequency behaviour, and the +cos IS the 90° lead — one differentiation yields both headline results (S8)"
+    },
+    "constraints": [
+      "i(t) = im sin(ωt + π/2) LEADS v(t) = vm sin(ωt) by EXACTLY π/2 rad (90°, T/4) at every instant — never lags, never in-phase, for a pure ideal capacitor.",
+      "v_C(t) = v(t) exactly, at every instant — an ideal capacitor's own voltage always equals the source's; i = C dv/dt is the SLOPE of that shared voltage, never v's value directly (the entire content of the PRIMARY aha).",
+      "X_C = 1/(ωC) FALLS as frequency rises and as capacitance rises; X_C → ∞ as ω → 0 (a steady/DC capacitor draws zero current once charged — blocks DC outright).",
+      "p(t) = v(t)·i(t) = +(vm·im/2)·sin(2ωt) is exactly odd-symmetric about every one of its own zero crossings — store and return lobe areas cancel PAIRWISE and exactly, never approximately, so ⟨p⟩ = 0.",
+      "U(t) = ½Cv(t)² ≥ 0 always; dU/dt = p(t) exactly — the U-gauge and the p-strip are the SAME physics, never independently scripted.",
+      "q_max = Cvm is frequency-INDEPENDENT — only the TIME available to deliver it (T/4 = 1/(4f)) shrinks as f rises, which is why im = ω·q_max grows with frequency even though q_max itself never changes."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Current is the rate charge arrives — the lead is pure geometry, not capacitor magic.",
+    "visual_confirmation": "The tangent cursor rides the voltage trace and steepens exactly at the zero crossings while the current dot answers at the same instant — the lead falls straight out of the slope relationship, not the capacitor's material."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "reactance": ["STATE_5"],
+    "power": ["STATE_6", "STATE_7"],
+    "derivation": ["STATE_8"],
+    "exploration": ["STATE_9"]
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during the architect dispatch, so zero external syllabus verification happened. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.4 content). Every other cell carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.4 AC Voltage Applied to a Capacitor — lead, X_C = 1/(ωC), zero average power; S8 = the §7.4 differentiation itself",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "absent",
+        "syllabus_unit": "9702's AC topic is rms + rectification; reactance/phase believed not in syllabus",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "No AC circuit element analysis believed present at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "absent",
+        "syllabus_unit": "AC circuit analysis believed removed in the 2023 syllabus reform",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "The AP Physics 2 CED's circuits content is believed DC-only",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "partial",
+        "syllabus_unit": "Capacitance + energy + RC transients (S1/S3-adjacent) sits in the CED; sinusoidal reactance/AC steady-state analysis believed beyond it",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "AC reactance analysis believed not covered at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Same source, new component: two parallel plates",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_field_peak_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_source_label", "position": { "x": 380, "y": 60 }, "text": "same alternating source as before", "color": "#FFCC80" },
+          { "type": "annotation", "id": "s1_beads_flood_label", "position": { "x": 200, "y": 250 }, "text": "charges flood in right when voltage is zero", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s1_field_peak_label", "position": { "x": 560, "y": 400 }, "text": "field between the plates peaks at the voltage crest", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Same alternating source, but now it feeds parallel plates instead of a coil — everything still oscillates.", "glow": "source" },
+            { "id": "s1_2", "text_en": "Watch the charges rush at full flood the instant the voltage reads zero.", "glow": "beads" },
+            { "id": "s1_3", "text_en": "And freeze completely at the voltage's peak, exactly where the field between the plates glows brightest.", "glow": "plates" },
+            { "id": "s1_4", "text_en": "Frequency's slowed down; mains runs tens of hertz.", "glow": "source" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The current leads the voltage by a quarter cycle",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_real_sweep_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["why_lead_not_lag", "current_before_voltage_causality", "reading_lead_lag_on_time_graphs"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_ghost_label", "position": { "x": 380, "y": 60 }, "text": "dashed guess: last lesson's quarter-late rhythm", "color": "#B0BEC5" },
+          { "type": "annotation", "id": "s2_real_sweep_label", "position": { "x": 200, "y": 250 }, "text": "real current sweeps in, arriving early", "color": "#FFB300" },
+          { "type": "annotation", "id": "s2_lead_label", "position": { "x": 560, "y": 400 }, "text": "1.0 s = one quarter cycle = 90 degrees, ahead", "color": "#FFEE58" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Here's the dashed guess: last lesson's coil current, arriving a quarter cycle late.", "glow": "ghost_trace" },
+            { "id": "s2_2", "text_en": "But this capacitor's charges refuse to obey — they surge at full flood, not backward.", "glow": "beads" },
+            { "id": "s2_3", "text_en": "Watch the real current sweep in — same size, but arriving early instead.", "glow": "i_trace", "scenario_cue": "real_sweep_start" },
+            { "id": "s2_4", "text_en": "It crests a full quarter cycle before the voltage — ninety degrees ahead.", "glow": "lead_bracket", "scenario_cue": "lead_bracket_land" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Reactive components delay the current — a capacitor's current will lag like the coil's did.",
+            "visual_counter": "The dashed quarter-late ghost trace docks first, the beads visibly disobey it by surging forward at full flood, and the real current crests a full quarter cycle EARLY with the lead bracket confirming one quarter cycle equals ninety degrees.",
+            "one_line_fix": "The coil holds current back; the capacitor demands it up front — a quarter cycle early, not late."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "The plates fill and push back against the source",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_track_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_filling_label", "position": { "x": 380, "y": 60 }, "text": "voltage climbs: charge piles onto the plates", "color": "#FFCC80" },
+          { "type": "annotation", "id": "s3_spilling_label", "position": { "x": 200, "y": 250 }, "text": "source eases: plates pour that charge back", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s3_track_label", "position": { "x": 560, "y": 400 }, "text": "plate voltage always tracks the source, volt for volt", "color": "#EF5350" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Zoom into the plates: as voltage climbs, charge pours in, current dies away.", "glow": "plates" },
+            { "id": "s3_2", "text_en": "At the crest the plates are full — current is zero, right where the field burns brightest.", "glow": "efield" },
+            { "id": "s3_3", "text_en": "The source eases, charge pours back out — current reverses before the voltage does; charge never crosses this ideal, resistance-free, demo-scale capacitor's gap.", "glow": "charge" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Current copies the slope — the PRIMARY aha",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_flat_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["i_equals_c_dvdt_meaning", "v_slope_vs_v_value_confusion", "why_exactly_quarter_early"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_rule_label", "position": { "x": 380, "y": 60 }, "text": "current follows voltage's slope, not its size", "color": "#E0F7FA" },
+          { "type": "annotation", "id": "s4_steepest_label", "position": { "x": 200, "y": 250 }, "text": "voltage steepest: current at its own peak", "color": "#80DEEA" },
+          { "type": "annotation", "id": "s4_flat_label", "position": { "x": 560, "y": 400 }, "text": "voltage flat at the crest: current is zero", "color": "#FFB300" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The rule: current follows voltage's slope, not its size.", "glow": "tangent" },
+            { "id": "s4_2", "text_en": "Where voltage crosses zero, climbing steepest, current sits at its peak.", "glow": "tangent", "scenario_cue": "tangent_stop_1" },
+            { "id": "s4_3", "text_en": "Where voltage peaks and flattens, current is exactly zero — the plates are full.", "glow": "tangent", "scenario_cue": "tangent_stop_2" },
+            { "id": "s4_4", "text_en": "Falling steepest now — current dives to its trough. Drag peak voltage: tangents steepen, the lead never moves.", "glow": "tangent", "scenario_cue": "tangent_stop_3" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Reactance falls with frequency",
+        "duration": 15,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s5_reactance_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_reactance_label", "position": { "x": 380, "y": 60 }, "text": "opposition equals one over angular frequency times capacitance", "color": "#80DEEA" },
+          { "type": "annotation", "id": "s5_swell_label", "position": { "x": 200, "y": 250 }, "text": "faster swing: current swells", "color": "#A5D6A7" },
+          { "type": "annotation", "id": "s5_starve_label", "position": { "x": 560, "y": 400 }, "text": "slower swing: current starves", "color": "#EF9A9A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "This opposition isn't fixed like a resistor's — frequency makes it, and it runs backward.", "glow": "xc_readout" },
+            { "id": "s5_2", "text_en": "Watch the swing speed up — the current swells, slipping through easily each cycle.", "glow": "xc_readout", "scenario_cue": "ramp_window_start" },
+            { "id": "s5_3", "text_en": "Slow it down and the current starves — steady voltage gets blocked completely.", "glow": "beads" },
+            { "id": "s5_4", "text_en": "The trick lets a speaker capacitor pass the treble, blocking the bass.", "glow": "xc_readout" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Opposition grows with frequency and with component size — the way it did for the coil.",
+            "visual_counter": "The same capacitor, nothing about it changed, and as frequency ramps up the reactance readout FALLS from 5.0 to 2.5 ohms while the peak current SWELLS to 4.0 amps; winding frequency down starves the current instead, and a steady voltage is blocked entirely.",
+            "one_line_fix": "X_C = 1/(ωC) — everything is downstairs: faster swings and bigger capacitors both mean LESS opposition; steady DC is blocked outright."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Power swings both ways",
+        "duration": 15,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s6_area_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_multiply_label", "position": { "x": 380, "y": 60 }, "text": "power equals voltage times current, every instant", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s6_signs_label", "position": { "x": 200, "y": 250 }, "text": "same sign: storing — opposite sign: returning", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s6_area_label", "position": { "x": 560, "y": 400 }, "text": "shaded area equals the gauge's peak: 6.37 J", "color": "#FFEE58" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Multiply voltage by current — power swings both positive and negative.", "glow": "p_strip" },
+            { "id": "s6_2", "text_en": "When they share a sign, power is positive — the field fills, storing energy.", "glow": "u_gauge", "scenario_cue": "product_walk_start" },
+            { "id": "s6_3", "text_en": "When the signs disagree, power turns negative — the field drains, paying energy back.", "glow": "u_gauge" },
+            { "id": "s6_4", "text_en": "That shaded area equals exactly what the gauge just filled — nothing is lost.", "glow": "p_strip", "scenario_cue": "area_label" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Nothing is consumed — average power is exactly zero",
+        "duration": 13,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_meter_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["capacitor_charging_heats_misconception", "where_field_energy_goes_capacitor", "zero_power_but_current_flows_capacitor"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_meter_label", "position": { "x": 380, "y": 60 }, "text": "average-power meter: dead at zero", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s7_alive_label", "position": { "x": 200, "y": 250 }, "text": "current still flows, field still breathes", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s7_cold_label", "position": { "x": 560, "y": 400 }, "text": "plates: never warm", "color": "#90A4AE" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Here's an averaging wattmeter — watch it stay dead at zero, cycle after cycle.", "glow": "meter" },
+            { "id": "s7_2", "text_en": "Peak current is clearly flowing, the field keeps breathing, and the gauge keeps filling and draining.", "glow": "efield" },
+            { "id": "s7_3", "text_en": "But the plates never warm — they borrow energy and hand it back; only resistance actually eats.", "glow": "meter" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The plates push back all cycle, so charging must cost energy — a capacitor heats like a resistor.",
+            "visual_counter": "The wattmeter needle stays dead at 0.00 watts while 2.00 amps of peak current visibly flows and the plates stay cold forever, unlike the resistor's steady 10.0 watt heater through the same size of opposition.",
+            "one_line_fix": "The plates store and return; only resistance eats."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "One differentiation gives both results",
+        "duration": 16,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s8_lead_reactance_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_derivative_label", "position": { "x": 380, "y": 60 }, "text": "one differentiation of charge equals capacitance times voltage", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s8_lead_reactance_label", "position": { "x": 200, "y": 250 }, "text": "out falls both the 90-degree lead and the falling opposition", "color": "#80DEEA" },
+          { "type": "annotation", "id": "s8_fold_label", "position": { "x": 560, "y": 400 }, "text": "each power lobe rotates onto the next — average exactly zero", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Nothing moves here — just one differentiation: current equals capacitance times voltage's rate of change.", "glow": "formula", "scenario_cue": "fold_start" },
+            { "id": "s8_2", "text_en": "Out falls a positive cosine — the quarter-cycle lead — with angular frequency landing upstairs, shrinking the opposition.", "glow": "formula", "scenario_cue": "fold_end" },
+            { "id": "s8_3", "text_en": "The power curve folds exactly: each lobe rotates a half turn onto the next, canceling pair by pair.", "glow": "p_strip", "scenario_cue": "identity_dock" }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — the whole capacitor circuit, live",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s9_formula_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_drag_label", "position": { "x": 380, "y": 60 }, "text": "drag peak voltage, frequency, capacitance", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s9_watch_label", "position": { "x": 200, "y": 250 }, "text": "watch the lead, the field, the current respond live", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s9_formula_label", "position": { "x": 560, "y": 400 }, "text": "current leads voltage by one quarter cycle (90 degrees)", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "It's all yours now — drag peak voltage, frequency, and capacitance, and watch the lead, the field, and the current respond live.", "glow": "formula" }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered AC voltage on a capacitor when they can (1) state that a pure capacitor's current leads its applied sinusoidal voltage by exactly a quarter cycle (90 degrees), never lags and is never in phase; (2) explain WHY the lead exists — charge must accumulate on the plates before the plate voltage can build, so the current (the rate charge is delivered) is largest exactly where the voltage is changing fastest, not where it is largest; (3) read off the current's instantaneous behaviour at any point in the voltage cycle — zero where voltage peaks (plates full), at its own peak where voltage crosses zero (steepest climb); (4) compute the peak current from the reactance, im = vm/X_C with X_C = 1/(omega*C), and predict how doubling the frequency (or the capacitance) changes it — the opposite trend from an inductor; (5) state that the cycle-average power delivered to a pure capacitor is exactly zero, and explain where the energy goes — stored in the electric field, then fully returned; (6) contrast reactance with resistance — a capacitor opposes current without ever dissipating energy, unlike a resistor; and (7) derive, from i = C dv/dt, both the 90-degree lead and the reactance X_C = 1/(omega*C) in one differentiation, and show that the resulting power p = v*i averages to exactly zero.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A pure capacitor (ideal, no resistance) carries a sinusoidal AC voltage. Compared to the voltage, how does the current behave?",
+        "options": {
+          "A": "The current peaks exactly a quarter cycle (90°) BEFORE the voltage — it leads",
+          "B": "The current peaks exactly a quarter cycle (90°) AFTER the voltage — it lags",
+          "C": "The current peaks at exactly the same instant as the voltage — zero phase difference",
+          "D": "The current and voltage have no fixed timing relationship — it depends on the capacitance value"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports the inductor's lag behaviour (the sibling concept just taught) onto a capacitor",
+          "C": "imports the resistor's in-phase rhythm — a different prior belief entirely",
+          "D": "misses that an ideal capacitor's phase relationship is fixed at exactly 90° regardless of the capacitance value — only the reactance's SIZE depends on C, never the phase angle"
+        },
+        "tested_idea": "For a pure capacitor, current leads voltage by exactly a quarter cycle (90°) — never lags, never in phase.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A student says a capacitor's current 'copies the voltage but a bit early.' State the exact phase relationship, in degrees, and name which quantity is ahead."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "WHY does a capacitor's current lead its voltage by exactly a quarter cycle?",
+        "options": {
+          "A": "Charge must physically accumulate on the plates before the plate voltage can build, so the current — the rate charge arrives — is largest right when the voltage is changing fastest, not when it is largest",
+          "B": "The plates physically speed the electrons up as they approach the gap",
+          "C": "The capacitor stores energy like an inductor and releases it later",
+          "D": "The lead is just how AC works, no different from a plain wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a mechanical electron-speeding mechanism with no physical basis",
+          "C": "confuses a capacitor's electric-field energy storage with an inductor's magnetic-field storage — different mechanism, different physics",
+          "D": "denies the capacitor-specific mechanism entirely, missing that a plain wire (no real capacitance) shows no lead at all"
+        },
+        "tested_idea": "The lead exists because current is the RATE charge is delivered — i = C dv/dt, not because of the size of v.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain in one sentence why a capacitor's current can't simply track the size of the applied voltage the way a resistor's does."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "At the exact instant a pure capacitor's voltage is at its POSITIVE PEAK, what is happening to the current?",
+        "options": {
+          "A": "The current is exactly zero — the plates are momentarily full and nothing more can arrive",
+          "B": "The current is also at its positive peak",
+          "C": "The current is at its negative peak",
+          "D": "The current cannot be determined without knowing the capacitance"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports the resistor's in-phase behaviour onto a capacitor",
+          "C": "confuses 'voltage at peak' with 'current at peak' — the two peaks are a quarter cycle apart, not opposite",
+          "D": "misses that the current's VALUE at this instant is zero regardless of capacitance — only iₘ's SIZE depends on C, never this timing fact"
+        },
+        "tested_idea": "Current is the SLOPE of voltage: at voltage's peak (flat slope) current is zero; at voltage's zero crossing (steepest slope) current is at its own peak.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "At the instant a pure capacitor's voltage crosses zero, what is true of the current at that same instant?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A pure capacitor's peak current is im = omega*C*vm. If the frequency of the applied AC is doubled (voltage amplitude and capacitance unchanged), what happens to the peak current?",
+        "options": {
+          "A": "It doubles — the reactance halves, so the same peak voltage drives twice the peak current",
+          "B": "It halves — a faster swing should choke more current, like it does for a coil",
+          "C": "It stays the same — frequency doesn't affect a capacitor",
+          "D": "It quadruples — reactance depends on frequency squared"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports the inductor's frequency response — the OPPOSITE trend — onto a capacitor",
+          "C": "the confronted misconception — believes a component's opposition is fixed regardless of frequency",
+          "D": "misremembers the reactance formula as frequency-squared rather than the linear (inverse) dependence the derivation actually produces"
+        },
+        "tested_idea": "Capacitive reactance X_C = 1/(ωC) FALLS as frequency rises, so peak current im = vm/X_C grows as frequency rises — the opposite trend from an inductor.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A capacitor passes 1.0 A peak at 0.1 Hz. Using the same capacitor and voltage, estimate the peak current at 0.5 Hz, and explain the trend."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A pure capacitor carries AC continuously. What is its average power consumption over a full cycle, and where does the energy delivered during part of the cycle go?",
+        "options": {
+          "A": "Average power is exactly zero — every joule stored in the electric field while the plates fill is returned to the source while they empty",
+          "B": "Average power is exactly zero because no current is actually flowing",
+          "C": "Average power is positive but small, since the capacitor has some leakage",
+          "D": "Average power equals the peak instantaneous power, since current is always flowing somewhere in the circuit"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses 'zero average power' with 'zero current' — current visibly flows up to its peak the whole time",
+          "C": "imports resistive leakage onto an IDEAL capacitor, which by definition has none",
+          "D": "confuses average power with peak power — very different numbers"
+        },
+        "tested_idea": "A pure capacitor's average power is EXACTLY zero — energy is stored in the field and fully returned, never dissipated.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A wattmeter reads a steady 0.00 W on a capacitor while an ammeter shows 2.00 A of current flowing. Explain how both readings can be true at once."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Starting from i = C(dv/dt) for a pure capacitor with v = vm*sin(omega*t), which pair of results falls out of ONE differentiation?",
+        "options": {
+          "A": "i = im*sin(omega*t + pi/2), where im = omega*C*vm — the 90° lead AND the reactance's inverse-frequency dependence both appear in the same expression",
+          "B": "i = im*sin(omega*t), with no phase shift at all",
+          "C": "i = im*cos(omega*t), with the reactance appearing as omega*C squared in the numerator",
+          "D": "i = im*sin(omega*t − pi/2), lagging the voltage by 90°"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the phase shift entirely — imports the resistor's in-phase result",
+          "C": "misremembers the reactance dependence produced by the differentiation",
+          "D": "gets the SIGN of the phase shift backwards — a lead, not a lag (that's the inductor's earlier result)"
+        },
+        "tested_idea": "One differentiation of q = Cv yields both the 90° lead (the +cos term) and the reactance's ω-dependence (ω landing upstairs, multiplying) together.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Starting from i = C dv/dt, derive the expression for instantaneous power p(t) and show that its cycle-average is exactly zero."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q2", "Q3"],
+      "STATE_5": ["Q4"],
+      "STATE_6": ["Q5"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_9"]
+  },
+  "field_3d_config": {
+    "scenario_type": "ac_capacitor",
+    "explorer_id": "ac_capacitor_explorer",
+    "slider_controls": {
+      "vm": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Peak voltage vₘ" },
+      "C": { "min": 0.04, "max": 0.40, "step": 0.0127, "default": 0.1273, "label": "Capacitance C" },
+      "f_demo": { "min": 0.1, "max": 0.5, "step": 0.05, "default": 0.25, "label": "Frequency f" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#4FC3F7"
+    },
+    "field_lines": {
+      "color_positive": "#4FC3F7",
+      "color_negative": "#1E88E5",
+      "opacity": 0.8,
+      "count": 6
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Same source, new component — two parallel plates, everything still oscillates",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Coil out, plates in",
+        "show_sliders": true,
+        "formula_overlay": "v = vₘ sin(ωt)",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "apparatus_swap",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": false,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": false,
+          "show_q_annotation": false,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": false,
+          "derivation": false,
+          "formula_text": "v = vₘ sin(ωt)"
+        }
+      },
+      "STATE_2": {
+        "label": "The current leads the voltage by a quarter cycle — the coil's rhythm confronted",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Current arrives quarter-cycle early",
+        "show_sliders": true,
+        "formula_overlay": "i = iₘ sin(ωt + 90°)",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "quarter_cycle_lead",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": true,
+          "show_lead_bracket": true,
+          "show_vc_readout": false,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": false,
+          "show_q_annotation": false,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": false,
+          "derivation": false,
+          "formula_text": "i = iₘ sin(ωt + 90°)",
+          "real_sweep_start_at_ms": 2500,
+          "lead_bracket_land_at_ms": 5000
+        }
+      },
+      "STATE_3": {
+        "label": "The plates fill and push back — volt for volt with the source",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
+        "camera_position": [2.3, 0.6, 5.0],
+        "caption": "Plates answer volt for volt",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "plates_push_back",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": true,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": false,
+          "show_q_annotation": true,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": false,
+          "derivation": false,
+          "formula_text": ""
+        }
+      },
+      "STATE_4": {
+        "label": "PRIMARY AHA — current copies the slope of the voltage, not its size",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Current copies voltage's slope",
+        "show_sliders": true,
+        "formula_overlay": "i = C × (slope of v)",
+        "variable_overrides": { "f_demo": 0.25, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "slope_feeds_current",
+          "controls": ["vm"],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": false,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": false,
+          "show_q_annotation": false,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": false,
+          "derivation": false,
+          "formula_text": "i = C × (slope of v)",
+          "tangent_stops_at_ms": [4000, 5000, 6000]
+        }
+      },
+      "STATE_5": {
+        "label": "Reactance falls with frequency — the same capacitor welcomes fast AC",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Faster swing, weaker choke",
+        "show_sliders": true,
+        "formula_overlay": "X_C = 1/(ωC)\niₘ = vₘ/X_C",
+        "variable_overrides": { "vm": 10.0, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "reactance_ramp",
+          "controls": ["f_demo"],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": false,
+          "show_xc_readout": true,
+          "show_qmax_readout": true,
+          "show_avg_p_readout": false,
+          "show_q_annotation": false,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": true,
+          "derivation": false,
+          "formula_text": "X_C = 1/(ωC)\niₘ = vₘ/X_C",
+          "ramp_window_start_at_ms": 2000
+        }
+      },
+      "STATE_6": {
+        "label": "Power swings both ways — store quarters alternate with return quarters",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge", "acc_u_gauge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Power flows both ways",
+        "show_sliders": true,
+        "formula_overlay": "p = v·i",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "power_swings",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": true,
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": false,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": false,
+          "show_q_annotation": false,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": false,
+          "derivation": false,
+          "formula_text": "p = v·i",
+          "product_walk_start_at_ms": 500,
+          "area_label_at_ms": 3000
+        }
+      },
+      "STATE_7": {
+        "label": "Nothing consumed — the meter sits dead at zero while current visibly flows",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge", "acc_meter", "acc_u_gauge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "Average power: exactly zero",
+        "show_sliders": true,
+        "formula_overlay": "⟨p⟩ = 0\nU = ½Cv²",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "null_average_power",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": true,
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": false,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": true,
+          "show_q_annotation": false,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": false,
+          "derivation": false,
+          "formula_text": "⟨p⟩ = 0\nU = ½Cv²"
+        }
+      },
+      "STATE_8": {
+        "label": "One differentiation of i = C dv/dt yields both the lead and the falling reactance",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
+        "camera_position": [1.4, 0.9, 10.5],
+        "caption": "One derivative, both results",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273 },
+        "ac_capacitor": {
+          "mode": "one_derivative_derivation",
+          "controls": [],
+          "static_readouts": [],
+          "show_readout": false,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": false,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": false,
+          "show_q_annotation": false,
+          "show_vm_peak_line": false,
+          "show_xc_on_graph": false,
+          "derivation": true,
+          "dim_apparatus": true,
+          "fold_start_at_ms": 500,
+          "fold_end_at_ms": 2500,
+          "identity_dock_at_ms": 3500
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — the whole capacitor circuit, live",
+        "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
+        "camera_position": [1.0, 1.2, 9.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "i leads v by ¼ cycle (90°)",
+        "ac_capacitor": {
+          "mode": "explore",
+          "controls": ["vm", "f_demo", "C"],
+          "static_readouts": [],
+          "show_readout": true,
+          "show_u_readout": false,
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_ghost": false,
+          "show_lead_bracket": false,
+          "show_vc_readout": false,
+          "show_xc_readout": false,
+          "show_qmax_readout": false,
+          "show_avg_p_readout": false,
+          "show_q_annotation": false,
+          "show_vm_peak_line": true,
+          "show_xc_on_graph": false,
+          "derivation": false,
+          "formula_text": "i leads v by ¼ cycle (90°)"
+        }
+      }
+    }
+  }
+}

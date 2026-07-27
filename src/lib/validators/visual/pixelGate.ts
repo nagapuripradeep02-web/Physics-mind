@@ -73,6 +73,48 @@ function denseTailPairs(pairCount: number): number {
     return Math.max(DENSE_STUCK_TAIL_PAIRS, Math.ceil(pairCount * 0.1));
 }
 
+// Ink-relative motion lens (2026-07-23 recalibration — engine_bug_queue
+// visual_eyes_d5_thin_primitive_undercounted_on_large_canvas). DENSE_MOTION_EPSILON
+// above is a percentage of the FULL CANVAS, calibrated against field_3d content
+// where motion is a filled/orbiting body sweeping a large area (see its own
+// comment). It structurally cannot see a THIN primitive (a 3-4px force_arrow
+// line, an angle_arc, a traced locus — the entire Class-11 Vectors chapter is
+// built from these) whose real, correct motion changes a large fraction of its
+// OWN ink but a tiny fraction of a mostly-empty canvas.
+//
+// Ground truth measured directly from real captured frames (no guessing):
+//   - scalar_vs_vector STATE_2 (thin rotating pointer, PCPL/mechanics_2d, a
+//     visually-confirmed correct 360°/2800ms loop): 346-369px/pair = 0.038-
+//     0.040% of canvas — UNDER DENSE_MOTION_EPSILON — but 1.39-1.48% of the
+//     frame's own ink (non-background) pixels, stable across all 8 pairs.
+//   - genuinely-static content, BOTH renderer families (mechanics_2d
+//     scalar_vs_vector STATE_5's 10 dense pairs, all EXACTLY 0px; field_3d
+//     faraday_law_induction STATE_1's 30 dense pairs, 0-16px): the real noise
+//     ceiling in this codebase is 16px (0.0017% canvas, 0.02% ink) — far below
+//     either signal above, with >20x margin on both the absolute-pixel and the
+//     ink-ratio side.
+//
+// D5 now passes on EITHER lens: the unchanged canvas-ratio (status quo, so the
+// field_3d/particle_field content it was calibrated against cannot shift) OR
+// this ink-ratio, gated by an absolute-pixel floor so a near-blank frame's
+// stray noise can never masquerade as a large fraction of a tiny ink count.
+// Mirrors this file's own D1p cyclic-path/hold-intent idiom below: the primary
+// criterion stands untouched; a well-evidenced secondary signal can
+// ADDITIONALLY qualify as motion, never the reverse — a truly frozen pair has
+// diffPx≈0 and fails both lenses identically. D6/D7 are NOT touched: they keep
+// reading the plain canvas-ratio series exactly as before (see runDenseChecks).
+//
+// includeAA:true was evaluated (halves the deficit on the same scalar_vs_vector
+// pair — 595-634px / 0.065-0.069% — but still under the OLD canvas epsilon on
+// its own) and rejected: it would raise sensitivity file-wide (D1p, D6, D7 all
+// share PIXELMATCH_OPTIONS) with zero field_3d noise data to bound it, where
+// the ink lens above already fixes the verified case without touching any
+// shared, previously-calibrated setting.
+const DENSE_MOTION_INK_EPSILON = 0.005;   // ≥0.5% of the pair's own ink pixels
+const DENSE_INK_ABS_FLOOR_PX = 32;        // AND ≥32px changed in absolute terms
+const DENSE_INK_MIN_CONTENT_PX = 500;     // frames with <500 ink px skip the ink lens (degenerate/near-blank)
+const INK_BG_DELTA = 24;                  // per-pixel |ΔR|+|ΔG|+|ΔB| above this = "ink", not background
+
 // Tesseract template-leak literal characters to search for in OCR output.
 // Conservative — false positives on legitimate `{` text are acceptable since
 // physics simulations almost never render literal braces.
@@ -213,14 +255,17 @@ async function runDenseChecks(
         };
     }
 
-    let diffs: number[];
+    let pairs: AdjacentDiff[];
     try {
-        diffs = await adjacentDiffRatios(series.frames_b64);
+        pairs = await adjacentDiffRatios(series.frames_b64);
     } catch (err) {
         const why = `Skipped — dense frame decode failed: ${err instanceof Error ? err.message : String(err)}`;
         return { results: (['D5', 'D6', 'D7'] as const).map(id => mkResult(id, stateId, true, why)) };
     }
 
+    // D6/D7 read the UNCHANGED canvas-ratio series below — their median-relative
+    // spike math and absolute-floor tail math are untouched by D5's ink lens.
+    const diffs = pairs.map(p => p.canvasRatio);
     const times = series.capture_times_ms;
     const pairLabel = (i: number): string => `t=${times[i] ?? '?'}ms→t=${times[i + 1] ?? '?'}ms`;
     const maxDiff = Math.max(...diffs);
@@ -228,12 +273,32 @@ async function runDenseChecks(
     const profile = diffs.map((d, i) => `${pairLabel(i)}: ${(d * 100).toFixed(2)}%`).join(' | ');
     const results: CheckResult[] = [];
 
-    // D5 — declared motion must be visible
+    // D5 — declared motion must be visible. Two independent lenses on the SAME
+    // pixelmatch diffPx (no second diffing pass): the unchanged canvas-ratio
+    // (what this check has always used) OR a content-relative ink-ratio (diffPx
+    // against the frame's OWN non-background pixel count) — see
+    // DENSE_MOTION_INK_EPSILON above for the measured justification.
     if (expectsMotion === true) {
-        const passed = maxDiff >= DENSE_MOTION_EPSILON;
-        results.push(mkResult('D5', stateId, passed, passed
-            ? `OK — motion visible: max adjacent diff ${(maxDiff * 100).toFixed(2)}% (≥${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% required). Profile: ${profile}`
-            : `State declares motion but pixels never move: max adjacent diff ${(maxDiff * 100).toFixed(2)}% (<${(DENSE_MOTION_EPSILON * 100).toFixed(1)}%) across ${diffs.length} pairs. The animation loop is not driving the declared trajectory. Profile: ${profile}`));
+        const canvasPassed = maxDiff >= DENSE_MOTION_EPSILON;
+        const inkHit = canvasPassed ? null : findInkMotion(pairs);
+        const passed = canvasPassed || inkHit !== null;
+        const inkProfile = pairs.map((p, i) =>
+            `${pairLabel(i)}: ${p.inkRatio !== null ? `${(p.inkRatio * 100).toFixed(2)}%ink` : 'n/a'}`).join(' | ');
+        let evidence: string;
+        if (canvasPassed) {
+            evidence = `OK — motion visible: max adjacent diff ${(maxDiff * 100).toFixed(2)}% of canvas (≥${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% required). Profile: ${profile}`;
+        } else if (inkHit) {
+            evidence = `OK — motion visible via ink-relative lens: ${pairLabel(inkHit.idx)} changed ${inkHit.diffPx}px `
+                + `(${(inkHit.inkRatio * 100).toFixed(2)}% of that pair's ~${Math.round(inkHit.avgInk)}px of ink; canvas-ratio stayed `
+                + `${(maxDiff * 100).toFixed(2)}%, below the ${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% canvas floor — a thin primitive `
+                + `moving on a large canvas). Ink profile: ${inkProfile}`;
+        } else {
+            evidence = `State declares motion but pixels never move: max adjacent diff ${(maxDiff * 100).toFixed(2)}% of canvas `
+                + `(<${(DENSE_MOTION_EPSILON * 100).toFixed(1)}%) and ink-relative diff stayed <${(DENSE_MOTION_INK_EPSILON * 100).toFixed(1)}% `
+                + `of ink (or too little ink to trust) across ${diffs.length} pairs. The animation loop is not driving the declared `
+                + `trajectory. Profile: ${profile}. Ink profile: ${inkProfile}`;
+        }
+        results.push(mkResult('D5', stateId, passed, evidence));
     } else {
         results.push(mkResult('D5', stateId, true,
             `Skipped — motion expectation ${expectsMotion === false ? 'declared static' : 'unknown'} for ${stateId}.`));
@@ -271,22 +336,100 @@ async function runDenseChecks(
     return { results, maxDiff };
 }
 
+/** Per-pair diff carrying BOTH the canvas-ratio (D6/D7's unchanged input) and
+ *  the ink-ratio (D5's additional lens — see DENSE_MOTION_INK_EPSILON). */
+interface AdjacentDiff {
+    diffPx: number;
+    canvasRatio: number;      // diffPx / totalCanvasPx — UNCHANGED semantics
+    avgInk: number;           // avg ink-pixel count of the pair's two frames
+    inkRatio: number | null;  // diffPx / avgInk; null when avgInk < DENSE_INK_MIN_CONTENT_PX
+}
+
 /** Decode the series once, then pixelmatch each adjacent pair. */
-async function adjacentDiffRatios(framesB64: string[]): Promise<number[]> {
+async function adjacentDiffRatios(framesB64: string[]): Promise<AdjacentDiff[]> {
     const decoded = await Promise.all(framesB64.map(decodeRgba));
-    const diffs: number[] = [];
+    const inkCounts = decoded.map(img => countInkPixels(img, estimateBackground(img)));
+    const out: AdjacentDiff[] = [];
     for (let i = 0; i < decoded.length - 1; i++) {
         const a = decoded[i];
         const b = decoded[i + 1];
         if (a.width !== b.width || a.height !== b.height) {
             // Dimension drift mid-series — treat as identical (skip-friendly).
-            diffs.push(0);
+            out.push({ diffPx: 0, canvasRatio: 0, avgInk: 0, inkRatio: null });
             continue;
         }
         const diffPx = pixelmatch(a.data, b.data, undefined, a.width, a.height, PIXELMATCH_OPTIONS);
-        diffs.push(diffPx / (a.width * a.height));
+        const avgInk = (inkCounts[i] + inkCounts[i + 1]) / 2;
+        out.push({
+            diffPx,
+            canvasRatio: diffPx / (a.width * a.height),
+            avgInk,
+            inkRatio: avgInk >= DENSE_INK_MIN_CONTENT_PX ? diffPx / avgInk : null,
+        });
     }
-    return diffs;
+    return out;
+}
+
+/**
+ * Estimate a frame's background colour from 8 fixed anchor points (4 corners +
+ * 4 edge midpoints) and take the most-frequent exact RGB among them. Deterministic
+ * (fixed sample points, no randomness) — validated directly against real frames
+ * from both renderer families (mechanics_2d's flat dark canvas and field_3d's
+ * dark scene background): the estimate is stable across a state's whole dense
+ * series even while real content changes size (a single-corner sample was
+ * considered and widened to 8 points as a cheap defensive margin against the
+ * rare case where one corner is covered by content).
+ */
+function estimateBackground(img: RgbaImage): [number, number, number] {
+    const { data, width, height } = img;
+    const midX = Math.floor(width / 2);
+    const midY = Math.floor(height / 2);
+    const points: Array<[number, number]> = [
+        [0, 0], [width - 1, 0], [0, height - 1], [width - 1, height - 1],
+        [midX, 0], [midX, height - 1], [0, midY], [width - 1, midY],
+    ];
+    const counts = new Map<string, { rgb: [number, number, number]; n: number }>();
+    for (const [x, y] of points) {
+        const idx = (y * width + x) * 4;
+        const key = `${data[idx]},${data[idx + 1]},${data[idx + 2]}`;
+        const existing = counts.get(key);
+        if (existing) existing.n++;
+        else counts.set(key, { rgb: [data[idx], data[idx + 1], data[idx + 2]], n: 1 });
+    }
+    let best: { rgb: [number, number, number]; n: number } | null = null;
+    for (const entry of counts.values()) {
+        if (!best || entry.n > best.n) best = entry;
+    }
+    // counts is built from a non-empty `points` array, so best is always set.
+    return (best as { rgb: [number, number, number]; n: number }).rgb;
+}
+
+/** Count pixels whose summed channel distance from `bg` exceeds INK_BG_DELTA. */
+function countInkPixels(img: RgbaImage, bg: [number, number, number]): number {
+    const { data } = img;
+    let count = 0;
+    for (let i = 0; i < data.length; i += 4) {
+        const d = Math.abs(data[i] - bg[0]) + Math.abs(data[i + 1] - bg[1]) + Math.abs(data[i + 2] - bg[2]);
+        if (d > INK_BG_DELTA) count++;
+    }
+    return count;
+}
+
+/**
+ * Best (highest ink-ratio) pair that clears BOTH the ink-relative epsilon AND
+ * the absolute-pixel floor — the floor stops a near-blank frame's stray noise
+ * from reading as a large percentage of a tiny ink count. Returns null when no
+ * pair qualifies; this only ever ADDS a D5 pass path, it never removes one.
+ */
+function findInkMotion(pairs: AdjacentDiff[]): { idx: number; diffPx: number; avgInk: number; inkRatio: number } | null {
+    let best: { idx: number; diffPx: number; avgInk: number; inkRatio: number } | null = null;
+    pairs.forEach((p, idx) => {
+        if (p.inkRatio === null) return;
+        if (p.inkRatio < DENSE_MOTION_INK_EPSILON) return;
+        if (p.diffPx < DENSE_INK_ABS_FLOOR_PX) return;
+        if (!best || p.inkRatio > best.inkRatio) best = { idx, diffPx: p.diffPx, avgInk: p.avgInk, inkRatio: p.inkRatio };
+    });
+    return best;
 }
 
 function median(values: number[]): number {

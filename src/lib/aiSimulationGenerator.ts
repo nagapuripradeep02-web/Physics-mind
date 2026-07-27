@@ -2715,17 +2715,32 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     parallel_plate_capacitor_basic: "particle_field",
     parallel_plate_capacitor:       "particle_field",
     // Ch7 AC circuits — circuit_live for component/oscillation concepts, graph_interactive for analytical concepts
-    lc_oscillations:                "circuit_live",
+    // NOTE: lc_oscillations REMOVED from here — the real atomic concept
+    // (src/data/concepts/lc_oscillations.json) is field_3d, registered
+    // below alongside series_lcr_circuit/ac_power_factor. This stale
+    // circuit_live placeholder is retired (same pattern meter_bridge and
+    // wheatstone_bridge each executed on their own prior slot).
     lcr_series_circuit:             "circuit_live",
     resistor_in_ac:                 "circuit_live",
     inductor_in_ac:                 "circuit_live",
     capacitor_in_ac:                "circuit_live",
-    transformer:                    "circuit_live",
+    // NOTE: transformer REMOVED from here — the real atomic concept
+    // (src/data/concepts/transformer.json) is field_3d, registered below
+    // alongside lc_oscillations/series_lcr_circuit/ac_power_factor. This
+    // stale circuit_live placeholder is retired (same pattern each prior
+    // Ch.7 sibling executed on its own prior slot).
     ac_basics:                      "graph_interactive",
-    phasors:                        "graph_interactive",
     resonance_lcr:                  "graph_interactive",
     power_in_ac:                    "graph_interactive",
     // Mechanics 2D — all concepts routed to the mechanics_2d renderer
+    // scalar_vs_vector is a real, standalone concept (Class 11 Mechanics
+    // Ch.1 "Vectors" — the DAG root, prerequisites: []). Also in PCPL_CONCEPTS
+    // below (parametric_renderer, matches current_not_vector/pressure_scalar).
+    scalar_vs_vector:                "mechanics_2d",
+    // vector_addition_law — concept #2 of the new Class 11 Mechanics Ch.1
+    // "Vectors" DAG track (prerequisite: scalar_vs_vector). Also in
+    // PCPL_CONCEPTS below (parametric_renderer, matches scalar_vs_vector).
+    vector_addition_law:            "mechanics_2d",
     dot_product:                    "mechanics_2d",
     // Atomic splits from former vector_basics bundle
     unit_vector:                    "mechanics_2d",
@@ -2814,7 +2829,9 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     normal_reaction:                "mechanics_2d",
     tension_in_string:              "mechanics_2d",
     hinge_force:                    "mechanics_2d",
-    free_body_diagram:              "mechanics_2d",
+    free_body_diagram:              "field_3d",   // RETROFIT 2026-07-25 onto newtons_laws_body (was mechanics_2d)
+    connected_bodies:                "field_3d",   // NEW 2026-07-25 — newtons_laws_body Branch B (coupled/pulley)
+    block_on_incline:               "field_3d",   // NEW 2026-07-26 — newtons_laws_body Branch A (incline friction threshold)
     uniform_circular_motion:        "mechanics_2d",
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",
@@ -2943,8 +2960,50 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     eddy_currents:                  "field_3d",
     inductance:                     "field_3d",
     ac_generator:                   "field_3d",
+    ac_voltage_resistor:            "field_3d",
+    ac_voltage_inductor:            "field_3d",
+    ac_voltage_capacitor:           "field_3d",
+    // Supersedes the legacy 'phasors' -> graph_interactive stub removed
+    // above (old retired scaffolding, never wired to a real concept JSON).
+    phasors:                        "field_3d",
+    // src/data/concepts/series_lcr_circuit.json, field_3d ac_series_lcr
+    // scenario (Ch.7 #5, engine build commit cec3a50). NOT in PCPL_CONCEPTS
+    // (that set is 2D parametric_renderer only).
+    series_lcr_circuit:             "field_3d",
+    // src/data/concepts/ac_power_factor.json, field_3d ac_power scenario
+    // (Ch.7 #6, engine build commit 9df14e3). NOT in PCPL_CONCEPTS (that
+    // set is 2D parametric_renderer only).
+    ac_power_factor:                "field_3d",
+    // src/data/concepts/lc_oscillations.json, field_3d lc_oscillation
+    // scenario (Ch.7 #7, Class-B clone-sibling of ac_power — engine build
+    // dispatched separately from this JSON registration pass). NOT in
+    // PCPL_CONCEPTS (that set is 2D parametric_renderer only).
+    lc_oscillations:                "field_3d",
+    // src/data/concepts/transformer.json, field_3d 'transformer' scenario
+    // (Ch.7 #8, the LAST concept of the chapter — Class-B clone-sibling of
+    // lc_oscillation, engine build dispatched separately from this JSON
+    // registration pass). NOT in PCPL_CONCEPTS (that set is 2D
+    // parametric_renderer only).
+    transformer:                    "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
+    // Ch.8 Electromagnetic Waves — displacement current (NCERT §8.2), the
+    // chapter's load-bearing opener. NEW field_3d "displacement_current"
+    // scenario (Alex pipeline, 2026-07-24). Ampère–Maxwell correction:
+    // I_d = ε₀ dΦ_E/dt fixes the two-surface contradiction at a charging
+    // capacitor's gap.
+    displacement_current:           "field_3d",
+    // Ch.8 Electromagnetic Waves — EM wave propagation (NCERT §8.3), the
+    // chapter's second diamond (Alex pipeline, 2026-07-25). NEW field_3d
+    // "em_wave_propagation" scenario: mutually regenerating E and B
+    // self-propagate through vacuum at c = 1/√(μ₀ε₀), the speed that
+    // identifies light itself as an electromagnetic wave. Absorbs the
+    // seeded siblings em_wave_nature + speed_of_em_waves (redirect-only —
+    // see CONCEPT_SYNONYMS in intentClassifier.ts).
+    em_wave_propagation:            "field_3d",
+    newton_first_law:               "field_3d",
+    newton_second_law:              "field_3d",
+    newton_third_law:               "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────
@@ -3013,6 +3072,13 @@ const PCPL_CONCEPTS = new Set<string>([
     // Ch.5.1 Vectors-vs-scalars (1, shipped session 53 — first v2.2.1 retrofit with aha_moment + cognitive_limits)
     'current_not_vector',
     'pressure_scalar',
+    // Class 11 Mechanics Ch.1 "Vectors" — scalar_vs_vector is the DAG root of
+    // the new Vectors track (prerequisites: []). Alex pipeline, authored
+    // 2026-07-23.
+    'scalar_vs_vector',
+    // vector_addition_law — concept #2 of the Vectors DAG track
+    // (prerequisite: scalar_vs_vector). Alex pipeline, authored 2026-07-24.
+    'vector_addition_law',
     // Ch.5.4 Phase 0 validation demo Sim 1 (session 56 — first concept using premium primitives:
     // glow_focus + animated_path + sound_cue)
     'vector_head_to_tail',
@@ -6003,10 +6069,13 @@ export async function generateSimulation(
             console.log('[EPIC-L BYPASS] teacher script built from JSON — steps:',
                 bypassTeacherScript.length, 'Sonnet Stage 4: SKIPPED');
 
-            // Cache multi_panel result (mirrors single-panel upsert)
+            // Cache multi_panel result (mirrors single-panel upsert). AWAITED —
+            // a fire-and-forget `void` here let the process exit (regen scripts,
+            // serverless teardown) kill the write before it landed, silently
+            // dropping rows even though "✅ Generated" logged (found 2026-07-23).
             const shouldCacheBypass = conceptKey !== 'unknown' && !(cacheKey?.startsWith('unknown|'));
             if (shouldCacheBypass && cacheKey) {
-                void supabaseAdmin
+                const { error: bypassCacheError } = await supabaseAdmin
                     .from("simulation_cache")
                     .upsert({
                         concept_key: fingerprint?.concept_id ?? conceptKey,
@@ -6024,11 +6093,9 @@ export async function generateSimulation(
                         sim_code: "",
                         sim_type: "multi_panel",
                         renderer_type: modifiedJson.technology_config?.renderer_a ?? "mechanics_2d",
-                    }, { onConflict: "fingerprint_key" })
-                    .then(({ error }) => {
-                        if (error) console.error("[aiSimGen] multi_panel cache save failed:", error.message);
-                        else console.log("[aiSimGen] multi_panel cached:", cacheKey);
-                    });
+                    }, { onConflict: "fingerprint_key" });
+                if (bypassCacheError) console.error("[aiSimGen] multi_panel cache save failed:", bypassCacheError.message);
+                else console.log("[aiSimGen] multi_panel cached:", cacheKey);
             }
 
             return {
@@ -6243,10 +6310,11 @@ export async function generateSimulation(
                 ctx.question, ctx.simulation_emphasis, epicState1
             );
 
-            // Cache multi_panel result (Stage 2 path)
+            // Cache multi_panel result (Stage 2 path). AWAITED — same
+            // fire-and-forget silent-drop risk as the EPIC-L bypass upsert above.
             const shouldCacheStage2Multi = conceptKey !== 'unknown' && !(cacheKey?.startsWith('unknown|'));
             if (shouldCacheStage2Multi && cacheKey) {
-                void supabaseAdmin
+                const { error: stage2CacheError } = await supabaseAdmin
                     .from("simulation_cache")
                     .upsert({
                         concept_key: fingerprint?.concept_id ?? conceptKey,
@@ -6264,11 +6332,9 @@ export async function generateSimulation(
                         sim_code: "",
                         sim_type: "multi_panel",
                         renderer_type: modifiedJson.technology_config?.renderer_a ?? "mechanics_2d",
-                    }, { onConflict: "fingerprint_key" })
-                    .then(({ error }) => {
-                        if (error) console.error("[aiSimGen] multi_panel (stage2) cache save failed:", error.message);
-                        else console.log("[aiSimGen] multi_panel (stage2) cached:", cacheKey);
-                    });
+                    }, { onConflict: "fingerprint_key" });
+                if (stage2CacheError) console.error("[aiSimGen] multi_panel (stage2) cache save failed:", stage2CacheError.message);
+                else console.log("[aiSimGen] multi_panel (stage2) cached:", cacheKey);
             }
 
             return {
@@ -6315,15 +6381,17 @@ export async function generateSimulation(
             }
             const simHtml = assembleCircuitLiveHtml(circuitResult.config, conceptIdForLookup);
 
-            // Cache the HTML too (so the next request gets a fast cache hit via sim_html)
+            // Cache the HTML too (so the next request gets a fast cache hit via
+            // sim_html). AWAITED — a fire-and-forget `void` here left the row
+            // sitting without sim_html if the caller exited right after
+            // generateSimulation(), which fails the `data?.sim_html` cache-hit
+            // check above forever (same silent-drop class as the EPIC-L bypass).
             if (!circuitResult.fromCache) {
-                void supabaseAdmin
+                const { error: circuitCacheError } = await supabaseAdmin
                     .from("simulation_cache")
                     .update({ sim_html: simHtml })
-                    .eq("fingerprint_key", circuitResult.cacheKey)
-                    .then(({ error: e }) => {
-                        if (e) console.warn("[circuit_live] HTML cache update failed:", e.message);
-                    });
+                    .eq("fingerprint_key", circuitResult.cacheKey);
+                if (circuitCacheError) console.warn("[circuit_live] HTML cache update failed:", circuitCacheError.message);
             }
 
             // Build a StateMachineSpec from the CircuitSimulationConfig so Stage 4
@@ -6403,11 +6471,35 @@ export async function generateSimulation(
                 ? ((allStates[chosenStateKey] as { scene_composition?: unknown[] }).scene_composition ?? [])
                 : [];
 
+            // JSON-declared variable defaults — mirrors build_review_site.ts's
+            // buildParametricConfig() (~299-305) and _seed_scalar_vs_vector_cache.ts's
+            // defaultVarsFromConfig() (~84-92): seed every physics_engine_config.variables
+            // entry from its `default`, falling back to `constant` for locked (non-slider)
+            // variables. The hardcoded per-concept trio is now a defensive fallback ONLY,
+            // for concepts whose JSON declares no variables (every computePhysics_* in
+            // parametric_renderer.ts also carries its own internal fallback).
+            const peVarsForBypass = (mergedConceptJson as { physics_engine_config?: { variables?: unknown } } | null)
+                ?.physics_engine_config?.variables;
+            const declaredVarsForBypass: Record<string, { default?: unknown; constant?: unknown }> =
+                (peVarsForBypass && typeof peVarsForBypass === 'object')
+                    ? peVarsForBypass as Record<string, { default?: unknown; constant?: unknown }>
+                    : {};
+            const jsonDefaultVariables: Record<string, number> = {};
+            for (const [vk, vSpec] of Object.entries(declaredVarsForBypass)) {
+                const defNum = typeof vSpec.default === 'number' ? vSpec.default : undefined;
+                const constNum = typeof vSpec.constant === 'number' ? vSpec.constant : undefined;
+                const seed = defNum ?? constNum;
+                if (typeof seed === 'number') jsonDefaultVariables[vk] = seed;
+            }
             const defaultVariables: Record<string, number> =
-                conceptIdForLookup === 'contact_forces' ? { N: 20, f: 15 } :
-                conceptIdForLookup === 'normal_reaction' ? { m: 2, theta: 30 } :
-                conceptIdForLookup === 'tension_in_string' ? { m1: 2, m2: 1 } :
-                { m: 1 };
+                Object.keys(jsonDefaultVariables).length > 0
+                    ? jsonDefaultVariables
+                    : (
+                        conceptIdForLookup === 'contact_forces' ? { N: 20, f: 15 } :
+                        conceptIdForLookup === 'normal_reaction' ? { m: 2, theta: 30 } :
+                        conceptIdForLookup === 'tension_in_string' ? { m1: 2, m2: 1 } :
+                        { m: 1 }
+                      );
             const parametricConfig = {
                 concept_id: conceptIdForLookup,
                 scene_composition: scene,

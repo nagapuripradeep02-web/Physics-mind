@@ -1,0 +1,771 @@
+{
+  "concept_id": "lc_oscillations",
+  "concept_name": "LC Oscillations — The Circuit's Own Rhythm",
+  "chapter": 7,
+  "section": "7.8",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.8 LC Oscillations — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. Seventh of 8 in the founder-reordered Ch.7 map (ac_voltage_resistor -> ac_voltage_inductor -> ac_voltage_capacitor -> phasors -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer). This sim teaches the FREE (source-free) circuit: a capacitor is charged to V0 = 10.0 V and then the source is physically removed — a battery + two-position switch replace it — and the L-C pair oscillates by itself at its own NATURAL frequency omega0 = 1/sqrt(LC), never a source-imposed one. The current is MAXIMUM exactly when the charge is zero (the coil's inertia carries the motion through and recharges the plates reversed — the PRIMARY aha); the swing repeats at f0 = 0.25 Hz, the exact frequency the driven series_lcr_circuit favoured at resonance (the SUPPORTING aha — the circuit owned that number all along); the stored energy trades intact between the capacitor's electric field (1/2 q^2/C) and the inductor's magnetic field (1/2 L i^2), an ALL-WATTLESS exchange where nothing is ever spent; the whole motion is the exact electrical twin of a mass on a spring (q<->x, i<->v, L<->m, 1/C<->k, the coil playing the MASS because it resists change in current the way mass resists change in velocity); and real resistance damps the swing out, converting the ideal 'forever' into the honest reason every real LC ring fades. SCOPE: does not re-derive element behaviour, impedance, resonance, or power (settled in the six sealed siblings; one-clause callbacks only), does not treat driven/forced oscillation (that was series_lcr_circuit), does not treat mutual coupling or voltage transformation (deferred to transformer), and does not quantify the damped frequency/envelope algebra (alpha and omega_prime stay internal, never rendered — damping stays qualitative). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the two genuine LC misconceptions — 'a discharged capacitor is a finished circuit' and 'an ideal oscillation must still run down' — are confronted inside EPIC-L via Rule 16a misconception_watch at exactly STATE_3 and STATE_5, each a wrong-consequence-first contrast beat, never a predict-pause). Routed to the NEW field_3d 'lc_oscillation' scenario (prefix lco_) — a clone-sibling of the sealed ac_power scenario (inherits its gauge/band/chrome-family CSS geometry) plus apparatus assets from the element scenarios; the genuinely NEW machinery is the battery+switch assembly (pose A = charging branch closed / coil branch open and bead-free; pose B = battery fully out, L-C loop closed through the switch blade), the charge-up transient, the free-oscillation closed-form phase clock (q(t)=Q0 cos(omega0 t), i(t)=-I0 sin(omega0 t)), the two-bar energy gauges in antiphase with NO heat bar until STATE_7, the mass-spring mechanical-analog inset, and the damping machinery. Zero edits to any sealed scenario (engine build tracked separately from this JSON authoring pass; renderer implementation is peter_parker:renderer_primitives scope, not json_author's). Handoff FROM ac_power_factor: inherits the energy-gauge instrument, the borrow-and-return vocabulary, and the settled wattless-current story as its own STATE_5 motivation. Handoff TO transformer (next, Ch.7 #8): delivers the completed chapter energy story ('an ideal L-C pair spends nothing; only R spends') and the settled chapter apparatus conventions — withholds mutual inductance, turns ratio, and voltage step-up/down entirely (transformer's own front door).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "lc_oscillation"
+    ]
+  },
+  "prerequisites": [
+    "ac_voltage_capacitor",
+    "ac_voltage_inductor",
+    "series_lcr_circuit",
+    "ac_power_factor",
+    "capacitance",
+    "inductance"
+  ],
+  "real_world_anchor": {
+    "primary": "Where a radio station's frequency is born. series_lcr_circuit taught how a receiver PICKS one station; this concept teaches where that station's frequency comes FROM. Inside every radio transmitter sits exactly this loop: charge sloshing between a coil and a capacitor at 1/(2*pi*sqrt(LC)) — the tank circuit. The broadcast frequency isn't typed in anywhere; it is BUILT, by choosing L and C so the tank's own natural rhythm becomes the station's frequency. A transmitter's LC tank chooses a rhythm; a receiver's LC circuit resonates to it — the chapter's two halves close into one story. Culture-neutral (radio and wireless transmitters exist everywhere), and physics-true at every depth — a real oscillator is exactly this tank plus a small feedback push that replaces what real resistance leaks away.",
+    "secondary": "A struck tuning fork carries the same idea in miniature: hit it hard or soft, it rings at ITS OWN note, never yours — a bigger strike changes the loudness, never the pitch (the amplitude/frequency independence this sim's explore state lets a teacher discover directly). And the ring always fades, because energy leaks away as the fork's own internal friction — the LC loop is the same instrument, built in copper. Mains frequency, where it matters at all, stays neutral ('the mains frequency'), never a fixed regional number."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "V0": { "name": "Peak charging voltage — the value the plates are charged to before release", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "L": { "name": "Self-inductance of the coil (off-grid default, F8 snap-on-first-drag pattern — fleet convention, same decimal as every sealed Ch.7 sibling)", "unit": "H", "min": 1.0, "max": 10.0, "default": 3.1831, "step": 0.1, "role": "driver" },
+      "C": { "name": "Capacitance of the plates (off-grid default, F8 snap-on-first-drag pattern)", "unit": "F", "min": 0.04, "max": 0.40, "default": 0.1273, "step": 0.02, "role": "driver" },
+      "R": { "name": "Resistance inserted into the loop. STATE_1-STATE_6 the loop is IDEAL (R does not exist yet, no slider row shown); STATE_7 scripted entry 0.0, eases to 2.0; STATE_9 fully live.", "unit": "Ohm", "min": 0, "max": 10, "default": 0, "step": 0.5, "role": "driver" },
+      "omega0": { "name": "Natural angular frequency of the free circuit — depends ONLY on L and C, never V0 or R", "unit": "rad/s", "derived": "omega0 = 1/sqrt(L*C)" },
+      "omega0_deg_per_s": { "name": "omega0 in deg/s — the degree-native rendering clock (fleet dialect, matches every sealed Ch.7 sibling)", "unit": "deg/s", "derived": "omega0_deg_per_s = omega0*180/PI" },
+      "theta": { "name": "Instantaneous phase, the state's OWN clock (Rule 26). theta0=0 at EVERY guided state's entry — the free oscillation is periodic and history-free, so re-anchoring at each state's own entry is physically legitimate (never an accumulator).", "unit": "deg", "derived": "theta = omega0_deg_per_s * t   [t = time since STATE ENTRY, or since a within-state sub-anchor, pure closed form]" },
+      "f0": { "name": "Natural frequency of the free circuit. Dual-labeled once at STATE_4 ('natural frequency f0'), bare thereafter (38d).", "unit": "Hz", "derived": "f0 = omega0/(2*PI)" },
+      "T0": { "name": "Period of one free swing", "unit": "s", "derived": "T0 = 1/f0" },
+      "Q0": { "name": "Peak (initial) charge on the plates — the SHM amplitude, sets q(t)'s ceiling", "unit": "C", "derived": "Q0 = C*V0" },
+      "I0": { "name": "Peak current — the SHM velocity amplitude, reached in MAGNITUDE exactly when q=0 (STATE_3 PRIMARY aha)", "unit": "A", "derived": "I0 = Q0*omega0   [equivalently V0*sqrt(C/L)]" },
+      "E_total": { "name": "Total stored energy — CANONICAL PIN (binding). Computed by this ONE expression, in this exact left-to-right order, on EVERY surface: STATE_1 gauge-fill target, STATE_5 total-line marker, HUD E_total, half-split addends' base, STATE_7 E_R ceiling. NEVER a hand-copied literal, NEVER a re-ordered twin (0.5*C*100 lands 6.37, not 6.36), and NEVER the live sum E_C(t)+E_B(t) (which also lands 6.37 at some instants — verified: raw sum at t=0.50s toFixed(2) = '6.37', the pin toFixed(2) = '6.36'). This is a FIXED constant, computed once per state-apply, never a per-frame recomputation.", "unit": "J", "derived": "E_total = 0.5*C*V0*V0" },
+      "q_t": { "name": "Instantaneous charge, undamped free oscillation (STATE_2 post-release through STATE_6, STATE_8 demo, STATE_9 when R=0)", "unit": "C", "derived": "q_t = Q0*cos(radians(theta))" },
+      "i_t": { "name": "Instantaneous current, convention i := dq/dt. Displayed on HUD/chips as |i_t| (magnitude, never a rendered minus sign). MAXIMUM in magnitude exactly when q_t=0.", "unit": "A", "derived": "i_t = -I0*sin(radians(theta))" },
+      "E_C_t": { "name": "Instantaneous electric-field (capacitor) energy — the green gauge", "unit": "J", "derived": "E_C_t = (q_t*q_t)/(2*C)" },
+      "E_B_t": { "name": "Instantaneous magnetic-field (coil) energy — the violet gauge", "unit": "J", "derived": "E_B_t = 0.5*L*i_t*i_t" },
+      "alpha": { "name": "Damping constant (STATE_7 only; R=0 elsewhere gives alpha=0, no STATE_7 machinery runs). NEVER rendered as a numeral/symbol on canvas — damping stays qualitative (atomic claim).", "unit": "1/s", "derived": "alpha = R/(2*L)" },
+      "omega_prime": { "name": "Damped angular frequency — INTERNAL ONLY, never rendered on any text path. Real-valued only while R < R_crit (underdamped).", "unit": "rad/s", "derived": "omega_prime = sqrt(max(omega0*omega0 - alpha*alpha, 0))" },
+      "omega_prime_deg_per_s": { "name": "omega_prime in deg/s — internal STATE_7 decay-leg clock only", "unit": "deg/s", "derived": "omega_prime_deg_per_s = omega_prime*180/PI" },
+      "phi_prime_deg": { "name": "Small damping phase offset — INTERNAL ONLY, never rendered", "unit": "deg", "derived": "phi_prime_deg = atan2(alpha, omega_prime)*180/PI" },
+      "R_crit": { "name": "Critical resistance — at R>=R_crit the loop cannot complete even one swing. Equals the R slider's max (STATE_9 declared, unnarrated explore discovery). NEVER rendered.", "unit": "Ohm", "derived": "R_crit = 2*sqrt(L/C)" },
+      "t2": { "name": "STATE_7 decay-leg sub-clock — time since the resistor-insert-complete instant. Zero before insertion completes.", "unit": "s", "derived": "t2 = max(t - R_insert_deltaT, 0)" },
+      "q_damped_t": { "name": "Instantaneous charge, damped free oscillation (STATE_7 decay leg only). Verified solution of the damped ODE (dE_mech/dt = -R*i^2 <= 0 exactly for this closed form).", "unit": "C", "derived": "q_damped_t = Q0*exp(-alpha*t2)*cos(radians(omega_prime_deg_per_s*t2))" },
+      "i_damped_t": { "name": "Instantaneous current, damped (i = dq_damped/dt, closed form, same resolved sign convention)", "unit": "A", "derived": "i_damped_t = -I0*exp(-alpha*t2)*sin(radians(omega_prime_deg_per_s*t2) + phi_prime_deg)" },
+      "envelope_t": { "name": "The decay envelope drawn on the strip rails (STATE_7) — replaces the guided +-Q0 dashed rails", "unit": "C", "derived": "envelope_t = Q0*exp(-alpha*t2)" },
+      "E_C_damped_t": { "name": "STATE_7 capacitor energy (damped)", "unit": "J", "derived": "E_C_damped_t = (q_damped_t*q_damped_t)/(2*C)" },
+      "E_B_damped_t": { "name": "STATE_7 coil energy (damped)", "unit": "J", "derived": "E_B_damped_t = 0.5*L*i_damped_t*i_damped_t" },
+      "E_R_t": { "name": "Cumulative heat — computed AS THE COMPLEMENT of the SAME pinned E_total (never an accumulator). Ledger closes by construction; strictly non-decreasing since dE_mech/dt=-R*i^2<=0. Zero before insertion completes (loop still ideal).", "unit": "J", "derived": "E_R_t = (t < R_insert_deltaT) ? 0 : (E_total - E_C_damped_t - E_B_damped_t)" },
+      "V_charge_t": { "name": "STATE_1 charge-transient voltage (a small unspoken series resistance makes this smoothstep-honest)", "unit": "V", "derived": "V_charge_t = V0*smoothstep(min(t/charge_transient_deltaT,1))   [smoothstep(u)=3u^2-2u^3]" },
+      "E_C_charge_t": { "name": "STATE_1 gauge-fill during the charge transient — reuses the SAME E_total pin, scaled, so it lands EXACTLY on the pinned 6.36 J at t=2.0s (never a second independent computation)", "unit": "J", "derived": "E_C_charge_t = E_total * smoothstep(min(t/charge_transient_deltaT,1))^2" },
+      "bead_frac": { "name": "Bead position along the shared loop path, signed, home=0.5. d(bead_frac)/dt is proportional to +i(t) exactly.", "unit": "dimensionless", "derived": "bead_frac = 0.5 + A_frac*(q_t/Q0)" },
+      "A_frac": { "name": "Bead-excursion visual scale, calibrated to 0.30 at defaults, clamped for explore extremes", "unit": "dimensionless", "derived": "A_frac = clamp(0.30*(Q0/1.273), 0.08, 0.42)" },
+      "glyph_count": { "name": "Plate charge-glyph count, 0..N_max (N_max an engine rendering constant, reused verbatim from the sealed plate-glyph machinery)", "unit": "dimensionless", "derived": "glyph_count = round(N_max*abs(q_t)/Q0)   [near-zero clamp: abs(q_t) < half-LSB -> 0]" },
+      "glyph_polarity": { "name": "Plate polarity sign — flips on BOTH plates across the half-period", "unit": "dimensionless", "derived": "glyph_polarity = sign(q_t)   [0 at the exact crossing]" },
+      "x_inset_t": { "name": "STATE_6 mass-spring inset block position (fraction of x_max, an engine rendering constant), phase-locked to the SAME q(t) clock — never independently animated", "unit": "dimensionless", "derived": "x_inset_t = q_t/Q0" },
+      "v_inset_t": { "name": "STATE_6 inset block velocity — EXACTLY proportional to i_t with a POSITIVE constant: 'current is the charge's velocity' is a literal identity here, no sign caveat.", "unit": "dimensionless (per s)", "derived": "v_inset_t = i_t/Q0   [ = d(x_inset_t)/dt exactly ]" },
+      "charge_transient_deltaT": { "name": "STATE_1 charge-up schedule duration", "unit": "s", "constant": 2.0 },
+      "release_beat_deltaT": { "name": "STATE_2 switch-throw-to-release readable beat (32a cause-first gap, before beads visibly start)", "unit": "s", "constant": 1.0 },
+      "R_insert_deltaT": { "name": "STATE_7 resistor-insert schedule duration (thumb 0->2.0 Ohm in lockstep). Chosen at T0/8=0.50s so the decay leg's initial condition coincides with STATE_5's own half-split reference point.", "unit": "s", "constant": 0.5 }
+    },
+    "computed_outputs": {
+      "omega0_display": { "formula": "1/Math.sqrt(L*C)" },
+      "f0_display": { "formula": "(1/Math.sqrt(L*C))/(2*Math.PI)" },
+      "T0_display": { "formula": "1/((1/Math.sqrt(L*C))/(2*Math.PI))" },
+      "Q0_display": { "formula": "C*V0" },
+      "I0_display": { "formula": "(C*V0)*(1/Math.sqrt(L*C))" },
+      "Etotal_display": { "formula": "0.5*C*V0*V0" },
+      "q_display": { "formula": "(C*V0)*Math.cos(theta*Math.PI/180)" },
+      "i_display_abs": { "formula": "Math.abs(-1*((C*V0)*(1/Math.sqrt(L*C)))*Math.sin(theta*Math.PI/180))" },
+      "EC_display": { "formula": "(q_t*q_t)/(2*C)" },
+      "EB_display": { "formula": "0.5*L*i_t*i_t" },
+      "alpha_display": { "formula": "R/(2*L)" },
+      "Rcrit_display": { "formula": "2*Math.sqrt(L/C)" },
+      "ER_display": { "formula": "Etotal_display - EC_damped_display - EB_damped_display" },
+      "beadfrac_display": { "formula": "0.5 + A_frac*(q_t/Q0)" }
+    },
+    "formulas": {
+      "energy_stored": "E = 0.5*C*V0^2 — the initial energy tank, set by V0 and C alone, never by L (STATE_1)",
+      "undriven_shm": "q(t) = Q0*cos(omega0*t), i(t) = dq/dt. Derived from L(di/dt)+q/C=0 <=> d^2q/dt^2 = -q/(LC) (STATE_2-STATE_6 the closed form; STATE_8 the derivation)",
+      "current_from_charge": "i(t) = dq/dt = -I0*sin(omega0*t) — displayed as |i(t)|; MAX in magnitude exactly when q=0 (STATE_3 PRIMARY aha)",
+      "natural_frequency": "f0 = 1/(2*pi*sqrt(LC)) — depends ONLY on L and C (STATE_4 SUPPORTING aha result; derived at STATE_8)",
+      "energy_ledger": "E_C(t) = q(t)^2/(2C), E_B(t) = 0.5*L*i(t)^2, E_C(t)+E_B(t) = E_total exactly at every instant (undamped) — the address changes, the total never does (STATE_5)",
+      "shm_correspondence": "q <-> x (displacement), i <-> v (velocity, i=dq/dt exactly mirrors v=dx/dt), L <-> m (inertia), 1/C <-> k (spring constant); omega0 = sqrt(k/m) <-> 1/sqrt(LC) (STATE_6)",
+      "damped_decay": "q(t) = Q0*e^(-alpha*t)*cos(omega_prime*t), alpha = R/(2L); underdamped iff R < R_crit = 2*sqrt(L/C); E_R(t) = E_total - E_C(t) - E_B(t) (STATE_7)",
+      "derivation_chain": "L*(di/dt) + q/C = 0 [KVL, source-free, i:=dq/dt] -> d^2q/dt^2 = -q/(LC) [SHM signature] -> omega0 = 1/sqrt(LC) -> f0 = 0.250 Hz [sealed decimals] (STATE_8)"
+    },
+    "constraints": [
+      "E_C(t) + E_B(t) = E_total at every instant when R=0 (ideal, undamped) -- energy is conserved, only its address changes; the STATE_5 total line is a FIXED constant, never a live sum.",
+      "|i(t)| is maximum exactly when q(t)=0, and zero exactly when |q(t)|=Q0 -- current and charge are a quarter cycle apart (the SHM velocity-displacement relation), never in phase.",
+      "The undamped natural frequency omega0 = 1/sqrt(LC) depends ONLY on L and C -- never on V0 or R. R sets the DECAY rate alpha=R/2L, not the ideal frequency.",
+      "For R < R_crit = 2*sqrt(L/C) the loop is underdamped and continues to oscillate while decaying; at R >= R_crit the loop cannot complete even one swing.",
+      "E_total = 0.5*C*V0^2 is set entirely by the charging condition (V0) and C -- never by L (L only shapes HOW the energy trades between forms, never how much there is).",
+      "Amplitude (V0, hence Q0, I0) and period (T0, hence f0) are independent knobs -- changing V0 rescales the swing without changing its rhythm (the isochronism of ideal SHM)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "An empty capacitor isn't a dead circuit — the current peaks exactly there.",
+    "visual_confirmation": "The struck ghost beside beads running at their fastest — 2.00 A exactly where the charge reads 0.00 C."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "energy": ["STATE_5"],
+    "shm_analogy": ["STATE_6"],
+    "damping": ["STATE_7"],
+    "derivation": ["STATE_8"],
+    "exploration": ["STATE_9"],
+    "exit_pills": {
+      "foundational_to_energy": "Where does the energy live while it swings? →"
+    }
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during authoring, so zero external syllabus verification happened. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.8 content). AP Physics C: E&M is BELIEVED present (LC circuits and the SHM correspondence sit naturally in its induction/circuits CED) but is NOT independently confirmed — needs_teacher_verification. Every other curriculum row carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.8 LC Oscillations — free (source-free) oscillation at the natural frequency omega0 = 1/sqrt(LC), the energy exchange between the electric and magnetic fields, the qualitative SHM analogy, and qualitative damping; STATE_8's differential equation is NCERT's own algebra.",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "partial",
+        "syllabus_unit": "LC circuits and the SHM correspondence are believed to sit inside the induction/circuits CED, including the calculus derivation (STATE_8 fits it); depth of coverage relative to this sim's damping treatment is not independently confirmed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "absent",
+        "syllabus_unit": "Free LC oscillation and the natural-frequency energy exchange believed absent at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "No LC-circuit analysis believed present at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "absent",
+        "syllabus_unit": "AC circuit analysis believed removed in the 2023 syllabus reform",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "DC circuits only, believed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "Free LC oscillation believed not covered at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "A charged capacitor is a full energy tank — sitting still",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_top_label", "position": { "x": 380, "y": 60 }, "text": "Battery charges the plates", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s1_mid_label", "position": { "x": 200, "y": 250 }, "text": "V = 10.0 V  ·  E_C = 6.36 J", "color": "#69F0AE" },
+          { "type": "annotation", "id": "s1_focal_label", "position": { "x": 560, "y": 400 }, "text": "Fill the tank — then remove the source", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Watch the plates fill — a battery drives charge onto them while the coil's branch stays open.", "glow": "plates", "scenario_cue": "apparatus_home" },
+            { "id": "s1_2", "text_en": "Ten volts builds up, and six point three six joules packs into the electric field.", "glow": "plates", "scenario_cue": "charge_climb" },
+            { "id": "s1_3", "text_en": "Nothing moves through the coil yet — all the energy just sits still, waiting.", "glow": "plates" },
+            { "id": "s1_4", "text_en": "Now, remove the battery from the circuit completely.", "glow": "plates" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "With no source at all, current flows — the stored field drives it",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_top_label", "position": { "x": 380, "y": 60 }, "text": "No source — current flows", "color": "#FFB300" },
+          { "type": "annotation", "id": "s2_mid_label", "position": { "x": 200, "y": 250 }, "text": "charge q falling, current i rising", "color": "#FFB300" },
+          { "type": "annotation", "id": "s2_focal_label", "position": { "x": 560, "y": 400 }, "text": "The draining charge seems to be the engine", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The switch throws — the battery leaves the circuit completely, and the loop closes on itself.", "glow": "beads", "scenario_cue": "throw" },
+            { "id": "s2_2", "text_en": "With no source at all, current starts flowing — driven only by the charge stored in the field.", "glow": "beads", "scenario_cue": "beads_start" },
+            { "id": "s2_3", "text_en": "Watch the plates empty as the current climbs — the draining charge seems to be driving everything.", "glow": "beads" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "PRIMARY aha — at zero charge the current is maximum",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["why_current_max_at_zero_charge", "inductor_opposes_change_not_current", "capacitor_recharges_reversed_polarity"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_top_label", "position": { "x": 380, "y": 60 }, "text": "Empty — yet current peaks", "color": "#EF5350" },
+          { "type": "annotation", "id": "s3_mid_label", "position": { "x": 200, "y": 250 }, "text": "q = 0.00 C  ·  i = 2.00 A", "color": "#FFB300" },
+          { "type": "annotation", "id": "s3_focal_label", "position": { "x": 560, "y": 400 }, "text": "The coil won't let the current die", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "As the charge nears zero, a ghost freezes beside the circuit — asking if the current stops too.", "glow": "chips", "scenario_cue": "ghost_latch" },
+            { "id": "s3_2", "text_en": "Watch the real circuit answer: right at zero charge, the current hits its fastest — two full amps.", "glow": "chips", "scenario_cue": "strike" },
+            { "id": "s3_3", "text_en": "The coil won't let a flowing current die — it drives the charge through and reloads the plates backward.", "glow": "chips", "scenario_cue": "flip" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "An empty (fully discharged) capacitor means the circuit's current has stopped too — q = 0 means i = 0.",
+            "visual_counter": "The dimmed ghost pose (beads stopped, chip 'q = 0 -> i = 0?') latches beside the live loop, then is struck at the actual zero-charge crossing while the real beads run at their fastest (i = 2.00 A, q = 0.00 C), the coil's energy gauge tops out, and the plate glyphs re-appear flipped in polarity.",
+            "one_line_fix": "The charge is empty but the motion is full — the coil's inertia keeps the current flowing and reloads the plates backward."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "SUPPORTING aha — the swing repeats at its own natural rhythm",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_top_label", "position": { "x": 380, "y": 60 }, "text": "Its own natural rhythm", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s4_mid_label", "position": { "x": 200, "y": 250 }, "text": "T₀ = 4.00 s  ·  f₀ = 0.25 Hz", "color": "#69F0AE" },
+          { "type": "annotation", "id": "s4_focal_label", "position": { "x": 560, "y": 400 }, "text": "The circuit's own frequency, all along", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The trace docks and draws a clean wave — charge climbing, falling, and climbing again.", "glow": "strip", "scenario_cue": "strip_dock" },
+            { "id": "s4_2", "text_en": "Crest to crest, the swing repeats every four seconds — a rhythm of its own.", "glow": "strip", "scenario_cue": "period_measure" },
+            { "id": "s4_3", "text_en": "That's zero point two five hertz — no source is setting this pace, only the coil and the plates.", "glow": "strip", "scenario_cue": "f0_chip" },
+            { "id": "s4_4", "text_en": "That number was never the source's.", "glow": "strip" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "PIVOT — the energy only changes address, never spent",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["lc_energy_conservation_math", "max_current_from_energy_balance", "energy_exchange_twice_per_cycle"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_top_label", "position": { "x": 380, "y": 60 }, "text": "Energy only changes address", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s5_mid_label", "position": { "x": 200, "y": 250 }, "text": "E_C + E_B = 6.36 J, always", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s5_focal_label", "position": { "x": 560, "y": 400 }, "text": "3.18 + 3.18 = 6.36 J — nothing spent", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Two gauges take over — plates in green, coil in violet, breathing in exact antiphase.", "glow": "gauges", "scenario_cue": "gauge_focus" },
+            { "id": "s5_2", "text_en": "The total line never dips — six point three six joules, always, with no heat bar anywhere.", "glow": "gauges" },
+            { "id": "s5_3", "text_en": "At the half-swing point, three eighteen and three eighteen still close to six thirty six.", "glow": "gauges", "scenario_cue": "half_split_chip" },
+            { "id": "s5_4", "text_en": "Nothing is spent — it only changes address.", "glow": "gauges" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "An oscillation must spend some energy every cycle — even an ideal, resistance-free LC loop should slowly run down.",
+            "visual_counter": "The two energy gauges trade in perfect antiphase under a total line that never dips, with no heat bar anywhere on screen, closing exactly at the half-split instant: 3.18 J + 3.18 J = 6.36 J.",
+            "one_line_fix": "Nothing is spent — the energy only changes address between the field and the coil; only real resistance can make it leave, which is STATE_7's story."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "The exact mechanical twin — the coil is the mass",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["lc_shm_correspondence_table", "inductance_as_inertia", "reciprocal_c_as_spring_constant"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_top_label", "position": { "x": 380, "y": 60 }, "text": "A pendulum in copper", "color": "#B388FF" },
+          { "type": "annotation", "id": "s6_mid_label", "position": { "x": 200, "y": 250 }, "text": "q ↔ x  ·  i ↔ v", "color": "#B388FF" },
+          { "type": "annotation", "id": "s6_focal_label", "position": { "x": 560, "y": 400 }, "text": "L is the mass — inertia, not spring", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "A block on a spring docks beside the circuit, locked to the same clock.", "glow": "inset", "scenario_cue": "inset_dock" },
+            { "id": "s6_2", "text_en": "Its position mirrors the charge exactly, and the current joins the trace as its velocity.", "glow": "inset", "scenario_cue": "i_pen_join" },
+            { "id": "s6_3", "text_en": "The block moves fastest through the middle, just like the current did.", "glow": "inset" },
+            { "id": "s6_4", "text_en": "The coil plays the mass — it's the charge count that swings, not electrons.", "glow": "inset" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Real resistance drains the swing — the oscillation decays",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_top_label", "position": { "x": 380, "y": 60 }, "text": "Real swings die out", "color": "#EF5350" },
+          { "type": "annotation", "id": "s7_mid_label", "position": { "x": 200, "y": 250 }, "text": "R = 2.0 Ω  ·  envelope shrinking", "color": "#FF6E40" },
+          { "type": "annotation", "id": "s7_focal_label", "position": { "x": 560, "y": 400 }, "text": "Every real coil leaks energy as heat", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "A small resistor slides in — watch its dial climb from zero to two ohms.", "glow": "strip", "scenario_cue": "r_insert" },
+            { "id": "s7_2", "text_en": "The swing starts shrinking inside a fading envelope — each pass carries a quarter of the last.", "glow": "strip", "scenario_cue": "envelope_draw" },
+            { "id": "s7_3", "text_en": "A warm bar climbs — the energy that once just traded now leaks as heat.", "glow": "strip", "scenario_cue": "er_bar" },
+            { "id": "s7_4", "text_en": "Real coils leak — that's why rings fade.", "glow": "strip" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Derivation: source-free KVL to the natural frequency",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s8_focal_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_top_label", "position": { "x": 380, "y": 60 }, "text": "The swing, solved", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s8_mid_label", "position": { "x": 200, "y": 250 }, "text": "d²q/dt² = −q/(LC)", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s8_focal_label", "position": { "x": 560, "y": 400 }, "text": "ω₀ = 1/√(LC) = 1.571 rad/s", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Start from the loop's voltage law — inductor voltage plus capacitor voltage equals zero.", "glow": "formula", "scenario_cue": "link1" },
+            { "id": "s8_2", "text_en": "That rearranges into simple harmonic motion — acceleration exactly opposite to displacement.", "glow": "formula", "scenario_cue": "link2" },
+            { "id": "s8_3", "text_en": "Solving gives the natural frequency — one over the square root of L times C.", "glow": "formula", "scenario_cue": "link3" },
+            { "id": "s8_4", "text_en": "Plug in our numbers, and it lands at zero point two five zero hertz.", "glow": "formula", "scenario_cue": "link4" }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — the free circuit under the teacher's hands",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s9_focal_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_top_label", "position": { "x": 380, "y": 60 }, "text": "All yours", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s9_mid_label", "position": { "x": 200, "y": 250 }, "text": "Drag V₀ · L · C · R · the switch", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s9_focal_label", "position": { "x": 560, "y": 400 }, "text": "f₀ = 1/(2π√(LC))", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "It's all yours — charge the plates, throw the switch to release them, add resistance, and reshape the whole rhythm by dragging inductance and capacitance.", "glow": "formula" }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered LC oscillations when they can (1) explain that with the source physically removed, a charged capacitor and inductor exchange energy forever (ideally) at the circuit's OWN natural frequency omega0 = 1/sqrt(LC), never a source-imposed one; (2) explain why the current is MAXIMUM exactly when the charge is zero — the coil's inertia keeps a flowing current from stopping, recharging the plates with reversed polarity; (3) compute the peak current from energy conservation, 1/2 C V0^2 = 1/2 L I0^2, and identify the quarter-cycle phase relationship between charge and current; (4) explain that the stored energy only changes ADDRESS between the capacitor's electric field and the inductor's magnetic field, with the total conserved exactly and never spent, in an ideal (resistance-free) loop; (5) state the exact mechanical correspondence (charge <-> displacement, current <-> velocity, inductance <-> mass, reciprocal capacitance <-> spring constant) and explain why inductance plays the role of mass; and (6) explain that real resistance is what makes a real LC oscillation decay, dissipating the stored energy as heat, and that sustaining a swing forever requires a periodic push at the circuit's own natural frequency.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "In this free LC circuit, at the instant the capacitor's charge reaches exactly zero, what is the current?",
+        "options": {
+          "A": "The current is at its own maximum value (2.00 A here) — the coil's inertia keeps driving it exactly when the charge is zero",
+          "B": "The current is exactly zero too, since there's no more charge left to push it",
+          "C": "The current becomes undefined, since nothing is left to measure",
+          "D": "The current instantly reverses direction and stays at zero briefly before restarting"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — the coil's own inertia keeps current flowing exactly when the charge, not the current, is zero; charge and current are a quarter cycle apart, never zero together",
+          "C": "Current is a perfectly well-defined, measurable quantity at every instant of a continuous oscillation — nothing about zero charge makes it undefined",
+          "D": "The current doesn't briefly vanish and restart — it passes smoothly through its own peak magnitude at this exact instant, in one direction"
+        },
+        "tested_idea": "In an undriven LC oscillation, current and charge are 90 degrees out of phase — current is maximum exactly when charge is zero, never zero together.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "At the instant the current is exactly zero, what is true about the charge on the plates?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A capacitor of 0.1273 F is charged to 10.0 V and then connected to a 3.1831 H inductor with no resistance. How do you find the peak current?",
+        "options": {
+          "A": "Set the initial capacitor energy equal to the peak inductor energy, 1/2 C V0^2 = 1/2 L I0^2, and solve for I0 — giving 2.00 A",
+          "B": "Divide the peak voltage by some resistance value, I0 = V0/R, the same way you would for a steady DC circuit",
+          "C": "Multiply the capacitance by the inductance directly, I0 = C times L times V0",
+          "D": "The peak current cannot be found without knowing how long the circuit has been oscillating"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "There is no resistance in this ideal loop to divide by — that is a DC-circuit habit; the correct route is energy conservation between the two energy-storing elements, not Ohm's law",
+          "C": "This invents a formula with no physical basis — capacitance and inductance don't combine by simple multiplication with voltage to give current",
+          "D": "The peak current is a fixed property of the circuit (set entirely by V0, L, and C through energy conservation) and does not depend on elapsed time — it recurs every cycle"
+        },
+        "tested_idea": "The peak current in a free LC oscillation follows directly from equating the initial stored electric energy to the peak magnetic energy: 1/2 C V0^2 = 1/2 L I0^2.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "If the capacitance were doubled while V0 and L stayed the same, would the peak current increase or decrease?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "What determines the frequency at which a source-free LC circuit oscillates?",
+        "options": {
+          "A": "Only the inductance and capacitance, f0 = 1/(2 pi sqrt(LC)) — the initial charging voltage has no effect on the frequency at all",
+          "B": "The initial voltage the capacitor was charged to — a bigger starting voltage swings faster",
+          "C": "The physical size of the wires connecting the components",
+          "D": "The frequency changes randomly from one cycle to the next since there's no source to fix it"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — amplitude (set by V0) and frequency (set by L and C alone) are independent; a bigger starting voltage makes a bigger swing at the exact same rhythm, never a faster one",
+          "C": "Wire size affects negligible practical resistance, not the ideal L and C values that set the natural frequency",
+          "D": "The oscillation is a strict, repeatable mathematical consequence of L and C — it recurs at the exact same frequency every single cycle, with no randomness"
+        },
+        "tested_idea": "The natural frequency of a free LC oscillation depends only on L and C (f0 = 1/(2 pi sqrt(LC))); it never depends on the initial voltage or charge.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "If the same circuit were charged to 20.0 V instead of 10.0 V, would the oscillation frequency change?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "In an ideal (resistance-free) LC circuit that has been oscillating for many cycles, what is true of the total stored energy, and how long after a fully-electric instant is the energy entirely magnetic?",
+        "options": {
+          "A": "The total energy stays exactly constant forever, and the energy becomes entirely magnetic exactly a quarter period after being entirely electric",
+          "B": "The total energy gradually converts to heat and shrinks toward zero, even with no resistance present, because every real oscillation must eventually run down",
+          "C": "The total energy doubles every cycle since both the capacitor and the inductor are adding energy to the circuit",
+          "D": "The energy becomes entirely magnetic only after a full period has passed, not a quarter period"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "This is the confronted misconception — with zero resistance there is no pathway for energy to leave as heat at all; the total is exactly conserved forever (STATE_7 is what happens only once real resistance is added)",
+          "C": "Neither element ADDS energy — they only exchange the same fixed total back and forth; the total set at the very first charging event never grows",
+          "D": "The capacitor and inductor exchange the stored energy completely twice per full cycle, so the energy is entirely magnetic a quarter period, not a full period, after being entirely electric"
+        },
+        "tested_idea": "In an ideal LC loop, total stored energy is exactly conserved forever, and it is entirely magnetic exactly T0/4 after being entirely electric — energy exchanges twice per cycle.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "How long after the energy is entirely magnetic will it next be entirely electric again?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "In the mechanical (mass-on-a-spring) analogy for this LC circuit, what plays the role of the mass?",
+        "options": {
+          "A": "The inductor L — it resists changes in current the same way mass resists changes in velocity (inertia)",
+          "B": "The capacitor's reciprocal capacitance, 1/C — since it 'pushes back' the way a spring does",
+          "C": "The resistor R, since it's the only element that visibly interacts with the circuit's motion",
+          "D": "The peak voltage V0, since it sets how big the whole oscillation is"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "1/C plays the role of the SPRING CONSTANT, not the mass — a bigger 1/C (smaller capacitance) makes a stiffer 'spring', by direct analogy with x -> q",
+          "C": "R has no role in the ideal (undamped) analogy at all — it only enters once real resistance is added, and even then it plays the role of mechanical friction, not the mass",
+          "D": "V0 sets the amplitude of the swing (like how hard you pull back a real spring), not which component behaves like mass"
+        },
+        "tested_idea": "In the LC-spring/mass correspondence, inductance L plays the role of mass — it is what resists CHANGE in current, mirroring how mass resists change in velocity.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "In this same analogy, what mechanical quantity does the reciprocal capacitance 1/C correspond to?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Why does a real LC circuit's oscillation gradually die away, and what would it take to keep it swinging forever?",
+        "options": {
+          "A": "Real coils have some resistance, which drains energy away as heat every cycle; keeping the swing going forever requires something to push the circuit at its own natural rhythm, replacing exactly what the resistance leaks",
+          "B": "The capacitor physically wears out over time and loses its ability to hold charge",
+          "C": "The oscillation dies because the inductor eventually runs out of magnetic field to store",
+          "D": "Real LC circuits don't actually decay — this only happens in flawed simulations, not in reality"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "The capacitor itself does not wear out in this decay — the energy loss comes from real resistance in the coil's wire converting circuit energy into heat, not from any material degrading",
+          "C": "The inductor doesn't run out of anything to store — it can hold magnetic energy proportional to the current at any instant; the decay comes from resistance bleeding energy away as heat, not from any storage limit",
+          "D": "This decay is genuine, real physics — every real coil has some resistance, and that resistance dissipates energy every single cycle in any physical LC circuit"
+        },
+        "tested_idea": "Real LC oscillations decay because real coils carry resistance that dissipates energy as heat every cycle; sustaining an oscillation forever requires a periodic push at the circuit's own natural frequency.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "If the resistance in this circuit were doubled, would the oscillation decay faster or slower?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_3": ["Q1"],
+      "STATE_4": ["Q3"],
+      "STATE_5": ["Q2", "Q4"],
+      "STATE_6": ["Q5"],
+      "STATE_7": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_8", "STATE_9"]
+  },
+  "field_3d_config": {
+    "scenario_type": "lc_oscillation",
+    "explorer_id": "lc_oscillations_explorer",
+    "slider_controls": {
+      "V0": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Peak charging voltage V₀" },
+      "L": { "min": 1.0, "max": 10.0, "step": 0.1, "default": 3.1831, "label": "Inductance L" },
+      "C": { "min": 0.04, "max": 0.40, "step": 0.02, "default": 0.1273, "label": "Capacitance C" },
+      "R": { "min": 0, "max": 10, "step": 0.5, "default": 0, "label": "Resistance R" }
+    },
+    "switch_control": {
+      "id": "lco_switch",
+      "param": "position",
+      "values": ["A", "B"],
+      "default": "A",
+      "label": "Battery switch (A = charging, B = released)",
+      "postmessage_drivable": true,
+      "note": "Rule-27 explorer object — NOT a physics_engine_config slider variable. A = battery charges the plates (coil branch open, bead-free). B = battery fully out of the conducting path, L-C loop closed through the switch blade (a rendered bridging conductor)."
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "charge": "#69F0AE",
+      "current": "#FFB300",
+      "magnetic": "#B388FF",
+      "heat": "#FF6E40",
+      "total": "#ECEFF1",
+      "inset": "#90A4AE"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A battery charges the plates to 10.0 V — 6.36 J stored in the field; the coil branch stays open",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_glyphs", "lco_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Fill the tank",
+        "show_sliders": true,
+        "formula_overlay": "E = ½CV₀²",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "charge_up",
+          "controls": ["V0"],
+          "theta0_deg": 0,
+          "apparatus_home_at_ms": 0,
+          "charge_climb_start_at_ms": 0,
+          "charge_climb_dur_ms": 2000,
+          "v0_ungate_at_ms": 2000,
+          "hud_show_q": true,
+          "hud_show_i": false,
+          "hud_show_energy": true,
+          "hud_show_period": false,
+          "dim_apparatus": false,
+          "glow_focal": "plates",
+          "formula_text": "E = ½CV₀²"
+        }
+      },
+      "STATE_2": {
+        "label": "The switch throws — the battery leaves the loop, and the field's own energy drives the current",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "No source — current flows",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "switch_throw",
+          "controls": [],
+          "theta0_deg": 0,
+          "throw_at_ms": 0,
+          "release_beat_dur_ms": 1000,
+          "beads_start_at_ms": 1000,
+          "hud_show_q": true,
+          "hud_show_i": true,
+          "hud_show_energy": true,
+          "hud_show_period": false,
+          "dim_apparatus": false,
+          "glow_focal": "beads",
+          "formula_text": ""
+        }
+      },
+      "STATE_3": {
+        "label": "PRIMARY aha — at q = 0 the current is maximum; the coil recharges the plates reversed",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_chips"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Empty — current peaks",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "through_zero",
+          "controls": [],
+          "theta0_deg": 0,
+          "ghost_latch_at_ms": 200,
+          "strike_at_ms": 1000,
+          "flip_at_ms": 1000,
+          "hud_show_q": true,
+          "hud_show_i": true,
+          "hud_show_energy": false,
+          "hud_show_period": false,
+          "dim_apparatus": false,
+          "glow_focal": "chips",
+          "formula_text": ""
+        }
+      },
+      "STATE_4": {
+        "label": "The strip measures a 4.00 s swing — 0.25 Hz, the circuit's own resonance number all along",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Its own rhythm",
+        "show_sliders": true,
+        "formula_overlay": "f₀ = 1/(2π√(LC))",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "free_run",
+          "controls": [],
+          "theta0_deg": 0,
+          "strip_dock_at_ms": 0,
+          "period_measure_arm_at_ms": 1000,
+          "period_measure_fire_at_ms": 5000,
+          "f0_chip_at_ms": 5200,
+          "hud_show_q": true,
+          "hud_show_i": false,
+          "hud_show_energy": false,
+          "hud_show_period": true,
+          "dim_apparatus": false,
+          "glow_focal": "strip",
+          "formula_text": "f₀ = 1/(2π√(LC))"
+        }
+      },
+      "STATE_5": {
+        "label": "PIVOT — E_C and E_B trade in antiphase under a flat 6.36 J total; no heat bar anywhere",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_gauges"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Energy changes address",
+        "show_sliders": true,
+        "formula_overlay": "½CV₀² = ½LI₀²",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "energy_slosh",
+          "controls": [],
+          "theta0_deg": 0,
+          "gauge_focus_at_ms": 0,
+          "half_split_chip_arm_at_ms": 200,
+          "half_split_chip_fire_at_ms": 500,
+          "hud_show_q": false,
+          "hud_show_i": false,
+          "hud_show_energy": true,
+          "hud_show_period": false,
+          "dim_apparatus": false,
+          "glow_focal": "gauges",
+          "formula_text": "½CV₀² = ½LI₀²"
+        }
+      },
+      "STATE_6": {
+        "label": "The mechanical twin docks — charge mirrors displacement, current mirrors velocity; L is the mass",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_gauges", "lco_inset", "lco_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "A pendulum in copper",
+        "show_sliders": true,
+        "formula_overlay": "q ↔ x · i ↔ v · L ↔ m · 1/C ↔ k",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "shm_twin",
+          "controls": [],
+          "theta0_deg": 0,
+          "inset_dock_at_ms": 0,
+          "i_pen_join_at_ms": 1000,
+          "retro_link_at_ms": 1800,
+          "guard_clause_at_ms": 2600,
+          "hud_show_q": true,
+          "hud_show_i": true,
+          "hud_show_energy": false,
+          "hud_show_period": false,
+          "dim_apparatus": false,
+          "glow_focal": "inset",
+          "formula_text": "q ↔ x · i ↔ v · L ↔ m · 1/C ↔ k"
+        }
+      },
+      "STATE_7": {
+        "label": "A small resistor eases in — the swing decays inside an envelope, heat climbs in the gauges",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_gauges", "lco_inset"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Real swings die out",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "damped",
+          "controls": ["R"],
+          "theta0_deg": 0,
+          "r_insert_start_at_ms": 0,
+          "r_insert_dur_ms": 500,
+          "r_ungate_at_ms": 500,
+          "envelope_draw_at_ms": 500,
+          "er_bar_at_ms": 500,
+          "hud_show_q": true,
+          "hud_show_i": true,
+          "hud_show_energy": true,
+          "hud_show_period": false,
+          "dim_apparatus": false,
+          "glow_focal": "strip",
+          "formula_text": ""
+        }
+      },
+      "STATE_8": {
+        "label": "The derivation: source-free KVL solved down to ω₀ = 1/√(LC) = 1.571 rad/s",
+        "visible_elements": ["lco_circuit", "lco_strip", "lco_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "The swing, solved",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
+        "lc_oscillation": {
+          "mode": "derivation",
+          "controls": [],
+          "theta0_deg": 0,
+          "dim_apparatus": true,
+          "link1_at_ms": 0,
+          "link2_at_ms": 2000,
+          "link3_at_ms": 4000,
+          "link4_at_ms": 6000,
+          "hud_show_q": false,
+          "hud_show_i": false,
+          "hud_show_energy": false,
+          "hud_show_period": true,
+          "glow_focal": "formula",
+          "formula_text": ""
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — charge it, release it, add resistance, and reshape the whole free circuit",
+        "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_gauges", "lco_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "f₀ = 1/(2π√(LC))",
+        "lc_oscillation": {
+          "mode": "explore",
+          "controls": ["V0", "L", "C", "R"],
+          "switch_draggable": true,
+          "theta0_deg": 0,
+          "hud_show_q": true,
+          "hud_show_i": true,
+          "hud_show_energy": true,
+          "hud_show_period": true,
+          "dim_apparatus": false,
+          "glow_focal": "formula",
+          "formula_text": "f₀ = 1/(2π√(LC))"
+        }
+      }
+    }
+  }
+}

@@ -52,6 +52,12 @@ const ROLES = [
   { canonical: 'shipper',             emission: 'shipper'             },
   // added 2026-07-23 — chemistry_author (Alex, chemistry pipeline — CHEMISTRY_BUILD_PLAN.md Phase 2)
   { canonical: 'chemistry_author',    emission: 'chemistry-author'    },
+  // EXPERIMENTAL 2026-07-22 — founder_proxy (chapter-loop trial, ch7 branch only)
+  { canonical: 'founder_proxy',       emission: 'founder-proxy'       },
+  // EXPERIMENTAL 2026-07-24 — field3d_surgeon (Amendment 4 engine specialist, ch7 branch only)
+  // Kept because it averages ~3.4M tokens/dispatch on field_3d engine work versus ~25M
+  // for a general-purpose dispatch doing the same job (measured, lom-a loop 2026-07-25).
+  { canonical: 'field3d_surgeon',     emission: 'field3d-surgeon'     },
 ];
 
 const H1 = /^#\s/; // a markdown H1 line ("# ...")

@@ -285,7 +285,7 @@ export const VISUAL_CHECKS: Record<VisualCheckId, VisualCheckSpec> = {
     // ~1s spacing). They never enter vision prompts.
     D5: {
         id: 'D5', category: 'D', name: 'Dense motion present',
-        passCriterion: 'When the state declares motion (trajectory_mode ≠ static / advance_mode auto_after_animation), at least one adjacent dense-frame pair differs by ≥ 0.5% of pixels. Skipped when motion expectation is unknown.',
+        passCriterion: 'When the state declares motion (trajectory_mode ≠ static / advance_mode auto_after_animation), at least one adjacent dense-frame pair shows real motion — either ≥0.1% of the full canvas differs, or ≥0.5% of that pair’s own non-background ("ink") pixels differ (a content-relative lens for thin primitives — a rotating force_arrow, an angle_arc — that move a large share of their own ink but a tiny share of a large canvas). Skipped when motion expectation is unknown.',
         bugClass: 'ANIMATION_NO_MOTION',
         validationMethod: 'pixel',
     },
