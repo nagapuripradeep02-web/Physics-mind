@@ -16,9 +16,14 @@
 | 2 | Authoring layer (`chemistry_author` + pattern library) | ✅ 2026-07-23 |
 | 1 | Curriculum plumbing (subject first-class) | ✅ 2026-07-23 |
 | 2.5 | Parity hardening (4 shared specs + tooling + validate:chemistry) | ✅ 2026-07-23 |
-| 3 | First concept — **Bohr energy levels** (Wave 1 pivoted from Rutherford; prove-first) | ✅ 2026-07-23 — authored, validated, renders on the teacher surface (formal quality_auditor + Asmi review pending) |
+| 3 | First concept — **Bohr energy levels** (Wave 1 pivoted from Rutherford; prove-first) | ✅ **MERGED TO MASTER 2026-07-27** (`b9eb735`) — authored, validated, quality_auditor gated, THE EYE 39/39, eye_walker walked, baselines approved. **Only Asmi's professor review remains.** |
 | 4 | Chemistry machine gates (ledger check, animation vocab) | ☐ |
 | 5 | Chemistry render surface (particle-box, then Three.js molecule/orbital) | ☐ (founder-gated) |
+
+**Chemistry is now a first-class subject ON MASTER.** The isolation contract held through
+the merge: `bohr_model_energy_levels` registers at site #1 only (verified zero occurrences in
+`panelConfig` / `aiSimulationGenerator` / `intentClassifier`), and `validate:concepts` reports
+141/141 without ever seeing the file.
 
 ## The renderer-compounding build FLOW (locked 2026-07-23 — see CHEMISTRY_DISCUSSIONS.md §C3)
 
@@ -35,6 +40,149 @@ boards).
 | 3 Energy | L ladder (+N) | modest (generic 2D primitives) | Bohr/energy levels/spectra · reaction energy profiles/enthalpy/activation energy |
 | 4 Bookkeeping | O ledger | cheap (generic primitives) | balancing · conservation of mass · mole concept · stoichiometry |
 | 5 Structure | P Three.js | big (Phase 5) | orbitals s/p/d · bonding/VSEPR · hybridization · organic mechanisms · electrochem cells |
+
+---
+
+## 🧪 SESSION — Convergence + SHIPPED TO MASTER: 130-commit merge, 3 platform fixes landed separately, eye_walker gate, baselines locked, DB migration applied (2026-07-26 → 27)
+
+**Bottom line: chemistry is ON MASTER (`b9eb735`) with the isolation contract intact, and every
+machine-checkable gate is green — tsc 0 · validate:concepts 141/141 · validate:chemistry 1/1 ·
+vitest 281/281 · THE EYE 39/39 with zero console errors · 9 visual baselines approved (H2 now
+live for the first time on a chemistry concept AND on the parametric family). The single
+remaining gate is Asmi's professor review. The most valuable work this session was NOT writing
+code — it was checking master before porting, which killed three of my own mechanisms.**
+
+### The headline lesson: three of my engine changes were already solved on master, better
+Master absorbed six branches (130 commits) while this branch worked. Before porting anything I
+ran the Rule-40 check on each mechanism. Three died:
+
+| Mine | Master's | Verdict |
+|---|---|---|
+| `PM_focalPulseBoost` (white colour-lerp) | `PM_focalEmphasis` + `SET_GLOW` override | Master: dims peers to 0.6 (Rule 29 as written), real `shadowBlur` glow, static so it doesn't mask D7 |
+| `responsive_fill` (p5 `scale()` + manual `PM_mouseXd/Yd` remap) | `PM_fitCanvas` (style-only CSS box resize) | **Master decisively** — keeps mouse in 760×500 logical space with ZERO mapping code |
+| GAP-1 review-site parametric branch | already imports `assembleParametricHtml` | Redundant — master builds a 207KB working parametric sim unaided |
+
+The `responsive_fill` one matters most: master's own comment warns a canvas transform *"would
+desync p5 1.9.4's scrollWidth-based mouse compensation and silently break every
+drawCanvasSlider drag."* **Mine did exactly that** and added manual remapping to compensate.
+Porting it would have shipped a regression into the shared engine. Ten minutes of reading
+master's code prevented it.
+
+### Three platform fixes landed on master SEPARATELY (Rule 40), each 1 file / 1 commit
+Deliberately NOT bundled into the chemistry merge — engine files are platform.
+1. **`fix/gate9-overlap-checker`** — Gate 9 was passing vacuously across the fleet. Measured:
+   **126 of 141 concepts (89%)** carry >5 states once EPIC-C branches are counted (largest:
+   `current_not_vector` at **21**); the checker read 5 and never read `epic_c_branches` at all.
+   It also **crashed outright on 21 concepts** — nobody knew, because nothing swept the fleet.
+   Three distinct crashes fixed (missing `position`, missing `id`, state-less bundle concept).
+   **Kept master's body-anchored arrow resolution** (`buildBodyMap`/`resolveBodyAnchoredOrigin`)
+   — a real improvement this branch's rewrite lacked. Combination, not replacement.
+   Result: 141/141 scan, 0 crashes, **155 previously-invisible findings across 33 concepts**.
+2. **`feat/parametric-play-path`** — ▶ Play was dead on the entire family (the renderer honoured
+   `SET_TIME_FREEZE` but ignored `RESET_TRAJECTORY`/`REPLAY_ANIMATIONS`). Only **23 lines**,
+   because master's `PM_resetSimClock` was already the right primitive.
+3. **`feat/parametric-position-expr`** — bodies can bind position to live variables, not just
+   text. Extracted `PM_liveExprVars()` so `PM_interpolate` and `position_expr` read ONE scope —
+   a state cannot render a number and place its glyph from different values. Runtime-tested the
+   emitted scope in a sandbox before shipping.
+
+### The merge (130 commits, 5 conflicts) — and the regression verification caught
+Resolved by taking master wholesale for all three superseded files, UNION for `sync-agents.js`
+(both sides added agent roles — chemistry_author vs founder_proxy + field3d_surgeon; all three
+`.agents/` dirs exist), and re-adding only `computePhysics_bohr_model_energy_levels`.
+
+**Verification caught one real regression:** taking master's `build_review_site.ts` wholesale
+dropped Phase-2.5 subject routing, so `build:review bohr_model_energy_levels` died with
+"Concept JSON not found". Fixed by wiring in the shared `resolveConceptJsonPath` that four
+other scripts already use — removing an inconsistency rather than adding a special case.
+Physics resolution stays byte-identical and silent; chemistry logs its namespace.
+
+### THE EYE post-merge — and the D7 mystery is SOLVED (it was calibration, not a defect)
+Previously 32/39 with all 8 guided states flagged *"Animation died mid-state — likely a
+render-loop exception."* **That diagnosis was wrong.** Master's `deriveStateMeta` now derives
+real reveal windows (15000–19286 ms instead of a flat 1500 ms default) and D7 correctly relaxes
+for states declaring `reveal_hold`: *"frozen tail is expected — one-shot reveal then holds
+still."* A guided state holding its final picture IS correct Rule 26 behaviour; the old run
+measured a 30 s window against ~15 s of choreography and called correct behaviour a crash.
+Now **39/39, zero console errors, real motion detected in 5 states** (0.18–0.33% of canvas).
+
+### eye_walker frame-walk (298 frames) — 4 findings, 2 scars confirmed fixed
+7/9 states clean. No crashes, no physics errors. It **verified two open scars as fixed by the
+merge**, and did it properly — by arithmetic, not eyeballing: S7's λ pointer computes
+`2×656−705 = x607`, exactly `line_656_solid`'s x. And it diffed the electron before/during glow:
+diameter unchanged, halo only → the Rule-29 size-bulge is genuinely gone.
+
+**It also partially REFUTED my own probe, and it was right.** I had flagged S3/S7 as "narration
+outruns choreography." Reveal-complete and narration-end actually co-terminate within a second;
+the real defect is `duration` authored at ~2× measured content (32000/35000 ms vs ~17–19 s).
+Filed as the sharper `state_duration_field_overpadded_vs_reveal` and **deliberately left my
+original row OPEN with a note that its framing overstated what the frames show** — recording the
+correction rather than quietly replacing it.
+
+### Two findings FIXED this session
+- **S9 depth-ring leak (MAJOR, Rule 38b).** The sandbox printed "λ = 656 nm" but no core state
+  ever showed a numeric wavelength — core taught gaps in eV and the λ axis; the number came only
+  from S7's extended-ring hc/ΔE derivation. Fixed by **introducing the value where it belongs
+  pedagogically**: S6 (core) now labels each spectral line with its wavelength as it solidifies
+  (656 / 486 / 434 / 410, colour-matched). That is S6's own thesis ("Every line, one gap") made
+  literal — the fix strengthens the core lesson instead of padding it. The DERIVATION stays
+  extended: core students see that a line has a wavelength, extended students see why.
+- **S3 frozen-frame delta (MODERATE, Rule 32c/d).** The PRIMARY misconception state ended in
+  S2's exact resting pose, so its frozen frame — the H2 baseline, and what a reviewer judges in
+  isolation — carried none of its own teaching. Added two persistent verdict labels
+  ("✗ smooth ramp" / "✓ fixed rungs only"). Both fixes confirmed by reading the actual frames.
+
+### Baselines approved — H2 is live for the first time
+`visual:approve` → **9 baselines** at tolerance 0.02. All 9 frozen frames get
+`compare_frozen: true` (deterministic `SET_TIME_FREEZE` captures); the 5 animated states are
+reference-only per `visual_approve`'s default. Until now H2 reported "Skipped — no approved
+baseline", so nothing protected this sim from silent visual drift.
+
+### The Supabase migration — applied, with one deviation the pre-flight forced
+Authorised the Supabase MCP and applied to **`dxwpkjfypzxrzgbevfnx` (dev)** — explicitly not
+`physicsmind-pilot`. I had been repeating an earlier session's "founder must do this" claim;
+probing it properly showed why: the service-role key authenticates against PostgREST, which does
+data operations only and **cannot execute DDL**, and no `exec_sql`-style RPC exists.
+
+Pre-flight against live data changed the migration in two ways:
+- **Added `peter_parker:field3d_surgeon`** to the owner_cluster CHECK. The migration predates
+  that role; it is now active on master (`[owner: peter_parker:field3d_surgeon]` in shipped
+  commits), so applying the list verbatim would have closed the chemistry_author gap while
+  **recreating the identical latent bug** for field3d_surgeon.
+- **Kept `peter_parker:visual_validator`.** The migration said to keep the CHECK "in sync with
+  the admin OWNERS array" — but that array no longer lists it while **39 live rows use it**.
+  Following that instruction literally would have invalidated 39 rows. The UI is the stale side.
+
+Post-apply: 351/351 rows intact, both CHECKs present, index created. All three seed scripts
+re-run with no "subject absent" warning. Queue splits **physics 328 · subject_neutral 21 ·
+chemistry 2**.
+
+### Queue: 4 rows added, 4 closed
+Added `_seed_engine_bug_queue_bohr_eyewalker.ts` — 2 fixed above, 2 left OPEN (duration
+overpadding; S4 prose in the caption band). Closed with evidence: the indicator-binding and
+Rule-29 focal rows (both resolved by the post-merge `PM_focalEmphasis`), computed-but-unsurfaced,
+and the older symbol-level ring row (verified independently: UV/IR/ΔE are gone from S9, and with
+λ now core-introduced every symbol S9 renders traces to a core state).
+
+### Also
+- **`docs/GIT_WORKFLOW.md` §0** — promoted the hook installer to a setup step. It was documented
+  inside §4 ("What is automated"), so reading top-down you start committing before reaching it —
+  and `.git/hooks` is untracked, so a fresh machine has NO backup automation and nothing says so.
+  Recorded first-hand that the auto-push hook is a convenience, not a guarantee (it skipped a
+  push after the large merge; the unpushed count read 4, not 0).
+- **tsx is an undeclared dependency** — not in `package.json`, `package-lock.json`,
+  `node_modules`, or on PATH. `npx` silently downloads it from the registry at runtime
+  (`~/.npm/_npx/…`, unpinned). So these scripts are offline-fragile. Deferred deliberately —
+  adding it now creates a package-lock merge point and `npm ci` hard-errors on lock drift.
+- **A physics finding handed back:** with Gate 9 working, `vector_head_to_tail` STATE_5 has a
+  real 6px annotation overlap (`edge_hint_zero` ↔ `edge_hint_high`). Physics content untouched.
+
+### ⏭ NEXT
+1. **Asmi's professor review** — the only gate left on Bohr.
+2. Retime S3/S7 `duration` fields + move S4's `prereq_note` out of the caption band (2 OPEN rows).
+3. **Wave 2 = the passport cluster** (kinetic theory → diffusion → rates → collision theory →
+   equilibrium) — needs the particle-box scenario built ONCE, then reused across the whole cluster.
+4. Admin UI `OWNERS` dropdown is missing `visual_validator` + `field3d_surgeon` (product call).
 
 ---
 
