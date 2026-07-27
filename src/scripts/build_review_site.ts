@@ -34,6 +34,7 @@ import {
     type ParticleFieldAuthoredConfig,
 } from '@/lib/renderers/particle_field_renderer';
 import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 import {
     pilotHeadTags,
     isPilotConcept,
@@ -281,11 +282,21 @@ function embedJson(value: unknown): string {
 }
 
 function loadConcept(conceptId: string): ConceptJson {
-    const path = join(CONCEPTS_DIR, `${conceptId}.json`);
-    if (!existsSync(path)) {
-        throw new Error(`Concept JSON not found: ${path}`);
+    // Subject routing (CHEMISTRY_BUILD_PLAN.md Phase 2.5). The shared resolver
+    // checks the flat physics dir FIRST — so physics resolution is byte-identical
+    // to reading CONCEPTS_DIR directly — then src/data/concepts/chemistry/, which
+    // is the only place chemistry concepts may live (isolation contract,
+    // docs/CHEMISTRY_ARCHITECTURE.md §7). Same resolver already used by
+    // generate_tts_audio, _seed_chemistry_cache, buildParametricConfig and
+    // loadCachedSim, so every script layer agrees on where a concept lives.
+    const resolved = resolveConceptJsonPath(conceptId);
+    if (!resolved) {
+        throw new Error(
+            `Concept JSON not found: ${join(CONCEPTS_DIR, `${conceptId}.json`)} ` +
+            `(also checked src/data/concepts/chemistry/${conceptId}.json)`,
+        );
     }
-    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+    return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
 }
 
 // ── PCPL (mechanics_2d) adapter ───────────────────────────────────────────────
