@@ -836,12 +836,18 @@ function PM_liveVarsWithDerived() {
   return vars;
 }
 
-function PM_interpolate(text) {
-  if (typeof text !== 'string') return text;
-  // Prefer live vars from PM_physics (updated every SLIDER_CHANGE) so labels like
-  // "theta = {theta} deg" track the current value, not the static authoring default.
-  // Merge derived fields (force_magnitude, pressure, i_actual, ...) on top of variables
-  // so JSON expressions can reference computed outputs directly without re-deriving them.
+// The live expression scope, shared by every binding that reads authored
+// variables. Prefers live vars from PM_physics (updated every SLIDER_CHANGE) so
+// labels like "theta = {theta} deg" track the current value, not the static
+// authoring default. Merges derived fields (force_magnitude, pressure,
+// i_actual, ...) on top of variables so JSON expressions can reference computed
+// outputs directly without re-deriving them.
+//
+// Extracted so TEXT bindings (PM_interpolate) and POSITION bindings
+// (position_expr in drawBody) read one scope instead of two copies that merely
+// happen to agree — a state can't render a number and place its glyph from
+// different values.
+function PM_liveExprVars() {
   var baseVars = (PM_physics && PM_physics.variables)
     || (PM_config && PM_config.default_variables)
     || {};
@@ -849,6 +855,12 @@ function PM_interpolate(text) {
   var vars = {};
   for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
   for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  return vars;
+}
+
+function PM_interpolate(text) {
+  if (typeof text !== 'string') return text;
+  var vars = PM_liveExprVars();
   return text.replace(/\\{([^{}]+)\\}/g, function(_m, body) {
     // Simple identifier — fast path for {theta} / {m1} etc.
     if (/^\\w+$/.test(body)) {
@@ -1066,6 +1078,30 @@ function drawBody(spec) {
   }
 
   var pos = attachedPos || spec._resolvedPosition || spec.position || { x: 200, y: 200 };
+
+  // position_expr — live variable-driven position, the positional sibling of
+  // label_expr/text_expr. Until now only TEXT could react to a slider: a state
+  // could show "λ = 486 nm" updating live while the glyph the number describes
+  // sat frozen at its authored coordinate. This binds the body's own position to
+  // the same variables, so the picture moves with the number (e.g. an electron
+  // riding to whichever energy rung n_end selects).
+  //
+  // Reads PM_liveExprVars() — the SAME merged variables+derived scope
+  // PM_interpolate uses — so a position binding and a text binding in one state
+  // can never disagree about the value they are showing.
+  //
+  // Opt-in and last-resort by construction: physics overrides win (a surface
+  // attachment or the Engine 20 motion integrator IS the position), and a
+  // non-finite eval keeps the static authored pos, so a malformed expression
+  // degrades to the authored layout rather than blanking the body. Resolved
+  // before the animation delta below, and registered into PM_bodyRegistry
+  // downstream, so glow_focus and force-arrow anchoring track it for free.
+  if (!attachedPos && !(spec.id && PM_motionState[spec.id]) && spec.position_expr) {
+    var peVars = PM_liveExprVars();
+    var peX = (spec.position_expr.x != null) ? PM_safeEval(String(spec.position_expr.x), peVars) : pos.x;
+    var peY = (spec.position_expr.y != null) ? PM_safeEval(String(spec.position_expr.y), peVars) : pos.y;
+    if (isFinite(peX) && isFinite(peY)) pos = { x: peX, y: peY };
+  }
 
   // Physics-driven animation delta. Engines learn nothing — JSONs declare the
   // animation shape and the renderer applies the equation.
