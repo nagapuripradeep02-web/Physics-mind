@@ -113,9 +113,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Charcoal burns in an open pan sitting on a balance — like grilling over a campfire." },
-            { "id": "s2", "text_en": "Watch the reading: fifty point zero grams, forty-nine point two, now forty-eight point one grams." },
-            { "id": "s3", "text_en": "Almost two grams simply vanished from the scale — where did that mass go?" }
+            { "id": "s1_1", "text_en": "Charcoal burns in an open pan sitting on a balance — like grilling over a campfire." },
+            { "id": "s1_2", "text_en": "Watch the reading: fifty point zero grams, forty-nine point two, now forty-eight point one grams." },
+            { "id": "s1_3", "text_en": "Almost two grams simply vanished from the scale — where did that mass go?" }
           ]
         }
       },
@@ -167,10 +167,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Same burn, twice: one pan open to the air, one sealed like a fizzing soda-and-vinegar bag." },
-            { "id": "s2", "text_en": "The open pan's reading keeps falling, just like before." },
-            { "id": "s3", "text_en": "The sealed side never moves, not even a tenth of a gram." },
-            { "id": "s4", "text_en": "Mass never leaves the universe, never arrives from nowhere: seal the system and nothing is lost or gained." }
+            { "id": "s2_1", "text_en": "Same burn, twice: one pan open to the air, one sealed like a fizzing soda-and-vinegar bag." },
+            { "id": "s2_2", "text_en": "The open pan's reading keeps falling, just like before." },
+            { "id": "s2_3", "text_en": "The sealed side never moves, not even a tenth of a gram." },
+            { "id": "s2_4", "text_en": "Mass never leaves the universe, never arrives from nowhere: seal the system and nothing is lost or gained." }
           ]
         },
         "misconception_watch": [
@@ -214,10 +214,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Every substance is built from atoms — tiny particles, each with its own fixed mass." },
-            { "id": "s2", "text_en": "Inside the sealed flask, one carbon atom C sits beside two oxygen atoms." },
-            { "id": "s3", "text_en": "Watch carbon travel over and dock right between them — three atoms, same as before, just new partners." },
-            { "id": "s4", "text_en": "Same atoms, new partners — that's carbon dioxide." }
+            { "id": "s3_1", "text_en": "Every substance is built from atoms — tiny particles, each with its own fixed mass." },
+            { "id": "s3_2", "text_en": "Inside the sealed flask, one carbon atom C sits beside two oxygen atoms." },
+            { "id": "s3_3", "text_en": "Watch carbon travel over and dock right between them — three atoms, same as before, just new partners." },
+            { "id": "s3_4", "text_en": "Same atoms, new partners — that's carbon dioxide." }
           ]
         },
         "misconception_watch": [
@@ -259,9 +259,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Twelve grams of carbon plus thirty-two grams of oxygen makes forty-four grams of carbon dioxide." },
-            { "id": "s2", "text_en": "The ledger balances exactly — reactant mass equals product mass." },
-            { "id": "s3", "text_en": "Drag the carbon slider — any amount you pick, the two sides still match." }
+            { "id": "s4_1", "text_en": "Twelve grams of carbon plus thirty-two grams of oxygen makes forty-four grams of carbon dioxide." },
+            { "id": "s4_2", "text_en": "The ledger balances exactly — reactant mass equals product mass." },
+            { "id": "s4_3", "text_en": "Drag the carbon slider — any amount you pick, the two sides still match." }
           ]
         }
       },
@@ -294,10 +294,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "An iron nail sits sealed inside a jar of oxygen, rusting instead of burning." },
-            { "id": "s2", "text_en": "Oxygen atoms leave the gas and dock onto the iron's surface, one by one." },
-            { "id": "s3", "text_en": "The solid gets heavier while the gas gets lighter, by the exact same amount." },
-            { "id": "s4", "text_en": "The total never moves — the gain is oxygen's own mass changing address." }
+            { "id": "s5_1", "text_en": "An iron nail sits sealed inside a jar of oxygen, rusting instead of burning." },
+            { "id": "s5_2", "text_en": "Oxygen atoms leave the gas and dock onto the iron's surface, one by one." },
+            { "id": "s5_3", "text_en": "The solid gets heavier while the gas gets lighter, by the exact same amount." },
+            { "id": "s5_4", "text_en": "The total never moves — the gain is oxygen's own mass changing address." }
           ]
         },
         "misconception_watch": [
@@ -328,10 +328,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Mass is just the sum: each atom's count times its atomic mass." },
-            { "id": "s2", "text_en": "Before: one carbon at twelve, two oxygens at sixteen each, forty-four grams total." },
-            { "id": "s3", "text_en": "The same count of atoms gives the same forty-four grams afterward." },
-            { "id": "s4", "text_en": "The counts never change, so the mass never changes, true for chemical reactions, not nuclear ones." }
+            { "id": "s6_1", "text_en": "Mass is just the sum: each atom's count times its atomic mass." },
+            { "id": "s6_2", "text_en": "Before: one carbon at twelve, two oxygens at sixteen each, forty-four grams total." },
+            { "id": "s6_3", "text_en": "The same count of atoms gives the same forty-four grams afterward." },
+            { "id": "s6_4", "text_en": "The counts never change, so the mass never changes, true for chemical reactions, not nuclear ones." }
           ]
         }
       },
@@ -361,7 +361,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Drag carbon's mass and toggle sealed or open — watch every number update live, and the law hold." }
+            { "id": "s7_1", "text_en": "Drag carbon's mass and toggle sealed or open — watch every number update live, and the law hold." }
           ]
         }
       }
