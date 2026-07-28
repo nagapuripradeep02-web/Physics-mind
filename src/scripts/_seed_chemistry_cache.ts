@@ -19,6 +19,10 @@ import '@/lib/loadEnvLocal';
 import { readFileSync } from 'node:fs';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
 import { assembleParametricHtml } from '@/lib/renderers/parametric_renderer';
+import {
+    assembleParticleFieldHtml,
+    type ParticleFieldAuthoredConfig,
+} from '@/lib/renderers/particle_field_renderer';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 import {
@@ -29,6 +33,7 @@ import {
 
 type ConceptJson = ParametricSourceJson & {
     field_3d_config?: Field3DConfig;
+    particle_field_config?: ParticleFieldAuthoredConfig;
     epic_l_path?: Record<string, unknown>;
 };
 
@@ -55,14 +60,24 @@ async function main(): Promise<void> {
         simHtml = assembleField3DHtml(json.field_3d_config);
         rendererType = 'field_3d';
         engine = 'threejs';
+    } else if (json.particle_field_config) {
+        // particle_field was missing here: the seeder was written for the first
+        // chemistry concept (parametric) and field_3d, so the FIRST chemistry
+        // concept on the particle_field family could not reach THE EYE at all.
+        // Seeded at its authored canvas size for the same frozen-baseline reason
+        // as parametric — a viewport-dependent fit would make every frozen frame
+        // depend on the capture window.
+        simHtml = assembleParticleFieldHtml(json.particle_field_config);
+        rendererType = 'particle_field';
+        engine = 'p5';
     } else if (isParametricConcept(json)) {
         simHtml = assembleParametricHtml(buildParametricConfig(conceptId, json));
         rendererType = 'parametric';
         engine = 'p5';
     } else {
         throw new Error(
-            `"${conceptId}" has no field_3d_config and renderer_pair.panel_a is not "parametric" — ` +
-            'no seedable renderer family.',
+            `"${conceptId}" has no field_3d_config, no particle_field_config, and ` +
+            'renderer_pair.panel_a is not "parametric" — no seedable renderer family.',
         );
     }
 
