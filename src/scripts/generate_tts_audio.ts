@@ -29,7 +29,7 @@
  *   ... --langs=en,te --allow-telugu   (Telugu is RETIRED — billed + unreachable; Rule 30i)
  */
 import '@/lib/loadEnvLocal';
-import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, readdirSync, copyFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
@@ -399,8 +399,37 @@ async function main(): Promise<void> {
     }
   }
 
+  // PERSIST THE CLIPS SOMEWHERE GIT CAN SEE THEM.
+  // review-site/ is gitignored and Rule 30h is explicit that there is no free
+  // Supabase restore — the local manifest is the only cache, and every render is
+  // real Sarvam spend. So until now a freshly voiced concept existed in exactly
+  // one gitignored folder on one disk. It has already cost us once: vsepr's 17
+  // clips lived only inside a worktree, the branch merged, and the audio did not
+  // travel, because a gitignored path never does. tts_audio/ was then created by
+  // hand as a tracked backup — a manual step nobody is reminded to repeat, which
+  // is the same failure waiting to happen on every future ship.
+  // Mirroring here makes the durable copy a property of rendering, not of memory.
+  const keepDir = join(ROOT, 'tts_audio', conceptId);
+  const keepAudioDir = join(keepDir, 'audio');
+  mkdirSync(keepAudioDir, { recursive: true });
+  let mirrored = 0;
+  for (const f of readdirSync(audioDir)) {
+    if (!f.endsWith('.mp3')) continue;
+    copyFileSync(join(audioDir, f), join(keepAudioDir, f));
+    mirrored++;
+  }
+  copyFileSync(manifestPath, join(keepDir, 'audio_manifest.json'));
+  // Orphans pruned from the build dir must go from the tracked copy too, or the
+  // backup slowly becomes a graveyard that no longer matches the manifest.
+  for (const f of readdirSync(keepAudioDir)) {
+    if (f.endsWith('.mp3') && !liveKeys.has(f)) {
+      try { unlinkSync(join(keepAudioDir, f)); } catch { /* ignore */ }
+    }
+  }
+
   console.log(`\n✓ ${Object.keys(clips).length} clips in manifest — ${written} written (${staleRefreshed} were stale), ${skippedExisting} skipped (existing), ${skippedMissing} skipped (no text)${failedClips ? `, ${failedClips} FAILED` : ''}${pruned ? `, ${pruned} orphans pruned` : ''}`);
   console.log(`  manifest: ${manifestPath}`);
+  console.log(`  tracked copy: ${keepDir} (${mirrored} mp3 + manifest) — commit this, it is the only cache`);
 }
 
 // Run the CLI only when invoked directly (npx tsx …/generate_tts_audio.ts) — NOT
