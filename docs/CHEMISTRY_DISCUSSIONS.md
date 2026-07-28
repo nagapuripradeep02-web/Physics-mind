@@ -6,6 +6,94 @@
 
 ---
 
+## Session C6 — The whiteboard test, executed: capability 3 gets an engine; and a green machine gate is not a verdict (2026-07-28)
+
+> **⚠ Session C5 is missing from this file on master.** The whiteboard test and THE RANKED PRIORITY
+> LIST — which drive everything below — were committed to branch **`docs/chemistry-priority-order`**
+> (`988b15b`, `9397863`, `feb7c9e`; pushed to origin, NOT merged). Read them there, or merge that
+> branch, before treating this log as complete. C6 assumes C5.
+
+**What this session was for.** C5 ranked the roadmap by irreplaceability and named four capabilities a
+simulation has that a whiteboard does not. Three already had engines. The fourth — **capability 3,
+hold 3D spatial structure** — had none, and C5 §6 put the whole P4 block behind it (VSEPR,
+hybridisation, SN1/SN2, stereochemistry, orbitals, σ/π: six of the subject's densest diamonds). So P3
+was built, and P4 #12 was authored on it in the same session.
+
+### 1. "The biggest lift" was one scenario, because §5c named the wrong artefact
+
+`CHEMISTRY_ARCHITECTURE.md` §5c specified a NEW Three.js renderer (`molecule_3d`/`orbital_3d`)
+"analogous to `field_3d`", and the phase table called Phase 5 "high (biggest lift)". But `field_3d`
+**is already Three.js** — so the real cost was one new `scenario_type` on the existing renderer,
+inheriting its camera, clock, glow, widget, clean-mode, freeze-pin and EYE integration for free. No
+new renderer file exists, and none is needed for this class of concept.
+
+**Takeaway, and it generalises past chemistry:** an architecture doc that names a new FILE where a new
+CASE would do inflates the estimate that gates the work. §5c's estimate is why Phase 5 sat
+founder-gated behind two waves of 2D work. Re-read any "we need a new renderer" claim against what the
+existing renderer already is.
+
+### 2. Archetype P was one label over three different builds (the C4 lesson, self-inflicted)
+
+C4 established that a tier is a CLAIM about renderer readiness for the SPECIFIC motion a concept
+needs. "P — Molecular 3D (orbitals / VSEPR / lattices)" was that same mistake in the other direction:
+three unrelated engine builds under one [PHASE-5] label. Now split — **P1 electron-domain geometry
+[LIVE]**, **P2 orbitals + lattices [NEEDS-SCENARIO]** — with SN1/SN2 and stereochemistry recorded as
+sitting *between* the tiers (the molecule scaffold exists; the bond-breaking/inversion motion layer
+does not). Scheduling #14 or #16 off the old label would have produced exactly the dead-end pipeline
+run C4 warned about.
+
+### 3. THE EYE ran four times, was 31/31 green every time, and every real defect came from the frames
+
+The sharpest evidence yet for the §③ doctrine that the deterministic checks are a pre-flight and the
+frame-read is the gate. All four runs: 31/31, zero console errors. Meanwhile the frames showed live
+labels clipped mid-word; **methane's fourth bond invisible behind the carbon, under a caption reading
+"Four bonds, one shape"** (a student counts three); and STATE_2 projecting 133.6° while its own label
+read 109.5° — in the one state that exists to correct a false picture.
+
+No gate in the suite can catch any of those, because each is a claim about whether the picture means
+what the words say. **A 31/31 run is a licence to start looking, not a result.**
+
+### 4. Two failure modes specific to authoring in 3D (new to the fleet)
+
+Both are inherent to a projected 3D scene; neither exists in the 2D engines.
+
+- **Occlusion can delete taught content.** A domain aimed along the view axis foreshortens to nothing
+  behind the central atom. The physics is right, the label is right, and the picture silently
+  contradicts the caption. Rule 33d says an instrument must show a real number; the 3D analogue is
+  that **every element the narration counts must be countable in the projection.**
+- **A projected angle is not the angle.** The label states the true 3D value, the screen shows a
+  projection. Textbooks do this too and it is an acceptable norm — but it stops being acceptable when a
+  state's whole thesis is a comparison BETWEEN two angles (90° flat vs 109.5° real), because then the
+  distortion attacks the lesson instead of decorating it.
+
+Both were fixed by **solving** rather than looking: a scratch solver swept azimuth × elevation against
+"every domain projects at ≥34% of its length" and "the measured angle projects near its label", and a
+new authorable `flat_basis` puts the flat sketch plane perpendicular to the camera so its 90° is a
+true right angle. **Camera placement in a 3D chemistry sim is a measurable quantity with correct
+answers, not a matter of taste** — treat it that way from the first state.
+
+### 5. A gate that cannot be satisfied is worse than no gate
+
+`validate-chemistry`'s Rule-31a choreography check read `scene_composition` only — the PCPL shape —
+while on field_3d that block is a silent no-op. It therefore reported "choreography settles ~0ms" for
+every field_3d chemistry concept regardless of how its motion was timed. That is not a false negative;
+it is a gate that trains the author to ignore it. Fixed to consult the shared `deriveMaxRevealTimeMs`,
+whereupon it produced two genuine findings on the new concept AND cleared a false positive that had
+been sitting on the shipped `bohr_model_energy_levels`.
+
+**Pattern to watch:** chemistry keeps inheriting physics tooling that hardcodes the parametric shape
+(three scripts in C2, Gate 9 in the convergence session, this one now). The next such fix should ask
+whether the tool can be made renderer-agnostic rather than taught one more special case.
+
+### 6. What did NOT change
+
+The C5 ranked order stands, and this session executed it as written: P3, then P4 #12. Compounding
+remains a tie-breaker between diamonds and never a reason to build a demo — VSEPR earned the build
+because a board structurally cannot reach it; that it also unlocks #13 and #17 for free is the
+tie-break, not the argument.
+
+---
+
 ## Session C4 — First diamond built (Bohr): the archetype→renderer map is systematically optimistic; verify against code before scheduling (2026-07-23)
 
 **The recurring finding.** Three of the five chemistry archetypes in `docs/patterns/chemistry.md` v0.1
