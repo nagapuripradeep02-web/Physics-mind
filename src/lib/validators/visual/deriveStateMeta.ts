@@ -259,6 +259,21 @@ export function deriveMotionExpectations(
             // but its frozen tail is relaxed by the show_sliders→interactive hold pass).
             const emw = state ? asObj(state.em_wave) : null;
             if (emw) { out[stateId] = (emw.interactive === true) ? false : true; continue; }
+            // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY): a beat that authors a
+            // non-zero spin_rate turns the whole picture forever on the state clock
+            // (that perpetual turn IS the 3D-legibility capability) → DECLARE motion
+            // so D5/D6 expect ongoing pixel movement. A beat with the spin OFF
+            // (every morph/extrude/probe/cutaway state, Rule 32b) is a one-shot ramp
+            // that SETTLES — left undefined here so it is classified reveal_hold by
+            // the hold pass instead of being false-failed for standing still. The
+            // explore sandbox is user-driven → declare static and let the
+            // interactive hold classification relax its tail.
+            const osMotion = state ? asObj(state.orbital_shapes) : null;
+            if (osMotion) {
+                if (osMotion.mode === 'explore') { out[stateId] = false; continue; }
+                if (typeof osMotion.spin_rate === 'number' && osMotion.spin_rate > 0) { out[stateId] = true; continue; }
+                // no spin: fall through to the reveal_hold classification.
+            }
             // ac_resistor (v=vm*sin(wt) applied to R — Ch.7 CHAPTER_LOOP Stage-1b
             // engine ask): every guided beat animates continuously (oscillating
             // beads / flipping current arrow / p(t)-modulated heater emissive,
@@ -500,6 +515,13 @@ const F3D_REVEAL_KEYS = [
     // Listed here so a cached physics_config that flattened field_3d_config.states
     // is still recognised as field_3d, not PCPL.
     'molecular_geometry',
+    // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY, 2026-07-28 engine ask): the
+    // per-state `orbital_shapes` block (orbit-dissolve / dot stipple / boundary
+    // grow / lobe extrude / probe sweep / axis-populate / clover bloom / 2s
+    // cutaway / node-count gallery beats). Listed here so a cached physics_config
+    // that flattened field_3d_config.states is still recognised as field_3d, not
+    // PCPL.
+    'orbital_shapes',
     // electric_potential_dipole (dipole_potential) + the potential siblings: every
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
@@ -1797,6 +1819,56 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (typeof mgState.hull_at_ms === 'number') candidates.push(asNum(mgState.hull_at_ms, 0) + 900 + 400);
         if (typeof mgState.hide_lone_at_ms === 'number') candidates.push(asNum(mgState.hide_lone_at_ms, 0) + 900);
     }
+    // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY, 2026-07-28 engine ask): every
+    // beat is a one-shot closed-form ramp over the state's own clock that then
+    // HOLDS — the believed orbit dissolves while the measurement dots accumulate,
+    // the 90% boundary fades in over the finished swarm, a lobe extrudes along
+    // its axis, the probe plane sweeps lobe-to-lobe through the node, the three
+    // p orbitals are stamped on one axis at a time, the clover blooms between the
+    // axes, the 2s cutaway slab closes to expose the hidden node shell, the
+    // gallery swaps 1s → 2s → 2p → 3d. Pin the frozen frame PAST the last
+    // payoff so THE EYE photographs the SETTLED picture (a full cloud, a closed
+    // slab, the last gallery member), never a half-drawn stipple. The renderer is
+    // accumulator-free (seeded dot table, closed-form spin), so the snap-to-pin
+    // capture is byte-identical to crawling there. The explore sandbox
+    // (mode 'explore') is user-driven — classified interactive below, not pinned.
+    const osState = asObj(state.orbital_shapes);
+    if (osState) {
+        const push = (v: unknown, extra = 600) => { if (typeof v === 'number') candidates.push(v + extra); };
+        // the stipple completes at stipple_at + target * per_dot (the swarm IS
+        // the reveal — a pin before that photographs a half-built cloud).
+        if (typeof osState.stipple_at_ms === 'number') {
+            candidates.push(asNum(osState.stipple_at_ms, 0)
+                + asNum(osState.dot_target, 1200) * asNum(osState.per_dot_ms, 3) + 700);
+        }
+        if (typeof osState.dissolve_at_ms === 'number') {
+            candidates.push(asNum(osState.dissolve_at_ms, 0) + asNum(osState.dissolve_duration_ms, 2500) + 600);
+        }
+        push(osState.surface_at_ms, 1100);          // 900 ms opacity ramp + a beat
+        if (typeof osState.extrude_at_ms === 'number') {
+            candidates.push(asNum(osState.extrude_at_ms, 0) + asNum(osState.extrude_duration_ms, 2400) + 600);
+        }
+        if (typeof osState.bloom_at_ms === 'number') {
+            candidates.push(asNum(osState.bloom_at_ms, 0) + asNum(osState.bloom_duration_ms, 2400) + 600);
+        }
+        if (typeof osState.grow_at_ms === 'number') {
+            candidates.push(asNum(osState.grow_at_ms, 0) + asNum(osState.grow_duration_ms, 1800) + 600);
+        }
+        if (typeof osState.cutaway_at_ms === 'number') {
+            candidates.push(asNum(osState.cutaway_at_ms, 0) + asNum(osState.cutaway_duration_ms, 2200) + 700);
+        }
+        const probeAuto = asObj(osState.probe_auto);
+        if (probeAuto && typeof probeAuto.at_ms === 'number') {
+            candidates.push(asNum(probeAuto.at_ms, 0) + asNum(probeAuto.duration_ms, 4000) + 600);
+        }
+        for (const key of ['populate_steps', 'gallery_steps']) {
+            const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];
+            for (const rawStep of steps) {
+                const step = asObj(rawStep);
+                if (step) candidates.push(asNum(step.at_ms, 0) + 900);
+            }
+        }
+    }
     // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3): the trains
     // move perpetually, but the STATE's one-shot cues (motes vanish → the "no
     // change" chip pins, the pulse reaches the receiver and the needle kicks) land
@@ -2960,6 +3032,20 @@ export function deriveHoldExpectations(
             const mgHold = asObj(state.molecular_geometry);
             if (mgHold) {
                 out[stateId] = (mgHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY): several guided beats
+            // expose a live contextual row (the dots slider on S2, the probe on
+            // S4), so the generic show_sliders catch below would swallow them into
+            // 'interactive' before they reach it. Classify explicitly (mirrors the
+            // capacitance / molecular_geometry guided-vs-explore split above): the
+            // sandbox (mode 'explore') is user-driven → interactive; every other
+            // mode is a guided beat whose one-shot ramp payoff (pinned in
+            // maxRevealForField3dState) settles to a HOLD — over a perpetual slow
+            // turn where the state authors one — so D7/D1p permit the settled tail.
+            const osHold = asObj(state.orbital_shapes);
+            if (osHold) {
+                out[stateId] = (osHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // newtons_laws_body (Laws of Motion): every state exposes its own
