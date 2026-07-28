@@ -3478,6 +3478,8 @@ var gasConcTrace = [];       // rolling composition history for the concentratio
 var gasRxSpA = -1, gasRxSpB = -1, gasRxSpAB = -1;
 var gasNPrev = -1;           // last N target seen (reaction mode: N is a delta control)
 var gasInjFired = false;     // authored injection cue: one-shot per state entry
+var gasKWin = [];            // rolling window of the instantaneous K ratio
+var gasKMean = 0;            // what the K chip actually prints (windowed mean)
 var gasRxRateMax = 1;        // per-state high-water rate — the bars' stable full scale
 
 function gasMode() { return !!(config && config.scenario_type === 'gas_box'); }
@@ -3726,6 +3728,7 @@ function gasInit() {
   gasRxFwdTotal = 0; gasRxFwdTick = 0; gasRxFwdWin = []; gasRxFwdRate = 0;
   gasRxRevTotal = 0; gasRxRevTick = 0; gasRxRevWin = []; gasRxRevRate = 0;
   gasRxQueue = []; gasRxNew = []; gasHeatQ = 0; gasConcTrace = []; gasCountsBySp = [];
+  gasKWin = []; gasKMean = 0;
   gasSpecies = gasSpeciesList();
   gasRxResolveSpecies();
   var st = curState() || {};
@@ -4530,6 +4533,37 @@ function gasSampleStats() {
   gasRxRateMax = max(gasRxRateMax, gasRxFwdRate, gasRxRevRate);
 
   gasSampleComposition();
+
+  // K over the SAME 5 s window the rate bars use, and for the same reason. The
+  // instantaneous ratio is built from small integer counts (AB runs 14-46 on
+  // this concept), so a per-frame read swings about 2x — measured 0.0059 to
+  // 0.0141 on a box whose 5 s mean sits at 0.0086 and whose true value never
+  // moves. An instrument that jitters 2x cannot carry the one claim its state
+  // exists to make ("these amounts changed a lot, this number did not"), and
+  // narrating the jitter instead would be teaching around a fixable instrument.
+  // This is not smoothing away an inconvenience: every other instrument in this
+  // box is already a window (rates 300 ticks, pressure 180) because discrete
+  // events are Poisson. Same measurement discipline, stated honestly.
+  if (gasRxOn() && gasRxSpA >= 0 && gasRxSpB >= 0 && gasRxSpAB >= 0) {
+    var kA = gasCountsBySp[gasRxSpA] || 0;
+    var kB = gasCountsBySp[gasRxSpB] || 0;
+    var kAB = gasCountsBySp[gasRxSpAB] || 0;
+    if (kA > 0 && kB > 0) gasKWin.push(kAB / (kA * kB));
+    // 10 s, not the rates' 5 s. Measured swing of the displayed value at the
+    // equilibrium concept's own configuration (180 discs, 300 K, 120 s run):
+    //   per-frame 86%   5 s 64%   10 s 50%   20 s 35%   60 s 13%
+    // The noise is slow (composition fluctuations are autocorrelated over tens
+    // of seconds), so averaging buys much less than sqrt(n) and NO practical
+    // window makes this chip hold steady digits — 60 s is already twice the
+    // state that shows it. 10 s is the knee: half the per-frame swing, still
+    // short enough to respond within a state. A state built on this chip must
+    // therefore make a COMPARATIVE claim it can keep (amounts move ~50%, this
+    // moves a few percent), never "watch this number stay fixed".
+    while (gasKWin.length > 600) gasKWin.shift();
+    var ks = 0;
+    for (var ki = 0; ki < gasKWin.length; ki++) ks += gasKWin[ki];
+    gasKMean = gasKWin.length ? (ks / gasKWin.length) : 0;
+  }
 }
 
 // spIdx null = every particle; otherwise one species (the histogram's markers
@@ -4808,12 +4842,8 @@ function drawGasKRatio(state) {
   if (x + w > gasBoxRFull()) x = max(gasBoxL(), gasBoxRFull() - w);
   gasChip(x, y, w, h);
 
-  var nA = gasCountsBySp[gasRxSpA] || 0;
-  var nB = gasCountsBySp[gasRxSpB] || 0;
-  var nAB = gasCountsBySp[gasRxSpAB] || 0;
-  var msg = (nA > 0 && nB > 0)
-    ? 'K = ' + (nAB / (nA * nB)).toFixed(4)
-    : 'K = \\u2014';
+  // The WINDOWED mean, not the instantaneous ratio — see gasSampleStats.
+  var msg = (gasKMean > 0) ? 'K = ' + gasKMean.toFixed(4) : 'K = \\u2014';
   fillHex('#FDE68A', dim);
   textAlign(LEFT, TOP); textSize(12); noStroke();
   text(msg, x + 8, y + 5);

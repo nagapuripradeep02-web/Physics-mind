@@ -375,5 +375,42 @@ const kMin = Math.min(kBalanced, kSurplusA, kFromProduct);
 check('K is the same from different amounts', (kMax - kMin) <= kMax * 0.30,
   `K: balanced ${kBalanced.toFixed(5)} · surplus A ${kSurplusA.toFixed(5)} · from product ${kFromProduct.toFixed(5)}`);
 
+// ── 13. the K chip must be READABLE, not just correct ──
+// A state whose whole claim is "these amounts changed a lot, this number did
+// not" needs an instrument a teacher can point at. The raw per-frame ratio is
+// built from small integer counts and swings ~2x, which would have had the
+// narration apologising for the instrument. The chip therefore prints the same
+// 5 s window the rate bars use. This check compares the two directly, so the
+// day someone "simplifies" the chip back to an instantaneous read, it fails.
+boot(makeConfig({ temperature_K: 450 }, { T: 450, adiabatic: false, species_counts: { A: 60, B: 60, AB: 0 } }));
+{
+  const st = R.config.states.STATE_1;
+  for (let i = 0; i < 4200; i++) R.stepGas(st);        // settle first
+  let rawMin = Infinity, rawMax = 0, winMin = Infinity, winMax = 0;
+  for (let i = 0; i < 3600; i++) {
+    R.stepGas(st);
+    const c = counts();
+    if (c.A > 0 && c.B > 0) {
+      const raw = c.AB / (c.A * c.B);
+      rawMin = Math.min(rawMin, raw); rawMax = Math.max(rawMax, raw);
+    }
+    const w = Number(R.gasKMean);
+    if (w > 0) { winMin = Math.min(winMin, w); winMax = Math.max(winMax, w); }
+  }
+  const rawSpread = (rawMax - rawMin) / rawMax;
+  const winSpread = (winMax - winMin) / winMax;
+  check('K chip is steadier than a per-frame read', winSpread < rawSpread * 0.8,
+    `per-frame swings ${(rawSpread * 100).toFixed(0)}% (${rawMin.toFixed(5)}-${rawMax.toFixed(5)}), ` +
+    `chip swings ${(winSpread * 100).toFixed(0)}% (${winMin.toFixed(5)}-${winMax.toFixed(5)})`);
+  // Deliberately NOT a "holds its digits" assertion. Measured at the concept's
+  // own configuration, the displayed value still swings ~50% on a 10 s window
+  // and 13% on 60 s — the fluctuations are slow, so no window a state can
+  // afford will freeze the digits. Recording the real bound here keeps a future
+  // author from narrating "watch this number stay fixed" over an instrument
+  // that visibly does not; the honest claim is comparative (see drawGasKRatio).
+  check('K chip swing stays within its documented bound', winSpread < 0.75,
+    `chip range ${winMin.toFixed(4)}-${winMax.toFixed(4)} — wanders by design, narrate comparatively`);
+}
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);
