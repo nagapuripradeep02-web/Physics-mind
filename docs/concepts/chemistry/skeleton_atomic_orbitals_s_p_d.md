@@ -480,3 +480,426 @@ into a rewrite.
   concepts) — flagged, not forgotten.
 - `docs/patterns/chemistry.md` archetype **P2 row flips to [LIVE]** when the `orbital_shapes`
   scenario ships, and §3 gains the six coined choreographies above.
+
+---
+
+## CHEMISTRY BLOCK — 2026-07-28 (`chemistry_author`)
+
+> Authored against **§E-AS-BUILT**, not §E, per the skeleton's own override note. Renderer read
+> directly (`field_3d_renderer.ts` `OS_ORBITALS`/`OS_CAMERAS`/`buildOrbitalShapes`/
+> `applyOrbitalShapesState`/`updateOrbitalShapesFrame`, lines ~42869–44420) wherever the skeleton
+> was ambiguous — the renderer is the source of truth per the task brief, and it resolved every
+> ambiguity below. `validate-chemistry.ts` + `deriveStateMeta.ts` also read directly (see §3 note on
+> the choreography-ratio gate — this mattered more than expected; see Deviation D5).
+
+**Engine bug queue consultation:** no DB access in this worktree (no `psql`/Supabase MCP available
+to this session). Per the spec's fallback, scar coverage was mirrored from the documented sources the
+skeleton itself already cites (§ "Provenance + open items"): the freeze/snap dispatcher registration,
+the closed glow-key enum, `field_lines.opacity` blank-scene trap, auto-width label sprites, pairwise
+camera-separation solving, and the single-letter slider-id ban. All are already satisfied by the
+AS-BUILT engine (multi-letter `os_*` slider ids throughout; glow keys used below are all inside the
+closed enum `orbit|dots|surface|node_plane|node_shell|probe|axes|lobe_set`). **`quality_auditor` must
+re-run the live SQL query at Gate 8** per the skeleton's own standing instruction — this consultation
+is a mirror, not a substitute.
+
+### 1. Rigor check — every asserted number independently re-derived, not accepted on the engine's word
+
+Re-derived from the exact hydrogenic radial functions (`R_1s(ρ)=2e^{-ρ}`, `R_2s(ρ)=(1/2√2)(2-ρ)e^{-ρ/2}`,
+`R_2p(ρ)=(1/2√6)ρe^{-ρ/2}`, `R_3d(ρ)=(4/81√30)ρ²e^{-ρ/3}`, ρ=r/a₀) by independent numerical
+integration + bisection (Simpson's rule, 3000–4000-point grids), NOT by reading the renderer's output:
+
+| Claim | AS-BUILT value | Independently computed | Verdict |
+|---|---|---|---|
+| 1s r₉₀ | 141 pm | 140.82 pm → 141 pm | ✅ match |
+| 2s r₉₀ | 483 pm | 482.89 pm → 483 pm | ✅ match — **and this supersedes the ORIGINAL §E skeleton estimate of "≈490 pm"**, which was a preliminary approximation, not an error to carry forward |
+| 2s radial node at 2a₀ | ≈106 pm | R₂ₛ(ρ=2) = 0 **exactly** (symbolic: 2−ρ=0 at ρ=2); 2×52.9177=105.8 pm→106 pm | ✅ exact |
+| 2p lobe tip (90%) | 482 pm | 482.45 pm | ✅ match |
+| 2p lobe half-angle (90%) | 82.5° | 82.54° | ✅ match |
+| 2p lobe width (90%) | 334 pm, L/W 1.44 | max perpendicular half-width 333.98 pm; 482.45/333.98 = 1.44 | ✅ exact match, including the "plump, not slim" occlusion finding |
+| 2p lobe tip/width (50%, the S5 enclosure) | 308 × 177 pm | 308.24 × 177.34 pm (L/W 1.74 — genuinely slimmer than 90%'s 1.44, confirming the fix works) | ✅ match |
+| 3d_xy lobe tip (90%) | 963 pm | 963.42 pm | ✅ match |
+| Node-count rule (angular = l, radial = n−l−1) | 1s(0,0)·2s(0,1)·2p(1,0)·3d(2,0) | recomputed from n,l for all four: identical | ✅ matches the standard NCERT rule exactly |
+| E_n = −13.6/n² eV | −13.60 / −3.40 / −1.51 eV (n=1,2,3) | identical; matches `bohr_model_energy_levels` bit-for-bit | ✅ continuity confirmed |
+| Degeneracy of 2pₓ/2p_y/2p_z | "same energy" (S5) | **TRUE for any atom** — a rotational-symmetry fact of the p subshell, not a one-electron accident. Safe to state generally. | ✅ no scoping needed |
+| Degeneracy of 2s vs 2p | not asserted anywhere in this concept | **TRUE only for one-electron (hydrogenic) atoms** — an accident of the pure 1/r Coulomb potential; false for every real multi-electron atom (penetration/shielding orders s<p<d within a shell). **No state in this authoring makes this claim** (S5 only compares the three 2p's to each other; S7 only compares 1s to 2s, both l=0) — confirmed clean on inspection, but flagged explicitly per the task brief as a trap `json_author`/`quality_auditor` must not introduce later. |
+
+**One genuine gap found (not a numeric error — a vocabulary gap between skeleton and shipped engine):**
+skeleton §E-9 says S5's perpendicularity should carry "a DERIVED readout (`90.0° apart — derived`)" in
+addition to the axes triad. **The shipped `hud_lines` vocabulary has no such key** — the only valid
+values read by `updateOrbitalShapesFrame` are `occupancy|psi2|slice_dots|energy|nodes|radius|label|dots`
+(verified by reading the `want[i]` dispatch directly, ~L44030-44242). There is no "angle" line for
+`orbital_shapes` (unlike `molecular_geometry`'s arc+angle readout). **S5 must carry perpendicularity
+by the axes-triad geometry + narration only — do not author a nonexistent `hud_line` key for it.**
+Flagged for `quality_auditor`; this is a documentation/engine mismatch, not something to route back
+to the architect (the skeleton's intent — "perpendicularity should read as a real fact, not just look
+that way" — is still honored: the three real axes ARE exactly 90° apart by construction, so the plain
+narration claim is true even without a live instrument printing it).
+
+Sanity-check run (not eyeballed): `n = 4 g / 2 g·mol⁻¹` mole-style check doesn't apply here (no mass/
+mole quantities in this concept — the analogous "plug defaults into every formula" check is the table
+above, each row independently computed).
+
+**Source check:** Consulted NCERT Chemistry Ch.2 chapter index to confirm §2.6 scope (already done at
+skeleton stage). No teaching method, example problem, or figure imported for this chemistry-authoring
+pass; the four hydrogenic functions above are derived directly from the Schrödinger equation's known
+closed-form solutions, not copied from any textbook's worked example.
+
+### 2. Quantity declarations
+
+| Quantity | Unit | Min | Max | Default | Slider id | Notes |
+|---|---|---|---|---|---|---|
+| orbital | — | — | — | `1s` | `orbital` | picker; explore offers CORE-ring only: `1s · 2pₓ · 2p_y · 2p_z` (`OS_EXPLORE_ORBITALS`, Rule 38b) |
+| measurements (dot count) | count | 100 | 5000 | 1200 (explore); per-state override via `dot_target` | `dots` | a MEASUREMENT count, not a particle count — see §5 constraint on scale |
+| turn speed | rad/s | 0 | 0.6 | 0.16 (explore) | `spin` | presentation-only; OFF (0) in S1/S3/S4/S7 (morph/extrude/cutaway beats), constant ON in S2/S5/S6/S8 |
+| probe position | fraction of tip radius | −1 | 1 | 0 | `probe` | **declared as a FRACTION** (raw DOM slider is −100…100, divided by 100 in `os_probe_slider`'s input handler) — **displayed to the teacher in pm** (`os_probe_val`, `Math.round(probeU * OS_PM_PER_UNIT)`) |
+| enclosure | fraction | 0.5 | 0.9 | 0.9 | — (authored per-state, not teacher-facing) | only 3 solved contours exist: 50/70/90; S5 mandates 0.5 |
+| a₀ (Bohr radius) | pm | — | — | 52.9177 | constant | `OS_A0` |
+| frame scale | pm/world-unit | — | — | 200 | constant | `OS_PM_PER_UNIT` — ONE declared frame constant per E-1 |
+| r₉₀ / lobe tip | pm | — | — | per-orbital, computed | HUD `radius` line | 1s 141 · 2s 483 · 2p 482(90%)/372(70%)/308(50%) · 3d_xy 963 |
+| node-shell radius (2s) | pm | — | — | 106 (2a₀) | HUD (via `show_node_shell`) | radial node, computed as `shellRho(=2) × a₀` |
+| E_n | eV | — | — | −13.60/−3.40/−1.51 (n=1/2/3) | HUD `energy` line | `E_n = −13.6/n²`, must agree with `bohr_model_energy_levels` |
+| \|ψ\|² (normalised) | — (0–1) | 0 | 1 | computed live at probe position | HUD `psi2` line | normalised to the orbital's own peak density, `osPlaneMaxDensity` |
+| dots in slice | count | 0 | — | computed live | HUD `slice_dots` line | dots inside a 2.2%-of-r₉₀ slab about the probe plane |
+| occupancy | % | 0 | 100 | computed live | HUD `occupancy` line | measured from the actual dot sample at the active enclosure key — must read ≈89–91% at 90%, ≈69–71% at 70%, ≈49–51% at 50% |
+| nodes (radial, angular) | count, count | 0 | — | per-orbital, computed | HUD `nodes` line | `n−l−1`, `l` |
+
+**Scale-factor note (constraint callout, chemistry analogue of "particle counts are representative"):**
+unlike `gas_box`, this concept's dot swarm needs **no** depicted:actual ratio disclosure. There is
+exactly ONE electron in this hydrogen atom; each dot is one independent position MEASUREMENT of that
+same electron over time, not a rendering of multiple particles at Avogadro scale. The HUD is honest by
+construction (`measurements: N`, never `electrons: N`) — no scale-factor label is needed or should be
+added.
+
+**Unit-conversion note:** none needed — every quantity here is already in its natural teaching unit
+(pm, eV, rad/s, count, fraction); there is no °C↔K or g↔mol bridge in this concept (contrast
+`kinetic_particle_theory`/VSEPR, which do need one).
+
+### 3. Per-state motion timeline (Rule 31/31a) — numbers verified against the ratio gate itself
+
+`validate-chemistry.ts`'s `narrationChoreographyWarnings` computes `estSpeech = words/2.8 × 1000 ms`
+and `choreo = max(choreoEndMs, deriveMaxRevealTimeMs[state])`, WARNing if `choreo < 0.70 × estSpeech`.
+**Read `deriveStateMeta.ts`'s `orbital_shapes` branch directly (~L1835-1870) to confirm exactly which
+cue fields count**: `stipple_at_ms + dot_target×per_dot_ms (+700)`, `dissolve_at_ms + dissolve_duration_ms
+(+600)`, `surface_at_ms (+1100)`, `extrude_at_ms + extrude_duration_ms (+600)`, `bloom_at_ms +
+bloom_duration_ms (+600)`, `grow_at_ms + grow_duration_ms (+600)`, `cutaway_at_ms + cutaway_duration_ms
+(+700)`, `probe_auto.at_ms + probe_auto.duration_ms (+600)`, each `populate_steps`/`gallery_steps` entry
+`at_ms (+900)`. **Two things do NOT count toward this gate, confirmed by reading the code**:
+`spin_rate`/`spin_start_ms` (continuous spin is invisible to the derivation) and `ghost_at_ms` (present
+in the renderer but absent from the candidates list). Every timing below was chosen so the counted cues
+ALONE clear the 0.70 floor — this is the exact mistake flagged against `kinetic_particle_theory`
+(spin/ambient motion ≠ counted choreography), not repeated here.
+
+Word counts below are the EXACT `split(/\s+/)` count the validator uses (machine-counted, not
+hand-counted) — see §4 for the sentences themselves.
+
+| # | State | mode | orbital(s) | camera | dur(s) | words | estSpeech(ms) | choreo(ms), driving cue | ratio |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | the_orbit_dissolves | orbit_dissolve | 1s | default 35/28/3.2 | 20 | 48 | 17143 | 17700 (stipple) | 1.03 |
+| 2 | the_90_percent_boundary | boundary | 1s | default 35/28/3.2 | 21 | 53 | 18929 | 15900 (stipple) | 0.84 |
+| 3 | the_p_dumbbell | p_build | 2p_z | default 6/26/8.22 | 15 | 36 | 12857 | 13100 (extrude) | 1.02 |
+| 4 | the_node | node_probe | 2p_z | default 6/26/8.22 | 22 | 55 | 19643 | 19900 (probe_auto) | 1.01 |
+| 5 | three_perpendicular_twins | p_set | 2pₓ→+2p_y→+2p_z | **OVERRIDE 45/35.26/5.3** | 21 | 54 | 19286 | 15400 (last populate) | 0.80 |
+| 6 | the_d_cloverleaf | d_clover | 3d_xy (+ghost 2pₓ,2p_y) | default 98/15/14.54 | 17 | 42 | 15000 | 11800 (bloom) | 0.79 |
+| 7 | bigger_shell_hidden_node | radial_node | 2s | default 35/26/7.2 | 24 | 55 | 19643 | 22000 (cutaway) | 1.12 |
+| 8 | counting_nodes | node_count | 1s→2s→2pₓ→3d_xy | default 90/18/13.33 | 19 | 48 | 17143 | 17900 (last gallery step) | 1.04 |
+| 9 | explore | explore | 1s (picker: 1s/2pₓ/2p_y/2p_z) | default 45/35.26/8.0 | 0/open | — | exempt (`interaction_complete`) | — | — |
+
+**Per-state `orbital_shapes` config (the literal fields `json_author` transcribes):**
+
+**S1 `the_orbit_dissolves`** — `orbit_ms:2200`; `show_orbit:true`; `dissolve_at_ms:4200,
+dissolve_duration_ms:5000`; `stipple_at_ms:4200, per_dot_ms:32, dot_target:400`; `show_dots:true,
+show_surface:false, show_axes:true, show_labels:false` (axis labels not yet meaningful — introduced
+at S3); `show_hud:true, hud_lines:["dots"]`; `formula:` none; `spin_rate:0`; `controls:[]`. Glow:
+`orbit` (ms 0–4200) → `dots` (4200–end) — one focal at a time (Rule 32e). Cause-first (32a): the
+believed orbit runs alone for its full 4.2 s before any contradicting measurement appears.
+
+**S2 `the_90_percent_boundary`** — `surface_at_ms:800`; `stipple_at_ms:800, per_dot_ms:16,
+dot_target:900` (re-stipples across the beat — this literally performs the skeleton's own point:
+"100 dots look like noise, 5000 look like the same cloud," staged as the swarm visibly thickening
+while narration says so); `show_dots:true, show_surface:true, show_axes:true`; `spin_axis:[0,1,0],
+spin_start_ms:1800, spin_rate:0.33` (≈1 full turn over the remaining ~19.2 s); `show_hud:true,
+hud_lines:["occupancy","dots"]`; `formula:"|ψ|² = probability of finding the electron"`;
+`controls:["dots"]`. Glow: `surface` (build) → `dots` (once the dots-slider point is made). Dialect
+38d dual-label ("orbital, not an orbit") carried in narration s2_1, not a canvas parenthetical (Rule
+34a caption stays ≤5 words: `"The boundary is the orbital"`).
+
+**S3 `the_p_dumbbell`** — `extrude_at_ms:500, extrude_duration_ms:12000`; `dot_target:600` (no
+stipple fields set → near-instant fill, static context, not itself animating — Rule 32b: only the
+extruding lobe moves); `show_dots:true, show_surface:true, show_axes:true, show_labels:true` (first
+state the `2p_z` two-run subscript label appears); `show_hud:true, hud_lines:["radius","label"]`;
+`formula:` none; `spin_rate:0` (morph beat — spin OFF per the skeleton's own rule); `controls:[]`.
+Glow: `surface` throughout. **Judgment call flagged:** I chose `2p_z` as the S3/S4 orbital (any of the
+three would work by symmetry under the solved `p_build`/`node_probe` camera — AS-BUILT does not pin a
+specific axis) — `json_author`/`quality_auditor` should sanity-check this is the axis the actual
+camera solve assumed if that record exists; if not, `2p_z` is a safe default (z is the canonical axis
+the shared lobe geometry pool is built from, `lobeGeo.p[gk] = osLobeGeometry(OS_ORBITALS["2p_z"], …)`).
+
+**S4 `the_node`** — `probe_auto:{from:-1, to:1, at_ms:800, duration_ms:18500}`; `show_probe:true,
+show_node_plane:true` (static reference disc, visible from state start — it is the geometry, not a
+"reveal," so showing it early doesn't spoil the discovery); `dot_target:700` (static); `show_surface:
+true, show_axes:true, show_labels:true`; `show_hud:true, hud_lines:["psi2","slice_dots"]`;
+`formula:"|ψ|² = 0 at the node"`; `spin_rate:0`; `controls:["probe"]`. Glow: `probe` (dominant,
+tracks the moving instrument) → `node_plane` (as narration names the plane explicitly). The live
+`psi2`/`slice_dots` readouts update every frame with the probe (an instrument tracking in real time,
+Rule 33d) — no artificial lag needed for a continuously-tracking readout (Rule 32a's cause→effect gap
+governs discrete events, not live instruments).
+
+**S5 `three_perpendicular_twins` — THE MANDATED DEVIATION STATE.** `enclosure:0.5, show_dots:false,
+surface_opacity:0.34, spin_axis:[1,1,1]`, `camera:{az:45, el:35.26, dist:5.3}` (all four exactly per
+the task brief; `dist` = the AS-BUILT `p_set` solve 8.22 × 0.64 = 5.26, rounded 5.3, per the
+"⚠ distances solved for 0.9" note). `populate_steps:[{at_ms:700,orbital:"2p_x"},
+{at_ms:7000,orbital:"2p_y"},{at_ms:14500,orbital:"2p_z"}]` — deliberately slow/spaced (6.3–7.5 s
+between reveals) so each axis registers individually before the next arrives; `spin_start_ms:15500,
+spin_rate:0.10` (starts only after all three are present and settled — the discrete population is the
+whole taught content; the gentle post-reveal spin about the view axis `[1,1,1]` is cosmetic 3D-sell,
+confirmed by AS-BUILT to leave every solved metric — pairwise separation, foreshortening — invariant,
+since it rotates the object around the camera's own line of sight rather than tumbling it out of
+frame). `show_surface:true, show_axes:true, show_labels:true`; `show_hud:true,
+hud_lines:["energy","radius"]` (the `radius` line prints `lobe tip = 308 pm (50%)` — this is the HUD
+"measuring and printing the real enclosed fraction" the task brief requires; nothing is faked);
+`formula:"E(2pₓ) = E(2p_y) = E(2p_z)"`; `controls:[]`. Glow: `lobe_set` throughout (the enum has no
+per-axis glow key — the growing SET is the one focal object, which is a defensible single "thing"
+being emphasized, not three). **No `angle` hud_line authored — see §1 gap.**
+
+**S6 `the_d_cloverleaf`** — `ghost_at_ms:600` (default `ghost_orbitals:["2p_x","2p_y"]` — NOT
+overridden); `bloom_at_ms:2200, bloom_duration_ms:9000`; `spin_axis:[0,0,1]` (MANDATED by AS-BUILT —
+"keeps the clover face-on"), `spin_start_ms:0, spin_rate:0.08` (constant from state start — S6 is a
+populate/bloom/swap-type state per the skeleton's own spin rule, unlike S3/S4/S7); `show_surface:true,
+show_node_plane:true` (both xz and yz planes, static reference), `show_dots:false` (kept clean —
+already taught the density-cloud idea in S1/S2, this state is purely a shape-family catalog entry),
+`show_axes:true, show_labels:true`; `show_hud:true, hud_lines:["nodes","label"]`; `formula:` none;
+`controls:[]`. Glow: `lobe_set` (bloom) → `node_plane` (as narration names the two planes). Note:
+`ghost_at_ms` does NOT feed the choreography-ratio gate (§ above) — `bloom_at_ms`/`bloom_duration_ms`
+alone were sized to clear 0.70 independent of the (real, but ungated) ghost cue.
+
+**S7 `bigger_shell_hidden_node`** — `grow_at_ms:800, grow_duration_ms:6000`; `cutaway_at_ms:7800`
+(exactly 1000 ms after growth completes at 6800 — matches the skeleton's explicit Rule 32a spec
+verbatim: "the cutaway sweeps ~1 s after growth completes"), `cutaway_duration_ms:13500`;
+`show_node_shell:true` (only actually renders once `cutF > 0.35`, i.e., partway through the cutaway
+ramp, per the engine's own gate); `show_surface:true, show_dots:true, dot_target:1000` (static,
+generous density so the shell gap reads clearly against the swarm), `show_axes:true, show_labels:true`;
+`show_hud:true, hud_lines:["nodes","energy"]`; `formula:"E ∝ −1/n²"`; `spin_rate:0` (cutaway = morph
+beat, OFF); `controls:[]`. Glow: `surface` (grow) → `node_shell` (cutaway/reveal). This is the
+prerequisite-cliff patch state (Block 1) — s7_4 explicitly names "the level number n" surviving from
+the energy ladder (Rule 30 pattern followed verbatim).
+
+**S8 `counting_nodes`** — `gallery_steps:[{at_ms:600,orbital:"1s"},{at_ms:6000,orbital:"2s"},
+{at_ms:11500,orbital:"2p_x"},{at_ms:17000,orbital:"3d_xy"}]`; `spin_start_ms:0, spin_rate:0.08`
+(default `spin_axis:[0,1,0]` — populate/bloom/swap-type, spin ON, per skeleton rule); `show_surface:
+true, show_dots:false` (clean gallery, matches S6's reasoning), `show_node_plane:true` (shows for the
+p/d steps, gracefully absent for the s steps since `osNodePlaneNormals` returns `[]` for l=0),
+`show_axes:true, show_labels:true`; `show_hud:true, hud_lines:["label","nodes","energy"]`;
+`formula:"angular nodes = l · radial = n − l − 1"`; `controls:[]`. Glow: `surface` (whichever orbital
+is currently on screen). **3p is never rendered** (not in `OS_ORBITALS` — only 1s/2s/2p/3d_xy exist) —
+the JEE-backwards-trace 3p example (skeleton Block 1) is answered by APPLYING the general rule
+demonstrated on these four concrete cases, not by literally showing 3p; this is consistent with the
+skeleton's own out-of-scope declaration (full quantum-number bookkeeping deferred), confirmed clean.
+
+**S9 `explore`** — `mode:"explore"`, orbital picker defaults `"1s"` (CORE-ring only,
+`OS_EXPLORE_ORBITALS`); `dot_target` default 1200 (engine fallback, `SC.dots.default`); `spin_rate`
+default 0.16, `spin_axis:[0,1,0]`; `probe` default 0; `show_dots:true, show_surface:true,
+show_axes:true, show_labels:true, show_probe:true, show_node_plane:true`; `show_hud:true,
+hud_lines:["label","occupancy","energy"]` (deliberately NOT `nodes`/`psi2` — kept to CORE-taught
+numbers only, Rule 38b); `formula:"|ψ|² = probability of finding the electron"` (S2's core surface
+re-shown, exactly per 38b's own suggestion); `controls:["orbital","dots","spin","probe"]`.
+`duration:0`, `advance_mode:"interaction_complete"` — exempt from both the word-budget and
+choreography-ratio gates by construction (Rule 31, `interaction_complete`).
+
+### 4. Per-state narration plan (`text_en`, EN word counts machine-counted via `split(/\s+/)`)
+
+**S1** (48 words) —
+`s1_1`: "This is the picture everyone already carries: an electron circling the nucleus on a fixed
+path, like a tiny planet."
+`s1_2`: "Watch it run, then watch position measurements land, one by one, and never once on that ring."
+`s1_3`: "Together, the measurements build a cloud, not a path at all."
+
+**S2** (53 words) —
+`s2_1`: "That cloud has a name: the orbital, not an orbit, a region."
+`s2_2`: "Its boundary is the region holding ninety percent of every measurement; everything past it is
+rare."
+`s2_3`: "Turn it. The shape holds; only the view changes."
+`s2_4`: "Add more measurements and the cloud only gets clearer; the density was always the whole
+truth."
+
+**S3** (36 words) —
+`s3_1`: "A different shape now: the p orbital."
+`s3_2`: "Two lobes grow outward from the nucleus along one axis, with nothing at the centre."
+`s3_3`: "This is the shape behind every dumbbell drawing you have seen, now genuinely
+three-dimensional."
+
+**S4** (55 words) —
+`s4_1`: "Sweep a plane through the gap between the lobes and watch the reading cross the middle."
+`s4_2`: "There, the probability density reads exactly zero, and so does the count of measurements;
+nothing is ever found on that plane."
+`s4_3`: "Dots keep landing on both sides at once, because a standing wave has no journey between its
+crests."
+
+**S5** (54 words) —
+`s5_1`: "Three p orbitals live on the same atom, one on each axis, drawn here at a smaller,
+easier-to-count boundary."
+`s5_2`: "Same shape, same size, each pointing along x, y, or z, and every pair sits at exactly ninety
+degrees."
+`s5_3`: "All three share the same energy, not stacked inside each other; three directions of one
+idea."
+
+**S6** (42 words) —
+`s6_1`: "A third shape: four lobes, not two."
+`s6_2`: "They do not sit on the axes at all; they grow in the gaps between x and y, while the
+axis-aligned p orbitals fade to ghosts."
+`s6_3`: "Two invisible planes now cut the shape, not one."
+
+**S7** (55 words) —
+`s7_1`: "The same s shape, one size up: 2s."
+`s7_2`: "Watch it grow larger than 1s, then a clipping plane reveals what hides inside."
+`s7_3`: "A whole empty shell sits inside; zero probability at one fixed radius, electron density on
+both sides."
+`s7_4`: "The level number n survives from the ladder you already met; only the orbit is gone."
+
+**S8** (48 words) —
+`s8_1`: "One simple rule counts every node."
+`s8_2`: "The angular nodes equal the shape number l: s is zero, p is one, d is two."
+`s8_3`: "The radial nodes equal the level number n, minus the shape number l, minus one; watch the
+count tick through 1s, 2s, 2p, and 3d."
+
+**S9** (open, 15 words, exempt) —
+`s9_1`: "Now it's yours. Pick an orbital, sweep the probe, and turn it however you like."
+
+Plain English throughout, no Hinglish. Rule 30 symbol-expansion applied where a bare letter appears
+in speech (`n` → "the level number n", `l` → "the shape number l" — S8; on-canvas labels stay bare
+symbols per Rule 24). No untaught term introduced early: "shell" is not used before S7 (38d); "node"
+is introduced in S4 and reused, never a synonym invented mid-stream.
+
+### 5. Chemical/physical validity constraints
+
+```
+"constraints": [
+  "Every rendered radius, node position, and energy is COMPUTED from the exact hydrogenic R_nl(rho) and |Y_lm|^2 functions at build time (osBuildTables/osROutPm/osPlaneMaxDensity) — never a typed-in number.",
+  "The occupancy HUD is MEASURED from the actual dot sample at the state's active enclosure key: ~90% at enclosure 0.9, ~70% at 0.7, ~50% at 0.5 (S5) — never a fixed 90% regardless of which contour is drawn.",
+  "At the true nodal plane/shell, BOTH |psi|^2 and the dots-in-slice count read exactly 0 (S4 at s=0 on the 2p axis; S7's cutaway through the 2s shell at rho=2, r=2a0=106 pm) — any non-zero reading there is a defect, not a rounding artifact.",
+  "Node counts satisfy angular = l, radial = n - l - 1 for every orbital shown: 1s(0,0), 2s(0,1), 2p(1,0), 3d_xy(2,0).",
+  "E_n = -13.6/n^2 eV for every orbital, and the n=1/2/3 values (-13.60/-3.40/-1.51 eV) are bit-for-bit identical to bohr_model_energy_levels.",
+  "Degeneracy scope: the three 2p orbitals are degenerate for ANY atom (rotational symmetry); 2s-vs-2p degeneracy is a ONE-ELECTRON (hydrogenic) accident only and is never asserted as a general atomic fact in this concept."
+]
+```
+
+### 6. Drill-down cluster phrasings (5 per cluster, real student voice)
+
+**`orbit_vs_orbital`**
+1. "wait is an orbital just a fancy word for orbit or is it actually different"
+2. "so there's no path, the electron just... appears in different spots?"
+3. "if there's no orbit then what keeps the electron from falling into the nucleus"
+4. "my teacher still draws circles around the nucleus, is that just wrong then"
+5. "orbit sounds like moving, orbital sounds like a place, which one is it"
+
+**`where_is_the_electron_really`**
+1. "ok but where IS the electron right now, like actually"
+2. "if we can't know where it is, does that mean it's everywhere at once"
+3. "is the electron just vibrating really fast inside that cloud"
+4. "so nobody has ever actually seen an electron move, we just guess from the dots?"
+5. "does the electron know where it's allowed to be or is it random"
+
+**`is_the_cloud_the_electron_smeared`**
+1. "is the cloud like the electron got smeared out into a mist"
+2. "wait is one electron actually spread across the whole cloud at the same time"
+3. "is the fuzzy picture because there's actually many electrons or just the one blurred"
+4. "if I could freeze time would the electron be a tiny dot somewhere in there"
+5. "is the density cloud a real physical thing or just a probability map we drew"
+
+**`node_zero_probability`**
+1. "zero percent chance sounds impossible, how can a spot just have NOTHING ever"
+2. "is the node like a wall the electron can't pass through"
+3. "if the density is zero there, is there literally no electron stuff at that spot ever"
+4. "how do we even know it's exactly zero and not just really really small"
+5. "does the node move around or is it stuck in the same place forever"
+
+**`how_electron_crosses_node`**
+1. "if it can't be at the node, how does it get from one lobe to the other"
+2. "does the electron teleport across the gap or something"
+3. "so it's on both sides but never in between, that doesn't make sense to me"
+4. "is there like a tunnel underneath the node it sneaks through"
+5. "wait does this mean the electron is basically two electrons, one per lobe"
+
+**`standing_wave_picture`**
+1. "what does 'standing wave' even mean here, like a wave that doesn't move?"
+2. "is the electron behaving like a guitar string vibrating instead of a ball flying around"
+3. "if it's a wave, why do we still draw it as a little dot sometimes"
+4. "so the node is like the still point on a vibrating string, is that the same idea"
+5. "does the wave thing mean the electron isn't really a particle at all"
+
+**`radial_vs_angular_nodes`**
+1. "what's actually the difference between a radial node and an angular node, they sound the same"
+2. "why does the radial node look like a hollow ball but the angular node looks like a flat gap"
+3. "can an orbital have both kinds of nodes at once"
+4. "why is the p orbital's node a flat plane but the s orbital's node is a whole sphere"
+5. "do radial nodes and angular nodes count as the same thing on a test or is that a mistake"
+
+**`node_count_formula`**
+1. "is it n minus l minus 1 or l minus n minus 1, I keep mixing it up"
+2. "how do I even know what l is for a given orbital"
+3. "does 1s really have zero nodes total, that seems too simple"
+4. "if 3p has one radial and one angular node, why don't I ever see that drawn here"
+5. "is there a quick way to remember this formula for the exam"
+
+**`why_2s_has_a_node_but_2p_plane`**
+1. "why does 2s get a hollow sphere but 2p gets a flat plane instead"
+2. "both are n equals 2, so why don't they have the same kind of node"
+3. "is the shape of the node just random or does it depend on something"
+4. "so l decides whether the node is a plane or a shell, is that right"
+5. "why doesn't 2p also have a spherical node hiding inside it somewhere"
+
+### Self-review checklist (chemistry_author)
+
+- [x] Every quantity referenced in the narrations above appears in §2 with a unit.
+- [x] N/A: no reaction/balanced-equation ledger this concept (§10(c) of the skeleton's own DoD already
+      declares this — the analogue is the hydrogenic-derivation ledger in §1 above).
+- [x] All 9 states declare an archetype from `docs/patterns/chemistry.md` (archetype P2, the six coined
+      choreographies) mapping to the shipped `orbital_shapes` scenario — no unbuilt surface needed.
+- [x] Rule 31 timeline given for all 9 states; no two states share a motion; no static state; controls
+      match the architect's per-state table exactly.
+- [x] Rule 32 sequencing: cause-before-effect verified per state (S1 orbit-then-dissolve, S7
+      grow-then-cutaway with an exact 1000 ms gap, S4/instrument tracking); only the taught variable
+      moves per state (spin OFF during S1/S3/S4/S7 morph beats, ON in S2/S5/S6/S8); Rule 33 N/A per
+      skeleton §12(g) (declared, not omitted); Rule 34 one formula surface + value-only HUD per state,
+      real Unicode (ψ, ², °, ×, →, subscripts via the two-run sprite convention).
+- [x] Word budget: every guided state machine-counted 36–55 words (§4); S9 exempt.
+- [x] Choreography ratio ≥ 0.70 for every guided state, computed against the ACTUAL
+      `validate-chemistry.ts`/`deriveStateMeta.ts` formula, not guessed (§3 table).
+- [x] Notation ladder: no logs/calculus/quantum-mechanical notation anywhere in this concept (out of
+      scope entirely per skeleton §2); dialect dual-label ("orbital, not an orbit") + IUPAC/plain
+      naming N/A (no organic nomenclature here).
+- [x] No particle-scale-factor needed (§2 note) — the dot swarm is honestly measurements of one
+      electron, not a representative sample of many.
+- [x] Drill-down phrasings: 45 total (5 × 9 clusters), real student voice, no Hinglish.
+- [x] `constraints`: 6 short assertions, conservation/derivation-first (§5).
+- [x] Numerical sanity check RUN via independent Simpson/bisection code, not eyeballed (§1 — every
+      AS-BUILT number reproduced independently to sub-pm/sub-degree precision).
+- [x] Engine bug queue: mirrored (no DB access this session); flagged for `quality_auditor` re-run.
+- [x] Source check: NCERT chapter index for scope only (already done at skeleton stage); nothing
+      imported this pass — all derivations are first-principles hydrogenic math.
+- [x] `aha_moment` (S1) and `misconception_watch` (S1/S4/S5, skeleton §4): verified chemically true —
+      the electron genuinely has no classical path (Copenhagen/measurement framing, appropriately
+      simplified for Cl.11); the node genuinely reads |ψ|²=0; the three 2p's are genuinely degenerate.
+      No `assessment` block this phase (house convention, per skeleton §12(f)).
+
+**Deviations from the skeleton, summarized for `quality_auditor`:**
+- **D1 (mandated).** S5 authored `enclosure:0.5, show_dots:false, surface_opacity:0.34,
+  spin_axis:[1,1,1], camera dist 5.3` per the task brief's explicit engine-occlusion finding; narration
+  reworded to avoid the "region where the electron is found" claim the task flagged as catchable.
+- **D2 (gap found, not authored around).** Skeleton E-9's "derived 90.0°-apart readout" does not exist
+  in the shipped `hud_lines` vocabulary — omitted rather than invented; perpendicularity carried by
+  narration + the real axes triad only.
+- **D3 (chemistry_author's normal job, not a deviation).** The skeleton's archetype descriptions did
+  not include exact millisecond cue values; all cue timings in §3 were designed FROM SCRATCH against
+  the real `validate-chemistry.ts` ratio formula (confirmed by reading its source and
+  `deriveStateMeta.ts`'s `orbital_shapes` branch directly) rather than guessed — this is the
+  `kinetic_particle_theory` mistake this pass was explicitly told not to repeat.
+- **D4 (minor, flagged).** S3/S4's orbital axis (`2p_z`) is my own reasonable choice; AS-BUILT does not
+  pin one, and by symmetry it should be interchangeable, but flagging in case the actual camera solve
+  assumed a specific axis.
+- **D5 (informational).** Confirmed by reading the code that continuous `spin_rate` and `ghost_at_ms`
+  do NOT count toward the choreography-ratio gate — every state's ratio compliance in §3 rests on
+  cues that DO count (stipple/extrude/probe_auto/bloom/cutaway/populate/gallery), never on spin alone.
+
+**Could not verify:** live `engine_bug_queue` state (no DB access this session — mirrored from
+documented scars only, per the spec's own fallback instruction); whether the AS-BUILT camera solves
+(`OS_CAMERAS`) were solved assuming a specific p-orbital axis for `p_build`/`node_probe` (D4).
