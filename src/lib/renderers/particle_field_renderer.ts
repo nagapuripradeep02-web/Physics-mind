@@ -3605,6 +3605,10 @@ function gasRxEaRev(state) { return max(0, gasRxEaFwd(state) + gasRxBondE(state)
 // formation and dissociation — computing I from the live contact separation at
 // formation and from a fixed length at the split would leak energy every cycle,
 // which is the ratchet class of bug all over again.
+function gasRxColor() {
+  var sp = (gasRxSpAB >= 0) ? gasSpecies[gasRxSpAB] : null;
+  return (sp && sp.color) ? sp.color : '#E2E8F0';
+}
 function gasRxBondLen() {
   if (gasRxSpA < 0 || gasRxSpB < 0) return 1;
   return max(gasSpecies[gasRxSpA].radius + gasSpecies[gasRxSpB].radius, 0.5);
@@ -3925,7 +3929,7 @@ function gasSyncCount() {
     if (want === gasNPrev) return;
     var delta = want - gasNPrev;
     gasNPrev = want;
-    if (delta < 0) { particles.length = max(2, have + delta); return; }
+    if (delta < 0) { gasRxRemove(-delta); return; }
     have = particles.length;
     want = have + delta;
   } else {
@@ -3954,6 +3958,48 @@ function gasSyncCount() {
       sp: spIdx, side: -1, collisions: 0, hot: 0, trail: [],
       ang: 0, omega: 0, rx: 0
     });
+  }
+}
+
+// Taking gas OUT of a reacting box. Truncating the array (what the non-reaction
+// path does, correctly, for a single-species gas) removes whatever species
+// happens to sit at the end — which here silently DESTROYS bonded pairs and
+// leaves the atom inventory lopsided and unrecoverable: measured 90 A-units /
+// 90 B-units going to 55 / 60 on one drag, with no way back. The teacher's
+// control has to be the chemical operation it looks like, so removal mirrors
+// injection exactly: take away the species the author nominated with
+// reaction.inject, or alternate the two reactants, and NEVER break a bond to
+// satisfy a count — a dimer that is not there to be removed simply is not
+// removed. This is what makes the N slider usable as a Le Chatelier stress
+// ("add reactant" / "take some out") rather than a way to corrupt the box.
+function gasRxRemove(n) {
+  var r = gasRxCfg() || {};
+  var forced = (typeof r.inject === 'string') ? gasSpIdxById(r.inject) : -1;
+  var order = (forced >= 0) ? [forced] : [gasRxSpA, gasRxSpB];
+  var removed = 0, turn = 0, guard = 0;
+  while (removed < n && guard++ < 4000) {
+    var target = order[turn % order.length];
+    turn++;
+    var found = -1;
+    for (var i = particles.length - 1; i >= 0; i--) {
+      if (particles[i].sp === target) { found = i; break; }
+    }
+    if (found < 0) {
+      // none of that species free right now — try the other reactant once, then
+      // give up rather than dismantling the product to hit a number.
+      var any = -1;
+      for (var k = 0; k < order.length; k++) {
+        for (var j = particles.length - 1; j >= 0; j--) {
+          if (particles[j].sp === order[k]) { any = j; break; }
+        }
+        if (any >= 0) break;
+      }
+      if (any < 0) break;
+      found = any;
+    }
+    particles.splice(found, 1);
+    removed++;
+    if (particles.length <= 2) break;
   }
 }
 
@@ -4480,7 +4526,12 @@ function drawGasDimer(p, dimP) {
   var ang = p.ang || 0, nx = Math.cos(ang), ny = Math.sin(ang);
   var ax = p.x + nx * d * (sB.mass / M), ay = p.y + ny * d * (sB.mass / M);
   var bx = p.x - nx * d * (sA.mass / M), by = p.y - ny * d * (sA.mass / M);
-  strokeHex('#E2E8F0', 0.5 * dimP); strokeWeight(2);
+  // The product's authored colour is the BOND accent, and the same colour keys
+  // its readout label and its graph line. It used to be dead data — the dimer,
+  // the label and the curve were all hardcoded white — which is a trap: an
+  // author sets species.AB.color, nothing on screen changes, and they conclude
+  // the field means something else.
+  strokeHex(gasRxColor(), 0.75 * dimP); strokeWeight(2);
   line(ax, ay, bx, by);
   noStroke();
   fillHex(sA.color, 0.92 * dimP); circle(ax, ay, sA.radius * 2);
@@ -4570,7 +4621,7 @@ function drawGasReaction(state) {
   var cx = x + 8;
   fillHex(sA.color, dim); text((sA.label || sA.id) + ' ' + nA, cx, y + 5); cx += 46;
   fillHex(sB.color, dim); text((sB.label || sB.id) + ' ' + nB, cx, y + 5); cx += 46;
-  fillHex('#E2E8F0', dim);
+  fillHex(gasRxColor(), dim);
   text((gasSpecies[gasRxSpAB].label || 'AB') + ' ' + nAB, cx, y + 5);
 
   // ONE shared full-scale for both bars. Two independently scaled bars would sit
@@ -4619,7 +4670,7 @@ function drawGasConcGraph(state) {
   }
   var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB];
   var series = [
-    { key: 'a', c: sA.color }, { key: 'b', c: sB.color }, { key: 'ab', c: '#E2E8F0' }
+    { key: 'a', c: sA.color }, { key: 'b', c: sB.color }, { key: 'ab', c: gasRxColor() }
   ];
   // The x axis is the TRACE BUFFER, not wall-clock: a fixed 260-sample window so
   // the curve keeps a constant sweep speed instead of compressing as it fills.

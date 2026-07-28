@@ -256,5 +256,28 @@ const fromProduct = counts();
 check('atoms conserved through species_counts', fromProduct.A + fromProduct.AB === 60 && fromProduct.B + fromProduct.AB === 60,
   `A-units ${fromProduct.A + fromProduct.AB}, B-units ${fromProduct.B + fromProduct.AB} (both must be 60)`);
 
+// ── 8. the N tap must be a CHEMICAL operation in both directions ───────────
+// Dragging N down used to truncate the particle array, which destroyed bonded
+// pairs in place and left the atom inventory lopsided and unrecoverable
+// (measured 90/90 -> 55/60 on one drag). Removal now mirrors injection and
+// never breaks a bond to satisfy a count.
+boot(makeConfig({ temperature_K: 500 }, { T: 500, adiabatic: false }));
+run(2400);                                   // let some product form first
+const beforeCut = counts();
+const abBefore = beforeCut.AB;
+R.userTouched.N = true;
+R.userParams.N = 80;                         // drag N down from 120
+run(1);                                      // ONE tick: the removal itself, before
+                                             // the box starts re-equilibrating. Measuring
+                                             // later catches a real Le Chatelier shift
+                                             // (fewer reactants -> dimers dissociate) and
+                                             // misreads honest chemistry as bond damage.
+const afterCut = counts();
+const aUnits = afterCut.A + afterCut.AB, bUnits = afterCut.B + afterCut.AB;
+check('N-down keeps A/B units balanced', Math.abs(aUnits - bUnits) <= 1,
+  `A-units ${aUnits} vs B-units ${bUnits} (dimers before ${abBefore}, after ${afterCut.AB})`);
+check('N-down breaks no bonds', afterCut.AB >= abBefore - 1,
+  `AB ${abBefore} -> ${afterCut.AB} (removal must take free reactants, never dimers)`);
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);
