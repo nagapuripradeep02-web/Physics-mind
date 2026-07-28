@@ -42941,8 +42941,18 @@ export const FIELD_3D_RENDERER_CODE = `
     //   new lobe-direction list; an overlap is the same pool translated.
     var OS_A0 = 52.9177;              // Bohr radius, pm
     var OS_PM_PER_UNIT = 200;         // THE ONE frame constant: 1 world unit = 200 pm
-    var OS_DOT_MAX = 5000;
-    var OS_MAX_LOBES = 10;            // S6 = 4 clover lobes + 2 ghost p pairs
+    var OS_DOT_MAX = 5000;            // draw buffer + explore-slider ceiling
+    // The SEEDED SAMPLE POOL is deeper than the draw buffer for the orbitals a
+    // cutaway can slice (the s family). A thin slice through a 3D cloud keeps
+    // only a few percent of the sample, so a pool equal to the draw ceiling
+    // would force the visible dot count to collapse as the slab closes — the
+    // radial_node scar, where 85% of the dots vanished in ONE frame. With a
+    // deeper pool the slice draws further down the same seeded table and keeps
+    // the density it started with: more measurements, same picture, still a
+    // pure lookup (no RNG in a frame). Only the sliceable orbitals pay the
+    // build cost.
+    var OS_SAMPLE_MAX = 22000;
+    var OS_MAX_LOBES = 10;          // S6 = 4 clover lobes + 2 ghost p pairs
     var OS_MAX_SETS = 3;              // S5 = three 2p clouds at once
     var OS_MAX_PLANES = 2;            // 3d_xy has two angular node planes
     var OS_FLASH_POOL = 5;            // S1 measurement flashes in flight
@@ -43165,17 +43175,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // dots actually on screen — a measured number, never an asserted one.
     function osBuildSamples(orb) {
         var rng = osRng(orb.seed), i;
-        var pos = new Float32Array(OS_DOT_MAX * 3);
-        var inside = new Int32Array(OS_DOT_MAX + 1);
+        var nSamp = (orb.kind === "sphere") ? OS_SAMPLE_MAX : OS_DOT_MAX;
+        var pos = new Float32Array(nSamp * 3);
+        var inside = new Int32Array(nSamp + 1);
         var basis = (orb.l === 1) ? osBasis(orb.axis) : null;
         var thInv = null, phInv = null;
         if (orb.l === 2) {
             thInv = osTabInv(function (th) { var s = Math.sin(th); return s * s * s * s * s; }, 0, Math.PI, 2000);
             phInv = osTabInv(function (ph) { var s = Math.sin(2 * ph); return s * s; }, 0, 2 * Math.PI, 2000);
         }
-        var inside70 = new Int32Array(OS_DOT_MAX + 1), inside50 = new Int32Array(OS_DOT_MAX + 1);
+        var inside70 = new Int32Array(nSamp + 1), inside50 = new Int32Array(nSamp + 1);
         var nIn = 0, nIn70 = 0, nIn50 = 0;
-        for (i = 0; i < OS_DOT_MAX; i++) {
+        for (i = 0; i < nSamp; i++) {
             var rho = osRhoAt(orb, rng());
             var d;
             if (orb.l === 0) {
@@ -43205,6 +43216,7 @@ export const FIELD_3D_RENDERER_CODE = `
             inside[i + 1] = nIn; inside70[i + 1] = nIn70; inside50[i + 1] = nIn50;
         }
         orb._pos = pos;
+        orb._sampleN = nSamp;
         orb._insideBy = { "90": inside, "70": inside70, "50": inside50 };
     }
     // The angular factor written in the LOBE'S OWN frame (lobe axis = +y), which
@@ -43925,13 +43937,25 @@ export const FIELD_3D_RENDERER_CODE = `
         if (count > dotTarget) count = dotTarget;
         window.PM_osDotCount = count;
 
-        var cutF = 0, slabHalf = 0;
+        var cutF = 0, slabHalf = 0, slabEnd = 0;
         if (os.cutaway_at_ms != null) {
             cutF = osRamp(ms, cueTriggerMs("cutaway", os.cutaway_at_ms), (os.cutaway_duration_ms != null) ? os.cutaway_duration_ms : 2200, 0, 1);
-            // the slab closes from "everything" down to a thin slice (0.18 world
-            // units = 36 pm), thin enough that a dot 36 pm off the plane still
-            // projects inside the node gap it belongs to.
-            slabHalf = 40 * (1 - cutF) + 0.18 * cutF;
+            // The slab closes GEOMETRICALLY, from the cloud's own full extent
+            // down to a slice thin enough to expose the node gap. A LINEAR
+            // interpolation (the first build: 40 -> 0.18 world units) is the
+            // trap: for ~95% of the ramp the slab is still wider than the whole
+            // cloud, so nothing changes at all, and then every excluded dot
+            // disappears in the last few hundred ms — an 85% dot collapse in
+            // ONE frame (Rule 32d: no teleport). Geometric closing spends the
+            // ramp evenly in PERCEIVED thickness: the ball visibly flattens
+            // into a lens, then into a slice.
+            //   hEnd: a dot h off the cut plane projects into a ring sqrt(r^2 -
+            //   h^2), so the empty band around a node of radius R survives only
+            //   while h is small against R. 0.20 R keeps the 2s gap clean; a
+            //   nodeless cloud has no band to protect and keeps the old 0.18.
+            var hStart = primary.rhoMax * OS_A0 / OS_PM_PER_UNIT;
+            slabEnd = (primary.shellPm != null) ? 0.20 * (primary.shellPm / OS_PM_PER_UNIT) : 0.18;
+            slabHalf = hStart * Math.pow(slabEnd / hStart, cutF);
         }
         var cutNw = window.PM_osCutN || [0, 0, 1];
         var cutNl = osUnspun(cutNw);       // the slab is fixed in WORLD space
@@ -43947,7 +43971,18 @@ export const FIELD_3D_RENDERER_CODE = `
             var dst = pts.geometry.attributes.position.array;
             var wrote = 0;
             if (cutF > 0.001) {
-                for (j = 0; j < count; j++) {
+                // The slice keeps the density the full cloud had: it draws
+                // DEEPER into the same seeded table until it has as many dots
+                // as the stipple clock has revealed, instead of throwing away
+                // the ~95% that fall outside the slab. Physically that is just
+                // more measurements accumulated while the cut is made, and it
+                // is what removes the collapse: the visible count is pinned at
+                // the revealed count while the pool lasts, and once that pool
+                // is exhausted it decays CONTINUOUSLY with the slab — never in a
+                // step. Still a pure lookup: dot j is table entry j.
+                var poolN = orb._sampleN || OS_DOT_MAX;
+                if (poolN > src.length / 3) poolN = Math.floor(src.length / 3);
+                for (j = 0; j < poolN && wrote < count; j++) {
                     var s = src[j * 3] * cutNl[0] + src[j * 3 + 1] * cutNl[1] + src[j * 3 + 2] * cutNl[2];
                     if (s < -slabHalf || s > slabHalf) continue;
                     dst[wrote * 3] = src[j * 3]; dst[wrote * 3 + 1] = src[j * 3 + 1]; dst[wrote * 3 + 2] = src[j * 3 + 2];
@@ -43959,6 +43994,7 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             pts.geometry.attributes.position.needsUpdate = true;
             pts.geometry.setDrawRange(0, wrote);
+            if (i === 0) { window.PM_osVisDots = wrote; window.PM_osSlabPm = slabHalf * OS_PM_PER_UNIT; }
             pts.quaternion.copy(osSpinQ);
             osSetColor(pts, orb.color);
             if (pts.material) {
@@ -43971,7 +44007,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 // "look here" \u2014 the physical magnitudes (r90, lobe tip) are
                 // carried by the surfaces, which never rescale.
                 var camR = (typeof spherical !== "undefined" && spherical.radius) ? spherical.radius : 8;
-                pts.material.size = 0.0105 * camR * (1 + 0.55 * cutF);
+                // ...and a cutaway makes the mark SMALLER, not larger. The node
+                // gap a slice exposes is only ~14 px wide at the solved camera,
+                // so 6.5 px marks fattened another 55% smear straight across it
+                // — the fix that reveals the band must not then hide it.
+                pts.material.size = 0.0105 * camR * (1 - 0.34 * cutF);
                 pts.material.opacity = 0.92;
             }
         }
@@ -44121,7 +44161,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // ── the 2s radial node SHELL: a ring lying IN the cut plane at the node
         //    radius, so the dark gap the cutaway exposes is named, not guessed.
         var shell = osFindById("os_node_shell"), shellLab = osFindById("os_node_shell_label");
-        var shOn = !!os.show_node_shell && primary.shellPm != null && cutF > 0.35;
+        // Gated on the slab being thin enough for the gap to actually BE there,
+        // not on a bare ramp fraction: at cutF 0.35 the slice is still hundreds
+        // of pm thick and the ring labelled "node shell" had dots running
+        // straight through it — the state's central claim contradicted by its
+        // own picture. 0.45 R is the thickness at which the band reads empty.
+        var shOn = !!os.show_node_shell && primary.shellPm != null
+            && cutF > 0.02 && slabHalf <= 0.45 * (primary.shellPm / OS_PM_PER_UNIT);
         if (shell) {
             shell.visible = shOn;
             if (shOn) {
