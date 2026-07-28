@@ -479,6 +479,7 @@ function windowResized() {
 function rebuildScene() {
   physRand = mulberry32(PHYS_SEED);
   if (isCircuitFamily()) { circuitInitBeads(); collisionFlashes = []; powerEnergyReset(); return; }  // circuit path builds beads, not a free-drift gas
+  if (gasMode()) { gasInit(); collisionFlashes = []; return; }                                        // gas_box builds hard discs in a bounded box
   particles = [];
   for (var i = 0; i < config.particles.count; i++) {
     var angle = pr() * TWO_PI;
@@ -580,7 +581,15 @@ var PF_WG_FLAGS = [
   { key: 'node_readouts', flag: 'show_node_readouts', label: 'Node voltages' },
   { key: 'ratio_hud', flag: 'show_ratio_hud', label: 'Ratio HUD' },
   { key: 'balance_readout', flag: 'show_balance_readout', label: 'Balance readout' },
-  { key: 'voltmeter', flag: 'show_voltmeter_compare', label: 'Voltmeter' }
+  { key: 'voltmeter', flag: 'show_voltmeter_compare', label: 'Voltmeter' },
+  // gas_box HUDs (2026-07-27). Rule 39f: a canvas-drawn HUD has no DOM handle,
+  // so it declares here and gates at its draw call through pfWgVis().
+  { key: 'gas_pressure', flag: 'show_pressure', label: 'Pressure gauge' },
+  { key: 'gas_thermo', flag: 'show_gas_thermometer', label: 'Gas thermometer' },
+  { key: 'gas_histogram', flag: 'show_speed_histogram', label: 'Speed distribution' },
+  { key: 'gas_counters', flag: 'show_collision_counter', label: 'Collision counter' },
+  { key: 'gas_law', flag: 'show_gas_law', label: 'P\\u00B7A = N\\u00B7k\\u00B7T check' },
+  { key: 'gas_trails', flag: 'show_trails', label: 'Particle trails' }
 ];
 function pfWgVis(key, stateWants) {
   var o = pfWidgetVis[key];
@@ -687,6 +696,20 @@ function applyStateVisuals() {
       sliderRows[id].style.display = show ? 'flex' : 'none';
       if (show) anyVisible = true;
     }
+    // The slider THUMB and its value label must show the value this state
+    // actually authored, not the control's build-time default. STATE_4 authors
+    // piston_frac 0.5 and the canvas honoured it, while the panel read
+    // "Volume 1" — the teacher's only numeric handle on the variable disagreed
+    // with the picture. Only while unseized: once dragged, the teacher owns it.
+    if (gasMode()) {
+      var gasNow = { T: gasTargetT(), V: gasTargetPistonF(), N: gasCount() };
+      for (var gid in gasNow) {
+        if (userTouched[gid] || !sliderRows[gid]) continue;
+        var gInp = sliderRows[gid].querySelector('input');
+        if (gInp) { gInp.value = gasNow[gid]; userParams[gid] = gasNow[gid]; }
+      }
+    }
+
     var ro = document.getElementById('pm-readout');
     var roOn = pfWgVis('readout', true);
     if (ro) ro.style.display = roOn ? 'block' : 'none';
@@ -1044,6 +1067,16 @@ function updateReadouts() {
         '<span id="pm-ro-r">R = ' + (Rval > 1e-9 ? Rval.toFixed(3) + ' \\u03A9' : '\\u2013') + '</span>\\n' +
         '<span id="pm-ro-rho">\\u03C1 = ' + curRho().toExponential(2) + ' \\u03A9\\u00B7m</span>\\n' +
         '<span id="pm-ro-i">i = ' + iAm.toFixed(2) + ' A</span>';
+    } else if (gasMode()) {
+      // gas_box owns its instruments on the canvas (pressure / thermometer /
+      // gas-law chips, Rule 33d), so the DOM readout has nothing to add.
+      // It must early-out ABOVE the Ohm's-law branch below: that branch keys off
+      // a slider literally named 'V' or 'R', and this concept's Volume slider is
+      // 'V' — which printed "V = 1.00 V / i = 59.71 A / R = 0.02 Ohm" onto a
+      // kinetic-theory gas box, in the live product, not just in captures.
+      ro.textContent = '';
+      ro.style.display = 'none';
+      return;
     } else if (hasSlider('V') || hasSlider('R')) {   // ohms_law: V, i, R = V/i
       var iA = realCurrent();
       ro.textContent = 'V = ' + realVoltage().toFixed(2) + ' V\\n' +
@@ -3299,6 +3332,819 @@ function stepCircuit(state) {
   }
 }
 
+// ═══ GAS BOX (scenario_type: 'gas_box') ═════════════════════════════════════
+// A closed 2D box of hard-disc particles: the shared substrate for kinetic
+// theory, Maxwell-Boltzmann, diffusion, collision theory, rates and
+// equilibrium (chemistry P1 cluster + physics T27). Built 2026-07-27.
+//
+// WHY A THIRD FAMILY, not a widening of stepPhysics: the existing free-drift
+// path models a CONDUCTOR's electron gas -- every carrier carries the same
+// |v|, direction is randomised on a timer against a fixed lattice, and the
+// walls WRAP. None of those three survive contact with kinetic theory. A gas
+// needs a real speed DISTRIBUTION (not one speed), momentum-conserving
+// particle-particle collisions (not a timer), and BOUNCING walls -- wrapping
+// walls carry no wall impulse, so there is no pressure to read. So gas_box
+// branches beside isCircuitFamily(); drift_velocity / resistivity / the
+// circuit family are byte-untouched.
+//
+// PHYSICS HONESTY -- READ BEFORE AUTHORING A STATE THAT PRINTS A FORMULA:
+// this is a TRUE 2D gas, so its speed distribution is the 2D Maxwell-Boltzmann
+// (Rayleigh) form f(v) proportional to v*exp(-mv^2/2kT) -- NOT the 3D
+// f(v) proportional to v^2*exp(-mv^2/2kT) printed in NCERT. Every qualitative
+// beat a lesson actually needs is identical in 2D and 3D: the peak shifts
+// right with T, the peak lowers, the high-speed tail lengthens, the area stays
+// 1, and v_mp < v_avg < v_rms. The histogram overlays the 2D theory curve, so
+// nothing drawn on screen is wrong. But a state that prints the 3D formula is
+// printing a law this box does not obey -- put the 3D algebra on a formula
+// surface that does not claim to be measured from this box.
+// (A fake third velocity component would make the histogram match the textbook
+// while making the collision handler lie. That trade was refused deliberately.)
+//
+// PRESSURE UNITS: arbitrary but SELF-CONSISTENT -- impulse per unit wall
+// length per unit time, in px/tick units. The 'show_gas_law' HUD reads
+// P*A / N*T, which sits at 60*speed_scale^2 (0.79 at the 0.115 default) and
+// holds across temperature and piston position -- measured, not asserted.
+// Two honest limits, because this HUD is the one that claims to prove a law:
+//   * these are hard DISCS, not points, so the true 2D equation of state is
+//     P*A = N*k*T*(1 + 2*eta + ...) with eta the packing fraction. The flat
+//     identity is the DILUTE limit and it drifts UP as the box is packed.
+//     Measured on the bring-up config (130 discs, r=5): open box eta=4.5%,
+//     readout 0.843; piston at 0.45 eta=10.1%, readout 0.935 -- a +11% rise
+//     against the +10% the 2D virial term predicts. So the deviation is real
+//     physics, not drift, and it is exactly the ideal-vs-real-gas story.
+//     AUTHORING CONSEQUENCE: do not narrate "this number stays constant" over
+//     a state that compresses hard. Either keep the compression gentle, or
+//     teach the rise as the point (real gases deviate under compression).
+//   * wall strikes are Poisson, so the number is an AVERAGE over a 3 s window.
+//   * collisions are detected once per 1/60 s tick, not continuously, so a
+//     particle moving a large fraction of its own radius per tick has some of
+//     its contacts resolved late. Measured cost: the readout sags ~6% from
+//     300 K to 800 K at the default speed_scale. Keep per-tick travel well
+//     under the disc radius (speed_scale*sqrt(T_max) below about r/2) and it
+//     stays inside a few percent.
+// Within those limits it is a genuine live self-check on this engine.
+//
+// DETERMINISM (Rule 36 + THE EYE): every random draw goes through pr() (seeded
+// mulberry32, reseeded on each state entry), the pair sweep visits pairs in a
+// fixed ascending index order, and nothing here reads p5's random() or
+// wall-clock time -- so SET_TIME_FREEZE re-simulation reproduces frames
+// exactly. Each step is one fixed 1/60 s tick, linear in dt.
+// ─────────────────────────────────────────────────────────────────────────────
+var gasSpecies = [];
+var gasPistonF = 1;          // live piston fraction of full box width
+var gasPistonVx = 0;         // piston speed px/tick (compression does work)
+var gasWallImpulse = 0;      // impulse accumulated this tick
+var gasPressureWin = [];     // rolling per-tick impulse (pressure window)
+var gasPressure = 0;
+var gasCollTotal = 0;        // particle-particle collisions since state entry
+var gasCollTick = 0;
+var gasCollWin = [];
+var gasCollRate = 0;         // collisions/s
+var gasSuccessTotal = 0;     // collisions at or above activation energy
+var gasSuccessTick = 0;
+var gasSuccessWin = [];
+var gasSuccessRate = 0;
+var gasFlashes = [];         // { x, y, age } successful-collision flashes
+var gasBarrierOn = false;
+var gasTempK = 300;          // thermostatted temperature (K)
+
+function gasMode() { return !!(config && config.scenario_type === 'gas_box'); }
+function gasCfg() { return (config && config.gas) ? config.gas : {}; }
+function gasHasGraphPane() { return gasCfg().layout === 'with_graph'; }
+
+// ─── Box geometry (constant across states — Rule 32d home-pose continuity) ──
+function gasPad() { var b = gasCfg().box; return (b && typeof b.pad === 'number') ? b.pad : 44; }
+function gasBoxL() { return gasPad(); }
+// Rule 34d zoning: the instrument row owns a band above the box, and that band
+// starts at 56px so it clears the review chrome's "Full screen" button. The box
+// top is pushed down to make room — instruments never overlap the gas.
+function gasHudTop() { return 56; }
+function gasBoxT() { return gasHudTop() + 32; }
+function gasBoxB() { return microH() - gasPad(); }
+// The box always owns the full canvas. It used to shrink to 58% whenever
+// layout:'with_graph' was set — unconditionally, in EVERY state — which left
+// 42% of the canvas black in five of seven states, from STATE_1, before any
+// histogram or piston existed. That read as broken rather than reserved.
+// The histogram now draws as an instrument panel OVER the tank instead of
+// beside it, so the geometry stays constant across states (Rule 32d) with no
+// dead space, and the teacher can dismiss the panel from the widget menu.
+function gasBoxRFull() { return width - gasPad(); }
+function gasBoxR() { return gasBoxL() + (gasBoxRFull() - gasBoxL()) * gasPistonF; }
+function gasBoxMidX() { return (gasBoxL() + gasBoxRFull()) * 0.5; }
+function gasBoxArea() { return max(1, (gasBoxR() - gasBoxL()) * (gasBoxB() - gasBoxT())); }
+
+// ─── Authored quantities (slider wins, then state, then config default) ─────
+// DRAG-SEIZE (the pattern ohms_law/resistivity already use here): the state's
+// AUTHORED value owns the knob until the teacher actually drags that slider,
+// and userTouched is cleared on every state entry. Checking hasSlider() first
+// was a real bug — a concept that exposes a T slider for its explore state had
+// the slider's DEFAULT silently overrule every guided state's authored T, so
+// "heat the gas" states rendered at the default temperature.
+// RESOLUTION ORDER, and the third rung is the dangerous one:
+//   1. the teacher's drag, once they have actually seized the control
+//   2. the value THIS state authored
+//   3. a STABLE declared default — never the live slider state
+// Rung 3 originally read sliderVal(), i.e. userParams[], which is exactly what
+// applyStateVisuals writes when it re-syncs an unseized slider thumb to the
+// authored value. That closed a loop: STATE_4 authored piston_frac 0.5, the
+// re-sync stored 0.5 into userParams.V, and every LATER state that authored no
+// piston_frac read it straight back — so the aha state (STATE_5), the gas-law
+// state (STATE_6) and the explore state all silently opened in a half-width box
+// with a stray piston, and STATE_6 ran at 9.2% packing, outside the dilute
+// regime its own readout is only valid in. Order-dependent, so it also broke
+// Rule 25d teacher reordering. Resolving to a declared default breaks the loop.
+function gasStableDefault(id, fallback) {
+  var defs = sliderDefs();
+  if (defs && defs[id] && defs[id].default !== undefined) return defs[id].default;
+  return fallback;
+}
+function gasTargetT() {
+  var st = curState() || {};
+  if (hasSlider('T') && userTouched['T']) return sliderVal('T');
+  if (typeof st.T === 'number') return st.T;
+  var g = gasCfg();
+  return gasStableDefault('T', (typeof g.temperature_K === 'number') ? g.temperature_K : 300);
+}
+function gasTargetPistonF() {
+  var st = curState() || {};
+  if (hasSlider('V') && userTouched['V']) return constrain(sliderVal('V'), 0.2, 1);
+  if (typeof st.piston_frac === 'number') return constrain(st.piston_frac, 0.2, 1);
+  return constrain(gasStableDefault('V', 1), 0.2, 1);   // no piston authored = open box
+}
+function gasCount() {
+  var st = curState() || {};
+  if (hasSlider('N') && userTouched['N']) return max(2, floor(sliderVal('N')));
+  if (typeof st.N === 'number') return max(2, floor(st.N));
+  var g = gasCfg();
+  return max(2, floor(gasStableDefault('N', (typeof g.count === 'number') ? g.count : 110)));
+}
+// Activation energy, in the same px/tick energy units the collision test uses.
+// Authored per state so a single box can teach "raise T, more collisions clear
+// the barrier" without any engine change.
+// Activation energy. PREFER the _kT form: raw energy is in px/tick units that
+// nobody can reason about (0.09 sounds like a barrier and is in fact ~2% of the
+// mean energy — it let 95.6% of collisions through on the first bring-up run).
+// activation_energy_kT is a multiple of the mean particle energy at the
+// REFERENCE temperature, which is how chemistry actually talks about Ea: ~2-4
+// kT is a barrier most collisions fail. It is pinned to ea_ref_T (not to the
+// live T) precisely so that raising T raises the success fraction — if Ea
+// tracked T, heating the gas would change nothing and the lesson would die.
+function gasActivationE(state) {
+  if (hasSlider('Ea')) return max(0, sliderVal('Ea'));
+  var g = gasCfg();
+  var nkT = null;
+  if (state && typeof state.activation_energy_kT === 'number') nkT = state.activation_energy_kT;
+  else if (typeof g.activation_energy_kT === 'number') nkT = g.activation_energy_kT;
+  if (nkT !== null) {
+    var refT = (typeof g.ea_ref_T === 'number') ? g.ea_ref_T
+      : (typeof g.temperature_K === 'number') ? g.temperature_K : 300;
+    var s = gasSpeedScale();
+    return max(0, nkT * s * s * refT);       // mean KE per particle in 2D = k_eff*T, k_eff = s^2
+  }
+  if (state && typeof state.activation_energy === 'number') return max(0, state.activation_energy);
+  return (typeof g.activation_energy === 'number') ? max(0, g.activation_energy) : 0;
+}
+function gasSpeciesList() {
+  var g = gasCfg();
+  if (g.species && g.species.length) return g.species;
+  return [{ id: 'A', mass: 1, radius: 5, color: '#60A5FA', label: 'A' }];
+}
+// Per-component velocity sigma: sigma = s*sqrt(T/m), so v_rms(2D) = sigma*sqrt(2)
+// scales as sqrt(T/m) -- the real kinetic-theory dependence, in pixel units.
+function gasSpeedScale() {
+  var g = gasCfg();
+  return (typeof g.speed_scale === 'number') ? g.speed_scale : 0.115;
+}
+function gasSigma(mass, T) {
+  return gasSpeedScale() * Math.sqrt(max(T, 1) / max(mass, 0.0001));
+}
+// Box-Muller on the seeded stream (never p5 random() — determinism contract).
+function gasGauss() {
+  var u1 = max(pr(), 1e-9), u2 = pr();
+  return Math.sqrt(-2 * Math.log(u1)) * Math.cos(TWO_PI * u2);
+}
+
+// ─── Scene build (deterministic; jittered grid so nothing starts overlapped) ─
+function gasInit() {
+  particles = [];
+  gasFlashes = [];
+  gasWallImpulse = 0; gasPressureWin = []; gasPressure = 0;
+  gasCollTotal = 0; gasCollTick = 0; gasCollWin = []; gasCollRate = 0;
+  gasSuccessTotal = 0; gasSuccessTick = 0; gasSuccessWin = []; gasSuccessRate = 0;
+  gasSpecies = gasSpeciesList();
+  var st = curState() || {};
+  // Home pose starts settled (Rule 32d) UNLESS the state authors piston_from,
+  // in which case the piston opens there and drives to piston_frac — so a state
+  // narrating "push the wall in" actually shows the wall moving, and the cause
+  // moves a beat before the pressure answers (Rule 32a). Without it the state
+  // opens at the end pose and the ghost outline has to carry the delta alone.
+  var stP = curState() || {};
+  gasPistonF = (typeof stP.piston_from === 'number')
+    ? constrain(stP.piston_from, 0.2, 1)
+    : gasTargetPistonF();
+  gasPistonVx = 0;
+  gasTempK = gasTargetT();
+  gasBarrierOn = !!st.barrier;
+
+  var total = gasCount(), si;
+  var specN = [], declared = 0, undecl = 0;
+  for (si = 0; si < gasSpecies.length; si++) {
+    if (typeof gasSpecies[si].count === 'number') { specN[si] = gasSpecies[si].count; declared += specN[si]; }
+    else { specN[si] = -1; undecl++; }
+  }
+  for (si = 0; si < gasSpecies.length; si++) {
+    if (specN[si] < 0) specN[si] = max(0, Math.round((total - declared) / max(undecl, 1)));
+  }
+
+  var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB(), mid = gasBoxMidX();
+  for (si = 0; si < gasSpecies.length; si++) {
+    // With a barrier, species 0 fills the left half and species 1 the right —
+    // the diffusion / Graham's-law opening pose.
+    var x0 = L, x1 = R, side = -1;
+    if (gasBarrierOn && gasSpecies.length > 1) {
+      if (si === 0) { x1 = mid; side = 0; } else { x0 = mid; side = 1; }
+    }
+    gasPlaceSpecies(si, specN[si], x0, x1, T, B, side);
+  }
+  gasZeroDrift();
+  gasRescaleToT(gasTempK);
+
+  // Relax the placement grid before anyone sees it. Particles are seeded on a
+  // jittered lattice (which guarantees no initial overlap), but the player holds
+  // a FROZEN opening frame until Play, so that lattice — visible row and column
+  // structure — is the first thing a teacher sees of a lesson whose whole claim
+  // is that particles move randomly. These collision-resolving ticks scramble it
+  // into a real gas without advancing the clock, firing a cue, or touching the
+  // energy: gasIntegrate and gasCollide both conserve it exactly.
+  var st0 = curState() || {};
+  for (var s = 0; s < 55; s++) {
+    gasIntegrate(st0);
+    gasCollide(st0);
+    // Sample during the settle too, so the rolling pressure/collision windows
+    // arrive at t=0 already populated. Without this the HUD spent its first
+    // second showing a ONE-SAMPLE estimate of a rate — measured as P=0.292
+    // against a settled 0.135 on the compressed state, and P=0.000 with zero
+    // collisions on the open one. The instrument was wrong in exactly the frame
+    // a teacher opens the state on.
+    gasSampleStats();
+  }
+  // The cumulative tallies are a per-state story and must start at zero; the
+  // rolling windows above are a measurement buffer and must NOT be cleared.
+  gasCollTotal = 0; gasCollTick = 0; gasSuccessTotal = 0; gasSuccessTick = 0;
+  gasFlashes = [];
+}
+
+// A finite random sample carries a small net momentum — left alone the whole
+// gas slowly slides, which reads as a draught and adds spurious wall impulse.
+function gasZeroDrift() {
+  var n = particles.length;
+  if (!n) return;
+  var i, p, sp, px = 0, py = 0, mt = 0;
+  for (i = 0; i < n; i++) {
+    p = particles[i]; sp = gasSpecies[p.sp];
+    px += sp.mass * p.vx; py += sp.mass * p.vy; mt += sp.mass;
+  }
+  if (mt <= 0) return;
+  var vx = px / mt, vy = py / mt;
+  for (i = 0; i < n; i++) { particles[i].vx -= vx; particles[i].vy -= vy; }
+}
+
+// Pin the realized kinetic energy to the temperature the state asked for.
+// Drawing 2N Gaussians lands sigma a few percent off nominal (about 4% at
+// N=130), and that error is VISIBLE: the histogram bars sit beside their own
+// theory curve, which is a teaching defect even though the physics is fine.
+// One uniform rescale fixes it without touching the distribution's shape.
+// 2D: mean KE per particle = m*sigma^2 (two components at 0.5*m*sigma^2 each).
+function gasRescaleToT(T) {
+  var n = particles.length;
+  if (!n) return;
+  var i, p, sp, ke = 0, want = 0, s;
+  for (i = 0; i < n; i++) {
+    p = particles[i]; sp = gasSpecies[p.sp];
+    ke += 0.5 * sp.mass * (p.vx * p.vx + p.vy * p.vy);
+    s = gasSigma(sp.mass, T);
+    want += sp.mass * s * s;
+  }
+  if (ke <= 1e-12 || want <= 0) return;
+  var f = Math.sqrt(want / ke);
+  for (i = 0; i < n; i++) { particles[i].vx *= f; particles[i].vy *= f; }
+}
+
+function gasPlaceSpecies(spIdx, n, x0, x1, y0, y1, side) {
+  if (n <= 0) return;
+  var sp = gasSpecies[spIdx];
+  var w = max(x1 - x0, 1), h = max(y1 - y0, 1);
+  var cols = max(1, Math.ceil(Math.sqrt(n * w / h)));
+  var rows = Math.ceil(n / cols);
+  var cw = w / cols, ch = h / rows;
+  var sg = gasSigma(sp.mass, gasTempK);
+  var k = 0;
+  for (var r = 0; r < rows && k < n; r++) {
+    for (var c = 0; c < cols && k < n; c++) {
+      // Jitter near a full half-cell. The grid guarantees no initial overlap,
+      // but at +-0.3 the lattice still shows through — and because the player
+      // holds a FROZEN opening frame until Play (build_review_site.ts), that
+      // arranged look is the first thing a teacher sees of a "random motion"
+      // lesson. Cells are ~4x the disc diameter, so this stays overlap-safe.
+      var cx = x0 + cw * (c + 0.5) + prRange(-0.44, 0.44) * cw;
+      var cy = y0 + ch * (r + 0.5) + prRange(-0.44, 0.44) * ch;
+      particles.push({
+        x: constrain(cx, x0 + sp.radius, x1 - sp.radius),
+        y: constrain(cy, y0 + sp.radius, y1 - sp.radius),
+        vx: gasGauss() * sg, vy: gasGauss() * sg,
+        sp: spIdx, side: side, collisions: 0, hot: 0, trail: []
+      });
+      k++;
+    }
+  }
+}
+
+// ─── Physics step (one fixed 1/60 s tick) ───────────────────────────────────
+function stepGas(state) {
+  PM_simTimeMs += 1000 / 60;
+  window.PM_simTimeMs = PM_simTimeMs;
+
+  var cues = getCues(state);
+  for (var ci = 0; ci < cues.length; ci++) {
+    var c = cues[ci];
+    if (cueFiredAt[c.id] === undefined && PM_simTimeMs >= cueTriggerMs(c)) cueFiredAt[c.id] = PM_simTimeMs;
+  }
+  // The barrier lifts on its authored cue — the diffusion beat (Rule 32a: the
+  // cause moves first, the mixing answers after).
+  if (gasBarrierOn && state.barrier_lift_cue && cueFiredAt[state.barrier_lift_cue] !== undefined) {
+    gasBarrierOn = false;
+  }
+
+  gasSyncCount();
+  gasThermostat(state);
+  gasMovePiston();
+  gasIntegrate(state);
+  gasCollide(state);
+  gasSampleStats();
+
+  for (var fi = gasFlashes.length - 1; fi >= 0; fi--) {
+    gasFlashes[fi].age++;
+    if (gasFlashes[fi].age >= 18) gasFlashes.splice(fi, 1);
+  }
+}
+
+// The gas's ACTUAL temperature, inverted from its kinetic energy. In 2D the
+// mean kinetic energy per particle is k_eff*T with k_eff = speed_scale^2,
+// independent of mass (equipartition), so a mixture inverts the same way.
+function gasMeasuredT() {
+  var n = particles.length;
+  if (!n) return gasTempK;
+  var ke = 0, s = gasSpeedScale();
+  for (var i = 0; i < n; i++) {
+    var p = particles[i];
+    ke += 0.5 * gasSpecies[p.sp].mass * (p.vx * p.vx + p.vy * p.vy);
+  }
+  return (ke / n) / max(s * s, 1e-12);
+}
+
+// Temperature is applied by rescaling every velocity by sqrt(T_new/T_old),
+// which preserves the distribution SHAPE exactly (Maxwell-Boltzmann scales
+// with sqrt(T)) — the histogram slides and broadens instead of being redrawn.
+// Eased so the change is watchable.
+//
+// It thermostats from the MEASURED temperature, not from a stored setpoint.
+// The setpoint version drifted: a piston stroke does real work on the gas, so
+// the true temperature left the setpoint while the thermometer kept reporting
+// the setpoint — the instrument lied, and every quantity derived from T
+// (notably the P*A/N*T readout) was computed against a number the gas no
+// longer had. Measuring closes the loop: whatever work the walls do is seen
+// and corrected, so a state that declares a temperature really holds it.
+//
+// DEFAULT IS ISOTHERMAL, deliberately. Compressing at constant temperature is
+// the Boyle beat — pressure rises purely because the box got smaller (Rule 32b:
+// only the taught variable changes). A state that wants the bicycle-pump story
+// instead sets adiabatic:true and the gas is allowed to heat as it is
+// squeezed, with the thermometer tracking it honestly.
+function gasThermostat(state) {
+  var meas = gasMeasuredT();
+  if (state && state.adiabatic) { gasTempK = meas; return; }
+  var target = gasTargetT();
+  var next = meas + (target - meas) * 0.10;
+  if (Math.abs(target - next) < 0.5) next = target;
+  var ratio = Math.sqrt(max(next, 1) / max(meas, 1));
+  if (isFinite(ratio) && ratio > 0) {
+    for (var i = 0; i < particles.length; i++) { particles[i].vx *= ratio; particles[i].vy *= ratio; }
+  }
+  gasTempK = next;
+}
+
+// Dragging the N slider must change the gas NOW — without this, particle count
+// only took effect on the next state entry, so the teacher's drag looked dead.
+// New arrivals enter at the current temperature so N never smuggles in energy.
+// Under THE EYE nothing is dragged, so the count never moves and the pinned
+// re-sim is unaffected.
+function gasSyncCount() {
+  var want = gasCount(), have = particles.length;
+  if (want === have) return;
+  if (want < have) { particles.length = want; return; }
+  var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB();
+  for (var i = have; i < want; i++) {
+    var spIdx = i % gasSpecies.length, sp = gasSpecies[spIdx];
+    var sg = gasSigma(sp.mass, gasTempK);
+    particles.push({
+      x: prRange(L + sp.radius, R - sp.radius),
+      y: prRange(T + sp.radius, B - sp.radius),
+      vx: gasGauss() * sg, vy: gasGauss() * sg,
+      sp: spIdx, side: -1, collisions: 0, hot: 0, trail: []
+    });
+  }
+}
+
+function gasMovePiston() {
+  var t = gasTargetPistonF(), prev = gasPistonF;
+  if (Math.abs(t - gasPistonF) > 1e-6) {
+    gasPistonF += (t - gasPistonF) * 0.06;
+    if (Math.abs(t - gasPistonF) < 0.002) gasPistonF = t;
+  }
+  gasPistonVx = (gasPistonF - prev) * (gasBoxRFull() - gasBoxL());
+}
+
+function gasIntegrate(state) {
+  var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB(), mid = gasBoxMidX();
+  for (var i = 0; i < particles.length; i++) {
+    var p = particles[i], sp = gasSpecies[p.sp], r = sp.radius, m = sp.mass, v;
+    p.x += p.vx; p.y += p.vy;
+
+    if (p.x - r < L) { p.x = L + r; v = Math.abs(p.vx); p.vx = v; gasWallImpulse += 2 * m * v; }
+    if (p.x + r > R) {
+      // Moving-wall reflection, SIGNED. A wall closing (gasPistonVx < 0) adds
+      // 2|v_wall| to the rebound; a wall receding (gasPistonVx > 0) removes it.
+      // The one-sided max(-gasPistonVx, 0) form heated the gas on compression
+      // and never cooled it on expansion, so energy RATCHETED: two piston drags
+      // took the measured kinetic energy from 397 to 31476 and drove the
+      // P*A/N*T readout from 0.78 to 52.7. Symmetric is both correct and stable.
+      v = max(Math.abs(p.vx) - 2 * gasPistonVx, 0.01);
+      p.x = R - r; p.vx = -v; gasWallImpulse += 2 * m * v;
+    }
+    if (p.y - r < T) { p.y = T + r; v = Math.abs(p.vy); p.vy = v; gasWallImpulse += 2 * m * v; }
+    if (p.y + r > B) { p.y = B - r; v = Math.abs(p.vy); p.vy = -v; gasWallImpulse += 2 * m * v; }
+
+    if (gasBarrierOn && p.side === 0 && p.x + r > mid) { p.x = mid - r; v = Math.abs(p.vx); p.vx = -v; gasWallImpulse += 2 * m * v; }
+    if (gasBarrierOn && p.side === 1 && p.x - r < mid) { p.x = mid + r; v = Math.abs(p.vx); p.vx = v; gasWallImpulse += 2 * m * v; }
+
+    if (p.hot > 0) p.hot--;
+    // Trails are accumulated unconditionally (30 points, render-only data) so
+    // the ⚙ "Particle trails" switch can turn them ON in a state that did not
+    // author them — a toggle that reveals an empty buffer is a dead switch.
+    p.trail.push({ x: p.x, y: p.y });
+    while (p.trail.length > 30) p.trail.shift();
+  }
+}
+
+// Uniform-grid broad phase: O(N) instead of O(N^2), so a 200-particle box stays
+// at 60 fps on classroom hardware (the "dependable" half of the buy-trigger).
+// Cells are filled in ascending particle index and pairs resolved with j > i,
+// so the visit order is fixed — determinism survives the optimisation.
+function gasCollide(state) {
+  gasCollTick = 0; gasSuccessTick = 0;
+  var n = particles.length;
+  if (n < 2) return;
+  var i, maxR = 0;
+  for (i = 0; i < gasSpecies.length; i++) maxR = max(maxR, gasSpecies[i].radius);
+  var cell = max(8, maxR * 2 + 2);
+  var L = gasBoxL(), T = gasBoxT();
+  var grid = {}, key;
+  for (i = 0; i < n; i++) {
+    key = floor((particles[i].x - L) / cell) + ':' + floor((particles[i].y - T) / cell);
+    if (!grid[key]) grid[key] = [];
+    grid[key].push(i);
+  }
+  var ea = gasActivationE(state);
+  for (i = 0; i < n; i++) {
+    var ci = floor((particles[i].x - L) / cell), cj = floor((particles[i].y - T) / cell);
+    for (var ox = -1; ox <= 1; ox++) {
+      for (var oy = -1; oy <= 1; oy++) {
+        var bucket = grid[(ci + ox) + ':' + (cj + oy)];
+        if (!bucket) continue;
+        for (var bi = 0; bi < bucket.length; bi++) {
+          var j = bucket[bi];
+          if (j > i) gasResolvePair(i, j, ea);
+        }
+      }
+    }
+  }
+}
+
+// Elastic hard-disc impulse along the line of centres. Equal or unequal mass;
+// momentum and kinetic energy are both conserved exactly (e = 1).
+function gasResolvePair(i, j, ea) {
+  var a = particles[i], b = particles[j];
+  var sa = gasSpecies[a.sp], sb = gasSpecies[b.sp];
+  var dx = b.x - a.x, dy = b.y - a.y;
+  var rr = sa.radius + sb.radius;
+  var d2 = dx * dx + dy * dy;
+  if (d2 > rr * rr || d2 < 1e-12) return;
+  var d = Math.sqrt(d2), nx = dx / d, ny = dy / d;
+  var vn = (a.vx - b.vx) * nx + (a.vy - b.vy) * ny;
+  if (vn <= 0) return;                       // already separating — no double hit
+  var ma = sa.mass, mb = sb.mass;
+  var J = -2 * vn / (1 / ma + 1 / mb);
+  a.vx += (J / ma) * nx; a.vy += (J / ma) * ny;
+  b.vx -= (J / mb) * nx; b.vy -= (J / mb) * ny;
+
+  var overlap = rr - d;
+  if (overlap > 0) {
+    var tm = ma + mb;
+    a.x -= nx * overlap * (mb / tm); a.y -= ny * overlap * (mb / tm);
+    b.x += nx * overlap * (ma / tm); b.y += ny * overlap * (ma / tm);
+  }
+
+  a.collisions++; b.collisions++;
+  gasCollTotal++; gasCollTick++;
+
+  // Collision theory: what clears an activation barrier is the kinetic energy
+  // along the LINE OF CENTRES of the colliding pair (reduced mass mu), not a
+  // single particle's speed. That is the criterion used here.
+  // NOTE for authors: the histogram's shaded tail marks single-particle speeds
+  // above sqrt(2*Ea/m) — the textbook picture. The two numbers answer two
+  // different questions and will not be equal; do not narrate them as one.
+  if (ea > 0) {
+    var mu = (ma * mb) / (ma + mb);
+    if (0.5 * mu * vn * vn >= ea) {
+      gasSuccessTotal++; gasSuccessTick++;
+      a.hot = 16; b.hot = 16;
+      gasFlashes.push({ x: (a.x + b.x) * 0.5, y: (a.y + b.y) * 0.5, age: 0 });
+    }
+  }
+}
+
+function gasSampleStats() {
+  var i, s = 0;
+  gasPressureWin.push(gasWallImpulse);
+  gasWallImpulse = 0;
+  // 3 s window. Wall strikes are a Poisson process, so a short window makes the
+  // gauge jitter tens of percent — measured +-30% at 0.75 s, which is fatal for
+  // the P*A/N*T readout whose entire teaching job is to sit still. Long enough
+  // to be steady, short enough that a slider drag still visibly moves it.
+  while (gasPressureWin.length > 180) gasPressureWin.shift();
+  for (i = 0; i < gasPressureWin.length; i++) s += gasPressureWin[i];
+  var perim = 2 * ((gasBoxR() - gasBoxL()) + (gasBoxB() - gasBoxT()));
+  var secs = gasPressureWin.length / 60;
+  gasPressure = (perim > 0 && secs > 0) ? (s / (perim * secs)) : 0;
+
+  gasCollWin.push(gasCollTick);
+  gasSuccessWin.push(gasSuccessTick);
+  while (gasCollWin.length > 60) gasCollWin.shift();
+  while (gasSuccessWin.length > 60) gasSuccessWin.shift();
+  s = 0; for (i = 0; i < gasCollWin.length; i++) s += gasCollWin[i];
+  gasCollRate = s * 60 / max(gasCollWin.length, 1);
+  s = 0; for (i = 0; i < gasSuccessWin.length; i++) s += gasSuccessWin[i];
+  gasSuccessRate = s * 60 / max(gasSuccessWin.length, 1);
+}
+
+// spIdx null = every particle; otherwise one species (the histogram's markers
+// must describe the same population its bars do).
+function gasSpeedStats(spIdx) {
+  var s = 0, s2 = 0, mx = 0, c = 0;
+  for (var i = 0; i < particles.length; i++) {
+    var p = particles[i];
+    if (spIdx !== null && spIdx !== undefined && p.sp !== spIdx) continue;
+    var v = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+    s += v; s2 += v * v; if (v > mx) mx = v; c++;
+  }
+  if (!c) return { vavg: 0, vrms: 0, vmax: 1 };
+  return { vavg: s / c, vrms: Math.sqrt(s2 / c), vmax: max(mx, 1e-6) };
+}
+
+// ─── Rendering ──────────────────────────────────────────────────────────────
+function drawGasBox(state) {
+  var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB();
+  var dimBox = dimFor('box');
+
+  noFill();
+  // Ghost of the uncompressed box: without it the swept volume simply vanishes
+  // and the state shows a small box rather than a COMPRESSED one — the delta
+  // has to stay on screen to be read (Rule 32c).
+  if (gasPistonF < 0.999) {
+    // Alpha FLOOR, not a plain multiply. At 0.22 * dimFor('box') this compounded
+    // to ~7.7% whenever the piston (not the box) was the state's focal — present
+    // in the pixels, invisible on screen. A Rule-32c delta marker has to survive
+    // focal dimming or it is not a delta marker.
+    strokeHex('#64748B', max(0.30 * dimBox, 0.24));
+    strokeWeight(1);
+    rect(L, T, gasBoxRFull() - L, B - T, 3);
+  }
+  strokeHex('#94A3B8', 0.55 * dimBox);
+  strokeWeight(2);
+  rect(L, T, R - L, B - T, 3);
+
+  // Piston: a distinct grabbable-looking face so a compressing wall never
+  // reads as "the box got smaller by magic".
+  if (gasPistonF < 0.999) {
+    strokeHex('#F59E0B', 0.95 * dimBox); strokeWeight(4);
+    line(R, T + 2, R, B - 2);
+    noStroke(); fillHex('#F59E0B', 0.18 * dimBox);
+    rect(R, T + 2, min(14, gasBoxRFull() - R), B - T - 4);
+  }
+  if (gasBarrierOn) {
+    var mid = gasBoxMidX();
+    strokeHex('#E2E8F0', 0.85 * dimFor('barrier')); strokeWeight(3);
+    line(mid, T + 2, mid, B - 2);
+  }
+
+  var dimP = dimFor('particles'), i, p, sp;
+  if (pfWgVis('gas_trails', state.show_trails)) {
+    strokeWeight(1); noFill();
+    for (i = 0; i < particles.length; i++) {
+      p = particles[i];
+      if (p.trail.length < 2) continue;
+      sp = gasSpecies[p.sp];
+      strokeHex(sp.color, 0.20 * dimP);
+      beginShape();
+      for (var t = 0; t < p.trail.length; t++) vertex(p.trail[t].x, p.trail[t].y);
+      endShape();
+    }
+  }
+
+  noStroke();
+  for (i = 0; i < particles.length; i++) {
+    p = particles[i]; sp = gasSpecies[p.sp];
+    if (p.hot > 0) {
+      fillHex('#FDE047', (p.hot / 16) * 0.35 * dimP);
+      circle(p.x, p.y, sp.radius * 3.0);
+    }
+    fillHex(sp.color, 0.92 * dimP);
+    circle(p.x, p.y, sp.radius * 2);
+  }
+
+  for (i = 0; i < gasFlashes.length; i++) {
+    var f = gasFlashes[i], a = 1 - f.age / 18;
+    noFill(); strokeHex('#FDE047', a * 0.9); strokeWeight(1.5);
+    circle(f.x, f.y, 6 + f.age * 0.9);   // must stay near particle scale — a 42px ring over a 10px disc read as noise
+  }
+  noStroke();
+}
+
+function gasChip(x, y, w, h) {
+  noStroke(); fill(0, 0, 0, 150);
+  rect(x, y, w, h, 6);
+}
+
+// Rule 33d: a live NUMBER plus a needle that tracks the physical change.
+function drawGasPressure() {
+  var x = gasBoxL(), y = gasHudTop(), w = 132, h = 28;
+  var dim = dimFor('pressure');
+  gasChip(x, y, w, h);
+  var g = gasCfg();
+  var pMax = (typeof g.pressure_full_scale === 'number') ? g.pressure_full_scale : 0.9;
+  var frac = constrain(gasPressure / max(pMax, 1e-6), 0, 1);
+  noStroke(); fillHex('#38BDF8', 0.85 * dim);
+  rect(x + 8, y + h - 9, (w - 16) * frac, 4, 2);
+  fillHex('#E2E8F0', dim);
+  textAlign(LEFT, TOP); textSize(12);
+  text('P = ' + gasPressure.toFixed(3), x + 8, y + 5);
+}
+
+function drawGasThermometer() {
+  var x = gasBoxL() + 142, y = gasHudTop(), w = 116, h = 28;
+  var dim = dimFor('temperature');
+  gasChip(x, y, w, h);
+  var g = gasCfg();
+  var tMax = (typeof g.temperature_full_scale === 'number') ? g.temperature_full_scale : 900;
+  var frac = constrain(gasTempK / max(tMax, 1), 0, 1);
+  noStroke(); fillHex('#FB7185', 0.85 * dim);
+  rect(x + 8, y + h - 9, (w - 16) * frac, 4, 2);
+  fillHex('#E2E8F0', dim);
+  textAlign(LEFT, TOP); textSize(12);
+  text('T = ' + Math.round(gasTempK) + ' K', x + 8, y + 5);
+}
+
+function drawGasCounters(state) {
+  var dim = dimFor('counters');
+  var ea = gasActivationE(state);
+  var w = ea > 0 ? 268 : 150;
+  // Right-aligned under the box: drawLabel() owns the bottom-LEFT corner with
+  // the state chip, and the two collided on the first bring-up frame (Rule 34d).
+  var x = max(gasBoxL(), gasBoxRFull() - w), y = gasBoxB() + 8;
+  gasChip(x, y, w, 26);
+  fillHex('#E2E8F0', dim);
+  textAlign(LEFT, CENTER); textSize(12);
+  var msg = Math.round(gasCollRate) + ' collisions/s';
+  if (ea > 0) {
+    var pct = gasCollRate > 0 ? (100 * gasSuccessRate / gasCollRate) : 0;
+    msg += '   \\u2022   ' + Math.round(gasSuccessRate) + '/s clear E\\u2090  (' + pct.toFixed(1) + '%)';
+  }
+  text(msg, x + 8, y + 13);
+}
+
+// P*A / (N*T) is constant for a 2D ideal gas. Showing it live turns the engine
+// into its own proof — and gives the kinetic-theory lesson its payoff number.
+function drawGasLaw() {
+  var x = gasBoxL() + 270, y = gasHudTop(), w = 196, dim = dimFor('gas_law');
+  gasChip(x, y, w, 28);
+  var n = max(particles.length, 1);
+  var k = gasPressure * gasBoxArea() / (n * max(gasTempK, 1));
+  fillHex('#A7F3D0', dim);
+  textAlign(LEFT, TOP); textSize(12);
+  text('P\\u00B7A / N\\u00B7T = ' + k.toFixed(3), x + 8, y + 5);
+}
+
+// The Maxwell-Boltzmann pane: live histogram + the 2D theory curve + the three
+// named speeds. A distribution SHIFTING is the motion here (Rule 31) — nothing
+// else on canvas needs to move for this state to teach.
+function drawGasHistogram(state) {
+  // An instrument panel inset into the tank's right side, not a pane beside it.
+  var gw = floor((gasBoxRFull() - gasBoxL()) * 0.40), gh = floor((gasBoxB() - gasBoxT()) * 0.56);
+  var gx = gasBoxRFull() - gw - 22, gy = gasBoxT() + 22;
+  if (gw < 90) return;
+  var dim = dimFor('histogram');
+  var i, p, v;
+
+  var g = gasCfg();
+  // ONE species per histogram. A mixture of masses is a mixture of Rayleigh
+  // distributions (heavier = slower), so plotting every particle against a
+  // single theory curve puts the bars beside the curve and teaches the wrong
+  // thing — in exactly the two-gas state where the curve matters most.
+  var spIdx = (state && typeof state.hist_species === 'number') ? state.hist_species : 0;
+  if (spIdx < 0 || spIdx >= gasSpecies.length) spIdx = 0;
+  var hSp = gasSpecies[spIdx];
+  var sig0 = gasSigma(hSp.mass, (typeof g.hist_ref_T === 'number') ? g.hist_ref_T : max(gasTargetT(), 1));
+  var vMax = max(sig0 * 3.6, 1e-6);          // fixed axis: the curve must MOVE against it
+  var BINS = 26, bins = [], n = particles.length;
+  for (i = 0; i < BINS; i++) bins[i] = 0;
+  for (i = 0; i < n; i++) {
+    p = particles[i];
+    if (p.sp !== spIdx) continue;
+    v = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+    var b = floor(v / vMax * BINS);
+    if (b >= 0 && b < BINS) bins[b]++;
+  }
+  var peak = 1;
+  for (i = 0; i < BINS; i++) peak = max(peak, bins[i]);
+
+  // Near-opaque backing + a border: it now sits ON the gas, so it has to read as
+  // an instrument laid over the tank, never as a translucent smear of particles.
+  noStroke(); fill(8, 10, 22, 240);
+  rect(gx - 10, gy - 10, gw + 20, gh + 50, 6);
+  noFill(); strokeHex('#334155', 0.9 * dim); strokeWeight(1);
+  rect(gx - 10, gy - 10, gw + 20, gh + 50, 6);
+  noStroke();
+
+  // Activation-energy tail, shaded behind the bars (the collision-theory beat)
+  var ea = gasActivationE(state);
+  if (ea > 0) {
+    var vEa = Math.sqrt(2 * ea / max(hSp.mass, 1e-6));
+    var xEa = gx + constrain(vEa / vMax, 0, 1) * gw;
+    noStroke(); fillHex('#FDE047', 0.13 * dim);
+    rect(xEa, gy, max(gx + gw - xEa, 0), gh);
+    strokeHex('#FDE047', 0.75 * dim); strokeWeight(1.5);
+    line(xEa, gy, xEa, gy + gh);
+    noStroke(); fillHex('#FDE047', 0.9 * dim);
+    textAlign(LEFT, TOP); textSize(10);
+    if (xEa < gx + gw - 22) text('E\\u2090', xEa + 3, gy + 2);
+  }
+
+  noStroke(); fillHex(hSp.color, 0.55 * dim);
+  var bw = gw / BINS;
+  for (i = 0; i < BINS; i++) {
+    var bh = (bins[i] / peak) * gh;
+    if (bh > 0.5) rect(gx + i * bw + 0.5, gy + gh - bh, bw - 1, bh);
+  }
+
+  // 2D Maxwell-Boltzmann: f(v) = (v/sigma^2)*exp(-v^2/2sigma^2), peaking at sigma.
+  var sig = gasSigma(hSp.mass, gasTempK);
+  noFill(); strokeHex('#FBBF24', 0.95 * dim); strokeWeight(2);
+  beginShape();
+  for (i = 0; i <= 60; i++) {
+    v = vMax * i / 60;
+    var f = (v / (sig * sig)) * Math.exp(-(v * v) / (2 * sig * sig));
+    var fPeak = (1 / sig) * Math.exp(-0.5);
+    vertex(gx + (i / 60) * gw, gy + gh - constrain(f / fPeak, 0, 1) * gh);
+  }
+  endShape();
+
+  // Name the population when the box holds more than one gas, so nobody reads
+  // a single-species curve as the whole mixture.
+  if (gasSpecies.length > 1) {
+    noStroke(); fillHex(hSp.color, 0.95 * dim);
+    textAlign(RIGHT, TOP); textSize(10);
+    text(hSp.label || hSp.id || ('species ' + spIdx), gx + gw - 2, gy + 2);
+  }
+
+  var st = gasSpeedStats(spIdx);
+  var marks = [
+    { v: sig, c: '#FBBF24', t: 'v_mp' },
+    { v: st.vavg, c: '#93C5FD', t: 'v_avg' },
+    { v: st.vrms, c: '#F0ABFC', t: 'v_rms' }
+  ];
+  textSize(9); textAlign(CENTER, TOP);
+  for (i = 0; i < marks.length; i++) {
+    var mx = gx + constrain(marks[i].v / vMax, 0, 1) * gw;
+    strokeHex(marks[i].c, 0.85 * dim); strokeWeight(1);
+    line(mx, gy + gh, mx, gy + gh + 6);
+    noStroke(); fillHex(marks[i].c, 0.95 * dim);
+    text(marks[i].t, mx, gy + gh + 8 + i * 11);
+  }
+  noStroke(); fillHex('#CBD5E1', 0.8 * dim);
+  textAlign(RIGHT, TOP); textSize(10);
+  text('speed \\u2192', gx + gw, gy + gh + 30);
+}
+
 // ─── Draw loop (render only — physics advanced separately) ──────────────────
 // Frame-rate-independent stepping (2026-07-11). p5's frameRate(60) is only a
 // TARGET — on displays it can't hit exactly (or a 120 Hz device that rounds to
@@ -3308,6 +4154,21 @@ function stepCircuit(state) {
 // identical when draw fires at 60 Hz, rate-correct elsewhere. The
 // SET_TIME_FREEZE deterministic re-sim path is untouched (draw() never steps
 // while frozen/paused), so THE EYE's pinned captures stay byte-identical.
+// THE ONE step dispatcher. Both the live draw loop and the SET_TIME_FREEZE
+// deterministic re-sim route through here, because they diverged once and it
+// was invisible: gas_box got its branch in draw() but the freeze handler still
+// read "isCircuitFamily() ? stepCircuit : stepPhysics", so every frozen and
+// dense capture stepped the electron-drift lattice physics over gas particles.
+// Discs walked straight through the box walls and the wall-impulse/collision
+// stats never accumulated — yet THE EYE reported 31/31 twice, because its
+// deterministic gates were measuring corrupted frames. A new scenario family
+// must be added HERE, once, and both paths inherit it.
+function stepFor(state) {
+  if (gasMode()) return stepGas(state);
+  if (isCircuitFamily()) return stepCircuit(state);
+  return stepPhysics(state);
+}
+
 var __pmAccumMs = 0;
 function pmStepTicks(state, stepFn) {
   __pmAccumMs += min(50, deltaTime); // clamp tab-background gaps to 3 catch-up ticks
@@ -3330,6 +4191,31 @@ function draw() {
     // (no drawLabel here — the state label duplicated the bottom-right formula_overlay)
     var frmC = document.getElementById('pm-formula');
     if (frmC) frmC.style.opacity = max(dimFor('formula'), 0.6);   // keep the equation readable even when not the focal
+    return;
+  }
+
+  if (gasMode()) {
+    if (!frozen && !paused) pmStepTicks(state, stepFor);
+    var gbg = (config.canvas && config.canvas.bg_color) ? config.canvas.bg_color
+      : (config.design && config.design.background) ? config.design.background : '#0A0A1A';
+    background(gbg);
+    push();
+    translate(0, microTop());
+    drawGasBox(state);
+    if (pfWgVis('gas_pressure', state.show_pressure)) drawGasPressure();
+    if (pfWgVis('gas_thermo', state.show_gas_thermometer)) drawGasThermometer();
+    if (pfWgVis('gas_counters', state.show_collision_counter)) drawGasCounters(state);
+    if (pfWgVis('gas_law', state.show_gas_law)) drawGasLaw();
+    if (pfWgVis('gas_histogram', state.show_speed_histogram)) drawGasHistogram(state);
+    pop();
+    drawLabel(state);
+    var gFrm = document.getElementById('pm-formula');
+    if (gFrm) gFrm.style.opacity = dimFor('formula');
+    if (borderFlashAlpha > 0) {
+      noFill(); strokeHex('#3B82F6', borderFlashAlpha * 0.6); strokeWeight(3);
+      rect(1, 1, width - 2, height - 2, 4); noStroke();
+      borderFlashAlpha -= 0.025;
+    }
     return;
   }
 
@@ -4264,11 +5150,18 @@ function drawLabel(state) {
   var labelText = state.label || PM_currentState;
   textSize(12);
   var tw = textWidth(labelText);
+  // gas_box parks the chip top-left: at the shared bottom-left position it
+  // lands on the review chrome's "Powered by Viditra" watermark (Rule 34d).
+  // Scoped to this family on purpose — moving it for everyone would shift
+  // pixels on every shipped particle_field concept and invalidate their
+  // approved H2 baselines for a cosmetic gain. The collision exists fleet-wide
+  // and is filed separately rather than fixed by stealth here.
+  var ly = gasMode() ? 8 : (height - 32);
   fillHex('#000000', 0.5);
-  rect(8, height - 32, tw + 20, 24, 6);
+  rect(8, ly, tw + 20, 24, 6);
   fillHex('#D4D4D8', 0.9);
   textAlign(LEFT, CENTER);
-  text(labelText, 18, height - 20);
+  text(labelText, 18, ly + 12);
 }
 
 // ─── postMessage bridge ─────────────────────────────────────────────────────
@@ -4294,7 +5187,7 @@ window.addEventListener('message', function(e) {
         // ceil, not floor: PM_simTimeMs must land >= at_ms or the harness's
         // pollSimTimeReached burns a full poll cap on every dense frame.
         var steps = ceil(target / (1000 / 60));
-        for (var k = 0; k < steps; k++) { if (isCircuitFamily()) stepCircuit(st); else stepPhysics(st); }
+        for (var k = 0; k < steps; k++) stepFor(st);
       }
       frozen = true;
     }
@@ -4487,6 +5380,24 @@ export interface ParticleFieldStateConfig {
     cycle_phase2_target_R?: number;      // S5: R value at the end of phase 2 (mid-wire balance)
     show_error_band?: boolean;       // S5: draw the sensitivity envelope (half-width ∝ dX at the null) + phase labels
     error_band_grid?: Array<{ phase?: number; R_label?: string; l1_label?: string; dX_label?: string; reveal_at_ms?: number }>; // S5 phase-label schedule
+    // gas_box (2026-07-27 — scenario_type 'gas_box'; every field opt-in, so no
+    // existing particle_field concept is affected)
+    T?: number;                      // temperature (K) for this state; the T slider overrides
+    N?: number;                      // particle count for this state; the N slider overrides
+    piston_frac?: number;            // 0.2–1.0 of full box width; the V slider overrides. Eased in, and a closing wall really does work on the gas
+    piston_from?: number;            // open the state at this fraction and drive to piston_frac, so the wall is SEEN to move (Rule 32a). Omit = start settled
+    barrier?: boolean;               // start with a divider: species 0 left, species 1 right (the diffusion pose)
+    barrier_lift_cue?: string;       // cue id that removes the divider mid-state
+    activation_energy_kT?: number;   // PREFERRED collision-theory threshold, in multiples of mean particle energy at ea_ref_T
+    activation_energy?: number;      // raw px/tick threshold (pair KE along the line of centres); prefer the _kT form
+    show_pressure?: boolean;         // pressure gauge — live number + tracking bar (Rule 33d)
+    show_gas_thermometer?: boolean;  // temperature gauge — live number + tracking bar
+    show_speed_histogram?: boolean;  // live speed distribution + 2D theory curve + v_mp/v_avg/v_rms
+    hist_species?: number;           // which species the histogram plots (default 0) — it plots ONE, never a mixture
+    show_collision_counter?: boolean;// collisions/s, and the fraction clearing Eₐ when one is set
+    show_gas_law?: boolean;          // P·A / N·T readout — constant on screen, the engine's own proof
+    show_trails?: boolean;           // per-particle trails (the mean-free-path / random-walk story)
+    adiabatic?: boolean;             // let piston work heat/cool the gas and show it (bicycle-pump story). Default false = isothermal, so compression is a pure Boyle beat
     [key: string]: unknown;
 }
 
@@ -4514,6 +5425,23 @@ export interface ParticleFieldAuthoredConfig {
     slider_controls?: Record<string, ParticleFieldSliderDef>;
     materials?: ParticleFieldMaterialDef[];  // resistivity material presets (copper/nichrome/manganin)
     macro_view?: boolean;  // Rule 33: split canvas — macro rod (top) + micro lattice/electrons (bottom)
+    // gas_box (2026-07-27) — the kinetic/collision/equilibrium substrate.
+    // See the GAS BOX banner in the renderer body before authoring; in
+    // particular the 2D-Maxwell-Boltzmann honesty note.
+    gas?: {
+        count?: number;                  // total particles (a state's N, or the N slider, overrides)
+        species?: Array<{ id: string; mass: number; radius: number; color: string; label?: string; count?: number }>;
+        box?: { pad?: number };
+        layout?: 'full' | 'with_graph';  // 'with_graph' reserves the right pane for the speed histogram
+        temperature_K?: number;
+        speed_scale?: number;            // px/tick per component at T=1, m=1 (visual pacing)
+        activation_energy_kT?: number;   // PREFERRED: Eₐ as a multiple of the mean particle energy at ea_ref_T (~2–4 = a real barrier)
+        ea_ref_T?: number;               // reference T for activation_energy_kT (default: temperature_K). Fixed on purpose — Eₐ must NOT track live T
+        activation_energy?: number;      // raw px/tick energy escape hatch; prefer the _kT form
+        pressure_full_scale?: number;    // gauge bar full-scale (display only)
+        temperature_full_scale?: number; // thermometer full-scale in K (display only)
+        hist_ref_T?: number;             // pins the histogram's speed axis so the curve MOVES against it
+    };
     formula_anchor?: { constants?: Record<string, number>; [key: string]: unknown };
     pvl_colors?: Record<string, string>;
     animation_constraints?: Record<string, string | number | boolean>;
