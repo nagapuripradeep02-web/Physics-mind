@@ -83,6 +83,27 @@ async function main(): Promise<void> {
     const maxRevealMsByState = deriveMaxRevealTimeMs(revealSource);
     const holdExpectations = deriveHoldExpectations(revealSource);
 
+    // EMERGENT-PHYSICS CAPTURE TIME (2026-07-29). Reveal timings are derived from
+    // discrete cues, and a scenario whose content EMERGES from the physics has
+    // none — so the derived target is null and the renderer's 1500ms default is
+    // used. On dynamic_equilibrium that meant the frozen H2 baselines of states
+    // with genuinely different physics (reverse switched off vs both directions
+    // live) came out near-identical, because at 1.5s none of the content exists
+    // yet. A baseline photographed before the concept happens cannot catch a
+    // regression in the concept.
+    //
+    // Opt-in per state, never a default: a state authors eye_capture_ms at a time
+    // when its claim is actually on screen. Concepts that author nothing keep the
+    // exact behaviour they were baselined under — which is why every approved
+    // baseline in the fleet is untouched by this.
+    const eyeOverrides = extractEyeCaptureMs(conceptJson);
+    const overriddenStates = Object.keys(eyeOverrides);
+    for (const sid of overriddenStates) maxRevealMsByState[sid] = eyeOverrides[sid];
+    if (overriddenStates.length > 0) {
+        console.log('  Eye capture: authored eye_capture_ms on ' + overriddenStates.length + ' state(s) — ' +
+            overriddenStates.map(s => s + '=' + eyeOverrides[s] + 'ms').join(', '));
+    }
+
     console.log(`  Sim type:    ${cached.sim_type ?? 'single (default)'}`);
     console.log(`  States:      ${stateIds.join(', ')}`);
     console.log(`  Motion map:  ${stateIds.map(s => `${s}=${expectsMotion[s] ?? '?'}`).join(', ')}`);
@@ -171,3 +192,25 @@ main().catch(err => {
     console.error('\n💥 visual:eyes crashed:', err instanceof Error ? err.stack : err);
     process.exit(2);
 });
+
+/**
+ * Per-state `eye_capture_ms` authored on a scenario config (or on epic_l_path).
+ * Opt-in override for the frozen-baseline capture time — see the call site for
+ * why an emergent-physics scenario needs one.
+ */
+function extractEyeCaptureMs(conceptJson: unknown): Record<string, number> {
+    const out: Record<string, number> = {};
+    if (!conceptJson || typeof conceptJson !== 'object') return out;
+    const j = conceptJson as Record<string, unknown>;
+    const buckets = ['particle_field_config', 'field_3d_config', 'parametric_config', 'epic_l_path'];
+    for (const bucket of buckets) {
+        const cfg = j[bucket] as { states?: Record<string, { eye_capture_ms?: unknown }> } | undefined;
+        const states = cfg?.states;
+        if (!states || typeof states !== 'object') continue;
+        for (const sid of Object.keys(states)) {
+            const v = states[sid]?.eye_capture_ms;
+            if (typeof v === 'number' && v > 0) out[sid] = v;
+        }
+    }
+    return out;
+}
