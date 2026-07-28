@@ -279,5 +279,26 @@ check('N-down keeps A/B units balanced', Math.abs(aUnits - bUnits) <= 1,
 check('N-down breaks no bonds', afterCut.AB >= abBefore - 1,
   `AB ${abBefore} -> ${afterCut.AB} (removal must take free reactants, never dimers)`);
 
+// ── 9. the equilibrium must not depend on the size of the teacher's window ──
+// The renderer fills the viewport, and forward is bimolecular while reverse is
+// first order — so without normalisation the balance point carries a factor of
+// box area and moves with the browser window. Measured before the fix on
+// identical authored constants: product 31 at the authoring geometry, 17 at
+// 1440x900, 15 at 1920x1080. A state seeded at its measured plateau then drifts
+// on every screen but the author's, and no gate could see it because every
+// gate ran at one size.
+function meanABat(w: number, h: number) {
+  R.width = w; R.height = h;
+  boot(makeConfig({ temperature_K: 500 }, { T: 500, adiabatic: false }));
+  return runMeanAB(4200, 4200);
+}
+const atAuthoring = meanABat(900, 560);
+const atBigScreen = meanABat(1600, 900);
+const atSmall = meanABat(760, 480);
+R.width = 900; R.height = 560;
+const spread = Math.max(atAuthoring, atBigScreen, atSmall) - Math.min(atAuthoring, atBigScreen, atSmall);
+check('equilibrium is viewport-independent', spread <= Math.max(3, atAuthoring * 0.18),
+  `mean AB: 900x560 ${atAuthoring.toFixed(1)} · 1600x900 ${atBigScreen.toFixed(1)} · 760x480 ${atSmall.toFixed(1)} (spread ${spread.toFixed(1)})`);
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);

@@ -3605,6 +3605,30 @@ function gasRxEaRev(state) { return max(0, gasRxEaFwd(state) + gasRxBondE(state)
 // formation and dissociation — computing I from the live contact separation at
 // formation and from a fixed length at the split would leak energy every cycle,
 // which is the ratchet class of bug all over again.
+// VIEWPORT INDEPENDENCE — without this the equilibrium POSITION depends on the
+// size of the teacher's browser window, which is not a physical variable anyone
+// chose. Forward is bimolecular (rate goes as density^2) and reverse is first
+// order, so the balance point carries a factor of box AREA; the renderer fills
+// the viewport, so a 1920-wide screen and the 900-wide authoring geometry settle
+// at different compositions. Measured on identical authored constants: product
+// 31 at the tuning geometry, 17 at 1440x900, 15 at 1920x1080 — so a state seeded
+// at its measured plateau drifts on every screen but one, and every absolute
+// number an author measures is true only on their own monitor.
+//
+// The normalisation divides by the FULL box area, never the piston-adjusted one.
+// That is the whole trick: window size divides out, while the piston — the
+// volume control a teacher actually drives — still moves the equilibrium exactly
+// as Le Chatelier says it must.
+//
+// ref_area_px defaults to the 812x428 authoring geometry (a 900x560 canvas), the
+// same geometry check_gas_reaction_physics.ts pins, so measured constants and
+// gate numbers keep meaning the same thing.
+function gasRxAreaNorm() {
+  var g = gasCfg();
+  var full = (gasBoxRFull() - gasBoxL()) * (gasBoxB() - gasBoxT());
+  var ref = (typeof g.ref_area_px === 'number') ? g.ref_area_px : 347536;
+  return (full > 1) ? (ref / full) : 1;
+}
 function gasRxColor() {
   var sp = (gasRxSpAB >= 0) ? gasSpecies[gasRxSpAB] : null;
   return (sp && sp.color) ? sp.color : '#E2E8F0';
@@ -4201,7 +4225,7 @@ function gasRxDecay(state) {
   var g = gasCfg();
   var s = gasSpeedScale();
   var kT = max(s * s * gasMeasuredT(), 1e-9);
-  var attempts = gasRxNum(state, 'reverse_attempt_per_s', 3.5);
+  var attempts = gasRxNum(state, 'reverse_attempt_per_s', 3.5) * gasRxAreaNorm();
   var p = (attempts / 60) * Math.exp(-eaRev / kT);
   if (!(p > 0)) return;
   for (var i = 0; i < n; i++) {
@@ -4609,8 +4633,19 @@ function drawGasLaw() {
 function drawGasReaction(state) {
   if (!gasRxOn()) return;
   var dim = dimFor('reaction');
-  var w = 250, h = 52;
-  var x = max(gasBoxL(), gasBoxRFull() - w), y = gasHudTop();
+  var w = 268, h = 68;
+  // LEFT-anchored in the instrument row, after whatever chips are already there —
+  // NOT right-aligned. Right-aligned it sat exactly under the review player's
+  // DOM slider panel (position:fixed, top 52 / right 10, z-index above the
+  // canvas): measured a 230x52 overlap, which buried the reaction readout
+  // completely in the explore state — the one state whose entire claim is "the
+  // two rates come back together" and whose only instrument this is.
+  var y = gasHudTop();
+  var x = gasBoxL();
+  if (pfWgVis('gas_pressure', state.show_pressure)) x += 142;
+  if (pfWgVis('gas_thermo', state.show_gas_thermometer)) x += 126;
+  if (pfWgVis('gas_law', state.show_gas_law)) x += 206;
+  if (x + w > gasBoxRFull()) x = max(gasBoxL(), gasBoxRFull() - w);   // all four lit: fall back
   gasChip(x, y, w, h);
 
   var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB];
@@ -4619,32 +4654,37 @@ function drawGasReaction(state) {
 
   textAlign(LEFT, TOP); textSize(11); noStroke();
   var cx = x + 8;
-  fillHex(sA.color, dim); text((sA.label || sA.id) + ' ' + nA, cx, y + 5); cx += 46;
-  fillHex(sB.color, dim); text((sB.label || sB.id) + ' ' + nB, cx, y + 5); cx += 46;
+  fillHex(sA.color, dim); text((sA.label || sA.id) + ' ' + nA, cx, y + 6); cx += 52;
+  fillHex(sB.color, dim); text((sB.label || sB.id) + ' ' + nB, cx, y + 6); cx += 52;
   fillHex(gasRxColor(), dim);
-  text((gasSpecies[gasRxSpAB].label || 'AB') + ' ' + nAB, cx, y + 5);
+  text((gasSpecies[gasRxSpAB].label || 'AB') + ' ' + nAB, cx, y + 6);
 
   // ONE shared full-scale for both bars. Two independently scaled bars would sit
   // equal at unequal rates — an instrument that reports equilibrium whenever it
   // is asked is worse than no instrument.
+  //
+  // Three zones that must not overlap, because at h=52 they did: the label
+  // column, the bar, and the right-aligned value all shared rows, and the
+  // cumulative-totals line landed on top of the "rev" label — illegible, and
+  // that line is the single instrument proving the reaction has not stopped.
   var full = max(gasRxFwdRate, gasRxRevRate, 1);
-  var bw = w - 74, bx = x + 62;
+  var bx = x + 44, bw = w - 44 - 56;
   textSize(10);
-  fillHex('#34D399', dim); text('fwd', x + 8, y + 22);
-  fillHex('#FB923C', dim); text('rev', x + 8, y + 36);
+  fillHex('#34D399', dim); text('fwd', x + 8, y + 24);
+  fillHex('#FB923C', dim); text('rev', x + 8, y + 40);
   noStroke();
-  fillHex('#34D399', 0.85 * dim); rect(bx, y + 24, bw * constrain(gasRxFwdRate / full, 0, 1), 5, 2);
-  fillHex('#FB923C', 0.85 * dim); rect(bx, y + 38, bw * constrain(gasRxRevRate / full, 0, 1), 5, 2);
+  fillHex('#34D399', 0.85 * dim); rect(bx, y + 26, bw * constrain(gasRxFwdRate / full, 0, 1), 5, 2);
+  fillHex('#FB923C', 0.85 * dim); rect(bx, y + 42, bw * constrain(gasRxRevRate / full, 0, 1), 5, 2);
   fillHex('#CBD5E1', dim);
   textAlign(RIGHT, TOP);
-  text(gasRxFwdRate.toFixed(1) + '/s', x + w - 8, y + 20);
-  text(gasRxRevRate.toFixed(1) + '/s', x + w - 8, y + 34);
+  text(gasRxFwdRate.toFixed(1) + '/s', x + w - 8, y + 23);
+  text(gasRxRevRate.toFixed(1) + '/s', x + w - 8, y + 39);
   // Cumulative totals since the state opened. The bars are Poisson-noisy by
   // nature (see gasSampleStats); these two numbers converging is the steady,
   // unarguable form of "the two directions are running at the same rate".
   fillHex('#94A3B8', 0.9 * dim);
   textAlign(LEFT, TOP); textSize(10);
-  text(gasRxFwdTotal + ' made \\u00B7 ' + gasRxRevTotal + ' broken', x + 8, y + h - 13);
+  text(gasRxFwdTotal + ' made \\u00B7 ' + gasRxRevTotal + ' broken', x + 8, y + 55);
   textSize(11);
 }
 
