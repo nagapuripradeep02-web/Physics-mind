@@ -53,6 +53,17 @@ read 109.5° — in the one state that exists to correct a false picture.
 No gate in the suite can catch any of those, because each is a claim about whether the picture means
 what the words say. **A 31/31 run is a licence to start looking, not a result.**
 
+**And my own looking was not enough either.** After I had read the frames and called the concept
+finished, the founder asked whether the quality-auditor had actually been run. It had not. Running it
+— plus eye_walker — produced **six more real defects**, on a build that was 31/31 green across four
+runs. Two of them were regressions introduced by my own earlier fixes (pushing the arc label clear of
+the molecule drove it into the span label on the aha frame; moving the central symbol away from the
+arc parked it on a hydrogen). One exposed a flaw in the method I had just congratulated myself for:
+the camera solver measured each domain's foreshortening but never PAIRWISE screen separation, so all
+three "solved" cameras had atoms sitting on top of each other. The correct order is **solve, then
+look, then have someone else look** — and the third step is not optional just because the first two
+were done carefully. The measurement can be wrong in a way only a second pair of eyes will name.
+
 ### 4. Two failure modes specific to authoring in 3D (new to the fleet)
 
 Both are inherent to a projected 3D scene; neither exists in the 2D engines.

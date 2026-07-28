@@ -119,8 +119,29 @@ sees the file, tsc 0. NOT baseline-approved — `visual:approve` stays founder-g
   `src/lib/renderers/field_3d_renderer.ts`, `src/lib/validators/visual/deriveStateMeta.ts`,
   `src/scripts/validate-chemistry.ts`, `docs/patterns/chemistry.md`. 5 commits
   (`b6a0259` → `119dabd` → `e0b1ab4` → `d1aac72` → `d8766ef`), **not pushed**.
-- **⏭ NEXT.** (1) Founder eyes on the frames, then `visual:approve` to lock baselines and activate
-  H2 — the concept is otherwise finished. (2) **Hybridisation (#13) is the cheap next harvest** — C5
+- **ADDENDUM — the pipeline gates were run after the above, and they FAILED the first time.** The
+  founder asked "did you even complete the quality auditor?" — I had not (a standing session rule
+  barred subagents unless asked). Running it changed the outcome. **quality-auditor: FAIL** on two
+  items — the skeleton had no Definition-of-Done block at all (Gate 0), and STATE_6's on-canvas
+  formula asserted `5 → 120° and 90°` while the scenario draws ONE arc, so PCl₅'s axial 90° was
+  claimed but never rendered. **eye-walker: 4 findings**, three MAJOR/CRITICAL. Every one was real,
+  checked against the frames before fixing. **THE EYE had been 31/31 green on four consecutive runs
+  the whole time.** Two findings were regressions from my own earlier "fixes" (pushing the arc label
+  out made it collide with the span label on the aha frame; moving the central label away from the
+  arc moved it onto a hydrogen), and one exposed a flaw in my method: the camera solver measured each
+  domain's foreshortening but never PAIRWISE screen separation, so all three shipped cameras actually
+  had overlapping atoms (gaps 0.05, −0.14, −0.28). Re-solving then optimised methane's arc but not
+  water's, leaving water edge-on with 104.5° reading as nearly straight — the final solve constrains
+  separation AND both arc families (CH₄ err 2.5°, H₂O err 2.2°). Also fixed: the lone-pair checkbox
+  stayed checked with zero lobes on screen, and PCl₅ got a longer bond (`bond_scale`, and P–Cl really
+  is 214 pm against methane's 109). Auditor re-check: **PASS**. Commits `0997401`, `2bd3eef`.
+- **SHIPPED (founder-approved).** `visual:approve` locked 7 states / 14 PNGs and activated H2;
+  re-running THE EYE against the new baselines gives **44/44 with all 14 H2 comparisons at 0.00%
+  drift** — byte-identical, the accumulator-free Rule 26/36 claim proving itself rather than being
+  asserted. `tts:generate --langs=en` rendered **17/17 EN clips, 0 stale** (bulbul:v3/priya, 760 KB);
+  English-only per Rule 30i, and supplementary per Rule 30h. Review site verified serving on :8081
+  (page, sim, manifest and clips all HTTP 200). No `PILOT_CONCEPTS`, no deploy, no merge, no push.
+- **⏭ NEXT.** (1) **Asmi's professor review is the only gate left.** (2) **Hybridisation (#13) is the cheap next harvest** — C5
   §6 says build it as a pair with VSEPR, and it needs zero new renderer code, so it is the direct
   proof of the P3 compounding thesis. (3) σ/π (#17) likewise. (4) Merging: the engine commits are
   platform (Rule 40) and should go to master separately from the concept; the other session's
