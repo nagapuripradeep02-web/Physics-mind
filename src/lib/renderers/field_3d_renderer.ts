@@ -41851,6 +41851,10 @@ export const FIELD_3D_RENDERER_CODE = `
     //       spin_start_ms, spin_rate,           // rad/s about +y (0 = hold still)
     //       assemble_at_ms, assemble_duration_ms,          // mode: assemble
     //       flat_hold_ms, relax_duration_ms,               // mode: flat_vs_real
+    //       flat_basis: [[rx,ry,rz],[ux,uy,uz]],// the sketch plane (screen right +
+    //                                           // up of THIS state's camera), so
+    //                                           // the flat 90° reads as a true
+    //                                           // right angle; default xy-plane
     //       spread_steps: [{at_ms,duration_ms,domains}],   // mode: domain_spread
     //       squeeze_steps: [{at_ms,convert_ms,duration_ms,molecule}], // lone_squeeze
     //       compare_at_ms, compare_molecule,               // mode: expanded
@@ -41880,11 +41884,23 @@ export const FIELD_3D_RENDERER_CODE = `
     //   atomic magnitude) and the lone-pair lobe (a real "this domain occupies
     //   more room" magnitude — the taught physics itself). No emphasis bulge.
     var MG_BOND_LEN = 2.0;
-    var MG_ARC_R = 1.05;
+    var MG_ARC_R = 1.35;        // far enough off the central atom to read clearly,
+                                // still well inside the 2.0 bond length
     var MG_ARC_SEGS = 120;
     var MG_MAX_BONDS = 6;
     var MG_MAX_LONE = 4;
     var MG_HULL_EDGES = 6;      // a 4-domain hull (the tetrahedral e-geometry cage)
+    // Azimuth phase of the non-apex domains. NOT arbitrary: the fleet's 3/4
+    // cameras sit near azimuth 57 deg, and lone pairs consume the apex-side slots
+    // first — so with the naive phase (90 deg) water's two surviving O-H bonds
+    // came out at 210 and 330 deg, i.e. one of them pointing almost straight away
+    // from the camera and foreshortening onto the oxygen (caught on the first EYE
+    // run: the H label sat on top of the O). At 237 deg the two survivors land at
+    // 357 and 117 deg — straddling the camera direction symmetrically, 60 deg
+    // either side — so water reads as a clean V and ammonia keeps its iconic
+    // lone-pair-up tripod. n=3 derives from the same constant so the trigonal
+    // PLANE faces the camera instead of being seen edge-on.
+    var MG_AZ0 = 237 * Math.PI / 180;
 
     // CPK-flavoured but re-picked for legibility on the deep-blue field background.
     // radius = a REAL atomic magnitude (Rule 29), not an emphasis knob.
@@ -41951,12 +41967,24 @@ export const FIELD_3D_RENDERER_CODE = `
         var out = [], k, az;
         if (n <= 1) return [[0, 1, 0]];
         if (n === 2) return [[0, 1, 0], [0, -1, 0]];
-        if (n === 3) return [[0, 1, 0], [0, -0.5, 0.8660254], [0, -0.5, -0.8660254]];
+        if (n === 3) {
+            // the trio is coplanar at 120 deg; put that PLANE face-on to the
+            // camera by placing the two non-apex domains a quarter turn either
+            // side of MG_AZ0 (so the plane normal points along MG_AZ0 + 90 deg,
+            // which is the camera azimuth). Seen edge-on, 120 deg reads as 180.
+            var hr = Math.sin(120 * Math.PI / 180);
+            out.push([0, 1, 0]);
+            for (k = 0; k < 2; k++) {
+                az = MG_AZ0 + (k === 0 ? Math.PI / 2 : -Math.PI / 2);
+                out.push([hr * Math.cos(az), -0.5, hr * Math.sin(az)]);
+            }
+            return out;
+        }
         if (n === 4) {
             var R = Math.sqrt(8) / 3;
             out.push([0, 1, 0]);
             for (k = 0; k < 3; k++) {
-                az = (Math.PI / 2) + k * (2 * Math.PI / 3);
+                az = MG_AZ0 + k * (2 * Math.PI / 3);
                 out.push([R * Math.cos(az), -1 / 3, R * Math.sin(az)]);
             }
             return out;
@@ -41964,7 +41992,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (n === 5) {
             out.push([0, 1, 0]); out.push([0, -1, 0]);
             for (k = 0; k < 3; k++) {
-                az = (Math.PI / 2) + k * (2 * Math.PI / 3);
+                az = MG_AZ0 + k * (2 * Math.PI / 3);
                 out.push([Math.cos(az), 0, Math.sin(az)]);
             }
             return out;
@@ -42025,8 +42053,15 @@ export const FIELD_3D_RENDERER_CODE = `
     // Greedy max-dot pairing (first index wins a tie → deterministic) from the
     // FLAT board-sketch cross onto the true tetrahedral slots. Returns, per
     // tetra slot, the flat direction it relaxes FROM.
-    function mgFlatSources(tetraDirs) {
-        var flat = [[0, 1, 0], [1, 0, 0], [0, -1, 0], [-1, 0, 0]];
+    //   basis = optional [screenRight, screenUp] pair spanning the sketch plane.
+    //   Authoring it lets the flat cross lie in the plane PERPENDICULAR TO THE
+    //   CAMERA, which is what makes its 90° read as a true right angle — the whole
+    //   point of the beat. Default = the world xy-plane (correct for a camera on
+    //   +z). Static data, so the geometry never depends on live camera state.
+    function mgFlatSources(tetraDirs, basis) {
+        var rgt = (basis && basis[0]) ? mgNorm(basis[0]) : [1, 0, 0];
+        var upv = (basis && basis[1]) ? mgNorm(basis[1]) : [0, 1, 0];
+        var flat = [upv, rgt, [-upv[0], -upv[1], -upv[2]], [-rgt[0], -rgt[1], -rgt[2]]];
         var used = [false, false, false, false], out = [], i, j;
         for (i = 0; i < flat.length && i < tetraDirs.length; i++) {
             var best = -1, bestDot = -2;
@@ -42153,7 +42188,7 @@ export const FIELD_3D_RENDERER_CODE = `
             lp.visible = false;
             addToScene(lp);
         }
-        var lpLab = createLabelSprite("lone pair", loneColor, 0.42);
+        var lpLab = pmCreateAutoLabel("lone pairs", loneColor, 0.42);
         lpLab.userData = { elementType: "mg_lone_label", id: "mg_lone_label" };
         lpLab.visible = false;
         addToScene(lpLab);
@@ -42164,9 +42199,14 @@ export const FIELD_3D_RENDERER_CODE = `
         var ghostGeo = new THREE.CylinderGeometry(0.028, 0.028, 1, 8);
         ghostGeo.translate(0, 0.5, 0);
         for (i = 0; i < MG_MAX_BONDS; i++) {
+            // depthTest STAYS ON for the cage: it is 3D scaffolding, not an
+            // overlay. With it off the edges drew straight THROUGH the hydrogens
+            // and read as white fans across the atoms (caught on the EYE run) —
+            // the "overlays over busy geometry use depthTest:false" scar applies
+            // to flat annotations, not to geometry that lives in the scene.
             var gs = new THREE.Mesh(ghostGeo.clone(), new THREE.MeshBasicMaterial({
                 color: hexToThreeColor(ghostColor), transparent: true, opacity: 0.42,
-                depthTest: false, depthWrite: false
+                depthWrite: false
             }));
             gs.renderOrder = 994;
             gs.userData = { elementType: "mg_ghost", id: "mg_ghost_" + i, slot: i };
@@ -42175,8 +42215,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         for (i = 0; i < MG_HULL_EDGES; i++) {
             var he = new THREE.Mesh(ghostGeo.clone(), new THREE.MeshBasicMaterial({
-                color: hexToThreeColor(ghostColor), transparent: true, opacity: 0.30,
-                depthTest: false, depthWrite: false
+                color: hexToThreeColor(ghostColor), transparent: true, opacity: 0.40,
+                depthWrite: false
             }));
             he.renderOrder = 993;
             he.userData = { elementType: "mg_hull", id: "mg_hull_" + i, slot: i };
@@ -42196,7 +42236,14 @@ export const FIELD_3D_RENDERER_CODE = `
         arc.userData = { elementType: "mg_arc", id: "mg_arc" };
         arc.visible = false;
         addToScene(arc);
-        var arcLab = createLabelSprite("109.5\\u00B0", arcColor, 0.5);
+        // The arc / span / lone-pair labels carry LIVE text that grows far wider
+        // than their seed string ("109.5°" -> "H–C–H = 109.5°"), so they must be
+        // pmCreateAutoLabel sprites: updateLabelSpriteText re-measures and re-fits
+        // an _pmAutoWidth canvas, while a plain createLabelSprite keeps its
+        // once-measured 384px canvas and CLIPS the longer string (observed on the
+        // first EYE run as "–C–H = 109." — the same class as the ac_generator
+        // "each half tu" clip that motivated the auto-width path).
+        var arcLab = pmCreateAutoLabel("H\\u2013C\\u2013H = 109.5\\u00B0", arcColor, 0.5);
         arcLab.userData = { elementType: "mg_arc_label", id: "mg_arc_label" };
         arcLab.visible = false;
         addToScene(arcLab);
@@ -42213,7 +42260,7 @@ export const FIELD_3D_RENDERER_CODE = `
         span.userData = { elementType: "mg_span", id: "mg_span" };
         span.visible = false;
         addToScene(span);
-        var spanLab = createLabelSprite("178 pm", spanColor, 0.44);
+        var spanLab = pmCreateAutoLabel("H\\u00B7\\u00B7\\u00B7H = 178 pm", spanColor, 0.44);
         spanLab.userData = { elementType: "mg_span_label", id: "mg_span_label" };
         spanLab.visible = false;
         addToScene(spanLab);
@@ -42431,7 +42478,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // the flat-sketch morph: every bond interpolates from its paired flat
         // direction to its true tetrahedral one (deterministic greedy pairing).
         if (mode === "flat_vs_real" && flatF < 1) {
-            var srcs = mgFlatSources(fr.bonds);
+            var srcs = mgFlatSources(fr.bonds, mgd.flat_basis);
             for (i = 0; i < bondDirs.length; i++) bondDirs[i] = mgLerpDir(srcs[i], fr.bonds[i], flatF);
         }
         // the domain-count spread: the surviving domains glide from the previous
@@ -42459,6 +42506,15 @@ export const FIELD_3D_RENDERER_CODE = `
             for (i = 0; i < loneDirs.length; i++) loneDirs[i] = mgRotY(loneDirs[i], spinAng);
         }
 
+        // Which two bonds the angle arc measures — resolved BEFORE the atom pass,
+        // because only those two ligands get a symbol label. Labelling all six is
+        // both clutter (Rule 34) and a collision: a bond pointing away from the
+        // camera foreshortens onto the central atom, and its label lands on top of
+        // it (observed on the first EYE run — the fourth methane H).
+        var ap = mgd.arc_pair || mol.arc_pair || [0, 1];
+        var ai = mgClamp(ap[0], 0, Math.max(0, fr.bonds.length - 1));
+        var aj = mgClamp(ap[1], 0, Math.max(0, fr.bonds.length - 1));
+
         // ── central atom + label
         var cenEl = MG_ELEMENTS[mol.central] || MG_ELEMENTS.C;
         var cen = mgFindById("mg_central");
@@ -42467,7 +42523,18 @@ export const FIELD_3D_RENDERER_CODE = `
         if (cenLab) {
             cenLab.visible = (mgd.show_atom_labels !== false);
             updateLabelSpriteText(cenLab, mol.central);
-            cenLab.position.set(cenEl.radius + 0.28, cenEl.radius + 0.10, 0);
+            // Park the central symbol on the side AWAY from the angle arc. A fixed
+            // up-right offset collided with the arc and its label on most states
+            // (the arc always opens between two bonds, and up-right is inside that
+            // wedge as often as not).
+            var away = null;
+            if (bondDirs.length > 1 && ai !== aj && bondDirs[ai] && bondDirs[aj]) {
+                var sm = [bondDirs[ai][0] + bondDirs[aj][0], bondDirs[ai][1] + bondDirs[aj][1], bondDirs[ai][2] + bondDirs[aj][2]];
+                if (Math.abs(sm[0]) + Math.abs(sm[1]) + Math.abs(sm[2]) > 0.12) away = mgNorm(sm);
+            }
+            var co = cenEl.radius + 0.42;
+            if (away) cenLab.position.set(-away[0] * co, -away[1] * co, -away[2] * co);
+            else cenLab.position.set(cenEl.radius + 0.28, cenEl.radius + 0.10, 0);
         }
 
         // ── bonds + ligands + their labels
@@ -42493,7 +42560,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (on) { lg.position.set(p[0], p[1], p[2]); lg.scale.setScalar(ligEl.radius); mgSetColor(lg, ligEl.color); }
             }
             if (ll) {
-                ll.visible = on && (mgd.show_atom_labels !== false) && f > 0.85;
+                ll.visible = on && (mgd.show_atom_labels !== false) && f > 0.85 && (i === ai || i === aj);
                 if (ll.visible) {
                     updateLabelSpriteText(ll, mol.ligand);
                     var lo = 1 + (ligEl.radius + 0.30) / MG_BOND_LEN;
@@ -42561,10 +42628,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 var he = mgFindById("mg_hull_" + hi);
                 if (he) {
                     he.visible = true;
-                    if (he.material) he.material.opacity = 0.30 * cageF;
                     var pa = [allDirs[i][0] * MG_BOND_LEN * 1.12, allDirs[i][1] * MG_BOND_LEN * 1.12, allDirs[i][2] * MG_BOND_LEN * 1.12];
                     var pb = [allDirs[j][0] * MG_BOND_LEN * 1.12, allDirs[j][1] * MG_BOND_LEN * 1.12, allDirs[j][2] * MG_BOND_LEN * 1.12];
                     mgOrientBetween(he, pa, pb, 1);
+                    if (he.material) he.material.opacity = 0.40 * cageF;
                 }
                 hi++;
             }
@@ -42577,12 +42644,21 @@ export const FIELD_3D_RENDERER_CODE = `
             var pOn = !!mgd.show_flat_plane && mode === "flat_vs_real";
             plane.visible = pOn;
             if (pOn && plane.material) plane.material.opacity = 0.22 * (1 - flatF);
+            // the sheet must LIE IN the sketch plane, so re-aim it onto the same
+            // basis the flat cross uses (PlaneGeometry is born in the world
+            // xy-plane, which is only correct for a camera on +z).
+            if (pOn && mgd.flat_basis && mgd.flat_basis[0] && mgd.flat_basis[1]) {
+                var pr = mgNorm(mgd.flat_basis[0]), pu = mgNorm(mgd.flat_basis[1]);
+                mgTmpU.set(pr[0], pr[1], pr[2]);
+                mgTmpW.set(pu[0], pu[1], pu[2]);
+                mgTmpV.copy(mgTmpU).cross(mgTmpW).normalize();   // plane normal
+                mgTmpM.makeBasis(mgTmpU, mgTmpW, mgTmpV);
+                plane.quaternion.setFromRotationMatrix(mgTmpM);
+            }
         }
 
         // ── the bond-angle arc + its LIVE numeric label (Rule 33d: an instrument
         //    reads a real number, it is never a decorative dial)
-        var ap = mgd.arc_pair || mol.arc_pair || [0, 1];
-        var ai = mgClamp(ap[0], 0, bondDirs.length - 1), aj = mgClamp(ap[1], 0, bondDirs.length - 1);
         var arc = mgFindById("mg_arc"), arcLab = mgFindById("mg_arc_label");
         var haveArc = !!mgd.show_angle_arc && bondDirs.length >= 2 && ai !== aj && ligPos[ai] && ligPos[aj];
         if (arc) {
@@ -42605,8 +42681,20 @@ export const FIELD_3D_RENDERER_CODE = `
                 arc.geometry.setDrawRange(0, segs * 6);
                 if (arcLab) {
                     arcLab.visible = true;
-                    var mid = mgNorm([u[0] + w[0], u[1] + w[1], u[2] + w[2]]);
-                    var lr = MG_ARC_R + 0.52;
+                    // the arc's own midpoint direction. For a 180° pair (a LINEAR
+                    // molecule) u + w cancels to zero and mgNorm hands back a
+                    // near-origin vector, which parked the "Cl–Be–Cl = 180.0°"
+                    // label straight on top of the beryllium (caught on the EYE
+                    // run). Fall back to the arc-plane's quarter-turn axis, which
+                    // IS the arc's apex, and is always well-defined.
+                    var msum = [u[0] + w[0], u[1] + w[1], u[2] + w[2]];
+                    var mid = (Math.abs(msum[0]) + Math.abs(msum[1]) + Math.abs(msum[2]) > 0.12)
+                        ? mgNorm(msum)
+                        : [vAx.x, vAx.y, vAx.z];
+                    // clear of the bonds AND of the atoms: the sprite is centred on
+                    // this point and a wide string still overlapped the central atom
+                    // at +1.15 (observed on SF₆).
+                    var lr = MG_ARC_R + 1.35;
                     arcLab.position.set(mid[0] * lr, mid[1] * lr, mid[2] * lr);
                     updateLabelSpriteText(arcLab, mol.ligand + "\\u2013" + mol.central + "\\u2013" + mol.ligand + " = " + angDeg.toFixed(1) + "\\u00B0");
                 }
