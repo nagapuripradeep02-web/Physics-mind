@@ -8,10 +8,12 @@
 
 ## Session C6 — The whiteboard test, executed: capability 3 gets an engine; and a green machine gate is not a verdict (2026-07-28)
 
-> **⚠ Session C5 is missing from this file on master.** The whiteboard test and THE RANKED PRIORITY
-> LIST — which drive everything below — were committed to branch **`docs/chemistry-priority-order`**
-> (`988b15b`, `9397863`, `feb7c9e`; pushed to origin, NOT merged). Read them there, or merge that
-> branch, before treating this log as complete. C6 assumes C5.
+> **✅ RESOLVED 2026-07-28 — `docs/chemistry-priority-order` is merged; C5 now sits directly below.**
+> For one day this file shipped a C6 that reasoned from a C5 nobody on master could read: the
+> whiteboard test and THE RANKED PRIORITY LIST — which drive everything below — were committed to
+> that branch (`988b15b`, `9397863`, `feb7c9e`), pushed, and never merged. **The lesson worth keeping:
+> a decision is not made until it is on master.** A pushed branch is a backup, not a publication —
+> the two sessions that followed C5 each had to be told where to go and read it.
 
 **What this session was for.** C5 ranked the roadmap by irreplaceability and named four capabilities a
 simulation has that a whiteboard does not. Three already had engines. The fourth — **capability 3,
@@ -103,6 +105,197 @@ remains a tie-breaker between diamonds and never a reason to build a demo — VS
 because a board structurally cannot reach it; that it also unlocks #13 and #17 for free is the
 tie-break, not the argument.
 
+---
+
+## Session C5 — The whiteboard test: build order is driven by IRREPLACEABILITY, not renderer cost; the ranked chemistry priority list (2026-07-27)
+
+**The founder's challenge, after watching `law_of_conservation_of_mass` come off the line:** *"These
+types of concepts are suitable for explaining even without simulation. A teacher can do that more
+effectively — a teacher might use only the last state as a reference. Which simulations are more
+impactful on students and more dependable for teachers?"*
+
+**The challenge is correct, and it overturns the build order this project was using.**
+
+### 1. The whiteboard test (LOCKED — the gate every candidate concept passes before it is scheduled)
+
+> **If a good teacher with a whiteboard and 60 seconds produces the same understanding, it is not a
+> diamond — and we should not spend a build on it.**
+
+`law_of_conservation_of_mass` mostly fails this test. "Atoms rearrange, nothing is created or
+destroyed" is one sentence and one sketch. Its arithmetic (12 + 32 = 44) is genuinely *better* on a
+board, because the teacher controls pace and can read a confused face. **Exactly one state survives
+the test — S2, open pan vs sealed flask** — because that is a real experiment a teacher cannot run in
+a classroom (you cannot burn charcoal in a sealed flask on a balance in front of 40 students). The
+other six states are scaffolding around a beat that needed two.
+
+This confirms `docs/DISCUSSIONS.md` Topic 14 from the inside: chemistry is **~30–40% diamond**, and
+the diamonds are *concentrated* in physical chemistry, organic mechanisms and stereochemistry.
+Bookkeeping is the demo tier.
+
+### 2. What a simulation does that a teacher cannot — the four capabilities
+
+A concept earns a build only if it needs at least one of these. Everything else is a whiteboard job.
+
+1. **Show the invisible at scale** — 500 particles responding to temperature; electrons drifting;
+   field lines. A teacher draws three particles and asks the class to imagine the rest.
+2. **Run "what if" with guaranteed-correct physics** — drag a variable, watch everything respond,
+   infinitely, always right. A teacher redraws two cases and asserts the trend between them.
+3. **Hold 3D spatial structure** — orbitals, VSEPR, stereochemistry, lattices. The place where
+   hand-waving fails worst and a 2D board simply cannot go.
+4. **Make a counterintuitive result believable** — the student's intuition says X, reality is Y, and
+   only *watching it happen* changes the belief.
+
+Bookkeeping, definitions, nomenclature and algebra fail all four. That is the whole demo tier.
+
+### 3. The corrected doctrine — renderer-compounding applies INSIDE the diamond zone only
+
+Session C3 locked "build by renderer archetype, not by chapter" so each build makes the next cheaper.
+**That is still right, but it optimizes COST, and cost is the wrong master variable.** Applied
+without the whiteboard test it produces a cheap catalog of concepts that did not need to be
+simulations.
+
+**Withdrawn this session:** the recommendation (made 2026-07-27, same day) to harvest the Ch.1 ledger
+cluster next — mole concept → percentage composition → stoichiometry → limiting reagent — on the
+grounds that they reuse the archetype-O machinery `law_of_conservation_of_mass` just built. They are
+*more* bookkeeping than the concept the founder is questioning. **Cheap is irrelevant when the output
+did not need to be a simulation**, and a thin catalog of demo-tier sims actively costs teacher trust —
+which is the buy-trigger (CLAUDE.md §3), not concept count.
+
+**Locked rule: compounding is a tie-breaker between diamonds, never a reason to build a demo.**
+
+### 4. State count stays COMPLEXITY-driven — a tier cap was proposed and REJECTED (founder, 2026-07-27)
+
+**Proposed and withdrawn the same session.** I suggested a second axis on state count: diamonds get
+the full arc, demo-tier concepts cap at 2–3 states. **The founder rejected it, and was right on two
+counts.**
+
+1. **It contradicted Rule 11** — *"never hardcode state count; it is complexity-driven."* A per-tier
+   cap is exactly that hardcoding, wearing a different hat.
+2. **It confused two independent questions.** Tier answers *whether and when we build a concept*.
+   Complexity answers *how many states it needs once we have decided to build it.* Those must not be
+   collapsed.
+
+**The locked position:** state count is set by the concept's own complexity, **identically to
+physics** — a complex concept or a complex simulation earns more states, a simple one fewer, and
+**every state must teach something genuinely important** (Rule 31: ONE idea + ONE complete motion,
+no filler, no static state). A scheduled concept gets the full, traditional treatment it deserves.
+Nothing about the authoring pipeline, the state-design method, or the quality bar changes.
+
+**The ONLY thing this session changes is BUILD ORDER: diamonds first, then strong, then demo.**
+
+This also gives a cleaner reading of `law_of_conservation_of_mass` than my original one. Its problem
+was never that it has 7 states — if it is worth building, 7 may well be what it needs. Its problem is
+that it should not have been at the front of the queue. The fix is sequencing, not shrinking.
+It stays exactly as built — approved, baseline-locked, voiced — and serves as the archetype-O
+ledger-choreography reference.
+
+### 5. "Dependable" is a SEPARATE axis from "impactful"
+
+The founder named two things, and they are not the same:
+- **Impactful** = irreplaceability (the four capabilities above).
+- **Dependable** = will a teacher *risk it live*, mid-explanation, in front of a class — loads fast,
+  does exactly what they expect, no surprises, and they can drive it.
+
+Dependability is why Rule 31's per-state contextual controls and Rule 32's legibility discipline
+matter more than catalog size, and it is the second half of the §3 buy-trigger (coverage **+
+classroom reliability**). A diamond that a teacher does not trust in front of a class scores zero.
+
+### 6. THE RANKED PRIORITY LIST
+
+> **⚠ THE ORDER IS FLEXIBLE — it is a default, not a contract (founder, 2026-07-27).** This list
+> encodes the best reasoning available today; it is not a commitment and it may be re-ordered at any
+> time, for any reason — a teacher request, a pilot signal, a syllabus change, a market opening, a
+> renderer landing early, or simply the founder's call on the day. **Do not treat a position in this
+> table as an argument against building something else.** If the founder asks for a concept out of
+> order, build it — the list informs the decision, it does not override it. What is durable is the
+> *reasoning* (the whiteboard test, §1–§5); the sequence below is that reasoning applied to today's
+> facts, and facts move.
+
+Ordering = **(irreplaceability tier) × (curriculum weight) ÷ (renderer dependency)**, with
+prerequisite chains respected inside each wave. Curriculum cells are **Rule 38g CLAIMS** — only
+CBSE/NCERT is author-verified; every international cell needs a real teacher of that board to confirm.
+
+**⚠ NCERT rationalisation caveat (carried from `CHEMISTRY_ARCHITECTURE.md` §9 and
+`chemistryCatalog.ts`): States of Matter and Solid State were REMOVED from the rationalised NCERT.
+Any chapter beyond Cl.11 Ch.1–4 must be verified against the current syllabus before scheduling.**
+
+#### P0 — ENGINE: the particle-box scenario (`particle_field`, one modest scenario build)
+
+Not a concept. **The highest-ROI action in the chemistry roadmap:** one gas-collision-box scenario
+unlocks all six P1 diamonds below. Until it ships, P1 is unbuildable (archetype M is
+`[NEEDS-SCENARIO]`). Owner: `peter_parker:renderer_primitives`. Rule 40: lands on master separately.
+
+#### P1 — The physical-chemistry diamonds (harvest the particle box, in this order)
+
+| # | Concept | Tier | NCERT | International | Why it cannot be a whiteboard |
+|---|---|---|---|---|---|
+| 1 | **Le Chatelier's principle** | 💎 | Cl.11 Ch.6 | IGCSE · IB · AP · A-level | **The single best chemistry sim that exists to be built.** Change concentration/pressure/temperature, watch the system shift and re-settle. All four capabilities at once. No teacher can show it |
+| 2 | **Dynamic equilibrium** (forward rate = backward rate, both still running) | 💎 | Cl.11 Ch.6 | IGCSE · IB · AP · A-level | The whole misconception is "the reaction stopped." Only motion kills it |
+| 3 | **Rate of reaction** (concentration · temperature · surface area · catalyst) | 💎 | Cl.12 Ch.3 | IGCSE (heavy) · IB · AP · A-level | Four causes, one visible effect, live-swept |
+| 4 | **Collision theory + activation energy** | 💎 | Cl.12 Ch.3 | IB · AP · A-level | Invisible by definition; the "not every collision reacts" beat needs to be watched |
+| 5 | **Maxwell–Boltzmann distribution** | 💎 | Cl.12 Ch.3 | IB · AP · A-level | A distribution *shifting* is a motion, not a picture |
+| 6 | **Kinetic particle theory / states of matter** | 💎 | ⚠ removed from rationalised NCERT | IGCSE (opener) · IB · AP · A-level | The substrate for 1–5. Build even though NCERT dropped it — it is the foundation and it is universal abroad |
+| 7 | **Diffusion / Graham's law** | ⭐ | ⚠ verify | IGCSE · A-level | Cheap once the box exists |
+
+#### P2 — Live-renderer diamonds (parametric + graph_interactive; NO new engine work)
+
+| # | Concept | Tier | NCERT | International | Note |
+|---|---|---|---|---|---|
+| 8 | **Titration curve** (the curve, not the apparatus) | 💎 | Cl.11 Ch.6 | IB · AP · A-level (heavy) | Archetype N, `[LIVE]` today. The equivalence-point cliff is the payoff |
+| 9 | **Reaction profiles / enthalpy / activation energy** (exo vs endo) | ⭐ | Cl.11 Ch.5 | IGCSE · IB · AP · A-level | Archetype L rotated into a reaction coordinate. Reuses the Bohr ladder machinery |
+| 10 | **Hydrogen emission spectrum** | ⭐ | Cl.11 Ch.2 | IB · AP · A-level | Direct successor to the shipped `bohr_model_energy_levels`; cheapest remaining strong concept |
+| 11 | **Periodic trends** (atomic radius · ionisation energy · shielding) | ⭐ | Cl.11 Ch.3 | all boards | The *mechanism* (effective nuclear charge) is invisible; the trend alone is a graph |
+
+#### P3 — ENGINE: Phase-5 Three.js molecule/orbital surface
+
+The largest investment and the **highest ceiling in the subject** — it unlocks the entire P4 block,
+which is where chemistry's densest diamond cluster lives. Founder-gated (`CHEMISTRY_BUILD_PLAN.md`
+Phase 5). Schedule after P1 proves the particle-box compounding thesis.
+
+#### P4 — The 3D diamonds (need P3)
+
+| # | Concept | Tier | NCERT | International | Note |
+|---|---|---|---|---|---|
+| 12 | **VSEPR / molecular shapes** | 💎 | Cl.11 Ch.4 | all boards, heavily examined | Arguably #2 overall after Le Chatelier. Pure 3D — capability 3 |
+| 13 | **Hybridisation (sp/sp²/sp³)** | 💎 | Cl.11 Ch.4 | IB · AP · A-level | Inseparable from 12; build as a pair |
+| 14 | **SN1 vs SN2 + Walden inversion** | 💎 | Cl.12 Ch.6 | IB · AP · A-level | The inversion is *impossible* to draw. Arrow-pushing on a board loses the 3D entirely |
+| 15 | **Stereochemistry / chirality / optical isomerism** | 💎 | Cl.12 organic | IB · A-level | 3D is the entire concept |
+| 16 | **Atomic orbitals s/p/d** | 💎 | Cl.11 Ch.2 | all boards | Closes the Ch.2 atomic-structure arc |
+| 17 | **σ / π bonding** | 💎 | Cl.11 Ch.4 | IB · AP · A-level | |
+| 18 | **E1 / E2 elimination** | 💎 | Cl.12 Ch.6 | IB · A-level | Pairs with 14 |
+| 19 | **Solid state / unit cells** | 💎 | ⚠ removed from rationalised NCERT | A-level · IB | International-only value for now |
+
+#### P5 — ENGINE: apparatus / wet-lab primitives (Phase 5b) → then
+
+| # | Concept | Tier | NCERT | International | Note |
+|---|---|---|---|---|---|
+| 20 | **Electrochemical cell** (Daniell, salt bridge, electron + ion flow) | 💎 | Cl.12 Ch.2 | IGCSE · IB · AP · A-level | Two invisible flows at once, in opposite directions |
+| 21 | **Electrolysis** | 💎 | Cl.12 Ch.2 | IGCSE (heavy) · A-level | |
+| 22 | **Titration apparatus + indicator** | ⭐ | Cl.11 Ch.6 | all boards | Completes #8 |
+
+#### DEPRIORITISED — the demo tier (build LAST, or only when a syllabus gap forces it)
+
+Mole concept · stoichiometry · limiting reagent · percentage composition · empirical/molecular
+formula · balancing equations · nomenclature · descriptive inorganic · qualitative analysis ·
+metallurgy · biomolecules. **These are whiteboard jobs.** `law_of_conservation_of_mass` (built) is the
+reference for what this tier looks like and why the rest of it waits.
+
+**To be unambiguous (§4):** deprioritised means *later in the queue*, NOT *smaller when built*. If one
+of these is eventually scheduled, it gets the same complexity-driven state count and the same quality
+bar as any other concept. We are changing the order, not lowering the standard.
+
+### 7. What changes immediately
+
+1. **Next chemistry action is the P0 particle-box scenario build**, not another concept.
+2. The Ch.1 ledger harvest is **cancelled**.
+3. Every future chemistry skeleton states its tier (💎 / ⭐ / demo) and its whiteboard-test
+   justification in §1 of the skeleton, before state design begins.
+4. `CHEMISTRY_BUILD_PLAN.md`'s phase tracker should point here for concept ORDER; it remains the
+   authority on phase *mechanics*.
+5. **Nothing else changes.** State design, the Alex pipeline, Rules 11/31/32/33/34/38, the quality
+   bar and the gates are untouched — chemistry is authored exactly as physics is. This session
+   changed the ORDER of the queue and nothing about how a concept is built once it reaches the front
+   of it (§4).
 ---
 
 ## Session C4 — First diamond built (Bohr): the archetype→renderer map is systematically optimistic; verify against code before scheduling (2026-07-23)

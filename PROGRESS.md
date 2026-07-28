@@ -1,5 +1,49 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — 2nd chemistry concept shipped to master + FOUR platform findings that affect physics too (2026-07-27, `feat/chemistry-ch1-conservation` → master `df3d993`)
+
+> Chemistry detail → `PROGRESS_CHEMISTRY.md` (2026-07-27 entry); strategy → `docs/CHEMISTRY_DISCUSSIONS.md`
+> Session C5. **This entry records only what is cross-subject** — every item below lands on the
+> `parametric` family and therefore on the physics Vectors chapter as much as on chemistry.
+
+**`law_of_conservation_of_mass` (NCERT Cl.11 Ch.1 §1.3, 7 states, archetype O) shipped end-to-end via the full traditional pipeline** — architect → chemistry_author → json_author → quality_auditor ∥ eye_walker, no founder-proxy, every gate to the founder. Engine half cherry-picked to master separately as `dceca4c` per Rule 40, then the branch merged (`df3d993`). tsc 0 · validate:chemistry 2/2 · **validate:concepts 141/141 unchanged** · THE EYE 44/44 · 7 baselines locked (fleet 60 → **61**) · 23/23 EN clips.
+
+### The finding that matters for physics: every automated gate passed a visibly broken sim
+
+THE EYE **31/31**, `validate:chemistry` PASS, `tsc` 0, `check-layout-overlap` clean — on a concept whose **apparatus was disassembled in six of seven states**. `drawBody` anchors `rect` at TOP-LEFT and `circle` at CENTER (`parametric_renderer.ts:1465-1468`); the author placed every rect as if centre-anchored, so parts sharing an authored axis rendered as a staircase of unconnected bars with the readout out on the background. Caught by `quality_auditor` *deriving expected geometry from coordinates and diffing against pixels* — **`eye_walker` read the same 145 frames and passed those states**, because it was asked about numbers/Unicode/staging/focal (all correct) and never asked "does this read as the apparatus it claims to be?". **Any parametric concept can ship this way today.**
+
+### Four platform items — none applied, all need a founder ruling
+
+1. **`parametric_layout_gates_blind_to_body_geometry`** ⭐ — `check-layout-overlap.mjs` computes bboxes only for text/arrows; `validate:chemistry` has **no canvas-bounds check at all**. A mis-assembled apparatus and an 80px-off-canvas `body` both ship green. It also models a magnitude-driven `force_arrow` as a fixed short box, ignoring `drawForceArrow`'s `scale_pixels_per_unit || 5` (a `magnitude: 22` needle rendered 110px through the apparatus). **Closing this is what stops the above recurring — on either subject.**
+2. **`drawVector` and `drawDerivationStep` never call `PM_animationGate`** (nine sibling draw fns do) → `appear_at_ms` is **silently ignored** on `vector` and `derivation_step`; staged reveals all fire at t=0 with no error and no warning. Workarounds used here: `force_arrow` for the needle, staged `annotation` for the derivation (the `bohr` precedent).
+3. **`tts_sentence` id uniqueness is unvalidated** — ids repeated per state (`s1`,`s2`… restarting) collide, and clips are keyed by id, so states silently overwrite each other's audio. Only `tts:generate` catches it, at render time; **any never-voiced concept in the fleet carries this latently.** Belongs in the schema/validator.
+4. **`parametric_from_expr_to_expr_never_consumed` is STALE** — the renderer *does* consume them now (`PM_resolveArrowPoint` `:1780-1781`, `PM_safeEvalPoint` `:2152-2163`). Retire the row before it misleads another author.
+
+### GAP 2 is closed — and a doc said otherwise for days
+
+`docs/patterns/chemistry.md` still documented "the parametric renderer binds only TEXT to live variables; `body`/`animated_path` positions are static per state" as a live limit. **`position_expr` landed in `369e263`** and is consumed at `:1185-1188`. All three pipeline agents designed the explore state around a limitation that no longer existed. No defect (the workarounds are valid) but the state shipped weaker than the engine allowed. **Same failure class as the archetype-`[LIVE]` scar: a renderer claim in a doc decays, and `git log -S "<symbol>"` is the whole cost of checking.** Doc corrected. **Physics parametric concepts can use `position_expr` today** — slider-driven explore states can move glyphs, not just numbers.
+
+### Ops: the auto-push hook drops commits (3× today)
+
+Two commits in quick succession → the second hook hits the in-flight lock and returns early on "pushes are cumulative", but the first push had already resolved its SHA, orphaning the second commit. Caught every time by `git rev-list --count --branches --not --remotes`, pushed by hand. This is `GIT_WORKFLOW.md` §0's *"trust the count, not the hook"* with a precise mechanism now (a race between the lock check and the post-push SHA comparison) rather than "observed after a large merge". **Also: `ffmpeg` was absent on this laptop** — 23 Sarvam calls spent and discarded before it was installed; belongs in the §0 new-machine checklist.
+
+### Strategy (chemistry-scoped, recorded here because it may generalise)
+
+Founder challenged whether the shipped concept needed to be a simulation at all: *"a teacher can do that more effectively and would use only the last state."* Correct — it is demo-tier. Locked the **whiteboard test** (a concept earns a build only if a teacher with a whiteboard and 60 seconds cannot produce the same understanding), demoted renderer-compounding to a tie-breaker *between* diamonds, and re-ranked the chemistry queue. **A tier-based state cap was proposed and REJECTED by the founder** — it contradicted Rule 11 and conflated *whether to build* with *how many states*; **state count stays complexity-driven, identically to physics. Only the ORDER changed, and the order is explicitly a flexible default, not a contract.**
+
+### ⏭ NEXT
+1. **P0 — the particle-box `particle_field` scenario** (one modest build, unlocks six chemistry diamonds), **or** P2 concepts needing zero engine work (titration curve, reaction profiles, hydrogen spectrum, periodic trends).
+2. **Founder rulings:** the 4 platform items above · merge `docs/chemistry-priority-order` to master.
+3. **Asmi's professor review on both chemistry concepts** — the only gate neither has passed.
+4. **Still outstanding from Ch.7 (unchanged):** the chapter-end full-fleet re-seed + THE EYE sweep. ~2900 lines of new scenario code went into a shared renderer with only `capacitance` as a regression anchor — the whole-chapter regression is NOT proven until it runs, and it gates founder-proxy's graduation.
+
+### CLAUDE.md suggestions (NOT applied — founder approval required)
+- **§0 of `GIT_WORKFLOW.md`:** add `ffmpeg` to the new-machine checklist beside the hook installer.
+- **Rule 19 / the validator:** the layout gates should register `body` bboxes using the renderer's own anchoring rule, and add a 760×500 bounds check. This is item 1 above and is the highest-value automated check available right now.
+- No change proposed to Rules 11/31 — the founder's ruling *confirms* them as written.
+
+---
+
 ## 🧪 SESSION — Chemistry foundation: architecture + build plan → chemistry_author role → subject-aware catalog → parity-audit hardening → international build-flow locked (2026-07-23, branch `feat/chemistry-foundation`, new laptop/macOS)
 
 > **Chemistry now has its own logs** (this root PROGRESS.md stays the physics/engine log): ongoing

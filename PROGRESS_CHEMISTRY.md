@@ -17,9 +17,9 @@
 | 1 | Curriculum plumbing (subject first-class) | ✅ 2026-07-23 |
 | 2.5 | Parity hardening (4 shared specs + tooling + validate:chemistry) | ✅ 2026-07-23 |
 | 3 | First concept — **Bohr energy levels** (Wave 1 pivoted from Rutherford; prove-first) | ✅ **MERGED TO MASTER 2026-07-27** (`b9eb735`) — authored, validated, quality_auditor gated, THE EYE 39/39, eye_walker walked, baselines approved. **Only Asmi's professor review remains.** |
-| 3b | Second concept — **law_of_conservation_of_mass** (archetype O ledger) | ✅ MERGED 2026-07-27 (`df3d993`) — baselines locked, 23 EN clips. **Only Asmi's review remains.** |
-| 4 | Chemistry machine gates (ledger check, animation vocab) | ◐ 2026-07-28: `validate:chemistry` is now IN CI (`verify.yml`) — it had never run there, so a broken chemistry concept passed the whole workflow green. Ledger/animation-vocab gates still ☐. |
-| 5 | Chemistry render surface — **both halves now LIVE** | ✅ 2026-07-28: `field_3d` `molecular_geometry` (electron-domain 3D) **and** `particle_field` `gas_box` (2D hard-disc gas) both on master, each with its first concept shipped. Still ☐: orbitals/lattices, wet-lab apparatus (Phase 5b). |
+| 3b | Second concept — **law_of_conservation_of_mass** (NCERT Cl.11 Ch.1 §1.3, archetype O) | ✅ **MERGED TO MASTER 2026-07-27** (`df3d993`) — full traditional pipeline, quality_auditor FAIL→fixed, THE EYE 44/44, baselines locked, 23/23 EN audio. **Only Asmi's professor review remains.** |
+| 4 | Chemistry machine gates (ledger check, animation vocab) | ◐ 2026-07-28: `validate:chemistry` is now IN CI (`verify.yml`) — it had never run there, so a broken chemistry concept passed the whole workflow green. Ledger/animation-vocab gates still ☐ (4 scar candidates waiting to seed them). |
+| 5 | Chemistry render surface — **both halves now LIVE** | ✅ 2026-07-28: `field_3d` `molecular_geometry` (electron-domain 3D) **and** `particle_field` `gas_box` (2D hard-disc gas) both on master, each with its first concept shipped. Still ☐: **orbital lobes / lattices (P2)**, wet-lab apparatus (Phase 5b). |
 
 **Chemistry is a first-class subject ON MASTER across THREE renderer families, in 2D and 3D.**
 Four concepts, all baseline-locked and all voiced (90 EN clips):
@@ -109,7 +109,19 @@ because it is the one ref the automation deliberately leaves alone.
 
 ---
 
-## The renderer-compounding build FLOW (locked 2026-07-23 — see CHEMISTRY_DISCUSSIONS.md §C3)
+## The renderer-compounding build FLOW (locked 2026-07-23 — **SUPERSEDED 2026-07-27, see below**)
+
+> **⚠ SUPERSEDED by `docs/CHEMISTRY_DISCUSSIONS.md` Session C5 (2026-07-27).** The wave table below
+> orders by RENDERER COST. That optimizes the wrong variable: it produced Wave 4 (bookkeeping —
+> balancing, mole, stoichiometry) as a cheap harvest, and those concepts do not need to be simulations
+> at all. **Order is now driven by IRREPLACEABILITY** (the whiteboard test: if a teacher with a
+> whiteboard and 60 seconds gets the same result, it is not a diamond), with renderer-compounding
+> demoted to a tie-breaker *between* diamonds. Wave 4 is deprioritised to last; the Wave-2 particle
+> box becomes **P0** because it unlocks six diamonds. The ranked list lives in C5 §6 — **and that
+> order is explicitly a flexible default, not a contract (founder, 2026-07-27).**
+>
+> The compounding *insight* below is still correct and still governs cost. It is kept for that, and
+> because Waves 2/3/5 survive the re-ranking almost unchanged.
 
 Build by **renderer archetype, not by chapter** — each renderer surface, built once, is reused by the
 next concept, so cost-per-concept falls as the catalog grows (the physics magnetism recursive-bootstrap,
@@ -233,6 +245,53 @@ sees the file, tsc 0. NOT baseline-approved — `visual:approve` stays founder-g
   (5) Orbitals (#16) and solid state (#19) stay blocked on the P2 scenario; SN1/SN2 (#14) needs a
   motion layer on top of the built scaffold.
 
+---
+
+## 🧪 SESSION — 2nd chemistry concept SHIPPED (`law_of_conservation_of_mass`) + the build order re-founded on the whiteboard test (2026-07-27, branches `feat/chemistry-ch1-conservation` → master, `docs/chemistry-priority-order`)
+
+**Bottom line: the second chemistry diamond went end-to-end through the full traditional pipeline in one session — authored, FAILED review, fixed, baseline-locked, voiced, and merged to master — and then the founder's challenge to the concept itself overturned the chemistry build order. Six commits merged to master (`df3d993`), engine half cherry-picked separately (`dceca4c`) per Rule 40. tsc 0 · validate:chemistry 2/2 · validate:concepts 141/141 unchanged · THE EYE 44/44 · 23/23 EN clips. Baseline-locked fleet 60 → 61.**
+
+### What shipped
+`law_of_conservation_of_mass` — NCERT Cl.11 Ch.1 §1.3, 7 states, **archetype O (reaction ledger), the first of its archetype**, `parametric` renderer. Concept chosen by the founder's stated rule (NCERT chapter order weighted by international coverage). Twin-misconception design: burning appears to destroy mass (S1 plants the belief, S2 breaks it with the sealed twin — the primary aha) and rust appears to create it (S5). Pipeline run in full: `architect` → `chemistry-author` → `json-author` → `quality-auditor` ∥ `eye-walker`, no founder-proxy, every gate to the founder.
+
+### The load-bearing lesson: every automated gate passed a broken sim
+THE EYE reported **31/31**, `validate:chemistry` PASS, `tsc` 0, `check-layout-overlap` clean — on a concept whose **apparatus was disassembled in six of seven states**. `drawBody` anchors `rect` at TOP-LEFT and `circle` at CENTER (`parametric_renderer.ts:1465-1468`); json_author authored every rect as if centre-anchored, so the base/column/housing/pan — all at `x:175` to share a centre axis — rendered with centres at x=250/183/235/230, a staircase of unconnected bars, with the centre-aligned readout sitting out on the background. **Nothing read as a balance** (Rule 24 failure).
+
+**The two AI reviewers disagreed, and the disagreement is the finding.** `quality-auditor` caught it by *deriving expected geometry from coordinates and comparing to pixels*; `eye-walker` read the same 145 frames and passed those states — it verified numbers, Unicode, staging, focal discipline (all genuinely correct) but never asked "does this read as a balance?", because the dispatch did not ask it to. Adjudicated by the orchestrator opening the frame directly. **Neither reviewer alone was sufficient; eye-walker also reported one non-defect (a "needle spike" that is `smoke_wisp` mid-grow).**
+
+### Fix + verification
+One `json-author` dispatch, ten findings, JSON-only (no numbers, narration or assessment touched — both reviewers had independently confirmed every rendered digit against the number lock). Re-laid all rect geometry; **added the S2 wisps that the misconception counter promised but never rendered** (the primary aha was asserted, not shown); separated S5's two oxygen atoms, which resolved to one pixel and read as an atom *vanishing* on the state teaching that mass is never destroyed; S3's CO₂ made linear; `zoom_box` pulled on-canvas from 80px off; `scale_pixels_per_unit` on the S7 needle (was rendering 5× long through the flask). Verified by **reading the frozen frames**, not by gates passing.
+
+### Then: TTS (two blockers, both new)
+- **Duplicate `tts_sentence` ids** — every state numbered from `s1` again, so clips (keyed by id) would have overwritten each other, collapsing 7 states into ~4 and attaching each to the wrong visual. `tts:generate` refused rather than emitting silently. Renamed all 23 to state-scoped (`s1_1`…`s7_1`); nothing references sentence ids, so the diff is exactly 23 lines. **Neither the schema nor `validate:chemistry` checks id uniqueness — only the TTS script does, so any never-voiced concept carries this latently.**
+- **`ffmpeg` absent on this laptop** — Sarvam returned audio, wav→mp3 failed, **23 API calls spent and discarded**. Installed ffmpeg 8.1.2 (brew). New-machine setup gap, same family as the missing `agent-teams-reference.md`; belongs in `GIT_WORKFLOW.md` §0.
+- Result: **23/23 EN clips** (bulbul:v3/priya, 318 words), manifest + clips HTTP 200. ⚠ `review-site/` is gitignored, so the audio is **unbacked** — a clean costs another 23 Sarvam calls (Rule 30h: no free restore).
+
+### Doctrine changed this session
+1. **GAP 2 is CLOSED and the doc was wrong.** `patterns/chemistry.md` still documented "parametric binds only TEXT to live variables; positions are static" as a live limit. `position_expr` landed in `369e263` (consumed at `:1185-1188`); `from_expr`/`to_expr` are consumed too (`:1780-1781`, `:2152-2163`), making that scar row stale. **All three pipeline agents designed S7 around a limitation that no longer existed** — same failure class as the archetype-`[LIVE]` scar. No defect, but the explore state shipped weaker than the engine allowed. Doc corrected with the evidence and the lesson.
+2. **The whiteboard test (CHEMISTRY_DISCUSSIONS.md Session C5).** Founder challenge: *"these concepts can be explained without a simulation; a teacher does it more effectively and would use only the last state."* Correct — conservation of mass is demo-tier, and exactly one state (S2, open vs sealed) survives the test. Locked: a concept earns a build only if a teacher with a whiteboard and 60 seconds cannot produce the same understanding. Renderer-compounding demoted to a tie-breaker between diamonds. **Ch.1 ledger harvest (mole → stoichiometry → limiting reagent) cancelled.**
+3. **A tier-based state cap was proposed and REJECTED by the founder** — it contradicted Rule 11 (never hardcode state count) and conflated *whether/when to build* with *how many states once building*. **State count stays complexity-driven, identically to physics; only the ORDER changed.**
+4. **The priority order is explicitly a flexible default, not a contract** (founder). What is durable is the reasoning, not the sequence.
+
+### Scar candidates — 4 filed, NONE applied (founder ruling needed)
+`docs/concepts/chemistry/scar_candidates_law_of_conservation_of_mass.sql` + 2 more from review:
+1. **`parametric_layout_gates_blind_to_body_geometry`** ⭐ *the load-bearing one* — `check-layout-overlap.mjs` computes bboxes only for text/arrows and `validate:chemistry` has **no canvas-bounds check at all**, so a disassembled apparatus and an 80px-off-canvas body both ship green. It also models a magnitude-driven `force_arrow` as a fixed short box, ignoring `scale_pixels_per_unit`.
+2. `parametric_vector_primitive_ignores_appear_at_ms` — `drawVector` never calls `PM_animationGate` (9 sibling draw fns do), so staged `vector` reveals all fire at t=0, silently.
+3. `parametric_derivation_step_reveal_ungated_concurrent_typing` — same for `drawDerivationStep`; N lines all type at once.
+4. **`tts_sentence_id_uniqueness_unvalidated`** (new) — belongs in the validator, not at render time.
+Also: the `parametric_from_expr_to_expr_never_consumed` row is **STALE** and should be retired before it misleads another author.
+
+### Ops finding — the auto-push hook drops commits
+Observed **3×** today: on two commits in quick succession, the second hook hits the in-flight lock and returns early on the reasoning that "pushes are cumulative", but the first push had already resolved its SHA — orphaning the second commit. Caught each time by `git rev-list --count --branches --not --remotes` and pushed by hand. This is `GIT_WORKFLOW.md` §0's *"trust the count, not the hook"*, now with a precise mechanism (a race between the lock check and the post-push SHA comparison) rather than the vaguer "observed after a large merge".
+
+### Files changed
+`src/data/concepts/chemistry/law_of_conservation_of_mass.json` (new) · `src/lib/renderers/parametric_renderer.ts` + `src/lib/physicsEngine/concepts/law_of_conservation_of_mass.ts` + `index.ts` (engine, cherry-picked to master as `dceca4c`) · `visual_baselines/law_of_conservation_of_mass/` (7 baselines) · `docs/concepts/chemistry/{skeleton,chemistry_block,scar_candidates}` · `docs/patterns/chemistry.md` (GAP 2) · `docs/CHEMISTRY_DISCUSSIONS.md` (Session C5) · `docs/CHEMISTRY_BUILD_PLAN.md` (order pointer) · this file.
+
+### ⏭ NEXT
+1. **P0 — the particle-box scenario build** (`peter_parker:renderer_primitives`, `particle_field`): one modest gas-collision scenario unlocks six diamonds (Le Chatelier, dynamic equilibrium, rates, collision theory, Maxwell–Boltzmann, kinetic theory). The highest-ROI action in the chemistry roadmap. Rule 40: lands on master separately.
+2. **Or P2 with zero engine work** if concepts are preferred over engine: titration curve · reaction profiles · hydrogen spectrum · periodic trends — all on renderers live today.
+3. **Founder rulings pending:** the 4 scar candidates · retire the stale `from_expr` row · merge `docs/chemistry-priority-order` to master.
+4. **Asmi's professor review — now pending on BOTH chemistry concepts.** This is the only gate neither concept has passed.
 ---
 
 ## 🧪 SESSION — Convergence + SHIPPED TO MASTER: 130-commit merge, 3 platform fixes landed separately, eye_walker gate, baselines locked, DB migration applied (2026-07-26 → 27)
