@@ -20,11 +20,16 @@
 > Only **[LIVE]** archetypes may appear in a skeleton today. Archetype M was mislabeled [LIVE] in v0.1;
 > the code check found NO gas-collision scenario anywhere — it is **[NEEDS-SCENARIO]** (Wave-2 build).
 >
-> **Update 2026-07-28:** archetype **P is no longer wholly [PHASE-5]** — its electron-domain-geometry
-> half is now [LIVE] as the `field_3d` `molecular_geometry` scenario, while orbitals/lattices remain
-> [NEEDS-SCENARIO]. See archetype P below. This is the first Phase-5-class surface to ship, and it
-> arrived as a scenario on the EXISTING Three.js renderer rather than as the new renderer file
-> `CHEMISTRY_ARCHITECTURE.md` §5c anticipated.
+> **Update 2026-07-28:** archetype **P is no longer [PHASE-5] at all.** Both its 3D halves shipped in
+> one day as scenarios on the EXISTING Three.js renderer, not as the new renderer file
+> `CHEMISTRY_ARCHITECTURE.md` §5c anticipated: **electron-domain geometry** as `molecular_geometry`,
+> and **orbital lobes** as `orbital_shapes`. Only **crystal lattices** remain [NEEDS-SCENARIO]. See
+> archetype P below.
+>
+> **What §5c got wrong is worth remembering, because it cost two waves of scheduling:** it named a new
+> FILE where a new CASE would do, and the phase table then called Phase 5 "high (biggest lift)" and
+> founder-gated it behind everything else. `field_3d_renderer.ts` was already Three.js. **Re-read any
+> "we need a new renderer" claim against what the existing renderer already is.**
 
 ---
 
@@ -170,11 +175,28 @@ cheap path and no new renderer file exists. Two sub-tiers now:
   verified against its real value BEFORE any state was authored. Reference concept:
   `vsepr_molecular_shapes`. **Schedulable now** — hybridisation (#13) and σ/π (#17) should reuse it
   with zero new renderer code.
-- **P2 — orbital lobes + crystal lattices [NEEDS-SCENARIO]**. s/p/d orbital surfaces and unit cells
-  are NOT in the built scenario; they need a further scenario (lobe/isosurface geometry, a repeating
-  cell) on the same Three.js surface. Do not schedule an orbitals or solid-state concept until it
-  ships. SN1/SN2 (#14) and stereochemistry (#15) sit between the two tiers: the molecule scaffold
-  exists, the bond-breaking / inversion MOTION layer does not.
+- **P2 — orbital lobes [LIVE 2026-07-28] · crystal lattices [NEEDS-SCENARIO]**. `field_3d`,
+  `scenario_type: "orbital_shapes"` (commit `0ffb84c`, master `ed0d2a7`). s/p/d probability surfaces
+  with a seeded measurement-dot swarm inside them, node planes, a camera-aligned cutaway exposing the
+  2s radial node shell, and a probe plane reading live `|ψ|²`. Everything geometric is DERIVED from
+  exact hydrogenic (Z=1) functions at build time — 1s r₉₀ = 141 pm · 2s 483 pm (node shell at
+  2a₀ = 106 pm) · 2p tip 482 pm · 3d_xy 963 pm · E = −13.60/−3.40/−1.51 eV (agrees with the shipped
+  `bohr_model_energy_levels`) — and the occupancy HUD MEASURES the enclosed fraction from the sample
+  rather than asserting 90%. Modes: `orbit_dissolve` · `boundary` · `p_build` · `node_probe` ·
+  `p_set` · `d_clover` · `radial_node` · `node_count` · `explore`. Eight solved cameras ship as
+  per-mode defaults. Reference concept: `atomic_orbitals_s_p_d`. **Hybridisation (#13) and σ/π (#17)
+  are now schedulable** — a lobe is `(angular factor in its OWN frame) × (frame list) × (scale)`, so
+  #13 adds a frame list and lerps, and #17 needs only a per-lobe origin offset (one line).
+  **Still [NEEDS-SCENARIO]: crystal lattices / unit cells** (a repeating cell is not built), so
+  solid state (#19) stays blocked. SN1/SN2 (#14) and stereochemistry (#15) still sit between the
+  tiers: the molecule scaffold exists, the bond-breaking / inversion MOTION layer does not.
+  - **The one authoring trap this surface has** (found by reading pixels, not by a gate): the TRUE
+    90% boundary of a 2p orbital is plump — 482 × 334 pm, L/W 1.44 — not the slim textbook dumbbell.
+    One reads fine; **three of them fuse into a featureless ball and stop being countable.** That is
+    occlusion, not framing, so no camera solve fixes it (the global optimum was already found). Author
+    such a state at `enclosure: 0.5` with `show_dots: false` — the lower contour is derived from the
+    same functions and the HUD prints what is actually enclosed, so nothing is faked. Never recover
+    countability by shrinking or displacing lobes: that lies about size (Rule 29).
 
 > This split is the Session-C4 lesson applied to my own build: a tier is a CLAIM about renderer
 > readiness for the SPECIFIC motion a concept needs. "Molecular 3D" was one label covering at least
@@ -197,6 +219,29 @@ primitives (bond glyphs, Lewis dots, apparatus) are Phase-5b scope — an
 *Grows per shipped concept. Naming convention follows magnetism's (`aim-fly-deflect`,
 `quantised-jump`, `heat-the-box`, `atom-audit` are the seed names used in §1's signature beats —
 the first shipped concept of each archetype canonises its choreography here with t-windows.*
+
+**P2 orbital-lobe choreographies** (coined by `atomic_orbitals_s_p_d`, the first concept on
+`orbital_shapes`; cue names in brackets are the `SET_CUE_TIME` keys):
+
+| Name | What moves | Cue |
+|---|---|---|
+| **measure-stipple** | a running trajectory is replaced by accumulating measurement flashes; the density emerges FROM the measurements | `dissolve`, `stipple` |
+| **reveal-build** | the boundary surface grows over an existing swarm while the camera makes one slow orbit | `surface` |
+| **axis-extrude** | a boundary surface grows outward from the nucleus along one declared axis | `extrude` |
+| **sweep-probe** | a probe plane traverses the object while a live readout tracks it — the readout hitting exactly 0 IS the lesson | `probe` |
+| **axis-populate** | one identical shape is stamped onto each of three perpendicular axes in turn | `populate_<i>` |
+| **between-axes-bloom** | lobes grow in the DIAGONAL gaps while axis-aligned ghosts hold pose (the delta is *where*) | `bloom`, `ghost` |
+| **cutaway-reveal** | a clipping plane sweeps through a grown cloud, exposing interior structure invisible from outside | `grow`, `cutaway` |
+| **cycle-compare** | a gallery swaps through orbitals while a counter ticks | `gallery_<i>` |
+
+**Two timing rules this surface taught, both general:**
+1. **A cause-lead must be clamped to the event spacing.** A fixed "flash precedes its dot by 500 ms"
+   (Rule 32a) with events 90 ms apart kept five flashes permanently in the air, and the beat read as
+   a swarm of planets. `lead = min(authored_lead, event_period)` — **Rule 32a is about ORDER, not a
+   constant.**
+2. **Continuous motion does not satisfy the Rule-31a choreography ratio.** `spin_rate` and
+   `ghost_at_ms` do NOT count (verified in `deriveStateMeta`); only discrete cues do. A state carried
+   by spin alone will WARN however long it spins.
 
 ## 4. Overlay patterns
 

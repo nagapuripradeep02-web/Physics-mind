@@ -117,6 +117,12 @@ type ReviewState = {
     title: string;
     advance_mode: string;
     duration: number;
+    // Guided state that must keep running after its narration ends (Rule 37 /
+    // the continuous_motion exemption in onTimelineEnd). Must be carried HERE:
+    // the player reads it off the state object this function builds, so a field
+    // present in the concept JSON but absent from this type is silently dropped
+    // and the flag reads as inert with no error anywhere.
+    continuous_motion: boolean;
     sentences: ReviewSentence[];
 };
 
@@ -390,6 +396,7 @@ function extractStates(
                 title: st.title ?? id,
                 advance_mode: st.advance_mode ?? 'manual_click',
                 duration: typeof st.duration === 'number' ? st.duration : 12,
+                continuous_motion: (st as { continuous_motion?: boolean }).continuous_motion === true,
                 sentences,
             };
         });

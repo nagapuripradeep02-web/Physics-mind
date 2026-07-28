@@ -1,0 +1,870 @@
+{
+  "concept_id": "dynamic_equilibrium",
+  "concept_name": "Dynamic equilibrium",
+  "chapter": 6,
+  "section": "6.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Chemistry Class 11 Ch.6 Equilibrium §6.2 (equilibrium in chemical processes) + Cambridge IGCSE / IB DP / AP / A-level reversible reactions and equilibrium",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "gas_box"
+    ]
+  },
+  "prerequisites": [
+    "kinetic_particle_theory",
+    "collision_theory_activation_energy",
+    "rate_of_reaction"
+  ],
+  "real_world_anchor": {
+    "primary": "An unopened bottle of fizzy drink. It looks completely still and stays that way on a shelf for months — yet carbon dioxide molecules are leaving the liquid into the space above and dissolving back in again, continuously, at the same rate. Nothing changes because both things are happening equally.",
+    "secondary": "A sealed bottle half full of water: the level stops changing while evaporation and condensation both continue.",
+    "why_it_matters": "Both anchors are PHASE equilibria while this simulation shows a CHEMICAL one — that mapping is stated once, explicitly, so a student never silently assumes the box is showing dissolved gas. Once 'still on the outside, busy on the inside' is believable, equilibrium stops being a rule to memorise and becomes something a student can picture."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "both_directions": [
+      "STATE_5"
+    ],
+    "why_it_balances": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "physics_engine_config": {
+    "variables": {
+      "T": {
+        "name": "temperature of the thermostat bath",
+        "unit": "K",
+        "min": 250,
+        "max": 900,
+        "default": 300,
+        "step": 10,
+        "role": "taught_variable"
+      },
+      "V": {
+        "name": "box volume as a fraction of full width",
+        "unit": "",
+        "min": 0.35,
+        "max": 1,
+        "default": 1,
+        "step": 0.05,
+        "role": "taught_variable"
+      },
+      "N": {
+        "name": "reagent tap — total particles in the box, added or removed as A and B in equal numbers",
+        "unit": "particles",
+        "min": 140,
+        "max": 260,
+        "default": 180,
+        "step": 10,
+        "role": "taught_variable"
+      },
+      "activation_fwd_kT": {
+        "name": "forward barrier, in multiples of kT at ea_ref_T",
+        "unit": "",
+        "constant": 1.2,
+        "role": "reaction_constant"
+      },
+      "bond_energy_kT": {
+        "name": "energy released when the bond forms (> 0 = exothermic forward)",
+        "unit": "",
+        "constant": 2.1,
+        "role": "reaction_constant"
+      },
+      "reverse_attempt_per_s": {
+        "name": "Arrhenius pre-exponential factor for the decay of a bonded pair",
+        "unit": "s^-1",
+        "constant": 8,
+        "role": "reaction_constant"
+      },
+      "ea_ref_T": {
+        "name": "reference temperature the barriers are pinned to",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "temperature_K": {
+        "name": "opening temperature of the box",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "speed_scale": {
+        "name": "velocity calibration, sigma = speed_scale * sqrt(T/m)",
+        "unit": "px/tick/K^0.5",
+        "constant": 0.105,
+        "role": "calibration"
+      },
+      "m_A": {
+        "name": "mass of reactant A",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_B": {
+        "name": "mass of reactant B",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_AB": {
+        "name": "mass of the bonded pair — derived and enforced at init, never authored freely",
+        "unit": "engine mass units",
+        "derived": "m_A + m_B",
+        "role": "species"
+      },
+      "r_A": {
+        "name": "disc radius of reactant A",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_B": {
+        "name": "disc radius of reactant B",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_AB": {
+        "name": "disc radius of the bonded pair — derived and enforced at init",
+        "unit": "px",
+        "derived": "sqrt(r_A^2 + r_B^2)",
+        "role": "species"
+      },
+      "n_A": {
+        "name": "live population of A",
+        "unit": "particles",
+        "min": 0,
+        "max": 260,
+        "role": "live_readout"
+      },
+      "n_B": {
+        "name": "live population of B",
+        "unit": "particles",
+        "min": 0,
+        "max": 260,
+        "role": "live_readout"
+      },
+      "n_AB": {
+        "name": "live population of bonded pairs",
+        "unit": "particles",
+        "min": 0,
+        "max": 130,
+        "role": "live_readout"
+      },
+      "rate_f": {
+        "name": "forward event rate, sampled over a 5 s window",
+        "unit": "events/s",
+        "min": 0,
+        "max": 50,
+        "role": "live_readout"
+      },
+      "rate_r": {
+        "name": "reverse event rate, sampled over a 5 s window",
+        "unit": "events/s",
+        "min": 0,
+        "max": 50,
+        "role": "live_readout"
+      }
+    },
+    "formulas": {
+      "forward_rate": "rate of the forward reaction is proportional to n_A x n_B (an A must meet a B)",
+      "reverse_rate": "rate of the reverse reaction is proportional to n_AB (a bonded pair breaks on its own)",
+      "reverse_barrier": "Ea_rev = Ea_fwd + E_bond (derived, never authored)",
+      "equilibrium": "at equilibrium the two rates are equal, so the amounts stop changing while both reactions keep running"
+    },
+    "constraints": [
+      "atoms of each unit are conserved in every state: A-units (n_A + n_AB) and B-units (n_B + n_AB) are constant for the whole life of a state — verified 90/90, 45/45 and 120/60 across all seven states",
+      "total charge: LHS = RHS = 0 in every displayed equation; there are no ions anywhere in this concept",
+      "m_AB = m_A + m_B and r_AB = sqrt(r_A^2 + r_B^2), forced at init by gasRxResolveSpecies() — mass and disc area are both conserved by a reaction event, so the packing fraction never changes",
+      "Ea_rev = Ea_fwd + E_bond is DERIVED and must never be authored; reverse_attempt_per_s is the only reverse knob",
+      "fwd_total - rev_total = (bonded pairs on screen) - (bonded pairs at state entry), exactly, at every instant of every state",
+      "the equilibrium position depends only on bond_energy_kT, reverse_attempt_per_s, temperature and density; activation_fwd_kT changes the speed of both directions and never where the plateau sits",
+      "adiabatic is absent from every state: with the thermostat off the exothermic forward self-heats and the pure-product run freezes, and the same-plateau-from-either-side claim collapses",
+      "every state is isothermal at 300 K; measured 291-310 K across all seven states, so no temperature claim may be made in any guided state"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 40,
+    "max_labels_per_state": 20,
+    "max_words_per_tts_sentence": 40
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "The line is flat because both directions are running at the same rate.",
+    "visual_confirmation": "the composition graph holds flat while the fwd and rev bars stay lit at equal length and the made / broken totals keep climbing"
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "The forward reaction",
+        "duration": 18,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "bond_flash",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the sealed container — the apparatus that persists unchanged in every state (Rule 32d home pose)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "180 discs opening as 90 blue A and 90 pink B, in constant random motion"
+          },
+          {
+            "type": "event_flash",
+            "id": "bond_flash",
+            "role": "the green ring of a bond being made, leaving a blue and a pink disc joined by a white bond and spinning — the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "the fwd / rev bars and their N.N/s values; here the fwd bar visibly shortens as A and B are used up"
+          },
+          {
+            "type": "counter",
+            "id": "collision_counter",
+            "role": "collisions/s — the real number that makes 'not every meeting reacts' checkable instead of asserted (Rule 33c). NO formula surface in this state: the ⇌ equation is earned in STATE_2, once both directions have been seen, and the two overlays measurably collide here (see authoring_notes.overlay_collisions)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A sealed box: blue A and pink B, never still."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Look at the forward direction first. Not every meeting reacts; the two must hit hard enough to stick."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Each green flash leaves one joined pair. The fwd rate falls as A and B run out."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The reverse reaction",
+        "duration": 18,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "split_flash",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box from the same home pose — only the opening composition has changed"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "45 bonded pairs and not one loose disc"
+          },
+          {
+            "type": "event_flash",
+            "id": "split_flash",
+            "role": "the orange ring of a bond breaking, and the same blue and pink discs flying apart — the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "rev long, fwd reading exactly 0.0/s — it cannot do otherwise, there is no A or B to react"
+          },
+          {
+            "type": "readout",
+            "id": "live_counts",
+            "role": "A 0   B 0   AB 45 at entry, then the counts crossing as fragments accumulate"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "A + B ⇌ AB — the double arrow now has both halves on screen"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "fwd reads zero — nothing to react."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Each orange flash breaks a bond, and the same blue and pink particles fly apart."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Now loose A and B are everywhere and fwd climbs off zero — the reaction is reversible, it runs both ways."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Both still running",
+        "duration": 22,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "does_the_reaction_actually_stop",
+          "why_doesnt_it_go_to_completion",
+          "what_keeps_the_amounts_constant"
+        ],
+        "focal_primitive_id": "rate_bars",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, opening on the identical frame to STATE_1 — that sameness IS the delta, because the reverse is now live"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "90 blue A and 90 pink B, with green and orange rings firing everywhere at once"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "the two bars closing on each other over about eight seconds and then holding level — the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "event_totals",
+            "role": "<n> made · <n> broken, both climbing under a flat line — the instrument that proves the reaction has NOT stopped"
+          },
+          {
+            "type": "graph",
+            "id": "conc_graph",
+            "role": "count against time →, lit here for the first time; three curves that bend, flatten and hold — the instrument that proves the amounts HAVE stopped changing"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "A + B ⇌ AB"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "At equilibrium the reaction has stopped — once the amounts stop changing, nothing is happening any more.",
+            "visual_counter": "the composition line is dead flat while both rate bars stay lit at equal length and the made / broken totals keep climbing, second after second",
+            "one_line_fix": "Nothing is changing because two things are happening at the same rate — not because nothing is happening."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Same start, but now watch both directions."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Green rings are bonds made, orange rings bonds broken."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The bars close and the curves flatten: the amounts stop changing. The box never changes size, so count is proportional to concentration."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Nothing has stopped — made and broken keep climbing under that flat line."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Equal rates, unequal amounts",
+        "duration": 20,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "must_products_equal_reactants",
+          "reading_equilibrium_amounts",
+          "equal_rates_vs_equal_concentrations"
+        ],
+        "focal_primitive_id": "live_counts",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, the same 180 atoms, opening deliberately lopsided"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "120 blue A against 60 pink B — blue discs visibly drift past one another with no B to meet"
+          },
+          {
+            "type": "readout",
+            "id": "live_counts",
+            "role": "A 93   B 33   AB 27 at the plateau — three clearly different numbers, and the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "fwd and rev sitting at the same length in the same chip as those three unequal numbers — both halves of the contradiction in one glance"
+          },
+          {
+            "type": "graph",
+            "id": "conc_graph",
+            "role": "three curves flattening at three clearly separated levels"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "A + B ⇌ AB"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "At equilibrium the amounts of reactants and products must be equal — balance means a fifty-fifty split.",
+            "visual_counter": "the two rate bars are identical while the counts are nothing like it — A abundant, B scarce, the bonded pairs in between",
+            "one_line_fix": "Equal rates, not equal amounts."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Same particles, but twice as much A as B."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "An A reacts only when it meets a B, and B is scarce."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The three counts settle far apart — plenty of A, little B — yet the fwd and rev bars end the same length."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "Equal rates, not equal amounts."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Same end, opposite start",
+        "duration": 22,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "focal_primitive_id": "conc_graph",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box holding exactly STATE_3's atom inventory — 90 A-units and 90 B-units, every one of them bonded at entry"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "90 bonded pairs tearing apart; loose blue and pink discs fill the box as the state runs"
+          },
+          {
+            "type": "graph",
+            "id": "conc_graph",
+            "role": "the bonded-pair curve FALLING to the level STATE_3's curve rose to — the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "rev high and falling while fwd climbs off zero; the two meet and hold"
+          },
+          {
+            "type": "readout",
+            "id": "live_counts",
+            "role": "A 59   B 59   AB 31 — the same three numbers STATE_3 landed on, for a teacher to read against it"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "A + B ⇌ AB"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "The equilibrium depends on where you start — you have to begin with the reactants, or you get a different answer.",
+            "visual_counter": "the same atoms, every one of them bonded at entry, fall to exactly the plateau the reactant run climbed to, at the same temperature",
+            "one_line_fix": "Same temperature, same balance — reached from either direction."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "The same total particles as before, but every one of them begins joined."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now the curve falls instead of rising, and fwd climbs off zero as loose A and B build up."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "It settles at the same counts the earlier run climbed to."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "Same temperature, same balance — reached from either direction."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Why the rates must meet",
+        "duration": 20,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "focal_primitive_id": "formula_surface",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, opened at the MEASURED equilibrium composition — A 59, B 59, AB 31"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "green and orange rings firing from the first second with no net trend either way"
+          },
+          {
+            "type": "graph",
+            "id": "conc_graph",
+            "role": "three curves with no transient anywhere on screen — level from t = 0, wobbling within the fluctuation band rather than running away (the narration names the wobble instead of denying it)"
+          },
+          {
+            "type": "readout",
+            "id": "event_totals",
+            "role": "made and broken climbing together once the 5 s rate windows have primed at about t = 3 s (measured 20 · 20 at 3.5 s, 43 · 45 at 10 s) — two numbers that track each other under a level line"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "both bars coming up together as the sampling windows fill; from about t = 3 s neither leads"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "the rate-law derivation, which REPLACES A + B ⇌ AB in this state (Rule 34b, one formula surface) — the focal (Rule 32e)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "This box opens already balanced."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "The counts wobble either way without drifting, while made and broken climb together."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The forward rate law needs both A and B, so it falls; the reverse needs only AB, so it rises."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "They must cross, and at the crossing the ratio is fixed: the equilibrium constant."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Your turn",
+        "duration": 12,
+        "depth_ring": "core",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "gas_box",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the live sandbox, opening from the config default and running continuously (Rule 37)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the reaction running live through every drag"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "the bars re-levelling after each disturbance — the instrument that carries this state's only claim"
+          },
+          {
+            "type": "graph",
+            "id": "conc_graph",
+            "role": "the line re-flattening at a new level after each disturbance"
+          },
+          {
+            "type": "slider_panel",
+            "id": "controls",
+            "role": "temperature, volume and the reagent tap — all three live at once (Rule 31 explore-last)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "A + B ⇌ AB — core-ring content only; no derivation surface and no ratio here (Rule 38b)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Your turn. Change the temperature, squeeze the box, add or remove some A and B."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Whatever you disturb, the two rates come back together and the line goes flat again."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same physics, a different world (a sealed bottle where gas dissolves and escapes at the same rate)",
+      "physical_world": "A capped bottle of fizzy drink: molecules leave the liquid into the space above and dissolve back in, and the level of fizz stops changing while both journeys continue. The identical dynamic story — two opposing processes, equal rates, a quantity that holds steady — with an object a student has held."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry — Unit 6 Equilibrium, §6.2 (equilibrium in chemical processes — dynamic equilibrium). Unit 6 is retained in full in the rationalised syllabus.",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Reversible reactions and equilibrium",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Reactivity 2.3 — How far does a reaction go?",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Unit 7 — Equilibrium",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge International A Level Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Equilibria — reversible reactions and dynamic equilibrium",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "particle_field_config": {
+    "scenario_type": "gas_box",
+    "design": {
+      "background": "#0A0A1A",
+      "phys_seed": 987654321
+    },
+    "canvas": {
+      "width": 900,
+      "height": 560
+    },
+    "gas": {
+      "count": 180,
+      "temperature_K": 300,
+      "ea_ref_T": 300,
+      "speed_scale": 0.105,
+      "species": [
+        {
+          "id": "A",
+          "mass": 1,
+          "radius": 5,
+          "color": "#60A5FA",
+          "label": "A",
+          "count": 90
+        },
+        {
+          "id": "B",
+          "mass": 1,
+          "radius": 5,
+          "color": "#F472B6",
+          "label": "B",
+          "count": 90
+        },
+        {
+          "id": "AB",
+          "mass": 2,
+          "radius": 7.0710678,
+          "color": "#C084FC",
+          "label": "AB",
+          "count": 0
+        }
+      ],
+      "reaction": {
+        "enabled": true,
+        "reactants": [
+          "A",
+          "B"
+        ],
+        "product": "AB",
+        "activation_fwd_kT": 1.2,
+        "bond_energy_kT": 2.1,
+        "reverse_attempt_per_s": 8
+      }
+    },
+    "slider_controls": {
+      "T": {
+        "label": "Temperature",
+        "min": 250,
+        "max": 900,
+        "step": 10,
+        "default": 300,
+        "unit": "K"
+      },
+      "V": {
+        "label": "Volume",
+        "min": 0.35,
+        "max": 1,
+        "step": 0.05,
+        "default": 1
+      },
+      "N": {
+        "label": "Add / remove A + B",
+        "min": 140,
+        "max": 260,
+        "step": 10,
+        "default": 180
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "STATE_1",
+        "caption": "A and B stick together",
+        "T": 300,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_reaction_readout": true,
+        "show_collision_counter": true,
+        "eye_capture_ms": 15000
+      },
+      "STATE_2": {
+        "label": "STATE_2",
+        "caption": "AB breaks back apart",
+        "T": 300,
+        "species_counts": {
+          "A": 0,
+          "B": 0,
+          "AB": 45
+        },
+        "formula_overlay": "A + B ⇌ AB",
+        "show_reaction_readout": true,
+        "eye_capture_ms": 15000
+      },
+      "STATE_3": {
+        "label": "STATE_3",
+        "caption": "Flat line, both still running",
+        "T": 300,
+        "continuous_motion": true,
+        "formula_overlay": "A + B ⇌ AB",
+        "show_reaction_readout": true,
+        "show_concentration_graph": true,
+        "eye_capture_ms": 22000
+      },
+      "STATE_4": {
+        "label": "STATE_4",
+        "caption": "Equal rates, unequal amounts",
+        "T": 300,
+        "species_counts": {
+          "A": 120,
+          "B": 60,
+          "AB": 0
+        },
+        "formula_overlay": "A + B ⇌ AB",
+        "show_reaction_readout": true,
+        "show_concentration_graph": true,
+        "eye_capture_ms": 17000
+      },
+      "STATE_5": {
+        "label": "STATE_5",
+        "caption": "Same end, opposite start",
+        "T": 300,
+        "species_counts": {
+          "A": 0,
+          "B": 0,
+          "AB": 90
+        },
+        "continuous_motion": true,
+        "formula_overlay": "A + B ⇌ AB",
+        "show_reaction_readout": true,
+        "show_concentration_graph": true,
+        "eye_capture_ms": 22000
+      },
+      "STATE_6": {
+        "label": "STATE_6",
+        "caption": "Balanced start: wobble, no drift",
+        "T": 300,
+        "species_counts": {
+          "A": 59,
+          "B": 59,
+          "AB": 31
+        },
+        "continuous_motion": true,
+        "formula_overlay": "rate_f = k_f[A][B]\nrate_r = k_r[AB]\n[AB] / ([A][B]) = k_f / k_r",
+        "show_reaction_readout": true,
+        "show_concentration_graph": true,
+        "eye_capture_ms": 18000
+      },
+      "STATE_7": {
+        "label": "STATE_7",
+        "caption": "All yours — disturb it",
+        "T": 300,
+        "show_sliders": true,
+        "formula_overlay": "A + B ⇌ AB",
+        "show_reaction_readout": true,
+        "show_concentration_graph": true,
+        "eye_capture_ms": 12000
+      }
+    }
+  },
+  "authoring_notes": {
+    "measured_constants": "Reaction constants measured on the engine 2026-07-28, not chosen. Plateau from pure reactants AB = 30.75 ± 3.75; from pure product (same 90/90 atom inventory, isothermal) AB = 31.22 ± 4.01; gap 1.5 %. Both runs 7 seeds × 90 s. STATE_6's opening is that measured plateau rounded (59/59/31); drift over 20 s = +0.9 counts, inside the ±4 fluctuation band. Do not retune any of the three reaction constants without re-running the STATE_3 / STATE_5 pair — they are what makes STATE_5 true. Permanent gate: npm run check:gas-reaction ('same equilibrium from either side').",
+    "state_5_inventory": "STATE_5 must open at exactly AB 90. Not 45, not 'about half'. Measured: comparing STATE_3 (90 + 90 atoms) against a pure-product run of AB 45 (45 + 45 atoms) gives AB = 10.73 against 30.75 — a 3x discrepancy that reads as a catastrophic failure of the concept's central claim and is nothing but two different equilibria. This is the single most fragile number in the concept.",
+    "adiabatic_absent": "adiabatic is absent from every state, deliberately and destructively so if added. Measured with the thermostat off at a 500 K start: the exothermic forward self-heated the box to 650 K, and the same box started from pure product cooled to 150 K and the reaction froze solid (both rates 0.00/s). STATE_5's claim collapses without isothermal running.",
+    "plateau_fluctuates": "The plateau VISIBLY fluctuates and STATE_6 NAMES IT rather than denying it — that is a deliberate authoring decision, not a compromise. Re-measured post-fix over 7 seeds: mean ~30.5 with drift +2.7 counts per 20 s, inside the ±4.0 sd band, so there is no TREND and the reaction constants stay. But a teacher watching a single run sees the count wander (measured live: 32 → 39 → 31 → 37 → 28 → 24 → 29 → 27 over 26 s), and a caption reading 'nothing drifts' over that reads as denial. So STATE_6's caption is 'Balanced start: wobble, no drift' and s6_2 says the counts wobble either way WITHOUT drifting. Real equilibria fluctuate; a sim that shows it and names it teaches more than one that pretends to a flat line. Still prohibited everywhere: 'perfectly constant', 'completely still', 'the numbers stop' — the screen would contradict the stronger word within seconds. 180 discs was chosen for the RATE BARS (mean mismatch 8 %, versus ~25 % at 45 per species), not to flatten the line; frame cost 0.591 ms/tick, 3.5 % of a 60 Hz frame.",
+    "vocabulary_quarantine": "[A], [AB], k_f, k_r, 'rate law' and 'equilibrium constant' appear in STATE_6 and nowhere else, including STATE_7 (Rule 38 cut-1 coherence). 'From either direction' and any equilibrium claim about beginning from the product appear in STATE_5 only (cut-2 coherence); STATE_2 describes its opening pose without making that claim. Le Chatelier's DIRECTION is out of scope in every state, including the sandbox — the T and V sliders visibly move the plateau and the narration never names which way.",
+    "engine_fixed_vocabulary": "fwd / rev, N.N/s, '<n> made · <n> broken', 'count' / 'time →', 'A 59  B 59  AB 31' and 'NNN collisions/s' are drawn by the renderer and cannot be authored — the narration uses those exact words rather than synonyms. The product is drawn as the blue A disc and the pink B disc joined by a white bond, so it is narrated as 'a joined pair', never as a violet disc and never as a new particle; the authored AB colour is not read for the particle.",
+    "narration_window_discipline": "REGRESSION FOUND AND FIXED in this concept (quality_auditor FAIL, bug-class: gas_box_state4_asserts_unchanged_speed_with_no_instrument). A sentence is not spoken at state entry — the review player computes its window from character count: dur = max(1400, chars / 5.5 / (150 * rate) * 60000) ms at the default rate 0.9, i.e. about 80.8 ms per character, with a 280 ms gap between sentences. So the FOURTH sentence of a state starts around t = 12 s, and any present-tense reading of an instrument in it must be true THEN, not at entry. STATE_2 originally said 'fwd sits at zero' in its third sentence, which the player spoke from t = 12.0 s while the readout showed fwd 1.0/s and climbing — the instrument was lit and said the opposite, which is worse than the original scar (no instrument at all). The rule this concept now follows: a claim that reads an instrument must be placed in a window where the instrument reads that way, verified by driving the built page and sampling gasRxFwdRate / gasRxRevRate / gasCountsBySp against PM_simTimeMs; a claim that cannot be confined to a true window is rewritten as an instruction ('but now watch both directions') or as a statement about the opening frame ('this box opens already balanced'), both of which stay true for the whole state. Short first sentences are the cheap lever — the 1400 ms floor means a 34-character opener is guaranteed to land inside the first 2.75 s.",
+    "n_slider_range": "The chemistry block pinned N.min = N.default = 180 as a one-way tap because dragging N down truncated the particle array and deleted bonded pairs in place, corrupting the atom inventory. That engine defect is FIXED (gasRxRemove now removes only free reactants, alternating A and B, and never dismantles a bonded pair), so N is authored with a real two-way range. The floor is 140, not lower: at 70 particles per species the measured rate-bar mismatch is already ~12 % and below that the two bars stop reading as equal — a slider position at which the instrument contradicts the state's own claim should not exist. T.min = 250 K is floored for the same reason.",
+    "continuous_motion_history_FIXED": "FOUND AND FIXED (engine commit f3eb4c3) — recorded because the failure mode is worth keeping, not because anything is outstanding. DELTA C shipped half-landed: onTimelineEnd() read cur().continuous_motion but extractStates() built its ReviewState from five explicit fields and never copied it, so the flag was silently dropped and the states that declare it still froze — STATE_6's clock pinned at t≈24 s and the counters stopped, on the state whose whole subject is that the motion never stops. The field is now carried on the type and copied in extractStates. Verified post-fix: STATE_3 / STATE_5 / STATE_6 keep running 4 s past timeline end, STATE_1 / STATE_2 / STATE_4 correctly freeze. The general lesson: a flag consumed on one side of a boundary and never populated on the other fails SILENTLY — both halves, or neither.",
+    "overlay_collisions": "Both measured on the built review page at a 1440x900 window (rects from the live DOM plus the renderer's own gasBox*/gasHudTop geometry). (1) RESOLVED BY AUTHORING: the #pm-formula chip (position:fixed, right 12 / bottom 12) overlapped the canvas collision counter by 64 x 24 px, so STATE_1 drops formula_overlay (the ⇌ equation is earned in STATE_2 anyway, once both directions have been seen — representation-triangle order) and STATE_7 drops show_collision_counter (Rule 38b requires the equation there; the counter is a bonus). Both states re-measured clean. Keep it that way: do NOT add a formula surface to a state that shows the collision counter. (2) FIXED IN THE ENGINE (commit f3eb4c3, item 4): the #pm-sliders panel buried the reaction readout in STATE_7 by 230 x 52 px — it hid the readout ENTIRELY, and that readout is the only instrument carrying STATE_7's only claim. The reaction chip is now left-anchored in the instrument row instead of right-aligned, so it clears the panel. Nothing outstanding.",
+    "viewport_independence_history_FIXED": "FOUND AND FIXED (engine commit f3eb4c3, item 2). The equilibrium POSITION used to depend on the size of the teacher's browser window, which is not a physical variable anyone chose: forward is bimolecular (rate ~ density^2) and reverse is first order, so the balance point carries a factor of box AREA, and the renderer fills the viewport rather than honouring the authored 900 x 560 canvas. Measured on these exact authored constants BEFORE the fix: product 31 at the authoring geometry (812x428 box), 17 at 1440x900, 15 at 1920x1080 — so STATE_6, seeded at its measured plateau, drifted on every screen but one, and every absolute number an author measures was true only on their own monitor. The reverse attempt rate is now normalised by the FULL box area (never the piston-adjusted one), so window size divides out while the piston still moves the equilibrium as it physically must. After the fix: 21.1 / 20.4 / 21.8 across a 2.4x area range, and a viewport sweep is now a permanent check in check:gas-reaction so it cannot come back silently. STATE_6 no longer needs to be judged at any particular geometry. The standing authoring lesson: on this renderer an ABSOLUTE composition is only ever as portable as the engine's density normalisation — relative claims (rates converge, equal bars with unequal counts, same plateau from the opposite start) were true at every viewport even while this was broken."
+  }
+}
