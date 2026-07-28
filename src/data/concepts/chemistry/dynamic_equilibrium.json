@@ -301,15 +301,15 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "The box here holds only joined pairs, no loose particle anywhere."
+              "text_en": "fwd reads zero — nothing to react."
             },
             {
               "id": "s2_2",
-              "text_en": "Each orange flash breaks a bond; the same blue and pink particles fly apart."
+              "text_en": "Each orange flash breaks a bond, and the same blue and pink particles fly apart."
             },
             {
               "id": "s2_3",
-              "text_en": "fwd sits at zero — there is no A or B yet. This reaction is reversible: it runs both ways."
+              "text_en": "Now loose A and B are everywhere and fwd climbs off zero — the reaction is reversible, it runs both ways."
             }
           ]
         }
@@ -370,7 +370,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Same start, but now both directions run."
+              "text_en": "Same start, but now watch both directions."
             },
             {
               "id": "s3_2",
@@ -542,22 +542,22 @@
           {
             "type": "particle_cloud",
             "id": "particle_mixture",
-            "role": "green and orange rings firing from the first second with zero net change"
+            "role": "green and orange rings firing from the first second with no net trend either way"
           },
           {
             "type": "graph",
             "id": "conc_graph",
-            "role": "three curves flat from t = 0 — no transient anywhere on screen"
+            "role": "three curves with no transient anywhere on screen — level from t = 0, wobbling within the fluctuation band rather than running away (the narration names the wobble instead of denying it)"
           },
           {
             "type": "readout",
             "id": "event_totals",
-            "role": "made and broken climbing in lockstep (88 · 88 at 10 s) — two numbers that stay equal to each other under a flat line"
+            "role": "made and broken climbing together once the 5 s rate windows have primed at about t = 3 s (measured 20 · 20 at 3.5 s, 43 · 45 at 10 s) — two numbers that track each other under a level line"
           },
           {
             "type": "readout",
             "id": "rate_bars",
-            "role": "both bars coming up together as the sampling windows fill; neither leads"
+            "role": "both bars coming up together as the sampling windows fill; from about t = 3 s neither leads"
           },
           {
             "type": "formula_surface",
@@ -569,19 +569,19 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "This box opens already balanced: nothing drifts, both totals climb together."
+              "text_en": "This box opens already balanced."
             },
             {
               "id": "s6_2",
-              "text_en": "The forward rate law needs an A and a B, so it falls as they are used up."
+              "text_en": "The counts wobble either way without drifting, while made and broken climb together."
             },
             {
               "id": "s6_3",
-              "text_en": "The reverse needs only AB, so it rises — they must cross."
+              "text_en": "The forward rate law needs both A and B, so it falls; the reverse needs only AB, so it rises."
             },
             {
               "id": "s6_4",
-              "text_en": "At the crossing the ratio of the amounts is fixed: the equilibrium constant."
+              "text_en": "They must cross, and at the crossing the ratio is fixed: the equilibrium constant."
             }
           ]
         }
@@ -824,7 +824,7 @@
       },
       "STATE_6": {
         "label": "STATE_6",
-        "caption": "Start balanced: nothing drifts",
+        "caption": "Balanced start: wobble, no drift",
         "T": 300,
         "species_counts": {
           "A": 59,
@@ -851,12 +851,13 @@
     "measured_constants": "Reaction constants measured on the engine 2026-07-28, not chosen. Plateau from pure reactants AB = 30.75 ± 3.75; from pure product (same 90/90 atom inventory, isothermal) AB = 31.22 ± 4.01; gap 1.5 %. Both runs 7 seeds × 90 s. STATE_6's opening is that measured plateau rounded (59/59/31); drift over 20 s = +0.9 counts, inside the ±4 fluctuation band. Do not retune any of the three reaction constants without re-running the STATE_3 / STATE_5 pair — they are what makes STATE_5 true. Permanent gate: npm run check:gas-reaction ('same equilibrium from either side').",
     "state_5_inventory": "STATE_5 must open at exactly AB 90. Not 45, not 'about half'. Measured: comparing STATE_3 (90 + 90 atoms) against a pure-product run of AB 45 (45 + 45 atoms) gives AB = 10.73 against 30.75 — a 3x discrepancy that reads as a catastrophic failure of the concept's central claim and is nothing but two different equilibria. This is the single most fragile number in the concept.",
     "adiabatic_absent": "adiabatic is absent from every state, deliberately and destructively so if added. Measured with the thermostat off at a 500 K start: the exothermic forward self-heated the box to 650 K, and the same box started from pure product cooled to 150 K and the reaction froze solid (both rates 0.00/s). STATE_5's claim collapses without isothermal running.",
-    "plateau_fluctuates": "The plateau VISIBLY fluctuates: at 180 discs the bonded-pair count wanders ±3.0 counts (1 sd) and ±8 peak-to-peak around ~31. That is real small-N equilibrium noise, not a defect. Narration says 'stop changing' and 'hold steady' and must never say 'perfectly constant' or 'the numbers stop' — the screen would contradict the stronger word within seconds. 180 discs was chosen for the RATE BARS (mean mismatch 8 %, versus ~25 % at 45 per species), not to flatten the line; frame cost 0.591 ms/tick, 3.5 % of a 60 Hz frame.",
+    "plateau_fluctuates": "The plateau VISIBLY fluctuates and STATE_6 NAMES IT rather than denying it — that is a deliberate authoring decision, not a compromise. Re-measured post-fix over 7 seeds: mean ~30.5 with drift +2.7 counts per 20 s, inside the ±4.0 sd band, so there is no TREND and the reaction constants stay. But a teacher watching a single run sees the count wander (measured live: 32 → 39 → 31 → 37 → 28 → 24 → 29 → 27 over 26 s), and a caption reading 'nothing drifts' over that reads as denial. So STATE_6's caption is 'Balanced start: wobble, no drift' and s6_2 says the counts wobble either way WITHOUT drifting. Real equilibria fluctuate; a sim that shows it and names it teaches more than one that pretends to a flat line. Still prohibited everywhere: 'perfectly constant', 'completely still', 'the numbers stop' — the screen would contradict the stronger word within seconds. 180 discs was chosen for the RATE BARS (mean mismatch 8 %, versus ~25 % at 45 per species), not to flatten the line; frame cost 0.591 ms/tick, 3.5 % of a 60 Hz frame.",
     "vocabulary_quarantine": "[A], [AB], k_f, k_r, 'rate law' and 'equilibrium constant' appear in STATE_6 and nowhere else, including STATE_7 (Rule 38 cut-1 coherence). 'From either direction' and any equilibrium claim about beginning from the product appear in STATE_5 only (cut-2 coherence); STATE_2 describes its opening pose without making that claim. Le Chatelier's DIRECTION is out of scope in every state, including the sandbox — the T and V sliders visibly move the plateau and the narration never names which way.",
     "engine_fixed_vocabulary": "fwd / rev, N.N/s, '<n> made · <n> broken', 'count' / 'time →', 'A 59  B 59  AB 31' and 'NNN collisions/s' are drawn by the renderer and cannot be authored — the narration uses those exact words rather than synonyms. The product is drawn as the blue A disc and the pink B disc joined by a white bond, so it is narrated as 'a joined pair', never as a violet disc and never as a new particle; the authored AB colour is not read for the particle.",
+    "narration_window_discipline": "REGRESSION FOUND AND FIXED in this concept (quality_auditor FAIL, bug-class: gas_box_state4_asserts_unchanged_speed_with_no_instrument). A sentence is not spoken at state entry — the review player computes its window from character count: dur = max(1400, chars / 5.5 / (150 * rate) * 60000) ms at the default rate 0.9, i.e. about 80.8 ms per character, with a 280 ms gap between sentences. So the FOURTH sentence of a state starts around t = 12 s, and any present-tense reading of an instrument in it must be true THEN, not at entry. STATE_2 originally said 'fwd sits at zero' in its third sentence, which the player spoke from t = 12.0 s while the readout showed fwd 1.0/s and climbing — the instrument was lit and said the opposite, which is worse than the original scar (no instrument at all). The rule this concept now follows: a claim that reads an instrument must be placed in a window where the instrument reads that way, verified by driving the built page and sampling gasRxFwdRate / gasRxRevRate / gasCountsBySp against PM_simTimeMs; a claim that cannot be confined to a true window is rewritten as an instruction ('but now watch both directions') or as a statement about the opening frame ('this box opens already balanced'), both of which stay true for the whole state. Short first sentences are the cheap lever — the 1400 ms floor means a 34-character opener is guaranteed to land inside the first 2.75 s.",
     "n_slider_range": "The chemistry block pinned N.min = N.default = 180 as a one-way tap because dragging N down truncated the particle array and deleted bonded pairs in place, corrupting the atom inventory. That engine defect is FIXED (gasRxRemove now removes only free reactants, alternating A and B, and never dismantles a bonded pair), so N is authored with a real two-way range. The floor is 140, not lower: at 70 particles per species the measured rate-bar mismatch is already ~12 % and below that the two bars stop reading as equal — a slider position at which the instrument contradicts the state's own claim should not exist. T.min = 250 K is floored for the same reason.",
-    "continuous_motion_gap": "MEASURED, NOT INFERRED. STATE_3 / STATE_5 / STATE_6 declare continuous_motion: true in BOTH particle_field_config.states and epic_l_path.states. DELTA C's read site exists (build_review_site.ts onTimelineEnd tests cur().continuous_motion) but extractStates() never copies the field onto its ReviewState, so the flag never reaches the player and the freeze still fires: driving the built review page, STATE_6's clock pins at t≈24 s (PM_simTimeMs stops advancing, counts stop changing) — on the state whose whole subject is that the motion never stops. One-line platform fix in extractStates(); engine layer, not authorable here (Rule 40).",
-    "overlay_collisions": "MEASURED on the built review page at a 1440x900 window (rects from the live DOM + the renderer's own gasBox*/gasHudTop geometry). (1) The #pm-formula chip (position:fixed, right 12 / bottom 12) overlaps the canvas collision counter (right-aligned at gasBoxB()+8) by 64 x 24 px. Resolved by authoring: STATE_1 drops formula_overlay (the ⇌ equation is earned in STATE_2 anyway, once both directions have been seen — representation-triangle order), STATE_7 drops show_collision_counter (Rule 38b requires the equation there; the counter is a bonus). Both states now measure clean. (2) NOT authoring-fixable: in STATE_7 the #pm-sliders panel (fixed, top 52 / right 10, z-index 30) covers the canvas reaction readout (top-right, 250 x 52) by 230 x 52 px — i.e. it hides the readout ENTIRELY, and that readout is the only instrument carrying STATE_7's only claim ('the two rates come back together'). No authored field moves either overlay. Engine zoning fix required (move the reaction readout left, or the slider panel, when both are up) — owner peter_parker:renderer_primitives.",
-    "equilibrium_position_is_viewport_dependent": "MEASURED, and it is load-bearing for STATE_6. Every constant in the chemistry block was measured on the headless harness, which pins p5's width/height to 900 x 560 (check_gas_reaction_physics.ts). The renderer defaults design.fill_viewport to TRUE, so the authored canvas 900 x 560 is ignored at runtime and the gas box takes the iframe's size — and the forward reaction is bimolecular (rate ~ density^2) while the reverse is first order, so the plateau moves with box AREA. Driving STATE_6 (seeded at the measured plateau A 59 / B 59 / AB 31) at three window sizes: box 812x428 = 348k px2 (the harness geometry) holds AB 29-33, claim intact; box 1124x596 = 670k px2 drifts to AB 17; box 1604x776 = 1245k px2 drifts to AB 15. In each case fwd and rev still land equal, so every RELATIVE claim survives at every viewport (STATE_3 rates converge, STATE_4 equal bars with unequal counts, STATE_5 same plateau from the opposite start — STATE_3 and STATE_5 run at the same viewport in the same session, so they still agree). Only STATE_6's ABSOLUTE seed is viewport-specific, and its claim ('opens already balanced, nothing drifts') is false anywhere but the measurement geometry. Not authoring-fixable: design.fill_viewport:false would pin the canvas but strand the position:fixed DOM overlays away from it. Engine fix = normalise the bimolecular rate to a reference area (or fix the box in world units), owner peter_parker:renderer_primitives. Until then STATE_6 is the one state a reviewer must judge at the harness geometry."
+    "continuous_motion_history_FIXED": "FOUND AND FIXED (engine commit f3eb4c3) — recorded because the failure mode is worth keeping, not because anything is outstanding. DELTA C shipped half-landed: onTimelineEnd() read cur().continuous_motion but extractStates() built its ReviewState from five explicit fields and never copied it, so the flag was silently dropped and the states that declare it still froze — STATE_6's clock pinned at t≈24 s and the counters stopped, on the state whose whole subject is that the motion never stops. The field is now carried on the type and copied in extractStates. Verified post-fix: STATE_3 / STATE_5 / STATE_6 keep running 4 s past timeline end, STATE_1 / STATE_2 / STATE_4 correctly freeze. The general lesson: a flag consumed on one side of a boundary and never populated on the other fails SILENTLY — both halves, or neither.",
+    "overlay_collisions": "Both measured on the built review page at a 1440x900 window (rects from the live DOM plus the renderer's own gasBox*/gasHudTop geometry). (1) RESOLVED BY AUTHORING: the #pm-formula chip (position:fixed, right 12 / bottom 12) overlapped the canvas collision counter by 64 x 24 px, so STATE_1 drops formula_overlay (the ⇌ equation is earned in STATE_2 anyway, once both directions have been seen — representation-triangle order) and STATE_7 drops show_collision_counter (Rule 38b requires the equation there; the counter is a bonus). Both states re-measured clean. Keep it that way: do NOT add a formula surface to a state that shows the collision counter. (2) FIXED IN THE ENGINE (commit f3eb4c3, item 4): the #pm-sliders panel buried the reaction readout in STATE_7 by 230 x 52 px — it hid the readout ENTIRELY, and that readout is the only instrument carrying STATE_7's only claim. The reaction chip is now left-anchored in the instrument row instead of right-aligned, so it clears the panel. Nothing outstanding.",
+    "viewport_independence_history_FIXED": "FOUND AND FIXED (engine commit f3eb4c3, item 2). The equilibrium POSITION used to depend on the size of the teacher's browser window, which is not a physical variable anyone chose: forward is bimolecular (rate ~ density^2) and reverse is first order, so the balance point carries a factor of box AREA, and the renderer fills the viewport rather than honouring the authored 900 x 560 canvas. Measured on these exact authored constants BEFORE the fix: product 31 at the authoring geometry (812x428 box), 17 at 1440x900, 15 at 1920x1080 — so STATE_6, seeded at its measured plateau, drifted on every screen but one, and every absolute number an author measures was true only on their own monitor. The reverse attempt rate is now normalised by the FULL box area (never the piston-adjusted one), so window size divides out while the piston still moves the equilibrium as it physically must. After the fix: 21.1 / 20.4 / 21.8 across a 2.4x area range, and a viewport sweep is now a permanent check in check:gas-reaction so it cannot come back silently. STATE_6 no longer needs to be judged at any particular geometry. The standing authoring lesson: on this renderer an ABSOLUTE composition is only ever as portable as the engine's density normalisation — relative claims (rates converge, equal bars with unequal counts, same plateau from the opposite start) were true at every viewport even while this was broken."
   }
 }
