@@ -78,6 +78,35 @@ tsc 0 · `check:renderer-syntax` 3/3 · `validate:concepts` **141/141** unchange
 3. Buildable on the box **today, zero engine work**: Maxwell–Boltzmann, collision theory, diffusion/Graham's law, and most of rate-of-reaction.
 4. `assessment` blocks are absent on every chemistry concept (Gates 19/20 dormant this phase).
 
+### ⚠ CARRIED FORWARD — two fleet-wide items this session measured but did NOT fix
+
+Both are **cross-subject** (they bind physics harder than chemistry) and are recorded here because
+this session is where they were quantified. Neither is a chemistry blocker today; both are traps
+waiting for whoever touches them next.
+
+**1. Duplicate `tts_sentence` ids block voicing on 41 concepts.** Measured 2026-07-28 across the
+whole fleet: **41 concepts carry duplicate ids totalling 611 colliding sentences; 104 are already
+clean.** Worst offenders: `vector_resolution` (39 collisions in 45 sentences),
+`newton_second_law_direction` (29), `umbrella_tilt_angle` (22), `contact_forces` (20),
+`tension_in_string` (20). Clips are keyed by id, so rendering any of these would silently overwrite
+clips and attach the wrong narration to the wrong visual — `tts:generate` REFUSES instead, so each
+one is blocked at the moment someone first tries to voice it. `validate:concepts` already emits the
+probe as a non-fatal WARN (`[legacy fleet — warning only]`), so the detection exists; only the
+rename is outstanding. The fix is mechanical and inert — nothing references sentence ids — and was
+applied to `bohr_model_energy_levels` (31 ids) this session as the reference. **Now that every
+concept ships audio (the 2026-07-28 TTS directive), this is on the critical path for the physics
+fleet, not a latent curiosity.**
+
+**2. `GIT_WORKFLOW.md` needs a sharper unpushed-count caveat.** The doc's standing advice is "trust
+the count, not the hook" — `git rev-list --count --branches --not --remotes`. That count reads **0
+whenever a commit is reachable from ANY remote ref**. The auto-push hook pushes feature branches but
+prints `post-commit: master is not auto-pushed`, so after merging a pushed branch into master, an
+**unpushed master reports 0 and `git push` can even answer "Everything up-to-date"**. Both signals
+look green while master has not landed. The reliable check is by SHA:
+`git rev-parse origin/master` vs `git rev-parse master`, or
+`git rev-list --count origin/master..master`. Master is precisely where this blind spot bites,
+because it is the one ref the automation deliberately leaves alone.
+
 ---
 
 ## The renderer-compounding build FLOW (locked 2026-07-23 — see CHEMISTRY_DISCUSSIONS.md §C3)
