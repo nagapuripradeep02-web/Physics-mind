@@ -770,6 +770,17 @@ function buildOverlayUI() {
   frm.style.cssText = 'position:fixed;right:12px;bottom:12px;background:rgba(0,0,0,0.6);' +
     'color:#FFEB3B;padding:8px 12px;border-radius:8px;white-space:pre;' +
     'font:12px/1.5 ui-monospace,Consolas,monospace;z-index:20;display:none;pointer-events:none;';
+  // Rule 34b wants the ONE formula surface in a math serif, and Rule 34d wants it
+  // to own its zone — at 60% opacity over a moving box a particle sat on the "="
+  // of the equation and the box frame cut through the second line. Fixed for the
+  // gas family ONLY: thirteen baseline-locked circuit concepts share this element,
+  // so restyling it fleet-wide would fail their H2 baselines by design (Rule 34e)
+  // and force thirteen re-approvals — a founder call, not a chapter fix.
+  if (gasMode()) {
+    frm.style.background = 'rgba(8,10,22,0.96)';
+    frm.style.border = '1px solid rgba(148,163,184,0.35)';
+    frm.style.font = '13px/1.6 "Cambria Math", "STIX Two Math", Georgia, serif';
+  }
   document.body.appendChild(frm);
 
   var defs = sliderDefs();
@@ -3465,6 +3476,7 @@ var gasCountsBySp = [];      // live population per species index
 var gasConcTrace = [];       // rolling composition history for the concentration graph
 var gasRxSpA = -1, gasRxSpB = -1, gasRxSpAB = -1;
 var gasNPrev = -1;           // last N target seen (reaction mode: N is a delta control)
+var gasRxRateMax = 1;        // per-state high-water rate — the bars' stable full scale
 
 function gasMode() { return !!(config && config.scenario_type === 'gas_box'); }
 function gasCfg() { return (config && config.gas) ? config.gas : {}; }
@@ -3477,7 +3489,13 @@ function gasBoxL() { return gasPad(); }
 // starts at 56px so it clears the review chrome's "Full screen" button. The box
 // top is pushed down to make room — instruments never overlap the gas.
 function gasHudTop() { return 56; }
-function gasBoxT() { return gasHudTop() + 32; }
+// The band reserved above the apparatus is sized for the TALLEST instrument that
+// can appear in it. The reaction readout is 68px where the pressure/thermometer
+// chips are 28, and the 32px gap left 35px of the chip hanging inside the box:
+// the border line was drawn straight across the fwd row and live particles
+// drifted through the totals line (the chip is only 59% opaque). Gated on
+// reaction mode, so every existing gas_box concept keeps its exact geometry.
+function gasBoxT() { return gasHudTop() + (gasRxOn() ? 76 : 32); }
 function gasBoxB() { return microH() - gasPad(); }
 // The box always owns the full canvas. It used to shrink to 58% whenever
 // layout:'with_graph' was set — unconditionally, in EVERY state — which left
@@ -3781,6 +3799,7 @@ function gasInit() {
   gasRxQueue = []; gasRxNew = []; gasHeatQ = 0; gasConcTrace = [];
   gasRxFwdTotal = 0; gasRxFwdTick = 0; gasRxRevTotal = 0; gasRxRevTick = 0;
   gasRxFwdWin = []; gasRxRevWin = []; gasRxFwdRate = 0; gasRxRevRate = 0;
+  gasRxRateMax = 1;
   gasNPrev = gasCount();
   for (var pi = 0; pi < particles.length; pi++) particles[pi].rx = 0;
   gasSampleComposition();
@@ -4446,6 +4465,7 @@ function gasSampleStats() {
   s = 0; for (i = 0; i < gasRxRevWin.length; i++) s += gasRxRevWin[i];
   gasRxRevRate = s * 60 / max(gasRxRevWin.length, 1);
   gasRxFwdTick = 0; gasRxRevTick = 0;
+  gasRxRateMax = max(gasRxRateMax, gasRxFwdRate, gasRxRevRate);
 
   gasSampleComposition();
 }
@@ -4659,15 +4679,21 @@ function drawGasReaction(state) {
   fillHex(gasRxColor(), dim);
   text((gasSpecies[gasRxSpAB].label || 'AB') + ' ' + nAB, cx, y + 6);
 
-  // ONE shared full-scale for both bars. Two independently scaled bars would sit
-  // equal at unequal rates — an instrument that reports equilibrium whenever it
-  // is asked is worse than no instrument.
+  // ONE shared full-scale for both bars, and it must NOT be the live maximum.
+  // It was max(fwd, rev, 1), which renormalises to whichever bar is longest — so
+  // the longer bar is pinned at 100% by construction and the pair reports a
+  // RATIO, never a magnitude. Measured in S1, where the reverse is switched off:
+  // the forward bar sat at full length for all 18 s while its own value fell
+  // 8.0/s -> 2.0/s, so the state's declared delta ("the forward rate falls as
+  // the reactants run out") was contradicted by the instrument teaching it.
+  // A per-state high-water mark keeps both bars on one honest scale: equal rates
+  // still read equal, and a rate that falls now visibly falls.
   //
   // Three zones that must not overlap, because at h=52 they did: the label
   // column, the bar, and the right-aligned value all shared rows, and the
   // cumulative-totals line landed on top of the "rev" label — illegible, and
   // that line is the single instrument proving the reaction has not stopped.
-  var full = max(gasRxFwdRate, gasRxRevRate, 1);
+  var full = max(gasRxRateMax, 1);
   var bx = x + 44, bw = w - 44 - 56;
   textSize(10);
   fillHex('#34D399', dim); text('fwd', x + 8, y + 24);
@@ -4717,13 +4743,33 @@ function drawGasConcGraph(state) {
   var span = max(gasConcTrace.length - 1, 1);
   for (var s = 0; s < series.length; s++) {
     noFill(); strokeHex(series[s].c, 0.95 * dim); strokeWeight(2);
+    // A and B are EQUAL BY CONSTRUCTION in every state that starts them equal,
+    // so drawn solid the second curve hides the first completely and a plot
+    // promising three series shows two. Dashing the B curve lets the A curve
+    // read through it wherever they coincide, without moving either value.
+    if (series[s].key === 'b' && drawingContext && drawingContext.setLineDash) drawingContext.setLineDash([6, 4]);
     beginShape();
     for (i = 0; i < gasConcTrace.length; i++) {
       var v = gasConcTrace[i][series[s].key];
       vertex(gx + (i / span) * gw, gy + gh - (v / peak) * gh);
     }
     endShape();
+    if (drawingContext && drawingContext.setLineDash) drawingContext.setLineDash([]);
   }
+  // A legend and a top-of-scale number: without them a teacher can read the
+  // SHAPE but cannot say which curve is which, nor read a level off it.
+  noStroke(); textSize(9); textAlign(LEFT, TOP);
+  var lx = gx + 2;
+  for (s = 0; s < series.length; s++) {
+    var lab = (s === 0) ? (sA.label || 'A') : (s === 1) ? (sB.label || 'B') : (gasSpecies[gasRxSpAB].label || 'AB');
+    fillHex(series[s].c, 0.95 * dim);
+    text(lab, lx, gy + 2);
+    lx += 26;
+  }
+  fillHex('#94A3B8', 0.8 * dim);
+  textAlign(RIGHT, TOP);
+  text(String(Math.round(peak)), gx + gw - 2, gy + 2);
+  textAlign(LEFT, TOP);
   noStroke(); fillHex('#CBD5E1', 0.85 * dim);
   textAlign(LEFT, TOP); textSize(10);
   text('count', gx, gy - 12);
