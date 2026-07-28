@@ -120,6 +120,57 @@ const ROWS: Row[] = [
             'Treat the separation metric as a guide that can only be OPTIMISTIC, and always confirm the frozen frame by eye. Frozen frames are solved exactly; transient overlap during rotation is partly inherent to a turning 3D object. Fix would be to divide each projected radius by the object\'s camera-space depth before comparing gaps.',
         fixed_in_files: [],
     },
+    // ── Second pass, 2026-07-28. Found by auditing my OWN commit diffs against the
+    // nine rows already filed: four real fixes had no row. Recorded because a scar
+    // list assembled from what you happen to remember is not a scar list.
+    {
+        bug_class: 'field3d_arc_label_anchor_degenerates_on_antiparallel_pair',
+        title: 'A 180-degree angle pair cancels to a zero mid-vector, parking the arc label on top of the central atom',
+        severity: 'MODERATE',
+        owner_cluster: 'peter_parker:renderer_primitives',
+        status: 'FIXED',
+        root_cause:
+            'The angle-arc label was anchored along normalize(u + w), the bisector of the two measured directions. For an ANTIPARALLEL pair (a linear molecule, 180 degrees) u + w cancels to ~zero, so the normalize returned a near-origin vector and "Cl-Be-Cl = 180.0" was drawn straight across the beryllium. Any bisector-anchored overlay has this singularity at exactly the angle a linear geometry always hits.',
+        prevention_rule:
+            'Any overlay anchored on the bisector of two directions must handle the antiparallel case explicitly. Fall back to the arc plane\'s quarter-turn axis (the arc\'s own apex), which stays well-defined at 180 degrees. Test every angle-measuring overlay at 180 as a matter of course — it is a normal geometry, not an edge case.',
+        fixed_in_files: [RENDERER],
+    },
+    {
+        bug_class: 'field3d_depthtest_false_on_scene_geometry_draws_through_solids',
+        title: 'The electron-domain cage was given depthTest:false and drew white fans straight through the atoms',
+        severity: 'MAJOR',
+        owner_cluster: 'peter_parker:renderer_primitives',
+        status: 'FIXED',
+        root_cause:
+            'The domain ghost sticks and hull edges were built with depthTest:false + high renderOrder, copying the house pattern for overlays. But that pattern exists for FLAT ANNOTATIONS that must stay legible over busy geometry (the existing scar field3d_overlay_line_occluded_over_geometry). These are not annotations — they are 3D scaffolding living in the scene, so disabling depth made them render over the hydrogens as white fans across the spheres.',
+        prevention_rule:
+            'depthTest:false is for flat annotations and labels ONLY. Anything that occupies real space in the scene (cages, hulls, scaffolding, connectors between 3D points) keeps depthTest ON and sets depthWrite:false if it is translucent, so it occludes correctly. The overlay scar and this one are opposites and must not be conflated: ask "is this thing IN the scene, or ON the screen?"',
+        fixed_in_files: [RENDERER],
+    },
+    {
+        bug_class: 'world_anchored_label_collides_needs_screen_space_placement',
+        title: 'Labels anchored by fixed world-space rules kept colliding; two of them shared one ray by construction',
+        severity: 'MAJOR',
+        owner_cluster: 'peter_parker:renderer_primitives',
+        status: 'FIXED',
+        root_cause:
+            'Two separate instances, one root cause. (1) The angle label and the ligand-span label were BOTH anchored on the bisector, so they sat on the same ray at different radii and their wide sprites overlapped by construction — they garbled each other on the concept\'s aha frame. (2) The central-atom symbol was placed by a fixed world offset, then by an "opposite the arc" rule; both collided, the second parking the carbon\'s C on a hydrogen. A world-space offset cannot know what is in front of it, because that depends entirely on the camera.',
+        prevention_rule:
+            'Place a billboard label by PROJECTION, not by a world-space rule: generate candidate screen-space offsets, project each with vec.project(camera), and take the one farthest from every other projected object. Deterministic because the camera has settled by capture time. And never anchor two labels on the same geometric ray — if both want the bisector, move one number into the value-only HUD and keep only its line on canvas.',
+        fixed_in_files: [RENDERER, CONCEPT_JSON],
+    },
+    {
+        bug_class: 'transient_overlays_not_hidden_on_state_apply_show_previous_state',
+        title: 'A capture landing between the state apply and the first animate frame photographs the previous state geometry',
+        severity: 'MODERATE',
+        owner_cluster: 'peter_parker:renderer_primitives',
+        status: 'FIXED',
+        root_cause:
+            'The generic visible_elements matcher switches an element ON at applyState, but its position, arc sweep and label text are only recomputed by the per-frame updater. A screenshot taken in that window shows the element with the PREVIOUS state\'s geometry and text. It also let the angle arc appear during an assemble beat before the two bonds it measures existed — the answer on screen ahead of its own evidence.',
+        prevention_rule:
+            'Hide every transient overlay (arcs, measurement lines, their labels) explicitly in the scenario\'s applyState, so the per-frame updater is the ONLY thing that can reveal them. This also makes staged reveals correct for free: an element that is only shown once its inputs exist cannot pre-empt them.',
+        fixed_in_files: [RENDERER],
+    },
     {
         bug_class: 'validate_chemistry_choreography_measure_blind_to_field3d',
         title: 'A Rule-31a gate that reported 0 ms of choreography for every field_3d concept, so it could never be satisfied',
@@ -185,6 +236,26 @@ const PROBES: Record<string, { probe_type: 'js_eval' | 'manual'; probe_logic: st
         probe_type: 'manual',
         probe_logic:
             'Until the solver divides projected radius by camera-space depth, treat every separation number it reports as an upper bound and confirm the frozen frame by eye. Cross-check: if the solver reports a positive gap and the frame shows a merged blob, this row is the explanation.',
+    },
+    field3d_arc_label_anchor_degenerates_on_antiparallel_pair: {
+        probe_type: 'js_eval',
+        probe_logic:
+            'For every angle-measuring overlay, assert |normalize(u+w)| is not near zero before using it as an anchor, and assert the resulting label position is further from the central object than that object\'s screen radius. Cheap direct test: drive the scenario to a linear molecule (2 domains, 180 degrees) and assert the label does not overlap the central atom.',
+    },
+    field3d_depthtest_false_on_scene_geometry_draws_through_solids: {
+        probe_type: 'js_eval',
+        probe_logic:
+            'Walk the scene and assert that no mesh which occupies real 3D space (cage/hull/scaffold element types) has material.depthTest === false. Flat annotation sprites and screen overlays are exempt. Fail = scene geometry rendering through solids.',
+    },
+    world_anchored_label_collides_needs_screen_space_placement: {
+        probe_type: 'js_eval',
+        probe_logic:
+            'At the frozen pin, project every visible label sprite and every atom to NDC and assert no label bounding box overlaps another label or an atom disc. Additionally assert no two labels share an anchor ray (their unit anchor directions are not near-parallel), which is the by-construction case that no amount of radius tuning fixes.',
+    },
+    transient_overlays_not_hidden_on_state_apply_show_previous_state: {
+        probe_type: 'js_eval',
+        probe_logic:
+            'Immediately after SET_STATE and BEFORE advancing the clock, assert every transient overlay (arc, span, their labels) has visible === false. Any that is already visible is showing the previous state. Complementary check: during an assemble beat, assert the arc is hidden until both measured elements exist.',
     },
     validate_chemistry_choreography_measure_blind_to_field3d: {
         probe_type: 'manual',
