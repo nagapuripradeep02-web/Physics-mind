@@ -589,7 +589,11 @@ var PF_WG_FLAGS = [
   { key: 'gas_histogram', flag: 'show_speed_histogram', label: 'Speed distribution' },
   { key: 'gas_counters', flag: 'show_collision_counter', label: 'Collision counter' },
   { key: 'gas_law', flag: 'show_gas_law', label: 'P\\u00B7A = N\\u00B7k\\u00B7T check' },
-  { key: 'gas_trails', flag: 'show_trails', label: 'Particle trails' }
+  { key: 'gas_trails', flag: 'show_trails', label: 'Particle trails' },
+  // reaction layer (2026-07-28)
+  { key: 'gas_reaction', flag: 'show_reaction_readout', label: 'Reaction rates' },
+  { key: 'gas_conc_graph', flag: 'show_concentration_graph', label: 'Concentration graph' },
+  { key: 'gas_ledger', flag: 'show_energy_ledger', label: 'Energy ledger (check)' }
 ];
 function pfWgVis(key, stateWants) {
   var o = pfWidgetVis[key];
@@ -3408,6 +3412,60 @@ var gasFlashes = [];         // { x, y, age } successful-collision flashes
 var gasBarrierOn = false;
 var gasTempK = 300;          // thermostatted temperature (K)
 
+// ─── REACTION LAYER (A + B \\u21CC AB) — 2026-07-28 ──────────────────────────
+// Turns the box into a reacting mixture so equilibrium can be WATCHED rather
+// than asserted: two particles that meet hard enough stick together, a dimer
+// that is hit hard enough breaks apart, and the two rates settle equal while
+// both keep running. That last sentence is the whole of dynamic equilibrium and
+// there is no way to draw it on a whiteboard.
+//
+// THE THREE CONSERVATION LAWS, and how each is kept EXACTLY (not approximately):
+//   * MASS      — m_AB is forced to m_A + m_B at init; a mis-authored species
+//                 list is corrected, not obeyed. Disc area adds the same way
+//                 (r_AB = sqrt(r_A^2 + r_B^2)), so the packing fraction is
+//                 unchanged by a reaction and the gas-law readout stays honest.
+//   * MOMENTUM  — a merge takes the centre-of-mass velocity; a split places the
+//                 fragments symmetrically about the COM with equal and opposite
+//                 momenta. Both are exact per event, so the box never acquires
+//                 a drift from reacting.
+//   * ENERGY    — accounted in an explicit LEDGER, never hand-waved:
+//                     E = sum(KE_translational) + sum(KE_rotational of dimers)
+//                         + gasHeatQ - N_AB * E_bond
+//                 On a merge the relative kinetic energy splits into a REAL
+//                 rotation of the new dimer (from the angular momentum the
+//                 off-centre impact actually carried) and heat; the bond energy
+//                 is added to the heat owed. On a split the bond energy is
+//                 debited and the dimer's spin becomes the fragments' flight
+//                 apart. gasApplyHeat() then hands that reservoir to the gas as
+//                 a velocity rescale. gasEnergyLedger() recomputes E from the
+//                 particles every tick and 'show_energy_ledger' prints it: under
+//                 adiabatic:true with the piston parked it must not move. That
+//                 HUD exists because the last session's lesson was that a green
+//                 deterministic gate proves frames are REPRODUCIBLE, not right —
+//                 only a measurement catches a lying physics step.
+//
+// WHY THE REVERSE BARRIER IS DERIVED, NOT AUTHORED: Ea_rev = Ea_fwd + E_bond.
+// An author who could set all three independently could describe a reaction
+// that releases energy going forward AND going back. Deriving it means heating
+// an exothermic box shifts it toward reactants ALL BY ITSELF — Le Chatelier
+// emerges from the collision statistics instead of being scripted, which is the
+// only reason the sim is worth more than a diagram. Sign convention:
+// bond_energy_kT > 0 = exothermic forward (heat out), < 0 = endothermic.
+//
+// COMPRESSION SHIFTS IT TOO, for free: forward needs an A to FIND a B (rate goes
+// as density^2), reverse needs only a hit on an existing AB (density^1). Halve
+// the volume and the forward rate gains more — 2 particles becoming 1, the
+// textbook pressure prediction, emergent from the same collision sweep.
+var gasRxFwdTotal = 0, gasRxFwdTick = 0, gasRxFwdWin = [], gasRxFwdRate = 0;
+var gasRxRevTotal = 0, gasRxRevTick = 0, gasRxRevWin = [], gasRxRevRate = 0;
+var gasRxQueue = [];         // events staged during the pair sweep, applied after it
+var gasRxNew = [];           // particles created this tick
+var gasHeatQ = 0;            // energy owed TO the gas (+) or BY it (-), px/tick units
+var gasCountsBySp = [];      // live population per species index
+var gasConcTrace = [];       // rolling composition history for the concentration graph
+var gasRxSpA = -1, gasRxSpB = -1, gasRxSpAB = -1;
+var gasNPrev = -1;           // last N target seen (reaction mode: N is a delta control)
+
 function gasMode() { return !!(config && config.scenario_type === 'gas_box'); }
 function gasCfg() { return (config && config.gas) ? config.gas : {}; }
 function gasHasGraphPane() { return gasCfg().layout === 'with_graph'; }
@@ -3509,6 +3567,78 @@ function gasSpeciesList() {
   if (g.species && g.species.length) return g.species;
   return [{ id: 'A', mass: 1, radius: 5, color: '#60A5FA', label: 'A' }];
 }
+
+// ─── Reaction configuration ────────────────────────────────────────────────
+function gasRxCfg() { var g = gasCfg(); return g.reaction || null; }
+function gasRxOn() { var r = gasRxCfg(); return !!(r && r.enabled !== false && gasRxSpAB >= 0 && gasRxSpA >= 0 && gasRxSpB >= 0); }
+function gasSpIdxById(id) {
+  for (var i = 0; i < gasSpecies.length; i++) if (gasSpecies[i].id === id) return i;
+  return -1;
+}
+// kT of the REFERENCE temperature -> px/tick energy. Identical conversion to
+// gasActivationE's (mean 2D kinetic energy per particle = speed_scale^2 * T),
+// pinned to ea_ref_T and never to the live T — a barrier that tracked
+// temperature would make heating the gas change nothing, which kills both
+// lessons at once.
+function gasKtToEnergy(nkT) {
+  var g = gasCfg();
+  var refT = (typeof g.ea_ref_T === 'number') ? g.ea_ref_T
+    : (typeof g.temperature_K === 'number') ? g.temperature_K : 300;
+  var s = gasSpeedScale();
+  return nkT * s * s * refT;
+}
+// State override, then config, then default. A state may sharpen the barrier
+// (the catalyst beat) without a second species list.
+function gasRxNum(state, key, dflt) {
+  var r = gasRxCfg() || {};
+  if (state && state.reaction && typeof state.reaction[key] === 'number') return state.reaction[key];
+  if (typeof r[key] === 'number') return r[key];
+  return dflt;
+}
+function gasRxBondE(state) { return gasKtToEnergy(gasRxNum(state, 'bond_energy_kT', 2.0)); }
+function gasRxEaFwd(state) { return max(0, gasKtToEnergy(gasRxNum(state, 'activation_fwd_kT', 1.5))); }
+// DERIVED — see the header note. Clamped at 0 so a strongly endothermic forward
+// (bond_energy_kT < -activation_fwd_kT) degrades to a barrierless reverse
+// rather than a negative one.
+function gasRxEaRev(state) { return max(0, gasRxEaFwd(state) + gasRxBondE(state)); }
+// The canonical bond length. Used for the dimer's moment of inertia at BOTH
+// formation and dissociation — computing I from the live contact separation at
+// formation and from a fixed length at the split would leak energy every cycle,
+// which is the ratchet class of bug all over again.
+function gasRxBondLen() {
+  if (gasRxSpA < 0 || gasRxSpB < 0) return 1;
+  return max(gasSpecies[gasRxSpA].radius + gasSpecies[gasRxSpB].radius, 0.5);
+}
+// Resolve species ids and ENFORCE the conservation-consistent dimer. A species
+// list is authored by hand; this is the ledger check the chemistry_author role
+// writes on paper, applied in code so it cannot be skipped.
+function gasRxResolveSpecies() {
+  gasRxSpA = -1; gasRxSpB = -1; gasRxSpAB = -1;
+  var r = gasRxCfg();
+  if (!r || r.enabled === false) return;
+  var re = r.reactants || [];
+  gasRxSpA = gasSpIdxById(re[0]);
+  gasRxSpB = gasSpIdxById(re[1]);
+  gasRxSpAB = gasSpIdxById(r.product);
+  if (gasRxSpA < 0 || gasRxSpB < 0 || gasRxSpAB < 0) {
+    if (window.console) console.warn('[gas_box] reaction species not found in species list', re, r.product);
+    gasRxSpA = -1; gasRxSpB = -1; gasRxSpAB = -1;
+    return;
+  }
+  var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB], sAB = gasSpecies[gasRxSpAB];
+  var mWant = sA.mass + sB.mass;
+  var rWant = Math.sqrt(sA.radius * sA.radius + sB.radius * sB.radius);
+  if (Math.abs((sAB.mass || 0) - mWant) > 1e-9 || Math.abs((sAB.radius || 0) - rWant) > 1e-6) {
+    // Clone before correcting: gasSpecies aliases the config object, and a
+    // silent in-place edit of authored data would survive into every later
+    // state and every re-read of the same config.
+    gasSpecies = gasSpecies.slice();
+    var fixed = {}; for (var k in sAB) fixed[k] = sAB[k];
+    fixed.mass = mWant; fixed.radius = rWant;
+    gasSpecies[gasRxSpAB] = fixed;
+    if (window.console) console.warn('[gas_box] product ' + (sAB.id || '?') + ' corrected to mass ' + mWant.toFixed(3) + ', radius ' + rWant.toFixed(2) + ' (mass + area conservation)');
+  }
+}
 // Per-component velocity sigma: sigma = s*sqrt(T/m), so v_rms(2D) = sigma*sqrt(2)
 // scales as sqrt(T/m) -- the real kinetic-theory dependence, in pixel units.
 function gasSpeedScale() {
@@ -3531,7 +3661,11 @@ function gasInit() {
   gasWallImpulse = 0; gasPressureWin = []; gasPressure = 0;
   gasCollTotal = 0; gasCollTick = 0; gasCollWin = []; gasCollRate = 0;
   gasSuccessTotal = 0; gasSuccessTick = 0; gasSuccessWin = []; gasSuccessRate = 0;
+  gasRxFwdTotal = 0; gasRxFwdTick = 0; gasRxFwdWin = []; gasRxFwdRate = 0;
+  gasRxRevTotal = 0; gasRxRevTick = 0; gasRxRevWin = []; gasRxRevRate = 0;
+  gasRxQueue = []; gasRxNew = []; gasHeatQ = 0; gasConcTrace = []; gasCountsBySp = [];
   gasSpecies = gasSpeciesList();
+  gasRxResolveSpecies();
   var st = curState() || {};
   // Home pose starts settled (Rule 32d) UNLESS the state authors piston_from,
   // in which case the piston opens there and drives to piston_frac — so a state
@@ -3566,6 +3700,12 @@ function gasInit() {
     }
     gasPlaceSpecies(si, specN[si], x0, x1, T, B, side);
   }
+  // Bond axes for any dimers seeded directly by the species list. Drawn HERE
+  // and only when a reaction is configured, never inside gasPlaceSpecies: every
+  // draw goes through the one seeded stream, so an unconditional draw would
+  // shift the stream for kinetic_particle_theory too and silently invalidate
+  // every frozen baseline the fleet already approved.
+  if (gasRxOn()) gasRxSeedDimers();
   gasZeroDrift();
   gasRescaleToT(gasTempK);
 
@@ -3592,6 +3732,18 @@ function gasInit() {
   // rolling windows above are a measurement buffer and must NOT be cleared.
   gasCollTotal = 0; gasCollTick = 0; gasSuccessTotal = 0; gasSuccessTick = 0;
   gasFlashes = [];
+  // The settle ran gasCollide, so it STAGED reactions — but gasApplyReactions()
+  // is not part of the settle, deliberately: a state must open in the
+  // composition it authored (Rule 32d home pose), not in one the relaxation
+  // pass already shifted. Dropping the queue here is what keeps those two facts
+  // compatible; without it every state would fire its whole settle's worth of
+  // reactions in a single burst on the first frame after Play.
+  gasRxQueue = []; gasRxNew = []; gasHeatQ = 0; gasConcTrace = [];
+  gasRxFwdTotal = 0; gasRxFwdTick = 0; gasRxRevTotal = 0; gasRxRevTick = 0;
+  gasRxFwdWin = []; gasRxRevWin = []; gasRxFwdRate = 0; gasRxRevRate = 0;
+  gasNPrev = gasCount();
+  for (var pi = 0; pi < particles.length; pi++) particles[pi].rx = 0;
+  gasSampleComposition();
 }
 
 // A finite random sample carries a small net momentum — left alone the whole
@@ -3652,7 +3804,8 @@ function gasPlaceSpecies(spIdx, n, x0, x1, y0, y1, side) {
         x: constrain(cx, x0 + sp.radius, x1 - sp.radius),
         y: constrain(cy, y0 + sp.radius, y1 - sp.radius),
         vx: gasGauss() * sg, vy: gasGauss() * sg,
-        sp: spIdx, side: side, collisions: 0, hot: 0, trail: []
+        sp: spIdx, side: side, collisions: 0, hot: 0, trail: [],
+        ang: 0, omega: 0, rx: 0
       });
       k++;
     }
@@ -3676,10 +3829,13 @@ function stepGas(state) {
   }
 
   gasSyncCount();
-  gasThermostat(state);
+  gasApplyHeat();                // reaction heat into the gas...
+  gasThermostat(state);          // ...then the bath takes it back, unless adiabatic
   gasMovePiston();
   gasIntegrate(state);
   gasCollide(state);
+  gasRxDecay(state);             // first-order reverse, staged like the merges
+  gasApplyReactions(state);      // staged merges/splits applied after the sweep
   gasSampleStats();
 
   for (var fi = gasFlashes.length - 1; fi >= 0; fi--) {
@@ -3740,17 +3896,51 @@ function gasThermostat(state) {
 // re-sim is unaffected.
 function gasSyncCount() {
   var want = gasCount(), have = particles.length;
-  if (want === have) return;
-  if (want < have) { particles.length = want; return; }
+  // IN A REACTING BOX THE PARTICLE COUNT IS NOT A FREE PARAMETER — it is an
+  // OUTPUT of the chemistry, because A + B -> AB turns two particles into one.
+  // The count-pinning branch below treats any deviation from N as something to
+  // correct, and against a reaction that is catastrophic in both directions:
+  // every merge got backfilled with a newly minted atom, and every dissociation
+  // pushed the count over N so the fragments were truncated off the end of the
+  // array. Measured over 60 s at N=120: A atoms 60 -> 68, B atoms 60 -> 101, and
+  // 60% of the box's energy gone with the deleted discs. Neither the validator
+  // nor THE EYE can see this; it took an atom count.
+  // So in reaction mode N is a DELTA control: it acts only when the target
+  // actually moves (a teacher drag, or a state authoring a different N), and
+  // reaction-driven drift is left exactly alone.
+  if (gasRxOn()) {
+    if (gasNPrev < 0) { gasNPrev = want; return; }
+    if (want === gasNPrev) return;
+    var delta = want - gasNPrev;
+    gasNPrev = want;
+    if (delta < 0) { particles.length = max(2, have + delta); return; }
+    have = particles.length;
+    want = have + delta;
+  } else {
+    if (want === have) return;
+    if (want < have) { particles.length = want; return; }
+  }
   var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB();
   for (var i = have; i < want; i++) {
     var spIdx = i % gasSpecies.length, sp = gasSpecies[spIdx];
+    // In a reacting box the N slider is a REAGENT tap, so it must never pour in
+    // ready-made product — "add more of what is already there" is not a
+    // Le Chatelier stress, it is a mystery. Default alternates the two
+    // reactants (stoichiometric addition); reaction.inject names one species to
+    // add alone, which is the stress the lesson actually wants.
+    if (gasRxOn()) {
+      var r = gasRxCfg() || {};
+      var forced = (typeof r.inject === 'string') ? gasSpIdxById(r.inject) : -1;
+      spIdx = (forced >= 0) ? forced : ((i % 2 === 0) ? gasRxSpA : gasRxSpB);
+      sp = gasSpecies[spIdx];
+    }
     var sg = gasSigma(sp.mass, gasTempK);
     particles.push({
       x: prRange(L + sp.radius, R - sp.radius),
       y: prRange(T + sp.radius, B - sp.radius),
       vx: gasGauss() * sg, vy: gasGauss() * sg,
-      sp: spIdx, side: -1, collisions: 0, hot: 0, trail: []
+      sp: spIdx, side: -1, collisions: 0, hot: 0, trail: [],
+      ang: 0, omega: 0, rx: 0
     });
   }
 }
@@ -3788,6 +3978,10 @@ function gasIntegrate(state) {
     if (gasBarrierOn && p.side === 1 && p.x - r < mid) { p.x = mid + r; v = Math.abs(p.vx); p.vx = v; gasWallImpulse += 2 * m * v; }
 
     if (p.hot > 0) p.hot--;
+    // A dimer turns at the rate its formation impact gave it. This is not
+    // decoration: the rotational energy is in the ledger, taken out of the heat
+    // released when the bond formed and handed back when it breaks.
+    if (p.omega) p.ang = (p.ang || 0) + p.omega;
     // Trails are accumulated unconditionally (30 points, render-only data) so
     // the ⚙ "Particle trails" switch can turn them ON in a state that did not
     // author them — a toggle that reveals an empty buffer is a dead switch.
@@ -3810,11 +4004,17 @@ function gasCollide(state) {
   var L = gasBoxL(), T = gasBoxT();
   var grid = {}, key;
   for (i = 0; i < n; i++) {
+    particles[i].rx = 0;                 // one reaction per particle per tick
     key = floor((particles[i].x - L) / cell) + ':' + floor((particles[i].y - T) / cell);
     if (!grid[key]) grid[key] = [];
     grid[key].push(i);
   }
   var ea = gasActivationE(state);
+  // Barriers resolved once per tick, not once per pair — they are constant
+  // across the sweep and gasKtToEnergy walks the config every call.
+  var rx = gasRxOn()
+    ? { fwd: gasRxEaFwd(state), rev: gasRxEaRev(state) }
+    : null;
   for (i = 0; i < n; i++) {
     var ci = floor((particles[i].x - L) / cell), cj = floor((particles[i].y - T) / cell);
     for (var ox = -1; ox <= 1; ox++) {
@@ -3823,7 +4023,7 @@ function gasCollide(state) {
         if (!bucket) continue;
         for (var bi = 0; bi < bucket.length; bi++) {
           var j = bucket[bi];
-          if (j > i) gasResolvePair(i, j, ea);
+          if (j > i) gasResolvePair(i, j, ea, rx);
         }
       }
     }
@@ -3832,7 +4032,7 @@ function gasCollide(state) {
 
 // Elastic hard-disc impulse along the line of centres. Equal or unequal mass;
 // momentum and kinetic energy are both conserved exactly (e = 1).
-function gasResolvePair(i, j, ea) {
+function gasResolvePair(i, j, ea, rx) {
   var a = particles[i], b = particles[j];
   var sa = gasSpecies[a.sp], sb = gasSpecies[b.sp];
   var dx = b.x - a.x, dy = b.y - a.y;
@@ -3871,6 +4071,254 @@ function gasResolvePair(i, j, ea) {
       gasFlashes.push({ x: (a.x + b.x) * 0.5, y: (a.y + b.y) * 0.5, age: 0 });
     }
   }
+
+  // Reaction test LAST, on the pre-impulse approach speed captured above. The
+  // elastic bounce that just ran cannot change the outcome — it conserves both
+  // the momentum a merge would take and the relative energy the barrier is
+  // tested against — so staging the event after it is equivalent and keeps the
+  // existing collision path byte-identical when no reaction is configured.
+  if (rx) gasRxTry(i, j, vn, rx);
+}
+
+// ─── Reaction events ───────────────────────────────────────────────────────
+// Bond axes for dimers the species list seeded directly (reaction mode only —
+// see the call site for why the draw cannot live in gasPlaceSpecies).
+function gasRxSeedDimers() {
+  for (var i = 0; i < particles.length; i++) {
+    if (particles[i].sp !== gasRxSpAB) continue;
+    particles[i].ang = prRange(0, TWO_PI);
+    particles[i].omega = 0;
+  }
+}
+
+// Called from gasResolvePair with the pair's PRE-impulse normal approach speed —
+// the same line-of-centres criterion the activation-energy counter uses, so the
+// two numbers on screen mean the same thing.
+//
+// Events are STAGED, never applied here: the collide sweep is walking a spatial
+// grid of array indices, and splicing a particle out mid-sweep would leave every
+// later bucket pointing at the wrong disc. They are applied after the sweep, in
+// the fixed order they were queued, so determinism survives (Rule 36 / THE EYE).
+function gasRxTry(i, j, vn, rx) {
+  var a = particles[i], b = particles[j];
+  if (a.rx || b.rx) return;                 // at most one reaction per particle per tick
+  var sa = gasSpecies[a.sp], sb = gasSpecies[b.sp];
+  var mu = (sa.mass * sb.mass) / (sa.mass + sb.mass);
+  var eColl = 0.5 * mu * vn * vn;
+
+  var pairIsAB = (a.sp === gasRxSpA && b.sp === gasRxSpB) || (a.sp === gasRxSpB && b.sp === gasRxSpA);
+  if (pairIsAB && eColl >= rx.fwd) {
+    a.rx = 1; b.rx = 1;
+    gasRxQueue.push({ t: 1, i: i, j: j });
+    return;
+  }
+  // Dissociation is NOT handled here — see gasRxDecay(). It was, at first, as a
+  // collision test on the dimer, which is visually appealing and quietly wrong:
+  // it makes the reverse direction BIMOLECULAR like the forward one, so both
+  // rates carry the same density factor, the volume dependence cancels, and
+  // squeezing the box shifts nothing. Measured before the fix: compressing to
+  // 45% moved the product the WRONG WAY (41 -> 36). Le Chatelier's pressure
+  // half is exactly the difference between 2 particles reacting and 1 falling
+  // apart, so the reverse has to be first order or the lesson does not exist.
+}
+
+// AB -> A + B as a first-order thermal decomposition: each dimer gets an
+// Arrhenius chance per tick, k = A*exp(-Ea_rev / kT), evaluated against the
+// MEASURED temperature (the thermometer lesson: never a stored setpoint).
+//
+// Why this and not a collision test — see gasRxTry(). Why it does not decay a
+// cold box: the exponential does that by itself. At the reference temperature
+// the exponent is the authored barrier in kT; at half that temperature it
+// doubles, and the rate falls by an order of magnitude. A fixed timer would
+// have been the broken version of this idea; Arrhenius is the textbook one.
+//
+// reverse_attempt_per_s is the pre-exponential factor A — a real, authorable
+// quantity that sets WHERE the equilibrium sits without touching which way it
+// moves when the box is stressed.
+function gasRxDecay(state) {
+  if (!gasRxOn()) return;
+  var n = particles.length;
+  if (!n) return;
+  var eaRev = gasRxEaRev(state);
+  var g = gasCfg();
+  var s = gasSpeedScale();
+  var kT = max(s * s * gasMeasuredT(), 1e-9);
+  var attempts = gasRxNum(state, 'reverse_attempt_per_s', 3.5);
+  var p = (attempts / 60) * Math.exp(-eaRev / kT);
+  if (!(p > 0)) return;
+  for (var i = 0; i < n; i++) {
+    var q = particles[i];
+    if (q.sp !== gasRxSpAB || q.rx) continue;
+    if (pr() < p) { q.rx = 1; gasRxQueue.push({ t: 0, i: i }); }
+  }
+}
+
+function gasApplyReactions(state) {
+  if (!gasRxQueue.length) return;
+  var bondE = gasRxBondE(state);
+  var dead = [], i;
+  for (i = 0; i < particles.length; i++) dead[i] = false;
+  for (i = 0; i < gasRxQueue.length; i++) {
+    var ev = gasRxQueue[i];
+    if (ev.t === 1) {
+      if (!dead[ev.i] && !dead[ev.j]) gasRxCombine(ev.i, ev.j, bondE, dead);
+    } else if (!dead[ev.i]) {
+      gasRxSplit(ev.i, bondE, dead);
+    }
+  }
+  var out = [];
+  for (i = 0; i < particles.length; i++) if (!dead[i]) out.push(particles[i]);
+  for (i = 0; i < gasRxNew.length; i++) out.push(gasRxNew[i]);
+  particles = out;
+  gasRxQueue = []; gasRxNew = [];
+}
+
+// A + B -> AB. Momentum exact (centre-of-mass velocity); the relative motion
+// splits into a real rotation carried by the impact's angular momentum, and
+// heat. See the ledger note in the section header.
+function gasRxCombine(i, j, bondE, dead) {
+  var a = particles[i], b = particles[j];
+  var sa = gasSpecies[a.sp], sb = gasSpecies[b.sp];
+  var M = sa.mass + sb.mass, mu = (sa.mass * sb.mass) / M;
+
+  var vx = (sa.mass * a.vx + sb.mass * b.vx) / M;
+  var vy = (sa.mass * a.vy + sb.mass * b.vy) / M;
+  var cx = (sa.mass * a.x + sb.mass * b.x) / M;
+  var cy = (sa.mass * a.y + sb.mass * b.y) / M;
+
+  var rx0 = a.x - b.x, ry0 = a.y - b.y;
+  var uvx = a.vx - b.vx, uvy = a.vy - b.vy;
+  var keRel = 0.5 * mu * (uvx * uvx + uvy * uvy);
+
+  // Angular momentum of the relative motion about the COM. An off-centre hit
+  // makes a spinning dimer; a dead-centre hit makes a still one. That spin is
+  // energy, so it is SUBTRACTED from the heat released rather than conjured.
+  var Lz = mu * (rx0 * uvy - ry0 * uvx);
+  var Ib = mu * gasRxBondLen() * gasRxBondLen();
+  var om = (Ib > 1e-12) ? (Lz / Ib) : 0;
+  var keRot = 0.5 * Ib * om * om;
+  if (keRot > keRel) { keRot = keRel; om = (Ib > 1e-12) ? Math.sqrt(2 * keRot / Ib) * (om < 0 ? -1 : 1) : 0; }
+
+  gasHeatQ += (keRel - keRot) + bondE;
+
+  var sAB = gasSpecies[gasRxSpAB];
+  var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB();
+  gasRxNew.push({
+    x: constrain(cx, L + sAB.radius, max(R - sAB.radius, L + sAB.radius)),
+    y: constrain(cy, T + sAB.radius, max(B - sAB.radius, T + sAB.radius)),
+    vx: vx, vy: vy, sp: gasRxSpAB, side: -1, collisions: 0, hot: 20, trail: [],
+    ang: Math.atan2(ry0, rx0), omega: om, rx: 1
+  });
+  dead[i] = true; dead[j] = true;
+  gasRxFwdTotal++; gasRxFwdTick++;
+  gasFlashes.push({ x: cx, y: cy, age: 0, k: 1 });
+}
+
+// AB -> A + B. The dimer's stored spin becomes the fragments' flight apart; the
+// bond energy (and any top-up needed to separate them cleanly) is debited from
+// the heat reservoir, so the reverse direction cools an exothermic box exactly
+// as much as the forward direction warmed it.
+function gasRxSplit(i, bondE, dead) {
+  var p = particles[i];
+  var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB];
+  var M = sA.mass + sB.mass, mu = (sA.mass * sB.mass) / M;
+  var d = gasRxBondLen();
+  var Ib = mu * d * d;
+  var om = p.omega || 0;
+  var keRot = 0.5 * Ib * om * om;
+
+  // Floor the separation energy so fragments actually leave each other. Without
+  // it a dimer formed by a dead-centre hit dissociates with ~zero relative
+  // speed and the two halves sit in contact, reading as a bond that never broke.
+  var eSep = max(keRot, gasKtToEnergy(0.5));
+  gasHeatQ -= (eSep - keRot) + bondE;
+
+  var u = Math.sqrt(2 * max(eSep, 0) / max(mu, 1e-9));
+  var ang = (typeof p.ang === 'number') ? p.ang : 0;
+  var nx = Math.cos(ang), ny = Math.sin(ang);
+
+  var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB();
+  var fA = sB.mass / M, fB = sA.mass / M;    // COM-preserving offsets
+  gasRxNew.push({
+    x: constrain(p.x + nx * d * fA, L + sA.radius, max(R - sA.radius, L + sA.radius)),
+    y: constrain(p.y + ny * d * fA, T + sA.radius, max(B - sA.radius, T + sA.radius)),
+    vx: p.vx + nx * u * fA, vy: p.vy + ny * u * fA,
+    sp: gasRxSpA, side: -1, collisions: 0, hot: 20, trail: [], ang: 0, omega: 0, rx: 1
+  });
+  gasRxNew.push({
+    x: constrain(p.x - nx * d * fB, L + sB.radius, max(R - sB.radius, L + sB.radius)),
+    y: constrain(p.y - ny * d * fB, T + sB.radius, max(B - sB.radius, T + sB.radius)),
+    vx: p.vx - nx * u * fB, vy: p.vy - ny * u * fB,
+    sp: gasRxSpB, side: -1, collisions: 0, hot: 20, trail: [], ang: 0, omega: 0, rx: 1
+  });
+  dead[i] = true;
+  gasRxRevTotal++; gasRxRevTick++;
+  gasFlashes.push({ x: p.x, y: p.y, age: 0, k: 2 });
+}
+
+// Hand the reaction reservoir to the gas (or take from it) as a uniform
+// velocity rescale — the same mechanism the thermostat uses, so the speed
+// distribution keeps its shape. Runs BEFORE the thermostat: an isothermal state
+// then has its heat removed (the box is in a bath, which is what isothermal
+// means), while an adiabatic:true state keeps it and the thermometer rises on
+// its own. That ordering is the entire temperature half of Le Chatelier.
+function gasApplyHeat() {
+  if (Math.abs(gasHeatQ) < 1e-12) return;
+  var i, ke = 0;
+  for (i = 0; i < particles.length; i++) {
+    var p = particles[i], m = gasSpecies[p.sp].mass;
+    ke += 0.5 * m * (p.vx * p.vx + p.vy * p.vy);
+  }
+  if (ke <= 1e-9) return;
+  var target = ke + gasHeatQ;
+  if (target < ke * 0.05) target = ke * 0.05;   // a debit may cool the gas, never stop it
+  var f = Math.sqrt(target / ke);
+  for (i = 0; i < particles.length; i++) { particles[i].vx *= f; particles[i].vy *= f; }
+  gasHeatQ -= (target - ke);                     // only what was actually delivered
+}
+
+// THE SELF-CHECK. Total energy of the reacting box, recomputed from the
+// particles every tick. Under adiabatic:true with the piston parked and the N
+// slider untouched this must hold flat — if it drifts, a reaction event is
+// leaking or minting energy and every number downstream of temperature is
+// lying. 'show_energy_ledger' puts it on screen for exactly that measurement.
+function gasEnergyLedger(state) {
+  var bondE = gasRxBondE(state), i, ke = 0, rot = 0, nAB = 0;
+  var d = gasRxBondLen();
+  for (i = 0; i < particles.length; i++) {
+    var p = particles[i], sp = gasSpecies[p.sp];
+    ke += 0.5 * sp.mass * (p.vx * p.vx + p.vy * p.vy);
+    if (p.sp === gasRxSpAB) {
+      nAB++;
+      var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB];
+      var mu = (sA.mass * sB.mass) / (sA.mass + sB.mass);
+      var Ib = mu * d * d, om = p.omega || 0;
+      rot += 0.5 * Ib * om * om;
+    }
+  }
+  return ke + rot + gasHeatQ - nAB * bondE;
+}
+
+// Live composition + the rolling trace the concentration graph draws from.
+// Sampled at 10 Hz: a 60 Hz trace buys no readability and costs six times the
+// points to walk every frame.
+function gasSampleComposition() {
+  var i;
+  gasCountsBySp = [];
+  for (i = 0; i < gasSpecies.length; i++) gasCountsBySp[i] = 0;
+  for (i = 0; i < particles.length; i++) {
+    var s = particles[i].sp;
+    if (gasCountsBySp[s] !== undefined) gasCountsBySp[s]++;
+  }
+  if (!gasRxOn()) return;
+  var frame = Math.round(PM_simTimeMs / (1000 / 60));
+  if (frame % 6 !== 0 && gasConcTrace.length) return;
+  gasConcTrace.push({
+    a: gasCountsBySp[gasRxSpA] || 0,
+    b: gasCountsBySp[gasRxSpB] || 0,
+    ab: gasCountsBySp[gasRxSpAB] || 0
+  });
+  while (gasConcTrace.length > 260) gasConcTrace.shift();
 }
 
 function gasSampleStats() {
@@ -3895,6 +4343,29 @@ function gasSampleStats() {
   gasCollRate = s * 60 / max(gasCollWin.length, 1);
   s = 0; for (i = 0; i < gasSuccessWin.length; i++) s += gasSuccessWin[i];
   gasSuccessRate = s * 60 / max(gasSuccessWin.length, 1);
+
+  // Reaction rates get a 5 s window, not the collisions' 1 s: reaction events
+  // are one in hundreds of collisions, so a short window reports a rate that
+  // flickers between 0 and a spike. Dynamic equilibrium is READ off these two
+  // numbers sitting equal, and two numbers cannot be seen to be equal while
+  // they are jittering. Measured at 3 s and ~10 events/s the two bars sat 32%
+  // apart at a composition that was DEAD flat (AB 18 -> 18 over 30 s) — the
+  // chemistry was at equilibrium and the instrument denied it. Events are
+  // Poisson, so the window has to hold enough of them: 5 s at 10/s is ~50
+  // events, about 14% noise, and it still re-settles visibly after a stress.
+  // The cumulative totals on the same chip are the steady statement; the bars
+  // are the "both are still running" one.
+  gasRxFwdWin.push(gasRxFwdTick);
+  gasRxRevWin.push(gasRxRevTick);
+  while (gasRxFwdWin.length > 300) gasRxFwdWin.shift();
+  while (gasRxRevWin.length > 300) gasRxRevWin.shift();
+  s = 0; for (i = 0; i < gasRxFwdWin.length; i++) s += gasRxFwdWin[i];
+  gasRxFwdRate = s * 60 / max(gasRxFwdWin.length, 1);
+  s = 0; for (i = 0; i < gasRxRevWin.length; i++) s += gasRxRevWin[i];
+  gasRxRevRate = s * 60 / max(gasRxRevWin.length, 1);
+  gasRxFwdTick = 0; gasRxRevTick = 0;
+
+  gasSampleComposition();
 }
 
 // spIdx null = every particle; otherwise one species (the histogram's markers
@@ -3965,19 +4436,43 @@ function drawGasBox(state) {
   for (i = 0; i < particles.length; i++) {
     p = particles[i]; sp = gasSpecies[p.sp];
     if (p.hot > 0) {
-      fillHex('#FDE047', (p.hot / 16) * 0.35 * dimP);
+      fillHex('#FDE047', (min(p.hot, 16) / 16) * 0.35 * dimP);
       circle(p.x, p.y, sp.radius * 3.0);
     }
+    // A product particle is drawn as the two atoms it is MADE of, joined. One
+    // new-coloured disc would show a substance appearing from nowhere, when the
+    // entire idea is that the same atoms are now stuck together — and a student
+    // has to be able to count the atoms and see that nothing was created.
+    if (gasRxOn() && p.sp === gasRxSpAB) { drawGasDimer(p, dimP); noStroke(); continue; }
     fillHex(sp.color, 0.92 * dimP);
     circle(p.x, p.y, sp.radius * 2);
   }
 
   for (i = 0; i < gasFlashes.length; i++) {
     var f = gasFlashes[i], a = 1 - f.age / 18;
-    noFill(); strokeHex('#FDE047', a * 0.9); strokeWeight(1.5);
+    // Bond made vs bond broken read as different EVENTS, not one flicker: with
+    // one colour the two directions are indistinguishable on screen, and
+    // "both directions are running" is the claim the state exists to make.
+    var fc = (f.k === 1) ? '#34D399' : (f.k === 2) ? '#FB923C' : '#FDE047';
+    noFill(); strokeHex(fc, a * 0.9); strokeWeight(1.5);
     circle(f.x, f.y, 6 + f.age * 0.9);   // must stay near particle scale — a 42px ring over a 10px disc read as noise
   }
   noStroke();
+}
+
+// The dimer's lobes sit at exactly the offsets gasRxSplit() will fly them to,
+// so the bond that breaks is the bond that was drawn.
+function drawGasDimer(p, dimP) {
+  var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB];
+  var M = sA.mass + sB.mass, d = gasRxBondLen();
+  var ang = p.ang || 0, nx = Math.cos(ang), ny = Math.sin(ang);
+  var ax = p.x + nx * d * (sB.mass / M), ay = p.y + ny * d * (sB.mass / M);
+  var bx = p.x - nx * d * (sA.mass / M), by = p.y - ny * d * (sA.mass / M);
+  strokeHex('#E2E8F0', 0.5 * dimP); strokeWeight(2);
+  line(ax, ay, bx, by);
+  noStroke();
+  fillHex(sA.color, 0.92 * dimP); circle(ax, ay, sA.radius * 2);
+  fillHex(sB.color, 0.92 * dimP); circle(bx, by, sB.radius * 2);
 }
 
 function gasChip(x, y, w, h) {
@@ -4042,6 +4537,112 @@ function drawGasLaw() {
   fillHex('#A7F3D0', dim);
   textAlign(LEFT, TOP); textSize(12);
   text('P\\u00B7A / N\\u00B7T = ' + k.toFixed(3), x + 8, y + 5);
+}
+
+// ─── Reaction instruments ──────────────────────────────────────────────────
+// Rule 33d: live numbers plus a moving indicator, placed where a teacher reads
+// them at a glance. Two rate bars sharing ONE scale — the whole of dynamic
+// equilibrium is those two bars ending up the same length while both stay lit.
+function drawGasReaction(state) {
+  if (!gasRxOn()) return;
+  var dim = dimFor('reaction');
+  var w = 250, h = 52;
+  var x = max(gasBoxL(), gasBoxRFull() - w), y = gasHudTop();
+  gasChip(x, y, w, h);
+
+  var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB];
+  var nA = gasCountsBySp[gasRxSpA] || 0, nB = gasCountsBySp[gasRxSpB] || 0;
+  var nAB = gasCountsBySp[gasRxSpAB] || 0;
+
+  textAlign(LEFT, TOP); textSize(11); noStroke();
+  var cx = x + 8;
+  fillHex(sA.color, dim); text((sA.label || sA.id) + ' ' + nA, cx, y + 5); cx += 46;
+  fillHex(sB.color, dim); text((sB.label || sB.id) + ' ' + nB, cx, y + 5); cx += 46;
+  fillHex('#E2E8F0', dim);
+  text((gasSpecies[gasRxSpAB].label || 'AB') + ' ' + nAB, cx, y + 5);
+
+  // ONE shared full-scale for both bars. Two independently scaled bars would sit
+  // equal at unequal rates — an instrument that reports equilibrium whenever it
+  // is asked is worse than no instrument.
+  var full = max(gasRxFwdRate, gasRxRevRate, 1);
+  var bw = w - 74, bx = x + 62;
+  textSize(10);
+  fillHex('#34D399', dim); text('fwd', x + 8, y + 22);
+  fillHex('#FB923C', dim); text('rev', x + 8, y + 36);
+  noStroke();
+  fillHex('#34D399', 0.85 * dim); rect(bx, y + 24, bw * constrain(gasRxFwdRate / full, 0, 1), 5, 2);
+  fillHex('#FB923C', 0.85 * dim); rect(bx, y + 38, bw * constrain(gasRxRevRate / full, 0, 1), 5, 2);
+  fillHex('#CBD5E1', dim);
+  textAlign(RIGHT, TOP);
+  text(gasRxFwdRate.toFixed(1) + '/s', x + w - 8, y + 20);
+  text(gasRxRevRate.toFixed(1) + '/s', x + w - 8, y + 34);
+  // Cumulative totals since the state opened. The bars are Poisson-noisy by
+  // nature (see gasSampleStats); these two numbers converging is the steady,
+  // unarguable form of "the two directions are running at the same rate".
+  fillHex('#94A3B8', 0.9 * dim);
+  textAlign(LEFT, TOP); textSize(10);
+  text(gasRxFwdTotal + ' made \\u00B7 ' + gasRxRevTotal + ' broken', x + 8, y + h - 13);
+  textSize(11);
+}
+
+// Composition against time. The line that goes flat WHILE the bars stay lit is
+// the picture a whiteboard cannot draw, and it is the only honest way to show
+// that "nothing is changing" and "nothing is happening" are different claims.
+function drawGasConcGraph(state) {
+  if (!gasRxOn() || gasConcTrace.length < 2) return;
+  var gw = floor((gasBoxRFull() - gasBoxL()) * 0.38), gh = floor((gasBoxB() - gasBoxT()) * 0.34);
+  if (gw < 90) return;
+  var gx = gasBoxL() + 22, gy = gasBoxB() - gh - 26;
+  var dim = dimFor('conc_graph');
+
+  noStroke(); fill(8, 10, 22, 240);
+  rect(gx - 10, gy - 14, gw + 20, gh + 40, 6);
+  noFill(); strokeHex('#334155', 0.9 * dim); strokeWeight(1);
+  rect(gx - 10, gy - 14, gw + 20, gh + 40, 6);
+
+  var i, t, peak = 1;
+  for (i = 0; i < gasConcTrace.length; i++) {
+    t = gasConcTrace[i];
+    peak = max(peak, t.a, t.b, t.ab);
+  }
+  var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB];
+  var series = [
+    { key: 'a', c: sA.color }, { key: 'b', c: sB.color }, { key: 'ab', c: '#E2E8F0' }
+  ];
+  // The x axis is the TRACE BUFFER, not wall-clock: a fixed 260-sample window so
+  // the curve keeps a constant sweep speed instead of compressing as it fills.
+  var span = max(gasConcTrace.length - 1, 1);
+  for (var s = 0; s < series.length; s++) {
+    noFill(); strokeHex(series[s].c, 0.95 * dim); strokeWeight(2);
+    beginShape();
+    for (i = 0; i < gasConcTrace.length; i++) {
+      var v = gasConcTrace[i][series[s].key];
+      vertex(gx + (i / span) * gw, gy + gh - (v / peak) * gh);
+    }
+    endShape();
+  }
+  noStroke(); fillHex('#CBD5E1', 0.85 * dim);
+  textAlign(LEFT, TOP); textSize(10);
+  text('count', gx, gy - 12);
+  textAlign(RIGHT, TOP);
+  text('time \\u2192', gx + gw, gy + gh + 4);
+  textAlign(LEFT, TOP);
+}
+
+// The energy self-check (default OFF — a bring-up and regression instrument,
+// not a teaching one). Under adiabatic:true with the piston parked this number
+// must hold flat: if it drifts, a reaction event is leaking or minting energy.
+function drawGasLedger(state) {
+  if (!gasRxOn()) return;
+  // Centre of the bottom margin: drawLabel()'s state chip owns bottom-left and
+  // the collision counter owns bottom-right (Rule 34d — the corners are spoken
+  // for, and this chip is the third thing that wanted one).
+  var w = 214, x = gasBoxMidX() - w / 2, y = gasBoxB() + 8;
+  gasChip(x, y, w, 26);
+  noStroke(); fillHex('#A7F3D0', dimFor('ledger'));
+  textAlign(LEFT, CENTER); textSize(11);
+  text('E_total = ' + gasEnergyLedger(state).toFixed(2) + '  (Q ' + gasHeatQ.toFixed(2) + ')', x + 8, y + 13);
+  textAlign(LEFT, TOP);
 }
 
 // The Maxwell-Boltzmann pane: live histogram + the 2D theory curve + the three
@@ -4207,6 +4808,9 @@ function draw() {
     if (pfWgVis('gas_counters', state.show_collision_counter)) drawGasCounters(state);
     if (pfWgVis('gas_law', state.show_gas_law)) drawGasLaw();
     if (pfWgVis('gas_histogram', state.show_speed_histogram)) drawGasHistogram(state);
+    if (pfWgVis('gas_reaction', state.show_reaction_readout)) drawGasReaction(state);
+    if (pfWgVis('gas_conc_graph', state.show_concentration_graph)) drawGasConcGraph(state);
+    if (pfWgVis('gas_ledger', state.show_energy_ledger)) drawGasLedger(state);
     pop();
     drawLabel(state);
     var gFrm = document.getElementById('pm-formula');

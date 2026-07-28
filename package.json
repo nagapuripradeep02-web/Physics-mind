@@ -37,7 +37,6 @@
     "founder:drive": "npx tsx src/scripts/founder_drive.ts",
     "cache:clear:scoped": "node src/scripts/_scratch_cache_clear_scoped.mjs",
     "visual:approve": "npx tsx --env-file=.env.local src/scripts/visual_approve.ts",
-    "cache:clear:scoped": "node src/scripts/_scratch_cache_clear_scoped.mjs",
     "log:lesson": "npx tsx --env-file=.env.local src/scripts/log_lesson.ts",
     "prewarm:deepdive": "npx tsx --env-file=.env.local src/scripts/prewarm_deepdive.ts",
     "solve:layout": "npx tsx --env-file=.env.local src/scripts/solve_layout.ts",
@@ -45,7 +44,8 @@
     "check:agents": "node scripts/sync-agents.js --check",
     "test": "vitest run",
     "build:pilot": "npx tsx src/scripts/build_review_site.ts --pilot",
-    "grant:paid": "npx tsx --env-file=.env.local src/scripts/grant_paid.ts"
+    "grant:paid": "npx tsx --env-file=.env.local src/scripts/grant_paid.ts",
+    "check:gas-reaction": "npx tsx src/scripts/check_gas_reaction_physics.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
