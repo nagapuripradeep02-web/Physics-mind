@@ -842,7 +842,8 @@
           "hud_lines": ["nodes", "energy"],
           "show_formula": true,
           "formula": "E ∝ −1/n²",
-          "spin_rate": 0,
+          "spin_start_ms": 11400,
+          "spin_rate": 0.05,
           "controls": []
         }
       },
