@@ -1,6 +1,32 @@
 -- Scar candidates — vsepr_molecular_shapes / the molecular_geometry 3D surface, 2026-07-28
--- STATUS: FILES ONLY, NOT APPLIED. engine_bug_queue writes are a founder decision
---         (same convention as scar_candidates_law_of_conservation_of_mass.sql, 2026-07-27).
+--
+-- ═══════════════════════════════════════════════════════════════════════════
+-- STATUS: **APPLIED** 2026-07-28 to dxwpkjfypzxrzgbevfnx (dev) on founder
+-- instruction ("apply all 9 to the table"), via
+-- src/scripts/_seed_engine_bug_queue_vsepr_3d_surface.ts (idempotent — it skips
+-- any bug_class already present, so it is safe to re-run).
+-- Verified after: 368 -> 377 rows, chemistry 2 -> 11, all 9 returned by
+-- `query_engine_bug_queue.ts vsepr_molecular_shapes`, zero null title/probe_logic.
+-- NOT applied to physicsmind-pilot (production) — engine_bug_queue is dev-only.
+--
+-- THREE DEVIATIONS from the INSERT text below, forced by the live schema and
+-- carried in the seed script rather than here:
+--   1. `severity` has no 'LOW' (CHECK allows CRITICAL | MAJOR | MODERATE only),
+--      so row 9 (backtick) went in as MODERATE.
+--   2. `title` and `probe_type`/`probe_logic` are NOT NULL — all three were
+--      absent from this draft. Titles were written, and each row got a real
+--      probe: five are `js_eval` (runnable inside the page THE EYE already
+--      drives), four are `manual`. A scar row without a probe is a note, not a
+--      check — CLAUDE.md §2 wants the defect class to become a permanent gate.
+--   3. `row_type` set to 'incident', `concepts_affected` to the concept,
+--      `discovered_in_session` to 'chemistry-p4-vsepr-3d-surface-2026-07-28'.
+-- The INSERT statements below are kept as the human-readable record of the
+-- reasoning; the seed script is what actually ran.
+-- ═══════════════════════════════════════════════════════════════════════════
+--
+-- (Draft convention followed initially: files-only, per
+--  scar_candidates_law_of_conservation_of_mass.sql, 2026-07-27 — "engine_bug_queue
+--  writes are a founder decision". The founder then gave that decision.)
 --
 -- Why this batch matters more than a normal concept's: this is the FIRST 3D chemistry
 -- surface, and rows 2-4 and 7 are failure modes that cannot occur on either 2D engine.
@@ -192,7 +218,7 @@ INSERT INTO engine_bug_queue (bug_class, owner_cluster, subject, status, severit
   'peter_parker:renderer_primitives',
   'chemistry',
   'FIXED',
-  'LOW',
+  'MODERATE',   -- schema has no LOW; applied as MODERATE
   'The renderer bodies are emitted from a template literal, so a backtick anywhere inside them — '
   'including inside a // comment, e.g. writing an option name as `assemble` — terminates the literal '
   'and produces a syntax error hundreds of lines away from the real cause. Hit TWICE while building '
