@@ -74,11 +74,18 @@ Same equilibrium from either direction: mean product **20.5 from pure reactants 
 ### Parallel-session note
 The orbitals session merged `orbital_shapes` to master mid-session. **Zero file overlap** verified before merging (they are `field_3d`, this is `particle_field`); clean merge. The two-worktree pattern held a second time.
 
+### ✅ SHIPPED (2026-07-29, founder approval: "fix anything left and ship it with tts pls")
+7 baselines + 7 frozen pins locked, **24 English clips** voiced (bulbul:v3 / priya), page rebuilt, 0 stale clips, page and audio both HTTP 200. Baseline fleet **63 → 64**. Master `a3e6566`.
+
+**All eleven scar rows from this build are FIXED.** The last three were closed at ship time, and the third was caught by the ship itself:
+- **A chemistry id could silently resolve to a physics file of the same name.** The resolver checked the flat physics path first, and `conceptCatalog` already rosters a physics `dynamic_equilibrium` (the Ch.8 mechanics sense). It now throws when both exist. Deliberately no rename: which subject keeps the plain name is an architect decision, and a resolver must not make naming policy — it only has to make the collision impossible to hit by accident.
+- **The frozen H2 baseline was photographed before the concept happened.** Capture times derive from discrete reveal cues, and an emergent-physics scenario has none, so the 1500 ms default was used — the frozen frames of states with genuinely different physics came out near-identical. States may now author `eye_capture_ms` (opt-in, so no approved baseline moves). All seven states here are captured where their own claim is on screen.
+- **The clips existed only in a gitignored folder.** `tts:generate` writes into `review-site/`, and Rule 30h is explicit that there is no free Supabase restore — so 24 clips that cost real Sarvam spend lived on one disk in one ignored directory. **This had already cost us once** (vsepr's 17 clips did not travel with their merge). `tts_audio/` had been created by hand as a backup, which made persistence depend on somebody remembering. The generator now mirrors clips + manifest into the tracked path as part of rendering, and prunes it in step so the copy cannot drift. Persistence is a property of rendering, not of memory.
+
 ### ⏭ NEXT
-1. **`le_chateliers_principle`** (P1 #1) — the reason the reaction layer was built. Same engine, so materially cheaper; its stresses (add reagent, change volume, change temperature) are all live and measured.
-2. Founder visual approval → `visual:approve` for `dynamic_equilibrium`.
-3. **Asmi's professor review** — now FIVE concepts deep with none reviewed. Still the bottleneck, and no longer a small sample.
-4. Open scars worth a look: the frozen H2 baseline is pinned at 1.5 s, blind to a concept whose content emerges over 10–20 s; and a chemistry id can silently resolve to a physics file of the same name.
+1. **`le_chateliers_principle`** (P1 #1) — the reason the reaction layer was built. Same engine, so materially cheaper; its three stresses (add reagent, change volume, change temperature) are all live and measured.
+2. **Asmi's professor review** — now FIVE concepts deep with none reviewed. Still the bottleneck, and no longer a small sample.
+3. A founder decision waiting: the Rule-31a "motion must span narration" validator WARN fires on every gas_box state (it measures the opening choreography's settle time, not continuous emergent motion). Either the heuristic or the authoring convention should change; it is a warning on both shipped gas_box concepts today.
 
 ---
 
