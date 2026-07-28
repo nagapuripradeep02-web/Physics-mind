@@ -43258,14 +43258,28 @@ export const FIELD_3D_RENDERER_CODE = `
     // why the pair meets at a point on the nodal plane. Keyed by (orbital,
     // axis) only — a hybrid orbital supplies a different angular factor and the
     // same builder returns its lobe (#13 forward-compat).
+    // The polar sweep is bounded by the lobe's OWN nodal boundary, per azimuth:
+    // a lobe mesh must cover its own sector and NOTHING else. For p that bound
+    // is a cone at 90 deg (dy = 0) and the sweep is the whole hemisphere. For
+    // d_xy the local factor (dy^2 - dx^2)^2 vanishes on |dy| = |dx| and then
+    // RISES AGAIN toward the neighbouring lobe at local +X, so a fixed 90 deg
+    // sweep made every d mesh draw its own lobe PLUS half of each neighbour —
+    // four meshes double-covering the same clover, which is where the fanned
+    // seams through the middle of the 3d states came from. delMax(az) =
+    // atan(1/|cos az|) is exactly that nodal boundary (45 deg in-plane, 90 deg
+    // out-of-plane), so the four meshes now tile the clover exactly once.
+    function osLobeDelMax(orb, az) {
+        if (orb.l === 1) return Math.PI / 2;
+        return Math.atan2(1, Math.abs(Math.cos(az)));
+    }
     function osLobeGeometry(orb, lev) {
         var ND = 26, NA = 40, i, j;
         var verts = [], idx = [];
         for (i = 0; i <= ND; i++) {
-            var del = (i / ND) * (Math.PI / 2);
-            var cd = Math.cos(del), sd = Math.sin(del);
             for (j = 0; j < NA; j++) {
                 var az = (j / NA) * 2 * Math.PI;
+                var del = (i / ND) * osLobeDelMax(orb, az);
+                var cd = Math.cos(del), sd = Math.sin(del);
                 var d = [sd * Math.cos(az), cd, sd * Math.sin(az)];
                 var A = osLobeAngLocal(orb, d);
                 var r = (A > 1e-12) ? osRhoOuter(orb, lev / A) * OS_A0 / OS_PM_PER_UNIT : 0;
@@ -43883,7 +43897,17 @@ export const FIELD_3D_RENDERER_CODE = `
             ? window.PM_osSpin : ((os.spin_rate != null) ? os.spin_rate : 0);
         var spinStart = (os.spin_start_ms != null) ? os.spin_start_ms : 0;
         var spinAng = (ms > spinStart) ? spinRate * (ms - spinStart) / 1000 : 0;
-        var spinAx = osNorm(os.spin_axis || [0, 1, 0]);
+        // DEFAULT spin axis = the state's OWN view axis, never world +y. Every
+        // camera in OS_CAMERAS is a solved, countable view (a clover face-on, a
+        // dumbbell exactly in the screen plane); a spin about any other axis
+        // rotates the picture straight back out of it, and after 15-20 s of a
+        // gallery the accumulated angle can make an orbital read as a DIFFERENT
+        // orbital (the 3d_xy clover spun about +y presents its four lobes as two
+        // fused axial masses, i.e. as a d_z2 — the node_count scar). A spin
+        // about the view axis can never foreshorten anything, so a state that
+        // omits spin_axis is countable by construction; a state that WANTS a
+        // tumble authors spin_axis explicitly (S2/S5/S6/S9 all do).
+        var spinAx = osNorm(os.spin_axis || window.PM_osCutN || [0, 1, 0]);
         osTmpV.set(spinAx[0], spinAx[1], spinAx[2]);
         osSpinQ.setFromAxisAngle(osTmpV, spinAng);
         osSpinInv.copy(osSpinQ).invert();
@@ -44163,7 +44187,10 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osPsi2 = psi2; window.PM_osSliceDots = sliceDots;
         window.PM_osProbePm = probeU * OS_PM_PER_UNIT;
         var prbV = document.getElementById("os_probe_val");
-        if (prbV && showProbe) prbV.textContent = String(Math.round(probeU * OS_PM_PER_UNIT));
+        // Same ASCII-minus class as the energy line above: the probe sits on the
+        // negative side of the nucleus for half of every sweep, so this readout
+        // prints a sign far more often than the energy one does.
+        if (prbV && showProbe) prbV.textContent = String(Math.round(probeU * OS_PM_PER_UNIT)).replace("-", "\\u2212");
         if (ctrls.indexOf("probe") >= 0 && !window.PM_osProbeDragged) {
             // keep the teacher's own control honest while a scripted sweep runs
             // (a slider frozen at 0 under a moving plane is an instrument that
@@ -44255,7 +44282,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 } else if (want[i] === "slice_dots") {
                     lines.push("dots in slice: " + sliceDots);
                 } else if (want[i] === "energy") {
-                    lines.push("E = " + primary.E.toFixed(2) + " eV");
+                    // Rule 34c: toFixed emits ASCII U+002D. Any interpolated
+                    // numeric that can be NEGATIVE must post-process its sign
+                    // into a real Unicode minus — a sweep of static strings
+                    // misses runtime-generated numbers, which is exactly how
+                    // ascii_minus_in_oncanvas_math_from_tofixed shipped before.
+                    lines.push("E = " + primary.E.toFixed(2).replace("-", "\\u2212") + " eV");
                 } else if (want[i] === "nodes") {
                     lines.push("nodes: " + primary.nodesRadial + " radial \\u00B7 " + primary.nodesAngular + " angular");
                 } else if (want[i] === "radius") {
