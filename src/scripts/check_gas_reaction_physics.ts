@@ -300,5 +300,80 @@ const spread = Math.max(atAuthoring, atBigScreen, atSmall) - Math.min(atAuthorin
 check('equilibrium is viewport-independent', spread <= Math.max(3, atAuthoring * 0.18),
   `mean AB: 900x560 ${atAuthoring.toFixed(1)} · 1600x900 ${atBigScreen.toFixed(1)} · 760x480 ${atSmall.toFixed(1)} (spread ${spread.toFixed(1)})`);
 
+// ── 10. T_from: the heating must be SEEN, not applied at the door ──
+// Without T_from, gasInit seeds every velocity at the state's target, so a
+// state narrating "now we heat it" opens already hot and the CAUSE never moves
+// (Rule 32a inverted on what is usually an equilibrium lesson's key state).
+// The piston has had piston_from since the reaction layer landed; temperature
+// had no counterpart until 2026-07-29.
+boot(makeConfig({ temperature_K: 300 }, { T: 600, T_from: 300, T_ramp_ms: 2000, adiabatic: false }));
+const tOpen = Number(R.gasTempK);
+run(60);                                     // 1.0 s — mid-ramp
+const tMid = Number(R.gasTempK);
+run(240);                                    // 5.0 s total — well past the 2 s ramp
+const tEnd = Number(R.gasTempK);
+check('T_from opens at the cold end', Math.abs(tOpen - 300) < 5,
+  `opens at ${tOpen.toFixed(0)} K (T_from 300, target 600)`);
+check('T_from ramp is watchable', tMid > 320 && tMid < 590,
+  `1.0 s in: ${tMid.toFixed(0)} K — strictly between start and target, so the climb is on screen`);
+check('T_from reaches its target', Math.abs(tEnd - 600) < 25,
+  `5.0 s in: ${tEnd.toFixed(0)} K (target 600)`);
+
+// Regression guard: every EXISTING gas_box state authors no T_from and must
+// keep opening exactly at its temperature.
+boot(makeConfig({ temperature_K: 300 }, { T: 600, adiabatic: false }));
+check('no T_from still opens at T', Math.abs(Number(R.gasTempK) - 600) < 1,
+  `opens at ${Number(R.gasTempK).toFixed(0)} K — unchanged for every state that authors no ramp`);
+
+// ── 11. inject_cue: the disturbance ARRIVES, once, on the state clock ──
+// Counted in A-UNITS (free A plus A locked in dimers), which the reaction
+// conserves — raw particle count falls as A + B -> AB and would misread honest
+// chemistry as a failed injection.
+boot(makeConfig({}, {
+  T: 400, adiabatic: false,
+  cues: [{ id: 'add_a', at_ms: 1000 }],
+  inject_cue: 'add_a', inject_n: 30, inject_species: 'A',
+}));
+const aU0 = counts().A + counts().AB;
+run(30);                                     // 0.5 s — the cue has NOT fired yet
+const aUBefore = counts().A + counts().AB;
+run(90);                                     // 2.0 s total — past the cue
+const aUAfter = counts().A + counts().AB;
+run(600);                                    // 10 s more — a one-shot must not repeat
+const aULater = counts().A + counts().AB;
+check('inject_cue holds until its cue fires', aUBefore === aU0,
+  `A-units ${aU0} -> ${aUBefore} at 0.5 s (cue at 1.0 s)`);
+check('inject_cue delivers the authored amount', aUAfter === aU0 + 30,
+  `A-units ${aU0} -> ${aUAfter} after the cue (authored +30)`);
+check('inject_cue is a one-shot', aULater === aUAfter,
+  `A-units ${aUAfter} -> ${aULater} over the next 10 s`);
+
+// ── 12. the K chip's teaching claim: different amounts, same ratio ──
+// This is the whole of the "adding reactant changes the equilibrium constant"
+// misconception, checked as physics rather than asserted in narration. The chip
+// prints raw nAB/(nA*nB) precisely because that ratio carries no box area (the
+// reverse rate is already normalised to ref_area_px) — see drawGasKRatio.
+function meanKfrom(sc: Record<string, number>) {
+  boot(makeConfig({ temperature_K: 450 }, { T: 450, adiabatic: false, species_counts: sc }));
+  const st = R.config.states.STATE_1;
+  for (let i = 0; i < 4200; i++) R.stepGas(st);      // settle
+  let sum = 0, n = 0;
+  for (let i = 0; i < 4200; i++) {                    // then sample
+    R.stepGas(st);
+    if (i % 60 === 0) {
+      const c = counts();
+      if (c.A > 0 && c.B > 0) { sum += c.AB / (c.A * c.B); n++; }
+    }
+  }
+  return n ? sum / n : 0;
+}
+const kBalanced = meanKfrom({ A: 60, B: 60, AB: 0 });
+const kSurplusA = meanKfrom({ A: 90, B: 60, AB: 0 });
+const kFromProduct = meanKfrom({ A: 0, B: 0, AB: 60 });
+const kMax = Math.max(kBalanced, kSurplusA, kFromProduct);
+const kMin = Math.min(kBalanced, kSurplusA, kFromProduct);
+check('K is the same from different amounts', (kMax - kMin) <= kMax * 0.30,
+  `K: balanced ${kBalanced.toFixed(5)} · surplus A ${kSurplusA.toFixed(5)} · from product ${kFromProduct.toFixed(5)}`);
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);

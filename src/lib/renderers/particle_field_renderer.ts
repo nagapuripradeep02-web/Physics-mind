@@ -593,7 +593,8 @@ var PF_WG_FLAGS = [
   // reaction layer (2026-07-28)
   { key: 'gas_reaction', flag: 'show_reaction_readout', label: 'Reaction rates' },
   { key: 'gas_conc_graph', flag: 'show_concentration_graph', label: 'Concentration graph' },
-  { key: 'gas_ledger', flag: 'show_energy_ledger', label: 'Energy ledger (check)' }
+  { key: 'gas_ledger', flag: 'show_energy_ledger', label: 'Energy ledger (check)' },
+  { key: 'gas_k_ratio', flag: 'show_k_ratio', label: 'Equilibrium constant K' }
 ];
 function pfWgVis(key, stateWants) {
   var o = pfWidgetVis[key];
@@ -3476,6 +3477,7 @@ var gasCountsBySp = [];      // live population per species index
 var gasConcTrace = [];       // rolling composition history for the concentration graph
 var gasRxSpA = -1, gasRxSpB = -1, gasRxSpAB = -1;
 var gasNPrev = -1;           // last N target seen (reaction mode: N is a delta control)
+var gasInjFired = false;     // authored injection cue: one-shot per state entry
 var gasRxRateMax = 1;        // per-state high-water rate — the bars' stable full scale
 
 function gasMode() { return !!(config && config.scenario_type === 'gas_box'); }
@@ -3537,9 +3539,23 @@ function gasStableDefault(id, fallback) {
 function gasTargetT() {
   var st = curState() || {};
   if (hasSlider('T') && userTouched['T']) return sliderVal('T');
-  if (typeof st.T === 'number') return st.T;
   var g = gasCfg();
-  return gasStableDefault('T', (typeof g.temperature_K === 'number') ? g.temperature_K : 300);
+  var base = (typeof st.T === 'number')
+    ? st.T
+    : gasStableDefault('T', (typeof g.temperature_K === 'number') ? g.temperature_K : 300);
+  // T_from drives the entry ramp on the TARGET, so the existing thermostat
+  // tracks a moving setpoint and the gas heats (or cools) at an authored,
+  // watchable pace instead of snapping. Deliberately a timed ramp rather than
+  // the thermostat's own 10%/tick ease, which settles in ~0.7 s — too quick to
+  // read as the cause beat Rule 32a asks for, and not authorable per state.
+  // Deterministic: PM_simTimeMs advances in fixed 1/60 s steps, so THE EYE's
+  // pinned re-simulation reproduces the ramp frame for frame.
+  if (typeof st.T_from === 'number') {
+    var dur = (typeof st.T_ramp_ms === 'number') ? max(1, st.T_ramp_ms) : 2000;
+    var f = constrain(PM_simTimeMs / dur, 0, 1);
+    return st.T_from + (base - st.T_from) * f;
+  }
+  return base;
 }
 function gasTargetPistonF() {
   var st = curState() || {};
@@ -3723,7 +3739,19 @@ function gasInit() {
     ? constrain(stP.piston_from, 0.2, 1)
     : gasTargetPistonF();
   gasPistonVx = 0;
-  gasTempK = gasTargetT();
+  gasInjFired = false;
+  // The same idea as piston_from, for temperature. A state that narrates "heat
+  // it" has to SHOW the thermometer climb: without T_from the box is seeded at
+  // the target and opens already hot, so the CAUSE is never seen and only the
+  // effect (the shift) is left to watch — Rule 32a inverted on what is usually
+  // the most important state in an equilibrium lesson.
+  // Read from the authored field DIRECTLY, never from gasTargetT(): gasInit
+  // runs inside rebuildScene(), which resetToHomePose() calls BEFORE it zeroes
+  // PM_simTimeMs, so the clock-ramped branch of gasTargetT() would be sampled
+  // at the PREVIOUS state's time here and open the box mid-ramp.
+  gasTempK = (typeof stP.T_from === 'number')
+    ? constrain(stP.T_from, 1, 20000)
+    : gasTargetT();
   gasBarrierOn = !!st.barrier;
 
   var total = gasCount(), si;
@@ -3886,6 +3914,22 @@ function stepGas(state) {
   if (gasBarrierOn && state.barrier_lift_cue && cueFiredAt[state.barrier_lift_cue] !== undefined) {
     gasBarrierOn = false;
   }
+  // An authored disturbance — "pour in more A", "take some A out", "add the
+  // inert gas" — fired off the same cue clock as barrier_lift_cue, so the
+  // stress is SEEN to arrive mid-state (Rule 32a) instead of the box opening
+  // already-disturbed and the shift having to carry the delta alone. This is
+  // the concentration counterpart of piston_from and T_from.
+  // gasNPrev is deliberately NOT touched: it tracks the N TARGET, which this
+  // cue never changes, so gasSyncCount's delta branch stays a no-op and does
+  // not try to "correct" the injection back out.
+  if (!gasInjFired && state.inject_cue && cueFiredAt[state.inject_cue] !== undefined) {
+    gasInjFired = true;
+    var dn = (typeof state.inject_n === 'number') ? Math.round(state.inject_n) : 0;
+    if (dn > 0) gasAddParticles(particles.length, dn, state.inject_species);
+    // Removal goes through gasRxRemove, which takes the authored reagent and
+    // never dismantles a bonded pair to hit a number (the atom-inventory scar).
+    else if (dn < 0) gasRxRemove(-dn);
+  }
 
   gasSyncCount();
   gasApplyHeat();                // reaction heat into the gas...
@@ -3979,15 +4023,33 @@ function gasSyncCount() {
     if (want === have) return;
     if (want < have) { particles.length = want; return; }
   }
+  gasAddParticles(have, want - have);
+}
+
+// Pouring gas IN. Factored out of gasSyncCount so an authored injection cue and
+// the N control add particles by the SAME rule — a cue that seeded its own
+// arrivals would drift from the slider's chemistry the moment either changed.
+// fromIdx preserves gasSyncCount's original index basis exactly (the species
+// alternation is keyed off it), so the N path is behaviourally unchanged.
+// speciesOverride lets a cue name a species outright — the inert-gas beat adds
+// X, which is neither reactant and must never be alternated into A/B.
+// NOTE: no backticks anywhere in this region — the whole renderer body is a
+// template literal, so a backtick in a comment terminates the string.
+function gasAddParticles(fromIdx, count, speciesOverride) {
+  if (!(count > 0)) return;
   var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB();
-  for (var i = have; i < want; i++) {
+  var override = (typeof speciesOverride === 'string') ? gasSpIdxById(speciesOverride) : -1;
+  for (var i = fromIdx; i < fromIdx + count; i++) {
     var spIdx = i % gasSpecies.length, sp = gasSpecies[spIdx];
     // In a reacting box the N slider is a REAGENT tap, so it must never pour in
     // ready-made product — "add more of what is already there" is not a
     // Le Chatelier stress, it is a mystery. Default alternates the two
     // reactants (stoichiometric addition); reaction.inject names one species to
     // add alone, which is the stress the lesson actually wants.
-    if (gasRxOn()) {
+    if (override >= 0) {
+      spIdx = override;
+      sp = gasSpecies[spIdx];
+    } else if (gasRxOn()) {
       var r = gasRxCfg() || {};
       var forced = (typeof r.inject === 'string') ? gasSpIdxById(r.inject) : -1;
       spIdx = (forced >= 0) ? forced : ((i % 2 === 0) ? gasRxSpA : gasRxSpB);
@@ -4717,6 +4779,46 @@ function drawGasReaction(state) {
 // Composition against time. The line that goes flat WHILE the bars stay lit is
 // the picture a whiteboard cannot draw, and it is the only honest way to show
 // that "nothing is changing" and "nothing is happening" are different claims.
+// The equilibrium constant as a LIVE MEASURED number (Rule 33d), which is what
+// turns "adding reactant does not change K" from an assertion into something a
+// student watches happen: the counts move a long way, this number does not.
+//
+// UNITS, and why the raw count ratio is the viewport-independent one. Concen-
+// tration is count per unit area, so a naive K = nAB*A/(nA*nB) carries the box
+// area and would change with the browser window — the monitor-dependent-number
+// scar this engine has already paid for once. It does not apply here, because
+// the reverse rate is already normalised to the fixed reference area:
+//   forward  events/s  proportional to  nA*nB / A        (a pair must FIND each other)
+//   reverse  events/s  proportional to  nAB * ref / A    (gasRxDecay * gasRxAreaNorm)
+// Setting them equal, the A cancels on both sides:
+//   nAB / (nA*nB)  =  k_fwd / (k_rev * ref)   — a constant of the reaction and
+// the temperature, with no box area left in it. So the ratio of RAW COUNTS is
+// already portable, and multiplying it by an area would be what breaks it.
+// Value-only per Rule 34b — the symbolic K = [AB] / ([A][B]) belongs on the
+// state's one formula surface, not duplicated here.
+function drawGasKRatio(state) {
+  if (!gasRxOn() || gasRxSpA < 0 || gasRxSpB < 0 || gasRxSpAB < 0) return;
+  var dim = dimFor('reaction');
+  var w = 150, h = 28, y = gasHudTop();
+  var x = gasBoxL();
+  if (pfWgVis('gas_pressure', state.show_pressure)) x += 142;
+  if (pfWgVis('gas_thermo', state.show_gas_thermometer)) x += 126;
+  if (pfWgVis('gas_law', state.show_gas_law)) x += 206;
+  if (pfWgVis('gas_reaction', state.show_reaction_readout)) x += 276;
+  if (x + w > gasBoxRFull()) x = max(gasBoxL(), gasBoxRFull() - w);
+  gasChip(x, y, w, h);
+
+  var nA = gasCountsBySp[gasRxSpA] || 0;
+  var nB = gasCountsBySp[gasRxSpB] || 0;
+  var nAB = gasCountsBySp[gasRxSpAB] || 0;
+  var msg = (nA > 0 && nB > 0)
+    ? 'K = ' + (nAB / (nA * nB)).toFixed(4)
+    : 'K = \\u2014';
+  fillHex('#FDE68A', dim);
+  textAlign(LEFT, TOP); textSize(12); noStroke();
+  text(msg, x + 8, y + 5);
+}
+
 function drawGasConcGraph(state) {
   if (!gasRxOn() || gasConcTrace.length < 2) return;
   var gw = floor((gasBoxRFull() - gasBoxL()) * 0.38), gh = floor((gasBoxB() - gasBoxT()) * 0.34);
@@ -4958,6 +5060,7 @@ function draw() {
     if (pfWgVis('gas_law', state.show_gas_law)) drawGasLaw();
     if (pfWgVis('gas_histogram', state.show_speed_histogram)) drawGasHistogram(state);
     if (pfWgVis('gas_reaction', state.show_reaction_readout)) drawGasReaction(state);
+    if (pfWgVis('gas_k_ratio', state.show_k_ratio)) drawGasKRatio(state);
     if (pfWgVis('gas_conc_graph', state.show_concentration_graph)) drawGasConcGraph(state);
     if (pfWgVis('gas_ledger', state.show_energy_ledger)) drawGasLedger(state);
     pop();
@@ -6139,6 +6242,12 @@ export interface ParticleFieldStateConfig {
     N?: number;                      // particle count for this state; the N slider overrides
     piston_frac?: number;            // 0.2–1.0 of full box width; the V slider overrides. Eased in, and a closing wall really does work on the gas
     piston_from?: number;            // open the state at this fraction and drive to piston_frac, so the wall is SEEN to move (Rule 32a). Omit = start settled
+    T_from?: number;                 // open the state at this temperature and ramp to T, so the heating/cooling is SEEN (Rule 32a). Omit = open already at T
+    T_ramp_ms?: number;              // duration of the T_from ramp (default 2000). Deterministic — THE EYE reproduces it
+    inject_cue?: string;             // cue id that adds/removes reagent MID-state, so the disturbance is seen to arrive (Rule 32a)
+    inject_n?: number;               // signed particle delta for inject_cue: >0 pours in, <0 takes out (never breaks a bonded pair)
+    inject_species?: string;         // species id for a positive inject_n — names it outright (the inert-gas beat), bypassing reaction.inject alternation
+    show_k_ratio?: boolean;          // live equilibrium-constant chip — measured K = [AB]/([A][B]) as raw counts (Rule 33d)
     barrier?: boolean;               // start with a divider: species 0 left, species 1 right (the diffusion pose)
     barrier_lift_cue?: string;       // cue id that removes the divider mid-state
     activation_energy_kT?: number;   // PREFERRED collision-theory threshold, in multiples of mean particle energy at ea_ref_T
