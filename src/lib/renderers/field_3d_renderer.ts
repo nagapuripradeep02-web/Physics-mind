@@ -42996,6 +42996,78 @@ export const FIELD_3D_RENDERER_CODE = `
     // live inside the extended states that teach them.
     var OS_EXPLORE_ORBITALS = ["1s", "2p_x", "2p_y", "2p_z"];
 
+    // ── HYBRID ORBITALS (#13 hybridisation) ─────────────────────────────────
+    //   psi_h(rho, c) = -c_s R20(rho) Y00 + c_p R21(rho) sqrt(3/4pi) c
+    //   with c = cos(angle from the hybrid's OWN lobe axis), c_s^2 + c_p^2 = 1,
+    //   and f = c_s^2 = the S-CHARACTER fraction. Same exact hydrogenic R_nl
+    //   the s/p/d family above already evaluates (via OS_ORB2S/OS_ORB2P below,
+    //   NOT a second copy), so every hybrid number is commensurable with the
+    //   shipped atomic_orbitals_s_p_d.
+    //
+    //   THE LEADING MINUS IS LOAD-BEARING, NOT COSMETIC. R20 is NEGATIVE for
+    //   rho > 2 -- across most of the bonding region -- so the natural-looking
+    //   "+c_s" puts 82.5% of an sp3 electron BEHIND the atom. It renders
+    //   perfectly, every caption stays literally true, and every gate passes
+    //   while the concept teaches the inverse of directional bonding. Measured
+    //   both ways before this was written (hemisphere probability, not a tip
+    //   radius, is what settles it): docs/concepts/chemistry/
+    //   hybridisation_physics_block.md section 1a. Same defect class as the
+    //   node_count clover that was geometrically right and posed wrong.
+    var OS_HYB_SIGN = -1;
+    var OS_ORB2S = { n: 2, l: 0 };      // radial-function stubs: osR reads n/l only
+    var OS_ORB2P = { n: 2, l: 1 };
+    var OS_INV_S4PI = 1 / Math.sqrt(4 * Math.PI);
+    var OS_SQRT3_4PI = Math.sqrt(3 / (4 * Math.PI));
+    // The correction to this scenario's own forward-compat note: a hybrid is NOT
+    // "a new angular factor plus a new lobe-direction list". R20 != R21, so the
+    // density does NOT factor as R(rho)^2 * A(dhat) and the osRhoOuter(lev/A)
+    // shortcut every s/p/d path uses is unavailable. It IS a surface of
+    // revolution about its own lobe axis, so the replacement is a 1-D table of
+    // the outermost root over c -- built once, read as a pure lookup forever
+    // after, so the SET_TIME_FREEZE byte-identical guarantee is untouched.
+    //
+    //   levels: the iso-density c enclosing exactly 50/70/90% of |psi_h|^2,
+    //   solved offline by bisection on THESE functions and re-verified live by
+    //   the occupancy HUD, which counts the actual dot sample and asserts
+    //   nothing. dirs: verified orthonormal AS A SET (<h_i|h_j> = f + (1-f)
+    //   (a_i . a_j) -> max off-diagonal 5.6e-17), not merely spaced by eye.
+    //   Energy: 2s and 2p are both -3.40 eV at Z=1, so every f gives -3.40 eV.
+    var OS_R3 = 1 / Math.sqrt(3);
+    var OS_HYBRIDS = {
+        // NOTE the label runs: sp2/sp3 carry a SUPERscript, so the whole name
+        // goes in main as real Unicode (\\u00B2 / \\u00B3) with an EMPTY sub.
+        // Routing it through osDrawSubLabel's baseline-DROPPED second run would
+        // print sp-subscript-2, which is a lie about notation (Rule 34c).
+        "sp":  { kind: "hybrid", n: 2, main: "sp",  sub: "", color: "#FFA726", f: 1 / 2, rhoMax: 26, seed: 0x51ED7,
+                 levels: { "50": 8.5587e-4, "70": 3.8003e-4, "90": 8.0806e-5 },
+                 dirs: [[0, 0, 1], [0, 0, -1]], setAngle: 180.00 },
+        "sp2": { kind: "hybrid", n: 2, main: "sp\\u00B2", sub: "", color: "#AB47BC", f: 1 / 3, rhoMax: 26, seed: 0x51ED8,
+                 levels: { "50": 9.4100e-4, "70": 4.1401e-4, "90": 8.6901e-5 },
+                 dirs: [[1, 0, 0], [-0.5, 0, 0.8660254], [-0.5, 0, -0.8660254]], setAngle: 120.00 },
+        "sp3": { kind: "hybrid", n: 2, main: "sp\\u00B3", sub: "", color: "#26A69A", f: 1 / 4, rhoMax: 26, seed: 0x51ED9,
+                 levels: { "50": 9.6698e-4, "70": 4.2371e-4, "90": 8.8483e-5 },
+                 dirs: [[OS_R3, OS_R3, OS_R3], [OS_R3, -OS_R3, -OS_R3], [-OS_R3, OS_R3, -OS_R3], [-OS_R3, -OS_R3, OS_R3]],
+                 setAngle: 109.47 }
+    };
+    for (var hk in OS_HYBRIDS) OS_ORBITALS[hk] = OS_HYBRIDS[hk];
+    // The equivalent-hybrid angle law: cos(theta) = -f/(1-f). Reproduces
+    // 180.00 / 120.00 / 109.47 deg against the direction lists above to 0.01
+    // deg, and 90 deg at f = 0 (two orthogonal p orbitals). This is the whole
+    // concept: the tetrahedral angle is not a fact to memorise, it is what the
+    // law returns at f = 1/4.
+    function osHybAngleDeg(f) {
+        if (f >= 0.5 - 1e-9) return 180;
+        return Math.acos(osClamp(-f / (1 - f), -1, 1)) * 180 / Math.PI;
+    }
+    // The MORPH LADDER. A state may ramp f continuously (the sweep that no
+    // whiteboard can do), which changes the boundary surface every frame. A
+    // per-frame contour solve is out of the question, so the root profile is
+    // precomputed on an f-ladder and the frame LERPS between two rungs. Only
+    // the 50% contour is laddered: Rule of countability below says every
+    // multi-lobe hybrid state authors enclosure 0.5 anyway.
+    var OS_HYB_LADDER_N = 20;            // f = 0, 0.025, ... 0.500
+    var OS_HYB_LADDER_ENC = "50";
+
     // Solved cameras (skeleton E-9, scratch solver 2026-07-28, 1280x720 / fov 60).
     // Used when a state authors no camera of its own, so a missing camera can
     // never leave a beat un-countable. Achieved numbers are in the dispatch
@@ -43013,7 +43085,27 @@ export const FIELD_3D_RENDERER_CODE = `
         d_clover:       { az: 98, el: 15, dist: 14.54 },
         radial_node:    { az: 35, el: 26, dist: 7.2 },
         node_count:     { az: 90, el: 18, dist: 13.33 },
-        explore:        { az: 45, el: 35.26, dist: 8.0 }
+        explore:        { az: 45, el: 35.26, dist: 8.0 },
+        // Hybrid cameras (#13), solved 2026-07-29 on the same criterion the VSEPR
+        // cameras used: maximise min pairwise SCREEN separation of the lobe tips
+        // subject to a foreshortening floor (every lobe projects at >= 0.45 of its
+        // length), with the WHOLE orbital required to fit inside the safe box (the
+        // lobes are plump -- bounding radius ~1.71 world units at the 50% contour --
+        // so a tips-only fit is not a fit). All three land at dist 6.0 with a ~250 px
+        // orbital radius, so the apparatus keeps ONE home pose across the whole
+        // concept (Rule 32d) instead of re-framing between states.
+        //   THE REJECTION THAT JUSTIFIES SOLVING RATHER THAN REUSING: the shipped
+        // p_set camera (az 45 / el 35.26, the (1,1,1) view that makes three 2p
+        // orbitals countable) foreshortens an sp3 lobe to EXACTLY 0.000 -- one of
+        // the four points straight down the view axis and vanishes behind the
+        // nucleus, under a caption that counts four. That is the VSEPR
+        // methane-fourth-bond defect reproduced verbatim; the obvious reuse is the
+        // wrong answer, and only a measurement says so.
+        merge_morph:    { az: 0, el: 0,   dist: 6.0 },   // minFore 1.000, tips 362 px
+        param_sweep:    { az: 0, el: 0,   dist: 6.0 },   // the 2-lobe sweep plane faces the camera
+        set_populate:   { az: 0, el: -80, dist: 6.0 },   // minFore 0.985, tips 302 px (sp2 plane face-on)
+        tetra_assemble: { az: 0, el: 0,   dist: 6.0 },   // minFore 0.816 on ALL FOUR, tips 213 px
+        hybrid_gallery: { az: 0, el: 0,   dist: 6.0 }
     };
 
     function osClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
@@ -43243,6 +43335,17 @@ export const FIELD_3D_RENDERER_CODE = `
     // its anisotropy would land in the wrong plane.
     function osLobeFrames(orb) {
         var out = [], k;
+        // A hybrid SET is n separate orbitals, one per direction -- not n lobes
+        // of one orbital. Each carries its own front+back surface, so the frame
+        // list is simply the verified-orthonormal direction list.
+        if (orb.kind === "hybrid") {
+            var dl = orb._dirsLive || orb.dirs;
+            for (k = 0; k < dl.length; k++) {
+                var ha = osNorm(dl[k]), hb = osBasis(ha);
+                out.push({ X: hb[0], Y: ha, Z: osCross(hb[0], ha) });
+            }
+            return out;
+        }
         if (orb.l === 1) {
             var a = osNorm(orb.axis), b = osBasis(a);
             out.push({ X: b[0], Y: a, Z: osCross(b[0], a) });
@@ -43310,6 +43413,241 @@ export const FIELD_3D_RENDERER_CODE = `
         geo.setIndex(idx);
         geo.computeVertexNormals();
         return geo;
+    }
+    // ── HYBRID GEOMETRY (#13) ───────────────────────────────────────────────
+    // psi_h in the lobe's OWN frame. Reuses osR against the OS_ORB2S/OS_ORB2P
+    // stubs rather than re-typing R20/R21, so a hybrid can never drift away
+    // from the radial functions the rest of this scenario evaluates.
+    function osHybPsi(orb, rho, c) {
+        var cs = Math.sqrt(orb.f), cp = Math.sqrt(1 - orb.f);
+        return OS_HYB_SIGN * cs * osR(OS_ORB2S, rho) * OS_INV_S4PI
+             + cp * osR(OS_ORB2P, rho) * OS_SQRT3_4PI * c;
+    }
+    // The outermost root of |psi_h|^2 == lev along the ray at cos-angle c, in
+    // rho. Non-separable, so this is a real per-direction solve -- but it is a
+    // surface of revolution, so ONE 1-D table over c serves every azimuth.
+    // g2s/g2p are the radial functions pre-evaluated on the SAME grid, which is
+    // what keeps the ladder build (21 rungs x 161 directions x 2000 steps)
+    // arithmetic instead of 6.8M exp() pairs.
+    function osHybRootTable(f, lev, rhoMax, NC, NR, g2s, g2p) {
+        var cs = Math.sqrt(f), cp = Math.sqrt(1 - f), h = rhoMax / NR;
+        var tab = new Float64Array(NC + 1), i, j;
+        for (i = 0; i <= NC; i++) {
+            var c = -1 + 2 * i / NC;
+            var sA = OS_HYB_SIGN * cs * OS_INV_S4PI, pA = cp * OS_SQRT3_4PI * c;
+            var found = 0;
+            for (j = NR; j >= 1; j--) {
+                var v = sA * g2s[j] + pA * g2p[j];
+                if (v * v >= lev) { found = j; break; }
+            }
+            if (found > 0) {
+                var lo = found * h, hi = lo + h, b;
+                for (b = 0; b < 34; b++) {
+                    var m = 0.5 * (lo + hi);
+                    var vm = sA * osR(OS_ORB2S, m) + pA * osR(OS_ORB2P, m);
+                    if (vm * vm >= lev) lo = m; else hi = m;
+                }
+                tab[i] = 0.5 * (lo + hi);
+            } else tab[i] = 0;
+        }
+        return tab;
+    }
+    // Linear read of a root table at arbitrary c (and, for the morph, between
+    // two ladder rungs). Pure lookup -- no wavefunction is evaluated in a frame.
+    function osHybRootAt(tab, c) {
+        var NC = tab.length - 1;
+        var u = (osClamp(c, -1, 1) + 1) * 0.5 * NC;
+        var i0 = Math.floor(u); if (i0 >= NC) i0 = NC - 1;
+        var fr = u - i0;
+        return tab[i0] * (1 - fr) + tab[i0 + 1] * fr;
+    }
+    // Build a hybrid: root tables at each enclosure, the seeded sample table
+    // (exact 2-D inverse-CDF, NOT rejection -- a rejection loop would consume a
+    // variable number of RNG draws and stop being reproducible), the MEASURED
+    // front-hemisphere fraction, and the per-enclosure front/back tips in pm.
+    function osBuildHybrid(orb) {
+        var NR = 2400, NC = 200, i, j;
+        var h = orb.rhoMax / NR;
+        var g2s = new Float64Array(NR + 1), g2p = new Float64Array(NR + 1);
+        for (j = 0; j <= NR; j++) { var p = j * h; g2s[j] = osR(OS_ORB2S, p); g2p[j] = osR(OS_ORB2P, p); }
+        orb._rootC = {}; orb.rByLev = {}; orb.backByLev = {};
+        for (i = 0; i < OS_ENCLOSURES.length; i++) {
+            var key = OS_ENCLOSURES[i];
+            var tab = osHybRootTable(orb.f, orb.levels[key], orb.rhoMax, NC, NR, g2s, g2p);
+            orb._rootC[key] = tab;
+            orb.rByLev[key] = osHybRootAt(tab, 1) * OS_A0;      // front tip, pm
+            orb.backByLev[key] = osHybRootAt(tab, -1) * OS_A0;  // back tip, pm
+        }
+        // 2-D mass table over (rho, c): mass ~ rho^2 |psi|^2. Marginal over rho,
+        // then conditional over c -> exact inverse sampling, fully seeded.
+        var MR = 1200, MC = 120;
+        var hm = orb.rhoMax / MR;
+        var mrho = new Float64Array(MR + 1), mcum = new Float64Array(MR + 1);
+        var cond = new Float64Array((MR + 1) * (MC + 1));
+        var dMax = 0, tot = 0;
+        for (i = 0; i <= MR; i++) {
+            var rho = i * hm, acc = 0;
+            for (j = 0; j <= MC; j++) {
+                var cc = -1 + 2 * j / MC;
+                var v = osHybPsi(orb, rho, cc), d = v * v;
+                if (d > dMax) dMax = d;
+                acc += d;
+                cond[i * (MC + 1) + j] = acc;
+            }
+            mrho[i] = acc * rho * rho;
+            tot += mrho[i];
+            mcum[i] = tot;
+        }
+        orb._dMax = dMax;
+        orb.E = -13.6 / (orb.n * orb.n);      // 2s and 2p are both -3.40 eV at Z=1
+        orb.nodesRadial = 0; orb.nodesAngular = 0;
+        var rng = osRng(orb.seed);
+        var nSamp = OS_DOT_MAX;
+        var pos = new Float32Array(nSamp * 3);
+        var insideBy = { "50": new Int32Array(nSamp + 1), "70": new Int32Array(nSamp + 1), "90": new Int32Array(nSamp + 1) };
+        var nIn = { "50": 0, "70": 0, "90": 0 };
+        var frontN = 0;
+        var basis = osBasis(orb.dirs[0]);      // sample in lobe-0's own frame
+        for (i = 0; i < nSamp; i++) {
+            // rho by the marginal CDF
+            var t = rng() * tot, lo = 0, hi = MR, mid;
+            while (hi - lo > 1) { mid = (lo + hi) >> 1; if (mcum[mid] < t) lo = mid; else hi = mid; }
+            var rhoS = hi * hm;
+            // c by the conditional CDF at that rho
+            var row = hi * (MC + 1), rowTot = cond[row + MC];
+            var t2 = rng() * rowTot, cl = 0, ch = MC;
+            while (ch - cl > 1) { mid = (cl + ch) >> 1; if (cond[row + mid] < t2) cl = mid; else ch = mid; }
+            var cS = -1 + 2 * ch / MC;
+            var sS = Math.sqrt(Math.max(0, 1 - cS * cS)), az = 2 * Math.PI * rng();
+            var e1 = basis[0], e2 = basis[1], e3 = basis[2];
+            var d0 = e3[0] * cS + (e1[0] * Math.cos(az) + e2[0] * Math.sin(az)) * sS;
+            var d1 = e3[1] * cS + (e1[1] * Math.cos(az) + e2[1] * Math.sin(az)) * sS;
+            var d2 = e3[2] * cS + (e1[2] * Math.cos(az) + e2[2] * Math.sin(az)) * sS;
+            var rU = rhoS * OS_A0 / OS_PM_PER_UNIT;
+            pos[i * 3] = d0 * rU; pos[i * 3 + 1] = d1 * rU; pos[i * 3 + 2] = d2 * rU;
+            if (cS > 0) frontN++;
+            for (j = 0; j < OS_ENCLOSURES.length; j++) {
+                var ek = OS_ENCLOSURES[j];
+                if (rhoS <= osHybRootAt(orb._rootC[ek], cS)) nIn[ek]++;
+                insideBy[ek][i + 1] = nIn[ek];
+            }
+        }
+        orb._pos = pos; orb._sampleN = nSamp; orb._insideBy = insideBy;
+        // MEASURED, not asserted: what fraction of the electron sits on the
+        // bonding side. This is the number the sign convention turns over
+        // (82.5% vs 17.5% for sp3), so it is printed, not trusted.
+        orb.frontFrac = frontN / nSamp;
+    }
+    // The morph ladder: root profiles at f = 0, 0.025, ... 0.500 on the 50%
+    // contour, so a state can ramp s-character continuously and the frame only
+    // LERPS two precomputed profiles. f = 0 is a pure 2p lobe pair by
+    // construction, which is exactly why the merge beat is a real geometric
+    // morph and not a crossfade: at f = 0 the hybrid IS the p orbital.
+    var OS_HYB_LADDER = null;
+    function osBuildHybLadder() {
+        var NR = 2000, NC = 160, rhoMax = 26, i, j;
+        var h = rhoMax / NR;
+        var g2s = new Float64Array(NR + 1), g2p = new Float64Array(NR + 1);
+        for (j = 0; j <= NR; j++) { var p = j * h; g2s[j] = osR(OS_ORB2S, p); g2p[j] = osR(OS_ORB2P, p); }
+        var rungs = [];
+        for (i = 0; i <= OS_HYB_LADDER_N; i++) {
+            var f = 0.5 * i / OS_HYB_LADDER_N;
+            var lev = osHybSolveLevel(f, 0.50, rhoMax, g2s, g2p, NR);
+            rungs.push({ f: f, lev: lev, tab: osHybRootTable(f, lev, rhoMax, NC, NR, g2s, g2p) });
+        }
+        OS_HYB_LADDER = rungs;
+    }
+    // The iso-density level enclosing frac of |psi_h|^2, by one mass-vs-level
+    // histogram pass (NOT a bisection with a full re-integration each step —
+    // that is 50x the work for the same answer). Cumulating the histogram from
+    // the densest bin down gives enclosed(level) for every level at once.
+    function osHybSolveLevel(f, frac, rhoMax, g2s, g2p, NR) {
+        var NC = 120, NB = 4000, i, j;
+        var h = rhoMax / NR;
+        var cs = Math.sqrt(f), cp = Math.sqrt(1 - f);
+        var sA = OS_HYB_SIGN * cs * OS_INV_S4PI;
+        var dMax = 0, cell = [], w = [];
+        for (i = 1; i <= NR; i++) {
+            var rho = i * h, r2 = rho * rho;
+            for (j = 0; j <= NC; j++) {
+                var c = -1 + 2 * j / NC;
+                var v = sA * g2s[i] + cp * OS_SQRT3_4PI * c * g2p[i];
+                var d = v * v;
+                if (d > dMax) dMax = d;
+                cell.push(d); w.push(d * r2);
+            }
+        }
+        var hist = new Float64Array(NB + 1), tot = 0, k;
+        for (k = 0; k < cell.length; k++) {
+            var b = Math.floor(NB * Math.sqrt(cell[k] / dMax));
+            if (b > NB) b = NB; if (b < 0) b = 0;
+            hist[b] += w[k]; tot += w[k];
+        }
+        var acc = 0;
+        for (b = NB; b >= 0; b--) {
+            acc += hist[b];
+            if (acc / tot >= frac) {
+                var u = b / NB;
+                return u * u * dMax;
+            }
+        }
+        return 0;
+    }
+    // Canonical hybrid mesh, axis = +y, built from a root profile. Unlike a p or
+    // d lobe -- whose mesh covers only its own nodal sector -- a hybrid's front
+    // and back lobes are ONE connected surface of revolution: the back-ray node
+    // root rho = 2c_s/(c_s - c_p) is negative for every f < 1/2, i.e. there is
+    // no node behind the atom (verified before this was written). So the polar
+    // sweep is the FULL pi, and the small back lobe is part of the same mesh.
+    function osHybGeometry(tab) {
+        var ND = 72, NA = 40, i, j;
+        var verts = [], idx = [];
+        for (i = 0; i <= ND; i++) {
+            var del = (i / ND) * Math.PI;
+            var cd = Math.cos(del), sd = Math.sin(del);
+            var r = osHybRootAt(tab, cd) * OS_A0 / OS_PM_PER_UNIT;
+            for (j = 0; j < NA; j++) {
+                var az = (j / NA) * 2 * Math.PI;
+                verts.push(sd * Math.cos(az) * r, cd * r, sd * Math.sin(az) * r);
+            }
+        }
+        for (i = 0; i < ND; i++) {
+            for (j = 0; j < NA; j++) {
+                var a = i * NA + j, bb = i * NA + ((j + 1) % NA);
+                var c = (i + 1) * NA + j, dd = (i + 1) * NA + ((j + 1) % NA);
+                idx.push(a, c, bb); idx.push(bb, c, dd);
+            }
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3));
+        geo.setIndex(idx);
+        geo.computeVertexNormals();
+        return geo;
+    }
+    // Rewrite an existing hybrid mesh's vertices from an interpolated ladder
+    // profile. Every lobe of a set is the SAME shape aimed differently, so one
+    // geometry is rebuilt per frame and shared by all of them -- 2880 vertices
+    // once, not once per lobe.
+    function osHybMorphGeometry(geo, f) {
+        var rungs = OS_HYB_LADDER;
+        if (!rungs || !rungs.length) return;
+        var u = osClamp(f, 0, 0.5) / 0.5 * OS_HYB_LADDER_N;
+        var i0 = Math.floor(u); if (i0 >= OS_HYB_LADDER_N) i0 = OS_HYB_LADDER_N - 1;
+        var fr = u - i0;
+        var tA = rungs[i0].tab, tB = rungs[i0 + 1].tab;
+        var arr = geo.attributes.position.array;
+        var ND = 72, NA = 40, i, j, n = 0;
+        for (i = 0; i <= ND; i++) {
+            var del = (i / ND) * Math.PI;
+            var cd = Math.cos(del), sd = Math.sin(del);
+            var r = (osHybRootAt(tA, cd) * (1 - fr) + osHybRootAt(tB, cd) * fr) * OS_A0 / OS_PM_PER_UNIT;
+            for (j = 0; j < NA; j++) {
+                var az = (j / NA) * 2 * Math.PI;
+                arr[n++] = sd * Math.cos(az) * r; arr[n++] = cd * r; arr[n++] = sd * Math.sin(az) * r;
+            }
+        }
+        geo.attributes.position.needsUpdate = true;
+        geo.computeVertexNormals();
     }
     // Two-run label sprite: a main run plus a SMALLER baseline-dropped run, so
     // "2p" + "z" renders as a real subscript. Unicode has no subscript y or z,
@@ -43529,6 +43867,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // "0.00 at the node" is a statement about the WHOLE plane, not one point.
     // Sampled on a polar grid for the general case.
     function osPlaneMaxDensity(orb, sUnits) {
+        // hybrids are non-separable and have no angular node plane, so the probe
+        // (a node-hunting instrument) does not apply to them. Returning 0 rather
+        // than falling through would print a confident "0.00" where the honest
+        // answer is "this instrument has nothing to say" — so the caller is
+        // expected to keep 'probe' out of a hybrid state's hud_lines, and this
+        // guard exists only so a mis-authored state cannot read osAng's d branch
+        // with an undefined l.
+        if (orb.kind === "hybrid") return 0;
         var s = sUnits * OS_PM_PER_UNIT / OS_A0;     // in rho
         var axis = orb.axis || [0, 0, 1];
         var b = osBasis(axis), e1 = b[0], e2 = b[1];
@@ -43562,6 +43908,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //    build-time: a frame never evaluates a wavefunction for a dot.
         for (k in OS_ORBITALS) {
             var ob = OS_ORBITALS[k];
+            // A hybrid is non-separable, so it takes its OWN build path (root
+            // tables over c + a 2-D inverse-CDF sampler) rather than the radial
+            // CDF + angular-factor pair the s/p/d family shares.
+            if (ob.kind === "hybrid") { osBuildHybrid(ob); continue; }
             osBuildTables(ob);
             osBuildSamples(ob);
             // r90 (spheres) / lobe tip (lobes) at each enclosure, in real pm —
@@ -43574,12 +43924,23 @@ export const FIELD_3D_RENDERER_CODE = `
             if (ob.shellRho != null) ob.shellPm = ob.shellRho * OS_A0;
         }
         // shared lobe geometries, one per lobed orbital family (canonical +y).
-        var lobeGeo = { p: {}, d: {} };
+        var lobeGeo = { p: {}, d: {}, h: {} };
         for (var gi = 0; gi < OS_ENCLOSURES.length; gi++) {
             var gk = OS_ENCLOSURES[gi];
             lobeGeo.p[gk] = osLobeGeometry(OS_ORBITALS["2p_z"], OS_ORBITALS["2p_z"].levels[gk]);
             lobeGeo.d[gk] = osLobeGeometry(OS_ORBITALS["3d_xy"], OS_ORBITALS["3d_xy"].levels[gk]);
         }
+        for (var hj in OS_HYBRIDS) {
+            lobeGeo.h[hj] = {};
+            for (var hi2 = 0; hi2 < OS_ENCLOSURES.length; hi2++) {
+                var hk2 = OS_ENCLOSURES[hi2];
+                lobeGeo.h[hj][hk2] = osHybGeometry(OS_HYBRIDS[hj]._rootC[hk2]);
+            }
+        }
+        // The morph ladder + the ONE shared geometry a morphing state rewrites
+        // each frame (every lobe of a set is the same shape, aimed differently).
+        osBuildHybLadder();
+        lobeGeo.morph = osHybGeometry(OS_HYB_LADDER[OS_HYB_LADDER_N].tab);
         window.PM_osLobeGeo = lobeGeo;
 
         // 1. nucleus — the one thing that never moves (Rule 32d home pose).
@@ -43764,9 +44125,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var dotsDef = (SC.dots && SC.dots["default"] != null) ? SC.dots["default"] : 1200;
         var spinDef = (SC.spin && SC.spin["default"] != null) ? SC.spin["default"] : 0.18;
         var orbDef = (SC.orbital && SC.orbital["default"]) ? SC.orbital["default"] : "1s";
+        var scharDef = (SC.schar && SC.schar["default"] != null) ? SC.schar["default"] : 0.25;
+        // The picker list is authorable so a hybridisation concept can offer the
+        // hybrid sets while an atomic-orbitals concept keeps the CORE-ring s/p
+        // list (Rule 38b). Falls back to the shipped list, so no existing
+        // concept sees any change.
+        var pickList = config.explore_orbitals || OS_EXPLORE_ORBITALS;
         var opts = "", oi;
-        for (oi = 0; oi < OS_EXPLORE_ORBITALS.length; oi++) {
-            var ok = OS_EXPLORE_ORBITALS[oi], ov = OS_ORBITALS[ok];
+        for (oi = 0; oi < pickList.length; oi++) {
+            var ok = pickList[oi], ov = OS_ORBITALS[ok];
+            if (!ov) continue;
             // an <option> renders no markup, and Unicode has no subscript y or z,
             // so the picker spells the axis instead of shipping "2py" as if that
             // were the notation (Rule 34c).
@@ -43783,7 +44151,13 @@ export const FIELD_3D_RENDERER_CODE = `
             '<div id="os_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="os_spin_val">' + Number(spinDef).toFixed(2) + '</span> rad/s</label>' +
             '<input type="range" id="os_spin_slider" min="0" max="0.6" step="0.02" value="' + spinDef + '" style="width:100%"></div>' +
             '<div id="os_probe_row" style="display:none;margin-top:6px"><label>Probe plane: <span id="os_probe_val">0</span> pm</label>' +
-            '<input type="range" id="os_probe_slider" min="-100" max="100" step="1" value="0" style="width:100%"></div>';
+            '<input type="range" id="os_probe_slider" min="-100" max="100" step="1" value="0" style="width:100%"></div>' +
+            // s-character: the ONE dial of #13. Capped at 50% because that is
+            // where two equivalent hybrids reach 180 deg (sp) — beyond it the
+            // angle law has no more range to give, so the slider ends at the
+            // physics rather than at a round number.
+            '<div id="os_schar_row" style="display:none;margin-top:6px"><label>s-character: <span id="os_schar_val">' + Math.round(scharDef * 100) + '</span>% \\u2192 <span id="os_schar_ang">109.5</span>\\u00B0</label>' +
+            '<input type="range" id="os_schar_slider" min="0" max="50" step="1" value="' + Math.round(scharDef * 100) + '" style="width:100%"></div>';
         document.body.appendChild(sp);
 
         function osEmit(param, value) {
@@ -43810,11 +44184,23 @@ export const FIELD_3D_RENDERER_CODE = `
             window.PM_osProbe = parseFloat(prbSl.value) / 100;
             window.PM_osProbeDragged = true; osEmit("probe", window.PM_osProbe);
         });
+        var schSl = document.getElementById("os_schar_slider");
+        var schV = document.getElementById("os_schar_val"), schA = document.getElementById("os_schar_ang");
+        if (schSl) schSl.addEventListener("input", function () {
+            window.PM_osSChar = parseFloat(schSl.value) / 100;
+            if (schV) schV.textContent = String(Math.round(window.PM_osSChar * 100));
+            // the angle is not a second control — it is what the law returns for
+            // the dial's value, so the label recomputes it live rather than
+            // carrying a table of the three named stops.
+            if (schA) schA.textContent = osHybAngleDeg(window.PM_osSChar).toFixed(1);
+            window.PM_osSCharDragged = true; osEmit("schar", window.PM_osSChar);
+        });
 
         window.PM_osDotsDef = dotsDef; window.PM_osDots = dotsDef;
         window.PM_osSpinDef = spinDef; window.PM_osSpin = spinDef;
         window.PM_osOrbitalDef = orbDef; window.PM_osOrbital = orbDef;
         window.PM_osProbe = 0;
+        window.PM_osSCharDef = scharDef; window.PM_osSChar = scharDef;
     }
 
     // Authoritative per-state visibility + seeding. Runs AFTER the generic
@@ -43824,10 +44210,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var os = stateDef.orbital_shapes || {};
         window.PM_osOrbitalDragged = false; window.PM_osDotsDragged = false;
         window.PM_osSpinDragged = false; window.PM_osProbeDragged = false;
+        window.PM_osSCharDragged = false;
         window.PM_osOrbital = os.orbital || window.PM_osOrbitalDef || "1s";
         window.PM_osDots = (os.dot_target != null) ? os.dot_target : (window.PM_osDotsDef != null ? window.PM_osDotsDef : 1200);
         window.PM_osSpin = (os.spin_rate != null) ? os.spin_rate : 0;
         window.PM_osProbe = (os.probe_auto && os.probe_auto.from != null) ? os.probe_auto.from : 0;
+        // seed the s-character dial from the state's own hybrid (or its morph
+        // endpoint), so each state opens as a reproducible preset
+        var seedHyb = OS_ORBITALS[os.orbital || ""];
+        window.PM_osSChar = (os.morph && os.morph.to != null) ? os.morph.to
+            : ((seedHyb && seedHyb.kind === "hybrid") ? seedHyb.f
+                : (window.PM_osSCharDef != null ? window.PM_osSCharDef : 0.25));
 
         // The cutaway slab faces the CAMERA — but it is derived from the STATE's
         // authored/solved camera vector, never read off the live camera, so the
@@ -43845,7 +44238,7 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var ctrls = os.controls || [];
         var statics = os.static_readouts || [];
-        var rows = { orbital: "os_orbital_row", dots: "os_dots_row", spin: "os_spin_row", probe: "os_probe_row" };
+        var rows = { orbital: "os_orbital_row", dots: "os_dots_row", spin: "os_spin_row", probe: "os_probe_row", schar: "os_schar_row" };
         var panel = document.getElementById("os_sliders");
         var anyRow = false, key;
         for (key in rows) {
@@ -43874,6 +44267,11 @@ export const FIELD_3D_RENDERER_CODE = `
         if (spinV) spinV.textContent = Number(window.PM_osSpin).toFixed(2);
         var prbSl = document.getElementById("os_probe_slider");
         if (prbSl) prbSl.value = String(Math.round(window.PM_osProbe * 100));
+        var schSl2 = document.getElementById("os_schar_slider");
+        var schV2 = document.getElementById("os_schar_val"), schA2 = document.getElementById("os_schar_ang");
+        if (schSl2) schSl2.value = String(Math.round(window.PM_osSChar * 100));
+        if (schV2) schV2.textContent = String(Math.round(window.PM_osSChar * 100));
+        if (schA2) schA2.textContent = osHybAngleDeg(window.PM_osSChar).toFixed(1);
 
         var hud = document.getElementById("os_hud");
         if (hud) hud.style.display = os.show_hud ? "block" : "none";
@@ -44104,19 +44502,67 @@ export const FIELD_3D_RENDERER_CODE = `
         // failure mode, not a camera one, so no camera solve can fix it. Divide
         // the ink by the number of shells on screen; the colour-coded dot clouds
         // then carry the three-axis reading. surface_opacity overrides.
+        // ── HYBRIDISATION (#13): the s-character ramp. f is the ONE physical
+        //    dial of this concept — it sets each lobe's front/back asymmetry
+        //    AND, through cos(theta) = -f/(1-f), the angle between the lobes.
+        //    A pure closed-form function of state-local t (Rule 26/36).
+        var hybId = null, hybF = null, hybAngle = null, hybMorphing = false;
+        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "hybrid") hybId = active[i];
+        if (hybId) {
+            var hOrb = OS_ORBITALS[hybId];
+            hybF = hOrb.f;
+            var mo = os.morph;
+            if (mo) {
+                hybF = osRamp(ms, cueTriggerMs("morph", (mo.at_ms != null) ? mo.at_ms : 0),
+                    (mo.duration_ms != null) ? mo.duration_ms : 2600,
+                    (mo.from != null) ? mo.from : 0, (mo.to != null) ? mo.to : hOrb.f);
+                hybMorphing = true;
+            }
+            if (ctrls.indexOf("schar") >= 0 && window.PM_osSCharDragged) {
+                hybF = osClamp(window.PM_osSChar, 0, 0.5); hybMorphing = true;
+            }
+            hybAngle = osHybAngleDeg(hybF);
+            // angle_track sweeps the angle continuously. TWO lobes only, and that
+            // is a physical constraint rather than a shortcut: an arbitrary angle
+            // is realisable by a set of EQUIVALENT hybrids only for n = 2. Three
+            // and four equivalent hybrids are locked to 120 deg and 109.47 deg, so
+            // those sets keep their fixed, verified-orthonormal geometry and the
+            // sweep makes its point with a pair.
+            //   The sweep plane is yz — the SCREEN plane at the solved param_sweep
+            // camera (az 0 / el 0 looks along -x). Sweeping in xz instead would
+            // drive both lobes straight down the view axis at 180 deg and
+            // foreshorten the finale to nothing.
+            if (os.angle_track) {
+                var halfR = hybAngle * Math.PI / 360;
+                hOrb._dirsLive = [[0, Math.sin(halfR), Math.cos(halfR)],
+                                  [0, -Math.sin(halfR), Math.cos(halfR)]];
+            } else hOrb._dirsLive = null;
+            if (hybMorphing && lobeGeo.morph) osHybMorphGeometry(lobeGeo.morph, hybF);
+        }
+        window.PM_osHybF = hybF; window.PM_osHybAngle = hybAngle;
+
         var lobedCount = 0;
-        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "lobes") lobedCount++;
+        for (i = 0; i < active.length; i++) {
+            var lcOrb = OS_ORBITALS[active[i]];
+            if (lcOrb.kind === "lobes") lobedCount++;
+            // a hybrid SET stacks one translucent shell PER MEMBER, so it is the
+            // member count that fuses, not the orbital count (a p orbital's two
+            // lobes are one shell, hence the /2).
+            else if (lcOrb.kind === "hybrid") lobedCount += Math.max(1, ((lcOrb._dirsLive || lcOrb.dirs).length) / 2);
+        }
         var lobeAlpha = (typeof os.surface_opacity === "number") ? os.surface_opacity
             : 0.20 / Math.max(1, lobedCount);
         function osPlaceLobes(orbId, growth, opacity, isGhost) {
             var orb = OS_ORBITALS[orbId];
-            if (!orb || orb.kind !== "lobes") return;
+            if (!orb || (orb.kind !== "lobes" && orb.kind !== "hybrid")) return;
             var frames = osLobeFrames(orb);
             for (var q = 0; q < frames.length && lobeSlot < OS_MAX_LOBES; q++) {
                 var lb = osFindById("os_lobe_" + lobeSlot);
                 lobeSlot++;
                 if (!lb) continue;
-                var geo = (orb.l === 2) ? lobeGeo.d[encKey] : lobeGeo.p[encKey];
+                var geo = (orb.kind === "hybrid")
+                    ? (hybMorphing ? lobeGeo.morph : (lobeGeo.h[orbId] && lobeGeo.h[orbId][encKey]))
+                    : (orb.l === 2) ? lobeGeo.d[encKey] : lobeGeo.p[encKey];
                 if (geo && lb.geometry !== geo) lb.geometry = geo;
                 lb.visible = opacity > 0.004 && growth > 0.02;
                 if (!lb.visible) continue;
@@ -44132,7 +44578,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < ghostIds.length; i++) osPlaceLobes(ghostIds[i], 1, 0.10, true);
         for (i = 0; i < active.length; i++) {
             var aOrb = OS_ORBITALS[active[i]];
-            if (aOrb.kind !== "lobes") continue;
+            if (aOrb.kind !== "lobes" && aOrb.kind !== "hybrid") continue;
             var gth = extrF;
             if (aOrb.l === 2 && os.bloom_at_ms != null) gth = bloomF;
             if (os.grow_at_ms != null) gth = Math.min(gth, growF);
@@ -44388,6 +44834,23 @@ export const FIELD_3D_RENDERER_CODE = `
                     lines.push(primary.main + (primary.sub ? "<sub>" + primary.sub + "</sub>" : ""));
                 } else if (want[i] === "dots") {
                     lines.push("measurements: " + count);
+                } else if (want[i] === "s_char") {
+                    // the ONE dial. Printed as a percentage because that is how a
+                    // student meets it ("25% s-character"), with the fraction beside
+                    // it so the three named stops are recognisable as 1/2, 1/3, 1/4.
+                    lines.push("s-character: " + ((hybF == null) ? "\\u2014" : (Math.round(hybF * 1000) / 10) + "%"));
+                } else if (want[i] === "angle") {
+                    lines.push("angle: " + ((hybAngle == null) ? "\\u2014" : hybAngle.toFixed(1) + "\\u00B0"));
+                } else if (want[i] === "front_back") {
+                    // MEASURED from the seeded sample, never asserted — this is the
+                    // number the sign convention turns over (82.5% vs 17.5%), so it
+                    // is counted rather than trusted.
+                    var ffr = (primary.frontFrac != null) ? primary.frontFrac : null;
+                    lines.push("on bond side: " + ((ffr == null) ? "\\u2014" : (Math.round(ffr * 1000) / 10) + "%"));
+                } else if (want[i] === "tips") {
+                    var bt = (primary.backByLev) ? primary.backByLev[encKey] : null;
+                    lines.push("front " + Math.round(primR) + " pm \\u00B7 back "
+                        + ((bt == null) ? "\\u2014" : Math.round(bt) + " pm"));
                 }
             }
             hud.innerHTML = lines.join("<br>");
@@ -44400,6 +44863,16 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ctrls.indexOf("dots") >= 0 && !window.PM_osDotsDragged) {
             var dv2 = document.getElementById("os_dots_val");
             if (dv2) dv2.textContent = String(count);
+        }
+        // A scripted morph must drag its own readout with it, or the state shows
+        // a slider frozen at its seed while the picture sweeps past it — an
+        // instrument contradicting the state it is in (the gas_box rate-bar scar).
+        if (hybF != null && !window.PM_osSCharDragged) {
+            var ssl = document.getElementById("os_schar_slider");
+            var svl = document.getElementById("os_schar_val"), sag = document.getElementById("os_schar_ang");
+            if (ssl) ssl.value = String(Math.round(hybF * 100));
+            if (svl) svl.textContent = String(Math.round(hybF * 100));
+            if (sag) sag.textContent = hybAngle.toFixed(1);
         }
     }
     // Angular node planes, as NORMALS: a p orbital's single plane is
