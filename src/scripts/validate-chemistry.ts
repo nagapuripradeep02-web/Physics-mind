@@ -23,7 +23,11 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { validateConceptJson } from '../schemas/conceptJson';
-import { deriveMaxRevealTimeMs } from '../lib/validators/visual/deriveStateMeta';
+import {
+    deriveMaxRevealTimeMs,
+    deriveMotionExpectations,
+    deriveStateDurationsMs,
+} from '../lib/validators/visual/deriveStateMeta';
 
 const CHEM_DIR = join(process.cwd(), 'src', 'data', 'concepts', 'chemistry');
 
@@ -146,12 +150,41 @@ function narrationChoreographyWarnings(data: unknown, file: string): string[] {
     } catch {
         derivedReveal = {};   // never let a derivation edge case break the gate
     }
+    // A state whose motion is CONTINUOUS by construction (particles never stop,
+    // field lines keep flowing) has no "settle" instant at all — its motion runs
+    // for the state's whole duration. Measuring such a state by a REVEAL time is
+    // a category error: reveal times describe one-shot cues, and a state with no
+    // cues falls through to the small default (~1500ms), so every state warns no
+    // matter how carefully it was timed. That is the same class as the recorded
+    // field_3d scar (field3d_scene_composition_annotation_silent_noop): a warning
+    // that cannot be satisfied trains the author to ignore the gate.
+    //
+    // Renderer-AGNOSTIC by deliberate choice: this consults deriveMotionExpectations
+    // — the shared classifier that already knows, per renderer, which states move
+    // every frame — rather than special-casing scenario_type 'gas_box'. That is the
+    // explicit "PATTERN TO WATCH" instruction left on the vsepr_3d_surface scar:
+    // "the next such fix should ask whether the tool can be made renderer-agnostic
+    // rather than taught one more special case."
+    //
+    // The check stays HONEST: a continuously-moving state is measured against its
+    // own authored duration, so one whose narration genuinely overruns its state
+    // duration still warns.
+    let motionByState: Record<string, boolean | undefined> = {};
+    let durationByState: Record<string, number> = {};
+    try {
+        const src = (data && typeof data === 'object') ? (data as Record<string, unknown>) : null;
+        motionByState = deriveMotionExpectations(src);
+        durationByState = deriveStateDurationsMs(src);
+    } catch {
+        motionByState = {}; durationByState = {};   // never let a derivation edge case break the gate
+    }
     for (const [stateId, state] of Object.entries(statesOf(data))) {
         if (state.advance_mode === 'interaction_complete') continue; // explore sandbox exempt
         const words = countWords(state);
         if (words === 0) continue;
         const estSpeech = (words / 2.8) * 1000;
-        const choreo = Math.max(choreoEndMs(state), derivedReveal[stateId] ?? 0);
+        const continuous = motionByState[stateId] === true ? (durationByState[stateId] ?? 0) : 0;
+        const choreo = Math.max(choreoEndMs(state), derivedReveal[stateId] ?? 0, continuous);
         if (choreo < 0.7 * estSpeech) {
             warnings.push(
                 `${file} ${stateId}: choreography settles ~${Math.round(choreo)}ms but narration runs ~${Math.round(estSpeech)}ms ` +
