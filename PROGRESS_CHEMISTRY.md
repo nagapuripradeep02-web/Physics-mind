@@ -39,6 +39,94 @@ spanning both dimensionalities. That is the bottleneck, not renderer coverage.
 
 ---
 
+## 📊 STATE OF CHEMISTRY — audit + next-concept decision (2026-07-28)
+
+*Written at founder request: read the whole chemistry position, then pick the next 3D simulation
+against NCERT + the international boards. This section is the audit; the decision is §D.*
+
+### A. Where the roadmap actually stands
+
+C5's ranked list has been executed further than the list itself records. Scored against it today:
+
+| Rank | Item | Status |
+|---|---|---|
+| **P0** | particle-box engine | ✅ shipped as `gas_box` (2026-07-28) |
+| **P1** | #6 kinetic particle theory | ✅ shipped |
+| **P1** | #1 Le Chatelier · #2 dynamic equilibrium · #3 rates · #4 collision theory · #5 Maxwell–Boltzmann · #7 diffusion | ☐ **all six now UNBLOCKED** — the engine that gated them exists |
+| **P2** | #8 titration curve · #9 reaction profiles · #10 H spectrum · #11 periodic trends | ☐ buildable today, zero engine work |
+| **P3** | Three.js molecular surface | ✅ shipped as `field_3d` · `molecular_geometry` |
+| **P4** | #12 VSEPR | ✅ shipped |
+| **P4** | #13 hybridisation · #14 SN1/SN2 · #15 stereochem · #16 orbitals · #17 σ/π · #18 E1/E2 · #19 solid state | ☐ **every one blocked** — see §B |
+| **P5** | #20–22 electrochem · electrolysis · titration apparatus | ☐ needs the 5b wet-lab primitives |
+
+**Two engine builds in one day turned a 7-item backlog into a ~14-item harvest.** The bottleneck has
+moved off renderer coverage entirely — and onto Asmi's professor review, which **none of the four
+shipped concepts has passed.** Four concepts is no longer a small enough sample to keep deferring it.
+
+### B. The 3D block — verified against code, not against the pattern doc
+
+`docs/patterns/chemistry.md` says #13 and #17 "should reuse it with zero new renderer code." **That
+claim does not survive a code read**, and the file's own warning says a renderer claim is a CLAIM and
+it decays. What `molecular_geometry` actually holds: a central atom, ligands, lone-pair lobes, a live
+angle arc and a domain hull, over BeCl₂ · BF₃ · CH₄ · NH₃ · H₂O · PCl₅ · SF₆.
+
+**It has no orbital geometry of any kind.** Rule 40a pre-check across all history —
+`orbital_shapes` · `p_orbital` · `hybrid_orbital` · `sigma_pi` · `orbital_lobe` · `MG_ORBITAL` ·
+`mgOrbital` — **zero hits on every symbol.**
+
+So the three cheap-looking P4 items block on one shared, missing capability:
+
+| Concept | Needs | Verdict |
+|---|---|---|
+| #16 orbitals s/p/d | s sphere · p dumbbell · d cloverleaf | orbital-lobe geometry |
+| #13 hybridisation | one s + three p **morphing into** four sp³ lobes | same capability |
+| #17 σ / π | p-orbital overlap, end-on vs side-on | same capability |
+| #14 SN1/SN2 · #15 stereochem | bond-breaking / inversion **motion** | a different, later layer |
+
+**One engine build unlocks three diamonds** — structurally the `gas_box` bargain (one scenario, six
+diamonds), and the C3 compounding doctrine applied where C5 allows it: inside the diamond zone.
+
+This is the third consecutive session in which a tier label was optimistic and only a code read caught
+it (C4 archetypes M/K/L → C6 archetype P → this). The pattern is stable enough to name: **the pattern
+doc is a design memory, not a source of truth; schedule off `git log -S` instead.**
+
+### C. Why hybridisation is NOT the cheap next harvest
+
+C5 §6 and the last session's ⏭ NEXT both name #13 as the direct proof of P3 compounding, on the
+grounds that it needs no new renderer code. §B kills the premise. And building it anyway, on the
+scenario as it ships, would teach sp/sp²/sp³ as *domain counting* — which is what `vsepr_molecular_shapes`
+already teaches, one shipped concept ago. Without the s+p mixing on screen it is VSEPR relabelled:
+**a demo-tier build wearing a 💎 rank**, and precisely the failure C5's whiteboard test exists to stop.
+
+Recorded because it was the standing plan and is now withdrawn.
+
+### D. DECISION — next simulation: `atomic_orbitals_s_p_d` (#16), on a new orbital-lobe capability
+
+Founder call, 2026-07-28. Build the orbital-lobe geometry on the live Three.js surface, then author
+**atomic orbitals s/p/d** as its first concept.
+
+**Why #16 leads the three, rather than #13:**
+1. **Curriculum order.** NCERT Cl.11 **Ch.2** (Structure of Atom) — the prerequisite chapter for the
+   Ch.4 bonding block. Orbitals are what hybridisation hybridises; teaching the mixing before the
+   things being mixed inverts Rule 25 (foundation-first, no untaught term).
+2. **It finishes an arc we already opened.** `bohr_model_energy_levels` shipped as concept #1, and the
+   misconception it leaves standing is the planetary orbit. Orbital-as-probability-cloud is the
+   correction — whiteboard capabilities **3** (hold 3D structure) and **4** (make a counterintuitive
+   result believable) at once, which is as high as the C5 test scores.
+3. **Widest board coverage of the three.** All boards (Rule 38g CLAIMS — only CBSE/NCERT is
+   author-verified; every international cell needs a real teacher of that board to confirm).
+4. **It de-risks the other two.** #13 and #17 both consume the lobes; whatever the orbital build gets
+   wrong is cheaper to find now than twice more later.
+
+**Then:** #13 hybridisation (harvests the new lobes **and** the shipped `molecular_geometry` scaffold —
+the genuine P3-compounding proof, once it can be built honestly), then #17 σ/π.
+
+**Standing correction to the queue:** #1 Le Chatelier — C5's "single best chemistry sim that exists to
+be built" — is unblocked as of today and costs zero engine work. It is not being built now only
+because the founder asked for 3D. It should be the first non-3D concept scheduled.
+
+---
+
 ## 🧪 SESSION — the `gas_box` 2D engine + `kinetic_particle_theory`, and the session THE EYE lied twice (2026-07-28, branch `feat/particle-field-gas-box` → master)
 
 **Bottom line: the P0 particle-box shipped and the first concept on it is merged and baseline-locked — but the load-bearing finding is a verification one. THE EYE reported 31/31 deterministic checks, TWICE, over frames generated by the WRONG physics stepper. `validate:chemistry` passed a sim whose gas heated 80× when a teacher dragged a slider. Every real defect this session was found by DRIVING the sim or by reading pixels; not one was caught by a gate. 20 rows now in `engine_bug_queue`. Master: `633f074`. Baseline fleet 61 → 63.**
