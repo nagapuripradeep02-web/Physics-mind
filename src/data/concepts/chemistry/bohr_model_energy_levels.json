@@ -11,7 +11,9 @@
     "panel_b": "graph_interactive"
   },
   "available_renderer_scenarios": {
-    "parametric": ["bohr_energy_ladder"]
+    "parametric": [
+      "bohr_energy_ladder"
+    ]
   },
   "prerequisites": [],
   "real_world_anchor": {
@@ -19,20 +21,71 @@
     "secondary": "Astronomers read a star's composition purely from the lines in its light, without ever visiting it — the same fingerprint principle, read across light-years instead of a lab bench."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
-    "quantitative": ["STATE_7"],
-    "ionisation": ["STATE_8"],
-    "exploration": ["STATE_9"]
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "quantitative": [
+      "STATE_7"
+    ],
+    "ionisation": [
+      "STATE_8"
+    ],
+    "exploration": [
+      "STATE_9"
+    ]
   },
   "physics_engine_config": {
     "variables": {
-      "n_start": { "name": "starting level index n", "unit": "", "min": 1, "max": 6, "default": 3, "step": 1, "role": "integer_snap_required" },
-      "n_end":   { "name": "ending level index n",   "unit": "", "min": 1, "max": 6, "default": 2, "step": 1, "role": "integer_snap_required" },
-      "h_planck":  { "name": "Planck constant h", "unit": "J·s", "constant": 6.62607015e-34 },
-      "c_light":   { "name": "speed of light c", "unit": "m/s", "constant": 2.99792458e8 },
-      "eV_to_J":   { "name": "electron-volt to joule", "unit": "J/eV", "constant": 1.602176634e-19 },
-      "hc_eV_nm":  { "name": "h·c convenience constant", "unit": "eV·nm", "constant": 1240, "role": "TEACHING-ROUNDED (precise 1239.84); reproduces every displayed λ to whole-nm" },
-      "E_ionisation_ev": { "name": "H ionisation energy (n=1→∞)", "unit": "eV", "constant": 13.6, "role": "STATE_8 only; n=∞ outside slider domain by design" }
+      "n_start": {
+        "name": "starting level index n",
+        "unit": "",
+        "min": 1,
+        "max": 6,
+        "default": 3,
+        "step": 1,
+        "role": "integer_snap_required"
+      },
+      "n_end": {
+        "name": "ending level index n",
+        "unit": "",
+        "min": 1,
+        "max": 6,
+        "default": 2,
+        "step": 1,
+        "role": "integer_snap_required"
+      },
+      "h_planck": {
+        "name": "Planck constant h",
+        "unit": "J·s",
+        "constant": 6.62607015e-34
+      },
+      "c_light": {
+        "name": "speed of light c",
+        "unit": "m/s",
+        "constant": 299792458.0
+      },
+      "eV_to_J": {
+        "name": "electron-volt to joule",
+        "unit": "J/eV",
+        "constant": 1.602176634e-19
+      },
+      "hc_eV_nm": {
+        "name": "h·c convenience constant",
+        "unit": "eV·nm",
+        "constant": 1240,
+        "role": "TEACHING-ROUNDED (precise 1239.84); reproduces every displayed λ to whole-nm"
+      },
+      "E_ionisation_ev": {
+        "name": "H ionisation energy (n=1→∞)",
+        "unit": "eV",
+        "constant": 13.6,
+        "role": "STATE_8 only; n=∞ outside slider domain by design"
+      }
     },
     "formulas": {
       "E_n": "-13.6 / (n * n)",
@@ -45,10 +98,18 @@
       "nu_hz": "delta_E_ev > 0 ? (delta_E_ev * eV_to_J / h_planck) : null"
     },
     "computed_outputs": {
-      "delta_E_ev": { "formula": "abs(E_n(n_hi) - E_n(n_lo)), 2dp display" },
-      "lambda_nm": { "formula": "hc_eV_nm / delta_E_ev, whole-nm, GUARDED null when n_start==n_end" },
-      "direction": { "formula": "'absorb'|'emit'|'none' — drives photon arrow direction + in/out ledger word" },
-      "spectral_region": { "formula": "'UV'|'VISIBLE'|'IR' — gates whether a mark is painted on the 400–700 nm strip" }
+      "delta_E_ev": {
+        "formula": "abs(E_n(n_hi) - E_n(n_lo)), 2dp display"
+      },
+      "lambda_nm": {
+        "formula": "hc_eV_nm / delta_E_ev, whole-nm, GUARDED null when n_start==n_end"
+      },
+      "direction": {
+        "formula": "'absorb'|'emit'|'none' — drives photon arrow direction + in/out ledger word"
+      },
+      "spectral_region": {
+        "formula": "'UV'|'VISIBLE'|'IR' — gates whether a mark is painted on the 400–700 nm strip"
+      }
     },
     "constraints": [
       "energy conservation: ΔE_photon = E_high − E_low EXACTLY for every displayed transition; energy in = energy out",
@@ -69,43 +130,319 @@
         "advance_mode": "manual_click",
         "focal_primitive_id": "same_prism_tag",
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "Rainbow vs four lines", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "annotation", "id": "same_prism_tag", "text": "SAME PRISM", "position": { "x": 348, "y": 235 }, "color": "#94A3B8", "appear_at_ms": 9286, "animate_in_ms": 500 },
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "Rainbow vs four lines",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "annotation",
+            "id": "same_prism_tag",
+            "text": "SAME PRISM",
+            "position": {
+              "x": 348,
+              "y": 235
+            },
+            "color": "#94A3B8",
+            "appear_at_ms": 9286,
+            "animate_in_ms": 500
+          },
           {
             "type": "comparison_panel",
             "id": "spectra_compare",
             "left_label": "Hot filament",
             "right_label": "Glowing gas",
             "left_scene": [
-              { "type": "body", "id": "filament_bulb", "shape": "circle", "position": { "x": 30, "y": 75 }, "size": 26, "fill_color": "#FDE68A", "border_color": "#F59E0B" },
-              { "type": "body", "id": "prism_left", "shape": "rect", "position": { "x": 70, "y": 105 }, "size": { "w": 26, "h": 40 }, "fill_color": "#94A3B8" },
-              { "type": "body", "id": "band_violet", "shape": "rect", "position": { "x": 110, "y": 75 }, "size": { "w": 16, "h": 110 }, "fill_color": "#8B5CF6", "appear_at_ms": 0, "animate_in_ms": 300 },
-              { "type": "body", "id": "band_indigo", "shape": "rect", "position": { "x": 126, "y": 75 }, "size": { "w": 16, "h": 110 }, "fill_color": "#6366F1", "appear_at_ms": 150, "animate_in_ms": 300 },
-              { "type": "body", "id": "band_blue", "shape": "rect", "position": { "x": 142, "y": 75 }, "size": { "w": 16, "h": 110 }, "fill_color": "#3B82F6", "appear_at_ms": 300, "animate_in_ms": 300 },
-              { "type": "body", "id": "band_green", "shape": "rect", "position": { "x": 158, "y": 75 }, "size": { "w": 16, "h": 110 }, "fill_color": "#22C55E", "appear_at_ms": 450, "animate_in_ms": 300 },
-              { "type": "body", "id": "band_yellow", "shape": "rect", "position": { "x": 174, "y": 75 }, "size": { "w": 16, "h": 110 }, "fill_color": "#EAB308", "appear_at_ms": 600, "animate_in_ms": 300 },
-              { "type": "body", "id": "band_orange", "shape": "rect", "position": { "x": 190, "y": 75 }, "size": { "w": 16, "h": 110 }, "fill_color": "#F97316", "appear_at_ms": 750, "animate_in_ms": 300 },
-              { "type": "body", "id": "band_red", "shape": "rect", "position": { "x": 206, "y": 75 }, "size": { "w": 16, "h": 110 }, "fill_color": "#EF4444", "appear_at_ms": 900, "animate_in_ms": 300 },
-              { "type": "annotation", "id": "left_caption", "text": "Continuous — every colour", "position": { "x": 100, "y": 200 }, "color": "#CBD5E1" }
+              {
+                "type": "body",
+                "id": "filament_bulb",
+                "shape": "circle",
+                "position": {
+                  "x": 30,
+                  "y": 75
+                },
+                "size": 26,
+                "fill_color": "#FDE68A",
+                "border_color": "#F59E0B"
+              },
+              {
+                "type": "body",
+                "id": "prism_left",
+                "shape": "rect",
+                "position": {
+                  "x": 70,
+                  "y": 105
+                },
+                "size": {
+                  "w": 26,
+                  "h": 40
+                },
+                "fill_color": "#94A3B8"
+              },
+              {
+                "type": "body",
+                "id": "band_violet",
+                "shape": "rect",
+                "position": {
+                  "x": 110,
+                  "y": 75
+                },
+                "size": {
+                  "w": 16,
+                  "h": 110
+                },
+                "fill_color": "#8B5CF6",
+                "appear_at_ms": 0,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "band_indigo",
+                "shape": "rect",
+                "position": {
+                  "x": 126,
+                  "y": 75
+                },
+                "size": {
+                  "w": 16,
+                  "h": 110
+                },
+                "fill_color": "#6366F1",
+                "appear_at_ms": 150,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "band_blue",
+                "shape": "rect",
+                "position": {
+                  "x": 142,
+                  "y": 75
+                },
+                "size": {
+                  "w": 16,
+                  "h": 110
+                },
+                "fill_color": "#3B82F6",
+                "appear_at_ms": 300,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "band_green",
+                "shape": "rect",
+                "position": {
+                  "x": 158,
+                  "y": 75
+                },
+                "size": {
+                  "w": 16,
+                  "h": 110
+                },
+                "fill_color": "#22C55E",
+                "appear_at_ms": 450,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "band_yellow",
+                "shape": "rect",
+                "position": {
+                  "x": 174,
+                  "y": 75
+                },
+                "size": {
+                  "w": 16,
+                  "h": 110
+                },
+                "fill_color": "#EAB308",
+                "appear_at_ms": 600,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "band_orange",
+                "shape": "rect",
+                "position": {
+                  "x": 190,
+                  "y": 75
+                },
+                "size": {
+                  "w": 16,
+                  "h": 110
+                },
+                "fill_color": "#F97316",
+                "appear_at_ms": 750,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "band_red",
+                "shape": "rect",
+                "position": {
+                  "x": 206,
+                  "y": 75
+                },
+                "size": {
+                  "w": 16,
+                  "h": 110
+                },
+                "fill_color": "#EF4444",
+                "appear_at_ms": 900,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "annotation",
+                "id": "left_caption",
+                "text": "Continuous — every colour",
+                "position": {
+                  "x": 100,
+                  "y": 200
+                },
+                "color": "#CBD5E1"
+              }
             ],
             "right_scene": [
-              { "type": "body", "id": "gas_tube", "shape": "rect", "position": { "x": 20, "y": 75 }, "size": { "w": 20, "h": 50 }, "fill_color": "#C084FC", "border_color": "#7C3AED" },
-              { "type": "body", "id": "prism_right", "shape": "rect", "position": { "x": 70, "y": 105 }, "size": { "w": 26, "h": 40 }, "fill_color": "#94A3B8" },
-              { "type": "body", "id": "line_410_demo", "shape": "rect", "position": { "x": 111, "y": 75 }, "size": { "w": 10, "h": 110 }, "fill_color": "#8B5CF6", "appear_at_ms": 3700, "animate_in_ms": 300 },
-              { "type": "body", "id": "line_434_demo", "shape": "rect", "position": { "x": 124, "y": 75 }, "size": { "w": 10, "h": 110 }, "fill_color": "#3B82F6", "appear_at_ms": 5000, "animate_in_ms": 300 },
-              { "type": "body", "id": "line_486_demo", "shape": "rect", "position": { "x": 154, "y": 75 }, "size": { "w": 10, "h": 110 }, "fill_color": "#22D3EE", "appear_at_ms": 6300, "animate_in_ms": 300 },
-              { "type": "body", "id": "line_656_demo", "shape": "rect", "position": { "x": 250, "y": 75 }, "size": { "w": 10, "h": 110 }, "fill_color": "#EF4444", "appear_at_ms": 7600, "animate_in_ms": 300 },
-              { "type": "annotation", "id": "right_caption", "text": "Only 4 sharp lines", "position": { "x": 90, "y": 200 }, "color": "#CBD5E1" }
+              {
+                "type": "body",
+                "id": "gas_tube",
+                "shape": "rect",
+                "position": {
+                  "x": 20,
+                  "y": 75
+                },
+                "size": {
+                  "w": 20,
+                  "h": 50
+                },
+                "fill_color": "#C084FC",
+                "border_color": "#7C3AED"
+              },
+              {
+                "type": "body",
+                "id": "prism_right",
+                "shape": "rect",
+                "position": {
+                  "x": 70,
+                  "y": 105
+                },
+                "size": {
+                  "w": 26,
+                  "h": 40
+                },
+                "fill_color": "#94A3B8"
+              },
+              {
+                "type": "body",
+                "id": "line_410_demo",
+                "shape": "rect",
+                "position": {
+                  "x": 111,
+                  "y": 75
+                },
+                "size": {
+                  "w": 10,
+                  "h": 110
+                },
+                "fill_color": "#8B5CF6",
+                "appear_at_ms": 3700,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "line_434_demo",
+                "shape": "rect",
+                "position": {
+                  "x": 124,
+                  "y": 75
+                },
+                "size": {
+                  "w": 10,
+                  "h": 110
+                },
+                "fill_color": "#3B82F6",
+                "appear_at_ms": 5000,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "line_486_demo",
+                "shape": "rect",
+                "position": {
+                  "x": 154,
+                  "y": 75
+                },
+                "size": {
+                  "w": 10,
+                  "h": 110
+                },
+                "fill_color": "#22D3EE",
+                "appear_at_ms": 6300,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "body",
+                "id": "line_656_demo",
+                "shape": "rect",
+                "position": {
+                  "x": 250,
+                  "y": 75
+                },
+                "size": {
+                  "w": 10,
+                  "h": 110
+                },
+                "fill_color": "#EF4444",
+                "appear_at_ms": 7600,
+                "animate_in_ms": 300
+              },
+              {
+                "type": "annotation",
+                "id": "right_caption",
+                "text": "Only 4 sharp lines",
+                "position": {
+                  "x": 90,
+                  "y": 200
+                },
+                "color": "#CBD5E1"
+              }
             ]
           },
-          { "type": "glow_focus", "id": "glow_mystery_question", "primitive_id": "same_prism_tag", "halo_radius_px": 45, "color": "#F1F5F9", "intensity": 0.35, "appear_at_ms": 11071, "animate_in_ms": 3929 }
+          {
+            "type": "glow_focus",
+            "id": "glow_mystery_question",
+            "primitive_id": "same_prism_tag",
+            "halo_radius_px": 45,
+            "color": "#F1F5F9",
+            "intensity": 0.35,
+            "appear_at_ms": 11071,
+            "animate_in_ms": 3929
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "A hot filament's white light splits into a full rainbow." },
-            { "id": "s2", "text_en": "A glowing gas tube's light splits into just four sharp coloured lines, with darkness between them." },
-            { "id": "s3", "text_en": "Same prism. Utterly different answer." },
-            { "id": "s4", "text_en": "Why does a glowing gas make only a few sharp colours?" }
+            {
+              "id": "s1_1",
+              "text_en": "A hot filament's white light splits into a full rainbow."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "A glowing gas tube's light splits into just four sharp coloured lines, with darkness between them."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Same prism. Utterly different answer."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "Why does a glowing gas make only a few sharp colours?"
+            }
           ]
         }
       },
@@ -116,40 +453,393 @@
         "advance_mode": "manual_click",
         "focal_primitive_id": "electron",
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "Fixed rungs, nothing between", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E", "appear_at_ms": 200, "animate_in_ms": 400 },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 428 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B", "appear_at_ms": 1786, "animate_in_ms": 300 },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 428 }, "font_size": 12, "color": "#CBD5E1", "appear_at_ms": 1786, "animate_in_ms": 300 },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 343 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B", "appear_at_ms": 3393, "animate_in_ms": 300 },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 343 }, "font_size": 12, "color": "#CBD5E1", "appear_at_ms": 3393, "animate_in_ms": 300 },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 278 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B", "appear_at_ms": 5000, "animate_in_ms": 300 },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 278 }, "font_size": 12, "color": "#CBD5E1", "appear_at_ms": 5000, "animate_in_ms": 300 },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 228 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B", "appear_at_ms": 6607, "animate_in_ms": 300 },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 228 }, "font_size": 12, "color": "#CBD5E1", "appear_at_ms": 6607, "animate_in_ms": 300 },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 193 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B", "appear_at_ms": 8214, "animate_in_ms": 300 },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 193 }, "font_size": 12, "color": "#CBD5E1", "appear_at_ms": 8214, "animate_in_ms": 300 },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 166 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B", "appear_at_ms": 9821, "animate_in_ms": 300 },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 166 }, "font_size": 12, "color": "#CBD5E1", "appear_at_ms": 9821, "animate_in_ms": 300 },
-          { "type": "body", "id": "electron", "shape": "circle", "position": { "x": 140, "y": 430 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 11429, "animate_in_ms": 400 },
-          { "type": "glow_focus", "id": "glow_electron_settle", "primitive_id": "electron", "halo_radius_px": 50, "color": "#FBBF24", "intensity": 0.4, "appear_at_ms": 12129, "animate_in_ms": 400, "disappear_at_ms": 16786, "fade_out_ms": 400 },
-          { "type": "annotation", "id": "bound_note", "text": "more negative = more bound", "position": { "x": 485, "y": 380 }, "color": "#94A3B8", "appear_at_ms": 11429, "animate_in_ms": 300 },
-          { "type": "body", "id": "strip_bg", "shape": "rect", "position": { "x": 80, "y": 444 }, "size": { "w": 600, "h": 16 }, "fill_color": "#0B1120", "border_color": "#334155" },
-          { "type": "axes", "id": "wavelength_axis_tick", "position": { "x": 82, "y": 446 }, "length": 18, "angle_deg": 0, "color": "#94A3B8", "x_label": "λ", "y_label": " " },
-          { "type": "label", "id": "strip_label_400", "text": "400", "position": { "x": 89, "y": 476 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_700", "text": "700", "position": { "x": 683, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_unit", "text": "wavelength λ (nm)", "position": { "x": 390, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "body", "id": "line_656", "shape": "rect", "position": { "x": 607, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 0.15 },
-          { "type": "body", "id": "line_486", "shape": "rect", "position": { "x": 267, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 0.15 },
-          { "type": "body", "id": "line_434", "shape": "rect", "position": { "x": 163, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 0.15 },
-          { "type": "body", "id": "line_410", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 0.15 },
-          { "type": "glow_focus", "id": "glow_strip_mystery", "primitive_id": "strip_bg", "halo_radius_px": 60, "color": "#94A3B8", "intensity": 0.3, "appear_at_ms": 17186, "animate_in_ms": 2100 }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "Fixed rungs, nothing between",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E",
+            "appear_at_ms": 200,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 428
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 1786,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 428
+            },
+            "font_size": 12,
+            "color": "#CBD5E1",
+            "appear_at_ms": 1786,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 343
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 3393,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 343
+            },
+            "font_size": 12,
+            "color": "#CBD5E1",
+            "appear_at_ms": 3393,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 278
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 5000,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 278
+            },
+            "font_size": 12,
+            "color": "#CBD5E1",
+            "appear_at_ms": 5000,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 228
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 6607,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 228
+            },
+            "font_size": 12,
+            "color": "#CBD5E1",
+            "appear_at_ms": 6607,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 193
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 8214,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 193
+            },
+            "font_size": 12,
+            "color": "#CBD5E1",
+            "appear_at_ms": 8214,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 166
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 9821,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 166
+            },
+            "font_size": 12,
+            "color": "#CBD5E1",
+            "appear_at_ms": 9821,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "electron",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 430
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 11429,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_electron_settle",
+            "primitive_id": "electron",
+            "halo_radius_px": 50,
+            "color": "#FBBF24",
+            "intensity": 0.4,
+            "appear_at_ms": 12129,
+            "animate_in_ms": 400,
+            "disappear_at_ms": 16786,
+            "fade_out_ms": 400
+          },
+          {
+            "type": "annotation",
+            "id": "bound_note",
+            "text": "more negative = more bound",
+            "position": {
+              "x": 485,
+              "y": 380
+            },
+            "color": "#94A3B8",
+            "appear_at_ms": 11429,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "strip_bg",
+            "shape": "rect",
+            "position": {
+              "x": 80,
+              "y": 444
+            },
+            "size": {
+              "w": 600,
+              "h": 16
+            },
+            "fill_color": "#0B1120",
+            "border_color": "#334155"
+          },
+          {
+            "type": "axes",
+            "id": "wavelength_axis_tick",
+            "position": {
+              "x": 82,
+              "y": 446
+            },
+            "length": 18,
+            "angle_deg": 0,
+            "color": "#94A3B8",
+            "x_label": "λ",
+            "y_label": " "
+          },
+          {
+            "type": "label",
+            "id": "strip_label_400",
+            "text": "400",
+            "position": {
+              "x": 89,
+              "y": 476
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_700",
+            "text": "700",
+            "position": {
+              "x": 683,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_unit",
+            "text": "wavelength λ (nm)",
+            "position": {
+              "x": 390,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "line_656",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_486",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_434",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_410",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 0.15
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_strip_mystery",
+            "primitive_id": "strip_bg",
+            "halo_radius_px": 60,
+            "color": "#94A3B8",
+            "intensity": 0.3,
+            "appear_at_ms": 17186,
+            "animate_in_ms": 2100
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Zoom inside one hydrogen atom." },
-            { "id": "s2", "text_en": "Its electron's energy comes in fixed rungs, an energy level or shell, n equals one, two, three and up, each rung less negative than the one below." },
-            { "id": "s3", "text_en": "Negative just means bound; n equals one is the floor, so the atom never collapses." },
-            { "id": "s4", "text_en": "The four mystery lines wait below, ghosted." }
+            {
+              "id": "s2_1",
+              "text_en": "Zoom inside one hydrogen atom."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Its electron's energy comes in fixed rungs, an energy level or shell, n equals one, two, three and up, each rung less negative than the one below."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Negative just means bound; n equals one is the floor, so the atom never collapses."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "The four mystery lines wait below, ghosted."
+            }
           ]
         }
       },
@@ -161,46 +851,453 @@
         "focal_primitive_id": "electron_phase1",
         "has_prebuilt_deep_dive": true,
         "allow_deep_dive": true,
-        "drill_downs": ["continuous_vs_quantised_energy", "electron_between_levels", "ladder_vs_ramp_model"],
+        "drill_downs": [
+          "continuous_vs_quantised_energy",
+          "electron_between_levels",
+          "ladder_vs_ramp_model"
+        ],
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "No stops between rungs", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E" },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 428 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 428 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 343 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 343 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 278 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 278 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 228 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 228 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 193 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 193 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 166 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 166 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "strip_bg", "shape": "rect", "position": { "x": 80, "y": 444 }, "size": { "w": 600, "h": 16 }, "fill_color": "#0B1120", "border_color": "#334155" },
-          { "type": "axes", "id": "wavelength_axis_tick", "position": { "x": 82, "y": 446 }, "length": 18, "angle_deg": 0, "color": "#94A3B8", "x_label": "λ", "y_label": " " },
-          { "type": "label", "id": "strip_label_400", "text": "400", "position": { "x": 89, "y": 476 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_700", "text": "700", "position": { "x": 683, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_unit", "text": "wavelength λ (nm)", "position": { "x": 390, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "body", "id": "line_656", "shape": "rect", "position": { "x": 607, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 0.15 },
-          { "type": "body", "id": "line_486", "shape": "rect", "position": { "x": 267, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 0.15 },
-          { "type": "body", "id": "line_434", "shape": "rect", "position": { "x": 163, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 0.15 },
-          { "type": "body", "id": "line_410", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 0.15 },
-          { "type": "body", "id": "ghost_electron", "shape": "circle", "position": { "x": 140, "y": 430 }, "size": 16, "fill_color": "#94A3B8", "opacity": 0.5, "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 0, "dy_px": -87, "delay_sec": 0, "duration_sec": 5.0 }, "disappear_at_ms": 6926, "fade_out_ms": 600 },
-          { "type": "body", "id": "continuous_smear", "shape": "rect", "position": { "x": 132, "y": 344 }, "size": { "w": 16, "h": 86 }, "fill_color": "#93C5FD", "opacity": 0.22, "appear_at_ms": 0, "animate_in_ms": 600, "disappear_at_ms": 6926, "fade_out_ms": 600 },
-          { "type": "body", "id": "electron_phase1", "shape": "circle", "position": { "x": 140, "y": 430 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 0, "dy_px": -87, "delay_sec": 10.937, "duration_sec": 0.3 }, "disappear_at_ms": 12200, "fade_out_ms": 0 },
-          { "type": "body", "id": "electron_phase2", "shape": "circle", "position": { "x": 140, "y": 343 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 12200, "animation": { "type": "translate", "dx_px": 0, "dy_px": 87, "delay_sec": 12.5, "duration_sec": 0.3 } },
-          { "type": "glow_focus", "id": "glow_phase1", "primitive_id": "electron_phase1", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.45, "appear_at_ms": 11237, "disappear_at_ms": 12200 },
-          { "type": "glow_focus", "id": "glow_phase2", "primitive_id": "electron_phase2", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.45, "appear_at_ms": 12800, "animate_in_ms": 5771 },
-          { "type": "label", "id": "verdict_ramp", "text": "✗  smooth ramp", "position": { "x": 528, "y": 206 }, "font_size": 15, "color": "#F87171", "appear_at_ms": 13500, "animate_in_ms": 400 },
-          { "type": "label", "id": "verdict_staircase", "text": "✓  fixed rungs only", "position": { "x": 528, "y": 234 }, "font_size": 15, "color": "#4ADE80", "appear_at_ms": 13500, "animate_in_ms": 400 }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "No stops between rungs",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E"
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 428
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 428
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 343
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 343
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 278
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 278
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 228
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 228
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 193
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 193
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 166
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 166
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "strip_bg",
+            "shape": "rect",
+            "position": {
+              "x": 80,
+              "y": 444
+            },
+            "size": {
+              "w": 600,
+              "h": 16
+            },
+            "fill_color": "#0B1120",
+            "border_color": "#334155"
+          },
+          {
+            "type": "axes",
+            "id": "wavelength_axis_tick",
+            "position": {
+              "x": 82,
+              "y": 446
+            },
+            "length": 18,
+            "angle_deg": 0,
+            "color": "#94A3B8",
+            "x_label": "λ",
+            "y_label": " "
+          },
+          {
+            "type": "label",
+            "id": "strip_label_400",
+            "text": "400",
+            "position": {
+              "x": 89,
+              "y": 476
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_700",
+            "text": "700",
+            "position": {
+              "x": 683,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_unit",
+            "text": "wavelength λ (nm)",
+            "position": {
+              "x": 390,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "line_656",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_486",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_434",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_410",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "ghost_electron",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 430
+            },
+            "size": 16,
+            "fill_color": "#94A3B8",
+            "opacity": 0.5,
+            "appear_at_ms": 0,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": -87,
+              "delay_sec": 0,
+              "duration_sec": 5.0
+            },
+            "disappear_at_ms": 6926,
+            "fade_out_ms": 600
+          },
+          {
+            "type": "body",
+            "id": "continuous_smear",
+            "shape": "rect",
+            "position": {
+              "x": 132,
+              "y": 344
+            },
+            "size": {
+              "w": 16,
+              "h": 86
+            },
+            "fill_color": "#93C5FD",
+            "opacity": 0.22,
+            "appear_at_ms": 0,
+            "animate_in_ms": 600,
+            "disappear_at_ms": 6926,
+            "fade_out_ms": 600
+          },
+          {
+            "type": "body",
+            "id": "electron_phase1",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 430
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 0,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": -87,
+              "delay_sec": 10.937,
+              "duration_sec": 0.3
+            },
+            "disappear_at_ms": 12200,
+            "fade_out_ms": 0
+          },
+          {
+            "type": "body",
+            "id": "electron_phase2",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 343
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 12200,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": 87,
+              "delay_sec": 12.5,
+              "duration_sec": 0.3
+            }
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_phase1",
+            "primitive_id": "electron_phase1",
+            "halo_radius_px": 45,
+            "color": "#FBBF24",
+            "intensity": 0.45,
+            "appear_at_ms": 11237,
+            "disappear_at_ms": 12200
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_phase2",
+            "primitive_id": "electron_phase2",
+            "halo_radius_px": 45,
+            "color": "#FBBF24",
+            "intensity": 0.45,
+            "appear_at_ms": 12800,
+            "animate_in_ms": 5771
+          },
+          {
+            "type": "label",
+            "id": "verdict_ramp",
+            "text": "✗  smooth ramp",
+            "position": {
+              "x": 528,
+              "y": 206
+            },
+            "font_size": 15,
+            "color": "#F87171",
+            "appear_at_ms": 13500,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "verdict_staircase",
+            "text": "✓  fixed rungs only",
+            "position": {
+              "x": 528,
+              "y": 234
+            },
+            "font_size": 15,
+            "color": "#4ADE80",
+            "appear_at_ms": 13500,
+            "animate_in_ms": 400
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "If energy could be any value, an electron could glide and rest anywhere between rungs — watch the ghost try." },
-            { "id": "s2", "text_en": "It can't. That smooth path is impossible, and the smear fades." },
-            { "id": "s3", "text_en": "The real electron only snaps rung to rung, never pausing between." },
-            { "id": "s4", "text_en": "Energy in an atom is a staircase, not a ramp." }
+            {
+              "id": "s3_1",
+              "text_en": "If energy could be any value, an electron could glide and rest anywhere between rungs — watch the ghost try."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "It can't. That smooth path is impossible, and the smear fades."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The real electron only snaps rung to rung, never pausing between."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Energy in an atom is a staircase, not a ramp."
+            }
           ]
         },
         "misconception_watch": [
@@ -218,44 +1315,433 @@
         "advance_mode": "manual_click",
         "focal_primitive_id": "match_photon",
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "Only the exact photon", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E" },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 428 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 428 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 343 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 343 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 278 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 278 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 228 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 228 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 193 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 193 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 166 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 166 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "strip_bg", "shape": "rect", "position": { "x": 80, "y": 444 }, "size": { "w": 600, "h": 16 }, "fill_color": "#0B1120", "border_color": "#334155" },
-          { "type": "label", "id": "strip_label_400", "text": "400", "position": { "x": 89, "y": 476 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_700", "text": "700", "position": { "x": 683, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_unit", "text": "wavelength λ (nm)", "position": { "x": 390, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "body", "id": "line_656", "shape": "rect", "position": { "x": 607, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 0.15 },
-          { "type": "body", "id": "line_486", "shape": "rect", "position": { "x": 267, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 0.15 },
-          { "type": "body", "id": "line_434", "shape": "rect", "position": { "x": 163, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 0.15 },
-          { "type": "body", "id": "line_410", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 0.15 },
-          { "type": "body", "id": "electron", "shape": "circle", "position": { "x": 140, "y": 430 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 0, "dy_px": -150, "delay_sec": 8.6, "duration_sec": 0.8 } },
-          { "type": "annotation", "id": "prereq_note", "text": "electron held by the nucleus — light arrives in fixed photon packets", "position": { "x": 400, "y": 60 }, "color": "#94A3B8" },
-          { "type": "animated_path", "id": "mismatch_photon", "from": { "x": 420, "y": 402 }, "to": { "x": 40, "y": 402 }, "color": "#94A3B8", "appear_at_ms": 300, "duration_ms": 2500, "disappear_at_ms": 3400, "fade_out_ms": 400, "arrow_head": true },
-          { "type": "label", "id": "mismatch_photon_label", "text": "11.00 eV", "position": { "x": 228, "y": 392 }, "font_size": 12, "color": "#94A3B8", "appear_at_ms": 800, "disappear_at_ms": 3400, "fade_out_ms": 400 },
-          { "type": "animated_path", "id": "match_photon", "from": { "x": 420, "y": 402 }, "to": { "x": 140, "y": 430 }, "color": "#FDE047", "appear_at_ms": 4740, "duration_ms": 2500, "disappear_at_ms": 7800, "fade_out_ms": 300, "arrow_head": true },
-          { "type": "label", "id": "match_photon_label", "text": "12.09 eV", "position": { "x": 323, "y": 392 }, "font_size": 12, "color": "#FDE047", "appear_at_ms": 5300, "disappear_at_ms": 7800, "fade_out_ms": 300 },
-          { "type": "glow_focus", "id": "glow_match_photon", "primitive_id": "match_photon", "halo_radius_px": 25, "color": "#FDE047", "intensity": 0.4, "appear_at_ms": 4740, "disappear_at_ms": 7800 },
-          { "type": "glow_focus", "id": "glow_electron_jump", "primitive_id": "electron", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.45, "appear_at_ms": 9400, "disappear_at_ms": 13493, "fade_out_ms": 400 },
-          { "type": "annotation", "id": "ledger_absorb", "text": "photon 12.09 eV = gap 12.09 eV ✓", "position": { "x": 485, "y": 200 }, "color": "#10B981", "appear_at_ms": 13493, "animate_in_ms": 3650 }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "Only the exact photon",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E"
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 428
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 428
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 343
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 343
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 278
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 278
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 228
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 228
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 193
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 193
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 166
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 166
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "strip_bg",
+            "shape": "rect",
+            "position": {
+              "x": 80,
+              "y": 444
+            },
+            "size": {
+              "w": 600,
+              "h": 16
+            },
+            "fill_color": "#0B1120",
+            "border_color": "#334155"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_400",
+            "text": "400",
+            "position": {
+              "x": 89,
+              "y": 476
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_700",
+            "text": "700",
+            "position": {
+              "x": 683,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_unit",
+            "text": "wavelength λ (nm)",
+            "position": {
+              "x": 390,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "line_656",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_486",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_434",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_410",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "electron",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 430
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 0,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": -150,
+              "delay_sec": 8.6,
+              "duration_sec": 0.8
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "prereq_note",
+            "text": "electron held by the nucleus — light arrives in fixed photon packets",
+            "position": {
+              "x": 400,
+              "y": 60
+            },
+            "color": "#94A3B8"
+          },
+          {
+            "type": "animated_path",
+            "id": "mismatch_photon",
+            "from": {
+              "x": 420,
+              "y": 402
+            },
+            "to": {
+              "x": 40,
+              "y": 402
+            },
+            "color": "#94A3B8",
+            "appear_at_ms": 300,
+            "duration_ms": 2500,
+            "disappear_at_ms": 3400,
+            "fade_out_ms": 400,
+            "arrow_head": true
+          },
+          {
+            "type": "label",
+            "id": "mismatch_photon_label",
+            "text": "11.00 eV",
+            "position": {
+              "x": 228,
+              "y": 392
+            },
+            "font_size": 12,
+            "color": "#94A3B8",
+            "appear_at_ms": 800,
+            "disappear_at_ms": 3400,
+            "fade_out_ms": 400
+          },
+          {
+            "type": "animated_path",
+            "id": "match_photon",
+            "from": {
+              "x": 420,
+              "y": 402
+            },
+            "to": {
+              "x": 140,
+              "y": 430
+            },
+            "color": "#FDE047",
+            "appear_at_ms": 4740,
+            "duration_ms": 2500,
+            "disappear_at_ms": 7800,
+            "fade_out_ms": 300,
+            "arrow_head": true
+          },
+          {
+            "type": "label",
+            "id": "match_photon_label",
+            "text": "12.09 eV",
+            "position": {
+              "x": 323,
+              "y": 392
+            },
+            "font_size": 12,
+            "color": "#FDE047",
+            "appear_at_ms": 5300,
+            "disappear_at_ms": 7800,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_match_photon",
+            "primitive_id": "match_photon",
+            "halo_radius_px": 25,
+            "color": "#FDE047",
+            "intensity": 0.4,
+            "appear_at_ms": 4740,
+            "disappear_at_ms": 7800
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_electron_jump",
+            "primitive_id": "electron",
+            "halo_radius_px": 45,
+            "color": "#FBBF24",
+            "intensity": 0.45,
+            "appear_at_ms": 9400,
+            "disappear_at_ms": 13493,
+            "fade_out_ms": 400
+          },
+          {
+            "type": "annotation",
+            "id": "ledger_absorb",
+            "text": "photon 12.09 eV = gap 12.09 eV ✓",
+            "position": {
+              "x": 485,
+              "y": 200
+            },
+            "color": "#10B981",
+            "appear_at_ms": 13493,
+            "animate_in_ms": 3650
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "An eleven electron-volt photon arrives, passes straight through — nothing matches, so nothing happens." },
-            { "id": "s2", "text_en": "Now a twelve-point-oh-nine electron-volt photon arrives, exactly the one-to-three gap." },
-            { "id": "s3", "text_en": "It is swallowed whole, and the electron jumps from level one to level three." },
-            { "id": "s4", "text_en": "Photon in: twelve-point-oh-nine electron-volts. Gap: twelve-point-oh-nine electron-volts. An exact match." }
+            {
+              "id": "s4_1",
+              "text_en": "An eleven electron-volt photon arrives, passes straight through — nothing matches, so nothing happens."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Now a twelve-point-oh-nine electron-volt photon arrives, exactly the one-to-three gap."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "It is swallowed whole, and the electron jumps from level one to level three."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "Photon in: twelve-point-oh-nine electron-volts. Gap: twelve-point-oh-nine electron-volts. An exact match."
+            }
           ]
         }
       },
@@ -266,42 +1752,417 @@
         "advance_mode": "manual_click",
         "focal_primitive_id": "emitted_photon",
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "Drop down, photon out", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E" },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 428 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 428 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 343 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 343 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 278 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 278 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 228 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 228 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 193 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 193 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 166 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 166 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "strip_bg", "shape": "rect", "position": { "x": 80, "y": 444 }, "size": { "w": 600, "h": 16 }, "fill_color": "#0B1120", "border_color": "#334155" },
-          { "type": "label", "id": "strip_label_400", "text": "400", "position": { "x": 89, "y": 476 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_700", "text": "700", "position": { "x": 683, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_unit", "text": "wavelength λ (nm)", "position": { "x": 390, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "body", "id": "line_486", "shape": "rect", "position": { "x": 267, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 0.15 },
-          { "type": "body", "id": "line_434", "shape": "rect", "position": { "x": 163, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 0.15 },
-          { "type": "body", "id": "line_410", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 0.15 },
-          { "type": "body", "id": "line_656_ghost", "shape": "rect", "position": { "x": 607, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 0.15, "appear_at_ms": 0, "disappear_at_ms": 6786, "fade_out_ms": 300 },
-          { "type": "body", "id": "line_656_solid", "shape": "rect", "position": { "x": 607, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 1.0, "appear_at_ms": 6786, "animate_in_ms": 400 },
-          { "type": "body", "id": "electron", "shape": "circle", "position": { "x": 140, "y": 280 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 0, "dy_px": 63, "delay_sec": 0.3, "duration_sec": 1.2 } },
-          { "type": "animated_path", "id": "emitted_photon", "from": { "x": 140, "y": 343 }, "to": { "x": 607, "y": 452 }, "color": "#EF4444", "appear_at_ms": 4286, "duration_ms": 2500, "disappear_at_ms": 7200, "fade_out_ms": 300, "arrow_head": true },
-          { "type": "label", "id": "emitted_photon_label", "text": "1.89 eV", "position": { "x": 361, "y": 392 }, "font_size": 12, "color": "#EF4444", "appear_at_ms": 5000, "disappear_at_ms": 7200, "fade_out_ms": 300 },
-          { "type": "glow_focus", "id": "glow_electron_drop", "primitive_id": "electron", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.4, "appear_at_ms": 0, "disappear_at_ms": 1900, "fade_out_ms": 300 },
-          { "type": "glow_focus", "id": "glow_emitted_photon", "primitive_id": "emitted_photon", "halo_radius_px": 40, "color": "#EF4444", "intensity": 0.4, "appear_at_ms": 4286, "disappear_at_ms": 6786 },
-          { "type": "glow_focus", "id": "glow_line_656", "primitive_id": "line_656_solid", "halo_radius_px": 30, "color": "#EF4444", "intensity": 0.4, "appear_at_ms": 6786, "animate_in_ms": 300 },
-          { "type": "annotation", "id": "ledger_emit", "text": "gap 1.89 eV → photon 1.89 eV ✓", "position": { "x": 485, "y": 200 }, "color": "#10B981", "appear_at_ms": 10714, "animate_in_ms": 2857 }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "Drop down, photon out",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E"
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 428
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 428
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 343
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 343
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 278
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 278
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 228
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 228
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 193
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 193
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 166
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 166
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "strip_bg",
+            "shape": "rect",
+            "position": {
+              "x": 80,
+              "y": 444
+            },
+            "size": {
+              "w": 600,
+              "h": 16
+            },
+            "fill_color": "#0B1120",
+            "border_color": "#334155"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_400",
+            "text": "400",
+            "position": {
+              "x": 89,
+              "y": 476
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_700",
+            "text": "700",
+            "position": {
+              "x": 683,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_unit",
+            "text": "wavelength λ (nm)",
+            "position": {
+              "x": 390,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "line_486",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_434",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_410",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 0.15
+          },
+          {
+            "type": "body",
+            "id": "line_656_ghost",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 0.15,
+            "appear_at_ms": 0,
+            "disappear_at_ms": 6786,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "line_656_solid",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 1.0,
+            "appear_at_ms": 6786,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "body",
+            "id": "electron",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 280
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 0,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": 63,
+              "delay_sec": 0.3,
+              "duration_sec": 1.2
+            }
+          },
+          {
+            "type": "animated_path",
+            "id": "emitted_photon",
+            "from": {
+              "x": 140,
+              "y": 343
+            },
+            "to": {
+              "x": 607,
+              "y": 452
+            },
+            "color": "#EF4444",
+            "appear_at_ms": 4286,
+            "duration_ms": 2500,
+            "disappear_at_ms": 7200,
+            "fade_out_ms": 300,
+            "arrow_head": true
+          },
+          {
+            "type": "label",
+            "id": "emitted_photon_label",
+            "text": "1.89 eV",
+            "position": {
+              "x": 361,
+              "y": 392
+            },
+            "font_size": 12,
+            "color": "#EF4444",
+            "appear_at_ms": 5000,
+            "disappear_at_ms": 7200,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_electron_drop",
+            "primitive_id": "electron",
+            "halo_radius_px": 45,
+            "color": "#FBBF24",
+            "intensity": 0.4,
+            "appear_at_ms": 0,
+            "disappear_at_ms": 1900,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_emitted_photon",
+            "primitive_id": "emitted_photon",
+            "halo_radius_px": 40,
+            "color": "#EF4444",
+            "intensity": 0.4,
+            "appear_at_ms": 4286,
+            "disappear_at_ms": 6786
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_line_656",
+            "primitive_id": "line_656_solid",
+            "halo_radius_px": 30,
+            "color": "#EF4444",
+            "intensity": 0.4,
+            "appear_at_ms": 6786,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "annotation",
+            "id": "ledger_emit",
+            "text": "gap 1.89 eV → photon 1.89 eV ✓",
+            "position": {
+              "x": 485,
+              "y": 200
+            },
+            "color": "#10B981",
+            "appear_at_ms": 10714,
+            "animate_in_ms": 2857
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "The electron, still up on level three, drops back to level two." },
-            { "id": "s2", "text_en": "A beat later a one-point-eight-nine electron-volt photon flies out, and it paints the red six-fifty-six nanometre line solid." },
-            { "id": "s3", "text_en": "Up swallows a photon; down spits one out." }
+            {
+              "id": "s5_1",
+              "text_en": "The electron, still up on level three, drops back to level two."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "A beat later a one-point-eight-nine electron-volt photon flies out, and it paints the red six-fifty-six nanometre line solid."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Up swallows a photon; down spits one out."
+            }
           ]
         },
         "misconception_watch": [
@@ -320,58 +2181,635 @@
         "focal_primitive_id": "electron_drop_4to2",
         "has_prebuilt_deep_dive": true,
         "allow_deep_dive": true,
-        "drill_downs": ["line_spectrum_fingerprint", "why_not_rainbow", "gap_count_vs_line_count"],
+        "drill_downs": [
+          "line_spectrum_fingerprint",
+          "why_not_rainbow",
+          "gap_count_vs_line_count"
+        ],
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "Every line, one gap", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E" },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 428 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 428 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 343 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 343 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 278 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 278 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 228 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 228 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 193 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 193 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 166 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 166 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "strip_bg", "shape": "rect", "position": { "x": 80, "y": 444 }, "size": { "w": 600, "h": 16 }, "fill_color": "#0B1120", "border_color": "#334155" },
-          { "type": "label", "id": "strip_label_400", "text": "400", "position": { "x": 89, "y": 476 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_700", "text": "700", "position": { "x": 683, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_unit", "text": "wavelength λ (nm)", "position": { "x": 390, "y": 470 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "body", "id": "line_656_solid", "shape": "rect", "position": { "x": 607, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 1.0 },
-          { "type": "body", "id": "line_486_ghost", "shape": "rect", "position": { "x": 267, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 0.15, "appear_at_ms": 0, "disappear_at_ms": 2350, "fade_out_ms": 300 },
-          { "type": "body", "id": "line_486_solid", "shape": "rect", "position": { "x": 267, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 1.0, "appear_at_ms": 2350, "animate_in_ms": 300 },
-          { "type": "body", "id": "line_434_ghost", "shape": "rect", "position": { "x": 163, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 0.15, "appear_at_ms": 0, "disappear_at_ms": 5350, "fade_out_ms": 300 },
-          { "type": "body", "id": "line_434_solid", "shape": "rect", "position": { "x": 163, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 1.0, "appear_at_ms": 5350, "animate_in_ms": 300 },
-          { "type": "body", "id": "line_410_ghost", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 0.15, "appear_at_ms": 0, "disappear_at_ms": 8000, "fade_out_ms": 300 },
-          { "type": "body", "id": "line_410_solid", "shape": "rect", "position": { "x": 115, "y": 444 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 1.0, "appear_at_ms": 8000, "animate_in_ms": 300 },
-          { "type": "label", "id": "line_label_656", "text": "656", "position": { "x": 607, "y": 462 }, "font_size": 11, "color": "#EF4444" },
-          { "type": "label", "id": "line_label_486", "text": "486", "position": { "x": 267, "y": 462 }, "font_size": 11, "color": "#22D3EE", "appear_at_ms": 2350, "animate_in_ms": 300 },
-          { "type": "label", "id": "line_label_434", "text": "434", "position": { "x": 163, "y": 462 }, "font_size": 11, "color": "#3B82F6", "appear_at_ms": 5350, "animate_in_ms": 300 },
-          { "type": "label", "id": "line_label_410", "text": "410", "position": { "x": 115, "y": 462 }, "font_size": 11, "color": "#8B5CF6", "appear_at_ms": 8000, "animate_in_ms": 300 },
-          { "type": "body", "id": "electron_drop_4to2", "shape": "circle", "position": { "x": 140, "y": 228 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 0, "dy_px": 115, "delay_sec": 0.1, "duration_sec": 0.5 }, "disappear_at_ms": 2200, "fade_out_ms": 200 },
-          { "type": "animated_path", "id": "photon_4to2", "from": { "x": 140, "y": 343 }, "to": { "x": 267, "y": 452 }, "color": "#22D3EE", "appear_at_ms": 1200, "duration_ms": 800, "disappear_at_ms": 2350, "fade_out_ms": 300, "arrow_head": true },
-          { "type": "label", "id": "photon_4to2_label", "text": "2.55 eV", "position": { "x": 205, "y": 380 }, "font_size": 12, "color": "#22D3EE", "appear_at_ms": 1600, "disappear_at_ms": 2350, "fade_out_ms": 300 },
-          { "type": "body", "id": "electron_drop_5to2", "shape": "circle", "position": { "x": 140, "y": 193 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 2800, "animation": { "type": "translate", "dx_px": 0, "dy_px": 150, "delay_sec": 3.1, "duration_sec": 0.5 }, "disappear_at_ms": 5200, "fade_out_ms": 200 },
-          { "type": "animated_path", "id": "photon_5to2", "from": { "x": 140, "y": 343 }, "to": { "x": 163, "y": 452 }, "color": "#3B82F6", "appear_at_ms": 4200, "duration_ms": 800, "disappear_at_ms": 5350, "fade_out_ms": 300, "arrow_head": true },
-          { "type": "label", "id": "photon_5to2_label", "text": "2.86 eV", "position": { "x": 153, "y": 394 }, "font_size": 12, "color": "#3B82F6", "appear_at_ms": 4500, "disappear_at_ms": 5350, "fade_out_ms": 300 },
-          { "type": "body", "id": "electron_drop_6to2", "shape": "circle", "position": { "x": 140, "y": 166 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 5800, "animation": { "type": "translate", "dx_px": 0, "dy_px": 177, "delay_sec": 6.0, "duration_sec": 0.5 } },
-          { "type": "animated_path", "id": "photon_6to2", "from": { "x": 140, "y": 343 }, "to": { "x": 115, "y": 452 }, "color": "#8B5CF6", "appear_at_ms": 7000, "duration_ms": 700, "disappear_at_ms": 8000, "fade_out_ms": 300, "arrow_head": true },
-          { "type": "label", "id": "photon_6to2_label", "text": "3.02 eV", "position": { "x": 125, "y": 408 }, "font_size": 12, "color": "#8B5CF6", "appear_at_ms": 7300, "disappear_at_ms": 8000, "fade_out_ms": 300 },
-          { "type": "glow_focus", "id": "glow_line_486", "primitive_id": "line_486_solid", "halo_radius_px": 30, "color": "#22D3EE", "intensity": 0.4, "appear_at_ms": 2350, "disappear_at_ms": 2800, "fade_out_ms": 150 },
-          { "type": "glow_focus", "id": "glow_line_434", "primitive_id": "line_434_solid", "halo_radius_px": 30, "color": "#3B82F6", "intensity": 0.4, "appear_at_ms": 5350, "disappear_at_ms": 5800, "fade_out_ms": 150 },
-          { "type": "glow_focus", "id": "glow_line_410", "primitive_id": "line_410_solid", "halo_radius_px": 30, "color": "#8B5CF6", "intensity": 0.4, "appear_at_ms": 8000, "disappear_at_ms": 12616, "fade_out_ms": 400 },
-          { "type": "annotation", "id": "scale_note", "text": "one atom shown — a real lamp: ~10²² atoms/s", "position": { "x": 485, "y": 110 }, "color": "#94A3B8", "appear_at_ms": 12616, "animate_in_ms": 600 },
-          { "type": "glow_focus", "id": "glow_fingerprint_final", "primitive_id": "strip_bg", "halo_radius_px": 70, "color": "#FDE047", "intensity": 0.3, "appear_at_ms": 16695, "animate_in_ms": 2591 }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "Every line, one gap",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E"
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 428
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 428
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 343
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 343
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 278
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 278
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 228
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 228
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 193
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 193
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 166
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 166
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "strip_bg",
+            "shape": "rect",
+            "position": {
+              "x": 80,
+              "y": 444
+            },
+            "size": {
+              "w": 600,
+              "h": 16
+            },
+            "fill_color": "#0B1120",
+            "border_color": "#334155"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_400",
+            "text": "400",
+            "position": {
+              "x": 89,
+              "y": 476
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_700",
+            "text": "700",
+            "position": {
+              "x": 683,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_unit",
+            "text": "wavelength λ (nm)",
+            "position": {
+              "x": 390,
+              "y": 470
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "line_656_solid",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "line_486_ghost",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 0.15,
+            "appear_at_ms": 0,
+            "disappear_at_ms": 2350,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "line_486_solid",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 1.0,
+            "appear_at_ms": 2350,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "line_434_ghost",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 0.15,
+            "appear_at_ms": 0,
+            "disappear_at_ms": 5350,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "line_434_solid",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 1.0,
+            "appear_at_ms": 5350,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "line_410_ghost",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 0.15,
+            "appear_at_ms": 0,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "line_410_solid",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 444
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 1.0,
+            "appear_at_ms": 8000,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "line_label_656",
+            "text": "656",
+            "position": {
+              "x": 607,
+              "y": 462
+            },
+            "font_size": 11,
+            "color": "#EF4444"
+          },
+          {
+            "type": "label",
+            "id": "line_label_486",
+            "text": "486",
+            "position": {
+              "x": 267,
+              "y": 462
+            },
+            "font_size": 11,
+            "color": "#22D3EE",
+            "appear_at_ms": 2350,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "line_label_434",
+            "text": "434",
+            "position": {
+              "x": 163,
+              "y": 462
+            },
+            "font_size": 11,
+            "color": "#3B82F6",
+            "appear_at_ms": 5350,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "line_label_410",
+            "text": "410",
+            "position": {
+              "x": 115,
+              "y": 462
+            },
+            "font_size": 11,
+            "color": "#8B5CF6",
+            "appear_at_ms": 8000,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "electron_drop_4to2",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 228
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 0,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": 115,
+              "delay_sec": 0.1,
+              "duration_sec": 0.5
+            },
+            "disappear_at_ms": 2200,
+            "fade_out_ms": 200
+          },
+          {
+            "type": "animated_path",
+            "id": "photon_4to2",
+            "from": {
+              "x": 140,
+              "y": 343
+            },
+            "to": {
+              "x": 267,
+              "y": 452
+            },
+            "color": "#22D3EE",
+            "appear_at_ms": 1200,
+            "duration_ms": 800,
+            "disappear_at_ms": 2350,
+            "fade_out_ms": 300,
+            "arrow_head": true
+          },
+          {
+            "type": "label",
+            "id": "photon_4to2_label",
+            "text": "2.55 eV",
+            "position": {
+              "x": 205,
+              "y": 380
+            },
+            "font_size": 12,
+            "color": "#22D3EE",
+            "appear_at_ms": 1600,
+            "disappear_at_ms": 2350,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "electron_drop_5to2",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 193
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 2800,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": 150,
+              "delay_sec": 3.1,
+              "duration_sec": 0.5
+            },
+            "disappear_at_ms": 5200,
+            "fade_out_ms": 200
+          },
+          {
+            "type": "animated_path",
+            "id": "photon_5to2",
+            "from": {
+              "x": 140,
+              "y": 343
+            },
+            "to": {
+              "x": 163,
+              "y": 452
+            },
+            "color": "#3B82F6",
+            "appear_at_ms": 4200,
+            "duration_ms": 800,
+            "disappear_at_ms": 5350,
+            "fade_out_ms": 300,
+            "arrow_head": true
+          },
+          {
+            "type": "label",
+            "id": "photon_5to2_label",
+            "text": "2.86 eV",
+            "position": {
+              "x": 153,
+              "y": 394
+            },
+            "font_size": 12,
+            "color": "#3B82F6",
+            "appear_at_ms": 4500,
+            "disappear_at_ms": 5350,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "body",
+            "id": "electron_drop_6to2",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 166
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 5800,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": 177,
+              "delay_sec": 6.0,
+              "duration_sec": 0.5
+            }
+          },
+          {
+            "type": "animated_path",
+            "id": "photon_6to2",
+            "from": {
+              "x": 140,
+              "y": 343
+            },
+            "to": {
+              "x": 115,
+              "y": 452
+            },
+            "color": "#8B5CF6",
+            "appear_at_ms": 7000,
+            "duration_ms": 700,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 300,
+            "arrow_head": true
+          },
+          {
+            "type": "label",
+            "id": "photon_6to2_label",
+            "text": "3.02 eV",
+            "position": {
+              "x": 125,
+              "y": 408
+            },
+            "font_size": 12,
+            "color": "#8B5CF6",
+            "appear_at_ms": 7300,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_line_486",
+            "primitive_id": "line_486_solid",
+            "halo_radius_px": 30,
+            "color": "#22D3EE",
+            "intensity": 0.4,
+            "appear_at_ms": 2350,
+            "disappear_at_ms": 2800,
+            "fade_out_ms": 150
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_line_434",
+            "primitive_id": "line_434_solid",
+            "halo_radius_px": 30,
+            "color": "#3B82F6",
+            "intensity": 0.4,
+            "appear_at_ms": 5350,
+            "disappear_at_ms": 5800,
+            "fade_out_ms": 150
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_line_410",
+            "primitive_id": "line_410_solid",
+            "halo_radius_px": 30,
+            "color": "#8B5CF6",
+            "intensity": 0.4,
+            "appear_at_ms": 8000,
+            "disappear_at_ms": 12616,
+            "fade_out_ms": 400
+          },
+          {
+            "type": "annotation",
+            "id": "scale_note",
+            "text": "one atom shown — a real lamp: ~10²² atoms/s",
+            "position": {
+              "x": 485,
+              "y": 110
+            },
+            "color": "#94A3B8",
+            "appear_at_ms": 12616,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_fingerprint_final",
+            "primitive_id": "strip_bg",
+            "halo_radius_px": 70,
+            "color": "#FDE047",
+            "intensity": 0.3,
+            "appear_at_ms": 16695,
+            "animate_in_ms": 2591
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Three more drops follow: four to two, five to two, six to two — painting ghosted lines solid at four-eighty-six, four-thirty-four, four-ten nanometres." },
-            { "id": "s2", "text_en": "Every line is one exact energy gap made visible — the atom's fingerprint." },
-            { "id": "s3", "text_en": "One atom here; a real lamp holds ten-to-the-twenty-two, jumping every second." },
-            { "id": "s4", "text_en": "Stars read their recipe the same way." }
+            {
+              "id": "s6_1",
+              "text_en": "Three more drops follow: four to two, five to two, six to two — painting ghosted lines solid at four-eighty-six, four-thirty-four, four-ten nanometres."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Every line is one exact energy gap made visible — the atom's fingerprint."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "One atom here; a real lamp holds ten-to-the-twenty-two, jumping every second."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Stars read their recipe the same way."
+            }
           ]
         }
       },
@@ -383,46 +2821,417 @@
         "focal_primitive_id": "delta_e_formula",
         "has_prebuilt_deep_dive": true,
         "allow_deep_dive": true,
-        "drill_downs": ["ev_joule_conversion", "wavelength_energy_inverse", "frequency_vs_wavelength"],
-        "variable_overrides": { "n_end": 2 },
+        "drill_downs": [
+          "ev_joule_conversion",
+          "wavelength_energy_inverse",
+          "frequency_vs_wavelength"
+        ],
+        "variable_overrides": {
+          "n_end": 2
+        },
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "Bigger gap, shorter wavelength", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E" },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 388 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 388 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 303 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 303 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 238 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 238 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 188 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 188 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 153 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 153 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 126 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 126 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "strip_bg", "shape": "rect", "position": { "x": 80, "y": 420 }, "size": { "w": 600, "h": 16 }, "fill_color": "#0B1120", "border_color": "#334155" },
-          { "type": "label", "id": "strip_label_400", "text": "400", "position": { "x": 89, "y": 446 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_700", "text": "700", "position": { "x": 683, "y": 446 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_unit", "text": "wavelength λ (nm)", "position": { "x": 390, "y": 446 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "body", "id": "line_656_solid", "shape": "rect", "position": { "x": 607, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 1.0 },
-          { "type": "body", "id": "line_486_solid", "shape": "rect", "position": { "x": 267, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 1.0 },
-          { "type": "body", "id": "line_434_solid", "shape": "rect", "position": { "x": 163, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 1.0 },
-          { "type": "body", "id": "line_410_solid", "shape": "rect", "position": { "x": 115, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 1.0 },
-          { "type": "body", "id": "electron", "shape": "circle", "position": { "x": 140, "y": 238 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "position_expr": { "x": "140", "y": "n_start==3?238:(n_start==4?188:(n_start==5?153:126))" } },
-          { "type": "formula_box", "id": "delta_e_formula", "equation": "ΔE = hν = hc/λ", "position": { "x": 485, "y": 190 }, "border_color": "#3B82F6", "appear_at_ms": 1800, "animate_in_ms": 600 },
-          { "type": "annotation", "id": "derivation_line1", "text": "higher − lower = {(-13.6/(n_hi*n_hi)).toFixed(2).replace('-','−')} − ({(-13.6/(n_lo*n_lo)).toFixed(2).replace('-','−')}) eV\nΔE = {delta_E_ev} eV", "position": { "x": 485, "y": 244 }, "color": "#FDE047", "appear_at_ms": 5476, "animate_in_ms": 600 },
-          { "type": "annotation", "id": "derivation_line2", "text": "hc = 1240 eV·nm\nλ = 1240 / {delta_E_ev} = {lambda_nm} nm", "position": { "x": 485, "y": 302 }, "color": "#FDE047", "appear_at_ms": 9127, "animate_in_ms": 600 },
-          { "type": "body", "id": "lambda_pointer", "shape": "circle", "position": { "x": 200, "y": 412 }, "size": 8, "fill_color": "#FDE047", "appear_at_ms": 10227, "animate_in_ms": 500, "position_expr": { "x": "2*lambda_nm - 705" } },
-          { "type": "glow_focus", "id": "glow_formula", "primitive_id": "delta_e_formula", "halo_radius_px": 60, "color": "#3B82F6", "intensity": 0.3, "appear_at_ms": 1800, "disappear_at_ms": 5476, "fade_out_ms": 300 },
-          { "type": "glow_focus", "id": "glow_pointer", "primitive_id": "lambda_pointer", "halo_radius_px": 25, "color": "#FDE047", "intensity": 0.4, "appear_at_ms": 10227, "animate_in_ms": 6202 },
-          { "type": "slider", "id": "n_upper_slider", "variable": "n_start", "min": 3, "max": 6, "step": 1, "default": 3, "unit": "", "label": "Upper level n", "position": "bottom" }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "Bigger gap, shorter wavelength",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E"
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 388
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 388
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 303
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 303
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 238
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 238
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 188
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 188
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 153
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 153
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 126
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 126
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "strip_bg",
+            "shape": "rect",
+            "position": {
+              "x": 80,
+              "y": 420
+            },
+            "size": {
+              "w": 600,
+              "h": 16
+            },
+            "fill_color": "#0B1120",
+            "border_color": "#334155"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_400",
+            "text": "400",
+            "position": {
+              "x": 89,
+              "y": 446
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_700",
+            "text": "700",
+            "position": {
+              "x": 683,
+              "y": 446
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_unit",
+            "text": "wavelength λ (nm)",
+            "position": {
+              "x": 390,
+              "y": 446
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "line_656_solid",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "line_486_solid",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "line_434_solid",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "line_410_solid",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "electron",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 238
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 0,
+            "position_expr": {
+              "x": "140",
+              "y": "n_start==3?238:(n_start==4?188:(n_start==5?153:126))"
+            }
+          },
+          {
+            "type": "formula_box",
+            "id": "delta_e_formula",
+            "equation": "ΔE = hν = hc/λ",
+            "position": {
+              "x": 485,
+              "y": 190
+            },
+            "border_color": "#3B82F6",
+            "appear_at_ms": 1800,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "annotation",
+            "id": "derivation_line1",
+            "text": "higher − lower = {(-13.6/(n_hi*n_hi)).toFixed(2).replace('-','−')} − ({(-13.6/(n_lo*n_lo)).toFixed(2).replace('-','−')}) eV\nΔE = {delta_E_ev} eV",
+            "position": {
+              "x": 485,
+              "y": 244
+            },
+            "color": "#FDE047",
+            "appear_at_ms": 5476,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "annotation",
+            "id": "derivation_line2",
+            "text": "hc = 1240 eV·nm\nλ = 1240 / {delta_E_ev} = {lambda_nm} nm",
+            "position": {
+              "x": 485,
+              "y": 302
+            },
+            "color": "#FDE047",
+            "appear_at_ms": 9127,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "body",
+            "id": "lambda_pointer",
+            "shape": "circle",
+            "position": {
+              "x": 200,
+              "y": 412
+            },
+            "size": 8,
+            "fill_color": "#FDE047",
+            "appear_at_ms": 10227,
+            "animate_in_ms": 500,
+            "position_expr": {
+              "x": "2*lambda_nm - 705"
+            }
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_formula",
+            "primitive_id": "delta_e_formula",
+            "halo_radius_px": 60,
+            "color": "#3B82F6",
+            "intensity": 0.3,
+            "appear_at_ms": 1800,
+            "disappear_at_ms": 5476,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_pointer",
+            "primitive_id": "lambda_pointer",
+            "halo_radius_px": 25,
+            "color": "#FDE047",
+            "intensity": 0.4,
+            "appear_at_ms": 10227,
+            "animate_in_ms": 6202
+          },
+          {
+            "type": "slider",
+            "id": "n_upper_slider",
+            "variable": "n_start",
+            "min": 3,
+            "max": 6,
+            "step": 1,
+            "default": 3,
+            "unit": "",
+            "label": "Upper level n",
+            "position": "bottom"
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Lock the numbers: energy gap delta E equals h nu equals h c over lambda." },
-            { "id": "s2", "text_en": "Replayed slow: minus one-point-five-one minus minus three-point-four gives one-point-eight-nine electron-volts." },
-            { "id": "s3", "text_en": "Wavelength lambda equals twelve-forty over one-point-eight-nine — six-fifty-six nanometres." },
-            { "id": "s4", "text_en": "Pick the bigger four-to-two gap and lambda shrinks: bigger gap, shorter wavelength." }
+            {
+              "id": "s7_1",
+              "text_en": "Lock the numbers: energy gap delta E equals h nu equals h c over lambda."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Replayed slow: minus one-point-five-one minus minus three-point-four gives one-point-eight-nine electron-volts."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Wavelength lambda equals twelve-forty over one-point-eight-nine — six-fifty-six nanometres."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "Pick the bigger four-to-two gap and lambda shrinks: bigger gap, shorter wavelength."
+            }
           ]
         },
         "misconception_watch": [
@@ -440,41 +3249,401 @@
         "advance_mode": "manual_click",
         "focal_primitive_id": "electron",
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "One formula, every rung", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E" },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 450 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 450 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 360 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 360 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 292 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 292 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 242 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 242 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 204 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 204 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 174 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 174 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_7", "shape": "rect", "position": { "x": 90, "y": 150 }, "size": { "w": 140, "h": 3 }, "fill_color": "#64748B", "appear_at_ms": 6310, "animate_in_ms": 400 },
-          { "type": "label", "id": "rung_label_7", "text": "n = 7", "position": { "x": 254, "y": 150 }, "font_size": 12, "color": "#94A3B8", "appear_at_ms": 6310, "animate_in_ms": 400 },
-          { "type": "body", "id": "rung_8", "shape": "rect", "position": { "x": 90, "y": 130 }, "size": { "w": 140, "h": 3 }, "fill_color": "#64748B", "appear_at_ms": 7100, "animate_in_ms": 400 },
-          { "type": "label", "id": "rung_label_8", "text": "n = 8", "position": { "x": 254, "y": 130 }, "font_size": 12, "color": "#94A3B8", "appear_at_ms": 7100, "animate_in_ms": 400 },
-          { "type": "body", "id": "rung_9", "shape": "rect", "position": { "x": 90, "y": 110 }, "size": { "w": 140, "h": 3 }, "fill_color": "#64748B", "appear_at_ms": 7900, "animate_in_ms": 400 },
-          { "type": "label", "id": "rung_label_9", "text": "n = 9", "position": { "x": 254, "y": 110 }, "font_size": 12, "color": "#94A3B8", "appear_at_ms": 7900, "animate_in_ms": 400 },
-          { "type": "vector", "id": "e_zero_line", "from": { "x": 90, "y": 55 }, "to": { "x": 230, "y": 55 }, "color": "#F87171", "style": "dashed" },
-          { "type": "label", "id": "e_zero_label", "text": "E = 0 (free)", "position": { "x": 278, "y": 55 }, "font_size": 12, "color": "#F87171" },
-          { "type": "formula_box", "id": "en_formula", "equation": "Eₙ = −13.6 / n² eV", "position": { "x": 485, "y": 300 }, "border_color": "#3B82F6", "appear_at_ms": 1500, "animate_in_ms": 600 },
-          { "type": "body", "id": "electron", "shape": "circle", "position": { "x": 140, "y": 450 }, "size": 16, "fill_color": "#FBBF24", "appear_at_ms": 0, "animation": { "type": "translate", "dx_px": 70, "dy_px": -430, "delay_sec": 14.049, "duration_sec": 2.0 } },
-          { "type": "animated_path", "id": "ionising_photon", "from": { "x": 420, "y": 410 }, "to": { "x": 140, "y": 450 }, "color": "#FDE047", "appear_at_ms": 12249, "duration_ms": 1200, "disappear_at_ms": 14049, "fade_out_ms": 300, "arrow_head": true },
-          { "type": "label", "id": "ionising_photon_label", "text": "13.6 eV", "position": { "x": 277, "y": 402 }, "font_size": 12, "color": "#FDE047", "appear_at_ms": 12700, "disappear_at_ms": 14049, "fade_out_ms": 300 },
-          { "type": "glow_focus", "id": "glow_ionising_photon", "primitive_id": "ionising_photon", "halo_radius_px": 30, "color": "#FDE047", "intensity": 0.4, "appear_at_ms": 12249, "disappear_at_ms": 14049 },
-          { "type": "glow_focus", "id": "glow_electron_eject", "primitive_id": "electron", "halo_radius_px": 45, "color": "#FBBF24", "intensity": 0.4, "appear_at_ms": 16049 },
-          { "type": "annotation", "id": "ionise_ledger", "text": "13.60 eV → E = 0, free", "position": { "x": 485, "y": 230 }, "color": "#10B981", "appear_at_ms": 16449, "animate_in_ms": 2480 }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "One formula, every rung",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E"
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 450
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 450
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 360
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 360
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 292
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 292
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 242
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 242
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 204
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 204
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 174
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 174
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_7",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 150
+            },
+            "size": {
+              "w": 140,
+              "h": 3
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 6310,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "rung_label_7",
+            "text": "n = 7",
+            "position": {
+              "x": 254,
+              "y": 150
+            },
+            "font_size": 12,
+            "color": "#94A3B8",
+            "appear_at_ms": 6310,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "body",
+            "id": "rung_8",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 130
+            },
+            "size": {
+              "w": 140,
+              "h": 3
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 7100,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "rung_label_8",
+            "text": "n = 8",
+            "position": {
+              "x": 254,
+              "y": 130
+            },
+            "font_size": 12,
+            "color": "#94A3B8",
+            "appear_at_ms": 7100,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "body",
+            "id": "rung_9",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 110
+            },
+            "size": {
+              "w": 140,
+              "h": 3
+            },
+            "fill_color": "#64748B",
+            "appear_at_ms": 7900,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "rung_label_9",
+            "text": "n = 9",
+            "position": {
+              "x": 254,
+              "y": 110
+            },
+            "font_size": 12,
+            "color": "#94A3B8",
+            "appear_at_ms": 7900,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "vector",
+            "id": "e_zero_line",
+            "from": {
+              "x": 90,
+              "y": 55
+            },
+            "to": {
+              "x": 230,
+              "y": 55
+            },
+            "color": "#F87171",
+            "style": "dashed"
+          },
+          {
+            "type": "label",
+            "id": "e_zero_label",
+            "text": "E = 0 (free)",
+            "position": {
+              "x": 278,
+              "y": 55
+            },
+            "font_size": 12,
+            "color": "#F87171"
+          },
+          {
+            "type": "formula_box",
+            "id": "en_formula",
+            "equation": "Eₙ = −13.6 / n² eV",
+            "position": {
+              "x": 485,
+              "y": 300
+            },
+            "border_color": "#3B82F6",
+            "appear_at_ms": 1500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "body",
+            "id": "electron",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 450
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "appear_at_ms": 0,
+            "animation": {
+              "type": "translate",
+              "dx_px": 70,
+              "dy_px": -430,
+              "delay_sec": 14.049,
+              "duration_sec": 2.0
+            }
+          },
+          {
+            "type": "animated_path",
+            "id": "ionising_photon",
+            "from": {
+              "x": 420,
+              "y": 410
+            },
+            "to": {
+              "x": 140,
+              "y": 450
+            },
+            "color": "#FDE047",
+            "appear_at_ms": 12249,
+            "duration_ms": 1200,
+            "disappear_at_ms": 14049,
+            "fade_out_ms": 300,
+            "arrow_head": true
+          },
+          {
+            "type": "label",
+            "id": "ionising_photon_label",
+            "text": "13.6 eV",
+            "position": {
+              "x": 277,
+              "y": 402
+            },
+            "font_size": 12,
+            "color": "#FDE047",
+            "appear_at_ms": 12700,
+            "disappear_at_ms": 14049,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_ionising_photon",
+            "primitive_id": "ionising_photon",
+            "halo_radius_px": 30,
+            "color": "#FDE047",
+            "intensity": 0.4,
+            "appear_at_ms": 12249,
+            "disappear_at_ms": 14049
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_electron_eject",
+            "primitive_id": "electron",
+            "halo_radius_px": 45,
+            "color": "#FBBF24",
+            "intensity": 0.4,
+            "appear_at_ms": 16049
+          },
+          {
+            "type": "annotation",
+            "id": "ionise_ledger",
+            "text": "13.60 eV → E = 0, free",
+            "position": {
+              "x": 485,
+              "y": 230
+            },
+            "color": "#10B981",
+            "appear_at_ms": 16449,
+            "animate_in_ms": 2480
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "One formula predicts every rung: energy level E sub n equals minus thirteen-point-six over n squared electron-volts." },
-            { "id": "s2", "text_en": "Levels seven, eight, nine crowd upward toward a dashed line at E equals zero — fully free." },
-            { "id": "s3", "text_en": "Give the level-one electron exactly thirteen-point-six electron-volts and it ejects clean off the ladder — ionised, free at last." }
+            {
+              "id": "s8_1",
+              "text_en": "One formula predicts every rung: energy level E sub n equals minus thirteen-point-six over n squared electron-volts."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Levels seven, eight, nine crowd upward toward a dashed line at E equals zero — fully free."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Give the level-one electron exactly thirteen-point-six electron-volts and it ejects clean off the ladder — ionised, free at last."
+            }
           ]
         }
       },
@@ -485,39 +3654,386 @@
         "advance_mode": "interaction_complete",
         "focal_primitive_id": "electron",
         "scene_composition": [
-          { "type": "label", "id": "delta_cue", "text": "All yours", "position": { "x": 380, "y": 22 }, "font_size": 18, "color": "#F1F5F9" },
-          { "type": "axes", "id": "energy_axis_tick", "position": { "x": 72, "y": 180 }, "length": 22, "angle_deg": 90, "color": "#94A3B8", "x_label": " ", "y_label": "E" },
-          { "type": "body", "id": "rung_1", "shape": "rect", "position": { "x": 90, "y": 388 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_1", "text": "n = 1  (−13.60 eV)", "position": { "x": 299, "y": 388 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_2", "shape": "rect", "position": { "x": 90, "y": 303 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_2", "text": "n = 2  (−3.40 eV)", "position": { "x": 296, "y": 303 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_3", "shape": "rect", "position": { "x": 90, "y": 238 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_3", "text": "n = 3  (−1.51 eV)", "position": { "x": 296, "y": 238 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_4", "shape": "rect", "position": { "x": 90, "y": 188 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_4", "text": "n = 4  (−0.85 eV)", "position": { "x": 296, "y": 188 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_5", "shape": "rect", "position": { "x": 90, "y": 153 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_5", "text": "n = 5  (−0.54 eV)", "position": { "x": 296, "y": 153 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "rung_6", "shape": "rect", "position": { "x": 90, "y": 126 }, "size": { "w": 140, "h": 4 }, "fill_color": "#64748B" },
-          { "type": "label", "id": "rung_label_6", "text": "n = 6  (−0.38 eV)", "position": { "x": 296, "y": 126 }, "font_size": 12, "color": "#CBD5E1" },
-          { "type": "body", "id": "strip_bg", "shape": "rect", "position": { "x": 80, "y": 420 }, "size": { "w": 600, "h": 16 }, "fill_color": "#0B1120", "border_color": "#334155" },
-          { "type": "label", "id": "strip_label_400", "text": "400", "position": { "x": 89, "y": 446 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_700", "text": "700", "position": { "x": 683, "y": 446 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "label", "id": "strip_label_unit", "text": "wavelength λ (nm)", "position": { "x": 390, "y": 446 }, "font_size": 12, "color": "#94A3B8" },
-          { "type": "body", "id": "line_656_solid", "shape": "rect", "position": { "x": 607, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#EF4444", "opacity": 1.0 },
-          { "type": "body", "id": "line_486_solid", "shape": "rect", "position": { "x": 267, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#22D3EE", "opacity": 1.0 },
-          { "type": "body", "id": "line_434_solid", "shape": "rect", "position": { "x": 163, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#3B82F6", "opacity": 1.0 },
-          { "type": "body", "id": "line_410_solid", "shape": "rect", "position": { "x": 115, "y": 420 }, "size": { "w": 10, "h": 16 }, "fill_color": "#8B5CF6", "opacity": 1.0 },
-          { "type": "body", "id": "lambda_caret_explore", "shape": "circle", "position": { "x": 50, "y": 412 }, "size": 8, "fill_color": "#FDE047", "border_color": "#CA8A04", "position_expr": { "x": "spectral_region==='VISIBLE' ? (2*lambda_nm-705) : NaN" } },
-          { "type": "body", "id": "start_level_marker", "shape": "circle", "position": { "x": 110, "y": 303 }, "size": 10, "fill_color": "#94A3B8", "border_color": "#475569", "opacity": 0.6, "position_expr": { "x": "110", "y": "n_start==1?388:(n_start==2?303:(n_start==3?238:(n_start==4?188:(n_start==5?153:126))))" } },
-          { "type": "body", "id": "electron", "shape": "circle", "position": { "x": 140, "y": 303 }, "size": 16, "fill_color": "#FBBF24", "label_expr": "n {n_start} → n {n_end}", "label_below": true, "position_expr": { "x": "140", "y": "n_end==1?388:(n_end==2?303:(n_end==3?238:(n_end==4?188:(n_end==5?153:126))))" } },
-          { "type": "glow_focus", "id": "glow_electron_explore", "primitive_id": "electron", "halo_radius_px": 40, "color": "#FBBF24", "intensity": 0.3 },
-          { "type": "annotation", "id": "readout_hud", "text": "{direction==='none' ? 'Pick two different levels' : ((direction==='absorb' ? 'Photon absorbed' : 'Photon emitted') + ' — gap ' + delta_E_ev.toFixed(2) + ' eV,  λ = ' + (lambda_nm===null?'—':lambda_nm) + ' nm' + (spectral_region==='VISIBLE' ? ' — visible line' : ' — not visible'))}", "position": { "x": 485, "y": 150 }, "color": "#FDE047" },
-          { "type": "slider", "id": "n_start_slider", "variable": "n_start", "min": 1, "max": 6, "step": 1, "default": 3, "unit": "", "label": "Start level n", "position": "bottom" },
-          { "type": "slider", "id": "n_end_slider", "variable": "n_end", "min": 1, "max": 6, "step": 1, "default": 2, "unit": "", "label": "End level n", "position": "bottom" }
+          {
+            "type": "label",
+            "id": "delta_cue",
+            "text": "All yours",
+            "position": {
+              "x": 380,
+              "y": 22
+            },
+            "font_size": 18,
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "axes",
+            "id": "energy_axis_tick",
+            "position": {
+              "x": 72,
+              "y": 180
+            },
+            "length": 22,
+            "angle_deg": 90,
+            "color": "#94A3B8",
+            "x_label": " ",
+            "y_label": "E"
+          },
+          {
+            "type": "body",
+            "id": "rung_1",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 388
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_1",
+            "text": "n = 1  (−13.60 eV)",
+            "position": {
+              "x": 299,
+              "y": 388
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_2",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 303
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_2",
+            "text": "n = 2  (−3.40 eV)",
+            "position": {
+              "x": 296,
+              "y": 303
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_3",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 238
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_3",
+            "text": "n = 3  (−1.51 eV)",
+            "position": {
+              "x": 296,
+              "y": 238
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_4",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 188
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_4",
+            "text": "n = 4  (−0.85 eV)",
+            "position": {
+              "x": 296,
+              "y": 188
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_5",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 153
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_5",
+            "text": "n = 5  (−0.54 eV)",
+            "position": {
+              "x": 296,
+              "y": 153
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "rung_6",
+            "shape": "rect",
+            "position": {
+              "x": 90,
+              "y": 126
+            },
+            "size": {
+              "w": 140,
+              "h": 4
+            },
+            "fill_color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "rung_label_6",
+            "text": "n = 6  (−0.38 eV)",
+            "position": {
+              "x": 296,
+              "y": 126
+            },
+            "font_size": 12,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "body",
+            "id": "strip_bg",
+            "shape": "rect",
+            "position": {
+              "x": 80,
+              "y": 420
+            },
+            "size": {
+              "w": 600,
+              "h": 16
+            },
+            "fill_color": "#0B1120",
+            "border_color": "#334155"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_400",
+            "text": "400",
+            "position": {
+              "x": 89,
+              "y": 446
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_700",
+            "text": "700",
+            "position": {
+              "x": 683,
+              "y": 446
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "strip_label_unit",
+            "text": "wavelength λ (nm)",
+            "position": {
+              "x": 390,
+              "y": 446
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "line_656_solid",
+            "shape": "rect",
+            "position": {
+              "x": 607,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#EF4444",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "line_486_solid",
+            "shape": "rect",
+            "position": {
+              "x": 267,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#22D3EE",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "line_434_solid",
+            "shape": "rect",
+            "position": {
+              "x": 163,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#3B82F6",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "line_410_solid",
+            "shape": "rect",
+            "position": {
+              "x": 115,
+              "y": 420
+            },
+            "size": {
+              "w": 10,
+              "h": 16
+            },
+            "fill_color": "#8B5CF6",
+            "opacity": 1.0
+          },
+          {
+            "type": "body",
+            "id": "lambda_caret_explore",
+            "shape": "circle",
+            "position": {
+              "x": 50,
+              "y": 412
+            },
+            "size": 8,
+            "fill_color": "#FDE047",
+            "border_color": "#CA8A04",
+            "position_expr": {
+              "x": "spectral_region==='VISIBLE' ? (2*lambda_nm-705) : NaN"
+            }
+          },
+          {
+            "type": "body",
+            "id": "start_level_marker",
+            "shape": "circle",
+            "position": {
+              "x": 110,
+              "y": 303
+            },
+            "size": 10,
+            "fill_color": "#94A3B8",
+            "border_color": "#475569",
+            "opacity": 0.6,
+            "position_expr": {
+              "x": "110",
+              "y": "n_start==1?388:(n_start==2?303:(n_start==3?238:(n_start==4?188:(n_start==5?153:126))))"
+            }
+          },
+          {
+            "type": "body",
+            "id": "electron",
+            "shape": "circle",
+            "position": {
+              "x": 140,
+              "y": 303
+            },
+            "size": 16,
+            "fill_color": "#FBBF24",
+            "label_expr": "n {n_start} → n {n_end}",
+            "label_below": true,
+            "position_expr": {
+              "x": "140",
+              "y": "n_end==1?388:(n_end==2?303:(n_end==3?238:(n_end==4?188:(n_end==5?153:126))))"
+            }
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_electron_explore",
+            "primitive_id": "electron",
+            "halo_radius_px": 40,
+            "color": "#FBBF24",
+            "intensity": 0.3
+          },
+          {
+            "type": "annotation",
+            "id": "readout_hud",
+            "text": "{direction==='none' ? 'Pick two different levels' : ((direction==='absorb' ? 'Photon absorbed' : 'Photon emitted') + ' — gap ' + delta_E_ev.toFixed(2) + ' eV,  λ = ' + (lambda_nm===null?'—':lambda_nm) + ' nm' + (spectral_region==='VISIBLE' ? ' — visible line' : ' — not visible'))}",
+            "position": {
+              "x": 485,
+              "y": 150
+            },
+            "color": "#FDE047"
+          },
+          {
+            "type": "slider",
+            "id": "n_start_slider",
+            "variable": "n_start",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "default": 3,
+            "unit": "",
+            "label": "Start level n",
+            "position": "bottom"
+          },
+          {
+            "type": "slider",
+            "id": "n_end_slider",
+            "variable": "n_end",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "default": 2,
+            "unit": "",
+            "label": "End level n",
+            "position": "bottom"
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Pick any two levels — watch the jump, the photon, and the line appear." }
+            {
+              "id": "s9_1",
+              "text_en": "Pick any two levels — watch the jump, the photon, and the line appear."
+            }
           ]
         }
       }
@@ -668,22 +4184,68 @@
   },
   "coverage_map": {
     "by_state": {
-      "STATE_3": ["q1"],
-      "STATE_4": ["q5"],
-      "STATE_5": ["q3"],
-      "STATE_6": ["q2"],
-      "STATE_7": ["q4"],
-      "STATE_8": ["q6"]
+      "STATE_3": [
+        "q1"
+      ],
+      "STATE_4": [
+        "q5"
+      ],
+      "STATE_5": [
+        "q3"
+      ],
+      "STATE_6": [
+        "q2"
+      ],
+      "STATE_7": [
+        "q4"
+      ],
+      "STATE_8": [
+        "q6"
+      ]
     },
-    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_9"]
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_9"
+    ]
   },
   "curriculum_tags": {
     "entries": [
-      { "curriculum": "CBSE/NCERT", "coverage": "full", "syllabus_unit": "Class 11 Chemistry, Unit 2 — Structure of Atom (Bohr's model, energy levels, line spectrum)", "verified": true, "needs_teacher_verification": false },
-      { "curriculum": "IB DP Chemistry", "coverage": "partial", "syllabus_unit": "Structure 1.3 — Electron configurations (emission spectra, energy levels)", "verified": false, "needs_teacher_verification": true },
-      { "curriculum": "AP Chemistry", "coverage": "partial", "syllabus_unit": "Unit 1 — Atomic Structure and Properties (photoelectron spectroscopy / energy levels)", "verified": false, "needs_teacher_verification": true },
-      { "curriculum": "A-level Chemistry (UK)", "coverage": "partial", "syllabus_unit": "Atomic structure — electron energy levels and emission spectra", "verified": false, "needs_teacher_verification": true },
-      { "curriculum": "IGCSE Chemistry", "coverage": "partial", "syllabus_unit": "Atomic structure — electronic energy levels (qualitative)", "verified": false, "needs_teacher_verification": true }
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Unit 2 — Structure of Atom (Bohr's model, energy levels, line spectrum)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "Structure 1.3 — Electron configurations (emission spectra, energy levels)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "Unit 1 — Atomic Structure and Properties (photoelectron spectroscopy / energy levels)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Chemistry (UK)",
+        "coverage": "partial",
+        "syllabus_unit": "Atomic structure — electron energy levels and emission spectra",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IGCSE Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "Atomic structure — electronic energy levels (qualitative)",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
     ]
   }
 }
