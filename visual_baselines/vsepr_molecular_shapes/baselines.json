@@ -1,0 +1,35 @@
+{
+  "approved_at": "2026-07-28T03:39:45.422Z",
+  "source_run": "/Users/thorotuyashwanthbalu/Desktop/Viditra-chem3d/.visual_runs/vsepr_molecular_shapes/20260728-053341",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

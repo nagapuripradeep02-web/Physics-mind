@@ -494,6 +494,12 @@ const F3D_REVEAL_KEYS = [
     // so a cached physics_config that flattened field_3d_config.states is still
     // recognised as field_3d, not PCPL.
     'em_wave',
+    // molecular_geometry (VSEPR — CHEMISTRY, 2026-07-28 engine ask): the per-state
+    // `molecular_geometry` block (assemble / flat→tetrahedral relax / domain spread
+    // / lone-pair squeeze / electron-geometry-vs-shape / expanded-geometry beats).
+    // Listed here so a cached physics_config that flattened field_3d_config.states
+    // is still recognised as field_3d, not PCPL.
+    'molecular_geometry',
     // electric_potential_dipole (dipole_potential) + the potential siblings: every
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
@@ -1752,6 +1758,45 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(Math.round(asNum(dcState.on_ms, 4500) * 0.6));
         }
     }
+    // molecular_geometry (VSEPR — CHEMISTRY, 2026-07-28 engine ask): the molecule
+    // turns slowly and perpetually (that IS the 3D-legibility capability), but each
+    // state's SHAPE beat is a one-shot closed-form ramp that then holds — the bonds
+    // grow out, the flat board sketch relaxes into the real tetrahedron, the domain
+    // count steps 2→3→4, a bond converts to a lone pair and the surviving bonds
+    // close down, the geometry swaps to the 5-/6-domain case. Pin the frozen frame
+    // PAST the last ramp's payoff so THE EYE photographs the SETTLED angle (109.5°
+    // → 107° → 104.5°), never a mid-squeeze frame. The renderer is accumulator-free
+    // (spin angle included), so the snap-to-pin capture is byte-identical to
+    // crawling there. The explore sandbox (mode 'explore') is user-driven — handled
+    // in deriveHoldExpectations as interactive, not pinned here.
+    const mgState = asObj(state.molecular_geometry);
+    if (mgState) {
+        if (typeof mgState.assemble_at_ms === 'number') {
+            candidates.push(asNum(mgState.assemble_at_ms, 600) + asNum(mgState.assemble_duration_ms, 3200) + 500);
+        }
+        if (typeof mgState.flat_hold_ms === 'number') {
+            candidates.push(asNum(mgState.flat_hold_ms, 4200) + asNum(mgState.relax_duration_ms, 3600) + 600);
+        }
+        const spreadSteps = Array.isArray(mgState.spread_steps) ? mgState.spread_steps : [];
+        for (const rawStep of spreadSteps) {
+            const step = asObj(rawStep);
+            if (!step) continue;
+            candidates.push(asNum(step.at_ms, 0) + asNum(step.duration_ms, 1800) + 500);
+        }
+        const squeezeSteps = Array.isArray(mgState.squeeze_steps) ? mgState.squeeze_steps : [];
+        for (const rawStep of squeezeSteps) {
+            const step = asObj(rawStep);
+            if (!step) continue;
+            candidates.push(asNum(step.at_ms, 0) + asNum(step.convert_ms, 900) + asNum(step.duration_ms, 2200) + 600);
+        }
+        if (typeof mgState.compare_at_ms === 'number') {
+            candidates.push(asNum(mgState.compare_at_ms, 5200) + 1500);
+        }
+        // the electron-domain cage fade-in (900 ms in the renderer) and the
+        // scripted "hide the lone pairs → the shape is what is left" reveal.
+        if (typeof mgState.hull_at_ms === 'number') candidates.push(asNum(mgState.hull_at_ms, 0) + 900 + 400);
+        if (typeof mgState.hide_lone_at_ms === 'number') candidates.push(asNum(mgState.hide_lone_at_ms, 0) + 900);
+    }
     // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3): the trains
     // move perpetually, but the STATE's one-shot cues (motes vanish → the "no
     // change" chip pins, the pulse reaches the receiver and the needle kicks) land
@@ -2901,6 +2946,20 @@ export function deriveHoldExpectations(
             const emwHold = asObj(state.em_wave);
             if (emwHold) {
                 out[stateId] = (emwHold.interactive === true) ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // molecular_geometry (VSEPR — CHEMISTRY): every state exposes at least a
+            // static readout row (Rule 31 controls/static_readouts), so the generic
+            // show_sliders catch below would swallow the guided shape beats into
+            // 'interactive' before they reach it. Classify explicitly (mirrors the
+            // capacitance/em_wave guided-vs-explore split above): the sandbox
+            // (mode 'explore') is user-driven → interactive; every other mode is a
+            // guided beat whose one-shot ramp payoff (pinned in
+            // maxRevealForField3dState) settles to a HOLD over the perpetual slow
+            // turn → reveal_hold, so D7/D1p permit the settled tail.
+            const mgHold = asObj(state.molecular_geometry);
+            if (mgHold) {
+                out[stateId] = (mgHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // newtons_laws_body (Laws of Motion): every state exposes its own

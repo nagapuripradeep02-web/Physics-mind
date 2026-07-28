@@ -23,6 +23,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { validateConceptJson } from '../schemas/conceptJson';
+import { deriveMaxRevealTimeMs } from '../lib/validators/visual/deriveStateMeta';
 
 const CHEM_DIR = join(process.cwd(), 'src', 'data', 'concepts', 'chemistry');
 
@@ -99,6 +100,17 @@ function indicatorBindingErrors(data: unknown, file: string): string[] {
 
 // Choreography end = max over every timing field on the state's primitives
 // (engine_bug_queue: narration_outruns_choreography probe_logic).
+//
+// 2026-07-28: this scan reads `scene_composition` ONLY, which is the PCPL/
+// parametric shape — a field_3d concept keeps its choreography in
+// field_3d_config.states[*].<scenario block>, and on field_3d
+// `scene_composition` is a silent no-op (the OPEN scar
+// field3d_scene_composition_annotation_silent_noop). So this measured 0 ms for
+// EVERY field_3d chemistry concept and warned on all of them regardless of how
+// their motion was timed. Fixed by ALSO consulting deriveMaxRevealTimeMs, the
+// shared derivation THE EYE already uses, which knows every scenario's per-mode
+// reveal fields; the caller takes whichever signal lands later, so the
+// parametric path is byte-identical to before.
 function choreoEndMs(state: StateShape): number {
     let mx = 0;
     for (const p of state.scene_composition ?? []) {
@@ -124,12 +136,22 @@ function choreoEndMs(state: StateShape): number {
 // WARN-only — matches the word-budget pattern and never false-breaks the gate. ─
 function narrationChoreographyWarnings(data: unknown, file: string): string[] {
     const warnings: string[] = [];
+    // Renderer-aware reveal times (field_3d / particle_field / PCPL) from the
+    // same derivation THE EYE pins its frozen frames with.
+    let derivedReveal: Record<string, number> = {};
+    try {
+        derivedReveal = deriveMaxRevealTimeMs(
+            (data && typeof data === 'object') ? (data as Record<string, unknown>) : null,
+        );
+    } catch {
+        derivedReveal = {};   // never let a derivation edge case break the gate
+    }
     for (const [stateId, state] of Object.entries(statesOf(data))) {
         if (state.advance_mode === 'interaction_complete') continue; // explore sandbox exempt
         const words = countWords(state);
         if (words === 0) continue;
         const estSpeech = (words / 2.8) * 1000;
-        const choreo = choreoEndMs(state);
+        const choreo = Math.max(choreoEndMs(state), derivedReveal[stateId] ?? 0);
         if (choreo < 0.7 * estSpeech) {
             warnings.push(
                 `${file} ${stateId}: choreography settles ~${Math.round(choreo)}ms but narration runs ~${Math.round(estSpeech)}ms ` +
