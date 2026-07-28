@@ -22,7 +22,7 @@
 | 5 | Chemistry render surface — **both halves now LIVE** | ✅ 2026-07-28: `field_3d` `molecular_geometry` (electron-domain 3D) **and** `particle_field` `gas_box` (2D hard-disc gas) both on master, each with its first concept shipped. Still ☐: **orbital lobes / lattices (P2)**, wet-lab apparatus (Phase 5b). |
 
 **Chemistry is a first-class subject ON MASTER across THREE renderer families, in 2D and 3D.**
-Four concepts, all baseline-locked and all voiced (90 EN clips):
+Baseline-locked concepts:
 
 | Concept | Renderer | Baselines | EN clips |
 |---|---|---|---|
@@ -30,12 +30,59 @@ Four concepts, all baseline-locked and all voiced (90 EN clips):
 | `law_of_conservation_of_mass` | parametric | 7 | 23 |
 | `vsepr_molecular_shapes` | field_3d · `molecular_geometry` | 14 | 17 |
 | `kinetic_particle_theory` | particle_field · `gas_box` | 7 | 19 |
+| `atomic_orbitals_s_p_d` | field_3d · **`orbital_shapes`** | 18 | — (silent; Rule 30h) |
 
-The isolation contract held through every merge: all four register at site #1 only, and
+The isolation contract held through every merge: all register at site #1 only, and
 `validate:concepts` reports 141/141 without ever seeing them.
 
-**The one gate none of them has passed is Asmi's professor review** — now four concepts deep,
-spanning both dimensionalities. That is the bottleneck, not renderer coverage.
+**The one gate none of them has passed is Asmi's professor review** — now five concepts deep,
+spanning both dimensionalities and four renderer surfaces. That is the bottleneck, not renderer
+coverage, and it has been the stated bottleneck for three consecutive sessions.
+
+---
+
+## 🔬 SESSION — the `orbital_shapes` 3D surface + `atomic_orbitals_s_p_d` (P4 #16), and six defects behind a green run (2026-07-28/29, branch `feat/chemistry-orbitals` → master)
+
+**Bottom line: chemistry's second 3D surface shipped and its first concept is merged and baseline-locked — and THE EYE passed 39/39 on frames containing FIVE real defects, with a sixth self-inflicted afterwards. Not one was caught by tsc, the validators, or THE EYE. Master: `39b906c`. Baseline fleet 63 → 64 (65 with the parallel session's).**
+
+### What shipped
+- **`orbital_shapes`** (`field_3d`, ~1500 lines, additive): s/p/d probability surfaces with a seeded measurement-dot swarm inside them, node planes, a camera-aligned cutaway exposing the 2s radial node shell, and a probe plane reading live `|ψ|²`. Everything geometric is DERIVED from exact hydrogenic (Z=1) functions at build time — 1s r₉₀ = 141 pm · 2s 483 pm (node shell at 2a₀ = 106 pm) · 2p tip 482 pm · 3d_xy 963 pm · E = −13.60/−3.40/−1.51 eV, agreeing with the shipped Bohr concept. Occupancy is MEASURED from the sample (89–91%), never asserted. Eight solved cameras ship as per-mode defaults.
+- **`atomic_orbitals_s_p_d`** — 9 states, NCERT Cl.11 Ch.2 §2.6, P4 #16. 18 baselines, silent (Rule 30h: audio is on-demand, not a ship gate).
+- **Archetype P is no longer [PHASE-5] at all** — both 3D halves shipped in one day as CASES on the existing Three.js renderer. **#13 hybridisation and #17 σ/π are now schedulable**; only crystal lattices remain [NEEDS-SCENARIO], so #19 solid state stays blocked.
+
+### The scheduling correction that started the session
+The plan of record (C5 §6 and the prior session's ⏭ NEXT) said #13 hybridisation was the cheap next harvest, needing no new renderer code. **A code read killed that premise**: `molecular_geometry` has no orbital geometry at all, and a Rule-40a sweep of seven candidate symbols returned zero hits across all history. #13, #16 and #17 all blocked on ONE missing capability. Building #13 on the scenario as it shipped would have taught domain-counting — which `vsepr_molecular_shapes` already taught one concept earlier: a demo-tier build wearing a 💎 rank, and exactly what the whiteboard test exists to stop. #16 went first because orbitals are what hybridisation hybridises (Rule 25, no untaught term).
+
+**Third consecutive session where a tier label was optimistic and only a code read caught it** (C4 archetypes M/K/L → C6 archetype P → this). Named as doctrine in `patterns/chemistry.md`: the pattern doc is design memory, not source of truth — schedule off `git log -S`.
+
+### THE LESSON: five defects behind 39/39, and every one was a claim about meaning
+| Defect | Why no gate could see it |
+|---|---|
+| `node_count` rendered `3d_xy` as a **d_z²** | The mesh was never wrong. A default spin about world **+y** had rotated the clover 78–110° out of its solved face-on camera by the time the gallery reached it. Geometry correct, pose destroyed, caption and node-count both still correct — so the frame lied while every check passed. |
+| The 2s node shell had **dots running through it for 12 of 24 s**, then 85% vanished in ONE frame | A LINEAR ramp on a parameter whose visible effect is non-linear: the slab stayed wider than the whole cloud for 82% of the ramp, so all the change landed at the end. The "node shell" label was gated on a bare ramp fraction, not on the physical condition it asserts. |
+| Three 2p lobes **fused into a featureless ball** — 3 of 6 tips countable | Uniformly translucent same-family surfaces have no edge. Not fixable by camera (the global optimum was already found) and not by shrinking (that lies about a size the HUD prints). Fixed with Fresnel-weighted alpha so each lobe carries its own silhouette. |
+| Energy HUD printed an **ASCII hyphen** | Regressed `ascii_minus_in_oncanvas_math_from_tofixed`, a row already marked **FIXED** on `bohr_model_energy_levels`. The probe readout had the identical bug and the auditor missed it — found by grepping every `toFixed` in the block instead of trusting the report. |
+| STATE_5 opened on a labelled **"1s"** carrying 1s's energy and radius | Under a caption reading "Three axes, one energy". Reported upstream as a cosmetic 700 ms sphere; it was four wrong surfaces at once. |
+
+### The sixth defect was mine, and it is the most transferable
+The first STATE_7 fix authored `spin_rate` near the top of a block where a `spin_rate: 0` already sat fifteen lines below. **Duplicate JSON keys resolve last-wins**, so the value was silently discarded: the file stayed valid, `tsc` passed, `validate:chemistry` passed, THE EYE passed 39/39 — and the change did nothing. It was caught only by diffing the SEEDED sim html against the source and finding **9 `spin_rate` values where the source had 10**.
+
+**Takeaway: a concept JSON is not schema-checked for duplicate keys, and neither Zod nor any gate will ever tell you.** A whole-file duplicate-key audit is three lines of Python and should probably become a chemistry gate. Verify an authored value ARRIVED, don't assume the edit was the delivery.
+
+### Accepted, not hidden
+`STATE_7` WARNs on Rule 31a (ratio 0.62). **That gate cannot see continuous motion** — `spin_rate` and `ghost_at_ms` don't count toward the choreography ratio, only discrete cues do (confirmed by reading `deriveStateMeta`, now documented in `patterns/chemistry.md`). The state genuinely moves for its full duration: 12 late dense frames are 12 unique images where they were previously 12 byte-identical copies. Retiming the cutaway to satisfy the number would push the reveal back past the sentence that claims it and re-break a CRITICAL fix, so the gate is left un-gamed. This is the C6 §5 pattern again — a gate that trains the author to ignore it.
+
+### Open items
+1. **7 scar-candidate rows drafted, NOT applied** (4 from the build, 3 from the defect round) — founder ruling pending.
+2. **Deferred, its own dispatch:** `grow_at_ms` applies to lobes only, so a sphere ignores `growF` — STATE_7's "watch it grow larger than 1s" beat pops the 2s to full size instead of growing.
+3. **Fleet-wide, pre-existing:** every field_3d state authors `scene_composition` annotations carrying real teaching text that **never paints** (open scar `field3d_scene_composition_annotation_silent_noop`). Rule 19 requires ≥3 primitives/state and on field_3d those are satisfied by JSON that renders nothing. Systemic, not this concept's.
+4. **Audio not rendered** — Rule 30h, on-demand. One command when a teacher needs it.
+5. **Asmi's review, now five concepts deep.**
+
+### ⏭ NEXT
+1. **#13 hybridisation** — now genuinely cheap and genuinely a diamond: it harvests both `orbital_shapes` and the shipped `molecular_geometry` scaffold. A lobe is `(angular factor in its OWN frame) × (frame list) × (scale)`, so #13 adds a frame list and lerps. Then **#17 σ/π** (one line: a per-lobe origin offset).
+2. **#1 Le Chatelier** remains C5's highest-ranked unbuilt concept and is unblocked at zero engine cost.
+3. **A duplicate-key check in `validate:chemistry`** — cheap, and this session proves it is needed.
 
 ---
 
