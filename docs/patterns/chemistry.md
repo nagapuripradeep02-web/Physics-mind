@@ -104,21 +104,37 @@ an emitted/absorbed quantum (arrow/flash) and a real number (ΔE, wavelength).
 - **Signature beats:** quantised-jump (no between-rung stops — the misconception counter), absorb
   vs emit contrast pair, level-spacing → line-spectrum link.
 
-### M — Particulate box (2D kinetic view) **[NEEDS-SCENARIO]**
+### M — Particulate box (2D kinetic view) **[LIVE]**
 A closed 2D region of moving particles; the taught variable (T, P, V, concentration) changes and
 the particle behavior responds (speed, collision frequency, density).
-- **Renderer status (verified 2026-07-23):** `particle_field_renderer` is entirely circuit-shaped
-  (bridge/wire/meter_bridge topologies; resistor/emf/power scenarios) — there is NO gas-particle
-  collision box anywhere. This archetype needs a modest gas-collision-box scenario built ONCE (a
-  Wave-2 `renderer_primitives` task, not the Phase-5 Three.js build); it then serves the whole
-  physical-chemistry passport cluster (kinetic theory + diffusion + rates + equilibrium) — best ROI
-  in the roadmap. NOT buildable until that scenario ships.
-- **Maps to (once built):** a new `particle_field` gas-collision scenario + the kinetic-theory
-  archetype design (`docs/catalog/pilot-topic-27-kinetic-theory.md` machinery).
-- **Serves:** states of matter, gas laws, diffusion, collision theory, Le Chatelier concentration/
-  pressure beats. ⚠ syllabus-check states-of-matter topics against the rationalised 2023+ NCERT.
+- **Renderer status (SHIPPED 2026-07-28):** `particle_field` `scenario_type: "gas_box"` — a true 2D
+  hard-disc gas: Maxwell–Boltzmann velocities, momentum- and energy-conserving elastic collisions on
+  a uniform-grid broad phase, bouncing walls with impulse tallying, a working piston that does real
+  work, two-species diffusion behind a liftable barrier, activation-energy threshold. HUDs: pressure,
+  thermometer, live speed histogram + 2D theory curve, collision counter, P·A/N·T.
+  *(This entry still read `[NEEDS-SCENARIO]` a day after the scenario shipped — the file's own
+  warning applies to itself. Schedule off `git log -S`, never off a tier label.)*
+- **Reaction sub-capability (SHIPPED 2026-07-28):** `gas.reaction` makes the box a reacting mixture,
+  A + B ⇌ AB. Forward is bimolecular (line-of-centres energy ≥ Ea); reverse is first-order Arrhenius.
+  **Ea_rev is DERIVED (Ea_fwd + E_bond) and must never be authored** — that derivation is why heating
+  an exothermic box shifts it back by itself instead of being scripted. Compression favours the
+  product because 2 particles become 1, emergent from the same collision sweep. Authored keys:
+  `reaction: { enabled, reactants: [idA, idB], product: idAB, activation_fwd_kT, bond_energy_kT,
+  reverse_attempt_per_s, inject }`, with `bond_energy_kT > 0` = exothermic forward. The product
+  species must exist in `species`; its mass and radius are FORCED to the conserving values at init.
+  Per-state overrides live in `state.reaction`. Widget flags: `show_reaction_readout`,
+  `show_concentration_graph`, `show_energy_ledger` (a check instrument — default off).
+  **Gate: `npm run check:gas-reaction`** (13 headless conservation checks) after any edit to the gas path.
+- **Serves:** states of matter, gas laws, diffusion, collision theory, rates, dynamic equilibrium,
+  Le Chatelier. ⚠ syllabus-check states-of-matter topics against the rationalised 2023+ NCERT.
 - **Signature beats:** heat-the-box (T slider → speed distribution), crowd-the-box (V/concentration
-  → collision count HUD), the count is REAL (Rule 33c — collisions/s readout, never vibes).
+  → collision count HUD), the count is REAL (Rule 33c — collisions/s readout, never vibes),
+  both-arrows-live (forward and reverse rates equal while the composition line holds flat — the beat
+  that makes "the reaction has stopped" impossible to keep believing).
+- **Shipped on it:** `kinetic_particle_theory` (7 states, baseline-locked).
+- **Authoring trap (scar, 2026-07-28):** single-letter slider ids are a SHARED NAMESPACE across every
+  concept on this renderer — a Volume slider keyed `V` made a gas box print `V = 1.00 V / i = 59.71 A`.
+  Prefer multi-character ids for anything new.
 
 ### N — Graph-first relationship **[LIVE]**
 The concept IS a curve: panel-B plots the relationship live while panel-A shows the particulate/

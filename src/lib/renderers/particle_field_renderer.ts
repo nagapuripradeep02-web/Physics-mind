@@ -3682,8 +3682,20 @@ function gasInit() {
 
   var total = gasCount(), si;
   var specN = [], declared = 0, undecl = 0;
+  // Per-state opening composition. Without it every state of a reacting concept
+  // opens from the SAME mixture and therefore plays the same movie, differing
+  // only in which HUD is lit — and the strongest evidence a reaction concept can
+  // show is unreachable: that the SAME equilibrium is reached from pure product
+  // as from pure reactants. A state authors, by species id:
+  //   "species_counts": { "A": 0, "B": 0, "AB": 45 }
+  // Config-level count remains the default for any species the state omits, so
+  // a concept that authors none behaves exactly as before — which is why
+  // kinetic_particle_theory's seeded stream and frozen baselines cannot move.
+  var stCounts = (curState() || {}).species_counts || null;
   for (si = 0; si < gasSpecies.length; si++) {
-    if (typeof gasSpecies[si].count === 'number') { specN[si] = gasSpecies[si].count; declared += specN[si]; }
+    var stC = (stCounts && typeof stCounts[gasSpecies[si].id] === 'number') ? stCounts[gasSpecies[si].id] : null;
+    if (stC !== null) { specN[si] = max(0, Math.round(stC)); declared += specN[si]; }
+    else if (typeof gasSpecies[si].count === 'number') { specN[si] = gasSpecies[si].count; declared += specN[si]; }
     else { specN[si] = -1; undecl++; }
   }
   for (si = 0; si < gasSpecies.length; si++) {

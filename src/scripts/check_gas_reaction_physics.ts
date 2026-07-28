@@ -215,5 +215,46 @@ check('no-reaction path inert', R.gasRxOn() === false && R.particles.length === 
   `rxOn ${R.gasRxOn()}, N ${n0} -> ${R.particles.length}, events ${R.gasRxFwdTotal}`);
 check('plain gas holds T', Math.abs(R.gasMeasuredT() - ke0) / ke0 < 0.05, `T ${ke0.toFixed(0)} -> ${R.gasMeasuredT().toFixed(0)} K`);
 
+// ── 7. per-state species_counts, and the claim the concept rests on ─────────
+// dynamic_equilibrium's central evidence is that the SAME equilibrium is reached
+// from pure product as from pure reactants. That is a claim about the engine, so
+// it is checked here rather than asserted in narration: same atom inventory (90),
+// same temperature, opposite starting side, plateaus must agree.
+// An equilibrium FLUCTUATES — a single-instant count of ~25 dimers carries ~5
+// counts of Poisson noise, so comparing two snapshots compares two samples of
+// noise. Average over a window instead. (This also tells the author what the
+// plateau line's visible wiggle will be: real, and not a defect to hide.)
+function runMeanAB(settleTicks: number, windowTicks: number) {
+  run(settleTicks);
+  let sum = 0, n = 0;
+  for (let i = 0; i < windowTicks; i++) {
+    run(1);
+    if (i % 30 === 0) { sum += counts().AB; n++; }
+  }
+  return sum / Math.max(n, 1);
+}
+// BOTH runs must be ISOTHERMAL and must hold the SAME atom inventory — the two
+// mistakes this check made while being written, each of which produced a
+// convincing false failure. Adiabatic, the exothermic forward self-heated the
+// box to 650 K while the product-side run cooled to 150 K and froze solid;
+// mismatched inventories (60+60 atoms vs 45+45) compared two different
+// equilibria and called the difference a bug.
+boot(makeConfig({ temperature_K: 500 }, { T: 500, adiabatic: false }));
+const meanFromReactants = runMeanAB(5400, 5400);
+
+const cfgAB = makeConfig({ temperature_K: 500 }, { T: 500, adiabatic: false });
+(cfgAB.states.STATE_1 as Ctx).species_counts = { A: 0, B: 0, AB: 60 };
+boot(cfgAB);
+const opened = counts();
+check('species_counts opens the state', opened.A === 0 && opened.B === 0 && opened.AB === 60,
+  `A ${opened.A} B ${opened.B} AB ${opened.AB} at t=0`);
+const meanFromProduct = runMeanAB(5400, 5400);
+const gap = Math.abs(meanFromProduct - meanFromReactants);
+check('same equilibrium from either side', gap <= Math.max(3, meanFromReactants * 0.18),
+  `mean AB from reactants ${meanFromReactants.toFixed(1)} vs from product ${meanFromProduct.toFixed(1)} (gap ${gap.toFixed(1)})`);
+const fromProduct = counts();
+check('atoms conserved through species_counts', fromProduct.A + fromProduct.AB === 60 && fromProduct.B + fromProduct.AB === 60,
+  `A-units ${fromProduct.A + fromProduct.AB}, B-units ${fromProduct.B + fromProduct.AB} (both must be 60)`);
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);

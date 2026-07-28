@@ -1210,13 +1210,24 @@ ${pilotHeadTags(1)}
     while (nextPos < order.length && isHidden(order[nextPos])) nextPos++;
     if (autoEl.checked && nextPos < order.length) {
       goToState(nextPos, playing);
-    } else if (cur() && cur().advance_mode === 'interaction_complete') {
+    } else if (cur() && (cur().advance_mode === 'interaction_complete' || cur().continuous_motion)) {
       // Explore/sandbox state: never auto-freeze. Let the clock free-run so the
       // motion loops forever (the renderer's bead phase wraps % 1) and slider
       // drags drive live continuous motion — a teacher can still Pause manually
       // (the Pause button calls freeze()). Nothing left to reveal here, so keep
       // playing and do NOT pin the clock. (founder 2026-07-12: the last state must
       // run continuously, not stop after its narration ends.)
+      //
+      // continuous_motion (2026-07-28): the same exemption, for a GUIDED state
+      // whose subject IS that the motion never stops. Dynamic equilibrium is the
+      // case that forced it — its central state says "the amounts stopped changing
+      // but the reaction never stopped", and under the default freeze the sim
+      // stopped dead a second after that sentence, demonstrating the misconception
+      // it exists to kill. Authored per state, never a default: a narrated state
+      // holding its final picture is right for almost every concept (Rule 26), and
+      // this is the narrow exception where the final picture is a lie.
+      // THE EYE's SET_TIME_FREEZE capture path is separate, so no baseline moves
+      // (Rule 37b) — verified, not assumed.
     } else {
       playing = false; setPlayBtnUI(false);
       try { stopAudio(); } catch (e) {}
