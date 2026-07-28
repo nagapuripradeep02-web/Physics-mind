@@ -43395,6 +43395,53 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!m.userData) m.userData = {};
         if (m.color) m.userData._glowBaseCol = m.color.clone();
     }
+    // A flat translucent lobe carries NO shading cue at its own silhouette:
+    // three 2p shells overlaid at a symmetric camera composite into one rounded
+    // mass and six tips stop being countable (the p_set scar — and not a camera
+    // problem, since the (1,1,1) view is the swept optimum and still fused).
+    // The fix is EDGE-WEIGHTED INK: alpha follows the Fresnel term, so a lobe is
+    // nearly transparent where it faces the viewer and near-solid at its own
+    // silhouette. Every lobe then draws its own outline, adjacent lobes show the
+    // concave neck where their two outlines cross, and NOTHING moves or changes
+    // size — Rule 29 untouched, each boundary surface still stands exactly where
+    // its own iso-density contour puts it.
+    //   Implemented as an onBeforeCompile patch on the SAME MeshPhongMaterial the
+    // lobes always used, not a ShaderMaterial, so material.color / .emissive /
+    // .opacity keep their meaning and osSetColor + applyGlowEmphasis + the
+    // per-frame opacity writes keep working untouched. The patch declares its
+    // OWN varyings and appends at the end of main() in both stages, so it
+    // depends on no three.js chunk name or internal varying (naming
+    // <output_fragment> or borrowing vViewPosition would be a silent no-op the
+    // day the pinned r128 build moves).
+    var OS_RIM_VS = [
+        "  pmVPos = -(modelViewMatrix * vec4(position, 1.0)).xyz;",
+        "  pmVNrm = normalMatrix * normal;"
+    ].join("\\n");
+    var OS_RIM_FS = [
+        "  float pmF = 1.0 - abs(dot(normalize(pmVNrm), normalize(pmVPos)));",
+        "  pmF = clamp(pmF, 0.0, 1.0); pmF = pmF * pmF;",
+        "  gl_FragColor.a = clamp(gl_FragColor.a * (0.30 + 2.60 * pmF), 0.0, 0.96);",
+        "  gl_FragColor.rgb *= (0.70 + 0.80 * pmF);"
+    ].join("\\n");
+    function osAppendToMain(src, code, decl) {
+        var cut = src.lastIndexOf("}");
+        if (cut < 0) return src;
+        return decl + src.slice(0, cut) + code + "\\n}" + src.slice(cut + 1);
+    }
+    function osLobeMaterial(hex) {
+        var m = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(hex), emissive: hexToThreeColor(hex),
+            emissiveIntensity: 0.26, shininess: 30, transparent: true, opacity: 0.0,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        var decl = "varying vec3 pmVPos;\\nvarying vec3 pmVNrm;\\n";
+        m.onBeforeCompile = function (shader) {
+            shader.vertexShader = osAppendToMain(shader.vertexShader, OS_RIM_VS, decl);
+            shader.fragmentShader = osAppendToMain(shader.fragmentShader, OS_RIM_FS, decl);
+        };
+        m.customProgramCacheKey = function () { return "os_rim_lobe"; };
+        return m;
+    }
     var OS_UP = new THREE.Vector3(0, 1, 0);
     var osTmpV = new THREE.Vector3(), osTmpQ = new THREE.Quaternion();
     var osSpinQ = new THREE.Quaternion(), osSpinInv = new THREE.Quaternion();
@@ -43596,11 +43643,7 @@ export const FIELD_3D_RENDERER_CODE = `
         sph.visible = false;
         addToScene(sph);
         for (i = 0; i < OS_MAX_LOBES; i++) {
-            var lb = new THREE.Mesh(lobeGeo.p, new THREE.MeshPhongMaterial({
-                color: hexToThreeColor("#42A5F5"), emissive: hexToThreeColor("#42A5F5"),
-                emissiveIntensity: 0.26, shininess: 30, transparent: true, opacity: 0.0,
-                side: THREE.DoubleSide, depthWrite: false
-            }));
+            var lb = new THREE.Mesh(lobeGeo.p, osLobeMaterial("#42A5F5"));
             lb.userData = { elementType: "os_lobe", id: "os_lobe_" + i, slot: i };
             lb.visible = false;
             addToScene(lb);
