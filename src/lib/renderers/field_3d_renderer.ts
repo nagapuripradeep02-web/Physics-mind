@@ -58,7 +58,14 @@ export interface Field3DConfig {
         // maximum separation, which IS the molecular shape. The P3 slice of the
         // chemistry 3D render surface — see the scenario header comment in the
         // renderer body for the per-state config shape.
-        'molecular_geometry';
+        'molecular_geometry' |
+        // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY, 2026-07-28): an orbital is
+        // a 3D region of probability with a definite shape (s sphere, p dumbbell,
+        // d cloverleaf), rendered as a seeded measurement-dot swarm inside its own
+        // 90% boundary surface, with its nodes made visible. The P2 slice of the
+        // chemistry 3D render surface — see the scenario header comment in the
+        // renderer body for the per-state config shape.
+        'orbital_shapes';
     // em_wave_propagation (Ch.8 §8.3 — a traveling transverse EM wave: an
     // oscillating antenna charge launches a green E-train on ŷ + a blue B-train
     // on ẑ that self-propagate +x at v = c/n; a receiver post reads live E (V/m)
@@ -42859,6 +42866,1456 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── orbital_shapes (an orbital is a 3D region of PROBABILITY, not a path) ─
+    //   NEW scenario (2026-07-28 engine ask, skeleton §E). The P2 orbital-lobe
+    //   render surface for chemistry: a whiteboard cannot draw a p_z dumbbell
+    //   that is actually three-dimensional, cannot put three mutually
+    //   perpendicular dumbbells on ONE atom, and structurally cannot show a
+    //   spherical node shell HIDDEN INSIDE the 2s cloud. Clones fleet patterns
+    //   only — the closed-form ramp (mgRamp/capRamp), the pooled-mesh
+    //   reposition-per-frame discipline (mgFindById child traversal), the
+    //   value-only DOM HUD + ONE Cambria formula surface (Rule 34b), and the
+    //   contextual per-state control rows (Rule 31) from
+    //   molecular_geometry/capacitance/ac_generator.
+    //
+    //   EVERY SHAPE AND NUMBER IS DERIVED, never authored: the orbital library
+    //   below carries exact hydrogenic (Z=1) radial functions R_nl and angular
+    //   factors |Y|^2, and the renderer computes r90 / lobe tips / node radii /
+    //   dot samples / occupancy from them at build time. The four iso-density
+    //   LEVELS are the only imported constants — each is the c that makes the
+    //   enclosed probability exactly 0.90, solved offline against these same
+    //   functions (scratch derivation 2026-07-28; re-verified live by the
+    //   occupancy HUD, which counts the ACTUAL dot sample, never a claim).
+    //
+    //   Per-state config shape (authored by json_author):
+    //     state.orbital_shapes = {
+    //       mode: 'orbit_dissolve'|'boundary'|'p_build'|'node_probe'|'p_set'|
+    //             'd_clover'|'radial_node'|'node_count'|'explore',
+    //       orbital: '1s'|'2s'|'2p_x'|'2p_y'|'2p_z'|'3d_xy',
+    //       enclosure: 0.9|0.7|0.5,          // which contour the surface draws
+    //                                        // (default 0.9; the HUD occupancy
+    //                                        // line MEASURES what it encloses)
+    //       surface_opacity,                 // override the per-shell ink
+    //       spin_start_ms, spin_rate, spin_axis,      // rad/s about spin_axis
+    //       orbit_ms, dissolve_at_ms, dissolve_duration_ms,   // S1 Bohr prop
+    //       stipple_at_ms, per_dot_ms, dot_target,            // the dot swarm
+    //       surface_at_ms,                                    // S2 boundary
+    //       extrude_at_ms, extrude_duration_ms,               // S3 lobe growth
+    //       probe_auto: {from,to,at_ms,duration_ms},          // S4 sweep
+    //       populate_steps: [{at_ms, orbital}],               // S5
+    //       bloom_at_ms, bloom_duration_ms, ghost_at_ms, ghost_orbitals, // S6
+    //       grow_at_ms, cutaway_at_ms, cutaway_duration_ms,   // S7
+    //       gallery_steps: [{at_ms, orbital}],                // S8
+    //       show_axes, show_surface, show_dots, show_node_plane,
+    //       show_node_shell, show_probe, show_orbit, show_labels,
+    //       show_hud, show_formula,
+    //       hud_lines: ['occupancy','psi2','slice_dots','energy','nodes',
+    //                   'radius','label'],
+    //       formula,                                  // ONE Cambria surface
+    //       camera: {az, el, dist},                   // SOLVED (skeleton E-9)
+    //       controls: ['orbital','dots','spin','probe'],
+    //       static_readouts: [...]                    // same rows, disabled
+    //     }
+    //   REQUIRED: config.field_lines.opacity must exist (an object, even {}) —
+    //   createTubeLine reads it unconditionally (the fleet's blank-scene trap).
+    //   Glow-key enum is CLOSED to exactly: orbit | dots | surface | node_plane |
+    //   node_shell | probe | axes | lobe_set (applyOrbitalShapesGlow below — a
+    //   non-keyed glow_focal would dim the whole scene with no focal lit, the
+    //   VSEPR scar).
+    //   Rule 26/36: EVERY beat — the slow spin, the dot stipple, the probe
+    //   sweep, the cutaway — is a closed-form pure function of state-local
+    //   t = time - stateStartTime. The dot sampler is a SEEDED precomputed
+    //   table, so dot i's position is a pure lookup and the visible count is
+    //   clamp((t - stipple_at)/per_dot, 0, target). No per-frame RNG, no
+    //   accumulator anywhere, so a SET_TIME_FREEZE pin reproduces byte-
+    //   identical pixels and this scenario joins the accumulator-free
+    //   snap-to-pin set below (registered at the ONE stepping dispatch site).
+    //   Rule 29: the ONLY things that change size are real magnitudes — 2s is
+    //   physically larger than 1s (both computed from their own r90), and a
+    //   lobe extrudes during its declared growth beat. Emphasis is brightness.
+    //   FORWARD-COMPAT (#13 hybridisation morphs these lobes; #17 sigma/pi
+    //   overlaps two atoms' worth): a lobe is a PARAMETERISED mesh keyed by
+    //   (orbital id -> angular factor, lobe direction, scale). osLobeGeometry
+    //   takes the angular factor and returns a canonical +y-aligned mesh;
+    //   osApplyLobe aims + scales it. A hybrid is a new angular factor plus a
+    //   new lobe-direction list; an overlap is the same pool translated.
+    var OS_A0 = 52.9177;              // Bohr radius, pm
+    var OS_PM_PER_UNIT = 200;         // THE ONE frame constant: 1 world unit = 200 pm
+    var OS_DOT_MAX = 5000;
+    var OS_MAX_LOBES = 10;            // S6 = 4 clover lobes + 2 ghost p pairs
+    var OS_MAX_SETS = 3;              // S5 = three 2p clouds at once
+    var OS_MAX_PLANES = 2;            // 3d_xy has two angular node planes
+    var OS_FLASH_POOL = 5;            // S1 measurement flashes in flight
+
+    // Per-axis tints. The axes triad matches the three p tints (skeleton E-7)
+    // so "the blue dumbbell lies on the blue axis" needs no sentence.
+    var OS_AXIS_COLORS = { x: "#FF7043", y: "#66BB6A", z: "#42A5F5" };
+
+    // The three enclosure fractions a state may ask for. A 2p 90% contour is
+    // genuinely PLUMP (a lobe is 482 pm long and 334 pm wide), which is the
+    // truth and reads fine for ONE orbital — but three of them at once fuse
+    // into a ball and the six lobes stop being countable. The 70% and 50%
+    // contours are slimmer (lobe 372x234 / 308x177 pm) and are just as honest,
+    // because the HUD occupancy MEASURES the fraction actually enclosed from
+    // the dot sample and prints it. Solved offline by the same bisection, on
+    // the same functions.
+    var OS_ENCLOSURES = ["50", "70", "90"];
+    function osEnclKey(v) {
+        if (typeof v !== "number") return "90";
+        var best = "90", bd = 9, i;
+        for (i = 0; i < OS_ENCLOSURES.length; i++) {
+            var d = Math.abs(v - Number(OS_ENCLOSURES[i]) / 100);
+            if (d < bd) { bd = d; best = OS_ENCLOSURES[i]; }
+        }
+        return best;
+    }
+    // The orbital library. levels[f] = the iso-density contour c (in atomic units,
+    // density = |R|^2 |Y|^2 with rho = r/a0) whose enclosed probability is
+    // 0.900 — solved offline by bisection on the SAME functions this file
+    // evaluates (1s 0.8999, 2s 0.8999, 2p 0.8995, 3d 0.9005 at the solve grid).
+    // Everything else (r90, lobe tip, node radius, energy) is COMPUTED below.
+    var OS_ORBITALS = {
+        "1s":   { n: 1, l: 0, kind: "sphere", main: "1s", sub: "",   color: "#81D4FA", levels: { "50": 2.1966e-2, "70": 8.5718e-3, "90": 1.5574e-3 }, rhoMax: 14, seed: 0x51ED1 },
+        "2s":   { n: 2, l: 0, kind: "sphere", main: "2s", sub: "",   color: "#4DD0E1", levels: { "50": 4.3526e-4, "70": 2.2372e-4, "90": 5.5091e-5 }, rhoMax: 26, seed: 0x51ED2, shellRho: 2 },
+        "2p_x": { n: 2, l: 1, kind: "lobes",  main: "2p", sub: "x",  color: "#FF7043", levels: { "50": 9.9670e-4, "70": 4.3444e-4, "90": 9.0768e-5 }, rhoMax: 26, seed: 0x51ED3, axis: [1, 0, 0] },
+        "2p_y": { n: 2, l: 1, kind: "lobes",  main: "2p", sub: "y",  color: "#66BB6A", levels: { "50": 9.9670e-4, "70": 4.3444e-4, "90": 9.0768e-5 }, rhoMax: 26, seed: 0x51ED4, axis: [0, 1, 0] },
+        "2p_z": { n: 2, l: 1, kind: "lobes",  main: "2p", sub: "z",  color: "#42A5F5", levels: { "50": 9.9670e-4, "70": 4.3444e-4, "90": 9.0768e-5 }, rhoMax: 26, seed: 0x51ED5, axis: [0, 0, 1] },
+        "3d_xy": { n: 3, l: 2, kind: "lobes", main: "3d", sub: "xy", color: "#FFCA28", levels: { "50": 1.3596e-4, "70": 6.4064e-5, "90": 1.4274e-5 }, rhoMax: 40, seed: 0x51ED6, axis: [0.70710678, 0.70710678, 0] }
+    };
+    // Rule 38b: the explore picker offers CORE-ring orbitals only. 2s and 3d_xy
+    // live inside the extended states that teach them.
+    var OS_EXPLORE_ORBITALS = ["1s", "2p_x", "2p_y", "2p_z"];
+
+    // Solved cameras (skeleton E-9, scratch solver 2026-07-28, 1280x720 / fov 60).
+    // Used when a state authors no camera of its own, so a missing camera can
+    // never leave a beat un-countable. Achieved numbers are in the dispatch
+    // report; the load-bearing ones: p_set = the (1,1,1) view (all three axes
+    // foreshortened 0.816, projected 120 deg apart, min pairwise tip separation
+    // 160 px); node_count = az 90 / el 18 (2p_x exactly in the screen plane AND
+    // the clover 18 deg off face-on); radial_node = dist 7.2 (the 2s node band
+    // spans 13.3 px, over the 12 px floor).
+    var OS_CAMERAS = {
+        orbit_dissolve: { az: 35, el: 28, dist: 3.2 },
+        boundary:       { az: 35, el: 28, dist: 3.2 },
+        p_build:        { az: 6,  el: 26, dist: 8.22 },
+        node_probe:     { az: 6,  el: 26, dist: 8.22 },
+        p_set:          { az: 45, el: 35.26, dist: 8.22 },
+        d_clover:       { az: 98, el: 15, dist: 14.54 },
+        radial_node:    { az: 35, el: 26, dist: 7.2 },
+        node_count:     { az: 90, el: 18, dist: 13.33 },
+        explore:        { az: 45, el: 35.26, dist: 8.0 }
+    };
+
+    function osClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+    function osSmooth01(u) { u = u < 0 ? 0 : (u > 1 ? 1 : u); return u * u * (3 - 2 * u); }
+    // Pure fn of state-local t (Rule 26/36): from -> to over [atMs, atMs+durMs].
+    function osRamp(t, atMs, durMs, from, to) {
+        var a = (atMs != null) ? atMs : 0;
+        var d = Math.max(1, (durMs != null) ? durMs : 1200);
+        if (t <= a) return from;
+        if (t >= a + d) return to;
+        return from + (to - from) * osSmooth01((t - a) / d);
+    }
+    function osNorm(v) {
+        var L = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) || 1;
+        return [v[0] / L, v[1] / L, v[2] / L];
+    }
+    // Deterministic PRNG (mulberry32). Seeded per orbital, consumed ONLY at
+    // build time to fill the sample table — never during a frame.
+    function osRng(seed) {
+        var a = seed >>> 0;
+        return function () {
+            a = (a + 0x6D2B79F5) >>> 0;
+            var t = a;
+            t = Math.imul(t ^ (t >>> 15), 1 | t);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+    }
+    // Exact hydrogenic radial functions R_nl(rho), Z = 1, in a0^(-3/2).
+    // Normalised: integral |R|^2 rho^2 drho = 1 (verified 1.000000 for all four).
+    function osR(orb, p) {
+        if (orb.n === 1) return 2 * Math.exp(-p);
+        if (orb.n === 2 && orb.l === 0) return (1 / (2 * Math.SQRT2)) * (2 - p) * Math.exp(-p / 2);
+        if (orb.n === 2 && orb.l === 1) return (1 / (2 * Math.sqrt(6))) * p * Math.exp(-p / 2);
+        return (4 / (81 * Math.sqrt(30))) * p * p * Math.exp(-p / 3);      // 3d
+    }
+    // Exact angular factors |Y|^2 (normalised: integral over the sphere = 1),
+    // written directly in WORLD coordinates for a unit direction d.
+    //   s     : 1/4pi
+    //   p     : (3/4pi) (d . axis)^2          -> one nodal PLANE through 0
+    //   d_xy  : (15/4pi) dx^2 dy^2            -> == (15/16pi) sin^4(th) sin^2(2ph)
+    // The d form is the identity sin^4(th) sin^2(2ph) = 4 dx^2 dy^2, so the
+    // lobes sit in the xy DIAGONALS and the xz + yz planes are nodal.
+    function osAng(orb, d) {
+        if (orb.l === 0) return 1 / (4 * Math.PI);
+        if (orb.l === 1) {
+            var c = d[0] * orb.axis[0] + d[1] * orb.axis[1] + d[2] * orb.axis[2];
+            return (3 / (4 * Math.PI)) * c * c;
+        }
+        return (15 / (4 * Math.PI)) * d[0] * d[0] * d[1] * d[1];
+    }
+    // One-time per-orbital tables: |R|^2 on a rho grid, its radial CDF (for the
+    // inverse-CDF dot sampler), and the OUTER monotone branch (for the boundary
+    // surface). pk = the LAST rising index, so g is non-increasing on [pk, N] —
+    // that is the branch a boundary surface's outermost root lives on. Taking
+    // the global max instead would be wrong for 2s, whose |R|^2 is largest at
+    // rho = 0 and whose outer branch only begins at its second maximum (rho = 4).
+    function osBuildTables(orb) {
+        var N = 3000, h = orb.rhoMax / N, i, p, r;
+        var g = new Float64Array(N + 1), cdf = new Float64Array(N + 1);
+        for (i = 0; i <= N; i++) { p = i * h; r = osR(orb, p); g[i] = r * r; }
+        var acc = 0;
+        for (i = 1; i <= N; i++) {
+            var p0 = (i - 1) * h, p1 = i * h;
+            acc += 0.5 * (g[i - 1] * p0 * p0 + g[i] * p1 * p1) * h;
+            cdf[i] = acc;
+        }
+        var pk = 0;
+        for (i = 1; i <= N; i++) if (g[i] > g[i - 1]) pk = i;
+        orb._g = g; orb._cdf = cdf; orb._N = N; orb._h = h; orb._pk = pk;
+        orb._cdfTot = acc;
+        // peak density (for the normalised |psi|^2 readout) = max over the grid
+        // of |R|^2 times the angular maximum (1/4pi for s, 3/4pi for p,
+        // 15/16pi for d_xy at the diagonal).
+        var gMax = 0;
+        for (i = 0; i <= N; i++) if (g[i] > gMax) gMax = g[i];
+        var aMax = (orb.l === 0) ? (1 / (4 * Math.PI)) : (orb.l === 1 ? (3 / (4 * Math.PI)) : (15 / (16 * Math.PI)));
+        orb._dMax = gMax * aMax;
+        // energy + node counts, derived (E_n = -13.6/n^2 eV — the value the
+        // shipped bohr_model_energy_levels concept ships, to 2 dp).
+        orb.E = -13.6 / (orb.n * orb.n);
+        orb.nodesRadial = orb.n - orb.l - 1;
+        orb.nodesAngular = orb.l;
+    }
+    // The outermost rho where |R|^2 == target, or 0 if the ray never reaches
+    // the contour (that is what pinches a p lobe shut at its nodal plane).
+    function osRhoOuter(orb, target) {
+        var g = orb._g, N = orb._N, pk = orb._pk;
+        if (!(target > 0) || target > g[pk]) return 0;
+        var lo = pk, hi = N;
+        if (g[hi] > target) return N * orb._h;
+        while (hi - lo > 1) {
+            var mid = (lo + hi) >> 1;
+            if (g[mid] > target) lo = mid; else hi = mid;
+        }
+        var a = g[lo], b = g[hi];
+        var f = (a === b) ? 0 : (a - target) / (a - b);
+        return (lo + f) * orb._h;
+    }
+    // Boundary-surface radius along a unit direction, in WORLD UNITS.
+    function osROutUnits(orb, d, lev) {
+        var A = osAng(orb, d);
+        if (!(A > 1e-12)) return 0;
+        return osRhoOuter(orb, lev / A) * OS_A0 / OS_PM_PER_UNIT;
+    }
+    function osROutPm(orb, d, lev) { return osROutUnits(orb, d, lev) * OS_PM_PER_UNIT; }
+    // The orbital's own outer radius at an enclosure key: r90 for a sphere, the
+    // lobe tip for a lobed one. Every geometric size in this scenario (axis
+    // length, node-plane disc, probe travel, label radius, slice slab) is
+    // expressed in terms of it, so a state that asks for a slimmer contour gets
+    // a consistently smaller picture rather than a mismatched one.
+    function osOuterPm(orb, key) { return orb.rByLev[key]; }
+    // Inverse radial CDF (rho at cumulative fraction u).
+    function osRhoAt(orb, u) {
+        var cdf = orb._cdf, N = orb._N, target = u * orb._cdfTot;
+        var lo = 0, hi = N;
+        while (hi - lo > 1) {
+            var mid = (lo + hi) >> 1;
+            if (cdf[mid] < target) lo = mid; else hi = mid;
+        }
+        var a = cdf[lo], b = cdf[hi];
+        var f = (b === a) ? 0 : (target - a) / (b - a);
+        return (lo + f) * orb._h;
+    }
+    // Tabulated 1-D inverse sampler for an arbitrary angular weight (used by
+    // the d_xy sampler, whose polar weight is sin^5 and azimuthal sin^2(2ph)).
+    function osTabInv(fn, lo, hi, N) {
+        var xs = new Float64Array(N + 1), c = new Float64Array(N + 1), i, h = (hi - lo) / N, acc = 0;
+        for (i = 0; i <= N; i++) xs[i] = lo + i * h;
+        for (i = 1; i <= N; i++) { acc += 0.5 * (fn(xs[i - 1]) + fn(xs[i])) * h; c[i] = acc; }
+        return function (u) {
+            var t = u * acc, a = 0, b = N;
+            while (b - a > 1) { var m = (a + b) >> 1; if (c[m] < t) a = m; else b = m; }
+            var f = (c[b] === c[a]) ? 0 : (t - c[a]) / (c[b] - c[a]);
+            return xs[a] + f * h;
+        };
+    }
+    // Orthonormal basis with e3 = axis (used to aim the p sampler + lobe mesh).
+    function osBasis(axis) {
+        var a = osNorm(axis);
+        var t = (Math.abs(a[1]) < 0.9) ? [0, 1, 0] : [1, 0, 0];
+        var e1 = osNorm([
+            t[1] * a[2] - t[2] * a[1],
+            t[2] * a[0] - t[0] * a[2],
+            t[0] * a[1] - t[1] * a[0]
+        ]);
+        var e2 = [
+            a[1] * e1[2] - a[2] * e1[1],
+            a[2] * e1[0] - a[0] * e1[2],
+            a[0] * e1[1] - a[1] * e1[0]
+        ];
+        return [e1, e2, a];
+    }
+    // SEEDED sample table: dot i's position is a pure lookup forever after.
+    // radius by inverse radial CDF, direction by the orbital's own angular
+    // density (uniform for s; cos^2 about the axis for p; sin^5 x sin^2(2ph)
+    // for d_xy). insidePrefix[k] = how many of the first k dots fall inside the
+    // 90% boundary surface, so the occupancy HUD is an O(1) exact count of the
+    // dots actually on screen — a measured number, never an asserted one.
+    function osBuildSamples(orb) {
+        var rng = osRng(orb.seed), i;
+        var pos = new Float32Array(OS_DOT_MAX * 3);
+        var inside = new Int32Array(OS_DOT_MAX + 1);
+        var basis = (orb.l === 1) ? osBasis(orb.axis) : null;
+        var thInv = null, phInv = null;
+        if (orb.l === 2) {
+            thInv = osTabInv(function (th) { var s = Math.sin(th); return s * s * s * s * s; }, 0, Math.PI, 2000);
+            phInv = osTabInv(function (ph) { var s = Math.sin(2 * ph); return s * s; }, 0, 2 * Math.PI, 2000);
+        }
+        var inside70 = new Int32Array(OS_DOT_MAX + 1), inside50 = new Int32Array(OS_DOT_MAX + 1);
+        var nIn = 0, nIn70 = 0, nIn50 = 0;
+        for (i = 0; i < OS_DOT_MAX; i++) {
+            var rho = osRhoAt(orb, rng());
+            var d;
+            if (orb.l === 0) {
+                var ct = 2 * rng() - 1, st = Math.sqrt(Math.max(0, 1 - ct * ct)), ph0 = 2 * Math.PI * rng();
+                d = [st * Math.cos(ph0), st * Math.sin(ph0), ct];
+            } else if (orb.l === 1) {
+                // cos(th) about the lobe axis from p(c) = (3/2) c^2 on [-1,1]:
+                // its CDF is (c^3 + 1)/2, so c = cbrt(2u - 1) EXACTLY.
+                var v = 2 * rng() - 1;
+                var c1 = Math.sign(v) * Math.pow(Math.abs(v), 1 / 3);
+                var s1 = Math.sqrt(Math.max(0, 1 - c1 * c1)), a1 = 2 * Math.PI * rng();
+                var e1 = basis[0], e2 = basis[1], e3 = basis[2];
+                d = [
+                    e3[0] * c1 + (e1[0] * Math.cos(a1) + e2[0] * Math.sin(a1)) * s1,
+                    e3[1] * c1 + (e1[1] * Math.cos(a1) + e2[1] * Math.sin(a1)) * s1,
+                    e3[2] * c1 + (e1[2] * Math.cos(a1) + e2[2] * Math.sin(a1)) * s1
+                ];
+            } else {
+                var th = thInv(rng()), ph = phInv(rng());
+                d = [Math.sin(th) * Math.cos(ph), Math.sin(th) * Math.sin(ph), Math.cos(th)];
+            }
+            var rU = rho * OS_A0 / OS_PM_PER_UNIT;
+            pos[i * 3] = d[0] * rU; pos[i * 3 + 1] = d[1] * rU; pos[i * 3 + 2] = d[2] * rU;
+            if (rU <= osROutUnits(orb, d, orb.levels["90"])) nIn++;
+            if (rU <= osROutUnits(orb, d, orb.levels["70"])) nIn70++;
+            if (rU <= osROutUnits(orb, d, orb.levels["50"])) nIn50++;
+            inside[i + 1] = nIn; inside70[i + 1] = nIn70; inside50[i + 1] = nIn50;
+        }
+        orb._pos = pos;
+        orb._insideBy = { "90": inside, "70": inside70, "50": inside50 };
+    }
+    // The angular factor written in the LOBE'S OWN frame (lobe axis = +y), which
+    // is what makes ONE canonical mesh serve every orientation. Evaluating the
+    // WORLD factor over a +y-centred direction cone is the trap: it builds a
+    // shape whose bulges point along the world axis instead of the lobe's, and
+    // a 2p_z boundary surface then renders as a sphere with its bumps in the
+    // wrong place (caught on the first headless frame read).
+    //   p    : (3/4pi) dy^2                       (a surface of revolution)
+    //   d_xy : (15/16pi) (dy^2 - dx^2)^2          -- the identity for the world
+    //          factor (15/4pi) wx^2 wy^2 written in the local frame
+    //          X = the in-plane perpendicular, Y = the lobe diagonal, so the
+    //          lobe keeps its true anisotropy (flatter in the xy-plane than out
+    //          of it) instead of being faked as a body of revolution.
+    function osLobeAngLocal(orb, d) {
+        if (orb.l === 1) return (3 / (4 * Math.PI)) * d[1] * d[1];
+        var t = d[1] * d[1] - d[0] * d[0];
+        return (15 / (16 * Math.PI)) * t * t;
+    }
+    // One world basis [X, Y, Z] per lobe, Y = the lobe axis, X = the in-plane
+    // reference the local angular factor above was written against. A proper
+    // rotation (Z = X cross Y), so the aiming carries NO arbitrary roll --
+    // setFromUnitVectors alone would twist each d lobe by an unknown angle and
+    // its anisotropy would land in the wrong plane.
+    function osLobeFrames(orb) {
+        var out = [], k;
+        if (orb.l === 1) {
+            var a = osNorm(orb.axis), b = osBasis(a);
+            out.push({ X: b[0], Y: a, Z: osCross(b[0], a) });
+            var na = [-a[0], -a[1], -a[2]], nb = osBasis(na);
+            out.push({ X: nb[0], Y: na, Z: osCross(nb[0], na) });
+            return out;
+        }
+        for (k = 0; k < 4; k++) {
+            var ph = (45 + 90 * k) * Math.PI / 180;
+            var Y = [Math.cos(ph), Math.sin(ph), 0];
+            var X = [-Math.sin(ph), Math.cos(ph), 0];
+            out.push({ X: X, Y: Y, Z: osCross(X, Y) });
+        }
+        return out;
+    }
+    function osCross(a, b) {
+        return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    }
+    // Canonical lobe mesh, axis = +y, in world units — a PARAMETERISED surface:
+    // for each (delta from the axis, azimuth around it) the vertex radius is the
+    // orbital's OWN outermost iso-density root in that direction, so the lobe is
+    // the true boundary surface restricted to its own cone. It pinches to the
+    // origin exactly where the angular factor vanishes (delta = 82.5 deg for a
+    // 2p lobe, 45 deg in-plane / 90 deg out-of-plane for a d_xy lobe), which is
+    // why the pair meets at a point on the nodal plane. Keyed by (orbital,
+    // axis) only — a hybrid orbital supplies a different angular factor and the
+    // same builder returns its lobe (#13 forward-compat).
+    function osLobeGeometry(orb, lev) {
+        var ND = 26, NA = 40, i, j;
+        var verts = [], idx = [];
+        for (i = 0; i <= ND; i++) {
+            var del = (i / ND) * (Math.PI / 2);
+            var cd = Math.cos(del), sd = Math.sin(del);
+            for (j = 0; j < NA; j++) {
+                var az = (j / NA) * 2 * Math.PI;
+                var d = [sd * Math.cos(az), cd, sd * Math.sin(az)];
+                var A = osLobeAngLocal(orb, d);
+                var r = (A > 1e-12) ? osRhoOuter(orb, lev / A) * OS_A0 / OS_PM_PER_UNIT : 0;
+                verts.push(d[0] * r, d[1] * r, d[2] * r);
+            }
+        }
+        for (i = 0; i < ND; i++) {
+            for (j = 0; j < NA; j++) {
+                var a = i * NA + j, bb = i * NA + ((j + 1) % NA);
+                var c = (i + 1) * NA + j, dd = (i + 1) * NA + ((j + 1) % NA);
+                idx.push(a, c, bb); idx.push(bb, c, dd);
+            }
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3));
+        geo.setIndex(idx);
+        geo.computeVertexNormals();
+        return geo;
+    }
+    // Two-run label sprite: a main run plus a SMALLER baseline-dropped run, so
+    // "2p" + "z" renders as a real subscript. Unicode has no subscript y or z,
+    // so a single-run sprite could only ever print "2p_z" or "2pz" — both of
+    // which reach the screen as a lie about notation (Rule 34c). Auto-width by
+    // construction: the canvas is measured from the ACTUAL two runs every
+    // redraw (osSetSubLabel), never once from a seed string — the C6 clipped-
+    // sprite scar.
+    function osDrawSubLabel(sprite, main, sub) {
+        var c = sprite._pmCanvas, ctx = c.getContext("2d");
+        var fMain = "bold 76px \\u0027Cambria Math\\u0027,\\u0027Times New Roman\\u0027,serif";
+        var fSub = "bold 50px \\u0027Cambria Math\\u0027,\\u0027Times New Roman\\u0027,serif";
+        ctx.font = fMain;
+        var wMain = ctx.measureText(main).width;
+        ctx.font = fSub;
+        var wSub = sub ? ctx.measureText(sub).width : 0;
+        var need = Math.max(384, Math.ceil(wMain + wSub) + 56);
+        if (need !== c.width) {
+            c.width = need;
+            ctx = c.getContext("2d");
+            var hs = sprite._pmHeightScale || 0.46;
+            sprite.scale.set(hs * (c.width / c.height), hs, 1);
+            if (sprite.material && sprite.material.map) {
+                sprite.material.map.dispose();
+                var tex = new THREE.CanvasTexture(c);
+                tex.needsUpdate = true;
+                sprite.material.map = tex;
+            }
+        }
+        ctx.clearRect(0, 0, c.width, c.height);
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = "rgba(10,10,26,0.95)";
+        var x0 = (c.width - (wMain + wSub)) / 2, y0 = c.height / 2;
+        ctx.font = fMain;
+        ctx.strokeText(main, x0, y0);
+        ctx.fillStyle = sprite._pmColor;
+        ctx.fillText(main, x0, y0);
+        if (sub) {
+            ctx.font = fSub;
+            ctx.strokeText(sub, x0 + wMain, y0 + 22);
+            ctx.fillText(sub, x0 + wMain, y0 + 22);
+        }
+        if (sprite.material && sprite.material.map) sprite.material.map.needsUpdate = true;
+        sprite._osMain = main; sprite._osSub = sub;
+    }
+    function osCreateSubLabel(main, sub, color, heightScale) {
+        var canvas = document.createElement("canvas");
+        canvas.width = 384; canvas.height = 128;
+        var texture = new THREE.CanvasTexture(canvas);
+        var sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+            map: texture, transparent: true, depthTest: false, depthWrite: false
+        }));
+        var hs = heightScale != null ? heightScale : 0.46;
+        sprite.scale.set(hs * 3, hs, 1);
+        sprite.renderOrder = 999;
+        sprite._pmCanvas = canvas; sprite._pmColor = color; sprite._pmHeightScale = hs;
+        osDrawSubLabel(sprite, main, sub);
+        return sprite;
+    }
+    function osSetSubLabel(sprite, main, sub, color) {
+        if (!sprite) return;
+        if (color && sprite._pmColor !== color) sprite._pmColor = color;
+        if (sprite._osMain === main && sprite._osSub === sub && !color) return;
+        osDrawSubLabel(sprite, main, sub);
+    }
+    function osFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+    // Recolour a pooled mesh AND refresh its Rule-29 glow baseline, so a
+    // per-state orbital swap is never reverted to a stale cached colour by
+    // applyGlowEmphasis on the next idle frame (the mgSetColor discipline).
+    function osSetColor(mesh, hex) {
+        if (!mesh || !mesh.material) return;
+        var c = hexToThreeColor(hex);
+        var m = mesh.material;
+        if (m.color) m.color.copy(c);
+        if (m.emissive) m.emissive.copy(c);
+        if (!m.userData) m.userData = {};
+        if (m.color) m.userData._glowBaseCol = m.color.clone();
+    }
+    var OS_UP = new THREE.Vector3(0, 1, 0);
+    var osTmpV = new THREE.Vector3(), osTmpQ = new THREE.Quaternion();
+    var osSpinQ = new THREE.Quaternion(), osSpinInv = new THREE.Quaternion();
+    var osTmpZ = new THREE.Vector3(0, 0, 1);
+    // Aim a +y-canonical mesh along dir (already spun) and scale it.
+    function osAimY(mesh, dir, lateral, axial) {
+        osTmpV.set(dir[0], dir[1], dir[2]).normalize();
+        osTmpQ.setFromUnitVectors(OS_UP, osTmpV);
+        mesh.quaternion.copy(osTmpQ);
+        mesh.position.set(0, 0, 0);
+        mesh.scale.set(lateral, axial, lateral);
+    }
+    // Aim a canonical lobe (local X/Y/Z) onto its world frame, then apply the
+    // live spin. Position stays at the nucleus; scale is applied by the caller.
+    var osTmpMx = new THREE.Matrix4();
+    var osTmpBx = new THREE.Vector3(), osTmpBy = new THREE.Vector3(), osTmpBz = new THREE.Vector3();
+    function osAimFrame(mesh, fr) {
+        osTmpBx.set(fr.X[0], fr.X[1], fr.X[2]);
+        osTmpBy.set(fr.Y[0], fr.Y[1], fr.Y[2]);
+        osTmpBz.set(fr.Z[0], fr.Z[1], fr.Z[2]);
+        osTmpMx.makeBasis(osTmpBx, osTmpBy, osTmpBz);
+        mesh.quaternion.setFromRotationMatrix(osTmpMx);
+        mesh.quaternion.premultiply(osSpinQ);
+        mesh.position.set(0, 0, 0);
+    }
+    // Aim a +z-canonical mesh (CircleGeometry / RingGeometry / TorusGeometry
+    // are all born in the xy-plane with normal +z) along a normal.
+    function osAimZ(mesh, nrm) {
+        osTmpV.set(nrm[0], nrm[1], nrm[2]).normalize();
+        osTmpQ.setFromUnitVectors(osTmpZ, osTmpV);
+        mesh.quaternion.copy(osTmpQ);
+    }
+    // Rotate v by the live spin quaternion (the spin is a pure fn of state-local
+    // t, so this stays closed-form).
+    function osSpun(v) {
+        osTmpV.set(v[0], v[1], v[2]).applyQuaternion(osSpinQ);
+        return [osTmpV.x, osTmpV.y, osTmpV.z];
+    }
+    function osUnspun(v) {
+        osTmpV.set(v[0], v[1], v[2]).applyQuaternion(osSpinInv);
+        return [osTmpV.x, osTmpV.y, osTmpV.z];
+    }
+    // Park a label beside its anchor by picking, among four SCREEN-space
+    // diagonals, the one whose projection sits farthest from everything it must
+    // not collide with. A fixed world offset cannot work: which direction is
+    // clear depends entirely on the camera, and parking the orbital name on its
+    // own axis put "1s" straight on top of the y-axis label (first headless
+    // frame read: the two rendered as one blob). A LOCAL clone of the pattern
+    // molecular_geometry uses -- never a call into a sibling scenario's guts.
+    // Deterministic: candidate order breaks ties, and the camera has settled by
+    // capture time.
+    var osCamR = new THREE.Vector3(), osCamU = new THREE.Vector3(), osCamF = new THREE.Vector3();
+    var osProbeV = new THREE.Vector3();
+    function osPlaceLabelClear(sprite, anchor, offset, avoidWorld) {
+        if (!sprite) return;
+        camera.matrixWorld.extractBasis(osCamR, osCamU, osCamF);
+        var avoidNdc = [], k;
+        for (k = 0; k < avoidWorld.length; k++) {
+            if (!avoidWorld[k]) continue;
+            osProbeV.set(avoidWorld[k][0], avoidWorld[k][1], avoidWorld[k][2]).project(camera);
+            avoidNdc.push([osProbeV.x, osProbeV.y]);
+        }
+        var dirs = [[1, 1], [-1, 1], [1, -1], [-1, -1]];
+        var bestPos = null, bestScore = -1, i, j;
+        for (i = 0; i < dirs.length; i++) {
+            var px = anchor[0] + (osCamR.x * dirs[i][0] + osCamU.x * dirs[i][1]) * offset;
+            var py = anchor[1] + (osCamR.y * dirs[i][0] + osCamU.y * dirs[i][1]) * offset;
+            var pz = anchor[2] + (osCamR.z * dirs[i][0] + osCamU.z * dirs[i][1]) * offset;
+            osProbeV.set(px, py, pz).project(camera);
+            // the top strip belongs to the review chrome + the delta-cue caption
+            // (Rule 34a/34d): a label that projects into it is rejected outright.
+            var worst = (osProbeV.y > 0.80) ? 0 : 9;
+            for (j = 0; j < avoidNdc.length; j++) {
+                var dx = osProbeV.x - avoidNdc[j][0], dy = osProbeV.y - avoidNdc[j][1];
+                var dd = Math.sqrt(dx * dx + dy * dy);
+                if (dd < worst) worst = dd;
+            }
+            if (worst > bestScore + 1e-6) { bestScore = worst; bestPos = [px, py, pz]; }
+        }
+        if (bestPos) sprite.position.set(bestPos[0], bestPos[1], bestPos[2]);
+    }
+    // The maximum |psi|^2 anywhere on the plane { x . axis = s }, normalised to
+    // the orbital's peak density. For a p orbital this is EXACTLY the on-axis
+    // value (|psi|^2 = z^2 e^(-r/a0) on that plane is maximised at r = |z|), so
+    // "0.00 at the node" is a statement about the WHOLE plane, not one point.
+    // Sampled on a polar grid for the general case.
+    function osPlaneMaxDensity(orb, sUnits) {
+        var s = sUnits * OS_PM_PER_UNIT / OS_A0;     // in rho
+        var axis = orb.axis || [0, 0, 1];
+        var b = osBasis(axis), e1 = b[0], e2 = b[1];
+        var best = 0, i, j;
+        var rhoLim = orb.rhoMax;
+        for (i = 0; i <= 40; i++) {
+            var q = (i / 40) * rhoLim;
+            for (j = 0; j < 12; j++) {
+                var a = (j / 12) * 2 * Math.PI;
+                var px = axis[0] * s + (e1[0] * Math.cos(a) + e2[0] * Math.sin(a)) * q;
+                var py = axis[1] * s + (e1[1] * Math.cos(a) + e2[1] * Math.sin(a)) * q;
+                var pz = axis[2] * s + (e1[2] * Math.cos(a) + e2[2] * Math.sin(a)) * q;
+                var rr = Math.sqrt(px * px + py * py + pz * pz);
+                if (rr < 1e-6 || rr > rhoLim) continue;
+                var R = osR(orb, rr);
+                var dens = R * R * osAng(orb, [px / rr, py / rr, pz / rr]);
+                if (dens > best) best = dens;
+                if (orb.l === 0) break;              // spherically symmetric: one sample per ring
+            }
+        }
+        return orb._dMax > 0 ? best / orb._dMax : 0;
+    }
+
+    function buildOrbitalShapes(config) {
+        var CO = config.colors || {};
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var i, k;
+
+        // 0. Derive every orbital's tables ONCE (radial CDF + outer branch +
+        //    energy + node counts) and its seeded sample table. All of it is
+        //    build-time: a frame never evaluates a wavefunction for a dot.
+        for (k in OS_ORBITALS) {
+            var ob = OS_ORBITALS[k];
+            osBuildTables(ob);
+            osBuildSamples(ob);
+            // r90 (spheres) / lobe tip (lobes) at each enclosure, in real pm —
+            // computed from the contour, never typed in.
+            ob.rByLev = {};
+            for (var li = 0; li < OS_ENCLOSURES.length; li++) {
+                var lk = OS_ENCLOSURES[li];
+                ob.rByLev[lk] = osROutPm(ob, (ob.l === 0) ? [0, 0, 1] : (ob.axis || [0, 0, 1]), ob.levels[lk]);
+            }
+            if (ob.shellRho != null) ob.shellPm = ob.shellRho * OS_A0;
+        }
+        // shared lobe geometries, one per lobed orbital family (canonical +y).
+        var lobeGeo = { p: {}, d: {} };
+        for (var gi = 0; gi < OS_ENCLOSURES.length; gi++) {
+            var gk = OS_ENCLOSURES[gi];
+            lobeGeo.p[gk] = osLobeGeometry(OS_ORBITALS["2p_z"], OS_ORBITALS["2p_z"].levels[gk]);
+            lobeGeo.d[gk] = osLobeGeometry(OS_ORBITALS["3d_xy"], OS_ORBITALS["3d_xy"].levels[gk]);
+        }
+        window.PM_osLobeGeo = lobeGeo;
+
+        // 1. nucleus — the one thing that never moves (Rule 32d home pose).
+        var nuc = new THREE.Mesh(new THREE.SphereGeometry(0.085, 20, 20), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#FF5252"), emissive: hexToThreeColor("#FF5252"),
+            emissiveIntensity: 0.55, shininess: 80
+        }));
+        nuc.userData = { elementType: "os_nucleus", id: "os_nucleus" };
+        addToScene(nuc);
+
+        // 2. axes triad + x/y/z labels, tinted to match the three p orbitals.
+        var axGeo = new THREE.CylinderGeometry(0.012, 0.012, 1, 8);
+        axGeo.translate(0, 0.5, 0);
+        var axKeys = ["x", "y", "z"];
+        for (i = 0; i < 3; i++) {
+            for (var sgn = 0; sgn < 2; sgn++) {
+                var ax = new THREE.Mesh(axGeo.clone(), new THREE.MeshBasicMaterial({
+                    color: hexToThreeColor(OS_AXIS_COLORS[axKeys[i]]), transparent: true, opacity: 0.55,
+                    depthWrite: false
+                }));
+                ax.renderOrder = 992;
+                ax.userData = { elementType: "os_axis", id: "os_axis_" + axKeys[i] + (sgn ? "n" : "p"), axis: i, sign: sgn ? -1 : 1 };
+                ax.visible = false;
+                addToScene(ax);
+            }
+            var axl = pmCreateAutoLabel(axKeys[i], OS_AXIS_COLORS[axKeys[i]], 0.34);
+            axl.userData = { elementType: "os_axis_label", id: "os_axis_label_" + axKeys[i], axis: i };
+            axl.visible = false;
+            addToScene(axl);
+        }
+
+        // 3. the dot swarm — up to three simultaneous clouds (S5's three 2p).
+        //    Positions are COPIED from the active orbital's precomputed table
+        //    every frame (the copy also applies the cutaway slab filter), and
+        //    drawRange exposes exactly the dots the state clock has revealed.
+        for (i = 0; i < OS_MAX_SETS; i++) {
+            var dg = new THREE.BufferGeometry();
+            dg.setAttribute("position", new THREE.BufferAttribute(new Float32Array(OS_DOT_MAX * 3), 3));
+            dg.setDrawRange(0, 0);
+            var dm = new THREE.PointsMaterial({
+                color: hexToThreeColor("#81D4FA"), size: 0.055, sizeAttenuation: true,
+                transparent: true, opacity: 0.92, depthWrite: false
+            });
+            var pts = new THREE.Points(dg, dm);
+            pts.frustumCulled = false;
+            pts.userData = { elementType: "os_dots", id: "os_dots_" + i, slot: i };
+            pts.visible = false;
+            addToScene(pts);
+        }
+
+        // 4. boundary surfaces: ONE sphere (only one s orbital is ever active)
+        //    + a pool of lobes. A lobe is aimed + scaled per frame; its geometry
+        //    is swapped between the shared p / d meshes. Translucent, backside
+        //    included, so the dot swarm reads THROUGH the surface.
+        var sph = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 28), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#4FC3F7"), emissive: hexToThreeColor("#4FC3F7"),
+            emissiveIntensity: 0.22, shininess: 30, transparent: true, opacity: 0.0,
+            side: THREE.DoubleSide, depthWrite: false
+        }));
+        sph.userData = { elementType: "os_surface", id: "os_sphere" };
+        sph.visible = false;
+        addToScene(sph);
+        for (i = 0; i < OS_MAX_LOBES; i++) {
+            var lb = new THREE.Mesh(lobeGeo.p, new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#42A5F5"), emissive: hexToThreeColor("#42A5F5"),
+                emissiveIntensity: 0.26, shininess: 30, transparent: true, opacity: 0.0,
+                side: THREE.DoubleSide, depthWrite: false
+            }));
+            lb.userData = { elementType: "os_lobe", id: "os_lobe_" + i, slot: i };
+            lb.visible = false;
+            addToScene(lb);
+        }
+
+        // 5. node visuals: angular node PLANES (translucent disc + bright rim,
+        //    because at the camera that shows a dumbbell broadside the plane is
+        //    necessarily near edge-on — the rim is what makes it read), and the
+        //    2s radial node SHELL ring, which traces the empty gap the cutaway
+        //    slab exposes.
+        for (i = 0; i < OS_MAX_PLANES; i++) {
+            var np = new THREE.Mesh(new THREE.CircleGeometry(1, 64), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFCA28"), transparent: true, opacity: 0.16,
+                side: THREE.DoubleSide, depthWrite: false
+            }));
+            np.renderOrder = 993;
+            np.userData = { elementType: "os_node_plane", id: "os_node_plane_" + i, slot: i };
+            np.visible = false;
+            addToScene(np);
+            var nr = new THREE.Mesh(new THREE.RingGeometry(0.985, 1.0, 96), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFCA28"), transparent: true, opacity: 0.95,
+                side: THREE.DoubleSide, depthTest: false, depthWrite: false
+            }));
+            nr.renderOrder = 996;
+            nr.userData = { elementType: "os_node_plane", id: "os_node_rim_" + i, slot: i };
+            nr.visible = false;
+            addToScene(nr);
+        }
+        var shell = new THREE.Mesh(new THREE.TorusGeometry(1, 0.008, 8, 120), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor("#FFD54F"), transparent: true, opacity: 0.9,
+            depthTest: false, depthWrite: false
+        }));
+        shell.renderOrder = 996;
+        shell.userData = { elementType: "os_node_shell", id: "os_node_shell" };
+        shell.visible = false;
+        addToScene(shell);
+        var shellLab = pmCreateAutoLabel("node shell", "#FFD54F", 0.40);
+        shellLab.userData = { elementType: "os_node_shell", id: "os_node_shell_label" };
+        shellLab.visible = false;
+        addToScene(shellLab);
+
+        // 6. the probe: a disc perpendicular to the active lobe axis, with a
+        //    bright rim so it reads when seen edge-on (which is exactly the
+        //    camera the dumbbell needs).
+        var prb = new THREE.Mesh(new THREE.CircleGeometry(1, 64), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor("#E040FB"), transparent: true, opacity: 0.14,
+            side: THREE.DoubleSide, depthWrite: false
+        }));
+        prb.renderOrder = 994;
+        prb.userData = { elementType: "os_probe", id: "os_probe" };
+        prb.visible = false;
+        addToScene(prb);
+        var prbRim = new THREE.Mesh(new THREE.RingGeometry(0.985, 1.0, 96), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor("#E040FB"), transparent: true, opacity: 0.95,
+            side: THREE.DoubleSide, depthTest: false, depthWrite: false
+        }));
+        prbRim.renderOrder = 997;
+        prbRim.userData = { elementType: "os_probe", id: "os_probe_rim" };
+        prbRim.visible = false;
+        addToScene(prbRim);
+
+        // 7. the Bohr prop (S1 only): the believed orbit + its electron bead,
+        //    which the measurement flashes then dissolve.
+        var ring = new THREE.Mesh(new THREE.TorusGeometry(1, 0.009, 8, 140), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor("#B0BEC5"), transparent: true, opacity: 0.0,
+            depthWrite: false
+        }));
+        ring.renderOrder = 992;
+        ring.userData = { elementType: "os_orbit", id: "os_orbit_ring" };
+        ring.visible = false;
+        addToScene(ring);
+        var bead = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#FFEE58"), emissive: hexToThreeColor("#FFEE58"),
+            emissiveIntensity: 0.6, transparent: true, opacity: 0.0, shininess: 70
+        }));
+        bead.userData = { elementType: "os_orbit", id: "os_orbit_bead" };
+        bead.visible = false;
+        addToScene(bead);
+        for (i = 0; i < OS_FLASH_POOL; i++) {
+            var fl = new THREE.Mesh(new THREE.SphereGeometry(0.055, 12, 12), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFF59D"), transparent: true, opacity: 0.0, depthWrite: false
+            }));
+            fl.renderOrder = 995;
+            fl.userData = { elementType: "os_dots", id: "os_flash_" + i, slot: i };
+            fl.visible = false;
+            addToScene(fl);
+        }
+
+        // 8. orbital name labels (two-run subscripts) — one per active set.
+        for (i = 0; i < OS_MAX_SETS; i++) {
+            var ol = osCreateSubLabel("2p", "z", "#42A5F5", 0.46);
+            ol.userData = { elementType: "os_orb_label", id: "os_orb_label_" + i, slot: i };
+            ol.visible = false;
+            addToScene(ol);
+        }
+        var nodeLab = pmCreateAutoLabel("node", "#FFCA28", 0.40);
+        nodeLab.userData = { elementType: "os_node_plane", id: "os_node_label" };
+        nodeLab.visible = false;
+        addToScene(nodeLab);
+
+        // 9. DOM surfaces — value-only HUD (Rule 33d/34b) + ONE Cambria formula
+        //    line. top:52px clears the review-chrome Full-screen button and the
+        //    #simPenBar glass buttons (Rule 34d).
+        var hud = document.createElement("div"); hud.id = "os_hud";
+        hud.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:196px;display:none;";
+        document.body.appendChild(hud);
+
+        var ff = document.createElement("div"); ff.id = "os_formula";
+        ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
+        document.body.appendChild(ff);
+
+        // 10. Per-state contextual control rows (Rule 31) — built ONCE, shown/
+        //     hidden per state, each row keeping the SAME screen position.
+        //     Every id is MULTI-LETTER: single-letter slider ids are a shared
+        //     namespace across every concept on this renderer (the gas_box
+        //     "V = 1.00 V" scar), so 'probe'/'dots'/'spin'/'orbital' it is.
+        var SC = config.slider_controls || {};
+        var dotsDef = (SC.dots && SC.dots["default"] != null) ? SC.dots["default"] : 1200;
+        var spinDef = (SC.spin && SC.spin["default"] != null) ? SC.spin["default"] : 0.18;
+        var orbDef = (SC.orbital && SC.orbital["default"]) ? SC.orbital["default"] : "1s";
+        var opts = "", oi;
+        for (oi = 0; oi < OS_EXPLORE_ORBITALS.length; oi++) {
+            var ok = OS_EXPLORE_ORBITALS[oi], ov = OS_ORBITALS[ok];
+            // an <option> renders no markup, and Unicode has no subscript y or z,
+            // so the picker spells the axis instead of shipping "2py" as if that
+            // were the notation (Rule 34c).
+            opts += '<option value="' + ok + '"' + (ok === orbDef ? ' selected' : '') + '>'
+                + ov.main + (ov.sub ? ' (' + ov.sub + ')' : '') + '</option>';
+        }
+        var sp = document.createElement("div"); sp.id = "os_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:238px;display:none;";
+        sp.innerHTML =
+            '<div id="os_orbital_row" style="display:none"><label>Orbital: ' +
+            '<select id="os_orbital_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + opts + '</select></label></div>' +
+            '<div id="os_dots_row" style="display:none;margin-top:6px"><label>Measurements: <span id="os_dots_val">' + Math.round(dotsDef) + '</span></label>' +
+            '<input type="range" id="os_dots_slider" min="100" max="5000" step="100" value="' + Math.round(dotsDef) + '" style="width:100%"></div>' +
+            '<div id="os_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="os_spin_val">' + Number(spinDef).toFixed(2) + '</span> rad/s</label>' +
+            '<input type="range" id="os_spin_slider" min="0" max="0.6" step="0.02" value="' + spinDef + '" style="width:100%"></div>' +
+            '<div id="os_probe_row" style="display:none;margin-top:6px"><label>Probe plane: <span id="os_probe_val">0</span> pm</label>' +
+            '<input type="range" id="os_probe_slider" min="-100" max="100" step="1" value="0" style="width:100%"></div>';
+        document.body.appendChild(sp);
+
+        function osEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "orbital_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var orbSel = document.getElementById("os_orbital_select");
+        var dotsSl = document.getElementById("os_dots_slider"), dotsV = document.getElementById("os_dots_val");
+        var spinSl = document.getElementById("os_spin_slider"), spinV = document.getElementById("os_spin_val");
+        var prbSl = document.getElementById("os_probe_slider");
+        if (orbSel) orbSel.addEventListener("change", function () {
+            window.PM_osOrbital = orbSel.value; window.PM_osOrbitalDragged = true; osEmit("orbital", orbSel.value);
+        });
+        if (dotsSl) dotsSl.addEventListener("input", function () {
+            window.PM_osDots = parseInt(dotsSl.value, 10);
+            if (dotsV) dotsV.textContent = String(window.PM_osDots);
+            window.PM_osDotsDragged = true; osEmit("dots", window.PM_osDots);
+        });
+        if (spinSl) spinSl.addEventListener("input", function () {
+            window.PM_osSpin = parseFloat(spinSl.value);
+            if (spinV) spinV.textContent = window.PM_osSpin.toFixed(2);
+            window.PM_osSpinDragged = true; osEmit("spin", window.PM_osSpin);
+        });
+        if (prbSl) prbSl.addEventListener("input", function () {
+            window.PM_osProbe = parseFloat(prbSl.value) / 100;
+            window.PM_osProbeDragged = true; osEmit("probe", window.PM_osProbe);
+        });
+
+        window.PM_osDotsDef = dotsDef; window.PM_osDots = dotsDef;
+        window.PM_osSpinDef = spinDef; window.PM_osSpin = spinDef;
+        window.PM_osOrbitalDef = orbDef; window.PM_osOrbital = orbDef;
+        window.PM_osProbe = 0;
+    }
+
+    // Authoritative per-state visibility + seeding. Runs AFTER the generic
+    // visible_elements matcher and overrides it (mirrors applyCapacitanceState /
+    // applyMolecularGeometryState).
+    function applyOrbitalShapesState(stateDef) {
+        var os = stateDef.orbital_shapes || {};
+        window.PM_osOrbitalDragged = false; window.PM_osDotsDragged = false;
+        window.PM_osSpinDragged = false; window.PM_osProbeDragged = false;
+        window.PM_osOrbital = os.orbital || window.PM_osOrbitalDef || "1s";
+        window.PM_osDots = (os.dot_target != null) ? os.dot_target : (window.PM_osDotsDef != null ? window.PM_osDotsDef : 1200);
+        window.PM_osSpin = (os.spin_rate != null) ? os.spin_rate : 0;
+        window.PM_osProbe = (os.probe_auto && os.probe_auto.from != null) ? os.probe_auto.from : 0;
+
+        // The cutaway slab faces the CAMERA — but it is derived from the STATE's
+        // authored/solved camera vector, never read off the live camera, so the
+        // cut is identical on the first frame and under a freeze pin (the live
+        // camera is still easing in at that moment).
+        var cam = os.camera || OS_CAMERAS[os.mode || "boundary"] || OS_CAMERAS.boundary;
+        var camVec = stateDef.camera_position;
+        if (os.camera || !camVec) {
+            var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
+            var dd = cam.dist || 8;
+            camVec = [dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)];
+            animateCameraTo(camVec);
+        }
+        window.PM_osCutN = osNorm(camVec);
+
+        var ctrls = os.controls || [];
+        var statics = os.static_readouts || [];
+        var rows = { orbital: "os_orbital_row", dots: "os_dots_row", spin: "os_spin_row", probe: "os_probe_row" };
+        var panel = document.getElementById("os_sliders");
+        var anyRow = false, key;
+        for (key in rows) {
+            var live = ctrls.indexOf(key) >= 0;
+            var stat = statics.indexOf(key) >= 0;
+            var rowEl = document.getElementById(rows[key]);
+            if (rowEl) {
+                rowEl.style.display = (live || stat) ? "block" : "none";
+                var inp = rowEl.querySelector("input,select");
+                if (inp) inp.disabled = (!live && stat);
+            }
+            if (live || stat) anyRow = true;
+        }
+        if (panel) panel.style.display = anyRow ? "block" : "none";
+        // Re-seed every control to the state's authored preset, so each state
+        // opens as a reproducible preset (a teacher's drag in a prior state
+        // never bleeds into the next beat). DOM-only, no input event fired, so
+        // the drag-seize listeners are not tripped.
+        var orbSel = document.getElementById("os_orbital_select");
+        if (orbSel && OS_ORBITALS[window.PM_osOrbital]) orbSel.value = window.PM_osOrbital;
+        var dotsSl = document.getElementById("os_dots_slider"), dotsV = document.getElementById("os_dots_val");
+        if (dotsSl) dotsSl.value = String(window.PM_osDots);
+        if (dotsV) dotsV.textContent = String(Math.round(window.PM_osDots));
+        var spinSl = document.getElementById("os_spin_slider"), spinV = document.getElementById("os_spin_val");
+        if (spinSl) spinSl.value = String(window.PM_osSpin);
+        if (spinV) spinV.textContent = Number(window.PM_osSpin).toFixed(2);
+        var prbSl = document.getElementById("os_probe_slider");
+        if (prbSl) prbSl.value = String(Math.round(window.PM_osProbe * 100));
+
+        var hud = document.getElementById("os_hud");
+        if (hud) hud.style.display = os.show_hud ? "block" : "none";
+        var ff = document.getElementById("os_formula");
+        if (ff) {
+            if (os.show_formula && os.formula) { ff.innerHTML = os.formula; ff.style.display = "block"; }
+            else { ff.style.display = "none"; }
+        }
+        // The generic visible_elements matcher has just switched these on, and a
+        // capture landing between this apply and the first animate frame would
+        // photograph the PREVIOUS state's lobe pose / probe position / label
+        // text. Hide every transient here so the frame updater is the only
+        // thing that can reveal them (the mg transient-hide discipline).
+        var trans = ["os_lobe_", "os_dots_", "os_flash_", "os_orb_label_", "os_node_plane_", "os_node_rim_"];
+        for (var ti = 0; ti < sceneObjects.length; ti++) {
+            var so = sceneObjects[ti], sid = so.userData && so.userData.id;
+            if (!sid) continue;
+            for (var tj = 0; tj < trans.length; tj++) {
+                if (sid.indexOf(trans[tj]) === 0) { so.visible = false; break; }
+            }
+            if (sid === "os_sphere" || sid === "os_probe" || sid === "os_probe_rim" ||
+                sid === "os_node_shell" || sid === "os_node_shell_label" || sid === "os_node_label" ||
+                sid === "os_orbit_ring" || sid === "os_orbit_bead") so.visible = false;
+        }
+    }
+
+    // The single per-frame pass. Every value below is a closed-form function of
+    // state-local t (accumulator-free by construction, Rule 26/36).
+    function updateOrbitalShapesFrame(stateDef) {
+        var os = stateDef.orbital_shapes || {};
+        var ms = (time - stateStartTime) * 1000;
+        var mode = os.mode || "boundary";
+        var ctrls = os.controls || [];
+        var i, j, k;
+
+        // ── which orbital(s) are on screen right now
+        var baseId = os.orbital || "1s";
+        if (ctrls.indexOf("orbital") >= 0 && window.PM_osOrbitalDragged && OS_ORBITALS[window.PM_osOrbital]) {
+            baseId = window.PM_osOrbital;
+        }
+        var active = [];
+        var popSteps = os.populate_steps || [];
+        var galSteps = os.gallery_steps || [];
+        if (popSteps.length > 0) {
+            // axis-populate: one identical shape is stamped onto each axis in
+            // turn, and every earlier one STAYS (that is the whole claim).
+            for (i = 0; i < popSteps.length; i++) {
+                var pst = popSteps[i] || {};
+                if (ms >= cueTriggerMs("populate_" + i, (pst.at_ms != null) ? pst.at_ms : 0) && OS_ORBITALS[pst.orbital]) {
+                    active.push(pst.orbital);
+                }
+            }
+        } else if (galSteps.length > 0) {
+            // cycle-compare: exactly ONE orbital at a time, the newest wins.
+            var cur = null;
+            for (i = 0; i < galSteps.length; i++) {
+                var gst = galSteps[i] || {};
+                if (ms >= cueTriggerMs("gallery_" + i, (gst.at_ms != null) ? gst.at_ms : 0) && OS_ORBITALS[gst.orbital]) cur = gst.orbital;
+            }
+            if (cur) active.push(cur);
+        }
+        if (active.length === 0 && OS_ORBITALS[baseId]) active.push(baseId);
+        if (active.length > OS_MAX_SETS) active = active.slice(0, OS_MAX_SETS);
+        var primary = OS_ORBITALS[active[active.length - 1]] || OS_ORBITALS["1s"];
+        var encKey = osEnclKey(os.enclosure);
+        var primR = osOuterPm(primary, encKey);
+        window.PM_osActive = active.slice();
+
+        // ── the slow spin: angle = rate * (t - spin_start), a PURE function of
+        //    the state clock (never an accumulator). spin_axis lets a state turn
+        //    the picture about the axis that PRESERVES its solved camera —
+        //    (1,1,1) for the three-p set, +z for the clover — instead of forcing
+        //    every scenario onto +y, which would swing both of those out of
+        //    their countable views within a couple of seconds.
+        var spinRate = (ctrls.indexOf("spin") >= 0 && window.PM_osSpinDragged)
+            ? window.PM_osSpin : ((os.spin_rate != null) ? os.spin_rate : 0);
+        var spinStart = (os.spin_start_ms != null) ? os.spin_start_ms : 0;
+        var spinAng = (ms > spinStart) ? spinRate * (ms - spinStart) / 1000 : 0;
+        var spinAx = osNorm(os.spin_axis || [0, 1, 0]);
+        osTmpV.set(spinAx[0], spinAx[1], spinAx[2]);
+        osSpinQ.setFromAxisAngle(osTmpV, spinAng);
+        osSpinInv.copy(osSpinQ).invert();
+
+        // ── the dot swarm. count is a pure function of t; dot i's position is a
+        //    pure table lookup. The cutaway keeps only the dots inside a slab
+        //    that faces the camera, which is what turns the 2s node from an
+        //    invisible interior fact into a dark ring on screen.
+        var dotTarget = (ctrls.indexOf("dots") >= 0 && window.PM_osDotsDragged)
+            ? window.PM_osDots : ((os.dot_target != null) ? os.dot_target : 1200);
+        dotTarget = Math.round(osClamp(dotTarget, 0, OS_DOT_MAX));
+        var stippleAt = (os.stipple_at_ms != null) ? cueTriggerMs("stipple", os.stipple_at_ms) : 0;
+        var perDot = (os.per_dot_ms != null) ? os.per_dot_ms : 3;
+        var count = (ms <= stippleAt) ? 0 : Math.floor((ms - stippleAt) / Math.max(0.1, perDot));
+        if (count > dotTarget) count = dotTarget;
+        window.PM_osDotCount = count;
+
+        var cutF = 0, slabHalf = 0;
+        if (os.cutaway_at_ms != null) {
+            cutF = osRamp(ms, cueTriggerMs("cutaway", os.cutaway_at_ms), (os.cutaway_duration_ms != null) ? os.cutaway_duration_ms : 2200, 0, 1);
+            // the slab closes from "everything" down to a thin slice (0.18 world
+            // units = 36 pm), thin enough that a dot 36 pm off the plane still
+            // projects inside the node gap it belongs to.
+            slabHalf = 40 * (1 - cutF) + 0.18 * cutF;
+        }
+        var cutNw = window.PM_osCutN || [0, 0, 1];
+        var cutNl = osUnspun(cutNw);       // the slab is fixed in WORLD space
+        var showDots = (os.show_dots !== false);
+        for (i = 0; i < OS_MAX_SETS; i++) {
+            var pts = osFindById("os_dots_" + i);
+            if (!pts) continue;
+            var on = showDots && (i < active.length);
+            pts.visible = on;
+            if (!on) { pts.geometry.setDrawRange(0, 0); continue; }
+            var orb = OS_ORBITALS[active[i]];
+            var src = orb._pos;
+            var dst = pts.geometry.attributes.position.array;
+            var wrote = 0;
+            if (cutF > 0.001) {
+                for (j = 0; j < count; j++) {
+                    var s = src[j * 3] * cutNl[0] + src[j * 3 + 1] * cutNl[1] + src[j * 3 + 2] * cutNl[2];
+                    if (s < -slabHalf || s > slabHalf) continue;
+                    dst[wrote * 3] = src[j * 3]; dst[wrote * 3 + 1] = src[j * 3 + 1]; dst[wrote * 3 + 2] = src[j * 3 + 2];
+                    wrote++;
+                }
+            } else {
+                for (j = 0; j < count * 3; j++) dst[j] = src[j];
+                wrote = count;
+            }
+            pts.geometry.attributes.position.needsUpdate = true;
+            pts.geometry.setDrawRange(0, wrote);
+            pts.quaternion.copy(osSpinQ);
+            osSetColor(pts, orb.color);
+            if (pts.material) {
+                // The dot is a MEASUREMENT MARK, not a physical object, so its
+                // on-screen size is held roughly constant (~7 px) across the
+                // 6.8x span of camera distances this concept needs (1s framed
+                // at 3.2 units, the 3d clover at 13.3). sizeAttenuation stays
+                // ON so nearer dots in the same cloud still read as nearer.
+                // Rule 29 is untouched: no ELEMENT changes size to mean
+                // "look here" \u2014 the physical magnitudes (r90, lobe tip) are
+                // carried by the surfaces, which never rescale.
+                var camR = (typeof spherical !== "undefined" && spherical.radius) ? spherical.radius : 8;
+                pts.material.size = 0.0105 * camR * (1 + 0.55 * cutF);
+                pts.material.opacity = 0.92;
+            }
+        }
+
+        // ── occupancy, measured from the dots that are actually on screen.
+        var occ = null;
+        if (count > 0 && primary._insideBy) occ = primary._insideBy[encKey][count] / count;
+        window.PM_osOccupancy = occ;
+
+        // ── boundary surfaces. The sphere radius and every lobe vertex come
+        //    from the orbital's own 90% contour, so 2s being visibly bigger than
+        //    1s is a real magnitude, not an emphasis (Rule 29).
+        var surfAt = (os.surface_at_ms != null) ? cueTriggerMs("surface", os.surface_at_ms) : null;
+        var surfF = (surfAt == null) ? (os.show_surface ? 1 : 0) : osRamp(ms, surfAt, 900, 0, 1);
+        if (os.show_surface === false) surfF = 0;
+        var growF = (os.grow_at_ms != null) ? osRamp(ms, cueTriggerMs("grow", os.grow_at_ms), (os.grow_duration_ms != null) ? os.grow_duration_ms : 1800, 0, 1) : 1;
+
+        var sph = osFindById("os_sphere");
+        var sphOrb = null;
+        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "sphere") sphOrb = OS_ORBITALS[active[i]];
+        var sphAlpha = (typeof os.surface_opacity === "number") ? os.surface_opacity : 0.16;
+        if (sph) {
+            var sOn = !!sphOrb && surfF > 0.002;
+            sph.visible = sOn;
+            if (sOn) {
+                sph.scale.setScalar(osOuterPm(sphOrb, encKey) / OS_PM_PER_UNIT);
+                osSetColor(sph, sphOrb.color);
+                if (sph.material) sph.material.opacity = sphAlpha * surfF;
+            }
+        }
+        // lobes: pull from the shared pool, aim each along its (spun) direction.
+        var extrF = (os.extrude_at_ms != null)
+            ? osRamp(ms, cueTriggerMs("extrude", os.extrude_at_ms), (os.extrude_duration_ms != null) ? os.extrude_duration_ms : 2400, 0, 1)
+            : 1;
+        var bloomF = (os.bloom_at_ms != null)
+            ? osRamp(ms, cueTriggerMs("bloom", os.bloom_at_ms), (os.bloom_duration_ms != null) ? os.bloom_duration_ms : 2400, 0, 1)
+            : 1;
+        var ghostIds = [];
+        if (os.ghost_at_ms != null && ms >= cueTriggerMs("ghost", os.ghost_at_ms)) {
+            ghostIds = os.ghost_orbitals || ["2p_x", "2p_y"];
+        }
+        var lobeSlot = 0;
+        var lobeGeo = window.PM_osLobeGeo || {};
+        // A 2p 90% boundary is genuinely PLUMP (length/width = 1.44 from the
+        // exact contour), so three of them overlaid at full opacity fuse into a
+        // single ball and the six lobes stop being countable — the occlusion
+        // failure mode, not a camera one, so no camera solve can fix it. Divide
+        // the ink by the number of shells on screen; the colour-coded dot clouds
+        // then carry the three-axis reading. surface_opacity overrides.
+        var lobedCount = 0;
+        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "lobes") lobedCount++;
+        var lobeAlpha = (typeof os.surface_opacity === "number") ? os.surface_opacity
+            : 0.20 / Math.max(1, lobedCount);
+        function osPlaceLobes(orbId, growth, opacity, isGhost) {
+            var orb = OS_ORBITALS[orbId];
+            if (!orb || orb.kind !== "lobes") return;
+            var frames = osLobeFrames(orb);
+            for (var q = 0; q < frames.length && lobeSlot < OS_MAX_LOBES; q++) {
+                var lb = osFindById("os_lobe_" + lobeSlot);
+                lobeSlot++;
+                if (!lb) continue;
+                var geo = (orb.l === 2) ? lobeGeo.d[encKey] : lobeGeo.p[encKey];
+                if (geo && lb.geometry !== geo) lb.geometry = geo;
+                lb.visible = opacity > 0.004 && growth > 0.02;
+                if (!lb.visible) continue;
+                osAimFrame(lb, frames[q]);
+                // the extrude beat grows the lobe OUT along its own axis (+y in
+                // the canonical mesh) while it fattens sideways — the declared
+                // "axis-extrude" archetype, and a real magnitude, not emphasis.
+                lb.scale.set(0.55 + 0.45 * growth, growth, 0.55 + 0.45 * growth);
+                osSetColor(lb, isGhost ? "#546E7A" : orb.color);
+                if (lb.material) lb.material.opacity = opacity;
+            }
+        }
+        for (i = 0; i < ghostIds.length; i++) osPlaceLobes(ghostIds[i], 1, 0.10, true);
+        for (i = 0; i < active.length; i++) {
+            var aOrb = OS_ORBITALS[active[i]];
+            if (aOrb.kind !== "lobes") continue;
+            var gth = extrF;
+            if (aOrb.l === 2 && os.bloom_at_ms != null) gth = bloomF;
+            if (os.grow_at_ms != null) gth = Math.min(gth, growF);
+            osPlaceLobes(active[i], gth, lobeAlpha * surfF, false);
+        }
+        for (i = lobeSlot; i < OS_MAX_LOBES; i++) {
+            var lbOff = osFindById("os_lobe_" + i);
+            if (lbOff) lbOff.visible = false;
+        }
+
+        // ── axes triad (+ labels), turning with the picture.
+        var axLen = 1.30 * (primR / OS_PM_PER_UNIT);
+        // everything a name label must stay clear of: the nucleus first, then
+        // each axis letter as it is placed, then each name already parked.
+        var osAvoid = [[0, 0, 0]];
+        var axDirs = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+        var axKeys2 = ["x", "y", "z"];
+        for (i = 0; i < 3; i++) {
+            for (var sg = 0; sg < 2; sg++) {
+                var axm = osFindById("os_axis_" + axKeys2[i] + (sg ? "n" : "p"));
+                if (!axm) continue;
+                axm.visible = !!os.show_axes;
+                if (axm.visible) {
+                    var ad = osSpun([axDirs[i][0] * (sg ? -1 : 1), axDirs[i][1] * (sg ? -1 : 1), axDirs[i][2] * (sg ? -1 : 1)]);
+                    osAimY(axm, ad, 1, axLen);
+                }
+            }
+            var axlb = osFindById("os_axis_label_" + axKeys2[i]);
+            if (axlb) {
+                axlb.visible = !!os.show_axes && (os.show_labels !== false);
+                if (axlb.visible) {
+                    var ld = osSpun(axDirs[i]);
+                    axlb.position.set(ld[0] * (axLen + 0.22), ld[1] * (axLen + 0.22), ld[2] * (axLen + 0.22));
+                    osAvoid.push([axlb.position.x, axlb.position.y, axlb.position.z]);
+                }
+            }
+        }
+
+        // ── angular node planes (one for p, two for d). The disc is sized to
+        //    the orbital and the bright rim is what makes it read at the camera
+        //    that shows the lobes broadside (where the plane is near edge-on).
+        var planeNs = osNodePlaneNormals(primary);
+        var showPlane = !!os.show_node_plane && planeNs.length > 0;
+        var planeR = 1.18 * (primR / OS_PM_PER_UNIT);
+        for (i = 0; i < OS_MAX_PLANES; i++) {
+            var np = osFindById("os_node_plane_" + i), nr = osFindById("os_node_rim_" + i);
+            var pOn = showPlane && i < planeNs.length;
+            if (np) {
+                np.visible = pOn;
+                if (pOn) { osAimZ(np, osSpun(planeNs[i])); np.scale.setScalar(planeR); }
+            }
+            if (nr) {
+                nr.visible = pOn;
+                if (pOn) { osAimZ(nr, osSpun(planeNs[i])); nr.scale.setScalar(planeR); }
+            }
+        }
+        var nodeLab2 = osFindById("os_node_label");
+        if (nodeLab2) {
+            // ONE "node" sprite even when a d orbital has two planes: two
+            // identical words on one picture is clutter, not information.
+            nodeLab2.visible = !!(showPlane && planeNs.length > 0 && os.show_labels !== false);
+            if (nodeLab2.visible) {
+                var nb = osBasis(planeNs[0]);
+                var np0 = osSpun([nb[0][0] * planeR * 1.02, nb[0][1] * planeR * 1.02, nb[0][2] * planeR * 1.02]);
+                nodeLab2.position.set(np0[0], np0[1] + 0.16, np0[2]);
+            }
+        }
+
+        // ── the 2s radial node SHELL: a ring lying IN the cut plane at the node
+        //    radius, so the dark gap the cutaway exposes is named, not guessed.
+        var shell = osFindById("os_node_shell"), shellLab = osFindById("os_node_shell_label");
+        var shOn = !!os.show_node_shell && primary.shellPm != null && cutF > 0.35;
+        if (shell) {
+            shell.visible = shOn;
+            if (shOn) {
+                osAimZ(shell, cutNw);
+                shell.scale.setScalar(primary.shellPm / OS_PM_PER_UNIT);
+            }
+        }
+        if (shellLab) {
+            shellLab.visible = shOn && (os.show_labels !== false);
+            if (shellLab.visible) {
+                var sb = osBasis(cutNw);
+                var sr = primary.shellPm / OS_PM_PER_UNIT;
+                // parked OUTSIDE the ring it names: centred on the rim it hid
+                // the very gap the state exists to show (first frame read).
+                osPlaceLabelClear(shellLab, [sb[0][0] * sr, sb[0][1] * sr, sb[0][2] * sr], 0.52, osAvoid);
+            }
+        }
+
+        // ── the probe plane + its live readouts (Rule 33d: a real number, and
+        //    at the node BOTH readouts must be exactly zero).
+        var probeS = window.PM_osProbe || 0;
+        if (os.probe_auto) {
+            var pa = os.probe_auto;
+            probeS = osRamp(ms, cueTriggerMs("probe", (pa.at_ms != null) ? pa.at_ms : 0),
+                (pa.duration_ms != null) ? pa.duration_ms : 4000,
+                (pa.from != null) ? pa.from : -1, (pa.to != null) ? pa.to : 1);
+        }
+        if (ctrls.indexOf("probe") >= 0 && window.PM_osProbeDragged) probeS = window.PM_osProbe;
+        var probeAxis = primary.axis || [0, 0, 1];
+        var probeTipU = primR / OS_PM_PER_UNIT;
+        var probeU = probeS * probeTipU;
+        var prb = osFindById("os_probe"), prbRim = osFindById("os_probe_rim");
+        var showProbe = !!os.show_probe;
+        var probeR = 1.05 * probeTipU;
+        for (k = 0; k < 2; k++) {
+            var pm2 = (k === 0) ? prb : prbRim;
+            if (!pm2) continue;
+            pm2.visible = showProbe;
+            if (showProbe) {
+                var pAxW = osSpun(probeAxis);
+                osAimZ(pm2, pAxW);
+                pm2.position.set(pAxW[0] * probeU, pAxW[1] * probeU, pAxW[2] * probeU);
+                pm2.scale.setScalar(probeR);
+            }
+        }
+        // live readouts, computed from the SAME functions the picture is drawn
+        // from: the plane's peak |psi|^2 (normalised), and the dots inside a
+        // thin slab about the plane, counted from the sample table.
+        var psi2 = osPlaneMaxDensity(primary, probeU);
+        var sliceDots = 0;
+        if (primary._pos) {
+            // The slab is PROPORTIONAL to the orbital (2.2% of its own r90) and
+            // deliberately thin: at the nodal plane the count must read a true
+            // 0, not "a couple of dots that were nearly there" — the claim the
+            // state makes is that NOTHING is found there. Thin also keeps the
+            // count honest away from the node (tens of dots at a lobe peak).
+            var slabP = 0.022 * (primR / OS_PM_PER_UNIT);
+            for (j = 0; j < count; j++) {
+                var sp2 = primary._pos[j * 3] * probeAxis[0] + primary._pos[j * 3 + 1] * probeAxis[1] + primary._pos[j * 3 + 2] * probeAxis[2];
+                if (sp2 >= probeU - slabP && sp2 <= probeU + slabP) sliceDots++;
+            }
+        }
+        window.PM_osPsi2 = psi2; window.PM_osSliceDots = sliceDots;
+        window.PM_osProbePm = probeU * OS_PM_PER_UNIT;
+        var prbV = document.getElementById("os_probe_val");
+        if (prbV && showProbe) prbV.textContent = String(Math.round(probeU * OS_PM_PER_UNIT));
+        if (ctrls.indexOf("probe") >= 0 && !window.PM_osProbeDragged) {
+            // keep the teacher's own control honest while a scripted sweep runs
+            // (a slider frozen at 0 under a moving plane is an instrument that
+            // contradicts the picture). DOM-only write, drag-seize untouched.
+            var prbSl2 = document.getElementById("os_probe_slider");
+            if (prbSl2) prbSl2.value = String(Math.round(probeS * 100));
+        }
+
+        // ── orbital name labels (two-run subscripts), parked past each set's
+        //    own lobe tip / sphere rim.
+        for (i = 0; i < OS_MAX_SETS; i++) {
+            var olb = osFindById("os_orb_label_" + i);
+            if (!olb) continue;
+            var lOn = (i < active.length) && (os.show_labels !== false);
+            olb.visible = lOn;
+            if (lOn) {
+                var lorb = OS_ORBITALS[active[i]];
+                osSetSubLabel(olb, lorb.main, lorb.sub, lorb.color);
+                // anchored on the thing it names (a lobe tip, or the top of the
+                // sphere), then pushed to whichever screen diagonal is clear.
+                var ldir = osSpun(lorb.kind === "lobes" ? (lorb.axis || [0, 0, 1]) : [0, 1, 0]);
+                var lrad = (osOuterPm(lorb, encKey) / OS_PM_PER_UNIT) * 0.92;
+                osPlaceLabelClear(olb, [ldir[0] * lrad, ldir[1] * lrad, ldir[2] * lrad], 0.42, osAvoid);
+                osAvoid.push([olb.position.x, olb.position.y, olb.position.z]);
+            }
+        }
+
+        // ── the Bohr prop (S1): the believed orbit runs, then the measurement
+        //    flashes land and the ring it never predicted fades out. Each dot is
+        //    preceded by its OWN flash 500 ms earlier (Rule 32a cause-first).
+        var ring = osFindById("os_orbit_ring"), bead = osFindById("os_orbit_bead");
+        var orbitOn = !!os.show_orbit;
+        var dissAt = (os.dissolve_at_ms != null) ? cueTriggerMs("dissolve", os.dissolve_at_ms) : null;
+        var ringF = (dissAt == null) ? 1 : osRamp(ms, dissAt, (os.dissolve_duration_ms != null) ? os.dissolve_duration_ms : 2500, 1, 0);
+        var ringR = OS_A0 / OS_PM_PER_UNIT;      // the Bohr n=1 radius, to scale
+        if (ring) {
+            ring.visible = orbitOn && ringF > 0.004;
+            if (ring.visible) {
+                osAimZ(ring, [0, 1, 0]);          // the orbit lies in the xz-plane
+                ring.scale.setScalar(ringR);
+                if (ring.material) ring.material.opacity = 0.85 * ringF;
+            }
+        }
+        if (bead) {
+            bead.visible = orbitOn && ringF > 0.004;
+            if (bead.visible) {
+                var omega = 2 * Math.PI / Math.max(200, (os.orbit_ms != null) ? os.orbit_ms : 2400);
+                var ang = omega * ms;
+                bead.position.set(ringR * Math.cos(ang), 0, ringR * Math.sin(ang));
+                if (bead.material) bead.material.opacity = ringF;
+            }
+        }
+        for (i = 0; i < OS_FLASH_POOL; i++) {
+            var fl2 = osFindById("os_flash_" + i);
+            if (!fl2) continue;
+            var idx = count + i;
+            var vis = false;
+            // The flash LEADS its own dot (Rule 32a: the measurement happens,
+            // then the mark lands) — but the lead can never exceed the gap
+            // between dots, or a fast stipple keeps five flashes in the air at
+            // once and the beat reads as a swarm of little planets instead of a
+            // measurement (caught on the first headless frame read).
+            var lead0 = Math.min(500, perDot);
+            if (orbitOn && idx < dotTarget && count > 0) {
+                var tDot = stippleAt + idx * perDot;      // when dot idx lands
+                var lead = tDot - ms;
+                if (lead > 0 && lead <= lead0) {
+                    vis = true;
+                    fl2.position.set(primary._pos[idx * 3], primary._pos[idx * 3 + 1], primary._pos[idx * 3 + 2]);
+                    // a spark just larger than the mark it becomes, held at a
+                    // constant on-screen size like the dots themselves.
+                    var camR2 = (typeof spherical !== "undefined" && spherical.radius) ? spherical.radius : 8;
+                    fl2.scale.setScalar(Math.max(0.12, 0.175 * camR2));
+                    if (fl2.material) fl2.material.opacity = 0.9 * (1 - lead / lead0);
+                }
+            }
+            fl2.visible = vis;
+        }
+
+        // ── value-only HUD (Rule 34b: numbers, never a restated equation)
+        var hud = document.getElementById("os_hud");
+        if (hud && hud.style.display !== "none") {
+            var lines = [], want = os.hud_lines || ["energy", "nodes"];
+            for (i = 0; i < want.length; i++) {
+                if (want[i] === "occupancy") {
+                    lines.push("inside boundary: " + ((occ == null) ? "\\u2014" : (Math.round(occ * 100) + "%")));
+                } else if (want[i] === "psi2") {
+                    lines.push("|\\u03C8|\\u00B2 = " + psi2.toFixed(2));
+                } else if (want[i] === "slice_dots") {
+                    lines.push("dots in slice: " + sliceDots);
+                } else if (want[i] === "energy") {
+                    lines.push("E = " + primary.E.toFixed(2) + " eV");
+                } else if (want[i] === "nodes") {
+                    lines.push("nodes: " + primary.nodesRadial + " radial \\u00B7 " + primary.nodesAngular + " angular");
+                } else if (want[i] === "radius") {
+                    lines.push((primary.kind === "sphere" ? "r = " : "lobe tip = ") + Math.round(primR) + " pm ("
+                        + encKey + "%)");
+                } else if (want[i] === "label") {
+                    // the DOM HUD can carry a real subscript, so it must: "2pz"
+                    // is the same notation lie the two-run sprite exists to avoid.
+                    lines.push(primary.main + (primary.sub ? "<sub>" + primary.sub + "</sub>" : ""));
+                } else if (want[i] === "dots") {
+                    lines.push("measurements: " + count);
+                }
+            }
+            hud.innerHTML = lines.join("<br>");
+        }
+        // keep the explore picker in sync with the scripted (non-dragged) value
+        if (ctrls.indexOf("orbital") >= 0 && !window.PM_osOrbitalDragged) {
+            var os2 = document.getElementById("os_orbital_select");
+            if (os2 && OS_ORBITALS[baseId] && os2.value !== baseId) os2.value = baseId;
+        }
+        if (ctrls.indexOf("dots") >= 0 && !window.PM_osDotsDragged) {
+            var dv2 = document.getElementById("os_dots_val");
+            if (dv2) dv2.textContent = String(count);
+        }
+    }
+    // Angular node planes, as NORMALS: a p orbital's single plane is
+    // perpendicular to its axis; d_xy's two are the xz and yz planes (normals
+    // y and x), which is where dx^2 dy^2 vanishes.
+    function osNodePlaneNormals(orb) {
+        if (orb.l === 1) return [orb.axis];
+        if (orb.l === 2) return [[0, 1, 0], [1, 0, 0]];
+        return [];
+    }
+
+    // Glow (Rule 29 — brightness only) from the CLOSED enum. Scene-object
+    // focals only; the DOM surfaces (HUD / formula) carry their own prominence
+    // and are deliberately absent, so a DOM key can never set anyScene=true
+    // with nothing to brighten (the VSEPR scar).
+    var OS_GLOW_ELS = {
+        orbit: ["os_orbit"], dots: ["os_dots"], surface: ["os_surface", "os_lobe"],
+        lobe_set: ["os_lobe"], node_plane: ["os_node_plane"], node_shell: ["os_node_shell"],
+        probe: ["os_probe"], axes: ["os_axis", "os_axis_label"]
+    };
+    function applyOrbitalShapesGlow(stateDef) {
+        var focalTypes = {}, g, k, i;
+        for (g = 0; g < (glowTargets || []).length; g++) {
+            var keys = OS_GLOW_ELS[glowTargets[g]];
+            if (!keys) continue;
+            for (k = 0; k < keys.length; k++) focalTypes[keys[k]] = true;
+        }
+        var anyScene = false;
+        for (k in focalTypes) if (focalTypes[k]) anyScene = true;
+        for (i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("os_") !== 0) continue;
+            if (o.visible === false) continue;
+            applyGlowEmphasis(o, !!focalTypes[ud.elementType], anyScene, 0.6, true);
+        }
+    }
+
     function buildScenario() {
         clearScene();
 
@@ -42920,6 +44377,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "molecular_geometry":
                 buildMolecularGeometry(config);
+                break;
+
+            case "orbital_shapes":
+                buildOrbitalShapes(config);
                 break;
 
             case "displacement_current":
@@ -43733,6 +45194,16 @@ export const FIELD_3D_RENDERER_CODE = `
             applyMolecularGeometryState(stateDef);
         }
 
+        // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY) — authoritative per-state
+        // seeding (orbital preset / dot target / spin / probe), contextual control
+        // rows (Rule 31), the HUD + formula toggles, the SOLVED camera, and the
+        // cut-plane normal the cutaway slab uses. Every mesh is placed by
+        // updateOrbitalShapesFrame from the state's own clock on the next frame,
+        // so there is nothing positional to seed here.
+        if (config.scenario_type === "orbital_shapes") {
+            applyOrbitalShapesState(stateDef);
+        }
+
         // dipole_potential (electric_potential_dipole, V = k p cosθ/r²) —
         // authoritative per-state visibility (charges/p always on; probe / r-lines /
         // θ-arc / two-term + collapse callouts / equatorial disc + E arrow / curve
@@ -44005,6 +45476,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // itself to this NOT-list, same as isMag/isFaraday/isRhr/... above).
         // Discriminated on 'swc' presence (not scenario_type alone) so
         // magnetic_field_wire's own #sliders panel is completely unaffected.
+        // orbital_shapes owns its OWN #os_sliders panel (orbital/dots/spin/probe)
+        // -- must be excluded here or the generic #sliders panel bleeds through
+        // (THE-EYE "#sliders exclusion chain" -- every dedicated panel adds itself
+        // to this NOT-list, same as isMag/isFaraday/isCap/... above).
+        var isOrbShapes = config.scenario_type === "orbital_shapes";
         var isSwc = config.scenario_type === "straight_wire_current" && !!stateDef.swc;
         // FIX 3 — the potential diamonds share the point_charge_positive scenario but
         // setupSliders rebuilt #sliders as the distance-r explorer panel, so this gate
@@ -44024,7 +45500,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isOrbShapes) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -44211,7 +45687,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -44708,6 +46184,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // everything, and a "point charge / drag to rotate" legend would be both
         // wrong (there are no charges) and clutter (Rule 34).
         if (config.scenario_type === "molecular_geometry") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // orbital_shapes is a silent visual too (Rule 24): the dot swarm + the
+        // boundary surface + the two-run orbital label carry the meaning, and the
+        // generic legend would restate them as prose over the cloud.
+        if (config.scenario_type === "orbital_shapes") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // em_wave_propagation is a silent visual (Rule 24): the antenna + axis +
         // green E-train / blue B-train + receiver dual gauge + motes + the ONE
         // formula surface carry everything — suppress the generic point-charge
@@ -47179,7 +48659,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -47275,6 +48755,23 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "molecular_geometry") {
             var mgStateDef = config.states[PM_currentState];
             if (mgStateDef) { updateMolecularGeometryFrame(mgStateDef); applyMolecularGeometryGlow(mgStateDef); }
+        }
+
+        // orbital_shapes (ATOMIC ORBITALS) — the orbit-dissolve / stipple /
+        // boundary-grow / lobe-extrude / probe-sweep / axis-populate / clover-
+        // bloom / cutaway / gallery beats, the slow spin, the live |psi|^2 +
+        // slice-count + occupancy readouts, and the value-only HUD. THIS IS THE
+        // ONLY SITE THAT STEPS THIS SCENARIO: the freeze path above snaps the
+        // time variable to the pin and then falls through to exactly this call,
+        // so a frozen or
+        // dense capture runs the SAME dispatcher as live playback (the gas_box
+        // scar: a second stepping branch at the freeze call site advanced the
+        // wrong physics for every frozen frame, and the gate passed twice).
+        // Accumulator-free: every value INCLUDING the spin angle and the dot
+        // count is a pure fn of state-local t (Rule 26/36).
+        if (config.scenario_type === "orbital_shapes") {
+            var osStateDef = config.states[PM_currentState];
+            if (osStateDef) { updateOrbitalShapesFrame(osStateDef); applyOrbitalShapesGlow(osStateDef); }
         }
 
         // dipole_potential — timed reveals, STATE_3/5 sweeps, signed-V recolor
