@@ -39,6 +39,49 @@ spanning both dimensionalities. That is the bottleneck, not renderer coverage.
 
 ---
 
+## ⚗️ SESSION — the reaction layer + `dynamic_equilibrium`, and seven defects no gate could see (2026-07-28, branch `feat/chemistry-equilibrium` → master)
+
+**Bottom line: the gas_box reaction layer (A + B ⇌ AB) is on master and `dynamic_equilibrium` is authored, validating and audited. The load-bearing finding is again a VERIFICATION one — seven real defects this session, and NOT ONE was caught by tsc, the validators, or THE EYE. Every one came from measuring the physics headlessly or driving the built page. `check:gas-reaction` (19 checks, ~4 s, no browser) is the gate that came out of it. Master: `c538f37`.**
+
+### What shipped to master
+- **The reaction layer.** Forward is bimolecular (line-of-centres energy ≥ Ea); reverse is first-order Arrhenius. **Ea_rev is DERIVED (Ea_fwd + E_bond) and cannot be authored** — that single decision is why heating an exothermic box shifts it back *by itself*, and why compressing it makes product, instead of either being scripted. Mass, momentum and energy are each conserved exactly, with an explicit ledger (KE + rotational + heat reservoir − N_AB·E_bond) a HUD can print.
+- **Per-state opening composition** (`species_counts`) — without it every state of a reacting concept opens from the same mixture and plays the same movie.
+- **`continuous_motion`** — a guided state may decline the end-of-timeline freeze. Dynamic equilibrium forced it: its central state says "the amounts stopped changing but the reaction never stopped", and the sim then stopped dead a second later, demonstrating the misconception it exists to kill.
+- **The N tap is a chemical operation in both directions** — adds and removes reagent without ever breaking a bond.
+
+### `dynamic_equilibrium` — 7 states, P1 #2
+Rings core S1–S4 / extended S5 / advanced S6 / explore S7. Primary aha at S3: **the composition line goes flat while both rate bars stay lit and the made/broken counters keep climbing** — quality_auditor confirmed it lands (`165 made · 136 broken` over dead-flat traces). Constants MEASURED over ~1,100 headless sweeps, not guessed. 24 state-scoped tts ids, zero duplicates — this concept does not join the 41-file fleet-wide voicing scar.
+
+### THE LESSON: measurement, not gates
+| Found by | Defect |
+|---|---|
+| headless conservation probe | the N-count sync deleted dissociation fragments and minted atoms — B atoms 60 → 101, 60% of the box's energy gone |
+| headless conservation probe | a collision-activated reverse made the reaction bimolecular in BOTH directions, so the density factors cancelled and compression shifted the equilibrium **backwards** (41 → 36) |
+| chemistry_author sweeps | dragging N down destroyed bonded pairs, corrupting the inventory 90/90 → 55/60, unrecoverable |
+| json_author driving the page | `continuous_motion` was **inert** — consumer wired, field never populated, no error anywhere |
+| json_author driving the page | **the equilibrium position depended on browser window size** (31 / 17 / 15 across three screens) — every authored constant was true only on the author's monitor |
+| eye_walker reading 166 frames | the rate bars renormalised to their own maximum, so S1's forward bar sat at 100% for 18 s while its printed value fell 8.0 → 2.0/s — the instrument contradicting the state it taught |
+| quality_auditor driving the timeline | S2's narration outlived its instrument: "fwd sits at zero" began at t=12 s of a 19 s state, by which point the forward rate was climbing |
+
+**10 rows in `engine_bug_queue`** (7 FIXED, each with a permanent check; 3 OPEN). The strongest new check is an identity rather than a tolerance: `forward_total − reverse_total` must EQUAL the dimers on screen.
+
+### Two traps that produced convincing FALSE failures
+Both cost real time and are now pinned in the check script's own comments: running the comparison **adiabatically** (the exothermic forward self-heated the box 500 → 650 K while the product-side run cooled to 150 K and froze solid), and comparing runs with **mismatched atom inventories** (60+60 vs 45+45 — two genuinely different equilibria, read as a bug). A false failure that looks like an engine defect costs as much as a real one.
+
+### The claim the concept rests on is now a gate
+Same equilibrium from either direction: mean product **20.5 from pure reactants vs 20.8 from pure product**. If a future engine edit breaks that, a check fails instead of a lesson.
+
+### Parallel-session note
+The orbitals session merged `orbital_shapes` to master mid-session. **Zero file overlap** verified before merging (they are `field_3d`, this is `particle_field`); clean merge. The two-worktree pattern held a second time.
+
+### ⏭ NEXT
+1. **`le_chateliers_principle`** (P1 #1) — the reason the reaction layer was built. Same engine, so materially cheaper; its stresses (add reagent, change volume, change temperature) are all live and measured.
+2. Founder visual approval → `visual:approve` for `dynamic_equilibrium`.
+3. **Asmi's professor review** — now FIVE concepts deep with none reviewed. Still the bottleneck, and no longer a small sample.
+4. Open scars worth a look: the frozen H2 baseline is pinned at 1.5 s, blind to a concept whose content emerges over 10–20 s; and a chemistry id can silently resolve to a physics file of the same name.
+
+---
+
 ## 📊 STATE OF CHEMISTRY — audit + next-concept decision (2026-07-28)
 
 *Written at founder request: read the whole chemistry position, then pick the next 3D simulation
