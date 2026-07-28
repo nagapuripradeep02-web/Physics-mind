@@ -1,0 +1,954 @@
+{
+  "concept_id": "atomic_orbitals_s_p_d",
+  "concept_name": "Atomic Orbitals: s, p and d Shapes Are Regions of Probability, Not Paths",
+  "chapter": 2,
+  "section": "2.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Chemistry Class 11, Ch.2 'Structure of Atom', §2.6 — the quantum mechanical model: shapes of s, p and d atomic orbitals, radial and angular nodes — chapter-index scope reference only (retained in full post-2023 rationalisation); teaching, sequence, and phrasing authored from first principles. Every shape/radius/node/energy number is derived directly from the exact hydrogenic radial functions R_nl(rho) and angular factors |Y_lm|^2, independently re-derived by numerical integration and bisection, never accepted on the engine's word alone. NCERT Exemplar Ch.2 consulted for misconception beliefs only (orbit-vs-orbital confusion); no problem text, figure, or worked example imported. Fourth chemistry concept through the pipeline, first on the field_3d orbital_shapes surface (P2 slice).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "orbital_shapes"
+    ]
+  },
+  "prerequisites": [
+    "bohr_model_energy_levels"
+  ],
+  "real_world_anchor": {
+    "primary": "The atom icon — a nucleus with electrons on crossing ellipses — appears on science logos, apps, and classroom posters everywhere on Earth, and it is wrong. In 2013 physicists photographed a hydrogen atom's actual electron cloud with a quantum microscope: the photograph shows these lobes and shells, not orbits. The student is about to see what the photograph sees.",
+    "secondary": "Orbital shapes are why molecules have shapes at all — water bends at 104.5° because oxygen's orbitals point in specific directions. Shape at the atom's scale becomes shape at the molecule's scale, which becomes everything chemistry does."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_5"
+    },
+    "d_orbitals": {
+      "start": "STATE_6",
+      "end": "STATE_6"
+    },
+    "size_and_nodes": {
+      "start": "STATE_7",
+      "end": "STATE_8"
+    }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "dots": {
+        "name": "number of position measurements shown (dot-swarm size)",
+        "unit": "count",
+        "min": 100,
+        "max": 5000,
+        "default": 1200,
+        "role": "presentation_only"
+      },
+      "spin": {
+        "name": "turn speed — the slow rotation that lets the 3D shape be read",
+        "unit": "rad/s",
+        "min": 0,
+        "max": 0.6,
+        "default": 0.16,
+        "role": "presentation_only"
+      },
+      "probe": {
+        "name": "probe-plane position along the active lobe's own axis, as a fraction of its tip radius",
+        "unit": "fraction of r90 (-1 to 1)",
+        "min": -1,
+        "max": 1,
+        "default": 0,
+        "role": "diagnostic"
+      },
+      "a0": {
+        "name": "Bohr radius",
+        "unit": "pm",
+        "constant": 52.9177
+      },
+      "pm_per_unit": {
+        "name": "frame scale — the ONE declared constant converting real pm to world units",
+        "unit": "pm per world-unit",
+        "constant": 200
+      },
+      "r90_1s": {
+        "name": "1s boundary radius enclosing 90% of measurements",
+        "unit": "pm",
+        "constant": 141
+      },
+      "r90_2s": {
+        "name": "2s boundary radius enclosing 90% of measurements",
+        "unit": "pm",
+        "constant": 483
+      },
+      "node_2s": {
+        "name": "2s radial node shell radius (2 a0)",
+        "unit": "pm",
+        "constant": 106
+      },
+      "r90_2p_tip": {
+        "name": "2p lobe tip length at the 90% boundary",
+        "unit": "pm",
+        "constant": 482
+      },
+      "r90_2p_width": {
+        "name": "2p lobe maximum width at the 90% boundary",
+        "unit": "pm",
+        "constant": 334
+      },
+      "r50_2p_tip": {
+        "name": "2p lobe tip length at the 50% boundary (STATE_5's slimmer, countable contour)",
+        "unit": "pm",
+        "constant": 308
+      },
+      "r50_2p_width": {
+        "name": "2p lobe maximum width at the 50% boundary",
+        "unit": "pm",
+        "constant": 177
+      },
+      "r90_3d_tip": {
+        "name": "3d_xy lobe tip length at the 90% boundary",
+        "unit": "pm",
+        "constant": 963
+      },
+      "E_1": {
+        "name": "hydrogen energy at n = 1",
+        "unit": "eV",
+        "constant": -13.6
+      },
+      "E_2": {
+        "name": "hydrogen energy at n = 2",
+        "unit": "eV",
+        "constant": -3.4
+      },
+      "E_3": {
+        "name": "hydrogen energy at n = 3",
+        "unit": "eV",
+        "constant": -1.51
+      }
+    },
+    "computed_outputs": {
+      "occupancy_pct": {
+        "formula": "measured fraction of the active dot sample lying inside the drawn boundary surface, at the state's active enclosure key (0.9, 0.7 or 0.5) — never asserted, always counted from the sample"
+      },
+      "psi2_at_probe": {
+        "formula": "normalised |psi|^2 at the probe plane's position, relative to the orbital's own peak density"
+      },
+      "dots_in_slice": {
+        "formula": "count of sampled measurement dots lying within a thin slab centred on the probe plane"
+      }
+    },
+    "formulas": {
+      "energy_rule": "E_n = -13.6 / n^2 eV (Z = 1, hydrogenic) — must agree bit-for-bit with bohr_model_energy_levels",
+      "node_rule": "angular nodes = l; radial nodes = n - l - 1",
+      "boundary_definition": "the boundary surface encloses the enclosure fraction (90%, 70% or 50%) of the ACTUAL measured dot sample — never asserted, always measured",
+      "degeneracy_2p": "the three 2p orbitals are degenerate for ANY atom (rotational symmetry of the p subshell)",
+      "degeneracy_scope_note": "2s-vs-2p degeneracy is a ONE-ELECTRON (hydrogenic) accident only, and is never claimed as a general atomic fact in this concept"
+    },
+    "derived_fields_declared": [
+      "occupancy_pct",
+      "psi2_at_probe",
+      "dots_in_slice"
+    ],
+    "constraints": [
+      "Every rendered radius, node position, and energy is COMPUTED from the exact hydrogenic R_nl(rho) and |Y_lm|^2 functions at build time — never a typed-in number.",
+      "The occupancy HUD is MEASURED from the actual dot sample at the state's active enclosure key: ~90% at enclosure 0.9, ~70% at 0.7, ~50% at 0.5 (STATE_5) — never a fixed 90% regardless of which contour is drawn.",
+      "At the true nodal plane/shell, BOTH |psi|^2 and the dots-in-slice count read exactly 0 (STATE_4 at the node on the 2p axis; STATE_7's cutaway through the 2s shell at rho = 2, r = 2a0 = 106 pm) — any non-zero reading there is a defect, not a rounding artifact.",
+      "Node counts satisfy angular = l, radial = n - l - 1 for every orbital shown: 1s(0,0), 2s(0,1), 2p(1,0), 3d_xy(2,0).",
+      "E_n = -13.6/n^2 eV for every orbital, and the n=1/2/3 values (-13.60/-3.40/-1.51 eV) are bit-for-bit identical to bohr_model_energy_levels.",
+      "Degeneracy scope: the three 2p orbitals are degenerate for ANY atom (rotational symmetry); 2s-vs-2p degeneracy is a ONE-ELECTRON (hydrogenic) accident only and is never asserted as a general atomic fact in this concept."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 30,
+    "max_labels_per_state": 14,
+    "max_words_per_tts_sentence": 34
+  },
+  "aha_moment": {
+    "state_id": "STATE_1",
+    "statement": "Thousands of measurements never land on the orbit — they build a cloud instead.",
+    "visual_confirmation": "the believed orbit runs alone, then position-measurement flashes land scattered, never on the ring, while the ring fades and the dot cloud it never predicted takes its place"
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "The electron has no path — measurements build a cloud instead",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_measure_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_belief_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "the familiar picture: an orbit",
+            "color": "#B0BEC5"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_measure_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "measurements land — never on the ring",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_cloud_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "together: a cloud, not a path",
+            "color": "#81D4FA"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "The electron travels a circular path around the nucleus, like a tiny planet orbiting a star.",
+            "visual_counter": "The believed orbit runs for the first few seconds; then position-measurement flashes land, scattered, never once on that ring, while the ring itself fades to nothing.",
+            "one_line_fix": "There is no path to travel — thousands of position measurements build a cloud instead, and the cloud is the whole truth."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "This is the picture everyone already carries: an electron circling the nucleus on a fixed path, like a tiny planet.",
+              "glow": "orbit"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch it run, then watch position measurements land, one by one, and never once on that ring.",
+              "glow": "dots",
+              "scenario_cue": "stipple"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Together, the measurements build a cloud, not a path at all.",
+              "glow": "dots"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The orbital = the region holding ~90% of the finds; density is the whole truth",
+        "duration": 21,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_boundary_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_name_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "the orbital, not an orbit",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_boundary_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "boundary = 90% of every measurement",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_density_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "more measurements, same density",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "That cloud has a name: the orbital, not an orbit, a region.",
+              "glow": "surface",
+              "scenario_cue": "surface"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Its boundary is the region holding ninety percent of every measurement; everything past it is rare.",
+              "glow": "surface"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Turn it. The shape holds; only the view changes.",
+              "glow": "surface"
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Add more measurements and the cloud only gets clearer; the density was always the whole truth.",
+              "glow": "dots"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "The second shape family: two lobes along one axis",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_lobes_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_shape_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "a different shape: the p orbital",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_lobes_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "two lobes, nothing at the centre",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_3d_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "the real dumbbell, genuinely in 3D",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "A different shape now: the p orbital.",
+              "glow": "surface",
+              "scenario_cue": "extrude"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Two lobes grow outward from the nucleus along one axis, with nothing at the centre.",
+              "glow": "surface"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "This is the shape behind every dumbbell drawing you have seen, now genuinely three-dimensional.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "A plane of exactly zero probability separates the lobes",
+        "duration": 22,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_zero_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_sweep_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "a probe sweeps through the gap",
+            "color": "#E040FB"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_zero_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "|ψ|² = 0 — nothing found here",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_bothsides_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "dots land on both sides at once",
+            "color": "#81D4FA"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "The electron is a tiny ball that must physically cross the middle to get from one lobe to the other.",
+            "visual_counter": "The probe reads |ψ|² = 0.00 and the dots-in-slice count reads exactly 0 at the plane, while measurement dots keep landing on both lobes at once.",
+            "one_line_fix": "A standing wave has no journey between its crests — there is no path picture left to cross, so there is nothing to cross with."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Sweep a plane through the gap between the lobes and watch the reading cross the middle.",
+              "glow": "probe",
+              "scenario_cue": "probe"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "There, the probability density reads exactly zero, and so does the count of measurements; nothing is ever found on that plane.",
+              "glow": "node_plane"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Dots keep landing on both sides at once, because a standing wave has no journey between its crests.",
+              "glow": "dots"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "2pₓ, 2p_y, 2p_z — same shape, three perpendicular axes, same energy",
+        "duration": 21,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_energy_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_axis1_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "2pₓ appears on its own axis",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_axis2_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "then 2p_y, then 2p_z",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_energy_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "same shape, same energy, 90° apart",
+            "color": "#42A5F5"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "The three 2p orbitals are stacked or nested inside each other, like three separate rings drawn around the same point.",
+            "visual_counter": "All three are drawn on one shared set of axes, appearing one axis at a time, and every pair reads exactly ninety degrees apart with equal energy.",
+            "one_line_fix": "The three 2p orbitals are three directions of the same idea on one atom, not three objects nested one inside another."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Three p orbitals live on the same atom, one on each axis, drawn here at a smaller, easier-to-count boundary.",
+              "glow": "lobe_set",
+              "scenario_cue": "populate_0"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Same shape, same size, each pointing along x, y, or z, and every pair sits at exactly ninety degrees.",
+              "glow": "lobe_set",
+              "scenario_cue": "populate_1"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "All three share the same energy, not stacked inside each other; three directions of one idea.",
+              "glow": "lobe_set",
+              "scenario_cue": "populate_2"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "The third family: four lobes between the axes, two node planes",
+        "duration": 17,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s6_between_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_intro_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "a third shape: four lobes",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_between_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "they grow between x and y",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_planes_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "two invisible planes now cut it",
+            "color": "#FFCA28"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "A third shape: four lobes, not two.",
+              "glow": "lobe_set",
+              "scenario_cue": "bloom"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "They do not sit on the axes at all; they grow in the gaps between x and y, while the axis-aligned p orbitals fade to ghosts.",
+              "glow": "lobe_set"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Two invisible planes now cut the shape, not one.",
+              "glow": "node_plane"
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Bigger shell, hidden node: 2s = same sphere, larger, with a spherical node shell inside",
+        "duration": 24,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_shell_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_grow_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "the same s shape, one size up",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_shell_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "a hollow shell hides inside",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_n_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "n survives; the orbit does not",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "The same s shape, one size up: 2s.",
+              "glow": "surface",
+              "scenario_cue": "grow"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Watch it grow larger than 1s, then a clipping plane reveals what hides inside.",
+              "glow": "node_shell",
+              "scenario_cue": "cutaway"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "A whole empty shell sits inside; zero probability at one fixed radius, electron density on both sides.",
+              "glow": "node_shell"
+            },
+            {
+              "id": "s7_4",
+              "text_en": "The level number n survives from the ladder you already met; only the orbit is gone.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Counting nodes: angular = l, radial = n − l − 1",
+        "duration": 19,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s8_radial_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s8_rule_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "one rule counts every node",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_angular_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "angular nodes = l",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_radial_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "radial nodes = n − l − 1",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "One simple rule counts every node.",
+              "glow": "surface",
+              "scenario_cue": "gallery_0"
+            },
+            {
+              "id": "s8_2",
+              "text_en": "The angular nodes equal the shape number l: s is zero, p is one, d is two.",
+              "glow": "surface"
+            },
+            {
+              "id": "s8_3",
+              "text_en": "The radial nodes equal the level number n, minus the shape number l, minus one; watch the count tick through 1s, 2s, 2p, and 3d.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — pick an orbital, sweep the probe, turn it",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s9_yours_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s9_pick_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "pick an orbital",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_probe_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "sweep the probe plane",
+            "color": "#E040FB"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_yours_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "all yours",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Now it's yours. Pick an orbital, sweep the probe, and turn it however you like.",
+              "glow": "surface"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "orbital_shapes",
+    "explorer_id": "orbital_explorer",
+    "field_lines": {
+      "opacity": 0
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8"
+    },
+    "slider_controls": {
+      "orbital": {
+        "default": "1s",
+        "label": "Orbital"
+      },
+      "dots": {
+        "default": 1200,
+        "label": "Measurements"
+      },
+      "spin": {
+        "min": 0,
+        "max": 0.6,
+        "step": 0.02,
+        "default": 0.16,
+        "label": "Turn speed"
+      },
+      "probe": {
+        "min": -1,
+        "max": 1,
+        "step": 0.01,
+        "default": 0,
+        "label": "Probe plane"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The believed orbit runs, then dissolves into a measured cloud",
+        "caption": "No path — a cloud",
+        "orbital_shapes": {
+          "mode": "orbit_dissolve",
+          "orbital": "1s",
+          "show_orbit": true,
+          "orbit_ms": 2200,
+          "dissolve_at_ms": 4200,
+          "dissolve_duration_ms": 5000,
+          "stipple_at_ms": 4200,
+          "per_dot_ms": 32,
+          "dot_target": 400,
+          "show_dots": true,
+          "show_surface": false,
+          "show_axes": true,
+          "show_labels": false,
+          "show_hud": true,
+          "hud_lines": ["dots"],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_2": {
+        "label": "The 90% boundary grows around the swarm as more measurements arrive",
+        "caption": "The boundary is the orbital",
+        "orbital_shapes": {
+          "mode": "boundary",
+          "orbital": "1s",
+          "surface_at_ms": 800,
+          "stipple_at_ms": 800,
+          "per_dot_ms": 16,
+          "dot_target": 900,
+          "show_dots": true,
+          "show_surface": true,
+          "show_axes": true,
+          "spin_axis": [0, 1, 0],
+          "spin_start_ms": 1800,
+          "spin_rate": 0.33,
+          "show_hud": true,
+          "hud_lines": ["occupancy", "dots"],
+          "show_formula": true,
+          "formula": "|ψ|² = probability of finding the electron",
+          "controls": ["dots"]
+        }
+      },
+      "STATE_3": {
+        "label": "A lobe pair extrudes outward along one axis",
+        "caption": "Two lobes, one axis",
+        "orbital_shapes": {
+          "mode": "p_build",
+          "orbital": "2p_z",
+          "extrude_at_ms": 500,
+          "extrude_duration_ms": 12000,
+          "dot_target": 600,
+          "show_dots": true,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["radius", "label"],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_4": {
+        "label": "A probe plane sweeps lobe to lobe; the reading hits exactly zero at the middle",
+        "caption": "Zero. Exactly zero.",
+        "orbital_shapes": {
+          "mode": "node_probe",
+          "orbital": "2p_z",
+          "probe_auto": { "from": -1, "to": 1, "at_ms": 800, "duration_ms": 18500 },
+          "show_probe": true,
+          "show_node_plane": true,
+          "dot_target": 700,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["psi2", "slice_dots"],
+          "show_formula": true,
+          "formula": "|ψ|² = 0 at the node",
+          "spin_rate": 0,
+          "controls": ["probe"]
+        }
+      },
+      "STATE_5": {
+        "label": "Three 2p orbitals populate one axis at a time on a shared frame — the mandated slim (50%) enclosure",
+        "caption": "Three axes, one energy",
+        "orbital_shapes": {
+          "mode": "p_set",
+          "enclosure": 0.5,
+          "show_dots": false,
+          "surface_opacity": 0.34,
+          "spin_axis": [1, 1, 1],
+          "camera": { "az": 45, "el": 35.26, "dist": 5.3 },
+          "populate_steps": [
+            { "at_ms": 700, "orbital": "2p_x" },
+            { "at_ms": 7000, "orbital": "2p_y" },
+            { "at_ms": 14500, "orbital": "2p_z" }
+          ],
+          "spin_start_ms": 15500,
+          "spin_rate": 0.10,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["energy", "radius"],
+          "show_formula": true,
+          "formula": "E(2p<sub>x</sub>) = E(2p<sub>y</sub>) = E(2p<sub>z</sub>)",
+          "controls": []
+        }
+      },
+      "STATE_6": {
+        "label": "Four lobes bloom between the axes as the axis-aligned p pair fades to ghosts",
+        "caption": "Lobes between the axes",
+        "orbital_shapes": {
+          "mode": "d_clover",
+          "orbital": "3d_xy",
+          "ghost_at_ms": 600,
+          "ghost_orbitals": ["2p_x", "2p_y"],
+          "bloom_at_ms": 2200,
+          "bloom_duration_ms": 9000,
+          "spin_axis": [0, 0, 1],
+          "spin_start_ms": 0,
+          "spin_rate": 0.08,
+          "show_surface": true,
+          "show_node_plane": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["nodes", "label"],
+          "controls": []
+        }
+      },
+      "STATE_7": {
+        "label": "2s grows larger than 1s, then a clipping plane exposes the hidden node shell",
+        "caption": "Same shape, hollow shell",
+        "orbital_shapes": {
+          "mode": "radial_node",
+          "orbital": "2s",
+          "grow_at_ms": 800,
+          "grow_duration_ms": 6000,
+          "cutaway_at_ms": 7800,
+          "cutaway_duration_ms": 13500,
+          "show_node_shell": true,
+          "show_surface": true,
+          "show_dots": true,
+          "dot_target": 1000,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["nodes", "energy"],
+          "show_formula": true,
+          "formula": "E ∝ −1/n²",
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_8": {
+        "label": "A gallery cycles 1s → 2s → 2pₓ → 3d_xy while the node counter ticks",
+        "caption": "Count the nodes",
+        "orbital_shapes": {
+          "mode": "node_count",
+          "orbital": "1s",
+          "gallery_steps": [
+            { "at_ms": 600, "orbital": "1s" },
+            { "at_ms": 6000, "orbital": "2s" },
+            { "at_ms": 11500, "orbital": "2p_x" },
+            { "at_ms": 17000, "orbital": "3d_xy" }
+          ],
+          "spin_start_ms": 0,
+          "spin_rate": 0.08,
+          "show_surface": true,
+          "show_dots": false,
+          "show_node_plane": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["label", "nodes", "energy"],
+          "show_formula": true,
+          "formula": "angular nodes = l · radial = n − l − 1",
+          "controls": []
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — pick an orbital, sweep the probe, turn it",
+        "caption": "All yours",
+        "orbital_shapes": {
+          "mode": "explore",
+          "orbital": "1s",
+          "dot_target": 1200,
+          "spin_rate": 0.16,
+          "spin_axis": [0, 1, 0],
+          "show_dots": true,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_probe": true,
+          "show_node_plane": true,
+          "show_hud": true,
+          "hud_lines": ["label", "occupancy", "energy"],
+          "show_formula": true,
+          "formula": "|ψ|² = probability of finding the electron",
+          "controls": ["orbital", "dots", "spin", "probe"]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same probability-cloud idea, a heavier atom's outer orbital (sodium's 3s, not hydrogen's 1s)",
+      "physical_world": "Sodium's outermost electron sits in a 3s orbital — same spherical probability cloud, same radial-node counting rule (n − l − 1 = 2 radial nodes here), just a bigger, higher-energy version of the same shape family.",
+      "same_physics": "Identical reasoning: a definite 3D probability-density shape, a boundary that encloses the same fixed fraction of measurements, and the same node-counting rule (angular = l, radial = n − l − 1) — only n and the atom change, never the physics."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Ch.2 'Structure of Atom', §2.6 — quantum mechanical model: shapes of s, p and d atomic orbitals, radial and angular nodes",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main/Advanced · NEET",
+        "coverage": "full",
+        "syllabus_unit": "full concept; node counting (angular = l, radial = n − l − 1) is a recurring item across both exams",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge A-level Chemistry (9701)",
+        "coverage": "partial",
+        "syllabus_unit": "s/p orbital shapes in AS/A2; d-orbital shapes for transition-metal chemistry — full or no-advanced preset",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "s/p orbital shapes at SL; d orbitals likely AHL-only — no-advanced preset candidate",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "orbital shapes touched lightly; full quantum-number assignment excluded — light preset (hide STATE_6–STATE_8) candidate",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "absent",
+        "syllabus_unit": "orbitals not taught at this level (electron shells only) — likely out of scope entirely",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ],
+    "notes": "Rule 38g: every non-CBSE cell is a CLAIM. Only CBSE/NCERT is author-verified against the live syllabus; no preset goes teacher-visible until a teacher of that curriculum confirms its row."
+  }
+}
