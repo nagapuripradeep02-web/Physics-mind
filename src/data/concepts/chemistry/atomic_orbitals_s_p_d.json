@@ -776,6 +776,7 @@
         "caption": "Three axes, one energy",
         "orbital_shapes": {
           "mode": "p_set",
+          "orbital": "2p_x",
           "enclosure": 0.5,
           "show_dots": false,
           "surface_opacity": 0.34,
@@ -829,8 +830,8 @@
           "orbital": "2s",
           "grow_at_ms": 800,
           "grow_duration_ms": 6000,
-          "cutaway_at_ms": 7800,
-          "cutaway_duration_ms": 13500,
+          "cutaway_at_ms": 6800,
+          "cutaway_duration_ms": 4600,
           "show_node_shell": true,
           "show_surface": true,
           "show_dots": true,
