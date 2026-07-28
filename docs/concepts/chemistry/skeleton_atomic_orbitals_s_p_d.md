@@ -377,6 +377,95 @@ d 2"), satisfying Rule 25 no-untaught-term.
 
 ---
 
+## §E-AS-BUILT — what the engine ACTUALLY shipped (2026-07-28, commit `0ffb84c`, on master `ed0d2a7`)
+
+> **json_author: author against THIS section, not §E.** §E was the spec; the build found real
+> constraints and drifted. Where the two disagree, this section wins.
+
+**Verified on landing:** `check:renderer-syntax` OK · `tsc` 0 · `validate:chemistry` 4/4 ·
+`validate:concepts` 141/141 · additive (4 existing lines edited, all shared chains, each re-emitted
+with one added clause) · `orbital_shapes` registered in the snap-to-pin freeze set · **THE EYE re-run
+on `vsepr_molecular_shapes` (the existing concept on this same surface): 44/44, H2 = 0.00% pixel
+difference on all 14 approved baselines** — no regression, tested not assumed.
+
+**Derived values live in the renderer** (exact hydrogenic Z=1; the only imported constants are 12
+iso-density levels, each solved offline by bisection against the same functions):
+1s r₉₀ = 141 pm · 2s 483 pm (radial node shell at 2a₀ = 106 pm, empty band 95.4–126.0 pm) ·
+2p lobe tip 482 pm (half-angle 82.5°) · 3d_xy tip 963 pm · E = −13.60 / −3.40 / −1.51 eV (agrees with
+`bohr_model_energy_levels`). Occupancy is MEASURED from the dot sample (0.89–0.91 observed), not asserted.
+
+### Config-surface deltas vs §E-8 — all ADDITIVE, all must be authored knowingly
+- **`camera: {az, el, dist}`** — `dist` is REQUIRED (§E-8 said `{az, el}`). A plain `camera_position`,
+  if authored, wins and derives the cutaway normal.
+- **`spin_axis: [x,y,z]`** — NEW, default `[0,1,0]`. **Load-bearing:** spinning the three-p set about
+  +y swings it out of its solved camera within seconds. S5 must use `[1,1,1]` (the view axis — leaves
+  every solved metric invariant); S6 must use `[0,0,1]` (keeps the clover face-on).
+- **`enclosure: 0.9 | 0.7 | 0.5`** + **`surface_opacity`** — NEW, default 0.9. See the occlusion
+  finding below.
+- **`ghost_orbitals: [...]`** — NEW (defaults to `['2p_x','2p_y']` when `ghost_at_ms` is set);
+  **`bloom_duration_ms`**, **`grow_duration_ms`** added for symmetry.
+- **`show_*`**: `show_axes, show_surface, show_dots, show_node_plane, show_node_shell, show_probe,
+  show_orbit, show_labels, show_hud, show_formula`. `show_node_shell` / `show_orbit` / `show_labels`
+  are additions. **`show_surface: true` is REQUIRED for any lobe to draw** when the state authors no
+  `surface_at_ms` — the blank-scene trap for this scenario.
+- **`hud_lines`**: `occupancy | psi2 | slice_dots | energy | nodes | radius | label | dots`
+  (`radius`, `label`, `dots` are additions; `radius` prints e.g. `lobe tip = 482 pm (90%)`).
+- **`probe`** is authored/read as a FRACTION of the orbital's own tip radius (−1…1); the slider
+  displays pm.
+- **Cue names** for `SET_CUE_TIME`: `stipple, surface, extrude, bloom, ghost, grow, cutaway, probe,
+  dissolve, populate_<i>, gallery_<i>`.
+- Glow keys CLOSED, as specified: `orbit | dots | surface | node_plane | node_shell | probe | axes |
+  lobe_set`. `config.field_lines.opacity` must exist (an object, even `{}`).
+
+### Solved cameras baked in as per-mode defaults (`OS_CAMERAS`)
+A state that authors no camera inherits a solved one. Achieved numbers at 1280×720 / fov 60:
+`orbit_dissolve`+`boundary` 35/28/3.2 · `p_build`+`node_probe` 6/26/8.22 (lobe axis 4.5° off the
+screen plane; tip-to-tip 365 px) · **`p_set` 45/35.26/8.22 — the (1,1,1) view: all three axes
+foreshortened 0.816, 54.7° off the view axis, projected inter-axis angles exactly 120°, min pairwise
+separation of the six tips 160.3 px (global optimum, swept at 1°)** · `d_clover` 98/15/14.54 (min
+pairwise tip separation 274 px) · `radial_node` 35/26/7.2 (node band 13.3 px, over the 12 px floor) ·
+`node_count` 90/18/13.33 · `explore` 45/35.26/8.0.
+
+**⚠ Distances are solved for `enclosure: 0.9`.** A state using 0.5 must scale distance by ~0.64 or the
+object under-fills the frame (observed in the build frames).
+
+### ⚠ THE ONE PLACE THE SKELETON WAS WRONG — S5 must change
+**The true 90% boundary of a 2p orbital is plump, not the textbook slim dumbbell:** 482 pm long ×
+334 pm wide (L/W 1.44), pinching to a point only in the last ~6° before the nodal plane. For ONE
+orbital that reads fine (S3/S4/S9 frames are unambiguous dumbbells). For **S5 it fails** — three 90%
+shells plus three dot clouds fuse into a featureless ball and the six lobes stop being countable.
+
+This is **occlusion, not framing** (C6 §4 failure mode 1 exactly), so no camera solve can fix it, and
+the global-optimum camera above was already found. The fix is the `enclosure` lever: the 70% and 50%
+contours are solved from the same functions and are genuinely slimmer (50% lobe = 308 × 177 pm), and
+the HUD **measures and prints** what is actually enclosed, so nothing is faked.
+
+**S5 MUST be authored:** `enclosure: 0.5` · `show_dots: false` · `surface_opacity: ~0.34` ·
+`spin_axis: [1,1,1]` · camera dist ~5.3 (0.9-solve 8.22 × 0.64). That frame reads as six countable
+coloured lobes.
+
+**No setting was found where three DOT CLOUDS are simultaneously legible — the physics is against it
+(a filled p subshell really is spherical).** Do not try to recover it by shrinking or displacing the
+lobes: that would lie about size and violate Rule 29.
+
+### Four defects the build found by reading pixels, all fixed
+Recorded because each is a class, not a one-off: (1) the canonical lobe mesh evaluated its angular
+factor in WORLD axes, so a 2p_z rendered as a sphere with bumps on the wrong axis — every deterministic
+gate passed on it; (2) orbital name labels landed on top of axis letters; (3) five measurement flashes
+were in the air at once and read as planets (a fixed 500 ms cause-lead outran the 90 ms event spacing —
+**Rule 32a is about ORDER, not a constant**); (4) the node-shell label covered the very gap it names.
+**4 scar-candidate rows drafted, NOT applied** — founder ruling needed before they go in
+`engine_bug_queue`.
+
+### Forward-compat (why #16 was sequenced first)
+A lobe is `(angular factor in the lobe frame) × (lobe frame list) × (scale)`. **#13 hybridisation**
+adds an `osLobeAngLocal` branch + a tetrahedral frame list; morphing is a lerp of frames + growth,
+no new mesh machinery. **#17 σ/π** needs a per-lobe origin offset — currently the one thing hardcoded
+to the nucleus (`osAimFrame` sets `position(0,0,0)`), a one-line parameterisation. Neither is forced
+into a rewrite.
+
+---
+
 ## Provenance + open items (architect dispatch, 2026-07-28)
 
 - **`engine_bug_queue` SQL not run** in the architect dispatch (no DB access). Scar coverage was
