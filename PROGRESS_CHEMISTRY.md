@@ -18,7 +18,7 @@
 | 2.5 | Parity hardening (4 shared specs + tooling + validate:chemistry) | ✅ 2026-07-23 |
 | 3 | First concept — **Bohr energy levels** (Wave 1 pivoted from Rutherford; prove-first) | ✅ **MERGED TO MASTER 2026-07-27** (`b9eb735`) — authored, validated, quality_auditor gated, THE EYE 39/39, eye_walker walked, baselines approved. **Only Asmi's professor review remains.** |
 | 4 | Chemistry machine gates (ledger check, animation vocab) | ☐ |
-| 5 | Chemistry render surface (particle-box, then Three.js molecule/orbital) | ☐ (founder-gated) |
+| 5 | Chemistry render surface — **the 3D half is OPEN** | ◐ 2026-07-28: `field_3d` `molecular_geometry` (electron-domain 3D) LIVE + its first concept built on branch `feat/chemistry-3d-molecules`. Still ☐: the 2D particle-box, and orbitals/lattices. |
 
 **Chemistry is now a first-class subject ON MASTER.** The isolation contract held through
 the merge: `bohr_model_energy_levels` registers at site #1 only (verified zero occurrences in
@@ -40,6 +40,114 @@ boards).
 | 3 Energy | L ladder (+N) | modest (generic 2D primitives) | Bohr/energy levels/spectra · reaction energy profiles/enthalpy/activation energy |
 | 4 Bookkeeping | O ledger | cheap (generic primitives) | balancing · conservation of mass · mole concept · stoichiometry |
 | 5 Structure | P Three.js | big (Phase 5) | orbitals s/p/d · bonding/VSEPR · hybridization · organic mechanisms · electrochem cells |
+
+---
+
+## 🧊 SESSION — The 3D surface opens: `molecular_geometry` scenario built + `vsepr_molecular_shapes` (P4 #12) authored on it, 4 EYE runs (2026-07-28, branch `feat/chemistry-3d-molecules`, separate worktree)
+
+**Bottom line: chemistry now has a 3D render surface and its first 3D diamond. Session C5 §2 names
+four capabilities a simulation has that a whiteboard does not, and capability 3 — hold 3D spatial
+structure — was the only one with NO engine behind it; every concept in the C5 §6 P4 block was
+blocked on it. Built the `field_3d` `scenario_type: "molecular_geometry"` (P3), then authored
+`vsepr_molecular_shapes` (P4 #12, which C5 calls "arguably #2 overall after Le Chatelier") as pure
+data over it with zero new renderer code. 5 commits, all local. THE EYE 31/31 with zero console
+errors, `validate:chemistry` 3/3 PASS zero warnings, `validate:concepts` 141/141 unchanged and never
+sees the file, tsc 0. NOT baseline-approved — `visual:approve` stays founder-gated.**
+
+- **Worktree isolation first.** A parallel session was mid-flight in the main tree on
+  `feat/particle-field-gas-box` with uncommitted work in `particle_field_renderer.ts` and a new
+  `kinetic_particle_theory.json` (the 2D P0 particle-box — the other half of the C5 roadmap). All of
+  this ran in a separate git worktree (`../Viditra-chem3d`, branch off master `df3d993`,
+  node_modules symlinked) so the two sessions could not collide on a branch switch or a shared file.
+- **The engine (`b6a0259`), and why it is a scenario rather than a molecule viewer.** The taught
+  variable is the DOMAIN SET, so the shape is DERIVED, not authored: `mgIdealDirs` returns the
+  maximum-separation arrangement for 2–6 domains, lone pairs consume the apex-side slots first, and
+  `mgSqueeze` closes the surviving bonds to a target angle in closed form (pair → β = θ/2; symmetric
+  tripod → cos θ = 1.5cos²β − 0.5; a fully symmetric set has a zero centroid and returns untouched,
+  so CH₄ needs no special case). **Verified numerically before a single state was authored** —
+  BeCl₂ 180.0 · BF₃ 120.0 · CH₄ 109.471 · NH₃ 107.0 · H₂O 104.5 · PCl₅ 120.0/90.0 · SF₆ 90.0.
+  Because CH₄/NH₃/H₂O read ONE shared tetrahedral frame, the squeeze moves only the domain that
+  changed: the two surviving bonds drift 2.4°, so Rule 32b/32d hold by construction rather than by
+  authoring care. Rule 26/36: every beat INCLUDING the slow 3D turn is closed-form in state-local t
+  (the spin is baked into the direction vectors, not integrated into a group rotation), so there is
+  no accumulator and the scenario joins the accumulator-free snap-to-pin set. `deriveStateMeta`
+  registered in the SAME change per the standing scar rule.
+- **The concept (`e0b1ab4`).** 7 states, 5 core + 1 extended + explore, distinct declared archetype
+  each: assemble → the flat board sketch relaxes out of the page (90.0° → 109.5°, H···H 154 → 178 pm
+  off the real 109 pm bond — the misconception beat and the aha) → domains spread through BeCl₂ →
+  BF₃ → CH₄ → a bond becomes a lone pair and the survivors close 109.5 → 107 → 104.5 → the 4-domain
+  cage counts four while hiding the lobes leaves two atoms bent → PCl₅/SF₆ → sandbox. Three
+  misconception_watch beats; six questions including a deliberate transfer item (CO₂: a multiple bond
+  is ONE domain) that no single state stages. Site #1 only, verified zero registry occurrences.
+- **THE EYE ran FOUR times, and all four were 31/31 green — every real defect came from reading the
+  frames.** This is the session's clearest evidence for why the frame-read is the gate and the
+  deterministic checks are only a pre-flight. What the machine passed and the eye caught:
+  1. **Live labels clipped** — the arc/span/lone sprites were `createLabelSprite`, whose canvas is
+     measured ONCE from its seed string, so "H–C–H = 109.5°" rendered as "–C–H = 109." Same class as
+     the `ac_generator` "each half tu" clip that motivated `pmCreateAutoLabel` in the first place.
+  2. **Methane's fourth bond was invisible** — aimed straight down the view axis, foreshortened to
+     nothing behind the carbon, under a caption reading "Four bonds, one shape". A student counts 3.
+  3. **STATE_2 projected 133.6° while its label said 109.5°** — in the one state that exists to
+     correct a false picture. Found by MEASURING the projection, not by looking.
+  4. A 180° arc pair cancels to a zero mid-vector, parking "Cl–Be–Cl = 180.0°" on the beryllium; the
+     central symbol sat inside the arc wedge; and the cage edges had `depthTest:false` and drew white
+     fans straight THROUGH the hydrogens.
+- **Cameras were SOLVED, not chosen (`d1aac72`, `d8766ef`).** A scratch solver swept azimuth ×
+  elevation against two objectives — every domain must project at ≥34% of its length (else it hides
+  behind the central atom), and the measured angle must project near its label. Result: the tetra
+  states share az76/el60 (worst domain 50%, arc shows 109.2° against a true 109.5°); STATE_3 takes
+  az266/el8, where BeCl₂ reads 180°, BF₃ reads **exactly** 120° face-on and CH₄ reads 109°; STATE_6
+  takes az264/el54. New authorable `flat_basis` puts STATE_2's sketch plane perpendicular to its
+  camera, so its flat cross now measures exactly 90.00° AND the relaxed tetrahedron reads 109.2° —
+  both ends of the concept's central contrast honest, and the last camera discontinuity gone.
+- **A tooling hole closed (`119dabd`).** `validate-chemistry`'s Rule-31a choreography measure read
+  `scene_composition` only — the PCPL shape — and on field_3d that block is a silent no-op, so it
+  reported "choreography settles ~0ms" for EVERY field_3d chemistry concept regardless of timing. A
+  warning that cannot be satisfied trains you to ignore the gate. Now also consults
+  `deriveMaxRevealTimeMs`. It paid for itself twice: real ratios on the new concept (0.38 and 0.52,
+  both genuinely under-timed → S1/S2 retimed so the motion spans the narration), and it cleared a
+  false positive that had been sitting on `bohr_model_energy_levels` STATE_7.
+- **Archetype P split in `docs/patterns/chemistry.md`** — the C4 lesson applied to my own work. "P —
+  Molecular 3D" was one [PHASE-5] label over at least three separate engine builds. Now **P1
+  electron-domain geometry [LIVE]** (this scenario) and **P2 orbitals + lattices [NEEDS-SCENARIO]**,
+  with SN1/SN2 and stereochemistry noted as sitting between them (scaffold exists, motion layer does
+  not). Also worth recording: the 3D surface arrived as a `scenario_type` on the existing Three.js
+  `field_3d_renderer.ts`, NOT as the separate `molecule_3d`/`orbital_3d` renderer file
+  `CHEMISTRY_ARCHITECTURE.md` §5c anticipated — which is why "the biggest lift" cost one scenario.
+- **Files:** NEW `src/data/concepts/chemistry/vsepr_molecular_shapes.json`,
+  `docs/concepts/chemistry/vsepr_molecular_shapes_skeleton.md`; EDITED
+  `src/lib/renderers/field_3d_renderer.ts`, `src/lib/validators/visual/deriveStateMeta.ts`,
+  `src/scripts/validate-chemistry.ts`, `docs/patterns/chemistry.md`. 5 commits
+  (`b6a0259` → `119dabd` → `e0b1ab4` → `d1aac72` → `d8766ef`), **not pushed**.
+- **ADDENDUM — the pipeline gates were run after the above, and they FAILED the first time.** The
+  founder asked "did you even complete the quality auditor?" — I had not (a standing session rule
+  barred subagents unless asked). Running it changed the outcome. **quality-auditor: FAIL** on two
+  items — the skeleton had no Definition-of-Done block at all (Gate 0), and STATE_6's on-canvas
+  formula asserted `5 → 120° and 90°` while the scenario draws ONE arc, so PCl₅'s axial 90° was
+  claimed but never rendered. **eye-walker: 4 findings**, three MAJOR/CRITICAL. Every one was real,
+  checked against the frames before fixing. **THE EYE had been 31/31 green on four consecutive runs
+  the whole time.** Two findings were regressions from my own earlier "fixes" (pushing the arc label
+  out made it collide with the span label on the aha frame; moving the central label away from the
+  arc moved it onto a hydrogen), and one exposed a flaw in my method: the camera solver measured each
+  domain's foreshortening but never PAIRWISE screen separation, so all three shipped cameras actually
+  had overlapping atoms (gaps 0.05, −0.14, −0.28). Re-solving then optimised methane's arc but not
+  water's, leaving water edge-on with 104.5° reading as nearly straight — the final solve constrains
+  separation AND both arc families (CH₄ err 2.5°, H₂O err 2.2°). Also fixed: the lone-pair checkbox
+  stayed checked with zero lobes on screen, and PCl₅ got a longer bond (`bond_scale`, and P–Cl really
+  is 214 pm against methane's 109). Auditor re-check: **PASS**. Commits `0997401`, `2bd3eef`.
+- **SHIPPED (founder-approved).** `visual:approve` locked 7 states / 14 PNGs and activated H2;
+  re-running THE EYE against the new baselines gives **44/44 with all 14 H2 comparisons at 0.00%
+  drift** — byte-identical, the accumulator-free Rule 26/36 claim proving itself rather than being
+  asserted. `tts:generate --langs=en` rendered **17/17 EN clips, 0 stale** (bulbul:v3/priya, 760 KB);
+  English-only per Rule 30i, and supplementary per Rule 30h. Review site verified serving on :8081
+  (page, sim, manifest and clips all HTTP 200). No `PILOT_CONCEPTS`, no deploy, no merge, no push.
+- **⏭ NEXT.** (1) **Asmi's professor review is the only gate left.** (2) **Hybridisation (#13) is the cheap next harvest** — C5
+  §6 says build it as a pair with VSEPR, and it needs zero new renderer code, so it is the direct
+  proof of the P3 compounding thesis. (3) σ/π (#17) likewise. (4) Merging: the engine commits are
+  platform (Rule 40) and should go to master separately from the concept; the other session's
+  `particle_field_renderer.ts` work is on a different file, so the two tracks should merge cleanly.
+  (5) Orbitals (#16) and solid state (#19) stay blocked on the P2 scenario; SN1/SN2 (#14) needs a
+  motion layer on top of the built scaffold.
 
 ---
 

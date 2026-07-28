@@ -52,7 +52,13 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' |
+        // molecular_geometry (VSEPR — CHEMISTRY, 2026-07-28): a central atom's
+        // electron domains (bonds + lone pairs) repel into the arrangement of
+        // maximum separation, which IS the molecular shape. The P3 slice of the
+        // chemistry 3D render surface — see the scenario header comment in the
+        // renderer body for the per-state config shape.
+        'molecular_geometry';
     // em_wave_propagation (Ch.8 §8.3 — a traveling transverse EM wave: an
     // oscillating antenna charge launches a green E-train on ŷ + a blue B-train
     // on ẑ that self-propagate +x at v = c/n; a receiver post reads live E (V/m)
@@ -41826,6 +41832,1033 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── molecular_geometry (VSEPR — electron domains repel; that sets the shape) ─
+    //   NEW scenario (2026-07-28 engine ask). This is the P3 "hold 3D structure"
+    //   slice of the chemistry render surface: the ONE capability a whiteboard
+    //   structurally cannot reach (docs/CHEMISTRY_DISCUSSIONS.md Session C5 §2
+    //   capability 3 → §6 P3/P4 #12/#13). Clones existing fleet patterns only —
+    //   the closed-form ramp (capRamp), the pooled-mesh reposition-per-frame
+    //   discipline (capReposition / mflFindById child traversal), the drawRange
+    //   variable-arc trick over a RingGeometry (the gauss_sheet rim annulus made
+    //   thin-arc-shaped), and the value-only DOM HUD + single Cambria formula
+    //   surface (Rule 34b) from ac_generator/capacitance.
+    //
+    //   Per-state config shape (authored by json_author):
+    //     state.molecular_geometry = {
+    //       mode: 'assemble'|'flat_vs_real'|'domain_spread'|'lone_squeeze'|
+    //             'shape_vs_geometry'|'expanded'|'explore',
+    //       molecule: 'CH4',                    // key into MG_MOLECULES
+    //       spin_start_ms, spin_rate,           // rad/s about +y (0 = hold still)
+    //       assemble_at_ms, assemble_duration_ms,          // mode: assemble
+    //       flat_hold_ms, relax_duration_ms,               // mode: flat_vs_real
+    //       flat_basis: [[rx,ry,rz],[ux,uy,uz]],// the sketch plane (screen right +
+    //                                           // up of THIS state's camera), so
+    //                                           // the flat 90° reads as a true
+    //                                           // right angle; default xy-plane
+    //       spread_steps: [{at_ms,duration_ms,domains}],   // mode: domain_spread
+    //       squeeze_steps: [{at_ms,convert_ms,duration_ms,molecule}], // lone_squeeze
+    //       compare_at_ms, compare_molecule,               // mode: expanded
+    //       hull_at_ms,                         // cue: domain cage fades in (900 ms)
+    //       hide_lone_at_ms,                    // cue: scripted lone-pair hide, so
+    //                                           // the shape-vs-geometry beat is a
+    //                                           // real motion, not a static pose
+    //       arc_pair: [i,j],                    // bond indices the arc measures
+    //       show_angle_arc, show_lone_pairs, show_lone_label, show_domain_ghost,
+    //       show_domain_hull, show_span, show_flat_plane, show_hud, show_formula,
+    //       hud_lines: ['angle','domains','e_geom','shape','span'],
+    //       formula,                            // ONE-line formula surface (Rule 34b)
+    //       controls: ['molecule','spin','lone'],   // Rule 31 live rows
+    //       static_readouts: [...]              // same rows, disabled, same position
+    //     }
+    //   REQUIRED: config.field_lines.opacity must exist (an object, even {}) —
+    //   createTubeLine reads it unconditionally (the fleet's "blank scene" trap).
+    //   Glow-key enum is CLOSED to exactly: central | ligands | bonds | lone_pairs |
+    //   arc | ghost | span (applyMolecularGeometryGlow below — a non-keyed
+    //   glow_focal would dim the whole molecule with no focal lit, scar #33).
+    //   Rule 26/36: EVERY beat — including the slow spin (angle = rate·t) — is a
+    //   closed-form pure function of state-local t = time − stateStartTime, with
+    //   no per-frame accumulator anywhere, so a SET_TIME_FREEZE pin reproduces
+    //   byte-identical pixels and this scenario joins the accumulator-free
+    //   snap-to-pin set below.
+    //   Rule 29: the ONLY things that change size are element radii (a real
+    //   atomic magnitude) and the lone-pair lobe (a real "this domain occupies
+    //   more room" magnitude — the taught physics itself). No emphasis bulge.
+    var MG_BOND_LEN = 2.0;
+    var MG_ARC_R = 1.35;        // far enough off the central atom to read clearly,
+                                // still well inside the 2.0 bond length
+    var MG_ARC_SEGS = 120;
+    var MG_MAX_BONDS = 6;
+    var MG_MAX_LONE = 4;
+    var MG_HULL_EDGES = 6;      // a 4-domain hull (the tetrahedral e-geometry cage)
+    // Azimuth phase of the non-apex domains. NOT arbitrary: the fleet's 3/4
+    // cameras sit near azimuth 57 deg, and lone pairs consume the apex-side slots
+    // first — so with the naive phase (90 deg) water's two surviving O-H bonds
+    // came out at 210 and 330 deg, i.e. one of them pointing almost straight away
+    // from the camera and foreshortening onto the oxygen (caught on the first EYE
+    // run: the H label sat on top of the O). At 237 deg the two survivors land at
+    // 357 and 117 deg — straddling the camera direction symmetrically, 60 deg
+    // either side — so water reads as a clean V and ammonia keeps its iconic
+    // lone-pair-up tripod. n=3 derives from the same constant so the trigonal
+    // PLANE faces the camera instead of being seen edge-on.
+    var MG_AZ0 = 237 * Math.PI / 180;
+
+    // CPK-flavoured but re-picked for legibility on the deep-blue field background.
+    // radius = a REAL atomic magnitude (Rule 29), not an emphasis knob.
+    var MG_ELEMENTS = {
+        H:  { color: "#ECEFF1", radius: 0.30 },
+        Be: { color: "#A1887F", radius: 0.48 },
+        B:  { color: "#FFB74D", radius: 0.44 },
+        C:  { color: "#90A4AE", radius: 0.46 },
+        N:  { color: "#7986CB", radius: 0.44 },
+        O:  { color: "#EF5350", radius: 0.42 },
+        F:  { color: "#9CCC65", radius: 0.38 },
+        P:  { color: "#FF8A65", radius: 0.55 },
+        S:  { color: "#FFD54F", radius: 0.54 },
+        Cl: { color: "#66BB6A", radius: 0.52 }
+    };
+
+    // Every molecule reads its domain directions from ONE shared frame per domain
+    // count (mgIdealDirs), and lone pairs always consume the FIRST slots. So the
+    // CH4 → NH3 → H2O sequence converts the apex bond, then the front leg, and
+    // the two SURVIVING bonds never move except for the angle compression itself
+    // (Rule 32b: only the taught variable moves; Rule 32d: one home pose).
+    // arc_pair indexes the BOND list (after lone-pair removal). bond_pm = the real
+    // bond length in picometres, which the span readout converts to a real number.
+    var MG_MOLECULES = {
+        BeCl2: { central: "Be", ligand: "Cl", bonds: 2, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 177, arc_pair: [0, 1], formula: "BeCl\\u2082" },
+        BF3:   { central: "B",  ligand: "F",  bonds: 3, lone: 0, e_geom: "trigonal planar", shape: "trigonal planar", angle: 120, bond_pm: 130, arc_pair: [0, 1], formula: "BF\\u2083" },
+        CH4:   { central: "C",  ligand: "H",  bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 109, arc_pair: [0, 1], formula: "CH\\u2084" },
+        NH3:   { central: "N",  ligand: "H",  bonds: 3, lone: 1, e_geom: "tetrahedral", shape: "trigonal pyramidal", angle: 107, bond_pm: 101, arc_pair: [0, 1], formula: "NH\\u2083" },
+        H2O:   { central: "O",  ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 104.5, bond_pm: 96, arc_pair: [0, 1], formula: "H\\u2082O" },
+        PCl5:  { central: "P",  ligand: "Cl", bonds: 5, lone: 0, e_geom: "trigonal bipyramidal", shape: "trigonal bipyramidal", angle: 120, bond_pm: 214, arc_pair: [2, 3], formula: "PCl\\u2085" },
+        SF6:   { central: "S",  ligand: "F",  bonds: 6, lone: 0, e_geom: "octahedral", shape: "octahedral", angle: 90, bond_pm: 156, arc_pair: [0, 2], formula: "SF\\u2086" }
+    };
+    var MG_EXPLORE_MOLECULES = ["CH4", "NH3", "H2O", "BF3", "BeCl2"];
+
+    function mgSmooth01(u) { u = u < 0 ? 0 : (u > 1 ? 1 : u); return u * u * (3 - 2 * u); }
+    function mgClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+    // Pure fn of state-local t (Rule 26/36): from → to over [atMs, atMs+durMs].
+    function mgRamp(t, atMs, durMs, from, to) {
+        var a = (atMs != null) ? atMs : 0;
+        var d = Math.max(1, (durMs != null) ? durMs : 1500);
+        if (t <= a) return from;
+        if (t >= a + d) return to;
+        return from + (to - from) * mgSmooth01((t - a) / d);
+    }
+    function mgNorm(v) {
+        var L = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) || 1;
+        return [v[0] / L, v[1] / L, v[2] / L];
+    }
+    function mgDot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+    function mgRotY(v, a) {
+        var c = Math.cos(a), s = Math.sin(a);
+        return [v[0] * c + v[2] * s, v[1], -v[0] * s + v[2] * c];
+    }
+    function mgLerpDir(a, b, f) {
+        return mgNorm([a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f]);
+    }
+    function mgAngleDeg(a, b) {
+        return Math.acos(mgClamp(mgDot(mgNorm(a), mgNorm(b)), -1, 1)) * 180 / Math.PI;
+    }
+    // Ideal electron-domain directions for n domains — the arrangement that
+    // maximises mutual separation (the whole of VSEPR). APEX FIRST (+y), then the
+    // ring/legs, so a lone pair (always the FIRST slot) sits apex-side.
+    function mgIdealDirs(n) {
+        var out = [], k, az;
+        if (n <= 1) return [[0, 1, 0]];
+        if (n === 2) return [[0, 1, 0], [0, -1, 0]];
+        if (n === 3) {
+            // the trio is coplanar at 120 deg; put that PLANE face-on to the
+            // camera by placing the two non-apex domains a quarter turn either
+            // side of MG_AZ0 (so the plane normal points along MG_AZ0 + 90 deg,
+            // which is the camera azimuth). Seen edge-on, 120 deg reads as 180.
+            var hr = Math.sin(120 * Math.PI / 180);
+            out.push([0, 1, 0]);
+            for (k = 0; k < 2; k++) {
+                az = MG_AZ0 + (k === 0 ? Math.PI / 2 : -Math.PI / 2);
+                out.push([hr * Math.cos(az), -0.5, hr * Math.sin(az)]);
+            }
+            return out;
+        }
+        if (n === 4) {
+            var R = Math.sqrt(8) / 3;
+            out.push([0, 1, 0]);
+            for (k = 0; k < 3; k++) {
+                az = MG_AZ0 + k * (2 * Math.PI / 3);
+                out.push([R * Math.cos(az), -1 / 3, R * Math.sin(az)]);
+            }
+            return out;
+        }
+        if (n === 5) {
+            out.push([0, 1, 0]); out.push([0, -1, 0]);
+            for (k = 0; k < 3; k++) {
+                az = MG_AZ0 + k * (2 * Math.PI / 3);
+                out.push([Math.cos(az), 0, Math.sin(az)]);
+            }
+            return out;
+        }
+        return [[0, 1, 0], [0, -1, 0], [1, 0, 0], [-1, 0, 0], [0, 0, 1], [0, 0, -1]];
+    }
+    // Domain kind per slot — only the 5-domain case has two inequivalent families
+    // (the axial/equatorial beat).
+    function mgDomainKinds(n) {
+        if (n === 5) return ["axial", "axial", "equatorial", "equatorial", "equatorial"];
+        var out = [], i;
+        for (i = 0; i < n; i++) out.push("");
+        return out;
+    }
+    // Squeeze a bond set to a target bond–bond angle. CLOSED FORM, no solver:
+    // axis = the bond centroid; for a symmetric TRIPOD cos θ = 1.5cos²β − 0.5,
+    // for a PAIR β = θ/2. A fully symmetric set (CH4 / linear / octahedral) has a
+    // zero centroid → returned untouched, which is exactly right: no lone pair,
+    // no compression.
+    function mgSqueeze(dirs, targetDeg) {
+        var n = dirs.length, i;
+        if (n < 2 || n > 3 || !(targetDeg > 0)) return dirs;
+        var sum = [0, 0, 0];
+        for (i = 0; i < n; i++) { sum[0] += dirs[i][0]; sum[1] += dirs[i][1]; sum[2] += dirs[i][2]; }
+        var mag = Math.sqrt(sum[0] * sum[0] + sum[1] * sum[1] + sum[2] * sum[2]);
+        if (mag < 1e-6) return dirs;
+        var axis = [sum[0] / mag, sum[1] / mag, sum[2] / mag];
+        var ct = Math.cos(targetDeg * Math.PI / 180), beta;
+        if (n === 2) beta = (targetDeg / 2) * Math.PI / 180;
+        else beta = Math.acos(Math.sqrt(mgClamp((ct + 0.5) / 1.5, 0, 1)));
+        var cb = Math.cos(beta), sb = Math.sin(beta), out = [];
+        for (i = 0; i < n; i++) {
+            var d = dirs[i], pr = mgDot(d, axis);
+            var perp = mgNorm([d[0] - axis[0] * pr, d[1] - axis[1] * pr, d[2] - axis[2] * pr]);
+            out.push(mgNorm([axis[0] * cb + perp[0] * sb, axis[1] * cb + perp[1] * sb, axis[2] * cb + perp[2] * sb]));
+        }
+        return out;
+    }
+    // Resolve a molecule to its live geometry. angleDeg overrides the molecule's
+    // equilibrium angle (the squeeze / flat-relax morphs drive it); domainsOverride
+    // drives the bare domain-count spread (2 → 3 → 4, no lone pairs).
+    function mgFrame(molKey, angleDeg, domainsOverride) {
+        var mol = MG_MOLECULES[molKey] || MG_MOLECULES.CH4;
+        var isSpread = (domainsOverride != null);
+        var nDom = isSpread ? domainsOverride : (mol.bonds + mol.lone);
+        var ideal = mgIdealDirs(nDom);
+        var kinds = mgDomainKinds(nDom);
+        var nLone = isSpread ? 0 : mol.lone;
+        var lone = ideal.slice(0, nLone);
+        var bonds = ideal.slice(nLone);
+        var ang = (angleDeg != null) ? angleDeg : mol.angle;
+        if (nLone > 0) bonds = mgSqueeze(bonds, ang);
+        return {
+            mol: mol, bonds: bonds, lone: lone, kinds: kinds.slice(nLone),
+            angle: ang, domains: nDom, spread: isSpread
+        };
+    }
+    // Greedy max-dot pairing (first index wins a tie → deterministic) from the
+    // FLAT board-sketch cross onto the true tetrahedral slots. Returns, per
+    // tetra slot, the flat direction it relaxes FROM.
+    //   basis = optional [screenRight, screenUp] pair spanning the sketch plane.
+    //   Authoring it lets the flat cross lie in the plane PERPENDICULAR TO THE
+    //   CAMERA, which is what makes its 90° read as a true right angle — the whole
+    //   point of the beat. Default = the world xy-plane (correct for a camera on
+    //   +z). Static data, so the geometry never depends on live camera state.
+    function mgFlatSources(tetraDirs, basis) {
+        var rgt = (basis && basis[0]) ? mgNorm(basis[0]) : [1, 0, 0];
+        var upv = (basis && basis[1]) ? mgNorm(basis[1]) : [0, 1, 0];
+        var flat = [upv, rgt, [-upv[0], -upv[1], -upv[2]], [-rgt[0], -rgt[1], -rgt[2]]];
+        var used = [false, false, false, false], out = [], i, j;
+        for (i = 0; i < flat.length && i < tetraDirs.length; i++) {
+            var best = -1, bestDot = -2;
+            for (j = 0; j < tetraDirs.length; j++) {
+                if (used[j]) continue;
+                var d = mgDot(flat[i], mgNorm(tetraDirs[j]));
+                if (d > bestDot + 1e-9) { bestDot = d; best = j; }
+            }
+            if (best >= 0) { used[best] = true; out[best] = flat[i]; }
+        }
+        for (i = 0; i < tetraDirs.length; i++) if (!out[i]) out[i] = tetraDirs[i];
+        return out;
+    }
+    function mgFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+    // Recolour a pooled mesh AND refresh its Rule-29 glow baseline, so a per-state
+    // element swap (C → N → O) is never reverted to a stale cached colour by
+    // applyGlowEmphasis on the next idle frame.
+    function mgSetColor(mesh, hex) {
+        if (!mesh) return;
+        var c = hexToThreeColor(hex);
+        var ms = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+        for (var i = 0; i < ms.length; i++) {
+            var m = ms[i]; if (!m) continue;
+            if (m.color) m.color.copy(c);
+            if (m.emissive) m.emissive.copy(c);
+            if (!m.userData) m.userData = {};
+            if (m.color) m.userData._glowBaseCol = m.color.clone();
+        }
+    }
+    // Place a billboard label beside its atom by picking, among four SCREEN-space
+    // diagonals, the one whose projected position sits farthest from every other
+    // atom's projection. A fixed world offset cannot work here: which direction is
+    // "clear" depends entirely on the camera, and a world-space "away from the arc"
+    // rule just trades one collision for another — it parked the carbon's C label
+    // on top of a hydrogen (STATE_3) and the phosphorus P on an axial chlorine
+    // (STATE_6). Deterministic: the camera has settled by capture time.
+    var mgCamR = new THREE.Vector3(), mgCamU = new THREE.Vector3(), mgCamF = new THREE.Vector3();
+    var mgProbe = new THREE.Vector3();
+    function mgPlaceLabelClear(sprite, anchor, offset, avoidWorld) {
+        if (!sprite) return;
+        camera.matrixWorld.extractBasis(mgCamR, mgCamU, mgCamF);
+        var avoidNdc = [], k;
+        for (k = 0; k < avoidWorld.length; k++) {
+            if (!avoidWorld[k]) continue;
+            mgProbe.set(avoidWorld[k][0], avoidWorld[k][1], avoidWorld[k][2]).project(camera);
+            avoidNdc.push([mgProbe.x, mgProbe.y]);
+        }
+        var dirs = [[-1, 1], [1, 1], [-1, -1], [1, -1]];
+        var bestPos = null, bestScore = -1, i, j;
+        for (i = 0; i < dirs.length; i++) {
+            var px = anchor[0] + (mgCamR.x * dirs[i][0] + mgCamU.x * dirs[i][1]) * offset;
+            var py = anchor[1] + (mgCamR.y * dirs[i][0] + mgCamU.y * dirs[i][1]) * offset;
+            var pz = anchor[2] + (mgCamR.z * dirs[i][0] + mgCamU.z * dirs[i][1]) * offset;
+            mgProbe.set(px, py, pz).project(camera);
+            var worst = 9;
+            for (j = 0; j < avoidNdc.length; j++) {
+                var dx = mgProbe.x - avoidNdc[j][0], dy = mgProbe.y - avoidNdc[j][1];
+                var dd = Math.sqrt(dx * dx + dy * dy);
+                if (dd < worst) worst = dd;
+            }
+            // ties broken by candidate order, so the choice is stable frame to frame
+            if (worst > bestScore + 1e-6) { bestScore = worst; bestPos = [px, py, pz]; }
+        }
+        if (bestPos) sprite.position.set(bestPos[0], bestPos[1], bestPos[2]);
+    }
+    var MG_UP = new THREE.Vector3(0, 1, 0);
+    var mgTmpV = new THREE.Vector3(), mgTmpU = new THREE.Vector3(), mgTmpW = new THREE.Vector3();
+    var mgTmpQ = new THREE.Quaternion(), mgTmpM = new THREE.Matrix4();
+    // Point a +y-aligned unit-height mesh from the origin along dir, length L.
+    function mgOrientStick(mesh, dir, len, thickScale) {
+        if (!mesh) return;
+        mgTmpV.set(dir[0], dir[1], dir[2]).normalize();
+        mgTmpQ.setFromUnitVectors(MG_UP, mgTmpV);
+        mesh.quaternion.copy(mgTmpQ);
+        mesh.position.set(0, 0, 0);
+        mesh.scale.set(thickScale != null ? thickScale : 1, len, thickScale != null ? thickScale : 1);
+    }
+    // Point a +y-aligned unit-height mesh from a to b (used for hull edges + span).
+    function mgOrientBetween(mesh, a, b, thickScale) {
+        if (!mesh) return;
+        mgTmpU.set(a[0], a[1], a[2]);
+        mgTmpW.set(b[0], b[1], b[2]);
+        mgTmpV.copy(mgTmpW).sub(mgTmpU);
+        var len = mgTmpV.length() || 0.001;
+        mgTmpV.normalize();
+        mgTmpQ.setFromUnitVectors(MG_UP, mgTmpV);
+        mesh.quaternion.copy(mgTmpQ);
+        mesh.position.copy(mgTmpU);
+        mesh.scale.set(thickScale != null ? thickScale : 1, len, thickScale != null ? thickScale : 1);
+    }
+
+    function buildMolecularGeometry(config) {
+        var CO = config.colors || {};
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var bondColor = CO.bond || "#CFD8DC";
+        var loneColor = CO.lone_pair || "#B39DDB";
+        var arcColor = CO.arc || "#FFCA28";
+        var ghostColor = CO.ghost || "#546E7A";
+        var spanColor = CO.span || "#4FC3F7";
+        var i;
+
+        // 1. central atom + its symbol label (sprite: always camera-facing, drawn
+        //    on top — the standard ball-and-stick labelling).
+        var cen = new THREE.Mesh(new THREE.SphereGeometry(1, 28, 28), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#90A4AE"), emissive: hexToThreeColor("#90A4AE"),
+            emissiveIntensity: 0.32, shininess: 70
+        }));
+        cen.scale.setScalar(0.46);
+        cen.userData = { elementType: "mg_central", id: "mg_central" };
+        addToScene(cen);
+        var cenLab = createLabelSprite("C", textColor, 0.52);
+        cenLab.position.set(0.74, 0.56, 0);
+        cenLab.userData = { elementType: "mg_central_label", id: "mg_central_label" };
+        addToScene(cenLab);
+
+        // 2. bond / ligand / ligand-label pools (6 = the octahedral max). Every
+        //    bond cylinder is built base-at-origin along +y so mgOrientStick can
+        //    aim it with one quaternion and scale its length in place — no
+        //    per-frame geometry allocation anywhere in this scenario.
+        var bondGeo = new THREE.CylinderGeometry(0.075, 0.075, 1, 14);
+        bondGeo.translate(0, 0.5, 0);
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var bd = new THREE.Mesh(bondGeo.clone(), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(bondColor), emissive: hexToThreeColor(bondColor),
+                emissiveIntensity: 0.18, shininess: 50
+            }));
+            bd.userData = { elementType: "mg_bond", id: "mg_bond_" + i, slot: i };
+            bd.visible = false;
+            addToScene(bd);
+
+            var lg = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 24), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#ECEFF1"), emissive: hexToThreeColor("#ECEFF1"),
+                emissiveIntensity: 0.30, shininess: 70
+            }));
+            lg.userData = { elementType: "mg_ligand", id: "mg_ligand_" + i, slot: i };
+            lg.visible = false;
+            addToScene(lg);
+
+            var ll = createLabelSprite("H", textColor, 0.46);
+            ll.userData = { elementType: "mg_ligand_label", id: "mg_ligand_label_" + i, slot: i };
+            ll.visible = false;
+            addToScene(ll);
+        }
+
+        // 3. lone-pair lobes (4 = the max any VSEPR centre carries). Deliberately
+        //    FATTER and SHORTER than a bond: the lobe's extra girth IS the taught
+        //    physics ("a lone pair occupies more room"), a real magnitude, not a
+        //    Rule-29 emphasis bulge.
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var lp = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 16), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(loneColor), emissive: hexToThreeColor(loneColor),
+                emissiveIntensity: 0.34, shininess: 40, transparent: true, opacity: 0.5
+            }));
+            lp.userData = { elementType: "mg_lone", id: "mg_lone_" + i, slot: i };
+            lp.visible = false;
+            addToScene(lp);
+        }
+        var lpLab = pmCreateAutoLabel("lone pairs", loneColor, 0.42);
+        lpLab.userData = { elementType: "mg_lone_label", id: "mg_lone_label" };
+        lpLab.visible = false;
+        addToScene(lpLab);
+
+        // 4. electron-domain ghost skeleton + hull cage (the "electron geometry vs
+        //    molecular shape" beat: the cage counts ALL domains, the atoms show
+        //    only the shape).
+        var ghostGeo = new THREE.CylinderGeometry(0.028, 0.028, 1, 8);
+        ghostGeo.translate(0, 0.5, 0);
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            // depthTest STAYS ON for the cage: it is 3D scaffolding, not an
+            // overlay. With it off the edges drew straight THROUGH the hydrogens
+            // and read as white fans across the atoms (caught on the EYE run) —
+            // the "overlays over busy geometry use depthTest:false" scar applies
+            // to flat annotations, not to geometry that lives in the scene.
+            var gs = new THREE.Mesh(ghostGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(ghostColor), transparent: true, opacity: 0.42,
+                depthWrite: false
+            }));
+            gs.renderOrder = 994;
+            gs.userData = { elementType: "mg_ghost", id: "mg_ghost_" + i, slot: i };
+            gs.visible = false;
+            addToScene(gs);
+        }
+        for (i = 0; i < MG_HULL_EDGES; i++) {
+            var he = new THREE.Mesh(ghostGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(ghostColor), transparent: true, opacity: 0.40,
+                depthWrite: false
+            }));
+            he.renderOrder = 993;
+            he.userData = { elementType: "mg_hull", id: "mg_hull_" + i, slot: i };
+            he.visible = false;
+            addToScene(he);
+        }
+
+        // 5. bond-angle arc — a thin annulus whose SWEEP is set by setDrawRange
+        //    (RingGeometry emits its indices in increasing-theta order, so the
+        //    first k quads are exactly the first k degrees). Re-aimed each frame
+        //    by a basis matrix, never regenerated.
+        var arc = new THREE.Mesh(new THREE.RingGeometry(0.93, 1.0, MG_ARC_SEGS, 1), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(arcColor), side: THREE.DoubleSide, transparent: true,
+            opacity: 0.95, depthTest: false, depthWrite: false
+        }));
+        arc.renderOrder = 996;
+        arc.userData = { elementType: "mg_arc", id: "mg_arc" };
+        arc.visible = false;
+        addToScene(arc);
+        // The arc / span / lone-pair labels carry LIVE text that grows far wider
+        // than their seed string ("109.5°" -> "H–C–H = 109.5°"), so they must be
+        // pmCreateAutoLabel sprites: updateLabelSpriteText re-measures and re-fits
+        // an _pmAutoWidth canvas, while a plain createLabelSprite keeps its
+        // once-measured 384px canvas and CLIPS the longer string (observed on the
+        // first EYE run as "–C–H = 109." — the same class as the ac_generator
+        // "each half tu" clip that motivated the auto-width path).
+        var arcLab = pmCreateAutoLabel("H\\u2013C\\u2013H = 109.5\\u00B0", arcColor, 0.5);
+        arcLab.userData = { elementType: "mg_arc_label", id: "mg_arc_label" };
+        arcLab.visible = false;
+        addToScene(arcLab);
+
+        // 6. ligand–ligand span (the flat sketch crowds them; the real 3D shape
+        //    does not) + its live picometre readout.
+        var spanGeo = new THREE.CylinderGeometry(0.032, 0.032, 1, 8);
+        spanGeo.translate(0, 0.5, 0);
+        var span = new THREE.Mesh(spanGeo, new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(spanColor), transparent: true, opacity: 0.9,
+            depthTest: false, depthWrite: false
+        }));
+        span.renderOrder = 995;
+        span.userData = { elementType: "mg_span", id: "mg_span" };
+        span.visible = false;
+        addToScene(span);
+        var spanLab = pmCreateAutoLabel("H\\u00B7\\u00B7\\u00B7H = 178 pm", spanColor, 0.44);
+        spanLab.userData = { elementType: "mg_span_label", id: "mg_span_label" };
+        spanLab.visible = false;
+        addToScene(spanLab);
+
+        // 7. the flat board-sketch plane — the misconception made visible, fading
+        //    out as the molecule leaves it.
+        var plane = new THREE.Mesh(new THREE.PlaneGeometry(5.4, 5.4), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor("#37474F"), transparent: true, opacity: 0.0,
+            side: THREE.DoubleSide, depthWrite: false
+        }));
+        plane.userData = { elementType: "mg_plane", id: "mg_plane" };
+        plane.visible = false;
+        addToScene(plane);
+
+        // 8. DOM surfaces — value-only HUD (Rule 33d/34b) + ONE Cambria formula
+        //    line. top:52px clears the review-chrome Full-screen button and the
+        //    #simPenBar glass buttons (Rule 34d; engine_bug_queue row
+        //    field3d_sliders_panel_top12_vs_fsbtn_top10).
+        var hud = document.createElement("div"); hud.id = "mg_hud";
+        hud.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:190px;display:none;";
+        document.body.appendChild(hud);
+
+        var ff = document.createElement("div"); ff.id = "mg_formula";
+        ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
+        document.body.appendChild(ff);
+
+        // 9. Per-state contextual control rows (Rule 31) — built ONCE, shown/
+        //    hidden per state, each row keeping the SAME screen position always.
+        var SC = config.slider_controls || {};
+        var spinDef = (SC.spin && SC.spin["default"] != null) ? SC.spin["default"] : 0.16;
+        var molDef = (SC.molecule && SC.molecule["default"]) ? SC.molecule["default"] : "CH4";
+        var opts = "", mi;
+        for (mi = 0; mi < MG_EXPLORE_MOLECULES.length; mi++) {
+            var mk = MG_EXPLORE_MOLECULES[mi], mv = MG_MOLECULES[mk];
+            opts += '<option value="' + mk + '"' + (mk === molDef ? " selected" : "") + '>' + mv.formula + " \\u2014 " + mv.shape + "</option>";
+        }
+        var sp = document.createElement("div"); sp.id = "mg_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:238px;display:none;";
+        sp.innerHTML =
+            '<div id="mg_molecule_row" style="display:none"><label>Molecule: ' +
+            '<select id="mg_molecule_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + opts + '</select></label></div>' +
+            '<div id="mg_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="mg_spin_val">' + Number(spinDef).toFixed(2) + '</span> rad/s</label>' +
+            '<input type="range" id="mg_spin_slider" min="0" max="0.6" step="0.02" value="' + spinDef + '" style="width:100%"></div>' +
+            '<div id="mg_lone_row" style="display:none;margin-top:6px"><label><input type="checkbox" id="mg_lone_check" checked> Show lone pairs</label></div>';
+        document.body.appendChild(sp);
+
+        function mgEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "vsepr_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var molSel = document.getElementById("mg_molecule_select");
+        var spinSl = document.getElementById("mg_spin_slider"), spinV = document.getElementById("mg_spin_val");
+        var loneCk = document.getElementById("mg_lone_check");
+        if (molSel) molSel.addEventListener("change", function () {
+            window.PM_mgMol = molSel.value; window.PM_mgMolDragged = true; mgEmit("molecule", molSel.value);
+        });
+        if (spinSl) spinSl.addEventListener("input", function () {
+            window.PM_mgSpin = parseFloat(spinSl.value);
+            if (spinV) spinV.textContent = window.PM_mgSpin.toFixed(2);
+            window.PM_mgSpinDragged = true; mgEmit("spin", window.PM_mgSpin);
+        });
+        if (loneCk) loneCk.addEventListener("change", function () {
+            window.PM_mgShowLone = !!loneCk.checked; window.PM_mgLoneDragged = true; mgEmit("show_lone_pairs", window.PM_mgShowLone);
+        });
+
+        window.PM_mgSpinDef = spinDef; window.PM_mgSpin = spinDef;
+        window.PM_mgMolDef = molDef; window.PM_mgMol = molDef;
+        window.PM_mgShowLone = true;
+    }
+
+    // Authoritative per-state visibility + seeding. Runs AFTER the generic
+    // visible_elements matcher and overrides it (mirrors applyCapacitanceState).
+    function applyMolecularGeometryState(stateDef) {
+        var mgd = stateDef.molecular_geometry || {};
+        window.PM_mgMolDragged = false; window.PM_mgSpinDragged = false; window.PM_mgLoneDragged = false;
+        window.PM_mgMol = mgd.molecule || window.PM_mgMolDef || "CH4";
+        window.PM_mgSpin = (mgd.spin_rate != null) ? mgd.spin_rate : (window.PM_mgSpinDef != null ? window.PM_mgSpinDef : 0.16);
+        window.PM_mgShowLone = (mgd.show_lone_pairs !== false);
+
+        var ctrls = mgd.controls || [];
+        var statics = mgd.static_readouts || [];
+        var rows = { molecule: "mg_molecule_row", spin: "mg_spin_row", lone: "mg_lone_row" };
+        var panel = document.getElementById("mg_sliders");
+        var anyRow = false, key;
+        for (key in rows) {
+            var live = ctrls.indexOf(key) >= 0;
+            var stat = statics.indexOf(key) >= 0;
+            var rowEl = document.getElementById(rows[key]);
+            if (rowEl) {
+                rowEl.style.display = (live || stat) ? "block" : "none";
+                var inp = rowEl.querySelector("input,select");
+                if (inp) inp.disabled = (!live && stat);
+            }
+            if (live || stat) anyRow = true;
+        }
+        if (panel) panel.style.display = (anyRow && stateDef.show_sliders !== false) ? "block" : "none";
+        // Re-seed the control widgets to the state's authored preset, so every
+        // state opens as a reproducible preset (a teacher's drag in a prior state
+        // never bleeds into the next beat's choreography). DOM-only, no input
+        // event → the isTrusted drag-seize listeners are not tripped.
+        var molSel = document.getElementById("mg_molecule_select");
+        if (molSel && MG_MOLECULES[window.PM_mgMol]) molSel.value = window.PM_mgMol;
+        var spinSl = document.getElementById("mg_spin_slider"), spinV = document.getElementById("mg_spin_val");
+        if (spinSl) spinSl.value = String(window.PM_mgSpin);
+        if (spinV) spinV.textContent = Number(window.PM_mgSpin).toFixed(2);
+        var loneCk = document.getElementById("mg_lone_check");
+        if (loneCk) loneCk.checked = !!window.PM_mgShowLone;
+
+        var hud = document.getElementById("mg_hud");
+        if (hud) hud.style.display = mgd.show_hud ? "block" : "none";
+        var ff = document.getElementById("mg_formula");
+        if (ff) {
+            if (mgd.show_formula && mgd.formula) { ff.innerHTML = mgd.formula; ff.style.display = "block"; }
+            else { ff.style.display = "none"; }
+        }
+        // Everything geometric is (re)placed by updateMolecularGeometryFrame on the
+        // very next frame from the state's own clock. But the generic
+        // visible_elements matcher has just switched these ON, and a capture that
+        // lands between this apply and the first animate frame would photograph the
+        // PREVIOUS state's arc sweep and label text. Hide the transients here so the
+        // frame updater is the only thing that can ever reveal them — during an
+        // "assemble" beat that also guarantees the angle never appears before the
+        // two bonds it measures exist.
+        var transientIds = ["mg_arc", "mg_arc_label", "mg_span", "mg_span_label", "mg_lone_label"];
+        for (var ti = 0; ti < transientIds.length; ti++) {
+            var tObj = mgFindById(transientIds[ti]);
+            if (tObj) tObj.visible = false;
+        }
+    }
+
+    // The single per-frame pass: resolve the live molecule + angle + domain count
+    // from the state's mode (all closed-form in state-local t), then reposition
+    // the pooled meshes. Accumulator-free by construction (Rule 26/36).
+    function updateMolecularGeometryFrame(stateDef) {
+        var mgd = stateDef.molecular_geometry || {};
+        var ms = (time - stateStartTime) * 1000;
+        var mode = mgd.mode || "assemble";
+        var ctrls = mgd.controls || [];
+        var i, j;
+
+        var molKey = (ctrls.indexOf("molecule") >= 0 && window.PM_mgMolDragged)
+            ? window.PM_mgMol : (mgd.molecule || "CH4");
+        if (!MG_MOLECULES[molKey]) molKey = "CH4";
+        var angleNow = null, domainsNow = null, flatF = 1, spanPmScale = null;
+
+        if (mode === "assemble") {
+            // bonds grow out of the central atom, one after another
+            var aAt = (mgd.assemble_at_ms != null) ? cueTriggerMs("assemble", mgd.assemble_at_ms) : 600;
+            var aDur = (mgd.assemble_duration_ms != null) ? mgd.assemble_duration_ms : 3200;
+            var nB = MG_MOLECULES[molKey].bonds;
+            var grown = mgRamp(ms, aAt, aDur, 0, nB);
+            window.PM_mgGrown = grown;
+        } else {
+            window.PM_mgGrown = null;
+        }
+        if (mode === "flat_vs_real") {
+            // the board sketch (4 coplanar domains at 90\\u00B0) RELAXES into the real
+            // tetrahedron — the cause (leaving the plane) and the effect (the angle
+            // opening, the ligands un-crowding) share one ramp because they ARE the
+            // same motion.
+            var fHold = (mgd.flat_hold_ms != null) ? cueTriggerMs("relax", mgd.flat_hold_ms) : 4200;
+            var fDur = (mgd.relax_duration_ms != null) ? mgd.relax_duration_ms : 3600;
+            flatF = mgRamp(ms, fHold, fDur, 0, 1);
+        }
+        if (mode === "domain_spread") {
+            // Each step names a REAL molecule (BeCl2 → BF3 → CH4), so the beat
+            // never invents a fictitious CH2/CH3 just to carry a domain count.
+            // A step may instead give a bare "domains" count for an abstract
+            // domain-only spread. The surviving domains GLIDE to the new
+            // arrangement while the new one grows in.
+            var steps = mgd.spread_steps || [];
+            var curM = mgd.molecule || "CH4", prevM = curM;
+            var spAt = 0, spDur = 1800;
+            for (i = 0; i < steps.length; i++) {
+                var st = steps[i] || {};
+                var sAt = cueTriggerMs("spread_" + i, (st.at_ms != null) ? st.at_ms : 0);
+                if (ms >= sAt) {
+                    prevM = curM;
+                    if (st.molecule && MG_MOLECULES[st.molecule]) curM = st.molecule;
+                    if (st.domains != null) domainsNow = st.domains;
+                    spAt = sAt; spDur = (st.duration_ms != null) ? st.duration_ms : 1800;
+                }
+            }
+            molKey = curM;
+            window.PM_mgSpreadPrevMol = prevM;
+            window.PM_mgSpreadAt = spAt;
+            window.PM_mgSpreadDur = spDur;
+            var prevMol = MG_MOLECULES[prevM] || MG_MOLECULES.CH4;
+            window.PM_mgSpreadPrev = (domainsNow != null) ? domainsNow : (prevMol.bonds + prevMol.lone);
+        }
+        if (mode === "lone_squeeze") {
+            // Each step CONVERTS a bond into a lone pair (the cause, at at_ms),
+            // then the surviving bonds close down to the new equilibrium angle
+            // (the effect, after convert_ms) — Rule 32a: cause first, effect after
+            // a readable beat.
+            var sq = mgd.squeeze_steps || [];
+            var curKey = mgd.molecule || "CH4";
+            var fromAng = MG_MOLECULES[curKey].angle;
+            var toAng = fromAng;
+            for (i = 0; i < sq.length; i++) {
+                var qs = sq[i] || {};
+                var qAt = cueTriggerMs("squeeze_" + i, (qs.at_ms != null) ? qs.at_ms : 0);
+                if (ms >= qAt && MG_MOLECULES[qs.molecule]) {
+                    fromAng = MG_MOLECULES[curKey].angle;
+                    curKey = qs.molecule;
+                    toAng = MG_MOLECULES[curKey].angle;
+                    var cIn = (qs.convert_ms != null) ? qs.convert_ms : 900;
+                    var cDur = (qs.duration_ms != null) ? qs.duration_ms : 2200;
+                    angleNow = mgRamp(ms, qAt + cIn, cDur, fromAng, toAng);
+                }
+            }
+            molKey = curKey;
+            if (angleNow == null) angleNow = MG_MOLECULES[curKey].angle;
+        }
+        if (mode === "expanded") {
+            var cAt = (mgd.compare_at_ms != null) ? cueTriggerMs("compare", mgd.compare_at_ms) : 5200;
+            if (ms >= cAt && MG_MOLECULES[mgd.compare_molecule]) molKey = mgd.compare_molecule;
+        }
+        if (mode === "explore") {
+            if (ctrls.indexOf("molecule") >= 0 && window.PM_mgMolDragged) molKey = window.PM_mgMol;
+        }
+
+        var fr = mgFrame(molKey, angleNow, domainsNow);
+        var mol = fr.mol;
+        // Per-state bond scale. Five chlorines of radius 0.52 around one phosphorus
+        // crowd at the default length and an equatorial Cl projects ONTO an axial
+        // one — a domain the HUD is counting stops being separately countable.
+        // Lengthening that molecule's bonds is also the more honest drawing: P–Cl is
+        // 214 pm against methane's 109, and rendering both at one length is a quiet
+        // lie. The arc radius rides the same scale so it stays proportional.
+        var bondScale = (typeof mgd.bond_scale === "number" && mgd.bond_scale > 0) ? mgd.bond_scale : 1;
+        var bondLen = MG_BOND_LEN * bondScale;
+        var arcR = MG_ARC_R * bondScale;
+        var bondDirs = fr.bonds.slice(), loneDirs = fr.lone.slice();
+
+        // the flat-sketch morph: every bond interpolates from its paired flat
+        // direction to its true tetrahedral one (deterministic greedy pairing).
+        if (mode === "flat_vs_real" && flatF < 1) {
+            var srcs = mgFlatSources(fr.bonds, mgd.flat_basis);
+            for (i = 0; i < bondDirs.length; i++) bondDirs[i] = mgLerpDir(srcs[i], fr.bonds[i], flatF);
+        }
+        // the domain-count spread: the surviving domains glide from the previous
+        // arrangement into the new one, and the NEW domain grows in.
+        var spreadF = 1;
+        if (mode === "domain_spread") {
+            spreadF = mgRamp(ms, window.PM_mgSpreadAt || 0, window.PM_mgSpreadDur || 1800, 0, 1);
+            var prevDirs = mgIdealDirs(window.PM_mgSpreadPrev || fr.domains);
+            for (i = 0; i < bondDirs.length; i++) {
+                if (i < prevDirs.length) bondDirs[i] = mgLerpDir(prevDirs[i], fr.bonds[i], spreadF);
+            }
+        }
+
+        // ── the slow spin: angle = rate·(t − spin_start), a PURE function of the
+        //    state clock (never an accumulator), so a frozen pin is byte-stable.
+        //    Baked into the direction vectors rather than a group rotation, so
+        //    every element stays a top-level sceneObject for the generic
+        //    visibility/glow machinery.
+        var spinRate = (ctrls.indexOf("spin") >= 0 && window.PM_mgSpinDragged)
+            ? window.PM_mgSpin : ((mgd.spin_rate != null) ? mgd.spin_rate : 0.16);
+        var spinStart = (mgd.spin_start_ms != null) ? mgd.spin_start_ms : 0;
+        var spinAng = (ms > spinStart) ? spinRate * (ms - spinStart) / 1000 : 0;
+        if (spinAng !== 0) {
+            for (i = 0; i < bondDirs.length; i++) bondDirs[i] = mgRotY(bondDirs[i], spinAng);
+            for (i = 0; i < loneDirs.length; i++) loneDirs[i] = mgRotY(loneDirs[i], spinAng);
+        }
+
+        // Which two bonds the angle arc measures — resolved BEFORE the atom pass,
+        // because only those two ligands get a symbol label. Labelling all six is
+        // both clutter (Rule 34) and a collision: a bond pointing away from the
+        // camera foreshortens onto the central atom, and its label lands on top of
+        // it (observed on the first EYE run — the fourth methane H).
+        var ap = mgd.arc_pair || mol.arc_pair || [0, 1];
+        var ai = mgClamp(ap[0], 0, Math.max(0, fr.bonds.length - 1));
+        var aj = mgClamp(ap[1], 0, Math.max(0, fr.bonds.length - 1));
+
+        // ── central atom + label
+        var cenEl = MG_ELEMENTS[mol.central] || MG_ELEMENTS.C;
+        var cen = mgFindById("mg_central");
+        if (cen) { cen.visible = true; cen.scale.setScalar(cenEl.radius); mgSetColor(cen, cenEl.color); }
+        var cenLab = mgFindById("mg_central_label");
+        if (cenLab) {
+            cenLab.visible = (mgd.show_atom_labels !== false);
+            updateLabelSpriteText(cenLab, mol.central);
+            // positioned AFTER the atom pass, once every ligand position is known —
+            // see mgPlaceLabelClear below.
+        }
+
+        // ── bonds + ligands + their labels
+        var ligEl = MG_ELEMENTS[mol.ligand] || MG_ELEMENTS.H;
+        var grown = window.PM_mgGrown;
+        var ligPos = [];
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var bd = mgFindById("mg_bond_" + i);
+            var lg = mgFindById("mg_ligand_" + i);
+            var ll = mgFindById("mg_ligand_label_" + i);
+            var on = (i < bondDirs.length);
+            // during the assemble beat a bond is only present once it has grown;
+            // during a spread step the NEW domain fades in over the same ramp.
+            var f = 1;
+            if (on && grown != null) f = mgClamp(grown - i, 0, 1);
+            if (on && mode === "domain_spread" && i >= (window.PM_mgSpreadPrev || 0)) f = spreadF;
+            if (on && f <= 0.001) on = false;
+            if (bd) { bd.visible = on; if (on) mgOrientStick(bd, bondDirs[i], bondLen * f, 1); }
+            var p = on ? [bondDirs[i][0] * bondLen * f, bondDirs[i][1] * bondLen * f, bondDirs[i][2] * bondLen * f] : null;
+            ligPos[i] = p;
+            if (lg) {
+                lg.visible = on;
+                if (on) { lg.position.set(p[0], p[1], p[2]); lg.scale.setScalar(ligEl.radius); mgSetColor(lg, ligEl.color); }
+            }
+            if (ll) {
+                ll.visible = on && (mgd.show_atom_labels !== false) && f > 0.85 && (i === ai || i === aj);
+                if (ll.visible) {
+                    updateLabelSpriteText(ll, mol.ligand);
+                    var lo = 1 + (ligEl.radius + 0.30) / bondLen;
+                    ll.position.set(p[0] * lo, p[1] * lo, p[2] * lo);
+                }
+            }
+        }
+
+        // the central symbol goes wherever the screen is clearest of ligands
+        if (cenLab && cenLab.visible) {
+            mgPlaceLabelClear(cenLab, [0, 0, 0], cenEl.radius + 0.62, ligPos);
+        }
+
+        // ── lone-pair lobes (fatter + shorter than a bond = "more room")
+        //    hide_lone_at_ms SCRIPTS the "hide the lone pairs and what is left is
+        //    the shape" reveal, so the beat is a real one-shot motion the frozen
+        //    pin can photograph; a teacher's own toggle (isTrusted drag-seize)
+        //    takes over the moment they touch it.
+        var showLone = (mgd.show_lone_pairs !== false);
+        if (showLone && mgd.hide_lone_at_ms != null) {
+            showLone = ms < cueTriggerMs("hide_lone", mgd.hide_lone_at_ms);
+        }
+        if (ctrls.indexOf("lone") >= 0 && window.PM_mgLoneDragged) showLone = !!window.PM_mgShowLone;
+        // Keep the teacher's own control honest: a scripted hide must flip the
+        // checkbox it shares, or the instrument contradicts the picture (the box
+        // read "checked" with zero lobes on screen — STATE_5's frozen frame).
+        // Generalises the ghost_compare_cause_invisible_slider scar from sliders to
+        // checkboxes. DOM-only write, no input event, so drag-seize is not tripped.
+        if (ctrls.indexOf("lone") >= 0 && !window.PM_mgLoneDragged) {
+            var loneCkSync = document.getElementById("mg_lone_check");
+            if (loneCkSync && loneCkSync.checked !== showLone) loneCkSync.checked = showLone;
+        }
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var lp = mgFindById("mg_lone_" + i);
+            if (!lp) continue;
+            var lpOn = showLone && (i < loneDirs.length);
+            lp.visible = lpOn;
+            if (lpOn) {
+                var d = loneDirs[i];
+                var at = bondLen * 0.52;
+                lp.position.set(d[0] * at, d[1] * at, d[2] * at);
+                mgTmpV.set(d[0], d[1], d[2]).normalize();
+                mgTmpQ.setFromUnitVectors(MG_UP, mgTmpV);
+                lp.quaternion.copy(mgTmpQ);
+                lp.scale.set(0.42, 0.66, 0.42);
+            }
+        }
+        var lpLab = mgFindById("mg_lone_label");
+        if (lpLab) {
+            lpLab.visible = !!(mgd.show_lone_label && showLone && loneDirs.length > 0);
+            if (lpLab.visible) {
+                var ld = loneDirs[0], la = bondLen * 0.52 + 0.62;
+                lpLab.position.set(ld[0] * la, ld[1] * la, ld[2] * la);
+                updateLabelSpriteText(lpLab, loneDirs.length > 1 ? "lone pairs" : "lone pair");
+            }
+        }
+
+        // ── electron-domain ghost skeleton + hull cage. hull_at_ms gates BOTH on a
+        //    narration cue and fades them in over 900 ms (a pop reads as a glitch),
+        //    which also gives an otherwise-static state a real one-shot beat.
+        var allDirs = bondDirs.concat(loneDirs);
+        var cageF = 1;
+        if (mgd.hull_at_ms != null) cageF = mgRamp(ms, cueTriggerMs("hull", mgd.hull_at_ms), 900, 0, 1);
+        var showGhost = !!mgd.show_domain_ghost && cageF > 0.001;
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var gs = mgFindById("mg_ghost_" + i);
+            if (!gs) continue;
+            var gOn = showGhost && (i < allDirs.length);
+            gs.visible = gOn;
+            if (gOn) {
+                mgOrientStick(gs, allDirs[i], bondLen * 1.12, 1);
+                if (gs.material) gs.material.opacity = 0.42 * cageF;
+            }
+        }
+        var showHull = !!mgd.show_domain_hull && allDirs.length === 4 && cageF > 0.001;
+        var hi = 0;
+        for (i = 0; i < 4 && showHull; i++) {
+            for (j = i + 1; j < 4; j++) {
+                var he = mgFindById("mg_hull_" + hi);
+                if (he) {
+                    he.visible = true;
+                    var pa = [allDirs[i][0] * bondLen * 1.12, allDirs[i][1] * bondLen * 1.12, allDirs[i][2] * bondLen * 1.12];
+                    var pb = [allDirs[j][0] * bondLen * 1.12, allDirs[j][1] * bondLen * 1.12, allDirs[j][2] * bondLen * 1.12];
+                    mgOrientBetween(he, pa, pb, 1);
+                    if (he.material) he.material.opacity = 0.40 * cageF;
+                }
+                hi++;
+            }
+        }
+        if (!showHull) for (i = 0; i < MG_HULL_EDGES; i++) { var he2 = mgFindById("mg_hull_" + i); if (he2) he2.visible = false; }
+
+        // ── the flat board-sketch plane, fading out as the molecule leaves it
+        var plane = mgFindById("mg_plane");
+        if (plane) {
+            var pOn = !!mgd.show_flat_plane && mode === "flat_vs_real";
+            plane.visible = pOn;
+            if (pOn && plane.material) plane.material.opacity = 0.22 * (1 - flatF);
+            // the sheet must LIE IN the sketch plane, so re-aim it onto the same
+            // basis the flat cross uses (PlaneGeometry is born in the world
+            // xy-plane, which is only correct for a camera on +z).
+            if (pOn && mgd.flat_basis && mgd.flat_basis[0] && mgd.flat_basis[1]) {
+                var pr = mgNorm(mgd.flat_basis[0]), pu = mgNorm(mgd.flat_basis[1]);
+                mgTmpU.set(pr[0], pr[1], pr[2]);
+                mgTmpW.set(pu[0], pu[1], pu[2]);
+                mgTmpV.copy(mgTmpU).cross(mgTmpW).normalize();   // plane normal
+                mgTmpM.makeBasis(mgTmpU, mgTmpW, mgTmpV);
+                plane.quaternion.setFromRotationMatrix(mgTmpM);
+            }
+        }
+
+        // ── the bond-angle arc + its LIVE numeric label (Rule 33d: an instrument
+        //    reads a real number, it is never a decorative dial)
+        var arc = mgFindById("mg_arc"), arcLab = mgFindById("mg_arc_label");
+        // ligPos[i] is null until bond i has grown, so during an "assemble" beat the
+        // arc cannot appear before BOTH of the bonds it measures exist — the answer
+        // must not be on screen ahead of its own evidence.
+        var haveArc = !!mgd.show_angle_arc && bondDirs.length >= 2 && ai !== aj && ligPos[ai] && ligPos[aj];
+        if (arc) {
+            arc.visible = haveArc;
+            if (haveArc) {
+                var u = mgNorm(bondDirs[ai]), w = mgNorm(bondDirs[aj]);
+                var angDeg = mgAngleDeg(u, w);
+                var angRad = angDeg * Math.PI / 180;
+                mgTmpU.set(u[0], u[1], u[2]);
+                mgTmpW.set(w[0], w[1], w[2]);
+                mgTmpV.copy(mgTmpU).cross(mgTmpW);
+                if (mgTmpV.lengthSq() < 1e-8) mgTmpV.set(0, 0, 1);
+                mgTmpV.normalize();                       // arc-plane normal
+                var vAx = new THREE.Vector3().copy(mgTmpV).cross(mgTmpU).normalize();
+                mgTmpM.makeBasis(mgTmpU, vAx, mgTmpV);
+                arc.quaternion.setFromRotationMatrix(mgTmpM);
+                arc.position.set(0, 0, 0);
+                arc.scale.setScalar(arcR);
+                var segs = Math.max(1, Math.min(MG_ARC_SEGS, Math.round(MG_ARC_SEGS * angRad / (Math.PI * 2))));
+                arc.geometry.setDrawRange(0, segs * 6);
+                if (arcLab) {
+                    arcLab.visible = true;
+                    // the arc's own midpoint direction. For a 180° pair (a LINEAR
+                    // molecule) u + w cancels to zero and mgNorm hands back a
+                    // near-origin vector, which parked the "Cl–Be–Cl = 180.0°"
+                    // label straight on top of the beryllium (caught on the EYE
+                    // run). Fall back to the arc-plane's quarter-turn axis, which
+                    // IS the arc's apex, and is always well-defined.
+                    var msum = [u[0] + w[0], u[1] + w[1], u[2] + w[2]];
+                    var mid = (Math.abs(msum[0]) + Math.abs(msum[1]) + Math.abs(msum[2]) > 0.12)
+                        ? mgNorm(msum)
+                        : [vAx.x, vAx.y, vAx.z];
+                    // clear of the bonds AND of the atoms: the sprite is centred on
+                    // this point and a wide string still overlapped the central atom
+                    // at +1.15 (observed on SF₆).
+                    var lr = arcR + 1.35;
+                    arcLab.position.set(mid[0] * lr, mid[1] * lr, mid[2] * lr);
+                    updateLabelSpriteText(arcLab, mol.ligand + "\\u2013" + mol.central + "\\u2013" + mol.ligand + " = " + angDeg.toFixed(1) + "\\u00B0");
+                }
+                window.PM_mgAngleDeg = angDeg;
+            }
+        }
+        if (arcLab && !haveArc) arcLab.visible = false;
+
+        // ── the ligand–ligand span, in real picometres off the real bond length
+        var span = mgFindById("mg_span"), spanLab = mgFindById("mg_span_label");
+        var haveSpan = !!mgd.show_span && ligPos[ai] && ligPos[aj];
+        if (span) {
+            span.visible = haveSpan;
+            if (haveSpan) mgOrientBetween(span, ligPos[ai], ligPos[aj], 1);
+        }
+        // The picometre value is computed whenever the span EXISTS, never only when
+        // its sprite is drawn — the HUD reads window.PM_mgSpanPm and would go stale
+        // the moment the label is switched off.
+        if (haveSpan) {
+            var halfA = (window.PM_mgAngleDeg != null ? window.PM_mgAngleDeg : mol.angle) / 2 * Math.PI / 180;
+            window.PM_mgSpanPm = 2 * mol.bond_pm * Math.sin(halfA);
+        }
+        if (spanLab) {
+            // The sprite is OFF by default. The span midpoint lies on the SAME
+            // bisector ray the arc label uses, so at any radius the two wide sprites
+            // overlap — they garbled each other on STATE_2's frozen frame, which is
+            // this concept's aha. The number belongs in the value-only HUD (Rule
+            // 34b); the canvas keeps the LINE, which is the part that shows WHAT is
+            // being measured.
+            spanLab.visible = haveSpan && !!mgd.show_span_label;
+            if (spanLab.visible) {
+                var mpx = (ligPos[ai][0] + ligPos[aj][0]) / 2;
+                var mpy = (ligPos[ai][1] + ligPos[aj][1]) / 2;
+                var mpz = (ligPos[ai][2] + ligPos[aj][2]) / 2;
+                spanLab.position.set(mpx * 1.16, mpy * 1.16 + 0.24, mpz * 1.16);
+                updateLabelSpriteText(spanLab, mol.ligand + "\\u00B7\\u00B7\\u00B7" + mol.ligand + " = " + Math.round(window.PM_mgSpanPm) + " pm");
+            }
+        }
+
+        // ── value-only HUD (Rule 34b: numbers, never a restated equation)
+        var hud = document.getElementById("mg_hud");
+        if (hud && hud.style.display !== "none") {
+            var lines = [], want = mgd.hud_lines || ["angle", "domains", "shape"];
+            for (i = 0; i < want.length; i++) {
+                if (want[i] === "angle" && window.PM_mgAngleDeg != null) {
+                    lines.push(mol.ligand + "\\u2013" + mol.central + "\\u2013" + mol.ligand + " = " + window.PM_mgAngleDeg.toFixed(1) + "\\u00B0");
+                } else if (want[i] === "domains") {
+                    lines.push("domains = " + (bondDirs.length + loneDirs.length) +
+                        (loneDirs.length > 0 ? " (" + bondDirs.length + " bond + " + loneDirs.length + " lone)" : ""));
+                } else if (want[i] === "e_geom") {
+                    lines.push("electron geometry: " + (fr.spread ? mgSpreadGeomName(fr.domains) : mol.e_geom));
+                } else if (want[i] === "shape") {
+                    lines.push("shape: " + (fr.spread ? mgSpreadGeomName(fr.domains) : mol.shape));
+                } else if (want[i] === "span" && window.PM_mgSpanPm != null) {
+                    lines.push(mol.ligand + "\\u00B7\\u00B7\\u00B7" + mol.ligand + " = " + Math.round(window.PM_mgSpanPm) + " pm");
+                } else if (want[i] === "formula") {
+                    lines.push(mol.formula);
+                }
+            }
+            hud.innerHTML = lines.join("<br>");
+        }
+        // keep the explore rows in sync with the scripted (non-dragged) values
+        if (ctrls.indexOf("molecule") >= 0 && !window.PM_mgMolDragged) {
+            var ms2 = document.getElementById("mg_molecule_select");
+            if (ms2 && ms2.value !== molKey && MG_MOLECULES[molKey]) ms2.value = molKey;
+        }
+    }
+    function mgSpreadGeomName(n) {
+        if (n <= 2) return "linear";
+        if (n === 3) return "trigonal planar";
+        if (n === 4) return "tetrahedral";
+        if (n === 5) return "trigonal bipyramidal";
+        return "octahedral";
+    }
+
+    // Glow (Rule 29 — brightness only) from the CLOSED enum. Scene-object focals
+    // only; the DOM surfaces (HUD / formula) carry their own prominence and are
+    // deliberately absent, so a DOM key can never set anyScene=true with nothing
+    // to brighten (scar #33).
+    var MG_GLOW_ELS = {
+        central: ["mg_central"], ligands: ["mg_ligand"], bonds: ["mg_bond"],
+        lone_pairs: ["mg_lone"], arc: ["mg_arc"], ghost: ["mg_ghost", "mg_hull"],
+        span: ["mg_span"]
+    };
+    function applyMolecularGeometryGlow(stateDef) {
+        var focalTypes = {}, g, k, i;
+        for (g = 0; g < (glowTargets || []).length; g++) {
+            var keys = MG_GLOW_ELS[glowTargets[g]];
+            if (!keys) continue;
+            for (k = 0; k < keys.length; k++) focalTypes[keys[k]] = true;
+        }
+        var anyScene = false;
+        for (k in focalTypes) if (focalTypes[k]) anyScene = true;
+        for (i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("mg_") !== 0) continue;
+            if (o.visible === false) continue;
+            applyGlowEmphasis(o, !!focalTypes[ud.elementType], anyScene, 0.6, true);
+        }
+    }
+
     function buildScenario() {
         clearScene();
 
@@ -41883,6 +42916,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "capacitance":
                 buildCapacitanceField(config);
+                break;
+
+            case "molecular_geometry":
+                buildMolecularGeometry(config);
                 break;
 
             case "displacement_current":
@@ -42687,6 +43724,15 @@ export const FIELD_3D_RENDERER_CODE = `
             applyEmWavePropagationState(stateDef);
         }
 
+        // molecular_geometry (VSEPR — CHEMISTRY) — authoritative per-state seeding
+        // (molecule preset / spin rate / lone-pair visibility), contextual control
+        // rows (Rule 31), and the HUD + formula-surface toggles. Every geometric
+        // element is placed by updateMolecularGeometryFrame from the state's own
+        // clock on the next frame, so there is nothing positional to seed here.
+        if (config.scenario_type === "molecular_geometry") {
+            applyMolecularGeometryState(stateDef);
+        }
+
         // dipole_potential (electric_potential_dipole, V = k p cosθ/r²) —
         // authoritative per-state visibility (charges/p always on; probe / r-lines /
         // θ-arc / two-term + collapse callouts / equatorial disc + E arrow / curve
@@ -43165,7 +44211,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -43657,6 +44703,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // it would otherwise fall through to the bare "Drag to rotate" hint only,
         // but suppress explicitly for consistency with every 2026-07+ scenario).
         if (config.scenario_type === "capacitance") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // molecular_geometry is a silent visual (Rule 24): the atoms + bonds +
+        // lone-pair lobes + the live angle arc + the value-only HUD carry
+        // everything, and a "point charge / drag to rotate" legend would be both
+        // wrong (there are no charges) and clutter (Rule 34).
+        if (config.scenario_type === "molecular_geometry") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // em_wave_propagation is a silent visual (Rule 24): the antenna + axis +
         // green E-train / blue B-train + receiver dual gauge + motes + the ONE
         // formula surface carry everything — suppress the generic point-charge
@@ -46128,7 +47179,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry")) {
+            // molecular_geometry joins the snap set for the same reason: every beat
+            // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
+            // squeeze, geometry swap) AND the slow turn are closed-form functions
+            // of state-local t, so jumping straight to the pin re-evaluates to the
+            // exact frame a crawl would have reached.
             // parallel_plates + dipole_potential are accumulator-free (every reveal +
             // sweep + the gap-widen morph is a pure function of time - stateStartTime),
             // so snapping to the pin is byte-identical to crawling — lets the visual
@@ -46208,6 +47264,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "em_wave_propagation") {
             var emwStateDef = config.states[PM_currentState];
             if (emwStateDef) { updateEmWavePropagationFrame(emwStateDef, heldAtPin); applyEmWavePropagationGlow(emwStateDef); }
+        }
+
+        // molecular_geometry (VSEPR) — the assemble / flat-relax / domain-spread /
+        // lone-pair-squeeze / expanded-geometry beats, the slow 3D turn, the live
+        // bond-angle arc + numeric label, the ligand-span picometre readout, and
+        // the value-only HUD. Accumulator-free: every value INCLUDING the spin
+        // angle is a pure fn of state-local t (Rule 26/36 — byte-stable under a
+        // SET_TIME_FREEZE pin).
+        if (config.scenario_type === "molecular_geometry") {
+            var mgStateDef = config.states[PM_currentState];
+            if (mgStateDef) { updateMolecularGeometryFrame(mgStateDef); applyMolecularGeometryGlow(mgStateDef); }
         }
 
         // dipole_potential — timed reveals, STATE_3/5 sweeps, signed-V recolor

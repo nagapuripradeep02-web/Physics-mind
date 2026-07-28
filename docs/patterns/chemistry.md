@@ -19,6 +19,12 @@
 >
 > Only **[LIVE]** archetypes may appear in a skeleton today. Archetype M was mislabeled [LIVE] in v0.1;
 > the code check found NO gas-collision scenario anywhere — it is **[NEEDS-SCENARIO]** (Wave-2 build).
+>
+> **Update 2026-07-28:** archetype **P is no longer wholly [PHASE-5]** — its electron-domain-geometry
+> half is now [LIVE] as the `field_3d` `molecular_geometry` scenario, while orbitals/lattices remain
+> [NEEDS-SCENARIO]. See archetype P below. This is the first Phase-5-class surface to ship, and it
+> arrived as a scenario on the EXISTING Three.js renderer rather than as the new renderer file
+> `CHEMISTRY_ARCHITECTURE.md` §5c anticipated.
 
 ---
 
@@ -132,10 +138,31 @@ conserved (atoms MOVE, never fade out/in — the conservation law made visual).
 - **Signature beats:** atom-audit (count table fills live), the coefficient acts (×2 duplicates the
   visible molecule, never edits a subscript — THE misconception counter).
 
-### P — Molecular 3D (orbitals / VSEPR / lattices) **[PHASE-5]**
-s/p/d orbital lobes, electron-pair repulsion geometry, crystal cells — requires the Three.js
-`molecule_3d`/`orbital_3d` render surface (`CHEMISTRY_ARCHITECTURE.md` §5c). Design target only;
-do not schedule concepts that need it ahead of Phase 5.
+### P — Molecular 3D (orbitals / VSEPR / lattices) — **SPLIT 2026-07-28**
+The 3D surface arrived as a `field_3d` **scenario**, not the separate `molecule_3d`/`orbital_3d`
+renderer §5c imagined: `field_3d_renderer.ts` is already Three.js, so a new `scenario_type` was the
+cheap path and no new renderer file exists. Two sub-tiers now:
+
+- **P1 — electron-domain geometry [LIVE]** (`field_3d`, `scenario_type: "molecular_geometry"`, built
+  2026-07-28, commit `b6a0259`). Central atom + bonded atoms + lone-pair lobes, where the arrangement
+  is DERIVED from the domain count (2–6) rather than authored; lone pairs squeeze the bond angle in
+  closed form; a live arc reads the angle as a real number, and a ligand-span readout gives it in
+  picometres. Modes: `assemble` · `flat_vs_real` (the board sketch relaxes out of the page — the
+  flat-Lewis misconception beat) · `domain_spread` (stepping through REAL molecules) · `lone_squeeze`
+  · `shape_vs_geometry` (the domain cage vs the atoms that remain) · `expanded` (5- and 6-domain
+  families) · `explore`. Molecule table: BeCl₂ · BF₃ · CH₄ · NH₃ · H₂O · PCl₅ · SF₆, every angle
+  verified against its real value BEFORE any state was authored. Reference concept:
+  `vsepr_molecular_shapes`. **Schedulable now** — hybridisation (#13) and σ/π (#17) should reuse it
+  with zero new renderer code.
+- **P2 — orbital lobes + crystal lattices [NEEDS-SCENARIO]**. s/p/d orbital surfaces and unit cells
+  are NOT in the built scenario; they need a further scenario (lobe/isosurface geometry, a repeating
+  cell) on the same Three.js surface. Do not schedule an orbitals or solid-state concept until it
+  ships. SN1/SN2 (#14) and stereochemistry (#15) sit between the two tiers: the molecule scaffold
+  exists, the bond-breaking / inversion MOTION layer does not.
+
+> This split is the Session-C4 lesson applied to my own build: a tier is a CLAIM about renderer
+> readiness for the SPECIFIC motion a concept needs. "Molecular 3D" was one label covering at least
+> three separate engine builds, and only the first of them is done.
 
 ### Q — Apparatus / wet-lab (titration, electrochemical cell) **[PHASE-5]**
 Burette/flask/indicator, half-cells + salt bridge with electron/ion flow. Needs the 5b apparatus
