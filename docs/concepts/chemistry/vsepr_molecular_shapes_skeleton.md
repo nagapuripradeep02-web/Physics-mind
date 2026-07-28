@@ -67,10 +67,12 @@ beat is itself a shape morph (S1–S4: `spin_start_ms` sits after the last ramp 
 is never read against a rotation. S5/S6 turn from t=0 at a constant rate because their beat is a
 toggle/swap, not a morph, and an octahedron seen dead-on is unreadable.
 
-**Rule 32d (home pose):** all seven states share ONE frame — apex +y, tripod legs at azimuth
-90°/210°/330° — and lone pairs always consume the apex-side slots, so the molecule never teleports
-between states. Only the camera moves (S2 sits dead-on at `[0, 0.8, 9.2]` so its 90° reads as a true
-right angle).
+**Rule 32d (home pose):** all seven states share ONE frame — apex +y, non-apex domains at azimuth
+`MG_AZ0` + k·120° — and lone pairs always consume the apex-side slots, so the molecule never teleports
+between states. Six of the seven states also share ONE camera (az 255° / el 16°); only S6 differs,
+because five chlorines separate on screen only from a steeper view with longer bonds. S2 keeps the
+shared camera and authors its sketch plane (`flat_basis`) as that camera's own screen basis, so its
+flat 90° is a true right angle without needing a private viewpoint.
 
 **Rule 38b:** the explore state's molecule picker offers **core-ring molecules only** (CH₄, NH₃, H₂O,
 BF₃, BeCl₂). PCl₅/SF₆ stay inside the extended-ring state that teaches them, so a syllabus preset
@@ -114,3 +116,110 @@ stereochemistry) will need a motion layer added to it, not a new surface.
 FORBIDDEN for chemistry ids until the chemistry serving path lands (root CLAUDE.md §6;
 `docs/CHEMISTRY_ARCHITECTURE.md` §7). Gate 8b is all-or-nothing. Validation is
 `npm run validate:chemistry`; the physics validator must not see this file.
+
+---
+
+## §7 — Definition of Done (Gate 0 — zero TBDs)
+
+**(a) States:** the 7 states of §2, exactly as tabled, in that order.
+
+**(b) Symbol-label table:**
+
+| Narrated quantity | On-canvas label |
+|---|---|
+| bond angle | live arc sprite `H–C–H = 109.5°` (ligand–central–ligand, element symbols substituted per molecule) |
+| electron-domain count | HUD `domains = 4`, and `domains = 4 (2 bond + 2 lone)` whenever lone pairs exist |
+| electron geometry | HUD `electron geometry: tetrahedral` |
+| molecular shape | HUD `shape: bent` |
+| ligand separation | HUD `H···H = 178 pm` (value-only; **no on-canvas sprite** — see (h)) |
+| atoms | element symbols on the central atom and on the TWO ligands the arc measures, never on all six |
+| lone pair | `lone pair` / `lone pairs`, on the lobe cluster |
+| the rule itself | ONE Cambria-Math formula surface, e.g. `4 bonding pairs → 109.5°` |
+
+**(c) Chemical-validity ledger (the chemistry variant — replaces the balanced-equation ledger, since
+no reaction occurs here):** every angle rendered is the real value, and the renderer DERIVES it rather
+than being told it — `mgIdealDirs` for the maximum-separation arrangement, `mgSqueeze` (closed form)
+for the lone-pair compression. Verified numerically before any state was authored: BeCl₂ 180.0 ·
+BF₃ 120.0 · CH₄ 109.471 · NH₃ 107.0 · H₂O 104.5 · PCl₅ 120.0 eq / 90.0 ax-eq · SF₆ 90.0. NH₃ and H₂O
+are EXPERIMENTAL values, and `physics_engine_config.constraints` says so explicitly — VSEPR predicts
+the direction of the effect, not the number. A multiple bond is ONE domain (stated in `constraints`,
+tested by q5, and never contradicted on canvas because no multiple-bonded molecule is drawn).
+
+**(d) Motion plan:** exactly the archetype column of §2. No static state. The slow 3D turn is OFF
+during any state whose beat is itself a morph (S1–S4), ON at a constant rate where the beat is a
+toggle or a swap (S5–S7).
+
+**(e) Modes:** `epic_l_path` only (Rule 20 [D] — no `mode_overrides`). `renderer_pair` field_3d /
+field_3d; no second panel.
+
+**(f) Assessment + coverage_map + misconception_watch:** 6 backward-designed questions; ≥1 on the aha
+(q1 → S2); q5 is a deliberate TRANSFER item (CO₂) that no single state stages, and `coverage_map.notes`
+says so; every wrong option keyed to an M1–M3-class belief; `by_state` covers S1–S6,
+`non_assessed_states: [STATE_7]`. `misconception_watch` is exactly the three entries of §3.
+
+**(g) Macro↔micro (Rule 33): N/A, and deliberately.** There is no macroscopic manipulable cause driving
+a separate microscopic mechanism — the molecule IS the taught object at the only scale it has. Same
+precedent as `bohr_model_energy_levels`. Recorded as a decided non-issue, not an omission.
+
+**(h) Canvas budget (Rule 34):** per state ONE Cambria formula surface (left, `top:44%`); the top
+caption is the ≤5-word delta cue only; prose lives in the subtitle strip; the HUD (`top:52px;right:12px`,
+clearing the review-chrome Full-screen button) is value-only; sliders bottom-right. **The span carries
+its LINE on canvas but its NUMBER only in the HUD** — the span midpoint sits on the same bisector ray
+the arc label uses, so two wide sprites there overlap by construction.
+
+**(i) 3D projection check (NEW — this render surface's own gate, and the one THE EYE's deterministic
+checks cannot perform):**
+- **Countability.** Every element the caption or HUD counts must be separately countable in the frozen
+  frame. Measured, not eyeballed: with atoms projected as discs, the minimum screen gap between any two
+  atoms — and between any atom and the central atom — must be **> 0**. Achieved gaps: 0.51 (tetra
+  states), 0.92 BeCl₂, 1.02 BF₃, 0.34 PCl₅, 0.38 SF₆.
+- **Angle fidelity.** The projected arc angle must stay near its label: ≤3.4° error on the shared
+  camera, ≤4° on S3, ≤3.4° on S6.
+- **Flat-vs-real honesty.** S2's sketch plane is authored (`flat_basis`) as the screen basis of its own
+  camera, so its 90° is exactly 90.00° and the relaxed angle still reads near 109.5°.
+- **No claim without a measurement.** Every number on canvas must be produced by something rendered.
+  S6's formula was descoped to `5 → 120° equatorial · 6 → 90°` for exactly this reason: the scenario
+  draws ONE arc, so the axial-equatorial 90° of PCl₅ was asserted but never shown.
+
+**(j) Engine contract the scenario must supply** (`molecular_geometry`; no `computePhysics_*` — this is
+field_3d, not PCPL): domain directions for 2–6 domains · closed-form lone-pair compression · a live arc
+with `setDrawRange` sweep + auto-width label · a ligand-span line + picometre value · a domain
+ghost/hull cage · per-state `bond_scale` · `flat_basis` · the cues `assemble_at_ms`, `flat_hold_ms`,
+`spread_steps`, `squeeze_steps`, `compare_at_ms`, `hull_at_ms`, `hide_lone_at_ms` · controls
+`molecule` / `spin` / `lone`, with any scripted change reflected back into the control a teacher drives.
+
+## Block 1 — Pass-1 strategic checklist
+
+**Prerequisite cliff.** The real prerequisite is a Lewis structure — knowing which atoms are bonded and
+that non-bonding electrons come in pairs. No shipped concept covers it. The concept breaks at **S4**
+without it: a student who has never drawn a lone pair cannot accept that one exists on nitrogen. Patch:
+S4's first sentence defines it in one line ("two electrons that belong to the central atom alone")
+before the lobe appears. S1–S3 need only "atoms are joined by bonds", which is safe.
+
+**JEE-backwards trace.** *"Predict the shape of ClF₃ / why is H₂O bent while CO₂ is linear?"* Knowledge
+pieces → states: (1) count electron domains, multiple bond = one → S3 + q5; (2) domains repel to maximum
+separation → S3; (3) that arrangement names the ELECTRON geometry → S5; (4) lone pairs repel harder, so
+the bond angle closes → S4; (5) the SHAPE is what the atoms alone trace → S5; (6) beyond four domains,
+axial vs equatorial → S6. The full ClF₃ answer (which sites lone pairs occupy in a bipyramid) is
+deliberately out of scope — it needs the lone-pair-placement rule, a separate concept.
+
+**Misconception entry mapping.** M1 (flat molecules) is *planted by every Lewis diagram the student has
+ever seen* — S2 confronts it directly rather than pretending it is not already there. M2 (a lone pair is
+an empty slot) risks being planted by S3, which shows only bonding domains; S4 confronts it one state
+later. M3 (geometry = shape) is planted by S1–S4, all of which name a single geometry per molecule; S5
+exists precisely to split it. No EPIC-C branches (EPIC-L-first).
+
+## Block 2 — Aha-moment designation
+
+- **PRIMARY aha:** *the flat cross on paper is a bookkeeping convention, not the molecule — the real one
+  leaves the page, and its hydrogens sit 24 pm further apart than the drawing implies.* At **S2**
+  (inside `foundational` ✔).
+- **SUPPORTING aha:** at **S5** — electron geometry and molecular shape are answers to two different
+  questions, and water is both tetrahedral and bent without contradiction.
+- **Cohesion:** S2 destroys the wrong picture, S3 supplies the mechanism that replaces it, S4 refines it,
+  S5 shows the refined picture answers exam questions the naive one cannot. One line.
+- **Wrong-belief setup:** S1 builds a confident, CORRECT picture (tetrahedral methane) and S2 immediately
+  contrasts it with the flat sketch the student already carries — the belief is pre-planted by prior
+  schooling, so S1 does not need to plant it.
+- **Deep-dive cross-reference:** the Pass-1 cliff states (S4, S5) are the two worth `has_prebuilt_deep_dive`
+  tags if deep-dive ever reactivates; not authored now (Rule 18 [D]).

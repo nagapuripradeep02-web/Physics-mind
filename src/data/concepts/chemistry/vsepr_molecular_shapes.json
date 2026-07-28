@@ -659,9 +659,9 @@
           "s1_turn_label"
         ],
         "camera_position": [
-          0.86,
-          6.15,
-          3.44
+          0.67,
+          5.19,
+          4.8
         ],
         "caption": "Four bonds, one shape",
         "molecular_geometry": {
@@ -704,9 +704,9 @@
           "s2_span_label"
         ],
         "camera_position": [
-          0.94,
-          6.76,
-          3.78
+          0.74,
+          5.7,
+          5.27
         ],
         "caption": "Flat sketch, then real",
         "molecular_geometry": {
@@ -737,14 +737,14 @@
           "static_readouts": [],
           "flat_basis": [
             [
-              -0.9703,
+              -0.9903,
               0,
-              0.2419
+              0.1392
             ],
             [
-              0.2095,
-              -0.5,
-              0.8403
+              0.1018,
+              -0.682,
+              0.7242
             ]
           ]
         }
@@ -761,9 +761,9 @@
           "s3_spread_label"
         ],
         "camera_position": [
-          -0.5,
-          1.02,
-          -7.21
+          0.69,
+          5.34,
+          4.93
         ],
         "caption": "More domains, wider spread",
         "molecular_geometry": {
@@ -821,9 +821,9 @@
           "s4_squeeze_label"
         ],
         "camera_position": [
-          0.85,
-          6.11,
-          3.42
+          0.67,
+          5.16,
+          4.76
         ],
         "caption": "Lone pairs push harder",
         "molecular_geometry": {
@@ -881,9 +881,9 @@
           "s5_shape_label"
         ],
         "camera_position": [
-          0.89,
-          6.37,
-          3.57
+          0.7,
+          5.38,
+          4.96
         ],
         "caption": "Count domains, name shape",
         "molecular_geometry": {
@@ -891,7 +891,7 @@
           "molecule": "H2O",
           "hull_at_ms": 2200,
           "hide_lone_at_ms": 9000,
-          "spin_start_ms": 0,
+          "spin_start_ms": 9900,
           "spin_rate": 0.12,
           "arc_pair": [
             0,
@@ -931,9 +931,9 @@
           "s6_octa_label"
         ],
         "camera_position": [
-          -0.49,
-          6.47,
-          -4.68
+          -8.47,
+          4.51,
+          -0.3
         ],
         "caption": "Five, then six domains",
         "molecular_geometry": {
@@ -952,11 +952,12 @@
             "shape"
           ],
           "show_formula": true,
-          "formula": "5 → 120° and 90° · 6 → 90°",
+          "formula": "5 → 120° equatorial · 6 → 90°",
           "controls": [
             "spin"
           ],
-          "static_readouts": []
+          "static_readouts": [],
+          "bond_scale": 1.45
         }
       },
       "STATE_7": {
@@ -972,9 +973,9 @@
           "s7_yours_label"
         ],
         "camera_position": [
-          0.88,
-          6.32,
-          3.54
+          0.69,
+          5.34,
+          4.93
         ],
         "caption": "All yours",
         "molecular_geometry": {

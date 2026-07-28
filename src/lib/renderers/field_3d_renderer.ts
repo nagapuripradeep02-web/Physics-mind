@@ -41930,7 +41930,7 @@ export const FIELD_3D_RENDERER_CODE = `
         CH4:   { central: "C",  ligand: "H",  bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 109, arc_pair: [0, 1], formula: "CH\\u2084" },
         NH3:   { central: "N",  ligand: "H",  bonds: 3, lone: 1, e_geom: "tetrahedral", shape: "trigonal pyramidal", angle: 107, bond_pm: 101, arc_pair: [0, 1], formula: "NH\\u2083" },
         H2O:   { central: "O",  ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 104.5, bond_pm: 96, arc_pair: [0, 1], formula: "H\\u2082O" },
-        PCl5:  { central: "P",  ligand: "Cl", bonds: 5, lone: 0, e_geom: "trigonal bipyramidal", shape: "trigonal bipyramidal", angle: 120, bond_pm: 214, arc_pair: [2, 3], arc_pair_b: [0, 2], formula: "PCl\\u2085" },
+        PCl5:  { central: "P",  ligand: "Cl", bonds: 5, lone: 0, e_geom: "trigonal bipyramidal", shape: "trigonal bipyramidal", angle: 120, bond_pm: 214, arc_pair: [2, 3], formula: "PCl\\u2085" },
         SF6:   { central: "S",  ligand: "F",  bonds: 6, lone: 0, e_geom: "octahedral", shape: "octahedral", angle: 90, bond_pm: 156, arc_pair: [0, 2], formula: "SF\\u2086" }
     };
     var MG_EXPLORE_MOLECULES = ["CH4", "NH3", "H2O", "BF3", "BeCl2"];
@@ -42095,6 +42095,42 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!m.userData) m.userData = {};
             if (m.color) m.userData._glowBaseCol = m.color.clone();
         }
+    }
+    // Place a billboard label beside its atom by picking, among four SCREEN-space
+    // diagonals, the one whose projected position sits farthest from every other
+    // atom's projection. A fixed world offset cannot work here: which direction is
+    // "clear" depends entirely on the camera, and a world-space "away from the arc"
+    // rule just trades one collision for another — it parked the carbon's C label
+    // on top of a hydrogen (STATE_3) and the phosphorus P on an axial chlorine
+    // (STATE_6). Deterministic: the camera has settled by capture time.
+    var mgCamR = new THREE.Vector3(), mgCamU = new THREE.Vector3(), mgCamF = new THREE.Vector3();
+    var mgProbe = new THREE.Vector3();
+    function mgPlaceLabelClear(sprite, anchor, offset, avoidWorld) {
+        if (!sprite) return;
+        camera.matrixWorld.extractBasis(mgCamR, mgCamU, mgCamF);
+        var avoidNdc = [], k;
+        for (k = 0; k < avoidWorld.length; k++) {
+            if (!avoidWorld[k]) continue;
+            mgProbe.set(avoidWorld[k][0], avoidWorld[k][1], avoidWorld[k][2]).project(camera);
+            avoidNdc.push([mgProbe.x, mgProbe.y]);
+        }
+        var dirs = [[-1, 1], [1, 1], [-1, -1], [1, -1]];
+        var bestPos = null, bestScore = -1, i, j;
+        for (i = 0; i < dirs.length; i++) {
+            var px = anchor[0] + (mgCamR.x * dirs[i][0] + mgCamU.x * dirs[i][1]) * offset;
+            var py = anchor[1] + (mgCamR.y * dirs[i][0] + mgCamU.y * dirs[i][1]) * offset;
+            var pz = anchor[2] + (mgCamR.z * dirs[i][0] + mgCamU.z * dirs[i][1]) * offset;
+            mgProbe.set(px, py, pz).project(camera);
+            var worst = 9;
+            for (j = 0; j < avoidNdc.length; j++) {
+                var dx = mgProbe.x - avoidNdc[j][0], dy = mgProbe.y - avoidNdc[j][1];
+                var dd = Math.sqrt(dx * dx + dy * dy);
+                if (dd < worst) worst = dd;
+            }
+            // ties broken by candidate order, so the choice is stable frame to frame
+            if (worst > bestScore + 1e-6) { bestScore = worst; bestPos = [px, py, pz]; }
+        }
+        if (bestPos) sprite.position.set(bestPos[0], bestPos[1], bestPos[2]);
     }
     var MG_UP = new THREE.Vector3(0, 1, 0);
     var mgTmpV = new THREE.Vector3(), mgTmpU = new THREE.Vector3(), mgTmpW = new THREE.Vector3();
@@ -42376,7 +42412,18 @@ export const FIELD_3D_RENDERER_CODE = `
             else { ff.style.display = "none"; }
         }
         // Everything geometric is (re)placed by updateMolecularGeometryFrame on the
-        // very next frame from the state's own clock — nothing to seed here.
+        // very next frame from the state's own clock. But the generic
+        // visible_elements matcher has just switched these ON, and a capture that
+        // lands between this apply and the first animate frame would photograph the
+        // PREVIOUS state's arc sweep and label text. Hide the transients here so the
+        // frame updater is the only thing that can ever reveal them — during an
+        // "assemble" beat that also guarantees the angle never appears before the
+        // two bonds it measures exist.
+        var transientIds = ["mg_arc", "mg_arc_label", "mg_span", "mg_span_label", "mg_lone_label"];
+        for (var ti = 0; ti < transientIds.length; ti++) {
+            var tObj = mgFindById(transientIds[ti]);
+            if (tObj) tObj.visible = false;
+        }
     }
 
     // The single per-frame pass: resolve the live molecule + angle + domain count
@@ -42473,6 +42520,15 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var fr = mgFrame(molKey, angleNow, domainsNow);
         var mol = fr.mol;
+        // Per-state bond scale. Five chlorines of radius 0.52 around one phosphorus
+        // crowd at the default length and an equatorial Cl projects ONTO an axial
+        // one — a domain the HUD is counting stops being separately countable.
+        // Lengthening that molecule's bonds is also the more honest drawing: P–Cl is
+        // 214 pm against methane's 109, and rendering both at one length is a quiet
+        // lie. The arc radius rides the same scale so it stays proportional.
+        var bondScale = (typeof mgd.bond_scale === "number" && mgd.bond_scale > 0) ? mgd.bond_scale : 1;
+        var bondLen = MG_BOND_LEN * bondScale;
+        var arcR = MG_ARC_R * bondScale;
         var bondDirs = fr.bonds.slice(), loneDirs = fr.lone.slice();
 
         // the flat-sketch morph: every bond interpolates from its paired flat
@@ -42523,18 +42579,8 @@ export const FIELD_3D_RENDERER_CODE = `
         if (cenLab) {
             cenLab.visible = (mgd.show_atom_labels !== false);
             updateLabelSpriteText(cenLab, mol.central);
-            // Park the central symbol on the side AWAY from the angle arc. A fixed
-            // up-right offset collided with the arc and its label on most states
-            // (the arc always opens between two bonds, and up-right is inside that
-            // wedge as often as not).
-            var away = null;
-            if (bondDirs.length > 1 && ai !== aj && bondDirs[ai] && bondDirs[aj]) {
-                var sm = [bondDirs[ai][0] + bondDirs[aj][0], bondDirs[ai][1] + bondDirs[aj][1], bondDirs[ai][2] + bondDirs[aj][2]];
-                if (Math.abs(sm[0]) + Math.abs(sm[1]) + Math.abs(sm[2]) > 0.12) away = mgNorm(sm);
-            }
-            var co = cenEl.radius + 0.42;
-            if (away) cenLab.position.set(-away[0] * co, -away[1] * co, -away[2] * co);
-            else cenLab.position.set(cenEl.radius + 0.28, cenEl.radius + 0.10, 0);
+            // positioned AFTER the atom pass, once every ligand position is known —
+            // see mgPlaceLabelClear below.
         }
 
         // ── bonds + ligands + their labels
@@ -42552,8 +42598,8 @@ export const FIELD_3D_RENDERER_CODE = `
             if (on && grown != null) f = mgClamp(grown - i, 0, 1);
             if (on && mode === "domain_spread" && i >= (window.PM_mgSpreadPrev || 0)) f = spreadF;
             if (on && f <= 0.001) on = false;
-            if (bd) { bd.visible = on; if (on) mgOrientStick(bd, bondDirs[i], MG_BOND_LEN * f, 1); }
-            var p = on ? [bondDirs[i][0] * MG_BOND_LEN * f, bondDirs[i][1] * MG_BOND_LEN * f, bondDirs[i][2] * MG_BOND_LEN * f] : null;
+            if (bd) { bd.visible = on; if (on) mgOrientStick(bd, bondDirs[i], bondLen * f, 1); }
+            var p = on ? [bondDirs[i][0] * bondLen * f, bondDirs[i][1] * bondLen * f, bondDirs[i][2] * bondLen * f] : null;
             ligPos[i] = p;
             if (lg) {
                 lg.visible = on;
@@ -42563,10 +42609,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 ll.visible = on && (mgd.show_atom_labels !== false) && f > 0.85 && (i === ai || i === aj);
                 if (ll.visible) {
                     updateLabelSpriteText(ll, mol.ligand);
-                    var lo = 1 + (ligEl.radius + 0.30) / MG_BOND_LEN;
+                    var lo = 1 + (ligEl.radius + 0.30) / bondLen;
                     ll.position.set(p[0] * lo, p[1] * lo, p[2] * lo);
                 }
             }
+        }
+
+        // the central symbol goes wherever the screen is clearest of ligands
+        if (cenLab && cenLab.visible) {
+            mgPlaceLabelClear(cenLab, [0, 0, 0], cenEl.radius + 0.62, ligPos);
         }
 
         // ── lone-pair lobes (fatter + shorter than a bond = "more room")
@@ -42579,6 +42630,15 @@ export const FIELD_3D_RENDERER_CODE = `
             showLone = ms < cueTriggerMs("hide_lone", mgd.hide_lone_at_ms);
         }
         if (ctrls.indexOf("lone") >= 0 && window.PM_mgLoneDragged) showLone = !!window.PM_mgShowLone;
+        // Keep the teacher's own control honest: a scripted hide must flip the
+        // checkbox it shares, or the instrument contradicts the picture (the box
+        // read "checked" with zero lobes on screen — STATE_5's frozen frame).
+        // Generalises the ghost_compare_cause_invisible_slider scar from sliders to
+        // checkboxes. DOM-only write, no input event, so drag-seize is not tripped.
+        if (ctrls.indexOf("lone") >= 0 && !window.PM_mgLoneDragged) {
+            var loneCkSync = document.getElementById("mg_lone_check");
+            if (loneCkSync && loneCkSync.checked !== showLone) loneCkSync.checked = showLone;
+        }
         for (i = 0; i < MG_MAX_LONE; i++) {
             var lp = mgFindById("mg_lone_" + i);
             if (!lp) continue;
@@ -42586,7 +42646,7 @@ export const FIELD_3D_RENDERER_CODE = `
             lp.visible = lpOn;
             if (lpOn) {
                 var d = loneDirs[i];
-                var at = MG_BOND_LEN * 0.52;
+                var at = bondLen * 0.52;
                 lp.position.set(d[0] * at, d[1] * at, d[2] * at);
                 mgTmpV.set(d[0], d[1], d[2]).normalize();
                 mgTmpQ.setFromUnitVectors(MG_UP, mgTmpV);
@@ -42598,7 +42658,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (lpLab) {
             lpLab.visible = !!(mgd.show_lone_label && showLone && loneDirs.length > 0);
             if (lpLab.visible) {
-                var ld = loneDirs[0], la = MG_BOND_LEN * 0.52 + 0.62;
+                var ld = loneDirs[0], la = bondLen * 0.52 + 0.62;
                 lpLab.position.set(ld[0] * la, ld[1] * la, ld[2] * la);
                 updateLabelSpriteText(lpLab, loneDirs.length > 1 ? "lone pairs" : "lone pair");
             }
@@ -42617,7 +42677,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var gOn = showGhost && (i < allDirs.length);
             gs.visible = gOn;
             if (gOn) {
-                mgOrientStick(gs, allDirs[i], MG_BOND_LEN * 1.12, 1);
+                mgOrientStick(gs, allDirs[i], bondLen * 1.12, 1);
                 if (gs.material) gs.material.opacity = 0.42 * cageF;
             }
         }
@@ -42628,8 +42688,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 var he = mgFindById("mg_hull_" + hi);
                 if (he) {
                     he.visible = true;
-                    var pa = [allDirs[i][0] * MG_BOND_LEN * 1.12, allDirs[i][1] * MG_BOND_LEN * 1.12, allDirs[i][2] * MG_BOND_LEN * 1.12];
-                    var pb = [allDirs[j][0] * MG_BOND_LEN * 1.12, allDirs[j][1] * MG_BOND_LEN * 1.12, allDirs[j][2] * MG_BOND_LEN * 1.12];
+                    var pa = [allDirs[i][0] * bondLen * 1.12, allDirs[i][1] * bondLen * 1.12, allDirs[i][2] * bondLen * 1.12];
+                    var pb = [allDirs[j][0] * bondLen * 1.12, allDirs[j][1] * bondLen * 1.12, allDirs[j][2] * bondLen * 1.12];
                     mgOrientBetween(he, pa, pb, 1);
                     if (he.material) he.material.opacity = 0.40 * cageF;
                 }
@@ -42660,6 +42720,9 @@ export const FIELD_3D_RENDERER_CODE = `
         // ── the bond-angle arc + its LIVE numeric label (Rule 33d: an instrument
         //    reads a real number, it is never a decorative dial)
         var arc = mgFindById("mg_arc"), arcLab = mgFindById("mg_arc_label");
+        // ligPos[i] is null until bond i has grown, so during an "assemble" beat the
+        // arc cannot appear before BOTH of the bonds it measures exist — the answer
+        // must not be on screen ahead of its own evidence.
         var haveArc = !!mgd.show_angle_arc && bondDirs.length >= 2 && ai !== aj && ligPos[ai] && ligPos[aj];
         if (arc) {
             arc.visible = haveArc;
@@ -42676,7 +42739,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 mgTmpM.makeBasis(mgTmpU, vAx, mgTmpV);
                 arc.quaternion.setFromRotationMatrix(mgTmpM);
                 arc.position.set(0, 0, 0);
-                arc.scale.setScalar(MG_ARC_R);
+                arc.scale.setScalar(arcR);
                 var segs = Math.max(1, Math.min(MG_ARC_SEGS, Math.round(MG_ARC_SEGS * angRad / (Math.PI * 2))));
                 arc.geometry.setDrawRange(0, segs * 6);
                 if (arcLab) {
@@ -42694,7 +42757,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // clear of the bonds AND of the atoms: the sprite is centred on
                     // this point and a wide string still overlapped the central atom
                     // at +1.15 (observed on SF₆).
-                    var lr = MG_ARC_R + 1.35;
+                    var lr = arcR + 1.35;
                     arcLab.position.set(mid[0] * lr, mid[1] * lr, mid[2] * lr);
                     updateLabelSpriteText(arcLab, mol.ligand + "\\u2013" + mol.central + "\\u2013" + mol.ligand + " = " + angDeg.toFixed(1) + "\\u00B0");
                 }
@@ -42710,17 +42773,27 @@ export const FIELD_3D_RENDERER_CODE = `
             span.visible = haveSpan;
             if (haveSpan) mgOrientBetween(span, ligPos[ai], ligPos[aj], 1);
         }
+        // The picometre value is computed whenever the span EXISTS, never only when
+        // its sprite is drawn — the HUD reads window.PM_mgSpanPm and would go stale
+        // the moment the label is switched off.
+        if (haveSpan) {
+            var halfA = (window.PM_mgAngleDeg != null ? window.PM_mgAngleDeg : mol.angle) / 2 * Math.PI / 180;
+            window.PM_mgSpanPm = 2 * mol.bond_pm * Math.sin(halfA);
+        }
         if (spanLab) {
-            spanLab.visible = haveSpan;
-            if (haveSpan) {
-                var halfA = (window.PM_mgAngleDeg != null ? window.PM_mgAngleDeg : mol.angle) / 2 * Math.PI / 180;
-                var pm = 2 * mol.bond_pm * Math.sin(halfA);
+            // The sprite is OFF by default. The span midpoint lies on the SAME
+            // bisector ray the arc label uses, so at any radius the two wide sprites
+            // overlap — they garbled each other on STATE_2's frozen frame, which is
+            // this concept's aha. The number belongs in the value-only HUD (Rule
+            // 34b); the canvas keeps the LINE, which is the part that shows WHAT is
+            // being measured.
+            spanLab.visible = haveSpan && !!mgd.show_span_label;
+            if (spanLab.visible) {
                 var mpx = (ligPos[ai][0] + ligPos[aj][0]) / 2;
                 var mpy = (ligPos[ai][1] + ligPos[aj][1]) / 2;
                 var mpz = (ligPos[ai][2] + ligPos[aj][2]) / 2;
                 spanLab.position.set(mpx * 1.16, mpy * 1.16 + 0.24, mpz * 1.16);
-                updateLabelSpriteText(spanLab, mol.ligand + "\\u00B7\\u00B7\\u00B7" + mol.ligand + " = " + Math.round(pm) + " pm");
-                window.PM_mgSpanPm = pm;
+                updateLabelSpriteText(spanLab, mol.ligand + "\\u00B7\\u00B7\\u00B7" + mol.ligand + " = " + Math.round(window.PM_mgSpanPm) + " pm");
             }
         }
 
