@@ -25,6 +25,7 @@ import {
 } from '@/lib/renderers/particle_field_renderer';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { resolveConceptJsonPath } from './lib/resolveConceptJson';
+import { assembleSimFromSource } from './lib/assembleSimFromSource';
 import {
     buildParametricConfig,
     isParametricConcept,
@@ -44,44 +45,18 @@ async function main(): Promise<void> {
         process.exit(1);
     }
 
-    const resolved = resolveConceptJsonPath(conceptId);
-    if (!resolved) throw new Error(`concept JSON not found for "${conceptId}"`);
-    const json = JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
-
-    // Renderer-aware assembly. THE EYE captures frozen baselines, so the
-    // parametric sim is seeded at its NATIVE 760x500 design size (responsiveFill
-    // OFF) — a viewport-dependent fit transform would make every frozen frame
-    // depend on the capture window size.
-    let simHtml: string;
-    let rendererType: string;
-    let engine: string;
-
-    if (json.field_3d_config) {
-        simHtml = assembleField3DHtml(json.field_3d_config);
-        rendererType = 'field_3d';
-        engine = 'threejs';
-    } else if (json.particle_field_config) {
-        // particle_field was missing here: the seeder was written for the first
-        // chemistry concept (parametric) and field_3d, so the FIRST chemistry
-        // concept on the particle_field family could not reach THE EYE at all.
-        // Seeded at its authored canvas size for the same frozen-baseline reason
-        // as parametric — a viewport-dependent fit would make every frozen frame
-        // depend on the capture window.
-        simHtml = assembleParticleFieldHtml(json.particle_field_config);
-        rendererType = 'particle_field';
-        engine = 'p5';
-    } else if (isParametricConcept(json)) {
-        simHtml = assembleParametricHtml(buildParametricConfig(conceptId, json));
-        rendererType = 'parametric';
-        engine = 'p5';
-    } else {
+    // Assembly is shared with loadCachedSim's staleness gate, so the row this
+    // writes and the row that gate checks are produced by the SAME code.
+    const built = assembleSimFromSource(conceptId);
+    if (!built) {
         throw new Error(
             `"${conceptId}" has no field_3d_config, no particle_field_config, and ` +
             'renderer_pair.panel_a is not "parametric" — no seedable renderer family.',
         );
     }
+    const { simHtml, rendererType, engine, json, subject } = built;
 
-    console.log(`[${resolved.subject}] ${conceptId} → ${rendererType}; sim_html ${simHtml.length} chars`);
+    console.log(`[${subject}] ${conceptId} → ${rendererType}; sim_html ${simHtml.length} chars`);
 
     const del = await supabaseAdmin.from('simulation_cache').delete().eq('concept_key', conceptId);
     if (del.error) throw new Error(`delete failed: ${del.error.message}`);
