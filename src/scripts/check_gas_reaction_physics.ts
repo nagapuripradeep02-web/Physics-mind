@@ -412,5 +412,68 @@ boot(makeConfig({ temperature_K: 450 }, { T: 450, adiabatic: false, species_coun
     `chip range ${winMin.toFixed(4)}-${winMax.toFixed(4)} — wanders by design, narrate comparatively`);
 }
 
+// ── 14. reaction_at_cue: the catalyst goes in MID-state, and shifts nothing ──
+// The point of the beat is that both directions speed up by the same factor, so
+// the balance does not move. That must stay EMERGENT: the cue lowers only the
+// FORWARD barrier, and Ea_rev = Ea_fwd + E_bond drags the reverse barrier down
+// with it through the same accessor. If someone ever special-cases the override
+// onto activation_fwd_kT alone, the reverse would not follow and this fails.
+{
+  const catalysed = {
+    T: 400, adiabatic: false,
+    species_counts: { A: 47, B: 47, AB: 13 },
+    cues: [{ id: 'add_catalyst', at_ms: 1000 }],
+    reaction_at_cue: { cue: 'add_catalyst', activation_fwd_kT: 0.5 },
+  };
+  boot(makeConfig({}, catalysed));
+  const st = R.config.states.STATE_1;
+  for (let i = 0; i < 30; i++) R.stepGas(st);          // 0.5 s — before the cue
+  for (let i = 0; i < 300; i++) R.stepGas(st);         // prime the rate windows
+  const fwdBefore = Number(R.gasRxFwdRate), revBefore = Number(R.gasRxRevRate);
+  // sanity: at 0.5 s the cue has not fired, so the barrier is still the baseline
+  boot(makeConfig({}, catalysed));
+  // 120 ticks, not 60: PM_simTimeMs accumulates 1000/60 per step and lands a
+  // float hair UNDER 1000 after exactly 60, so an at_ms:1000 cue fires on tick
+  // 61. Sampling on the boundary tests floating-point, not the mechanism.
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  const eaAfter = Number(R.gasRxEaFwd(R.config.states.STATE_1));
+  boot(makeConfig({}, { ...catalysed, cues: [{ id: 'add_catalyst', at_ms: 999999 }] }));
+  // 120 ticks, not 60: PM_simTimeMs accumulates 1000/60 per step and lands a
+  // float hair UNDER 1000 after exactly 60, so an at_ms:1000 cue fires on tick
+  // 61. Sampling on the boundary tests floating-point, not the mechanism.
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  const eaBefore = Number(R.gasRxEaFwd(R.config.states.STATE_1));
+  check('reaction_at_cue lowers the barrier only after its cue', eaAfter < eaBefore,
+    `Ea_fwd ${eaBefore.toFixed(4)} before the cue -> ${eaAfter.toFixed(4)} after`);
+
+  // and the reverse barrier must have fallen by the SAME bond energy
+  boot(makeConfig({}, catalysed));
+  // 120 ticks, not 60: PM_simTimeMs accumulates 1000/60 per step and lands a
+  // float hair UNDER 1000 after exactly 60, so an at_ms:1000 cue fires on tick
+  // 61. Sampling on the boundary tests floating-point, not the mechanism.
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  const revAfterEa = Number(R.gasRxEaRev(R.config.states.STATE_1));
+  const bondE = Number(R.gasRxBondE(R.config.states.STATE_1));
+  check('reaction_at_cue keeps Ea_rev derived', Math.abs((revAfterEa - eaAfter) - bondE) < 1e-9,
+    `Ea_rev ${revAfterEa.toFixed(4)} - Ea_fwd ${eaAfter.toFixed(4)} = ${(revAfterEa - eaAfter).toFixed(4)}, bond ${bondE.toFixed(4)}`);
+
+  // both rates rise together, plateau does not move
+  function meanABfrom(state: Record<string, unknown>, settle: number, sample: number) {
+    boot(makeConfig({}, state));
+    const s = R.config.states.STATE_1;
+    for (let i = 0; i < settle; i++) R.stepGas(s);
+    let sum = 0, n = 0;
+    for (let i = 0; i < sample; i++) { R.stepGas(s); if (i % 30 === 0) { sum += counts().AB; n++; } }
+    return { ab: sum / n, fwd: Number(R.gasRxFwdRate), rev: Number(R.gasRxRevRate) };
+  }
+  const plain = meanABfrom({ T: 400, adiabatic: false, species_counts: { A: 47, B: 47, AB: 13 } }, 3600, 3600);
+  const cat = meanABfrom(catalysed, 3600, 3600);
+  check('catalyst speeds both directions', cat.fwd > plain.fwd * 1.4 && cat.rev > plain.rev * 1.4,
+    `fwd ${plain.fwd.toFixed(2)} -> ${cat.fwd.toFixed(2)}/s, rev ${plain.rev.toFixed(2)} -> ${cat.rev.toFixed(2)}/s`);
+  check('catalyst does NOT move the plateau', Math.abs(cat.ab - plain.ab) <= Math.max(4, plain.ab * 0.18),
+    `AB plateau ${plain.ab.toFixed(1)} uncatalysed vs ${cat.ab.toFixed(1)} catalysed`);
+  void fwdBefore; void revBefore;
+}
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);

@@ -3627,6 +3627,20 @@ function gasKtToEnergy(nkT) {
 // (the catalyst beat) without a second species list.
 function gasRxNum(state, key, dflt) {
   var r = gasRxCfg() || {};
+  // A cue-driven change to a reaction constant — "the catalyst goes in NOW".
+  // Deliberately placed at the single read point for EVERY reaction constant
+  // rather than special-cased on activation_fwd_kT, so the derived quantities
+  // follow for free: gasRxEaRev computes Ea_rev = Ea_fwd + E_bond through this
+  // same accessor, so lowering the forward barrier on a cue lowers the reverse
+  // barrier by exactly as much. That is what keeps the catalyst's "much faster,
+  // but the balance does not move" EMERGENT — the null result falls out of the
+  // derivation instead of being asserted twice, which is the whole reason the
+  // beat is worth watching rather than being told.
+  if (state && state.reaction_at_cue && state.reaction_at_cue.cue
+      && typeof state.reaction_at_cue[key] === 'number'
+      && cueFiredAt[state.reaction_at_cue.cue] !== undefined) {
+    return state.reaction_at_cue[key];
+  }
   if (state && state.reaction && typeof state.reaction[key] === 'number') return state.reaction[key];
   if (typeof r[key] === 'number') return r[key];
   return dflt;
@@ -6277,7 +6291,11 @@ export interface ParticleFieldStateConfig {
     inject_cue?: string;             // cue id that adds/removes reagent MID-state, so the disturbance is seen to arrive (Rule 32a)
     inject_n?: number;               // signed particle delta for inject_cue: >0 pours in, <0 takes out (never breaks a bonded pair)
     inject_species?: string;         // species id for a positive inject_n — names it outright (the inert-gas beat), bypassing reaction.inject alternation
-    show_k_ratio?: boolean;          // live equilibrium-constant chip — measured K = [AB]/([A][B]) as raw counts (Rule 33d)
+    show_k_ratio?: boolean;          // live equilibrium-constant chip — measured K = [AB]/([A][B]) as raw counts (Rule 33d). NOTE: wanders ~50% even on its 10 s window; narrate comparatively, never "watch this stay fixed"
+    reaction_at_cue?: {              // change a reaction constant MID-state on a cue — the catalyst beat (Rule 32a)
+        cue: string;                 // cue id from the state's `cues` list
+        [key: string]: unknown;      // any reaction constant, e.g. activation_fwd_kT: 0.5. Ea_rev follows by derivation, so the "no shift" result stays emergent
+    };
     barrier?: boolean;               // start with a divider: species 0 left, species 1 right (the diffusion pose)
     barrier_lift_cue?: string;       // cue id that removes the divider mid-state
     activation_energy_kT?: number;   // PREFERRED collision-theory threshold, in multiples of mean particle energy at ea_ref_T
