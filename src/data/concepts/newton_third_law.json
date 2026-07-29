@@ -36,25 +36,95 @@
     "primary": true
   },
   "entry_state_map": {
-    "foundational": { "start": "STATE_1", "end": "STATE_2" },
-    "static_partner": { "start": "STATE_3", "end": "STATE_3" },
-    "cancellation": { "start": "STATE_4", "end": "STATE_5" }
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_2"
+    },
+    "static_partner": {
+      "start": "STATE_3",
+      "end": "STATE_3"
+    },
+    "cancellation": {
+      "start": "STATE_4",
+      "end": "STATE_5"
+    }
   },
   "physics_engine_config": {
     "variables": {
-      "m": { "name": "mass of cart A (or the single free cart)", "unit": "kg", "min": 2, "max": 14, "default": 6, "step": 0.5 },
-      "m2": { "name": "mass of cart B", "unit": "kg", "min": 2, "max": 14, "default": 6, "step": 0.5 },
-      "F": { "name": "push magnitude (equal and opposite on both bodies)", "unit": "N", "min": 15, "max": 45, "default": 30, "step": 1 },
-      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
-      "theta": { "name": "incline angle (unused - flat track throughout)", "unit": "deg", "constant": 0 },
-      "mu_s_S4_from": { "name": "static friction coefficient, STATE_4 brake, ramp START", "unit": "dimensionless", "constant": 0.75 },
-      "mu_s_S4_to": { "name": "static friction coefficient, STATE_4 brake, ramp END -- holds here", "unit": "dimensionless", "constant": 0.27 },
-      "mu_s_S4_crit": { "name": "breakaway threshold: mu_s at which maxStatic == drive", "unit": "dimensionless", "derived": "F / (m * g) = 30 / 58.8 = 0.5102" },
-      "mu_k": { "name": "kinetic friction coefficient (unused - no sliding friction anywhere)", "unit": "dimensionless", "constant": 0 },
-      "a": { "name": "acceleration", "unit": "m/s^2", "derived": "F_applied / m (0 when stuck)" },
-      "F_net": { "name": "net force on a body", "unit": "N", "derived": "m * a" },
-      "v": { "name": "velocity along the track", "unit": "m/s", "derived": "integral of a; pinned to 0 while stuck" },
-      "s": { "name": "position along the track", "unit": "m", "derived": "integral of v, clamped to +/- surface.length_m" }
+      "m": {
+        "name": "mass of cart A (or the single free cart)",
+        "unit": "kg",
+        "min": 2,
+        "max": 14,
+        "default": 6,
+        "step": 0.5
+      },
+      "m2": {
+        "name": "mass of cart B",
+        "unit": "kg",
+        "min": 2,
+        "max": 14,
+        "default": 6,
+        "step": 0.5
+      },
+      "F": {
+        "name": "push magnitude (equal and opposite on both bodies)",
+        "unit": "N",
+        "min": 15,
+        "max": 45,
+        "default": 30,
+        "step": 1
+      },
+      "g": {
+        "name": "gravitational acceleration",
+        "unit": "m/s^2",
+        "constant": 9.8
+      },
+      "theta": {
+        "name": "incline angle (unused - flat track throughout)",
+        "unit": "deg",
+        "constant": 0
+      },
+      "mu_s_S4_from": {
+        "name": "static friction coefficient, STATE_4 brake, ramp START",
+        "unit": "dimensionless",
+        "constant": 0.75
+      },
+      "mu_s_S4_to": {
+        "name": "static friction coefficient, STATE_4 brake, ramp END -- holds here",
+        "unit": "dimensionless",
+        "constant": 0.27
+      },
+      "mu_s_S4_crit": {
+        "name": "breakaway threshold: mu_s at which maxStatic == drive",
+        "unit": "dimensionless",
+        "derived": "F / (m * g) = 30 / 58.8 = 0.5102"
+      },
+      "mu_k": {
+        "name": "kinetic friction coefficient (unused - no sliding friction anywhere)",
+        "unit": "dimensionless",
+        "constant": 0
+      },
+      "a": {
+        "name": "acceleration",
+        "unit": "m/s^2",
+        "derived": "F_applied / m (0 when stuck)"
+      },
+      "F_net": {
+        "name": "net force on a body",
+        "unit": "N",
+        "derived": "m * a"
+      },
+      "v": {
+        "name": "velocity along the track",
+        "unit": "m/s",
+        "derived": "integral of a; pinned to 0 while stuck"
+      },
+      "s": {
+        "name": "position along the track",
+        "unit": "m",
+        "derived": "integral of v, clamped to +/- surface.length_m"
+      }
     },
     "formulas": {
       "F_reaction": "-F_applied",
@@ -76,14 +146,30 @@
       "position_at_pin": "s_start + 0.5*a*t_release^2 + v_release*2.0"
     },
     "computed_outputs": {
-      "S1_a": { "formula": "F/m = 30/6 = 5.00 m/s^2 (both carts)" },
-      "S1_v_release": { "formula": "2.10 m/s (both carts, opposite sign)" },
-      "S2_a_ratio": { "formula": "a_A/a_B = m_B/m_A = 12/4 = 3" },
-      "S2_v_ratio": { "formula": "v_A/v_B = 3.15/1.05 = 3" },
-      "S3_a_wall": { "formula": "F/m_wall -> 0 (m_wall effectively infinite)" },
-      "S4_F_net_held": { "formula": "F_applied + f_static = 30 + (-30) = 0.0 N (same body only, t < 2498 ms)" },
-      "S4_t_breakaway": { "formula": "2498 ms (mu_s(t) crosses 0.5102)" },
-      "S4_F_net_post": { "formula": "F_applied + f_kinetic = 30 + 0 = 30.0 N per cart, opposite sign, t > 2498 ms (mu_k = 0)" }
+      "S1_a": {
+        "formula": "F/m = 30/6 = 5.00 m/s^2 (both carts)"
+      },
+      "S1_v_release": {
+        "formula": "2.10 m/s (both carts, opposite sign)"
+      },
+      "S2_a_ratio": {
+        "formula": "a_A/a_B = m_B/m_A = 12/4 = 3"
+      },
+      "S2_v_ratio": {
+        "formula": "v_A/v_B = 3.15/1.05 = 3"
+      },
+      "S3_a_wall": {
+        "formula": "F/m_wall -> 0 (m_wall effectively infinite)"
+      },
+      "S4_F_net_held": {
+        "formula": "F_applied + f_static = 30 + (-30) = 0.0 N (same body only, t < 2498 ms)"
+      },
+      "S4_t_breakaway": {
+        "formula": "2498 ms (mu_s(t) crosses 0.5102)"
+      },
+      "S4_F_net_post": {
+        "formula": "F_applied + f_kinetic = 30 + 0 = 30.0 N per cart, opposite sign, t > 2498 ms (mu_k = 0)"
+      }
     },
     "constraints": [
       "F_reaction = -F_applied at every instant, on the OTHER body, never the same body (Newton III)",
@@ -108,28 +194,40 @@
           {
             "type": "annotation",
             "id": "n3l_s1_head",
-            "position": { "x": 380, "y": 60 },
+            "position": {
+              "x": 380,
+              "y": 60
+            },
             "text": "Compressed spring, two identical carts",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
             "id": "n3l_s1_spring",
-            "position": { "x": 200, "y": 230 },
+            "position": {
+              "x": 200,
+              "y": 230
+            },
             "text": "The spring is the cause -- one push, two motions",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "n3l_s1_watch",
-            "position": { "x": 200, "y": 320 },
+            "position": {
+              "x": 200,
+              "y": 320
+            },
             "text": "Both arrows flash on together -- same length, opposite direction",
             "color": "#4DD0E1"
           },
           {
             "type": "annotation",
             "id": "n3l_s1_anchor",
-            "position": { "x": 560, "y": 420 },
+            "position": {
+              "x": 560,
+              "y": 420
+            },
             "text": "like two ice skaters pushing apart",
             "color": "#AB47BC"
           }
@@ -177,28 +275,40 @@
           {
             "type": "annotation",
             "id": "n3l_s2_head",
-            "position": { "x": 380, "y": 60 },
+            "position": {
+              "x": 380,
+              "y": 60
+            },
             "text": "Same spring, same push -- masses now 1:3",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
             "id": "n3l_s2_watch",
-            "position": { "x": 200, "y": 230 },
+            "position": {
+              "x": 200,
+              "y": 230
+            },
             "text": "Arrows stay pixel-identical, every instant",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "n3l_s2_mass_gap",
-            "position": { "x": 200, "y": 320 },
+            "position": {
+              "x": 200,
+              "y": 320
+            },
             "text": "Accelerations split 3:1 -- a = F/m, 7.50 vs 2.50",
             "color": "#EF5350"
           },
           {
             "type": "annotation",
             "id": "n3l_s2_myth",
-            "position": { "x": 560, "y": 420 },
+            "position": {
+              "x": 560,
+              "y": 420
+            },
             "text": "Heavier does NOT push harder",
             "color": "#FFB300"
           }
@@ -247,28 +357,40 @@
           {
             "type": "annotation",
             "id": "n3l_s3_head",
-            "position": { "x": 380, "y": 60 },
+            "position": {
+              "x": 380,
+              "y": 60
+            },
             "text": "Now the spring pushes a wall",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
             "id": "n3l_s3_watch",
-            "position": { "x": 200, "y": 230 },
+            "position": {
+              "x": 200,
+              "y": 230
+            },
             "text": "Cart's and wall's arrows match exactly -- full 30 N",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "n3l_s3_wall_still",
-            "position": { "x": 200, "y": 320 },
+            "position": {
+              "x": 200,
+              "y": 320
+            },
             "text": "The wall never moves -- its body is the Earth",
             "color": "#4DD0E1"
           },
           {
             "type": "annotation",
             "id": "n3l_s3_anchor",
-            "position": { "x": 560, "y": 420 },
+            "position": {
+              "x": 560,
+              "y": 420
+            },
             "text": "like a swimmer pushing off the pool wall",
             "color": "#AB47BC"
           }
@@ -323,28 +445,40 @@
           {
             "type": "annotation",
             "id": "n3l_s4_head",
-            "position": { "x": 380, "y": 60 },
+            "position": {
+              "x": 380,
+              "y": 60
+            },
             "text": "Hold each cart, read its diagram alone",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
             "id": "n3l_s4_cause",
-            "position": { "x": 200, "y": 230 },
+            "position": {
+              "x": 200,
+              "y": 230
+            },
             "text": "F21 arrives on cart one -- the incoming push",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "n3l_s4_own_grip",
-            "position": { "x": 200, "y": 320 },
+            "position": {
+              "x": 200,
+              "y": 320
+            },
             "text": "Its own grip f1 balances it -- F_net = 0.0",
             "color": "#EF5350"
           },
           {
             "type": "annotation",
             "id": "n3l_s4_partner",
-            "position": { "x": 560, "y": 420 },
+            "position": {
+              "x": 560,
+              "y": 420
+            },
             "text": "F12 lives on cart two -- a different body entirely",
             "color": "#AB47BC"
           }
@@ -393,21 +527,30 @@
           {
             "type": "annotation",
             "id": "n3l_s5_head",
-            "position": { "x": 380, "y": 60 },
+            "position": {
+              "x": 380,
+              "y": 60
+            },
             "text": "Set both masses and the push",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
             "id": "n3l_s5_watch",
-            "position": { "x": 380, "y": 250 },
+            "position": {
+              "x": 380,
+              "y": 250
+            },
             "text": "drag m2 huge -- arrows stay twins, its recoil dies",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "n3l_s5_key",
-            "position": { "x": 380, "y": 440 },
+            "position": {
+              "x": 380,
+              "y": 440
+            },
             "text": "F21 = -F12",
             "color": "#D4D4D8"
           }
@@ -427,138 +570,447 @@
   "field_3d_config": {
     "scenario_type": "newtons_laws_body",
     "slider_controls": {
-      "m": { "min": 2, "max": 14, "step": 0.5, "default": 6, "label": "m₁" },
-      "m2": { "min": 2, "max": 14, "step": 0.5, "default": 6, "label": "m₂" },
-      "F": { "min": 15, "max": 45, "step": 1, "default": 30, "label": "F" }
+      "m": {
+        "min": 2,
+        "max": 14,
+        "step": 0.5,
+        "default": 6,
+        "label": "m₁"
+      },
+      "m2": {
+        "min": 2,
+        "max": 14,
+        "step": 0.5,
+        "default": 6,
+        "label": "m₂"
+      },
+      "F": {
+        "min": 15,
+        "max": 45,
+        "step": 1,
+        "default": 30,
+        "label": "F"
+      }
     },
     "states": {
       "STATE_1": {
         "label": "One push, two motions: a compressed spring releases, two equal carts recoil at the same instant",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label", "nlb_spring"],
-        "camera_position": [0, 3.2, 12.5],
+        "visible_elements": [
+          "nlb_body_A",
+          "nlb_body_A_label",
+          "nlb_body_B",
+          "nlb_body_B_label",
+          "nlb_spring"
+        ],
+        "camera_position": [
+          0,
+          3.2,
+          12.5
+        ],
         "caption": "One push, two motions",
         "show_sliders": true,
         "formula_overlay": "F₂₁ = −F₁₂",
         "newtons_laws_body": {
           "mode": "action_reaction_pair",
-          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "surface": {
+            "theta_deg": 0,
+            "length_m": 10,
+            "frictionless": true
+          },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 0.91, "initial_velocity_mps": 0 },
-            { "id": "B", "label": "m₂", "mass_kg": 6, "initial_position_m": -0.91, "initial_velocity_mps": 0 }
+            {
+              "id": "A",
+              "label": "m₁",
+              "mass_kg": 6,
+              "initial_position_m": 0.91,
+              "initial_velocity_mps": 0
+            },
+            {
+              "id": "B",
+              "label": "m₂",
+              "mass_kg": 6,
+              "initial_position_m": -0.91,
+              "initial_velocity_mps": 0
+            }
           ],
-          "spring": { "between": ["A", "B"] },
-          "push_off": { "body_a_id": "A", "body_b_id": "B", "force_N": 30, "release_at_ms": 420 },
+          "spring": {
+            "between": [
+              "A",
+              "B"
+            ]
+          },
+          "push_off": {
+            "body_a_id": "A",
+            "body_b_id": "B",
+            "force_N": 30,
+            "release_at_ms": 420,
+            "repeat_every_ms": 2600
+          },
           "arrows": [
-            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F₂₁" } },
-            { "body_id": "B", "show": ["applied"], "labels": { "applied": "F₁₂" } }
+            {
+              "body_id": "A",
+              "show": [
+                "applied"
+              ],
+              "labels": {
+                "applied": "F₂₁"
+              }
+            },
+            {
+              "body_id": "B",
+              "show": [
+                "applied"
+              ],
+              "labels": {
+                "applied": "F₁₂"
+              }
+            }
           ],
           "glow_focal": "nlb_spring",
-          "readouts": ["F_applied", "v"],
+          "readouts": [
+            "F_applied",
+            "v"
+          ],
           "controls_visible": []
         }
       },
       "STATE_2": {
         "label": "Unequal masses, equal forces: the two arrows stay pixel-identical while the accelerations split 3:1",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label", "nlb_spring"],
-        "camera_position": [0, 3.2, 12.5],
+        "visible_elements": [
+          "nlb_body_A",
+          "nlb_body_A_label",
+          "nlb_body_B",
+          "nlb_body_B_label",
+          "nlb_spring"
+        ],
+        "camera_position": [
+          0,
+          3.2,
+          12.5
+        ],
         "caption": "Unequal masses, equal forces",
         "show_sliders": true,
         "formula_overlay": "|F₂₁| = |F₁₂| ⇒ a ∝ 1/m",
         "newtons_laws_body": {
           "mode": "action_reaction_pair",
-          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "surface": {
+            "theta_deg": 0,
+            "length_m": 10,
+            "frictionless": true
+          },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 4, "initial_position_m": 0.91, "initial_velocity_mps": 0 },
-            { "id": "B", "label": "m₂", "mass_kg": 12, "initial_position_m": -0.91, "initial_velocity_mps": 0 }
+            {
+              "id": "A",
+              "label": "m₁",
+              "mass_kg": 4,
+              "initial_position_m": 0.91,
+              "initial_velocity_mps": 0
+            },
+            {
+              "id": "B",
+              "label": "m₂",
+              "mass_kg": 12,
+              "initial_position_m": -0.91,
+              "initial_velocity_mps": 0
+            }
           ],
-          "spring": { "between": ["A", "B"] },
-          "push_off": { "body_a_id": "A", "body_b_id": "B", "force_N": 30, "release_at_ms": 420 },
+          "spring": {
+            "between": [
+              "A",
+              "B"
+            ]
+          },
+          "push_off": {
+            "body_a_id": "A",
+            "body_b_id": "B",
+            "force_N": 30,
+            "release_at_ms": 420,
+            "repeat_every_ms": 2600
+          },
           "arrows": [
-            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F₂₁" } },
-            { "body_id": "B", "show": ["applied"], "labels": { "applied": "F₁₂" } }
+            {
+              "body_id": "A",
+              "show": [
+                "applied"
+              ],
+              "labels": {
+                "applied": "F₂₁"
+              }
+            },
+            {
+              "body_id": "B",
+              "show": [
+                "applied"
+              ],
+              "labels": {
+                "applied": "F₁₂"
+              }
+            }
           ],
           "glow_focal": "nlb_arrow_B_applied",
-          "readouts": ["F_applied", "a"],
+          "readouts": [
+            "F_applied",
+            "a"
+          ],
           "controls_visible": []
         }
       },
       "STATE_3": {
         "label": "Cart pushes a fixed wall: the same equal-and-opposite pair, but the wall never moves -- its body is the Earth",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_W", "nlb_body_W_label", "nlb_spring"],
-        "camera_position": [0, 3.2, 12.5],
+        "visible_elements": [
+          "nlb_body_A",
+          "nlb_body_A_label",
+          "nlb_body_W",
+          "nlb_body_W_label",
+          "nlb_spring"
+        ],
+        "camera_position": [
+          0,
+          3.2,
+          12.5
+        ],
         "caption": "Wall pushes back, unmoved",
         "show_sliders": true,
         "formula_overlay": "a = F/m → a_wall ≈ 0",
         "newtons_laws_body": {
           "mode": "action_reaction_pair",
-          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "surface": {
+            "theta_deg": 0,
+            "length_m": 10,
+            "frictionless": true
+          },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 0.7725, "initial_velocity_mps": 0 },
-            { "id": "W", "label": "wall (Earth)", "mass_kg": 1000000, "fixed": true, "initial_position_m": -0.7725 }
+            {
+              "id": "A",
+              "label": "m₁",
+              "mass_kg": 6,
+              "initial_position_m": 0.7725,
+              "initial_velocity_mps": 0
+            },
+            {
+              "id": "W",
+              "label": "wall (Earth)",
+              "mass_kg": 1000000,
+              "fixed": true,
+              "initial_position_m": -0.7725
+            }
           ],
-          "spring": { "between": ["A", "W"] },
-          "push_off": { "body_a_id": "A", "body_b_id": "W", "force_N": 30, "release_at_ms": 593 },
+          "spring": {
+            "between": [
+              "A",
+              "W"
+            ]
+          },
+          "push_off": {
+            "body_a_id": "A",
+            "body_b_id": "W",
+            "force_N": 30,
+            "release_at_ms": 593,
+            "repeat_every_ms": 2800
+          },
           "arrows": [
-            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F" } },
-            { "body_id": "W", "show": ["applied"], "labels": { "applied": "F" } }
+            {
+              "body_id": "A",
+              "show": [
+                "applied"
+              ],
+              "labels": {
+                "applied": "F"
+              }
+            },
+            {
+              "body_id": "W",
+              "show": [
+                "applied"
+              ],
+              "labels": {
+                "applied": "F"
+              }
+            }
           ],
           "glow_focal": "nlb_arrow_W_applied",
-          "readouts": ["F_applied", "a"],
+          "readouts": [
+            "F_applied",
+            "a"
+          ],
           "controls_visible": []
         }
       },
       "STATE_4": {
         "label": "Isolate each cart's own diagram: the pair lives on DIFFERENT bodies, which is why it never cancels",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 3.2, 12.5],
+        "visible_elements": [
+          "nlb_body_A",
+          "nlb_body_A_label",
+          "nlb_body_B",
+          "nlb_body_B_label"
+        ],
+        "camera_position": [
+          0,
+          3.2,
+          12.5
+        ],
         "caption": "Cancelling needs one body",
         "show_sliders": true,
         "formula_overlay": "F₂₁ = −F₁₂",
         "newtons_laws_body": {
           "mode": "fbd_isolate",
-          "surface": { "theta_deg": 0, "length_m": 10 },
+          "surface": {
+            "theta_deg": 0,
+            "length_m": 10
+          },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 2.5, "initial_velocity_mps": 0, "mu_s": 0.75, "applied_force_N": 30 },
-            { "id": "B", "label": "m₂", "mass_kg": 6, "initial_position_m": -2.5, "initial_velocity_mps": 0, "mu_s": 0.75 }
+            {
+              "id": "A",
+              "label": "m₁",
+              "mass_kg": 6,
+              "initial_position_m": 2.5,
+              "initial_velocity_mps": 0,
+              "mu_s": 0.75,
+              "applied_force_N": 30
+            },
+            {
+              "id": "B",
+              "label": "m₂",
+              "mass_kg": 6,
+              "initial_position_m": -2.5,
+              "initial_velocity_mps": 0,
+              "mu_s": 0.75
+            }
           ],
-          "action_reaction": { "engaged": true, "driver_body_id": "A" },
+          "action_reaction": {
+            "engaged": true,
+            "driver_body_id": "A"
+          },
           "arrows": [
-            { "body_id": "A", "show": ["applied", "friction"], "labels": { "applied": "F₂₁" } },
-            { "body_id": "B", "show": ["applied", "friction"], "labels": { "applied": "F₁₂" } }
+            {
+              "body_id": "A",
+              "show": [
+                "applied",
+                "friction"
+              ],
+              "labels": {
+                "applied": "F₂₁"
+              }
+            },
+            {
+              "body_id": "B",
+              "show": [
+                "applied",
+                "friction"
+              ],
+              "labels": {
+                "applied": "F₁₂"
+              }
+            }
           ],
           "glow_focal": "nlb_arrow_A_friction",
-          "param_ramp": { "param": "mu_s", "from": 0.75, "to": 0.27, "start_ms": 0, "end_ms": 5000 },
+          "param_ramp": {
+            "param": "mu_s",
+            "from": 0.75,
+            "to": 0.27,
+            "start_ms": 0,
+            "end_ms": 5000
+          },
           "phases": [
-            { "id": "breakaway", "at_ms": 2498, "until_ms": null, "glow_focal": "nlb_arrow_B_applied" }
+            {
+              "id": "breakaway",
+              "at_ms": 2498,
+              "until_ms": null,
+              "glow_focal": "nlb_arrow_B_applied"
+            }
           ],
-          "readouts": ["F_applied", "f"],
+          "readouts": [
+            "F_applied",
+            "f"
+          ],
           "controls_visible": []
         }
       },
       "STATE_5": {
         "label": "Sandbox: any masses, any push -- forces always equal, accelerations always m2:m1",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 3.2, 12.5],
+        "visible_elements": [
+          "nlb_body_A",
+          "nlb_body_A_label",
+          "nlb_body_B",
+          "nlb_body_B_label"
+        ],
+        "camera_position": [
+          0,
+          3.2,
+          12.5
+        ],
         "caption": "All yours",
         "show_sliders": true,
         "formula_overlay": "F₂₁ = −F₁₂",
         "newtons_laws_body": {
           "mode": "sandbox",
-          "surface": { "theta_deg": 0, "length_m": 12, "frictionless": true },
+          "surface": {
+            "theta_deg": 0,
+            "length_m": 12,
+            "frictionless": true
+          },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 2.5, "initial_velocity_mps": 0, "applied_force_N": 30 },
-            { "id": "B", "label": "m₂", "mass_kg": 6, "initial_position_m": -2.5, "initial_velocity_mps": 0 }
+            {
+              "id": "A",
+              "label": "m₁",
+              "mass_kg": 6,
+              "initial_position_m": 2.5,
+              "initial_velocity_mps": 0,
+              "applied_force_N": 30
+            },
+            {
+              "id": "B",
+              "label": "m₂",
+              "mass_kg": 6,
+              "initial_position_m": -2.5,
+              "initial_velocity_mps": 0
+            }
           ],
-          "action_reaction": { "engaged": true, "driver_body_id": "A" },
+          "action_reaction": {
+            "engaged": true,
+            "driver_body_id": "A"
+          },
           "arrows": [
-            { "body_id": "A", "show": ["applied", "net"], "labels": { "applied": "F₂₁" } },
-            { "body_id": "B", "show": ["applied", "net"], "labels": { "applied": "F₁₂" } }
+            {
+              "body_id": "A",
+              "show": [
+                "applied",
+                "net"
+              ],
+              "labels": {
+                "applied": "F₂₁"
+              }
+            },
+            {
+              "body_id": "B",
+              "show": [
+                "applied",
+                "net"
+              ],
+              "labels": {
+                "applied": "F₁₂"
+              }
+            }
           ],
           "glow_focal": "nlb_body_B",
-          "readouts": ["F_applied", "a", "v"],
-          "controls_visible": ["m", "m2", "F"],
+          "readouts": [
+            "F_applied",
+            "a",
+            "v"
+          ],
+          "controls_visible": [
+            "m",
+            "m2",
+            "F"
+          ],
           "trusted_drag_seizes": true,
-          "idle_auto_sweep": { "param": "F", "range": [15, 45] }
+          "idle_auto_sweep": {
+            "param": "F",
+            "range": [
+              15,
+              45
+            ]
+          }
         }
       }
     }
