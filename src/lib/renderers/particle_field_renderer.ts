@@ -596,7 +596,8 @@ var PF_WG_FLAGS = [
   { key: 'gas_ledger', flag: 'show_energy_ledger', label: 'Energy ledger (check)' },
   { key: 'gas_k_ratio', flag: 'show_k_ratio', label: 'Equilibrium constant K' },
   // collision-theory layer (2026-07-29)
-  { key: 'gas_arrhenius', flag: 'show_arrhenius_plot', label: 'Arrhenius plot' }
+  { key: 'gas_arrhenius', flag: 'show_arrhenius_plot', label: 'Arrhenius plot' },
+  { key: 'gas_profile', flag: 'show_reaction_profile', label: 'Energy hill' }
 ];
 function pfWgVis(key, stateWants) {
   var o = pfWidgetVis[key];
@@ -3710,6 +3711,19 @@ function gasRxNum(state, key, dflt) {
   // speeds both directions and leaves the equilibrium position alone — the
   // catalyst result stays emergent rather than asserted.
   if (key === 'activation_fwd_kT' && hasSlider('Ea') && userTouched['Ea']) return max(0, sliderVal('Ea'));
+  // ea_at_cue drives the REACTION barrier too, not just the counter's threshold.
+  // A catalyst that lowered the bar a counter measures against while leaving the
+  // reaction's own barrier untouched is not a catalyst, and the energy hill —
+  // whose peak is this number and whose product level is the bond energy — would
+  // draw a reverse barrier that disagreed with the Ea_rev the engine derives.
+  // Routed through gasActivationE so the cue's ramp is honoured once, in one
+  // place, and the two barriers cannot drift apart mid-ramp.
+  if (key === 'activation_fwd_kT') {
+    var stEa = curState();
+    if (stEa && stEa.ea_at_cue && stEa.ea_at_cue.cue && cueFiredAt[stEa.ea_at_cue.cue] !== undefined) {
+      return max(0, gasActivationE(stEa) / max(gasEaKtRef(), 1e-9));
+    }
+  }
   // A cue-driven change to a reaction constant — "the catalyst goes in NOW".
   // Deliberately placed at the single read point for EVERY reaction constant
   // rather than special-cased on activation_fwd_kT, so the derived quantities
@@ -5226,6 +5240,120 @@ function gasSignedK(n) {
   var r = Math.round(n);
   return (r < 0 ? '\\u2212' : '') + Math.abs(r) + ' K';
 }
+// ─── Reaction profile: the energy hill (2026-07-29) ────────────────────────
+// The picture everyone means by "activation energy" — reactants climb a hump to
+// become products — and the one thing this box could not previously show. The
+// collision counter reports a THRESHOLD and the histogram draws it on a SPEED
+// axis; neither is the hill a student is examined on, so a lesson could teach
+// the statistics correctly and never connect them to the diagram.
+//
+// NOTHING HERE IS DRAWN TO TASTE. The hill's height IS gasActivationE() in kT —
+// the same number the collision test compares against — and the product level IS
+// the reaction layer's bond energy. So the catalyst beat lowers the hill because
+// the barrier genuinely fell, the Ea slider drags the hill because the barrier
+// genuinely moved, and the reverse barrier a viewer can measure off the picture
+// (peak minus product level) is exactly the Ea_rev = Ea_fwd + E_bond the engine
+// derives. A cartoon would have to be kept in sync by hand; this cannot drift.
+//
+// Sign convention follows the reaction layer: bond_energy_kT > 0 is exothermic
+// forward, so products sit BELOW reactants by that amount.
+function gasProfileLevels(state) {
+  var kt = max(gasEaKtRef(), 1e-9);
+  // The hill is a picture of THE REACTION, so its peak is the REACTION's forward
+  // barrier, not the collision counter's threshold. Those are separate authored
+  // numbers, and a concept may set them differently: drawing the counter's here
+  // produced a picture whose measurable reverse barrier (peak minus product
+  // level) read 5.0 kT against the 3.2 kT the engine derives — the diagram
+  // contradicting the physics it exists to illustrate, caught only by asserting
+  // the identity rather than eyeballing the hump.
+  // Falls back to the collision threshold when no reaction is configured at all,
+  // so the hill still draws for a box that only counts.
+  var eaKT = gasRxCfg() ? (gasRxEaFwd(state) / kt) : (gasActivationE(state) / kt);
+  var bondKT = gasRxBondE(state) / kt;                   // > 0 = exothermic
+  return { ea: eaKT, drop: bondKT, peak: eaKT, prod: -bondKT };
+}
+function drawGasProfile(state) {
+  var gw = floor((gasBoxRFull() - gasBoxL()) * 0.34), gh = floor((gasBoxB() - gasBoxT()) * 0.42);
+  if (gw < 90) return;
+  // Take the side the histogram is not on, and dodge the review player's fixed
+  // slider panel the same way both other insets do.
+  var histOn = pfWgVis('gas_histogram', state.show_speed_histogram);
+  var arrOn = pfWgVis('gas_arrhenius', state.show_arrhenius_plot);
+  var histIsLeft = !!state.show_sliders;
+  var onLeft = (histOn || arrOn) ? !histIsLeft : histIsLeft;
+  var gx = onLeft ? (gasBoxL() + 22) : (gasBoxRFull() - gw - 22);
+  var gy = gasBoxT() + 22;
+  var dim = dimFor('profile');
+  var L = gasProfileLevels(state);
+
+  noStroke(); fill(8, 10, 22, 255);
+  rect(gx - 10, gy - 10, gw + 20, gh + 44, 6);
+  noFill(); strokeHex('#334155', 0.9 * dim); strokeWeight(1);
+  rect(gx - 10, gy - 10, gw + 20, gh + 44, 6);
+
+  // Energy axis spans the whole excursion with headroom, so a hill that moves
+  // moves AGAINST A FIXED FRAME rather than rescaling the frame under itself.
+  var hi = max(L.peak, 0) + 1.2, lo = min(L.prod, 0) - 0.8;
+  var py = function (e) { return gy + gh - ((e - lo) / max(hi - lo, 1e-6)) * gh; };
+  var y0 = py(0), yPeak = py(L.peak), yProd = py(L.prod);
+
+  // reactant plateau -> smooth hump -> product plateau
+  var xA = gx + gw * 0.06, xB = gx + gw * 0.34, xC = gx + gw * 0.50, xD = gx + gw * 0.66, xE = gx + gw * 0.94;
+  noFill(); strokeHex('#FBBF24', 0.95 * dim); strokeWeight(2);
+  beginShape();
+  vertex(gx, y0); vertex(xA, y0);
+  var i, t, yv;
+  for (i = 0; i <= 40; i++) {                       // rise: reactants -> peak
+    t = i / 40;
+    yv = y0 + (yPeak - y0) * (0.5 - 0.5 * Math.cos(Math.PI * t));
+    vertex(xA + (xC - xA) * t, yv);
+  }
+  for (i = 0; i <= 40; i++) {                       // fall: peak -> products
+    t = i / 40;
+    yv = yPeak + (yProd - yPeak) * (0.5 - 0.5 * Math.cos(Math.PI * t));
+    vertex(xC + (xE - xC) * t, yv);
+  }
+  endShape();
+  void xB; void xD;
+
+  // the two levels, dashed, so the heights can be READ off the curve
+  drawingContext.setLineDash([3, 4]);
+  strokeHex('#64748B', 0.8 * dim); strokeWeight(1);
+  line(gx, y0, gx + gw, y0);
+  line(gx, yProd, gx + gw, yProd);
+  drawingContext.setLineDash([]);
+
+  // Ea, measured from the reactant level to the peak — a real arrow with a real
+  // number, not a label floating near a hump (Rule 33d).
+  // AT THE PEAK, not partway up the rise. Drawn at 62% of the climb the arrow
+  // ran from the reactant level to the peak HEIGHT at an x where the curve is
+  // only partway up, so it visibly crossed the curve and measured nothing a
+  // viewer could point at. At the peak it is exactly the hill, which is what the
+  // number claims. Label sits to the LEFT so it never lands on the curve.
+  var ax = xC;
+  strokeHex('#F87171', 0.95 * dim); strokeWeight(2);
+  line(ax, y0, ax, yPeak);
+  noStroke(); fillHex('#F87171', 0.95 * dim);
+  triangle(ax, yPeak, ax - 4, yPeak + 7, ax + 4, yPeak + 7);
+  triangle(ax, y0, ax - 4, y0 - 7, ax + 4, y0 - 7);
+  // ABOVE the peak, in the one region of this panel that is always empty. Beside
+  // the arrow it landed on the rising limb of the curve at every barrier height.
+  textAlign(CENTER, BOTTOM); textSize(12);
+  text('E\\u2090 = ' + L.ea.toFixed(1) + ' kT', ax, yPeak - 9);
+
+  // labels
+  textSize(11); textAlign(LEFT, TOP);
+  fillHex('#93C5FD', 0.95 * dim); text('reactants', gx + 2, y0 + 6);
+  fillHex('#C084FC', 0.95 * dim);
+  textAlign(RIGHT, TOP); text('products', gx + gw - 2, yProd + 6);
+  textAlign(LEFT, TOP); textSize(10);
+  fillHex('#CBD5E1', 0.8 * dim);
+  text('energy', gx + 2, gy - 4);
+  textAlign(RIGHT, TOP);
+  text('reaction progress \\u2192', gx + gw, gy + gh + 12);
+  textAlign(LEFT, TOP);
+}
+
 function drawGasArrhenius(state) {
   // Same inset geometry as the histogram, on the opposite side when both are
   // lit — they are normally mutually exclusive (a state teaches the
@@ -5481,6 +5609,7 @@ function draw() {
     if (pfWgVis('gas_law', state.show_gas_law)) drawGasLaw();
     if (pfWgVis('gas_histogram', state.show_speed_histogram)) drawGasHistogram(state);
     if (pfWgVis('gas_arrhenius', state.show_arrhenius_plot)) drawGasArrhenius(state);
+    if (pfWgVis('gas_profile', state.show_reaction_profile)) drawGasProfile(state);
     if (pfWgVis('gas_reaction', state.show_reaction_readout)) drawGasReaction(state);
     if (pfWgVis('gas_k_ratio', state.show_k_ratio)) drawGasKRatio(state);
     if (pfWgVis('gas_conc_graph', state.show_concentration_graph)) drawGasConcGraph(state);
@@ -6695,6 +6824,7 @@ export interface ParticleFieldStateConfig {
     show_speed_histogram?: boolean;  // live speed distribution + 2D theory curve + v_mp/v_avg/v_rms
     hist_species?: number;           // which species the histogram plots (default 0) — it plots ONE, never a mixture
     hist_speed_marks?: boolean;      // false hides the v_mp/v_avg/v_rms markers (Rule 25: untaught terms on a histogram shown for another reason). Default true — every existing baseline keeps its frames
+    show_reaction_profile?: boolean; // the energy hill: reactants -> barrier -> products. Height IS gasActivationE() in kT and the product level IS the reaction's bond energy, so the catalyst beat and the Ea slider move it for real
     show_arrhenius_plot?: boolean;   // MEASURED ln(cleared fraction) vs 1/T, with a least-squares fit and its slope. Nothing evaluates the Arrhenius expression — every point is a real tally, so the points can miss the line
     arrhenius_window_ms?: number;    // sampling window per point (default 4000). Measured: 4 s gives R^2 0.95 with 8 points in 32 s; 8 s gives 0.99 but needs 64 s
     arrhenius_T_min?: number;        // axis span, solved ONCE at state entry so points move against a FIXED frame (default 250)
