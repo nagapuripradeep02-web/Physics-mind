@@ -3563,7 +3563,18 @@ function gasTargetT() {
   // pinned re-simulation reproduces the ramp frame for frame.
   if (typeof st.T_from === 'number') {
     var dur = (typeof st.T_ramp_ms === 'number') ? max(1, st.T_ramp_ms) : 2000;
-    var f = constrain(PM_simTimeMs / dur, 0, 1);
+    // T_cue holds the box at T_from until an authored cue fires, then starts the
+    // ramp FROM the cue. Without it the ramp begins at state entry, so a state
+    // that binds its narration to a cue ("now the thermostat heats it") can have
+    // the heating already finishing as the sentence plays — the cue/narration
+    // desync scar inverted. Omit T_cue and the behaviour is byte-identical to
+    // before, so every shipped T_from state keeps its exact baselines.
+    var tStart = 0;
+    if (st.T_cue) {
+      if (cueFiredAt[st.T_cue] === undefined) return st.T_from;
+      tStart = cueFiredAt[st.T_cue];
+    }
+    var f = constrain((PM_simTimeMs - tStart) / dur, 0, 1);
     return st.T_from + (base - st.T_from) * f;
   }
   return base;
@@ -4220,9 +4231,19 @@ function gasMovePiston() {
   var st = curState() || {};
   var rampMs = (typeof st.piston_from === 'number' && typeof st.piston_ramp_ms === 'number')
     ? st.piston_ramp_ms : 0;
-  var driving = rampMs > 0 && PM_simTimeMs < rampMs && !(hasSlider('V') && userTouched['V']);
+  // piston_cue is T_cue's twin: hold the wall open until the cue fires, then
+  // stroke FROM the cue, so "watch the wall slide in" is spoken as it slides
+  // rather than after it has arrived. Omit it and the stroke starts at state
+  // entry exactly as before.
+  var pStart = 0;
+  if (rampMs > 0 && st.piston_cue) {
+    if (cueFiredAt[st.piston_cue] === undefined) { gasPistonF = st.piston_from; gasPistonVx = 0; return; }
+    pStart = cueFiredAt[st.piston_cue];
+  }
+  var pEl = PM_simTimeMs - pStart;
+  var driving = rampMs > 0 && pEl < rampMs && !(hasSlider('V') && userTouched['V']);
   if (driving) {
-    gasPistonF = st.piston_from + (t - st.piston_from) * (PM_simTimeMs / rampMs);
+    gasPistonF = st.piston_from + (t - st.piston_from) * (pEl / rampMs);
   } else if (Math.abs(t - gasPistonF) > 1e-6) {
     gasPistonF += (t - gasPistonF) * 0.06;
     if (Math.abs(t - gasPistonF) < 0.002) gasPistonF = t;
@@ -4614,8 +4635,27 @@ function gasSampleStats() {
   gasSampleArrhenius();
   gasCollWin.push(gasCollTick);
   gasSuccessWin.push(gasSuccessTick);
-  while (gasCollWin.length > 60) gasCollWin.shift();
-  while (gasSuccessWin.length > 60) gasSuccessWin.shift();
+  // The counter's window, 1 s by default. That is fine for the collision rate
+  // (hundreds per second) and WRONG for the cleared-Ea rate beside it, which is
+  // the same rare-event regime the reaction rates below were given 5 s for, and
+  // for the same stated reason: a short window on a rare event reports a number
+  // that flickers between 0 and a spike.
+  //
+  // Measured on collision_theory_activation_energy before this was authorable:
+  // at ~6 clearing events per second a 1 s window put the DISPLAYED percentage
+  // anywhere from 0.0% to 8.2% on a state whose narration says "about three in a
+  // hundred", and 2.2% to 22.5% on the state that claims it "soars past
+  // fourteen". A single frame reading 0.0% under a caption about collisions
+  // clearing the barrier is the state contradicting itself.
+  //
+  // Authored per state, defaulting to the old 60 frames, so every shipped
+  // concept on this chip keeps its exact baselines.
+  var cwSt = curState() || {};
+  var cwFrames = (typeof cwSt.counter_window_ms === 'number')
+    ? max(6, Math.round(cwSt.counter_window_ms / (1000 / 60)))
+    : 60;
+  while (gasCollWin.length > cwFrames) gasCollWin.shift();
+  while (gasSuccessWin.length > cwFrames) gasSuccessWin.shift();
   s = 0; for (i = 0; i < gasCollWin.length; i++) s += gasCollWin[i];
   gasCollRate = s * 60 / max(gasCollWin.length, 1);
   s = 0; for (i = 0; i < gasSuccessWin.length; i++) s += gasSuccessWin[i];
@@ -4867,7 +4907,18 @@ function drawGasCounters(state) {
   var msg = Math.round(gasCollRate) + ' collisions/s';
   if (ea > 0) {
     var pct = gasCollRate > 0 ? (100 * gasSuccessRate / gasCollRate) : 0;
-    msg += '   \\u2022   ' + Math.round(gasSuccessRate) + '/s clear E\\u2090  (' + pct.toFixed(1) + '%)';
+    // ONE DECIMAL on the cleared rate, where the collision rate keeps its
+    // integer. They are three orders of magnitude apart, and rounding the small
+    // one destroyed the only comparison the collision-theory lesson makes: the
+    // reaction readout prints "fwd 1.4/s" beside a counter rounding 1.4 clear/s
+    // to "1", so a teacher reading the two chips computed 140% of the energetic
+    // collisions reacting — on the state whose entire claim is "about a third".
+    // A rounded 0 was worse still: "0/s clear Ea" under a caption about
+    // collisions clearing it.
+    // Safe fleet-wide: this clause only prints when an activation energy is set,
+    // and kinetic_particle_theory (the only other shipped concept on this chip)
+    // authors none, so its frames cannot move.
+    msg += '   \\u2022   ' + gasSuccessRate.toFixed(1) + '/s clear E\\u2090  (' + pct.toFixed(1) + '%)';
   }
   text(msg, x + 8, y + 13);
 }
@@ -5181,8 +5232,12 @@ function drawGasArrhenius(state) {
   // distribution OR the law it obeys), but an overlap would bury both.
   var gw = floor((gasBoxRFull() - gasBoxL()) * 0.40), gh = floor((gasBoxB() - gasBoxT()) * 0.50);
   if (gw < 90) return;
+  // Sit opposite the histogram when both are lit; otherwise take the same side
+  // the histogram would, and dodge the slider panel the same way it does.
   var histOn = pfWgVis('gas_histogram', state.show_speed_histogram);
-  var gx = histOn ? (gasBoxL() + 22) : (gasBoxRFull() - gw - 22);
+  var histIsLeft = !!state.show_sliders;
+  var onLeft = histOn ? !histIsLeft : histIsLeft;
+  var gx = onLeft ? (gasBoxL() + 22) : (gasBoxRFull() - gw - 22);
   var gy = gasBoxT() + 22;
   var dim = dimFor('arrhenius');
   var ax = gasArrhAxis(state), i;
@@ -5249,7 +5304,18 @@ function drawGasArrhenius(state) {
 function drawGasHistogram(state) {
   // An instrument panel inset into the tank's right side, not a pane beside it.
   var gw = floor((gasBoxRFull() - gasBoxL()) * 0.40), gh = floor((gasBoxB() - gasBoxT()) * 0.56);
-  var gx = gasBoxRFull() - gw - 22, gy = gasBoxT() + 22;
+  // The review player's slider panel is a position:fixed DOM overlay at
+  // top ~52 / right 10, ABOVE the canvas — so on any state that shows sliders it
+  // lands squarely on this inset's top-right corner and clips the Eₐ threshold
+  // label and the species tag. Measured on collision_theory's explore state:
+  // "Eₐ" was clipped to a bare "E". Move to the LEFT inset when sliders are up.
+  //
+  // This also fixes kinetic_particle_theory's STATE_7, which has shipped with
+  // the same collision since the histogram landed — so approving this moves that
+  // concept's frozen baselines (pixels only, no physics). That re-baseline is a
+  // founder call, not an automatic one.
+  var histLeft = !!(curState() || {}).show_sliders;
+  var gx = histLeft ? (gasBoxL() + 22) : (gasBoxRFull() - gw - 22), gy = gasBoxT() + 22;
   if (gw < 90) return;
   var dim = dimFor('histogram');
   var i, p, v;
@@ -6601,6 +6667,8 @@ export interface ParticleFieldStateConfig {
     piston_ramp_ms?: number;         // drive the piston_from stroke over this many ms instead of the default ease. REQUIRED for an isothermal compression beat: the default stroke outruns thermal speed ~12x and spikes measured T past 8000 K
     T_from?: number;                 // open the state at this temperature and ramp to T, so the heating/cooling is SEEN (Rule 32a). Omit = open already at T
     T_ramp_ms?: number;              // duration of the T_from ramp (default 2000). Deterministic — THE EYE reproduces it
+    T_cue?: string;                  // hold at T_from until this cue fires, then ramp FROM it. Omit = the ramp starts at state entry, which can finish before the sentence naming it plays
+    piston_cue?: string;             // the same, for the piston_from/piston_ramp_ms stroke
     inject_cue?: string;             // cue id that adds/removes reagent MID-state, so the disturbance is seen to arrive (Rule 32a)
     inject_n?: number;               // signed particle delta for inject_cue: >0 pours in, <0 takes out (never breaks a bonded pair)
     inject_species?: string;         // species id for a positive inject_n — names it outright (the inert-gas beat), bypassing reaction.inject alternation
@@ -6632,6 +6700,7 @@ export interface ParticleFieldStateConfig {
     arrhenius_T_min?: number;        // axis span, solved ONCE at state entry so points move against a FIXED frame (default 250)
     arrhenius_T_max?: number;        // default 800
     show_collision_counter?: boolean;// collisions/s, and the fraction clearing Eₐ when one is set
+    counter_window_ms?: number;      // averaging window for the counter (default 1000). The cleared-Eₐ rate is a RARE event — at ~6/s a 1 s window swung the displayed percentage 0.0%–8.2%. 5000 matches the reaction-rate window and the reasoning behind it
     show_gas_law?: boolean;          // P·A / N·T readout — constant on screen, the engine's own proof
     show_trails?: boolean;           // per-particle trails (the mean-free-path / random-walk story)
     adiabatic?: boolean;             // let piston work heat/cool the gas and show it (bicycle-pump story). Default false = isothermal, so compression is a pure Boyle beat
