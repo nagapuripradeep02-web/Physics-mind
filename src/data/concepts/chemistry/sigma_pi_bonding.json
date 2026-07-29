@@ -496,7 +496,7 @@
         "focal_primitive_id": "s6_zero_label",
         "advance_mode": "manual_click",
         "motion_archetype": "torsion-cancel",
-        "motion_delta": "one carbon's p rotates; the reinforcing glow shrinks as a cancelling region grows to match it",
+        "motion_delta": "one carbon's p rotates; π's reinforcing glow shrinks while σ's finished bond holds steady in the same frame",
         "scene_composition": [
           {
             "type": "annotation",
@@ -530,24 +530,35 @@
             "text": "Overlap: exactly zero at 90°",
             "color": "#EC407A",
             "at_ms": 11200
+          },
+          {
+            "type": "annotation",
+            "id": "s6_sigma_label",
+            "position": {
+              "x": 602,
+              "y": 130
+            },
+            "text": "σ holds at 1.000",
+            "color": "#4DD0E1",
+            "at_ms": 3200
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Now twist one carbon's p orbital about the bond axis, and watch the live overlap number.",
+              "text_en": "Now twist one carbon's p orbital about the bond axis and watch the live overlap number.",
               "glow": "mo_lobes"
             },
             {
               "id": "s6_2",
-              "text_en": "The green reinforcing region shrinks while a matching magenta cancelling region grows — not lumps coming apart, but overlap cancelling out.",
+              "text_en": "Sigma's bond holds still; green reinforcing shrinks as magenta cancelling grows — pi's overlap cancels, not separates.",
               "glow": "mo_overlap"
             },
             {
               "id": "s6_3",
-              "text_en": "At ninety degrees the two regions are exactly equal: overlap reads zero, and the pi bond is gone.",
-              "glow": "mo_overlap"
+              "text_en": "At ninety degrees pi reads zero while sigma stays at 1.000 — same twist, opposite outcome.",
+              "glow": "mo_surface"
             }
           ]
         }
@@ -793,7 +804,8 @@
               "duration_ms": 800,
               "settle_ms": 10200,
               "fade_ms": 2000
-            }
+            },
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
@@ -822,7 +834,8 @@
               "duration_ms": 2400,
               "settle_ms": 800,
               "fade_ms": 1200
-            }
+            },
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
@@ -847,13 +860,14 @@
             "show_total": true,
             "show_overlap": false,
             "show_nuclei": true,
-            "surface_opacity": 0.3
+            "surface_opacity": 0.3,
+            "readout": "ratio"
           },
           "show_axes": true,
           "show_labels": true,
           "show_hud": true,
           "hud_lines": [
-            "overlap",
+            "overlap_ratio",
             "bond"
           ],
           "spin_rate": 0.714,
@@ -877,7 +891,8 @@
             "show_total": false,
             "show_overlap": false,
             "show_nuclei": true,
-            "atomic_opacity": 0.5
+            "atomic_opacity": 0.5,
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
@@ -908,7 +923,8 @@
               "duration_ms": 800,
               "settle_ms": 800,
               "fade_ms": 1000
-            }
+            },
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
@@ -922,31 +938,38 @@
         }
       },
       "STATE_6": {
-        "label": "Twist: reinforcing region shrinks, cancelling region grows to match it",
+        "label": "σ holds its finished bond still while π's overlap twists to zero — one frame, both bonds",
         "caption": "Twist: overlap → zero",
         "orbital_shapes": {
           "mode": "param_sweep",
           "mo": {
-            "orbital": "pi_2p",
+            "orbitals": [
+              "sigma_sp2",
+              "pi_2p"
+            ],
             "show_atomic": true,
-            "show_total": false,
+            "atomic_of": "pi_2p",
+            "show_total": true,
             "show_overlap": true,
+            "overlap_of": "pi_2p",
             "show_destructive": true,
             "show_nuclei": true,
             "atomic_opacity": 0.45,
             "overlap_opacity": 0.32,
+            "surface_opacity": 0.22,
             "twist_ramp": {
               "from": 0,
               "to": 90,
               "at_ms": 2600,
               "duration_ms": 8400
-            }
+            },
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
           "show_hud": true,
           "hud_lines": [
-            "overlap",
+            "overlap_ratio",
             "twist"
           ],
           "spin_rate": 0,
@@ -958,23 +981,28 @@
         }
       },
       "STATE_7": {
-        "label": "σ and π are not the same bond: 348 vs 266 kJ/mol",
+        "label": "Both bonds together: σ 348, π 266 kJ/mol",
         "caption": "π is the weaker one",
         "orbital_shapes": {
           "mode": "hybrid_gallery",
           "mo": {
-            "orbital": "sigma_sp2",
+            "orbitals": [
+              "sigma_sp2",
+              "pi_2p"
+            ],
             "show_atomic": false,
             "show_total": true,
             "show_overlap": false,
             "show_nuclei": true,
-            "surface_opacity": 0.26
+            "surface_opacity": 0.26,
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
           "show_hud": true,
           "hud_lines": [
-            "bond"
+            "bond",
+            "parts"
           ],
           "spin_rate": 0,
           "controls": [],
@@ -983,24 +1011,29 @@
         }
       },
       "STATE_8": {
-        "label": "A second π MO grows in, orthogonal to the first",
+        "label": "One σ, two orthogonal π systems, three countable objects",
         "caption": "Triple: one σ, two π",
         "orbital_shapes": {
           "mode": "node_count",
           "mo": {
-            "orbital": "pi_2p",
+            "orbitals": [
+              "sigma_sp2",
+              "pi_2p"
+            ],
             "show_atomic": false,
             "show_total": true,
             "show_overlap": false,
             "show_nuclei": true,
             "surface_opacity": 0.26,
-            "pi_systems": 2
+            "pi_systems": 2,
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
           "show_hud": true,
           "hud_lines": [
-            "bond"
+            "bond",
+            "parts"
           ],
           "spin_rate": 0,
           "controls": []
@@ -1020,13 +1053,14 @@
             "show_nuclei": true,
             "atomic_opacity": 0.45,
             "overlap_opacity": 0.32,
-            "twist_deg": 0
+            "twist_deg": 0,
+            "readout": "ratio"
           },
           "show_axes": false,
           "show_labels": true,
           "show_hud": true,
           "hud_lines": [
-            "overlap",
+            "overlap_ratio",
             "twist",
             "bond"
           ],
