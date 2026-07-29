@@ -44674,9 +44674,20 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             var axlb = osFindById("os_axis_label_" + axKeys2[i]);
             if (axlb) {
-                axlb.visible = !!os.show_axes && (os.show_labels !== false);
+                // An axis pointing (nearly) down the view axis projects to a POINT
+                // at the origin, so its label lands squarely on top of the nucleus
+                // — a Rule 34d collision, and the label carries no orientation
+                // information in that pose anyway. Every hybrid camera looks down
+                // an axis by construction, so this fired on four states at once.
+                var lvd = osSpun(axDirs[i]);
+                // PM_osCutN is the STATE's own solved camera direction (unit), set
+                // at apply time — not the live camera, which is still easing in on
+                // the first frame and would make this flicker.
+                var cvw = window.PM_osCutN || [0, 0, 1];
+                var alignD = Math.abs(lvd[0] * cvw[0] + lvd[1] * cvw[1] + lvd[2] * cvw[2]);
+                axlb.visible = !!os.show_axes && (os.show_labels !== false) && alignD < 0.975;
                 if (axlb.visible) {
-                    var ld = osSpun(axDirs[i]);
+                    var ld = lvd;
                     axlb.position.set(ld[0] * (axLen + 0.22), ld[1] * (axLen + 0.22), ld[2] * (axLen + 0.22));
                     osAvoid.push([axlb.position.x, axlb.position.y, axlb.position.z]);
                 }
@@ -44805,10 +44816,16 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < OS_MAX_SETS; i++) {
             var olb = osFindById("os_orb_label_" + i);
             if (!olb) continue;
-            var lOn = (i < active.length) && (os.show_labels !== false);
+            var lorb = (i < active.length) ? OS_ORBITALS[active[i]] : null;
+            // A label must not outlive the thing it names. During a hybrid morph
+            // the s orbital is CONSUMED — its sphere fades to nothing — and the
+            // "2s" sprite was still sitting in empty space beside a finished sp
+            // hybrid, naming an object that is no longer on screen. Found by
+            // reading the frozen frame; the run was 35/35 green.
+            var lFaded = !!lorb && lorb.kind === "sphere" && hybMorphP > 0.985;
+            var lOn = !!lorb && (os.show_labels !== false) && !lFaded;
             olb.visible = lOn;
             if (lOn) {
-                var lorb = OS_ORBITALS[active[i]];
                 osSetSubLabel(olb, lorb.main, lorb.sub, lorb.color);
                 // anchored on the thing it names (a lobe tip, or the top of the
                 // sphere), then pushed to whichever screen diagonal is clear.

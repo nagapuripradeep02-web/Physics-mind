@@ -715,7 +715,12 @@
             "radius"
           ],
           "spin_rate": 0,
-          "controls": []
+          "controls": [],
+          "camera": {
+            "az": 45,
+            "el": 35.26,
+            "dist": 6.0
+          }
         }
       },
       "STATE_2": {
