@@ -136,6 +136,44 @@ function trainState(label: string, thetaDeg: number, F: number) {
         },
     };
 }
+// ════════════════════════════════════════════════════════════════════════════
+// SEAM I fixture — the opt-in shared push. STATE_1 opts in, STATE_2 does NOT,
+// so one run proves the new behaviour AND that the default is unchanged.
+// ════════════════════════════════════════════════════════════════════════════
+function sharedState(label: string, shared: boolean) {
+    const nlb: Record<string, any> = {
+        mode: 'sandbox',
+        surface: { theta_deg: 0, length_m: 6 },
+        bodies: [
+            { id: 'A', label: 'block', mass_kg: M_RACE, initial_position_m: -4, mu_s: MU_SLIDE, mu_k: MU_SLIDE, applied_force_N: F_RACE },
+            { id: 'B', label: 'wheel', shape: 'wheel', mass_kg: M_RACE, initial_position_m: -4, mu_s: MU_ROLL, mu_k: MU_ROLL, applied_force_N: F_RACE },
+        ],
+        arrows: [{ body_id: 'A', show: ['applied'] }, { body_id: 'B', show: ['applied'] }],
+        glow_focal: 'nlb_body_B',
+        readouts: ['F_applied', 'a'],
+        controls_visible: ['F'],
+        trusted_drag_seizes: true,
+    };
+    if (shared) nlb.shared_applied_force = true;
+    return { label, visible_elements: [], camera_position: [0, 2.4, 9.8], caption: label, newtons_laws_body: nlb };
+}
+const SHARED: Field3DConfig = {
+    scenario_type: 'newtons_laws_body',
+    explorer_id: 'newtons_laws_body_explorer',
+    // REQUIRED, and the reason the first run of this fixture failed: NLB_SLIDER_SPEC
+    // defaults F to [-20, 20], and a range input CLAMPS an out-of-range assignment,
+    // so a drag to 30 silently became 20 and nothing moved. Widening here mirrors
+    // what the rolling_friction skeleton authors (max 50 clears the heaviest block's
+    // 39.2 N break-away) — the same slider-too-narrow trap lom-c and lom-d each hit
+    // as a fix cycle.
+    slider_controls: { F: { min: 0, max: 50, step: 0.5, default: F_RACE, label: 'F' } },
+    field_lines: INERT_FIELD_LINES,
+    states: {
+        STATE_1: sharedState('Shared push opted in', true),
+        STATE_2: sharedState('Default single-target push', false),
+    },
+} as unknown as Field3DConfig;
+
 const TRAIN: Field3DConfig = {
     scenario_type: 'newtons_laws_body',
     explorer_id: 'newtons_laws_body_explorer',
@@ -416,6 +454,48 @@ const near = (a: number, b: number, tol = 1e-6) => Math.abs(a - b) <= tol * Math
             ' dT₁=' + Math.abs(single.T_seg[0] - folded.T_seg[0]).toExponential(2));
         chk('H14_no_page_errors', h.errors.length === 0, JSON.stringify(h.errors.slice(0, 3)));
         results.seam_h_errors = h.errors.slice(0, 8);
+        await h.browser.close();
+    }
+
+    // ══ SEAM I ═════════════════════════════════════════════════════════════
+    {
+        const h = await open('seam_i_shared_push', SHARED);
+        // Drive the F slider the way a teacher does — a TRUSTED input event, since
+        // the seize logic and the emit path both key off ev.isTrusted.
+        const dragF = (v: number) => h.page.evaluate((val) => {
+            const el = document.getElementById('nlb_f_slider') as HTMLInputElement | null;
+            if (!el) return false;
+            el.value = String(val);
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+            return true;
+        }, v);
+
+        for (const [st, shared] of [['STATE_1', true], ['STATE_2', false]] as Array<[string, boolean]>) {
+            await h.setState(st);
+            await h.tick(16.7, 10);
+            const found = await dragF(30);
+            await h.tick(16.7, 10);
+            const s = await h.snap();
+            const fA = s.bodies['A'].a, fB = s.bodies['B'].a;
+            // Recover each body's push from its own equation of motion: F = m·a + |f|,
+            // with f = μ·m·g while sliding forward. Independent of the engine's own
+            // bookkeeping, so this cannot agree with a wrong implementation.
+            const pushA = M_RACE * fA + MU_SLIDE * M_RACE * G;
+            const pushB = M_RACE * fB + MU_ROLL * M_RACE * G;
+            chk('I0_' + st + '_slider_present', found === true, 'F slider found=' + found);
+            if (shared) {
+                chk('I1_shared_both_bodies_get_30N',
+                    near(pushA, 30, 1e-6) && near(pushB, 30, 1e-6),
+                    st + ' recovered pushes: block=' + pushA.toFixed(4) + ' wheel=' + pushB.toFixed(4) + ' (both expect 30.0000)');
+            } else {
+                chk('I2_default_unchanged_only_first_body',
+                    near(pushA, 30, 1e-6) && near(pushB, F_RACE, 1e-6),
+                    st + ' recovered pushes: block=' + pushA.toFixed(4) + ' (expect 30) wheel=' + pushB.toFixed(4) + ' (expect ' + F_RACE + ' — untouched)');
+            }
+            fs.writeFileSync(path.join(OUT, 'seam_i_' + st + '.png'), await h.page.screenshot());
+            results['seam_i_' + st] = { snap: s, pushA, pushB, shared };
+        }
+        chk('I3_no_page_errors', h.errors.length === 0, JSON.stringify(h.errors.slice(0, 3)));
         await h.browser.close();
     }
 

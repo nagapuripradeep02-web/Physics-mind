@@ -964,6 +964,25 @@ export interface Field3DConfig {
                 show_segment_labels?: boolean;
             };
 
+            // SEAM I (rolling_friction, founder-approved 2026-07-30). Make an F write —
+            // slider, idle_auto_sweep or param_ramp, all three route through
+            // nlbApplyParam — reach EVERY non-ghost body standing on the surface
+            // instead of only the first one.
+            //   WHY: a "same push, different contact" comparison state (a sliding block
+            // beside a rolling wheel) has its ENTIRE claim in the word "same". The
+            // default single-target write moves one body's push, so a teacher dragging
+            // F silently creates two different pushes while two visibly
+            // different-length applied arrows contradict the caption.
+            //   Default is UNCHANGED (first non-ghost body only), because
+            // newton_second_law's compare_force_same_mass states depend on exactly that
+            // — F must reach ONE body there or "different force, same mass" collapses.
+            // Opt in per state, never globally.
+            //   Hanging bodies are excluded (a hanging body's drive is its weight, not a
+            // shared push), and `action_reaction` takes PRECEDENCE: when a Newton-III
+            // pair is engaged the engine is already mirroring the driver's force every
+            // frame, and a shared write would fight it.
+            shared_applied_force?: boolean;
+
             action_reaction?: {                    // Newton III: engine-enforced equal-and-opposite
                 engaged: boolean;
                 driver_body_id: string;            // the other body's applied_force_N is MIRRORED each frame
@@ -39543,7 +39562,24 @@ export const FIELD_3D_RENDERER_CODE = `
         var bB = ids[1] ? eng.bodies[ids[1]] : null;
         if (token === "m") { if (bA && value > 0) bA.m = value; }
         else if (token === "m2") { if (bB && value > 0) bB.m = value; }
-        else if (token === "F") { var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value; }
+        else if (token === "F") {
+            // SEAM I — an opt-in SHARED push. action_reaction wins outright: that path
+            // already re-mirrors the driver's force every frame, so a shared write would
+            // be overwritten anyway and reading as if it worked would be worse than not
+            // offering it. Hanging bodies are skipped for the same reason mu skips them:
+            // the shared quantity belongs to the bodies on the surface.
+            var ar0 = eng.action_reaction;
+            var arOn = !!(ar0 && ar0.engaged && ar0.driver_body_id);
+            if (eng.shared_applied_force && !arOn) {
+                for (var fi = 0; fi < eng.order.length; fi++) {
+                    var fb = eng.bodies[eng.order[fi]];
+                    if (!fb || fb.ghost || fb.hanging) continue;
+                    fb.F_applied = value;
+                }
+            } else {
+                var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value;
+            }
+        }
         else if (token === "theta") {
             eng.theta_deg = value;
             nlbApplySurface(value, eng.length_m);
@@ -39843,6 +39879,7 @@ export const FIELD_3D_RENDERER_CODE = `
             coupled: !!(pul || trn),
             pulley: pul,
             train: trn,
+            shared_applied_force: !!nlb.shared_applied_force,   // SEAM I (see nlbApplyParam)
             action_reaction: nlb.action_reaction || null,
             glow_focal: nlb.glow_focal || "",
             order: [],

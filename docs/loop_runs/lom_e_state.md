@@ -24,6 +24,25 @@ done: Phase 0 — worktree + node_modules junction + .env.local; both lom branch
 
 engine_commits:
   76a8791  SEAM G (bodies[].shape 'wheel' + position-derived spin) + SEAM H (train, per-segment T₁/T₂)
+  (pending) SEAM I  shared_applied_force — opt-in, an F write reaches every non-ghost surface body
+
+## FOUNDER DECISION 2026-07-30 — rolling_friction S5 F slider (json_author: TAKE THIS, DO NOT GUESS)
+
+The engine's F write targets ONE body by default (`nlbForceTargetBody()` → first non-ghost in
+AUTHORED `bodies[]` order), so in a same-push comparison state a teacher dragging F would move only
+the block's push while two visibly different-length applied arrows contradicted the caption.
+
+**Founder chose the opt-in engine flag (option b).** `rolling_friction` STATE_5 therefore:
+- KEEPS `F` in `controls_visible` and keeps its `idle_auto_sweep { param: 'F', ... }`;
+- ADDS `shared_applied_force: true` to that state's `newtons_laws_body` block, so the slider, the
+  sweep and any ramp all write BOTH bodies and the race stays a fair same-push comparison.
+- Requires the concept-level `slider_controls.F` widening the skeleton already specifies (max 50 N,
+  which clears the heaviest block's 39.2 N break-away). A range input CLAMPS an out-of-range write,
+  so without the widening a drag past 20 N is silently swallowed — this is exactly what made the
+  seam harness fail its first run, and the same trap lom-c and lom-d each hit as a fix cycle.
+- Do NOT set `shared_applied_force` on any state with `action_reaction.engaged` — that path wins and
+  the shared write would be overwritten every frame.
+Guided states S1/S2/S4 author their per-body F as CONSTANTS and do not need the flag.
 
 engine_verify: check:renderer-syntax OK (all 3 renderers) · tsc 0 errors · validate:concepts 143 PASS
       / 0 FAIL · seam harness 36/36 · regression EYE electric_flux 62/62 + magnetic_flux 38/38 clean
