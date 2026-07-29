@@ -555,7 +555,19 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
-    // Laws of Motion #4 — newtons_laws_body engine, Branch A (flat push:
+    // Laws of Motion #4 — newtons_laws_body engine, Branch A (flat -> tilt ->
+    // vertical N-adjusts arc + a two-body friction-ceiling contrast beat).
+    normal_force: {
+        concept_id: 'normal_force',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'normal_force',
+            label: 'Normal Force — The Surface Answers, It Doesn\'t Store mg (3D)',
+        },
+    },
+
+    // Laws of Motion #5 — newtons_laws_body engine, Branch A (flat push:
     // static friction self-adjusts, ceiling + drop to kinetic). Zero incline
     // states — that arc belongs to sibling block_on_incline.
     friction_force: {
