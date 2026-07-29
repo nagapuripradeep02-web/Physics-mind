@@ -114,6 +114,22 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // force changes velocity (newton_second_law), force pairs
     // (newton_third_law), or the friction threshold model (block_on_incline).
     'newton_first_law',
+    // Normal force (Class 11 Ch.8.3 — newtons_laws_body field_3d engine,
+    // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). The normal force is a contact
+    // force perpendicular to the surface whose magnitude ADJUSTS to exactly
+    // what is needed to stop the body sinking into the surface — it is NOT a
+    // fixed "mg", only the flat-ground special case: flat floor (N = mg,
+    // lockstep with mass), tilt (N detaches, N = mg*cos(theta)), vertical
+    // (nothing presses in, N = 0, free fall at g), and a two-body contrast
+    // where the friction ceiling f_max = mu_s*N rides on N, not weight (same
+    // push, light body slides, heavy body holds). Does NOT cover the
+    // friction-threshold break-away angle itself (block_on_incline owns
+    // tan(theta_c) = mu_s), the accelerating-lift case N = m(g +/- a)
+    // (deferred), or drawing complete free-body diagrams (free_body_diagram).
+    // Distinct from the legacy mechanics_2d 'normal_reaction' concept, which
+    // both remain valid concept IDs for now (founder synonym decision
+    // pending — see docs/loop_runs/lom/normal_force/skeleton.md §8).
+    'normal_force',
     // Newton's second law / F = ma (Class 11 Ch.8.4 — second concept of the
     // Laws of Motion field_3d chapter engine, newtons_laws_body scenario,
     // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). A net force gives a body
@@ -830,8 +846,13 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
 // never return them for new queries — but keeping the redirect is defensive.
 export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     electric_field_lines: 'electric_field_point_charge',
-    normal_force: 'normal_reaction',
-    normal_forces: 'normal_reaction',
+    // `normal_force` is now a real atomic in VALID_CONCEPT_IDS, so normalizeConceptId
+    // returns it before ever reading this map — the old `normal_force: 'normal_reaction'`
+    // entry was dead and is removed. The PLURAL was NOT dead: `normal_forces` is not a
+    // valid ID, so it fell through to the synonym and resolved every "normal forces"
+    // query to the legacy mechanics_2d bundle — contradicting the CLASSIFIER_PROMPT's
+    // own "never return normal_reaction for a new query". Repointed at the live atomic.
+    normal_forces: 'normal_force',
     tension: 'tension_in_string',
     rope_tension: 'tension_in_string',
     atwood_machine: 'tension_in_string',
@@ -1056,7 +1077,8 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   ── Forces (Ch.8) ──
   field_forces            ← gravitational force, electrostatic force, weight = mg
   contact_forces          ← normal + friction at contact surface, resultant
-  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline
+  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline (legacy 2D bundle — prefer normal_force for new queries)
+  normal_force            ← the normal force ADJUSTS, it is never a fixed mg: flat floor N=mg (lockstep with mass), tilt detaches N=mg cosθ, vertical surface N=0 (free fall at g), friction ceiling f_max=μₛN rides on N not weight (same push, light body slides, heavy body holds); N never depends on an along-surface applied force F
   tension_in_string       ← rope tension, Atwood machine, T = 2m₁m₂g/(m₁+m₂)
   hinge_force             ← pin joint, rod on wall, hinge reaction
   free_body_diagram       ← FBD, isolate body, force diagram, N = mg cosθ on incline, string tension T = mg
@@ -1303,7 +1325,7 @@ CRITICAL DISAMBIGUATION (vectors, Ch.5.1):
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "gravitational force" / "weight of object" → field_forces
-- "normal force" / "N = mg cosθ" → normal_reaction
+- "normal force" / "N = mg cosθ" / "is normal force always equal to weight" / "does the surface push back with a fixed force" / "normal force on an incline" / "why is normal force zero on a vertical surface" / "why does a heavier box grip the floor more" / "friction ceiling depends on normal force" → normal_force (the CURRENT field_3d atomic — N adjusts to whatever presses in: flat N=mg, tilt N=mg cosθ, vertical N=0, friction ceiling f_max=μₛN rides on N not weight. NOT normal_reaction, a legacy 2D bundle kept only for historical cache compatibility — never return normal_reaction for a new query)
 - "friction and normal force together" → contact_forces
 - "tension in rope" / "Atwood machine" → tension_in_string
 - "hinge force on rod" → hinge_force
