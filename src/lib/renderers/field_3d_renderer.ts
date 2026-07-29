@@ -1234,7 +1234,43 @@ export interface Field3DConfig {
 
 // ── HTML assembler ───────────────────────────────────────────────────────────
 
-export function assembleField3DHtml(config: Field3DConfig): string {
+/**
+ * OPT-IN annotation merge (closes the OPEN scar
+ * field3d_scene_composition_annotation_silent_noop for any concept that asks).
+ *
+ * The root cause of that scar is structural, not a missing draw call: authored
+ * annotations live in `epic_l_path.states[N].scene_composition`, and the renderer
+ * is only ever handed `field_3d_config`. So every field_3d concept satisfies the
+ * Rule-19 "at least 3 primitives per state" gate with JSON the renderer has never
+ * seen, and every focal_primitive_id points at something that cannot paint.
+ *
+ * This copies them across so they CAN paint — but only when the concept sets
+ * `render_annotations: true`. That gate is deliberate and load-bearing: making
+ * them paint fleet-wide would put never-visually-reviewed text onto ~41
+ * baseline-locked concepts and move every one of their baselines in one commit.
+ * Which of those the fleet wants is a founder decision, and the scar row says so.
+ * This makes the capability exist without taking that decision.
+ */
+export function mergeSceneAnnotations(
+    config: Field3DConfig,
+    epicLPath?: { states?: Record<string, { scene_composition?: Array<Record<string, unknown>> }> },
+): Field3DConfig {
+    if (!config || !(config as unknown as { render_annotations?: boolean }).render_annotations) return config;
+    const src = epicLPath?.states;
+    if (!src) return config;
+    const states: Record<string, unknown> = {};
+    for (const [id, st] of Object.entries(config.states ?? {})) {
+        const anns = (src[id]?.scene_composition ?? []).filter((p) => p && p.type === 'annotation');
+        states[id] = anns.length > 0 ? { ...(st as object), annotations: anns } : st;
+    }
+    return { ...config, states } as Field3DConfig;
+}
+
+export function assembleField3DHtml(
+    config: Field3DConfig,
+    epicLPath?: Parameters<typeof mergeSceneAnnotations>[1],
+): string {
+    config = mergeSceneAnnotations(config, epicLPath);
     const bg = config.pvl_colors?.background ?? '#0A0A1A';
     const textColor = config.pvl_colors?.text ?? '#D4D4D8';
     return `<!DOCTYPE html>
@@ -44622,9 +44658,20 @@ export const FIELD_3D_RENDERER_CODE = `
         var bloomF = (os.bloom_at_ms != null)
             ? osRamp(ms, cueTriggerMs("bloom", os.bloom_at_ms), (os.bloom_duration_ms != null) ? os.bloom_duration_ms : 2400, 0, 1)
             : 1;
-        var ghostIds = [];
+        var ghostIds = [], ghostAlpha = 0.10;
         if (os.ghost_at_ms != null && ms >= cueTriggerMs("ghost", os.ghost_at_ms)) {
             ghostIds = os.ghost_orbitals || ["2p_x", "2p_y"];
+            // ghost_fade_at_ms lets the ghost be the beat that LEADS, then clears.
+            // Holding a ghost set on screen at the same time as the real one is
+            // what breaks countability: the ghost lobes land in the gaps between
+            // the real ones and the union fuses (the same geometry that forced
+            // front_only). Showing the wrong picture FIRST and dissolving it as
+            // the right one assembles is both readable and the correct Rule-16a
+            // order — the wrong expectation's consequence, then the real physics.
+            if (os.ghost_fade_at_ms != null) {
+                ghostAlpha = 0.10 * osRamp(ms, cueTriggerMs("ghost_fade", os.ghost_fade_at_ms),
+                    (os.ghost_fade_duration_ms != null) ? os.ghost_fade_duration_ms : 2500, 1, 0);
+            }
         }
         var lobeSlot = 0;
         // A 2p 90% boundary is genuinely PLUMP (length/width = 1.44 from the
@@ -44667,6 +44714,16 @@ export const FIELD_3D_RENDERER_CODE = `
                 var mIdx = frames[q].memberIndex;
                 var bFrom = (os.bloom_from != null) ? os.bloom_from : 0;
                 var gEff = (mIdx != null && mIdx < bFrom) ? 1 : growth;
+                // bloom_offsets_ms staggers each member's own growth window, which
+                // is what lets two states with the same lobe count declare — and
+                // actually perform — different archetypes. Without it every set
+                // scaled up as one rigid body, so three consecutive states named
+                // three archetypes and delivered one uniform swell.
+                var bOff = os.bloom_offsets_ms;
+                if (bOff && mIdx != null && bOff[mIdx] != null && os.bloom_at_ms != null && gEff !== 1) {
+                    gEff = osRamp(ms, cueTriggerMs("bloom", os.bloom_at_ms) + bOff[mIdx],
+                        (os.bloom_duration_ms != null) ? os.bloom_duration_ms : 2400, 0, 1);
+                }
                 lb.visible = opacity > 0.004 && gEff > 0.02;
                 if (!lb.visible) continue;
                 osAimFrame(lb, frames[q]);
@@ -44678,7 +44735,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (lb.material) lb.material.opacity = opacity;
             }
         }
-        for (i = 0; i < ghostIds.length; i++) osPlaceLobes(ghostIds[i], 1, 0.10, true);
+        for (i = 0; i < ghostIds.length; i++) osPlaceLobes(ghostIds[i], 1, ghostAlpha, true);
         for (i = 0; i < active.length; i++) {
             var aOrb = OS_ORBITALS[active[i]];
             if (aOrb.kind !== "lobes" && aOrb.kind !== "hybrid") continue;
@@ -45388,12 +45445,76 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     // ── State management ──────────────────────────────────────────────────
+    // Paint the state's authored scene_composition annotations as DOM overlays.
+    // They are merged into the config at assembly time and ONLY when the concept
+    // opts in with render_annotations (see mergeSceneAnnotations) — so for every
+    // existing concept this is a no-op and no baseline moves.
+    //   Positions are authored in the 760x500 design space and mapped to
+    // percentages, so they track any viewport. The top 12% is reserved for the
+    // review chrome and the delta-cue caption (Rule 34a/34d), so an annotation
+    // authored into that band is pushed below it rather than clipped behind it.
+    function pmPaintAnnotations(stateDef) {
+        var box = document.getElementById("f3d_annots");
+        if (!box) {
+            box = document.createElement("div");
+            box.id = "f3d_annots";
+            box.style.cssText = "position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9;";
+            document.body.appendChild(box);
+        }
+        box.innerHTML = "";
+        var list = (stateDef && stateDef.annotations) || [];
+        for (var ai = 0; ai < list.length; ai++) {
+            var a = list[ai] || {};
+            if (!a.text) continue;
+            var ax = (a.position && a.position.x != null) ? a.position.x : 380;
+            var ay = (a.position && a.position.y != null) ? a.position.y : 250;
+            var lp = (ax / 760) * 100, tp = (ay / 500) * 100;
+            if (tp < 12) tp = 12;
+            if (lp < 6) lp = 6; if (lp > 94) lp = 94;
+            var d = document.createElement("div");
+            d.id = a.id || ("f3d_annot_" + ai);
+            d.style.cssText = "position:absolute;left:" + lp.toFixed(2) + "%;top:" + tp.toFixed(2) +
+                "%;transform:translate(-50%,-50%);color:" + (a.color || "#D4D4D8") +
+                ";font:600 15px/1.25 system-ui,-apple-system,sans-serif;" +
+                "text-shadow:0 0 6px rgba(10,10,26,0.95),0 0 3px rgba(10,10,26,1);white-space:nowrap;";
+            d.textContent = a.text;
+            // an annotation may declare at_ms; until then it is HIDDEN. A label
+            // naming a thing that has not happened yet is a claim ahead of its
+            // evidence — "the fourth lifts out" printed over a set that has not
+            // moved is the same defect class as a readout contradicting its state.
+            if (a.at_ms != null) { d.setAttribute("data-at", String(a.at_ms)); d.style.display = "none"; }
+            // ...and until_ms is the symmetric half: a label must not OUTLIVE the
+            // thing it names either. A ghost set that has dissolved leaves its
+            // caption pointing at empty space, which is the same defect one
+            // direction later.
+            if (a.until_ms != null) d.setAttribute("data-until", String(a.until_ms));
+            box.appendChild(d);
+        }
+        box.style.display = list.length > 0 ? "block" : "none";
+    }
+    // per-frame reveal pass for timed annotations (pure fn of state-local t)
+    function pmStepAnnotations() {
+        var box = document.getElementById("f3d_annots");
+        if (!box || box.style.display === "none") return;
+        var ams = (time - stateStartTime) * 1000;
+        var kids = box.children;
+        for (var ki = 0; ki < kids.length; ki++) {
+            var at = kids[ki].getAttribute("data-at");
+            var un = kids[ki].getAttribute("data-until");
+            if (at == null && un == null) continue;
+            var onA = (at == null) || (ams >= cueTriggerMs("annot_" + kids[ki].id, Number(at)));
+            var onB = (un == null) || (ams < Number(un));
+            kids[ki].style.display = (onA && onB) ? "block" : "none";
+        }
+    }
+
     function applyState(stateId) {
         PM_currentState = stateId;
         stateStartTime = time;
         scenarioCueTimes = {};   // clear per-sentence cue overrides for the new state
         var stateDef = config.states[stateId];
         if (!stateDef) return;
+        pmPaintAnnotations(stateDef);
 
         // dual_field_compare: reset the wire-scenario X offset before each state
         // so only the dual-compare state (which re-sets it in buildDualFieldCompare)
@@ -49488,6 +49609,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // wrong physics for every frozen frame, and the gate passed twice).
         // Accumulator-free: every value INCLUDING the spin angle and the dot
         // count is a pure fn of state-local t (Rule 26/36).
+        pmStepAnnotations();
+
         if (config.scenario_type === "orbital_shapes") {
             var osStateDef = config.states[PM_currentState];
             if (osStateDef) { updateOrbitalShapesFrame(osStateDef); applyOrbitalShapesGlow(osStateDef); }
