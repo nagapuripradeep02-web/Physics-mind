@@ -55,6 +55,31 @@ Every clause of that belief is false and the sim refutes each one with a differe
 beat: **same shape** → S2/S5, **twice as strong** → S7 (348 vs 266 kJ/mol),
 **rotates freely** → S6.
 
+> **CORRECTION (audit round, Rule 38a FAIL).** S1 originally put *all three*
+> clauses on canvas, including "Twice as strong?" — but that one is answered only
+> in **extended-ring S7**. Hide the extended ring and a surviving core state asks a
+> question the reduced lesson never answers, which is exactly what 38a's
+> coherent-when-cut check forbids. **Fix: the strength clause is DROPPED from S1's
+> canvas and narration** and lives entirely in the extended ring. S1 keeps "Two
+> identical bonds?" (answered in core at S2/S5) and "Rotates just as freely?"
+> (answered in core at S6). The core cut is now self-contained.
+
+> **CORRECTION (audit round, Rule 16a FAIL).** S1 did not show the wrong belief at
+> all — measured, its opening frame was **byte-identical to S2's** (0.00% differing
+> pixels). It drew the REAL σ bond's own lobes, ran S2's approach at 3× speed, and
+> dissolved; the belief existed only as text, and the label "Two identical bonds?"
+> fired at the moment the lobes had merged into ONE. The picture said the opposite
+> of the caption.
+>
+> **Root cause: `orbital_shapes` had no rod/cylinder primitive**, so "two identical
+> lines" was never buildable and the state was improvised around what existed.
+> **Founder decision: build the primitive** — the line picture IS the misconception
+> (a "C=C" drawn as two identical lines is what every student has on the page, and
+> Lewis structures are NCERT Ch.4 §4.1), so it is curriculum-defined, not an extra;
+> a cylinder between two nuclei is cheap; and every future bonding concept
+> (Lewis, VSEPR, SN1/SN2) reuses it. S1 now draws N parallel sticks that LEAD ALONE
+> and dissolve on a declared cue before the real σ assembles.
+
 **Contrast pair: S1 ↔ S2 (declared).** S1 builds the wrong picture *alone* — two
 identical sticks between the nuclei — and states its consequence on canvas. It then
 **dissolves** (`ghost_fade_at_ms`) as the real σ assembles in its place.
@@ -91,7 +116,7 @@ the real C=C separation.** Every state is a change to that one apparatus.
 
 | # | ring | teaches | archetype | Δ (≤5 words on canvas) | controls | advance | words |
 |---|---|---|---|---|---|---|---|
-| 1 | core | the belief: a double bond is two identical lines | `stick-double` | "Two identical lines?" | — | manual_click | ~30 |
+| 1 | core | the belief: a double bond is two identical lines | `stick-double` — **N real parallel sticks** (bond-stick primitive), leading alone then dissolving | "Two identical lines?" | — | manual_click | ~30 |
 | 2 | core | end-on overlap builds ONE bond lying on the axis (**pair with S1**) | `head-on-merge` | "End-on: one σ" | — | manual_click | ~45 |
 | 3 | core | σ is cylindrically symmetric — spin it, nothing changes | `axis-spin` | "Spin it: σ unchanged" | — | auto_after_tts | ~35 |
 | 4 | core | each carbon keeps one unhybridised p, perpendicular | `perpendicular-rise` | "One p left, sideways" | — | manual_click | ~40 |
@@ -120,8 +145,16 @@ dense frames of the two states**, never by reading the archetype names back:
 
 - **S2** — the two lobes translate toward each other and fuse at the moment of
   contact; the fusion is a topology change, not a fade.
-- **S5** — the two lobes rise *perpendicular* to S2's axis and fuse laterally into
-  two separate components. Different axis, different direction, different result.
+- **S5** — ~~the two lobes rise *perpendicular* to S2's axis~~ **CORRECTED (audit
+  round): this declared delta was WRONG and unbuildable.** Both S2 and S5 close
+  along the internuclear axis — that is physics; two atoms cannot approach along
+  two different lines, and inventing a second direction for π would be a lie. The
+  REAL and measured distinguishing delta is **contact**: σ's surfaces genuinely
+  MEET mid-approach (211.3 pm, 37.6% of travel) and interpenetrate; π's NEVER meet
+  (they would touch at 109.0 pm, *inside* the 133.9 pm bond). The two contact
+  events straddle the bond length. That is why π needs a molecular-orbital
+  description at all, and it is what the HUD's `contact` line makes legible —
+  "surfaces touch at: 211 pm" against "— (flanks only)".
 - **S3** — rigid rotation, zero shape change (that IS the content).
 - **S6** — rotation *with* shape change, monotone in the twist angle, with a live
   numeric overlap falling to 0.00 at 90°. **It must NOT be drawn as "the lumps come
@@ -348,6 +381,40 @@ unrelated). Nothing has been built twice.
    S2 and S5 must be *distinguishable* motions — lobes closing along their own axis
    vs perpendicular to it — verified by diffing dense frames, never by reading
    parameter names (#13 lesson (d)).
+
+### §6b — The audit round: what the machine gates could not see
+
+`quality_auditor` returned **FAIL** with 7 blocking defects; `eye_walker` independently
+found 5. **THE EYE was green 39/39 on every one of those frames** — the fourth
+consecutive concept where the deterministic suite passed frames containing critical
+errors. Two of the blocking defects were **regressions of scars already marked FIXED**.
+
+The three that generalise beyond this concept:
+
+1. **A silent identity fallback poisons everything downstream.** `os.orbital` is
+   unset on an `mo` state (the id lives under `os.mo`), so `baseId = os.orbital ||
+   "1s"` activated the 1s ATOMIC orbital in all nine states — painting both a large
+   "1s" label and a **1200-dot hydrogen-1s probability swarm over every molecular
+   orbital**. The engine's own comment already declared that "an MO simply has no
+   swarm"; the fallback defeated its own stated intent. A default that is *valid*
+   is more dangerous than one that throws.
+2. **An authored field that no-ops produces a state that lies.** All nine
+   `orbital_shapes.mode` strings are decoration — `mode` is read only for a camera
+   lookup this concept overrides. Three states were consequently byte-static under
+   captions describing motion, and **only 4 of 9 declared archetypes were
+   delivered**. This is #13's failure recurring against the very scar row whose
+   prevention rule says to verify by diffing dense frames rather than reading names.
+3. **Two instruments for one quantity will eventually disagree.** S6's slider
+   printed `S/S₀ = 1.000` while the HUD 500 px above read `π S/S₀ = 0.000`, in the
+   same frame, on the state the concept exists for — because the slider resolved
+   against the *primary* MO (σ) and ignored the state's `overlap_of`. A teacher
+   reading the slider would have learned the exact opposite of the lesson.
+
+**What held, and is not to be touched in the fix round:** the normalised
+overlap-ratio design (§5d — the defect caught mid-pipeline; no state renders a bare
+absolute integral and 0.745/0.270 reach no rendered field), S8's honesty disclosures
+(§6a.1), Rule 38b explore-core-only, the solved camera (§ below, independently
+reproduced at √(2/3)), the chemistry ledger, and all four harnesses.
 
 ### Cameras — TO BE SOLVED, never chosen
 
