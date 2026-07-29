@@ -42949,13 +42949,30 @@ export const FIELD_3D_RENDERER_CODE = `
     //                   'radius','label'],
     //       formula,                                  // ONE Cambria surface
     //       camera: {az, el, dist},                   // SOLVED (skeleton E-9)
-    //       controls: ['orbital','dots','spin','probe'],
-    //       static_readouts: [...]                    // same rows, disabled
+    //       controls: ['orbital','dots','spin','probe','schar','twist'],
+    //       static_readouts: [...],                   // same rows, disabled
+    //       mo: {                                     // #17 sigma/pi bonding
+    //         orbital: 'sigma_sp2'|'pi_2p',
+    //         show_total, show_atomic, show_overlap,  // three separate claims
+    //         show_destructive (default true), show_nuclei (default true),
+    //         twist_deg,                              // static torsion, 0..90
+    //         twist_ramp: {from,to,at_ms,duration_ms},// the S6 payoff
+    //         pi_systems: 1|2,                        // 2 = the triple bond
+    //         reveal_at_ms, reveal_duration_ms,
+    //         surface_opacity, atomic_opacity, overlap_opacity
+    //       }
     //     }
+    //   CONFIG-LEVEL (build-time, #17): config.mo = { bond?: 'single'|'double'|
+    //   'triple', bond_pm?: number, z_eff?: number }. Its PRESENCE is the gate —
+    //   the MO build (two grid samples, five root tables, an octant quadrature,
+    //   a seven-rung twist ladder) runs only when a config asks for it, so an
+    //   atomic-orbital concept's build time is unchanged.
+    //   MO hud_lines: 'overlap' | 'twist' | 'bond' | 'z_eff' | 'parts'.
     //   REQUIRED: config.field_lines.opacity must exist (an object, even {}) —
     //   createTubeLine reads it unconditionally (the fleet's blank-scene trap).
     //   Glow-key enum is CLOSED to exactly: orbit | dots | surface | node_plane |
-    //   node_shell | probe | axes | lobe_set (applyOrbitalShapesGlow below — a
+    //   node_shell | probe | axes | lobe_set | mo_surface | mo_lobes |
+    //   mo_overlap | nuclei (applyOrbitalShapesGlow below — a
     //   non-keyed glow_focal would dim the whole scene with no focal lit, the
     //   VSEPR scar).
     //   Rule 26/36: EVERY beat — the slow spin, the dot stipple, the probe
@@ -43735,6 +43752,509 @@ export const FIELD_3D_RENDERER_CODE = `
         geo.attributes.position.needsUpdate = true;
         geo.computeVertexNormals();
     }
+
+    // ══ MOLECULAR ORBITALS (#17 sigma/pi bonding) ═══════════════════════════
+    // ADDITIVE. Nothing above this block changes behaviour: the s/p/d family and
+    // the hybrid family take their own build paths and never enter any osMo*
+    // function, and the whole MO build is gated on config.mo (below), so a
+    // concept that does not ask for it pays ZERO build cost.
+    //
+    // WHY THIS IS NOT "the same pool, translated" (this scenario's own
+    // forward-compat note, corrected by measurement — sigma_pi_bonding_skeleton
+    // section 5b): two INDEPENDENT translated |psi|^2 pools agree with the true
+    // MO only at the 90% contour, and 90% is the contour a multi-lobe scene
+    // provably cannot use (the hybrid front_only lesson). At the 50% contour a
+    // translated-pool pi bond is FOUR disconnected lobes that never touch —
+    // two atoms standing near each other with a visible gap, under a caption
+    // reading "the pi bond". The MO field gives the textbook topology at EVERY
+    // enclosure. So this path carries a SIGNED two-centre amplitude, because the
+    // entire point of a bond is that the two amplitudes ADD or CANCEL, and a
+    // squared one-centre pool cannot express that.
+    //
+    // Z_eff IS A LENGTH SCALE, NOT A COSMETIC (skeleton 5a). The shipped library
+    // is hydrogenic Z = 1; at that scale each carbon 2p lobe reaches 3.6 bond
+    // lengths PAST the other nucleus — total interpenetration, which is both
+    // unreadable and a lie about overlap. Slater's Z_eff = 3.25 for carbon 2p
+    // puts the tips just past each other. The hydrogenic radial function scales
+    // EXACTLY as r -> Z r, so a Z_eff picture is the shipped contour with every
+    // length divided by Z: an exact re-scaling, never an approximation.
+    // (Skeleton section 7 limit 3: Slater 3.25 vs SCF ~3.14 is an approximation
+    // and must be DECLARED on canvas — the z_eff HUD line prints its provenance.)
+    var OS_MO_ZEFF_C = 6 - (3 * 0.35 + 2 * 0.85);   // Slater, carbon 2p = 3.25
+    var OS_MO_BONDS_PM = { single: 153.5, double: 133.9, triple: 120.3 };
+    var OS_MO_ENC = 0.50;               // skeleton limit 5: 50%, never 90%
+    // Build grids. The primary grid solves the iso-level and finds the connected
+    // components (the level is a MASS fraction, so it needs the extent); the
+    // ladder grid only has to locate each component's centroid, so it is coarser.
+    // Both were chosen by measurement, not taste: component counts are identical
+    // at 65/81/97/121 (sigma 3 with 1 spanning, pi 2 with 2 spanning) and the
+    // level moves under 2% across that whole span.
+    var OS_MO_GRID_N = 65, OS_MO_GRID_EXT = 14;
+    var OS_MO_LAD_N = 49, OS_MO_LAD_EXT = 12;
+    var OS_MO_ND = 24, OS_MO_NA = 48;   // root-table / mesh resolution
+    var OS_MO_RAY_STEP = 240;           // march steps before the bisection
+    // The TORSION LADDER (skeleton 5d/6.6). Precomputed twist rungs, LERPED
+    // between in a frame — exactly the shipped morph-ladder pattern. No field is
+    // solved in a frame, so the SET_TIME_FREEZE byte-identical guarantee
+    // (Rule 36) is untouched.
+    var OS_MO_TWIST_LADDER_DEG = [0, 15, 30, 45, 60, 75, 90];
+    var OS_MO_MAX_PARTS = 8;            // sigma 3 + pi 2 + a second pi 2 (triple)
+    var OS_MO_MAX_LOBES = 8;            // sign-coloured atomic lobes, 2 per atom
+    var OS_MO_MAX_OVL = 4;              // constructive 2 + destructive 2
+    // The overlap-integral quadrature grid. These are the DESIGN-GATE numbers
+    // (docs/concepts/chemistry/sigma_pi_physics.js), kept identical so the
+    // shipped S(0) reproduces the independently measured 0.270339 rather than
+    // merely being close to it.
+    var OS_MO_S0_N = 121, OS_MO_S0_EXT = 16;
+
+    // The two molecular orbitals of a C=C double bond. sigma is sp2-sp2 — the
+    // honest continuation of what hybridisation_sp_sp2_sp3 teaches, re-measured
+    // rather than assumed (skeleton 5c: same topology as p-p and a materially
+    // cleaner picture, back lobes 1145 -> 107 cells). pi is the leftover
+    // unhybridised 2p on each carbon.
+    //   Only the BONDING combination exists here. sigma*/pi* antibonding are out
+    // of NCERT scope and are a DELIBERATE omission (skeleton limit 4), recorded
+    // so no caption can imply the bonding MO is the whole story.
+    //   FIVE DISTINCT HUES, and they have to be distinct: a twisting state shows
+    // the two sign-coloured atomic lobes, the reinforcing region and the
+    // cancelling region ON SCREEN AT ONCE, beside two nuclei. The first build
+    // painted the cancelling region and the negative lobe the same red, so a
+    // student reading "these two cancel" saw one red mass (caught on the first
+    // headless pixel read: the red channel of a twisted frame was both objects).
+    // Sign lobes take the textbook +/- pair (blue / amber), the overlap takes
+    // reinforce-green and cancel-magenta, and neither touches the nuclei's red.
+    var OS_MO_CONSTRUCTIVE_COLOR = "#66BB6A";
+    var OS_MO_DESTRUCTIVE_COLOR = "#EC407A";
+    var OS_MOS = {
+        "sigma_sp2": { kind: "mo", overlap: "sigma", n: 2, main: "\\u03C3", sub: "",
+                       color: "#AB47BC", lobePos: "#42A5F5", lobeNeg: "#FFCA28",
+                       f: 1 / 3, bond: "double", zEff: OS_MO_ZEFF_C, seed: 0x51EDA },
+        "pi_2p":     { kind: "mo", overlap: "pi", n: 2, main: "\\u03C0", sub: "",
+                       color: "#26C6DA", lobePos: "#42A5F5", lobeNeg: "#FFCA28",
+                       bond: "double", zEff: OS_MO_ZEFF_C, seed: 0x51EDB }
+    };
+    for (var mk in OS_MOS) OS_ORBITALS[mk] = OS_MOS[mk];
+
+    function osMoBondPm(mo) {
+        return (mo.bondPm != null) ? mo.bondPm : (OS_MO_BONDS_PM[mo.bond || "double"] || OS_MO_BONDS_PM.double);
+    }
+    function osMoPmPerRho(mo) { return OS_A0 / (mo.zEff || 1); }
+    function osMoBondRho(mo) { return osMoBondPm(mo) / osMoPmPerRho(mo); }
+    // rho -> world units at this orbital's OWN Z_eff.
+    function osMoUnits(mo, rho) { return rho * osMoPmPerRho(mo) / OS_PM_PER_UNIT; }
+    // The two atomic lobe axes. sigma: both big lobes point AT each other, so
+    // both are POSITIVE in the overlap region and the bonding combination is
+    // psi_A + psi_B (verified in the design gate: |front|/|back| = 1.62 at
+    // rho = 3, which is what OS_HYB_SIGN buys). pi: both 2p perpendicular to the
+    // bond axis, with B's TWISTED by phi about it — the S6 payoff.
+    function osMoAxes(mo, twistDeg) {
+        var ph = (twistDeg || 0) * Math.PI / 180;
+        if (mo.overlap === "sigma") return { a: [0, 0, 1], b: [0, 0, -1] };
+        return { a: [1, 0, 0], b: [Math.cos(ph), Math.sin(ph), 0] };
+    }
+    function osMoCenters(mo) {
+        var R = osMoBondRho(mo);
+        return [[0, 0, -R / 2], [0, 0, R / 2]];
+    }
+    // SIGNED one-centre amplitude — the capability the shipped path never needed.
+    function osMoAtomPsi(mo, p, c, ax) {
+        var dx = p[0] - c[0], dy = p[1] - c[1], dz = p[2] - c[2];
+        var r = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (r < 1e-9) return 0;
+        var cs = (dx * ax[0] + dy * ax[1] + dz * ax[2]) / r;
+        if (mo.overlap === "sigma") return osHybPsi(mo, r, cs);
+        return osR(OS_ORB2P, r) * OS_SQRT3_4PI * cs;
+    }
+    // |psi_A + psi_B|^2 — the total electron density of the bonding MO.
+    function osMoTotalField(mo, twistDeg) {
+        var cs = osMoCenters(mo), ax = osMoAxes(mo, twistDeg);
+        var cA = cs[0], cB = cs[1], aA = ax.a, aB = ax.b;
+        return function (p) {
+            var v = osMoAtomPsi(mo, p, cA, aA) + osMoAtomPsi(mo, p, cB, aB);
+            return v * v;
+        };
+    }
+    // psi_A psi_B — POSITIVE where the two amplitudes reinforce (the bonding /
+    // CONSTRUCTIVE region), negative where they cancel. Its integral IS the
+    // overlap integral S, so the surface a student watches and the number the HUD
+    // prints are the same object.
+    function osMoProductField(mo, twistDeg) {
+        var cs = osMoCenters(mo), ax = osMoAxes(mo, twistDeg);
+        var cA = cs[0], cB = cs[1], aA = ax.a, aB = ax.b;
+        return function (p) {
+            return osMoAtomPsi(mo, p, cA, aA) * osMoAtomPsi(mo, p, cB, aB);
+        };
+    }
+
+    // ── grid sampling, level solve, connected components ────────────────────
+    function osMoSampleGrid(field, N, EXT) {
+        var step = 2 * EXT / (N - 1);
+        var g = new Float64Array(N * N * N), i, j, k, n = 0;
+        for (i = 0; i < N; i++) {
+            var x = -EXT + i * step;
+            for (j = 0; j < N; j++) {
+                var y = -EXT + j * step;
+                for (k = 0; k < N; k++) g[n++] = field([x, y, -EXT + k * step]);
+            }
+        }
+        return { g: g, N: N, ext: EXT, step: step, cell: step * step * step };
+    }
+    // The iso-level enclosing "frac" of the (signed) field's positive mass —
+    // the same "densest cells first" definition the design gate used, so the
+    // renderer and the harness are solving for the same contour.
+    function osMoLevel(gr, sgn, frac) {
+        var g = gr.g, cell = gr.cell, i, n = 0, tot = 0;
+        var pos = new Float64Array(g.length);
+        for (i = 0; i < g.length; i++) {
+            var v = sgn * g[i];
+            if (v > 0) { pos[n++] = v; tot += v * cell; }
+        }
+        if (n === 0 || tot <= 0) return 0;
+        var sub = pos.subarray(0, n);
+        sub.sort();                                   // TypedArray sort: numeric ascending
+        var acc = 0;
+        for (i = n - 1; i >= 0; i--) { acc += sub[i] * cell; if (acc >= frac * tot) return sub[i]; }
+        return sub[0];
+    }
+    // 6-connected components of { sgn * field >= lev }, with each component's
+    // centroid, cell count and whether it SPANS both nuclei. Flood fill uses an
+    // explicit Int32Array stack (never recursion) and accumulates the centroid as
+    // it goes, so no per-component cell list is ever materialised — a 65^3 grid
+    // stays inside a couple of typed arrays.
+    //   The sort is DETERMINISTIC by construction: size descending, then centroid
+    // x/y/z ascending, then scan index. The two pi lumps are exactly the same
+    // size, so a size-only sort would let them swap between twist rungs and the
+    // per-slot lerp would tear the surface across the screen.
+    function osMoComponents(gr, sgn, lev, spanZ) {
+        var N = gr.N, g = gr.g, ext = gr.ext, step = gr.step;
+        var seen = new Uint8Array(g.length), stack = new Int32Array(g.length);
+        var out = [], s;
+        for (s = 0; s < g.length; s++) {
+            if (seen[s] || sgn * g[s] < lev) continue;
+            var sp = 0; stack[sp++] = s; seen[s] = 1;
+            var cnt = 0, sx = 0, sy = 0, sz = 0, zMin = 9e9, zMax = -9e9;
+            while (sp > 0) {
+                var m = stack[--sp];
+                var k = m % N, j = ((m - k) / N) % N, i = (m - k - j * N) / (N * N);
+                var z = -ext + k * step;
+                cnt++; sx += -ext + i * step; sy += -ext + j * step; sz += z;
+                if (z < zMin) zMin = z;
+                if (z > zMax) zMax = z;
+                if (i > 0)     { var n1 = m - N * N; if (!seen[n1] && sgn * g[n1] >= lev) { seen[n1] = 1; stack[sp++] = n1; } }
+                if (i < N - 1) { var n2 = m + N * N; if (!seen[n2] && sgn * g[n2] >= lev) { seen[n2] = 1; stack[sp++] = n2; } }
+                if (j > 0)     { var n3 = m - N;     if (!seen[n3] && sgn * g[n3] >= lev) { seen[n3] = 1; stack[sp++] = n3; } }
+                if (j < N - 1) { var n4 = m + N;     if (!seen[n4] && sgn * g[n4] >= lev) { seen[n4] = 1; stack[sp++] = n4; } }
+                if (k > 0)     { var n5 = m - 1;     if (!seen[n5] && sgn * g[n5] >= lev) { seen[n5] = 1; stack[sp++] = n5; } }
+                if (k < N - 1) { var n6 = m + 1;     if (!seen[n6] && sgn * g[n6] >= lev) { seen[n6] = 1; stack[sp++] = n6; } }
+            }
+            out.push({
+                cells: cnt, vol: cnt * gr.cell, first: s,
+                centroid: [sx / cnt, sy / cnt, sz / cnt],
+                spans: (zMin < -spanZ && zMax > spanZ)
+            });
+        }
+        out.sort(function (p, q) {
+            if (q.cells !== p.cells) return q.cells - p.cells;
+            if (p.centroid[0] !== q.centroid[0]) return p.centroid[0] - q.centroid[0];
+            if (p.centroid[1] !== q.centroid[1]) return p.centroid[1] - q.centroid[1];
+            if (p.centroid[2] !== q.centroid[2]) return p.centroid[2] - q.centroid[2];
+            return p.first - q.first;
+        });
+        return out;
+    }
+
+    // ── the 2-D root table ──────────────────────────────────────────────────
+    // For each (delta from the local +y axis, azimuth about it) the radius from
+    // "origin" at which the field leaves "lev". This is #13's osHybRootTable one
+    // dimension wider, and it has to be: a hybrid is a surface of REVOLUTION
+    // about its own lobe axis, so one table over c serves every azimuth. A pi
+    // sausage is not — its cross-section perpendicular to the bond axis is not
+    // circular — so the table is over (delta, azimuth).
+    //
+    // *** FIRST EXIT, NOT OUTERMOST ROOT. *** osHybRootTable takes the OUTERMOST
+    // crossing, which is correct for ONE orbital: there is a single component, so
+    // the outermost root IS its surface. Here the field has several components,
+    // and a ray leaving this sausage re-enters the OTHER one; taking the
+    // outermost root then wraps both into a single surface and over-encloses by
+    // ~2x (MEASURED in the design gate: 118% volume error). Under the star-shaped
+    // property — verified, 0.0% ray re-entry against each component's own voxel
+    // mask at every twist rung — the component containing the origin is the
+    // connected run starting AT the origin, so its boundary is the first exit.
+    function osMoRootTable(field, origin, lev, ND, NA, rMax) {
+        var tab = new Float64Array((ND + 1) * (NA + 1));
+        var h = rMax / OS_MO_RAY_STEP, d, a, s, b;
+        var ox = origin[0], oy = origin[1], oz = origin[2];
+        for (d = 0; d <= ND; d++) {
+            var th = Math.PI * d / ND, st = Math.sin(th), ct = Math.cos(th);
+            for (a = 0; a <= NA; a++) {
+                var az = 2 * Math.PI * a / NA;
+                var ux = st * Math.cos(az), uy = ct, uz = st * Math.sin(az);
+                var found = 0;
+                for (s = 1; s <= OS_MO_RAY_STEP; s++) {
+                    var t = s * h;
+                    if (field([ox + ux * t, oy + uy * t, oz + uz * t]) < lev) { found = t - h; break; }
+                }
+                if (found > 0) {
+                    var lo = found, hi = found + h;
+                    for (b = 0; b < 30; b++) {
+                        var mm = 0.5 * (lo + hi);
+                        if (field([ox + ux * mm, oy + uy * mm, oz + uz * mm]) >= lev) lo = mm; else hi = mm;
+                    }
+                    found = 0.5 * (lo + hi);
+                }
+                tab[d * (NA + 1) + a] = found;
+            }
+        }
+        return tab;
+    }
+    // Volume enclosed by a star-shaped root table (spherical-sector quadrature).
+    // Not decoration: this is what check:sigma-pi compares against the voxel
+    // count, i.e. the proof that the drawn surface IS the measured region.
+    function osMoTableVolume(tab, ND, NA) {
+        var v = 0, d, a;
+        for (d = 0; d < ND; d++) {
+            var th = Math.PI * (d + 0.5) / ND;
+            for (a = 0; a < NA; a++) {
+                var r = 0.25 * (tab[d * (NA + 1) + a] + tab[(d + 1) * (NA + 1) + a]
+                              + tab[d * (NA + 1) + a + 1] + tab[(d + 1) * (NA + 1) + a + 1]);
+                v += (r * r * r / 3) * Math.sin(th) * (Math.PI / ND) * (2 * Math.PI / NA);
+            }
+        }
+        return v;
+    }
+    function osMoTableMax(tab) {
+        var m = 0, i;
+        for (i = 0; i < tab.length; i++) if (tab[i] > m) m = tab[i];
+        return m;
+    }
+    // Mesh from a root table, in world units, with vertices RELATIVE to the
+    // component centroid — the caller places it (see osAimFrame's origin arg).
+    // The table is built in WORLD directions, so the mesh needs a translation and
+    // the live spin, never a per-component rotation.
+    function osMoGeometry(mo, tab, ND, NA) {
+        var verts = [], idx = [], i, j;
+        for (i = 0; i <= ND; i++) {
+            var del = Math.PI * i / ND, cd = Math.cos(del), sd = Math.sin(del);
+            for (j = 0; j < NA; j++) {
+                var az = 2 * Math.PI * j / NA;
+                var r = osMoUnits(mo, tab[i * (NA + 1) + j]);
+                verts.push(sd * Math.cos(az) * r, cd * r, sd * Math.sin(az) * r);
+            }
+        }
+        for (i = 0; i < ND; i++) {
+            for (j = 0; j < NA; j++) {
+                var a = i * NA + j, bb = i * NA + ((j + 1) % NA);
+                var c = (i + 1) * NA + j, dd = (i + 1) * NA + ((j + 1) % NA);
+                idx.push(a, c, bb); idx.push(bb, c, dd);
+            }
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3));
+        geo.setIndex(idx);
+        geo.computeVertexNormals();
+        return geo;
+    }
+    // Rewrite an MO mesh from two ladder rungs interpolated at fr — the shipped
+    // osHybMorphGeometry pattern, with a table one dimension wider. Pure lookup:
+    // no wavefunction is evaluated in a frame.
+    function osMoMorphGeometry(mo, geo, tA, tB, fr, ND, NA) {
+        var arr = geo.attributes.position.array, i, j, n = 0;
+        for (i = 0; i <= ND; i++) {
+            var del = Math.PI * i / ND, cd = Math.cos(del), sd = Math.sin(del);
+            for (j = 0; j < NA; j++) {
+                var az = 2 * Math.PI * j / NA, q = i * (NA + 1) + j;
+                var r = osMoUnits(mo, tA[q] * (1 - fr) + tB[q] * fr);
+                arr[n++] = sd * Math.cos(az) * r; arr[n++] = cd * r; arr[n++] = sd * Math.sin(az) * r;
+            }
+        }
+        geo.attributes.position.needsUpdate = true;
+        geo.computeVertexNormals();
+    }
+
+    // ── the overlap integral ────────────────────────────────────────────────
+    // S(0) = integral psi_A psi_B dV, by octant-symmetric quadrature on the SAME
+    // grid the design gate used. The integrand is even under x -> -x and
+    // y -> -y (both amplitudes flip together, or neither does) and under
+    // z -> -z it maps psi_A <-> psi_B, so one octant with edge weights
+    // reproduces the full sum to 1e-15 at an eighth of the cost (measured).
+    // MEASURED FROM THE FIELD, never asserted — this is the number S6 puts on
+    // screen, so it is integrated, not typed in.
+    function osMoOverlapS0(mo) {
+        var N = OS_MO_S0_N, EXT = OS_MO_S0_EXT;
+        var step = 2 * EXT / (N - 1), cell = step * step * step;
+        var cs = osMoCenters(mo), ax = osMoAxes(mo, 0);
+        var cA = cs[0], cB = cs[1], aA = ax.a, aB = ax.b;
+        var h = (N - 1) / 2, i, j, k, s = 0;
+        for (i = h; i < N; i++) {
+            var x = -EXT + i * step, wx = (i === h) ? 1 : 2;
+            for (j = h; j < N; j++) {
+                var y = -EXT + j * step, wy = (j === h) ? 1 : 2;
+                for (k = h; k < N; k++) {
+                    var z = -EXT + k * step, wz = (k === h) ? 1 : 2;
+                    var p = [x, y, z];
+                    s += wx * wy * wz * osMoAtomPsi(mo, p, cA, aA) * osMoAtomPsi(mo, p, cB, aB) * cell;
+                }
+            }
+        }
+        return s;
+    }
+    // S(phi) = S(0) cos(phi) — DERIVED, not fitted. Twisting one atom by phi
+    // about the bond axis resolves its p orbital into a parallel part (cos phi)
+    // and a perpendicular part whose overlap vanishes by symmetry. Verified
+    // against direct quadrature to 1e-14 across 0-90 deg in the design gate.
+    // A sigma bond is cylindrically symmetric about that same axis, so rotation
+    // is a SYMMETRY of it and its overlap does not depend on phi at all —
+    // which is the whole content of the S3 <-> S6 contrast pair.
+    function osMoOverlap(mo, twistDeg) {
+        if (mo.S0 == null) return 0;
+        if (mo.overlap === "sigma") return mo.S0;
+        return mo.S0 * Math.cos((twistDeg || 0) * Math.PI / 180);
+    }
+
+    // ── the twist ladder ────────────────────────────────────────────────────
+    // What actually vanishes when a double bond is twisted is the CONSTRUCTIVE
+    // region, and it vanishes by CANCELLATION, not separation (skeleton 5f).
+    // Measured up the whole ladder at the 50% contour, the TOTAL-DENSITY surface
+    // holds at 2 components at every angle INCLUDING 90 deg — A's +x lobe and B's
+    // +y lobe still touch diagonally once they are perpendicular. Animating "the
+    // pi lumps come apart" would put a caption reading "the pi bond breaks" over
+    // a frame showing it visibly intact, while the same state prints an overlap
+    // of exactly 0.000. That is why this ladder is built on the PRODUCT field and
+    // not on the total density.
+    //   A second, independent reason: at 90 deg the fused total-density component
+    // is L-shaped, so its centroid lands in the hollow OUTSIDE the region and the
+    // root-table pipeline provably cannot represent it. The geometry, the physics
+    // and the pedagogy all say the same thing, so no fused MO surface is drawn
+    // through the twist at all.
+    //   The level is solved ONCE at phi = 0 and then HELD FIXED up the ladder:
+    // what the student watches is one iso-contour of one field changing shape.
+    // A contour that silently re-solved itself every rung would hold its own
+    // volume roughly constant and hide the very thing the state is about.
+    // MEASURED behaviour of that fixed contour (121^3 design grid):
+    //     phi     constructive volume     destructive volume
+    //       0             491.2                    0.0
+    //      45             363.7                    0.0
+    //      75             192.1                   31.0
+    //      90             104.1                  104.1
+    // so the reinforcing region shrinks by 79% while the cancelling region grows
+    // from NOTHING to exactly equal it — net overlap zero, by annihilation.
+    //   "degs" is the rung list: the seven-rung twist ladder for pi, a SINGLE
+    // rung for sigma — a sigma bond is cylindrically symmetric about the bond
+    // axis, so a twist is a symmetry of it and there is nothing to ladder. That
+    // asymmetry is not an optimisation, it IS the S3 <-> S6 contrast pair.
+    function osBuildMoTwistLadder(mo, degs) {
+        var f0 = osMoProductField(mo, 0);
+        var gr0 = osMoSampleGrid(f0, OS_MO_GRID_N, OS_MO_GRID_EXT);
+        mo.ovLevel = osMoLevel(gr0, 1, OS_MO_ENC);
+        var spanZ = osMoBondRho(mo) / 4;
+        var rungs = [], i, sgnI, slot;
+        for (i = 0; i < degs.length; i++) {
+            var deg = degs[i];
+            var fp = osMoProductField(mo, deg);
+            var gr = osMoSampleGrid(fp, OS_MO_LAD_N, OS_MO_LAD_EXT);
+            var rung = { deg: deg, pos: [], neg: [], posVol: 0, negVol: 0 };
+            for (sgnI = 0; sgnI < 2; sgnI++) {
+                var sgn = sgnI === 0 ? 1 : -1;
+                var key = sgnI === 0 ? "pos" : "neg";
+                var comps = osMoComponents(gr, sgn, mo.ovLevel, spanZ);
+                var vol = 0;
+                for (slot = 0; slot < comps.length; slot++) vol += comps[slot].vol;
+                rung[key + "Vol"] = vol;
+                for (slot = 0; slot < 2; slot++) {
+                    if (slot >= comps.length) { rung[key].push(null); continue; }
+                    var fSigned = osMoSignedField(fp, sgn);
+                    rung[key].push({
+                        centroid: comps[slot].centroid,
+                        tab: osMoRootTable(fSigned, comps[slot].centroid, mo.ovLevel,
+                                           OS_MO_ND, OS_MO_NA, OS_MO_GRID_EXT),
+                        voxVol: comps[slot].vol
+                    });
+                }
+            }
+            rungs.push(rung);
+        }
+        // Backfill the rungs where a sign has NO region yet (the destructive one
+        // is empty below ~70 deg — that is the finding, not a gap). An empty slot
+        // keeps a zero-radius table so it draws nothing, and INHERITS the nearest
+        // populated rung's centroid so the lerp grows it out of the right place
+        // instead of sliding it in from the origin.
+        var zeroTab = new Float64Array((OS_MO_ND + 1) * (OS_MO_NA + 1));
+        for (sgnI = 0; sgnI < 2; sgnI++) {
+            var kk = sgnI === 0 ? "pos" : "neg";
+            for (slot = 0; slot < 2; slot++) {
+                var ref = null;
+                for (i = rungs.length - 1; i >= 0; i--) {
+                    if (rungs[i][kk][slot]) ref = rungs[i][kk][slot].centroid;
+                    else if (ref) rungs[i][kk][slot] = { centroid: ref, tab: zeroTab, voxVol: 0 };
+                }
+                for (i = 0; i < rungs.length; i++) {
+                    if (rungs[i][kk][slot]) ref = rungs[i][kk][slot].centroid;
+                    else if (ref) rungs[i][kk][slot] = { centroid: ref, tab: zeroTab, voxVol: 0 };
+                }
+            }
+        }
+        mo.twistLadder = rungs;
+    }
+    function osMoSignedField(f, sgn) {
+        if (sgn > 0) return f;
+        return function (p) { return -f(p); };
+    }
+    // Read the ladder at an arbitrary twist: which two rungs bracket it, and how
+    // far between. Pure arithmetic on a precomputed table.
+    function osMoLadderAt(mo, twistDeg) {
+        var L = mo.twistLadder;
+        if (!L || !L.length) return null;
+        var t = osClamp(twistDeg || 0, L[0].deg, L[L.length - 1].deg), i;
+        for (i = 0; i < L.length - 1; i++) {
+            if (t <= L[i + 1].deg) {
+                var span = L[i + 1].deg - L[i].deg;
+                return { a: L[i], b: L[i + 1], fr: span > 0 ? (t - L[i].deg) / span : 0 };
+            }
+        }
+        return { a: L[L.length - 1], b: L[L.length - 1], fr: 0 };
+    }
+
+    // ── the build ───────────────────────────────────────────────────────────
+    function osBuildMO(mo) {
+        var i;
+        mo.bondPmLive = osMoBondPm(mo);
+        mo.pmPerRho = osMoPmPerRho(mo);
+        mo.centers = osMoCenters(mo);
+        var spanZ = osMoBondRho(mo) / 4;
+        var fT = osMoTotalField(mo, 0);
+        var gr = osMoSampleGrid(fT, OS_MO_GRID_N, OS_MO_GRID_EXT);
+        mo.level = osMoLevel(gr, 1, OS_MO_ENC);
+        var comps = osMoComponents(gr, 1, mo.level, spanZ);
+        mo.parts = [];
+        mo.spanCount = 0;
+        var tipMax = 0;
+        for (i = 0; i < comps.length && i < OS_MO_MAX_PARTS; i++) {
+            var tab = osMoRootTable(fT, comps[i].centroid, mo.level, OS_MO_ND, OS_MO_NA, OS_MO_GRID_EXT);
+            var tip = osMoTableMax(tab) * mo.pmPerRho;
+            if (tip > tipMax) tipMax = tip;
+            if (comps[i].spans) mo.spanCount++;
+            mo.parts.push({
+                centroid: comps[i].centroid, tab: tab, spans: comps[i].spans,
+                voxVol: comps[i].vol, tabVol: osMoTableVolume(tab, OS_MO_ND, OS_MO_NA),
+                tipPm: tip
+            });
+        }
+        mo.partCount = mo.parts.length;
+        // The scenario's shared geometry helpers (axis length, label radius, probe
+        // travel) all read osOuterPm(orb, encKey), so an MO advertises its own
+        // outer reach the same way. Every enclosure key maps to the ONE contour
+        // this path solves (50%, skeleton limit 5) — an MO never offers 70/90.
+        mo.rByLev = {};
+        for (i = 0; i < OS_ENCLOSURES.length; i++) mo.rByLev[OS_ENCLOSURES[i]] = tipMax;
+        // The constituent atomic level (2s/2p at Z = 1 are both -3.40 eV). This
+        // is NOT a bond energy: the sigma 348 / pi 266 kJ/mol comparison is a
+        // textbook construction from measured bond enthalpies (skeleton limit 2),
+        // so a state that wants it authors it, and the engine never asserts it.
+        mo.E = -13.6 / (mo.n * mo.n);
+        mo.nodesRadial = 0; mo.nodesAngular = 0;
+        mo.S0 = osMoOverlapS0(mo);
+        osBuildMoTwistLadder(mo, (mo.overlap === "pi") ? OS_MO_TWIST_LADDER_DEG : [0]);
+    }
     // Two-run label sprite: a main run plus a SMALLER baseline-dropped run, so
     // "2p" + "z" renders as a real subscript. Unicode has no subscript y or z,
     // so a single-run sprite could only ever print "2p_z" or "2pz" — both of
@@ -43879,17 +44399,26 @@ export const FIELD_3D_RENDERER_CODE = `
         mesh.scale.set(lateral, axial, lateral);
     }
     // Aim a canonical lobe (local X/Y/Z) onto its world frame, then apply the
-    // live spin. Position stays at the nucleus; scale is applied by the caller.
+    // live spin. Scale is applied by the caller.
+    //   "origin" (#17): a MOLECULAR orbital's components do not sit on the
+    // nucleus — the sigma back lobes sit behind each carbon, the two pi sausages
+    // straddle the bond axis — so each component carries its own centroid.
+    // IT MUST ARRIVE ALREADY SPUN (osSpun): a component placed at an un-spun
+    // offset while its mesh carries the spin rotation orbits about its OWN centre
+    // instead of about the scene, so the picture tears apart as soon as the
+    // apparatus turns. OMITTED ⇒ (0,0,0), so every shipped s/p/d/hybrid caller
+    // is bit-for-bit unchanged.
     var osTmpMx = new THREE.Matrix4();
     var osTmpBx = new THREE.Vector3(), osTmpBy = new THREE.Vector3(), osTmpBz = new THREE.Vector3();
-    function osAimFrame(mesh, fr) {
+    function osAimFrame(mesh, fr, origin) {
         osTmpBx.set(fr.X[0], fr.X[1], fr.X[2]);
         osTmpBy.set(fr.Y[0], fr.Y[1], fr.Y[2]);
         osTmpBz.set(fr.Z[0], fr.Z[1], fr.Z[2]);
         osTmpMx.makeBasis(osTmpBx, osTmpBy, osTmpBz);
         mesh.quaternion.setFromRotationMatrix(osTmpMx);
         mesh.quaternion.premultiply(osSpinQ);
-        mesh.position.set(0, 0, 0);
+        if (origin) mesh.position.set(origin[0], origin[1], origin[2]);
+        else mesh.position.set(0, 0, 0);
     }
     // Aim a +z-canonical mesh (CircleGeometry / RingGeometry / TorusGeometry
     // are all born in the xy-plane with normal +z) along a normal.
@@ -43992,8 +44521,25 @@ export const FIELD_3D_RENDERER_CODE = `
         // 0. Derive every orbital's tables ONCE (radial CDF + outer branch +
         //    energy + node counts) and its seeded sample table. All of it is
         //    build-time: a frame never evaluates a wavefunction for a dot.
+        // config.mo GATES the whole molecular-orbital build (#17). It is the most
+        // expensive path in this scenario — two grid samples, five root tables,
+        // an octant quadrature and a seven-rung twist ladder — and it is useless
+        // to an atomic-orbital concept, so a config that does not ask for it pays
+        // nothing and every shipped concept's build time is unchanged.
+        var moCfg = config.mo || null;
         for (k in OS_ORBITALS) {
             var ob = OS_ORBITALS[k];
+            // A molecular orbital is a SIGNED TWO-CENTRE field: neither the
+            // s/p/d radial-CDF path nor the hybrid's 1-D root table applies.
+            if (ob.kind === "mo") {
+                if (moCfg) {
+                    if (moCfg.bond) ob.bond = moCfg.bond;
+                    if (moCfg.bond_pm != null) ob.bondPm = moCfg.bond_pm;
+                    if (moCfg.z_eff != null) ob.zEff = moCfg.z_eff;
+                    osBuildMO(ob);
+                }
+                continue;
+            }
             // A hybrid is non-separable, so it takes its OWN build path (root
             // tables over c + a 2-D inverse-CDF sampler) rather than the radial
             // CDF + angular-factor pair the s/p/d family shares.
@@ -44039,6 +44585,19 @@ export const FIELD_3D_RENDERER_CODE = `
         }));
         nuc.userData = { elementType: "os_nucleus", id: "os_nucleus" };
         addToScene(nuc);
+        // 1b. THE SECOND NUCLEUS (#17). The pool was exactly one, because every
+        //     atomic-orbital beat is about ONE atom. A bond is two, so the home
+        //     pose (Rule 32d) becomes two carbons on the z axis at the real C=C
+        //     separation. Hidden unless an MO state is on stage, and "os_nucleus"
+        //     itself is re-parked at the origin every frame when one is not — so
+        //     no shipped concept sees any change.
+        var nucB = new THREE.Mesh(new THREE.SphereGeometry(0.085, 20, 20), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#FF5252"), emissive: hexToThreeColor("#FF5252"),
+            emissiveIntensity: 0.55, shininess: 80
+        }));
+        nucB.userData = { elementType: "os_nucleus", id: "os_nucleus_b" };
+        nucB.visible = false;
+        addToScene(nucB);
 
         // 2. axes triad + x/y/z labels, tinted to match the three p orbitals.
         var axGeo = new THREE.CylinderGeometry(0.012, 0.012, 1, 8);
@@ -44098,6 +44657,57 @@ export const FIELD_3D_RENDERER_CODE = `
             lb.visible = false;
             addToScene(lb);
         }
+        // 4b. MOLECULAR-ORBITAL pools (#17), built ONLY when config.mo asks.
+        //     Three separate pools because they are three different claims and a
+        //     state shows them in different combinations:
+        //       os_mo_surface_*  the total-density MO components (sigma 3 / pi 2)
+        //       os_mo_lobe_*     the SIGN-COLOURED atomic lobes (S4/S6: what is
+        //                        being combined, with its sign visible)
+        //       os_mo_overlap_*  the constructive / destructive product regions
+        //     Each component's mesh is REBUILT from its own root table, so a
+        //     shared canonical geometry (the s/p/d pattern) does not apply —
+        //     these surfaces are not the same shape aimed differently.
+        var moGeo = { surf: {}, ovl: null };
+        if (moCfg) {
+            for (var mki in OS_MOS) {
+                var mob = OS_MOS[mki];
+                if (!mob.parts) continue;
+                moGeo.surf[mki] = [];
+                for (i = 0; i < mob.parts.length; i++) {
+                    moGeo.surf[mki].push(osMoGeometry(mob, mob.parts[i].tab, OS_MO_ND, OS_MO_NA));
+                }
+            }
+            for (i = 0; i < OS_MO_MAX_PARTS; i++) {
+                var ms = new THREE.Mesh(new THREE.BufferGeometry(), osLobeMaterial("#AB47BC"));
+                ms.userData = { elementType: "os_mo_surface", id: "os_mo_surface_" + i, slot: i };
+                ms.visible = false;
+                addToScene(ms);
+            }
+            for (i = 0; i < OS_MO_MAX_LOBES; i++) {
+                var ml = new THREE.Mesh(lobeGeo.p, osLobeMaterial("#26C6DA"));
+                ml.userData = { elementType: "os_mo_lobe", id: "os_mo_lobe_" + i, slot: i };
+                ml.visible = false;
+                addToScene(ml);
+            }
+            // The overlap meshes are the ONLY per-frame-rewritten geometry on this
+            // path: each is lerped between two precomputed twist rungs, exactly
+            // like the shipped hybrid morph mesh. One geometry per slot, never one
+            // per frame.
+            var piRef = OS_MOS["pi_2p"];
+            moGeo.ovl = [];
+            for (i = 0; i < OS_MO_MAX_OVL; i++) {
+                var seedTab = (piRef && piRef.twistLadder)
+                    ? piRef.twistLadder[0][(i < 2) ? "pos" : "neg"][i % 2].tab
+                    : new Float64Array((OS_MO_ND + 1) * (OS_MO_NA + 1));
+                var og = osMoGeometry(piRef || OS_MOS["pi_2p"], seedTab, OS_MO_ND, OS_MO_NA);
+                moGeo.ovl.push(og);
+                var mv = new THREE.Mesh(og, osLobeMaterial(OS_MO_CONSTRUCTIVE_COLOR));
+                mv.userData = { elementType: "os_mo_overlap", id: "os_mo_overlap_" + i, slot: i };
+                mv.visible = false;
+                addToScene(mv);
+            }
+        }
+        window.PM_osMoGeo = moGeo;
 
         // 5. node visuals: angular node PLANES (translucent disc + bright rim,
         //    because at the camera that shows a dumbbell broadside the plane is
@@ -44215,6 +44825,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var spinDef = (SC.spin && SC.spin["default"] != null) ? SC.spin["default"] : 0.18;
         var orbDef = (SC.orbital && SC.orbital["default"]) ? SC.orbital["default"] : "1s";
         var scharDef = (SC.schar && SC.schar["default"] != null) ? SC.schar["default"] : 0.25;
+        var twistDef = (SC.twist && SC.twist["default"] != null) ? SC.twist["default"] : 0;
         // The picker list is authorable so a hybridisation concept can offer the
         // hybrid sets while an atomic-orbitals concept keeps the CORE-ring s/p
         // list (Rule 38b). Falls back to the shipped list, so no existing
@@ -44246,7 +44857,15 @@ export const FIELD_3D_RENDERER_CODE = `
             // angle law has no more range to give, so the slider ends at the
             // physics rather than at a round number.
             '<div id="os_schar_row" style="display:none;margin-top:6px"><label>s-character: <span id="os_schar_val">' + Math.round(scharDef * 100) + '</span>% \\u2192 <span id="os_schar_ang">109.5</span>\\u00B0</label>' +
-            '<input type="range" id="os_schar_slider" min="0" max="50" step="1" value="' + Math.round(scharDef * 100) + '" style="width:100%"></div>';
+            '<input type="range" id="os_schar_slider" min="0" max="50" step="1" value="' + Math.round(scharDef * 100) + '" style="width:100%"></div>' +
+            // TWIST: the ONE dial of #17, and the concept\\u0027s payoff. Capped at
+            // 90\\u00B0 because that is where the pi overlap reaches exactly zero —
+            // past it the geometry simply repeats by symmetry, so the slider ends
+            // at the physics rather than at a round number (the s-character
+            // precedent). The live overlap beside it is S(0)cos(phi), a derived
+            // law, not a fitted curve.
+            '<div id="os_twist_row" style="display:none;margin-top:6px"><label>Twist: <span id="os_twist_val">' + Math.round(twistDef) + '</span>\\u00B0 \\u2192 S = <span id="os_twist_s">0.000</span></label>' +
+            '<input type="range" id="os_twist_slider" min="0" max="90" step="1" value="' + Math.round(twistDef) + '" style="width:100%"></div>';
         document.body.appendChild(sp);
 
         function osEmit(param, value) {
@@ -44284,8 +44903,21 @@ export const FIELD_3D_RENDERER_CODE = `
             if (schA) schA.textContent = osHybAngleDeg(window.PM_osSChar).toFixed(1);
             window.PM_osSCharDragged = true; osEmit("schar", window.PM_osSChar);
         });
+        var twSl = document.getElementById("os_twist_slider");
+        var twV = document.getElementById("os_twist_val"), twS = document.getElementById("os_twist_s");
+        if (twSl) twSl.addEventListener("input", function () {
+            window.PM_osTwist = parseFloat(twSl.value);
+            if (twV) twV.textContent = String(Math.round(window.PM_osTwist));
+            // the overlap is not a second control — it is what the law returns for
+            // the dial\\u0027s value, computed from the MEASURED S(0), so the label
+            // recomputes it live rather than carrying a table of stops.
+            var twMo = OS_MOS[window.PM_osMoId || "pi_2p"] || OS_MOS["pi_2p"];
+            if (twS && twMo && twMo.S0 != null) twS.textContent = osMoOverlap(twMo, window.PM_osTwist).toFixed(3);
+            window.PM_osTwistDragged = true; osEmit("twist", window.PM_osTwist);
+        });
 
         window.PM_osDotsDef = dotsDef; window.PM_osDots = dotsDef;
+        window.PM_osTwistDef = twistDef; window.PM_osTwist = twistDef;
         window.PM_osSpinDef = spinDef; window.PM_osSpin = spinDef;
         window.PM_osOrbitalDef = orbDef; window.PM_osOrbital = orbDef;
         window.PM_osProbe = 0;
@@ -44299,8 +44931,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var os = stateDef.orbital_shapes || {};
         window.PM_osOrbitalDragged = false; window.PM_osDotsDragged = false;
         window.PM_osSpinDragged = false; window.PM_osProbeDragged = false;
-        window.PM_osSCharDragged = false;
+        window.PM_osSCharDragged = false; window.PM_osTwistDragged = false;
         window.PM_osOrbital = os.orbital || window.PM_osOrbitalDef || "1s";
+        // #17: the twist dial opens at the state\\u0027s own preset (its static
+        // angle, or the START of its scripted ramp — never the end, or the frame
+        // before the ramp fires would already show the payoff).
+        var moSt = os.mo || null;
+        window.PM_osMoId = (moSt && moSt.orbital) ? moSt.orbital : null;
+        window.PM_osTwist = (moSt && moSt.twist_ramp && moSt.twist_ramp.from != null) ? moSt.twist_ramp.from
+            : ((moSt && moSt.twist_deg != null) ? moSt.twist_deg
+                : (window.PM_osTwistDef != null ? window.PM_osTwistDef : 0));
         window.PM_osDots = (os.dot_target != null) ? os.dot_target : (window.PM_osDotsDef != null ? window.PM_osDotsDef : 1200);
         window.PM_osSpin = (os.spin_rate != null) ? os.spin_rate : 0;
         window.PM_osProbe = (os.probe_auto && os.probe_auto.from != null) ? os.probe_auto.from : 0;
@@ -44327,7 +44967,7 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var ctrls = os.controls || [];
         var statics = os.static_readouts || [];
-        var rows = { orbital: "os_orbital_row", dots: "os_dots_row", spin: "os_spin_row", probe: "os_probe_row", schar: "os_schar_row" };
+        var rows = { orbital: "os_orbital_row", dots: "os_dots_row", spin: "os_spin_row", probe: "os_probe_row", schar: "os_schar_row", twist: "os_twist_row" };
         var panel = document.getElementById("os_sliders");
         var anyRow = false, key;
         for (key in rows) {
@@ -44361,6 +45001,12 @@ export const FIELD_3D_RENDERER_CODE = `
         if (schSl2) schSl2.value = String(Math.round(window.PM_osSChar * 100));
         if (schV2) schV2.textContent = String(Math.round(window.PM_osSChar * 100));
         if (schA2) schA2.textContent = osHybAngleDeg(window.PM_osSChar).toFixed(1);
+        var twSl2 = document.getElementById("os_twist_slider");
+        var twV2 = document.getElementById("os_twist_val"), twS2 = document.getElementById("os_twist_s");
+        if (twSl2) twSl2.value = String(Math.round(window.PM_osTwist));
+        if (twV2) twV2.textContent = String(Math.round(window.PM_osTwist));
+        var twMo2 = OS_MOS[window.PM_osMoId || "pi_2p"] || OS_MOS["pi_2p"];
+        if (twS2 && twMo2 && twMo2.S0 != null) twS2.textContent = osMoOverlap(twMo2, window.PM_osTwist).toFixed(3);
 
         var hud = document.getElementById("os_hud");
         if (hud) hud.style.display = os.show_hud ? "block" : "none";
@@ -44374,7 +45020,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // photograph the PREVIOUS state's lobe pose / probe position / label
         // text. Hide every transient here so the frame updater is the only
         // thing that can reveal them (the mg transient-hide discipline).
-        var trans = ["os_lobe_", "os_dots_", "os_flash_", "os_orb_label_", "os_node_plane_", "os_node_rim_"];
+        var trans = ["os_lobe_", "os_dots_", "os_flash_", "os_orb_label_", "os_node_plane_", "os_node_rim_",
+                     "os_mo_surface_", "os_mo_lobe_", "os_mo_overlap_"];
         for (var ti = 0; ti < sceneObjects.length; ti++) {
             var so = sceneObjects[ti], sid = so.userData && so.userData.id;
             if (!sid) continue;
@@ -44383,7 +45030,7 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             if (sid === "os_sphere" || sid === "os_probe" || sid === "os_probe_rim" ||
                 sid === "os_node_shell" || sid === "os_node_shell_label" || sid === "os_node_label" ||
-                sid === "os_orbit_ring" || sid === "os_orbit_bead") so.visible = false;
+                sid === "os_orbit_ring" || sid === "os_orbit_bead" || sid === "os_nucleus_b") so.visible = false;
         }
     }
 
@@ -44518,6 +45165,12 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!on) { pts.geometry.setDrawRange(0, 0); continue; }
             var orb = OS_ORBITALS[active[i]];
             var src = orb._pos;
+            // A molecular orbital carries no seeded dot table: the stipple is a
+            // one-centre measurement picture and a two-centre one would need its
+            // own 3-D inverse sampler to stay reproducible. Rather than fake it,
+            // an MO simply has no swarm — so the pool stays dark instead of
+            // throwing on an undefined table (the createTubeLine blank-scene trap).
+            if (!src) { pts.visible = false; pts.geometry.setDrawRange(0, 0); continue; }
             var dst = pts.geometry.attributes.position.array;
             var wrote = 0;
             if (cutF > 0.001) {
@@ -44751,6 +45404,196 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = lobeSlot; i < OS_MAX_LOBES; i++) {
             var lbOff = osFindById("os_lobe_" + i);
             if (lbOff) lbOff.visible = false;
+        }
+
+        // ── MOLECULAR ORBITALS (#17). Everything below is a pure function of
+        //    state-local t or of a precomputed table: the twist is closed-form,
+        //    the surfaces are lerped between build-time ladder rungs, and the
+        //    overlap readout is S(0)cos(phi) off a MEASURED S(0). No field is
+        //    solved in a frame, so a SET_TIME_FREEZE pin is byte-identical.
+        var moSt = os.mo || null;
+        var moOrb = (moSt && OS_MOS[moSt.orbital]) ? OS_MOS[moSt.orbital] : null;
+        if (moOrb && !moOrb.parts) moOrb = null;                 // the config never asked for the MO build
+        var moGeo = window.PM_osMoGeo || {};
+        var moTwist = 0, moS = null;
+        if (moOrb) {
+            var tw = moSt.twist_ramp;
+            moTwist = (moSt.twist_deg != null) ? moSt.twist_deg : 0;
+            if (tw) {
+                moTwist = osRamp(ms, cueTriggerMs("twist", (tw.at_ms != null) ? tw.at_ms : 0),
+                    (tw.duration_ms != null) ? tw.duration_ms : 3000,
+                    (tw.from != null) ? tw.from : 0, (tw.to != null) ? tw.to : 90);
+            }
+            if (ctrls.indexOf("twist") >= 0 && window.PM_osTwistDragged) moTwist = window.PM_osTwist;
+            moTwist = osClamp(moTwist, 0, 90);
+            moS = osMoOverlap(moOrb, moTwist);
+        }
+        window.PM_osMoTwist = moOrb ? moTwist : null;
+        window.PM_osMoOverlap = moS;
+        window.PM_osMoId = moOrb ? moSt.orbital : null;
+
+        // the two nuclei. os_nucleus is re-parked at the origin whenever no MO is
+        // on stage, so an atomic-orbital concept is untouched by construction.
+        var nucA = osFindById("os_nucleus"), nucB2 = osFindById("os_nucleus_b");
+        if (nucA) {
+            if (moOrb) {
+                var pA = osSpun(moOrb.centers[0]);
+                nucA.position.set(osMoUnits(moOrb, pA[0]), osMoUnits(moOrb, pA[1]), osMoUnits(moOrb, pA[2]));
+            } else nucA.position.set(0, 0, 0);
+        }
+        if (nucB2) {
+            nucB2.visible = !!moOrb && (moSt.show_nuclei !== false);
+            if (nucB2.visible) {
+                var pB = osSpun(moOrb.centers[1]);
+                nucB2.position.set(osMoUnits(moOrb, pB[0]), osMoUnits(moOrb, pB[1]), osMoUnits(moOrb, pB[2]));
+            }
+        }
+
+        // total-density MO components (S2/S5: one lump ON the axis, or two
+        // straddling it). Drawn at twist 0 ONLY — see the ladder comment: through
+        // a twist the fused component is L-shaped, its centroid falls outside the
+        // region, and the root-table pipeline provably cannot represent it. A
+        // state that twists shows the sign-coloured atomic lobes instead.
+        var moSurfSlot = 0;
+        var moAlpha = (typeof moSt === "object" && moSt && typeof moSt.surface_opacity === "number")
+            ? moSt.surface_opacity : 0.22;
+        if (moOrb && moSt.show_total && moGeo.surf && moGeo.surf[moSt.orbital]) {
+            // reveal_at_ms fades the finished MO surface IN. It is deliberately
+            // NOT a fake assembly: "the two lobes translate together and fuse" is
+            // a TOPOLOGY change (4 components -> 2, or 4 -> 3), the component
+            // count changes along the way, and a per-slot lerp cannot express
+            // that — so it is left unbuilt and declared rather than faked with a
+            // scale ramp that would read as an assembly and be none.
+            var moGrow = (moSt.reveal_at_ms != null)
+                ? osRamp(ms, cueTriggerMs("mo_reveal", moSt.reveal_at_ms),
+                    (moSt.reveal_duration_ms != null) ? moSt.reveal_duration_ms : 1200, 0, 1)
+                : 1;
+            // a second pi system at 90 deg about the bond axis — the triple bond
+            // (S8). It is the SAME measured tables, rotated, never a second solve.
+            var moSys = (moSt.pi_systems != null && moOrb.overlap === "pi") ? Math.max(1, Math.min(2, moSt.pi_systems)) : 1;
+            var sy;
+            for (sy = 0; sy < moSys; sy++) {
+                var syRot = (sy === 0) ? 0 : Math.PI / 2;
+                for (i = 0; i < moOrb.parts.length && moSurfSlot < OS_MO_MAX_PARTS; i++) {
+                    var msh = osFindById("os_mo_surface_" + moSurfSlot);
+                    moSurfSlot++;
+                    if (!msh) continue;
+                    var pg = moGeo.surf[moSt.orbital][i];
+                    if (pg && msh.geometry !== pg) msh.geometry = pg;
+                    msh.visible = moGrow > 0.02 && moAlpha > 0.004;
+                    if (!msh.visible) continue;
+                    var ct0 = moOrb.parts[i].centroid;
+                    // the second system is the first rotated about the bond axis
+                    // (z), so its centroid rotates with it.
+                    var cx = ct0[0] * Math.cos(syRot) - ct0[1] * Math.sin(syRot);
+                    var cy = ct0[0] * Math.sin(syRot) + ct0[1] * Math.cos(syRot);
+                    var cw = osSpun([cx, cy, ct0[2]]);
+                    // the frame is Rz(syRot) in BUILD space — osAimFrame applies
+                    // the live spin itself, so pre-spinning it here would rotate
+                    // the mesh twice and tear it away from its own centroid.
+                    osAimFrame(msh, { X: [Math.cos(syRot), Math.sin(syRot), 0],
+                                      Y: [-Math.sin(syRot), Math.cos(syRot), 0], Z: [0, 0, 1] },
+                        [osMoUnits(moOrb, cw[0]), osMoUnits(moOrb, cw[1]), osMoUnits(moOrb, cw[2])]);
+                    // the surface vertices are already the measured contour in
+                    // world units, so nothing rescales them (Rule 29).
+                    msh.scale.setScalar(1);
+                    osSetColor(msh, moOrb.color);
+                    if (msh.material) msh.material.opacity = moAlpha * moGrow;
+                }
+            }
+        }
+        for (i = moSurfSlot; i < OS_MO_MAX_PARTS; i++) {
+            var msOff = osFindById("os_mo_surface_" + i);
+            if (msOff) msOff.visible = false;
+        }
+
+        // SIGN-COLOURED atomic lobes: what is being combined, with the sign that
+        // decides whether it adds or cancels. This is what a twisting state draws
+        // (skeleton 5f) — never a fused surface being pulled apart, because the
+        // lumps provably never come apart.
+        var moLobeSlot = 0;
+        if (moOrb && moSt.show_atomic) {
+            var mAx = osMoAxes(moOrb, moTwist);
+            var mSc = 1 / (moOrb.zEff || 1);
+            var moLobeAlpha = (typeof moSt.atomic_opacity === "number") ? moSt.atomic_opacity : 0.26;
+            var atomList = [{ c: moOrb.centers[0], ax: mAx.a }, { c: moOrb.centers[1], ax: mAx.b }];
+            var ai, si;
+            for (ai = 0; ai < atomList.length; ai++) {
+                // sigma: the hybrid front lobe ONLY (both point at each other and
+                // both are positive, which is what makes the bonding combination
+                // psi_A + psi_B). pi: BOTH halves of the 2p, opposite signs.
+                var halves = (moOrb.overlap === "sigma") ? 1 : 2;
+                for (si = 0; si < halves && moLobeSlot < OS_MO_MAX_LOBES; si++) {
+                    var mlb = osFindById("os_mo_lobe_" + moLobeSlot);
+                    moLobeSlot++;
+                    if (!mlb) continue;
+                    var sgnAx = (si === 0) ? atomList[ai].ax
+                        : [-atomList[ai].ax[0], -atomList[ai].ax[1], -atomList[ai].ax[2]];
+                    var lg = (moOrb.overlap === "sigma")
+                        ? (lobeGeo.hf["sp2"] && lobeGeo.hf["sp2"]["50"])
+                        : (lobeGeo.p && lobeGeo.p["50"]);
+                    if (lg && mlb.geometry !== lg) mlb.geometry = lg;
+                    mlb.visible = moLobeAlpha > 0.004;
+                    if (!mlb.visible) continue;
+                    // frame in BUILD space (osAimFrame applies the spin); only the
+                    // ORIGIN is pre-spun, which is the whole point of the origin
+                    // argument — an un-spun offset would make the lobe orbit its
+                    // own centre instead of the scene.
+                    var bs = osBasis(sgnAx), wC = osSpun(atomList[ai].c);
+                    osAimFrame(mlb, { X: bs[0], Y: sgnAx, Z: osCross(bs[0], sgnAx) },
+                        [osMoUnits(moOrb, wC[0]), osMoUnits(moOrb, wC[1]), osMoUnits(moOrb, wC[2])]);
+                    mlb.scale.setScalar(mSc);
+                    osSetColor(mlb, (si === 0) ? moOrb.lobePos : moOrb.lobeNeg);
+                    if (mlb.material) mlb.material.opacity = moLobeAlpha;
+                }
+            }
+        }
+        for (i = moLobeSlot; i < OS_MO_MAX_LOBES; i++) {
+            var mlOff = osFindById("os_mo_lobe_" + i);
+            if (mlOff) mlOff.visible = false;
+        }
+
+        // THE CONSTRUCTIVE (and cancelling) OVERLAP REGION — the thing that
+        // actually goes away when a double bond is twisted. Lerped between two
+        // precomputed ladder rungs, exactly like the shipped hybrid morph.
+        var moOvSlot = 0;
+        if (moOrb && moSt.show_overlap && moOrb.twistLadder && moGeo.ovl) {
+            var lad = osMoLadderAt(moOrb, moTwist);
+            var showDest = (moSt.show_destructive !== false);
+            var ovAlpha = (typeof moSt.overlap_opacity === "number") ? moSt.overlap_opacity : 0.30;
+            var kk2, sl2;
+            for (kk2 = 0; kk2 < 2; kk2++) {
+                var key2 = (kk2 === 0) ? "pos" : "neg";
+                for (sl2 = 0; sl2 < 2 && moOvSlot < OS_MO_MAX_OVL; sl2++) {
+                    var ovm = osFindById("os_mo_overlap_" + moOvSlot);
+                    var ovg = moGeo.ovl[moOvSlot];
+                    moOvSlot++;
+                    if (!ovm || !ovg) continue;
+                    var ra = lad ? lad.a[key2][sl2] : null, rb = lad ? lad.b[key2][sl2] : null;
+                    if (!ra || !rb || (kk2 === 1 && !showDest)) { ovm.visible = false; continue; }
+                    osMoMorphGeometry(moOrb, ovg, ra.tab, rb.tab, lad.fr, OS_MO_ND, OS_MO_NA);
+                    if (ovm.geometry !== ovg) ovm.geometry = ovg;
+                    var oc = [ra.centroid[0] * (1 - lad.fr) + rb.centroid[0] * lad.fr,
+                              ra.centroid[1] * (1 - lad.fr) + rb.centroid[1] * lad.fr,
+                              ra.centroid[2] * (1 - lad.fr) + rb.centroid[2] * lad.fr];
+                    var ocw = osSpun(oc);
+                    osAimFrame(ovm, { X: [1, 0, 0], Y: [0, 1, 0], Z: [0, 0, 1] },
+                        [osMoUnits(moOrb, ocw[0]), osMoUnits(moOrb, ocw[1]), osMoUnits(moOrb, ocw[2])]);
+                    // an empty rung carries a zero-radius table, so the mesh
+                    // collapses to a point rather than being faded out — the
+                    // cancelling region really is absent below ~70 deg.
+                    var ovMax = 0, vq;
+                    var pos3 = ovg.attributes.position.array;
+                    for (vq = 0; vq < pos3.length; vq++) if (Math.abs(pos3[vq]) > ovMax) ovMax = Math.abs(pos3[vq]);
+                    ovm.visible = ovMax > 1e-4 && ovAlpha > 0.004;
+                    osSetColor(ovm, (kk2 === 0) ? OS_MO_CONSTRUCTIVE_COLOR : OS_MO_DESTRUCTIVE_COLOR);
+                    if (ovm.material) ovm.material.opacity = ovAlpha;
+                }
+            }
+        }
+        for (i = moOvSlot; i < OS_MO_MAX_OVL; i++) {
+            var ovOff = osFindById("os_mo_overlap_" + i);
+            if (ovOff) ovOff.visible = false;
         }
 
         // ── axes triad (+ labels), turning with the picture.
@@ -45029,6 +45872,30 @@ export const FIELD_3D_RENDERER_CODE = `
                     // is counted rather than trusted.
                     var ffr = (primary.frontFrac != null) ? primary.frontFrac : null;
                     lines.push("on bond side: " + ((ffr == null) ? "\\u2014" : (Math.round(ffr * 1000) / 10) + "%"));
+                } else if (want[i] === "overlap") {
+                    // MEASURED, then propagated by an EXACT law: S(0) is the
+                    // overlap integral quadratured from the shipped psi at build
+                    // time, and S(phi) = S(0)cos(phi) is derived (the twisted p
+                    // resolves into a parallel part cos(phi) and a perpendicular
+                    // part whose overlap vanishes by symmetry), verified to 1e-14
+                    // against direct quadrature. Nothing here is fitted.
+                    //   The clamp is the pwrFxZero pattern: at 90 deg the true
+                    // value is 0 and cos() returns 6.1e-17, so toFixed would print
+                    // a signed zero on the very frame the state is about.
+                    var sv = (moS == null) ? null : ((Math.abs(moS) < 0.0005) ? 0 : moS);
+                    lines.push("overlap S = " + ((sv == null) ? "\\u2014" : sv.toFixed(3)));
+                } else if (want[i] === "twist") {
+                    lines.push("twist: " + ((moOrb == null) ? "\\u2014" : (Math.round(moTwist) + "\\u00B0")));
+                } else if (want[i] === "bond") {
+                    lines.push("bond: " + ((moOrb == null) ? "\\u2014" : (moOrb.bondPmLive.toFixed(1) + " pm")));
+                } else if (want[i] === "z_eff") {
+                    // Skeleton limit 3: Slater 3.25 is an APPROXIMATION (SCF is
+                    // nearer 3.14), so the HUD declares its provenance and prints
+                    // no digit it does not have.
+                    lines.push("Z_eff = " + ((moOrb == null) ? "\\u2014" : (moOrb.zEff.toFixed(2) + " (Slater)")));
+                } else if (want[i] === "parts") {
+                    lines.push((moOrb == null) ? "parts: \\u2014"
+                        : ("parts: " + moOrb.partCount + " \\u00B7 " + moOrb.spanCount + " spanning"));
                 } else if (want[i] === "tips") {
                     var bt = (primary.backByLev) ? primary.backByLev[encKey] : null;
                     lines.push("front " + Math.round(primR) + " pm \\u00B7 back "
@@ -45056,6 +45923,15 @@ export const FIELD_3D_RENDERER_CODE = `
             if (svl) svl.textContent = String(Math.round(hybF * 100));
             if (sag) sag.textContent = hybAngle.toFixed(1);
         }
+        // ...and so must the twist dial (same scar): a scripted torsion sweep
+        // with its slider frozen at 0 is an instrument contradicting the picture.
+        if (moOrb && !window.PM_osTwistDragged) {
+            var tsl = document.getElementById("os_twist_slider");
+            var tvl = document.getElementById("os_twist_val"), tsv = document.getElementById("os_twist_s");
+            if (tsl) tsl.value = String(Math.round(moTwist));
+            if (tvl) tvl.textContent = String(Math.round(moTwist));
+            if (tsv) tsv.textContent = ((Math.abs(moS) < 0.0005) ? 0 : moS).toFixed(3);
+        }
     }
     // Angular node planes, as NORMALS: a p orbital's single plane is
     // perpendicular to its axis; d_xy's two are the xz and yz planes (normals
@@ -45073,7 +45949,13 @@ export const FIELD_3D_RENDERER_CODE = `
     var OS_GLOW_ELS = {
         orbit: ["os_orbit"], dots: ["os_dots"], surface: ["os_surface", "os_lobe"],
         lobe_set: ["os_lobe"], node_plane: ["os_node_plane"], node_shell: ["os_node_shell"],
-        probe: ["os_probe"], axes: ["os_axis", "os_axis_label"]
+        probe: ["os_probe"], axes: ["os_axis", "os_axis_label"],
+        // #17 — the three MO surfaces are three separate claims, so each is its
+        // own focal key. Scene objects only (the DOM HUD carries its own
+        // prominence), and the enum stays CLOSED: a glow_focal that matches
+        // nothing would dim the whole scene with nothing lit (the VSEPR scar).
+        mo_surface: ["os_mo_surface"], mo_lobes: ["os_mo_lobe"], mo_overlap: ["os_mo_overlap"],
+        nuclei: ["os_nucleus"]
     };
     function applyOrbitalShapesGlow(stateDef) {
         var focalTypes = {}, g, k, i;
