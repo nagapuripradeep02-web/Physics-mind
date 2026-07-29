@@ -73,16 +73,74 @@ Every one was green across tsc, `check:renderer-syntax`, `validate:chemistry` an
 ### Verification (evidence)
 `tsc` 0 · `check:renderer-syntax` OK on all three · `check:hybrid-orbitals` **26/26** · `validate:concepts` **141/141** (isolation held — the physics scan never sees the new concept) · `validate:chemistry` **7/7** · vitest **281/281** · `build:review` exit 0 · **walked in a real browser: sp² reads as three lobes at 120°, sp³ as four in the two-up/two-down tetrahedral view, HUD live and correct, zero console errors.**
 
+### The review round — 10 more defects, every one behind a 35/35 EYE
+THE EYE was run FOUR times and reported **35 deterministic checks, 35 passed, 0 failed** every time.
+`eye_walker` and `quality_auditor` (dispatched in parallel) then found ten real defects in those
+same frames, and the auditor returned **FAIL**. The deterministic suite has now been green on
+frames containing CRITICAL errors on three separate rounds of this one concept. That is the
+argument for the frame-read gate, stated as plainly as it can be.
+
+| found by | defect |
+|---|---|
+| eye_walker | the populate **base fallback painted, then deleted, an orbital** — 2p_z appeared at t=0 and vanished at 2s under a caption promising "arrive one at a time and stay". RECURRENCE of a scar whose row already recommended this exact hardening and did not get it |
+| eye_walker | `bloom` grew the WHOLE set, so a state following a single-member state blanked for 3s — the partner never visibly arrived |
+| eye_walker | STATE_7's cutaway was **completely inert** (`cutF` is consumed only by the dot loop; that state has dots off) — the class filed EARLIER THE SAME DAY, live in the build that filed it |
+| quality_auditor | **Gate 0 FAIL — no architect skeleton.** Its prediction was exact: the four undelivered motions were never anybody's *declared obligation*, so nothing checked them |
+| quality_auditor | **S3/S4/S5 performed ONE uniform swell** while declaring three archetypes — Rule 31 distinctness satisfied on the NAME and failed on the motion |
+| quality_auditor | **Rule 16a FAIL** — the wrong belief lived only in narration (off by default) and in dead JSON |
+| quality_auditor | **Rule 38a/38b FAIL** — sp2/sp3 tagged *extended*, so the core cut of a concept called "sp, sp2, sp3" stopped before sp3; and explore surfaced the advanced s-character dial |
+| quality_auditor | **24 scene_composition annotations + 8 focal_primitive_ids reference primitives the renderer never receives** |
+| me, verifying | `front_sp2` authored 85.4% and labelled MEASURED; the build measures 84.7% |
+| me, reading frames | a label appearing BEFORE its referent, and another surviving AFTER it |
+
+All ten fixed and verified in frames. The three that generalise:
+
+1. **An archetype is a claim about RHYTHM, not a label.** Two states animating the same element
+   count are the same motion unless their per-element timing differs. New `bloom_offsets_ms`.
+2. **A contrast beat is SEQUENTIAL, never superimposed.** Restoring the Rule-16a ghost immediately
+   re-created the fusion problem — ghost lobes land in the gaps between the real ones. Deleting it
+   (my first instinct, twice) trades a legibility defect for a pedagogy one. `ghost_fade_at_ms`
+   lets the wrong picture lead and clear.
+3. **The dead-annotation scar is STRUCTURAL, not a missing draw call.** `scene_composition` lives in
+   `epic_l_path`; the renderer is only handed `field_3d_config`. Every field_3d concept has been
+   satisfying Rule 19 with JSON the renderer has never seen. `mergeSceneAnnotations` fixes it
+   **behind `render_annotations`** — fleet-wide would put unreviewed text on ~41 baseline-locked
+   concepts and move every baseline in one commit. Filed OPEN; that is a founder call.
+
+### The mechanical gate that came out of it
+`npm run check:renderer-backticks` — the backtick class had recurred across three sessions and its
+row already read *"recorded despite the guard existing"*. Locates each RENDERER_CODE literal's span
+and reports a stray backtick with its real diagnosis; reads SOURCE TEXT so it works when the file is
+too broken for tsc to load. Negative control performed before trusting it. **It then caught a
+backtick I introduced an hour later.**
+(The naive lint does not work — backticks are legal outside the literal; field_3d has 28 such
+comments — so "any comment with a backtick" gives ~30 false positives.)
+
+### Scars
+**12 rows** record this concept: 10 new classes + 2 recurrences. Also surfaced, not silently merged:
+the backtick class is filed TWICE under two names, so the list under-counts its own recurrences —
+the one number it exists to get right. Founder call.
+
 ### Open items
-1. **THE EYE has not been run** — needs the chemistry cache-seed. `build:review` + the browser walk stood in; that is not a substitute for the frame-read gate, and it is the next step.
-2. **`quality_auditor` + `eye_walker` not yet run.** The C6 lesson is explicit that my own looking is not enough — running them on VSEPR produced six more defects on a build I had called finished.
-3. Scar candidates drafted, NOT applied: backtick-in-template-comment · bloom gated on a renderer-specific field · countability metric that counts only front lobes.
-4. Audio not rendered (Rule 30h, on demand). Asmi's review still the standing bottleneck, now six concepts deep.
+1. **Asmi's professor review — now SEVEN concepts deep, and the stated bottleneck for four
+   consecutive sessions.** Machine gates were green on frames containing CRITICAL errors four times
+   in this session alone. Coverage keeps growing; the pedagogy gate has never run.
+2. **Promotion (2s2 2p2 → 2s1 2p3) is never taught**, yet STATE_1's belief statement presupposes it.
+   A real coverage gap: either a new opening state or an explicit prerequisite. Founder call,
+   recorded in the skeleton §7 rather than quietly closed.
+3. **Rule 19 fleet decision still OPEN** — backfill ~41 concepts and re-baseline, or stop counting
+   non-rendering primitives toward Rule 19.
+4. **No `text_hi`** (Rule 30i FYI, never a gate).
 
 ### ⏭ NEXT
-1. **THE EYE + `quality_auditor` + `eye_walker` on #13** before it is called done.
-2. **#17 σ/π** — now genuinely one line of engine work (a per-lobe origin offset) on top of this surface, and it harvests both this concept and the shipped `molecular_geometry`.
-3. **#1 Le Chatelier** remains C5's highest-ranked unbuilt concept (a parallel session is on the gas_box reaction layer).
+1. **#17 σ/π as its OWN concept, not more states here** (founder decision 2026-07-29). It is about
+   TWO atoms overlapping, not one atom's orbitals rearranging — the apparatus changes completely, so
+   Rule 32d home-pose continuity breaks if merged. It carries its own misconception ("a double bond
+   is two of the same bond"), and this concept is already 8 states with the budget strained. The
+   engine work is shared and lands once (a per-lobe origin offset). Prerequisite chain:
+   `atomic_orbitals_s_p_d → hybridisation_sp_sp2_sp3 → sigma_pi_bonding`.
+2. **#1 Le Chatelier is being built in a PARALLEL SESSION** — do not pick it up.
+
 
 ## 🔬 SESSION — the `orbital_shapes` 3D surface + `atomic_orbitals_s_p_d` (P4 #16), and six defects behind a green run (2026-07-28/29, branch `feat/chemistry-orbitals` → master)
 
