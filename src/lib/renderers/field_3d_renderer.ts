@@ -892,6 +892,16 @@ export interface Field3DConfig {
                 mu_k?: number;
                 applied_force_N?: number;          // signed, along the body's own positive axis
                 ghost?: boolean;                   // FBD decorative context body: dimmed, NEVER integrated
+                // The wall / the Earth: infinite effective mass. SKIPPED by the
+                // integrator entirely (v and s never change), but — unlike `ghost` —
+                // it is REAL: it takes and exerts forces and its force arrows draw
+                // NORMALLY at full brightness. This is what makes the third-law
+                // "push a wall" beat honest: the pair is still exactly equal and
+                // opposite, the wall's acceleration is simply zero. Rendered as a
+                // WALL SLAB instead of a cart mesh. Like `hanging`, the flag is
+                // read at BUILD time from the body's first appearance, so an id
+                // must not flip `fixed` between states.
+                fixed?: boolean;
             }>;
 
             pulley?: {                             // presence IS the coupled-integrator gate
@@ -903,6 +913,32 @@ export interface Field3DConfig {
             action_reaction?: {                    // Newton III: engine-enforced equal-and-opposite
                 engaged: boolean;
                 driver_body_id: string;            // the other body's applied_force_N is MIRRORED each frame
+            };
+
+            // ── push_off — the contact-then-release force phase (Newton III) ──
+            // docs/NLB_PUSH_OFF_SPEC.md. The spring/hands press the two bodies
+            // apart for a finite CONTACT window and then let go; the carts coast
+            // on the (mu = 0) track afterwards, so the RESULT of the interaction
+            // stays on screen long after the interaction ended. That persistent
+            // separation is what sells the simultaneity.
+            //   while contact_from_ms <= t < release_at_ms:
+            //       body_a.applied = +force_N, body_b.applied = -force_N
+            //   otherwise (before contact AND at/after release):
+            //       both applied forces are 0
+            // The ENGINE enforces the equality every frame from the ONE authored
+            // magnitude — the pair can never be two hand-authored numbers that
+            // drift apart, exactly as `action_reaction` already guarantees.
+            // `t` is the state-local clock (eng.t_ms, rebased to 0 on state entry
+            // and by RESET_TRAJECTORY); the gate is a pure CLOSED FORM of it, so
+            // dt = 0 under SET_TIME_FREEZE reproduces the same force bit-for-bit
+            // (Rule 36). NEVER runs in a `mode: 'sandbox'` state — there the
+            // teacher's F slider owns the force and the state free-runs (Rule 37).
+            push_off?: {
+                body_a_id: string;
+                body_b_id: string;
+                force_N: number;          // magnitude applied to EACH body, equal and opposite, during contact
+                release_at_ms?: number;   // contact ENDS here; default 0 = released immediately
+                contact_from_ms?: number; // contact BEGINS here; default 0
             };
 
             arrows?: Array<{
@@ -29278,6 +29314,16 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
     var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
     var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
+    // A "fixed" body renders as a WALL SLAB, not a cart: thin along the track,
+    // tall, and deep across it, so it READS as the immovable wall / the Earth at a
+    // glance and no student mistakes it for the other cart. These are APPARATUS
+    // dimensions, not a magnitude cue — the slab never scales with mass or force
+    // (Rule 29), and its geometry is translated at build time so its BASE sits at
+    // exactly the same local height a cart's does, which keeps nlbSetBodyPosition
+    // (the ONE placement funnel every arrow, label and pick proxy follows) untouched.
+    var NLB_WALL_T = NLB_BODY_SIZE * 0.5;   // thickness along the body's own axis
+    var NLB_WALL_H = NLB_BODY_SIZE * 3.2;   // height
+    var NLB_WALL_D = NLB_BODY_SIZE * 2.6;   // depth across the track
     var NLB_LANE_GAP = 0.85;              // world units of z between two INDEPENDENT side-by-side bodies.
                                           //   Engine spec §1 promises "two bodies with NO pulley = independent,
                                           //   side-by-side", but every body was pinned to z = 0, so the intended
@@ -30284,10 +30330,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 color: hexToThreeColor(col), emissive: hexToThreeColor(col),
                 emissiveIntensity: 0.18, shininess: 60, transparent: true, opacity: 1.0
             });
-            var mesh = new THREE.Mesh(new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE), mat);
+            // A "fixed" body is the wall / the Earth, so it is built as a SLAB
+            // rather than a cart. Read from the union def's FIRST appearance, the
+            // same build-time contract "hanging" already has: an id must not flip
+            // "fixed" between states. The geometry is pushed UP by half the extra
+            // height so the slab's base lands where the cube's base does — the
+            // placement funnel, the arrow origins and the pick proxy all stay
+            // byte-identical for every existing (non-fixed) concept.
+            var bodyGeo;
+            if (d.fixed) {
+                bodyGeo = new THREE.BoxGeometry(NLB_WALL_T, NLB_WALL_H, NLB_WALL_D);
+                bodyGeo.translate(0, (NLB_WALL_H - NLB_BODY_SIZE) / 2, 0);
+            } else {
+                bodyGeo = new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE);
+            }
+            var mesh = new THREE.Mesh(bodyGeo, mat);
             mesh.userData = {
                 elementType: "nlb_body", id: "nlb_body_" + d.id, bodyId: d.id,
-                hanging: !!d.hanging, ghost: !!d.ghost, baseColor: col
+                hanging: !!d.hanging, ghost: !!d.ghost, fixed: !!d.fixed, baseColor: col
             };
             if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
             nlbRegister(mesh);
@@ -30321,7 +30381,9 @@ export const FIELD_3D_RENDERER_CODE = `
             // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
             // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
             var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
-            lbl.position.set(0, NLB_BODY_SIZE * 0.95, 0);
+            // Clear the TOP of whichever solid this body is — the wall slab is
+            // ~3x a cart's height, so the cart offset would bury its label inside it.
+            lbl.position.set(0, d.fixed ? (NLB_WALL_H - NLB_BODY_SIZE / 2 + 0.18) : (NLB_BODY_SIZE * 0.95), 0);
             lbl.userData = { elementType: "nlb_body_label", id: "nlb_body_" + d.id + "_label", bodyId: d.id, ghost: !!d.ghost };
             mesh.add(lbl);
             nlbRegister(lbl);
@@ -30519,13 +30581,16 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // The first / second NON-ghost body of the live state, in authored order: the
     // targets of mass_a / mass_b. A ghost is never integrated (spec section 3), so
-    // it can never be a slider target either.
+    // it can never be a slider target either. Nor can a "fixed" body: its mass is
+    // infinite by definition, so an m slider pointed at the wall would be a dead
+    // control, and an F slider pointed at the wall would push the one object that
+    // cannot move while the cart the teacher is watching stayed still.
     function nlbSliderBodies() {
         var eng = window.PM_nlbEngine, out = [null, null], n = 0;
         if (!eng) return out;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
-            if (!b || b.ghost) continue;
+            if (!b || b.ghost || b.fixed) continue;
             if (n < 2) out[n] = b.id;
             n++;
         }
@@ -30699,7 +30764,10 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbEach(function (o, ud) {
             if (ud.elementType !== "nlb_body_hit") return;
             var bd = listed[ud.bodyId];
-            o.visible = !!(on && bd && !bd.ghost);
+            // A "fixed" body is immovable BY DEFINITION — letting a teacher drag
+            // the wall along the track would contradict the one thing the state
+            // exists to show, so it is never pickable.
+            o.visible = !!(on && bd && !bd.ghost && !bd.fixed);
         });
     }
     // Pointer plane-hit -> the body's own signed axis coordinate s, in metres.
@@ -30719,7 +30787,7 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbApplyBodyDrag(hit) {
         var eng = window.PM_nlbEngine;
         var b = (eng && window.PM_nlbDragId) ? eng.bodies[window.PM_nlbDragId] : null;
-        if (!b || b.ghost) return;
+        if (!b || b.ghost || b.fixed) return;   // belt to nlbSetDragProxies' braces
         // Clamp through nlbBoundsM — the ONE bounds source, already pulley-aware
         // (SEAM D): never re-derive the clamp band here.
         var bd = nlbBoundsM(b, eng.length_m);
@@ -30834,6 +30902,50 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbSyncSliderRow(tok, v);
     }
 
+    // ── push_off — the contact-then-release force phase ────────────────────
+    //   docs/NLB_PUSH_OFF_SPEC.md. The whole physics change is a GATE on WHICH
+    //   applied force the existing integrator sees this frame:
+    //       contact_from_ms <= t < release_at_ms  ->  A = +force_N, B = -force_N
+    //       otherwise                             ->  both 0 (the carts coast)
+    //   THE EQUALITY IS ENFORCED, NOT AUTHORED. Both bodies are written from the
+    //   ONE magnitude expression below, every frame, in one place — exactly the
+    //   discipline the action_reaction mirror already applies (and the reason
+    //   neither is ever two hand-authored numbers that can drift apart). A later
+    //   seam, a slider or a stale record cannot desynchronise the pair: the next
+    //   tick overwrites both again from the same expression.
+    //   Rule 36: this is a pure CLOSED FORM of eng.t_ms — no accumulator of its
+    //   own, nothing latched, no second clock. eng.t_ms is advanced solely by the
+    //   dt handed to updateNewtonsLawsBodyFrame, so under SET_TIME_FREEZE
+    //   (dt = 0) t_ms is unchanged and this recomputes the SAME force bit-for-bit:
+    //   the gate itself advances nothing, and a time-pin rewind reproduces the
+    //   earlier phase exactly. It is also step-fold exact (t_ms is linear in dt).
+    //   Rule 37: NEVER runs in a "mode: 'sandbox'" state. There the release gate
+    //   is INERT and the teacher's F slider owns the force (the same carve-out
+    //   param_ramp makes), so the explore state can never be frozen or stalled by
+    //   a release instant that has already passed — a sandbox authored with
+    //   action_reaction keeps its pair equal-and-opposite through the mirror above.
+    function nlbRunPushOff(nlb, eng) {
+        var po = eng.push_off;
+        if (!po) return;
+        if (eng.mode === "sandbox") return;              // Rule 37 — inert in the sandbox
+        var bA = po.body_a_id ? eng.bodies[po.body_a_id] : null;
+        var bB = po.body_b_id ? eng.bodies[po.body_b_id] : null;
+        if (!bA || !bB) return;
+        var mag = (typeof po.force_N === "number" && isFinite(po.force_N)) ? po.force_N : 0;
+        var t0 = (typeof po.contact_from_ms === "number" && isFinite(po.contact_from_ms)) ? po.contact_from_ms : 0;
+        var t1 = (typeof po.release_at_ms === "number" && isFinite(po.release_at_ms)) ? po.release_at_ms : 0;
+        var tMs = eng.t_ms || 0;
+        var inContact = (tMs >= t0) && (tMs < t1);
+        // ONE expression drives the paired pool: the reaction is literally the
+        // negation of the action, so an unequal pair is UNREPRESENTABLE here.
+        var F = inContact ? mag : 0;
+        bA.F_applied = F;
+        bB.F_applied = -F;
+        // Read by seam B (the spring's compressed/extended render state) — a
+        // derived flag, never a second source of truth for the force itself.
+        eng.push_off_contact = inContact;
+    }
+
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
     //   Seeds masses / theta / mu / F / initial position+velocity into the
     //   engine state object every seam reads, sets glow_focal, resets the
@@ -30857,6 +30969,7 @@ export const FIELD_3D_RENDERER_CODE = `
             coupled: !!pul,
             pulley: pul,
             action_reaction: nlb.action_reaction || null,
+            push_off: nlb.push_off || null,   // contact-then-release phase (see nlbRunPushOff)
             glow_focal: nlb.glow_focal || "",
             order: [],
             bodies: {},
@@ -30875,6 +30988,9 @@ export const FIELD_3D_RENDERER_CODE = `
                 m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
                 hanging: !!d.hanging,
                 ghost: !!d.ghost,
+                // Infinite effective mass — the wall / the Earth. REAL (takes and
+                // exerts forces, arrows draw normally) but never integrated.
+                fixed: !!d.fixed,
                 s: d.initial_position_m || 0,
                 v: d.initial_velocity_mps || 0,
                 a: 0,
@@ -31293,6 +31409,16 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_nlbTimeMs = eng.t_ms;
         nlbRunPhases(nlb, eng, eng.t_ms);
 
+        // push_off — the contact-then-release phase gate. Hooked at the INPUT
+        // stage, BEFORE the action_reaction mirror and before both integrator
+        // branches, because it is an INPUT (exactly equivalent to a slider write
+        // on both bodies at once): running it here keeps the step, the force
+        // arrows, the readouts and the rope all consistent within the SAME frame.
+        // It writes the pair from ONE magnitude, so a state authoring BOTH blocks
+        // is self-consistent — the mirror below then simply re-affirms the value
+        // this gate just wrote, whichever body is the declared driver.
+        nlbRunPushOff(nlb, eng);
+
         // Newton III: the engine ENFORCES equal-and-opposite every frame, so the
         // pair can never drift out of Newton's third law no matter what a slider
         // (or a later seam) does to the driver's applied force.
@@ -31331,6 +31457,27 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var i = 0; i < eng.order.length; i++) {
                 var b = eng.bodies[eng.order[i]];
                 if (!b || b.ghost) continue;               // spec section 3: a ghost is NEVER integrated
+                if (b.fixed) {
+                    // The wall / the Earth: infinite effective mass. SKIPPED by the
+                    // integrator entirely — v and s never change — but REAL, unlike a
+                    // ghost: it still TAKES the applied force push_off hands it (which
+                    // is why its "applied" arrow draws at full length, pixel-identical
+                    // to the cart's) and it still EXERTS the reaction. Its numbers are
+                    // the honest ones for an immovable body: a = 0 not because there
+                    // is no force but because m is effectively infinite, and the
+                    // reported f is the anchor reaction holding it (-drive), the same
+                    // quantity the statically-stuck branch below reports.
+                    var thF = b.hanging ? 90 : thetaSurf;
+                    b.N = nlbNormal(b, thF);
+                    b.a = 0; b.v = 0;
+                    b.f = -(b.F_applied + nlbGravAlong(b, thF));
+                    b.T = 0; b.F_net = 0;
+                    b._stuck = true;
+                    b._boundArrestedSliding = false;
+                    nlbSetBodyPosition(b.id, b.s);
+                    nlbWriteReadouts(nlb, b, true);
+                    continue;
+                }
                 var th = b.hanging ? 90 : thetaSurf;
                 var N = nlbNormal(b, th);
                 var drive = b.F_applied + nlbGravAlong(b, th);
@@ -31422,10 +31569,21 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!refId) return;
         var sigRef = eng.bodies[refId].hanging ? 1 : -1;
 
+        // A "fixed" body anywhere in a coupled pair ANCHORS the whole string: an
+        // inextensible string tied to an immovable body cannot move at either end,
+        // so the safe (and physically correct) behaviour is to hold the string —
+        // NOT to drop the fixed body out of the coupled set, which would silently
+        // break the constraint and let the free body run as if unattached. The
+        // string is therefore treated exactly as if it were statically held
+        // (stuckB below), so the tensions still come out of each body's own
+        // equation of motion with a = 0 and the HUD stays honest. Cart-vs-wall
+        // push-offs are Branch A (no pulley) and are unaffected by this.
+        var anchoredB = false;
         var act = [], D = 0, M = 0, maxStatSum = 0, mukNSum = 0;
         for (var j = 0; j < eng.order.length; j++) {
             var bj = eng.bodies[eng.order[j]];
             if (!bj || bj.ghost) continue;                 // spec section 3: never integrated
+            if (bj.fixed) anchoredB = true;
             var cj = (bj.id === refId) ? 1 : -(sigRef * (bj.hanging ? 1 : -1));
             var thj = bj.hanging ? 90 : thetaSurf;
             var Nj = nlbNormal(bj, thj);
@@ -31441,7 +31599,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!act.length || !(M > 0)) return;
 
         var vStr = eng.v_string || 0;
-        var stuckB = (Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum);
+        var stuckB = anchoredB || ((Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum));
         var aStr = 0, Ffric = 0, vSignB = 0;
         if (stuckB) {
             aStr = 0; vStr = 0; Ffric = -D;                 // held by static friction

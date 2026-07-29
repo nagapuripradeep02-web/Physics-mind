@@ -555,3 +555,52 @@ INSERT INTO engine_bug_queue (
     'lom-a block_on_incline fix cycle 1 2026-07-26',
     'scar'
 );
+
+-- ══════════════════════════════════════════════════════════════════════════════
+-- TEXT ONLY — NOT APPLIED. Noticed during ENGINE SEAM A of the push-off build
+-- (bug_class nlb_push_off_phase_and_fixed_body, 2026-07-29). Deliberately NOT
+-- fixed in that dispatch (one bug_class, minimal diff). The founder/loop decides
+-- whether these become real rows.
+-- ══════════════════════════════════════════════════════════════════════════════
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_push_off_bodies_lane_separated_so_they_never_touch',
+--     'Two independent push_off bodies are z-lane-separated by nlbBodyLaneZ, so the pair that is supposed to collide head-on renders in two parallel rows',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'nlbBodyLaneZ separates every pair of independent (no-pulley), non-hanging, non-ghost bodies into distinct z lanes so a same-start-line mass/force COMPARE reads as two rows instead of one merged blob. A push_off pair is the opposite case: the two bodies share ONE interaction and must sit on the SAME line, touching, or the spring seam has nothing to draw between them and the whole "these two push EACH OTHER" picture collapses back into "two separate blocks with asserted arrows" - the exact failure the push-off apparatus exists to fix. A cart-vs-fixed-wall pair has the same problem.',
+--     'A lane is a DISAMBIGUATION device for bodies that share no interaction. Any state whose bodies are coupled by a declared interaction block (pulley, push_off, spring) returns lane 0 for every body in that block - the lane list must be filtered by the interaction, not just by hanging/ghost.',
+--     'js_eval',
+--     'In a push_off state, read both body meshes'' world z: they must be equal (0). Assert |zA - zB| < 1e-6.',
+--     'OPEN',
+--     ARRAY['newton_third_law']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam A 2026-07-29',
+--     'incident'
+-- );
+-- NOTE: explicitly OUT OF SCOPE for seam A by dispatch instruction - the lane/glow
+-- wiring is SEAM B's. Recorded here only so it cannot be lost between the seams.
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_f_slider_is_a_dead_control_inside_a_push_off_contact_window',
+--     'A guided push_off state that also exposes the F slider gives the teacher a control the per-frame gate silently overwrites every tick',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'nlbRunPushOff writes BOTH bodies'' F_applied from the authored force_N on every frame, at the input stage, ahead of the integrator. A trusted F-slider drag writes the same field through nlbApplyParam and is therefore stomped on the very next tick: the thumb moves, the number in the row moves, and nothing on the canvas changes. This is the correct enforcement (the equality must not be breakable) but it makes controls_visible: [''F''] a lie in a push_off guided state. idle_auto_sweep and param_ramp both solved the same collision with a PM_nlbSweepSeized seize latch; push_off has none because a seize would break the equal-and-opposite guarantee mid-contact.',
+--     'Either (a) forbid ''F'' in controls_visible for a state that authors push_off (authoring constraint, checked by the validator), or (b) let a trusted F drag rescale the push_off MAGNITUDE rather than one body''s force, so the pair stays equal-and-opposite while the teacher scrubs. Never leave a rendered slider whose writes are silently discarded.',
+--     'sql',
+--     'SELECT concept_id FROM concepts WHERE a field_3d state authors both newtons_laws_body.push_off and controls_visible containing ''F''.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam A 2026-07-29',
+--     'incident'
+-- );

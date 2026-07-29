@@ -1737,6 +1737,25 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             phaseFound = true;   // a ramp IS a scripted reveal; skip the mode floor below
             candidates.push(pr.end_ms + nlbCushion);
         }
+        // push_off (docs/NLB_PUSH_OFF_SPEC.md) — the contact-then-release phase.
+        // The TAUGHT beat is not the contact, it is the SEPARATION the contact
+        // leaves behind: both applied forces go to 0 at release_at_ms and the
+        // carts coast apart on the mu = 0 track from there. So the pin must land
+        // well PAST release, or the frozen frame photographs two carts still
+        // touching under a caption about them flying apart — the mid-transition
+        // capture field3d_slcr_reveal_hold_captures_transitional_r_family names,
+        // and (with no phases[] authored) it would otherwise fall back to the
+        // action_reaction_pair mode floor of DEFAULT_REVEAL_MS, which for a
+        // release at ~1200 ms sits INSIDE the contact window
+        // (field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_...).
+        // A push_off IS a scripted reveal, so it also skips the mode floor.
+        const po = asObj(nlb.push_off);
+        if (po) {
+            const NLB_PUSH_OFF_COAST_MS = 2000;   // coast window that makes the separation legible
+            const release = asNum(po.release_at_ms, 0);
+            phaseFound = true;
+            candidates.push(release + NLB_PUSH_OFF_COAST_MS);
+        }
         if (!phaseFound) {
             // No authored script this state: fall back per `mode`. These are pure
             // FLOORS used only when phases[] is absent (an authored phase always
