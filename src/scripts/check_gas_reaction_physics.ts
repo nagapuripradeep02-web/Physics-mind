@@ -783,6 +783,99 @@ check('piston_ramp_ms still reaches its target', Math.abs(pistonAt8s - 0.55) < 0
     `${Number(R.gasActivationE(R.config.states.STATE_1)).toFixed(4)} immediately after the cue`);
 }
 
+// ── 17c. T_cue / piston_cue — the cause must start WHEN it is named ─────────
+// T_from and piston_from ramp from STATE ENTRY, so a state that binds its
+// narration to a cue ("now the thermostat heats it") could have the heating
+// already finishing as the sentence played. That is the cue/narration desync
+// scar inverted, and it lands on whichever state is usually the most important
+// one in the lesson. These two fields make the ramp wait; omitting them must
+// leave every shipped T_from / piston_from state byte-identical.
+{
+  const g = { temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 };
+  const base = { adiabatic: false, species_counts: { A: 60, B: 60, AB: 0 }, reaction: { enabled: false } };
+
+  // T_cue: held cold before the cue, ramping after, arriving on time
+  const tCued = { ...base, T: 600, T_from: 300, T_ramp_ms: 6000, cues: [{ id: 'heat', at_ms: 5000 }], T_cue: 'heat' };
+  boot(makeConfig(g, tCued));
+  for (let i = 0; i < 240; i++) R.stepGas(R.config.states.STATE_1);       // 4 s — before the cue
+  const tHeld = Number(R.gasTargetT());
+  for (let i = 0; i < 240; i++) R.stepGas(R.config.states.STATE_1);       // 8 s — 3 s into the ramp
+  const tMid = Number(R.gasTargetT());
+  for (let i = 0; i < 300; i++) R.stepGas(R.config.states.STATE_1);       // 13 s — past the end
+  const tEnd = Number(R.gasTargetT());
+  check('T_cue holds the box at T_from until its cue fires',
+    Math.abs(tHeld - 300) < 1e-9, `${tHeld.toFixed(1)} K at 4 s with the cue at 5 s (T_from 300)`);
+  check('T_cue ramps FROM the cue, not from state entry',
+    tMid > 300 + 1 && tMid < 600 - 1, `${tMid.toFixed(1)} K at 8 s — strictly between 300 and 600`);
+  check('T_cue still reaches its target', Math.abs(tEnd - 600) < 1e-6, `${tEnd.toFixed(1)} K at 13 s`);
+
+  // ...and omitting it is the OLD behaviour, exactly
+  boot(makeConfig(g, { ...base, T: 600, T_from: 300, T_ramp_ms: 6000 }));
+  for (let i = 0; i < 240; i++) R.stepGas(R.config.states.STATE_1);
+  const tNoCue = Number(R.gasTargetT());
+  check('no T_cue still ramps from state entry (shipped states unchanged)',
+    tNoCue > 480 && tNoCue < 520, `${tNoCue.toFixed(1)} K at 4 s of a 6 s ramp from entry`);
+
+  // piston_cue: the wall must not move at all before its cue
+  const pCued = {
+    ...base, T: 300, piston_from: 1.0, piston_frac: 0.4, piston_ramp_ms: 6000,
+    cues: [{ id: 'squeeze', at_ms: 5000 }], piston_cue: 'squeeze',
+  };
+  boot(makeConfig(g, pCued));
+  for (let i = 0; i < 240; i++) R.stepGas(R.config.states.STATE_1);
+  const pHeld = Number(R.gasPistonF);
+  for (let i = 0; i < 240; i++) R.stepGas(R.config.states.STATE_1);
+  const pMid = Number(R.gasPistonF);
+  for (let i = 0; i < 360; i++) R.stepGas(R.config.states.STATE_1);
+  const pEnd = Number(R.gasPistonF);
+  check('piston_cue holds the wall open until its cue fires',
+    Math.abs(pHeld - 1.0) < 1e-9, `piston at ${pHeld.toFixed(3)} at 4 s with the cue at 5 s`);
+  check('piston_cue strokes FROM the cue', pMid < 1.0 - 0.01 && pMid > 0.4 + 0.01,
+    `piston at ${pMid.toFixed(3)} at 8 s — strictly between 1.00 and 0.40`);
+  check('piston_cue still reaches its target', Math.abs(pEnd - 0.4) < 0.01, `piston at ${pEnd.toFixed(3)} at 14 s`);
+
+  boot(makeConfig(g, { ...base, T: 300, piston_from: 1.0, piston_frac: 0.4, piston_ramp_ms: 6000 }));
+  for (let i = 0; i < 240; i++) R.stepGas(R.config.states.STATE_1);
+  const pNoCue = Number(R.gasPistonF);
+  check('no piston_cue still strokes from state entry (shipped states unchanged)',
+    pNoCue < 0.7 && pNoCue > 0.5, `piston at ${pNoCue.toFixed(3)} at 4 s of a 6 s stroke from entry`);
+}
+
+// ── 17d. counter_window_ms — a rare event needs a long enough window ────────
+// The cleared-Ea rate sits beside the collision rate on one chip, but the two
+// are orders of magnitude apart: hundreds of collisions per second against a
+// handful that clear. The 1 s default is right for the first and wrong for the
+// second, which is the same reasoning that already gave the reaction rates 5 s.
+// Measured before this was authorable: the DISPLAYED percentage swung 0.0%-8.2%
+// on a steady-state box whose narration says "about three in a hundred", so a
+// frame could read 0.0% under a caption about collisions clearing the barrier.
+{
+  const g = { temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 };
+  const st = { T: 300, adiabatic: false, activation_energy_kT: 3, species_counts: { A: 90, B: 90, AB: 0 }, reaction: { enabled: false }, show_collision_counter: true };
+  function shownPct(windowMs: number | null) {
+    const stateOver = windowMs === null ? st : { ...st, counter_window_ms: windowMs };
+    boot(makeConfig(g, stateOver));
+    const s0 = R.config.states.STATE_1;
+    for (let i = 0; i < 600; i++) R.stepGas(s0);           // settle past the first window
+    const seen: number[] = [];
+    for (let i = 0; i < 1200; i++) {
+      R.stepGas(s0);
+      if (i % 30 === 0 && R.gasCollRate > 0) seen.push(100 * R.gasSuccessRate / R.gasCollRate);
+    }
+    seen.sort((a, b) => a - b);
+    return { lo: seen[0], hi: seen[seen.length - 1], spread: seen[seen.length - 1] - seen[0] };
+  }
+  const w1 = shownPct(null), w5 = shownPct(5000);
+  check('counter_window_ms narrows the displayed percentage', w5.spread < w1.spread * 0.7,
+    `1 s window spans ${w1.lo.toFixed(1)}-${w1.hi.toFixed(1)}% (${w1.spread.toFixed(1)}pp), 5 s spans ${w5.lo.toFixed(1)}-${w5.hi.toFixed(1)}% (${w5.spread.toFixed(1)}pp)`);
+  check('a 5 s window never shows a 0.0% frame on a live barrier', w5.lo > 0.5,
+    `lowest displayed percentage ${w5.lo.toFixed(2)}% over 20 s`);
+  // and the default is untouched, so every shipped counter state keeps its frames
+  const wDefault = shownPct(null);
+  check('the counter window default is unchanged', Math.abs(wDefault.spread - w1.spread) < 1e-9,
+    `unauthored window still spans ${wDefault.spread.toFixed(1)}pp — identical to before`);
+}
+
 // ── 18. hist_speed_marks opt-out must not disturb the histogram itself ──────
 // Rule 25: v_mp/v_avg/v_rms are P1 #5's vocabulary and must be suppressible on a
 // state that shows the histogram for another reason. The suppression is
