@@ -96,7 +96,7 @@ the real C=C separation.** Every state is a change to that one apparatus.
 | 3 | core | σ is cylindrically symmetric — spin it, nothing changes | `axis-spin` | "Spin it: σ unchanged" | — | auto_after_tts | ~35 |
 | 4 | core | each carbon keeps one unhybridised p, perpendicular | `perpendicular-rise` | "One p left, sideways" | — | manual_click | ~40 |
 | 5 | core | sideways overlap builds π — two lumps, axis in a node | `sideways-fuse` | "Sideways: above and below" | — | manual_click | ~50 |
-| 6 | core | **PRIMARY AHA** — the same twist σ ignored *tears* π | `torsion-tear` | "Twist: π breaks" | twist | manual_click | ~50 |
+| 6 | core | **PRIMARY AHA** — the same twist σ ignored kills π's overlap | `torsion-cancel` | "Twist: overlap → zero" | twist | manual_click | ~50 |
 | 7 | ext | they are not the same bond: σ 348, π 266 kJ/mol | `dual-value-reveal` | "π is the weaker one" | — | manual_click | ~45 |
 | 8 | ext | a triple bond is one σ and TWO π, at 90° | `second-pi-add` | "Triple: one σ, two π" | — | auto_after_tts | ~40 |
 | 9 | core | sandbox | `free-explore` | "All yours" | bond · twist · σ/π · dots | interaction_complete | ~25 |
@@ -124,7 +124,8 @@ dense frames of the two states**, never by reading the archetype names back:
   two separate components. Different axis, different direction, different result.
 - **S3** — rigid rotation, zero shape change (that IS the content).
 - **S6** — rotation *with* shape change, monotone in the twist angle, with a live
-  numeric overlap falling to 0.00 at 90°.
+  numeric overlap falling to 0.00 at 90°. **It must NOT be drawn as "the lumps come
+  apart" — see §5f. They never come apart.**
 
 ---
 
@@ -213,6 +214,44 @@ So S6 prints a **derived law**, not a tuned curve, and the number a student watc
 fall to zero is the real overlap integral. It also means the torsion beat needs no
 per-frame field solve: the surface comes off a precomputed twist ladder (the shipped
 morph-ladder pattern) while the readout is closed-form.
+
+### 5f — THE DEFECT THAT WOULD HAVE SHIPPED: "the π bond breaks" is not a picture of lumps separating
+
+Found by `sigma_pi_mo_builder.js` before a line of renderer code existed, and it is
+the most load-bearing finding of the design gate.
+
+The obvious way to animate S6 is: twist, and the two π lumps tear apart. **They do
+not.** Measured up the whole twist ladder at the 50% contour, the total-density
+surface holds at **2 components at every angle including 90°** — because A's +x lobe
+and B's +y lobe still touch *diagonally* once they are perpendicular. The bond is
+gone (overlap exactly 0.000000) while the picture still shows two joined lumps.
+
+Animating the tear would have put a caption reading "the π bond breaks" over a
+frame showing it visibly intact — the same class as #13's `node_count` clover:
+geometrically right, posed wrong, and green through every gate.
+
+**What actually vanishes is the CONSTRUCTIVE region**, and it vanishes by
+*cancellation*, not separation:
+
+| twist | constructive | destructive | net (= S) | net/S(0) | cos φ |
+|---|---|---|---|---|---|
+| 0° | 0.27034 | 0.00000 | 0.27034 | 1.0000 | 1.0000 |
+| 45° | 0.20413 | 0.01297 | 0.19116 | 0.7071 | 0.7071 |
+| 75° | 0.12386 | 0.05389 | 0.06997 | 0.2588 | 0.2588 |
+| **90°** | **0.08589** | **0.08589** | **0.00000** | 0.0000 | 0.0000 |
+
+At 90° the reinforcing and cancelling regions are **exactly equal and annihilate**.
+That is a better lesson than "it snaps," it is true, and it independently reproduces
+§5d's cos φ law by a completely different computation.
+
+**So S6 draws sign-coloured atomic lobes plus the constructive-overlap region
+shrinking to nothing — never a fused surface being pulled apart.**
+
+A second, confirming reason not to draw a fused surface through the twist: at 90°
+that component is **L-shaped**, so its centroid lands in the hollow *outside* the
+region and the root-table pipeline provably cannot represent it (asserted in the
+builder rather than worked around). The geometry, the physics and the pedagogy all
+say the same thing.
 
 ### 5e — Engine cost: star-shaped, so no marching cubes
 
