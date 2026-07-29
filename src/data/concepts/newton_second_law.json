@@ -315,7 +315,7 @@
       "STATE_1": {
         "label": "Steady force, from rest: a pins, v never stops climbing",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
-        "camera_position": [0, 2.6, 12],
+        "camera_position": [0, 2.03, 7.8],
         "caption": "Force on — speed climbs",
         "show_sliders": true,
         "formula_overlay": "constant F ⇒ constant a",
@@ -336,7 +336,7 @@
       "STATE_2": {
         "label": "Same force, different mass: double the mass, half the acceleration",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 3.0, 15],
+        "camera_position": [0, 2.34, 9.75],
         "caption": "Same force — heavier lags",
         "show_sliders": true,
         "formula_overlay": "a = F/m",
@@ -359,7 +359,7 @@
       "STATE_3": {
         "label": "Same mass, different force: double the force, double the acceleration",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 3.0, 15],
+        "camera_position": [0, 2.34, 9.75],
         "caption": "Same mass — stronger force wins",
         "show_sliders": true,
         "formula_overlay": "a ∝ F",
@@ -382,7 +382,7 @@
       "STATE_4": {
         "label": "Explore: drive m, F, v₀ — watch a obey a = ΣF/m live",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
-        "camera_position": [0, 3.0, 13],
+        "camera_position": [0, 2.34, 8.45],
         "caption": "All yours",
         "show_sliders": true,
         "formula_overlay": "a = ΣF/m",
