@@ -28,6 +28,7 @@ Baseline-locked concepts:
 |---|---|---|---|
 | `bohr_model_energy_levels` | parametric | 9 | 31 |
 | `law_of_conservation_of_mass` | parametric | 7 | 23 |
+| `le_chateliers_principle` | particle_field (`gas_box`) | 17 | 32 |
 | `vsepr_molecular_shapes` | field_3d · `molecular_geometry` | 14 | 17 |
 | `kinetic_particle_theory` | particle_field · `gas_box` | 7 | 19 |
 | `atomic_orbitals_s_p_d` | field_3d · **`orbital_shapes`** | 18 | — (silent; Rule 30h) |
@@ -141,6 +142,145 @@ the one number it exists to get right. Founder call.
    `atomic_orbitals_s_p_d → hybridisation_sp_sp2_sp3 → sigma_pi_bonding`.
 2. **#1 Le Chatelier is being built in a PARALLEL SESSION** — do not pick it up.
 
+## ⚖️ SESSION — `le_chateliers_principle` (P1 #1, the list's top concept) SHIPPED, + six gas_box platform commits (2026-07-29, branch `feat/chemistry-le-chatelier`; engine half on master)
+
+**P1 #1 is built, gated and baseline-locked.** 8 states on `gas_box`. Fleet **65 → 66** baseline-locked.
+17 baselines + **32 EN clips** (`8532407`). NOT deployed and NOT in `PILOT_CONCEPTS` — founder approved
+the ship chain only; CLAUDE.md §5 puts Asmi's professor gate before the deployed catalog, which still
+carries **zero** chemistry sims.
+
+Final gates: tsc 0 · `validate:chemistry` **7/7** · `check:gas-reaction` all passed · `validate:concepts`
+**141 PASS 0 FAIL** (physics untouched) · THE EYE **35/35** · quality_auditor **PASS** (3rd pass) ·
+eye_walker **CLEAN**.
+
+### The build was about making the CAUSE visible, not the physics
+
+All three disturbances were ALREADY emergent on this engine (the `Ea_rev = Ea_fwd + E_bond` derivation
+and the bimolecular/first-order asymmetry). What was missing: the engine could show only ONE of them
+ARRIVING — the piston. Four fields closed it, each on master separately (Rule 40):
+
+| commit | field | what it buys |
+|---|---|---|
+| `4e6df01` | `T_from` / `T_ramp_ms` | a state authoring `T: 500` opened already hot — the cause never moved on the PRIMARY aha |
+| `4e6df01` | `inject_cue` / `inject_n` / `inject_species` | reagent arrives mid-state on the state clock |
+| `532976f` | `reaction_at_cue: { cue, <constant> }` | the catalyst goes in while the class watches. Placed at `gasRxNum` — the ONE read point for every reaction constant — so `Ea_rev` follows by derivation and the null result stays EMERGENT |
+| `4e6df01`/`aa21a14` | `show_k_ratio` | K as a live measured number (10 s window) |
+| `458a6e3` | `piston_ramp_ms` | compression slow enough to stay isothermal |
+
+`check:gas-reaction` grew **18 → 37 checks**. **All of this is inherited free by P1 #3/#4/#5.**
+
+### Four defects no gate could see (and one that made a gate lie)
+
+1. **⭐ THE EYE READS THE CACHE, NOT YOUR SOURCE.** `visual_eyes.ts` → `loadCachedSim()` reads ONLY the
+   `simulation_cache` row — never the concept JSON, never the renderer — and for chemistry that row is
+   seeded BY HAND and never auto-refreshes. A post-fix re-walk returned **35/35 green while rendering
+   entirely pre-fix content**: four already-fixed defects all still "broken" in frames. Every visual
+   finding in that run was a false negative. Caught only because eye_walker cross-checked frames
+   against live source. **`npx tsx --env-file=.env.local src/scripts/_seed_chemistry_cache.ts <id>`
+   after ANY JSON or renderer edit, BEFORE dispatching eye_walker.** Exact sibling of
+   `gas_box_freeze_resim_uses_wrong_stepper` — *a green deterministic gate proves frames are
+   REPRODUCIBLE, not correct.* **Proposed for `docs/AUTHORING_PIPELINE.md` §③ — founder ruling pending.**
+2. **`drawGasThermometer` hardcoded `gasBoxL() + 142`** while every other chip accumulates via
+   `pfWgVis`. STATE_4 is the fleet's first thermometer-WITHOUT-pressure state, so "T = 500 K" struck
+   through the A/B counts for the whole state — on the PRIMARY aha, burying its own cause instrument.
+3. **`gasMovePiston` drove the wall ~12× faster than thermal speed** — peak measured T **7173–9594 K**
+   on a state authored at 300 K, product crashing 31 → 7, so for ~4 s the readout showed REVERSE
+   leading. `piston_ramp_ms` → **336 K over 6 s**; default stroke provably unchanged, so
+   `kinetic_particle_theory` keeps its baselines.
+4. **⭐ A bonded pair did not look bonded** (`20cb20a`). `drawGasDimer` strokes the bond in the product
+   colour then fills the discs — but bond length IS rA + rB, so the discs are tangent and the line is
+   painted over, leaving ~2 px of purple. AB is the species every state tracks: the HUD printed a
+   purple "AB 31" and the graph drew a purple curve while **nothing on canvas was purple**. The lesson
+   had to be read off numbers instead of the picture. Fixed by draw order (rim both discs). **Also
+   fixed `dynamic_equilibrium`**, whose STATE_2 opens with 45 previously-uncountable pairs — 14 H2
+   failures, pixel-diff only, re-approved after founder view, **now 44/44**.
+
+### Three narration defects: claims true in one frame of reference, false on screen
+
+- **STATE_7 "the amounts move by about half"** — a BETWEEN-RUN comparison spoken as an in-state
+  observation. Redesigned, not reworded.
+- **STATE_5 "the counts sit exactly where the lesson left them"** — single frames legitimately read
+  26–38, so an unlucky frame *confirmed* the misconception the state exists to refute. Now a band.
+- **STATE_3 "forward pulls ahead of reverse"** — true as a net average (+0.75/s, 10/10 seeds) but the
+  bars visibly cross mid-ramp. Now narrates the pair count.
+
+### STATE_7 needed DENSITY, not a cleverer average
+
+K's relative fluctuation scales as **1/√n_AB**; at normal density n_AB ≈ 30. Two averaging windows
+were built and **measured failing** (chip swung 33–50%; in 10/10 seeds the RATIO moved more than the
+amounts, inverting the state's whole contrast). Founder chose the root cause. STATE_7 now runs ~516
+particles (n_AB ≈ 204): **|dK| 8–10% vs |dA| 34–42%, 0/8 seeds inverting, at three viewports**; shipped
+frames read K 0.0089 → 0.0094 (+5.6%) while A goes 138 → 210 (+52%). Cost 2.18 ms/tick against 16.7 ms
+— the collision sweep is spatially GRIDDED, so linear. A deliberate Rule 32d exception, in the one
+state both curriculum presets can hide.
+
+### The teaching pass — four gaps EVERY gate and BOTH review agents passed
+
+Founder asked "walk the states, what is missing?". Answer, in order of damage:
+
+1. **The principle was never stated.** Eight states taught every disturbance; no sentence gave the law
+   or the name. S8 now closes with it, ending on S2's partial-compensation aha.
+2. **Cooling was undemonstrable** — the likeliest question after the PRIMARY aha. Measured: at the
+   250 K floor, cooling moved AB 31 → ~35, inside the noise band. At 200 K it is 31 → ~45 in 10 s with
+   the box alive (fwd 3.5/s); at 150 K it reads dead (1.1/s). Floor now **200 K, measured**.
+3. **The invisible bonded pair** (defect 4 above).
+4. **The anchor promised what the sim cannot do** — "engineers steadily draw product away", but the
+   reagent tap is A-only by design (S2 needs removal to target A). Rewritten onto the two levers the
+   states actually show, which is better chemistry: pressurised because the product side has fewer
+   molecules (S3), run hotter than the balance would like because forward is exothermic (S4).
+
+**The pattern is the finding:** every agent was asked whether the sim was *correct*. None was asked
+whether a teacher could *use* it. The gates verify claims against instruments; they do not ask whether
+the picture teaches. **That fourth gate is a person asking "what is missing?".**
+
+### Open for founder
+
+1. **Three `engine_bug_queue` rows unfiled** — the stale-sim-cache gate blindness ⭐, the
+   viewport-dependent rate/pressure readouts, the cue/narration desync class. **Blocked:**
+   `alex:chemistry_author` is rejected by the queue's own CHECK constraint.
+2. **Rates and pressure are still viewport-dependent** — `gasRxAreaNorm` normalises the equilibrium
+   COMPOSITION, not the readouts (measured **4.6×** rate, **5.9×** pressure, 900×560 → 1600×900).
+   Fixed by AUTHORING here (no absolute rate is spoken anywhere); normalising displayed pressure would
+   break the `P·A/N·T` gas-law readout and move every shipped baseline. Engine limitation OPEN.
+3. **6 unpushed master commits**: `1ee5cfa` `4e6df01` `aa21a14` `532976f` `458a6e3` `20cb20a`.
+4. **Asmi's professor review** on this and the three earlier chemistry concepts.
+
+---
+
+## 🎯 NEXT CONCEPT — P1 #3 `rate_of_reaction`, and why #4 may deserve to go first
+
+**The locked order (`CHEMISTRY_DISCUSSIONS.md` Session C5 §6) says #3 Rate of reaction.** P1 status:
+#1 ✅ · #2 ✅ · **#3 ← next** · #4 ☐ · #5 ☐ · #6 ✅ · #7 ☐.
+
+**Today's engine work lands directly on all three remaining P1 diamonds** — they are the same
+`gas_box` scenario, so #3/#4/#5 inherit `T_from`, `inject_cue`, `reaction_at_cue`, `piston_ramp_ms`,
+the visible dimer rim and the 37-check conservation gate at zero cost. This is the compounding the
+particle-box thesis predicted.
+
+**One honest snag in #3, for the architect to resolve at design time.** Rate of reaction's four causes
+are concentration · temperature · **surface area** · catalyst. Three map onto `gas_box` cleanly and are
+now *fully* built (concentration = `inject_cue`/N, temperature = `T_from`, catalyst = `reaction_at_cue`,
+landed today). **Surface area does not** — it is a solid-liquid phenomenon and this scenario is a gas of
+hard discs with no solid phase. Options: cover three causes on the box and teach surface area by
+analogy; split it to a later concept; or scope a new primitive. Decide at skeleton stage, not mid-build.
+
+**#4 `collision_theory_activation_energy` is the cheapest strong build remaining and arguably belongs
+first.** Its instruments already exist and are verified: `activation_energy_kT` (a real Arrhenius
+barrier pinned to `ea_ref_T`) and `show_collision_counter`, which prints collisions/s **and the
+fraction clearing Eₐ** — precisely the "not every collision reacts" beat. It is also the *mechanism*
+that explains #3, and `le_chateliers_principle` already lists it as an unbuilt prerequisite. Building
+it first would close that gap and give #3 its foundation.
+
+**#5 `maxwell_boltzmann_distribution` is equally well-instrumented** — `show_speed_histogram` (live
+distribution + 2D theory curve + v_mp/v_avg/v_rms) and `hist_ref_T`, which pins the speed axis so the
+curve visibly MOVES against it. **Read the GAS BOX banner's PHYSICS HONESTY note before authoring it:**
+this is a true 2D gas, so its distribution is the 2D Rayleigh form, NOT the 3D form printed in NCERT.
+Every qualitative beat is identical, but a state that prints the 3D formula prints a law this box does
+not obey.
+
+**Recommendation:** take **#4 → #3 → #5** rather than strict list order — #4 is cheaper, fully
+instrumented, teaches the mechanism #3 needs, and closes a prerequisite `le_chateliers_principle`
+already declares. Founder's call; the list order is a default, not a commitment.
 
 ## 🔬 SESSION — the `orbital_shapes` 3D surface + `atomic_orbitals_s_p_d` (P4 #16), and six defects behind a green run (2026-07-28/29, branch `feat/chemistry-orbitals` → master)
 
