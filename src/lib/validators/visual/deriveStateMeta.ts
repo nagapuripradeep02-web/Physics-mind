@@ -1895,6 +1895,17 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             if (typeof osMo.reveal_at_ms === 'number') {
                 candidates.push(asNum(osMo.reveal_at_ms, 0) + asNum(osMo.reveal_duration_ms, 1200) + 600);
             }
+            // approach (S2/S5): the two atoms travel together, hold for a readable
+            // beat, then cross-fade to the fused MO surface. The settled picture is
+            // only reached at the END of that cross-fade — pinning any earlier
+            // photographs a half-faded frame showing BOTH the separate atoms and
+            // the finished bond, which is the one composition this beat exists to
+            // avoid ever presenting as true.
+            const osAppr = asObj(osMo.approach);
+            if (osAppr && typeof osAppr.at_ms === 'number') {
+                candidates.push(asNum(osAppr.at_ms, 0) + asNum(osAppr.duration_ms, 2600)
+                    + asNum(osAppr.settle_ms, 600) + asNum(osAppr.fade_ms, 900) + 600);
+            }
         }
         for (const key of ['populate_steps', 'gallery_steps']) {
             const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];

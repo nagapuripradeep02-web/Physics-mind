@@ -42959,6 +42959,8 @@ export const FIELD_3D_RENDERER_CODE = `
     //         twist_ramp: {from,to,at_ms,duration_ms},// the S6 payoff
     //         pi_systems: 1|2,                        // 2 = the triple bond
     //         reveal_at_ms, reveal_duration_ms,
+    //         approach: {from_pm, at_ms, duration_ms, // S2/S5 end-on vs sideways
+    //                    settle_ms, fade_ms},         //   cause, beat, then effect
     //         surface_opacity, atomic_opacity, overlap_opacity
     //       }
     //     }
@@ -42967,7 +42969,8 @@ export const FIELD_3D_RENDERER_CODE = `
     //   the MO build (two grid samples, five root tables, an octant quadrature,
     //   a seven-rung twist ladder) runs only when a config asks for it, so an
     //   atomic-orbital concept's build time is unchanged.
-    //   MO hud_lines: 'overlap' | 'twist' | 'bond' | 'z_eff' | 'parts'.
+    //   MO hud_lines: 'overlap' | 'twist' | 'bond' | 'z_eff' | 'parts' |
+    //   'separation' | 'contact'.
     //   REQUIRED: config.field_lines.opacity must exist (an object, even {}) —
     //   createTubeLine reads it unconditionally (the fleet's blank-scene trap).
     //   Glow-key enum is CLOSED to exactly: orbit | dots | surface | node_plane |
@@ -43829,8 +43832,18 @@ export const FIELD_3D_RENDERER_CODE = `
         "sigma_sp2": { kind: "mo", overlap: "sigma", n: 2, main: "\\u03C3", sub: "",
                        color: "#AB47BC", lobePos: "#42A5F5", lobeNeg: "#FFCA28",
                        f: 1 / 3, bond: "double", zEff: OS_MO_ZEFF_C, seed: 0x51EDA },
+        // The pi MO surface is VIOLET, not the cyan it started as. Cyan and the
+        // blue + lobe are the same hue family, so the approach beat's handover
+        // read as one blue shape becoming another blue shape — a morph, when the
+        // whole claim is that the atomic picture is REPLACED by a molecular one.
+        // Caught by diffing dense frames of the cross-fade: the blue pixel count
+        // went UP (6940 -> 10489) across a hand-over that should have swapped
+        // identities. sigma was already correct because purple is nothing else on
+        // screen. A state never shows both MOs at once (mo.orbital is singular),
+        // so the two fused surfaces only ever have to differ from the ATOMIC
+        // pair and the nuclei, never from each other.
         "pi_2p":     { kind: "mo", overlap: "pi", n: 2, main: "\\u03C0", sub: "",
-                       color: "#26C6DA", lobePos: "#42A5F5", lobeNeg: "#FFCA28",
+                       color: "#7E57C2", lobePos: "#42A5F5", lobeNeg: "#FFCA28",
                        bond: "double", zEff: OS_MO_ZEFF_C, seed: 0x51EDB }
     };
     for (var mk in OS_MOS) OS_ORBITALS[mk] = OS_MOS[mk];
@@ -43854,6 +43867,14 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function osMoCenters(mo) {
         var R = osMoBondRho(mo);
+        return [[0, 0, -R / 2], [0, 0, R / 2]];
+    }
+    // The same pair at an ARBITRARY separation (the approach beat, S2/S5). Kept
+    // beside osMoCenters so the two can never drift apart: everything the
+    // approach moves — both nuclei AND both atomic lobe sets — reads its origin
+    // from here, which is what stops a lobe sliding away from its own nucleus.
+    function osMoCentersAtPm(mo, sepPm) {
+        var R = sepPm / osMoPmPerRho(mo);
         return [[0, 0, -R / 2], [0, 0, R / 2]];
     }
     // SIGNED one-centre amplitude — the capability the shipped path never needed.
@@ -44111,6 +44132,112 @@ export const FIELD_3D_RENDERER_CODE = `
         return mo.S0 * Math.cos((twistDeg || 0) * Math.PI / 180);
     }
 
+    // ── the approach beat (S2 / S5) ─────────────────────────────────────────
+    // NCERT section 4.7 defines a sigma bond as formed by END-ON overlap and a pi
+    // bond by SIDEWAYS overlap. Those are motions, not labels, so the two atoms
+    // are shown ARRIVING: end-states alone hand a student the words without the
+    // observed fact they name.
+    //
+    // WHAT MAKES S2 AND S5 DIFFERENT MOTIONS RATHER THAN ONE RAMP TWICE. Both
+    // pairs travel along the internuclear axis — that is physics, atoms approach
+    // along the line joining them, and inventing a second direction for pi would
+    // be a lie. What differs is measured, not authored:
+    //   (i)  the travel direction against the ORBITAL axis: a sigma hybrid points
+    //        ALONG it (dot = 1, end-on), a pi 2p lies BROADSIDE to it (dot = 0,
+    //        sideways). That IS the textbook distinction.
+    //   (ii) the element count and staging: sigma closes two front lobes tip to
+    //        tip; pi closes four sign-coloured halves flank to flank.
+    //   (iii) the CONTACT SEPARATION below — the separation at which each pair's
+    //        own drawn surfaces first touch. It is a completely different EVENT
+    //        in the two states, and it falls out of the geometry rather than
+    //        being timed by hand.
+    //
+    // osMoAtomReachRho: how far ONE atom's own contribution reaches ALONG THE
+    // BOND AXIS, at the very contour the picture is drawn at. Ray-cast from the
+    // nucleus and take the largest projection on +z.
+    //   sigma: the lobe points that way, so the reach is its front tip and the
+    //          two surfaces MEET partway through the approach, then interpenetrate
+    //          down to the bond length. That is what "end-on overlap is large"
+    //          means, drawn.
+    //   pi:    the lobe is broadside, so its reach along that axis is only its
+    //          narrow flank and the two NEVER touch at the 50% contour. The
+    //          atomic picture stays visibly separate — which is exactly the
+    //          section 5b finding this concept exists to teach, and precisely why
+    //          the beat must then hand over to the MO surface, where the
+    //          amplitudes have added into two joined lumps.
+    //   TWO TRAPS, both hit on the first build and both silent:
+    //   (a) the contour to measure against is the ATOMIC lobe's own 50% level —
+    //       the one the drawn mesh uses — NOT mo.level, which belongs to the
+    //       TOTAL density (psi_A + psi_B)^2 and is several times larger in the
+    //       overlap region. Measured against the wrong contour the sigma reach
+    //       came out 5.5 pm instead of 105 pm and the beat quietly claimed the
+    //       atoms never touch.
+    //   (b) it is the OUTERMOST root, not a first exit. A 2p amplitude is ZERO at
+    //       its own nucleus (R21(0) = 0), so a ray marched outward from the
+    //       nucleus is below the contour on its very first step and a first-exit
+    //       rule returns 0 for every direction. First exit is the right rule for
+    //       a MULTI-component field read from inside a component (osMoRootTable);
+    //       here it is one orbital seen from its own centre, which is the case
+    //       osRhoOuter was always written for.
+    function osMoAtomLevel(mo) {
+        return (mo.overlap === "sigma") ? OS_HYBRIDS["sp2"].levels["50"]
+                                        : OS_ORBITALS["2p_z"].levels["50"];
+    }
+    function osMoAtomReachRho(mo) {
+        var cs = osMoCenters(mo), ax = osMoAxes(mo, 0);
+        var c = cs[0], a = ax.a;                    // atom A, its partner at +z
+        var lev = osMoAtomLevel(mo), NTH = 180, NSTEP = 600, rMax = OS_MO_GRID_EXT;
+        var best = 0, i, s;
+        for (i = 0; i <= NTH; i++) {
+            // sweep the half-plane containing BOTH +z and the lobe axis — where
+            // the largest +z projection lives for either geometry. Beyond 90 deg
+            // the projection is negative (away from the partner) and cannot win.
+            var th = 0.5 * Math.PI * i / NTH, ct = Math.cos(th), st = Math.sin(th);
+            var ux = a[0] * st, uy = a[1] * st, uz = ct;
+            var hit = 0;
+            for (s = NSTEP; s >= 1; s--) {
+                var t = s * rMax / NSTEP;
+                var v = osMoAtomPsi(mo, [c[0] + ux * t, c[1] + uy * t, c[2] + uz * t], c, a);
+                if (v * v >= lev) { hit = t; break; }
+            }
+            var proj = hit * ct;                    // extent toward the partner
+            if (proj > best) best = proj;
+        }
+        return best;
+    }
+    // The separation at which the two drawn atomic surfaces first touch. Sigma:
+    // greater than the bond length (they meet, then interpenetrate). Pi: less
+    // than it (they never meet). ONE number, opposite verdicts.
+    function osMoContactPm(mo) { return 2 * osMoAtomReachRho(mo) * osMoPmPerRho(mo); }
+
+    // The approach as a PURE function of state-local t (Rule 26/36) — factored
+    // out of the frame so check:sigma-pi can assert its shape directly instead of
+    // inferring it from pixels. Phases, in Rule-32a order:
+    //   [at, at+dur]                 the CAUSE: separation from_pm -> the real
+    //                                bond length, both nuclei carrying their lobes
+    //   [at+dur, +settle]            a readable beat where nothing changes
+    //   [+settle, +fade]             the EFFECT: a complementary cross-fade to the
+    //                                fused MO surface (atomicF + fusedF == 1, so
+    //                                the two representations are never both at
+    //                                full strength — the worst outcome would be a
+    //                                frame showing separate atoms AND a finished
+    //                                bond as if both were true)
+    function osMoApproachAt(mo, ms, ap, atMs) {
+        var at = (atMs != null) ? atMs : ((ap.at_ms != null) ? ap.at_ms : 0);
+        var dur = Math.max(1, (ap.duration_ms != null) ? ap.duration_ms : 2600);
+        var settle = (ap.settle_ms != null) ? ap.settle_ms : 600;
+        var fade = Math.max(1, (ap.fade_ms != null) ? ap.fade_ms : 900);
+        var fromPm = (ap.from_pm != null) ? ap.from_pm : mo.bondPmLive * 2.4;
+        var fused = osRamp(ms, at + dur + settle, fade, 0, 1);
+        return {
+            sepPm: osRamp(ms, at, dur, fromPm, mo.bondPmLive),
+            approachF: osClamp((ms - at) / dur, 0, 1),
+            fusedF: fused,
+            atomicF: 1 - fused,
+            contactPm: mo.contactPm
+        };
+    }
+
     // ── the twist ladder ────────────────────────────────────────────────────
     // What actually vanishes when a double bond is twisted is the CONSTRUCTIVE
     // region, and it vanishes by CANCELLATION, not separation (skeleton 5f).
@@ -44253,6 +44380,12 @@ export const FIELD_3D_RENDERER_CODE = `
         mo.E = -13.6 / (mo.n * mo.n);
         mo.nodesRadial = 0; mo.nodesAngular = 0;
         mo.S0 = osMoOverlapS0(mo);
+        // The approach beat's own measured constant (S2/S5). Derived from the
+        // contour this orbital is drawn at, so "end-on" and "sideways" are two
+        // different EVENTS on screen and not two captions on one ramp.
+        mo.reachRho = osMoAtomReachRho(mo);
+        mo.contactPm = osMoContactPm(mo);
+        mo.contactsBeforeBond = mo.contactPm > mo.bondPmLive;
         osBuildMoTwistLadder(mo, (mo.overlap === "pi") ? OS_MO_TWIST_LADDER_DEG : [0]);
     }
     // Two-run label sprite: a main run plus a SMALLER baseline-dropped run, so
@@ -45428,23 +45561,39 @@ export const FIELD_3D_RENDERER_CODE = `
             moTwist = osClamp(moTwist, 0, 90);
             moS = osMoOverlap(moOrb, moTwist);
         }
+        // THE APPROACH BEAT (S2/S5). Absent ⇒ sepPm is the real bond length and
+        // both fractions are 1, i.e. exactly the behaviour before it existed.
+        var moSepPm = moOrb ? moOrb.bondPmLive : 0;
+        var moAtomicF = 1, moFusedF = 1, moApproachF = 1;
+        if (moOrb && moSt.approach) {
+            var apr = osMoApproachAt(moOrb, ms, moSt.approach,
+                cueTriggerMs("mo_approach", (moSt.approach.at_ms != null) ? moSt.approach.at_ms : 0));
+            moSepPm = apr.sepPm; moAtomicF = apr.atomicF; moFusedF = apr.fusedF; moApproachF = apr.approachF;
+        }
+        // EVERY moving part reads its origin from this one pair, so a lobe can
+        // never slide away from its own nucleus.
+        var moCent = moOrb ? osMoCentersAtPm(moOrb, moSepPm) : null;
         window.PM_osMoTwist = moOrb ? moTwist : null;
         window.PM_osMoOverlap = moS;
         window.PM_osMoId = moOrb ? moSt.orbital : null;
+        window.PM_osMoSepPm = moOrb ? moSepPm : null;
+        window.PM_osMoApproachF = moOrb ? moApproachF : null;
+        window.PM_osMoFusedF = moOrb ? moFusedF : null;
+        window.PM_osMoContactPm = moOrb ? moOrb.contactPm : null;
 
         // the two nuclei. os_nucleus is re-parked at the origin whenever no MO is
         // on stage, so an atomic-orbital concept is untouched by construction.
         var nucA = osFindById("os_nucleus"), nucB2 = osFindById("os_nucleus_b");
         if (nucA) {
             if (moOrb) {
-                var pA = osSpun(moOrb.centers[0]);
+                var pA = osSpun(moCent[0]);
                 nucA.position.set(osMoUnits(moOrb, pA[0]), osMoUnits(moOrb, pA[1]), osMoUnits(moOrb, pA[2]));
             } else nucA.position.set(0, 0, 0);
         }
         if (nucB2) {
             nucB2.visible = !!moOrb && (moSt.show_nuclei !== false);
             if (nucB2.visible) {
-                var pB = osSpun(moOrb.centers[1]);
+                var pB = osSpun(moCent[1]);
                 nucB2.position.set(osMoUnits(moOrb, pB[0]), osMoUnits(moOrb, pB[1]), osMoUnits(moOrb, pB[2]));
             }
         }
@@ -45455,8 +45604,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // region, and the root-table pipeline provably cannot represent it. A
         // state that twists shows the sign-coloured atomic lobes instead.
         var moSurfSlot = 0;
-        var moAlpha = (typeof moSt === "object" && moSt && typeof moSt.surface_opacity === "number")
-            ? moSt.surface_opacity : 0.22;
+        var moAlpha = ((typeof moSt === "object" && moSt && typeof moSt.surface_opacity === "number")
+            ? moSt.surface_opacity : 0.22) * moFusedF;
         if (moOrb && moSt.show_total && moGeo.surf && moGeo.surf[moSt.orbital]) {
             // reveal_at_ms fades the finished MO surface IN. It is deliberately
             // NOT a fake assembly: "the two lobes translate together and fuse" is
@@ -45512,11 +45661,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // (skeleton 5f) — never a fused surface being pulled apart, because the
         // lumps provably never come apart.
         var moLobeSlot = 0;
-        if (moOrb && moSt.show_atomic) {
+        // an approach IMPLIES the atomic lobes: they are the thing that travels.
+        if (moOrb && (moSt.show_atomic || moSt.approach)) {
             var mAx = osMoAxes(moOrb, moTwist);
             var mSc = 1 / (moOrb.zEff || 1);
-            var moLobeAlpha = (typeof moSt.atomic_opacity === "number") ? moSt.atomic_opacity : 0.26;
-            var atomList = [{ c: moOrb.centers[0], ax: mAx.a }, { c: moOrb.centers[1], ax: mAx.b }];
+            var moLobeAlpha = ((typeof moSt.atomic_opacity === "number") ? moSt.atomic_opacity : 0.26) * moAtomicF;
+            var atomList = [{ c: moCent[0], ax: mAx.a }, { c: moCent[1], ax: mAx.b }];
             var ai, si;
             for (ai = 0; ai < atomList.length; ai++) {
                 // sigma: the hybrid front lobe ONLY (both point at each other and
@@ -45560,7 +45710,11 @@ export const FIELD_3D_RENDERER_CODE = `
         if (moOrb && moSt.show_overlap && moOrb.twistLadder && moGeo.ovl) {
             var lad = osMoLadderAt(moOrb, moTwist);
             var showDest = (moSt.show_destructive !== false);
-            var ovAlpha = (typeof moSt.overlap_opacity === "number") ? moSt.overlap_opacity : 0.30;
+            // the overlap tables are solved AT the bond separation, so they are
+            // only true once the approach has finished handing over — gating them
+            // on moFusedF is the same statement as "no overlap surface may be
+            // drawn at a separation it was not measured at".
+            var ovAlpha = ((typeof moSt.overlap_opacity === "number") ? moSt.overlap_opacity : 0.30) * moFusedF;
             var kk2, sl2;
             for (kk2 = 0; kk2 < 2; kk2++) {
                 var key2 = (kk2 === 0) ? "pos" : "neg";
@@ -45888,6 +46042,16 @@ export const FIELD_3D_RENDERER_CODE = `
                     lines.push("twist: " + ((moOrb == null) ? "\\u2014" : (Math.round(moTwist) + "\\u00B0")));
                 } else if (want[i] === "bond") {
                     lines.push("bond: " + ((moOrb == null) ? "\\u2014" : (moOrb.bondPmLive.toFixed(1) + " pm")));
+                } else if (want[i] === "separation") {
+                    // the live approach readout — the CAUSE, given a number, so a
+                    // student watches a distance close rather than a shape drift.
+                    lines.push("separation: " + ((moOrb == null) ? "\\u2014" : (Math.round(moSepPm) + " pm")));
+                } else if (want[i] === "contact") {
+                    // MEASURED from the drawn contour: sigma\\u0027s surfaces meet
+                    // BEFORE the bond length, pi\\u0027s never meet at all.
+                    lines.push("surfaces touch at: " + ((moOrb == null) ? "\\u2014"
+                        : (moOrb.contactsBeforeBond ? (Math.round(moOrb.contactPm) + " pm")
+                            : "\\u2014 (flanks only)")));
                 } else if (want[i] === "z_eff") {
                     // Skeleton limit 3: Slater 3.25 is an APPROXIMATION (SCF is
                     // nearer 3.14), so the HUD declares its provenance and prints

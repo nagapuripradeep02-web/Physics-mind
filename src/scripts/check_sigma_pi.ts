@@ -61,15 +61,15 @@ const VARS = [
   "OS_INV_S4PI", "OS_SQRT3_4PI",
   "OS_MO_ZEFF_C", "OS_MO_BONDS_PM", "OS_MO_ENC", "OS_MO_GRID_N", "OS_MO_LAD_N",
   "OS_MO_ND", "OS_MO_RAY_STEP", "OS_MO_TWIST_LADDER_DEG", "OS_MO_MAX_PARTS",
-  "OS_MO_MAX_LOBES", "OS_MO_MAX_OVL", "OS_MO_S0_N", "OS_MOS"
+  "OS_MO_MAX_LOBES", "OS_MO_MAX_OVL", "OS_MO_S0_N", "OS_MOS", "OS_ORBITALS", "OS_HYBRIDS", "OS_R3"
 ];
 const FNS = [
-  "osClamp", "osR", "osHybPsi",
+  "osClamp", "osSmooth01", "osRamp", "osR", "osHybPsi",
   "osMoBondPm", "osMoPmPerRho", "osMoBondRho", "osMoUnits", "osMoAxes", "osMoCenters",
-  "osMoAtomPsi", "osMoTotalField", "osMoProductField", "osMoSampleGrid", "osMoLevel",
-  "osMoComponents", "osMoRootTable", "osMoTableVolume", "osMoTableMax",
-  "osMoOverlapS0", "osMoOverlap", "osMoSignedField", "osBuildMoTwistLadder",
-  "osMoLadderAt", "osBuildMO"
+  "osMoCentersAtPm", "osMoAtomPsi", "osMoTotalField", "osMoProductField",
+  "osMoSampleGrid", "osMoLevel", "osMoComponents", "osMoRootTable", "osMoTableVolume",
+  "osMoTableMax", "osMoOverlapS0", "osMoOverlap", "osMoAtomReachRho", "osMoContactPm",
+  "osMoAtomLevel", "osMoApproachAt", "osMoSignedField", "osBuildMoTwistLadder", "osMoLadderAt", "osBuildMO"
 ];
 const EXPORTS = [
   ...VARS.map((v) => (v === "OS_MO_GRID_N" ? "OS_MO_GRID_N, OS_MO_GRID_EXT"
@@ -359,6 +359,102 @@ console.log("\n=== 5. THE TWIST LADDER — cancellation, never separation (5f) =
       console.log(`  PASS  sigma reinforces ${sigPos[0].voxVol.toFixed(1)} vs ${sr.negVol.toFixed(1)} cancelling (${(100 * sr.negVol / sigPos[0].voxVol).toFixed(1)}%)`);
     }
   }
+}
+
+console.log("\n=== 5b. THE APPROACH BEAT (S2/S5 — NCERT 4.7 end-on vs sideways) ===");
+// The founder's criterion for building this at all was that it is the syllabus's
+// OWN language: a sigma bond is DEFINED by head-on overlap and a pi bond by
+// sideways overlap. So the two motions have to be different events, not one ramp
+// under two captions — and that is what is asserted here, from geometry the
+// engine measured rather than from the parameter names.
+{
+  const AP = { from_pm: 340, at_ms: 400, duration_ms: 2600, settle_ms: 600, fade_ms: 900 };
+  const END = AP.at_ms + AP.duration_ms;
+  const DONE = END + AP.settle_ms + AP.fade_ms;
+  for (const [id, mo] of [["sigma_sp2", moSig], ["pi_2p", moPi]] as [string, any][]) {
+    console.log(`  --- ${id} ---`);
+    // (1) it starts where it says and TERMINATES at the real bond separation.
+    check(`${id} starts at from_pm`, E.osMoApproachAt(mo, AP.at_ms, AP).sepPm, AP.from_pm, 1e-9, " pm");
+    check(`${id} lands on the real bond length`, E.osMoApproachAt(mo, END, AP).sepPm, mo.bondPmLive, 1e-9, " pm");
+    check(`${id} stays there afterwards`, E.osMoApproachAt(mo, END + 5000, AP).sepPm, mo.bondPmLive, 1e-9, " pm");
+    // (2) MONOTONE. A separation that wobbles reads as two atoms hunting for each
+    // other, and would break the "cause moves first" reading outright.
+    let mono = true, prev = 1e9, minStep = 1e9;
+    for (let t = 0; t <= DONE + 800; t += 20) {
+      const s = E.osMoApproachAt(mo, t, AP).sepPm;
+      if (s > prev + 1e-12) mono = false;
+      if (t > AP.at_ms + 200 && t < END - 200) minStep = Math.min(minStep, prev - s);
+      prev = s;
+    }
+    if (mono) console.log("  PASS  separation is monotone non-increasing over the whole state");
+    else { failures++; console.log("  FAIL  *** the approach is not monotone ***"); }
+    if (minStep > 0) console.log("  PASS  and strictly decreasing while the approach runs");
+    else { failures++; console.log("  FAIL  *** the approach stalls mid-travel ***"); }
+    // (3) RULE 32a — the effect never starts before the cause finishes.
+    let earliestFused = Infinity, worstBoth = 0;
+    for (let t = 0; t <= DONE + 800; t += 10) {
+      const a = E.osMoApproachAt(mo, t, AP);
+      if (a.fusedF > 1e-9 && t < earliestFused) earliestFused = t;
+      worstBoth = Math.max(worstBoth, Math.min(a.atomicF, a.fusedF));
+      // complementary by construction: if this ever broke, a frame could show
+      // separate atoms AND a finished bond both at full strength.
+      if (Math.abs(a.atomicF + a.fusedF - 1) > 1e-12) {
+        failures++; console.log(`  FAIL  *** the cross-fade is not complementary at t=${t} ***`); break;
+      }
+    }
+    check(`${id} the fused surface starts only after the approach ends`,
+      earliestFused - END, AP.settle_ms, 12, " ms");
+    if (worstBoth <= 0.5 + 1e-9) console.log(`  PASS  the two representations are never both strong (max min = ${worstBoth.toFixed(3)})`);
+    else { failures++; console.log("  FAIL  *** both representations reach full opacity together ***"); }
+    // and the atoms are FULLY handed over by the time the beat is done.
+    check(`${id} atomic picture is gone at the end`, E.osMoApproachAt(mo, DONE, AP).atomicF, 0, 1e-9);
+  }
+  // (4) THE DIFFERENCE. Same ramp, provably different geometry and different
+  // events — measured off the contour the picture is drawn at.
+  console.log("  --- end-on vs sideways, measured ---");
+  const dot = (mo: any) => {
+    const ax = E.osMoAxes(mo, 0).a;          // atom A's orbital axis
+    return Math.abs(ax[2]);                  // ...against the travel direction, +z
+  };
+  check("sigma travels ALONG its orbital axis (end-on)", dot(moSig), 1, 1e-12);
+  check("pi travels PERPENDICULAR to its orbital axis (sideways)", dot(moPi), 0, 1e-12);
+  console.log(`    sigma reach ${(moSig.reachRho * E.osMoPmPerRho(moSig)).toFixed(1)} pm  -> surfaces touch at ${moSig.contactPm.toFixed(1)} pm  (bond ${moSig.bondPmLive} pm)`);
+  console.log(`    pi    reach ${(moPi.reachRho * E.osMoPmPerRho(moPi)).toFixed(1)} pm  -> surfaces touch at ${moPi.contactPm.toFixed(1)} pm  (bond ${moPi.bondPmLive} pm)`);
+  // The load-bearing asymmetry: sigma's drawn surfaces MEET partway through the
+  // approach and then interpenetrate; pi's never meet at all, which is exactly
+  // skeleton 5b (a translated-atomic pi is four lobes with a visible gap) and
+  // exactly why the beat must hand over to the MO surface.
+  if (moSig.contactsBeforeBond) console.log("  PASS  sigma: the two surfaces MEET during the approach (end-on overlap is large)");
+  else { failures++; console.log("  FAIL  *** sigma's surfaces never meet — 'end-on overlap' is not being shown ***"); }
+  if (!moPi.contactsBeforeBond) console.log("  PASS  pi: the two surfaces NEVER meet (sideways overlap is a flank, not a tip)");
+  else { failures++; console.log("  FAIL  *** pi's surfaces meet head-on — the sideways geometry is wrong ***"); }
+  // THE DISCRIMINATOR, and it is not a tuned threshold: the two contact
+  // separations fall on OPPOSITE SIDES of the bond length. Expressed as the
+  // fraction of the travel spent with the surfaces already touching, sigma
+  // spends a large part of its approach fused and pi spends none of it — which
+  // is "end-on overlap is large, sideways overlap is small" as a number.
+  const contactFrac = (mo: any) => {
+    const from = 340;  // the same authored start as the ramp above
+    return Math.max(0, Math.min(1, (mo.contactPm - mo.bondPmLive) / (from - mo.bondPmLive)));
+  };
+  const fSig = contactFrac(moSig), fPi = contactFrac(moPi);
+  console.log(`    travel spent in contact — sigma ${(100 * fSig).toFixed(1)}%   pi ${(100 * fPi).toFixed(1)}%`);
+  if (moSig.contactPm > moSig.bondPmLive * 1.15 && moPi.contactPm < moPi.bondPmLive * 0.85) {
+    console.log("  PASS  the two contact events straddle the bond length with margin — distinguishable motions, not one ramp twice");
+  } else { failures++; console.log("  FAIL  *** S2 and S5 contact too near the bond length to read apart ***"); }
+  check("sigma spends a quarter or more of its travel already touching", fSig > 0.25 ? 1 : 0, 1, 0);
+  check("pi never touches at any point of its travel", fPi, 0, 0);
+  // (5) the moving parts stay together: both nuclei are at +/- sep/2 at EVERY
+  // instant, which is what stops a lobe sliding away from its own nucleus.
+  let paired = true;
+  for (let t = 0; t <= DONE; t += 50) {
+    const s = E.osMoApproachAt(moPi, t, AP).sepPm;
+    const c = E.osMoCentersAtPm(moPi, s);
+    const gotPm = (c[1][2] - c[0][2]) * E.osMoPmPerRho(moPi);
+    if (Math.abs(gotPm - s) > 1e-9 || Math.abs(c[0][2] + c[1][2]) > 1e-12) paired = false;
+  }
+  if (paired) console.log("  PASS  both centres are symmetric about the origin and exactly sep apart, always");
+  else { failures++; console.log("  FAIL  *** the two centres drift out of register ***"); }
 }
 
 console.log("\n=== 6. DETERMINISM (Rule 36 — SET_TIME_FREEZE must be byte-identical) ===");
