@@ -34,17 +34,18 @@ const html = assembleParticleFieldHtml({
     species: [
       { id: 'A', mass: 1, radius: 5, color: '#60A5FA', label: 'A', count: 90 },
       { id: 'B', mass: 1, radius: 5, color: '#F472B6', label: 'B', count: 90 },
+      { id: 'AB', mass: 2, radius: 7.0710678, color: '#C084FC', label: 'AB', count: 0 },
     ],
+    reaction: { enabled: true, reactants: ['A', 'B'], product: 'AB', activation_fwd_kT: 3, bond_energy_kT: 2.1, reverse_attempt_per_s: 8 },
   },
   states: {
     STATE_1: {
-      label: 'STATE_1', caption: 'One straight line',
-      T: 800, T_from: 250, T_ramp_ms: 40000, adiabatic: false,
+      label: 'STATE_1', caption: 'Why a barrier exists',
+      T: 300, adiabatic: false,
       species_counts: { A: 90, B: 90 },
-      show_arrhenius_plot: true, arrhenius_window_ms: 4000,
-      arrhenius_T_min: 250, arrhenius_T_max: 800,
+      show_reaction_profile: true,
       show_collision_counter: true, show_gas_thermometer: true,
-      formula_overlay: 'ln f = c − Eₐ/kT',
+      formula_overlay: 'A + B → AB',
     },
   },
 } as never);
@@ -57,7 +58,7 @@ writeFileSync('/tmp/arrh_probe/sim.html', html);
   await p.waitForTimeout(1200);
   await p.evaluate(() => window.postMessage({ type: 'SET_STATE', state: 'STATE_1' }, '*'));
   await p.waitForTimeout(400);
-  for (const t of [4000, 12000, 22000, 34000]) {
+  for (const t of [4000, 12000]) {
     await p.evaluate((ms) => window.postMessage({ type: 'SET_TIME_FREEZE', at_ms: ms }, '*'), t);
     await p.waitForTimeout(2500);
     await p.screenshot({ path: `/tmp/arrh_probe/t${String(t).padStart(5, '0')}.png` });

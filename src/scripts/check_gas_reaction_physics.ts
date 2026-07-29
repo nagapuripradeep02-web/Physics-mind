@@ -876,6 +876,50 @@ check('piston_ramp_ms still reaches its target', Math.abs(pistonAt8s - 0.55) < 0
     `unauthored window still spans ${wDefault.spread.toFixed(1)}pp — identical to before`);
 }
 
+// ── 17e. the energy hill must be DERIVED, not drawn ─────────────────────────
+// A reaction-profile diagram is the easiest thing in this renderer to fake: any
+// hump with a label looks right. These checks pin it to the same numbers the
+// collision test and the reaction layer already use, so it cannot drift from the
+// physics it illustrates — the failure mode being a lesson where the catalyst
+// narration says the barrier fell while the picture holds still.
+{
+  const g = { temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 };
+  const st = { T: 300, adiabatic: false, activation_energy_kT: 3, species_counts: { A: 60, B: 60, AB: 0 }, show_reaction_profile: true };
+  boot(makeConfig(g, st));
+  const P = R.gasProfileLevels(R.config.states.STATE_1);
+  check('the hill height IS the reaction\'s forward barrier', Math.abs(P.ea - 1.2) < 1e-9,
+    `hill ${P.ea.toFixed(4)} kT vs the reaction's activation_fwd_kT 1.2 (the counter's own threshold here is 3 — a picture of the REACTION must draw the reaction's barrier)`);
+  check('the product level IS the reaction\'s bond energy', Math.abs(P.prod - -2.0) < 1e-9,
+    `products at ${P.prod.toFixed(4)} kT vs bond_energy_kT 2.0 (exothermic = below)`);
+  // THE STRONGEST ONE: the reverse barrier a viewer can MEASURE off the picture
+  // (peak minus product level) must equal the Ea_rev the engine derives.
+  const kTref = 0.105 * 0.105 * 300;
+  const drawnRev = P.peak - P.prod;
+  const engineRev = Number(R.gasRxEaRev(R.config.states.STATE_1)) / kTref;
+  check('the picture reproduces the DERIVED reverse barrier',
+    Math.abs(drawnRev - engineRev) < 1e-6,
+    `peak - products = ${drawnRev.toFixed(4)} kT, engine Ea_rev = ${engineRev.toFixed(4)} kT`);
+
+  // the catalyst beat must move the hill
+  // Mirror the real concept: the counter's threshold and the reaction's forward
+  // barrier are authored EQUAL (3 kT), so "catalyst" genuinely means lower.
+  const cued = { ...st, reaction: { activation_fwd_kT: 3 }, cues: [{ id: 'cat', at_ms: 1000 }], ea_at_cue: { cue: 'cat', activation_energy_kT: 1.5 } };
+  boot(makeConfig(g, cued));
+  const before = R.gasProfileLevels(R.config.states.STATE_1).ea;
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  const after = R.gasProfileLevels(R.config.states.STATE_1).ea;
+  check('a catalyst cue visibly lowers the hill', Math.abs(before - 3) < 1e-9 && Math.abs(after - 1.5) < 1e-9,
+    `hill ${before.toFixed(2)} kT before the cue -> ${after.toFixed(2)} kT after`);
+
+  // and a teacher's Ea drag must move it too
+  const withSlider = makeConfig(g, st) as Ctx;
+  withSlider.slider_controls.Ea = { label: 'Activation energy', min: 1, max: 5, step: 0.1, default: 3 };
+  boot(withSlider);
+  R.userTouched.Ea = true; R.userParams.Ea = 4.2;
+  check('the Ea slider moves the hill', Math.abs(R.gasProfileLevels(R.config.states.STATE_1).ea - 4.2) < 1e-9,
+    `slider 4.2 -> hill ${R.gasProfileLevels(R.config.states.STATE_1).ea.toFixed(2)} kT`);
+}
+
 // ── 18. hist_speed_marks opt-out must not disturb the histogram itself ──────
 // Rule 25: v_mp/v_avg/v_rms are P1 #5's vocabulary and must be suppressible on a
 // state that shows the histogram for another reason. The suppression is
