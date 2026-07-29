@@ -321,9 +321,17 @@ the picture teaches. **That fourth gate is a person asking "what is missing?".**
 
 ### Open for founder
 
-1. **Three `engine_bug_queue` rows unfiled** — the stale-sim-cache gate blindness ⭐, the
-   viewport-dependent rate/pressure readouts, the cue/narration desync class. **Blocked:**
-   `alex:chemistry_author` is rejected by the queue's own CHECK constraint.
+1. ~~Three `engine_bug_queue` rows unfiled~~ — **BACKFILLED 2026-07-30, 13 rows + 1 extension**
+   (`_seed_engine_bug_queue_le_chatelier_backfill.ts`). This concept had exactly **ONE** row against
+   it before the backfill, so the whole session's defect classes sat in prose where no Gate 8
+   pre-flight would ever read them; it now has **15**. **The recorded blocker was FALSE** —
+   `alex:chemistry_author` is not rejected by the CHECK constraint (three rows already carried it),
+   so nothing was ever actually blocked. Left OPEN deliberately: the stale-sim-cache gate blindness ⭐
+   (still unenforced — the durable fix is to have `loadCachedSim` re-assemble from source and FAIL on
+   a mismatch) and the viewport-dependent rate/pressure readouts (engine limitation, worked around by
+   authoring). The teaching-pass meta-finding is now a standing `directive` row,
+   `directive_no_gate_asks_whether_a_teacher_could_use_it`, carrying the three questions to answer in
+   writing before any concept is signed off.
 2. **Rates and pressure are still viewport-dependent** — `gasRxAreaNorm` normalises the equilibrium
    COMPOSITION, not the readouts (measured **4.6×** rate, **5.9×** pressure, 900×560 → 1600×900).
    Fixed by AUTHORING here (no absolute rate is spoken anywhere); normalising displayed pressure would
