@@ -4125,9 +4125,32 @@ function gasRxRemove(n) {
   }
 }
 
+// WALL SPEED IS A PHYSICAL VARIABLE, not a presentation detail. The default
+// 0.06/frame ease covers a 1.0 -> 0.55 stroke at roughly 1320 px/s on the
+// authoring geometry, against a thermal particle speed of about 109 px/s at
+// 300 K — the wall outruns the gas by ~12x, and a wall that outruns its gas
+// does enormous work on it. Measured on a state authored at 300 K: peak
+// gasMeasuredT() of 8549 K within 100 ms, and the product count crashing from
+// 31 to 7 before recovering. For ~4 s the readout then shows the REVERSE rate
+// leading and more bonds broken than made — the exact opposite of what a
+// compression state narrates — and the concentration graph carries the spike
+// for the rest of the state, because the trace window is longer than the state.
+//
+// piston_ramp_ms drives the stroke on the state clock instead, so an author can
+// compress slowly enough that the gas stays near its thermostat setpoint and
+// the beat reads as the Boyle/Le Chatelier shift it claims to be. Opt-in and
+// absent by default, so every shipped concept keeps its exact stroke and its
+// approved baselines. The ramp yields to a teacher's V drag the moment they
+// touch it, and falls through to the ease once complete.
 function gasMovePiston() {
   var t = gasTargetPistonF(), prev = gasPistonF;
-  if (Math.abs(t - gasPistonF) > 1e-6) {
+  var st = curState() || {};
+  var rampMs = (typeof st.piston_from === 'number' && typeof st.piston_ramp_ms === 'number')
+    ? st.piston_ramp_ms : 0;
+  var driving = rampMs > 0 && PM_simTimeMs < rampMs && !(hasSlider('V') && userTouched['V']);
+  if (driving) {
+    gasPistonF = st.piston_from + (t - st.piston_from) * (PM_simTimeMs / rampMs);
+  } else if (Math.abs(t - gasPistonF) > 1e-6) {
     gasPistonF += (t - gasPistonF) * 0.06;
     if (Math.abs(t - gasPistonF) < 0.002) gasPistonF = t;
   }
@@ -4712,8 +4735,19 @@ function drawGasPressure() {
   text('P = ' + gasPressure.toFixed(3), x + 8, y + 5);
 }
 
-function drawGasThermometer() {
-  var x = gasBoxL() + 142, y = gasHudTop(), w = 116, h = 28;
+// The instrument row is a LEFT-anchored ACCUMULATION: each chip starts after
+// whatever is already lit, which is how drawGasReaction and drawGasKRatio place
+// themselves. This one hardcoded gasBoxL() + 142 — the pressure gauge's width
+// plus its gap — which is correct only when the pressure gauge is actually on.
+// The first state in the fleet to light the thermometer with pressure OFF
+// (le_chateliers_principle STATE_4, the heating beat) therefore drew the
+// thermometer at +142 while drawGasReaction correctly started the counts at
+// +126: a 132 px overlap that struck "T = 500 K" straight through the A and B
+// counts, and the mercury bar across the fwd row, for the state's whole
+// duration — on the concept's PRIMARY aha. Accumulate like everyone else.
+function drawGasThermometer(state) {
+  var x = gasBoxL(), y = gasHudTop(), w = 116, h = 28;
+  if (pfWgVis('gas_pressure', state && state.show_pressure)) x += 142;
   var dim = dimFor('temperature');
   gasChip(x, y, w, h);
   var g = gasCfg();
@@ -5099,7 +5133,7 @@ function draw() {
     translate(0, microTop());
     drawGasBox(state);
     if (pfWgVis('gas_pressure', state.show_pressure)) drawGasPressure();
-    if (pfWgVis('gas_thermo', state.show_gas_thermometer)) drawGasThermometer();
+    if (pfWgVis('gas_thermo', state.show_gas_thermometer)) drawGasThermometer(state);
     if (pfWgVis('gas_counters', state.show_collision_counter)) drawGasCounters(state);
     if (pfWgVis('gas_law', state.show_gas_law)) drawGasLaw();
     if (pfWgVis('gas_histogram', state.show_speed_histogram)) drawGasHistogram(state);
@@ -6286,6 +6320,7 @@ export interface ParticleFieldStateConfig {
     N?: number;                      // particle count for this state; the N slider overrides
     piston_frac?: number;            // 0.2–1.0 of full box width; the V slider overrides. Eased in, and a closing wall really does work on the gas
     piston_from?: number;            // open the state at this fraction and drive to piston_frac, so the wall is SEEN to move (Rule 32a). Omit = start settled
+    piston_ramp_ms?: number;         // drive the piston_from stroke over this many ms instead of the default ease. REQUIRED for an isothermal compression beat: the default stroke outruns thermal speed ~12x and spikes measured T past 8000 K
     T_from?: number;                 // open the state at this temperature and ramp to T, so the heating/cooling is SEEN (Rule 32a). Omit = open already at T
     T_ramp_ms?: number;              // duration of the T_from ramp (default 2000). Deterministic — THE EYE reproduces it
     inject_cue?: string;             // cue id that adds/removes reagent MID-state, so the disturbance is seen to arrive (Rule 32a)

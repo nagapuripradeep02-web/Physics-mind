@@ -475,5 +475,34 @@ boot(makeConfig({ temperature_K: 450 }, { T: 450, adiabatic: false, species_coun
   void fwdBefore; void revBefore;
 }
 
+// ── 15. a compression beat must not cook the gas on its way in ──
+// The default piston ease drives the wall ~12x faster than the particles move,
+// and a wall that outruns its gas does enormous work on it: measured peak
+// gasMeasuredT() of 8549 K on a state authored at 300 K, with the product count
+// crashing 31 -> 7 first. A state narrating "squeeze it and the balance shifts"
+// then shows the reverse rate LEADING for seconds. piston_ramp_ms exists to
+// make the stroke slow enough to stay near the setpoint; this pins that it
+// actually does, and that the default stroke is left exactly as it was.
+function peakMeasuredT(stateOver: Record<string, unknown>, ticks: number) {
+  boot(makeConfig({ temperature_K: 300 }, { T: 300, adiabatic: false, ...stateOver }));
+  const st = R.config.states.STATE_1;
+  let peak = 0;
+  for (let i = 0; i < ticks; i++) { R.stepGas(st); peak = Math.max(peak, Number(R.gasMeasuredT())); }
+  return peak;
+}
+const fastStroke = peakMeasuredT({ piston_from: 1.0, piston_frac: 0.55 }, 600);
+const slowStroke = peakMeasuredT({ piston_from: 1.0, piston_frac: 0.55, piston_ramp_ms: 6000 }, 600);
+check('default piston stroke is unchanged (shipped concepts keep their baselines)', fastStroke > 1500,
+  `peak measured T ${fastStroke.toFixed(0)} K on the default ease — the documented behaviour, left alone`);
+check('piston_ramp_ms keeps a compression near its setpoint', slowStroke < fastStroke * 0.25,
+  `peak measured T ${slowStroke.toFixed(0)} K ramped over 6 s vs ${fastStroke.toFixed(0)} K on the default stroke`);
+
+// and the ramp must still ARRIVE — a gentle stroke that never closes is worse
+boot(makeConfig({ temperature_K: 300 }, { T: 300, adiabatic: false, piston_from: 1.0, piston_frac: 0.55, piston_ramp_ms: 6000 }));
+for (let i = 0; i < 480; i++) R.stepGas(R.config.states.STATE_1);
+const pistonAt8s = Number(R.gasPistonF);
+check('piston_ramp_ms still reaches its target', Math.abs(pistonAt8s - 0.55) < 0.01,
+  `piston at ${pistonAt8s.toFixed(3)} after 8 s (target 0.55, ramp 6 s)`);
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);
