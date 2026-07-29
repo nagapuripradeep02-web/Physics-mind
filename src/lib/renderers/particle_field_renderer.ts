@@ -3623,7 +3623,18 @@ function gasActivationE(state) {
   if (state && state.ea_at_cue && state.ea_at_cue.cue
       && typeof state.ea_at_cue.activation_energy_kT === 'number'
       && cueFiredAt[state.ea_at_cue.cue] !== undefined) {
-    nkT = state.ea_at_cue.activation_energy_kT;
+    var toKT = state.ea_at_cue.activation_energy_kT;
+    // ramp_ms makes the barrier SLIDE rather than jump-cut. A state whose whole
+    // declared archetype is "the bar comes down" delivered a single-frame step
+    // without it — the motion the state exists to show lasting exactly one
+    // frame, which no frame-sampled gate would ever catch as missing.
+    var eaRamp = (typeof state.ea_at_cue.ramp_ms === 'number') ? state.ea_at_cue.ramp_ms : 0;
+    if (eaRamp > 0) {
+      var fromKT = (typeof state.activation_energy_kT === 'number') ? state.activation_energy_kT
+        : (typeof g.activation_energy_kT === 'number') ? g.activation_energy_kT : toKT;
+      var eaF = constrain((PM_simTimeMs - cueFiredAt[state.ea_at_cue.cue]) / eaRamp, 0, 1);
+      nkT = fromKT + (toKT - fromKT) * eaF;
+    } else nkT = toKT;
   }
   else if (state && typeof state.activation_energy_kT === 'number') nkT = state.activation_energy_kT;
   else if (typeof g.activation_energy_kT === 'number') nkT = g.activation_energy_kT;
@@ -3639,7 +3650,26 @@ function gasSpeciesList() {
 
 // ─── Reaction configuration ────────────────────────────────────────────────
 function gasRxCfg() { var g = gasCfg(); return g.reaction || null; }
-function gasRxOn() { var r = gasRxCfg(); return !!(r && r.enabled !== false && gasRxSpAB >= 0 && gasRxSpA >= 0 && gasRxSpB >= 0); }
+// PER-STATE enable, over the config-level default (2026-07-29). The config
+// reaction block is the whole box's chemistry, but a lesson routinely needs
+// the SAME apparatus with the reaction switched OFF — collision theory spends
+// five states counting collisions against a barrier where nothing may bond, and
+// turns bonding on in exactly one state to show that clearing the barrier is
+// necessary but not sufficient.
+//
+// Without this the only way to express that is an enormous fake activation_fwd_kT
+// on every other state: a number chosen to make a reaction not happen, sitting
+// in the file looking like physics. This says what it means instead, and the
+// suppression trick cannot be silently under-tuned into a slow leak of product.
+function gasRxOn() {
+  var r = gasRxCfg();
+  if (!r) return false;
+  var st = curState();
+  var en = (st && st.reaction && typeof st.reaction.enabled === 'boolean')
+    ? st.reaction.enabled
+    : (r.enabled !== false);
+  return !!(en && gasRxSpAB >= 0 && gasRxSpA >= 0 && gasRxSpB >= 0);
+}
 function gasSpIdxById(id) {
   for (var i = 0; i < gasSpecies.length; i++) if (gasSpecies[i].id === id) return i;
   return -1;
@@ -5110,15 +5140,22 @@ function gasArrhAxis(state) {
 // showed a line disagreeing with the law by a factor of two. That is worse than
 // showing nothing, because it is the instrument that carries the state's claim.
 // Until the measurement can support a slope, it says so.
-function gasArrhFit() {
+// Takes the state and solves the axis ITSELF. The first version read the cached
+// gasArrAxis, which is populated by drawGasArrhenius — so headless (and on any
+// frame before the first draw) the span guard silently did nothing and the fit
+// came back anyway. Caught by the gate assertion written for the guard: 10
+// points spanning 300-320 K on a 250-800 K axis still produced a line, at slope
+// -119. A guard that depends on the draw path having run is not a guard.
+function gasArrhFit(state) {
   var n = gasArrPts.length;
   if (n < 4) return null;
+  var ax = gasArrhAxis(state || curState() || {});
   var lo = gasArrPts[0].invT, hi = gasArrPts[0].invT, q;
   for (q = 1; q < n; q++) {
     if (gasArrPts[q].invT < lo) lo = gasArrPts[q].invT;
     if (gasArrPts[q].invT > hi) hi = gasArrPts[q].invT;
   }
-  if (gasArrAxis && (hi - lo) < 0.45 * Math.abs(gasArrAxis.x1 - gasArrAxis.x0)) return null;
+  if ((hi - lo) < 0.45 * Math.abs(ax.x1 - ax.x0)) return null;
   var i, mx = 0, my = 0;
   for (i = 0; i < n; i++) { mx += gasArrPts[i].invT; my += gasArrPts[i].lnf; }
   mx /= n; my /= n;
@@ -5168,7 +5205,7 @@ function drawGasArrhenius(state) {
 
   // the fitted line first, so the measured points sit ON TOP of it and a point
   // that misses is visibly a miss
-  var fit = gasArrhFit();
+  var fit = gasArrhFit(state);
   if (fit) {
     strokeHex('#FBBF24', 0.85 * dim); strokeWeight(2);
     var yA = fit.intercept + fit.slope * ax.x0, yB = fit.intercept + fit.slope * ax.x1;
@@ -6579,6 +6616,11 @@ export interface ParticleFieldStateConfig {
     ea_at_cue?: {                    // drop the barrier MID-state on a cue — the catalyst beat (Rule 32a), mirrors reaction_at_cue
         cue: string;                 // cue id from the state's `cues` list
         activation_energy_kT: number;// the barrier from the cue onward. Pair it with reaction_at_cue on the SAME cue when the reaction layer is on, or the counter and the rate bars will disagree
+        ramp_ms?: number;            // slide the barrier over this long instead of stepping it. Omit = an instant jump cut, which is one frame of motion for a state whose archetype is "the bar comes down"
+    };
+    reaction?: {                     // PER-STATE reaction overrides. `enabled` is the switch the config block has no per-state form of
+        enabled?: boolean;           // false = the same apparatus with no bonding at all (collision theory counts collisions for five states before letting anything react)
+        [key: string]: unknown;      // any reaction constant, overriding the config block for this state
     };
     show_pressure?: boolean;         // pressure gauge — live number + tracking bar (Rule 33d)
     show_gas_thermometer?: boolean;  // temperature gauge — live number + tracking bar

@@ -664,18 +664,30 @@ check('piston_ramp_ms still reaches its target', Math.abs(pistonAt8s - 0.55) < 0
   check('the Arrhenius accumulator is inert unless a state asks for it',
     R.gasArrPts.length === 0, `${R.gasArrPts.length} points accumulated over 15 s with the flag off`);
 
-  // fewer than 3 points must NOT produce a fit — no "law" through two dots
+  // too few points must NOT produce a fit — no "law" through two dots
   boot(arrCfg());
   for (let i = 0; i < 300; i++) R.stepGas(R.config.states.STATE_1);   // 5 s -> 1 window
-  check('no fit is drawn under 3 points', R.gasArrhFit() === null,
-    `${R.gasArrPts.length} point(s) after 5 s -> fit ${R.gasArrhFit() === null ? 'null' : 'DRAWN'}`);
+  check('no fit is drawn from too few points', R.gasArrhFit(R.config.states.STATE_1) === null,
+    `${R.gasArrPts.length} point(s) after 5 s -> fit ${R.gasArrhFit(R.config.states.STATE_1) === null ? 'null' : 'DRAWN'}`);
+
+  // ...and the LOAD-BEARING half: plenty of points crowded into a narrow slice
+  // of the axis must not produce one either. This is the case that printed
+  // "slope -410 K" beside "law -900 K" under a caption reading "one straight
+  // line" — a confidently wrong line in the instrument carrying the state's
+  // whole claim. A point-count threshold alone does NOT catch it.
+  boot(arrCfg({ T: 320, T_from: 300, T_ramp_ms: 40000 }));   // a nearly-flat ramp
+  for (let i = 0; i < 40 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  const crowded = R.gasArrhFit(R.config.states.STATE_1);
+  check('no fit is drawn from points crowded into a narrow 1/T span',
+    R.gasArrPts.length >= 6 && crowded === null,
+    `${R.gasArrPts.length} points spanning 300-320 K on a 250-800 K axis -> fit ${crowded === null ? 'null (says "measuring...")' : `DRAWN at slope ${crowded.slope.toFixed(0)}`}`);
 
   // the full ramp: 8 windows in 32 s, a real fit, a slope near -Ea/k
   boot(arrCfg());
   for (let i = 0; i < 60; i++) R.stepGas(R.config.states.STATE_1);
   const axis0 = JSON.stringify(R.gasArrhAxis(R.config.states.STATE_1));
   for (let i = 0; i < 33 * 60; i++) R.stepGas(R.config.states.STATE_1);
-  const arrFit = R.gasArrhFit();
+  const arrFit = R.gasArrhFit(R.config.states.STATE_1);
   const axis1 = JSON.stringify(R.gasArrhAxis(R.config.states.STATE_1));
   check('a 4 s window yields ~8 points inside one state',
     R.gasArrPts.length >= 7 && R.gasArrPts.length <= 9,
@@ -694,7 +706,7 @@ check('piston_ramp_ms still reaches its target', Math.abs(pistonAt8s - 0.55) < 0
   // pass — so pair it with the check below.
   boot(arrCfg({ activation_energy_kT: 1.5 }));
   for (let i = 0; i < 34 * 60; i++) R.stepGas(R.config.states.STATE_1);
-  const halfFit = R.gasArrhFit();
+  const halfFit = R.gasArrhFit(R.config.states.STATE_1);
   check('halving the barrier halves the measured slope',
     halfFit !== null && Math.abs(halfFit.slope - -450) < 450 * 0.2,
     halfFit ? `slope ${halfFit.slope.toFixed(0)} K at Ea 1.5 kT against -Ea/k = -450 K` : 'no fit');
@@ -714,6 +726,61 @@ check('piston_ramp_ms still reaches its target', Math.abs(pistonAt8s - 0.55) < 0
   boot(arrCfg()); for (let i = 0; i < 20 * 60; i++) R.stepGas(R.config.states.STATE_1);
   check('the Arrhenius points are deterministic', sigA === sig() && sigA.length > 0,
     sigA === sig() ? `identical across two runs (${R.gasArrPts.length} points)` : 'DIVERGED');
+}
+
+// ── 17b. per-state reaction disable, and the ea_at_cue ramp ─────────────────
+{
+  const base = { T: 300, adiabatic: false, activation_energy_kT: 3, species_counts: { A: 60, B: 60, AB: 0 } };
+  const g = { temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 };
+
+  // ON by config (the default) — product accumulates
+  boot(makeConfig(g, base));
+  for (let i = 0; i < 40 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  const onAB = counts().AB, onFwd = R.gasRxFwdTotal;
+
+  // OFF for this state — the SAME apparatus, and NOTHING may bond. Zero is the
+  // only acceptable number here: a suppression hack (a huge fake barrier) leaks
+  // product slowly and would pass any "roughly none" tolerance.
+  boot(makeConfig(g, { ...base, reaction: { enabled: false } }));
+  const offN0 = R.particles.length;
+  for (let i = 0; i < 40 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  check('a state may switch the reaction OFF, and then nothing bonds at all',
+    R.gasRxOn() === false && counts().AB === 0 && R.gasRxFwdTotal === 0 && onAB > 0,
+    `reaction off: AB ${counts().AB}, fwd events ${R.gasRxFwdTotal} — same config ON gives AB ${onAB}, fwd ${onFwd}`);
+  check('a reaction-off state keeps its population stable',
+    R.particles.length === offN0 && offN0 === 120,
+    `${offN0} discs at entry -> ${R.particles.length} after 40 s`);
+  // ...and the collision counter still works, because that is the whole point:
+  // five states count collisions against a barrier with no chemistry running.
+  check('a reaction-off state still counts collisions against the barrier',
+    R.gasCollTotal > 1000 && R.gasSuccessTotal > 20,
+    `${R.gasCollTotal} collisions, ${R.gasSuccessTotal} cleared Ea, 0 reacted`);
+
+  // ea_at_cue ramp: the barrier must be strictly BETWEEN its endpoints mid-ramp,
+  // which is the whole difference between a slide and a jump cut.
+  const kTref = 0.105 * 0.105 * 300;
+  const cued = {
+    ...base, cues: [{ id: 'cat', at_ms: 1000 }],
+    ea_at_cue: { cue: 'cat', activation_energy_kT: 1.5, ramp_ms: 4000 },
+  };
+  boot(makeConfig(g, cued));
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);       // just past the cue
+  const eaAtCue = Number(R.gasActivationE(R.config.states.STATE_1));
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);       // ~2 s in: mid-ramp
+  const eaMid = Number(R.gasActivationE(R.config.states.STATE_1));
+  for (let i = 0; i < 300; i++) R.stepGas(R.config.states.STATE_1);       // past the end
+  const eaEnd = Number(R.gasActivationE(R.config.states.STATE_1));
+  check('ea_at_cue ramp_ms slides the barrier instead of stepping it',
+    eaMid < eaAtCue - 1e-6 && eaMid > eaEnd + 1e-6,
+    `${eaAtCue.toFixed(3)} at the cue -> ${eaMid.toFixed(3)} mid-ramp -> ${eaEnd.toFixed(3)} at the end (target ${(1.5 * kTref).toFixed(3)})`);
+  check('ea_at_cue ramp still ARRIVES at the authored barrier',
+    Math.abs(eaEnd - 1.5 * kTref) < 1e-9, `${eaEnd.toFixed(4)} vs ${(1.5 * kTref).toFixed(4)}`);
+  // and with no ramp_ms it must still be the instant step it always was
+  boot(makeConfig(g, { ...base, cues: [{ id: 'cat', at_ms: 1000 }], ea_at_cue: { cue: 'cat', activation_energy_kT: 1.5 } }));
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  check('ea_at_cue without ramp_ms is unchanged (an instant step)',
+    Math.abs(Number(R.gasActivationE(R.config.states.STATE_1)) - 1.5 * kTref) < 1e-9,
+    `${Number(R.gasActivationE(R.config.states.STATE_1)).toFixed(4)} immediately after the cue`);
 }
 
 // ── 18. hist_speed_marks opt-out must not disturb the histogram itself ──────
