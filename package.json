@@ -47,7 +47,8 @@
     "build:pilot": "npx tsx src/scripts/build_review_site.ts --pilot",
     "grant:paid": "npx tsx --env-file=.env.local src/scripts/grant_paid.ts",
     "check:gas-reaction": "npx tsx src/scripts/check_gas_reaction_physics.ts",
-    "check:hybrid-orbitals": "npx tsx src/scripts/check_hybrid_orbitals.ts"
+    "check:hybrid-orbitals": "npx tsx src/scripts/check_hybrid_orbitals.ts",
+    "check:sigma-pi": "npx tsx src/scripts/check_sigma_pi.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",

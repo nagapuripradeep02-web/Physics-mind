@@ -1878,6 +1878,24 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (osMorph && typeof osMorph.at_ms === 'number') {
             candidates.push(asNum(osMorph.at_ms, 0) + asNum(osMorph.duration_ms, 2600) + 600);
         }
+        // mo (SIGMA/PI BONDING, #17): the TORSION ramp — one atom's p orbital
+        // turns about the bond axis while the constructive-overlap region shrinks
+        // and the live overlap readout falls to 0.000 at 90°. Same shape as morph
+        // (a one-shot closed-form ramp off a precomputed ladder that then HOLDS),
+        // and the same failure if unpinned: THE EYE would photograph a
+        // half-twisted picture beside a readout the state's caption contradicts.
+        // Also pins the MO surface's own reveal fade. No shipped concept authors
+        // an `mo` block, so adding these moves no baseline.
+        const osMo = asObj(osState.mo);
+        if (osMo) {
+            const osTwist = asObj(osMo.twist_ramp);
+            if (osTwist && typeof osTwist.at_ms === 'number') {
+                candidates.push(asNum(osTwist.at_ms, 0) + asNum(osTwist.duration_ms, 3000) + 600);
+            }
+            if (typeof osMo.reveal_at_ms === 'number') {
+                candidates.push(asNum(osMo.reveal_at_ms, 0) + asNum(osMo.reveal_duration_ms, 1200) + 600);
+            }
+        }
         for (const key of ['populate_steps', 'gallery_steps']) {
             const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];
             for (const rawStep of steps) {
