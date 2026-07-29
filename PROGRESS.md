@@ -111,6 +111,44 @@ physics concepts use it); this concept used none of it. Now bound via `scenario_
 auditor spotted: S1 gains **6.8 s of settled box first**, which makes `s1_4`'s "both rates settle level
 again, higher than before" *observable* — previously there was no pre-cue baseline to see it against.
 
+### SHIPPED (founder-approved, end of session)
+
+`visual:approve` locked **17 baseline frames** from run `20260729-141501`; `tts:generate --langs=en`
+rendered **32 EN clips** (bulbul:v3/priya, 0 stale, no `--force`, no translation step) — verified 32
+mp3 against 32 authored `tts_sentences`. Review page HTTP 200, `validate:chemistry` 7/7.
+**Fleet 65 → 66 baseline-locked.** Commits `8532407` (ship) and `9432cc7`.
+
+**NOT deployed, deliberately** — no `PILOT_CONCEPTS` edit, no `build:pilot`, no `deploy:app`. Founder
+approved the ship chain only; CLAUDE.md §5 puts the professor gate (Asmi teaching a real student)
+before the deployed catalog, and the deployed catalog currently carries zero chemistry sims, so that
+path needs its own verification when it is taken.
+
+### The teaching pass (founder asked: walk the states, what is missing?)
+
+Four gaps that every gate had passed, found by reading frames as a teacher rather than as a gate:
+
+1. **The principle was never stated.** Eight states taught every disturbance and no sentence gave the
+   law or even the name. S8 now closes with it, ending on S2's partial-compensation aha.
+2. **Cooling was undemonstrable** — the most likely question after the PRIMARY aha. Measured: at the
+   250 K slider floor, cooling moved AB 31→~35, inside the noise band. At 200 K it is 31→~45 within
+   10 s with the box alive (fwd 3.5/s); at 150 K it reads dead (1.1/s). Floor now **200 K, measured**.
+3. **⭐ A bonded pair did not look bonded** (`20cb20a`, master). `drawGasDimer` strokes the bond in the
+   product colour then fills the discs — but bond length IS rA + rB, so the discs are tangent and the
+   line is painted over, leaving ~2 px of purple. AB is the species every state tracks: the HUD printed
+   a purple "AB 31" and the graph drew a purple curve while **nothing on canvas was purple**. The whole
+   lesson had to be read off numbers instead of the picture, which is the one thing a particle box
+   exists to provide. Fixed by draw order (rim both discs). Also fixed `dynamic_equilibrium`, whose
+   STATE_2 opens with 45 previously-uncountable pairs — its baselines re-approved after founder view.
+4. **The anchor promised what the sim cannot do** — "engineers steadily draw product away", but the
+   reagent tap is A-only by design (S2 needs removal to target A). Rewritten onto the two levers the
+   states actually show, which is better chemistry: pressurised because the product side has fewer
+   molecules (S3), run hotter than the balance would like because forward is exothermic (S4). That
+   trade-off is the real answer to "why not run it cold".
+
+**Pattern worth keeping:** all four were invisible to every automated gate AND to both review agents,
+because each agent was asked whether the sim was *correct*, not whether a teacher could *use* it. The
+fourth gate is a person asking "what is missing?".
+
 ### Open items — none blocking, all need a founder ruling
 
 1. **`engine_bug_queue` rows not filed** (the session earned three): the stale-sim-cache gate blindness
