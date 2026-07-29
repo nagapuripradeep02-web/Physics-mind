@@ -282,10 +282,39 @@ touches the shared `animate()` / `dtStep` / `__pmSteps` clock machinery.
 | `free_body_diagram` | 1 real + N `ghost` | 0 then >0 | — | all six + `show_components` on the incline beat | a ~ 0 in every real state; the cheapest concept |
 | `block_on_incline` | 1 | slider, >0 | — | weight + components, normal, friction, net | mu_s/mu_k threshold arc, cloned from `friction_static_kinetic`'s pedagogy |
 | `connected_bodies` | 2 | 0 then >0 | YES | weight both, normal + friction on the surface body, tension both, net | the ONE concept exercising Branch B + the new pulley geometry |
+| `rolling_friction` | 2 (1 block + 1 `shape: 'wheel'`) | 0 | — | applied, friction, net | SEAM G. Branch A, physics untouched: rolling resistance IS `f = μ_r N` with `μ_r` ≈ 0.002 authored as `mu_s`/`mu_k` |
+| `tension_force` | 2 with `pulley`, then 3 with `train` | 0 | YES then — | tension both ends, weight, normal, net | SEAM H for the T₁ ≠ T₂ half; the pulley half needs nothing new |
 
-**Honest extension flags** (both inside this one scenario, not a second `scenario_type`):
+**Honest extension flags** (all inside this one scenario, never a second `scenario_type`):
 1. The pulley post + wheel + rope-segment geometry is genuinely new — first use of this asset class.
 2. `ghost: true` needs threading through build / seed / step.
+3. **SEAM G (2026-07-30)** — `bodies[].shape: 'block' | 'wheel'`. A VISUAL addition only: the box
+   mesh stays as an invisible carrier (`material.visible = false`) so position, bounds, pick proxy,
+   label anchor and every arrow keep working untouched, and the tyre + hub + crossed spokes live in a
+   child group that spins. Spin is `rotation.z = -(s · NLB_WORLD_PER_M) / NLB_WHEEL_R`, read from
+   position and never accumulated — rolling without slipping is `s = rθ`, so Rule 36 holds by
+   construction and a freeze pin reproduces the angle bit-for-bit. The hub and spokes are NOT
+   decoration: a smooth cylinder is rotation-invariant in silhouette and reads as perfectly static
+   while rolling. `shape` is per-ID, not per-state (the mesh is built once from the union of every
+   state's bodies) — the same constraint `hanging` already carries.
+4. **SEAM H (2026-07-30)** — `train?: { body_ids, show_segment_labels }`. N carts in ONE line on one
+   surface, joined by taut strings; presence gates the coupled integrator exactly as `pulley` does,
+   but with every sign factor `c_i = +1` (a straight string reverses nothing). Needed because
+   `pulley` couples exactly TWO bodies through ONE string, so on that rig there is only ever one
+   tension and "is T the same everywhere?" cannot be posed. Per-segment tension comes from the
+   sub-train BEHIND each string, `T_i = (Σ_{j≤i} m_j)·a − Σ_{j≤i} (drive_j + f_j)`, which is the
+   taught claim ("a string only moves the mass beyond it") computed rather than asserted. Reuses the
+   two rope meshes SEAM D already built (a 3-cart train needs exactly 2 segments) and adds two live
+   `T₁ = … N` sprites plus optional `readouts: ['T1','T2']` rows. Mutually exclusive with `pulley`;
+   if a state authors both, `pulley` wins.
+   **Authoring constraint:** space train carts at least ~1.5 m apart. A body is `NLB_BODY_SIZE` =
+   0.55 world units = 1.1 m wide, so a tighter spacing puts the carts inside each other and leaves
+   no rope to draw. The engine now hides a non-positive segment rather than drawing a backwards stub,
+   so the failure is visible as a MISSING rope instead of a wrong one.
+
+**Verification for both seams:** `src/scripts/_scratch_nlb_seams.ts` (36/36) drives the real renderer
+under Playwright and asserts against closed forms derived inside the harness — the same shape as the
+original `_scratch_nlb_bringup.ts` Phase-0 proof. Re-run it after ANY edit to the two seams.
 
 ---
 
