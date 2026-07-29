@@ -24,7 +24,25 @@ done: Phase 0 — worktree + node_modules junction + .env.local; both lom branch
 
 engine_commits:
   76a8791  SEAM G (bodies[].shape 'wheel' + position-derived spin) + SEAM H (train, per-segment T₁/T₂)
-  (pending) SEAM I  shared_applied_force — opt-in, an F write reaches every non-ghost surface body
+  c214cf2  SEAM I  shared_applied_force — opt-in, an F write reaches every non-ghost surface body
+
+## AUTHORING GOTCHA found by json_author 2026-07-30 — the word-budget gate counts em-dashes
+
+`checkConceptWordBudget` in `src/scripts/validate-concepts.ts` tokenizes with
+`t.trim().split(/\s+/).filter(Boolean).length`, so a SPACED EM-DASH (" — ") counts as a WORD.
+Hand counts that ignore punctuation therefore under-report, and for a Rule-31-era concept (one that
+declares `motion_archetype`/`delta_cue`) the >55 finding is FATAL, not a warning. rolling_friction
+STATE_2 measured 54 by hand and 56 by the gate; fixed by replacing one em-dash with a comma (55).
+Verified independently by the orchestrator by reading the tokenizer. Count with the gate, never by eye.
+
+## FIX 2026-07-30 — `atwood_machine` synonym repointed to `connected_bodies`
+
+It pointed at `tension_in_string`, a DEAD mechanics_2d concept with no `field_3d_config`, so every
+"Atwood machine" query resolved to a non-product sim. Now `connected_bodies`, which is sealed on
+master and teaches exactly that case. NOT sent to `tension_force`: that concept owns what tension is
+and where it changes along a chain and deliberately has no Atwood state. (The orchestrator's own
+json_author dispatch prompt asserted this synonym already pointed at `connected_bodies` — it did not;
+json_author flagged the discrepancy instead of silently changing it, which was the right call.)
 
 ## FOUNDER DECISION 2026-07-30 — rolling_friction S5 F slider (json_author: TAKE THIS, DO NOT GUESS)
 
