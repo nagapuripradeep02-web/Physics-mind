@@ -28,6 +28,7 @@
     "deploy:app": "npx wrangler deploy -c wrangler.app.toml",
     "check:scenarios": "npx tsx src/scripts/check-scenarios.ts",
     "check:renderer-syntax": "npx tsx src/scripts/check-renderer-syntax.ts",
+    "check:renderer-backticks": "npx tsx src/scripts/check-renderer-backticks.ts",
     "migrate:concepts": "npx tsx src/scripts/migrate_v1_to_v2.ts",
     "build:catalog": "node scripts/extract_catalog.js && node scripts/build_teacher_catalog.js && node scripts/build_chapter_pathways.js && node scripts/build_diamonds_onepager.js",
     "smoke": "playwright test",
