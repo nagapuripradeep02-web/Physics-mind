@@ -767,7 +767,6 @@
     "mo": {
       "bond": "double"
     },
-    "_cameras_unsolved_note": "UNSOLVED (json_author, per task instruction 'author the engine's per-mode defaults, do not invent camera values'). No explicit camera object is authored on any state below — every state instead sets `mode` to the nearest EXISTING OS_CAMERAS key so the renderer's own documented per-mode fallback (OS_CAMERAS[os.mode]) applies. Those defaults were solved for ATOMIC/HYBRID orbitals (dist 3.2-13.3), not for this concept's two-centre MO fields. The engine build measured the MO picture as ~4x smaller in world units than an atomic picture at the same camera distance (Z_eff=3.25 vs the hybrid's own scale) — sigma lit 4110 px vs pi's 19,610 px at dist 3.2. Every camera here is therefore expected to be WRONG-SCALE until a founder numeric solve pass adds real per-mode (or per-state) camera entries sized for the mo picture — flagged, not silently guessed.",
     "slider_controls": {
       "twist": {
         "min": 0,
@@ -812,7 +811,12 @@
           "show_hud": false,
           "hud_lines": [],
           "spin_rate": 0,
-          "controls": []
+          "controls": [],
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_2": {
@@ -846,7 +850,12 @@
             "bond"
           ],
           "spin_rate": 0,
-          "controls": []
+          "controls": [],
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_3": {
@@ -877,7 +886,12 @@
             0,
             0,
             1
-          ]
+          ],
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_4": {
@@ -901,7 +915,12 @@
             "bond"
           ],
           "spin_rate": 0,
-          "controls": []
+          "controls": [],
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_5": {
@@ -934,7 +953,12 @@
             "contact"
           ],
           "spin_rate": 0,
-          "controls": []
+          "controls": [],
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_6": {
@@ -977,7 +1001,12 @@
             "twist"
           ],
           "show_formula": true,
-          "formula": "S(φ) = S(0)·cos φ"
+          "formula": "S(φ) = S(0)·cos φ",
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_7": {
@@ -1007,7 +1036,12 @@
           "spin_rate": 0,
           "controls": [],
           "show_formula": true,
-          "formula": "E<sub>π</sub> = 614 − 348 = 266 kJ/mol"
+          "formula": "E<sub>π</sub> = 614 − 348 = 266 kJ/mol",
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_8": {
@@ -1036,7 +1070,12 @@
             "parts"
           ],
           "spin_rate": 0,
-          "controls": []
+          "controls": [],
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       },
       "STATE_9": {
@@ -1070,10 +1109,16 @@
             "spin"
           ],
           "show_formula": true,
-          "formula": "S(φ) = S(0)·cos φ"
+          "formula": "S(φ) = S(0)·cos φ",
+          "camera": {
+            "az": 45,
+            "el": 35,
+            "dist": 2.55
+          }
         }
       }
-    }
+    },
+    "_cameras_solved_note": "az 45 / el 35 / dist 2.55 — SOLVED numerically, not chosen (docs/concepts/chemistry/sigma_pi_cameras.js). Maximises the WORST foreshortening across the three named directions (bond axis z, pi1 axis x, pi2 axis y) at 0.815 = sqrt(2/3), the analytic optimum, and hard-rejects 4217 of 8281 candidate views for a collapsed axis or a hidden bond. ONE distance for all nine states: sigma fills 42.4% of frame and pi 78%, which is their TRUE relative size — no zoom between states, so Rule 29 (size changes only with real magnitude) and Rule 32d (home pose, no teleport) are both satisfied. NOTE: hybridisation #13 REJECTED this same (1,1,1) view because an sp3 lobe points along it; here nothing does, so it is optimal. A solved camera is never transferable between concepts."
   },
   "regeneration_variants": [
     {
