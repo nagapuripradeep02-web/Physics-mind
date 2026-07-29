@@ -1906,6 +1906,50 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(asNum(osAppr.at_ms, 0) + asNum(osAppr.duration_ms, 2600)
                     + asNum(osAppr.settle_ms, 600) + asNum(osAppr.fade_ms, 900) + 600);
             }
+            // STAGED REVEALS (2026-07-29 audit round). The engine gained explicit
+            // per-member timing so that S4/S7/S8 could stop being byte-static, and
+            // this derivation did not learn them the same day — so the frozen pin
+            // would have photographed each of those states BEFORE its newly
+            // authored motion settled, and the re-captured baselines would have
+            // locked half-built scenes as the approved picture. Exactly the gap
+            // the hybrid path solved with `bloom_offsets_ms` and never ported.
+            // The settle time is the LAST member's offset plus its own duration,
+            // because a stagger is only finished when its slowest element is.
+            const lastOffset = (v: unknown, fallback: number): number => {
+                const arr = Array.isArray(v) ? (v as unknown[]) : null;
+                if (!arr || arr.length === 0) return fallback;
+                return arr.reduce<number>((mx, o) => Math.max(mx, asNum(o, 0)), 0);
+            };
+            if (Array.isArray(osMo.reveal_offsets_ms)) {
+                candidates.push(asNum(osMo.reveal_at_ms, 0)
+                    + lastOffset(osMo.reveal_offsets_ms, 0)
+                    + asNum(osMo.reveal_duration_ms, 1200) + 600);
+            }
+            if (Array.isArray(osMo.system_offsets_ms)) {
+                candidates.push(asNum(osMo.reveal_at_ms, 0)
+                    + lastOffset(osMo.system_offsets_ms, 0)
+                    + asNum(osMo.reveal_duration_ms, 1200) + 600);
+            }
+            if (typeof osMo.atomic_reveal_at_ms === 'number'
+                || Array.isArray(osMo.atomic_offsets_ms)) {
+                candidates.push(asNum(osMo.atomic_reveal_at_ms, 0)
+                    + lastOffset(osMo.atomic_offsets_ms, 0)
+                    + asNum(osMo.atomic_duration_ms, 1200) + 600);
+            }
+        }
+        // bond_sticks (2026-07-29): the Rule-16a belief picture. It is NOT under
+        // `mo` — it is deliberately outside the MO gate so Lewis/VSEPR concepts
+        // can draw rods with no MO build, so it must be read at the state level.
+        // The settled picture is after the DISSOLVE, not after the fade-in: the
+        // whole point of the beat is that the wrong picture leads and CLEARS.
+        const osSticks = asObj(osState.bond_sticks);
+        if (osSticks) {
+            if (typeof osSticks.dissolve_at_ms === 'number') {
+                candidates.push(asNum(osSticks.dissolve_at_ms, 0)
+                    + asNum(osSticks.dissolve_duration_ms, 1500) + 600);
+            } else if (typeof osSticks.at_ms === 'number') {
+                candidates.push(asNum(osSticks.at_ms, 0) + asNum(osSticks.fade_in_ms, 900) + 600);
+            }
         }
         for (const key of ['populate_steps', 'gallery_steps']) {
             const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];
