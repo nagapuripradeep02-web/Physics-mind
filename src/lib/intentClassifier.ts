@@ -156,6 +156,21 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // (free_body_diagram), friction or inclines (block_on_incline),
     // string-coupled bodies (connected_bodies), or momentum conservation.
     'newton_third_law',
+    // Friction Force (Class 11 Ch.8.6 — fourth concept of the Laws of Motion
+    // field_3d chapter engine, newtons_laws_body scenario, Branch A, FLAT
+    // push only — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). Static friction is
+    // not a fixed value — it self-adjusts to exactly cancel an applied push
+    // up to a ceiling f_max = μₛN, past which the body breaks free and
+    // friction DROPS to the smaller constant kinetic value μₖN: no push
+    // means zero friction even though the ceiling is ready, a rising push
+    // tracked in exact lockstep below the ceiling, the break-away snap at
+    // F = μₛN, two identical blocks at one force showing two different
+    // fates (resting holds, already-sliding runs away), and kinetic
+    // friction's speed-independence (fast and slow glides read the same f).
+    // Does NOT cover the incline decomposition or tan θ = μₛ break-away
+    // angle (block_on_incline), the full friction-opposes-relative-motion
+    // direction subtlety, or the legacy friction_static_kinetic bundle.
+    'friction_force',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -1089,6 +1104,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   newton_first_law        ← law of inertia, ΣF=0 ⇔ v constant, why moving things need no force to keep moving, rest = balanced not absent forces
   newton_second_law       ← F = ma, a = ΣF/m, force sets acceleration not velocity, same force different mass, same mass different force
   newton_third_law        ← action-reaction pair, F₁₂ = -F₂₁, forces always equal and opposite no matter the masses, why the pair never cancels (acts on different bodies), heavier object "pushes harder" myth
+  friction_force          ← static friction self-adjusts to cancel a FLAT push exactly, up to a ceiling f_max = μₛN, then DROPS to the smaller constant μₖN once sliding; two identical blocks at one force can have two different fates (resting held vs already-sliding runs away); kinetic friction is speed-independent. NO incline, NO tan θ (that is block_on_incline)
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -1333,6 +1349,7 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "two blocks connected by a string over a pulley" / "Atwood machine" / "why isn't tension equal to the hanging weight" / "block on table connected to a hanging mass" / "block on incline connected over a pulley" / "counterweight problem" → connected_bodies (NOT tension_in_string — that concept is the bare formula lookup; connected_bodies teaches the shared-constraint + elimination METHOD with a live coupled sim)
 - "block on an incline with friction" / "when does a block start to slide on a ramp" / "why does it slip at exactly that angle" / "tan theta equals mu" / "does mass affect when it slips" / "static vs kinetic friction on a slope" / "block slipping down a ramp" (NO pulley, NO second body connected by a rope) → block_on_incline (NOT connected_bodies — that concept requires a rope/pulley; this one is a single uncoupled block, T is never authored)
 - "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
+- "why doesn't friction just equal mu N" / "does friction change as I push harder" / "why does the block suddenly lurch when it starts moving" / "why is friction weaker once something is already sliding" / "does a faster-sliding block feel more friction" / "push a heavy box until it slides" (FLAT surface, NO incline, NO tilt) → friction_force (NOT block_on_incline — that concept needs a ramp/tilt; this one is a flat push with static self-adjustment + the ceiling + the drop to kinetic. NOT friction_static_kinetic — that is the legacy bundle; friction_force is the new newtons_laws_body-engine concept)
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
 - "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
 - "Newton's second law" / "F = ma" / "why does force cause acceleration not speed" / "does mass affect acceleration" / "same push heavier object" / "double the force what happens" → newton_second_law (NOT newton_second_law_direction — that concept is about the DIRECTION of a relative to F once a net force exists; this one is about the a = F/m proportionality itself, force sets a rate not a speed)

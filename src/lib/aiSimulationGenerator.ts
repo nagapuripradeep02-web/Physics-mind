@@ -2833,6 +2833,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     connected_bodies:                "field_3d",   // NEW 2026-07-25 — newtons_laws_body Branch B (coupled/pulley)
     block_on_incline:               "field_3d",   // NEW 2026-07-26 — newtons_laws_body Branch A (incline friction threshold)
     normal_force:                   "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (N = mg*cos(theta), N adjusts, never a fixed mg)
+    friction_force:                 "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (flat push: static self-adjust, maximum + drop)
     uniform_circular_motion:        "mechanics_2d",
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",
