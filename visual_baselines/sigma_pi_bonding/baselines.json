@@ -1,0 +1,43 @@
+{
+  "approved_at": "2026-07-29T22:17:47.377Z",
+  "source_run": "/Users/thorotuyashwanthbalu/Desktop/Viditra-chem-sigma-pi/.visual_runs/sigma_pi_bonding/20260729-214109",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_9": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

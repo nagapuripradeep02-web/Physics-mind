@@ -32,13 +32,84 @@ Baseline-locked concepts:
 | `vsepr_molecular_shapes` | field_3d · `molecular_geometry` | 14 | 17 |
 | `kinetic_particle_theory` | particle_field · `gas_box` | 7 | 19 |
 | `atomic_orbitals_s_p_d` | field_3d · **`orbital_shapes`** | 18 | — (silent; Rule 30h) |
+| `hybridisation_sp_sp2_sp3` | field_3d · `orbital_shapes` (`kind:"hybrid"`) | 16 | 23 |
+| `le_chateliers_principle` | particle_field · `gas_box` | 12 | 32 |
+| `sigma_pi_bonding` | field_3d · `orbital_shapes` (**`kind:"mo"`**) | 9 | — (silent; Rule 30h) |
 
 The isolation contract held through every merge: all register at site #1 only, and
 `validate:concepts` reports 141/141 without ever seeing them.
 
-**The one gate none of them has passed is Asmi's professor review** — now five concepts deep,
+**The one gate none of them has passed is Asmi's professor review** — now **eight** concepts deep,
 spanning both dimensionalities and four renderer surfaces. That is the bottleneck, not renderer
-coverage, and it has been the stated bottleneck for three consecutive sessions.
+coverage, and it has been the stated bottleneck for **five** consecutive sessions. Put as plainly as
+it can be: `sigma_pi_bonding` cleared three full audit rounds and every machine gate, and **not one
+of those measures whether it teaches.**
+
+---
+
+## ⚛ SESSION — σ/π bonding (P4 #17), the `kind:"mo"` surface, and eight blocking defects behind a 39/39 EYE — four times (2026-07-29/30, branch `feat/chemistry-sigma-pi`)
+
+**Bottom line: molecular orbitals are a live capability and #17 is authored, audited three times and baseline-locked (fleet 66 → 67). The load-bearing finding came BEFORE any renderer code existed: the pattern doc said σ/π was "one line (a per-lobe origin offset)", and measurement killed that — "the same pool, translated" is not a picture of a bond, it is a picture of the misconception the concept exists to destroy. Engine on master (`20d265d`, `8d387bf`); concept on the branch.**
+
+### What shipped
+- **`kind:"mo"` on `field_3d` `orbital_shapes`** (additive; the s/p/d and hybrid paths bit-for-bit unchanged, asserted by `check:sigma-pi §12`). A signed two-centre field ψ_A ± ψ_B, a 2-D root table over (delta, azimuth), per-component spun origins, Z_eff as a length scale, a second nucleus, a precomputed twist ladder, both overlap regions, multi-MO per state, a ratio readout, and a reusable `bond_sticks` primitive.
+- **`sigma_pi_bonding`** — 9 states, NCERT Cl.11 Ch.4 §4.7. Rings core S1–S6 / extended S7–S8 / core S9 explore.
+- **`npm run check:sigma-pi`** — 12 sections, negative controls on every one, no browser.
+
+### The design gate is where this concept was won
+Four questions settled headlessly before a line of renderer code, each with a control:
+- **Control:** an independent implementation reproduced the 2p 90% tip at **482.98 pm** against the **482 pm** already on master from `atomic_orbitals_s_p_d`.
+- **Scale:** the shipped orbitals are hydrogenic Z=1, where a carbon 2p tip is **3.61× the C=C bond length** — each lobe reaching 3.6 bond lengths past the other nucleus. Z_eff = 3.25 is a requirement, not a refinement.
+- **Topology — the finding that mattered:** at the 50% contour (the only usable one, per #13's `front_only` lesson) a *translated-pool* π bond is **four disconnected lobes that never touch**. Two atoms standing near each other with a visible gap, under a caption reading "the π bond". The true MO field gives the correct textbook topology at every enclosure.
+- **Cost:** every MO component is star-shaped about its own centroid (0.0–0.1% ray re-entry), so the shipped mesh pipeline was reused and **marching cubes was never needed**.
+
+Then two more numbers that became on-screen instruments: **S(φ) = S(0)·cos φ exactly** (max deviation 1e-14, S(90°) = 0.000000), and the sp²–sp² σ measured as the *better* picture as well as the correct one — back lobes collapse **1145 → 107 cells** because hybrids are directional.
+
+### THE LESSON: "the π bond breaks" is not a picture of lumps separating
+The obvious S6 animation — twist, and the two π lumps tear apart — is **wrong**. Measured up the whole ladder, the total-density surface holds at **2 components at every angle including 90°**: A's +x lobe and B's +y lobe still touch *diagonally* once perpendicular. The bond is gone (overlap exactly 0.000000) while the picture shows it intact. What vanishes is the **constructive region**, by *cancellation*: at 90° constructive 0.08589 and destructive 0.08589 **exactly annihilate**. Better lesson, true, and it reproduced the cos φ law by a second independent computation.
+
+### The review rounds — eight blocking defects, then two, all behind 39/39
+THE EYE reported **39 deterministic checks, 39 passed, 0 failed on all FOUR captures**, including the one containing every defect below. Fourth consecutive concept where that has happened.
+
+| round | outcome |
+|---|---|
+| Audit 1 | **FAIL** — 7 blocking, **4 of 9 archetypes delivered** |
+| Audit 2 | **FAIL** — 7 fixed, 2 blocking remain, **8/8 archetypes** |
+| Audit 3 | **PASS-WITH-NOTES** — both fixed, 5 notes closed, 1 escalated |
+
+The three that generalise:
+1. **A silent identity fallback poisons everything downstream.** `os.orbital` is unset on an MO state (the id lives under `os.mo`), so `baseId = os.orbital || "1s"` activated the 1s ATOM in all nine states — a "1s" sprite over every molecular orbital *and a 1200-dot hydrogen-1s swarm drawn through the σ and π bonds*. The dot path's own comment already said "an MO simply has no swarm"; the fallback defeated its own stated intent. **A valid default is more dangerous than one that throws.**
+2. **An authored field that no-ops produces a state that lies.** All nine `orbital_shapes.mode` strings were decoration — read only for a camera lookup the concept overrode. Three states were byte-static under captions describing motion. Fixed by adding explicit staging fields and deliberately *not* giving `mode` a second silent meaning.
+3. **Two instruments for one quantity will eventually disagree.** S6's slider printed `S/S₀ = 1.000` while the HUD 500 px above read `π S/S₀ = 0.000`, in the same frame, on the primary-aha state — the slider resolved `list[0]` (σ, invariant) and ignored the state's `overlap_of`. A teacher reading the slider learns the opposite of the lesson.
+
+### And the baselines were about to be locked without their content
+`deriveStateMeta` pins each frozen frame at the derived reveal time and is **blind to `scene_composition` `at_ms`**, so **eight on-canvas labels were absent from the frames about to be approved — including both labels of the CRITICAL honesty fix landed minutes earlier**, which `check:sigma-pi` did not cover either. STATE_3 was pinned at 1500 ms and its baseline missed "Same overlap, any angle", the state's entire lesson. `eye_capture_ms` is the authored opt-in built for exactly this (`visual_eyes.ts:95`); this concept authored zero. Now five states carry it and the S8 baseline contains the caveat, the facts and the 133.9 pm HUD together.
+
+### Where the process itself failed, recorded honestly
+- **I mis-called a defect.** I reported STATE_1's bond rods as overshooting the nuclei. The auditor measured each rod at *exactly* the internuclear distance — the apparent overshoot is the screen projection of the 3D perpendicular offset at az45/el35. Nothing was wrong.
+- **`eye_walker` confirmed my wrong call instead of checking it**, and separately marked STATE_1 "reads as intended" when its opening frame was **byte-identical to STATE_2's (0.00% differing px)** and it never drew the misconception at all. It also missed a giant "1s" glyph present in every frame of all nine states. Second consecutive concept where it under-read.
+- **My own JSON edit was a silent no-op** — wrote `properties.x/y` where annotations position via a top-level `position` key, on a dict fetched with `.get(default)`, so it mutated a temporary. Caught only by reading the file back.
+- **A fallback I wrote hid a real defect for a whole round.** Teaching `deriveStateMeta` the staging fields un-hid Rule 31a failures on **7 of 9 states** — and every narration-ratio warning in the entire chemistry fleet was this one concept, the other seven emitting zero. The picture genuinely completed in 4–6 s against 15–19 s of narration.
+- **`check:sigma-pi` crashed on master**, because sections 7–12 read the concept JSON unguarded while Rule 40 keeps that on the branch. A platform gate that only ran if one chapter happened to be checked out — Rule 40 violated inside the Rule-40 gate. Found only by *running* it on master rather than assuming a clean cherry-pick meant a working tree.
+
+**What actually caught things:** deriving expected geometry from the JSON and diffing it against pixels. Nothing else caught anything — not tsc, not the validators, not THE EYE at 39/39 four times over.
+
+### Verification (evidence)
+`tsc` 0 · `check:renderer-syntax` + `check:renderer-backticks` clean · `check:sigma-pi` **12/12 sections** with negative controls · `check:hybrid-orbitals` ALL PASS unregressed (and hybridisation re-run through THE EYE at **50/50 with all 16 baselines at 0.00–0.01%**) · `validate:chemistry` **8/8, zero warnings** · `validate:concepts` **141/141** with the concept never appearing in its output · THE EYE 39/39 ×4 · **9 baselines locked, founder-approved**.
+
+### Scars
+**12 rows** drafted in `docs/concepts/chemistry/scar_candidates_sigma_pi_bonding.sql` — **2 UPDATEs** (recurrences of classes already marked FIXED, one escalated MODERATE → CRITICAL) and **10 INSERTs**. **NOT APPLIED** — files-only per the standing convention that engine_bug_queue writes are a founder decision. Live table verified at 412 rows / 28 chemistry / **0 for this concept**.
+Two rows are OPEN and outlive the concept: the frozen-pin blindness above, and **`query_engine_bug_queue --field3d` returning a false all-clear on every chemistry concept** because its list is hardcoded physics — which silently weakens Gate 8, the step that exists to stop recurrences, on a concept where **two of seven blocking defects were recurrences**.
+Also corrected: the audit's note that `alex:chemistry_author` is rejected by the DB CHECK constraint is **false** — the value is in the constraint.
+
+### Open items
+1. **Asmi's professor review — eight concepts deep, five consecutive sessions.** Three audit rounds and every machine gate measure correctness, never teaching.
+2. **`formula_at_ms` on the mo path** — S7's formula names π ~8 s before π exists; `show_formula` has no per-state timing. Escalated rather than worked around; the pattern already exists (`pef.formula_at_ms`). The HUD `parts` line has the same root cause.
+3. **STATE_1's frozen baseline cannot see its own rods** (the pin lands after the dissolve). Protected by `check:sigma-pi §11` instead; the real fix is a second capture for dissolve-ending states.
+4. **No `text_hi`** (Rule 30i FYI, never a gate). Silent narration by design (Rule 30h).
+
+### ⏭ NEXT
+The engine now makes **σ*/π* antibonding nearly free** — constructive vs destructive overlap *is* bonding vs antibonding, and both regions are already drawn. That is the natural door into **molecular orbital theory**, which is the largest international gap (core for IB HL, A-level, AP). Ch.4 still has neither end: no Lewis/ionic/bond-parameters/resonance/polarity at the front, no MO theory or hydrogen bonding at the back. **For IGCSE our bonding chapter is effectively empty** — hybridisation and σ/π both hide for that board, leaving VSEPR alone. Founder decision 2026-07-29 was to finish σ/π before any chapter-fill; that is now done.
 
 ---
 
