@@ -3502,7 +3502,7 @@ function buildOne(conceptId: string): void {
     //    physics_engine_config = mechanics_2d/PCPL — also a p5 sketch, via a different renderer file)
     const simHtml = vendorizeSimHtml(
         json.field_3d_config
-            ? assembleField3DHtml(json.field_3d_config)
+            ? assembleField3DHtml(json.field_3d_config, json.epic_l_path as never)
             : json.particle_field_config
                 ? assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig)
                 : assembleParametricHtml(buildParametricConfig(conceptId, json)),
