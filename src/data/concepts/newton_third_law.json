@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 11,
   "concept_tier": "simple",
-  "source_book": "NCERT Class 11 Ch.5 Laws of Motion — table-of-contents reference only (Newton's third law is its own section, immediately after the second law, before constraint/pulley problems); teaching authored from first principles. The atomic idea: forces come in pairs — when body 1 pushes body 2, body 2 simultaneously pushes body 1 with EQUAL magnitude and OPPOSITE direction, and because the two forces act on DIFFERENT bodies they never cancel. Does NOT cover how much a force accelerates a body (newton_second_law, used here only as the a = F/m read-off), drawing complete force diagrams (free_body_diagram), friction or inclines (block_on_incline), string-coupled bodies (connected_bodies), or momentum conservation. Engine: the shared newtons_laws_body field_3d scenario (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md) — a flat frictionless surface (theta_deg = 0, mu = 0 throughout) carrying two independent bodies (no pulley), with action_reaction.engaged mirroring the driver body's applied force onto its partner every frame. All four states are expressible with the engine's existing config surface; ENGINE GAP: none.",
+  "source_book": "NCERT Class 11 Ch.5 Laws of Motion — table-of-contents reference only (Newton's third law is its own section, immediately after the second law, before constraint/pulley problems); teaching authored from first principles. REBUILD (2026-07-29, feat/lom-b) of a founder-rejected v1 (two 300 kg blocks, an asserted 30 N pair with no on-screen interaction object). The atomic idea: every force is one half of a single two-body interaction — the two halves are always equal in magnitude, opposite in direction, act at the same instant, and act on DIFFERENT bodies, which is why they can never cancel. Does NOT cover how much a force accelerates a body (newton_second_law, used here only as the a = F/m read-off), complete force diagrams (free_body_diagram), friction or inclines (block_on_incline), string-coupled bodies (connected_bodies), or momentum conservation. Engine: the shared newtons_laws_body field_3d scenario, extended 2026-07-29 (commit 248abea) with push_off (contact-then-release force phase), spring (the visible interaction object), and fixed (wall/Earth-anchored body) — docs/NLB_PUSH_OFF_SPEC.md + docs/loop_runs/push_off_report.md. The new 5-state arc makes the interaction itself an on-screen object (a compressed spring) rather than asserting a force pair that appears from nowhere. All five states are expressible with the engine's existing config surface; ENGINE GAP: none.",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -18,12 +18,11 @@
   },
   "prerequisites": [
     "newton_second_law",
-    "newton_first_law",
-    "free_body_diagram"
+    "newton_first_law"
   ],
   "real_world_anchor": {
-    "primary": "Two people on smooth-rolling chairs push off each other's palms — both roll away, and the lighter person always rolls away faster, no matter who did the pushing: the push you give is exactly the push you get back.",
-    "secondary": "A rocket in empty space hurls exhaust gas backward, and the gas pushes the rocket forward with the same force — nothing external to push against is needed."
+    "primary": "Two ice skaters pushing apart on a rink. A light skater and a heavy skater press palms and push — one shove, and BOTH glide away at the same instant; the lighter one always leaves faster, yet neither pushed harder.",
+    "secondary": "A swimmer's turn — pushing off the pool wall. You push the wall, the wall's equal push is what launches you; the wall never moves because its body is the Earth."
   },
   "cognitive_limits": {
     "max_primitives_per_state": 4,
@@ -31,137 +30,176 @@
     "max_words_per_tts_sentence": 25
   },
   "aha_moment": {
-    "state_id": "STATE_3",
-    "statement": "Equal-and-opposite forces never cancel — they never act on the same body.",
-    "visual_confirmation": "On block one's own diagram, mg and N — which DO share this body — visibly cancel, while F₁₂'s partner is nowhere in this diagram (it lives on block two, held as a dimmed ghost); F_net reads 30.00 N and block one accelerates away while the ghost holds its pose.",
+    "state_id": "STATE_2",
+    "statement": "Mass decides who moves — never who pushes.",
+    "visual_confirmation": "Masses split 1:3 (4 kg vs 12 kg) yet both applied-force arrows stay pixel-identical (30.0 N) at every instant; only the accelerations differ, 7.50 vs 2.50 m/s² — exactly 3:1, matching the mass ratio inverted.",
     "primary": true
   },
   "entry_state_map": {
-    "foundational": { "start": "STATE_1", "end": "STATE_3" },
-    "unequal_masses": { "start": "STATE_2", "end": "STATE_2" },
-    "why_no_cancel": { "start": "STATE_3", "end": "STATE_3" },
-    "explore": { "start": "STATE_4", "end": "STATE_4" }
+    "foundational": { "start": "STATE_1", "end": "STATE_2" },
+    "static_partner": { "start": "STATE_3", "end": "STATE_3" },
+    "cancellation": { "start": "STATE_4", "end": "STATE_5" }
   },
   "physics_engine_config": {
     "variables": {
-      "m": { "name": "mass of body A (m1)", "unit": "kg", "min": 100, "max": 1200, "default": 300, "step": 50 },
-      "m2": { "name": "mass of body B (m2)", "unit": "kg", "min": 100, "max": 1200, "default": 300, "step": 50 },
-      "F": { "name": "push-off force magnitude (sandbox slider, STATE_4)", "unit": "N", "min": 15, "max": 45, "default": 30, "step": 1 },
+      "m": { "name": "mass of cart A (or the single free cart)", "unit": "kg", "min": 2, "max": 14, "default": 6, "step": 0.5 },
+      "m2": { "name": "mass of cart B", "unit": "kg", "min": 2, "max": 14, "default": 6, "step": 0.5 },
+      "F": { "name": "push magnitude (equal and opposite on both bodies)", "unit": "N", "min": 15, "max": 45, "default": 30, "step": 1 },
       "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
-      "theta": { "name": "incline angle", "unit": "deg", "constant": 0 },
-      "mu_s": { "name": "coefficient of static friction", "unit": "dimensionless", "constant": 0 },
-      "mu_k": { "name": "coefficient of kinetic friction", "unit": "dimensionless", "constant": 0 },
-      "a": { "name": "acceleration of a body", "unit": "m/s^2", "derived": "F_applied / mass_kg" },
-      "F_net": { "name": "net force on the isolated body (STATE_3 only)", "unit": "N", "derived": "F12 (no partner force acts on this same body)" }
-    },
-    "computed_outputs": {
-      "acceleration_ratio_S2": { "formula": "a_A / a_B = m2 / m (with m2 = 3*m, ratio = 1:3)" },
-      "force_equality_check_S1_S2": { "formula": "abs(F_applied_A) = abs(F_applied_B) at every instant, all masses" }
+      "theta": { "name": "incline angle (unused - flat track throughout)", "unit": "deg", "constant": 0 },
+      "mu_s_S4_from": { "name": "static friction coefficient, STATE_4 brake, ramp START", "unit": "dimensionless", "constant": 0.75 },
+      "mu_s_S4_to": { "name": "static friction coefficient, STATE_4 brake, ramp END -- holds here", "unit": "dimensionless", "constant": 0.27 },
+      "mu_s_S4_crit": { "name": "breakaway threshold: mu_s at which maxStatic == drive", "unit": "dimensionless", "derived": "F / (m * g) = 30 / 58.8 = 0.5102" },
+      "mu_k": { "name": "kinetic friction coefficient (unused - no sliding friction anywhere)", "unit": "dimensionless", "constant": 0 },
+      "a": { "name": "acceleration", "unit": "m/s^2", "derived": "F_applied / m (0 when stuck)" },
+      "F_net": { "name": "net force on a body", "unit": "N", "derived": "m * a" },
+      "v": { "name": "velocity along the track", "unit": "m/s", "derived": "integral of a; pinned to 0 while stuck" },
+      "s": { "name": "position along the track", "unit": "m", "derived": "integral of v, clamped to +/- surface.length_m" }
     },
     "formulas": {
-      "F21_mirror": "-F12",
-      "a_A": "F_applied_A / m",
-      "a_B": "F_applied_B / m2",
-      "F_net_isolated": "F_applied - m * g * sin(radians(theta)) * 0",
-      "a_ratio": "a_A / a_B = m2 / m"
+      "F_reaction": "-F_applied",
+      "a_free": "F_applied / m",
+      "N_S4": "m * 9.8",
+      "f_static_S4_held": "-F_applied (while mu_s(t) * N >= |F_applied|)",
+      "F_net_S4_held": "0",
+      "mu_s_S4_ramp": "mu_s_S4_from + (mu_s_S4_to - mu_s_S4_from) * clamp((t_ms - 0) / (5000 - 0), 0, 1)",
+      "t_breakaway_S4": "5000 * (mu_s_S4_from - mu_s_S4_crit) / (mu_s_S4_from - mu_s_S4_to) = 2498 ms",
+      "a_S4_post_breakaway": "F_applied / m = 30 / 6 = 5.00 m/s^2 (mu_k = 0, both carts, opposite sign)",
+      "F_net_S4_post_breakaway": "m * a = 6 * 5.00 = 30.0 N (both carts, opposite sign)",
+      "t_release_equal_masses": "sqrt(0.88 * m / F)",
+      "v_release_equal_masses": "sqrt(0.88 * F / m)",
+      "t_release_two_masses": "sqrt(1.32 * m_small / F)",
+      "v_release_light": "sqrt(1.32 * F / m_small)",
+      "v_release_heavy": "v_release_light * (m_small / m_heavy)",
+      "t_release_vs_wall": "sqrt(1.76 * m / F)",
+      "v_release_vs_wall": "sqrt(1.76 * F / m)",
+      "position_at_pin": "s_start + 0.5*a*t_release^2 + v_release*2.0"
+    },
+    "computed_outputs": {
+      "S1_a": { "formula": "F/m = 30/6 = 5.00 m/s^2 (both carts)" },
+      "S1_v_release": { "formula": "2.10 m/s (both carts, opposite sign)" },
+      "S2_a_ratio": { "formula": "a_A/a_B = m_B/m_A = 12/4 = 3" },
+      "S2_v_ratio": { "formula": "v_A/v_B = 3.15/1.05 = 3" },
+      "S3_a_wall": { "formula": "F/m_wall -> 0 (m_wall effectively infinite)" },
+      "S4_F_net_held": { "formula": "F_applied + f_static = 30 + (-30) = 0.0 N (same body only, t < 2498 ms)" },
+      "S4_t_breakaway": { "formula": "2498 ms (mu_s(t) crosses 0.5102)" },
+      "S4_F_net_post": { "formula": "F_applied + f_kinetic = 30 + 0 = 30.0 N per cart, opposite sign, t > 2498 ms (mu_k = 0)" }
     },
     "constraints": [
-      "F12 = -F21 at every instant, engine-enforced by action_reaction.engaged (never hand-authored twice)",
-      "the two forces of a pair act on DIFFERENT bodies, so their sum is never evaluated as a single body's net force",
-      "each body's own acceleration is a = (its own net force) / (its own mass) -- independent of the partner body's mass",
-      "on m1's own diagram (STATE_3), mg and N cancel because BOTH act on m1 -- a balanced-force fact about ONE body, not a third-law pair",
-      "theta = 0 and mu_s = mu_k = 0 in every state (flat frictionless floor throughout; no incline, no pulley, no hanging body)",
-      "ghost bodies are never integrated and carry no readouts -- a ghost's position is fixed, decorative context only",
-      "every authored applied_force_N in every state (and the sandbox idle_auto_sweep/slider range) is >= 15 N, so raw arrow length (F * NLB_ARROW_SCALE = F * 0.030) is always >= 0.45, at least 1.5x NLB_ARROW_MIN_LEN (0.30)"
+      "F_reaction = -F_applied at every instant, on the OTHER body, never the same body (Newton III)",
+      "the equal-and-opposite pair always acts on two DIFFERENT bodies - it can cancel only if wrongly summed onto one body",
+      "theta = 0 and mu = 0 in every state except STATE_4, where per-body mu_s ramps 0.75 -> 0.27 over 0-5000 ms then holds",
+      "mass never appears in the force magnitude - only in the resulting acceleration (a = F/m)",
+      "a fixed body (the wall) still takes and exerts the full-magnitude force; a = 0 because its effective mass is infinite, not because the force is absent",
+      "smallest on-screen force is 30 N (S1-S4) / 15 N (S5 sweep floor) - both clear the 11.5 N arrow-floor collapse threshold; largest is 45 N, well under the 58.3 N ceiling"
     ]
   },
   "epic_l_path": {
-    "state_count": 4,
+    "state_count": 5,
     "states": {
       "STATE_1": {
-        "title": "One push, two forces: both bodies recoil symmetrically",
+        "title": "One push, two motions: a compressed spring releases, two equal carts recoil at the same instant",
         "duration": 12,
-        "focal_primitive_id": "n3l_s1_watch",
+        "focal_primitive_id": "n3l_s1_spring",
         "advance_mode": "manual_click",
         "motion_archetype": "mirror-recoil",
-        "delta_cue": "One push — two forces",
+        "delta_cue": "One push, two motions",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "n3l_s1_head",
             "position": { "x": 380, "y": 60 },
-            "text": "Two equal blocks start together, side by side, at rest",
+            "text": "Compressed spring, two identical carts",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "n3l_s1_watch",
-            "position": { "x": 200, "y": 250 },
-            "text": "Both arrows appear together -- same length, opposite direction",
+            "id": "n3l_s1_spring",
+            "position": { "x": 200, "y": 230 },
+            "text": "The spring is the cause -- one push, two motions",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "n3l_s1_anchor",
-            "position": { "x": 560, "y": 400 },
-            "text": "like two people on rolling chairs pushing off each other's palms",
+            "id": "n3l_s1_watch",
+            "position": { "x": 200, "y": 320 },
+            "text": "Both arrows flash on together -- same length, opposite direction",
             "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "n3l_s1_anchor",
+            "position": { "x": 560, "y": 420 },
+            "text": "like two ice skaters pushing apart",
+            "color": "#AB47BC"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Two blocks start together, side by side, at rest.",
+              "text_en": "A compressed spring sits between two identical carts. Release it.",
               "glow": "n3l_s1_head"
             },
             {
               "id": "s1_2",
-              "text_en": "One block pushes off the other, and instantly both feel a force: one arrow points from block two onto block one, an identical arrow points the other way -- same length, opposite direction.",
-              "glow": "n3l_s1_watch"
+              "text_en": "One push acts on both carts -- at the same instant they recoil, equal speeds, opposite directions.",
+              "glow": "n3l_s1_spring"
             },
             {
               "id": "s1_3",
-              "text_en": "And both blocks recoil apart, together.",
+              "text_en": "Every force is one half of a two-body interaction.",
+              "glow": "n3l_s1_watch"
+            },
+            {
+              "id": "s1_4",
+              "text_en": "No force after release, so each cart keeps its speed.",
               "glow": "n3l_s1_anchor"
             }
           ]
         }
       },
       "STATE_2": {
-        "title": "Unequal masses, equal forces: 1:3 masses, identical arrows, 3:1 accelerations",
+        "title": "Unequal masses, equal forces: the two arrows stay pixel-identical while the accelerations split 3:1",
         "duration": 12,
         "focal_primitive_id": "n3l_s2_mass_gap",
         "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "motion_archetype": "mirror-recoil (declared contrast pair with STATE_1)",
-        "delta_cue": "Unequal masses — equal forces",
+        "delta_cue": "Unequal masses, equal forces",
         "has_prebuilt_deep_dive": true,
         "drill_downs": [
-          "heavier_pushes_harder_myth",
-          "equal_forces_unequal_effects",
-          "who_exerts_the_force"
+          "heavier_pushes_harder",
+          "truck_car_collision_forces",
+          "action_reaction_magnitude_equality"
         ],
         "scene_composition": [
           {
             "type": "annotation",
             "id": "n3l_s2_head",
             "position": { "x": 380, "y": 60 },
-            "text": "Two identical force arrows -- only the mass differs",
+            "text": "Same spring, same push -- masses now 1:3",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
+            "id": "n3l_s2_watch",
+            "position": { "x": 200, "y": 230 },
+            "text": "Arrows stay pixel-identical, every instant",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
             "id": "n3l_s2_mass_gap",
-            "position": { "x": 200, "y": 250 },
-            "text": "m₂ carries three times the mass -- a reads exactly one third",
+            "position": { "x": 200, "y": 320 },
+            "text": "Accelerations split 3:1 -- a = F/m, 7.50 vs 2.50",
             "color": "#EF5350"
           },
           {
             "type": "annotation",
-            "id": "n3l_s2_drag_note",
-            "position": { "x": 560, "y": 400 },
-            "text": "drag the m₂ slider -- its recoil changes live, the arrow never does",
+            "id": "n3l_s2_myth",
+            "position": { "x": 560, "y": 420 },
+            "text": "Heavier does NOT push harder",
             "color": "#FFB300"
           }
         ],
@@ -169,114 +207,184 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Same push, new masses -- block two now carries three times block one's mass.",
+              "text_en": "Same spring, same push -- but the right cart is three times heavier.",
               "glow": "n3l_s2_head"
             },
             {
               "id": "s2_2",
-              "text_en": "Watch the two force arrows: exactly the same length, however unequal the blocks.",
-              "glow": "n3l_s2_head"
+              "text_en": "Watch the arrows: identical, always.",
+              "glow": "n3l_s2_watch"
             },
             {
               "id": "s2_3",
-              "text_en": "Yet block one shoots away fast while block two barely creeps, its acceleration exactly one third.",
+              "text_en": "Only the accelerations differ -- a equals force F over mass m, so three to one.",
               "glow": "n3l_s2_mass_gap"
             },
             {
               "id": "s2_4",
-              "text_en": "Drag block two's mass and watch that gap change live.",
-              "glow": "n3l_s2_drag_note"
+              "text_en": "Mass never changes the force; it changes the response.",
+              "glow": "n3l_s2_myth"
             }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "The bigger, stronger, or heavier one pushes harder -- the winner of a push exerts the greater force (planted by lived experience: the heavier person 'wins' every shoving match, so their force must be larger).",
-            "visual_counter": "Masses are 1:3, yet the two applied-force arrows are pixel-identical in length and the two force readouts read the same 30.0 N -- the ONLY unequal thing is the accelerations, 0.10 vs 0.033, exactly 3:1.",
-            "one_line_fix": "The forces are always equal -- mass decides who moves more, never who pushes more."
+            "belief": "The heavier one pushes harder -- whoever 'wins' a shoving match must be exerting the bigger force (the everyday default: the heavier person visibly moves the lighter one more, so their force must be larger).",
+            "visual_counter": "Masses are 1:3 (4 kg vs 12 kg), yet both applied-force arrows are pixel-identical (1.44 world, 30.0 N on the readout) at every instant -- the only unequal numbers are the accelerations, 7.50 vs 2.50 m/s^2, and the distance travelled at the frozen pin, 6.96 m vs 2.32 m -- exactly 3:1.",
+            "one_line_fix": "Forces are always equal -- mass decides who moves more, never who pushes more."
           }
         ]
       },
       "STATE_3": {
-        "title": "Why the pair never cancels: isolate m1's own diagram",
-        "duration": 12,
-        "focal_primitive_id": "n3l_s3_cancel",
+        "title": "Cart pushes a fixed wall: the same equal-and-opposite pair, but the wall never moves -- its body is the Earth",
+        "duration": 13,
+        "focal_primitive_id": "n3l_s3_watch",
         "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
-        "motion_archetype": "isolate-and-run",
-        "delta_cue": "Cancel needs one body",
-        "has_prebuilt_deep_dive": true,
-        "drill_downs": [
-          "action_reaction_never_cancel",
-          "pair_vs_balanced_forces",
-          "identify_the_pair"
-        ],
+        "motion_archetype": "anchor-recoil",
+        "delta_cue": "Wall pushes back, unmoved",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "n3l_s3_head",
             "position": { "x": 380, "y": 60 },
-            "text": "Block one, alone -- watch its own three forces",
+            "text": "Now the spring pushes a wall",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "n3l_s3_cancel",
+            "id": "n3l_s3_watch",
             "position": { "x": 200, "y": 230 },
-            "text": "mg and N cancel -- both act on this SAME block",
+            "text": "Cart's and wall's arrows match exactly -- full 30 N",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "n3l_s3_pair_missing",
+            "id": "n3l_s3_wall_still",
             "position": { "x": 200, "y": 320 },
-            "text": "F₁₂'s partner is on block two, not on this diagram",
-            "color": "#AB47BC"
+            "text": "The wall never moves -- its body is the Earth",
+            "color": "#4DD0E1"
           },
           {
             "type": "annotation",
-            "id": "n3l_s3_net",
-            "position": { "x": 560, "y": 400 },
-            "text": "ΣF here is not zero -- block one accelerates",
-            "color": "#4DD0E1"
+            "id": "n3l_s3_anchor",
+            "position": { "x": 560, "y": 420 },
+            "text": "like a swimmer pushing off the pool wall",
+            "color": "#AB47BC"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Look at block one alone.",
+              "text_en": "Now the spring pushes a wall.",
               "glow": "n3l_s3_head"
             },
             {
               "id": "s3_2",
-              "text_en": "Its weight pulls down, the surface pushes up -- equal, opposite, and they cancel, because both act on this same block.",
-              "glow": "n3l_s3_cancel"
+              "text_en": "Same pair: cart, thirty newtons one way; wall, thirty newtons the other -- the arrows match exactly.",
+              "glow": "n3l_s3_watch"
             },
             {
               "id": "s3_3",
-              "text_en": "The horizontal push has no such partner here; its partner acts on block two, not on this diagram.",
-              "glow": "n3l_s3_pair_missing"
+              "text_en": "The cart flies; the wall stays, because its body is the whole Earth.",
+              "glow": "n3l_s3_wall_still"
             },
             {
               "id": "s3_4",
-              "text_en": "So block one's net force is not zero, and it accelerates.",
-              "glow": "n3l_s3_net"
+              "text_en": "Zero motion never means zero force.",
+              "glow": "n3l_s3_anchor"
             }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "Equal and opposite forces cancel -- so if every action has an equal reaction, nothing should ever move.",
-            "visual_counter": "On block one's own diagram, mg and N -- which DO share this body -- cancel visibly, while F₁₂'s partner is nowhere in this diagram (it acts on the dimmed ghost, block two); F_net reads 30.00 N and block one accelerates.",
-            "one_line_fix": "Forces cancel only when they act on the SAME body -- a third-law pair never does."
+            "belief": "If nothing moves, no force was involved -- a stationary wall or the ground can't really be pushing back.",
+            "visual_counter": "The wall's applied-force arrow is drawn at full 30.0 N, full brightness, pixel-identical to the cart's -- while its acceleration reads 0.00 m/s^2, because its effective mass is the whole Earth.",
+            "one_line_fix": "The wall pushes back with the full 30 N -- its acceleration is invisible only because its mass is the planet's."
           }
         ]
       },
       "STATE_4": {
-        "title": "Explore: any two masses, any push -- forces always equal, accelerations always m2:m1",
+        "title": "Isolate each cart's own diagram: the pair lives on DIFFERENT bodies, which is why it never cancels",
+        "duration": 14,
+        "focal_primitive_id": "n3l_s4_cause",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "Cancelling needs one body",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "action_reaction_cancel_fallacy",
+          "third_law_pair_identification",
+          "internal_forces_cannot_self_accelerate"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "n3l_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Hold each cart, read its diagram alone",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "n3l_s4_cause",
+            "position": { "x": 200, "y": 230 },
+            "text": "F21 arrives on cart one -- the incoming push",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "n3l_s4_own_grip",
+            "position": { "x": 200, "y": 320 },
+            "text": "Its own grip f1 balances it -- F_net = 0.0",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "n3l_s4_partner",
+            "position": { "x": 560, "y": 420 },
+            "text": "F12 lives on cart two -- a different body entirely",
+            "color": "#AB47BC"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Hold each cart with a brake against the same push.",
+              "glow": "n3l_s4_head"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "On cart one, the push and its own grip cancel to zero, while the grip holds.",
+              "glow": "n3l_s4_cause"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Loosen the brake: the grip gives way, and cart one accelerates.",
+              "glow": "n3l_s4_own_grip"
+            },
+            {
+              "id": "s4_4",
+              "text_en": "Cart two, a different body, accelerates too, proving the pair never cancelled.",
+              "glow": "n3l_s4_partner"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Equal and opposite forces cancel, so nothing should ever move.",
+            "visual_counter": "On cart one's own diagram, the incoming push F21 and its own grip f1 -- which DO share this body -- cancel to F_net 0.0 while the grip holds; once the grip gives way, cart one accelerates, and cart two -- a different body entirely -- accelerates too, proving the pair never cancelled.",
+            "one_line_fix": "Forces cancel only on the SAME body -- a third-law pair never shares one."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Sandbox: any masses, any push -- forces always equal, accelerations always m2:m1",
         "duration": 0,
-        "focal_primitive_id": "n3l_s4_key",
+        "focal_primitive_id": "n3l_s5_watch",
         "advance_mode": "interaction_complete",
         "teaching_method": "exploration_sliders",
         "motion_archetype": "drag-sandbox",
@@ -284,32 +392,32 @@
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "n3l_s4_head",
+            "id": "n3l_s5_head",
             "position": { "x": 380, "y": 60 },
-            "text": "Set both masses and the push -- watch the arrows and readouts respond live",
+            "text": "Set both masses and the push",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "n3l_s4_watch",
+            "id": "n3l_s5_watch",
             "position": { "x": 380, "y": 250 },
-            "text": "drag m₂ huge -- arrows stay twins, its recoil dies; drag F -- both recoils scale together",
+            "text": "drag m2 huge -- arrows stay twins, its recoil dies",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "n3l_s4_key",
+            "id": "n3l_s5_key",
             "position": { "x": 380, "y": 440 },
-            "text": "F₁₂ = -F₂₁",
+            "text": "F21 = -F12",
             "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
-              "id": "s4_1",
-              "text_en": "Your turn -- drag the masses and the push, and watch the two force arrows stay twins while the accelerations split by mass.",
-              "glow": "n3l_s4_head"
+              "id": "s5_1",
+              "text_en": "Your turn -- set both masses and the push, and watch the two force arrows stay twins while the accelerations follow the mass ratio.",
+              "glow": "n3l_s5_head"
             }
           ]
         }
@@ -319,99 +427,132 @@
   "field_3d_config": {
     "scenario_type": "newtons_laws_body",
     "slider_controls": {
-      "m": { "min": 100, "max": 1200, "step": 50, "default": 300, "label": "m" },
-      "m2": { "min": 100, "max": 1200, "step": 50, "default": 300, "label": "m₂" },
+      "m": { "min": 2, "max": 14, "step": 0.5, "default": 6, "label": "m₁" },
+      "m2": { "min": 2, "max": 14, "step": 0.5, "default": 6, "label": "m₂" },
       "F": { "min": 15, "max": 45, "step": 1, "default": 30, "label": "F" }
     },
     "states": {
       "STATE_1": {
-        "label": "One push, two forces: both bodies recoil symmetrically",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 10.61, 6.17],
-        "caption": "One push — two forces",
+        "label": "One push, two motions: a compressed spring releases, two equal carts recoil at the same instant",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label", "nlb_spring"],
+        "camera_position": [0, 3.2, 12.5],
+        "caption": "One push, two motions",
         "show_sliders": true,
-        "formula_overlay": "F₁₂ = -F₂₁",
+        "formula_overlay": "F₂₁ = −F₁₂",
         "newtons_laws_body": {
           "mode": "action_reaction_pair",
           "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 300, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 30 },
-            { "id": "B", "label": "m₂", "mass_kg": 300, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": -30 }
+            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 0.91, "initial_velocity_mps": 0 },
+            { "id": "B", "label": "m₂", "mass_kg": 6, "initial_position_m": -0.91, "initial_velocity_mps": 0 }
           ],
-          "action_reaction": { "engaged": true, "driver_body_id": "A" },
+          "spring": { "between": ["A", "B"] },
+          "push_off": { "body_a_id": "A", "body_b_id": "B", "force_N": 30, "release_at_ms": 420 },
           "arrows": [
-            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F₁₂" } },
-            { "body_id": "B", "show": ["applied"], "labels": { "applied": "F₂₁" } }
+            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F₂₁" } },
+            { "body_id": "B", "show": ["applied"], "labels": { "applied": "F₁₂" } }
+          ],
+          "glow_focal": "nlb_spring",
+          "readouts": ["F_applied", "v"],
+          "controls_visible": []
+        }
+      },
+      "STATE_2": {
+        "label": "Unequal masses, equal forces: the two arrows stay pixel-identical while the accelerations split 3:1",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label", "nlb_spring"],
+        "camera_position": [0, 3.2, 12.5],
+        "caption": "Unequal masses, equal forces",
+        "show_sliders": true,
+        "formula_overlay": "|F₂₁| = |F₁₂| ⇒ a ∝ 1/m",
+        "newtons_laws_body": {
+          "mode": "action_reaction_pair",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "bodies": [
+            { "id": "A", "label": "m₁", "mass_kg": 4, "initial_position_m": 0.91, "initial_velocity_mps": 0 },
+            { "id": "B", "label": "m₂", "mass_kg": 12, "initial_position_m": -0.91, "initial_velocity_mps": 0 }
+          ],
+          "spring": { "between": ["A", "B"] },
+          "push_off": { "body_a_id": "A", "body_b_id": "B", "force_N": 30, "release_at_ms": 420 },
+          "arrows": [
+            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F₂₁" } },
+            { "body_id": "B", "show": ["applied"], "labels": { "applied": "F₁₂" } }
           ],
           "glow_focal": "nlb_arrow_B_applied",
           "readouts": ["F_applied", "a"],
           "controls_visible": []
         }
       },
-      "STATE_2": {
-        "label": "Unequal masses, equal forces: 1:3 masses, identical arrows, 3:1 accelerations",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 11.15, 6.5],
-        "caption": "Unequal masses — equal forces",
+      "STATE_3": {
+        "label": "Cart pushes a fixed wall: the same equal-and-opposite pair, but the wall never moves -- its body is the Earth",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_W", "nlb_body_W_label", "nlb_spring"],
+        "camera_position": [0, 3.2, 12.5],
+        "caption": "Wall pushes back, unmoved",
         "show_sliders": true,
-        "formula_overlay": "|F₁₂| = |F₂₁| ⇒ a ∝ 1/m",
+        "formula_overlay": "a = F/m → a_wall ≈ 0",
         "newtons_laws_body": {
           "mode": "action_reaction_pair",
           "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 300, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 30 },
-            { "id": "B", "label": "m₂", "mass_kg": 900, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": -30 }
+            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 0.7725, "initial_velocity_mps": 0 },
+            { "id": "W", "label": "wall (Earth)", "mass_kg": 1000000, "fixed": true, "initial_position_m": -0.7725 }
           ],
-          "action_reaction": { "engaged": true, "driver_body_id": "A" },
+          "spring": { "between": ["A", "W"] },
+          "push_off": { "body_a_id": "A", "body_b_id": "W", "force_N": 30, "release_at_ms": 593 },
           "arrows": [
-            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F₁₂" } },
-            { "body_id": "B", "show": ["applied"], "labels": { "applied": "F₂₁" } }
+            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F" } },
+            { "body_id": "W", "show": ["applied"], "labels": { "applied": "F" } }
           ],
-          "glow_focal": "nlb_body_A",
+          "glow_focal": "nlb_arrow_W_applied",
           "readouts": ["F_applied", "a"],
-          "controls_visible": ["m2"]
-        }
-      },
-      "STATE_3": {
-        "label": "Why the pair never cancels: isolate m1's own diagram",
-        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 5.6, 7.4],
-        "caption": "Cancel needs one body",
-        "show_sliders": true,
-        "formula_overlay": "ΣF on m₁ = F₁₂ ≠ 0",
-        "newtons_laws_body": {
-          "mode": "fbd_isolate",
-          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
-          "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 300, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 30 },
-            { "id": "B", "label": "m₂", "ghost": true, "mass_kg": 300, "initial_position_m": -1.5, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 0 }
-          ],
-          "arrows": [
-            { "body_id": "A", "show": ["weight", "normal", "applied"], "labels": { "weight": "mg", "normal": "N", "applied": "F₁₂" } }
-          ],
-          "glow_focal": "nlb_arrow_A_applied",
-          "readouts": ["F_applied", "F_net", "a"],
           "controls_visible": []
         }
       },
       "STATE_4": {
-        "label": "Explore: any two masses, any push -- forces always equal, accelerations always m2:m1",
+        "label": "Isolate each cart's own diagram: the pair lives on DIFFERENT bodies, which is why it never cancels",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 10.84, 6.3],
-        "caption": "All yours",
+        "camera_position": [0, 3.2, 12.5],
+        "caption": "Cancelling needs one body",
         "show_sliders": true,
-        "formula_overlay": "F₁₂ = -F₂₁",
+        "formula_overlay": "F₂₁ = −F₁₂",
         "newtons_laws_body": {
-          "mode": "sandbox",
-          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "mode": "fbd_isolate",
+          "surface": { "theta_deg": 0, "length_m": 10 },
           "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 300, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 30 },
-            { "id": "B", "label": "m₂", "mass_kg": 300, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": -30 }
+            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 2.5, "initial_velocity_mps": 0, "mu_s": 0.75, "applied_force_N": 30 },
+            { "id": "B", "label": "m₂", "mass_kg": 6, "initial_position_m": -2.5, "initial_velocity_mps": 0, "mu_s": 0.75 }
           ],
           "action_reaction": { "engaged": true, "driver_body_id": "A" },
           "arrows": [
-            { "body_id": "A", "show": ["applied"], "labels": { "applied": "F₁₂" } },
-            { "body_id": "B", "show": ["applied"], "labels": { "applied": "F₂₁" } }
+            { "body_id": "A", "show": ["applied", "friction"], "labels": { "applied": "F₂₁" } },
+            { "body_id": "B", "show": ["applied", "friction"], "labels": { "applied": "F₁₂" } }
+          ],
+          "glow_focal": "nlb_arrow_A_friction",
+          "param_ramp": { "param": "mu_s", "from": 0.75, "to": 0.27, "start_ms": 0, "end_ms": 5000 },
+          "phases": [
+            { "id": "breakaway", "at_ms": 2498, "until_ms": null, "glow_focal": "nlb_arrow_B_applied" }
+          ],
+          "readouts": ["F_applied", "f"],
+          "controls_visible": []
+        }
+      },
+      "STATE_5": {
+        "label": "Sandbox: any masses, any push -- forces always equal, accelerations always m2:m1",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
+        "camera_position": [0, 3.2, 12.5],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "F₂₁ = −F₁₂",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 12, "frictionless": true },
+          "bodies": [
+            { "id": "A", "label": "m₁", "mass_kg": 6, "initial_position_m": 2.5, "initial_velocity_mps": 0, "applied_force_N": 30 },
+            { "id": "B", "label": "m₂", "mass_kg": 6, "initial_position_m": -2.5, "initial_velocity_mps": 0 }
+          ],
+          "action_reaction": { "engaged": true, "driver_body_id": "A" },
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "net"], "labels": { "applied": "F₂₁" } },
+            { "body_id": "B", "show": ["applied", "net"], "labels": { "applied": "F₁₂" } }
           ],
           "glow_focal": "nlb_body_B",
           "readouts": ["F_applied", "a", "v"],

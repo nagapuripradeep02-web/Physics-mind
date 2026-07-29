@@ -1,109 +1,157 @@
-# ARCHITECT SKELETON — `newton_third_law` (Laws of Motion, Class 11 — concept 3/3, lom-b)
+# ARCHITECT SKELETON v2 — `newton_third_law` (Laws of Motion, Class 11 — REBUILD, feat/lom-b)
 
-> Engine: `newtons_laws_body` field_3d scenario (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md §1/§6).
-> HARD CONSTRAINT honored: every state below is a pure `newtons_laws_body` config block —
-> only enumerated modes, keys, and arrow kinds. NO renderer edits requested. **ENGINE GAP: none.**
-> Scene constraints honored: theta_deg = 0, μ = 0 (frictionless) everywhere, no pulley, no hanging
-> body. Two INDEPENDENT bodies rely on the automatic `nlbBodyLaneZ` side-by-side lane separation
-> (engine fix landed on this branch, commit 3a576ea) — the two bodies are authored at the SAME
-> `initial_position_m`, never staggered to fake separation.
+> RE-AUTHOR of a sealed, founder-rejected concept. `concept_id` stays `newton_third_law`; all 4
+> existing registration sites stay untouched. Engine: field_3d `newtons_laws_body` at HEAD 248abea
+> (push_off + spring + fixed landed; see docs/loop_runs/push_off_report.md).
+> The 5-state arc is FOUNDER-APPROVED (rebuild_brief.md §2) and is not renegotiated here.
+> Controlling numbers: brief §4 verified reference set — physics_author owns them and must
+> re-verify §3.2 / §3.4 / §3.8 for ANY change.
+> **ENGINE GAP: none** (see §12; brief §3.6 re-read — STATE_4 is two REAL bodies, not ghosts).
 
 ## 1. Atomic claim
 
-This concept teaches ONE idea: forces come in pairs — when body 1 pushes body 2, body 2
-simultaneously pushes body 1 with EQUAL magnitude and OPPOSITE direction, and because the two
-forces act on DIFFERENT bodies they never cancel — and only that. It does NOT cover how much a
-force accelerates a body (done in `newton_second_law`; used here only as the read-off a = F/m),
-drawing complete force diagrams (`free_body_diagram`), friction or inclines (`block_on_incline`),
+This concept teaches ONE idea: every force is one half of a single two-body interaction — the two
+halves are always equal in magnitude, opposite in direction, act at the same instant, and act on
+DIFFERENT bodies (which is why they can never cancel) — and only that. It does NOT cover how much
+a force accelerates a body (`newton_second_law`; used here only as the read-off a = F/m), complete
+force diagrams (`free_body_diagram`), friction physics or inclines (`block_on_incline`),
 string-coupled bodies (`connected_bodies`), or momentum conservation (a later chapter's atomic).
 
-## 2. State count + arc — 4 states (simple-to-medium tier; matches the founder-approved chapter spine — the concept has exactly three teaching loads + explore)
+## 2. State count + arc — 5 states (FIXED by founder; brief §2)
 
 | State | Purpose (one line) | teaching_method |
 |---|---|---|
-| STATE_1 | The pair exists: one push, TWO equal-and-opposite force arrows on two bodies — both recoil symmetrically | (straightforward motion beat — omit field) |
-| STATE_2 | Contrast pair of S1: masses now 1:3 — the arrows stay IDENTICAL while the accelerations split 3:1; equal forces, unequal effects | misconception_confrontation (16a contrast beat, no predict-pause) |
-| STATE_3 | Why the pair never cancels: isolate m₁'s own diagram — mg and N cancel because they share a body; the pair's two forces never share one, so ΣF ≠ 0 and m₁ accelerates | misconception_confrontation (16a) |
-| STATE_4 | Explore: teacher drives both masses and the push strength, watches equal-F / unequal-a recoil live | exploration_sliders |
+| STATE_1 | The interaction is ON SCREEN: one compressed spring releases → two equal carts recoil at the same instant, equal and opposite | (straightforward motion beat — field omitted) |
+| STATE_2 | Contrast pair of S1: masses 1:3, same spring, same force — the two arrows stay PIXEL-IDENTICAL while the accelerations split 3:1 | misconception_confrontation (16a contrast beat) |
+| STATE_3 | Same pair against a `fixed` wall: the wall's 30 N arrow is pixel-identical to the cart's, yet the wall never moves — its body is the Earth | misconception_confrontation (16a) |
+| STATE_4 | Isolate each cart's OWN diagram (two REAL separated bodies): cancellation happens between forces on ONE body; a third-law pair never shares one | misconception_confrontation (16a) |
+| STATE_5 | Sandbox: mass-ratio + force sliders; forces always equal, accelerations always m₂:m₁ | exploration_sliders |
 
-Two bodies ("A" = m₁, "B" = m₂), theta_deg = 0 throughout, μ = 0 throughout, no pulley, no hanging.
-`action_reaction.engaged: true` with `driver_body_id: "A"` in S1/S2/S4 — the engine MIRRORS B's
-applied force each frame, so equal-and-opposite is engine-enforced, never hand-authored twice.
+Reconstruction grading of the v1 states (all v1 states re-earned or died):
+v1 S1 (asserted pair, 300 kg) → REPLACED by new S1 (spring push_off — the cause is now an object).
+v1 S2 (1:3 beat) → KEPT as new S2, now spring-driven (PRIMARY aha survives here).
+v1 S3 (fbd_isolate with ghost partner) → REBUILT as new S4 with two REAL bodies (brief §3.6: ghosts carry no arrows).
+v1 S4 (sandbox) → new S5. New S3 (wall) is NET-NEW (kills the third misconception the v1 arc never touched).
 
-## 3. Per-state choreography + control plan (Rule 31 — REQUIRED control table)
+## 3. Per-state choreography + control plan (Rule 31 control table — FIRST design artifact)
 
-| State | Teaches | Motion archetype | Delta line (≤5-word cue, Rule 32c) | `newtons_laws_body.mode` | `controls_visible` | `glow_focal` | `readouts` | Narration budget / duration | `advance_mode` |
+| State | Teaches | Motion archetype | Delta (= ≤5-word cue, Rule 34a) | mode / mechanism | controls_visible | glow_focal (ONE, Rule 32e) | readouts | Narration | advance_mode |
 |---|---|---|---|---|---|---|---|---|---|
-| STATE_1 | One interaction = TWO forces, equal and opposite, one on each body | **`mirror-recoil`** (coined: two bodies driven APART from a shared start by one engine-enforced equal-opposite pair; no seed archetype covers two bodies moving oppositely from a single interaction — `side-by-side-race` is same-direction parallel comparison, this is its mirror) | "One push — two forces" | `action_reaction_pair` | `[]` (pure watch beat) | `nlb_arrow_B_applied` (the SURPRISE arrow — the reaction on the OTHER body; A's push is expected, B's equal arrow is the revelation) | `['F_applied','a']` (per body: +30.0 / −30.0 N, ±0.10 m/s²) | 35–50 EN words / ~12 s | `manual_click` |
-| STATE_2 | The magnitudes are equal NO MATTER the masses — "stronger/heavier pushes harder" is false; equal F, a ∝ 1/m | `mirror-recoil` (**declared contrast pair with STATE_1** — delta names the flip: masses now 1:3, forces STILL identical) | "Unequal masses — equal forces" | `action_reaction_pair` | `['m2']` (the taught variable IS the partner's mass; dragging m₂ live changes ONLY its recoil — its arrow never changes length) | `nlb_body_A` (the light body flying away — the unequal-a payload in motion) | `['F_applied','a']` (identical F rows, 3:1 a rows — the whole argument in four numbers) | 40–55 EN words / ~12 s | `manual_click` |
-| STATE_3 | Cancellation is a SAME-BODY question: mg and N cancel on m₁ because both act on it; the pair's partner force acts on m₂'s diagram, never here — so ΣF on m₁ ≠ 0 and it accelerates | **`isolate-and-run`** (coined: one body of an interacting pair is isolated — partner dimmed to a ghost — and integrated under only the forces ON IT; no seed archetype covers per-body isolation followed by single-body motion) | "Cancel needs one body" | `fbd_isolate` | `[]` (pure watch beat) | `nlb_arrow_A_applied` (labeled `F₁₂` — the un-cancelled horizontal force) | `['F_applied','F_net','a']` (F_net = 30.0 N ≠ 0 is the anti-cancel witness; ghost gets NO HUD rows by engine rule) | 40–55 EN words / ~13 s | `manual_click` |
-| STATE_4 | All of it: pick any two masses, any push — forces always equal, accelerations always m₂:m₁ | `drag-sandbox` | "All yours" | `sandbox` | `['m','m2','F']` (ALL for this concept; **μₛ/μₖ excluded** — frictionless concept; **theta excluded** — flat-ground concept; **v0 excluded** — push-off-from-rest IS the concept, a seeded velocity teaches nothing third-law) | `nlb_body_B` | `['F_applied','a','v']` | 0 / open | `interaction_complete` |
+| S1 | One push = two forces, two motions, same instant | **`mirror-recoil`** (coined: one spring release drives two touching bodies apart symmetrically, then both coast; no seed archetype covers a single visible interaction object ejecting two bodies oppositely) | "One push, two motions" | `action_reaction_pair` + `push_off` + `spring` | `[]` (pure watch beat) | **`nlb_spring`** (point at the CAUSE — founder-mandated) | `['F_applied','v']` (±30.0 N during contact; ±2.10 m/s equal after) | 30–45 EN words / ~12 s | `manual_click` |
+| S2 | Force magnitudes are mass-blind: arrows identical, accelerations 3:1 | `mirror-recoil` — **declared contrast pair with S1**; the delta names the flip: masses now 1:3, everything else byte-identical (same F, same release_at_ms = 420) | "Unequal masses, equal forces" | `compare_mass_same_force` + `push_off` + `spring` | `[]` — see justification below | `nlb_arrow_B_applied` (the HEAVY cart's arrow — the misconception says it should be bigger; it is pixel-identical) | `['F_applied','a']` (identical F rows; 7.50 vs 2.50 — the whole argument in four numbers) | 35–55 EN words / ~12 s | `manual_click` |
+| S3 | Zero motion ≠ zero force: the wall's reaction is full-magnitude, its body is the Earth | **`anchor-recoil`** (coined: one body recoils off a spring while its partner — Earth-anchored — holds pose under a full-magnitude arrow; no seed archetype pairs a real recoil with a deliberate null on the partner) | "Wall pushes back, unmoved" | `action_reaction_pair` + `push_off` + `spring` + wall body `fixed: true` | `[]` | `nlb_arrow_W_applied` (the wall's 30 N arrow — the force the misconception says doesn't exist) | `['F_applied','a']` (30.0 / 30.0 N; 5.00 / 0.00 m/s²) | 35–55 EN words / ~13 s | `manual_click` |
+| S4 | Cancellation is a ONE-body affair; the pair lives on different bodies | `reveal-build` (seed: the two isolation diagrams construct arrow-by-arrow on a held tableau) | "Cancelling needs one body" | `fbd_isolate` + `action_reaction` (driver A), both carts brake-pinned by static friction (see §3-note) | `[]` | `nlb_arrow_A_applied` (F₂₁ — the pair-half whose partner is NOT in this diagram) | `['F_applied','f','F_net']` (30.0 / 30.0 / **0.0** — zero because the GRIP on this same cart balanced it, never the partner force) | 40–55 EN words / ~14 s | `manual_click` |
+| S5 | All of it, live: any masses, any push — F always equal, a always m₂:m₁ | `drag-sandbox` (explore only) | "All yours" | `sandbox` + `action_reaction` | `['m','m2','F']` (ALL for this concept; theta/μ/v0 excluded — flat, frictionless, from-rest IS the concept) | `nlb_body_B` (drag target) | `['F_applied','a','v']` | 0 / open | `interaction_complete` |
 
-Rule 15: `manual_click` + `interaction_complete` = 2 distinct advance modes. No `wait_for_answer`, no `pause_after_ms`.
+Rule 15: `manual_click` + `interaction_complete` = 2 distinct modes. No `wait_for_answer`, no `pause_after_ms`.
 
-**Arrow-floor compliance (cycle-2 scar `field3d_nlb_arrow_min_length_floor…`, routed alex:physics_author):**
-every on-screen force in every state is **30 N** → raw length 0.90 world units = 3.0× the 0.30 floor.
-Where two arrows are compared for EQUALITY (S1, S2 — the concept's entire payload is that the two
-lengths match), both are 30 N. The sandbox `idle_auto_sweep` range is `[15, 45]` N — its MINIMUM
-clears the floor with margin (0.45 = 1.5× floor), so the swept arrow never freezes into a stub and
-never passes through the sub-floor band. Mass/force scale follows the sibling's ×75-class principle:
-forces in tens of newtons, masses in hundreds of kg, accelerations ~0.03–0.15 m/s² so nothing clamps.
+**Why S2/S3 expose zero controls (Rule 31c documented exception):** the taught variable in S2 is the
+mass ratio, but a live `m2` drag is DEAD in a push_off state — during the 420 ms contact it desyncs the
+§3.4 timing contract (scar `nlb_push_off_release_window_outlives_the_spring_extension`, MAJOR), and
+after release it changes nothing (velocities already set). A dead/desynced control is a recorded scar
+class (the dead-F-slider row); zero controls on a watch-beat is explicitly legal (Rule 31). Live mass
+play belongs to S5, which is exactly what the sandbox's `action_reaction` mechanism is for.
 
-**Per-state choreography detail (Rule 32 legibility; placements COMPUTED, not guessed — motion-bound scar):**
+**Hard bans honored:** no `'F'` in `controls_visible` on S1/S2/S3 (brief §3.3); `'F'` in S5 is expected.
+STATE_5 authors `action_reaction`, never `push_off` (inert in sandbox, brief §3.3).
 
-- **STATE_1** — Home pose: flat surface, `surface.length_m: 10`, TWO equal blocks (`m₁`, `m₂`,
-  300 kg each) side by side at `initial_position_m: 0` — the lane offset renders them cleanly
-  side-by-side at the shared start (commit 3a576ea; eye_walker verifies two distinct blocks +
-  legible labels at t = 0, the exact cycle-2 failure frame). Cause first (32a): A's applied arrow
-  `F₁₂` appears; a readable beat later B's mirrored arrow `F₂₁` appears — SAME length, opposite
-  direction (the glow focal); another beat, then BOTH blocks recoil apart symmetrically.
-  Indicative numbers: F = 30 N, m = 300 kg each → a = ±0.10 m/s²; d(12 s) = 7.2 m each — blocks
-  end at ±7.2 of the ±10 clamp, 2.8 m margin (physics_author finalizes under the hard
-  dwell + frozen-pin-margin constraint; a clamped block under a live arrow is the HUD/caption
-  contradiction scar). Camera: authored near side-on framing both lanes (projection scar), e.g.
-  `[0, 2.8, 13]`.
-- **STATE_2** — SAME apparatus, SAME shared start line, home pose restored (32d). The ONLY change
-  (32b): m₂ is now 900 kg (visibly the same block mesh, label unchanged; the narration + the m₂
-  readout carry the 1:3). Cause first: both arrows appear together — IDENTICAL length, as always —
-  beat, then both blocks launch: m₁ flies (a = 0.10), m₂ barely creeps (a = 0.033). d(12 s):
-  7.2 m vs 2.4 m — clamp-safe. Dragging the `m₂` slider live re-scales ONLY B's recoil
-  (integrator reads mass per frame); its arrow length NEVER changes — the visible control silently
-  says "mass is the only dial here, and the force ignores it."
-- **STATE_3** — SAME apparatus; m₁ (300 kg) at `initial_position_m: 0`, and m₂ is now a **`ghost`**
-  body (dimmed, never integrated) holding pose just behind at −1.5 — the partner we are deliberately
-  ignoring. (Ghost bodies are excluded from the lane offset by design, so the ghost's DISTINCT
-  authored position is required and physically honest: it is "where the push came from".) Arrows on
-  A only: `mg` down, `N` up (equal, vertical — they visibly cancel ON THIS BODY), and the horizontal
-  `F₁₂` (glowing): its partner is NOT in this diagram — it lives on m₂. Cause first: the three-arrow
-  diagram settles, beat, then A accelerates away while the ghost holds pose; `F_net = 30.0 N` and
-  `a = 0.10` prove nothing cancelled. F = 30 N, a = 0.10, d(13 s) = 8.45 m → ends +8.45 of ±10,
-  1.55 m margin — physics_author trims dwell or extends `length_m` to hold ≥2 m margin.
-- **STATE_4** — Both bodies real again at the shared start, `action_reaction` engaged,
-  `trusted_drag_seizes: true`, `idle_auto_sweep: { param: 'F', range: [15, 45] }` (floor-safe;
-  Rule 37 free-run automatic via `interaction_complete`). Teacher recipe, zero words narrated:
-  drag m₂ huge — arrows stay twins, its recoil dies; drag F — both arrows grow together, both
-  recoils scale together; the ratio a₁/a₂ = m₂/m₁ holds at every setting.
+### Per-state choreography detail (Rule 32; placements COMPUTED from brief §4, never guessed)
 
-**Formula surface per state (Rule 34b — ONE per state, via `formula_overlay` → `#nlb_formula`, Unicode):**
-S1: `F₁₂ = −F₂₁` · S2: `|F₁₂| = |F₂₁| ⇒ a ∝ 1/m` · S3: `ΣF on m₁ = F₁₂ ≠ 0` · S4: `F₁₂ = −F₂₁`
-(Longest string is S2's ~20 characters — comfortably inside the formula-wrap scar bound; verified
-against the sibling's accepted `constant F ⇒ constant a`.)
+All states: `surface.length_m: 10` (brief §4 — default 6 runs S2's light cart off before the reveal
+pin), θ = 0, spring states frictionless. **ONE shared camera across all five states (Rule 32d):**
+centered on s = 0, **camera x = 0 ALWAYS** (a lateral x offset broke S1's symmetry by ~28% in v1 —
+brief §3.7), elevation-only framing, indicative `[0, 3.5, 13]` → target `[0, 0.6, 0]`.
 
-**Body ids/labels (build-once discipline):** A = `m₁`, B = `m₂`, constant across all states.
-Defensive note (build-once-flag scar `field3d_build_once_body_reads_a_per_state_flag…`): S3 flips
-B to `ghost: true` while S1/S2/S4 have B real. The scar's recorded failure mode is the `hanging`
-flag consumed at BUILD time; `ghost` is spec'd as state-apply behavior (dim + skip-integrate,
-spec §3), so id reuse should be safe — **json_author MUST verify ghost is applied per-state (not
-build-consumed) during self-review; if it is build-consumed, give S3's ghost its own id (`Bg`,
-same `m₂` label — never co-visible with B) per the scar's distinct-ids prevention.** No body ever
-hangs; no other build-time-consumed flag varies.
+**Camera / lane note (brief §3.7 — the old rule is INVERTED here):** S1, S2, S3 are `push_off` /
+`fixed` states → the engine forces EVERY body into lane z = 0, head-on along the track axis `s`.
+The 2026-07-25 "elevate to 55° to open the z lane" rule does NOT apply to them — there is no z lane
+to open; separation is along `s` and reads best near side-on. S4/S5 (no push_off, no fixed) DO get
+the 0.85-world z-lane stagger — their `s` positions are authored well apart (∓2.5 m) so the z offset
+is never load-bearing, letting the SAME low-elevation shared camera serve all five states. Never any
+camera x offset anywhere in this concept.
 
-## 4. Misconception confrontation plan (Rule 16a — 2 genuine pivots, no per-state tic)
+- **S1** — bodies A (m₁, 6 kg, s = **+0.91**) and B (m₂, 6 kg, s = **−0.91**) sandwiching the
+  compressed spring (gap exactly 0.72 m — §3.4 position contract). `push_off: { body_a_id: "A"
+  (POSITIVE side — order contract), body_b_id: "B", force_N: 30, release_at_ms: 420 }`,
+  `spring: { between: ["A","B"] }`. Cause first (32a): spring glows (focal) at the held pose, a
+  readable beat, then release — both 30 N arrows flash on, spring extends, carts drive apart, spring
+  hides at natural length, carts coast at ±2.10 m/s. At the frozen pin (release+2000 = 2420 ms,
+  §3.8): carts at ±5.55 m, symmetric, both on the ±10 track. Motion loops nothing; the coast IS the
+  persistence of the interaction.
+- **S2** — home pose restored (32d): same track, same spring, same start positions ±0.91, same
+  F = 30, same release 420 (reduced mass 3 kg in both S1 and S2 — frame-for-frame comparable, brief
+  §4). ONLY change (32b): A = 4 kg, B = 12 kg (labels m₁/m₂ + HUD carry the 1:3 — cart MESH SIZE is
+  mass-independent by Rule 29/NLB_BODY_SIZE; nobody requests size scaling). Arrows identical 1.44
+  world; a = 7.50 vs 2.50; distances at pin 6.96 m vs 2.32 m from the start line — exactly 3:1 in
+  pixels. Pin positions +7.87 / −3.23, on-track. **No weight arrows anywhere in S1/S2** (58.8 N and
+  117.6 N both clamp at the 2.80 ceiling — brief §4; the payload is the horizontal pair, Rule 34).
+- **S3** — cart A3 (6 kg — same cart mass as S1, Rule 32d) at s = **+0.7725**; NEW body id **"W"**
+  (`fixed: true`, wall slab) at s = **−0.7725** (gap = 0.72 + 0.55 + 0.275 = wall contract §3.4;
+  id "W" used in NO other state — `fixed` is build-time-consumed, brief §3.5). `push_off:
+  { body_a_id: "A3" (positive side), body_b_id: "W", force_N: 30, release_at_ms: 593 }` (drops the
+  wall's 1/m term). Cause first: spring holds, beat, release — cart's +30 N arrow AND the wall's
+  −30 N arrow (full magnitude, full brightness, pixel-identical — the engine draws fixed-body arrows
+  normally) appear together as one pair; cart recoils to +7.59 m at the pin; the wall holds. Note:
+  A3 is a distinct id from A if json_author finds ANY build-consumed flag divergence; otherwise
+  reuse "A" (json_author verifies per the build-once-flag scar).
+- **S4** — two REAL bodies (brief §3.6: `ghost` carries NO arrows — this state is why): A (6 kg,
+  s = +2.5) and B (6 kg, s = −2.5), z-lane staggered by the engine, no spring (it cannot span 5 m
+  and would float — spring-float scar), no push_off. `action_reaction: { engaged: true,
+  driver_body_id: "A" }` with applied +30 N on A (mirrored −30 on B every frame — the equality stays
+  engine-enforced). **Both carts are brake-pinned by static friction** (μ_s = 0.6 per body →
+  max-static 35.3 N > 30 N drive; carts hold pose all state): this is the ONLY few-kg design in
+  which the pair's arrows stay on screen for a full narration without the carts leaving the ±10 m
+  track (sustained 30 N on 6 kg = 5 m/s² exits in ~2 s; heavy carts are banned by brief §5). The
+  grip is not a cheat — it IS the lesson's counterexample: reveal-build order (32a): F₂₁ appears on
+  cart 1 (cause, glowing) → beat → its grip arrow f₁ appears on the SAME cart and F_net reads 0.0
+  (same-body cancellation, shown honestly) → beat → F₁₂ appears on cart 2 (the partner force,
+  visibly on a DIFFERENT body, in a different lane) with its own f₂. Narration lands: what balanced
+  cart 1 was its own grip — the partner force was never in this diagram; back in State 1 the track
+  was slick, nothing balanced the push, and BOTH carts flew. Framing annotation: "State 1's push,
+  held still to read each diagram." Arrows shown per cart: `['applied','friction']` only (no
+  weight/normal — 58.8 N clamps and clutters; Rule 34). If phases-gated arrow reveal is unavailable,
+  the all-at-t0 fallback is acceptable — physics_author verifies against the v1 beat-reveal pattern.
+- **S5** — sandbox: A and B (defaults 6 kg / 6 kg) at ∓2.5, μ = 0, `action_reaction` engaged,
+  `trusted_drag_seizes: true`, `idle_auto_sweep: { param: 'F', range: [15, 45] }` (minimum clears
+  the 11.5 N arrow floor with margin). Teacher recipe: drag m₂ huge — the arrows stay twins while
+  its recoil dies; drag F — both arrows grow together. Rule 37 free-run is automatic via
+  `interaction_complete`. **json_author build-note:** verify the engine's existing sandbox rebase
+  behavior for off-track excursion (sweep-cycle / drag rebase, as the shipped sibling sandboxes do);
+  if excursion is unbounded, default masses toward the m-slider's upper range so free-run a stays
+  ~1 m/s² — a numeric authoring choice, not an engine change.
 
-| # | Wrong belief | Confronted at | `misconception_watch` beat |
+**Arrow-law compliance (brief §3.2):** every authored force in every state is 30 N → 1.44 world,
+2.6× the 0.55 floor, half the 2.80 ceiling. The only sub-30 forces possible are S5's sweep floor
+(15 N ≥ 15 ✓). No weight/normal arrows are shown in any state (all would clamp at ≥58.8 N).
+
+**Formula surface per state (Rule 34b — ONE, math-serif Unicode, `#nlb_formula`):**
+S1 `F₂₁ = −F₁₂` · S2 `|F₂₁| = |F₁₂| ⇒ a ∝ 1/m` · S3 `a = F/m → a_wall ≈ 0 (m = Earth)` ·
+S4 `ΣF₁ = F₂₁ + f₁` (cancellation lives inside ONE diagram; physics_author may refine wording) ·
+S5 `F₂₁ = −F₁₂`. Convention declared once and kept: **F₂₁ = force ON cart 1 BY cart 2** (legend in
+the S1 caption zone; labels stay symbolic per Rule 24).
+
+**Narration intents (physics_author writes final text_en; Rule 30i — English only, never text_te):**
+- S1 (~40 w): "A compressed spring sits between two identical carts. Release it. One push acts on
+  both carts — at the same instant they recoil, equal speeds, opposite directions. Every force is
+  one half of a two-body interaction. No force after release, so each cart keeps its speed."
+- S2 (~38 w): "Same spring, same push — but the right cart is three times heavier. Watch the
+  arrows: identical, always. Only the accelerations differ — a equals F over m, so three to one.
+  Mass never changes the force; it changes the response."
+- S3 (~44 w): "Now the spring pushes a wall. Same pair: cart, thirty newtons one way; wall, thirty
+  newtons the other — the arrows match exactly. The cart flies; the wall stays, because its body is
+  the whole Earth. Zero motion never means zero force."
+- S4 (~52 w): "Hold each cart with a brake and read its diagram alone. On cart one, the partner's
+  push and its own grip — two forces on ONE body — cancel, and it holds. Its third-law partner
+  isn't here at all; it acts on cart two. Pair forces live on different bodies, so they never cancel."
+- S5: 0 / open.
+
+## 4. Misconception confrontation plan (Rule 16a — exactly 3 genuine pivots; no per-state tic)
+
+| # | Wrong belief (brief §2) | State | `misconception_watch` beat |
 |---|---|---|---|
-| M1 | "The bigger/stronger/heavier one pushes harder — the winner of a push exerts the greater force" (planted by lived experience: the heavier person 'wins' every shoving match, so their force must be larger) | STATE_2 | belief: unequal bodies exert unequal forces on each other · visual_counter: masses 1:3, yet the two applied-force arrows are pixel-identical in length and the two F readouts read the same 30.0 N — the ONLY unequal thing is the accelerations (0.10 vs 0.033, exactly 3:1) · one_line_fix: "The forces are always equal — mass decides who MOVES more, never who PUSHES more." |
-| M2 | "Equal and opposite forces cancel — so if every action has an equal reaction, nothing should ever move" | STATE_3 | belief: the action–reaction pair sums to zero on the moving body · visual_counter: on m₁'s own diagram, mg and N — which DO share this body — cancel visibly, while `F₁₂`'s partner is nowhere in this diagram (it acts on the dimmed ghost m₂); `F_net = 30.0 N` and m₁ accelerates · one_line_fix: "Forces cancel only when they act on the SAME body — a third-law pair never does." |
+| M1 | "The heavier one pushes harder" (planted by lived experience — the heavier person wins every shoving match) | STATE_2 | belief: unequal bodies exert unequal forces on each other · visual_counter: masses 1:3, both applied arrows pixel-identical (1.44 world) and both F readouts 30.0 N; the ONLY unequal numbers are a = 7.50 vs 2.50, and the distances at the frozen pin are 6.96 m vs 2.32 m — exactly 3:1 · one_line_fix: "Forces are always equal — mass decides who MOVES more, never who PUSHES more." |
+| M2 | "If nothing moves, there was no force" | STATE_3 | belief: a motionless wall exerts/receives no force · visual_counter: the wall's 30 N arrow is drawn at full magnitude and full brightness, pixel-identical to the cart's, while a = 0.00 on its HUD row — because its body is the Earth · one_line_fix: "The wall pushes back with the full 30 N — its acceleration is invisible only because its mass is the planet's." |
+| M3 | "Equal and opposite means they cancel, so nothing should move" | STATE_4 | belief: the action–reaction pair sums to zero on a body · visual_counter: on cart 1's own diagram, the push F₂₁ and the grip f₁ — which DO share the body — cancel to F_net 0.0; the pair's partner F₁₂ is drawn on cart 2, a different body in a different lane, and back in S1 (slick track, no grip) both carts accelerated · one_line_fix: "Forces cancel only on the SAME body — a third-law pair never shares one." |
 
 EPIC-C branches: ZERO (EPIC-L-first directive 2026-06-10). No board/competitive `mode_overrides` (Rule 20 [D]).
 
@@ -111,251 +159,117 @@ EPIC-C branches: ZERO (EPIC-L-first directive 2026-06-10). No board/competitive 
 
 - **STATE_2** — force-equality-under-asymmetry is THE documented third-law cliff ("but the truck
   destroys the car — surely it pushed harder"); many phrasings of one confusion.
-- **STATE_3** — the cancellation fallacy plus the chronic pair-identification error (calling mg/N
-  a third-law pair) both live here; multiple documented phrasings.
+- **STATE_4** — the cancellation fallacy plus the chronic pair-identification error (calling mg and
+  N a third-law pair) both live here.
+(Same two states carry the Pass-1 cliff sentences — cross-reference consistent.)
 
-(Same states carry the Pass-1 cliff sentences — cross-reference consistent.)
+## 6. Drill-down clusters (physics_author fleshes trigger_examples)
 
-## 6. Drill-down clusters (3 candidates each; physics_author fleshes trigger_examples)
-
-STATE_2: `heavier_pushes_harder_myth` (collision damage ≠ force inequality — a = F/m does the
-damage arithmetic) · `equal_forces_unequal_effects` (why the same 30 N wrecks the light body's
-motion and barely dents the heavy one's) · `who_exerts_the_force` (walls, floors, and planets push
-back exactly as hard as they are pushed).
-
-STATE_3: `action_reaction_never_cancel` (the different-bodies argument itself) ·
-`pair_vs_balanced_forces` (mg and N are NOT a third-law pair — both act on one body; mg's true
-partner is the body's pull ON the planet) · `identify_the_pair` (the swap rule: "A on B" ↔ "B on
-A", always the same interaction type).
+STATE_2: `heavier_pushes_harder` (mass ↔ force conflation) · `truck_car_collision_forces` (the
+collision-asymmetry phrasing of M1) · `action_reaction_magnitude_equality` (is the equality exact,
+always, even mid-motion?).
+STATE_4: `action_reaction_cancel_fallacy` (M3's direct phrasings) · `third_law_pair_identification`
+(mg/N mislabeled as a pair — the pair test: same interaction, two bodies, swapped subscripts) ·
+`internal_forces_cannot_self_accelerate` (why you can't lift yourself by your bootstraps).
 
 ## 7. `entry_state_map` (v2.2)
 
 ```
 entry_state_map:
-  foundational:   STATE_1 → STATE_3   # "what is Newton's third law / action-reaction"
-  unequal_masses: STATE_2             # "does the heavier one push harder?"
-  why_no_cancel:  STATE_3             # "why don't the equal forces cancel?"
-  explore:        STATE_4
+  foundational:  STATE_1 → STATE_2   # "what is the third law", equal/opposite, mass-blindness (PRIMARY aha inside)
+  static_partner: STATE_3            # "does a wall/table/Earth push back?"
+  cancellation:  STATE_4 → STATE_5   # "why don't action and reaction cancel?"
 ```
-PRIMARY aha (STATE_3) is inside `foundational` — foundational-coverage rule satisfied, no exit-pill needed.
+Default aspect = foundational. PRIMARY aha (S2) is inside the foundational range — no exit-pill needed.
 
 ## 8. Prerequisites (advisory only — Rule 23)
 
-- `newton_second_law` (SEALED, this worktree) — a = F/m is the read-off that turns equal forces
-  into the visible 3:1 acceleration proof; S2 leans on it in one clause.
-- `newton_first_law` (SEALED, this worktree) — ΣF = 0 ⇔ no change of motion is what makes
-  "if they cancelled, nothing would move" a meaningful (and then broken) expectation in S3.
-- `free_body_diagram` (this chapter, worktree A — may not yet be shipped; advisory pointer only)
-  — S3 patches the isolate-one-body idea inline (see cliff plan), so it is NOT required first.
+- `newton_second_law` (shipped, this chapter) — S2 reads off a = F/m.
+- `newton_first_law` (shipped, this chapter) — S1's coast (constant v after release) is a Newton-I echo.
+Both patched in-state (Block 1 below); neither gates entry.
 
 ## 9. Real-world anchor (Rule 35 — universal, culture-neutral, physics-true)
 
-**Primary:** two people on smooth-rolling chairs push off each other's palms — BOTH roll away, and
-the lighter person always rolls away faster, no matter who did the pushing: the push you give is
-exactly the push you get back. **Secondary:** a rocket in empty space — it hurls exhaust gas
-backward, and the gas pushes the rocket forward with the same force; nothing external to "push
-against" is needed. Why it hooks a Class 10–12 student: the chair push-off is a felt-in-the-body
-experiment they can rerun at a desk — including the surprise that pushing someone means launching
-yourself — and the rocket kills the "it pushes on the air" folk theory with the most dramatic
-machine they know. Both exhibit the genuine physics at every depth (the pair is engine-enforced in
-the sim exactly as momentum bookkeeping enforces it in the rocket). No places, brands, currency,
-or country-specific context anywhere in captions, labels, or narration.
+**Primary: two ice skaters pushing apart on a rink.** A light skater and a heavy skater press
+palms and push — one shove, and BOTH glide away at the same instant; the lighter one always leaves
+faster, yet neither "pushed harder." It is the concept's exact geometry (S1/S2: one interaction,
+two recoils, mass-blind force), it is something a Class-11 student anywhere has seen or felt (any
+slippery floor works — the physics is honest at every depth: near-frictionless surface = our μ = 0
+track), and it survives the whole lesson without breaking.
+**Secondary: a swimmer's turn — pushing off the pool wall** (S3: you push the wall, the wall's
+equal push is what launches you; the wall never moves because its body is the Earth). Both anchors
+are place-, brand-, and culture-free; plain English throughout.
 
 ## 10. Definition of Done (Gate 0 — zero TBDs)
 
-**(a) States:** S1 equal-mass pair recoils symmetrically under engine-mirrored ±30 N twin arrows ·
-S2 1:3 masses, identical arrows, 3:1 accelerations, live m₂ slider · S3 fbd_isolate — m₁'s
-three-arrow diagram (mg/N cancel, F₁₂ un-partnered), ghost m₂ holds pose, m₁ accelerates,
-F_net = 30.0 N · S4 two-body action_reaction sandbox, controls m/m₂/F, idle F-sweep [15,45],
-trusted drag.
+(a) **States:** S1 spring release, equal carts, symmetric recoil · S2 same push, 1:3 masses,
+identical arrows / 3:1 accelerations · S3 cart vs fixed wall, full-magnitude unmoved reaction ·
+S4 two real braked carts, per-body diagrams, same-body-cancel vs cross-body pair · S5 sandbox.
+(b) **Symbol-label table:** F₂₁ = "F₂₁" (force on cart 1 by cart 2) · F₁₂ = "F₁₂" · f₁/f₂ = "f"
+(grip, S4 only) · masses "m₁", "m₂" · velocities/accelerations HUD-only ("v", "a", value-only) ·
+wall label "wall (Earth)" · spring = unlabeled apparatus. No mg/N labels ship (arrows not shown).
+(c) **Right-hand-rule plan:** N/A — no magnetism, no cross products in this concept.
+(d) **Motion plan:** S1 spring release → symmetric recoil + coast · S2 same release → 3:1 split
+recoil · S3 one-sided recoil off the wall · S4 sequential reveal-build of two FBDs on a held
+tableau · S5 teacher-driven sweep/drag. No static state; every beat above is on the state clock.
+(e) **Modes:** conceptual-only (Rule 20 [D] — no mode_overrides).
+(f) **assessment + coverage_map + misconception_watch:** authored (M1→S2, M2→S3, M3→S4; 2026-05-30+
+mandate); assessment items span pair-equality, wall-reaction, and non-cancellation.
+(g) **Macro↔micro plan (Rule 33):** N/A-justified — the taught variable (contact force pair) and
+its mechanism are BOTH macroscopic at this level; no micro band. Instruments: the value-only HUD
+rows (F, a, v, f, F_net) are the live numeric readouts per 33d.
+(h) **Canvas budget (Rule 34):** one `#nlb_formula` surface per state (§3 list, Unicode subscripts
+F₂₁/F₁₂/ΣF₁); on-canvas caption = the ≤5-word delta cue only; HUD value-only; overlays in distinct
+corners clearing the review chrome.
 
-**(b) Symbol-label table (all Unicode, Rule 34c):**
-| Quantity | On-canvas label |
-|---|---|
-| force on m₁ from m₂ (applied arrow, body A; via `arrows[].labels.applied`) | `F₁₂` |
-| force on m₂ from m₁ (applied arrow, body B) | `F₂₁` |
-| weight arrow (S3) | `mg` |
-| normal arrow (S3) | `N` |
-| net-force readout | `ΣF` |
-| acceleration readout | `a` (m/s²) |
-| velocity readout (sandbox) | `v` (m/s) |
-| body labels | `m₁`, `m₂` |
-| mass sliders | `m`, `m₂` |
-| push-strength slider | `F` |
-
-**(c) Right-hand-rule plan:** N/A — no cross products in this concept (documented, not TBD).
-
-**(d) Motion plan:** S1 both bodies integrate apart from the shared start under the engine-mirrored
-pair (Branch A, independent bodies; arrows appear cause-first with a readable stagger — A's then
-B's — before motion); S2 same launch, masses 1:3 (contrast pair; only m₂ changed); S3 single real
-body integrates under F₁₂ while the ghost holds pose (fbd_isolate; ghost never integrated);
-S4 idle F-sweep until seized, free-running clock (Rule 37 automatic). Every placement computed
-against `surface.length_m` with ≥1.5–2.8 m clamp margin (§3 indicative numbers; physics_author
-finalizes under dwell + frozen-pin margin).
-
-**(e) Modes:** conceptual EPIC-L only (Rule 20 [D] — no board/competitive overrides).
-
-**(f) assessment + coverage_map + misconception_watch:** authored (concept post-2026-05-30).
-Assessment plan (3 items): (i) a light and a heavy body push off each other — compare the forces
-they exert → equal in magnitude, opposite in direction (S1/S2); (ii) why don't the equal-and-
-opposite pair forces cancel → they act on different bodies (S3); (iii) masses m and 3m push off —
-ratio of accelerations → 3:1, lighter one larger (S2). `coverage_map` maps i→S1+S2, ii→S3, iii→S2;
-S4 in `non_assessed_states`.
-
-**(g) Macro↔micro plan (Rule 33):** NOT TRIGGERED — the taught variables (forces on and
-accelerations of two visible blocks) are directly macroscopic; no micro band. Instruments:
-value-only HUD readouts (`F`, `a`, `v`, `ΣF`) are the live numerics per 33d — the identical
-F rows beside the 3:1 a rows ARE the concept's star witness.
-
-**(h) Canvas budget (Rule 34):** per state — ONE `formula_overlay` string (§3 list), top caption =
-the ≤5-word delta cue only, value-only HUD (engine `#nlb_readout` rows), narration prose in the
-strip below the canvas. **`readouts` never includes `N` or `f`** except S3's on-canvas N ARROW
-(where the vertical cancellation is the teaching); the HUD stays horizontal-only (`F_applied`,
-`F_net`, `a`) — μ = 0 makes `f` identically zero (zero-stub scar) and a numeric N row teaches
-nothing here. HUD/formula/slider zones are engine-reserved (bottom-anchored panel, top:52px HUD).
-
----
-
-## Two-pass cognitive lens
+## 11. Two-pass cognitive lens
 
 ### Block 1 — Pass-1 strategic checklist
+1. **Prerequisite cliffs.** `newton_second_law` breaks S2 for a student who can't read a = F/m: one
+   narration clause patches it ("a equals F over m, so three to one") without condescension.
+   `newton_first_law` breaks S1's coast ("why do they keep moving after the spring stops?"): one
+   clause ("no force after release, so each cart keeps its speed").
+2. **JEE-backwards trace.** Q: "A 4 kg and a 12 kg cart on a frictionless track are pushed apart by
+   a compressed spring. (i) Compare the forces on each cart during the push. (ii) The 4 kg cart
+   leaves at 3.15 m/s — find the 12 kg cart's speed. (iii) Why don't the equal and opposite forces
+   prevent motion?" — (i) needs pair equality + simultaneity → S1; (ii) needs mass-blind F ⇒
+   a ∝ 1/m ⇒ v ratio 3:1 → S2 (answer 1.05 m/s, literally the S2 reference numbers); (iii) needs
+   different-bodies non-cancellation → S4. The horse-and-cart classic additionally needs S4's
+   same-body-balancer idea (external grip), covered. No missing piece; momentum conservation is
+   explicitly deferred to its own atomic.
+3. **Misconception entry mapping (16a).** M1 planted by S1? — S1's symmetric recoil could read as
+   "symmetric because the carts are identical"; that IS the setup, deliberately earned, and S2
+   breaks it immediately (declared contrast pair). M2 planted nowhere upstream; confronted at S3.
+   M3 risk-point is S2's "equal and opposite" phrasing — S2's narration says "opposite directions"
+   on two moving carts (motion visibly not cancelled), and S4 confronts the residue head-on. 16b
+   branches deferred (no real students).
 
-**Prerequisite cliffs:** (1) `newton_second_law` — breaks at STATE_2 if a = F/m is not available
-(the 3:1 acceleration split would read as arbitrary); patch: one S2 clause — "same force, three
-times the mass — so, exactly as last time, one third the acceleration" — which doubles as the
-delta framing for students who have it. (2) `newton_first_law` — breaks at STATE_3 if "ΣF = 0 ⇒
-no change of motion" is missing (the cancellation fallacy has no bite without it); patch: one S3
-clause anchors it — "if these really cancelled, m₁ could never start moving — but watch." (3)
-free-body isolation — breaks at STATE_3 if drawing ONE body's forces is unfamiliar; patch: the
-choreography does the isolating (partner dims to a ghost, only forces ON m₁ are drawn), and the
-narration names the move in one clause ("look at m₁'s forces alone").
+### Block 2 — Aha designation
+- **PRIMARY aha (S2):** the two arrows stay pixel-identical while the accelerations split 3:1 —
+  *mass decides who moves, never who pushes*. The 10-year memory is that single frame.
+- **SUPPORTING aha (S4, 1 of 1):** forces cancel only inside one body's diagram — a third-law pair
+  never shares a body. It exists to protect the primary from the "then nothing should move"
+  rebound; clear cohesion, no orphan ahas (S3 is a confrontation beat, not a separate aha).
+- **Wrong-belief setup.** For the primary: S1 earns confident symmetry with identical carts, so the
+  student walks into S2 sure the heavier cart will "win the push." For the supporting: S1–S3 have
+  hammered "equal and opposite" three times, so by S4 the student confidently expects a sum of zero.
+- **Foundational coverage:** PRIMARY aha state (S2) is inside `foundational` — rule satisfied.
 
-**JEE-backwards trace:** *"A horse pulls a cart with force F; by Newton's third law the cart pulls
-the horse back with force F. Which statement explains why the system can still accelerate? (A) the
-horse pulls slightly harder (B) the third-law pair acts on different bodies, so each body's own net
-force can be nonzero (C) the forces cancel and the ground moves them (D) the third law fails for
-living things."* Pieces: pair equality even between unequal agents → S1/S2 (kills A, D); the pair
-acts on different bodies so cancellation never happens within one body → S3 (delivers B, kills C);
-each body then obeys its own a = ΣF/m → S2 + the `newton_second_law` prerequisite. No missing
-piece — no state added. (Friction/ground details belong to `block_on_incline`/`free_body_diagram`,
-advisory.)
+## 12. Compliance notes
 
-**Misconception entry mapping (16a):** M1 → planted by lived experience (shoving matches are won
-by the heavier party) and NEVER by our sentences; confronted proactively at STATE_2
-(`misconception_watch` there; the contrast beat is the identical-arrows-beside-3:1-readouts frame).
-Planting-risk check: S1 must never say m₁ "pushes" and m₂ "is pushed" as if asymmetric — narration
-gives the interaction one verb ("they push off each other") so agency never implies force
-inequality. M2 → planted the moment "equal and opposite" is stated in S1 (a student fresh from
-`newton_first_law`'s balanced-forces beat will naturally sum the pair to zero); confronted one
-state later at STATE_3 (`misconception_watch` there). Second planting risk, S3-specific: showing
-mg/N cancelling could plant "mg and N are the third-law pair" — guarded by one narration clause
-("mg and N both act on m₁ — that is exactly why they CAN cancel; a third-law pair never shares a
-body") and offloaded fully to the `pair_vs_balanced_forces` drill-down. No EPIC-C branches
-(deferred).
+- **DC Pandey check:** scope confirmed against the Laws of Motion chapter plan / NCERT LoM index
+  only (third law is one atomic within the chapter's 6-concept spine). No teaching sequence,
+  example problem, phrasing, or figure imported; the spring–cart–wall arc is authored first-
+  principles per the founder brief.
+- **Scar/bug-queue consultation:** the live SQL queue was not directly queryable from this agent
+  (no shell tool); consultation performed via rebuild_brief §3 (HEAD-verified renderer facts),
+  push_off_report §3 scar_candidates (spring-float, release-window-outlives-extension, dead-F-
+  slider), and the v1 skeleton's embedded scar annotations (arrow floor/ceiling, build-once flags,
+  formula wrap, HUD/clamp contradiction, camera projection). Every prevention rule is satisfied in
+  §3 above; json_author should re-run the queue query at build time as backstop.
+- **Registration:** all 4 existing sites stay; nothing added; PCPL_CONCEPTS untouched.
+- **TTS:** all scripts are rewritten → text_en fresh; text_hi optional (Rule 30g sub-agent), never
+  voiced; audio on-demand only (Rule 30h). Old baselines replaced via `visual:approve` after
+  founder OK (expected H2 fails on first EYE run are the old-arc vintage, not defects).
 
-### Block 2 — Aha-moment designation
-
-- **PRIMARY aha (the 10-year memory):** *Equal-and-opposite forces from an interaction NEVER
-  cancel, because they never act on the same body — each body feels exactly one of them, and
-  moves by it.* Lands at STATE_3.
-- **SUPPORTING aha (1):** *The two forces are equal no matter how unequal the bodies — the truck
-  and the fly trade identical forces; mass only decides who accelerates more (a ∝ 1/m).* Lands at
-  STATE_2 (set up by S1's symmetric case).
-- **Cohesion check:** the supporting aha supplies the equality that makes the primary's paradox
-  sharp (only EQUAL forces tempt anyone to cancel them) — it sets up the primary, never stands
-  alone. 1 + 1 = sweet spot.
-- **Wrong-belief setup:** the primary aha's confident-wrong-belief (M2) is manufactured in-sim by
-  S1 itself — the state that proudly announces "equal and opposite" hands the student the
-  cancellation trap, and S3 springs it. The supporting aha's wrong belief (M1) is pre-earned by
-  lived experience and by S1's symmetric case ("equal bodies, equal forces" feels like the
-  reason) — S2 breaks it by making the bodies unequal while the arrows refuse to change.
-- **Foundational-coverage:** PRIMARY aha state (S3) ⊂ `foundational` range. Satisfied.
-
----
-
-## Engine bug queue consultation (pre-authoring)
-
-Script not runnable in the architect thread (no shell); consulted
-`docs/loop_runs/lom/_engine/scar_candidates.sql` (ALL rows, including the cycle-2 rows naming
-`newton_third_law`) + the two sealed sibling skeletons. Relevant rows and how this skeleton
-satisfies each:
-
-- **`field3d_nlb_two_body_lane_offset_missing_causes_full_occlusion` (CRITICAL, names this
-  concept; fix landed, commit 3a576ea):** S1/S2/S4 author both independent bodies at the SAME
-  `initial_position_m: 0` and RELY on `nlbBodyLaneZ` — never a position stagger. Downstream
-  verify (eye_walker): two distinct blocks + two legible labels at t = 0 AND at the H2 frozen pin
-  of S1/S2 (the exact frames that failed on `newton_second_law`).
-- **`field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio` (MAJOR, names
-  this concept; owner alex:physics_author):** every authored force is 30 N (3× floor); the
-  equality-comparison pair (S1/S2) is 30 N on BOTH arrows; the sandbox sweep range [15, 45] N
-  never dips below the floor. Hard rule handed to physics_author: no state and no sweep may
-  author a nonzero on-screen force under 15 N.
-- **`field3d_nlb_physics_clock_not_state_local` + `…ignores_reset_trajectory…` (FIXED):** all
-  three guided states are integrator states and depend on the fix. Downstream verify: v = 0.00
-  and both bodies at the start line at each state's first captured frame.
-- **Motion-bound / clamp scar:** all placements computed (§3): worst case S3 ends at +8.45 of
-  ±10 (physics_author holds ≥2 m margin by trimming dwell or extending length_m); S1/S2 worst
-  case ±7.2 of ±10. No pulley, no post.
-- **Label projection scar:** every state authors its own near side-on `camera_position`; S1/S2/S4
-  frame both lanes; S3 frames the three-arrow diagram side-on.
-- **HUD zero-stub scar:** `f` and `N` never in `readouts` (μ = 0; N teaches nothing numerically
-  here); ghost bodies get no HUD rows by the engine's non-ghost rule. All declared keys are live
-  meaningful values on every real body shown.
-- **Glow-handoff scar (`field3d_nlb_phase_glow_handoff_not_visible` — OPEN, owner ambiguous):**
-  NO `phases[]` glow handoffs anywhere — one static `glow_focal` per state. The cause-first arrow
-  stagger in S1 is a reveal-timing matter for physics_author within the state timeline, not a
-  glow phase. Designed around, not re-hit.
-- **Slider-row jump scar:** engine-side (visibility:hidden); this concept's token union is
-  `{m, m2, F}` — no μ, theta, or v0 row is ever built.
-- **Build-once flag scar:** ids A/B stable, labels constant, no body ever hangs; the ONE per-state
-  flag change (B ghost in S3) is flagged with an explicit json_author verification + distinct-id
-  fallback (§3).
-- **Formula-wrap scar:** longest formula is S2's `|F₁₂| = |F₂₁| ⇒ a ∝ 1/m` — short by design.
-- **Pick-proxy / sandbox scars (seam E):** engine-side; sandbox authored exactly per spec §4;
-  founder hand-tests the trusted drag (THE EYE cannot fire trusted events).
-- **F3D_REVEAL_KEYS / deriveStateMeta scar (seam F):** engine-side, already landed (siblings
-  sealed through THE EYE); flagged forward for json_author's cache re-seed self-check anyway.
-- **Pedagogy directives (checklist):** concrete-before-abstract (two blocks recoil before
-  `F₁₂ = −F₂₁` appears — the formula surface in S1 arrives with the reveal, not before it),
-  visual-matches-narration (never narrate "the reaction" while only one arrow is on screen —
-  S1's script names each arrow as it appears; S3 never says "cancel" of the pair while showing
-  arrows that DO cancel without the same-body clause), don't-pre-spoil (the no-cancel argument is
-  not narrated in S1/S2; S3 owns it), reveal-sync N/A (no phase reveals authored).
-
-**DC Pandey check:** consulted Laws of Motion table of contents only to confirm "Newton's third
-law" is its own section following the second law and preceding constraint/pulley problems. No
-teaching method, no example problem, no figure reference imported.
-
-## Self-review notes
-
-- Atomic claim = one sentence. 4 states sits in the simple-to-medium §5 band; the concept has
-  exactly three teaching loads (pair exists+equal · equality survives asymmetry · different-bodies
-  no-cancel) + explore — no padding, no truncation.
-- Two coined archetypes (`mirror-recoil`, `isolate-and-run`), each with a one-line justification;
-  the single archetype repeat is the declared S1/S2 contrast pair whose delta names the flip
-  (masses 1:3, forces unchanged). Zero archetype overlap with either sibling's guided sets
-  (translate-through/null-result-hold; accelerate-run/side-by-side-race) — sandbox excepted.
-- 2 misconception pivots (guardrail 1–3), 2 deep-dive picks, ≥2 advance modes; ≥3 primitives/state
-  is a json_author obligation flagged forward.
-- All narration budgets 35–55 EN words; explore = 0/open. All four glow focals distinct.
-
-## ENGINE GAP
-
-None. All four states use existing modes (`action_reaction_pair`, `fbd_isolate`, `sandbox`) and
-existing keys only; equal-and-opposite is enforced by the shipped `action_reaction` mirror. Three
-non-gap defensive notes for downstream agents: (1) **F-slider binding in a two-body sandbox** —
-the spec does not define which body `#nlb_f_slider` writes. With `action_reaction` engaged the
-mirror makes the RESULT well-defined only if the slider writes the DRIVER body's
-`applied_force_N` (a write to the mirrored body would be silently overwritten each frame).
-json_author must verify which body the emitter writes and author `driver_body_id` to BE that
-body; if the binding proves inert either way, drop `F` from S4's controls (m/m₂ + the idle F-sweep
-still carry the state) — a design choice within the existing surface, not a gap. (2) **Ghost flag
-per-state application** — verified fallback documented in §3 (distinct id `Bg`). (3) **Ghost lane
-offset** — ghosts are excluded from `nlbBodyLaneZ` by design, so S3's ghost is authored at its own
-distinct position (−1.5, "where the push came from"); this is NOT the forbidden stagger, which
-applies to the two REAL independent bodies only.
-
----
-*Handoff: physics_author (exact F/m/dwell/placement values under the clamp-margin + ≥15 N
-arrow-floor constraints, S1 arrow-stagger timing, motion timelines, narration scripts within the
-declared budgets).*
+**ENGINE GAP: none.**

@@ -1,0 +1,31 @@
+REBUILD newton_third_law. The founder reviewed the current version and it does NOT teach the concept. This is a re-author of an existing SEALED concept, not a new one.
+
+WHY IT FAILS (founder diagnosis, 2026-07-29) - read this before touching anything:
+The current states are two 300 kg blocks with 30 N arrows and action_reaction: engaged. Two problems, the second fatal:
+  1. The motion is invisible: 30 N on 300 kg is a = 0.1 m/s2, so the blocks barely move.
+  2. THE INTERACTION IS NEVER ON SCREEN. Newton's third law is a statement about ONE interaction between TWO bodies, but the sim draws two separate blocks with arrows that appear from nowhere. Nothing touches. A student sees "two blocks with labels", not "these two push each other". We asserted the pair instead of showing it.
+Bigger arrows cannot fix that. The CAUSE must be a visible object.
+
+WHAT TO BUILD: the spring push-off on a low-friction track. The engine capability was just added for exactly this - read docs/loop_runs/push_off_report.md IN FULL first (it carries the exact JSON config surface and a NON-OPTIONAL authoring contract: spring natural length 1.6 m, compressed 0.72 m, the |s_a - s_b| position rule, the body_a-is-on-the-positive-side rule, and the release_at_ms formula with worked values). Then read docs/NLB_PUSH_OFF_SPEC.md for the pedagogy, and docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md section 6 for the general config surface.
+
+THE 5-STATE ARC (founder-approved):
+  1. Equal carts, spring released -> they fly apart at the SAME INSTANT. Establishes the pair. glow_focal on the spring: point at the cause.
+  2. Same force_N, masses 1:3 -> the two force ARROWS STAY IDENTICAL while the accelerations go 3:1. This single image is the whole lesson. Kills "the heavier one pushes harder".
+  3. Cart pushes a WALL (fixed: true) -> same equal-and-opposite pair, nothing visibly moves, because the other body is the Earth. Kills "if nothing moves there was no force".
+  4. Isolate each cart's FBD (ghost bodies) -> the pair lives on DIFFERENT bodies, which is why they do not cancel. Kills "equal and opposite means they cancel".
+  5. Sandbox (interaction_complete): mass-ratio + force sliders.
+
+AUTHORING RULES THAT ARE NOT OPTIONAL:
+- Smallest on-screen force >= 15 N or the arrow-length floor collapses it to an identical stub (this bit newton_second_law).
+- Carts of a FEW kg with TENS of newtons so acceleration is actually visible. Do NOT reuse the 300 kg / 30 N numbers.
+- Obey the spring position/order/timing contract in push_off_report.md section 2 exactly - author release_at_ms from the formula, or the coil vanishes while the arrows still draw.
+- Do NOT put 'F' in controls_visible on a guided push_off state (the gate rewrites F_applied every tick; a trusted drag is silently discarded).
+- Rule 31: 25-55 EN words of narration per state, one idea + one complete motion each, distinct motion archetype per state, explore last.
+- Rule 35: universal, culture-neutral anchor. Rule 34: <=5-word delta-cue caption on canvas, prose in the strip below.
+- Keep the concept_id newton_third_law and all 4 existing registration sites - this REPLACES the states, it is not a new concept.
+
+PROCESS: follow docs/CHAPTER_LOOP.md section 3. Dispatch architect -> physics-author -> json-author, then quality-auditor and eye-walker IN PARALLEL. Never load frame PNGs into your own context. Re-seed the cache before THE EYE (the sim HTML is assembled from the renderer). If quality-auditor PASSES and eye-walker is clean, run visual:approve to re-baseline (the old baselines are for the OLD arc and MUST be replaced) and commit.
+
+If the concept needs a renderer change, STOP and park with an engine_gap.md - do not extend the engine yourself. Engine budget: 2 new commits max, then park.
+
+Constraints: no tts, no PILOT_CONCEPTS, no build:pilot, no deploy, no master merge, no engine_bug_queue DB writes, no paid smoke:visual-validator. Update docs/loop_runs/lom_b_state.md and EXIT when sealed or parked.
