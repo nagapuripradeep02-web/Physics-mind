@@ -1,0 +1,555 @@
+{
+  "concept_id": "friction_force",
+  "concept_name": "Friction Force — Static Grip Self-Adjusts Until It Breaks, Then Drops",
+  "chapter": 8,
+  "section": "8.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.5 §5.9.1 (Laws of Motion — Friction) — table-of-contents scope only, teaching authored from first principles. The atomic concept: static friction is not a fixed value — it self-adjusts to exactly cancel an applied push up to a ceiling f_max = μₛN, past which the body breaks free and friction DROPS to the smaller constant kinetic value μₖN. Does NOT cover the incline decomposition or the tan θ = μₛ break-away angle (owned by shipped block_on_incline), the full friction-opposes-relative-motion direction subtlety, or stacked-block/belt/accelerating-frame contexts (V2, engine-out). Built on the newtons_laws_body field_3d engine (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md), pure configuration plus the pre-approved param_ramp one-shot knob, zero renderer edits. Does NOT touch the legacy friction_static_kinetic.json (old mechanics_2d, non-product).",
+
+  "prerequisites": [
+    "normal_reaction",
+    "newton_first_law",
+    "newton_second_law",
+    "free_body_diagram"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "Pushing a heavy storage box across a floor. You lean into it — nothing. Push harder — still nothing, the floor answers you newton for newton. Then at one exact effort the box suddenly lurches free, and keeping it sliding feels easier than starting it ever did. That lurch is static friction losing to a smaller kinetic value the instant it lets go.",
+    "secondary": "Anti-lock brakes on a car: a car stops best when the tyres do NOT skid, because rolling contact keeps the larger static grip while a skidding tyre only ever gets the smaller kinetic value."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "m": { "name": "mass of body A (and B in S4/S5)", "unit": "kg", "min": 0.5, "max": 10, "step": 0.5, "default": 5 },
+      "F": { "name": "applied force (the push)", "unit": "N", "min": -20, "max": 20, "step": 0.5, "default": 0 },
+      "mu_s": { "name": "coefficient of static friction", "unit": "", "min": 0, "max": 1, "step": 0.05, "default": 0.5 },
+      "mu_k": { "name": "coefficient of kinetic friction", "unit": "", "min": 0, "max": 1, "step": 0.05, "default": 0.4 },
+      "v0": { "name": "initial velocity", "unit": "m/s", "min": -5, "max": 5, "step": 0.5, "default": 0 },
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "theta": { "name": "incline angle — fixed at 0 throughout this concept (flat concept; block_on_incline owns the incline arc)", "unit": "deg", "constant": 0 },
+      "N": { "name": "normal force", "unit": "N", "derived": "m * g * cos(radians(theta))" },
+      "w": { "name": "weight", "unit": "N", "derived": "m * g" }
+    },
+    "computed_outputs": {
+      "N": { "formula": "normal reaction, N — m*g, constant at 49.0 N throughout this concept (theta = 0 fixed)" },
+      "f": { "formula": "friction magnitude, N — f_s = F while stuck (never exceeds mu_s*N); f_k = mu_k*N once sliding" },
+      "a": { "formula": "acceleration, m/s^2 — 0 while stuck; (F - mu_k*N)/m once sliding" },
+      "v": { "formula": "velocity, m/s" },
+      "F_net": { "formula": "net force, N — 0 while stuck (the taught value in S1/S2/pre-break-S3); m*a once sliding" }
+    },
+    "formulas": {
+      "N": "m * g * cos(radians(theta))",
+      "drive": "F - m * g * sin(radians(theta))",
+      "max_static": "mu_s * N",
+      "static_hold_condition": "abs(drive) <= mu_s * N",
+      "f_static": "abs(drive)",
+      "kinetic_friction_signed": "-sign(v) * mu_k * N",
+      "a_moving": "(drive + kinetic_friction_signed) / m",
+      "a_static": "0",
+      "break_away_force": "mu_s * m * g",
+      "sum_F": "m * a"
+    },
+    "constraints": [
+      "N = m*g at all times in this concept — theta = 0 is fixed and never authored as a control",
+      "f_s <= mu_s*N always while at rest; the reported static friction never exceeds its own ceiling",
+      "break-away occurs at F = mu_s*m*g exactly — this threshold is MASS-DEPENDENT on a flat push, the deliberate contrast with block_on_incline's mass-cancelling tan(theta_c) = mu_s",
+      "once sliding, f_k = mu_k*N < mu_s*N (mu_k < mu_s) and is CONSTANT for the rest of the slide, independent of both F and v — kinetic friction never varies with speed",
+      "STOP_EPS_V = 0.01 m/s: velocity below this is treated as exactly zero by the engine",
+      "T = 0 everywhere in this concept — no tension, no pulley, no hanging body (uncoupled Branch A bodies only)"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Friction matches your push exactly, up to one ceiling — then gives back LESS.",
+    "visual_confirmation": "As F ramps from 16 to 27 N, f tracks it exactly until 24.5 N, then the readout snaps down to 19.60 N and acceleration jumps from 0 to 0.98 m/s²."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "kinetic_regime": { "start": "STATE_4", "end": "STATE_5" },
+    "explore": { "start": "STATE_6", "end": "STATE_6" }
+  },
+
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "No Push — Zero Friction, Even Though the Ceiling Is Ready",
+        "duration": 10,
+        "focal_primitive_id": "ff_s1_watch_f",
+        "advance_mode": "manual_click",
+        "motion_archetype": "null-result-hold",
+        "delta_cue": "No push — zero friction",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ff_s1_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "No push, no friction — even though mu_s N = 24.5 N sits ready",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s1_watch_f",
+            "position": { "x": 200, "y": 250 },
+            "text": "f stays 0.00 while mg and N grow together as m is dragged",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s1_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like leaning on a heavy storage box with nothing yet to push against",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Nothing is pushing this block, so friction has nothing to answer: f sits at zero." },
+            { "id": "s1_2", "text_en": "Drag the mass up — weight and normal force N grow together, but friction stays 0.00." },
+            { "id": "s1_3", "text_en": "Friction only exists when a push asks it to." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Static Friction Is an Answer — f Tracks F in Exact Lockstep",
+        "duration": 10,
+        "focal_primitive_id": "ff_s2_lockstep",
+        "advance_mode": "manual_click",
+        "motion_archetype": "ramp-track (declared contrast pair with STATE_3)",
+        "delta_cue": "Friction rises to match",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "friction_self_adjusting_mechanism",
+          "mu_n_is_ceiling_not_value",
+          "static_friction_zero_without_push"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ff_s2_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Push harder — friction rises to match, newton for newton",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s2_lockstep",
+            "position": { "x": 200, "y": 250 },
+            "text": "f tracks F exactly, every step of the ramp — never jumping to mu_s N",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s2_net",
+            "position": { "x": 560, "y": 400 },
+            "text": "F_net stays 0.00 the whole time — friction is answering, not fixed",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Push harder and friction rises to match, newton for newton — watch the applied and friction arrows grow together while the block stays perfectly still." },
+            { "id": "s2_2", "text_en": "The net-force readout holds at 0.00 the whole time." },
+            { "id": "s2_3", "text_en": "So far friction always finds the answer... watch what happens when it can't." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Friction is always mu times N — a fixed value set by the surfaces.",
+            "visual_counter": "The f readout equals the F readout digit-for-digit through the whole ramp — if friction were always mu_s N it would read 24.50 from the start, not climb from 16.00.",
+            "one_line_fix": "mu_s N is friction's CEILING, not its value — below it, friction copies your push exactly."
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "The Ceiling and the Drop — Break-Away at F = 24.5 N",
+        "duration": 14,
+        "focal_primitive_id": "ff_s3_ceiling",
+        "advance_mode": "manual_click",
+        "motion_archetype": "ramp-track (contrast pair of STATE_2)",
+        "delta_cue": "Push past the ceiling",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "limiting_friction_breakaway",
+          "static_to_kinetic_drop",
+          "f_vs_applied_force_graph_story"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ff_s3_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Push keeps climbing toward the ceiling",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s3_ceiling",
+            "position": { "x": 200, "y": 250 },
+            "text": "at F = 24.5 N the block lets go — f snaps 24.50 down to 19.60",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s3_jump",
+            "position": { "x": 560, "y": 400 },
+            "text": "a jumps 0 to 0.98 m/s^2 the instant it releases",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "We reset the block and start the push from scratch." },
+            { "id": "s3_2", "text_en": "Push keeps climbing; the block holds, holds, holds, until F hits 24.5 newtons, and it lets go." },
+            { "id": "s3_3", "text_en": "Notice friction gave back LESS: the readout snaps from 24.50 down to 19.60." },
+            { "id": "s3_4", "text_en": "That gap is why acceleration jumps from zero to nearly one metre per second squared." }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "title": "Two Regimes, One Force — Same Push, Two Fates",
+        "duration": 10,
+        "focal_primitive_id": "ff_s4_contrast",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "two-fate-contrast",
+        "delta_cue": "Same push, two fates",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ff_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Same 22 N push, two identical blocks",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s4_contrast",
+            "position": { "x": 200, "y": 250 },
+            "text": "resting block holds at f_s = 22.00 N; moving block only gets f_k = 19.60 N",
+            "color": "#AB47BC"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s4_fate",
+            "position": { "x": 560, "y": 400 },
+            "text": "the moving one keeps speeding up — the resting one never budges",
+            "color": "#81C784"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Same 22-newton push, two identical blocks, two different fates." },
+            { "id": "s4_2", "text_en": "This one was resting — friction rises to meet the push and holds it at 22.00 newtons, forever." },
+            { "id": "s4_3", "text_en": "That one was already sliding — it only ever gets 19.60 newtons of friction, so the extra push wins and it keeps speeding up." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "All friction is the same — one fixed force.",
+            "visual_counter": "Same push, two different friction readouts, two different fates: the resting block holds at 22.00 N while the moving block only gets 19.60 N.",
+            "one_line_fix": "Static friction adjusts up to mu_s N; sliding friction is a smaller, fixed mu_k N — that's why the block lurches the instant it breaks free."
+          }
+        ]
+      },
+
+      "STATE_5": {
+        "title": "Kinetic Friction Ignores Speed — Fast or Slow, Same f",
+        "duration": 10,
+        "focal_primitive_id": "ff_s5_invariant",
+        "advance_mode": "manual_click",
+        "motion_archetype": "two-speed-glide",
+        "delta_cue": "Fast or slow — same friction",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ff_s5_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "One block glides slow, one glides fast",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s5_invariant",
+            "position": { "x": 200, "y": 250 },
+            "text": "both friction readouts read exactly 19.60 N — speed never enters",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s5_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "kinetic friction depends on N and the surfaces only",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "One block glides slow, the other fast — yet both friction readouts read exactly 19.60 newtons." },
+            { "id": "s5_2", "text_en": "Kinetic friction only cares about the surfaces and the normal force, never about speed." },
+            { "id": "s5_3", "text_en": "Faster does not mean more grip lost." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Faster sliding means more friction.",
+            "visual_counter": "The v rows differ by 2.5 times, but the f rows are identical at 19.60 N.",
+            "one_line_fix": "Kinetic friction cares about N and the surfaces — not the speed."
+          }
+        ]
+      },
+
+      "STATE_6": {
+        "title": "Explore — Every Control, All Yours",
+        "duration": 0,
+        "focal_primitive_id": "ff_s6_key",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "All yours",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ff_s6_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Everything is yours now",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s6_try",
+            "position": { "x": 380, "y": 250 },
+            "text": "change mass, push, mu_s, mu_k, starting speed — watch every arrow answer",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ff_s6_key",
+            "position": { "x": 380, "y": 440 },
+            "text": "f_s <= mu_s N   f_k = mu_k N",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Everything is yours now — change the mass, the push, both friction values, even the starting speed, and watch every arrow and reading respond." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "crate_push_across_floor",
+      "type": "B",
+      "label": "Pushing a Loaded Crate Across a Warehouse Floor",
+      "physical_world": "A loaded crate sits on a warehouse floor. Push it gently — nothing happens, the floor answers newton for newton. Push harder and harder still, until at one exact effort the crate suddenly breaks free and slides.",
+      "same_physics": "Identical lockstep-then-ceiling-then-drop: friction tracks the push exactly up to f_max = mu_s N, then falls to the smaller constant mu_k N once sliding — only the labeled world changes.",
+      "scene_hint": "Same single-body rig, same flat surface — only the labeled object changes from a generic block to a crate."
+    },
+    {
+      "variant_id": "moving_a_heavy_cabinet",
+      "type": "B",
+      "label": "Moving a Heavy Cabinet Across a Room",
+      "physical_world": "A heavy cabinet resists a gentle push completely, resists a harder push completely, then at one precise push gives way and slides — and once it's sliding, keeping it moving takes noticeably less effort than starting it did.",
+      "same_physics": "Same threshold physics: static friction self-adjusts up to mu_s N, then drops to the fixed, smaller mu_k N once sliding — the same reason it is always easier to keep something moving than to start it.",
+      "scene_hint": "Same rig, same physics — the block is relabeled as a cabinet on a room floor."
+    }
+  ],
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "m": { "min": 0.5, "max": 10, "step": 0.5, "default": 5, "label": "m" },
+      "F": { "min": -20, "max": 20, "step": 0.5, "default": 0, "label": "F" },
+      "mu_s": { "min": 0, "max": 1, "step": 0.05, "default": 0.5, "label": "μₛ" },
+      "mu_k": { "min": 0, "max": 1, "step": 0.05, "default": 0.4, "label": "μₖ" },
+      "v0": { "min": -5, "max": 5, "step": 0.5, "default": 0, "label": "v₀" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "No push, no friction: f = 0 even though the ceiling is ready",
+        "visible_elements": [],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "No push — zero friction",
+        "show_sliders": true,
+        "formula_overlay": "F = 0 ⇒ f = 0",
+        "newtons_laws_body": {
+          "mode": "rest_equilibrium",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction"] }
+          ],
+          "glow_focal": "nlb_arrow_A_weight",
+          "phases": [
+            { "id": "normal_focal", "at_ms": 4000, "glow_focal": "nlb_arrow_A_normal" }
+          ],
+          "readouts": ["N", "f"],
+          "controls_visible": ["m"]
+        }
+      },
+      "STATE_2": {
+        "label": "Static friction is an answer, not a number: f tracks F in lockstep",
+        "visible_elements": [],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "Friction rises to match",
+        "show_sliders": true,
+        "formula_overlay": "fₛ = F  (F ≤ μₛN)",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 16 }
+          ],
+          "param_ramp": { "param": "F", "from": 16, "to": 23, "start_ms": 1000, "end_ms": 8000 },
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "applied", "friction"] }
+          ],
+          "glow_focal": "nlb_arrow_A_friction",
+          "readouts": ["f", "F_applied", "F_net"],
+          "controls_visible": ["F"]
+        }
+      },
+      "STATE_3": {
+        "label": "The ceiling and the drop: break-away at F = 24.5 N, friction snaps to 19.6 N",
+        "visible_elements": [],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "Push past the ceiling",
+        "show_sliders": true,
+        "formula_overlay": "fₛ ≤ μₛN → fₖ = μₖN",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "initial_position_m": -4, "initial_velocity_mps": 0, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 16 }
+          ],
+          "param_ramp": { "param": "F", "from": 16, "to": 27, "start_ms": 0, "end_ms": 11000 },
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "applied", "friction"] }
+          ],
+          "glow_focal": "nlb_body_A",
+          "readouts": ["f", "F_applied", "a"],
+          "controls_visible": ["mu_s"]
+        }
+      },
+      "STATE_4": {
+        "label": "Two regimes at one force: the resting block holds, the sliding block runs away",
+        "visible_elements": [],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "Same push, two fates",
+        "show_sliders": true,
+        "formula_overlay": "fₖ = μₖN < μₛN",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "initial_position_m": -4, "initial_velocity_mps": 0, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 22 },
+            { "id": "B", "label": "m", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0.4, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 22 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "friction"] },
+            { "body_id": "B", "show": ["applied", "friction"] }
+          ],
+          "glow_focal": "nlb_arrow_B_friction",
+          "readouts": ["f", "v"],
+          "controls_visible": ["mu_k"]
+        }
+      },
+      "STATE_5": {
+        "label": "Kinetic friction is speed-independent: slow and fast glides, identical f",
+        "visible_elements": [],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "Fast or slow — same friction",
+        "show_sliders": true,
+        "formula_overlay": "fₖ = μₖN — independent of v",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "initial_position_m": -4, "initial_velocity_mps": 1.0, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 19.6 },
+            { "id": "B", "label": "m", "mass_kg": 5, "initial_position_m": -4, "initial_velocity_mps": 2.5, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 19.6 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "friction"] },
+            { "body_id": "B", "show": ["applied", "friction"] }
+          ],
+          "glow_focal": "nlb_arrow_A_friction",
+          "readouts": ["f", "v"],
+          "controls_visible": ["mu_k"]
+        }
+      },
+      "STATE_6": {
+        "label": "Explore: every control, all yours",
+        "visible_elements": [],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "fₛ ≤ μₛN · fₖ = μₖN",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 13 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "applied", "friction", "net"] }
+          ],
+          "glow_focal": "nlb_body_A",
+          "readouts": ["N", "f", "a", "v"],
+          "controls_visible": ["m", "F", "mu_s", "mu_k", "v0"],
+          "trusted_drag_seizes": true,
+          "idle_auto_sweep": { "param": "F", "range": [13, 26] }
+        }
+      }
+    }
+  }
+}

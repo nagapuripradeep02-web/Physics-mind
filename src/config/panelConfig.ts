@@ -555,6 +555,19 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Laws of Motion #4 — newtons_laws_body engine, Branch A (flat push:
+    // static friction self-adjusts, ceiling + drop to kinetic). Zero incline
+    // states — that arc belongs to sibling block_on_incline.
+    friction_force: {
+        concept_id: 'friction_force',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'friction_force',
+            label: 'Friction Force — Static Grip Self-Adjusts Until It Breaks (3D)',
+        },
+    },
+
     // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
     // Ch.1 "Vectors" — the DAG root). Single-panel PCPL sim, no panel_b_config.
     scalar_vs_vector: {
