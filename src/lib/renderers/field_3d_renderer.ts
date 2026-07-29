@@ -892,6 +892,16 @@ export interface Field3DConfig {
                 mu_k?: number;
                 applied_force_N?: number;          // signed, along the body's own positive axis
                 ghost?: boolean;                   // FBD decorative context body: dimmed, NEVER integrated
+                // The wall / the Earth: infinite effective mass. SKIPPED by the
+                // integrator entirely (v and s never change), but — unlike `ghost` —
+                // it is REAL: it takes and exerts forces and its force arrows draw
+                // NORMALLY at full brightness. This is what makes the third-law
+                // "push a wall" beat honest: the pair is still exactly equal and
+                // opposite, the wall's acceleration is simply zero. Rendered as a
+                // WALL SLAB instead of a cart mesh. Like `hanging`, the flag is
+                // read at BUILD time from the body's first appearance, so an id
+                // must not flip `fixed` between states.
+                fixed?: boolean;
             }>;
 
             pulley?: {                             // presence IS the coupled-integrator gate
@@ -903,6 +913,77 @@ export interface Field3DConfig {
             action_reaction?: {                    // Newton III: engine-enforced equal-and-opposite
                 engaged: boolean;
                 driver_body_id: string;            // the other body's applied_force_N is MIRRORED each frame
+            };
+
+            // ── push_off — the contact-then-release force phase (Newton III) ──
+            // docs/NLB_PUSH_OFF_SPEC.md. The spring/hands press the two bodies
+            // apart for a finite CONTACT window and then let go; the carts coast
+            // on the (mu = 0) track afterwards, so the RESULT of the interaction
+            // stays on screen long after the interaction ended. That persistent
+            // separation is what sells the simultaneity.
+            //   while contact_from_ms <= t < release_at_ms:
+            //       body_a.applied = +force_N, body_b.applied = -force_N
+            //   otherwise (before contact AND at/after release):
+            //       both applied forces are 0
+            // The ENGINE enforces the equality every frame from the ONE authored
+            // magnitude — the pair can never be two hand-authored numbers that
+            // drift apart, exactly as `action_reaction` already guarantees.
+            // `t` is the state-local clock (eng.t_ms, rebased to 0 on state entry
+            // and by RESET_TRAJECTORY); the gate is a pure CLOSED FORM of it, so
+            // dt = 0 under SET_TIME_FREEZE reproduces the same force bit-for-bit
+            // (Rule 36). NEVER runs in a `mode: 'sandbox'` state — there the
+            // teacher's F slider owns the force and the state free-runs (Rule 37).
+            push_off?: {
+                body_a_id: string;
+                body_b_id: string;
+                force_N: number;          // magnitude applied to EACH body, equal and opposite, during contact
+                release_at_ms?: number;   // contact ENDS here; default 0 = released immediately
+                contact_from_ms?: number; // contact BEGINS here; default 0
+            };
+
+            // ── spring — the VISIBLE interaction object (Newton III) ──────────
+            // docs/NLB_PUSH_OFF_SPEC.md §2. A coil drawn BETWEEN the two bodies'
+            // facing faces, so the cause of the push_off pair is a physical thing
+            // on screen instead of two arrows appearing from nowhere.
+            //   • It is carried by the ONE placement funnel every body move
+            //     already goes through (nlbSetBodyPosition) — no per-frame follow
+            //     hook, no clock, no second placement path (Rule 36).
+            //   • Length: it spans the live face-to-face gap, capped at its own
+            //     natural length. It renders COMPRESSED while the push_off contact
+            //     window is open, extends to natural length as the carts separate,
+            //     and HIDES once the gap exceeds natural length (the spring has let
+            //     go — exactly the instant push_off zeroes the forces).
+            //   • `compressed` is the render state for a state with NO live
+            //     push_off phase (a static display beat, or a sandbox where the
+            //     teacher owns the force). Whenever a non-sandbox state DOES
+            //     declare push_off, the ENGINE drives it from the contact phase and
+            //     the authored value is ignored — the picture can never disagree
+            //     with the force.
+            // AUTHORING CONTRACT (three parts — a spring is a real object with a
+            // real length, so the authored numbers must agree with it):
+            //  1. POSITION. Natural length is 1.6 m, compressed length 0.72 m
+            //     (apparatus constants, like the cart size). Author the two bodies'
+            //     initial_position_m so their FACING FACES start 0.72 m apart, i.e.
+            //     |s_a - s_b| = 0.72 + half-width of each body (0.55 m for a cart,
+            //     0.275 m for a `fixed` wall slab). Placed further apart, the coil
+            //     draws compressed and floating instead of touching both.
+            //  2. ORDER. push_off gives body_a +force_N along +s, so body_a is the
+            //     body on the POSITIVE side — otherwise the pair drives together.
+            //  3. TIMING. A spring stops pushing when it reaches natural length, so
+            //     push_off.release_at_ms must be the instant the pair has separated
+            //     by 1.6 - 0.72 = 0.88 m. With mu = 0 and theta = 0 that is exactly
+            //         release_at_ms = 1000 * sqrt( 1.76 / (force_N * (1/m_a + 1/m_b)) )
+            //     (drop the 1/m term of a `fixed` body — it never moves). E.g. 30 N
+            //     on 2 + 2 kg -> 242 ms; on 2 + 6 kg -> 297 ms; 30 N cart vs wall,
+            //     m = 2 kg -> 343 ms. Author a LONGER window and the coil correctly
+            //     vanishes at natural length while the force is still applied — the
+            //     picture stops explaining the arrows. The carts then coast for the
+            //     rest of the state, which is the whole point: the RESULT of the
+            //     interaction stays on screen long after the interaction ended.
+            spring?: {
+                between: [string, string];   // the two body ids
+                compressed?: boolean;        // render state; the ENGINE drives it from the push_off phase
+                coils?: number;              // default 8
             };
 
             arrows?: Array<{
@@ -917,6 +998,29 @@ export interface Field3DConfig {
             controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
             trusted_drag_seizes?: boolean;         // sandbox state only
             idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
+            // ── §7.1 pre-approved fix (docs/CHAPTER_LOOP.md, block_on_incline) ──
+            // ONE-SHOT monotonic parameter reveal across a GUIDED state's window —
+            // the deliberate opposite of idle_auto_sweep's repeating triangle: value
+            // = `from` for elapsed < start_ms, linearly interpolates from -> to
+            // across [start_ms, end_ms], then HOLDS at `to` forever — it never
+            // returns toward `from`. Drives REAL PHYSICS through the SAME
+            // nlbApplyParam() write-path a trusted slider drag uses (so N, drive,
+            // the arrows, the HUD and — for theta — the incline geometry all move
+            // together; there is no parallel physics path to drift out of sync).
+            // A trusted slider input or body drag seizes control and cancels the
+            // ramp for the rest of the state (Rule 37, same PM_nlbSweepSeized /
+            // PM_nlbBodyDragged flags idle_auto_sweep already uses). NEVER runs in
+            // a `mode: 'sandbox'` state (that state free-runs continuously under
+            // the teacher, per Rule 37). Author the state's own surface/body value
+            // for this param equal to `from` so state entry does not visibly jump
+            // (same authoring contract idle_auto_sweep's range[0] note documents).
+            param_ramp?: {
+                param: 'theta' | 'F' | 'mu_s' | 'mu_k' | 'm';
+                from: number;
+                to: number;
+                start_ms?: number;   // default 0
+                end_ms: number;      // linear ramp over [start_ms, end_ms], then holds at `to`
+            };
             phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; action?: string; glow_focal?: string }>;
         };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
@@ -29255,6 +29359,16 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
     var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
     var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
+    // A "fixed" body renders as a WALL SLAB, not a cart: thin along the track,
+    // tall, and deep across it, so it READS as the immovable wall / the Earth at a
+    // glance and no student mistakes it for the other cart. These are APPARATUS
+    // dimensions, not a magnitude cue — the slab never scales with mass or force
+    // (Rule 29), and its geometry is translated at build time so its BASE sits at
+    // exactly the same local height a cart's does, which keeps nlbSetBodyPosition
+    // (the ONE placement funnel every arrow, label and pick proxy follows) untouched.
+    var NLB_WALL_T = NLB_BODY_SIZE * 0.5;   // thickness along the body's own axis
+    var NLB_WALL_H = NLB_BODY_SIZE * 3.2;   // height
+    var NLB_WALL_D = NLB_BODY_SIZE * 2.6;   // depth across the track
     var NLB_LANE_GAP = 0.85;              // world units of z between two INDEPENDENT side-by-side bodies.
                                           //   Engine spec §1 promises "two bodies with NO pulley = independent,
                                           //   side-by-side", but every body was pinned to z = 0, so the intended
@@ -29400,6 +29514,38 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_HANG_MIN_M = (NLB_PULLEY_R + NLB_BODY_SIZE / 2) / NLB_WORLD_PER_M;
     var NLB_Y_AXIS = new THREE.Vector3(0, 1, 0);
 
+    // ── SEAM B (push-off) — the SPRING, the visible interaction object ─────
+    //   docs/NLB_PUSH_OFF_SPEC.md §2. GEOMETRY ONLY: nothing here reads a clock,
+    //   integrates anything or hardcodes a frame delta (Rule 36) — the coil is a
+    //   pure function of the two bodies' CURRENT positions plus the push_off
+    //   contact flag, so dt = 0 under SET_TIME_FREEZE re-derives the identical
+    //   pose, and a rewind to an earlier t reproduces that t's pose exactly.
+    //   Nothing here is an emphasis channel either: the length is the spring's
+    //   real compression (the same licence the rope's scale.y and the force
+    //   arrows' magnitude-driven length already take), and emphasis stays
+    //   brightness-only through nlbApplyGlow() -> applyGlowEmphasis().
+    //   NATURAL LENGTH is an apparatus constant, exactly like the cart size: a
+    //   real spring has one, and deriving it from the authored gap instead would
+    //   make the release instant depend on where the author happened to park the
+    //   carts. 0.80 world units = 1.6 m, against a 1.1 m cart.
+    var NLB_SPRING_NATURAL_W = 0.80;      // world units — the free (uncompressed) length
+    var NLB_SPRING_COMPRESS_FRAC = 0.45;  // compressed length = 0.45 x natural = 0.36 world (0.72 m)
+    var NLB_SPRING_R = 0.15;              // coil RADIUS (world). 0.30 across, inside the 0.55 cart face,
+                                          //   and centred on body-centre height so it clears the slab.
+    var NLB_SPRING_WIRE_R = 0.022;        // tube radius of the wire itself
+    var NLB_SPRING_COILS = 8;             // spring.coils default
+    var NLB_SPRING_COLOR = "#FFA726";     // unused elsewhere in this scenario: the spring must be
+                                          //   unmistakable as THE CAUSE against the cool slab/cart palette.
+    // The coil geometry is REBUILT (never scaled) when its drawn length changes,
+    // because a unit-height helix stretched by scale.y squashes the WIRE's cross
+    // section with it — a compressed spring would render as a flat ribbon. The
+    // rebuild is quantised so a continuous extension costs a bounded number of
+    // rebuilds (~22 across the whole release) instead of one per frame, and the
+    // quantised length is a pure function of position, so byte-stability under a
+    // frozen pin is unaffected.
+    var NLB_SPRING_LEN_Q = 0.02;          // world units — geometry rebuild quantum
+    var NLB_SPRING_HIDE_EPS = 0.02;       // world units past natural length -> the spring has let go
+
     // Explicit id registry. addToScene() only registers the object handed to it,
     // so child meshes (bodies parented to the rotated surface group) would never
     // be reachable from sceneObjects — the "child mesh never registered, updater
@@ -29524,9 +29670,21 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbBodyLaneZ(bodyId) {
         var eng = window.PM_nlbEngine;
         if (!eng || !eng.order || eng.pulley) return 0;
+        // HEAD-ON pairs share ONE lane (seam A deferred scar candidate #1). The z
+        // separation above exists for a SIDE-BY-SIDE compare (Newton II: two carts
+        // racing the same track, which must not overlap into one blob). A push_off
+        // pair is the opposite geometry: the two bodies act on EACH OTHER through a
+        // spring on the line joining them, so separating them in z would draw the
+        // spring diagonally across the lanes and the carts would fly apart on two
+        // parallel tracks that never touched. The same is true of a cart pushing a
+        // "fixed" wall — the whole beat is contact. Both tests are per-STATE facts,
+        // so every existing compare state (no push_off, no fixed body) takes the
+        // unchanged path below and cannot move a pixel.
+        if (eng.push_off) return 0;
         var lanes = [];
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
+            if (b && b.fixed) return 0;                // cart vs wall: head-on, one lane
             if (b && !b.hanging && !b.ghost) lanes.push(b.id);
         }
         if (lanes.length < 2) return 0;
@@ -29555,6 +29713,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // follow hook and therefore no clock code (Rule 36).
         var hitP = nlbFindById("nlb_body_" + bodyId + "_hit");
         if (hitP) hitP.position.copy(mesh.position);
+        // SEAM B (push-off): the spring is carried from this SAME funnel, for the
+        // same reason — build seeding, the integrator writeback, a slider write and
+        // a drag all pass through here, so the coil can never lag the bodies it is
+        // drawn between and there is no per-frame follow hook and no clock code
+        // (Rule 36). It re-reads BOTH bodies, so the second of the pair's two calls
+        // in a tick settles the final geometry; it is a no-op before the mesh
+        // exists (build) and hides itself in any state with no spring block.
+        nlbFitSpring();
     }
 
     // Rotate the ONE surface group + rescale it to the state's length, and
@@ -30120,6 +30286,94 @@ export const FIELD_3D_RENDERER_CODE = `
         });
     }
 
+    // ── SEAM B (push-off) — the SPRING between two facing bodies ───────────
+    //   The helix, built at its TRUE drawn height so the wire keeps its own
+    //   thickness at every compression (see NLB_SPRING_LEN_Q). Local axis is +y
+    //   and the curve is centred on the origin, matching the rope segments, so
+    //   the same "map +y onto the direction" quaternion places it.
+    function nlbSpringGeometry(turns, h) {
+        var segs = Math.max(24, turns * 16);
+        var pts = [];
+        for (var i = 0; i <= segs; i++) {
+            var u = i / segs;
+            var a = u * turns * Math.PI * 2;
+            pts.push(new THREE.Vector3(NLB_SPRING_R * Math.cos(a), (u - 0.5) * h, NLB_SPRING_R * Math.sin(a)));
+        }
+        return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), segs, NLB_SPRING_WIRE_R, 7, false);
+    }
+    // This state's spring block, or null. A malformed "between" is treated as no
+    // spring rather than half-drawn against one body.
+    function nlbSpringCfg() {
+        var sp = nlbStateCfg().spring;
+        if (!sp || !sp.between || sp.between.length < 2 || !sp.between[0] || !sp.between[1]) return null;
+        return sp;
+    }
+    // Compressed or free RIGHT NOW. Engine-driven from the push_off contact phase
+    // whenever the state has one — with EXACTLY the carve-out nlbRunPushOff itself
+    // makes (inert in a sandbox state, where the teacher's F slider owns the force
+    // and the authored render flag stands, Rule 37). eng.push_off_contact is a
+    // DERIVED READ: the force is written in one place only, by nlbRunPushOff.
+    function nlbSpringCompressedNow(sp) {
+        var eng = window.PM_nlbEngine;
+        if (eng && eng.push_off && eng.mode !== "sandbox") return !!eng.push_off_contact;
+        return !!sp.compressed;
+    }
+    // Half-extent of a body along its own axis: a "fixed" body is a wall SLAB, so
+    // its facing face is at half the slab thickness, not half a cart.
+    function nlbSpringHalfExtent(bodyId) {
+        var m = nlbFindById("nlb_body_" + bodyId);
+        if (!m) return NLB_BODY_SIZE / 2;
+        return m.userData.fixed ? NLB_WALL_T / 2 : NLB_BODY_SIZE / 2;
+    }
+    // Place the coil between the two bodies' facing faces. Called ONLY from
+    // nlbSetBodyPosition (plus state entry / RESET_TRAJECTORY, for the same
+    // "first frame already correct" reason the ropes are fitted there). Pure
+    // presentation of already-placed meshes: reads no time, takes no dt,
+    // integrates nothing (Rule 36), and cannot stall a sandbox state (Rule 37) —
+    // there it simply follows the teacher's carts at the authored render state.
+    function nlbFitSpring() {
+        var obj = nlbFindById("nlb_spring");
+        if (!obj) return;                                  // build has not reached it yet
+        var sp = nlbSpringCfg();
+        if (!sp) { obj.visible = false; return; }
+        var idA = sp.between[0], idB = sp.between[1];
+        var mA = nlbFindById("nlb_body_" + idA), mB = nlbFindById("nlb_body_" + idB);
+        if (!mA || !mB || !mA.visible || !mB.visible) { obj.visible = false; return; }
+        var pA = nlbBodyWorldPos(idA), pB = nlbBodyWorldPos(idB);
+        var dx = pB.x - pA.x, dy = pB.y - pA.y, dz = pB.z - pA.z;
+        var sep = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(sep > 1e-6)) { obj.visible = false; return; }
+        // The face-to-face GAP along the line joining the two centres. Taken from
+        // the world positions, so the incline rotation and any lane offset are
+        // already in it and there is no theta test here.
+        var gap = sep - nlbSpringHalfExtent(idA) - nlbSpringHalfExtent(idB);
+        // Past its natural length the spring is no longer touching either body: it
+        // has LET GO, which is the same instant push_off zeroes both forces. It
+        // hides rather than stretching — a spring that kept spanning the widening
+        // gap would draw a pull that the physics does not apply.
+        if (gap > NLB_SPRING_NATURAL_W + NLB_SPRING_HIDE_EPS) { obj.visible = false; return; }
+        var target = nlbSpringCompressedNow(sp)
+            ? NLB_SPRING_NATURAL_W * NLB_SPRING_COMPRESS_FRAC
+            : NLB_SPRING_NATURAL_W;
+        var drawn = (gap < target) ? gap : target;         // never longer than the gap it sits in
+        if (!(drawn > NLB_ROPE_MIN_LEN)) { obj.visible = false; return; }
+        // Quantised rebuild (see NLB_SPRING_LEN_Q): a pure function of position, so
+        // a frozen pin re-derives the same quantum and writes nothing at all.
+        var turns = (typeof sp.coils === "number" && isFinite(sp.coils) && sp.coils >= 2)
+            ? Math.round(sp.coils) : NLB_SPRING_COILS;
+        var q = Math.round(drawn / NLB_SPRING_LEN_Q) * NLB_SPRING_LEN_Q;
+        if (q < NLB_SPRING_LEN_Q) q = NLB_SPRING_LEN_Q;
+        if (obj.userData.coils !== turns || obj.userData.q_len !== q) {
+            if (obj.geometry) obj.geometry.dispose();
+            obj.geometry = nlbSpringGeometry(turns, q);
+            obj.userData.coils = turns;
+            obj.userData.q_len = q;
+        }
+        obj.position.set((pA.x + pB.x) / 2, (pA.y + pB.y) / 2, (pA.z + pB.z) / 2);
+        obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / sep, dy / sep, dz / sep));
+        obj.visible = true;
+    }
+
     function buildNewtonsLawsBody() {
         nlbIndex = [];
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
@@ -30171,7 +30425,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // 2b. SEAM D — the pulley bracket: post + axle arm + wheel + hub disc.
         //     Built ONCE and hidden by default, and parented to the SURFACE group
         //     so the single theta rotation stands it on the surface at every angle
-        //     (theta = 0 included) with no branch anywhere. Each mesh gets its OWN
+        //     (theta = 0 included) with no branch anywhere. Being the SLAB's sibling
+        //     (not its child) is what lets surface.hidden drop the table under an
+        //     Atwood state while the bracket keeps standing — see the scoped hide in
+        //     applyNewtonsLawsBodyState. Each mesh gets its OWN
         //     material: applyGlowEmphasis caches its baseline ON the material, so a
         //     shared instance would make a focal post fight a peer arm.
         var pulleyGrp = new THREE.Group();
@@ -30248,6 +30505,24 @@ export const FIELD_3D_RENDERER_CODE = `
             world.add(rope); nlbRegister(rope);
         }
 
+        // 2d. SEAM B (push-off) — the spring. ONE mesh, in the UN-rotated world
+        //     group like the ropes, so nlbFitSpring places it from WORLD endpoints
+        //     with no theta branch. Hidden by default: nlbFitSpring shows it only
+        //     in a state that declares a spring block, and its own material (never
+        //     shared) so applyGlowEmphasis can cache a baseline on it.
+        var spring = new THREE.Mesh(
+            nlbSpringGeometry(NLB_SPRING_COILS, NLB_SPRING_NATURAL_W),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_SPRING_COLOR), emissive: hexToThreeColor(NLB_SPRING_COLOR),
+                emissiveIntensity: 0.20, shininess: 65, transparent: true, opacity: 1.0
+            }));
+        spring.userData = {
+            elementType: "nlb_spring", id: "nlb_spring",
+            coils: NLB_SPRING_COILS, q_len: NLB_SPRING_NATURAL_W
+        };
+        spring.visible = false;
+        world.add(spring); nlbRegister(spring);
+
         // 3. Body meshes — one per UNIQUE id across all states. Size is
         //    mass-INDEPENDENT (Rule 29): a heavier block is never a bigger cube.
         var defs = nlbCollectBodyDefs();
@@ -30258,10 +30533,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 color: hexToThreeColor(col), emissive: hexToThreeColor(col),
                 emissiveIntensity: 0.18, shininess: 60, transparent: true, opacity: 1.0
             });
-            var mesh = new THREE.Mesh(new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE), mat);
+            // A "fixed" body is the wall / the Earth, so it is built as a SLAB
+            // rather than a cart. Read from the union def's FIRST appearance, the
+            // same build-time contract "hanging" already has: an id must not flip
+            // "fixed" between states. The geometry is pushed UP by half the extra
+            // height so the slab's base lands where the cube's base does — the
+            // placement funnel, the arrow origins and the pick proxy all stay
+            // byte-identical for every existing (non-fixed) concept.
+            var bodyGeo;
+            if (d.fixed) {
+                bodyGeo = new THREE.BoxGeometry(NLB_WALL_T, NLB_WALL_H, NLB_WALL_D);
+                bodyGeo.translate(0, (NLB_WALL_H - NLB_BODY_SIZE) / 2, 0);
+            } else {
+                bodyGeo = new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE);
+            }
+            var mesh = new THREE.Mesh(bodyGeo, mat);
             mesh.userData = {
                 elementType: "nlb_body", id: "nlb_body_" + d.id, bodyId: d.id,
-                hanging: !!d.hanging, ghost: !!d.ghost, baseColor: col
+                hanging: !!d.hanging, ghost: !!d.ghost, fixed: !!d.fixed, baseColor: col
             };
             if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
             nlbRegister(mesh);
@@ -30295,7 +30584,9 @@ export const FIELD_3D_RENDERER_CODE = `
             // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
             // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
             var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
-            lbl.position.set(0, NLB_BODY_SIZE * 0.95, 0);
+            // Clear the TOP of whichever solid this body is — the wall slab is
+            // ~3x a cart's height, so the cart offset would bury its label inside it.
+            lbl.position.set(0, d.fixed ? (NLB_WALL_H - NLB_BODY_SIZE / 2 + 0.18) : (NLB_BODY_SIZE * 0.95), 0);
             lbl.userData = { elementType: "nlb_body_label", id: "nlb_body_" + d.id + "_label", bodyId: d.id, ghost: !!d.ghost };
             mesh.add(lbl);
             nlbRegister(lbl);
@@ -30386,11 +30677,16 @@ export const FIELD_3D_RENDERER_CODE = `
             // component/right-angle overlays keep the real dim channel, so Rule 32e
             // (exactly one focal) is unchanged — only the peers that were never
             // meant to be see-through stop being see-through.
+            // The spring joins this list for exactly the founder's reason: it is a
+            // physical OBJECT, and the interaction the whole third-law beat is
+            // about. A 40%-opacity coil would read as the least solid thing on a
+            // screen whose entire point is that this object is doing the pushing.
             var solidApparatus = (ud.elementType === "nlb_body" ||
                                   ud.elementType === "nlb_body_label" ||
                                   ud.elementType === "nlb_surface" ||
                                   ud.elementType === "nlb_pulley" ||
-                                  ud.elementType === "nlb_rope");
+                                  ud.elementType === "nlb_rope" ||
+                                  ud.elementType === "nlb_spring");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
         });
     }
@@ -30493,13 +30789,16 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // The first / second NON-ghost body of the live state, in authored order: the
     // targets of mass_a / mass_b. A ghost is never integrated (spec section 3), so
-    // it can never be a slider target either.
+    // it can never be a slider target either. Nor can a "fixed" body: its mass is
+    // infinite by definition, so an m slider pointed at the wall would be a dead
+    // control, and an F slider pointed at the wall would push the one object that
+    // cannot move while the cart the teacher is watching stayed still.
     function nlbSliderBodies() {
         var eng = window.PM_nlbEngine, out = [null, null], n = 0;
         if (!eng) return out;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
-            if (!b || b.ghost) continue;
+            if (!b || b.ghost || b.fixed) continue;
             if (n < 2) out[n] = b.id;
             n++;
         }
@@ -30673,7 +30972,10 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbEach(function (o, ud) {
             if (ud.elementType !== "nlb_body_hit") return;
             var bd = listed[ud.bodyId];
-            o.visible = !!(on && bd && !bd.ghost);
+            // A "fixed" body is immovable BY DEFINITION — letting a teacher drag
+            // the wall along the track would contradict the one thing the state
+            // exists to show, so it is never pickable.
+            o.visible = !!(on && bd && !bd.ghost && !bd.fixed);
         });
     }
     // Pointer plane-hit -> the body's own signed axis coordinate s, in metres.
@@ -30693,7 +30995,7 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbApplyBodyDrag(hit) {
         var eng = window.PM_nlbEngine;
         var b = (eng && window.PM_nlbDragId) ? eng.bodies[window.PM_nlbDragId] : null;
-        if (!b || b.ghost) return;
+        if (!b || b.ghost || b.fixed) return;   // belt to nlbSetDragProxies' braces
         // Clamp through nlbBoundsM — the ONE bounds source, already pulley-aware
         // (SEAM D): never re-derive the clamp band here.
         var bd = nlbBoundsM(b, eng.length_m);
@@ -30763,6 +31065,95 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbSyncSliderRow(tok, v);
     }
 
+    // ── §7.1 pre-approved fix — param_ramp ─────────────────────────────────
+    //   ONE-SHOT monotonic reveal: value = "from" for t_ms < start_ms, linearly
+    //   interpolates from -> to across [start_ms, end_ms], then HOLDS at "to"
+    //   forever — the deliberate opposite of nlbRunIdleSweep's repeating
+    //   triangle above (which this function otherwise mirrors line for line).
+    //   Rule 36: reads ONLY eng.t_ms, a closed form of the engine's own
+    //   state-local sim time advanced solely by the dt handed to
+    //   updateNewtonsLawsBodyFrame — so dt = 0 (SET_TIME_FREEZE) leaves t_ms
+    //   unchanged and this recomputes the SAME value (byte-stable frozen
+    //   frames), a time-pin rewind reproduces the earlier value exactly (no
+    //   accumulator to un-wind), and folding N micro-steps into one dtStep is
+    //   exact (t_ms is linear in dt; nothing here re-integrates it).
+    //   Writes through nlbApplyParam — the SAME shared write-path a trusted
+    //   slider drag uses — so real physics (N, drive, the arrows, the HUD, and
+    //   for theta the incline geometry via nlbApplySurface) moves exactly as
+    //   it would for a teacher's own scrub; there is no parallel physics path.
+    //   Rule 37: NEVER runs in a "mode: 'sandbox'" state (that state free-runs
+    //   continuously under the teacher, never a scripted reveal), and a
+    //   trusted slider input or body drag seizes control for the rest of the
+    //   state via the SAME PM_nlbSweepSeized / PM_nlbBodyDragged flags
+    //   idle_auto_sweep already uses (a teacher scrubbing theta is never
+    //   fought by the ramp).
+    function nlbRunParamRamp(nlb, eng) {
+        var pr = nlb.param_ramp;
+        if (!pr || !pr.param) return;
+        if (!(isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms))) return;
+        if (eng.mode === "sandbox") return;                              // Rule 37
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return; // seized: stop for good
+        var tok = pr.param;
+        if (!NLB_SLIDER_SPEC[tok]) return;
+        var t0 = (typeof pr.start_ms === "number" && isFinite(pr.start_ms)) ? pr.start_ms : 0;
+        var t1 = pr.end_ms;
+        var tMs = eng.t_ms || 0;
+        var v;
+        if (tMs <= t0) v = pr.from;
+        else if (tMs >= t1) v = pr.to;               // HOLDS at "to" — never returns toward "from"
+        else v = pr.from + (pr.to - pr.from) * ((t1 > t0) ? (tMs - t0) / (t1 - t0) : 1);
+        // Churn guard (mirrors _sweep_last): theta re-tessellates the angle arc
+        // on every write, so an unchanged value must never re-fire.
+        if (eng._ramp_last != null && Math.abs(v - eng._ramp_last) < 1e-4) return;
+        eng._ramp_last = v;
+        nlbApplyParam(tok, v);
+        nlbSyncSliderRow(tok, v);
+    }
+
+    // ── push_off — the contact-then-release force phase ────────────────────
+    //   docs/NLB_PUSH_OFF_SPEC.md. The whole physics change is a GATE on WHICH
+    //   applied force the existing integrator sees this frame:
+    //       contact_from_ms <= t < release_at_ms  ->  A = +force_N, B = -force_N
+    //       otherwise                             ->  both 0 (the carts coast)
+    //   THE EQUALITY IS ENFORCED, NOT AUTHORED. Both bodies are written from the
+    //   ONE magnitude expression below, every frame, in one place — exactly the
+    //   discipline the action_reaction mirror already applies (and the reason
+    //   neither is ever two hand-authored numbers that can drift apart). A later
+    //   seam, a slider or a stale record cannot desynchronise the pair: the next
+    //   tick overwrites both again from the same expression.
+    //   Rule 36: this is a pure CLOSED FORM of eng.t_ms — no accumulator of its
+    //   own, nothing latched, no second clock. eng.t_ms is advanced solely by the
+    //   dt handed to updateNewtonsLawsBodyFrame, so under SET_TIME_FREEZE
+    //   (dt = 0) t_ms is unchanged and this recomputes the SAME force bit-for-bit:
+    //   the gate itself advances nothing, and a time-pin rewind reproduces the
+    //   earlier phase exactly. It is also step-fold exact (t_ms is linear in dt).
+    //   Rule 37: NEVER runs in a "mode: 'sandbox'" state. There the release gate
+    //   is INERT and the teacher's F slider owns the force (the same carve-out
+    //   param_ramp makes), so the explore state can never be frozen or stalled by
+    //   a release instant that has already passed — a sandbox authored with
+    //   action_reaction keeps its pair equal-and-opposite through the mirror above.
+    function nlbRunPushOff(nlb, eng) {
+        var po = eng.push_off;
+        if (!po) return;
+        if (eng.mode === "sandbox") return;              // Rule 37 — inert in the sandbox
+        var bA = po.body_a_id ? eng.bodies[po.body_a_id] : null;
+        var bB = po.body_b_id ? eng.bodies[po.body_b_id] : null;
+        if (!bA || !bB) return;
+        var mag = (typeof po.force_N === "number" && isFinite(po.force_N)) ? po.force_N : 0;
+        var t0 = (typeof po.contact_from_ms === "number" && isFinite(po.contact_from_ms)) ? po.contact_from_ms : 0;
+        var t1 = (typeof po.release_at_ms === "number" && isFinite(po.release_at_ms)) ? po.release_at_ms : 0;
+        var tMs = eng.t_ms || 0;
+        var inContact = (tMs >= t0) && (tMs < t1);
+        // ONE expression drives the paired pool: the reaction is literally the
+        // negation of the action, so an unequal pair is UNREPRESENTABLE here.
+        var F = inContact ? mag : 0;
+        bA.F_applied = F;
+        bB.F_applied = -F;
+        // Read by seam B (the spring's compressed/extended render state) — a
+        // derived flag, never a second source of truth for the force itself.
+        eng.push_off_contact = inContact;
+    }
+
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
     //   Seeds masses / theta / mu / F / initial position+velocity into the
     //   engine state object every seam reads, sets glow_focal, resets the
@@ -30786,11 +31177,14 @@ export const FIELD_3D_RENDERER_CODE = `
             coupled: !!pul,
             pulley: pul,
             action_reaction: nlb.action_reaction || null,
+            push_off: nlb.push_off || null,   // contact-then-release phase (see nlbRunPushOff)
             glow_focal: nlb.glow_focal || "",
             order: [],
             bodies: {},
             v_string: 0,          // SEAM B branch B: the shared along-string speed
             a_string: 0,
+            t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
+            _ramp_last: null,     // §7.1 param_ramp churn guard, rebased on every entry
             phase_fired: {}       // one-shot phase flags, reset on every state entry
         };
         for (var i = 0; i < bodies.length; i++) {
@@ -30802,6 +31196,9 @@ export const FIELD_3D_RENDERER_CODE = `
                 m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
                 hanging: !!d.hanging,
                 ghost: !!d.ghost,
+                // Infinite effective mass — the wall / the Earth. REAL (takes and
+                // exerts forces, arrows draw normally) but never integrated.
+                fixed: !!d.fixed,
                 s: d.initial_position_m || 0,
                 v: d.initial_velocity_mps || 0,
                 a: 0,
@@ -30814,7 +31211,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 mu_s: frictionless ? 0 : (d.mu_s || 0),
                 mu_k: frictionless ? 0 : (d.mu_k || 0),
                 F_applied: d.applied_force_N || 0,
-                N: 0, f: 0, T: 0, F_net: 0
+                N: 0, f: 0, T: 0, F_net: 0,
+                _boundArrestedSliding: false   // Branch A bound-halt readout latch — see SEAM B
             };
         }
         // SEAM C — the force-arrow contract for this state, per body: which of the
@@ -30841,6 +31239,11 @@ export const FIELD_3D_RENDERER_CODE = `
 
         window.PM_nlbEngine = eng;
         window.PM_nlbBodyDragged = false;
+        // Branch B seeds the SHARED string speed from the authored v0 (see
+        // nlbSeedKinematics) — a per-body b.v alone is discarded on the first
+        // coupled tick. No-op for an uncoupled state beyond the v_string/a_string
+        // zeroing the engine literal already did.
+        nlbSeedKinematics();
 
         // Surface pose + per-body visibility/label/colour + home position.
         nlbApplySurface(thetaDeg, lenM);
@@ -30853,9 +31256,16 @@ export const FIELD_3D_RENDERER_CODE = `
             // The theta-gated ref line / arc / label are owned by nlbApplySurface
             // (already run above), so they are deliberately not touched here.
             // surface.hidden lets a both-hanging (Atwood) state drop the slab entirely — there
-            // is physically no table there. The world group always stays visible (it carries the
-            // bodies, pulley and rope); only the surface slab itself is suppressed.
-            if (ud.elementType === "nlb_surface_group") { o.visible = !surface.hidden; return; }
+            // is physically no table there. The suppression is scoped to the SLAB MESH and must
+            // NEVER be applied to the surface GROUP: that group is also the pulley bracket's
+            // parent (build step 2b — one theta rotation stands the post on the incline with no
+            // branch anywhere), so hiding the group took the pulley down with the slab and the
+            // Atwood state rendered two ropes ending in open space. The group therefore always
+            // stays visible; every child it carries already has its OWN per-state visibility
+            // gate — the non-hanging body meshes below, their pick proxies in nlbSetDragProxies,
+            // the whole pulley assembly in nlbShowPulley.
+            if (ud.elementType === "nlb_surface_group") { o.visible = true; return; }
+            if (ud.elementType === "nlb_surface") { o.visible = !surface.hidden; return; }
             if (ud.elementType === "nlb_world_group") { o.visible = true; return; }
             if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
             var bd = listed[ud.bodyId];
@@ -30867,7 +31277,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (o.material && o.material.color) o.material.color.set(hexToThreeColor(col));
                 if (o.material && o.material.emissive) o.material.emissive.set(hexToThreeColor(col));
                 if (o.material && o.material.userData) { o.material.userData._glowBaseCol = null; o.material.userData._glowBaseOp = null; }
-                nlbSetBodyPosition(bd.id, bd.initial_position_m || 0);
+                // From the ENGINE record, not the raw JSON: a coupled seed may have
+                // been pulled inside its own clamp band by nlbSeedKinematics (a
+                // hanging body authored at s = 0 sits below the pulley clearance),
+                // and re-placing the mesh at the raw authored value would put it
+                // back out of bounds for the state's first rendered frame.
+                var seededB = eng.bodies[bd.id];
+                nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
             } else if (bd.label) {
                 updateLabelSpriteText(o, bd.label);
             }
@@ -30904,6 +31320,11 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbPlacePulley();
         nlbShowPulley(!!eng.coupled);
         nlbFitRopes();
+        // SEAM B (push-off) — the spring, fitted ONCE on entry from the home
+        // positions just seeded, for the same reason the ropes are: the very first
+        // frame of a push-off state is already compressed and correct, and a state
+        // WITHOUT a spring block hides it here even if no body moved.
+        nlbFitSpring();
         // SEAM E — the explorer surface for this state. Order matters:
         //   1. clear the seize latches FIRST, so a drag or slider move in the
         //      PREVIOUS state can never keep this state's idle_auto_sweep switched
@@ -30933,6 +31354,89 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbApplyGlow();
     }
 
+    // ── Coupled seed — the authored initial conditions -> the string state ──────
+    //   Two seeds, one entry path: (1) every coupled body's start position pulled
+    //   inside its own clamp band, (2) the authored initial_velocity_mps converted
+    //   into the SHARED along-string speed. Both are required to make an authored
+    //   coupled glide actually start — see the numbered blocks below.
+    //   Branch B integrates ONE scalar q along the string and derives every body's
+    //   velocity as v_i = c_i*q, overwriting b.v on every tick — so a per-body v
+    //   seeded from initial_velocity_mps alone is thrown away on the first frame
+    //   and a coupled state authored as a constant-velocity glide never starts
+    //   (engine_bug_queue nlb_coupled_initial_velocity_never_seeded:
+    //   connected_bodies STATE_1/STATE_2 author v0 = 0.35 m/s and sat at
+    //   s = -4.2 m, v = 0.00 for the whole state — a byte-identical scene from
+    //   t = 0 to t = 15000 ms). The seed must therefore be converted INTO q here.
+    //   c_i convention is EXACTLY branch B's (keep the two in step): the ref body
+    //   is pulley.body_a_id when present and non-ghost else the first non-ghost
+    //   body, c_ref = +1, and every other body takes c_i = -(sigma_ref*sigma_i)
+    //   with sigma = +1 hanging / -1 on the surface.
+    //   The string carries ONE speed, so the FIRST non-ghost body in authored
+    //   order with a non-zero v0 defines it — a second, inconsistent v0 cannot
+    //   physically be honoured. Every body's live v is then written back as c_i*q
+    //   so the pre-tick HUD/arrows already agree with the first integrated frame.
+    //   Pure seeding: no clock, no dt, no integration (Rule 36) — it runs on state
+    //   entry and on RESET_TRAJECTORY only, so a frozen pin stays byte-stable and
+    //   a replayed state rewinds velocity as well as position. The v0 SLIDER path
+    //   (nlbApplyParam) already wrote eng.v_string itself and is unchanged.
+    //   Uncoupled states are bit-for-bit unchanged (v_string/a_string = 0, b.v
+    //   untouched).
+    function nlbSeedKinematics() {
+        var eng = window.PM_nlbEngine;
+        if (!eng) return;
+        eng.a_string = 0;
+        if (!eng.coupled) { eng.v_string = 0; return; }
+        var pul = eng.pulley || {};
+        var refId = (pul.body_a_id && eng.bodies[pul.body_a_id] && !eng.bodies[pul.body_a_id].ghost) ? pul.body_a_id : null;
+        if (!refId) {
+            for (var r = 0; r < eng.order.length; r++) {
+                var rb = eng.bodies[eng.order[r]];
+                if (rb && !rb.ghost) { refId = rb.id; break; }
+            }
+        }
+        if (!refId) { eng.v_string = 0; return; }
+        var sigRef = eng.bodies[refId].hanging ? 1 : -1;
+        // (1) POSITION — pull every coupled seed INSIDE its own clamp band FIRST.
+        //   Branch B bounds the STRING, not the bodies: if ANY body's next position
+        //   would leave its band the whole step is vetoed (sAdv = 0, v_string = 0).
+        //   A hanging body authored with no initial_position_m starts at s = 0,
+        //   which is BELOW the pulley-clearance bound (NLB_HANG_MIN_M = 1.15 m), so
+        //   frame 1 vetoed unconditionally and ZEROED the string speed seeded just
+        //   below — the authored glide died before it took a single step (probe:
+        //   entry left B snapped to s = 1.150, v_string = 0; hand-writing s = 1.2 +
+        //   v_string = 0.35 into the live engine made both bodies glide at exactly
+        //   0.350 m/s). The clamp only anticipates the snap the integrator performs
+        //   on its own first frame, so the settled pose is identical — it just
+        //   removes the spurious veto (and the one frame where a hanging body was
+        //   drawn swallowing the wheel). s0 is clamped with s so RESET_TRAJECTORY
+        //   restores a LEGAL seed. Uncoupled states never reach this (returned above).
+        for (var p = 0; p < eng.order.length; p++) {
+            var bp = eng.bodies[eng.order[p]];
+            if (!bp || bp.ghost) continue;
+            var bdp = nlbBoundsM(bp, eng.length_m);
+            var sp = bp.s;
+            if (sp < bdp.lo) sp = bdp.lo; else if (sp > bdp.hi) sp = bdp.hi;
+            bp.s = sp; bp.s0 = sp;
+            nlbSetBodyPosition(bp.id, sp);
+        }
+        // (2) VELOCITY — the authored v0 -> the shared scalar q.
+        var q = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost) continue;
+            var ci = (b.id === refId) ? 1 : -(sigRef * (b.hanging ? 1 : -1));
+            var bv0 = (b.v0 != null) ? b.v0 : 0;
+            if (bv0) { q = ci * bv0; break; }      // |c_i| = 1, so q = v_i / c_i = c_i * v_i
+        }
+        eng.v_string = q;
+        for (var k = 0; k < eng.order.length; k++) {
+            var bk = eng.bodies[eng.order[k]];
+            if (!bk || bk.ghost) continue;
+            var ck = (bk.id === refId) ? 1 : -(sigRef * (bk.hanging ? 1 : -1));
+            bk.v = ck * q;
+        }
+    }
+
     // ── RESET_TRAJECTORY — rewind THIS state to its own t = 0 ─────────────
     //   Every other field_3d scenario poses from a closed form of
     //   (time - stateStartTime), so the shared RESET_TRAJECTORY handler rebasing
@@ -30958,9 +31462,13 @@ export const FIELD_3D_RENDERER_CODE = `
             b.s = (b.s0 != null) ? b.s0 : 0;
             b.v = (b.v0 != null) ? b.v0 : 0;
             b.a = 0; b.F_net = 0; b._stuck = false;
+            b._boundArrestedSliding = false;   // Branch A bound-halt readout latch — see SEAM B
             nlbSetBodyPosition(b.id, b.s);
         }
-        eng.v_string = 0; eng.a_string = 0;
+        // The shared string speed rewinds to the SAME seed state entry uses (the
+        // authored v0, or the teacher's v0-slider value, which nlbApplyParam wrote
+        // into b.v0) — a hard zero here left a replayed coupled glide dead still.
+        nlbSeedKinematics();
         eng.t_ms = 0;                       // state-local sim clock, back to 0
         window.PM_nlbTimeMs = 0;
         eng.phase_fired = {};               // one-shots re-arm, exactly as on entry
@@ -30968,8 +31476,10 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.phase_action = "";
         if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
         eng._sweep_last = null;             // the idle sweep is a closed form of t_ms
+        eng._ramp_last = null;              // §7.1 param_ramp is likewise a closed form of t_ms
         nlbLastEmitS = null;
         nlbFitRopes();
+        nlbFitSpring();                     // the coil rewinds with the carts it sits between
         nlbApplyGlow();
     }
 
@@ -31113,6 +31623,16 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_nlbTimeMs = eng.t_ms;
         nlbRunPhases(nlb, eng, eng.t_ms);
 
+        // push_off — the contact-then-release phase gate. Hooked at the INPUT
+        // stage, BEFORE the action_reaction mirror and before both integrator
+        // branches, because it is an INPUT (exactly equivalent to a slider write
+        // on both bodies at once): running it here keeps the step, the force
+        // arrows, the readouts and the rope all consistent within the SAME frame.
+        // It writes the pair from ONE magnitude, so a state authoring BOTH blocks
+        // is self-consistent — the mirror below then simply re-affirms the value
+        // this gate just wrote, whichever body is the declared driver.
+        nlbRunPushOff(nlb, eng);
+
         // Newton III: the engine ENFORCES equal-and-opposite every frame, so the
         // pair can never drift out of Newton's third law no matter what a slider
         // (or a later seam) does to the driver's applied force.
@@ -31140,17 +31660,62 @@ export const FIELD_3D_RENDERER_CODE = `
         // It reads ONLY eng.t_ms (closed form, no accumulator) — see nlbRunIdleSweep
         // for the Rule 36 argument, dt = 0 included.
         nlbRunIdleSweep(nlb, eng);
+        // §7.1 pre-approved fix — the ONE-SHOT monotonic sibling of the sweep
+        // above. Same input-stage placement (before the integrator branches)
+        // for the same reason: a theta ramp must not leave the arrows/rope one
+        // frame behind the incline they are drawn on.
+        nlbRunParamRamp(nlb, eng);
 
         if (!eng.coupled) {
             // ── Branch A — independent bodies (no pulley) ──────────────────
             for (var i = 0; i < eng.order.length; i++) {
                 var b = eng.bodies[eng.order[i]];
                 if (!b || b.ghost) continue;               // spec section 3: a ghost is NEVER integrated
+                if (b.fixed) {
+                    // The wall / the Earth: infinite effective mass. SKIPPED by the
+                    // integrator entirely — v and s never change — but REAL, unlike a
+                    // ghost: it still TAKES the applied force push_off hands it (which
+                    // is why its "applied" arrow draws at full length, pixel-identical
+                    // to the cart's) and it still EXERTS the reaction. Its numbers are
+                    // the honest ones for an immovable body: a = 0 not because there
+                    // is no force but because m is effectively infinite, and the
+                    // reported f is the anchor reaction holding it (-drive), the same
+                    // quantity the statically-stuck branch below reports.
+                    var thF = b.hanging ? 90 : thetaSurf;
+                    b.N = nlbNormal(b, thF);
+                    b.a = 0; b.v = 0;
+                    b.f = -(b.F_applied + nlbGravAlong(b, thF));
+                    b.T = 0; b.F_net = 0;
+                    b._stuck = true;
+                    b._boundArrestedSliding = false;
+                    nlbSetBodyPosition(b.id, b.s);
+                    nlbWriteReadouts(nlb, b, true);
+                    continue;
+                }
                 var th = b.hanging ? 90 : thetaSurf;
                 var N = nlbNormal(b, th);
                 var drive = b.F_applied + nlbGravAlong(b, th);
                 var maxStat = b.mu_s * N;
-                var stuck = (Math.abs(b.v) < NLB_STOP_EPS_V) && (Math.abs(drive) <= maxStat);
+                var bd = nlbBoundsM(b, lenM);
+                // A body already ARRESTED AT ITS SURFACE BOUND while still sliding must
+                // not be reclassified "stuck" just because the clamp below forced
+                // v = 0 — that zero is a TRACK artifact, not a force-balance rest
+                // (engine_bug_queue nlb_uncoupled_readouts_revert_to_static_friction_
+                // on_bound_halt, the Branch A twin of nlb_coupled_readouts_revert_to_
+                // rest_values_on_bound_halt / bc649d4). This shape is exactly the
+                // normal mu_s > mu_k case: a body given an initial slide never
+                // decelerates to rest on its own (kinetic friction stays the loser
+                // every frame, a keeps the same sign as v) so it is still sliding at
+                // full speed when it runs out of finite track — the v = 0 the clamp
+                // then imposes would otherwise satisfy the REST test below and flip
+                // fₖ to fₛ on the very next frame (block_on_incline STATE_4: both
+                // blocks' HUD rows went byte-identical the instant B hit the end of
+                // its track). _boundArrestedSliding latches once a clamp fires on a
+                // frame that was genuinely sliding (stuck === false) and only
+                // releases once the body's position leaves the bound band again.
+                var boundPin = !!b._boundArrestedSliding &&
+                    (b.s <= bd.lo + 1e-9 || b.s >= bd.hi - 1e-9);
+                var stuck = !boundPin && (Math.abs(b.v) < NLB_STOP_EPS_V) && (Math.abs(drive) <= maxStat);
                 var a, f;
                 if (stuck) {
                     a = 0; b.v = 0;
@@ -31167,9 +31732,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 // static friction, the body has come to REST.
                 if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
                 var s1 = b.s + 0.5 * (v0 + v1) * h;
-                var bd = nlbBoundsM(b, lenM);
-                if (s1 < bd.lo) { s1 = bd.lo; v1 = 0; a = 0; }
-                else if (s1 > bd.hi) { s1 = bd.hi; v1 = 0; a = 0; }
+                if (s1 < bd.lo) s1 = bd.lo;
+                else if (s1 > bd.hi) s1 = bd.hi;
+                if (s1 <= bd.lo + 1e-9 || s1 >= bd.hi - 1e-9) {
+                    // Sitting exactly at a surface bound (just clamped, or still
+                    // pinned from a prior frame). v/a legitimately settle to 0 here —
+                    // there is nothing left to integrate against a wall — but the
+                    // friction TYPE stays whatever it genuinely was the instant
+                    // before the wall, never silently upgraded to static.
+                    v1 = 0; a = 0;
+                    b._boundArrestedSliding = !stuck;
+                } else {
+                    b._boundArrestedSliding = false;
+                }
                 b.a = a; b.v = v1; b.s = s1;
                 b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
                 b._stuck = stuck;          // SEAM C reads this so the friction ARROW's
@@ -31208,10 +31783,21 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!refId) return;
         var sigRef = eng.bodies[refId].hanging ? 1 : -1;
 
+        // A "fixed" body anywhere in a coupled pair ANCHORS the whole string: an
+        // inextensible string tied to an immovable body cannot move at either end,
+        // so the safe (and physically correct) behaviour is to hold the string —
+        // NOT to drop the fixed body out of the coupled set, which would silently
+        // break the constraint and let the free body run as if unattached. The
+        // string is therefore treated exactly as if it were statically held
+        // (stuckB below), so the tensions still come out of each body's own
+        // equation of motion with a = 0 and the HUD stays honest. Cart-vs-wall
+        // push-offs are Branch A (no pulley) and are unaffected by this.
+        var anchoredB = false;
         var act = [], D = 0, M = 0, maxStatSum = 0, mukNSum = 0;
         for (var j = 0; j < eng.order.length; j++) {
             var bj = eng.bodies[eng.order[j]];
             if (!bj || bj.ghost) continue;                 // spec section 3: never integrated
+            if (bj.fixed) anchoredB = true;
             var cj = (bj.id === refId) ? 1 : -(sigRef * (bj.hanging ? 1 : -1));
             var thj = bj.hanging ? 90 : thetaSurf;
             var Nj = nlbNormal(bj, thj);
@@ -31227,7 +31813,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!act.length || !(M > 0)) return;
 
         var vStr = eng.v_string || 0;
-        var stuckB = (Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum);
+        var stuckB = anchoredB || ((Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum));
         var aStr = 0, Ffric = 0, vSignB = 0;
         if (stuckB) {
             aStr = 0; vStr = 0; Ffric = -D;                 // held by static friction
@@ -31250,7 +31836,33 @@ export const FIELD_3D_RENDERER_CODE = `
             var bdk = nlbBoundsM(bk, lenM);
             if (sk < bdk.lo || sk > bdk.hi) { blocked = true; break; }
         }
-        if (blocked) { sAdv = 0; vs1 = 0; aStr = 0; }
+        // The bound veto is a TRACK artifact, not a change in the physics: the
+        // string ran out of rail while every force stayed exactly as it was. So
+        // zero the MOTION (no body may leave its band) but NOT aStr — that is the
+        // DYNAMIC solution the HUD rows, the T/ΣF arrows and the state's whole
+        // taught claim are drawn from (engine_bug_queue
+        // nlb_coupled_readouts_revert_to_rest_values_on_bound_halt: connected_bodies
+        // STATE_3 ran its 1.11 s of track at the correct a = 3.27 / T = 13.07 N,
+        // then the halt recomputed with a = 0 and the HUD printed T = 19.60 N —
+        // exactly m₂g, the misconception the state exists to break — for the
+        // remaining ~19 s the teacher actually pauses on; STATE_6 likewise fell back
+        // to the two separate weights 20.58 / 19.60 instead of the one shared
+        // 20.08 N). The bodies still stop dead: the halt itself is the known,
+        // founder-visible finite-track gap and is NOT what this changes.
+        //   HELD BY RECOMPUTE, NOT BY A LATCHED SNAPSHOT. D, M, maxStatSum and
+        // mukNSum above are read fresh from the live masses / theta / mu every
+        // frame, and with v_string pinned to 0 the next frame re-derives the SAME
+        // solution the last moving frame had — so the value on screen is the
+        // achieved one, frame after frame, while a teacher dragging a slider on a
+        // halted state (the STATE_7 sandbox, and every guided state with
+        // controls_visible) still sees it update LIVE. A snapshot would have gone
+        // stale on exactly those drags. It also adds no history: nothing to rewind,
+        // so a SET_TIME_FREEZE pin stays byte-stable and nlbSeedKinematics() needs
+        // no extra clearing on entry / RESET_TRAJECTORY.
+        //   A genuinely held string is untouched — static friction takes the stuckB
+        // branch above (aStr = 0, F_fric = -D) and never reaches this veto, and the
+        // v-sign-reversal rest guard has already zeroed aStr on its own path.
+        if (blocked) { sAdv = 0; vs1 = 0; }
         eng.v_string = vs1;
         eng.a_string = aStr;
 

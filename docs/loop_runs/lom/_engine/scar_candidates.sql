@@ -333,56 +333,12 @@ INSERT INTO engine_bug_queue (
     'directive'
 );
 
--- ============================================================================
--- Session: 2026-07-25 lom-b chapter loop — concept 1, newton_first_law
--- Found by eye_walker on .visual_runs/newton_first_law/20260725-191906/.
--- Report only — NOT inserted (chapter-loop sessions are forbidden DB writes).
--- ============================================================================
-
--- Candidate — CRITICAL. Engine DEFECT (not an under-generalization): the nlb
--- physics clock is inconsistent with the RESET_TRAJECTORY contract every other
--- field_3d reveal timeline honours. Routed to field3d-surgeon this session.
 -- Cycle 1 (2026-07-25) — LIVE failure caught by THE EYE on free_body_diagram STATE_3.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
     discovered_in_session, row_type
 ) VALUES (
-    'field3d_nlb_physics_clock_not_state_local',
-    'newtons_laws_body integrates from SET_STATE instead of from the state-local reveal start, so a body silently moves (or fully decelerates) before the state visibly begins',
-    'CRITICAL',
-    'peter_parker:renderer_primitives',
-    'updateNewtonsLawsBodyFrame accumulates eng.t_ms from a per-tick real wall-clock dtStep that is never rebased by RESET_TRAJECTORY, unlike every other reveal timeline in field_3d_renderer.ts, which is a pure function of (time - stateStartTime) and IS rebased. The body starts integrating the instant applyNewtonsLawsBodyState builds a fresh eng object at SET_STATE, before the player/harness sends RESET_TRAJECTORY and the state-local reveal window begins. Any real-time gap between state entry and reveal start (THE EYE per-frame screenshot/encode overhead, ~1-4 s observed; equally a teacher pausing before pressing Play) lets the body advance by an uncontrolled amount. Symptom A: STATE_1 coast_no_force (frictionless, a=0) reads v=1.00 correctly through dense_t15000 but the H2 frozen pin reads v=0.00 — the block hit the +10 m bound, contradicting the never-slows delta cue at exactly the frame a teacher leaves frozen. Symptom B (worse): STATE_2 coast_with_friction reads v=0.02 m/s in its FIRST capture (98 percent decelerated from v0=1.0), so the ~4 s deceleration the state exists to teach happens entirely before the reveal clock starts and the state renders as a static block for its full ~14 s.',
-    'Gate the nlb integrator on the same state-local basis (time - stateStartTime) the other reveal systems use, or hold the nlb engine at dt=0 from SET_STATE until the first RESET_TRAJECTORY / Play. Any new scenario carrying its own integrator must rebase on RESET_TRAJECTORY — a free-running physics clock is invisible to every deterministic gate.',
-    'manual',
-    'Open the first captured frame and the frozen frame of a coast state: v at the first frame must equal the authored initial_velocity_mps, and the frozen frame must match the authored trajectory at the state duration (not the motion bound).',
-    'OPEN',
-    ARRAY['newton_first_law: STATE_1, STATE_2']::text[],
-    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom-b chapter loop — newton_first_law',
-    'incident'
-);
-
--- Candidate — MODERATE. Owner ambiguous (renderer glow application vs authored
--- phase tuning). Reported, NOT dispatched this session (Amendment 4: one
--- bug_class per engine dispatch; the CRITICAL row took this concept's budget).
-INSERT INTO engine_bug_queue (
-    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
-    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
-    discovered_in_session, row_type
-) VALUES (
-    'field3d_nlb_phase_glow_handoff_not_visible',
-    'newtons_laws_body phases[] glow_focal handoff fires in code but produces no perceptible brightness delta between two force arrows',
-    'MODERATE',
-    'ambiguous',
-    'The rest_equilibrium handoff (nlb_arrow_A_weight -> nlb_arrow_A_normal at 4000 ms) fires per nlbRunPhases (phase_fired and the glow_focal swap are confirmed in code), but frames before and after the handoff are visually identical: mg and N read at the same brightness in STATE_3 dense_t03000 vs dense_t04000/t05000/frozen. Either applyNewtonsLawsBodyGlow does not differentiate brightness for arrow-kind meshes, or the effect is too subtle at this render scale to read as exactly-one-glow-focal per Rule 32e.',
-    'FOUNDER TRIAGE — owner is genuinely ambiguous between peter_parker:renderer_primitives (a real glow-application gap on arrow meshes) and alex:json_author (phase timing/magnitude tuning). Confirm which by checking whether ANY nlb concept has ever produced a visible arrow-glow delta before assigning.',
-    'manual',
-    'Capture the frames either side of an authored phases[] glow handoff and confirm a visible brightness difference between the outgoing and incoming focal arrows.',
-    'OPEN',
-    ARRAY['newton_first_law: STATE_3']::text[],
-    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom-b chapter loop — newton_first_law',
     'field3d_integrating_scenario_ignores_reset_trajectory_and_carries_stale_accumulator',
     'An INTEGRATING field_3d scenario ignores RESET_TRAJECTORY, so every later capture/replay starts downrange from the previous one',
     'MAJOR',
@@ -398,52 +354,306 @@ INSERT INTO engine_bug_queue (
     'incident'
 );
 
--- ============================================================
--- CYCLE 2 (newton_second_law, lom-b, 2026-07-25) — eye_walker findings.
--- Found by the frame read; INVISIBLE to all 19 deterministic EYE gates.
--- NOT APPLIED. Founder reviews.
--- ============================================================
-
--- Candidate — CRITICAL. Two independent (no-pulley) bodies render fully coincident.
+-- ── lom-a / free_body_diagram cycle 3 (2026-07-25) — frame-reading protocol, NOT a code defect ──
+-- Raised after eye-walker opened a MAJOR "body jumps backward" finding on free_body_diagram STATE_3
+-- that a runtime probe + pixel-centroid measurement disproved (dense_t10000 is at x=826px, the dense
+-- series is linear, and the frozen frame is a re-entered state pinned at maxRevealMs by construction).
+-- Costs a full engine dispatch each time it recurs, so it is worth a permanent probe.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
     discovered_in_session, row_type
 ) VALUES (
-    'field3d_nlb_two_body_lane_offset_missing_causes_full_occlusion',
-    'newtons_laws_body renders two independent bodies at the same z, so a shared start line fully occludes one body',
+    'frozen_frame_read_as_dense_series_continuation_on_translating_body',
+    'A __frozen frame is a RE-ENTERED state pinned at maxRevealMs, not the end-of-timeline pose — reading it as the dense series'' last sample mints a phantom "body jumped backward" defect on any continuously-translating scenario',
+    'MODERATE',
+    'ambiguous',
+    'captureFrozenFrame() posts RESET_TRAJECTORY + REPLAY_ANIMATIONS + SET_TIME_FREEZE{at_ms: maxRevealMs} BEFORE its screenshot, so the frozen frame shows the state re-run from its own t=0 and held at the reveal pin. For every legacy field_3d scenario the reveal SATURATES (the picture stops changing once revealed), so frozen is pixel-identical to every later dense frame and the semantic is invisible. A scenario whose taught motion is a continuous translation (newtons_laws_body coast/accelerate modes) has NO settled beat: its frozen frame is legitimately BEHIND the last dense frame by (denseDuration - revealMs) x v. free_body_diagram STATE_3 (v=1 m/s, reveal 3000ms, dense 10000ms) reads as a backward jump, and lands beside a ghost body parked at -3 m, which makes the artifact look like a wrap/reset defect. Sibling STATE_4 (no ghost, reveal 4000ms) shows the identical numeric behaviour and was reported clean.',
+    'When judging a translating-body scenario, compare frozen ONLY against the dense frame at that state''s own maxRevealMs (derived in deriveStateMeta), never against dense''s last sample. Before opening a "position jumped/wrapped" finding on any integrating scenario, measure the body centroid across the WHOLE dense series: a wrap is a non-monotonic step INSIDE the series. Frame-reading reports must state which capture role (state_panel_a / dense_tNNNNN / frozen) each cited position came from.',
+    'js_eval',
+    'Drive THE EYE message order against the real config; assert the dense samples of s are monotonic and equal s0 + v*t within one 16ms step, and assert frozen s == dense s at t = maxRevealMs. Divergence between those two assertions distinguishes a real wrap from the frozen-pin semantic.',
+    'OPEN',
+    ARRAY['free_body_diagram','connected_bodies','block_on_incline']::text[],
+    ARRAY[]::text[],
+    'lom-a cycle 3 free_body_diagram coast_position_wraps triage 2026-07-25',
+    'probe_definition'
+);
+
+-- FOUNDER DECISION (deferred, not applied): free_body_diagram STATE_3's frozen frame — the canonical
+-- reviewer screenshot AND the H2 baseline — pins at 3000 ms, which leaves the coasting body still
+-- overlapping the ghost, under-selling the state's teaching point (the GROWING GAP between the moving
+-- body and the frozen ghost is the whole idea). Nudging coast_no_force's reveal candidate later (e.g.
+-- 6000 ms -> s = +1 m, a clear 4 m gap) is a one-line change in deriveStateMeta.ts, but it moves H2
+-- pixels and is a legibility judgment, so it was NOT taken in the loop. Same applies to
+-- coast_with_friction (STATE_4, 4000 ms). Raised by field3d-surgeon 2026-07-25.
+
+-- >>> connected_bodies rows appended 2026-07-26: see docs/loop_runs/lom/connected_bodies/scar_candidates_connected_bodies.sql
+
+-- ============================================================================
+-- connected_bodies (Laws of Motion #2), lom-a chapter loop, 2026-07-25/26.
+-- TEXT ONLY - NOT APPLIED. Founder reviews before any DB write.
+-- Three FIXED incidents (commits 5a07aa9, bc649d4, aa7daf5) + two OPEN carries.
+-- Full narrative: docs/loop_runs/lom/connected_bodies/engine_gap.md
+-- ============================================================================
+
+-- FIXED 5a07aa9 -- seed the constraint, not its projections.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_coupled_initial_velocity_never_seeded',
+    'A coupled (pulley) state derives every body v from ONE shared string scalar, so an authored initial_velocity_mps is discarded on the first tick - and the string all-or-nothing bounds veto then zeroes the seed whenever any body starts outside its own clamp band',
     'CRITICAL',
     'peter_parker:field3d_surgeon',
-    'nlbSetBodyPosition() (field_3d_renderer.ts ~L29497-29513) sets every non-hanging body mesh to (s*NLB_WORLD_PER_M, NLB_BODY_SIZE/2, 0) — z is hardcoded 0 for ALL bodies. The engine spec section 1 explicitly promises "Two bodies with NO pulley = independent, side-by-side", but they share one lane. Two bodies authored at the same initial_position_m (the intended same-start-line compare pattern) are pixel-coincident at reveal and stay visually merged until integration separates them. On newton_second_law STATE_2/STATE_3 only ONE block is visible at t=0 and the two Unicode labels render as an illegible merged blob for roughly the first third of the run. Worse, the H2 SET_TIME_FREEZE reveal-completeness baseline lands INSIDE the overlap window, so the frozen reference frame — the reveal-completeness reference — is illegible by construction. There is no authoring workaround: staggering the two initial_position_m values keeps both bodies in ONE lane, so the faster body overtakes and interpenetrates the slower one, which is worse than the occlusion.',
-    'Any scenario that renders two or more INDEPENDENT bodies must lay them out in distinct lanes — a small fixed per-body-index lateral offset centered about z=0, so a one-body state is bit-identical and two bodies can never be pixel-coincident even when their along-axis positions are exactly equal. The offset must carry to everything anchored to that body (mesh, label sprite, force arrows, drag hit proxy). A bring-up probe for a multi-body scenario must assert that the on-screen separation of any two independent bodies exceeds one body width at t=0, not merely that both meshes exist and are visible.',
+    'Two defects on the SAME state-entry seeding path, each individually sufficient to kill the motion. (1) applyNewtonsLawsBodyState seeded the per-body b.v from initial_velocity_mps, but Branch B integrates ONE scalar q along the string and overwrites b.v = c_i*q every tick from eng.v_string, which was hardcoded to 0 - so the authored v0 never reached the integrator. (2) Branch B bounds the STRING, not the bodies: if ANY body next position would leave its band the whole step is vetoed (sAdv = 0, v_string = 0). A hanging body authored with no initial_position_m starts at s = 0, BELOW the pulley-clearance bound NLB_HANG_MIN_M = 1.15 m, so frame 1 vetoed unconditionally and zeroed any seed. connected_bodies STATE_1/STATE_2 authored 0.35 m/s constant-velocity glides (a = 0 by design, so nothing could restart them): byte-identical frames from t = 0 to t = 15000 ms with both v readouts at 0.00 while the captions taught "both bodies share one speed". Branch A seeded v0 correctly and hid the class.',
+    'A scenario whose per-body state is DERIVED from a shared constraint scalar must seed that scalar from the authored initial conditions on state entry AND on RESET_TRAJECTORY - seeding the derived per-body field is a no-op. Seed the constraint, not its projections. Corollary: any all-or-nothing constraint veto must be preceded by clamping every authored seed inside its own valid band on entry. Never accept "the gates passed" as evidence a state moves: for any state whose taught motion is a constant-velocity glide (a = 0), compare the first and last dense frames byte-wise.',
     'js_eval',
-    'For each state whose newtons_laws_body block declares 2+ bodies with no pulley: SET_STATE, then project each body mesh to screen space and assert the pairwise screen-space distance exceeds NLB_BODY_SIZE at t=0 and at the state reveal pin.',
-    'OPEN',
-    ARRAY['newton_second_law','newton_third_law']::text[],
+    'For every field_3d state declaring a pulley/coupled block: SET_STATE, then assert (a) PM_nlbEngine.v_string equals c_i * the authored initial_velocity_mps of the first non-ghost body carrying one, (b) every non-ghost body s lies inside nlbBoundsM at t = 0, (c) after 3 s of pinned sim time each body |s - s0| >= 0.9 * |v0| * 3 whenever v0 != 0. Independently assert such a state dense series is not byte-identical between first and last sample.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom-b chapter loop cycle 2 — newton_second_law eye_walker',
+    'lom-a chapter loop - connected_bodies engine dispatch 2026-07-25',
     'incident'
 );
 
--- Candidate — MAJOR. Authored forces below the arrow-length floor. ROUTED AS CONTENT, not engine:
--- the floor is designed behavior (spec section 3), the defect was 0.2N/0.4N authored magnitudes.
--- Kept here as a PREVENTION row so the next author does not repeat it.
+-- FIXED bc649d4 -- a geometry veto must zero motion, never the force solution.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
     discovered_in_session, row_type
 ) VALUES (
-    'field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio',
-    'Force magnitudes under the arrow-length floor render as invisible stubs and destroy any authored length ratio',
-    'MAJOR',
-    'alex:physics_author',
-    'The arrow overlay renders len = clamp(NLB_ARROW_MIN_LEN, NLB_ARROW_MAX_LEN, magnitudeN * NLB_ARROW_SCALE) with NLB_ARROW_SCALE = 0.030 world-units/N and NLB_ARROW_MIN_LEN = 0.30 (field_3d_renderer.ts ~L29272-29274). The clamp is DESIGNED behavior per engine spec section 3 ("a nonzero force is always at least readable"), so this is not an engine defect. But newton_second_law authored 0.2 N and 0.4 N — raw lengths 0.006 and 0.012, both far under the floor. Consequences: (a) STATE_1 applied-force arrow, the state sole glow_focal and the Rule 32a cause element, renders as a ~1px stub with no shaft or arrowhead at any captured frame; (b) STATE_3 doubled-force arrow, the state entire pedagogical payload and its Rule 29 magnitude-length exception, is destroyed because BOTH 0.2 N and 0.4 N clamp to the identical minimum, leaving no length difference to see. The physics block own section 6 flagged the small-numbers risk; it was realized, not hypothetical.',
-    'Any authored force intended to be SEEN must clear the arrow-length floor with margin: F >= 15 N at NLB_ARROW_SCALE = 0.030 (raw length 0.45, 1.5x the floor). Where two force magnitudes are compared on the same canvas for their LENGTH ratio, the SMALLER of the pair must clear the floor — otherwise the ratio is unrenderable. Scale masses (and surface.length_m / dwell) to hold the clamp-margin constraint at the larger forces, rather than shrinking forces to hold the accelerations down. Applies to idle_auto_sweep ranges too: a sandbox sweeping F over a sub-floor range shows a frozen stub arrow.',
-    'static_check',
-    'For every state, for every arrow declared in newtons_laws_body.arrows[].show, resolve its magnitude from the authored bodies/config and assert magnitude * NLB_ARROW_SCALE > NLB_ARROW_MIN_LEN. Additionally, where two arrows of the same kind appear in one state, assert both clear the floor before trusting any authored length ratio.',
-    'OPEN',
-    ARRAY['newton_second_law']::text[],
-    ARRAY['src/data/concepts/newton_second_law.json']::text[],
-    '2026-07-25 lom-b chapter loop cycle 2 — newton_second_law eye_walker',
+    'nlb_coupled_readouts_revert_to_rest_values_on_bound_halt',
+    'A finite-track halt zeroed the coupled solution, so the HUD/arrows reverted to the rest-state answer - printing the exact misconception the state exists to break for ~95% of its runtime',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'newtons_laws_body Branch B bounds the STRING, not each body: if any body next position would leave its band the whole step is vetoed. That veto set sAdv = 0, vs1 = 0 AND aStr = 0. The first two are correct (the body must not leave its rail); the third is not - no force changed, only the track ran out. With aStr = 0 the per-body writeback collapsed to a = 0, F_net = 0 and T = -drive, i.e. the hanging body tension became exactly m2*g. connected_bodies STATE_3 (the concept PRIMARY aha, "T is not m2g") ran 1.11 s at the correct a = 3.27 / T = 13.07 N and then displayed T = 19.60 N = m2*g for the remaining ~19 s of a 20 s state, including the frozen frame a teacher lands on and the H2 baseline that frame would mint. STATE_6 (Atwood) fell back to P.T = 20.58 / Q.T = 19.60 - the two separate weights - instead of the one shared 20.08 N. The body stopping is a known finite-track gap and is NOT the defect.',
+    'A veto that exists to keep an object inside its geometry must zero MOTION ONLY (position advance + velocity), never the force/acceleration solution the readouts, arrows and taught claim are drawn from - an out-of-rail artifact must not be presented as a change in the physics. Prefer holding the achieved solution by RECOMPUTE from live inputs over a latched snapshot: a snapshot goes stale on any slider drag and adds history a time-pin/RESET_TRAJECTORY must rewind. Corollary for reviewers: judge a dynamics HUD LATE in the state, not only during its motion burst.',
+    'js_eval',
+    'For each coupled state, sample the engine record at t = 1 s (mid-motion) and again well after the bound halt (v_string == 0), and assert every body a, T and F_net are unchanged between the two samples to within 1e-9. Independently assert the post-halt hanging-body |T| != m*g whenever |a| > 0. Then post a slider input on a halted state and assert the readouts CHANGE, proving the hold is a recompute and not a stale latch.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a connected_bodies engine dispatch 2026-07-25',
     'incident'
 );
+
+-- FIXED aa7daf5 -- effective visibility is the AND over the ancestor chain.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_hide_flag_applied_to_a_group_that_also_parents_unrelated_apparatus',
+    'An authored hide flag applied to a scene GROUP takes every co-parented sibling down with it - the Atwood pulley vanished with the surface slab',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'newtons_laws_body parents the pulley bracket to the SURFACE group (deliberately: the one theta rotation then stands the post on the incline at every angle with no branch). The later surface.hidden feature was implemented as o.visible = !surface.hidden on that same group, so a connected_atwood state - the ONE state that authors surface.hidden - hid the slab AND the bracket. Both ropes terminated in open space, and the state declared Rule-32e glow_focal (nlb_pulley_wheel) did not exist on screen. Every value-level probe passed: the meshes were built, registered, positioned, glow-aliased and marked visible by nlbShowPulley - only an ancestor was invisible, which no per-object visible check can see.',
+    'A hide flag authored against a NAMED apparatus part is applied to that part own MESH, never to a group, unless the group is provably a pure wrapper for that one part. Before writing o.visible on any THREE.Group, enumerate its children and confirm every one of them is meant to disappear together. Corollary for probes: an element effective visibility is the AND over its ancestor chain - assert the world-visible predicate (walk parents to the scene root), never obj.visible alone.',
+    'js_eval',
+    'For every scenario element named by a state glow_focal or visible_elements, walk obj.parent to the scene root and assert every ancestor has visible === true; fail if the object own visible is true but an ancestor is false (silently invisible focal).',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a chapter loop cycle 1 (connected_bodies STATE_6 Atwood) 2026-07-26',
+    'incident'
+);
+
+-- OPEN carry 1 of 2 -- shipped unfixed; the runaway guard closed the door on a 4th engine commit.
+-- Found ANALYTICALLY by physics-author before it was ever observed, then confirmed live.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_coupled_sandbox_F_slider_exceeds_string_tautness_bound',
+    'The shared F slider can drive a coupled state past a > g, where a real string would go slack - the rigid model keeps solving and reports a magnitude-masked impossible tension',
+    'MEDIUM',
+    'peter_parker:field3d_surgeon',
+    'T > 0 requires a < g. For incline+hanging the threshold is F < m1*g*(1 + sin(theta) + mu_k*cos(theta)); over the engine SHARED, non-per-concept-authorable slider ranges (m1 in [0.5,10], theta in [0,60], mu_k in [0,1]) the worst case is m1 = 0.5, theta = 0, mu_k = 0 giving 4.9 N - while the F slider runs to +/-20 N. Probed live on connected_bodies STATE_7: a = 15.06 > g with |T| = 10.51, signed tensions inconsistent. The model has no slack-rope representation, so it keeps solving the rigid coupled equations. NOT JSON-fixable: the slider range is the engine shared panel. connected_bodies is the first concept to both couple two bodies AND expose F in its sandbox.',
+    'Where a model has a validity bound that authored slider ranges can cross, the engine must either clamp at the bound with an honest visual (rope goes slack) or narrow the exposed range - a teacher-facing sandbox must not be able to reach a state the model cannot represent. Derive the bound analytically over the FULL cross-product of shared slider ranges, not just the concept default values.',
+    'js_eval',
+    'For every coupled state exposing F: drive m to its minimum, mu_k to 0, theta to 0 and F to its maximum, then assert |a| < g and the signed tension of every body is >= 0. Fail if either holds false.',
+    'OPEN',
+    ARRAY['connected_bodies']::text[],
+    ARRAY[]::text[],
+    'lom-a connected_bodies cycle 2 - carried unfixed at runaway guard 2026-07-26',
+    'incident'
+);
+
+-- OPEN carry 2 of 2 -- Rule 34d, LOW. Note the related content workaround.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_formula_and_readout_zones_are_fixed_css_and_collide_with_a_tall_hud',
+    'The formula surface and the body HUD are hardcoded CSS zones with no per-state override, so a 5-readout sandbox HUD collides with the formula and bleeds into the slider panel',
+    'LOW',
+    'peter_parker:field3d_surgeon',
+    'newtons_laws_body fixes #nlb_formula at top:42%;right:22px and #nlb_readout at top:52px;right:12px with no per-state positional field in the interface. They collide once a body HUD grows past ~4 lines, which happens on connected_bodies STATE_7 (7 controls, 5 readouts per body). Because json_author had no positional lever, that state formula_overlay was REMOVED entirely to clear the worse collision - a content workaround for an engine-surface limit, accepted by both reviewers for a sandbox but not a durable fix. A milder residual remains: the m2 HUD block bleeds into the slider row below.',
+    'Overlay zones that can grow with authored content (a per-body readout stack) must be sized or positioned off the ACTUAL rendered height of their neighbours, not hardcoded - or expose a per-state positional override so authoring can resolve a collision without deleting content. Rule 34d.',
+    'dom_probe',
+    'For every state, getBoundingClientRect() on #nlb_formula, #nlb_readout and the slider panel, and assert no pair of rects intersects.',
+    'OPEN',
+    ARRAY['connected_bodies']::text[],
+    ARRAY[]::text[],
+    'lom-a connected_bodies cycle 2 - carried unfixed at runaway guard 2026-07-26',
+    'incident'
+);
+
+-- COSMETIC, no row proposed (founder judgment): with surface.hidden the Atwood pulley POST BASE
+-- floats in open space - it mounts to nothing. That layer never rendered before aa7daf5, so it had
+-- never been reviewed. eye-walker reads it as standard textbook Atwood-diagram convention;
+-- quality-auditor calls it "looks slightly unfinished, not wrong". Both cleared it to ship.
+
+-- ============================================================================
+-- block_on_incline (concept 3, lom-a, 2026-07-26) -- text only, NOT applied.
+-- ============================================================================
+
+-- DIRECTIVE row proposed by field3d-surgeon alongside the pre-approved param_ramp
+-- addition (commit ada18a4). Authoring contract, not a defect.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_param_ramp_authoring_contract',
+    'A param_ramp state must author its own surface/body value for the ramped param equal to `from`, or state entry visibly jumps before the ramp starts',
+    'LOW',
+    'peter_parker:field3d_surgeon',
+    'param_ramp evaluates value(t) from `from` -> `to` off the state clock, but the scene is posed at state entry from the authored surface.theta_deg / body field. If the authored value differs from `from`, the first ramp frame snaps the geometry to `from` - a visible jump the author never intended. Same contract idle_auto_sweep already carries for range[0].',
+    'A monotonic reveal knob and the authored initial pose are two independent sources of truth for the same quantity; the author must keep them equal, or the engine must derive the pose from the ramp. Documented in NEWTONS_LAWS_BODY_ENGINE_SPEC.md section 1.',
+    'json_probe',
+    'For every state with newtons_laws_body.param_ramp, assert the authored value of the ramped param (surface.theta_deg for theta; the matching body field otherwise) equals param_ramp.from.',
+    'OPEN',
+    ARRAY['block_on_incline']::text[],
+    ARRAY[]::text[],
+    'lom-a block_on_incline - param_ramp addition 2026-07-26',
+    'directive'
+);
+
+-- FIXED row for the Branch A (uncoupled) twin of bc649d4. Found by eye-walker reading
+-- block_on_incline STATE_4 frames at cycle 0 (both blocks' HUD rows went byte-identical
+-- the instant B ran out of track); invisible to all 23 deterministic checks.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_uncoupled_readouts_flip_to_static_on_bound_halt',
+    'A sliding uncoupled body arrested at its surface bound silently re-derived STATIC friction, collapsing its readouts onto a never-moving body''s',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'The Branch A position clamp at bd.lo/bd.hi forced v = 0 to stop the body at the end of finite track. That zero is a TRACK artifact, not a force-balance rest, but the next frame''s rest test (|v| < NLB_STOP_EPS_V && |drive| <= mu_s*N) could not tell the difference and reclassified the body stuck, flipping f from kinetic to static. In the normal mu_s > mu_k case a body given an initial slide never decelerates to rest on its own, so it is always still sliding at full speed when it hits the bound - the flip was reachable on every such state.',
+    'A velocity zeroed by a geometric clamp must never feed a physics rest test. Latch the fact that the halt was a wall (_boundArrestedSliding, set only when the clamping frame was genuinely sliding) and release it only when the body leaves the bound band; pin position and zero v/a at a wall, but never upgrade the friction TYPE.',
+    'runtime_probe',
+    'Drive a state with a body seeded moving under mu_k until it reaches its track bound, then read the HUD LATE (past the halt instant): the friction glyph must still read fk, and the row must not be byte-identical to a co-present static body''s.',
+    'FIXED',
+    ARRAY['block_on_incline']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a block_on_incline fix cycle 1 2026-07-26',
+    'scar'
+);
+
+-- ══════════════════════════════════════════════════════════════════════════════
+-- TEXT ONLY — NOT APPLIED. Noticed during ENGINE SEAM A of the push-off build
+-- (bug_class nlb_push_off_phase_and_fixed_body, 2026-07-29). Deliberately NOT
+-- fixed in that dispatch (one bug_class, minimal diff). The founder/loop decides
+-- whether these become real rows.
+-- ══════════════════════════════════════════════════════════════════════════════
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_push_off_bodies_lane_separated_so_they_never_touch',
+--     'Two independent push_off bodies are z-lane-separated by nlbBodyLaneZ, so the pair that is supposed to collide head-on renders in two parallel rows',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'nlbBodyLaneZ separates every pair of independent (no-pulley), non-hanging, non-ghost bodies into distinct z lanes so a same-start-line mass/force COMPARE reads as two rows instead of one merged blob. A push_off pair is the opposite case: the two bodies share ONE interaction and must sit on the SAME line, touching, or the spring seam has nothing to draw between them and the whole "these two push EACH OTHER" picture collapses back into "two separate blocks with asserted arrows" - the exact failure the push-off apparatus exists to fix. A cart-vs-fixed-wall pair has the same problem.',
+--     'A lane is a DISAMBIGUATION device for bodies that share no interaction. Any state whose bodies are coupled by a declared interaction block (pulley, push_off, spring) returns lane 0 for every body in that block - the lane list must be filtered by the interaction, not just by hanging/ghost.',
+--     'js_eval',
+--     'In a push_off state, read both body meshes'' world z: they must be equal (0). Assert |zA - zB| < 1e-6.',
+--     'OPEN',
+--     ARRAY['newton_third_law']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam A 2026-07-29',
+--     'incident'
+-- );
+-- NOTE: explicitly OUT OF SCOPE for seam A by dispatch instruction - the lane/glow
+-- wiring is SEAM B's. Recorded here only so it cannot be lost between the seams.
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_f_slider_is_a_dead_control_inside_a_push_off_contact_window',
+--     'A guided push_off state that also exposes the F slider gives the teacher a control the per-frame gate silently overwrites every tick',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'nlbRunPushOff writes BOTH bodies'' F_applied from the authored force_N on every frame, at the input stage, ahead of the integrator. A trusted F-slider drag writes the same field through nlbApplyParam and is therefore stomped on the very next tick: the thumb moves, the number in the row moves, and nothing on the canvas changes. This is the correct enforcement (the equality must not be breakable) but it makes controls_visible: [''F''] a lie in a push_off guided state. idle_auto_sweep and param_ramp both solved the same collision with a PM_nlbSweepSeized seize latch; push_off has none because a seize would break the equal-and-opposite guarantee mid-contact.',
+--     'Either (a) forbid ''F'' in controls_visible for a state that authors push_off (authoring constraint, checked by the validator), or (b) let a trusted F drag rescale the push_off MAGNITUDE rather than one body''s force, so the pair stays equal-and-opposite while the teacher scrubs. Never leave a rendered slider whose writes are silently discarded.',
+--     'sql',
+--     'SELECT concept_id FROM concepts WHERE a field_3d state authors both newtons_laws_body.push_off and controls_visible containing ''F''.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam A 2026-07-29',
+--     'incident'
+-- );
+
+-- ── SEAM B (spring geometry + lane), 2026-07-29 ────────────────────────────
+-- The lane row above (nlb_push_off_bodies_lane_separated_so_they_never_touch)
+-- is RESOLVED by this seam. bug_class is the upsert key, so this is an UPDATE
+-- of that row, NOT a second INSERT.
+-- UPDATE engine_bug_queue SET
+--     status = 'FIXED',
+--     fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[]
+-- WHERE bug_class = 'nlb_push_off_bodies_lane_separated_so_they_never_touch';
+-- Fix: nlbBodyLaneZ returns 0 when the state declares push_off, and when ANY
+-- lane candidate is `fixed` (cart vs wall is head-on too). Both tests are
+-- per-STATE facts and no existing concept JSON authors either key, so every
+-- side-by-side compare state takes the unchanged path.
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_spring_authored_gap_wider_than_compressed_length_floats_untouching',
+--     'A push_off state whose carts start further apart than the spring''s compressed length draws a coil floating in the gap, touching neither cart',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'The spring''s natural length (1.6 m) and compressed length (0.72 m) are APPARATUS CONSTANTS, exactly like the cart size - a real spring has one, and deriving it from the authored gap instead would make the release instant depend on where the author happened to park the carts. nlbFitSpring therefore draws min(gap, target), so a state that authors the two bodies'' initial_position_m further apart than the compressed length renders a short bunched coil centred in a gap it does not span. The picture then says "these two are NOT in contact" while push_off is applying a contact force to both - the exact "declares the interaction but never shows it" class the apparatus exists to defeat.',
+--     'Any interaction object with a fixed natural length carries an AUTHORING CONTRACT that the validator can check: for a state with both push_off and spring, assert |s_a - s_b| = 0.72 + halfWidth(a) + halfWidth(b) (0.55 m per cart, 0.275 m for a fixed wall slab) within a small tolerance. A geometric constant that the author must match by hand and nothing verifies is a silent-drift surface.',
+--     'js_eval',
+--     'For a state authoring both push_off and spring, read both body world positions at t = 0 and assert the face-to-face gap is within 0.05 m of the compressed length (0.72 m).',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam B 2026-07-29',
+--     'incident'
+-- );
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_push_off_release_window_outlives_the_spring_extension',
+--     'push_off.release_at_ms authored as a round number leaves the spring hidden for most of the contact window it is supposed to explain',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'A spring stops pushing when it reaches its natural length - the contact DURATION is therefore a consequence of force and mass, not a free parameter. push_off authors it as a wall-clock release_at_ms, so the two can disagree: numerically, 30 N on two 2 kg carts covers the spring''s whole 0.88 m extension in 242 ms, so an authored release_at_ms of 800 leaves the coil on screen for 30% of the push and absent (while both force arrows are still drawn at full length) for the other 70% - regressing exactly to the "arrows appear from nowhere" picture the push-off apparatus was built to fix.',
+--     'When an apparatus has a fixed natural length, the authored timing that drives it is DERIVED, not free: release_at_ms = 1000*sqrt(1.76/(force_N*(1/m_a + 1/m_b))) with the 1/m term dropped for a `fixed` body. Author it from the formula, never as a round number. Long-term the engine could derive the release instant from the geometry itself (release when gap >= natural length) and treat release_at_ms as a cap - but that changes push_off''s founder-approved force semantics and is a founder call, not a surgeon call.',
+--     'js_eval',
+--     'For each state authoring push_off + spring: assert |release_at_ms - 1000*sqrt(1.76/(force_N*(1/m_a + 1/m_b)))| < 40 ms.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam B 2026-07-29',
+--     'incident'
+-- );
