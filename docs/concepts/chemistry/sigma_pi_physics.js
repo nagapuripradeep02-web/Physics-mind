@@ -316,5 +316,113 @@ for (const mode of ["sigma", "pi"]) {
   });
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// Q5 — THE FIELD THAT WILL ACTUALLY SHIP. Q3 measured a p-p head-on sigma,
+//     but ethene's sigma is sp2-sp2, and that is a DIFFERENT field (hybrid psi,
+//     not pure 2p). Skeleton section 7 limit 1 recorded that it must be
+//     re-measured rather than assumed. This is that measurement.
+//
+//     The hybrid psi is pulled from the shipped renderer too (osHybPsi), so the
+//     sigma below is built from the same function that draws hybridisation_sp_sp2_sp3.
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\nQ5 THE SHIPPING FIELD — sp2-sp2 sigma (ethene), not p-p");
+
+const EH = new Function([
+  grabVar("OS_HYB_SIGN"), grabVar("OS_ORB2S"), grabVar("OS_ORB2P"),
+  grabVar("OS_INV_S4PI"), grabVar("OS_SQRT3_4PI"),
+  grabFn("osR"), grabFn("osHybPsi"),
+  "return { osHybPsi: osHybPsi, OS_HYB_SIGN: OS_HYB_SIGN };"
+].join("\n"))();
+
+check("OS_HYB_SIGN is the load-bearing minus", EH.OS_HYB_SIGN, -1, 0, "");
+
+const F_SP2 = 1 / 3;
+/** sp2 hybrid psi at world point p, nucleus at c, big lobe along unit `axis`. */
+function psiSp2(p, c, axis) {
+  const dx = p[0] - c[0], dy = p[1] - c[1], dz = p[2] - c[2];
+  const r = Math.hypot(dx, dy, dz);
+  if (r < 1e-9) return 0;
+  const cosA = (dx * axis[0] + dy * axis[1] + dz * axis[2]) / r;
+  return EH.osHybPsi({ f: F_SP2 }, r, cosA);
+}
+// Sanity: the front lobe must be POSITIVE (that is what OS_HYB_SIGN buys, and
+// it is what makes the bonding combination psi_A + psi_B rather than a minus).
+const frontVal = EH.osHybPsi({ f: F_SP2 }, 3.0, +1);
+const backVal  = EH.osHybPsi({ f: F_SP2 }, 3.0, -1);
+console.log(`  sp2 psi at rho=3: front (c=+1) ${frontVal.toExponential(3)}, ` +
+  `back (c=-1) ${backVal.toExponential(3)}  -> front is ` +
+  `${frontVal > 0 ? "POSITIVE" : "NEGATIVE"}, |front|/|back| = ` +
+  `${(Math.abs(frontVal) / Math.abs(backVal)).toFixed(2)}`);
+if (!(frontVal > 0)) { fails++; console.log("  FAIL  front lobe is not positive — the bonding sign below is wrong"); }
+
+// Both hybrids point AT each other, so both are positive in the overlap region
+// and the BONDING combination is psi_A + psi_B.
+function fieldSp2Sigma(p) {
+  return Math.pow(psiSp2(p, cA, [0, 0, 1]) + psiSp2(p, cB, [0, 0, -1]), 2);
+}
+function fieldSp2Atomic(p) {
+  return Math.max(Math.pow(psiSp2(p, cA, [0, 0, 1]), 2),
+                  Math.pow(psiSp2(p, cB, [0, 0, -1]), 2));
+}
+
+const gS = build((p) => fieldSp2Sigma(p), "sigma");
+const gSA = build((p) => fieldSp2Atomic(p), "sigma");
+for (const frac of [0.9, 0.7, 0.5]) {
+  const lM = levelFor(gS, frac), lA = levelFor(gSA, frac);
+  const cM = components(gS, lM), cAt = components(gSA, lA);
+  console.log(`  enc ${(frac * 100).toFixed(0)}%  sp2-sp2 MO: ${String(cM.length).padStart(2)} parts ` +
+    `(${cM.filter(straddles).length} spanning)   |   translated-atomic: ` +
+    `${String(cAt.length).padStart(2)} parts (${cAt.filter(straddles).length} spanning)`);
+}
+// star-shape, at the enclosure the scene must use
+{
+  const lev = levelFor(gS, 0.5), comps = components(gS, lev);
+  console.log(`  sp2-sp2 sigma enc50 — ${comps.length} components ` +
+    `(sizes ${comps.slice(0, 4).map(c => c.size).join(", ")})`);
+  comps.slice(0, 3).forEach((c, n) => {
+    const r = starTestMask(maskOf(c), centroid(c), 16);
+    const o = centroid(c);
+    console.log(`    component ${n} (${c.size} cells, centroid ` +
+      `[${o.map(v => v.toFixed(2)).join(", ")}]): ${r.pct.toFixed(1)}% re-enter ` +
+      `-> ${r.pct < 1.0 ? "STAR-SHAPED" : "NOT star-shaped"}`);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Q6 — THE NUMBER S6 PUTS ON SCREEN. Twisting one atom by phi about the bond
+//     axis rotates its p orbital. The claim to be printed live is that the pi
+//     overlap follows cos(phi) EXACTLY and reaches 0 at 90 deg -- because the
+//     rotated p resolves into a parallel part (cos phi) and a perpendicular
+//     part whose overlap vanishes by symmetry.
+//     If that is right, the readout is derived, not fudged. Verify it.
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\nQ6 THE LIVE READOUT — pi overlap vs twist angle");
+
+/** Overlap integral S = int psi_A psi_B dV, by direct quadrature on the grid. */
+function overlapPi(phiDeg) {
+  const ph = phiDeg * Math.PI / 180;
+  // A's p along +x; B's p twisted by phi about the bond axis (z).
+  const aAxis = [1, 0, 0], bAxis = [Math.cos(ph), Math.sin(ph), 0];
+  let s = 0;
+  const cell = step * step * step;
+  for (let i = 0; i < NG; i++) for (let j = 0; j < NG; j++) for (let k = 0; k < NG; k++) {
+    const p = [-EXT + i * step, -EXT + j * step, -EXT + k * step];
+    s += psi2p(p, cA, aAxis) * psi2p(p, cB, bAxis) * cell;
+  }
+  return s;
+}
+const S0 = overlapPi(0);
+console.log(`  S(0) = ${S0.toFixed(6)}   (the reference overlap)`);
+let maxDev = 0;
+for (const phi of [0, 15, 30, 45, 60, 75, 90]) {
+  const S = overlapPi(phi), pred = S0 * Math.cos(phi * Math.PI / 180);
+  const dev = Math.abs(S - pred);
+  if (dev > maxDev) maxDev = dev;
+  console.log(`  phi = ${String(phi).padStart(2)} deg   S = ${S.toFixed(6)}   ` +
+    `S(0)cos(phi) = ${pred.toFixed(6)}   |diff| = ${dev.toExponential(2)}`);
+}
+check("pi overlap follows S(0)cos(phi)", maxDev, 0, 1e-6 * Math.abs(S0) + 1e-9, "");
+console.log(`  -> the S6 readout is EXACT (cos phi), not a fitted curve; it reaches 0.00 at 90 deg.`);
+
 console.log(`\n${fails === 0 ? "ALL CONTROLS PASS" : fails + " CONTROL FAILURE(S)"}\n`);
 process.exit(fails === 0 ? 0 : 1);

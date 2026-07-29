@@ -177,7 +177,44 @@ concept exists to kill, rendered as the lesson.
 > symmetry point ψ_A = ±ψ_B, so (2ψ)²/ψ² = 4 exactly, by algebra. Recorded so nobody
 > later mistakes an identity for a measurement.
 
-### 5c — Engine cost: star-shaped, so no marching cubes
+### 5c — The field that actually ships: sp²–sp², measured (closes §7 limit 1)
+
+Ethene's σ is **sp²–sp²**, not p–p — the honest continuation of what
+`hybridisation_sp_sp2_sp3` just taught, and a *different* field (hybrid ψ from the
+shipped `osHybPsi`, not pure 2p). Re-measured rather than assumed:
+
+| enclosure | sp²–sp² MO | translated-atomic |
+|---|---|---|
+| 90% | 3 parts, 1 spanning | 1 part, 1 spanning |
+| 70% | 3 parts, 1 spanning | 3 parts, 1 spanning |
+| 50% | 3 parts, 1 spanning | 3 parts, 1 spanning |
+
+Same topology as p–p, all components star-shaped (0.0% re-entry) — **and a
+materially better picture.** The back lobes collapse from **1145 → 107 cells**: a
+hybrid is directional, so the σ reads as one clean lump spanning both nuclei with
+only small stubs behind, instead of p–p's three comparable blobs. Chemistry and
+legibility point the same way, so the choice is settled on evidence, not taste.
+
+Front lobe verified POSITIVE (|front|/|back| = 1.62 at ρ = 3), which is what fixes
+the bonding combination as **ψ_A + ψ_B**. `OS_HYB_SIGN = −1` re-asserted as a
+control — #13's load-bearing minus.
+
+### 5d — S6's live readout is EXACT, not fitted
+
+Twisting one atom by φ about the bond axis resolves its p orbital into a parallel
+part (cos φ) and a perpendicular part whose overlap vanishes by symmetry, so
+
+**S(φ) = S(0) · cos φ**
+
+Verified by direct quadrature against the shipped ψ: max deviation **1 × 10⁻¹⁴**
+across 0–90° (machine precision), with S(90°) = 0.000000 exactly. S(0) = 0.270339.
+
+So S6 prints a **derived law**, not a tuned curve, and the number a student watches
+fall to zero is the real overlap integral. It also means the torsion beat needs no
+per-frame field solve: the surface comes off a precomputed twist ladder (the shipped
+morph-ladder pattern) while the readout is closed-form.
+
+### 5e — Engine cost: star-shaped, so no marching cubes
 
 Per-component ray casting from each component's own centroid, at the 50% contour:
 
@@ -217,7 +254,10 @@ The pattern doc's estimate — *"#17 needs only a per-lobe origin offset (one li
 6. **The torsion beat.** S6's twist is a *new* motion: the existing spin is a rigid
    rotation of the whole picture; this rotates one atom's contribution relative to
    the other and rebuilds the surface. It is the concept's payoff, so it is not
-   optional.
+   optional. **Cost is bounded** — §5d shows the readout is closed-form (cos φ) and
+   the surface comes off a precomputed twist ladder, exactly the shipped
+   morph-ladder pattern, so no field is solved in a frame and the
+   `SET_TIME_FREEZE` byte-identical guarantee is untouched.
 
 **Rule 40 — this is PLATFORM.** It lands on master separately and immediately, never
 bundled inside this concept's branch.
@@ -241,10 +281,12 @@ rejected unless both π systems subtend a measurable on-screen extent simultaneo
 
 ## §7 — Known limits, recorded rather than hidden
 
-1. **The σ measured in §5b is p–p head-on; ethene's real σ is sp²–sp².** The
-   topology conclusion holds for both, and hybrids already exist in the engine — but
-   the sp²–sp² field is a *different* field (hybrid ψ, not pure 2p) and **§5b must be
-   re-run on it before the build**, not assumed. Flagged, not papered over.
+1. ~~**The σ measured in §5b is p–p head-on; ethene's real σ is sp²–sp².**~~
+   **CLOSED — §5c.** Re-measured on the sp²–sp² field; same topology, all components
+   star-shaped, and a cleaner picture (back lobes 1145 → 107 cells). **The concept
+   ships sp²–sp²** (founder direction 2026-07-29: finish σ/π as planned, and the
+   prerequisite chain is the point). The unhybridised 2p_y forming the π is unchanged
+   from §5b, so that measurement still stands as made.
 2. **The bond-energy comparison mixes hybridisations.** σ 348 kJ/mol is the C–C bond
    in ethane (sp³); π 266 is C=C (614) − C–C (348). This is the standard textbook
    construction and it is an approximation, not an identity. S7's on-canvas wording
