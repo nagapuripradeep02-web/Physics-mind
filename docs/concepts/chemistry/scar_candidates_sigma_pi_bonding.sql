@@ -1,12 +1,20 @@
 -- Scar candidates — sigma_pi_bonding / the kind:"mo" molecular-orbital surface, 2026-07-29
 --
 -- ═══════════════════════════════════════════════════════════════════════════
--- STATUS: **NOT APPLIED.** Files-only, per the standing convention
--- (scar_candidates_law_of_conservation_of_mass.sql, 2026-07-27):
--- "engine_bug_queue writes are a founder decision".
--- Live table at time of writing: 412 rows, 28 chemistry, 0 for sigma_pi_bonding.
--- Apply with an idempotent seed script (skip any bug_class already present),
--- mirroring src/scripts/_seed_engine_bug_queue_vsepr_3d_surface.ts.
+-- STATUS: **APPLIED** 2026-07-30 to dxwpkjfypzxrzgbevfnx (dev) on founder
+-- instruction, via src/scripts/_seed_engine_bug_queue_sigma_pi_mo_surface.ts.
+-- IDEMPOTENT on both halves: bug_class presence guards the 10 INSERTs and a
+-- marker string guards each recurrence append, verified by a second run that
+-- skipped all 12 and inserted nothing.
+-- Verified after: 12 rows carry sigma_pi_bonding, 10 tagged this session,
+-- 2 recurrences appended (one escalated MODERATE -> CRITICAL), 2 left OPEN.
+-- NOT applied to physicsmind-pilot (production) -- engine_bug_queue is dev-only.
+-- No schema deviations were needed: the live CHECK constraints and NOT NULL
+-- columns were queried BEFORE this file was written, so the text below executed
+-- as drafted (unlike the vsepr batch, which carried three forced deviations).
+--
+-- Table went 412 -> 440 rows across the apply, but only 10 of those are mine:
+-- a parallel session inserted 18 rows for collision-theory work concurrently.
 --
 -- SCHEMA VERIFIED LIVE before writing (dxwpkjfypzxrzgbevfnx), so this text is
 -- executable as-is rather than needing the deviations the vsepr file carried:
