@@ -1,0 +1,986 @@
+{
+  "concept_id": "hybridisation_sp_sp2_sp3",
+  "concept_name": "Hybridisation: One Dial — s-Character — Sets Both the Orbital's Shape and Its Angle",
+  "chapter": 4,
+  "section": "4.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Chemistry Class 11, Ch.4 'Chemical Bonding and Molecular Structure', §4.6 — valence bond theory and hybridisation of s and p orbitals (sp, sp², sp³) — chapter-index scope reference only; teaching, sequence, and phrasing authored from first principles. Every shape, angle, tip length and probability below is DERIVED from psi_h = -c_s psi_2s + c_p psi_2p on the same exact hydrogenic radial functions the shipped atomic_orbitals_s_p_d evaluates, and was solved independently BEFORE any renderer code existed (docs/concepts/chemistry/hybridisation_physics_block.md), with a control reproducing that concept's already-shipped 482 pm 2p tip. NCERT Exemplar Ch.4 consulted for the misconception belief only (that carbon bonds with its 2s and 2p orbitals unchanged, predicting three bonds at 90° and one odd one out); no problem text, figure, or worked example imported. Sixth chemistry concept through the pipeline, second on the field_3d orbital_shapes surface.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "orbital_shapes"
+    ]
+  },
+  "prerequisites": [
+    "atomic_orbitals_s_p_d"
+  ],
+  "real_world_anchor": {
+    "primary": "Every carbon atom in every living thing is hybridised. The difference between the graphite in a pencil and the diamond in a drill bit is nothing but which hybrid carbon chose: flat sp² sheets that slide over each other, or a rigid sp³ tetrahedral lattice. Same element, same nucleus, same electrons — different angle.",
+    "secondary": "The 109.5° tetrahedral angle is why water is bent, why fats have kinks in them, and why a protein folds the way it does. Almost every three-dimensional shape in chemistry traces back to how much s a bonding orbital carries."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_3"
+    },
+    "the_three_hybrids": {
+      "start": "STATE_4",
+      "end": "STATE_5"
+    },
+    "the_rule": {
+      "start": "STATE_6",
+      "end": "STATE_7"
+    }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "schar": {
+        "name": "s-character — the fraction of the hybrid built from the 2s orbital (f = c_s²)",
+        "unit": "fraction (0 to 0.5)",
+        "min": 0,
+        "max": 0.5,
+        "default": 0.25,
+        "role": "independent"
+      },
+      "dots": {
+        "name": "number of position measurements shown (dot-swarm size)",
+        "unit": "count",
+        "min": 100,
+        "max": 5000,
+        "default": 1200,
+        "role": "presentation_only"
+      },
+      "spin": {
+        "name": "turn speed — the slow rotation that lets the 3D arrangement be read",
+        "unit": "rad/s",
+        "min": 0,
+        "max": 0.6,
+        "default": 0.16,
+        "role": "presentation_only"
+      },
+      "a0": {
+        "name": "Bohr radius",
+        "unit": "pm",
+        "constant": 52.9177
+      },
+      "pm_per_unit": {
+        "name": "frame scale — the ONE declared constant converting real pm to world units",
+        "unit": "pm per world-unit",
+        "constant": 200
+      },
+      "angle_sp": {
+        "name": "angle between two sp hybrids (f = 1/2)",
+        "unit": "degrees",
+        "constant": 180.0
+      },
+      "angle_sp2": {
+        "name": "angle between three sp² hybrids (f = 1/3)",
+        "unit": "degrees",
+        "constant": 120.0
+      },
+      "angle_sp3": {
+        "name": "angle between four sp³ hybrids (f = 1/4)",
+        "unit": "degrees",
+        "constant": 109.47
+      },
+      "angle_p": {
+        "name": "angle between two pure p orbitals (f = 0) — the un-hybridised prediction",
+        "unit": "degrees",
+        "constant": 90.0
+      },
+      "front_sp": {
+        "name": "fraction of an sp hybrid's electron on the bonding side (MEASURED from the seeded sample, not asserted)",
+        "unit": "percent",
+        "constant": 87.5
+      },
+      "front_sp2": {
+        "name": "fraction of an sp² hybrid's electron on the bonding side",
+        "unit": "percent",
+        "constant": 85.4
+      },
+      "front_sp3": {
+        "name": "fraction of an sp³ hybrid's electron on the bonding side",
+        "unit": "percent",
+        "constant": 82.5
+      },
+      "tip_sp3_front": {
+        "name": "sp³ front lobe tip at the 50% boundary",
+        "unit": "pm",
+        "constant": 341
+      },
+      "tip_sp3_back": {
+        "name": "sp³ back lobe tip at the 50% boundary",
+        "unit": "pm",
+        "constant": 222
+      },
+      "tip_2p": {
+        "name": "pure 2p lobe tip at the 90% boundary — the shipped atomic_orbitals_s_p_d value this concept reproduces at f = 0",
+        "unit": "pm",
+        "constant": 482
+      }
+    },
+    "formulas": {
+      "angle_law": "cos(theta) = -f / (1 - f), where f = s-character. f = 0 -> 90 deg; f = 1/4 -> 109.47 deg; f = 1/3 -> 120 deg; f = 1/2 -> 180 deg.",
+      "hybrid_wavefunction": "psi_h = -c_s psi_2s + c_p psi_2p, with c_s^2 + c_p^2 = 1 and f = c_s^2. The leading minus is the textbook convention and is load-bearing: R_20 is negative for rho > 2, so +c_s would place 82.5% of the electron behind the atom.",
+      "orthonormality": "<h_i|h_j> = f + (1 - f)(a_i . a_j), which is 1 for i = j and 0 for i != j at the authored directions."
+    },
+    "constraints": [
+      "Each hybrid set is normalised and mutually orthogonal — verified numerically (max off-diagonal overlap 5.6e-17).",
+      "The number of hybrid orbitals out always equals the number of atomic orbitals in: 1s + 1p = 2 sp; 1s + 2p = 3 sp²; 1s + 3p = 4 sp³.",
+      "An arbitrary interorbital angle is realisable by EQUIVALENT hybrids only for a set of two. Three and four equivalent hybrids are locked to 120° and 109.47° respectively.",
+      "Every hybrid of the n = 2 shell has energy -3.40 eV at Z = 1, because 2s and 2p are degenerate in hydrogen; hybridisation redistributes direction, never total energy."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 30,
+    "max_labels_per_state": 14,
+    "max_words_per_tts_sentence": 34
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "One dial, the s-character, sets the angle; 109.5 degrees is where it lands.",
+    "visual_confirmation": "the s-character sweeps from 0 to one half while the live angle readout climbs continuously through 109.5 and 120 to 180, and each lobe visibly grows more lopsided as it goes — one control, two effects, neither scripted separately"
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "Carbon's own orbitals predict the wrong molecule",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_ninety_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "axis-populate",
+        "motion_delta": "the three 2p orbitals arrive one axis at a time, and every angle between them is a right angle",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_px_label",
+            "position": {
+              "x": 180,
+              "y": 120
+            },
+            "text": "2p on x",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_ninety_label",
+            "position": {
+              "x": 400,
+              "y": 250
+            },
+            "text": "every angle here is 90°",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_need_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "methane needs four identical bonds",
+            "color": "#B0BEC5"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Carbon bonds using its 2s and three 2p orbitals exactly as they are, so methane should have three bonds at 90° from the p orbitals plus one different bond from the s.",
+            "visual_counter": "The three 2p orbitals are stamped onto their axes one at a time and stay there, mutually perpendicular. The picture that results predicts three bonds at 90° and one odd one out — and methane has four identical bonds at 109.5°.",
+            "one_line_fix": "The orbitals carbon starts with cannot make four identical bonds, so they are not the orbitals carbon bonds with."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s1_1",
+              "text_en": "Carbon has three 2p orbitals, and they lie on three perpendicular axes.",
+              "glow": "lobe_set",
+              "scenario_cue": "populate_0"
+            },
+            {
+              "id": "hyb_s1_2",
+              "text_en": "Watch them arrive. Every angle between them is a right angle, ninety degrees.",
+              "glow": "lobe_set",
+              "scenario_cue": "populate_2"
+            },
+            {
+              "id": "hyb_s1_3",
+              "text_en": "But methane has four identical bonds at a hundred and nine point five degrees. These orbitals cannot make that molecule.",
+              "glow": "axes"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Mix one s into one p and a new shape appears",
+        "duration": 22,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_new_shape_label",
+        "advance_mode": "auto_after_tts",
+        "motion_archetype": "merge-morph",
+        "motion_delta": "the spherical 2s dissolves into the dumbbell, which swells at one end and shrinks at the other",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_s_label",
+            "position": {
+              "x": 190,
+              "y": 130
+            },
+            "text": "the 2s is consumed",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_new_shape_label",
+            "position": {
+              "x": 420,
+              "y": 260
+            },
+            "text": "one big lobe, one small",
+            "color": "#FFA726"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_name_label",
+            "position": {
+              "x": 580,
+              "y": 410
+            },
+            "text": "this is an sp hybrid",
+            "color": "#FFA726"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s2_1",
+              "text_en": "Now mix. Take the spherical 2s and one dumbbell-shaped 2p, and combine them into a single orbital.",
+              "glow": "surface"
+            },
+            {
+              "id": "hyb_s2_2",
+              "text_en": "The sphere is consumed and the dumbbell stops being symmetric. One end swells, the other shrinks away.",
+              "glow": "lobe_set",
+              "scenario_cue": "morph"
+            },
+            {
+              "id": "hyb_s2_3",
+              "text_en": "That lopsided shape is a hybrid orbital. Half s, half p, and identical to neither.",
+              "glow": "lobe_set"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "The big lobe is where the bond forms",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_front_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "partner-bloom",
+        "motion_delta": "the second sp hybrid grows in pointing exactly opposite, and the readout counts what sits on the bonding side",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_front_label",
+            "position": {
+              "x": 400,
+              "y": 150
+            },
+            "text": "87% sits on this side",
+            "color": "#FFA726"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_partner_label",
+            "position": {
+              "x": 200,
+              "y": 380
+            },
+            "text": "its partner points opposite",
+            "color": "#FFA726"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_reach_label",
+            "position": {
+              "x": 600,
+              "y": 300
+            },
+            "text": "reach beats a plain p",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s3_1",
+              "text_en": "Mixing one s with one p gives two hybrids, not one, and the second points exactly opposite the first.",
+              "glow": "lobe_set",
+              "scenario_cue": "bloom"
+            },
+            {
+              "id": "hyb_s3_2",
+              "text_en": "Look at the readout. Almost eighty-eight percent of this electron sits on the big-lobe side.",
+              "glow": "lobe_set"
+            },
+            {
+              "id": "hyb_s3_3",
+              "text_en": "That concentration is the point: a hybrid reaches further toward its neighbour, so it bonds better.",
+              "glow": "lobe_set"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Mix in a second p and the angle closes to 120°",
+        "duration": 20,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s4_angle_label",
+        "advance_mode": "auto_after_tts",
+        "motion_archetype": "plane-populate",
+        "motion_delta": "three hybrids appear in one flat plane, 120° apart instead of 180°",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_angle_label",
+            "position": {
+              "x": 400,
+              "y": 160
+            },
+            "text": "three lobes, 120° apart",
+            "color": "#AB47BC"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_flat_label",
+            "position": {
+              "x": 200,
+              "y": 400
+            },
+            "text": "all in one flat plane",
+            "color": "#AB47BC"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_count_label",
+            "position": {
+              "x": 610,
+              "y": 330
+            },
+            "text": "one s + two p = three sp²",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s4_1",
+              "text_en": "Mix the same s with two p orbitals instead of one, and three hybrids come out.",
+              "glow": "lobe_set",
+              "scenario_cue": "bloom"
+            },
+            {
+              "id": "hyb_s4_2",
+              "text_en": "They lie flat in a single plane, spaced a hundred and twenty degrees apart. These are sp two hybrids.",
+              "glow": "lobe_set"
+            },
+            {
+              "id": "hyb_s4_3",
+              "text_en": "Notice the count never breaks. Orbitals in, orbitals out, always equal.",
+              "glow": "lobe_set"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "All three p, and the answer to methane appears",
+        "duration": 22,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s5_tetra_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "tetra-assemble",
+        "motion_delta": "a fourth hybrid lifts out of the plane and the set becomes the three-dimensional tetrahedron methane actually has",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_tetra_label",
+            "position": {
+              "x": 400,
+              "y": 150
+            },
+            "text": "four lobes, 109.5°",
+            "color": "#26A69A"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_ghost_label",
+            "position": {
+              "x": 190,
+              "y": 400
+            },
+            "text": "the 90° picture, for contrast",
+            "color": "#546E7A"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_answer_label",
+            "position": {
+              "x": 610,
+              "y": 330
+            },
+            "text": "identical, and this is methane",
+            "color": "#26A69A"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "The four bonds of methane are still three p bonds and one s bond, just drawn differently.",
+            "visual_counter": "The four sp3 hybrids assemble from the nucleus outward and settle at 109.5 degrees, all four the same size and the same shape. The opening state's three mutually perpendicular p orbitals had three of one kind and nowhere for a fourth to go.",
+            "one_line_fix": "All four sp³ hybrids are identical, which is exactly what three p plus one s could never be."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s5_1",
+              "text_en": "Now use all three p orbitals. One s plus three p gives four hybrids.",
+              "glow": "lobe_set",
+              "scenario_cue": "bloom"
+            },
+            {
+              "id": "hyb_s5_2",
+              "text_en": "The fourth cannot stay in the plane, so the set lifts into three dimensions and settles at a hundred and nine point five degrees.",
+              "glow": "lobe_set"
+            },
+            {
+              "id": "hyb_s5_3",
+              "text_en": "Compare that with the right angles we started from. These four are identical, and that is methane.",
+              "glow": "lobe_set"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "One dial sets the angle — and 109.5° is just where it lands",
+        "duration": 26,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s6_law_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "parameter-sweep",
+        "motion_delta": "s-character rises from zero to a half and the angle opens continuously from 90° through 109.5° and 120° to 180°",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_law_label",
+            "position": {
+              "x": 400,
+              "y": 150
+            },
+            "text": "more s, wider angle",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_stops_label",
+            "position": {
+              "x": 190,
+              "y": 390
+            },
+            "text": "109.5° · 120° · 180° pass by",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_shape_label",
+            "position": {
+              "x": 615,
+              "y": 330
+            },
+            "text": "the shape changes with it",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s6_1",
+              "text_en": "Here is the rule underneath all three. Sweep the s-character upward and watch the angle.",
+              "glow": "lobe_set",
+              "scenario_cue": "morph"
+            },
+            {
+              "id": "hyb_s6_2",
+              "text_en": "It opens smoothly from ninety degrees, through a hundred and nine point five, then a hundred and twenty, to a hundred and eighty.",
+              "glow": "lobe_set"
+            },
+            {
+              "id": "hyb_s6_3",
+              "text_en": "The three named hybrids are just the stops where this dial makes the lobes equivalent.",
+              "glow": "lobe_set"
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "The small back lobe is real, and it matters later",
+        "duration": 20,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s7_back_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "cutaway-reveal",
+        "motion_delta": "the front lobe's ink drops away so the small rear lobe behind the nucleus becomes countable on its own",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_back_label",
+            "position": {
+              "x": 380,
+              "y": 170
+            },
+            "text": "222 pm behind the nucleus",
+            "color": "#26A69A"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_front_label",
+            "position": {
+              "x": 610,
+              "y": 300
+            },
+            "text": "341 pm in front",
+            "color": "#26A69A"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_split_label",
+            "position": {
+              "x": 195,
+              "y": 400
+            },
+            "text": "82.5% front · 17.5% back",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s7_1",
+              "text_en": "Textbook drawings usually leave off the small lobe behind the nucleus. It is really there.",
+              "glow": "lobe_set",
+              "scenario_cue": "cutaway"
+            },
+            {
+              "id": "hyb_s7_2",
+              "text_en": "The readout measures the split directly: about eighty-two percent of the electron in front, seventeen behind.",
+              "glow": "lobe_set"
+            },
+            {
+              "id": "hyb_s7_3",
+              "text_en": "Remember it. That rear lobe is the door a reagent attacks through when a bond is later broken from behind.",
+              "glow": "lobe_set"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Explore — turn the dial and pick a hybrid",
+        "duration": 24,
+        "depth_ring": "core",
+        "focal_primitive_id": "s8_dial_label",
+        "advance_mode": "interaction_complete",
+        "motion_archetype": "free-explore",
+        "motion_delta": "the teacher drives s-character and the hybrid picker; the set turns continuously",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s8_dial_label",
+            "position": {
+              "x": 400,
+              "y": 155
+            },
+            "text": "drag the s-character",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_pick_label",
+            "position": {
+              "x": 195,
+              "y": 395
+            },
+            "text": "or pick sp, sp², sp³",
+            "color": "#B0BEC5"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_angle_label",
+            "position": {
+              "x": 612,
+              "y": 330
+            },
+            "text": "the angle follows",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "hyb_s8_1",
+              "text_en": "Yours now. Drag the s-character and the angle follows it, or pick one of the three named hybrids directly.",
+              "glow": "lobe_set"
+            },
+            {
+              "id": "hyb_s8_2",
+              "text_en": "Try landing exactly on a hundred and nine point five degrees and read what the s-character has to be.",
+              "glow": "lobe_set"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "orbital_shapes",
+    "explorer_id": "hybrid_explorer",
+    "field_lines": {
+      "opacity": 0
+    },
+    "explore_orbitals": [
+      "sp",
+      "sp2",
+      "sp3"
+    ],
+    "slider_controls": {
+      "orbital": {
+        "default": "sp3",
+        "label": "Hybrid"
+      },
+      "schar": {
+        "min": 0,
+        "max": 0.5,
+        "step": 0.01,
+        "default": 0.25,
+        "label": "s-character"
+      },
+      "dots": {
+        "default": 1200,
+        "label": "Measurements"
+      },
+      "spin": {
+        "min": 0,
+        "max": 0.6,
+        "step": 0.02,
+        "default": 0.16,
+        "label": "Turn speed"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The three 2p orbitals arrive on their axes, all at 90°",
+        "caption": "Three p, all 90°",
+        "orbital_shapes": {
+          "mode": "p_set",
+          "orbital": "2p_z",
+          "enclosure": 0.5,
+          "populate_steps": [
+            {
+              "at_ms": 2000,
+              "orbital": "2p_x"
+            },
+            {
+              "at_ms": 6500,
+              "orbital": "2p_y"
+            },
+            {
+              "at_ms": 11500,
+              "orbital": "2p_z"
+            }
+          ],
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "label",
+            "radius"
+          ],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_2": {
+        "label": "The 2s dissolves into the 2p and a lopsided hybrid appears",
+        "caption": "One s + one p",
+        "orbital_shapes": {
+          "mode": "merge_morph",
+          "orbital": "sp",
+          "enclosure": 0.5,
+          "members": 1,
+          "populate_steps": [
+            {
+              "at_ms": 0,
+              "orbital": "2s"
+            },
+            {
+              "at_ms": 0,
+              "orbital": "sp"
+            }
+          ],
+          "morph": {
+            "from": 0,
+            "to": 0.5,
+            "at_ms": 6000,
+            "duration_ms": 8000
+          },
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "s_char",
+            "front_back"
+          ],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_3": {
+        "label": "The second sp hybrid blooms in, pointing 180° opposite",
+        "caption": "Its partner, opposite",
+        "orbital_shapes": {
+          "mode": "merge_morph",
+          "orbital": "sp",
+          "enclosure": 0.5,
+          "members": 2,
+          "bloom_at_ms": 3000,
+          "bloom_duration_ms": 11000,
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "label",
+            "front_back",
+            "angle"
+          ],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_4": {
+        "label": "Three sp² hybrids fill one flat plane at 120°",
+        "caption": "Three, at 120°",
+        "orbital_shapes": {
+          "mode": "set_populate",
+          "orbital": "sp2",
+          "enclosure": 0.5,
+          "bloom_at_ms": 2500,
+          "bloom_duration_ms": 10000,
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "label",
+            "angle",
+            "s_char"
+          ],
+          "spin_rate": 0,
+          "controls": [],
+          "front_only": true
+        }
+      },
+      "STATE_5": {
+        "label": "Four sp³ hybrids lift into a tetrahedron at 109.47°",
+        "caption": "Four, at 109.5°",
+        "orbital_shapes": {
+          "mode": "tetra_assemble",
+          "orbital": "sp3",
+          "enclosure": 0.5,
+          "bloom_at_ms": 2500,
+          "bloom_duration_ms": 11500,
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "label",
+            "angle",
+            "s_char"
+          ],
+          "spin_rate": 0,
+          "controls": [],
+          "front_only": true
+        }
+      },
+      "STATE_6": {
+        "label": "s-character sweeps 0 to ½ and the angle opens 90° to 180°",
+        "caption": "More s, wider angle",
+        "orbital_shapes": {
+          "mode": "param_sweep",
+          "orbital": "sp",
+          "enclosure": 0.5,
+          "angle_track": true,
+          "morph": {
+            "from": 0,
+            "to": 0.5,
+            "at_ms": 4000,
+            "duration_ms": 15000
+          },
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": false,
+          "show_hud": true,
+          "hud_lines": [
+            "s_char",
+            "angle"
+          ],
+          "show_formula": true,
+          "formula": "cos θ = −f ⁄ (1 − f)",
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_7": {
+        "label": "The front lobe thins out so the small rear lobe can be counted",
+        "caption": "The back lobe is real",
+        "orbital_shapes": {
+          "mode": "hybrid_gallery",
+          "orbital": "sp3",
+          "enclosure": 0.5,
+          "members": 1,
+          "cutaway_at_ms": 3000,
+          "cutaway_duration_ms": 10000,
+          "surface_opacity": 0.3,
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "label",
+            "front_back",
+            "tips"
+          ],
+          "spin_rate": 0.16,
+          "spin_start_ms": 6000,
+          "spin_axis": [
+            1,
+            0,
+            0
+          ],
+          "controls": []
+        }
+      },
+      "STATE_8": {
+        "label": "Explore — the s-character dial and the hybrid picker",
+        "caption": "All yours",
+        "orbital_shapes": {
+          "mode": "explore",
+          "orbital": "sp3",
+          "enclosure": 0.5,
+          "camera": {
+            "az": 0,
+            "el": 0,
+            "dist": 6.0
+          },
+          "show_surface": true,
+          "show_dots": true,
+          "dot_target": 900,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "label",
+            "s_char",
+            "angle",
+            "front_back"
+          ],
+          "spin_rate": 0.16,
+          "spin_axis": [
+            1,
+            0,
+            0
+          ],
+          "controls": [
+            "orbital",
+            "schar",
+            "dots",
+            "spin"
+          ],
+          "front_only": true
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same s-character dial, nitrogen instead of carbon (the lone pair takes a hybrid too)",
+      "physical_world": "Nitrogen in ammonia is also sp3 hybridised, but one of its four hybrids holds a lone pair instead of a bond, which is why ammonia's H-N-H angle is 107 degrees rather than the ideal 109.5.",
+      "same_physics": "Identical reasoning: one s mixed with three p gives four equivalent hybrids at the angle cos(theta) = -f/(1-f) returns for f = 1/4. What changes is only which hybrids get bonding partners, never how the hybrids themselves are built."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Ch.4 'Chemical Bonding and Molecular Structure', §4.6 — valence bond theory, hybridisation of s and p orbitals (sp, sp2, sp3) and the resulting geometries",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main/Advanced · NEET",
+        "coverage": "full",
+        "syllabus_unit": "full concept; identifying the hybridisation of a named atom and predicting the geometry is a recurring item across both exams",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "HL only — hybridisation of carbon alongside organic structure; the continuous s-character sweep sits above syllabus and is the advanced ring",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Unit 2 Molecular and Ionic Compound Structure — hybridisation assessed together with VSEPR geometry",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge A-level Chemistry (9701)",
+        "coverage": "full",
+        "syllabus_unit": "sp/sp2/sp3 introduced with organic bonding; sp2 planarity underpins alkene geometry",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "absent",
+        "syllabus_unit": "hybridisation is beyond IGCSE; molecular shape is taught without orbital mixing — hide the whole concept for this board",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  }
+}
