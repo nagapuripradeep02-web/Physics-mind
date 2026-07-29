@@ -183,7 +183,7 @@
     "states": {
       "STATE_1": {
         "title": "The wrong picture: a double bond is two identical bonds",
-        "duration": 15,
+        "duration": 16,
         "depth_ring": "core",
         "focal_primitive_id": "s1_belief_label",
         "advance_mode": "manual_click",
@@ -240,12 +240,12 @@
             },
             {
               "id": "s1_2",
-              "text_en": "That picture says both bonds are the same shape, so it should rotate just as freely as a single bond.",
+              "text_en": "That picture says both bonds are identical — so both should rotate equally freely.",
               "glow": "bond_sticks"
             },
             {
               "id": "s1_3",
-              "text_en": "Watch closely — a real double bond doesn't look anything like this.",
+              "text_en": "Watch closely — a real double bond looks nothing like this.",
               "glow": "nuclei"
             }
           ]
@@ -291,19 +291,19 @@
             },
             "text": "One bond, not two",
             "color": "#B0BEC5",
-            "at_ms": 4800
+            "at_ms": 10100
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Now the real bond. Each carbon's front lobe grows toward the other, closing along the line joining the nuclei — end on.",
+              "text_en": "Now the real bond: each carbon's front lobe grows toward the other, closing along the line joining the nuclei.",
               "glow": "mo_lobes"
             },
             {
               "id": "s2_2",
-              "text_en": "Watch the surfaces touch first, well before the bond forms, then merge into a single bonding cloud that lies on the axis: one sigma bond, not two.",
+              "text_en": "Watch the surfaces touch first, then slowly merge into one bonding cloud on the axis — a single sigma bond, not two.",
               "glow": "mo_surface"
             }
           ]
@@ -369,7 +369,7 @@
       },
       "STATE_4": {
         "title": "Each carbon also keeps one un-hybridised p, perpendicular to the bond",
-        "duration": 16,
+        "duration": 17,
         "depth_ring": "core",
         "focal_primitive_id": "s4_separate_label",
         "advance_mode": "manual_click",
@@ -396,7 +396,7 @@
             },
             "text": "Then the second, sideways",
             "color": "#B0BEC5",
-            "at_ms": 4400
+            "at_ms": 7000
           },
           {
             "type": "annotation",
@@ -407,19 +407,19 @@
             },
             "text": "Not yet touching",
             "color": "#B0BEC5",
-            "at_ms": 7000
+            "at_ms": 9200
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Hybridising three orbitals still leaves one 2p orbital on every carbon, standing perpendicular to the bond axis and to the molecule's plane.",
+              "text_en": "Hybridising three orbitals still leaves one 2p orbital on every carbon, perpendicular to the bond axis.",
               "glow": "mo_lobes"
             },
             {
               "id": "s4_2",
-              "text_en": "Both carbons have this leftover p, but right now they are two separate clouds — not yet touching each other.",
+              "text_en": "Watch them rise one at a time — two separate clouds, still not touching each other.",
               "glow": "mo_lobes"
             }
           ]
@@ -427,7 +427,7 @@
       },
       "STATE_5": {
         "title": "Sideways overlap builds π — two lumps, a node on the axis",
-        "duration": 20,
+        "duration": 18,
         "depth_ring": "core",
         "focal_primitive_id": "s5_notouch_label",
         "advance_mode": "manual_click",
@@ -472,12 +472,12 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "The leftover p orbitals lie broadside to the bond axis, so the lobes meet side by side as the carbons close in.",
+              "text_en": "The leftover p orbitals lie broadside to the axis, so the lobes meet side by side.",
               "glow": "mo_lobes"
             },
             {
               "id": "s5_2",
-              "text_en": "The surfaces never touch — read the separation number — but the amplitudes still add: two lumps, with an empty node right on the axis.",
+              "text_en": "The surfaces never touch, but the amplitudes still add: two lumps, with a node on the axis.",
               "glow": "mo_surface"
             }
           ]
@@ -530,12 +530,12 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Now twist one carbon's p orbital about the bond axis and watch the live overlap number.",
+              "text_en": "Now twist one carbon's p orbital and watch the live overlap number.",
               "glow": "mo_lobes"
             },
             {
               "id": "s6_2",
-              "text_en": "Sigma's bond holds still; green reinforcing shrinks as magenta cancelling grows — pi's overlap cancels, not separates.",
+              "text_en": "Sigma's bond holds still; green shrinks as magenta grows — pi's overlap cancels, not separates.",
               "glow": "mo_overlap"
             },
             {
@@ -564,7 +564,7 @@
             },
             "text": "σ arrives first",
             "color": "#FFCA28",
-            "at_ms": 1500
+            "at_ms": 2400
           },
           {
             "type": "annotation",
@@ -575,7 +575,7 @@
             },
             "text": "π adds in",
             "color": "#FFCA28",
-            "at_ms": 4100
+            "at_ms": 10600
           },
           {
             "type": "annotation",
@@ -586,7 +586,7 @@
             },
             "text": "π: the weaker difference",
             "color": "#66BB6A",
-            "at_ms": 5600
+            "at_ms": 12200
           },
           {
             "type": "annotation",
@@ -597,24 +597,24 @@
             },
             "text": "Mixes two bond types",
             "color": "#B0BEC5",
-            "at_ms": 7200
+            "at_ms": 13700
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "A single carbon-carbon sigma bond needs about 348 kilojoules per mole to break.",
+              "text_en": "A single sigma bond needs about 348 kilojoules per mole to break.",
               "glow": "mo_surface"
             },
             {
               "id": "s7_2",
-              "text_en": "The full double bond needs 614 — so the pi bond alone is only about 266, noticeably weaker than sigma, not equal to it.",
+              "text_en": "The full double bond needs 614 — so pi alone is about 266, weaker than sigma, not equal.",
               "glow": "mo_surface"
             },
             {
               "id": "s7_3",
-              "text_en": "This mixes two different bond types, so treat it as an approximate comparison, not an exact one.",
+              "text_en": "This mixes two bond types, so treat it as approximate, not exact.",
               "glow": "mo_surface"
             }
           ]
@@ -622,7 +622,7 @@
       },
       "STATE_8": {
         "title": "A triple bond is one σ and TWO π, at right angles",
-        "duration": 16,
+        "duration": 17,
         "depth_ring": "extended",
         "focal_primitive_id": "s8_realfacts_label",
         "advance_mode": "auto_after_tts",
@@ -638,7 +638,7 @@
             },
             "text": "A second π arrives",
             "color": "#FFCA28",
-            "at_ms": 3400
+            "at_ms": 8000
           },
           {
             "type": "annotation",
@@ -649,7 +649,7 @@
             },
             "text": "1σ + 2π = triple bond",
             "color": "#FFCA28",
-            "at_ms": 5200
+            "at_ms": 10600
           },
           {
             "type": "annotation",
@@ -660,7 +660,7 @@
             },
             "text": "C≡C: 120 pm · 839 kJ",
             "color": "#B0BEC5",
-            "at_ms": 6000
+            "at_ms": 11500
           },
           {
             "type": "annotation",
@@ -671,19 +671,19 @@
             },
             "text": "Shown at C=C spacing",
             "color": "#B0BEC5",
-            "at_ms": 6600
+            "at_ms": 12200
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "Add one more leftover p orbital pair, at right angles to the first pi bond, and let it overlap the same way.",
+              "text_en": "Add one more leftover p orbital pair, at right angles to the first pi bond.",
               "glow": "mo_surface"
             },
             {
               "id": "s8_2",
-              "text_en": "One sigma and two pi bonds together make three shared pairs — a triple bond. It's shown at the double bond's spacing for continuity; the real one is shorter and stronger.",
+              "text_en": "One sigma and two pi bonds make three shared pairs — a triple bond, shown at the double bond's spacing; the real one is shorter and stronger.",
               "glow": "mo_surface"
             }
           ]
@@ -779,7 +779,7 @@
             "radius_pm": 8,
             "at_ms": 300,
             "fade_in_ms": 500,
-            "dissolve_at_ms": 7000,
+            "dissolve_at_ms": 8600,
             "dissolve_duration_ms": 1500,
             "opacity": 0.85,
             "color": "#FFCA28",
@@ -827,8 +827,8 @@
               "from_pm": 321.4,
               "at_ms": 0,
               "duration_ms": 2400,
-              "settle_ms": 800,
-              "fade_ms": 1200
+              "settle_ms": 3500,
+              "fade_ms": 4000
             },
             "readout": "ratio"
           },
@@ -900,9 +900,9 @@
             "atomic_reveal_at_ms": 0,
             "atomic_offsets_ms": [
               1800,
-              4400
+              7000
             ],
-            "atomic_duration_ms": 1200,
+            "atomic_duration_ms": 1500,
             "readout": "ratio"
           },
           "show_axes": false,
@@ -936,9 +936,9 @@
             "approach": {
               "from_pm": 321.4,
               "at_ms": 800,
-              "duration_ms": 800,
-              "settle_ms": 800,
-              "fade_ms": 1000
+              "duration_ms": 1400,
+              "settle_ms": 2000,
+              "fade_ms": 4000
             },
             "readout": "ratio"
           },
@@ -1021,10 +1021,12 @@
             "show_overlap": false,
             "show_nuclei": true,
             "surface_opacity": 0.26,
+            "reveal_at_ms": 0,
             "reveal_offsets_ms": [
               0,
-              2600
+              8000
             ],
+            "reveal_duration_ms": 2300,
             "readout": "ratio"
           },
           "show_axes": false,
@@ -1064,8 +1066,9 @@
             "reveal_at_ms": 0,
             "system_offsets_ms": [
               0,
-              3400
+              8000
             ],
+            "reveal_duration_ms": 2300,
             "readout": "ratio"
           },
           "show_axes": false,
