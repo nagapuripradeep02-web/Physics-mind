@@ -183,7 +183,7 @@
     "states": {
       "STATE_1": {
         "title": "The wrong picture: a double bond is two identical bonds",
-        "duration": 16,
+        "duration": 12,
         "depth_ring": "core",
         "focal_primitive_id": "s1_belief_label",
         "advance_mode": "manual_click",
@@ -199,18 +199,19 @@
             },
             "text": "Two identical bonds?",
             "color": "#FFCA28",
-            "at_ms": 800
+            "at_ms": 800,
+            "until_ms": 10100
           },
           {
             "type": "annotation",
-            "id": "s1_rotate_label",
+            "id": "s1_realthing_label",
             "position": {
               "x": 602,
               "y": 330
             },
-            "text": "Rotates just as freely?",
-            "color": "#FFCA28",
-            "at_ms": 6200
+            "text": "But that's not real",
+            "color": "#B0BEC5",
+            "at_ms": 10100
           },
           {
             "type": "annotation",
@@ -494,6 +495,18 @@
         "scene_composition": [
           {
             "type": "annotation",
+            "id": "s6_question_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "Rotates just as freely?",
+            "color": "#FFCA28",
+            "at_ms": 200,
+            "until_ms": 11200
+          },
+          {
+            "type": "annotation",
             "id": "s6_cancel_label",
             "position": {
               "x": 602,
@@ -559,8 +572,8 @@
             "type": "annotation",
             "id": "s7_sigma_bar_label",
             "position": {
-              "x": 162,
-              "y": 205
+              "x": 602,
+              "y": 420
             },
             "text": "σ arrives first",
             "color": "#FFCA28",
@@ -660,7 +673,7 @@
             },
             "text": "C≡C: 120 pm · 839 kJ",
             "color": "#B0BEC5",
-            "at_ms": 11500
+            "at_ms": 11800
           },
           {
             "type": "annotation",
@@ -671,7 +684,7 @@
             },
             "text": "Shown at C=C spacing",
             "color": "#B0BEC5",
-            "at_ms": 12200
+            "at_ms": 11300
           }
         ],
         "teacher_script": {
@@ -770,7 +783,7 @@
     "states": {
       "STATE_1": {
         "label": "The wrong picture: two identical sticks, leading alone, then bare nuclei",
-        "caption": "Two identical lines?",
+        "caption": "Two sticks, then gone",
         "orbital_shapes": {
           "mode": "stick_lead_dissolve",
           "bond_sticks": {
@@ -1008,7 +1021,7 @@
       },
       "STATE_7": {
         "label": "Both bonds together: σ 348, π 266 kJ/mol",
-        "caption": "π is the weaker one",
+        "caption": "Two bonds, two energies",
         "orbital_shapes": {
           "mode": "hybrid_gallery",
           "mo": {
