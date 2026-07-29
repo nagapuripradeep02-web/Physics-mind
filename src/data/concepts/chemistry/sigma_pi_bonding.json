@@ -497,8 +497,8 @@
             "type": "annotation",
             "id": "s6_question_label",
             "position": {
-              "x": 162,
-              "y": 205
+              "x": 602,
+              "y": 420
             },
             "text": "Rotates just as freely?",
             "color": "#FFCA28",
@@ -821,7 +821,8 @@
             "el": 35,
             "dist": 2.55
           }
-        }
+        },
+        "eye_capture_ms": 11600
       },
       "STATE_2": {
         "label": "The real σ: end-on approach, cross-fade to the fused MO",
@@ -896,7 +897,8 @@
             "el": 35,
             "dist": 2.55
           }
-        }
+        },
+        "eye_capture_ms": 10000
       },
       "STATE_4": {
         "label": "Each carbon's leftover p, perpendicular, not yet touching",
@@ -931,7 +933,8 @@
             "el": 35,
             "dist": 2.55
           }
-        }
+        },
+        "eye_capture_ms": 10200
       },
       "STATE_5": {
         "label": "π forms: broadside p lobes close, surfaces never touch",
@@ -1058,7 +1061,8 @@
             "el": 35,
             "dist": 2.55
           }
-        }
+        },
+        "eye_capture_ms": 14500
       },
       "STATE_8": {
         "label": "One σ, two orthogonal π systems, three countable objects",
@@ -1098,7 +1102,8 @@
             "el": 35,
             "dist": 2.55
           }
-        }
+        },
+        "eye_capture_ms": 12600
       },
       "STATE_9": {
         "label": "Explore — drag the twist, turn the view",
