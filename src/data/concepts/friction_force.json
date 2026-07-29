@@ -33,7 +33,7 @@
 
   "physics_engine_config": {
     "variables": {
-      "m": { "name": "mass of body A (and B in S4/S5)", "unit": "kg", "min": 0.5, "max": 10, "step": 0.5, "default": 5 },
+      "m": { "name": "mass of body A (and B in S4, the two-speed glide)", "unit": "kg", "min": 0.5, "max": 10, "step": 0.5, "default": 5 },
       "F": { "name": "applied force (the push)", "unit": "N", "min": -20, "max": 20, "step": 0.5, "default": 0 },
       "mu_s": { "name": "coefficient of static friction", "unit": "", "min": 0, "max": 1, "step": 0.05, "default": 0.5 },
       "mu_k": { "name": "coefficient of kinetic friction", "unit": "", "min": 0, "max": 1, "step": 0.05, "default": 0.4 },
@@ -86,12 +86,12 @@
 
   "entry_state_map": {
     "foundational": { "start": "STATE_1", "end": "STATE_3" },
-    "kinetic_regime": { "start": "STATE_4", "end": "STATE_5" },
-    "explore": { "start": "STATE_6", "end": "STATE_6" }
+    "kinetic_regime": { "start": "STATE_4", "end": "STATE_4" },
+    "explore": { "start": "STATE_5", "end": "STATE_5" }
   },
 
   "epic_l_path": {
-    "state_count": 6,
+    "state_count": 5,
     "states": {
       "STATE_1": {
         "title": "No Push — Zero Friction, Even Though the Ceiling Is Ready",
@@ -230,61 +230,20 @@
             { "id": "s3_3", "text_en": "Notice friction gave back LESS: the readout snaps from 24.50 down to 19.60." },
             { "id": "s3_4", "text_en": "That gap is why acceleration jumps from zero to nearly one metre per second squared." }
           ]
-        }
-      },
-
-      "STATE_4": {
-        "title": "Two Regimes, One Force — Same Push, Two Fates",
-        "duration": 10,
-        "focal_primitive_id": "ff_s4_contrast",
-        "advance_mode": "manual_click",
-        "teaching_method": "misconception_confrontation",
-        "motion_archetype": "two-fate-contrast",
-        "delta_cue": "Same push, two fates",
-        "depth_ring": "extended",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "ff_s4_head",
-            "position": { "x": 380, "y": 60 },
-            "text": "Same 22 N push, two identical blocks",
-            "color": "#FFF176"
-          },
-          {
-            "type": "annotation",
-            "id": "ff_s4_contrast",
-            "position": { "x": 200, "y": 250 },
-            "text": "resting block holds at f_s = 22.00 N; moving block only gets f_k = 19.60 N",
-            "color": "#AB47BC"
-          },
-          {
-            "type": "annotation",
-            "id": "ff_s4_fate",
-            "position": { "x": 560, "y": 400 },
-            "text": "the moving one keeps speeding up — the resting one never budges",
-            "color": "#81C784"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s4_1", "text_en": "Same 22-newton push, two identical blocks, two different fates." },
-            { "id": "s4_2", "text_en": "This one was resting — friction rises to meet the push and holds it at 22.00 newtons, forever." },
-            { "id": "s4_3", "text_en": "That one was already sliding — it only ever gets 19.60 newtons of friction, so the extra push wins and it keeps speeding up." }
-          ]
         },
         "misconception_watch": [
           {
             "belief": "All friction is the same — one fixed force.",
-            "visual_counter": "Same push, two different friction readouts, two different fates: the resting block holds at 22.00 N while the moving block only gets 19.60 N.",
-            "one_line_fix": "Static friction adjusts up to mu_s N; sliding friction is a smaller, fixed mu_k N — that's why the block lurches the instant it breaks free."
+            "visual_counter": "The readout snaps 24.50 down to 19.60 at the instant of release: the grip that held the block was strictly larger than the friction that acts once it slides.",
+            "one_line_fix": "Static friction adjusts up to mu_s N; sliding friction is a smaller, fixed mu_k N — that is why the block lurches the instant it breaks free, and why it stays easier to keep moving than it was to start."
           }
         ]
       },
 
-      "STATE_5": {
+      "STATE_4": {
         "title": "Kinetic Friction Ignores Speed — Fast or Slow, Same f",
         "duration": 10,
-        "focal_primitive_id": "ff_s5_invariant",
+        "focal_primitive_id": "ff_s4_invariant",
         "advance_mode": "manual_click",
         "motion_archetype": "two-speed-glide",
         "delta_cue": "Fast or slow — same friction",
@@ -292,21 +251,21 @@
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "ff_s5_head",
+            "id": "ff_s4_head",
             "position": { "x": 380, "y": 60 },
             "text": "One block glides slow, one glides fast",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "ff_s5_invariant",
+            "id": "ff_s4_invariant",
             "position": { "x": 200, "y": 250 },
             "text": "both friction readouts read exactly 19.60 N — speed never enters",
             "color": "#4DD0E1"
           },
           {
             "type": "annotation",
-            "id": "ff_s5_note",
+            "id": "ff_s4_note",
             "position": { "x": 560, "y": 400 },
             "text": "kinetic friction depends on N and the surfaces only",
             "color": "#66BB6A"
@@ -314,9 +273,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "One block glides slow, the other fast — yet both friction readouts read exactly 19.60 newtons." },
-            { "id": "s5_2", "text_en": "Kinetic friction only cares about the surfaces and the normal force, never about speed." },
-            { "id": "s5_3", "text_en": "Faster does not mean more grip lost." }
+            { "id": "s4_1", "text_en": "One block glides slow, the other fast — yet both friction readouts read exactly 19.60 newtons." },
+            { "id": "s4_2", "text_en": "Kinetic friction only cares about the surfaces and the normal force, never about speed." },
+            { "id": "s4_3", "text_en": "Faster does not mean more grip lost." }
           ]
         },
         "misconception_watch": [
@@ -328,10 +287,10 @@
         ]
       },
 
-      "STATE_6": {
+      "STATE_5": {
         "title": "Explore — Every Control, All Yours",
         "duration": 0,
-        "focal_primitive_id": "ff_s6_key",
+        "focal_primitive_id": "ff_s5_key",
         "advance_mode": "interaction_complete",
         "teaching_method": "exploration_sliders",
         "motion_archetype": "drag-sandbox",
@@ -340,21 +299,21 @@
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "ff_s6_head",
+            "id": "ff_s5_head",
             "position": { "x": 380, "y": 60 },
             "text": "Everything is yours now",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "ff_s6_try",
+            "id": "ff_s5_try",
             "position": { "x": 380, "y": 250 },
             "text": "change mass, push, mu_s, mu_k, starting speed — watch every arrow answer",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "ff_s6_key",
+            "id": "ff_s5_key",
             "position": { "x": 380, "y": 440 },
             "text": "f_s <= mu_s N   f_k = mu_k N",
             "color": "#D4D4D8"
@@ -362,7 +321,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Everything is yours now — change the mass, the push, both friction values, even the starting speed, and watch every arrow and reading respond." }
+            { "id": "s5_1", "text_en": "Everything is yours now — change the mass, the push, both friction values, even the starting speed, and watch every arrow and reading respond." }
           ]
         }
       }
@@ -485,29 +444,6 @@
         }
       },
       "STATE_4": {
-        "label": "Two regimes at one force: the resting block holds, the sliding block runs away",
-        "visible_elements": [],
-        "camera_position": [0, 2.34, 9.75],
-        "caption": "Same push, two fates",
-        "show_sliders": true,
-        "formula_overlay": "fₖ = μₖN < μₛN",
-        "newtons_laws_body": {
-          "mode": "accelerate_applied_force",
-          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
-          "bodies": [
-            { "id": "A", "label": "m", "mass_kg": 5, "initial_position_m": -4, "initial_velocity_mps": 0, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 22 },
-            { "id": "B", "label": "m", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0.4, "mu_s": 0.5, "mu_k": 0.4, "applied_force_N": 22 }
-          ],
-          "arrows": [
-            { "body_id": "A", "show": ["applied", "friction"] },
-            { "body_id": "B", "show": ["applied", "friction"] }
-          ],
-          "glow_focal": "nlb_arrow_B_friction",
-          "readouts": ["f", "v"],
-          "controls_visible": ["mu_k"]
-        }
-      },
-      "STATE_5": {
         "label": "Kinetic friction is speed-independent: slow and fast glides, identical f",
         "visible_elements": [],
         "camera_position": [0, 2.34, 9.75],
@@ -530,7 +466,7 @@
           "controls_visible": ["mu_k"]
         }
       },
-      "STATE_6": {
+      "STATE_5": {
         "label": "Explore: every control, all yours",
         "visible_elements": [],
         "camera_position": [0, 2.34, 9.75],

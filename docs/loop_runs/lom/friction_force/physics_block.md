@@ -1,5 +1,21 @@
 # PHYSICS BLOCK — `friction_force` (Laws of Motion / Friction core, Class 11)
 
+> **FOUNDER REVISION 2026-07-29 — old STATE_4 ("Two Regimes, One Force") was CUT; the concept is 5 states.**
+> Founder verdict on review: S3 and old-S4 taught the same thing. S3 puts two numbers on screen
+> (ceiling 24.5 N, kinetic 19.6 N); old-S4 then pushed at 22 N and revealed that a resting block holds
+> and a moving block runs — but that is a direct reading of those two numbers, not new physics. The
+> "hysteresis" framing used to justify the state was just μₛ > μₖ renamed, which S3 already shows as a
+> visible snap-down. Its staging also failed Rule 32: the distinguishing variable (already-moving vs at
+> rest) was never visible — both blocks were labelled `m`, and they visually interpenetrated.
+> Old S5 → STATE_4, old S6 → STATE_5; tts/annotation ids renumbered to match. Old-S4's
+> misconception_watch ("all friction is the same") moved to STATE_3, where the drop actually happens.
+> NOTE FOR THE GATES: every automated gate passed old-S4. Rule 31 checks that a state declares a
+> distinct motion ARCHETYPE, not a distinct IDEA — S3 was `ramp-track`, old-S4 was `two-fate-contrast`,
+> so it cleared. Nothing in the pipeline asks whether a state is derivable from the one before it.
+> Do NOT re-add this state.
+
+
+
 > Author: physics_author. Input: `docs/loop_runs/lom/friction_force/skeleton.md` (architect, 6 states,
 > ENGINE GAP: none) + `docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md` §1/§2 (`newtons_laws_body`, Branch A —
 > independent uncoupled bodies, `theta_deg = 0` throughout, `g = 9.8`, `STOP_EPS_V = 0.01`) + direct
