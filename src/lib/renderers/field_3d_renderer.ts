@@ -43348,7 +43348,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var lim = orb._membersLive ? Math.min(orb._membersLive, dl.length) : dl.length;
             for (k = 0; k < lim; k++) {
                 var ha = osNorm(dl[k]), hb = osBasis(ha);
-                out.push({ X: hb[0], Y: ha, Z: osCross(hb[0], ha) });
+                out.push({ X: hb[0], Y: ha, Z: osCross(hb[0], ha), memberIndex: k });
             }
             return out;
         }
@@ -43664,7 +43664,12 @@ export const FIELD_3D_RENDERER_CODE = `
     // profile. Every lobe of a set is the SAME shape aimed differently, so one
     // geometry is rebuilt per frame and shared by all of them -- 2880 vertices
     // once, not once per lobe.
-    function osHybMorphGeometry(geo, f, frontOnly) {
+    // spanF: 0 = front lobe only (cut at the waist, capped at the nucleus),
+    // 1 = the whole surface. Between the two the back lobe GROWS OUT of the
+    // nucleus, which is a real reveal of geometry that was omitted rather than an
+    // opacity trick — the state whose job is "the back lobe is real" needs the
+    // thing to actually arrive on screen.
+    function osHybMorphGeometry(geo, f, spanF) {
         var rungs = OS_HYB_LADDER;
         if (!rungs || !rungs.length) return;
         var u = osClamp(f, 0, 0.5) / 0.5 * OS_HYB_LADDER_N;
@@ -43676,15 +43681,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // the waist MOVES as f changes (a pure p pinches at 90 deg, an sp at 107),
         // so a front-only morph re-finds it per frame rather than cutting at a
         // fixed angle that would slice into the lobe at one end of the sweep.
-        var span = Math.PI;
-        if (frontOnly) {
-            var wA = osHybWaistDel(tA), wB = osHybWaistDel(tB);
-            span = wA * (1 - fr) + wB * fr;
-        }
+        var sF = (spanF == null) ? 1 : osClamp(spanF, 0, 1);
+        var wA = osHybWaistDel(tA), wB = osHybWaistDel(tB);
+        var waist = wA * (1 - fr) + wB * fr;
+        var span = waist + (Math.PI - waist) * sF;
+        var capped = sF < 0.999;
         for (i = 0; i <= ND; i++) {
             var del = (i / ND) * span;
             var cd = Math.cos(del), sd = Math.sin(del);
-            var r = ((frontOnly && i === ND) ? 0
+            var r = ((capped && i === ND) ? 0
                 : (osHybRootAt(tA, cd) * (1 - fr) + osHybRootAt(tB, cd) * fr)) * OS_A0 / OS_PM_PER_UNIT;
             for (j = 0; j < NA; j++) {
                 var az = (j / NA) * 2 * Math.PI;
@@ -44381,9 +44386,29 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             if (cur) active.push(cur);
         }
-        if (active.length === 0 && OS_ORBITALS[baseId]) active.push(baseId);
+        // THE BASE FALLBACK IS SUPPRESSED WHILE SCRIPTED STEPS ARE PENDING.
+        // Previously a state with populate/gallery steps that begin after t=0 fell
+        // back to its authored base until the first step fired, so a base that did
+        // not equal step 0 appeared, then VANISHED the instant step 0 landed —
+        // under a caption promising the orbitals "arrive one at a time and stay".
+        // This is the engine hardening the
+        // field3d_populate_baseid_fallback_paints_another_orbitals_identity scar
+        // asked for and did not get; it then recurred on the very next concept
+        // built on this scenario. Blank-until-the-first-step is an HONEST opening
+        // (nothing has arrived yet) where the old behaviour was a WRONG one, and it
+        // makes a mis-authored base fail visibly instead of painting another
+        // object's identity into the HUD.
+        var stepsPending = (popSteps.length > 0 || galSteps.length > 0);
+        if (active.length === 0 && !stepsPending && OS_ORBITALS[baseId]) active.push(baseId);
+        // ...and the HUD goes with it. primary still resolves to the base below
+        // (the axes need a scale), but an empty stage must not PRINT an identity —
+        // the fallback would otherwise report 1s, which is the same lie one level
+        // down and the half of this scar that matters most.
+        var osNothingYet = (active.length === 0);
         if (active.length > OS_MAX_SETS) active = active.slice(0, OS_MAX_SETS);
-        var primary = OS_ORBITALS[active[active.length - 1]] || OS_ORBITALS["1s"];
+        // resolves to the authored base while the stage is still empty, so the axes
+        // keep a stable scale — but osNothingYet keeps that identity OFF the HUD.
+        var primary = OS_ORBITALS[active[active.length - 1]] || OS_ORBITALS[baseId] || OS_ORBITALS["1s"];
         var encKey = osEnclKey(os.enclosure);
         var primR = osOuterPm(primary, encKey);
         window.PM_osActive = active.slice();
@@ -44518,7 +44543,7 @@ export const FIELD_3D_RENDERER_CODE = `
         //    A pure closed-form function of state-local t (Rule 26/36). Computed
         //    BEFORE the surfaces because the s sphere's fade is driven by the
         //    morph's own progress.
-        var hybId = null, hybF = null, hybAngle = null, hybMorphing = false, hybMorphP = 0;
+        var hybId = null, hybF = null, hybAngle = null, hybMorphing = false, hybMorphP = 0, hybSpanF = 1;
         for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "hybrid") hybId = active[i];
         if (hybId) {
             var hOrb = OS_ORBITALS[hybId];
@@ -44551,10 +44576,17 @@ export const FIELD_3D_RENDERER_CODE = `
                 hOrb._dirsLive = [[0, Math.sin(halfR), Math.cos(halfR)],
                                   [0, -Math.sin(halfR), Math.cos(halfR)]];
             } else hOrb._dirsLive = null;
-            if (hybMorphing) {
-                var mg = os.front_only ? lobeGeo.morphF : lobeGeo.morph;
-                if (mg) osHybMorphGeometry(mg, hybF, !!os.front_only);
+            // back_reveal grows the omitted back lobe out of the nucleus. A state
+            // that authors it is morphing by definition, so it takes the same
+            // per-frame geometry path as an s-character sweep.
+            var br = os.back_reveal;
+            hybSpanF = os.front_only ? 0 : 1;
+            if (br) {
+                hybSpanF = osRamp(ms, cueTriggerMs("back_reveal", (br.at_ms != null) ? br.at_ms : 0),
+                    (br.duration_ms != null) ? br.duration_ms : 3000, 0, 1);
+                hybMorphing = true;
             }
+            if (hybMorphing && lobeGeo.morph) osHybMorphGeometry(lobeGeo.morph, hybF, hybSpanF);
         }
         window.PM_osHybF = hybF; window.PM_osHybAngle = hybAngle;
 
@@ -44622,17 +44654,26 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (!lb) continue;
                 var hPool = os.front_only ? lobeGeo.hf : lobeGeo.h;
                 var geo = (orb.kind === "hybrid")
-                    ? (hybMorphing ? (os.front_only ? lobeGeo.morphF : lobeGeo.morph)
-                                   : (hPool[orbId] && hPool[orbId][encKey]))
+                    ? (hybMorphing ? lobeGeo.morph : (hPool[orbId] && hPool[orbId][encKey]))
                     : (orb.l === 2) ? lobeGeo.d[encKey] : lobeGeo.p[encKey];
                 if (geo && lb.geometry !== geo) lb.geometry = geo;
-                lb.visible = opacity > 0.004 && growth > 0.02;
+                // bloom_from: members BELOW this index are already on stage and
+                // hold full pose from t=0; only members at or above it grow in.
+                // Without it, a state that follows a single-member state of the
+                // same orbital blanks the WHOLE set until its bloom fires — so
+                // "and here is its partner" plays as "and here is the pair", the
+                // student never sees the partner arrive, and the home pose the
+                // previous state ended on is thrown away (Rule 32a/32d).
+                var mIdx = frames[q].memberIndex;
+                var bFrom = (os.bloom_from != null) ? os.bloom_from : 0;
+                var gEff = (mIdx != null && mIdx < bFrom) ? 1 : growth;
+                lb.visible = opacity > 0.004 && gEff > 0.02;
                 if (!lb.visible) continue;
                 osAimFrame(lb, frames[q]);
                 // the extrude beat grows the lobe OUT along its own axis (+y in
                 // the canonical mesh) while it fattens sideways — the declared
                 // "axis-extrude" archetype, and a real magnitude, not emphasis.
-                lb.scale.set(0.55 + 0.45 * growth, growth, 0.55 + 0.45 * growth);
+                lb.scale.set(0.55 + 0.45 * gEff, gEff, 0.55 + 0.45 * gEff);
                 osSetColor(lb, isGhost ? "#546E7A" : orb.color);
                 if (lb.material) lb.material.opacity = opacity;
             }
@@ -44890,7 +44931,8 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // ── value-only HUD (Rule 34b: numbers, never a restated equation)
         var hud = document.getElementById("os_hud");
-        if (hud && hud.style.display !== "none") {
+        if (hud && osNothingYet) hud.innerHTML = "";     // empty stage prints nothing
+        else if (hud && hud.style.display !== "none") {
             var lines = [], want = os.hud_lines || ["energy", "nodes"];
             for (i = 0; i < want.length; i++) {
                 if (want[i] === "occupancy") {

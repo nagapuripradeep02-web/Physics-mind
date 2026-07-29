@@ -99,9 +99,9 @@
         "constant": 87.5
       },
       "front_sp2": {
-        "name": "fraction of an sp² hybrid's electron on the bonding side",
+        "name": "fraction of an sp2 hybrid's electron on the bonding side (MEASURED from the seeded sample by check:hybrid-orbitals, not asserted)",
         "unit": "percent",
-        "constant": 85.4
+        "constant": 84.7
       },
       "front_sp3": {
         "name": "fraction of an sp³ hybrid's electron on the bonding side",
@@ -343,7 +343,7 @@
       "STATE_4": {
         "title": "Mix in a second p and the angle closes to 120°",
         "duration": 20,
-        "depth_ring": "extended",
+        "depth_ring": "core",
         "focal_primitive_id": "s4_angle_label",
         "advance_mode": "auto_after_tts",
         "motion_archetype": "plane-populate",
@@ -404,7 +404,7 @@
       "STATE_5": {
         "title": "All three p, and the answer to methane appears",
         "duration": 22,
-        "depth_ring": "extended",
+        "depth_ring": "core",
         "focal_primitive_id": "s5_tetra_label",
         "advance_mode": "manual_click",
         "motion_archetype": "tetra-assemble",
@@ -536,8 +536,8 @@
         "depth_ring": "advanced",
         "focal_primitive_id": "s7_back_label",
         "advance_mode": "manual_click",
-        "motion_archetype": "cutaway-reveal",
-        "motion_delta": "the front lobe's ink drops away so the small rear lobe behind the nucleus becomes countable on its own",
+        "motion_archetype": "back-lobe-grow",
+        "motion_delta": "the lobe we have been drawing stays put while the omitted rear lobe grows out of the nucleus behind it",
         "scene_composition": [
           {
             "type": "annotation",
@@ -574,9 +574,9 @@
           "tts_sentences": [
             {
               "id": "hyb_s7_1",
-              "text_en": "Textbook drawings usually leave off the small lobe behind the nucleus. It is really there.",
+              "text_en": "Every picture so far drew only the big lobe. Watch what we left out grow in behind the nucleus.",
               "glow": "lobe_set",
-              "scenario_cue": "cutaway"
+              "scenario_cue": "back_reveal"
             },
             {
               "id": "hyb_s7_2",
@@ -585,7 +585,7 @@
             },
             {
               "id": "hyb_s7_3",
-              "text_en": "Remember it. That rear lobe is the door a reagent attacks through when a bond is later broken from behind.",
+              "text_en": "Remember it. That rear lobe is the door an attacking group uses when a bond is later broken from behind.",
               "glow": "lobe_set"
             }
           ]
@@ -598,7 +598,7 @@
         "focal_primitive_id": "s8_dial_label",
         "advance_mode": "interaction_complete",
         "motion_archetype": "free-explore",
-        "motion_delta": "the teacher drives s-character and the hybrid picker; the set turns continuously",
+        "motion_delta": "the teacher picks a hybrid and turns it; the set spins continuously",
         "scene_composition": [
           {
             "type": "annotation",
@@ -607,7 +607,7 @@
               "x": 400,
               "y": 155
             },
-            "text": "drag the s-character",
+            "text": "pick a hybrid",
             "color": "#FFEE58"
           },
           {
@@ -635,12 +635,12 @@
           "tts_sentences": [
             {
               "id": "hyb_s8_1",
-              "text_en": "Yours now. Drag the s-character and the angle follows it, or pick one of the three named hybrids directly.",
+              "text_en": "Yours now. Pick any of the three hybrids and turn it, and read the angle its lobes make.",
               "glow": "lobe_set"
             },
             {
               "id": "hyb_s8_2",
-              "text_en": "Try landing exactly on a hundred and nine point five degrees and read what the s-character has to be.",
+              "text_en": "Count the lobes each one has, and check the angle against the shape you would expect.",
               "glow": "lobe_set"
             }
           ]
@@ -689,19 +689,19 @@
         "caption": "Three p, all 90°",
         "orbital_shapes": {
           "mode": "p_set",
-          "orbital": "2p_z",
+          "orbital": "2p_x",
           "enclosure": 0.5,
           "populate_steps": [
             {
-              "at_ms": 2000,
+              "at_ms": 0,
               "orbital": "2p_x"
             },
             {
-              "at_ms": 6500,
+              "at_ms": 5500,
               "orbital": "2p_y"
             },
             {
-              "at_ms": 11500,
+              "at_ms": 11000,
               "orbital": "2p_z"
             }
           ],
@@ -781,7 +781,8 @@
             "angle"
           ],
           "spin_rate": 0,
-          "controls": []
+          "controls": [],
+          "bloom_from": 1
         }
       },
       "STATE_4": {
@@ -869,8 +870,6 @@
           "orbital": "sp3",
           "enclosure": 0.5,
           "members": 1,
-          "cutaway_at_ms": 3000,
-          "cutaway_duration_ms": 10000,
           "surface_opacity": 0.3,
           "show_surface": true,
           "show_dots": false,
@@ -889,7 +888,12 @@
             0,
             0
           ],
-          "controls": []
+          "controls": [],
+          "front_only": true,
+          "back_reveal": {
+            "at_ms": 3000,
+            "duration_ms": 9000
+          }
         }
       },
       "STATE_8": {
@@ -912,7 +916,6 @@
           "show_hud": true,
           "hud_lines": [
             "label",
-            "s_char",
             "angle",
             "front_back"
           ],
@@ -924,11 +927,10 @@
           ],
           "controls": [
             "orbital",
-            "schar",
             "dots",
             "spin"
           ],
-          "front_only": true
+          "front_only": false
         }
       }
     }
