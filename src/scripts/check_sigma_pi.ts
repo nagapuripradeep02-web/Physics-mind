@@ -61,14 +61,16 @@ const VARS = [
   "OS_INV_S4PI", "OS_SQRT3_4PI",
   "OS_MO_ZEFF_C", "OS_MO_BONDS_PM", "OS_MO_ENC", "OS_MO_GRID_N", "OS_MO_LAD_N",
   "OS_MO_ND", "OS_MO_RAY_STEP", "OS_MO_TWIST_LADDER_DEG", "OS_MO_MAX_PARTS",
-  "OS_MO_MAX_LOBES", "OS_MO_MAX_OVL", "OS_MO_S0_N", "OS_MOS", "OS_ORBITALS", "OS_HYBRIDS", "OS_R3"
+  "OS_MO_MAX_LOBES", "OS_MO_MAX_OVL", "OS_MO_S0_N", "OS_MOS", "OS_ORBITALS", "OS_HYBRIDS", "OS_R3",
+  "OS_MO_CONSTRUCTIVE_COLOR", "OS_MO_DESTRUCTIVE_COLOR"
 ];
 const FNS = [
   "osClamp", "osSmooth01", "osRamp", "osR", "osHybPsi",
   "osMoBondPm", "osMoPmPerRho", "osMoBondRho", "osMoUnits", "osMoAxes", "osMoCenters",
   "osMoCentersAtPm", "osMoAtomPsi", "osMoTotalField", "osMoProductField",
   "osMoSampleGrid", "osMoLevel", "osMoComponents", "osMoRootTable", "osMoTableVolume",
-  "osMoTableMax", "osMoOverlapS0", "osMoOverlap", "osMoAtomReachRho", "osMoContactPm",
+  "osMoTableMax", "osMoOverlapS0", "osMoOverlap", "osMoOverlapRatio", "osMoSliderReadout",
+  "osMoAtomReachRho", "osMoContactPm",
   "osMoAtomLevel", "osMoApproachAt", "osMoSignedField", "osBuildMoTwistLadder", "osMoLadderAt", "osBuildMO"
 ];
 const EXPORTS = [
@@ -455,6 +457,111 @@ console.log("\n=== 5b. THE APPROACH BEAT (S2/S5 — NCERT 4.7 end-on vs sideways
   }
   if (paired) console.log("  PASS  both centres are symmetric about the origin and exactly sep apart, always");
   else { failures++; console.log("  FAIL  *** the two centres drift out of register ***"); }
+}
+
+console.log("\n=== 5c. MULTI-MO (NCERT 4.7: a double bond IS one sigma plus one pi) ===");
+// The root limitation this closes: mo.orbital was singular, so the state whose
+// job is to COMPARE the two bonds could only show one of them, and "triple: one
+// sigma, two pi" was a caption counting three objects over a picture holding two
+// (the VSEPR missing-fourth-methane-bond class).
+{
+  // (1) each declared MO is built INDEPENDENTLY and keeps its own contour. A
+  //     jointly-solved level would be a contour of a field that does not exist.
+  check("sigma and pi have DIFFERENT solved levels",
+    Math.abs(moSig.level - moPi.level) > 1e-6 ? 1 : 0, 1, 0);
+  check("sigma and pi have DIFFERENT overlap-region levels",
+    Math.abs(moSig.ovLevel - moPi.ovLevel) > 1e-9 ? 1 : 0, 1, 0);
+  check("...and different component counts", moSig.partCount - moPi.partCount, 1, 0);
+  if (moSig.parts[0].tab !== moPi.parts[0].tab) console.log("  PASS  neither MO shares a root table with the other");
+  else { failures++; console.log("  FAIL  *** the two MOs share tables — one was solved from the other ***"); }
+
+  // (2) THE PAYOFF, in one state: the SAME twist leaves sigma untouched and
+  //     collapses pi. Previously impossible to show; now assertable.
+  console.log("    phi    sigma S/S0    pi S/S0     cos(phi)");
+  let sigDrift = 0, piMax = 0;
+  for (const phi of [0, 30, 45, 60, 90]) {
+    const rs = E.osMoOverlapRatio(moSig, phi), rp = E.osMoOverlapRatio(moPi, phi);
+    sigDrift = Math.max(sigDrift, Math.abs(rs - 1));
+    piMax = Math.max(piMax, Math.abs(rp - Math.cos(phi * Math.PI / 180)));
+    console.log(`    ${String(phi).padStart(3)}    ${rs.toFixed(6)}     ${rp.toFixed(6)}    ${Math.cos(phi * Math.PI / 180).toFixed(6)}`);
+  }
+  check("sigma is INVARIANT under the twist (cylindrical symmetry)", sigDrift, 0, 1e-12);
+  check("pi follows cos(phi) over the same twist", piMax, 0, 5e-4);
+
+  // (3) the pools can actually hold sigma + two pi systems at once.
+  const need = moSig.partCount + 2 * moPi.partCount;
+  check("surface pool holds sigma + two pi systems", E.OS_MO_MAX_PARTS >= need ? 1 : 0, 1, 0);
+  console.log(`    the triple bond needs ${need} surface slots; the pool has ${E.OS_MO_MAX_PARTS}`);
+  check("lobe pool holds sigma + two pi lobe sets", E.OS_MO_MAX_LOBES >= 2 + 4 + 4 ? 1 : 0, 1, 0);
+  check("overlap pool holds two MOs' regions", E.OS_MO_MAX_OVL >= 8 ? 1 : 0, 1, 0);
+
+  // (4) COUNTABILITY IS A COLOUR PROBLEM NOW. sigma and pi share a frame for the
+  //     first time, so every pair of things a state can be asked to count must be
+  //     perceptually apart. Measured as CIELAB dE, never chosen by eye — the
+  //     cyan/blue defect read fine in the source and only failed in pixels.
+  const lab = (hex: string) => {
+    const c = [1, 3, 5].map((i) => parseInt(hex.substr(i, 2), 16) / 255)
+      .map((v) => (v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+    const r = c[0], g = c[1], b = c[2];
+    const X = (0.4124 * r + 0.3576 * g + 0.1805 * b) / 0.95047;
+    const Y = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    const Z = (0.0193 * r + 0.1192 * g + 0.9505 * b) / 1.08883;
+    const f = (t: number) => (t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116);
+    return [116 * f(Y) - 16, 500 * (f(X) - f(Y)), 200 * (f(Y) - f(Z))];
+  };
+  const dE = (a: string, b: string) => {
+    const A = lab(a), B = lab(b);
+    return Math.hypot(A[0] - B[0], A[1] - B[1], A[2] - B[2]);
+  };
+  const palette: Record<string, string> = {
+    nuclei: "#FF5252", atomic_plus: moPi.lobePos, atomic_minus: moPi.lobeNeg,
+    sigma_mo: moSig.color, pi_mo: moPi.color,
+    constructive: E.OS_MO_CONSTRUCTIVE_COLOR, destructive: E.OS_MO_DESTRUCTIVE_COLOR
+  };
+  const pk = Object.keys(palette);
+  let worst = Infinity, worstPair = "";
+  for (let a = 0; a < pk.length; a++) {
+    for (let b = a + 1; b < pk.length; b++) {
+      const d = dE(palette[pk[a]], palette[pk[b]]);
+      if (d < worst) { worst = d; worstPair = pk[a] + "/" + pk[b]; }
+    }
+  }
+  console.log(`    closest pair in the whole palette: ${worstPair} at dE ${worst.toFixed(1)}`);
+  // 30 is the floor the SHIPPED nuclei red vs the cancelling magenta already
+  // sets; anything a colour edit drops below it is a countability regression.
+  check("every drawable pair is perceptually separable (dE > 30)", worst > 30 ? 1 : 0, 1, 0);
+  const dSigPi = dE(moSig.color, moPi.color);
+  console.log(`    sigma vs pi surfaces: dE ${dSigPi.toFixed(1)} (violet, the previous choice, scored 19.6)`);
+  check("sigma and pi surfaces are countable apart", dSigPi > 45 ? 1 : 0, 1, 0);
+}
+
+console.log("\n=== 5d. THE RATIO READOUT (S/S0, not two incomparable absolutes) ===");
+// chemistry_author designed a self-normalised instrument for a reason: printing
+// sigma 0.745 in one state and pi 0.270 three states later invites "pi is 36% of
+// sigma", while the same concept teaches 76% from the bond enthalpies (266/348).
+// Both numbers are correct and they are NOT comparable — different orbital
+// shapes, and an overlap integral is not proportional to a bond energy (skeleton
+// limit 2). The ratio asks the only question this instrument can answer.
+{
+  check("sigma ratio at rest", E.osMoOverlapRatio(moSig, 0), 1, 1e-12);
+  check("pi ratio at rest", E.osMoOverlapRatio(moPi, 0), 1, 1e-12);
+  check("pi ratio at 45 deg is cos 45", E.osMoOverlapRatio(moPi, 45), Math.SQRT1_2, 1e-12);
+  // EXACT zero, not 6.1e-17 rendered as a signed zero on the payoff frame.
+  const r90 = E.osMoOverlapRatio(moPi, 90);
+  check("pi ratio at 90 deg is a TRUE zero", r90, 0, 0);
+  if (Object.is(r90, -0)) { failures++; console.log("  FAIL  *** the ratio is negative zero — it would render as −0.000 ***"); }
+  else console.log("  PASS  and it is +0, so no state can print −0.000");
+  check("sigma ratio at 90 deg is still 1", E.osMoOverlapRatio(moSig, 90), 1, 1e-12);
+  // the slider's inline readout must follow the SAME mode, or the panel and the
+  // HUD disagree inside one frame (the gas_box rate-bar scar).
+  const g: any = globalThis as any;
+  g.window = g.window || {};
+  g.window.PM_osMoReadout = "ratio";
+  check("slider inline readout, ratio mode @45", Number(E.osMoSliderReadout(moPi, 45)), 0.707, 1e-9);
+  check("slider inline readout, ratio mode @90", Number(E.osMoSliderReadout(moPi, 90)), 0, 0);
+  g.window.PM_osMoReadout = "absolute";
+  check("slider inline readout, absolute mode @45", Number(E.osMoSliderReadout(moPi, 45)), 0.191, 5e-4);
+  console.log("  ----  absolute stays the DEFAULT, so nothing that already reads S regresses");
 }
 
 console.log("\n=== 6. DETERMINISM (Rule 36 — SET_TIME_FREEZE must be byte-identical) ===");
