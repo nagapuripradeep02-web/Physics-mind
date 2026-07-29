@@ -41,6 +41,107 @@ coverage, and it has been the stated bottleneck for three consecutive sessions.
 
 ---
 
+## 🧬 SESSION — the hybrid-orbital surface + `hybridisation_sp_sp2_sp3` (P4 #13), and a sign that would have taught the opposite (2026-07-29, branch `feat/chemistry-hybridisation` → master)
+
+**Bottom line: hybrid orbitals are a live capability on `orbital_shapes` and #13 is authored, validating and walked in a browser. The load-bearing finding came BEFORE any renderer code existed — the natural way to write a hybrid puts 82.5% of the electron behind the atom, renders beautifully, and teaches the inverse of directional bonding. Engine + its gate are on master (`2378219`); the concept continues on the branch. #17 σ/π is now the cheap next harvest.**
+
+### What shipped
+- **Hybrid orbitals on `field_3d` `orbital_shapes`** (additive; the s/p/d path is untouched). `kind: "hybrid"` entries for sp/sp², sp³ with derived geometry, a morph ladder, `angle_track`, `members`, `front_only`, and four solved cameras.
+- **`hybridisation_sp_sp2_sp3`** — 8 states, NCERT Cl.11 Ch.4 §4.6. Rings core S1–S3 / extended S4–S5 / advanced S6–S7 / explore S8.
+- **`npm run check:hybrid-orbitals`** — 26 checks, ~3 s, no browser. Pulls the SHIPPED function bodies out of `FIELD_3D_RENDERER_CODE` and asserts they reproduce numbers solved independently beforehand.
+
+### The physics was settled first, with a control
+Solved headlessly before a line of renderer code: normalisation 1.000000 at f = 0, ¼, ⅓, ½; the angle law `cos θ = −f/(1−f)` reproducing 180.00 / 120.00 / 109.47° against the direction lists to 0.01°; each set orthonormal to 5.6e−17. **The control is the reason to trust the rest**: pure 2p at the level `atomic_orbitals_s_p_d` ships gives 482.5 pm against its 482, and L/half-width 1.44 against its 1.44 — an independent implementation reproducing a number already on master.
+
+### THE LESSON: the defect that no gate can see is the one you settle before you build
+`R₂₀` is negative for ρ > 2, across most of the bonding region, so `ψ = +c_s ψ₂ₛ + c_p ψ₂ₚ` puts **82.5% of an sp³ electron BEHIND the atom**. Every caption stays literally true, every gate passes, the picture is beautiful, and the concept teaches the opposite of directional bonding. Measured both ways by hemisphere probability — a tip radius does NOT settle it (the back tip is *longer*, which is what made it look wrong in the first place and prompted the check). Same class as the `node_count` clover: geometrically right, posed wrong.
+
+**And the obvious reuse was also wrong.** The shipped `p_set` camera — the solved (1,1,1) view that makes three 2p orbitals countable — foreshortens an sp³ lobe to **exactly 0.000**: one of the four points down the view axis and vanishes behind the nucleus under a caption counting four. That is the VSEPR methane-fourth-bond defect verbatim, and only a measurement says so. Cameras were re-solved; all three land at dist 6.0 with a ~250 px orbital radius, so one home pose serves the concept.
+
+### Three more defects, all found by building the page and LOOKING
+Every one was green across tsc, `check:renderer-syntax`, `validate:chemistry` and the 26-check hybrid gate.
+
+| Defect | Why no gate saw it |
+|---|---|
+| Four sp³ surfaces rendered as a **featureless ball** under "Four, at 109.5°" | Each hybrid carries a back lobe and the backs sit exactly in the gaps between the fronts, so 4 fronts + 4 backs fill space near-spherically. I had measured the union waist at 0.808 ("marginal") beforehand and still under-called it — **the metric only counted the fronts.** Fixed with `front_only`: cut at the surface's own waist, capped at the nucleus. An OMISSION, not a distortion, and declared — S7 turns it off and shows exactly what the earlier states left out. |
+| `bloom_at_ms` was a **silent no-op on every hybrid** | Gated on `l === 2` (the d clover); a hybrid has no `l`. Three states declared an assembling set in narration while the lobes stood at full size from frame one. Same shape as the duplicate-key scar: authored, valid, discarded. |
+| My own S5 ghosted **all three 2p orbitals** — six extra lobes | Landing on top of the four hybrids at the moment the caption asks a student to count four. Dropped; the S1↔S5 contrast pair already carries the comparison across states through the shared home pose (Rule 32d). |
+
+### A tooling trap worth a scar row
+**A backtick inside a JS comment terminates the enclosing TS template literal.** Hit twice in one session writing `` `main` `` and `` `l` `` in renderer comments. `tsc` reports a misleading `TS1005 ',' expected` hundreds of lines away; `check:renderer-syntax` catches it but only as an esbuild parse error at the wrong site. Cheap permanent fix available: a lint that rejects backticks inside `FIELD_3D_RENDERER_CODE`.
+
+### Verification (evidence)
+`tsc` 0 · `check:renderer-syntax` OK on all three · `check:hybrid-orbitals` **26/26** · `validate:concepts` **141/141** (isolation held — the physics scan never sees the new concept) · `validate:chemistry` **7/7** · vitest **281/281** · `build:review` exit 0 · **walked in a real browser: sp² reads as three lobes at 120°, sp³ as four in the two-up/two-down tetrahedral view, HUD live and correct, zero console errors.**
+
+### The review round — 10 more defects, every one behind a 35/35 EYE
+THE EYE was run FOUR times and reported **35 deterministic checks, 35 passed, 0 failed** every time.
+`eye_walker` and `quality_auditor` (dispatched in parallel) then found ten real defects in those
+same frames, and the auditor returned **FAIL**. The deterministic suite has now been green on
+frames containing CRITICAL errors on three separate rounds of this one concept. That is the
+argument for the frame-read gate, stated as plainly as it can be.
+
+| found by | defect |
+|---|---|
+| eye_walker | the populate **base fallback painted, then deleted, an orbital** — 2p_z appeared at t=0 and vanished at 2s under a caption promising "arrive one at a time and stay". RECURRENCE of a scar whose row already recommended this exact hardening and did not get it |
+| eye_walker | `bloom` grew the WHOLE set, so a state following a single-member state blanked for 3s — the partner never visibly arrived |
+| eye_walker | STATE_7's cutaway was **completely inert** (`cutF` is consumed only by the dot loop; that state has dots off) — the class filed EARLIER THE SAME DAY, live in the build that filed it |
+| quality_auditor | **Gate 0 FAIL — no architect skeleton.** Its prediction was exact: the four undelivered motions were never anybody's *declared obligation*, so nothing checked them |
+| quality_auditor | **S3/S4/S5 performed ONE uniform swell** while declaring three archetypes — Rule 31 distinctness satisfied on the NAME and failed on the motion |
+| quality_auditor | **Rule 16a FAIL** — the wrong belief lived only in narration (off by default) and in dead JSON |
+| quality_auditor | **Rule 38a/38b FAIL** — sp2/sp3 tagged *extended*, so the core cut of a concept called "sp, sp2, sp3" stopped before sp3; and explore surfaced the advanced s-character dial |
+| quality_auditor | **24 scene_composition annotations + 8 focal_primitive_ids reference primitives the renderer never receives** |
+| me, verifying | `front_sp2` authored 85.4% and labelled MEASURED; the build measures 84.7% |
+| me, reading frames | a label appearing BEFORE its referent, and another surviving AFTER it |
+
+All ten fixed and verified in frames. The three that generalise:
+
+1. **An archetype is a claim about RHYTHM, not a label.** Two states animating the same element
+   count are the same motion unless their per-element timing differs. New `bloom_offsets_ms`.
+2. **A contrast beat is SEQUENTIAL, never superimposed.** Restoring the Rule-16a ghost immediately
+   re-created the fusion problem — ghost lobes land in the gaps between the real ones. Deleting it
+   (my first instinct, twice) trades a legibility defect for a pedagogy one. `ghost_fade_at_ms`
+   lets the wrong picture lead and clear.
+3. **The dead-annotation scar is STRUCTURAL, not a missing draw call.** `scene_composition` lives in
+   `epic_l_path`; the renderer is only handed `field_3d_config`. Every field_3d concept has been
+   satisfying Rule 19 with JSON the renderer has never seen. `mergeSceneAnnotations` fixes it
+   **behind `render_annotations`** — fleet-wide would put unreviewed text on ~41 baseline-locked
+   concepts and move every baseline in one commit. Filed OPEN; that is a founder call.
+
+### The mechanical gate that came out of it
+`npm run check:renderer-backticks` — the backtick class had recurred across three sessions and its
+row already read *"recorded despite the guard existing"*. Locates each RENDERER_CODE literal's span
+and reports a stray backtick with its real diagnosis; reads SOURCE TEXT so it works when the file is
+too broken for tsc to load. Negative control performed before trusting it. **It then caught a
+backtick I introduced an hour later.**
+(The naive lint does not work — backticks are legal outside the literal; field_3d has 28 such
+comments — so "any comment with a backtick" gives ~30 false positives.)
+
+### Scars
+**12 rows** record this concept: 10 new classes + 2 recurrences. Also surfaced, not silently merged:
+the backtick class is filed TWICE under two names, so the list under-counts its own recurrences —
+the one number it exists to get right. Founder call.
+
+### Open items
+1. **Asmi's professor review — now SEVEN concepts deep, and the stated bottleneck for four
+   consecutive sessions.** Machine gates were green on frames containing CRITICAL errors four times
+   in this session alone. Coverage keeps growing; the pedagogy gate has never run.
+2. **Promotion (2s2 2p2 → 2s1 2p3) is never taught**, yet STATE_1's belief statement presupposes it.
+   A real coverage gap: either a new opening state or an explicit prerequisite. Founder call,
+   recorded in the skeleton §7 rather than quietly closed.
+3. **Rule 19 fleet decision still OPEN** — backfill ~41 concepts and re-baseline, or stop counting
+   non-rendering primitives toward Rule 19.
+4. **No `text_hi`** (Rule 30i FYI, never a gate).
+
+### ⏭ NEXT
+1. **#17 σ/π as its OWN concept, not more states here** (founder decision 2026-07-29). It is about
+   TWO atoms overlapping, not one atom's orbitals rearranging — the apparatus changes completely, so
+   Rule 32d home-pose continuity breaks if merged. It carries its own misconception ("a double bond
+   is two of the same bond"), and this concept is already 8 states with the budget strained. The
+   engine work is shared and lands once (a per-lobe origin offset). Prerequisite chain:
+   `atomic_orbitals_s_p_d → hybridisation_sp_sp2_sp3 → sigma_pi_bonding`.
+2. **#1 Le Chatelier is being built in a PARALLEL SESSION** — do not pick it up.
+
+
 ## 🔬 SESSION — the `orbital_shapes` 3D surface + `atomic_orbitals_s_p_d` (P4 #16), and six defects behind a green run (2026-07-28/29, branch `feat/chemistry-orbitals` → master)
 
 **Bottom line: chemistry's second 3D surface shipped and its first concept is merged and baseline-locked — and THE EYE passed 39/39 on frames containing FIVE real defects, with a sixth self-inflicted afterwards. Not one was caught by tsc, the validators, or THE EYE. Master: `39b906c`. Baseline fleet 63 → 64 (65 with the parallel session's).**

@@ -187,6 +187,42 @@ cheap path and no new renderer file exists. Two sub-tiers now:
   per-mode defaults. Reference concept: `atomic_orbitals_s_p_d`. **Hybridisation (#13) and σ/π (#17)
   are now schedulable** — a lobe is `(angular factor in its OWN frame) × (frame list) × (scale)`, so
   #13 adds a frame list and lerps, and #17 needs only a per-lobe origin offset (one line).
+
+  - **HYBRIDS ARE LIVE (2026-07-29, #13).** `kind: "hybrid"` on the same scenario:
+    sp / sp² / sp³ as DERIVED geometry from `psi_h = -c_s psi_2s + c_p psi_2p`.
+    Three things the next builder should not have to rediscover:
+    (a) **a hybrid is NOT separable** — R20 != R21, so the `osRhoOuter(lev/A)` shortcut
+    every s/p/d path uses does not apply; the replacement is a 1-D root table over
+    `c = cos(angle from the lobe axis)`, built once.
+    (b) **the leading minus is load-bearing** — R20 is negative for rho > 2, so `+c_s`
+    puts 82.5% of an sp³ electron BEHIND the atom. It renders perfectly and every
+    gate passes. Settle it by HEMISPHERE PROBABILITY, never by a tip radius (the back
+    tip is genuinely longer either way).
+    (c) **four full sp³ surfaces are not a picture of four hybrids** — the back lobes
+    sit exactly in the gaps between the fronts, so the union fills space near-spherically.
+    Multi-lobe states author `enclosure: 0.5` AND `front_only`, and the state that
+    reveals the back lobe turns `front_only` off, so the omission is declared rather
+    than hidden. A countability metric that counts only front lobes will under-call this.
+    Reference concept: `hybridisation_sp_sp2_sp3`. **#17 sigma/pi is next and is one
+    line** (a per-lobe origin offset); crystal lattices remain [NEEDS-SCENARIO].
+
+  - **HYBRID AUTHORING LESSONS (2026-07-29 review round, 10 defects behind a 35/35 EYE):**
+    (d) **An archetype is a claim about RHYTHM, not a label.** Two states animating the same
+    element count deliver the SAME motion unless their per-element timing differs — use
+    `bloom_offsets_ms`, and verify by diffing dense frames of the two states, not by reading
+    the archetype names.
+    (e) **A Rule-16a contrast beat is SEQUENTIAL, never superimposed.** A ghost set shown
+    alongside the real one fuses with it (ghost lobes land in the gaps between the real ones,
+    the same geometry that forces `front_only`). Deleting the ghost to fix that trades a
+    legibility defect for a pedagogy one. Use `ghost_fade_at_ms`: the wrong picture leads
+    alone, then dissolves as the real one assembles.
+    (f) **`scene_composition` annotations do not reach the renderer** unless the concept sets
+    `render_annotations: true` — they live in `epic_l_path` and the renderer is handed
+    `field_3d_config`. Authoring them without the flag satisfies Rule 19 with content that
+    cannot exist on screen. When they DO paint, give each `at_ms`/`until_ms` so no label
+    precedes or outlives what it names.
+    (g) The authored `orbital` base MUST equal `populate_steps[0]`, or the base paints and then
+    vanishes when step 0 fires.
   **Still [NEEDS-SCENARIO]: crystal lattices / unit cells** (a repeating cell is not built), so
   solid state (#19) stays blocked. SN1/SN2 (#14) and stereochemistry (#15) still sit between the
   tiers: the molecule scaffold exists, the bond-breaking / inversion MOTION layer does not.
