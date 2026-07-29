@@ -4708,11 +4708,20 @@ function drawGasDimer(p, dimP) {
   // the label and the curve were all hardcoded white — which is a trap: an
   // author sets species.AB.color, nothing on screen changes, and they conclude
   // the field means something else.
-  strokeHex(gasRxColor(), 0.75 * dimP); strokeWeight(2);
+  // The rim, not the line, is what makes the accent visible. The bond length
+  // equals rA + rB, so the two discs are drawn TANGENT and the center-to-center
+  // line is almost entirely painted over by the fills — the authored product
+  // colour was live data rendering ~2 px of itself at the waist. The very trap
+  // the note above warns about, re-created by draw order. Leaving the stroke
+  // active through the fills rims BOTH discs of a pair in the product colour,
+  // so a bonded pair pops against singles and colour-keys to its own readout
+  // label and graph curve. (Founder-approved 2026-07-29; dynamic_equilibrium's
+  // H2 baselines fail by design on next run — re-approve, not fix-cycle.)
+  strokeHex(gasRxColor(), 0.9 * dimP); strokeWeight(2);
   line(ax, ay, bx, by);
-  noStroke();
   fillHex(sA.color, 0.92 * dimP); circle(ax, ay, sA.radius * 2);
   fillHex(sB.color, 0.92 * dimP); circle(bx, by, sB.radius * 2);
+  noStroke();
 }
 
 function gasChip(x, y, w, h) {
