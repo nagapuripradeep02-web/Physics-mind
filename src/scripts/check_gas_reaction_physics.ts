@@ -504,5 +504,241 @@ const pistonAt8s = Number(R.gasPistonF);
 check('piston_ramp_ms still reaches its target', Math.abs(pistonAt8s - 0.55) < 0.01,
   `piston at ${pistonAt8s.toFixed(3)} after 8 s (target 0.55, ramp 6 s)`);
 
+// ── 16. the activation-energy layer: slider units, the guard, and ea_at_cue ──
+// Added 2026-07-29 for collision_theory_activation_energy (P1 #4). Three
+// separate mechanisms, each of which was silently wrong or absent before:
+//   * the Ea slider read a RAW px/tick energy — a number no teacher can reason
+//     about, and not the unit the author writes (Rule 33d)
+//   * it had NO userTouched guard, so merely DECLARING it replaced every
+//     state's authored barrier with the slider default. Every other gas slider
+//     (T, V, N) has that guard; this one was the outlier
+//   * there was no way to lower the barrier MID-state, so a catalyst beat could
+//     only be a between-state comparison — the exact defect that redesigned
+//     le_chateliers_principle's STATE_7 (Rule 32a: the cause must be seen to arrive)
+{
+  const eaState = { T: 300, adiabatic: false, activation_energy_kT: 3 };
+  const withEaSlider = (over: Record<string, unknown> = {}) => {
+    const c = makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 }, { ...eaState, ...over }) as Ctx;
+    c.slider_controls.Ea = { label: 'Activation energy', min: 0.5, max: 6, step: 0.1, default: 1 };
+    return c;
+  };
+
+  // one kT at the reference temperature, in the px/tick units the test uses
+  const kTref = 0.105 * 0.105 * 300;
+
+  boot(makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 }, eaState));
+  const eaAuthored = Number(R.gasActivationE(R.config.states.STATE_1));
+  check('activation_energy_kT converts through one kT at ea_ref_T',
+    Math.abs(eaAuthored - 3 * kTref) < 1e-9,
+    `authored 3 kT -> ${eaAuthored.toFixed(4)} raw (1 kT = ${kTref.toFixed(4)})`);
+
+  // THE GUARD. An untouched slider must not touch the authored barrier.
+  boot(withEaSlider());
+  const eaSliderUntouched = Number(R.gasActivationE(R.config.states.STATE_1));
+  check('an UNTOUCHED Ea slider leaves the authored barrier alone',
+    Math.abs(eaSliderUntouched - eaAuthored) < 1e-9,
+    `authored ${eaAuthored.toFixed(4)} vs ${eaSliderUntouched.toFixed(4)} with the slider declared but untouched`);
+
+  // and a dragged one wins, in kT
+  boot(withEaSlider());
+  R.userTouched.Ea = true;
+  R.userParams.Ea = 1.5;
+  const eaSliderDragged = Number(R.gasActivationE(R.config.states.STATE_1));
+  check('a dragged Ea slider is read in kT of ea_ref_T, not raw energy',
+    Math.abs(eaSliderDragged - 1.5 * kTref) < 1e-9,
+    `slider 1.5 -> ${eaSliderDragged.toFixed(4)} raw (1.5 kT = ${(1.5 * kTref).toFixed(4)})`);
+
+  // the counter's threshold and the reaction's forward barrier must move TOGETHER
+  check('a dragged Ea slider drives the reaction barrier too',
+    Math.abs(Number(R.gasRxEaFwd(R.config.states.STATE_1)) - eaSliderDragged) < 1e-9,
+    `counter threshold ${eaSliderDragged.toFixed(4)} vs Ea_fwd ${Number(R.gasRxEaFwd(R.config.states.STATE_1)).toFixed(4)}`);
+  // ...and Ea_rev must STILL be derived, so the equilibrium position holds
+  const dragRev = Number(R.gasRxEaRev(R.config.states.STATE_1));
+  const dragBond = Number(R.gasRxBondE(R.config.states.STATE_1));
+  check('a dragged Ea slider keeps Ea_rev derived (no scripted shift)',
+    Math.abs((dragRev - eaSliderDragged) - dragBond) < 1e-9,
+    `Ea_rev ${dragRev.toFixed(4)} - Ea_fwd ${eaSliderDragged.toFixed(4)} = ${(dragRev - eaSliderDragged).toFixed(4)}, bond ${dragBond.toFixed(4)}`);
+
+  // ea_at_cue: before the cue the authored barrier holds, after it the new one does
+  const cued = { ...eaState, cues: [{ id: 'catalyst_in', at_ms: 1000 }], ea_at_cue: { cue: 'catalyst_in', activation_energy_kT: 1.5 } };
+  boot(makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 },
+    { ...cued, cues: [{ id: 'catalyst_in', at_ms: 999999 }] }));
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  const eaPreCue = Number(R.gasActivationE(R.config.states.STATE_1));
+  boot(makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 }, cued));
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  const eaPostCue = Number(R.gasActivationE(R.config.states.STATE_1));
+  check('ea_at_cue holds the authored barrier until its cue fires',
+    Math.abs(eaPreCue - 3 * kTref) < 1e-9, `${eaPreCue.toFixed(4)} raw before the cue (authored 3 kT)`);
+  check('ea_at_cue drops the barrier after its cue fires',
+    Math.abs(eaPostCue - 1.5 * kTref) < 1e-9, `${eaPostCue.toFixed(4)} raw after the cue (cued 1.5 kT)`);
+
+  // and the consequence a state actually narrates: more collisions clear it
+  function clearFraction(stateOver: Record<string, unknown>, settle: number, sample: number) {
+    boot(makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 }, { T: 300, adiabatic: false, ...stateOver }));
+    const st = R.config.states.STATE_1;
+    for (let i = 0; i < settle; i++) R.stepGas(st);
+    const c0 = Number(R.gasCollTotal), s0 = Number(R.gasSuccessTotal);
+    for (let i = 0; i < sample; i++) R.stepGas(st);
+    const coll = Number(R.gasCollTotal) - c0, succ = Number(R.gasSuccessTotal) - s0;
+    return coll > 0 ? succ / coll : 0;
+  }
+  const fracHigh = clearFraction({ activation_energy_kT: 3 }, 180, 1800);
+  const fracLow = clearFraction({ activation_energy_kT: 1.5 }, 180, 1800);
+  check('a lower barrier is cleared by more collisions', fracLow > fracHigh * 2,
+    `${(100 * fracHigh).toFixed(2)}% clear Ea at 3 kT vs ${(100 * fracLow).toFixed(2)}% at 1.5 kT`);
+
+  // the OTHER lever on the same fraction: temperature, with Ea pinned to ea_ref_T
+  const fracHot = clearFraction({ activation_energy_kT: 3, T: 600 }, 180, 1800);
+  check('heating raises the cleared fraction at a FIXED barrier', fracHot > fracHigh * 2.5,
+    `${(100 * fracHigh).toFixed(2)}% at 300 K vs ${(100 * fracHot).toFixed(2)}% at 600 K (Ea pinned to ea_ref_T)`);
+
+  // ...while barely moving the collision COUNT. This asymmetry IS collision
+  // theory's claim, and it is the pair of numbers the concept narrates.
+  function collRate(stateOver: Record<string, unknown>, settle: number, sample: number) {
+    boot(makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 }, { T: 300, adiabatic: false, ...stateOver }));
+    const st = R.config.states.STATE_1;
+    for (let i = 0; i < settle; i++) R.stepGas(st);
+    const c0 = Number(R.gasCollTotal);
+    for (let i = 0; i < sample; i++) R.stepGas(st);
+    return (Number(R.gasCollTotal) - c0) / (sample / 60);
+  }
+  const collCold = collRate({ activation_energy_kT: 3 }, 180, 1800);
+  const collHot = collRate({ activation_energy_kT: 3, T: 600 }, 180, 1800);
+  const fracRatio = fracHot / Math.max(fracHigh, 1e-9), collRatio = collHot / Math.max(collCold, 1e-9);
+  check('heating moves the FRACTION far more than the collision COUNT', fracRatio > collRatio * 2,
+    `300->600 K: collisions x${collRatio.toFixed(2)}, cleared fraction x${fracRatio.toFixed(2)}`);
+
+  // AUTHORING TRAP, pinned here because it cost this build a gate cycle:
+  // IN A REACTING BOX A PER-STATE `N` IS INERT ON ENTRY. gasInit places by
+  // species_counts (or the species list's own counts) and never consults
+  // gasCount() unless some species is left undeclared; gasSyncCount then pins
+  // gasNPrev to the target on its first tick and returns, because in reaction
+  // mode N is a DELTA control, not a population. So a state that authors
+  // "N: 360" expecting a fuller box gets exactly the box its species_counts
+  // describe — silently, with no warning anywhere. Crowding is authored as
+  // species_counts, full stop. (le_chateliers_principle's STATE_7 authors both
+  // and is correct only because its species_counts already sum to its N.)
+  const denseCounts = { species_counts: { A: 120, B: 120, AB: 0 } };
+  const baseCounts = { species_counts: { A: 60, B: 60, AB: 0 } };
+  boot(makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 },
+    { T: 300, adiabatic: false, activation_energy_kT: 3, N: 360 }));
+  const nAtEntry = R.particles.length;
+  // ...and it stays inert: the only later movement is the chemistry's own
+  // (A + B -> AB turns two discs into one), never a climb toward the authored N.
+  for (let i = 0; i < 120; i++) R.stepGas(R.config.states.STATE_1);
+  check('a per-state N is INERT in a reacting box (author species_counts instead)',
+    nAtEntry === 120 && R.particles.length <= 120,
+    `state authored N: 360, box opened at ${nAtEntry} (the species list's 60+60+0) and ran to ${R.particles.length} — never toward 360`);
+
+  const fracDense = clearFraction({ activation_energy_kT: 3, ...denseCounts }, 180, 1800);
+  const collDense = collRate({ activation_energy_kT: 3, ...denseCounts }, 180, 1800);
+  const fracBase = clearFraction({ activation_energy_kT: 3, ...baseCounts }, 180, 1800);
+  const collBase = collRate({ activation_energy_kT: 3, ...baseCounts }, 180, 1800);
+  check('crowding moves the COUNT and leaves the fraction flat',
+    collDense > collBase * 2 && Math.abs(fracDense - fracBase) < fracBase * 0.3,
+    `120->240 particles: collisions x${(collDense / collBase).toFixed(2)}, fraction ${(100 * fracBase).toFixed(2)}% -> ${(100 * fracDense).toFixed(2)}%`);
+  void collCold;
+}
+
+// ── 17. the Arrhenius instrument ────────────────────────────────────────────
+// This is the only gas HUD that makes a claim about a LAW, so it is the one
+// that most needs pinning: it must accumulate real tallies (not evaluate the
+// Arrhenius expression), refuse to draw a line through too few points, hold its
+// axis fixed against moving data, and recover a slope close to -Ea/k.
+{
+  const arrCfg = (over: Record<string, unknown> = {}) => makeConfig(
+    { temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105, count: 180 },
+    {
+      T: 800, T_from: 250, T_ramp_ms: 40000, adiabatic: false,
+      activation_energy_kT: 3, species_counts: { A: 90, B: 90, AB: 0 },
+      show_arrhenius_plot: true, arrhenius_window_ms: 4000,
+      arrhenius_T_min: 250, arrhenius_T_max: 800, ...over,
+    },
+  );
+
+  // a state that does NOT ask for the plot must accumulate nothing
+  boot(makeConfig({ temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 },
+    { T: 300, adiabatic: false, activation_energy_kT: 3, species_counts: { A: 90, B: 90, AB: 0 } }));
+  for (let i = 0; i < 900; i++) R.stepGas(R.config.states.STATE_1);
+  check('the Arrhenius accumulator is inert unless a state asks for it',
+    R.gasArrPts.length === 0, `${R.gasArrPts.length} points accumulated over 15 s with the flag off`);
+
+  // fewer than 3 points must NOT produce a fit — no "law" through two dots
+  boot(arrCfg());
+  for (let i = 0; i < 300; i++) R.stepGas(R.config.states.STATE_1);   // 5 s -> 1 window
+  check('no fit is drawn under 3 points', R.gasArrhFit() === null,
+    `${R.gasArrPts.length} point(s) after 5 s -> fit ${R.gasArrhFit() === null ? 'null' : 'DRAWN'}`);
+
+  // the full ramp: 8 windows in 32 s, a real fit, a slope near -Ea/k
+  boot(arrCfg());
+  for (let i = 0; i < 60; i++) R.stepGas(R.config.states.STATE_1);
+  const axis0 = JSON.stringify(R.gasArrhAxis(R.config.states.STATE_1));
+  for (let i = 0; i < 33 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  const arrFit = R.gasArrhFit();
+  const axis1 = JSON.stringify(R.gasArrhAxis(R.config.states.STATE_1));
+  check('a 4 s window yields ~8 points inside one state',
+    R.gasArrPts.length >= 7 && R.gasArrPts.length <= 9,
+    `${R.gasArrPts.length} measured points over a 33 s ramp at arrhenius_window_ms 4000`);
+  check('the axis is solved ONCE and never rescales to its own data', axis0 === axis1,
+    `axis at 1 s ${axis0} === axis at 34 s ${axis1}`);
+  check('the fitted slope lands near -Ea/k',
+    arrFit !== null && Math.abs(arrFit.slope - -900) < 900 * 0.15,
+    arrFit ? `slope ${arrFit.slope.toFixed(0)} K against -Ea/k = -900 K (${(100 * Math.abs(arrFit.slope + 900) / 900).toFixed(1)}% off), R2 ${arrFit.r2.toFixed(4)}` : 'no fit');
+  check('the points genuinely lie on a line', arrFit !== null && arrFit.r2 > 0.9,
+    arrFit ? `R2 ${arrFit.r2.toFixed(4)} over ${arrFit.n} measured points` : 'no fit');
+
+  // THE POINT OF THE INSTRUMENT: it must be a MEASUREMENT, so a box whose
+  // barrier is different must produce a DIFFERENT slope. If the plot evaluated
+  // the Arrhenius expression instead of tallying collisions, this would still
+  // pass — so pair it with the check below.
+  boot(arrCfg({ activation_energy_kT: 1.5 }));
+  for (let i = 0; i < 34 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  const halfFit = R.gasArrhFit();
+  check('halving the barrier halves the measured slope',
+    halfFit !== null && Math.abs(halfFit.slope - -450) < 450 * 0.2,
+    halfFit ? `slope ${halfFit.slope.toFixed(0)} K at Ea 1.5 kT against -Ea/k = -450 K` : 'no fit');
+
+  // ...and the tallies must be REAL: with the barrier so high that essentially
+  // nothing clears it, there is nothing to plot. A formula would still draw.
+  boot(arrCfg({ activation_energy_kT: 12, T: 300, T_from: 300 }));
+  for (let i = 0; i < 34 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  check('an unclearable barrier plots NOTHING (the points are tallies, not a formula)',
+    R.gasArrPts.length <= 2,
+    `${R.gasArrPts.length} points at Ea 12 kT — windows with zero clearing collisions are dropped, not invented`);
+
+  // determinism, because THE EYE re-simulates this state from its seed
+  const sig = () => R.gasArrPts.map((p: Ctx) => p.invT.toFixed(9) + ',' + p.lnf.toFixed(9)).join(';');
+  boot(arrCfg()); for (let i = 0; i < 20 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  const sigA = sig();
+  boot(arrCfg()); for (let i = 0; i < 20 * 60; i++) R.stepGas(R.config.states.STATE_1);
+  check('the Arrhenius points are deterministic', sigA === sig() && sigA.length > 0,
+    sigA === sig() ? `identical across two runs (${R.gasArrPts.length} points)` : 'DIVERGED');
+}
+
+// ── 18. hist_speed_marks opt-out must not disturb the histogram itself ──────
+// Rule 25: v_mp/v_avg/v_rms are P1 #5's vocabulary and must be suppressible on a
+// state that shows the histogram for another reason. The suppression is
+// draw-only — it must not touch the physics, or kinetic_particle_theory's
+// frozen baselines would move for a reason that has nothing to do with them.
+{
+  const histCfg = (marks: boolean | undefined) => makeConfig(
+    { temperature_K: 300, ea_ref_T: 300, speed_scale: 0.105 },
+    {
+      T: 300, adiabatic: false, activation_energy_kT: 3,
+      species_counts: { A: 90, B: 90, AB: 0 }, show_speed_histogram: true,
+      ...(marks === undefined ? {} : { hist_speed_marks: marks }),
+    },
+  );
+  const trace = (marks: boolean | undefined) => {
+    boot(histCfg(marks));
+    for (let i = 0; i < 600; i++) R.stepGas(R.config.states.STATE_1);
+    return R.particles.map((p: Ctx) => p.x.toFixed(9) + ',' + p.vx.toFixed(9)).join(';');
+  };
+  const tDefault = trace(undefined), tOff = trace(false), tOn = trace(true);
+  check('hist_speed_marks is draw-only — the physics is byte-identical',
+    tDefault === tOff && tDefault === tOn, tDefault === tOff ? 'identical trajectories with the marks on, off, and unauthored' : 'DIVERGED');
+}
+
 console.log(fail.length ? `\n${fail.length} FAILED: ${fail.join(', ')}` : '\nall checks passed');
 process.exit(fail.length ? 1 : 0);

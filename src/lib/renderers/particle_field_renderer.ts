@@ -594,7 +594,9 @@ var PF_WG_FLAGS = [
   { key: 'gas_reaction', flag: 'show_reaction_readout', label: 'Reaction rates' },
   { key: 'gas_conc_graph', flag: 'show_concentration_graph', label: 'Concentration graph' },
   { key: 'gas_ledger', flag: 'show_energy_ledger', label: 'Energy ledger (check)' },
-  { key: 'gas_k_ratio', flag: 'show_k_ratio', label: 'Equilibrium constant K' }
+  { key: 'gas_k_ratio', flag: 'show_k_ratio', label: 'Equilibrium constant K' },
+  // collision-theory layer (2026-07-29)
+  { key: 'gas_arrhenius', flag: 'show_arrhenius_plot', label: 'Arrhenius plot' }
 ];
 function pfWgVis(key, stateWants) {
   var o = pfWidgetVis[key];
@@ -3423,6 +3425,13 @@ var gasSuccessRate = 0;
 var gasFlashes = [];         // { x, y, age } successful-collision flashes
 var gasBarrierOn = false;
 var gasTempK = 300;          // thermostatted temperature (K)
+// ARRHENIUS ACCUMULATOR (2026-07-29). Windowed samples of the cleared fraction
+// against the temperature they were taken at, so a state can DRAW the law the
+// box obeys instead of asserting it. Accumulated in the PHYSICS step, never in
+// the draw loop, so SET_TIME_FREEZE re-simulation reproduces the plot exactly.
+var gasArrPts = [];          // { invT, lnf } — one measured point per window
+var gasArrWinC = 0, gasArrWinS = 0, gasArrWinT = 0, gasArrWinN = 0;
+var gasArrAxis = null;       // { x0, x1, y0, y1 } solved once at state entry, so points move against a FIXED frame
 
 // ─── REACTION LAYER (A + B \\u21CC AB) — 2026-07-28 ──────────────────────────
 // Turns the box into a reacting mixture so equilibrium can be WATCHED rather
@@ -3583,18 +3592,42 @@ function gasCount() {
 // kT is a barrier most collisions fail. It is pinned to ea_ref_T (not to the
 // live T) precisely so that raising T raises the success fraction — if Ea
 // tracked T, heating the gas would change nothing and the lesson would die.
+// One kT at the REFERENCE temperature, in the px/tick energy units the collision
+// test uses. Mean kinetic energy per particle in 2D = k_eff*T with k_eff = s^2.
+function gasEaKtRef() {
+  var g = gasCfg();
+  var refT = (typeof g.ea_ref_T === 'number') ? g.ea_ref_T
+    : (typeof g.temperature_K === 'number') ? g.temperature_K : 300;
+  var s = gasSpeedScale();
+  return s * s * refT;
+}
 function gasActivationE(state) {
-  if (hasSlider('Ea')) return max(0, sliderVal('Ea'));
+  // The teacher's barrier slider, in kT of ea_ref_T — the SAME unit the author
+  // writes. It used to read sliderVal('Ea') as a RAW px/tick energy, which is a
+  // number nobody can reason about (Rule 33d) and which no shipped concept ever
+  // declared, so nothing depended on the old units.
+  //
+  // The userTouched guard is the load-bearing half. Every other gas slider has
+  // one (gasTargetT, gasTargetPistonF, gasCount); this one did not, so merely
+  // DECLARING the slider silently replaced every state's authored barrier with
+  // the slider default. Measured before the fix: a concept authoring
+  // activation_energy_kT 3 (raw 9.9225, 3.16% of collisions clearing) ran at
+  // raw 6.6 / 10.01% the moment an Ea slider appeared in slider_controls — on
+  // every state, whether or not a teacher had touched anything.
+  if (hasSlider('Ea') && userTouched['Ea']) return max(0, sliderVal('Ea') * gasEaKtRef());
   var g = gasCfg();
   var nkT = null;
-  if (state && typeof state.activation_energy_kT === 'number') nkT = state.activation_energy_kT;
-  else if (typeof g.activation_energy_kT === 'number') nkT = g.activation_energy_kT;
-  if (nkT !== null) {
-    var refT = (typeof g.ea_ref_T === 'number') ? g.ea_ref_T
-      : (typeof g.temperature_K === 'number') ? g.temperature_K : 300;
-    var s = gasSpeedScale();
-    return max(0, nkT * s * s * refT);       // mean KE per particle in 2D = k_eff*T, k_eff = s^2
+  // A cue-driven drop in the barrier — "the catalyst goes in NOW" (Rule 32a),
+  // so the change is WATCHED arriving instead of being a between-state
+  // comparison the narration has to assert. Mirrors reaction_at_cue exactly.
+  if (state && state.ea_at_cue && state.ea_at_cue.cue
+      && typeof state.ea_at_cue.activation_energy_kT === 'number'
+      && cueFiredAt[state.ea_at_cue.cue] !== undefined) {
+    nkT = state.ea_at_cue.activation_energy_kT;
   }
+  else if (state && typeof state.activation_energy_kT === 'number') nkT = state.activation_energy_kT;
+  else if (typeof g.activation_energy_kT === 'number') nkT = g.activation_energy_kT;
+  if (nkT !== null) return max(0, nkT * gasEaKtRef());
   if (state && typeof state.activation_energy === 'number') return max(0, state.activation_energy);
   return (typeof g.activation_energy === 'number') ? max(0, g.activation_energy) : 0;
 }
@@ -3627,6 +3660,15 @@ function gasKtToEnergy(nkT) {
 // (the catalyst beat) without a second species list.
 function gasRxNum(state, key, dflt) {
   var r = gasRxCfg() || {};
+  // The teacher's Ea slider drives the FORWARD reaction barrier as well as the
+  // collision counter's threshold, so the two barriers on screen stay ONE
+  // number. Without this, dragging Ea moved "x% clear Ea" while the fwd/rev
+  // bars ignored it — two instruments disagreeing about the same quantity in
+  // the one state whose whole job is letting a teacher push on the barrier.
+  // Ea_rev = Ea_fwd + E_bond still follows by derivation, so a dragged barrier
+  // speeds both directions and leaves the equilibrium position alone — the
+  // catalyst result stays emergent rather than asserted.
+  if (key === 'activation_fwd_kT' && hasSlider('Ea') && userTouched['Ea']) return max(0, sliderVal('Ea'));
   // A cue-driven change to a reaction constant — "the catalyst goes in NOW".
   // Deliberately placed at the single read point for EVERY reaction constant
   // rather than special-cased on activation_fwd_kT, so the derived quantities
@@ -3743,6 +3785,7 @@ function gasInit() {
   gasRxRevTotal = 0; gasRxRevTick = 0; gasRxRevWin = []; gasRxRevRate = 0;
   gasRxQueue = []; gasRxNew = []; gasHeatQ = 0; gasConcTrace = []; gasCountsBySp = [];
   gasKWin = []; gasKMean = 0;
+  gasArrPts = []; gasArrWinC = 0; gasArrWinS = 0; gasArrWinT = 0; gasArrWinN = 0; gasArrAxis = null;
   gasSpecies = gasSpeciesList();
   gasRxResolveSpecies();
   var st = curState() || {};
@@ -4538,6 +4581,7 @@ function gasSampleStats() {
   var secs = gasPressureWin.length / 60;
   gasPressure = (perim > 0 && secs > 0) ? (s / (perim * secs)) : 0;
 
+  gasSampleArrhenius();
   gasCollWin.push(gasCollTick);
   gasSuccessWin.push(gasSuccessTick);
   while (gasCollWin.length > 60) gasCollWin.shift();
@@ -4983,6 +5027,139 @@ function drawGasLedger(state) {
   textAlign(LEFT, TOP);
 }
 
+// ─── Arrhenius instrument (2026-07-29) ─────────────────────────────────────
+// The collision counter answers "how many clear the barrier RIGHT NOW". This
+// answers the question a kinetics chapter actually asks: does that fraction
+// follow a LAW as the temperature moves? It takes windowed samples of the
+// cleared fraction against the temperature they were measured at and plots
+// ln(fraction) against 1/T, then fits a line through the points it has.
+//
+// WHY IT IS A MEASUREMENT AND NOT A CURVE: nothing here evaluates the Arrhenius
+// expression. Every point is a real tally of real collisions over a real window,
+// and the slope is a least-squares fit to those tallies. The state's claim is
+// that the points fall on a line — so the points must be able to MISS it, or
+// the instrument would be a decoration proving itself.
+//
+// MEASURED BEFORE IT WAS BUILT (docs/skeletons/collision_theory_dq.txt):
+// 8 points at a 4 s window over a 250->800 K ramp give R^2 0.9535 and a slope of
+// -885 against the ideal -Ea/k = -900, i.e. 1.7% off, and 8 x 4 s fits inside one
+// state. An 8 s window reaches R^2 0.9910 but needs 64 s. Tripling the particle
+// density does NOT improve it (R^2 0.9508), so unlike the equilibrium-constant
+// chip this instrument needs no density exception.
+function gasSampleArrhenius() {
+  var st = curState();
+  if (!st || !st.show_arrhenius_plot) return;
+  var winMs = (typeof st.arrhenius_window_ms === 'number') ? st.arrhenius_window_ms : 4000;
+  // Accumulate THIS tick's tallies. Called from gasSampleStats, which runs after
+  // the pair sweep and before the next tick zeroes the per-tick counters.
+  gasArrWinC += gasCollTick;
+  gasArrWinS += gasSuccessTick;
+  gasArrWinT += gasTempK;
+  gasArrWinN++;
+  if (gasArrWinN * (1000 / 60) < winMs) return;
+  // A window with no clearing collisions at all is a real measurement of "too
+  // cold to see", but ln(0) is not a point — it is dropped, and the gap in the
+  // plot is the honest record of it.
+  if (gasArrWinC > 0 && gasArrWinS > 0) {
+    gasArrPts.push({
+      invT: 1 / max(gasArrWinT / gasArrWinN, 1),
+      lnf: Math.log(gasArrWinS / gasArrWinC)
+    });
+    while (gasArrPts.length > 40) gasArrPts.shift();
+  }
+  gasArrWinC = 0; gasArrWinS = 0; gasArrWinT = 0; gasArrWinN = 0;
+}
+// Axis solved ONCE per state from the authored temperature span and the authored
+// barrier, never from the points. A frame that rescaled to its own data would
+// hold the cloud of points still while the axis moved underneath — the same
+// defect as a rate bar renormalised to its own maximum, which reports a ratio
+// and never a magnitude.
+function gasArrhAxis(state) {
+  if (gasArrAxis) return gasArrAxis;
+  var g = gasCfg();
+  var tLo = (typeof state.arrhenius_T_min === 'number') ? state.arrhenius_T_min : 250;
+  var tHi = (typeof state.arrhenius_T_max === 'number') ? state.arrhenius_T_max : 800;
+  var refT = (typeof g.ea_ref_T === 'number') ? g.ea_ref_T
+    : (typeof g.temperature_K === 'number') ? g.temperature_K : 300;
+  var nkT = gasActivationE(state) / max(gasEaKtRef(), 1e-9);   // the barrier, back in kT
+  gasArrAxis = {
+    x0: 1 / max(tHi, 1), x1: 1 / max(tLo, 1),
+    y0: -nkT * (refT / max(tLo, 1)) - 1.6,     // coldest, with headroom below
+    y1: -nkT * (refT / max(tHi, 1)) + 0.6      // hottest, with headroom above
+  };
+  return gasArrAxis;
+}
+// Least squares over whatever points exist. Returns null under 3 points, so a
+// state cannot draw a "line" through two dots and call it a law.
+function gasArrhFit() {
+  var n = gasArrPts.length;
+  if (n < 3) return null;
+  var i, mx = 0, my = 0;
+  for (i = 0; i < n; i++) { mx += gasArrPts[i].invT; my += gasArrPts[i].lnf; }
+  mx /= n; my /= n;
+  var sxy = 0, sxx = 0, syy = 0, dx, dy;
+  for (i = 0; i < n; i++) {
+    dx = gasArrPts[i].invT - mx; dy = gasArrPts[i].lnf - my;
+    sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
+  }
+  if (sxx <= 0 || syy <= 0) return null;
+  return { slope: sxy / sxx, intercept: my - (sxy / sxx) * mx, r2: (sxy * sxy) / (sxx * syy), n: n };
+}
+function drawGasArrhenius(state) {
+  // Same inset geometry as the histogram, on the opposite side when both are
+  // lit — they are normally mutually exclusive (a state teaches the
+  // distribution OR the law it obeys), but an overlap would bury both.
+  var gw = floor((gasBoxRFull() - gasBoxL()) * 0.40), gh = floor((gasBoxB() - gasBoxT()) * 0.50);
+  if (gw < 90) return;
+  var histOn = pfWgVis('gas_histogram', state.show_speed_histogram);
+  var gx = histOn ? (gasBoxL() + 22) : (gasBoxRFull() - gw - 22);
+  var gy = gasBoxT() + 22;
+  var dim = dimFor('arrhenius');
+  var ax = gasArrhAxis(state), i;
+
+  noStroke(); fill(8, 10, 22, 240);
+  rect(gx - 10, gy - 10, gw + 20, gh + 46, 6);
+  noFill(); strokeHex('#334155', 0.9 * dim); strokeWeight(1);
+  rect(gx - 10, gy - 10, gw + 20, gh + 46, 6);
+
+  var px = function (v) { return gx + constrain((v - ax.x0) / max(ax.x1 - ax.x0, 1e-12), 0, 1) * gw; };
+  var py = function (v) { return gy + gh - constrain((v - ax.y0) / max(ax.y1 - ax.y0, 1e-12), 0, 1) * gh; };
+
+  // axes
+  strokeHex('#475569', 0.9 * dim); strokeWeight(1);
+  line(gx, gy, gx, gy + gh); line(gx, gy + gh, gx + gw, gy + gh);
+
+  // the fitted line first, so the measured points sit ON TOP of it and a point
+  // that misses is visibly a miss
+  var fit = gasArrhFit();
+  if (fit) {
+    strokeHex('#FBBF24', 0.85 * dim); strokeWeight(2);
+    var yA = fit.intercept + fit.slope * ax.x0, yB = fit.intercept + fit.slope * ax.x1;
+    line(px(ax.x0), py(constrain(yA, ax.y0, ax.y1)), px(ax.x1), py(constrain(yB, ax.y0, ax.y1)));
+  }
+
+  noStroke(); fillHex('#7DD3FC', 0.95 * dim);
+  for (i = 0; i < gasArrPts.length; i++) circle(px(gasArrPts[i].invT), py(gasArrPts[i].lnf), 5);
+
+  // Rule 33d: the live number, and the number it is being measured against.
+  // Ea/k is the slope the law predicts, so the two printed side by side ARE the
+  // check — nothing here asserts they agree.
+  var g2 = gasCfg();
+  var refT2 = (typeof g2.ea_ref_T === 'number') ? g2.ea_ref_T
+    : (typeof g2.temperature_K === 'number') ? g2.temperature_K : 300;
+  var eaOverK = (gasActivationE(state) / max(gasEaKtRef(), 1e-9)) * refT2;
+  textAlign(LEFT, TOP); textSize(10); noStroke();
+  fillHex('#CBD5E1', 0.85 * dim);
+  text('ln f', gx + 2, gy - 4);
+  text('1/T \\u2192', gx + gw - 30, gy + gh + 4);
+  textSize(11);
+  fillHex(fit ? '#FBBF24' : '#64748B', 0.95 * dim);
+  text(fit ? ('slope ' + Math.round(fit.slope) + ' K') : 'measuring\\u2026', gx + 2, gy + gh + 18);
+  fillHex('#94A3B8', 0.9 * dim);
+  textSize(10);
+  text('\\u2212E\\u2090/k = ' + Math.round(-eaOverK) + ' K', gx + 2, gy + gh + 32);
+}
+
 // The Maxwell-Boltzmann pane: live histogram + the 2D theory curve + the three
 // named speeds. A distribution SHIFTING is the motion here (Rule 31) — nothing
 // else on canvas needs to move for this state to teach.
@@ -5065,6 +5242,13 @@ function drawGasHistogram(state) {
     text(hSp.label || hSp.id || ('species ' + spIdx), gx + gw - 2, gy + 2);
   }
 
+  // v_mp / v_avg / v_rms are the Maxwell-Boltzmann concept's vocabulary. A
+  // lesson that shows this histogram for a DIFFERENT reason (a barrier sitting
+  // on the distribution, say) puts three untaught terms on screen — Rule 25, no
+  // untaught term. Opt OUT per state; the default stays on so every already
+  // baseline-locked concept on this histogram keeps its exact frames.
+  if (state && state.hist_speed_marks === false) { noStroke(); }
+  else {
   var st = gasSpeedStats(spIdx);
   var marks = [
     { v: sig, c: '#FBBF24', t: 'v_mp' },
@@ -5078,6 +5262,7 @@ function drawGasHistogram(state) {
     line(mx, gy + gh, mx, gy + gh + 6);
     noStroke(); fillHex(marks[i].c, 0.95 * dim);
     text(marks[i].t, mx, gy + gh + 8 + i * 11);
+  }
   }
   noStroke(); fillHex('#CBD5E1', 0.8 * dim);
   textAlign(RIGHT, TOP); textSize(10);
@@ -5146,6 +5331,7 @@ function draw() {
     if (pfWgVis('gas_counters', state.show_collision_counter)) drawGasCounters(state);
     if (pfWgVis('gas_law', state.show_gas_law)) drawGasLaw();
     if (pfWgVis('gas_histogram', state.show_speed_histogram)) drawGasHistogram(state);
+    if (pfWgVis('gas_arrhenius', state.show_arrhenius_plot)) drawGasArrhenius(state);
     if (pfWgVis('gas_reaction', state.show_reaction_readout)) drawGasReaction(state);
     if (pfWgVis('gas_k_ratio', state.show_k_ratio)) drawGasKRatio(state);
     if (pfWgVis('gas_conc_graph', state.show_concentration_graph)) drawGasConcGraph(state);
@@ -6344,10 +6530,19 @@ export interface ParticleFieldStateConfig {
     barrier_lift_cue?: string;       // cue id that removes the divider mid-state
     activation_energy_kT?: number;   // PREFERRED collision-theory threshold, in multiples of mean particle energy at ea_ref_T
     activation_energy?: number;      // raw px/tick threshold (pair KE along the line of centres); prefer the _kT form
+    ea_at_cue?: {                    // drop the barrier MID-state on a cue — the catalyst beat (Rule 32a), mirrors reaction_at_cue
+        cue: string;                 // cue id from the state's `cues` list
+        activation_energy_kT: number;// the barrier from the cue onward. Pair it with reaction_at_cue on the SAME cue when the reaction layer is on, or the counter and the rate bars will disagree
+    };
     show_pressure?: boolean;         // pressure gauge — live number + tracking bar (Rule 33d)
     show_gas_thermometer?: boolean;  // temperature gauge — live number + tracking bar
     show_speed_histogram?: boolean;  // live speed distribution + 2D theory curve + v_mp/v_avg/v_rms
     hist_species?: number;           // which species the histogram plots (default 0) — it plots ONE, never a mixture
+    hist_speed_marks?: boolean;      // false hides the v_mp/v_avg/v_rms markers (Rule 25: untaught terms on a histogram shown for another reason). Default true — every existing baseline keeps its frames
+    show_arrhenius_plot?: boolean;   // MEASURED ln(cleared fraction) vs 1/T, with a least-squares fit and its slope. Nothing evaluates the Arrhenius expression — every point is a real tally, so the points can miss the line
+    arrhenius_window_ms?: number;    // sampling window per point (default 4000). Measured: 4 s gives R^2 0.95 with 8 points in 32 s; 8 s gives 0.99 but needs 64 s
+    arrhenius_T_min?: number;        // axis span, solved ONCE at state entry so points move against a FIXED frame (default 250)
+    arrhenius_T_max?: number;        // default 800
     show_collision_counter?: boolean;// collisions/s, and the fraction clearing Eₐ when one is set
     show_gas_law?: boolean;          // P·A / N·T readout — constant on screen, the engine's own proof
     show_trails?: boolean;           // per-particle trails (the mean-free-path / random-walk story)
