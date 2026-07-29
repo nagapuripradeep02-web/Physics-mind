@@ -1749,12 +1749,64 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         // release at ~1200 ms sits INSIDE the contact window
         // (field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_...).
         // A push_off IS a scripted reveal, so it also skips the mode floor.
+        //
+        // REPEATING push_off (`repeat_every_ms`, 2026-07-29 founder review) INVERTS
+        // that: when the interaction re-arms every R ms the taught beat is no longer
+        // the one separation it leaves behind, it IS the repeating interaction — and
+        // the release+coast pin is precisely what produced the empty canonical frame
+        // the scar nlb_push_off_interaction_dies_after_release_leaving_96pct_of_the_
+        // state_empty names (both arrows hidden, spring hidden, HUD 0.00). So the pin
+        // must land DURING a contact window, i.e. at a state-local time whose
+        // PHASE (t - floor(t/R)*R, exactly nlbRunPushOff's arithmetic) satisfies
+        // contact_from_ms <= phase < release_at_ms. Then the reviewer screenshot
+        // always shows the spring compressed and BOTH equal-and-opposite arrows.
+        //   Offset = 35% into the contact window. Fractional, not a fixed cushion,
+        //   so it scales with any authored window and is clear of BOTH edges by
+        //   construction: 35% of the window past contact_from_ms (never the
+        //   entry/re-arm frame, whose pose is still the untouched home seed) and
+        //   65% of the window before release_at_ms (never the frame where the
+        //   forces have just gone to 0 — the mid-transition capture
+        //   field3d_slcr_reveal_hold_captures_transitional_r_family names).
+        //   Cycle = the FIRST contact window at or after every other candidate this
+        //   state raised (phases[]/param_ramp), because the caller returns
+        //   Math.max(...candidates): picking cycle 0 unconditionally would let a
+        //   late authored phase out-vote the pin and drop it back outside contact.
+        // MOTION/HOLD: deliberately unchanged. deriveMotionExpectations has no
+        // newtons_laws_body branch (=> undefined => D5 skips: nothing is asserted
+        // about a repeating state's pixels), and deriveHoldExpectations' nlb branch
+        // gives a non-sandbox state 'reveal_hold', which in pixelGate is a pure
+        // RELAXATION of the stuck/static checks and never asserts stillness — so a
+        // continuously repeating push-off cannot false-fail on moving pixels in the
+        // tail. Nothing to fix in either derivation.
         const po = asObj(nlb.push_off);
         if (po) {
             const NLB_PUSH_OFF_COAST_MS = 2000;   // coast window that makes the separation legible
             const release = asNum(po.release_at_ms, 0);
+            const contactFrom = asNum(po.contact_from_ms, 0);
+            // Mirrors nlbRunPushOff's guard exactly: a non-finite, <= 0 or
+            // too-short (R <= release) cycle is IGNORED by the renderer, so the
+            // pin must stay on the single-fire branch for those too.
+            const repRaw = po.repeat_every_ms;
+            const rep = (typeof repRaw === 'number' && Number.isFinite(repRaw)
+                && repRaw > 0 && repRaw > release) ? repRaw : 0;
             phaseFound = true;
-            candidates.push(release + NLB_PUSH_OFF_COAST_MS);
+            if (rep > 0 && release > contactFrom) {
+                const offset = contactFrom + (release - contactFrom) * 0.35;
+                // The floor matters as much as the other candidates: the caller
+                // runs this through clampReveal (Math.max(DEFAULT_REVEAL_MS, ...),
+                // Math.min(DURATION_MAX_MS, ...)), so a cycle-0 pin at e.g. 147 ms
+                // would be silently RAISED to 1500 ms — a phase of 1500 > release,
+                // i.e. straight back into the dead zone this fix exists to remove.
+                // Fold both bounds in here so the value that survives the clamp is
+                // still inside a contact window.
+                const base = Math.max(DEFAULT_REVEAL_MS, ...candidates);
+                const wanted = Math.max(0, Math.ceil((base - offset) / rep));
+                const ceiling = Math.floor((DURATION_MAX_MS - offset) / rep);
+                const cycle = Math.max(0, Math.min(wanted, ceiling));
+                candidates.push(cycle * rep + offset);
+            } else {
+                candidates.push(release + NLB_PUSH_OFF_COAST_MS);
+            }
         }
         if (!phaseFound) {
             // No authored script this state: fall back per `mode`. These are pure

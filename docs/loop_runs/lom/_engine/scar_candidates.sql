@@ -657,3 +657,98 @@ INSERT INTO engine_bug_queue (
 --     'lom-a push_off engine seam B 2026-07-29',
 --     'incident'
 -- );
+
+-- ============================================================
+-- SEAM C (push_off repeat_every_ms) — founder review 2026-07-29, NOT applied
+-- ============================================================
+
+-- The dispatched finding itself. Fixed in this seam (engine + deriveStateMeta),
+-- so it is logged FIXED rather than OPEN — the row exists so the CLASS ("an
+-- interaction whose physical duration is far shorter than its narrated state")
+-- is on the scar list, not just this instance.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_push_off_interaction_dies_after_release_leaving_96pct_of_the_state_empty',
+--     'A one-shot push_off is physically over in ~420 ms of an ~11 s narrated state, so both arrows, the spring and the readouts are dead for 96% of it - and the canonical frozen reviewer frame lands in that dead zone',
+--     'CRITICAL',
+--     'peter_parker:field3d_surgeon',
+--     'The contact duration of a real spring push-off is a CONSEQUENCE of force and mass, not a free parameter: release_at_ms = 1000*sqrt(2*stroke/a_rel) is ~420 ms for 30 N on 4 + 12 kg, and a contact slow enough to fill a state (~2 s) would need ~1.3 N - far below the arrow-length floor. A Rule-31 guided state runs 25-55 words = 10-20 s of narration and cannot be shortened. So a SINGLE-FIRE interaction gate is structurally incapable of filling its own state: after release both applied forces are 0, the arrows hide, the spring hides once the gap passes natural length, the HUD reads 0.00, and nothing is left on screen but two blocks sitting apart. Measured on the real renderer: 676 of 700 frames (96.6%) with both forces 0. deriveStateMeta then pinned the frozen reviewer frame at release + 2000 ms - inside the dead zone by construction - so the one canonical screenshot of the state showed NONE of the lesson.',
+--     'An interaction whose physical duration is set by physics (spring release, collision, bounce) and is much shorter than its narrated state must REPEAT inside the state, the way a teacher repeats a demo - it must never be authored as a one-shot that leaves a dead tail. Implementation invariants: the repeat is a pure derivation (cycle = floor(t/R), phase = t - cycle*R) off the MONOTONIC state-local clock, never a clock rebase (a rebase latches phase at 0 = permanent contact); the re-arm reuses the engine''s single existing rewind path (nlbResetTrajectory), never a second rewind; the only frame state is one edge memo that ADOPTS the current cycle when null, so dt = 0 under SET_TIME_FREEZE fires nothing and a state re-entry cannot double-rewind (Rule 36); a trusted slider/drag seizes and cancels the repeat (Rule 37). And the reveal pin must follow: with a repeat authored, the frozen candidate lands DURING a contact window (phase < release_at_ms), not past release.',
+--     'js_eval',
+--     'For each state authoring push_off: compute the fraction of the state duration during which contact_from_ms <= phase < release_at_ms (phase = t - floor(t/repeat_every_ms)*repeat_every_ms; = t when repeat_every_ms is absent). Fail when that fraction is < 0.10 - the interaction the state is ABOUT is on screen for less than a tenth of it. Also assert the derived reveal pin''s own phase is inside the contact window whenever repeat_every_ms is set.',
+--     'FIXED',
+--     ARRAY['newton_third_law']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts','src/lib/validators/visual/deriveStateMeta.ts']::text[],
+--     'lom-a push_off engine seam C (repeat_every_ms) 2026-07-29',
+--     'incident'
+-- );
+
+-- Validator candidate deliberately NOT implemented as a validator in this seam
+-- (the engine degrades safely instead; a validator is an alex/schema change).
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_push_off_repeat_every_ms_shorter_than_release_would_lock_permanent_contact',
+--     'push_off.repeat_every_ms authored at or below release_at_ms would leave the state permanently in contact; the engine ignores it silently',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'The contact test is on the PHASE, which lives in [0, R). If R <= release_at_ms the phase can never escape the contact window, so the gate would apply the push forever: the carts accelerate off the track, the spring hides at natural length, and both force arrows stay drawn - a permanently-in-contact state with no visible interaction. nlbRunPushOff therefore treats R <= release_at_ms (and any non-finite or <= 0 value) as ABSENT and falls back to single-fire, which is safe but SILENT: the author sees the old dead-tail behaviour and no diagnostic.',
+--     'A derived-timing key with a hard admissibility bound belongs in the schema, not only in the engine''s defensive branch: reject repeat_every_ms <= release_at_ms at validate:concepts time (recommended floor: release_at_ms + 1000, so the separation has a beat to read before the reset). The engine keeps its degrade-to-single-fire guard as the second line of defence - never a divide-by-zero, never a permanent-contact state.',
+--     'sql',
+--     'Fail any concept whose field_3d_config.states.*.newtons_laws_body.push_off sets repeat_every_ms with a value that is not finite, is <= 0, or is <= release_at_ms + 1000.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam C (repeat_every_ms) 2026-07-29',
+--     'directive'
+-- );
+
+-- Observed in the seam-C bring-up probe on the REAL renderer (not a live concept
+-- failure): with surface.length_m = 6 the 4 kg cart reaches the +6 m clamp about
+-- 1.5 s into each 2.6 s cycle and then sits pinned there until the re-arm.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_push_off_repeat_coast_pins_carts_against_the_surface_bound_before_the_re_arm',
+--     'A repeating push_off whose cycle outlasts the track dumps both carts against the surface clamp, so most of the coast beat shows two stationary blocks at the track ends',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'After release the carts coast on a mu = 0 track at constant speed until nlbBoundsM clamps them at +/- length_m, where they stop dead (v = 0, correct behaviour for the existing bound). With repeat_every_ms the coast beat is (R - release_at_ms) long, so if that exceeds length_m / v_coast the carts arrive at the track ends early and stand still for the remainder of the cycle - a static picture, and the same "nothing is happening" complaint the repeat was added to fix, just relocated later in the cycle. Measured: 30 N on 4 + 12 kg with length_m = 6 -> the light cart hits the bound ~1.5 s into a 2.6 s cycle.',
+--     'A repeating interaction has THREE numbers that must agree, not two: the cycle must fit the track. Author R so that (R - release_at_ms) <= length_m / v_coast (v_coast = force_N*release_at_ms/1000/m for each body, take the faster one), or widen length_m to match. Rule of thumb for the 30 N / 4 + 12 kg case: R = release + ~1.5-2.2 s with length_m >= 8.',
+--     'js_eval',
+--     'For a state authoring push_off with repeat_every_ms: for each body compute v_coast = force_N*(release_at_ms/1000)/m and assert (repeat_every_ms - release_at_ms)/1000 * v_coast <= surface.length_m (i.e. no body reaches its clamp before the re-arm).',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam C (repeat_every_ms) 2026-07-29',
+--     'incident'
+-- );
+
+-- General deriveStateMeta trap, found while writing the seam-C pin (it bit the
+-- first version of the change and was caught by the pin probe, not by a gate).
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'field3d_reveal_pin_inside_a_narrow_window_silently_raised_by_clampreveal_floor',
+--     'A reveal pin computed to land inside a narrow taught window is silently raised to DEFAULT_REVEAL_MS by clampReveal and lands outside it',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'maxRevealForField3dState returns Math.max of its candidates, but deriveMaxRevealTimeMs then runs every value through clampReveal = Math.min(DURATION_MAX_MS, Math.max(DEFAULT_REVEAL_MS, ms)). Any scenario block whose taught beat is a SHORT WINDOW rather than a settle instant (a repeating contact phase, a band-gated caption, a brief one-shot) can therefore compute a perfectly correct in-window pin - e.g. 147 ms inside a 0-420 ms contact window - and have it silently raised to 1500 ms, i.e. straight back OUTSIDE the window. The block''s own code reads correct in review; the clamp is 300 lines away in a different function.',
+--     'A block that pins INSIDE a window (not past a settle) must fold clampReveal''s bounds into its own arithmetic: seed the search at Math.max(DEFAULT_REVEAL_MS, ...candidates) and cap it at DURATION_MAX_MS, so the value that SURVIVES the clamp is still inside a valid window. Verify by calling the exported deriveMaxRevealTimeMs (never the private per-state helper) and asserting the returned pin''s window membership directly.',
+--     'js_eval',
+--     'For every field_3d block that pins inside a window, call deriveMaxRevealTimeMs and assert the returned value satisfies the block''s own window predicate; fail if the returned value equals DEFAULT_REVEAL_MS while the block computed something smaller.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/validators/visual/deriveStateMeta.ts']::text[],
+--     'lom-a push_off engine seam C (repeat_every_ms) 2026-07-29',
+--     'directive'
+-- );

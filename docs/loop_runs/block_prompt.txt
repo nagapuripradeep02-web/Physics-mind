@@ -1,0 +1,11 @@
+Read docs/CHAPTER_LOOP.md and docs/loop_runs/lom_a_state.md. Author exactly ONE concept: block_on_incline, the last in this worktree's chapter map. The founder RELEASED the runaway-guard pause for it (see the state file notes).
+
+The newtons_laws_body engine is ALREADY BUILT and five concepts are already sealed on it. block_on_incline is a SINGLE body on a slope - no coupling, no second body, no pulley - the simplest remaining path. Author it as pure JSON configuration per docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md section 6.
+
+ONE EXCEPTION, PRE-AUTHORIZED: read docs/CHAPTER_LOOP.md section 7.1. The engine has no monotonic parameter reveal for a guided state (idle_auto_sweep is a repeating triangle; phases[] drives glow, not physics), and "tilt the ramp until the block breaks away at tan(theta) = mu_s" IS this concept's central beat. Dispatch field3d-surgeon to add a minimal one-shot param_ramp knob. Do NOT author around a static incline the way free_body_diagram STATE_5 had to - that is explicitly disallowed here. If the addition fails twice, PARK and report rather than shipping a weakened break-away beat.
+
+Follow the protocol fully: Amendment 4 (ONE bug_class per engine dispatch, field_3d work goes to field3d-surgeon, never general-purpose), Amendment 6 (no founder-proxy; quality-auditor PASS plus eye-walker clean auto-triggers visual:approve). Dispatch quality-auditor and eye-walker IN PARALLEL and never load frame PNGs into your own context.
+
+Fresh engine-fix guard for this concept: 3 NEW engine commits (param_ramp does NOT count). Authoring rule learned on concept 2: keep the smallest on-screen force at or above ~15 N, or the arrow-length floor collapses it to an invisible stub.
+
+When the concept is SEALED or PARKED and docs/loop_runs/lom_a_state.md is updated, EXIT. Constraints: no tts, no PILOT_CONCEPTS, no build:pilot, no deploy, no master merge, no engine_bug_queue DB writes, no paid smoke:visual-validator.

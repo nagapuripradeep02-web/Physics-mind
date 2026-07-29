@@ -1,0 +1,29 @@
+ENGINE SEAM - implement the push-off apparatus. Do NOT author any concept JSON in this session.
+
+Read docs/NLB_PUSH_OFF_SPEC.md IN FULL first - it is founder-approved and is the contract. Then read docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md sections 1, 2 and 5 for the existing config surface, integrator and integration sites you are extending.
+
+Dispatch the field3d-surgeon agent for the renderer work (Amendment 4: field_3d engine work NEVER goes to a general-purpose dispatch). You are the orchestrator - do NOT read field_3d_renderer.ts yourself, it is ~2.2 MB. Dispatch, read the report, reconcile.
+
+WHAT TO BUILD - the three capabilities in the spec:
+1. `push_off` per-state block: a contact-then-release force phase. During contact body_a gets +force_N and body_b gets -force_N with the ENGINE enforcing the equality (mirror the existing action_reaction implementation - never two hand-authored numbers). At release_at_ms both applied forces go to 0 and the carts coast. Read the state-local eng.t_ms that nlbResetTrajectory already rebases - do NOT add a second clock.
+2. `spring` geometry: a visible coil/plunger drawn between the two bodies' faces, carried from the SAME nlbSetBodyPosition funnel the arrows already use (no per-frame follow hook, no new clock). Compressed before release, extends at release, hides once the carts separate past natural length. It is APPARATUS: brighten-only, never dims to GLOW_DIM_OPACITY (see the 2026-07-29 solidApparatus list in nlbApplyGlow - add it there).
+3. `fixed?: boolean` per body: never integrates (infinite effective mass = the wall / the Earth) but is REAL - it takes and exerts forces and its arrows draw normally. Distinct from `ghost`, which is decorative and force-free. Render a wall slab instead of a cart when set.
+
+Also: two bodies in a push_off share ONE lane (they collide head-on), so nlbBodyLaneZ must return 0 for them - the existing lane separation is for side-by-side compares.
+
+AMENDMENT 4 DISCIPLINE: split across separate field3d-surgeon dispatches along natural seams - (a) push_off phase + fixed body in the integrator, (b) spring geometry + the glow/lane wiring. Ceiling ~100 tool calls or ~45 min per dispatch; at the ceiling write docs/loop_runs/engine_handoff.md and exit so a fresh dispatch continues. ONE bug_class each, minimal diff, no refactoring of adjacent code.
+
+CONSTRAINTS: Rule 36 (linear in dt, no literal 0.016, byte-stable under SET_TIME_FREEZE). Rule 37 (a mode:'sandbox' state must keep free-running - the release gate must not freeze it). No DB writes - extra findings go to docs/loop_runs/lom/_engine/scar_candidates.sql. No concept JSON edits. No other branch or worktree.
+
+VERIFY CHAIN after each dispatch:
+  npm run check:renderer-syntax
+  npx tsc --noEmit            (0 errors)
+  npm run validate:concepts   (expect 127 PASS / 0 FAIL)
+Then regression, to prove no existing field_3d scenario broke:
+  npm run cache:clear:scoped -- electric_flux && npm run visual:eyes -- electric_flux
+Dispatch eye-walker to read the frames - do NOT load PNGs into your own context.
+
+Commit per seam: feat(engine): nlb push-off <seam> - Newton's third law apparatus
+Record SHAs in docs/loop_runs/lom_a_state.md engine_commits:.
+
+Write a short report to docs/loop_runs/push_off_report.md (what landed, the exact JSON config surface an author should now use, anything deferred) and EXIT. Do not author the concept.

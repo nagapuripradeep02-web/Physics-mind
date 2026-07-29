@@ -933,12 +933,41 @@ export interface Field3DConfig {
             // dt = 0 under SET_TIME_FREEZE reproduces the same force bit-for-bit
             // (Rule 36). NEVER runs in a `mode: 'sandbox'` state — there the
             // teacher's F slider owns the force and the state free-runs (Rule 37).
+            // `repeat_every_ms` (2026-07-29 founder review) makes the whole
+            // interaction REPEAT inside the state, the way a teacher repeats a
+            // demo. A spring push-off with classroom-visible forces is inherently
+            // FAST (see the TIMING contract below: ~420 ms for 30 N on 4 + 12 kg)
+            // while a Rule-31 guided state runs 10-20 s of narration — so a single
+            // fire left ~96% of the state showing two blocks sitting apart with
+            // both arrows hidden, no spring and 0.00 readouts, and the canonical
+            // frozen reviewer frame landed in that dead zone (scar
+            // nlb_push_off_interaction_dies_after_release_leaving_96pct_of_the_
+            // state_empty). With it set:
+            //     cycle = floor(t/R), phase = t - cycle*R
+            //     contact  <=>  contact_from_ms <= PHASE < release_at_ms
+            // and on every cycle boundary the engine RE-ARMS the interaction
+            // through its ONE rewind path (nlbResetTrajectory: every body's s/v
+            // back to its authored seed, spring re-compressed). The state-local
+            // clock is NOT rebased — it stays monotonic, so a SET_TIME_FREEZE pin
+            // holds one cycle/phase forever and frozen frames stay byte-identical
+            // (Rule 36). A trusted slider or a body drag SEIZES the state and
+            // cancels the repeat for good (Rule 37, the same latches
+            // idle_auto_sweep / param_ramp honour); the gate as a whole is already
+            // inert in a `mode: 'sandbox'` state.
+            // CHOOSING IT: R must exceed release_at_ms (a shorter cycle would
+            // leave the state permanently in contact and is IGNORED, falling back
+            // to single-fire), and should leave a coast beat long enough for the
+            // separation to read before the reset — release + ~1.5-2.5 s is the
+            // useful band. R = 2600 with release_at_ms = 420 gives ~4 repetitions
+            // inside an 11 s state: 420 ms of push, ~2.2 s of coasting apart, home
+            // pose, again. Omit the key for the original single-fire behaviour.
             push_off?: {
                 body_a_id: string;
                 body_b_id: string;
                 force_N: number;          // magnitude applied to EACH body, equal and opposite, during contact
                 release_at_ms?: number;   // contact ENDS here; default 0 = released immediately
                 contact_from_ms?: number; // contact BEGINS here; default 0
+                repeat_every_ms?: number; // re-arm the WHOLE interaction on this cycle; omit = fire once
             };
 
             // ── spring — the VISIBLE interaction object (Newton III) ──────────
@@ -31132,6 +31161,59 @@ export const FIELD_3D_RENDERER_CODE = `
     //   param_ramp makes), so the explore state can never be frozen or stalled by
     //   a release instant that has already passed — a sandbox authored with
     //   action_reaction keeps its pair equal-and-opposite through the mirror above.
+    //
+    //   repeat_every_ms (2026-07-29 founder review) — THE DEMO REPEATS.
+    //   A spring push-off with classroom-visible force magnitudes is inherently
+    //   FAST (t = sqrt(2*stroke/a_rel): ~420 ms for 30 N on a 2+6 kg pair), while a
+    //   Rule-31 guided state runs 10-20 s of narration. Single-fire therefore left
+    //   ~96% of the state showing two blocks sitting apart with both arrows hidden,
+    //   both readouts 0, and no spring — and the canonical frozen reviewer frame
+    //   landed in exactly that dead zone (nlb_push_off_interaction_dies_after_
+    //   release_leaving_96pct_of_the_state_empty). An author sets repeat_every_ms
+    //   and the whole interaction RE-ARMS on that cycle, the way a teacher simply
+    //   does the demo again:
+    //       cycle = floor(t_ms / R)   phase = t_ms - cycle*R
+    //       contact  <=>  contact_from_ms <= PHASE < release_at_ms
+    //   The re-arm reuses nlbResetTrajectory() — the ONE rewind path in this engine
+    //   (s/v back to their s0/v0 seeds, the spring re-fitted from the home
+    //   positions, the one-shot latches re-armed). There is deliberately no second
+    //   rewind implementation to drift from it.
+    //   Rule 36 (freeze / rewind / step-fold), the whole argument:
+    //     • eng.t_ms is NOT rebased by the re-arm. nlbResetTrajectory zeroes it, so
+    //       the call is wrapped in a save/restore of t_ms (+ its published mirror
+    //       PM_nlbTimeMs) — the smaller and more honest diff than threading a
+    //       "keep the clock" flag through a function four other call sites share,
+    //       and it keeps the master clock MONOTONIC. A rebase here would make
+    //       phase == 0 forever and latch the state permanently in contact.
+    //     • cycle and phase are DERIVED from that monotonic clock, so under
+    //       SET_TIME_FREEZE (dt = 0) t_ms is unchanged => cycle unchanged =>
+    //       phase unchanged => NO re-arm fires and the same force is recomputed
+    //       bit-for-bit: frozen frames stay byte-identical, held for any number of
+    //       frames. A time-pin rewind reproduces the earlier phase exactly.
+    //     • the ONLY frame memo is eng._po_cycle, for edge detection. It starts
+    //       null on state entry AND after a genuine RESET_TRAJECTORY, and a null
+    //       memo ADOPTS the current cycle instead of firing — so the first frame
+    //       after a freeze-pin entry (or any re-entry) can never fire a spurious
+    //       re-arm on top of the seed applyNewtonsLawsBodyState just wrote, i.e.
+    //       no double-rewind. Nothing else is latched and nothing accumulates.
+    //     • step-fold exact: t_ms is linear in dt and the gate re-derives cycle
+    //       from t_ms every frame, so N micro-steps folded into one dtStep land on
+    //       the same cycle. A fold that skips OVER a whole cycle (only reachable
+    //       with R < ~50 ms, far below any authorable value) still re-arms once.
+    //   Rule 37: the sandbox carve-out above already makes the whole gate inert in
+    //   a 'mode: sandbox' state, so the cycle can never fight a teacher there. For
+    //   a GUIDED state that still allows a drag (trusted_drag_seizes) the repeat
+    //   additionally stops for good on the SAME PM_nlbSweepSeized /
+    //   PM_nlbBodyDragged latches idle_auto_sweep and param_ramp honour — a teacher
+    //   who grabs a cart is never yanked back to the home pose a second later. Once
+    //   seized the gate degrades to single-fire on the raw monotonic clock (already
+    //   past release => forces 0), never to a phase that keeps pushing carts that
+    //   are no longer touching.
+    //   GUARD: a non-finite, <= 0, or too-short R is IGNORED (single-fire), never
+    //   divided by. "Too short" = R <= release_at_ms, which would leave the state
+    //   permanently in contact (phase never escapes the window) — an author error,
+    //   ignored rather than rendered as a stuck spring. Validator candidate
+    //   recorded in scar_candidates.sql; no validator is added here.
     function nlbRunPushOff(nlb, eng) {
         var po = eng.push_off;
         if (!po) return;
@@ -31143,7 +31225,27 @@ export const FIELD_3D_RENDERER_CODE = `
         var t0 = (typeof po.contact_from_ms === "number" && isFinite(po.contact_from_ms)) ? po.contact_from_ms : 0;
         var t1 = (typeof po.release_at_ms === "number" && isFinite(po.release_at_ms)) ? po.release_at_ms : 0;
         var tMs = eng.t_ms || 0;
-        var inContact = (tMs >= t0) && (tMs < t1);
+        // Repeat cycle, or 0 = single-fire (the pre-2026-07-29 behaviour, reached
+        // by every state that omits the key — phase stays === tMs below, so the
+        // force gate is then arithmetically identical to what it always was).
+        var rep = (typeof po.repeat_every_ms === "number" && isFinite(po.repeat_every_ms)
+            && po.repeat_every_ms > 0 && po.repeat_every_ms > t1) ? po.repeat_every_ms : 0;
+        if (rep && (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged)) rep = 0;   // Rule 37 — seized
+        var phase = tMs;
+        if (rep) {
+            var cycle = Math.floor(tMs / rep);
+            if (eng._po_cycle == null) {
+                eng._po_cycle = cycle;                   // entry / post-rewind: adopt, never fire
+            } else if (cycle !== eng._po_cycle) {
+                var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+                nlbResetTrajectory();                    // the ONE rewind path
+                eng.t_ms = tKeep;                        // the master clock stays monotonic
+                window.PM_nlbTimeMs = tKeepPub;
+                eng._po_cycle = cycle;                   // AFTER the rewind (which nulls it)
+            }
+            phase = tMs - cycle * rep;
+        }
+        var inContact = (phase >= t0) && (phase < t1);
         // ONE expression drives the paired pool: the reaction is literally the
         // negation of the action, so an unequal pair is UNREPRESENTABLE here.
         var F = inContact ? mag : 0;
@@ -31185,6 +31287,7 @@ export const FIELD_3D_RENDERER_CODE = `
             a_string: 0,
             t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
             _ramp_last: null,     // §7.1 param_ramp churn guard, rebased on every entry
+            _po_cycle: null,      // push_off repeat_every_ms edge memo; null = adopt, never fire
             phase_fired: {}       // one-shot phase flags, reset on every state entry
         };
         for (var i = 0; i < bodies.length; i++) {
@@ -31477,6 +31580,11 @@ export const FIELD_3D_RENDERER_CODE = `
         if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
         eng._sweep_last = null;             // the idle sweep is a closed form of t_ms
         eng._ramp_last = null;              // §7.1 param_ramp is likewise a closed form of t_ms
+        // push_off repeat edge memo: null = ADOPT the current cycle on the next
+        // frame instead of firing, so a rewind can never re-enter itself and a
+        // genuine RESET_TRAJECTORY (t_ms -> 0) starts clean. nlbRunPushOff's own
+        // re-arm re-assigns it immediately AFTER calling this function.
+        eng._po_cycle = null;
         nlbLastEmitS = null;
         nlbFitRopes();
         nlbFitSpring();                     // the coil rewinds with the carts it sits between
