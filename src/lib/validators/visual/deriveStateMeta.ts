@@ -1849,7 +1849,14 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(asNum(osState.extrude_at_ms, 0) + asNum(osState.extrude_duration_ms, 2400) + 600);
         }
         if (typeof osState.bloom_at_ms === 'number') {
-            candidates.push(asNum(osState.bloom_at_ms, 0) + asNum(osState.bloom_duration_ms, 2400) + 600);
+            // bloom_offsets_ms staggers each member's own window, so the set does
+            // not settle until the LAST member's window closes. Without this the
+            // derived settle is the first member's, which under-reports a staggered
+            // assemble by the whole stagger span — and would pin THE EYE's frozen
+            // frame mid-assembly, on a state whose caption counts the finished set.
+            const offs = Array.isArray(osState.bloom_offsets_ms) ? (osState.bloom_offsets_ms as unknown[]) : [];
+            const maxOff = offs.reduce<number>((m, v) => Math.max(m, asNum(v, 0)), 0);
+            candidates.push(asNum(osState.bloom_at_ms, 0) + maxOff + asNum(osState.bloom_duration_ms, 2400) + 600);
         }
         if (typeof osState.grow_at_ms === 'number') {
             candidates.push(asNum(osState.grow_at_ms, 0) + asNum(osState.grow_duration_ms, 1800) + 600);

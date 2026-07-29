@@ -162,8 +162,8 @@
             "type": "annotation",
             "id": "s1_px_label",
             "position": {
-              "x": 180,
-              "y": 120
+              "x": 162,
+              "y": 205
             },
             "text": "2p on x",
             "color": "#FF7043"
@@ -172,21 +172,23 @@
             "type": "annotation",
             "id": "s1_ninety_label",
             "position": {
-              "x": 400,
-              "y": 250
+              "x": 162,
+              "y": 420
             },
             "text": "every angle here is 90°",
-            "color": "#FFCA28"
+            "color": "#FFCA28",
+            "at_ms": 5500
           },
           {
             "type": "annotation",
             "id": "s1_need_label",
             "position": {
-              "x": 560,
-              "y": 400
+              "x": 602,
+              "y": 330
             },
-            "text": "methane needs four identical bonds",
-            "color": "#B0BEC5"
+            "text": "so: 3 bonds at 90°, 1 left over",
+            "color": "#B0BEC5",
+            "at_ms": 11000
           }
         ],
         "misconception_watch": [
@@ -231,8 +233,8 @@
             "type": "annotation",
             "id": "s2_s_label",
             "position": {
-              "x": 190,
-              "y": 130
+              "x": 162,
+              "y": 205
             },
             "text": "the 2s is consumed",
             "color": "#4DD0E1"
@@ -241,21 +243,23 @@
             "type": "annotation",
             "id": "s2_new_shape_label",
             "position": {
-              "x": 420,
-              "y": 260
+              "x": 162,
+              "y": 420
             },
             "text": "one big lobe, one small",
-            "color": "#FFA726"
+            "color": "#FFA726",
+            "at_ms": 6000
           },
           {
             "type": "annotation",
             "id": "s2_name_label",
             "position": {
-              "x": 580,
-              "y": 410
+              "x": 602,
+              "y": 330
             },
             "text": "this is an sp hybrid",
-            "color": "#FFA726"
+            "color": "#FFA726",
+            "at_ms": 13000
           }
         ],
         "teacher_script": {
@@ -292,8 +296,8 @@
             "type": "annotation",
             "id": "s3_front_label",
             "position": {
-              "x": 400,
-              "y": 150
+              "x": 162,
+              "y": 205
             },
             "text": "87% sits on this side",
             "color": "#FFA726"
@@ -302,21 +306,23 @@
             "type": "annotation",
             "id": "s3_partner_label",
             "position": {
-              "x": 200,
-              "y": 380
+              "x": 162,
+              "y": 420
             },
             "text": "its partner points opposite",
-            "color": "#FFA726"
+            "color": "#FFA726",
+            "at_ms": 3000
           },
           {
             "type": "annotation",
             "id": "s3_reach_label",
             "position": {
-              "x": 600,
-              "y": 300
+              "x": 602,
+              "y": 330
             },
             "text": "reach beats a plain p",
-            "color": "#B0BEC5"
+            "color": "#B0BEC5",
+            "at_ms": 9000
           }
         ],
         "teacher_script": {
@@ -353,31 +359,33 @@
             "type": "annotation",
             "id": "s4_angle_label",
             "position": {
-              "x": 400,
-              "y": 160
+              "x": 162,
+              "y": 205
             },
-            "text": "three lobes, 120° apart",
+            "text": "a third p joins the mix",
             "color": "#AB47BC"
           },
           {
             "type": "annotation",
             "id": "s4_flat_label",
             "position": {
-              "x": 200,
-              "y": 400
+              "x": 162,
+              "y": 420
             },
             "text": "all in one flat plane",
-            "color": "#AB47BC"
+            "color": "#AB47BC",
+            "at_ms": 2500
           },
           {
             "type": "annotation",
             "id": "s4_count_label",
             "position": {
-              "x": 610,
+              "x": 602,
               "y": 330
             },
             "text": "one s + two p = three sp²",
-            "color": "#B0BEC5"
+            "color": "#B0BEC5",
+            "at_ms": 7000
           }
         ],
         "teacher_script": {
@@ -414,37 +422,40 @@
             "type": "annotation",
             "id": "s5_tetra_label",
             "position": {
-              "x": 400,
-              "y": 150
+              "x": 162,
+              "y": 205
             },
-            "text": "four lobes, 109.5°",
-            "color": "#26A69A"
+            "text": "the fourth lifts out",
+            "color": "#26A69A",
+            "at_ms": 9500
           },
           {
             "type": "annotation",
             "id": "s5_ghost_label",
             "position": {
-              "x": 190,
-              "y": 400
+              "x": 162,
+              "y": 420
             },
-            "text": "the 90° picture, for contrast",
-            "color": "#546E7A"
+            "text": "the 90° picture we began with",
+            "color": "#546E7A",
+            "until_ms": 6200
           },
           {
             "type": "annotation",
             "id": "s5_answer_label",
             "position": {
-              "x": 610,
+              "x": 602,
               "y": 330
             },
-            "text": "identical, and this is methane",
-            "color": "#26A69A"
+            "text": "identical — this is methane",
+            "color": "#26A69A",
+            "at_ms": 14000
           }
         ],
         "misconception_watch": [
           {
             "belief": "The four bonds of methane are still three p bonds and one s bond, just drawn differently.",
-            "visual_counter": "The four sp3 hybrids assemble from the nucleus outward and settle at 109.5 degrees, all four the same size and the same shape. The opening state's three mutually perpendicular p orbitals had three of one kind and nowhere for a fourth to go.",
+            "visual_counter": "Three sp3 hybrids settle, then the fourth visibly lifts out of their plane to 109.5 degrees. The opening state's perpendicular p orbitals then return as grey ghosts beside them: three of one kind at right angles, against four that are the same.",
             "one_line_fix": "All four sp³ hybrids are identical, which is exactly what three p plus one s could never be."
           }
         ],
@@ -452,18 +463,19 @@
           "tts_sentences": [
             {
               "id": "hyb_s5_1",
-              "text_en": "Now use all three p orbitals. One s plus three p gives four hybrids.",
+              "text_en": "The grey right-angle picture is back. Now use all three p orbitals: one s plus three p gives four hybrids.",
+              "glow": "lobe_set",
+              "scenario_cue": "ghost_fade"
+            },
+            {
+              "id": "hyb_s5_2",
+              "text_en": "Three settle, then the fourth lifts out of their plane to a hundred and nine point five degrees.",
               "glow": "lobe_set",
               "scenario_cue": "bloom"
             },
             {
-              "id": "hyb_s5_2",
-              "text_en": "The fourth cannot stay in the plane, so the set lifts into three dimensions and settles at a hundred and nine point five degrees.",
-              "glow": "lobe_set"
-            },
-            {
               "id": "hyb_s5_3",
-              "text_en": "Compare that with the right angles we started from. These four are identical, and that is methane.",
+              "text_en": "All four are identical. That is methane, and right angles could never have made it.",
               "glow": "lobe_set"
             }
           ]
@@ -482,8 +494,8 @@
             "type": "annotation",
             "id": "s6_law_label",
             "position": {
-              "x": 400,
-              "y": 150
+              "x": 162,
+              "y": 205
             },
             "text": "more s, wider angle",
             "color": "#FFEE58"
@@ -492,21 +504,23 @@
             "type": "annotation",
             "id": "s6_stops_label",
             "position": {
-              "x": 190,
-              "y": 390
+              "x": 162,
+              "y": 420
             },
             "text": "109.5° · 120° · 180° pass by",
-            "color": "#FFEE58"
+            "color": "#FFEE58",
+            "at_ms": 7000
           },
           {
             "type": "annotation",
             "id": "s6_shape_label",
             "position": {
-              "x": 615,
+              "x": 602,
               "y": 330
             },
             "text": "the shape changes with it",
-            "color": "#B0BEC5"
+            "color": "#B0BEC5",
+            "at_ms": 13000
           }
         ],
         "teacher_script": {
@@ -543,18 +557,19 @@
             "type": "annotation",
             "id": "s7_back_label",
             "position": {
-              "x": 380,
-              "y": 170
+              "x": 162,
+              "y": 205
             },
             "text": "222 pm behind the nucleus",
-            "color": "#26A69A"
+            "color": "#26A69A",
+            "at_ms": 6000
           },
           {
             "type": "annotation",
             "id": "s7_front_label",
             "position": {
-              "x": 610,
-              "y": 300
+              "x": 162,
+              "y": 420
             },
             "text": "341 pm in front",
             "color": "#26A69A"
@@ -563,11 +578,12 @@
             "type": "annotation",
             "id": "s7_split_label",
             "position": {
-              "x": 195,
-              "y": 400
+              "x": 602,
+              "y": 330
             },
             "text": "82.5% front · 17.5% back",
-            "color": "#B0BEC5"
+            "color": "#B0BEC5",
+            "at_ms": 10000
           }
         ],
         "teacher_script": {
@@ -604,8 +620,8 @@
             "type": "annotation",
             "id": "s8_dial_label",
             "position": {
-              "x": 400,
-              "y": 155
+              "x": 162,
+              "y": 205
             },
             "text": "pick a hybrid",
             "color": "#FFEE58"
@@ -614,8 +630,8 @@
             "type": "annotation",
             "id": "s8_pick_label",
             "position": {
-              "x": 195,
-              "y": 395
+              "x": 162,
+              "y": 420
             },
             "text": "or pick sp, sp², sp³",
             "color": "#B0BEC5"
@@ -624,7 +640,7 @@
             "type": "annotation",
             "id": "s8_angle_label",
             "position": {
-              "x": 612,
+              "x": 602,
               "y": 330
             },
             "text": "the angle follows",
@@ -806,7 +822,12 @@
           ],
           "spin_rate": 0,
           "controls": [],
-          "front_only": true
+          "front_only": true,
+          "bloom_offsets_ms": [
+            0,
+            1600,
+            3200
+          ]
         }
       },
       "STATE_5": {
@@ -817,7 +838,7 @@
           "orbital": "sp3",
           "enclosure": 0.5,
           "bloom_at_ms": 2500,
-          "bloom_duration_ms": 11500,
+          "bloom_duration_ms": 6500,
           "show_surface": true,
           "show_dots": false,
           "show_axes": true,
@@ -830,7 +851,20 @@
           ],
           "spin_rate": 0,
           "controls": [],
-          "front_only": true
+          "front_only": true,
+          "bloom_offsets_ms": [
+            0,
+            1200,
+            2400,
+            7000
+          ],
+          "ghost_at_ms": 0,
+          "ghost_orbitals": [
+            "2p_x",
+            "2p_z"
+          ],
+          "ghost_fade_at_ms": 2500,
+          "ghost_fade_duration_ms": 3500
         }
       },
       "STATE_6": {
@@ -933,7 +967,8 @@
           "front_only": false
         }
       }
-    }
+    },
+    "render_annotations": true
   },
   "regeneration_variants": [
     {

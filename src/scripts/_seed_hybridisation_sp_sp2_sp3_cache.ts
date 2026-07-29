@@ -31,7 +31,7 @@ async function main(): Promise<void> {
     const json = JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
     if (!json.field_3d_config) throw new Error('no field_3d_config in concept JSON');
 
-    const simHtml = assembleField3DHtml(json.field_3d_config);
+    const simHtml = assembleField3DHtml(json.field_3d_config, json.epic_l_path as never);
     console.log(`Resolved: ${resolved.path}`);
     console.log(`Assembled sim_html: ${simHtml.length} chars`);
 
