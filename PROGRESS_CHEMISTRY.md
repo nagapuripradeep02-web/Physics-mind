@@ -111,9 +111,14 @@ are 0.00%)** — a founder re-baseline call, NOT taken.
 3. **Rule 32e is inert on `gas_box` fleet-wide** — `focal_primitive_id` is authored on every state of
    every gas_box concept and `glow_focal` on none, so `dimFor()` returns 1 everywhere. Not this
    build's regression; a scar candidate.
-4. **Scar rows unfiled** (the queue's CHECK constraint still rejects `alex:chemistry_author`):
-   reaction-off truncation ⭐ · counter window too short for a rare event · `inject_cue` inert with
-   the reaction off · per-state `N` inert with it on · histogram vs slider panel.
+4. **Scar rows FILED — 18 of them** (`_seed_engine_bug_queue_collision_theory.ts`,
+   session `session_2026-07-29_collision_theory_activation_energy`). **The recorded blocker was
+   wrong**: `alex:chemistry_author` is NOT rejected by the queue's CHECK constraint — three rows
+   already carried it — so the previous session's authoring rows were parked for no reason and
+   should be re-filed too. 16 FIXED, **2 left OPEN deliberately**: `inject_cue` silently undone
+   when the reaction is off (measured ×1.00, no concept depends on it) and
+   `gas_box_glow_focal_never_authored_so_rule32e_is_inert` (fleet-wide, four concepts, founder call
+   whether to backfill and move baselines or drop the Rule-32e claim from their scene roles).
 5. **7 unpushed master commits.** No TTS (Rule 30h), no `PILOT_CONCEPTS` entry, no deploy.
 6. **Asmi's professor review — now EIGHT concepts deep**, and the stated bottleneck for five sessions.
 
