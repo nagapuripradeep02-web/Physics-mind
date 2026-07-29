@@ -43340,7 +43340,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // list is simply the verified-orthonormal direction list.
         if (orb.kind === "hybrid") {
             var dl = orb._dirsLive || orb.dirs;
-            for (k = 0; k < dl.length; k++) {
+            // members draws only the first n of the set, so a state can show ONE
+            // hybrid being born before its partners arrive (Rule 32a: the cause
+            // moves first, the consequence after a readable beat). Drawing all n
+            // from frame one would make "and there is a second one" a caption
+            // about something that never visibly happened.
+            var lim = orb._membersLive ? Math.min(orb._membersLive, dl.length) : dl.length;
+            for (k = 0; k < lim; k++) {
                 var ha = osNorm(dl[k]), hb = osBasis(ha);
                 out.push({ X: hb[0], Y: ha, Z: osCross(hb[0], ha) });
             }
@@ -43599,13 +43605,43 @@ export const FIELD_3D_RENDERER_CODE = `
     // root rho = 2c_s/(c_s - c_p) is negative for every f < 1/2, i.e. there is
     // no node behind the atom (verified before this was written). So the polar
     // sweep is the FULL pi, and the small back lobe is part of the same mesh.
-    function osHybGeometry(tab) {
+    // The WAIST: the polar angle where the surface of revolution pinches between
+    // the front and back lobes (its minimum radius). Cutting there is a real
+    // geometric operation on the real contour, not a stylisation.
+    function osHybWaistDel(tab) {
+        var N = 240, best = Math.PI, bestR = 1e9, i;
+        for (i = 0; i <= N; i++) {
+            var del = (i / N) * Math.PI;
+            var r = osHybRootAt(tab, Math.cos(del));
+            if (r < bestR) { bestR = r; best = del; }
+        }
+        return best;
+    }
+    // frontOnly draws the BIG lobe alone, cut at its own waist and capped shut at
+    // the nucleus. It exists because four full sp3 surfaces are not a picture of
+    // four hybrids: each carries a back lobe, so the union of 4 fronts + 4 backs
+    // fills space almost spherically and a student counting lobes under a caption
+    // reading "four, at 109.5 degrees" sees a fuzzy ball. That is true to the
+    // physics and useless as a diagram — the same tension the 2p contour hit, one
+    // step worse, and no camera or enclosure fixes it because the backs sit
+    // exactly in the gaps between the fronts.
+    //   This is an OMISSION, not a distortion: every vertex still stands on the
+    // orbital's own iso-density contour, nothing is shrunk or displaced (Rule 29),
+    // and the omission is DECLARED to the student rather than hidden — the state
+    // that says "textbook drawings leave off the small lobe behind the nucleus; it
+    // is really there" turns front_only off and shows exactly what the earlier
+    // states left out. Never author front_only on a state whose caption claims the
+    // whole orbital.
+    function osHybGeometry(tab, frontOnly) {
         var ND = 72, NA = 40, i, j;
         var verts = [], idx = [];
+        var span = frontOnly ? osHybWaistDel(tab) : Math.PI;
         for (i = 0; i <= ND; i++) {
-            var del = (i / ND) * Math.PI;
+            var del = (i / ND) * span;
             var cd = Math.cos(del), sd = Math.sin(del);
-            var r = osHybRootAt(tab, cd) * OS_A0 / OS_PM_PER_UNIT;
+            // the final ring of a front-only lobe collapses to the nucleus, which
+            // caps the cut instead of leaving a hollow shell open to the camera
+            var r = ((frontOnly && i === ND) ? 0 : osHybRootAt(tab, cd)) * OS_A0 / OS_PM_PER_UNIT;
             for (j = 0; j < NA; j++) {
                 var az = (j / NA) * 2 * Math.PI;
                 verts.push(sd * Math.cos(az) * r, cd * r, sd * Math.sin(az) * r);
@@ -43628,7 +43664,7 @@ export const FIELD_3D_RENDERER_CODE = `
     // profile. Every lobe of a set is the SAME shape aimed differently, so one
     // geometry is rebuilt per frame and shared by all of them -- 2880 vertices
     // once, not once per lobe.
-    function osHybMorphGeometry(geo, f) {
+    function osHybMorphGeometry(geo, f, frontOnly) {
         var rungs = OS_HYB_LADDER;
         if (!rungs || !rungs.length) return;
         var u = osClamp(f, 0, 0.5) / 0.5 * OS_HYB_LADDER_N;
@@ -43637,10 +43673,19 @@ export const FIELD_3D_RENDERER_CODE = `
         var tA = rungs[i0].tab, tB = rungs[i0 + 1].tab;
         var arr = geo.attributes.position.array;
         var ND = 72, NA = 40, i, j, n = 0;
+        // the waist MOVES as f changes (a pure p pinches at 90 deg, an sp at 107),
+        // so a front-only morph re-finds it per frame rather than cutting at a
+        // fixed angle that would slice into the lobe at one end of the sweep.
+        var span = Math.PI;
+        if (frontOnly) {
+            var wA = osHybWaistDel(tA), wB = osHybWaistDel(tB);
+            span = wA * (1 - fr) + wB * fr;
+        }
         for (i = 0; i <= ND; i++) {
-            var del = (i / ND) * Math.PI;
+            var del = (i / ND) * span;
             var cd = Math.cos(del), sd = Math.sin(del);
-            var r = (osHybRootAt(tA, cd) * (1 - fr) + osHybRootAt(tB, cd) * fr) * OS_A0 / OS_PM_PER_UNIT;
+            var r = ((frontOnly && i === ND) ? 0
+                : (osHybRootAt(tA, cd) * (1 - fr) + osHybRootAt(tB, cd) * fr)) * OS_A0 / OS_PM_PER_UNIT;
             for (j = 0; j < NA; j++) {
                 var az = (j / NA) * 2 * Math.PI;
                 arr[n++] = sd * Math.cos(az) * r; arr[n++] = cd * r; arr[n++] = sd * Math.sin(az) * r;
@@ -43930,17 +43975,20 @@ export const FIELD_3D_RENDERER_CODE = `
             lobeGeo.p[gk] = osLobeGeometry(OS_ORBITALS["2p_z"], OS_ORBITALS["2p_z"].levels[gk]);
             lobeGeo.d[gk] = osLobeGeometry(OS_ORBITALS["3d_xy"], OS_ORBITALS["3d_xy"].levels[gk]);
         }
+        lobeGeo.hf = {};
         for (var hj in OS_HYBRIDS) {
-            lobeGeo.h[hj] = {};
+            lobeGeo.h[hj] = {}; lobeGeo.hf[hj] = {};
             for (var hi2 = 0; hi2 < OS_ENCLOSURES.length; hi2++) {
                 var hk2 = OS_ENCLOSURES[hi2];
-                lobeGeo.h[hj][hk2] = osHybGeometry(OS_HYBRIDS[hj]._rootC[hk2]);
+                lobeGeo.h[hj][hk2] = osHybGeometry(OS_HYBRIDS[hj]._rootC[hk2], false);
+                lobeGeo.hf[hj][hk2] = osHybGeometry(OS_HYBRIDS[hj]._rootC[hk2], true);
             }
         }
-        // The morph ladder + the ONE shared geometry a morphing state rewrites
+        // The morph ladder + the TWO shared geometries a morphing state rewrites
         // each frame (every lobe of a set is the same shape, aimed differently).
         osBuildHybLadder();
-        lobeGeo.morph = osHybGeometry(OS_HYB_LADDER[OS_HYB_LADDER_N].tab);
+        lobeGeo.morph = osHybGeometry(OS_HYB_LADDER[OS_HYB_LADDER_N].tab, false);
+        lobeGeo.morphF = osHybGeometry(OS_HYB_LADDER[OS_HYB_LADDER_N].tab, true);
         window.PM_osLobeGeo = lobeGeo;
 
         // 1. nucleus — the one thing that never moves (Rule 32d home pose).
@@ -44462,61 +44510,27 @@ export const FIELD_3D_RENDERER_CODE = `
         if (count > 0 && primary._insideBy) occ = primary._insideBy[encKey][count] / count;
         window.PM_osOccupancy = occ;
 
-        // ── boundary surfaces. The sphere radius and every lobe vertex come
-        //    from the orbital's own 90% contour, so 2s being visibly bigger than
-        //    1s is a real magnitude, not an emphasis (Rule 29).
-        var surfAt = (os.surface_at_ms != null) ? cueTriggerMs("surface", os.surface_at_ms) : null;
-        var surfF = (surfAt == null) ? (os.show_surface ? 1 : 0) : osRamp(ms, surfAt, 900, 0, 1);
-        if (os.show_surface === false) surfF = 0;
-        var growF = (os.grow_at_ms != null) ? osRamp(ms, cueTriggerMs("grow", os.grow_at_ms), (os.grow_duration_ms != null) ? os.grow_duration_ms : 1800, 0, 1) : 1;
-
-        var sph = osFindById("os_sphere");
-        var sphOrb = null;
-        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "sphere") sphOrb = OS_ORBITALS[active[i]];
-        var sphAlpha = (typeof os.surface_opacity === "number") ? os.surface_opacity : 0.16;
-        if (sph) {
-            var sOn = !!sphOrb && surfF > 0.002;
-            sph.visible = sOn;
-            if (sOn) {
-                sph.scale.setScalar(osOuterPm(sphOrb, encKey) / OS_PM_PER_UNIT);
-                osSetColor(sph, sphOrb.color);
-                if (sph.material) sph.material.opacity = sphAlpha * surfF;
-            }
-        }
-        // lobes: pull from the shared pool, aim each along its (spun) direction.
-        var extrF = (os.extrude_at_ms != null)
-            ? osRamp(ms, cueTriggerMs("extrude", os.extrude_at_ms), (os.extrude_duration_ms != null) ? os.extrude_duration_ms : 2400, 0, 1)
-            : 1;
-        var bloomF = (os.bloom_at_ms != null)
-            ? osRamp(ms, cueTriggerMs("bloom", os.bloom_at_ms), (os.bloom_duration_ms != null) ? os.bloom_duration_ms : 2400, 0, 1)
-            : 1;
-        var ghostIds = [];
-        if (os.ghost_at_ms != null && ms >= cueTriggerMs("ghost", os.ghost_at_ms)) {
-            ghostIds = os.ghost_orbitals || ["2p_x", "2p_y"];
-        }
-        var lobeSlot = 0;
         var lobeGeo = window.PM_osLobeGeo || {};
-        // A 2p 90% boundary is genuinely PLUMP (length/width = 1.44 from the
-        // exact contour), so three of them overlaid at full opacity fuse into a
-        // single ball and the six lobes stop being countable — the occlusion
-        // failure mode, not a camera one, so no camera solve can fix it. Divide
-        // the ink by the number of shells on screen; the colour-coded dot clouds
-        // then carry the three-axis reading. surface_opacity overrides.
+
         // ── HYBRIDISATION (#13): the s-character ramp. f is the ONE physical
         //    dial of this concept — it sets each lobe's front/back asymmetry
         //    AND, through cos(theta) = -f/(1-f), the angle between the lobes.
-        //    A pure closed-form function of state-local t (Rule 26/36).
-        var hybId = null, hybF = null, hybAngle = null, hybMorphing = false;
+        //    A pure closed-form function of state-local t (Rule 26/36). Computed
+        //    BEFORE the surfaces because the s sphere's fade is driven by the
+        //    morph's own progress.
+        var hybId = null, hybF = null, hybAngle = null, hybMorphing = false, hybMorphP = 0;
         for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "hybrid") hybId = active[i];
         if (hybId) {
             var hOrb = OS_ORBITALS[hybId];
             hybF = hOrb.f;
+            hOrb._membersLive = (os.members != null) ? Math.max(1, os.members) : null;
             var mo = os.morph;
             if (mo) {
+                var mFrom = (mo.from != null) ? mo.from : 0, mTo = (mo.to != null) ? mo.to : hOrb.f;
                 hybF = osRamp(ms, cueTriggerMs("morph", (mo.at_ms != null) ? mo.at_ms : 0),
-                    (mo.duration_ms != null) ? mo.duration_ms : 2600,
-                    (mo.from != null) ? mo.from : 0, (mo.to != null) ? mo.to : hOrb.f);
+                    (mo.duration_ms != null) ? mo.duration_ms : 2600, mFrom, mTo);
                 hybMorphing = true;
+                hybMorphP = (Math.abs(mTo - mFrom) < 1e-9) ? 1 : osClamp((hybF - mFrom) / (mTo - mFrom), 0, 1);
             }
             if (ctrls.indexOf("schar") >= 0 && window.PM_osSCharDragged) {
                 hybF = osClamp(window.PM_osSChar, 0, 0.5); hybMorphing = true;
@@ -44537,10 +44551,56 @@ export const FIELD_3D_RENDERER_CODE = `
                 hOrb._dirsLive = [[0, Math.sin(halfR), Math.cos(halfR)],
                                   [0, -Math.sin(halfR), Math.cos(halfR)]];
             } else hOrb._dirsLive = null;
-            if (hybMorphing && lobeGeo.morph) osHybMorphGeometry(lobeGeo.morph, hybF);
+            if (hybMorphing) {
+                var mg = os.front_only ? lobeGeo.morphF : lobeGeo.morph;
+                if (mg) osHybMorphGeometry(mg, hybF, !!os.front_only);
+            }
         }
         window.PM_osHybF = hybF; window.PM_osHybAngle = hybAngle;
 
+        // ── boundary surfaces. The sphere radius and every lobe vertex come
+        //    from the orbital's own 90% contour, so 2s being visibly bigger than
+        //    1s is a real magnitude, not an emphasis (Rule 29).
+        var surfAt = (os.surface_at_ms != null) ? cueTriggerMs("surface", os.surface_at_ms) : null;
+        var surfF = (surfAt == null) ? (os.show_surface ? 1 : 0) : osRamp(ms, surfAt, 900, 0, 1);
+        if (os.show_surface === false) surfF = 0;
+        var growF = (os.grow_at_ms != null) ? osRamp(ms, cueTriggerMs("grow", os.grow_at_ms), (os.grow_duration_ms != null) ? os.grow_duration_ms : 1800, 0, 1) : 1;
+
+        var sph = osFindById("os_sphere");
+        var sphOrb = null;
+        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "sphere") sphOrb = OS_ORBITALS[active[i]];
+        var sphAlpha = (typeof os.surface_opacity === "number") ? os.surface_opacity : 0.16;
+        if (sph) {
+            var sOn = !!sphOrb && surfF > 0.002;
+            sph.visible = sOn;
+            if (sOn) {
+                sph.scale.setScalar(osOuterPm(sphOrb, encKey) / OS_PM_PER_UNIT);
+                osSetColor(sph, sphOrb.color);
+                // During a hybrid morph the s orbital is being CONSUMED by the
+                // mix, so it fades on the morph's own progress rather than on a
+                // second authored timer that could drift out of step with it.
+                // Rule 29 is untouched: the sphere never changes SIZE, only ink.
+                if (sph.material) sph.material.opacity = sphAlpha * surfF * (1 - hybMorphP);
+            }
+        }
+        // lobes: pull from the shared pool, aim each along its (spun) direction.
+        var extrF = (os.extrude_at_ms != null)
+            ? osRamp(ms, cueTriggerMs("extrude", os.extrude_at_ms), (os.extrude_duration_ms != null) ? os.extrude_duration_ms : 2400, 0, 1)
+            : 1;
+        var bloomF = (os.bloom_at_ms != null)
+            ? osRamp(ms, cueTriggerMs("bloom", os.bloom_at_ms), (os.bloom_duration_ms != null) ? os.bloom_duration_ms : 2400, 0, 1)
+            : 1;
+        var ghostIds = [];
+        if (os.ghost_at_ms != null && ms >= cueTriggerMs("ghost", os.ghost_at_ms)) {
+            ghostIds = os.ghost_orbitals || ["2p_x", "2p_y"];
+        }
+        var lobeSlot = 0;
+        // A 2p 90% boundary is genuinely PLUMP (length/width = 1.44 from the
+        // exact contour), so three of them overlaid at full opacity fuse into a
+        // single ball and the six lobes stop being countable — the occlusion
+        // failure mode, not a camera one, so no camera solve can fix it. Divide
+        // the ink by the number of shells on screen; the colour-coded dot clouds
+        // then carry the three-axis reading. surface_opacity overrides.
         var lobedCount = 0;
         for (i = 0; i < active.length; i++) {
             var lcOrb = OS_ORBITALS[active[i]];
@@ -44560,8 +44620,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 var lb = osFindById("os_lobe_" + lobeSlot);
                 lobeSlot++;
                 if (!lb) continue;
+                var hPool = os.front_only ? lobeGeo.hf : lobeGeo.h;
                 var geo = (orb.kind === "hybrid")
-                    ? (hybMorphing ? lobeGeo.morph : (lobeGeo.h[orbId] && lobeGeo.h[orbId][encKey]))
+                    ? (hybMorphing ? (os.front_only ? lobeGeo.morphF : lobeGeo.morph)
+                                   : (hPool[orbId] && hPool[orbId][encKey]))
                     : (orb.l === 2) ? lobeGeo.d[encKey] : lobeGeo.p[encKey];
                 if (geo && lb.geometry !== geo) lb.geometry = geo;
                 lb.visible = opacity > 0.004 && growth > 0.02;
@@ -44580,7 +44642,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var aOrb = OS_ORBITALS[active[i]];
             if (aOrb.kind !== "lobes" && aOrb.kind !== "hybrid") continue;
             var gth = extrF;
-            if (aOrb.l === 2 && os.bloom_at_ms != null) gth = bloomF;
+            // the bloom beat drives the d clover AND every hybrid set: a hybrid
+            // has no l field, so gating on l === 2 alone silently made bloom_at_ms a
+            // no-op for hybrids — the lobes appeared at full size on frame one
+            // while the narration described a set assembling.
+            if ((aOrb.l === 2 || aOrb.kind === "hybrid") && os.bloom_at_ms != null) gth = bloomF;
             if (os.grow_at_ms != null) gth = Math.min(gth, growF);
             osPlaceLobes(active[i], gth, lobeAlpha * surfF, false);
         }

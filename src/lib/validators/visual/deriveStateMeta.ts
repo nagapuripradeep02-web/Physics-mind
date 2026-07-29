@@ -1861,6 +1861,16 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (probeAuto && typeof probeAuto.at_ms === 'number') {
             candidates.push(asNum(probeAuto.at_ms, 0) + asNum(probeAuto.duration_ms, 4000) + 600);
         }
+        // morph (HYBRIDISATION, #13): the s-character ramp. It is a one-shot
+        // closed-form ramp that then HOLDS, exactly like extrude/bloom above — the
+        // dumbbell becomes a hybrid, or the pair's angle opens 90° → 180° — so the
+        // frozen frame must be pinned PAST it or THE EYE photographs a half-morphed
+        // shape whose live angle readout disagrees with the state's own caption.
+        // No shipped concept authors `morph`, so adding it moves no baseline.
+        const osMorph = asObj(osState.morph);
+        if (osMorph && typeof osMorph.at_ms === 'number') {
+            candidates.push(asNum(osMorph.at_ms, 0) + asNum(osMorph.duration_ms, 2600) + 600);
+        }
         for (const key of ['populate_steps', 'gallery_steps']) {
             const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];
             for (const rawStep of steps) {
