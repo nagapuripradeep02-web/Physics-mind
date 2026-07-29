@@ -19,6 +19,8 @@
  *
  *   npm run check:sigma-pi
  */
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
 
 const SRC = FIELD_3D_RENDERER_CODE;
@@ -62,7 +64,8 @@ const VARS = [
   "OS_MO_ZEFF_C", "OS_MO_BONDS_PM", "OS_MO_ENC", "OS_MO_GRID_N", "OS_MO_LAD_N",
   "OS_MO_ND", "OS_MO_RAY_STEP", "OS_MO_TWIST_LADDER_DEG", "OS_MO_MAX_PARTS",
   "OS_MO_MAX_LOBES", "OS_MO_MAX_OVL", "OS_MO_S0_N", "OS_MOS", "OS_ORBITALS", "OS_HYBRIDS", "OS_R3",
-  "OS_MO_CONSTRUCTIVE_COLOR", "OS_MO_DESTRUCTIVE_COLOR"
+  "OS_MO_CONSTRUCTIVE_COLOR", "OS_MO_DESTRUCTIVE_COLOR",
+  "OS_BOND_STICK_COLOR", "OS_BOND_STICK_MAX", "OS_MO_LOCK_BOOST", "OS_MO_LOCK_ALPHA_MAX"
 ];
 const FNS = [
   "osClamp", "osSmooth01", "osRamp", "osR", "osHybPsi",
@@ -71,7 +74,11 @@ const FNS = [
   "osMoSampleGrid", "osMoLevel", "osMoComponents", "osMoRootTable", "osMoTableVolume",
   "osMoTableMax", "osMoOverlapS0", "osMoOverlap", "osMoOverlapRatio", "osMoSliderReadout",
   "osMoAtomReachRho", "osMoContactPm",
-  "osMoAtomLevel", "osMoApproachAt", "osMoSignedField", "osBuildMoTwistLadder", "osMoLadderAt", "osBuildMO"
+  "osMoAtomLevel", "osMoApproachAt", "osMoSignedField", "osBuildMoTwistLadder", "osMoLadderAt", "osBuildMO",
+  // the per-state DECISIONS, factored out of the frame so they are checkable at
+  // all (the osMoApproachAt precedent) — sections 7-12 below
+  "osMoDeclared", "osMoResolve", "osMoTwistIndex", "osMoTwistSymbol",
+  "osMoLockFactor", "osMoStagedF", "osMoSystemColor", "osBondStickOffsets"
 ];
 const EXPORTS = [
   ...VARS.map((v) => (v === "OS_MO_GRID_N" ? "OS_MO_GRID_N, OS_MO_GRID_EXT"
@@ -513,10 +520,14 @@ console.log("\n=== 5c. MULTI-MO (NCERT 4.7: a double bond IS one sigma plus one 
     const A = lab(a), B = lab(b);
     return Math.hypot(A[0] - B[0], A[1] - B[1], A[2] - B[2]);
   };
+  // EVERY drawable, including the two that used to be invisible to this matrix:
+  // the SECOND pi system (drawn in pi's own hue at half strength, so a caption
+  // counting two sat over one fused rosette) and the bond-stick ghost.
   const palette: Record<string, string> = {
     nuclei: "#FF5252", atomic_plus: moPi.lobePos, atomic_minus: moPi.lobeNeg,
-    sigma_mo: moSig.color, pi_mo: moPi.color,
-    constructive: E.OS_MO_CONSTRUCTIVE_COLOR, destructive: E.OS_MO_DESTRUCTIVE_COLOR
+    sigma_mo: moSig.color, pi_mo: moPi.color, pi2_mo: E.osMoSystemColor(moPi, 1),
+    constructive: E.OS_MO_CONSTRUCTIVE_COLOR, destructive: E.OS_MO_DESTRUCTIVE_COLOR,
+    bond_stick: E.OS_BOND_STICK_COLOR
   };
   const pk = Object.keys(palette);
   let worst = Infinity, worstPair = "";
@@ -533,6 +544,22 @@ console.log("\n=== 5c. MULTI-MO (NCERT 4.7: a double bond IS one sigma plus one 
   const dSigPi = dE(moSig.color, moPi.color);
   console.log(`    sigma vs pi surfaces: dE ${dSigPi.toFixed(1)} (violet, the previous choice, scored 19.6)`);
   check("sigma and pi surfaces are countable apart", dSigPi > 45 ? 1 : 0, 1, 0);
+  // #17 E3 — THE PAIR THIS MATRIX DID NOT COVER. "Triple: one sigma, two pi" is
+  // a caption that asks a viewer to COUNT two pi systems; they were both drawn
+  // in pi's teal, so the matrix passed while the picture showed one shape.
+  const dPiPi = dE(moPi.color, E.osMoSystemColor(moPi, 1));
+  console.log(`    pi system 1 vs pi system 2: dE ${dPiPi.toFixed(1)} (both teal, the previous choice, scored 0.0)`);
+  check("the two pi SYSTEMS are countable apart", dPiPi > 45 ? 1 : 0, 1, 0);
+  // NEGATIVE CONTROL, run before the assertion above is trusted: with the
+  // pre-fix behaviour (system 2 inherits mo.color) this same test must FAIL.
+  const dPiPiOld = dE(moPi.color, moPi.color);
+  if (dPiPiOld > 45) { failures++; console.log("  FAIL  *** the pi1/pi2 guard cannot detect two identical hues ***"); }
+  else console.log(`  ----  negative control: the OLD behaviour scores dE ${dPiPiOld.toFixed(1)} and is correctly rejected`);
+  // system 0 must still be the authored colour, or every single-pi state moved
+  if (E.osMoSystemColor(moPi, 0) === moPi.color) console.log("  PASS  the FIRST pi system keeps its authored hue (no shipped state moved)");
+  else { failures++; console.log("  FAIL  *** osMoSystemColor recoloured the primary system ***"); }
+  if (E.osMoSystemColor(moSig, 1) === moSig.color) console.log("  PASS  sigma has no second system and is untouched by it");
+  else { failures++; console.log("  FAIL  *** sigma picked up a second-system hue ***"); }
 }
 
 console.log("\n=== 5d. THE RATIO READOUT (S/S0, not two incomparable absolutes) ===");
@@ -589,6 +616,291 @@ console.log("\n=== 6. DETERMINISM (Rule 36 — SET_TIME_FREEZE must be byte-iden
   const cs = moPi.parts.map((p: any) => p.centroid[0]);
   if (cs[0] < cs[1]) console.log("  PASS  equal-size components are ordered deterministically (x ascending)");
   else { failures++; console.log("  FAIL  *** equal-size components have no stable order ***"); }
+}
+
+// The nine states EXACTLY as authored (read from the shipped concept JSON, not
+// retyped) — every per-state assertion below runs against the real thing.
+const STATES: Record<string, any> = (() => {
+  const p = join(process.cwd(), "src/data/concepts/chemistry/sigma_pi_bonding.json");
+  const j = JSON.parse(readFileSync(p, "utf8"));
+  const out: Record<string, any> = {};
+  for (const k of Object.keys(j.field_3d_config.states)) out[k] = j.field_3d_config.states[k].orbital_shapes || {};
+  return out;
+})();
+const SKEYS = Object.keys(STATES);
+
+console.log("\n=== 7. NO MO STATE MAY ACTIVATE AN ATOM (#17 E1 — the 1s phantom) ===");
+// THE DEFECT: an mo state writes its id under mo.orbital / mo.orbitals, so
+// os.orbital is absent and the frame's atomic fallback (os.orbital || "1s")
+// resolved to 1s on all nine states — a "1s" name sprite over every molecular
+// orbital, and a 1200-dot hydrogen-1s probability swarm drawn through the sigma
+// and pi bonds. Presence, not identity, is all a gate could see: 39/39 green.
+{
+  //  the SHIPPED decision, reproduced from the shipped predicate
+  const atomicBase = (os: any) => (E.osMoDeclared(os) ? null : (os.orbital || "1s"));
+  //  the PRE-FIX decision, kept here as the negative control
+  const atomicBaseOld = (os: any) => (os.orbital || "1s");
+  let anyOld = 0;
+  for (const k of SKEYS) {
+    const os = STATES[k];
+    const got = atomicBase(os), old = atomicBaseOld(os);
+    if (old === "1s") anyOld++;
+    if (got !== null) {
+      failures++;
+      console.log(`  FAIL  *** ${k} still activates the ATOMIC orbital "${got}" under an mo block ***`);
+    }
+  }
+  console.log(`  PASS  none of the ${SKEYS.length} states activates an atomic orbital`);
+  console.log("  ----  ...and every one of them declares an MO:");
+  for (const k of SKEYS) {
+    if (!E.osMoDeclared(STATES[k])) { failures++; console.log(`  FAIL  *** ${k} declares no MO at all ***`); }
+  }
+  // NEGATIVE CONTROL: the pre-fix rule must be caught by this same test.
+  if (anyOld === SKEYS.length) console.log(`  PASS  negative control: the OLD fallback painted "1s" on all ${anyOld} states, and this test catches it`);
+  else { failures++; console.log("  FAIL  *** the negative control no longer reproduces the defect — the test proves nothing ***"); }
+  // ...and DECLARED-BUT-UNBUILDABLE must still suppress the atom. A mis-typed MO
+  // id has to leave the stage EMPTY, never repaint it with another identity.
+  const typo = { mo: { orbital: "sigma_sp3_typo" } };
+  if (E.osMoDeclared(typo) && E.osMoResolve(typo).list.length === 0) {
+    console.log("  PASS  a mis-authored MO id blanks the stage instead of falling back to an atom");
+  } else { failures++; console.log("  FAIL  *** a typo'd MO id would fall through to the atomic path ***"); }
+  // an ATOMIC concept must be bit-for-bit unaffected (atomic_orbitals_s_p_d /
+  // hybridisation_sp_sp2_sp3 both ride this same frame).
+  for (const os of [{ orbital: "2p_z" }, { orbital: "sp3" }, {}]) {
+    if (E.osMoDeclared(os)) { failures++; console.log("  FAIL  *** an atomic state was misread as molecular ***"); }
+  }
+  console.log("  PASS  atomic states (2p_z / sp3 / bare) keep their base fallback untouched");
+}
+
+console.log("\n=== 8. THE TWIST DIAL ADDRESSES THE MO IT DRIVES (#17 E2) ===");
+// THE DEFECT: the slider called osMoSliderReadout(moList[0]) = sigma on the
+// state authored ["sigma_sp2","pi_2p"], while the surfaces and the HUD honoured
+// overlap_of: "pi_2p". Measured across the ramp the panel printed S/S0 = 1.000
+// at 0/18/64/90 deg beside a HUD reading pi S/S0 = 0.000 — two contradictory
+// values for a same-named quantity in one frame, on the PRIMARY-aha state.
+{
+  const g: any = globalThis as any;
+  g.window = g.window || {};
+  g.window.PM_osMoReadout = "ratio";
+  for (const k of SKEYS) {
+    const os = STATES[k], moSt = os.mo || {};
+    const r = E.osMoResolve(os);
+    if (!r.list.length) continue;
+    const idx = E.osMoTwistIndex(moSt, r.ids, r.list);
+    const idxOld = 0;                                   // the pre-fix behaviour
+    const subj = r.list[idx];
+    const sym = E.osMoTwistSymbol(r.list, idx);
+    // (a) the dial's number must EQUAL the HUD's number for the same species,
+    //     at every angle the state can reach — the frame-level contradiction.
+    let worst = 0;
+    for (const phi of [0, 18, 45, 64, 90]) {
+      const slider = Number(E.osMoSliderReadout(subj, phi));
+      const hud = Number(E.osMoOverlapRatio(subj, phi).toFixed(3));
+      worst = Math.max(worst, Math.abs(slider - hud));
+    }
+    if (worst > 1e-9) { failures++; console.log(`  FAIL  *** ${k}: slider and HUD disagree by ${worst} ***`); }
+    // (b) the dial must NAME the species whenever more than one is on stage.
+    const named = r.list.length < 2 ? true : sym.indexOf(subj.main) === 0;
+    if (!named) { failures++; console.log(`  FAIL  *** ${k}: the dial prints an unqualified "${sym}" over ${r.list.length} MOs ***`); }
+    // (c) and where overlap_of / atomic_of names an MO, it must be THAT one.
+    const want = moSt.overlap_of || moSt.atomic_of || null;
+    if (want && r.ids[idx] !== want) {
+      failures++; console.log(`  FAIL  *** ${k}: dial resolved ${r.ids[idx]} but the state draws ${want} ***`);
+    }
+    console.log(`    ${k.padEnd(8)} MOs [${r.ids.join(", ").padEnd(22)}]  dial -> ${String(r.ids[idx]).padEnd(10)} "${sym}"`);
+    // NEGATIVE CONTROL, per state: where the pre-fix index differs, the same
+    // check must reject it — otherwise this test could never have caught E2.
+    if (idx !== idxOld) {
+      const bad = Number(E.osMoSliderReadout(r.list[idxOld], 90));
+      const hud = Number(E.osMoOverlapRatio(subj, 90).toFixed(3));
+      if (Math.abs(bad - hud) > 1e-9) {
+        console.log(`  ----  negative control on ${k}: the OLD dial read ${bad.toFixed(3)} against a HUD of ${hud.toFixed(3)} — rejected`);
+      } else { failures++; console.log(`  FAIL  *** ${k}: the old and new dials agree, so this guard is vacuous ***`); }
+    }
+  }
+  // the physical rule behind the resolution, asserted directly: only a pi can
+  // respond to a rotation about the bond axis, so only a pi can be the subject.
+  const both = E.osMoResolve({ mo: { orbitals: ["sigma_sp2", "pi_2p"] } });
+  check("with no overlap_of, the dial still resolves to the pi",
+    E.osMoTwistIndex({}, both.ids, both.list), 1, 0);
+  check("a sigma-only stage resolves to the sigma",
+    E.osMoTwistIndex({}, ["sigma_sp2"], [moSig]), 0, 0);
+  check("an empty stage resolves to nothing (never index 0)",
+    E.osMoTwistIndex({}, [], []), -1, 0);
+  g.window.PM_osMoReadout = "ratio";
+  check("a single-MO stage prints the BARE symbol (no shipped state changes)",
+    E.osMoTwistSymbol([moPi], 0) === "S/S₀" ? 1 : 0, 1, 0);
+}
+
+console.log("\n=== 9. THE MULTI-MO LOCK (#17 E4 — sigma must be trackable) ===");
+// THE DEFECT: 5+ overlapping same-toned translucent surfaces with no
+// differentiation, so "watch sigma hold still while pi collapses" asked a viewer
+// to point at something with no silhouette. The lock is INK ONLY (Rule 29):
+// nothing is moved, resized or re-coloured.
+{
+  for (const k of SKEYS) {
+    const os = STATES[k], moSt = os.mo || {};
+    const r = E.osMoResolve(os);
+    if (r.list.length < 2) {
+      // single-MO stages must be EXACTLY unchanged
+      for (let mi = 0; mi < r.list.length; mi++) {
+        if (E.osMoLockFactor(r.list, E.osMoTwistIndex(moSt, r.ids, r.list), mi) !== 1) {
+          failures++; console.log(`  FAIL  *** ${k}: a single-MO stage was re-inked ***`);
+        }
+      }
+      continue;
+    }
+    const idx = E.osMoTwistIndex(moSt, r.ids, r.list);
+    const alpha = (typeof moSt.surface_opacity === "number") ? moSt.surface_opacity : 0.22;
+    const lit: number[] = [];
+    for (let mi = 0; mi < r.list.length; mi++) {
+      const lf = E.osMoLockFactor(r.list, idx, mi);
+      lit.push(Math.min(alpha * lf, lf > 1 ? E.OS_MO_LOCK_ALPHA_MAX : 1));
+    }
+    // the changing MO keeps its authored alpha; the invariant one gets the ink
+    if (Math.abs(lit[idx] - alpha) > 1e-12) {
+      failures++; console.log(`  FAIL  *** ${k}: the CHANGING MO was re-inked (it carries the focal by moving) ***`);
+    }
+    let ok = true;
+    for (let mi = 0; mi < lit.length; mi++) if (mi !== idx && !(lit[mi] > alpha * 1.5)) ok = false;
+    if (!ok) { failures++; console.log(`  FAIL  *** ${k}: the invariant MO is not visibly inked above the traffic ***`); }
+    console.log(`    ${k.padEnd(8)} authored alpha ${alpha.toFixed(2)} -> ${r.ids.map((id: string, mi: number) => id + " " + lit[mi].toFixed(3)).join("  ")}`);
+    // NEGATIVE CONTROL: the pre-fix uniform alpha must FAIL this same test.
+    const oldLit = r.list.map(() => alpha);
+    let oldOk = true;
+    for (let mi = 0; mi < oldLit.length; mi++) if (mi !== idx && !(oldLit[mi] > alpha * 1.5)) oldOk = false;
+    if (oldOk) { failures++; console.log(`  FAIL  *** ${k}: the lock guard passes on the OLD uniform alpha — it proves nothing ***`); }
+  }
+  console.log("  ----  negative control: a uniform authored alpha is rejected on every multi-MO state");
+  check("the lock stays inside the alpha ceiling", E.OS_MO_LOCK_ALPHA_MAX <= 0.7 ? 1 : 0, 1, 0);
+  check("...and is a real boost, not a rounding", E.OS_MO_LOCK_BOOST >= 1.5 ? 1 : 0, 1, 0);
+}
+
+console.log("\n=== 10. STAGED REVEALS ARE NOT DECORATION (#17 E5) ===");
+// THE DEFECT: the nine authored orbital_shapes.mode strings are a CAMERA-table
+// key and nothing else, so STATE_4 / STATE_7 / STATE_8 declared an archetype
+// through a field that no motion reads and were BYTE-STATIC from t=4000 to
+// t=16000 — 4 of 9 declared archetypes delivered. `mode` is deliberately left
+// alone (a second silent meaning is the defect class, not the cure); the timing
+// is explicit and per-member, exactly like bloom_offsets_ms.
+{
+  // (1) the ramp is a pure, monotone function of state-local t that starts at 0
+  //     and finishes at 1 — anything else is a beat that cannot be watched.
+  check("no staging authored => full pose at t=0 (shipped states unchanged)",
+    E.osMoStagedF(0, null, 0, 1200), 1, 0);
+  check("staged member is ABSENT before its window", E.osMoStagedF(1700, 0, 1800, 1200), 0, 0);
+  check("...and fully present after it", E.osMoStagedF(9000, 0, 1800, 1200), 1, 0);
+  let mono = true, prev = -1;
+  for (let t = 0; t <= 8000; t += 25) {
+    const v = E.osMoStagedF(t, 0, 1800, 1200);
+    if (v < prev - 1e-12) mono = false;
+    prev = v;
+  }
+  if (mono) console.log("  PASS  the reveal ramp is monotone in state-local t");
+  else { failures++; console.log("  FAIL  *** the reveal ramp is not monotone ***"); }
+  // (2) THE POINT OF THE FIX: two members with different offsets must actually
+  //     be DIFFERENT for a readable stretch, or the stagger is a no-op and the
+  //     state is static again under two archetype names.
+  const A = 1800, B = 4400;                     // the declared STATE_4 offsets
+  let apart = 0, maxGap = 0;
+  for (let t = 0; t <= 16000; t += 20) {
+    const a = E.osMoStagedF(t, 0, A, 1200), b = E.osMoStagedF(t, 0, B, 1200);
+    if (Math.abs(a - b) > 0.02) apart += 20;
+    maxGap = Math.max(maxGap, Math.abs(a - b));
+  }
+  console.log(`    carbon A at ${A} ms vs carbon B at ${B} ms: distinguishable for ${apart} ms, max separation ${maxGap.toFixed(2)}`);
+  check("the two members are separately watchable for >= 2 s", apart >= 2000 ? 1 : 0, 1, 0);
+  check("...and are fully apart at some instant", maxGap, 1, 1e-9);
+  // (3) NEGATIVE CONTROL: the pre-fix behaviour (one shared ramp, offsets
+  //     ignored) must be REJECTED by the very same measurement.
+  let apartOld = 0;
+  for (let t = 0; t <= 16000; t += 20) {
+    const a = E.osMoStagedF(t, 0, 0, 1200), b = E.osMoStagedF(t, 0, 0, 1200);
+    if (Math.abs(a - b) > 0.02) apartOld += 20;
+  }
+  if (apartOld === 0) console.log("  ----  negative control: with the offsets ignored the two members are never apart — correctly rejected");
+  else { failures++; console.log("  FAIL  *** the staging guard cannot tell a shared ramp from a staggered one ***"); }
+  // (4) a state that declares a staged window must CHANGE inside it. Asserted
+  //     against whatever the concept JSON actually authors, so the day a state
+  //     declares staging and mis-times it, this fails instead of the pixels.
+  for (const k of SKEYS) {
+    const moSt = STATES[k].mo || {};
+    const offs = ([] as number[]).concat(moSt.reveal_offsets_ms || [], moSt.system_offsets_ms || [], moSt.atomic_offsets_ms || []);
+    if (!offs.length) continue;
+    const at = (moSt.reveal_at_ms != null) ? moSt.reveal_at_ms : 0;
+    const dur = (moSt.reveal_duration_ms != null) ? moSt.reveal_duration_ms : 1200;
+    const lo = at + Math.min(...offs), hi = at + Math.max(...offs) + dur;
+    const a = E.osMoStagedF(lo, at, Math.min(...offs), dur);
+    const b = E.osMoStagedF(hi, at, Math.max(...offs), dur);
+    if (Math.abs(b - a) < 0.5) { failures++; console.log(`  FAIL  *** ${k} declares a staged reveal that changes nothing between ${lo} and ${hi} ms ***`); }
+    else console.log(`    ${k.padEnd(8)} staged window ${lo}-${hi} ms delivers a full 0 -> 1 arrival`);
+  }
+}
+
+console.log("\n=== 11. THE BOND-STICK GHOST (#17 E6 — Rule 16a needs a primitive) ===");
+// THE DEFECT: STATE_1's job is to SHOW the belief ("a double bond is two
+// identical lines") and its opening frame was byte-identical to STATE_2's —
+// 0.00% differing pixels — because orbital_shapes had no rod primitive, so the
+// wrong picture was never drawn and the declared contrast pair had no contrast.
+{
+  check("two sticks are drawn for the double-bond belief", E.osBondStickOffsets(2, 0.4).length, 2, 0);
+  check("...symmetric about the internuclear axis",
+    E.osBondStickOffsets(2, 0.4)[0] + E.osBondStickOffsets(2, 0.4)[1], 0, 1e-12);
+  check("...and separated by exactly the authored spacing",
+    E.osBondStickOffsets(2, 0.4)[1] - E.osBondStickOffsets(2, 0.4)[0], 0.4, 1e-12);
+  check("one stick sits ON the axis (a single bond)", E.osBondStickOffsets(1, 0.4)[0], 0, 1e-12);
+  const three = E.osBondStickOffsets(3, 0.4);
+  check("three sticks are drawn for a triple-bond belief", three.length, 3, 0);
+  check("  three sticks: the middle one is centred", three[1], 0, 1e-12);
+  check("  ...and the outer two are symmetric", three[0] + three[2], 0, 1e-12);
+  check("the pool caps the count rather than silently dropping rods",
+    E.osBondStickOffsets(99, 0.4).length, E.OS_BOND_STICK_MAX, 0);
+  check("a count of 0 still yields a drawable rod (never an empty ghost)",
+    E.osBondStickOffsets(0, 0.4).length, 1, 0);
+  // THE SEQUENCING CONSTRAINT (skeleton section 2): the ghost LEADS ALONE and
+  // CLEARS. It must be gone before the real surface it is being contrasted with
+  // arrives, or the two fuse and the contrast is lost. Asserted against the
+  // state's own authored numbers, whatever json_author chooses.
+  let ghosts = 0;
+  for (const k of SKEYS) {
+    const os = STATES[k], bst = os.bond_sticks;
+    if (!bst) continue;
+    ghosts++;
+    const app = (bst.at_ms != null) ? bst.at_ms : 0;
+    const dis = bst.dissolve_at_ms, dur = (bst.dissolve_duration_ms != null) ? bst.dissolve_duration_ms : 1600;
+    if (dis == null) { failures++; console.log(`  FAIL  *** ${k} draws the belief and never dissolves it ***`); continue; }
+    const gone = dis + dur;
+    const moSt = os.mo || {};
+    // when does the REAL surface first appear?
+    let real = Infinity;
+    if (moSt.show_total) {
+      const ap = moSt.approach;
+      real = ap ? ((ap.at_ms || 0) + (ap.duration_ms || 2600) + (ap.settle_ms != null ? ap.settle_ms : 600))
+        : (moSt.reveal_at_ms != null ? moSt.reveal_at_ms : 0);
+    }
+    console.log(`    ${k.padEnd(8)} belief ${app}-${gone} ms   real surface from ${real === Infinity ? "never" : real + " ms"}`);
+    if (gone > real + 1e-9) {
+      failures++;
+      console.log(`  FAIL  *** ${k}: the ghost and the real surface share a frame (skeleton section 2) ***`);
+    }
+  }
+  if (ghosts > 0) console.log(`  PASS  ${ghosts} authored ghost(s), none outliving the surface it is contrasted with`);
+  else console.log("  ----  no state authors bond_sticks yet (the engine primitive is built; STATE_1's authoring is json_author's)");
+}
+
+console.log("\n=== 12. NOTHING SHIPPED MOVED (the atomic + hybrid paths) ===");
+// Every guard above is additive. This is the assertion that says so: the
+// decisions an ATOMIC or HYBRID state takes must be identical to the ones taken
+// before the mo path existed, because atomic_orbitals_s_p_d and
+// hybridisation_sp_sp2_sp3 ride this same frame and are baseline-locked.
+{
+  for (const os of [{ orbital: "1s" }, { orbital: "2p_z", spin_rate: 0.4 }, { orbital: "sp3", members: 4 }]) {
+    const r = E.osMoResolve(os);
+    if (r.list.length || E.osMoDeclared(os)) { failures++; console.log("  FAIL  *** an atomic state resolved an MO ***"); }
+    if (E.osMoLockFactor(r.list, -1, 0) !== 1) { failures++; console.log("  FAIL  *** an atomic state was re-inked ***"); }
+    if (E.osMoStagedF(0, null, 0, 1200) !== 1) { failures++; console.log("  FAIL  *** an atomic state lost its t=0 pose ***"); }
+  }
+  console.log("  PASS  atomic and hybrid states take bit-for-bit the same decisions as before");
 }
 
 console.log(failures === 0

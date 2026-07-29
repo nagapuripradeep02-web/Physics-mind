@@ -43840,9 +43840,28 @@ export const FIELD_3D_RENDERER_CODE = `
     // reinforce-green and cancel-magenta, and neither touches the nuclei's red.
     var OS_MO_CONSTRUCTIVE_COLOR = "#66BB6A";
     var OS_MO_DESTRUCTIVE_COLOR = "#EC407A";
+    // The BOND-STICK ghost (#17 E6): the believed picture — "a double bond is two
+    // identical lines". Deliberately the same neutral grey family as the Bohr
+    // orbit prop, which is this scenario\\u0027s established colour for a WRONG
+    // picture that is about to dissolve, so a viewer never mistakes it for a
+    // measured object. Cleared against the whole palette by check:sigma-pi.
+    var OS_BOND_STICK_COLOR = "#B0BEC5";
+    var OS_BOND_STICK_MAX = 4;          // a triple-bond belief is 3; 4 is headroom
+    // MULTI-MO INK (#17 E4). On a stage carrying more than one MO exactly one of
+    // them is the thing that CHANGES; every other one is the thing a viewer has
+    // to keep pointing at while it changes ("watch sigma hold still while pi
+    // collapses"). At a uniform authored alpha the invariant surface is the
+    // FAINTEST thing on a stack of five translucent shells and is not a locatable
+    // object at all — the caption asks the viewer to track something that has no
+    // silhouette. The invariant MO is therefore INKED (a brightness change,
+    // Rule 29 — nothing is moved, shrunk or re-coloured) and composited LAST so
+    // it survives the blend. Single-MO stages are untouched by construction.
+    var OS_MO_LOCK_BOOST = 2.0;
+    var OS_MO_LOCK_ALPHA_MAX = 0.55;
     var OS_MOS = {
         "sigma_sp2": { kind: "mo", overlap: "sigma", n: 2, main: "\\u03C3", sub: "",
                        color: "#AB47BC", lobePos: "#42A5F5", lobeNeg: "#FFCA28",
+                       axis: [0, 0, 1],
                        f: 1 / 3, bond: "double", zEff: OS_MO_ZEFF_C, seed: 0x51EDA },
         // THE PI MO SURFACE HAS MOVED TWICE, both times because a measurement
         // said so, and the second move is why it is TEAL rather than violet:
@@ -43859,8 +43878,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // nuclei-vs-cancelling (two shipped reds, not free to move) and
         // check:sigma-pi asserts the whole matrix against it, so a future colour
         // edit cannot quietly re-fuse two objects a state has to count.
+        // color2 is the SECOND pi system of a triple bond (#17 E3). Both systems
+        // are the same kind of bond, so the first build drew both in pi's own
+        // teal at HALF opacity each — and they fused into one teal rosette under
+        // a caption reading "Triple: one sigma, two pi". That is the shipped
+        // uniform_translucent_same_family_surfaces_fuse scar, in a new place: the
+        // count a caption asserts must be countable in the pixels. Orange is not
+        // a taste choice — it is 106.2 dE from teal, the largest separation any
+        // remaining hue could give against a palette that already holds red,
+        // blue, amber, purple, green and magenta, and it still clears the whole
+        // matrix at the shipped 30.9 floor (check:sigma-pi section 5c).
         "pi_2p":     { kind: "mo", overlap: "pi", n: 2, main: "\\u03C0", sub: "",
-                       color: "#26A69A", lobePos: "#42A5F5", lobeNeg: "#FFCA28",
+                       color: "#26A69A", color2: "#FB8C00",
+                       lobePos: "#42A5F5", lobeNeg: "#FFCA28",
+                       axis: [1, 0, 0],
                        bond: "double", zEff: OS_MO_ZEFF_C, seed: 0x51EDB }
     };
     for (var mk in OS_MOS) OS_ORBITALS[mk] = OS_MOS[mk];
@@ -44240,6 +44271,109 @@ export const FIELD_3D_RENDERER_CODE = `
         if (window.PM_osMoReadout === "ratio") return osMoOverlapRatio(mo, twistDeg).toFixed(3);
         var v = osMoOverlap(mo, twistDeg);
         return ((Math.abs(v) < 0.0005) ? 0 : v).toFixed(3);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // MO STATE RESOLUTION (#17). Pure, DOM-free and THREE-free on purpose: the
+    // frame used to decide all of this inline, so the only instrument that could
+    // check it was a pixel, and every one of the defects below was green through
+    // tsc, the validators and THE EYE. check:sigma-pi grabs these bodies and
+    // asserts them directly (the osMoApproachAt precedent).
+    // ═══════════════════════════════════════════════════════════════════════
+
+    // Does this state NAME a molecular orbital? An MO state writes its id under
+    // mo.orbital / mo.orbitals \\u2014 NEVER under os.orbital, which is the ATOMIC
+    // picker. The atomic base fallback (os.orbital || "1s") therefore fired on
+    // every MO state ever authored and silently activated the 1s hydrogen
+    // orbital: a "1s" name sprite over a sigma bond, and a 1200-dot hydrogen-1s
+    // probability swarm drawn THROUGH a molecular orbital. Both are chemistry
+    // lies, and both were invisible to every gate because presence, not identity,
+    // is what a gate can see (the populate_baseid_fallback scar, one level up:
+    // the same fallback, a different key).
+    //   Declared-but-unbuildable counts as DECLARED. A mis-authored MO id must
+    // leave the stage EMPTY, never repaint it with another object's identity.
+    function osMoDeclared(os) {
+        var m = (os && os.mo) || null;
+        if (!m) return false;
+        return !!((m.orbitals && m.orbitals.length) || m.orbital);
+    }
+    // The MOs this state actually puts on stage, in authored order. mo.orbitals
+    // is the list form; the singular mo.orbital is a one-element list.
+    function osMoResolve(os) {
+        var m = (os && os.mo) || null, list = [], ids = [], i;
+        if (m) {
+            var want = (m.orbitals && m.orbitals.length) ? m.orbitals : (m.orbital ? [m.orbital] : []);
+            for (i = 0; i < want.length; i++) {
+                var q = OS_MOS[want[i]];
+                // no parts => the config never asked for the MO build
+                if (q && q.parts) { list.push(q); ids.push(want[i]); }
+            }
+        }
+        return { list: list, ids: ids };
+    }
+    // WHICH MO DOES THE TWIST DIAL ADDRESS? Not moList[0]. On the primary-aha
+    // state the authored order is [sigma, pi] and the twist is pi's story: the
+    // surfaces and the HUD honoured overlap_of: "pi_2p" while the slider read
+    // sigma, so one frame printed "S/S0 = 1.000" beside "pi S/S0 = 0.000" for
+    // the same named quantity. A teacher reading the panel learned the opposite
+    // of the lesson. Resolution order, most specific first:
+    //   1. the MO whose overlap region the state is drawing (overlap_of)
+    //   2. the MO whose atomic lobes the state is turning (atomic_of)
+    //   3. the MO the twist PHYSICALLY moves \\u2014 sigma is invariant under a
+    //      rotation about the bond axis by symmetry, so only a pi can respond
+    //   4. the primary
+    function osMoTwistIndex(moSt, moIds, moList) {
+        if (!moList || !moList.length) return -1;
+        var i;
+        if (moSt && moSt.overlap_of) {
+            for (i = 0; i < moIds.length; i++) if (moIds[i] === moSt.overlap_of) return i;
+        }
+        if (moSt && moSt.atomic_of) {
+            for (i = 0; i < moIds.length; i++) if (moIds[i] === moSt.atomic_of) return i;
+        }
+        for (i = 0; i < moList.length; i++) if (moList[i].overlap === "pi") return i;
+        return 0;
+    }
+    // ...and the dial must SAY which species it is reporting whenever more than
+    // one is on stage, or the same three characters mean two different numbers
+    // in one frame.
+    function osMoTwistSymbol(moList, idx) {
+        var base = (window.PM_osMoReadout === "ratio") ? "S/S\\u2080" : "S";
+        if (!moList || moList.length < 2 || idx < 0 || !moList[idx]) return base;
+        return moList[idx].main + " " + base;
+    }
+    // The INK multiplier for MO index mi on a multi-MO stage (#17 E4). 1 for the
+    // element that is changing (it carries the focal by moving); the boost for
+    // every invariant one, so "watch sigma hold still" points at a locatable
+    // object. Exactly 1 everywhere on a single-MO stage.
+    function osMoLockFactor(moList, twistIdx, mi) {
+        if (!moList || moList.length < 2) return 1;
+        return (mi === twistIdx) ? 1 : OS_MO_LOCK_BOOST;
+    }
+    // A STAGED reveal ramp (#17 E5). The nine authored orbital_shapes.mode
+    // strings are a CAMERA-table key (OS_CAMERAS) and nothing else — three
+    // states declared an archetype through "mode" and were byte-static for
+    // twelve seconds, which is the shipped
+    // growth_beat_gated_on_a_renderer_specific_field_silently_noops class. Rather
+    // than overload "mode" with a second silent meaning, the timing is EXPLICIT
+    // and per-member, exactly like the hybrid path's bloom_offsets_ms: a state
+    // that wants members to arrive one at a time authors when each one arrives.
+    // Pure function of state-local t (Rule 26/36) — never an accumulator.
+    function osMoStagedF(ms, atMs, offMs, durMs) {
+        if (atMs == null) return 1;
+        return osRamp(ms, atMs + (offMs || 0), Math.max(1, (durMs != null) ? durMs : 1200), 0, 1);
+    }
+    // The second pi system of a triple bond gets its OWN hue (#17 E3).
+    function osMoSystemColor(mo, sy) {
+        return (sy > 0 && mo && mo.color2) ? mo.color2 : (mo ? mo.color : "#AB47BC");
+    }
+    // The bond-stick ghost's lateral offsets (#17 E6): N parallel rods centred on
+    // the internuclear axis, symmetric about it, so 2 reads as the believed
+    // "two identical lines" and 1 as a plain single bond.
+    function osBondStickOffsets(count, spacing) {
+        var n = Math.max(1, Math.min(OS_BOND_STICK_MAX, Math.round(count || 1))), out = [], i;
+        for (i = 0; i < n; i++) out.push((i - (n - 1) / 2) * (spacing || 0));
+        return out;
     }
 
     // The approach as a PURE function of state-local t (Rule 26/36) — factored
@@ -44654,7 +44788,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // expected to keep 'probe' out of a hybrid state's hud_lines, and this
         // guard exists only so a mis-authored state cannot read osAng's d branch
         // with an undefined l.
-        if (orb.kind === "hybrid") return 0;
+        // ...and a MOLECULAR orbital has no one-centre radial function at all, so
+        // the same guard covers it: an MO state resolves "primary" to the MO
+        // itself (#17 E1), and osR would read an undefined CDF.
+        if (orb.kind === "hybrid" || orb.kind === "mo") return 0;
         var s = sUnits * OS_PM_PER_UNIT / OS_A0;     // in rho
         var axis = orb.axis || [0, 0, 1];
         var b = osBasis(axis), e1 = b[0], e2 = b[1];
@@ -44763,6 +44900,26 @@ export const FIELD_3D_RENDERER_CODE = `
         nucB.userData = { elementType: "os_nucleus", id: "os_nucleus_b" };
         nucB.visible = false;
         addToScene(nucB);
+        // 1c. THE BOND-STICK GHOST POOL (#17 E6). N parallel rods between the two
+        //     nuclei — the LINE picture of a bond, which is what a student walks
+        //     in believing and what this scenario had no primitive for. Canonical
+        //     +y cylinder of unit length centred on its own origin, so osAimY
+        //     lays it along the internuclear axis and the frame parks it at the
+        //     midpoint. Kept OUT of the config.mo gate on purpose: a Lewis /
+        //     VSEPR / reaction-mechanism concept will want sticks with no MO
+        //     build at all, and four hidden cylinders cost nothing.
+        var stkGeo = new THREE.CylinderGeometry(1, 1, 1, 16);
+        for (i = 0; i < OS_BOND_STICK_MAX; i++) {
+            var stk = new THREE.Mesh(stkGeo, new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(OS_BOND_STICK_COLOR), emissive: hexToThreeColor(OS_BOND_STICK_COLOR),
+                emissiveIntensity: 0.35, shininess: 40, transparent: true, opacity: 0.0,
+                depthWrite: false
+            }));
+            stk.renderOrder = 991;
+            stk.userData = { elementType: "os_bond_stick", id: "os_bond_stick_" + i, slot: i };
+            stk.visible = false;
+            addToScene(stk);
+        }
 
         // 2. axes triad + x/y/z labels, tinted to match the three p orbitals.
         var axGeo = new THREE.CylinderGeometry(0.012, 0.012, 1, 8);
@@ -45076,7 +45233,10 @@ export const FIELD_3D_RENDERER_CODE = `
             // the overlap is not a second control — it is what the law returns for
             // the dial\\u0027s value, computed from the MEASURED S(0), so the label
             // recomputes it live rather than carrying a table of stops.
-            var twMo = OS_MOS[window.PM_osMoId || "pi_2p"] || OS_MOS["pi_2p"];
+            // PM_osMoTwistId is the MO this dial ADDRESSES (#17 E2) — not the
+            // first one on stage, which is how a drag on the multi-MO state
+            // printed sigma's number under pi's caption.
+            var twMo = OS_MOS[window.PM_osMoTwistId || window.PM_osMoId || "pi_2p"] || OS_MOS["pi_2p"];
             if (twS && twMo && twMo.S0 != null) twS.textContent = osMoSliderReadout(twMo, window.PM_osTwist);
             window.PM_osTwistDragged = true; osEmit("twist", window.PM_osTwist);
         });
@@ -45175,9 +45335,18 @@ export const FIELD_3D_RENDERER_CODE = `
         var twV2 = document.getElementById("os_twist_val"), twS2 = document.getElementById("os_twist_s");
         if (twSl2) twSl2.value = String(Math.round(window.PM_osTwist));
         if (twV2) twV2.textContent = String(Math.round(window.PM_osTwist));
-        var twMo2 = OS_MOS[window.PM_osMoId || "pi_2p"] || OS_MOS["pi_2p"];
+        // THE DIAL ADDRESSES THE MO THE TWIST ACTUALLY DRIVES, not the first one
+        // in the authored list (#17 E2) — and it NAMES it whenever more than one
+        // MO is on stage, so "S/S0" can never mean two different numbers in one
+        // frame. Seeded here as well as per-frame, or the first captured frame of
+        // a state shows the previous state's species.
+        var moRes0 = osMoResolve(os);
+        var twIdx0 = osMoTwistIndex(moSt, moRes0.ids, moRes0.list);
+        var twMo2 = (twIdx0 >= 0) ? moRes0.list[twIdx0]
+            : (OS_MOS[window.PM_osMoId || "pi_2p"] || OS_MOS["pi_2p"]);
+        window.PM_osMoTwistId = (twIdx0 >= 0) ? moRes0.ids[twIdx0] : null;
         var twSym2 = document.getElementById("os_twist_sym");
-        if (twSym2) twSym2.textContent = (window.PM_osMoReadout === "ratio") ? "S/S\\u2080" : "S";
+        if (twSym2) twSym2.textContent = osMoTwistSymbol(moRes0.list, twIdx0);
         if (twS2 && twMo2 && twMo2.S0 != null) twS2.textContent = osMoSliderReadout(twMo2, window.PM_osTwist);
 
         var hud = document.getElementById("os_hud");
@@ -45193,7 +45362,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // text. Hide every transient here so the frame updater is the only
         // thing that can reveal them (the mg transient-hide discipline).
         var trans = ["os_lobe_", "os_dots_", "os_flash_", "os_orb_label_", "os_node_plane_", "os_node_rim_",
-                     "os_mo_surface_", "os_mo_lobe_", "os_mo_overlap_"];
+                     "os_mo_surface_", "os_mo_lobe_", "os_mo_overlap_", "os_bond_stick_"];
         for (var ti = 0; ti < sceneObjects.length; ti++) {
             var so = sceneObjects[ti], sid = so.userData && so.userData.id;
             if (!sid) continue;
@@ -45211,9 +45380,22 @@ export const FIELD_3D_RENDERER_CODE = `
     function updateOrbitalShapesFrame(stateDef) {
         var os = stateDef.orbital_shapes || {};
         var ms = (time - stateStartTime) * 1000;
+        // "mode" is a CAMERA-table key (OS_CAMERAS) and deliberately nothing else
+        // — see osMoStagedF for why the motion vocabulary is explicit timing
+        // fields instead of a second meaning bolted onto this string.
         var mode = os.mode || "boundary";
         var ctrls = os.controls || [];
         var i, j, k;
+
+        // ── MOLECULAR ORBITALS, resolved FIRST. The atomic base fallback below
+        //    has to know whether this state is a molecular one before it decides
+        //    to paint an atom (#17 E1).
+        var moSt = os.mo || null;
+        var moRes = osMoResolve(os);
+        var moList = moRes.list, moIds = moRes.ids;
+        var moPrim = moList.length ? moList[0] : null;
+        var moDeclared = osMoDeclared(os);
+        var moTwistIdx = osMoTwistIndex(moSt, moIds, moList);
 
         // ── which orbital(s) are on screen right now
         var baseId = os.orbital || "1s";
@@ -45253,17 +45435,29 @@ export const FIELD_3D_RENDERER_CODE = `
         // (nothing has arrived yet) where the old behaviour was a WRONG one, and it
         // makes a mis-authored base fail visibly instead of painting another
         // object's identity into the HUD.
+        //   ...and it is suppressed on a MOLECULAR state for the same reason
+        // (#17 E1). An mo state authors its identity under mo.orbital /
+        // mo.orbitals, so os.orbital is absent and the fallback resolved to "1s"
+        // on all nine states of a concept that never teaches 1s: a "1s" name
+        // sprite over every molecular orbital, and a 1200-dot hydrogen-1s
+        // probability swarm drawn straight through the sigma and pi bonds. The
+        // dot path already REFUSED to invent a swarm for an MO ("an MO simply has
+        // no swarm", below) — the fallback defeated it by handing it an atom.
         var stepsPending = (popSteps.length > 0 || galSteps.length > 0);
-        if (active.length === 0 && !stepsPending && OS_ORBITALS[baseId]) active.push(baseId);
+        if (active.length === 0 && !stepsPending && !moDeclared && OS_ORBITALS[baseId]) active.push(baseId);
         // ...and the HUD goes with it. primary still resolves to the base below
         // (the axes need a scale), but an empty stage must not PRINT an identity —
         // the fallback would otherwise report 1s, which is the same lie one level
         // down and the half of this scar that matters most.
-        var osNothingYet = (active.length === 0);
+        var osNothingYet = (active.length === 0 && !moPrim);
         if (active.length > OS_MAX_SETS) active = active.slice(0, OS_MAX_SETS);
         // resolves to the authored base while the stage is still empty, so the axes
         // keep a stable scale — but osNothingYet keeps that identity OFF the HUD.
-        var primary = OS_ORBITALS[active[active.length - 1]] || OS_ORBITALS[baseId] || OS_ORBITALS["1s"];
+        // On a molecular state the SCALE comes from the MO itself (it advertises
+        // its own outer reach through rByLev), never from an atom nobody asked
+        // for: the axes triad was being sized to the 1s r90.
+        var primary = OS_ORBITALS[active[active.length - 1]] || moPrim
+            || OS_ORBITALS[baseId] || OS_ORBITALS["1s"];
         var encKey = osEnclKey(os.enclosure);
         var primR = osOuterPm(primary, encKey);
         window.PM_osActive = active.slice();
@@ -45593,18 +45787,8 @@ export const FIELD_3D_RENDERER_CODE = `
         //    Each MO keeps its OWN solved iso-level, its OWN component set and
         //    its OWN colour — nothing is re-solved jointly, because a joint
         //    level would be a contour of a field that does not exist.
-        var moSt = os.mo || null;
-        var moList = [], moIds = [];
-        if (moSt) {
-            var moWant = (moSt.orbitals && moSt.orbitals.length) ? moSt.orbitals
-                : (moSt.orbital ? [moSt.orbital] : []);
-            for (i = 0; i < moWant.length; i++) {
-                var mq = OS_MOS[moWant[i]];
-                // no parts => the config never asked for the MO build
-                if (mq && mq.parts) { moList.push(mq); moIds.push(moWant[i]); }
-            }
-        }
-        var moPrim = moList.length ? moList[0] : null;
+        //    (moSt / moList / moIds / moPrim / moTwistIdx are resolved at the TOP
+        //    of this function — the atomic fallback has to see them, #17 E1.)
         var moGeo = window.PM_osMoGeo || {};
         // ONE twist for the whole stage: it is one physical rotation of one atom
         // about the bond axis. Sigma is INVARIANT under it by symmetry and pi
@@ -45646,6 +45830,9 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osMoTwist = moPrim ? moTwist : null;
         window.PM_osMoOverlap = moS;
         window.PM_osMoId = moPrim ? moIds[0] : null;
+        // the MO the twist DIAL addresses (#17 E2) — read by the slider's own
+        // drag listener, so a teacher's drag reports the same species the HUD does
+        window.PM_osMoTwistId = (moTwistIdx >= 0) ? moIds[moTwistIdx] : null;
         window.PM_osMoIds = moIds.slice();
         window.PM_osMoReadouts = moRead;
         window.PM_osMoSepPm = moPrim ? moSepPm : null;
@@ -45668,6 +45855,74 @@ export const FIELD_3D_RENDERER_CODE = `
                 var pB = osSpun(moCent[1]);
                 nucB2.position.set(osMoUnits(moPrim, pB[0]), osMoUnits(moPrim, pB[1]), osMoUnits(moPrim, pB[2]));
             }
+        }
+
+        // ── THE BOND-STICK GHOST (#17 E6, Rule 16a). N parallel rods drawn
+        //    between the two nuclei: the BELIEVED picture, "a double bond is two
+        //    identical lines". Without it STATE_1's opening frame was byte-
+        //    identical to STATE_2's, so the state that exists to SHOW the wrong
+        //    expectation showed the right one instead and the contrast pair had
+        //    no contrast.
+        //      It is a primitive, not a one-off: count and spacing are authored,
+        //    so 1 rod is a single bond, 2 the double-bond belief and 3 a triple —
+        //    the vocabulary every later bonding concept (Lewis structures, VSEPR,
+        //    SN1/SN2) needs. Its whole life is a pure function of state-local t:
+        //    it fades in at at_ms and DISSOLVES at dissolve_at_ms, which is what
+        //    lets the wrong picture LEAD ALONE and CLEAR before the real surface
+        //    assembles (skeleton section 2 — the ghost and the real thing must
+        //    never share a frame).
+        var bst = os.bond_sticks || null;
+        var stickOn = !!(bst && moPrim && moCent);
+        var stickOff = stickOn ? osBondStickOffsets(bst.count, 0) : [];
+        if (stickOn) {
+            var stAppear = (bst.at_ms != null)
+                ? osRamp(ms, cueTriggerMs("bond_sticks", bst.at_ms),
+                    (bst.fade_in_ms != null) ? bst.fade_in_ms : 600, 0, 1) : 1;
+            var stGone = (bst.dissolve_at_ms != null)
+                ? osRamp(ms, cueTriggerMs("bond_sticks_dissolve", bst.dissolve_at_ms),
+                    (bst.dissolve_duration_ms != null) ? bst.dissolve_duration_ms : 1600, 1, 0) : 1;
+            var stAlpha = ((bst.opacity != null) ? bst.opacity : 0.75) * stAppear * stGone;
+            // spacing + radius are authored in pm and converted through THIS
+            // orbital's own Z_eff, so the ghost is drawn at the same length scale
+            // as everything it is competing with (never in raw world units, which
+            // would be a different size on every concept).
+            var stSpace = osMoUnits(moPrim, ((bst.spacing_pm != null) ? bst.spacing_pm : 34) / moPrim.pmPerRho);
+            var stRad = osMoUnits(moPrim, ((bst.radius_pm != null) ? bst.radius_pm : 7) / moPrim.pmPerRho);
+            stickOff = osBondStickOffsets(bst.count, stSpace);
+            // the rods hang off the internuclear axis, so they TRAVEL with the
+            // nuclei during an approach instead of floating where the atoms were.
+            var stA = osSpun(moCent[0]), stB = osSpun(moCent[1]);
+            var ax0 = osMoUnits(moPrim, stA[0]), ay0 = osMoUnits(moPrim, stA[1]), az0 = osMoUnits(moPrim, stA[2]);
+            var bx0 = osMoUnits(moPrim, stB[0]), by0 = osMoUnits(moPrim, stB[1]), bz0 = osMoUnits(moPrim, stB[2]);
+            var stDir = osNorm([bx0 - ax0, by0 - ay0, bz0 - az0]);
+            var stLen = Math.sqrt((bx0 - ax0) * (bx0 - ax0) + (by0 - ay0) * (by0 - ay0) + (bz0 - az0) * (bz0 - az0));
+            // the offset direction: perpendicular to the bond, spun with the
+            // picture so the pair never collapses into one rod as the scene turns.
+            var stPerp = osSpun(bst.offset_axis || [0, 1, 0]);
+            var stB2 = osBasis(stDir);
+            var stPd = stPerp[0] * stDir[0] + stPerp[1] * stDir[1] + stPerp[2] * stDir[2];
+            var stU = osNorm([stPerp[0] - stPd * stDir[0], stPerp[1] - stPd * stDir[1], stPerp[2] - stPd * stDir[2]]);
+            if (!(stU[0] || stU[1] || stU[2])) stU = stB2[0];
+            for (i = 0; i < OS_BOND_STICK_MAX; i++) {
+                var stk = osFindById("os_bond_stick_" + i);
+                if (!stk) continue;
+                stk.visible = (i < stickOff.length) && stAlpha > 0.004 && stLen > 1e-6;
+                if (!stk.visible) continue;
+                osAimY(stk, stDir, stRad, stLen);
+                stk.position.set((ax0 + bx0) / 2 + stU[0] * stickOff[i],
+                                 (ay0 + by0) / 2 + stU[1] * stickOff[i],
+                                 (az0 + bz0) / 2 + stU[2] * stickOff[i]);
+                osSetColor(stk, bst.color || OS_BOND_STICK_COLOR);
+                if (stk.material) stk.material.opacity = stAlpha;
+            }
+            window.PM_osStickAlpha = stAlpha;
+            window.PM_osStickCount = (stAlpha > 0.004) ? stickOff.length : 0;
+        } else {
+            for (i = 0; i < OS_BOND_STICK_MAX; i++) {
+                var stkOff = osFindById("os_bond_stick_" + i);
+                if (stkOff) stkOff.visible = false;
+            }
+            window.PM_osStickAlpha = 0; window.PM_osStickCount = 0;
         }
 
         // total-density MO components (S2/S5: one lump ON the axis, or two
@@ -45703,6 +45958,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         moRank.sort(function (a, b) { return a.r - b.r; });
         for (i = 0; i < moRank.length; i++) moShellF[moRank[i].i] = (i === 0) ? 1 : Math.pow(0.85, i);
+        var moGrowLive = [], moLabelF = [];
+        for (i = 0; i < moList.length; i++) moLabelF.push(0);
         if (moPrim && moSt.show_total && moGeo.surf) {
             // reveal_at_ms fades the finished MO surface IN. It is deliberately
             // NOT a fake assembly: "the two lobes translate together and fuse" is
@@ -45710,10 +45967,15 @@ export const FIELD_3D_RENDERER_CODE = `
             // count changes along the way, and a per-slot lerp cannot express
             // that — so it is left unbuilt and declared rather than faked with a
             // scale ramp that would read as an assembly and be none.
-            var moGrow = (moSt.reveal_at_ms != null)
-                ? osRamp(ms, cueTriggerMs("mo_reveal", moSt.reveal_at_ms),
-                    (moSt.reveal_duration_ms != null) ? moSt.reveal_duration_ms : 1200, 0, 1)
-                : 1;
+            //   STAGED (#17 E5): reveal_offsets_ms staggers each MO in the list
+            // and system_offsets_ms staggers the pi systems of a triple bond, so
+            // "one sigma, TWO pi" can be a sequence a student watches arrive
+            // rather than three objects already present on frame one. Same
+            // vocabulary and same discipline as the hybrid path's
+            // bloom_offsets_ms, and pure in state-local t.
+            var moStaged = !!(moSt.reveal_offsets_ms || moSt.system_offsets_ms);
+            var moRevAt = (moSt.reveal_at_ms != null) ? cueTriggerMs("mo_reveal", moSt.reveal_at_ms)
+                : (moStaged ? cueTriggerMs("mo_reveal", 0) : null);
             for (mi = 0; mi < moList.length; mi++) {
                 var mo2 = moList[mi], mid2 = moIds[mi];
                 var pool = moGeo.surf[mid2];
@@ -45728,15 +45990,42 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (mo2.overlap === "pi" && moTwist > 0.5) continue;
                 var moSys = (moSt.pi_systems != null && mo2.overlap === "pi")
                     ? Math.max(1, Math.min(2, moSt.pi_systems)) : 1;
+                var moOffMo = (moSt.reveal_offsets_ms && moSt.reveal_offsets_ms[mi] != null)
+                    ? moSt.reveal_offsets_ms[mi] : 0;
+                // THE LOCK (#17 E4): on a multi-MO stage the MO that is NOT the
+                // subject of the change is the one a caption asks the viewer to
+                // keep tracking, so it gets the ink and is composited LAST. It is
+                // exempt from the enclosing-shell thinning for the same reason —
+                // that hedge assumes every shell is equally important, and here
+                // one of them is the object of the sentence.
+                var moLockF = osMoLockFactor(moList, moTwistIdx, mi);
                 for (sy = 0; sy < moSys; sy++) {
                     var syRot = (sy === 0) ? 0 : Math.PI / 2;
+                    var moOffSy = (moSt.system_offsets_ms && moSt.system_offsets_ms[sy] != null)
+                        ? moSt.system_offsets_ms[sy] : 0;
+                    var moGrow = osMoStagedF(ms, moRevAt, moOffMo + moOffSy, moSt.reveal_duration_ms);
+                    moGrowLive.push(moGrow);
+                    // a name may never outlive the surface it names (the "2s
+                    // sprite beside a finished hybrid" scar), so the label rides
+                    // the FIRST system's own growth.
+                    if (sy === 0) moLabelF[mi] = moGrow;
+                    // the shell hedge is ink-only and never applies to a locked
+                    // surface; the lock is ink-only too (Rule 29 — nothing moves,
+                    // nothing is resized, nothing is re-coloured).
+                    var moOpac = moAlpha * moGrow * ((moLockF > 1) ? moLockF : moShellF[mi]);
+                    if (moLockF > 1 && moOpac > OS_MO_LOCK_ALPHA_MAX * moGrow) {
+                        moOpac = OS_MO_LOCK_ALPHA_MAX * moGrow;
+                    }
                     for (i = 0; i < mo2.parts.length && moSurfSlot < OS_MO_MAX_PARTS; i++) {
                         var msh = osFindById("os_mo_surface_" + moSurfSlot);
                         moSurfSlot++;
                         if (!msh) continue;
                         var pg = pool[i];
                         if (pg && msh.geometry !== pg) msh.geometry = pg;
-                        msh.visible = moGrow > 0.02 && moAlpha > 0.004;
+                        msh.visible = moGrow > 0.02 && moOpac > 0.004;
+                        // composited after the translucent traffic, so the locked
+                        // surface survives the blend instead of being painted over
+                        msh.renderOrder = (moLockF > 1) ? 994 : 0;
                         if (!msh.visible) continue;
                         var ct0 = mo2.parts[i].centroid;
                         // the second system is the first rotated about the bond
@@ -45754,14 +46043,20 @@ export const FIELD_3D_RENDERER_CODE = `
                         // the surface vertices are already the measured contour in
                         // world units, so nothing rescales them (Rule 29).
                         msh.scale.setScalar(1);
-                        osSetColor(msh, mo2.color);
+                        // ...and the SECOND pi system takes its own hue (#17 E3):
+                        // two systems in one colour fused into a single rosette
+                        // under a caption counting two.
+                        osSetColor(msh, osMoSystemColor(mo2, sy));
                         // the materials are already depthWrite:false DoubleSide so
                         // they BLEND rather than hide one another; moShellF above
-                        // is what makes the inner surface survive the blend, and
-                        // moSys thins a doubled pi system against itself.
-                        if (msh.material) {
-                            msh.material.opacity = moAlpha * moGrow * moShellF[mi] / Math.max(1, moSys);
-                        }
+                        // is what makes the inner surface survive the blend.
+                        //   The old /moSys halving is GONE. It was there to stop a
+                        // doubled pi thickening against itself, but it worked
+                        // directly against the countability the second system
+                        // exists for — two half-strength same-coloured shells is
+                        // the least countable arrangement available. Distinct hue,
+                        // full ink.
+                        if (msh.material) msh.material.opacity = moOpac;
                     }
                 }
             }
@@ -45770,6 +46065,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var msOff = osFindById("os_mo_surface_" + i);
             if (msOff) msOff.visible = false;
         }
+        window.PM_osMoGrow = moGrowLive;
 
         // SIGN-COLOURED atomic lobes: what is being combined, with the sign that
         // decides whether it adds or cancels. This is what a twisting state draws
@@ -45779,6 +46075,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // an approach IMPLIES the atomic lobes: they are the thing that travels.
         if (moPrim && (moSt.show_atomic || moSt.approach)) {
             var moLobeAlpha = ((typeof moSt.atomic_opacity === "number") ? moSt.atomic_opacity : 0.26) * moAtomicF;
+            // PER-ATOM STAGING (#17 E5). atomic_offsets_ms[atomIndex] gives each
+            // carbon's own arrival window, so "each carbon keeps ONE leftover p"
+            // can be two events a student counts instead of a pair that is simply
+            // there at t=0. Absent => every lobe is at full pose from frame one,
+            // i.e. bit-for-bit the behaviour before this existed (an approach
+            // state must NOT grow its lobes — they are the thing that travels).
+            var moAtStaged = !!moSt.atomic_offsets_ms;
+            var moAtRevAt = (moSt.atomic_reveal_at_ms != null)
+                ? cueTriggerMs("mo_atomic", moSt.atomic_reveal_at_ms)
+                : (moAtStaged ? cueTriggerMs("mo_atomic", 0) : null);
             // a state may show the atomic lobes of ONE member of a multi-MO stage
             // (the payoff: sigma's finished surface holding still beside pi's
             // lobes turning). atomic_of names it; omitted => all of them.
@@ -45789,6 +46095,9 @@ export const FIELD_3D_RENDERER_CODE = `
                 var mSc = 1 / (mo3.zEff || 1);
                 var atomList = [{ c: moCent[0], ax: mAx.a }, { c: moCent[1], ax: mAx.b }];
                 for (ai = 0; ai < atomList.length; ai++) {
+                    var aOff = (moSt.atomic_offsets_ms && moSt.atomic_offsets_ms[ai] != null)
+                        ? moSt.atomic_offsets_ms[ai] : 0;
+                    var aG = osMoStagedF(ms, moAtRevAt, aOff, moSt.atomic_duration_ms);
                     // sigma: the hybrid front lobe ONLY (both point at each other
                     // and both are positive, which is what makes the bonding
                     // combination psi_A + psi_B). pi: BOTH halves of the 2p,
@@ -45804,7 +46113,7 @@ export const FIELD_3D_RENDERER_CODE = `
                             ? (lobeGeo.hf["sp2"] && lobeGeo.hf["sp2"]["50"])
                             : (lobeGeo.p && lobeGeo.p["50"]);
                         if (lg && mlb.geometry !== lg) mlb.geometry = lg;
-                        mlb.visible = moLobeAlpha > 0.004;
+                        mlb.visible = moLobeAlpha > 0.004 && aG > 0.02;
                         if (!mlb.visible) continue;
                         // frame in BUILD space (osAimFrame applies the spin); only
                         // the ORIGIN is pre-spun, which is the whole point of the
@@ -45813,7 +46122,10 @@ export const FIELD_3D_RENDERER_CODE = `
                         var bs = osBasis(sgnAx), wC = osSpun(atomList[ai].c);
                         osAimFrame(mlb, { X: bs[0], Y: sgnAx, Z: osCross(bs[0], sgnAx) },
                             [osMoUnits(mo3, wC[0]), osMoUnits(mo3, wC[1]), osMoUnits(mo3, wC[2])]);
-                        mlb.scale.setScalar(mSc);
+                        // the staged lobe grows OUT along its own axis from its own
+                        // nucleus — the same shape the atomic bloom uses, so an
+                        // arrival reads as an arrival and not as a fade.
+                        mlb.scale.set(mSc * (0.55 + 0.45 * aG), mSc * aG, mSc * (0.55 + 0.45 * aG));
                         osSetColor(mlb, (si === 0) ? mo3.lobePos : mo3.lobeNeg);
                         if (mlb.material) mlb.material.opacity = moLobeAlpha;
                     }
@@ -46034,10 +46346,23 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // ── orbital name labels (two-run subscripts), parked past each set's
         //    own lobe tip / sphere rim.
+        //    On a MOLECULAR state the names come from the MOs on stage (sigma /
+        //    pi), never from the atomic active list — which is empty there by
+        //    construction (#17 E1). A label is drawn only while the surface it
+        //    names is actually being drawn: a twisted pi withholds its surface,
+        //    and a staged reveal has not delivered it yet.
+        var labelOrbs = [];
+        if (moPrim) {
+            for (i = 0; i < moList.length; i++) {
+                if (moLabelF[i] > 0.5) labelOrbs.push(moList[i]);
+            }
+        } else {
+            for (i = 0; i < active.length; i++) labelOrbs.push(OS_ORBITALS[active[i]]);
+        }
         for (i = 0; i < OS_MAX_SETS; i++) {
             var olb = osFindById("os_orb_label_" + i);
             if (!olb) continue;
-            var lorb = (i < active.length) ? OS_ORBITALS[active[i]] : null;
+            var lorb = (i < labelOrbs.length) ? labelOrbs[i] : null;
             // A label must not outlive the thing it names. During a hybrid morph
             // the s orbital is CONSUMED — its sphere fades to nothing — and the
             // "2s" sprite was still sitting in empty space beside a finished sp
@@ -46050,7 +46375,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 osSetSubLabel(olb, lorb.main, lorb.sub, lorb.color);
                 // anchored on the thing it names (a lobe tip, or the top of the
                 // sphere), then pushed to whichever screen diagonal is clear.
-                var ldir = osSpun(lorb.kind === "lobes" ? (lorb.axis || [0, 0, 1]) : [0, 1, 0]);
+                //   an MO carries its own axis (sigma along the bond, pi across
+                // it), so the two names are anchored on opposite reaches and
+                // cannot be parked on top of each other.
+                var ldir = osSpun((lorb.kind === "lobes" || lorb.kind === "mo")
+                    ? (lorb.axis || [0, 0, 1]) : [0, 1, 0]);
                 var lrad = (osOuterPm(lorb, encKey) / OS_PM_PER_UNIT) * 0.92;
                 osPlaceLabelClear(olb, [ldir[0] * lrad, ldir[1] * lrad, ldir[2] * lrad], 0.42, osAvoid);
                 osAvoid.push([olb.position.x, olb.position.y, olb.position.z]);
@@ -46253,12 +46582,26 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // ...and so must the twist dial (same scar): a scripted torsion sweep
         // with its slider frozen at 0 is an instrument contradicting the picture.
-        if (moPrim && !window.PM_osTwistDragged) {
-            var tsl = document.getElementById("os_twist_slider");
-            var tvl = document.getElementById("os_twist_val"), tsv = document.getElementById("os_twist_s");
-            if (tsl) tsl.value = String(Math.round(moTwist));
-            if (tvl) tvl.textContent = String(Math.round(moTwist));
-            if (tsv) tsv.textContent = osMoSliderReadout(moPrim, moTwist);
+        //   ...and it must report the MO the twist ACTUALLY DRIVES, named (#17
+        // E2). It reported moList[0] — sigma on the state authored [sigma, pi] —
+        // so the panel printed "S/S0 = 1.000" in the same frame as the HUD's
+        // "pi S/S0 = 0.000": one name, two numbers, on the state the concept
+        // exists for. The symbol is rewritten every frame too, because the
+        // species can change between states while the row stays on screen.
+        if (moPrim) {
+            var twSubj = (moTwistIdx >= 0) ? moList[moTwistIdx] : moPrim;
+            var tsy2 = document.getElementById("os_twist_sym");
+            if (tsy2) tsy2.textContent = osMoTwistSymbol(moList, moTwistIdx);
+            if (!window.PM_osTwistDragged) {
+                var tsl = document.getElementById("os_twist_slider");
+                var tvl = document.getElementById("os_twist_val"), tsv = document.getElementById("os_twist_s");
+                if (tsl) tsl.value = String(Math.round(moTwist));
+                if (tvl) tvl.textContent = String(Math.round(moTwist));
+                if (tsv) tsv.textContent = osMoSliderReadout(twSubj, moTwist);
+            } else {
+                var tsv2 = document.getElementById("os_twist_s");
+                if (tsv2) tsv2.textContent = osMoSliderReadout(twSubj, moTwist);
+            }
         }
     }
     // Angular node planes, as NORMALS: a p orbital's single plane is
@@ -46283,7 +46626,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // prominence), and the enum stays CLOSED: a glow_focal that matches
         // nothing would dim the whole scene with nothing lit (the VSEPR scar).
         mo_surface: ["os_mo_surface"], mo_lobes: ["os_mo_lobe"], mo_overlap: ["os_mo_overlap"],
-        nuclei: ["os_nucleus"]
+        nuclei: ["os_nucleus"], bond_sticks: ["os_bond_stick"]
     };
     function applyOrbitalShapesGlow(stateDef) {
         var focalTypes = {}, g, k, i;
