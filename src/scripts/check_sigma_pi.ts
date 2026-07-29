@@ -19,7 +19,7 @@
  *
  *   npm run check:sigma-pi
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
 
@@ -620,14 +620,37 @@ console.log("\n=== 6. DETERMINISM (Rule 36 — SET_TIME_FREEZE must be byte-iden
 
 // The nine states EXACTLY as authored (read from the shipped concept JSON, not
 // retyped) — every per-state assertion below runs against the real thing.
+// RULE 40 SPLIT. Sections 0-6 above assert the ENGINE and need nothing but the
+// renderer, so they must keep working on master, where the engine lands SEPARATELY
+// from its concept. Sections 7-12 below assert the authored CONCEPT, which lives on
+// its chapter branch and is deliberately absent from master.
+//
+// This read used to be unguarded, so the whole gate died with ENOENT on master the
+// moment the engine was cherry-picked there — a platform gate that only ran if one
+// specific chapter's content happened to be checked out, which is the Rule 40
+// failure mode expressed in the gate itself. It now SKIPS the concept half and
+// still reports on the engine half.
+const CONCEPT_PATH = join(process.cwd(), "src/data/concepts/chemistry/sigma_pi_bonding.json");
+const HAVE_CONCEPT = existsSync(CONCEPT_PATH);
 const STATES: Record<string, any> = (() => {
-  const p = join(process.cwd(), "src/data/concepts/chemistry/sigma_pi_bonding.json");
-  const j = JSON.parse(readFileSync(p, "utf8"));
+  if (!HAVE_CONCEPT) return {};
+  const j = JSON.parse(readFileSync(CONCEPT_PATH, "utf8"));
   const out: Record<string, any> = {};
   for (const k of Object.keys(j.field_3d_config.states)) out[k] = j.field_3d_config.states[k].orbital_shapes || {};
   return out;
 })();
 const SKEYS = Object.keys(STATES);
+
+if (!HAVE_CONCEPT) {
+  console.log("\n=== 7-12. CONCEPT-LEVEL SECTIONS — SKIPPED ===");
+  console.log("  ----  sigma_pi_bonding.json is not in this checkout (expected on master:");
+  console.log("        Rule 40 lands the engine here and keeps the concept on its branch).");
+  console.log("        Sections 0-6 above fully cover the ENGINE. Run this gate on");
+  console.log("        feat/chemistry-sigma-pi for the concept-level assertions.");
+  console.log(`\n${failures === 0 ? "ENGINE SECTIONS PASS (concept sections skipped)"
+    : failures + " FAILURE(S)"}\n`);
+  process.exit(failures === 0 ? 0 : 1);
+}
 
 console.log("\n=== 7. NO MO STATE MAY ACTIVATE AN ATOM (#17 E1 — the 1s phantom) ===");
 // THE DEFECT: an mo state writes its id under mo.orbital / mo.orbitals, so
