@@ -41,6 +41,49 @@ coverage, and it has been the stated bottleneck for three consecutive sessions.
 
 ---
 
+## 🧬 SESSION — the hybrid-orbital surface + `hybridisation_sp_sp2_sp3` (P4 #13), and a sign that would have taught the opposite (2026-07-29, branch `feat/chemistry-hybridisation` → master)
+
+**Bottom line: hybrid orbitals are a live capability on `orbital_shapes` and #13 is authored, validating and walked in a browser. The load-bearing finding came BEFORE any renderer code existed — the natural way to write a hybrid puts 82.5% of the electron behind the atom, renders beautifully, and teaches the inverse of directional bonding. Engine + its gate are on master (`2378219`); the concept continues on the branch. #17 σ/π is now the cheap next harvest.**
+
+### What shipped
+- **Hybrid orbitals on `field_3d` `orbital_shapes`** (additive; the s/p/d path is untouched). `kind: "hybrid"` entries for sp/sp², sp³ with derived geometry, a morph ladder, `angle_track`, `members`, `front_only`, and four solved cameras.
+- **`hybridisation_sp_sp2_sp3`** — 8 states, NCERT Cl.11 Ch.4 §4.6. Rings core S1–S3 / extended S4–S5 / advanced S6–S7 / explore S8.
+- **`npm run check:hybrid-orbitals`** — 26 checks, ~3 s, no browser. Pulls the SHIPPED function bodies out of `FIELD_3D_RENDERER_CODE` and asserts they reproduce numbers solved independently beforehand.
+
+### The physics was settled first, with a control
+Solved headlessly before a line of renderer code: normalisation 1.000000 at f = 0, ¼, ⅓, ½; the angle law `cos θ = −f/(1−f)` reproducing 180.00 / 120.00 / 109.47° against the direction lists to 0.01°; each set orthonormal to 5.6e−17. **The control is the reason to trust the rest**: pure 2p at the level `atomic_orbitals_s_p_d` ships gives 482.5 pm against its 482, and L/half-width 1.44 against its 1.44 — an independent implementation reproducing a number already on master.
+
+### THE LESSON: the defect that no gate can see is the one you settle before you build
+`R₂₀` is negative for ρ > 2, across most of the bonding region, so `ψ = +c_s ψ₂ₛ + c_p ψ₂ₚ` puts **82.5% of an sp³ electron BEHIND the atom**. Every caption stays literally true, every gate passes, the picture is beautiful, and the concept teaches the opposite of directional bonding. Measured both ways by hemisphere probability — a tip radius does NOT settle it (the back tip is *longer*, which is what made it look wrong in the first place and prompted the check). Same class as the `node_count` clover: geometrically right, posed wrong.
+
+**And the obvious reuse was also wrong.** The shipped `p_set` camera — the solved (1,1,1) view that makes three 2p orbitals countable — foreshortens an sp³ lobe to **exactly 0.000**: one of the four points down the view axis and vanishes behind the nucleus under a caption counting four. That is the VSEPR methane-fourth-bond defect verbatim, and only a measurement says so. Cameras were re-solved; all three land at dist 6.0 with a ~250 px orbital radius, so one home pose serves the concept.
+
+### Three more defects, all found by building the page and LOOKING
+Every one was green across tsc, `check:renderer-syntax`, `validate:chemistry` and the 26-check hybrid gate.
+
+| Defect | Why no gate saw it |
+|---|---|
+| Four sp³ surfaces rendered as a **featureless ball** under "Four, at 109.5°" | Each hybrid carries a back lobe and the backs sit exactly in the gaps between the fronts, so 4 fronts + 4 backs fill space near-spherically. I had measured the union waist at 0.808 ("marginal") beforehand and still under-called it — **the metric only counted the fronts.** Fixed with `front_only`: cut at the surface's own waist, capped at the nucleus. An OMISSION, not a distortion, and declared — S7 turns it off and shows exactly what the earlier states left out. |
+| `bloom_at_ms` was a **silent no-op on every hybrid** | Gated on `l === 2` (the d clover); a hybrid has no `l`. Three states declared an assembling set in narration while the lobes stood at full size from frame one. Same shape as the duplicate-key scar: authored, valid, discarded. |
+| My own S5 ghosted **all three 2p orbitals** — six extra lobes | Landing on top of the four hybrids at the moment the caption asks a student to count four. Dropped; the S1↔S5 contrast pair already carries the comparison across states through the shared home pose (Rule 32d). |
+
+### A tooling trap worth a scar row
+**A backtick inside a JS comment terminates the enclosing TS template literal.** Hit twice in one session writing `` `main` `` and `` `l` `` in renderer comments. `tsc` reports a misleading `TS1005 ',' expected` hundreds of lines away; `check:renderer-syntax` catches it but only as an esbuild parse error at the wrong site. Cheap permanent fix available: a lint that rejects backticks inside `FIELD_3D_RENDERER_CODE`.
+
+### Verification (evidence)
+`tsc` 0 · `check:renderer-syntax` OK on all three · `check:hybrid-orbitals` **26/26** · `validate:concepts` **141/141** (isolation held — the physics scan never sees the new concept) · `validate:chemistry` **7/7** · vitest **281/281** · `build:review` exit 0 · **walked in a real browser: sp² reads as three lobes at 120°, sp³ as four in the two-up/two-down tetrahedral view, HUD live and correct, zero console errors.**
+
+### Open items
+1. **THE EYE has not been run** — needs the chemistry cache-seed. `build:review` + the browser walk stood in; that is not a substitute for the frame-read gate, and it is the next step.
+2. **`quality_auditor` + `eye_walker` not yet run.** The C6 lesson is explicit that my own looking is not enough — running them on VSEPR produced six more defects on a build I had called finished.
+3. Scar candidates drafted, NOT applied: backtick-in-template-comment · bloom gated on a renderer-specific field · countability metric that counts only front lobes.
+4. Audio not rendered (Rule 30h, on demand). Asmi's review still the standing bottleneck, now six concepts deep.
+
+### ⏭ NEXT
+1. **THE EYE + `quality_auditor` + `eye_walker` on #13** before it is called done.
+2. **#17 σ/π** — now genuinely one line of engine work (a per-lobe origin offset) on top of this surface, and it harvests both this concept and the shipped `molecular_geometry`.
+3. **#1 Le Chatelier** remains C5's highest-ranked unbuilt concept (a parallel session is on the gas_box reaction layer).
+
 ## 🔬 SESSION — the `orbital_shapes` 3D surface + `atomic_orbitals_s_p_d` (P4 #16), and six defects behind a green run (2026-07-28/29, branch `feat/chemistry-orbitals` → master)
 
 **Bottom line: chemistry's second 3D surface shipped and its first concept is merged and baseline-locked — and THE EYE passed 39/39 on frames containing FIVE real defects, with a sixth self-inflicted afterwards. Not one was caught by tsc, the validators, or THE EYE. Master: `39b906c`. Baseline fleet 63 → 64 (65 with the parallel session's).**
