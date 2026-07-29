@@ -1,5 +1,173 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — `le_chateliers_principle` (P1 #1) + five gas_box platform commits (2026-07-29, `feat/chemistry-le-chatelier`; engine half on master)
+
+> Concept detail → `docs/le_chateliers_principle_skeleton.md` + `docs/le_chateliers_principle_chemistry_block.md`.
+> The chemistry-priority list calls this one "the single best chemistry sim that exists to be built."
+
+**Built in a fresh worktree** (`Viditra-chem-lechatelier`) off master `e0868f7`, deliberately NOT in the
+stale `Viditra-chem-equilibrium` tree — which sat behind master and would have silently reverted the
+orbital fixes and two closed tooling scars. Vindicated during the session: the parallel session
+committed hybridisation + field_3d work to master throughout, with zero conflicts.
+
+### The concept
+
+8 states on the `gas_box` reaction layer: add reactant / remove reactant (partial payback) / squeeze /
+**heat it (PRIMARY aha)** / catalyst null / inert-gas null / same K new position (advanced) / explore.
+Final gates: tsc 0 · `validate:chemistry` 7/7 · `check:gas-reaction` all passed · `validate:concepts`
+**141 PASS 0 FAIL** (physics fleet untouched) · THE EYE 35/35 · quality_auditor **PASS** on its 3rd pass.
+No baselines locked — `visual:approve` remains founder-triggered.
+
+### What the day was actually about: making the CAUSE visible
+
+All three Le Chatelier disturbances were ALREADY emergent on this engine rather than scripted (the
+`Ea_rev = Ea_fwd + E_bond` derivation and the bimolecular/first-order asymmetry). What was missing was
+that the engine could show only ONE of them ARRIVING — the piston, via `piston_from`. Four fields
+closed that, each landed on master separately per Rule 40:
+
+| commit | field | why |
+|---|---|---|
+| `4e6df01` | `T_from` / `T_ramp_ms` | a state authoring `T: 500` opened already hot — the cause never moved on the PRIMARY aha |
+| `4e6df01` | `inject_cue` / `inject_n` / `inject_species` | reagent arrives mid-state instead of the box opening already-disturbed |
+| `532976f` | `reaction_at_cue: { cue, <constant> }` | the catalyst goes in while the class watches. Placed at `gasRxNum` — the single read point for EVERY reaction constant — so `Ea_rev` follows by derivation and the "no shift" result stays EMERGENT |
+| `4e6df01`/`aa21a14` | `show_k_ratio` | K as a measured number |
+
+`check:gas-reaction` grew **18 → 37 checks**.
+
+### Two engine defects both gates found independently (`458a6e3`)
+
+- **`drawGasThermometer` hardcoded `gasBoxL() + 142`** while every other chip accumulates via
+  `pfWgVis`. STATE_4 is the fleet's first state to light the thermometer WITHOUT pressure, so
+  "T = 500 K" was struck straight through the A/B counts for the whole state — captured frames read
+  `A 59T = 300B 59`. On the PRIMARY aha, burying its own cause instrument.
+- **`gasMovePiston`'s 0.06/frame ease drove the wall ~12x faster than thermal speed.** Measured peak
+  `gasMeasuredT()` **7173–9594 K** on a state authored at 300 K, product crashing 31 → 7, so for ~4 s
+  the readout showed REVERSE leading — the opposite of what a compression state narrates. New opt-in
+  `piston_ramp_ms`: **336 K over a 6 s ramp**. Default stroke provably unchanged (a check pins it), so
+  `kinetic_particle_theory` keeps its baselines.
+
+**The lesson worth carrying: on this engine anything that moves is a physical variable, and how FAST
+it moves is part of the physics, not the presentation.** True for `T_from`, then true again for the
+piston.
+
+### ⭐ THE FINDING THAT AFFECTS EVERY CHEMISTRY CONCEPT — THE EYE reads the cache, not your source
+
+`visual_eyes.ts` → `loadCachedSim()` reads **ONLY** the `simulation_cache` row. It never reads the
+concept JSON or the renderer, and for chemistry that row is seeded BY HAND and never auto-refreshes.
+
+A post-fix re-walk returned **35/35 deterministic checks green while rendering entirely pre-fix
+content** — the thermometer collision, the un-ramped piston, the old STATE_7 pose and the old slider
+label all "still broken" in frames, all four already fixed in source. **Every visual finding in that
+run was a false negative on the fix.** Caught only because eye_walker cross-checked frames against
+live source instead of trusting the capture.
+
+```bash
+npx tsx --env-file=.env.local src/scripts/_seed_chemistry_cache.ts <concept_id>
+```
+
+**Run after ANY concept-JSON or renderer edit, BEFORE dispatching eye_walker.** Exact sibling of the
+recorded `gas_box_freeze_resim_uses_wrong_stepper` lesson — *a green deterministic gate proves frames
+are REPRODUCIBLE, not correct.* **Proposed for `docs/AUTHORING_PIPELINE.md` §③ — needs founder ruling.**
+
+### Three narration defects: claims true in one frame of reference, false on screen
+
+Each survived the first audit and was caught by measurement, not by reading:
+
+1. **STATE_7 "the amounts move by about half"** — a BETWEEN-RUN comparison (baseline A 59 vs disturbed
+   A 89) spoken as an in-state observation. **This one was the main session's error, not an agent's.**
+   Redesigned, not reworded: opens at its own settled pose, injects +80 A at 9 s, so both numbers are
+   observable in one continuous state.
+2. **STATE_5 "the counts sit exactly where the lesson left them"** — single frames legitimately read
+   26–38, so an unlucky frame *confirmed* the misconception the state exists to refute. Now a band.
+3. **STATE_3 "forward pulls ahead of reverse"** — true as a net average (+0.75/s in all 10 seeds) but
+   the bars visibly cross mid-ramp. Now narrates the pair count, which dips then climbs decisively.
+
+### STATE_7 needed density, not a cleverer average
+
+K's relative fluctuation scales as **1/sqrt(n_AB)**, and at the lesson's normal density n_AB ≈ 30. Two
+averaging windows (5 s, then 10 s) were built and *measured failing* — the chip swung 33–50%, and in
+10/10 seeds the RATIO moved more than the amounts, inverting the state's whole contrast. Founder chose
+to attack the root cause. STATE_7 now runs ~516 particles (n_AB ≈ 204):
+
+```
+before  |dK| 15-21%, worst seed 59%, ratio beats amounts 1/8 (auditor: 10/10 @1280x720)
+after   |dK|  8-10%, worst seed 26%, ratio beats amounts 0/8 — at 900x560, 1280x720 AND 1600x900
+shipped frames: K 0.0089 pre-cue -> 0.0094 at end (+5.6%) while A 138 -> 210 (+52%). ~9:1.
+cost 2.18 ms/tick vs a 16.7 ms budget (the collision sweep is spatially GRIDDED, so linear not O(n^2))
+```
+
+A deliberate, measured exception to Rule 32d, recorded in `authoring_notes.s7_particle_density_is_deliberate`
+and named in the state's own scene roles. The auditor's judgment, which is the better argument:
+STATE_7 is the ONE state whose claim rides on numbers rather than the particle picture, so it spends
+particle-picture legibility it doesn't need to buy numeric legibility that is the whole state — and the
+discontinuity sits in the only state both curriculum presets can hide.
+
+### Cue/narration desync — caught on the 2nd audit, fixed via a mechanism already in the engine
+
+Four states fired their disturbance at `at_ms: 1000` while the announcing sentence (each begins
+"Now...") started 3.7–5.9 s in. **The box was disturbed and had re-settled before the narration said
+anything** — inverting the concept's own stated premise. `SET_CUE_TIME` already solves this (20 shipped
+physics concepts use it); this concept used none of it. Now bound via `scenario_cue`. Side effect the
+auditor spotted: S1 gains **6.8 s of settled box first**, which makes `s1_4`'s "both rates settle level
+again, higher than before" *observable* — previously there was no pre-cue baseline to see it against.
+
+### SHIPPED (founder-approved, end of session)
+
+`visual:approve` locked **17 baseline frames** from run `20260729-141501`; `tts:generate --langs=en`
+rendered **32 EN clips** (bulbul:v3/priya, 0 stale, no `--force`, no translation step) — verified 32
+mp3 against 32 authored `tts_sentences`. Review page HTTP 200, `validate:chemistry` 7/7.
+**Fleet 65 → 66 baseline-locked.** Commits `8532407` (ship) and `9432cc7`.
+
+**NOT deployed, deliberately** — no `PILOT_CONCEPTS` edit, no `build:pilot`, no `deploy:app`. Founder
+approved the ship chain only; CLAUDE.md §5 puts the professor gate (Asmi teaching a real student)
+before the deployed catalog, and the deployed catalog currently carries zero chemistry sims, so that
+path needs its own verification when it is taken.
+
+### The teaching pass (founder asked: walk the states, what is missing?)
+
+Four gaps that every gate had passed, found by reading frames as a teacher rather than as a gate:
+
+1. **The principle was never stated.** Eight states taught every disturbance and no sentence gave the
+   law or even the name. S8 now closes with it, ending on S2's partial-compensation aha.
+2. **Cooling was undemonstrable** — the most likely question after the PRIMARY aha. Measured: at the
+   250 K slider floor, cooling moved AB 31→~35, inside the noise band. At 200 K it is 31→~45 within
+   10 s with the box alive (fwd 3.5/s); at 150 K it reads dead (1.1/s). Floor now **200 K, measured**.
+3. **⭐ A bonded pair did not look bonded** (`20cb20a`, master). `drawGasDimer` strokes the bond in the
+   product colour then fills the discs — but bond length IS rA + rB, so the discs are tangent and the
+   line is painted over, leaving ~2 px of purple. AB is the species every state tracks: the HUD printed
+   a purple "AB 31" and the graph drew a purple curve while **nothing on canvas was purple**. The whole
+   lesson had to be read off numbers instead of the picture, which is the one thing a particle box
+   exists to provide. Fixed by draw order (rim both discs). Also fixed `dynamic_equilibrium`, whose
+   STATE_2 opens with 45 previously-uncountable pairs — its baselines re-approved after founder view.
+4. **The anchor promised what the sim cannot do** — "engineers steadily draw product away", but the
+   reagent tap is A-only by design (S2 needs removal to target A). Rewritten onto the two levers the
+   states actually show, which is better chemistry: pressurised because the product side has fewer
+   molecules (S3), run hotter than the balance would like because forward is exothermic (S4). That
+   trade-off is the real answer to "why not run it cold".
+
+**Pattern worth keeping:** all four were invisible to every automated gate AND to both review agents,
+because each agent was asked whether the sim was *correct*, not whether a teacher could *use* it. The
+fourth gate is a person asking "what is missing?".
+
+### Open items — none blocking, all need a founder ruling
+
+1. **`engine_bug_queue` rows not filed** (the session earned three): the stale-sim-cache gate blindness
+   ⭐, the viewport-dependent rate/pressure readouts, and the cue/narration desync class. **Blocked:**
+   the auditor found `alex:chemistry_author` is rejected by the queue's own CHECK constraint.
+2. **Rates and pressure are still viewport-dependent** — `gasRxAreaNorm` normalises the equilibrium
+   COMPOSITION, not the displayed readouts (measured **4.6x** rate spread, **5.9x** pressure spread,
+   900x560 → 1600x900). Fixed by AUTHORING here (no absolute rate is spoken anywhere) rather than by
+   engine change, because normalising displayed pressure would break the `P·A/N·T` gas-law readout and
+   move every shipped baseline. Engine limitation left OPEN for `peter_parker:renderer_primitives`.
+3. **Deliberately NOT done** on the auditor's own advice: the S1 particle-scale sentence (would cost a
+   beat for a textbook convention); rate-window priming at `gasInit` and the cumulative-mean K chip
+   (the density fix removed the need that motivated them — *"do not land them"*).
+4. **Audio**: none rendered. Rule 30h makes it on-demand, not a ship gate.
+
+**Next session first task:** founder review of the concept on the review site, then `visual:approve` to
+lock baselines; decide the `AUTHORING_PIPELINE.md` §③ cache-reseed addition; file the three scar rows
+(needs the CHECK-constraint fix first).
+
 ## 🧪 SESSION — 2nd chemistry concept shipped to master + FOUR platform findings that affect physics too (2026-07-27, `feat/chemistry-ch1-conservation` → master `df3d993`)
 
 > Chemistry detail → `PROGRESS_CHEMISTRY.md` (2026-07-27 entry); strategy → `docs/CHEMISTRY_DISCUSSIONS.md`
