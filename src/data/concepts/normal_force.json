@@ -209,7 +209,7 @@
         "teaching_method": "misconception_confrontation",
         "depth_ring": "core",
         "delta_cue": "Tilt — N drops below mg",
-        "motion_archetype": "oscillate/track (declared contrast pair with STATE_1)",
+        "motion_archetype": "monotonic-tilt-and-hold (declared contrast pair with STATE_1's oscillate/track: S1's cause cycles and N follows it back and forth; S2's cause goes one way and STAYS, so N's detachment from mg is held, not glimpsed)",
         "has_prebuilt_deep_dive": true,
         "drill_downs": [
           "n_equals_mg_conditions",
@@ -681,7 +681,7 @@
           ],
           "readouts": ["N"],
           "controls_visible": ["theta"],
-          "idle_auto_sweep": { "param": "theta", "range": [0, 40] },
+          "param_ramp": { "param": "theta", "from": 0, "to": 40, "start_ms": 500, "end_ms": 6000 },
           "glow_focal": "nlb_arrow_A_normal"
         }
       },
