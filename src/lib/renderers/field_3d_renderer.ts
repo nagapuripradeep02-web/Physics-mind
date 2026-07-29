@@ -38064,9 +38064,17 @@ export const FIELD_3D_RENDERER_CODE = `
     //   teaching focus is BRIGHTNESS ONLY, through nlbApplyGlow() ->
     //   applyGlowEmphasis(). There is NO scale/size bump anywhere below, and no
     //   second emphasis channel (Rule 32e).
-    var NLB_ARROW_SCALE = 0.030;          // world units PER NEWTON (1 kg weight = 9.8 N -> 0.29)
-    var NLB_ARROW_MIN_LEN = 0.30;         // a nonzero force is always at least readable
-    var NLB_ARROW_MAX_LEN = 2.40;         // and never longer than the visible surface
+    // Arrow sizing (founder 2026-07-29: "the vectors are not really visible, they're
+    // too short ... the concept should be solid and confident"). A force arrow is the
+    // TAUGHT OBJECT in this chapter, not decoration, so it is sized to be read from
+    // the back of a classroom. Body size is 0.55, so MIN_LEN 0.55 means even the
+    // smallest drawn force is a full block long and unmistakably a vector.
+    // Rule 29 is untouched: length still tracks MAGNITUDE only, and emphasis is still
+    // brightness — this rescales the whole magnitude->length map, it does not scale
+    // any single arrow for emphasis.
+    var NLB_ARROW_SCALE = 0.048;          // world units PER NEWTON (1 kg weight = 9.8 N -> 0.47)
+    var NLB_ARROW_MIN_LEN = 0.55;         // a nonzero force is always at least readable
+    var NLB_ARROW_MAX_LEN = 2.80;         // and never longer than the visible surface
     var NLB_ARROW_EPS = 0.05;             // newtons. At or below this the force IS zero:
                                           // the arrow HIDES. Never a stub (spec section 3).
     var NLB_ARROW_LABEL_H = 0.26;         // label sprite glyph height (< every lane gap below)
@@ -38584,10 +38592,18 @@ export const FIELD_3D_RENDERER_CODE = `
         // Rule 29 exception: LENGTH is the magnitude. Nothing here scales the
         // arrow for emphasis — emphasis is brightness, via nlbApplyGlow() only.
         var len = nlbArrowLen(mag);
-        var headLen = Math.min(0.20, len * 0.34);
+        // Head sizing (founder 2026-07-29). ArrowHelper's SHAFT is a THREE.Line, and
+        // WebGL ignores linewidth on essentially every desktop driver — so the shaft
+        // is permanently 1px and the HEAD is the only part of a vector whose weight
+        // we can actually control. It therefore carries the "confident" read: a
+        // bigger cap and a wider base (0.80 x length vs 0.62) give the arrow visual
+        // mass at classroom distance. Capped at 0.30 so a max-length arrow is still
+        // mostly shaft, and proportional below that so short arrows do not become
+        // all-head blobs.
+        var headLen = Math.min(0.30, len * 0.38);
         arrow.position.copy(originWorld);
         arrow.setDirection(dirUnit);
-        arrow.setLength(len, headLen, headLen * 0.62);
+        arrow.setLength(len, headLen, headLen * 0.80);
         if (lbl) {
             var hanging = !!(arrow.userData && arrow.userData.hanging);
             var th = nlbFrameThetaDeg();
@@ -38741,7 +38757,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var kind = NLB_ARROW_KINDS[k];
             var col = NLB_ARROW_COLORS[kind];
             var ar = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0),
-                NLB_ARROW_MIN_LEN, col, 0.18, 0.11);
+                NLB_ARROW_MIN_LEN, col, 0.21, 0.17);   // build-time head; nlbUpdateArrow re-sizes it every frame
             ar.userData = {
                 elementType: "nlb_arrow", id: "nlb_arrow_" + bodyId + "_" + kind,
                 bodyId: bodyId, kind: kind, hanging: !!hanging
@@ -39145,7 +39161,25 @@ export const FIELD_3D_RENDERER_CODE = `
                 ud.elementType === "nlb_surface_group" || ud.elementType === "nlb_world_group") return;
             if (ud.ghost) { applyGlowEmphasis(o, false, true, 0, false); return; }
             var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
-            applyGlowEmphasis(o, isFocal, glowActive, glowP, false);
+            // BRIGHTEN-ONLY for the solid apparatus (founder 2026-07-29). The dim
+            // branch of applyGlowEmphasis drops opacity to GLOW_DIM_OPACITY (0.4),
+            // which is right for an OVERLAY (an arrow at 40% still reads as an arrow)
+            // but wrong for a physical OBJECT: a 40%-opacity block renders as glass
+            // with the slab and the mg label showing straight through it, so the
+            // thing the physics is happening TO looks like the least solid item on
+            // screen. This is the same carve-out Rule 29 already makes for the 3D
+            // hand ("named meshes stay static, full-bright, never dim"). The block,
+            // its label, the slab, the pulley and the ropes now brighten when focal
+            // and simply stay solid otherwise; arrows, their labels and the
+            // component/right-angle overlays keep the real dim channel, so Rule 32e
+            // (exactly one focal) is unchanged — only the peers that were never
+            // meant to be see-through stop being see-through.
+            var solidApparatus = (ud.elementType === "nlb_body" ||
+                                  ud.elementType === "nlb_body_label" ||
+                                  ud.elementType === "nlb_surface" ||
+                                  ud.elementType === "nlb_pulley" ||
+                                  ud.elementType === "nlb_rope");
+            applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
         });
     }
     // Name used by the spec's animate() call site (SEAM B) — one alias so the
