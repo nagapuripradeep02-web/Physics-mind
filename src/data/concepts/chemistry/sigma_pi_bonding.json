@@ -1,0 +1,1099 @@
+{
+  "concept_id": "sigma_pi_bonding",
+  "concept_name": "σ and π Bonds: One Overlap Survives a Twist, the Other Doesn't",
+  "chapter": 4,
+  "section": "4.7",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Chemistry Class 11, Ch.4 'Chemical Bonding and Molecular Structure', §4.7 — valence bond theory, sigma and pi bonds formed by end-on and sideways overlap of atomic orbitals — chapter-index scope reference only; teaching, sequence, and phrasing authored from first principles. Every shape and number below is DERIVED from a signed two-centre MO field psi_A + psi_B built on the shipped sp2-sp2 hybrid and 2p radial functions (docs/concepts/chemistry/sigma_pi_bonding_skeleton.md + sigma_pi_bonding_chemistry_block.md), solved independently BEFORE any renderer code existed, with a control reproducing the shipped 2p 90% tip (482.98 pm) and the shipped hybridisation concept's sp2-sp2 sign convention. NCERT Exemplar Ch.4 consulted for the misconception belief only (a double bond is two identical bonds, so it should be twice as strong and rotate just as freely); no problem text, figure, or worked example imported. Third chemistry concept on the field_3d orbital_shapes surface, first to use the new kind:'mo' molecular-orbital build.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "orbital_shapes"
+    ]
+  },
+  "prerequisites": [
+    "hybridisation_sp_sp2_sp3"
+  ],
+  "real_world_anchor": {
+    "primary": "Vision itself runs on this exact rotation lock. The retinal molecule in the eye holds a carbon=carbon double bond frozen in its bent (11-cis) shape only because the pi bond resists twisting — a single absorbed photon supplies just enough energy to break that pi overlap, the molecule snaps straight (all-trans), and that one shape change is the first electrical signal of sight.",
+    "secondary": "The same lock is why cis and trans fats are chemically different substances, not just different names for the same molecule: a double bond cannot rotate to interconvert them at body temperature."
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 10,
+    "max_labels_per_state": 6,
+    "max_words_per_tts_sentence": 34
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "The same twist leaves σ untouched but drives π's overlap to exactly zero.",
+    "visual_confirmation": "the live overlap readout falls smoothly to 0.000 at 90° while the constructive (reinforcing) glow region visibly shrinks and a destructive (cancelling) region grows to exactly match it — the two atomic lobes never separate; the overlap is annihilated, not torn"
+  },
+  "physics_engine_config": {
+    "variables": {
+      "twist_deg": {
+        "name": "twist angle φ of atom B's π-forming p orbital about the bond axis",
+        "unit": "degrees",
+        "min": 0,
+        "max": 90,
+        "default": 0,
+        "role": "independent"
+      },
+      "S_pi_ratio": {
+        "name": "the taught π instrument — S_π(φ)/S_π(0), self-normalised. NOTE (engine capability, see concept-level authoring note): the shipped kind:'mo' HUD vocabulary has no ratio line, so the RENDERED HUD shows the absolute integral S(φ) (identical zero-crossing, same shape, different constant prefactor) — this variable documents the intended self-normalised reading used in physics_engine_config/chat-explain provenance only.",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 1,
+        "default": 1,
+        "derived": "cos(radians(twist_deg))"
+      },
+      "S_pi_0": {
+        "name": "reference π overlap S(0) at the C=C separation, Z_eff=3.25 — provenance constant only",
+        "unit": "dimensionless",
+        "constant": 0.270339
+      },
+      "S_sigma_ratio": {
+        "name": "the taught σ instrument — S_σ(spin)/S_σ(0), proven identically 1.000 at every angle (the hybrid axis coincides with the rotation axis). Same HUD caveat as S_pi_ratio: rendered HUD shows the absolute S (also constant, 0.745).",
+        "unit": "dimensionless",
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "derived": "S_sigma(spin_angle) / S_sigma_0"
+      },
+      "S_sigma_0": {
+        "name": "reference σ overlap (any spin angle — proven invariant) — provenance constant only",
+        "unit": "dimensionless",
+        "constant": 0.744949
+      },
+      "bond_order": {
+        "name": "which bond the apparatus depicts (1=single reuses the sp2-sp2 sigma alone, 2=double, 3=triple adds a second orthogonal pi). NOTE: not a live student toggle in this build — see concept-level authoring note; fixed per authored state (S1-S6/S9 depict 2, S7 compares 1 vs 2 as text/HUD facts, S8 depicts 3).",
+        "unit": "— (1|2|3)",
+        "min": 1,
+        "max": 3,
+        "default": 2,
+        "role": "independent"
+      },
+      "d_CC_single": {
+        "name": "C–C single bond length",
+        "unit": "pm",
+        "constant": 153.5
+      },
+      "d_CC_double": {
+        "name": "C=C double bond length — the rendered separation for every state",
+        "unit": "pm",
+        "constant": 133.9
+      },
+      "d_CC_triple": {
+        "name": "C≡C triple bond length — HUD/label fact ONLY at STATE_8, never the rendered separation",
+        "unit": "pm",
+        "constant": 120.3
+      },
+      "Z_eff": {
+        "name": "Slater effective nuclear charge, carbon 2p — display as 'Z_eff ≈ 3.25 (Slater)', never a bare '='",
+        "unit": "dimensionless",
+        "constant": 3.25
+      },
+      "E_CC_single": {
+        "name": "C–C bond enthalpy (ethane, sp3-sp3) — textbook convention",
+        "unit": "kJ/mol",
+        "constant": 348
+      },
+      "E_CC_double": {
+        "name": "C=C bond enthalpy (ethene, sp2-sp2) — textbook convention",
+        "unit": "kJ/mol",
+        "constant": 614
+      },
+      "E_CC_triple": {
+        "name": "C≡C bond enthalpy (ethyne, sp-sp) — STATE_8 fact card only",
+        "unit": "kJ/mol",
+        "constant": 839
+      },
+      "E_pi_double": {
+        "name": "derived π contribution to the double bond",
+        "unit": "kJ/mol",
+        "default": 266,
+        "role": "derived"
+      },
+      "enclosure": {
+        "name": "iso-surface contour fraction — authoring constant, NOT student-facing. 50% only, never 90% (90% fuses adjacent lobes and stops being countable)",
+        "unit": "fraction",
+        "constant": 0.5
+      },
+      "show_sigma": {
+        "name": "σ surface visibility (concept intent). NOTE: not a wired live toggle in this build — the shipped kind:'mo' engine shows exactly one MO family per state (mo.orbital is singular); see concept-level authoring note.",
+        "unit": "0|1",
+        "min": 0,
+        "max": 1,
+        "default": 1,
+        "role": "presentation_only"
+      },
+      "show_pi": {
+        "name": "π surface visibility (concept intent). Same NOTE as show_sigma.",
+        "unit": "0|1",
+        "min": 0,
+        "max": 1,
+        "default": 1,
+        "role": "presentation_only"
+      },
+      "dots": {
+        "name": "measurement-dot swarm size (concept intent, matches the atomic_orbitals_s_p_d convention). NOTE: a molecular orbital carries no seeded dot table in the shipped engine (kind:'mo' orbitals are two-centre fields, not one-centre samplers) — no state in this concept authors a live dots control.",
+        "unit": "count",
+        "min": 100,
+        "max": 3000,
+        "default": 1200,
+        "role": "presentation_only"
+      }
+    },
+    "computed_outputs": {
+      "S_pi_ratio": {
+        "formula": "cos(radians(twist_deg))"
+      },
+      "S_sigma_ratio": {
+        "formula": "1.000 (proven identity, every spin angle)"
+      },
+      "E_pi_double": {
+        "formula": "E_CC_double - E_CC_single"
+      }
+    },
+    "formulas": {
+      "S_pi(twist_deg)": "S_pi_0 * cos(radians(twist_deg)) — EXACT closed form, verified by direct quadrature to 2e-18 max deviation at every sampled angle 0-90 deg. twist_deg in DEGREES; radians() is the correct field_3d conversion dialect (this concept is field_3d/orbital_shapes, not PCPL — the PCPL radians() ban does not apply here).",
+      "S_pi_ratio(twist_deg)": "S_pi(twist_deg) / S_pi_0 = cos(radians(twist_deg)) — the SELF-NORMALISED instrument this concept is designed around (1.000 at phi=0, 0.000 at phi=90). See the concept-level authoring note: the shipped renderer HUD cannot print this ratio directly and prints the absolute S(twist_deg) instead, which has the identical zero-crossing.",
+      "S_sigma": "0.744949 (constant for all twist/spin angles) — exact identity: osHybPsi(f, r, cosA) carries no azimuthal argument, and the hybrid's own axis coincides with the bond/spin axis, so rotation about it is a no-op on the axis vector itself. Not a numerical coincidence.",
+      "S_sigma_ratio(spin_angle)": "S_sigma(spin_angle) / S_sigma_0 = 1.000 always — recomputed live from the current spin angle each frame (a real instrument that demonstrably never ticks), not a hardcoded string.",
+      "E_pi_double": "614 - 348 = 266 kJ/mol. TEXTBOOK CONVENTION composed from two different hybridisations (the sp3-sp3 sigma proxy vs the real sp2-sp2 sigma of ethene) — an approximation, not an identity. Must never be captioned with false precision (never '266.0' as if measured to a decimal).",
+      "approach_from_pm_floor": "mo.approach.from_pm MUST be authored strictly ABOVE the live bond length (mo.bondPmLive) — the engine ramps sepPm FROM from_pm TO the bond length with no floor check, so a from_pm at or below the bond length runs the approach backwards or not at all. Every from_pm in this concept is 2.4x the C=C bond length (321.4 pm), matching the engine's own unauthored default (mo.bondPmLive * 2.4)."
+    },
+    "constraints": [
+      "electron-pair count = bond order at every state: single 1 (1sigma+0pi), double 2 (1sigma+1pi), triple 3 (1sigma+2pi) -- verified by counting the built MOs, never asserted by label alone",
+      "S_sigma_ratio (= S_sigma/S_sigma_0) is EXACTLY 1.000 under rotation about the bond axis for every twist/spin angle (proven: the hybrid axis coincides with the rotation axis, so the field is pointwise unchanged) -- STATE_3's readout must never tick, even by a rounding artifact",
+      "S_pi_ratio(phi) = cos(radians(phi)) exactly, reaching 0.000 at 90 degrees -- verified by direct quadrature to 2e-18 max deviation; STATE_6/STATE_9 MEASURE this from the field's precomputed twist ladder, never hardcode a cosine string as decoration",
+      "enclosure is fixed at 0.5 (50%) for every MO surface in every state -- 90% is never used anywhere in this concept (90% fuses adjacent lobes and stops being countable)",
+      "STATE_6's twisted pi surface is drawn as sign-coloured atomic lobes + a shrinking constructive-overlap region plus a growing cancelling region -- NEVER as two lumps visibly separating (the total-density surface stays 2 components, touching diagonally, at every angle including 90 degrees, so it is never drawn through the twist at all)",
+      "STATE_8's rendered bond length is the C=C separation (133.9 pm) at every beat including the triple-bond beat -- the real C#C length (120.3 pm) and enthalpy (839 kJ/mol) are HUD/label facts only and must never be implied by the rendered geometry",
+      "no computed_outputs field named E_pi_triple_avg (or equivalent) may ever be wired to a rendered text/label -- the triple-bond pi decomposition is internally inconsistent (245.5 vs 266 kJ/mol) by construction and must never be displayed as a fact",
+      "no state ever renders the sigma and pi overlap magnitudes in directly-comparable absolute form on the SAME screen at the SAME time -- the two integrals are taken over different orbital shapes (a hybrid vs a pure p) and are NOT proportional to bond enthalpy; every overlap HUD (STATE_3, STATE_6, STATE_9) is authored so its number is read alone, never beside the other bond's overlap number, and on-canvas wording never asserts a sigma-vs-pi overlap ratio (that comparison is E_pi_double/E_CC_single at STATE_7, never S_pi/S_sigma)"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "The wrong picture: a double bond is two identical bonds",
+        "duration": 13,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_debunk_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "stick-double",
+        "motion_delta": "two identical, mirrored lobes appear between the nuclei, then dissolve to bare nuclei",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_belief_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "Two identical bonds?",
+            "color": "#FFCA28",
+            "at_ms": 800
+          },
+          {
+            "type": "annotation",
+            "id": "s1_strength_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "Twice as strong?",
+            "color": "#FFCA28",
+            "at_ms": 3400
+          },
+          {
+            "type": "annotation",
+            "id": "s1_rotate_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "Rotates just as freely?",
+            "color": "#FFCA28",
+            "at_ms": 6200
+          },
+          {
+            "type": "annotation",
+            "id": "s1_debunk_label",
+            "position": {
+              "x": 602,
+              "y": 130
+            },
+            "text": "Watch closely.",
+            "color": "#B0BEC5",
+            "at_ms": 11000
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "A double bond is just two identical bonds side by side, so it should be twice as strong and rotate exactly as freely as a single bond.",
+            "visual_counter": "Two identical, mirrored lobes sit between the nuclei — then dissolve to bare nuclei, because that picture is not what a real double bond looks like. STATE_2 builds the real σ bond in its place, and it looks nothing like this.",
+            "one_line_fix": "A double bond is one σ bond (on the axis) plus one π bond (off the axis, in a different shape) — not two of the same thing."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Draw a double bond the usual way: two identical lines between two carbon atoms.",
+              "glow": "mo_lobes"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "That picture says both bonds are the same shape, so it should be twice as strong, and still rotate freely.",
+              "glow": "mo_lobes"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The real bond: end-on overlap builds one σ, on the axis",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_touch_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "head-on-merge",
+        "motion_delta": "front lobes close along the internuclear axis and fuse into one σ lump",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_endon_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "End-on: one σ",
+            "color": "#FFCA28",
+            "at_ms": 200
+          },
+          {
+            "type": "annotation",
+            "id": "s2_touch_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "Surfaces touch first",
+            "color": "#66BB6A",
+            "at_ms": 1450
+          },
+          {
+            "type": "annotation",
+            "id": "s2_onebond_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "One bond, not two",
+            "color": "#B0BEC5",
+            "at_ms": 4800
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now the real bond. Each carbon's front lobe grows toward the other, closing along the line joining the nuclei — end on.",
+              "glow": "mo_lobes"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the surfaces touch first, well before the bond forms, then merge into a single bonding cloud that lies on the axis: one sigma bond, not two.",
+              "glow": "mo_surface"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "σ is cylindrically symmetric — spin it, nothing changes",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_law_label",
+        "advance_mode": "auto_after_tts",
+        "motion_archetype": "axis-spin",
+        "motion_delta": "the whole apparatus turns about the bond axis; σ's overlap never moves",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_watch_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "Spin it: σ unchanged",
+            "color": "#FFCA28",
+            "at_ms": 1000
+          },
+          {
+            "type": "annotation",
+            "id": "s3_symmetric_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "Cylindrically symmetric",
+            "color": "#B0BEC5",
+            "at_ms": 4500
+          },
+          {
+            "type": "annotation",
+            "id": "s3_law_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "Same overlap, any angle",
+            "color": "#66BB6A",
+            "at_ms": 9000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Sigma is shaped like a barrel around the bond axis, so let's turn the whole molecule about that same axis and watch.",
+              "glow": "axes"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "One full turn later, the surface looks exactly the same, and the overlap number never moved — sigma is cylindrically symmetric.",
+              "glow": "mo_surface"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Each carbon also keeps one un-hybridised p, perpendicular to the bond",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_separate_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "perpendicular-rise",
+        "motion_delta": "one leftover p orbital stands up on each carbon, still two separate clouds",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_pointA_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "One p left, sideways",
+            "color": "#FFCA28",
+            "at_ms": 1000
+          },
+          {
+            "type": "annotation",
+            "id": "s4_perp_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "Perpendicular to the axis",
+            "color": "#B0BEC5",
+            "at_ms": 4000
+          },
+          {
+            "type": "annotation",
+            "id": "s4_separate_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "Not yet touching",
+            "color": "#B0BEC5",
+            "at_ms": 7000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Hybridising three orbitals still leaves one 2p orbital on every carbon, standing perpendicular to the bond axis and to the molecule's plane.",
+              "glow": "mo_lobes"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Both carbons have this leftover p, but right now they are two separate clouds — not yet touching each other.",
+              "glow": "mo_lobes"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Sideways overlap builds π — two lumps, a node on the axis",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_notouch_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "sideways-fuse",
+        "motion_delta": "broadside p lobes close along the axis and fuse into two lumps, never touching",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_sideways_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "Sideways: above and below",
+            "color": "#FFCA28",
+            "at_ms": 800
+          },
+          {
+            "type": "annotation",
+            "id": "s5_notouch_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "Surfaces never touch",
+            "color": "#AB47BC",
+            "at_ms": 2600
+          },
+          {
+            "type": "annotation",
+            "id": "s5_node_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "Node stays on the axis",
+            "color": "#B0BEC5",
+            "at_ms": 3600
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "The leftover p orbitals lie broadside to the bond axis, so the lobes meet side by side as the carbons close in.",
+              "glow": "mo_lobes"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The surfaces never touch — read the separation number — but the amplitudes still add: two lumps, with an empty node right on the axis.",
+              "glow": "mo_surface"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Twist one carbon: σ survives, π's overlap collapses to zero",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_zero_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "torsion-cancel",
+        "motion_delta": "one carbon's p rotates; the reinforcing glow shrinks as a cancelling region grows to match it",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_twist_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "Twist: overlap → zero",
+            "color": "#FFCA28",
+            "at_ms": 1000
+          },
+          {
+            "type": "annotation",
+            "id": "s6_cancel_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "Cancels, not separates",
+            "color": "#66BB6A",
+            "at_ms": 9500
+          },
+          {
+            "type": "annotation",
+            "id": "s6_zero_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "Overlap: exactly zero at 90°",
+            "color": "#EC407A",
+            "at_ms": 11200
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now twist one carbon's p orbital about the bond axis, and watch the live overlap number.",
+              "glow": "mo_lobes"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "The green reinforcing region shrinks while a matching magenta cancelling region grows — not lumps coming apart, but overlap cancelling out.",
+              "glow": "mo_overlap"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "At ninety degrees the two regions are exactly equal: overlap reads zero, and the pi bond is gone.",
+              "glow": "mo_overlap"
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Not the same bond twice: σ 348, π 266 kilojoules per mole",
+        "duration": 18,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_pi_bar_label",
+        "advance_mode": "manual_click",
+        "motion_archetype": "dual-value-reveal",
+        "motion_delta": "σ's 348 and the full double bond's 614 kJ/mol appear; π is the difference",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_sigma_bar_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "σ only: 348 kJ/mol",
+            "color": "#FFCA28",
+            "at_ms": 1000
+          },
+          {
+            "type": "annotation",
+            "id": "s7_double_bar_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "σ+π (double): 614 kJ/mol",
+            "color": "#FFCA28",
+            "at_ms": 2800
+          },
+          {
+            "type": "annotation",
+            "id": "s7_pi_bar_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "π ≈ 266 kJ/mol",
+            "color": "#66BB6A",
+            "at_ms": 4400
+          },
+          {
+            "type": "annotation",
+            "id": "s7_caveat_label",
+            "position": {
+              "x": 602,
+              "y": 130
+            },
+            "text": "Mixes two bond types",
+            "color": "#B0BEC5",
+            "at_ms": 5800
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "A single carbon-carbon sigma bond needs about 348 kilojoules per mole to break.",
+              "glow": "nuclei"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "The full double bond needs 614 — so the pi bond alone is only about 266, noticeably weaker than sigma, not equal to it.",
+              "glow": "mo_surface"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "This mixes two different bond types, so treat it as an approximate comparison, not an exact one.",
+              "glow": "mo_surface"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "A triple bond is one σ and TWO π, at right angles",
+        "duration": 16,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s8_realfacts_label",
+        "advance_mode": "auto_after_tts",
+        "motion_archetype": "second-pi-add",
+        "motion_delta": "a second π MO appears, at right angles to the first",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s8_third_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "Triple: one σ, two π",
+            "color": "#FFCA28",
+            "at_ms": 1000
+          },
+          {
+            "type": "annotation",
+            "id": "s8_addpi_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "1σ + 2π = triple bond",
+            "color": "#FFCA28",
+            "at_ms": 5200
+          },
+          {
+            "type": "annotation",
+            "id": "s8_realfacts_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "C≡C: 120 pm · 839 kJ",
+            "color": "#B0BEC5",
+            "at_ms": 6000
+          },
+          {
+            "type": "annotation",
+            "id": "s8_caveat_label",
+            "position": {
+              "x": 602,
+              "y": 130
+            },
+            "text": "Shown at C=C spacing",
+            "color": "#B0BEC5",
+            "at_ms": 6600
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Add one more leftover p orbital pair, at right angles to the first pi bond, and let it overlap the same way.",
+              "glow": "mo_lobes"
+            },
+            {
+              "id": "s8_2",
+              "text_en": "One sigma and two pi bonds together make three shared pairs — a triple bond. It's shown at the double bond's spacing for continuity; the real one is shorter and stronger.",
+              "glow": "mo_surface"
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — twist the π bond yourself",
+        "duration": 24,
+        "depth_ring": "core",
+        "focal_primitive_id": "s9_try_label",
+        "advance_mode": "interaction_complete",
+        "motion_archetype": "free-explore",
+        "motion_delta": "the teacher drags the twist; π's overlap responds live",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s9_try_label",
+            "position": {
+              "x": 162,
+              "y": 205
+            },
+            "text": "Twist it yourself",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_watch_label",
+            "position": {
+              "x": 162,
+              "y": 420
+            },
+            "text": "Watch overlap fall to 0",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_turn_label",
+            "position": {
+              "x": 602,
+              "y": 330
+            },
+            "text": "Turn to view",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Try it yourself — drag the twist and watch the pi overlap respond, or turn the view to look from any angle.",
+              "glow": "mo_overlap"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "orbital_shapes",
+    "explorer_id": "sigma_pi_explorer",
+    "field_lines": {
+      "opacity": 0
+    },
+    "mo": {
+      "bond": "double"
+    },
+    "_cameras_unsolved_note": "UNSOLVED (json_author, per task instruction 'author the engine's per-mode defaults, do not invent camera values'). No explicit camera object is authored on any state below — every state instead sets `mode` to the nearest EXISTING OS_CAMERAS key so the renderer's own documented per-mode fallback (OS_CAMERAS[os.mode]) applies. Those defaults were solved for ATOMIC/HYBRID orbitals (dist 3.2-13.3), not for this concept's two-centre MO fields. The engine build measured the MO picture as ~4x smaller in world units than an atomic picture at the same camera distance (Z_eff=3.25 vs the hybrid's own scale) — sigma lit 4110 px vs pi's 19,610 px at dist 3.2. Every camera here is therefore expected to be WRONG-SCALE until a founder numeric solve pass adds real per-mode (or per-state) camera entries sized for the mo picture — flagged, not silently guessed.",
+    "slider_controls": {
+      "twist": {
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "default": 0,
+        "label": "Twist"
+      },
+      "spin": {
+        "min": 0,
+        "max": 0.8,
+        "step": 0.02,
+        "default": 0,
+        "label": "Turn speed"
+      }
+    },
+    "render_annotations": true,
+    "states": {
+      "STATE_1": {
+        "label": "The wrong picture: two identical lobes, then bare nuclei",
+        "caption": "Two identical lines?",
+        "orbital_shapes": {
+          "mode": "orbit_dissolve",
+          "mo": {
+            "orbital": "sigma_sp2",
+            "show_atomic": true,
+            "show_total": false,
+            "show_overlap": false,
+            "show_nuclei": true,
+            "atomic_opacity": 0.55,
+            "approach": {
+              "from_pm": 321.4,
+              "at_ms": 0,
+              "duration_ms": 800,
+              "settle_ms": 10200,
+              "fade_ms": 2000
+            }
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": false,
+          "hud_lines": [],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_2": {
+        "label": "The real σ: end-on approach, cross-fade to the fused MO",
+        "caption": "End-on: one σ",
+        "orbital_shapes": {
+          "mode": "merge_morph",
+          "mo": {
+            "orbital": "sigma_sp2",
+            "show_atomic": true,
+            "show_total": true,
+            "show_overlap": false,
+            "show_nuclei": true,
+            "atomic_opacity": 0.55,
+            "surface_opacity": 0.3,
+            "approach": {
+              "from_pm": 321.4,
+              "at_ms": 0,
+              "duration_ms": 2400,
+              "settle_ms": 800,
+              "fade_ms": 1200
+            }
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "separation",
+            "contact",
+            "bond"
+          ],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_3": {
+        "label": "σ spins about the bond axis — silhouette pixel-identical",
+        "caption": "Spin it: σ unchanged",
+        "orbital_shapes": {
+          "mode": "boundary",
+          "mo": {
+            "orbital": "sigma_sp2",
+            "show_atomic": false,
+            "show_total": true,
+            "show_overlap": false,
+            "show_nuclei": true,
+            "surface_opacity": 0.3
+          },
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "overlap",
+            "bond"
+          ],
+          "spin_rate": 0.714,
+          "controls": [],
+          "spin_start_ms": 2600,
+          "spin_axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Each carbon's leftover p, perpendicular, not yet touching",
+        "caption": "One p left, sideways",
+        "orbital_shapes": {
+          "mode": "set_populate",
+          "mo": {
+            "orbital": "pi_2p",
+            "show_atomic": true,
+            "show_total": false,
+            "show_overlap": false,
+            "show_nuclei": true,
+            "atomic_opacity": 0.5
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "bond"
+          ],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_5": {
+        "label": "π forms: broadside p lobes close, surfaces never touch",
+        "caption": "Sideways: above and below",
+        "orbital_shapes": {
+          "mode": "tetra_assemble",
+          "mo": {
+            "orbital": "pi_2p",
+            "show_atomic": true,
+            "show_total": true,
+            "show_overlap": false,
+            "show_nuclei": true,
+            "atomic_opacity": 0.5,
+            "surface_opacity": 0.28,
+            "approach": {
+              "from_pm": 321.4,
+              "at_ms": 800,
+              "duration_ms": 800,
+              "settle_ms": 800,
+              "fade_ms": 1000
+            }
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "separation",
+            "contact"
+          ],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_6": {
+        "label": "Twist: reinforcing region shrinks, cancelling region grows to match it",
+        "caption": "Twist: overlap → zero",
+        "orbital_shapes": {
+          "mode": "param_sweep",
+          "mo": {
+            "orbital": "pi_2p",
+            "show_atomic": true,
+            "show_total": false,
+            "show_overlap": true,
+            "show_destructive": true,
+            "show_nuclei": true,
+            "atomic_opacity": 0.45,
+            "overlap_opacity": 0.32,
+            "twist_ramp": {
+              "from": 0,
+              "to": 90,
+              "at_ms": 2600,
+              "duration_ms": 8400
+            }
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "overlap",
+            "twist"
+          ],
+          "spin_rate": 0,
+          "controls": [
+            "twist"
+          ],
+          "show_formula": true,
+          "formula": "S(φ) = S(0)·cos φ"
+        }
+      },
+      "STATE_7": {
+        "label": "σ and π are not the same bond: 348 vs 266 kJ/mol",
+        "caption": "π is the weaker one",
+        "orbital_shapes": {
+          "mode": "hybrid_gallery",
+          "mo": {
+            "orbital": "sigma_sp2",
+            "show_atomic": false,
+            "show_total": true,
+            "show_overlap": false,
+            "show_nuclei": true,
+            "surface_opacity": 0.26
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "bond"
+          ],
+          "spin_rate": 0,
+          "controls": [],
+          "show_formula": true,
+          "formula": "E<sub>π</sub> = 614 − 348 = 266 kJ/mol"
+        }
+      },
+      "STATE_8": {
+        "label": "A second π MO grows in, orthogonal to the first",
+        "caption": "Triple: one σ, two π",
+        "orbital_shapes": {
+          "mode": "node_count",
+          "mo": {
+            "orbital": "pi_2p",
+            "show_atomic": false,
+            "show_total": true,
+            "show_overlap": false,
+            "show_nuclei": true,
+            "surface_opacity": 0.26,
+            "pi_systems": 2
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "bond"
+          ],
+          "spin_rate": 0,
+          "controls": []
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — drag the twist, turn the view",
+        "caption": "All yours",
+        "orbital_shapes": {
+          "mode": "explore",
+          "mo": {
+            "orbital": "pi_2p",
+            "show_atomic": true,
+            "show_total": false,
+            "show_overlap": true,
+            "show_destructive": true,
+            "show_nuclei": true,
+            "atomic_opacity": 0.45,
+            "overlap_opacity": 0.32,
+            "twist_deg": 0
+          },
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": [
+            "overlap",
+            "twist",
+            "bond"
+          ],
+          "spin_rate": 0,
+          "controls": [
+            "twist",
+            "spin"
+          ],
+          "show_formula": true,
+          "formula": "S(φ) = S(0)·cos φ"
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same σ/π split, a carbon=oxygen double bond in a carbonyl group",
+      "physical_world": "The C=O double bond in a molecule like methanal (formaldehyde) is built the same way: an sp2-sp2-style σ bond on the axis plus one leftover p on each atom forming the π bond above and below it.",
+      "same_physics": "Identical reasoning: one σ (end-on, cylindrically symmetric) plus one π (sideways, node on the axis, torsion-locked) makes the double bond. What changes is only which atoms are bonded, never the σ/π construction itself."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Ch.4 'Chemical Bonding and Molecular Structure', §4.7 — valence bond theory, formation of sigma and pi bonds by end-on and sideways overlap of atomic orbitals",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main/Advanced · NEET",
+        "coverage": "full",
+        "syllabus_unit": "full concept; distinguishing sigma/pi bond count and predicting bond order from a Lewis structure is a recurring item across both exams",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "HL only — sigma and pi bonds are introduced alongside hybridisation; the live torsion/rotation-lock demonstration sits above the typical syllabus treatment",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Unit 2 Molecular and Ionic Compound Structure — sigma and pi bonds assessed alongside hybridisation and molecular geometry",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge A-level Chemistry (9701)",
+        "coverage": "full",
+        "syllabus_unit": "sigma and pi bonds introduced with organic bonding; the restricted rotation of a C=C double bond underpins E/Z (cis/trans) isomerism",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "absent",
+        "syllabus_unit": "sigma/pi orbital-level bond description is beyond IGCSE; double bonds are taught as electron-pair counts without an orbital-overlap picture — hide the whole concept for this board",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  }
+}
