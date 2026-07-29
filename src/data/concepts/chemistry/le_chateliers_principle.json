@@ -22,9 +22,9 @@
     "rate_of_reaction"
   ],
   "real_world_anchor": {
-    "primary": "An industrial reactor that joins two gases together to make ammonia — the Haber process. The reaction settles into a balance at whatever pressure and temperature the plant runs at, so engineers deliberately disturb that balance to pull more product out of it: squeezing the gas into a smaller volume pushes the balance toward the side with fewer molecules, and steadily drawing product away keeps the reaction chasing a settle-point it can never fully reach.",
+    "primary": "An industrial reactor that joins two gases together to make ammonia — the Haber process. The reaction settles into a balance long before it has made anything like all the ammonia it could, and the engineers cannot change the chemistry. So they disturb it instead: the gases are squeezed to hundreds of atmospheres, because the product side has fewer molecules and crowding pays that side more — the exact beat STATE_3 puts on screen. The temperature is the harder bargain, and it is the one STATE_4 explains: the reaction gives out heat, so a cooler reactor would settle richer in ammonia, yet a cooler reactor is also a slower one. The plant runs warmer than the balance would like, and buys the rate back with pressure.",
     "secondary": "An opened bottle of fizzy drink going flat: the gas above the liquid keeps escaping, so the dissolved-gas balance keeps chasing a settle-point it never reaches.",
-    "why_it_matters": "Turns the principle from a rule to memorise into an engineering lever a plant operator can actually pull — exactly the compression beat STATE_3 shows on screen."
+    "why_it_matters": "Turns the principle from a rule to memorise into an engineering lever, and into a real trade-off a student can reason about: STATE_3 is why the reactor is pressurised, STATE_4 is why it is not simply run cold, and STATE_5 is why a catalyst helps the speed without ever improving the yield."
   },
   "entry_state_map": {
     "foundational": [
