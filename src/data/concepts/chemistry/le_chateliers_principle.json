@@ -61,7 +61,7 @@
       "T": {
         "name": "temperature of the thermostat bath",
         "unit": "K",
-        "min": 250,
+        "min": 200,
         "max": 900,
         "default": 300,
         "step": 10,
@@ -803,11 +803,15 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "Your turn. Change the temperature, squeeze the box, or add and remove A."
+              "text_en": "Your turn. Heat it, cool it, squeeze the box, add or remove some A."
             },
             {
               "id": "s8_2",
-              "text_en": "Whatever you disturb, the system shifts to oppose it, but never all the way back."
+              "text_en": "Whatever you disturb, the two rates come back together and the line goes flat again."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "That is Le Chatelier's principle: disturb a settled equilibrium and it shifts to oppose you — settling somewhere new, never back where it started."
             }
           ]
         }
@@ -927,7 +931,7 @@
     "slider_controls": {
       "T": {
         "label": "Temperature",
-        "min": 250,
+        "min": 200,
         "max": 900,
         "step": 10,
         "default": 300,
@@ -1140,6 +1144,7 @@
     "engine_fixed_vocabulary": "fwd / rev, N.N/s, 'K = N.NNNN', 'count' / 'time →', and the counts chip are drawn by the renderer and cannot be authored — narration uses those exact words. The bonded product is drawn as the blue A disc and pink B disc joined by a white bond, so it is narrated as 'a joined pair', never as a violet disc.",
     "duration_and_continuous_motion": "Every state is continuously in motion by construction (gas_box particles never stop), which is why the Rule 31a gate measures these states against their authored duration. NOTE, measured: at the player's own pacing (estSentenceMs, rate 0.9) narration overruns the authored `duration` on S1, S2, S3, S4 and S5 — S3 is the widest, 25.9 s of narration against a 20 s duration. Harmless at runtime, because computeTimeline derives the timeline from the sentences and not from `duration`; the consequence is only that eye_capture_ms stops before the narration does on those states. Nothing new happens in the tail (S3's piston finishes at 6 s).",
     "s1_s7_declared_contrast_pair": "STATE_1 and STATE_7 perform the same physical action (inject A) and are DECLARED a Rule 31 contrast pair: S1 shows the amounts moving, S7 shows the ratio NOT moving under the same disturbance. They are visually distinct as well as conceptually — S1 is the sparse box, +30 A, focal on the rate bars; S7 is the dense box, +80 A, focal on the K chip.",
-    "s7_particle_density_is_deliberate": "STATE_7 runs ~516 particles where every other state runs ~150 — a deliberate, measured exception to Rule 32d home-pose continuity, taken on founder decision after the state failed two audit cycles. K's relative fluctuation scales as 1/sqrt(n_AB), and at the lesson's normal density n_AB is only ~30, so the chip swung 33% and in 10/10 seeds the RATIO moved more than the amounts did — the state's whole contrast ran backwards on screen. Two averaging windows (5 s, then 10 s) were tried and measured failing; the noise is set by physics, not by the instrument. At this density n_AB is ~204 and the measured before/after gap is |dK| 8-10% against |dA| 34-42%, with ZERO of 8 seeds inverting, holding at 900x560, 1280x720 and 1600x900. Cost: 2.18 ms/tick against a 16.7 ms budget (the collision sweep is spatially gridded, so it scales linearly). The denser box is visible and is called out in the state's own scene roles rather than hidden."
+    "s7_particle_density_is_deliberate": "STATE_7 runs ~516 particles where every other state runs ~150 — a deliberate, measured exception to Rule 32d home-pose continuity, taken on founder decision after the state failed two audit cycles. K's relative fluctuation scales as 1/sqrt(n_AB), and at the lesson's normal density n_AB is only ~30, so the chip swung 33% and in 10/10 seeds the RATIO moved more than the amounts did — the state's whole contrast ran backwards on screen. Two averaging windows (5 s, then 10 s) were tried and measured failing; the noise is set by physics, not by the instrument. At this density n_AB is ~204 and the measured before/after gap is |dK| 8-10% against |dA| 34-42%, with ZERO of 8 seeds inverting, holding at 900x560, 1280x720 and 1600x900. Cost: 2.18 ms/tick against a 16.7 ms budget (the collision sweep is spatially gridded, so it scales linearly). The denser box is visible and is called out in the state's own scene roles rather than hidden.",
+    "t_floor_200_measured": "The T slider floor is 200 K, not 250, by measurement: cooling from the 300 K plateau moves AB 31->~35 at 250 K (invisible, inside the fluctuation band) but 31->~45 within 10 s at 200 K with fwd still 3.5/s (box visibly alive). At 150 K fwd falls to 1.1/s and the box reads near-dead. The mirror of the PRIMARY aha — cooling an exothermic mixture MAKES product — is only demonstrable with this floor, and it is the single most likely what-if a student asks after STATE_4."
   }
 }
