@@ -244,14 +244,29 @@ At 90° the reinforcing and cancelling regions are **exactly equal and annihilat
 That is a better lesson than "it snaps," it is true, and it independently reproduces
 §5d's cos φ law by a completely different computation.
 
-**So S6 draws sign-coloured atomic lobes plus the constructive-overlap region
-shrinking to nothing — never a fused surface being pulled apart.**
+**So S6 draws sign-coloured atomic lobes plus BOTH overlap regions — never a fused
+surface being pulled apart.**
 
-A second, confirming reason not to draw a fused surface through the twist: at 90°
-that component is **L-shaped**, so its centroid lands in the hollow *outside* the
-region and the root-table pipeline provably cannot represent it (asserted in the
-builder rather than worked around). The geometry, the physics and the pedagogy all
-say the same thing.
+> **CORRECTION (2026-07-29, caught by the engine build).** An earlier draft of this
+> section said the constructive region "shrinks to nothing." **It does not** — the
+> table directly above says 0.08589 at 90°, and the prose contradicted its own data.
+> What reaches zero is the **net**. Measured in the shipped engine at a level solved
+> once and held, the constructive region goes **489.25 → 106.25 (−78%)**: a strong
+> visible shrink, not a disappearance.
+>
+> The engine's resolution is better than what this skeleton specified: draw **both**
+> regions. The cancelling one is *exactly* absent below ~70° and grows to *exactly*
+> equal the constructive at 90°. That makes "they annihilate" a **picture** rather
+> than a caption. The iso-level must be solved once and **held** — a per-rung
+> re-solve collapses the shrink to 40% and paints a phantom cancelling region at 0°
+> (negative control 4 in `check:sigma-pi`).
+>
+> **Second correction.** The "L-shaped centroid falls outside" claim reproduces, but
+> it is about the **total-density** field, not the constructive one. Measured against
+> each component's own voxel mask, the constructive components are **0.00% re-entrant
+> at every rung including 90°** — the root-table pipeline represents them perfectly.
+> The conclusion (do not draw a fused surface through the twist) is unchanged; the
+> reason is narrower than originally written.
 
 ### 5e — Engine cost: star-shaped, so no marching cubes
 
@@ -308,6 +323,32 @@ unrelated). Nothing has been built twice.
 
 **Comparable size:** the `kind: "hybrid"` build, not a one-line offset.
 
+### §6a — Founder decisions, 2026-07-29
+
+1. **S8 keeps the captioned C=C reuse.** The triple bond renders at the ethene
+   spacing (133.9 pm) with C≡C's real length and enthalpy as HUD/label facts only,
+   captioned so no viewer reads the rendered length as literal. No sp-hybrid rebuild,
+   no real C≡C geometry. S8 is extended-ring and cuttable, and the alternative is a
+   second engine build for one hideable state.
+
+2. **The S2/S5 approach-and-overlap beat IS built — by the cheap path only.**
+   Founder criterion: build more engine only where it is *necessary*,
+   *curriculum-defined* (not above-syllabus), and *high value for teacher and
+   student*. This passes all three — NCERT §4.7 defines a σ bond as formed by
+   **head-on overlap** and a π bond by **sideways overlap**, so the approaching
+   motion is the syllabus's own language, and it is the whole basis of the
+   "end-on vs sideways" distinction that refutes the misconception. A student shown
+   only end-states receives labels instead of an observed fact.
+
+   **The marching-cubes topology morph is explicitly REJECTED** — it delivers the
+   same teaching value at a much larger cost, failing the "necessary" half of the
+   test. The shipped beat translates the already-built atomic sign-lobes together
+   (nuclei travelling with them) and cross-fades to the fused MO at contact.
+
+   S2 and S5 must be *distinguishable* motions — lobes closing along their own axis
+   vs perpendicular to it — verified by diffing dense frames, never by reading
+   parameter names (#13 lesson (d)).
+
 ### Cameras — TO BE SOLVED, never chosen
 
 #13's most transferable camera lesson: the shipped `p_set` camera foreshortened one
@@ -315,6 +356,14 @@ of four sp³ lobes to **exactly 0.000** under a caption counting four. This conc
 has the identical hazard at S8, where the two π systems are **90° apart** and any
 view down one of them collapses it. **Every camera is a measurement.** A view is
 rejected unless both π systems subtend a measurable on-screen extent simultaneously.
+
+**And the hazard is worse than this skeleton first assumed** (measured during the
+engine build): Z_eff = 3.25 makes the whole MO picture roughly **4× smaller in world
+units** than an atomic-orbital picture at the same camera — σ lit only **4110 px**
+against π's **19,610** at dist 3.2. So the σ states and the π states cannot share one
+camera distance without one of them being unreadable, and Rule 32d home-pose
+continuity has to be bought with a solved per-state distance rather than one fixed
+value. Every distance is a measurement too, not just every angle.
 
 ---
 
