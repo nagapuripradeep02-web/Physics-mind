@@ -195,6 +195,72 @@ function narrationChoreographyWarnings(data: unknown, file: string): string[] {
     return warnings;
 }
 
+// ── Gate: DUPLICATE KEYS. HARD FAIL. ────────────────────────────────────────
+// JSON.parse resolves a duplicate key LAST-WINS and reports nothing. Neither
+// Zod nor any other gate can ever see it, because by the time either runs the
+// earlier value is simply gone. Recorded cost (atomic_orbitals_s_p_d,
+// 2026-07-28): a fix authored `spin_rate` fifteen lines above an existing
+// `spin_rate: 0`, so the change was silently discarded — the file stayed valid,
+// tsc passed, validate:chemistry passed and THE EYE passed 39/39, and the edit
+// did nothing at all. It was caught only by diffing the SEEDED sim html against
+// the source and finding 9 spin_rate values where the source had 10.
+//
+// So this reads the raw TEXT, not the parsed object: a scanner is the only thing
+// that can see a key the parser has already thrown away.
+function duplicateKeyErrors(raw: string, file: string): string[] {
+    const errors: string[] = [];
+    // path stack of the object/array we are inside, plus the keys seen at each
+    // object level. Strings and escapes are tracked so a brace or a quote inside
+    // a value never moves the stack.
+    const stack: Array<{ isArray: boolean; keys: Map<string, number>; label: string }> = [];
+    let i = 0, line = 1;
+    let pendingKey: string | null = null;
+    while (i < raw.length) {
+        const ch = raw[i];
+        if (ch === '\n') { line += 1; i += 1; continue; }
+        if (ch === '"') {
+            // read the whole string token, honouring escapes
+            let j = i + 1, out = '';
+            while (j < raw.length) {
+                if (raw[j] === '\\') { out += raw[j + 1] ?? ''; j += 2; continue; }
+                if (raw[j] === '"') break;
+                if (raw[j] === '\n') line += 1;
+                out += raw[j]; j += 1;
+            }
+            // is this token a KEY? (next non-space char is a colon)
+            let k = j + 1;
+            while (k < raw.length && /\s/.test(raw[k])) k += 1;
+            const top = stack[stack.length - 1];
+            if (raw[k] === ':' && top && !top.isArray) {
+                const prev = top.keys.get(out);
+                if (prev !== undefined) {
+                    errors.push(
+                        `${file}: DUPLICATE KEY "${out}" in ${top.label} — first at line ${prev}, again at line ${line}. ` +
+                        `JSON.parse keeps the LAST one and reports nothing, so the earlier value is silently discarded.`,
+                    );
+                } else {
+                    top.keys.set(out, line);
+                }
+                pendingKey = out;
+            }
+            i = j + 1;
+            continue;
+        }
+        if (ch === '{') {
+            const parentLabel = stack.length === 0 ? '(root)' : (pendingKey ?? stack[stack.length - 1].label);
+            stack.push({ isArray: false, keys: new Map(), label: parentLabel });
+            pendingKey = null;
+        } else if (ch === '[') {
+            stack.push({ isArray: true, keys: new Map(), label: pendingKey ?? '(array)' });
+            pendingKey = null;
+        } else if (ch === '}' || ch === ']') {
+            stack.pop();
+        }
+        i += 1;
+    }
+    return errors;
+}
+
 function main(): void {
     if (!existsSync(CHEM_DIR)) {
         console.log('validate:chemistry — chemistry namespace not found; 0 files scanned. PASS');
@@ -213,8 +279,10 @@ function main(): void {
 
     for (const file of files) {
         let parsed: unknown;
+        let raw = '';
         try {
-            parsed = JSON.parse(readFileSync(join(CHEM_DIR, file), 'utf-8'));
+            raw = readFileSync(join(CHEM_DIR, file), 'utf-8');
+            parsed = JSON.parse(raw);
         } catch (e) {
             failures.push(`${file}: JSON parse error — ${e instanceof Error ? e.message : String(e)}`);
             console.log(`FAIL        ${file} (parse error)`);
@@ -223,7 +291,8 @@ function main(): void {
 
         const result = validateConceptJson(parsed, file);
         const indicatorErrors = indicatorBindingErrors(parsed, file);
-        const errors = [...(result.passed ? [] : result.errors), ...indicatorErrors];
+        const dupErrors = duplicateKeyErrors(raw, file);
+        const errors = [...(result.passed ? [] : result.errors), ...indicatorErrors, ...dupErrors];
 
         if (errors.length === 0) {
             passCount += 1;
