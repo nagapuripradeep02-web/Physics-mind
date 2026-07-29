@@ -61,8 +61,11 @@ Rule 32a and it is the whole point of the concept.
    √n and 60 s is already twice S7's duration. A settling average across three seeds at 30 s gives
    baseline 0.0085 / 0.0097 / 0.0094 and disturbed 0.0082 / 0.0092 / 0.0095 — **the two populations
    overlap completely**, which is exactly the physics claim, but no single-run readout settles.
-   **S7's claim is therefore COMPARATIVE and quantitative:** the amounts moved by ~50% (A 59→90);
-   the ratio moved by ~4% (long-run means 0.00851 vs 0.00888). Never "watch this number stay fixed".
+   **This framing was WRONG and was later removed.** "the amounts moved ~50%" was a BETWEEN-RUN
+   comparison (baseline A 59 vs disturbed A 89) spoken as an in-state observation — the exact error the
+   STATE_7 redesign was built to kill. Do not reintroduce it. The state now opens at its own settled
+   pose and injects +80 A mid-state, so both numbers are observable inside one continuous state, and
+   the density was raised until the chip could actually carry the claim (see the S7 row).
 
 ## Authoring trap — MUST be honoured by json_author
 
@@ -110,12 +113,12 @@ Baseline measured plateau, isothermal 300 K from `{A:59,B:59,AB:31}`:
 | State | Opening | Disturbance | Measured result | Ring | Duration |
 |---|---|---|---|---|---|
 | **S1** Add reactant | `{A:59,B:59,AB:31}` settled | `inject_cue` @1000 ms, `inject_n:+30`, `inject_species:'A'` | plateau **AB 29.68 → 37.58** (+27%); rates re-meet at **fwd 12.50 / rev 12.42** — both HIGHER than before (kills "the reverse stops"); bars re-meet ≈6 s after the cue | core | 24000 ms |
-| **S2** Remove reactant | `{A:59,B:59,AB:31}` settled | `inject_cue` @1000 ms, `inject_n:−30` | A crashes to ~26, climbs and settles at **A≈41 — visibly 18 short of 59**; AB plateau **→20.6**. Never breaks a bonded pair | core | 24000 ms |
+| **S2** Remove reactant | `{A:59,B:59,AB:31}` settled | `inject_cue` @1000 ms, `inject_n:−30` | A crashes to ~26, then climbs and settles at **A≈38.9** (re-measured over 9 runs; the earlier ~41 was superseded) — visibly short of the original 59; AB plateau **→20.6**. Never breaks a bonded pair | core | 24000 ms |
 | **S3** Squeeze | `{A:59,B:59,AB:31}` | `piston_from 1.0 → piston_frac 0.55`, **`piston_ramp_ms: 6000`**, `adiabatic:false` | peak measured T **322–337 K** (mean 331, 10 seeds) vs **7173–9594 K** on the default unramped stroke; forward leads on net through the response window (mean fwd−rev **+0.75/s, positive in all 10 seeds**); AB dips modestly (mean min 26.4) and never crashes below its 31 opening; settled plateau **43.1** (35.9–48.5) | core | 20000 ms |
 | **S4** Heat it — **PRIMARY AHA** | `{A:59,B:59,AB:31}`, `T:500`, **`T_from:300`** | ramp | thermometer 300→~472 K by t=2 s **while AB is still 33 at t=1 s** — cause before effect, measured. Reverse overtakes forward at t≈1.75 s. Transient low **AB 14 at t=3.25 s**, settles **→22.28** (−25%). Final rates fwd 27.17 / rev 27.19 — *everything* got faster, only the ratio shifted | core | 26000 ms |
 | **S5** Catalyst | `{A:59,B:59,AB:31}` | `cues:[{id:'add_catalyst',at_ms:...}]` + `reaction_at_cue:{cue:'add_catalyst', activation_fwd_kT:0.5}` | Ea_fwd 6.3480→2.6450, Ea_rev falls by exactly the bond energy; rates **×2.16 fwd / ×2.14 rev**; plateau **31.80 — inside the baseline band**. Narrate "roughly doubles" | core | 18000 ms |
 | **S6** Inert gas | `{A:59,B:59,AB:31,`**`X:0`**`}` | `inject_cue` @1000 ms, `inject_n:+40`, `inject_species:'X'` | pressure **0.0967 → 0.1382 (+43%)**; AB 30.45, fwd 10.90, rev 11.04 — statistically identical to baseline. X held at **exactly 40** across 7 samples over 70 s: strictly elastic | extended | 22000 ms |
-| **S7** Same K | `{A:89,B:59,AB:31}` (S1's post-injection pose) | none — drift | `show_k_ratio`. Long-run K **0.00888** vs baseline **0.00851** — 4.3% apart while counts moved ~50%. **Comparative claim only** | **advanced** | 30000 ms |
+| **S7** Same K | `{A:156,B:156,AB:204,X:0}` — **~4x density, deliberate** | `inject_cue` @9000 ms, `inject_n:+80`, `inject_species:'A'` | `show_k_ratio`. Read off shipped frames: K **0.0089** pre-cue → **0.0094** at the end (+5.6%) while A goes **138 → 210** (+52%). Amounts outrun the ratio ~9:1; 0 of 8 seeds invert, at three viewports | **advanced** | 30000 ms |
 | **S8** Explore | `{A:59,B:59,AB:31}` | sliders | `interaction_complete`, continuous (Rule 37). Core-ring only — **no K chip** | core | open |
 
 ## Slider spec
@@ -141,15 +144,15 @@ visible blue discs — a legibility failure (Rules 33/34), not a numeric one.
 - The equilibrium position depends only on `bond_energy_kT`, `reverse_attempt_per_s`, temperature and
   density — `activation_fwd_kT` changes SPEED only. Verified via S5's plateau sitting in band.
 - K as printed is a raw-count ratio specific to this box's geometry and particle count. Portable
-  across STARTING COMPOSITIONS (the S7 claim); **not a literal textbook K꜀** and never quoted as one.
+  across STARTING COMPOSITIONS (the S7 claim); **not a literal textbook Kc** and never quoted as one.
 - Species X strictly elastic — never converted, never removed.
 
 ## Notation ladder + dialect (Rule 38c/38d)
 
-Core/extended states (S1–S6, S8) use no K / `[A]` / rate-law vocabulary at all. `K`, `K꜀`, `[AB]`,
+Core/extended states (S1–S6, S8) use no K / `[A]` / rate-law vocabulary at all. `K`, `Kc`, `[AB]`,
 "equilibrium constant" are **vocabulary-quarantined to S7** — hiding S7 leaves S1–S6 + S8 coherent
 with zero undefined terms (Rule 38a cut check). The on-canvas chip is engine-hardcoded to print bare
-`K = 0.0086`, never `K꜀`; a formula surface may write `K꜀ = [AB] / ([A][B])`, but narration
+`K = 0.0086`, never `Kc`; a formula surface may write `Kc = [AB] / ([A][B])`, but narration
 referring to the number on screen must say "K".
 
 `text_hi` is authored downstream by the Rule 30g sub-agent — English-only product, Hindi text-only,

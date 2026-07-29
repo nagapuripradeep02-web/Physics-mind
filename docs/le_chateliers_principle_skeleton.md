@@ -49,10 +49,10 @@ disturbance is AUTHORED so the beat is choreographed, not teacher-dependent. Exp
 | **S4** Heat it — **PRIMARY AHA** | Heating an exothermic mixture un-makes product, by collision statistics alone | `heat-the-box` | Thermometer climbs 300 → 500 K (cause); discs blur faster; orange flashes surge — the break-up direction has the bigger barrier and gains more from hotter hits; AB curve slides DOWN | **"Heated: the bond loses"** | none | 40–55 | core |
 | **S5** Catalyst | Speeds BOTH directions equally; position does not move | `null-result-hold` (pair w/ S6) | Both barriers lowered; both rate numbers ~3× — while counts sit exactly at 59·59·31 and the line stays flat | **"Catalyst: faster, same place"** | none | 30–50 | core |
 | **S6** Inert gas | Adding non-reacting gas at constant volume changes NOTHING | `null-result-hold` (**declared contrast pair w/ S5**: S5 both rates surge / S6 neither moves) | 40 grey inert discs bounce among the mixture; pressure gauge reads HIGHER, yet fwd, rev and all three counts hold the plateau | **"Inert gas: nothing shifts"** | none | 30–45 | extended |
-| **S7** Same K, new position | Concentration shifts change amounts but not the ratio; only T changes K | `oscillate/track` | Opens at S1's disturbed pose; counts drift to S1's plateau while the live ratio chip converges to the SAME number the formula surface states | **"New amounts, same ratio"** | none | 35–55 | **advanced** |
+| **S7** Same K, new position | Concentration shifts change amounts but not the ratio; only T changes K | `step-injection/hold` (**declared contrast pair w/ S1**: same +A step, but S1's focal is the rate bars MOVING and S7's is the K chip HOLDING) | Opens at its own settled pose at ~4x density (deliberate, so n_AB is large enough for the chip to be readable); +80 A pour in at 9 s; A relocates while the K chip holds | **"New amounts, same ratio"** | none | 35–55 | **advanced** |
 | **S8** Your turn | Every disturbance live; always re-settles part-way | `drag-sandbox` | Continuous run (Rule 37); bars split and re-meet, line re-flattens at a new level after every push | **"All yours — push it"** | **ALL: T · V · N** | 0/open | core |
 
-No archetype repeats except the two declared pairs (S1/S2, S5/S6). No static state.
+No archetype repeats except the three declared pairs (S1/S2, S5/S6, S1/S7). No static state.
 Advanced ring (S7) is contiguous and immediately before explore ✓ (Rule 38a).
 
 ## Misconception watch (Rule 16a — contrast beats, no predict-pause)
@@ -133,7 +133,7 @@ non-reacting species and that the pair sweep leaves X strictly elastic.
 | counts | `A 59  B 59  AB 31` |
 | event totals | `<n> made · <n> broken` |
 | graph axes | `count` / `time →` |
-| equation | `A + B ⇌ AB` (S1–S3, S5, S6) · `A + B ⇌ AB + heat` (S4, S8) · `K꜀ = [AB] / ([A][B])` (S7 only) |
+| equation | `A + B ⇌ AB` (S1–S3, S5, S6) · `A + B ⇌ AB + heat` (S4, S8) · `Kc = [AB] / ([A][B])` (S7 only) |
 
 `+ heat` ENTERS at S4 (earned by its beat) and persists. State symbols (s/l/g) deliberately omitted —
 A/B are abstract model gas species. Particle-count scale factor stated once in S1
@@ -141,7 +141,7 @@ A/B are abstract model gas species. Particle-count scale factor stated once in S
 
 ## Rule 38 curriculum-flex
 
-- **Cut checks:** hide advanced (S7) → S1–S6 + S8 coherent (K, K꜀, `[A]`, "ratio",
+- **Cut checks:** hide advanced (S7) → S1–S6 + S8 coherent (K, Kc, `[A]`, "ratio",
   "equilibrium constant" are **vocabulary-quarantined to S7**). Hide advanced+extended (S6, S7) →
   S1–S5 + S8 coherent (inert gas and species X appear nowhere else).
 - **S8 surfaces CORE-ring only** (Rule 38b): `A + B ⇌ AB + heat`, readout + graph. **No ratio chip
