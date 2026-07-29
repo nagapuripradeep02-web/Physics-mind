@@ -630,6 +630,9 @@
       "arrow_spacing": 0
     },
     "explorer_id": "newtons_laws_body_explorer",
+    "slider_controls": {
+      "F": { "min": -45, "max": 45, "step": 1, "default": 0, "label": "F" }
+    },
     "pvl_colors": {
       "background": "#0A0A1A",
       "text": "#D4D4D8",
