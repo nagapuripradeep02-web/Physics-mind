@@ -4819,7 +4819,18 @@ function drawGasCounters(state) {
   var w = ea > 0 ? 268 : 150;
   // Right-aligned under the box: drawLabel() owns the bottom-LEFT corner with
   // the state chip, and the two collided on the first bring-up frame (Rule 34d).
-  var x = max(gasBoxL(), gasBoxRFull() - w), y = gasBoxB() + 8;
+  // ...but the bottom-RIGHT corner is the #pm-formula chip's, and a state that
+  // lights both put the formula box straight over the percentage — the ONE
+  // number on this chip that is safe to narrate (absolute rates swing 5.3x
+  // across viewports; the percentage swings 1.05x). Measured on a probe frame:
+  // "9/s clear Ea (4" and then the formula box. So step left past the formula
+  // whenever there IS one. No shipped state pairs this chip with a formula
+  // overlay, so nothing already baseline-locked can move.
+  var y = gasBoxB() + 8;
+  var frmW = 0;
+  var frmEl = document.getElementById('pm-formula');
+  if (frmEl && frmEl.style.display !== 'none' && frmEl.offsetWidth) frmW = frmEl.offsetWidth + 14;
+  var x = max(gasBoxL(), gasBoxRFull() - w - frmW);
   gasChip(x, y, w, 26);
   fillHex('#E2E8F0', dim);
   textAlign(LEFT, CENTER); textSize(12);
@@ -5089,11 +5100,25 @@ function gasArrhAxis(state) {
   };
   return gasArrAxis;
 }
-// Least squares over whatever points exist. Returns null under 3 points, so a
-// state cannot draw a "line" through two dots and call it a law.
+// Least squares over the points so far. Returns null until there are enough of
+// them AND they span enough of the axis to constrain a slope.
+//
+// The span test is the load-bearing one. With 3 early points crowded into the
+// cold end of a ramp, the fit is drawn confidently across the whole plot and is
+// simply wrong: measured on a probe frame at t=12 s it printed "slope -410 K"
+// beside "-Ea/k = -900 K", so a state whose caption reads "one straight line"
+// showed a line disagreeing with the law by a factor of two. That is worse than
+// showing nothing, because it is the instrument that carries the state's claim.
+// Until the measurement can support a slope, it says so.
 function gasArrhFit() {
   var n = gasArrPts.length;
-  if (n < 3) return null;
+  if (n < 4) return null;
+  var lo = gasArrPts[0].invT, hi = gasArrPts[0].invT, q;
+  for (q = 1; q < n; q++) {
+    if (gasArrPts[q].invT < lo) lo = gasArrPts[q].invT;
+    if (gasArrPts[q].invT > hi) hi = gasArrPts[q].invT;
+  }
+  if (gasArrAxis && (hi - lo) < 0.45 * Math.abs(gasArrAxis.x1 - gasArrAxis.x0)) return null;
   var i, mx = 0, my = 0;
   for (i = 0; i < n; i++) { mx += gasArrPts[i].invT; my += gasArrPts[i].lnf; }
   mx /= n; my /= n;
@@ -5104,6 +5129,14 @@ function gasArrhFit() {
   }
   if (sxx <= 0 || syy <= 0) return null;
   return { slope: sxy / sxx, intercept: my - (sxy / sxx) * mx, r2: (sxy * sxy) / (sxx * syy), n: n };
+}
+// A rounded temperature-slope with a REAL Unicode minus (U+2212). Math.round
+// and toFixed both emit an ASCII hyphen, which is the recurring
+// ascii_minus_in_oncanvas_math scar — already recorded FIXED once and already
+// regressed once, both times caught only by reading a rendered frame.
+function gasSignedK(n) {
+  var r = Math.round(n);
+  return (r < 0 ? '\\u2212' : '') + Math.abs(r) + ' K';
 }
 function drawGasArrhenius(state) {
   // Same inset geometry as the histogram, on the opposite side when both are
@@ -5117,7 +5150,11 @@ function drawGasArrhenius(state) {
   var dim = dimFor('arrhenius');
   var ax = gasArrhAxis(state), i;
 
-  noStroke(); fill(8, 10, 22, 240);
+  // OPAQUE, unlike the histogram's 240-alpha backing. The histogram fills its
+  // area with bars so the ~6% of particles bleeding through never register; a
+  // scatter plot is mostly empty, and on the probe frames the drifting discs
+  // read as dirt inside the one instrument the state is asking a class to read.
+  noStroke(); fill(8, 10, 22, 255);
   rect(gx - 10, gy - 10, gw + 20, gh + 46, 6);
   noFill(); strokeHex('#334155', 0.9 * dim); strokeWeight(1);
   rect(gx - 10, gy - 10, gw + 20, gh + 46, 6);
@@ -5152,12 +5189,21 @@ function drawGasArrhenius(state) {
   fillHex('#CBD5E1', 0.85 * dim);
   text('ln f', gx + 2, gy - 4);
   text('1/T \\u2192', gx + gw - 30, gy + gh + 4);
-  textSize(11);
+  // ONE line, and no subscript. Two things a rendered frame showed that no gate
+  // could:
+  //   * the subscript-a (U+2090) is technically drawn but is illegible at this
+  //     size in this dim colour — cropped and enlarged, "-Ea/k" read as "-E /k".
+  //     The symbol also already lives on the state's math-serif formula surface,
+  //     so printing it here duplicated the one formula surface (Rule 34b). The
+  //     reference value is what this instrument needs, not the symbol.
+  //   * Math.round() emits an ASCII HYPHEN, which sat directly beside a proper
+  //     Unicode minus in the same line — the ascii_minus_in_oncanvas_math scar
+  //     regressing for the third time (Rule 34c). Every signed number on this
+  //     chip goes through gasSignedK.
+  textSize(12);
   fillHex(fit ? '#FBBF24' : '#64748B', 0.95 * dim);
-  text(fit ? ('slope ' + Math.round(fit.slope) + ' K') : 'measuring\\u2026', gx + 2, gy + gh + 18);
-  fillHex('#94A3B8', 0.9 * dim);
-  textSize(10);
-  text('\\u2212E\\u2090/k = ' + Math.round(-eaOverK) + ' K', gx + 2, gy + gh + 32);
+  text(fit ? ('slope ' + gasSignedK(fit.slope) + '   (law: ' + gasSignedK(-eaOverK) + ')') : 'measuring\\u2026',
+    gx + 2, gy + gh + 20);
 }
 
 // The Maxwell-Boltzmann pane: live histogram + the 2D theory curve + the three
