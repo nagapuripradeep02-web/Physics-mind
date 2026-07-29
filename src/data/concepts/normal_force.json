@@ -1,6 +1,6 @@
 {
   "concept_id": "normal_force",
-  "concept_name": "Normal Force — The Surface Answers, It Doesn't Store mg",
+  "concept_name": "Normal Force — N Is Not Always mg",
   "chapter": 8,
   "section": "8.3",
   "schema_version": "2.0.0",
@@ -27,8 +27,8 @@
   },
 
   "real_world_anchor": {
-    "primary": "A bathroom scale does not read your weight — it reads the normal force it pushes back with. On a level floor the two happen to match, which is why the belief 'N equals weight' feels so safe. Put the same scale on a sloped surface and the reading drops, with you unchanged — the scale answers only what presses into it.",
-    "secondary": "Sliding a full storage box across a floor takes far more effort than sliding the same box empty. The heavier box presses harder into the floor, and the floor grips it harder in return — that everyone instinctively unloads a box before sliding it IS the friction ceiling f_max = μₛN riding on the normal force."
+    "primary": "A bathroom scale does not read your weight — it reads the normal force it pushes back with. On a level floor the two happen to match, which is why the belief 'N equals weight' feels so safe. Put the same scale on a sloped surface and the reading drops, with you unchanged — the scale reads only what presses into it.",
+    "secondary": "Sliding a full storage box across a floor takes far more effort than sliding the same box empty. The heavier box presses harder into the floor, and the floor pushes back harder in return — that everyone unloads a box before sliding it IS the maximum friction f_max = μₛN depending on the normal force."
   },
 
   "physics_engine_config": {
@@ -89,7 +89,7 @@
     },
     "computed_outputs": {
       "N": {
-        "formula": "normal reaction, N — the surface's live answer to whatever presses into it; m*g*cos(radians(theta))"
+        "formula": "normal reaction, N — the surface's response, equal to what presses into it; m*g*cos(radians(theta))"
       },
       "f": {
         "formula": "friction magnitude, N — f_s while sticking (S2/S4-B), f_k while sliding (S4-A)"
@@ -121,7 +121,7 @@
       "N = m*g*cos(theta) at all times — N is never a fixed 'm*g', only the flat-ground (theta=0) special case",
       "N is completely independent of any applied along-surface force F — F never enters the N expression, in this engine or in reality for a rigid flat/inclined contact",
       "N = 0 exactly at theta = 90 degrees — no press-in component of gravity remains, so the surface offers zero force",
-      "f_s <= mu_s*N always; the reported friction never exceeds its own ceiling, and that ceiling itself scales with N, not with weight alone",
+      "f_s <= mu_s*N always; the reported friction never exceeds its own maximum, and that maximum itself scales with N, not with weight alone",
       "at theta = 0, N = m*g exactly, which is why the flat-ground belief 'N is always mg' is earned honestly before it is broken",
       "the block on a flat or inclined surface never sinks and never lifts off — N adjusts on demand to prevent both, an idealized-rigid-body constraint, not a computed compression"
     ]
@@ -135,7 +135,7 @@
 
   "aha_moment": {
     "state_id": "STATE_2",
-    "statement": "N is not stored weight — it is the exact answer to whatever presses in.",
+    "statement": "N is not stored weight — it equals exactly what presses into the surface.",
     "visual_confirmation": "As the floor tilts, N shrinks from 49.0 to 37.5 N while mg stays vertical and pinned at 49.0 N — the block still never sinks."
   },
 
@@ -149,19 +149,19 @@
     "state_count": 5,
     "states": {
       "STATE_1": {
-        "title": "Flat Floor: N Answers Weight Exactly",
+        "title": "Flat Floor: N Equals Weight Exactly",
         "duration": 12,
         "focal_primitive_id": "delta_cue",
         "advance_mode": "manual_click",
         "depth_ring": "core",
-        "delta_cue": "Floor answers weight exactly",
+        "delta_cue": "N equals weight exactly",
         "motion_archetype": "oscillate/track (declared contrast pair with STATE_2)",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "delta_cue",
             "position": { "x": 380, "y": 60 },
-            "text": "Floor answers weight exactly",
+            "text": "N equals weight exactly",
             "color": "#FFF176"
           },
           {
@@ -183,12 +183,12 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Watch the normal force N as mass changes — on this flat floor, N always matches weight mg exactly, heavier block, bigger push back.",
+              "text_en": "Watch the normal force N as the mass changes — on this flat floor, N always equals the weight mg exactly: heavier block, larger normal force.",
               "glow": "context_note"
             },
             {
               "id": "s1_2",
-              "text_en": "Keep your eye on the word flat: this exact match is about to break the moment the floor tilts.",
+              "text_en": "Remember the word flat: this exact match holds only while the floor stays flat.",
               "glow": "delta_cue"
             }
           ]
@@ -202,7 +202,7 @@
         ]
       },
       "STATE_2": {
-        "title": "The Tilt — N Detaches From mg",
+        "title": "Tilt the Floor — N Becomes Less Than mg",
         "duration": 14,
         "focal_primitive_id": "delta_cue",
         "advance_mode": "manual_click",
@@ -248,12 +248,12 @@
             },
             {
               "id": "s2_2",
-              "text_en": "Weight mg stays exactly vertical, but normal force N shrinks — it is mg times cos theta, only the part of gravity pressing into the surface.",
+              "text_en": "Weight mg stays exactly vertical, but normal force N becomes smaller — it equals mg times cos theta, only the part of gravity that presses into the surface.",
               "glow": "formula_note"
             },
             {
               "id": "s2_3",
-              "text_en": "Yet the block never sinks: N was never a fixed number, only the exact answer to how hard something presses in.",
+              "text_en": "The block still does not sink: N is not a fixed number, it is exactly as large as the push into the surface.",
               "glow": "counter_note"
             }
           ]
@@ -318,13 +318,13 @@
         }
       },
       "STATE_4": {
-        "title": "Grip Ceiling Rides on N — Two Fates, Same Push",
+        "title": "Maximum Friction Depends on N — Same Push, Two Blocks",
         "duration": 14,
         "focal_primitive_id": "delta_cue",
         "advance_mode": "manual_click",
         "depth_ring": "extended",
-        "delta_cue": "Grip ceiling rides on N",
-        "motion_archetype": "two-fate-contrast (declared cross-concept echo of block_on_incline STATE_4)",
+        "delta_cue": "Maximum friction depends on N",
+        "motion_archetype": "two-outcome-contrast (declared cross-concept echo of block_on_incline STATE_4)",
         "has_prebuilt_deep_dive": true,
         "drill_downs": [
           "grip_ceiling_mu_n",
@@ -336,7 +336,7 @@
             "type": "annotation",
             "id": "delta_cue",
             "position": { "x": 380, "y": 60 },
-            "text": "Grip ceiling rides on N",
+            "text": "Maximum friction depends on N",
             "color": "#FFF176"
           },
           {
@@ -350,7 +350,7 @@
             "type": "annotation",
             "id": "contrast_note",
             "position": { "x": 560, "y": 380 },
-            "text": "same 22 N push —\ntwo different fates",
+            "text": "same 22 N push —\ntwo different results",
             "color": "#81C784"
           }
         ],
@@ -363,44 +363,44 @@
             },
             {
               "id": "s4_2",
-              "text_en": "The light block's N is small, so its grip ceiling — mu_s times N — is easily beaten, and it slides.",
+              "text_en": "The light block's N is small, so its maximum friction — mu_s times N — is less than the push, and it slides.",
               "glow": "formula_note"
             },
             {
               "id": "s4_3",
-              "text_en": "The heavy block's N is far larger, so the identical push never beats its ceiling: it never budges.",
+              "text_en": "The heavy block's N is much larger, so its maximum friction exceeds the push: it stays still.",
               "glow": "formula_note"
             },
             {
               "id": "s4_4",
-              "text_en": "Grip always rides on N, not weight.",
+              "text_en": "Maximum friction depends on N.",
               "glow": "delta_cue"
             }
           ]
         }
       },
       "STATE_5": {
-        "title": "Explore — N Answers Whatever You Set",
+        "title": "Explore — Change Every Value",
         "duration": 0,
         "focal_primitive_id": "delta_cue",
         "advance_mode": "interaction_complete",
         "teaching_method": "exploration_sliders",
         "depth_ring": "core",
-        "delta_cue": "All yours",
+        "delta_cue": "Try every slider",
         "motion_archetype": "drag-sandbox",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "delta_cue",
             "position": { "x": 380, "y": 60 },
-            "text": "All yours",
+            "text": "Try every slider",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
             "id": "try_note",
             "position": { "x": 380, "y": 250 },
-            "text": "drag mass, tilt, push F —\nwatch N answer",
+            "text": "drag mass, tilt, push F —\nwatch N change",
             "color": "#66BB6A"
           },
           {
@@ -415,7 +415,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Everything is yours now — drag mass and tilt, push the block, and watch normal force N answer live, never touched by the push.",
+              "text_en": "Now change everything yourself — drag the mass, tilt the floor, push the block — and watch normal force N update live; the push never changes N.",
               "glow": "try_note"
             }
           ]
@@ -437,14 +437,14 @@
       "variant_id": "loaded_vs_empty_crate",
       "type": "B",
       "label": "Pushing an Empty Crate vs a Loaded Crate",
-      "physical_world": "The same push that sends an empty crate sliding across the floor barely budges a fully loaded one — everyone who has moved furniture already knows this.",
-      "same_physics": "Same friction-ceiling comparison as STATE_4: the loaded crate's larger normal force N raises its grip ceiling μₛN above the push, while the empty crate's smaller N lets the identical push win.",
+      "physical_world": "The same push that sends an empty crate sliding across the floor barely moves a fully loaded one — everyone who has moved furniture already knows this.",
+      "same_physics": "Same maximum-friction comparison as STATE_4: the loaded crate's larger normal force N raises its maximum friction μₛN above the push, while the empty crate's smaller N lets the identical push exceed it.",
       "scene_hint": "Same two-body rig, same push — only the labeled world changes from generic blocks to an empty and a loaded crate."
     }
   ],
 
   "assessment": {
-    "mastery_definition": "A student has mastered the normal force when they can (1) state that on a flat, level surface N = mg exactly, and explain why that special case earns the naive belief 'N is always mg'; (2) explain that N and mg are NOT a Newton's-third-law pair, since a true pair never acts on the same body; (3) derive and apply N = mg·cos θ on a tilted surface, recognizing N as the exact answer to the component of weight pressing into the surface, never a fixed number; (4) recognize that N falls to exactly zero when the surface is vertical, and explain why the body then falls at the full acceleration g; (5) explain that friction's ceiling f_max = μₛN scales with the normal force, not with weight in general, so a heavier body (bigger N) grips harder even under an identical applied push; (6) recognize that an along-surface applied force never changes N.",
+    "mastery_definition": "A student has mastered the normal force when they can (1) state that on a flat, level surface N = mg exactly, and explain why that special case earns the naive belief 'N is always mg'; (2) explain that N and mg are NOT a Newton's-third-law pair, since a true pair never acts on the same body; (3) derive and apply N = mg·cos θ on a tilted surface, recognizing N as exactly equal to the component of weight pressing into the surface, never a fixed number; (4) recognize that N falls to exactly zero when the surface is vertical, and explain why the body then falls at the full acceleration g; (5) explain that the maximum friction f_max = μₛN scales with the normal force, not with weight in general, so a heavier body (bigger N) has more friction available under an identical applied push; (6) recognize that an along-surface applied force never changes N.",
     "questions": [
       {
         "q_id": "Q1",
@@ -457,7 +457,7 @@
         },
         "correct": "A",
         "distractor_misconceptions": {
-          "B": "the core misconception this concept is built to break — treats N as a stored constant equal to weight rather than a press-in answer that only happens to equal mg on flat ground",
+          "B": "the core misconception this concept is built to break — treats N as a stored constant equal to weight rather than a value set by the press-in force, which only happens to equal mg on flat ground",
           "C": "confuses 'at rest' with 'force-free' — the block is held up by a large, real normal force even though it doesn't move",
           "D": "confuses N (set by weight and geometry) with friction, an unrelated quantity that never enters the N calculation"
         },
@@ -537,7 +537,7 @@
         },
         "correct": "A",
         "distractor_misconceptions": {
-          "B": "the concept's core misconception again, now at its most extreme, sharpest test — assumes N is a stored property of the block rather than a press-in answer",
+          "B": "the concept's core misconception again, now at its most extreme, sharpest test — assumes N is a stored property of the block rather than a value set by the press-in force",
           "C": "confuses 'the perpendicular component of weight is zero' with 'the surface cannot exert force at all' — the surface CAN push, there is just nothing pressing into it here",
           "D": "uses the wrong trig function and wrongly keeps a nonzero N that would contradict the block's observed free fall"
         },
@@ -548,20 +548,20 @@
       },
       {
         "q_id": "Q6",
-        "stem": "The same 22 N push is applied to a 4 kg block and an 8 kg block on the same rough flat floor (μₛ = 0.5, g = 9.8 m/s²). Why does the light block slide while the heavy block never budges?",
+        "stem": "The same 22 N push is applied to a 4 kg block and an 8 kg block on the same rough flat floor (μₛ = 0.5, g = 9.8 m/s²). Why does the light block slide while the heavy block never moves?",
         "options": {
-          "A": "The light block's smaller N (39.2 N) gives a smaller friction ceiling (19.6 N) that the 22 N push beats; the heavy block's larger N (78.4 N) gives a larger ceiling (39.2 N) the push cannot beat",
+          "A": "The light block's smaller N (39.2 N) gives a smaller maximum friction (19.6 N), less than the 22 N push; the heavy block's larger N (78.4 N) gives a larger maximum (39.2 N), more than the push",
           "B": "The heavy block is simply too heavy to be pushed by any force this small, regardless of friction",
           "C": "Both blocks should behave identically, since the push and μₛ are the same for both",
-          "D": "The light block slides because it weighs less, not because of any friction ceiling"
+          "D": "The light block slides because it weighs less, not because of any friction maximum"
         },
         "correct": "A",
         "distractor_misconceptions": {
-          "B": "invokes a vague 'too heavy to push' intuition instead of the actual quantitative ceiling f_max = μₛN that the push either beats or doesn't",
-          "C": "the 'grip only depends on the coefficient' misconception — ignores that the ceiling μₛN also scales with each block's own N",
-          "D": "restates the observation as if weight alone were the mechanism, missing that it is N (and hence the friction ceiling it sets) that actually decides the outcome"
+          "B": "invokes a vague 'too heavy to push' intuition instead of the actual quantitative maximum f_max = μₛN that the push either exceeds or does not",
+          "C": "the 'friction only depends on the coefficient' misconception — ignores that the maximum μₛN also scales with each block's own N",
+          "D": "restates the observation as if weight alone were the mechanism, missing that it is N (and hence the maximum friction it sets) that actually decides the outcome"
         },
-        "tested_idea": "Friction's ceiling f_max = μₛN scales with the normal force, not with weight in the abstract — a heavier block's larger N grips harder against an identical push.",
+        "tested_idea": "Maximum friction f_max = μₛN scales with the normal force, not with weight in the abstract — a heavier block's larger N allows more friction against an identical push.",
         "teaches_state": "STATE_4",
         "difficulty": "core",
         "parallel_form_stem": "Explain why the same push slides an empty box across a floor but barely moves the same box fully loaded."
@@ -592,7 +592,7 @@
       {
         "curriculum": "JEE-Main / JEE-Advanced",
         "coverage": "full",
-        "syllabus_unit": "Laws of Motion — normal reaction on flat/inclined surfaces, friction ceiling",
+        "syllabus_unit": "Laws of Motion — normal reaction on flat/inclined surfaces, maximum friction",
         "verified": false,
         "needs_teacher_verification": true
       },
@@ -642,10 +642,10 @@
     },
     "states": {
       "STATE_1": {
-        "label": "Flat floor: N answers weight exactly",
+        "label": "Flat floor: N equals weight exactly",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
-        "caption": "Floor answers weight exactly",
+        "caption": "N equals weight exactly",
         "show_sliders": true,
         "formula_overlay": "ΣF = 0 ⇒ N = mg",
         "newtons_laws_body": {
@@ -667,7 +667,7 @@
         }
       },
       "STATE_2": {
-        "label": "Tilt: N detaches from mg, N = mg cos theta",
+        "label": "Tilt: N becomes less than mg, N = mg cos theta",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
         "caption": "Tilt — N drops below mg",
@@ -710,10 +710,10 @@
         }
       },
       "STATE_4": {
-        "label": "Same push, two fates: grip ceiling rides on N",
+        "label": "Same push on both blocks: maximum friction depends on N",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
-        "caption": "Grip ceiling rides on N",
+        "caption": "Maximum friction depends on N",
         "show_sliders": true,
         "formula_overlay": "fₘₐₓ = μₛ·N",
         "newtons_laws_body": {
@@ -737,10 +737,10 @@
         }
       },
       "STATE_5": {
-        "label": "Explore: N answers whatever you set",
+        "label": "Explore: change every value — the push never changes N",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
-        "caption": "All yours",
+        "caption": "Try every slider",
         "show_sliders": true,
         "formula_overlay": "N = mg·cos θ",
         "newtons_laws_body": {
