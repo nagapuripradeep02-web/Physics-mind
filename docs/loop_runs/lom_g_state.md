@@ -1,6 +1,7 @@
 # lom-g loop state — Laws of Motion, off-axis forces tray
 
-updated: 2026-07-30 (Phase 0 SPEC written; engine build BLOCKED on agent dispatch — see BLOCKER)
+updated: 2026-07-30 (Phase 0 SPEC written; dispatch blocker ROOT-CAUSED + FIXED — engine build needs a
+         fresh session to pick up the repaired registry. See BLOCKER.)
 
 design: docs/FORCE_RIG_ENGINE_SPEC.md  (founder-approved 2026-07-30)
 worktree: C:\Tutor\physics-mind-lom-g
@@ -19,28 +20,56 @@ chapter_map (founder-approved 2026-07-30, in build order):
   structural-extremes-first logic lom-a used. Do not reorder to do the exciting one first.
 
 next: Phase 0 — build the `force_rig` scenario per the spec, via `field3d-surgeon`.
-      BLOCKED: see below. Nothing may be authored until the engine harness passes.
+      UNBLOCKED as of 2026-07-30, but requires a FRESH SESSION started in this worktree (the agent
+      registry is read once at session start; the repairing commit landed mid-session).
+      Nothing may be authored until the engine harness passes.
 in_flight: (none)
 parked: (none)
 engine_commits: (none yet)
 
-## BLOCKER — field3d-surgeon does not dispatch from a session rooted elsewhere
+## BLOCKER — RESOLVED 2026-07-30. Root cause was BROKEN YAML, not the checkout path.
 
-Identical to lom-f. `field3d-surgeon` is NOT dispatchable from a session whose cwd is
-`C:\Tutor\physics-mind` (currently on `feat/field3d-draggable-sensor`). Live probe 2026-07-30
-returned `Agent type 'field3d-surgeon' not found`.
+The previously recorded root cause ("the registry loads from the session's own checkout, and
+`field3d-surgeon.md` is absent on `feat/field3d-draggable-sensor`") is **WRONG**, and following it
+cost lom-f and lom-g a parked phase each. It was disproven directly: a session rooted in THIS
+worktree, with `field3d-surgeon.md` present in `.claude/agents/`, still returned
+`Agent type 'field3d-surgeon' not found`.
 
-**ROOT CAUSE, now diagnosed** (previously recorded as never root-caused, with a "session freshness"
-explanation that was already disproven): the agent registry loads from the SESSION'S OWN CHECKOUT —
-`<session cwd>/.claude/agents/` — not from the worktree being operated on. `field3d-surgeon.md`
-exists on `master` (so it is in THIS worktree) but not on `feat/field3d-draggable-sensor`. Not a
-worktree problem; per-branch file presence in the session's own checkout.
+**ACTUAL ROOT CAUSE — an unquoted YAML scalar containing `": "`.** The registry silently drops any
+agent file whose frontmatter fails to parse. Four files failed:
 
-**FIX:** run the engine work from a session rooted IN THIS WORKTREE — open a terminal there and
-start Claude Code from that directory:
+    field3d-surgeon      description: ... routed [owner: peter_parker:*] field_3d fixes ...
+    renderer-primitives  description: ... tagged [owner: peter_parker:renderer_primitives] ...
+    runtime-generation   description: ... tagged [owner: peter_parker:runtime_generation] ...
+    shipper              description: ... (Rule 30i, 2026-07-17): it never refuses ...
+
+In YAML an unquoted scalar cannot contain `": "` — the parser reads it as a nested mapping key and
+throws `bad indentation of a mapping entry`. Proof, not inference: parsing all 13 emissions with
+`js-yaml` failed on exactly the 4 agents missing from the registry and succeeded on exactly the 9
+present. The `[owner: ...]` tag that the routing doctrine requires in these descriptions is itself
+what broke them.
+
+**FIX APPLIED (this branch):** the 4 `description:` values are now double-quoted. Content is
+byte-identical — quoting only, verified by round-trip. All 13 emissions now parse.
+
+Edit site is correct and durable: `scripts/sync-agents.js` preserves emission frontmatter VERBATIM
+and takes only the body from `.agents/<role>/CLAUDE.md` (which is body-only, no frontmatter), so
+`npm run sync:agents` will not clobber this. The "never edit the emission directly" rule governs the
+BODY; frontmatter exists only in the emission.
+
+**The registry is read ONCE at session start**, so this does not take effect in the session that
+applied it. Phase 0 needs a fresh session started in this worktree:
 
     cd C:\Tutor\physics-mind-lom-g
     claude
+
+**STILL BROKEN ON MASTER — founder action, out of scope for this tray** (which may not touch another
+branch). `renderer-primitives`, `runtime-generation` and `shipper` carry the identical defect in
+`C:\Tutor\physics-mind\.claude\agents\` and are therefore silently undispatchable in EVERY session
+fleet-wide. These are doctrine agents, not trial ones: the whole Peter Parker cluster and the release
+chain. Any past session that "fell back to general-purpose because the cluster agent wasn't
+available" hit this bug. Recommended alongside it: make `sync-agents.js --check` fail on a
+frontmatter that does not parse, so a dropped agent can never again be silent.
 
 **DO NOT fall back to general-purpose** for field_3d engine work — banned by CHAPTER_LOOP.md
 Amendment 4 (~3.4M vs ~25M tokens for the same job); §0.1 bans the orchestrator editing
