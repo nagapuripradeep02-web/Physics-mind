@@ -36,9 +36,11 @@ explanation that was already disproven): the agent registry loads from the SESSI
 exists on `master` (so it is in THIS worktree) but not on `feat/field3d-draggable-sensor`. Not a
 worktree problem; per-branch file presence in the session's own checkout.
 
-**FIX:** run the engine work from a session rooted IN THIS WORKTREE:
+**FIX:** run the engine work from a session rooted IN THIS WORKTREE — open a terminal there and
+start Claude Code from that directory:
 
-    claude --cwd C:\Tutor\physics-mind-lom-g
+    cd C:\Tutor\physics-mind-lom-g
+    claude
 
 **DO NOT fall back to general-purpose** for field_3d engine work — banned by CHAPTER_LOOP.md
 Amendment 4 (~3.4M vs ~25M tokens for the same job); §0.1 bans the orchestrator editing
