@@ -344,8 +344,29 @@ function pmAuthJs(): string {
       window.PM_PLAN = (sub && sub.plan) || null;
       var accessEnd = Math.max(end, paidUntil);
       if (accessEnd && Date.now() > accessEnd) {
-        if (PAGE === 'expired') { pass(); return; }
-        location.replace('/expired.html'); return;
+        // Before locking her out: a payment may be sitting unattached to her account
+        // — she paid before signing up, or paid from this email seconds ago. The
+        // webhook parks those against the payer email; claim_pending_payments()
+        // attaches them to auth.uid(). One RPC, and ONLY on the expired path, so the
+        // normal load costs nothing. Fail-closed here (a failed claim = the gate it
+        // would have been anyway), never fail-open — this is the paywall.
+        var lockOut = function () {
+          if (PAGE === 'expired') { pass(); return; }
+          location.replace('/expired.html');
+        };
+        client.rpc('claim_pending_payments').then(function (cr) {
+          var d = (cr && !cr.error && cr.data) || null;
+          var until = (d && d.paid_until) ? new Date(d.paid_until).getTime() : 0;
+          if (d && d.claimed > 0 && until > Date.now()) {
+            window.PM_PAID_UNTIL = until;
+            window.PM_PLAN = window.PM_PLAN || 'founding-499';
+            try { console.info('[pm-auth] pending payment claimed — access reopened.'); } catch (e) {}
+            if (PAGE === 'expired') { location.replace('/'); return; }
+            pass(); return;
+          }
+          lockOut();
+        }, lockOut);
+        return;
       }
       if (PAGE === 'welcome' || PAGE === 'expired') { location.replace('/'); return; }   // nothing to do here
       pass();
@@ -1259,7 +1280,11 @@ function welcomeHtml(): string {
       // build_review_site.ts), so the post-signup reload below replays it automatically.
       if (window.PM && PM.track) PM.track('profile_created', {});
       if (window.PM && PM.flushNow) PM.flushNow();
-      location.replace('/');
+      // She may have PAID BEFORE signing up (we hand the payment link out directly).
+      // The webhook parked that payment against her email; claim it now so she lands
+      // in the catalog already subscribed instead of on a trial that will expire.
+      c.rpc('claim_pending_payments').then(function () { location.replace('/'); },
+                                           function () { location.replace('/'); });
     }, function () { btn.disabled = false; showErr('Network error — please try again.'); });
   });
 })();
@@ -1344,7 +1369,7 @@ function expiredHtml(): string {
         : ` To keep teaching with Viditra, message Pradeep and he will activate your founding-teacher plan (&#8377;${PLAN_PRICE_INR}/month, locked).`}</p>
 ${PAYMENT_LINK ? `  <a class="go" id="payBtn" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Continue &mdash; &#8377;${PLAN_PRICE_INR}/month</a>
   <p class="hint">UPI, card, or netbanking. <span id="payEmailHint">Please pay with the same email you sign in with</span> —
-     that is how your access is matched. It reopens shortly after payment, usually within the hour.</p>
+     that is how your access is matched. It reopens automatically within a few seconds of payment.</p>
   <button class="re" id="reBtn" type="button">I&#8217;ve paid &mdash; check my access</button>
   <div class="note bad" id="reNote"></div>
   <div class="row">
@@ -1380,6 +1405,10 @@ ${PAYMENT_LINK ? `  <a class="go" id="payBtn" href="${PAYMENT_LINK}" target="_bl
     try { if (window.PM && PM.track) PM.track('access_recheck', {}); } catch (e) {}
     var c = window.PM && PM.auth && PM.auth.client && PM.auth.client();
     if (!c) { location.reload(); return; }
+    // Claim first: if she paid moments ago from a different email-less flow, or paid
+    // before this account existed, the webhook parked it — attach it, THEN re-read.
+    c.rpc('claim_pending_payments').then(recheck, recheck);
+    function recheck() {
     // Same shape + same trial arithmetic as the pm-auth gate (there is no trial_end
     // column — it is trial_started_at + trial_days), so this can never disagree with it.
     c.from('teacher_profiles').select('*, teacher_subscriptions(plan, paid_until)').maybeSingle().then(function (r) {
@@ -1392,10 +1421,11 @@ ${PAYMENT_LINK ? `  <a class="go" id="payBtn" href="${PAYMENT_LINK}" target="_bl
       if (Math.max(paid || 0, trial || 0) > Date.now()) { location.replace('/'); return; }
       reBtn.disabled = false; reBtn.textContent = 'Check again';
       if (reNote) {
-        reNote.textContent = 'Not active yet. If you have just paid, give it a little time — or email Pradeep and he will switch it on right away.';
+        reNote.textContent = 'Not active yet. If you have just paid, give it a few seconds and check again — or email Pradeep and he will switch it on right away.';
         reNote.style.display = 'block';
       }
     }, function () { location.reload(); });
+    }
   });
   document.getElementById('soLink').addEventListener('click', function (ev) {
     ev.preventDefault(); if (window.PM && PM.auth) PM.auth.signOut();
