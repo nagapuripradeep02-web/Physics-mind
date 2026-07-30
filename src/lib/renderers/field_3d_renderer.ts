@@ -1135,6 +1135,14 @@ export interface Field3DConfig {
             // ring is cosmetic (a length only — it never feeds the integrator and
             // never moves a cart, and it is clamped to the live gap so it cannot
             // overlap a body).
+            // THE MOUNT (2026-07-30). If EITHER named body is `fixed`, the coil is
+            // bolted to THAT body's facing face in every phase for the life of the
+            // state: a wall-anchored spring has exactly ONE fixed end, so only the
+            // free cart's face travels and the wall-side end never moves. (A
+            // `fixed` body also takes none of the approach/compress travel, so with
+            // a wall ALL of the loading stroke happens on the free cart.) A pair of
+            // two FREE bodies is unchanged — midpoint mount, with approach and the
+            // ring mounting on spring.between[0]'s face as before.
             // CHOOSING R: with spring_action the cycle floor rises from
             // release_at_ms to lead + relWall (the whole wall-clock choreography);
             // a shorter R would never let the phase escape the release window and
@@ -39463,6 +39471,24 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!m) return NLB_BODY_SIZE / 2;
         return m.userData.fixed ? NLB_WALL_T / 2 : NLB_BODY_SIZE / 2;
     }
+    // WHICH end of this spring is BOLTED DOWN, or "" for a free-free pair.
+    //   A wall-anchored spring has exactly ONE fixed end: it is screwed to the wall
+    // and only its free end travels. Mounting it at the MIDPOINT instead — correct
+    // and symmetric for two free carts — makes BOTH ends translate as the free body
+    // moves, i.e. the whole coil slides bodily off the wall it is supposed to be
+    // attached to (founder finding, newton_third_law STATE_3). So the moment either
+    // body is "fixed", that body owns the mount for every phase.
+    //   Build-time fact (userData.fixed is read from the body's first appearance and
+    // an id must not flip it between states), so this cannot change mid-state. A
+    // free-free pair returns "" and takes the byte-identical pre-2026-07-30 path;
+    // both fixed is degenerate apparatus (nothing moves) and pins on the first.
+    function nlbSpringAnchorId(idA, idB) {
+        var mA = nlbFindById("nlb_body_" + idA);
+        if (mA && mA.userData && mA.userData.fixed) return idA;
+        var mB = nlbFindById("nlb_body_" + idB);
+        if (mB && mB.userData && mB.userData.fixed) return idB;
+        return "";
+    }
     // Place the coil between the two bodies' facing faces. Called ONLY from
     // nlbSetBodyPosition (plus state entry / RESET_TRAJECTORY, for the same
     // "first frame already correct" reason the ropes are fitted there). Pure
@@ -39570,8 +39596,32 @@ export const FIELD_3D_RENDERER_CODE = `
         //     too, so this handover is continuous as well.
         // Clamped to the gap above (drawn <= gap always), so the coil can never
         // overlap either body in any phase.
+        //   A WALL-ANCHORED spring (2026-07-30) is the third case and it OVERRIDES
+        // both of the above — see nlbSpringAnchorId: a spring bolted to an
+        // immovable body has exactly ONE fixed end, so it is mounted on that face
+        // in EVERY phase, not just the two that draw short.
         var cx = (pA.x + pB.x) / 2, cy = (pA.y + pB.y) / 2, cz = (pA.z + pB.z) / 2;
-        if ((phc === "approach" || ringOn) && drawn < gap - 1e-6) {
+        var anch = nlbSpringAnchorId(idA, idB);
+        if (anch) {
+            // Pinned end ON the anchor's facing face; the free end takes ALL of the
+            // length change. pA/hA (or pB/hB) are constants for a fixed body — its
+            // s is pinned by the integrator and its half-extent is apparatus — so
+            // the pinned end's world position is literally invariant for the life
+            // of the state, in every phase, at every quantum, under any pin.
+            //   The offset uses the MESH's quantised half-height q/2, not drawn/2,
+            // so the pinned end lands on the face EXACTLY as drawn on screen: the
+            // whole (up to 0.01 world) quantisation residual is pushed onto the
+            // free end, inside the free body, where nothing can see it. Under the
+            // midpoint mount that residual was split across both seams, which put a
+            // visible fraction of it on the wall seam.
+            var aux = dx / sep, auy = dy / sep, auz = dz / sep;
+            var aOff = (anch === idA ? hA : hB) + q / 2;
+            if (anch === idA) {
+                cx = pA.x + aux * aOff; cy = pA.y + auy * aOff; cz = pA.z + auz * aOff;
+            } else {
+                cx = pB.x - aux * aOff; cy = pB.y - auy * aOff; cz = pB.z - auz * aOff;
+            }
+        } else if ((phc === "approach" || ringOn) && drawn < gap - 1e-6) {
             var ux = dx / sep, uy = dy / sep, uz = dz / sep;
             var off = hA + drawn / 2;
             cx = pA.x + ux * off; cy = pA.y + uy * off; cz = pA.z + uz * off;
@@ -39580,6 +39630,12 @@ export const FIELD_3D_RENDERER_CODE = `
         obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / sep, dy / sep, dz / sep));
         obj.visible = true;
         nlbPublishSpring(true, drawn, gap, obj.userData.q_len);
+        // MOUNT diagnostics — where the coil's two ends actually landed against the
+        // two faces they are supposed to sit between. Published because "the
+        // anchored end never moves" is the whole content of the wall-spring fix and
+        // an inferred endpoint would be the probe re-implementing the mount.
+        nlbPublishSpringMount(anch, cx, cy, cz, dx / sep, dy / sep, dz / sep,
+            obj.userData.q_len, pA, pB, hA, hB);
     }
     // Published DERIVED reads (the PM_nlb* mirror convention): the coil's live
     // drawn length and the face-to-face gap it sits in, both in WORLD units, plus
@@ -39593,6 +39649,26 @@ export const FIELD_3D_RENDERER_CODE = `
         // The MESH's own built height (the quantised length its TubeGeometry was
         // rebuilt at) — the on-screen truth, not the pre-quantisation intent.
         window.PM_nlbSpringMeshLen = qLen || 0;
+        if (!vis) nlbPublishSpringMount("", 0, 0, 0, 1, 0, 0, 0, null, null, 0, 0);
+    }
+    // The coil's two ENDS and the two FACES they sit against, in WORLD units,
+    // plus which body (if any) the coil is bolted to. All derived reads on the
+    // pose just written — diagnostics + probe surface only, nothing in the engine
+    // reads them back and they touch no pixels. end0/face0 are the between[0]
+    // side, end1/face1 the between[1] side; the ends are taken from the mesh's
+    // QUANTISED height, so they are where the wire really is on screen.
+    function nlbPublishSpringMount(anchorId, cx, cy, cz, ux, uy, uz, qLen, pA, pB, hA, hB) {
+        window.PM_nlbSpringAnchor = anchorId || "";
+        if (!pA || !pB) {
+            window.PM_nlbSpringEnd0 = null; window.PM_nlbSpringEnd1 = null;
+            window.PM_nlbSpringFace0 = null; window.PM_nlbSpringFace1 = null;
+            return;
+        }
+        var half = (qLen || 0) / 2;
+        window.PM_nlbSpringEnd0 = { x: cx - ux * half, y: cy - uy * half, z: cz - uz * half };
+        window.PM_nlbSpringEnd1 = { x: cx + ux * half, y: cy + uy * half, z: cz + uz * half };
+        window.PM_nlbSpringFace0 = { x: pA.x + ux * hA, y: pA.y + uy * hA, z: pA.z + uz * hA };
+        window.PM_nlbSpringFace1 = { x: pB.x - ux * hB, y: pB.y - uy * hB, z: pB.z - uz * hB };
     }
 
     function buildNewtonsLawsBody() {
