@@ -594,6 +594,14 @@ const F3D_REVEAL_KEYS = [
     // PCPL branch (which would derive a wall-clock reveal pin and a PCPL hold
     // classification for a field_3d state).
     'newtons_laws_body',
+    // Laws of Motion, off-axis forces (force_rig): the per-state `force_rig` block
+    // (the force table's damped ring + the whirl's constrained bob, plus its
+    // `phases[]` glow script, `param_ramp` reveal and the whirl's cut-the-string
+    // `release`). Registered here for the same reason newtons_laws_body is: a
+    // cached physics_config that flattened field_3d_config.states to the top level
+    // must still be recognised as field_3d rather than falling through to the PCPL
+    // branch (which would derive a wall-clock reveal pin and a PCPL hold class).
+    'force_rig',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -2506,6 +2514,52 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
     }
 
+    // force_rig (the off-axis force engine, prefix `fr`): the guided beats run on
+    // the state's OWN clock (`eng.t_ms` — reset to 0 on state entry, advanced only
+    // by the dt handed to updateForceRigFrame, so it freezes with the
+    // SET_TIME_FREEZE pin). Three scripted reveals can push the pin, and the pin
+    // must land past the LAST one:
+    //   • `phases[]` — same [at_ms, until_ms) window semantics as
+    //     newtons_laws_body above, so the pin lands INSIDE an open window
+    //     (eye_frozen_candidate_offset_falls_outside_engine_display_band) and past
+    //     a bare fire instant otherwise;
+    //   • `param_ramp` — one-shot monotonic, HOLDS at `to` from end_ms;
+    //   • `release.at_ms` (whirl) — the cut-the-string beat; the payoff is the
+    //     straight tangential departure AFTER the cut, so the pin must clear it.
+    // The ring/bob also needs real settling time after the last write, hence the
+    // FR_SETTLE_MS floor: a force table pinned the instant a ramp ends photographs
+    // a ring still visibly mid-drift, which would mint a self-contradictory H2
+    // baseline (field3d_scenario_missing_maxreveal_block_...).
+    const frig = asObj(state.force_rig);
+    if (frig) {
+        const frCushion = 500;
+        const FR_SETTLE_MS = 1600;   // damped ring settle, mirrors FR_DEFAULT_DAMPING
+        let frFound = false;
+        const frPhases = Array.isArray(frig.phases) ? frig.phases : [];
+        for (const phRaw of frPhases) {
+            const ph = asObj(phRaw);
+            if (!ph || typeof ph.id !== 'string' || ph.id.length === 0) continue;   // mirrors frRunPhases' skip
+            frFound = true;
+            const at = asNum(ph.at_ms, 0);
+            const until = typeof ph.until_ms === 'number' && Number.isFinite(ph.until_ms) ? ph.until_ms : null;
+            if (until != null && until > at) candidates.push(Math.max(at, Math.min(at + frCushion, until - 200)));
+            else candidates.push(at + frCushion);
+        }
+        const frRamp = asObj(frig.param_ramp);
+        if (frRamp && typeof frRamp.end_ms === 'number' && Number.isFinite(frRamp.end_ms)) {
+            frFound = true;
+            candidates.push(frRamp.end_ms + FR_SETTLE_MS);
+        }
+        // Registered NOW, so the whirl branch needs no edit here when it lands.
+        const frWhirl = asObj(frig.whirl);
+        const frRelease = frWhirl ? asObj(frWhirl.release) : null;
+        if (frRelease && typeof frRelease.at_ms === 'number' && Number.isFinite(frRelease.at_ms)) {
+            frFound = true;
+            candidates.push(frRelease.at_ms + 1200);   // past the cut, into the straight departure
+        }
+        if (!frFound) candidates.push(FR_SETTLE_MS);   // no script: still let the rig settle
+    }
+
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
@@ -3154,6 +3208,21 @@ export function deriveHoldExpectations(
             const nlbHold = asObj(state.newtons_laws_body);
             if (nlbHold) {
                 out[stateId] = (nlbHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // force_rig (Laws of Motion, off-axis forces): every state exposes its
+            // own contextual slider row(s) (Rule 31 `controls_visible`), so the
+            // generic show_sliders catch must never decide these. The explore
+            // sandbox is the state that declares `trusted_drag_seizes` (Rule 37
+            // free-run under the teacher) → interactive; every other state is a
+            // guided beat whose ramp/phase payoff settles to a HOLD (the ring stops
+            // where the pulls balance) → reveal_hold, so D7 (stuck tail) / D1p
+            // (frozen) permit the settled tail instead of false-failing it. Both
+            // branches are pure RELAXATIONS in pixelGate — neither asserts
+            // stillness, so a still-settling beat is not mis-gated.
+            const frigHold = asObj(state.force_rig);
+            if (frigHold) {
+                out[stateId] = frigHold.trusted_drag_seizes === true ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

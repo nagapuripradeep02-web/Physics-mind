@@ -52,7 +52,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' |
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' | 'force_rig' |
         // molecular_geometry (VSEPR — CHEMISTRY, 2026-07-28): a central atom's
         // electron domains (bonds + lone pairs) repel into the arrangement of
         // maximum separation, which IS the molecular shape. The P3 slice of the
@@ -1082,6 +1082,71 @@ export interface Field3DConfig {
             // STATE_6 explore: suppress ALL magnitude/Newton readouts the shared
             // lorentz slider panel would otherwise show. Always honored regardless.
             hide_magnitude_readout?: boolean;
+        };
+        // ── force_rig per-state config (Laws of Motion, off-axis forces) ──
+        // docs/FORCE_RIG_ENGINE_SPEC.md, founder-approved 2026-07-30. ONE
+        // scenario_type serving BOTH remaining Laws of Motion concepts:
+        // `equilibrium_of_particles` (the force table) and
+        // `uniform_circular_motion` (the whirl). They are the SAME code — a point
+        // mass acted on by several forces whose DIRECTIONS are authored angles
+        // rather than a single track axis, integrated with damping so the mass
+        // visibly settles or visibly circles. `newtons_laws_body` cannot serve
+        // either: it is strictly 1-D along a straight surface.
+        //   Branch A (`force_table`) is implemented; branch B (`whirl`) is
+        //   declared here and built in its own dispatch.
+        force_rig?: {
+            apparatus: 'force_table' | 'whirl';
+
+            // ── force_table: a ring pulled by N strings over rim pulleys ─────
+            force_table?: {
+                view?: 'top_down' | 'perspective';   // default 'top_down' — the lab view
+                ring_mass_kg?: number;               // default 0.05; only affects settling speed
+                damping?: number;                    // b in F = -b*v; default settles in ~1.5 s
+                strings: Array<{
+                    id: string;
+                    angle_deg: number;               // measured CCW from +x in the table plane
+                    hanging_mass_kg: number;         // tension = m*g along this string, exactly
+                    label?: string;                  // e.g. "T₁"
+                    color?: string;
+                }>;
+                show_resultant?: boolean;            // draw ΣF from the ring; length ∝ |ΣF|
+                show_components?: boolean;           // resolve each tension into x and y
+                // Start the ring displaced (metres, table frame) so the state SEES
+                // it settle instead of opening on a still picture (the Rule-31 trap
+                // this apparatus is most exposed to). NOT in the founder spec §1 —
+                // added by the engine build and flagged for founder-proxy.
+                ring_start_offset_m?: number[];
+            };
+
+            // ── whirl: a bob on a string sweeping a circle ───────────────────
+            // DECLARED ONLY — the whirl branch is a separate dispatch. Nothing in
+            // this renderer reads it yet; authoring against it is premature.
+            whirl?: {
+                geometry: 'conical' | 'flat';
+                string_length_m: number;
+                bob_mass_kg: number;
+                omega_rad_per_s?: number;
+                anchor_height_m?: number;
+                release?: { at_ms: number; trail?: boolean; ghost_circle?: boolean };
+                show_radius?: boolean;
+                show_velocity?: boolean;
+            };
+
+            // Force arrows on the particle. Directions come from the solver, never
+            // authored. One entry; `show` is the closed set of kinds this state draws.
+            arrows?: Array<{
+                show: Array<'tension' | 'weight' | 'normal' | 'resultant' | 'centripetal'>;
+                labels?: Partial<Record<'tension' | 'weight' | 'normal' | 'resultant' | 'centripetal', string>>;
+            }>;
+
+            // Rule 33d instruments — live numerics only.
+            readouts?: Array<'T' | 'sum_F' | 'sum_Fx' | 'sum_Fy' | 'theta' | 'v' | 'omega' | 'r' | 'a_c'>;
+
+            glow_focal?: string;                     // EXACTLY ONE per state (Rule 32e)
+            controls_visible?: Array<'m1' | 'm2' | 'm3' | 'angle1' | 'angle2' | 'omega' | 'L' | 'bob_mass'>;
+            trusted_drag_seizes?: boolean;           // sandbox state only
+            param_ramp?: { param: 'angle1' | 'angle2' | 'omega' | 'm1'; from: number; to: number; start_ms?: number; end_ms: number };
+            phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; glow_focal?: string }>;
         };
         // ── magnetic_no_work per-state config ────────────────────────────
         // DIRECTION + NO-WORK sibling of lorentz_force_uniform_field. Teaches:
@@ -40795,6 +40860,998 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbFitRopes();
     }
 
+    // ════════════════════════════════════════════════════════════════════════
+    // force_rig — the concurrent-force / circular-motion engine (prefix "fr")
+    //   docs/FORCE_RIG_ENGINE_SPEC.md, founder-approved 2026-07-30.
+    //   THIS DISPATCH BUILDS BRANCH A ONLY (apparatus: "force_table"). The
+    //   whirl branch is declared in the config type and built separately; a
+    //   whirl state renders nothing here rather than guessing its physics.
+    //
+    //   Branch A is a REAL damped 2-D particle. The ring is integrated, never
+    //   posed: it drifts off centre when the pulls do not balance and settles
+    //   where they do. That is the entire reason this engine exists — an
+    //   equilibrium asserted by three arrows drawn head-to-tail teaches nothing.
+    //
+    //   THE RESTORING MECHANISM, stated once because everything depends on it:
+    //   each string pulls the ring TOWARD ITS OWN PULLEY, so the pull direction
+    //   is unit(pulley_i - p), not the authored angle. At p = 0 that IS the
+    //   authored angle and the sum is exactly the spec section 2 expression
+    //   ΣF = Σ T_i (cos φ_i, sin φ_i). Off centre the directions rotate, which
+    //   linearises to a positive-definite stiffness K = (1/R)Σ T_i (I - e_i e_iᵀ)
+    //   for any three non-collinear strings — so an imbalance has a genuine new
+    //   fixed point to settle at instead of drifting forever at terminal speed.
+    //   This is the real force table, not a modelling convenience.
+    //
+    //   Tension magnitude is m_i·g EXACTLY (spec section 2): the hanging mass IS
+    //   the tension, which is what makes this apparatus teachable. Changing a
+    //   mass changes the drawn weight AND the pull through ONE funnel
+    //   (frSetStringMass), so the picture can never disagree with the number.
+    // ════════════════════════════════════════════════════════════════════════
+    var FR_G = 9.8;                       // m/s^2 — a constant, NOT a clock (Rule 36)
+    // The ONE fixed sub-step. Rule 36 note, because this is the only place in
+    // this scenario where a step size is named at all:
+    //   the shared clock hands this scenario dtStep = 0.016 * __pmSteps, i.e. the
+    //   dt is ALREADY quantised to whole 0.016 s steps whose COUNT is derived from
+    //   real elapsed wall time (0-3 per frame). Branch A recovers that count
+    //   (n = round(dt / FR_STEP_S)) and takes n steps of exactly FR_STEP_S.
+    //   Consequences, all of them the point:
+    //     • rate-correct at any refresh rate — the count comes from real elapsed
+    //       ms, never from an assumed frame rate, so 120 Hz runs half as many
+    //       steps per frame and the same number per second;
+    //     • EXACTLY fold-invariant — N frames of one step and one frame of N
+    //       steps execute the identical arithmetic sequence, to the last bit,
+    //       which a damped integrator taking the whole dt in one Euler step
+    //       cannot be (its error is O(dt²·b/m));
+    //     • dt = 0 under SET_TIME_FREEZE takes ZERO steps, so a frozen frame is
+    //       byte-identical with no special-case branch.
+    var FR_STEP_S = 0.016;
+    var FR_MAX_STRINGS = 4;               // meshes built once; a state shows its first N
+    var FR_TABLE_R_M = 0.25;              // physical table radius (a real force table is ~25 cm)
+    var FR_TABLE_R_W = 2.40;              // ... drawn this many world units across the radius
+    var FR_WORLD_PER_M = FR_TABLE_R_W / FR_TABLE_R_M;   // 9.6 world units per metre of ring travel
+    var FR_RING_CLAMP = 0.80;             // the ring may never leave the table (fraction of R)
+    var FR_DEFAULT_RING_MASS = 0.05;      // kg (spec section 1 default)
+    // b in F = -b*v. Overdamped on purpose: the settle time constant is b/K with
+    // K the string stiffness above (~120 N/m for three few-kilogram weights), so
+    // this lands at tau ~ 0.33 s and a visible settle of ~1.5 s (spec section 1).
+    // Disclosed as SETTLING BEHAVIOUR only — never drawn as a force in the
+    // free-body diagram, because it is not part of the physics being taught.
+    var FR_DEFAULT_DAMPING = 40;
+    var FR_REST_V = 1e-7;                 // m/s below which the ring is reported at rest
+    var FR_TABLE_COLOR = "#37474F";
+    var FR_RIM_COLOR = "#78909C";
+    var FR_RING_COLOR = "#FFF176";
+    var FR_CENTRE_COLOR = "#546E7A";
+    var FR_PULLEY_COLOR = "#B0BEC5";
+    var FR_STRING_COLOR = "#ECEFF1";
+    var FR_WEIGHT_COLOR = "#90A4AE";
+    var FR_AXIS_COLOR = "#607D8B";
+    var FR_STRING_COLORS = ["#42A5F5", "#EF5350", "#66BB6A", "#AB47BC"];
+    var FR_RESULTANT_COLOR = "#E0E0E0";   // light grey, never pure white — a white focal
+                                          // cannot brighten, so Rule 29 emphasis on the
+                                          // resultant would be a total no-op
+    var FR_TABLE_Z = -0.06;               // the top behind the working parts
+    var FR_RING_R = 0.15;                 // ring torus radius (world)
+    var FR_RING_TUBE = 0.045;
+    var FR_PULLEY_R = 0.17;
+    var FR_PULLEY_TUBE = 0.05;
+    // An IDEAL string: thin, straight, taut — and deliberately THINNER and dimmer
+    // than the tension arrow that runs along it. A tension acts along its own
+    // string, so the two are exactly collinear; at the nlb string weight the white
+    // cylinder swallowed the coloured arrow and the taught object of the whole
+    // chapter read as a bare arrowhead (observed in the first bring-up frame).
+    var FR_STRING_R = 0.013;
+    var FR_STRING_OPACITY = 0.72;
+    var FR_SEG_MIN = 0.02;                // below this a segment is genuinely gone, so it HIDES
+    var FR_HANG_OUT = 0.30;               // string continues this far PAST the pulley to the weight
+    // The hanging weight is drawn along the OUTWARD RADIAL direction rather than
+    // straight down the screen. In a top-down view that IS the honest projection
+    // of a weight hanging over a rim pulley, and it is the only placement that
+    // works at every angle: a screen-down drop from a pulley at the TOP of the
+    // table folds the string back over the table and buries the weight, its label
+    // and the pulley in each other (observed in the first bring-up frame).
+    var FR_WEIGHT_W = 0.30;               // hanger plate width
+    var FR_WEIGHT_H_PER_KG = 0.11;        // stack height per kilogram (the DRAWN weight)
+    var FR_WEIGHT_H_MIN = 0.10;
+    var FR_WEIGHT_H_MAX = 0.72;
+    // Arrow map — REUSED VERBATIM from newtons_laws_body (NLB_ARROW_SCALE /
+    // MIN_LEN / MAX_LEN / EPS), residual floor included: every force under
+    // MIN_LEN/SCALE = 11.5 N draws at the same floor length. Not re-derived here
+    // (spec section 3). The consequence for authoring is real and is carried into
+    // the JSON contract: hanging masses live in the 1.2-5 kg band so the drawn
+    // lengths are genuinely proportional across the slider range.
+    var FR_ARROW_SCALE = 0.048;           // world units PER NEWTON
+    var FR_ARROW_MIN_LEN = 0.55;
+    var FR_ARROW_MAX_LEN = 2.80;
+    var FR_ARROW_EPS = 0.05;              // newtons; at or below this the force IS zero
+    var FR_ARROW_LABEL_H = 0.26;
+    var FR_ARROW_LABEL_GAP = 0.24;
+    var FR_ZERO_DOT_R = 0.085;            // the ΣF = 0 dot (see frDriveArrows)
+    // Every arrow and arrow label sits IN FRONT of the apparatus plane. A tension
+    // acts along its own string, so at z = 0 the arrow is drawn inside the string
+    // cylinder and the taught object of the whole chapter is invisible (observed
+    // in the first bring-up frame: three correct arrows, none of them readable).
+    var FR_ARROW_Z = 0.14;
+    var FR_Y_AXIS = new THREE.Vector3(0, 1, 0);
+    var FR_MATH_FONT = "'Cambria Math','Times New Roman',serif";
+
+    // Explicit id registry — addToScene() only registers the object handed to it,
+    // so a child mesh would never be reachable from sceneObjects (the "child mesh
+    // never registered, updater never matches" scar). Every id-addressable fr
+    // object goes through frRegister().
+    var frIndex = [];
+    function frRegister(obj) { frIndex.push(obj); return obj; }
+    function frFindById(id) {
+        for (var i = 0; i < frIndex.length; i++) {
+            var o = frIndex[i];
+            if (o && o.userData && o.userData.id === id) return o;
+        }
+        return null;
+    }
+    function frEach(fn) {
+        for (var i = 0; i < frIndex.length; i++) { if (frIndex[i]) fn(frIndex[i], frIndex[i].userData || {}); }
+    }
+    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar).
+    function frFx(v, dp) {
+        var d = (dp == null) ? 2 : dp;
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
+        return n.toFixed(d);
+    }
+    function frStateCfg() {
+        var sd = (config.states && PM_currentState) ? config.states[PM_currentState] : null;
+        return (sd && sd.force_rig) ? sd.force_rig : {};
+    }
+    function frTableCfg(fr) {
+        return (fr && fr.force_table) ? fr.force_table : {};
+    }
+    function frIsTable(fr) {
+        var f = fr || frStateCfg();
+        return (f.apparatus || "force_table") === "force_table";
+    }
+
+    // ── Geometry helpers (pure presentation; no clock, no integration) ─────
+    function frWorld(px, py, z) { return new THREE.Vector3(px * FR_WORLD_PER_M, py * FR_WORLD_PER_M, z || 0); }
+    function frRingWorld() {
+        var eng = window.PM_frEngine;
+        if (!eng) return new THREE.Vector3(0, 0, 0);
+        return frWorld(eng.p.x, eng.p.y, 0);
+    }
+    function frPulleyWorld(angleDeg) {
+        var t = angleDeg * Math.PI / 180;
+        return new THREE.Vector3(FR_TABLE_R_W * Math.cos(t), FR_TABLE_R_W * Math.sin(t), 0);
+    }
+    // Fit a unit-height, +y-axis cylinder between two world points. Geometry only:
+    // the caller owns visibility, so a state hide can never be undone here.
+    function frFitSegment(obj, p0, p1, on) {
+        if (!obj) return;
+        var dx = p1.x - p0.x, dy = p1.y - p0.y, dz = p1.z - p0.z;
+        var len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(len > FR_SEG_MIN)) { obj.visible = false; return; }
+        obj.visible = !!on;
+        obj.position.set((p0.x + p1.x) / 2, (p0.y + p1.y) / 2, (p0.z + p1.z) / 2);
+        obj.scale.set(1, len, 1);
+        obj.quaternion.setFromUnitVectors(FR_Y_AXIS, new THREE.Vector3(dx / len, dy / len, dz / len));
+    }
+    function frArrowLen(magN) {
+        var L = (typeof magN === "number" && isFinite(magN)) ? Math.abs(magN) * FR_ARROW_SCALE : 0;
+        if (L < FR_ARROW_MIN_LEN) L = FR_ARROW_MIN_LEN;
+        if (L > FR_ARROW_MAX_LEN) L = FR_ARROW_MAX_LEN;
+        return L;
+    }
+    function frSetLabelText(lbl, text) {
+        if (!lbl) return;
+        var t = (text == null) ? "" : String(text);
+        if (lbl._frText === t) return;      // pmCreateAutoLabel re-allocates its canvas
+        lbl._frText = t;                    // texture on every redraw — never per frame
+        updateLabelSpriteText(lbl, t);
+    }
+    // The spec section 3 update primitive: a real ZERO force HIDES its arrow
+    // rather than drawing a stub, because "no force here" is exactly what the
+    // absence of an arrow should mean.
+    function frUpdateArrow(id, originWorld, dirx, diry, magnitudeN, labelText, on) {
+        var arrow = frFindById(id);
+        var lbl = frFindById(id + "_label");
+        if (!arrow) return;
+        var mag = (typeof magnitudeN === "number" && isFinite(magnitudeN)) ? Math.abs(magnitudeN) : 0;
+        var d = Math.sqrt(dirx * dirx + diry * diry);
+        var vis = !!on && mag > FR_ARROW_EPS && d > 1e-9;
+        arrow.visible = vis;
+        if (lbl) lbl.visible = vis && !!labelText;
+        if (!vis) return;
+        var len = frArrowLen(mag);
+        // The shaft is a THREE.Line and WebGL ignores linewidth on essentially
+        // every desktop driver, so the HEAD carries the visual weight (the nlb
+        // sizing, unchanged). Rule 29: LENGTH tracks magnitude and nothing here
+        // scales an arrow for emphasis — emphasis is brightness, frApplyGlow only.
+        var headLen = Math.min(0.34, len * 0.40);
+        var u = new THREE.Vector3(dirx / d, diry / d, 0);
+        arrow.position.copy(originWorld);
+        arrow.setDirection(u);
+        arrow.setLength(len, headLen, headLen * 0.80);
+        if (lbl && labelText) {
+            lbl.position.copy(originWorld).addScaledVector(u, len + FR_ARROW_LABEL_GAP);
+            frSetLabelText(lbl, labelText);
+        }
+    }
+
+    // ── The active state's string list, and the ONE mass funnel ────────────
+    function frStrings() {
+        var eng = window.PM_frEngine;
+        return (eng && eng.strings) ? eng.strings : [];
+    }
+    // Changing a hanging mass changes the DRAWN weight and the tension together —
+    // spec section 3 ("one funnel"). Every writer (state seed, slider, param_ramp)
+    // goes through here, so the plate a teacher sees can never disagree with the
+    // newtons the arrow and the HUD report.
+    function frSetStringMass(i, kg) {
+        var st = frStrings()[i];
+        if (!st || !(kg > 0) || !isFinite(kg)) return;
+        st.m = kg;
+        st.T = kg * FR_G;
+        var w = frFindById("fr_weight_" + i);
+        if (w) {
+            var h = Math.max(FR_WEIGHT_H_MIN, Math.min(FR_WEIGHT_H_MAX, kg * FR_WEIGHT_H_PER_KG));
+            w.scale.set(1, h, 1);
+            w.userData.drawnHeight = h;
+        }
+        frSetLabelText(frFindById("fr_weightlbl_" + i), frFx(kg, 1) + " kg");
+    }
+    // Stand pulley i at its angle, run its hanger over the rim, and hang the
+    // weight below it. Pure geometry, called on entry and on every angle/mass write.
+    function frPlaceString(i) {
+        var st = frStrings()[i];
+        var pul = frFindById("fr_pulley_" + i);
+        var hangOut = frFindById("fr_hangout_" + i);
+        var hangDrop = frFindById("fr_hangdrop_" + i);
+        var wgt = frFindById("fr_weight_" + i);
+        var wlbl = frFindById("fr_weightlbl_" + i);
+        var on = !!st;
+        if (!st) {
+            if (pul) pul.visible = false;
+            if (hangOut) hangOut.visible = false;
+            if (hangDrop) hangDrop.visible = false;
+            if (wgt) wgt.visible = false;
+            if (wlbl) wlbl.visible = false;
+            return;
+        }
+        var t = st.angle_deg * Math.PI / 180;
+        var ux = Math.cos(t), uy = Math.sin(t);
+        var u = new THREE.Vector3(ux, uy, 0);
+        var P = frPulleyWorld(st.angle_deg);
+        if (pul) { pul.position.copy(P); pul.visible = true; }
+        // The string runs OVER the pulley and the weight hangs beyond it, along the
+        // outward radial direction (see FR_HANG_OUT for why radial, not screen-down).
+        var h = (wgt && wgt.userData.drawnHeight) ? wgt.userData.drawnHeight : FR_WEIGHT_H_MIN;
+        var A = new THREE.Vector3(P.x + ux * FR_HANG_OUT, P.y + uy * FR_HANG_OUT, 0);
+        frFitSegment(hangOut, P, A, on);
+        if (hangDrop) hangDrop.visible = false;   // one radial hanger; kept for the whirl branch
+        if (wgt) {
+            wgt.position.set(A.x + ux * h / 2, A.y + uy * h / 2, 0);
+            wgt.quaternion.setFromUnitVectors(FR_Y_AXIS, u);
+            wgt.visible = true;
+        }
+        if (wlbl) {
+            wlbl.position.set(A.x + ux * (h + 0.36), A.y + uy * (h + 0.36), 0);
+            wlbl.visible = true;
+        }
+    }
+    // The taut string from the ring to each pulley. Re-fitted every frame, because
+    // the ring moves — this is what makes the pull DIRECTION visibly the thing the
+    // solver uses, rather than a decorative radial line.
+    function frFitStrings() {
+        var sts = frStrings();
+        var R = frRingWorld();
+        for (var i = 0; i < FR_MAX_STRINGS; i++) {
+            var seg = frFindById("fr_string_" + i);
+            if (i >= sts.length) { if (seg) seg.visible = false; continue; }
+            frFitSegment(seg, R, frPulleyWorld(sts[i].angle_deg), true);
+        }
+        var ring = frFindById("fr_ring");
+        if (ring) ring.position.copy(R);
+        var dot = frFindById("fr_zero_dot");
+        if (dot) dot.position.set(R.x, R.y, FR_ARROW_Z);   // in front, like the arrow it replaces
+    }
+
+    // ── Branch A physics (spec section 2) ─────────────────────────────────
+    // Unit vector from the ring TOWARD pulley i, in the table (metres) frame.
+    // At p = 0 this is exactly (cos φ_i, sin φ_i) — the spec expression — and off
+    // centre it is the real string direction, which is where the restoring
+    // stiffness comes from (see the block header).
+    function frStringDir(eng, st) {
+        var t = st.angle_deg * Math.PI / 180;
+        var dx = eng.R_m * Math.cos(t) - eng.p.x;
+        var dy = eng.R_m * Math.sin(t) - eng.p.y;
+        var L = Math.sqrt(dx * dx + dy * dy);
+        if (!(L > 1e-9)) return { x: Math.cos(t), y: Math.sin(t) };
+        return { x: dx / L, y: dy / L };
+    }
+    // ΣF = Σ T_i * u_i, with T_i = m_i * g EXACTLY. Writes each string record so
+    // the arrows and the HUD are pure presentation of the SAME numbers the
+    // integrator used — there is no second physics path.
+    function frSumForce(eng) {
+        var fx = 0, fy = 0;
+        for (var i = 0; i < eng.strings.length; i++) {
+            var st = eng.strings[i];
+            var u = frStringDir(eng, st);
+            st.T = st.m * FR_G;
+            st.ux = u.x; st.uy = u.y;
+            fx += st.T * u.x;
+            fy += st.T * u.y;
+        }
+        eng.sumFx = fx; eng.sumFy = fy;
+        eng.sumF = Math.sqrt(fx * fx + fy * fy);
+    }
+    // ONE fixed step of semi-implicit Euler. The linear drag is taken IMPLICITLY —
+    // v_new = (v + (ΣF/m)h) / (1 + (b/m)h) — which is the one deviation from the
+    // spec section 2 literal (v += a*dt) and it is a stability requirement, not a
+    // preference: an explicit drag term needs b*h/m < 2, and the legible settling
+    // time this apparatus needs (tau ~ 0.33 s at m_ring = 0.05 kg) puts b*h/m near
+    // 13. The reported acceleration is still the spec free-body value
+    // a = (ΣF - b*v)/m, so nothing the HUD or an arrow shows is affected.
+    function frStep(eng, h) {
+        frSumForce(eng);
+        var m = eng.m_ring, b = eng.damping;
+        eng.ax = (eng.sumFx - b * eng.v.x) / m;
+        eng.ay = (eng.sumFy - b * eng.v.y) / m;
+        var den = 1 + (b / m) * h;
+        eng.v.x = (eng.v.x + (eng.sumFx / m) * h) / den;
+        eng.v.y = (eng.v.y + (eng.sumFy / m) * h) / den;
+        eng.p.x += eng.v.x * h;
+        eng.p.y += eng.v.y * h;
+        // The ring can never leave the table. A clamp that fires is a REAL
+        // constraint (the ring is on a finite top), so the velocity into the wall
+        // is killed with it rather than left to push forever.
+        var r = Math.sqrt(eng.p.x * eng.p.x + eng.p.y * eng.p.y);
+        var rmax = eng.R_m * FR_RING_CLAMP;
+        if (r > rmax) {
+            var k = rmax / r;
+            eng.p.x *= k; eng.p.y *= k;
+            eng.v.x = 0; eng.v.y = 0;
+        }
+    }
+
+    // ── phases[] (one-shot glow script) + param_ramp — Rule 36 closed forms ─
+    //   Both read ONLY eng.t_ms, the state-local clock advanced solely by the dt
+    //   handed to updateForceRigFrame. dt = 0 recomputes the same value, so a
+    //   frozen frame is byte-stable and a time-pin rewind reproduces the earlier
+    //   value exactly. Every gate holds at t = 0 (nothing pre-fires on entry).
+    function frRunPhases(fr, eng, tMs) {
+        var ph = fr.phases;
+        if (!ph || !ph.length) return;
+        var focal = fr.glow_focal || "";
+        for (var i = 0; i < ph.length; i++) {
+            var p = ph[i];
+            if (!p || typeof p.id !== "string" || !p.id.length) continue;
+            var at = (typeof p.at_ms === "number" && isFinite(p.at_ms)) ? p.at_ms : 0;
+            var until = (typeof p.until_ms === "number" && isFinite(p.until_ms)) ? p.until_ms : null;
+            var open = (tMs >= at) && (until === null || tMs < until);
+            if (open && p.glow_focal) focal = p.glow_focal;
+        }
+        eng.glow_focal = focal;
+    }
+    // ONE-SHOT monotonic reveal: "from" before start_ms, linear to "to" across the
+    // window, then HOLDS at "to" forever. Writes through frApplyParam — the SAME
+    // path a trusted slider drag uses — so there is no parallel physics.
+    // Rule 37: never runs in a sandbox state; a trusted slider input seizes it for
+    // the rest of the state.
+    function frRunParamRamp(fr, eng) {
+        var pr = fr.param_ramp;
+        if (!pr || !pr.param) return;
+        if (!(isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms))) return;
+        if (fr.trusted_drag_seizes) return;
+        if (window.PM_frSeized) return;
+        if (!FR_SLIDER_SPEC[pr.param]) return;
+        var t0 = (typeof pr.start_ms === "number" && isFinite(pr.start_ms)) ? pr.start_ms : 0;
+        var t1 = pr.end_ms;
+        var tMs = eng.t_ms || 0;
+        var v;
+        if (tMs <= t0) v = pr.from;
+        else if (tMs >= t1) v = pr.to;
+        else v = pr.from + (pr.to - pr.from) * ((t1 > t0) ? (tMs - t0) / (t1 - t0) : 1);
+        if (eng._ramp_last != null && Math.abs(v - eng._ramp_last) < 1e-4) return;   // churn guard
+        eng._ramp_last = v;
+        frApplyParam(pr.param, v);
+        frSyncSliderRow(pr.param, v);
+    }
+
+    // ── The explorer surface (Rule 31 per-state contextual controls) ───────
+    //   Rows are built ONCE into #fr_sliders and only shown/hidden per state, so a
+    //   shared slider keeps the same screen position (Rule 32d): a hidden row keeps
+    //   its RESERVED SLOT (visibility:hidden) rather than collapsing the panel.
+    //   Rule 39f: the panel is an inline position:fixed dynamic panel and each row
+    //   id is <prefix>_<name>_row, so the generic ⚙ widget engine discovers both
+    //   with no per-scenario widget code.
+    //   Rule 34c: every glyph below is REAL Unicode (m₁ m₂ m₃ φ₁ φ₂ °), never an
+    //   ASCII transcription; the label span carries the math-serif stack because
+    //   U+2081.. are missing from most monospace faces (the tofu-subscript scar).
+    var FR_SLIDER_TOKENS = ["m1", "m2", "m3", "angle1", "angle2"];
+    var FR_SLIDER_SPEC = {
+        m1:     { param: "hanging_mass_1", idx: 0, kind: "mass",  slider: "fr_m1_slider",     row: "fr_m1_row",     val: "fr_m1_val",     lbl: "fr_m1_lbl",     glyph: "m₁", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 3 },
+        m2:     { param: "hanging_mass_2", idx: 1, kind: "mass",  slider: "fr_m2_slider",     row: "fr_m2_row",     val: "fr_m2_val",     lbl: "fr_m2_lbl",     glyph: "m₂", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 4 },
+        m3:     { param: "hanging_mass_3", idx: 2, kind: "mass",  slider: "fr_m3_slider",     row: "fr_m3_row",     val: "fr_m3_val",     lbl: "fr_m3_lbl",     glyph: "m₃", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 5 },
+        angle1: { param: "angle_1",        idx: 0, kind: "angle", slider: "fr_angle1_slider", row: "fr_angle1_row", val: "fr_angle1_val", lbl: "fr_angle1_lbl", glyph: "φ₁", unit: "°",   dp: 0, min: 0, max: 359, step: 1, def: 0 },
+        angle2: { param: "angle_2",        idx: 1, kind: "angle", slider: "fr_angle2_slider", row: "fr_angle2_row", val: "fr_angle2_val", lbl: "fr_angle2_lbl", glyph: "φ₂", unit: "°",   dp: 0, min: 0, max: 359, step: 1, def: 90 }
+        // whirl tokens (omega / L / bob_mass) are DELIBERATELY absent: a row whose
+        // write goes nowhere is the silently-swallowed-slider trap. They arrive with
+        // the whirl branch, which is the only thing that can act on them.
+    };
+    // Per-concept min/max/step/default/label override, keyed by the SAME token
+    // controls_visible[] uses (the nlbSc / acgSc idiom). Every numeric is coerced
+    // with a finite fallback: an authoring typo must never throw out of the builder
+    // (the createTubeLine scar — one throw inside build = blank scene, no SIM_READY).
+    function frSc(token) {
+        var sp = FR_SLIDER_SPEC[token] || {};
+        var o = (config.slider_controls || {})[token] || {};
+        function num(a, b) { return (typeof a === "number" && isFinite(a)) ? a : b; }
+        var dp = num(o.dp, sp.dp);
+        return {
+            min: num(o.min, sp.min), max: num(o.max, sp.max), step: num(o.step, sp.step),
+            def: num(o.default, sp.def), dp: dp,
+            label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph
+        };
+    }
+    function frSliderTokensUsed() {
+        var want = {}, keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var fr = (config.states[keys[i]] || {}).force_rig;
+            var cv = (fr && fr.controls_visible) || [];
+            for (var c = 0; c < cv.length; c++) { if (FR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        }
+        var out = [];
+        for (var t = 0; t < FR_SLIDER_TOKENS.length; t++) { if (want[FR_SLIDER_TOKENS[t]]) out.push(FR_SLIDER_TOKENS[t]); }
+        return out;
+    }
+    var frSliderRowsBuilt = [];
+    function frRowsBuilt() { return frSliderRowsBuilt || []; }
+    function frBuildSliderRows(panel) {
+        frSliderRowsBuilt = frSliderTokensUsed();
+        if (!panel || !frSliderRowsBuilt.length) return;
+        var html = "";
+        for (var i = 0; i < frSliderRowsBuilt.length; i++) {
+            var tok = frSliderRowsBuilt[i], sp = FR_SLIDER_SPEC[tok], sc = frSc(tok);
+            html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
+                '<label><span id="' + sp.lbl + '" style="font-family:' + FR_MATH_FONT + '">' + sc.label + '</span> = ' +
+                '<span id="' + sp.val + '">' + sc.def.toFixed(sc.dp) + '</span>' + sp.unit + '</label>' +
+                '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
+                '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
+        }
+        panel.innerHTML = html;
+        for (var w = 0; w < frSliderRowsBuilt.length; w++) frWireSlider(frSliderRowsBuilt[w]);
+    }
+    function frEmit(param, value) {
+        try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "force_rig_explorer"), param: param, value: value }, "*"); } catch (e) {}
+    }
+    // Write one param into the engine record. Everything downstream — the solver,
+    // the drawn weight, the arrows, the HUD, the strings — picks it up with no
+    // extra wiring, because they all read the SAME record.
+    function frApplyParam(token, value) {
+        var eng = window.PM_frEngine;
+        var sp = FR_SLIDER_SPEC[token];
+        if (!eng || !sp || !isFinite(value)) return;
+        var st = eng.strings[sp.idx];
+        if (!st) return;
+        if (sp.kind === "mass") {
+            if (!(value > 0)) return;
+            frSetStringMass(sp.idx, value);
+        } else {
+            st.angle_deg = value;
+        }
+        frPlaceString(sp.idx);
+        frSumForce(eng);
+        frFitStrings();
+    }
+    function frSliderValueFromEngine(token) {
+        var eng = window.PM_frEngine;
+        var sp = FR_SLIDER_SPEC[token];
+        if (!eng || !sp) return null;
+        var st = eng.strings[sp.idx];
+        if (!st) return null;
+        return (sp.kind === "mass") ? st.m : st.angle_deg;
+    }
+    function frSyncSliderRow(token, value) {
+        var sp = FR_SLIDER_SPEC[token];
+        if (!sp || value == null || !isFinite(value)) return;
+        var el = document.getElementById(sp.slider);
+        if (el) el.value = String(value);
+        var vv = document.getElementById(sp.val);
+        if (vv) vv.textContent = frFx(value, frSc(token).dp);
+    }
+    function frToggleSliderRows(fr) {
+        var panel = document.getElementById("fr_sliders");
+        var cv = fr.controls_visible || [], want = {}, shown = 0;
+        var eng = window.PM_frEngine;
+        var n = (eng && eng.strings) ? eng.strings.length : 0;
+        for (var c = 0; c < cv.length; c++) { if (FR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        var built = frRowsBuilt();
+        for (var i = 0; i < built.length; i++) {
+            var tok = built[i], sp = FR_SLIDER_SPEC[tok];
+            // A control for a string this state does not have is never exposed: an
+            // inert slider that silently swallows the write is exactly the trap that
+            // cost two earlier trays a fix cycle each.
+            var on = !!want[tok] && sp.idx < n;
+            var row = document.getElementById(sp.row), el = document.getElementById(sp.slider);
+            if (row) row.style.visibility = on ? "visible" : "hidden";
+            if (el) el.disabled = !on;
+            if (on) shown++;
+        }
+        if (panel) panel.style.display = shown ? "block" : "none";
+    }
+    // One TRUSTED slider input seizes the state for the rest of the state (Rule 37:
+    // a scripted param_ramp animates only until a real teacher input takes over).
+    // A SYNTHETIC input (the ramp own sync, THE EYE driver) is deliberately NOT a
+    // seizure, so frozen baselines see the authored script.
+    function frWireSlider(token) {
+        var sp = FR_SLIDER_SPEC[token];
+        var el = document.getElementById(sp.slider);
+        if (!el) return;
+        el.addEventListener("input", function (ev) {
+            var v = parseFloat(el.value);
+            if (!isFinite(v)) return;
+            if (ev && ev.isTrusted) window.PM_frSeized = true;
+            frApplyParam(token, v);
+            frSyncSliderRow(token, v);
+            frEmit(sp.param, v);
+        });
+    }
+
+    // ── Value-only HUD (Rule 33d live numerics, Rule 34b no formula here) ──
+    //   Rows are rebuilt on STATE ENTRY only; per-frame writers use frSetReadout.
+    //   The x/y subscripts go through real <sub> markup rather than a Unicode
+    //   codepoint, because subscript y HAS no codepoint (the X_C problem): an
+    //   ASCII "Fy" or "F_y" on screen would be a Rule 34c break, and U+1D67 is a
+    //   subscript GAMMA that most faces draw as γ.
+    function frReadoutRowId(key) { return "fr_ro_" + key; }
+    function frRebuildReadout(fr) {
+        var el = document.getElementById("fr_readout");
+        if (!el) return;
+        var keys = fr.readouts || [];
+        var eng = window.PM_frEngine;
+        var sts = (eng && eng.strings) ? eng.strings : [];
+        var h = "";
+        function row(id, labelHtml, unit) {
+            return '<div id="' + frReadoutRowId(id) + '">' +
+                '<span style="font-family:' + FR_MATH_FONT + '">' + labelHtml + '</span> = ' +
+                '<span id="' + frReadoutRowId(id) + '_val">--</span>' + unit + '</div>';
+        }
+        if (keys.indexOf("T") >= 0) {
+            for (var i = 0; i < sts.length; i++) {
+                h += row("T" + i, sts[i].label || ("T<sub>" + (i + 1) + "</sub>"), " N");
+            }
+        }
+        if (keys.indexOf("sum_Fx") >= 0) h += row("sum_Fx", "ΣF<sub>x</sub>", " N");
+        if (keys.indexOf("sum_Fy") >= 0) h += row("sum_Fy", "ΣF<sub>y</sub>", " N");
+        if (keys.indexOf("sum_F") >= 0) h += row("sum_F", "ΣF", " N");
+        el.innerHTML = h;
+        el.style.display = h ? "block" : "none";
+    }
+    function frSetReadout(key, text) {
+        var v = document.getElementById(frReadoutRowId(key) + "_val");
+        if (v) v.textContent = text;
+    }
+    function frWriteReadouts(fr, eng) {
+        var keys = fr.readouts || [];
+        if (keys.indexOf("T") >= 0) {
+            for (var i = 0; i < eng.strings.length; i++) frSetReadout("T" + i, frFx(eng.strings[i].T, 2));
+        }
+        if (keys.indexOf("sum_Fx") >= 0) frSetReadout("sum_Fx", frFx(eng.sumFx, 2));
+        if (keys.indexOf("sum_Fy") >= 0) frSetReadout("sum_Fy", frFx(eng.sumFy, 2));
+        if (keys.indexOf("sum_F") >= 0) frSetReadout("sum_F", frFx(eng.sumF, 2));
+    }
+
+    // ── The arrow overlay: TRUE solved directions, length ∝ magnitude ──────
+    //   Nothing here is authored: a tension arrow points where the solver says the
+    //   string pulls, and the resultant is the vector the integrator just used.
+    //   When |ΣF| falls under FR_ARROW_EPS the resultant arrow does not shrink to a
+    //   stub — it is replaced by a DOT at the ring. That dot IS the visual
+    //   signature of ΣF = 0 (spec section 3), and it is far better teaching than a
+    //   caption saying so.
+    function frArrowKinds(fr) {
+        var out = {}, ar = fr.arrows;
+        if (!ar || !ar.length) return out;
+        for (var i = 0; i < ar.length; i++) {
+            var e = ar[i];
+            if (!e || !e.show) continue;
+            for (var k = 0; k < e.show.length; k++) out[e.show[k]] = (e.labels && e.labels[e.show[k]]) || true;
+        }
+        return out;
+    }
+    function frHideAllArrows() {
+        frEach(function (o, ud) {
+            if (ud.elementType === "fr_arrow" || ud.elementType === "fr_arrow_label" ||
+                ud.elementType === "fr_comp" || ud.elementType === "fr_axis" ||
+                ud.elementType === "fr_axis_label" || ud.elementType === "fr_zero_dot") o.visible = false;
+        });
+    }
+    function frDriveArrows(fr, eng) {
+        var kinds = frArrowKinds(fr);
+        var tbl = frTableCfg(fr);
+        var R0 = frRingWorld();
+        var R = new THREE.Vector3(R0.x, R0.y, FR_ARROW_Z);   // in front of the strings
+        var showT = !!kinds.tension;
+        var showR = !!kinds.resultant || !!tbl.show_resultant;
+        var showC = !!tbl.show_components;
+        for (var i = 0; i < FR_MAX_STRINGS; i++) {
+            var st = eng.strings[i];
+            if (!st) {
+                frUpdateArrow("fr_arrow_" + i, R, 1, 0, 0, null, false);
+                frUpdateArrow("fr_compx_" + i, R, 1, 0, 0, null, false);
+                frUpdateArrow("fr_compy_" + i, R, 0, 1, 0, null, false);
+                continue;
+            }
+            var lab = (typeof kinds.tension === "string") ? kinds.tension : (st.label || ("T" + (i + 1)));
+            frUpdateArrow("fr_arrow_" + i, R, st.ux, st.uy, st.T, lab, showT);
+            // The components are drawn from the RING along the axes, NOT head to
+            // tail off the tension arrow: the length map has a floor (see
+            // FR_ARROW_MIN_LEN), so a head-to-tail construction would visibly fail
+            // to close and the picture would be a lie about its own arithmetic.
+            frUpdateArrow("fr_compx_" + i, R, st.ux >= 0 ? 1 : -1, 0, st.T * Math.abs(st.ux), null, showC);
+            frUpdateArrow("fr_compy_" + i, R, 0, st.uy >= 0 ? 1 : -1, st.T * Math.abs(st.uy), null, showC);
+        }
+        // Axes, shown only with the components they exist to resolve onto.
+        var axX = frFindById("fr_axis_x"), axY = frFindById("fr_axis_y");
+        if (axX) axX.visible = showC;
+        if (axY) axY.visible = showC;
+        var axXL = frFindById("fr_axis_x_label"), axYL = frFindById("fr_axis_y_label");
+        if (axXL) axXL.visible = showC;
+        if (axYL) axYL.visible = showC;
+
+        var zeroDot = frFindById("fr_zero_dot");
+        var atZero = eng.sumF <= FR_ARROW_EPS;
+        var rlab = (typeof kinds.resultant === "string") ? kinds.resultant : "ΣF";
+        frUpdateArrow("fr_resultant", R, eng.sumFx, eng.sumFy, eng.sumF, rlab, showR && !atZero);
+        if (zeroDot) zeroDot.visible = showR && atZero;
+    }
+
+    // ── Rule 32e glow: read glow_focal, exact-match ONE id, dim the rest ───
+    function frApplyGlow() {
+        var fr = frStateCfg();
+        var eng0 = window.PM_frEngine;
+        var focal = (eng0 && eng0.glow_focal) || fr.glow_focal || (glowTargets.length ? glowTargets[0] : "");
+        var glowActive = !!focal || glowTargets.length > 0;
+        var glowP = glowEmphT(time);
+        frEach(function (o, ud) {
+            if (ud.elementType === "fr_root") return;   // the container: its children each get their own pass
+            var isFocal = !!focal && (ud.id === focal || ud.elementType === focal);
+            // BRIGHTEN-ONLY for the solid apparatus, the same carve-out nlb makes:
+            // the dim branch drops opacity to GLOW_DIM_OPACITY, which is right for an
+            // OVERLAY (an arrow at 40% still reads as an arrow) and wrong for a
+            // physical OBJECT (a 40% table renders as glass). Arrows, their labels
+            // and the component overlays keep the real dim channel, so Rule 32e is
+            // unchanged — only the peers that were never meant to be see-through
+            // stop being see-through.
+            var solid = (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
+                         ud.elementType === "fr_pulley" || ud.elementType === "fr_string" ||
+                         ud.elementType === "fr_ring" || ud.elementType === "fr_weight" ||
+                         ud.elementType === "fr_weight_label" || ud.elementType === "fr_centre");
+            applyGlowEmphasis(o, isFocal, glowActive, glowP, solid);
+        });
+    }
+    function applyForceRigGlow() { frApplyGlow(); }
+
+    // ── Scene skeleton ────────────────────────────────────────────────────
+    //   Everything is built ONCE from the UNION of every state (FR_MAX_STRINGS
+    //   sets of pulley/string/hanger/weight/arrow) and then only shown/hidden +
+    //   re-seeded per state — Rule 32d home-pose persistence, no mid-state
+    //   rebuild and no teleport.
+    //   The table lies in the world XY plane, so a top-down camera on +z sees the
+    //   lab view directly and an authored angle_deg maps to screen without any
+    //   projection step: (cos φ, sin φ) IS the drawn direction.
+    function buildForceRig() {
+        frIndex = [];
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+
+        var root = new THREE.Group();
+        root.userData = { elementType: "fr_root", id: "fr_root" };
+        addToScene(root);
+        frRegister(root);
+
+        var top = new THREE.Mesh(
+            new THREE.CircleGeometry(FR_TABLE_R_W, 64),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_TABLE_COLOR), emissive: hexToThreeColor(FR_TABLE_COLOR),
+                emissiveIntensity: 0.10, shininess: 20, transparent: true, opacity: 0.95, side: THREE.DoubleSide
+            }));
+        top.position.set(0, 0, FR_TABLE_Z);
+        top.userData = { elementType: "fr_table", id: "fr_table" };
+        root.add(top); frRegister(top);
+
+        var rim = new THREE.Mesh(
+            new THREE.TorusGeometry(FR_TABLE_R_W, 0.035, 10, 72),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_RIM_COLOR), emissive: hexToThreeColor(FR_RIM_COLOR),
+                emissiveIntensity: 0.18, shininess: 50, transparent: true, opacity: 1.0
+            }));
+        rim.position.set(0, 0, FR_TABLE_Z + 0.01);
+        rim.userData = { elementType: "fr_rim", id: "fr_rim" };
+        root.add(rim); frRegister(rim);
+
+        // The centre mark. Without it "the ring is off centre" is unreadable —
+        // there is nothing on a plain disc to be off centre FROM.
+        var centre = new THREE.Mesh(
+            new THREE.TorusGeometry(0.055, 0.014, 8, 24),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_CENTRE_COLOR), emissive: hexToThreeColor(FR_CENTRE_COLOR),
+                emissiveIntensity: 0.25, shininess: 30, transparent: true, opacity: 0.9
+            }));
+        centre.position.set(0, 0, FR_TABLE_Z + 0.02);
+        centre.userData = { elementType: "fr_centre", id: "fr_centre" };
+        root.add(centre); frRegister(centre);
+
+        // Component axes through the table centre (shown only with show_components).
+        var axPts = [new THREE.Vector3(-FR_TABLE_R_W, 0, FR_TABLE_Z + 0.02), new THREE.Vector3(FR_TABLE_R_W, 0, FR_TABLE_Z + 0.02)];
+        var axX = new THREE.Line(new THREE.BufferGeometry().setFromPoints(axPts),
+            new THREE.LineBasicMaterial({ color: hexToThreeColor(FR_AXIS_COLOR), transparent: true, opacity: 0.7 }));
+        axX.userData = { elementType: "fr_axis", id: "fr_axis_x" };
+        axX.visible = false;
+        root.add(axX); frRegister(axX);
+        var ayPts = [new THREE.Vector3(0, -FR_TABLE_R_W, FR_TABLE_Z + 0.02), new THREE.Vector3(0, FR_TABLE_R_W, FR_TABLE_Z + 0.02)];
+        var axY = new THREE.Line(new THREE.BufferGeometry().setFromPoints(ayPts),
+            new THREE.LineBasicMaterial({ color: hexToThreeColor(FR_AXIS_COLOR), transparent: true, opacity: 0.7 }));
+        axY.userData = { elementType: "fr_axis", id: "fr_axis_y" };
+        axY.visible = false;
+        root.add(axY); frRegister(axY);
+        var axXL = pmCreateAutoLabel("x", FR_AXIS_COLOR, 0.3);
+        axXL.position.set(FR_TABLE_R_W + 0.28, 0.22, 0);
+        axXL.userData = { elementType: "fr_axis_label", id: "fr_axis_x_label" };
+        axXL.visible = false;
+        root.add(axXL); frRegister(axXL);
+        var axYL = pmCreateAutoLabel("y", FR_AXIS_COLOR, 0.3);
+        axYL.position.set(0.26, FR_TABLE_R_W + 0.28, 0);
+        axYL.userData = { elementType: "fr_axis_label", id: "fr_axis_y_label" };
+        axYL.visible = false;
+        root.add(axYL); frRegister(axYL);
+
+        for (var i = 0; i < FR_MAX_STRINGS; i++) {
+            var col = FR_STRING_COLORS[i % FR_STRING_COLORS.length];
+
+            var pul = new THREE.Mesh(
+                new THREE.TorusGeometry(FR_PULLEY_R - FR_PULLEY_TUBE, FR_PULLEY_TUBE, 10, 24),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(FR_PULLEY_COLOR), emissive: hexToThreeColor(FR_PULLEY_COLOR),
+                    emissiveIntensity: 0.16, shininess: 70, transparent: true, opacity: 1.0
+                }));
+            pul.userData = { elementType: "fr_pulley", id: "fr_pulley_" + i, stringIndex: i };
+            pul.visible = false;
+            root.add(pul); frRegister(pul);
+
+            // Three unit-height cylinders per string: ring->pulley (re-fitted every
+            // frame because the ring moves), pulley->outward, and the drop to the
+            // weight. Each gets its OWN material: applyGlowEmphasis caches its
+            // baseline ON the material, so a shared instance would make a focal
+            // string fight its peers.
+            var segIds = ["fr_string_" + i, "fr_hangout_" + i, "fr_hangdrop_" + i];
+            for (var s = 0; s < segIds.length; s++) {
+                var seg = new THREE.Mesh(
+                    new THREE.CylinderGeometry(FR_STRING_R, FR_STRING_R, 1, 8),
+                    new THREE.MeshPhongMaterial({
+                        color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
+                        emissiveIntensity: 0.22, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+                    }));
+                seg.userData = { elementType: "fr_string", id: segIds[s], stringIndex: i };
+                seg.visible = false;
+                root.add(seg); frRegister(seg);
+            }
+
+            // The hanging weight. Its DRAWN height tracks the hanging mass through
+            // frSetStringMass — the same call that sets the tension — so the plate
+            // and the newtons can never disagree (spec section 3, one funnel).
+            var wgt = new THREE.Mesh(
+                new THREE.BoxGeometry(FR_WEIGHT_W, 1, FR_WEIGHT_W * 0.6),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(FR_WEIGHT_COLOR), emissive: hexToThreeColor(FR_WEIGHT_COLOR),
+                    emissiveIntensity: 0.14, shininess: 40, transparent: true, opacity: 1.0
+                }));
+            wgt.scale.set(1, FR_WEIGHT_H_MIN, 1);
+            wgt.userData = { elementType: "fr_weight", id: "fr_weight_" + i, stringIndex: i, drawnHeight: FR_WEIGHT_H_MIN };
+            wgt.visible = false;
+            root.add(wgt); frRegister(wgt);
+
+            var wl = pmCreateAutoLabel("0.0 kg", FR_WEIGHT_COLOR, 0.30);
+            wl._frText = "0.0 kg";
+            wl.userData = { elementType: "fr_weight_label", id: "fr_weightlbl_" + i, stringIndex: i };
+            wl.visible = false;
+            root.add(wl); frRegister(wl);
+
+            // Tension arrow + its two component arrows, hidden until a state asks.
+            var arrIds = ["fr_arrow_" + i, "fr_compx_" + i, "fr_compy_" + i];
+            var arrTypes = ["fr_arrow", "fr_comp", "fr_comp"];
+            for (var a = 0; a < arrIds.length; a++) {
+                var ah = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+                    FR_ARROW_MIN_LEN, hexToThreeColor(col), 0.21, 0.17);
+                ah.userData = { elementType: arrTypes[a], id: arrIds[a], stringIndex: i };
+                ah.visible = false;
+                root.add(ah); frRegister(ah);
+            }
+            var al = pmCreateAutoLabel("T", col, FR_ARROW_LABEL_H);
+            al._frText = "T";
+            al.userData = { elementType: "fr_arrow_label", id: "fr_arrow_" + i + "_label", stringIndex: i };
+            al.visible = false;
+            root.add(al); frRegister(al);
+        }
+
+        // The resultant, and the dot it collapses to at equilibrium.
+        var res = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+            FR_ARROW_MIN_LEN, hexToThreeColor(FR_RESULTANT_COLOR), 0.21, 0.17);
+        res.userData = { elementType: "fr_arrow", id: "fr_resultant" };
+        res.visible = false;
+        root.add(res); frRegister(res);
+        var resL = pmCreateAutoLabel("ΣF", FR_RESULTANT_COLOR, FR_ARROW_LABEL_H);
+        resL._frText = "ΣF";
+        resL.userData = { elementType: "fr_arrow_label", id: "fr_resultant_label" };
+        resL.visible = false;
+        root.add(resL); frRegister(resL);
+        var zdot = new THREE.Mesh(
+            new THREE.SphereGeometry(FR_ZERO_DOT_R, 16, 16),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_RESULTANT_COLOR), emissive: hexToThreeColor(FR_RESULTANT_COLOR),
+                emissiveIntensity: 0.5, shininess: 80, transparent: true, opacity: 1.0
+            }));
+        zdot.userData = { elementType: "fr_zero_dot", id: "fr_zero_dot" };
+        zdot.visible = false;
+        root.add(zdot); frRegister(zdot);
+
+        // The ring itself — the particle every force acts on.
+        var ring = new THREE.Mesh(
+            new THREE.TorusGeometry(FR_RING_R, FR_RING_TUBE, 12, 32),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_RING_COLOR), emissive: hexToThreeColor(FR_RING_COLOR),
+                emissiveIntensity: 0.35, shininess: 80, transparent: true, opacity: 1.0
+            }));
+        ring.userData = { elementType: "fr_ring", id: "fr_ring" };
+        root.add(ring); frRegister(ring);
+
+        // Value-only HUD (Rule 33d / 34b). top:52px clears the review-chrome
+        // "Full screen" button (top:10px, ~40px tall) — Rule 34d.
+        var ro = document.createElement("div");
+        ro.id = "fr_readout";
+        ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(ro);
+
+        // The SINGLE formula surface (Rule 34b) — math-serif Unicode, its own zone,
+        // never duplicated by the generic #formula_overlay (which the applyState
+        // hide-chain suppresses for this scenario).
+        var ff = document.createElement("div");
+        ff.id = "fr_formula";
+        ff.style.cssText = "position:fixed;top:42%;left:22px;transform:translateY(-50%);color:#FFF176;font:600 22px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:320px;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var sp2 = document.createElement("div");
+        sp2.id = "fr_sliders";
+        sp2.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        document.body.appendChild(sp2);
+        frBuildSliderRows(sp2);
+
+        window.PM_frSeized = false;
+    }
+
+    // ── Per-state seed. NO clock code and NO integration here (Rule 36). ────
+    function applyForceRigState(stateDef) {
+        var fr = (stateDef && stateDef.force_rig) ? stateDef.force_rig : {};
+        var tbl = frTableCfg(fr);
+        var defs = (frIsTable(fr) && tbl.strings) ? tbl.strings : [];
+        var eng = {
+            apparatus: fr.apparatus || "force_table",
+            view: tbl.view || "top_down",
+            R_m: FR_TABLE_R_M,
+            m_ring: (typeof tbl.ring_mass_kg === "number" && tbl.ring_mass_kg > 0) ? tbl.ring_mass_kg : FR_DEFAULT_RING_MASS,
+            damping: (typeof tbl.damping === "number" && tbl.damping > 0) ? tbl.damping : FR_DEFAULT_DAMPING,
+            strings: [],
+            p: { x: 0, y: 0 },
+            v: { x: 0, y: 0 },
+            ax: 0, ay: 0, sumFx: 0, sumFy: 0, sumF: 0,
+            glow_focal: fr.glow_focal || "",
+            t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
+            _ramp_last: null,     // param_ramp churn guard, rebased on every entry
+            _sub: 0
+        };
+        for (var i = 0; i < defs.length && i < FR_MAX_STRINGS; i++) {
+            var d = defs[i] || {};
+            eng.strings.push({
+                id: d.id || ("s" + i),
+                index: i,
+                angle_deg: (typeof d.angle_deg === "number" && isFinite(d.angle_deg)) ? d.angle_deg : 0,
+                m: (typeof d.hanging_mass_kg === "number" && d.hanging_mass_kg > 0) ? d.hanging_mass_kg : 1,
+                T: 0, ux: 1, uy: 0,
+                label: d.label || null,
+                color: d.color || FR_STRING_COLORS[i % FR_STRING_COLORS.length]
+            });
+        }
+        var off = tbl.ring_start_offset_m;
+        if (off && off.length === 2 && isFinite(off[0]) && isFinite(off[1])) {
+            eng.p.x = off[0]; eng.p.y = off[1];
+        }
+        window.PM_frEngine = eng;
+        window.PM_frSeized = false;
+        window.PM_frTimeMs = 0;
+
+        // Colours follow the state (a string re-coloured between states must not
+        // keep the previous state ink) and the mass funnel runs for every string,
+        // so the drawn weight is right on the very first rendered frame.
+        frEach(function (o, ud) {
+            if (ud.stringIndex == null) return;
+            var st = eng.strings[ud.stringIndex];
+            if (!st) { o.visible = false; return; }
+            if ((ud.elementType === "fr_arrow" || ud.elementType === "fr_comp" || ud.elementType === "fr_arrow_label") &&
+                o.material && o.material.color) {
+                o.material.color.set(hexToThreeColor(st.color));
+            }
+            if (o.material && o.material.userData) { o.material.userData._glowBaseCol = null; o.material.userData._glowBaseOp = null; }
+        });
+        for (var s2 = 0; s2 < FR_MAX_STRINGS; s2++) {
+            if (eng.strings[s2]) frSetStringMass(s2, eng.strings[s2].m);
+            frPlaceString(s2);
+        }
+        frSumForce(eng);
+        frFitStrings();
+
+        // Whole-scene visibility: a whirl state (branch B, a separate dispatch)
+        // legitimately has no table, so the table apparatus hides rather than
+        // standing there as apparatus that does nothing.
+        var tableOn = frIsTable(fr);
+        frEach(function (o, ud) {
+            if (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
+                ud.elementType === "fr_centre" || ud.elementType === "fr_ring") o.visible = tableOn;
+        });
+
+        // The SINGLE formula surface for this state (Rule 34b).
+        var ffe = document.getElementById("fr_formula");
+        if (ffe) {
+            var ftext = stateDef.formula_overlay || "";
+            ffe.textContent = ftext;
+            ffe.style.display = ftext ? "block" : "none";
+        }
+        frRebuildReadout(fr);
+        // Every arrow surface is blanked on entry so a kind dropped from this
+        // state can never keep a stale arrow on screen; the per-frame pass then
+        // re-shows exactly the named kinds at their live magnitudes.
+        frHideAllArrows();
+        frDriveArrows(fr, eng);
+        frWriteReadouts(fr, eng);
+
+        frToggleSliderRows(fr);
+        for (var t2 = 0; t2 < FR_SLIDER_TOKENS.length; t2++) {
+            var tk = FR_SLIDER_TOKENS[t2];
+            var vv = frSliderValueFromEngine(tk);
+            if (vv != null) frSyncSliderRow(tk, vv);
+        }
+        frApplyGlow();
+    }
+
+    // ── The per-frame step (spec section 2) ────────────────────────────────
+    //   ONE call per tick with the COMBINED dtStep (already 0.016 * __pmSteps).
+    //   The sub-step COUNT is recovered from that dt (see FR_STEP_S) rather than
+    //   assumed, so this is rate-correct at any refresh rate, exactly
+    //   fold-invariant, and a no-op at dt = 0 under a SET_TIME_FREEZE pin.
+    function updateForceRigFrame(dt) {
+        var eng = window.PM_frEngine;
+        if (!eng) return;                                  // build ran, no state seeded yet
+        var h = (typeof dt === "number" && isFinite(dt) && dt > 0) ? dt : 0;
+        var fr = frStateCfg();
+        eng.t_ms += h * 1000;
+        window.PM_frTimeMs = eng.t_ms;
+        frRunPhases(fr, eng, eng.t_ms);
+        // Inputs first (a ramp is exactly a slider write), so the step, the arrows
+        // and the readouts are all consistent within the SAME frame.
+        frRunParamRamp(fr, eng);
+
+        if (eng.apparatus === "force_table") {
+            var steps = (h > 0) ? Math.round(h / FR_STEP_S) : 0;
+            if (steps < 0) steps = 0;
+            if (steps > 8) steps = 8;                      // a pathological dt can never stall the frame
+            for (var k = 0; k < steps; k++) frStep(eng, FR_STEP_S);
+            frSumForce(eng);                               // report the pose actually on screen
+            if (Math.abs(eng.v.x) < FR_REST_V) eng.v.x = 0;
+            if (Math.abs(eng.v.y) < FR_REST_V) eng.v.y = 0;
+            frFitStrings();
+        }
+        // apparatus === "whirl": branch B is a separate dispatch. Nothing is drawn
+        // and nothing is integrated here rather than guessing its physics.
+
+        frDriveArrows(fr, eng);
+        frWriteReadouts(fr, eng);
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     // ================================================================
     // displacement_current (Ch.8 §8.2 — I_d = ε₀ dΦ_E/dt, the
@@ -47436,6 +48493,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildNewtonsLawsBody();
                 break;
 
+            case "force_rig":
+                buildForceRig();
+                break;
+
             case "gauss_law_sphere":
                 buildGaussSphereField();
                 break;
@@ -48002,6 +49063,16 @@ export const FIELD_3D_RENDERER_CODE = `
             applyNewtonsLawsBodyState(stateDef);
         }
 
+        // force_rig — per-state seed of the concurrent-force rig: the string list
+        // (angle + hanging mass, so the tension IS the weight), the ring start
+        // pose, the arrow surfaces, the value-only HUD rows, the contextual
+        // slider rows and the Rule-32e glow focal. The solver
+        // (updateForceRigFrame) hooks the same engine-state object
+        // (window.PM_frEngine) it seeds here.
+        if (config.scenario_type === "force_rig") {
+            applyForceRigState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -48379,6 +49450,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
         // itself to this NOT-list, same as isMag/isFaraday/isMfl/... above).
         var isNlb = config.scenario_type === "newtons_laws_body";
+        // force_rig owns its OWN #fr_sliders panel (m1/m2/m3/angle1/angle2) -- must
+        // be excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to this
+        // NOT-list, same as isNlb/isMfl/isCap/... above).
+        var isFrig = config.scenario_type === "force_rig";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -48437,7 +49513,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isOrbShapes) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isOrbShapes) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -48624,7 +49700,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -52077,6 +53153,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "newtons_laws_body") {
             updateNewtonsLawsBodyFrame(heldAtPin ? 0 : dtStep);
             applyNewtonsLawsBodyGlow();
+        }
+
+        // force_rig — the off-axis force rig. ONE call per tick with the COMBINED
+        // dtStep; the function recovers the fixed sub-step COUNT from it, so the
+        // damped ring integrates identically at 60 and 120 Hz and dt = 0 under a
+        // pin takes zero steps (byte-stable frozen frames, no special case).
+        if (config.scenario_type === "force_rig") {
+            updateForceRigFrame(heldAtPin ? 0 : dtStep);
+            applyForceRigGlow();
         }
 
         // Electric diamond STATE_5 — the density↔strength aha, in motion.
