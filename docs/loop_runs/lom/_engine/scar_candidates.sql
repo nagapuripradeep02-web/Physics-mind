@@ -1013,3 +1013,45 @@ INSERT INTO engine_bug_queue (
     'lom-a wall-anchored spring fix 2026-07-30',
     'probe_definition'
 );
+
+-- (4) The mass was never on screen. MAJOR, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_hud_and_body_labels_never_show_mass_so_an_unequal_mass_state_is_unreadable',
+    'The newtons_laws_body HUD and block labels printed identifiers and forces but never the MASS, so a state whose whole teaching point is a mass ratio could not be read at all',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The value-only HUD (Rule 33d) enumerated exactly the state''s readouts[] enum — N, f, a, v, T, F_net, F_applied — and mass is not a member because it is a PARAMETER, not a reading. The per-body group header printed the identifier alone ("m1"), and only when a state had more than one body; the on-block sprite printed the same identifier. So the one number that makes an unequal-mass beat legible ("same 30 N push, one cart accelerates 3x harder") appeared NOWHERE: the founder''s state 2 rendered "m1 / F = 30.00 N / a = 7.50 m/s2" against "m2 / F = -30.00 N / a = -2.50 m/s2" with no way to tell which cart was heavier or by how much. A fixed (wall/Earth) body compounded it: authored at 1000000 kg as a stand-in for infinity, any naive mass row would have printed that number as though it were a reading.',
+    'A quantity the state''s claim DEPENDS on must be rendered even when it is an input rather than an output — the readouts[] enum covers outputs only, so parameters (mass) are rendered by the engine unconditionally. Render it in BOTH places: the HUD group header (which body) and on the physical object (so a teacher can point at it). Format one way everywhere (bare integer, minimum readable precision otherwise), normalise identifiers to Unicode subscripts on EVERY text path that prints them (DOM header, DOM slider row, 3D sprite), and never print a stand-in-for-infinity mass as a number.',
+    'js_eval',
+    'For every nlb state: each non-ghost, non-fixed body''s HUD header text matches /<name> = <number> kg/ with no ASCII m1/m2 anywhere, and its on-block sprite text equals the same number + " kg"; a fixed body''s header contains no mass digits and does contain U+226B; every mass sprite''s measured INK width is <= the cube width (0.55 world), which structurally forbids a collision with a neighbouring block''s label, and no mass rect intersects any other label rect, any arrow shaft polyline or any DOM overlay rect.',
+    'FIXED',
+    ARRAY['free_body_diagram','block_on_incline','connected_bodies','newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility fix 2026-07-30',
+    'incident'
+);
+
+-- (5) Probe doctrine — sprite ink is invisible to every DOM probe. MODERATE, OPEN.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_sprite_label_text_and_ink_box_are_invisible_to_every_dom_probe',
+    'What a 3D sprite label SAYS, and where its ink actually lands on screen, is unreadable by founder_drive''s DOM collision probe and by THE EYE''s gates — only a canvas-measuring projection probe can assert either',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'A field_3d label is a canvas texture on a THREE.Sprite: there is no DOM node, no text node and no bounding client rect, so every DOM-based collision/text probe silently reports nothing for the entire label layer. The drawn string was also not retained anywhere after createLabelSprite/updateLabelSpriteText ran, so even with the scene in hand a probe could not tell what a label said. Result: label-vs-label and label-vs-arrow collisions in the 3D layer are provable only by eye, which is exactly the class Rule 34d exists to prevent.',
+    'Retain the drawn string on the sprite (sprite._pmText, written by pmCreateAutoLabel and updateLabelSpriteText) and assert label geometry with a projection probe: capture the renderer''s own scene + camera by wrapping THREE.Scene / THREE.PerspectiveCamera at the CDN global assignment (r128 ships them as ES classes and assigns render() per instance, so Reflect.construct is required and a prototype hook on render never fires), measure ink width from the sprite''s retained canvas via ctx.measureText, build the rect from the camera-right/up billboard axes, and intersect it against the other label rects, the sampled arrow shaft polylines and the DOM overlay rects.',
+    'js_eval',
+    'Wrap THREE.Scene/PerspectiveCamera to capture the first instance of each; traverse for the scenario''s label elementTypes; for each visible sprite compute ink rect = worldPos +/- right*(scale.x*measureText(text)/canvas.width)/2 +/- up*scale.y/2 projected to screen px; assert pairwise non-intersection plus non-intersection with arrow shaft samples and with getBoundingClientRect of every visible overlay div.',
+    'OPEN',
+    ARRAY['free_body_diagram','block_on_incline','connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility fix 2026-07-30',
+    'probe_definition'
+);
