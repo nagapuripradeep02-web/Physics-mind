@@ -2522,32 +2522,85 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         // RELAXATION of the stuck/static checks and never asserts stillness — so a
         // continuously repeating push-off cannot false-fail on moving pixels in the
         // tail. Nothing to fix in either derivation.
+        //
+        // spring_action (2026-07-30 founder review) moves every interesting beat
+        // AGAIN: the contact window no longer opens at contact_from_ms but at
+        // lead = approach + compress + hold, and it then stays open for
+        // (release - contact_from) * slow_factor ms of WALL time (nlbRunPushOff's
+        // affine remap — the phase clock is wall time, only the integrator's dt is
+        // divided). A 35%-into-contact pin computed from the raw contact window
+        // would therefore land in the middle of the COMPRESS stroke: the
+        // mid-transition capture field3d_slcr_reveal_hold_captures_transitional_
+        // r_family, with a half-loaded coil and half-grown arrows. So with a
+        // choreography authored the pin targets the HOLD beat — "latched and
+        // loaded: compressed coil, both arrows at full magnitude, HUD live", the
+        // beat a teacher narrates over, and a genuinely SETTLED pose
+        // (deriveHoldExpectations' 'reveal_hold'). Mid-hold, so it is clear of both
+        // edges by construction. Fallbacks, in order, when a state authors no hold:
+        // 35% into the WALL release window, then mid-compress.
         const po = asObj(nlb.push_off);
         if (po) {
             const NLB_PUSH_OFF_COAST_MS = 2000;   // coast window that makes the separation legible
             const release = asNum(po.release_at_ms, 0);
             const contactFrom = asNum(po.contact_from_ms, 0);
+            // Mirrors nlbRunPushOff's spring_action guards exactly (nlbSaMs: a
+            // non-finite / negative / absent duration is 0; slow_factor >= 1 or the
+            // NLB_SPRING_SLOW_DEFAULT = 6 default, never a speed-up).
+            const sa = asObj(nlb.spring_action);
+            const saMs = (v: unknown): number => {
+                const n = asNum(v, 0);
+                return Number.isFinite(n) && n > 0 ? n : 0;
+            };
+            const approach = sa ? saMs(sa.approach_ms) : 0;
+            const compress = sa ? saMs(sa.compress_ms) : 0;
+            const hold = sa ? saMs(sa.hold_ms) : 0;
+            const slow = sa
+                ? (typeof sa.slow_factor === 'number' && Number.isFinite(sa.slow_factor) && sa.slow_factor >= 1
+                    ? sa.slow_factor : 6)
+                : 1;
+            const lead = approach + compress + hold;
+            const releaseWall = Math.max(0, release - contactFrom) * slow;
             // Mirrors nlbRunPushOff's guard exactly: a non-finite, <= 0 or
-            // too-short (R <= release) cycle is IGNORED by the renderer, so the
-            // pin must stay on the single-fire branch for those too.
+            // too-short cycle is IGNORED by the renderer, so the pin must stay on
+            // the single-fire branch for those too. With a choreography the floor
+            // is the whole wall-clock cycle (lead + the slowed release), not just
+            // release_at_ms.
+            const repFloor = sa ? lead + releaseWall : release;
             const repRaw = po.repeat_every_ms;
             const rep = (typeof repRaw === 'number' && Number.isFinite(repRaw)
-                && repRaw > 0 && repRaw > release) ? repRaw : 0;
+                && repRaw > 0 && repRaw > repFloor) ? repRaw : 0;
             phaseFound = true;
-            if (rep > 0 && release > contactFrom) {
-                const offset = contactFrom + (release - contactFrom) * 0.35;
+            // The beat to photograph, in cycle-local WALL ms. null = this state
+            // has no loaded beat at all -> the original release+coast pin.
+            let offset: number | null = null;
+            if (sa) {
+                if (hold > 0) offset = approach + compress + hold * 0.5;          // mid-HOLD (preferred)
+                else if (releaseWall > 0) offset = lead + releaseWall * 0.35;     // 35% into the slowed release
+                else if (compress > 0) offset = approach + compress * 0.5;        // mid-compress
+            } else if (release > contactFrom) {
+                offset = contactFrom + (release - contactFrom) * 0.35;            // unchanged single/repeat pin
+            }
+            if (rep > 0 && offset != null) {
                 // The floor matters as much as the other candidates: the caller
                 // runs this through clampReveal (Math.max(DEFAULT_REVEAL_MS, ...),
                 // Math.min(DURATION_MAX_MS, ...)), so a cycle-0 pin at e.g. 147 ms
                 // would be silently RAISED to 1500 ms — a phase of 1500 > release,
                 // i.e. straight back into the dead zone this fix exists to remove.
                 // Fold both bounds in here so the value that survives the clamp is
-                // still inside a contact window.
+                // still inside the target beat.
                 const base = Math.max(DEFAULT_REVEAL_MS, ...candidates);
                 const wanted = Math.max(0, Math.ceil((base - offset) / rep));
                 const ceiling = Math.floor((DURATION_MAX_MS - offset) / rep);
                 const cycle = Math.max(0, Math.min(wanted, ceiling));
                 candidates.push(cycle * rep + offset);
+            } else if (sa && offset != null) {
+                // Single-fire choreography: there is no cycle to shift into, so the
+                // pin is the beat itself. The DEFAULT_REVEAL_MS floor can still
+                // raise it past a very short choreography (a lead under 1.5 s) —
+                // the general trap logged as field3d_reveal_pin_inside_a_narrow_
+                // window_silently_raised_by_clampreveal_floor. The reference
+                // choreography (600/1600/1200) puts mid-hold at 2800 ms, well clear.
+                candidates.push(offset);
             } else {
                 candidates.push(release + NLB_PUSH_OFF_COAST_MS);
             }

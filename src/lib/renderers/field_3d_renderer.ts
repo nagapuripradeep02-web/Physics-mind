@@ -1066,6 +1066,70 @@ export interface Field3DConfig {
                 repeat_every_ms?: number; // re-arm the WHOLE interaction on this cycle; omit = fire once
             };
 
+            // ── spring_action — the REALISTIC spring cycle ────────────────────
+            // Founder-approved 2026-07-30, from a screen recording: "you are not
+            // showing real spring compressing and releasing it... it should be slow
+            // and perfect and realistic". Bare `push_off` opens the state with the
+            // coil ALREADY compressed and lets go 420 ms later, so the whole
+            // interaction is a FLASH with no visible loading (scar
+            // nlb_spring_release_plays_at_raw_420ms_with_no_compression_or_hold_
+            // beat_and_no_slow_motion). This block wraps the SAME push_off contact
+            // window in a choreography:
+            //     approach -> compress -> hold -> release (SLOWED) -> coast
+            // and `push_off.repeat_every_ms` still drives the cycle (one rewind
+            // path, nlbResetTrajectory, unchanged).
+            //
+            // PHASE ARITHMETIC (all closed form of the state-local clock, Rule 36).
+            // Let A = approach_ms, C = compress_ms, H = hold_ms, S = slow_factor,
+            // t0 = push_off.contact_from_ms, t1 = push_off.release_at_ms,
+            // lead = A + C + H  and  relWall = (t1 - t0) * S:
+            //     phase  = t - cycle*R                       (WALL time, as before)
+            //     tPhys  = t0 + (phase - lead) / S           (the affine remap)
+            //     contact <=> t0 <= tPhys < t1                (the ORIGINAL gate)
+            // i.e. the force gate is the expression it always was — only its
+            // ARGUMENT changes, from wall phase to PHYSICAL release time. So the
+            // release window occupies phase [lead, lead + relWall): the 420 ms of
+            // PHYSICS plays over relWall = 420*S ms of WALL time, which is why the
+            // window is held open for the WALL duration and not the physical one.
+            //     approach : [0, A)              F = 0
+            //     compress : [A, A+C)            F ramps 0 -> force_N (arrows grow in)
+            //     hold     : [A+C, lead)         F = force_N, coil loaded and LATCHED
+            //     release  : [lead, lead+relWall) F = force_N, dt divided by S
+            //     coast    : [lead+relWall, R)   F = 0, the carts separate
+            // Before the release the pair is HELD (a real latch supplies the
+            // reaction): both applied arrows draw at the live magnitude while
+            // nothing moves, and at release the latch lets go — so `a` honestly
+            // reads 0 while held and jumps to F/m at release. Without the latch the
+            // compress+hold force would launch the carts before the release even
+            // started (a 1.6 s ramp to 30 N on 4 kg is 24 N.s of impulse).
+            // slow_factor is a dt MULTIPLIER on the INTEGRATOR during the release
+            // window ONLY (`dtPhysics = h / S`): the step stays strictly linear in
+            // dt, there is no sub-stepping, no literal 0.016 and no second clock,
+            // and under SET_TIME_FREEZE dt = 0 => dtPhysics = 0 (Rule 36). The HUD
+            // keeps reporting the TRUE physical values (F = 30.00 N, a = 7.50 m/s²)
+            // — the PLAYBACK is slowed, never the physics — and while the window is
+            // open the canvas shows a `slow motion ×N` badge (#nlb_slowmo), the
+            // Rule 24/34 honesty requirement without which this would teach a
+            // falsehood. Rule 37: no slow window and no choreography in a
+            // `mode: 'sandbox'` state (the whole gate is already inert there), and a
+            // trusted slider or body drag CANCELS an in-progress choreography
+            // through the same PM_nlbSweepSeized / PM_nlbBodyDragged latches the
+            // repeat cycle honours.
+            // CHOOSING R: with spring_action the cycle floor rises from
+            // release_at_ms to lead + relWall (the whole wall-clock choreography);
+            // a shorter R would never let the phase escape the release window and
+            // is IGNORED exactly as before (degrades to single-fire). The founder's
+            // suggested default for 30 N on 4 + 12 kg: A = 600, C = 1600, H = 1200,
+            // S = 6 (release ≈ 2520 ms wall) => R ≈ 7200.
+            // Omit the block entirely for the pre-2026-07-30 behaviour, bit for bit.
+            spring_action?: {
+                approach_ms?: number;   // carts converge, coil at NATURAL length, no force yet
+                compress_ms: number;    // coil VISIBLY compresses; force ramps in
+                hold_ms?: number;       // latched and loaded: compressed coil, full arrows, live HUD
+                slow_factor?: number;   // playback slowdown for the RELEASE only, default 6 (1 = real time)
+                ring?: boolean;         // brief damped coil oscillation after it lets go (default true)
+            };
+
             // ── spring — the VISIBLE interaction object (Newton III) ──────────
             // A coil drawn BETWEEN the two bodies' facing faces, so the cause of
             // the push_off pair is a physical thing on screen instead of two
@@ -38423,6 +38487,10 @@ export const FIELD_3D_RENDERER_CODE = `
     // frozen pin is unaffected.
     var NLB_SPRING_LEN_Q = 0.02;          // world units — geometry rebuild quantum
     var NLB_SPRING_HIDE_EPS = 0.02;       // world units past natural length -> the spring has let go
+    // spring_action.slow_factor default: the ~420 ms physical release plays over
+    // ~2.5 s of wall time. A dt multiplier on the integrator during the release
+    // window ONLY — never a clock, never the HUD.
+    var NLB_SPRING_SLOW_DEFAULT = 6;
 
     // Explicit id registry. addToScene() only registers the object handed to it,
     // so child meshes (bodies parented to the rotated surface group) would never
@@ -39710,6 +39778,17 @@ export const FIELD_3D_RENDERER_CODE = `
         ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
         document.body.appendChild(ro);
 
+        // 4b. The spring_action slow-motion honesty badge (Rule 24/34 — see
+        //     nlbUpdateSlowBadge). TOP-LEFT, the one free corner; top:52px clears
+        //     the review-chrome "Full screen" button like the HUD. Hidden by
+        //     default and only ever shown while the release window plays slowed.
+        //     Rule 39g: an inline position:fixed panel, so clean mode and the ⚙
+        //     widget toggle pick it up with no per-scenario code.
+        var sm = document.createElement("div");
+        sm.id = "nlb_slowmo";
+        sm.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.72);color:#FFD54F;padding:6px 11px;border-radius:6px;font:600 13px/1.3 'Cambria Math','Times New Roman',serif;letter-spacing:0.02em;z-index:10;display:none;pointer-events:none;";
+        document.body.appendChild(sm);
+
         // 5. The SINGLE formula surface (Rule 34b) — math-serif Unicode, its own
         //    zone, never duplicated by the generic #formula_overlay (which the
         //    applyState hide-chain suppresses for this scenario).
@@ -40327,6 +40406,31 @@ export const FIELD_3D_RENDERER_CODE = `
     //   permanently in contact (phase never escapes the window) — an author error,
     //   ignored rather than rendered as a stuck spring. Validator candidate
     //   recorded in scar_candidates.sql; no validator is added here.
+    //   spring_action (2026-07-30 founder review) — THE REALISTIC CYCLE. See the
+    //   authoring-type comment on "spring_action" for the full phase arithmetic;
+    //   the short form of the one load-bearing idea: the force gate below is the
+    //   SAME expression it has always been, and only its ARGUMENT changes, from the
+    //   wall-clock phase to the physical release time, through one affine remap
+    //       tPhys = contact_from_ms + (phase - lead) / slow_factor
+    //   with lead = approach + compress + hold. That single line is the whole
+    //   wall-vs-physics resolution: the release window occupies WALL phase
+    //   [lead, lead + (t1-t0)*S), so the window is held open for the SLOWED wall
+    //   duration while the physics inside it still runs exactly (t1-t0) ms — the
+    //   integrator sees dt/S (see hPhys in updateNewtonsLawsBodyFrame) and the
+    //   accumulated physics dt over the window is therefore (t1-t0) exactly, so the
+    //   stroke and the true exit speeds are unchanged. The PHASE clock is never
+    //   scaled (it is the wall clock, and it alone decides the window), so the phase
+    //   arithmetic and the repeat cycle cannot desync from the integrator.
+    //   Rule 36: every branch is a closed form of eng.t_ms, the step stays linear in
+    //   dt, and dt = 0 under SET_TIME_FREEZE gives dtPhysics = 0 — a held frame
+    //   recomputes the identical phase, force and position bit for bit.
+    //   Rule 37: sandbox is already inert (the early return above), and a trusted
+    //   slider/drag NULLS the choreography (same latches the repeat honours), after
+    //   which the gate degrades to the raw single-fire test — the honest "the
+    //   teacher took over" behaviour, identical to idle_auto_sweep's.
+    //   Omit "spring_action" and every branch below collapses to the pre-2026-07-30
+    //   arithmetic: sa = null => lead = 0, S = 1, tPhys === phase, no latch, no slow
+    //   window, F = inContact ? mag : 0 on the same value as before.
     function nlbRunPushOff(nlb, eng) {
         var po = eng.push_off;
         if (!po) return;
@@ -40338,11 +40442,34 @@ export const FIELD_3D_RENDERER_CODE = `
         var t0 = (typeof po.contact_from_ms === "number" && isFinite(po.contact_from_ms)) ? po.contact_from_ms : 0;
         var t1 = (typeof po.release_at_ms === "number" && isFinite(po.release_at_ms)) ? po.release_at_ms : 0;
         var tMs = eng.t_ms || 0;
+        // The spring choreography, or null = the bare contact-then-release phase.
+        // A seize CANCELS it outright (Rule 37) — the same one-way latches the
+        // repeat cycle below honours, so a teacher who grabs a cart is never held
+        // by a latch or dropped into slow motion.
+        var sa = eng.spring_action;
+        if (sa && (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged)) sa = null;
+        var A = 0, C = 0, H = 0, S = 1, lead = 0, relWall = 0;
+        if (sa) {
+            A = nlbSaMs(sa.approach_ms);
+            C = nlbSaMs(sa.compress_ms);
+            H = nlbSaMs(sa.hold_ms);
+            // 1 is a legal author choice (a real-time release); anything below 1,
+            // non-finite or absent takes the spec default. Never a speed-UP.
+            S = (typeof sa.slow_factor === "number" && isFinite(sa.slow_factor) && sa.slow_factor >= 1)
+                ? sa.slow_factor : NLB_SPRING_SLOW_DEFAULT;
+            lead = A + C + H;
+            relWall = Math.max(0, t1 - t0) * S;           // the release window in WALL ms
+        }
         // Repeat cycle, or 0 = single-fire (the pre-2026-07-29 behaviour, reached
         // by every state that omits the key — phase stays === tMs below, so the
         // force gate is then arithmetically identical to what it always was).
+        // The floor is the whole WALL-clock choreography: a cycle shorter than that
+        // would never let the phase escape the release window (permanent contact +
+        // permanent slow motion), so it is ignored exactly as a too-short cycle
+        // always was. With no spring_action the floor is release_at_ms, unchanged.
+        var repFloor = sa ? (lead + relWall) : t1;
         var rep = (typeof po.repeat_every_ms === "number" && isFinite(po.repeat_every_ms)
-            && po.repeat_every_ms > 0 && po.repeat_every_ms > t1) ? po.repeat_every_ms : 0;
+            && po.repeat_every_ms > 0 && po.repeat_every_ms > repFloor) ? po.repeat_every_ms : 0;
         if (rep && (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged)) rep = 0;   // Rule 37 — seized
         var phase = tMs;
         if (rep) {
@@ -40358,15 +40485,97 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             phase = tMs - cycle * rep;
         }
-        var inContact = (phase >= t0) && (phase < t1);
-        // ONE expression drives the paired pool: the reaction is literally the
-        // negation of the action, so an unequal pair is UNREPRESENTABLE here.
-        var F = inContact ? mag : 0;
+        // The affine remap: wall phase -> physical release time. With sa null this
+        // is the identity (lead = 0, S = 1) and the gate below is untouched.
+        var tPhys = sa ? (t0 + (phase - lead) / S) : phase;
+        var inContact = (tPhys >= t0) && (tPhys < t1);
+        // The slow window IS the release window, and nothing else ("playback
+        // slowdown for the RELEASE only"). Read by hPhys.
+        eng.slow_active = !!sa && inContact && S > 1;
+        eng.spring_slow_factor = eng.slow_active ? S : 1;
+        // The phase machine. ONE chain decides the phase NAME, the force and the
+        // latch together, so the arrows, the HUD, the coil and the integrator can
+        // never disagree about which beat is playing.
+        var F, phName = "", phElapsed = 0, phDur = 0;
+        if (!sa) {
+            // ONE expression drives the paired pool: the reaction is literally the
+            // negation of the action, so an unequal pair is UNREPRESENTABLE here.
+            F = inContact ? mag : 0;
+        } else if (phase < A) {
+            phName = "approach"; phElapsed = phase; phDur = A;
+            F = 0;                                        // no force yet
+        } else if (phase < A + C) {
+            phName = "compress"; phElapsed = phase - A; phDur = C;
+            F = (C > 0) ? (mag * (phElapsed / C)) : mag;   // the arrows GROW IN, closed form
+        } else if (phase < lead) {
+            phName = "hold"; phElapsed = phase - (A + C); phDur = H;
+            F = mag;                                      // loaded and latched
+        } else if (inContact) {
+            phName = "release"; phElapsed = phase - lead; phDur = relWall;
+            F = mag;                                      // full force, slowed playback
+        } else {
+            phName = "coast"; phElapsed = phase - (lead + relWall);
+            phDur = rep ? Math.max(0, rep - lead - relWall) : 0;
+            F = 0;                                        // it has let go
+        }
+        // Before the release the pair is mechanically HELD. Read by the integrator
+        // branches (nlbLatchedNow) — a per-frame derived flag, no state of its own.
+        eng.push_off_latched = !!sa && (phase < lead);
         bA.F_applied = F;
         bB.F_applied = -F;
         // Read by seam B (the spring's compressed/extended render state) — a
         // derived flag, never a second source of truth for the force itself.
         eng.push_off_contact = inContact;
+        // Published for the GEOMETRY seam (the compression-stroke coil geometry +
+        // the post-release ring). All DERIVED reads recomputed from the clock every
+        // frame — never a second source of truth, nothing latched, nothing to
+        // rewind under a freeze pin. spring_phase_ms is absolute wall ms inside the
+        // current phase (what a damped ring decay wants); spring_progress is the
+        // same thing normalised to 0..1, and reports 1 for a phase with no finite
+        // duration (an unbounded single-fire coast).
+        eng.spring_phase = phName;
+        eng.spring_phase_ms = phElapsed;
+        eng.spring_progress = (phDur > 0) ? Math.min(1, Math.max(0, phElapsed / phDur)) : 1;
+        eng.spring_ring = sa ? (sa.ring !== false) : false;
+        window.PM_nlbSpringPhase = phName;
+    }
+    // ms guard for the spring_action durations: a non-finite / negative / absent
+    // value is 0 (that beat simply does not exist), never NaN in the arithmetic.
+    function nlbSaMs(v) { return (typeof v === "number" && isFinite(v) && v > 0) ? v : 0; }
+    // The spring_action pre-release LATCH. While the coil is being loaded
+    // (approach / compress) and while it is held compressed (hold), the pair is
+    // mechanically held: a real latch supplies the reaction, so both applied arrows
+    // draw at the live magnitude and the HUD reads the true F while a = 0, and at
+    // release the latch lets go and a jumps to F/m. ONLY the two bodies push_off
+    // names are latched — any third body in the state keeps integrating. Pure read
+    // of the flag nlbRunPushOff published this frame (no clock, no memo, nothing to
+    // rewind), and false in every state that authors no spring_action.
+    function nlbLatchedNow(eng, b) {
+        if (!eng || !eng.push_off_latched || !b) return false;
+        var po = eng.push_off;
+        return !!po && (b.id === po.body_a_id || b.id === po.body_b_id);
+    }
+    // ── Rule 24/34 honesty badge — "slow motion ×N" ─────────────────────────
+    //   Shown ONLY while the spring_action release window is playing slowed, so a
+    //   student can never read a slowed release as a small acceleration (without
+    //   this label the dt scaling would be teaching a falsehood; with it, it is
+    //   what every real physics film does). Hidden in every other phase, in a
+    //   sandbox state, once a teacher seizes, and in any state with no
+    //   spring_action — all of which leave eng.slow_active false. Zone: the TOP-LEFT
+    //   corner, the only one this scenario leaves free (#nlb_readout top-right,
+    //   #nlb_formula mid-right, #nlb_sliders bottom-right, #caption top-centre,
+    //   #legend bottom-left), at top:52px so it clears the review-chrome
+    //   "Full screen" button exactly as the HUD does (Rule 34d).
+    function nlbUpdateSlowBadge(eng) {
+        var el = document.getElementById("nlb_slowmo");
+        if (!el) return;
+        var on = !!(eng && eng.slow_active);
+        var want = on ? "block" : "none";
+        if (el.style.display !== want) el.style.display = want;
+        if (!on) return;
+        var f = eng.spring_slow_factor;
+        var txt = "slow motion ×" + String(Math.round(f * 10) / 10);
+        if (el.textContent !== txt) el.textContent = txt;
     }
 
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
@@ -40403,6 +40612,18 @@ export const FIELD_3D_RENDERER_CODE = `
             shared_applied_force: !!nlb.shared_applied_force,   // SEAM I (see nlbApplyParam)
             action_reaction: nlb.action_reaction || null,
             push_off: nlb.push_off || null,   // contact-then-release phase (see nlbRunPushOff)
+            spring_action: nlb.spring_action || null,  // the realistic spring cycle (see nlbRunPushOff)
+            // Every field below is DERIVED and rewritten by nlbRunPushOff each
+            // frame; seeded here so a state whose push_off gate early-returns (no
+            // block, sandbox, a missing body) can never read a stale slow window or
+            // latch — and so a state with no spring_action is bit-identical.
+            slow_active: false,           // the release-window dt scale is open
+            spring_slow_factor: 1,        // the ACTIVE factor (1 = real time)
+            push_off_latched: false,      // pre-release hold (approach/compress/hold)
+            spring_phase: "",             // geometry-seam read: '' | approach | compress | hold | release | coast
+            spring_phase_ms: 0,           // wall ms elapsed inside the current phase
+            spring_progress: 0,           // the same, normalised 0..1 (1 if unbounded)
+            spring_ring: false,           // geometry seam: authored ring flag (default true when spring_action)
             glow_focal: nlb.glow_focal || "",
             order: [],
             bodies: {},
@@ -40534,6 +40755,12 @@ export const FIELD_3D_RENDERER_CODE = `
         //   updateNewtonsLawsBodyFrame then re-shows exactly the named kinds at
         //   their live magnitudes — and hides any whose force is genuinely zero.
         nlbHideAllArrows();
+        // The slow-motion badge is blanked on EVERY entry, the same discipline the
+        // arrows follow: a state with no spring_action (or a sandbox) can never
+        // inherit the previous state's badge for the one frame before the first
+        // tick — which is exactly the frame a frozen pin can catch.
+        var smEl = document.getElementById("nlb_slowmo");
+        if (smEl) smEl.style.display = "none";
         // SEAM D — the pulley bracket + its two rope segments. The assembly stands
         //   at this state's pulley.post_position_m and is shown iff the state
         //   declares a pulley: a coupled state shows post + arm + wheel + hub +
@@ -40970,12 +41197,44 @@ export const FIELD_3D_RENDERER_CODE = `
         // frame behind the incline they are drawn on.
         nlbRunParamRamp(nlb, eng);
 
+        // ── spring_action slow motion — a dt MULTIPLIER on the INTEGRATOR ONLY ──
+        //   Physics cannot give a classroom-visible force AND a slow release at the
+        //   same time (a 2 s contact over the ~0.88 m stroke needs ~1.3 N, far below
+        //   the arrow-length floor), so the RELEASE is filmed in slow motion the way
+        //   every real physics lesson does — and labelled (#nlb_slowmo, Rule 24/34).
+        //   Rule 36, in full:
+        //     • this is a SCALE on the dt the step is already linear in
+        //       (v += a*hPhys; s += 0.5*(v0+v1)*hPhys), so N folded micro-steps are
+        //       still exactly one step of N*dt/S. No sub-stepping, no literal
+        //       0.016, no second clock, no accumulator, and nothing added to the
+        //       shared animate()/__pmSteps path (=> no Rule 36b fleet sweep).
+        //     • dt = 0 under SET_TIME_FREEZE => hPhys = 0 => the pose is rewritten
+        //       identically, held for any number of frames.
+        //     • the PHASE clock is NOT scaled: eng.t_ms above advanced by the raw
+        //       dt, and the wall phase alone decides the window (see nlbRunPushOff's
+        //       affine remap). So the choreography, the repeat cycle and the reveal
+        //       pin all stay on one coherent wall-clock timeline while only the
+        //       integrator runs slowed — the two can never desync.
+        //     • the HUD is untouched: F, a, v are the TRUE physical values, written
+        //       from this same step. We slow the playback, never the physics.
+        //   eng.slow_active is false in every state with no spring_action, in a
+        //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
+        var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
+        nlbUpdateSlowBadge(eng);
+
         if (!eng.coupled) {
             // ── Branch A — independent bodies (no pulley) ──────────────────
             for (var i = 0; i < eng.order.length; i++) {
                 var b = eng.bodies[eng.order[i]];
                 if (!b || b.ghost) continue;               // spec section 3: a ghost is NEVER integrated
-                if (b.fixed) {
+                // A spring_action LATCH takes this same branch (nlbLatchedNow):
+                // a body held by a latch and a body anchored to the Earth are the
+                // same physics — force in, no acceleration, the holder supplying the
+                // reaction — so there is ONE code path for both instead of a second
+                // "held" implementation to drift from it. s is never written here,
+                // so the pair stays exactly at its authored home pose until the
+                // latch lets go and the release integrates from that seed.
+                if (b.fixed || nlbLatchedNow(eng, b)) {
                     // The wall / the Earth: infinite effective mass. SKIPPED by the
                     // integrator entirely — v and s never change — but REAL, unlike a
                     // ghost: it still TAKES the applied force push_off hands it (which
@@ -41030,12 +41289,12 @@ export const FIELD_3D_RENDERER_CODE = `
                     a = (drive + f) / b.m;
                 }
                 var v0 = b.v;
-                var v1 = v0 + a * h;
+                var v1 = v0 + a * hPhys;      // hPhys === h unless the slow window is open
                 // Kinetic friction must not jitter the body back and forth across
                 // v = 0 — if the step reversed the sign and the drive cannot beat
                 // static friction, the body has come to REST.
                 if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
-                var s1 = b.s + 0.5 * (v0 + v1) * h;
+                var s1 = b.s + 0.5 * (v0 + v1) * hPhys;
                 // SEAM J — the SANDBOX wrap (founder-approved 2026-07-30).
                 //   Rule 37 says the explore state must keep MOVING, and names the
                 // mechanism for every other scenario: "the bead/motion phase wraps
@@ -41142,7 +41401,9 @@ export const FIELD_3D_RENDERER_CODE = `
             // Port resolution: keep master's extracted nlbSignFactor() helper — the
             // port branch's inline form is the same arithmetic from before that
             // refactor landed — and carry over the fixed-body flag push-off needs.
-            if (bj.fixed) anchoredB = true;
+            // A latched body anchors the string for exactly as long as the latch
+            // holds, for the same reason a "fixed" one does permanently.
+            if (bj.fixed || nlbLatchedNow(eng, bj)) anchoredB = true;
             var cj = nlbSignFactor(eng, bj, refId, sigRef);
             var thj = bj.hanging ? 90 : thetaSurf;
             var Nj = nlbNormal(bj, thj);
@@ -41168,12 +41429,12 @@ export const FIELD_3D_RENDERER_CODE = `
             aStr = (D + Ffric) / M;
         }
         var vs0 = vStr;
-        var vs1 = vs0 + aStr * h;
+        var vs1 = vs0 + aStr * hPhys;                       // hPhys === h unless the slow window is open
         if (nlbSgn(vs0) !== nlbSgn(vs1) && Math.abs(D) <= maxStatSum) { vs1 = 0; aStr = 0; }
 
         // Bound the STRING, not each body independently — clamping one body alone
         // would silently break the inextensible-string constraint.
-        var sAdv = 0.5 * (vs0 + vs1) * h;                   // same fold-exact form as branch A
+        var sAdv = 0.5 * (vs0 + vs1) * hPhys;               // same fold-exact form as branch A
         var blocked = false;
         for (var k2 = 0; k2 < act.length; k2++) {
             var bk = act[k2];
