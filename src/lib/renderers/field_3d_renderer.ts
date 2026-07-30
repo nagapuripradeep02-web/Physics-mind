@@ -1115,6 +1115,26 @@ export interface Field3DConfig {
             // trusted slider or body drag CANCELS an in-progress choreography
             // through the same PM_nlbSweepSeized / PM_nlbBodyDragged latches the
             // repeat cycle honours.
+            // THE COIL GEOMETRY (seam B, 2026-07-30). The phases above drive the
+            // coil's LENGTH, not just the force, so the spring visibly does the
+            // thing it is doing (nlbSpringLoadPose + nlbFitSpring):
+            //     approach : the pair is SCRIPTED together (closed form of the
+            //                phase, eased) from natural + 0.6 m of air down to
+            //                contact, with the coil drawn at its full NATURAL
+            //                length, mounted on spring.between[0]'s face.
+            //     compress : the gap closes natural -> compressed, so the coil
+            //                itself shortens and its pitch tightens, ending at the
+            //                AUTHORED SEED POSE exactly (which is what the release
+            //                then integrates from).
+            //     hold     : the seed pose, held, coil at 0.45x natural.
+            //     release  : the coil EXTENDS WITH THE GAP over the slowed window
+            //                (it no longer holds one length while the carts move).
+            //     coast    : `ring` = a damped oscillation of the coil length about
+            //                natural for ~450 ms of wall time, then it hides.
+            // All of it is a pure function of the published phase state, and the
+            // ring is cosmetic (a length only — it never feeds the integrator and
+            // never moves a cart, and it is clamped to the live gap so it cannot
+            // overlap a body).
             // CHOOSING R: with spring_action the cycle floor rises from
             // release_at_ms to lead + relWall (the whole wall-clock choreography);
             // a shorter R would never let the phase escape the release window and
@@ -38491,6 +38511,30 @@ export const FIELD_3D_RENDERER_CODE = `
     // ~2.5 s of wall time. A dt multiplier on the integrator during the release
     // window ONLY — never a clock, never the HUD.
     var NLB_SPRING_SLOW_DEFAULT = 6;
+    // ── spring_action GEOMETRY constants (seam B of the choreography) ───────
+    //   The coil mesh was already honest; what was missing is that its LENGTH
+    //   never followed the choreography ("you are not showing a real spring
+    //   compressing"). These are the apparatus numbers the compression stroke and
+    //   the ring are drawn from — all world units / ms, all pure inputs to closed
+    //   forms of the published phase state (eng.spring_phase / spring_phase_ms /
+    //   spring_progress), never clocks. NOT authorable: they are the apparatus,
+    //   the same way the natural and compressed lengths above are.
+    //   The AIR GAP is how much further apart the carts stand at the START of
+    //   approach than the coil's own natural length: the coil sits at natural
+    //   length mounted on one cart, and the other cart closes this gap and makes
+    //   CONTACT exactly as approach ends. 0.30 world = 0.6 m of visible travel,
+    //   comparable to the 0.88 m compression stroke that follows, so the two
+    //   beats read at similar speeds instead of one snapping past the other.
+    var NLB_SPRING_APPROACH_AIR_W = 0.30;
+    // The RING — a brief damped oscillation of the COIL LENGTH about natural
+    // after it lets go, then it hides. Cosmetic ONLY: it is a length, it never
+    // feeds the integrator and never moves a cart, and it is clamped to the live
+    // gap so it can never overlap either body. ~4.5 cycles decaying to ~3% of
+    // amplitude over 450 ms of WALL time ("a few tenths of a second").
+    var NLB_SPRING_RING_MS = 450;         // wall ms of coast the ring occupies
+    var NLB_SPRING_RING_AMP_W = 0.08;     // initial amplitude (world) = 0.16 m on a 1.6 m coil
+    var NLB_SPRING_RING_TAU_MS = 130;     // exponential decay constant
+    var NLB_SPRING_RING_PERIOD_MS = 100;  // 10 Hz — fast enough to read as a twang, not a wobble
 
     // Explicit id registry. addToScene() only registers the object handed to it,
     // so child meshes (bodies parented to the rotated surface group) would never
@@ -39429,28 +39473,76 @@ export const FIELD_3D_RENDERER_CODE = `
         var obj = nlbFindById("nlb_spring");
         if (!obj) return;                                  // build has not reached it yet
         var sp = nlbSpringCfg();
-        if (!sp) { obj.visible = false; return; }
+        if (!sp) { obj.visible = false; nlbPublishSpring(false, 0, 0); return; }
         var idA = sp.between[0], idB = sp.between[1];
         var mA = nlbFindById("nlb_body_" + idA), mB = nlbFindById("nlb_body_" + idB);
-        if (!mA || !mB || !mA.visible || !mB.visible) { obj.visible = false; return; }
+        if (!mA || !mB || !mA.visible || !mB.visible) { obj.visible = false; nlbPublishSpring(false, 0, 0); return; }
         var pA = nlbBodyWorldPos(idA), pB = nlbBodyWorldPos(idB);
         var dx = pB.x - pA.x, dy = pB.y - pA.y, dz = pB.z - pA.z;
         var sep = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        if (!(sep > 1e-6)) { obj.visible = false; return; }
+        if (!(sep > 1e-6)) { obj.visible = false; nlbPublishSpring(false, 0, 0); return; }
         // The face-to-face GAP along the line joining the two centres. Taken from
         // the world positions, so the incline rotation and any lane offset are
         // already in it and there is no theta test here.
-        var gap = sep - nlbSpringHalfExtent(idA) - nlbSpringHalfExtent(idB);
+        var hA = nlbSpringHalfExtent(idA), hB = nlbSpringHalfExtent(idB);
+        var gap = sep - hA - hB;
+        // ── The CHOREOGRAPHY read (spring_action, 2026-07-30) ───────────────
+        //   ph is "" in every state that does not have a LIVE spring_action
+        //   choreography — no block authored, a sandbox state, or a teacher who
+        //   has seized (nlbRunPushOff publishes "" in all three) — and every
+        //   branch below then takes the byte-identical pre-2026-07-30 path.
+        //   A live choreography changes exactly two things here:
+        //     • the drawn length is capped at NATURAL instead of at the compressed
+        //       target, so THE GAP does the compressing (the carts are scripted
+        //       together through approach/compress and integrate apart through the
+        //       slowed release) — the coil therefore compresses AND extends with
+        //       the carts instead of holding one fixed length while they move;
+        //     • two phases legitimately draw a coil LONGER than the gap allows:
+        //       approach (mounted on one cart, not yet touching the other) and the
+        //       post-release ring. Both bypass the hide rule; nothing else does.
+        var phc = "", ringOn = false, ringLen = 0;
+        var engS = window.PM_nlbEngine;
+        if (engS && engS.spring_phase) {
+            phc = engS.spring_phase;
+            if (phc === "coast" && engS.spring_ring) {
+                var tr = engS.spring_phase_ms || 0;
+                if (tr >= 0 && tr < NLB_SPRING_RING_MS) {
+                    ringOn = true;
+                    // A real spring twangs before it stops. Closed form of the
+                    // PUBLISHED phase ms (no clock, no accumulator, nothing to
+                    // rewind): under a freeze pin spring_phase_ms is frozen, so the
+                    // ring pose is re-derived bit for bit (Rule 36). sin(0) = 0, so
+                    // the handover out of the release is continuous.
+                    ringLen = NLB_SPRING_NATURAL_W + NLB_SPRING_RING_AMP_W
+                        * Math.exp(-tr / NLB_SPRING_RING_TAU_MS)
+                        * Math.sin(2 * Math.PI * (tr / NLB_SPRING_RING_PERIOD_MS));
+                }
+            }
+        }
         // Past its natural length the spring is no longer touching either body: it
         // has LET GO, which is the same instant push_off zeroes both forces. It
         // hides rather than stretching — a spring that kept spanning the widening
-        // gap would draw a pull that the physics does not apply.
-        if (gap > NLB_SPRING_NATURAL_W + NLB_SPRING_HIDE_EPS) { obj.visible = false; return; }
-        var target = nlbSpringCompressedNow(sp)
-            ? NLB_SPRING_NATURAL_W * NLB_SPRING_COMPRESS_FRAC
-            : NLB_SPRING_NATURAL_W;
+        // gap would draw a pull that the physics does not apply. The two
+        // choreography phases named above are the only exemptions.
+        if (!(phc === "approach" || ringOn) && gap > NLB_SPRING_NATURAL_W + NLB_SPRING_HIDE_EPS) {
+            obj.visible = false; nlbPublishSpring(false, 0, gap); return;
+        }
+        var target;
+        if (phc) {
+            // approach: the min() below leaves NATURAL (the gap is wider).
+            // compress / hold / release: the gap IS the compression, so the coil
+            //   tightens to 0.45x natural as the carts close and springs back OUT
+            //   with them through the slowed release, hiding at natural.
+            // coast: the ring, or the plain cap (a short authored release can leave
+            //   the coil still inside the gap here).
+            target = ringOn ? ringLen : NLB_SPRING_NATURAL_W;
+        } else {
+            target = nlbSpringCompressedNow(sp)
+                ? NLB_SPRING_NATURAL_W * NLB_SPRING_COMPRESS_FRAC
+                : NLB_SPRING_NATURAL_W;
+        }
         var drawn = (gap < target) ? gap : target;         // never longer than the gap it sits in
-        if (!(drawn > NLB_ROPE_MIN_LEN)) { obj.visible = false; return; }
+        if (!(drawn > NLB_ROPE_MIN_LEN)) { obj.visible = false; nlbPublishSpring(false, 0, gap); return; }
         // Quantised rebuild (see NLB_SPRING_LEN_Q): a pure function of position, so
         // a frozen pin re-derives the same quantum and writes nothing at all.
         var turns = (typeof sp.coils === "number" && isFinite(sp.coils) && sp.coils >= 2)
@@ -39463,9 +39555,44 @@ export const FIELD_3D_RENDERER_CODE = `
             obj.userData.coils = turns;
             obj.userData.q_len = q;
         }
-        obj.position.set((pA.x + pB.x) / 2, (pA.y + pB.y) / 2, (pA.z + pB.z) / 2);
+        // Where the coil sits inside the gap. DEFAULT (and the only behaviour any
+        // pre-2026-07-30 state can reach): centred between the two body centres.
+        // Two choreography phases draw a coil SHORTER than the gap on purpose, and
+        // a coil floating with air on BOTH sides would read as a prop rather than a
+        // spring — so in both it is MOUNTED on between[0]'s facing face and all of
+        // the air is on the other body's side:
+        //   • approach — exactly the picture "the other cart is coming to meet the
+        //     spring". At the end of approach drawn === gap and this expression IS
+        //     the midpoint, so the handover into compress is continuous.
+        //   • the ring — a real spring stays bolted to what it was mounted on and
+        //     twangs there while the other cart flies off; it does not hover in the
+        //     middle of a widening gap. At the ring's first instant drawn === gap
+        //     too, so this handover is continuous as well.
+        // Clamped to the gap above (drawn <= gap always), so the coil can never
+        // overlap either body in any phase.
+        var cx = (pA.x + pB.x) / 2, cy = (pA.y + pB.y) / 2, cz = (pA.z + pB.z) / 2;
+        if ((phc === "approach" || ringOn) && drawn < gap - 1e-6) {
+            var ux = dx / sep, uy = dy / sep, uz = dz / sep;
+            var off = hA + drawn / 2;
+            cx = pA.x + ux * off; cy = pA.y + uy * off; cz = pA.z + uz * off;
+        }
+        obj.position.set(cx, cy, cz);
         obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / sep, dy / sep, dz / sep));
         obj.visible = true;
+        nlbPublishSpring(true, drawn, gap, obj.userData.q_len);
+    }
+    // Published DERIVED reads (the PM_nlb* mirror convention): the coil's live
+    // drawn length and the face-to-face gap it sits in, both in WORLD units, plus
+    // whether it is on screen at all. Diagnostics + probe surface only — nothing in
+    // the engine reads them back, so they can never become a second source of
+    // truth, and they touch no pixels.
+    function nlbPublishSpring(vis, drawn, gap, qLen) {
+        window.PM_nlbSpringVisible = !!vis;
+        window.PM_nlbSpringLen = drawn;
+        window.PM_nlbSpringGap = gap;
+        // The MESH's own built height (the quantised length its TubeGeometry was
+        // rebuilt at) — the on-screen truth, not the pre-quantisation intent.
+        window.PM_nlbSpringMeshLen = qLen || 0;
     }
 
     function buildNewtonsLawsBody() {
@@ -40521,6 +40648,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // Before the release the pair is mechanically HELD. Read by the integrator
         // branches (nlbLatchedNow) — a per-frame derived flag, no state of its own.
         eng.push_off_latched = !!sa && (phase < lead);
+        // THE COMPRESSION STROKE. While the pair is latched the integrator writes
+        // no position at all (that is what the latch means), so the LOADING motion
+        // is scripted here — a pure closed form of the phase, placed through the one
+        // funnel (see nlbSpringLoadPose). Exactly the latched window, so the
+        // integrator and the script can never both own a position in the same frame.
+        if (eng.push_off_latched) nlbSpringLoadPose(eng, bA, bB, phName, phElapsed, phDur);
         bA.F_applied = F;
         bB.F_applied = -F;
         // Read by seam B (the spring's compressed/extended render state) — a
@@ -40542,6 +40675,81 @@ export const FIELD_3D_RENDERER_CODE = `
     // ms guard for the spring_action durations: a non-finite / negative / absent
     // value is 0 (that beat simply does not exist), never NaN in the arithmetic.
     function nlbSaMs(v) { return (typeof v === "number" && isFinite(v) && v > 0) ? v : 0; }
+    // Smoothstep on 0..1 — eased, and its DERIVATIVE is 0 at both ends, which is
+    // what makes the scripted loading motion hand over to the integrator without a
+    // velocity step: the carts glide to a stop exactly at contact and again exactly
+    // at the fully-loaded seed pose.
+    function nlbSmooth01(u) {
+        if (!(u > 0)) return 0;
+        if (u >= 1) return 1;
+        return u * u * (3 - 2 * u);
+    }
+    // ── spring_action — the SCRIPTED COMPRESSION STROKE ─────────────────────
+    //   Defect 1 of the choreography review: "there is no compression stroke... a
+    //   student never sees it being loaded, so the stored energy has no visible
+    //   origin". The authored seed pose IS the fully-compressed pose (the position
+    //   contract in docs/loop_runs/push_off_report.md section 2), because the
+    //   release must integrate from exactly that seed. So the loading beats have to
+    //   walk the pair BACKWARDS out of the seed and return to it.
+    //   THE GEOMETRY, in metres of face-to-face gap (natural 1.6, compressed 0.72):
+    //     approach : gap = natural + air ..... natural   (coil AT natural length,
+    //                mounted on one cart; the other cart closes the air gap and
+    //                makes contact exactly as approach ends)
+    //     compress : gap = natural ........... compressed   (the coil is what
+    //                shortens: pitch tightens to NLB_SPRING_COMPRESS_FRAC)
+    //     hold     : gap = compressed = the authored seed pose, exactly
+    //   Each beat is eased with smoothstep, so there is no linear snap and no
+    //   velocity jump at either boundary.
+    //   Rule 36: position = f(phase) — a pure closed form of the published phase,
+    //   with NO accumulator, no velocity integration and no dt anywhere. Under
+    //   SET_TIME_FREEZE the phase is frozen, so the same s is rewritten bit for bit.
+    //   A rewind (repeat re-arm / RESET_TRAJECTORY) reproduces the same pose from
+    //   the same phase; nothing here is history.
+    //   Rule 37: unreachable unless eng.push_off_latched, which needs a live
+    //   spring_action — so a sandbox state, a seized state and every state that
+    //   omits the block never call it, and the carts then stay exactly where the
+    //   integrator (or the teacher's drag) left them. A seize DURING approach or
+    //   compress therefore freezes the pair at its current scripted separation and
+    //   hands it straight to the plain gap-driven fit: no teleport back to the seed,
+    //   no stuck coil (the coil simply follows the live gap from there).
+    //   THE ONE FUNNEL is untouched: this writes b.s only, and the placement still
+    //   happens in nlbSetBodyPosition, called by the latched integrator branch in
+    //   the same frame (which is also what carries the coil, the arrows, the labels
+    //   and the pick proxies with it).
+    function nlbSpringLoadPose(eng, bA, bB, phName, phElapsed, phDur) {
+        if (!bA || !bB) return;
+        var u = (phDur > 0) ? (phElapsed / phDur) : 1;
+        // Extra face-to-face separation, in METRES, added to the authored seed.
+        var strokeM = (NLB_SPRING_NATURAL_W * (1 - NLB_SPRING_COMPRESS_FRAC)) / NLB_WORLD_PER_M;
+        var airM = NLB_SPRING_APPROACH_AIR_W / NLB_WORLD_PER_M;
+        var extra;
+        if (phName === "approach") extra = strokeM + airM * (1 - nlbSmooth01(u));
+        else if (phName === "compress") extra = strokeM * (1 - nlbSmooth01(u));
+        else extra = 0;                                  // hold: the authored seed, exactly
+        // A "fixed" body is the wall / the Earth: it NEVER moves, so a cart-vs-wall
+        // push-off puts the whole convergence on the cart. Two carts split it
+        // symmetrically about the seed midpoint, which keeps the apparatus centred
+        // and the coil's home position fixed (Rule 32d — no teleport, one home pose).
+        var mvA = !bA.fixed, mvB = !bB.fixed;
+        var shA = mvA ? (mvB ? extra / 2 : extra) : 0;
+        var shB = mvB ? (mvA ? extra / 2 : extra) : 0;
+        var sA0 = (bA.s0 != null) ? bA.s0 : 0, sB0 = (bB.s0 != null) ? bB.s0 : 0;
+        // Which body stands on the +s side is read from the SEED, never assumed:
+        // the authoring contract puts body_a there, but a reversed pair must still
+        // pull APART rather than through each other.
+        var dir = (sA0 >= sB0) ? 1 : -1;
+        var lenM = eng.length_m;
+        if (mvA) bA.s = nlbSpringClampS(bA, sA0 + dir * shA, lenM);
+        if (mvB) bB.s = nlbSpringClampS(bB, sB0 - dir * shB, lenM);
+    }
+    // The scripted pose obeys the same track bounds the integrator does — a long
+    // approach can never place a cart off the end of the rail.
+    function nlbSpringClampS(b, s, lenM) {
+        var bd = nlbBoundsM(b, lenM);
+        if (s < bd.lo) return bd.lo;
+        if (s > bd.hi) return bd.hi;
+        return s;
+    }
     // The spring_action pre-release LATCH. While the coil is being loaded
     // (approach / compress) and while it is held compressed (hold), the pair is
     // mechanically held: a real latch supplies the reaction, so both applied arrows

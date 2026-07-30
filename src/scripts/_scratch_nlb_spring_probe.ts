@@ -30,6 +30,15 @@ const REPEAT_BASE = 2600;       // the no-spring_action control state
 const S_A = 0.91;               // facing faces 0.72 m apart (0.91*2 - 0.55*2)
 const S_B = -0.91;
 const FORCE = 30;
+// Apparatus geometry (world units), mirrored from the renderer constants so the
+// probe checks the ENGINE's numbers against the SPEC's, never against itself.
+const NAT_W = 0.80;                 // NLB_SPRING_NATURAL_W          = 1.6 m
+const COMP_W = NAT_W * 0.45;        // x NLB_SPRING_COMPRESS_FRAC    = 0.72 m -> 0.36 world
+const Q_W = 0.02;                   // NLB_SPRING_LEN_Q (rebuild quantum)
+const HIDE_EPS_W = 0.02;            // NLB_SPRING_HIDE_EPS
+const AIR_W = 0.30;                 // NLB_SPRING_APPROACH_AIR_W     = 0.6 m of approach travel
+const RING_MS = 450;                // NLB_SPRING_RING_MS
+const SEED_GAP_W = 0.36;            // (S_A - S_B - 1.1 m) * 0.5 world/m — the authored seed gap
 
 function cart(id: string, mass: number, s0: number) {
     return { id, label: id, mass_kg: mass, initial_position_m: s0 };
@@ -153,6 +162,10 @@ const CLOCK_INIT = `(function () {
       aA: eng.bodies.A.a, aB: eng.bodies.B.a,
       sA: eng.bodies.A.s, sB: eng.bodies.B.s,
       vA: eng.bodies.A.v, vB: eng.bodies.B.v,
+      spVis: window.PM_nlbSpringVisible === true,
+      spLen: (typeof window.PM_nlbSpringLen === 'number') ? window.PM_nlbSpringLen : -1,
+      spMesh: (typeof window.PM_nlbSpringMeshLen === 'number') ? window.PM_nlbSpringMeshLen : -1,
+      spGap: (typeof window.PM_nlbSpringGap === 'number') ? window.PM_nlbSpringGap : -1,
       badge: badge ? badge.style.display : '?',
       badgeTxt: badge ? badge.textContent : '?',
       hudFA: ro('nlb_ro_A_F_applied_val'), hudFB: ro('nlb_ro_B_F_applied_val'),
@@ -179,6 +192,7 @@ interface Sample {
     ph: string; phMs: number; prog: number; ring: boolean; pub: string;
     FA: number; FB: number; aA: number; aB: number;
     sA: number; sB: number; vA: number; vB: number;
+    spVis: boolean; spLen: number; spMesh: number; spGap: number;
     badge: string; badgeTxt: string;
     hudFA: string | null; hudFB: string | null; hudAA: string | null; hudAB: string | null;
 }
@@ -316,11 +330,18 @@ async function main() {
     check('the release stroke is the true 0.88 m (natural - compressed)',
         Math.abs(((last.sA - last.sB) - (S_A - S_B)) - strokeExpect) < 0.03,
         'stroke = ' + ((last.sA - last.sB) - (S_A - S_B)).toFixed(3) + ' m (expect ' + strokeExpect.toFixed(3) + ')');
-    // The latch.
+    // The latch. (Seam B 2026-07-30: the pair is still LATCHED — nothing
+    // INTEGRATES — but the loading beats are now SCRIPTED, so the pose is a closed
+    // form of the phase instead of the frozen seed. The `hold` beat is the one that
+    // must sit exactly on the authored seed, because the release integrates from it.)
     const aPre = a.filter(s => s.ph === 'approach' || s.ph === 'compress' || s.ph === 'hold');
-    check('LATCHED through approach/compress/hold: nothing moves',
-        aPre.every(s => s.latched && s.sA === S_A && s.sB === S_B && s.vA === 0 && s.vB === 0 && s.aA === 0),
-        aPre.length + ' pre-release frames, distinct sA = ' + JSON.stringify([...new Set(aPre.map(s => s.sA))]));
+    const aHoldOnly = a.filter(s => s.ph === 'hold');
+    check('LATCHED through approach/compress/hold: nothing INTEGRATES (v = a = 0)',
+        aPre.every(s => s.latched && s.vA === 0 && s.vB === 0 && s.aA === 0 && s.aB === 0),
+        aPre.length + ' pre-release frames');
+    check('HOLD sits EXACTLY on the authored seed pose (what the release integrates from)',
+        aHoldOnly.length > 10 && aHoldOnly.every(s => s.sA === S_A && s.sB === S_B),
+        aHoldOnly.length + ' hold frames, distinct sA = ' + JSON.stringify([...new Set(aHoldOnly.map(s => s.sA))]));
     check('latch RELEASED for release + coast',
         a.filter(s => s.ph === 'release' || s.ph === 'coast').every(s => !s.latched), 'ok');
     // The force choreography.
@@ -348,6 +369,97 @@ async function main() {
         && reArms(a).every(s => s.ph === 'approach'),
         reArms(a).length + ' re-arms at t = ' + reArms(a).map(s => s.t_ms.toFixed(0)).join(', ')
         + '  phases: ' + reArms(a).map(s => s.ph).join(','));
+
+    // ═══ G. THE COIL GEOMETRY follows the choreography (seam B) ========
+    console.log('\n=== G. coil geometry per phase (mesh length read from the live scene) ===');
+    const c0 = a.filter(s => s.t_ms < REPEAT_SA);                 // one clean cycle
+    const gApp = c0.filter(s => s.ph === 'approach');
+    const gCom = c0.filter(s => s.ph === 'compress');
+    const gHold = c0.filter(s => s.ph === 'hold');
+    const gRel = c0.filter(s => s.ph === 'release');
+    const gCoast = c0.filter(s => s.ph === 'coast');
+    // (a) the state OPENS with the coil at NATURAL length and the carts APART.
+    const app0 = gApp[0];
+    check('(a) approach OPENS visible at ~NATURAL length, carts wider than the seed',
+        gApp.length > 10 && app0.spVis && Math.abs(app0.spMesh - NAT_W) <= Q_W
+        && app0.spGap > NAT_W + HIDE_EPS_W
+        && Math.abs((app0.sA - app0.sB) - ((S_A - S_B) + (NAT_W - COMP_W + AIR_W) / 0.5)) < 0.05,
+        'mesh=' + app0.spMesh.toFixed(3) + ' (natural ' + NAT_W + ')  gap=' + app0.spGap.toFixed(3)
+        + '  sep=' + (app0.sA - app0.sB).toFixed(3) + ' m (seed ' + (S_A - S_B).toFixed(2) + ')');
+    check('(a2) approach: coil HELD at natural while the carts CONVERGE to contact',
+        gApp.every(s => s.spVis && Math.abs(s.spMesh - NAT_W) <= Q_W)
+        && gApp.every((s, i) => i === 0 || (s.sA - s.sB) <= (gApp[i - 1].sA - gApp[i - 1].sB) + 1e-9)
+        && Math.abs(gApp[gApp.length - 1].spGap - NAT_W) < 0.05,
+        gApp.length + ' frames, sep ' + (gApp[0].sA - gApp[0].sB).toFixed(3) + ' -> '
+        + (gApp[gApp.length - 1].sA - gApp[gApp.length - 1].sB).toFixed(3)
+        + ' m, end gap=' + gApp[gApp.length - 1].spGap.toFixed(3));
+    // (b) mid-compress the coil is at an INTERMEDIATE length, monotonically shrinking.
+    const mid = gCom[Math.floor(gCom.length / 2)];
+    check('(b) mid-compress: coil length strictly BETWEEN compressed and natural',
+        mid.spVis && mid.spMesh > COMP_W + Q_W && mid.spMesh < NAT_W - Q_W,
+        'mesh=' + mid.spMesh.toFixed(3) + '  (compressed ' + COMP_W.toFixed(2) + ' < x < natural ' + NAT_W + ')'
+        + '  gap=' + mid.spGap.toFixed(3));
+    check('(b2) compress: the coil SHRINKS monotonically natural -> compressed, tracking the gap',
+        gCom.every((s, i) => i === 0 || s.spMesh <= gCom[i - 1].spMesh + 1e-9)
+        && Math.abs(gCom[0].spMesh - NAT_W) <= Q_W
+        && Math.abs(gCom[gCom.length - 1].spMesh - COMP_W) <= 2 * Q_W
+        && gCom.every(s => Math.abs(s.spLen - s.spGap) < 1e-6),
+        'mesh ' + gCom[0].spMesh.toFixed(3) + ' -> ' + gCom[gCom.length - 1].spMesh.toFixed(3)
+        + ' over ' + gCom.length + ' frames; distinct lengths = '
+        + new Set(gCom.map(s => s.spMesh.toFixed(2))).size);
+    // (c) hold = compressed.
+    check('(c) hold: coil at the COMPRESSED length, steady',
+        gHold.every(s => s.spVis && Math.abs(s.spMesh - COMP_W) <= Q_W)
+        && new Set(gHold.map(s => s.spMesh.toFixed(4))).size === 1
+        && Math.abs(gHold[0].spGap - SEED_GAP_W) < 1e-6,
+        'mesh=' + gHold[0].spMesh.toFixed(3) + ' over ' + gHold.length + ' frames, gap=' + gHold[0].spGap.toFixed(3));
+    // (d) mid-release the coil EXTENDS WITH THE GAP (the seam-A bug: it held 0.36).
+    const midR = gRel[Math.floor(gRel.length / 2)];
+    check('(d) mid-release: coil INTERMEDIATE and extending WITH the gap',
+        midR.spVis && midR.spMesh > COMP_W + Q_W && midR.spMesh < NAT_W - Q_W
+        && Math.abs(midR.spLen - midR.spGap) < 1e-6,
+        'mesh=' + midR.spMesh.toFixed(3) + '  drawn=' + midR.spLen.toFixed(3)
+        + ' == gap=' + midR.spGap.toFixed(3));
+    check('(d2) release: monotone GROWTH compressed -> natural, then it lets go',
+        gRel.every((s, i) => i === 0 || s.spMesh >= gRel[i - 1].spMesh - 1e-9)
+        && Math.abs(gRel[0].spMesh - COMP_W) <= 2 * Q_W
+        && Math.abs(gRel[gRel.length - 1].spMesh - NAT_W) <= 2 * Q_W,
+        'mesh ' + gRel[0].spMesh.toFixed(3) + ' -> ' + gRel[gRel.length - 1].spMesh.toFixed(3)
+        + ' over ' + gRel.length + ' slowed frames; distinct lengths = '
+        + new Set(gRel.map(s => s.spMesh.toFixed(2))).size);
+    // (e) the RING: a damped oscillation about natural, then hide.
+    const ringFr = gCoast.filter(s => s.phMs < RING_MS);
+    const postRing = gCoast.filter(s => s.phMs > RING_MS + 40);
+    check('(e) ring: the coil OSCILLATES about natural after it lets go (both lobes)',
+        ringFr.length > 10 && ringFr.some(s => s.spVis && s.spMesh > NAT_W + Q_W)
+        && ringFr.some(s => s.spVis && s.spMesh < NAT_W - Q_W),
+        ringFr.length + ' ring frames, mesh range ' + Math.min(...ringFr.map(s => s.spMesh)).toFixed(3)
+        + ' .. ' + Math.max(...ringFr.map(s => s.spMesh)).toFixed(3) + ' about ' + NAT_W);
+    check('(e2) ring is COSMETIC: no force, no latch, carts keep coasting freely',
+        ringFr.every(s => s.FA === 0 && s.FB === 0 && !s.latched && !s.slow)
+        && ringFr.every((s, i) => i === 0 || Math.abs(s.vA - ringFr[i - 1].vA) < 1e-9),
+        'F=0 on all ' + ringFr.length + ' frames, vA constant = ' + ringFr[0].vA.toFixed(3));
+    check('(e3) ...and then the coil HIDES for the rest of the coast',
+        postRing.length > 20 && postRing.every(s => !s.spVis),
+        postRing.length + ' post-ring frames, all hidden = ' + postRing.every(s => !s.spVis));
+    check('(e4) the ring never overlaps a cart (drawn <= the live gap, always)',
+        c0.filter(s => s.spVis).every(s => s.spLen <= s.spGap + 1e-6),
+        'max (drawn - gap) = ' + Math.max(...c0.filter(s => s.spVis).map(s => s.spLen - s.spGap)).toExponential(2));
+    // (f) the omitted-key state's geometry is the OLD rule, frame for frame.
+    const fBad = b.filter(s => {
+        const want = s.spGap > NAT_W + HIDE_EPS_W ? -1
+            : Math.min(s.spGap, s.contact ? COMP_W : NAT_W);
+        if (want < 0) return s.spVis;                              // must be hidden
+        return !s.spVis || Math.abs(s.spLen - want) > 1e-6;
+    });
+    check('(f) spring_action OMITTED: coil geometry is the PRE-2026-07-30 rule frame for frame',
+        fBad.length === 0, fBad.length + ' mismatches of ' + b.length
+        + (fBad.length ? ' first: t=' + fBad[0].t_ms.toFixed(0) + ' gap=' + fBad[0].spGap.toFixed(3)
+            + ' drawn=' + fBad[0].spLen.toFixed(3) + ' vis=' + fBad[0].spVis : ''));
+    check('(f2) ...and it never scripts a cart: the pair only ever SEPARATES from the seed',
+        b.every(s => (s.sA - s.sB) >= (S_A - S_B) - 1e-9),
+        'min separation = ' + Math.min(...b.map(s => s.sA - s.sB)).toFixed(4)
+        + ' m (seed ' + (S_A - S_B).toFixed(2) + ')');
 
     // ═══ E. the HUD reports the TRUE physical numbers  =================
     console.log('\n=== E. HUD honesty (true values, never scaled) ===');
@@ -410,11 +522,12 @@ async function main() {
         await tick(16.7, 40);
         const rows = await read();
         const r0 = rows[0];
-        check('[' + tag + '] clock + phase + pose frozen',
+        check('[' + tag + '] clock + phase + pose + COIL LENGTH frozen',
             rows.every(s => s.t_ms === r0.t_ms && s.ph === r0.ph && s.sA === r0.sA && s.sB === r0.sB
-                && s.vA === r0.vA && s.FA === r0.FA),
+                && s.vA === r0.vA && s.FA === r0.FA && s.spMesh === r0.spMesh && s.spLen === r0.spLen),
             rows.length + ' held frames at t=' + r0.t_ms.toFixed(0) + ' phase=' + r0.ph
-            + ' sA=' + r0.sA.toFixed(4) + ' F_A=' + r0.FA + ' slow=' + r0.slow);
+            + ' sA=' + r0.sA.toFixed(4) + ' F_A=' + r0.FA + ' slow=' + r0.slow
+            + ' coil=' + r0.spMesh.toFixed(3));
         check('[' + tag + '] zero re-arms under the pin', reArms(rows).length === 0,
             reArms(rows).length + ' re-arms');
         const shot1 = await page.screenshot();
@@ -437,6 +550,40 @@ async function main() {
         pinRel.ph === 'release' && pinRel.slow && pinRel.badge === 'block'
         && pinRel.badgeTxt === 'slow motion ×6' && pinRel.FA === FORCE,
         'phase=' + pinRel.ph + ' slow=' + pinRel.slow + ' badge="' + pinRel.badgeTxt + '" sA=' + pinRel.sA.toFixed(4));
+    check('[mid-release] the FROZEN frame shows a coil at an INTERMEDIATE length',
+        pinRel.spVis && pinRel.spMesh > COMP_W + Q_W && pinRel.spMesh < NAT_W - Q_W
+        && Math.abs(pinRel.spLen - pinRel.spGap) < 1e-6,
+        'coil=' + pinRel.spMesh.toFixed(3) + ' gap=' + pinRel.spGap.toFixed(3));
+    // ...and MID-COMPRESS: the frame the founder review said did not exist.
+    const midCom = 3 * REPEAT_SA + A_MS + Math.round(C_MS * 0.5);
+    const pinCom = await holdAt('STATE_2', midCom, 'mid-compress');
+    check('[mid-compress] the FROZEN frame shows the coil part-way COMPRESSED',
+        pinCom.ph === 'compress' && pinCom.spVis
+        && pinCom.spMesh > COMP_W + Q_W && pinCom.spMesh < NAT_W - Q_W
+        && pinCom.latched && !pinCom.slow && pinCom.badge === 'none'
+        && pinCom.FA > 0 && pinCom.FA < FORCE,
+        'phase=' + pinCom.ph + ' coil=' + pinCom.spMesh.toFixed(3) + ' gap=' + pinCom.spGap.toFixed(3)
+        + ' F_A=' + pinCom.FA.toFixed(2) + ' N (ramping) sep=' + (pinCom.sA - pinCom.sB).toFixed(3) + ' m');
+    // ...and the RING, mounted on between[0] and twanging as the pair flies apart.
+    // Pinned near the ring's FIRST positive peak (tr ~ 25 ms of the 100 ms period);
+    // the rebuild quantum is 0.02 world, so a pin off-peak legitimately quantises
+    // back to natural — the oscillation itself is proved by (e) over the free run.
+    const midRing = 3 * REPEAT_SA + LEAD + REL_WALL + 32;
+    const pinRing = await holdAt('STATE_2', midRing, 'ring');
+    check('[ring] the FROZEN frame shows a rung coil, mounted, LONGER than natural',
+        pinRing.ph === 'coast' && pinRing.spVis && pinRing.phMs < RING_MS
+        && pinRing.spMesh >= NAT_W + Q_W - 1e-9 && pinRing.spLen <= pinRing.spGap + 1e-6
+        && pinRing.FA === 0,
+        'phase=' + pinRing.ph + '+' + pinRing.phMs.toFixed(0) + 'ms coil=' + pinRing.spMesh.toFixed(3)
+        + ' (natural ' + NAT_W + ') gap=' + pinRing.spGap.toFixed(3) + ' F_A=' + pinRing.FA);
+    // ...and the new OPENING pose, for the same eye.
+    const midApp = 3 * REPEAT_SA + Math.round(A_MS * 0.35);
+    const pinApp = await holdAt('STATE_2', midApp, 'mid-approach');
+    check('[mid-approach] the FROZEN frame shows a NATURAL-length coil between separated carts',
+        pinApp.ph === 'approach' && pinApp.spVis && Math.abs(pinApp.spMesh - NAT_W) <= Q_W
+        && pinApp.spGap > NAT_W && pinApp.FA === 0,
+        'coil=' + pinApp.spMesh.toFixed(3) + ' gap=' + pinApp.spGap.toFixed(3)
+        + ' sep=' + (pinApp.sA - pinApp.sB).toFixed(3) + ' m F_A=' + pinApp.FA);
 
     // ═══ D. Rule 37 — seize + sandbox  =================================
     console.log('\n=== D. Rule 37 — seize + sandbox ===');
@@ -453,12 +600,47 @@ async function main() {
         d1.every(s => s.FA === 0 && s.FB === 0) && reArms(d1).length === 0,
         'distinct F_A: ' + JSON.stringify([...new Set(d1.map(s => s.FA))]));
 
+    check('...and the coil degrades to the plain GAP-DRIVEN fit (no stuck length)',
+        d1.every(s => s.spGap > NAT_W + HIDE_EPS_W
+            ? !s.spVis
+            : (s.spVis && Math.abs(s.spLen - Math.min(s.spGap, NAT_W)) < 1e-6)),
+        'post-seize gap=' + d1[0].spGap.toFixed(3) + ' drawn=' + d1[0].spLen.toFixed(3)
+        + ' vis=' + d1[0].spVis);
+
     const e = await freeRun('STATE_3', 500, true);
     check('sandbox: whole gate inert — no phase, no latch, no slow window, no badge',
         e.every(s => s.ph === '' && !s.latched && !s.slow && !s.contact && s.badge === 'none')
         && reArms(e).length === 0,
         e.length + ' frames, ' + reArms(e).length + ' re-arms, distinct phase = '
         + JSON.stringify([...new Set(e.map(s => s.ph))]));
+    check('sandbox: the coil sits at the authored seed gap, never scripted, never rung',
+        e.every(s => s.spVis && Math.abs(s.spLen - SEED_GAP_W) < 1e-6
+            && s.sA === S_A && s.sB === S_B),
+        'drawn=' + e[0].spLen.toFixed(3) + ' gap=' + e[0].spGap.toFixed(3)
+        + ' sA=' + e[0].sA + ' (seed ' + S_A + ')');
+
+    // ═══ H. seize MID-APPROACH — the scripted-write handover  ==========
+    console.log('\n=== H. Rule 37 — a seize DURING the scripted approach ===');
+    const h0 = await freeRun('STATE_2', 26, true);                 // ~430 ms => mid-approach
+    const hLast = h0[h0.length - 1];
+    check('pre-seize we really are mid-approach with the carts scripted apart',
+        hLast.ph === 'approach' && (hLast.sA - hLast.sB) > (S_A - S_B) + 0.2,
+        'phase=' + hLast.ph + ' sep=' + (hLast.sA - hLast.sB).toFixed(3) + ' m coil=' + hLast.spMesh.toFixed(3));
+    await page.evaluate(() => { (window as any).PM_nlbBodyDragged = true; });
+    await clear();
+    await tick(16.7, 120);
+    const h1 = await read();
+    check('the carts STAY where the script left them (no teleport back to the seed)',
+        Math.abs(h1[0].sA - hLast.sA) < 0.02 && Math.abs(h1[0].sB - hLast.sB) < 0.02,
+        'sA ' + hLast.sA.toFixed(4) + ' -> ' + h1[0].sA.toFixed(4)
+        + '  sB ' + hLast.sB.toFixed(4) + ' -> ' + h1[0].sB.toFixed(4));
+    check('the choreography is gone and the coil follows the LIVE GAP from there',
+        h1.every(s => s.ph === '' && !s.latched && !s.slow)
+        && h1.every(s => s.spGap > NAT_W + HIDE_EPS_W
+            ? !s.spVis
+            : (s.spVis && Math.abs(s.spLen - Math.min(s.spGap, NAT_W)) < 1e-6)),
+        h1.length + ' post-seize frames, gap=' + h1[0].spGap.toFixed(3)
+        + ' drawn=' + h1[0].spLen.toFixed(3) + ' vis=' + h1[0].spVis);
 
     console.log('\npage errors: ' + (errors.length === 0 ? 'none' : JSON.stringify(errors.slice(0, 5))));
     if (errors.length) failures++;
