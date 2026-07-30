@@ -644,7 +644,7 @@
             "body_b_id": "B",
             "force_N": 30,
             "release_at_ms": 420,
-            "repeat_every_ms": 2600
+            "repeat_every_ms": 7200
           },
           "arrows": [
             {
@@ -671,7 +671,14 @@
             "F_applied",
             "v"
           ],
-          "controls_visible": []
+          "controls_visible": [],
+          "spring_action": {
+            "approach_ms": 600,
+            "compress_ms": 1600,
+            "hold_ms": 1200,
+            "slow_factor": 6,
+            "ring": true
+          }
         }
       },
       "STATE_2": {
@@ -725,7 +732,7 @@
             "body_b_id": "B",
             "force_N": 30,
             "release_at_ms": 420,
-            "repeat_every_ms": 2600
+            "repeat_every_ms": 7200
           },
           "arrows": [
             {
@@ -752,7 +759,14 @@
             "F_applied",
             "a"
           ],
-          "controls_visible": []
+          "controls_visible": [],
+          "spring_action": {
+            "approach_ms": 600,
+            "compress_ms": 1600,
+            "hold_ms": 1200,
+            "slow_factor": 6,
+            "ring": true
+          }
         }
       },
       "STATE_3": {
@@ -806,7 +820,7 @@
             "body_b_id": "W",
             "force_N": 30,
             "release_at_ms": 593,
-            "repeat_every_ms": 2800
+            "repeat_every_ms": 7200
           },
           "arrows": [
             {
@@ -833,7 +847,14 @@
             "F_applied",
             "a"
           ],
-          "controls_visible": []
+          "controls_visible": [],
+          "spring_action": {
+            "approach_ms": 600,
+            "compress_ms": 1600,
+            "hold_ms": 1200,
+            "slow_factor": 6,
+            "ring": true
+          }
         }
       },
       "STATE_4": {
