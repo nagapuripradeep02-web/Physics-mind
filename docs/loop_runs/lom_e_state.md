@@ -1,6 +1,7 @@
 # lom-e loop state
 
-updated: 2026-07-30 (Phase 0 COMPLETE — both engine seams landed + verified 36/36; authoring next)
+updated: 2026-07-30 — CLOSED. Both concepts shipped, English audio rendered, branch merged to master
+         at 81d8382 + 29508f6 and pushed. Nothing in flight. Kept for the record and the lessons.
 
 design: docs/loop_runs/lom/lom_e_design.md  (founder-approved 2026-07-30)
 worktree: C:\Tutor\physics-mind-lom-e
@@ -14,11 +15,49 @@ chapter_map (founder-approved 2026-07-30): rolling_friction, tension_force
   — plus this branch carries the already-authored normal_force + friction_force through to master,
     so the final merge lands the whole contact-force set at once.
 
-next: FOUNDER VISUAL REVIEW of all four sims, plus one ruling (see OPEN DECISION below). After the
-      founder's verdict: shipper per approved concept → merge feat/lom-e-rolling-tension into master →
-      explicit `git push` (the hook deliberately does NOT auto-push master).
-in_flight: (none — both concepts authored, reviewed, fixed and re-verified)
+next: (nothing — this loop is complete)
+in_flight: (none)
 parked: (none)
+
+## FINAL OUTCOME — shipped and merged 2026-07-30
+
+Founder reviewed the built review sites and approved with "ship it", then asked for the audio.
+- rolling_friction (LoM #6, 5 states) and tension_force (LoM #7, 6 states) authored, reviewed by
+  quality-auditor + eye-walker, fixed over one round, re-verified, baseline-locked.
+- friction_force and normal_force were baselined against the CURRENT engine and came home in the
+  same merge (their earlier master baselines predated SEAM J and were stale by construction).
+- English audio rendered for all four: 12 + 20 + 14 + 13 = 59 clips, bulbul:v3/priya, EN only.
+  The tts_audio/ copies are COMMITTED on purpose — tts:generate re-synthesizes from Sarvam every
+  run and there is no free restore, so that commit is the only thing protecting the spend.
+- Merged to master at 81d8382 (19 conflicts, resolved per-hunk: master's Rule 41 labels kept, this
+  branch's post-SEAM-J baselines kept) and the STATE_3 ramp fix + audio at 29508f6. Both pushed.
+- Verified ON the merge commit: tsc 0 · validate 145 PASS / 0 FAIL · renderer-syntax OK x3 · the
+  seam harness re-run against merged master 49/49 (which is what proved the five seams survived the
+  auto-merge with master's chemistry renderer work semantically, not just textually).
+
+## RESOLVED — the STATE_3 ramp ruling (was the last open item)
+
+The founder approved ramping mu_r to 0.06 so the wheel slows without stopping. THE ORCHESTRATOR'S OWN
+RECOMMENDED NUMBER WAS WRONG and was caught by integrating it before applying it: 0.06 still stops the
+wheel at t = 8.32 s, before the 9.5 s pin, so the frozen frame would have stayed at 0.00 and the fix
+would have been cosmetic. Lowering mu_r further is worse, not better — it keeps the wheel rolling but
+runs it into the +6 track bound, which ALSO zeroes v and f, and 0.040 clears the engine's 0.01 m/s stop
+threshold by only 0.004 m/s.
+  The coefficient was right; the WINDOW was wrong. param_ramp end_ms 9000 -> 6000 at the same 0.06
+target gives v = 0.231 m/s at the pin (15% of its 1.50 m/s start), s = 3.00 m (3 m clear of the bound),
+and f = 2.94 N on the HUD. Confirmed on the rendered frame.
+  That frame then exposed a SECOND error: the bottom-left strip claimed "raising mu_r 60x", true for
+0.12 but 30x at 0.06. Corrected.
+  LESSON WORTH KEEPING: H2 PASSED this change at 0.14-0.26% pixel difference (tolerance 2%), because
+the old ramp happened to stop the wheel at s = +2.98 and the new pin catches it at +3.00 — nearly the
+same pose, so only the DIGITS moved. A percentage-of-pixels gate is structurally weak against a
+numbers-only regression; text is a tiny share of the frame. Do not treat an H2 pass as evidence that
+readouts are correct.
+
+## STILL NOT DONE — deliberate, needs a separate founder decision
+
+PILOT_CONCEPTS / build:pilot / deploy:app. All four sims are on master and reviewable, but none is in
+the deployed teacher catalog at app.viditra.co. Opening the catalog is its own call, not part of "ship it".
 
 ## OPEN DECISION for the founder — rolling_friction STATE_3's μᵣ ramp target
 
