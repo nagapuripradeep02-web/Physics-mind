@@ -499,6 +499,120 @@ const near = (a: number, b: number, tol = 1e-6) => Math.abs(a - b) <= tol * Math
         await h.browser.close();
     }
 
+    // ══ SEAM J — the sandbox wrap ══════════════════════════════════════════
+    // Two things must hold: a sandbox body keeps moving forever instead of parking
+    // on the bound, and a GUIDED state still parks exactly as before (that second
+    // half is what protects every sealed concept's frozen baselines).
+    {
+        const WRAP: Field3DConfig = {
+            scenario_type: 'newtons_laws_body',
+            explorer_id: 'newtons_laws_body_explorer',
+            slider_controls: { F: { min: 0, max: 50, step: 0.5, default: 20, label: 'F' } },
+            field_lines: INERT_FIELD_LINES,
+            states: {
+                // sandbox: must wrap and keep moving
+                STATE_1: {
+                    label: 'sandbox wrap', visible_elements: [], camera_position: [0, 2.4, 9.8],
+                    caption: 'sandbox wrap',
+                    newtons_laws_body: {
+                        mode: 'sandbox', surface: { theta_deg: 0, length_m: 6 },
+                        bodies: [{ id: 'B', label: 'wheel', shape: 'wheel', mass_kg: M_RACE, initial_position_m: -4, mu_s: MU_ROLL, mu_k: MU_ROLL, applied_force_N: 20 }],
+                        arrows: [{ body_id: 'B', show: ['applied'] }],
+                        glow_focal: 'nlb_body_B', readouts: ['v'], controls_visible: ['F'],
+                        trusted_drag_seizes: true,
+                    },
+                },
+                // guided twin, identical numbers: must PARK on the bound as before
+                STATE_2: {
+                    label: 'guided park', visible_elements: [], camera_position: [0, 2.4, 9.8],
+                    caption: 'guided park',
+                    newtons_laws_body: {
+                        mode: 'accelerate_applied_force', surface: { theta_deg: 0, length_m: 6 },
+                        bodies: [{ id: 'B', label: 'wheel', shape: 'wheel', mass_kg: M_RACE, initial_position_m: -4, mu_s: MU_ROLL, mu_k: MU_ROLL, applied_force_N: 20 }],
+                        arrows: [{ body_id: 'B', show: ['applied'] }],
+                        glow_focal: 'nlb_body_B', readouts: ['v'],
+                    },
+                },
+                // train sandbox: must wrap as ONE rigid line, gaps preserved
+                STATE_3: {
+                    label: 'train sandbox wrap', visible_elements: [], camera_position: [0, 2.4, 12],
+                    caption: 'train sandbox wrap',
+                    newtons_laws_body: {
+                        mode: 'sandbox', surface: { theta_deg: 0, length_m: 7 },
+                        bodies: [
+                            { id: 'R', label: 'm₃', mass_kg: M_CART, initial_position_m: 0.0, applied_force_N: 12 },
+                            { id: 'Q', label: 'm₂', mass_kg: M_CART, initial_position_m: -2.5 },
+                            { id: 'P', label: 'm₁', mass_kg: M_CART, initial_position_m: -5.0 },
+                        ],
+                        train: { body_ids: ['P', 'Q', 'R'] },
+                        arrows: [{ body_id: 'R', show: ['applied'] }],
+                        glow_focal: 'nlb_body_R', readouts: ['T1', 'T2'],
+                        trusted_drag_seizes: true,
+                    },
+                },
+            },
+        } as unknown as Field3DConfig;
+
+        const h = await open('seam_j_wrap', WRAP);
+
+        // Sandbox single body: sample well past the point it would have parked.
+        await h.setState('STATE_1');
+        const vs: number[] = [], ss: number[] = [];
+        for (let i = 0; i < 12; i++) {
+            await h.tick(16.7, 40); const s = await h.snap();
+            vs.push(Math.abs(s.bodies['B'].v)); ss.push(s.bodies['B'].s);
+        }
+        // Distance travelled is the right measure, two-sided. Testing "every sample
+        // v > 0.1" was wrong twice over: it PASSED a body accelerating past 38 m/s
+        // (an unreadable blur), then FAILED a correct re-seeding wrap because one
+        // sample landed on the frame right after a lap, where v is re-released at the
+        // authored 0 by design. Total travel cannot be fooled by either.
+        let travel = 0;
+        for (let i = 1; i < ss.length; i++) travel += Math.abs(ss[i] - ss[i - 1]);
+        const vmax = Math.max(...vs);
+        chk('J1_sandbox_keeps_moving_at_a_legible_speed',
+            travel > 20 && vmax < 20,
+            'travelled ' + travel.toFixed(1) + ' m across ' + ss.length + ' samples (must exceed 20 m — i.e. it laps), ' +
+            'peak |v| ' + vmax.toFixed(2) + ' < 20 m/s (no runaway). |v| samples: ' +
+            vs.map(v => v.toFixed(2)).join(', '));
+
+        // Guided twin: must still park on the bound. This is the regression guard.
+        await h.setState('STATE_2');
+        for (let i = 0; i < 10; i++) await h.tick(16.7, 40);
+        const g = await h.snap();
+        chk('J2_guided_state_still_parks',
+            Math.abs(g.bodies['B'].v) < 1e-9 && Math.abs(g.bodies['B'].s - 6) < 1e-6,
+            'guided: s=' + g.bodies['B'].s.toFixed(4) + ' v=' + g.bodies['B'].v.toFixed(6) + ' (expect s=6.0000, v=0)');
+
+        // Train sandbox: keeps moving AND the gaps survive every wrap.
+        await h.setState('STATE_3');
+        const gaps: number[] = [], tvs: number[] = [], tss: number[] = [];
+        for (let i = 0; i < 14; i++) {
+            await h.tick(16.7, 40);
+            const s = await h.snap();
+            gaps.push(s.bodies['Q'].s - s.bodies['P'].s, s.bodies['R'].s - s.bodies['Q'].s);
+            tvs.push(Math.abs(s.bodies['P'].v)); tss.push(s.bodies['P'].s);
+        }
+        let ttravel = 0;
+        for (let i = 1; i < tss.length; i++) ttravel += Math.abs(tss[i] - tss[i - 1]);
+        const tvmax = Math.max(...tvs);
+        chk('J3_train_sandbox_keeps_moving_at_a_legible_speed',
+            ttravel > 20 && tvmax < 20,
+            'train travelled ' + ttravel.toFixed(1) + ' m (must exceed 20 m — it laps), peak |v| ' +
+            tvmax.toFixed(2) + ' < 20 m/s');
+        const gapSpread = Math.max(...gaps) - Math.min(...gaps);
+        chk('J4_train_gaps_survive_wrap', gapSpread < 1e-6,
+            'gap spread across ' + gaps.length + ' samples (wraps included) = ' + gapSpread.toExponential(2));
+        const allInside = await h.page.evaluate(() => {
+            const eng = (window as any).PM_nlbEngine;
+            return eng.order.every((id: string) => Math.abs(eng.bodies[id].s) <= 7 + 1e-6);
+        });
+        chk('J5_train_stays_on_track', allInside === true, 'every cart within ±7 after wrapping: ' + allInside);
+        chk('J6_no_page_errors', h.errors.length === 0, JSON.stringify(h.errors.slice(0, 3)));
+        fs.writeFileSync(path.join(OUT, 'seam_j.png'), await h.page.screenshot());
+        await h.browser.close();
+    }
+
     fs.writeFileSync(path.join(OUT, 'probe.json'), JSON.stringify(results, null, 1), 'utf8');
     const failed = checks.filter(c => !c.ok);
     console.log('\n──────────────────────────────────────────────');

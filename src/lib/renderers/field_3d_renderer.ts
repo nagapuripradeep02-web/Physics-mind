@@ -38470,6 +38470,20 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var b = 0; b < bodies.length; b++) {
             var bd = bodies[b];
             if (!bd || !bd.id || bd.ghost) continue;   // a ghost is decorative context: never integrated, never read out
+            // SEAM H fix: emit the per-body header ONLY if this body will actually
+            // produce a row. Segment keys (T1/T2) belong to the SEG owner, so a state
+            // whose readouts are all segment keys used to print one empty group
+            // header per body — tension_force STATE_6 rendered "m₃ / m₂ / m₁" as three
+            // labels with nothing under them. Same "a real zero is not a reading" rule
+            // the hanging-body N/f skip below already follows.
+            var bodyRows = 0;
+            for (var kq = 0; kq < keys.length; kq++) {
+                var kk = keys[kq];
+                if (nlbIsSegKey(kk)) continue;
+                if (bd.hanging && (kk === "N" || kk === "f")) continue;
+                bodyRows++;
+            }
+            if (!bodyRows) continue;
             if (bodies.length > 1) {
                 h += '<div style="opacity:0.7;margin-top:' + (b > 0 ? "7px" : "0") + '">' + (bd.label || bd.id) + '</div>';
             }
@@ -39468,6 +39482,15 @@ export const FIELD_3D_RENDERER_CODE = `
             max: num(o.max, sp.max),
             step: num(o.step, sp.step),
             def: num(o["default"], sp.def),
+            // DECIMAL PLACES were the one property of the spec a concept could NOT
+            // override, and the omission silently falsified a slider. NLB_SLIDER_SPEC
+            // pins mu_k at dp: 2, so a concept authoring a rolling-resistance
+            // coefficient of 0.002 rendered its ONLY control as "0.00" — inside a
+            // state titled "Rolling Friction Is Not Zero", beside a HUD reading
+            // 0.10 N and a formula reading f = mu*N. The canvas asserted 0.00 x 49 =
+            // 0.10. Every other display property was already overridable, so this is
+            // a gap in an existing mechanism, not a new feature.
+            dp: Math.max(0, Math.min(6, Math.round(num(o.dp, sp.dp)))),
             label: (typeof o.label === "string" && o.label) ? o.label : sp.glyph
         };
     }
@@ -39701,6 +39724,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Mirrors gsphStateIsDraggable() / swcStateIsDraggable(): true ONLY where the
     //   state's own newtons_laws_body block sets trusted_drag_seizes, so the pick
     //   and the drag are both no-ops in every other scenario and every other state.
+    // SEAM J gate — is the LIVE state a sandbox? Read from the state config rather
+    // than eng.mode so it cannot drift from what the author wrote, and kept as one
+    // function so the Branch A and Branch B wraps can never disagree about scope.
+    function nlbSandboxWrap() {
+        var sd = config.states && config.states[PM_currentState];
+        var nn = sd && sd.newtons_laws_body;
+        return !!(nn && nn.mode === "sandbox");
+    }
     function nlbStateIsDraggable() {
         var sd = config.states && config.states[PM_currentState];
         var nn = sd && sd.newtons_laws_body;
@@ -40146,6 +40177,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (bv0) { q = ci * bv0; break; }      // |c_i| = 1, so q = v_i / c_i = c_i * v_i
         }
         eng.v_string = q;
+        eng.v_string_seed = q;        // SEAM J: what a sandbox wrap re-releases at
         for (var k = 0; k < eng.order.length; k++) {
             var bk = eng.bodies[eng.order[k]];
             if (!bk || bk.ghost) continue;
@@ -40467,6 +40499,44 @@ export const FIELD_3D_RENDERER_CODE = `
                 // static friction, the body has come to REST.
                 if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
                 var s1 = b.s + 0.5 * (v0 + v1) * h;
+                // SEAM J — the SANDBOX wrap (founder-approved 2026-07-30).
+                //   Rule 37 says the explore state must keep MOVING, and names the
+                // mechanism for every other scenario: "the bead/motion phase wraps
+                // (% 1) so the motion loops forever". This integrator never got that,
+                // so an explore state ran its body into the end of the finite track
+                // and died there — pushing harder only presses it into the wall, so
+                // no slider and no idle sweep could restart it. A teacher was left
+                // with a sandbox whose numbers changed while nothing moved, which is
+                // verbatim the failure Rule 37 exists to eliminate.
+                //   Scope is deliberately narrow: mode === "sandbox" ONLY. Every guided
+                // state keeps the clamp-and-hold behaviour exactly, so no frozen EYE
+                // baseline can move and the narrated "end of the run" beats that
+                // several concepts already depend on are untouched.
+                //   On wrap the velocity is RE-SEEDED to the state's authored v0, not
+                // carried over. Carrying it over was the first implementation and it
+                // was wrong: a body under constant push with negligible friction has
+                // no terminal speed, so it accelerated every lap and the harness
+                // measured it passing 38 m/s — crossing the whole track three times a
+                // second, an unreadable blur. Re-seeding makes every lap identical, so
+                // the run REPEATS at a legible speed, which is what "the motion loops
+                // forever" has to mean for a teacher. It also matches the bead wrap it
+                // is modelled on: a phase wrap restarts the cycle, it does not
+                // accumulate. Rule 36 is unaffected — a position remap plus a constant,
+                // no dt and no new accumulator.
+                if (nlbSandboxWrap()) {
+                    var span = bd.hi - bd.lo;
+                    if (span > 0) {
+                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; }
+                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; }
+                    }
+                    b.a = a; b.v = v1; b.s = s1;
+                    b._boundArrestedSliding = false;
+                    b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
+                    b._stuck = stuck;
+                    nlbSetBodyPosition(b.id, b.s);
+                    nlbWriteReadouts(nlb, b, stuck);
+                    continue;
+                }
                 if (s1 < bd.lo) s1 = bd.lo;
                 else if (s1 > bd.hi) s1 = bd.hi;
                 if (s1 <= bd.lo + 1e-9 || s1 >= bd.hi - 1e-9) {
@@ -40586,7 +40656,43 @@ export const FIELD_3D_RENDERER_CODE = `
         //   A genuinely held string is untouched — static friction takes the stuckB
         // branch above (aStr = 0, F_fric = -D) and never reaches this veto, and the
         // v-sign-reversal rest guard has already zeroed aStr on its own path.
-        if (blocked) { sAdv = 0; vs1 = 0; }
+        // SEAM J — the coupled half of the sandbox wrap. A TRAIN is wrapped as ONE
+        // rigid line: every cart shifts by the same span, so the gaps (and therefore
+        // the strings) are preserved exactly and the whole train re-enters from the
+        // other end. Deliberately NOT applied to a PULLEY sandbox — wrapping there
+        // would teleport a hanging weight vertically, which is nonsense, so that rig
+        // keeps its existing clamp-and-hold (and connected_bodies' sealed explore
+        // state is therefore bit-for-bit unaffected).
+        //   The shift is NOT the track span. Shifting every cart by the full span
+        // would put the REAR cart beyond the far bound, where the per-body clamp
+        // below would pin it and collapse the very gaps this wrap exists to
+        // preserve. Instead the whole train re-enters at the trailing edge: moving
+        // forward, the REARMOST cart is placed on the low bound; moving backward,
+        // the FRONTMOST cart is placed on the high bound. Every cart then shifts by
+        // that one offset, so the train stays rigid and entirely on the track.
+        var wrapped = false;
+        if (blocked && nlbSandboxWrap() && eng.train) {
+            var bw = nlbBoundsM(act[0], lenM);
+            var dir = nlbSgn(sAdv) || 1;
+            var sMin = act[0].s, sMax = act[0].s;
+            for (var w0 = 1; w0 < act.length; w0++) {
+                if (act[w0].s < sMin) sMin = act[w0].s;
+                if (act[w0].s > sMax) sMax = act[w0].s;
+            }
+            var shift = (dir > 0) ? (bw.lo - sMin) : (bw.hi - sMax);
+            if (isFinite(shift) && (sMax - sMin) < (bw.hi - bw.lo)) {
+                for (var w = 0; w < act.length; w++) { act[w].s += shift; }
+                // Re-seed the shared string speed for the same reason the single-body
+                // wrap re-seeds v: otherwise the train gains speed every lap and ends
+                // up an unreadable blur. eng.v_string_seed is stamped by
+                // nlbSeedKinematics from the authored v0, so a state that legitimately
+                // starts the train moving repeats at ITS speed, not from rest.
+                vs1 = (eng.v_string_seed != null) ? eng.v_string_seed : 0;
+                sAdv = 0;                // the shift IS this frame's motion
+                wrapped = true;
+            }
+        }
+        if (blocked && !wrapped) { sAdv = 0; vs1 = 0; }
         eng.v_string = vs1;
         eng.a_string = aStr;
 
