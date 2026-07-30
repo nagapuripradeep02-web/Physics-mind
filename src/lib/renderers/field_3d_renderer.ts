@@ -29488,11 +29488,10 @@ export const FIELD_3D_RENDERER_CODE = `
     // (Rule 29), and its geometry is translated at build time so its BASE sits at
     // exactly the same local height a cart's does, which keeps nlbSetBodyPosition
     // (the ONE placement funnel every arrow, label and pick proxy follows) untouched.
-    // Glyph height of the on-block mass label. Chosen so the WIDEST plausible string
-    // ("10.5 kg", the 10 kg slider ceiling) keeps its ink inside the cube's own
-    // silhouette — that bound is what makes the Rule-34d collision guarantee
-    // structural rather than a placement tweak (see the build site).
-    var NLB_MASS_LABEL_H = 0.24;
+    // (The on-block mass sprite and its glyph-height constant are RETIRED: text on a
+    // 3D face shears with the camera and shrinks with the object, so the number was
+    // illegible at ~30 screen px. The mass now rides the camera-facing billboard —
+    // see nlbBodyLabelText.)
     var NLB_RO_CLEAR_PX = 8;              // HUD-to-slider-panel breathing room (Rule 34d)
     var NLB_LABEL_DODGE_PAD_PX = 6;       // clearance a dodged label keeps from a panel edge
     var NLB_LABEL_DODGE_MAX = 1.10;       // world units — the cap on an occlusion dodge
@@ -29585,6 +29584,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // already-placed one further out ALONG ITS OWN arrow. See nlbDeCollideLabels.
     var NLB_LABEL_MIN_SEP = 0.30;         // > NLB_ARROW_LABEL_H (0.26 glyph height)
     var NLB_LABEL_PUSH = 0.20;
+    // Clearance for the MEASURED-INK separation tests (the body billboard now
+    // carries its mass, so its width is a live quantity — nlbInkHalfW/nlbInkHalfH
+    // measure it rather than assuming it; see nlbStackBodyLabels).
+    var NLB_BODY_LABEL_GAP = 0.07;
+    // World units of EXTRA x-separation over which a stacked billboard eases back
+    // down to its home pose, so it never jumps (see nlbStackBodyLabels).
+    var NLB_LABEL_EASE = 0.35;
     var NLB_LABEL_ORDER = ["weight", "normal", "friction", "applied", "tension", "net",
                            "component_sin", "component_cos"];
     // Components of the weight (show_components) — dashed + thin, in the WEIGHT
@@ -29976,6 +29982,56 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         return out;
     }
+    // The FLOATING BILLBOARD above a body: its identifier AND its mass, as ONE
+    // camera-facing sprite (founder finding, newton_third_law STATE_2 — "m₁ and m₂
+    // is not showing"). The number used to be painted across the block's own FRONT
+    // FACE, where it is ~30 screen px of ink on a saturated red/blue face, sheared
+    // by perspective and shrinking with the object: the student read m₁ / m₂ with
+    // no number at all. Text on a 3D face always fights perspective, so no size
+    // tweak could fix it — the value belongs on the billboard, which cannot shear,
+    // holds its authored glyph height and draws last (renderOrder 999).
+    //   Same three rules as the HUD header, from the SAME formatters: Rule-34c
+    //   subscripts (nlbMassSymbol), nlbFxMass digits (integers bare — "4 kg"), and
+    //   a fixed body that NEVER prints its 1000000 kg stand-in for infinity — the
+    //   wall reads "Wall — m ≫ m₁", true for one free body or five.
+    //   A GHOST is a decorative copy of a body, never a second body with its own
+    //   mass, so it carries no number (exactly the HUD's rule) — which also keeps
+    //   an unlabelled ghost rendering the identical pixels it rendered before.
+    function nlbBodyLabelText(bd, bodies) {
+        if (!bd) return "";
+        var name = bd.label ? nlbMassSymbol(bd.label) : bd.id;
+        if (bd.fixed) {
+            var free = nlbFreeBodyNames(bodies);
+            return name + " — m ≫ " + (free.length ? free.join(", ") : "any block here");
+        }
+        if (bd.ghost || !bd.label) return name;
+        if (name.indexOf("kg") >= 0) return name;   // an authored label carrying its own unit is never doubled
+        var eng = window.PM_nlbEngine;
+        var eb = (eng && eng.bodies) ? eng.bodies[bd.id] : null;
+        var m = eb ? eb.m : bd.mass_kg;
+        return name + " = " + nlbFxMass(m) + " kg";
+    }
+    // ONE guarded setter for that sprite. pmCreateAutoLabel re-measures and can
+    // re-allocate the canvas texture on a redraw, which must never happen 60 times
+    // a second — so BOTH writers (state entry and the per-frame mass tracker) go
+    // through here and an unchanged string costs a compare. It reads no clock and
+    // integrates nothing (Rule 36): under a frozen pin it rewrites the identical
+    // string and the guard makes even the redraw a no-op.
+    function nlbSetBodyLabelText(sprite, txt) {
+        if (!sprite || sprite._nlbLblTxt === txt) return;
+        sprite._nlbLblTxt = txt;
+        updateLabelSpriteText(sprite, txt);
+    }
+    // Ink half-extents of a label sprite, in WORLD units. The sprite quad is mostly
+    // transparent padding (the canvas has a 384 px floor), so _pmInkFrac is the only
+    // honest basis for a width — and width is exactly what the mass move changed
+    // ("m₁" ≈ 0.25 world units of ink, "m₁ = 4 kg" ≈ 1.0, against a 0.55 block).
+    // Every separation test below MEASURES; none assumes a hardcoded offset.
+    function nlbInkHalfW(sp) {
+        if (!sp) return 0;
+        return sp.scale.x * ((sp._pmInkFrac != null) ? sp._pmInkFrac : 1) / 2;
+    }
+    function nlbInkHalfH(sp) { return sp ? sp.scale.y / 2 : 0; }
     // The HUD group header for one body: its identifier AND its mass. The mass value
     // is its own span so the per-frame writer can track a mass slider live without
     // rebuilding the row. An authored label that already carries its own unit (e.g.
@@ -30102,14 +30158,14 @@ export const FIELD_3D_RENDERER_CODE = `
             if (l) l.textContent = labelOverride;
         }
     }
-    // Live mass text on BOTH surfaces — the HUD header span and the number on the
-    // block — driven from the ENGINE record, so a mass-slider drag (which writes
-    // eng.bodies[id].m, never the authored JSON) moves both at once. Churn-guarded:
-    // the sprite is redrawn only when its string actually changes, so this costs a
-    // string compare per body per frame. It reads NO clock, integrates nothing and
-    // hardcodes no frame delta (Rule 36) — under a SET_TIME_FREEZE pin it rewrites the
-    // identical string and the guard makes even the redraw a no-op, so a mass label
-    // cannot move a frozen pixel.
+    // Live mass text on BOTH surfaces — the HUD header span and the floating
+    // billboard above the block — driven from the ENGINE record, so a mass-slider
+    // drag (which writes eng.bodies[id].m, never the authored JSON) moves both at
+    // once. Churn-guarded in nlbSetBodyLabelText, so this costs a string compare
+    // per body per frame. It reads NO clock, integrates nothing and hardcodes no
+    // frame delta (Rule 36) — under a SET_TIME_FREEZE pin it rewrites the identical
+    // string and the guard makes even the redraw a no-op, so a mass label cannot
+    // move a frozen pixel.
     function nlbUpdateMassText(nlb) {
         var eng = window.PM_nlbEngine;
         var bodies = (nlb && nlb.bodies) || [];
@@ -30117,15 +30173,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var bd = bodies[i];
             if (!bd || !bd.id || bd.ghost) continue;
             var eb = (eng && eng.bodies) ? eng.bodies[bd.id] : null;
-            if (eb ? eb.fixed : bd.fixed) continue;    // the wall states "m ≫ ..." once, on rebuild
+            if (eb ? eb.fixed : bd.fixed) continue;    // the wall states "m ≫ ..." once, on entry
             var m = eb ? eb.m : bd.mass_kg;
             nlbSetReadout(bd.id, "mass", nlbFxMass(m));
-            var sp = nlbFindById("nlb_body_" + bd.id + "_mass");
-            var txt = nlbFxMass(m) + " kg";
-            if (sp && sp._nlbMassTxt !== txt) {
-                sp._nlbMassTxt = txt;
-                updateLabelSpriteText(sp, txt);
-            }
+            nlbSetBodyLabelText(nlbFindById("nlb_body_" + bd.id + "_label"),
+                                nlbBodyLabelText(bd, bodies));
         }
         nlbDodgeBodyLabels(nlb);
     }
@@ -30135,10 +30187,10 @@ export const FIELD_3D_RENDERER_CODE = `
     // it was the thing to read (connected_bodies STATE_3/4/7). No 3D object can draw
     // over a DOM overlay, so the only fix is to move the LABEL out from under it.
     //   The dodge is a pure function of the CURRENT pose and the CURRENT panel rects:
-    //   reset both of a body's labels to their build-time home pose, project the mass
-    //   label's real INK rect to screen px, and if it lands in a panel, slide the PAIR
-    //   along world x until it clears that panel's edge, capped at NLB_LABEL_DODGE_MAX.
-    //   The identifier moves with the number by the same offset so the two never split.
+    //   reset every body label to its build-time home pose, stack any pair that now
+    //   overlaps (see nlbStackBodyLabels), project the label's real INK rect to screen
+    //   px, and if it lands in a panel, slide it along world x until it clears that
+    //   panel's edge, capped at NLB_LABEL_DODGE_MAX.
     //   No clock, no accumulation, no integration (Rule 36): under a frozen pin the pose
     //   and the rects are constant, so the same offset is recomputed every frame and the
     //   frame is byte-stable. Nothing here writes physics.
@@ -30169,6 +30221,53 @@ export const FIELD_3D_RENDERER_CODE = `
         return { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
                  y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
     }
+    // Rule 34d, the cross-body half. Each billboard is centred over its OWN block
+    // and must stay there (a label that drifts off its block stops naming it), so
+    // sideways is not available: at CLOSEST approach — the compressed/hold beat of
+    // a push-off, the two carts touching — the centres are one block apart (0.55
+    // world units) while each label now measures ~1.0 of ink, and the two strings
+    // overlap outright. The later body's label is therefore LIFTED until the pair
+    // clears vertically, by the amount the MEASURED ink rects actually need.
+    //   It engages only where the ink genuinely overlaps: a single-body state, two
+    //   carts standing apart, and the wall's high billboard all leave every label at
+    //   its home pose, pixel-identical to before.
+    //   The lift EASES OUT over NLB_LABEL_EASE of extra x-separation instead of
+    //   switching off the instant the rects part — a hard threshold would make the
+    //   label JUMP 40-odd px the frame two separating carts clear each other, which
+    //   is a motion the student would read as physics (Rule 32b: only the taught
+    //   variable moves). The ease band lies entirely INSIDE the already-clear zone,
+    //   so easing never re-introduces a collision. One pass, targets computed from
+    //   the pose alone: deterministic, clock-free, byte-stable under a frozen pin.
+    function nlbStackBodyLabels(nlb) {
+        var bodies = (nlb && nlb.bodies) || [];
+        var placed = [];
+        for (var i = 0; i < bodies.length; i++) {
+            var bd = bodies[i];
+            if (!bd || !bd.id) continue;
+            var mesh = nlbFindById("nlb_body_" + bd.id);
+            var lbl = nlbFindById("nlb_body_" + bd.id + "_label");
+            if (!mesh || !lbl || !mesh.visible || !lbl.visible) continue;
+            mesh.updateWorldMatrix(true, false);
+            var p = mesh.localToWorld(lbl.position.clone());
+            var hw = nlbInkHalfW(lbl), hh = nlbInkHalfH(lbl);
+            var wantY = p.y;
+            for (var q = 0; q < placed.length; q++) {
+                var o = placed[q];
+                // How far this label's ink is from clearing the placed one in x.
+                // Negative = the two strings genuinely overlap.
+                var xGap = Math.abs(p.x - o.x) - (hw + o.hw + NLB_BODY_LABEL_GAP);
+                if (xGap >= NLB_LABEL_EASE) continue;
+                var k = (xGap <= 0) ? 1 : (1 - xGap / NLB_LABEL_EASE);
+                var tgt = o.y + (hh + o.hh + NLB_BODY_LABEL_GAP) * k;
+                if (tgt > wantY) wantY = tgt;
+            }
+            if (wantY > p.y) {
+                p.y = wantY;
+                lbl.position.copy(mesh.worldToLocal(p.clone()));
+            }
+            placed.push({ x: p.x, y: p.y, hw: hw, hh: hh });
+        }
+    }
     function nlbDodgeBodyLabels(nlb) {
         if (typeof camera === "undefined" || !camera) return;
         var bodies = (nlb && nlb.bodies) || [];
@@ -30176,23 +30275,31 @@ export const FIELD_3D_RENDERER_CODE = `
         var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
         var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
         var xUnit = new THREE.Vector3(1, 0, 0);
+        // 1. Home pose FIRST, for every body: each pass starts from the build
+        //    placement so no offset can ever accumulate across frames.
+        for (var h = 0; h < bodies.length; h++) {
+            if (!bodies[h] || !bodies[h].id) continue;
+            var hl = nlbFindById("nlb_body_" + bodies[h].id + "_label");
+            if (hl && hl._nlbHome) hl.position.copy(hl._nlbHome);
+        }
+        // 2. Then the cross-body stack, so the panel dodge below measures the pose
+        //    the label will actually be drawn at.
+        nlbStackBodyLabels(nlb);
+        // 3. Then the DOM-panel occlusion dodge.
         var rects = nlbPanelRects();
+        if (!rects.length) return;
         for (var i = 0; i < bodies.length; i++) {
             var bd = bodies[i];
             if (!bd || !bd.id) continue;
             var mesh = nlbFindById("nlb_body_" + bd.id);
             if (!mesh) continue;
-            var pair = [nlbFindById("nlb_body_" + bd.id + "_mass"), nlbFindById("nlb_body_" + bd.id + "_label")];
-            for (var k = 0; k < pair.length; k++) {
-                if (pair[k] && pair[k]._nlbHome) pair[k].position.copy(pair[k]._nlbHome);
-            }
-            var num = pair[0];
-            if (!rects.length || !mesh.visible || !num || !num.visible || !num._nlbHome) continue;
+            var num = nlbFindById("nlb_body_" + bd.id + "_label");
+            if (!mesh.visible || !num || !num.visible || !num._nlbHome) continue;
             // Matrices are refreshed here rather than trusted: this runs BEFORE the
             // renderer's own update, and a one-frame-stale matrix would make the dodge
             // lag the body (and wobble the first frozen frame).
             mesh.updateWorldMatrix(true, false);
-            var base = mesh.localToWorld(num._nlbHome.clone());
+            var base = mesh.localToWorld(num.position.clone());
             var p0 = nlbProjPx(base);
             var pX = nlbProjPx(base.clone().add(xUnit));
             var pxPerX = pX.x - p0.x;
@@ -30213,12 +30320,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var dx = shiftPx / pxPerX;
             if (dx > NLB_LABEL_DODGE_MAX) dx = NLB_LABEL_DODGE_MAX;
             if (dx < -NLB_LABEL_DODGE_MAX) dx = -NLB_LABEL_DODGE_MAX;
-            for (var m2 = 0; m2 < pair.length; m2++) {
-                var sp2 = pair[m2];
-                if (!sp2 || !sp2._nlbHome) continue;
-                var tgt = mesh.localToWorld(sp2._nlbHome.clone()).addScaledVector(xUnit, dx);
-                sp2.position.copy(mesh.worldToLocal(tgt));
-            }
+            num.position.copy(mesh.worldToLocal(base.clone().addScaledVector(xUnit, dx)));
         }
     }
 
@@ -30314,20 +30416,42 @@ export const FIELD_3D_RENDERER_CODE = `
     // an already-placed one further out along its OWN arrow direction, so it still
     // unambiguously reads as that arrow's label. Deterministic — same magnitudes
     // in, same pixels out — so SET_TIME_FREEZE frames stay byte-stable.
+    //   The body's own floating billboard is SEEDED as the first obstacle. It is not
+    //   a label this pass may move (it names its block by sitting over it), but it is
+    //   the one whose WIDTH changed when the mass moved onto it — ~0.25 world units
+    //   of ink before, ~1.0 now — and a scalar centre-distance test cannot see that:
+    //   an arrow label 0.4 away passes the test and still lands in the middle of the
+    //   string. So the billboard enters with its MEASURED ink rect, and the arrow
+    //   labels move around it. The scalar test is kept bit-for-bit for every
+    //   label-vs-label pair (the exhaustive theta x sign x mass sweep behind
+    //   NLB_LABEL_MIN_SEP was run against it), so this can only ADD a push — no
+    //   existing arrow label moves except where it genuinely overlaps the billboard.
     function nlbDeCollideLabels(bodyId) {
         var placed = [];
+        var bmesh = nlbFindById("nlb_body_" + bodyId);
+        var blbl = nlbFindById("nlb_body_" + bodyId + "_label");
+        if (bmesh && blbl && bmesh.visible && blbl.visible) {
+            bmesh.updateWorldMatrix(true, false);
+            placed.push({ p: bmesh.localToWorld(blbl.position.clone()),
+                          hw: nlbInkHalfW(blbl), hh: nlbInkHalfH(blbl), rect: true });
+        }
         for (var i = 0; i < NLB_LABEL_ORDER.length; i++) {
             var lb = nlbLabelObj(bodyId, NLB_LABEL_ORDER[i]);
             if (!lb || !lb.visible) continue;
+            var lhw = nlbInkHalfW(lb), lhh = nlbInkHalfH(lb);
             for (var tries = 0; tries < 6; tries++) {
                 var bad = false;
                 for (var p = 0; p < placed.length; p++) {
-                    if (lb.position.distanceTo(placed[p]) < NLB_LABEL_MIN_SEP) { bad = true; break; }
+                    var o = placed[p];
+                    if (lb.position.distanceTo(o.p) < NLB_LABEL_MIN_SEP) { bad = true; break; }
+                    if (o.rect &&
+                        Math.abs(lb.position.x - o.p.x) < (lhw + o.hw + NLB_BODY_LABEL_GAP) &&
+                        Math.abs(lb.position.y - o.p.y) < (lhh + o.hh + NLB_BODY_LABEL_GAP)) { bad = true; break; }
                 }
                 if (!bad || !lb._nlbDir) break;
                 lb.position.addScaledVector(lb._nlbDir, NLB_LABEL_PUSH);
             }
-            placed.push(lb.position.clone());
+            placed.push({ p: lb.position.clone(), hw: lhw, hh: lhh, rect: false });
         }
     }
     // Redraw a label sprite ONLY when its text actually changed — pmCreateAutoLabel
@@ -31140,14 +31264,17 @@ export const FIELD_3D_RENDERER_CODE = `
             if (d.hanging) { world.add(hitP); } else { surf.add(hitP); }
             nlbRegister(hitP);
 
-            // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
-            // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
+            // The ONE floating billboard for this body: its identifier AND its mass
+            // (e.g. "m₁ = 4 kg"), composed by nlbBodyLabelText and rewritten on every
+            // state entry + live on a mass-slider drag. pmCreateAutoLabel re-measures
+            // on every redraw, so the longer string can never clip.
             // nlbMassSymbol is the Rule-34c guard on the SPRITE text path: an authored
             // ASCII "m1" renders as m₁ here exactly as it does in the HUD header and on
             // the slider row — one normalizer, all three surfaces. It is applied to the
             // authored LABEL only, never to the id FALLBACK: an unlabelled body (a ghost)
             // must keep rendering exactly the pixels it rendered before.
-            var lbl = pmCreateAutoLabel(d.label ? nlbMassSymbol(d.label) : d.id, col, 0.4);
+            var lbl = pmCreateAutoLabel(nlbBodyLabelText(d, defs), col, 0.4);
+            lbl._nlbLblTxt = lbl._pmText;          // seeds nlbSetBodyLabelText's churn guard
             // Clear the TOP of whichever solid this body is — the wall slab is
             // ~3x a cart's height, so the cart offset would bury its label inside it.
             lbl.position.set(0, d.fixed ? (NLB_WALL_H - NLB_BODY_SIZE / 2 + 0.18) : (NLB_BODY_SIZE * 0.95), 0);
@@ -31156,33 +31283,13 @@ export const FIELD_3D_RENDERER_CODE = `
             mesh.add(lbl);
             nlbRegister(lbl);
 
-            // The mass, written ACROSS THE BLOCK'S OWN FRONT FACE (founder finding:
-            // the corner HUD alone is not enough — a teacher pointing at a cart has to
-            // be able to say "this is the heavy one"). Placed at the body's centre,
-            // just off the +z face, so the collision guarantee is STRUCTURAL rather
-            // than a layout tweak: the ink is bounded by the cube's own silhouette
-            // (the widest plausible string, "10.5 kg", measures ~0.47 world units of
-            // ink at NLB_MASS_LABEL_H against a 0.55-wide cube), so it can never reach
-            // a neighbouring block's label however close the two carts stand, and it
-            // sits nowhere near the arrow lanes, the spring coil, the badge or the HUD.
-            // Neutral white on the dark outline pmCreateAutoLabel already draws, so it
-            // reads on every NLB_BODY_COLORS hue (the body-coloured identifier label
-            // above would vanish against its own block). depthTest:false keeps it
-            // readable from any camera angle. Text is written live by nlbUpdateMassText.
-            //   A "fixed" body gets NONE: its 1000000 kg is a stand-in for infinity,
-            //   not a reading, and the HUD states it as "m ≫ <the free bodies>".
-            if (!d.fixed) {
-                var mlbl = pmCreateAutoLabel("", "#FFFFFF", NLB_MASS_LABEL_H);
-                mlbl.position.set(0, 0, NLB_BODY_SIZE / 2 + 0.03);
-                mlbl.userData = {
-                    elementType: "nlb_body_mass", id: "nlb_body_" + d.id + "_mass",
-                    bodyId: d.id, ghost: !!d.ghost
-                };
-                mlbl.visible = false;       // shown per state (never on a ghost) on entry
-                mlbl._nlbHome = mlbl.position.clone();
-                mesh.add(mlbl);
-                nlbRegister(mlbl);
-            }
+            // NO second sprite on the block's FRONT FACE. The mass was painted there
+            // first (f234aea) and the founder read the result as "m₁ and m₂ is not
+            // showing": on a 0.55-unit cube it is ~30 screen px of ink, low-contrast
+            // against a saturated red/blue face, and SHEARED by perspective — and it
+            // shrinks with the object, so no font size could rescue it. A camera-facing
+            // billboard has none of those failure modes, so the value lives there and
+            // there only (one surface per fact — Rule 34b's discipline).
 
             nlbSetBodyPosition(d.id, d.initial_position_m || 0);
 
@@ -31287,7 +31394,6 @@ export const FIELD_3D_RENDERER_CODE = `
             // screen whose entire point is that this object is doing the pushing.
             var solidApparatus = (ud.elementType === "nlb_body" ||
                                   ud.elementType === "nlb_body_label" ||
-                                  ud.elementType === "nlb_body_mass" ||
                                   ud.elementType === "nlb_surface" ||
                                   ud.elementType === "nlb_pulley" ||
                                   ud.elementType === "nlb_rope" ||
@@ -32173,16 +32279,11 @@ export const FIELD_3D_RENDERER_CODE = `
             if (ud.elementType === "nlb_surface_group") { o.visible = true; return; }
             if (ud.elementType === "nlb_surface") { o.visible = !surface.hidden; return; }
             if (ud.elementType === "nlb_world_group") { o.visible = true; return; }
-            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label" &&
-                ud.elementType !== "nlb_body_mass") return;
+            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
             var bd = listed[ud.bodyId];
             o.visible = !!bd;
             if (!bd) return;
             ud.ghost = !!bd.ghost;
-            // The on-block mass number follows the HUD's rule, not the mesh's: a ghost
-            // is a decorative copy of a body, never a second body with its own mass, so
-            // it carries no number (the block itself still draws, dimmed).
-            if (ud.elementType === "nlb_body_mass") { o.visible = !bd.ghost; return; }
             if (ud.elementType === "nlb_body") {
                 var col = bd.color || ud.baseColor;
                 if (o.material && o.material.color) o.material.color.set(hexToThreeColor(col));
@@ -32195,8 +32296,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 // back out of bounds for the state's first rendered frame.
                 var seededB = eng.bodies[bd.id];
                 nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
-            } else if (ud.elementType === "nlb_body_label" && bd.label) {
-                updateLabelSpriteText(o, nlbMassSymbol(bd.label));
+            } else if (ud.elementType === "nlb_body_label") {
+                // Identifier AND mass, on the ONE camera-facing billboard. Composed
+                // here on every entry (not only where bd.label is authored) because
+                // this is the surface that states a FIXED body's "m ≫ ..." — the
+                // per-frame tracker deliberately skips the wall, whose text can only
+                // change when the state's body list does. A ghost or an unlabelled
+                // body composes to exactly the string it rendered before.
+                nlbSetBodyLabelText(o, nlbBodyLabelText(bd, bodies));
             }
         });
 

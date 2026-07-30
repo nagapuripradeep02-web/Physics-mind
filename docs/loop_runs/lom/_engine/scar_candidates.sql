@@ -1142,3 +1142,102 @@ INSERT INTO engine_bug_queue (
     'lom-a spring + mass engine fixes 2026-07-30',
     'incident'
 );
+
+-- (10) The mass painted on the 3D BLOCK FACE is unreadable — the founder read the state as having
+--      no masses at all. MAJOR, FIXED (this commit). This is the SAME finding as row (4)
+--      (`nlb_hud_and_body_labels_never_show_mass_...`) coming back one commit later through a
+--      different door: the HUD half of that fix was right, the on-face half was the wrong surface.
+--      Logged as its own class because the LESSON is about the surface, not about the missing value.
+--      NOT APPLIED — candidate text only (trial constraint: no DB writes).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_value_painted_on_a_3d_face_is_illegible_and_belongs_on_the_billboard',
+    'A quantity written across a 3D object''s own face (the nlb block''s mass) renders ~30 screen px, low-contrast on a saturated body colour and sheared by perspective, so the founder read the state as "m1 and m2 is not showing" even though the sprite existed and carried the right string',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'Text parented to a face of a small solid inherits that solid''s projection: it shears with every camera angle, shrinks with distance, and sits on whatever hue the object happens to be. The 0.55-world-unit cart made "4 kg" about 30 px tall against a saturated red/blue face. Every automated check passed — the sprite existed, was visible, was registered in sceneObjects and carried the correct Unicode string — because presence is not legibility. No font size could fix it: on-face text always loses to perspective.',
+    'A VALUE (a number a student must read) never goes on a 3D face. It goes on the camera-facing billboard that already names the object, as ONE string ("m1 = 4 kg"), so identifier and value can never split, shear or shrink apart. On-face ink is for decoration and orientation cues only. When a billboard grows to carry a value, its de-collision must MEASURE the new ink width (sprite.scale.x x inkFrac) rather than assume the old one — a centre-distance test tuned for a two-glyph label is blind to a ten-glyph one.',
+    'js_eval',
+    'For every label sprite that carries a NUMBER, assert: (a) its parent is not a body mesh whose silhouette bounds it, and (b) its projected ink rect is at least ~24 px tall and does not intersect any other visible label rect or DOM overlay rect, measured at the state''s CLOSEST-approach pose (the compressed/hold beat of a two-body interaction), not only at state entry.',
+    'FIXED',
+    ARRAY['newton_third_law', 'connected_bodies', 'block_on_incline', 'free_body_diagram']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a billboard mass legibility 2026-07-30',
+    'incident'
+);
+
+-- (11) DIRECTIVE, companion to (10): a de-collision pass that switches off at a hard threshold makes
+--      the label JUMP. Recorded so the next widening does not re-introduce the pop.
+--      NOT APPLIED — candidate text only.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_hard_threshold_label_decollision_pops_when_the_pair_separates',
+    'A label lifted clear of a neighbour drops back to its home pose in ONE frame the instant the two rects part, and the student reads that 40-px jump as physics',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'An overlap test is a boolean, so the correction it drives is a step function: full lift while the rects touch, zero the next frame. In a scenario where the two objects SEPARATE as part of the taught motion (a push-off), that step lands right in the middle of the beat the state is about, and Rule 32b (only the taught variable moves) is broken by a layout pass.',
+    'A label correction driven by a proximity test must ease to zero over a band of extra separation that lies entirely inside the already-clear zone (nlbStackBodyLabels / NLB_LABEL_EASE): full correction while overlapping, linear ease-out over the next band, zero beyond. It stays a pure function of the pose, so a frozen pin is still byte-stable, and nothing ever jumps.',
+    'js_eval',
+    'Sweep the two objects apart one frame at a time across the separation the state actually plays; assert the label offset is continuous (no single-frame delta larger than the per-frame body motion) and returns to exactly the home pose beyond the ease band.',
+    'FIXED',
+    ARRAY['newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a billboard mass legibility 2026-07-30',
+    'directive'
+);
+
+-- (12) OPEN, found by eye-walker on connected_bodies during the billboard-mass gate (2026-07-30).
+--      NOT a regression from that fix — verified against the PRE-FIX approved baselines
+--      (visual_baselines/connected_bodies/STATE_{3,4,7}__frozen.png), where block B and its short
+--      m2 tag are ALREADY half-hidden behind the #sliders panel. The wider string did not create the
+--      overlap; it made the overlap consequential, because the part now buried is the mass VALUE.
+--      NOT APPLIED — candidate text only. Separate bug_class, needs its own dispatch.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_body_screen_anchor_lands_under_the_dom_slider_panel',
+    'An nlb body can sit half-behind the #sliders panel, so its billboard is unreadable no matter how the label dodges - the label pass can move the label, never the block',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The nlb camera framing places bodies in world space with no regard for the DOM overlay rects, so on a hanging/right-side body the BLOCK itself projects into the panel zone. nlbDodgeBodyLabels can only slide the sprite (and is clamped by NLB_LABEL_DODGE_MAX), so once the anchor is inside the panel there is no label-side correction that recovers it. Rule 34d is written for overlays not colliding; this is the apparatus itself colliding with an overlay.',
+    'A body whose projected rect intersects a DOM overlay rect must be corrected at the CAMERA/FRAMING level (shift the rig or reserve the zone), not at the label level. Treat a clamped label dodge as evidence the anchor is wrong, not as a fix.',
+    'js_eval',
+    'For every state, project each visible nlb body mesh rect and assert it does not intersect any nlbPanelRects() rect; assert each body label rect is fully outside them too.',
+    'OPEN',
+    ARRAY['connected_bodies']::text[],
+    ARRAY[]::text[],
+    'lom-a billboard mass legibility 2026-07-30',
+    'incident'
+);
+
+-- (13) OPEN, same walk, lower severity. Also PRE-EXISTING-WIDENED against the same baselines
+--      (STATE_6/STATE_7): the short m2 tag already touched the pulley rim pre-fix. Text stays
+--      legible (fill + stroke against grey) in BOTH versions - untidy, never unreadable.
+--      NOT APPLIED — candidate text only.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_body_label_overlaps_the_pulley_mesh',
+    'The hanging body billboard is drawn across the pulley disc instead of clearing it',
+    'MINOR',
+    'peter_parker:field3d_surgeon',
+    'The de-collision passes test the label against other TEXT (arrow labels, the other billboard) and against DOM panels, but never against opaque scenario geometry. The pulley is the one nlb mesh that sits directly above a body anchor, so it is the only mesh the label reliably lands on.',
+    'When a scenario adds a mesh that occupies the band a billboard is anchored into, add that mesh projected bounds to the label obstacle set - do not assume the obstacle set is text plus panels.',
+    'js_eval',
+    'Project the pulley mesh bounds and assert no nlb body label rect intersects it in any state.',
+    'OPEN',
+    ARRAY['connected_bodies']::text[],
+    ARRAY[]::text[],
+    'lom-a billboard mass legibility 2026-07-30',
+    'incident'
+);

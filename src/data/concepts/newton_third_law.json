@@ -644,7 +644,7 @@
             "body_b_id": "B",
             "force_N": 30,
             "release_at_ms": 420,
-            "repeat_every_ms": 7200
+            "repeat_every_ms": 7900
           },
           "arrows": [
             {
@@ -732,7 +732,7 @@
             "body_b_id": "B",
             "force_N": 30,
             "release_at_ms": 420,
-            "repeat_every_ms": 7200
+            "repeat_every_ms": 7900
           },
           "arrows": [
             {
@@ -820,7 +820,7 @@
             "body_b_id": "W",
             "force_N": 30,
             "release_at_ms": 593,
-            "repeat_every_ms": 7200
+            "repeat_every_ms": 9000
           },
           "arrows": [
             {
