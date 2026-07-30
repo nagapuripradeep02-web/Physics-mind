@@ -455,7 +455,7 @@
         }
       },
       "STATE_3": {
-        "label": "The wheel coasts with no push: friction reads about 0.10 N, not zero, and speed falls; raising μᵣ 60× stops the wheel mid-track",
+        "label": "The wheel coasts with no push: friction reads about 0.10 N, not zero, and speed falls; raising μᵣ 30× stops the wheel mid-track",
         "visible_elements": [],
         "camera_position": [3.0, 3.2, 9.0],
         "caption": "Rolling still has friction",
@@ -468,7 +468,7 @@
             { "id": "A", "label": "block", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.40, "mu_k": 0.40, "applied_force_N": 0, "ghost": true },
             { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 1.5, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 0 }
           ],
-          "param_ramp": { "param": "mu_k", "from": 0.002, "to": 0.12, "start_ms": 3000, "end_ms": 9000 },
+          "param_ramp": { "param": "mu_k", "from": 0.002, "to": 0.06, "start_ms": 3000, "end_ms": 6000 },
           "arrows": [
             { "body_id": "B", "show": ["weight", "normal"] }
           ],
