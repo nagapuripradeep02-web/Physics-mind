@@ -944,3 +944,72 @@ INSERT INTO engine_bug_queue (
 --     'lom-a spring choreography engine seam B 2026-07-30',
 --     'incident'
 -- );
+
+-- ============================================================
+-- WALL-ANCHORED SPRING (field3d_surgeon, 2026-07-30) — founder finding on
+-- newton_third_law STATE_3: "the spring is moving with the block. It should be
+-- locked to the wall." TEXT ONLY, NOT APPLIED.
+-- ============================================================
+
+-- (1) THE finding. CRITICAL, fixed this dispatch.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_spring_coil_slides_bodily_instead_of_staying_anchored_to_the_fixed_wall_face',
+    'A spring between a cart and a fixed wall slides bodily with the cart instead of staying bolted to the wall face',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'nlbFitSpring() mounted the coil at the MIDPOINT of the two body positions and gave it the gap as its length. That is correct and symmetric while BOTH bodies are free, but a wall-anchored spring has exactly ONE fixed end: with one body fixed, half of the free body''s displacement is handed to the mount point, so BOTH coil ends translate and the whole coil walks off the wall it is attached to. Measured on the real assembled renderer over one spring_action cycle: the wall-side coil end travelled 0.8466 m (the founder saw it as 640 px -> 628 px between t=0 and t=6000). The two loading phases that DO mount on a face (approach, ring) mounted on spring.between[0] — an authoring accident, not the anchored body — so a reversed pair mounted the coil on the moving cart instead.',
+    'A spring/push_off pair in which EITHER body is `fixed` mounts the coil on THAT body''s facing face in EVERY phase, for the life of the state; only the free end tracks. The mount is a phase-independent property of the apparatus (which body is bolted down), never a per-phase decision, and never derived from the authoring order of `spring.between`. Free-free pairs keep the midpoint mount unchanged.',
+    'js_eval',
+    'On a cart-vs-fixed-wall spring state, sample the coil''s anchored-end world position every frame of a full cycle (approach/compress/hold/release/coast). Assert (a) max-min of that coordinate < 1e-9, (b) its distance to the anchored body''s facing face < 1e-9 on every visible frame, and (c) the FREE end still travels > 0.3 world units, so the invariance is a pinned mount and not a frozen coil.',
+    'FIXED',
+    ARRAY['newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a wall-anchored spring fix 2026-07-30',
+    'incident'
+);
+
+-- (2) The independent sub-defect the same finding exposed. MAJOR, fixed this dispatch.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_spring_centre_midpoint_mount_leaves_an_air_gap_at_the_thinner_body_face',
+    'Centring the coil on the two body CENTRES (not on the gap) leaves a visible air gap at the thinner body and buries the other end inside the fatter one',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The mount was cx = (pA + pB)/2 — the midpoint of the two body CENTRES — while the coil''s length is the FACE-TO-FACE gap. Those two midpoints coincide only when the two bodies have equal half-extents. A cart (half 0.55 m) against a wall slab (half 0.275 m) therefore offsets the coil by (hA-hB)/2 = 0.1375 m: a visible gap at the SLAB face and 0.1375 m of coil buried inside the cart. Measured 0.1375 m at the mid-hold pin, exactly the predicted value. The rendered slab and the authoring contract''s 0.275 m half-width DO agree (BoxGeometry(0.275, 1.76, 1.43) is translated in Y only, verified 0.275 m / 0.550 m from the live faces), so this was pure mount arithmetic, not a geometry mismatch. Second-order: the mesh is rebuilt at a 0.02-world quantum while the mount used the UNQUANTISED length, so the residual (up to 0.01 world) was split across both seams instead of being hidden inside a body.',
+    'Mount a spanning object on a FACE, never on a centre midpoint, whenever the two hosts can have different half-extents; and offset by the MESH''s own quantised half-length, so the quantisation residual lands entirely on the end nobody reads (inside the moving body) instead of on the visible seam.',
+    'js_eval',
+    'For every visible frame of a spring state whose two bodies have different half-extents, assert the coil''s end-to-face distance is < 1e-9 at the anchored face and <= half a rebuild quantum at the free face.',
+    'FIXED',
+    ARRAY['newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a wall-anchored spring fix 2026-07-30',
+    'incident'
+);
+
+-- (3) Probe doctrine — the H2 "0.00%" demand is not well formed. MODERATE, OPEN.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'eye_h2_frozen_frames_of_moving_elements_wobble_sub_perceptually_so_zero_percent_is_not_a_valid_gate',
+    'H2 on a frozen frame containing a moving element wobbles a few hundredths of a percent between identical runs, so "H2 = 0.00%" cannot be used as a regression equality',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'Two EYE runs of the SAME committed code on the same concept returned different H2 percentages on frozen frames that contain a moving body (connected_bodies STATE_6__frozen 0.24% then 0.22%; free_body_diagram STATE_3__frozen 0.00% then 0.03% twice). A direct pixel diff of the two frames shows 4315 differing pixels inside a single 68x68 box with a MAXIMUM channel delta of 3/255 — sub-perceptual rasterizer/AA wobble, not geometry: a real displacement produces large channel deltas along edges. A dispatch that demands "H2 = 0.00%" as proof of no regression therefore fails for reasons unrelated to the change under test, and invites a surgeon to "fix" a non-defect.',
+    'State the no-regression criterion as "H2 PASSES its tolerance AND any non-zero percentage reproduces on the PRE-change renderer or has max channel delta <= 3", not as an equality to 0.00%. When a non-zero H2 appears, settle it with a pre/post pixel diff (bounding box + max channel delta), never by eyeballing the percentage.',
+    'manual',
+    'Re-seed and run visual:eyes on the unchanged renderer; diff the two frozen PNGs pixel-wise and report differing-pixel count, bounding box and max channel delta. Sub-3/255 deltas are rasterizer noise.',
+    'OPEN',
+    ARRAY['free_body_diagram','connected_bodies']::text[],
+    ARRAY['src/scripts/visual_eyes.ts']::text[],
+    'lom-a wall-anchored spring fix 2026-07-30',
+    'probe_definition'
+);
