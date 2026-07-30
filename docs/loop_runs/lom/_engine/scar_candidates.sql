@@ -1103,3 +1103,141 @@ INSERT INTO engine_bug_queue (
 --     'port seam 5 (lom-a wall-anchored spring) 2026-07-31',
 --     'probe_definition'
 -- );
+
+-- ============================================================
+-- PORT SEAM 6 (lom-a f234aea + ff6939c + 651d3cf -> feat/lom-third-law-port,
+-- 2026-07-31). MASS LEGIBILITY. Ported as the NET END STATE of three lom-a
+-- commits, not as the sequence: 651d3cf retires the on-block sprite f234aea
+-- introduced, so that sprite was never created on this branch. Re-measured here
+-- on the real assembled renderer with src/scripts/_scratch_nlb_mass_label_probe.ts
+-- (25/25 PASS). TEXT ONLY, NOT APPLIED.
+-- ============================================================
+
+-- (1) THE finding. MAJOR, fixed this dispatch.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_hud_and_body_labels_never_show_mass_so_an_unequal_mass_state_is_unreadable',
+--     'The newtons_laws_body HUD and body labels never render a mass, so an unequal-mass state is indistinguishable on screen',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'The value-only HUD enumerated the state''s readouts[] enum, which is a list of OUTPUTS (N, f, a, v, T, F_net, F_applied). Mass is a PARAMETER, so it appeared on no surface at all: the body billboard rendered the bare identifier and the HUD group header was (a) emitted only for multi-body states and (b) the identifier alone. newton_third_law STATE_2 therefore rendered a 4 kg cart and a 12 kg cart as two blocks of identical size (Rule 29 forbids sizing by mass, correctly) captioned "m1" and "m2" with no number anywhere - the mass RATIO the state exists to teach was not on screen in any form.',
+--     'Every quantity a state''s narration or claim names must be RENDERED somewhere (Rule 24: the sim reads sound-off). A parameter is not exempt: an enum of outputs is not a sufficient HUD contract for a scenario whose lesson is a ratio between inputs. Render it from ONE formatter shared by every text path, driven off the ENGINE record so a live slider drag moves it.',
+--     'js_eval',
+--     'On a two-body state with unequal masses, intercept CanvasRenderingContext2D.fillText and assert the two body billboards draw DIFFERENT strings whose measured ink widths differ; assert the DOM HUD contains one header per body naming each mass; assert a mass-slider write changes exactly one billboard.',
+--     'FIXED',
+--     ARRAY['newton_third_law','connected_bodies','free_body_diagram','block_on_incline','friction_force','newton_first_law','newton_second_law','normal_force','rolling_friction','tension_force']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'port seam 6 (lom-a mass labels) 2026-07-31',
+--     'incident'
+-- );
+
+-- (2) The retired first attempt, kept as DOCTRINE: this is why the value rides a
+--     billboard and not the block. MAJOR. Never shipped on this branch - the
+--     on-face sprite was SKIPPED, not landed-then-removed.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'value_text_painted_on_a_3d_object_face_shears_and_shrinks_until_it_reads_as_no_value_at_all',
+--     'A number painted across a 3D object own face is sheared by perspective and shrinks with the object, so the founder reads it as the value not showing',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'The first fix wrote the mass across the block +z face, arguing the cube silhouette made the Rule-34d collision guarantee structural. It does - but on a 0.55-world-unit cube the string is ~30 screen px of dark ink on a saturated body colour, it follows the box surface so perspective SHEARS it, and it scales with the object. The founder report of that build was "m1 and m2 is not showing": the identifier billboards were rendering correctly and it was the VALUE that was invisible. No font size rescues it, because the failure is projective, not typographic.',
+--     'A VALUE a teacher must read goes on a camera-facing billboard (constant glyph height, no shear, renderOrder above the scene), never painted onto a 3D surface. Surface text is for decoration and for labels that may legitimately vanish at an oblique angle. Corollary: one surface per fact (Rule 34b) - never render the same value twice to hedge legibility.',
+--     'manual',
+--     'Zoom a rendered frame 5x at the object and read the value. If it is sheared with the face or under ~40 px of ink, it is on the wrong surface.',
+--     'FIXED',
+--     ARRAY['newton_third_law']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'port seam 6 (lom-a mass labels) 2026-07-31',
+--     'incident'
+-- );
+
+-- (3) Rule 34d consequence #1. MAJOR, fixed this dispatch.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_explore_hud_panel_slider_overlap',
+--     'The nlb HUD and the slider panel share the right edge from opposite anchors, so a tall HUD bleeds its last rows behind the sliders',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'The HUD is anchored top-right and the control panel bottom-right, both fixed, both sized by content. Adding an unconditional per-body group header pushed the explore-state HUD (2 headers + 12 rows) far enough down that its last rows rendered behind the m1 slider row. CSS cannot express "stop before that other fixed panel", so nothing caught it statically.',
+--     'When two fixed overlays share an edge from opposite anchors, the growing one MEASURES the other and reflows through a ladder that stops at the first step that fits - and the ladder is re-run AFTER the per-state panel toggle, because the floor moves per state. A state that already fits must land on step 0 byte-identically, so no existing baseline moves.',
+--     'js_eval',
+--     'On every state, assert readoutRect.bottom <= sliderRect.top when both panels are shown, and that a state whose HUD fits reports the AUTHORED font/padding (no reflow applied).',
+--     'FIXED',
+--     ARRAY['connected_bodies','tension_force','newton_third_law']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'port seam 6 (lom-a mass labels) 2026-07-31',
+--     'incident'
+-- );
+
+-- (4) Rule 34d consequence #2. MODERATE, fixed this dispatch.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_falling_body_label_hidden_by_control_panel',
+--     'A hanging body descends under the fixed slider panel and its label - now carrying the mass - is occluded exactly while it is the thing to read',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'No 3D object can draw over a DOM overlay. A hanging body landing zone sits directly under the bottom-right control panel, so as the body fell its billboard went behind the panel. Harmless while the billboard was a two-glyph identifier; not harmless once it carries the number. The same move also made the billboard ~4x wider, so two carts at closest approach overlapped each other outright.',
+--     'A label whose host can travel under a fixed DOM panel dodges: reset to the build-time home pose every pass (so no offset accumulates), stack any pair whose MEASURED ink rects overlap, then slide along a world axis until the projected ink rect clears the panel edge, capped. Pure function of the current pose and the current rects - no clock, no accumulation, byte-stable under a frozen pin. Ease the stack lift out over a separation band so a separating pair never JUMPS (Rule 32b).',
+--     'js_eval',
+--     'Sample a hanging/approaching state across its whole motion; assert no visible body-label ink rect intersects any panel rect on any frame, and that two frozen pins 20 frames apart are byte-identical.',
+--     'FIXED',
+--     ARRAY['connected_bodies','newton_third_law','tension_force']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'port seam 6 (lom-a mass labels) 2026-07-31',
+--     'incident'
+-- );
+
+-- (5) Rule 34d consequence #3. MODERATE, fixed this dispatch.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_slider_mass_label_unrounded_precision',
+--     'An interpolated slider write reaches the on-screen mass verbatim, so a drag renders 8.4642 kg',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'The explore auto-sweep and THE EYE slider driver both write INTERPOLATED values, not step-quantised ones. The mass formatter allowed 3 dp, so the raw drag value reached the billboard, the HUD header and the slider row unchanged. Measured on the real renderer: writing 8.4642 to the m slider put "8.4642" on screen.',
+--     'Round at the ONE formatter every surface goes through, at the precision the control own step implies (1 dp for a 0.5 kg step), with a fallback for values below that precision. Never round per call site - a second surface added later inherits the hole.',
+--     'js_eval',
+--     'Write an off-grid value to a mass slider and assert every surface (sprite ink, HUD span, slider row) shows the same 1-dp string and that the raw value appears nowhere.',
+--     'FIXED',
+--     ARRAY['connected_bodies','free_body_diagram','newton_third_law']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'port seam 6 (lom-a mass labels) 2026-07-31',
+--     'incident'
+-- );
+
+-- (6) Directive for the orchestrator: unlike seams 1-5, THIS one is reachable for
+--     the shipped fleet. OPEN.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'engine_seam_that_makes_a_parameter_visible_is_reachable_for_every_shipped_concept_on_that_scenario',
+--     'A port seam that adds a value to a SHARED engine surface moves shipped baselines even though the ported feature itself is unauthored',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'Seams 1-5 of this port were statically unreachable for all 145 concepts (zero of them author push_off, spring_action, a nlb spring or a fixed body), so validate:concepts was byte-identical stashed vs applied and no EYE pass was owed. Seam 6 is different in kind: the mass rendering is UNCONDITIONAL and engine-generic by design (lom-a chose zero per-concept authoring), and all ten shipped newtons_laws_body concepts DO have labelled bodies with masses, so every one of their body billboards and HUD headers changes text. validate:concepts is STILL byte-identical, because the change is renderer-side only - which is exactly why the validator cannot be the gate here.',
+--     'Before landing a port seam, classify it as UNREACHABLE (prove with a stashed-vs-applied validator diff PLUS an authoring grep) or REACHABLE. A reachable seam owes an EYE pass on the shipped concepts that exercise it, and its H2 movement is an EXPECTED text re-baseline (Rule 34e), not a regression - but the founder decides that, never the surgeon.',
+--     'manual',
+--     'Re-seed and run visual:eyes on rolling_friction, tension_force and free_body_diagram. Expect H2 movement confined to label/HUD text regions; any geometry movement (arrow endpoints, body positions, spring ends) is a STOP.',
+--     'OPEN',
+--     ARRAY['block_on_incline','connected_bodies','free_body_diagram','friction_force','newton_first_law','newton_second_law','newton_third_law','normal_force','rolling_friction','tension_force']::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'port seam 6 (lom-a mass labels) 2026-07-31',
+--     'directive'
+-- );
