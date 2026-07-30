@@ -953,6 +953,7 @@ ${pilotHeadTags(1)}
   var stateNames = {};                 // { stateIndex: "custom title" }
   var widgetStates = {};               // { widgetKey: 'show'|'hide' } — sim ⚙ overrides
   var dirty = false;                   // unsaved changes present?
+  function countKeys(o) { var n = 0, k; for (k in o) { if (Object.prototype.hasOwnProperty.call(o, k)) n++; } return n; }
   function loadLayout() {
     try {
       var d = JSON.parse(localStorage.getItem(LS_LAYOUT) || 'null');
@@ -1015,7 +1016,8 @@ ${pilotHeadTags(1)}
         buildRail();
         sendWidgetVis();
         updateWgBtn();
-        goToState(0, false);
+        pmt('layout_pull', { states: order.length, hidden_n: countKeys(hiddenStates), renamed_n: countKeys(stateNames) });
+        goToState(0, false, 'layout_pull');
       }).catch(function () {});
     });
   }
@@ -1061,7 +1063,20 @@ ${pilotHeadTags(1)}
   var playing = false;        // play-intent: timeline should advance whenever not frozen
   var audioEl = new Audio();  // single reused element for stored narration clips → overlap impossible
   audioEl.preload = 'auto';
-  audioEl.addEventListener('error', function () { /* missing/blocked clip → silent; never blocks the clock */ });
+  // Narration that silently fails to load looks identical to narration that is off,
+  // so a broken/missing clip could sit unnoticed for weeks. Capped one per kind per
+  // page load: an autoplay block fires on EVERY pre-gesture load by design, and is
+  // expected noise rather than a fault.
+  function audioErr(kind) {
+    if (!kind || audioErrKinds[kind]) return;
+    audioErrKinds[kind] = 1;
+    pmt('audio_error', { kind: String(kind).slice(0, 40), state_id: cur() ? cur().id : null });
+  }
+  audioEl.addEventListener('error', function () {
+    var c = 0;
+    try { c = (audioEl.error && audioEl.error.code) || 0; } catch (e) {}
+    audioErr('media_' + c);   // 4 = src not supported / 404 — the actionable one
+  });
   var pendingRoll = null;     // state id we asked to render and want to roll on STATE_REACHED
   var scrubbing = false;
   // ── Clock-driven reveal timeline (Rule 26) ──
@@ -1071,6 +1086,12 @@ ${pilotHeadTags(1)}
   var spokenSi = -1;          // sentence index whose utterance was last started (audio dedupe)
   var loopHandle = null;      // setInterval handle for the reveal loop
   var ended = false;          // end-latch + transition suppression while the clock is stale
+  var stateCompleted = false; // per-visit latch for the state_complete event
+  var paramTimers = {};       // per-parameter debounce timers for streamed PARAM_UPDATEs
+  var paramLast = {};         // last streamed value per parameter, emitted on settle
+  var scrubFromMs = -1;       // sim clock at the START of the current scrub gesture
+  var fsIntentSrc = '';       // 'button' when SHE asked for fullscreen; else Esc/system
+  var audioErrKinds = {};     // one audio_error per kind per page load
   var dragFrom = -1;
   var simSurface = null;             // sim-overlay annotation surface (set up after the player)
   var boardSurface = null;           // whiteboard surface (set up after the player)
@@ -1189,17 +1210,27 @@ ${pilotHeadTags(1)}
     stopAudio();
     audioEl.src = './' + a.file;             // manifest path, e.g. ./audio/s1_1_en.mp3 (format-agnostic)
     var p = audioEl.play();
-    if (p && p.catch) p.catch(function () { /* autoplay-blocked / 404 → never block the clock */ });
+    if (p && p.catch) p.catch(function (err) {
+      audioErr((err && err.name) || 'PlayRejected');   // NotAllowedError = autoplay policy, expected
+    });
   }
   // Renderer never signals end-of-timeline, so detect it here. Auto-advance is
   // mute-independent (Rule 26c); the last state holds its final frame.
   function onTimelineEnd() {
     ended = true;
+    // "Did she let this state run to the end, or click away mid-explanation?" —
+    // state_reached is the entry ack, not completion, so this is the only signal
+    // that a state was actually watched through. Latched per visit (goToState
+    // clears it) so scrubbing back past the end cannot double-count.
+    if (!stateCompleted) {
+      stateCompleted = true;
+      pmt('state_complete', { state_id: cur() ? cur().id : null, at_ms: timelineTotal });
+    }
     // Auto-advance skips teacher-hidden states (explicit clicks still open them).
     var nextPos = idx + 1;
     while (nextPos < order.length && isHidden(order[nextPos])) nextPos++;
     if (autoEl.checked && nextPos < order.length) {
-      goToState(nextPos, playing);
+      goToState(nextPos, playing, 'auto');
     } else if (cur() && cur().advance_mode === 'interaction_complete') {
       // Explore/sandbox state: never auto-freeze. Let the clock free-run so the
       // motion loops forever (the renderer's bead phase wraps % 1) and slider
@@ -1255,10 +1286,14 @@ ${pilotHeadTags(1)}
   // can explain over a still picture (and still drag-rotate it). SET_STATE
   // auto-releases the pin in the renderer, so changing state clears it.
   function readSimTimeMs() { try { return iframe.contentWindow.PM_simTimeMs || 0; } catch (e) { return 0; } }
-  function freeze() {
+  // src tells apart the four ways a teacher can stop the sim — the Pause button,
+  // Spacebar, tapping the canvas, or picking up the pen. They read identically in
+  // the data otherwise, and "does anyone find tap-to-pause?" is a real question
+  // (the tap cue exists precisely because reviewers missed it).
+  function freeze(src) {
     if (frozen) return;
     frozen = true;
-    pmt('pause', { at_ms: readSimTimeMs() });
+    pmt('pause', { at_ms: readSimTimeMs(), src: src || 'unknown' });
     retireTapCue();                     // they discovered pause — stop hinting
     post({ type: 'SET_TIME_FREEZE', at_ms: readSimTimeMs() });   // pin clock → reveals hold (Rule 26b)
     try { stopAudio(); } catch (e) {}        // audio stops; play-intent survives
@@ -1266,10 +1301,10 @@ ${pilotHeadTags(1)}
     setPlayBtnUI(false);
     pausedBadge.style.display = 'block';
   }
-  function unfreeze() {
+  function unfreeze(src) {
     if (!frozen) return;
     frozen = false;
-    pmt('resume', { at_ms: readSimTimeMs() });
+    pmt('resume', { at_ms: readSimTimeMs(), src: src || 'unknown' });
     post({ type: 'SET_TIME_FREEZE', frozen: false });   // clock resumes from where it was pinned
     pausedBadge.style.display = 'none';
     playing = true;                     // resume (or tap-to-play an idle frame)
@@ -1277,7 +1312,7 @@ ${pilotHeadTags(1)}
     spokenSi = -1;
     playCurrent();                     // re-voice current sentence now (audio gated on mute inside)
   }
-  function toggleFreeze() { if (frozen) unfreeze(); else freeze(); }
+  function toggleFreeze(src) { if (frozen) unfreeze(src); else freeze(src); }
 
   // First-watch discoverability cue: reviewers/students often don't realise the
   // sim can be paused by tapping it (reviewer Asmi, 2026-06-16 — "I thought I
@@ -1503,7 +1538,7 @@ ${pilotHeadTags(1)}
         card.appendChild(numEl); card.appendChild(ttl); card.appendChild(grip);
         grip.addEventListener('click', function (ev) { ev.stopPropagation(); openRowMenu(si, grip); });
         ttl.addEventListener('dblclick', function (ev) { ev.stopPropagation(); startRename(si); });
-        card.addEventListener('click', function () { railTouched = true; pause(); goToState(pos, false); });
+        card.addEventListener('click', function () { railTouched = true; pause(); goToState(pos, false, 'rail'); });
         card.addEventListener('dragstart', function (e) { dragFrom = pos; card.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(pos)); } catch (_) {} });
         card.addEventListener('dragend', function () { card.classList.remove('dragging'); clearDragOver(); dragFrom = -1; });
         card.addEventListener('dragover', function (e) { e.preventDefault(); card.classList.add('dragover'); });
@@ -1579,10 +1614,14 @@ ${pilotHeadTags(1)}
 
   // Move to the given order-position. autoRoll = start the timeline on entry (reveals always
   // play once rolled; audio follows mute). Else: idle on the opening frame until Play (Rule 26).
-  function goToState(pos, autoRoll) {
+  // src names HOW she got here — rail click, keyboard, fullscreen chevron, auto-advance,
+  // replay, first open, or a layout pulled from another device. Without it every arrival
+  // looks identical, and "does anyone actually use the rail?" is unanswerable.
+  function goToState(pos, autoRoll, src) {
     idx = Math.max(0, Math.min(order.length - 1, pos));
     window.PM_STATE_ID = cur().id;
-    pmt('state_open', { state_id: cur().id, pos: idx, auto: autoRoll === true });
+    stateCompleted = false;   // per-visit latch: state_complete fires once per entry
+    pmt('state_open', { state_id: cur().id, pos: idx, auto: autoRoll === true, src: src || 'unknown' });
     if (frozen) { frozen = false; pausedBadge.style.display = 'none'; }  // SET_STATE releases the pin
     try { stopAudio(); } catch (e) {}
     caption.textContent = '';
@@ -1622,13 +1661,23 @@ ${pilotHeadTags(1)}
 
   playBtn.addEventListener('click', function () {
     railTouched = true;
-    if (playing && !frozen) { freeze(); }            // playing → pause-hold
-    else if (frozen && playing) { unfreeze(); }      // paused mid-play → resume
+    if (playing && !frozen) { freeze('button'); }            // playing → pause-hold
+    else if (frozen && playing) { unfreeze('button'); }      // paused mid-play → resume
     else { play(); }                                 // idle / ended → roll from top
   });
-  replayBtn.addEventListener('click', function () { pmt('replay', {}); pause(); goToState(idx, true); });
+  replayBtn.addEventListener('click', function () { pmt('replay', {}); pause(); goToState(idx, true, 'replay'); });
   defaultOrderBtn.addEventListener('click', resetOrder);
-  saveBtn.addEventListener('click', function () { saveLayout(); pmt('layout_save', {}); });
+  saveBtn.addEventListener('click', function () {
+    saveLayout();
+    // The persisted layout's CONTENT was unrecoverable from telemetry — you could
+    // only replay reorder/rename/hide events and guess which preceded the save.
+    pmt('layout_save', {
+      order: order.slice(),
+      hidden_n: countKeys(hiddenStates),
+      renamed_n: countKeys(stateNames),
+      widget_overrides_n: widgetOverrideCount()
+    });
+  });
   // Subtitles: show/hide the caption box (independent of audio mute — a muted teacher
   // can still read along). Teacher-wide preference (LS_CC).
   function applySubs() {
@@ -1659,6 +1708,11 @@ ${pilotHeadTags(1)}
   // rAF-throttle the jump so a fast drag doesn't spam the iframe → smooth scrubbing.
   var scrubRaf = 0, scrubPending = 0;
   scrubEl.addEventListener('input', function () {
+    // Snapshot the pre-scrub clock on the FIRST input of the gesture — the jump is
+    // posted in a later rAF, so the iframe clock still reads the old time here.
+    // Direction and distance are the signal: skipping forward past an explanation
+    // reads very differently from scrubbing back to repeat one.
+    if (!scrubbing) scrubFromMs = readSimTimeMs();
     scrubbing = true;
     var ms = parseInt(scrubEl.value, 10) || 0;
     scrubPending = ms;
@@ -1675,7 +1729,14 @@ ${pilotHeadTags(1)}
   // Release: SET_TIME_JUMP holds, so if we were playing we must un-pin to resume.
   scrubEl.addEventListener('change', function () {
     scrubbing = false;
-    pmt('scrub', { to_ms: parseInt(scrubEl.value, 10) || 0 });
+    var toMs = parseInt(scrubEl.value, 10) || 0;
+    pmt('scrub', {
+      from_ms: scrubFromMs < 0 ? null : scrubFromMs,
+      to_ms: toMs,
+      max_ms: parseInt(scrubEl.max, 10) || 0,
+      dir: (scrubFromMs >= 0 && toMs < scrubFromMs) ? 'back' : 'fwd'
+    });
+    scrubFromMs = -1;
     if (playing) {
       post({ type: 'SET_TIME_FREEZE', frozen: false });
       frozen = false;
@@ -1704,7 +1765,7 @@ ${pilotHeadTags(1)}
       doc.addEventListener('change', function (ev) {
         var el = ev.target;
         if (!ev.isTrusted || !el) return;
-        if (el.type === 'range') pmt('slider_change', { slider: el.id || el.name || 'unnamed', value: el.value });
+        if (el.type === 'range') pmt('slider_change', { slider: el.id || el.name || 'unnamed', value: el.value, via: 'dom' });
         else if (el.tagName === 'SELECT') pmt('sim_select', { control: el.id || el.name || 'unnamed', value: el.value });
       }, true);
       doc.addEventListener('click', function (ev) {
@@ -1755,7 +1816,7 @@ ${pilotHeadTags(1)}
       applyMuteUI();
       startLoop();
       pmLoadDone();
-      goToState(0, false);   // open the first state on its opening frame; Play to roll
+      goToState(0, false, 'init');   // open the first state on its opening frame; Play to roll
     } else if (t === 'STATE_REACHED') {
       pmt('state_reached', { state_id: e.data.state });
       if (pendingRoll && e.data.state === pendingRoll) {
@@ -1763,8 +1824,22 @@ ${pilotHeadTags(1)}
         rollTimeline();
       }
     } else if (t === 'PARAM_UPDATE') {
-      // Explorer scenarios announce param changes explicitly (e.g. ac_generator).
-      pmt('slider_change', { slider: e.data.param || 'param', value: e.data.value, explorer: e.data.explorer_id || null });
+      // Explorer scenarios announce param changes explicitly (e.g. ac_generator),
+      // and dragging a 3D object streams one message PER MOUSEMOVE — a five-second
+      // drag was ~400 telemetry rows, which blew past FLUSH_AT and evicted other
+      // events from the queue. Debounce per parameter and record where the drag
+      // SETTLED, which is the value she actually chose.
+      // e.data.key is the parametric/graph renderers' field name for the same thing;
+      // reading only e.data.param logged every canvas slider as the literal "param".
+      var pName = e.data.param || e.data.key || 'param';
+      var pKey = (e.data.explorer_id || '') + ':' + pName;
+      paramLast[pKey] = { slider: pName, value: e.data.value, explorer: e.data.explorer_id || null, via: 'stream' };
+      if (paramTimers[pKey]) clearTimeout(paramTimers[pKey]);
+      paramTimers[pKey] = setTimeout(function () {
+        paramTimers[pKey] = 0;
+        var last = paramLast[pKey];
+        if (last) { pmt('slider_change', last); paramLast[pKey] = null; }
+      }, 450);
     } else if (t === 'WIDGET_VIS_STATE') {
       // Sim reports EFFECTIVE widget visibility (state default ∘ overrides) —
       // keeps the ⚙ panel's switches matching what's actually on screen.
@@ -1785,7 +1860,7 @@ ${pilotHeadTags(1)}
         }
       }
     } else if (t === 'CANVAS_TAP') {
-      toggleFreeze();
+      toggleFreeze('tap');
     } else if (t === 'SIM_ERROR') {
       // Relayed by the error hook inside sim.html. Re-slice here too: any
       // window can postMessage, so never trust payload sizes from outside.
@@ -1808,9 +1883,9 @@ ${pilotHeadTags(1)}
   // presenter clickers send Page keys, not arrows, §6) step the (possibly reordered) sequence.
   window.addEventListener('keydown', function (e) {
     armIdle();
-    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggleFreeze(); }
-    else if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); var nR = nextVisible(idx, 1); if (nR >= 0) { pause(); goToState(nR, false); } }
-    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); var nL = nextVisible(idx, -1); if (nL >= 0) { pause(); goToState(nL, false); } }
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggleFreeze('space'); }
+    else if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); var nR = nextVisible(idx, 1); if (nR >= 0) { pause(); goToState(nR, false, 'key'); } }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); var nL = nextVisible(idx, -1); if (nL >= 0) { pause(); goToState(nL, false, 'key'); } }
   });
 
   // ════════════════════════════════════════════════════════════════════════
@@ -1931,7 +2006,7 @@ ${pilotHeadTags(1)}
       var pt = toLocal(e);
       if (TOOL.tool === 'eraser') { erasing = true; eraseHits = []; eraseAt(pt); e.preventDefault(); return; }
       drawing = true;
-      curStroke = { tool: TOOL.tool, color: TOOL.color, size: TOOL.size, points: [pt] };
+      curStroke = { tool: TOOL.tool, color: TOOL.color, size: TOOL.size, points: [pt], t0: Date.now() };
       e.preventDefault();
     }
     function onMove(e) {
@@ -1948,7 +2023,16 @@ ${pilotHeadTags(1)}
     function onUp(e) {
       if (e.pointerId !== drawPid) return;
       drawPid = null;
-      if (erasing) { erasing = false; if (eraseHits.length) { ops.push({ type: 'erase', strokes: eraseHits.slice() }); redo.length = 0; persist(); } eraseHits = []; return; }
+      if (erasing) {
+        erasing = false;
+        if (eraseHits.length) {
+          ops.push({ type: 'erase', strokes: eraseHits.slice() }); redo.length = 0; persist();
+          // Erasing removes strokes rather than adding one, so it never reached
+          // onStroke — rubbing something out was invisible in the data.
+          if (opts.onErase) { try { opts.onErase(eraseHits.length); } catch (e2) {} }
+        }
+        eraseHits = []; return;
+      }
       if (!drawing || !curStroke) return;
       drawing = false;
       if (curStroke.points.length) {
@@ -1957,7 +2041,7 @@ ${pilotHeadTags(1)}
         ops.push({ type: 'add', stroke: curStroke });
         redo.length = 0;
         growSpacer(); persist(); render();
-        if (opts.onStroke) { try { opts.onStroke(curStroke); } catch (e2) {} }
+        if (opts.onStroke) { try { opts.onStroke(curStroke, { w: cssW, h: cssH }); } catch (e2) {} }
       }
       curStroke = null;
     }
@@ -1972,6 +2056,7 @@ ${pilotHeadTags(1)}
       if (op.type === 'add') { var k = strokes.indexOf(op.stroke); if (k >= 0) strokes.splice(k, 1); }
       else if (op.type === 'erase' || op.type === 'clear') { for (var i = 0; i < op.strokes.length; i++) strokes.push(op.strokes[i]); }
       redo.push(op); growSpacer(); persist(); render();
+      if (opts.onOp) { try { opts.onOp('undo', op.type); } catch (e2) {} }
     }
     function redoOp() {
       var op = redo.pop(); if (!op) return;
@@ -1979,12 +2064,15 @@ ${pilotHeadTags(1)}
       else if (op.type === 'erase') { for (var i = 0; i < op.strokes.length; i++) { var k = strokes.indexOf(op.strokes[i]); if (k >= 0) strokes.splice(k, 1); } }
       else if (op.type === 'clear') { strokes.length = 0; }
       ops.push(op); growSpacer(); persist(); render();
+      if (opts.onOp) { try { opts.onOp('redo', op.type); } catch (e2) {} }
     }
     function clear() {
       if (!strokes.length) return;
+      var n = strokes.length;
       ops.push({ type: 'clear', strokes: strokes.slice() });
       strokes.length = 0; redo.length = 0;
       growSpacer(); persist(); render();
+      if (opts.onOp) { try { opts.onOp('clear', 'clear', n); } catch (e2) {} }
     }
     function setScroll(v) { scrollOffset = v; render(); growSpacer(); }
     function setDark(d) { bgIsDark = d; if (opts.scrollEl) opts.scrollEl.classList.toggle('dark', d); render(); }
@@ -2108,6 +2196,7 @@ ${pilotHeadTags(1)}
     document.body.classList.remove('dragging');
     railEl.style.transition = '';   // restore the collapse animation for click-toggles
     if (!railMoved) { railCollapsed = !railWasCol; pmt('rail_toggle', { collapsed: railCollapsed }); applyLayout(); }
+    else pmt('rail_resize', { width_px: Math.round(railWidth) });
     saveWbUI();
   });
 
@@ -2115,7 +2204,7 @@ ${pilotHeadTags(1)}
   var dragging = false, dragStartX = 0, dragStartBW = 0;
   dividerEl.addEventListener('pointerdown', function (e) { dragging = true; dragStartX = e.clientX; dragStartBW = boardWidth; try { dividerEl.setPointerCapture(e.pointerId); } catch (_) {} document.body.classList.add('dragging'); e.preventDefault(); });
   dividerEl.addEventListener('pointermove', function (e) { if (!dragging) return; boardWidth = dragStartBW + (dragStartX - e.clientX); applyLayout(); });
-  dividerEl.addEventListener('pointerup', function (e) { if (!dragging) return; dragging = false; try { dividerEl.releasePointerCapture(e.pointerId); } catch (_) {} document.body.classList.remove('dragging'); saveWbUI(); });
+  dividerEl.addEventListener('pointerup', function (e) { if (!dragging) return; dragging = false; try { dividerEl.releasePointerCapture(e.pointerId); } catch (_) {} document.body.classList.remove('dragging'); pmt('board_resize', { width_px: Math.round(boardWidth) }); saveWbUI(); });
 
   // ── Collapse the whole bottom control band (scrubbar + footer) for max sim ──
   var scrubbarEl = document.getElementById('scrubbar');
@@ -2144,10 +2233,20 @@ ${pilotHeadTags(1)}
   var fsStateReadout = document.getElementById('fsStateReadout');
   function inFullscreen() { return document.fullscreenElement || document.webkitFullscreenElement; }
   fsBtn.addEventListener('click', function () {
-    pmt('fullscreen_toggle', { on: !inFullscreen() });
+    // Intent only — the event itself is emitted by onFsChange, the single source of
+    // truth. The old click-time emit recorded toggles that never happened (a rejected
+    // requestFullscreen) and missed every Esc exit entirely.
+    fsIntentSrc = 'button';
     if (!inFullscreen()) {
-      if (fsScopeEl.requestFullscreen) fsScopeEl.requestFullscreen();
-      else if (fsScopeEl.webkitRequestFullscreen) fsScopeEl.webkitRequestFullscreen();
+      var pr = null;
+      if (fsScopeEl.requestFullscreen) pr = fsScopeEl.requestFullscreen();
+      else if (fsScopeEl.webkitRequestFullscreen) pr = fsScopeEl.webkitRequestFullscreen();
+      try {
+        if (pr && pr.catch) pr.catch(function (err) {
+          fsIntentSrc = '';
+          pmt('fullscreen_error', { message: String((err && err.message) || err).slice(0, 200) });
+        });
+      } catch (e) {}
     } else {
       if (document.exitFullscreen) document.exitFullscreen();
       else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
@@ -2163,8 +2262,8 @@ ${pilotHeadTags(1)}
     fsNextBtn.disabled = nextVisible(idx, 1) < 0;
     if (fsStateReadout) fsStateReadout.textContent = 'STATE ' + (idx + 1) + ' / ' + order.length;
   }
-  fsPrevBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, -1); if (n >= 0) { pause(); goToState(n, false); } });
-  fsNextBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, 1); if (n >= 0) { pause(); goToState(n, false); } });
+  fsPrevBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, -1); if (n >= 0) { pause(); goToState(n, false, 'chevron_fs'); } });
+  fsNextBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, 1); if (n >= 0) { pause(); goToState(n, false, 'chevron_fs'); } });
 
   // ── Clean mode (§5) — strips the on-canvas caption/formula/HUD/sliders to a bare scene.
   // Independent of the #ctlToggle panel. Never persisted: onFsChange resets it to off on
@@ -2203,6 +2302,10 @@ ${pilotHeadTags(1)}
 
   function onFsChange() {
     var on = !!inFullscreen();
+    // The ONLY fullscreen_toggle emit: fires once per real change, so an Esc exit
+    // (previously invisible) is recorded, and a rejected request never is.
+    pmt('fullscreen_toggle', { on: on, src: fsIntentSrc || 'esc_or_system' });
+    fsIntentSrc = '';
     fsScopeEl.classList.toggle('pm-fs', on);
     if (fsIcon) fsIcon.innerHTML = on ? '\\u2715' : '\\u26F6';   // ✕ exit / ⛶ enter
     fsBtn.childNodes[fsBtn.childNodes.length - 1].nodeValue = on ? ' Exit full screen' : ' Full screen';
@@ -2217,10 +2320,34 @@ ${pilotHeadTags(1)}
 
   // ── Surfaces ────────────────────────────────────────────────────────────────
   loadWbUI();
+  // WHERE she draws is the product signal — which part of a diagram gets circled,
+  // state after state. We record the stroke's bounding box normalised 0–1 against
+  // the canvas (resolution-independent, so a projector and a laptop are comparable)
+  // and deliberately NOT the stroke path: on the whiteboard that is handwriting,
+  // and a board can carry a student's name or marks (founder decision 2026-07-30).
+  function strokePayload(surface, s, box) {
+    var w = (box && box.w) || 1, h = (box && box.h) || 1;
+    var bb = s.bbox || null;
+    var r3 = function (v) { return Math.round(v * 1000) / 1000; };
+    return {
+      surface: surface,
+      at_ms: readSimTimeMs(),             // where in the state's timeline she drew
+      tool: s.tool,
+      color: s.color,
+      size: s.size,
+      points_n: s.points.length,
+      duration_ms: s.t0 ? (Date.now() - s.t0) : null,
+      bbox: bb ? [r3(bb.minX / w), r3(bb.minY / h), r3(bb.maxX / w), r3(bb.maxY / h)] : null
+    };
+  }
   simSurface = makeSurface(simOverlayEl, { scrolls: false, onActivate: function () { lastSurface = simSurface; },
-    onStroke: function (s) { pmt('pen_stroke', { surface: 'sim', at_ms: readSimTimeMs(), tool: s.tool, points: s.points.length }); } });
+    onStroke: function (s, box) { pmt('pen_stroke', strokePayload('sim', s, box)); },
+    onErase: function (n) { pmt('pen_erase', { surface: 'sim', removed: n, at_ms: readSimTimeMs() }); },
+    onOp: function (op, kind, n) { pmt('pen_' + op, { surface: 'sim', of: kind, strokes: n || null }); } });
   boardSurface = makeSurface(wbCanvasEl, { scrolls: true, scrollEl: boardScrollEl, spacerEl: wbSpacerEl, persistKey: 'pm_wb_' + CONCEPT_ID, onActivate: function () { lastSurface = boardSurface; },
-    onStroke: function (s) { pmt('pen_stroke', { surface: 'board', at_ms: readSimTimeMs(), tool: s.tool, points: s.points.length }); } });
+    onStroke: function (s, box) { pmt('pen_stroke', strokePayload('board', s, box)); },
+    onErase: function (n) { pmt('pen_erase', { surface: 'board', removed: n, at_ms: readSimTimeMs() }); },
+    onOp: function (op, kind, n) { pmt('pen_' + op, { surface: 'board', of: kind, strokes: n || null }); } });
   lastSurface = boardSurface;
   var restored = boardSurface.restore();
   boardScrollEl.addEventListener('scroll', function () { boardSurface.setScroll(boardScrollEl.scrollTop); });
@@ -2242,13 +2369,20 @@ ${pilotHeadTags(1)}
       var b = document.createElement('button');
       b.className = 'swatch'; b.setAttribute('data-color', col); b.style.background = col;
       b.title = col;
-      b.addEventListener('click', function () { TOOL.color = col; isDefaultColor = false; refreshSwatchSel(); });
+      b.addEventListener('click', function () {
+        TOOL.color = col; isDefaultColor = false; refreshSwatchSel();
+        pmt('pen_tool', { change: 'color', tool: TOOL.tool, color: TOOL.color, size: TOOL.size, custom: false });
+      });
       swatchWrap.appendChild(b);
     })(SWATCHES[ci]);
   }
-  colorInput.addEventListener('input', function () { TOOL.color = colorInput.value; isDefaultColor = false; refreshSwatchSel(); });
+  colorInput.addEventListener('input', function () {
+    TOOL.color = colorInput.value; isDefaultColor = false; refreshSwatchSel();
+    pmt('pen_tool', { change: 'color', tool: TOOL.tool, color: TOOL.color, size: TOOL.size, custom: true });
+  });
 
   function setTool(t) {
+    if (t !== TOOL.tool) pmt('pen_tool', { change: 'tool', tool: t, color: TOOL.color, size: TOOL.size });
     TOOL.tool = t;
     document.getElementById('wbPenBtn').classList.toggle('on', t === 'pen');
     document.getElementById('wbHiBtn').classList.toggle('on', t === 'highlighter');
@@ -2264,6 +2398,7 @@ ${pilotHeadTags(1)}
       btn.addEventListener('click', function () {
         TOOL.size = parseFloat(btn.getAttribute('data-size')) || 3;
         for (var j = 0; j < sizeBtns.length; j++) sizeBtns[j].classList.toggle('on', sizeBtns[j] === btn);
+        pmt('pen_tool', { change: 'size', tool: TOOL.tool, color: TOOL.color, size: TOOL.size });
       });
     })(sizeBtns[si]);
   }
@@ -2297,7 +2432,7 @@ ${pilotHeadTags(1)}
     simDrawBtn.classList.toggle('on', on);
     simMoveBtn.classList.toggle('on', !on);
     if (isDefaultColor) { TOOL.color = on ? SIM_DEFAULT_COLOR : boardDefaultColor(); refreshSwatchSel(); }
-    if (on) { lastSurface = simSurface; freeze(); }             // annotate a still frame (Rule 26b path)
+    if (on) { lastSurface = simSurface; freeze('draw'); }             // annotate a still frame (Rule 26b path)
   }
   simDrawBtn.addEventListener('click', function () { pmt('pen_used', { surface: 'sim' }); setSimDraw(true); });
   simMoveBtn.addEventListener('click', function () { setSimDraw(false); });
