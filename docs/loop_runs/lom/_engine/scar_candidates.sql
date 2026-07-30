@@ -1118,3 +1118,27 @@ INSERT INTO engine_bug_queue (
     'lom-a mass legibility follow-up 2026-07-30',
     'incident'
 );
+
+-- (9) Camera-rotated explore state: an on-table body's labels bleed through the slider panel. MODERATE, OPEN.
+--     Found by eye-walker on the lom-a mass-legibility follow-up (ff6939c). NOT a regression of that
+--     commit: it is the residual scope of the same dodge mechanism, reachable only by a teacher's own
+--     camera drag. Logged, deliberately NOT fixed (a third bug_class would breach Amendment 4).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_camera_rotated_body_label_bleed_through_slider_panel',
+    'After a teacher rotates the camera in an explore state, an on-table (non-falling) cart can project underneath the semi-transparent slider panel, and its mass number plus identifier bleed through faded and illegible instead of dodging clear',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'The label dodge added in ff6939c resets to the home pose, projects the real ink rect and slides the label pair clear of a visible overlay rect — correct and confirmed for a body that FALLS into the panel zone. But the projected rect depends on the camera, and an explore state lets the teacher rotate it (Rule 25d), which can move a body that never moves in world space into the panel zone. The dodge logic covers that case in principle; the observed frames show it not clearing, so either the cap (NLB_LABEL_DODGE_MAX 1.10 world) is too small for the rotated projection or the dodge axis (world x) is no longer the screen-clearing direction once the camera has turned.',
+    'A label dodge must clear the panel in SCREEN space, not along a fixed world axis: pick the slide direction from the projected panel edge normal and size the cap from the measured overlap in pixels, so the dodge stays correct under any camera the teacher can reach. Probe it with the camera rotated, not only at the authored camera.',
+    'js_eval',
+    'In an explore state, rotate the camera through a spread of azimuths; at each one project every visible mass/identifier ink rect and assert zero intersection with every visible DOM overlay rect. The authored camera alone is not sufficient coverage for any state that exposes camera drag.',
+    'OPEN',
+    ARRAY['connected_bodies']::text[],
+    ARRAY[]::text[],
+    'lom-a spring + mass engine fixes 2026-07-30',
+    'incident'
+);
