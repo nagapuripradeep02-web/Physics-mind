@@ -845,3 +845,102 @@ INSERT INTO engine_bug_queue (
 --     'lom-a spring choreography engine seam A 2026-07-30',
 --     'directive'
 -- );
+
+-- ═══════════════════════════════════════════════════════════════════════════
+-- SPRING CHOREOGRAPHY — ENGINE SEAM B (coil geometry) · 2026-07-30 · TEXT ONLY
+--   field3d_surgeon dispatch, ONE bug_class:
+--   nlb_spring_coil_geometry_does_not_follow_the_choreography_phases
+--   NOTHING BELOW IS APPLIED TO THE DATABASE.
+-- ═══════════════════════════════════════════════════════════════════════════
+
+-- (1) The seam-A row this dispatch CLOSES. bug_class is the upsert key, so this
+--     is an UPDATE of the existing OPEN row, never a second INSERT.
+-- UPDATE engine_bug_queue SET
+--     status = 'FIXED',
+--     fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     root_cause = root_cause || ' FIXED 2026-07-30 (seam B): with a live spring_action the drawn target is capped at NATURAL length in every phase, so the GAP does the compressing - the coil now shrinks natural->compressed across the scripted compression stroke and springs back out with the carts through the slowed release (measured: mesh 0.360 -> 0.800 world over 156 release frames, drawn == gap to 1e-6 on every frame). The compressed-now boolean survives only on the no-choreography path.'
+-- WHERE bug_class = 'nlb_spring_coil_holds_its_compressed_length_while_the_release_stroke_opens_the_gap';
+
+-- (2) The dispatched bug_class.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_spring_coil_geometry_does_not_follow_the_choreography_phases',
+--     'The spring_action phase machine drove the force and the clock but not the coil, so the state still opened at the compressed pose with no visible loading and the coil held one length while the carts moved',
+--     'CRITICAL',
+--     'peter_parker:field3d_surgeon',
+--     'Seam A gave the state a real choreography (approach/compress/hold/slowed release/coast) and published it (eng.spring_phase / spring_phase_ms / spring_progress), but every piece of GEOMETRY still read only the two body positions plus a compressed-now boolean. Three consequences, all visible: (a) the authored seed pose IS the fully-compressed pose (the release must integrate from it) and the latch writes no position, so the carts stood still through approach and compress - the compression stroke the founder asked for did not exist even though its beats did; (b) nlbFitSpring drew min(gap, compressed) while contact was open, so through the ~2.5 s slowed release the coil held 0.72 m inside a gap opening to 1.6 m; (c) the coil hid the instant the gap passed natural length, so it vanished mid-twang with no ring.',
+--     'Whenever a renderer adds a phase machine, every VISUAL channel of the apparatus must be re-derived from the published phase in the same seam - force, clock, geometry, visibility - or the phases exist only in the numbers. Concretely: (1) a latched/held body needs its pose SCRIPTED as a closed form of the phase (position = f(phase), never an integrator, so a freeze pin and a rewind are exact) and written through the ONE placement funnel; (2) a spring length is a continuous function of the beat, capped at natural, with the gap doing the compressing; (3) any phase that legitimately draws past the hide rule (a mounted coil not yet touching the second body; a post-release ring) states so explicitly rather than relaxing the rule globally; (4) a cosmetic flourish (the ring) is a LENGTH only - clamped to the live gap so it cannot overlap a body, never fed to the integrator, never moving a cart.',
+--     'js_eval',
+--     'For a state authoring spring_action: assert the published coil length (a) is within one rebuild quantum of natural through approach while the face-to-face gap CLOSES from natural + air to natural, (b) shrinks monotonically to 0.45*natural across compress with drawn == gap, (c) is steady at 0.45*natural through hold with the bodies exactly at their authored seed, (d) grows monotonically back to natural across the release with drawn == gap, (e) oscillates above AND below natural during the first ring window of coast and is hidden after it, and (f) never exceeds the live gap in any phase.',
+--     'FIXED',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a spring choreography engine seam B 2026-07-30',
+--     'incident'
+-- );
+
+-- (3) The reusable directive (the half that is not about springs).
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'renderer_latched_body_pose_must_be_a_scripted_closed_form_or_the_loading_beat_is_invisible',
+--     'A body held out of the integrator has no motion at all unless its pose is scripted, so every pre-release loading beat renders as a still frame',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'A latch (or any anchored/fixed branch) exists precisely so the integrator writes no position - which silently means the object cannot move during that window even when the taught beat IS a motion (loading a spring, winding a string, drawing a bow). The authored seed is normally the END of that motion, because the dynamic phase that follows must integrate from it, so the scripted beat has to run BACKWARDS out of the seed and return to it exactly.',
+--     'Script the held pose as a pure closed form of the published phase - position = f(phase), eased with a function whose derivative vanishes at both ends so the handover to the integrator has no velocity step - write it through the ONE placement funnel, clamp it to the same bounds the integrator uses, and make the last beat land EXACTLY on the authored seed. Never an accumulator and never a velocity integration for a scripted pose: under SET_TIME_FREEZE the phase is frozen, so the pose must be re-derivable bit for bit, and a rewind must reproduce it from the phase alone. A body that must not move (a wall / fixed body) takes none of the scripted travel; its partner takes all of it.',
+--     'js_eval',
+--     'For any scripted-pose window: pin the clock inside it and assert the position is byte-stable over N held frames and the screenshots are byte-identical; assert the final frame of the window equals the authored seed exactly; assert no position write happens once the window closes.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a spring choreography engine seam B 2026-07-30',
+--     'directive'
+-- );
+
+-- (4) A documented degradation, logged so the founder can overrule it.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_spring_seize_during_approach_hides_the_coil_until_the_carts_are_within_natural_length',
+--     'A teacher who grabs a cart before contact sees the spring disappear, because the approach-phase visibility exemption dies with the choreography',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'Rule 37 cancels the choreography on a trusted drag/slider (PM_nlbBodyDragged / PM_nlbSweepSeized), which publishes spring_phase = empty - and the exemption that lets the coil draw at natural length inside a WIDER gap is keyed on the approach phase. Seized mid-approach the carts correctly stay exactly where the script left them (measured: no teleport, sA unchanged to 4 dp), but the gap is still wider than natural, so the plain gap rule hides the coil until the teacher brings the carts back within 1.6 m, at which point it reappears and behaves as a normal spring. Self-healing and honest (a spring that touches nothing is drawing a force nobody applies) but visually abrupt.',
+--     'Decide once, for the fleet: either an apparatus object hides the moment it is not in contact (todays honest rule), or a state that DECLARES the object keeps it mounted on its host body for the whole state. Do not split the difference per phase - the ambiguity is what made the seized case surprising.',
+--     'js_eval',
+--     'Seize (set PM_nlbBodyDragged) at 35% through the approach phase and assert: the body positions do not change on the seize frame, spring_phase goes empty, and the coil either hides or equals min(gap, natural) - never a stale length.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a spring choreography engine seam B 2026-07-30',
+--     'incident'
+-- );
+
+-- (5) The honesty gap the brief explicitly fenced off (do not touch HUD numbers).
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_hud_reads_v_zero_while_the_scripted_loading_beat_visibly_moves_the_carts',
+--     'Through approach and compress the carts visibly converge while the HUD velocity row reads 0.00 m/s',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'The loading motion is a scripted stage-hand action, not a dynamical solution: the latched integrator branch reports the honest dynamics of a HELD body (a = 0, v = 0, f = the holder reaction) and overwrites b.v every frame, so the scripted closed-form velocity has nowhere to go. A state that shows the v readout during the loading beats therefore prints 0.00 m/s over visible motion. Not touched here because the HUD was explicitly out of scope for this dispatch.',
+--     'Either (a) omit v from readouts on the loading beats of a spring_action state (authoring fix, free), or (b) let the scripted pose publish its own closed-form velocity for the readout only, on the explicit understanding that a HELD body has zero DYNAMIC velocity - which needs a founder call on what the v row means during a stage-hand beat.',
+--     'js_eval',
+--     'During approach/compress of a spring_action state, assert that either the v readout row is hidden or the printed v matches the frame-to-frame change in the published body position.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a spring choreography engine seam B 2026-07-30',
+--     'incident'
+-- );
