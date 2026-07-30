@@ -35,9 +35,11 @@ SESSION'S OWN CHECKOUT — `<session cwd>/.claude/agents/` — not from the work
 `feat/field3d-draggable-sensor`, which is the branch the main checkout has checked out. Nothing to
 do with git worktrees as such; it is per-branch file presence in the session's own checkout.
 
-**FIX:** run the engine work from a session rooted IN THIS WORKTREE:
+**FIX:** run the engine work from a session rooted IN THIS WORKTREE — open a terminal there and
+start Claude Code from that directory:
 
-    claude --cwd C:\Tutor\physics-mind-lom-f
+    cd C:\Tutor\physics-mind-lom-f
+    claude
 
 That session sees `.claude/agents/field3d-surgeon.md` and dispatches it normally.
 
