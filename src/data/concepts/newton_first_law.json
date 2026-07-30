@@ -1,0 +1,406 @@
+{
+  "concept_id": "newton_first_law",
+  "concept_name": "Newton's First Law (Law of Inertia)",
+  "chapter": 8,
+  "section": "8.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "simple",
+  "source_book": "NCERT Class 11 Ch.5 Laws of Motion — table-of-contents reference only (Newton's first law / inertia is a standalone lead section, before Newton's second law); teaching authored from first principles. The atomic idea: a body's velocity stays exactly constant (including v = 0) unless a NET external force acts on it. Does NOT cover how much a net force changes velocity (newton_second_law), force pairs (newton_third_law), drawing all forces on a body (free_body_diagram), or the friction-threshold model (block_on_incline / friction_static_kinetic). Engine: the shared newtons_laws_body field_3d scenario (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md) — a flat surface (theta_deg = 0) carrying one body, gravity resolved into weight/normal, optional friction, no applied force, no pulley. All four states are expressible with the engine's existing config surface; ENGINE GAP: none.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+  "prerequisites": [
+    "instantaneous_velocity",
+    "friction_static_kinetic",
+    "normal_reaction"
+  ],
+  "real_world_anchor": {
+    "primary": "A space probe coasting between planets — its engines shut off years ago, and it has not slowed by a single meter per second, because nothing out there pushes it or drags it, so it keeps its velocity forever.",
+    "secondary": "Slide the same object across a rough table and it dies within half a meter; slide it across smooth ice and it glides much farther — the closer the surface gets to frictionless, the closer real life gets to the space probe."
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 25
+  },
+  "aha_moment": {
+    "state_id": "STATE_1",
+    "statement": "Nothing keeps something moving at constant velocity — only a net force changes it.",
+    "visual_confirmation": "The block glides the full length of the frictionless floor at an unchanging v while the net-force readout holds 0.00 the entire time; on the identical launch with friction switched on (STATE_2), a visible backward arrow appears and the block stops.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "friction_stopping": { "start": "STATE_2", "end": "STATE_2" },
+    "rest_equilibrium": { "start": "STATE_3", "end": "STATE_3" },
+    "explore": { "start": "STATE_4", "end": "STATE_4" }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "m": { "name": "mass", "unit": "kg", "min": 0.5, "max": 5, "default": 2, "step": 0.5 },
+      "F": { "name": "applied force", "unit": "N", "min": -4, "max": 4, "default": 0, "step": 0.5 },
+      "mu_s": { "name": "coefficient of static friction", "unit": "dimensionless", "min": 0, "max": 1, "default": 0, "step": 0.05 },
+      "mu_k": { "name": "coefficient of kinetic friction", "unit": "dimensionless", "min": 0, "max": 1, "default": 0, "step": 0.05 },
+      "v0": { "name": "initial velocity", "unit": "m/s", "min": -3, "max": 3, "default": 0, "step": 0.5 },
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "theta": { "name": "incline angle", "unit": "deg", "constant": 0 },
+      "N": { "name": "normal force", "unit": "N", "derived": "m * g * cos(radians(theta))" },
+      "w": { "name": "weight", "unit": "N", "derived": "m * g" }
+    },
+    "computed_outputs": {
+      "weight_N": { "formula": "m * g" },
+      "normal_N": { "formula": "m * g * cos(radians(theta))" },
+      "F_net_N": { "formula": "drive + kinetic_friction (0 if static-held)" },
+      "stop_time_s": { "formula": "v0 / (mu_k * g)" },
+      "stop_distance_m": { "formula": "v0^2 / (2 * mu_k * g)" }
+    },
+    "formulas": {
+      "N": "m * g * cos(radians(theta))",
+      "drive": "F - m * g * sin(radians(theta))",
+      "static_hold_condition": "abs(drive) <= mu_s * N",
+      "kinetic_friction": "-sign(v) * mu_k * N",
+      "a_moving": "(drive + kinetic_friction) / m",
+      "a_static_hold": "0",
+      "sum_F": "m * a"
+    },
+    "constraints": [
+      "g = 9.8 m/s^2 (Earth's surface, constant, theta = 0 throughout this concept)",
+      "ideal rigid body, no deformation, no air resistance or drag anywhere in this concept",
+      "under kinetic friction with theta = 0, deceleration a = -mu_k * g is mass-independent (m cancels)",
+      "static-hold condition abs(drive) <= mu_s * N is never near its threshold in any authored state",
+      "STOP_EPS_V = 0.01 m/s: velocity below this is treated as exactly zero by the engine",
+      "mass and weight are not the same physical quantity (w = m*g, not m itself)"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Frictionless coast: constant v, zero net force",
+        "duration": 16,
+        "focal_primitive_id": "nfl_s1_watch_v",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "No force — never slows",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "motion_needs_force_myth",
+          "frictionless_idealization",
+          "galileo_inclined_plane_argument"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nfl_s1_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Frictionless floor: block set moving once, keeps going forever",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s1_watch_v",
+            "position": { "x": 200, "y": 250 },
+            "text": "v holds constant, F_net = 0.00 the whole time",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s1_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a space probe coasting between planets — nothing pushes it, nothing drags it",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Watch the number v — it never changes.",
+              "glow": "nfl_s1_watch_v"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "This block was set moving once, and now glides forever on a frictionless floor, exactly like a space probe coasting between planets.",
+              "glow": "nfl_s1_anchor"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Net force reads zero the whole time: nothing pushes it, nothing drags it, so nothing changes its velocity.",
+              "glow": "nfl_s1_watch_v"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Contrast: same launch, friction on — a real force stops it",
+        "duration": 14,
+        "focal_primitive_id": "nfl_s2_friction_arrow",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through (declared contrast pair with STATE_1)",
+        "delta_cue": "Friction on — block stops",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nfl_s2_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Same launch, same v0 — friction switched on this time",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s2_friction_arrow",
+            "position": { "x": 200, "y": 250 },
+            "text": "arrow f k glows from frame 1, pointing backward",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s2_stop_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "block stops in ~4 s: a real named force, not motion wearing off",
+            "color": "#FFB300"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Same launch, same starting speed — but now a real backward force, friction, pushes from the surface.",
+              "glow": "nfl_s2_head"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the arrow f k glow from the very first frame.",
+              "glow": "nfl_s2_friction_arrow"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The block visibly slows and stops in about four seconds, not because motion wears off, but because this named force stops it.",
+              "glow": "nfl_s2_stop_note"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Moving things stop on their own; keeping something moving needs a continuous push (the Aristotelian default — every object the student has ever pushed eventually stopped).",
+            "visual_counter": "Two identical launches, same v0 — the ONLY change is friction. Frictionless, F_net stays 0.00 and the block never slows (STATE_1); with friction, a named, visible backward arrow does the stopping, and the block dies within a couple of meters.",
+            "one_line_fix": "Things don't stop on their own — a real backward force stops them."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Rest is balanced forces: N = mg, F_net = 0",
+        "duration": 12,
+        "focal_primitive_id": "nfl_s3_balance",
+        "advance_mode": "manual_click",
+        "motion_archetype": "null-result-hold",
+        "delta_cue": "At rest — forces balance",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "rest_means_no_forces",
+          "balanced_vs_zero_forces",
+          "net_force_vs_individual_forces"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nfl_s3_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "N = mg  =>  F_net = 0",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s3_balance",
+            "position": { "x": 200, "y": 250 },
+            "text": "weight mg down, normal N up — full-size arrows, both real",
+            "color": "#AB47BC"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s3_mass_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "drag m: both arrows rescale together, block never moves, F_net stays 0.00",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "This block sits still, yet two forces act on it: weight m g pulling down, and normal force N pushing up exactly as hard.",
+              "glow": "nfl_s3_balance"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "They balance exactly — net force sigma F stays zero — so the block never moves.",
+              "glow": "nfl_s3_head"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Rest means balanced forces, never absent ones.",
+              "glow": "nfl_s3_mass_note"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "An object at rest has no forces acting on it.",
+            "visual_counter": "Two full-length arrows sit on the resting block — mg down, N up — while the net-force readout is pinned at 0.00: big forces, zero net, zero motion.",
+            "one_line_fix": "Rest is balanced forces, not absent forces."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Explore: drive m, F, mu_s, mu_k, v0 — when does v change?",
+        "duration": 0,
+        "focal_primitive_id": "nfl_s4_key",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "All yours",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nfl_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Set mass, force, mu_s, mu_k, v0 — watch v, a, f, F_net, N",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s4_watch",
+            "position": { "x": 380, "y": 250 },
+            "text": "F = 0 and friction = 0 -> v stays exactly constant",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "nfl_s4_key",
+            "position": { "x": 380, "y": 440 },
+            "text": "F_net = 0  <=>  v constant",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Your turn — set mass, force, and the friction coefficients, and watch velocity, acceleration, and net force respond live.",
+              "glow": "nfl_s4_head"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "slider_controls": {
+      "m": { "min": 0.5, "max": 5, "step": 0.5, "default": 2, "label": "m" },
+      "F": { "min": -4, "max": 4, "step": 0.5, "default": 0, "label": "F" },
+      "mu_s": { "min": 0, "max": 1, "step": 0.05, "default": 0, "label": "μₛ" },
+      "mu_k": { "min": 0, "max": 1, "step": 0.05, "default": 0, "label": "μₖ" },
+      "v0": { "min": -3, "max": 3, "step": 0.5, "default": 0, "label": "v₀" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Frictionless coast: constant v, zero net force",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
+        "camera_position": [0, 2.03, 7.8],
+        "caption": "No force — never slows",
+        "show_sliders": true,
+        "formula_overlay": "ΣF = 0 ⇒ v = constant",
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 2, "initial_position_m": -8, "initial_velocity_mps": 1.0, "mu_s": 0, "mu_k": 0, "applied_force_N": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "net"] }
+          ],
+          "glow_focal": "nlb_body_A",
+          "readouts": ["v", "F_net"],
+          "controls_visible": []
+        }
+      },
+      "STATE_2": {
+        "label": "Contrast: same launch, friction on — a real force stops it",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
+        "camera_position": [0, 2.03, 7.8],
+        "caption": "Friction on — block stops",
+        "show_sliders": true,
+        "formula_overlay": "ΣF ≠ 0 ⇒ v changes",
+        "newtons_laws_body": {
+          "mode": "coast_with_friction",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 2, "initial_position_m": -8, "initial_velocity_mps": 1.0, "mu_s": 0.4, "mu_k": 0.025, "applied_force_N": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction", "net"] }
+          ],
+          "glow_focal": "nlb_arrow_A_friction",
+          "readouts": ["v", "f", "F_net"],
+          "controls_visible": []
+        }
+      },
+      "STATE_3": {
+        "label": "Rest is balanced forces: N = mg, F_net = 0",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
+        "camera_position": [0, 1.72, 5.2],
+        "caption": "At rest — forces balance",
+        "show_sliders": true,
+        "formula_overlay": "N = mg ⇒ ΣF = 0",
+        "newtons_laws_body": {
+          "mode": "rest_equilibrium",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 2, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0.5, "mu_k": 0.3, "applied_force_N": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "net"] }
+          ],
+          "glow_focal": "nlb_arrow_A_weight",
+          "readouts": ["N", "F_net"],
+          "controls_visible": ["m"],
+          "phases": [
+            { "id": "handoff_to_normal", "at_ms": 4000, "glow_focal": "nlb_arrow_A_normal" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Explore: drive m, F, mu_s, mu_k, v0 — when does v change?",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
+        "camera_position": [0, 2.34, 8.45],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "ΣF = 0 ⇔ v constant",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "m", "mass_kg": 2, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["weight", "normal", "friction", "applied", "net"] }
+          ],
+          "glow_focal": "nlb_body_A",
+          "readouts": ["v", "a", "f", "F_net", "F_applied", "N"],
+          "controls_visible": ["m", "F", "mu_s", "mu_k", "v0"],
+          "trusted_drag_seizes": true,
+          "idle_auto_sweep": { "param": "F", "range": [-4, 4] }
+        }
+      }
+    }
+  }
+}
