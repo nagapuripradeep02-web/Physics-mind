@@ -14,9 +14,37 @@ chapter_map (founder-approved 2026-07-30): rolling_friction, tension_force
   — plus this branch carries the already-authored normal_force + friction_force through to master,
     so the final merge lands the whole contact-force set at once.
 
-next: Phase 1 — author rolling_friction (architect → physics-author → json-author)
-in_flight: (none — Phase 0 sealed)
+next: FOUNDER VISUAL REVIEW of all four sims, plus one ruling (see OPEN DECISION below). After the
+      founder's verdict: shipper per approved concept → merge feat/lom-e-rolling-tension into master →
+      explicit `git push` (the hook deliberately does NOT auto-push master).
+in_flight: (none — both concepts authored, reviewed, fixed and re-verified)
 parked: (none)
+
+## OPEN DECISION for the founder — rolling_friction STATE_3's μᵣ ramp target
+
+Frame: `.visual_runs/rolling_friction/20260730-032252/STATE_3__frozen.png`
+The frozen frame is the canonical review screenshot, and it contradicts its own state title. Title and
+caption say rolling friction is NOT zero; by the time the reveal pin lands (param_ramp end 9000 → pin
+9500 ms) the ramped μᵣ has STOPPED the wheel, and a stopped body with no applied push genuinely reports
+f = 0.00 N. So the HUD reads `fₖ = 0.00 N` under "Rolling Friction Is Not Zero". The physics is correct
+and the narration's 0.10 N refers to the earlier coast phase — but the pinned frame argues against the
+claim, which is the same defect class as the μᵣ = "0.00" slider bug.
+  RECOMMENDATION: ramp μᵣ to ~0.06 instead of 0.12 so the wheel slows sharply but never fully stops,
+keeping a nonzero friction reading on screen at the pin. Costs only the word "stops" → "slows sharply".
+  ALTERNATIVE: accept it (the frame does show the payoff of raising μᵣ).
+  Found by the orchestrator reading the frame directly — BOTH re-walk eye-walker agents died on the
+600 s stream watchdog, so there is no independent full frame walk of the FINAL build. That gap is
+recorded honestly here rather than papered over; the deterministic gates (23/23 and 27/27), the
+JSON-level verification of every audit finding, and direct reads of the two decisive frames are what
+this build actually rests on.
+
+## RESIDUAL, non-blocking (auditor's own non-blocking list, unfixed by choice)
+- The per-state slider panel paints its full reserved height, so a one-slider state shows one live row
+  in a large mostly-empty black box. Correct per Rule 32d (reserved slots stop rows jumping between
+  states) but visually noisy fleet-wide. Renderer-level, worth a dedicated pass, not this branch.
+- `concept_panel_config` has no DB row for either new concept — but it has none for connected_bodies,
+  friction_force or normal_force either. Tracked as a systemic ~45-concept gap with its own work
+  package; the code-level CONCEPT_PANEL_MAP entries exist and the registration cross-check passes.
 
 done: Phase 0 — worktree + node_modules junction + .env.local; both lom branches merged (registration
       -site conflicts resolved by keeping BOTH entries); SEAM G + SEAM H landed at 76a8791 and
