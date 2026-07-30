@@ -26,6 +26,50 @@ engine_commits:
   76a8791  SEAM G (bodies[].shape 'wheel' + position-derived spin) + SEAM H (train, per-segment T₁/T₂)
   c214cf2  SEAM I  shared_applied_force — opt-in, an F write reaches every non-ghost surface body
 
+## REVIEW ROUND 1 outcome (2026-07-30) — both concepts FAILED on presentation, physics clean
+
+quality-auditor ∥ eye-walker on both concepts. **Every numeric claim in both concepts was independently
+re-derived and CONFIRMED** (the auditor re-derived from the engine source; eye-walker pixel-measured the
+arrow lengths — 39px weight vs 31px tension proving tension < weight, 43px vs 41px proving the equal
+pair, train gaps constant at 57–58px proving inextensibility). **Not one defect was physics.** All 12
+were rendered presentation, structure, or the shared explore-state gap — precisely the classes that pass
+every automated gate, which is why both reviewers are kept and run in parallel.
+
+**TWO reviewer disagreements, both settled by PROBING THE RUNTIME rather than trusting either report:**
+
+1. eye-walker proposed CRITICAL "sandbox physics dead, never moves again". A runtime probe
+   (`src/scripts/_scratch_rf_s5_probe.ts`) showed both bodies at exactly s = +6.000 — the track bound —
+   and motion resuming the instant they were repositioned. A FINITE TRACK, not a dead integrator.
+   eye-walker could not have seen the recovery path: THE EYE cannot fire trusted drag events. The
+   underlying product complaint was still valid and became the founder-approved SEAM J wrap.
+2. The auditor called tension_force STATE_1 a static state, citing two byte-identical frames.
+   Hashing the whole dense series showed only ONE pair colliding — a glow-pulse PERIOD COINCIDENCE, not
+   staticness. But the auditor's VERDICT was right for a better reason: bodies at rest, constant arrow
+   magnitudes, and `phases[]` only reassigning `glow_focal` (`nlbRunPhases` sets `phase_action` with no
+   consumer, so nothing is ever revealed). eye-walker had mistaken the glow handoff for a reveal-build.
+   Resolution: the state was CUT, not merged — merging it into the load-ramp state would itself break
+   Rule 31 (two ideas, two motions in one beat), which is exactly why the architect refused to merge.
+   tension_force is now 6 states, inside the founder's approved 6–7.
+
+**Lesson, the same one the free_body_diagram round recorded and worth restating:** when a visual finding
+and a worksheet disagree — or when the two reviewers disagree — probe the runtime. Both reviewers were
+partly wrong here in opposite directions, and both were partly right; only the runtime settled it.
+
+## SEAM J design corrections made to the orchestrator's OWN first implementation
+
+Recorded because the harness caught both, not review:
+1. The wrap first PRESERVED velocity. A body under constant push with negligible friction has no
+   terminal speed, so it gained speed every lap — measured at 38 m/s, crossing the whole track three
+   times a second, an unreadable blur. A hyperactive sandbox is not an improvement on a dead one. It now
+   RE-SEEDS velocity to the authored v0 each lap, so the run repeats at a legible speed.
+2. The TRAIN wrap first shifted every cart by the full track span, which put the rear cart past the far
+   bound where the per-body clamp pinned it and COLLAPSED the very gaps the wrap exists to preserve. The
+   whole train now re-enters at the trailing edge.
+Also: the first harness assertion for the wrap ("every sample |v| > 0.1") was wrong twice over — it
+PASSED the 38 m/s blur, then FAILED a correct re-seeding wrap because a sample landed on the frame right
+after a lap where v is 0 by design. Total distance travelled is the assertion that cannot be fooled
+either way.
+
 ## AUTHORING GOTCHA found by json_author 2026-07-30 — the word-budget gate counts em-dashes
 
 `checkConceptWordBudget` in `src/scripts/validate-concepts.ts` tokenizes with

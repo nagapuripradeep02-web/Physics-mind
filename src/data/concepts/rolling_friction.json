@@ -135,14 +135,14 @@
           "tts_sentences": [
             { "id": "s1_1", "text_en": "Same mass, same 20 newton push, different results." },
             { "id": "s1_2", "text_en": "The wheel crosses the whole track in about two seconds; the block barely moves." },
-            { "id": "s1_3", "text_en": "Sliding friction takes 19.6 of the 20 newtons; the wheel's rolling friction takes only about 0.10 newton, too small to draw as an arrow." }
+            { "id": "s1_3", "text_en": "Sliding friction opposes 19.6 N of the 20 N push, leaving 0.4 N; the wheel's rolling friction opposes only about 0.10 N." }
           ]
         }
       },
 
       "STATE_2": {
         "title": "Same Law, Much Smaller Coefficient",
-        "duration": 12,
+        "duration": 9,
         "focal_primitive_id": "rf_s2_main",
         "advance_mode": "manual_click",
         "motion_archetype": "reveal-build",
@@ -226,9 +226,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "The wheel coasts with no push, yet friction reads about 0.10 newton, not zero, too small to draw — and speed keeps slowly falling." },
+            { "id": "s3_1", "text_en": "The wheel coasts with no push, yet friction reads about 0.10 newton, not zero, too small to draw — and speed keeps falling." },
             { "id": "s3_2", "text_en": "Zero friction would keep speed constant forever; this does not." },
-            { "id": "s3_3", "text_en": "Raise the friction coefficient mu, as soft or deformed ground would, and the wheel stops completely; ball bearings push mu lower." }
+            { "id": "s3_3", "text_en": "Raise the friction coefficient mu, as soft or deformed ground would, and the wheel stops completely; ball bearings make mu even smaller." }
           ]
         },
         "misconception_watch": [
@@ -395,7 +395,7 @@
       "m": { "min": 1, "max": 10, "step": 0.5, "default": 5, "label": "m" },
       "m2": { "min": 1, "max": 10, "step": 0.5, "default": 5, "label": "m₂" },
       "F": { "min": 0, "max": 50, "step": 0.5, "default": 20, "label": "F" },
-      "mu_k": { "min": 0, "max": 0.5, "step": 0.002, "default": 0.002, "label": "μᵣ" },
+      "mu_k": { "min": 0, "max": 0.5, "step": 0.002, "default": 0.002, "label": "μᵣ", "dp": 3 },
       "v0": { "min": -5, "max": 5, "step": 0.5, "default": 0, "label": "v₀" }
     },
     "pvl_colors": {
@@ -409,7 +409,7 @@
       "STATE_1": {
         "label": "Same 20 N push, same 5 kg mass: the wheel crosses the whole track while the block barely moves",
         "visible_elements": [],
-        "camera_position": [0, 2.34, 9.75],
+        "camera_position": [3.0, 3.2, 9.0],
         "caption": "Same push, different result",
         "show_sliders": true,
         "formula_overlay": "a = (F − f)/m",
@@ -435,7 +435,7 @@
       "STATE_2": {
         "label": "One law f = μN for both bodies: μₖ = 0.40 for the block, μᵣ = 0.002 for the wheel — both now glide at the same speed",
         "visible_elements": [],
-        "camera_position": [0, 2.34, 9.75],
+        "camera_position": [3.0, 3.2, 9.0],
         "caption": "Same formula, far smaller μ",
         "show_sliders": true,
         "formula_overlay": "f = μN: μₖ = 0.40, μᵣ = 0.002",
@@ -444,7 +444,7 @@
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
           "bodies": [
             { "id": "A", "label": "block", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 1.0, "mu_s": 0.40, "mu_k": 0.40, "applied_force_N": 19.6 },
-            { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 1.0, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 0.098 }
+            { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 5, "initial_position_m": -2.0, "initial_velocity_mps": 1.0, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 0.098 }
           ],
           "arrows": [
             { "body_id": "A", "show": ["applied", "friction"] }
@@ -457,10 +457,10 @@
       "STATE_3": {
         "label": "The wheel coasts with no push: friction reads about 0.10 N, not zero, and speed falls; raising μᵣ 60× stops the wheel mid-track",
         "visible_elements": [],
-        "camera_position": [0, 2.34, 9.75],
+        "camera_position": [3.0, 3.2, 9.0],
         "caption": "Rolling still has friction",
         "show_sliders": true,
-        "formula_overlay": "fᵣ = μᵣN",
+        "formula_overlay": "fₖ = μᵣN",
         "newtons_laws_body": {
           "mode": "coast_with_friction",
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
@@ -478,9 +478,9 @@
         }
       },
       "STATE_4": {
-        "label": "Load doubles to 10 kg on both bodies: the block's maximum friction 39.2 N now exceeds the 20 N push and it stays still, while the wheel's 0.20 N friction still lets it roll",
+        "label": "Load doubles to 10 kg on both bodies: the block's maximum friction 39.2 N now exceeds the 20 N push and it stays still, while the wheel's 0.20 N friction is far below the push, so the wheel keeps rolling.",
         "visible_elements": [],
-        "camera_position": [0, 2.34, 9.75],
+        "camera_position": [3.0, 3.2, 9.0],
         "caption": "Heavier load, wheel still rolls",
         "show_sliders": true,
         "formula_overlay": "f = μN (N = mg)",
@@ -492,8 +492,8 @@
             { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 10, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 20 }
           ],
           "arrows": [
-            { "body_id": "A", "show": ["applied", "weight", "friction"] },
-            { "body_id": "B", "show": ["applied", "weight"] }
+            { "body_id": "A", "show": ["applied", "weight", "friction", "normal"] },
+            { "body_id": "B", "show": ["applied", "weight", "normal"] }
           ],
           "glow_focal": "nlb_body_A",
           "readouts": ["f", "v"],
@@ -501,9 +501,9 @@
         }
       },
       "STATE_5": {
-        "label": "Explore: change mass, push, and starting speed — the push is shared so the race always stays a fair same-push comparison",
+        "label": "Explore: change mass, push, and starting speed — the push is shared so both bodies always get the same push.",
         "visible_elements": [],
-        "camera_position": [0, 2.34, 9.75],
+        "camera_position": [3.0, 3.2, 9.0],
         "caption": "Change the values yourself",
         "show_sliders": true,
         "formula_overlay": "f = μN",

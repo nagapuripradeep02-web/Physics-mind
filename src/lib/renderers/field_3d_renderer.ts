@@ -39522,7 +39522,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // visibility:hidden (NOT display:none) — the reserved slot, Rule 32d.
             html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
                 '<label><span id="' + sp.lbl + '" style="font-family:' + NLB_MATH_FONT + '">' + sc.label + '</span> = ' +
-                '<span id="' + sp.val + '">' + sc.def.toFixed(sp.dp) + '</span>' + sp.unit + '</label>' +
+                '<span id="' + sp.val + '">' + sc.def.toFixed(sc.dp) + '</span>' + sp.unit + '</label>' +
                 '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
                 '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
         }
@@ -39662,7 +39662,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var el = document.getElementById(sp.slider);
         if (el) el.value = String(value);
         var vv = document.getElementById(sp.val);
-        if (vv) vv.textContent = nlbFx(value, sp.dp);
+        // Per-concept dp, NOT the spec default. Computing the override in nlbSc()
+        // and then formatting with sp.dp here left the whole fix inert: mu_k stayed
+        // at 2 decimals and a 0.002 coefficient still rendered "0.00". Both display
+        // sites must read sc.dp or neither does anything.
+        if (vv) vv.textContent = nlbFx(value, nlbSc(token).dp);
     }
     // The mass rows adopt the body's OWN authored Unicode label where there is one,
     // so the slider reads exactly like the block it drives (m₁ / m₂ by default).

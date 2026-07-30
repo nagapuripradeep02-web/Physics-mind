@@ -217,8 +217,15 @@ the hanging weight exactly" — so S3's contrast reads as an honest reversal, no
 |---|---|---|
 | 0 ms (state entry) | physics already evolving - frictionless removes the static branch entirely, so a=2.45 m/s^2 from the first rendered frame (GAP CANDIDATE 2, not a new gap) | a_release_frictionless |
 | 0-800 ms | `nlb_arrow_B_weight` glows (continuity cue: same weight, still 19.6 N as in S1/S2) | - |
-| 800-1430 ms | glow shifts to `nlb_arrow_B_tension`; T readout visibly falls 19.6 -> 14.7 N as the block covers its 2.5 m run | T = m2*(g-a) |
-| 1430-16000 ms | run complete, halt at bound (choreographed as end-of-run); held picture: T=14.7 N, weight arrow visibly longer than tension arrow | - |
+| 800-2190 ms | glow shifts to `nlb_arrow_B_tension`; T readout visibly falls 19.6 -> 14.7 N as the block covers its run | T = m2*(g-a) |
+| 2190-16000 ms | run complete, halt at bound (choreographed as end-of-run); held picture: T=14.7 N, weight arrow visibly longer than tension arrow | - |
+
+**CORRECTION (json_author fix round, 2026-07-30):** the run length above was mis-derived from block A's
+horizontal room (skeleton's 2.5 m / 1.43 s). The actual halt is bounded by hanging body B's descent, not
+A's horizontal travel: t = √(2×5.85/2.45) = 2.19 s, d = 5.85 m. The 1430 ms end-of-glow-shift figure above
+is corrected to 2190 ms; the held-picture window shifts to start at 2190 ms accordingly. STATE_3's
+narration itself never named a distance/duration, so no narration text needed to change — only this
+timing table.
 
 Archetype: `translate-through`. `m2` is live (0.5-4 kg) - safe at any value since the rig is already
 frictionless (no slip threshold to violate here, unlike S1/S2).

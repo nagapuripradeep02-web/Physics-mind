@@ -151,7 +151,11 @@ function sharedState(label: string, shared: boolean) {
         arrows: [{ body_id: 'A', show: ['applied'] }, { body_id: 'B', show: ['applied'] }],
         glow_focal: 'nlb_body_B',
         readouts: ['F_applied', 'a'],
-        controls_visible: ['F'],
+        // mu_k rides along so the dp-override fix is asserted on the RENDERED TEXT.
+        // Checking that nlbSc() returns dp:3 is NOT enough — it returned 3 correctly
+        // while both display call sites still formatted with the spec's dp:2, so the
+        // slider kept showing "0.00" and the whole fix was inert. Only the DOM proves it.
+        controls_visible: ['F', 'mu_k'],
         trusted_drag_seizes: true,
     };
     if (shared) nlb.shared_applied_force = true;
@@ -166,7 +170,10 @@ const SHARED: Field3DConfig = {
     // what the rolling_friction skeleton authors (max 50 clears the heaviest block's
     // 39.2 N break-away) — the same slider-too-narrow trap lom-c and lom-d each hit
     // as a fix cycle.
-    slider_controls: { F: { min: 0, max: 50, step: 0.5, default: F_RACE, label: 'F' } },
+    slider_controls: {
+        F: { min: 0, max: 50, step: 0.5, default: F_RACE, label: 'F' },
+        mu_k: { min: 0, max: 0.5, step: 0.002, default: MU_ROLL, label: 'μᵣ', dp: 3 },
+    },
     field_lines: INERT_FIELD_LINES,
     states: {
         STATE_1: sharedState('Shared push opted in', true),
@@ -495,6 +502,33 @@ const near = (a: number, b: number, tol = 1e-6) => Math.abs(a - b) <= tol * Math
             fs.writeFileSync(path.join(OUT, 'seam_i_' + st + '.png'), await h.page.screenshot());
             results['seam_i_' + st] = { snap: s, pushA, pushB, shared };
         }
+        // The dp override, asserted on the DOM at BOTH display sites: the build path
+        // (nlbBuildSliderRows, initial text) and the live sync path (nlbSyncSliderRow,
+        // after a write). A 0.002 coefficient must read "0.002", never "0.00".
+        await h.setState('STATE_1');
+        await h.tick(16.7, 10);
+        const dpBuild = await h.page.evaluate(() => {
+            const el = document.getElementById('nlb_muk_val');
+            return el ? el.textContent : null;
+        });
+        // Assert the DECIMAL PLACE COUNT, not a particular value: on state entry the
+        // row is legitimately re-synced from the LIVE engine value (here the block's
+        // mu = 0.40), which replaces the authored default. Three decimals is the
+        // thing under test — the old bug rendered this same value as "0.40".
+        chk('I4_dp_override_on_build_path', /^\d\.\d{3}$/.test(String(dpBuild)),
+            'rendered mu slider text on entry = "' + dpBuild + '" — must carry 3 decimals per dp:3 (the bug gave 2)');
+        // And the value that actually broke in production: 0.002 must not collapse to "0.00".
+        const dpSync = await h.page.evaluate(() => {
+            const el = document.getElementById('nlb_muk_slider') as HTMLInputElement | null;
+            if (!el) return null;
+            el.value = '0.002';
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+            const v = document.getElementById('nlb_muk_val');
+            return v ? v.textContent : null;
+        });
+        chk('I5_dp_override_on_live_sync_path', dpSync === '0.002',
+            'rendered mu slider text after writing the real 0.002 = "' + dpSync +
+            '" (expect "0.002"; this is the exact value that used to render "0.00")');
         chk('I3_no_page_errors', h.errors.length === 0, JSON.stringify(h.errors.slice(0, 3)));
         await h.browser.close();
     }

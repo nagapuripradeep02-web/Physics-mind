@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 11,
   "concept_tier": "complex",
-  "source_book": "NCERT Class 11 Physics Ch.5 §5.9 (Laws of Motion — common forces, tension via strings and pulleys) — table-of-contents scope only, teaching authored from first principles. The atomic concept: a string exerts a pull along its own line at both ends, whose value is set by the motion, not by the string itself — one ideal string carries one tension everywhere, but a CHAIN of separate strings carries only the mass beyond each one, so T₁ ≠ T₂. Does NOT re-derive the shared-|a|/one-T pulley SYSTEM as a solving method, T ≠ m₂g as a solving step, the incline variant, or Atwood (all sealed in the sibling connected_bodies — this concept owns what tension IS and the same-vs-different question, not the solving method). Does NOT cover slack strings, massive strings, multi-pulley systems, or a body hanging from a fixed ceiling anchor. Built on the newtons_laws_body field_3d engine (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md) — Branch B (pulley, STATE_1-4) then SEAM H train (STATE_5-7), pure configuration, zero renderer edits. DC Pandey table of contents consulted for scope only (string tension and connected blocks are standard sub-topics); no teaching sequence, example problem, or figure imported.",
+  "source_book": "NCERT Class 11 Physics Ch.5 §5.9 (Laws of Motion — common forces, tension via strings and pulleys) — table-of-contents scope only, teaching authored from first principles. The atomic concept: a string exerts a pull along its own line at both ends, whose value is set by the motion, not by the string itself — one ideal string carries one tension everywhere, but a CHAIN of separate strings carries only the mass beyond each one, so T₁ ≠ T₂ — and only that. Does NOT re-derive the shared-|a|/one-T pulley SYSTEM as a solving method, T ≠ m₂g as a solving step, the incline variant, or Atwood (all sealed in the sibling connected_bodies — this concept owns what tension IS and the same-vs-different question, not the solving method). Does NOT cover slack strings, massive strings, multi-pulley systems, or a body hanging from a fixed ceiling anchor. Built on the newtons_laws_body field_3d engine (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md) — Branch B (pulley, STATE_1-3) then SEAM H train (STATE_4-6), pure configuration, zero renderer edits. DC Pandey table of contents consulted for scope only (string tension and connected blocks are standard sub-topics); no teaching sequence, example problem, or figure imported.",
 
   "prerequisites": [
     "normal_force",
@@ -26,38 +26,38 @@
   },
 
   "real_world_anchor": {
-    "primary": "A small tractor pulling a line of baggage carts at an airport, seen anywhere on Earth. This is literally the train apparatus in STATE_5-7: the coupling nearest the tractor pulls every cart behind it, so it carries the largest tension, while the last coupling pulls only one cart — one pull, but a different tension in every separate coupling.",
+    "primary": "A small tractor pulling a line of baggage carts at an airport, seen anywhere on Earth. This is literally the train apparatus in STATE_4-6: the coupling nearest the tractor pulls every cart behind it, so it carries the largest tension, while the last coupling pulls only one cart — one pull, but a different tension in every separate coupling.",
     "secondary": "An elevator cable: while the car accelerates downward, the cable's tension is measurably less than the car's own weight — the light, floating feeling in the stomach is that drop in tension, felt directly."
   },
 
   "physics_engine_config": {
     "variables": {
       "m": {
-        "name": "mass of the state's FIRST slider-target body (nlbSliderBodies()[0]) — body A / m1 (6 kg, pulley surface block) in STATE_1/3/4's authored order; body B / m2 (the hanging load) in STATE_2's deliberate [B, A] ramp-target order (no slider shown there); body R / m3 (front train cart) in STATE_5-7's [R, Q, P] order. Only ever exposed as a live slider in STATE_7 (explore), where it targets R.",
+        "name": "mass of the state's FIRST slider-target body (nlbSliderBodies()[0]) — body A / m1 (6 kg, pulley surface block) in STATE_2/3's authored order; body B / m2 (the hanging load) in STATE_1's deliberate [B, A] ramp-target order (no slider shown there); body R / m3 (front train cart) in STATE_4-6's [R, Q, P] order. Only ever exposed as a live slider in STATE_6 (explore), where it targets R.",
         "unit": "kg", "min": 0.5, "max": 10, "step": 0.5, "default": 2
       },
       "m2": {
-        "name": "mass of the state's SECOND slider-target body (nlbSliderBodies()[1]) — body B / m2 (hanging load, STATE_1-4) or body Q / m2 (train middle cart, STATE_5-7). Glyph 'm2' is correct for BOTH targets, deliberately.",
+        "name": "mass of the state's SECOND slider-target body (nlbSliderBodies()[1]) — body B / m2 (hanging load, STATE_1-3) or body Q / m2 (train middle cart, STATE_4-6). Glyph 'm2' is correct for BOTH targets, deliberately.",
         "unit": "kg", "min": 0.5, "max": 4, "step": 0.5, "default": 2
       },
       "m1_train": {
-        "name": "mass of the rear train cart P / m1 — authored-fixed at 2 kg in every train state (STATE_5-7); not a slider-driven quantity. Declared here only so the T1/T2 formulas below are legible symbols, not magic numbers.",
+        "name": "mass of the rear train cart P / m1 — authored-fixed at 2 kg in every train state (STATE_4-6); not a slider-driven quantity. Declared here only so the T1/T2 formulas below are legible symbols, not magic numbers.",
         "unit": "kg", "constant": 2
       },
       "F": {
-        "name": "applied force pulling the train's front cart R (STATE_5-7 only) — the pulley rig STATE_1-4 carries no applied_force_N anywhere in this concept.",
+        "name": "applied force pulling the train's front cart R (STATE_4-6 only) — the pulley rig STATE_1-3 carries no applied_force_N anywhere in this concept.",
         "unit": "N", "min": 0, "max": 12, "step": 0.5, "default": 3
       },
       "mu_s": {
-        "name": "coefficient of static friction, body A / the train's shared table — active in STATE_1/2 (holds the block at rest against m2g); zero-forced by surface.frictionless in STATE_3/5/6; authored but inert in STATE_4 (the body is already moving from state entry, so the static branch never evaluates); live in STATE_7's sandbox, authored at 0 there directly (not via frictionless) so a teacher-drag can raise it.",
+        "name": "coefficient of static friction, body A / the train's shared table — active in STATE_1 (holds the block at rest against m2g); zero-forced by surface.frictionless in STATE_2/4/5; authored but inert in STATE_3 (the body is already moving from state entry, so the static branch never evaluates); live in STATE_6's sandbox, authored at 0 there directly (not via frictionless) so a teacher-drag can raise it.",
         "unit": "", "min": 0, "max": 1, "step": 0.05, "default": 0.8
       },
       "mu_k": {
-        "name": "coefficient of kinetic friction, body A — physically active only in STATE_4 (authored at exactly 1/3 for the exact-balance glide), and, if dragged, in STATE_7's sandbox.",
+        "name": "coefficient of kinetic friction, body A — physically active only in STATE_3 (authored at exactly 1/3 for the exact-balance glide), and, if dragged, in STATE_6's sandbox.",
         "unit": "", "min": 0, "max": 1, "step": 0.05, "default": 0.4
       },
       "v0": {
-        "name": "initial velocity along the shared string/train axis — authored directly on the bodies (not slider-driven) at 0.35 m/s in STATE_4; a live sandbox slider only in STATE_7.",
+        "name": "initial velocity along the shared string/train axis — authored directly on the bodies (not slider-driven) at 0.35 m/s in STATE_3; a live sandbox slider only in STATE_6.",
         "unit": "m/s", "min": -5, "max": 5, "step": 0.5, "default": 0
       },
       "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
@@ -67,12 +67,12 @@
       }
     },
     "computed_outputs": {
-      "N": { "formula": "normal reaction on the current surface body, N — m*g*cos(radians(theta)); 58.8 N for body A throughout STATE_1-4 (theta fixed at 0)." },
+      "N": { "formula": "normal reaction on the current surface body, N — m*g*cos(radians(theta)); 58.8 N for body A throughout STATE_1-3 (theta fixed at 0)." },
       "max_static": { "formula": "mu_s * N — the maximum static friction can supply before the block breaks free; a MAXIMUM, not friction's actual value." },
-      "T": { "formula": "single-string tension, N (pulley rig only, STATE_1-4) — m2*(g-a); equals m2*g only when a=0 (STATE_1, STATE_2, STATE_4's exact-balance glide); strictly less than m2*g the instant a != 0 (STATE_3)." },
-      "T1": { "formula": "rear-string tension, N (train rig, STATE_5-7) — m1_train*a; carries only the rear cart's mass." },
-      "T2": { "formula": "front-string tension, N (train rig, STATE_5-7) — (m1_train+m2)*a; carries the rear-plus-middle cart mass; strictly greater than T1 whenever m2 != 0." },
-      "a": { "formula": "shared acceleration, m/s^2 — 0 in STATE_1/2 (static hold) and STATE_4 (exact balance); 2.45 in STATE_3's default; 0.5 in STATE_5/6/7's default train configuration." },
+      "T": { "formula": "single-string tension, N (pulley rig only, STATE_1-3) — m2*(g-a); equals m2*g only when a=0 (STATE_1, STATE_3's exact-balance glide); strictly less than m2*g the instant a != 0 (STATE_2)." },
+      "T1": { "formula": "rear-string tension, N (train rig, STATE_4-6) — m1_train*a; carries only the rear cart's mass." },
+      "T2": { "formula": "front-string tension, N (train rig, STATE_4-6) — (m1_train+m2)*a; carries the rear-plus-middle cart mass; strictly greater than T1 whenever m2 != 0." },
+      "a": { "formula": "shared acceleration, m/s^2 — 0 in STATE_1 (static hold) and STATE_3 (exact balance); 2.45 in STATE_2's default; 0.5 in STATE_4/5/6's default train configuration." },
       "v": { "formula": "shared speed, m/s." }
     },
     "formulas": {
@@ -93,10 +93,10 @@
     "constraints": [
       "T is a pull along the string's own line at both ends simultaneously — never a push, and never a value the string sets for itself.",
       "One ideal string carries exactly one tension value everywhere along its own length; a CHAIN of separate strings carries a different tension in each separate string.",
-      "T = m2*g holds only when a = 0 (STATE_1, STATE_2, and STATE_4's exact-balance glide); whenever a != 0 (STATE_3), T = m2*(g-a) is strictly less than m2*g.",
-      "Acceleration changes tension; constant velocity does not — STATE_4 moves at 0.35 m/s with a=0 and T back at 19.6 N, identical to the at-rest STATE_1/2 reading.",
+      "T = m2*g holds only when a = 0 (STATE_1 and STATE_3's exact-balance glide); whenever a != 0 (STATE_2), T = m2*(g-a) is strictly less than m2*g.",
+      "Acceleration changes tension; constant velocity does not — STATE_3 moves at 0.35 m/s with a=0 and T back at 19.6 N, identical to the at-rest STATE_1 reading.",
       "In the train, each string's tension equals (the total mass of every cart behind it) times the shared acceleration: T1 = m1_train*a, T2 = (m1_train+m2)*a; T1 != T2 whenever m2 != 0.",
-      "The train's shared acceleration a = F / (m1_train+m2+m) is identical for every cart — the string forces one shared motion, exactly as the pulley does in STATE_1-4.",
+      "The train's shared acceleration a = F / (m1_train+m2+m) is identical for every cart — the string forces one shared motion, exactly as the pulley does in STATE_1-3.",
       "String and pulley are ideal: massless, inextensible, and (at the pulley) frictionless — stated honestly in narration, never silently assumed.",
       "theta = 0 throughout this concept (flat ground only, engine constant) — the incline case belongs to connected_bodies / block_on_incline, not here."
     ]
@@ -109,60 +109,23 @@
   },
 
   "aha_moment": {
-    "state_id": "STATE_5",
+    "state_id": "STATE_4",
     "statement": "One pull, two strings, two different tensions.",
     "visual_confirmation": "Under one 3.00 N pull, the rear string reads 1.00 N and the front string reads 2.00 N — two live numbers, not one."
   },
 
   "entry_state_map": {
-    "foundational": { "start": "STATE_1", "end": "STATE_4" },
-    "chain": { "start": "STATE_5", "end": "STATE_6" }
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "chain": { "start": "STATE_4", "end": "STATE_5" },
+    "exit_pills": {
+      "foundational_to_chain": "Is the tension the same when there are two strings? →"
+    }
   },
 
   "epic_l_path": {
-    "state_count": 7,
+    "state_count": 6,
     "states": {
       "STATE_1": {
-        "title": "A String Pulls Along Its Own Line",
-        "duration": 12,
-        "focal_primitive_id": "delta_cue",
-        "advance_mode": "manual_click",
-        "depth_ring": "core",
-        "motion_archetype": "reveal-build",
-        "delta_cue": "String pulls at both ends",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "delta_cue",
-            "position": { "x": 380, "y": 60 },
-            "text": "String pulls at both ends",
-            "color": "#FFF176"
-          },
-          {
-            "type": "annotation",
-            "id": "context_note",
-            "position": { "x": 200, "y": 250 },
-            "text": "T = m2g = 19.6 N — the string's pull, both ends",
-            "color": "#4DD0E1"
-          },
-          {
-            "type": "annotation",
-            "id": "anchor_note",
-            "position": { "x": 560, "y": 380 },
-            "text": "a taut string over a pulley, at rest",
-            "color": "#66BB6A"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s1_1", "text_en": "A block on a table is tied by a string over a pulley to a hanging block." },
-            { "id": "s1_2", "text_en": "The string pulls straight down on the hanging block and straight along its own line on the table block, both ends." },
-            { "id": "s1_3", "text_en": "At rest, each pull equals the hanging block's weight: 19.6 newtons." }
-          ]
-        }
-      },
-
-      "STATE_2": {
         "title": "Tension Matches the Load",
         "duration": 14,
         "focal_primitive_id": "delta_cue",
@@ -182,34 +145,35 @@
             "type": "annotation",
             "id": "context_note",
             "position": { "x": 200, "y": 250 },
-            "text": "T tracks the hanging weight: 19.6 -> 39.2 N",
+            "text": "T tracks the hanging weight: 19.6 → 39.2 N",
             "color": "#4DD0E1"
           },
           {
             "type": "annotation",
             "id": "anchor_note",
             "position": { "x": 560, "y": 380 },
-            "text": "at rest -- and only at rest -- T equals the hanging weight",
+            "text": "at rest — and only at rest — T equals the hanging weight",
             "color": "#FFD54F"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Tension has no fixed value of its own; it matches whatever weight hangs on the string." },
-            { "id": "s2_2", "text_en": "Add mass to the hanging block, from 2 to 4 kilograms, and the tension reading grows with the weight, newton for newton." },
-            { "id": "s2_3", "text_en": "At rest, and only at rest, tension equals the hanging weight exactly." }
+            { "id": "s1_1", "text_en": "A string over a pulley joins a hanging block to a table block." },
+            { "id": "s1_2", "text_en": "Tension has no fixed value of its own — it matches whatever weight hangs on the string." },
+            { "id": "s1_3", "text_en": "Add mass, from 2 to 4 kilograms, and tension grows with the weight, newton for newton." },
+            { "id": "s1_4", "text_en": "At rest, tension equals the hanging weight exactly." }
           ]
         }
       },
 
-      "STATE_3": {
+      "STATE_2": {
         "title": "Accelerating — Tension Is Less Than the Weight",
         "duration": 16,
         "focal_primitive_id": "delta_cue",
         "advance_mode": "manual_click",
         "depth_ring": "core",
         "motion_archetype": "translate-through",
-        "delta_cue": "Accelerating: T drops below m2g",
+        "delta_cue": "Accelerating: T drops below m₂g",
         "has_prebuilt_deep_dive": true,
         "drill_downs": [
           "tension_equals_weight_always",
@@ -221,30 +185,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "position": { "x": 380, "y": 60 },
-            "text": "Accelerating: T drops below m2g",
+            "text": "Accelerating: T drops below m₂g",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
             "id": "context_note",
             "position": { "x": 200, "y": 250 },
-            "text": "T = m2(g-a) = 14.70 N < 19.60 N",
+            "text": "T = m₂(g−a) = 14.70 N < 19.60 N",
             "color": "#4DD0E1"
           },
           {
             "type": "annotation",
             "id": "counter_note",
             "position": { "x": 560, "y": 380 },
-            "text": "weight arrow stays 19.6 N -- tension arrow visibly shorter",
+            "text": "weight arrow stays 19.6 N — tension arrow visibly shorter",
             "color": "#EF5350"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Return to the 2 kilogram load, but remove the friction: the table is now frictionless." },
-            { "id": "s3_2", "text_en": "Released, the block slides immediately, speeding up at 2.45 metres per second squared." },
-            { "id": "s3_3", "text_en": "Tension drops the instant it moves, from 19.6 newtons down to 14.7, while the weight arrow still reads 19.6." },
-            { "id": "s3_4", "text_en": "Tension equals the weight only when nothing accelerates." }
+            { "id": "s2_1", "text_en": "Return to the 2 kilogram load on a frictionless table." },
+            { "id": "s2_2", "text_en": "Released, the block slides immediately, speeding up at 2.45 metres per second squared." },
+            { "id": "s2_3", "text_en": "The tension is 14.70 newtons — less than its 19.60 newton weight — and the tension arrow is visibly shorter than the weight arrow." },
+            { "id": "s2_4", "text_en": "Tension equals the weight only when nothing accelerates." }
           ]
         },
         "misconception_watch": [
@@ -256,7 +220,7 @@
         ]
       },
 
-      "STATE_4": {
+      "STATE_3": {
         "title": "One String Carries One Tension",
         "duration": 14,
         "focal_primitive_id": "delta_cue",
@@ -289,14 +253,14 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Friction now exactly balances the hanging weight, so the system glides at a steady 0.35 metres per second." },
-            { "id": "s4_2", "text_en": "The string pulls the table block forward, crosses the pulley, and pulls the hanging block upward — one tension, both ends, 19.6 newtons." },
-            { "id": "s4_3", "text_en": "Only acceleration changes tension, and here acceleration is zero." }
+            { "id": "s3_1", "text_en": "Friction now exactly balances the hanging weight, so the system glides at a steady 0.35 metres per second." },
+            { "id": "s3_2", "text_en": "The string pulls the table block forward, crosses the pulley, and pulls the hanging block upward — one tension, both ends, 19.6 newtons." },
+            { "id": "s3_3", "text_en": "Only acceleration changes tension, and here acceleration is zero." }
           ]
         }
       },
 
-      "STATE_5": {
+      "STATE_4": {
         "title": "Two Strings Carry Two Different Tensions",
         "duration": 16,
         "focal_primitive_id": "delta_cue",
@@ -322,22 +286,22 @@
             "type": "annotation",
             "id": "context_note",
             "position": { "x": 200, "y": 250 },
-            "text": "T1 = 1.00 N -- T2 = 2.00 N under one 3.00 N pull",
+            "text": "T₁ = 1.00 N — T₂ = 2.00 N under one 3.00 N pull",
             "color": "#4DD0E1"
           },
           {
             "type": "annotation",
             "id": "counter_note",
             "position": { "x": 560, "y": 380 },
-            "text": "the front string carries more -- it moves more mass",
+            "text": "the front string carries more — it moves more mass",
             "color": "#FFD54F"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Now three carts sit on the same table, joined by two strings, pulled by 3 newtons at the front." },
-            { "id": "s5_2", "text_en": "The two strings do not read the same: 1.00 newton on the rear string, 2.00 newtons on the front string." },
-            { "id": "s5_3", "text_en": "The front string carries more, since it moves more mass — not one tension everywhere." }
+            { "id": "s4_1", "text_en": "Now three carts sit on the same table, joined by two strings, pulled by 3 newtons at the front." },
+            { "id": "s4_2", "text_en": "The two strings do not read the same: 1.00 newton on the rear string, 2.00 newtons on the front string." },
+            { "id": "s4_3", "text_en": "The front string carries more, since it moves more mass — not one tension everywhere." }
           ]
         },
         "misconception_watch": [
@@ -349,13 +313,13 @@
         ]
       },
 
-      "STATE_6": {
+      "STATE_5": {
         "title": "Each String Pulls Only the Mass Behind It",
         "duration": 18,
         "focal_primitive_id": "delta_cue",
         "advance_mode": "manual_click",
         "depth_ring": "extended",
-        "motion_archetype": "glow-walk (declared contrast pair with STATE_4)",
+        "motion_archetype": "glow-walk (declared contrast pair with STATE_3)",
         "delta_cue": "Only the mass behind it",
         "scene_composition": [
           {
@@ -369,7 +333,7 @@
             "type": "annotation",
             "id": "context_note",
             "position": { "x": 200, "y": 250 },
-            "text": "T1 = m1a = 1.00 N -- T2 = (m1+m2)a = 2.00 N",
+            "text": "T₁ = m₁a = 1.00 N — T₂ = (m₁+m₂)a = 2.00 N",
             "color": "#4DD0E1"
           },
           {
@@ -382,16 +346,16 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Why are the two tensions different?" },
-            { "id": "s6_2", "text_en": "Count the mass behind each string." },
-            { "id": "s6_3", "text_en": "The rear string moves only the cart behind it, 2 kilograms: 2 times 0.5 is 1.00 newton." },
-            { "id": "s6_4", "text_en": "The front string moves the two carts behind it, 4 kilograms: 4 times 0.5 is 2.00 newtons." },
-            { "id": "s6_5", "text_en": "One plus two equals the 3 newton pull." }
+            { "id": "s5_1", "text_en": "Why are the two tensions different?" },
+            { "id": "s5_2", "text_en": "Count the mass behind each string." },
+            { "id": "s5_3", "text_en": "The rear string moves only the cart behind it, 2 kilograms: 2 times 0.5 is 1.00 newton." },
+            { "id": "s5_4", "text_en": "The front string moves the two carts behind it, 4 kilograms: 4 times 0.5 is 2.00 newtons." },
+            { "id": "s5_5", "text_en": "One plus two equals the 3 newton pull." }
           ]
         }
       },
 
-      "STATE_7": {
+      "STATE_6": {
         "title": "Explore — Change Every Value",
         "duration": 0,
         "focal_primitive_id": "delta_cue",
@@ -412,20 +376,20 @@
             "type": "annotation",
             "id": "try_note",
             "position": { "x": 380, "y": 250 },
-            "text": "change mass, push, friction, starting speed -- watch T1 and T2 answer",
+            "text": "change mass, push, friction, starting speed — watch T₁ and T₂ answer",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "key_note",
             "position": { "x": 380, "y": 440 },
-            "text": "T1 = m1a   T2 = (m1+m2)a",
+            "text": "T₁ = m₁a   T₂ = (m₁+m₂)a",
             "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Change any value, either mass, the push, either friction number, even the starting speed, and watch both tension readings update." }
+            { "id": "s6_1", "text_en": "Change any value, either mass, the push, either friction number, even the starting speed, and watch both tension readings update." }
           ]
         }
       }
@@ -490,7 +454,7 @@
           "D": "confuses 'a value that changes' with 'a value that is undefined' — the tension is well-defined at every mass, it simply equals a different number"
         },
         "tested_idea": "Tension has no fixed value of its own — it matches whatever load hangs on it, and equals the hanging weight exactly only while the system is at rest.",
-        "teaches_state": "STATE_2",
+        "teaches_state": "STATE_1",
         "difficulty": "core",
         "parallel_form_stem": "Explain why loading a hanging weight scale with more mass makes the scale's reading rise in exact step with the added weight."
       },
@@ -510,7 +474,7 @@
           "D": "confuses a frictionless SURFACE (which removes resistance to the table block's slide) with the string itself, which still carries a real, nonzero pull throughout the release"
         },
         "tested_idea": "Tension equals the hanging weight only when acceleration is zero; the instant a system accelerates, T = m2(g-a) is strictly less than m2g.",
-        "teaches_state": "STATE_3",
+        "teaches_state": "STATE_2",
         "difficulty": "core",
         "parallel_form_stem": "A block hangs from a cable inside an elevator that is accelerating downward. Explain why the cable's tension is less than the block's weight."
       },
@@ -530,7 +494,7 @@
           "D": "assumes motion alone lowers tension — it is ACCELERATION, not motion, that changes tension; this state moves at constant velocity with a = 0, so tension returns to m2g exactly as it was at rest"
         },
         "tested_idea": "One ideal string carries exactly one tension value everywhere along its own length; only acceleration changes tension, never motion by itself.",
-        "teaches_state": "STATE_4",
+        "teaches_state": "STATE_3",
         "difficulty": "core",
         "parallel_form_stem": "A rope pulls a sled at a constant, unchanging speed. Explain why the rope's tension is the same at both the puller's end and the sled's end."
       },
@@ -550,7 +514,7 @@
           "D": "gets the direction of the effect backward — the string closer to the pull (the front string) carries MORE tension, since it alone must move every cart ahead of the rear string"
         },
         "tested_idea": "One pull, two different tensions — a string only has to move the mass behind it, so a chain of strings does not carry one tension throughout.",
-        "teaches_state": "STATE_5",
+        "teaches_state": "STATE_4",
         "difficulty": "core",
         "parallel_form_stem": "A tractor pulls a line of three baggage carts with one rope to each coupling. Explain why the coupling nearest the tractor carries more tension than the one at the back."
       },
@@ -570,7 +534,7 @@
           "D": "wrongly treats the 2:1 ratio as accidental — it follows directly from T_i = (mass behind string i) x a, and holds for ANY set of masses, not just this particular equal-cart case"
         },
         "tested_idea": "Each string's tension equals the total mass of every cart behind it, times the shared acceleration — T1 = m1a, T2 = (m1+m2)a.",
-        "teaches_state": "STATE_6",
+        "teaches_state": "STATE_5",
         "difficulty": "core",
         "parallel_form_stem": "A train has four equal freight cars pulled by one locomotive. Explain why the coupling nearest the locomotive carries the most tension and the coupling nearest the last car carries the least."
       }
@@ -578,14 +542,13 @@
   },
   "coverage_map": {
     "by_state": {
-      "STATE_1": ["Q1"],
-      "STATE_2": ["Q2"],
-      "STATE_3": ["Q3"],
-      "STATE_4": ["Q4"],
-      "STATE_5": ["Q5"],
-      "STATE_6": ["Q6"]
+      "STATE_1": ["Q1", "Q2"],
+      "STATE_2": ["Q3"],
+      "STATE_3": ["Q4"],
+      "STATE_4": ["Q5"],
+      "STATE_5": ["Q6"]
     },
-    "non_assessed_states": ["STATE_7"]
+    "non_assessed_states": ["STATE_6"]
   },
 
   "curriculum_tags": {
@@ -664,34 +627,6 @@
     },
     "states": {
       "STATE_1": {
-        "label": "A taut string pulls both bodies, along its own line, away from each body; at rest T = m2g",
-        "visible_elements": [],
-        "camera_position": [0.0, 1.8, 10.5],
-        "caption": "String pulls at both ends",
-        "show_sliders": true,
-        "formula_overlay": "T = m₂g",
-        "newtons_laws_body": {
-          "mode": "connected_incline_hanging",
-          "surface": { "theta_deg": 0, "length_m": 7 },
-          "bodies": [
-            { "id": "A", "label": "m₁", "mass_kg": 6, "color": "#42A5F5", "mu_s": 0.8, "mu_k": 0.7, "initial_position_m": -1.0, "initial_velocity_mps": 0 },
-            { "id": "B", "label": "m₂", "mass_kg": 2, "color": "#EF5350", "hanging": true }
-          ],
-          "pulley": { "body_a_id": "A", "body_b_id": "B", "post_position_m": 7 },
-          "arrows": [
-            { "body_id": "A", "show": ["normal", "weight", "tension"] },
-            { "body_id": "B", "show": ["weight", "tension"] }
-          ],
-          "glow_focal": "nlb_arrow_B_weight",
-          "phases": [
-            { "id": "shift_tension_B", "at_ms": 2000, "glow_focal": "nlb_arrow_B_tension" },
-            { "id": "shift_tension_A", "at_ms": 5000, "glow_focal": "nlb_arrow_A_tension" }
-          ],
-          "readouts": ["T"],
-          "controls_visible": []
-        }
-      },
-      "STATE_2": {
         "label": "T has no fixed value of its own — it matches whatever load hangs on it",
         "visible_elements": [],
         "camera_position": [0.0, 1.8, 10.5],
@@ -716,11 +651,11 @@
           "controls_visible": []
         }
       },
-      "STATE_3": {
-        "label": "Rule 16a pivot: release frictionless, T = m2(g-a) = 14.70 N < m2g = 19.60 N",
+      "STATE_2": {
+        "label": "Release frictionless, T = m₂(g−a) = 14.70 N < m₂g = 19.60 N",
         "visible_elements": [],
         "camera_position": [0.0, 1.8, 10.5],
-        "caption": "Accelerating: T drops below m2g",
+        "caption": "Accelerating: T drops below m₂g",
         "show_sliders": true,
         "formula_overlay": "T = m₂(g − a)",
         "newtons_laws_body": {
@@ -743,7 +678,7 @@
           "controls_visible": ["m2"]
         }
       },
-      "STATE_4": {
+      "STATE_3": {
         "label": "One ideal string carries one tension everywhere — the pulley changes direction only, never size",
         "visible_elements": [],
         "camera_position": [0.0, 1.8, 10.5],
@@ -771,10 +706,10 @@
           "controls_visible": []
         }
       },
-      "STATE_5": {
-        "label": "PRIMARY aha — one pull, two strings, two different tensions: T1 = 1.00 N, T2 = 2.00 N",
+      "STATE_4": {
+        "label": "One pull, two strings, two different tensions: T₁ = 1.00 N, T₂ = 2.00 N",
         "visible_elements": [],
-        "camera_position": [0.0, 2.2, 13.5],
+        "camera_position": [2.5, 2.6, 10.0],
         "caption": "Two strings, two tensions",
         "show_sliders": true,
         "formula_overlay": "T₁ ≠ T₂",
@@ -797,14 +732,14 @@
             { "id": "walk_T1", "at_ms": 1000, "glow_focal": "nlb_rope_a" },
             { "id": "walk_T2", "at_ms": 3000, "glow_focal": "nlb_rope_b" }
           ],
-          "readouts": ["T1", "T2", "a"],
+          "readouts": ["T1", "T2"],
           "controls_visible": ["F"]
         }
       },
-      "STATE_6": {
-        "label": "WHY: each string accelerates only the carts behind it — T1 = m1a, T2 = (m1+m2)a",
+      "STATE_5": {
+        "label": "WHY: each string accelerates only the carts behind it — T₁ = m₁a, T₂ = (m₁+m₂)a",
         "visible_elements": [],
-        "camera_position": [0.0, 2.2, 13.5],
+        "camera_position": [2.5, 2.6, 10.0],
         "caption": "Only the mass behind it",
         "show_sliders": true,
         "formula_overlay": "T₁ = m₁a · T₂ = (m₁+m₂)a",
@@ -828,14 +763,14 @@
             { "id": "walk_T2", "at_ms": 7000, "glow_focal": "nlb_rope_b" },
             { "id": "walk_applied", "at_ms": 11000, "glow_focal": "nlb_arrow_R_applied" }
           ],
-          "readouts": ["T1", "T2"],
+          "readouts": ["T1", "T2", "a"],
           "controls_visible": ["m2"]
         }
       },
-      "STATE_7": {
-        "label": "Explore: change every value on the train, teacher-driven",
+      "STATE_6": {
+        "label": "Explore: change every value on the train, all controls live",
         "visible_elements": [],
-        "camera_position": [0.0, 2.2, 13.5],
+        "camera_position": [2.5, 2.6, 10.0],
         "caption": "Try every slider",
         "show_sliders": true,
         "formula_overlay": "a = F ∕ (m₁+m₂+m₃)",
@@ -854,7 +789,7 @@
             { "body_id": "R", "show": ["applied"] }
           ],
           "glow_focal": "nlb_body_R",
-          "readouts": ["T1", "T2", "a", "v"],
+          "readouts": ["T1", "T2", "a"],
           "controls_visible": ["m", "m2", "F", "mu_s", "mu_k", "v0"],
           "trusted_drag_seizes": true,
           "idle_auto_sweep": { "param": "F", "range": [3, 9] }
