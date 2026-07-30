@@ -4172,6 +4172,10 @@ export const FIELD_3D_RENDERER_CODE = `
     function updateLabelSpriteText(sprite, text) {
         if (!sprite || !sprite._pmCanvas || !sprite._pmCtx) return;
         var c = sprite._pmCanvas, ctx = sprite._pmCtx;
+        // The drawn string, retained. Sprite text is INK ONLY — invisible to any DOM
+        // probe — so keeping it readable is what lets a headless probe assert what a
+        // label actually says (and measure its ink box) without re-deriving it.
+        sprite._pmText = text;
         if (sprite._pmAutoWidth) {
             var fontSpec = sprite._pmFont || "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
             ctx.font = fontSpec;
@@ -4202,6 +4206,9 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.strokeText(text, c.width / 2, c.height / 2);
             ctx.fillStyle = sprite._pmColor;
             ctx.fillText(text, c.width / 2, c.height / 2);
+            // Fraction of the sprite quad the INK actually occupies. The quad is mostly
+            // transparent padding, so this is the only honest basis for a screen rect.
+            sprite._pmInkFrac = Math.min(1, ctx.measureText(text).width / c.width);
             if (sprite.material && sprite.material.map) sprite.material.map.needsUpdate = true;
             return;
         }
@@ -4256,6 +4263,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // retained-redraw + auto-width metadata read by updateLabelSpriteText.
         sprite._pmCanvas = canvas; sprite._pmCtx = ctx; sprite._pmColor = color;
         sprite._pmAutoWidth = true; sprite._pmFont = fontSpec; sprite._pmHeightScale = hs;
+        sprite._pmText = text;
+        sprite._pmInkFrac = Math.min(1, measured ? (measured - pad) / canvas.width : 1);
         return sprite;
     }
 
@@ -29479,6 +29488,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // (Rule 29), and its geometry is translated at build time so its BASE sits at
     // exactly the same local height a cart's does, which keeps nlbSetBodyPosition
     // (the ONE placement funnel every arrow, label and pick proxy follows) untouched.
+    // Glyph height of the on-block mass label. Chosen so the WIDEST plausible string
+    // ("10.5 kg", the 10 kg slider ceiling) keeps its ink inside the cube's own
+    // silhouette — that bound is what makes the Rule-34d collision guarantee
+    // structural rather than a placement tweak (see the build site).
+    var NLB_MASS_LABEL_H = 0.24;
+    var NLB_RO_CLEAR_PX = 8;              // HUD-to-slider-panel breathing room (Rule 34d)
+    var NLB_LABEL_DODGE_PAD_PX = 6;       // clearance a dodged label keeps from a panel edge
+    var NLB_LABEL_DODGE_MAX = 1.10;       // world units — the cap on an occlusion dodge
     var NLB_WALL_T = NLB_BODY_SIZE * 0.5;   // thickness along the body's own axis
     var NLB_WALL_H = NLB_BODY_SIZE * 3.2;   // height
     var NLB_WALL_D = NLB_BODY_SIZE * 2.6;   // depth across the track
@@ -29909,19 +29926,102 @@ export const FIELD_3D_RENDERER_CODE = `
         N: " N", f: " N", a: " m/s²", v: " m/s", T: " N", F_net: " N", F_applied: " N"
     };
     function nlbReadoutRowId(bodyId, key) { return "nlb_ro_" + bodyId + "_" + key; }
+
+    // ── Mass rendering — ONE place, every text path (founder finding: a state that
+    //   teaches a mass RATIO must say which body is heavier, and by how much).
+    //   Three engine-generic rules, zero per-concept authoring:
+    //     · nlbFxMass  — integers print bare ("4 kg"), non-integers at the minimum
+    //       readable precision ("0.5 kg", "2.1 kg"). Never "4.00 kg", and never a
+    //       float artifact ("4.000000000001 kg"): round to 3 dp, then strip the
+    //       trailing zeros and a bare trailing point.
+    //     · nlbMassSymbol — Rule 34c across EVERY surface that prints a body
+    //       identifier (the DOM HUD header, the DOM mass-slider row label and the
+    //       3D sprite label on the block): an ASCII "m1"/"m2" authored anywhere is
+    //       RENDERED as m₁ / m₂. Only a single letter followed by one or two digits
+    //       is touched, so "Block", "A", "m", "F = 10 N" all pass through unchanged.
+    //     · a "fixed" body is the wall / the Earth, authored at 1000000 kg as a
+    //       stand-in for infinity. That is not a reading and must never print as a
+    //       number — it renders as "m ≫ <every free body>", which stays true for
+    //       one free body or five.
+    var NLB_SUBSCRIPT_DIGITS = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"];
+    function nlbFxMass(v) {
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        // ONE decimal is the readable precision for a mass in kg (the mass slider's own
+        // step is 0.5). A 3-dp allowance was the hole the live-drag path fell through:
+        // THE EYE and a real drag both write INTERPOLATED slider values, so 8.464 kg
+        // reached the block and the HUD verbatim. Rounding here — the single mass
+        // formatter every surface goes through — closes it for all of them at once.
+        // Below 0.1 kg one decimal would round to "0", so a tiny mass keeps 3 dp.
+        var s = (Math.abs(n) >= 0.1) ? (Math.round(n * 10) / 10).toFixed(1)
+                                     : (Math.round(n * 1000) / 1000).toFixed(3);
+        while (s.indexOf(".") >= 0 && s.charAt(s.length - 1) === "0") s = s.slice(0, -1);
+        if (s.charAt(s.length - 1) === ".") s = s.slice(0, -1);
+        return s;
+    }
+    function nlbMassSymbol(label) {
+        var t = (label == null) ? "" : String(label);
+        if (!/^[A-Za-z][0-9]{1,2}$/.test(t)) return t;
+        var out = t.charAt(0);
+        for (var i = 1; i < t.length; i++) out += NLB_SUBSCRIPT_DIGITS[+t.charAt(i)];
+        return out;
+    }
+    // Every FREE (non-ghost, non-fixed) body's rendered identifier, for the wall's
+    // "m ≫ ..." line. Order follows the authored bodies[] order.
+    function nlbFreeBodyNames(bodies) {
+        var out = [];
+        for (var i = 0; i < (bodies || []).length; i++) {
+            var b = bodies[i];
+            if (!b || !b.id || b.ghost || b.fixed) continue;
+            out.push(b.label ? nlbMassSymbol(b.label) : b.id);
+        }
+        return out;
+    }
+    // The HUD group header for one body: its identifier AND its mass. The mass value
+    // is its own span so the per-frame writer can track a mass slider live without
+    // rebuilding the row. An authored label that already carries its own unit (e.g.
+    // "m = 2 kg") is left exactly as authored — never doubled.
+    function nlbHeaderHtml(bd, bodies, marginTop) {
+        var name = bd.label ? nlbMassSymbol(bd.label) : bd.id;
+        var body;
+        if (bd.fixed) {
+            var free = nlbFreeBodyNames(bodies);
+            body = name + " — fixed, m ≫ " + (free.length ? free.join(", ") : "any block here");
+        } else if (name.indexOf("kg") >= 0) {
+            body = name;
+        } else {
+            var eng0 = window.PM_nlbEngine;
+            var eb0 = (eng0 && eng0.bodies) ? eng0.bodies[bd.id] : null;
+            var m0 = eb0 ? eb0.m : bd.mass_kg;
+            body = name + ' = <span id="' + nlbReadoutRowId(bd.id, "mass") + '_val">' +
+                   nlbFxMass(m0) + '</span> kg';
+        }
+        // The math-serif stack, not the panel's monospace: monospace faces have no
+        // ₁/₂/≫ glyphs and render them as tofu or a merged blob (the subscript scar).
+        return '<div style="opacity:0.82;margin-top:' + (marginTop ? "7px" : "0") +
+               ';font-family:' + NLB_MATH_FONT + '">' + body + '</div>';
+    }
     function nlbRebuildReadout(nlb) {
         var el = document.getElementById("nlb_readout");
         if (!el) return;
         var keys = nlb.readouts || [];
         var bodies = nlb.bodies || [];
         if (!keys.length || !bodies.length) { el.innerHTML = ""; el.style.display = "none"; return; }
-        var h = "";
+        var h = "", printed = 0;
         for (var b = 0; b < bodies.length; b++) {
             var bd = bodies[b];
             if (!bd || !bd.id || bd.ghost) continue;   // a ghost is decorative context: never integrated, never read out
-            if (bodies.length > 1) {
-                h += '<div style="opacity:0.7;margin-top:' + (b > 0 ? "7px" : "0") + '">' + (bd.label || bd.id) + '</div>';
-            }
+            // The header is now unconditional (it was multi-body only): it is the one
+            // surface that states the body's MASS, and a single-body state needs that
+            // number just as much as a two-body one — "F = 30 N / a = 7.5 m/s²" with
+            // no m on screen is unreadable, which is exactly the founder finding.
+            // printed (not b) drives the group gap, so a leading ghost cannot leave
+            // the first REAL group indented by one gap.
+            // One GROUP div per body (block-level, so the default single-column
+            // stack is pixel-identical) — it is the unit nlbFitReadoutPanel reflows
+            // into side-by-side columns when the stack would otherwise reach the
+            // slider panel.
+            h += '<div class="nlb_ro_grp">' + nlbHeaderHtml(bd, bodies, printed > 0);
+            printed++;
             for (var k = 0; k < keys.length; k++) {
                 var key = keys[k];
                 // A HANGING body has N forced to 0 (spec section 1) and therefore
@@ -29939,9 +30039,58 @@ export const FIELD_3D_RENDERER_CODE = `
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_lbl">' + lab + '</span> = ' +
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_val">--</span>' + (NLB_READOUT_UNITS[key] || "") + '</div>';
             }
+            h += '</div>';
         }
         el.innerHTML = h;
         el.style.display = h ? "block" : "none";
+        nlbFitReadoutPanel();
+    }
+    // Rule 34d — the HUD panel and the slider panel share the RIGHT edge, one anchored
+    // to the top and one to the bottom, so a tall HUD walks down into the sliders. It
+    // walked far enough to bleed the last two readout rows behind the m₁ slider row the
+    // moment the group header became unconditional (2 headers + 12 rows in the
+    // connected_bodies explore state). CSS alone cannot express "stop before that other
+    // fixed panel", so the fit is MEASURED, once per state entry, and applied as a
+    // three-step ladder that stops at the first step that fits:
+    //   0. the authored look (13px/1.7)               — every state that already fits
+    //   1. compact rows (12px/1.35, tighter padding)  — the two-body explore state
+    //   2. one COLUMN PER BODY (flex row)             — the worst case (3 bodies x a
+    //                                                   full readouts[] set)
+    // A state that fits at step 0 is byte-identical to before, so no existing baseline
+    // moves except the ones that were actually overlapping. Reads no clock, writes no
+    // physics (Rule 36): it is layout only, recomputed identically on every entry.
+    var NLB_RO_STEPS = [
+        { font: "13px/1.7 monospace", pad: "11px 15px", flex: false },
+        { font: "12px/1.35 monospace", pad: "8px 12px", flex: false },
+        { font: "12px/1.35 monospace", pad: "8px 12px", flex: true }
+    ];
+    function nlbFitReadoutPanel() {
+        var el = document.getElementById("nlb_readout");
+        if (!el || el.style.display === "none") return;
+        // The floor the HUD may not cross: the slider panel's top edge when it is
+        // showing, else the bottom of the viewport.
+        var sp = document.getElementById("nlb_sliders");
+        var limit = window.innerHeight - 12;
+        if (sp && sp.style.display !== "none") {
+            var sr = sp.getBoundingClientRect();
+            if (sr.height > 0) limit = sr.top - NLB_RO_CLEAR_PX;
+        }
+        for (var i = 0; i < NLB_RO_STEPS.length; i++) {
+            var st = NLB_RO_STEPS[i];
+            el.style.font = st.font;
+            el.style.padding = st.pad;
+            el.style.display = st.flex ? "flex" : "block";
+            if (st.flex) { el.style.gap = "18px"; el.style.alignItems = "flex-start"; }
+            else { el.style.gap = ""; el.style.alignItems = ""; }
+            var grps = el.getElementsByClassName("nlb_ro_grp");
+            for (var g = 0; g < grps.length; g++) {
+                // In column mode every group starts at the top of its own column, so the
+                // stacked-group gap on its header must go.
+                var hd = grps[g].firstChild;
+                if (hd && hd.style) hd.style.marginTop = (st.flex || g === 0) ? "0" : "7px";
+            }
+            if (el.getBoundingClientRect().bottom <= limit) return;
+        }
     }
     // Per-frame value write (SEAM B). labelOverride lets the friction row switch
     // between the static and kinetic glyphs (fₛ / fₖ) without rebuilding the row.
@@ -29951,6 +30100,125 @@ export const FIELD_3D_RENDERER_CODE = `
         if (labelOverride) {
             var l = document.getElementById(nlbReadoutRowId(bodyId, key) + "_lbl");
             if (l) l.textContent = labelOverride;
+        }
+    }
+    // Live mass text on BOTH surfaces — the HUD header span and the number on the
+    // block — driven from the ENGINE record, so a mass-slider drag (which writes
+    // eng.bodies[id].m, never the authored JSON) moves both at once. Churn-guarded:
+    // the sprite is redrawn only when its string actually changes, so this costs a
+    // string compare per body per frame. It reads NO clock, integrates nothing and
+    // hardcodes no frame delta (Rule 36) — under a SET_TIME_FREEZE pin it rewrites the
+    // identical string and the guard makes even the redraw a no-op, so a mass label
+    // cannot move a frozen pixel.
+    function nlbUpdateMassText(nlb) {
+        var eng = window.PM_nlbEngine;
+        var bodies = (nlb && nlb.bodies) || [];
+        for (var i = 0; i < bodies.length; i++) {
+            var bd = bodies[i];
+            if (!bd || !bd.id || bd.ghost) continue;
+            var eb = (eng && eng.bodies) ? eng.bodies[bd.id] : null;
+            if (eb ? eb.fixed : bd.fixed) continue;    // the wall states "m ≫ ..." once, on rebuild
+            var m = eb ? eb.m : bd.mass_kg;
+            nlbSetReadout(bd.id, "mass", nlbFxMass(m));
+            var sp = nlbFindById("nlb_body_" + bd.id + "_mass");
+            var txt = nlbFxMass(m) + " kg";
+            if (sp && sp._nlbMassTxt !== txt) {
+                sp._nlbMassTxt = txt;
+                updateLabelSpriteText(sp, txt);
+            }
+        }
+        nlbDodgeBodyLabels(nlb);
+    }
+    // Rule 34d, the occlusion half: the slider panel is a FIXED DOM overlay on the
+    // right edge, and a hanging body's landing zone is directly under it — so the
+    // falling body's number went behind the panel and became unreadable exactly while
+    // it was the thing to read (connected_bodies STATE_3/4/7). No 3D object can draw
+    // over a DOM overlay, so the only fix is to move the LABEL out from under it.
+    //   The dodge is a pure function of the CURRENT pose and the CURRENT panel rects:
+    //   reset both of a body's labels to their build-time home pose, project the mass
+    //   label's real INK rect to screen px, and if it lands in a panel, slide the PAIR
+    //   along world x until it clears that panel's edge, capped at NLB_LABEL_DODGE_MAX.
+    //   The identifier moves with the number by the same offset so the two never split.
+    //   No clock, no accumulation, no integration (Rule 36): under a frozen pin the pose
+    //   and the rects are constant, so the same offset is recomputed every frame and the
+    //   frame is byte-stable. Nothing here writes physics.
+    function nlbPanelRects() {
+        var out = [], ids = ["nlb_readout", "nlb_sliders", "nlb_formula", "nlb_slowmo"];
+        for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(ids[i]);
+            if (!el || el.style.display === "none") continue;
+            var r = el.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) out.push(r);
+        }
+        return out;
+    }
+    function nlbProjPx(v) {
+        var p = v.clone().project(camera);
+        return { x: (p.x + 1) / 2 * window.innerWidth, y: (1 - p.y) / 2 * window.innerHeight };
+    }
+    function nlbSpriteRectPx(sprite, worldCentre, right, up) {
+        var hw = sprite.scale.x * ((sprite._pmInkFrac != null) ? sprite._pmInkFrac : 1) / 2;
+        var hh = sprite.scale.y / 2;
+        var xs = [], ys = [];
+        for (var sx = -1; sx <= 1; sx += 2) {
+            for (var sy = -1; sy <= 1; sy += 2) {
+                var q = nlbProjPx(worldCentre.clone().addScaledVector(right, sx * hw).addScaledVector(up, sy * hh));
+                xs.push(q.x); ys.push(q.y);
+            }
+        }
+        return { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
+                 y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+    }
+    function nlbDodgeBodyLabels(nlb) {
+        if (typeof camera === "undefined" || !camera) return;
+        var bodies = (nlb && nlb.bodies) || [];
+        if (!bodies.length) return;
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var xUnit = new THREE.Vector3(1, 0, 0);
+        var rects = nlbPanelRects();
+        for (var i = 0; i < bodies.length; i++) {
+            var bd = bodies[i];
+            if (!bd || !bd.id) continue;
+            var mesh = nlbFindById("nlb_body_" + bd.id);
+            if (!mesh) continue;
+            var pair = [nlbFindById("nlb_body_" + bd.id + "_mass"), nlbFindById("nlb_body_" + bd.id + "_label")];
+            for (var k = 0; k < pair.length; k++) {
+                if (pair[k] && pair[k]._nlbHome) pair[k].position.copy(pair[k]._nlbHome);
+            }
+            var num = pair[0];
+            if (!rects.length || !mesh.visible || !num || !num.visible || !num._nlbHome) continue;
+            // Matrices are refreshed here rather than trusted: this runs BEFORE the
+            // renderer's own update, and a one-frame-stale matrix would make the dodge
+            // lag the body (and wobble the first frozen frame).
+            mesh.updateWorldMatrix(true, false);
+            var base = mesh.localToWorld(num._nlbHome.clone());
+            var p0 = nlbProjPx(base);
+            var pX = nlbProjPx(base.clone().add(xUnit));
+            var pxPerX = pX.x - p0.x;
+            if (!(Math.abs(pxPerX) > 1e-3)) continue;
+            var box = nlbSpriteRectPx(num, base, right, up);
+            var shiftPx = 0;
+            for (var r = 0; r < rects.length; r++) {
+                var rc = rects[r];
+                if (!(box.x0 < rc.right && rc.left < box.x1 && box.y0 < rc.bottom && rc.top < box.y1)) continue;
+                // Slide AWAY from the panel: out to its near edge, whichever side the
+                // label sits on.
+                var want = ((rc.left + rc.right) / 2 > (box.x0 + box.x1) / 2)
+                    ? (rc.left - NLB_LABEL_DODGE_PAD_PX) - box.x1
+                    : (rc.right + NLB_LABEL_DODGE_PAD_PX) - box.x0;
+                if (Math.abs(want) > Math.abs(shiftPx)) shiftPx = want;
+            }
+            if (shiftPx === 0) continue;
+            var dx = shiftPx / pxPerX;
+            if (dx > NLB_LABEL_DODGE_MAX) dx = NLB_LABEL_DODGE_MAX;
+            if (dx < -NLB_LABEL_DODGE_MAX) dx = -NLB_LABEL_DODGE_MAX;
+            for (var m2 = 0; m2 < pair.length; m2++) {
+                var sp2 = pair[m2];
+                if (!sp2 || !sp2._nlbHome) continue;
+                var tgt = mesh.localToWorld(sp2._nlbHome.clone()).addScaledVector(xUnit, dx);
+                sp2.position.copy(mesh.worldToLocal(tgt));
+            }
         }
     }
 
@@ -30465,6 +30733,24 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!m) return NLB_BODY_SIZE / 2;
         return m.userData.fixed ? NLB_WALL_T / 2 : NLB_BODY_SIZE / 2;
     }
+    // WHICH end of this spring is BOLTED DOWN, or "" for a free-free pair.
+    //   A wall-anchored spring has exactly ONE fixed end: it is screwed to the wall
+    // and only its free end travels. Mounting it at the MIDPOINT instead — correct
+    // and symmetric for two free carts — makes BOTH ends translate as the free body
+    // moves, i.e. the whole coil slides bodily off the wall it is supposed to be
+    // attached to (founder finding, newton_third_law STATE_3). So the moment either
+    // body is "fixed", that body owns the mount for every phase.
+    //   Build-time fact (userData.fixed is read from the body's first appearance and
+    // an id must not flip it between states), so this cannot change mid-state. A
+    // free-free pair returns "" and takes the byte-identical pre-2026-07-30 path;
+    // both fixed is degenerate apparatus (nothing moves) and pins on the first.
+    function nlbSpringAnchorId(idA, idB) {
+        var mA = nlbFindById("nlb_body_" + idA);
+        if (mA && mA.userData && mA.userData.fixed) return idA;
+        var mB = nlbFindById("nlb_body_" + idB);
+        if (mB && mB.userData && mB.userData.fixed) return idB;
+        return "";
+    }
     // Place the coil between the two bodies' facing faces. Called ONLY from
     // nlbSetBodyPosition (plus state entry / RESET_TRAJECTORY, for the same
     // "first frame already correct" reason the ropes are fitted there). Pure
@@ -30572,8 +30858,32 @@ export const FIELD_3D_RENDERER_CODE = `
         //     too, so this handover is continuous as well.
         // Clamped to the gap above (drawn <= gap always), so the coil can never
         // overlap either body in any phase.
+        //   A WALL-ANCHORED spring (2026-07-30) is the third case and it OVERRIDES
+        // both of the above — see nlbSpringAnchorId: a spring bolted to an
+        // immovable body has exactly ONE fixed end, so it is mounted on that face
+        // in EVERY phase, not just the two that draw short.
         var cx = (pA.x + pB.x) / 2, cy = (pA.y + pB.y) / 2, cz = (pA.z + pB.z) / 2;
-        if ((phc === "approach" || ringOn) && drawn < gap - 1e-6) {
+        var anch = nlbSpringAnchorId(idA, idB);
+        if (anch) {
+            // Pinned end ON the anchor's facing face; the free end takes ALL of the
+            // length change. pA/hA (or pB/hB) are constants for a fixed body — its
+            // s is pinned by the integrator and its half-extent is apparatus — so
+            // the pinned end's world position is literally invariant for the life
+            // of the state, in every phase, at every quantum, under any pin.
+            //   The offset uses the MESH's quantised half-height q/2, not drawn/2,
+            // so the pinned end lands on the face EXACTLY as drawn on screen: the
+            // whole (up to 0.01 world) quantisation residual is pushed onto the
+            // free end, inside the free body, where nothing can see it. Under the
+            // midpoint mount that residual was split across both seams, which put a
+            // visible fraction of it on the wall seam.
+            var au = new THREE.Vector3(dx / sep, dy / sep, dz / sep);
+            var aOff = (anch === idA ? hA : hB) + q / 2;
+            if (anch === idA) {
+                cx = pA.x + au.x * aOff; cy = pA.y + au.y * aOff; cz = pA.z + au.z * aOff;
+            } else {
+                cx = pB.x - au.x * aOff; cy = pB.y - au.y * aOff; cz = pB.z - au.z * aOff;
+            }
+        } else if ((phc === "approach" || ringOn) && drawn < gap - 1e-6) {
             var ux = dx / sep, uy = dy / sep, uz = dz / sep;
             var off = hA + drawn / 2;
             cx = pA.x + ux * off; cy = pA.y + uy * off; cz = pA.z + uz * off;
@@ -30582,6 +30892,12 @@ export const FIELD_3D_RENDERER_CODE = `
         obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / sep, dy / sep, dz / sep));
         obj.visible = true;
         nlbPublishSpring(true, drawn, gap, obj.userData.q_len);
+        // MOUNT diagnostics — where the coil's two ends actually landed against the
+        // two faces they are supposed to sit between. Published because "the
+        // anchored end never moves" is the whole content of the wall-spring fix and
+        // an inferred endpoint would be the probe re-implementing the mount.
+        nlbPublishSpringMount(anch, cx, cy, cz, dx / sep, dy / sep, dz / sep,
+            obj.userData.q_len, pA, pB, hA, hB);
     }
     // Published DERIVED reads (the PM_nlb* mirror convention): the coil's live
     // drawn length and the face-to-face gap it sits in, both in WORLD units, plus
@@ -30595,6 +30911,26 @@ export const FIELD_3D_RENDERER_CODE = `
         // The MESH's own built height (the quantised length its TubeGeometry was
         // rebuilt at) — the on-screen truth, not the pre-quantisation intent.
         window.PM_nlbSpringMeshLen = qLen || 0;
+        if (!vis) nlbPublishSpringMount("", 0, 0, 0, 1, 0, 0, 0, null, null, 0, 0);
+    }
+    // The coil's two ENDS and the two FACES they sit against, in WORLD units,
+    // plus which body (if any) the coil is bolted to. All derived reads on the
+    // pose just written — diagnostics + probe surface only, nothing in the engine
+    // reads them back and they touch no pixels. end0/face0 are the between[0]
+    // side, end1/face1 the between[1] side; the ends are taken from the mesh's
+    // QUANTISED height, so they are where the wire really is on screen.
+    function nlbPublishSpringMount(anchorId, cx, cy, cz, ux, uy, uz, qLen, pA, pB, hA, hB) {
+        window.PM_nlbSpringAnchor = anchorId || "";
+        if (!pA || !pB) {
+            window.PM_nlbSpringEnd0 = null; window.PM_nlbSpringEnd1 = null;
+            window.PM_nlbSpringFace0 = null; window.PM_nlbSpringFace1 = null;
+            return;
+        }
+        var half = (qLen || 0) / 2;
+        window.PM_nlbSpringEnd0 = { x: cx - ux * half, y: cy - uy * half, z: cz - uz * half };
+        window.PM_nlbSpringEnd1 = { x: cx + ux * half, y: cy + uy * half, z: cz + uz * half };
+        window.PM_nlbSpringFace0 = { x: pA.x + ux * hA, y: pA.y + uy * hA, z: pA.z + uz * hA };
+        window.PM_nlbSpringFace1 = { x: pB.x - ux * hB, y: pB.y - uy * hB, z: pB.z - uz * hB };
     }
 
     function buildNewtonsLawsBody() {
@@ -30806,13 +31142,47 @@ export const FIELD_3D_RENDERER_CODE = `
 
             // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
             // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
-            var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
+            // nlbMassSymbol is the Rule-34c guard on the SPRITE text path: an authored
+            // ASCII "m1" renders as m₁ here exactly as it does in the HUD header and on
+            // the slider row — one normalizer, all three surfaces. It is applied to the
+            // authored LABEL only, never to the id FALLBACK: an unlabelled body (a ghost)
+            // must keep rendering exactly the pixels it rendered before.
+            var lbl = pmCreateAutoLabel(d.label ? nlbMassSymbol(d.label) : d.id, col, 0.4);
             // Clear the TOP of whichever solid this body is — the wall slab is
             // ~3x a cart's height, so the cart offset would bury its label inside it.
             lbl.position.set(0, d.fixed ? (NLB_WALL_H - NLB_BODY_SIZE / 2 + 0.18) : (NLB_BODY_SIZE * 0.95), 0);
             lbl.userData = { elementType: "nlb_body_label", id: "nlb_body_" + d.id + "_label", bodyId: d.id, ghost: !!d.ghost };
+            lbl._nlbHome = lbl.position.clone();   // the pose nlbDodgeBodyLabels resets to
             mesh.add(lbl);
             nlbRegister(lbl);
+
+            // The mass, written ACROSS THE BLOCK'S OWN FRONT FACE (founder finding:
+            // the corner HUD alone is not enough — a teacher pointing at a cart has to
+            // be able to say "this is the heavy one"). Placed at the body's centre,
+            // just off the +z face, so the collision guarantee is STRUCTURAL rather
+            // than a layout tweak: the ink is bounded by the cube's own silhouette
+            // (the widest plausible string, "10.5 kg", measures ~0.47 world units of
+            // ink at NLB_MASS_LABEL_H against a 0.55-wide cube), so it can never reach
+            // a neighbouring block's label however close the two carts stand, and it
+            // sits nowhere near the arrow lanes, the spring coil, the badge or the HUD.
+            // Neutral white on the dark outline pmCreateAutoLabel already draws, so it
+            // reads on every NLB_BODY_COLORS hue (the body-coloured identifier label
+            // above would vanish against its own block). depthTest:false keeps it
+            // readable from any camera angle. Text is written live by nlbUpdateMassText.
+            //   A "fixed" body gets NONE: its 1000000 kg is a stand-in for infinity,
+            //   not a reading, and the HUD states it as "m ≫ <the free bodies>".
+            if (!d.fixed) {
+                var mlbl = pmCreateAutoLabel("", "#FFFFFF", NLB_MASS_LABEL_H);
+                mlbl.position.set(0, 0, NLB_BODY_SIZE / 2 + 0.03);
+                mlbl.userData = {
+                    elementType: "nlb_body_mass", id: "nlb_body_" + d.id + "_mass",
+                    bodyId: d.id, ghost: !!d.ghost
+                };
+                mlbl.visible = false;       // shown per state (never on a ghost) on entry
+                mlbl._nlbHome = mlbl.position.clone();
+                mesh.add(mlbl);
+                nlbRegister(mlbl);
+            }
 
             nlbSetBodyPosition(d.id, d.initial_position_m || 0);
 
@@ -30917,6 +31287,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // screen whose entire point is that this object is doing the pushing.
             var solidApparatus = (ud.elementType === "nlb_body" ||
                                   ud.elementType === "nlb_body_label" ||
+                                  ud.elementType === "nlb_body_mass" ||
                                   ud.elementType === "nlb_surface" ||
                                   ud.elementType === "nlb_pulley" ||
                                   ud.elementType === "nlb_rope" ||
@@ -30953,8 +31324,8 @@ export const FIELD_3D_RENDERER_CODE = `
     // missing from most monospace faces (the merged-blob / tofu subscript scar).
     var NLB_SLIDER_TOKENS = ["m", "m2", "F", "theta", "mu_s", "mu_k", "v0"];
     var NLB_SLIDER_SPEC = {
-        m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 2 },
-        m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 4 },
+        m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 2 },
+        m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 4 },
         F:     { param: "applied_force",    slider: "nlb_f_slider",     row: "nlb_f_row",     val: "nlb_f_val",     lbl: "nlb_f_lbl",     glyph: "F",  unit: " N",   dp: 1, min: -20, max: 20, step: 0.5, def: 0 },
         theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
         mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
@@ -31006,7 +31377,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // visibility:hidden (NOT display:none) — the reserved slot, Rule 32d.
             html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
                 '<label><span id="' + sp.lbl + '" style="font-family:' + NLB_MATH_FONT + '">' + sc.label + '</span> = ' +
-                '<span id="' + sp.val + '">' + sc.def.toFixed(sp.dp) + '</span>' + sp.unit + '</label>' +
+                '<span id="' + sp.val + '">' + (sp.mass ? nlbFxMass(sc.def) : sc.def.toFixed(sp.dp)) + '</span>' + sp.unit + '</label>' +
                 '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
                 '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
         }
@@ -31132,7 +31503,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var el = document.getElementById(sp.slider);
         if (el) el.value = String(value);
         var vv = document.getElementById(sp.val);
-        if (vv) vv.textContent = nlbFx(value, sp.dp);
+        // A MASS reads with the same rule everywhere on screen (bare integer, minimum
+        // readable precision otherwise) — the row would otherwise say "4.0 kg" beside a
+        // HUD and a block both saying "4 kg".
+        if (vv) vv.textContent = sp.mass ? nlbFxMass(value) : nlbFx(value, sp.dp);
     }
     // The mass rows adopt the body's OWN authored Unicode label where there is one,
     // so the slider reads exactly like the block it drives (m₁ / m₂ by default).
@@ -31148,7 +31522,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var sp = NLB_SLIDER_SPEC[pairs[p][0]];
             var el = document.getElementById(sp.lbl);
             if (!el) continue;
-            var txt = labelFor(pairs[p][1]) || nlbSc(pairs[p][0]).label;
+            var txt = nlbMassSymbol(labelFor(pairs[p][1]) || nlbSc(pairs[p][0]).label);
             if (el.textContent !== txt) el.textContent = txt;
         }
     }
@@ -31799,11 +32173,16 @@ export const FIELD_3D_RENDERER_CODE = `
             if (ud.elementType === "nlb_surface_group") { o.visible = true; return; }
             if (ud.elementType === "nlb_surface") { o.visible = !surface.hidden; return; }
             if (ud.elementType === "nlb_world_group") { o.visible = true; return; }
-            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
+            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label" &&
+                ud.elementType !== "nlb_body_mass") return;
             var bd = listed[ud.bodyId];
             o.visible = !!bd;
             if (!bd) return;
             ud.ghost = !!bd.ghost;
+            // The on-block mass number follows the HUD's rule, not the mesh's: a ghost
+            // is a decorative copy of a body, never a second body with its own mass, so
+            // it carries no number (the block itself still draws, dimmed).
+            if (ud.elementType === "nlb_body_mass") { o.visible = !bd.ghost; return; }
             if (ud.elementType === "nlb_body") {
                 var col = bd.color || ud.baseColor;
                 if (o.material && o.material.color) o.material.color.set(hexToThreeColor(col));
@@ -31816,8 +32195,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 // back out of bounds for the state's first rendered frame.
                 var seededB = eng.bodies[bd.id];
                 nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
-            } else if (bd.label) {
-                updateLabelSpriteText(o, bd.label);
+            } else if (ud.elementType === "nlb_body_label" && bd.label) {
+                updateLabelSpriteText(o, nlbMassSymbol(bd.label));
             }
         });
 
@@ -31831,6 +32210,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Value-only HUD rows for this state's bodies x readouts.
         nlbRebuildReadout(nlb);
+        // ... and the mass text on both surfaces the rebuild just (re)created or
+        // re-showed, so the FIRST rendered frame of a state already carries the number
+        // (a frozen pin can catch that frame).
+        nlbUpdateMassText(nlb);
 
         // SEAM C — force-arrow overlay. Enabled kinds + component flag + label
         //   overrides were seeded into eng.arrows above; EVERY arrow surface is
@@ -31884,6 +32267,10 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         nlbSyncSliderLabels(nlb);
         nlbToggleSliderRows(nlb);
+        // Re-fit the HUD now that THIS state's slider panel has its final height: the
+        // rebuild above ran before the toggle and could only measure the previous
+        // state's panel (Rule 34d — the floor the HUD must clear moves per state).
+        nlbFitReadoutPanel();
         // Read the flag off THIS stateDef, not via nlbStateIsDraggable()'s
         // PM_currentState lookup, so the proxies can never be armed one state late
         // if applyState ever runs before PM_currentState is committed.
@@ -32234,6 +32621,9 @@ export const FIELD_3D_RENDERER_CODE = `
         //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
         var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
         nlbUpdateSlowBadge(eng);
+        // Mass text (HUD header + on-block number) tracks a live slider drag. One call
+        // for both integrator branches, churn-guarded, clock-free.
+        nlbUpdateMassText(nlbStateCfg());
 
         if (!eng.coupled) {
             // ── Branch A — independent bodies (no pulley) ──────────────────

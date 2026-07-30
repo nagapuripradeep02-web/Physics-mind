@@ -944,3 +944,201 @@ INSERT INTO engine_bug_queue (
 --     'lom-a spring choreography engine seam B 2026-07-30',
 --     'incident'
 -- );
+
+-- ============================================================
+-- WALL-ANCHORED SPRING (field3d_surgeon, 2026-07-30) — founder finding on
+-- newton_third_law STATE_3: "the spring is moving with the block. It should be
+-- locked to the wall." TEXT ONLY, NOT APPLIED.
+-- ============================================================
+
+-- (1) THE finding. CRITICAL, fixed this dispatch.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_spring_coil_slides_bodily_instead_of_staying_anchored_to_the_fixed_wall_face',
+    'A spring between a cart and a fixed wall slides bodily with the cart instead of staying bolted to the wall face',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'nlbFitSpring() mounted the coil at the MIDPOINT of the two body positions and gave it the gap as its length. That is correct and symmetric while BOTH bodies are free, but a wall-anchored spring has exactly ONE fixed end: with one body fixed, half of the free body''s displacement is handed to the mount point, so BOTH coil ends translate and the whole coil walks off the wall it is attached to. Measured on the real assembled renderer over one spring_action cycle: the wall-side coil end travelled 0.8466 m (the founder saw it as 640 px -> 628 px between t=0 and t=6000). The two loading phases that DO mount on a face (approach, ring) mounted on spring.between[0] — an authoring accident, not the anchored body — so a reversed pair mounted the coil on the moving cart instead.',
+    'A spring/push_off pair in which EITHER body is `fixed` mounts the coil on THAT body''s facing face in EVERY phase, for the life of the state; only the free end tracks. The mount is a phase-independent property of the apparatus (which body is bolted down), never a per-phase decision, and never derived from the authoring order of `spring.between`. Free-free pairs keep the midpoint mount unchanged.',
+    'js_eval',
+    'On a cart-vs-fixed-wall spring state, sample the coil''s anchored-end world position every frame of a full cycle (approach/compress/hold/release/coast). Assert (a) max-min of that coordinate < 1e-9, (b) its distance to the anchored body''s facing face < 1e-9 on every visible frame, and (c) the FREE end still travels > 0.3 world units, so the invariance is a pinned mount and not a frozen coil.',
+    'FIXED',
+    ARRAY['newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a wall-anchored spring fix 2026-07-30',
+    'incident'
+);
+
+-- (2) The independent sub-defect the same finding exposed. MAJOR, fixed this dispatch.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_spring_centre_midpoint_mount_leaves_an_air_gap_at_the_thinner_body_face',
+    'Centring the coil on the two body CENTRES (not on the gap) leaves a visible air gap at the thinner body and buries the other end inside the fatter one',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The mount was cx = (pA + pB)/2 — the midpoint of the two body CENTRES — while the coil''s length is the FACE-TO-FACE gap. Those two midpoints coincide only when the two bodies have equal half-extents. A cart (half 0.55 m) against a wall slab (half 0.275 m) therefore offsets the coil by (hA-hB)/2 = 0.1375 m: a visible gap at the SLAB face and 0.1375 m of coil buried inside the cart. Measured 0.1375 m at the mid-hold pin, exactly the predicted value. The rendered slab and the authoring contract''s 0.275 m half-width DO agree (BoxGeometry(0.275, 1.76, 1.43) is translated in Y only, verified 0.275 m / 0.550 m from the live faces), so this was pure mount arithmetic, not a geometry mismatch. Second-order: the mesh is rebuilt at a 0.02-world quantum while the mount used the UNQUANTISED length, so the residual (up to 0.01 world) was split across both seams instead of being hidden inside a body.',
+    'Mount a spanning object on a FACE, never on a centre midpoint, whenever the two hosts can have different half-extents; and offset by the MESH''s own quantised half-length, so the quantisation residual lands entirely on the end nobody reads (inside the moving body) instead of on the visible seam.',
+    'js_eval',
+    'For every visible frame of a spring state whose two bodies have different half-extents, assert the coil''s end-to-face distance is < 1e-9 at the anchored face and <= half a rebuild quantum at the free face.',
+    'FIXED',
+    ARRAY['newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a wall-anchored spring fix 2026-07-30',
+    'incident'
+);
+
+-- (3) Probe doctrine — the H2 "0.00%" demand is not well formed. MODERATE, OPEN.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'eye_h2_frozen_frames_of_moving_elements_wobble_sub_perceptually_so_zero_percent_is_not_a_valid_gate',
+    'H2 on a frozen frame containing a moving element wobbles a few hundredths of a percent between identical runs, so "H2 = 0.00%" cannot be used as a regression equality',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'Two EYE runs of the SAME committed code on the same concept returned different H2 percentages on frozen frames that contain a moving body (connected_bodies STATE_6__frozen 0.24% then 0.22%; free_body_diagram STATE_3__frozen 0.00% then 0.03% twice). A direct pixel diff of the two frames shows 4315 differing pixels inside a single 68x68 box with a MAXIMUM channel delta of 3/255 — sub-perceptual rasterizer/AA wobble, not geometry: a real displacement produces large channel deltas along edges. A dispatch that demands "H2 = 0.00%" as proof of no regression therefore fails for reasons unrelated to the change under test, and invites a surgeon to "fix" a non-defect.',
+    'State the no-regression criterion as "H2 PASSES its tolerance AND any non-zero percentage reproduces on the PRE-change renderer or has max channel delta <= 3", not as an equality to 0.00%. When a non-zero H2 appears, settle it with a pre/post pixel diff (bounding box + max channel delta), never by eyeballing the percentage.',
+    'manual',
+    'Re-seed and run visual:eyes on the unchanged renderer; diff the two frozen PNGs pixel-wise and report differing-pixel count, bounding box and max channel delta. Sub-3/255 deltas are rasterizer noise.',
+    'OPEN',
+    ARRAY['free_body_diagram','connected_bodies']::text[],
+    ARRAY['src/scripts/visual_eyes.ts']::text[],
+    'lom-a wall-anchored spring fix 2026-07-30',
+    'probe_definition'
+);
+
+-- (4) The mass was never on screen. MAJOR, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_hud_and_body_labels_never_show_mass_so_an_unequal_mass_state_is_unreadable',
+    'The newtons_laws_body HUD and block labels printed identifiers and forces but never the MASS, so a state whose whole teaching point is a mass ratio could not be read at all',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The value-only HUD (Rule 33d) enumerated exactly the state''s readouts[] enum — N, f, a, v, T, F_net, F_applied — and mass is not a member because it is a PARAMETER, not a reading. The per-body group header printed the identifier alone ("m1"), and only when a state had more than one body; the on-block sprite printed the same identifier. So the one number that makes an unequal-mass beat legible ("same 30 N push, one cart accelerates 3x harder") appeared NOWHERE: the founder''s state 2 rendered "m1 / F = 30.00 N / a = 7.50 m/s2" against "m2 / F = -30.00 N / a = -2.50 m/s2" with no way to tell which cart was heavier or by how much. A fixed (wall/Earth) body compounded it: authored at 1000000 kg as a stand-in for infinity, any naive mass row would have printed that number as though it were a reading.',
+    'A quantity the state''s claim DEPENDS on must be rendered even when it is an input rather than an output — the readouts[] enum covers outputs only, so parameters (mass) are rendered by the engine unconditionally. Render it in BOTH places: the HUD group header (which body) and on the physical object (so a teacher can point at it). Format one way everywhere (bare integer, minimum readable precision otherwise), normalise identifiers to Unicode subscripts on EVERY text path that prints them (DOM header, DOM slider row, 3D sprite), and never print a stand-in-for-infinity mass as a number.',
+    'js_eval',
+    'For every nlb state: each non-ghost, non-fixed body''s HUD header text matches /<name> = <number> kg/ with no ASCII m1/m2 anywhere, and its on-block sprite text equals the same number + " kg"; a fixed body''s header contains no mass digits and does contain U+226B; every mass sprite''s measured INK width is <= the cube width (0.55 world), which structurally forbids a collision with a neighbouring block''s label, and no mass rect intersects any other label rect, any arrow shaft polyline or any DOM overlay rect.',
+    'FIXED',
+    ARRAY['free_body_diagram','block_on_incline','connected_bodies','newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility fix 2026-07-30',
+    'incident'
+);
+
+-- (5) Probe doctrine — sprite ink is invisible to every DOM probe. MODERATE, OPEN.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_sprite_label_text_and_ink_box_are_invisible_to_every_dom_probe',
+    'What a 3D sprite label SAYS, and where its ink actually lands on screen, is unreadable by founder_drive''s DOM collision probe and by THE EYE''s gates — only a canvas-measuring projection probe can assert either',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'A field_3d label is a canvas texture on a THREE.Sprite: there is no DOM node, no text node and no bounding client rect, so every DOM-based collision/text probe silently reports nothing for the entire label layer. The drawn string was also not retained anywhere after createLabelSprite/updateLabelSpriteText ran, so even with the scene in hand a probe could not tell what a label said. Result: label-vs-label and label-vs-arrow collisions in the 3D layer are provable only by eye, which is exactly the class Rule 34d exists to prevent.',
+    'Retain the drawn string on the sprite (sprite._pmText, written by pmCreateAutoLabel and updateLabelSpriteText) and assert label geometry with a projection probe: capture the renderer''s own scene + camera by wrapping THREE.Scene / THREE.PerspectiveCamera at the CDN global assignment (r128 ships them as ES classes and assigns render() per instance, so Reflect.construct is required and a prototype hook on render never fires), measure ink width from the sprite''s retained canvas via ctx.measureText, build the rect from the camera-right/up billboard axes, and intersect it against the other label rects, the sampled arrow shaft polylines and the DOM overlay rects.',
+    'js_eval',
+    'Wrap THREE.Scene/PerspectiveCamera to capture the first instance of each; traverse for the scenario''s label elementTypes; for each visible sprite compute ink rect = worldPos +/- right*(scale.x*measureText(text)/canvas.width)/2 +/- up*scale.y/2 projected to screen px; assert pairwise non-intersection plus non-intersection with arrow shaft samples and with getBoundingClientRect of every visible overlay div.',
+    'OPEN',
+    ARRAY['free_body_diagram','block_on_incline','connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility fix 2026-07-30',
+    'probe_definition'
+);
+
+-- (6) The unconditional header grew the HUD into the slider panel. MAJOR, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_explore_hud_panel_slider_overlap',
+    'The nlb HUD panel is top-anchored and the slider panel bottom-anchored on the SAME right edge, so a tall HUD walks down into the sliders — the explore state bled its last readout rows behind the m1 slider row',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'Both panels are fixed CSS with no knowledge of each other: #nlb_readout at top:52px;right:12px and #nlb_sliders at bottom:12px;right:12px. The height of the HUD is data-driven (bodies x readouts), so the explore state of a two-body concept builds 2 headers + 12 rows at 13px/1.7 = ~330 px and reaches the slider panel top at ~346 px; the sliders are appended later in the DOM and share z-index 10, so they paint OVER the last HUD rows. Making the mass header unconditional added exactly the two rows that crossed the line. CSS cannot express "stop before that other fixed panel", so no static layout fixes it.',
+    'When two fixed overlays share an edge from opposite anchors, the flexible one MEASURES the other and reflows: a ladder that stops at the first step that fits (authored look -> compact rows -> one column per body), re-run on every state entry AFTER the other panel has its final per-state height. A state that already fits is byte-identical, so only the states that actually overlapped move any pixels.',
+    'js_eval',
+    'For every state: getBoundingClientRect of #nlb_readout and #nlb_sliders; assert readout.bottom <= sliders.top when both are visible. Run it on the state with the LARGEST bodies x readouts product, not on state 1.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility follow-up 2026-07-30',
+    'incident'
+);
+
+-- (7) A falling body's labels went behind the fixed control panel. MODERATE, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_falling_body_label_hidden_by_control_panel',
+    'A hanging body descends straight through the screen region the fixed slider panel occupies, so its mass number and identifier went behind the panel and were unreadable exactly while the body was the thing to read',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'The slider panel is a DOM overlay: no 3D object can ever draw over it, and the pulley bracket (hence the hanging body''s whole landing zone) is at the right end of the surface, directly under it. A label anchored to the body therefore slides under the panel as the body falls. This is invisible to a t=0 probe and to any static layout check: the collision only exists for part of the motion, which is why the first round of this fix missed it.',
+    'A label that is anchored to a MOVING object must be checked against the fixed overlay rects across the object''s whole travel, not at one instant, and must dodge: reset to the home pose, project the real INK rect, and slide the label pair along a world axis until it clears the offending panel edge (capped). The dodge is a pure function of the current pose and the current rects, so it adds no clock and stays byte-stable under a frozen pin.',
+    'js_eval',
+    'Sample a coupled/hanging state every ~0.17 s across its full travel; for each visible mass label build its projected ink rect and assert zero intersection with the rect of every visible DOM overlay, with every other label, and with the viewport edges.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility follow-up 2026-07-30',
+    'incident'
+);
+
+-- (8) Off-grid slider/sweep values printed 3 decimals. MODERATE, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_slider_mass_label_unrounded_precision',
+    'A mass written by a live off-grid value (explore auto-sweep or a drag) printed three decimals — 8.464 kg on the block and in the HUD — instead of the minimum readable precision',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'The mass formatter rounded to 3 dp and only stripped trailing zeros, which is invisible while every mass on screen comes from an authored integer or a 0.5-step slider. The explore state''s idle auto-sweep (Rule 37) and THE EYE''s slider driver both write INTERPOLATED values off the step grid, so the raw sweep value reached every mass surface verbatim. The defect was in the shared formatter, not in one path: a per-path patch would have left the next writer of a live value exposed.',
+    'Fix a display-precision rule inside the ONE formatter every surface calls, never at the call sites: a mass is one decimal (its slider step is 0.5), with a small-value fallback so a sub-0.1 kg mass cannot round to "0". Then any future live writer inherits it.',
+    'js_eval',
+    'Write off-grid values (8.464, 6.976, 2.55) through the real slider input handler and assert both the HUD header text and the on-block sprite text match /^[0-9]+([.][0-9])? kg$/; also assert it over a full explore-state auto-sweep, which writes off-grid values with no user input at all.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility follow-up 2026-07-30',
+    'incident'
+);
+
+-- (9) Camera-rotated explore state: an on-table body's labels bleed through the slider panel. MODERATE, OPEN.
+--     Found by eye-walker on the lom-a mass-legibility follow-up (ff6939c). NOT a regression of that
+--     commit: it is the residual scope of the same dodge mechanism, reachable only by a teacher's own
+--     camera drag. Logged, deliberately NOT fixed (a third bug_class would breach Amendment 4).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_camera_rotated_body_label_bleed_through_slider_panel',
+    'After a teacher rotates the camera in an explore state, an on-table (non-falling) cart can project underneath the semi-transparent slider panel, and its mass number plus identifier bleed through faded and illegible instead of dodging clear',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'The label dodge added in ff6939c resets to the home pose, projects the real ink rect and slides the label pair clear of a visible overlay rect — correct and confirmed for a body that FALLS into the panel zone. But the projected rect depends on the camera, and an explore state lets the teacher rotate it (Rule 25d), which can move a body that never moves in world space into the panel zone. The dodge logic covers that case in principle; the observed frames show it not clearing, so either the cap (NLB_LABEL_DODGE_MAX 1.10 world) is too small for the rotated projection or the dodge axis (world x) is no longer the screen-clearing direction once the camera has turned.',
+    'A label dodge must clear the panel in SCREEN space, not along a fixed world axis: pick the slide direction from the projected panel edge normal and size the cap from the measured overlap in pixels, so the dodge stays correct under any camera the teacher can reach. Probe it with the camera rotated, not only at the authored camera.',
+    'js_eval',
+    'In an explore state, rotate the camera through a spread of azimuths; at each one project every visible mass/identifier ink rect and assert zero intersection with every visible DOM overlay rect. The authored camera alone is not sufficient coverage for any state that exposes camera drag.',
+    'OPEN',
+    ARRAY['connected_bodies']::text[],
+    ARRAY[]::text[],
+    'lom-a spring + mass engine fixes 2026-07-30',
+    'incident'
+);

@@ -803,7 +803,7 @@
             },
             {
               "id": "W",
-              "label": "wall (Earth)",
+              "label": "Wall",
               "mass_kg": 1000000,
               "fixed": true,
               "initial_position_m": -0.7725
