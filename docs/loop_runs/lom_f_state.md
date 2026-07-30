@@ -1,6 +1,7 @@
 # lom-f loop state — Laws of Motion, momentum tray
 
-updated: 2026-07-30 (Phase 0 SPEC written; engine build BLOCKED on agent dispatch — see BLOCKER)
+updated: 2026-07-30 (Phase 0 SPEC written; agent-dispatch blocker ROOT-CAUSED + FIXED — engine build
+         needs one session restart to pick up the fixed registry. See BLOCKER.)
 
 design: docs/MOMENTUM_BENCH_ENGINE_SPEC.md  (founder-approved 2026-07-30)
 worktree: C:\Tutor\physics-mind-lom-f
@@ -19,34 +20,79 @@ in_flight: (none)
 parked: (none)
 engine_commits: (none yet)
 
-## BLOCKER — field3d-surgeon does not dispatch from a session rooted elsewhere
+## BLOCKER — field3d-surgeon would not dispatch (ROOT-CAUSED + FIXED 2026-07-30)
 
-`field3d-surgeon` is NOT dispatchable from a Claude session whose cwd is `C:\Tutor\physics-mind`
-(currently on `feat/field3d-draggable-sensor`). Live probe 2026-07-30:
+### The real root cause: INVALID YAML in the emission frontmatter
 
-    Agent type 'field3d-surgeon' not found. Available agents: architect, claude, claude-code-guide,
-    Explore, eye-walker, feedback-collector, general-purpose, json-author, physics-author, Plan,
-    quality-auditor, retrofit-surgeon, runtime-generation, shipper, statusline-setup
+**The previous diagnosis in this file was WRONG and is retracted.** It claimed the registry loads
+from the session's own checkout and that `field3d-surgeon.md` was simply absent on the main
+checkout's branch. A session rooted IN THIS WORKTREE, with `.claude/agents/field3d-surgeon.md`
+present on disk, still got:
 
-**ROOT CAUSE, now diagnosed** (the earlier lom-a/lom-b note recorded this as never root-caused, and
-its "session freshness" explanation was already disproven). The agent registry is loaded from the
-SESSION'S OWN CHECKOUT — `<session cwd>/.claude/agents/` — not from the worktree being operated on.
-`field3d-surgeon.md` exists on `master` (and therefore in THIS worktree) but does NOT exist on
-`feat/field3d-draggable-sensor`, which is the branch the main checkout has checked out. Nothing to
-do with git worktrees as such; it is per-branch file presence in the session's own checkout.
+    Agent type 'field3d-surgeon' not found. Available agents: architect, chemistry-author, claude,
+    claude-code-guide, Explore, eye-walker, feedback-collector, founder-proxy, general-purpose,
+    json-author, physics-author, Plan, quality-auditor, retrofit-surgeon, statusline-setup
 
-**FIX:** run the engine work from a session rooted IN THIS WORKTREE — open a terminal there and
-start Claude Code from that directory:
+13 agent files on disk, 9 loaded, 4 silently dropped: `field3d-surgeon`, `renderer-primitives`,
+`runtime-generation`, `shipper`. Not frontmatter model/effort (identical to loading agents), not
+mtime (all 13 identical), not settings, not file presence.
+
+**The discriminator, with 1:1 correlation across all 13 files: an unquoted YAML `description:`
+value containing a colon-space (`": "`).** A YAML plain scalar may not contain `": "` — it is the
+key/value separator. The frontmatter fails to parse and Claude Code drops the agent SILENTLY.
+
+    field3d-surgeon      [owner: peter_parker:*]
+    renderer-primitives  [owner: peter_parker:renderer_primitives]
+    runtime-generation   [owner: peter_parker:runtime_generation]
+    shipper              (Rule 30i, 2026-07-17): it never refuses ...
+
+Proof (js-yaml over the pre-fix text; `founder-proxy` is the control — same model/effort, loads):
+
+    PRE-FIX FAIL  field3d-surgeon      -> bad indentation of a mapping entry (2:136)
+    PRE-FIX FAIL  renderer-primitives  -> bad indentation of a mapping entry (2:56)
+    PRE-FIX FAIL  runtime-generation   -> bad indentation of a mapping entry (2:56)
+    PRE-FIX FAIL  shipper              -> bad indentation of a mapping entry (2:489)
+    PRE-FIX OK    founder-proxy
+
+This is ALSO why the bug looked branch-correlated for so long: the offending text was introduced by
+ordinary spec edits on different dates (shipper's on 2026-07-17), so which agents vanished changed
+per branch — exactly mimicking "the file isn't on that branch."
+
+### The fix (applied)
+
+Each of the 4 `description:` values wrapped in single quotes. None contained a quote character, so
+this is lossless. All 13 frontmatter blocks now parse.
+
+**Editing the emission is CORRECT here and is NOT a violation of "never edit the emission
+directly."** `scripts/sync-agents.js` preserves the emission's frontmatter VERBATIM and replaces
+only the body below the first H1 — `description:` has no canonical source, it is authored in the
+emission by design. `npm run check:agents` → "OK — all 13 emissions are up-to-date."
+
+**`check:agents` is NOT evidence of a working registry** — it only compares mtimes; it never
+validates the YAML. That is how this survived so long. A frontmatter validator belongs in it.
+
+### What is still required: ONE SESSION RESTART
+
+The registry is snapshotted at session start, so the fix does NOT take effect in the session that
+made it (re-probed after the fix: same error). Phase 0 engine work resumes in a FRESH session:
 
     cd C:\Tutor\physics-mind-lom-f
     claude
 
-That session sees `.claude/agents/field3d-surgeon.md` and dispatches it normally.
+First action there: confirm `field3d-surgeon` appears in the agent list, then dispatch Phase 0 part 1
+(config surface + integrator + scene skeleton + harness) per `docs/MOMENTUM_BENCH_ENGINE_SPEC.md`.
 
 **DO NOT fall back to general-purpose** for field_3d engine work — banned by CHAPTER_LOOP.md
 Amendment 4 (~3.4M tokens per field3d-surgeon dispatch vs ~25M for general-purpose doing the same
 job), and §0.1 bans the orchestrator editing `field_3d_renderer.ts` itself. Parking is the correct,
 founder-blessed outcome; a fallback is not.
+
+### PLATFORM — needs to land on master (Rule 40)
+
+This fix is not chapter work: it restores `renderer-primitives`, `runtime-generation` and `shipper`
+fleet-wide, on every branch and worktree carrying the same text. It is committed HERE only because
+this tray may not touch another branch. **It should be cherry-picked to master promptly** — until
+then, every other session is still silently missing those three agents.
 
 ## Why base = master and not feat/lom-a
 

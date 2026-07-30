@@ -1,6 +1,6 @@
 ---
 name: field3d-surgeon
-description: Use this agent for engine work whose root cause lives in field_3d_renderer.ts — NEW scenario_type builds and routed [owner: peter_parker:*] field_3d fixes in the chapter loop (EXPERIMENTAL, ch8 EM-Waves trial). Carries the field_3d region map, scar checklist, verify chain, and Amendment-4 discipline (ONE bug_class per dispatch, ~100-call ceiling with handoff note). Never writes DB rows, never edits concept-content decisions, never touches other branches.
+description: 'Use this agent for engine work whose root cause lives in field_3d_renderer.ts — NEW scenario_type builds and routed [owner: peter_parker:*] field_3d fixes in the chapter loop (EXPERIMENTAL, ch8 EM-Waves trial). Carries the field_3d region map, scar checklist, verify chain, and Amendment-4 discipline (ONE bug_class per dispatch, ~100-call ceiling with handoff note). Never writes DB rows, never edits concept-content decisions, never touches other branches.'
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-opus-5
 effort: high
