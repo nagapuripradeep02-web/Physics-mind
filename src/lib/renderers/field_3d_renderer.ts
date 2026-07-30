@@ -52,7 +52,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' |
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' | 'momentum_bench' |
         // molecular_geometry (VSEPR — CHEMISTRY, 2026-07-28): a central atom's
         // electron domains (bonds + lone pairs) repel into the arrangement of
         // maximum separation, which IS the molecular shape. The P3 slice of the
@@ -1041,6 +1041,101 @@ export interface Field3DConfig {
                 end_ms: number;      // linear ramp over [start_ms, end_ms], then holds at `to`
             };
             phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; action?: string; glow_focal?: string }>;
+        };
+        // ── momentum_bench per-state config (impulse + conservation_of_momentum) ──
+        // ONE scenario_type serving BOTH Laws-of-Motion momentum concepts as pure
+        // JSON (docs/MOMENTUM_BENCH_ENGINE_SPEC.md, founder-approved 2026-07-30).
+        // Bodies on a line, ONE compliant contact model, momentum instrumentation.
+        // A ball hitting a wall and two carts colliding are the SAME code — the
+        // wall is simply a body with infinite mass (`fixed: true`).
+        //   THE WHOLE SURFACE IS DECLARED HERE IN SEAM A so the type is stable and
+        // later seams add BEHAVIOUR, not type churn. The fields whose behaviour is
+        // a later seam are marked [SEAM B] / [SEAM C] and currently parse-and-ignore.
+        momentum_bench?: {
+            mode?: 'single_body' | 'wall_impact' | 'collision' | 'explosion' | 'sandbox';
+
+            track?: {
+                length_m?: number;         // visible half-length, default 6
+                mu_k?: number;             // default 0 — a genuinely low-friction track.
+                                           // NON-ZERO IS A TEACHING TOOL, NOT A DEFECT: with
+                                           // friction the track carries an external force and
+                                           // Sigma-p is NOT conserved. Any state that sets
+                                           // mu_k > 0 is asserting exactly that.
+            };
+
+            // 1..3 bodies. A `fixed` body is the wall.
+            bodies: Array<{
+                id: string;                        // stable, e.g. "A" | "B" | "WALL"
+                label?: string;                    // Unicode on-canvas label, e.g. "m₁"
+                mass_kg: number;
+                color?: string;
+                shape?: 'cart' | 'ball' | 'wall';  // presentation only; 'wall' implied by fixed
+                initial_position_m: number;        // signed, along the shared track axis
+                initial_velocity_mps?: number;
+                fixed?: boolean;                   // infinite effective mass — never integrated,
+                                                   // but REAL: it takes and exerts contact forces
+                                                   // and its arrows draw at full brightness.
+            }>;
+
+            // The interaction. Presence of this block is what makes a contact
+            // possible at all; omit it for a single_body state.
+            contact?: {
+                between: [string, string];         // the two body ids that may touch
+                stiffness_N_per_m: number;         // k — sets BOTH peak force and contact duration
+                damping_Ns_per_m?: number;         // c — 0 = perfectly elastic, high = inelastic
+                sticks?: boolean;                  // perfectly inelastic latch. Mutually exclusive
+                                                   // with `preload_m`.
+                preload_m?: number;                // EXPLOSION: the contact starts compressed by
+                                                   // this much and releases. Mutually exclusive
+                                                   // with `sticks`.
+                natural_length_m?: number;         // rest length of the compliant element, default 0.4
+                label?: string;                    // e.g. "steel bumper" | "foam pad" | "velcro"
+            };
+
+            // [SEAM B] Rule 33d instruments. All LIVE numeric readings, never decorative.
+            readouts?: Array<'v' | 'p' | 'sum_p' | 'KE' | 'sum_KE' | 'F_contact' | 'J'>;
+
+            // [SEAM B] The force–time trace. THIS IS THE INSTRUMENT THAT TEACHES
+            // IMPULSE — the shaded area IS the impulse. The DATA it draws
+            // (per-contact (t_ms, F) samples) is already recorded by the SEAM A
+            // integrator; only the PANEL is deferred.
+            force_trace?: {
+                show: boolean;
+                fill_area?: boolean;               // shade the integral of F dt, default true
+                peak_marker?: boolean;             // annotate F_peak, default true
+                window_ms?: number;                // x-axis span; default = the state reveal window
+                compare_with_previous_lane?: boolean;  // two-lane states share one axis pair
+            };
+
+            // [SEAM B] Two independent lanes of the SAME experiment, side by side,
+            // sharing one clock. SEAM A honours ONLY offset_z_m (so a lane body is
+            // already drawn in its own lane); contact_override and the second
+            // contact/trace are SEAM B.
+            lanes?: Array<{
+                id: string;
+                offset_z_m: number;                // lateral offset so lanes never occlude
+                bodies: string[];                  // body ids belonging to this lane
+                contact_override?: Partial<{ stiffness_N_per_m: number; damping_Ns_per_m: number; label: string }>;
+            }>;
+
+            glow_focal?: string;                   // EXACTLY ONE per state (Rule 32e)
+            // [SEAM C] Rule 31 contextual controls.
+            controls_visible?: Array<'m1' | 'm2' | 'v1' | 'v2' | 'k' | 'c'>;
+            trusted_drag_seizes?: boolean;         // [SEAM C] sandbox state only
+            // [SEAM B] The slow-motion honesty requirement (spec section 5): a dt
+            // MULTIPLIER on the integrator during the contact window only
+            // (dtPhysics = h / slow_factor), plus a "slow motion xN" badge. SEAM A
+            // routes every step through mbDtScale() so this drops in as a pure dt
+            // multiplier with NO second clock and NO sub-stepping.
+            slow_window?: {
+                slow_factor: number;
+                badge?: boolean;                   // default true — the honesty requirement
+            };
+            repeat_every_ms?: number;              // re-arm the whole interaction on this cycle
+            // [SEAM C] one-shot monotonic parameter reveal; it writes through the
+            // same slider write-path, which lands with the SEAM C control rows.
+            param_ramp?: { param: 'v1' | 'k' | 'm2'; from: number; to: number; start_ms?: number; end_ms: number };
+            phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; glow_focal?: string }>;
         };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
         //    lorentz_force_uniform_field) ──────────────────────────────────
@@ -40795,6 +40890,846 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbFitRopes();
     }
 
+    // ══════════════════════════════════════════════════════════════════════
+    // momentum_bench scenario — SEAM A (physics core + scene skeleton)
+    //   ONE scenario_type serving BOTH Laws-of-Motion momentum concepts
+    //   (docs/MOMENTUM_BENCH_ENGINE_SPEC.md, founder-approved 2026-07-30):
+    //   bodies on a line, ONE compliant contact model, momentum instrumentation.
+    //   A ball hitting a wall and two carts colliding are the SAME code — the
+    //   wall is a body with infinite mass (fixed: true), never a second branch.
+    //
+    //   SEAM MAP (this file, this scenario):
+    //     SEAM A (here) : the full config surface, the compliant-contact
+    //                     integrator, the force-sample buffer, the minimal scene
+    //                     (track + bodies + the compressible contact element),
+    //                     mbApplyGlow, per-state seeding, the ~6 glue sites and
+    //                     the deriveStateMeta / #sliders registrations.
+    //     SEAM B        : the instruments — force-trace panel, momentum ledger
+    //                     HUD, force arrows, the slow_window dt multiplier and
+    //                     its honesty badge, lane contact overrides.
+    //     SEAM C        : the #mb_sliders rows, PARAM_UPDATE emitters, trusted
+    //                     drag seize, param_ramp.
+    //
+    //   *** NO TEXTBOOK COLLISION OUTCOME IS WRITTEN ANYWHERE BELOW. ***
+    //   The engine integrates F = k*delta + c*delta_dot applied equal and
+    //   opposite; v1_prime = ((m1-m2)v1 + 2 m2 v2)/(m1+m2) and its siblings are
+    //   RESULTS of that integration, never terms in this source. The bring-up
+    //   harness grep-asserts the formula is absent.
+    // ══════════════════════════════════════════════════════════════════════
+    var MB_G = 9.8;                       // m/s^2 (a constant, NOT a clock — Rule 36)
+    var MB_STOP_EPS_V = 0.01;             // m/s — the track-friction stop guard (spec section 2)
+    var MB_WORLD_PER_M = 0.5;             // world units per physical metre (scene scale)
+    var MB_TRACK_THICK = 0.18;            // slab thickness; its TOP face sits at world y = 0
+    var MB_TRACK_DEPTH = 1.6;
+    var MB_DEFAULT_LEN_M = 6;             // track.length_m default (visible half-length, metres)
+    var MB_TRACK_COLOR = "#78909C";
+    var MB_WALL_COLOR = "#90A4AE";
+    var MB_CONTACT_COLOR = "#FFD54F";
+    var MB_BODY_COLORS = ["#42A5F5", "#EF5350", "#66BB6A", "#AB47BC"];
+    // Physical extents in METRES. The half-extent ALONG THE TRACK is what the
+    // contact model measures facing-face separation with, so it is physics, not
+    // decoration — a body is exactly as wide as the collision says it is.
+    var MB_CART_LEN_M = 0.8, MB_CART_H_M = 0.6, MB_CART_D_M = 1.0;
+    var MB_BALL_R_M = 0.28;               // spec section 3
+    var MB_WALL_LEN_M = 0.6, MB_WALL_H_M = 2.4, MB_WALL_D_M = 1.6;
+    var MB_NATURAL_LEN_M = 0.4;           // contact.natural_length_m default
+    // Force-sample resolution, in PHYSICAL milliseconds. This is a SAMPLING
+    // rate, not a time step: every sample is a direct evaluation of the closed
+    // form the step already solved, so it adds no integration, no accumulator
+    // and no dt dependence (Rule 36 untouched). It exists because the area under
+    // F(t) is the whole impulse lesson and a 1/60 s sample grid would trapezoid
+    // a 70 ms pulse to several percent.
+    var MB_TRACE_DT_MS = 0.5;
+    var MB_TRACE_MAX = 8000;              // samples per contact event (hard cap)
+    var MB_EVENT_MAX = 8;                 // event partitions per frame (runaway guard)
+    var MB_TINY = 1e-12;
+
+    var mbIndex = [];
+    function mbRegister(obj) { mbIndex.push(obj); return obj; }
+    function mbFindById(id) {
+        for (var i = 0; i < mbIndex.length; i++) {
+            var ud = mbIndex[i].userData;
+            if (ud && ud.id === id) return mbIndex[i];
+        }
+        return null;
+    }
+    function mbEach(fn) {
+        for (var i = 0; i < mbIndex.length; i++) {
+            var ud = mbIndex[i].userData || {};
+            fn(mbIndex[i], ud);
+        }
+    }
+    // The active state momentum_bench block (never null).
+    function mbStateCfg() {
+        var sd = config.states[PM_currentState];
+        return (sd && sd.momentum_bench) ? sd.momentum_bench : {};
+    }
+    function mbTrackLenM(mb) {
+        var t = (mb && mb.track) || {};
+        return (typeof t.length_m === "number" && t.length_m > 0) ? t.length_m : MB_DEFAULT_LEN_M;
+    }
+    function mbTrackMuK(mb) {
+        var t = (mb && mb.track) || {};
+        return (typeof t.mu_k === "number" && t.mu_k > 0) ? t.mu_k : 0;
+    }
+    function mbShapeOf(d) {
+        if (d && d.shape) return d.shape;
+        return (d && d.fixed) ? "wall" : "cart";
+    }
+    // Half-extent ALONG THE TRACK, in metres. Used by the contact model.
+    function mbHalfM(shape) {
+        if (shape === "ball") return MB_BALL_R_M;
+        if (shape === "wall") return MB_WALL_LEN_M / 2;
+        return MB_CART_LEN_M / 2;
+    }
+    // Lateral lane offset. SEAM A honours ONLY lanes[].offset_z_m so a lane body
+    // is already drawn in its own lane; contact_override is SEAM B.
+    function mbLaneZM(mb, bodyId) {
+        var lanes = (mb && mb.lanes) || [];
+        for (var i = 0; i < lanes.length; i++) {
+            var ln = lanes[i] || {};
+            var ids = ln.bodies || [];
+            for (var j = 0; j < ids.length; j++) {
+                if (ids[j] === bodyId) return (typeof ln.offset_z_m === "number") ? ln.offset_z_m : 0;
+            }
+        }
+        return 0;
+    }
+    // UNION of every state bodies[] — a body mesh is built ONCE and only
+    // shown/hidden + re-seeded per state (Rule 32d home-pose persistence).
+    function mbCollectBodyDefs() {
+        var out = [], seen = {}, keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var sd = config.states[keys[i]] || {};
+            var mb = sd.momentum_bench;
+            if (!mb || !mb.bodies) continue;
+            for (var j = 0; j < mb.bodies.length; j++) {
+                var d = mb.bodies[j];
+                if (!d || !d.id || seen[d.id]) continue;
+                seen[d.id] = true;
+                out.push({
+                    id: d.id, label: d.label, color: d.color,
+                    shape: mbShapeOf(d), fixed: !!d.fixed,
+                    initial_position_m: d.initial_position_m || 0,
+                    lane_z_m: mbLaneZM(mb, d.id)
+                });
+            }
+        }
+        return out;
+    }
+    function mbBodyCentreY(shape) {
+        if (shape === "ball") return MB_BALL_R_M * MB_WORLD_PER_M;
+        if (shape === "wall") return (MB_WALL_H_M / 2) * MB_WORLD_PER_M;
+        return (MB_CART_H_M / 2) * MB_WORLD_PER_M;
+    }
+    function mbSetBodyPosition(bodyId, s_m) {
+        var mesh = mbFindById("mb_body_" + bodyId);
+        if (!mesh) return;
+        var ud = mesh.userData || {};
+        mesh.position.set(s_m * MB_WORLD_PER_M, mbBodyCentreY(ud.shape), (ud.laneZ || 0) * MB_WORLD_PER_M);
+    }
+    function mbApplyTrack(lenM) {
+        var slab = mbFindById("mb_track");
+        if (!slab) return;
+        var halfWorld = Math.max(0.2, lenM * MB_WORLD_PER_M);
+        slab.scale.set(halfWorld * 2, 1, 1);
+        slab.userData.length_m = lenM;
+    }
+    // The compressible contact element, drawn between the two facing faces. Its
+    // LENGTH is the live separation, so a stiff contact barely deforms and a soft
+    // one deforms a lot: THE DEFORMATION IS THE VISIBLE CAUSE of the long contact
+    // time (spec section 3 — the newton_third_law lesson, the cause must be an object).
+    function mbFitContactElement() {
+        var el = mbFindById("mb_contact_element");
+        if (!el) return;
+        var eng = window.PM_mbEngine;
+        var c = eng && eng.contact;
+        if (!c) { el.visible = false; return; }
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        if (!L || !H) { el.visible = false; return; }
+        var xLo = (L.s + L.half) * MB_WORLD_PER_M;
+        var xHi = (H.s - H.half) * MB_WORLD_PER_M;
+        var span = xHi - xLo;
+        // Never a stub and never inverted: once the faces have met the element is
+        // fully compressed and hands the picture over to the two bodies themselves.
+        if (!(span > 0.01)) { el.visible = false; return; }
+        el.visible = true;
+        el.scale.set(span, 1, 1);
+        el.position.set((xLo + xHi) / 2, mbBodyCentreY(L.shape), (L.laneZ || 0) * MB_WORLD_PER_M);
+    }
+
+    // ── Physics helpers ───────────────────────────────────────────────────
+    function mbSgn(x) { return x > 0 ? 1 : (x < 0 ? -1 : 0); }
+    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar).
+    function mbFx(v, dp) {
+        var d = (dp == null) ? 2 : dp;
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
+        return n.toFixed(d);
+    }
+    // A fixed body has INFINITE effective mass: its inverse mass is 0, so it
+    // never accelerates, while the SAME expressions still give it its exact half
+    // of the equal-and-opposite pair. That is the whole "wall is just a body"
+    // claim, expressed as one number rather than a branch.
+    function mbInvMass(b) { return (b && !b.fixed && b.m > 0) ? (1 / b.m) : 0; }
+    // Facing-face separation d, and the overlap delta = max(0, L_natural - d).
+    function mbSepD(eng) {
+        var c = eng.contact, L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        return (H.s - H.half) - (L.s + L.half);
+    }
+    // Track friction: the ONLY external force in this scenario and the only way
+    // Sigma-p can change (spec section 2). Applied only while |v| > STOP_EPS_V.
+    function mbFricAccel(eng, b) {
+        if (!b || b.fixed) return 0;
+        if (!(eng.mu_k > 0)) return 0;
+        if (Math.abs(b.v) <= MB_STOP_EPS_V) return 0;
+        return -mbSgn(b.v) * eng.mu_k * MB_G;
+    }
+    // Free flight over seg seconds with CONSTANT acceleration (friction only).
+    //   v1 = v + a*seg                    (linear in dt)
+    //   s1 = s + 0.5*(v + v1)*seg         (= v*seg + 0.5*a*seg^2, EXACT for
+    //                                      constant a, hence fold-exact)
+    // With seg = 0 (SET_TIME_FREEZE) v1 === v and s1 === s identically, with NO
+    // special-case branch — frozen frames are byte-stable by construction.
+    function mbFreeAdvance(eng, seg) {
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.fixed) continue;
+            var a = mbFricAccel(eng, b);
+            var v1 = b.v + a * seg;
+            // Friction brings a body to REST; it never drags it backwards.
+            if (a !== 0 && mbSgn(v1) !== mbSgn(b.v)) v1 = 0;
+            b.s = b.s + 0.5 * (b.v + v1) * seg;
+            b.v = v1;
+            b.a = a;
+            b.F_contact = 0;
+        }
+        mbHoldLatch(eng);
+    }
+    // A latched (sticks) pair rides as ONE body. Both halves see the same
+    // mass-independent friction deceleration, so they stay in step by
+    // construction; this re-imposes the joint exactly, killing any rounding drift.
+    function mbHoldLatch(eng) {
+        var c = eng.contact;
+        if (!c || !c.latched) return;
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        if (!L || !H) return;
+        if (!L.fixed && !H.fixed) {
+            H.v = L.v;
+            H.s = L.s + c.latch_gap;
+        } else if (L.fixed) { H.v = 0; H.s = L.s + c.latch_gap; }
+        else { L.v = 0; L.s = H.s - c.latch_gap; }
+    }
+    // ── The contact response, in closed form ──────────────────────────────
+    //   The two contact bodies exchange F = k*delta + c*delta_dot, equal and
+    //   opposite. In the RELATIVE coordinate delta that is exactly
+    //
+    //       mu * delta_ddot = -(k*delta + c*delta_dot),   1/mu = 1/m_i + 1/m_j
+    //
+    //   a damped linear oscillator. mbOscAt is its exact response at time t.
+    //   Using the exact response instead of an explicit finite difference is what
+    //   makes this engine possible at a 1/60 s step at all: a steel-stiff contact
+    //   lasts a few frames, and NO explicit scheme resolves that without
+    //   sub-stepping — which Rule 36 forbids. Two consequences fall out free:
+    //     * exp(A*h) composed N times IS exp(A*N*h), so N steps of h are
+    //       numerically identical to one step of N*h — the Rule 36 fold property,
+    //       held to machine precision rather than to first order;
+    //     * at t = 0 the map is the identity, so a freeze pin is byte-stable.
+    //   This is NOT a hard-coded collision outcome: it is the equation of motion
+    //   of the authored contact, solved. The rebound speeds, the impulse, the
+    //   contact duration and the momentum ledger are all read back OUT of it.
+    function mbOscAt(k, c, mu, d0, u0, t) {
+        if (!(mu > 0) || !(k > 0)) return [d0 + u0 * t, u0];
+        var w0 = Math.sqrt(k / mu);
+        var zeta = (c > 0) ? (c / (2 * Math.sqrt(k * mu))) : 0;
+        var e = Math.exp(-zeta * w0 * t);
+        var A = u0 + zeta * w0 * d0;
+        var B = w0 * w0 * d0 + zeta * w0 * u0;
+        if (zeta < 1 - 1e-12) {
+            var wd = w0 * Math.sqrt(1 - zeta * zeta);
+            var cw = Math.cos(wd * t), sw = Math.sin(wd * t);
+            return [e * (d0 * cw + (A / wd) * sw), e * (u0 * cw - (B / wd) * sw)];
+        }
+        if (zeta > 1 + 1e-12) {
+            var wh = w0 * Math.sqrt(zeta * zeta - 1);
+            var ch = (Math.exp(wh * t) + Math.exp(-wh * t)) / 2;
+            var sh = (Math.exp(wh * t) - Math.exp(-wh * t)) / 2;
+            return [e * (d0 * ch + (A / wh) * sh), e * (u0 * ch - (B / wh) * sh)];
+        }
+        return [e * (d0 + A * t), e * (u0 - B * t)];   // critically damped limit
+    }
+    // Reduced mass of the contact pair. A fixed partner contributes 1/m = 0, so
+    // mu collapses to the moving body mass — spec section 2, "for a fixed wall,
+    // drop the 1/m term of the wall".
+    function mbContactMu(eng) {
+        var c = eng.contact, L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        var w = mbInvMass(L) + mbInvMass(H);
+        return (w > 0) ? (1 / w) : 0;
+    }
+    // First instant inside (0, limit] at which the contact force would turn
+    // TENSILE. The bodies push, they never pull (spec section 2), so that instant
+    // IS the release. Bracket on the closed form, then bisect — deterministic,
+    // no accumulator, no dt dependence.
+    function mbContactExitT(k, cDamp, mu, d0, u0, limit) {
+        var f0 = k * d0 + cDamp * u0;
+        // A contact that is just BEGINNING sits at delta = 0 with delta_dot > 0:
+        // an undamped spring reads F = 0 there because it is uncompressed, NOT
+        // because the bodies are parting. Releasing on that zero would end every
+        // elastic contact on the frame it started, with no impulse at all — the
+        // first defect this harness caught. So the release search ARMS only once
+        // the force has genuinely risen above zero, and an f0 <= 0 that arrives
+        // while the bodies are already separating (u0 <= 0) still releases at once.
+        if (!(f0 > 0) && u0 <= 0) return 0;
+        var armed = (f0 > 0);
+        var w0 = (mu > 0 && k > 0) ? Math.sqrt(k / mu) : 0;
+        var N = 64;
+        if (w0 > 0) {
+            var want = Math.ceil(limit * w0 * 40 / Math.PI);
+            if (want > N) N = Math.min(4096, want);
+        }
+        var prevT = 0;
+        for (var i = 1; i <= N; i++) {
+            var t = limit * i / N;
+            var st = mbOscAt(k, cDamp, mu, d0, u0, t);
+            var f = k * st[0] + cDamp * st[1];
+            if (!armed) { if (f > 0) armed = true; prevT = t; continue; }
+            if (f <= 0) {
+                var lo = prevT, hi = t;
+                for (var j = 0; j < 80; j++) {
+                    var mid = (lo + hi) / 2;
+                    var sm = mbOscAt(k, cDamp, mu, d0, u0, mid);
+                    if (k * sm[0] + cDamp * sm[1] > 0) lo = mid; else hi = mid;
+                }
+                return hi;
+            }
+            prevT = t;
+        }
+        return null;
+    }
+    // First instant inside (0, limit] at which the facing faces MEET.
+    function mbTimeToContact(eng, limit) {
+        var c = eng.contact;
+        if (!c || c.latched) return null;
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        if (!L || !H) return null;
+        var delta = c.L_nat - mbSepD(eng);
+        if (c.blocked_until_clear) {
+            // STRICTLY below zero, not <= 0. A release lands on delta EXACTLY 0, and
+            // that value satisfies the re-entry test below just as well as it
+            // satisfies a <= 0 clear — so a <= here re-engaged on the very same
+            // instant it released, chattering through the frame budget, minting a
+            // spurious zero-length contact event each time and leaving the leftover
+            // frame time to be swept up differently at 60 Hz than at 120 Hz (it
+            // broke the Rule 36 fold by ~1e-2 m). Requiring real separation first
+            // costs nothing physically: the pair is already parting when it fires.
+            if (delta < 0) c.blocked_until_clear = false; else return null;
+        }
+        if (delta >= 0) return 0;
+        var closing = L.v - H.v;          // d(delta)/dt
+        if (!(closing > 0)) return null;
+        var t = (-delta) / closing;
+        return (t <= limit) ? t : null;
+    }
+    // Record (t_ms, F_contact) across the segment just solved. Pure evaluation of
+    // the SAME closed form the step used — never a second integration. Samples
+    // land on an ABSOLUTE physical-time grid, so the sample set does not depend on
+    // how the frame happened to be partitioned.
+    function mbSampleTrace(eng, mu, d0, u0, seg) {
+        var ev = eng.active_event;
+        if (!ev) return;
+        var c = eng.contact;
+        var t0ms = eng.tphys_ms, t1ms = t0ms + seg * 1000;
+        var emit = function (tms, tRel) {
+            if (ev.samples.length >= MB_TRACE_MAX) return;
+            var st = mbOscAt(c.k, c.c, mu, d0, u0, tRel);
+            var F = c.k * st[0] + c.c * st[1];
+            if (F < 0) F = 0;
+            ev.samples.push([tms, F]);
+            if (F > ev.F_peak) { ev.F_peak = F; ev.F_peak_t_ms = tms; }
+        };
+        if (ev.samples.length === 0) emit(t0ms, 0);
+        var i0 = Math.floor(t0ms / MB_TRACE_DT_MS) + 1;
+        for (var i = i0; i * MB_TRACE_DT_MS < t1ms - 1e-9; i++) {
+            emit(i * MB_TRACE_DT_MS, (i * MB_TRACE_DT_MS - t0ms) / 1000);
+        }
+        emit(t1ms, seg);
+    }
+    // Advance the contact pair over seg seconds.
+    //   The relative coordinate takes the exact oscillator map; the pair centre of
+    //   mass drifts freely. Each body is then reconstructed from the SAME impulse:
+    //       dv_i = +mu*w_i*d(delta_dot),  dv_j = -mu*w_j*d(delta_dot)
+    //   which is Newton III holding by construction — equal and opposite, so
+    //       d(p_i + p_j)/dt = 0
+    //   and momentum conservation is a RESULT here, not an assertion. A fixed
+    //   partner has w = 0 and therefore takes no velocity change while still
+    //   supplying its exact half of the pair.
+    function mbContactAdvance(eng, seg) {
+        var c = eng.contact;
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        var wL = mbInvMass(L), wH = mbInvMass(H);
+        var wsum = wL + wH;
+        if (!(wsum > 0)) return;
+        var mu = 1 / wsum;
+        var d0 = c.L_nat - mbSepD(eng);
+        var u0 = L.v - H.v;
+        var st = mbOscAt(c.k, c.c, mu, d0, u0, seg);
+        var dDelta = st[0] - d0, du = st[1] - u0;
+        var xs = dDelta - u0 * seg;            // the contact contribution to travel
+        var sL = L.s + L.v * seg + mu * wL * xs;
+        var sH = H.s + H.v * seg - mu * wH * xs;
+        var vL = L.v + mu * wL * du;
+        var vH = H.v - mu * wH * du;
+        mbSampleTrace(eng, mu, d0, u0, seg);
+        if (!L.fixed) { L.s = sL; L.v = vL; }
+        if (!H.fixed) { H.s = sH; H.v = vH; }
+        var F1 = c.k * st[0] + c.c * st[1];
+        if (F1 < 0) F1 = 0;
+        L.F_contact = F1; H.F_contact = F1;
+        // Equal and opposite: the lo body is pushed toward -s, the hi body toward
+        // +s, each by the SAME F1. A fixed body reports a = 0 because 1/m = 0,
+        // not because it is skipped by a branch.
+        L.a = -(F1 * wL);
+        H.a = +(F1 * wH);
+        eng.F_contact = F1;
+        // Track friction during contact is a first-order operator split. It is
+        // INERT whenever mu_k = 0 (every precision fixture, and the default), so
+        // the exactness argument above is untouched where it is asserted; where a
+        // state deliberately turns friction on, Sigma-p is supposed to change and
+        // first order is the right cost.
+        if (eng.mu_k > 0) {
+            for (var i = 0; i < eng.order.length; i++) {
+                var b = eng.bodies[eng.order[i]];
+                if (!b || b.fixed) continue;
+                var af = mbFricAccel(eng, b);
+                if (af === 0) continue;
+                var vf = b.v + af * seg;
+                if (mbSgn(vf) !== mbSgn(b.v)) vf = 0;
+                b.s = b.s + 0.5 * (vf - b.v) * seg;
+                b.v = vf;
+            }
+        }
+    }
+    function mbStartEvent(eng) {
+        var c = eng.contact;
+        var ev = {
+            index: eng.events.length, start_ms: eng.tphys_ms, end_ms: null, duration_ms: null,
+            k: c.k, c: c.c, samples: [], F_peak: 0, F_peak_t_ms: null,
+            p_before: mbTotalP(eng), ke_before: mbTotalKE(eng)
+        };
+        eng.events.push(ev);
+        eng.active_event = ev;
+        window.PM_mbEvents = eng.events;
+    }
+    function mbEngageContact(eng) {
+        var c = eng.contact;
+        if (!c) return;
+        if (c.sticks) { mbLatchPair(eng); return; }
+        c.engaged = true;
+        mbStartEvent(eng);
+    }
+    function mbReleaseContact(eng) {
+        var c = eng.contact;
+        if (!c) return;
+        c.engaged = false;
+        c.blocked_until_clear = true;
+        var ev = eng.active_event;
+        if (ev) {
+            if (ev.samples.length < MB_TRACE_MAX) ev.samples.push([eng.tphys_ms, 0]);
+            ev.end_ms = eng.tphys_ms;
+            ev.duration_ms = ev.end_ms - ev.start_ms;
+            ev.p_after = mbTotalP(eng);
+            ev.ke_after = mbTotalKE(eng);
+            eng.active_event = null;
+        }
+        eng.F_contact = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b) b.F_contact = 0;
+        }
+    }
+    // sticks — the perfectly inelastic latch. Momentum conservation is what fixes
+    // the common velocity, so the latch is not a cheat, it IS the constraint
+    // (spec section 2). The kinetic energy that disappears is 0.5*mu*(dv)^2 and
+    // it is recorded here for the KE readout that must SHOW the drop.
+    function mbLatchPair(eng) {
+        var c = eng.contact;
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        var wL = mbInvMass(L), wH = mbInvMass(H);
+        var wsum = wL + wH;
+        if (!(wsum > 0)) return;
+        var mu = 1 / wsum;
+        var dv = L.v - H.v;
+        var keBefore = mbTotalKE(eng);
+        var pBefore = mbTotalP(eng);
+        if (!L.fixed && !H.fixed) {
+            var vc = (L.m * L.v + H.m * H.v) / (L.m + H.m);
+            L.v = vc; H.v = vc;
+        } else if (L.fixed) { H.v = 0; } else { L.v = 0; }
+        L.a = 0; H.a = 0;
+        c.latched = true;
+        c.latch_gap = H.s - L.s;
+        eng.latch = {
+            t_ms: eng.tphys_ms, J: mu * Math.abs(dv),
+            ke_before: keBefore, ke_after: mbTotalKE(eng),
+            ke_drop: keBefore - mbTotalKE(eng),
+            ke_drop_closed_form: 0.5 * mu * dv * dv,
+            p_before: pBefore, p_after: mbTotalP(eng)
+        };
+    }
+    function mbTotalP(eng) {
+        var p = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.fixed) continue;          // a wall carries the rest of the universe
+            p += b.m * b.v;
+        }
+        return p;
+    }
+    function mbTotalKE(eng) {
+        var e = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.fixed) continue;
+            e += 0.5 * b.m * b.v * b.v;
+        }
+        return e;
+    }
+    // Keep the bodies on the visible track. A clamp CHANGES momentum, so every
+    // one is counted: a state whose teaching depends on Sigma-p must never hit
+    // one, and the harness asserts the count is zero.
+    function mbClampToTrack(eng) {
+        var lim = eng.length_m;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.fixed) continue;
+            if (b.s < -lim) { b.s = -lim; b.v = 0; eng.bound_hits++; }
+            else if (b.s > lim) { b.s = lim; b.v = 0; eng.bound_hits++; }
+        }
+    }
+    // ── SEAM B hook — the slow-motion dt MULTIPLIER (spec section 5) ───────
+    //   dtPhysics = h / slow_factor while the contact window is open. SEAM A
+    //   returns 1 unconditionally, so the whole engine already runs through the
+    //   one multiplication point that SEAM B has to change: there is no second
+    //   clock to add, no sub-stepping, and dt = 0 still gives dtPhysics = 0.
+    function mbDtScale(eng, mb) { return 1; }
+    // ── The step — event-partitioned, NOT sub-stepped ─────────────────────
+    //   One frame is split at the TRUE contact entry / release instants and each
+    //   piece is advanced by its own exact map. This is not sub-stepping: the
+    //   number of pieces is set by the physics (0, 1 or 2 events in a frame), not
+    //   by the frame rate, and because both maps compose exactly, folding N frames
+    //   of h into one frame of N*h partitions at the SAME instants and lands on
+    //   the SAME state — the Rule 36 property, to machine precision.
+    function mbStep(eng, h) {
+        var rem = h, guard = 0;
+        while (rem > MB_TINY && guard < MB_EVENT_MAX) {
+            guard++;
+            var c = eng.contact;
+            var seg = rem, evt = "";
+            if (c && c.engaged && !c.latched) {
+                var mu = mbContactMu(eng);
+                var d0 = c.L_nat - mbSepD(eng);
+                var u0 = eng.bodies[c.loId].v - eng.bodies[c.hiId].v;
+                var tx = mbContactExitT(c.k, c.c, mu, d0, u0, rem);
+                if (tx != null) { seg = tx; evt = "exit"; }
+                if (seg > 0) mbContactAdvance(eng, seg);
+                eng.tphys_ms += seg * 1000;
+                rem -= seg;
+                if (evt === "exit") mbReleaseContact(eng);
+            } else {
+                var te = mbTimeToContact(eng, rem);
+                if (te != null) { seg = te; evt = "enter"; }
+                if (seg > 0) mbFreeAdvance(eng, seg);
+                eng.tphys_ms += seg * 1000;
+                rem -= seg;
+                if (evt === "enter") mbEngageContact(eng);
+            }
+            if (seg <= 0 && evt === "") break;
+        }
+        if (rem > MB_TINY) { mbFreeAdvance(eng, rem); eng.tphys_ms += rem * 1000; }
+        mbClampToTrack(eng);
+        window.PM_mbPhysTimeMs = eng.tphys_ms;
+    }
+    // repeat_every_ms — re-arm the whole interaction on a cycle. A CLOSED FORM of
+    // the state clock (floor(t/period)), never an accumulator, so a freeze pin and
+    // a rewind both land on the same cycle (Rule 36).
+    function mbRunRepeat(mb, eng) {
+        var rep = (typeof mb.repeat_every_ms === "number" && mb.repeat_every_ms > 0) ? mb.repeat_every_ms : 0;
+        if (!rep) return;
+        var cyc = Math.floor(eng.t_ms / rep);
+        if (eng._cycle == null) { eng._cycle = cyc; return; }
+        if (cyc !== eng._cycle) { eng._cycle = cyc; mbSeedKinematics(eng); }
+    }
+    // phases[] — the one-shot glow script. A phase is ACTIVE over
+    // [at_ms, until_ms); at until_ms the focal is handed back to the state focal.
+    // Every gate is evaluated against the state clock and therefore HOLDS at t = 0
+    // (nothing pre-fires on entry).
+    function mbRunPhases(mb, eng, tMs) {
+        var phs = mb.phases || [];
+        for (var i = 0; i < phs.length; i++) {
+            var ph = phs[i];
+            if (!ph || !ph.id) continue;
+            var at = (typeof ph.at_ms === "number") ? ph.at_ms : 0;
+            var until = (typeof ph.until_ms === "number" && isFinite(ph.until_ms)) ? ph.until_ms : null;
+            var active = tMs >= at && (until == null || tMs < until);
+            if (active && !eng.phase_fired[ph.id]) {
+                eng.phase_fired[ph.id] = true;
+                eng.phase_active[ph.id] = true;
+                if (ph.glow_focal) eng.glow_focal = ph.glow_focal;
+            } else if (!active && eng.phase_fired[ph.id] && until != null && tMs >= until) {
+                if (ph.glow_focal && eng.glow_focal === ph.glow_focal) eng.glow_focal = eng.base_glow_focal;
+            }
+        }
+    }
+    // Re-seed s/v from the authored initial conditions and re-arm the contact.
+    // Used on state entry, on RESET_TRAJECTORY and on every repeat_every_ms cycle.
+    function mbSeedKinematics(eng) {
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b) continue;
+            b.s = b.s0; b.v = b.v0; b.a = 0; b.F_contact = 0;
+        }
+        var c = eng.contact;
+        if (c) {
+            c.engaged = false; c.latched = false; c.blocked_until_clear = false; c.latch_gap = 0;
+            eng.latch = null;
+            // preload_m — the EXPLOSION. The contact starts compressed and
+            // releases. The pair is re-separated about its own authored centre of
+            // mass, so Sigma-p is exactly what the author wrote (0 for two bodies
+            // at rest) and the speeds come out in inverse mass ratio as a RESULT.
+            if (c.preload > 0 && !c.sticks) {
+                var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+                var r = c.L_nat + L.half + H.half - c.preload;
+                if (L.fixed) { H.s = L.s + r; }
+                else if (H.fixed) { L.s = H.s - r; }
+                else {
+                    var sCm = (L.m * L.s + H.m * H.s) / (L.m + H.m);
+                    L.s = sCm - (H.m / (L.m + H.m)) * r;
+                    H.s = sCm + (L.m / (L.m + H.m)) * r;
+                }
+                c.engaged = true;
+                mbStartEvent(eng);
+            }
+        }
+        eng.F_contact = 0;
+        eng.bound_hits = 0;
+        mbPresent(eng);
+    }
+    function mbResetTrajectory() {
+        var eng = window.PM_mbEngine;
+        if (!eng) return;
+        eng.t_ms = 0; eng.tphys_ms = 0; eng._cycle = null;
+        eng.events = []; eng.active_event = null;
+        eng.phase_fired = {}; eng.phase_active = {};
+        if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
+        mbSeedKinematics(eng);
+        mbApplyGlow();
+    }
+    function mbPresent(eng) {
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b) mbSetBodyPosition(b.id, b.s);
+        }
+        mbFitContactElement();
+    }
+    function updateMomentumBenchFrame(dt) {
+        var eng = window.PM_mbEngine;
+        if (!eng) return;                                  // build ran, no state seeded yet
+        var h = (typeof dt === "number" && isFinite(dt) && dt > 0) ? dt : 0;
+        var mb = mbStateCfg();
+        if (eng.t_ms == null) eng.t_ms = 0;
+        eng.t_ms += h * 1000;
+        window.PM_mbTimeMs = eng.t_ms;
+        mbRunPhases(mb, eng, eng.t_ms);
+        mbRunRepeat(mb, eng);
+        mbStep(eng, h * mbDtScale(eng, mb));
+        mbPresent(eng);
+    }
+
+    // ── Scene skeleton ────────────────────────────────────────────────────
+    function buildMomentumBench() {
+        mbIndex = [];
+        var mb0 = mbStateCfg();
+
+        // 1. The track: a low slab along x. Lanes offset in z.
+        var trk = new THREE.Group();
+        trk.userData = { elementType: "mb_track_group", id: "mb_track_group" };
+        var slabMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(MB_TRACK_COLOR), emissive: hexToThreeColor(MB_TRACK_COLOR),
+            emissiveIntensity: 0.12, shininess: 30, transparent: true, opacity: 0.95
+        });
+        var slab = new THREE.Mesh(new THREE.BoxGeometry(1, MB_TRACK_THICK, MB_TRACK_DEPTH), slabMat);
+        slab.position.set(0, -MB_TRACK_THICK / 2, 0);      // top face at world y = 0
+        slab.userData = { elementType: "mb_track", id: "mb_track", length_m: MB_DEFAULT_LEN_M };
+        trk.add(slab);
+        addToScene(trk);
+        mbRegister(trk); mbRegister(slab);
+
+        // 2. Body meshes — one per UNIQUE id across all states. Size is
+        //    MASS-INDEPENDENT (Rule 29): a heavier cart is never a bigger cart.
+        //    Only the SHAPE differs, and the shape is what the contact model
+        //    measures its facing face from.
+        var defs = mbCollectBodyDefs();
+        for (var i = 0; i < defs.length; i++) {
+            var d = defs[i];
+            var isWall = (d.shape === "wall");
+            var col = d.color || (isWall ? MB_WALL_COLOR : MB_BODY_COLORS[i % MB_BODY_COLORS.length]);
+            var mat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(col), emissive: hexToThreeColor(col),
+                emissiveIntensity: 0.18, shininess: 60, transparent: true, opacity: 1.0
+            });
+            var geo;
+            if (d.shape === "ball") {
+                geo = new THREE.SphereGeometry(MB_BALL_R_M * MB_WORLD_PER_M, 24, 18);
+            } else if (isWall) {
+                geo = new THREE.BoxGeometry(MB_WALL_LEN_M * MB_WORLD_PER_M, MB_WALL_H_M * MB_WORLD_PER_M, MB_WALL_D_M * MB_WORLD_PER_M);
+            } else {
+                geo = new THREE.BoxGeometry(MB_CART_LEN_M * MB_WORLD_PER_M, MB_CART_H_M * MB_WORLD_PER_M, MB_CART_D_M * MB_WORLD_PER_M);
+            }
+            var mesh = new THREE.Mesh(geo, mat);
+            mesh.userData = {
+                elementType: "mb_body", id: "mb_body_" + d.id, bodyId: d.id,
+                shape: d.shape, fixed: !!d.fixed, laneZ: d.lane_z_m || 0, baseColor: col
+            };
+            addToScene(mesh);
+            mbRegister(mesh);
+
+            // Unicode label. pmCreateAutoLabel re-measures on every redraw, so a
+            // longer label can never clip.
+            var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
+            lbl.position.set(0, mbBodyCentreY(d.shape) + 0.42, 0);
+            lbl.userData = { elementType: "mb_body_label", id: "mb_body_" + d.id + "_label", bodyId: d.id };
+            mesh.add(lbl);
+            mbRegister(lbl);
+
+            mbSetBodyPosition(d.id, d.initial_position_m || 0);
+        }
+
+        // 3. The compressible contact element between the facing faces. Built as a
+        //    unit-x box so the per-frame fit is a scale, never new geometry.
+        var ceMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(MB_CONTACT_COLOR), emissive: hexToThreeColor(MB_CONTACT_COLOR),
+            emissiveIntensity: 0.35, shininess: 50, transparent: true, opacity: 0.85
+        });
+        var ce = new THREE.Mesh(new THREE.BoxGeometry(1, 0.16, 0.4), ceMat);
+        ce.userData = { elementType: "mb_contact_element", id: "mb_contact_element" };
+        ce.visible = false;
+        addToScene(ce);
+        mbRegister(ce);
+
+        // 4. Home pose from the FIRST state so the very first frame is correct
+        //    (applyMomentumBenchState re-seeds on entry).
+        mbApplyTrack(mbTrackLenM(mb0));
+    }
+
+    function applyMomentumBenchState(stateDef) {
+        var mb = (stateDef && stateDef.momentum_bench) ? stateDef.momentum_bench : {};
+        var lenM = mbTrackLenM(mb);
+        var bodies = mb.bodies || [];
+
+        var eng = {
+            mode: mb.mode || "sandbox",
+            length_m: lenM,
+            mu_k: mbTrackMuK(mb),
+            order: [], bodies: {}, contact: null,
+            t_ms: 0, tphys_ms: 0, _cycle: null,
+            events: [], active_event: null, latch: null,
+            F_contact: 0, bound_hits: 0,
+            glow_focal: mb.glow_focal || "",
+            base_glow_focal: mb.glow_focal || "",
+            phase_fired: {}, phase_active: {},
+            // Parsed and carried for SEAM B/C; no behaviour in SEAM A.
+            slow_window: mb.slow_window || null,
+            readouts: mb.readouts || [],
+            force_trace: mb.force_trace || null,
+            lanes: mb.lanes || [],
+            controls_visible: mb.controls_visible || [],
+            param_ramp: mb.param_ramp || null,
+            trusted_drag_seizes: !!mb.trusted_drag_seizes
+        };
+        for (var i = 0; i < bodies.length; i++) {
+            var d = bodies[i];
+            if (!d || !d.id) continue;
+            var shape = mbShapeOf(d);
+            eng.order.push(d.id);
+            eng.bodies[d.id] = {
+                id: d.id,
+                m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
+                fixed: !!d.fixed,
+                shape: shape,
+                half: mbHalfM(shape),
+                laneZ: mbLaneZM(mb, d.id),
+                s: d.initial_position_m || 0,
+                v: d.initial_velocity_mps || 0,
+                a: 0, F_contact: 0,
+                s0: d.initial_position_m || 0,
+                v0: d.initial_velocity_mps || 0
+            };
+        }
+        // The contact. Its lo/hi orientation is fixed from the AUTHORED starting
+        // positions and never re-derived mid-run: which body is on which side of
+        // the compliant element is apparatus, not state.
+        var ct = mb.contact;
+        if (ct && ct.between && ct.between.length === 2) {
+            var a0 = eng.bodies[ct.between[0]], b0 = eng.bodies[ct.between[1]];
+            if (a0 && b0) {
+                var lo = (a0.s <= b0.s) ? a0 : b0;
+                var hi = (lo === a0) ? b0 : a0;
+                eng.contact = {
+                    loId: lo.id, hiId: hi.id,
+                    k: (typeof ct.stiffness_N_per_m === "number" && ct.stiffness_N_per_m > 0) ? ct.stiffness_N_per_m : 0,
+                    c: (typeof ct.damping_Ns_per_m === "number" && ct.damping_Ns_per_m > 0) ? ct.damping_Ns_per_m : 0,
+                    // sticks and preload_m are mutually exclusive (spec section 1);
+                    // sticks wins if a state authors both, so the pair can never be
+                    // asked to latch and explode at once.
+                    sticks: !!ct.sticks,
+                    preload: (!ct.sticks && typeof ct.preload_m === "number" && ct.preload_m > 0) ? ct.preload_m : 0,
+                    L_nat: (typeof ct.natural_length_m === "number" && ct.natural_length_m >= 0) ? ct.natural_length_m : MB_NATURAL_LEN_M,
+                    label: ct.label || "",
+                    engaged: false, latched: false, blocked_until_clear: false, latch_gap: 0
+                };
+            }
+        }
+
+        window.PM_mbEngine = eng;
+        window.PM_mbEvents = eng.events;
+        mbApplyTrack(lenM);
+
+        // Per-body visibility: a body absent from THIS state is hidden, never
+        // rebuilt (Rule 32d home-pose persistence).
+        var listed = {};
+        for (var j = 0; j < bodies.length; j++) { if (bodies[j] && bodies[j].id) listed[bodies[j].id] = bodies[j]; }
+        mbEach(function (o, ud) {
+            if (ud.elementType === "mb_track_group" || ud.elementType === "mb_track") { o.visible = true; return; }
+            if (ud.elementType === "mb_contact_element") return;   // owned by mbFitContactElement
+            if (ud.bodyId) { o.visible = !!listed[ud.bodyId]; return; }
+        });
+
+        mbSeedKinematics(eng);
+        mbApplyGlow();
+    }
+
+    // ── Rule 32e glow: read glow_focal, exact-match ONE id, dim the rest ──
+    //   Same shape as nlbApplyGlow, including its brighten-only carve-out for the
+    //   solid apparatus (a 40%-opacity cart renders as glass with the track
+    //   showing through the thing the physics is happening TO).
+    function mbApplyGlow() {
+        var mb = mbStateCfg();
+        var eng0 = window.PM_mbEngine;
+        var focal = (eng0 && eng0.glow_focal) || mb.glow_focal || (glowTargets.length ? glowTargets[0] : "");
+        var glowActive = !!focal || glowTargets.length > 0;
+        var glowP = glowEmphT(time);
+        mbEach(function (o, ud) {
+            if (ud.elementType === "mb_track_group") return;   // container: its slab gets its own pass
+            var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
+            var solidApparatus = (ud.elementType === "mb_body" ||
+                                  ud.elementType === "mb_body_label" ||
+                                  ud.elementType === "mb_track" ||
+                                  ud.elementType === "mb_contact_element");
+            applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
+        });
+    }
+    function applyMomentumBenchGlow() { mbApplyGlow(); }
+
     // ── Build scenario ────────────────────────────────────────────────────
     // ================================================================
     // displacement_current (Ch.8 §8.2 — I_d = ε₀ dΦ_E/dt, the
@@ -47436,6 +48371,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildNewtonsLawsBody();
                 break;
 
+            case "momentum_bench":
+                buildMomentumBench();
+                break;
+
             case "gauss_law_sphere":
                 buildGaussSphereField();
                 break;
@@ -48002,6 +48941,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyNewtonsLawsBodyState(stateDef);
         }
 
+        // momentum_bench — per-state seed of the impulse/momentum engine state
+        // (masses / shapes / initial s+v / the compliant contact + its preload or
+        // stick latch / track friction), the track pose, per-body visibility and
+        // the Rule-32e glow focal. The integrator, the force-sample buffer and the
+        // contact element all hook the same engine-state object (window.PM_mbEngine)
+        // it seeds here. The instruments (force-trace panel, momentum HUD, force
+        // arrows, the slow-motion badge) are SEAM B.
+        if (config.scenario_type === "momentum_bench") {
+            applyMomentumBenchState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -48379,6 +49329,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
         // itself to this NOT-list, same as isMag/isFaraday/isMfl/... above).
         var isNlb = config.scenario_type === "newtons_laws_body";
+        // momentum_bench owns its OWN #mb_sliders panel (m1/m2/v1/v2/k/c, SEAM C)
+        // -- must be excluded here or the generic #sliders panel bleeds through
+        // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds itself
+        // to this NOT-list, same as isNlb/isMag/isFaraday/isMfl/... above).
+        var isMb = config.scenario_type === "momentum_bench";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -48437,7 +49392,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isOrbShapes) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isMb && !isOrbShapes) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -48624,7 +49579,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "momentum_bench" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -52074,6 +53029,17 @@ export const FIELD_3D_RENDERER_CODE = `
         // over __pmSteps here or inside the function (Rule 36). Under a pin
         // dt = 0 leaves v and s bit-identical with no special-case branch, so
         // frozen EYE frames are byte-stable by construction.
+        // momentum_bench — the impulse / momentum bench. ONE call per tick with the
+        // COMBINED dtStep (0.016 * __pmSteps): the frame is partitioned at the true
+        // contact entry/release instants and each piece advanced by its own exact
+        // map, so folding N micro-steps into one dtStep lands on the SAME state.
+        // There is NO loop over __pmSteps and NO sub-stepping (Rule 36). Under a
+        // pin dt = 0, every map becomes the identity and the frame is byte-stable.
+        if (config.scenario_type === "momentum_bench") {
+            updateMomentumBenchFrame(heldAtPin ? 0 : dtStep);
+            applyMomentumBenchGlow();
+        }
+
         if (config.scenario_type === "newtons_laws_body") {
             updateNewtonsLawsBodyFrame(heldAtPin ? 0 : dtStep);
             applyNewtonsLawsBodyGlow();
@@ -54713,6 +55679,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     // form of (time - stateStartTime), so the rebase above cannot
                     // rewind it — its accumulators are rewound explicitly.
                     nlbResetTrajectory();
+                    // momentum_bench integrates for the same reason and needs the
+                    // same explicit rewind (its contact events + trace buffer are
+                    // history, which a stateStartTime rebase cannot unwind).
+                    mbResetTrajectory();
                     break;
 
                 case "SET_GLOW":

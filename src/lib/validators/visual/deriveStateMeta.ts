@@ -594,6 +594,14 @@ const F3D_REVEAL_KEYS = [
     // PCPL branch (which would derive a wall-clock reveal pin and a PCPL hold
     // classification for a field_3d state).
     'newtons_laws_body',
+    // Laws of Motion momentum (momentum_bench): the per-state `momentum_bench`
+    // block (mode-driven single_body / wall_impact / collision / explosion /
+    // sandbox beats + its `phases[]` script, `repeat_every_ms` re-arm and
+    // `slow_window`). Registered here for the same reason as newtons_laws_body:
+    // a cached physics_config that flattened field_3d_config.states to the top
+    // level must still be recognised as field_3d rather than falling through to
+    // the PCPL branch.
+    'momentum_bench',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -2506,6 +2514,67 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
     }
 
+    // momentum_bench (the impulse / conservation-of-momentum engine, prefix `mb`):
+    // the guided beats run on the state's OWN clock (`eng.t_ms` — reset to 0 on
+    // entry, advanced only by the dt handed to updateMomentumBenchFrame, so it
+    // freezes with the SET_TIME_FREEZE pin). Three authored things move the pin:
+    //   • `phases[]` — the one-shot glow script; pin PAST the last fire (+cushion)
+    //     but INSIDE a windowed phase's own band, exactly as newtons_laws_body
+    //     does (the two scars named above govern this identically);
+    //   • `slow_window` — the contact is played back `slow_factor` times slower,
+    //     so the SAME physical collision occupies far more wall-clock time and a
+    //     floor sized for real speed would photograph the bodies still closing in
+    //     (field3d_slcr_reveal_hold_captures_transitional_r_family: the pin must
+    //     land past the LAST settled beat, never mid-transition);
+    //   • `repeat_every_ms` — the interaction RE-ARMS on this cycle, teleporting
+    //     the bodies back to their start. The pin is therefore clamped to land
+    //     LATE INSIDE the first cycle, after the collision has finished and before
+    //     the re-arm, so the frozen frame is a settled post-collision picture and
+    //     never the re-arm frame itself.
+    const mb = asObj(state.momentum_bench);
+    if (mb) {
+        const mbCushion = 500;
+        const mbScripted: number[] = [];
+        const mbPhases = Array.isArray(mb.phases) ? mb.phases : [];
+        for (const phRaw of mbPhases) {
+            const ph = asObj(phRaw);
+            if (!ph || typeof ph.id !== 'string' || ph.id.length === 0) continue;   // mirrors mbRunPhases' skip
+            const at = asNum(ph.at_ms, 0);
+            const until = typeof ph.until_ms === 'number' && Number.isFinite(ph.until_ms) ? ph.until_ms : null;
+            if (until != null && until > at) mbScripted.push(Math.max(at, Math.min(at + mbCushion, until - 200)));
+            else mbScripted.push(at + mbCushion);
+        }
+        const mbRamp = asObj(mb.param_ramp);
+        if (mbRamp && typeof mbRamp.end_ms === 'number' && Number.isFinite(mbRamp.end_ms)) {
+            mbScripted.push(mbRamp.end_ms + mbCushion);
+        }
+        let mbPin: number;
+        if (mbScripted.length > 0) {
+            mbPin = Math.max(...mbScripted);
+        } else {
+            const mbMode = typeof mb.mode === 'string' ? mb.mode : '';
+            // Floors, used only when the state authors no script. An impact beat
+            // needs the approach AND the rebound on screen before it reads; an
+            // explosion releases from t = 0 so it settles sooner; single_body and
+            // sandbox have nothing scripted to wait for.
+            let mbBase = (mbMode === 'wall_impact' || mbMode === 'collision') ? 3000
+                : (mbMode === 'explosion') ? 2500
+                    : DEFAULT_REVEAL_MS;
+            const mbSlow = asObj(mb.slow_window);
+            const mbFactor = mbSlow ? asNum(mbSlow.slow_factor, 1) : 1;
+            if (mbFactor > 1 && (mbMode === 'wall_impact' || mbMode === 'collision' || mbMode === 'explosion')) {
+                // A real contact lasts tens of ms; at xS playback it occupies tens
+                // of ms x S of wall clock. Capped so a very large slow_factor
+                // cannot push the pin past a sane state length.
+                mbBase += Math.min(2500, 60 * mbFactor);
+            }
+            mbPin = mbBase;
+        }
+        const mbRepeat = asNum(mb.repeat_every_ms, 0);
+        if (mbRepeat > 0) mbPin = Math.min(mbPin, Math.max(mbRepeat * 0.5, mbRepeat - 300));
+        candidates.push(mbPin);
+    }
+
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
@@ -3154,6 +3223,24 @@ export function deriveHoldExpectations(
             const nlbHold = asObj(state.newtons_laws_body);
             if (nlbHold) {
                 out[stateId] = (nlbHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // momentum_bench (impulse / conservation_of_momentum): same split and
+            // the same reason as newtons_laws_body directly above — every state
+            // exposes its own Rule-31 contextual rows, so the generic show_sliders
+            // catch must never decide these. The final sandbox (mode 'sandbox',
+            // trusted_drag_seizes, Rule 37 free-run) is user-driven → interactive;
+            // every other mode is a guided beat whose collision fires once and
+            // then coasts to a settled picture → reveal_hold, so D7 (stuck tail) /
+            // D1p (frozen) permit that tail instead of false-failing it. A state
+            // with `repeat_every_ms` still classifies reveal_hold: the pin is
+            // clamped INSIDE one cycle (see maxRevealForField3dState), so the
+            // frozen frame is a settled beat, and reveal_hold is a pure
+            // RELAXATION — it never asserts stillness, so the re-arming motion is
+            // not mis-gated by it.
+            const mbHold = asObj(state.momentum_bench);
+            if (mbHold) {
+                out[stateId] = (mbHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE
