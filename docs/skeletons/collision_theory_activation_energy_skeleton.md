@@ -2,7 +2,10 @@
 # "Collision theory and activation energy" · P1 #4 · tier 💎
 # NCERT Chemistry Class 12 Ch.3 (Chemical Kinetics) §3.5 · IB DP Reactivity 2.2 · AP Chem Unit 5 · Cambridge A-level Reaction Kinetics
 # Renderer: particle_field · scenario_type: "gas_box" (SAME engine as le_chateliers_principle / kinetic_particle_theory / dynamic_equilibrium — no new renderer family)
-# Authored 2026-07-29, branch feat/chemistry-collision-theory
+# Authored 2026-07-29; REWRITTEN AS-BUILT 2026-07-30 after the founder question
+# "what is activation energy? did you define anything in the simulation?" — the
+# arc is now NINE states, not eight. Every state number below is the SHIPPED one.
+# branch feat/chemistry-collision-theory
 # EVERY number below is from docs/skeletons/collision_theory_measurements.txt and
 # docs/skeletons/collision_theory_dq.txt — nothing computed from theory.
 
@@ -12,40 +15,58 @@
 
 This concept teaches ONE thing: a reaction's rate is set by the small fraction of collisions
 energetic enough to clear the activation-energy barrier — not by the collision count — and only
-that. It does NOT cover the reaction-coordinate energy profile / transition state (deferred to
-P2 #9 `reaction_energy_profile`), the four-factor rate survey (deferred to P1 #3
+that. It DOES now show the reaction-coordinate energy profile — the hill is this concept's opening
+instrument, added 2026-07-30 after the founder found that a concept named after activation energy
+never drew it. (The transition state as a species, and ΔH / exo-vs-endo as a topic, remain P2 #9's.)
+It does NOT cover the four-factor rate survey (deferred to P1 #3
 `rate_of_reaction`, which this concept is the mechanism FOR), or the quantitative
 Maxwell–Boltzmann distribution (deferred to P1 #5).
 
-## 2. State count + arc — 8 states (rationale)
+## 2. State count + arc — 9 states (rationale)
 
-Medium-complex (CLAUDE.md §5: complex 7–9). Eight states because the concept has exactly seven
-demonstrable, measured, mutually distinct beats plus the explore sandbox — and every one of the
-seven earns its click with a measured number: the 3-in-100 fraction (S1), the barrier on the
-distribution (S2), the heat contrast ×6.06-clearing-vs-×1.34-collisions (S3), the crowding contrast
-flat-fraction (S4), the catalyst barrier-drop (S5), the partner requirement 183→6→2 ladder (S6),
-and measured Arrhenius linearity R² 0.95 (S7). Nothing is padding; nothing demonstrable is cut.
+Eight demonstrable measured beats plus the explore sandbox. The ninth state was NOT padding: the
+build originally opened by COUNTING a quantity it had not named — the collision counter prints
+"clear Eₐ" and a percentage derived from it, while the words "activation energy" were first spoken a
+state later, and the concept never drew the energy hill students are examined on. Both were found by
+the founder, not by a gate. STATE_1 now motivates the barrier, names Eₐ and shows it on a hill, and
+carries no counter and no histogram so the symbol appears nowhere before it is defined.
 
-Arc: rare-event hold → barrier revealed → heat contrast → crowd contrast (declared pair with S3)
-→ catalyst → partner filter → Arrhenius line → explore.
+Arc: why a barrier exists (definition + hill) → almost none clear it → where the bar sits on the
+speed distribution → heat contrast (PRIMARY aha) → crowd contrast (declared pair with S4) → catalyst
+→ partner filter → Arrhenius → explore.
 
-## 3. Per-state control table (Rule 31 — THE first design artifact; auditor checks the build against this)
+**Rings:** core S1–S6 + S9 · extended S7 · advanced S8. The advanced ring is a contiguous block
+immediately before the explore state, and both cuts were verified coherent on the built concept.
 
-Home pose (Rule 32d, ALL states open here): 180 discs (A:90 blue, B:90 pink, AB:0 explicit),
-T = 300 K, Eₐ = 3 kT, ea_ref_T = 300, speed_scale = 0.105, hist_ref_T = 300, reaction layer
-DISABLED until S6. Measured home readout: **183 collisions/s · 6.0/s clear Eₐ · 3.30%**
-(5-seed band 2.91–3.45%).
+## 3. Per-state control table (Rule 31 — the auditor checks the build against this)
 
-| # | ring | teaches (one idea) | motion archetype | ≤5-word delta cue | DISTINCT motion + delta line | live controls | key instruments (focal ★) | EN words | dur |
-|---|---|---|---|---|---|---|---|---|---|
-| S1 | core | almost no collision has enough energy — the counter proves it | `rare-event-hold` (coined: the story is the RATIO of two live event streams — constant collision traffic vs rare clearing flashes) | Collisions everywhere, almost none | box runs at home pose; clearing collisions FLASH and mark discs hot, ~once per 2 s against constant traffic. Delta: opening — the 3-in-100 number lands | none | ★collision counter chip | 25–45 | 20s |
-| S2 | core | the barrier sits ON the speed distribution; only the fast tail is over it | `reveal-build` | The barrier on the distribution | histogram assembles live from the moving particles, theory curve settles over it, THEN the yellow Eₐ threshold line drops in and the tail SHADES. Delta: the barrier becomes a visible line | none | ★speed histogram + threshold (`hist_ref_T` 300; **counter OFF** — trap 1) | 30–55 | 22s |
-| S3 | core | heating multiplies the CLEARING fraction, barely the collision count — **PRIMARY aha** | `heat-the-box` | Heat: the tail explodes | `T_from` 300 → 600 over 6 s (thermometer climbs FIRST, Rule 32a); curve slides right against the PINNED axis, shaded tail swells, chip fraction climbs 3.30% → 14.7%. Delta: same box, hotter — fraction ×4.45, collisions only ×1.34 | none | thermometer, histogram (pinned axis), ★counter chip | 35–55 | 26s |
-| S4 | core | crowding raises the rate the OTHER way: more hits, same odds — **declared contrast pair with S3** | `crowd-the-box` (realised as the piston squeeze) | Crowded: more hits, same odds | piston slides 1.00 → 0.40 over 6000 ms (`piston_ramp_ms`; `adiabatic: false`, temperature never narrated); traffic thickens ×2.79, fraction holds 3.95% → 3.32%. Delta: same molecules, less room — count up, odds unchanged | none | piston, ★counter chip | 30–55 | 20s |
-| S5 | core | a catalyst LOWERS the bar; it does not speed the molecules | `barrier-drop` (coined: the ONLY moving element is an instrument line sliding down an unchanged distribution) | Barrier drops, same speeds | `ea_at_cue` fires mid-state: Eₐ 3 → 1.5 kT at fixed 300 K. The histogram curve HOLDS POSE (speeds never change — the visual counter); the ★yellow line slides DOWN, newly-shaded tail lights, chip goes 3.13% → 18.06%. Delta: the bar moved, the molecules didn't | none | histogram + ★threshold line, counter chip | 30–55 | 22s |
-| S6 | extended | clearing Eₐ is necessary, not sufficient — the right PARTNERS must meet | `filter-funnel` (coined: one event stream through two successive visible filters — energy, then identity) | Clearing isn't enough | reaction layer ON for the first time: clearing A–A / B–B pairs flash and bounce apart; clearing A–B pairs BOND into joined pairs. The ladder reads across the chips: collisions → clear Eₐ → react. Measured **react/clear = 37.8% (band 34.9–40.0%)**. Delta: a second filter appears | none | counter chip + ★reaction readout | 35–55 | 26s |
-| S7 | advanced | the box obeys Arrhenius: ln(fraction) vs 1/T is a straight line, slope −Eₐ/k | `trace-as-you-cause` | One straight line | T ramps 250 → 800 K while the Arrhenius plot accumulates measured points; **measured R² 0.9535, slope −885 against the ideal −900 (1.7%)** at a 4 s sampling window, 8 points in 32 s. Delta: every temperature beat collapses onto one law | none | ★Arrhenius plot (NEW instrument, `show_arrhenius_plot`), counter chip, thermometer | 30–55 | 34s |
-| S8 | core | your turn — every lever moves the same two numbers | `drag-sandbox` | All yours — push it | continuous run (Rule 37); teacher drags T / Eₐ / V and the counter + histogram respond live. The fridge beat lives here: T → 200 drops the fraction to 0.67% | ALL: T (200–800 K), Eₐ (1–5 kT, the kT-calibrated slider), V (piston) | counter chip, histogram + threshold, ★gas box | 0/open, ≤40 | 14s |
+Home pose (Rule 32d): 180 discs (A:90 blue, B:90 pink, AB:0 explicit), T = 300 K, Eₐ = 3 kT,
+`ea_ref_T` 300, `speed_scale` 0.105, `hist_ref_T` 300, `counter_window_ms` 5000 on every counter
+state. The reaction layer is OFF everywhere except S7. **S8 is a declared Rule 32d density exception
+at 720 discs** (measured: the fitted slope missed the law by 21% at 180, 2.8% at 720).
+
+| # | ring | teaches (one idea) | motion archetype | ≤5-word delta cue | instruments (focal ★) | dur | words |
+|---|---|---|---|---|---|---|---|
+| S1 | core | a barrier exists, and why: old bonds must break before new ones form | `static-hook` (declared: the gas mills while a fixed diagram carries the idea — the only state with no temporal delta, accepted as the opening hook) | Why nothing reacts yet | ★energy hill with the Eₐ arrow. **No counter, no histogram, no formula surface** — nothing may print a symbol this state has not defined | 22 | 55 |
+| S2 | core | almost no collision carries enough energy | `rare-event-hold` | Collisions everywhere, almost none | ★collision counter | 20 | 50 |
+| S3 | core | where the bar sits on the speed distribution | `reveal-build` (barrier APPEARS, instant, at a 9 s cue) | The barrier on the distribution | ★histogram + threshold; **counter OFF** (trap 1) | 22 | 53 |
+| S4 | core | heating multiplies the FRACTION, barely the count — **PRIMARY aha** | `heat-the-box` (`T_cue`-gated ramp 300→600 K) | Heat: the tail explodes | thermometer, histogram, ★counter | 26 | 52 |
+| S5 | core | crowding raises the count and leaves the odds flat — **declared contrast pair with S4** | `crowd-the-box` (`piston_cue`-gated stroke, `piston_ramp_ms` 6000, isothermal) | Crowded: more hits, same odds | piston, ★counter | 20 | 52 |
+| S6 | core | a catalyst lowers the bar and never touches the speeds | `barrier-drop` (`ea_at_cue` with `ramp_ms` 3000 — the barrier SLIDES, where S3's APPEARED) | Barrier drops, same speeds | ★hill (3.0→1.5 kT) + histogram threshold, both moving as one number; counter | 22 | 54 |
+| S7 | **extended** | clearing is necessary, not sufficient — the partners must match | `filter-funnel` (reaction layer ON, here only) | Clearing isn't enough | counter + ★reaction readout | 20 | 49 |
+| S8 | **advanced** | the box obeys Arrhenius | `trace-as-you-cause` (`T_cue`-gated ramp 250→800 K over 28 s) | One straight line | ★Arrhenius plot, thermometer, counter | 34 | 49 |
+| S9 | core | your turn | `drag-sandbox` (`interaction_complete`, continuous) | All yours — push it | ★box, hill, histogram, counter, all three sliders | 14 | 32 |
+
+**Term-introduction ledger (Rule 25 — the artifact this build was FAILed twice for lacking).**
+A formula surface counts as USE, not just an instrument.
+
+| symbol | first canvas use | defined | 
+|---|---|---|
+| Eₐ | S1 (hill) | S1 `s1_3` — same state, and the arrow geometry is itself a definition |
+| A, B | S7 (`A + B → AB`) | S2 `s2_1` ("ninety blue A discs…") |
+| AB | S7 | S7 `s7_1` |
+| f, k | S8 (`ln f = constant − Eₐ/kT`) | S8 `s8_3` binds f, `s8_4` binds Boltzmann's k |
+| reactants / products / energy | S1 (hill) | S1 `s1_4` |
 
 **Rule 32 legibility plan (all states):** cause first with a readable beat — S3 thermometer before
 the tail, S4 wall before the traffic, S5 the line before the chip, S6 the bond flash before the
@@ -59,43 +80,37 @@ across 900×560 / 1280×720 / 1600×900 / 760×480 the absolute collision rate s
 while the PERCENTAGE spans ×1.05 (3.22%–3.39%).** The percentage is a ratio of two co-varying
 rates and is the only magnitude on this chip that is safe to speak.
 
-## 4. Misconception confrontation plan (Rule 16a — 3 genuine pivots, not a per-state tic)
+## 4. Misconception confrontation plan (Rule 16a — FOUR rows, at genuine pivots)
 
-| wrong belief | state | contrast beat (sequential, never superimposed; no predict→reveal) |
+| wrong belief | state | contrast beat (sequential, never superimposed) |
 |---|---|---|
-| "Every collision between reactant molecules produces a reaction" | S1 | the naive expectation plays first — the box IS full of collisions, traffic constant — then the chip's second number lands: barely 3 in 100 carry enough energy. `visual_counter`: clearing flashes are visibly RARE against constant traffic. Fix: "colliding is common; colliding hard enough is rare." |
-| "Heating speeds reactions by making molecules collide more often" | S3 | the chip shows the collision count FIRST ("collisions barely rise — about a third more"), THEN the clearing number soars. `visual_counter`: collisions ×1.34 vs clearing ×6.06 on the same chip. Fix: "heat's real gift is the energy of each hit, not the number of hits." |
-| "A catalyst works by making molecules move faster" | S5 | the histogram holds pose through the whole state — speeds untouched — while the barrier line alone slides down and the fraction jumps. `visual_counter`: an unchanged distribution under a moved threshold. Fix: "the catalyst lowers the bar; it never touches the molecules." |
-
-Fourth governing belief — "activation energy is the energy the reaction gives out" — is handled by
-NARRATION FRAMING in S2 (Eₐ introduced as a cost of entry, "a bar to clear on the way in", tested
-on the INCOMING pair at impact), not by a `misconception_watch` row: its full visual confrontation
-needs the reaction-profile energy diagram, which is P2 #9's apparatus and this box cannot draw it
-(§"cannot show"). Declared, not quietly dropped.
-
-EPIC-C branches: none authored (EPIC-L-first directive).
+| "Activation energy is the energy the reaction gives out" | **S1** | the Eₐ span runs UPWARD from the reactant level to the peak — a cost paid on the way in — while `products` sits on a separate LOWER dashed line, which is the energy released. **This belief had no visual counter at all before the hill existed**; the original skeleton deferred it to P2 #9. |
+| "Every collision between reactant molecules produces a reaction" | S2 | the box is full of collisions and the chip's second number lands: only a handful in every hundred clear the barrier |
+| "Heating speeds reactions by making molecules collide more often" | S4 | the collision count moves first and only modestly, then the clearing percentage climbs several times over, on the same chip |
+| "A catalyst works by making molecules move faster" | S6 | the histogram holds pose for the whole state — pixel-verified, the curve peak pinned — while the barrier alone drops on BOTH the hill and the threshold line |
 
 ## 5. `has_prebuilt_deep_dive` states (cache hints, not gates)
 
-- **S3** — the primary aha and the historically stickiest point (why a modest T rise multiplies rate).
-- **S5** — catalysis is the most-asked exam mechanism and the most-misheld belief.
+- **S4** — the primary aha and the historically stickiest point (why a modest T rise multiplies rate).
+- **S6** — catalysis is the most-asked exam mechanism and the most-misheld belief.
 
 ## 6. Drill-down clusters
 
-S3: `fraction_vs_frequency` · `exponential_tail_sensitivity` · `cooling_slows_reactions`
+S4: `fraction_vs_frequency` · `exponential_tail_sensitivity` · `cooling_slows_reactions`
 (the fridge run in reverse — measured: 300 → 200 K takes the fraction 3.22% → 0.67%, clearing ×0.17).
-S5: `catalyst_alternate_pathway` · `catalyst_not_heat` · `catalytic_converter_case`.
+S6: `catalyst_alternate_pathway` · `catalyst_not_heat` · `catalytic_converter_case`.
 
 ## 7. entry_state_map
 
 ```
-foundational:            STATE_1 → STATE_4   # CONTAINS the primary aha (S3)
-temperature:             STATE_3
-concentration_pressure:  STATE_4
-catalyst:                STATE_5
-effective_collisions:    STATE_6
-arrhenius:               STATE_7
-exploration:             STATE_8
+definition:              STATE_1 → STATE_2   # the barrier named and shown before anything counts it
+foundational:            STATE_1 → STATE_5   # CONTAINS the primary aha (S4)
+temperature:             STATE_4
+concentration_pressure:  STATE_5
+catalyst:                STATE_6
+effective_collisions:    STATE_7
+arrhenius:               STATE_8
+exploration:             STATE_9
 ```
 
 ## 8. Prerequisites (advisory, Rule 23)
@@ -119,10 +134,11 @@ reactions that would otherwise need far more heat — widest-syllabus-overlap de
 
 ## 10. Definition of Done (Gate 0 — no TBDs)
 
-(a) **States:** S1 rare-event hold (3.30%) · S2 histogram + threshold reveal · S3 heat contrast
-(×1.34 vs ×6.06) · S4 piston crowd contrast (×2.79 count, flat fraction) · S5 `ea_at_cue` catalyst
-drop (3.13% → 18.06%) · S6 reaction-on partner filter (react/clear 37.8%) · S7 Arrhenius trace
-(R² 0.95, slope within 1.7%) · S8 explore (T, Eₐ, V; continuous).
+(a) **States:** S1 the barrier defined on a hill (no counter, no histogram, no formula surface) ·
+S2 rare-event hold (3.30%) · S3 histogram + threshold reveal · S4 heat contrast — PRIMARY aha ·
+S5 piston crowd contrast · S6 `ea_at_cue` catalyst drop, hill AND threshold moving as one number ·
+S7 reaction-on partner filter · S8 Arrhenius trace (slope within 2.8% at the shipped seed) ·
+S9 explore (T, Eₐ, V; continuous).
 (b) **Symbol-label table:** Eₐ → "Eₐ" (chip + threshold line) · T → "T = NNN K" (thermometer) ·
 speed axis → "speed →" with the engine's v_mp/v_avg/v_rms markers **suppressed via
 `hist_speed_marks: false`** (Rule 25 — those are P1 #5's untaught terms) · fraction → the chip's
@@ -181,7 +197,7 @@ narration closes with the rate direction. Belief 4 → framed at S2, fully confr
 
 ## Two-pass lens — Block 2 (aha designation)
 
-- **PRIMARY aha (S3):** heating multiplied the reaction-relevant number six-fold while the collision
+- **PRIMARY aha (S4):** heating multiplied the reaction-relevant number six-fold while the collision
   count barely moved — the rate lives in the FRACTION of collisions over the barrier, not in the traffic.
 - **SUPPORTING (2):** S1 — almost no collision counts (installs the fraction as a thing that exists);
   S5 — the catalyst moves the SAME fraction from the other side, bar down instead of tail up.
@@ -189,7 +205,7 @@ narration closes with the rate direction. Belief 4 → framed at S2, fully confr
 - **Wrong-belief setup:** S1+S2 leave the student holding "more/harder collisions is about how OFTEN
   they hit"; S3 breaks it. S3 has just taught "raise the tail", so "a catalyst must also energise
   molecules" is freshly earned; S5 breaks it with the held-pose histogram.
-- **Foundational coverage:** primary aha S3 ∈ foundational (S1–S4). Satisfied.
+- **Foundational coverage:** primary aha S4 ∈ foundational (S1–S5). Satisfied.
 
 ## What this sim CANNOT show (declared omissions)
 
@@ -198,8 +214,10 @@ narration closes with the rate direction. Belief 4 → framed at S2, fully confr
    teachable honestly in S6 as identity-of-partners and it is real chemistry — but it is NOT
    orientation, and the narration NEVER uses the word "orientation" or claims to show NCERT's steric
    factor P. Orientation is a declared omission.
-2. **The reaction-profile energy diagram** (reactants → hump → products, ΔH, transition state) —
-   P2 #9's job; also the full confrontation of belief 4.
+2. ~~The reaction-profile energy diagram~~ — **NOW SHOWN** (`show_reaction_profile`, S1/S6/S9). Its
+   peak is the reaction's forward barrier and its product level the bond energy, so the reverse
+   barrier measurable off the picture equals the engine's derived Ea_rev. Still P2 #9's: the
+   transition state as a species, and ΔH / exothermic-vs-endothermic as a taught topic.
 3. **The 3D Maxwell–Boltzmann form** — this is a true 2D gas (2D Rayleigh); no distribution formula
    is printed anywhere.
 4. **Absolute Arrhenius values** — the slope is measured right to 1.7%; the prefactor is geometric
@@ -218,6 +236,22 @@ ON in **S6 only**. The three-number ladder is the engine's strongest single beat
 layer; everywhere else it would blur each state's one idea and drag AB vocabulary across the
 extended-ring quarantine. Constants: shipped defaults with `activation_fwd_kT: 3` matching the
 concept's `activation_energy_kT: 3`, so both barriers on screen stay ONE number.
+
+## As-built delta (what the two review rounds changed, 2026-07-29/30)
+
+The 8-state build was FAILed by `quality_auditor` twice and re-walked by `eye_walker` twice. The
+changes that altered this skeleton rather than just the JSON:
+
+1. **A ninth state, at the front.** The lesson opened by counting Eₐ before naming it (Rule 25), and
+   the concept never drew the hill. Both founder-found. STATE_1 fixes both and closes the fourth
+   misconception the original skeleton had deferred.
+2. **`show_reaction_profile` was built** — the original skeleton declared the profile undrawable and
+   deferred it. A declared omission is a decision, not an exemption; it was re-examined against the
+   concept TITLE and reversed.
+3. **S8 is a declared density exception** (720 discs). Not in the original design: the Arrhenius
+   slope missed the law by 21% at the lesson's normal density.
+4. **The term-introduction ledger is now a required artifact** (§3). Fixing Eₐ was not the end of it —
+   A/B/AB and f/c/k were all printed before being defined, and a formula surface counts as use.
 
 ## Design questions — ALL FOUR SETTLED BY MEASUREMENT (2026-07-29)
 
