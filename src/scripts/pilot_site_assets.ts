@@ -413,10 +413,23 @@ function pmTelemetryJs(): string {
   }
   var SID = sessionId();
 
+  // Which page produced this event. concept_id/state_id identify a sim, but every
+  // non-player page (catalog/login/join/welcome/expired) left them null — so a dwell
+  // on the paywall was indistinguishable from a dwell on the catalog. The <html
+  // data-pm-page> attribute already exists for the auth gate; telemetry reads it too.
+  function pageName() {
+    try { return document.documentElement.getAttribute('data-pm-page') || 'unknown'; }
+    catch (e) { return 'unknown'; }
+  }
+
   PM.track = function (type, payload) {
     if (!type) return;
+    var p = payload || {};
+    if (p.page === undefined) {          // an explicit page in the payload always wins
+      try { p.page = pageName(); } catch (e) {}
+    }
     if (IS_DEV || isStaff) {
-      try { console.debug('[pm-telemetry ' + (isStaff ? 'founder' : 'dev') + ', NOT sent] ' + type, payload || {}); } catch (e) {}
+      try { console.debug('[pm-telemetry ' + (isStaff ? 'founder' : 'dev') + ', NOT sent] ' + type, p); } catch (e) {}
       return;
     }
     queue.push({
@@ -424,7 +437,7 @@ function pmTelemetryJs(): string {
       concept_id: (typeof window.PM_CONCEPT_ID === 'string' ? window.PM_CONCEPT_ID : null),
       state_id: (typeof window.PM_STATE_ID === 'string' ? window.PM_STATE_ID : null),
       event_type: String(type),
-      payload: payload || {},
+      payload: p,
       client_ts: new Date().toISOString()
     });
     if (queue.length > MAX_QUEUE) queue.splice(0, queue.length - MAX_QUEUE);
@@ -486,12 +499,24 @@ function pmTelemetryJs(): string {
   // Explicit flush for callers that navigate away immediately (login redirect).
   PM.flushNow = function () { try { flush(true); } catch (e) {} };
 
-  // Dwell heartbeat: proves the tab is actually in front of a class.
+  // Dwell heartbeat: proves the tab is actually in front of a class. seq counts
+  // heartbeats for THIS page load, so vis_s is time actually visible (hidden ticks
+  // are skipped) — a bare heartbeat could not distinguish 10 visible minutes from
+  // 10 minutes with the tab buried behind a browser window.
+  var dwellSeq = 0;
   setInterval(function () {
-    if (document.visibilityState === 'visible') PM.track('dwell', {});
+    if (document.visibilityState === 'visible') {
+      dwellSeq++;
+      PM.track('dwell', { seq: dwellSeq, vis_s: dwellSeq * (DWELL_MS / 1000) });
+    }
   }, DWELL_MS);
 
-  window.addEventListener('pagehide', function () { PM.track('page_leave', {}); flush(true); });
+  window.addEventListener('pagehide', function () {
+    var afterS = 0;
+    try { afterS = Math.round((performance && performance.now ? performance.now() : 0) / 1000); } catch (e) {}
+    PM.track('page_leave', { after_s: afterS });
+    flush(true);
+  });
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') flush(true);
   });
@@ -726,6 +751,9 @@ function pmFeedbackJs(): string {
       thanks.style.display = 'none';
       err.style.display = 'none';
       refresh();
+      // Opened-vs-submitted: the submit lands in pilot_feedback, so without this the
+      // teacher who opens the box and abandons it leaves no trace at all.
+      try { if (window.PM && PM.track) PM.track('feedback_open', {}); } catch (e) {}
     }
     function close() { stopStt(); overlay.className = ''; }
 
@@ -1246,6 +1274,9 @@ function welcomeHtml(): string {
   var errBox = document.getElementById('errBox');
   function showErr(m) { errBox.textContent = m; errBox.style.display = 'block'; }
   function clearErr() { errBox.style.display = 'none'; }
+  // Signup funnel: welcome_shown vs profile_created measures the drop-off at this
+  // form (a teacher who signs in with Google and never finishes was invisible).
+  try { if (window.PM && PM.track) PM.track('welcome_shown', {}); } catch (e) {}
   PM.authReady.then(function (u) {
     if (!u) return;   // gate already handles no-session; dev shows the form inert
     var m = u.user_metadata || {};
@@ -1383,6 +1414,9 @@ ${PAYMENT_LINK ? `  <a class="go" id="payBtn" href="${PAYMENT_LINK}" target="_bl
 
 <script>
 (function () {
+  // The paywall funnel's denominator: subscribe_click is meaningless without
+  // knowing how many teachers saw this screen and did nothing.
+  try { if (window.PM && PM.track) PM.track('expired_shown', {}); } catch (e) {}
   PM.authReady.then(function (u) {
     var p = window.PM_PROFILE;
     if (p && p.display_name) document.getElementById('xhead').textContent = p.display_name.split(' ')[0] + ', your free trial has ended';
@@ -1577,6 +1611,7 @@ function pmTourJs(): string {
     if (!mk) return;                       // fail-open: driver.js missing -> no tour, app untouched
     injectStyles();                        // accent ring/glow + popover accent on the player too
     pauseSim(true);
+    try { if (window.PM && PM.track) PM.track('tour_start', {}); } catch (e) {}
     var steps = STEPS.map(function (s) {
       var pop = { title: s.title, description: s.text };
       if (s.side) pop.side = s.side;
@@ -1600,6 +1635,14 @@ function pmTourJs(): string {
       // tear down and finish. Guarded so the two paths can't double-run.
       if (finished) return;
       finished = true;
+      // Reached the last card = completed; anything earlier = abandoned, and WHERE
+      // she abandoned is the signal (which beat loses teachers).
+      try {
+        if (window.PM && PM.track) {
+          if (trackedIndex >= STEPS.length - 1) PM.track('tour_done', { steps: STEPS.length });
+          else PM.track('tour_skip', { at_step: trackedIndex, of: STEPS.length });
+        }
+      } catch (e) {}
       try { if (d) d.destroy(); } catch (e) {}   // real teardown (destroy() takes the non-onDestroyStarted path)
       finishTour();
     }
@@ -1625,6 +1668,9 @@ function pmTourJs(): string {
         } catch (e) {}
         var ai = (opts && opts.state && typeof opts.state.activeIndex === 'number') ? opts.state.activeIndex : 0;
         trackedIndex = ai;
+        try {
+          if (window.PM && PM.track) PM.track('tour_step', { n: ai, of: STEPS.length, demo: (STEPS[ai] && STEPS[ai].demo) || null });
+        } catch (e) {}
         try { playStep(ai); } catch (e) {}
         try { if (isMuted()) muteToggle(true); } catch (e) {}
         // On a Hide/Unhide beat, let the teacher click the real button; auto-advance when they do.
@@ -1730,8 +1776,13 @@ function pmTourJs(): string {
       '<button class="pm-tour-btn skip" id="pmTourSkip">Skip for now</button>' +
       '</div></div>';
     document.body.appendChild(ovl);
+    try { if (window.PM && PM.track) PM.track('tour_offer_shown', {}); } catch (e) {}
     document.getElementById('pmTourGo').addEventListener('click', launch);
-    document.getElementById('pmTourSkip').addEventListener('click', function () { markSeen(); ovl.remove(); });
+    document.getElementById('pmTourSkip').addEventListener('click', function () {
+      // at_step -1 = declined the offer without ever entering the tour
+      try { if (window.PM && PM.track) PM.track('tour_skip', { at_step: -1 }); } catch (e) {}
+      markSeen(); ovl.remove();
+    });
   }
 
   // A brand beat owns the first moments of the catalog and the welcome modal must wait

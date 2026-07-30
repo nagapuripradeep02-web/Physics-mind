@@ -415,7 +415,7 @@ function renderConceptPage(
             ? `<div class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.2 1.6 2.7-.2.9 2.6 2.2 1.6-.9 2.6.9 2.6-2.2 1.6-.9 2.6-2.7-.2L12 21.5l-2.2-1.6-2.7.2-.9-2.6L4 15.9l.9-2.6L4 10.7l2.2-1.6.9-2.6 2.7.2z" fill="rgba(203,104,67,.2)" stroke="rgba(203,104,67,.6)" stroke-width="1.1"/><path d="M8.6 12l2.1 2.1 4.6-4.6" stroke="#E3A07F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Teacher-Verified${review?.reviewer ? ' &middot; ' + escapeHtml(review.reviewer) : ''}</div>`
             : '';   // professor-facing: an internal "awaiting review" pill would read as "unfinished"
     return `<!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-pm-page="player"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${escapeHtml(conceptName)} — Viditra</title>
@@ -2416,7 +2416,7 @@ ${cards}
         .join('');
 
     const html = `<!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-pm-page="catalog"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viditra — Simulation Library</title>
