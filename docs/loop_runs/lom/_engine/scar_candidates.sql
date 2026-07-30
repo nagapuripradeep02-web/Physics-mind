@@ -752,3 +752,96 @@ INSERT INTO engine_bug_queue (
 --     'lom-a push_off engine seam C (repeat_every_ms) 2026-07-29',
 --     'directive'
 -- );
+
+-- ═══════════════════════════════════════════════════════════════════════════
+-- lom-a spring choreography engine SEAM A (spring_action phase machine +
+-- slow-motion window + honesty badge) — 2026-07-30. TEXT ONLY, nothing applied.
+-- docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md (founder-approved).
+-- ═══════════════════════════════════════════════════════════════════════════
+
+-- The dispatched bug_class. FIXED here for the timing/phase half; the coil-
+-- geometry half (compression stroke + post-release ring) is seam B.
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_spring_release_plays_at_raw_420ms_with_no_compression_or_hold_beat_and_no_slow_motion',
+--     'A spring push-off opens already compressed and lets go 420 ms later, so the whole interaction is a flash with no visible loading and no narratable beat',
+--     'CRITICAL',
+--     'peter_parker:field3d_surgeon',
+--     'push_off drove the pair straight from the authored home pose (already at compressed separation) through a contact window whose length is fixed by the physics: t = sqrt(2*stroke/a_rel) = ~420 ms for 30 N on 4 + 12 kg over the 0.88 m stroke. Authoring cannot slow it (a 2 s contact needs ~1.3 N, far below the arrow-length floor that keeps a force readable) and the state cannot be shortened to 2 s (Rule 31 narration is 10-20 s). So a student never saw the spring being LOADED - the stored energy had no visible origin - and there was no held beat for a teacher to talk over. Founder screen review: "you are not showing real spring compressing and releasing it".',
+--     'A physically fast interaction gets a DECLARED choreography, not a faster eye: approach -> compress -> hold -> release -> coast, with the release filmed in slow motion the way every real physics lesson films a fast event, and LABELLED on canvas ("slow motion xN", Rule 24/34) so a slowed release is never read as a small acceleration. slow_factor is a dt multiplier on the integrator during the release window only (Rule 36: linear in dt, no sub-stepping, no second clock, dt = 0 under a freeze pin); the HUD keeps reporting the TRUE physical values. Before the release the pair is HELD by a latch (one code path with the fixed body), so the loading force cannot launch the carts early.',
+--     'js_eval',
+--     'For a state authoring spring_action: assert eng.spring_phase visits approach->compress->hold->release->coast in order inside one cycle; assert the release window stays open for (release_at_ms - contact_from_ms)*slow_factor ms of WALL time while the integrated stroke is still the true 0.88 m and the exit speeds are the true F*t/m; assert the HUD F/a strings are the unscaled values; assert the slow-motion badge is displayed iff eng.slow_active.',
+--     'FIXED',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts', 'src/lib/validators/visual/deriveStateMeta.ts']::text[],
+--     'lom-a spring choreography engine seam A 2026-07-30',
+--     'incident'
+-- );
+
+-- Found while wiring the slow window. Seam B owns the fix (coil geometry).
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_spring_coil_holds_its_compressed_length_while_the_release_stroke_opens_the_gap',
+--     'During the release the coil stays drawn at compressed length while the carts separate, so it visibly detaches from one face instead of extending with them',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'nlbFitSpring picks target = compressed-now ? 0.45*natural : natural and then draws min(gap, target). While the push_off contact window is open, compressed-now is TRUE, so target stays at the compressed length even as the face-to-face gap grows from 0.72 m to 1.6 m - the coil is drawn at 0.72 m inside a widening gap and only jumps to natural length on the frame contact ends. The in-code comment claims it "extends with the carts during contact", which min(gap, compressed) does not do. Invisible for 420 ms; glaring once spring_action plays the same stroke over ~2.5 s of wall time.',
+--     'A spring is a real object: its DRAWN length must be a continuous function of the beat it is in, not a two-valued boolean. Drive the target length from the published spring_phase/spring_progress (natural during approach, natural->compressed across the compression stroke, compressed during hold, and then simply the live gap during the release until it passes natural length and lets go), so no phase can draw a coil that does not touch both faces.',
+--     'js_eval',
+--     'For a state authoring spring/push_off: sample the coil userData.q_len against the live face-to-face gap every frame of the release window and fail if |q_len - min(gap, natural)| exceeds the rebuild quantum.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a spring choreography engine seam A 2026-07-30',
+--     'incident'
+-- );
+
+-- The authoring trap the new cycle floor degrades silently (same shape as the
+-- repeat_every_ms row above, so it is a validator candidate, not an engine bug).
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_spring_action_repeat_cycle_shorter_than_the_slowed_choreography_degrades_to_single_fire',
+--     'A repeat cycle authored against the raw release time instead of the slowed wall-clock choreography is silently ignored, so the demo fires once and the state dies again',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'With spring_action the wall-clock cycle is approach + compress + hold + (release_at_ms - contact_from_ms)*slow_factor - for the spec default 600 + 1600 + 1200 + 2520 = 5920 ms, an order of magnitude above the 420 ms release_at_ms an author would naturally size R against. The renderer IGNORES a cycle at or below that floor (it would leave the phase permanently inside the release window: permanent contact plus permanent slow motion), degrading to single-fire - which silently restores the exact dead-state the repeat seam was added to remove, with no error anywhere. The pre-spring_action floor was just release_at_ms, so an existing R = 2600 becomes too short the moment spring_action is added to the same state.',
+--     'A spring_action state sizes repeat_every_ms against the CHOREOGRAPHY, not the physics: R > approach_ms + compress_ms + hold_ms + (release_at_ms - contact_from_ms)*slow_factor, plus a coast beat long enough for the separation to read (the spec suggests ~7200 for the default choreography). Validate the inequality in the schema rather than relying on the renderer silent degrade.',
+--     'sql',
+--     'For every field_3d state whose newtons_laws_body authors both spring_action and push_off.repeat_every_ms: fail when repeat_every_ms <= approach_ms + compress_ms + hold_ms + (release_at_ms - contact_from_ms) * COALESCE(slow_factor, 6).',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a spring choreography engine seam A 2026-07-30',
+--     'directive'
+-- );
+
+-- The general engine directive this seam establishes (the reusable half — it
+-- applies to any renderer that must show a physically fast event).
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'renderer_slow_motion_window_must_scale_dt_only_and_label_itself_on_canvas',
+--     'Slowing a fast event by scaling the reported physics, or by scaling dt without saying so on canvas, teaches a falsehood',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'A physically fast beat (a spring release, an impact, a discharge) is unreadable at real time, and the two easy fixes are both wrong: scaling the AUTHORED force/mass to stretch the event silently changes the physics the HUD then reports, and dividing dt without labelling it makes a student read a slowed release as a small acceleration - the sim would be showing a = 7.5 m/s2 worth of arrows with 1.25 m/s2 worth of motion and no way to tell.',
+--     'One shape: (1) divide the INTEGRATOR dt by a declared factor inside the taught window only, never the phase clock, never a reported number - the step must stay linear in dt so a folded multi-step frame and a dt = 0 freeze pin both stay exact (Rule 36); (2) keep every HUD/readout on the true physical values; (3) show a small on-canvas badge ("slow motion xN", real Unicode x) for exactly as long as the window is open, in a corner that collides with no other overlay (Rule 24/34d), hidden in a sandbox state and in every state that does not slow anything.',
+--     'js_eval',
+--     'Whenever a renderer scales dt: assert (a) the phase/reveal clock advanced by the RAW dt over the window, (b) every published readout equals the unscaled physical value, (c) the badge element is displayed for exactly the frames the scale is active, (d) held frames under SET_TIME_FREEZE are byte-identical.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a spring choreography engine seam A 2026-07-30',
+--     'directive'
+-- );
