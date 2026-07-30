@@ -39027,7 +39027,21 @@ export const FIELD_3D_RENDERER_CODE = `
         var rope = nlbFindById(ropeId);
         if (!on || !rope || !rope.visible) { lbl.visible = false; return; }
         var perp = nlbPerpUnit(false, nlbFrameThetaDeg());
-        lbl.position.copy(rope.position).addScaledVector(perp, NLB_BODY_SIZE * 1.15);
+        // The segment label needs its OWN vertical band, well clear of the cart
+        // labels. A body label is a child of its mesh at +0.95 body sizes, i.e.
+        // 1.45 above the surface once the body's own half-height is included; the
+        // rope runs at body-centre height, so the original +1.15 offset put this
+        // label at 1.65 — only 0.2 body sizes from the cart labels. On screen the
+        // m₁/T₁/m₂/T₂/m₃ sprites collapsed into one horizontal jumble across the
+        // train, which is unreadable exactly where tension_force's primary aha
+        // lives. 2.6 puts it at 3.1 versus the cart labels' 1.45.
+        //   The bands are also STAGGERED per segment index. Lifting both to one
+        // height fixed the clash with the cart labels but left the two segment
+        // labels abutting each other horizontally ("T₁ = 1.00 NT₂ = 2.00 N"): the
+        // rope midpoints are only ~1.25 world units apart while each sprite is
+        // ~75 px wide, so at any shared height they must touch. One row each makes
+        // them independent of cart spacing entirely.
+        lbl.position.copy(rope.position).addScaledVector(perp, NLB_BODY_SIZE * (2.35 + 0.85 * idx));
         lbl.visible = true;
     }
     function nlbFitRopes() {
