@@ -41,6 +41,7 @@ import {
     chapterTitle,
     writeRootAssets,
     CLASS12_CHAPTER_NAMES,
+    PLAN_PRICE_INR,
 } from './pilot_site_assets';
 
 // ── Types (subset of the concept JSON we read) ───────────────────────────────
@@ -2637,7 +2638,7 @@ ${pilotHeadTags(0)}
         </div>
         <div class="pmMenuGroup">
           <a class="pmMenuRow" id="pmMenuPlans" href="https://viditra.co/#pricing" target="_blank" rel="noopener" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.4 3.8 1.2 4.6 5 5-3.8.4-4.6 1.2-5 5-.4-3.8-1.2-4.6-5-5 3.8-.4 4.6-1.2 5-5z"/></svg>View plans</a>
-          <a class="pmMenuRow" id="pmMenuSubscribe" href="#" target="_blank" rel="noopener" role="menuitem" hidden><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Subscribe &middot; &#8377;699/mo</a>
+          <a class="pmMenuRow" id="pmMenuSubscribe" href="#" target="_blank" rel="noopener" role="menuitem" hidden><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Subscribe &middot; &#8377;${PLAN_PRICE_INR}/mo</a>
         </div>
         <div class="pmMenuGroup">
           <button class="pmMenuRow pmDanger" id="pmMenuSignOut" type="button" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
@@ -2653,7 +2654,7 @@ ${pilotHeadTags(0)}
   </div>
   <div id="trialNote" hidden>
     <span class="txt" id="trialNoteTxt"></span>
-    <a class="cta" id="trialNoteGo" href="#" target="_blank" rel="noopener">Continue &mdash; &#8377;699/month</a>
+    <a class="cta" id="trialNoteGo" href="#" target="_blank" rel="noopener">Continue &mdash; &#8377;${PLAN_PRICE_INR}/month</a>
   </div>
   <input id="search" type="search" placeholder="Search simulations… (e.g. flux, magnetic force, Gauss)" autocomplete="off">
   <div id="noresults">No simulations match that search.</div>
@@ -2742,7 +2743,7 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     var isPaid = !!(hasProfile && window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now());
     if (isPaid) {
       // paying member — the plan replaces the trial countdown (pm-auth sets PM_PLAN)
-      sub = window.PM_PLAN === 'founding-699' ? 'Founding · ₹699/mo' : 'Member';
+      sub = String(window.PM_PLAN || '').indexOf('founding') === 0 ? 'Founding · ₹${PLAN_PRICE_INR}/mo' : 'Member';
     } else if (hasProfile && window.PM_TRIAL_END) {
       var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
       sub = 'Trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
@@ -3325,7 +3326,7 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     var t = profEl('pfTrial');
     if (window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now()) {
       var until = new Date(window.PM_PAID_UNTIL);
-      t.textContent = (window.PM_PLAN === 'founding-699' ? 'Founding teacher · ₹699/month' : 'Member')
+      t.textContent = (String(window.PM_PLAN || '').indexOf('founding') === 0 ? 'Founding teacher · ₹${PLAN_PRICE_INR}/month' : 'Member')
         + ' · active until ' + until.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
       t.style.display = '';
     } else if (window.PM_TRIAL_END) {

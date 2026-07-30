@@ -30,11 +30,23 @@ import { join } from 'path';
 // ── Pilot Supabase project (production data; NOT the dev project) ────────────
 
 // ── Payments (Phase 1): the Razorpay Payment Page URL for the founding plan
-// (₹699/mo, monthly only — decided 2026-07-12). Empty = the link isn't live yet
-// (founder KYC pending) → expired.html keeps its mailto-first copy. Once Razorpay
-// activates, paste the rzp.io URL here and rebuild — the expired page then leads
-// with the payment button. Single edit point.
+// (monthly only — decided 2026-07-12; price LOWERED to ₹499 on 2026-07-19, which
+// meant a NEW Payment Page because Razorpay page amounts can't be edited).
+// PAYMENT_LINK + PLAN_PRICE_INR travel TOGETHER — the link's page amount and the
+// price we print must always agree, so never edit one without the other (the live
+// page was re-verified at 49900 paise on 2026-07-30, founder-confirmed). Empty
+// link = fall back to mailto-first copy on expired.html. Single edit point; every
+// price string in the pilot app (expired page, trial-ending banner, account menu)
+// reads PLAN_PRICE_INR, so there is no second place to remember.
 export const PAYMENT_LINK = 'https://rzp.io/rzp/hQXPjZqv';
+export const PLAN_PRICE_INR = 499;
+
+/** Pages whose amount no longer matches PLAN_PRICE_INR — the build warns loudly if
+ *  PAYMENT_LINK is still one of them. Empty today: `hQXPjZqv` → pl_TCzobgVF93OIhr was
+ *  re-fetched 2026-07-30 and serves 49900 paise ("Founding Teacher Plan — ₹499/month"),
+ *  i.e. the ₹499 page reuses the original short link. Verify the same way after any
+ *  price change: `curl -sL https://rzp.io/rzp/<slug> | grep -o '499\\|49900'`. */
+const SUPERSEDED_PAYMENT_LINKS: string[] = [];
 
 export const PILOT_SUPABASE_URL = 'https://jqbnmltsupnnbuvqgkix.supabase.co';
 export const PILOT_SUPABASE_ANON_KEY =
@@ -1258,7 +1270,13 @@ function welcomeHtml(): string {
 
 // ── expired.html — SOFT trial-end screen ─────────────────────────────────────
 // Data is NEVER deleted (the saved work is the teacher's hook to convert and the
-// founder's feedback goldmine); this page just gates access and points at Pradeep.
+// founder's feedback goldmine); this page just gates access and offers the way back.
+// The way back is a PAYMENT BUTTON, not an email (founder 2026-07-30): a teacher who
+// hit the wall must be able to pay in that moment — "message Pradeep" leaked every
+// teacher who wouldn't write an email. Email/WhatsApp stay as the quiet fallback.
+// Phase 1 activation is still manual (`npm run grant:paid -- <email>`), so the page
+// (a) tells her to pay with the SAME email she signs in with — grant:paid keys on the
+// payer email — and (b) gives her a "check my access" recheck instead of a dead end.
 function expiredHtml(): string {
     return `<!DOCTYPE html>
 <html lang="en" data-pm-page="expired"><head>
@@ -1296,9 +1314,20 @@ function expiredHtml(): string {
   a.go{display:block;text-align:center;text-decoration:none;width:100%;margin-top:4px;padding:12px;border:0;border-radius:10px;
        background:var(--clay);color:#fff;font-size:14px;font-weight:600;font-family:var(--font-ui);transition:background .15s ease;}
   a.go:hover{background:var(--clay-deep);}
-  .hint{font-size:11.5px;color:var(--ink-faint);margin-top:10px;text-align:center;}
+  .hint{font-size:11.5px;color:var(--ink-faint);margin-top:10px;text-align:center;line-height:1.55;}
+  .hint b{color:var(--ink-dim);font-weight:600;}
+  button.re{display:block;width:100%;margin-top:14px;padding:10px;border:1px solid var(--line);border-radius:10px;
+            background:var(--surface-2);color:var(--ink-dim);font-size:12.5px;font-weight:500;font-family:var(--font-ui);
+            cursor:pointer;transition:color .15s ease,border-color .15s ease;}
+  button.re:hover{color:var(--ink);border-color:rgba(245,240,230,.2);}
+  button.re[disabled]{opacity:.6;cursor:default;}
+  .note{margin-top:12px;padding:9px 12px;border-radius:9px;font-size:11.5px;line-height:1.5;display:none;}
+  .note.bad{background:rgba(224,106,82,.10);border:1px solid rgba(224,106,82,.3);color:#F0A292;}
   a.alt{display:block;text-align:center;margin-top:16px;color:var(--ink-dim);font-size:12.5px;text-decoration:none;}
   a.alt:hover{color:var(--clay-soft);}
+  .row{display:flex;gap:14px;justify-content:center;margin-top:16px;}
+  .row a{color:var(--ink-faint);font-size:12px;text-decoration:none;}
+  .row a:hover{color:var(--clay-soft);}
 </style>
 </head>
 <body>
@@ -1310,17 +1339,63 @@ function expiredHtml(): string {
 
   <h1 id="xhead">Your free trial has ended</h1>
   <p class="sub">Everything you set up — your saved lesson layouts, renames, and customizations — is safe
-     and waiting exactly as you left it. To keep teaching with Viditra, message Pradeep and he will
-     activate your founding-teacher plan (&#8377;499/month, locked).</p>
-  <a class="go" href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email pradeep@viditra.co</a>
-  <a class="alt" href="#" id="soLink">Sign out</a>
+     and waiting exactly as you left it.${PAYMENT_LINK
+        ? ` Continue on the founding-teacher plan — &#8377;${PLAN_PRICE_INR}/month, locked at that price for as long as you stay.`
+        : ` To keep teaching with Viditra, message Pradeep and he will activate your founding-teacher plan (&#8377;${PLAN_PRICE_INR}/month, locked).`}</p>
+${PAYMENT_LINK ? `  <a class="go" id="payBtn" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Continue &mdash; &#8377;${PLAN_PRICE_INR}/month</a>
+  <p class="hint">UPI, card, or netbanking. <span id="payEmailHint">Please pay with the same email you sign in with</span> —
+     that is how your access is matched. It reopens shortly after payment, usually within the hour.</p>
+  <button class="re" id="reBtn" type="button">I&#8217;ve paid &mdash; check my access</button>
+  <div class="note bad" id="reNote"></div>
+  <div class="row">
+    <a href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email Pradeep</a>
+    <a href="#" id="soLink">Sign out</a>
+  </div>`
+: `  <a class="go" href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email pradeep@viditra.co</a>
+  <p class="hint">or reply on the WhatsApp thread we have been talking on — that works too.</p>
+  <a class="alt" href="#" id="soLink">Sign out</a>`}
 </div></div>
 
 <script>
 (function () {
-  PM.authReady.then(function () {
+  PM.authReady.then(function (u) {
     var p = window.PM_PROFILE;
     if (p && p.display_name) document.getElementById('xhead').textContent = p.display_name.split(' ')[0] + ', your free trial has ended';
+    // Name the exact email her access is keyed on — grant:paid matches the payer email,
+    // so paying from a second address is the one way this flow silently strands her.
+    var eh = document.getElementById('payEmailHint');
+    if (eh && u && u.email) eh.innerHTML = 'Please pay with <b>' + u.email + '</b>';
+  });
+  var payBtn = document.getElementById('payBtn');
+  if (payBtn) payBtn.addEventListener('click', function () {
+    try { if (window.PM && PM.track) PM.track('subscribe_click', { source: 'expired' }); } catch (e) {}
+  });
+  // "I've paid" — activation is manual in Phase 1, so give her a live recheck instead
+  // of a dead end: re-read the subscription and let the gate route her back in.
+  var reBtn = document.getElementById('reBtn');
+  var reNote = document.getElementById('reNote');
+  if (reBtn) reBtn.addEventListener('click', function () {
+    reBtn.disabled = true; reBtn.textContent = 'Checking…';
+    if (reNote) reNote.style.display = 'none';
+    try { if (window.PM && PM.track) PM.track('access_recheck', {}); } catch (e) {}
+    var c = window.PM && PM.auth && PM.auth.client && PM.auth.client();
+    if (!c) { location.reload(); return; }
+    // Same shape + same trial arithmetic as the pm-auth gate (there is no trial_end
+    // column — it is trial_started_at + trial_days), so this can never disagree with it.
+    c.from('teacher_profiles').select('*, teacher_subscriptions(plan, paid_until)').maybeSingle().then(function (r) {
+      var row = (r && !r.error && r.data) || null;
+      var sub = row ? (row.teacher_subscriptions || null) : null;
+      if (sub && sub.length !== undefined) sub = sub[0] || null;
+      var paid = 0, trial = 0;
+      try { if (sub && sub.paid_until) paid = new Date(sub.paid_until).getTime(); } catch (e) {}
+      try { if (row) trial = new Date(row.trial_started_at).getTime() + (row.trial_days || 7) * 86400000; } catch (e) {}
+      if (Math.max(paid || 0, trial || 0) > Date.now()) { location.replace('/'); return; }
+      reBtn.disabled = false; reBtn.textContent = 'Check again';
+      if (reNote) {
+        reNote.textContent = 'Not active yet. If you have just paid, give it a little time — or email Pradeep and he will switch it on right away.';
+        reNote.style.display = 'block';
+      }
+    }, function () { location.reload(); });
   });
   document.getElementById('soLink').addEventListener('click', function (ev) {
     ev.preventDefault(); if (window.PM && PM.auth) PM.auth.signOut();
@@ -1696,4 +1771,17 @@ export function writeRootAssets(outDir: string): void {
     writeFileSync(join(outDir, 'welcome.html'), welcomeHtml(), 'utf-8');
     writeFileSync(join(outDir, 'expired.html'), expiredHtml(), 'utf-8');
     console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, pm-tour.js, login.html, join.html, welcome.html, expired.html → review-site/');
+    // Money guard: a Razorpay Payment Page amount can never be edited, so a link
+    // from a retired price silently charges the wrong amount behind ₹PLAN_PRICE_INR
+    // copy. Every price the app prints is generated from PLAN_PRICE_INR — the link
+    // is the one thing that can drift, so name it loudly at build time.
+    if (SUPERSEDED_PAYMENT_LINKS.some((u) => PAYMENT_LINK.includes(u))) {
+        console.warn(
+            `   ⚠ PAYMENT_LINK is a SUPERSEDED Razorpay page (${PAYMENT_LINK}) while the app prints ₹${PLAN_PRICE_INR}/month.\n` +
+            `     Teachers would be charged the old amount. Paste the current ₹${PLAN_PRICE_INR} Payment Page URL into PAYMENT_LINK\n` +
+            `     (src/scripts/pilot_site_assets.ts) and rebuild BEFORE npm run deploy:app.`,
+        );
+    } else if (!PAYMENT_LINK) {
+        console.warn('   ⚠ PAYMENT_LINK is empty — expired.html falls back to mailto-only copy (no way for a teacher to pay).');
+    }
 }
