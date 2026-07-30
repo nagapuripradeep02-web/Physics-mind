@@ -1037,6 +1037,51 @@ export interface Field3DConfig {
                 contact_from_ms?: number; // contact BEGINS here; default 0
             };
 
+            // ── spring — the VISIBLE interaction object (Newton III) ──────────
+            // A coil drawn BETWEEN the two bodies' facing faces, so the cause of
+            // the push_off pair is a physical thing on screen instead of two
+            // arrows appearing from nowhere.
+            //   • It is carried by the ONE placement funnel every body move
+            //     already goes through (nlbSetBodyPosition) — no per-frame follow
+            //     hook, no clock, no second placement path (Rule 36).
+            //   • Length: it spans the live face-to-face gap, capped at its own
+            //     natural length. It renders COMPRESSED while the push_off contact
+            //     window is open, extends to natural length as the carts separate,
+            //     and HIDES once the gap exceeds natural length (the spring has let
+            //     go — exactly the instant push_off zeroes the forces).
+            //   • `compressed` is the render state for a state with NO live
+            //     push_off phase (a static display beat, or a sandbox where the
+            //     teacher owns the force). Whenever a non-sandbox state DOES
+            //     declare push_off, the ENGINE drives it from the contact phase and
+            //     the authored value is ignored — the picture can never disagree
+            //     with the force.
+            // AUTHORING CONTRACT (three parts — a spring is a real object with a
+            // real length, so the authored numbers must agree with it):
+            //  1. POSITION. Natural length is 1.6 m, compressed length 0.72 m
+            //     (apparatus constants, like the cart size). Author the two bodies'
+            //     initial_position_m so their FACING FACES start 0.72 m apart, i.e.
+            //     |s_a - s_b| = 0.72 + half-width of each body (0.55 m for a cart,
+            //     0.275 m for a `fixed` wall slab). Placed further apart, the coil
+            //     draws compressed and floating instead of touching both.
+            //  2. ORDER. push_off gives body_a +force_N along +s, so body_a is the
+            //     body on the POSITIVE side — otherwise the pair drives together.
+            //  3. TIMING. A spring stops pushing when it reaches natural length, so
+            //     push_off.release_at_ms must be the instant the pair has separated
+            //     by 1.6 - 0.72 = 0.88 m. With mu = 0 and theta = 0 that is exactly
+            //         release_at_ms = 1000 * sqrt( 1.76 / (force_N * (1/m_a + 1/m_b)) )
+            //     (drop the 1/m term of a `fixed` body — it never moves). E.g. 30 N
+            //     on 2 + 2 kg -> 242 ms; on 2 + 6 kg -> 297 ms; 30 N cart vs wall,
+            //     m = 2 kg -> 343 ms. Author a LONGER window and the coil correctly
+            //     vanishes at natural length while the force is still applied — the
+            //     picture stops explaining the arrows. The carts then coast for the
+            //     rest of the state, which is the whole point: the RESULT of the
+            //     interaction stays on screen long after the interaction ended.
+            spring?: {
+                between: [string, string];   // the two body ids
+                compressed?: boolean;        // render state; the ENGINE drives it from the push_off phase
+                coils?: number;              // default 8
+            };
+
             arrows?: Array<{
                 body_id: string;
                 show: Array<'weight' | 'normal' | 'friction' | 'applied' | 'tension' | 'net'>;
@@ -38318,6 +38363,38 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_HANG_MIN_M = (NLB_PULLEY_R + NLB_BODY_SIZE / 2) / NLB_WORLD_PER_M;
     var NLB_Y_AXIS = new THREE.Vector3(0, 1, 0);
 
+    // ── SEAM B (push-off) — the SPRING, the visible interaction object ─────
+    //   GEOMETRY ONLY: nothing here reads a clock, integrates anything or
+    //   hardcodes a frame delta (Rule 36) — the coil is a pure function of the
+    //   two bodies' CURRENT positions plus the push_off contact flag, so dt = 0
+    //   under SET_TIME_FREEZE re-derives the identical pose, and a rewind to an
+    //   earlier t reproduces that t's pose exactly.
+    //   Nothing here is an emphasis channel either: the length is the spring's
+    //   real compression (the same licence the rope's scale.y and the force
+    //   arrows' magnitude-driven length already take), and emphasis stays
+    //   brightness-only through nlbApplyGlow() -> applyGlowEmphasis().
+    //   NATURAL LENGTH is an apparatus constant, exactly like the cart size: a
+    //   real spring has one, and deriving it from the authored gap instead would
+    //   make the release instant depend on where the author happened to park the
+    //   carts. 0.80 world units = 1.6 m, against a 1.1 m cart.
+    var NLB_SPRING_NATURAL_W = 0.80;      // world units — the free (uncompressed) length
+    var NLB_SPRING_COMPRESS_FRAC = 0.45;  // compressed length = 0.45 x natural = 0.36 world (0.72 m)
+    var NLB_SPRING_R = 0.15;              // coil RADIUS (world). 0.30 across, inside the 0.55 cart face,
+                                          //   and centred on body-centre height so it clears the slab.
+    var NLB_SPRING_WIRE_R = 0.022;        // tube radius of the wire itself
+    var NLB_SPRING_COILS = 8;             // spring.coils default
+    var NLB_SPRING_COLOR = "#FFA726";     // unused elsewhere in this scenario: the spring must be
+                                          //   unmistakable as THE CAUSE against the cool slab/cart palette.
+    // The coil geometry is REBUILT (never scaled) when its drawn length changes,
+    // because a unit-height helix stretched by scale.y squashes the WIRE's cross
+    // section with it — a compressed spring would render as a flat ribbon. The
+    // rebuild is quantised so a continuous extension costs a bounded number of
+    // rebuilds (~22 across the whole release) instead of one per frame, and the
+    // quantised length is a pure function of position, so byte-stability under a
+    // frozen pin is unaffected.
+    var NLB_SPRING_LEN_Q = 0.02;          // world units — geometry rebuild quantum
+    var NLB_SPRING_HIDE_EPS = 0.02;       // world units past natural length -> the spring has let go
+
     // Explicit id registry. addToScene() only registers the object handed to it,
     // so child meshes (bodies parented to the rotated surface group) would never
     // be reachable from sceneObjects — the "child mesh never registered, updater
@@ -38447,9 +38524,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // z lanes, and draw each string diagonally across the track — the one thing
         // an inextensible string joining two carts can never look like.
         if (!eng || !eng.order || eng.pulley || eng.train) return 0;
+        // HEAD-ON pairs share ONE lane (seam A deferred scar candidate #1). The z
+        // separation below exists for a SIDE-BY-SIDE compare (Newton II: two carts
+        // racing the same track, which must not overlap into one blob). A push_off
+        // pair is the opposite geometry: the two bodies act on EACH OTHER through a
+        // spring on the line joining them, so separating them in z would draw the
+        // spring diagonally across the lanes and the carts would fly apart on two
+        // parallel tracks that never touched. The same is true of a cart pushing a
+        // "fixed" wall — the whole beat is contact. Both tests are per-STATE facts,
+        // so every existing compare state (no push_off, no fixed body) takes the
+        // unchanged path below and cannot move a pixel.
+        if (eng.push_off) return 0;
         var lanes = [];
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
+            if (b && b.fixed) return 0;                // cart vs wall: head-on, one lane
             if (b && !b.hanging && !b.ghost) lanes.push(b.id);
         }
         if (lanes.length < 2) return 0;
@@ -38500,6 +38589,15 @@ export const FIELD_3D_RENDERER_CODE = `
             if (mesh.children[ci].userData && mesh.children[ci].userData.elementType === "nlb_wheel") { wgrp2 = mesh.children[ci]; break; }
         }
         if (wgrp2) wgrp2.rotation.z = -(s * NLB_WORLD_PER_M) / NLB_WHEEL_R;
+
+        // SEAM B (push-off): the spring is carried from this SAME funnel, for the
+        // same reason — build seeding, the integrator writeback, a slider write and
+        // a drag all pass through here, so the coil can never lag the bodies it is
+        // drawn between and there is no per-frame follow hook and no clock code
+        // (Rule 36). It re-reads BOTH bodies, so the second of the pair's two calls
+        // in a tick settles the final geometry; it is a no-op before the mesh
+        // exists (build) and hides itself in any state with no spring block.
+        nlbFitSpring();
     }
 
     // Rotate the ONE surface group + rescale it to the state's length, and
@@ -39185,6 +39283,94 @@ export const FIELD_3D_RENDERER_CODE = `
         });
     }
 
+    // ── SEAM B (push-off) — the SPRING between two facing bodies ───────────
+    //   The helix, built at its TRUE drawn height so the wire keeps its own
+    //   thickness at every compression (see NLB_SPRING_LEN_Q). Local axis is +y
+    //   and the curve is centred on the origin, matching the rope segments, so
+    //   the same "map +y onto the direction" quaternion places it.
+    function nlbSpringGeometry(turns, h) {
+        var segs = Math.max(24, turns * 16);
+        var pts = [];
+        for (var i = 0; i <= segs; i++) {
+            var u = i / segs;
+            var a = u * turns * Math.PI * 2;
+            pts.push(new THREE.Vector3(NLB_SPRING_R * Math.cos(a), (u - 0.5) * h, NLB_SPRING_R * Math.sin(a)));
+        }
+        return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), segs, NLB_SPRING_WIRE_R, 7, false);
+    }
+    // This state's spring block, or null. A malformed "between" is treated as no
+    // spring rather than half-drawn against one body.
+    function nlbSpringCfg() {
+        var sp = nlbStateCfg().spring;
+        if (!sp || !sp.between || sp.between.length < 2 || !sp.between[0] || !sp.between[1]) return null;
+        return sp;
+    }
+    // Compressed or free RIGHT NOW. Engine-driven from the push_off contact phase
+    // whenever the state has one — with EXACTLY the carve-out nlbRunPushOff itself
+    // makes (inert in a sandbox state, where the teacher's F slider owns the force
+    // and the authored render flag stands, Rule 37). eng.push_off_contact is a
+    // DERIVED READ: the force is written in one place only, by nlbRunPushOff.
+    function nlbSpringCompressedNow(sp) {
+        var eng = window.PM_nlbEngine;
+        if (eng && eng.push_off && eng.mode !== "sandbox") return !!eng.push_off_contact;
+        return !!sp.compressed;
+    }
+    // Half-extent of a body along its own axis: a "fixed" body is a wall SLAB, so
+    // its facing face is at half the slab thickness, not half a cart.
+    function nlbSpringHalfExtent(bodyId) {
+        var m = nlbFindById("nlb_body_" + bodyId);
+        if (!m) return NLB_BODY_SIZE / 2;
+        return m.userData.fixed ? NLB_WALL_T / 2 : NLB_BODY_SIZE / 2;
+    }
+    // Place the coil between the two bodies' facing faces. Called ONLY from
+    // nlbSetBodyPosition (plus state entry / RESET_TRAJECTORY, for the same
+    // "first frame already correct" reason the ropes are fitted there). Pure
+    // presentation of already-placed meshes: reads no time, takes no dt,
+    // integrates nothing (Rule 36), and cannot stall a sandbox state (Rule 37) —
+    // there it simply follows the teacher's carts at the authored render state.
+    function nlbFitSpring() {
+        var obj = nlbFindById("nlb_spring");
+        if (!obj) return;                                  // build has not reached it yet
+        var sp = nlbSpringCfg();
+        if (!sp) { obj.visible = false; return; }
+        var idA = sp.between[0], idB = sp.between[1];
+        var mA = nlbFindById("nlb_body_" + idA), mB = nlbFindById("nlb_body_" + idB);
+        if (!mA || !mB || !mA.visible || !mB.visible) { obj.visible = false; return; }
+        var pA = nlbBodyWorldPos(idA), pB = nlbBodyWorldPos(idB);
+        var dx = pB.x - pA.x, dy = pB.y - pA.y, dz = pB.z - pA.z;
+        var sep = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(sep > 1e-6)) { obj.visible = false; return; }
+        // The face-to-face GAP along the line joining the two centres. Taken from
+        // the world positions, so the incline rotation and any lane offset are
+        // already in it and there is no theta test here.
+        var gap = sep - nlbSpringHalfExtent(idA) - nlbSpringHalfExtent(idB);
+        // Past its natural length the spring is no longer touching either body: it
+        // has LET GO, which is the same instant push_off zeroes both forces. It
+        // hides rather than stretching — a spring that kept spanning the widening
+        // gap would draw a pull that the physics does not apply.
+        if (gap > NLB_SPRING_NATURAL_W + NLB_SPRING_HIDE_EPS) { obj.visible = false; return; }
+        var target = nlbSpringCompressedNow(sp)
+            ? NLB_SPRING_NATURAL_W * NLB_SPRING_COMPRESS_FRAC
+            : NLB_SPRING_NATURAL_W;
+        var drawn = (gap < target) ? gap : target;         // never longer than the gap it sits in
+        if (!(drawn > NLB_ROPE_MIN_LEN)) { obj.visible = false; return; }
+        // Quantised rebuild (see NLB_SPRING_LEN_Q): a pure function of position, so
+        // a frozen pin re-derives the same quantum and writes nothing at all.
+        var turns = (typeof sp.coils === "number" && isFinite(sp.coils) && sp.coils >= 2)
+            ? Math.round(sp.coils) : NLB_SPRING_COILS;
+        var q = Math.round(drawn / NLB_SPRING_LEN_Q) * NLB_SPRING_LEN_Q;
+        if (q < NLB_SPRING_LEN_Q) q = NLB_SPRING_LEN_Q;
+        if (obj.userData.coils !== turns || obj.userData.q_len !== q) {
+            if (obj.geometry) obj.geometry.dispose();
+            obj.geometry = nlbSpringGeometry(turns, q);
+            obj.userData.coils = turns;
+            obj.userData.q_len = q;
+        }
+        obj.position.set((pA.x + pB.x) / 2, (pA.y + pB.y) / 2, (pA.z + pB.z) / 2);
+        obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / sep, dy / sep, dz / sep));
+        obj.visible = true;
+    }
+
     function buildNewtonsLawsBody() {
         nlbIndex = [];
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
@@ -39332,6 +39518,24 @@ export const FIELD_3D_RENDERER_CODE = `
             segLbl.visible = false;
             world.add(segLbl); nlbRegister(segLbl);
         }
+
+        // 2e. SEAM B (push-off) — the spring. ONE mesh, in the UN-rotated world
+        //     group like the ropes, so nlbFitSpring places it from WORLD endpoints
+        //     with no theta branch. Hidden by default: nlbFitSpring shows it only
+        //     in a state that declares a spring block, and its own material (never
+        //     shared) so applyGlowEmphasis can cache a baseline on it.
+        var spring = new THREE.Mesh(
+            nlbSpringGeometry(NLB_SPRING_COILS, NLB_SPRING_NATURAL_W),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_SPRING_COLOR), emissive: hexToThreeColor(NLB_SPRING_COLOR),
+                emissiveIntensity: 0.20, shininess: 65, transparent: true, opacity: 1.0
+            }));
+        spring.userData = {
+            elementType: "nlb_spring", id: "nlb_spring",
+            coils: NLB_SPRING_COILS, q_len: NLB_SPRING_NATURAL_W
+        };
+        spring.visible = false;
+        world.add(spring); nlbRegister(spring);
 
         // 3. Body meshes — one per UNIQUE id across all states. Size is
         //    mass-INDEPENDENT (Rule 29): a heavier block is never a bigger cube.
@@ -39548,11 +39752,16 @@ export const FIELD_3D_RENDERER_CODE = `
             // component/right-angle overlays keep the real dim channel, so Rule 32e
             // (exactly one focal) is unchanged — only the peers that were never
             // meant to be see-through stop being see-through.
+            // The spring joins this list for exactly the founder's reason: it is a
+            // physical OBJECT, and the interaction the whole third-law beat is
+            // about. A 40%-opacity coil would read as the least solid thing on a
+            // screen whose entire point is that this object is doing the pushing.
             var solidApparatus = (ud.elementType === "nlb_body" ||
                                   ud.elementType === "nlb_body_label" ||
                                   ud.elementType === "nlb_surface" ||
                                   ud.elementType === "nlb_pulley" ||
-                                  ud.elementType === "nlb_rope");
+                                  ud.elementType === "nlb_rope" ||
+                                  ud.elementType === "nlb_spring");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
         });
     }
@@ -40239,6 +40448,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // below then shows the strings the train does have.
         nlbShowPulley(!!eng.pulley);
         nlbFitRopes();
+        // SEAM B (push-off) — the spring, fitted ONCE on entry from the home
+        // positions just seeded, for the same reason the ropes are: the very first
+        // frame of a push-off state is already compressed and correct, and a state
+        // WITHOUT a spring block hides it here even if no body moved.
+        nlbFitSpring();
         // SEAM E — the explorer surface for this state. Order matters:
         //   1. clear the seize latches FIRST, so a drag or slider move in the
         //      PREVIOUS state can never keep this state's idle_auto_sweep switched
@@ -40411,6 +40625,7 @@ export const FIELD_3D_RENDERER_CODE = `
         eng._ramp_last = null;              // §7.1 param_ramp is likewise a closed form of t_ms
         nlbLastEmitS = null;
         nlbFitRopes();
+        nlbFitSpring();                     // the coil rewinds with the carts it sits between
         nlbApplyGlow();
     }
 

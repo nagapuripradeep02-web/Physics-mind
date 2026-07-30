@@ -687,3 +687,56 @@ INSERT INTO engine_bug_queue (
 --     'lom-a push_off engine seam A 2026-07-29',
 --     'incident'
 -- );
+
+-- ── SEAM B (spring geometry + lane), 2026-07-29 ────────────────────────────
+-- The lane row above (nlb_push_off_bodies_lane_separated_so_they_never_touch)
+-- is RESOLVED by this seam. bug_class is the upsert key, so this is an UPDATE
+-- of that row, NOT a second INSERT.
+-- UPDATE engine_bug_queue SET
+--     status = 'FIXED',
+--     fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[]
+-- WHERE bug_class = 'nlb_push_off_bodies_lane_separated_so_they_never_touch';
+-- Fix: nlbBodyLaneZ returns 0 when the state declares push_off, and when ANY
+-- lane candidate is `fixed` (cart vs wall is head-on too). Both tests are
+-- per-STATE facts and no existing concept JSON authors either key, so every
+-- side-by-side compare state takes the unchanged path.
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_spring_authored_gap_wider_than_compressed_length_floats_untouching',
+--     'A push_off state whose carts start further apart than the spring''s compressed length draws a coil floating in the gap, touching neither cart',
+--     'MODERATE',
+--     'peter_parker:field3d_surgeon',
+--     'The spring''s natural length (1.6 m) and compressed length (0.72 m) are APPARATUS CONSTANTS, exactly like the cart size - a real spring has one, and deriving it from the authored gap instead would make the release instant depend on where the author happened to park the carts. nlbFitSpring therefore draws min(gap, target), so a state that authors the two bodies'' initial_position_m further apart than the compressed length renders a short bunched coil centred in a gap it does not span. The picture then says "these two are NOT in contact" while push_off is applying a contact force to both - the exact "declares the interaction but never shows it" class the apparatus exists to defeat.',
+--     'Any interaction object with a fixed natural length carries an AUTHORING CONTRACT that the validator can check: for a state with both push_off and spring, assert |s_a - s_b| = 0.72 + halfWidth(a) + halfWidth(b) (0.55 m per cart, 0.275 m for a fixed wall slab) within a small tolerance. A geometric constant that the author must match by hand and nothing verifies is a silent-drift surface.',
+--     'js_eval',
+--     'For a state authoring both push_off and spring, read both body world positions at t = 0 and assert the face-to-face gap is within 0.05 m of the compressed length (0.72 m).',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam B 2026-07-29',
+--     'incident'
+-- );
+
+-- INSERT INTO engine_bug_queue (
+--     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+--     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+--     discovered_in_session, row_type
+-- ) VALUES (
+--     'nlb_push_off_release_window_outlives_the_spring_extension',
+--     'push_off.release_at_ms authored as a round number leaves the spring hidden for most of the contact window it is supposed to explain',
+--     'MAJOR',
+--     'peter_parker:field3d_surgeon',
+--     'A spring stops pushing when it reaches its natural length - the contact DURATION is therefore a consequence of force and mass, not a free parameter. push_off authors it as a wall-clock release_at_ms, so the two can disagree: numerically, 30 N on two 2 kg carts covers the spring''s whole 0.88 m extension in 242 ms, so an authored release_at_ms of 800 leaves the coil on screen for 30% of the push and absent (while both force arrows are still drawn at full length) for the other 70% - regressing exactly to the "arrows appear from nowhere" picture the push-off apparatus was built to fix.',
+--     'When an apparatus has a fixed natural length, the authored timing that drives it is DERIVED, not free: release_at_ms = 1000*sqrt(1.76/(force_N*(1/m_a + 1/m_b))) with the 1/m term dropped for a `fixed` body. Author it from the formula, never as a round number. Long-term the engine could derive the release instant from the geometry itself (release when gap >= natural length) and treat release_at_ms as a cap - but that changes push_off''s founder-approved force semantics and is a founder call, not a surgeon call.',
+--     'js_eval',
+--     'For each state authoring push_off + spring: assert |release_at_ms - 1000*sqrt(1.76/(force_N*(1/m_a + 1/m_b)))| < 40 ms.',
+--     'OPEN',
+--     ARRAY[]::text[],
+--     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+--     'lom-a push_off engine seam B 2026-07-29',
+--     'incident'
+-- );
