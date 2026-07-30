@@ -4206,6 +4206,9 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.strokeText(text, c.width / 2, c.height / 2);
             ctx.fillStyle = sprite._pmColor;
             ctx.fillText(text, c.width / 2, c.height / 2);
+            // Fraction of the sprite quad the INK actually occupies. The quad is mostly
+            // transparent padding, so this is the only honest basis for a screen rect.
+            sprite._pmInkFrac = Math.min(1, ctx.measureText(text).width / c.width);
             if (sprite.material && sprite.material.map) sprite.material.map.needsUpdate = true;
             return;
         }
@@ -4261,6 +4264,7 @@ export const FIELD_3D_RENDERER_CODE = `
         sprite._pmCanvas = canvas; sprite._pmCtx = ctx; sprite._pmColor = color;
         sprite._pmAutoWidth = true; sprite._pmFont = fontSpec; sprite._pmHeightScale = hs;
         sprite._pmText = text;
+        sprite._pmInkFrac = Math.min(1, measured ? (measured - pad) / canvas.width : 1);
         return sprite;
     }
 
@@ -29489,6 +29493,9 @@ export const FIELD_3D_RENDERER_CODE = `
     // silhouette — that bound is what makes the Rule-34d collision guarantee
     // structural rather than a placement tweak (see the build site).
     var NLB_MASS_LABEL_H = 0.24;
+    var NLB_RO_CLEAR_PX = 8;              // HUD-to-slider-panel breathing room (Rule 34d)
+    var NLB_LABEL_DODGE_PAD_PX = 6;       // clearance a dodged label keeps from a panel edge
+    var NLB_LABEL_DODGE_MAX = 1.10;       // world units — the cap on an occlusion dodge
     var NLB_WALL_T = NLB_BODY_SIZE * 0.5;   // thickness along the body's own axis
     var NLB_WALL_H = NLB_BODY_SIZE * 3.2;   // height
     var NLB_WALL_D = NLB_BODY_SIZE * 2.6;   // depth across the track
@@ -29939,7 +29946,14 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_SUBSCRIPT_DIGITS = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"];
     function nlbFxMass(v) {
         var n = (typeof v === "number" && isFinite(v)) ? v : 0;
-        var s = (Math.round(n * 1000) / 1000).toFixed(3);
+        // ONE decimal is the readable precision for a mass in kg (the mass slider's own
+        // step is 0.5). A 3-dp allowance was the hole the live-drag path fell through:
+        // THE EYE and a real drag both write INTERPOLATED slider values, so 8.464 kg
+        // reached the block and the HUD verbatim. Rounding here — the single mass
+        // formatter every surface goes through — closes it for all of them at once.
+        // Below 0.1 kg one decimal would round to "0", so a tiny mass keeps 3 dp.
+        var s = (Math.abs(n) >= 0.1) ? (Math.round(n * 10) / 10).toFixed(1)
+                                     : (Math.round(n * 1000) / 1000).toFixed(3);
         while (s.indexOf(".") >= 0 && s.charAt(s.length - 1) === "0") s = s.slice(0, -1);
         if (s.charAt(s.length - 1) === ".") s = s.slice(0, -1);
         return s;
@@ -30002,7 +30016,11 @@ export const FIELD_3D_RENDERER_CODE = `
             // no m on screen is unreadable, which is exactly the founder finding.
             // printed (not b) drives the group gap, so a leading ghost cannot leave
             // the first REAL group indented by one gap.
-            h += nlbHeaderHtml(bd, bodies, printed > 0);
+            // One GROUP div per body (block-level, so the default single-column
+            // stack is pixel-identical) — it is the unit nlbFitReadoutPanel reflows
+            // into side-by-side columns when the stack would otherwise reach the
+            // slider panel.
+            h += '<div class="nlb_ro_grp">' + nlbHeaderHtml(bd, bodies, printed > 0);
             printed++;
             for (var k = 0; k < keys.length; k++) {
                 var key = keys[k];
@@ -30021,9 +30039,58 @@ export const FIELD_3D_RENDERER_CODE = `
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_lbl">' + lab + '</span> = ' +
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_val">--</span>' + (NLB_READOUT_UNITS[key] || "") + '</div>';
             }
+            h += '</div>';
         }
         el.innerHTML = h;
         el.style.display = h ? "block" : "none";
+        nlbFitReadoutPanel();
+    }
+    // Rule 34d — the HUD panel and the slider panel share the RIGHT edge, one anchored
+    // to the top and one to the bottom, so a tall HUD walks down into the sliders. It
+    // walked far enough to bleed the last two readout rows behind the m₁ slider row the
+    // moment the group header became unconditional (2 headers + 12 rows in the
+    // connected_bodies explore state). CSS alone cannot express "stop before that other
+    // fixed panel", so the fit is MEASURED, once per state entry, and applied as a
+    // three-step ladder that stops at the first step that fits:
+    //   0. the authored look (13px/1.7)               — every state that already fits
+    //   1. compact rows (12px/1.35, tighter padding)  — the two-body explore state
+    //   2. one COLUMN PER BODY (flex row)             — the worst case (3 bodies x a
+    //                                                   full readouts[] set)
+    // A state that fits at step 0 is byte-identical to before, so no existing baseline
+    // moves except the ones that were actually overlapping. Reads no clock, writes no
+    // physics (Rule 36): it is layout only, recomputed identically on every entry.
+    var NLB_RO_STEPS = [
+        { font: "13px/1.7 monospace", pad: "11px 15px", flex: false },
+        { font: "12px/1.35 monospace", pad: "8px 12px", flex: false },
+        { font: "12px/1.35 monospace", pad: "8px 12px", flex: true }
+    ];
+    function nlbFitReadoutPanel() {
+        var el = document.getElementById("nlb_readout");
+        if (!el || el.style.display === "none") return;
+        // The floor the HUD may not cross: the slider panel's top edge when it is
+        // showing, else the bottom of the viewport.
+        var sp = document.getElementById("nlb_sliders");
+        var limit = window.innerHeight - 12;
+        if (sp && sp.style.display !== "none") {
+            var sr = sp.getBoundingClientRect();
+            if (sr.height > 0) limit = sr.top - NLB_RO_CLEAR_PX;
+        }
+        for (var i = 0; i < NLB_RO_STEPS.length; i++) {
+            var st = NLB_RO_STEPS[i];
+            el.style.font = st.font;
+            el.style.padding = st.pad;
+            el.style.display = st.flex ? "flex" : "block";
+            if (st.flex) { el.style.gap = "18px"; el.style.alignItems = "flex-start"; }
+            else { el.style.gap = ""; el.style.alignItems = ""; }
+            var grps = el.getElementsByClassName("nlb_ro_grp");
+            for (var g = 0; g < grps.length; g++) {
+                // In column mode every group starts at the top of its own column, so the
+                // stacked-group gap on its header must go.
+                var hd = grps[g].firstChild;
+                if (hd && hd.style) hd.style.marginTop = (st.flex || g === 0) ? "0" : "7px";
+            }
+            if (el.getBoundingClientRect().bottom <= limit) return;
+        }
     }
     // Per-frame value write (SEAM B). labelOverride lets the friction row switch
     // between the static and kinetic glyphs (fₛ / fₖ) without rebuilding the row.
@@ -30058,6 +30125,99 @@ export const FIELD_3D_RENDERER_CODE = `
             if (sp && sp._nlbMassTxt !== txt) {
                 sp._nlbMassTxt = txt;
                 updateLabelSpriteText(sp, txt);
+            }
+        }
+        nlbDodgeBodyLabels(nlb);
+    }
+    // Rule 34d, the occlusion half: the slider panel is a FIXED DOM overlay on the
+    // right edge, and a hanging body's landing zone is directly under it — so the
+    // falling body's number went behind the panel and became unreadable exactly while
+    // it was the thing to read (connected_bodies STATE_3/4/7). No 3D object can draw
+    // over a DOM overlay, so the only fix is to move the LABEL out from under it.
+    //   The dodge is a pure function of the CURRENT pose and the CURRENT panel rects:
+    //   reset both of a body's labels to their build-time home pose, project the mass
+    //   label's real INK rect to screen px, and if it lands in a panel, slide the PAIR
+    //   along world x until it clears that panel's edge, capped at NLB_LABEL_DODGE_MAX.
+    //   The identifier moves with the number by the same offset so the two never split.
+    //   No clock, no accumulation, no integration (Rule 36): under a frozen pin the pose
+    //   and the rects are constant, so the same offset is recomputed every frame and the
+    //   frame is byte-stable. Nothing here writes physics.
+    function nlbPanelRects() {
+        var out = [], ids = ["nlb_readout", "nlb_sliders", "nlb_formula", "nlb_slowmo"];
+        for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(ids[i]);
+            if (!el || el.style.display === "none") continue;
+            var r = el.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) out.push(r);
+        }
+        return out;
+    }
+    function nlbProjPx(v) {
+        var p = v.clone().project(camera);
+        return { x: (p.x + 1) / 2 * window.innerWidth, y: (1 - p.y) / 2 * window.innerHeight };
+    }
+    function nlbSpriteRectPx(sprite, worldCentre, right, up) {
+        var hw = sprite.scale.x * ((sprite._pmInkFrac != null) ? sprite._pmInkFrac : 1) / 2;
+        var hh = sprite.scale.y / 2;
+        var xs = [], ys = [];
+        for (var sx = -1; sx <= 1; sx += 2) {
+            for (var sy = -1; sy <= 1; sy += 2) {
+                var q = nlbProjPx(worldCentre.clone().addScaledVector(right, sx * hw).addScaledVector(up, sy * hh));
+                xs.push(q.x); ys.push(q.y);
+            }
+        }
+        return { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
+                 y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+    }
+    function nlbDodgeBodyLabels(nlb) {
+        if (typeof camera === "undefined" || !camera) return;
+        var bodies = (nlb && nlb.bodies) || [];
+        if (!bodies.length) return;
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var xUnit = new THREE.Vector3(1, 0, 0);
+        var rects = nlbPanelRects();
+        for (var i = 0; i < bodies.length; i++) {
+            var bd = bodies[i];
+            if (!bd || !bd.id) continue;
+            var mesh = nlbFindById("nlb_body_" + bd.id);
+            if (!mesh) continue;
+            var pair = [nlbFindById("nlb_body_" + bd.id + "_mass"), nlbFindById("nlb_body_" + bd.id + "_label")];
+            for (var k = 0; k < pair.length; k++) {
+                if (pair[k] && pair[k]._nlbHome) pair[k].position.copy(pair[k]._nlbHome);
+            }
+            var num = pair[0];
+            if (!rects.length || !mesh.visible || !num || !num.visible || !num._nlbHome) continue;
+            // Matrices are refreshed here rather than trusted: this runs BEFORE the
+            // renderer's own update, and a one-frame-stale matrix would make the dodge
+            // lag the body (and wobble the first frozen frame).
+            mesh.updateWorldMatrix(true, false);
+            var base = mesh.localToWorld(num._nlbHome.clone());
+            var p0 = nlbProjPx(base);
+            var pX = nlbProjPx(base.clone().add(xUnit));
+            var pxPerX = pX.x - p0.x;
+            if (!(Math.abs(pxPerX) > 1e-3)) continue;
+            var box = nlbSpriteRectPx(num, base, right, up);
+            var shiftPx = 0;
+            for (var r = 0; r < rects.length; r++) {
+                var rc = rects[r];
+                if (!(box.x0 < rc.right && rc.left < box.x1 && box.y0 < rc.bottom && rc.top < box.y1)) continue;
+                // Slide AWAY from the panel: out to its near edge, whichever side the
+                // label sits on.
+                var want = ((rc.left + rc.right) / 2 > (box.x0 + box.x1) / 2)
+                    ? (rc.left - NLB_LABEL_DODGE_PAD_PX) - box.x1
+                    : (rc.right + NLB_LABEL_DODGE_PAD_PX) - box.x0;
+                if (Math.abs(want) > Math.abs(shiftPx)) shiftPx = want;
+            }
+            if (shiftPx === 0) continue;
+            var dx = shiftPx / pxPerX;
+            if (dx > NLB_LABEL_DODGE_MAX) dx = NLB_LABEL_DODGE_MAX;
+            if (dx < -NLB_LABEL_DODGE_MAX) dx = -NLB_LABEL_DODGE_MAX;
+            for (var m2 = 0; m2 < pair.length; m2++) {
+                var sp2 = pair[m2];
+                if (!sp2 || !sp2._nlbHome) continue;
+                var tgt = mesh.localToWorld(sp2._nlbHome.clone()).addScaledVector(xUnit, dx);
+                sp2.position.copy(mesh.worldToLocal(tgt));
             }
         }
     }
@@ -30992,6 +31152,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // ~3x a cart's height, so the cart offset would bury its label inside it.
             lbl.position.set(0, d.fixed ? (NLB_WALL_H - NLB_BODY_SIZE / 2 + 0.18) : (NLB_BODY_SIZE * 0.95), 0);
             lbl.userData = { elementType: "nlb_body_label", id: "nlb_body_" + d.id + "_label", bodyId: d.id, ghost: !!d.ghost };
+            lbl._nlbHome = lbl.position.clone();   // the pose nlbDodgeBodyLabels resets to
             mesh.add(lbl);
             nlbRegister(lbl);
 
@@ -31018,6 +31179,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     bodyId: d.id, ghost: !!d.ghost
                 };
                 mlbl.visible = false;       // shown per state (never on a ghost) on entry
+                mlbl._nlbHome = mlbl.position.clone();
                 mesh.add(mlbl);
                 nlbRegister(mlbl);
             }
@@ -32105,6 +32267,10 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         nlbSyncSliderLabels(nlb);
         nlbToggleSliderRows(nlb);
+        // Re-fit the HUD now that THIS state's slider panel has its final height: the
+        // rebuild above ran before the toggle and could only measure the previous
+        // state's panel (Rule 34d — the floor the HUD must clear moves per state).
+        nlbFitReadoutPanel();
         // Read the flag off THIS stateDef, not via nlbStateIsDraggable()'s
         // PM_currentState lookup, so the proxies can never be armed one state late
         // if applyState ever runs before PM_currentState is committed.

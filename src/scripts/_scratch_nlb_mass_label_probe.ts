@@ -74,6 +74,26 @@ const CFG: Field3DConfig = {
                 push_off: { body_a_id: 'C', body_b_id: 'W', force_N: 30, contact_from_ms: 0, release_at_ms: 4000 },
             },
         },
+        STATE_X: {
+            label: 'Explore (pulley, full readouts)',
+            visible_elements: ['nlb_body_S', 'nlb_body_H', 'nlb_surface', 'nlb_pulley'],
+            caption: 'All yours',
+            newtons_laws_body: {
+                mode: 'sandbox',
+                surface: { theta_deg: 0, length_m: 10 },
+                bodies: [
+                    { id: 'S', label: 'm₁', mass_kg: 4, initial_position_m: 1.2, mu_s: 0.4, mu_k: 0.4 },
+                    { id: 'H', label: 'm₂', mass_kg: 12, initial_position_m: 0.4, hanging: true },
+                ],
+                pulley: { body_a_id: 'S', body_b_id: 'H' },
+                arrows: [
+                    { body_id: 'S', show: ['weight', 'normal', 'friction', 'tension', 'net'] as ArrowKind[] },
+                    { body_id: 'H', show: ['weight', 'tension', 'net'] as ArrowKind[] },
+                ],
+                readouts: ['N', 'f', 'a', 'v', 'T', 'F_net', 'F_applied'] as ('N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied')[],
+                controls_visible: ['m', 'm2', 'F', 'theta', 'mu_s', 'mu_k', 'v0'] as ('m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0')[],
+            },
+        },
         STATE_P: {
             label: 'Formatting',
             visible_elements: ['nlb_body_P', 'nlb_body_Q', 'nlb_surface'],
@@ -459,6 +479,105 @@ async function main() {
         Buffer.compare(a1, a3) === 0, 'bytes ' + a1.length + ' vs ' + a3.length
         + '; excursion note above: framesDiffer=' + framesDiffer + ' positions=' + (s1 === s2 ? 'same' : 'moved'));
     await unpin();
+
+    // ═══ 5. THE REAL CONCEPT, ACROSS ITS WHOLE MOTION RANGE ═════════════
+    //   The gap that let three defects through last round: the probe only ever looked at
+    //   ONE instant of a SYNTHETIC state. This section drives the REAL connected_bodies
+    //   field_3d_config (real camera framing, real authored states, THE EYE's 1280x720
+    //   viewport) and samples the coupled motion end to end — the hanging body's landing
+    //   zone runs straight under the fixed slider panel, which is where the labels went
+    //   dark.
+    console.log('\n=== 5. REAL connected_bodies config, sampled across the motion ===');
+    const real = JSON.parse(fs.readFileSync(
+        path.join(process.cwd(), 'src', 'data', 'concepts', 'connected_bodies.json'), 'utf8'));
+    const realHtml = assembleField3DHtml(real.field_3d_config as unknown as Field3DConfig);
+    const rf = path.join(OUT, 'connected_bodies.html');
+    fs.writeFileSync(rf, realHtml, 'utf8');
+    const p2 = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+    const err2: string[] = [];
+    p2.on('pageerror', e => err2.push('pageerror: ' + e.message));
+    p2.on('console', m => { if (m.type() === 'error') err2.push('console: ' + m.text()); });
+    await p2.addInitScript(INIT);
+    await p2.goto('file:///' + rf.replace(new RegExp('\\\\', 'g'), '/'));
+    await p2.waitForFunction('typeof window.__NLB_TICK === "function"', null, { timeout: 20000, polling: 100 });
+    const tick2 = (dtMs: number, n = 1) => p2.evaluate(
+        ([d, k]) => (window as unknown as { __NLB_TICK: (a: number, b: number) => number }).__NLB_TICK(d, k),
+        [dtMs, n] as [number, number]);
+    for (let i = 0; i < 40; i++) {
+        await tick2(16.7, 4);
+        const ok = await p2.evaluate(() => typeof (window as unknown as Record<string, unknown>).PM_nlbEngine !== 'undefined'
+            && typeof (window as unknown as Record<string, unknown>).__NLB_SCENE !== 'undefined');
+        if (ok) break;
+        await p2.waitForTimeout(100);
+    }
+    const snap2 = async (): Promise<Snap> => await p2.evaluate(READ) as unknown as Snap;
+    for (const st of ['STATE_3', 'STATE_4', 'STATE_7']) {
+        await p2.evaluate(x => window.postMessage({ type: 'SET_STATE', state: x }, '*'), st);
+        await tick2(16.7, 10);
+        const s0 = await snap2();
+        await p2.screenshot({ path: path.join(OUT, 'real_' + st + '_t0.png') });
+        const hr = s0.doms.filter(d => d.id === 'nlb_readout')[0];
+        const sr = s0.doms.filter(d => d.id === 'nlb_sliders')[0];
+        check(st + ': the HUD panel clears the slider panel (Rule 34d)',
+            !hr || !sr || hr.y1 <= sr.y0,
+            (hr ? 'HUD bottom ' + hr.y1.toFixed(0) : 'no HUD') + ' / '
+            + (sr ? 'slider top ' + sr.y0.toFixed(0) : 'no slider panel')
+            + (hr && sr ? '  clearance = ' + (sr.y0 - hr.y1).toFixed(0) + ' px' : ''));
+        let hudHit = 0, slHit = 0, othHit = 0, bad = 0, off = 0, n = 0, dodged = 0;
+        const seen: string[] = [];
+        let worst = '';
+        for (let i = 0; i < 55; i++) {
+            await tick2(16.7, 10);                    // ~0.17 s of real motion per sample
+            const sn = await snap2();
+            const ms = sn.labels.filter(l => l.et === 'nlb_body_mass');
+            if (!ms.length) continue;
+            n++;
+            for (const m of ms) {
+                if (!/^[0-9]+(\.[0-9])? kg$/.test(m.text)) { bad++; worst = m.text; }
+                if (seen.indexOf(m.text) < 0) seen.push(m.text);
+                for (const d of sn.doms) {
+                    if (!inter(m, d)) continue;
+                    if (d.id === 'nlb_readout') hudHit++;
+                    else if (d.id === 'nlb_sliders') slHit++;
+                    else othHit++;
+                }
+                if (m.x0 < 0 || m.x1 > sn.W || m.y0 < 0 || m.y1 > sn.H) off++;
+                for (const o of sn.labels) if (o !== m && o.et === 'nlb_body_mass' && inter(m, o)) othHit++;
+            }
+            if (i === 27) await p2.screenshot({ path: path.join(OUT, 'real_' + st + '_mid.png') });
+        }
+        await p2.screenshot({ path: path.join(OUT, 'real_' + st + '_end.png') });
+        check(st + ': no mass label enters the HUD or SLIDER panel at ANY sampled t',
+            hudHit === 0 && slHit === 0,
+            n + ' samples, ' + hudHit + ' HUD overlaps, ' + slHit + ' slider overlaps' + (dodged ? '' : ''));
+        check(st + ': no mass label collides with another label or overlay, and none leaves frame',
+            othHit === 0 && off === 0, othHit + ' collisions, ' + off + ' off-screen');
+        check(st + ': every sampled mass string is minimum-readable',
+            bad === 0, bad + ' bad' + (worst ? ' (worst ' + worst + ')' : '') + '; seen = ' + JSON.stringify(seen));
+    }
+    // ═══ 6. THE LIVE DRAG at INTERPOLATED slider values ══════════════════
+    //   THE EYE and a real drag both write values off the step grid; that path printed
+    //   "8.464 kg" before. Sweep it on the REAL explore state and assert both surfaces.
+    console.log('\n=== 6. live mass drag at off-grid values (the 8.464 kg path) ===');
+    let dragBad = 0;
+    const dragSeen: string[] = [];
+    for (const v of ['8.464', '6.976', '5.872', '0.5', '2.55']) {
+        await p2.evaluate(val => {
+            const el = document.getElementById('nlb_m_slider') as HTMLInputElement | null;
+            if (el) { el.value = val; el.dispatchEvent(new Event('input', { bubbles: true })); }
+        }, v);
+        await tick2(16.7, 4);
+        const sn = await snap2();
+        const hud = (sn.hudText.split(String.fromCharCode(10))[0] || '').trim();
+        const spr = sn.labels.filter(l => l.et === 'nlb_body_mass').map(l => l.text)[0] || '';
+        dragSeen.push(v + ' -> HUD ' + JSON.stringify(hud) + ' / block ' + JSON.stringify(spr));
+        if (!/= [0-9]+(\.[0-9])? kg$/.test(hud)) dragBad++;
+        if (!/^[0-9]+(\.[0-9])? kg$/.test(spr)) dragBad++;
+    }
+    await p2.screenshot({ path: path.join(OUT, 'real_STATE_7_drag.png') });
+    check('an off-grid drag value is rounded on BOTH surfaces (requirement 4)',
+        dragBad === 0, dragBad + ' bad strings; ' + dragSeen.join(' | '));
+    check('the real concept page threw no errors', err2.length === 0, err2.slice(0, 3).join(' | ') || 'clean');
 
     check('no page errors anywhere in the run', errors.length === 0, errors.slice(0, 4).join(' | ') || 'clean');
     await browser.close();

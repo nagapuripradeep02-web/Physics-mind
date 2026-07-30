@@ -1055,3 +1055,66 @@ INSERT INTO engine_bug_queue (
     'lom-a mass legibility fix 2026-07-30',
     'probe_definition'
 );
+
+-- (6) The unconditional header grew the HUD into the slider panel. MAJOR, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_explore_hud_panel_slider_overlap',
+    'The nlb HUD panel is top-anchored and the slider panel bottom-anchored on the SAME right edge, so a tall HUD walks down into the sliders — the explore state bled its last readout rows behind the m1 slider row',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'Both panels are fixed CSS with no knowledge of each other: #nlb_readout at top:52px;right:12px and #nlb_sliders at bottom:12px;right:12px. The height of the HUD is data-driven (bodies x readouts), so the explore state of a two-body concept builds 2 headers + 12 rows at 13px/1.7 = ~330 px and reaches the slider panel top at ~346 px; the sliders are appended later in the DOM and share z-index 10, so they paint OVER the last HUD rows. Making the mass header unconditional added exactly the two rows that crossed the line. CSS cannot express "stop before that other fixed panel", so no static layout fixes it.',
+    'When two fixed overlays share an edge from opposite anchors, the flexible one MEASURES the other and reflows: a ladder that stops at the first step that fits (authored look -> compact rows -> one column per body), re-run on every state entry AFTER the other panel has its final per-state height. A state that already fits is byte-identical, so only the states that actually overlapped move any pixels.',
+    'js_eval',
+    'For every state: getBoundingClientRect of #nlb_readout and #nlb_sliders; assert readout.bottom <= sliders.top when both are visible. Run it on the state with the LARGEST bodies x readouts product, not on state 1.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility follow-up 2026-07-30',
+    'incident'
+);
+
+-- (7) A falling body's labels went behind the fixed control panel. MODERATE, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_falling_body_label_hidden_by_control_panel',
+    'A hanging body descends straight through the screen region the fixed slider panel occupies, so its mass number and identifier went behind the panel and were unreadable exactly while the body was the thing to read',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'The slider panel is a DOM overlay: no 3D object can ever draw over it, and the pulley bracket (hence the hanging body''s whole landing zone) is at the right end of the surface, directly under it. A label anchored to the body therefore slides under the panel as the body falls. This is invisible to a t=0 probe and to any static layout check: the collision only exists for part of the motion, which is why the first round of this fix missed it.',
+    'A label that is anchored to a MOVING object must be checked against the fixed overlay rects across the object''s whole travel, not at one instant, and must dodge: reset to the home pose, project the real INK rect, and slide the label pair along a world axis until it clears the offending panel edge (capped). The dodge is a pure function of the current pose and the current rects, so it adds no clock and stays byte-stable under a frozen pin.',
+    'js_eval',
+    'Sample a coupled/hanging state every ~0.17 s across its full travel; for each visible mass label build its projected ink rect and assert zero intersection with the rect of every visible DOM overlay, with every other label, and with the viewport edges.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility follow-up 2026-07-30',
+    'incident'
+);
+
+-- (8) Off-grid slider/sweep values printed 3 decimals. MODERATE, FIXED.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'nlb_slider_mass_label_unrounded_precision',
+    'A mass written by a live off-grid value (explore auto-sweep or a drag) printed three decimals — 8.464 kg on the block and in the HUD — instead of the minimum readable precision',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'The mass formatter rounded to 3 dp and only stripped trailing zeros, which is invisible while every mass on screen comes from an authored integer or a 0.5-step slider. The explore state''s idle auto-sweep (Rule 37) and THE EYE''s slider driver both write INTERPOLATED values off the step grid, so the raw sweep value reached every mass surface verbatim. The defect was in the shared formatter, not in one path: a per-path patch would have left the next writer of a live value exposed.',
+    'Fix a display-precision rule inside the ONE formatter every surface calls, never at the call sites: a mass is one decimal (its slider step is 0.5), with a small-value fallback so a sub-0.1 kg mass cannot round to "0". Then any future live writer inherits it.',
+    'js_eval',
+    'Write off-grid values (8.464, 6.976, 2.55) through the real slider input handler and assert both the HUD header text and the on-block sprite text match /^[0-9]+([.][0-9])? kg$/; also assert it over a full explore-state auto-sweep, which writes off-grid values with no user input at all.',
+    'FIXED',
+    ARRAY['connected_bodies']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-a mass legibility follow-up 2026-07-30',
+    'incident'
+);
