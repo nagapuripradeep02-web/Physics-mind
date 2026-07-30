@@ -891,7 +891,7 @@ export interface Field3DConfig {
                 'accelerate_applied_force' | 'compare_mass_same_force' |
                 'compare_force_same_mass' | 'action_reaction_pair' | 'fbd_isolate' |
                 'incline_decompose' | 'incline_slide' | 'connected_atwood' |
-                'connected_incline_hanging' | 'sandbox';
+                'connected_incline_hanging' | 'train_pull' | 'sandbox';
 
             surface?: {
                 theta_deg?: number;        // incline angle; 0 = flat ground, SAME code path
@@ -917,6 +917,17 @@ export interface Field3DConfig {
                 label?: string;                    // Unicode on-canvas label, e.g. "m₁"
                 mass_kg: number;
                 color?: string;
+                // SEAM G (rolling_friction, 2026-07-30). 'wheel' swaps the cube for a
+                // real rolling wheel — tyre + hub + crossed spokes — whose SPIN is read
+                // from the body's own position (see nlbSetBodyPosition), so a rolling
+                // body is visibly rolling instead of a sliding cube we merely CALL a
+                // wheel. PHYSICS IS IDENTICAL: rolling resistance genuinely is
+                // f = μ_r·N, which Branch A already computes — author μ_r as mu_s/mu_k
+                // (≈0.002 against a sliding μ_k ≈ 0.4). Like `hanging`, this is a
+                // per-ID property, NOT per-state: the mesh is built once from the union
+                // of every state's bodies, so a given id is a block in every state or a
+                // wheel in every state.
+                shape?: 'block' | 'wheel';
                 hanging?: boolean;                 // hangs vertically off the pulley; ignores theta, N forced 0
                 initial_position_m?: number;       // signed, along the body's OWN axis
                 initial_velocity_mps?: number;
@@ -932,6 +943,59 @@ export interface Field3DConfig {
                 post_position_m?: number;          // default = surface.length_m
             };
 
+            // SEAM H (tension_force, 2026-07-30). A TRAIN: 2+ bodies standing in ONE
+            // line on the SAME surface, joined by taut strings, dragged by whichever
+            // body carries applied_force_N. Presence gates the coupled integrator
+            // exactly as `pulley` does — but with every sign factor c_i = +1, because
+            // a straight string reverses nothing (the pulley's whole job).
+            //   WHY IT EXISTS AT ALL: `pulley` couples exactly TWO bodies through ONE
+            // string, so on that rig there is only ever ONE tension and the question
+            // "is T the same everywhere?" cannot even be posed. A chain of strings is
+            // the only apparatus on which T₁ ≠ T₂ is a fact on screen rather than an
+            // assertion in the narration.
+            //   Physics: one shared a = (Σ drive + Σ f) / Σ m, then each SEGMENT's
+            // tension from the sub-train BEHIND it —
+            //   T_i = (Σ_{j≤i} m_j)·a − Σ_{j≤i} (drive_j + f_j)
+            // which is precisely "this string only has to move the mass beyond it",
+            // the concept's punchline, computed rather than asserted.
+            //   Mutually exclusive with `pulley`; if a state authors both, `pulley`
+            // wins (it is the older, sealed contract) and the train is ignored.
+            train?: {
+                // Rear → front along the surface's +s axis. The engine does NOT sort
+                // these: the order given IS the coupling order, and segment i joins
+                // body_ids[i] to body_ids[i+1]. Author distinct initial_position_m in
+                // the same order, ascending — an inextensible string holds whatever
+                // separation it starts with (every c_i = +1, so all bodies advance by
+                // the same amount and the gaps are constant by construction).
+                // Max 3 bodies / 2 segments — SEAM D built exactly two rope meshes,
+                // and 3 carts is already the standard JEE/NCERT picture.
+                body_ids: string[];
+                // Live "T₁ = 4.00 N" sprite floating over each string. ON by default:
+                // the per-segment numbers ARE the lesson, and a rope with no number
+                // on it makes T₁ ≠ T₂ invisible in exactly the frozen frame a teacher
+                // pauses on. Set false to fall back to the HUD rows alone.
+                show_segment_labels?: boolean;
+            };
+
+            // SEAM I (rolling_friction, founder-approved 2026-07-30). Make an F write —
+            // slider, idle_auto_sweep or param_ramp, all three route through
+            // nlbApplyParam — reach EVERY non-ghost body standing on the surface
+            // instead of only the first one.
+            //   WHY: a "same push, different contact" comparison state (a sliding block
+            // beside a rolling wheel) has its ENTIRE claim in the word "same". The
+            // default single-target write moves one body's push, so a teacher dragging
+            // F silently creates two different pushes while two visibly
+            // different-length applied arrows contradict the caption.
+            //   Default is UNCHANGED (first non-ghost body only), because
+            // newton_second_law's compare_force_same_mass states depend on exactly that
+            // — F must reach ONE body there or "different force, same mass" collapses.
+            // Opt in per state, never globally.
+            //   Hanging bodies are excluded (a hanging body's drive is its weight, not a
+            // shared push), and `action_reaction` takes PRECEDENCE: when a Newton-III
+            // pair is engaged the engine is already mirroring the driver's force every
+            // frame, and a shared write would fight it.
+            shared_applied_force?: boolean;
+
             action_reaction?: {                    // Newton III: engine-enforced equal-and-opposite
                 engaged: boolean;
                 driver_body_id: string;            // the other body's applied_force_N is MIRRORED each frame
@@ -945,7 +1009,11 @@ export interface Field3DConfig {
             }>;
 
             glow_focal?: string;                   // EXACTLY ONE per state (Rule 32e)
-            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied'>;      // Rule 33d live numerics
+            // Rule 33d live numerics. Per-body, EXCEPT 'T1'/'T2' (SEAM H): those are
+            // per-SEGMENT of a train and render as one shared block at the foot of
+            // the HUD, not once per body — a segment tension belongs to the string,
+            // not to either cart it joins.
+            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied' | 'T1' | 'T2'>;
             controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
             trusted_drag_seizes?: boolean;         // sandbox state only
             idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
@@ -38058,6 +38126,25 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_ARC_COLOR = "#FFD54F";
     var NLB_BODY_COLORS = ["#42A5F5", "#EF5350", "#66BB6A", "#AB47BC"];
 
+    // ── SEAM G — rolling-wheel body constants (bodies[].shape === 'wheel') ──
+    //   A smooth cylinder rolling along a flat surface looks PERFECTLY STATIC:
+    //   its silhouette is rotation-invariant, so without a marked hub and spokes
+    //   the whole point of the shape (it ROLLS, it does not slide) is invisible
+    //   on screen and in every frozen EYE frame. The hub + crossed spokes are
+    //   therefore load-bearing pedagogy, not decoration.
+    //   Radius is exactly HALF the block size, which is what makes the swap
+    //   free: nlbSetBodyPosition already lifts a body's centre to
+    //   NLB_BODY_SIZE / 2, so a wheel of that radius touches the surface at
+    //   y = 0 with no positioning branch, and a wheel and a block of equal mass
+    //   occupy the same footprint — the side-by-side race is honest.
+    var NLB_WHEEL_R = NLB_BODY_SIZE / 2;  // world units — see above; do NOT decouple from NLB_BODY_SIZE
+    var NLB_WHEEL_W = NLB_BODY_SIZE;      // tread width (z), matches the block's depth
+    var NLB_WHEEL_HUB_COLOR = "#FFF176";  // hub disc — reads against every NLB_BODY_COLORS entry
+    var NLB_WHEEL_SPOKE_COLOR = "#ECEFF1";
+
+    // ── SEAM H — train segment tension labels ───────────────────────────────
+    var NLB_SEG_LABEL_COLOR = "#FFD54F";  // same amber family as the theta arc label
+
     // ── SEAM C — force-arrow overlay constants (spec section 3) ────────────
     //   Rule 29, the DELIBERATE exception: an arrow's LENGTH tracks its real
     //   magnitude in newtons (same licence as tauThrob). Emphasis of the
@@ -38308,7 +38395,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //     context at their own positions, not compare partners).
     function nlbBodyLaneZ(bodyId) {
         var eng = window.PM_nlbEngine;
-        if (!eng || !eng.order || eng.pulley) return 0;
+        // SEAM H: a TRAIN is one line of carts on one string, so it takes the same
+        // single-lane path a pulley pair does. Without this the lane spreader below
+        // would see 3 independent non-hanging bodies, stagger them across 3 different
+        // z lanes, and draw each string diagonally across the track — the one thing
+        // an inextensible string joining two carts can never look like.
+        if (!eng || !eng.order || eng.pulley || eng.train) return 0;
         var lanes = [];
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
@@ -38340,6 +38432,28 @@ export const FIELD_3D_RENDERER_CODE = `
         // follow hook and therefore no clock code (Rule 36).
         var hitP = nlbFindById("nlb_body_" + bodyId + "_hit");
         if (hitP) hitP.position.copy(mesh.position);
+
+        // SEAM G: a wheel's SPIN, from the same funnel and for the same reason.
+        // Rolling without slipping is s = r·θ, so the wheel's angle is a pure
+        // FUNCTION of where the body currently is — read, never accumulated.
+        // Three consequences, all of them the point:
+        //   • Rule 36 holds by construction. There is no dt in this expression, so
+        //     60 Hz and 120 Hz produce identical angles for identical positions;
+        //     no "+= 0.016" can creep in here later without deleting the formula.
+        //     (Backticks are FORBIDDEN in this file's renderer body — it is one big
+        //     template literal, and one backtick in a comment ends it. Use quotes.)
+        //   • SET_TIME_FREEZE is byte-stable for free: dt = 0 leaves s unchanged,
+        //     so the recomputed angle is bit-identical and THE EYE's frozen
+        //     baselines cannot drift.
+        //   • Reversing, dragging and a param_ramp rewind all unwind the wheel
+        //     correctly with no extra code, because they all move s through here.
+        // Negative because +x travel is a CLOCKWISE turn seen from +z, and
+        // rotation.z is counter-clockwise-positive.
+        var wgrp2 = null;
+        for (var ci = 0; ci < mesh.children.length; ci++) {
+            if (mesh.children[ci].userData && mesh.children[ci].userData.elementType === "nlb_wheel") { wgrp2 = mesh.children[ci]; break; }
+        }
+        if (wgrp2) wgrp2.rotation.z = -(s * NLB_WORLD_PER_M) / NLB_WHEEL_R;
     }
 
     // Rotate the ONE surface group + rescale it to the state's length, and
@@ -38382,11 +38496,18 @@ export const FIELD_3D_RENDERER_CODE = `
     //   (Rule 32d) and clears the review-chrome "Full screen" button at
     //   top:52px (Rule 34d). Per-frame writers use nlbSetReadout().
     var NLB_READOUT_LABELS = {
-        N: "N", f: "f", a: "a", v: "v", T: "T", F_net: "ΣF", F_applied: "F"
+        N: "N", f: "f", a: "a", v: "v", T: "T", F_net: "ΣF", F_applied: "F",
+        T1: "T₁", T2: "T₂"                     // SEAM H — per-SEGMENT, Rule 34c Unicode subscripts
     };
     var NLB_READOUT_UNITS = {
-        N: " N", f: " N", a: " m/s²", v: " m/s", T: " N", F_net: " N", F_applied: " N"
+        N: " N", f: " N", a: " m/s²", v: " m/s", T: " N", F_net: " N", F_applied: " N",
+        T1: " N", T2: " N"
     };
+    // SEAM H — the two segment keys, and the pseudo-body-id their HUD rows hang off
+    // so nlbSetReadout/nlbReadoutRowId work on them completely unchanged.
+    var NLB_SEG_KEYS = ["T1", "T2"];
+    var NLB_SEG_OWNER = "SEG";
+    function nlbIsSegKey(k) { return k === "T1" || k === "T2"; }
     function nlbReadoutRowId(bodyId, key) { return "nlb_ro_" + bodyId + "_" + key; }
     function nlbRebuildReadout(nlb) {
         var el = document.getElementById("nlb_readout");
@@ -38398,6 +38519,20 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var b = 0; b < bodies.length; b++) {
             var bd = bodies[b];
             if (!bd || !bd.id || bd.ghost) continue;   // a ghost is decorative context: never integrated, never read out
+            // SEAM H fix: emit the per-body header ONLY if this body will actually
+            // produce a row. Segment keys (T1/T2) belong to the SEG owner, so a state
+            // whose readouts are all segment keys used to print one empty group
+            // header per body — tension_force STATE_6 rendered "m₃ / m₂ / m₁" as three
+            // labels with nothing under them. Same "a real zero is not a reading" rule
+            // the hanging-body N/f skip below already follows.
+            var bodyRows = 0;
+            for (var kq = 0; kq < keys.length; kq++) {
+                var kk = keys[kq];
+                if (nlbIsSegKey(kk)) continue;
+                if (bd.hanging && (kk === "N" || kk === "f")) continue;
+                bodyRows++;
+            }
+            if (!bodyRows) continue;
             if (bodies.length > 1) {
                 h += '<div style="opacity:0.7;margin-top:' + (b > 0 ? "7px" : "0") + '">' + (bd.label || bd.id) + '</div>';
             }
@@ -38413,12 +38548,39 @@ export const FIELD_3D_RENDERER_CODE = `
                 // connected pair is forced to print two permanent zeros against the
                 // hanging one (Rule 34b value-only HUD / the untaught-quantity scar).
                 if (bd.hanging && (key === "N" || key === "f")) continue;
+                // SEAM H: a segment tension is a property of the STRING, so it gets
+                // ONE row for the whole train below, never a duplicate per cart.
+                if (nlbIsSegKey(key)) continue;
                 var lab = NLB_READOUT_LABELS[key] || key;
                 h += '<div id="' + nlbReadoutRowId(bd.id, key) + '">' +
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_lbl">' + lab + '</span> = ' +
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_val">--</span>' + (NLB_READOUT_UNITS[key] || "") + '</div>';
             }
         }
+        // SEAM H — the shared per-SEGMENT block, appended once at the foot of the
+        // HUD. Only the segments this train actually HAS get a row: a 2-cart train
+        // has one string, so authoring T2 on it must not print a permanent stub
+        // (same "a real zero is not a reading" rule the arrow layer and the hanging
+        // N/f skip above already follow).
+        var trn = nlb.train || null;
+        var segN = (trn && trn.body_ids) ? Math.max(0, trn.body_ids.length - 1) : 0;
+        var segH = "";
+        for (var sg = 0; sg < NLB_SEG_KEYS.length; sg++) {
+            var sk = NLB_SEG_KEYS[sg];
+            if (keys.indexOf(sk) < 0 || sg >= segN) continue;
+            // The label span carries the math-serif stack for the same reason the fₛ/fₖ
+            // row does: U+2081/U+2082 (₁/₂) are missing from most monospace faces and
+            // render as the merged-blob / tofu subscript scar. NLB_MATH_FONT is used
+            // rather than an inline quoted family list because Rule 14 forbids \' in
+            // this template literal (it survives into the emitted JS as a bare quote
+            // and ends the string) — concatenating the existing double-quoted constant
+            // sidesteps the escape entirely.
+            segH += '<div id="' + nlbReadoutRowId(NLB_SEG_OWNER, sk) + '">' +
+                '<span id="' + nlbReadoutRowId(NLB_SEG_OWNER, sk) + '_lbl" style="font-family:' + NLB_MATH_FONT + '">' +
+                (NLB_READOUT_LABELS[sk] || sk) + '</span> = ' +
+                '<span id="' + nlbReadoutRowId(NLB_SEG_OWNER, sk) + '_val">--</span>' + (NLB_READOUT_UNITS[sk] || "") + '</div>';
+        }
+        if (segH) h += '<div style="opacity:0.7;margin-top:7px">strings</div>' + segH;
         el.innerHTML = h;
         el.style.display = h ? "block" : "none";
     }
@@ -38877,10 +39039,82 @@ export const FIELD_3D_RENDERER_CODE = `
     //   The wrap over the rim is not a third segment: the rim itself IS the rope's
     //   path between the two tangent points, so lenA + lenB + wrap is constant by
     //   construction while the string moves (verified numerically, seam report).
+    // SEAM H — one TRAIN segment: a straight run along the surface from the front
+    // face of the rear cart to the rear face of the front cart. Both faces are
+    // offset along the body's own axis, so this is correct at every theta with no
+    // incline branch (the same trick nlbFitRopeFor's surface case uses).
+    function nlbFitTrainRope(ropeId, backId, frontId) {
+        var obj = nlbFindById(ropeId);
+        if (!obj) return 0;
+        if (!nlbFindById("nlb_body_" + backId) || !nlbFindById("nlb_body_" + frontId)) {
+            obj.visible = false;
+            return 0;
+        }
+        var ax = nlbAxisUnit(false, nlbFrameThetaDeg());
+        var pb = nlbBodyWorldPos(backId), pf = nlbBodyWorldPos(frontId);
+        // The SIGNED along-axis clearance between the two facing faces. nlbFitSegment
+        // measures a MAGNITUDE, so without this test a front cart authored less than
+        // one body-length ahead of its neighbour renders a short rope pointing
+        // BACKWARDS through two interpenetrating carts, and every "is the rope
+        // drawn?" check passes on a picture that is physically nonsense. A real
+        // non-positive gap hides the rope instead — the same "a real zero hides, it
+        // never draws a stub" rule the arrow layer follows. (Caught by the seam
+        // harness on a fixture that spaced 1.1 m-wide carts 1.0 m apart.)
+        var gap = (pf.x - pb.x) * ax.x + (pf.y - pb.y) * ax.y - NLB_BODY_SIZE;
+        if (!(gap > NLB_ROPE_MIN_LEN)) { obj.visible = false; return 0; }
+        var p0 = pb.clone().addScaledVector(ax, NLB_BODY_SIZE / 2);
+        var p1 = pf.clone().addScaledVector(ax, -NLB_BODY_SIZE / 2);
+        return nlbFitSegment(obj, p0, p1);
+    }
+    // SEAM H — the live "T₁ = 4.00 N" sprite over one segment. Parked at the
+    // segment MIDPOINT and lifted along the surface normal so it never sits on the
+    // string it describes, and hidden outright when the state does not want it (or
+    // when the rope it belongs to is not drawn). Pure presentation: no time, no dt.
+    function nlbFitSegLabel(idx, ropeId, on) {
+        var lbl = nlbFindById("nlb_seg_label_" + idx);
+        if (!lbl) return;
+        var rope = nlbFindById(ropeId);
+        if (!on || !rope || !rope.visible) { lbl.visible = false; return; }
+        var perp = nlbPerpUnit(false, nlbFrameThetaDeg());
+        // The segment label needs its OWN vertical band, well clear of the cart
+        // labels. A body label is a child of its mesh at +0.95 body sizes, i.e.
+        // 1.45 above the surface once the body's own half-height is included; the
+        // rope runs at body-centre height, so the original +1.15 offset put this
+        // label at 1.65 — only 0.2 body sizes from the cart labels. On screen the
+        // m₁/T₁/m₂/T₂/m₃ sprites collapsed into one horizontal jumble across the
+        // train, which is unreadable exactly where tension_force's primary aha
+        // lives. 2.6 puts it at 3.1 versus the cart labels' 1.45.
+        //   The bands are also STAGGERED per segment index. Lifting both to one
+        // height fixed the clash with the cart labels but left the two segment
+        // labels abutting each other horizontally ("T₁ = 1.00 NT₂ = 2.00 N"): the
+        // rope midpoints are only ~1.25 world units apart while each sprite is
+        // ~75 px wide, so at any shared height they must touch. One row each makes
+        // them independent of cart spacing entirely.
+        lbl.position.copy(rope.position).addScaledVector(perp, NLB_BODY_SIZE * (2.35 + 0.85 * idx));
+        lbl.visible = true;
+    }
     function nlbFitRopes() {
         var eng = window.PM_nlbEngine;
         var ra = nlbFindById("nlb_rope_a"), rb = nlbFindById("nlb_rope_b");
         var pul = (eng && eng.coupled && eng.pulley) ? eng.pulley : null;
+        // SEAM H — the train branch. Checked BEFORE the pulley bail-out (a train
+        // state has no pulley and would otherwise have both ropes hidden), and
+        // AFTER pul is resolved, so a state authoring both keeps the older sealed
+        // pulley behaviour bit-for-bit.
+        var trn = (!pul && eng && eng.coupled && eng.train) ? eng.train : null;
+        if (trn) {
+            var ids = trn.body_ids || [];
+            var ropeIdsT = ["nlb_rope_a", "nlb_rope_b"];
+            var wantLbl = (trn.show_segment_labels !== false);
+            for (var t = 0; t < ropeIdsT.length; t++) {
+                if (t < ids.length - 1) nlbFitTrainRope(ropeIdsT[t], ids[t], ids[t + 1]);
+                else { var ro = nlbFindById(ropeIdsT[t]); if (ro) ro.visible = false; }
+                nlbFitSegLabel(t, ropeIdsT[t], wantLbl);
+            }
+            return;
+        }
+        nlbFitSegLabel(0, "nlb_rope_a", false);
+        nlbFitSegLabel(1, "nlb_rope_b", false);
         if (!pul) { if (ra) ra.visible = false; if (rb) rb.visible = false; return; }
         nlbFitRopeFor("nlb_rope_a", pul.body_a_id);
         nlbFitRopeFor("nlb_rope_b", pul.body_b_id);
@@ -39036,6 +39270,23 @@ export const FIELD_3D_RENDERER_CODE = `
             world.add(rope); nlbRegister(rope);
         }
 
+        // 2d. SEAM H — one live tension sprite per rope SEGMENT ("T₁ = 4.00 N").
+        //     Siblings of the ropes in the un-rotated world group, NOT children of
+        //     them: nlbFitSegment scales a rope to (1, len, 1), and a child label
+        //     would inherit that stretch and render as smeared text at every length.
+        //     Registered, so the glow pass reaches them; hidden until a train state
+        //     asks for them.
+        for (var sl = 0; sl < 2; sl++) {
+            // Seeded with its own glyph rather than "" — a zero-length label at build
+            // time would ask pmCreateAutoLabel to measure an empty string, and the
+            // first real text write is a per-frame path we would rather not have
+            // discover a degenerate canvas.
+            var segLbl = pmCreateAutoLabel(NLB_READOUT_LABELS[NLB_SEG_KEYS[sl]], NLB_SEG_LABEL_COLOR, 0.4);
+            segLbl.userData = { elementType: "nlb_seg_label", id: "nlb_seg_label_" + sl, segIndex: sl };
+            segLbl.visible = false;
+            world.add(segLbl); nlbRegister(segLbl);
+        }
+
         // 3. Body meshes — one per UNIQUE id across all states. Size is
         //    mass-INDEPENDENT (Rule 29): a heavier block is never a bigger cube.
         var defs = nlbCollectBodyDefs();
@@ -39053,6 +39304,67 @@ export const FIELD_3D_RENDERER_CODE = `
             };
             if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
             nlbRegister(mesh);
+
+            // ── SEAM G — a real rolling WHEEL instead of a sliding cube ────────
+            //   The box mesh is KEPT as an invisible carrier rather than replaced,
+            //   which is what makes this seam cheap and safe: every other system
+            //   here — nlbSetBodyPosition, the bounds clamp, the pick proxy, the
+            //   label anchor, nlbBodyWorldPos and therefore every force arrow —
+            //   keys off "nlb_body_<id>" and its position, and none of them change.
+            //   material.visible = false (the SEAM E pick-proxy idiom) drops only
+            //   the box from the render: Object3D.visible would take the children
+            //   with it, Material.visible does not.
+            //   The spinning parts live in a CHILD group, never on the carrier, for
+            //   one specific reason: the body's Unicode label is also a child of the
+            //   carrier, so spinning the carrier would tumble "m₁" end-over-end
+            //   around the wheel. Group spins, label does not.
+            //   The group and its parts are deliberately NOT nlbRegister()'d:
+            //   applyGlowEmphasis TRAVERSES, so they inherit the carrier's own
+            //   emphasis pass (nlb_body → solidApparatus brighten-only) for free.
+            //   Registering them would give them a second, later pass and let a
+            //   peer wheel's spokes stay lit while its body dimmed — a silent
+            //   Rule 32e break.
+            if (d.shape === "wheel") {
+                mat.visible = false;
+                var wgrp = new THREE.Group();
+                wgrp.userData = { elementType: "nlb_wheel", id: "nlb_wheel_" + d.id, bodyId: d.id };
+                mesh.add(wgrp);
+
+                // The tyre. CylinderGeometry is born about its own +y axis; rotating
+                // the GEOMETRY (not the mesh) bakes the axle onto +z, so the group's
+                // rotation.z is afterwards a pure spin about the axle with no Euler
+                // order to reason about.
+                var tyreGeo = new THREE.CylinderGeometry(NLB_WHEEL_R, NLB_WHEEL_R, NLB_WHEEL_W, 24);
+                tyreGeo.rotateX(Math.PI / 2);
+                var tyre = new THREE.Mesh(tyreGeo, new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(col), emissive: hexToThreeColor(col),
+                    emissiveIntensity: 0.18, shininess: 60, transparent: true, opacity: 1.0
+                }));
+                wgrp.add(tyre);
+
+                // Hub disc, standing very slightly proud of both tread faces so it
+                // is never z-fought by the tyre it sits inside.
+                var hubGeo = new THREE.CylinderGeometry(NLB_WHEEL_R * 0.30, NLB_WHEEL_R * 0.30, NLB_WHEEL_W * 1.06, 16);
+                hubGeo.rotateX(Math.PI / 2);
+                var hub = new THREE.Mesh(hubGeo, new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(NLB_WHEEL_HUB_COLOR), emissive: hexToThreeColor(NLB_WHEEL_HUB_COLOR),
+                    emissiveIntensity: 0.30, shininess: 70, transparent: true, opacity: 1.0
+                }));
+                wgrp.add(hub);
+
+                // Two crossed spokes. THESE are what make the rotation readable —
+                // a hub alone is nearly rotation-invariant too.
+                for (var sp2 = 0; sp2 < 2; sp2++) {
+                    var spoke = new THREE.Mesh(
+                        new THREE.BoxGeometry(NLB_WHEEL_R * 1.82, NLB_WHEEL_R * 0.16, NLB_WHEEL_W * 1.04),
+                        new THREE.MeshPhongMaterial({
+                            color: hexToThreeColor(NLB_WHEEL_SPOKE_COLOR), emissive: hexToThreeColor(NLB_WHEEL_SPOKE_COLOR),
+                            emissiveIntensity: 0.22, shininess: 40, transparent: true, opacity: 1.0
+                        }));
+                    spoke.rotation.z = sp2 * Math.PI / 2;
+                    wgrp.add(spoke);
+                }
+            }
 
             // SEAM E — invisible, forgiving pointer-pick proxy (the pp_drag_hit /
             // gsph_field_point_hit pattern: the raycaster skips visible:false, so
@@ -39233,6 +39545,15 @@ export const FIELD_3D_RENDERER_CODE = `
             max: num(o.max, sp.max),
             step: num(o.step, sp.step),
             def: num(o["default"], sp.def),
+            // DECIMAL PLACES were the one property of the spec a concept could NOT
+            // override, and the omission silently falsified a slider. NLB_SLIDER_SPEC
+            // pins mu_k at dp: 2, so a concept authoring a rolling-resistance
+            // coefficient of 0.002 rendered its ONLY control as "0.00" — inside a
+            // state titled "Rolling Friction Is Not Zero", beside a HUD reading
+            // 0.10 N and a formula reading f = mu*N. The canvas asserted 0.00 x 49 =
+            // 0.10. Every other display property was already overridable, so this is
+            // a gap in an existing mechanism, not a new feature.
+            dp: Math.max(0, Math.min(6, Math.round(num(o.dp, sp.dp)))),
             label: (typeof o.label === "string" && o.label) ? o.label : sp.glyph
         };
     }
@@ -39264,7 +39585,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // visibility:hidden (NOT display:none) — the reserved slot, Rule 32d.
             html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
                 '<label><span id="' + sp.lbl + '" style="font-family:' + NLB_MATH_FONT + '">' + sc.label + '</span> = ' +
-                '<span id="' + sp.val + '">' + sc.def.toFixed(sp.dp) + '</span>' + sp.unit + '</label>' +
+                '<span id="' + sp.val + '">' + sc.def.toFixed(sc.dp) + '</span>' + sp.unit + '</label>' +
                 '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
                 '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
         }
@@ -39327,7 +39648,24 @@ export const FIELD_3D_RENDERER_CODE = `
         var bB = ids[1] ? eng.bodies[ids[1]] : null;
         if (token === "m") { if (bA && value > 0) bA.m = value; }
         else if (token === "m2") { if (bB && value > 0) bB.m = value; }
-        else if (token === "F") { var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value; }
+        else if (token === "F") {
+            // SEAM I — an opt-in SHARED push. action_reaction wins outright: that path
+            // already re-mirrors the driver's force every frame, so a shared write would
+            // be overwritten anyway and reading as if it worked would be worse than not
+            // offering it. Hanging bodies are skipped for the same reason mu skips them:
+            // the shared quantity belongs to the bodies on the surface.
+            var ar0 = eng.action_reaction;
+            var arOn = !!(ar0 && ar0.engaged && ar0.driver_body_id);
+            if (eng.shared_applied_force && !arOn) {
+                for (var fi = 0; fi < eng.order.length; fi++) {
+                    var fb = eng.bodies[eng.order[fi]];
+                    if (!fb || fb.ghost || fb.hanging) continue;
+                    fb.F_applied = value;
+                }
+            } else {
+                var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value;
+            }
+        }
         else if (token === "theta") {
             eng.theta_deg = value;
             nlbApplySurface(value, eng.length_m);
@@ -39387,7 +39725,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var el = document.getElementById(sp.slider);
         if (el) el.value = String(value);
         var vv = document.getElementById(sp.val);
-        if (vv) vv.textContent = nlbFx(value, sp.dp);
+        // Per-concept dp, NOT the spec default. Computing the override in nlbSc()
+        // and then formatting with sp.dp here left the whole fix inert: mu_k stayed
+        // at 2 decimals and a 0.002 coefficient still rendered "0.00". Both display
+        // sites must read sc.dp or neither does anything.
+        if (vv) vv.textContent = nlbFx(value, nlbSc(token).dp);
     }
     // The mass rows adopt the body's OWN authored Unicode label where there is one,
     // so the slider reads exactly like the block it drives (m₁ / m₂ by default).
@@ -39449,6 +39791,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Mirrors gsphStateIsDraggable() / swcStateIsDraggable(): true ONLY where the
     //   state's own newtons_laws_body block sets trusted_drag_seizes, so the pick
     //   and the drag are both no-ops in every other scenario and every other state.
+    // SEAM J gate — is the LIVE state a sandbox? Read from the state config rather
+    // than eng.mode so it cannot drift from what the author wrote, and kept as one
+    // function so the Branch A and Branch B wraps can never disagree about scope.
+    function nlbSandboxWrap() {
+        var sd = config.states && config.states[PM_currentState];
+        var nn = sd && sd.newtons_laws_body;
+        return !!(nn && nn.mode === "sandbox");
+    }
     function nlbStateIsDraggable() {
         var sd = config.states && config.states[PM_currentState];
         var nn = sd && sd.newtons_laws_body;
@@ -39609,6 +39959,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var lenM = nlbSurfaceLenM(nlb);
         var bodies = nlb.bodies || [];
         var pul = nlb.pulley || null;
+        // SEAM H — a train couples through straight strings instead of a pulley.
+        // A pulley WINS if a state authors both: it is the older sealed contract and
+        // silently changing its meaning would put every connected_bodies baseline at
+        // risk. Needs at least 2 ids to be a train at all.
+        var trn = (!pul && nlb.train && nlb.train.body_ids && nlb.train.body_ids.length > 1) ? nlb.train : null;
 
         // The single engine-state object every later seam reads/writes.
         var eng = {
@@ -39616,8 +39971,13 @@ export const FIELD_3D_RENDERER_CODE = `
             theta_deg: thetaDeg,
             length_m: lenM,
             frictionless: frictionless,
-            coupled: !!pul,
+            // Either coupling apparatus gates the shared-scalar integrator; only the
+            // per-body sign factor differs (pulley reverses one side, a straight
+            // string reverses nothing).
+            coupled: !!(pul || trn),
             pulley: pul,
+            train: trn,
+            shared_applied_force: !!nlb.shared_applied_force,   // SEAM I (see nlbApplyParam)
             action_reaction: nlb.action_reaction || null,
             glow_focal: nlb.glow_focal || "",
             order: [],
@@ -39756,7 +40116,12 @@ export const FIELD_3D_RENDERER_CODE = `
         //   its build pose for one frame, and THE EYE's frozen pin could catch
         //   exactly that frame).
         nlbPlacePulley();
-        nlbShowPulley(!!eng.coupled);
+        // SEAM H: the BRACKET is gated on the pulley alone, not on eng.coupled — a
+        // train is coupled but has no post, arm or wheel, and a bracket standing in
+        // an empty field with no rope over it reads as apparatus that does nothing
+        // (the very thing this function's own comment refuses to do). nlbFitRopes
+        // below then shows the strings the train does have.
+        nlbShowPulley(!!eng.pulley);
         nlbFitRopes();
         // SEAM E — the explorer surface for this state. Order matters:
         //   1. clear the seize latches FIRST, so a drag or slider move in the
@@ -39814,6 +40179,23 @@ export const FIELD_3D_RENDERER_CODE = `
     //   (nlbApplyParam) already wrote eng.v_string itself and is unchanged.
     //   Uncoupled states are bit-for-bit unchanged (v_string/a_string = 0, b.v
     //   untouched).
+    // ── SEAM H — the per-body sign factor, in ONE place ────────────────────
+    //   c_i relates a body's own signed axis to the shared string scalar q
+    //   (s_i = c_i·q). It was computed identically in three places (the seeder's
+    //   velocity pass twice, the integrator's accumulation loop once); adding a
+    //   second coupling apparatus to three copies is how they drift apart, so all
+    //   three now call this.
+    //   TRAIN: every c_i = +1. A straight string reverses nothing — the carts all
+    //   advance the same way by the same amount, which is exactly what makes the
+    //   gaps between them constant and the string inextensible on screen.
+    //   PULLEY: unchanged from the sealed derivation — a body's segment SHORTENS as
+    //   s grows on the surface (σ = -1) and LENGTHENS as s grows while hanging
+    //   (σ = +1); Σ dL = 0 with s_i = c_i·q gives c_i = -(σ_ref·σ_i).
+    function nlbSignFactor(eng, b, refId, sigRef) {
+        if (eng && eng.train) return 1;
+        if (b.id === refId) return 1;
+        return -(sigRef * (b.hanging ? 1 : -1));
+    }
     function nlbSeedKinematics() {
         var eng = window.PM_nlbEngine;
         if (!eng) return;
@@ -39857,15 +40239,16 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
             if (!b || b.ghost) continue;
-            var ci = (b.id === refId) ? 1 : -(sigRef * (b.hanging ? 1 : -1));
+            var ci = nlbSignFactor(eng, b, refId, sigRef);
             var bv0 = (b.v0 != null) ? b.v0 : 0;
             if (bv0) { q = ci * bv0; break; }      // |c_i| = 1, so q = v_i / c_i = c_i * v_i
         }
         eng.v_string = q;
+        eng.v_string_seed = q;        // SEAM J: what a sandbox wrap re-releases at
         for (var k = 0; k < eng.order.length; k++) {
             var bk = eng.bodies[eng.order[k]];
             if (!bk || bk.ghost) continue;
-            var ck = (bk.id === refId) ? 1 : -(sigRef * (bk.hanging ? 1 : -1));
+            var ck = nlbSignFactor(eng, bk, refId, sigRef);
             bk.v = ck * q;
         }
     }
@@ -39973,7 +40356,10 @@ export const FIELD_3D_RENDERER_CODE = `
             // states are bit-for-bit unchanged.
             var eng0 = window.PM_nlbEngine;
             var hiS = lenM;
-            if (eng0 && eng0.coupled) {
+            // SEAM H: a train is coupled but has NO bracket, so the post clamp
+            // below must not apply — it would stop the carts short of the visible
+            // surface end at a post that is not on screen.
+            if (eng0 && eng0.coupled && !eng0.train) {
                 var stop = nlbPostM(nlbStateCfg()) - NLB_PULLEY_STOP_M;
                 if (stop < hiS) hiS = stop;
                 if (!(hiS > -lenM)) hiS = -lenM;
@@ -39992,6 +40378,53 @@ export const FIELD_3D_RENDERER_CODE = `
         var hi = Math.max(lenM, (a.y - NLB_BODY_SIZE * 0.5) / NLB_WORLD_PER_M);
         if (!(hi > lo + 0.1)) hi = lo + 0.1;
         return { lo: lo, hi: hi };
+    }
+    // ── SEAM H — per-SEGMENT tension of a train, and its two display channels ──
+    //   Called ONCE per frame from Branch B, AFTER the body writeback, because it
+    //   reads each body's freshly-written friction f (and the _drive stamped during
+    //   accumulation). Pure algebra over already-stepped values: no time, no dt,
+    //   nothing integrated (Rule 36), so it is byte-stable under a freeze pin.
+    //
+    //   Segment i joins body_ids[i] to body_ids[i+1]. Write Newton's second law for
+    //   the SUB-TRAIN behind that string — bodies 0..i — along the shared +s axis:
+    //
+    //       (Σ_{j≤i} m_j)·a  =  Σ_{j≤i} (drive_j + f_j)  +  T_i
+    //   =>  T_i             =  (Σ_{j≤i} m_j)·a − Σ_{j≤i} (drive_j + f_j)
+    //
+    //   where drive_j already carries F_applied and the along-slope weight, and f_j
+    //   is that cart's own friction. Everything ahead of the string is absent from
+    //   the expression, which IS the concept: a string only has to move the mass
+    //   BEHIND it, so with the pull at the front the rearmost string is the slackest
+    //   and each one forward carries one more cart. 3 equal carts, flat and
+    //   frictionless, pulled with F: a = F/3m, T₁ = m·a = F/3, T₂ = 2m·a = 2F/3.
+    function nlbTrainTensions(eng, aStr) {
+        var trn = eng.train;
+        if (!trn) return;
+        var ids = trn.body_ids || [];
+        var cumM = 0, cumF = 0;
+        eng.T_seg = [];
+        for (var i = 0; i < ids.length - 1; i++) {
+            var b = eng.bodies[ids[i]];
+            if (!b || b.ghost) { eng.T_seg.push(0); continue; }
+            cumM += b.m;
+            cumF += (b._drive || 0) + (b.f || 0);
+            eng.T_seg.push(cumM * aStr - cumF);
+        }
+        // Channel 1 — the on-canvas sprite over each string (the primary channel:
+        // it is what survives into a frozen frame a teacher is paused on).
+        // Channel 2 — the HUD rows, if the state asked for T1/T2.
+        var keys = (nlbStateCfg().readouts) || [];
+        var wantLbl = (trn.show_segment_labels !== false);
+        for (var k = 0; k < NLB_SEG_KEYS.length; k++) {
+            var val = (k < eng.T_seg.length) ? Math.abs(eng.T_seg[k]) : 0;
+            if (k < eng.T_seg.length && keys.indexOf(NLB_SEG_KEYS[k]) >= 0) {
+                nlbSetReadout(NLB_SEG_OWNER, NLB_SEG_KEYS[k], nlbFx(val, 2));
+            }
+            if (wantLbl && k < eng.T_seg.length) {
+                nlbSetArrowLabelText(nlbFindById("nlb_seg_label_" + k),
+                    NLB_READOUT_LABELS[NLB_SEG_KEYS[k]] + " = " + nlbFx(val, 2) + " N");
+            }
+        }
     }
     // Live per-frame HUD write for one body (only the keys this state readouts).
     function nlbWriteReadouts(nlb, b, stuck) {
@@ -40133,6 +40566,44 @@ export const FIELD_3D_RENDERER_CODE = `
                 // static friction, the body has come to REST.
                 if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
                 var s1 = b.s + 0.5 * (v0 + v1) * h;
+                // SEAM J — the SANDBOX wrap (founder-approved 2026-07-30).
+                //   Rule 37 says the explore state must keep MOVING, and names the
+                // mechanism for every other scenario: "the bead/motion phase wraps
+                // (% 1) so the motion loops forever". This integrator never got that,
+                // so an explore state ran its body into the end of the finite track
+                // and died there — pushing harder only presses it into the wall, so
+                // no slider and no idle sweep could restart it. A teacher was left
+                // with a sandbox whose numbers changed while nothing moved, which is
+                // verbatim the failure Rule 37 exists to eliminate.
+                //   Scope is deliberately narrow: mode === "sandbox" ONLY. Every guided
+                // state keeps the clamp-and-hold behaviour exactly, so no frozen EYE
+                // baseline can move and the narrated "end of the run" beats that
+                // several concepts already depend on are untouched.
+                //   On wrap the velocity is RE-SEEDED to the state's authored v0, not
+                // carried over. Carrying it over was the first implementation and it
+                // was wrong: a body under constant push with negligible friction has
+                // no terminal speed, so it accelerated every lap and the harness
+                // measured it passing 38 m/s — crossing the whole track three times a
+                // second, an unreadable blur. Re-seeding makes every lap identical, so
+                // the run REPEATS at a legible speed, which is what "the motion loops
+                // forever" has to mean for a teacher. It also matches the bead wrap it
+                // is modelled on: a phase wrap restarts the cycle, it does not
+                // accumulate. Rule 36 is unaffected — a position remap plus a constant,
+                // no dt and no new accumulator.
+                if (nlbSandboxWrap()) {
+                    var span = bd.hi - bd.lo;
+                    if (span > 0) {
+                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; }
+                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; }
+                    }
+                    b.a = a; b.v = v1; b.s = s1;
+                    b._boundArrestedSliding = false;
+                    b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
+                    b._stuck = stuck;
+                    nlbSetBodyPosition(b.id, b.s);
+                    nlbWriteReadouts(nlb, b, stuck);
+                    continue;
+                }
                 if (s1 < bd.lo) s1 = bd.lo;
                 else if (s1 > bd.hi) s1 = bd.hi;
                 if (s1 <= bd.lo + 1e-9 || s1 >= bd.hi - 1e-9) {
@@ -40188,7 +40659,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var j = 0; j < eng.order.length; j++) {
             var bj = eng.bodies[eng.order[j]];
             if (!bj || bj.ghost) continue;                 // spec section 3: never integrated
-            var cj = (bj.id === refId) ? 1 : -(sigRef * (bj.hanging ? 1 : -1));
+            var cj = nlbSignFactor(eng, bj, refId, sigRef);
             var thj = bj.hanging ? 90 : thetaSurf;
             var Nj = nlbNormal(bj, thj);
             bj.N = Nj;
@@ -40252,7 +40723,43 @@ export const FIELD_3D_RENDERER_CODE = `
         //   A genuinely held string is untouched — static friction takes the stuckB
         // branch above (aStr = 0, F_fric = -D) and never reaches this veto, and the
         // v-sign-reversal rest guard has already zeroed aStr on its own path.
-        if (blocked) { sAdv = 0; vs1 = 0; }
+        // SEAM J — the coupled half of the sandbox wrap. A TRAIN is wrapped as ONE
+        // rigid line: every cart shifts by the same span, so the gaps (and therefore
+        // the strings) are preserved exactly and the whole train re-enters from the
+        // other end. Deliberately NOT applied to a PULLEY sandbox — wrapping there
+        // would teleport a hanging weight vertically, which is nonsense, so that rig
+        // keeps its existing clamp-and-hold (and connected_bodies' sealed explore
+        // state is therefore bit-for-bit unaffected).
+        //   The shift is NOT the track span. Shifting every cart by the full span
+        // would put the REAR cart beyond the far bound, where the per-body clamp
+        // below would pin it and collapse the very gaps this wrap exists to
+        // preserve. Instead the whole train re-enters at the trailing edge: moving
+        // forward, the REARMOST cart is placed on the low bound; moving backward,
+        // the FRONTMOST cart is placed on the high bound. Every cart then shifts by
+        // that one offset, so the train stays rigid and entirely on the track.
+        var wrapped = false;
+        if (blocked && nlbSandboxWrap() && eng.train) {
+            var bw = nlbBoundsM(act[0], lenM);
+            var dir = nlbSgn(sAdv) || 1;
+            var sMin = act[0].s, sMax = act[0].s;
+            for (var w0 = 1; w0 < act.length; w0++) {
+                if (act[w0].s < sMin) sMin = act[w0].s;
+                if (act[w0].s > sMax) sMax = act[w0].s;
+            }
+            var shift = (dir > 0) ? (bw.lo - sMin) : (bw.hi - sMax);
+            if (isFinite(shift) && (sMax - sMin) < (bw.hi - bw.lo)) {
+                for (var w = 0; w < act.length; w++) { act[w].s += shift; }
+                // Re-seed the shared string speed for the same reason the single-body
+                // wrap re-seeds v: otherwise the train gains speed every lap and ends
+                // up an unreadable blur. eng.v_string_seed is stamped by
+                // nlbSeedKinematics from the authored v0, so a state that legitimately
+                // starts the train moving repeats at ITS speed, not from rest.
+                vs1 = (eng.v_string_seed != null) ? eng.v_string_seed : 0;
+                sAdv = 0;                // the shift IS this frame's motion
+                wrapped = true;
+            }
+        }
+        if (blocked && !wrapped) { sAdv = 0; vs1 = 0; }
         eng.v_string = vs1;
         eng.a_string = aStr;
 
@@ -40278,6 +40785,9 @@ export const FIELD_3D_RENDERER_CODE = `
             nlbSetBodyPosition(bb.id, bb.s);
             nlbWriteReadouts(nlb, bb, stuckB);
         }
+        // SEAM H — per-segment tensions, after the writeback that gives them their
+        // inputs (each cart's f) and before the presentation passes that draw them.
+        nlbTrainTensions(eng, aStr);
         // SEAM C — presentation only, AFTER the physics writeback (see branch A).
         nlbDriveArrows(eng);
         // SEAM D — re-fit both rope segments to the live body positions, so the

@@ -103,3 +103,4 @@ nul
 
 # scratch bring-up artifacts (generated HTML/PNG probes)
 /.scratch_nlb/
+/.scratch_nlb_seams/
