@@ -48,7 +48,50 @@ the fix reuses that contract verbatim (`frResetTrajectory()`) rather than invent
 **No shared clock code touched** — `__pmSteps`/`dtStep` untouched, so Rule 36b's fleet sweep does
 NOT trigger. `_scratch_fr_seams.ts` still 42/42 including S9 fold-exactness.
 
-## ⚠ STILL OPEN — THE EYE photographs honestly but does NOT yet GATE motion
+## D5 motion gate — force_rig branch WRITTEN (`c4a099e`), but the gate is still dark fleet-wide
+
+`deriveMotionExpectations` now has a `force_rig` branch. The rule it encodes is deliberately
+conservative — declare `true` only where the engine PROVABLY repaints between the dense capture's
+pinned instants, leave everything else `undefined` (skip), because a false FAIL trains people to
+ignore the gate:
+- **whirl → true** only when the swept circle clears the bob (`r = L·sinθ` vs the bob radius); a
+  conical state at or below the `ω_min` clamp has `θ = 0`, `r = 0` and hangs dead still.
+- **force_table → true** on a param_ramp that actually WRITES (a table token, not seized, delta
+  above the engine's own 1e-4 guard) or a `ring_start_offset_m` at or beyond the ring's own
+  diameter.
+- **`phases[]` is NOT a motion signal** — `frRunPhases` only rewrites `glow_focal`, and every phase
+  authored on this concept has no focal of its own, so it repaints nothing.
+
+**It can actually fail, proven against the real defect rather than a synthetic one:** run against
+the pre-`b2ebf9a` dump `20260731-044255` (the capture that certified seven dead states 31/31), all
+seven states FAIL D5 with max adjacent diff 0.00–0.02%. **This gate would have caught this
+morning's CRITICAL defect.** On the current frames all seven PASS at 0.31–0.64%, 3–6× the floor.
+
+### ⚠ THE REAL FINDING — D5 is dormant on EVERY field_3d concept, not just this one
+
+The branch changes nothing yet, and the reason is a second, bigger defect: **`visual_eyes.ts:68`
+derives the motion map from `cached.physics_config`, and every `_seed_*_cache.ts` writes
+`physics_config: { epic_l_path }` with no field_3d blocks.** Six lines below, `:82` already
+establishes the correct pattern — `revealSource = conceptJson ?? cached.physics_config` — with a
+comment explaining that the JSON is authoritative for field_3d; the reveal pins and hold
+expectations both use it. Motion (`:68`) and durations (`:67`) never got it.
+
+So D5 has been skipped fleet-wide on field_3d since the seed-script cache convention began. Filed
+as `eye_motion_map_reads_cached_physics_config_which_holds_only_epic_l_path`
+`[owner: peter_parker:visual_validator]`.
+
+**Measured blast radius (mine, not taken on report): 40 of 148 concepts derive a different motion
+map from the JSON than from the cached shape — and 25 of those are BASELINE-LOCKED.**
+
+**Deliberately NOT fixed here, and this is the important judgement:** the fix is one line, but its
+effect is to switch a dormant gate ON for 25 locked concepts simultaneously. Done inside a chapter
+branch, every other running tray's regression step would start failing on concepts they never
+touched, and it would read as a regression caused by that tray. It is also Rule 40 PLATFORM
+(`visual_eyes.ts` + `deriveStateMeta.ts`). It should land on master as its own piece of work,
+followed immediately by a full-fleet sweep, with every newly-failing state either fixed or its
+motion declaration corrected before the change is called done. **FOUNDER CALL.**
+
+## (superseded by the above) STILL OPEN — THE EYE photographs honestly but does NOT yet GATE motion
 
 **`deriveMotionExpectations` has no `force_rig` branch.** `force_rig` is registered for reveal keys
 (`deriveStateMeta.ts:597/604`), reveal pins (`:2517/2533`) and hold expectations (`:3213/3223`) — but
@@ -262,10 +305,13 @@ chapter_map (founder-approved 2026-07-30, in build order):
   PROVES the off-axis force solver before `uniform_circular_motion` depends on it. Same
   structural-extremes-first logic lom-a used. Do not reorder to do the exciting one first.
 
-next: **FOUNDER RE-REVIEW of `equilibrium_of_particles`** — now with SEVEN engine fixes landed and
-      the review link rebuilt against them (http://localhost:8093/equilibrium_of_particles/).
-      Both arrow scars are CLOSED; the founder chose the zoom and the durable label fix.
-      Then: the D5 motion-gate gap (still open — see above).
+next: **PHASE 2 — `uniform_circular_motion`.** `equilibrium_of_particles` is FOUNDER-APPROVED on
+      content, physics AND visuals (2026-08-01, "perfect"). Authoring sign-off only — `visual:approve`,
+      `tts:*`, `build:pilot` and deploy remain untouched and are a separate founder decision, so the
+      concept is complete but NOT shipped and its baselines are NOT locked.
+      Watch the Phase 0 success criterion: `uniform_circular_motion` must need ZERO renderer edits.
+      If authoring forces one, STOP and re-scope — do not extend the engine per concept.
+      Blocking on a founder call: the fleet-wide D5 fix (see above), which Phase 2's whirl wants.
       Phase 2 = `uniform_circular_motion` — its whirl needs the D5 gate more than this concept did.
       (superseded) Phase 1 authoring via the Alex pipeline
       (architect → physics-author → json-author → quality-auditor), then FOUNDER REVIEW.
