@@ -1092,13 +1092,19 @@ export interface Field3DConfig {
                 label?: string;                    // e.g. "steel bumper" | "foam pad" | "velcro"
             };
 
-            // [SEAM B] Rule 33d instruments. All LIVE numeric readings, never decorative.
+            // Rule 33d instruments. All LIVE numeric readings, never decorative.
+            // A state with a real (non-sticks) contact ALSO always gets the two
+            // spec-section-5 honesty rows — true peak force and true contact
+            // duration — which have no readouts[] key because they belong to the
+            // contact, not to a body. Do NOT author 'J' alongside a shown
+            // force_trace: the shaded area already carries its own value label.
             readouts?: Array<'v' | 'p' | 'sum_p' | 'KE' | 'sum_KE' | 'F_contact' | 'J'>;
 
-            // [SEAM B] The force–time trace. THIS IS THE INSTRUMENT THAT TEACHES
-            // IMPULSE — the shaded area IS the impulse. The DATA it draws
-            // (per-contact (t_ms, F) samples) is already recorded by the SEAM A
-            // integrator; only the PANEL is deferred.
+            // The force–time trace. THIS IS THE INSTRUMENT THAT TEACHES IMPULSE —
+            // the shaded area IS the impulse, so the fill is the point, not
+            // decoration. compare_with_previous_lane overlays the last TWO recorded
+            // contact events on ONE shared axis pair (equal areas, different peaks).
+            // window_ms defaults to an auto-fit of the recorded pulse.
             force_trace?: {
                 show: boolean;
                 fill_area?: boolean;               // shade the integral of F dt, default true
@@ -1107,10 +1113,10 @@ export interface Field3DConfig {
                 compare_with_previous_lane?: boolean;  // two-lane states share one axis pair
             };
 
-            // [SEAM B] Two independent lanes of the SAME experiment, side by side,
-            // sharing one clock. SEAM A honours ONLY offset_z_m (so a lane body is
-            // already drawn in its own lane); contact_override and the second
-            // contact/trace are SEAM B.
+            // Two independent lanes of the SAME experiment, side by side, sharing
+            // one clock. offset_z_m is honoured (a lane body is drawn in its own
+            // lane) and the trace panel already overlays two traces on one axis;
+            // contact_override — i.e. a SECOND independent contact — is SEAM C.
             lanes?: Array<{
                 id: string;
                 offset_z_m: number;                // lateral offset so lanes never occlude
@@ -1122,11 +1128,12 @@ export interface Field3DConfig {
             // [SEAM C] Rule 31 contextual controls.
             controls_visible?: Array<'m1' | 'm2' | 'v1' | 'v2' | 'k' | 'c'>;
             trusted_drag_seizes?: boolean;         // [SEAM C] sandbox state only
-            // [SEAM B] The slow-motion honesty requirement (spec section 5): a dt
-            // MULTIPLIER on the integrator during the contact window only
-            // (dtPhysics = h / slow_factor), plus a "slow motion xN" badge. SEAM A
-            // routes every step through mbDtScale() so this drops in as a pure dt
-            // multiplier with NO second clock and NO sub-stepping.
+            // The slow-motion honesty requirement (spec section 5): a dt MULTIPLIER
+            // on the integrator during the contact window only
+            // (dtPhysics = h / slow_factor), plus the "slow motion xN" badge. It is
+            // a pure dt multiplier through mbDtScale() — NO second clock, NO
+            // sub-stepping — so dt = 0 still gives dtPhysics = 0 under a freeze pin,
+            // and the HUD keeps reporting the TRUE peak force and contact duration.
             slow_window?: {
                 slow_factor: number;
                 badge?: boolean;                   // default true — the honesty requirement
@@ -40904,9 +40911,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //                     (track + bodies + the compressible contact element),
     //                     mbApplyGlow, per-state seeding, the ~6 glue sites and
     //                     the deriveStateMeta / #sliders registrations.
-    //     SEAM B        : the instruments — force-trace panel, momentum ledger
-    //                     HUD, force arrows, the slow_window dt multiplier and
-    //                     its honesty badge, lane contact overrides.
+    //     SEAM B (DONE) : the instruments — the force-trace panel, the momentum
+    //                     ledger HUD, the equal-and-opposite force arrows, the
+    //                     slow_window dt multiplier + its honesty badge, and
+    //                     contact.label. Lane CONTACT OVERRIDES stayed with C:
+    //                     they need a second independent contact, which is a
+    //                     physics-surface change, not an instrument.
     //     SEAM C        : the #mb_sliders rows, PARAM_UPDATE emitters, trusted
     //                     drag seize, param_ramp.
     //
@@ -40943,6 +40953,34 @@ export const FIELD_3D_RENDERER_CODE = `
     var MB_TRACE_MAX = 8000;              // samples per contact event (hard cap)
     var MB_EVENT_MAX = 8;                 // event partitions per frame (runaway guard)
     var MB_TINY = 1e-12;
+
+    // ── SEAM B constants — the instrument layer ────────────────────────────
+    //   Arrow length is world units PER NEWTON with a floor, i.e. exactly the
+    //   nlb arrow contract (spec section 3: "reuse nlb's arrow overlay and its
+    //   ~15 N length-floor behaviour"). MB_ARROW_MIN_LEN / MB_ARROW_SCALE = 15 N:
+    //   below that a nonzero force stops tracking its magnitude and draws at the
+    //   floor. That is the KNOWN, DOCUMENTED residual — it keeps a small force
+    //   readable at classroom distance, in a band no contact beat teaches from
+    //   (a contact peak is hundreds of newtons). Rule 29: nothing else ever
+    //   changes an arrow's length — emphasis is brightness, via mbApplyGlow only.
+    var MB_ARROW_SCALE = 0.008;           // world units per newton (150 N -> 1.20)
+    var MB_ARROW_MIN_LEN = 0.12;          // = the 15 N floor at the scale above
+    var MB_ARROW_MAX_LEN = 2.60;          // never longer than the visible track
+    var MB_ARROW_EPS = 0.05;              // N — at or below this the force IS zero,
+                                          // so the arrow HIDES rather than drawing a
+                                          // stub (Newton III has nothing to show when
+                                          // the bodies are not touching)
+    var MB_ARROW_HEX = 0xFFEE58;
+    var MB_ARROW_COLOR = "#FFEE58";
+    var MB_ARROW_LABEL_GAP = 0.16;
+    // Force–time trace panel geometry, in CSS pixels of its own canvas. Fixed
+    // (no devicePixelRatio scaling) so a frozen frame is byte-identical on any
+    // display — the SET_TIME_FREEZE pixel clause.
+    var MB_TRACE_W = 340, MB_TRACE_H = 192;
+    var MB_TR_L = 48, MB_TR_R = 328, MB_TR_T = 24, MB_TR_B = 158;
+    var MB_TRACE_COLORS = ["#4FC3F7", "#FFB74D"];
+    var MB_TRACE_MAX_PTS = 400;           // decimation cap for the drawn polyline
+    var MB_TRACE_FONT = "12px 'Cambria Math','Times New Roman',serif";
 
     var mbIndex = [];
     function mbRegister(obj) { mbIndex.push(obj); return obj; }
@@ -41230,6 +41268,18 @@ export const FIELD_3D_RENDERER_CODE = `
         var t = (-delta) / closing;
         return (t <= limit) ? t : null;
     }
+    // SEAM B — the running impulse of ONE contact event, trapezoided over the
+    // SAME samples the trace panel draws. It is a per-event running total, not a
+    // clock: it is created with the event and destroyed with it, so a rewind
+    // (which clears eng.events) resets it exactly, and a freeze pin adds nothing
+    // because no sample is emitted while dt = 0 (Rule 36 untouched).
+    function mbAccumulateJ(ev, tms, F) {
+        var n = ev.samples.length;
+        if (n > 0) {
+            var prev = ev.samples[n - 1];
+            ev.J += 0.5 * (prev[1] + F) * (tms - prev[0]) / 1000;
+        }
+    }
     // Record (t_ms, F_contact) across the segment just solved. Pure evaluation of
     // the SAME closed form the step used — never a second integration. Samples
     // land on an ABSOLUTE physical-time grid, so the sample set does not depend on
@@ -41244,6 +41294,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var st = mbOscAt(c.k, c.c, mu, d0, u0, tRel);
             var F = c.k * st[0] + c.c * st[1];
             if (F < 0) F = 0;
+            mbAccumulateJ(ev, tms, F);
             ev.samples.push([tms, F]);
             if (F > ev.F_peak) { ev.F_peak = F; ev.F_peak_t_ms = tms; }
         };
@@ -41313,7 +41364,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var c = eng.contact;
         var ev = {
             index: eng.events.length, start_ms: eng.tphys_ms, end_ms: null, duration_ms: null,
-            k: c.k, c: c.c, samples: [], F_peak: 0, F_peak_t_ms: null,
+            k: c.k, c: c.c, samples: [], F_peak: 0, F_peak_t_ms: null, J: 0,
+            lo: c.loId, hi: c.hiId, lane_z: (eng.bodies[c.loId] || {}).laneZ || 0,
             p_before: mbTotalP(eng), ke_before: mbTotalKE(eng)
         };
         eng.events.push(ev);
@@ -41334,7 +41386,10 @@ export const FIELD_3D_RENDERER_CODE = `
         c.blocked_until_clear = true;
         var ev = eng.active_event;
         if (ev) {
-            if (ev.samples.length < MB_TRACE_MAX) ev.samples.push([eng.tphys_ms, 0]);
+            if (ev.samples.length < MB_TRACE_MAX) {
+                mbAccumulateJ(ev, eng.tphys_ms, 0);
+                ev.samples.push([eng.tphys_ms, 0]);
+            }
             ev.end_ms = eng.tphys_ms;
             ev.duration_ms = ev.end_ms - ev.start_ms;
             ev.p_after = mbTotalP(eng);
@@ -41406,12 +41461,33 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (b.s > lim) { b.s = lim; b.v = 0; eng.bound_hits++; }
         }
     }
-    // ── SEAM B hook — the slow-motion dt MULTIPLIER (spec section 5) ───────
-    //   dtPhysics = h / slow_factor while the contact window is open. SEAM A
-    //   returns 1 unconditionally, so the whole engine already runs through the
-    //   one multiplication point that SEAM B has to change: there is no second
-    //   clock to add, no sub-stepping, and dt = 0 still gives dtPhysics = 0.
-    function mbDtScale(eng, mb) { return 1; }
+    // ── SEAM B — the slow-motion dt MULTIPLIER (spec section 5) ────────────
+    //   dtPhysics = h / slow_factor while the contact window is OPEN. This is the
+    //   ONE multiplication point the whole engine already ran through in SEAM A:
+    //   there is no second clock, no sub-stepping, and dt = 0 still gives
+    //   dtPhysics = 0, so a SET_TIME_FREEZE pin is byte-stable by construction
+    //   (Rule 36). The physics is untouched — only how much PHYSICAL time one
+    //   frame buys. Every trajectory, every peak force and every contact duration
+    //   is identical to the un-slowed run when read against physical time, which
+    //   is exactly why the HUD may keep reporting the true numbers while the
+    //   playback crawls (spec section 5, the honesty requirement).
+    function mbSlowFactor(mb) {
+        var sw = mb && mb.slow_window;
+        var f = (sw && typeof sw.slow_factor === "number" && isFinite(sw.slow_factor)) ? sw.slow_factor : 1;
+        return (f > 1) ? f : 1;
+    }
+    // The window is open exactly while a real (non-latched) contact is engaged.
+    // A latch is instantaneous — there is no pulse to slow down — and the
+    // approach runs at true speed so the impact reads as an impact.
+    function mbSlowOpen(eng) {
+        var c = eng && eng.contact;
+        return !!(c && c.engaged && !c.latched);
+    }
+    function mbDtScale(eng, mb) {
+        var f = mbSlowFactor(mb);
+        if (f <= 1) return 1;
+        return mbSlowOpen(eng) ? (1 / f) : 1;
+    }
     // ── The step — event-partitioned, NOT sub-stepped ─────────────────────
     //   One frame is split at the TRUE contact entry / release instants and each
     //   piece is advanced by its own exact map. This is not sub-stepping: the
@@ -41522,6 +41598,10 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.phase_fired = {}; eng.phase_active = {};
         if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
         mbSeedKinematics(eng);
+        // SEAM B: the instruments carry HISTORY (the trace buffer, the running
+        // impulse, the true-peak rows), so a rewind must repaint them from the
+        // cleared engine state or the panel keeps showing the run that was undone.
+        mbApplyInstrumentState(mbStateCfg(), eng);
         mbApplyGlow();
     }
     function mbPresent(eng) {
@@ -41531,6 +41611,431 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         mbFitContactElement();
     }
+    // ══════════════════════════════════════════════════════════════════════
+    // SEAM B — THE INSTRUMENT LAYER
+    //   force arrows · momentum-ledger HUD · the force–time trace panel · the
+    //   slow-motion honesty badge · the contact label.
+    //
+    //   EVERYTHING BELOW ONLY READS THE SEAM A ENGINE STATE. Not one force,
+    //   impulse, peak or duration is re-derived here: the integrator already
+    //   recorded (t_ms, F) samples, F_peak, duration_ms, the running J, the latch
+    //   ledger and per-body s/v/F_contact. An instrument that recomputed physics
+    //   could disagree with the sim it is measuring — so none of them does.
+    //
+    //   Rule 34d ZONE MAP (no two overlays share a region):
+    //     #mb_readout  top-RIGHT   top:52px  (clears the review-chrome button)
+    //     #mb_trace    bottom-LEFT
+    //     #mb_slowmo   top-LEFT    top:52px
+    //     #mb_sliders  bottom-RIGHT  — reserved for SEAM C, not built here
+    //     #caption     top-centre (shared chrome)   #sliders / #formula_overlay
+    //     are both suppressed for this scenario by the applyState hide chains.
+    // ══════════════════════════════════════════════════════════════════════
+
+    // ── Force arrows (spec section 3) ──────────────────────────────────────
+    var MB_DIR_TMP = null;
+    function mbDirX(sign) {
+        if (!MB_DIR_TMP) MB_DIR_TMP = new THREE.Vector3(1, 0, 0);
+        MB_DIR_TMP.set(sign >= 0 ? 1 : -1, 0, 0);
+        return MB_DIR_TMP;
+    }
+    function mbArrowLen(magN) {
+        var L = (typeof magN === "number" && isFinite(magN)) ? Math.abs(magN) * MB_ARROW_SCALE : 0;
+        if (L < MB_ARROW_MIN_LEN) L = MB_ARROW_MIN_LEN;
+        if (L > MB_ARROW_MAX_LEN) L = MB_ARROW_MAX_LEN;
+        return L;
+    }
+    // One arrow + one label per body, built ONCE into the overlay group (never
+    // addToScene: the generic visible_elements matcher runs BEFORE the
+    // per-scenario apply and substring-matches everything in sceneObjects, so an
+    // arrow registered there would be blanked on every state that does not name
+    // it). Registered with mbRegister so mbApplyGlow can reach it.
+    function mbBuildArrows(defs, parent) {
+        for (var i = 0; i < defs.length; i++) {
+            var d = defs[i];
+            var ar = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+                MB_ARROW_MIN_LEN, MB_ARROW_HEX, 0.18, 0.14);
+            ar.userData = {
+                elementType: "mb_arrow", id: "mb_arrow_" + d.id, bodyId: d.id,
+                fixedBody: !!d.fixed, len: 0, dirx: 0, F: 0
+            };
+            ar.visible = false;
+            parent.add(ar); mbRegister(ar);
+
+            var lb = pmCreateAutoLabel("F", MB_ARROW_COLOR, 0.34);
+            lb.userData = {
+                elementType: "mb_arrow_label", id: "mb_arrowlbl_" + d.id,
+                bodyId: d.id, fixedBody: !!d.fixed
+            };
+            lb.visible = false;
+            parent.add(lb); mbRegister(lb);
+        }
+    }
+    // The equal-and-opposite pair, straight off the engine's own F_contact.
+    //   The lo body is pushed toward -s, the hi body toward +s, by the SAME
+    //   magnitude — so the two arrows are equal and opposite BECAUSE the
+    //   integrator applied them that way, never because the drawing says so.
+    //   A fixed: true wall gets its arrow on exactly the same code path: it is a body
+    //   with 1/m = 0, not a special case, and that arrow is the honesty point of
+    //   wall_impact (mbApplyGlow never dims it — see the brightenOnly set there).
+    function mbDriveArrows(eng) {
+        var c = eng.contact;
+        mbEach(function (o, ud) {
+            var isArrow = ud.elementType === "mb_arrow";
+            if (!isArrow && ud.elementType !== "mb_arrow_label") return;
+            var b = ud.bodyId ? eng.bodies[ud.bodyId] : null;
+            var inPair = !!(b && c && (ud.bodyId === c.loId || ud.bodyId === c.hiId));
+            var F = inPair ? Math.abs(b.F_contact || 0) : 0;
+            // A real zero force HIDES the arrow rather than drawing a stub: the
+            // bodies are simply not touching, and "no force" must read as absence.
+            if (!inPair || !(F > MB_ARROW_EPS)) {
+                o.visible = false;
+                if (isArrow) { ud.len = 0; ud.dirx = 0; ud.F = 0; }
+                return;
+            }
+            o.visible = true;
+            var sign = (ud.bodyId === c.loId) ? -1 : 1;
+            var len = mbArrowLen(F);
+            var x = b.s * MB_WORLD_PER_M, y = mbBodyCentreY(b.shape), z = (b.laneZ || 0) * MB_WORLD_PER_M;
+            if (isArrow) {
+                o.position.set(x, y, z);
+                o.setDirection(mbDirX(sign));
+                var headLen = Math.min(0.26, len * 0.38);
+                o.setLength(len, headLen, headLen * 0.80);
+                ud.len = len; ud.dirx = sign; ud.F = F;
+            } else {
+                o.position.set(x + sign * (len + MB_ARROW_LABEL_GAP), y + 0.14, z);
+            }
+        });
+    }
+
+    // ── Momentum-ledger HUD (Rule 33d live values / Rule 34b value-only) ───
+    var MB_RO_LABELS = {
+        v: "v", p: "p", sum_p: "Σp", KE: "KE", sum_KE: "ΣKE", F_contact: "F", J: "J",
+        true_F_peak: "true Fₚₑₐₖ", true_dt: "true Δt"
+    };
+    var MB_RO_UNITS = {
+        v: " m/s", p: " kg·m/s", sum_p: " kg·m/s", KE: " J", sum_KE: " J",
+        F_contact: " N", J: " N·s", true_F_peak: " N", true_dt: " ms"
+    };
+    var MB_RO_PER_BODY = { v: 1, p: 1, KE: 1 };
+    function mbRoId(owner, key) { return "mb_ro_" + (owner || "all") + "_" + key; }
+    function mbRoRow(owner, key) {
+        var id = mbRoId(owner, key);
+        return '<div id="' + id + '">' + (MB_RO_LABELS[key] || key) + ' = ' +
+            '<span id="' + id + '_val">--</span>' + (MB_RO_UNITS[key] || "") + '</div>';
+    }
+    function mbSetRo(owner, key, text) {
+        var el = document.getElementById(mbRoId(owner, key) + "_val");
+        if (el && el.textContent !== text) el.textContent = text;
+    }
+    // The event whose true numbers the honesty rows report: the one in progress,
+    // else the last one recorded.
+    function mbLastEvent(eng) {
+        if (eng.active_event) return eng.active_event;
+        var ev = eng.events || [];
+        return ev.length ? ev[ev.length - 1] : null;
+    }
+    function mbEventElapsedMs(eng, ev) {
+        if (!ev) return null;
+        return (ev.duration_ms != null) ? ev.duration_ms : Math.max(0, eng.tphys_ms - ev.start_ms);
+    }
+    // The impulse delivered so far. A sticks latch delivers its whole impulse in
+    // one instant and records it in eng.latch, so that is where it is read from.
+    function mbImpulseNow(eng) {
+        if (eng.latch && typeof eng.latch.J === "number") return eng.latch.J;
+        var ev = mbLastEvent(eng);
+        return ev ? ev.J : 0;
+    }
+    function mbLiveF(eng) {
+        var c = eng.contact;
+        if (!c) return 0;
+        var L = eng.bodies[c.loId];
+        return L ? Math.abs(L.F_contact || 0) : 0;
+    }
+    // Rebuilt on STATE ENTRY only (never per frame). A row exists only where a
+    // real reading exists: a fixed body has v = p = KE = 0 for all time, so
+    // printing them would be a permanent zero stub, not an instrument.
+    function mbRebuildReadout(mb, eng) {
+        var el = document.getElementById("mb_readout");
+        if (!el) return;
+        var keys = mb.readouts || [];
+        // Spec section 5: while playback is slowed the HUD must keep reporting the
+        // TRUE physical numbers. There is no readouts[] key for them (they are a
+        // property of the contact, not of a body), so a state with a real contact
+        // always gets them. A latch is instantaneous — no pulse, nothing to time.
+        var honesty = !!(eng.contact && !eng.contact.sticks);
+        var i, j, h = "";
+        var per = [], glob = [];
+        for (i = 0; i < keys.length; i++) {
+            if (MB_RO_PER_BODY[keys[i]]) per.push(keys[i]); else glob.push(keys[i]);
+        }
+        if (!keys.length && !honesty) { el.innerHTML = ""; el.style.display = "none"; return; }
+        if (per.length) {
+            var moving = [];
+            for (i = 0; i < eng.order.length; i++) {
+                var b = eng.bodies[eng.order[i]];
+                if (b && !b.fixed) moving.push(b);
+            }
+            for (i = 0; i < moving.length; i++) {
+                if (moving.length > 1) {
+                    h += '<div style="opacity:0.7;margin-top:' + (i > 0 ? "7px" : "0") + '">' +
+                        moving[i].label + '</div>';
+                }
+                for (j = 0; j < per.length; j++) h += mbRoRow(moving[i].id, per[j]);
+            }
+        }
+        if (glob.length) {
+            if (h) h += '<div style="height:1px;background:rgba(255,255,255,0.25);margin:7px 0"></div>';
+            for (i = 0; i < glob.length; i++) h += mbRoRow("", glob[i]);
+        }
+        if (honesty) {
+            if (h) h += '<div style="height:1px;background:rgba(255,255,255,0.25);margin:7px 0"></div>';
+            h += mbRoRow("", "true_F_peak") + mbRoRow("", "true_dt");
+        }
+        el.innerHTML = h;
+        el.style.display = h ? "block" : "none";
+    }
+    function mbDriveReadout(eng) {
+        var el = document.getElementById("mb_readout");
+        if (!el || el.style.display === "none") return;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.fixed) continue;
+            mbSetRo(b.id, "v", mbFx(b.v, 2));
+            mbSetRo(b.id, "p", mbFx(b.m * b.v, 2));
+            mbSetRo(b.id, "KE", mbFx(0.5 * b.m * b.v * b.v, 2));
+        }
+        mbSetRo("", "sum_p", mbFx(mbTotalP(eng), 2));
+        mbSetRo("", "sum_KE", mbFx(mbTotalKE(eng), 2));
+        mbSetRo("", "F_contact", mbFx(mbLiveF(eng), 1));
+        mbSetRo("", "J", mbFx(mbImpulseNow(eng), 2));
+        var ev = mbLastEvent(eng);
+        var dur = mbEventElapsedMs(eng, ev);
+        mbSetRo("", "true_F_peak", ev ? mbFx(ev.F_peak, 2) : "--");
+        mbSetRo("", "true_dt", (dur == null) ? "--" : mbFx(dur, 2));
+    }
+
+    // ── The force–time trace panel (spec section 3) ────────────────────────
+    //   The SHADED AREA IS THE IMPULSE, so the fill is the point, not decoration.
+    //   With compare_with_previous_lane the panel overlays the last TWO recorded
+    //   contact events on ONE shared axis pair, so equal areas under very
+    //   different peaks are directly comparable — the impulse-concept payoff beat.
+    function mbTraceCfg(mb) {
+        var ft = mb && mb.force_trace;
+        if (!ft || !ft.show) return null;
+        return {
+            fill: ft.fill_area !== false,
+            peak: ft.peak_marker !== false,
+            window_ms: (typeof ft.window_ms === "number" && ft.window_ms > 0) ? ft.window_ms : 0,
+            compare: !!ft.compare_with_previous_lane
+        };
+    }
+    function mbTraceEvents(eng, cfg) {
+        var all = eng.events || [];
+        if (!all.length) return [];
+        if (!cfg.compare) return [all[all.length - 1]];
+        return all.slice(Math.max(0, all.length - 2));
+    }
+    // 1 / 2 / 5 x 10^n above x — a stable axis top that does not re-scale on
+    // every sample, so the panel reads as an instrument rather than a rubber band.
+    function mbNiceCeil(x) {
+        if (!(x > 0)) return 1;
+        var mag = Math.pow(10, Math.floor(Math.log(x) / Math.LN10));
+        var steps = [1, 2, 5, 10];
+        for (var i = 0; i < steps.length; i++) {
+            if (x <= steps[i] * mag * (1 + 1e-12)) return steps[i] * mag;
+        }
+        return 10 * mag;
+    }
+    function mbHexA(hex, a) {
+        var n = parseInt(String(hex).replace("#", ""), 16);
+        return "rgba(" + ((n >> 16) & 255) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")";
+    }
+    // The drawn polyline, in PHYSICAL units (ms, N), relative to the event start.
+    // Decimated deterministically (the stride is a pure function of the sample
+    // count) and the peak sample is always kept, so the drawn curve never loses
+    // the one point the peak marker annotates.
+    function mbTracePoints(ev) {
+        var s = ev.samples || [], n = s.length, out = [];
+        if (!n) return out;
+        var stride = Math.max(1, Math.ceil(n / MB_TRACE_MAX_PTS));
+        for (var i = 0; i < n; i += stride) out.push([s[i][0] - ev.start_ms, s[i][1]]);
+        if (ev.F_peak_t_ms != null) {
+            var pk = ev.F_peak_t_ms - ev.start_ms;
+            var have = false;
+            for (var j = 0; j < out.length; j++) if (Math.abs(out[j][0] - pk) < 1e-9) { have = true; break; }
+            if (!have) {
+                out.push([pk, ev.F_peak]);
+                out.sort(function (a, b) { return a[0] - b[0]; });
+            }
+        }
+        var last = s[n - 1];
+        if (out.length && Math.abs(out[out.length - 1][0] - (last[0] - ev.start_ms)) > 1e-9) {
+            out.push([last[0] - ev.start_ms, last[1]]);
+        }
+        return out;
+    }
+    function mbDrawTrace(eng, mb) {
+        var host = document.getElementById("mb_trace");
+        if (!host) return;
+        var cfg = mbTraceCfg(mb);
+        if (!cfg) { host.style.display = "none"; window.PM_mbTraceDrawn = []; return; }
+        var evs = mbTraceEvents(eng, cfg);
+        if (!evs.length) { host.style.display = "none"; window.PM_mbTraceDrawn = []; return; }
+        host.style.display = "block";
+        var cv = document.getElementById("mb_trace_canvas");
+        if (!cv || !cv.getContext) return;
+        var g = cv.getContext("2d");
+        g.clearRect(0, 0, MB_TRACE_W, MB_TRACE_H);
+
+        var i, j, maxDur = 0, maxF = 0, series = [];
+        for (i = 0; i < evs.length; i++) {
+            var d = mbEventElapsedMs(eng, evs[i]) || 0;
+            if (d > maxDur) maxDur = d;
+            if (evs[i].F_peak > maxF) maxF = evs[i].F_peak;
+            series.push(mbTracePoints(evs[i]));
+        }
+        var win = cfg.window_ms || Math.max(20, 10 * Math.ceil(1.25 * maxDur / 10));
+        var ymax = mbNiceCeil(1.15 * maxF);
+        var X = function (tms) { return MB_TR_L + (MB_TR_R - MB_TR_L) * Math.min(1, Math.max(0, tms / win)); };
+        var Y = function (F) { return MB_TR_B - (MB_TR_B - MB_TR_T) * Math.min(1, Math.max(0, F / ymax)); };
+
+        // Axes + Unicode axis labels (Rule 34c — real Unicode on the canvas path).
+        g.strokeStyle = "rgba(255,255,255,0.55)"; g.lineWidth = 1;
+        g.beginPath();
+        g.moveTo(MB_TR_L + 0.5, MB_TR_T); g.lineTo(MB_TR_L + 0.5, MB_TR_B + 0.5); g.lineTo(MB_TR_R, MB_TR_B + 0.5);
+        g.stroke();
+        g.font = MB_TRACE_FONT;
+        g.fillStyle = "rgba(255,255,255,0.88)";
+        g.textAlign = "left"; g.fillText("F (N)", 8, MB_TR_T - 8);
+        g.textAlign = "center"; g.fillText("t (ms)", (MB_TR_L + MB_TR_R) / 2, MB_TR_H - 5);
+        g.textAlign = "right";
+        g.fillText(mbFx(ymax, 0), MB_TR_L - 5, MB_TR_T + 5);
+        g.fillText("0", MB_TR_L - 5, MB_TR_B + 4);
+        g.fillText(mbFx(win, 0), MB_TR_R, MB_TR_B + 15);
+
+        var drawn = [];
+        for (i = 0; i < evs.length; i++) {
+            var ev = evs[i], pts = series[i], col = MB_TRACE_COLORS[i % MB_TRACE_COLORS.length];
+            if (!pts.length) continue;
+            if (cfg.fill) {
+                g.beginPath();
+                g.moveTo(X(pts[0][0]), Y(0));
+                for (j = 0; j < pts.length; j++) g.lineTo(X(pts[j][0]), Y(pts[j][1]));
+                g.lineTo(X(pts[pts.length - 1][0]), Y(0));
+                g.closePath();
+                g.fillStyle = mbHexA(col, 0.32);
+                g.fill();
+            }
+            g.beginPath();
+            for (j = 0; j < pts.length; j++) {
+                if (j === 0) g.moveTo(X(pts[j][0]), Y(pts[j][1])); else g.lineTo(X(pts[j][0]), Y(pts[j][1]));
+            }
+            g.strokeStyle = col; g.lineWidth = 2; g.stroke(); g.lineWidth = 1;
+
+            var pkT = (ev.F_peak_t_ms != null) ? (ev.F_peak_t_ms - ev.start_ms) : 0;
+            if (cfg.peak && ev.F_peak > 0) {
+                var px = X(pkT), py = Y(ev.F_peak);
+                g.setLineDash([3, 3]);
+                g.strokeStyle = mbHexA(col, 0.8);
+                g.beginPath(); g.moveTo(MB_TR_L + 1, py); g.lineTo(px, py); g.stroke();
+                g.setLineDash([]);
+                g.beginPath(); g.arc(px, py, 3, 0, Math.PI * 2); g.fillStyle = col; g.fill();
+                if (!cfg.compare) {
+                    // Single trace: annotate at the peak itself. Flipped to whichever
+                    // side keeps the text inside the plot (Rule 34d, never clipped).
+                    var right = px > (MB_TR_L + MB_TR_R) / 2;
+                    g.textAlign = right ? "right" : "left";
+                    g.fillStyle = col;
+                    g.fillText("Fₚₑₐₖ = " + mbFx(ev.F_peak, 1) + " N",
+                        right ? px - 6 : px + 6, Math.max(MB_TR_T + 11, py - 7));
+                }
+            }
+            if (cfg.fill && !cfg.compare) {
+                // The value OF the shaded area, inside the shaded area.
+                g.textAlign = "center"; g.fillStyle = "rgba(255,255,255,0.96)";
+                g.fillText("J = " + mbFx(ev.J, 2) + " N·s",
+                    X(pkT), Math.max(MB_TR_T + 26, Y(ev.F_peak * 0.30)));
+            }
+            drawn.push({
+                index: ev.index, k: ev.k, color: col, filled: !!cfg.fill,
+                F_peak: ev.F_peak, duration_ms: mbEventElapsedMs(eng, ev), J: ev.J,
+                lane_z: ev.lane_z, points: pts
+            });
+        }
+        // Compare mode: ONE legend block, top-right INSIDE the plot, so two
+        // overlaid pulses never fight for the same annotation space.
+        if (cfg.compare) {
+            // A backing plate, so the legend can never be read through a curve that
+            // happens to peak underneath it (Rule 34d — deterministic, not lucky).
+            var legH = drawn.length * 30 + 6;
+            g.fillStyle = "rgba(0,0,0,0.72)";
+            g.fillRect(MB_TR_R - 4 - 160, MB_TR_T + 1, 160, legH);
+            g.textAlign = "right";
+            for (i = 0; i < drawn.length; i++) {
+                var y0 = MB_TR_T + 13 + i * 30;
+                g.fillStyle = drawn[i].color;
+                g.fillRect(MB_TR_R - 4 - 154, y0 - 9, 10, 3);
+                g.fillText("Fₚₑₐₖ = " + mbFx(drawn[i].F_peak, 1) + " N", MB_TR_R - 4, y0);
+                g.fillStyle = "rgba(255,255,255,0.96)";
+                g.fillText("J = " + mbFx(drawn[i].J, 2) + " N·s", MB_TR_R - 4, y0 + 14);
+            }
+        }
+        // What the panel ACTUALLY drew, in physical units — so a probe can read
+        // the area back out of the picture rather than out of the engine.
+        window.PM_mbTraceDrawn = drawn;
+        window.PM_mbTraceAxes = { window_ms: win, F_max: ymax, compare: !!cfg.compare, fill: !!cfg.fill };
+    }
+
+    // ── The slow-motion honesty badge (spec section 5) ────────────────────
+    function mbDriveBadge(eng, mb) {
+        var el = document.getElementById("mb_slowmo");
+        if (!el) return;
+        var f = mbSlowFactor(mb);
+        var sw = mb && mb.slow_window;
+        var wants = (f > 1) && (!sw || sw.badge !== false) && mbSlowOpen(eng);
+        el.style.display = wants ? "block" : "none";
+        if (!wants) return;
+        var txt = "slow motion ×" + ((Math.round(f) === f) ? String(f) : f.toFixed(1));
+        if (el.textContent !== txt) el.textContent = txt;
+    }
+
+    // ── contact.label — drawn ON the contact element ──────────────────────
+    function mbDriveContactLabel(eng) {
+        var lb = mbFindById("mb_contact_label");
+        if (!lb) return;
+        var c = eng.contact;
+        if (!c || !c.label) { lb.visible = false; return; }
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        if (!L || !H) { lb.visible = false; return; }
+        lb.visible = true;
+        var xLo = (L.s + L.half) * MB_WORLD_PER_M, xHi = (H.s - H.half) * MB_WORLD_PER_M;
+        var yTop = Math.max(mbBodyCentreY(L.shape), mbBodyCentreY(H.shape));
+        lb.position.set((xLo + xHi) / 2, yTop + 0.55, (L.laneZ || 0) * MB_WORLD_PER_M);
+    }
+
+    function mbDriveInstruments(eng, mb) {
+        mbDriveArrows(eng);
+        mbDriveContactLabel(eng);
+        mbDriveReadout(eng);
+        mbDrawTrace(eng, mb);
+        mbDriveBadge(eng, mb);
+    }
+    // STATE ENTRY: rebuild what is structural (HUD rows, the contact label text)
+    // and then drive once, so the entry frame is already correct.
+    function mbApplyInstrumentState(mb, eng) {
+        mbRebuildReadout(mb, eng);
+        var lb = mbFindById("mb_contact_label");
+        if (lb) {
+            var txt = (eng.contact && eng.contact.label) ? eng.contact.label : "";
+            if (lb.userData._mbText !== txt) {
+                lb.userData._mbText = txt;
+                if (txt) updateLabelSpriteText(lb, txt);
+            }
+        }
+        mbDriveInstruments(eng, mb);
+    }
+
     function updateMomentumBenchFrame(dt) {
         var eng = window.PM_mbEngine;
         if (!eng) return;                                  // build ran, no state seeded yet
@@ -41543,12 +42048,18 @@ export const FIELD_3D_RENDERER_CODE = `
         mbRunRepeat(mb, eng);
         mbStep(eng, h * mbDtScale(eng, mb));
         mbPresent(eng);
+        mbDriveInstruments(eng, mb);
     }
 
     // ── Scene skeleton ────────────────────────────────────────────────────
     function buildMomentumBench() {
         mbIndex = [];
         var mb0 = mbStateCfg();
+        // Every dynamically-built panel in this file declares its own local
+        // textColor. The wrapper's own textColor is a TYPESCRIPT-side constant that
+        // only reaches the CSS block, so referencing it from the renderer body is a
+        // ReferenceError that kills the whole build (and with it the frame loop).
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
 
         // 1. The track: a low slab along x. Lanes offset in z.
         var trk = new THREE.Group();
@@ -41616,7 +42127,54 @@ export const FIELD_3D_RENDERER_CODE = `
         addToScene(ce);
         mbRegister(ce);
 
-        // 4. Home pose from the FIRST state so the very first frame is correct
+        // 4. SEAM B — the 3D overlay group: the equal-and-opposite force arrows,
+        //    their labels and the contact label. A GROUP (added to the scene once)
+        //    rather than per-object addToScene, for the nlb reason: the generic
+        //    visible_elements matcher substring-matches everything in sceneObjects
+        //    BEFORE the per-scenario apply runs, so an arrow registered there would
+        //    be blanked on every state that does not name it by hand.
+        var ov = new THREE.Group();
+        ov.userData = { elementType: "mb_overlay", id: "mb_overlay_group" };
+        addToScene(ov);
+        mbRegister(ov);
+        mbBuildArrows(defs, ov);
+
+        var clbl = pmCreateAutoLabel((mb0.contact && mb0.contact.label) || "contact", MB_CONTACT_COLOR, 0.36);
+        clbl.userData = { elementType: "mb_contact_label", id: "mb_contact_label", _mbText: null };
+        clbl.visible = false;
+        ov.add(clbl);
+        mbRegister(clbl);
+
+        // 5. SEAM B — the DOM instrument overlays. Rule 39f: a dynamically-created
+        //    panel with an inline position:fixed is AUTO-DISCOVERED by the generic
+        //    ⚙ teacher-widget engine and by clean mode, so nothing is declared by
+        //    hand here. Rule 34d: three distinct zones, and the bottom-right corner
+        //    is left free for the SEAM C #mb_sliders panel.
+        //      #mb_readout  top-right   (top:52px clears the review-chrome
+        //                                "Full screen" button at top:10px)
+        //      #mb_slowmo   top-left    (top:52px, same chrome clearance)
+        //      #mb_trace    bottom-left
+        var ro = document.createElement("div");
+        ro.id = "mb_readout";
+        ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor +
+            ";padding:11px 15px;border-radius:8px;font:13px/1.7 'Cambria Math','Times New Roman',serif;z-index:10;min-width:158px;display:none;";
+        document.body.appendChild(ro);
+
+        var tp = document.createElement("div");
+        tp.id = "mb_trace";
+        tp.style.cssText = "position:fixed;bottom:12px;left:12px;background:rgba(0,0,0,0.82);padding:6px;" +
+            "border-radius:8px;z-index:10;display:none;line-height:0;";
+        tp.innerHTML = '<canvas id="mb_trace_canvas" width="' + MB_TRACE_W + '" height="' + MB_TRACE_H +
+            '" style="display:block"></canvas>';
+        document.body.appendChild(tp);
+
+        var bg = document.createElement("div");
+        bg.id = "mb_slowmo";
+        bg.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(255,183,77,0.94);color:#1A1A1A;" +
+            "padding:7px 13px;border-radius:8px;font:600 13px/1.3 system-ui,sans-serif;z-index:10;display:none;";
+        document.body.appendChild(bg);
+
+        // 6. Home pose from the FIRST state so the very first frame is correct
         //    (applyMomentumBenchState re-seeds on entry).
         mbApplyTrack(mbTrackLenM(mb0));
     }
@@ -41654,6 +42212,7 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.bodies[d.id] = {
                 id: d.id,
                 m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
+                label: d.label || d.id,        // SEAM B: the HUD group header (Unicode, e.g. m₁)
                 fixed: !!d.fixed,
                 shape: shape,
                 half: mbHalfM(shape),
@@ -41705,6 +42264,7 @@ export const FIELD_3D_RENDERER_CODE = `
         });
 
         mbSeedKinematics(eng);
+        mbApplyInstrumentState(mb, eng);   // SEAM B: HUD rows + contact label + first draw
         mbApplyGlow();
     }
 
@@ -41719,12 +42279,22 @@ export const FIELD_3D_RENDERER_CODE = `
         var glowActive = !!focal || glowTargets.length > 0;
         var glowP = glowEmphT(time);
         mbEach(function (o, ud) {
-            if (ud.elementType === "mb_track_group") return;   // container: its slab gets its own pass
+            // containers: their children each get their own pass
+            if (ud.elementType === "mb_track_group" || ud.elementType === "mb_overlay") return;
             var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
+            // brightenOnly: never dim these, only brighten the focal one.
+            //   SEAM B adds the force arrows and the contact label to this set, and
+            //   that is the HONESTY POINT of wall_impact: the wall is a non-focal
+            //   peer on almost every state, and a dimmed wall arrow would quietly
+            //   say its half of the pair is the lesser half. It is not — it is
+            //   exactly equal, so it draws at exactly full brightness, always.
             var solidApparatus = (ud.elementType === "mb_body" ||
                                   ud.elementType === "mb_body_label" ||
                                   ud.elementType === "mb_track" ||
-                                  ud.elementType === "mb_contact_element");
+                                  ud.elementType === "mb_contact_element" ||
+                                  ud.elementType === "mb_arrow" ||
+                                  ud.elementType === "mb_arrow_label" ||
+                                  ud.elementType === "mb_contact_label");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
         });
     }
@@ -50035,6 +50605,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // concept has NO magnets/poles — the generic "Red = N pole / Blue = S pole"
         // legend is wrong content + canvas clutter. Suppress it.
         if (config.scenario_type === "cyclotron_period") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // momentum_bench is a silent visual (Rule 24): the track + carts/ball/wall +
+        // their Unicode labels + the compressible contact and its label + the
+        // equal-and-opposite force arrows + the value-only momentum HUD + the
+        // force-time trace carry everything. There are no charges and no magnets, so
+        // the generic legend would fall through to the bare "Drag to rotate" hint —
+        // and #legend is fixed bottom-LEFT, which is exactly where the force-trace
+        // panel lives, so leaving it on both clutters the canvas and CLIPS the
+        // trace's own t-axis label (Rule 34d). Suppress it.
+        if (config.scenario_type === "momentum_bench") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // electric_potential_meaning is a silent visual (Rule 24): the red SOURCE +Q,
         // the amber +q test charge, the V-labelled shells, the U/V/W tallies + the
         // bottom-right formula overlay carry everything. The generic point_charge
