@@ -115,6 +115,21 @@ flat ones, both numbers legible, both geometries unmistakable.
 (The pre-fix run `20260731-044255` is superseded — its frames show the steady-state artefact and the
 wrong colours. Do not review from it.)
 
+### The review LINK was stale until now — rebuilt 2026-07-31 18:00
+
+`review-site/equilibrium_of_particles/` had been built at **05:03**, i.e. before E2 (14:47) and E1
+(15:13). The founder opening that link would have re-reviewed the OLD sim — wrong arrow colours and
+the steady-state pose — and it would have looked like the fixes never landed. Rebuilt with
+`npm run build:review -- equilibrium_of_particles`; `frResetTrajectory` (the E1 symbol, which exists
+only at/after `b2ebf9a`) is present 3× in the fresh `sim.html` **and 3× in the copy actually served
+over the wire**, so this is not the stale-cwd 404/stale-server trap.
+
+**Standing lesson for every tray: a renderer fix does not reach the founder's link until
+`build:review` re-runs.** The frames come from THE EYE's own capture path and update immediately;
+the review site does not. Landing an engine fix and handing over the old link is silent.
+
+Live: **http://localhost:8093/equilibrium_of_particles/** (HTTP 200, verified against the fresh build).
+
 ## Two founder-named beats were reframed / cut at design time (architect §0, accepted)
 
 - **"Sweep an angle and watch BOTH other tensions change while the ring holds centre" is physically
