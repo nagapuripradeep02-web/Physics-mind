@@ -373,12 +373,30 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
                 await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
                 await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: revealTargetMs }, hasPanelB);
                 const poll = await pollSimTimeReached(page, 'panel_a', revealTargetMs, {
-                    wallCapMs: revealTargetMs * 2.5 + 4000,
+                    // Cap widened 2026-07-31 alongside making the stall fatal: a
+                    // genuinely-working-but-slow run on a loaded machine must not fail
+                    // spuriously now that a stall aborts. Widening ALONE would have been
+                    // the wrong fix — it only moves the threshold at which a silent
+                    // wrong-phase frame is manufactured.
+                    wallCapMs: revealTargetMs * 3.5 + 8000,
                 });
                 if (!poll.reached) {
-                    warnings.push(
-                        `Sim-time poll stalled for ${stateId}: reached ${Math.round(poll.lastSimMs)}/${revealTargetMs}ms `
-                        + `in ${poll.waitedMs}ms — capturing anyway (frame may under-show late reveals)`,
+                    // FATAL — never capture anyway. A frame that never reached its pin
+                    // photographs an arbitrary phase of the animation, and every
+                    // downstream gate (D5/D6/D7 motion, H2 baseline diff) then reads it
+                    // as evidence. That is how a false PASS is manufactured: on
+                    // equilibrium_of_particles this path certified seven MOTIONLESS
+                    // states 31/31 while never observing a single moving frame.
+                    // A frame that missed its pin is not evidence — fail the run loudly
+                    // so the cause gets fixed, rather than degrading into a warning
+                    // nobody reads.
+                    throw new Error(
+                        `EYE_CAPTURE_ABORTED — sim-time pin never reached for ${stateId}: `
+                        + `PM_simTimeMs stalled at ${Math.round(poll.lastSimMs)}/${revealTargetMs}ms `
+                        + `after ${poll.waitedMs}ms of polling (wall cap ${Math.round(revealTargetMs * 3.5 + 8000)}ms). `
+                        + `The frame would show an arbitrary phase, so it is NOT evidence and was not captured. `
+                        + `Likely causes: the renderer ignores SET_TIME_FREEZE / does not advance PM_simTimeMs to the `
+                        + `pinned instant, or the machine is too loaded to reach it within the cap.`,
                     );
                 }
                 // Compass + other performance.now()-driven easings can't be pinned;
