@@ -9,15 +9,35 @@ worktree: C:\Tutor\physics-mind-lom-f
 branch: feat/lom-f-momentum
 base: master @ 06a3ee0 (clean cut — deliberately NOT feat/lom-a, see the note below)
 review_port: 8092          (8080-8082 / 8087-8091 / 8099 are in use by other worktrees)
-regression_sample: gauss_law_sphere, coulombs_law   (Amendment 5 — disjoint from every other loop)
+regression_sample: electric_field_point_charge, coulombs_law   (REASSIGNED 2026-07-31 — see
+                   "Sentinel swap" below. Do NOT use gauss_law_sphere.)
 
 chapter_map (founder-approved 2026-07-30, in build order):
   1. impulse                    — NCERT ball-and-wall, stiffness as the taught variable
   2. conservation_of_momentum   — two carts, elastic / inelastic / explosion
 
-next: Phase 0 SEAM C — the control/sandbox layer, via `field3d-surgeon`. PAUSED FOR FOUNDER REVIEW
-      (the CHAPTER_LOOP runaway guard was set at 3 engine commits; 2 have landed and there are
-      open design questions listed under "For the founder" below). Still nothing authored.
+next: Phase 0 SEAM C — **AUTHORISED 2026-07-31, review passed**. Via `field3d-surgeon`. Carries
+      (a) `lanes[].contact_override` — two simultaneous contacts feeding the proven two-trace panel;
+      (b) the control/sandbox layer; (c) a MINIMAL formula surface (see below). Then authoring.
+
+      **SEAM C does NOT count against the runaway guard.** Precedent: CHAPTER_LOOP.md §7.1, where
+      `param_ramp` was pre-authorised for block_on_incline as a named engine ADDITION rather than a
+      defect fix. `lanes[]` is in the spec's own §1 config surface — this is spec completion, not
+      engine creep. The guard stays at 2 of 3 for genuine defects.
+
+      WHY IT IS REQUIRED, not optional: without two simultaneous lanes there is no rigid-wall vs
+      padded-wall comparison, and that IS `impulse`'s payoff beat. The harness passing 50/50 was the
+      stated stop condition but it never covered the two-lane case — "harness green" and "engine
+      ready for impulse" were not the same thing. That gap is the ORCHESTRATOR'S spec error, not
+      this tray's.
+
+      FORMULA SURFACE (new, approved): `momentum_bench` currently has none, and spec §3's "the
+      formula overlay carries J = FΔt, once" therefore had nowhere to live. Add a minimal one.
+      Rationale: `impulse`'s claim is an equation chaining three quantities (J = FΔt = Δp); the
+      force-trace shows the AREA but can never NAME it as the momentum change, and Rule 34b's "ONE
+      formula surface per state" presumes the option exists. Value-only HUD stays separate (34b).
+
+      Still nothing authored — authoring begins only after SEAM C.
 in_flight: (none)
 parked: (none)
 engine_commits:
@@ -27,6 +47,35 @@ engine_commits:
            [peter_parker:field3d_surgeon]
 scar_candidates: docs/loop_runs/lom_f/_engine/scar_candidates.sql — 4 rows, NOT applied (3 FIXED
                  in-diff, 1 OPEN: the gauss_law_sphere STATE_6 regression-sample finding)
+
+## Sentinel swap — `gauss_law_sphere` is RETIRED from this tray (founder-approved 2026-07-31)
+
+`gauss_law_sphere` → **`electric_field_point_charge`** (15 committed baseline files, verified present
+in this worktree). `coulombs_law` stays — it was clean at 50/50 with all 16 H2 entries at 0.00%.
+
+**TWO independent reasons, either sufficient:**
+
+1. **It is non-deterministic** (this tray's own finding, proved with a stashed-engine control run):
+   STATE_6 frozen H2 wandered 0.26% / 5.18% / 10.18% across identical runs on stock code, and its
+   baselines are ~90 renderer commits old. A sentinel that swings 10% on unchanged code cannot tell a
+   regression from vintage.
+2. **It collided with `feat/lom-b`**, which claims `gauss_law_sphere` + `gauss_law_solid_sphere` and
+   is being actively worked by another session. That is exactly the Amendment 5 collision the
+   disjoint-pair rule exists to prevent — two loops re-seeding one baseline concurrently. **The
+   orchestrator assigned the colliding pair originally; the error was upstream of this tray.**
+
+**REQUIRED on first use — double-run determinism check.** Before trusting
+`electric_field_point_charge` as a sentinel, run its EYE TWICE back to back on unmodified code and
+confirm the H2 numbers are identical. Do not skip this: the fleet has now produced two flaky
+sentinels (`gauss_law_sphere` here, `electric_potential_meaning` on lom-g) and an unverified
+replacement would repeat the mistake. If it also wanders, do NOT silently pick a third — report it,
+because that would make it a systemic frozen-capture defect rather than two bad concepts.
+
+**NOT this tray's job, escalated to the founder:** the underlying finding is that frozen captures are
+not byte-identical when they must be by construction (`SET_TIME_FREEZE` forces one step). lom-f and
+lom-g hit it independently, on different concepts, **both on STATE_6**. That points at a shared cause
+and it undermines the H2 gate protecting all ~55 baseline-locked concepts. It cannot be fixed here —
+this tray may not run `visual:approve` and may not touch master.
 
 ## Phase 0 progress — the `momentum_bench` engine (2026-07-31)
 
@@ -107,6 +156,35 @@ prohibited here).
    exclusive but names no winner.
 5. **Cart/wall extents are physics, not decoration** (they set where contact begins): cart half-length
    0.4 m, ball r 0.28 m, wall half-thickness 0.3 m. Move these if the apparatus should look different.
+
+### RULINGS on all five (2026-07-31) — take these, do not re-litigate
+
+1. **Formula surface: ADD IT**, minimal, in SEAM C. `impulse`'s claim is an equation chaining three
+   quantities (J = FΔt = Δp); the force-trace shows the AREA but can never NAME it as the momentum
+   change, and Rule 34b's "ONE formula surface per state" presumes the option exists. The value-only
+   HUD stays a separate surface (34b) — do not merge them.
+2. **`lanes[].contact_override`: BUILD IT** in SEAM C. It is required, not optional — without two
+   simultaneous lanes there is no rigid-vs-padded comparison and `impulse` has no payoff beat.
+3. **The spec was WRONG and the tray was right.** `spring_action` / `#nlb_slowmo` / the cart+wall
+   meshes live on `feat/lom-a`, which is UNMERGED; this tray is cut from master where none of it
+   exists. The orchestrator wrote both engine specs after reading the renderer on `feat/lom-a` and
+   then based the trays on master — so several "reuse that code path" instructions were impossible
+   as written. **The `mbDtScale` single-hook implementation and `mb` owning its own meshes are
+   APPROVED as the permanent design.** Do not attempt to converge on lom-a's code later; two
+   independent implementations of a slow-motion hook is the correct outcome when the branches are
+   not merged, and re-basing this tray onto lom-a now would be far more expensive than the
+   duplication.
+4. **`sticks` + `preload_m` authored together: `preload_m` WINS, and the combination must never
+   ship.** Two parts, both required: (a) `npm run validate:concepts` REJECTS a state declaring both —
+   this is a config contradiction and the validator is where contradictions die; (b) if one somehow
+   reaches the renderer, log a console error and honour `preload_m`. Rationale for that precedence:
+   if `sticks` won, a pre-loaded spring would release and instantly latch, producing a completely
+   dead sim — the most confusing possible failure. A silent precedence rule with no validator error
+   is exactly the fails-silently class this chapter keeps paying for; loud beats clever.
+5. **Cart/wall extents: KEEP AS BUILT** (cart half-length 0.4 m, ball r 0.28 m, wall half-thickness
+   0.3 m). Ball radius matches spec §3 exactly. They are physics, so they are now an apparatus
+   constant like nlb's cart size — record them in the JSON contract so authoring can compute contact
+   positions from them rather than guessing, the same way nlb's spring authoring contract works.
 
 ### SEAM C scope (still parse-and-ignore)
 
