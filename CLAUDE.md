@@ -41,13 +41,26 @@ computation; AI writes *configuration only* and is **never in the rendering loop
 route a FAIL back to any upstream member. *(Chemistry concepts substitute `chemistry-author` at
 position #2 — added 2026-07-23; see `docs/CHEMISTRY_ARCHITECTURE.md` + `docs/CHEMISTRY_BUILD_PLAN.md`.)*
 
-**Peter Parker cluster — the engine layer:** `renderer-primitives` (display layer + primitives +
-anchor/zone/scale/choreography engines), `runtime-generation` (generator + serving routes + cache
-sweeps; the only agent that runs `DELETE` on cache tables). **Never call these directly** — they are
-invoked only by a quality-auditor FAIL routing (`[owner: peter_parker:*]`).
+**founder-proxy — the taste gate (graduated 2026-07-31 from the ch7/ch8 chapter-loop trial):**
+plays the founder's per-sim review at three checkpoints — A (design: on every new architect
+skeleton, before physics-author), B (build: after quality-auditor PASS + eye-walker), C (handover:
+seals the concept, diffs claimed fixes). Reject-biased, Opus-pinned, report-only; its APPROVE is
+authoring sign-off ONLY — shipping stays founder-only (Rule 17). Full contract:
+`.agents/founder_proxy/CLAUDE.md`; checkpoint placement: `docs/AUTHORING_PIPELINE.md`.
+
+**Peter Parker cluster — the engine layer:** `field3d-surgeon` (the `field_3d_renderer.ts`
+specialist — region map + scar checklist + Phase-0 scenario builds; graduated 2026-07-31),
+`pcpl-surgeon` (2D display layers: `parametric_renderer.ts` + PCPL primitives +
+`particle_field_renderer.ts` + anchor/zone/scale/choreography engines; renamed 2026-07-31 from
+`renderer-primitives` — the DB owner tag `peter_parker:renderer_primitives` is unchanged and maps
+to it), `runtime-generation` (generator + serving routes + cache sweeps; the only agent that runs
+`DELETE` on cache tables). **Never call these directly** — they are invoked by a quality-auditor
+or founder-proxy FAIL routing (`[owner: peter_parker:*]`), or (field3d-surgeon only) a planned
+Phase-0 chapter-opening build per `docs/AUTHORING_PIPELINE.md` §0.
 
 **feedback-collector** — offline/nightly only; reads the feedback tables, writes proposals to
-`proposal_queue` for founder approval. Never invoked on a live serving path.
+`proposal_queue` for founder approval. Never invoked on a live serving path. **DORMANT
+(2026-07-31)** — shelved until `pilot_feedback`/`simulation_feedback` hold real teacher rows.
 
 **Four live renderers:** `field_3d_renderer.ts` (all current 3D diamonds),
 `particle_field_renderer.ts` (Ch.3 2D — drift/circuits/KCL on the CIRCUIT scenario engine),
