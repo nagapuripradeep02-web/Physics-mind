@@ -43347,6 +43347,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // are doing. Hiding is display:none, so the generic Rule-39f ⚙ engine can
     // force-show a row back into its own slot with .pmWgShow.
     var MB_CTRL_ORDER = ["m1", "m2", "v1", "v2", "k", "c"];
+    // A trusted drag holds the idle sweep off only while it LASTS. This is the
+    // safety release for the input paths that produce no pointerup at all —
+    // keyboard arrows on a focused range, a touch stream that ends outside the
+    // iframe, a pointer capture lost to the parent document. Measured on the
+    // ENGINE's own clock (state-local ms), never on the wall clock, so a paused
+    // or pinned bench cannot time a lease out under a teacher's hand.
+    var MB_SEIZE_IDLE_MS = 1200;
     var MB_CTRL_SPEC = {
         m1: { label: "m₁", unit: " kg", min: 0.5, max: 10, step: 0.1, dp: 1 },
         m2: { label: "m₂", unit: " kg", min: 0.5, max: 10, step: 0.1, dp: 1 },
@@ -43462,18 +43469,42 @@ export const FIELD_3D_RENDERER_CODE = `
     function mbFitOneContactElement(eng, c, i) {
         var el = mbFindById(mbContactElementId(i));
         if (!el) return;
-        if (!c) { el.visible = false; return; }
+        // THE ELEMENT IS A RENDERING OF A FORCE, so it exists only while that
+        // force does. Fitting it between the two facing faces on EVERY frame drew
+        // a solid rod across the whole approach gap — 2.6 m of it on the impulse
+        // bench — that grew and shrank as the ball travelled, i.e. a permanent
+        // mechanical connection asserted over a free flight in which there is no
+        // contact and no force at all. That is the very thing the surrounding
+        // states teach, contradicted by the picture.
+        //   engaged && !latched is exactly the window in which mbStep is solving
+        // a contact segment and c.F is non-zero; a latch is instantaneous (the
+        // two bodies are simply joined from then on) and has no spring to draw.
+        if (!c || !c.engaged || c.latched) { el.visible = false; return; }
         var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
         if (!L || !H) { el.visible = false; return; }
         var xLo = (L.s + L.half) * MB_WORLD_PER_M;
         var xHi = (H.s - H.half) * MB_WORLD_PER_M;
         var span = xHi - xLo;
+        // A compliant element is only ever COMPRESSED here: contact begins at the
+        // natural length and ends when it is recovered, so a drawn length above
+        // L_natural would be a stretch the physics never applied. Clamped rather
+        // than asserted, because a damped release can cross the release instant a
+        // hair late inside one frame.
+        var maxSpan = c.L_nat * MB_WORLD_PER_M;
+        if (span > maxSpan) span = maxSpan;
         // Never a stub and never inverted: once the faces have met the element is
         // fully compressed and hands the picture over to the two bodies themselves.
         if (!(span > 0.01)) { el.visible = false; return; }
         el.visible = true;
         el.scale.set(span, 1, 1);
-        el.position.set((xLo + xHi) / 2, mbBodyCentreY(L.shape), (L.laneZ || 0) * MB_WORLD_PER_M);
+        // Anchored to the face of the FIXED party when there is one, so a clamped
+        // span never floats the element off the wall it belongs to. With both
+        // bodies free (cart–cart) the mid-gap is the only meaningful anchor.
+        // Un-clamped all three expressions are the same point.
+        var xc = (xLo + xHi) / 2;
+        if (H.fixed) xc = xHi - span / 2;
+        else if (L.fixed) xc = xLo + span / 2;
+        el.position.set(xc, mbBodyCentreY(L.shape), (L.laneZ || 0) * MB_WORLD_PER_M);
     }
     function mbFitContactElement() {
         var eng = window.PM_mbEngine;
@@ -43977,10 +44008,12 @@ export const FIELD_3D_RENDERER_CODE = `
     function mbRunRepeat(mb, eng) {
         var rep = (typeof mb.repeat_every_ms === "number" && mb.repeat_every_ms > 0) ? mb.repeat_every_ms : 0;
         if (!rep) return;
-        // Rule 37: the idle sweep keeps the sandbox demonstrating forever, but the
-        // moment a teacher takes hold of a slider it must STOP re-arming under
-        // them. The cycle counter still tracks the clock, so releasing nothing and
-        // re-entering the state resumes cleanly.
+        // Rule 37: the idle sweep keeps the sandbox demonstrating forever, but
+        // while a teacher is actually HOLDING a slider it must not re-arm under
+        // their hand. The hold is a LEASE (mbRefreshSeize) and ends with the
+        // drag; the cycle counter keeps tracking the clock throughout, so on
+        // release the very next cycle boundary re-arms — with the teacher's NEW
+        // value, which is the whole point of the slider.
         if (window.PM_mbSeized) { eng._cycle = Math.floor(eng.t_ms / rep); return; }
         var cyc = Math.floor(eng.t_ms / rep);
         if (eng._cycle == null) { eng._cycle = cyc; return; }
@@ -44465,13 +44498,23 @@ export const FIELD_3D_RENDERER_CODE = `
         if (el.textContent !== txt) el.textContent = txt;
     }
 
-    // ── contact.label — drawn ON the contact element ──────────────────────
-    //   ONE label per contact: in a two-lane state "foam pad" and "steel bumper"
+    // ── contact.label — a NAMEPLATE ON THE APPARATUS ──────────────────────
+    //   ONE label per contact: in a two-lane state "rigid wall" and "padded wall"
     // must each sit over the lane they belong to, or the comparison names the
     // wrong apparatus.
+    //   It names the APPARATUS, so it belongs to the apparatus and must not move.
+    // Anchoring it to the mid-gap (i.e. to the contact element) made the WALL's
+    // own name slide to and fro with the ball on every approach, and in the
+    // two-lane state the two travelling names swept through each other and
+    // through the ball labels. Anchor to the FIXED party of the contact, just
+    // BEHIND its far face, at a constant offset: nothing about a wall's name
+    // depends on where the ball currently is. With no fixed party (cart–cart)
+    // there is no still apparatus to name, so the mid-gap remains.
     function mbContactLabelId(i) {
         return i === 0 ? "mb_contact_label" : ("mb_contact_label_" + i);
     }
+    var MB_CLABEL_GAP = 0.45;             // world units clear of the fixed face
+    var MB_CLABEL_RISE = 0.55;            // world units above the body centre
     function mbDriveContactLabel(eng) {
         var cs = mbContacts(eng);
         for (var i = 0; i < MB_MAX_CONTACTS; i++) {
@@ -44482,9 +44525,19 @@ export const FIELD_3D_RENDERER_CODE = `
             var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
             if (!L || !H) { lb.visible = false; continue; }
             lb.visible = true;
-            var xLo = (L.s + L.half) * MB_WORLD_PER_M, xHi = (H.s - H.half) * MB_WORLD_PER_M;
-            var yTop = Math.max(mbBodyCentreY(L.shape), mbBodyCentreY(H.shape));
-            lb.position.set((xLo + xHi) / 2, yTop + 0.55, (L.laneZ || 0) * MB_WORLD_PER_M);
+            var x, y;
+            if (H.fixed || L.fixed) {
+                // "Behind" = away from the body that comes to meet it, so the
+                // plate never sits between the two and never overlaps the mesh.
+                var A = H.fixed ? H : L, dir = H.fixed ? 1 : -1;
+                x = (A.s + dir * A.half) * MB_WORLD_PER_M + dir * MB_CLABEL_GAP;
+                y = mbBodyCentreY(A.shape) + MB_CLABEL_RISE;
+            } else {
+                var xLo = (L.s + L.half) * MB_WORLD_PER_M, xHi = (H.s - H.half) * MB_WORLD_PER_M;
+                x = (xLo + xHi) / 2;
+                y = Math.max(mbBodyCentreY(L.shape), mbBodyCentreY(H.shape)) + MB_CLABEL_RISE;
+            }
+            lb.position.set(x, y, (L.laneZ || 0) * MB_WORLD_PER_M);
         }
     }
 
@@ -44610,21 +44663,95 @@ export const FIELD_3D_RENDERER_CODE = `
             }, "*");
         } catch (e) {}
     }
+    // ── The trusted-drag seize: A LEASE, NOT A LATCH ──────────────────────
+    //   THE DEFECT this replaces: one trusted touch set window.PM_mbSeized and
+    // NOTHING ever cleared it — no release, no timeout, no re-entry — so the
+    // repeat cycle stopped re-arming for the rest of the session. The ball
+    // finished its last flight, ran to the end of the track, was clamped to
+    // v = 0 and sat dead beside a HUD still printing the previous impact's true
+    // F_peak and Δt. Raising the slider produced no motion at all, which is the
+    // exact opposite of what a sandbox slider is for.
+    //   TWO CONSUMERS, TWO LIFETIMES — and that is why this is two pieces of
+    // state rather than one flag read twice:
+    //     · the REPEAT CYCLE must only be held off while the hand is actually on
+    //       the control (re-arming under a teacher mid-drag is the thing the
+    //       original guard was right about) and must RESUME the moment the drag
+    //       ends, re-arming with the teacher's NEW value on the next cycle
+    //       boundary. That is a LEASE: window.PM_mbSeized.
+    //     · a scripted param_ramp on a parameter the teacher has taken hold of
+    //       must stay overridden for the rest of the state — resuming a sweep
+    //       that fights the teacher's setting every frame would be worse than
+    //       the defect. That is STICKY, and PER PARAMETER: a drag on k says
+    //       nothing about a ramp on v₁. That is eng.ramp_override.
+    //   The lease is derived, never latched: it is recomputed from (pointer
+    // still down?, ms since the last trusted write) once per frame.
+    function mbSeizeStamp(eng) {
+        if (!eng) return;
+        eng.seize_t_ms = (typeof eng.t_ms === "number") ? eng.t_ms : 0;
+    }
+    function mbSeizeRelease(eng) {
+        window.PM_mbSeizeHold = false;
+        if (eng) eng.seize_t_ms = null;
+        window.PM_mbSeized = false;
+    }
+    function mbRefreshSeize(eng) {
+        if (!eng || !eng.trusted_drag_seizes) { window.PM_mbSeized = false; return; }
+        if (window.PM_mbSeizeHold) { window.PM_mbSeized = true; return; }
+        var t0 = eng.seize_t_ms;
+        if (t0 == null) { window.PM_mbSeized = false; return; }
+        window.PM_mbSeized = (eng.t_ms - t0) < MB_SEIZE_IDLE_MS;
+    }
+    // Attached ONCE, on the window, so a drag that ends outside the slider (or
+    // outside the iframe entirely) still releases the lease.
+    function mbWireSeizeRelease() {
+        if (window.PM_mbSeizeWired) return;
+        window.PM_mbSeizeWired = true;
+        var rel = function (e) {
+            if (e && e.isTrusted === false) return;
+            mbSeizeRelease(window.PM_mbEngine);
+        };
+        window.addEventListener("pointerup", rel, true);
+        window.addEventListener("pointercancel", rel, true);
+        window.addEventListener("mouseup", rel, true);
+        window.addEventListener("touchend", rel, true);
+        window.addEventListener("blur", rel, true);
+    }
     function mbWireControl(p) {
         var sl = document.getElementById("mb_" + p + "_slider");
         if (!sl) return;
+        // Rule 37 sandbox seize: a TRUSTED interaction (a real teacher, never a
+        // scripted dispatch and never THE EYE) takes the bench off its idle
+        // sweep for as long as it lasts.
+        sl.addEventListener("pointerdown", function (e) {
+            if (!e || e.isTrusted === false) return;
+            var eng0 = window.PM_mbEngine;
+            if (!eng0 || !eng0.trusted_drag_seizes) return;
+            window.PM_mbSeizeHold = true;
+            mbSeizeStamp(eng0);
+            mbRefreshSeize(eng0);
+        });
         sl.addEventListener("input", function (e) {
             var val = parseFloat(sl.value);
-            // Rule 37 sandbox seize: a TRUSTED drag (a real teacher, never a
-            // scripted dispatch and never THE EYE) takes the bench off its idle
-            // sweep — repeat_every_ms stops re-arming and any param_ramp stops
-            // writing, so the teacher's value stands until the state is left.
             if (e && e.isTrusted) {
                 var eng0 = window.PM_mbEngine;
-                if (eng0 && eng0.trusted_drag_seizes) window.PM_mbSeized = true;
+                if (eng0 && eng0.trusted_drag_seizes) {
+                    // Keeps a keyboard/touch drag (which may never fire a
+                    // pointerdown) alive, and hands this parameter permanently
+                    // to the teacher for the rest of the state.
+                    mbSeizeStamp(eng0);
+                    if (!eng0.ramp_override) eng0.ramp_override = {};
+                    eng0.ramp_override[p] = true;
+                    mbRefreshSeize(eng0);
+                }
             }
             mbSetParam(p, val);
             mbEmitParam(p, val);
+        });
+        // A range control fires a change event when the interaction COMPLETES,
+        // which covers the keyboard path that never produces a pointerup.
+        sl.addEventListener("change", function (e) {
+            if (!e || e.isTrusted === false) return;
+            mbSeizeRelease(window.PM_mbEngine);
         });
     }
     // param_ramp — a CLOSED FORM of the state clock, so a freeze pin and a rewind
@@ -44654,7 +44781,12 @@ export const FIELD_3D_RENDERER_CODE = `
     function mbRunParamRamp(mb, eng) {
         var pr = mb && mb.param_ramp;
         if (!pr || !pr.param || !MB_CTRL_SPEC[pr.param]) return;
-        if (window.PM_mbSeized) return;
+        // STICKY, per parameter, for the rest of the state: once a teacher has
+        // taken manual control of THIS parameter the scripted sweep never writes
+        // it again. Deliberately NOT the repeat cycle's lease — resuming a sweep
+        // after the drag ends would fight the teacher's setting on every frame,
+        // which is worse than the latch this replaces.
+        if (eng.ramp_override && eng.ramp_override[pr.param]) return;
         var t0 = (typeof pr.start_ms === "number" && pr.start_ms > 0) ? pr.start_ms : 0;
         var t1 = (typeof pr.end_ms === "number" && pr.end_ms > t0) ? pr.end_ms : t0;
         var tEval = eng.t_ms;
@@ -44703,6 +44835,10 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.t_ms += h * 1000;
         window.PM_mbTimeMs = eng.t_ms;
         mbRunPhases(mb, eng, eng.t_ms);
+        // The seize is DERIVED once per frame from (pointer still down?, ms since
+        // the last trusted write) — never latched, so it cannot outlive the drag
+        // that created it.
+        mbRefreshSeize(eng);
         // ORDER IS LOAD-BEARING: the ramp writes BEFORE the repeat re-arms.
         // On the frame that crosses t = N·repeat_every_ms both act, and a stepped
         // ramp has already stepped to cycle N's value by the time
@@ -44902,6 +45038,7 @@ export const FIELD_3D_RENDERER_CODE = `
             sp.innerHTML = html;
             document.body.appendChild(sp);
             for (var wi = 0; wi < uni.length; wi++) mbWireControl(uni[wi]);
+            mbWireSeizeRelease();
         }
 
         // 9. Home pose from the FIRST state so the very first frame is correct
@@ -44915,8 +45052,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var bodies = mb.bodies || [];
         // A seize belongs to the state the teacher took hold in; entering a new
         // state hands the bench back to the script (Rule 25d — every state's
-        // visual is self-contained).
+        // visual is self-contained). BOTH pieces are cleared: the live lease and
+        // the sticky per-parameter ramp override (built fresh on eng below).
         window.PM_mbSeized = false;
+        window.PM_mbSeizeHold = false;
 
         var eng = {
             mode: mb.mode || "sandbox",
@@ -44936,7 +45075,10 @@ export const FIELD_3D_RENDERER_CODE = `
             lanes: mb.lanes || [],
             controls_visible: mb.controls_visible || [],
             param_ramp: mb.param_ramp || null,
-            trusted_drag_seizes: !!mb.trusted_drag_seizes
+            trusted_drag_seizes: !!mb.trusted_drag_seizes,
+            // The seize lease + the sticky per-parameter ramp override. Both are
+            // born empty with the state, so neither can survive a state change.
+            seize_t_ms: null, ramp_override: {}
         };
         // param_ramp.mode 'step' quantises the clock to the repeat cycle, so with
         // no repeat_every_ms there is no cycle to quantise to and the ramp is

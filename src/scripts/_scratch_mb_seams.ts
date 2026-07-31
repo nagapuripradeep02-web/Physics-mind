@@ -403,6 +403,10 @@ const SP_S0 = -1.6;                                  // ball start; run-up = 0.6
 // mbContactBusy deferral guard (k acts only DURING contact, so step mode must not
 // disturb it).
 const SK_FROM = 2000, SK_TO = 400, SK_REP = 1200, SK_N = 3, SK_MS = SK_REP * SK_N;
+// 11) THE SEIZE LIFETIME. A long k ramp (so it is still mid-window when the drag
+// lands, and still writing after it) over a short repeat cycle, in a state that
+// authorises the sandbox seize.
+const SD_FROM = 2000, SD_TO = 200, SD_MS = 9000, SD_REP = 1200;
 
 const FIX = benchConfig({
     // S1 elastic two-body
@@ -585,6 +589,19 @@ const FIX = benchConfig({
         controls_visible: ['v1'],
         param_ramp: { param: 'v1', from: SP_FROM, to: SP_TO, start_ms: 0, end_ms: SP_MS },
         repeat_every_ms: SP_REP,
+    }),
+    // S24 — the SEIZE LIFETIME fixture: a scripted k ramp, a repeat cycle and a
+    // sandbox seize all at once. It is the only state in which the two consumers
+    // of a seize can be told apart, because they want DIFFERENT lifetimes: the
+    // repeat cycle must resume when the drag ends, the ramp must stay overridden.
+    STATE_24: benchState('Seize lifetime: ramp + repeat + sandbox', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -1.6, initial_velocity_mps: IMP_V },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: SD_FROM }, {
+        controls_visible: ['k'],
+        param_ramp: { param: 'k', from: SD_FROM, to: SD_TO, start_ms: 0, end_ms: SD_MS },
+        trusted_drag_seizes: true,
+        repeat_every_ms: SD_REP,
     }),
     STATE_23: benchState('k ramped, STEP per cycle', 'wall_impact', [
         { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: SP_S0, initial_velocity_mps: IMP_V },
@@ -1437,7 +1454,10 @@ const STEPBAD = benchConfig({
             '; holds at ' + rampSeen[rampSeen.length - 1][1].toFixed(1) +
             ' after end_ms (from ' + RAMP_K0 + ' → ' + RAMP_K1 + ' over ' + RAMP_MS + ' ms)');
 
-        // ── C7 — Rule 37 sandbox: it never sits dead, and a drag seizes it ────
+        // ── C7 — Rule 37 sandbox: it never sits dead, and a HELD drag seizes it ─
+        //   A seize is a LEASE, not a latch. C7 covers the half that must HOLD:
+        //   while the teacher's pointer is physically down the bench must not
+        //   re-arm under their hand. M3a below covers the half that must END.
         await h.setState('STATE_15');
         let nev = 0;
         for (let i = 0; i < 400; i++) { await h.tick(16.7, 1); nev = (await h.lite()).nev; }
@@ -1451,22 +1471,164 @@ const STEPBAD = benchConfig({
             await h.page.mouse.move(kBox.x + kBox.width * 0.5, kBox.y + kBox.height / 2);
             await h.page.mouse.down();
             await h.page.mouse.move(kBox.x + kBox.width * 0.62, kBox.y + kBox.height / 2, { steps: 4 });
-            await h.page.mouse.up();
         }
         const kAfterDrag = await h.page.evaluate(() => (window as any).PM_mbEngine.contacts[0].k);
         const nevAtSeize = (await h.lite()).nev;
+        // STILL HELD — the pointer has not been released yet.
         for (let i = 0; i < 400; i++) await h.tick(16.7, 1);
         const sandB = await h.snap();
-        chk('C7_sandbox_free_runs_and_a_trusted_drag_seizes_the_sweep',
+        chk('C7_sandbox_free_runs_and_a_held_trusted_drag_seizes_the_sweep',
             nev >= 3 && sandA.seized === false && sandB.seized === true &&
             sandB.events.length === nevAtSeize &&
             sandB.contacts[0].k === kAfterDrag && kAfterDrag !== IMP_K_SOFT,
             'repeat_every_ms=1400: ' + nev + ' contact events recorded over ~6.7 s of free-running clock ' +
             '(the bench keeps demonstrating, Rule 37); seized before drag = ' + sandA.seized +
-            '; after a REAL mouse drag on #mb_k_slider → seized = ' + sandB.seized +
+            '; with a REAL mouse drag on #mb_k_slider STILL HELD DOWN → seized = ' + sandB.seized +
             ', events frozen at ' + nevAtSeize + ' → ' + sandB.events.length +
-            ' over a further ~6.7 s (the idle sweep stopped re-arming), k moved ' + IMP_K_SOFT +
+            ' over a further ~6.7 s (no re-arm under the teacher’s hand), k moved ' + IMP_K_SOFT +
             ' → ' + kAfterDrag + ' N/m and HELD at ' + sandB.contacts[0].k);
+
+        // ── M3a — THE SEIZE IS A LEASE: it RELEASES, and the cycle resumes ────
+        //   THE DEFECT: window.PM_mbSeized was set by the first trusted drag and
+        //   never cleared by anything — no pointerup, no timeout, no state entry
+        //   — so one slider touch permanently stopped mbRunRepeat from re-arming.
+        //   The ball finished its last flight, ran to the end of the track, was
+        //   clamped to v = 0 by mbClampToTrack and sat dead for the rest of the
+        //   session while the HUD kept printing the previous impact's true
+        //   Fₚₑₐₖ / Δt. Founder screen recording, 2026-08-01.
+        await h.page.mouse.up();
+        const relA = await h.snap();
+        const nevAtRelease = relA.events.length;
+        const relFr: RampFrame[] = [];
+        for (let i = 0; i < 500; i++) { await h.tick(16.7, 1); relFr.push(await h.page.evaluate(RAMP_LITE)); }
+        const relB = await h.snap();
+        const tail = relFr.slice(-120);
+        const movingTail = tail.filter(f => Math.abs(f.v) > 0.5).length;
+        const cyclesAfter = (relFr[relFr.length - 1].t_ms - relFr[0].t_ms) / 1400;
+        chk('M3a_a_released_seize_lets_the_repeat_cycle_resume_and_the_bench_move_again',
+            relA.seized === false && relB.seized === false &&
+            relB.events.length >= nevAtRelease + 3 &&
+            movingTail >= 100 && Math.abs(relB.bodies['BALL'].v) > 0 &&
+            relB.bound_hits === 0 && relB.contacts[0].k === kAfterDrag,
+            'pointerup → seized = ' + relA.seized + ' immediately (the lease ends with the drag); over a ' +
+            'further ' + cyclesAfter.toFixed(1) + ' repeat cycles the events resumed ' + nevAtRelease +
+            ' → ' + relB.events.length + ' (pre-fix: frozen forever), |v| > 0.5 m/s on ' + movingTail +
+            '/120 of the last frames (pre-fix: the ball is parked at the track end at v = 0.00), ' +
+            'track-bound clamps = ' + relB.bound_hits + ', and the teacher’s k = ' +
+            relB.contacts[0].k + ' N/m survived every re-arm');
+
+        // ── M3b — the two consumers have DIFFERENT lifetimes ─────────────────
+        //   The repeat cycle RESUMES after the drag (a sandbox that stops
+        //   bouncing is the defect above); the scripted ramp on the parameter the
+        //   teacher took hold of stays overridden for the rest of the state
+        //   (resuming a sweep that fights the teacher's setting every frame would
+        //   be worse). One flag cannot express both, which is why the fix models
+        //   them separately.
+        await h.setState('STATE_24');
+        const sd0: RampFrame[] = [];
+        for (let i = 0; i < 90; i++) { await h.tick(16.7, 1); sd0.push(await h.page.evaluate(RAMP_LITE)); }
+        const kRampMoved = spread(sd0.map(f => f.k));
+        const sdBox = await h.page.locator('#mb_k_slider').boundingBox();
+        if (sdBox) {
+            await h.page.mouse.move(sdBox.x + sdBox.width * 0.5, sdBox.y + sdBox.height / 2);
+            await h.page.mouse.down();
+            await h.page.mouse.move(sdBox.x + sdBox.width * 0.30, sdBox.y + sdBox.height / 2, { steps: 4 });
+            await h.page.mouse.up();
+        }
+        const kSeized = await h.page.evaluate(() => (window as any).PM_mbEngine.contacts[0].k);
+        const sdAt = await h.snap();
+        const sd1: RampFrame[] = [];
+        for (let i = 0; i < 300; i++) { await h.tick(16.7, 1); sd1.push(await h.page.evaluate(RAMP_LITE)); }
+        const sdB = await h.snap();
+        const kHeld = spread(sd1.map(f => f.k));
+        const wantRamp = contRamp(SD_FROM, SD_TO, SD_MS, sd1[sd1.length - 1].t_ms);
+        chk('M3b_the_repeat_cycle_resumes_but_the_ramp_on_a_seized_parameter_stays_overridden',
+            kRampMoved > 100 &&
+            kHeld === 0 && sd1.every(f => f.k === kSeized) && kSeized !== SD_FROM &&
+            Math.abs(wantRamp - kSeized) > 100 &&
+            sdB.events.length >= sdAt.events.length + 3 && sdB.seized === false,
+            'k ramp ' + SD_FROM + ' → ' + SD_TO + ' N/m over ' + SD_MS + ' ms, repeat_every_ms=' + SD_REP +
+            ', trusted_drag_seizes: before the drag the scripted sweep moved k by ' + kRampMoved.toFixed(1) +
+            ' N/m; a REAL drag + RELEASE set k = ' + kSeized + ' N/m and it then held EXACTLY (spread ' +
+            kHeld.toFixed(9) + ' N/m over ' + sd1.length + ' frames) while the un-overridden ramp would have ' +
+            'written ' + wantRamp.toFixed(1) + ' N/m — the ramp stayed overridden. Over the SAME frames the ' +
+            'repeat cycle RESUMED: events ' + sdAt.events.length + ' → ' + sdB.events.length +
+            ', seized = ' + sdB.seized + ' (two consumers, two lifetimes)');
+
+        // ── M1 — the contact element is a FORCE, not a permanent connection ───
+        //   THE DEFECT: mbFitContactElement fitted the element between the two
+        //   facing faces on EVERY frame regardless of c.engaged, so with a
+        //   natural length of 0.4 m and a 2.6 m approach it rendered as a solid
+        //   yellow rod glued between ball and wall for the whole run-up, growing
+        //   and shrinking as the ball travelled — a permanent mechanical link
+        //   asserted over a free flight that carries no contact and no force at
+        //   all, which is precisely what the surrounding states teach.
+        //   Founder screen recording, 2026-08-01.
+        await h.setState('STATE_2');
+        await h.tick(16.7, 4);
+        type CeFrame = { engaged: boolean; visible: boolean; sx: number };
+        const ceFr: CeFrame[] = [];
+        for (let i = 0; i < 44; i++) {
+            await h.tick(16.7, 1);
+            const q = await h.snap();
+            const ce = q.objs['mb_contact_element'];
+            ceFr.push({ engaged: !!q.contacts[0].engaged, visible: !!(ce && ce.visible), sx: ce ? ce.sx : 0 });
+        }
+        const freeFr = ceFr.filter(f => !f.engaged);
+        const engFr = ceFr.filter(f => f.engaged);
+        const drawnFree = freeFr.filter(f => f.visible);
+        const drawnEng = engFr.filter(f => f.visible);
+        const MAX_SPAN = L_NAT_DEFAULT * 0.5;                      // metres → world units
+        const overLong = ceFr.filter(f => f.visible && f.sx > MAX_SPAN + 1e-9);
+        chk('M1_contact_element_is_drawn_only_while_the_contact_is_engaged',
+            freeFr.length > 20 && engFr.length > 3 &&
+            drawnFree.length === 0 && drawnEng.length === engFr.length &&
+            overLong.length === 0 &&
+            spread(drawnEng.map(f => f.sx)) > 0.02,
+            'wall impact, ball from −3 m: ' + ceFr.length + ' frames = ' + freeFr.length +
+            ' with the contact NOT engaged + ' + engFr.length + ' engaged. Element drawn on ' +
+            drawnFree.length + '/' + freeFr.length + ' free-flight frames (must be 0; pre-fix it was ' +
+            'drawn on every one of them, up to ' +
+            (freeFr.length ? Math.max(...freeFr.map(f => f.sx)).toFixed(3) : '--') +
+            ' world units = ' + (freeFr.length ? (Math.max(...freeFr.map(f => f.sx)) / 0.5).toFixed(2) : '--') +
+            ' m of rod) and on ' + drawnEng.length + '/' + engFr.length + ' engaged frames; drawn length ' +
+            'never exceeds natural_length_m — over-long frames = ' + overLong.length +
+            '; it still visibly COMPRESSES while engaged (span spread ' +
+            spread(drawnEng.map(f => f.sx)).toFixed(4) + ' world units)');
+
+        // ── M2 — the contact label NAMES THE APPARATUS, so it must not move ───
+        //   THE DEFECT: the label was anchored to the contact element's midpoint,
+        //   which moves with the ball — so the WALL's own name ("rigid wall" /
+        //   "padded wall") slid to and fro across the apparatus on every cycle,
+        //   and in the two-lane state the two travelling names swept through each
+        //   other and through the ball labels.
+        //   Founder screen recording, 2026-08-01.
+        await h.setState('STATE_10');                              // repeat_every_ms = 1200
+        await h.tick(16.7, 4);
+        const lbFr: Array<{ x: number; y: number; z: number; vis: boolean; bx: number }> = [];
+        for (let i = 0; i < 150; i++) {
+            await h.tick(16.7, 1);
+            const q = await h.snap();
+            const lb = q.objs['mb_contact_label'];
+            lbFr.push({
+                x: lb.x, y: lb.y, z: lb.z, vis: !!lb.visible,
+                bx: q.objs['mb_body_BALL'].x,
+            });
+        }
+        const lbSpread = { x: spread(lbFr.map(f => f.x)), y: spread(lbFr.map(f => f.y)), z: spread(lbFr.map(f => f.z)) };
+        const ballSwing = spread(lbFr.map(f => f.bx));
+        const wallX = (await h.snap()).objs['mb_body_WALL'].x;
+        chk('M2_contact_label_holds_still_at_the_fixed_body_across_a_whole_repeat_cycle',
+            lbFr.every(f => f.vis) &&
+            lbSpread.x === 0 && lbSpread.y === 0 && lbSpread.z === 0 &&
+            ballSwing > 0.5 && lbFr[0].x > wallX,
+            'repeat_every_ms=1200, ' + lbFr.length + ' frames ≈ ' +
+            (150 * 16.7 / 1200).toFixed(1) + ' cycles: the ball swept ' + ballSwing.toFixed(3) +
+            ' world units while the "foam pad" label moved (Δx, Δy, Δz) = (' +
+            lbSpread.x.toFixed(9) + ', ' + lbSpread.y.toFixed(9) + ', ' + lbSpread.z.toFixed(9) +
+            ') — all three must be exactly 0. It sits at x = ' + lbFr[0].x.toFixed(3) +
+            ', behind the fixed wall at x = ' + wallX.toFixed(3) + ', visible on every frame = ' +
+            lbFr.every(f => f.vis));
 
         // ── C8 — the formula surface + Rule 34d with the two new zones ────────
         await h.setState('STATE_12');
