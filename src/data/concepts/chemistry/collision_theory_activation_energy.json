@@ -1,0 +1,1186 @@
+{
+  "concept_id": "collision_theory_activation_energy",
+  "concept_name": "Collision theory and activation energy",
+  "chapter": 3,
+  "section": "3.5",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "source_book": "NCERT Chemistry Class 12 Ch.3 (Chemical Kinetics) §3.5 + Cambridge IGCSE / IB DP Reactivity 2.2 / AP Chem Unit 5 / Cambridge A-level Reaction Kinetics",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "gas_box"
+    ]
+  },
+  "prerequisites": [
+    "kinetic_particle_theory"
+  ],
+  "real_world_anchor": {
+    "primary": "Fuel vapour and air sit mixed in a tank or a lighter, their molecules colliding billions of times a second, for months — and nothing happens. One spark, and the same mixture burns instantly. The gap between colliding and reacting is the activation energy: almost every collision fails to clear it, until the spark supplies the rest.",
+    "secondary": "The same food keeps for days on a counter and for weeks in a fridge. Cooling the food from room temperature down to a fridge's temperature cuts the fraction of energetic collisions to a fifth — spoilage reactions starved of the hits that carry enough energy.",
+    "why_it_matters": "Turns the vague idea of a reaction 'being ready' into a measurable fraction of collisions crossing a barrier — the mechanism STATE_2 through STATE_8 build up, piece by piece, and the mechanism `rate_of_reaction` (a separate concept) leans on without re-deriving it."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_5"
+    },
+    "temperature": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "concentration_pressure": {
+      "start": "STATE_5",
+      "end": "STATE_5"
+    },
+    "catalyst": {
+      "start": "STATE_6",
+      "end": "STATE_6"
+    },
+    "effective_collisions": {
+      "start": "STATE_7",
+      "end": "STATE_7"
+    },
+    "arrhenius": {
+      "start": "STATE_8",
+      "end": "STATE_8"
+    },
+    "exploration": {
+      "start": "STATE_9",
+      "end": "STATE_9"
+    },
+    "definition": {
+      "start": "STATE_1",
+      "end": "STATE_2"
+    }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "T": {
+        "name": "temperature of the gas",
+        "unit": "K",
+        "min": 200,
+        "max": 800,
+        "default": 300,
+        "step": 10,
+        "role": "taught_variable",
+        "note": "Floor 200 K (measured: box still alive, 152 collisions/s, fraction 0.67%) — the exact floor the fridge beat (S9, and S4's cooling drill-down) needs. Ceiling 800 K matches S8's Arrhenius ramp top."
+      },
+      "Ea": {
+        "name": "activation-energy slider, in multiples of kT at ea_ref_T",
+        "unit": "",
+        "min": 1,
+        "max": 5,
+        "default": 3,
+        "step": 0.5,
+        "role": "taught_variable",
+        "note": "S9 ONLY, userTouched-guarded. Ea=1 gives 30.17% clearing (barely a barrier), Ea=5 gives 0.42% (almost impenetrable). Also drives reaction.activation_fwd_kT when touched (engine coupling) — accepted as harmless per the chemistry block."
+      },
+      "V": {
+        "name": "box volume as a fraction of full width (piston)",
+        "unit": "",
+        "min": 0.4,
+        "max": 1.0,
+        "default": 1.0,
+        "step": 0.05,
+        "role": "taught_variable",
+        "note": "S5 + S9 only. Measured: piston 1.00->0.40 gives collisions/s x2.79 at a flat fraction (3.95%->3.32%). No N/concentration slider anywhere — injection measured x1.00 effect with reaction off (DQ-3)."
+      },
+      "activation_energy_kT": {
+        "name": "the collision-theory barrier the counter/histogram test against, per state",
+        "unit": "",
+        "role": "taught_variable",
+        "note": "3 kT on every state that counts, and 0 on STATE_1 — with no barrier set the renderer draws no threshold, no shaded tail and no clearing flash, and the counter omits its clear-Eₐ clause, which is how STATE_1 stays silent about Eₐ until it has defined it. STATE_1's hill therefore takes its height from reaction.activation_fwd_kT (equal to 3 by design); retune one without the other and the two would diverge."
+      },
+      "ea_ref_T": {
+        "name": "reference temperature the barrier is pinned to",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "temperature_K": {
+        "name": "opening temperature of the box",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "speed_scale": {
+        "name": "velocity calibration, sigma = speed_scale * sqrt(T/m)",
+        "unit": "px/tick/K^0.5",
+        "constant": 0.105,
+        "role": "calibration"
+      },
+      "hist_ref_T": {
+        "name": "pins the histogram's speed axis so the curve moves against a fixed frame",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "N": {
+        "name": "total particle count. 180 everywhere EXCEPT STATE_8, which authors 720 — a DECLARED Rule 32d density exception, the same shape as le_chateliers_principle STATE_7. Measured: at 180 the fitted Arrhenius slope missed the law by 21% at the shipped seed; at 720 it is 2.8%. Crowding is taught via V (the piston), never via N. A reaction-off state must author N equal to the sum of its species_counts or the array is truncated to the first species (validate:chemistry enforces this).",
+        "unit": "particles",
+        "constant": 180,
+        "role": "calibration",
+        "note": "A:90, B:90, AB:0 at home pose. Crowding is taught via V (piston), not N."
+      },
+      "m_A": {
+        "name": "mass of reactant A",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_B": {
+        "name": "mass of reactant B",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_AB": {
+        "name": "mass of the bonded pair — derived, never authored",
+        "unit": "engine mass units",
+        "derived": "m_A + m_B",
+        "role": "species"
+      },
+      "r_A": {
+        "name": "disc radius of A",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_B": {
+        "name": "disc radius of B",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_AB": {
+        "name": "disc radius of the bonded pair — derived, never authored",
+        "unit": "px",
+        "derived": "sqrt(r_A^2 + r_B^2)",
+        "role": "species"
+      },
+      "activation_fwd_kT": {
+        "name": "the reaction layer's own forward barrier (distinct from activation_energy_kT, the counter's teaching barrier)",
+        "unit": "",
+        "role": "reaction_constant",
+        "note": "S2,S3,S4,S5,S6,S8,S9 suppress bonding via a per-state reaction.enabled:false override (no per-state config gate exists otherwise). S7 alone sets activation_fwd_kT:3, pinned equal to activation_energy_kT so both barriers on screen are the same number."
+      },
+      "bond_energy_kT": {
+        "name": "energy released on bonding (exothermic forward)",
+        "unit": "",
+        "constant": 2.1,
+        "role": "reaction_constant",
+        "note": "Reused verbatim from the shipped dynamic_equilibrium/le_chateliers_principle constant — not retuned. Never narrated in this concept."
+      },
+      "reverse_attempt_per_s": {
+        "name": "Arrhenius pre-exponential factor for a bonded pair's spontaneous decay",
+        "unit": "s^-1",
+        "constant": 8,
+        "role": "reaction_constant",
+        "note": "Reused verbatim. The engine's reverse reaction runs in S7 but is never mentioned."
+      },
+      "n_A": {
+        "name": "live population of A",
+        "unit": "particles",
+        "min": 0,
+        "max": 180,
+        "role": "live_readout"
+      },
+      "n_B": {
+        "name": "live population of B",
+        "unit": "particles",
+        "min": 0,
+        "max": 180,
+        "role": "live_readout"
+      },
+      "n_AB": {
+        "name": "live population of bonded pairs (S7 only)",
+        "unit": "particles",
+        "min": 0,
+        "max": 90,
+        "role": "live_readout"
+      },
+      "collisions_per_s": {
+        "name": "total pair-collision rate",
+        "unit": "s^-1",
+        "role": "live_readout",
+        "note": "NEVER narrated as an absolute value — viewport span x5.29 (measured)."
+      },
+      "clear_per_s": {
+        "name": "rate of collisions clearing Ea",
+        "unit": "s^-1",
+        "role": "live_readout",
+        "note": "NEVER narrated as an absolute value — same viewport instability as collisions_per_s."
+      },
+      "cleared_fraction_pct": {
+        "name": "percentage of collisions clearing Ea — the one number safe to speak",
+        "unit": "%",
+        "role": "live_readout",
+        "note": "Viewport span only x1.05 (3.22-3.39%, measured)."
+      },
+      "react_per_s": {
+        "name": "forward reaction rate (S7 only, engine-fixed label 'fwd')",
+        "unit": "s^-1",
+        "role": "live_readout"
+      },
+      "react_clear_ratio_pct": {
+        "name": "the share of Ea-clearing collisions that actually react. NOT printed as its own chip — it is READ by comparing the two instruments, which is why both now run the same 5 s window and the counter prints one decimal (an integer-rounded 1/s beside a 1.4/s reaction rate implied 140%). Measured on screen: median 38-50% across three viewports",
+        "unit": "%",
+        "role": "live_readout",
+        "note": "Measured 37.84% (band 34.86-40.00%) — narrate as 'about a third', never the two raw rates."
+      },
+      "arrhenius_slope": {
+        "name": "least-squares slope of ln(cleared fraction) vs 1/T (S8)",
+        "unit": "K",
+        "role": "live_readout",
+        "note": "Measured -885 (R^2 0.9535) at a 4 s window / 8 points; nominal -Ea/k = -900 K."
+      },
+      "arrhenius_r2": {
+        "name": "goodness of fit of the S8 line",
+        "unit": "",
+        "role": "live_readout"
+      }
+    },
+    "formulas": {
+      "collision_theory": "rate ∝ (collisions/s) × (fraction of collisions clearing Eₐ)",
+      "arrhenius_line": "ln f = c − Eₐ/kT (c explicit; never printed as f = e^(−Eₐ/RT))",
+      "reaction_ledger": "A + B → AB (S6 only — abstract model species, no state symbols)"
+    },
+    "constraints": [
+      "A-units and B-units are conserved: n_A + n_AB and n_B + n_AB are each constant across a state's life except the S7 reaction event, which moves a unit from free to bound, never creates or destroys one; no inject_cue anywhere disturbs that conservation",
+      "m_AB = m_A + m_B and r_AB = sqrt(r_A^2 + r_B^2), forced at init — mass and disc area are both conserved by the one reaction event this concept shows",
+      "Ea_rev = Ea_fwd + E_bond is derived and must never be authored; only activation_fwd_kT and bond_energy_kT are ever set directly, and only in S7",
+      "activation_energy_kT (the taught collision-theory barrier) is pinned to ea_ref_T = 300 K, never to the live T — if it tracked T, heating the box would leave the fraction exactly where it started and S4's primary aha would be undemonstrable",
+      "gas.reaction is a config-level switch with a per-state enabled override (reaction.enabled): every state except S7 authors reaction.enabled:false to keep bonding off; S7 alone authors activation_fwd_kT:3 (pinned equal to activation_energy_kT); every non-S7 state also authors species_counts.AB:0 explicitly (gasInit leftover-budget trap)",
+      "the Ea slider drives BOTH the counter threshold and the reaction's forward barrier, so the two barriers on screen stay one number; STATE_9 authors reaction.enabled false, so dragging Ea there changes the cleared fraction and can never start bonding (verified: gasRxOn() returns false, and check:gas-reaction pins AB at exactly 0 with the reaction off)",
+      "no absolute collisions/s or clear/s value may be narrated: measured across four viewports the collision rate spans x5.29 (54-283/s) while the cleared percentage spans only x1.05 (3.22-3.39%) — percentage, ratios and directions are the only safe magnitudes",
+      "the histogram's shaded tail (single-particle speed > sqrt(2*Ea/m), measured 4.98% of particles) and the collision counter's percentage (3.30% of pair collisions clearing Ea along the line of centres) are different questions and must never be narrated as the same number",
+      "this is a true 2D gas (2D Rayleigh speed distribution), not the 3D NCERT Maxwell-Boltzmann form — no distribution formula, 2D or 3D, is ever printed on canvas",
+      "the Arrhenius line (S8) is a measurement, never an evaluation of e^(-Ea/kT): the slope may be narrated as close to the barrier's true value, but f = e^(-Ea/RT) must never appear as a value claim and no fixed universal prefactor may be asserted",
+      "ea_at_cue's ramp_ms is optional: S3 fires with no ramp_ms (an instant appearance from a zero barrier — nothing to slide down from); S6 fires with ramp_ms 3000 (an existing barrier sliding to a new value)",
+      "'react' is first spoken in S7, never before — S2-S6 and S8-S9 narrate only 'clear the barrier', matching the reaction layer being disabled in every state before S7",
+      "the word 'orientation' is never used anywhere in this concept — S7 teaches the partner requirement (an A must meet a B) as its own honest, separate chemistry, never a stand-in for orientation/steric geometry"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 8,
+    "max_labels_per_state": 6,
+    "max_words_per_tts_sentence": 40
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Heating multiplies the fraction that clears the barrier, not how often collisions happen.",
+    "visual_confirmation": "the shaded tail on the histogram swells and the chip's percentage climbs from 3.30% to 14.7% while the collision count only inches up"
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Why nothing reacts yet",
+        "duration": 22,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "focal_primitive_id": "energy_hill",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the sealed container — the apparatus that persists unchanged through every state (Rule 32d home pose)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "ninety blue A discs and ninety pink B discs colliding nonstop, and not one of them reacting"
+          },
+          {
+            "type": "graph",
+            "id": "energy_hill",
+            "role": "the reaction profile: reactants, a hill, products below. Its height is drawn from the same barrier the collision test uses — the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "ea_arrow",
+            "role": "Eₐ measured from the reactant level to the peak, with its live value in kT"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Activation energy is the energy the reaction gives out.",
+            "visual_counter": "the Eₐ arrow measures UPWARD from the reactants to the peak — a cost paid on the way in — while the products settle on a separate lower line, which is the energy released",
+            "one_line_fix": "Eₐ is the climb before the reaction, not the drop after it."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "These gases collide nonstop, yet this mixture can sit for years without reacting."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Old bonds must break before new ones form, and breaking them costs energy."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Every pair faces a hill on the way in: its height is the activation energy, Eₐ."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "Products end up lower, so energy comes out, but only after the climb."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Almost none of them count",
+        "duration": 20,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "collision_counter",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the sealed container — the apparatus that persists unchanged in every state (Rule 32d home pose)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "ninety blue A discs and ninety pink B discs, colliding constantly at room temperature"
+          },
+          {
+            "type": "event_flash",
+            "id": "clear_flash",
+            "role": "a bright flash here and there, marking the rare collision energetic enough to clear the barrier"
+          },
+          {
+            "type": "readout",
+            "id": "collision_counter",
+            "role": "collisions/s alongside the percentage clearing Eₐ — the focal (Rule 32e); the chip's own 3.3% carries the 'rare' framing"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Every collision between reactant molecules produces a reaction.",
+            "visual_counter": "the box is full of constant collisions, then the chip's second number lands: barely three in a hundred carry enough energy to clear the barrier",
+            "one_line_fix": "Colliding is common; colliding hard enough is rare."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "This box holds ninety blue A discs and ninety pink B discs, colliding nonstop at room temperature."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Collisions never stop, but a bright clearing flash is rare against all that traffic."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The counter shows why: only a handful of collisions in every hundred carry enough energy to clear the barrier."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "A barrier sits on the speeds",
+        "duration": 22,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "speed_histogram",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the same mixture, its speeds already spread out from collisions — the source of the histogram"
+          },
+          {
+            "type": "graph",
+            "id": "speed_histogram",
+            "role": "the live speed distribution assembling from the moving particles, then the yellow threshold line and shaded tail appearing at the cue — the focal (Rule 32e)"
+          },
+          {
+            "type": "label",
+            "id": "ea_label",
+            "role": "the Eₐ label naming the threshold once it appears"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "This is the same box, its particle speeds spread across a range — some slow, some fast, most in between."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Now a barrier appears: activation energy E sub a, a bar every colliding pair must clear on the way in.",
+              "scenario_cue": "show_barrier"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Only the fast tail of the distribution, shaded here, sits above that line."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Heat: the tail explodes",
+        "duration": 26,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "fraction_vs_frequency",
+          "exponential_tail_sensitivity",
+          "cooling_slows_reactions"
+        ],
+        "focal_primitive_id": "collision_counter",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, particles blurring faster as the box heats"
+          },
+          {
+            "type": "gauge",
+            "id": "gas_thermometer",
+            "role": "the thermometer climbing from three hundred toward six hundred kelvin — the cause, moving first (Rule 32a)"
+          },
+          {
+            "type": "graph",
+            "id": "speed_histogram",
+            "role": "the curve sliding right against a pinned axis, the shaded tail swelling"
+          },
+          {
+            "type": "readout",
+            "id": "collision_counter",
+            "role": "the percentage climbing 3.30% to 14.7% while collisions barely rise — the focal, the primary aha (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate ∝ (collisions/s) × (fraction clearing Eₐ) — earned here, persists in later states"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Heating speeds reactions by making molecules collide more often.",
+            "visual_counter": "the collision count barely rises while the clearing percentage soars over the same seconds",
+            "one_line_fix": "Heat's real gift is the energy of each hit, not the number of hits."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "This box sits at three hundred kelvin, only a few collisions in a hundred clearing the barrier."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Now the thermometer climbs toward six hundred kelvin.",
+              "scenario_cue": "heat"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Collisions rise only modestly, but the clearing percentage more than triples."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "The fraction moved far more than the collision count did: the rate lives in that fraction."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Crowded: more hits, same odds",
+        "duration": 20,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "collision_counter",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the sealed container, opening at full width"
+          },
+          {
+            "type": "wall",
+            "id": "piston_wall",
+            "role": "the movable wall sliding from full width to less than half before anything else changes (Rule 32a)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture crowding together as the wall slides in, temperature fixed throughout"
+          },
+          {
+            "type": "readout",
+            "id": "collision_counter",
+            "role": "collisions climbing sharply while the clearing percentage barely moves — the focal (Rule 32e); the declared contrast pair with STATE_3"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate ∝ (collisions/s) × (fraction clearing Eₐ)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "This box sits at three hundred kelvin, the piston open all the way."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now the wall slides in, squeezing the same molecules into less room.",
+              "scenario_cue": "squeeze"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Collisions climb steeply, but the percentage clearing the barrier barely changes."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "Same molecules, less room: more hits, but the odds of clearing the barrier stay the same."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Barrier drops, same speeds",
+        "duration": 22,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "catalyst_alternate_pathway",
+          "catalyst_not_heat",
+          "catalytic_converter_case"
+        ],
+        "focal_primitive_id": "speed_histogram",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, its speeds untouched through the whole state"
+          },
+          {
+            "type": "graph",
+            "id": "speed_histogram",
+            "role": "the curve holding its exact pose while the yellow threshold line alone slides down — the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "collision_counter",
+            "role": "the clearing percentage climbing from 3.13% to 18.06% as the line moves, with no change in the curve above it"
+          },
+          {
+            "type": "graph",
+            "id": "energy_hill",
+            "role": "the reaction profile — its peak IS the reaction's forward barrier and its product level IS the bond energy, so it moves only when the barrier really does"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate ∝ (collisions/s) × (fraction clearing Eₐ)"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "A catalyst works by making molecules move faster.",
+            "visual_counter": "the speed histogram holds its exact pose through the whole state while the barrier line alone slides down and the clearing percentage jumps",
+            "one_line_fix": "A catalyst lowers the bar; it never touches the molecules."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "This box sits at three hundred kelvin, the same speed spread as before."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Now a catalyst lowers the barrier: the yellow line slides down.",
+              "scenario_cue": "catalyst"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The curve above it never moves, same speeds, yet the clearing percentage jumps about five times over."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "A catalytic converter uses the same trick: lower the bar, not the heat."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Clearing isn't enough",
+        "duration": 20,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "reaction_readout",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, live from open, reaction layer switched on for the first time this concept"
+          },
+          {
+            "type": "event_flash",
+            "id": "bounce_flash",
+            "role": "an A-A or B-B pair clearing the barrier, flashing, then bouncing apart unreacted"
+          },
+          {
+            "type": "event_flash",
+            "id": "bond_flash",
+            "role": "an A-B pair clearing the barrier, flashing, then bonding into a joined pair"
+          },
+          {
+            "type": "readout",
+            "id": "collision_counter",
+            "role": "collisions/s and percentage clearing Eₐ, unchanged from earlier states"
+          },
+          {
+            "type": "readout",
+            "id": "reaction_readout",
+            "role": "the new reaction chip: of the collisions that clear the barrier, only about a third actually react — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "reaction_equation",
+            "role": "A + B → AB"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now reactions switch on: A plus B makes a joined pair, AB."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "An A-A or B-B pair can clear the barrier and still bounce apart; only an A meeting a B bonds."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "The reaction chip shows it: only some of the collisions that clear the barrier actually make anything."
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "One straight line",
+        "duration": 34,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "arrhenius_plot",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "gauge",
+            "id": "gas_thermometer",
+            "role": "the thermometer ramping from two hundred fifty toward eight hundred kelvin, continuously"
+          },
+          {
+            "type": "readout",
+            "id": "collision_counter",
+            "role": "the clearing percentage, sampled into each Arrhenius point as the ramp proceeds"
+          },
+          {
+            "type": "graph",
+            "id": "arrhenius_plot",
+            "role": "measured points of ln(clearing fraction) against one over temperature, accumulating onto a near-straight line — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "arrhenius_formula",
+            "role": "ln f = c − Eₐ/kT (with c explicit — never printed as f = e^(−Eₐ/RT))"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the denser box this state runs (720 discs) — the declared Rule 32d density exception that makes the fitted slope trustworthy"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "This box opens cool, at two hundred fifty kelvin."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Now the temperature ramps steadily up toward eight hundred kelvin.",
+              "scenario_cue": "ramp"
+            },
+            {
+              "id": "s8_3",
+              "text_en": "At each step it plots the log of f, the clearing fraction, against one over temperature."
+            },
+            {
+              "id": "s8_4",
+              "text_en": "Eight points fall on one line, its slope minus Eₐ over Boltzmann's constant k."
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "All yours — push it",
+        "duration": 14,
+        "depth_ring": "core",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "gas_box",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the live sandbox, opening from the config default and running continuously (Rule 37) — the focal (Rule 32e)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture responding live to every drag"
+          },
+          {
+            "type": "graph",
+            "id": "speed_histogram",
+            "role": "the distribution and threshold line, live against every T and Ea drag"
+          },
+          {
+            "type": "readout",
+            "id": "collision_counter",
+            "role": "collisions/s and the clearing percentage, live — core-ring content only, no reaction readout, no Arrhenius plot (Rule 38b)"
+          },
+          {
+            "type": "slider_panel",
+            "id": "controls",
+            "role": "temperature, activation energy, and volume — all three live at once (Rule 31 explore-last)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate ∝ (collisions/s) × (fraction clearing Eₐ) — core-ring content only"
+          },
+          {
+            "type": "graph",
+            "id": "energy_hill",
+            "role": "the reaction profile — its peak IS the reaction's forward barrier and its product level IS the bond energy, so it moves only when the barrier really does — here the Eₐ slider drags it live"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Your turn. Heat it, cool it, raise or lower the barrier, squeeze the box."
+            },
+            {
+              "id": "s9_2",
+              "text_en": "Try the fridge case: cool it down toward two hundred kelvin and watch the clearing percentage almost vanish."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same physics, a different world (a matchbox that won't strike itself)",
+      "physical_world": "A matchhead sits coated in fuel and oxidiser, both already touching, for years on a shelf — and nothing happens. One strike supplies the missing energy in an instant, and the same mixture ignites. The same gap between colliding and reacting, staged with friction instead of a spark."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 12 Chemistry — Ch.3 Chemical Kinetics, §3.5 (collision theory / activation energy / Arrhenius equation)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Reactivity 2.2 — What factors affect the rate of a reaction?",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Unit 5 — Kinetics (collision theory, Arrhenius equation)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge International A Level Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Reaction Kinetics — collision theory, activation energy, Arrhenius equation",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "Rates of reaction — qualitative collision theory only; STATE_8's Arrhenius plot hidden by the preset",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "particle_field_config": {
+    "scenario_type": "gas_box",
+    "design": {
+      "background": "#0A0A1A",
+      "phys_seed": 135791357
+    },
+    "canvas": {
+      "width": 900,
+      "height": 560
+    },
+    "gas": {
+      "count": 180,
+      "temperature_K": 300,
+      "ea_ref_T": 300,
+      "speed_scale": 0.105,
+      "hist_ref_T": 300,
+      "activation_energy_kT": 3,
+      "species": [
+        {
+          "id": "A",
+          "mass": 1,
+          "radius": 5,
+          "color": "#60A5FA",
+          "label": "A",
+          "count": 90
+        },
+        {
+          "id": "B",
+          "mass": 1,
+          "radius": 5,
+          "color": "#F472B6",
+          "label": "B",
+          "count": 90
+        },
+        {
+          "id": "AB",
+          "mass": 2,
+          "radius": 7.0710678,
+          "color": "#C084FC",
+          "label": "AB",
+          "count": 0
+        }
+      ],
+      "reaction": {
+        "enabled": true,
+        "reactants": [
+          "A",
+          "B"
+        ],
+        "product": "AB",
+        "activation_fwd_kT": 3,
+        "bond_energy_kT": 2.1,
+        "reverse_attempt_per_s": 8
+      }
+    },
+    "slider_controls": {
+      "T": {
+        "label": "Temperature",
+        "min": 200,
+        "max": 800,
+        "step": 10,
+        "default": 300,
+        "unit": "K"
+      },
+      "Ea": {
+        "label": "Activation energy",
+        "min": 1,
+        "max": 5,
+        "step": 0.5,
+        "default": 3,
+        "unit": "kT"
+      },
+      "V": {
+        "label": "Volume",
+        "min": 0.4,
+        "max": 1.0,
+        "step": 0.05,
+        "default": 1.0
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "STATE_1",
+        "caption": "Why nothing reacts yet",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "show_reaction_profile": true,
+        "continuous_motion": true,
+        "eye_capture_ms": 22000
+      },
+      "STATE_2": {
+        "label": "STATE_2",
+        "caption": "Collisions everywhere, almost none",
+        "T": 300,
+        "activation_energy_kT": 3,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "show_collision_counter": true,
+        "eye_capture_ms": 20000,
+        "counter_window_ms": 5000
+      },
+      "STATE_3": {
+        "label": "STATE_3",
+        "caption": "The barrier on the distribution",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "cues": [
+          {
+            "id": "show_barrier",
+            "at_ms": 9000
+          }
+        ],
+        "ea_at_cue": {
+          "cue": "show_barrier",
+          "activation_energy_kT": 3
+        },
+        "show_speed_histogram": true,
+        "hist_species": 0,
+        "hist_speed_marks": false,
+        "eye_capture_ms": 22000
+      },
+      "STATE_4": {
+        "label": "STATE_4",
+        "caption": "Heat: the tail explodes",
+        "T": 600,
+        "T_from": 300,
+        "T_ramp_ms": 6000,
+        "T_cue": "heat",
+        "activation_energy_kT": 3,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "cues": [
+          {
+            "id": "heat",
+            "at_ms": 1000
+          }
+        ],
+        "show_gas_thermometer": true,
+        "show_speed_histogram": true,
+        "hist_species": 0,
+        "hist_speed_marks": false,
+        "show_collision_counter": true,
+        "eye_capture_ms": 26000,
+        "counter_window_ms": 5000,
+        "formula_overlay": "rate ∝ (collisions/s) × (fraction clearing Eₐ)"
+      },
+      "STATE_5": {
+        "label": "STATE_5",
+        "caption": "Crowded: more hits, same odds",
+        "T": 300,
+        "activation_energy_kT": 3,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "cues": [
+          {
+            "id": "squeeze",
+            "at_ms": 1000
+          }
+        ],
+        "piston_from": 1.0,
+        "piston_frac": 0.4,
+        "piston_ramp_ms": 6000,
+        "piston_cue": "squeeze",
+        "adiabatic": false,
+        "show_collision_counter": true,
+        "eye_capture_ms": 20000,
+        "counter_window_ms": 5000,
+        "formula_overlay": "rate ∝ (collisions/s) × (fraction clearing Eₐ)"
+      },
+      "STATE_6": {
+        "label": "STATE_6",
+        "caption": "Barrier drops, same speeds",
+        "T": 300,
+        "activation_energy_kT": 3,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "cues": [
+          {
+            "id": "catalyst",
+            "at_ms": 1000
+          }
+        ],
+        "ea_at_cue": {
+          "cue": "catalyst",
+          "activation_energy_kT": 1.5,
+          "ramp_ms": 3000
+        },
+        "show_speed_histogram": true,
+        "hist_species": 0,
+        "hist_speed_marks": false,
+        "show_collision_counter": true,
+        "eye_capture_ms": 22000,
+        "counter_window_ms": 5000,
+        "formula_overlay": "rate ∝ (collisions/s) × (fraction clearing Eₐ)",
+        "show_reaction_profile": true
+      },
+      "STATE_7": {
+        "label": "STATE_7",
+        "caption": "Clearing isn't enough",
+        "T": 300,
+        "activation_energy_kT": 3,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "formula_overlay": "A + B → AB",
+        "show_collision_counter": true,
+        "show_reaction_readout": true,
+        "eye_capture_ms": 20000,
+        "counter_window_ms": 5000
+      },
+      "STATE_8": {
+        "label": "STATE_8",
+        "caption": "One straight line",
+        "T": 800,
+        "T_from": 250,
+        "T_ramp_ms": 28000,
+        "T_cue": "ramp",
+        "activation_energy_kT": 3,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "cues": [
+          {
+            "id": "ramp",
+            "at_ms": 1000
+          }
+        ],
+        "show_gas_thermometer": true,
+        "show_collision_counter": true,
+        "show_arrhenius_plot": true,
+        "arrhenius_window_ms": 4000,
+        "arrhenius_T_min": 250,
+        "arrhenius_T_max": 800,
+        "eye_capture_ms": 34000,
+        "counter_window_ms": 5000,
+        "formula_overlay": "ln f = constant − Eₐ/kT",
+        "N": 720
+      },
+      "STATE_9": {
+        "label": "STATE_9",
+        "caption": "All yours — push it",
+        "T": 300,
+        "activation_energy_kT": 3,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0
+        },
+        "reaction": {
+          "enabled": false
+        },
+        "show_sliders": true,
+        "show_speed_histogram": true,
+        "hist_species": 0,
+        "hist_speed_marks": false,
+        "show_collision_counter": true,
+        "eye_capture_ms": 14000,
+        "counter_window_ms": 5000,
+        "formula_overlay": "rate ∝ (collisions/s) × (fraction clearing Eₐ)",
+        "show_reaction_profile": true
+      }
+    }
+  },
+  "authoring_notes": {
+    "measured_constants": "Every number in this concept traces to docs/skeletons/collision_theory_measurements.txt and docs/skeletons/collision_theory_dq.txt — nothing computed from theory alone. Home pose (T=300K, Ea=3kT, N=180): 183 collisions/s, 6.0/s clear Ea, fraction 3.30% (band 2.91-3.45%). S4 (300->600K): collisions x1.34, fraction x4.45 (3.30%->14.7%). S5 (piston 1.00->0.40): collisions x2.79, fraction flat (3.95%->3.32%). S6 (Ea 3->1.5kT): fraction 3.13%->18.06%. S7 (reaction on): react/clear = 37.84% (band 34.86-40.00%), AB after 20s ~28-29. S8 (Arrhenius, 4s window/8 points over 32s): slope -885 vs ideal -900 (1.7% off), R^2 0.9535. S9 fridge case (T->200K): fraction drops to 0.67% (x0.21 vs 300K).",
+    "gas_reaction_per_state_gate": "gas.reaction is config-level ON (needed for S7), suppressed per-state via reaction.enabled:false in every other state — a genuine engine gate (particle_field_renderer.ts gasRxOn(), landed 2026-07-29), not the giant-activation_fwd_kT suppression trick used before that gate existed. Verification duty before shipping: a headless run of every non-S7 state confirming AB stays exactly 0 and forward events exactly 0 over the full authored duration, 5 seeds.",
+    "ea_at_cue_ramp_split": "S3 fires ea_at_cue with NO ramp_ms: activation_energy_kT opens at 0 (no threshold line, no shaded tail, no Eₐ label drawn — the draw is gated on ea>0) and the cue makes the barrier APPEAR at its real value. S6 fires ea_at_cue WITH ramp_ms:3000: an existing barrier (3 kT) slides down to 1.5 kT. The two states are deliberately different motions under Rule 31 (archetype = rhythm, not label) — S3's archetype is 'reveal-build' (the barrier appears), S6's is 'barrier-drop' (the barrier moves).",
+    "ea_slider_userTouched_guard": "The Ea slider (S9) requires the userTouched guard fixed 2026-07-29 (particle_field_renderer.ts) — without it, merely declaring the slider silently overrides every state's authored barrier (measured: 3.16% became 10.01% with no drag at all). Confirmed present in the shipped renderer before this concept was authored.",
+    "species_counts_authoring_trap": "gasInit fills any species OMITTED from a state's species_counts with the leftover particle budget, not zero. Every one of this concept's eight states therefore authors A, B and AB explicitly, AB:0 everywhere except S7 (where AB grows from the reaction).",
+    "narration_number_policy": "Measured across four viewports (900x560, 1280x720, 1600x900, 760x480): collisions/s spans x5.29 (54-283/s) while the cleared PERCENTAGE spans only x1.05 (3.22-3.39%). Narration therefore speaks only the percentage, ratios (x4.45, x1.34, x2.79, 'about a third') and directions — never an absolute collisions/s or clear/s value. S2's original 'once every 2 seconds' flash-cadence claim was dropped: measured at 6.0/s clear (home pose), a flash lands roughly every 167ms, not 2000ms, and the number is itself viewport-unstable.",
+    "reaction_word_reserved_to_s6": "'React'/'reacts' is spoken for the first time in STATE_7. STATE_2 through STATE_6 and STATE_8/STATE_9 narrate only 'clear the barrier', matching the reaction layer being disabled in those states.",
+    "orientation_never_used": "The word 'orientation' never appears anywhere in this concept's narration or drill-down phrasing. STATE_7 teaches the partner requirement (an A must meet a B, measured react/clear 37.84%) as genuine, separate chemistry — an honest analogue, never a stand-in for the orientation/steric factor, which this rotationally-symmetric-disc engine cannot represent at all.",
+    "vocabulary_quarantine": "VOCABULARY QUARANTINE, revised 2026-07-30: the reaction layer, the joined pair, the PARTNER requirement and the A + B → AB equation surface are quarantined to STATE_7, so hiding STATE_7 + STATE_8 leaves a coherent core lesson. STATE_1 deliberately shows NO formula surface: it named A, B and AB before any state defined them, which is the term-order defect this concept already carries a scar row for.",
+    "s3_s4_declared_contrast_pair": "STATE_4 (heat) and STATE_5 (crowd) are a DECLARED Rule 31 contrast pair: both raise the collision rate, but only S4 moves the clearing fraction. S5 is authored isothermal (adiabatic:false) so temperature never smuggles into the crowding beat (Rule 32b) — the same discipline the shipped le_chateliers_principle S4/S5 pair already uses.",
+    "cannot_show_declared_omissions": "DECLARED OMISSIONS, revised 2026-07-30: the reaction-profile energy hill is NO LONGER an omission — it is this concept's signature instrument (show_reaction_profile, STATE_1 / STATE_6 / STATE_9), with its peak taken from the reaction's forward barrier and its product level from the bond energy. Still NOT shown: true molecular orientation (the engine's discs are rotationally symmetric, so STATE_7 teaches the PARTNER requirement and the word 'orientation' appears nowhere); the 3D Maxwell-Boltzmann form (this is a true 2D gas, so no closed-form distribution is printed); absolute Arrhenius values (the slope is measured, the prefactor is geometric and never asserted); and surface area (a solid-phase cause with no solid phase in this box).",
+    "s8_particle_density_is_deliberate": "STATE_8 runs 720 discs against the lesson's 180. K-style statistics scale as 1/sqrt(N), and the Arrhenius fit is a statistic: measured slope error at the shipped seed 21% at 180 particles, 2.8% at 720, with R^2 0.999. Cost is linear because the collision sweep is spatially gridded. Called out in the state's own scene roles rather than hidden, and taken in the one state the curriculum presets can hide."
+  }
+}
