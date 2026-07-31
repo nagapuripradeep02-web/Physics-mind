@@ -369,16 +369,16 @@
       "STATE_5": {
         "label": "Two walls, equal areas",
         "visible_elements": [],
-        "camera_position": [0, 3.6, 13],
+        "camera_position": [5, 3.0, 9],
         "caption": "Two walls: equal areas",
         "show_sliders": true,
         "momentum_bench": {
           "mode": "wall_impact",
           "bodies": [
-            { "id": "BALLA", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
-            { "id": "WALLA", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true },
-            { "id": "BALLB", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
-            { "id": "WALLB", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+            { "id": "BALLA", "label": "ball (rigid wall)", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
+            { "id": "WALLA", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true },
+            { "id": "BALLB", "label": "ball (padded wall)", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
+            { "id": "WALLB", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
           ],
           "contact": { "between": ["BALLA", "WALLA"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
           "lanes": [
