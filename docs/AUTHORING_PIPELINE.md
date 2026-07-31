@@ -253,6 +253,26 @@ npm run visual:approve -- <concept_id>  # after founder approval → lock regres
 Surface-everything rule: both scripts print EVERY check result, pass AND fail, full failure
 evidence — nothing summarized away.
 
+**THE CALCULATOR — the numeric half of the same gate ($0, ADVISORY as of 2026-07-31):**
+```bash
+npm run numeric:calc -- <concept_id>    # $0 — drives every state headlessly, reads the
+                                        # HUD/probe/readout values the sim actually PAINTS,
+                                        # and asserts them against the physics recomputed from
+                                        # the concept's own declared variables.
+                                        # N1 readout-matches-formula · N2 conservation ·
+                                        # N3 slider-response direction. Writes
+                                        # .calc_runs/<id>/<timestamp>/readings.json
+```
+THE EYE proves the pixels moved; THE CALCULATOR proves the NUMBERS are right — the two are
+complementary and neither substitutes for the other. It needs no `.env.local`: sim HTML is
+assembled from source, so a stale `simulation_cache` row cannot silently pass it.
+
+**Advisory, not yet blocking.** Read its failures, but a FAIL is a triage item, not a stop:
+every finding must be hand-confirmed against the sim before it is believed. Promotion to a
+blocking gate (and to `verify.yml`) is a separate decision, gated on the fleet SKIP census.
+Its SKIP list is as informative as its failures — it measures how much of a concept's declared
+physics is machine-checkable at all.
+
 ---
 
 ### Logging a professor lesson (stage ④ → the queue)
