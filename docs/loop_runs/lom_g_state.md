@@ -1,45 +1,75 @@
 # lom-g loop state — Laws of Motion, off-axis forces tray
 
-updated: 2026-07-31 (**Phase 1 authored — `equilibrium_of_particles` is BUILT and AWAITING FOUNDER
-         REVIEW, verdict FAIL on two ROUTED ENGINE findings, zero content rework needed.**
-         Review link live: http://localhost:8093/equilibrium_of_particles/ . Phase 0 complete
-         earlier the same day — `force_rig` both branches, harness 42/42.)
+updated: 2026-07-31 (**FOUNDER APPROVED `equilibrium_of_particles` on content and physics —
+         "perfect", no content rework. Authoring sign-off ONLY; nothing sealed.** All three
+         founder-ordered fixes LANDED (E2, FIX A, E1) and THE EYE re-run independently verified:
+         **the seven states now show real motion.** Awaiting founder re-review.)
 
-## ⚠ FOUNDER DECISION PENDING — read this first
+## STATUS — approved on content, three fixes landed, motion now PROVEN
 
-`equilibrium_of_particles` is fully authored and the JSON is CLEAN (146 PASS / 0 FAIL, zero warnings
-of any class — the only file in the fleet with none). quality-auditor and eye-walker ran in parallel
-and **converged independently on the same two engine defects**. Neither is content; **no
-architect / physics-author / json-author rework is required**.
+Founder review verdict: **APPROVED on content and physics.** No architect / physics-author /
+json-author rework. `visual:approve`, `tts:*`, `build:pilot` and deploy remain FORBIDDEN —
+baselines cannot be locked, and approval here is authoring sign-off only.
 
-**E1 — `force_rig` does not reproduce state at a pinned time. CRITICAL.**
-`SET_TIME_FREEZE at_ms: t` integrates the scenario to STEADY STATE instead of replaying to `t`.
-Every pinned frame in all 7 states is motionless; HUDs open at the ramp's END value (STATE_1 reads
-`T₁ = 49.00 N` at t=0, never 29.40). Ring centroid is sub-pixel identical across all 114 dense
-frames. Consequences: **D5/D6/D7 returned a false PASS on seven motionless states**, H2 baselines
-photograph steady state rather than the authored reveal, and **Rule 31 "no static state" cannot be
-judged for STATE_1–6 from THE EYE at all.** The free-running path proves the physics is fine
-(`KEYFRAMES_STATE_7` has the ring at (662.9, 339.0) at t=491 ms settling to (639.1, 358.2) by
-t=2941 ms) — it is the CAPTURE path that is broken. This affects `uniform_circular_motion` next on
-this tray and any future integrated scenario. `[owner: peter_parker:renderer_primitives]`
-**Until this is fixed, a 31/31 EYE result is NOT motion evidence for any `force_rig` concept.**
+Three fixes, in the founder's order, each its own commit. All three are platform/engine work and
+were declared **EXEMPT from the runaway guard** (the 7.1 precedent that exempted lom-f's SEAM C).
+**The guard therefore stays at 2 of 3 for genuine NEW defects.**
 
-**E2 — authored `strings[].color` never reaches the tension arrows. MAJOR, one-line fix.**
-`applyForceRigState` recolours via `o.material.color.set(...)`, but a `THREE.ArrowHelper` is a Group
-with `.line`/`.cone` children and **has no `.material`**, so the guard is false and every arrow keeps
-its build-time index palette. The rest of the file already uses the right API (`ah.setColor(...)` at
-`:14517`, `:18873`, `:19540`, `:23898`). Fix: `if (o.setColor) o.setColor(hexToThreeColor(st.color));`
-This is **not cosmetic** — it corrupts the PRIMARY AHA: STATE_5/6's two support cables are physically
-identical (both 5.0 kg / 49.00 N, mirror images, authored the same colour) and render red vs green,
-teaching a distinction that does not exist. STATE_3 narrates "two opposite pairs" and renders four
-unrelated colours. `[owner: peter_parker:renderer_primitives]`
+| # | commit | what |
+|---|---|---|
+| 1 | `5801db6` | **E2** — `force_rig` honours authored `strings[].color` on arrows `[peter_parker:field3d_surgeon]` |
+| 2 | `ea16433` | **FIX A** — a frame that never reached its sim-time pin is FATAL, not a warning (THE EYE) |
+| 3 | `b2ebf9a` | **E1** — `force_rig` reconstructs state at a pinned `at_ms` instead of returning steady state `[peter_parker:field3d_surgeon]` |
 
-**Not actioned deliberately.** The founder's instruction was pipeline → build review site → STOP, and
-the tray sits at 2 of 3 engine commits on the runaway guard. E2 is a ~10-minute one-line dispatch;
-E1 is an architectural change to the capture path that should be the founder's call, not the loop's.
+### THE ANSWER THE FOUNDER ASKED FOR: yes, the motion is real
 
-**The founder's own browser review is currently the ONLY working instrument for Rule 31 motion on
-this concept** — the review player free-runs and does not use the broken `SET_TIME_FREEZE` path.
+Independently re-run by the orchestrator (not taken on an agent's report):
+`npm run visual:eyes -- equilibrium_of_particles` → **31/31, exit 0, no `EYE_CAPTURE_ABORTED`** —
+so with FIX A armed, every pin genuinely reached its instant.
+
+- **114 dense frames, 114 DISTINCT** (md5, per state: 17/16/17/18/19/16/11 frames, all unique).
+  Before the fix the ring centroid was **sub-pixel identical across all 114** and every adjacent-pair
+  diff was 0.00%.
+- **The founder's stated acceptance criterion is MET: `STATE_1__dense_t00000.png` reads
+  `T₁ = 29.40 N`** (was 49.00), hanger label `3.0 kg`, ring at table centre — read by eye, not inferred.
+- The ramp genuinely replays: at `t=16000` the same state reads `T₁ = 49.00 N`, hanger `5.0 kg`, and
+  the ring has visibly travelled right of its start marker.
+- E2 confirmed in the same frames: T₁ gold, T₂ blue, T₃ red exactly as authored.
+
+### E1's root cause, for the record
+
+Every EYE capture path sends `RESET_TRAJECTORY` before pinning. The shared handler only rebases
+`stateStartTime` — which rewinds every **closed-form** scenario for free. `force_rig` is a genuine
+integrator on both branches (`p/v`, `p3/v3`, trail, plus the `eng.t_ms` driving `phases[]` and
+`param_ramp`) and was never hooked in, so its accumulators stayed where the previous capture left
+them; `SET_TIME_FREEZE` is pin-by-target and only advances FORWARD, so every pin handed back the
+converged pose. `newtons_laws_body` had already solved this exact class with `nlbResetTrajectory()`;
+the fix reuses that contract verbatim (`frResetTrajectory()`) rather than inventing a mechanism.
+**No shared clock code touched** — `__pmSteps`/`dtStep` untouched, so Rule 36b's fleet sweep does
+NOT trigger. `_scratch_fr_seams.ts` still 42/42 including S9 fold-exactness.
+
+## ⚠ STILL OPEN — THE EYE photographs honestly but does NOT yet GATE motion
+
+**`deriveMotionExpectations` has no `force_rig` branch.** `force_rig` is registered for reveal keys
+(`deriveStateMeta.ts:597/604`), reveal pins (`:2517/2533`) and hold expectations (`:3213/3223`) — but
+not for motion. The re-run still prints `Motion map: STATE_1=?, … STATE_7=?` and **D5 is skipped on
+all 7 states**. So the frames are now honest, and the motion is real and human-verifiable, but a
+genuinely static `force_rig` state would still not be CAUGHT by the machine. Deliberately not fixed —
+outside the founder's three-fix instruction. `[owner: peter_parker:field3d_surgeon]`
+
+## ⚠ Two MAJOR arrow scars are now MORE visible, precisely because motion is real
+
+Both were known and deliberately left (one `bug_class` per dispatch); both are plainly visible in the
+new `STATE_1__dense_t16000.png`:
+- `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line` — **recurrence**;
+  `FR_ARROW_Z` alone is insufficient. Arrows read as floating triangles, not arrows: the shaft is a
+  1px `THREE.Line` against a thicker, brighter string. Prevention-rule clause (b) — make the
+  apparatus line thinner AND dimmer than the arrow — has never been applied.
+- `force_arrow_length_exceeds_the_apparatus_line_it_lies_along` — at `T₁ = 49.00 N` the arrow
+  overshoots its own pulley and terminates inside the 5.0 kg hanging weight, burying the `T₁` label
+  under the `5.0 kg` label. Physically correct (length = magnitude, not reach) but reads wrong.
+
+Recommended as the next two dispatches, one `bug_class` each, before Phase 2.
 
 ### Lower-severity findings from the same walk (eye-walker, text only — no DB writes)
 
@@ -67,13 +97,23 @@ over all 86 rendered strings returned NOTHING · **the primary aha does ship**: 
 vs `STATE_6__frozen.png`, same load `W = 49.00 N`, supports 29.40 N at steep cables vs 49.00 N at
 flat ones, both numbers legible, both geometries unmistakable.
 
-### Frames worth founder eyes
-`.visual_runs\equilibrium_of_particles\20260731-044255\` →
-`STATE_1__frozen.png` (hairline shafts + arrow overshoot into the hanger) ·
-`STATE_3__frozen.png` (the γ subscript + four colours where two authored pairs were the point) ·
-`STATE_2__frozen.png` ("Resultant shrinks to a dot" with no legible dot) ·
-`STATE_4__frozen.png` (empty slider panel) ·
-`KEYFRAMES_STATE_7__t00491.png` (the ONE frame showing the ring off-centre — compare to any pinned frame).
+### Frames worth founder eyes — CURRENT run (post-fix)
+`.visual_runs\equilibrium_of_particles\20260731-152258\` →
+- `STATE_1__dense_t00000.png` — **the proof E1 is fixed**: `T₁ = 29.40 N`, hanger `3.0 kg`, ring at
+  centre. This frame read 49.00 N before.
+- `STATE_1__dense_t16000.png` — the same state at the ramp's end: `T₁ = 49.00 N`, hanger `5.0 kg`,
+  ring visibly travelled. Pair it with the frame above and the replay is undeniable. **Also the
+  clearest picture of both open arrow scars** — the arrow reads as a floating triangle and its tip
+  sits inside the 5.0 kg weight with the `T₁` label buried under `5.0 kg`.
+- `STATE_3__frozen.png` — **E2 fixed**: two colour PAIRS as authored (gold horizontal, blue
+  vertical), not four unrelated colours. The `ΣFᵧ` U+1D67 subscript still renders as a Greek γ here
+  — unfixed, `[alex:json_author]`.
+- `STATE_5__frozen.png` + `STATE_6__frozen.png` — **the PRIMARY AHA, now honest**: both support
+  cables render the SAME gold in each state (they are physically identical), load red. Same
+  `W = 49.00 N`, supports 29.40 N steep vs 49.00 N flat.
+
+(The pre-fix run `20260731-044255` is superseded — its frames show the steady-state artefact and the
+wrong colours. Do not review from it.)
 
 ## Two founder-named beats were reframed / cut at design time (architect §0, accepted)
 
@@ -116,15 +156,16 @@ chapter_map (founder-approved 2026-07-30, in build order):
   PROVES the off-axis force solver before `uniform_circular_motion` depends on it. Same
   structural-extremes-first logic lom-a used. Do not reorder to do the exciting one first.
 
-next: **FOUNDER REVIEW of `equilibrium_of_particles`** at http://localhost:8093/equilibrium_of_particles/ ,
-      then decide E1 (capture-path time pin) and E2 (one-line arrow colour). Phase 2 =
-      `uniform_circular_motion` — but note E1 blocks THE EYE from gating ITS motion too.
+next: **FOUNDER RE-REVIEW of `equilibrium_of_particles`** (approved on content; three fixes landed;
+      motion now proven). Then: the D5 motion-gate gap + the two arrow scars, one dispatch each.
+      Phase 2 = `uniform_circular_motion` — its whirl needs the D5 gate more than this concept did.
       (superseded) Phase 1 authoring via the Alex pipeline
       (architect → physics-author → json-author → quality-auditor), then FOUNDER REVIEW.
       The engine gate is passed; nothing blocks authoring.
 in_flight: (none)
 parked: (none)
-engine_commits: e5c5d01 (force_table branch + harness), 096157d (whirl branch)
+engine_commits: e5c5d01 (force_table + harness), 096157d (whirl), 5801db6 (E2 colour),
+                ea16433 (FIX A — EYE pin fatal, platform/Rule 40), b2ebf9a (E1 time-pin replay)
                 → 2 commits. Runaway guard is 3 per the tray brief / 8 per CHAPTER_LOOP; not hit.
 
 ---

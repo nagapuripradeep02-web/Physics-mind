@@ -121,3 +121,49 @@ INSERT INTO engine_bug_queue (
     'lom-g Phase 0 — force_rig whirl bring-up 2026-07-31',
     'incident'
 );
+
+-- Candidate 6 — MAJOR. Authored colour never reached the arrows; fixed in this
+-- dispatch (fix(engine-loop): force_rig honours authored string colour on arrows).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_string_color_ignored_arrows_take_index_palette',
+    'Authored strings[].color never reached the tension arrows: a THREE.ArrowHelper has no .material, so the recolour guard was always false',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'applyForceRigState recoloured arrows with `if ((elementType === "fr_arrow" || "fr_comp" || "fr_arrow_label") && o.material && o.material.color) o.material.color.set(...)`. A THREE.ArrowHelper is a Group whose .line and .cone children each own a material; the Group itself has none, so the guard was false for every tension and component arrow and each one kept the build-time index palette FR_STRING_COLORS = ["#42A5F5","#EF5350","#66BB6A","#AB47BC"]. Two consequences, both pedagogical rather than cosmetic: equilibrium_of_particles STATE_3 authored two opposite PAIRS one colour each and rendered four unrelated colours under narration that says "two opposite pairs"; STATE_5/STATE_6 authored the two physically identical support cables (mirror images, same tension) the same colour and rendered them red and green, teaching a distinction that does not exist. Two further traps sat behind the first: (a) the arrow LABEL is a sprite whose ink is BAKED into its canvas texture, so setting material.color multiplies the new ink onto the old palette ink and onto the dark outline instead of replacing it — it must be re-drawn via its retained _pmColor with the material left white; (b) applyGlowEmphasis caches each material''s resting colour in userData._glowBaseCol and restores it every frame, and the existing cache-invalidation line only reached o.material — so a correct setColor() on an ArrowHelper would still be reverted one frame later unless the child materials'' caches are cleared too.',
+    'Never gate a recolour on `o.material` when the object may be a composite helper. Recolour through a helper that prefers the object''s own API (`if (o.setColor) o.setColor(c); else if (o.material && o.material.color) o.material.color.set(c)`) — the pattern already used at bmPulseColor and the gauss flux-face arrows. Any per-state recolour of an object the glow pass touches must invalidate userData._glowBaseCol on ALL DESCENDANT materials (traverse), not just on o.material; leave _glowBaseOp alone so a re-cache mid-dim cannot strand the object at GLOW_DIM_OPACITY. A canvas-texture label is recoloured by redrawing its glyphs (_pmColor + updateLabelSpriteText), never by tinting its SpriteMaterial. Colour is a teaching claim: when a state authors two elements the same colour it is asserting they are the same thing, so a colour assertion belongs in the frame read, not only in the value gates — all 31 deterministic checks passed on the broken build.',
+    'js_eval',
+    'For each fr_arrow / fr_comp / fr_arrow_label with a stringIndex, compare the rendered colour to the authored one: `PM_frEngine.strings[ud.stringIndex].color` vs (arrow) `o.children.find(c => c.isMesh).material.color.getHexString()` / (label) `o._pmColor`. Assert equality for every string in every state, and additionally assert that any two strings authored the same colour render the same colour. Re-run one animation frame after applying the state so the glow pass has had a chance to revert the write.',
+    'FIXED',
+    ARRAY['equilibrium_of_particles']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g — force_rig arrow colour dispatch 2026-07-31',
+    'incident'
+);
+
+-- Candidate 7 — CRITICAL. The capture path, not the solver: a really-integrated
+-- scenario handed THE EYE its converged steady state at every pinned instant, so
+-- seven motionless frames were certified 31/31. Fixed in this dispatch
+-- (fix(engine-loop): force_rig reconstructs state at a pinned at_ms).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_not_reproducible_under_set_time_freeze_pin',
+    'An integrating scenario with no RESET_TRAJECTORY rewind returns its converged steady state at every SET_TIME_FREEZE pin instead of the authored instant',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'field_3d''s SET_TIME_FREEZE is pin-by-TARGET: virtual time advances forward one fixed 1/60 s step at a time up to the pin and then holds — it never runs backwards. That is only a rewind for a scenario whose pose is a CLOSED FORM of (time - stateStartTime), because the shared RESET_TRAJECTORY handler rebases stateStartTime and every closed form re-evaluates for free. force_rig is a genuine INTEGRATOR on both branches (the damped ring''s p/v, the whirl bob''s p3/v3 and its trail) plus a state-local clock eng.t_ms that drives phases[] and the param_ramp, and it was never hooked into RESET_TRAJECTORY. So the accumulators stayed exactly where the PREVIOUS capture had run them, and each pin photographed the converged pose: every frame of all seven equilibrium_of_particles states was motionless (ring centroid sub-pixel identical across 114 dense frames — (688.5, 352.3) at t=0 AND at t=16000), STATE_1 read the param_ramp''s END tension T1 = 49.00 N at the t=0 pin instead of the authored 29.40 N, and STATE_2''s authored release pose (0.115, 0.045) with SigmaF = 28.50 N showed as a centred ring at 0.02 N. D5/D6/D7 then returned a false PASS on seven dead states and the H2 baselines would have photographed steady state. newtons_laws_body had already hit this exact class and solved it (nlbResetTrajectory, engine_bug_queue coast_body_halts_mid_state_despite_authored_length_m) — force_rig was built without inheriting it, so this is a RECURRENCE of a known class in a new scenario rather than a new mechanism.',
+    'Every field_3d scenario that INTEGRATES (as opposed to posing from a closed form of state-local t) must register an explicit rewind in the shared RESET_TRAJECTORY handler that restores its accumulators, its state-local clock and its one-shot latches to the state-entry condition — the nlbResetTrajectory contract: a REWIND, not a re-seed (live teacher slider values are preserved; an unseized param_ramp restores its authored "from" by re-evaluating at t = 0 through the same frApplyParam write path). Concretely, a new integrating scenario''s bring-up checklist gains one item alongside the existing six glue sites. The generic test, which needs no scenario knowledge: pin t = A, then t = B > A, then re-enter and pin t = A again — the two A frames must be byte-identical AND must differ from the B frame. Assertion suites cannot see this class: the 42-check force_rig harness drives a live free-running clock and passed 42/42 on the broken build, and THE EYE''s own gates read the dead frames as evidence. The capture-path guard added in screenshotter.ts commit ea16433 (a missed sim-time pin is now fatal) covers the sibling failure where the pin is never REACHED, but not this one, where the pin is reached and the scenario simply ignores it.',
+    'js_eval',
+    'Drive a state, then for each of two targets A < B post RESET_TRAJECTORY + REPLAY_ANIMATIONS + SET_TIME_FREEZE{at_ms} and poll window.PM_simTimeMs to the target. Read the scenario''s state-local clock and one integrated scalar (force_rig: window.PM_frTimeMs and PM_frEngine.p / PM_frEngine.sumF). Assert PM_frTimeMs === at_ms at each pin, assert the A-pin readings taken before and after the B pin are identical, and assert the A and B readings DIFFER. A scenario that returns the same pose at both A and B is returning steady state, not the pinned instant.',
+    'FIXED',
+    ARRAY['equilibrium_of_particles']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g — force_rig time-pin dispatch 2026-07-31',
+    'incident'
+);
