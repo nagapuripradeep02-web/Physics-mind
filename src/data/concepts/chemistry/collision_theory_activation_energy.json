@@ -326,7 +326,7 @@
             },
             {
               "id": "s1_3",
-              "text_en": "Every pair faces a hill on the way in: its height is the activation energy, Eₐ."
+              "text_en": "Every pair must climb a hill first: its height is the activation energy, Eₐ."
             },
             {
               "id": "s1_4",
@@ -336,7 +336,7 @@
         }
       },
       "STATE_2": {
-        "title": "Almost none of them count",
+        "title": "Almost none carry enough energy",
         "duration": 20,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -378,7 +378,7 @@
             },
             {
               "id": "s2_2",
-              "text_en": "Collisions never stop, but a bright clearing flash is rare against all that traffic."
+              "text_en": "Collisions never stop, but a bright clearing flash is rare among all those collisions."
             },
             {
               "id": "s2_3",
@@ -434,7 +434,7 @@
         }
       },
       "STATE_4": {
-        "title": "Heat: the tail explodes",
+        "title": "Hotter: the fast tail grows",
         "duration": 26,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -501,13 +501,13 @@
             },
             {
               "id": "s4_4",
-              "text_en": "The fraction moved far more than the collision count did: the rate lives in that fraction."
+              "text_en": "The fraction changed far more than the collision count did, and the rate depends on that fraction."
             }
           ]
         }
       },
       "STATE_5": {
-        "title": "Crowded: more hits, same odds",
+        "title": "Crowded: more hits, same fraction",
         "duration": 20,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -625,11 +625,11 @@
             },
             {
               "id": "s6_3",
-              "text_en": "The curve above it never moves, same speeds, yet the clearing percentage jumps about five times over."
+              "text_en": "The curve above it never moves, same speeds, yet the clearing percentage becomes about five times larger."
             },
             {
               "id": "s6_4",
-              "text_en": "A catalytic converter uses the same trick: lower the bar, not the heat."
+              "text_en": "A catalytic converter works the same way: it lowers the barrier, not the temperature."
             }
           ]
         }
@@ -736,7 +736,7 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "This box opens cool, at two hundred fifty kelvin."
+              "text_en": "This box starts cool, at two hundred fifty kelvin."
             },
             {
               "id": "s8_2",
@@ -755,7 +755,7 @@
         }
       },
       "STATE_9": {
-        "title": "All yours — push it",
+        "title": "Your turn: change anything",
         "duration": 14,
         "depth_ring": "core",
         "advance_mode": "interaction_complete",
@@ -805,7 +805,7 @@
             },
             {
               "id": "s9_2",
-              "text_en": "Try the fridge case: cool it down toward two hundred kelvin and watch the clearing percentage almost vanish."
+              "text_en": "Cool it toward two hundred kelvin and the clearing percentage falls almost to zero, like food kept in a fridge."
             }
           ]
         }
@@ -959,7 +959,7 @@
       },
       "STATE_2": {
         "label": "STATE_2",
-        "caption": "Collisions everywhere, almost none",
+        "caption": "Collisions everywhere, few clear it",
         "T": 300,
         "activation_energy_kT": 3,
         "species_counts": {
@@ -1004,7 +1004,7 @@
       },
       "STATE_4": {
         "label": "STATE_4",
-        "caption": "Heat: the tail explodes",
+        "caption": "Hotter: the fast tail grows",
         "T": 600,
         "T_from": 300,
         "T_ramp_ms": 6000,
@@ -1035,7 +1035,7 @@
       },
       "STATE_5": {
         "label": "STATE_5",
-        "caption": "Crowded: more hits, same odds",
+        "caption": "Crowded: more hits, same fraction",
         "T": 300,
         "activation_energy_kT": 3,
         "species_counts": {
@@ -1146,7 +1146,7 @@
       },
       "STATE_9": {
         "label": "STATE_9",
-        "caption": "All yours — push it",
+        "caption": "Your turn: change anything",
         "T": 300,
         "activation_energy_kT": 3,
         "species_counts": {
