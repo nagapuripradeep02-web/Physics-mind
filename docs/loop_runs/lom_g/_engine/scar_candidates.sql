@@ -237,3 +237,30 @@ INSERT INTO engine_bug_queue (
     'lom-g routed engine dispatch — force_rig framing 2026-07-31',
     'incident'
 );
+
+-- Candidate 11 — MAJOR. NEW bug_class (no existing row: checked this file and
+-- docs/loop_runs/lom_g_state.md before authoring). The SEQUEL to fix E2 (commit
+-- 5801db6, "force_rig honours authored string colour on arrows"): E2 was correct
+-- and is NOT reverted — the label still takes its arrow's identity hue — but it
+-- routed an IDENTITY colour straight into an INK slot with no legibility floor
+-- anywhere in the path. Fixed in this dispatch (fix(engine-loop):
+-- force_rig_arrow_label_ink_too_dark_to_read_against_the_apparatus).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_arrow_label_ink_too_dark_to_read_against_the_apparatus',
+    'An authored identity colour used directly as label ink leaves the label unreadable, because identity colours are chosen for hue and nothing enforces a luminance floor',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'Three multipliers stacked on one number and none of them was bounded. (1) An arrow label is drawn in its arrow''s AUTHORED identity colour so a reader can match label to arrow — right, and the fix that introduced it must stand — but an identity colour is picked for HUE, and a saturated blue (#42A5F5, WCAG relative luminance 0.35) or red (#EF5350, 0.25) has low luminance no matter how correct the hue is. (2) The generic Rule-29 glow pass then treats a label as a peer competing for attention and multiplies it by GLOW_DIM_OPACITY = 0.40, so a peer label arrived on the lit table disc as 0.40*ink + 0.60*backdrop — #42A5F5 rendering as rgb(55,100,135). (3) The label sprite is drawn small (0.26 world height, ~10 device px) with an 8 px dark outline baked into the shared sprite helper, so the halo ate most of the stroke on the way down and even the FOCAL gold label arrived at 0.42x its own colour''s luminance. Measured on real EYE frames: blue T2 1.62:1 and red T3 1.30:1 at the stroke centre against a backdrop at 0.047, and the red W 1.26:1 — present on screen, unreadable, and invisible to 31 deterministic EYE checks and 42 harness assertions because every colour, position and value was exactly what was authored. The class is general, not per-concept: nothing in the engine could stop a future author picking any dark hex and shipping an invisible label.',
+    'A rendered label must have an ENGINE-GUARANTEED legibility floor that no authored colour can defeat. (a) Map identity colour -> ink through one helper that preserves hue and lifts luminance: tint toward white in sRGB, c'' = c*(1-t) + 255*t, which scales every channel gap by (1-t) and therefore leaves the HSL hue mathematically unchanged, and bisect for the SMALLEST t that reaches the floor so the least identity is spent; a colour already above the floor is returned untouched. Never hand-pick nicer hex values per concept, and never collapse labels to white — that destroys the label-to-arrow match the identity colour exists to provide. (b) Derive the floor from a stated requirement, not taste: target WCAG AA (4.5:1) at the STROKE CENTRE against the brightest backdrop the label can land on, then divide by the measured halo dilution (~0.68x) and by the peer-dim factor to get the floor the INK must hold. (c) The floor has to survive the glow pass: a text label is an identifier, not an attention peer, so it takes the brighten-only carve-out and its recede is written explicitly at a value that still reads (0.85, not 0.40) — the ARROW still dims to 0.40, so Rule 32e''s single focal is undiminished. (d) Floor the label SIZE against a label already proven legible on that same backdrop rather than against a number nobody chose. (e) All of it lives in ONE creation funnel plus the one recolour path, so a future call site cannot bypass the guarantee; the no-churn guard must then compare the AUTHORED colour, not the drawn ink, or every lifted colour re-allocates its canvas texture on every call. (f) Do the fix in the scenario''s own region — a shared sprite/label helper is fleet platform (Rule 40) and re-styling it from a chapter branch silently restyles every concept on the engine.',
+    'js_eval',
+    'Do not assert that the ink colour changed — measure it. For each label in the rendered frame, take a tight box around the glyph, gate to the pixels within +/-40 deg of the label''s authored hue with real chroma (this excludes apparatus crossing the box and IS the hue-identity check), and report: the mean relative luminance of the top 8 ink pixels (the stroke centre), the median relative luminance of the box border (the real local backdrop), and the contrast ratio (L_hi + 0.05)/(L_lo + 0.05). Assert stroke contrast >= 4.5:1 for EVERY label, in EVERY state, in both the focal and the dimmed-peer case, and assert the measured hue is still within 5 deg of the arrow''s authored hue. Sweep every authored angle (0/17/34/50/90/130/163/180/233/270) and both apparatus branches. Separately assert generality: feed the ink helper a set of deliberately dark authored colours (#000000, #0000FF, #1A237E, #7B1FA2) and assert each returns a colour above the floor with its hue unchanged — if any authored colour can still produce an unreadable label, the floor is not doing its job.',
+    'FIXED',
+    ARRAY['equilibrium_of_particles', 'uniform_circular_motion']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g routed engine dispatch — force_rig label ink 2026-07-31',
+    'incident'
+);

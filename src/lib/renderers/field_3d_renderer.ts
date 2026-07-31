@@ -41053,7 +41053,17 @@ export const FIELD_3D_RENDERER_CODE = `
     var FR_ARROW_MIN_LEN = FR_ARROW_SCALE * FR_ARROW_FLOOR_N;   // 0.298
     var FR_ARROW_MAX_LEN = FR_ARROW_SCALE * FR_ARROW_CAP_N;     // 1.517
     var FR_ARROW_EPS = 0.05;              // newtons; at or below this the force IS zero
-    var FR_ARROW_LABEL_H = 0.26;
+    //   SIZE FLOOR. At 0.26 the glyph rendered ~10 px tall, and the 8 px dark
+    //   outline the shared sprite helper bakes in (correct, and not ours to
+    //   change) then ate most of the stroke on the way down: even the FOCAL gold
+    //   label measured only 0.42x its own colour's luminance, i.e. the ink was
+    //   losing more contrast to its own halo than to the background. 0.30 is the
+    //   weight label's height — the one label on this apparatus the founder reads
+    //   cleanly — so the arrow labels are now floored at a size already proven
+    //   legible on this exact backdrop rather than at a number nobody chose.
+    var FR_ARROW_LABEL_H = 0.30;
+    //   A peer label recedes, but never below readable (see frApplyGlow).
+    var FR_LABEL_DIM_OPACITY = 0.85;
     var FR_ARROW_LABEL_GAP = 0.24;
     // ... and this far to the SIDE of it (see frUpdateArrow). The arrow, its
     // string, the pulley, the hanger and the weight plus the weight's own label
@@ -41183,6 +41193,96 @@ export const FIELD_3D_RENDERER_CODE = `
         lbl._frText = t;                    // texture on every redraw — never per frame
         updateLabelSpriteText(lbl, t);
     }
+    // ── Identity colour IN, legible INK out — the legibility floor ─────────
+    //   A label is TEXT, and text that cannot be read is a silent failure
+    //   (Rule 24: the sim must read sound-off). Fix E2 made every label take its
+    //   arrow's AUTHORED identity colour — which is exactly what ties a label to
+    //   its arrow and must not be undone — but an identity colour is picked for
+    //   IDENTITY, never for luminance. Measured on real EYE pixels before this
+    //   floor existed: a saturated blue (#42A5F5, relative luminance 0.35) label
+    //   on the lit table disc (0.047) read at 1.27:1, and a saturated red
+    //   (#EF5350, 0.25) at 1.34:1 — present on screen, unreadable. Nothing in
+    //   the path guaranteed otherwise: legibility was left to whichever hex an
+    //   author happened to pick and to wherever the solved ring happened to put
+    //   the label.
+    //   The floor is applied to the INK ONLY — the arrow keeps the authored
+    //   colour byte-for-byte, and the label is drawn in the SMALLEST tint of that
+    //   same hue that clears the floor. Tinting toward white in sRGB is
+    //   c' = c*(1-t) + 255*t, which scales every channel gap by (1-t) and so
+    //   leaves the HSL hue mathematically UNCHANGED: a lifted blue is still blue,
+    //   a lifted red still red, so matching a label to its arrow by colour alone
+    //   survives. Saturation is the only thing spent, and only as much of it as
+    //   the floor costs; a colour already above the floor (#FFD166, 0.68) is
+    //   returned untouched.
+    //   WHY A LUMINANCE FLOOR AND NOT A BACKING PLATE OR A FATTER HALO. The
+    //   backdrop is not knowable here: the ring is SOLVED and moves, so a label
+    //   lands on the table disc, on the page background, or over a grey weight
+    //   depending on the state and on the slider. The dark halo already baked
+    //   into every label sprite carries the BRIGHT end of that range; this floor
+    //   carries the DARK end; between them the guarantee holds for any backdrop —
+    //   without adding one pixel of new chrome to the canvas (Rule 34) and
+    //   without touching a single shared sprite helper (Rule 40: those are fleet
+    //   platform, and re-styling them from a chapter branch would silently
+    //   restyle every field_3d concept).
+    //   WHERE 0.62 COMES FROM. The requirement is that a label clear WCAG AA body
+    //   contrast (4.5:1) at its stroke centre against the brightest apparatus it
+    //   can land on — the lit table disc, measured at relative luminance 0.047 —
+    //   INCLUDING when it is a dimmed peer. That needs a rendered stroke at
+    //   4.5 * (0.047 + 0.05) - 0.05 = 0.385. Measured on real frames, a rendered
+    //   stroke arrives at about 0.68x the ink's own luminance (the sprite's baked
+    //   8 px dark outline eats the rest on the way down) and a peer costs another
+    //   0.94x, so the ink itself has to sit at >= 0.385 / (0.68 * 0.94) = 0.60.
+    //   0.62 takes that with margin and lands just BELOW the gold #FFD166 already
+    //   on screen (0.68) — so the rule is also statable in one line: no label is
+    //   ever dimmer than the one label the founder already reads cleanly, and
+    //   that colour is the one the floor never has to move.
+    var FR_INK_LUM_MIN = 0.62;            // WCAG relative luminance, 0..1
+    function frSrgbLin(c) {
+        var s = c / 255;
+        return (s <= 0.04045) ? (s / 12.92) : Math.pow((s + 0.055) / 1.055, 2.4);
+    }
+    function frRelLum(r, g, b) {
+        return 0.2126 * frSrgbLin(r) + 0.7152 * frSrgbLin(g) + 0.0722 * frSrgbLin(b);
+    }
+    function frHexRgb(hex) {
+        if (typeof hex !== "string") return null;
+        var h = hex.charAt(0) === "#" ? hex.slice(1) : hex;
+        if (h.length === 3) h = h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2);
+        if (h.length !== 6) return null;
+        var n = parseInt(h, 16);
+        if (!isFinite(n)) return null;
+        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
+    function frHex2(v) {
+        var s = Math.max(0, Math.min(255, Math.round(v))).toString(16);
+        return s.length < 2 ? "0" + s : s;
+    }
+    function frLabelInk(hex) {
+        var c = frHexRgb(hex);
+        if (!c) return hex;
+        if (frRelLum(c[0], c[1], c[2]) >= FR_INK_LUM_MIN) return hex;
+        // Luminance is strictly increasing in t, so bisect for the SMALLEST tint
+        // that reaches the floor — the least hue-identity spent for the contrast.
+        var lo = 0, hi = 1, t, r, g, b;
+        for (var k = 0; k < 18; k++) {
+            t = (lo + hi) / 2;
+            r = c[0] + (255 - c[0]) * t; g = c[1] + (255 - c[1]) * t; b = c[2] + (255 - c[2]) * t;
+            if (frRelLum(r, g, b) >= FR_INK_LUM_MIN) hi = t; else lo = t;
+        }
+        return "#" + frHex2(c[0] + (255 - c[0]) * hi) + frHex2(c[1] + (255 - c[1]) * hi) +
+               frHex2(c[2] + (255 - c[2]) * hi);
+    }
+    //   THE ONE FUNNEL. Every fr label sprite is born here and nowhere else, so
+    //   the floor cannot be bypassed by a future call site — the same discipline
+    //   frSetStringMass enforces for mass. The two guards below are set at birth
+    //   for the same reason updateLabelSpriteText must not run per frame: it
+    //   re-allocates a canvas texture on every redraw.
+    function frMakeLabel(text, hex, heightScale) {
+        var lbl = pmCreateAutoLabel(text, frLabelInk(hex), heightScale);
+        lbl._frText = text;       // frSetLabelText guard  (same string  -> no redraw)
+        lbl._frInkSrc = hex;      // frRecolourLabel guard (same AUTHORED hex -> no redraw)
+        return lbl;
+    }
     // ── Authored string colour -> the drawn arrow + its label ──────────────
     //   A THREE.ArrowHelper is a GROUP (.line + .cone children) and has NO
     //   .material of its own, so the obvious o.material.color.set(...) guard is
@@ -41219,11 +41319,19 @@ export const FIELD_3D_RENDERER_CODE = `
     //   tinting material.color multiplies the new ink onto the old palette ink
     //   (and onto the dark outline). Re-draw the glyphs in the authored colour
     //   and keep the material white, so a gold arrow can never carry a blue T.
+    //   The re-draw goes through frLabelInk for the same reason frMakeLabel does:
+    //   this is the OTHER of the two ways ink reaches a label, and a floor with a
+    //   second door in it is not a floor.
+    //   The no-churn guard now compares the AUTHORED hex (_frInkSrc), not the
+    //   drawn ink (_pmColor), because ink != authored colour once the floor bites;
+    //   comparing _pmColor to hex would miss on every lifted colour and redraw the
+    //   canvas texture on every call.
     function frRecolourLabel(o, hex) {
         if (!o || !hex) return;
         if (o.material && o.material.color) o.material.color.set(0xFFFFFF);
-        if (o._pmColor === hex) return;
-        o._pmColor = hex;
+        if (o._frInkSrc === hex) return;
+        o._frInkSrc = hex;
+        o._pmColor = frLabelInk(hex);
         if (o._frText != null) updateLabelSpriteText(o, o._frText);
     }
     // The spec section 3 update primitive: a real ZERO force HIDES its arrow
@@ -42253,10 +42361,23 @@ export const FIELD_3D_RENDERER_CODE = `
             // and the component overlays keep the real dim channel, so Rule 32e is
             // unchanged — only the peers that were never meant to be see-through
             // stop being see-through.
+            //   An arrow LABEL is text, not a peer competing for attention, and
+            //   the generic peer dim (GLOW_DIM_OPACITY = 0.40) is what actually
+            //   put the ink on the floor: measured on the real frames, a peer T
+            //   label rendered as 0.40*ink + 0.60*disc — #42A5F5 arriving as
+            //   rgb(55,100,135) at 1.27:1. No ink floor survives being multiplied
+            //   by 0.40 over a lit backdrop, so the floor has to hold at the glow
+            //   pass too. fr_weight_label already had exactly this carve-out and
+            //   is exactly the label the founder reads cleanly; the arrow labels
+            //   now join it, and the label's own recede is written below at a
+            //   value that stays readable. Rule 32e is untouched: the ARROW still
+            //   dims to 0.40, so the single focal is as loud as it ever was — the
+            //   name tag beside it simply stays a name tag.
             var solid = (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
                          ud.elementType === "fr_pulley" || ud.elementType === "fr_string" ||
                          ud.elementType === "fr_ring" || ud.elementType === "fr_weight" ||
-                         ud.elementType === "fr_weight_label" || ud.elementType === "fr_centre" ||
+                         ud.elementType === "fr_weight_label" || ud.elementType === "fr_arrow_label" ||
+                         ud.elementType === "fr_centre" ||
                          ud.elementType === "fr_plane" || ud.elementType === "fr_anchor" ||
                          ud.elementType === "fr_wstring" || ud.elementType === "fr_bob" ||
                          // The post-cut path is EVIDENCE, not a peer competing for
@@ -42264,6 +42385,15 @@ export const FIELD_3D_RENDERER_CODE = `
                          // focal would erase the one thing the cut state proves.
                          ud.elementType === "fr_trail");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solid);
+            //   brightenOnly writes no opacity at all, so the label's recede is
+            //   written here instead of being skipped: a peer label is still
+            //   visibly quieter than the focal one, at a level that measurement
+            //   shows still reads (0.85 vs 1.00 over the disc keeps every label
+            //   above the 4.5:1 floor, where 0.40 put them at 1.3:1).
+            if (ud.elementType === "fr_arrow_label" && o.material) {
+                o.material.transparent = true;
+                o.material.opacity = (glowActive && !isFocal) ? FR_LABEL_DIM_OPACITY : 1.0;
+            }
         });
     }
     function applyForceRigGlow() { frApplyGlow(); }
@@ -42335,12 +42465,12 @@ export const FIELD_3D_RENDERER_CODE = `
         axY.userData = { elementType: "fr_axis", id: "fr_axis_y" };
         axY.visible = false;
         root.add(axY); frRegister(axY);
-        var axXL = pmCreateAutoLabel("x", FR_AXIS_COLOR, 0.3);
+        var axXL = frMakeLabel("x", FR_AXIS_COLOR, 0.3);
         axXL.position.set(FR_TABLE_R_W + 0.28, 0.22, 0);
         axXL.userData = { elementType: "fr_axis_label", id: "fr_axis_x_label" };
         axXL.visible = false;
         root.add(axXL); frRegister(axXL);
-        var axYL = pmCreateAutoLabel("y", FR_AXIS_COLOR, 0.3);
+        var axYL = frMakeLabel("y", FR_AXIS_COLOR, 0.3);
         axYL.position.set(0.26, FR_TABLE_R_W + 0.28, 0);
         axYL.userData = { elementType: "fr_axis_label", id: "fr_axis_y_label" };
         axYL.visible = false;
@@ -42391,8 +42521,7 @@ export const FIELD_3D_RENDERER_CODE = `
             wgt.visible = false;
             root.add(wgt); frRegister(wgt);
 
-            var wl = pmCreateAutoLabel("0.0 kg", FR_WEIGHT_COLOR, 0.30);
-            wl._frText = "0.0 kg";
+            var wl = frMakeLabel("0.0 kg", FR_WEIGHT_COLOR, 0.30);
             wl.userData = { elementType: "fr_weight_label", id: "fr_weightlbl_" + i, stringIndex: i };
             wl.visible = false;
             root.add(wl); frRegister(wl);
@@ -42407,8 +42536,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 ah.visible = false;
                 root.add(ah); frRegister(ah);
             }
-            var al = pmCreateAutoLabel("T", col, FR_ARROW_LABEL_H);
-            al._frText = "T";
+            var al = frMakeLabel("T", col, FR_ARROW_LABEL_H);
             al.userData = { elementType: "fr_arrow_label", id: "fr_arrow_" + i + "_label", stringIndex: i };
             al.visible = false;
             root.add(al); frRegister(al);
@@ -42420,8 +42548,7 @@ export const FIELD_3D_RENDERER_CODE = `
         res.userData = { elementType: "fr_arrow", id: "fr_resultant" };
         res.visible = false;
         root.add(res); frRegister(res);
-        var resL = pmCreateAutoLabel("ΣF", FR_RESULTANT_COLOR, FR_ARROW_LABEL_H);
-        resL._frText = "ΣF";
+        var resL = frMakeLabel("ΣF", FR_RESULTANT_COLOR, FR_ARROW_LABEL_H);
         resL.userData = { elementType: "fr_arrow_label", id: "fr_resultant_label" };
         resL.visible = false;
         root.add(resL); frRegister(resL);
@@ -42561,8 +42688,7 @@ export const FIELD_3D_RENDERER_CODE = `
             wah.userData = { elementType: "fr_arrow", id: wArrIds[wa] };
             wah.visible = false;
             root.add(wah); frRegister(wah);
-            var wal = pmCreateAutoLabel(wArrLbls[wa], wArrCols[wa], FR_W_LABEL_H);
-            wal._frText = wArrLbls[wa];
+            var wal = frMakeLabel(wArrLbls[wa], wArrCols[wa], FR_W_LABEL_H);
             wal.userData = { elementType: "fr_arrow_label", id: wArrIds[wa] + "_label" };
             wal.visible = false;
             root.add(wal); frRegister(wal);
