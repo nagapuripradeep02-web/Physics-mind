@@ -2836,6 +2836,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     friction_force:                 "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (flat push: static self-adjust, maximum + drop)
     rolling_friction:               "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch A + SEAM G (bodies[].shape:'wheel'): sliding block vs rolling wheel, same push, ~200x friction gap
     tension_force:                  "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch B (pulley, STATE_1-3) then SEAM H train (STATE_4-6): T set by motion not the string, T1 != T2 in a chain
+    equilibrium_of_particles:       "field_3d",   // NEW 2026-07-31 — force_rig Branch A (force_table): concurrent forces on a ring, SigmaF = 0 as TWO sums, and the two-cable law T = W/(2 sin theta)
     uniform_circular_motion:        "mechanics_2d",
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",

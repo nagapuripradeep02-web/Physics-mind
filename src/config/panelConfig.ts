@@ -614,6 +614,24 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Laws of Motion #8 — the FIRST concept on the force_rig engine, Branch A
+    // (`force_table`): a ring pulled by 3–4 strings over rim pulleys, each
+    // string's tension fixed exactly by its hanging weight, the ring's POSITION
+    // solved. Seven states: T = m g and arrow length, three unequal pulls
+    // summing to a zero dot, the two component sums as separate conditions,
+    // balance tracking a moving pulley, and the steep-vs-flat cable pair whose
+    // flip (29.4 N vs 49.0 N for the same load) is the primary insight.
+    // Single panel, no panel_b_config.
+    equilibrium_of_particles: {
+        concept_id: 'equilibrium_of_particles',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'equilibrium_of_particles',
+            label: 'Equilibrium of Particles — Every Direction Balances on Its Own (3D)',
+        },
+    },
+
     // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
     // Ch.1 "Vectors" — the DAG root). Single-panel PCPL sim, no panel_b_config.
     scalar_vs_vector: {

@@ -1,8 +1,101 @@
 # lom-g loop state — Laws of Motion, off-axis forces tray
 
-updated: 2026-07-31 (**Phase 0 COMPLETE** — the `force_rig` engine is built, both branches, and the
-         bring-up harness passes 42/42 with zero SKIP. The dispatch blocker is confirmed fixed.
-         Authoring is now UNBLOCKED. `whirl` did NOT need to be parked.)
+updated: 2026-07-31 (**Phase 1 authored — `equilibrium_of_particles` is BUILT and AWAITING FOUNDER
+         REVIEW, verdict FAIL on two ROUTED ENGINE findings, zero content rework needed.**
+         Review link live: http://localhost:8093/equilibrium_of_particles/ . Phase 0 complete
+         earlier the same day — `force_rig` both branches, harness 42/42.)
+
+## ⚠ FOUNDER DECISION PENDING — read this first
+
+`equilibrium_of_particles` is fully authored and the JSON is CLEAN (146 PASS / 0 FAIL, zero warnings
+of any class — the only file in the fleet with none). quality-auditor and eye-walker ran in parallel
+and **converged independently on the same two engine defects**. Neither is content; **no
+architect / physics-author / json-author rework is required**.
+
+**E1 — `force_rig` does not reproduce state at a pinned time. CRITICAL.**
+`SET_TIME_FREEZE at_ms: t` integrates the scenario to STEADY STATE instead of replaying to `t`.
+Every pinned frame in all 7 states is motionless; HUDs open at the ramp's END value (STATE_1 reads
+`T₁ = 49.00 N` at t=0, never 29.40). Ring centroid is sub-pixel identical across all 114 dense
+frames. Consequences: **D5/D6/D7 returned a false PASS on seven motionless states**, H2 baselines
+photograph steady state rather than the authored reveal, and **Rule 31 "no static state" cannot be
+judged for STATE_1–6 from THE EYE at all.** The free-running path proves the physics is fine
+(`KEYFRAMES_STATE_7` has the ring at (662.9, 339.0) at t=491 ms settling to (639.1, 358.2) by
+t=2941 ms) — it is the CAPTURE path that is broken. This affects `uniform_circular_motion` next on
+this tray and any future integrated scenario. `[owner: peter_parker:renderer_primitives]`
+**Until this is fixed, a 31/31 EYE result is NOT motion evidence for any `force_rig` concept.**
+
+**E2 — authored `strings[].color` never reaches the tension arrows. MAJOR, one-line fix.**
+`applyForceRigState` recolours via `o.material.color.set(...)`, but a `THREE.ArrowHelper` is a Group
+with `.line`/`.cone` children and **has no `.material`**, so the guard is false and every arrow keeps
+its build-time index palette. The rest of the file already uses the right API (`ah.setColor(...)` at
+`:14517`, `:18873`, `:19540`, `:23898`). Fix: `if (o.setColor) o.setColor(hexToThreeColor(st.color));`
+This is **not cosmetic** — it corrupts the PRIMARY AHA: STATE_5/6's two support cables are physically
+identical (both 5.0 kg / 49.00 N, mirror images, authored the same colour) and render red vs green,
+teaching a distinction that does not exist. STATE_3 narrates "two opposite pairs" and renders four
+unrelated colours. `[owner: peter_parker:renderer_primitives]`
+
+**Not actioned deliberately.** The founder's instruction was pipeline → build review site → STOP, and
+the tray sits at 2 of 3 engine commits on the runaway guard. E2 is a ~10-minute one-line dispatch;
+E1 is an architectural change to the capture path that should be the founder's call, not the loop's.
+
+**The founder's own browser review is currently the ONLY working instrument for Rule 31 motion on
+this concept** — the review player free-runs and does not use the broken `SET_TIME_FREEZE` path.
+
+### Lower-severity findings from the same walk (eye-walker, text only — no DB writes)
+
+| bug_class | sev | owner |
+|---|---|---|
+| `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line` **(recurrence — `FR_ARROW_Z` alone is insufficient)** | MAJOR | `peter_parker:renderer_primitives` |
+| `force_arrow_length_exceeds_the_apparatus_line_it_lies_along` (a 39.2 N arrow punches past its pulley and terminates inside the hanging weight; recurs at 0°/90°/270°) | MAJOR | `peter_parker:renderer_primitives` |
+| `unicode_subscript_gamma_used_where_latin_subscript_y_intended` (U+1D67 renders as a visible Greek **γ** on STATE_3's formula surface) | MAJOR | `alex:json_author` |
+| `glow_focal_fr_ring_whiteouts_the_ring_and_occludes_it` (Rule 29 — emphasis must preserve identity colour) | MODERATE | `peter_parker:renderer_primitives` |
+| `force_rig_slider_panel_renders_full_height_when_one_row_visible` (~250 px of empty black above STATE_4's single row) | MODERATE | `peter_parker:renderer_primitives` |
+
+Advisory, no engine work: append a `concept_panel_config` INSERT to the already-authored migration
+FILE so this concept doesn't join the 45-row `panel_count` backlog. `[alex:json_author]`
+
+## What DID pass, so the review is worth the founder's time
+
+Framing centred within 1% of viewport, nothing clipped, ring never near the rim (max 0.079 m of a
+0.25 m table) · hanger/pulley/label radial placement clean at every authored angle
+(0/17/34/50/90/130/163/180/233/270) — Phase 0's screen-down-hanger defect is FIXED · HUD at exactly
+`top: 52px`, clears the Full-screen button, value-only · one Unicode math-serif formula surface per
+state · ≤5-word delta cue on all 7 captions · narration 31–41 words, all inside the 25–55 budget ·
+arrow magnitudes proportional where measurable (39.2/49.0 = 0.80 vs 116/149 px = 0.78) · every T
+matches its hanger label · zero console errors · zero layout collisions · Rule 41 and Rule 35 probes
+over all 86 rendered strings returned NOTHING · **the primary aha does ship**: `STATE_5__frozen.png`
+vs `STATE_6__frozen.png`, same load `W = 49.00 N`, supports 29.40 N at steep cables vs 49.00 N at
+flat ones, both numbers legible, both geometries unmistakable.
+
+### Frames worth founder eyes
+`.visual_runs\equilibrium_of_particles\20260731-044255\` →
+`STATE_1__frozen.png` (hairline shafts + arrow overshoot into the hanger) ·
+`STATE_3__frozen.png` (the γ subscript + four colours where two authored pairs were the point) ·
+`STATE_2__frozen.png` ("Resultant shrinks to a dot" with no legible dot) ·
+`STATE_4__frozen.png` (empty slider panel) ·
+`KEYFRAMES_STATE_7__t00491.png` (the ONE frame showing the ring off-centre — compare to any pinned frame).
+
+## Two founder-named beats were reframed / cut at design time (architect §0, accepted)
+
+- **"Sweep an angle and watch BOTH other tensions change while the ring holds centre" is physically
+  impossible on this apparatus.** `T_i = m_i·g` is an INPUT fixed by the hanging mass; the ring
+  POSITION is the solved output. Sweeping an angle cannot change `T₂`/`T₃`, and the ring cannot hold
+  centre once the geometry moves. Reframed to what a real force table does: sweep `angle1` and the
+  ring **continuously tracks a moving balance point** — balance is still shown as a live condition,
+  and the thing that moves is a rendered object (the ring's path), not an asserted number. STATE_4.
+- **Lami's theorem is CUT.** Reading it off the screen needs the three inter-string angles; the
+  engine exposes no inter-string angle readout and no angle-arc drawable. Authored "α = 127°"
+  annotations would be stale the instant the ring moves (every guided state has motion by design) —
+  the exact `newton_third_law` failure the founder rejected. **Reinstating it is a genuine engine
+  request (angle readout + arc drawable), reported not worked around.**
+
+## Phase 1 artefacts
+`docs/loop_runs/lom_g/equilibrium_of_particles/01_architect_skeleton.md` (skeleton; §0 = engine findings) ·
+`02_physics_block.md` (physics; §0 = the three MEASURED values that overrode the architect) ·
+`src/data/concepts/equilibrium_of_particles.json` · migration FILE (unapplied, no DB writes).
+physics-author measured against the real engine and **rejected** the architect's `ring_mass_kg 0.25 /
+damping 12` (settles in 0.17 s, ~40× too fast) → **70 / 64**; caught **three `|p|` rim breaches**
+(STATE_4 40°→34°, STATE_5 supports 60/120→50/130, STATE_3 offset 0.13→0.125).
 
 design: docs/FORCE_RIG_ENGINE_SPEC.md  (founder-approved 2026-07-30)
 built:  docs/loop_runs/lom_g/_engine/force_rig_json_contract.md  ← **read this before authoring**
@@ -23,7 +116,10 @@ chapter_map (founder-approved 2026-07-30, in build order):
   PROVES the off-axis force solver before `uniform_circular_motion` depends on it. Same
   structural-extremes-first logic lom-a used. Do not reorder to do the exciting one first.
 
-next: **Phase 1 — author `equilibrium_of_particles`** via the Alex pipeline
+next: **FOUNDER REVIEW of `equilibrium_of_particles`** at http://localhost:8093/equilibrium_of_particles/ ,
+      then decide E1 (capture-path time pin) and E2 (one-line arrow colour). Phase 2 =
+      `uniform_circular_motion` — but note E1 blocks THE EYE from gating ITS motion too.
+      (superseded) Phase 1 authoring via the Alex pipeline
       (architect → physics-author → json-author → quality-auditor), then FOUNDER REVIEW.
       The engine gate is passed; nothing blocks authoring.
 in_flight: (none)
