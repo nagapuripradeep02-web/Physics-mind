@@ -1,6 +1,7 @@
 # AUTHORING_PIPELINE.md — How every PhysicsMind simulation gets built
 
-# Canonical SOP — v1.0 | 2026-06-10
+# Canonical SOP — v1.1 | 2026-06-10 (v1.1 2026-07-31: §0 Phase-0 chapter doctrine +
+# engine-dispatch discipline + founder-proxy checkpoints, graduated from the chapter-loop trial)
 # The end-to-end process for authoring ONE new simulation, from source to ship.
 # Locked with founder (Pradeep) on 2026-06-10. Every session follows this exactly.
 
@@ -57,6 +58,75 @@ For every NEW simulation:
    │  → value compounds, day 1 → day N                                      │
    └──────────────────────────────────────────────────────────────────────┘
 ```
+
+**founder-proxy checkpoints (graduated 2026-07-31 — proven in the Ch.7/Ch.8 chapter-loop trial):**
+the taste gate rides the pipeline at three points, in interactive builds as much as in the loop.
+**Checkpoint A** — after the architect skeleton, BEFORE physics-author: dispatch `founder-proxy`
+on every NEW skeleton (the highest-ROI quality slot; a mediocre design caught here saves the whole
+build). **Checkpoint B** — after quality-auditor PASS + eye-walker: the four-pass build review
+(`APPROVE` = authoring sign-off only, never shipping). **Checkpoint C** — before the concept is
+sealed: diff the claimed fixes, no silent skips. Shipping stays founder-only (Rule 17) — the proxy
+approves authoring, never releases. Full contract: `.agents/founder_proxy/CLAUDE.md`.
+
+---
+
+## §0 — Chapter opening: the Phase-0 doctrine (graduated 2026-07-31 from the chapter-loop trial)
+
+Runs ONCE per chapter, BEFORE the per-concept pipeline above. Evidence: Ch.1–6 reused mature
+scenarios and authored concepts as pure JSON (cheap); Ch.7 built its engine piecemeal per concept
+— ~1,296M tokens for 6 concepts. Ch.8, with this doctrine + the engine-dispatch discipline below,
+did equivalent work in ~177M. The cost driver of a chapter is UNPLANNED engine work (~42% of Ch.7
+spend), so plan it once:
+
+```
+0a  CHAPTER SURVEY (cheap — architect-level)
+    List EVERY concept in the chapter. For each: apparatus, what moves, what's
+    measured, the explore state. → the UNION of engine needs.
+    FIRST question: does an existing scenario family stretch? (Ch.3's CIRCUIT
+    engine ended up serving seven concepts incl. wheatstone + potentiometer.)
+    The cheapest Phase 0 is the one you discover you don't need.
+        │
+        ▼
+0b  DEEPEST-CONCEPT DESIGN
+    Full skeleton + physics block (EXACT functional forms) for the chapter's most
+    demanding concept — this is the engine's real spec.
+    → founder-proxy Checkpoint A on this skeleton BEFORE any engine code.
+        │
+        ▼
+0c  ENGINE ONCE (only if 0a found a real gap)
+    The owning surgeon (field3d-surgeon / pcpl-surgeon) builds ONE CONFIGURABLE
+    scenario against the 0a union, specced by 0b's physics. The dispatch REPORT's
+    closed enums are the authoritative JSON contract for json-author — they
+    supersede the skeleton's literal guesses.
+        │
+        ▼
+0d  CONCEPTS 1..N AS PURE JSON through the ① – ④ pipeline above.
+    SUCCESS TEST: concepts 2..N require ZERO renderer edits.
+
+⚠  ALARM RULE: a later concept forcing an engine edit means Phase 0
+   under-generalized — STOP and re-scope the scenario with the surgeon.
+   Never extend the engine per concept; that is exactly how Ch.7 got expensive.
+```
+
+## Engine-dispatch discipline (Amendment 4 — standing doctrine, graduated 2026-07-31)
+
+Applies to EVERY engine dispatch, interactive or loop:
+
+- **Route to the specialist:** field_3d root causes → `field3d-surgeon`
+  (`peter_parker:field3d_surgeon`); parametric/particle_field → `pcpl-surgeon`
+  (historical tag `peter_parker:renderer_primitives`); generator/serving/cache →
+  `runtime-generation`. Never general-purpose for field_3d work (~25M tokens/dispatch
+  re-exploring the renderer vs ~3.4M for the specialist — measured 2026-07-25).
+- **ONE `bug_class` per dispatch.** Bundles are BANNED — a ten-bug bundle once burned
+  156M tokens in 91 minutes (a long conversation re-bills its accumulated context every
+  turn; ten short dispatches are far cheaper than one long one). Sole exception: same
+  file AND same root cause.
+- **~100-tool-call / ~45-min ceiling** per dispatch, then a clean handoff note and a
+  fresh dispatch — never "push through to finish".
+- **Diagnosed root cause ⇒ minimal re-exploration.** State it in the dispatch prompt so
+  the agent executes instead of re-deriving.
+- **Scoped cache clears:** when testing one concept, `npm run cache:clear:scoped -- <id>`
+  (never a full-table wipe another session might be relying on).
 
 ---
 

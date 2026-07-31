@@ -26,7 +26,7 @@
  * every edit, so the PostToolUse hook can fire it after any Edit/Write.
  *
  * Usage:
- *   node scripts/sync-agents.js            # sync all 7 roles
+ *   node scripts/sync-agents.js            # sync all roles in ROLES below
  *   node scripts/sync-agents.js --check    # report drift without writing (exit 1 if any)
  *   npm run sync:agents
  */
@@ -43,7 +43,8 @@ const ROLES = [
   { canonical: 'physics_author',      emission: 'physics-author'      },
   { canonical: 'json_author',         emission: 'json-author'         },
   { canonical: 'quality_auditor',     emission: 'quality-auditor'     },
-  { canonical: 'renderer_primitives', emission: 'renderer-primitives' },
+  // renamed 2026-07-31 — was renderer_primitives; DB tag peter_parker:renderer_primitives unchanged
+  { canonical: 'pcpl_surgeon',        emission: 'pcpl-surgeon'        },
   { canonical: 'runtime_generation',  emission: 'runtime-generation'  },
   { canonical: 'feedback_collector',  emission: 'feedback-collector'  },
   // added 2026-07-04 — eye_walker + retrofit_surgeon (Alex), shipper (Release cluster)
@@ -52,9 +53,9 @@ const ROLES = [
   { canonical: 'shipper',             emission: 'shipper'             },
   // added 2026-07-23 — chemistry_author (Alex, chemistry pipeline — CHEMISTRY_BUILD_PLAN.md Phase 2)
   { canonical: 'chemistry_author',    emission: 'chemistry-author'    },
-  // EXPERIMENTAL 2026-07-22 — founder_proxy (chapter-loop trial, ch7 branch only)
+  // GRADUATED 2026-07-31 (born 2026-07-22 chapter-loop trial) — founder taste gate, checkpoints A/B/C
   { canonical: 'founder_proxy',       emission: 'founder-proxy'       },
-  // EXPERIMENTAL 2026-07-24 — field3d_surgeon (Amendment 4 engine specialist, ch7 branch only)
+  // GRADUATED 2026-07-31 (born 2026-07-24 trial) — field_3d engine specialist (Amendment 4).
   // Kept because it averages ~3.4M tokens/dispatch on field_3d engine work versus ~25M
   // for a general-purpose dispatch doing the same job (measured, lom-a loop 2026-07-25).
   { canonical: 'field3d_surgeon',     emission: 'field3d-surgeon'     },

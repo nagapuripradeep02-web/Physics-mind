@@ -58,6 +58,11 @@ Author concept JSONs. Strict pipeline; each step's output gates the next.
 
 Maintain the engines, not the content. Five clusters mirror the Tier structure.
 
+> **[2026-07-31 update — table is historical]:** the live engine roster is now `pcpl_surgeon`
+> (renamed from `renderer_primitives`; 2D display layers) + `field3d_surgeon` (field_3d specialist,
+> graduated from the chapter-loop trial) + `runtime_generation`. `feedback_collector` is DORMANT.
+> Current source of truth: `.agents/CLAUDE.md` roster + `.agents/peter_parker/OVERVIEW.md`.
+
 | Cluster | Owns | Status |
 |---|---|---|
 | `renderer_primitives` | PCPL primitive library + parametric_renderer + graph_interactive | spec NOT YET WRITTEN |
