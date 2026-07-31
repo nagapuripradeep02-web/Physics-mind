@@ -823,6 +823,9 @@ function buildOverlayUI() {
 
       var inp = document.createElement('input');
       inp.type = 'range';
+      // Named so the player's analytics capture can tell WHICH slider she moved —
+      // an id-less range logged every row in every Ch.3 sim as "unnamed".
+      inp.id = 'pm_sl_' + sid;
       inp.min = d.min; inp.max = d.max; inp.step = d.step || 1;
       inp.value = (d.default !== undefined) ? d.default : d.min;
       inp.style.cssText = 'width:100%;accent-color:#FFD54F;';
@@ -6952,6 +6955,28 @@ export function assembleParticleFieldHtml(cfgIn: ParticleFieldAuthoredConfig): s
 <html><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// First script on purpose: relays every iframe error (incl. CDN load failures and
+// renderer init crashes) to the parent player, which logs it to telemetry. Without
+// it a p5 crash in this engine was completely silent — only the parent's 15s
+// ready-timeout noticed, and only for a total failure.
+(function () {
+  var sent = 0;
+  function relay(msg, src, line) {
+    if (sent >= 10) return;
+    sent++;
+    try { parent.postMessage({ type: 'SIM_ERROR', message: String(msg || '').slice(0, 300), source: String(src || '').slice(0, 200), lineno: line || 0 }, '*'); } catch (e) {}
+  }
+  window.addEventListener('error', function (e) {
+    if (e && e.target && e.target !== window && (e.target.src || e.target.href)) { relay('resource_failed: ' + (e.target.src || e.target.href), '', 0); return; }
+    relay(e && e.message, e && e.filename, e && e.lineno);
+  }, true);
+  window.addEventListener('unhandledrejection', function (e) {
+    var r = e && e.reason;
+    relay('unhandledrejection: ' + ((r && r.message) ? r.message : String(r)), '', 0);
+  });
+})();
+<\/script>
 <style>
 html, body { margin: 0; padding: 0; overflow: hidden; background: ${bgColor}; width: 100%; height: 100%; }
 canvas { display: block; }
