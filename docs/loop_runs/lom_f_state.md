@@ -1,8 +1,9 @@
 # lom-f loop state — Laws of Motion, momentum tray
 
-updated: 2026-07-31 (Phase 0 SEAMs A + B built and green — the bring-up harness PASSES 50/50 with
-         zero PENDING. Assertion 4 CLEARED: `impulse` is teachable. Paused for founder review
-         before SEAM C. The dispatch blocker is RESOLVED — see below.)
+updated: 2026-07-31 (**PHASE 0 COMPLETE** — SEAMs A + B + C all green. Harness PASSES 63/63.
+         Assertion 4 CLEARED and the TWO-LANE payoff beat now proved. Every key in the spec's §1
+         config surface has behaviour — nothing parses-and-ignores. New sentinel VERIFIED
+         deterministic. Paused for founder review before authoring begins.)
 
 design: docs/MOMENTUM_BENCH_ENGINE_SPEC.md  (founder-approved 2026-07-30)
 worktree: C:\Tutor\physics-mind-lom-f
@@ -16,7 +17,12 @@ chapter_map (founder-approved 2026-07-30, in build order):
   1. impulse                    — NCERT ball-and-wall, stiffness as the taught variable
   2. conservation_of_momentum   — two carts, elastic / inelastic / explosion
 
-next: Phase 0 SEAM C — **AUTHORISED 2026-07-31, review passed**. Via `field3d-surgeon`. Carries
+next: **Phase 1 — authoring `impulse`**, pending founder review of the Phase 0 engine
+      (`git log --grep=engine-loop -p`, 3 commits). The engine is complete and proved; the
+      architect can now be handed hard facts (the JSON contract below) instead of wishful config.
+      Nothing authored yet.
+
+      [DONE 2026-07-31] Phase 0 SEAM C — **AUTHORISED, review passed, SHIPPED as `3d827ae`**. Carried
       (a) `lanes[].contact_override` — two simultaneous contacts feeding the proven two-trace panel;
       (b) the control/sandbox layer; (c) a MINIMAL formula surface (see below). Then authoring.
 
@@ -45,8 +51,14 @@ engine_commits:
            [peter_parker:field3d_surgeon]
   73ea98c  momentum_bench SEAM B — force arrows, momentum HUD, force-trace panel, slow-motion honesty
            [peter_parker:field3d_surgeon]
-scar_candidates: docs/loop_runs/lom_f/_engine/scar_candidates.sql — 4 rows, NOT applied (3 FIXED
-                 in-diff, 1 OPEN: the gauss_law_sphere STATE_6 regression-sample finding)
+  3d827ae  momentum_bench SEAM C — two-lane contacts, control/sandbox layer, formula surface
+           [peter_parker:field3d_surgeon]
+  05ddfd5  docs: SEAM C scar candidates
+scar_candidates: docs/loop_runs/lom_f/_engine/scar_candidates.sql — **6 rows**, NOT applied
+                 (4 FIXED in-diff; 2 OPEN: the retired-sentinel finding and the
+                 `zod_superrefine_gate_silently_never_runs...` probe trap)
+runaway_guard: 2 of 3. SEAM C was pre-authorised and does not count; its two in-seam defect fixes
+               were inside its own new surface.
 
 ## Sentinel swap — `gauss_law_sphere` is RETIRED from this tray (founder-approved 2026-07-31)
 
@@ -64,12 +76,24 @@ in this worktree). `coulombs_law` stays — it was clean at 50/50 with all 16 H2
    disjoint-pair rule exists to prevent — two loops re-seeding one baseline concurrently. **The
    orchestrator assigned the colliding pair originally; the error was upstream of this tray.**
 
-**REQUIRED on first use — double-run determinism check.** Before trusting
-`electric_field_point_charge` as a sentinel, run its EYE TWICE back to back on unmodified code and
-confirm the H2 numbers are identical. Do not skip this: the fleet has now produced two flaky
-sentinels (`gauss_law_sphere` here, `electric_potential_meaning` on lom-g) and an unverified
-replacement would repeat the mistake. If it also wanders, do NOT silently pick a third — report it,
-because that would make it a systemic frozen-capture defect rather than two bad concepts.
+**REQUIRED on first use — double-run determinism check: DONE 2026-07-31, PASSED.**
+`electric_field_point_charge` EYE run twice back to back on unmodified code with no re-seed between
+runs: **44/44 both times, all 14 H2 entries 0.00% in both — IDENTICAL on every entry, STATE_6
+included.** The sentinel is trustworthy. It then held at 44/44 / 0.00% again post-SEAM-C, and
+`coulombs_law` held at 50/50 / 0.00% on all 16 entries. `gauss_law_sphere` was never run.
+
+**NEW EVIDENCE for the escalated frozen-capture defect — a concrete candidate mechanism.** Both
+step-0 runs emitted:
+
+    Sim-time poll stalled for STATE_3/5/6/7 — reached 1248–1376/1500 ms … capturing anyway
+
+**The capture harness is not reaching its nominal pin time**, and captures anyway. Here it was
+harmless only because this concept's frames are static at those offsets. On a MOVING state, a stalled
+poll captures a different phase every run — which is exactly the wandering `__frozen` signature seen
+on `gauss_law_sphere` (this tray) and `electric_potential_meaning` (lom-g). That makes the defect
+machine-load-dependent rather than concept-specific, and it means "the baseline is stale" was the
+wrong first diagnosis. Not fixed here: out of scope, and this tray may not run `visual:approve` or
+touch master.
 
 **NOT this tray's job, escalated to the founder:** the underlying finding is that frozen captures are
 not byte-identical when they must be by construction (`SET_TIME_FREEZE` forces one step). lom-f and
@@ -97,6 +121,37 @@ HUD, force–time trace panel with the area FILLED + peak marker + `compare_with
 `slow_window` (pure `dt` multiplier at one call site, `slow motion ×N` badge, HUD keeps reporting TRUE
 physical values), `contact.label`. Harness: **50/50, zero PENDING** — A7d and A8e both closed.
 
+### SEAM C — control/sandbox layer + spec completion (commit `3d827ae`)
+
+`lanes[].contact_override` (a second SIMULTANEOUS contact), the control layer (`controls_visible`
+slider rows, `trusted_drag_seizes`, `param_ramp`), a minimal `formula` surface, and the ruling-4
+mutual-exclusion gate. Harness: **63/63, 0 failed** — all 50 SEAM A/B checks still pass untouched.
+
+**Every key in the spec's §1 config surface now has behaviour. Nothing parses-and-ignores.** The only
+non-behavioural residue is `lanes[].id`, deliberately carried as an event tag rather than rendered —
+the trace legend names a lane by its contact `label` ("foam pad" / "steel bumper"), which is the
+teacher-facing name. Rendering the id instead is a one-line legend change if the founder wants it.
+
+Implementation note that kept the blast radius small: `eng.contact` became `eng.contacts[]` with
+`eng.contact` retained as an alias for `contacts[0]`, so every single-lane path reads exactly as
+before — which is why all 50 prior checks passed without edits.
+
+### THE TWO-LANE PAYOFF BEAT — proved (SEAM C, check C1b/C1c)
+
+Two contacts engaged **at the same instant** (4 frames with both live), same ball, same speed,
+stiffness differing 10×:
+
+| | soft lane (`foam pad`) | rigid lane (`steel bumper`) |
+|---|---|---|
+| `k` (N/m) | 200 | 2000 |
+| **area ∫F dt** | **5.999975 N·s** (0.0004% off `m·Δv`) | **5.999750 N·s** (0.0042%) |
+| **F_peak** | **42.4264 N** | **134.1620 N** |
+
+Areas agree to **0.0038%**; peak ratio **3.16223** vs `√10 = 3.16228` (0.0015%). Both drawn on ONE
+shared axis pair. **Equal areas, very different peaks, side by side — `impulse` has its payoff beat.**
+This is the claim SEAM B could only prove for sequential runs; it is now proved for the side-by-side
+presentation the concept will actually use.
+
 ### THE GATE IS GREEN — assertion 4 (the founder go/no-go)
 
 | | soft wall | rigid wall |
@@ -112,12 +167,13 @@ Areas agree to **0.0038%** (tol 1%); `F_peak` ratio **3.1622×** (√10 = 3.1622
 harness greps the executable renderer source (comments stripped) and confirms no textbook collision
 formula is present.
 
-### Verify chain evidence (both commits)
+### Verify chain evidence (all three commits)
 
 `check:renderer-syntax` OK on all three renderers · `tsc --noEmit` 0 errors · `validate:concepts`
-**145 PASS / 0 FAIL** (unmoved — nothing authored) · harness 50/50 · regression EYE `coulombs_law`
-**50/50, all 16 H2 entries 0.00%**. Step 3b.2 (target-concept re-seed + EYE) is N/A — no
-`momentum_bench` concept exists.
+**145 PASS / 0 FAIL** (unmoved across every seam — nothing authored, and SEAM C's new schema gate did
+not move the count) · harness **63/63** · regression EYE `coulombs_law` **50/50, all 16 H2 entries
+0.00%** and `electric_field_point_charge` **44/44, all 14 entries 0.00%**. Step 3b.2 (target-concept
+re-seed + EYE) is N/A — no `momentum_bench` concept exists.
 
 **Rule 36b clock guard NOT tripped:** zero diff lines touch `__pmSteps` / `dtStep` / `__pmAccumMs` /
 `__pmLastWall`. The integrator consumes the existing shared fixed-step mechanism; `slow_window` is a
@@ -186,11 +242,53 @@ prohibited here).
    constant like nlb's cart size — record them in the JSON contract so authoring can compute contact
    positions from them rather than guessing, the same way nlb's spring authoring contract works.
 
-### SEAM C scope (still parse-and-ignore)
+### How each ruling landed (all five, SEAM C)
 
-`controls_visible` (the `#mb_sliders` rows — bottom-right zone reserved), `trusted_drag_seizes`
-(sandbox seize + Rule 37 idle-sweep cancel), `param_ramp`, `lanes[].contact_override` (the second
-independent contact), and a `momentum_bench` formula surface.
+1. **Formula surface: BUILT** — `momentum_bench.formula`, one authored Unicode algebra string per
+   state, `'Cambria Math'`, its own bottom-centre zone, harness-checked to contain **no digits**. The
+   value-only momentum HUD stays a separate surface; they were NOT merged.
+2. **`lanes[].contact_override`: BUILT** — see the two-lane proof above. Cap `MB_MAX_CONTACTS = 3`.
+3. **`mbDtScale` + `mb`-owned meshes: KEPT** as the permanent design. No convergence on `feat/lom-a`
+   attempted.
+4. **`sticks` + `preload_m`: BOTH parts built.** (a) **Gate 8m** in `src/schemas/conceptJson.ts`
+   rejects the pair — narrow and targeted, no Zod mirror of the config surface. (b) The renderer logs
+   a `console.error` and honours `preload_m`; the harness proves the pair genuinely explodes
+   (`v_A = −6.3246`, `v_B = +1.5811`, `Σp = 0` exactly) rather than latching dead. SEAM A's
+   "sticks wins" comment is gone from both the type block and the apply site.
+5. **Apparatus constants: KEPT AS BUILT** and recorded in the JSON contract below.
+
+### JSON authoring contract — hand this to `architect` / `json_author`
+
+**Apparatus constants (PHYSICS — compute contact positions from these, never guess):** cart
+half-length **0.4 m**, ball radius **0.28 m**, wall half-thickness **0.3 m**, `natural_length_m`
+default **0.4 m**. Scene scale **0.5 world units per metre**. **Contact begins when
+`s_hi − half_hi − (s_lo + half_lo) ≤ natural_length_m`** — e.g. a ball closing on a wall at `s = 0`
+first touches at ball centre `−0.98`.
+
+**Closed enums.** `mode`: `single_body | wall_impact | collision | explosion | sandbox` ·
+`readouts[]`: `v | p | sum_p | KE | sum_KE | F_contact | J` · `controls_visible[]`:
+`m1 | m2 | v1 | v2 | k | c` · `param_ramp.param`: `v1 | k | m2` · `shape`: `cart | ball | wall` ·
+`glow_focal`: exactly ONE of `mb_body_<id>` / `mb_track` / `mb_contact_element` / a bare body id.
+
+**Slider ranges (renderer-fixed; a `param_ramp` must stay inside its param's range):** `m1,m2`
+0.5–10 kg step 0.1 · `v1,v2` −6…6 m/s step 0.1 · `k` 50–5000 N/m step 25 · `c` 0–300 N·s/m step 1.
+
+**Per-state keys:** `formula` — ONE Unicode algebra string, no digits, no values · `lanes[]` —
+`{id, offset_z_m, bodies[], contact_override?}`, **±1.3 m offsets read cleanly** ·
+`trusted_drag_seizes: true` on the explore state ONLY, paired with `repeat_every_ms` (~1400 ms) ·
+`force_trace.compare_with_previous_lane: true` for the two-lane beat · `slow_window` MANDATORY on any
+state with a contact (spec §5).
+
+**Never author `sticks` and `preload_m` on the same contact** — Gate 8m rejects it.
+**Do not author `'J'` in `readouts` on a state that shows the trace** — the trace's shaded area
+already carries its own `J = … N·s` label (duplication, not a conflict).
+**No `field_lines` block required** — `momentum_bench` draws no tube field lines.
+**No `*_at_ms` fallbacks in this scenario** — `param_ramp.start_ms` defaults 0; `repeat_every_ms` and
+`phases[].at_ms` are the only clocks, and every gate holds at `t = 0`.
+
+**Overlay zones (measured, pairwise disjoint, all clear of review chrome at `y ≥ 52`):**
+`#mb_slowmo` top-left · `#mb_readout` top-right · `#mb_trace` bottom-left · `#mb_sliders`
+bottom-right · `#mb_formula` bottom-centre (capped `max-width:330px`) · `#caption` top-centre.
 
 ## RESOLVED — field3d-surgeon would not dispatch (ROOT-CAUSED + FIXED 2026-07-30, VERIFIED 2026-07-31)
 
