@@ -1,0 +1,407 @@
+{
+  "concept_id": "newton_second_law",
+  "concept_name": "Newton's Second Law (F = ma)",
+  "chapter": 8,
+  "section": "8.4",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "simple",
+  "source_book": "NCERT Class 11 Ch.5 Laws of Motion — table-of-contents reference only (Newton's second law is its own section, immediately after the first law, before constraint/pulley problems); teaching authored from first principles. The atomic idea: a net force gives a body ACCELERATION — proportional to the force and inversely proportional to the mass (a = ΣF/m) — and only that. Does NOT cover why zero net force means constant velocity (newton_first_law), force pairs (newton_third_law), drawing all forces on a body (free_body_diagram), friction or inclines (block_on_incline), or the vector/arbitrary-direction form of the law (newton_second_law_direction, advisory only). Engine: the shared newtons_laws_body field_3d scenario (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md) — a flat frictionless surface (theta_deg = 0, mu = 0 throughout) carrying two independent bodies (no pulley) in the mass/force compare states, one body in the single-body states. All four states are expressible with the engine's existing config surface; ENGINE GAP: none.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+  "prerequisites": [
+    "newton_first_law",
+    "instantaneous_velocity"
+  ],
+  "real_world_anchor": {
+    "primary": "An elevator starting to rise — the motor applies a steady extra force, and for those first moments you feel the floor press harder while the elevator's speed climbs from zero; the same steady force, speed rising the whole time it acts.",
+    "secondary": "Pushing a loaded luggage cart versus an empty one with the same effort — the empty cart gains speed twice as fast; the load didn't change your push, it changed what your push achieves."
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 25
+  },
+  "aha_moment": {
+    "state_id": "STATE_1",
+    "statement": "A force does not give speed — it gives a rate of gaining speed.",
+    "visual_confirmation": "The applied-force arrow F never changes length and the acceleration readout a never moves, yet the velocity readout v climbs every single second without limit — force sets a RATE, not a speed.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "mass_dependence": { "start": "STATE_2", "end": "STATE_2" },
+    "force_dependence": { "start": "STATE_3", "end": "STATE_3" },
+    "explore": { "start": "STATE_4", "end": "STATE_4" }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "m": { "name": "mass (body A / single-body states)", "unit": "kg", "min": 50, "max": 300, "default": 150, "step": 10 },
+      "m2": { "name": "mass of body B (mass-compare slider, STATE_2)", "unit": "kg", "min": 50, "max": 300, "default": 150, "step": 10 },
+      "F": { "name": "applied force (sandbox slider, STATE_4)", "unit": "N", "min": -40, "max": 40, "default": 0, "step": 2 },
+      "v0": { "name": "initial velocity (sandbox slider, STATE_4)", "unit": "m/s", "min": -2, "max": 2, "default": 0, "step": 0.5 },
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "theta": { "name": "incline angle", "unit": "deg", "constant": 0 },
+      "mu_s": { "name": "coefficient of static friction", "unit": "dimensionless", "constant": 0 },
+      "mu_k": { "name": "coefficient of kinetic friction", "unit": "dimensionless", "constant": 0 },
+      "a": { "name": "acceleration", "unit": "m/s^2", "derived": "F / m" },
+      "F_net": { "name": "net force", "unit": "N", "derived": "F (identical to F_applied; theta = 0 and mu = 0 all concept)" }
+    },
+    "computed_outputs": {
+      "acceleration_N_per_kg": { "formula": "F / m" },
+      "a_ratio_mass_compare_S2": { "formula": "a_A / a_B = m_B / m_A" },
+      "a_ratio_force_compare_S3": { "formula": "a_B / a_A = F_B / F_A" }
+    },
+    "formulas": {
+      "drive": "F - m * g * sin(radians(theta))",
+      "kinetic_friction": "-sign(v) * mu_k * (m * g * cos(radians(theta)))",
+      "a": "(drive + kinetic_friction) / m",
+      "F_net": "drive + kinetic_friction",
+      "sum_F": "m * a"
+    },
+    "constraints": [
+      "theta = 0 and mu_s = mu_k = 0 in every state of this concept (flat, frictionless floor throughout)",
+      "F_net = F_applied at every instant this concept authors (no incline component, no friction to subtract)",
+      "under a constant applied force, a is exactly constant and v grows without bound before any clamp",
+      "mass and force are independent knobs: doubling m halves a at fixed F; doubling F doubles a at fixed m",
+      "mu_s/mu_k and theta are never authored nonzero here — that scope belongs to block_on_incline / friction_static_kinetic",
+      "STOP_EPS_V = 0.01 m/s is carried from the shared integrator but never binds in the three guided states (drive != 0 whenever F != 0); it can bind only in the S4 sandbox default F = 0"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Steady force, from rest: a pins, v never stops climbing",
+        "duration": 14,
+        "focal_primitive_id": "nsl_s1_watch_a",
+        "advance_mode": "manual_click",
+        "motion_archetype": "accelerate-run",
+        "delta_cue": "Force on — speed climbs",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "force_gives_acceleration_not_velocity",
+          "what_if_the_force_stops",
+          "net_force_vs_applied_force"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nsl_s1_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Constant force from rest: watch which reading moves",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s1_watch_a",
+            "position": { "x": 200, "y": 250 },
+            "text": "a pins at 0.10 from frame 1 and never moves; v climbs every second",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s1_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like an elevator's motor pushing you upward — the floor presses harder, speed keeps rising",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Last time, with no force, speed stayed frozen.",
+              "glow": "nsl_s1_head"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Now watch this force arrow F, switched on, never changing length.",
+              "glow": "nsl_s1_watch_a"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "From rest, the block's speed climbs every second, yet the acceleration reading a never moves.",
+              "glow": "nsl_s1_watch_a"
+            },
+            {
+              "id": "s1_4",
+              "text_en": "A steady force doesn't set a speed — it sets a rate of change.",
+              "glow": "nsl_s1_anchor"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A constant force produces a constant speed — force is what velocity is made of (the everyday default: steadily pushed furniture moves at steady speed, because hidden friction cancels the push).",
+            "visual_counter": "The force arrow F never changes length and the acceleration reading a never changes value, yet the velocity reading v climbs every single second without limit — the wrong expectation (v flat) is directly contradicted by the live readout pair.",
+            "one_line_fix": "Force sets acceleration, not velocity — hold the force and the speed keeps climbing."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Same force, different mass: double the mass, half the acceleration",
+        "duration": 12,
+        "focal_primitive_id": "nsl_s2_mass_gap",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "side-by-side-race",
+        "delta_cue": "Same force — heavier lags",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "mass_as_inertia",
+          "mass_vs_weight_confusion",
+          "proportionality_reasoning"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nsl_s2_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Two identical force arrows — only the mass differs",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s2_mass_gap",
+            "position": { "x": 200, "y": 250 },
+            "text": "m₂ carries twice the mass — a reads exactly half, 0.10 vs 0.20",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s2_drag_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "drag the m₂ slider — its acceleration reading changes live, mid-run",
+            "color": "#FFB300"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Two identical force arrows — same length, same force F — launch two blocks together.",
+              "glow": "nsl_s2_head"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The heavier one, m two, carries twice the mass and visibly falls behind, its acceleration reading exactly half the lighter block's.",
+              "glow": "nsl_s2_mass_gap"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Drag the m two slider heavier or lighter and watch its acceleration change live, right on the readout.",
+              "glow": "nsl_s2_drag_note"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The same push moves everything the same way — mass doesn't really matter, heavy things are just slower to get going.",
+            "visual_counter": "Two IDENTICAL force arrows, the only difference is mass — and the double-mass block gets exactly half the acceleration at every instant (a readouts 0.20 vs 0.10, distances in a 2:1 ratio).",
+            "one_line_fix": "Mass is resistance to acceleration — double the mass, half the acceleration."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Same mass, different force: double the force, double the acceleration",
+        "duration": 12,
+        "focal_primitive_id": "nsl_s3_force_gap",
+        "advance_mode": "manual_click",
+        "motion_archetype": "side-by-side-race (declared contrast pair with STATE_2)",
+        "delta_cue": "Same mass — stronger force wins",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nsl_s3_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Now equal masses — the force arrow on m₂ is doubled",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s3_force_gap",
+            "position": { "x": 200, "y": 250 },
+            "text": "m₂'s force arrow is drawn twice as long — a reads exactly double, 0.20 vs 0.10",
+            "color": "#AB47BC"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s3_summary",
+            "position": { "x": 560, "y": 400 },
+            "text": "same gap as before, made by force this time — one law, two dials: a = F/m",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Same two blocks, now equal in mass — but m two's force arrow is drawn twice as long: double the push.",
+              "glow": "nsl_s3_head"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Its acceleration reading is exactly double m one's.",
+              "glow": "nsl_s3_force_gap"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Same gap as before, this time made by force, not mass — one law, two different dials, both reading a equals F over m.",
+              "glow": "nsl_s3_summary"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Explore: drive m, F, v₀ — watch a obey a = ΣF/m live",
+        "duration": 0,
+        "focal_primitive_id": "nsl_s4_key",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "All yours",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nsl_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Set mass, force, v₀ — watch v, a, F, ΣF respond live",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s4_watch",
+            "position": { "x": 380, "y": 250 },
+            "text": "double m, watch a halve; reverse F's sign, watch it brake then reverse",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "nsl_s4_key",
+            "position": { "x": 380, "y": 440 },
+            "text": "a = ΣF / m",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Your turn — set mass, force, and starting speed, and watch acceleration respond live, always obeying a equals F over m.",
+              "glow": "nsl_s4_head"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "slider_controls": {
+      "m": { "min": 50, "max": 300, "step": 10, "default": 150, "label": "m" },
+      "m2": { "min": 50, "max": 300, "step": 10, "default": 150, "label": "m₂" },
+      "F": { "min": -40, "max": 40, "step": 2, "default": 0, "label": "F" },
+      "v0": { "min": -2, "max": 2, "step": 0.5, "default": 0, "label": "v₀" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Steady force, from rest: a pins, v never stops climbing",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
+        "camera_position": [0, 2.03, 7.8],
+        "caption": "Force on — speed climbs",
+        "show_sliders": true,
+        "formula_overlay": "constant F ⇒ constant a",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "bodies": [
+            { "id": "A", "label": "m₁", "mass_kg": 150, "initial_position_m": -7, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 15 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied"] }
+          ],
+          "glow_focal": "nlb_arrow_A_applied",
+          "readouts": ["v", "a", "F_applied"],
+          "controls_visible": []
+        }
+      },
+      "STATE_2": {
+        "label": "Same force, different mass: double the mass, half the acceleration",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "Same force — heavier lags",
+        "show_sliders": true,
+        "formula_overlay": "a = F/m",
+        "newtons_laws_body": {
+          "mode": "compare_mass_same_force",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "bodies": [
+            { "id": "A", "label": "m₁", "mass_kg": 75, "initial_position_m": -8, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 15 },
+            { "id": "B", "label": "m₂", "mass_kg": 150, "initial_position_m": -8, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 15 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied"] },
+            { "body_id": "B", "show": ["applied"] }
+          ],
+          "glow_focal": "nlb_body_B",
+          "readouts": ["v", "a"],
+          "controls_visible": ["m2"]
+        }
+      },
+      "STATE_3": {
+        "label": "Same mass, different force: double the force, double the acceleration",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
+        "camera_position": [0, 2.34, 9.75],
+        "caption": "Same mass — stronger force wins",
+        "show_sliders": true,
+        "formula_overlay": "a ∝ F",
+        "newtons_laws_body": {
+          "mode": "compare_force_same_mass",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "bodies": [
+            { "id": "A", "label": "m₁", "mass_kg": 150, "initial_position_m": -8, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 15 },
+            { "id": "B", "label": "m₂", "mass_kg": 150, "initial_position_m": -8, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 30 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied"] },
+            { "body_id": "B", "show": ["applied"] }
+          ],
+          "glow_focal": "nlb_arrow_B_applied",
+          "readouts": ["v", "a"],
+          "controls_visible": []
+        }
+      },
+      "STATE_4": {
+        "label": "Explore: drive m, F, v₀ — watch a obey a = ΣF/m live",
+        "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
+        "camera_position": [0, 2.34, 8.45],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "a = ΣF/m",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 10, "frictionless": true },
+          "bodies": [
+            { "id": "A", "label": "m₁", "mass_kg": 150, "initial_position_m": 0, "initial_velocity_mps": 0, "mu_s": 0, "mu_k": 0, "applied_force_N": 0 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "net"] }
+          ],
+          "glow_focal": "nlb_body_A",
+          "readouts": ["v", "a", "F_applied", "F_net"],
+          "controls_visible": ["m", "F", "v0"],
+          "trusted_drag_seizes": true,
+          "idle_auto_sweep": { "param": "F", "range": [-20, 20] }
+        }
+      }
+    }
+  }
+}

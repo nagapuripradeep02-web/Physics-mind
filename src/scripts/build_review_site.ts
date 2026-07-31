@@ -34,6 +34,7 @@ import {
     type ParticleFieldAuthoredConfig,
 } from '@/lib/renderers/particle_field_renderer';
 import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 import {
     pilotHeadTags,
     isPilotConcept,
@@ -117,6 +118,12 @@ type ReviewState = {
     title: string;
     advance_mode: string;
     duration: number;
+    // Guided state that must keep running after its narration ends (Rule 37 /
+    // the continuous_motion exemption in onTimelineEnd). Must be carried HERE:
+    // the player reads it off the state object this function builds, so a field
+    // present in the concept JSON but absent from this type is silently dropped
+    // and the flag reads as inert with no error anywhere.
+    continuous_motion: boolean;
     sentences: ReviewSentence[];
 };
 
@@ -282,11 +289,21 @@ function embedJson(value: unknown): string {
 }
 
 function loadConcept(conceptId: string): ConceptJson {
-    const path = join(CONCEPTS_DIR, `${conceptId}.json`);
-    if (!existsSync(path)) {
-        throw new Error(`Concept JSON not found: ${path}`);
+    // Subject routing (CHEMISTRY_BUILD_PLAN.md Phase 2.5). The shared resolver
+    // checks the flat physics dir FIRST — so physics resolution is byte-identical
+    // to reading CONCEPTS_DIR directly — then src/data/concepts/chemistry/, which
+    // is the only place chemistry concepts may live (isolation contract,
+    // docs/CHEMISTRY_ARCHITECTURE.md §7). Same resolver already used by
+    // generate_tts_audio, _seed_chemistry_cache, buildParametricConfig and
+    // loadCachedSim, so every script layer agrees on where a concept lives.
+    const resolved = resolveConceptJsonPath(conceptId);
+    if (!resolved) {
+        throw new Error(
+            `Concept JSON not found: ${join(CONCEPTS_DIR, `${conceptId}.json`)} ` +
+            `(also checked src/data/concepts/chemistry/${conceptId}.json)`,
+        );
     }
-    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+    return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
 }
 
 // ── PCPL (mechanics_2d) adapter ───────────────────────────────────────────────
@@ -380,6 +397,7 @@ function extractStates(
                 title: st.title ?? id,
                 advance_mode: st.advance_mode ?? 'manual_click',
                 duration: typeof st.duration === 'number' ? st.duration : 12,
+                continuous_motion: (st as { continuous_motion?: boolean }).continuous_motion === true,
                 sentences,
             };
         });
@@ -1231,13 +1249,24 @@ ${pilotHeadTags(1)}
     while (nextPos < order.length && isHidden(order[nextPos])) nextPos++;
     if (autoEl.checked && nextPos < order.length) {
       goToState(nextPos, playing, 'auto');
-    } else if (cur() && cur().advance_mode === 'interaction_complete') {
+    } else if (cur() && (cur().advance_mode === 'interaction_complete' || cur().continuous_motion)) {
       // Explore/sandbox state: never auto-freeze. Let the clock free-run so the
       // motion loops forever (the renderer's bead phase wraps % 1) and slider
       // drags drive live continuous motion — a teacher can still Pause manually
       // (the Pause button calls freeze()). Nothing left to reveal here, so keep
       // playing and do NOT pin the clock. (founder 2026-07-12: the last state must
       // run continuously, not stop after its narration ends.)
+      //
+      // continuous_motion (2026-07-28): the same exemption, for a GUIDED state
+      // whose subject IS that the motion never stops. Dynamic equilibrium is the
+      // case that forced it — its central state says "the amounts stopped changing
+      // but the reaction never stopped", and under the default freeze the sim
+      // stopped dead a second after that sentence, demonstrating the misconception
+      // it exists to kill. Authored per state, never a default: a narrated state
+      // holding its final picture is right for almost every concept (Rule 26), and
+      // this is the narrow exception where the final picture is a lie.
+      // THE EYE's SET_TIME_FREEZE capture path is separate, so no baseline moves
+      // (Rule 37b) — verified, not assumed.
     } else {
       playing = false; setPlayBtnUI(false);
       try { stopAudio(); } catch (e) {}
@@ -3609,7 +3638,7 @@ function buildOne(conceptId: string): void {
     //    physics_engine_config = mechanics_2d/PCPL — also a p5 sketch, via a different renderer file)
     const simHtml = vendorizeSimHtml(
         json.field_3d_config
-            ? assembleField3DHtml(json.field_3d_config)
+            ? assembleField3DHtml(json.field_3d_config, json.epic_l_path as never)
             : json.particle_field_config
                 ? assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig)
                 : assembleParametricHtml(buildParametricConfig(conceptId, json)),

@@ -58,6 +58,7 @@ route_backup.txt
 # visual-validator frame-dump runs (THE EYE) — working artifacts, never repo content
 # (visual_baselines/ IS tracked — those are the approved regression baselines)
 /.visual_runs/
+/.founder_runs/
 
 # large regeneratable data (extracted from PDFs / generated JSONL)
 /ncert/
@@ -99,3 +100,7 @@ review-site-archive/
 
 # Windows redirect-typo artifact (a "> nul" in Git Bash creates a real file)
 nul
+
+# scratch bring-up artifacts (generated HTML/PNG probes)
+/.scratch_nlb/
+/.scratch_nlb_seams/

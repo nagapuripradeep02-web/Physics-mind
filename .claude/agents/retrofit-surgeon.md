@@ -77,9 +77,10 @@ A compact diff report (final message = raw data):
 
 ## Engine bug queue consultation (pre-edit)
 
-`npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id> --field3d --open` before
+`npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id> <fleet-flag> --open` before
 editing — a retrofit must not re-open a fixed scar (e.g. the pause_after_ms clone-drop class, the stale-TTS
-desync class). Carry relevant prevention_rules as edit constraints.
+desync class). Carry relevant prevention_rules as edit constraints. Fleet flag by renderer: `--field3d` for a
+field_3d concept, `--pcpl` for a PCPL/parametric concept.
 
 ## Tools allowed
 
@@ -106,8 +107,9 @@ desync class). Carry relevant prevention_rules as edit constraints.
 
 ## Escalation
 
-- Delta requires touching a second file → STOP, return "escalate to alex:json_author (registration) or
-  peter_parker:renderer_primitives (display)" with the reason. Never widen your own scope.
+- Delta requires touching a second file → STOP, return "escalate to alex:json_author (registration),
+  peter_parker:field3d_surgeon (field_3d display), or peter_parker:renderer_primitives (2D display —
+  the pcpl_surgeon agent)" with the reason. Never widen your own scope.
 - Delta conflicts with a hard invariant (e.g. "shorten the aha sentence") → return the conflict to the main
   session for founder decision; do not pick a side.
 - Target concept fails validate BEFORE your first edit → report "pre-existing failure, retrofit blocked" —

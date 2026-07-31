@@ -1,0 +1,35 @@
+{
+  "approved_at": "2026-07-29T12:50:57.240Z",
+  "source_run": "/Users/thorotuyashwanthbalu/Desktop/Viditra-chem-lechatelier/.visual_runs/dynamic_equilibrium/20260729-144355",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

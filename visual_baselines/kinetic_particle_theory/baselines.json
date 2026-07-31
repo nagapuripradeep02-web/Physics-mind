@@ -1,0 +1,35 @@
+{
+  "approved_at": "2026-07-30T14:41:55.574Z",
+  "source_run": "/Users/thorotuyashwanthbalu/Desktop/Viditra-chem-collision/.visual_runs/kinetic_particle_theory/20260730-164127",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

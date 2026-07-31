@@ -1,0 +1,27 @@
+{
+  "approved_at": "2026-07-30T12:06:36.750Z",
+  "source_run": "C:\\Tutor\\physics-mind-curriculum\\.visual_runs\\rolling_friction\\20260730-140619",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

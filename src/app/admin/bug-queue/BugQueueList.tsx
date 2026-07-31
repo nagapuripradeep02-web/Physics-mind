@@ -35,8 +35,11 @@ const STATUSES = ["OPEN", "FIXED", "DEFERRED", "NOT_REPRODUCING"] as const;
 const OWNERS = [
     "alex:architect",
     "alex:physics_author",
+    "alex:chemistry_author",
     "alex:json_author",
     "peter_parker:renderer_primitives",
+    "peter_parker:field3d_surgeon",
+    "peter_parker:visual_validator",
     "peter_parker:runtime_generation",
     "ambiguous",
 ] as const;

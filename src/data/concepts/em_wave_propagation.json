@@ -1,0 +1,1402 @@
+{
+  "concept_id": "em_wave_propagation",
+  "concept_name": "Electromagnetic Wave Propagation — Self-Regenerating E and B at c = 1/√(μ₀ε₀)",
+  "chapter": 8,
+  "section": "8.3",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics Ch.8 Electromagnetic Waves, §8.3 (Electromagnetic Waves — nature, propagation, speed) — table-of-contents + coverage scope reference only; teaching authored from first principles, no sequence/example/figure imported. DC Pandey table of contents consulted for SCOPE only. The atomic idea: mutually regenerating changing E and B fields self-propagate through empty space as a transverse wave — E ⊥ B ⊥ direction of travel with E×B pointing ahead, E and B in phase with E₀/B₀ = c, carrying energy split equally between the two fields, at the speed c = 1/√(μ₀ε₀) ≈ 3×10⁸ m/s that identifies light itself as an electromagnetic wave (v = c/n in a medium). Second Ch.8 diamond, continuing directly from displacement_current (shipped, sealed) and cashing its S9/S10 forward hook (\"the handshake that lets waves carry themselves through empty space\"). This concept ABSORBS the two previously-seeded siblings em_wave_nature and speed_of_em_waves (founder brief merges nature + propagation + speed into one atomic diamond — see the CONCEPT_SYNONYMS redirect, registration site #6). Does NOT cover the electromagnetic spectrum's bands and uses (deferred to electromagnetic_spectrum), quantitative intensity / radiation pressure / momentum transfer (deferred to em_wave_energy_momentum), the displacement-current law itself (prerequisite displacement_current), Faraday's law (prerequisite faraday_law_induction), or general wave kinematics — crest, wavelength, frequency, λν = v (Class 11 prerequisite, applied here, never re-taught). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions — no medium needed, in-phase not 90° shifted, energy split half-and-half — are confronted inside EPIC-L via Rule 16a misconception_watch at STATE_3/STATE_5/STATE_8). Routed to the field_3d 'em_wave_propagation' scenario (antenna source with an oscillating charge bead, a propagation axis, traveling E/B vector trains in pulse or continuous-train mode, a dual live receiver gauge, seeded dust motes proving no medium is needed, a leapfrog-relay hand-off choreography, an x̂ŷẑ triad with an E×B thrust glyph, a wrong-expectation ghost B train, a fixed phase cursor, timing gates with a stopwatch, twin energy-density tanks, and a translucent medium slab).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "em_wave_propagation"
+    ]
+  },
+  "prerequisites": [
+    "displacement_current",
+    "faraday_law_induction",
+    "amperes_circuital_law"
+  ],
+  "real_world_anchor": {
+    "primary": "When a phone sends a message across a room, nothing physical crosses the space — no air is pushed, no particle travels. Inside the phone, an antenna wiggles charges billions of times a second, and the pattern rides out on the fields themselves. The same link reaches a spacecraft across millions of kilometres of genuinely empty space. Every student on every syllabus holds this transmitter daily.",
+    "secondary": "The moment the computed 1/√(μ₀ε₀) matches the measured speed, the payoff lands: this is how sunlight crosses 150 million kilometres of nothing to warm your face — light itself is this wave. The anchor is withheld until STATE_6 on purpose (the word 'light' never appears earlier) so the identity lands on a confident this-is-something-else frame."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "nu": {
+        "name": "Source frequency (ν)",
+        "unit": "MHz",
+        "min": 50,
+        "max": 200,
+        "default": 100,
+        "role": "driver"
+      },
+      "E0": {
+        "name": "Field strength (E amplitude — labelled without subscript until STATE_7)",
+        "unit": "V/m",
+        "min": 40,
+        "max": 200,
+        "default": 120,
+        "role": "driver"
+      },
+      "n_slab": {
+        "name": "Refractive index of the medium slab (n) — STATE_10 only, advanced ring",
+        "unit": "dimensionless",
+        "min": 1.0,
+        "max": 2.0,
+        "default": 1.5,
+        "role": "driver"
+      },
+      "source_on": {
+        "name": "Source ON/OFF — slider-controlled only on STATE_11; scripted (not slider-driven) on STATE_2",
+        "unit": "boolean (0/1)",
+        "min": 0,
+        "max": 1,
+        "default": 1,
+        "role": "driver"
+      },
+      "eps0": {
+        "name": "Permittivity of free space (electric constant)",
+        "unit": "F/m",
+        "constant": 8.8541878128e-12
+      },
+      "mu0": {
+        "name": "Permeability of free space (magnetic constant)",
+        "unit": "T·m/A",
+        "constant": 1.25663706212e-06
+      },
+      "D_gate": {
+        "name": "Timing-gate separation distance (STATE_6 only)",
+        "unit": "m",
+        "constant": 6.00
+      },
+      "c": {
+        "name": "Speed of light in vacuum",
+        "unit": "m/s",
+        "derived": "1 / sqrt(mu0 * eps0)"
+      },
+      "nu_Hz": {
+        "name": "Source frequency in SI base units",
+        "unit": "Hz",
+        "derived": "nu * 1e6   -- MHz->Hz conversion (silent-failure trap if skipped, see constraints)"
+      },
+      "T_period": {
+        "name": "Wave period",
+        "unit": "s",
+        "derived": "1 / nu_Hz"
+      },
+      "lambda_vac": {
+        "name": "Wavelength in vacuum",
+        "unit": "m",
+        "derived": "c / nu_Hz"
+      },
+      "B0": {
+        "name": "Magnetic field amplitude (B₀ = E₀/c)",
+        "unit": "T",
+        "derived": "E0 / c   -- SI Tesla; UI displays this * 1e6 as microtesla"
+      },
+      "k_wave": {
+        "name": "Wave number (vacuum)",
+        "unit": "rad/m",
+        "derived": "2 * PI / lambda_vac"
+      },
+      "omega_wave": {
+        "name": "Angular frequency",
+        "unit": "rad/s",
+        "derived": "2 * PI * nu_Hz"
+      },
+      "uE": {
+        "name": "Electric energy density at a crest",
+        "unit": "J/m^3",
+        "derived": "0.5 * eps0 * E0 * E0"
+      },
+      "uB": {
+        "name": "Magnetic energy density at a crest",
+        "unit": "J/m^3",
+        "derived": "(B0 * B0) / (2 * mu0)   -- from B0 in SI Tesla, never the displayed microtesla value"
+      },
+      "dt_gate": {
+        "name": "True gate transit time (unrounded internal)",
+        "unit": "s",
+        "derived": "D_gate / c"
+      },
+      "v_medium": {
+        "name": "Phase speed inside the slab",
+        "unit": "m/s",
+        "derived": "c / n_slab"
+      },
+      "lambda_medium": {
+        "name": "Wavelength inside the slab",
+        "unit": "m",
+        "derived": "v_medium / nu_Hz"
+      }
+    },
+    "computed_outputs": {
+      "c_display": { "formula": "c.toFixed(0)", "note": "shown as 2.998e8 -> formatted 2.998×10⁸ m/s (STATE_6 formula-dock line 2)" },
+      "v_measured_display": { "formula": "'3.0×10⁸ m/s'", "note": "6.00/20.0e-9, exact given the two rounded display inputs (STATE_6 formula-dock line 1)" },
+      "T_display_ns": { "formula": "(T_period * 1e9).toFixed(1)", "note": "10.0 ns" },
+      "lambda_display": { "formula": "lambda_vac.toFixed(2)", "note": "3.00 m" },
+      "nu_display_MHz": { "formula": "nu.toFixed(0)", "note": "100 MHz" },
+      "E0_display": { "formula": "E0.toFixed(0)", "note": "120 V/m" },
+      "B0_display_uT": { "formula": "(B0 * 1e6).toFixed(2)", "note": "0.40 μT — computed from unrounded B0 in Tesla, then scaled for display" },
+      "ratio_display": { "formula": "'3.0×10⁸'", "note": "E0/B0 in SI = c again, frozen chip (never ticks, STATE_7)" },
+      "uE_display": { "formula": "(uE * 1e8).toFixed(2)", "note": "LOCKED '6.38×10⁻⁸ J/m³' (FL4)" },
+      "uB_display": { "formula": "(uB * 1e8).toFixed(2)", "note": "MUST render the IDENTICAL '6.38×10⁻⁸ J/m³' string from its OWN independent B²/2μ₀ chain" },
+      "D_display": { "formula": "D_gate.toFixed(2)", "note": "6.00 m" },
+      "dt_display_ns": { "formula": "'20.0'", "note": "rounds from 20.0138ns" },
+      "k_display": { "formula": "k_wave.toFixed(2)", "note": "2.09 rad/m (STATE_9 only)" },
+      "omega_display": { "formula": "omega_wave.toExponential(2)", "note": "6.28×10⁸ rad/s (STATE_9 only)" },
+      "n_display": { "formula": "n_slab.toFixed(2)", "note": "1.50 (STATE_10)" },
+      "v_medium_display": { "formula": "v_medium.toExponential(2)", "note": "2.00×10⁸ m/s (STATE_10)" },
+      "lambda_medium_display": { "formula": "lambda_medium.toFixed(2)", "note": "2.00 m (STATE_10)" }
+    },
+    "derived_fields_declared": [
+      "c", "nu_Hz", "T_period", "lambda_vac", "B0", "k_wave", "omega_wave", "uE", "uB",
+      "dt_gate", "v_medium", "lambda_medium",
+      "c_display", "v_measured_display", "T_display_ns", "lambda_display", "nu_display_MHz",
+      "E0_display", "B0_display_uT", "ratio_display", "uE_display", "uB_display",
+      "D_display", "dt_display_ns", "k_display", "omega_display", "n_display",
+      "v_medium_display", "lambda_medium_display"
+    ],
+    "formulas": {
+      "speed_of_light": "c = 1 / sqrt(mu0 * eps0)",
+      "wavelength_vacuum": "lambda_vac = c / (nu * 1e6)",
+      "period": "T_period = 1 / (nu * 1e6)",
+      "amplitude_ratio": "B0 = E0 / c",
+      "wavenumber": "k_wave = 2*PI / lambda_vac",
+      "angular_frequency": "omega_wave = 2*PI * nu * 1e6",
+      "phase_before_slab": "phi(x,t) = k0*x - omega_wave*t   -- x < x_slab_a, k0 = omega_wave/c",
+      "phase_inside_slab": "phi(x,t) = k0*x_slab_a + n_slab*k0*(x - x_slab_a) - omega_wave*t   -- x_slab_a <= x <= x_slab_b, the CUMULATIVE piecewise form (no boundary jump)",
+      "phase_after_slab": "phi(x,t) = k0*x_slab_a + n_slab*k0*(x_slab_b - x_slab_a) + k0*(x - x_slab_b) - omega_wave*t  -- x > x_slab_b",
+      "E_field_train": "E(x,t) = E0 * sin(phi(x,t))   -- on ŷ, valid everywhere incl. inside slab",
+      "B_field_train": "B(x,t) = (E0 / c) * sin(phi(x,t))   -- on ẑ, SAME phi(x,t) as E at every x incl. inside slab (vacuum-ratio stylization inside the slab is DECLARED, unnarrated — F2/FL5)",
+      "energy_density_E": "uE(t) = 0.5 * eps0 * E(x_cursor,t)^2",
+      "energy_density_B": "uB(t) = B(x_cursor,t)^2 / (2*mu0)",
+      "gate_transit_time_true": "dt_gate_true = D_gate / c   -- 20.0138 ns, internal only, never displayed raw",
+      "measured_speed_from_display": "v_measured = D_gate_display / dt_gate_display   -- computed from the ROUNDED HUD numbers 6.00m / 20.0ns",
+      "medium_speed": "v_medium = c / n_slab",
+      "medium_wavelength": "lambda_medium = v_medium / (nu * 1e6)",
+      "crest_count_ratio_check": "nu_in_slab == nu_outside_slab   -- identity, omega (hence nu) never changes across the boundary by construction"
+    },
+    "constraints": [
+      "c = 1/sqrt(mu0*eps0) is a GLOBAL constant of this concept — it never changes with nu, E0, or source_on; only n_slab (STATE_10 only) changes the LOCAL phase speed",
+      "B(x,t) = E(x,t)/c holds POINTWISE at every x and every t, not only at a crest — therefore uB(t)/uE(t) = 1 for ALL t, not only at the crest snapshot (uE=uB is a continuous identity, not a coincidence engineered at one instant)",
+      "omega_wave (hence nu) is IDENTICAL on both sides of the slab boundary at every instant — only k_wave changes inside the slab (k_inside = n_slab * k0); this is what makes 'frequency holds, wavelength shortens' true by construction, not by narrative assertion",
+      "the motes' position is a pure function of seed index ONLY, never of E(x,t)/B(x,t) or of t (except a global opacity fade in STATE_3) — this null-displacement IS the physics being taught, not a rendering shortcut",
+      "the speed chip (STATE_6/STATE_11) must never move on a nu or E0 drag; it moves ONLY when n_slab changes (STATE_10), and even then it reports v_medium, never overwriting the vacuum c chip",
+      "no state before STATE_6 renders mu0, eps0, c, or the word 'light' in any text path (caption/HUD/formula/label/narration) — the don't-pre-spoil discipline"
+    ]
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "Two lab constants multiply to the measured speed of light itself.",
+    "visual_confirmation": "Gate-timed 3.0×10⁸ m/s docks beside 1/√(μ₀ε₀) = 2.998×10⁸ m/s in the same formula surface, and a MATCH chip pins."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
+    "structure_and_phase": ["STATE_4", "STATE_5"],
+    "field_relations": ["STATE_7", "STATE_8", "STATE_9"],
+    "in_medium": ["STATE_10"],
+    "exploration": ["STATE_11"]
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during authoring, so ZERO external syllabus verification happened beyond the architect's own domain knowledge. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.8 §8.3 content); every other cell is a believed guess flagged for teacher verification.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE Main/Adv, NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.8 §8.3 — Electromagnetic Waves (nature, propagation, speed)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "partial",
+        "syllabus_unit": "Believed — EM waves transverse, same speed c in vacuum; no E/B field structure",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "partial",
+        "syllabus_unit": "Believed — transverse nature + c; E₀/B₀ believed absent",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics (2023)",
+        "coverage": "partial",
+        "syllabus_unit": "Believed — qualitative EM wave nature + c in Theme C",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "partial",
+        "syllabus_unit": "Believed — transverse, E⊥B⊥v, speed c conceptual",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "partial",
+        "syllabus_unit": "Believed — Maxwell → EM waves conceptual in the CED",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "partial",
+        "syllabus_unit": "Believed — properties of EM waves within the light/modern-physics units",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "wifi_router_across_a_room",
+      "type": "B",
+      "label": "A Wi-Fi router's signal crossing a room to a laptop",
+      "physical_world": "A router's antenna oscillates charge billions of times a second; the signal reaches a laptop across the room with nothing physical moving through the air between them.",
+      "same_physics": "The identical self-propagating handshake taught in STATE_2, the identical no-medium-needed physics taught in STATE_3, and the identical speed identity taught in STATE_6 — the router's signal is the same transverse E-B wave, just at a different frequency.",
+      "scene_hint": "A small router antenna on one side of a room, a laptop receiver on the other, the space between them visibly empty."
+    },
+    {
+      "variant_id": "deep_space_probe_radio_link",
+      "type": "B",
+      "label": "A deep-space probe's radio link back to Earth",
+      "physical_world": "A probe millions of kilometres from Earth sends its readings home as a radio signal crossing genuinely empty space — no air, no medium of any kind, for the entire journey.",
+      "same_physics": "The same self-carrying handshake (STATE_2), the same no-medium-needed physics (STATE_3), and the same c = 1/√(μ₀ε₀) speed (STATE_6) that governs every electromagnetic wave, at any frequency, at any distance.",
+      "scene_hint": "A small spacecraft antenna on one side of a vast dark gap, a receiving dish on Earth at the other, the space between them visibly empty."
+    }
+  ],
+  "epic_l_path": {
+    "state_count": 11,
+    "states": {
+      "STATE_1": {
+        "title": "A wiggling charge launches a traveling disturbance",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_delay_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_antenna_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "antenna: a charge wiggles, launching a disturbance",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_travel_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "pulse detaches and travels down the axis",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_delay_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "receiver needles kick only after the travel delay",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Inside a phone's antenna, a charge wiggles back and forth, launching a disturbance that travels.",
+              "glow": "receiver"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch it travel this line — it takes real time to arrive, not appearing everywhere at once.",
+              "glow": "receiver"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Only when the pulse reaches the far post do the receiver's needles finally kick — the wait itself is the point.",
+              "glow": "receiver"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The wave carries itself — each field's change regenerates the other",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_handshake_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_relaunch_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "pulse launches exactly as before",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_switch_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "source switch opens — charge freezes, pulse continues",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_handshake_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "each field's change feeds the other, one step ahead",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "The pulse launches again, traveling steadily from the source.",
+              "glow": "relay"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The source switch opens completely, the charge freezes, yet the pulse keeps traveling on unchanged.",
+              "glow": "relay",
+              "scenario_cue": "source_off"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Up close, each field's change feeds the other, one step ahead — a changing electric field E births the next magnetic field B, whose change births the next electric field E.",
+              "glow": "relay",
+              "scenario_cue": "relay"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "how_do_fields_sustain_each_other",
+          "does_the_wave_need_its_source",
+          "chicken_and_egg_e_or_b_first"
+        ]
+      },
+      "STATE_3": {
+        "title": "Nothing material waves — empty space is all the fields need",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_punchline_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_motes_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "gray motes sit along the axis",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_stillness_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "crests sweep through — the motes never jiggle",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_punchline_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "motes removed entirely — train, speed, reading unchanged",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Sound needs air to wave; rope waves need the rope. Watch these motes — they never jiggle.",
+              "glow": "motes"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Now remove them completely, nothing material left in the path at all.",
+              "glow": "motes",
+              "scenario_cue": "motes_vanish"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The wave, its speed, the far reading stay unchanged. Empty space is all it needs — the same nothing a signal crosses to reach a spacecraft.",
+              "glow": "motes",
+              "scenario_cue": "nochange"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A wave needs a medium — something material must be waving, and in vacuum it should die out.",
+            "visual_counter": "The motes never jiggle as crests sweep through them, and when they vanish entirely the train, its speed, and the receiver's reading stay pixel-identical.",
+            "one_line_fix": "Nothing material waves — the fields regenerate each other, and empty space is all they need."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "E, B, and travel — mutually perpendicular, E×B always ahead",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_thrust_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_triad_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "marked point P: x-hat, y-hat, z-hat triad",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_sweep_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "sweep E into B by the right-hand rule",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_thrust_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "thrust E cross B points +x — crest or trough alike",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "At this marked point, E and B sit at right angles: to each other, and to the direction of travel.",
+              "glow": "triad",
+              "scenario_cue": "camera_out"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Sweep E into B by the right-hand rule; the thrust brightens, pointing where the wave travels.",
+              "glow": "triad",
+              "scenario_cue": "sweep"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Half a cycle later, at the trough, both fields flip; yet the thrust still points the same way.",
+              "glow": "triad",
+              "scenario_cue": "trough"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "E and B rise and fall together — in phase, not shifted",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_inphase_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_ghost_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "wrong guess: a 90-degree shifted B, tagged expected",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_cursor_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "cursor rides the real train at a fixed point",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_inphase_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "E and B peak together — in phase, not shifted",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "A common guess: B should lag E by a quarter cycle, peaking after E already drops to zero.",
+              "glow": "cursor"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Watch the real readings: E and B rise and fall together, tracked live at this fixed point.",
+              "glow": "cursor"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "At the crest, both peak at the same instant, contradicting the ghost. In phase: crest with crest, zero with zero.",
+              "glow": "cursor"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "E and B are 90° out of step — one peaks exactly where the other is zero.",
+            "visual_counter": "The ghost 90°-shifted B train sits tagged 'expected?' while the cursor's twin readouts peak together and hit zero together — the real blue train visibly contradicts the ghost at a held crest.",
+            "one_line_fix": "E and B rise and fall together — in phase, crest with crest, zero with zero."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "PRIMARY aha — the handshake's speed is the measured speed of light",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_match_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_gates_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "gate A and gate B time the traveling pulse",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_vdock_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "v = D / delta-t = 3.0×10⁸ m/s",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_match_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "the constants' product matches the timed speed — MATCH",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "The gates clocked it at three times ten to the eight metres per second.",
+              "glow": "gates",
+              "scenario_cue": "v_dock"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Multiply last chapter's constants, mu-naught and epsilon-naught, out comes that same number.",
+              "glow": "gates",
+              "scenario_cue": "const_dock"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Not a coincidence: that's the measured speed of light, hiding in those constants.",
+              "glow": "gates",
+              "scenario_cue": "match"
+            },
+            {
+              "id": "s6_4",
+              "text_en": "This is how sunlight crosses empty space to reach you — light itself is this wave.",
+              "glow": "gates"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "is_c_matching_light_a_coincidence",
+          "why_multiply_mu0_and_eps0",
+          "does_c_depend_on_frequency_or_amplitude"
+        ]
+      },
+      "STATE_7": {
+        "title": "The amplitudes are locked — E₀/B₀ = c",
+        "duration": 14,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_ratio_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_drag_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "drag field strength — both envelopes co-scale",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_b0_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "B-naught = E-naught / c = 0.40 microtesla",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_ratio_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "ratio E-naught / B-naught stays pinned at c",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Drag the field strength — both envelopes grow and shrink together, locked in exact step.",
+              "glow": "ratio"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "At default, the magnetic amplitude B-naught reads a strikingly tiny zero point four zero microtesla.",
+              "glow": "ratio"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "That ratio, E-naught over B-naught, always equals the speed of light — it never changes.",
+              "glow": "ratio"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Energy rides half-and-half in the two fields",
+        "duration": 18,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s8_equal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s8_ghost_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "ghost tag: 0.40 microtesla looks negligible",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_cycle_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "cursor cycles crest, zero, crest",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_equal_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "both tanks read equal at every instant",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Zero point four zero microtesla sounds tiny: surely it carries almost nothing?",
+              "glow": "tanks"
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Watch the tanks: electric and magnetic energy density fill and empty in lockstep.",
+              "glow": "tanks"
+            },
+            {
+              "id": "s8_3",
+              "text_en": "At every crest, both read six point three eight times ten to minus eight joules per cubic metre.",
+              "glow": "tanks"
+            },
+            {
+              "id": "s8_4",
+              "text_en": "The tiny number is a unit artifact: energy splits half and half.",
+              "glow": "tanks"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "B₀ is such a tiny number that the magnetic half of the wave is negligible.",
+            "visual_counter": "The ghost tag quotes the tiny 0.40 μT number while the two energy tanks fill and empty in exact lockstep — equal at every instant, 6.38×10⁻⁸ J/m³ each at a crest.",
+            "one_line_fix": "The tiny number is a unit artifact — the wave's energy is split exactly half-and-half between E and B."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Three recalls write the partner wave — B_z given E_y",
+        "duration": 18,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s9_assembled_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s9_given_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "given: E_y = E-naught sin(kx - omega t)",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_links_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "three recalls dock: direction, phase, amplitude",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_assembled_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "assembled: B_z = (E-naught / c) sin(kx - omega t)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Given E along y, what must the magnetic field B look like?",
+              "glow": "formula"
+            },
+            {
+              "id": "s9_2",
+              "text_en": "Direction: E cross B points along travel; B is along z. Phase: same bracket, kx minus omega t.",
+              "glow": "formula",
+              "scenario_cue": "link1"
+            },
+            {
+              "id": "s9_3",
+              "text_en": "Amplitude: B-naught equals E-naught over the speed of light.",
+              "glow": "formula",
+              "scenario_cue": "link3"
+            },
+            {
+              "id": "s9_4",
+              "text_en": "Put together: B along z equals E-naught over c, times sine of kx minus omega t.",
+              "glow": "formula",
+              "scenario_cue": "assembled"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "how_to_write_b_given_e",
+          "direction_of_b_from_propagation",
+          "same_phase_argument_meaning"
+        ]
+      },
+      "STATE_10": {
+        "title": "Into a medium — v = c/n, frequency holds, wavelength shortens",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s10_frequency_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s10_slab_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "translucent slab slides into the mid-axis",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s10_bunch_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "inside it, crests bunch — wavelength shortens to 2.00 m",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s10_frequency_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "frequency holds the same on both sides of the slab",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s10_1",
+              "text_en": "Slide a medium in: inside, the handshake runs slower, at c over n.",
+              "glow": "slab",
+              "scenario_cue": "slab_slide"
+            },
+            {
+              "id": "s10_2",
+              "text_en": "Crests bunch closer together: wavelength shortens from three metres to two.",
+              "glow": "slab",
+              "scenario_cue": "slab_bunch"
+            },
+            {
+              "id": "s10_3",
+              "text_en": "The frequency never changes: only the wavelength shortens, since the fields must hand off at the same rate.",
+              "glow": "slab"
+            },
+            {
+              "id": "s10_4",
+              "text_en": "Drag the refractive index n live: deeper bunching, same frequency on both sides.",
+              "glow": "slab"
+            }
+          ]
+        }
+      },
+      "STATE_11": {
+        "title": "Explore — em wave sandbox",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s11_invariant_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s11_drag_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "drag frequency, field strength, or the source switch",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s11_track_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "gauges, wavelength, and frequency all track live",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s11_invariant_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "the speed chip never moves — always 3.00×10⁸ m/s",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s11_1",
+              "text_en": "Drag anything you like — frequency, field strength, even the source switch. The speed never moves.",
+              "glow": "formula"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered EM wave propagation when they can (1) explain that an electromagnetic wave self-propagates through vacuum with no material medium, because the changing fields regenerate each other; (2) state that E, B, and the direction of travel are mutually perpendicular, with E×B always pointing along the direction of travel, at a crest or a trough alike; (3) state that E and B oscillate IN PHASE — same crests, same zeros — not 90° apart; (4) state the identity c = 1/√(μ₀ε₀), recognize it as the measured speed of a traveling EM wave, and connect it to light itself being an electromagnetic wave; (5) compute B₀ = E₀/c and recognize the ratio E₀/B₀ is pinned at c regardless of amplitude; (6) explain that u_E = u_B at every instant, so energy is split exactly half-and-half despite B₀'s tiny numeric value; (7) write the magnetic field B_z given an electric field E_y, fixing its direction, phase, and amplitude; and (8) state that inside a medium v = c/n, frequency stays fixed at the source value, and only wavelength shortens.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A wiggling charge launches an electromagnetic wave that travels through completely empty space, with dust motes sitting in its path. What happens to the motes as the wave sweeps through them, and to the wave itself if the motes are removed entirely?",
+        "options": {
+          "A": "The motes never move at all, and removing them changes nothing about the wave, its speed, or its strength",
+          "B": "The motes jiggle in step with the wave, and removing them makes the wave weaker",
+          "C": "The motes are pushed slowly in the direction the wave travels",
+          "D": "The wave cannot exist at all once the motes (or any material) are removed"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imagines the wave needs a material medium to jiggle, like a mechanical wave",
+          "C": "confuses an EM wave with radiation pressure — a real but far smaller effect never taught here",
+          "D": "the confronted misconception — believes a wave cannot exist without something material carrying it"
+        },
+        "tested_idea": "An electromagnetic wave self-propagates through vacuum — no material medium is needed.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A radio signal crosses the vacuum between a spacecraft and Earth. Explain what, if anything, physically vibrates in that empty space."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "At a point on a traveling electromagnetic wave, the electric field E points along ŷ and the wave travels along +x̂. Which direction must the magnetic field B point, and does that direction change at a trough?",
+        "options": {
+          "A": "B points along +ẑ so that E×B points along +x̂ (the travel direction); at a trough both E and B flip sign, but E×B still points along +x̂",
+          "B": "B points along +x̂, the same direction the wave travels",
+          "C": "B can point along any direction in the y-z plane — only its magnitude is fixed",
+          "D": "At a trough, E×B reverses to point along −x̂"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the field direction with the propagation direction",
+          "C": "misses that B's direction is fixed by E×B pointing along the travel direction, not free",
+          "D": "misses the sign-invariance: (−E)×(−B) = E×B, so the thrust direction never flips"
+        },
+        "tested_idea": "E, B, and the direction of travel are mutually perpendicular, with E×B always pointing along the direction of travel — including at a trough.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A wave's electric field points straight up and it travels due east. In which direction does its magnetic field point, and does that answer change half a cycle later?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "At a fixed point on a traveling electromagnetic wave, how do the electric field E and magnetic field B vary with time relative to each other?",
+        "options": {
+          "A": "E and B rise and fall together — both peak at the same instant and both pass through zero at the same instant (in phase)",
+          "B": "B peaks a quarter cycle after E does, since B is 'caused by' the changing E",
+          "C": "E peaks a quarter cycle after B does",
+          "D": "E and B are unrelated in time — only their magnitudes are linked, not their timing"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — imports a 90° phase lag from an unrelated LC-oscillator picture",
+          "C": "the same 90°-lag error with the fields swapped",
+          "D": "misses that E and B share the exact same phase argument (kx − ωt)"
+        },
+        "tested_idea": "E and B oscillate in phase — same crests, same zeros, at every instant.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A student claims that in an electromagnetic wave, the magnetic field reaches its maximum only after the electric field has already dropped back to zero. Evaluate this claim."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "Two constants measured independently in earlier lab work — the electric constant ε₀ and the magnetic constant μ₀ — combine as c = 1/√(μ₀ε₀). A separate timing experiment clocks a traveling electromagnetic pulse at 3.0×10⁸ m/s over a fixed distance. What is the relationship between these two numbers?",
+        "options": {
+          "A": "They are the same number — this identity is why light itself is recognized as an electromagnetic wave",
+          "B": "They happen to be close, but the small difference is measurement error",
+          "C": "The formula 1/√(μ₀ε₀) only works for radio-frequency waves, not for light",
+          "D": "The two numbers agree only because μ₀ and ε₀ were defined afterward to force the match"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misreads an exact identity as a coincidental near-match",
+          "C": "invents a frequency-dependence that vacuum wave speed does not have",
+          "D": "reverses cause and effect — the identity is a genuine physical result, not a definitional trick"
+        },
+        "tested_idea": "c = 1/√(μ₀ε₀) is exactly the measured wave speed — the identity that reveals light itself is an electromagnetic wave.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why physicists concluded that visible light is an electromagnetic wave, using only the values of μ₀ and ε₀ and a measured wave speed."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "An electromagnetic wave in vacuum has electric field amplitude E₀ = 120 V/m. What is its magnetic field amplitude B₀, and what happens to the ratio E₀/B₀ if E₀ is doubled?",
+        "options": {
+          "A": "B₀ = E₀/c ≈ 0.40 μT, and the ratio E₀/B₀ stays fixed at c no matter what E₀ is set to",
+          "B": "B₀ = E₀/c ≈ 0.40 μT, but doubling E₀ doubles the ratio E₀/B₀ as well",
+          "C": "B₀ = E₀ × c, giving a very large number",
+          "D": "B₀ cannot be found from E₀ alone — the frequency is also needed"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misses that B₀ scales WITH E₀, so the ratio itself never moves",
+          "C": "inverts the E₀ = c·B₀ relationship",
+          "D": "wrongly assumes the E₀/B₀ ratio depends on frequency, when it depends only on c"
+        },
+        "tested_idea": "B₀ = E₀/c always, so the ratio E₀/B₀ is pinned at c regardless of amplitude.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "A wave's electric field amplitude is tripled. What happens to its magnetic field amplitude, and to the ratio between the two amplitudes?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "At E₀ = 120 V/m, the magnetic field amplitude B₀ is only about 0.40 μT — a number that looks tiny next to E₀. What does this imply about the share of energy the magnetic field carries in the wave?",
+        "options": {
+          "A": "The electric and magnetic energy densities are exactly equal at every instant — the small numeric value of B₀ is a unit artifact, not a sign of less energy",
+          "B": "The magnetic field carries almost no energy, since its numeric value is so much smaller than E₀'s",
+          "C": "The electric field carries roughly a million times more energy than the magnetic field",
+          "D": "Energy is carried only by the electric field; the magnetic field is a byproduct with no stored energy"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — compares raw numeric values across different units (V/m vs T)",
+          "C": "invents a specific wrong ratio instead of recognizing exact equality",
+          "D": "denies the magnetic field any energy at all, missing u_B = B²/2μ₀"
+        },
+        "tested_idea": "u_E = u_B at every instant — the energy is split exactly half-and-half despite the very different-looking numeric values of E₀ and B₀.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A textbook lists E₀ = 100 V/m and B₀ = 3.3×10⁻⁷ T for a wave. A student argues the magnetic field must carry far less energy since its number is smaller. Evaluate this argument using energy density."
+      },
+      {
+        "q_id": "Q7",
+        "stem": "An electromagnetic wave traveling along +x has electric field E_y = E₀ sin(kx − ωt). What is the corresponding magnetic field?",
+        "options": {
+          "A": "B_z = (E₀/c) sin(kx − ωt) — same phase argument as E, amplitude E₀/c, direction ẑ so that E×B points along +x",
+          "B": "B_x = (E₀/c) sin(kx − ωt), along the direction of travel",
+          "C": "B_z = E₀ sin(kx − ωt + π/2), phase-shifted from E",
+          "D": "B_z = (E₀ · c) sin(kx − ωt), with amplitude E₀ times c"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "places B along the travel direction, which the transverse structure forbids",
+          "C": "reintroduces the 90°-phase-lag misconception the wave does not have",
+          "D": "inverts the amplitude relationship, multiplying by c instead of dividing"
+        },
+        "tested_idea": "Given E_y, the partner B is fully determined: same phase argument, amplitude E₀/c, and direction fixed by E×B pointing along the travel direction.",
+        "teaches_state": "STATE_9",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A wave has E_x = E₀ sin(kz − ωt), traveling along +z. Write the corresponding magnetic field, including its axis, amplitude, and phase."
+      },
+      {
+        "q_id": "Q8",
+        "stem": "An electromagnetic wave of frequency 100 MHz enters a medium of refractive index n = 1.5. What happens to its speed, frequency, and wavelength inside the medium?",
+        "options": {
+          "A": "Speed drops to v = c/n = 2.0×10⁸ m/s, frequency stays at 100 MHz, and wavelength shortens to λ = v/ν = 2.0 m",
+          "B": "Speed, frequency, and wavelength all drop by the same factor of n",
+          "C": "Speed drops, but frequency also drops since the wave is 'slowed down'",
+          "D": "Only the wavelength changes; the speed stays at c inside any medium"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "wrongly scales frequency by n as well, when ν is set by the source and never changes",
+          "C": "conflates a slower speed with a lower frequency",
+          "D": "denies the speed change entirely, missing v = c/n"
+        },
+        "tested_idea": "Inside a medium, v = c/n and ν stays fixed (set by the source), so only λ = v/ν shortens.",
+        "teaches_state": "STATE_10",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A 100 MHz wave crosses from vacuum into glass with n = 1.5, then back into vacuum. Track its speed, frequency, and wavelength through all three regions."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_3": ["Q1"],
+      "STATE_4": ["Q2"],
+      "STATE_5": ["Q3"],
+      "STATE_6": ["Q4"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"],
+      "STATE_9": ["Q7"],
+      "STATE_10": ["Q8"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_11"]
+  },
+  "field_3d_config": {
+    "scenario_type": "em_wave_propagation",
+    "explorer_id": "em_wave_propagation_explorer",
+    "field_lines": {
+      "count": 0,
+      "opacity": 0.8
+    },
+    "slider_controls": {
+      "nu": {
+        "min": 50,
+        "max": 200,
+        "step": 5,
+        "default": 100,
+        "label": "Source frequency ν"
+      },
+      "E0": {
+        "min": 40,
+        "max": 200,
+        "step": 5,
+        "default": 120,
+        "label": "Field strength"
+      },
+      "n": {
+        "min": 1.0,
+        "max": 2.0,
+        "step": 0.05,
+        "default": 1.5,
+        "label": "Refractive index n"
+      },
+      "src": {
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "label": "Source ON/OFF"
+      }
+    },
+    "colors": {
+      "electric": "#66BB6A",
+      "magnetic": "#42A5F5",
+      "source": "#FFCA28",
+      "axis": "#B0BEC5",
+      "ghost": "#C97A7A",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A wiggling charge launches a traveling disturbance",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver",
+          "s1_antenna_label", "s1_travel_label", "s1_delay_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "A wiggle travels out",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "pulse",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "needle_kick_at_ms": 9000,
+          "show_receiver": true,
+          "show_motes": false,
+          "show_hud": false,
+          "show_formula": false,
+          "controls": []
+        }
+      },
+      "STATE_2": {
+        "label": "The wave carries itself — each field's change regenerates the other",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_relay",
+          "s2_relaunch_label", "s2_switch_label", "s2_handshake_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "Source off — wave continues",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "pulse",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_off_at_ms": 6000,
+          "show_receiver": true,
+          "show_relay": true,
+          "relay_at_ms": 12000,
+          "relay_period_ms": 2000,
+          "show_hud": false,
+          "show_formula": true,
+          "formula": "changing E → B · changing B → E",
+          "controls": []
+        }
+      },
+      "STATE_3": {
+        "label": "Nothing material waves — empty space is all the fields need",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_motes",
+          "s3_motes_label", "s3_stillness_label", "s3_punchline_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "Remove everything — nothing changes",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "show_receiver": true,
+          "show_motes": true,
+          "motes_vanish_at_ms": 4700,
+          "show_nochange": true,
+          "nochange_at_ms": 6100,
+          "show_hud": false,
+          "show_formula": false,
+          "controls": []
+        }
+      },
+      "STATE_4": {
+        "label": "E, B, and travel — mutually perpendicular, E×B always ahead",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_triad",
+          "s4_triad_label", "s4_sweep_label", "s4_thrust_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "E cross B points ahead",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "show_receiver": true,
+          "show_triad": true,
+          "camera_out_at_ms": 4500,
+          "camera_back_at_ms": 15500,
+          "sweep_at_ms": 9000,
+          "trough_at_ms": 13500,
+          "show_hud": false,
+          "show_formula": true,
+          "formula": "Ê × B̂ = x̂  (direction of travel)",
+          "controls": []
+        }
+      },
+      "STATE_5": {
+        "label": "E and B rise and fall together — in phase, not shifted",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_ghostb", "emw_cursor",
+          "s5_ghost_label", "s5_cursor_label", "s5_inphase_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "Crests together, zeros together",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "show_receiver": true,
+          "show_ghostb": true,
+          "show_ghost_tag": true,
+          "show_cursor": true,
+          "show_cursor_ro": true,
+          "ghost_dissolve_at_ms": 13500,
+          "show_hud": false,
+          "show_formula": false,
+          "controls": []
+        }
+      },
+      "STATE_6": {
+        "label": "PRIMARY aha — the handshake's speed is the measured speed of light",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_gates",
+          "s6_gates_label", "s6_vdock_label", "s6_match_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "Lab constants predict light",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "pulse",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "show_receiver": true,
+          "show_gates": true,
+          "gate_a_at_ms": 4500,
+          "gate_b_at_ms": 7000,
+          "show_stopwatch": true,
+          "formula_dock": true,
+          "v_dock_at_ms": 9000,
+          "const_dock_at_ms": 13500,
+          "match_at_ms": 15500,
+          "show_hud": true,
+          "show_lambda": true,
+          "show_nu": true,
+          "show_formula": true,
+          "formula": "c = 1/√(μ₀ε₀) = 3.00×10⁸ m/s",
+          "controls": ["nu"]
+        }
+      },
+      "STATE_7": {
+        "label": "The amplitudes are locked — E₀/B₀ = c",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver",
+          "s7_drag_label", "s7_b0_label", "s7_ratio_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "One drag, locked ratio",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "show_receiver": true,
+          "show_hud": true,
+          "show_e0": true,
+          "show_b0": true,
+          "show_ratio": true,
+          "show_formula": true,
+          "formula": "E₀/B₀ = c",
+          "controls": ["E0"]
+        }
+      },
+      "STATE_8": {
+        "label": "Energy rides half-and-half in the two fields",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_cursor",
+          "s8_ghost_label", "s8_cycle_label", "s8_equal_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "Energy splits exactly half-half",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "show_receiver": true,
+          "show_cursor": true,
+          "show_ghost_tag": true,
+          "ghost_tag_text": "✗ B = 0.0000004 T — surely negligible?",
+          "show_tanks": true,
+          "show_hud": false,
+          "show_formula": true,
+          "formula": "u<sub>E</sub> = ½ε₀E² = u<sub>B</sub> = B²/2μ₀",
+          "controls": ["E0"]
+        }
+      },
+      "STATE_9": {
+        "label": "Three recalls write the partner wave — B_z given E_y",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_triad", "emw_cursor",
+          "s9_given_label", "s9_links_label", "s9_assembled_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "Three recalls write B",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.0,
+          "source_on": true,
+          "show_receiver": true,
+          "show_triad": true,
+          "show_cursor": true,
+          "formula_chain": true,
+          "link1_at_ms": 4500,
+          "link2_at_ms": 9000,
+          "link3_at_ms": 13500,
+          "assembled_at_ms": 16000,
+          "show_hud": false,
+          "show_formula": true,
+          "formula": "E<sub>y</sub> = E₀ sin(kx − ωt)",
+          "controls": []
+        }
+      },
+      "STATE_10": {
+        "label": "Into a medium — v = c/n, frequency holds, wavelength shortens",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver", "emw_slab",
+          "s10_slab_label", "s10_bunch_label", "s10_frequency_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "Slower inside, crests bunch",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "n": 1.5,
+          "source_on": true,
+          "show_receiver": true,
+          "show_slab": true,
+          "slab_slide_at_ms": 0,
+          "bunch_at_ms": 5300,
+          "show_crest": true,
+          "show_hud": false,
+          "show_formula": true,
+          "formula": "v = c/n = 1/√(με)",
+          "controls": ["n"]
+        }
+      },
+      "STATE_11": {
+        "label": "Explore — em wave sandbox",
+        "visible_elements": [
+          "emw_axis", "emw_source", "emw_e_train", "emw_b_train", "emw_receiver",
+          "s11_drag_label", "s11_track_label", "s11_invariant_label"
+        ],
+        "camera_position": [3.0, 3.5, 11.5],
+        "caption": "All yours",
+        "show_sliders": true,
+        "em_wave": {
+          "wave_mode": "train",
+          "nu": 100,
+          "E0": 120,
+          "source_on": true,
+          "interactive": true,
+          "show_receiver": true,
+          "show_hud": true,
+          "show_lambda": true,
+          "show_nu": true,
+          "show_formula": true,
+          "formula": "c = 3.00×10⁸ m/s — always",
+          "controls": ["nu", "E0", "src"]
+        }
+      }
+    }
+  }
+}

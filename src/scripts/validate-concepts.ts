@@ -1387,6 +1387,12 @@ function checkRegistrations(records: RegistrationRecord[]): RegistrationFailure[
 
 function main(): void {
   const cli = parseCliArgs(process.argv.slice(2));
+  // ISOLATION CONTRACT (chemistry, 2026-07-23): this scan is intentionally NON-recursive.
+  // Subject subfolders (src/data/concepts/chemistry/) are invisible to the PHYSICS validator
+  // by design — their schema/gates differ (e.g. no physics_engine_config, no E42, own animation
+  // vocabulary) and they get their own validate:chemistry script (CHEMISTRY_BUILD_PLAN.md Phase 4).
+  // Never add recursion here; a chemistry file dropped in the flat dir WILL be validated as
+  // physics and fail. See docs/CHEMISTRY_ARCHITECTURE.md §7.
   const files = fs.readdirSync(CONCEPTS_DIR)
     .filter((f) => f.endsWith('.json'))
     .sort();

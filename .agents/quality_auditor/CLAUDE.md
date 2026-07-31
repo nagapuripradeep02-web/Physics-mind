@@ -12,11 +12,12 @@
 
 Read this file, then the target concept JSON, then run the 8 gates below. Never rubber-stamp.
 
-> **field_3d Gate 8 (headless scar regression):** for a field_3d concept, run
-> `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>` and `--field3d --open`
-> (this is the headless reader — the Supabase MCP needs interactive OAuth and won't run; `supabaseAdmin`
-> works). Every OPEN row is a known scar to re-check on the candidate. Also read
-> `docs/FIELD3D_SCENARIO_CHECKLIST.md`. NOTE: field_3d cognitive flow is audited by **Gate 15**, not
+> **Gate 8 (headless scar regression):** run
+> `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>` and the fleet flag —
+> `--field3d --open` for a field_3d concept, `--pcpl --open` for a PCPL/parametric 2D concept (disjoint
+> scar fleets; the wrong flag hides the relevant scars). (This is the headless reader — the Supabase MCP
+> needs interactive OAuth and won't run; `supabaseAdmin` works.) Every OPEN row is a known scar to re-check
+> on the candidate. For field_3d also read `docs/FIELD3D_SCENARIO_CHECKLIST.md`. NOTE: field_3d cognitive flow is audited by **Gate 15**, not
 > Gate 3c (which never fires on field_3d). For radius/parameter ramps, read DENSE frames, not just the
 > frozen end-state.
 
@@ -216,7 +217,8 @@ per-state control table (skeleton section 3 — its absence is itself a Gate 0 F
    state duration 0/open.
 
 Violations: route content-table mismatches to json_author; a missing/incoherent control table to
-architect; panel-rebuild / position-drift defects to `peter_parker:renderer_primitives`.
+architect; panel-rebuild / position-drift defects to the owning surgeon —
+`peter_parker:field3d_surgeon` (field_3d) or `peter_parker:renderer_primitives` (2D → pcpl_surgeon).
 Reference implementations: `faraday_law_induction` (S1–S4 none · S5 speed+turns · S6 all),
 `magnetisation_and_intensity` (current on S1–S4 · +material on S5/S6).
 
@@ -245,7 +247,7 @@ table (archetype + delta columns — their absence is a Gate 0 FAIL) and the shi
 
 Violations: word budget / delta cue → json_author (text) or architect (two-ideas split); timeline /
 cause-effect ordering → physics_author; archetype/table design → architect; panel/continuity engine
-defects → `peter_parker:renderer_primitives`.
+defects → `peter_parker:field3d_surgeon` (field_3d) or `peter_parker:renderer_primitives` (2D).
 
 **Part 3g — Rule 33 macro↔micro + Rule 34 uncluttered canvas (added 2026-07-12 doctrine sync) — ALL new concepts**
 
@@ -275,7 +277,8 @@ THE EYE / eye_walker frames and DOM greps, never memory.
    after founder OK that routes to `visual:approve` re-baseline, NOT a fix cycle.
 
 Violations: caption/formula/HUD/Unicode text → json_author; macro↔micro state design → architect;
-instrument/zoom-link/overlay engine defects → `peter_parker:renderer_primitives`.
+instrument/zoom-link/overlay engine defects → `peter_parker:field3d_surgeon` (field_3d) or
+`peter_parker:renderer_primitives` (2D).
 
 **Part 3h — Rule 38 ring coherence + tag honesty, plus the Rule 39 widget-contract spot-check (added 2026-07-21) — ALL new concepts**
 
@@ -298,8 +301,9 @@ the JSON + skeleton and pasted probe output, never memory.
    only when the concept introduced a NEW scenario or new overlay/HUD:
    - Load the built page, open ⚙, and confirm the button is present and the list NAMES THE REAL
      WIDGETS in teacher language (no internal ids like "Gsph plot", no live values baked into a
-     label, no duplicate rows). Poor labels = FAIL → `peter_parker:renderer_primitives` (fix is
-     either a `data-wg-label` attribute or the curated 39a path).
+     label, no duplicate rows). Poor labels = FAIL → the owning surgeon (`peter_parker:field3d_surgeon`
+     for field_3d; `peter_parker:renderer_primitives` for 2D) — fix is
+     either a `data-wg-label` attribute or the curated 39a path.
    - A new DOM overlay must follow the discovery conventions (dynamic panel built with inline
      `position:fixed`; static overlay `class="pm_hud"`; slider row named `<prefix>_<name>_row`) —
      a panel missing from ⚙ AND from clean mode is the tell.
@@ -411,7 +415,7 @@ For each state with `drill_downs: […]` array:
 6. **Critical regression check**: the request body's `state_id` must equal the current pill's state (bug 3 — was always `STATE_1`). Inspect via `preview_network` request body.
 7. Also test from inside a deep-dive sub-state: click Confused? with state `STATE_3_DD2` → widget must strip `_DD\d+$` suffix before POSTing so registry lookup still resolves.
 
-Any ✗ = FAIL. Route to json_author if cluster seeding missing (check registry first), to feedback_collector if cluster count is low.
+Any ✗ = FAIL. Route to json_author if cluster seeding missing (check registry first). (Low cluster count formerly routed to feedback_collector — that agent is DORMANT until real feedback exists, 2026-07-31; report low counts to the founder instead.)
 
 ### Gate 7 — Console + log discipline
 Across the entire visual walk (the old `preview_console_logs`/`preview_logs` tools are RETIRED — read the
@@ -444,7 +448,7 @@ For each row:
 
 ANY probe failure = Gate 8 FAIL, route to the bug's `owner_cluster` (e.g., `peter_parker:renderer_primitives`). Reference the `bug_class` snake_case identifier in the failure note so the cluster knows exactly which row to update if the `prevention_rule` itself needs revision.
 
-The queue is the durable, cross-session bug ledger. The inline silent-failure catalogs in `.agents/renderer_primitives/CLAUDE.md` and `.agents/runtime_generation/CLAUDE.md` mirror queue rows for fast read-without-DB; Gate 8 reads the queue as canonical and is responsible for catching any drift between the two.
+The queue is the durable, cross-session bug ledger. The inline silent-failure catalogs in `.agents/pcpl_surgeon/CLAUDE.md` (renamed from renderer_primitives 2026-07-31), `.agents/field3d_surgeon/CLAUDE.md` (the scar checklist), and `.agents/runtime_generation/CLAUDE.md` mirror queue rows for fast read-without-DB; Gate 8 reads the queue as canonical and is responsible for catching any drift between the two.
 
 > **confusion_cluster_registry probe — N/A-DORMANT this phase (2026-07-12).** For new conceptual-only
 > field_3d/particle_field concepts, any probe demanding `confusion_cluster_registry` rows (including the
@@ -610,3 +614,38 @@ Gate 16 (and Rule 16a) apply to concepts authored/retrofitted **2026-05-30 or la
 Gates 9–13 are appended to the standard 8-gate report. Format: `Gate 9 — Layout overlap: ✓ (no real collisions; junction overlap intentional)`.
 
 If a candidate triggers Gate 11 (plain-English) in 5+ places, that's a systemic architect/json_author drift — flag for retro and don't waste round-trips fixing one annotation at a time.
+
+## Chemistry concepts (2026-07-23 addition — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+For any concept whose JSON lives in `src/data/concepts/chemistry/` (the chemistry pipeline:
+architect → **chemistry_author** → json_author → quality_auditor), the following OVERRIDE the
+physics-bound gates/probes by enumeration. Everything not listed applies verbatim (Gates 1, 3e/3f/
+3g/3h, 9, 10, 12, 15, plain-English/Hinglish, universal anchor, word budget).
+
+1. **FAIL routing gains `alex:chemistry_author`.** Chemistry-rigor failures — unbalanced equation,
+   atom/charge conservation violation, wrong oxidation state, static-equilibrium depiction, missing
+   state symbols, bad K/rate expression — route to `alex:chemistry_author` (reason tag:
+   `chemistry-rigor`). Never route chemistry rigor to `alex:physics_author` (not in this pipeline).
+2. **Interim chemistry correctness check (the Gate 3d / E42 analog — manual until the Phase-4
+   machine gate lands).** Audit chemistry_author's **balanced-equation ledger** against the JSON:
+   every displayed reaction has a ledger row; per-element atom counts LHS = RHS; charge totals
+   LHS = RHS; redox rows carry oxidation numbers + electrons-lost = electrons-gained; state symbols
+   (s)/(l)/(g)/(aq) present in ledger AND on-canvas labels; equilibrium states never depict both
+   directions halting. Gate 3d's physics 9-condition check = N/A for chemistry.
+3. **Gate 2 for chemistry = `npm run validate:chemistry` PASS** (the flat `validate:concepts` scan
+   is non-recursive BY DESIGN and will never list a chemistry file — its absence there is correct,
+   not a FAIL). Evidence-extraction greps target `src/data/concepts/chemistry/<id>.json`.
+4. **Gates 4a/4b (classifier reachability / PCPL routing) = N/A** while chemistry registration is
+   deliberately deferred (CHEMISTRY_ARCHITECTURE.md §7 — shared registries must not carry chemistry
+   ids until the chemistry serving path lands). Do not FAIL a chemistry concept for being absent
+   from `VALID_CONCEPT_IDS` / `CLASSIFIER_PROMPT` / `PCPL_CONCEPTS`.
+5. **Gate 0 DoD verification, chemistry wording:** grep for the chemistry symbol set the skeleton's
+   DoD table declares (n, M, mol, K_c, ΔH, species labels) and for the balanced-equation-ledger plan
+   instead of RHR overlays.
+6. **Anti-plagiarism probe, chemistry cues:** red flags are NCERT **Chemistry** / **Exemplar** prose
+   voice and figure references (e.g. verbatim NCERT activity text, Exemplar problem stems) — not the
+   DC Pandey / HC Verma heuristics. Hinglish + country-anchor checks unchanged.
+7. **Gate 8 owner filter** includes `alex:chemistry_author` in the `engine_bug_queue` query.
+8. **Gate 13 (animation vocabulary) = N/A** pending the chemistry animation vocabulary (Phase 4/5);
+   until then the motion contract is audited via the Rule 31 archetype declarations against
+   `docs/patterns/chemistry.md` §1 ([LIVE] archetypes only).

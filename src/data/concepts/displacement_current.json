@@ -1,0 +1,1384 @@
+{
+  "concept_id": "displacement_current",
+  "concept_name": "Displacement Current — I_d = ε₀ dΦ_E/dt, the Ampère–Maxwell Correction",
+  "chapter": 8,
+  "section": "8.2",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics Ch.8 Electromagnetic Waves, §8.2 (Displacement Current) — table-of-contents + coverage scope reference only; teaching authored from first principles, no sequence/example/figure imported. DC Pandey table of contents consulted for SCOPE only. The atomic idea: a changing electric flux acts as a current — Maxwell's displacement current, I_d = ε₀ dΦ_E/dt — which repairs the two-surface contradiction Ampère's law hits at a charging capacitor and completes the law as ∮B·dl = μ₀(I_c + I_d). First Ch.8 diamond, the chapter's load-bearing opener; does NOT cover how the coupled changing fields propagate as electromagnetic waves (em_wave_nature), the wave speed c = 1/√(μ₀ε₀) (speed_of_em_waves), the spectrum (em_spectrum), Ampère's law itself (prerequisite amperes_circuital_law), or capacitor charging (prerequisite capacitance). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch). Routed to the field_3d 'displacement_current' scenario (new — charger + wires + circular parallel plates, conduction beads that stop dead at the plate faces, ± charge-dot pools, E-flux lines, an Amperian loop whose bounded surface morphs disk↔balloon, a gliding B-probe, a gap ammeter, and a two-term Ampère–Maxwell ledger).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "displacement_current"
+    ]
+  },
+  "prerequisites": [
+    "amperes_circuital_law",
+    "capacitance",
+    "electric_flux",
+    "magnetic_field_wire",
+    "parallel_plate_capacitor_field"
+  ],
+  "real_world_anchor": {
+    "primary": "For the second or two a phone or camera flash charges, current flows in its wires while nothing at all crosses the gap inside its capacitor. If only moving charge made magnetic fields, the field map of that circuit would have a hole in it at the gap — and it doesn't. A compass held there would still deflect. That hole-that-isn't is this whole lesson, and every student has held the device it happens in.",
+    "secondary": "Maxwell's correction term is the reason radio, Wi-Fi, and light itself exist — a changing electric field making a magnetic field is one half of the handshake that lets waves carry themselves through empty space, taught in the sibling diamonds ahead. A defibrillator charging its capacitor for a few seconds before the shock is another everyday device running on the exact same charge-and-hold physics."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I_c": {
+        "name": "Charging (conduction) current",
+        "unit": "A",
+        "min": 0,
+        "max": 2.0,
+        "default": 1.2,
+        "step": 0.1,
+        "role": "driver"
+      },
+      "R": {
+        "name": "Plate radius",
+        "unit": "m",
+        "constant": 0.06
+      },
+      "d_gap": {
+        "name": "Plate separation (gap)",
+        "unit": "m",
+        "constant": 0.005
+      },
+      "A": {
+        "name": "Plate area (πR²)",
+        "unit": "m^2",
+        "derived": "PI * R * R"
+      },
+      "eps0": {
+        "name": "Permittivity of free space (electric constant)",
+        "unit": "F/m",
+        "constant": 8.8541878128e-12
+      },
+      "mu0": {
+        "name": "Permeability of free space (magnetic constant)",
+        "unit": "T·m/A",
+        "constant": 1.25663706212e-06
+      },
+      "s": {
+        "name": "Surface morph parameter — 0 = flat disk (wire pierces it), 1 = balloon bulging through the gap (nothing pierces it)",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "step": 0.01,
+        "role": "driver"
+      },
+      "r_cm": {
+        "name": "Probe radial distance from the wire/gap axis",
+        "unit": "cm",
+        "min": 0,
+        "max": 15,
+        "default": 10,
+        "step": 0.5,
+        "role": "driver"
+      },
+      "Q": {
+        "name": "Charge accumulated on each plate",
+        "unit": "C",
+        "derived": "charge ramp on the state clock (see formulas.charge_ramp); snapshot at hold = 1.2016e-7 C at I_c = 1.2 A"
+      },
+      "E": {
+        "name": "Electric field in the gap",
+        "unit": "V/m",
+        "derived": "Q / (eps0 * A)"
+      },
+      "Phi_E": {
+        "name": "Electric flux through the gap (Gauss, one-plate surface)",
+        "unit": "V·m",
+        "derived": "Q / eps0"
+      },
+      "dPhiE_dt": {
+        "name": "Rate of change of electric flux",
+        "unit": "V·m/s",
+        "derived": "I_c / eps0 while charging, 0 while paused"
+      },
+      "I_d": {
+        "name": "Displacement current",
+        "unit": "A",
+        "derived": "eps0 * dPhiE_dt (= I_c while charging, 0 while paused)"
+      },
+      "B": {
+        "name": "Magnetic field magnitude at radial distance r",
+        "unit": "T",
+        "derived": "piecewise — mu0*I_d*(r_cm/100)/(2*PI*R*R) for r_cm/100 < R; mu0*I_d/(2*PI*(r_cm/100)) for r_cm/100 >= R"
+      }
+    },
+    "computed_outputs": {
+      "Q_uC": { "formula": "Q * 1e6" },
+      "E_display_Vpm": { "formula": "Q / (eps0 * A)" },
+      "Phi_E_display": { "formula": "Q / eps0" },
+      "dPhiE_dt_display": { "formula": "I_c / eps0" },
+      "I_d_display": { "formula": "eps0 * dPhiE_dt" },
+      "B_uT": { "formula": "B_field(r_cm) * 1e6" },
+      "ledger_sum_display": { "formula": "mu0 * (I_enc_c + I_enc_d)" }
+    },
+    "derived_fields_declared": [
+      "Q_uC", "E_display_Vpm", "Phi_E_display", "dPhiE_dt_display", "I_d_display",
+      "B_uT", "ledger_sum_display", "Q", "E", "Phi_E", "dPhiE_dt", "I_d", "B"
+    ],
+    "formulas": {
+      "plate_area": "A = PI * R * R",
+      "charge_ramp": "Q(t) = min(t_local / T_charge, 1) * Q_max while I_c is held, frozen thereafter until reset; Q_max scales with I_c: Q_max = 1.2016e-7 * (I_c / 1.2)",
+      "efield": "E = Q / (eps0 * A)",
+      "eflux": "Phi_E = Q / eps0",
+      "eflux_rate_charging": "dPhiE_dt = I_c / eps0",
+      "eflux_rate_paused": "dPhiE_dt = 0",
+      "displacement_current": "I_d = eps0 * dPhiE_dt",
+      "I_enc_conduction_old_law": "I_enc = I_c * (1 - s) — STATE_3/STATE_4 (pre-generalized law; s fixed 0 at STATE_3)",
+      "I_enc_conduction_ledger": "I_enc_c = I_c * (1 - s) — STATE_9 ledger term 1",
+      "I_enc_displacement_ledger": "I_enc_d = I_d * s — STATE_9 ledger term 2",
+      "ampere_maxwell_sum": "mu0 * (I_enc_c + I_enc_d) — STATE_9 sum chip; algebraically identical to mu0 * I_c whenever I_d = I_c",
+      "B_field_inside": "B = mu0 * I_d * (r_cm/100) / (2 * PI * R * R) — for r_cm/100 < R",
+      "B_field_outside": "B = mu0 * I_d / (2 * PI * (r_cm/100)) — for r_cm/100 >= R",
+      "ampere_circuital_recall": "loop-integral of B.dl = mu0 * I_enc — STATE_3, inherited notation from amperes_circuital_law (RECALL, not new)",
+      "ampere_maxwell_general": "loop-integral of B.dl = mu0 * (I_c + eps0 * dPhiE_dt) — STATE_9, the generalized law"
+    },
+    "constraints": [
+      "I_d = I_c at every instant while I_c flows (constant-current charger, no RC decay stylized away — STATE_1 clause).",
+      "I_d = 0 the instant charging pauses, even though Q/E/Phi_E remain frozen at their reached value (not zero) — STATE_5/STATE_6 exploit this distinction.",
+      "B(r) is continuous at r = R: the inside formula and the outside formula agree exactly at r = R (both give 4.0 uT) — no discontinuity at the plate edge.",
+      "B_gap(r=10cm) = B_wire(r=10cm) exactly, because r=10cm > R=6cm places the probe where the gap's B(r) and the wire's B(r) are the SAME formula with the SAME current magnitude (I_d = I_c) — this identity breaks for r < R (STATE_7's job).",
+      "The Ampere-Maxwell sum mu0*(I_enc_c + I_enc_d) is INVARIANT under the surface morph s (0 to 1) whenever I_d = I_c — the two terms trade share but the sum never changes; a construction identity, must render numerically stable to at least 3 significant figures across the full s sweep.",
+      "Nothing (no charge, no bead) ever crosses the plate gap at any state, at any slider setting — a real conduction current never exists inside the gap; only I_d does."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 24
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "A changing electric flux acts exactly like a current, ampere for ampere.",
+    "visual_confirmation": "The gap readout I_d rises and falls exactly with I_c, while the gap itself stays visibly bead-free the whole time."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
+    "b_in_gap": ["STATE_5", "STATE_6", "STATE_7"],
+    "generalized_law": ["STATE_8", "STATE_9"],
+    "exploration": ["STATE_10"]
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during authoring, so ZERO external syllabus verification happened beyond the architect's own domain knowledge. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.8 §8.2 content); every other cell is a believed guess flagged for teacher verification.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE Main/Adv, NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.8 §8.2 — Displacement Current",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "Believed — no Ampère's law or displacement current at IGCSE level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "absent",
+        "syllabus_unit": "Believed — electromagnetic waves are treated qualitatively; Ampère–Maxwell not an assessed outcome",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics (2023)",
+        "coverage": "absent",
+        "syllabus_unit": "Believed absent from the 2023-reform syllabus",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "Believed — Maxwell's equations / displacement current not assessed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "partial",
+        "syllabus_unit": "Believed — Ampère–Maxwell law / Maxwell's equations appear conceptually in the CED; assessed depth unclear",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "Believed absent from the expectations list",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "camera_flash_charging_gap",
+      "type": "B",
+      "label": "A camera flash's charging capacitor",
+      "physical_world": "Before a camera flash can fire, a capacitor inside it spends a second or two quietly charging from the battery — current flows in the wires while the gap between its plates stays completely empty.",
+      "same_physics": "The same nothing-crosses-the-gap charging behaviour taught in STATE_1, and the same displacement-current identity I_d = I_c taught in STATE_6 — a changing flux in that same gap carries the magnetic effect on exactly as the wire current would.",
+      "scene_hint": "A small flash unit's internal capacitor charging, its indicator light climbing as the plates fill, the gap between them visibly untouched by any charge."
+    },
+    {
+      "variant_id": "defibrillator_charging_paddle",
+      "type": "B",
+      "label": "A defibrillator's charging capacitor",
+      "physical_world": "A defibrillator charges a large internal capacitor for several seconds before it can deliver its shock — the same charge-and-hold mechanism as the flash, just at much higher voltage and larger plate area.",
+      "same_physics": "Identical nothing-crosses-the-gap charging, and the identical I_d = I_c equality — a bigger capacitor, exactly the same displacement-current physics.",
+      "scene_hint": "A defibrillator's charge-percentage readout climbing as its internal capacitor fills, the gap between its plates visibly empty of any charge."
+    }
+  ],
+  "epic_l_path": {
+    "state_count": 10,
+    "states": {
+      "STATE_1": {
+        "title": "Charge fills the gap — nothing ever crosses it",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_gap_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_charger_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "constant-current charger — I_c steady",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_flow_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "beads stream both wires, never stop",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_gap_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "gap stays empty — ±Q pile up face to face",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A camera flash charges before it fires — the charger holds a steady current I c the entire time.",
+              "glow": "plate_dots"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Beads stream along both wires without stopping, but nothing ever crosses the gap between the plates.",
+              "glow": "plate_dots",
+              "scenario_cue": "switch_close"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "One plate fills to positive charge Q, the other drains to negative charge Q, face to face.",
+              "glow": "plate_dots"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The charging current flows THROUGH the capacitor — charge jumps the gap.",
+            "visual_counter": "Beads march the wires and stop DEAD at each plate face — the gap stays visibly bead-free while +Q and -Q pile up face to face.",
+            "one_line_fix": "No charge ever crosses the gap — one plate fills to +Q while the other drains to -Q."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "While charging, the flux through the gap is rising",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_rise_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_recall_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "flux = field strength × area crossed",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_grow_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "E-lines thicken as charge arrives",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_rise_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Charging → flux rising",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Electric flux Phi E counts field strength times area crossed, the same counting as Gauss's flux law.",
+              "glow": "eflux"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "While the plates charge, the field in the gap grows, and so does the flux.",
+              "glow": "eflux"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Drag the current I c and watch the growth rate change live.",
+              "glow": "eflux"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Ampère's law: a loop and one choice of surface",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_ienc_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_loop_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Amperian loop drawn around the wire",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_disk_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "flat disk — one choice of surface",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_ienc_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Flat surface — current pierces",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Draw a loop around the wire — Ampere's law: add field B along it, total equals mu-naught times enclosed current.",
+              "glow": "loop",
+              "scenario_cue": "loop_draw"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Here's one choice of surface: a flat disk. The wire pierces it — beads flash across as they cross.",
+              "glow": "loop",
+              "scenario_cue": "disk_fill"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "I enc reads one point two amperes; curl arrows circle the loop by the grip rule.",
+              "glow": "loop",
+              "scenario_cue": "ienc_dock"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Same loop, two answers — the surface breaks the law",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_flip_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_same_loop_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "same loop, same curl arrows as before",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_morph_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "surface bulges into a balloon",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_flip_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Same loop — two answers",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Same loop as before — watch the surface it bounds bulge into a balloon through the gap.",
+              "glow": "surface",
+              "scenario_cue": "surface_morph_start"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Nothing pierces this surface anymore, and the enclosed current I enc flips from one point two amperes to zero.",
+              "glow": "surface",
+              "scenario_cue": "ienc_flip"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Same loop, same law, two different answers — a genuine contradiction Ampere's law cannot yet explain.",
+              "glow": "surface"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_any_surface_works",
+          "flat_vs_balloon_surface",
+          "what_counts_as_enclosed"
+        ]
+      },
+      "STATE_5": {
+        "title": "The field is there — the probe says so",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_hold_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_ghost_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "wrong guess: no current means no B",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_glide_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "probe glides in at fixed radius r",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_hold_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "The probe says otherwise",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "No current flows in this gap — so surely there's no magnetic field here either, right?",
+              "glow": "probe"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Watch the probe glide in from beside the wire — its needle holds at two point four microtesla.",
+              "glow": "probe",
+              "scenario_cue": "probe_glide_start"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Same reading as beside the wire. The field is measurably there — whatever makes B here, it isn't moving charge.",
+              "glow": "probe",
+              "scenario_cue": "bring_gap_appear"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "No charge crosses the gap → no current there → there can be no magnetic field between the plates.",
+            "visual_counter": "The ghost 'B should be 0 here' tag sits pinned while the probe glides in and its needle HOLDS at 2.4 μT — identical to its reading beside the wire.",
+            "one_line_fix": "The field is measurably there; whatever makes B in the gap, it isn't moving charge."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "The changing flux itself acts as a current",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_aha_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_equal_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "I_d always equals I_c while charging",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_throttle_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "throttle on/off — both meters together",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_aha_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Changing flux IS current",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Here's the fix: a changing electric flux acts exactly like a current.",
+              "glow": "amm_gap"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Throttle on: the gap readout I d climbs to one point two amperes, matching the wire's current I c exactly.",
+              "glow": "amm_gap",
+              "scenario_cue": "throttle_on"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Throttle off: both readings die together, instantly — I d is not charge in motion, it's changing flux acting like a current.",
+              "glow": "amm_gap",
+              "scenario_cue": "throttle_off"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Displacement current is a real flow of charges across the gap.",
+            "visual_counter": "The gap readout shows 1.20 A while the gap stays visibly bead-free — and the reading dies the instant the flux stops CHANGING, unlike any charge flow.",
+            "one_line_fix": "I_d is not charge in motion — it is changing electric flux acting, for magnetism, exactly like a current."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "is_displacement_current_real",
+          "current_without_moving_charge",
+          "why_gap_current_equals_wire_current"
+        ]
+      },
+      "STATE_7": {
+        "title": "Where B is strongest in the gap",
+        "duration": 14,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_falloff_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_sweep_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "probe sweeps outward through the gap",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_peak_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "B peaks right at the plate edge R",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_falloff_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "B peaks at the edge",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Sweep the probe outward: B climbs in a straight line out to the plate edge.",
+              "glow": "probe",
+              "scenario_cue": "probe_sweep_start"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "At radius R equals six centimeters, B peaks at four microtesla — the strongest point.",
+              "glow": "probe",
+              "scenario_cue": "peak_marker_pin"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Beyond the edge, B falls off just like an ordinary wire's field, one over r.",
+              "glow": "probe"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Why ε₀ dΦ_E/dt — three links dock in place",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s8_close_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s8_gauss_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Φ_E = Q / ε₀ (Gauss on the gap)",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_rate_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "take the rate: dQ/dt = ε₀ dΦ_E/dt",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_close_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Why the currents match",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Nothing moves — three familiar links, lighting up in turn.",
+              "glow": "formula"
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Gauss on the gap gives flux Phi E equals charge Q over epsilon-nought.",
+              "glow": "formula",
+              "scenario_cue": "link_1"
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Rearrange: Q equals epsilon-nought Phi E. That rate is exactly what current I c means.",
+              "glow": "formula",
+              "scenario_cue": "link_2"
+            },
+            {
+              "id": "s8_4",
+              "text_en": "So I d equals epsilon-nought times the flux rate — closing at one point two amperes.",
+              "glow": "formula",
+              "scenario_cue": "link_3"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "gauss_gives_q_equals_epsilon0_phi",
+          "units_of_epsilon0_dphi_dt",
+          "steady_state_kills_id"
+        ]
+      },
+      "STATE_9": {
+        "title": "One law, every surface — the ledger stays frozen",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s9_sum_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s9_law_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "∮B·dl = μ₀(I_c + ε₀ dΦ_E/dt)",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_scrub_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "surface scrubs — terms trade shares",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_sum_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Two terms, one sum",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "One law for every surface: B dot dl around the loop equals mu-naught times I c plus I d.",
+              "glow": "ledger"
+            },
+            {
+              "id": "s9_2",
+              "text_en": "Scrub the surface: flat means all conduction, bulged means all displacement, mid-morph means a genuine mix of both.",
+              "glow": "ledger",
+              "scenario_cue": "surface_scrub_start"
+            },
+            {
+              "id": "s9_3",
+              "text_en": "But watch the sum chip — it never ticks, frozen at mu-naught times one point two amperes.",
+              "glow": "ledger",
+              "scenario_cue": "sum_chip_glow"
+            }
+          ]
+        }
+      },
+      "STATE_10": {
+        "title": "Explore — displacement current sandbox",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s10_yours_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s10_drag_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "drag I_c, morph the surface, sweep the probe",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s10_watch_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "I_d always equals I_c",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s10_yours_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "All yours",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s10_1",
+              "text_en": "Drag current, morph the surface, sweep the probe — displacement current always equals conduction current.",
+              "glow": "formula"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered displacement current when they can (1) state that no charge ever crosses a charging capacitor's gap, even though a conduction current flows in the wires; (2) recognise that the same Amperian loop gives two contradictory values of I_enc depending on which bounded surface is chosen — the two-surface paradox; (3) accept that the magnetic field genuinely exists in the capacitor gap, equal to the field at the same radius beside the wire, with no conduction current there; (4) state the resolving equality I_d = I_c while the flux is changing, and that I_d dies instantly the moment the flux stops changing; (5) describe how B varies with radius in the gap — rising linearly inside the plate radius, falling as 1/r beyond it, peaking at the plate edge; (6) derive I_d = ε₀ dΦ_E/dt by chaining Φ_E = Q/ε₀ with dQ/dt = I_c and check the numeric closure; and (7) state the generalized Ampère–Maxwell law ∮B·dl = μ₀(I_c + ε₀ dΦ_E/dt) and explain why its sum is invariant under any choice of bounded surface.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A capacitor is charged by a constant-current source. What actually happens to charge as the plates fill?",
+        "options": {
+          "A": "A conduction current flows in the wires, but no charge ever crosses the gap — one plate charges to +Q, the other to -Q",
+          "B": "Charge jumps across the gap as a tiny spark each time the plates fill a little more",
+          "C": "Charge flows equally through the wires AND across the gap between the plates",
+          "D": "Charge only starts moving once the plates are already fully charged"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imagines conduction current literally crossing the gap — the exact misconception STATE_1 confronts",
+          "C": "invents a conduction path across the gap that never exists",
+          "D": "reverses the timing — charge flows WHILE the plates are filling, not after"
+        },
+        "tested_idea": "No charge crosses the capacitor gap; one plate charges +Q, the other -Q, while a conduction current flows in the wires.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A defibrillator's capacitor charges from its internal battery. Describe what happens to charge in the wires and in the gap between the plates."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "The same Amperian loop bounds two different surfaces: a flat disk (pierced by the wire) and a balloon bulging through the capacitor gap (pierced by nothing). What does Ampère's law give for the enclosed current I_enc in each case?",
+        "options": {
+          "A": "I_enc = 1.2 A for the flat disk but I_enc = 0 for the bulged surface — the same loop gives two contradictory answers",
+          "B": "I_enc = 1.2 A for both surfaces, since the loop itself hasn't changed",
+          "C": "I_enc = 0 for both surfaces, since no conduction current ever exists in the capacitor gap",
+          "D": "I_enc depends on how large the bulged surface is, not on what pierces it"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "wrongly assumes I_enc depends only on the loop, ignoring which surface is chosen",
+          "C": "misses that the FLAT disk is genuinely pierced by the wire's conduction current",
+          "D": "invents an area-dependence Ampère's law never has"
+        },
+        "tested_idea": "Ampère's law (in its old form) gives two different answers for the same loop depending on which bounded surface is chosen — the two-surface paradox.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "For a loop around a charging capacitor's wire, one student picks a flat surface and another picks a bulged surface through the gap. Explain why they get different values of I_enc from the same loop."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A probe sits in the mid-plane between the capacitor's plates, at the same radial distance used for the loop beside the wire, while the capacitor charges. What does it read?",
+        "options": {
+          "A": "B = 2.4 μT, identical to the reading beside the wire, even though no conduction current crosses the gap",
+          "B": "B = 0, since no charge crosses the gap between the plates",
+          "C": "B is nonzero but noticeably weaker than the reading beside the wire",
+          "D": "The needle oscillates rapidly between zero and a peak reading"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — assumes no conduction current means no magnetic field",
+          "C": "guesses at a partial effect with no basis; the reading matches exactly, not partially",
+          "D": "invents oscillation the needle never shows while I_c is steady"
+        },
+        "tested_idea": "The magnetic field genuinely exists in the capacitor gap, equal to the field at the same radius beside the wire, even with no conduction current there.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A magnetic probe is placed exactly between a charging capacitor's plates, the same distance from the axis as a loop drawn around the wire outside. Predict and justify its reading."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "While the capacitor charges at a steady 1.2 A, what is the displacement current I_d in the gap, and what happens to it the instant charging stops?",
+        "options": {
+          "A": "I_d = 1.2 A while charging, matching I_c exactly, and it drops to zero the instant charging stops, since I_d depends on the flux CHANGING, not its value",
+          "B": "I_d stays at 1.2 A as long as the plates hold charge, whether or not that charge is still changing",
+          "C": "I_d is an actual flow of charge across the gap, equal in magnitude to I_c",
+          "D": "I_d is always zero, since no charge physically crosses the gap"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses I_d with a static property of the stored charge instead of a rate of change",
+          "C": "the confronted misconception — treats displacement current as real moving charge",
+          "D": "denies I_d altogether, missing that a changing flux acts as a current for magnetism"
+        },
+        "tested_idea": "I_d = I_c exactly while the flux is changing, and dies instantly the moment the flux stops changing — the displacement-current equality.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A capacitor charges steadily, then the charging current is switched off. Describe I_d during charging and at the instant the current stops, and justify why."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "As a probe sweeps radially outward through the gap, from the axis past the plate edge, how does the magnetic field B behave?",
+        "options": {
+          "A": "B rises linearly from zero at the axis to a peak at the plate edge (r = R), then falls off as 1/r beyond it",
+          "B": "B stays constant everywhere in the gap, inside and outside the plate radius",
+          "C": "B falls off as 1/r² everywhere, exactly like a point charge's field",
+          "D": "B is zero everywhere inside the plate radius and only appears beyond the edge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misses the linear rise inside R entirely — B is not uniform",
+          "C": "imports the wrong falloff power from a different concept (point-charge field)",
+          "D": "wrongly claims B is zero inside R; it rises linearly instead"
+        },
+        "tested_idea": "B rises linearly inside the plate radius (like inside a uniform current column) and falls off as 1/r beyond it (like outside a wire), peaking at r = R.",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Sketch how B varies with radial distance r in a charging capacitor's gap, from the axis out to well beyond the plate edge, and identify where it peaks."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Starting from Φ_E = Q/ε₀, and using the fact that dQ/dt is exactly what the conduction current I_c means, what does the displacement current I_d equal, and does it check out numerically for this capacitor?",
+        "options": {
+          "A": "I_d = ε₀ dΦ_E/dt = dQ/dt = I_c, and the chain checks out numerically at 1.2 A",
+          "B": "I_d = dΦ_E/dt with no ε₀ factor, giving a value nowhere near 1.2 A",
+          "C": "I_d = ε₀ Φ_E, a static quantity that never changes with time",
+          "D": "I_d = Q/ε₀, which leaves out the rate of change entirely"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the ε₀ factor, breaking the units and the numeric check",
+          "C": "confuses the flux itself with its RATE of change",
+          "D": "computes a static ratio instead of taking a derivative"
+        },
+        "tested_idea": "Chaining Φ_E = Q/ε₀ and dQ/dt = I_c derives I_d = ε₀ dΦ_E/dt = I_c, and the chain closes numerically at 1.2 A.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Derive an expression for I_d starting from Φ_E = Q/ε₀, and show that it reduces to I_c for a capacitor charged at a constant current."
+      },
+      {
+        "q_id": "Q7",
+        "stem": "What is the generalized Ampère–Maxwell law, and what happens to the sum μ₀(I_c + I_d) as the Amperian surface is morphed from a flat disk to a bulged balloon?",
+        "options": {
+          "A": "∮B·dl = μ₀(I_c + ε₀ dΦ_E/dt); the two terms trade shares as the surface morphs, but their sum stays frozen at μ₀ × 1.2 A",
+          "B": "∮B·dl = μ₀ I_c only — the displacement term is a separate, unrelated law",
+          "C": "The sum genuinely changes with the surface choice, proving Ampère's law is still broken",
+          "D": "∮B·dl = μ₀ I_d only while the surface is bulged, and μ₀ I_c only when it's flat"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misses that both terms belong to ONE law, not two separate ones",
+          "C": "the two-surface paradox this exact concept resolves — the sum is invariant",
+          "D": "treats the law as two disconnected formulas instead of one invariant sum"
+        },
+        "tested_idea": "The generalized law ∮B·dl = μ₀(I_c + ε₀ dΦ_E/dt) gives an invariant sum regardless of which surface the loop bounds — resolving the two-surface paradox.",
+        "teaches_state": "STATE_9",
+        "difficulty": "stretch",
+        "parallel_form_stem": "State the generalized Ampère–Maxwell law and explain why it gives the same result for a charging capacitor no matter which surface a fixed loop bounds."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_4": ["Q2"],
+      "STATE_5": ["Q3"],
+      "STATE_6": ["Q4"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"],
+      "STATE_9": ["Q7"]
+    },
+    "non_assessed_states": ["STATE_2", "STATE_3", "STATE_10"]
+  },
+  "field_3d_config": {
+    "scenario_type": "displacement_current",
+    "explorer_id": "displacement_current_explorer",
+    "field_lines": {
+      "opacity": 0.6,
+      "color": "#66BB6A"
+    },
+    "slider_controls": {
+      "I_c": {
+        "min": 0,
+        "max": 2.0,
+        "step": 0.1,
+        "default": 1.2,
+        "label": "Charging current I_c"
+      },
+      "s": {
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0,
+        "label": "Surface: disk ↔ balloon"
+      },
+      "r_cm": {
+        "min": 0,
+        "max": 15,
+        "step": 0.5,
+        "default": 10,
+        "label": "Probe radius r"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "beads": "#FFCA28",
+      "eflux": "#66BB6A",
+      "bfield": "#42A5F5",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Charge fills the gap — nothing crosses it",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads",
+          "s1_charger_label", "s1_flow_label", "s1_gap_label"
+        ],
+        "camera_position": [3.6, 2.1, 7.4],
+        "caption": "Charge flows, gap stays empty",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "charge_the_gap",
+          "loop": "A",
+          "loop_offset_ms": 1200,
+          "switch_close_at_ms": 1200,
+          "charge_phase_ms": 4200,
+          "hold_phase_ms": 900,
+          "reset_phase_ms": 900,
+          "period_ms": 6000,
+          "I_c": 1.2,
+          "s": 0,
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": false,
+          "show_loop": false,
+          "show_surface": false,
+          "show_amm_wire": true,
+          "show_amm_gap": false,
+          "show_probe": false,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": false,
+          "show_hud": true,
+          "controls": [],
+          "static_readouts": ["I_c"]
+        }
+      },
+      "STATE_2": {
+        "label": "While charging, the flux through the gap rises",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_eflux", "dc_formula",
+          "s2_recall_label", "s2_grow_label", "s2_rise_label"
+        ],
+        "camera_position": [3.6, 2.1, 7.4],
+        "caption": "Charging → flux rising",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "field_grows_in_gap",
+          "loop": "A",
+          "period_ms": 6000,
+          "charge_phase_ms": 4200,
+          "hold_phase_ms": 900,
+          "reset_phase_ms": 900,
+          "I_c": 1.2,
+          "s": 0,
+          "formula": "Φ_E = E·A",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": true,
+          "show_loop": false,
+          "show_surface": false,
+          "show_amm_wire": true,
+          "show_amm_gap": false,
+          "show_probe": false,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": ["I_c"],
+          "static_readouts": []
+        }
+      },
+      "STATE_3": {
+        "label": "Ampère's law: a loop and one choice of surface",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_loop", "dc_surface", "dc_formula",
+          "s3_loop_label", "s3_disk_label", "s3_ienc_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "Flat surface — current pierces",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "loop_and_disk",
+          "loop": "A",
+          "camera_ease_at_ms": 0,
+          "camera_ease_duration_ms": 1000,
+          "loop_draw_at_ms": 1000,
+          "disk_fill_at_ms": 6000,
+          "ienc_dock_at_ms": 12000,
+          "I_c": 1.2,
+          "s": 0,
+          "I_enc": 1.2,
+          "formula": "∮B·dl = μ₀ I_enc",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": false,
+          "show_loop": true,
+          "show_surface": true,
+          "show_amm_wire": true,
+          "show_amm_gap": false,
+          "show_probe": false,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": [],
+          "static_readouts": []
+        }
+      },
+      "STATE_4": {
+        "label": "Same loop, two answers — the surface breaks the law",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_eflux",
+          "dc_loop", "dc_surface", "dc_formula",
+          "s4_same_loop_label", "s4_morph_label", "s4_flip_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "Same loop — two answers",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "same_loop_two_answers",
+          "loop": "B",
+          "I_c": 1.2,
+          "morph_start_at_ms": 2000,
+          "morph_duration_ms": 6000,
+          "ienc_flip_at_ms": 9000,
+          "formula": "∮B·dl = μ₀(1.2 A) … or μ₀(0)?",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": true,
+          "show_loop": true,
+          "show_surface": true,
+          "show_amm_wire": true,
+          "show_amm_gap": false,
+          "show_probe": false,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": ["s"],
+          "static_readouts": []
+        }
+      },
+      "STATE_5": {
+        "label": "B lives in the gap — the probe says so",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_probe", "dc_bring_gap", "dc_formula",
+          "s5_ghost_label", "s5_glide_label", "s5_hold_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "The probe says otherwise",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "b_lives_in_the_gap",
+          "loop": "A",
+          "period_ms": 6000,
+          "charge_phase_ms": 4200,
+          "hold_phase_ms": 900,
+          "reset_phase_ms": 900,
+          "I_c": 1.2,
+          "s": 0,
+          "r_cm": 10,
+          "ghost_tag_at_ms": 0,
+          "probe_glide_start_at_ms": 2000,
+          "probe_glide_duration_ms": 8000,
+          "needle_hold_at_ms": 7500,
+          "bring_gap_appear_at_ms": 10000,
+          "formula": "B_gap = B_wire",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": false,
+          "show_loop": false,
+          "show_surface": false,
+          "show_amm_wire": true,
+          "show_amm_gap": false,
+          "show_probe": true,
+          "show_bring_gap": true,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": [],
+          "static_readouts": []
+        }
+      },
+      "STATE_6": {
+        "label": "PRIMARY aha — the changing flux acts as a current",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_eflux",
+          "dc_amm_gap", "dc_ghost_col", "dc_formula",
+          "s6_equal_label", "s6_throttle_label", "s6_aha_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "Changing flux IS current",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "flux_acts_as_current",
+          "loop": "S6_throttle",
+          "period_ms": 9000,
+          "on_ms": 4500,
+          "off_ms": 4500,
+          "cycles": 2,
+          "I_c": 1.2,
+          "s": 0,
+          "formula": "I_d = I_c",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": true,
+          "show_loop": false,
+          "show_surface": false,
+          "show_amm_wire": true,
+          "show_amm_gap": true,
+          "show_probe": false,
+          "show_bring_gap": false,
+          "show_ghost_col": true,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": ["I_c"],
+          "static_readouts": []
+        }
+      },
+      "STATE_7": {
+        "label": "Where B is strongest in the gap",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_eflux",
+          "dc_probe", "dc_plate_edge_tag", "dc_peak_marker", "dc_formula",
+          "s7_sweep_label", "s7_peak_label", "s7_falloff_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "B peaks at the edge",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "where_is_b_strongest",
+          "loop": "B",
+          "I_c": 1.2,
+          "s": 0,
+          "sweep_out_duration_ms": 9000,
+          "peak_at_ms": 5500,
+          "sweep_back_duration_ms": 5000,
+          "total_cycle_ms": 14000,
+          "peak_marker_r_cm": 6.0,
+          "peak_marker_pin_at_ms": 5500,
+          "peak_marker_pinned": true,
+          "formula": "B ∝ r inside · ∝ 1/r outside",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": true,
+          "show_loop": false,
+          "show_surface": false,
+          "show_amm_wire": true,
+          "show_amm_gap": false,
+          "show_probe": true,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": ["r_cm"],
+          "static_readouts": []
+        }
+      },
+      "STATE_8": {
+        "label": "Why ε₀ dΦ_E/dt — three links dock in place",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_eflux", "dc_formula",
+          "s8_gauss_label", "s8_rate_label", "s8_close_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "Why the currents match",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "why_epsilon0_dphi_dt",
+          "loop": "none",
+          "reveal_hold": true,
+          "I_c": 1.2,
+          "s": 0,
+          "r_cm": 10,
+          "frozen_snapshot": {
+            "Q_uC": 0.12,
+            "E_Vpm": 1.2e6,
+            "Phi_E": 1.36e4,
+            "I_d": 1.2,
+            "B_uT": 2.4
+          },
+          "link_cues_at_ms": [5000, 9000, 13000],
+          "formula": "I_d = ε₀·dΦ_E/dt",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": true,
+          "show_loop": false,
+          "show_surface": false,
+          "show_amm_wire": true,
+          "show_amm_gap": false,
+          "show_probe": false,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": [],
+          "static_readouts": ["Q", "Phi_E", "I_d", "B"]
+        }
+      },
+      "STATE_9": {
+        "label": "One law, every surface — the ledger stays frozen",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads",
+          "dc_loop", "dc_surface", "dc_amm_gap", "dc_ledger", "dc_formula",
+          "s9_law_label", "s9_scrub_label", "s9_sum_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "Two terms, one sum",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "ampere_maxwell_ledger",
+          "loop": "B",
+          "I_c": 1.2,
+          "surface_scrub_expr": "s(t) = 0.5 + 0.5*sin(2*PI*t_ms/6000)",
+          "sum_chip_glow_on": "naming_sentence",
+          "formula": "∮B·dl = μ₀(I_c + ε₀ dΦ_E/dt)",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": false,
+          "show_loop": true,
+          "show_surface": true,
+          "show_amm_wire": true,
+          "show_amm_gap": true,
+          "show_probe": false,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": true,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": ["s"],
+          "static_readouts": []
+        }
+      },
+      "STATE_10": {
+        "label": "Explore — I_c, surface, probe all live",
+        "visible_elements": [
+          "dc_battery", "dc_wire_left", "dc_wire_right", "dc_plate_L", "dc_plate_R",
+          "dc_dots_pos", "dc_dots_neg", "dc_amm_wire", "dc_hud", "dc_beads", "dc_eflux",
+          "dc_loop", "dc_surface", "dc_probe", "dc_amm_gap", "dc_formula",
+          "s10_drag_label", "s10_watch_label", "s10_yours_label"
+        ],
+        "camera_position": [4.2, 2.3, 6.6],
+        "caption": "All yours",
+        "show_sliders": true,
+        "displacement_current": {
+          "mode": "displacement_sandbox",
+          "loop": "B",
+          "idle_sweep": true,
+          "idle_sweep_expr": "I_c(t) = 1.2 + 0.6*sin(2*PI*t_ms/8000)",
+          "seize_on_trusted_drag": true,
+          "I_c": 1.2,
+          "s": 0,
+          "r_cm": 10,
+          "formula": "I_d = I_c",
+          "show_beads": true,
+          "show_dots": true,
+          "show_eflux": true,
+          "show_loop": true,
+          "show_surface": true,
+          "show_amm_wire": true,
+          "show_amm_gap": true,
+          "show_probe": true,
+          "show_bring_gap": false,
+          "show_ghost_col": false,
+          "show_ledger": false,
+          "show_formula": true,
+          "show_hud": true,
+          "controls": ["I_c", "s", "r_cm"],
+          "static_readouts": [],
+          "idle_sweep_ui": true
+        }
+      }
+    }
+  }
+}

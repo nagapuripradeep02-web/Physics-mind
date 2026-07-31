@@ -6,14 +6,15 @@ Peter Parker personas maintain the **engines**; Alex personas author the **conte
 
 Per [docs/ARCHITECTURE_v2.2.md §2.2](../../docs/ARCHITECTURE_v2.2.md): **"writing 5 cluster specs before we have ≥3 proof-runs through Alex would lock in an abstraction we don't yet understand."** Clusters are written from observed reality, not theory. The 12 bugs surfaced in session 34's `friction_static_kinetic` proof-run triggered the first two specs. The remaining three stay deferred until their own proof-runs land.
 
-## The four clusters — live 10-role model (2026-07-12 doctrine sync; replaces the original five-cluster table)
+## The clusters — live 13-role model (2026-07-31 graduation sync; replaces the 10-role table)
 
 | Cluster | Roles | Pattern |
 |---|---|---|
-| **Alex** | `architect` · `physics_author` · `json_author` · `quality_auditor` · `eye_walker` · `retrofit_surgeon` | authoring pipeline (sequential) + parallel frame verification + per-concept doctrine deltas |
-| **Peter Parker** | `renderer_primitives` · `runtime_generation` | engine layer — FAIL-routed by quality_auditor only, never called directly |
+| **Alex** | `architect` · `physics_author` · `chemistry_author` · `json_author` · `quality_auditor` · `eye_walker` · `retrofit_surgeon` | authoring pipeline (sequential) + parallel frame verification + per-concept doctrine deltas |
+| **Review** | `founder_proxy` | founder taste gate at Checkpoints A/B/C — reject-biased, report-only, never ships |
+| **Peter Parker** | `pcpl_surgeon` (renamed from `renderer_primitives` 2026-07-31) · `field3d_surgeon` · `runtime_generation` | engine layer — FAIL-routed by quality_auditor/founder_proxy, never called directly |
 | **Release** | `shipper` | post-founder-approval release chain (owner-tag `release:shipper`); no OVERVIEW.md by design |
-| **Offline** | `feedback_collector` | nightly only; never on a live serving path |
+| **Offline** | `feedback_collector` | nightly only; never on a live serving path — **DORMANT until real teacher feedback exists** |
 
 The full roster (model pins, one-line summaries, hard rules) lives in `.agents/CLAUDE.md` — do not
 duplicate it here. The old deferred clusters (`quality`, `self_improvement`, `assessment`) never got
@@ -23,7 +24,8 @@ bugs = inventing requirements. Don't.
 
 ## Active-cluster spec files
 
-- [renderer_primitives/CLAUDE.md](../renderer_primitives/CLAUDE.md)
+- [pcpl_surgeon/CLAUDE.md](../pcpl_surgeon/CLAUDE.md) (renamed from `renderer_primitives` 2026-07-31)
+- [field3d_surgeon/CLAUDE.md](../field3d_surgeon/CLAUDE.md) (graduated 2026-07-31)
 - [runtime_generation/CLAUDE.md](../runtime_generation/CLAUDE.md)
 
 ## Alex ↔ Peter Parker communication protocol (interim)
@@ -38,11 +40,14 @@ Markdown-based convention for the in-session handoff; the persistent halves alre
 N. **<Title>.** <One-line description with file:line citation if known>. [owner: peter_parker:renderer_primitives] [severity: CRITICAL|MAJOR|MODERATE]
 ```
 
-Valid owner tags:
+Valid owner tags (mirrors the live `engine_bug_queue.owner_cluster` CHECK constraint):
 - `alex:architect`
 - `alex:physics_author`
+- `alex:chemistry_author` (added 2026-07-23 — chemistry-pipeline sibling of physics_author)
 - `alex:json_author`
-- `peter_parker:renderer_primitives`
+- `peter_parker:renderer_primitives` (**historical tag, kept live** — maps to the renamed `pcpl_surgeon` agent; 2D display-layer root causes)
+- `peter_parker:field3d_surgeon` (field_3d_renderer.ts root causes — added with the 2026-07-31 graduation)
+- `peter_parker:visual_validator`
 - `peter_parker:runtime_generation`
 - `ambiguous` (rare; forces triage conversation)
 
@@ -103,15 +108,15 @@ Decisions locked here so future specs and fixes don't re-litigate:
 
 | Subsystem | Owner | Why |
 |---|---|---|
-| `field_3d_renderer.ts` — display/scenario layer (Three.js — ALL current diamonds) | `renderer_primitives` | The primary live rendering surface (2026-07-12) |
-| `particle_field_renderer.ts` — display/scenario layer (p5 2D — Ch.3 circuits/KCL, macro_view) | `renderer_primitives` | Live 2D rendering surface (2026-07-12) |
+| `field_3d_renderer.ts` — display/scenario layer (Three.js — ALL current diamonds) + its `deriveStateMeta.ts` field_3d blocks | `field3d_surgeon` | **Re-split 2026-07-31 (was `renderer_primitives` 2026-07-12):** the specialist carries the region map + scar checklist; ~3.4M vs ~25M tokens/dispatch |
+| `particle_field_renderer.ts` — display/scenario layer (p5 2D — Ch.3 circuits/KCL, macro_view) | `pcpl_surgeon` | Live 2D rendering surface (2026-07-12; agent renamed 2026-07-31) — until particle_field volume justifies its own surgeon |
 | Renderer template assembly + serving/seed path in `aiSimulationGenerator.ts` (`FIELD_3D_RENDERER_CODE` / `PARTICLE_FIELD_RENDERER_CODE`, `CONCEPT_RENDERER_MAP`, `PCPL_CONCEPTS`, seed scripts) | `runtime_generation` | Serving-side chokepoint (2026-07-12) |
-| `src/scripts/build_review_site.ts` — review/pilot player (the Rule 36 player-half clock + the Rule 37 `onTimelineEnd` explore-state free-run invariant) | `renderer_primitives` — on FAIL-route only | Player invariants are enforced ONCE in the shared player (2026-07-12) |
-| `parametric_renderer.ts` — display layer (drawForceArrow, drawVector, drawAngleArc, subscene assembly, postMessage listeners) | `renderer_primitives` | Rendering is a display concern |
+| `src/scripts/build_review_site.ts` — review/pilot player (the Rule 36 player-half clock + the Rule 37 `onTimelineEnd` explore-state free-run invariant) | `pcpl_surgeon` — on FAIL-route only | Player invariants are enforced ONCE in the shared player (2026-07-12) |
+| `parametric_renderer.ts` — display layer (drawForceArrow, drawVector, drawAngleArc, subscene assembly, postMessage listeners) | `pcpl_surgeon` | Rendering is a display concern |
 | `parametric_renderer.ts` — inline `computePhysics_<concept>` at lines 47–250 | `runtime_generation` | Physics compute, living in a renderer file by accident of history; scope trumps path |
-| `subSimSolverHost.ts` constraint solver | `renderer_primitives` | Layout geometry feeds the renderer |
+| `subSimSolverHost.ts` constraint solver | `pcpl_surgeon` | Layout geometry feeds the renderer |
 | PostMessage contract — producer side (initial `PM_physics` population) | `runtime_generation` | Generator emits the config the consumer listens to |
-| PostMessage contract — consumer side (iframe listeners, SET_STATE/PARAM_UPDATE handlers) | `renderer_primitives` | Consumer side is rendering |
+| PostMessage contract — consumer side (iframe listeners, SET_STATE/PARAM_UPDATE handlers) | `pcpl_surgeon` (2D) / `field3d_surgeon` (field_3d) | Consumer side is rendering; split follows the renderer file |
 | Cache key fingerprint construction (5D / 6D) | `runtime_generation` | Serving-side concern |
 | Supabase schema migrations | **neither cluster** — founder only | No cluster has schema authority |
 | Cache-table DELETEs during regen | `runtime_generation` | Single execution chokepoint |
@@ -120,7 +125,7 @@ Decisions locked here so future specs and fixes don't re-litigate:
 
 Flagged so future sessions can close the loop without re-discovering:
 
-1. **Update `quality_auditor/CLAUDE.md` escalation targets** — today's spec routes only to `architect`, `physics_author`, `json_author`. Add `peter_parker:renderer_primitives` and `peter_parker:runtime_generation` as routing targets. One-line-per-cluster edit.
+1. ~~**Update `quality_auditor/CLAUDE.md` escalation targets**~~ — the spec now routes to `peter_parker:*` owners; with the 2026-07-31 split, field_3d findings route to `peter_parker:field3d_surgeon` and 2D display findings to `peter_parker:renderer_primitives` (tag → `pcpl_surgeon`).
 2. ~~**Update `.agents/README.md`**~~ — DONE 2026-06-11 (README rewritten; superseded 2026-07-12 — ten roles, see .agents/CLAUDE.md).
 3. **Phase I migration** — `engine_bug_queue` + `proposal_queue` tables now EXIST (migrations 2026-04-25 / 2026-06-10; `cache_regen_log` still pending) — the bug-ledger half of this TODO is live via `npm run log:lesson`; the cache_regen_log half remains open.
 

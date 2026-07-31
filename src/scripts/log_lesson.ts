@@ -29,8 +29,9 @@ import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
 const VALID_SEVERITIES = ['CRITICAL', 'MAJOR', 'MODERATE'] as const;
 const VALID_OWNERS = [
-    'alex:architect', 'alex:physics_author', 'alex:json_author',
-    'peter_parker:renderer_primitives', 'peter_parker:runtime_generation',
+    'alex:architect', 'alex:physics_author', 'alex:chemistry_author', 'alex:json_author',
+    'peter_parker:renderer_primitives', 'peter_parker:field3d_surgeon',
+    'peter_parker:runtime_generation',
     'peter_parker:visual_validator', 'ambiguous',
 ] as const;
 

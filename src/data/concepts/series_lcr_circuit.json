@@ -1,0 +1,907 @@
+{
+  "concept_id": "series_lcr_circuit",
+  "concept_name": "Series LCR Circuit — Impedance and Resonance",
+  "chapter": 7,
+  "section": "7.6",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.6 AC Voltage Applied to a Series LCR Circuit — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. Fifth of 8 in the founder-reordered Ch.7 map (ac_voltage_resistor -> ac_voltage_inductor -> ac_voltage_capacitor -> phasors -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer). This sim teaches SYNTHESIS, not element mechanisms: R, L and C share one series loop and one common current; each element's settled voltage phase (in phase / a quarter behind / a quarter ahead) is a one-clause callback, never re-derived; the three voltages combine tip-to-tail as phasors (never arithmetically) into the source voltage, giving a net reactance X_L - X_C, an impedance Z = sqrt(R^2+(X_L-X_C)^2), a phase angle tan(phi) = (X_L-X_C)/R, and one special frequency f0 = 1/(2*pi*sqrt(LC)) where the two reactances erase each other and the current peaks at vm/R. SCOPE: no power, power factor, or wattless current anywhere in this sim (deferred to ac_power_factor — the empty power HUD slot is reserved for it), no free LC energy oscillation (deferred to lc_oscillations), no complex numbers. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the two misconceptions -- 'AC voltages in series add like numbers' and 'every extra component always means less current' -- are confronted inside EPIC-L via Rule 16a misconception_watch at exactly S4 and S8, each a straightforward wrong-consequence-first contrast beat). Routed to the NEW field_3d 'ac_series_lcr' scenario — a clean standalone sibling of the sealed ac_resistor/ac_inductor/ac_capacitor/ac_phasor scenarios: three elements (heater/coil/plates) dock into one series loop with one amber bead stream threading all three; a five-arrow co-rooted phasor fan (source cyan, current amber, V_R white, V_L violet, V_C green); a tip-to-tail chain-assembly one-shot that closes exactly onto the ghosted source arrow; a similar-triangle unit-morph from volts to ohms; a scripted lead/lag flip; a resonance sweep with a stacked X-vs-f / i_m-vs-f plot pair; an R-family sharpness overlay; and a chain-link f0 derivation. Handoff to ac_power_factor (next): delivers the apparatus, the five-arrow fan, and the impedance triangle with phi as the circuit's own angle (cos phi is one step away) plus the two locked work points (f=0.50Hz -> phi=56.3deg, cos phi=0.555; f0=0.25Hz -> phi=0, cos phi=1); withholds every power quantity, trace, or formula (P, cos phi, wattless current) and the energy interpretation of the V_L/V_C cancellation (which lc_oscillations also draws on).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "ac_series_lcr"
+    ]
+  },
+  "prerequisites": [
+    "ac_voltage_resistor",
+    "ac_voltage_inductor",
+    "ac_voltage_capacitor",
+    "phasors"
+  ],
+  "real_world_anchor": {
+    "primary": "Every radio station on the air arrives at the antenna at once, each broadcasting on its own frequency — yet the radio plays exactly one. Behind the tuning dial sits a series LCR loop: turning the dial changes the capacitance, which slides the circuit's own special frequency f0 along the band. The one station whose frequency matches f0 meets almost no opposition — its current surges far stronger than its neighbours' — and that is the station you hear. The resonance curve you sweep through in this sim IS the tuning curve, and a sharper peak is exactly what lets a receiver separate two nearby stations cleanly. Culture-neutral (radio receivers exist everywhere) and physics-true at every depth — a real tuner is exactly a driven RLC loop selecting by resonance.",
+    "secondary": "A contactless card held near a reader carries the same idea in miniature: both the card and the reader hold small tuned coil-capacitor loops set to the SAME resonant frequency, so energy transfers only between matched pairs. Mains frequency, where mentioned, stays neutral ('the mains frequency'), never a fixed regional number."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "vm": { "name": "Peak (amplitude) source voltage", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "f_demo": { "name": "Demo-compressed AC frequency (real mains is tens of Hz)", "unit": "Hz", "min": 0.1, "max": 0.5, "default": 0.25, "step": 0.05, "role": "driver" },
+      "R": { "name": "Resistance of the heater element", "unit": "Ohm", "min": 2, "max": 20, "default": 5.0, "step": 1, "role": "driver" },
+      "L": { "name": "Self-inductance of the coil (off-grid default, snap-on-first-drag)", "unit": "H", "min": 1.0, "max": 10.0, "default": 3.1831, "step": 0.1, "role": "driver" },
+      "C": { "name": "Capacitance of the plates (off-grid default, snap-on-first-drag)", "unit": "F", "min": 0.04, "max": 0.40, "default": 0.1273, "step": 0.02, "role": "driver" },
+      "omega": { "name": "Angular frequency of the shared clock", "unit": "rad/s", "derived": "omega = 2*PI*f_demo" },
+      "theta": { "name": "Instantaneous phase, the state's OWN clock (Rule 26), degree-native. theta0 = 0 in EVERY state.", "unit": "deg", "derived": "theta = omega_deg_per_s * t  [t = time since STATE ENTRY, pure closed form, no accumulator]" },
+      "omega_deg_per_s": { "name": "Angular speed in deg/s", "unit": "deg/s", "derived": "omega_deg_per_s = omega * 180/PI" },
+      "T": { "name": "Period of one full AC cycle at the currently active f_demo", "unit": "s", "derived": "T = 1/f_demo" },
+      "X_L": { "name": "Inductive reactance", "unit": "Ohm", "derived": "X_L = omega * L = 2*PI*f_demo*L" },
+      "X_C": { "name": "Capacitive reactance", "unit": "Ohm", "derived": "X_C = 1/(omega*C) = 1/(2*PI*f_demo*C)" },
+      "X": { "name": "Net (signed) reactance — the circuit's own tug-of-war; sign-driven colour (violet when X_L wins, green when X_C wins)", "unit": "Ohm", "derived": "X = X_L - X_C" },
+      "Z": { "name": "Impedance — the circuit's own fingerprint hypotenuse", "unit": "Ohm", "derived": "Z = sqrt(R^2 + X^2)" },
+      "im": { "name": "Peak (amplitude) current, the shared reference, on its own amber scale", "unit": "A", "derived": "im = vm/Z" },
+      "phi": { "name": "Phase angle by which the SOURCE leads the current (positive = current lags, inductive dominant; negative = current leads, capacitive dominant)", "unit": "deg", "derived": "phi = atan2(X, R) * 180/PI" },
+      "i_t": { "name": "Instantaneous current — the fan's amber reference-arrow projection / bead-drive value", "unit": "A", "derived": "i_t = im * sin(radians(theta))" },
+      "v_t": { "name": "Instantaneous source voltage — the cyan arrow's projection", "unit": "V", "derived": "v_t = vm * sin(radians(theta + phi))" },
+      "vR_t": { "name": "Instantaneous heater voltage, in phase with i", "unit": "V", "derived": "vR_t = im * R * sin(radians(theta))" },
+      "vL_t": { "name": "Instantaneous coil voltage, leads i by 90 deg", "unit": "V", "derived": "vL_t = im * X_L * sin(radians(theta + 90))" },
+      "vC_t": { "name": "Instantaneous plate voltage, lags i by 90 deg", "unit": "V", "derived": "vC_t = im * X_C * sin(radians(theta - 90))" },
+      "V_R": { "name": "Peak heater voltage, the S3+ white chip / chain's first leg", "unit": "V", "derived": "V_R = im * R" },
+      "V_L": { "name": "Peak coil voltage, the S3+ violet chip / chain's second leg", "unit": "V", "derived": "V_L = im * X_L" },
+      "V_C": { "name": "Peak plate voltage, the S3+ green chip / chain's third (antiparallel) leg", "unit": "V", "derived": "V_C = im * X_C" },
+      "arithmetic_sum_wrong": { "name": "The S4 struck-chip value — the WRONG scalar sum peak voltages don't obey", "unit": "V", "derived": "arithmetic_sum_wrong = V_R + V_L + V_C" },
+      "phasor_check": { "name": "The correct phasor-sum magnitude — must equal vm exactly (the S5 closure proof)", "unit": "V", "derived": "phasor_check = sqrt(V_R^2 + (V_L - V_C)^2)  [identically equals im*Z = vm]" },
+      "f0": { "name": "Resonant frequency, where X_L = X_C, Z = R, current peaks. Depends ONLY on L and C.", "unit": "Hz", "derived": "f0 = 1/(2*PI*sqrt(L*C))" },
+      "delta_f": { "name": "Resonance bandwidth (full width at half-power), set by R alone, NEVER moves f0", "unit": "Hz", "derived": "delta_f = R/(2*PI*L)" },
+      "Q": { "name": "Quality factor — sharpness/selectivity", "unit": "dimensionless", "derived": "Q = f0/delta_f  [identically = (1/R)*sqrt(L/C)]" },
+      "f1": { "name": "Lower half-power frequency (S9 width marker)", "unit": "Hz", "derived": "f1 = (-delta_f + sqrt(delta_f^2 + 4*f0^2))/2" },
+      "f2": { "name": "Upper half-power frequency (may fall off the 0.10-0.50Hz plot axis for large R)", "unit": "Hz", "derived": "f2 = f1 + delta_f" },
+      "bead_frac": { "name": "Bead position along the shared loop path, 0.5 = home. ONE stream threads heater-coil-plates.", "unit": "dimensionless", "derived": "bead_frac = 0.5 - A_frac*cos(radians(theta))" },
+      "X_L_of_f": { "name": "Static plot-curve function (x-axis dummy f_plot, not f_demo)", "unit": "Ohm", "derived": "X_L_of_f(f_plot) = 2*PI*f_plot*L" },
+      "X_C_of_f": { "name": "Static plot-curve function", "unit": "Ohm", "derived": "X_C_of_f(f_plot) = 1/(2*PI*f_plot*C)" },
+      "i_peak_of_f": { "name": "Static resonance-curve function (the S9 family-overlay curve)", "unit": "A", "derived": "i_peak_of_f(f_plot, R_active) = vm / sqrt(R_active^2 + (2*PI*f_plot*L - 1/(2*PI*f_plot*C))^2)" }
+    },
+    "computed_outputs": {
+      "i_display": { "formula": "im*Math.sin(theta*Math.PI/180)" },
+      "v_display": { "formula": "vm*Math.sin((theta+phi)*Math.PI/180)" },
+      "vR_display": { "formula": "im*R*Math.sin(theta*Math.PI/180)" },
+      "vL_display": { "formula": "im*X_L*Math.sin((theta+90)*Math.PI/180)" },
+      "vC_display": { "formula": "im*X_C*Math.sin((theta-90)*Math.PI/180)" },
+      "im_display": { "formula": "vm/Math.sqrt(R*R+(X_L-X_C)*(X_L-X_C))" },
+      "XL_display": { "formula": "2*Math.PI*f_demo*L" },
+      "XC_display": { "formula": "1/(2*Math.PI*f_demo*C)" },
+      "Z_display": { "formula": "Math.sqrt(R*R+(X_L-X_C)*(X_L-X_C))" },
+      "phi_display": { "formula": "Math.atan2(X_L-X_C, R)*180/Math.PI" },
+      "f0_display": { "formula": "1/(2*Math.PI*Math.sqrt(L*C))" },
+      "deltaf_display": { "formula": "R/(2*Math.PI*L)" },
+      "Q_display": { "formula": "(1/R)*Math.sqrt(L/C)" }
+    },
+    "formulas": {
+      "shared_current": "i(t) = im sin(theta), theta = omega*t -- current is the ONE quantity common to all three elements (S1)",
+      "voltage_kvl_instant": "v(t) = v_R(t) + v_L(t) + v_C(t) at EVERY instant -- the true KVL statement (S4 PIVOT #1)",
+      "phasor_sum": "vm^2 = V_R^2 + (V_L - V_C)^2 -- tip-to-tail, never scalar addition (S5)",
+      "reactance_net": "X = X_L - X_C, X_L = omega*L, X_C = 1/(omega*C) -- the circuit's tug-of-war (S6/S7)",
+      "impedance": "Z = sqrt(R^2 + X^2) -- the circuit's own fingerprint hypotenuse (S6)",
+      "peak_current": "im = vm/Z -- closes the S1/S2 current mystery (S6)",
+      "phase_law": "tan(phi) = X/R -- phi = angle the source leads the current; X_L wins => phi>0 => current lags; X_C wins => phi<0 => current leads (S7)",
+      "resonance_condition": "X_L = X_C => omega*L = 1/(omega*C) => omega0 = 1/sqrt(LC) => f0 = 1/(2*pi*sqrt(LC)) (S8 result, S10 derivation)",
+      "peak_current_at_resonance": "at f0: Z = R, im = vm/R -- the bare-heater value, the S1-to-S8 payoff",
+      "bandwidth_sharpness": "delta_f = R/(2*pi*L) -- full width at half-power; Q = f0/delta_f = (1/R)*sqrt(L/C) (S9)"
+    },
+    "constraints": [
+      "i(t) is common to R, L and C at every instant (series circuit) - never three separate currents.",
+      "v(t) = v_R(t) + v_L(t) + v_C(t) at every INSTANT exactly (KVL); peak voltages do NOT add - the amplitudes obey vm^2 = V_R^2 + (V_L-V_C)^2 instead.",
+      "Z = sqrt(R^2+X^2) >= R always; Z = R exactly only when X_L = X_C (resonance) - Z is NEVER R+X_L+X_C (the demoted third misconception).",
+      "f0 = 1/(2*pi*sqrt(LC)) depends ONLY on L and C - R never moves f0, R only sets the peak height (im=vm/R at f0) and the bandwidth delta_f=R/(2*pi*L).",
+      "phi = atan(X/R) is bounded in (-90,+90) deg for any finite R>0 - never reaches +-90 deg exactly within the authored slider range.",
+      "Z(f0)=R=5.0 Ohm here is TRUE ONLY for this build's specific R value at f=f0 - it does NOT generalize to 'reactance always equals R at resonance' as a separate law."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_8",
+    "statement": "At one frequency the coil and capacitor cancel — current roars back to peak.",
+    "visual_confirmation": "The rising and falling reactance curves cross exactly beneath the current curve's peak, at the chapter's own home frequency."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
+    "impedance_and_phase": ["STATE_6", "STATE_7"],
+    "resonance": ["STATE_8", "STATE_9", "STATE_10"],
+    "exploration": ["STATE_11"],
+    "exit_pills": {
+      "foundational_to_resonance": "One frequency makes the whole fight vanish →",
+      "foundational_to_impedance_and_phase": "So how much current actually flows? →"
+    }
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during authoring, so zero external syllabus verification happened. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.6 content) — with ONE named exception: the S9 sharpness/Q sub-content is JEE-relevant but its CBSE-board weighting is NOT independently confirmed, so treat S9 as needs_teacher_verification even though the row overall is marked verified (the schema has no per-state sub-cell; this note is the honest record of that gap). Every other curriculum row carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.6 AC Voltage Applied to a Series LCR Circuit: phasor addition of element voltages, impedance Z = sqrt(R^2+X^2), phase angle tan(phi) = X/R, resonance f0 = 1/(2*pi*sqrt(LC)), sharpness/Q (S9 is JEE-relevant but its CBSE-board weighting is NOT independently verified — do not read S9 as verified alongside the rest of this row); S10 is NCERT's own algebra.",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "absent",
+        "syllabus_unit": "9702's AC topic is rms + rectification; series LCR resonance analysis believed not required",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "No AC circuit analysis believed present at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "absent",
+        "syllabus_unit": "AC analysis believed removed in the 2023 syllabus reform",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "DC circuits only, believed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "absent",
+        "syllabus_unit": "AC steady-state/impedance/resonance formalism believed beyond the CED",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "absent",
+        "syllabus_unit": "Series LCR resonance believed not covered at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 11,
+    "states": {
+      "STATE_1": {
+        "title": "One loop, one current — the series fact",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_top_label", "position": { "x": 380, "y": 60 }, "text": "heater, coil, plates dock into one loop", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s1_mid_label", "position": { "x": 200, "y": 250 }, "text": "one amber current threads all three, never splitting", "color": "#FFB300" },
+          { "type": "annotation", "id": "s1_focal_label", "position": { "x": 560, "y": 400 }, "text": "i_m = 2.00 A — exactly the bare heater's value. Park that.", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Three familiar elements dock into one loop — heater first.", "glow": "circuit", "scenario_cue": "dock_r" },
+            { "id": "s1_2", "text_en": "Now the coil, then the capacitor plates, close the same loop.", "glow": "circuit", "scenario_cue": "dock_l" },
+            { "id": "s1_3", "text_en": "One amber current threads all three in lockstep — never splitting, never pooling.", "glow": "circuit" },
+            { "id": "s1_4", "text_en": "The meter reads two point zero zero amps — exactly the bare heater's value. Park that.", "glow": "circuit" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Off the home frequency, hidden machinery wakes",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_top_label", "position": { "x": 380, "y": 60 }, "text": "slide frequency off home", "color": "#FFB300" },
+          { "type": "annotation", "id": "s2_mid_label", "position": { "x": 200, "y": 250 }, "text": "current shrinks from 2.00 A toward 1.11 A", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s2_focal_label", "position": { "x": 560, "y": 400 }, "text": "the current crest visibly slips late behind the voltage crest", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Slide the frequency off its home setting, and watch the beads slow down.", "glow": "trace" },
+            { "id": "s2_2", "text_en": "Current shrinks from two amps to about one point one one amps.", "glow": "trace" },
+            { "id": "s2_3", "text_en": "And in the trace, the current's crest now drifts visibly late behind the voltage's.", "glow": "trace" },
+            { "id": "s2_4", "text_en": "Something in this loop fights back — try the frequency yourself.", "glow": "trace" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Each element's voltage at its own settled angle",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_top_label", "position": { "x": 380, "y": 60 }, "text": "one shared clock, three settled angles", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s3_mid_label", "position": { "x": 200, "y": 250 }, "text": "V_R along i, V_L a quarter ahead, V_C a quarter behind", "color": "#B388FF" },
+          { "type": "annotation", "id": "s3_focal_label", "position": { "x": 560, "y": 400 }, "text": "the source arrow matches none of the three individual angles", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The disc returns — one amber current arrow, our shared clock.", "glow": "i_phasor" },
+            { "id": "s3_2", "text_en": "The heater's voltage rides right along it — same phase you proved already.", "glow": "vr_phasor" },
+            { "id": "s3_3", "text_en": "The coil's voltage sits a quarter turn ahead; the plates' voltage a quarter behind.", "glow": "vl_phasor" },
+            { "id": "s3_4", "text_en": "The source arrow itself matches none of them — hold that thought.", "glow": "v_phasor" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Peak voltages don't add — instants add, signs and all",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_top_label", "position": { "x": 380, "y": 60 }, "text": "5.55 + 11.09 + 2.77 = 19.41 V?", "color": "#EF5350" },
+          { "type": "annotation", "id": "s4_mid_label", "position": { "x": 200, "y": 250 }, "text": "the coil alone reads 11.09 V — more than the 10.0 V source", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s4_focal_label", "position": { "x": 560, "y": 400 }, "text": "instantaneous voltages stack to exactly the source's own value, every time", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Add the peaks and you get nineteen forty one volts — the source reads ten.", "glow": "trace" },
+            { "id": "s4_2", "text_en": "The coil alone reads more than the source — something's wrong.", "glow": "trace" },
+            { "id": "s4_3", "text_en": "Freeze at the source's crest: the three signed voltages stack to exactly ten.", "glow": "trace", "scenario_cue": "freeze_src_arm" },
+            { "id": "s4_4", "text_en": "Freeze at the current's crest — the source isn't at peak. Instants add, never peaks.", "glow": "trace", "scenario_cue": "freeze_i_arm" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "AC voltages in series add like numbers — V_R + V_L + V_C should equal the source, and no single element can read more than the source itself.",
+            "visual_counter": "The struck sum 5.55 + 11.09 + 2.77 = 19.41 V beside the measured source 10.0 V, with the coil's own chip reading 11.09 V — more than the source — followed by two freezes where the SIGNED instantaneous voltages stack to exactly the source's own instantaneous value.",
+            "one_line_fix": "Voltages add at every instant, sign and all — never peak to peak, because the three peaks happen at different moments."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Tips to tails — the phasor chain closes onto the source",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["why_voltages_dont_add_arithmetically", "phasor_addition_tip_to_tail_method", "vl_vc_antiparallel_cancellation"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_top_label", "position": { "x": 380, "y": 60 }, "text": "freeze the clock — the angles can't change", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s5_mid_label", "position": { "x": 200, "y": 250 }, "text": "V_R lays out first, V_L climbs, V_C bites straight back down", "color": "#69F0AE" },
+          { "type": "annotation", "id": "s5_focal_label", "position": { "x": 560, "y": 400 }, "text": "the chain's tip lands exactly on the ghosted source arrow — closed", "color": "#FFF59D" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Freeze the clock — the angles can't change, you proved that.", "glow": "chain" },
+            { "id": "s5_2", "text_en": "The resistor's voltage lays out first, from the root.", "glow": "chain", "scenario_cue": "chain_vr" },
+            { "id": "s5_3", "text_en": "The coil's voltage climbs from its tip.", "glow": "chain", "scenario_cue": "chain_vl" },
+            { "id": "s5_4", "text_en": "The capacitor's voltage bites straight back down the same line.", "glow": "chain", "scenario_cue": "chain_vc" },
+            { "id": "s5_5", "text_en": "The chain's tip lands exactly on the source arrow — closed.", "glow": "chain" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Divide by the current — the circuit's own impedance triangle",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["impedance_vs_resistance_difference", "z_quadrature_not_scalar_sum", "impedance_triangle_construction"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_top_label", "position": { "x": 380, "y": 60 }, "text": "divide the closed chain by the one current", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s6_mid_label", "position": { "x": 200, "y": 250 }, "text": "R = 5.0 Ω, X = 7.50 Ω, Z = 9.0 Ω", "color": "#B388FF" },
+          { "type": "annotation", "id": "s6_focal_label", "position": { "x": 560, "y": 400 }, "text": "i_m = v_m/Z = 1.11 A — the S2 number, explained", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Stop the spin. Divide this whole triangle by the one shared current.", "glow": "triangle", "scenario_cue": "morph_start" },
+            { "id": "s6_2", "text_en": "Volts become ohms — resistance five, net reactance seven point five, impedance nine.", "glow": "triangle" },
+            { "id": "s6_3", "text_en": "Divide the source voltage by impedance and you get one point one one amps — exactly what we measured.", "glow": "triangle" },
+            { "id": "s6_4", "text_en": "This triangle doesn't spin — it's the circuit's own fingerprint.", "glow": "triangle" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "The winning reactance sets who leads, who lags",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_top_label", "position": { "x": 380, "y": 60 }, "text": "phase angle φ = 56.3°", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s7_mid_label", "position": { "x": 200, "y": 250 }, "text": "step frequency down — X_L and X_C swap, the leg flips", "color": "#69F0AE" },
+          { "type": "annotation", "id": "s7_focal_label", "position": { "x": 560, "y": 400 }, "text": "same size fight, opposite winner — Z and i_m unchanged", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "That angle has a name — phase angle phi, fifty six point three degrees.", "glow": "triangle" },
+            { "id": "s7_2", "text_en": "Now step the frequency down — watch the reactances swap places.", "glow": "fan", "scenario_cue": "f_step" },
+            { "id": "s7_3", "text_en": "The impedance triangle flips sides — same size fight, opposite winner.", "glow": "triangle" },
+            { "id": "s7_4", "text_en": "The current now leads the source instead of lagging it — impedance and current stay exactly the same.", "glow": "i_phasor" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "The crossing — reactances cancel, resonance, current roars back",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s8_focal_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["what_happens_at_resonance", "why_current_peaks_at_f0", "radio_tuning_frequency_selection"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_top_label", "position": { "x": 380, "y": 60 }, "text": "two reactance curves cross as frequency sweeps", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s8_mid_label", "position": { "x": 200, "y": 250 }, "text": "current climbs back to 2.00 A at the crossing", "color": "#FFB300" },
+          { "type": "annotation", "id": "s8_focal_label", "position": { "x": 560, "y": 400 }, "text": "f_0 = 0.25 Hz — the chapter's own home frequency, all along", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Two curves — one rising, one falling — as frequency sweeps.", "glow": "reso_plot" },
+            { "id": "s8_2", "text_en": "More parts should mean less current. Watch.", "glow": "reso_plot" },
+            { "id": "s8_3", "text_en": "The curves cross, and current climbs to two amps — the heater's value.", "glow": "reso_plot" },
+            { "id": "s8_4", "text_en": "Coil and plates erased each other, at the home frequency.", "glow": "reso_plot" },
+            { "id": "s8_5", "text_en": "Reactance equals resistance here — with this resistor, our build, not a law.", "glow": "reso_plot" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Every component adds opposition — with a coil AND plates in the loop, the current must always be smaller than with the resistor alone.",
+            "visual_counter": "The current curve visibly CLIMBING as the swept frequency approaches the crossing and landing at 2.00 A — the bare-heater value from STATE_1 — while the beads accelerate, even though every earlier off-home frequency this concept tried made the current smaller.",
+            "one_line_fix": "The coil and the plates oppose each other, not just the current — at one frequency they erase each other and the circuit forgets they exist."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Resistance sets how sharp the resonance is",
+        "duration": 12,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s9_focal_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_top_label", "position": { "x": 380, "y": 60 }, "text": "step the resistor — the peak reshapes", "color": "#ECEFF1" },
+          { "type": "annotation", "id": "s9_mid_label", "position": { "x": 200, "y": 250 }, "text": "small R: tall and narrow, Q = 2.5 — big R: low and wide, Q = 0.5", "color": "#FFB300" },
+          { "type": "annotation", "id": "s9_focal_label", "position": { "x": 560, "y": 400 }, "text": "the crossing point never moves — f_0 depends only on L and C", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Resistance sets how sharp this peak is — watch the resistor shrink.", "glow": "reso_plot" },
+            { "id": "s9_2", "text_en": "The curve grows taller and narrower — five amps, choosy about frequency.", "glow": "reso_plot" },
+            { "id": "s9_3", "text_en": "Now a bigger resistor — low and wide, one amp, far less picky.", "glow": "reso_plot" },
+            { "id": "s9_4", "text_en": "The crossing point never moves — resistance changes the shape, never where.", "glow": "reso_plot" }
+          ]
+        }
+      },
+      "STATE_10": {
+        "title": "Resonant frequency from first principles",
+        "duration": 16,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s10_focal_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s10_top_label", "position": { "x": 380, "y": 60 }, "text": "X_L = X_C — the resonance condition", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s10_mid_label", "position": { "x": 200, "y": 250 }, "text": "ωL = 1/(ωC) → ω₀ = 1/√(LC)", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s10_focal_label", "position": { "x": 560, "y": 400 }, "text": "f_0 = 1/(2π√(LC)) = 0.250 Hz — the crossing, solved", "color": "#80DEEA" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s10_1", "text_en": "The two reactances are equal — that's the whole condition.", "glow": "formula", "scenario_cue": "chain_1" },
+            { "id": "s10_2", "text_en": "Which means omega times inductance equals one over omega times capacitance.", "glow": "formula", "scenario_cue": "chain_2" },
+            { "id": "s10_3", "text_en": "Solve for omega — the resonant speed is one over root L times C.", "glow": "formula", "scenario_cue": "chain_3" },
+            { "id": "s10_4", "text_en": "Substitute our own numbers, and frequency lands at zero point two five zero hertz.", "glow": "formula", "scenario_cue": "chain_4" }
+          ]
+        }
+      },
+      "STATE_11": {
+        "title": "Explore — the whole LCR machine, live",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s11_focal_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s11_top_label", "position": { "x": 380, "y": 60 }, "text": "drag peak voltage, frequency, R, L, C", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s11_mid_label", "position": { "x": 200, "y": 250 }, "text": "moving L or C slides the crossing itself", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s11_focal_label", "position": { "x": 560, "y": 400 }, "text": "Z = √(R² + (X_L − X_C)²)", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s11_1", "text_en": "It's all yours — drag peak voltage, frequency, resistance, inductance, and capacitance, and watch the crossing itself slide.", "glow": "formula" }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the series LCR circuit when they can (1) state why R, L and C in series share exactly one instantaneous current; (2) explain why series peak AC voltages do NOT add arithmetically — only instantaneous values add, and combine the three element voltages tip-to-tail as phasors into the source voltage; (3) compute impedance Z = sqrt(R^2+(X_L-X_C)^2) and peak current im = vm/Z, and explain why Z is never R+X_L+X_C; (4) determine, from X_L and X_C alone, whether the current leads or lags the source and by how much (tan phi = X/R); (5) explain the resonance condition X_L = X_C, why impedance collapses to R and current peaks at vm/R there, and derive f0 = 1/(2*pi*sqrt(LC)) from first principles; and (6) explain qualitatively how resistance sets the sharpness of the resonance peak without moving its location.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "In a series LCR circuit, the same current is measured through the heater, the coil, and the plates at every instant. Why is this true?",
+        "options": {
+          "A": "Because they are connected in series — a single conducting loop carries the same instantaneous current through every element it passes through",
+          "B": "Because the peak voltages across all three elements happen to be equal",
+          "C": "Because the frequency is the same for all three elements",
+          "D": "Because resistance, inductance, and capacitance all oppose current in the same way"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses a coincidental voltage equality with the topological fact of a series connection — the three elements' voltages are generally different",
+          "C": "frequency is a property of the shared source, not the reason current is common — even a DC series loop shares one current",
+          "D": "the three elements oppose current very differently (a fixed resistance, and a frequency-dependent reactance in two opposite directions) — that difference is the whole point of the chapter, not a similarity"
+        },
+        "tested_idea": "In a series circuit, one shared current threads every element at every instant — a topological fact of the series connection, not a coincidence of values.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "If a fourth element were added in series to this same loop, would it see the same current as the other three? Why?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "At a given instant, a series LCR circuit's phasor diagram shows the current arrow, the resistor's voltage arrow, the coil's voltage arrow, and the source voltage arrow all pointing in different directions. What does this tell you?",
+        "options": {
+          "A": "Each element's voltage keeps its own fixed angle relative to the shared current — the source's own angle need not match any single element's angle",
+          "B": "The circuit has three different currents, one per element",
+          "C": "The diagram is drawn incorrectly — voltages in a circuit must all point the same way",
+          "D": "The angles will change if you watch for a few more cycles"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "reintroduces the idea already ruled out in the series-fact state — one current is shared by all three elements, only the voltage angles differ",
+          "C": "assumes voltages must be in phase, true only for a pure resistor — the coil and capacitor genuinely carry their own fixed offset angles",
+          "D": "every phasor rides the same shared clock, so the angle between any two of them never changes cycle to cycle"
+        },
+        "tested_idea": "Each circuit element's voltage phasor holds its own fixed angle relative to the shared current phasor; the source's own angle need not match any single element's angle.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "If you doubled the frequency, would the angle between the resistor's voltage arrow and the current arrow change? Explain."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "In a series LCR circuit at some frequency, the resistor reads 5.55 V, the coil reads 11.09 V, and the capacitor reads 2.77 V, while the source itself reads only 10.0 V. Is this a contradiction?",
+        "options": {
+          "A": "No — the three PEAK voltages never add arithmetically; only the INSTANTANEOUS voltages add at every moment, and they add to exactly the source's instantaneous value",
+          "B": "Yes — Kirchhoff's voltage law is violated, since 5.55 + 11.09 + 2.77 does not equal 10.0",
+          "C": "No — the coil and capacitor voltages don't count because they store energy instead of using it",
+          "D": "Yes — this can only happen if the circuit has a fault, such as a short somewhere"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "applies the DC-habit arithmetic sum to peak AC voltages, ignoring that the three peaks occur at three different instants",
+          "C": "misdirects — the coil and capacitor voltages are real, measurable instantaneous quantities; the resolution is about WHEN peaks occur, not whether they 'count'",
+          "D": "invents a fault where none exists — the arithmetic mismatch is expected AC behaviour, not a sign of a broken circuit"
+        },
+        "tested_idea": "Peak AC voltages across series elements do not add arithmetically; Kirchhoff's voltage law holds only for instantaneous values at every moment.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "At the exact instant the current is at its own peak, is the source's instantaneous voltage at its own peak too, or something less? Explain."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "How do the resistor's, coil's, and capacitor's peak voltages actually combine to give the source's peak voltage in a series LCR circuit?",
+        "options": {
+          "A": "Tip-to-tail, as phasors: the resistor's voltage and the net (coil minus capacitor) voltage form the two legs of a right triangle whose hypotenuse is the source voltage",
+          "B": "By simple arithmetic addition of all three peak values",
+          "C": "By multiplying the three peak values together",
+          "D": "The source voltage is independent of the three element voltages"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — arithmetic addition of peaks is exactly what does NOT work, as the struck sum demonstrated",
+          "C": "invents a multiplicative rule with no physical basis — voltages combine as vectors (phasors), never as a product",
+          "D": "denies the whole point of the series circuit — the source voltage is entirely determined by the phasor sum of the element voltages"
+        },
+        "tested_idea": "Series element voltages combine as phasors, tip-to-tail; the coil's and capacitor's voltages are antiparallel and partially cancel before combining with the resistor's voltage at a right angle.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "If the coil's and capacitor's peak voltages were exactly equal, what would the net vertical leg of the phasor triangle be — and what would that mean for the source voltage?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A series LCR circuit has resistance 5.0 Ω, inductive reactance 10.0 Ω, and capacitive reactance 2.5 Ω at some frequency. What is the impedance, and how do you find the peak current for a 10.0 V source?",
+        "options": {
+          "A": "Impedance Z = sqrt(R^2 + (X_L-X_C)^2) = sqrt(25+56.25) ≈ 9.0 Ω; peak current = 10.0/9.0 ≈ 1.11 A",
+          "B": "Impedance = R + X_L + X_C = 17.5 Ω; peak current ≈ 0.57 A",
+          "C": "Impedance = X_L − X_C = 7.5 Ω; peak current ≈ 1.33 A",
+          "D": "Impedance equals the resistance alone, 5.0 Ω, since reactance doesn't oppose real current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the demoted third misconception — impedances do not add like resistances in series; the correct combination is the quadrature sum sqrt(R^2+X^2)",
+          "C": "drops the resistance leg of the triangle entirely, treating impedance as just the net reactance",
+          "D": "reactance genuinely opposes current — it appears inside the same impedance formula — it simply does so without dissipating energy, unlike resistance"
+        },
+        "tested_idea": "Impedance combines resistance and net reactance in quadrature, Z = sqrt(R^2+X^2), never by simple addition; peak current = peak voltage divided by impedance.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "If the resistance were doubled while both reactances stayed the same, would the impedance also exactly double? Why or why not?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "In a series LCR circuit, the inductive reactance is 2.5 Ω and the capacitive reactance is 10.0 Ω at some frequency. Does the current lead or lag the source voltage, and why?",
+        "options": {
+          "A": "The current LEADS the source — the capacitor's reactance dominates, making the net reactance negative, so the source's own phase angle is negative relative to the current",
+          "B": "The current LAGS the source — any coil in the circuit always makes the current lag, regardless of its size",
+          "C": "The current and source stay exactly in phase, since the two reactances just cancel some of each other",
+          "D": "There is no way to tell without knowing the resistance value"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "overgeneralizes the pure inductor's lag behaviour to any circuit merely containing a coil — here the capacitor's larger reactance dominates and flips the sign",
+          "C": "confuses UNEQUAL reactances (2.5 vs 10.0) with the special EQUAL case, resonance — the two only fully cancel when X_L equals X_C",
+          "D": "resistance sets the impedance's magnitude and the size of the angle, but the SIGN of lead/lag depends only on which reactance is larger — that much is answerable from X_L and X_C alone"
+        },
+        "tested_idea": "Whichever reactance is larger determines whether the circuit is net inductive (current lags) or net capacitive (current leads); the sign of X_L minus X_C sets the direction, independent of resistance.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "If the frequency were changed so that X_L and X_C swapped values exactly, what would happen to the lead/lag direction, and what would stay the same?"
+      },
+      {
+        "q_id": "Q7",
+        "stem": "As the frequency of a series LCR circuit is swept toward the value where X_L equals X_C, what happens to the current, and why?",
+        "options": {
+          "A": "The current rises to its maximum possible value (peak voltage divided by resistance alone) — the coil's and capacitor's opposing reactances cancel, so impedance collapses to just the resistance",
+          "B": "The current falls to zero, since more circuit elements always mean more opposition",
+          "C": "The current becomes infinite, since impedance drops to zero at this frequency",
+          "D": "Nothing special happens — resonance only affects the voltage, never the current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — adding a coil and a capacitor does NOT always reduce current; at resonance they cancel EACH OTHER, not the current",
+          "C": "impedance drops to R, not to zero — a real resistor still limits the current to a finite, if maximal, value",
+          "D": "resonance is precisely defined by the current reaching its peak value — it is the current effect, not a side note"
+        },
+        "tested_idea": "At resonance, the inductive and capacitive reactances exactly cancel, collapsing the impedance to the resistance alone and driving the current to its maximum possible value.",
+        "teaches_state": "STATE_8",
+        "difficulty": "core",
+        "parallel_form_stem": "Why does the current at resonance equal exactly the current you would measure with the coil and capacitor removed entirely, leaving only the resistor?"
+      },
+      {
+        "q_id": "Q8",
+        "stem": "Starting from the resonance condition X_L = X_C, derive an expression for the resonant angular frequency omega0 in terms of L and C.",
+        "options": {
+          "A": "X_L = X_C gives omega*L = 1/(omega*C), so omega^2 = 1/(LC), and omega0 = 1/sqrt(LC)",
+          "B": "X_L = X_C gives omega*L = 1/(omega*C), so omega0 = LC directly",
+          "C": "Resonance requires omega0 = R/L, independent of C",
+          "D": "Resonance requires omega0 = 2*pi/(LC)"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "mishandles the algebra — cross-multiplying omega*L = 1/(omega*C) gives omega^2 = 1/(LC), not omega = LC",
+          "C": "confuses the resonance angular frequency (which depends only on L and C) with the bandwidth, a different quantity set by resistance",
+          "D": "inserts an unmotivated factor of 2*pi and the wrong algebraic combination of L and C"
+        },
+        "tested_idea": "The resonant angular frequency omega0 = 1/sqrt(LC) follows directly from setting the two reactances equal and solving for omega; it depends only on L and C, never on R.",
+        "teaches_state": "STATE_10",
+        "difficulty": "stretch",
+        "parallel_form_stem": "If both L and C were quadrupled, what would happen to the resonant frequency f0?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q3"],
+      "STATE_5": ["Q4"],
+      "STATE_6": ["Q5"],
+      "STATE_7": ["Q6"],
+      "STATE_8": ["Q7"],
+      "STATE_10": ["Q8"]
+    },
+    "non_assessed_states": ["STATE_2", "STATE_9", "STATE_11"]
+  },
+  "field_3d_config": {
+    "scenario_type": "ac_series_lcr",
+    "explorer_id": "ac_series_lcr_explorer",
+    "slider_controls": {
+      "vm": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Peak voltage vₘ" },
+      "f_demo": { "min": 0.1, "max": 0.5, "step": 0.05, "default": 0.25, "label": "Frequency f" },
+      "R": { "min": 2, "max": 20, "step": 1, "default": 5.0, "label": "Resistance R" },
+      "L": { "min": 1.0, "max": 10.0, "step": 0.1, "default": 3.1831, "label": "Inductance L" },
+      "C": { "min": 0.04, "max": 0.40, "step": 0.02, "default": 0.1273, "label": "Capacitance C" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "voltage": "#4FC3F7",
+      "current": "#FFB300",
+      "v_r": "#ECEFF1",
+      "v_l": "#B388FF",
+      "v_c": "#69F0AE",
+      "impedance": "#4FC3F7"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Three familiar elements dock into one series loop, sharing one current",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Three elements, one current",
+        "show_sliders": true,
+        "formula_overlay": "i_R = i_L = i_C = i  —  one current",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "series_build",
+          "controls": [],
+          "theta0_deg": 0,
+          "dock_r_at_ms": 0,
+          "dock_l_at_ms": 1400,
+          "dock_c_at_ms": 2800,
+          "beads_start_at_ms": 4000,
+          "hud_show_z": false,
+          "hud_show_phi": false,
+          "hud_show_f0": false,
+          "show_v_chips": false,
+          "show_arc": false,
+          "show_arc_numeral": false,
+          "dim_apparatus": false,
+          "glow_focal": "circuit",
+          "formula_text": "i_R = i_L = i_C = i  —  one current"
+        }
+      },
+      "STATE_2": {
+        "label": "Off the home frequency, the current shrinks and its crest slips late",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_strip"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Off home, machinery wakes",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "off_home",
+          "controls": ["f_demo"],
+          "theta0_deg": 0,
+          "f_glide_start_at_ms": 0,
+          "f_glide_dur_ms": 3000,
+          "f_glide_from": 0.25,
+          "f_glide_to": 0.5,
+          "hud_show_z": false,
+          "hud_show_phi": false,
+          "hud_show_f0": false,
+          "show_v_chips": false,
+          "show_arc": false,
+          "show_arc_numeral": false,
+          "dim_apparatus": false,
+          "glow_focal": "trace",
+          "formula_text": ""
+        }
+      },
+      "STATE_3": {
+        "label": "Two arrows become five — each element's voltage at its own settled angle",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_fan", "slcr_arc", "slcr_strip", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Three angles, one clock",
+        "show_sliders": true,
+        "formula_overlay": "V_R ∥ i   ·   V_L 90° ahead   ·   V_C 90° behind",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "fan",
+          "controls": [],
+          "theta0_deg": 0,
+          "hud_show_z": false,
+          "hud_show_phi": false,
+          "hud_show_f0": false,
+          "show_v_chips": true,
+          "show_arc": true,
+          "show_arc_numeral": false,
+          "dim_apparatus": false,
+          "glow_focal": "fan",
+          "formula_text": "V_R ∥ i   ·   V_L 90° ahead   ·   V_C 90° behind"
+        }
+      },
+      "STATE_4": {
+        "label": "The struck arithmetic sum, then two freezes proving instants — not peaks — add",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_fan", "slcr_strip", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Instants add, not peaks",
+        "show_sliders": true,
+        "formula_overlay": "v(t) = v_R + v_L + v_C — at every instant",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "kvl_stack",
+          "controls": [],
+          "theta0_deg": 0,
+          "show_v_chips": true,
+          "hud_show_z": false,
+          "hud_show_phi": false,
+          "hud_show_f0": false,
+          "show_arc": false,
+          "show_arc_numeral": false,
+          "dim_apparatus": false,
+          "freeze_src_arm_at_ms": 3000,
+          "freeze_i_arm_at_ms": 7000,
+          "freeze_budget_ms_each": 1000,
+          "glow_focal": "trace",
+          "formula_text": "v(t) = v_R + v_L + v_C — at every instant"
+        }
+      },
+      "STATE_5": {
+        "label": "Tip-to-tail: the resistor's, coil's, and capacitor's voltages chain onto the source",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_chain", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Tips to tails, chain closes",
+        "show_sliders": true,
+        "formula_overlay": "v_m² = V_R² + (V_L − V_C)²",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "tip_to_tail",
+          "controls": [],
+          "theta0_deg": 0,
+          "chain_angle_deg": 0,
+          "chain_vr_at_ms": 1200,
+          "chain_vl_at_ms": 2200,
+          "chain_vc_at_ms": 3200,
+          "hud_show_z": false,
+          "hud_show_phi": false,
+          "hud_show_f0": false,
+          "dim_apparatus": false,
+          "glow_focal": "chain",
+          "formula_text": "v_m² = V_R² + (V_L − V_C)²"
+        }
+      },
+      "STATE_6": {
+        "label": "Divide the closed chain by the current — the circuit's own impedance triangle",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_triangle", "slcr_chips", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Divide by current — ohms",
+        "show_sliders": true,
+        "formula_overlay": "Z = √(R² + (X_L − X_C)²)",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "z_triangle",
+          "controls": [],
+          "theta0_deg": 0,
+          "morph_start_at_ms": 800,
+          "show_chips": true,
+          "hud_show_z": true,
+          "hud_show_phi": false,
+          "hud_show_f0": false,
+          "dim_apparatus": false,
+          "glow_focal": "triangle",
+          "formula_text": "Z = √(R² + (X_L − X_C)²)"
+        }
+      },
+      "STATE_7": {
+        "label": "The triangle's own angle is phase angle phi — reactance winner sets lead or lag",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_fan", "slcr_arc", "slcr_triangle", "slcr_chips", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Reactance winner sets lead",
+        "show_sliders": true,
+        "formula_overlay": "tan φ = (X_L − X_C)/R",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "lead_lag_flip",
+          "controls": [],
+          "theta0_deg": 0,
+          "show_v_chips": false,
+          "show_arc": true,
+          "show_arc_numeral": true,
+          "show_chips": true,
+          "f_step_start_at_ms": 3000,
+          "f_step_dur_ms": 2000,
+          "f_step_from": 0.5,
+          "f_step_to": 0.125,
+          "hud_show_z": true,
+          "hud_show_phi": true,
+          "hud_show_f0": false,
+          "dim_apparatus": false,
+          "glow_focal": "triangle",
+          "formula_text": "tan φ = (X_L − X_C)/R"
+        }
+      },
+      "STATE_8": {
+        "label": "The crossing — X_L and X_C cancel at resonance, impedance collapses to R, current peaks",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_triangle", "slcr_chips", "slcr_reso_plot", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Curves cross — resonance",
+        "show_sliders": true,
+        "formula_overlay": "f₀ = 1/(2π√(LC))",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "resonance_sweep",
+          "controls": ["f_demo"],
+          "theta0_deg": 0,
+          "show_v_chips": false,
+          "show_chips": true,
+          "sweep_start_at_ms": 1000,
+          "sweep_legA_ms": 5000,
+          "sweep_legB_ms": 3000,
+          "sweep_from": 0.125,
+          "sweep_to": 0.5,
+          "sweep_settle": 0.25,
+          "hud_show_z": true,
+          "hud_show_phi": true,
+          "hud_show_f0": true,
+          "dim_apparatus": false,
+          "glow_focal": "reso_plot",
+          "formula_text": "f₀ = 1/(2π√(LC))"
+        }
+      },
+      "STATE_9": {
+        "label": "Resistance re-shapes the resonance peak without ever moving the crossing",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_reso_plot", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Resistance sets the sharpness",
+        "show_sliders": true,
+        "formula_overlay": "Q = f₀/Δf",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "sharpness",
+          "controls": ["R"],
+          "theta0_deg": 0,
+          "r_family": [5.0, 2.0, 10.0],
+          "r_step_start_at_ms": 1200,
+          "r_step_dur_ms": 1300,
+          "show_family_overlay": true,
+          "family_R_ghosts": [5.0, 2.0],
+          "show_q_chips": true,
+          "plot_i_axis_max": 5.2,
+          "hud_show_z": false,
+          "hud_show_phi": false,
+          "hud_show_f0": true,
+          "dim_apparatus": false,
+          "glow_focal": "reso_plot",
+          "formula_text": "Q = f₀/Δf"
+        }
+      },
+      "STATE_10": {
+        "label": "The derivation: X_L = X_C solved down to the chapter's own resonant frequency",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_reso_plot", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "Reactances equal — f₀ solved",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "R": 5.0, "L": 3.1831, "C": 0.1273 },
+        "ac_series_lcr": {
+          "mode": "derivation",
+          "controls": [],
+          "theta0_deg": 0,
+          "dim_apparatus": true,
+          "chain_1_at_ms": 0,
+          "chain_2_at_ms": 2000,
+          "chain_3_at_ms": 4000,
+          "chain_4_at_ms": 6000,
+          "hud_show_z": true,
+          "hud_show_phi": false,
+          "hud_show_f0": true,
+          "glow_focal": "formula",
+          "formula_text": ""
+        }
+      },
+      "STATE_11": {
+        "label": "Explore — the whole LCR machine under the teacher's hands",
+        "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_fan", "slcr_arc", "slcr_triangle", "slcr_chips", "slcr_reso_plot", "slcr_formula"],
+        "camera_position": [1.3, 1.6, 12.0],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "Z = √(R² + (X_L − X_C)²)",
+        "ac_series_lcr": {
+          "mode": "explore",
+          "controls": ["vm", "f_demo", "R", "L", "C"],
+          "theta0_deg": 0,
+          "show_v_chips": true,
+          "show_arc": true,
+          "show_arc_numeral": true,
+          "show_chips": true,
+          "show_q_chips": false,
+          "show_family_overlay": false,
+          "plot_i_axis_max": 5.2,
+          "hud_show_z": true,
+          "hud_show_phi": true,
+          "hud_show_f0": true,
+          "dim_apparatus": false,
+          "glow_focal": "formula",
+          "formula_text": "Z = √(R² + (X_L − X_C)²)"
+        }
+      }
+    }
+  }
+}

@@ -16,7 +16,8 @@ Third in the pipeline. Converts architect skeleton + physics block into a full c
 
 > **field_3d pre-flight (read first for any field_3d concept):** read `docs/FIELD3D_SCENARIO_CHECKLIST.md`
 > and the scar list — `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>`
-> (or `--field3d --open`). Top json-author scars: side-by-side offsets must exceed object radius, use
+> (or `--field3d --open`; for a PCPL/parametric 2D concept use `--pcpl --open` instead — disjoint fleets).
+> Top json-author scars: side-by-side offsets must exceed object radius, use
 > specific `visible_elements` tokens, don't narrate what isn't drawn. **Controls (Rule 31, 2026-07-02 —
 > replaces "sliders in the last state only"):** every state is live (`show_sliders: true`), but each state
 > exposes ONLY its own relevant control row(s) via the scenario's per-state block (mode-driven, like
@@ -85,7 +86,7 @@ English-only and ships no language picker. Existing concepts keep their `text_te
 
 **Top-level (lines 195+)**:
 - `concept_id`, `concept_name`, `chapter`, `section` required.
-- `renderer_pair: { panel_a: string, panel_b: string }` required.
+- `renderer_pair: { panel_a: string, panel_b: string }` required. **PCPL naming trap:** for a PCPL/parametric concept you write `panel_a: "mechanics_2d"` (that is the value on `scalar_vs_vector` and every Vectors concept), NOT `"parametric"`. The literal string `"mechanics_2d"` does NOT mean `mechanics_2d_renderer.ts` runs — as long as the concept_id is in the `PCPL_CONCEPTS` set (registration site #7), `PCPL_CONCEPTS` OVERRIDES the label at the sim-assembler in `aiSimulationGenerator.ts` and `assembleParametricHtml` (the live `parametric_renderer.ts` engine) runs. Miss site #7 and the same JSON silently falls back to the legacy `mechanics_2d_renderer.ts`. (This is why the `validate:concepts` panel_a↔engine mismatch check is intentionally skipped for PCPL ids.)
 - `physics_engine_config` required.
 - `real_world_anchor: { primary: string, secondary?, tertiary? }` required.
 - `epic_l_path: { state_count: int ≥ 2, states: {…} }` required.
@@ -112,7 +113,7 @@ English-only and ships no language picker. Existing concepts keep their `text_te
   auto-discovers overlays/rows; particle_field declares from config + gates its canvas HUDs), so
   every concept — existing and future — gets ⚙ on its next `build:review`/`build:pilot` with ZERO
   concept-side authoring. Nothing to author, nothing to verify, nothing to escalate here. (The only
-  renderer-side obligation left lives in the renderer_primitives spec, not yours.)
+  renderer-side obligation left lives in the display-surgeon specs — pcpl_surgeon / field3d_surgeon — not yours.)
 
 ## Canvas bounds — 760×500
 
@@ -135,7 +136,7 @@ Renderer canvas set at `parametric_renderer.ts:2124` → `createCanvas(760, 500)
 
 ## Primitive types — 14 built + planned (target 34)
 
-Current state: **14 primitive files** exist in `src/lib/pcplRenderer/primitives/` (verified 2026-06-11 — the table below predates `derivation_step` + `mark_badge`, both board-mode primitives, deferred per the conceptual-only directive). Planned primitives are NOT yet implemented — if your concept needs one, STOP and file an engine bug against the `renderer_primitives` cluster, **do not invent the primitive**.
+Current state: the primitive types are implemented **in-file in `parametric_renderer.ts`** (the `drawSubScene` type switch + per-type draw helpers). The old `src/lib/pcplRenderer/primitives/` 14-file tree was folded in and DELETED in `729042a`/`2435706` — it no longer exists; don't cite it. The table below predates `derivation_step` + `mark_badge` (both board-mode primitives, deferred per the conceptual-only directive). Planned primitives are NOT yet implemented — if your concept needs one, STOP and file an engine bug against the `renderer_primitives` cluster, **do not invent the primitive**.
 
 **Built — safe to use** (the renderer maps them in `parametric_renderer.ts`):
 
@@ -389,10 +390,9 @@ Also supported:
 
 NOT wired (silent no-op — never use):
 - `animation.type: "rotate_about"` — looks plausible in JSON, never executes.
-- `animation.type: "slide_horizontal"` — only works in legacy mechanics_2d_renderer, NOT parametric_renderer.
 - Any "camera transform" or "zoom" — the renderer has no scale/translate transforms. Don't author a "zoom into X" visual; use a banner annotation or a comparison_panel split instead, OR escalate to renderer_primitives if the concept fundamentally requires zoom.
 
-**Validator wiring (session 55)**: Gate 6 in `validate:concepts` enforces the whitelist from `src/lib/renderers/animation_vocabulary.ts`. `animation.type` ∈ {`fade_in`, `slide_horizontal`, `slide_when_kinetic`, `free_fall`, `pendulum`, `atwood`, `door_swing`, `translate`}; `animate_in` ∈ {`none`, `handwriting`, `fade_in`}. Anything else FAILs the gate as `unknown_animation_type` / `unknown_animate_in`.
+**Validator wiring (session 55; whitelist refreshed 2026-07-23)**: Gate 6 in `validate:concepts` enforces the whitelist from `src/lib/renderers/animation_vocabulary.ts`. `animation.type` ∈ {`fade_in`, `slide_horizontal`, `slide_when_kinetic`, `free_fall`, `pendulum`, `atwood`, `door_swing`, `translate`, `projectile`, `rotate_continuous`} — all implemented in `parametric_renderer.ts`; `animate_in` ∈ {`none`, `handwriting`, `fade_in`}. Anything else FAILs the gate as `unknown_animation_type` / `unknown_animate_in`. (THE EYE splits these by settle behaviour: `pendulum`/`door_swing`/`rotate_continuous`/looping-`projectile` never settle → D7-strict; the rest settle → reveal_hold. See `deriveStateMeta.ts` `pcplHasContinuousMotion`/`pcplHasTransientBodyMotion`.)
 
 ### C. Plain English vs technical notation
 
@@ -537,3 +537,39 @@ After migration, `npm run solve:layout pressure_scalar` will report `pascal_box`
 **Known limitations**:
 - Force arrows are not registered as obstacles for collision avoidance (the solver can't bbox them — they have origin + direction + magnitude, not position + size). Layout-overlap warnings will still flag arrow-vs-annotation collisions; resolve manually until the solver learns force-arrow geometry.
 - Sub-scene primitives inside `comparison_panel` are NOT solved (sub-scenes use a stripped renderer).
+
+## Chemistry concepts (2026-07-23 addition — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+For chemistry concepts (upstream block comes from **`chemistry_author`**, consumed identically to a
+physics block — same 6-section shape, same `physics_engine_config`/PM_interpolate contract), the
+following OVERRIDE the physics-bound items by enumeration:
+
+1. **Output path (isolation contract):** `src/data/concepts/chemistry/<id>.json` — NEVER the flat
+   dir. A chemistry file written flat is validated as physics and trips fleet-wide Gate 8b
+   (docs/CHEMISTRY_ARCHITECTURE.md §7).
+2. **Registration:** for the vertical-slice phase, site #1 (the JSON, in `chemistry/`) is the ONLY
+   registration. Sites #2 (`CONCEPT_PANEL_MAP`), #3 (`CONCEPT_RENDERER_MAP`), #4
+   (`VALID_CONCEPT_IDS`), #7 (`PCPL_CONCEPTS`), #8 (`CLASSIFIER_PROMPT`) are **FORBIDDEN for
+   chemistry ids** until the chemistry serving path lands — Gate 8b is all-or-nothing and a
+   half-registered chemistry id fails the entire physics validate run. The "miss one = silent
+   failure" rule is a PHYSICS rule; for chemistry the failure mode is inverted.
+3. **Serving path:** the concept renders via the registration-free review-site chain
+   (`npm run build:review -- <id>`; requires a `field_3d_config` or `particle_field_config` block —
+   the [LIVE]-archetype constraint) and/or a bespoke admin test page. No Supabase rows required for
+   the slice; the future cache-seed script must read the chemistry subdir.
+4. **Validation self-review target:** `npm run validate:chemistry` PASSES (the flat
+   `validate:concepts` never sees chemistry files by design — do not chase its PASS list).
+5. **Primitives:** compose from the generic PCPL/premium set only (`body`, `label`, `formula_box`,
+   `annotation`, `comparison_panel`, `animated_path`, `glow_focus`, `particle_field`,
+   `smooth_camera`). A chemistry-specific primitive need (bond glyphs, Lewis dots, reaction arrows,
+   apparatus) = `engine_bug_queue` row to `peter_parker:renderer_primitives` per
+   `docs/patterns/chemistry.md` §2 (Phase-5b) — never improvised inline, never a STOP for the
+   generic-set-composable slice concepts.
+6. **`computePhysics_<id>` wiring (Lesson I) = N/A** for chemistry concepts riding a reused
+   renderer's existing scenario machinery; formulas live in `physics_engine_config.formulas`
+   (PM_interpolate) as usual.
+7. **SQL migration:** authored but NOT applied (drill-down is deferred and
+   `confusion_cluster_registry` is a shared registry — the founder applies it when the chemistry
+   drill-down path activates).
+8. **N/A:** site #6 bundle-retire / `CONCEPT_SYNONYMS` (no chemistry legacy bundles);
+   `pause_after_ms` legacy carry (no chemistry Socratic-era concepts).

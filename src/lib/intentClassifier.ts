@@ -116,8 +116,113 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // Forces (Ch.8)
     'field_forces', 'contact_forces', 'normal_reaction', 'tension_in_string',
     'hinge_force', 'free_body_diagram',
+    // Laws of Motion #2 — connected bodies / pulleys (newtons_laws_body field_3d engine)
+    'connected_bodies',
+    // Laws of Motion #3 — block on an incline, static friction threshold (newtons_laws_body field_3d engine)
+    'block_on_incline',
     // Friction (Ch.8.5)
     'friction_static_kinetic',
+    // Newton's first law / inertia (Class 11 Ch.8.2 — first concept of the new
+    // Laws of Motion field_3d chapter engine, newtons_laws_body scenario,
+    // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). A body's velocity stays exactly
+    // constant (including v=0) unless a NET external force acts on it: a
+    // frictionless coast at constant v (F_net = 0.00), the same launch with
+    // friction switched on (a real backward force stops it, not "motion
+    // wearing off"), and rest as the v=0 case of the SAME law (N = mg,
+    // ΣF = 0, balanced not absent forces). Does NOT cover how much a net
+    // force changes velocity (newton_second_law), force pairs
+    // (newton_third_law), or the friction threshold model (block_on_incline).
+    'newton_first_law',
+    // Normal force (Class 11 Ch.8.3 — newtons_laws_body field_3d engine,
+    // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). The normal force is a contact
+    // force perpendicular to the surface whose magnitude ADJUSTS to exactly
+    // what is needed to stop the body sinking into the surface — it is NOT a
+    // fixed "mg", only the flat-ground special case: flat floor (N = mg,
+    // lockstep with mass), tilt (N detaches, N = mg*cos(theta)), vertical
+    // (nothing presses in, N = 0, free fall at g), and a two-body contrast
+    // where the friction ceiling f_max = mu_s*N rides on N, not weight (same
+    // push, light body slides, heavy body holds). Does NOT cover the
+    // friction-threshold break-away angle itself (block_on_incline owns
+    // tan(theta_c) = mu_s), the accelerating-lift case N = m(g +/- a)
+    // (deferred), or drawing complete free-body diagrams (free_body_diagram).
+    // Distinct from the legacy mechanics_2d 'normal_reaction' concept, which
+    // both remain valid concept IDs for now (founder synonym decision
+    // pending — see docs/loop_runs/lom/normal_force/skeleton.md §8).
+    'normal_force',
+    // Newton's second law / F = ma (Class 11 Ch.8.4 — second concept of the
+    // Laws of Motion field_3d chapter engine, newtons_laws_body scenario,
+    // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). A net force gives a body
+    // ACCELERATION — proportional to the force and inversely proportional to
+    // the mass (a = ΣF/m): a steady force from rest (a pins, v climbs
+    // without limit), same force / different mass (double m, half a), same
+    // mass / different force (double F, double a). Does NOT cover why zero
+    // net force means constant velocity (newton_first_law), force pairs
+    // (newton_third_law), drawing all forces (free_body_diagram), friction
+    // or inclines (block_on_incline), or the vector/direction form of the
+    // law (newton_second_law_direction).
+    'newton_second_law',
+    // Newton's third law / action-reaction (Class 11 Ch.8.5 — third concept
+    // of the Laws of Motion field_3d chapter engine, newtons_laws_body
+    // scenario, docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). Forces come in
+    // pairs: when body 1 pushes body 2, body 2 simultaneously pushes body 1
+    // with EQUAL magnitude and OPPOSITE direction, and because the two
+    // forces act on DIFFERENT bodies they never cancel: a symmetric push
+    // (equal masses recoil equally), unequal masses (arrows stay identical,
+    // accelerations split 3:1), and isolating one body's own diagram (mg/N
+    // cancel because they share a body; the pair's partner force never
+    // does). Does NOT cover how much a force accelerates a body
+    // (newton_second_law), drawing complete force diagrams
+    // (free_body_diagram), friction or inclines (block_on_incline),
+    // string-coupled bodies (connected_bodies), or momentum conservation.
+    'newton_third_law',
+    // Friction Force (Class 11 Ch.8.6 — fourth concept of the Laws of Motion
+    // field_3d chapter engine, newtons_laws_body scenario, Branch A, FLAT
+    // push only — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). Static friction is
+    // not a fixed value — it self-adjusts to exactly cancel an applied push
+    // up to a ceiling f_max = μₛN, past which the body breaks free and
+    // friction DROPS to the smaller constant kinetic value μₖN: no push
+    // means zero friction even though the ceiling is ready, a rising push
+    // tracked in exact lockstep below the ceiling, the break-away snap at
+    // F = μₛN, two identical blocks at one force showing two different
+    // fates (resting holds, already-sliding runs away), and kinetic
+    // friction's speed-independence (fast and slow glides read the same f).
+    // Does NOT cover the incline decomposition or tan θ = μₛ break-away
+    // angle (block_on_incline), the full friction-opposes-relative-motion
+    // direction subtlety, or the legacy friction_static_kinetic bundle.
+    'friction_force',
+    // Rolling Friction (Class 11 Ch.5.9 — sixth concept of the Laws of
+    // Motion field_3d chapter engine, newtons_laws_body scenario, Branch A +
+    // SEAM G bodies[].shape:'wheel' — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md).
+    // Same mass, same push, two contact types: a sliding block (μₖ = 0.40)
+    // and a rolling wheel (μᵣ ≈ 0.002) obey the SAME law f = μN, but the
+    // rolling coefficient is about 200x smaller — the wheel crosses the
+    // whole track while the block barely moves. Confronts "rolling means
+    // frictionless" (the wheel's friction reads nonzero and it visibly
+    // slows while coasting) and shows both frictions grow with load, but
+    // only the sliding side's growth can stop motion entirely (STATE_4).
+    // Does NOT cover rotational dynamics (no torque, no moment of inertia,
+    // no angular acceleration) or re-teach static vs kinetic friction
+    // (owned by the sibling friction_force — this concept fixes μₛ = μₖ on
+    // the block deliberately).
+    'rolling_friction',
+    // Tension Force (Class 11 Ch.8.4 — fifth concept of the Laws of Motion
+    // field_3d chapter engine, newtons_laws_body scenario: Branch B/pulley
+    // then SEAM H/train — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). A string
+    // exerts a pull along its own line at both ends, whose SIZE is set by
+    // the motion, not by the string itself: at rest T equals the hanging
+    // weight, but that is a special case (T = m2g only when a = 0); once
+    // released, T = m2(g-a) drops strictly below the weight; one ideal
+    // string carries one tension throughout (an ideal pulley changes
+    // direction only, never size); and a CHAIN of separate strings carries
+    // a DIFFERENT tension in each one — a string only moves the mass behind
+    // it, so T1 != T2. Does NOT re-derive the shared-|a|/one-T pulley
+    // SOLVING METHOD, T != m2g as a solving step, the incline variant, or
+    // Atwood (all owned by the sealed connected_bodies sibling — this
+    // concept teaches what tension IS and the same-vs-different question,
+    // not the elimination method). Distinct from the legacy mechanics_2d
+    // tension_in_string bundle (bare formula lookup, kept for historical
+    // cache compatibility only).
+    'tension_force',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -538,6 +643,232 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // motional_emf / eddy_currents / inductance — NOT the same concept (see
     // CRITICAL DISAMBIGUATION below). COMPLETES Ch.6 EMI.
     'ac_generator',
+    // AC Voltage Applied to a Resistor (Ch.7 §7.2, the FIRST concept of
+    // Alternating Current — chapter baseline): a resistor obeys Ohm's law at
+    // every instant of a sinusoidal voltage v = vm sin(omega t), so current
+    // i = v/R is exactly IN PHASE with voltage (zero phase lag/lead); the
+    // instantaneous power p = v*i = vm*im*sin^2(omega t) is NEVER negative — a
+    // resistor only ever dissipates, never returns energy (the baseline later
+    // inductor/capacitor concepts break); the cycle-average current is EXACTLY
+    // zero, so an averaging meter cannot rate AC; the single honest DC-
+    // equivalent rating is the RMS value, Vrms = vm/sqrt(2) ~ 0.707*vm — every
+    // mains rating is this rms number, the true peak sits root two higher.
+    // field_3d ac_resistor scenario (new, built for this concept). Prereqs
+    // ohms_law, electrical_power_in_resistor, ac_generator. FIRST of the Ch.7
+    // AC map (ac_voltage_inductor/ac_voltage_capacitor/phasors/
+    // series_lcr_circuit/ac_power_factor now built, see below;
+    // lc_oscillations/transformer follow — NOT yet built, do not invent
+    // routing for them).
+    'ac_voltage_resistor',
+    // AC Voltage Applied to an Inductor (Ch.7 §7.3, SECOND concept of
+    // Alternating Current, founder-reordered chapter map): a pure inductor's
+    // current lags the applied sinusoidal voltage by EXACTLY a quarter cycle
+    // (90 degrees) because voltage sets the current's SLOPE (v = L di/dt, the
+    // coil's own back-emf fighting every change) rather than its size, so the
+    // current is geometrically forced to crest where the voltage vanishes;
+    // the opposition is frequency-made reactance Xl = omega*L (the same coil
+    // chokes fast AC harder than slow AC — unlike a resistor's fixed R); and
+    // the cycle-average power is EXACTLY zero — every joule borrowed into the
+    // magnetic field during one quarter cycle is fully returned during the
+    // next (the anti-resistor: opposition without consumption). field_3d
+    // ac_inductor scenario (new, clean standalone sibling of ac_resistor,
+    // built for this concept, engine log Stage 2, commit 35ae566). Prereqs
+    // ac_voltage_resistor, inductance, faraday_law_induction. SECOND of the
+    // Ch.7 AC map after resistor (phasors now sits AFTER the three element
+    // concepts — ac_voltage_capacitor/phasors/series_lcr_circuit/
+    // ac_power_factor now built, see below; lc_oscillations/transformer
+    // follow — NOT yet built, do not invent routing for them).
+    'ac_voltage_inductor',
+    // AC Voltage Applied to a Capacitor (Ch.7 §7.4, THIRD concept of Ch.7
+    // Alternating Current, founder-reordered chapter map): a pure capacitor's
+    // current LEADS the applied sinusoidal voltage by EXACTLY a quarter cycle
+    // (90 degrees) — the opposite direction from the inductor's lag — because
+    // charge must flow onto the plates before the plate voltage can build:
+    // i = C dv/dt, current is the voltage's SLOPE, not its size, so the
+    // current crests exactly where the voltage's slope is steepest and is
+    // zero exactly where the voltage peaks (plates momentarily full). The
+    // opposition is a frequency-made reactance X_C = 1/(omega*C) that FALLS
+    // as frequency rises (opposite the coil's Xl = omega*L) and blocks DC
+    // outright — doubling the frequency doubles the peak current. The
+    // cycle-average power is EXACTLY zero — every joule stored in the electric
+    // field between the plates during one quarter cycle is fully returned
+    // during the next (the anti-resistor, mirroring the inductor). field_3d
+    // ac_capacitor scenario (new, clean standalone sibling of ac_resistor/
+    // ac_inductor, built for this concept, engine log commit 21e1f0f). Prereqs
+    // ac_voltage_inductor, ac_voltage_resistor, capacitance. THIRD of the Ch.7
+    // AC map (phasors/series_lcr_circuit/ac_power_factor now built, see
+    // below; lc_oscillations/transformer follow — the latter two NOT yet
+    // built, do not invent routing for them).
+    'ac_voltage_capacitor',
+    // Phasors — Rotating Vectors for AC (Ch.7 §7.5, FOURTH concept of Ch.7
+    // Alternating Current, founder-reordered chapter map — sits AFTER all
+    // three individual R/L/C element concepts, introducing the combining
+    // TOOL once students have seen what's being combined). Teaches
+    // REPRESENTATION, not new physics: a sinusoid is the vertical shadow of
+    // an arrow (a phasor) rotating steadily at angular speed omega — the
+    // arrow's LENGTH is the constant peak amplitude, its shadow is the
+    // changing instantaneous value. Every phasor in a circuit rides ONE
+    // shared clock, so the angle between two co-rooted arrows is CONSTANT —
+    // this is why a single frozen phasor diagram fully captures a phase
+    // relationship. The chapter's three settled facts become three frozen
+    // angles: a resistor's current phasor is drawn IN STEP (0 deg), an
+    // inductor's current phasor 90 degrees BEHIND (lag), a capacitor's
+    // current phasor 90 degrees AHEAD (lead) — reading convention:
+    // counterclockwise rotation, the arrow ahead in the spin reaches the
+    // peak reference line first (peaks first in time); angle converts to
+    // time via Delta t = (phi/360deg)*T. No phasor ADDITION anywhere (no
+    // tip-to-tail — that is series_lcr_circuit's front door), no impedance,
+    // no complex numbers, no reactance numeral/symbol (Xl, Xc) rendered
+    // anywhere in this sim. field_3d ac_phasor scenario (new, clean
+    // standalone sibling of ac_resistor/ac_inductor/ac_capacitor — engine
+    // build pending as of this authoring pass, do not assume it is live
+    // until the ac_phasor scenario ships in field_3d_renderer.ts). Prereqs
+    // ac_voltage_resistor, ac_voltage_inductor, ac_voltage_capacitor.
+    // FOURTH of the Ch.7 AC map (series_lcr_circuit/ac_power_factor now
+    // built, see below; lc_oscillations/transformer follow — NOT yet built,
+    // do not invent routing for them).
+    'phasors',
+    // Series LCR Circuit — Impedance and Resonance (Ch.7 §7.6, FIFTH concept
+    // of Ch.7 Alternating Current, founder-reordered chapter map — sits right
+    // after phasors, the tool this concept finally puts to use). Teaches
+    // SYNTHESIS, not new element mechanisms: R, L and C share ONE series
+    // loop and ONE common current; each element's settled voltage phase (in
+    // phase / a quarter behind / a quarter ahead) is a one-clause callback,
+    // never re-derived. The three element voltages combine tip-to-tail as
+    // PHASORS (never arithmetically — the confronted misconception) into
+    // the source voltage: vm^2 = V_R^2 + (V_L-V_C)^2. This gives a net
+    // reactance X = X_L - X_C, an impedance Z = sqrt(R^2+X^2) (NEVER
+    // R+X_L+X_C, a demoted third misconception), a phase angle
+    // tan(phi) = X/R (whichever reactance is LARGER sets whether current
+    // leads or lags), and one special RESONANT frequency f0 =
+    // 1/(2*pi*sqrt(LC)) where X_L = X_C, the two reactances erase each
+    // other, impedance collapses to R alone, and the current peaks at
+    // vm/R — the primary aha, breaking the earned-but-wrong belief that
+    // more circuit elements always means less current. R alone sets how
+    // SHARP that resonance peak is (Q = f0/delta_f) without ever moving
+    // WHERE it sits (f0 depends only on L and C). Route "series LCR
+    // circuit", "impedance of a circuit", "Z equals root R squared plus X
+    // squared", "why don't AC voltages in series just add up", "why is one
+    // element's voltage bigger than the source", "phasor addition tip to
+    // tail", "resonance in an LCR circuit", "why does current peak at one
+    // frequency", "resonant frequency formula", "f0 equals one over two pi
+    // root LC", "does more resistance change the resonant frequency",
+    // "sharpness of resonance", "Q factor", "bandwidth of resonance",
+    // "how does a radio tune to one station", "why can't impedances just
+    // add like resistances" here. Does NOT cover the individual R/L/C
+    // mechanisms themselves (those are ac_voltage_resistor /
+    // ac_voltage_inductor / ac_voltage_capacitor, the prerequisites — a
+    // callback only, never re-derived here), the frozen-angle phasor
+    // REPRESENTATION itself with no addition/impedance/resonance in play
+    // (that is phasors, the prerequisite this concept builds on), or power,
+    // power factor, wattless current, or free LC energy oscillation (those
+    // are ac_power_factor, now built, see below, and lc_oscillations, later
+    // — this concept's own deliberate withholdings; its power HUD slot
+    // stays empty on purpose).
+    'series_lcr_circuit',
+    // Power in AC Circuits — The Power Factor (Ch.7 §7.7, SIXTH concept of
+    // Ch.7 Alternating Current, founder-reordered chapter map — sits right
+    // after series_lcr_circuit, teaching the POWER consequence of the
+    // impedance/resonance machinery just built). Teaches the double-
+    // frequency instantaneous power p(t)=v*i riding a non-zero average,
+    // <p> = V_rms*I_rms*cos(phi) — the power factor cos(phi) = R/Z as the
+    // fraction of apparent power S = V_rms*I_rms that is REAL — the wattless
+    // quadrature current I_rms*sin(phi) that flows without ever spending a
+    // joule (a bigger current does NOT always mean bigger power) — where the
+    // real power physically lands (P = I_rms^2*R, all in the resistor, never
+    // the reactive elements) — and the power triangle P/Q/S as the settled
+    // impedance triangle uniformly scaled by I_rms^2. Impedance, phase angle,
+    // and resonance arrive as one-clause SETTLED CALLBACKS from
+    // series_lcr_circuit, never re-derived. Route "power factor", "cos phi",
+    // "average power in an AC circuit", "why isn't power just V times I",
+    // "apparent power vs real power", "what is a volt-ampere", "wattless
+    // current", "why does more current sometimes mean less power", "where
+    // does the power actually get dissipated in an LCR circuit", "power
+    // triangle", "P Q S relations", "reactive power", "kVA vs kW rating",
+    // "why is my equipment rated in kVA not kW" here. field_3d ac_power
+    // scenario (new, clone-sibling of ac_series_lcr, built for this concept,
+    // engine log Stage 6, commit 9df14e3). Prereqs series_lcr_circuit,
+    // ac_voltage_resistor, ac_voltage_inductor, ac_voltage_capacitor,
+    // phasors. SIXTH of the Ch.7 AC map (lc_oscillations/transformer follow
+    // — NOT yet built, do not invent routing for them). Does NOT cover free
+    // LC energy oscillation with the source removed (that is
+    // lc_oscillations, later — this concept's own deliberate withholding;
+    // every energy gauge here runs under the driven source), transmission-
+    // line voltage step-up (that is transformer, later — transmission stays
+    // narration-only here), or complex power notation (out of syllabus
+    // scope).
+    'ac_power_factor',
+    // LC Oscillations — The Circuit's Own Rhythm (Ch.7 §7.8, SEVENTH concept
+    // of Ch.7 Alternating Current, founder-reordered chapter map — sits right
+    // after ac_power_factor). Teaches the FREE (source-free) circuit: a
+    // capacitor charged to V0 is connected to an inductor and the SOURCE IS
+    // PHYSICALLY REMOVED (a battery + two-position switch replace it) — the
+    // L-C pair then oscillates by itself at its own NATURAL frequency
+    // omega0 = 1/sqrt(LC), never a source-imposed one. The current is
+    // MAXIMUM exactly when the charge is zero (the coil's inertia carries the
+    // motion through and recharges the plates reversed — the primary aha,
+    // breaking "a discharged capacitor is a finished circuit"); the swing
+    // repeats at f0 = 0.25 Hz, the exact frequency the driven series_lcr_circuit
+    // favoured at resonance (the circuit owned that number all along); the
+    // stored energy trades intact between the capacitor's electric field
+    // (1/2 q^2/C) and the inductor's magnetic field (1/2 L i^2), an
+    // ALL-WATTLESS exchange where nothing is ever spent (breaking "an ideal
+    // oscillation must still run down"); the motion is the exact electrical
+    // twin of a mass on a spring (q<->x, i<->v, L<->m [inertia], 1/C<->k); and
+    // real resistance damps the swing out. field_3d lc_oscillation scenario
+    // (new, clone-sibling of ac_power, built for this concept). Prereqs
+    // ac_voltage_capacitor, ac_voltage_inductor, series_lcr_circuit,
+    // ac_power_factor, capacitance, inductance. SEVENTH of the Ch.7 AC map
+    // (transformer now built, see below — the chapter's eighth and LAST
+    // concept). Does NOT cover element mechanisms, impedance, resonance, or
+    // power (settled one-clause callbacks from the six sealed siblings),
+    // driven/forced oscillation (that was series_lcr_circuit), or mutual
+    // coupling/voltage transformation (deferred to transformer).
+    'lc_oscillations',
+    // Transformer — Trading Voltage for Current (NCERT Ch.7 §7.9, the EIGHTH
+    // and LAST concept of Ch.7 Alternating Current, sitting right after
+    // lc_oscillations — the chapter CLOSES here). Teaches the two-coil
+    // machine: one AC-driven flux circulating a closed iron core threads
+    // BOTH a primary and a secondary winding — two electrically DISJOINT
+    // circuits, no wire between them — inducing in each turn an equal share
+    // of EMF (per_turn = Vp/Np = Vs/Ns identically) so that the turns ratio
+    // sets the voltage ratio, Vs/Vp = Ns/Np (more secondary turns = step-up,
+    // fewer = step-down). An IDEAL transformer passes power through
+    // unchanged, Vp*Ip = Vs*Is — nothing is amplified, volts up means amps
+    // down (the PRIMARY aha, breaking "step-up = free power"). It works
+    // ONLY on CHANGING flux: swap in a steady DC battery and there is one
+    // transient blip at the throw, then the secondary reads exactly zero
+    // forever after, even though the primary keeps a huge STEADY flux alive
+    // (the second confronted misconception, breaking "a transformer works on
+    // DC too — steady current still makes flux"). Real transformers leak a
+    // little — copper heat, eddy currents (fought by LAMINATING the core,
+    // which chops the wide eddy loops a solid block would carry), hysteresis,
+    // and stray flux — landing around 95% efficient, with the core's own
+    // flexing audible as a faint hum. This is WHY long-distance power
+    // transmission works: stepping the send voltage up collapses the line
+    // current (I=P/V), and since line loss is I^2*R, a tenfold voltage step
+    // cuts the loss a hundredfold — the entire reason a power grid exists.
+    // field_3d 'transformer' scenario (NEW, Class-B clone-sibling of
+    // lc_oscillation, engine build dispatched separately from this
+    // registration pass — src/data/concepts/transformer.json's
+    // field_3d_config is the contract that dispatch builds against).
+    // Prereqs faraday_law_induction, ac_voltage_resistor, ac_power_factor,
+    // electrical_power_in_resistor, ac_voltage_inductor. Route "transformer",
+    // "step up or step down transformer", "turns ratio", "Vs over Vp equals
+    // Ns over Np", "why does a transformer need AC not DC", "why does the
+    // secondary read zero on a battery", "does a transformer amplify power",
+    // "why does the primary current rise when I add a load to the
+    // secondary", "why are transformer cores laminated", "eddy currents in a
+    // transformer core", "transformer efficiency", "why is electricity
+    // transmitted at high voltage", "why do power lines lose less energy at
+    // high voltage" here. Does NOT cover Faraday's law itself, rms values,
+    // real power, or I^2R heating (settled one-clause callbacks from the
+    // sealed siblings), does NOT quantify mutual inductance M in henries
+    // (that is inductance, the Ch.6 prerequisite), and does NOT treat
+    // loaded-primary back-EMF regulation, magnetizing current, rectification,
+    // or switch-mode electronics (out of scope). CHAPTER END — this is the
+    // last concept of Ch.7; no successor concept follows.
+    'transformer',
     // Force between two parallel currents — F/L = μ₀I₁I₂/2πd; parallel currents
     // ATTRACT, antiparallel REPEL (opposite of like charges); defines the ampere.
     // field_3d parallel_currents_force scenario.
@@ -551,6 +882,23 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // deferred. Renderer wires wire_to_coil_morph (STATE_1) and
     // right_hand.case='solenoid' with fade_from_case='A' (STATE_5).
     'magnetic_field_solenoid',
+    // Electromagnetic Waves (Ch.8) — displacement current, the chapter's
+    // load-bearing opener (NCERT §8.2). A changing electric flux acts as a
+    // current — I_d = ε₀ dΦ_E/dt — repairing the two-surface contradiction
+    // Ampère's law hits at a charging capacitor, completing the law as
+    // ∮B·dl = μ₀(I_c + I_d). field_3d displacement_current scenario (new).
+    'displacement_current',
+    // Electromagnetic Waves (Ch.8) — EM wave propagation, the chapter's
+    // second diamond (NCERT §8.3). Mutually regenerating changing E and B
+    // fields self-propagate through empty space as a transverse wave — E ⊥ B
+    // ⊥ direction of travel, E×B ahead, E and B in phase with E₀/B₀ = c,
+    // energy split equally between the two fields, at c = 1/√(μ₀ε₀) ≈
+    // 3×10⁸ m/s — the speed that identifies light itself as an
+    // electromagnetic wave (v = c/n in a medium). field_3d
+    // em_wave_propagation scenario (new). Absorbs the seeded siblings
+    // em_wave_nature + speed_of_em_waves (CONCEPT_SYNONYMS redirect-only —
+    // neither is a real concept_id).
+    'em_wave_propagation',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms
@@ -565,11 +913,30 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
 // never return them for new queries — but keeping the redirect is defensive.
 export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     electric_field_lines: 'electric_field_point_charge',
-    normal_force: 'normal_reaction',
-    normal_forces: 'normal_reaction',
-    tension: 'tension_in_string',
-    rope_tension: 'tension_in_string',
-    atwood_machine: 'tension_in_string',
+    // `normal_force` is now a real atomic in VALID_CONCEPT_IDS, so normalizeConceptId
+    // returns it before ever reading this map — the old `normal_force: 'normal_reaction'`
+    // entry was dead and is removed. The PLURAL was NOT dead: `normal_forces` is not a
+    // valid ID, so it fell through to the synonym and resolved every "normal forces"
+    // query to the legacy mechanics_2d bundle — contradicting the CLASSIFIER_PROMPT's
+    // own "never return normal_reaction for a new query". Repointed at the live atomic.
+    normal_forces: 'normal_force',
+    // `tension_force` is now the live newtons_laws_body-engine atomic for
+    // what tension IS + T1 != T2 in a chain (registered 2026-07-30). Both
+    // bare-word synonyms redirect there — the legacy `tension_in_string`
+    // bundle (bare formula lookup) is kept only for historical cache
+    // compatibility, per docs/loop_runs/lom/lom_e_design.md §0.
+    // `atwood_machine` repointed at `connected_bodies` (2026-07-30). It aimed at
+    // the legacy `tension_in_string` bundle, which is DEAD mechanics_2d with no
+    // field_3d_config — so every "Atwood machine" query resolved to a
+    // non-product sim, while `connected_bodies` (sealed, on master) teaches
+    // exactly that case in a dedicated both-hanging state. Deliberately NOT sent
+    // to `tension_force`: that concept owns what tension IS and where it changes
+    // along a chain, and it has no Atwood state — solving a coupled pair is
+    // `connected_bodies`' job by design (see the concept boundary in
+    // docs/loop_runs/lom/tension_force/skeleton.md §1).
+    tension: 'tension_force',
+    rope_tension: 'tension_force',
+    atwood_machine: 'connected_bodies',
     contact_force: 'contact_forces',
     field_force: 'field_forces',
     weight: 'field_forces',
@@ -605,6 +972,13 @@ export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     projectile_motion: 'time_of_flight',
     projectile_inclined: 'up_incline_projectile',
     relative_motion_projectiles: 'two_projectile_meeting',
+    // Ch.8 sibling absorption (2026-07-25): em_wave_propagation absorbs the
+    // two previously-seeded siblings the displacement_current skeleton named
+    // (em_wave_nature, speed_of_em_waves) per the founder's chapter_map merge.
+    // REDIRECT-ONLY (design-gate guardrail) — neither id is a real concept;
+    // do NOT add either to VALID_CONCEPT_IDS or CLASSIFIER_PROMPT.
+    em_wave_nature: 'em_wave_propagation',
+    speed_of_em_waves: 'em_wave_propagation',
 };
 
 export function normalizeConceptId(id: string | null | undefined): string | null {
@@ -788,12 +1162,21 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   ── Forces (Ch.8) ──
   field_forces            ← gravitational force, electrostatic force, weight = mg
   contact_forces          ← normal + friction at contact surface, resultant
-  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline
+  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline (legacy 2D bundle — prefer normal_force for new queries)
+  normal_force            ← the normal force ADJUSTS, it is never a fixed mg: flat floor N=mg (lockstep with mass), tilt detaches N=mg cosθ, vertical surface N=0 (free fall at g), friction ceiling f_max=μₛN rides on N not weight (same push, light body slides, heavy body holds); N never depends on an along-surface applied force F
   tension_in_string       ← rope tension, Atwood machine, T = 2m₁m₂g/(m₁+m₂)
   hinge_force             ← pin joint, rod on wall, hinge reaction
-  free_body_diagram       ← FBD, isolate body, force diagram
+  free_body_diagram       ← FBD, isolate body, force diagram, N = mg cosθ on incline, string tension T = mg
+  connected_bodies        ← two blocks joined by a rope over a pulley, ONE shared acceleration + ONE tension, T ≠ hanging weight unless a=0, Atwood machine, block on table + hanging mass, incline + hanging mass
+  block_on_incline        ← single block on a rough incline, static friction tracks mg sinθ up to μₛN, breaks away exactly at tan θ = μₛ (mass cancels), then slides with a = g(sinθ − μₖ cosθ); μₖ < μₛ so kinetic friction is weaker once moving
   friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
+  newton_first_law        ← law of inertia, ΣF=0 ⇔ v constant, why moving things need no force to keep moving, rest = balanced not absent forces
+  newton_second_law       ← F = ma, a = ΣF/m, force sets acceleration not velocity, same force different mass, same mass different force
+  newton_third_law        ← action-reaction pair, F₁₂ = -F₂₁, forces always equal and opposite no matter the masses, why the pair never cancels (acts on different bodies), heavier object "pushes harder" myth
+  friction_force          ← static friction self-adjusts to cancel a FLAT push exactly, up to a ceiling f_max = μₛN, then DROPS to the smaller constant μₖN once sliding; two identical blocks at one force can have two different fates (resting held vs already-sliding runs away); kinetic friction is speed-independent. NO incline, NO tan θ (that is block_on_incline)
+  rolling_friction        ← same mass, same push: a sliding block (μₖ = 0.40) vs a rolling wheel (μᵣ ≈ 0.002), SAME law f = μN but ~200× smaller coefficient — the wheel crosses the whole track while the block barely moves; rolling friction is small but NEVER zero (a coasting wheel still slows); both frictions grow with load, but only the sliding side's growth can stop motion entirely. NO torque, NO moment of inertia, NO angular acceleration; does NOT re-teach static vs kinetic friction (that is friction_force)
+  tension_force           ← what tension IS as a force: a pull along the string's own line at both ends, whose SIZE is set by the motion, not by the string — T = m₂g only at rest (a=0); T = m₂(g−a) strictly less than m₂g the instant it accelerates; one ideal string carries ONE tension throughout (a pulley changes direction only, never size); a CHAIN of separate strings carries a DIFFERENT tension in each one, since each string only moves the mass behind it (T₁ ≠ T₂). Does NOT re-derive the shared-|a|/one-T pulley SOLVING METHOD or Atwood (that is connected_bodies)
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -850,6 +1233,23 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   inductance                      ← Inductance — Self & Mutual (NCERT Ch.6 §6.9, Exp 6.3). SELF-INDUCTANCE: a coil is electrical INERTIA — a changing current links a changing flux to ITSELF, inducing a back-EMF ε_L = −L·dI/dt that opposes the CHANGE in its own current, so the current RAMPS and never jumps; L is PURE GEOMETRY (turns N, area A, length l, core μ_r) and NEVER depends on the current; the coil stores field energy U = ½LI² that escapes as the switch-off spark (bigger dI/dt at switch-off → huge back-EMF spike → spark, e.g. an ignition coil). MUTUAL INDUCTANCE: a changing current in ONE coil induces ε₂ = −M·dI₁/dt in a SECOND, DISCONNECTED coil across empty space with no wire between them (a transformer, a wireless charging pad); M = k√(L₁L₂) with k∈[0,1] falling with separation and rising with a shared core, and M is symmetric (M₁₂ = M₂₁). Both halves are the SAME Faraday flux-linkage physics (Λ = LI self, Λ = MI₁ mutual). Route "inductance", "self-inductance", "mutual inductance", "back EMF", "why does current in a coil rise gradually / not jump", "epsilon = -L dI/dt", "why is the back EMF zero at steady current", "why do I get a spark when I open a switch on a coil", "energy stored in an inductor", "U = 1/2 L I squared", "epsilon_2 = -M dI1/dt", "why does a transformer / wireless charger work with no wire between the coils", "coefficient of coupling", "M = k root L1 L2", "how does an ignition coil make a spark" here. Does NOT cover the AC GENERATOR (that is ac_generator — a rotating coil producing AC) or transformer voltage-ratio numerics.
   ac_generator                    ← AC Generator (NCERT Ch.6 §6.10, the LAST concept of Ch.6 Electromagnetic Induction). A coil of N turns and area A rotating STEADILY at angular speed omega in a uniform magnetic field B produces a sinusoidal (ALTERNATING) EMF by Faraday's law. The flux LINKAGE Phi = N·B·A·cos(omega t) is a COSINE (maximum when the coil is face-on / plane perpendicular to B, zero when edge-on / plane parallel to B); the induced EMF is the RATE of change of that flux, eps = -dPhi/dt = N·B·A·omega·sin(omega t) — a SINE, 90 DEGREES out of phase with the flux, so the EMF PEAKS exactly where the flux is ZERO (coil edge-on) and is zero where the flux is maximum (the classic JEE trap). The PEAK EMF eps0 = N·B·A·omega has omega INSIDE it, so cranking faster raises BOTH the peak AND the frequency f = omega/2pi; a perfectly STEADY rotation speed still gives an alternating output (no acceleration needed — the changing geometry reverses the flux every half turn). Two continuous SLIP RINGS + fixed brushes carry the coil's natural AC out; a single SPLIT-RING commutator instead flips the connection each half turn to give pulsating DC. Route "AC generator", "how does an AC generator / dynamo work", "how is alternating current produced", "coil rotating in a magnetic field", "epsilon = NBA omega sin(omega t)", "peak EMF of a generator", "eps0 = NBA omega", "why is the EMF maximum when the coil is parallel to the field / flux is zero", "phase difference between flux and EMF in a generator", "why does a generator give AC not DC", "slip rings vs split ring / commutator", "how a bicycle dynamo works", "why does faster rotation give more voltage AND higher frequency" here. Does NOT cover self/mutual inductance (that is inductance), transformer voltage-ratio numerics, rms/averaged EMF, or AC-circuit reactance (next chapter).
 
+  ── Electromagnetic Waves (Class 12 Ch.8) ──
+  displacement_current            ← Displacement Current (NCERT Ch.8 §8.2, the chapter's load-bearing opener). A charging capacitor's constant current I_c fills the wires but NOTHING crosses the gap between the plates — one plate charges +Q, the other -Q. Applying Ampère's law ∮B·dl = μ₀I_enc with a loop around the wire hits a CONTRADICTION: a flat disk surface is pierced by the wire (I_enc = I_c), but a balloon-shaped surface bulging through the gap is pierced by nothing (I_enc = 0) — the SAME loop, two different answers. A probe placed in the gap settles the contradiction empirically: B is measurably there, equal to the field beside the wire, even with zero conduction current. Maxwell's fix: the CHANGING electric flux Phi_E through the gap itself acts as a current — the DISPLACEMENT current I_d = epsilon-nought times dPhi_E/dt, which equals I_c exactly while charging and drops to zero the instant charging stops (I_d is not moving charge; it is changing flux acting like a current for magnetism). This completes Ampère's law into the generalized Ampère-Maxwell law: loop-integral of B.dl = mu-naught times (I_c + epsilon-nought dPhi_E/dt) — a sum that stays invariant no matter which surface the loop bounds. Also covers how B varies radially in the gap (rising linearly inside the plate radius, peaking at the edge, falling as 1/r beyond it). Route "displacement current", "why does a magnetic field exist in a capacitor's gap", "Ampere's law two surfaces contradiction", "I_d = epsilon0 dPhi_E/dt", "Ampere-Maxwell law", "why doesn't Ampere's law work for a charging capacitor", "is displacement current a real current", "how can there be a magnetic field with no current crossing the gap", "generalized Ampere's circuital law" here. Does NOT cover how the coupled changing E and B fields propagate as electromagnetic waves or the wave speed c = 1/root(mu0 epsilon0) (that is em_wave_propagation — the direct sequel, absorbing the once-separate em_wave_nature/speed_of_em_waves ideas), or the EM spectrum (em_spectrum, deferred). Declares amperes_circuital_law and capacitance as prerequisites; does not re-teach them.
+  em_wave_propagation             ← Electromagnetic Wave Propagation (NCERT Ch.8 §8.3, the direct sequel to displacement_current). Mutually regenerating changing E and B fields self-propagate through EMPTY SPACE as a transverse wave — no material medium is needed, since the fields regenerate each other rather than something material vibrating. E, B, and the direction of travel are mutually PERPENDICULAR, with E×B always pointing along the direction of travel (crest or trough alike). E and B oscillate IN PHASE — same crests, same zeros, not 90° apart. The wave's speed is c = 1/root(mu0 epsilon0) ≈ 3×10⁸ m/s — the identity that reveals LIGHT ITSELF is an electromagnetic wave. The amplitudes are locked, B0 = E0/c (so B0 is numerically tiny in Tesla, ~0.4 microtesla for a strong E0 of 120 V/m), and energy is split EXACTLY half-and-half between the two fields (u_E = u_B at every instant, despite B0's tiny-looking number). Given E_y = E0 sin(kx - omega t), the partner B_z = (E0/c) sin(kx - omega t) is fully determined — same phase, amplitude E0/c, axis fixed by E×B. Inside a medium of refractive index n, v = c/n = 1/root(mu_r epsilon_r); frequency stays fixed at the source value, only wavelength shortens (lambda = v/nu). Route "electromagnetic wave", "why does light need no medium to travel through vacuum", "are E and B in phase or 90 degrees apart", "why is E perpendicular to B", "direction of E cross B", "speed of light from mu0 epsilon0", "is c matching light a coincidence", "B0 equals E0 over c", "energy carried by an electromagnetic wave", "why is B tiny if it carries half the energy", "write B given E for an EM wave", "speed of an EM wave in a medium", "does frequency change in a medium", "why does wavelength shorten in glass but not frequency" here. Does NOT cover the electromagnetic spectrum's bands/uses (electromagnetic_spectrum, deferred), quantitative intensity/radiation pressure/momentum (em_wave_energy_momentum, deferred), the displacement-current law itself (prerequisite displacement_current), or Faraday's law (prerequisite faraday_law_induction). Absorbs the once-separately-seeded em_wave_nature and speed_of_em_waves ideas into one atomic diamond (aspects: foundational=phenomenon through the speed payoff, structure_and_phase=E⊥B⊥v and in-phase oscillation, field_relations=amplitude ratio/energy split/write-B-given-E, in_medium=v=c/n and wavelength shortening, exploration=all controls live).
+
+CRITICAL DISAMBIGUATION (electromagnetic waves, Ch.8):
+- "displacement current" / "why is there a B field in a capacitor's gap" / "Ampere's law fails for a charging capacitor" / "I_d = epsilon0 dPhi_E/dt" / "Ampere-Maxwell law" / "two surfaces different Ampere's law answers" / "is displacement current real" → displacement_current (does NOT cover EM wave propagation, wave speed, or the spectrum — those are downstream siblings)
+- "how does light travel through empty space with no medium" / "why are E and B perpendicular" / "are E and B in phase or 90 degrees apart" / "speed of light from mu0 and epsilon0" / "is it a coincidence that this equals the speed of light" / "B0 equals E0 over c" / "why is the magnetic field so tiny if it carries half the energy" / "write the magnetic field given the electric field for an EM wave" / "speed of an electromagnetic wave in a medium" / "does frequency change when a wave enters glass" → em_wave_propagation (does NOT cover the displacement-current law itself, which is the PREREQUISITE displacement_current, or the spectrum's bands/uses, which is electromagnetic_spectrum — deferred)
+  ── Alternating Current (Class 12 Ch.7) ──
+  ac_voltage_resistor             ← AC Voltage Applied to a Resistor (NCERT Ch.7 §7.2, the FIRST concept of Ch.7 Alternating Current — the chapter's baseline). A resistor obeys Ohm's law at EVERY instant of a sinusoidal voltage v = vm sin(omega t), so the current i = v/R is exactly IN PHASE with the voltage — iₘ = vₘ/R, zero phase lag or lead, peaks together, zeros together (never a lag/lead like an inductor or capacitor will show later this chapter). The instantaneous power p = v·i = vₘiₘ sin²(omega t) is NEVER negative — a resistor only ever DISSIPATES energy, never returns it (the baseline that inductors/capacitors ahead will break). The CYCLE-AVERAGE current is EXACTLY zero over any whole number of periods, so an averaging meter cannot rate AC — yet the resistor keeps heating the whole time (the zero-average paradox). The single honest DC-equivalent rating is the RMS value: Vᵣₘₛ = vₘ/√2 ≈ 0.707vₘ (and Iᵣₘₛ = iₘ/√2) — every mains/appliance rating you will ever see IS this rms number, and the true peak sits √2 higher (the classic "the rating is not the peak" trap). The recipe behind 0.707 is square → mean → root: ⟨i²⟩ = iₘ²/2, then Iᵣₘₛ = √⟨i²⟩ = iₘ/√2, giving ⟨p⟩ = Iᵣₘₛ²R = ½vₘiₘ. The mean of sin²(omega t) is EXACTLY ½ (not approximately), from the identity sin²(omega t) = (1 − cos 2·omega·t)/2, where the cos 2·omega·t term is the SAME double-frequency (2f) pulse visible in the power curve. Route "AC voltage on a resistor", "resistor in AC circuit", "is current in phase with voltage for a resistor", "i = v/R for AC", "why is power never negative for a resistor", "average current in AC is zero", "why doesn't an AC ammeter read zero", "what is rms value", "root mean square", "Vrms = Vm / root 2", "why is the peak higher than the rated voltage", "230 volts is rms or peak", "square mean root", "why is average power half the peak power", "why is the average of sin squared one half" here. Does NOT cover phasor diagrams (that is phasors, next), the phase shifts of an inductor or capacitor in AC (that is ac_voltage_inductor / ac_voltage_capacitor, later), or how the sinusoidal EMF itself is generated (that is ac_generator, the prerequisite — a callback only, never re-derived here).
+  ac_voltage_inductor             ← AC Voltage Applied to an Inductor (NCERT Ch.7 §7.3, the SECOND concept of Ch.7 Alternating Current). A pure (near-zero-resistance) inductor's current LAGS the applied sinusoidal voltage by EXACTLY a quarter cycle (90 degrees) — i = iₘ sin(omega t − 90°) = −iₘ cos(omega t), NEVER in phase and NEVER leading (leading is the capacitor's later story). WHY: the coil's own changing flux induces a back-emf that opposes the change, so the applied voltage v = L(di/dt) sets the current's SLOPE, not its instantaneous size — the current is geometrically forced to crest exactly where the voltage crosses zero, and to be zero-but-changing-fastest exactly where the voltage peaks. The opposition is a frequency-MADE reactance, Xₗ = omega·L (unlike a resistor's fixed R) — iₘ = vₘ/Xₗ, so the SAME coil chokes a fast AC signal harder than a slow one; doubling the frequency halves the peak current. The cycle-average power is EXACTLY zero — p = v·i = −(vₘiₘ/2) sin(2·omega·t) swings symmetrically positive and negative, and every joule stored in the magnetic field (U = ½Li²) during one quarter cycle is fully returned during the next — reactance opposes current WITHOUT ever dissipating energy, unlike a resistor. Route "AC voltage on an inductor", "inductor in AC circuit", "does current lag or lead voltage for an inductor", "why does current lag behind voltage in a coil", "v equals L di dt for AC", "inductive reactance", "Xl = omega L", "why does a coil's opposition depend on frequency", "why does a coil choke high frequency AC", "average power in a pure inductor", "why is average power zero in an inductor if current is flowing", "where does the energy stored in a coil go", "im = vm over omega L", "why does doubling frequency halve the current through a coil" here. Does NOT cover the capacitor's mirror (LEADING) behaviour (that is ac_voltage_capacitor, now built, see below), phasor diagrams (that is phasors, later), inductor DC transients / the LR time constant (that is inductance, the prerequisite — a callback only, never re-derived here), or combining L with R and C (that is series_lcr_circuit, later).
+  ac_voltage_capacitor            ← AC Voltage Applied to a Capacitor (NCERT Ch.7 §7.4, the THIRD concept of Ch.7 Alternating Current). A pure (ideal, no-leakage) capacitor's current LEADS the applied sinusoidal voltage by EXACTLY a quarter cycle (90 degrees) — i = iₘ sin(omega t + 90°) = iₘ cos(omega t), NEVER in phase and NEVER lagging (lagging is the inductor's earlier story). WHY: charge must physically accumulate on the plates before the plate voltage can build, so the current — the RATE charge is delivered, i = C(dv/dt) — is largest exactly where the voltage's slope is steepest (voltage crossing zero) and is exactly zero where the voltage peaks (the plates momentarily full, nothing more can arrive). The opposition is a frequency-MADE reactance, X_C = 1/(omega·C) that FALLS as frequency rises (unlike the coil's Xₗ = omega·L, which RISES) — iₘ = vₘ/X_C, so the SAME capacitor welcomes a fast AC signal and starves a slow one, blocking steady DC outright; doubling the frequency (or the capacitance) doubles the peak current. The cycle-average power is EXACTLY zero — p = v·i = +(vₘiₘ/2) sin(2·omega·t) swings symmetrically positive and negative, and every joule stored in the electric field between the plates (U = ½Cv²) during one quarter cycle is fully returned during the next — reactance opposes current WITHOUT ever dissipating energy, unlike a resistor. Route "AC voltage on a capacitor", "capacitor in AC circuit", "does current lag or lead voltage for a capacitor", "why does current lead voltage in a capacitor", "i equals C dv dt for AC", "capacitive reactance", "Xc = 1 over omega C", "why does a capacitor's opposition fall with frequency", "why does a capacitor block DC", "why does a capacitor pass high frequency AC easily", "average power in a pure capacitor", "why is average power zero in a capacitor if current is flowing", "where does the energy stored in a capacitor go", "im = omega C vm", "why does doubling frequency double the current through a capacitor" here. Does NOT cover the inductor's mirror (LAGGING) behaviour (that is ac_voltage_inductor, the prerequisite — a callback only, never re-derived here), phasor diagrams (that is phasors, now built, see below), capacitor DC charging transients / the RC time constant (that is capacitance, the prerequisite — a callback only), or combining C with R and L (that is series_lcr_circuit, later).
+  phasors                         ← Phasors — Rotating Vectors for AC (NCERT Ch.7 §7.5, the FOURTH concept of Ch.7 Alternating Current, sitting AFTER all three individual R/L/C element concepts). Teaches REPRESENTATION, not new physics: a sinusoid is the vertical SHADOW of an arrow (a phasor) rotating steadily at angular speed omega — the arrow's LENGTH is the constant peak amplitude, its shadow is the changing instantaneous value (confusing the two — "the arrow's length IS the value right now" — is the concept's own confronted misconception). Every phasor in a circuit rides ONE shared clock, so the angle between two co-rooted arrows is CONSTANT at every instant — this is WHY a single frozen phasor diagram fully captures a phase relationship (the second confronted misconception: "a frozen diagram can't hold timing, you need to watch a whole cycle"). The chapter's three settled facts become three frozen angles on the SAME rotating disc: a resistor's current phasor is drawn IN STEP with voltage (phi = 0 degrees), an inductor's current phasor 90 degrees BEHIND (lag), a capacitor's current phasor 90 degrees AHEAD (lead) — the capacitor's diagram is the exact MIRROR of the inductor's, same right angle, opposite side. Reading convention: rotation is COUNTERCLOCKWISE, and the arrow AHEAD in the spin reaches the peak reference line FIRST — ahead-in-rotation means peaks-first-in-time. Angle converts to time via Delta t = (phi/360 degrees)*T (a 90-degree gap at a 4-second period is exactly 1.0 second). The formal algebra, theta = omega*t with omega = 2*pi/T = 2*pi*f, and i = im*sin(omega*t -+ pi/2), is the LAST idea taught — the frozen diagrams written as equations, not the other way round. Route "phasor diagram", "rotating vector for AC", "what is a phasor", "why does a spinning arrow draw a sine wave", "phasor length vs instantaneous value", "why does one frozen diagram show the whole phase relationship", "phase angle on a phasor diagram", "which phasor leads or lags on a diagram", "how do you read lead or lag off a phasor diagram", "counterclockwise rotation convention for phasors", "theta equals omega t", "converting phase angle to time delay", "delta t equals phi over 360 times T", "im sin omega t plus or minus pi over two" here. Does NOT cover ADDING phasors tip-to-tail, impedance, or resonance (that is series_lcr_circuit, now built, see below — those are this concept's deliberate withholdings), power factor (ac_power_factor, now built, see below), or the individual R/L/C mechanisms themselves — WHY a coil lags or a capacitor leads (those are ac_voltage_inductor / ac_voltage_capacitor, the prerequisites — a callback only, never re-derived here).
+  series_lcr_circuit              ← Series LCR Circuit — Impedance and Resonance (NCERT Ch.7 §7.6, the FIFTH concept of Ch.7 Alternating Current, sitting right after phasors — the tool this concept finally puts to use). Teaches SYNTHESIS, not new element mechanisms: R, L and C share ONE series loop and ONE common current; each element's settled voltage phase (in phase / a quarter behind / a quarter ahead) is a one-clause callback, never re-derived. The three element voltages combine TIP-TO-TAIL as phasors (never arithmetically — the confronted misconception: "AC voltages in series add like numbers") into the source voltage, vm^2 = V_R^2 + (V_L-V_C)^2. This gives a net reactance X = X_L - X_C, an impedance Z = sqrt(R^2+X^2) (NEVER R+X_L+X_C, a demoted third misconception), a phase angle tan(phi) = X/R (whichever reactance is LARGER sets whether current leads or lags), and one special RESONANT frequency f0 = 1/(2*pi*sqrt(LC)) where X_L = X_C, the two reactances erase each other, impedance collapses to R alone, and the current peaks at vm/R — breaking the earned-but-wrong belief that more circuit elements always means less current. Resistance alone sets how SHARP that resonance peak is (Q = f0/delta_f, bandwidth delta_f = R/(2*pi*L)) without ever moving WHERE it sits (f0 depends only on L and C, never on R). Route "series LCR circuit", "impedance of a circuit", "Z equals root R squared plus X squared", "why don't AC voltages in series just add up", "why is one element's voltage bigger than the source", "phasor addition tip to tail", "resonance in an LCR circuit", "why does current peak at one frequency", "resonant frequency formula", "f0 equals one over two pi root LC", "does more resistance change the resonant frequency", "sharpness of resonance", "Q factor", "bandwidth of resonance", "how does a radio tune to one station", "why can't impedances just add like resistances" here. Does NOT cover the individual R/L/C mechanisms themselves (those are ac_voltage_resistor / ac_voltage_inductor / ac_voltage_capacitor, the prerequisites — a callback only, never re-derived here), the frozen-angle phasor REPRESENTATION itself with no addition/impedance/resonance in play (that is phasors, the prerequisite this concept builds on), or power, power factor, wattless current, or free LC energy oscillation (those are ac_power_factor, now built, see below, and lc_oscillations, later — this concept's own deliberate withholdings; its power HUD slot stays empty on purpose).
+  ac_power_factor                 ← Power in AC Circuits — The Power Factor (NCERT Ch.7 §7.7, the SIXTH concept of Ch.7 Alternating Current, sitting right after series_lcr_circuit — teaching the POWER consequence of the impedance/resonance machinery just built). Instantaneous power p(t)=v*i is a DOUBLE-FREQUENCY wave riding a non-zero average — an averaging wattmeter reads that average, <p> = V_rms*I_rms*cos(phi), the AVERAGE (real) power. The POWER FACTOR cos(phi) = R/Z is the fraction of the APPARENT power S = V_rms*I_rms (the naive volts-times-amps ceiling) that is actually real — volts times amps ALONE over-predicts whenever a phase angle exists (the confronted misconception: "average power is just V_rms times I_rms"). Only the current's IN-PHASE component, I_rms*cos(phi), delivers energy; the perpendicular component, I_rms*sin(phi), is WATTLESS — it flows, but spends nothing, so a BIGGER current does NOT always mean bigger power (the second confronted misconception, shown by a resistance step where current rises while the meter's reading falls). All real power lands in the resistor alone, P = I_rms^2*R — the inductor and capacitor only borrow and fully return energy every cycle, dissipating nothing. The power triangle P/Q/S is the settled impedance triangle (R, X, Z) uniformly scaled by I_rms^2, with reactive power Q measured in VAR (never called "Q factor" — that symbol belongs to series_lcr_circuit's sharpness, a different quantity). Impedance, phase angle, and resonance are one-clause SETTLED CALLBACKS here, never re-derived. Route "power factor", "cos phi", "average power in an AC circuit", "why isn't power just V times I", "apparent power vs real power", "what is a volt-ampere", "wattless current", "why does more current sometimes mean less power", "where does the power actually get dissipated in an LCR circuit", "power triangle", "P Q S relations", "reactive power", "VAR unit", "kVA vs kW rating", "why is my equipment rated in kVA not kW" here. Does NOT cover impedance/phase-angle/resonance derivation itself (those are series_lcr_circuit, the prerequisite — a callback only, never re-derived here), free LC energy oscillation with the source removed (that is lc_oscillations, now built, see below), or transmission-line voltage step-up (that is transformer, now built, see below — transmission stays narration-only here).
+  lc_oscillations                 ← LC Oscillations — The Circuit's Own Rhythm (NCERT Ch.7 §7.8, the SEVENTH concept of Ch.7 Alternating Current, sitting right after ac_power_factor). Teaches the FREE (source-free) circuit: a capacitor charged to V0 is connected to an inductor and the SOURCE IS PHYSICALLY REMOVED (a battery plus a two-position switch replace it, then the switch throws and the battery leaves the loop entirely) — the L-C pair then oscillates by itself at its own NATURAL frequency omega0 = 1/sqrt(LC), never a source-imposed one. The current is MAXIMUM exactly when the charge is zero — the coil's own inertia keeps a flowing current from stopping, driving it through and recharging the plates with REVERSED polarity (the primary aha, breaking "a discharged capacitor is a finished circuit" / "q=0 means i=0"). The swing repeats at f0 = 0.25 Hz — the EXACT frequency the driven series_lcr_circuit favoured at resonance, now revealed as the circuit's OWN property, set only by L and C, never by the initial voltage (the supporting aha). The stored energy trades intact between the capacitor's electric field (1/2 q^2/C) and the inductor's magnetic field (1/2 L i^2), an ALL-WATTLESS exchange where the total never moves and nothing is ever spent (breaking "an ideal oscillation must still run down" — there is no heat bar at all until resistance is added). The whole motion is the EXACT electrical twin of a mass on a spring: charge maps to displacement, current maps to velocity, inductance maps to mass (inertia — why the current doesn't stop at zero charge), and reciprocal capacitance maps to the spring constant. Real resistance damps the swing: energy leaks away as heat, the amplitude decays inside a shrinking envelope, and sustaining an oscillation forever needs a periodic push at the circuit's own natural frequency (the honest reason a real driven circuit needs a source at all). Route "LC oscillations", "LC circuit with no source", "charged capacitor connected to an inductor with the battery removed", "why doesn't the current stop when the capacitor is empty", "why is the current maximum when the charge is zero", "does an LC circuit oscillate forever", "natural frequency of an LC circuit", "omega0 equals one over root LC", "energy exchange between capacitor and inductor", "why doesn't an ideal LC circuit lose energy", "mass spring analogy for LC circuit", "electrical equivalent of simple harmonic motion", "why does inductance act like mass", "why does a real LC circuit's oscillation die out", "free oscillation with the source removed" here. Does NOT cover the individual R/L/C element mechanisms, impedance, resonance, or power (those are the six sealed AC siblings — one-clause callbacks only, never re-derived here), driven or forced oscillation with an active AC source (that is series_lcr_circuit — a source-DRIVEN circuit, the opposite front door from this concept's source-REMOVED story), or mutual inductance / turns ratio / voltage step-up (that is transformer, now built, see below).
+  transformer                     ← Transformer — Trading Voltage for Current (NCERT Ch.7 §7.9, the EIGHTH and LAST concept of Ch.7 Alternating Current, sitting right after lc_oscillations — the chapter CLOSES here). Teaches the two-coil machine: one AC-driven flux, made by the primary, circulates a closed iron core and threads BOTH windings — two electrically DISJOINT circuits (no wire between them, ever) linked only by the shared changing flux (Faraday's law, a one-clause callback). Because every turn on either winding rides the SAME changing flux, every turn earns the same EMF share (per_turn = Vp/Np = Vs/Ns identically), so the TURNS RATIO sets the VOLTAGE ratio: Vs/Vp = Ns/Np — more secondary turns steps voltage UP, fewer steps it DOWN. An IDEAL transformer passes power through completely unchanged, Vp*Ip = Vs*Is — nothing is amplified, volts up means amps down (the PRIMARY aha, breaking "step-up = free power": the current does NOT double along with the voltage, it HALVES). A transformer works ONLY on CHANGING flux: swap the AC source for a steady DC battery and there is exactly ONE transient blip at the instant of connection, then the secondary reads zero forever after — even though the primary still carries a large STEADY current sustaining a large STEADY flux (dPhi/dt=0 means induced EMF=0, however big the flux is; the second confronted misconception, breaking "a transformer works on DC too — steady current still makes flux" — and the reason the power grid is AC, not DC). Real transformers leak a little energy as four named losses — copper (I^2R) heat in the windings, EDDY CURRENTS swirling inside the core (suppressed by LAMINATING the core into thin insulated sheets, which chop the wide eddy loops a solid block would carry), hysteresis (the core's own magnetic domains flipping, audible as a faint hum), and stray flux that misses the secondary — landing a well-designed transformer around 95% efficient. This is WHY long-distance power transmission works at high voltage: sending the same power at a higher voltage lowers the line current (I=P/V), and since resistive line loss is I^2*R_line, a tenfold voltage step-up collapses the line loss a HUNDREDFOLD — the entire reason a power grid exists, cashing ac_power_factor's grid-transmission anchor seed. Route "transformer", "how does a transformer work", "step up or step down transformer", "turns ratio", "Vs over Vp equals Ns over Np", "how do you find the secondary voltage from the turns ratio", "why does a transformer need AC and not DC", "why does the secondary read zero on a battery", "why did the needle jump once when I connected a battery to a transformer", "does a transformer amplify power", "if the voltage doubles why doesn't the power double", "why does the primary current rise when I add a load to the secondary", "why are transformer cores laminated", "eddy currents in a transformer core", "transformer efficiency", "why does a transformer hum", "why is electricity transmitted at high voltage", "why do power lines lose less energy at high voltage", "why are pylon cables at such high voltage" here. Does NOT cover Faraday's law itself, rms values, real power, or I^2R heating (settled one-clause callbacks from the sealed AC siblings and electrical_power_in_resistor), does NOT quantify mutual inductance M in henries (that is inductance, the Ch.6 prerequisite — a callback only), and does NOT treat loaded-primary back-EMF regulation, magnetizing current, rectification, or switch-mode electronics (out of scope, beyond syllabus). CHAPTER END: this is the last concept of Ch.7 Alternating Current — no successor concept follows.
+
 CRITICAL DISAMBIGUATION (electromagnetic induction, Ch.6):
 - "what is magnetic flux" / "Phi = B A cos theta" / "why is flux zero if the field is strong" / "why does tilting the loop change the flux" / "is theta measured from the plane or the normal" / "why is flux negative past ninety degrees" / "does flux mean something is flowing" / "weber unit" (NO induction/EMF/needle/current in the question) → magnetic_flux
 - "Faraday's law" / "flux through a coil" / "moving magnet induces current" / "epsilon = -N dPhi/dt" / "Lenz's law" / "magnet falls slowly through a copper pipe" → faraday_law_induction
@@ -858,6 +1258,24 @@ CRITICAL DISAMBIGUATION (electromagnetic induction, Ch.6):
 - "inductance" / "self-inductance" / "mutual inductance" / "back EMF" / "why does the current in a coil rise gradually and not jump" / "epsilon = -L dI/dt" / "why is the back EMF zero at steady current" / "why do I get a spark when I open a switch on a coil" / "energy stored in an inductor" / "U = 1/2 L I squared" / "epsilon_2 = -M dI1/dt" / "why does a transformer or wireless charger work with no wire between the coils" / "coefficient of coupling k" / "M = k root L1 L2" / "how does an ignition coil make a spark" → inductance
 - "AC generator" / "how does an AC generator or dynamo work" / "how is alternating current produced" / "coil rotating in a magnetic field gives AC" / "epsilon = NBA omega sin omega t" / "peak EMF of a generator" / "eps0 = NBA omega" / "why is the EMF maximum when the coil is parallel to the field or the flux is zero" / "phase difference between flux and EMF in a generator" / "why does a generator give AC not DC" / "slip rings vs split ring or commutator" / "how a bicycle dynamo works" / "why does faster rotation give more voltage AND higher frequency" → ac_generator
   (DISAMBIGUATION faraday_law_induction vs motional_emf vs eddy_currents vs inductance vs ac_generator: ALL FOUR are Lenz's-law-flavoured ε = −dΦ/dt physics, but the STUDENT-FACING CAUSE and GEOMETRY differ. If a MAGNET moves and a STATIONARY COIL sees its flux change (push-in/pull-out, needle deflection, Lenz's-law pole-repulsion) → faraday_law_induction. If a ROD/CONDUCTOR itself slides along rails in a field B and the question is about ε = Bvl, the qv×B force on the rod's own charges, which END is positive, or the retarding-force/energy argument for a moving rod → motional_emf. If the conductor is a BULK/SOLID block (a plate, a pan, a transformer core — NOT a wire loop or a rod-on-rails) and the question is about induced currents forming INSIDE the solid metal itself, why cutting slots or laminating reduces the effect, or induction heating → eddy_currents. If a COIL'S OWN CHANGING CURRENT is the cause — the current ramping instead of jumping, the back-EMF ε_L = −L·dI/dt, why the back-EMF is zero at steady current, the switch-off spark, energy ½LI² stored in a coil, OR a changing current in one coil inducing a voltage in a SECOND disconnected coil (ε₂ = −M·dI₁/dt, transformer/wireless-charging with no wire between them) → inductance. "Same physics, different picture": faraday_law_induction is the moving-magnet-and-coil picture; motional_emf is the rod-and-rails picture; eddy_currents is the solid-block picture; inductance is the coil-reacting-to-ITS-OWN-or-a-NEIGHBOUR'S-changing-current picture. Route ε = Bvl / RHR-for-polarity / open-vs-closed-circuit rod questions to motional_emf; slots/lamination/induction-heating to eddy_currents; back-EMF / L-is-geometry / ½LI² / switch-off-spark / mutual-M-across-a-gap questions to inductance specifically. If a COIL is ROTATING in a field and the question is about producing ALTERNATING current, the sinusoidal EMF eps = NBA·omega·sin(omega t), why the EMF is maximum when the flux is zero (the 90-degree phase lag), the peak eps0 = NBA·omega, why faster rotation raises both peak and frequency, or slip-rings-vs-commutator → ac_generator (the moving-magnet/coil is faraday_law_induction; the ROTATING coil that GENERATES AC is ac_generator — the last Ch.6 concept, now built).)
+
+CRITICAL DISAMBIGUATION (alternating current, Ch.7):
+- "AC voltage on a resistor" / "resistor in an AC circuit" / "is current in phase with voltage for a resistor" / "i = v/R for AC" / "why is power never negative for a resistor" / "average current in AC is zero but the resistor still heats up" / "why doesn't an AC ammeter read zero" / "what is rms value" / "root mean square" / "Vrms = Vm over root 2" / "why is the peak voltage higher than the rated voltage" / "is 230 volts the peak or rms" / "square mean root" / "why is average power half the peak power" / "why is the average of sine squared one half" → ac_voltage_resistor
+  (DISAMBIGUATION ac_voltage_resistor vs ohms_law vs ac_generator: ohms_law is the STEADY, DC-only V = IR relationship — no time-varying voltage, no rms, no phase; route plain "V=IR" / "resistance" / "why does current reduce after a resistor" questions there, not here. ac_generator is about HOW the sinusoidal EMF is produced (a coil rotating in a field, slip rings, flux-linkage phase lag) — it never mentions a resistor's OWN response, in-phase current, rms, or power; if a coil/rotation/slip-ring/flux-linkage is the subject, route to ac_generator. ac_voltage_resistor is about what happens ONCE that sinusoidal voltage is APPLIED ACROSS a resistor — in-phase current, power never negative, the zero-average paradox, and the rms/DC-equivalent rating. phasors (now built, see below) is where a phase-angle/rotating-vector-diagram question belongs; series_lcr_circuit (now built, see below) is where impedance/resonance/tip-to-tail addition questions belong — never route those to ac_voltage_resistor; ac_power_factor (now built, see below) is where power/power-factor/wattless-current questions belong; lc_oscillations (now built, see below) is where a source-REMOVED free-oscillation question belongs; transformer (now built, see below) is where a turns-ratio/second-winding question belongs; a LAG/reactance/coil question routes to ac_voltage_inductor (now built, see below); a LEAD/capacitive-reactance question routes to ac_voltage_capacitor (now built, see below); if no other Ch.7 concept is advertised in VALID_CONCEPT_IDS for that question, fall through to the nearest advertised sibling per the general unknown-concept fallback, do not invent a routing here.)
+- "AC voltage on an inductor" / "inductor in an AC circuit" / "does current lag or lead voltage for a coil" / "why does current lag behind voltage in an inductor" / "v equals L di dt for AC" / "inductive reactance" / "Xl = omega L" / "why does a coil's opposition depend on frequency" / "why does a coil choke high frequency AC harder" / "average power in a pure inductor" / "why is average power zero in a coil if current is flowing" / "where does the energy stored in a coil go" / "im = vm over omega L" / "why does doubling frequency halve the current through a coil" / "why is a coil's opposition not fixed like resistance" → ac_voltage_inductor
+  (DISAMBIGUATION ac_voltage_inductor vs ac_voltage_resistor vs inductance vs phasors vs ac_voltage_capacitor: ac_voltage_resistor stays the in-phase, never-negative-power, rms baseline — no lag, no reactance, no coil; if the question names a resistor or heater with no lag/reactance language, route there instead. inductance is the coil's DC-transient/self-inductance story (current RAMPING and never jumping, back-emf epsilon=-L dI/dt, the switch-off spark, U=1/2 L I squared as a ONE-TIME stored value, mutual inductance) — it never involves a continuously alternating source, a phase LAG, or a frequency-dependent reactance Xl=omega L; if the question is about a coil's response to a STEADY current changing once (switch closing/opening) rather than a continuous sinusoidal AC supply, route to inductance instead. phasors (now built, see below) is where this concept's quarter-cycle lag FORMALIZED as a rotating-vector angle belongs — "phasor diagram for an inductor" / "draw the phasor for a coil" routes there, not here; this concept stays the WHY (v = L di/dt sets the current's slope). ac_voltage_capacitor (now built, see below) is the LEADING mirror-image of this concept — never route a "current leads voltage" or "capacitive reactance" question here, route it there instead; if no other Ch.7 concept is advertised in VALID_CONCEPT_IDS for that question, fall through to the nearest advertised sibling per the general unknown-concept fallback, do not invent a routing here.)
+- "AC voltage on a capacitor" / "capacitor in an AC circuit" / "does current lag or lead voltage for a capacitor" / "why does current lead voltage in a capacitor" / "i equals C dv dt for AC" / "capacitive reactance" / "Xc = 1 over omega C" / "why does a capacitor's opposition fall with frequency" / "why does a capacitor block DC" / "why does a capacitor pass high frequency AC easily" / "average power in a pure capacitor" / "why is average power zero in a capacitor if current is flowing" / "where does the energy stored in a capacitor go" / "im = omega C vm" / "why does doubling frequency double the current through a capacitor" / "why is a capacitor's opposition not fixed like resistance" → ac_voltage_capacitor
+  (DISAMBIGUATION ac_voltage_capacitor vs ac_voltage_resistor vs ac_voltage_inductor vs capacitance vs phasors: ac_voltage_resistor stays the in-phase, never-negative-power, rms baseline — no lead, no reactance, no plates; if the question names a resistor or heater with no lead/reactance language, route there instead. ac_voltage_inductor is the LAGGING mirror-image (current behind voltage, reactance RISING with frequency) — never route a "current lags voltage" or "inductive reactance" question here, route it there instead. capacitance is the capacitor's DC-transient/geometry story (q=Cv, plate area/separation, RC charging, the energy ½Cv² as a ONE-TIME stored value) — it never involves a continuously alternating source, a phase LEAD, or a frequency-dependent reactance Xc=1/(omega C); if the question is about a capacitor's response to a STEADY voltage changing once (charging/discharging) rather than a continuous sinusoidal AC supply, route to capacitance instead. phasors (now built, see below) is where this concept's quarter-cycle lead FORMALIZED as a rotating-vector diagram belongs — "phasor diagram for a capacitor" routes there, not here; if no other Ch.7 concept is advertised in VALID_CONCEPT_IDS for that question, fall through to the nearest advertised sibling per the general unknown-concept fallback, do not invent a routing here.)
+- "phasor diagram" / "rotating vector for AC" / "what is a phasor" / "why does a spinning arrow draw a sine wave" / "phasor length vs instantaneous value" / "why does one frozen diagram show the whole phase relationship" / "phase angle on a phasor diagram" / "which phasor leads or lags on a diagram" / "how do you read lead or lag off a phasor diagram" / "counterclockwise rotation convention for phasors" / "theta equals omega t" / "converting phase angle to time delay" / "delta t equals phi over 360 times T" → phasors
+  (DISAMBIGUATION phasors vs ac_voltage_resistor vs ac_voltage_inductor vs ac_voltage_capacitor vs series_lcr_circuit: the three ac_voltage_* concepts each derive WHY one element's current leads, lags, or stays in phase (i = v/R, v = L di/dt, i = C dv/dt) — no rotating-vector diagram appears in any of them; if the question is about the MECHANISM for a SINGLE named element with no phasor/diagram language, route to that element's ac_voltage_* concept instead. phasors is about REPRESENTING those three already-settled facts as frozen angles on ONE rotating disc, reading lead/lag off a diagram, and converting angle to time — never re-derive WHY an element lags or leads here, that is a one-clause callback only. series_lcr_circuit (now built, see below) is where phasors get ADDED tip-to-tail and impedance/resonance appear — this concept explicitly withholds phasor addition, impedance, complex numbers, and any reactance numeral or symbol (Xl, Xc); never route an "add the phasors" / "impedance" / "resonance" / "Z = ..." question here, route it to series_lcr_circuit instead.)
+- "series LCR circuit" / "impedance of a circuit" / "Z equals root R squared plus X squared" / "why don't AC voltages in series just add up" / "why is one element's voltage bigger than the source" / "phasor addition tip to tail" / "resonance in an LCR circuit" / "why does current peak at one frequency" / "resonant frequency formula" / "f0 equals one over two pi root LC" / "does more resistance change the resonant frequency" / "sharpness of resonance" / "Q factor" / "bandwidth of resonance" / "how does a radio tune to one station" / "why can't impedances just add like resistances" → series_lcr_circuit
+  (DISAMBIGUATION series_lcr_circuit vs phasors vs ac_voltage_resistor vs ac_voltage_inductor vs ac_voltage_capacitor vs ac_power_factor: phasors stops at REPRESENTING one element's settled angle on a rotating disc — no addition, no impedance, no reactance numeral ever renders there; if the question has no addition/impedance/resonance language and is really about reading a SINGLE frozen phasor diagram, route to phasors instead. The three ac_voltage_* concepts each derive a SINGLE element's own behaviour in isolation (i = v/R, v = L di/dt, i = C dv/dt) — if the question names only ONE element with no series-combination/impedance/resonance language, route to that element's own concept instead. series_lcr_circuit is about what happens once R, L and C sit in the SAME series loop: tip-to-tail phasor addition of the three element voltages, impedance Z = sqrt(R^2+X^2), phase angle tan(phi) = X/R, and the resonance condition X_L = X_C where the current peaks — route "impedance", "resonance", "Z = ...", "does adding a coil and capacitor together always reduce current", "why does the current spike at one frequency", "Q factor" and "bandwidth" questions here. ac_power_factor (now built, see below) is where power, cos(phi), and wattless current belong — this concept's power HUD slot stays deliberately empty; never route a "power factor" / "average power in an LCR circuit" / "wattless current" / "apparent power" / "power triangle" / "kVA" question here, route it to ac_power_factor instead.)
+- "power factor" / "cos phi" / "average power in an AC circuit" / "why isn't power just V times I" / "apparent power vs real power" / "what is a volt-ampere" / "wattless current" / "why does more current sometimes mean less power" / "where does the power actually get dissipated in an LCR circuit" / "power triangle" / "P Q S relations" / "reactive power" / "VAR unit" / "kVA vs kW rating" / "why is my equipment rated in kVA not kW" → ac_power_factor
+  (DISAMBIGUATION ac_power_factor vs series_lcr_circuit vs lc_oscillations: series_lcr_circuit stops at impedance/phase-angle/resonance — no power quantity, no cos(phi), no wattless current ever renders there; its power HUD slot stays deliberately empty on purpose. If the question is purely about Z, phi, or resonance with no power/wattage/power-factor language, route to series_lcr_circuit instead. ac_power_factor takes those settled facts as ONE-CLAUSE CALLBACKS (never re-derived) and teaches what they mean for POWER: instantaneous power p=vi as a double-frequency wave, average power P=V_rms*I_rms*cos(phi), the power factor cos(phi)=R/Z, the wattless quadrature current I_rms*sin(phi), where real power physically lands (P=I_rms^2*R, all in the resistor), and the power triangle P/Q/S. lc_oscillations (now built, see below) is the UNDRIVEN circuit — the source REMOVED, free oscillation at a natural frequency, the q(t)/i(t) SHM analogy, and damped decay; if the question has no active AC source / no "power factor" / "wattless" language and is instead about a charged capacitor and inductor left to oscillate on their own with no driving voltage, do NOT route to ac_power_factor — route it to lc_oscillations instead.)
+- "LC oscillations" / "LC circuit with no source" / "charged capacitor connected to an inductor with the battery removed" / "why doesn't the current stop when the capacitor is empty" / "why is the current maximum when the charge is zero" / "does an LC circuit oscillate forever" / "natural frequency of an LC circuit" / "omega0 equals one over root LC" / "energy exchange between capacitor and inductor" / "why doesn't an ideal LC circuit lose energy" / "mass spring analogy for LC circuit" / "electrical equivalent of simple harmonic motion" / "why does inductance act like mass" / "why does a real LC circuit's oscillation die out" / "free oscillation with the source removed" → lc_oscillations
+  (DISAMBIGUATION lc_oscillations vs series_lcr_circuit vs ac_power_factor vs ac_voltage_inductor vs ac_voltage_capacitor: the single decisive test is whether an AC SOURCE is still actively driving the circuit. series_lcr_circuit and ac_power_factor both keep the sinusoidal source connected and sweep its frequency — if the question mentions a source frequency, phase angle relative to a driving voltage, impedance, resonance, or power factor with the source still in the picture, route to series_lcr_circuit (impedance/resonance) or ac_power_factor (power quantities), never here. lc_oscillations is about the OPPOSITE setup: the capacitor is charged once, the source is then PHYSICALLY REMOVED (a switch throws, the battery leaves the circuit entirely), and the circuit is left to oscillate on its own at its own natural frequency — if the question has no active/continuing source and instead describes a charged capacitor and inductor left alone, or asks why the oscillation eventually dies out with no source to blame, route here. ac_voltage_inductor and ac_voltage_capacitor describe a SINGLE element's own response to a continuous external AC source — never route a two-element, source-removed, free-oscillation question to either of them. If the question is about a charged capacitor discharging through a plain resistor only (no inductor, no oscillation), that is an RC transient, not this concept — fall through to the nearest advertised sibling per the general unknown-concept fallback. If the question is instead about TWO coils sharing a core, a turns ratio, or voltage step-up/step-down, route to transformer, never here — this concept never has a second winding.)
+- "transformer" / "how does a transformer work" / "step up or step down transformer" / "turns ratio" / "Vs over Vp equals Ns over Np" / "how do you find the secondary voltage from the turns ratio" / "why does a transformer need AC and not DC" / "why does the secondary read zero on a battery" / "why did the needle jump once when I connected a battery to a transformer" / "does a transformer amplify power" / "if the voltage doubles why doesn't the power double" / "why does the primary current rise when I add a load to the secondary" / "why are transformer cores laminated" / "eddy currents in a transformer core" / "transformer efficiency" / "why does a transformer hum" / "why is electricity transmitted at high voltage" / "why do power lines lose less energy at high voltage" → transformer
+  (DISAMBIGUATION transformer vs inductance vs eddy_currents vs lc_oscillations vs ac_power_factor vs electrical_power_in_resistor: inductance is where "mutual inductance" / "M = k root L1 L2" / "coefficient of coupling" / a quantitative henries-valued coupling belongs — this concept NEVER quantifies M in henries, it teaches the turns-ratio/voltage/power consequence instead; if the question asks to compute or name a mutual inductance value, route to inductance instead. eddy_currents is where a bare "why are transformer cores laminated" question with NO turns-ratio/voltage/power language belongs if it's asked as a general induction-damping question about a solid conductor (a swinging plate, an induction cooktop) — but if the question is clearly ABOUT a transformer specifically (turns, primary/secondary, step up/down, DC failure, efficiency, transmission), route here instead, since this concept owns the full transformer story including its own lamination beat (STATE_9). lc_oscillations is the single-loop UNDRIVEN free-oscillation story — it has only ONE coil and ONE capacitor, never two coupled windings; never route a two-winding, turns-ratio, or voltage-step question there. ac_power_factor seeded the grid-transmission motivation narration-only — it is where power/power-factor/wattless-current questions with NO turns-ratio or second-winding language belong; if a question moves from "why is transmission at high voltage" into "how does STEPPING UP the voltage happen" (turns, windings, ratio), route here instead. electrical_power_in_resistor (Ch.3) is the general I^2R wire-heating law used inside this concept's own transmission-loss arithmetic (STATE_7) — a bare "why do wires heat up" question with no transformer/transmission-line language belongs there, not here.)
 
 CRITICAL DISAMBIGUATION (current electricity):
 - "why does current reduce after resistor?" → ohms_law
@@ -996,13 +1414,21 @@ CRITICAL DISAMBIGUATION (vectors, Ch.5.1):
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "gravitational force" / "weight of object" → field_forces
-- "normal force" / "N = mg cosθ" → normal_reaction
+- "normal force" / "N = mg cosθ" / "is normal force always equal to weight" / "does the surface push back with a fixed force" / "normal force on an incline" / "why is normal force zero on a vertical surface" / "why does a heavier box grip the floor more" / "friction ceiling depends on normal force" → normal_force (the CURRENT field_3d atomic — N adjusts to whatever presses in: flat N=mg, tilt N=mg cosθ, vertical N=0, friction ceiling f_max=μₛN rides on N not weight. NOT normal_reaction, a legacy 2D bundle kept only for historical cache compatibility — never return normal_reaction for a new query)
 - "friction and normal force together" → contact_forces
 - "tension in rope" / "Atwood machine" → tension_in_string
 - "hinge force on rod" → hinge_force
-- "draw FBD" / "free body diagram" / "forces on block" → free_body_diagram
+- "draw FBD" / "free body diagram" / "forces on block" / "isolate the body" / "why is N smaller on an incline" / "tension instead of normal force" → free_body_diagram
+- "two blocks connected by a string over a pulley" / "Atwood machine" / "why isn't tension equal to the hanging weight" / "block on table connected to a hanging mass" / "block on incline connected over a pulley" / "counterweight problem" → connected_bodies (NOT tension_in_string — that concept is the bare formula lookup; connected_bodies teaches the shared-constraint + elimination METHOD with a live coupled sim)
+- "block on an incline with friction" / "when does a block start to slide on a ramp" / "why does it slip at exactly that angle" / "tan theta equals mu" / "does mass affect when it slips" / "static vs kinetic friction on a slope" / "block slipping down a ramp" (NO pulley, NO second body connected by a rope) → block_on_incline (NOT connected_bodies — that concept requires a rope/pulley; this one is a single uncoupled block, T is never authored)
 - "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
+- "why doesn't friction just equal mu N" / "does friction change as I push harder" / "why does the block suddenly lurch when it starts moving" / "why is friction weaker once something is already sliding" / "does a faster-sliding block feel more friction" / "push a heavy box until it slides" (FLAT surface, NO incline, NO tilt) → friction_force (NOT block_on_incline — that concept needs a ramp/tilt; this one is a flat push with static self-adjustment + the ceiling + the drop to kinetic. NOT friction_static_kinetic — that is the legacy bundle; friction_force is the new newtons_laws_body-engine concept)
+- "why is rolling friction so much smaller than sliding friction" / "does a rolling wheel have any friction at all" / "isn't rolling supposed to be frictionless" / "why does a ball eventually stop rolling" / "why do heavy things get moved on wheels" / "why is a wheeled suitcase easier to move than dragging it" / "does a heavier wheel still roll easily" → rolling_friction (NOT friction_force — that concept is the sliding-only static/kinetic self-adjust arc on ONE contact type; this one COMPARES a sliding block to a rolling wheel at the same push, ~200× friction gap, and confronts "rolling means frictionless". NOT block_on_incline — flat concept, no tilt anywhere)
+- "why isn't tension always equal to the weight" / "does tension in a string ever change" / "why is tension less than mg once it starts accelerating" / "why do two strings in a line read different tensions" / "why does the front string carry more than the back string" / "does one pull mean one tension everywhere" / "why isn't the front string's tension just equal to the applied force" / "tension in an elevator cable while accelerating" / "why does a pulley change tension" → tension_force (NOT connected_bodies — that concept teaches the shared-constraint SOLVING METHOD with one string/one T; this one teaches what tension IS and the same-vs-different question across a CHAIN of strings, T1 vs T2. NOT tension_in_string — that is the legacy mechanics_2d bare-formula bundle)
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
+- "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
+- "Newton's second law" / "F = ma" / "why does force cause acceleration not speed" / "does mass affect acceleration" / "same push heavier object" / "double the force what happens" → newton_second_law (NOT newton_second_law_direction — that concept is about the DIRECTION of a relative to F once a net force exists; this one is about the a = F/m proportionality itself, force sets a rate not a speed)
+- "Newton's third law" / "action and reaction" / "for every action there is an equal and opposite reaction" / "why don't equal and opposite forces cancel" / "does the heavier one push harder" / "does a wall push back" / "why can I still move if the reaction pushes back equally" → newton_third_law (NOT newton_second_law — that concept is about ONE body's a = F/m; this one is about the PAIR of forces on TWO different bodies and why they never cancel)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",

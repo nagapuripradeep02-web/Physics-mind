@@ -102,8 +102,8 @@ const stateSchema = z.object({
     phases: z.array(choreographyPhaseSchema),
   }).optional(),
   misconception_watch: z.array(misconceptionWatchSchema).optional(),
-  variable_choreography: z.array(variableChoreographySchema).optional(),
   depth_ring: z.enum(['core', 'extended', 'advanced']).optional(),
+  variable_choreography: z.array(variableChoreographySchema).optional(),
 });
 
 // ── Physics Engine Config ───────────────────────────────────────────

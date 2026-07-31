@@ -1,0 +1,31 @@
+{
+  "approved_at": "2026-07-25T19:09:19.177Z",
+  "source_run": "C:\\Tutor\\physics-mind-lom-a\\.visual_runs\\free_body_diagram\\20260725-205200",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

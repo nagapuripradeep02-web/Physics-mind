@@ -89,6 +89,15 @@ jobs:
       - name: Concept JSON schema + registration cross-check
         run: npm run validate:concepts
 
+      # validate:concepts scans src/data/concepts/ NON-recursively by design (the
+      # isolation contract, docs/CHEMISTRY_ARCHITECTURE.md §7), so it never sees
+      # src/data/concepts/chemistry/ — a broken chemistry concept passed this
+      # whole workflow green. Added 2026-07-28, when chemistry reached four
+      # concepts across three renderer families. Like the step above it reads
+      # only tracked local files: no .env.local, no browser, no network.
+      - name: Chemistry concept schema + gates
+        run: npm run validate:chemistry
+
       - name: Unit tests
         run: npm test
 

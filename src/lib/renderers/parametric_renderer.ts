@@ -139,7 +139,17 @@ function computePhysics_normal_reaction(vars) {
   return {
     concept_id: 'normal_reaction',
     variables: { m: m, theta: theta, a: a },
-    derived: { N: N, W: W, g: PM_G },
+    // derived now also EXPORTS the concept's declared computed_outputs names
+    // (N_value/mg_parallel/mg_perpendicular/apparent_weight) so a label/formula/
+    // graph *_expr referencing them resolves instead of NaN-ing to 0 — the
+    // STATE_5 computed_outputs name mismatch (PM_G=9.8 matches the JSON formulas).
+    derived: {
+      N: N, W: W, g: PM_G,
+      N_value: N,
+      mg_perpendicular: N,
+      mg_parallel: m * PM_G * Math.sin(rad),
+      apparent_weight: m * (PM_G + a)
+    },
     forces: [
       nForce,
       { id: 'N1', label: 'N\\u2081 = ' + W.toFixed(1) + ' N',
@@ -400,6 +410,56 @@ function computePhysics_scalar_vs_vector(vars) {
   };
 }
 
+// resultant_formula (Ch.5 Vectors) — the parallelogram-law MAGNITUDE:
+// R = sqrt(A^2 + B^2 + 2AB cos theta). Registered in PCPL_CONCEPTS but had no
+// computePhysics entry, so the dispatcher returned null and the whole sim drew
+// "Unknown concept" (fixed 2026-07-23, PCPL parity). Labels are authored static;
+// derived values feed any *_expr, the value-only HUD, and the explore-state sliders.
+function computePhysics_resultant_formula(vars) {
+  var A = (vars && vars.A != null) ? vars.A : 4;
+  var B = (vars && vars.B != null) ? vars.B : 3;
+  var theta_deg = (vars && vars.theta_deg != null) ? vars.theta_deg : 60;
+  var theta_rad = theta_deg * Math.PI / 180;
+  var R_mag = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(theta_rad));
+  var alpha_deg = Math.atan2(B * Math.sin(theta_rad), A + B * Math.cos(theta_rad)) * 180 / Math.PI;
+  return {
+    concept_id: 'resultant_formula',
+    variables: { A: A, B: B, theta_deg: theta_deg },
+    derived: {
+      A: A, B: B, theta_deg: theta_deg,
+      R_mag: R_mag, R: R_mag, alpha_deg: alpha_deg,
+      Rx: A + B * Math.cos(theta_rad),
+      Ry: B * Math.sin(theta_rad)
+    },
+    forces: []
+  };
+}
+
+// direction_of_resultant (Ch.5 Vectors) — the parallelogram-law DIRECTION:
+// alpha = atan2(B sin theta, A + B cos theta), the angle of R measured from A.
+// Same missing-computePhysics "Unknown concept" bug as resultant_formula (fixed
+// 2026-07-23). Also carries R_mag so a shared HUD/formula reads consistently.
+function computePhysics_direction_of_resultant(vars) {
+  var A = (vars && vars.A != null) ? vars.A : 4;
+  var B = (vars && vars.B != null) ? vars.B : 3;
+  var theta_deg = (vars && vars.theta_deg != null) ? vars.theta_deg : 60;
+  var theta_rad = theta_deg * Math.PI / 180;
+  var Rx = A + B * Math.cos(theta_rad);
+  var Ry = B * Math.sin(theta_rad);
+  var alpha_deg = Math.atan2(Ry, Rx) * 180 / Math.PI;
+  var R_mag = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(theta_rad));
+  return {
+    concept_id: 'direction_of_resultant',
+    variables: { A: A, B: B, theta_deg: theta_deg },
+    derived: {
+      A: A, B: B, theta_deg: theta_deg,
+      alpha_deg: alpha_deg, alpha: alpha_deg,
+      R_mag: R_mag, R: R_mag, Rx: Rx, Ry: Ry
+    },
+    forces: []
+  };
+}
+
 function computePhysics_vector_addition_law(vars) {
   var a = (vars && vars.a != null) ? vars.a : 3;
   var b = (vars && vars.b != null) ? vars.b : 4;
@@ -461,6 +521,88 @@ function computePhysics_resultant_direction(vars) {
   };
 }
 
+// ── Chemistry namespace ───────────────────────────────────────────────────
+// Bohr hydrogen energy levels: E_n = -13.6/n^2 eV, photon lambda = hc/dE.
+// Concept-gated in the dispatcher below — never runs for a physics concept.
+function computePhysics_bohr_model_energy_levels(vars) {
+  var n_start = (vars && vars.n_start != null) ? vars.n_start : 3;
+  var n_end = (vars && vars.n_end != null) ? vars.n_end : 2;
+  var n_hi = Math.max(n_start, n_end);
+  var n_lo = Math.min(n_start, n_end);
+  var E_hi = -13.6 / (n_hi * n_hi);
+  var E_lo = -13.6 / (n_lo * n_lo);
+  // Precise (unrounded) delta drives lambda -- rounding delta_E_ev to 2dp
+  // BEFORE dividing drifts lambda by up to 1 nm off the verified ledger
+  // (e.g. 6 to 2 gives 411 nm instead of the verified 410 nm). Round only
+  // for the DISPLAYED delta_E_ev, never for the lambda division itself.
+  var deltaEPrecise = Math.abs(E_hi - E_lo);
+  var delta_E_ev = Math.round(deltaEPrecise * 100) / 100;
+  var direction = (n_end > n_start) ? 'absorb' : ((n_end < n_start) ? 'emit' : 'none');
+  var lambda_nm = (deltaEPrecise > 0) ? Math.round(1240 / deltaEPrecise) : null;
+  var spectral_region = (lambda_nm == null) ? 'none' : ((lambda_nm < 400) ? 'UV' : ((lambda_nm <= 700) ? 'VISIBLE' : 'IR'));
+  return {
+    concept_id: 'bohr_model_energy_levels',
+    variables: { n_start: n_start, n_end: n_end },
+    derived: {
+      delta_E_ev: delta_E_ev,
+      lambda_nm: lambda_nm,
+      direction: direction,
+      spectral_region: spectral_region,
+      n_hi: n_hi,
+      n_lo: n_lo
+    },
+    forces: []
+  };
+}
+
+// law_of_conservation_of_mass: closed-system mass ledger for C(s) + O2(g) -> CO2(g),
+// plus the STATE_5 rusting twin-misconception constants. tare/M_x are the
+// declared physics_engine_config constants (see the JSON's variables block);
+// re-declared here as literals since computePhysics_<id> never reads
+// physics_engine_config directly (Bohr precedent). Concept-gated — never runs
+// for a physics concept.
+function computePhysics_law_of_conservation_of_mass(vars) {
+  var m_C = (vars && vars.m_C != null) ? vars.m_C : 12;
+  var vessel_sealed = (vars && vars.vessel_sealed != null) ? vars.vessel_sealed : 1;
+  var tare = 38.0;
+  var m_O2 = m_C * 32 / 12;
+  var m_CO2 = m_C * 44 / 12;
+  var n_C = m_C / 12;
+  var m_reactants = m_C + m_O2;
+  var m_products = m_CO2;
+  var reading_initial = tare + m_C + (vessel_sealed ? m_O2 : 0);
+  var reading_final = tare + (vessel_sealed ? (m_C + m_O2) : 0);
+  var delta_reading = reading_final - reading_initial;
+  // STATE_5 rusting ledger — fixed staged constants (chemistry block §1/§2),
+  // independent of the m_C/vessel_sealed sliders.
+  var m_Fe_before_S5 = 10.0;
+  var m_gas_before_S5 = 5.0;
+  var m_O2_reacted_S5 = 0.6;
+  var m_solid_after_S5 = m_Fe_before_S5 + m_O2_reacted_S5;
+  var m_gas_after_S5 = m_gas_before_S5 - m_O2_reacted_S5;
+  var m_total_S5 = m_Fe_before_S5 + m_gas_before_S5;
+  var atoms_scale_label = '≈ ' + n_C.toFixed(2) + ' × 6.022×10²³ atoms';
+  return {
+    concept_id: 'law_of_conservation_of_mass',
+    variables: { m_C: m_C, vessel_sealed: vessel_sealed },
+    derived: {
+      m_O2: m_O2,
+      m_CO2: m_CO2,
+      n_C: n_C,
+      m_reactants: m_reactants,
+      m_products: m_products,
+      reading_initial: reading_initial,
+      reading_final: reading_final,
+      delta_reading: delta_reading,
+      m_solid_after_S5: m_solid_after_S5,
+      m_gas_after_S5: m_gas_after_S5,
+      m_total_S5: m_total_S5,
+      atoms_scale_label: atoms_scale_label
+    },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -468,6 +610,8 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'normal_reaction') result = computePhysics_normal_reaction(vars);
   else if (conceptId === 'tension_in_string') result = computePhysics_tension_in_string(vars);
   else if (conceptId === 'vector_resolution') result = computePhysics_vector_resolution(vars);
+  else if (conceptId === 'resultant_formula') result = computePhysics_resultant_formula(vars);
+  else if (conceptId === 'direction_of_resultant') result = computePhysics_direction_of_resultant(vars);
   else if (conceptId === 'hinge_force') result = computePhysics_hinge_force(vars);
   else if (conceptId === 'free_body_diagram') result = computePhysics_free_body_diagram(vars);
   else if (conceptId === 'friction_static_kinetic') result = computePhysics_friction_static_kinetic(vars);
@@ -478,6 +622,10 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'scalar_vs_vector') result = computePhysics_scalar_vs_vector(vars);
   else if (conceptId === 'vector_addition_law') result = computePhysics_vector_addition_law(vars);
   else if (conceptId === 'resultant_direction') result = computePhysics_resultant_direction(vars);
+  // Chemistry namespace (src/data/concepts/chemistry/) — concept-gated, fires
+  // only for this id; the physics dispatch above is byte-unchanged.
+  else if (conceptId === 'bohr_model_energy_levels') result = computePhysics_bohr_model_energy_levels(vars);
+  else if (conceptId === 'law_of_conservation_of_mass') result = computePhysics_law_of_conservation_of_mass(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
@@ -572,6 +720,16 @@ function PM_hexToRgb(hex) {
 function PM_animationGate(spec) {
   if (!spec) return { visible: true, alpha: 1 };
   var appearAt = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
+  // Narration-bound reveal (R-E): a primitive may bind its appear time to a
+  // scenario_cue via spec.reveal_cue. When the player posts that cue's start
+  // (SET_CUE_TIME), the visual one-shot re-times to the ACTUAL narration beat
+  // (matching field_3d's cueTriggerMs) instead of a fixed appear_at_ms that
+  // desyncs after pacing trims. appear_at_ms stays the fallback — THE EYE never
+  // posts SET_CUE_TIME, so PM_cueOverrides is empty and frozen frames stay
+  // deterministic on the authored time.
+  if (typeof spec.reveal_cue === 'string' && typeof PM_cueOverrides[spec.reveal_cue] === 'number') {
+    appearAt = PM_cueOverrides[spec.reveal_cue];
+  }
   var animMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 0;
   var disappearAt = (typeof spec.disappear_at_ms === 'number') ? spec.disappear_at_ms : Infinity;
   var fadeOutMs = (typeof spec.fade_out_ms === 'number') ? spec.fade_out_ms : 0;
@@ -610,6 +768,19 @@ function PM_focalEmphasis(spec) {
   var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
   if (!stateData) return NONE;
   var elapsed = PM_simClockMs;
+
+  // Priority 0: SET_GLOW narration-beat override (per-sentence). Wins over the
+  // authored focal so the spotlight can re-target on each narrated sentence
+  // (field_3d parity). null = fall through to the authored focal below. THE EYE
+  // never posts SET_GLOW, so frozen baselines always use the authored focal (no churn).
+  if (PM_glowOverride != null) {
+    var isGlowFocal = (typeof PM_glowOverride === 'string')
+      ? (PM_glowOverride === spec.id)
+      : (Array.isArray(PM_glowOverride) && PM_glowOverride.indexOf(spec.id) !== -1);
+    return isGlowFocal
+      ? { isFocal: true, alphaMul: 1, glowPx: 12 }
+      : { isFocal: false, alphaMul: 0.6, glowPx: 0 };
+  }
 
   // Priority 1: focal_sequence — cycle through highlight_primitive_id by time
   var seq = stateData.focal_sequence;
@@ -740,6 +911,30 @@ function PM_safeEval(expr, vars) {
   }
 }
 
+// Point-returning sibling of PM_safeEval: evaluates a *_expr that yields a POINT
+// object, e.g. from_expr/to_expr = "{x: 310, y: 370 - N * 4}". PM_safeEval coerces
+// its result to a number (→NaN for objects), so geometric endpoints need this.
+function PM_safeEvalPoint(expr, vars) {
+  try {
+    var scope = PM_buildEvalScope(vars);
+    var fn = new Function(scope.keys.join(','), 'return (' + expr + ');');
+    var r = fn.apply(null, scope.vals);
+    if (r && typeof r.x === 'number' && typeof r.y === 'number' && isFinite(r.x) && isFinite(r.y)) {
+      return { x: r.x, y: r.y };
+    }
+  } catch (e) { /* fall through */ }
+  return null;
+}
+
+// Resolve a force_arrow / vector endpoint from a literal {x,y} or a point-expr string.
+function PM_resolveArrowPoint(literal, exprStr, vars) {
+  if (literal && typeof literal.x === 'number' && typeof literal.y === 'number') {
+    return { x: literal.x, y: literal.y };
+  }
+  if (typeof exprStr === 'string') return PM_safeEvalPoint(exprStr, vars);
+  return null;
+}
+
 // Live eval scope for *_expr fields (magnitude_expr, direction_deg_expr, accel_expr,
 // sign_expr, to_deg_expr, angle_value_expr, ...) evaluated via PM_safeEval outside of
 // PM_interpolate (drawForceArrow, drawVector, drawAngleArc, drawBody animations).
@@ -760,12 +955,18 @@ function PM_liveVarsWithDerived() {
   return vars;
 }
 
-function PM_interpolate(text) {
-  if (typeof text !== 'string') return text;
-  // Prefer live vars from PM_physics (updated every SLIDER_CHANGE) so labels like
-  // "theta = {theta} deg" track the current value, not the static authoring default.
-  // Merge derived fields (force_magnitude, pressure, i_actual, ...) on top of variables
-  // so JSON expressions can reference computed outputs directly without re-deriving them.
+// The live expression scope, shared by every binding that reads authored
+// variables. Prefers live vars from PM_physics (updated every SLIDER_CHANGE) so
+// labels like "theta = {theta} deg" track the current value, not the static
+// authoring default. Merges derived fields (force_magnitude, pressure,
+// i_actual, ...) on top of variables so JSON expressions can reference computed
+// outputs directly without re-deriving them.
+//
+// Extracted so TEXT bindings (PM_interpolate) and POSITION bindings
+// (position_expr in drawBody) read one scope instead of two copies that merely
+// happen to agree — a state can't render a number and place its glyph from
+// different values.
+function PM_liveExprVars() {
   var baseVars = (PM_physics && PM_physics.variables)
     || (PM_config && PM_config.default_variables)
     || {};
@@ -773,6 +974,12 @@ function PM_interpolate(text) {
   var vars = {};
   for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
   for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  return vars;
+}
+
+function PM_interpolate(text) {
+  if (typeof text !== 'string') return text;
+  var vars = PM_liveExprVars();
   return text.replace(/\\{([^{}]+)\\}/g, function(_m, body) {
     // Simple identifier — fast path for {theta} / {m1} etc.
     if (/^\\w+$/.test(body)) {
@@ -990,6 +1197,30 @@ function drawBody(spec) {
   }
 
   var pos = attachedPos || spec._resolvedPosition || spec.position || { x: 200, y: 200 };
+
+  // position_expr — live variable-driven position, the positional sibling of
+  // label_expr/text_expr. Until now only TEXT could react to a slider: a state
+  // could show "λ = 486 nm" updating live while the glyph the number describes
+  // sat frozen at its authored coordinate. This binds the body's own position to
+  // the same variables, so the picture moves with the number (e.g. an electron
+  // riding to whichever energy rung n_end selects).
+  //
+  // Reads PM_liveExprVars() — the SAME merged variables+derived scope
+  // PM_interpolate uses — so a position binding and a text binding in one state
+  // can never disagree about the value they are showing.
+  //
+  // Opt-in and last-resort by construction: physics overrides win (a surface
+  // attachment or the Engine 20 motion integrator IS the position), and a
+  // non-finite eval keeps the static authored pos, so a malformed expression
+  // degrades to the authored layout rather than blanking the body. Resolved
+  // before the animation delta below, and registered into PM_bodyRegistry
+  // downstream, so glow_focus and force-arrow anchoring track it for free.
+  if (!attachedPos && !(spec.id && PM_motionState[spec.id]) && spec.position_expr) {
+    var peVars = PM_liveExprVars();
+    var peX = (spec.position_expr.x != null) ? PM_safeEval(String(spec.position_expr.x), peVars) : pos.x;
+    var peY = (spec.position_expr.y != null) ? PM_safeEval(String(spec.position_expr.y), peVars) : pos.y;
+    if (isFinite(peX) && isFinite(peY)) pos = { x: peX, y: peY };
+  }
 
   // Physics-driven animation delta. Engines learn nothing — JSONs declare the
   // animation shape and the renderer applies the equation.
@@ -1579,6 +1810,66 @@ function drawForceArrow(spec, physics, origin) {
   //      engine, e.g. "external load F_ext = 30 N" prop in STATE_3).
   //   3. Fall back to the first physics force (legacy compat — avoid relying
   //      on this; prefer 1 or 2).
+  //   0. (checked FIRST) explicit geometry — from/from_expr → to/to_expr — a
+  //      literal segment between two resolved points. See the block below.
+
+  // Path 0 — explicit geometry (highest priority). An arrow authored with an
+  // endpoint pair (from/from_expr → to/to_expr) is a LITERAL segment between two
+  // resolved points: contact_forces STATE_4's FBD components (N/f/F, each a
+  // distinct from→to), and normal_reaction's "{x: 310, y: 370 - N*4}" stacked
+  // reactions. These carry no force_id match and no magnitude, so the physics
+  // paths below would collapse ALL of them onto physics.forces[0] (the bug). Draw
+  // the segment directly and return. Only force_arrows that authored to/to_expr
+  // enter here, so magnitude-driven arrows are unaffected.
+  var _hasGeomTo = (spec.to && typeof spec.to.x === 'number' && typeof spec.to.y === 'number')
+    || (typeof spec.to_expr === 'string');
+  if (_hasGeomTo) {
+    var gLive = PM_liveVarsWithDerived();
+    var gFrom = PM_resolveArrowPoint(spec.from, spec.from_expr, gLive) || { x: origin.x, y: origin.y };
+    var gTo = PM_resolveArrowPoint(spec.to, spec.to_expr, gLive);
+    if (!gTo) return;                              // unresolvable endpoint → draw nothing, not a wrong arrow
+    var gGate = PM_animationGate(spec);
+    if (!gGate.visible) return;
+    var gEmph = PM_focalEmphasis(spec);
+    var gColor = spec.color || '#EF4444';
+    var gRgb = PM_hexToRgb(gColor);
+    var gx1 = gFrom.x, gy1 = gFrom.y;              // grow from origin toward the endpoint as the reveal gate opens
+    var gx2 = gFrom.x + (gTo.x - gFrom.x) * gGate.alpha;
+    var gy2 = gFrom.y + (gTo.y - gFrom.y) * gGate.alpha;
+    if (spec.id) PM_endpointRegistry[spec.id] = { origin: { x: gx1, y: gy1 }, tip: { x: gx2, y: gy2 } };
+    var gA = 255 * gGate.alpha * gEmph.alphaMul;
+    push();
+    if (gEmph.glowPx > 0) { drawingContext.shadowColor = gColor; drawingContext.shadowBlur = gEmph.glowPx; }
+    stroke(gRgb[0], gRgb[1], gRgb[2], gA); strokeWeight(2);
+    fill(gRgb[0], gRgb[1], gRgb[2], gA);
+    var gAng = Math.atan2(gy2 - gy1, gx2 - gx1);
+    var gHead = 12;
+    line(gx1, gy1, gx2, gy2);
+    noStroke();
+    triangle(gx2, gy2,
+      gx2 - gHead * Math.cos(gAng - Math.PI / 6), gy2 - gHead * Math.sin(gAng - Math.PI / 6),
+      gx2 - gHead * Math.cos(gAng + Math.PI / 6), gy2 - gHead * Math.sin(gAng + Math.PI / 6));
+    fill(gRgb[0], gRgb[1], gRgb[2], gA); noStroke(); textSize(12);
+    var gLabel = spec.label_override ? PM_interpolate(spec.label_override)
+      : (typeof spec.label === 'string' && spec.label.length > 0) ? spec.label
+      : (spec.label_expr ? PM_interpolate(String(spec.label_expr)) : '');
+    var glx, gly;
+    if (spec.label_position === 'perpendicular') {
+      var gmx = (gx1 + gx2) / 2, gmy = (gy1 + gy2) / 2;
+      var gperp = (typeof spec.label_perp_offset === 'number') ? spec.label_perp_offset : 14;
+      glx = gmx + -Math.sin(gAng) * gperp; gly = gmy + Math.cos(gAng) * gperp;
+      textAlign(CENTER, CENTER);
+    } else { glx = gx2 + 6; gly = gy2; textAlign(LEFT, CENTER); }
+    if (spec.label_offset && typeof spec.label_offset === 'object') {
+      if (typeof spec.label_offset.dx === 'number') glx += spec.label_offset.dx;
+      if (typeof spec.label_offset.dy === 'number') gly += spec.label_offset.dy;
+    }
+    text(gLabel, glx, gly);
+    if (gEmph.glowPx > 0) { drawingContext.shadowColor = 'transparent'; drawingContext.shadowBlur = 0; }
+    pop();
+    return;
+  }
+
   var force = null;
   for (var i = 0; i < physics.forces.length; i++) {
     if (physics.forces[i].id === spec.force_id || physics.forces[i].id === spec.id) { force = physics.forces[i]; break; }
@@ -1899,12 +2190,25 @@ function drawVector(spec, ox, oy) {
   // spec.direction_deg are provided, synthesize to = from + (cos, -sin) * mag
   // using the same physics-y-up convention as drawForceArrow
   // (0 deg = +x, 90 deg = visually up on canvas).
-  var from = spec.from || { x: 0, y: 0 };
-  if (typeof from === 'string') from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+  // from/to may also be a point-EXPR string, e.g. from_expr:"{x: 310, y: 370 - N*4}"
+  // (contact_forces' N-stacked reaction). Previously unread → the vector collapsed
+  // to (0,0). Resolve it via PM_safeEvalPoint (literal/anchor paths unchanged).
+  var vLive = null;
+  var from = spec.from;
+  if (typeof from === 'string') {
+    from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+  } else if ((from == null || typeof from.x !== 'number') && typeof spec.from_expr === 'string') {
+    vLive = vLive || PM_liveVarsWithDerived();
+    from = PM_safeEvalPoint(spec.from_expr, vLive);
+  }
+  if (!from || typeof from.x !== 'number') from = { x: 0, y: 0 };
   var to;
   if (spec.to != null) {
     to = spec.to;
     if (typeof to === 'string') to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry);
+  } else if (typeof spec.to_expr === 'string') {
+    vLive = vLive || PM_liveVarsWithDerived();
+    to = PM_safeEvalPoint(spec.to_expr, vLive) || { x: from.x, y: from.y };
   } else if (typeof spec.magnitude === 'number' || typeof spec.magnitude_expr === 'string') {
     var liveVarsV = PM_liveVarsWithDerived();
     var magV = (typeof spec.magnitude_expr === 'string')
@@ -2426,6 +2730,10 @@ function drawFormulaBox(spec) {
   var padding = 10;
 
   push();
+  // Rule 34b — the ONE formula surface is math-serif Unicode (Φ ω ε ε₀ θ …), not
+  // the p5 default sans. CSS font stack falls back gracefully if 'Cambria Math' is
+  // absent. Set before textWidth() so box sizing measures the actual glyphs.
+  textFont("'Cambria Math','STIX Two Math','Times New Roman',serif");
   textSize(14);
   textStyle(BOLD);
   var maxW = 0;
@@ -2660,6 +2968,48 @@ function stepMotionIntegratorTick() {
 //   3. Posts { type:'PARAM_UPDATE', key, value } upward — DualPanelSimulation relays to Panel B
 // Position resolution: SliderSpec.position is 'bottom' | 'bottom_left' | 'bottom_right'.
 // CONTROL_ZONE = { x:30, y:460, w:700, h:40 } (from PM_ZONES).
+// Rule 31 muscle-memory: a slider shared across states must keep the SAME screen
+// position. Per-state idx/total (below) would move a variable that's alone in one
+// state but 2nd-of-3 in another. So assign each 'bottom' slider variable a STABLE
+// slot from a single scan of all states (first-appearance order; total = the count
+// of distinct 'bottom' sliders = what the explore state shows), cached once — the
+// panel is effectively "built once, rows shown/hidden per state" (Rule 31c).
+var PM_sliderSlotMap = null;
+function PM_ensureSliderSlotMap() {
+  if (PM_sliderSlotMap) return PM_sliderSlotMap;
+  var states = (PM_config && PM_config.states) || {};
+  var collect = function(sk) {
+    var out = [];
+    var scene = (states[sk] && states[sk].scene_composition) || [];
+    for (var i = 0; i < scene.length; i++) {
+      var p = scene[i];
+      if (p && p.type === 'slider' && p.variable && (p.position || 'bottom') === 'bottom') out.push(p.variable);
+    }
+    return out;
+  };
+  // Canonical order = the state with the MOST 'bottom' sliders (the explore
+  // sandbox, where the teacher lives), so its layout reads exactly as authored;
+  // every subset state then places its sliders at those same slots (no jump).
+  var bestList = [];
+  for (var sk in states) {
+    if (!Object.prototype.hasOwnProperty.call(states, sk)) continue;
+    var lst = collect(sk);
+    if (lst.length > bestList.length) bestList = lst;
+  }
+  var order = [], seen = {};
+  for (var b = 0; b < bestList.length; b++) if (!seen[bestList[b]]) { seen[bestList[b]] = true; order.push(bestList[b]); }
+  // append any variable that appears ONLY in other (non-max) states
+  for (var sk2 in states) {
+    if (!Object.prototype.hasOwnProperty.call(states, sk2)) continue;
+    var lst2 = collect(sk2);
+    for (var k = 0; k < lst2.length; k++) if (!seen[lst2[k]]) { seen[lst2[k]] = true; order.push(lst2[k]); }
+  }
+  var map = {};
+  for (var j = 0; j < order.length; j++) map[order[j]] = { index: j, total: order.length };
+  PM_sliderSlotMap = map;
+  return map;
+}
+
 function PM_resolveSliderSlot(pos, idx, total) {
   var zone = PM_ZONES.CONTROL_ZONE;
   if (pos === 'bottom_left') return { x: zone.x + 30, y: zone.y + 20, w: 220 };
@@ -2675,7 +3025,18 @@ function PM_resolveSliderSlot(pos, idx, total) {
 
 function drawCanvasSlider(spec, idx, total) {
   if (!spec || !spec.variable) return;
-  var slot = PM_resolveSliderSlot(spec.position || 'bottom', idx || 0, total || 1);
+  // 'bottom' sliders use the STABLE per-variable slot (so a shared slider keeps its
+  // screen position across states); explicit bottom_left/bottom_right and any
+  // variable not in the map fall back to the per-state idx/total distribution.
+  var sPos = spec.position || 'bottom';
+  var slot;
+  if (sPos === 'bottom') {
+    var sm = PM_ensureSliderSlotMap()[spec.variable];
+    slot = sm ? PM_resolveSliderSlot('bottom', sm.index, sm.total)
+              : PM_resolveSliderSlot('bottom', idx || 0, total || 1);
+  } else {
+    slot = PM_resolveSliderSlot(sPos, idx || 0, total || 1);
+  }
   var minV = (typeof spec.min === 'number') ? spec.min : 0;
   var maxV = (typeof spec.max === 'number') ? spec.max : 10;
   var defV = (typeof spec.default === 'number') ? spec.default : minV;
@@ -2828,6 +3189,8 @@ var PM_pinTargetMs = 0;           // SET_TIME_FREEZE {at_ms} target for the catc
 var PM_pinCatchupPending = false; // true for exactly one draw() frame after a fresh pin request
 var PM_muted = false;             // MUTE — gates sound_cue playback only, never the clock (Rule 26a)
 var PM_cueOverrides = {};         // sound_cue id -> at_ms override from SET_CUE_TIME; cleared on state switch
+var PM_cleanMode = false;         // SET_CLEAN_MODE — teacher Clean/full-screen: strip on-canvas chrome (formula/sliders/callouts/HUD), keep the physical picture
+var PM_glowOverride = null;       // SET_GLOW — narration-beat focal-id override (primitive id) feeding PM_focalEmphasis; null = use the state's authored focal
 var PM_simReadyFired = false;     // guards the CDN-failure watchdog at the bottom of this file
 
 // ── Engine 20 — Motion Integrator state ───────────────────────────────────
@@ -3145,6 +3508,7 @@ function setup() {
   PM_fitCanvas();
   PM_config = window.SIM_CONFIG || {};
   PM_currentState = PM_config.current_state || 'STATE_1';
+  window.PM_currentState = PM_currentState;   // mirror to window (field_3d/particle_field parity)
   PM_physics = window.PM_PRECOMPUTED_PHYSICS || computePhysics(PM_config.concept_id, PM_resolveStateVars(PM_currentState));
   PM_resetSimClock();
   PM_simReadyFired = true;
@@ -3347,6 +3711,12 @@ function draw() {
   for (var l = 0; l < scene.length; l++) {
     var lPrim = scene[l];
     if (!lPrim) continue;
+    // Clean mode (SET_CLEAN_MODE) — strip on-canvas TEXT CHROME (formula surface,
+    // sliders, callout captions, board marks) for a bare full-screen picture;
+    // keep the physical scene + object labels + geometry (angle_arc/axes/vector).
+    if (PM_cleanMode && (lPrim.type === 'formula_box' || lPrim.type === 'slider'
+        || lPrim.type === 'annotation' || lPrim.type === 'derivation_step'
+        || lPrim.type === 'mark_badge')) continue;
     if (lPrim.type === 'label') drawLabel(lPrim);
     else if (lPrim.type === 'annotation') drawAnnotation(lPrim);
     else if (lPrim.type === 'angle_arc') drawAngleArc(lPrim);
@@ -3373,7 +3743,7 @@ function draw() {
   // Diagnostic text top-right — opt-in via PM_config.show_diagnostic. Off by
   // default so STATE_1 doesn't pre-answer the pedagogical question with a
   // "w = 19.60" readout before weight has been introduced.
-  if (PM_config && PM_config.show_diagnostic) {
+  if (PM_config && PM_config.show_diagnostic && !PM_cleanMode) {
     fill(200); noStroke(); textSize(11); textAlign(RIGHT, TOP);
     var d = PM_physics.derived || {};
     var diagY = 10;
@@ -3404,6 +3774,7 @@ window.addEventListener('message', function(e) {
     var newState = e.data.state;
     var isNewState = newState !== PM_currentState;
     PM_currentState = newState;
+    window.PM_currentState = PM_currentState;   // mirror to window (field_3d/particle_field parity)
     // Rule 36 / 26b: any fresh SET_STATE releases an existing freeze pin — the
     // player re-pins with its own SET_TIME_FREEZE if it wants one.
     PM_frozen = false;
@@ -3416,6 +3787,7 @@ window.addEventListener('message', function(e) {
       PM_surfaceRegistry = {};
       PM_endpointRegistry = {}; // WP-R5 — stale anchor_to targets don't survive a real state switch
       PM_cueOverrides = {};   // player re-sends SET_CUE_TIME after SET_STATE
+      PM_glowOverride = null; // SET_GLOW is per-sentence; a fresh state starts on its authored focal
       PM_resetSimClock();     // clock 0 + accum 0 + Engine 20 motion wipe (Rule 36) + choreo cache wipe
       PM_userTouched = {};    // WP-R5 — seizure is per-state only; a fresh state starts un-seized
     }
@@ -3534,6 +3906,29 @@ window.addEventListener('message', function(e) {
     }
   }
 
+  // ▶ Play / Replay (root CLAUDE.md §6). The review player's rollTimeline()
+  // fires RESET_TRAJECTORY then REPLAY_ANIMATIONS then an explicit unpin, so
+  // both mean the same thing here: rewind THIS state's choreography to t=0 and
+  // let it run. Without these the family had no Play path at all — selecting a
+  // state ran its choreography once and ▶ Play did nothing, because the only
+  // clock writes the renderer honoured were SET_TIME_FREEZE's.
+  //
+  // Releasing the pin is defensive, not redundant: onTimelineEnd() pins the
+  // clock to hold a clean final frame, so a reset that left PM_frozen set would
+  // rewind to 0 and stay stopped there. The player does send its own unpin
+  // immediately after (idempotent), but a host that sends only RESET_TRAJECTORY
+  // must still get motion.
+  //
+  // Deliberately does NOT touch PM_paused: PAUSE/RESUME is a separate host-level
+  // control that moves clock and audio together (Rule 26b), and a teacher who
+  // paused should stay paused until they resume. THE EYE never sends either
+  // message, so frozen baselines are unaffected.
+  if (e.data.type === 'RESET_TRAJECTORY' || e.data.type === 'REPLAY_ANIMATIONS') {
+    PM_frozen = false;
+    PM_pinCatchupPending = false;
+    PM_resetSimClock();
+  }
+
   if (e.data.type === 'SET_CUE_TIME') {
     if (e.data.cue) PM_cueOverrides[e.data.cue] = e.data.at_ms;
   }
@@ -3548,6 +3943,25 @@ window.addEventListener('message', function(e) {
 
   if (e.data.type === 'MUTE') {
     PM_muted = !!e.data.muted;   // Rule 26a — gates sound_cue playback only, never the clock
+  }
+
+  if (e.data.type === 'SET_CLEAN_MODE') {
+    // Teacher Clean / full-screen (build_review_site.ts fsCleanBtn → sendCleanMode).
+    // field_3d strips its DOM caption/formula/HUD/sliders via body.pm-clean CSS;
+    // parametric's overlays are canvas-drawn, so draw() skips the chrome primitives
+    // (formula_box / slider / annotation callouts / diagnostic / board marks) when
+    // PM_cleanMode is on, leaving the bare physical picture (bodies/arrows/vectors/
+    // arcs/axes/object labels). The player already hides its own #capStrip subtitle.
+    PM_cleanMode = !!e.data.on;
+  }
+
+  if (e.data.type === 'SET_GLOW') {
+    // Per-sentence narration-beat glow (build_review_site.ts sendGlow → s.glow).
+    // target is a primitive id, an array of ids, or null to clear. Feeds
+    // PM_focalEmphasis so the focal element can re-target on every narrated
+    // sentence (field_3d parity); null falls back to the state's authored focal.
+    var gt = e.data.target;
+    PM_glowOverride = (gt == null) ? null : gt;
   }
 });
 
