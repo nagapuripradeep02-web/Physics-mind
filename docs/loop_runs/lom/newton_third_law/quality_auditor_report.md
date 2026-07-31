@@ -1,91 +1,106 @@
-# QUALITY_AUDITOR REPORT -- newton_third_law (Laws of Motion, Class 11, concept 3/3)
+# quality_auditor report - newton_third_law (REBUILD, FINAL audit, post FIX CYCLE 3)
 
-Branch: feat/lom-b | Worktree: C:\Tutor\physics-mind-lom-b
-Renderer family: field_3d (newtons_laws_body scenario). Gate 4 = THE EYE frames + review site;
-Gate 3c N/A (no narrative_socratic); Gate 15 is the sole cognitive-flow check.
-Frames: .visual_runs/newton_third_law/20260725-221918/ (manifest warnings: [])
+Run audited: `.visual_runs/newton_third_law/20260729-231113/` - gate log `docs/loop_runs/lom/newton_third_law/eye_run.log`
+Artifact: `src/data/concepts/newton_third_law.json` (working tree). Review site: http://localhost:8090/newton_third_law/ (HTTP 200, dispatch-verified).
+THE EYE NOT re-run (per dispatch). Prior pixel/numeric verdicts treated as STALE and re-derived from the current JSON + the 20260729-231113 frames.
+(Unicode math glyphs referred to by codepoint in this ASCII report; the JSON carries the literal glyphs - verified below.)
 
 ## VERDICT: PASS
 
-Every ACTIVE gate is PASS or N/A with pasted evidence; all four states visually walked.
-Hands off to founder -> reviewer (Asmi). No FAIL routing.
+- Founder-criterion verdict: PASS - a student SEES two bodies push each other through a visible on-screen object (the compressed spring). The v1 "arrows from nowhere, nothing touching" failure is genuinely resolved.
+- STATE_4 verdict: PASS - the eye-walker MAJOR finding (nlb_bound_stop_sigma_f_zeroed_contradicts_shown_formula) is genuinely gone; STATE_4 still teaches its payload.
+- Prior blocker (Gate 3g / Rule 34c ASCII formula overlays): RESOLVED - all overlays + sprite/arrow/slider labels are literal Unicode.
+- One ADVISORY (non-blocking): STATE_5 sandbox idle-auto-sweep shows an intermittent ~0.2-0.3 N F-mirror-lag asymmetry. Self-healing on interaction, confined to the non-baselined explore sandbox, already advisory in the prior audit. Does NOT block ship.
 
 ---
 
-## Gate-by-gate
+## TOP GATE - founder rejection criterion (judged FIRST)
 
-Gate 0 -- Definition of Done: PASS
-- States: 4 EPIC-L states, ids STATE_1..4 match DoD(a). node: prims 3/3/4/3.
-- Symbol labels (DoD b): all rendered -- F12/F21 arrow labels, mg/N (S3 arrows), SigmaF (S3 HUD
-  "SigmaF = 30.00 N"), a + v (HUD), m1/m2 body+slider labels, sliders m/m2/F.
-- RHR (DoD c): N/A -- no cross products (documented, not TBD).
-- Motion (DoD d): every state animates; no static diagram where DoD declared motion.
-- Modes (DoD e): conceptual EPIC-L only; no mode_overrides (Rule 20 [D]).
-- Comprehension keystone: assessment/coverage_map ABSENT (grep count 0). DoD(f) over-declares them,
-  but Gate 0 explicitly stands these down this phase (Gates 16-20 dormant) -- NOT a FAIL.
-  misconception_watch present at exactly the two pivots S2+S3 (JSON L192, L268), absent on S1/S4.
+Does a student watching this SEE two bodies push each other, or is the pair still merely asserted? PASS.
 
-Gate 1 -- tsc: PASS. npx tsc --noEmit EXIT 0.
-Gate 2 -- validator: PASS. newton_third_law.json single clean PASS line (no WARN => zero bounds/word/
-dup warnings). Suite: 128 PASS / 0 FAIL.
-Gate 3a -- mechanical: PASS. Rule 15 advance_mode manual_click x3 + interaction_complete x1 = 2
-distinct; no wait_for_answer/pause_after_ms/narrative_socratic (grep empty). Rule 19 >=3 prims/state
-(3/3/4/3). Rule 23 prerequisites advisory.
-Gate 3c -- Socratic-reveal: N/A.
-Gate 3d -- E42 9 conditions: PASS. S3 mg/N vertical equal+cancel, SigmaF horizontal != 0; vectors
-consistent; epic_c absent/optional; no circular prereq; primitives in spec; mode_overrides suspended.
-Gate 3e -- Rule 31 distinct-motion + contextual controls: PASS. Archetypes S1 mirror-recoil, S2
-mirror-recoil (declared contrast pair), S3 isolate-and-run, S4 drag-sandbox. controls_visible S1 [],
-S2 [m2], S3 [], S4 [m,m2,F] -- matches skeleton section-3 table (verified in S2 + S4 frames). No
-static state; explore-last interaction_complete.
-Gate 3f -- Rule 32 + word budget: PASS. node word counts S1=48 S2=53 S3=55 S4=23(exempt) -- all
-guided in 25-55. Delta cues <=5 words. Cause->effect (arrows then recoil, dense t0/t6/t12). One
-variable moves in S2 (m2). Home-pose continuity. Single glow focal per state.
-Gate 3g -- Rule 33/34: PASS. Macro/micro NOT triggered (macroscopic vars; DoD g). One Unicode formula
-surface per state. HUD value-only (F = 30.00 N, a = 0.10 m/s^2, SigmaF = 30.00 N). Caption = delta cue
-only. All on-canvas math real Unicode -- no ASCII leak. No overlay collisions.
-Gate 4 -- visual walk (THE EYE): PASS. All 4 states looked at. 19/19 deterministic + manifest empty.
-Review site HTTP 200. Per-state evidence below.
-Gate 7 -- console/log: PASS. manifest warnings []; no timed_out; state_reached <=1.4ms.
-Gate 8 -- engine bug queue regression: PASS. confusion_cluster_registry probe N/A-DORMANT (new
-conceptual-only) -- NOT a FAIL. Interactive Supabase SQL not executable in this worktree
-(registry-gap); each named nlb scar regression-checked against frames:
-  * nlb_two_body_lane_offset_missing (CRITICAL, names concept): both bodies at pos 0; frames show two
-    distinct side-by-side blocks, no occlusion. PASS
-  * nlb_arrow_min_length_floor (MAJOR, names concept): forces 30 N (0.90u, 3x floor); sweep
-    [15,45]->[0.45,1.35]; S1/S2 twin arrows equal + visible. PASS
-  * physics_clock_not_state_local / ignores_reset_trajectory: v=0 at each state t=0. PASS
-  * motion-bound/clamp: every body on-platform at t0, t12000, frozen pin (S1 +/-7.2/10; S3 +7.2; S2
-    7.2 vs 2.4) -- >=2 m margin. PASS
-  * build-once ghost flag: S3 ghost m2 dimmed + not integrated (holds pose) => state-apply not
-    build-consumed; Bg fallback unneeded. PASS
-Gate 9 -- layout overlap: PASS (zero OVERLAP warnings for this file).
-Gate 10 -- expression resolution: PASS (no {var} leak).
-Gate 11 -- plain-English: PASS.
-Gate 12 -- visual continuity: PASS (same apparatus + home pose).
-Gate 13 -- animation vocabulary: PASS (engine modes only).
-Gate 14 -- Pass-1 strategic: PASS (cliffs, JEE horse-cart trace, M1->S2/M2->S3, aha PRIMARY S3 +
-SUPPORTING S2, foundational-coverage S3 in range).
-Gate 15 -- Pass-2 four-question (per state): PASS.
-  S1 reaction-arrow reveal; S2 identical arrows vs 3:1 HUD; S3 mg/N cancel + F12 unpartnered +
-  SigmaF=30 witness (RHR N/A); S4 sandbox. No state fails >2 sub-checks.
-Gate 3b (phase-lean): PASS -- spatial-contiguity 0 violations; max scene length 4 (<12).
-Gates 5, 6, 16-20: N/A -- deferred this phase.
-Anti-plagiarism / Rule 35: PASS. Anchors rolling chairs + rocket in empty space (universal); no
-country-specific content, no Hinglish, no DC-Pandey mirroring.
+Machine evidence (frames read this run):
+- STATE_1__dense_t00000.png: a yellow compressed spring coil sits BETWEEN two touching carts (red m2 left, blue m1 right); both green applied arrows drawn pointing outward; HUD m1 F=30.00 N / m2 F=-30.00 N; v=+/-0.16 m/s. The CAUSE is a real physical object on screen.
+- STATE_2__dense_t00000.png: same spring, arrows pixel-identical, HUD F=30.00/-30.00, a=7.50/-2.50.
+- STATE_3__dense_t00000.png: cart pushes a visible green wall slab through the spring; cart + wall arrows equal length, both full brightness; wall a=0.00.
+- STATE_1__frozen.png: symmetric recoil - m2 ~133 px left of centre, m1 ~135 px right (~1.5% symmetric); the v1 ~28% lateral-camera asymmetry is gone; v=+/-2.08 m/s. camera x=0 all five states.
+
+Caveat (non-blocking, unchanged): spring+arrows visible during the ~420 ms release window (dense t=0); the frozen H2 pin (release+2000) shows only the coasting aftermath with F=0 and no arrows (by design, brief 3.3). The push plays in real time for the teacher, so the interaction IS on screen.
 
 ---
 
-## Per-state visual evidence (Gate 4)
-- STATE_1: two distinct blocks at shared start; by t12000 symmetric recoil to opposite platform ends,
-  both on-platform; HUD m1 +30.00N/0.10, m2 -30.00N/-0.10; formula F12=-F21; no slider row.
-- STATE_2: equal +/-30.00 N arrows, HUD a 0.10 vs -0.03 (3:1); only m2 slider (900 kg) visible; m1
-  flies far, m2 creeps, 3:1 split, on-platform.
-- STATE_3: N up + mg down equal/cancelling (clamped to ceiling, documented-correct), F12 horizontal
-  focal; ghost m2 dimmed + stationary; m1 accelerates right on-platform; HUD SigmaF=30.00 N.
-- STATE_4: all 3 sliders; idle F-sweep live (F 28.2->40.0); HUD a/v update; equal/opposite forces;
-  continuous free-run (Rule 37); v readout present.
+## STATE_4 - the specific re-audit (eye-walker MAJOR finding)
 
-## Untestable-by-automation (noted, not FAIL)
-- Trusted-drag seize on S4 not exercisable by headless driver -- founder hand-test at review.
-- No audio manifest -- Rule 30i English-only, TTS founder-gated/banned this loop -- expected.
+Fix applied: F_net REMOVED from STATE_4 readouts (now ["F_applied","f"]); formula changed to the pair statement F21 = -F12.
+
+- Contradiction gone - PASS. STATE_4__frozen.png (bound-stop tail): HUD m1 F=30.00 / f_k=0.00, m2 F=-30.00 / f_k=0.00; formula F21 = -F12 -> 30 = -(-30) = 30, TRUE at every frame incl. the clamped tail. NO SigmaF readout and no live-SigmaF formula, so the "30+0=0 on screen" self-contradiction cannot recur.
+- Still teaches its payload - PASS. STATE_4__dense_t00000.png (held): each cart carries an applied arrow (green) AND a friction arrow (pink) of equal length, opposite direction - the "push and its own grip cancel on the SAME body" beat is legible; glyph f_s. STATE_4__dense_t03000.png (post-breakaway): friction arrows vanish, glyph flips to f_k=0.00, both carts separate; F stays 30.00/-30.00. Narration s4_1..s4_4 (49 words) matches the frames.
+- F_applied exact +/-30.00 whole state incl. breakaway - PASS. t=0/2000/3000/frozen all read 30.00/-30.00; no drift, no lag. Ramp is on mu_s (both bodies one pass, no mirror), never on F.
+- Single clean breakaway, no chatter - PASS. t=2000 held (f_s), t=3000 broken (f_k); D6 profile 0.00 -> 0.16 -> 0.45%.
+- Glyph <-> HUD consistent - PASS. Same _stuck flag; no disagreement in any sampled frame.
+
+---
+
+## Gate table (machine evidence)
+
+- 0 DoD: OK - 5 EPIC-L states id-matched to field_3d states; F21/F12 arrow labels each push_off state; motion each state; conceptual-only.
+- 1 tsc: OK - npx tsc --noEmit exit 0.
+- 2 validate: OK - PASS newton_third_law.json; 128 PASS / 0 FAIL; zero bounds warnings on target (the two epic_c_branches OVERLAP WARNs belong to another file - this JSON has no epic_c_branches block).
+- 3a rules: OK - Rule 15: 2 distinct advance_mode (manual_click x4, interaction_complete x1); Rule 19: 4 primitives/state; Rule 23: prerequisites advisory.
+- 3c Socratic: N/A - no narrative_socratic state.
+- 3d E42: OK - theta=0 all states; SigmaF held=0; vectors in-bounds; epic_c optional; no circular prereqs; modes suspended.
+- 3e Rule 31: OK - archetypes distinct (S1/S2 declared mirror-recoil contrast pair, S3 anchor-recoil, S4 reveal-build, S5 drag-sandbox); controls_visible [] on S1-S4, [m,m2,F] on S5; no static state; no Socratic artifacts.
+- 3f Rule 32/words: OK - narrations 46/43/42/49/24 EN words (guided S1-S4 in 25-55; S5 explore exempt); delta cues <=5 words; cause before effect; one variable moves.
+- 3g Rule 33/34: OK - all five formula_overlay strings literal Unicode (codepoints via python json load: U+21D2, U+221D, U+2192, U+2248, U+2212, U+2081, U+2082); zero JSON backslash-u escapes; sprite/arrow labels F21/F12 + slider labels m1/m2 all Unicode; no mojibake. HUD value-only. Rule 33 N/A. One formula surface per state.
+- 4 visual walk: OK - every state looked at; interaction visible; arrows/HUD correct; H1 no template leaks.
+- 7 console: OK - H3 zero console.error / zero uncaught exceptions.
+- 8 bug-queue/scars: OK (scar table below); confusion_cluster_registry probe N/A-DORMANT (Rule 22 [D]).
+- 9 layout: N/A - field_3d; epic_l_path annotations not canvas-rendered.
+- 10 expr: OK - no {var} leak (H1).
+- 11 plain-English: OK - no Hinglish; ASCII-math was Gate 3g (resolved).
+- 12 continuity: OK - same apparatus; camera [0,3.2,12.5] x=0 identical all 5 states.
+- 13 anim vocab: OK - push_off / action_reaction / param_ramp / phases / spring / fixed / idle_auto_sweep all real engine keys.
+- 14 Pass-1: OK - PRIMARY aha = STATE_2 (inside entry_state_map.foundational S1-S2); entry_state_map + prerequisites present; 14b dormant.
+- 15 Pass-2: OK - per-state cause->effect + focal + motion S1-S5; S4 15a-15d pass.
+- Anti-plag / Rule 35: OK - universal anchors (ice skaters, swimmer pushing off pool wall); no country/brand/festival/currency; text_en only.
+- Rule 30i: OK - text_te count 0, text_hi count 0.
+
+Registration verified: CONCEPT_RENDERER_MAP field_3d (aiSimulationGenerator.ts:2957), VALID_CONCEPT_IDS (intentClassifier.ts:138), CLASSIFIER_PROMPT (intentClassifier.ts:805/1013), panelConfig.ts:1534. Not in PCPL. All 4 pre-existing sites intact.
+
+---
+
+## Scar re-verification (all recorded classes)
+
+- Spring position: S1/S2 A(+0.91)/B(-0.91) gap 1.82 m = 0.72+0.55+0.55; S3 A(+0.7725)/W(-0.7725) gap 1.545 m = 0.72+0.55+0.275. body_a_id on the positive side in every push_off state (A).
+- release_at_ms: S1/S2 = 420 = 1000*sqrt(1.76/(30*(1/6+1/6))); S3 = 593 = 1000*sqrt(1.76/(30*(1/6))) with the fixed body 1/m dropped. Coil hides after release.
+- STATE_4 mu_s ramp: reactive static friction pegged 30.00 N while stuck; param_ramp on mu_s not F; F exactly +/-30.00 every frame incl. breakaway; single breakaway; f_s->f_k glyph consistent with HUD.
+- STATE_2 AHA: applied arrows pixel-identical at t=0 while HUD a=7.50/-2.50; at frozen positions split ~3:1 (m1 far right, m2 slightly left of centre). Measurable.
+- STATE_3: wall 30 N arrow full magnitude + full brightness, pixel-identical to cart; wall a=0.00, static.
+- STATE_1: equal-mass recoil symmetric (~+/-134 px), no lateral-camera asymmetry.
+- Slider-clamp: slider_controls m/m2 [2,14], F [15,45]; every value written (m up to 12, F 30 / sweep 15-45) is contained.
+- Arrow clamp len = clamp(0.55,2.80,N*0.048): 30 N->1.44; S5 sweep 15->0.72, 45->2.16 - nothing below 11.5 N or above 58.3 N.
+- controls_visible: no F on S1-S4 (all []); F present on S5.
+- camera x=0: all five states [0,3.2,12.5].
+- Rule 34c sprite path: arrow labels F21/F12, body/slider labels m1/m2 swept to Unicode.
+- Binding integrity (dispatch #2): every glow_focal / push_off.body_*_id / spring.between / action_reaction.driver_body_id / param_ramp.param / controls_visible token references an ID (A/B/W) or param token (m/m2/F/mu_s), never a display-label string. glow_focal values resolve: nlb_spring, nlb_arrow_B_applied, nlb_arrow_W_applied, nlb_arrow_A_friction (+phase nlb_arrow_B_applied), nlb_body_B - all valid engine keys. No broken glow/push_off binding; frames render the intended focal each state.
+
+---
+
+## ADVISORY (non-blocking) - STATE_5 sandbox F-mirror-lag
+
+KEYFRAMES_STATE_5__t02856.png: HUD m1 F=35.16 N / m2 F=-35.40 N - unequal pair (delta ~0.24 N) beside the formula F21 = -F12. KEYFRAMES_STATE_5__t00111.png: F=15.96/-15.96 (equal). Documented one-frame F-mirror lag (physics_block FIX CYCLE 1 (b)): idle_auto_sweep writes F on the driver only; action_reaction re-derives the partner from the previous frame, so while the sweep is actively changing F the partner lags ~0.2-0.3 N. Vanishes when F stops changing (teacher grabs the F slider -> exact +/-F).
+
+Non-blocking because: (1) confined to STATE_5, the non-baselined explore sandbox - every GUIDED state incl. PRIMARY-aha S2 shows exact +/-30.00; (2) self-heals on interaction; (3) already advisory in the prior audit, not newly introduced; (4) the guided lesson teaches exact equality throughout.
+
+Recommended (future touch, not required for ship): drop idle_auto_sweep from STATE_5 - the sandbox already recoils via applied_force_N: 30 + action_reaction, staying alive (Rule 37) with exact +/-F on the HUD. Owner if pursued: alex:json_author (drop the sweep) or peter_parker:renderer_primitives (within-frame F mirror). Flag only - do not route this cycle.
+
+---
+
+## Expected / ignored per dispatch
+- 8x [H2] diffs on S1-S4 vs OLD-arc baselines - expected (Rule 34e -> re-baseline via visual:approve after founder OK); STATE_5 has no baseline; all deterministic gates (D1p/D5/D6/D7/H1/H3) PASS.
+- Silent narration / no audio manifest (Rule 30h; TTS founder-gated, banned here).
+- cluster migration authored-not-applied (Rule 22 [D]).
+
+---
+
+## Routing
+No FAIL routing. VERDICT PASS. Hands off to founder -> reviewer (Asmi). The STATE_5 sweep-lag is a documented advisory for a future touch, not a blocker.

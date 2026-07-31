@@ -2530,6 +2530,130 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             phaseFound = true;   // a ramp IS a scripted reveal; skip the mode floor below
             candidates.push(pr.end_ms + nlbCushion);
         }
+        // push_off (docs/NLB_PUSH_OFF_SPEC.md) — the contact-then-release phase.
+        // The TAUGHT beat is not the contact, it is the SEPARATION the contact
+        // leaves behind: both applied forces go to 0 at release_at_ms and the
+        // carts coast apart on the mu = 0 track from there. So the pin must land
+        // well PAST release, or the frozen frame photographs two carts still
+        // touching under a caption about them flying apart — the mid-transition
+        // capture field3d_slcr_reveal_hold_captures_transitional_r_family names,
+        // and (with no phases[] authored) it would otherwise fall back to the
+        // action_reaction_pair mode floor of DEFAULT_REVEAL_MS, which for a
+        // release at ~1200 ms sits INSIDE the contact window
+        // (field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_...).
+        // A push_off IS a scripted reveal, so it also skips the mode floor.
+        //
+        // REPEATING push_off (`repeat_every_ms`, 2026-07-29 founder review) INVERTS
+        // that: when the interaction re-arms every R ms the taught beat is no longer
+        // the one separation it leaves behind, it IS the repeating interaction — and
+        // the release+coast pin is precisely what produced the empty canonical frame
+        // the scar nlb_push_off_interaction_dies_after_release_leaving_96pct_of_the_
+        // state_empty names (both arrows hidden, spring hidden, HUD 0.00). So the pin
+        // must land DURING a contact window, i.e. at a state-local time whose
+        // PHASE (t - floor(t/R)*R, exactly nlbRunPushOff's arithmetic) satisfies
+        // contact_from_ms <= phase < release_at_ms. Then the reviewer screenshot
+        // always shows the spring compressed and BOTH equal-and-opposite arrows.
+        //   Offset = 35% into the contact window. Fractional, not a fixed cushion,
+        //   so it scales with any authored window and is clear of BOTH edges by
+        //   construction: 35% of the window past contact_from_ms (never the
+        //   entry/re-arm frame, whose pose is still the untouched home seed) and
+        //   65% of the window before release_at_ms (never the frame where the
+        //   forces have just gone to 0 — the mid-transition capture
+        //   field3d_slcr_reveal_hold_captures_transitional_r_family names).
+        //   Cycle = the FIRST contact window at or after every other candidate this
+        //   state raised (phases[]/param_ramp), because the caller returns
+        //   Math.max(...candidates): picking cycle 0 unconditionally would let a
+        //   late authored phase out-vote the pin and drop it back outside contact.
+        // MOTION/HOLD: deliberately unchanged. deriveMotionExpectations has no
+        // newtons_laws_body branch (=> undefined => D5 skips: nothing is asserted
+        // about a repeating state's pixels), and deriveHoldExpectations' nlb branch
+        // gives a non-sandbox state 'reveal_hold', which in pixelGate is a pure
+        // RELAXATION of the stuck/static checks and never asserts stillness — so a
+        // continuously repeating push-off cannot false-fail on moving pixels in the
+        // tail. Nothing to fix in either derivation.
+        //
+        // spring_action (docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md, 2026-07-30) moves
+        // every interesting beat AGAIN: the contact window no longer opens at
+        // contact_from_ms but at lead = approach + compress + hold, and it then
+        // stays open for (release - contact_from) * slow_factor ms of WALL time
+        // (nlbRunPushOff's affine remap — the phase clock is wall time, only the
+        // integrator's dt is divided). A 35%-into-contact pin computed from the raw
+        // contact window would therefore land in the middle of the COMPRESS stroke:
+        // the mid-transition capture field3d_slcr_reveal_hold_captures_transitional_
+        // r_family, with a half-loaded coil and half-grown arrows. So with a
+        // choreography authored the pin targets the HOLD beat — "latched and loaded:
+        // compressed coil, both arrows at full magnitude, HUD live", the beat the
+        // spec says a teacher narrates over, and a genuinely SETTLED pose
+        // (deriveHoldExpectations' 'reveal_hold'). Mid-hold, so it is clear of both
+        // edges by construction. Fallbacks, in order, when a state authors no hold:
+        // 35% into the WALL release window, then mid-compress.
+        const po = asObj(nlb.push_off);
+        if (po) {
+            const NLB_PUSH_OFF_COAST_MS = 2000;   // coast window that makes the separation legible
+            const release = asNum(po.release_at_ms, 0);
+            const contactFrom = asNum(po.contact_from_ms, 0);
+            // Mirrors nlbRunPushOff's spring_action guards exactly (nlbSaMs: a
+            // non-finite / negative / absent duration is 0; slow_factor >= 1 or the
+            // NLB_SPRING_SLOW_DEFAULT = 6 spec default, never a speed-up).
+            const sa = asObj(nlb.spring_action);
+            const saMs = (v: unknown): number => {
+                const n = asNum(v, 0);
+                return Number.isFinite(n) && n > 0 ? n : 0;
+            };
+            const approach = sa ? saMs(sa.approach_ms) : 0;
+            const compress = sa ? saMs(sa.compress_ms) : 0;
+            const hold = sa ? saMs(sa.hold_ms) : 0;
+            const slow = sa
+                ? (typeof sa.slow_factor === 'number' && Number.isFinite(sa.slow_factor) && sa.slow_factor >= 1
+                    ? sa.slow_factor : 6)
+                : 1;
+            const lead = approach + compress + hold;
+            const releaseWall = Math.max(0, release - contactFrom) * slow;
+            // Mirrors nlbRunPushOff's guard exactly: a non-finite, <= 0 or
+            // too-short cycle is IGNORED by the renderer, so the pin must stay on
+            // the single-fire branch for those too. With a choreography the floor
+            // is the whole wall-clock cycle (lead + the slowed release), not just
+            // release_at_ms.
+            const repFloor = sa ? lead + releaseWall : release;
+            const repRaw = po.repeat_every_ms;
+            const rep = (typeof repRaw === 'number' && Number.isFinite(repRaw)
+                && repRaw > 0 && repRaw > repFloor) ? repRaw : 0;
+            phaseFound = true;
+            // The beat to photograph, in cycle-local WALL ms. null = this state
+            // has no loaded beat at all -> the original release+coast pin.
+            let offset: number | null = null;
+            if (sa) {
+                if (hold > 0) offset = approach + compress + hold * 0.5;          // mid-HOLD (preferred)
+                else if (releaseWall > 0) offset = lead + releaseWall * 0.35;     // 35% into the slowed release
+                else if (compress > 0) offset = approach + compress * 0.5;        // mid-compress
+            } else if (release > contactFrom) {
+                offset = contactFrom + (release - contactFrom) * 0.35;            // unchanged single/repeat pin
+            }
+            if (rep > 0 && offset != null) {
+                // The floor matters as much as the other candidates: the caller
+                // runs this through clampReveal (Math.max(DEFAULT_REVEAL_MS, ...),
+                // Math.min(DURATION_MAX_MS, ...)), so a cycle-0 pin at e.g. 147 ms
+                // would be silently RAISED to 1500 ms — a phase of 1500 > release,
+                // i.e. straight back into the dead zone this fix exists to remove.
+                // Fold both bounds in here so the value that survives the clamp is
+                // still inside the target beat.
+                const base = Math.max(DEFAULT_REVEAL_MS, ...candidates);
+                const wanted = Math.max(0, Math.ceil((base - offset) / rep));
+                const ceiling = Math.floor((DURATION_MAX_MS - offset) / rep);
+                const cycle = Math.max(0, Math.min(wanted, ceiling));
+                candidates.push(cycle * rep + offset);
+            } else if (sa && offset != null) {
+                // Single-fire choreography: there is no cycle to shift into, so the
+                // pin is the beat itself. The DEFAULT_REVEAL_MS floor can still
+                // raise it past a very short choreography (a lead under 1.5 s) —
+                // the general trap logged as field3d_reveal_pin_inside_a_narrow_
+                // window_silently_raised_by_clampreveal_floor. The spec's own
+                // choreography (600/1600/1200) puts mid-hold at 2800 ms, well clear.
+                candidates.push(offset);
+            } else {
+                candidates.push(release + NLB_PUSH_OFF_COAST_MS);
+            }
+        }
         if (!phaseFound) {
             // No authored script this state: fall back per `mode`. These are pure
             // FLOORS used only when phases[] is absent (an authored phase always

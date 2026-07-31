@@ -1,0 +1,31 @@
+ENGINE SEAM - add a repeating push-off cycle. ONE bug_class. Do NOT author any concept JSON.
+
+THE PROBLEM (founder review of the newton_third_law rebuild, 2026-07-29):
+The push-off apparatus works correctly - at t=0 the compressed spring, both equal-and-opposite arrows, and the HUD (F = 30.00 / -30.00 N, a = 7.50 / -2.50 m/s2) are all exactly right. But the interaction lasts only release_at_ms = 420 ms out of an ~11 SECOND state. By t = 1000 ms the carts have separated, the forces are zero, so the arrows hide and the spring hides, and the HUD reads 0.00. For 96% of the state there is nothing on screen but two blocks sitting apart, and the canonical frozen reviewer frame landed in that dead zone showing NONE of the lesson.
+
+This is not fixable by authoring. A spring push-off with classroom-visible force magnitudes is inherently fast (t = sqrt(2*stroke/a_rel); getting a 2 s contact out of the 0.88 m stroke would need ~1.3 N, far below the arrow-length floor). And the state cannot simply be made 2 s long because Rule 31 requires 25-55 words of narration, which is 10-20 s.
+
+THE FIX: let the interaction REPEAT within the state, the way a teacher repeats a demo. Add to the push_off block:
+
+    repeat_every_ms?: number;   // re-arm the whole interaction on this cycle; omit = fire once
+
+Semantics:
+  cycle  = floor(t_ms / repeat_every_ms)
+  phase  = t_ms - cycle * repeat_every_ms
+  - contact when contact_from_ms <= phase < release_at_ms (phase, NOT raw t_ms)
+  - when `cycle` changes from the previous frame, RE-ARM: restore every body's s and v from its s0/v0 seeds and re-compress the spring. nlbResetTrajectory() already does exactly this rewind - reuse it, do NOT write a second rewind path. Do NOT reset eng.t_ms (that would re-trigger immediately); keep the master clock monotonic and derive cycle/phase from it.
+  - omitted => behave exactly as today (single fire). No existing authored state may change behaviour.
+
+CONSTRAINTS:
+- Rule 36: linear in dt, no literal 0.016, no second clock. Under SET_TIME_FREEZE dt = 0, so t_ms is unchanged and cycle/phase are unchanged - frozen frames must stay byte-identical. Verify that explicitly.
+- Rule 37: in a mode:'sandbox' state the cycle must NOT fight the teacher - a trusted slider or drag seizes control and cancels the repeat for that state, same PM_nlbSweepSeized / PM_nlbBodyDragged flags idle_auto_sweep and param_ramp already use.
+- Minimal diff. No refactoring of adjacent code. Extra findings go to docs/loop_runs/lom/_engine/scar_candidates.sql (file only, never a DB write).
+
+SECOND, SMALLER PART (same seam, it is the same root cause): deriveStateMeta must pick a reveal/frozen candidate that lands DURING a contact window, not in the dead gap. With repeat_every_ms set, prefer a pin early in a cycle (phase < release_at_ms) so the canonical reviewer screenshot always shows the spring compressed and both arrows drawn. Today it pins at timeline end, which is what produced the empty frame.
+
+ROUTING: dispatch the field3d-surgeon agent (Amendment 4 - field_3d engine work never goes to a general-purpose dispatch). You are the orchestrator: do NOT read field_3d_renderer.ts yourself (~2.2 MB). Dispatch, read the report, reconcile.
+
+VERIFY: npm run check:renderer-syntax / npx tsc --noEmit (0) / npm run validate:concepts (127 PASS). Then prove BOTH behaviours on an existing concept that uses push_off is not available on this branch, so instead assert by inspection + a node probe that (a) with repeat omitted the force gate is bit-identical to before, and (b) with repeat set, phase cycles and nlbResetTrajectory is invoked once per cycle boundary. Then regression: npm run cache:clear:scoped -- electric_flux && npm run visual:eyes -- electric_flux, and dispatch eye-walker to read the frames (never load PNGs yourself).
+
+Commit: feat(engine): nlb push-off repeat cycle [owner: peter_parker:field3d_surgeon]
+Write docs/loop_runs/repeat_report.md (what landed, the exact authoring surface, how a state should pick repeat_every_ms) and EXIT.

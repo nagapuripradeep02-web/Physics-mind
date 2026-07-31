@@ -1,6 +1,6 @@
 {
-  "approved_at": "2026-07-29T17:33:09.064Z",
-  "source_run": "C:\\Tutor\\physics-mind-lom-b\\.visual_runs\\newton_third_law\\20260729-190318",
+  "approved_at": "2026-07-30T14:52:30.132Z",
+  "source_run": "C:\\Tutor\\physics-mind-lom-b\\.visual_runs\\newton_third_law\\20260730-165105",
   "tolerance": 0.02,
   "states": {
     "STATE_1": {
@@ -16,6 +16,10 @@
       "compare_frozen": true
     },
     "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
       "compare": true,
       "compare_frozen": true
     }

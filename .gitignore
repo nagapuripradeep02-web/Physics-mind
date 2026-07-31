@@ -103,4 +103,8 @@ nul
 
 # scratch bring-up artifacts (generated HTML/PNG probes)
 /.scratch_nlb/
+/.scratch_nlb_repeat/
+/.scratch_nlb_spring/
 /.scratch_nlb_seams/
+/.scratch_nlb_mass/
+/.scratch_nlb_wall/
