@@ -209,3 +209,31 @@ INSERT INTO engine_bug_queue (
     'lom-g routed engine dispatch — force_rig arrow overrun 2026-07-31',
     'incident'
 );
+
+-- Candidate 10 — MAJOR. NEW bug_class (no existing row: checked this file and
+-- docs/loop_runs/lom_g_state.md before authoring). The SEQUEL to candidate 9,
+-- and the reason a containment fix must never be closed on its own: candidate
+-- 9's remedy was correct and is NOT reverted, but it set ONE shared arrow scale
+-- from the WORST state's run, so the states that never overran paid the same
+-- 54% cut and the concept's primary aha (steep cables vs flat cables) shrank to
+-- 45 px stubs. Fixed in this dispatch (fix(engine-loop):
+-- force_rig_apparatus_drawn_too_small_for_its_own_arrow_budget).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_apparatus_drawn_too_small_for_its_own_arrow_budget',
+    'An apparatus drawn at a fraction of the frame leaves its magnitude-proportional arrows unreadable once the arrow scale is capped by the apparatus run',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'Two constraints meet on one number and only one of them was being solved. (1) An arrow drawn ALONG an apparatus line may not outgrow that line (candidate 9), so the newtons-to-world scale is bounded by the SHORTEST run the solver can produce — for force_rig, the ring settled near a pulley, run 1.33 of a nominal 2.40. (2) An arrow must be readable in DEVICE PIXELS, and device pixels come from world units times the framing. Nothing in the build had ever set the framing: the rig was drawn at r = 2.40 world under an authored camera at (0, 3.4, 9.2) with fov 60, which puts the table across ~306 px of a 1280x720 frame — under 43% of the frame height, with ~100 px of empty margin on every side and ~340 px on each side horizontally. So when constraint (1) forced the shared scale 0.048 -> 0.026, constraint (2) had no slack to absorb it and the well-behaved states (steep cables 29.4 N vs flat cables 49.0 N, whose run is the full 2.40 and which never overran anything) fell from ~78 px arrows to ~43 px stubs huddled around the ring. The concept''s PRIMARY AHA was the casualty of a fix aimed at a different state. Neither the 31 deterministic EYE checks nor the 42-assertion force_rig harness can see this class: both read values and ratios, and every ratio was correct — the picture was simply too small.',
+    'Size the APPARATUS to the frame before, or at the same time as, sizing the arrows to the apparatus — they are one budget, not two. (a) The zoom belongs on the scenario''s scene-graph ROOT as a single uniform scale (plus, where the camera target is not authorable, a framing translate on the same node), never as a sweep of the scenario''s world-unit constants: a root transform cannot miss one of the ~20 constants that are written in world units (pulley radius, string radius, hang-out, arrow shaft radius, label gaps, weight heights, whirl family), and missing any ONE of them silently breaks the containment that was just fixed. Every ratio the apparatus is built on is preserved exactly, so no prior scar can return. (b) Rule 29 is untouched only while the factor is ONE number for the whole rig — never per element, never per state. (c) Compute the frame budget against the OUTERMOST rendered thing, which is usually not the apparatus but a label at the end of a hanger, at the SLIDER MAXIMUM and at the worst authored angle — and account for the perspective asymmetry: a camera that looks down at the working plane magnifies +y content (it is nearer the lens) and shrinks -y, so the usable band is not centred on the origin and the maximum zoom is set by the +y extreme alone. (d) The framing translate is not free: moving the rig away from the lens costs magnification (depth = |cam| - cos(tilt)*y), so scale and shift must be optimised together against BOTH frame edges rather than tuned one at a time. (e) A new scenario''s bring-up should record the measured frame occupancy the same way it records the arrow scale, because a scenario that starts under-framed will hit this the first time any containment constraint bites.',
+    'js_eval',
+    'In the page, capture the real THREE.PerspectiveCamera and the scenario root, then for every visible object under the root project its geometry bounding-box corners (sprites: the quad from scale.x/scale.y times the root scale) through camera.project() into device pixels, and take the union bbox. Assert bbox.minY > (top chrome/caption bottom), bbox.maxY < viewportH, bbox.minX > 0, bbox.maxX < viewportW — swept over every state, every authored angle and every slider extreme (masses at maximum), not just the authored pose. Report the tightest margin and WHICH object produced it. Then assert the readability half: the drawn device-pixel length of the smallest force arrow the concept teaches with is above a floor (~55 px at 1280x720), and that the world-length ratio of any two arrows still equals their ratio of newtons exactly.',
+    'FIXED',
+    ARRAY['equilibrium_of_particles', 'uniform_circular_motion']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g routed engine dispatch — force_rig framing 2026-07-31',
+    'incident'
+);

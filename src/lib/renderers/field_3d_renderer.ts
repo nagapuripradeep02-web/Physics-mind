@@ -40927,6 +40927,46 @@ export const FIELD_3D_RENDERER_CODE = `
     var FR_TABLE_R_W = 2.40;              // ... drawn this many world units across the radius
     var FR_WORLD_PER_M = FR_TABLE_R_W / FR_TABLE_R_M;   // 9.6 world units per metre of ring travel
     var FR_RING_CLAMP = 0.80;             // the ring may never leave the table (fraction of R)
+    // ── FRAMING. A pure display zoom on the fr_root node: scale + a branch-A
+    //   re-centre, applied ONCE to the scene-graph root so EVERY child rides it
+    //   and nothing can be missed. NOT a geometry change — every fr constant
+    //   below stays in the same world units, so every RATIO the apparatus is
+    //   built on (arrow length vs its ring->pulley run, arrow shaft vs string
+    //   radius, drawn length vs newtons) is preserved exactly and both arrow
+    //   scars stay fixed by construction. Rule 29 is untouched: this is one
+    //   uniform framing factor for the whole rig, never per element and never
+    //   per state, so no element grows relative to another.
+    //
+    //   WHY IT EXISTS. The rig was drawn at ~40% of the frame height with wide
+    //   empty margins on every side, so the shared newtons->world arrow map
+    //   (rescaled to 0.026 to keep every arrow inside its own run) produced
+    //   ~45 px stubs on the states whose whole point is comparing two tensions.
+    //   Zooming the drawn apparatus and the arrow map together is the only fix
+    //   that adds device pixels without touching a single ratio.
+    //
+    //   WHY 1.42 AND NOT 1.5+. The outermost thing on screen is NOT the table
+    //   (r = 2.40) but the hanging weight's "N kg" label at the end of the
+    //   radial hanger: r = FR_TABLE_R_W + FR_HANG_OUT + h + 0.36, i.e. 3.61 at
+    //   the 5 kg slider maximum, plus half a label. The authored camera looks
+    //   DOWN at the table plane from (0, 3.4, 9.2), so +y content is nearer the
+    //   lens and magnified: a string at 90 deg is the binding case, and with the
+    //   re-centre below it reaches the top of a 1280x720 frame at k ~ 1.55.
+    //   1.42 lands that worst label ~64 px from the top edge (clear of the
+    //   delta-cue chip, which ends at y = 46) and the matching 270 deg label
+    //   ~50 px from the bottom, at every authored angle on both branches.
+    var FR_VIEW_SCALE = 1.42;
+    //   The frame band the camera actually covers is not centred on the origin
+    //   (the same perspective asymmetry: the top of the table plane is closer
+    //   than the bottom), so the table branch re-centres itself downward — the
+    //   FR_W_PIVOT_Y idiom, for the same reason: a concept JSON can author
+    //   camera_position but NOT the camera target. The whirl branch already
+    //   places itself via frwShiftY and is left at 0 so it is not double-shifted.
+    //   It is NOT free: moving the rig away from the lens costs magnification
+    //   (depth = 9.808 - 0.3466 y), so the pair (1.42, -1.05) is the measured
+    //   optimum of k / depth subject to both frame edges, not two loose knobs —
+    //   it nets 1.37x more device pixels per world unit at the ring than the
+    //   un-zoomed rig, where a shift-free k would have had to stop at 1.20.
+    var FR_VIEW_SHIFT_Y = -1.05;
     var FR_DEFAULT_RING_MASS = 0.05;      // kg (spec section 1 default)
     // b in F = -b*v. Overdamped on purpose: the settle time constant is b/K with
     // K the string stiffness above (~120 N/m for three few-kilogram weights), so
@@ -42242,6 +42282,11 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var root = new THREE.Group();
         root.userData = { elementType: "fr_root", id: "fr_root" };
+        // The ONE framing transform (see FR_VIEW_SCALE). Set here, on the root,
+        // so every mesh, sprite, arrow and guide built below inherits it and no
+        // constant can be forgotten; the y re-centre is per BRANCH and is written
+        // in applyForceRigState.
+        root.scale.setScalar(FR_VIEW_SCALE);
         addToScene(root);
         frRegister(root);
 
@@ -42629,6 +42674,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // state has no table and a table state has no bob, so the other branch
         // hides rather than standing there as apparatus that does nothing.
         var tableOn = frIsTable(fr);
+        // Branch framing (see FR_VIEW_SHIFT_Y). Written on the root, in UNSCALED
+        // world units, so it is a pure re-centre of the whole rig and not a pose
+        // any physics depends on. Identical for every table state, so nothing
+        // moves between states (Rule 32d home pose).
+        var frRoot = frFindById("fr_root");
+        if (frRoot) frRoot.position.set(0, tableOn ? FR_VIEW_SHIFT_Y : 0, 0);
         frEach(function (o, ud) {
             if (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
                 ud.elementType === "fr_centre" || ud.elementType === "fr_ring") o.visible = tableOn;
