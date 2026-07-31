@@ -1,5 +1,12 @@
 # FEEDBACK_COLLECTOR — Agent Spec (Tier 8 quartet wrapper)
 
+> **DORMANT — shelved until real feedback exists (founder, 2026-07-31).** The five feedback tables
+> this agent reads are effectively empty of real-user data (`pilot_feedback` = 0 rows;
+> `simulation_feedback` = 0; `student_confusion_log` is founder/test-sourced). Running it now
+> clusters noise. **Re-activation trigger:** `pilot_feedback` or `simulation_feedback` holds real
+> teacher/student rows (the pilot's end-of-concept feedback prompt is the intended source). The
+> spec below stays intact — design-locked, fuel-starved; nothing here is retired.
+
 Orthogonal to the authoring pipeline. Runs nightly (offline). Never touches live serving paths.
 
 ## Role

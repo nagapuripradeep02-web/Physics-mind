@@ -1,17 +1,18 @@
 # CHAPTER_LOOP — Autonomous chapter authoring with founder-proxy
 
-> **EXPERIMENTAL (trial; replicated to this branch 2026-07-24).** This protocol + the `founder-proxy`
-> + `field3d-surgeon` agents live ONLY on the trial branches (`feat/ch7-alternating-current`, origin;
-> `feat/ch8-em-waves`, this copy). Nothing here is project doctrine: CLAUDE.md / `.agents/CLAUDE.md` /
-> the global agent-teams rule do not reference it, deliberately. Trial constraints (bold below) hold
-> until the founder graduates the system. Kill switch: reset this branch + delete `docs/loop_runs/`
-> and `.founder_runs/` — the repo is then bit-for-bit pre-trial. On THIS branch the wrapper is
-> `scripts/ch8_loop.ps1`, the state file is `docs/loop_runs/ch8_state.md`, review port 8088, and the
-> regression pair is `magnetisation_and_intensity` + `bar_magnet_as_dipole` (Amendment 5 disjoint-pair
-> rule — ch7 keeps faraday_law_induction + capacitance).
+> **PARTIALLY GRADUATED (founder, 2026-07-31).** The `founder-proxy` + `field3d-surgeon` agents,
+> the Amendment-4 engine-dispatch discipline, and the Phase-0 chapter-opening doctrine are now
+> PROJECT DOCTRINE — see `.agents/CLAUDE.md` (roster), `docs/AUTHORING_PIPELINE.md` §0 + the
+> engine-dispatch discipline section, and each agent's spec. **The AUTONOMOUS LOOP PROTOCOL below
+> (state files, relaunching wrapper scripts, unattended per-concept runs) remains a
+> founder-triggered capability, not a default** — a session runs it only on an explicit
+> "run the chapter loop" instruction. Branch-specific config from the trial era (wrapper script
+> name, state-file path, review port, the Amendment-5 disjoint regression pair) is set per run —
+> the ch7/ch8 values in the text below are EXAMPLES, not law. Shipping stays human throughout
+> (Rule 17): nothing here runs `visual:approve`, TTS, PILOT_CONCEPTS, or any deploy.
 
 **What this is.** The SOP a worktree Claude session follows to author an entire chapter of concepts
-autonomously: the Alex pipeline authors each concept, `founder-proxy` (EXPERIMENTAL, Opus) plays the
+autonomously: the Alex pipeline authors each concept, `founder-proxy` (Opus) plays the
 founder at THREE checkpoints (A design, B build, C handover — see its spec), routed engine fixes run
 in-loop under the §3b verify chain (Amendment 2, founder-approved 2026-07-22), scars accumulate so
 later sims don't repeat earlier tweaks, and the human founder reviews the finished chapter in one

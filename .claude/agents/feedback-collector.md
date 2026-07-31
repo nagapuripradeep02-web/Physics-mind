@@ -1,6 +1,6 @@
 ---
 name: feedback-collector
-description: Use this agent for OFFLINE NIGHTLY analysis only — reads the 5 feedback tables (chat_feedback, variant_feedback, simulation_feedback, student_confusion_log, drill_down_cache) plus confusion_cluster_registry, embeds and clusters unclustered confusion phrases via Haiku, and writes proposals (new_cluster, archive_cluster, flag_sub_sim) to proposal_queue for founder approval. Never invoke during live serving paths. Never auto-applies a proposal.
+description: "DORMANT (founder, 2026-07-31) — do NOT dispatch until pilot_feedback/simulation_feedback hold real teacher rows; the feedback tables it reads are empty of real-user data and running it clusters noise. When active: OFFLINE NIGHTLY analysis only — reads the 5 feedback tables (chat_feedback, variant_feedback, simulation_feedback, student_confusion_log, drill_down_cache) plus confusion_cluster_registry, embeds and clusters unclustered confusion phrases via Haiku, and writes proposals (new_cluster, archive_cluster, flag_sub_sim) to proposal_queue for founder approval. Never invoke during live serving paths. Never auto-applies a proposal."
 tools: Read, Grep, Glob
 model: claude-sonnet-5
 ---
@@ -11,6 +11,13 @@ model: claude-sonnet-5
 > Bug-queue contract: before producing any proposal, run the §"Engine bug queue consultation" step in this spec.
 
 # FEEDBACK_COLLECTOR — Agent Spec (Tier 8 quartet wrapper)
+
+> **DORMANT — shelved until real feedback exists (founder, 2026-07-31).** The five feedback tables
+> this agent reads are effectively empty of real-user data (`pilot_feedback` = 0 rows;
+> `simulation_feedback` = 0; `student_confusion_log` is founder/test-sourced). Running it now
+> clusters noise. **Re-activation trigger:** `pilot_feedback` or `simulation_feedback` holds real
+> teacher/student rows (the pilot's end-of-concept feedback prompt is the intended source). The
+> spec below stays intact — design-locked, fuel-starved; nothing here is retired.
 
 Orthogonal to the authoring pipeline. Runs nightly (offline). Never touches live serving paths.
 
