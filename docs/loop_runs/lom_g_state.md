@@ -91,7 +91,41 @@ remembering: eye-walker's owner tags are a guess from the symptom, not from the 
   cannot silently drift. Proportionality verified in-frame after the fix: 77/62 px = 0.805 against
   49.0/39.2 N = 0.800 (before: 148/119 = 0.804).
 
-### ⚠ OPEN TASTE CALL — fix 5 shrank every arrow to 54% of its approved drawn length
+### RESOLVED by founder call — zoom the apparatus, then fix the labels properly
+
+| # | commit | bug_class |
+|---|---|---|
+| 6 | `0c86658` | `force_rig_apparatus_drawn_too_small_for_its_own_arrow_budget` |
+| 7 | `c79bbf8` | `force_rig_arrow_label_ink_too_dark_to_read_against_the_apparatus` |
+
+- **`0c86658`** — the zoom went on the **scene-graph root** (`root.scale.setScalar(1.42)` plus a
+  branch-A framing shift), NOT on the ~20 world-unit constants. That choice is the whole point: a
+  root transform cannot miss a constant, and every ratio 887ea50 and 7c6bbb3 depend on is preserved
+  by construction. `k = 1.42` not 1.5 because the outermost object is not the table but the hanging
+  weight's "N kg" label at the 5 kg slider maximum, and the camera looks DOWN, so +y content is
+  nearer the lens — a string at 90° clips the top at k ≈ 1.55. Tightest measured margin 12.5 px
+  (top, angle1 = 0) with nothing clipped at any authored angle on either branch.
+- **`c79bbf8`** — the durable fix the founder asked for, not a hex-picking patch: a hue-preserving
+  **luminance floor** (`FR_INK_LUM_MIN = 0.62`) applied through ONE funnel, so no authored colour
+  can produce an unreadable label. Contrast measured before → after: blue T₂ **1.62:1 → 4.83:1**,
+  red T₃ **1.30:1 → 4.42:1**, red W **1.26:1 → 4.89:1**, with hue held within ~1° of each arrow's
+  authored value, so label→arrow matching by colour alone still works. Gold was already above the
+  floor and is returned untouched.
+  **The ink floor alone would NOT have fixed this** — the generic glow pass was multiplying peer
+  labels by `GLOW_DIM_OPACITY = 0.40`, which no floor survives. `fr_arrow_label` joins the
+  brighten-only carve-out `fr_weight_label` already had. **The ARROW still dims to 0.40, so Rule 32e
+  single-focal is untouched** — only the name tag stays readable. `FR_LABEL_DIM_OPACITY` is the one
+  number to turn if a stricter reading of 32e is wanted.
+
+**Honest limit on the aha, for the record:** the zoom recovered ~77% of the approved arrow ink
+(~51 px → ~71 px), not 100%, and it cannot go further by framing alone. The reason is geometric and
+worth keeping: in the approved look the arrow spanned essentially the FULL table radius — which is
+exactly why it punched past the pulley the moment the solved ring moved off centre. "Arrow spans the
+radius" and "arrow never leaves the table" are mutually exclusive on a moving-ring apparatus. The
+remaining lever is the hanging-chain footprint (`FR_HANG_OUT` + label gap ≈ 32% of the outer radius),
+which is a relative-geometry change and a separate founder call — not taken.
+
+### (resolved above) OPEN TASTE CALL — fix 5 shrank every arrow to 54% of its approved drawn length
 
 The global scale had to be set by the WORST case (STATE_4/STATE_1, where the ring settles close to a
 pulley and the run collapses), so every well-behaved state paid for it. STATE_5 never had an
@@ -228,8 +262,10 @@ chapter_map (founder-approved 2026-07-30, in build order):
   PROVES the off-axis force solver before `uniform_circular_motion` depends on it. Same
   structural-extremes-first logic lom-a used. Do not reorder to do the exciting one first.
 
-next: **FOUNDER RE-REVIEW of `equilibrium_of_particles`** (approved on content; three fixes landed;
-      motion now proven). Then: the D5 motion-gate gap + the two arrow scars, one dispatch each.
+next: **FOUNDER RE-REVIEW of `equilibrium_of_particles`** — now with SEVEN engine fixes landed and
+      the review link rebuilt against them (http://localhost:8093/equilibrium_of_particles/).
+      Both arrow scars are CLOSED; the founder chose the zoom and the durable label fix.
+      Then: the D5 motion-gate gap (still open — see above).
       Phase 2 = `uniform_circular_motion` — its whirl needs the D5 gate more than this concept did.
       (superseded) Phase 1 authoring via the Alex pipeline
       (architect → physics-author → json-author → quality-auditor), then FOUNDER REVIEW.
@@ -238,7 +274,8 @@ in_flight: (none)
 parked: (none)
 engine_commits: e5c5d01 (force_table + harness), 096157d (whirl), 5801db6 (E2 colour),
                 ea16433 (FIX A — EYE pin fatal, platform/Rule 40), b2ebf9a (E1 time-pin replay),
-                7c6bbb3 (arrow shaft width), 887ea50 (arrow length containment)
+                7c6bbb3 (arrow shaft width), 887ea50 (arrow length containment),
+                0c86658 (apparatus zoom), c79bbf8 (label ink luminance floor)
                 → the two arrow fixes were FOUNDER-ORDERED, which is itself the notification the
                 runaway guard exists to force. The guard is now AT its tray limit: any FURTHER
                 engine fix on this tray needs an explicit founder call first.
