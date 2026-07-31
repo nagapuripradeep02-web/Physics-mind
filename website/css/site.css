@@ -235,6 +235,7 @@ header.site.scrolled{border-bottom-color:var(--line);}
   line-height:1;color:var(--ink);}
 .pricePer{font-size:14px;color:var(--ink-dim);}
 .priceLock{font-size:13.5px;color:var(--clay-soft);margin:0 0 18px;}
+.priceProof{font-size:13.5px;color:var(--sage);margin:0 0 18px;}
 .priceList{list-style:none;margin:0 0 18px;padding:18px 0;
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   display:flex;flex-direction:column;gap:10px;}
