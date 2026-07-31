@@ -59,6 +59,9 @@ const ROLES = [
   // Kept because it averages ~3.4M tokens/dispatch on field_3d engine work versus ~25M
   // for a general-purpose dispatch doing the same job (measured, lom-a loop 2026-07-25).
   { canonical: 'field3d_surgeon',     emission: 'field3d-surgeon'     },
+  // added 2026-08-01 — repo hygiene: sync/land a desk, verify chain, PR. Stops at Rule-40
+  // platform files and routes to the owning surgeon; never merges to master (Rule 17 intact).
+  { canonical: 'git_steward',         emission: 'git-steward'         },
 ];
 
 const H1 = /^#\s/; // a markdown H1 line ("# ...")

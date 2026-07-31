@@ -97,7 +97,7 @@ One role at a time. Each agent reads ONLY its own spec plus:
    `physics-mind\docs\archive\`: PLAN.md [HISTORICAL], CLAUDE_REFERENCE.md [STALE],
    CLAUDE_ENGINES.md [SUPERSEDED — engine numbering kept only for scar-tag continuity].
 
-**Anti-pattern**: loading all thirteen specs at once — context bloat + role confusion.
+**Anti-pattern**: loading all fourteen specs at once — context bloat + role confusion.
 
 ## Current-phase directives every spec already encodes (2026-06-11)
 

@@ -1,6 +1,6 @@
 # CLAUDE.md — `.agents/` (canonical agent specs)
 
-Umbrella governance for the thirteen canonical agent specifications (seven original + three added 2026-07-04: `eye_walker`, `retrofit_surgeon`, `shipper`; + `chemistry_author` added 2026-07-23 — CHEMISTRY_BUILD_PLAN.md Phase 2; + `founder_proxy` and `field3d_surgeon` GRADUATED 2026-07-31 from the ch7/ch8 chapter-loop trial; `renderer_primitives` renamed `pcpl_surgeon` the same day). This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
+Umbrella governance for the fourteen canonical agent specifications (seven original + three added 2026-07-04: `eye_walker`, `retrofit_surgeon`, `shipper`; + `chemistry_author` added 2026-07-23 — CHEMISTRY_BUILD_PLAN.md Phase 2; + `founder_proxy` and `field3d_surgeon` GRADUATED 2026-07-31 from the ch7/ch8 chapter-loop trial; `renderer_primitives` renamed `pcpl_surgeon` the same day; + `git_steward` added 2026-08-01 — the Ops cluster, repo hygiene). This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
 
 ## Canonical source vs dispatch wrapper
 
@@ -28,7 +28,7 @@ Frontmatter (`name:`, `description:`, `model:`, `tools:`) is hand-maintained IN 
 
 Naming reminder: emission filename and `name:` field use **hyphenated** form (`json-author`). Bug-queue ownership tags and FAIL routing use **underscored cluster-prefixed** form (`alex:json_author`). Both intentional. See `~/.claude/rules/agent-teams-reference.md`.
 
-## The thirteen roles (2026-07-04: adds `eye_walker`, `retrofit_surgeon`, `shipper` + the Release cluster; 2026-07-23: adds `chemistry_author`; 2026-07-31: graduates `founder_proxy` + `field3d_surgeon`, renames `renderer_primitives` → `pcpl_surgeon`, marks `feedback_collector` DORMANT)
+## The fourteen roles (2026-07-04: adds `eye_walker`, `retrofit_surgeon`, `shipper` + the Release cluster; 2026-07-23: adds `chemistry_author`; 2026-07-31: graduates `founder_proxy` + `field3d_surgeon`, renames `renderer_primitives` → `pcpl_surgeon`, marks `feedback_collector` DORMANT; 2026-08-01: adds `git_steward` + the Ops cluster)
 
 | Cluster | Role (canonical dir) | Pattern | One-line summary |
 |---|---|---|---|
@@ -44,6 +44,7 @@ Naming reminder: emission filename and `name:` field use **hyphenated** form (`j
 | Peter Parker | `field3d_surgeon` | FAIL-routed + Phase-0 scenario builds | GRADUATED 2026-07-31 (born 2026-07-24 trial). Specialist for `field_3d_renderer.ts` (~55K lines) + its `deriveStateMeta.ts` co-edits; carries the region map + scar checklist; ~3.4M tokens/dispatch vs ~25M general-purpose. ONE bug_class per dispatch. Owner tag `peter_parker:field3d_surgeon`. Never call directly. Model-pinned `claude-opus-5` (audit: half the calls of Sonnet on this task class). |
 | Peter Parker | `runtime_generation` | FAIL-routed | Generator + jsonModifier + cache sweeps. Only agent that runs `DELETE` on cache tables. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
 | Release | `shipper` | post-approval release chain — **founder-triggered only** | Rule 30h/30i chain: visual:approve → `tts:generate --langs=en` (audio on-demand; the product is English-only) → build:review → verify. No translation gate (Rule 30i, 2026-07-17 — the old `text_te` refusal is REMOVED; `text_hi` is authored pre-ship by a Sonnet-5 sub-agent but never blocks a release, and `tts:translate` stays forbidden). Refuses to run without an approval statement. |
+| Ops | `git_steward` | dispatched at LAND (repo hygiene) | ADDED 2026-08-01. Carries a sealed desk to a reviewable PR: sync `origin/master` → verify chain → surgical `git add` of a NAMED list → commit → push → `gh pr create`. **STOPS at any conflict under `src/`** — above all the six Rule-40 platform engine files — and routes to the owning surgeon (field_3d → `field3d_surgeon`; parametric/particle_field/premium_primitives → `pcpl_surgeon`). Never merges to master, never force-pushes, never `git add -A`, never touches `visual:approve`/TTS/`PILOT_CONCEPTS`/deploy (Rule 17 intact). Owner tag `ops:git_steward`. Model-pinned `claude-sonnet-5`. Mechanical desk hygiene is the `desk:*` scripts, not this agent. |
 | Offline | `feedback_collector` | nightly only — **DORMANT (2026-07-31)** | E38–E41 quartet. Reads 5 feedback tables, writes proposals. Never invoked during live serving paths. Shelved until `pilot_feedback`/`simulation_feedback` hold real teacher rows — dispatching it now clusters noise. |
 
 **Release cluster (added 2026-07-04).** A fourth, deliberately lightweight cluster beyond Alex / Peter
