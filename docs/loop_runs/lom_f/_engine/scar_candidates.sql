@@ -93,3 +93,51 @@ INSERT INTO engine_bug_queue (
     'lom-f Phase 0 SEAM B (momentum_bench instrument layer) 2026-07-31',
     'incident'
 );
+
+-- ============================================================
+-- SEAM C (momentum_bench control/sandbox layer + two-lane contacts, 2026-07-31)
+-- Row 6 is a defect SEAM A shipped that SEAM C fixed inside its own diff, on a
+--   founder ruling. Row 7 is a PROBE DEFINITION — a validator-authoring trap that
+--   silently makes a new gate untestable, and it fooled this dispatch's first
+--   harness attempt.
+-- ============================================================
+
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_mutually_exclusive_config_keys_resolved_by_silent_precedence_with_no_validator_gate',
+    'Two config keys documented as mutually exclusive were resolved by a silent renderer precedence rule and no validator gate, so the contradiction could ship',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'momentum_bench declared contact.sticks and contact.preload_m mutually exclusive in its config-surface comment, but nothing enforced it: the renderer silently picked sticks and the validator had no opinion at all. An author who wrote both got no error anywhere, and the chosen winner was the WORSE one - a pre-loaded spring under sticks releases and instantly latches, producing a completely dead sim (bodies motionless, zero impulse, an instrument panel full of zeros) with no message pointing at the cause. The general class: a documented exclusivity with no gate is not a constraint, it is a comment, and the silent-precedence resolution turns an authoring typo into a silent-failure debugging session.',
+    'Every pair of config keys documented as mutually exclusive gets a NARROW validator refinement that REJECTS the combination (the validator is where contradictions die), plus a renderer fallback that logs console.error and honours whichever key degrades most visibly. Never a silent precedence rule alone. Keep the refinement targeted at the contradiction - do NOT mirror the whole scenario config surface in Zod, which drifts against the renderer TypeScript type.',
+    'js_eval',
+    'Call the schema directly (never by writing a fixture into src/data/concepts/): parse a REAL passing concept with only field_3d_config swapped, once with both keys and once with each alone; assert exactly one issue on the both-keys case whose message names the gate, and zero on each single-key control. Separately drive the renderer with both keys on its own page and assert a console error was logged AND the loud-failure key won.',
+    'FIXED',
+    ARRAY['impulse','conservation_of_momentum']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts','src/schemas/conceptJson.ts','src/scripts/_scratch_mb_seams.ts']::text[],
+    'lom-f Phase 0 SEAM C (2026-07-31)',
+    'incident'
+);
+
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'zod_superrefine_gate_silently_never_runs_when_the_probe_fixture_fails_base_parse',
+    'A new conceptJson superRefine gate proves nothing when probed with a minimal fixture - superRefine does not run if the base object fails',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'conceptJsonSchema is z.object(...).passthrough().superRefine(...). Zod runs superRefine ONLY after the base object validates, so a minimal hand-built probe fixture (concept_id plus the one block under test) fails on a dozen missing required fields and the new gate never executes. The probe then reports zero issues for the contradiction it was written to catch, which is INDISTINGUISHABLE from a gate that works and a config that is legal - a green harness proving nothing. This dispatch hit it on the first run: the sticks+preload probe read 0 issues for the bad case AND 0 for both controls, and only the symmetry of that result exposed it.',
+    'A probe for any conceptJson superRefine gate must be built on a REAL, currently-passing concept file with only the block under test swapped in, and it must ASSERT that the base concept parses (baseOk === true) before trusting a zero-issue result. A gate probe that cannot show a positive control failing is not a probe.',
+    'js_eval',
+    'safeParse the unmodified base concept and assert success; then safeParse the same object with the offending block swapped in and assert exactly the expected issue count and message prefix on the paths under test, plus zero on each single-key control.',
+    'OPEN',
+    ARRAY['ALL']::text[],
+    ARRAY['src/scripts/_scratch_mb_seams.ts']::text[],
+    'lom-f Phase 0 SEAM C (2026-07-31)',
+    'probe_definition'
+);
