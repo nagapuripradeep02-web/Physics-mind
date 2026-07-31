@@ -277,6 +277,40 @@ function engagedRuns(fr: RampFrame[]): RampFrame[][] {
     return runs;
 }
 const spread = (xs: number[]) => (xs.length ? Math.max(...xs) - Math.min(...xs) : 0);
+// The plain, un-quantised linear sweep — i.e. what param_ramp has always done and
+// what mode:'continuous' (and mode absent) must keep doing exactly.
+const contRamp = (from: number, to: number, ms: number, t: number) =>
+    from + (to - from) * Math.min(1, Math.max(0, t / ms));
+// Per repeat_every_ms cycle: the frames of that cycle, the ramped value it was
+// armed with, and the FREE-FLIGHT window between the re-arm and that cycle's first
+// contact. The run-up window is the whole point — a body with nothing touching it
+// must hold its speed, and `drift` is exactly the defect this measures.
+type CycleReport = {
+    cycle: number; frames: RampFrame[]; n: number;
+    value: number; jitter: number; runup: number[]; launch: number; drift: number;
+};
+function cycleReport(fr: RampFrame[], rep: number, read: (f: RampFrame) => number = f => f.v0): CycleReport[] {
+    const byCycle = new Map<number, RampFrame[]>();
+    for (const f of fr) {
+        const c = Math.floor(f.t_ms / rep);
+        if (!byCycle.has(c)) byCycle.set(c, []);
+        (byCycle.get(c) as RampFrame[]).push(f);
+    }
+    const out: CycleReport[] = [];
+    for (const c of Array.from(byCycle.keys()).sort((a, b) => a - b)) {
+        const fs2 = byCycle.get(c) as RampFrame[];
+        const iEng = fs2.findIndex(f => f.engaged);
+        const runFr = (iEng >= 0 ? fs2.slice(0, iEng) : fs2).filter(f => !f.engaged);
+        const runup = runFr.map(f => Math.abs(f.v));
+        const vals = fs2.map(read);
+        out.push({
+            cycle: c, frames: fs2, n: fs2.length,
+            value: vals[0], jitter: spread(vals),
+            runup, launch: runup.length ? runup[0] : NaN, drift: spread(runup),
+        });
+    }
+    return out;
+}
 
 async function open(name: string, config: Field3DConfig) {
     const file = writeFixture(name, config);
@@ -357,6 +391,18 @@ const VR_FROM = 1.5, VR_TO = 4.0, VR_MS = 3000;                   // v1, one fli
 const VC_FROM = 1.5, VC_TO = 4.5, VC_MS = 6000, VC_REP = 1500;    // v1, re-armed per cycle
 const KR_FROM = 2000, KR_TO = 200, KR_MS = 4000, KR_REP = 1200;   // k, across contacts
 const MR_FROM = 2, MR_TO = 5, MR_MS = 4000, MR_REP = 1500;        // m2, across contacts
+// 9) SEAM C — param_ramp.mode 'step'. The SAME ramp is authored three ways —
+// step, explicit continuous, and mode absent — over IDENTICAL apparatus, so the
+// only difference between the three runs IS the mode key.
+//   end_ms = SP_N x SP_REP, which is the sizing relationship the JSON author uses:
+// cycles 0..SP_N land u = 0, 1/N ... 1, i.e. SP_N+1 distinct launches spanning
+// from -> to inclusive; every later cycle clamps at `to`.
+const SP_FROM = 1.5, SP_TO = 4.5, SP_REP = 1200, SP_N = 4, SP_MS = SP_REP * SP_N;
+const SP_S0 = -1.6;                                  // ball start; run-up = 0.62 m
+// 10) SEAM C — a k ramp in step mode, to prove the composition with the
+// mbContactBusy deferral guard (k acts only DURING contact, so step mode must not
+// disturb it).
+const SK_FROM = 2000, SK_TO = 400, SK_REP = 1200, SK_N = 3, SK_MS = SK_REP * SK_N;
 
 const FIX = benchConfig({
     // S1 elastic two-body
@@ -511,6 +557,43 @@ const FIX = benchConfig({
         param_ramp: { param: 'm2', from: MR_FROM, to: MR_TO, start_ms: 0, end_ms: MR_MS },
         repeat_every_ms: MR_REP,
     }),
+    // S20–S23 — param_ramp.mode. S20/S21/S22 are the SAME apparatus and the SAME
+    // ramp authored step / explicit-continuous / mode-absent, so any difference
+    // between the three runs is the mode key and nothing else. S21 IS the pre-fix
+    // engine's code path, byte for byte, which is what makes it both the defect
+    // exhibit and the default-path regression guard.
+    STATE_20: benchState('v₁ ramped, STEP per cycle', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: SP_S0, initial_velocity_mps: SP_FROM },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_STIFF }, {
+        controls_visible: ['v1'],
+        param_ramp: { param: 'v1', from: SP_FROM, to: SP_TO, start_ms: 0, end_ms: SP_MS, mode: 'step' },
+        repeat_every_ms: SP_REP,
+    }),
+    STATE_21: benchState('v₁ ramped, explicit CONTINUOUS', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: SP_S0, initial_velocity_mps: SP_FROM },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_STIFF }, {
+        controls_visible: ['v1'],
+        param_ramp: { param: 'v1', from: SP_FROM, to: SP_TO, start_ms: 0, end_ms: SP_MS, mode: 'continuous' },
+        repeat_every_ms: SP_REP,
+    }),
+    STATE_22: benchState('v₁ ramped, mode ABSENT', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: SP_S0, initial_velocity_mps: SP_FROM },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_STIFF }, {
+        controls_visible: ['v1'],
+        param_ramp: { param: 'v1', from: SP_FROM, to: SP_TO, start_ms: 0, end_ms: SP_MS },
+        repeat_every_ms: SP_REP,
+    }),
+    STATE_23: benchState('k ramped, STEP per cycle', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: SP_S0, initial_velocity_mps: IMP_V },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: SK_FROM }, {
+        controls_visible: ['k'],
+        param_ramp: { param: 'k', from: SK_FROM, to: SK_TO, start_ms: 0, end_ms: SK_MS, mode: 'step' },
+        repeat_every_ms: SK_REP,
+    }),
 });
 
 // A SEPARATE page: the sticks + preload_m contradiction deliberately logs a
@@ -520,6 +603,18 @@ const CONTRA = benchConfig({
         { id: 'A', label: 'm₁', mass_kg: EX_M1, shape: 'cart', initial_position_m: -0.6 },
         { id: 'B', label: 'm₂', mass_kg: EX_M2, shape: 'cart', initial_position_m: 0.6 },
     ], { between: ['A', 'B'], stiffness_N_per_m: EX_K, preload_m: EX_PRE, sticks: true }),
+});
+
+// Likewise its own page: mode 'step' with NO repeat_every_ms is the other
+// deliberate contradiction, and it too must be LOUD.
+const STEPBAD = benchConfig({
+    STATE_1: benchState('step ramp, no repeat cycle', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: SP_S0, initial_velocity_mps: SP_FROM },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_STIFF }, {
+        controls_visible: ['v1'],
+        param_ramp: { param: 'v1', from: SP_FROM, to: SP_TO, start_ms: 0, end_ms: SP_MS, mode: 'step' },
+    }),
 });
 
 (async () => {
@@ -1217,6 +1312,33 @@ const CONTRA = benchConfig({
                 'base concept parses = ' + baseOk + '; both authored → ' + bad.length +
                 ' issue(s): ' + (bad[0] || 'NONE') +
                 ' | preload_m alone → ' + ok1.length + ' issue(s) | sticks alone → ' + ok2.length + ' issue(s)');
+
+            // ── C2b — validate:concepts REJECTS mode:'step' with no repeat cycle
+            const mkR = (mbExtra: Record<string, unknown>) => Object.assign({}, baseConcept, {
+                field_3d_config: {
+                    scenario_type: 'momentum_bench',
+                    states: { STATE_1: { momentum_bench: Object.assign({ bodies: [] }, mbExtra) } },
+                },
+            });
+            const hitR = (o: unknown) => {
+                const r = conceptJsonSchema.safeParse(o);
+                if (r.success) return [];
+                return r.error.issues
+                    .filter(i => i.path.join('.').indexOf('momentum_bench.param_ramp') >= 0)
+                    .map(i => i.message);
+            };
+            const stepRamp = { param: 'v1', from: 1.5, to: 4.5, start_ms: 0, end_ms: 4800, mode: 'step' };
+            const badR = hitR(mkR({ param_ramp: stepRamp }));
+            const badR0 = hitR(mkR({ param_ramp: stepRamp, repeat_every_ms: 0 }));
+            const okR1 = hitR(mkR({ param_ramp: stepRamp, repeat_every_ms: 1200 }));
+            const okR2 = hitR(mkR({ param_ramp: Object.assign({}, stepRamp, { mode: 'continuous' }) }));
+            const okR3 = hitR(mkR({ param_ramp: { param: 'v1', from: 1.5, to: 4.5, start_ms: 0, end_ms: 4800 } }));
+            chk('C2b_validator_rejects_step_mode_without_repeat_every_ms',
+                badR.length === 1 && badR[0].indexOf('Gate 8n') === 0 &&
+                badR0.length === 1 && okR1.length === 0 && okR2.length === 0 && okR3.length === 0,
+                'mode:"step" with no repeat_every_ms → ' + badR.length + ' issue(s): ' + (badR[0] || 'NONE') +
+                ' | repeat_every_ms:0 → ' + badR0.length + ' issue(s) | + repeat_every_ms:1200 → ' +
+                okR1.length + ' | mode:"continuous" alone → ' + okR2.length + ' | mode absent → ' + okR3.length);
         }
 
         // ── C3 — renderer fallback: loud, and preload_m wins ─────────────────
@@ -1532,6 +1654,187 @@ const CONTRA = benchConfig({
             k_ramp: { segments: runs18.length, k_per_segment: kRun, k_jitter: kJitter, closed_form: cf18 },
             m2_ramp: { segments: runs19.length, m_per_segment: mRun, m_jitter: mJitter, events: ev19.length },
         };
+
+        // ── C13–C15 — param_ramp.mode 'step' ─────────────────────────────────
+        // THE DEFECT: a continuous v₁ sweep keeps retiming the ball while it is in
+        // FREE FLIGHT on its run-up, so the ball accelerates with nothing touching
+        // it. The fix quantises the clock to the repeat cycle BEFORE the ramp
+        // fraction is taken. Every expectation below is the harness's own closed
+        // form over the authored constants; the engine is never asked what to
+        // expect, and STATE_21 (explicit 'continuous') is the pre-fix code path
+        // byte for byte, so it serves as BOTH the defect exhibit and the
+        // default-path regression guard.
+        const stepVal = (from: number, to: number, t1: number, rep: number, t: number) =>
+            from + (to - from) * Math.min(1, Math.max(0, (Math.floor(t / rep) * rep) / t1));
+        const collect = async (state: string, frames: number) => {
+            // Drain the SHARED fixed-step accumulator to a known state first (the
+            // A8a idiom; SET_STATE clears the pin). Without it each run inherits a
+            // different __pmAccumMs remainder from whatever ran before it, the
+            // first frames carry 1 vs 2 steps, and two runs of the SAME fixture
+            // would disagree on t_ms for reasons that have nothing to do with the
+            // ramp — which would make the byte-identity guard below meaningless.
+            await h.pin(1); await h.tick(16.7, 2);
+            await h.setState(state);
+            const out: RampFrame[] = [];
+            for (let i = 0; i < frames; i++) { await h.tick(16.7, 1); out.push(await h.page.evaluate(RAMP_LITE)); }
+            return out;
+        };
+        const fr20 = await collect('STATE_20', 380);   // step        — cycles 0..5
+        const fr21 = await collect('STATE_21', 250);   // continuous  — cycles 0..3
+        const fr22 = await collect('STATE_22', 250);   // mode absent — must equal 21
+
+        // C13a — the value is EXACTLY constant across each whole repeat cycle, and
+        // it moves ONLY on a frame that also crossed a cycle boundary.
+        const q20 = cycleReport(fr20, SP_REP);
+        const offForm = fr20.filter(f => Math.abs(f.v0 - stepVal(SP_FROM, SP_TO, SP_MS, SP_REP, f.t_ms)) > 1e-9);
+        let movedOffBoundary = 0;
+        for (let i = 1; i < fr20.length; i++) {
+            if (fr20[i].v0 === fr20[i - 1].v0) continue;
+            if (Math.floor(fr20[i].t_ms / SP_REP) === Math.floor(fr20[i - 1].t_ms / SP_REP)) movedOffBoundary++;
+        }
+        chk('C13a_step_mode_holds_the_ramped_value_constant_for_a_whole_repeat_cycle',
+            q20.length >= SP_N + 1 && q20.every(c => c.jitter === 0) &&
+            offForm.length === 0 && movedOffBoundary === 0,
+            'v₁ ramped ' + SP_FROM + ' → ' + SP_TO + ' over ' + SP_MS + ' ms, mode:"step", repeat_every_ms=' +
+            SP_REP + ': ' + q20.length + ' cycles of ' + q20.map(c => c.n).join('/') + ' frames; requested v₀ per cycle = [' +
+            q20.map(c => c.value.toFixed(6)).join(', ') + '] m/s with in-cycle jitter [' +
+            q20.map(c => c.jitter.toFixed(9)).join(', ') + '] (must be exactly 0); frames off the harness’s own ' +
+            'quantised closed form = ' + offForm.length + '/' + fr20.length +
+            '; value changes NOT on a cycle boundary = ' + movedOffBoundary);
+
+        // C13b — THE DEFECT ITSELF, asserted directly: a body in free flight must
+        // hold its speed. Sampled between each re-arm and that cycle's first
+        // contact — continuous drifts, step does not.
+        const q21 = cycleReport(fr21, SP_REP);
+        const cmp = Math.min(3, q20.length, q21.length);
+        const dStep = q20.slice(0, cmp).map(c => c.drift);
+        const dCont = q21.slice(0, cmp).map(c => c.drift);
+        const pctCont = q21.slice(0, cmp).map(c => 100 * c.drift / c.launch);
+        chk('C13b_a_body_in_free_flight_keeps_its_speed_in_step_mode_and_drifts_in_continuous',
+            dStep.every(d => d === 0) && dCont.every(d => d > 0.05) &&
+            q20.slice(0, cmp).every(c => c.runup.length >= 5) &&
+            q21.slice(0, cmp).every(c => c.runup.length >= 5),
+            'run-up |v| sampled between re-arm and first contact (' +
+            q20.slice(0, cmp).map(c => c.runup.length).join('/') + ' frames per cycle): ' +
+            'STEP drift = [' + dStep.map(d => d.toFixed(9)).join(', ') + '] m/s (must be exactly 0) — ' +
+            q20.slice(0, cmp).map(c => c.runup[0].toFixed(4) + '→' + c.runup[c.runup.length - 1].toFixed(4)).join(' | ') +
+            ' || CONTINUOUS (= the pre-fix engine, byte for byte) drift = [' +
+            dCont.map(d => d.toFixed(6)).join(', ') + '] m/s = [' + pctCont.map(p => p.toFixed(2) + '%').join(', ') +
+            '] of the launch speed — ' +
+            q21.slice(0, cmp).map(c => c.runup[0].toFixed(4) + '→' + c.runup[c.runup.length - 1].toFixed(4)).join(' | ') +
+            ' (the ball accelerating with nothing touching it)');
+
+        // C13c — end_ms = N × repeat_every_ms ⇒ N+1 distinct launches, u = 0, 1/N … 1.
+        const launches = q20.slice(0, SP_N + 1).map(c => c.launch);
+        const wantL: number[] = [];
+        for (let i = 0; i <= SP_N; i++) wantL.push(SP_FROM + (SP_TO - SP_FROM) * (i / SP_N));
+        let monotonic = launches.length === SP_N + 1;
+        for (let i = 1; i < launches.length; i++) if (!(launches[i] > launches[i - 1])) monotonic = false;
+        const clampCycle = q20[SP_N + 1];
+        chk('C13c_end_ms_equals_N_times_repeat_gives_N_plus_1_distinct_launches_from_to',
+            launches.length === SP_N + 1 && monotonic &&
+            launches.every((v, i) => Math.abs(v - wantL[i]) < 1e-9) &&
+            new Set(launches.map(v => v.toFixed(9))).size === SP_N + 1 &&
+            (!clampCycle || Math.abs(clampCycle.launch - SP_TO) < 1e-9),
+            'end_ms = ' + SP_MS + ' = ' + SP_N + ' × repeat_every_ms ' + SP_REP + ' ⇒ launches [' +
+            launches.map(v => v.toFixed(6)).join(', ') + '] m/s vs from + (to−from)·i/N = [' +
+            wantL.map(v => v.toFixed(6)).join(', ') + ']; distinct = ' +
+            new Set(launches.map(v => v.toFixed(9))).size + '/' + (SP_N + 1) + ', strictly increasing = ' + monotonic +
+            ', spans ' + SP_FROM + ' → ' + SP_TO + ' inclusive; the next cycle clamps at ' +
+            (clampCycle ? clampCycle.launch.toFixed(6) : 'n/a'));
+
+        // C13d — Rule 36: the stepped value is a PURE function of t_ms. Same t_ms
+        // twice, and again after a rewind, must give an identical value.
+        const pinStep = async (ms: number) => {
+            await h.setState('STATE_20');
+            await h.pin(ms);
+            for (let i = 0; i < 600; i++) {
+                await h.tick(16.7, 8);
+                const t = await h.page.evaluate(() => (window as any).PM_simTimeMs);
+                if (typeof t === 'number' && t >= ms - 1) break;
+            }
+            return { f: await h.page.evaluate(RAMP_LITE), s: await h.snap() };
+        };
+        const p1 = await pinStep(2600);
+        await h.tick(16.7, 25);                          // the SAME t_ms, 25 frames later
+        const p1b = await h.page.evaluate(RAMP_LITE);
+        await pinStep(7000);                             // forward…
+        const p3 = await pinStep(2600);                  // …and rewound
+        const expP1 = stepVal(SP_FROM, SP_TO, SP_MS, SP_REP, p1.f.t_ms);
+        chk('C13d_stepped_value_is_a_pure_function_of_t_ms_under_a_pin_and_a_rewind',
+            Math.abs(p1.f.v0 - expP1) < 1e-9 &&
+            p1b.v0 === p1.f.v0 && p1b.t_ms === p1.f.t_ms &&
+            p3.f.v0 === p1.f.v0 &&
+            JSON.stringify(p1.s.bodies) === JSON.stringify(p3.s.bodies),
+            'pin 2600 ms → t_ms=' + p1.f.t_ms.toFixed(4) + ' (cycle ' + Math.floor(p1.f.t_ms / SP_REP) +
+            ') v₀=' + p1.f.v0.toFixed(9) + ' vs the harness’s quantised closed form ' + expP1.toFixed(9) +
+            '; 25 further ticks under the pin → t_ms=' + p1b.t_ms.toFixed(4) + ' v₀=' + p1b.v0.toFixed(9) +
+            ' (unchanged = ' + (p1b.v0 === p1.f.v0) + '); pin 2600 → 7000 → 2600 returns v₀=' +
+            p3.f.v0.toFixed(9) + ' and byte-identical bodies = ' +
+            (JSON.stringify(p1.s.bodies) === JSON.stringify(p3.s.bodies)));
+
+        // C13e — REGRESSION GUARD on the default path. mode:'continuous' and mode
+        // absent must be the same run, and both must be the plain un-quantised
+        // linear sweep this engine has always produced.
+        const seq = (fr: RampFrame[]) => JSON.stringify(fr.map(f => [f.t_ms, f.v0, f.v, f.s, f.k]));
+        const offCont = fr21.filter(f => Math.abs(f.v0 - contRamp(SP_FROM, SP_TO, SP_MS, f.t_ms)) > 1e-9);
+        const offAbs = fr22.filter(f => Math.abs(f.v0 - contRamp(SP_FROM, SP_TO, SP_MS, f.t_ms)) > 1e-9);
+        chk('C13e_continuous_and_mode_absent_are_the_unchanged_default_path',
+            seq(fr21) === seq(fr22) && offCont.length === 0 && offAbs.length === 0 &&
+            fr21.length === 250,
+            'mode:"continuous" vs mode ABSENT over ' + fr21.length +
+            ' frames: (t_ms, v₀, v, s, k) sequences byte-identical = ' + (seq(fr21) === seq(fr22)) +
+            '; frames off the plain linear closed form from + (to−from)·t/end_ms: continuous ' +
+            offCont.length + '/' + fr21.length + ', absent ' + offAbs.length + '/' + fr22.length +
+            ' — the additive change touches neither');
+
+        // C13f — composition with the 4ecae93 mbContactBusy deferral: k acts only
+        // DURING contact, so a stepped k must still hold still inside every
+        // engaged segment as well as across every cycle.
+        const fr23 = await collect('STATE_23', 290);
+        const q23 = cycleReport(fr23, SK_REP, f => f.k);
+        const kByCycle = q23.map(c => c.value);
+        const kCycleJit = q23.map(c => c.jitter);
+        const runs23 = engagedRuns(fr23);
+        const kSegJit = runs23.map(r => spread(r.map(f => f.k)));
+        const kFormOff = fr23.filter(f => Math.abs(f.k - stepVal(SK_FROM, SK_TO, SK_MS, SK_REP, f.t_ms)) > 1e-9);
+        chk('C13f_a_stepped_k_ramp_holds_across_the_cycle_and_inside_every_engaged_segment',
+            q23.length >= SK_N + 1 && kCycleJit.every(x => x === 0) &&
+            runs23.length >= SK_N && kSegJit.every(x => x === 0) &&
+            kFormOff.length === 0 && spread(kByCycle) > 500,
+            'k ramped ' + SK_FROM + ' → ' + SK_TO + ' N/m over ' + SK_MS + ' ms, mode:"step", repeat_every_ms=' +
+            SK_REP + ': k per cycle = [' + kByCycle.map(k => k.toFixed(4)).join(', ') +
+            '] N/m, in-cycle jitter [' + kCycleJit.map(x => x.toFixed(9)).join(', ') + ']; ' +
+            runs23.length + ' engaged segments with jitter [' + kSegJit.map(x => x.toFixed(9)).join(', ') +
+            '] (both must be exactly 0); frames off the quantised closed form = ' + kFormOff.length +
+            '/' + fr23.length + '; total spread ' + spread(kByCycle).toFixed(1) + ' N/m');
+
+        results.step_mode = {
+            step_cycles: q20.map(c => ({ cycle: c.cycle, value: c.value, jitter: c.jitter, launch: c.launch, runup_frames: c.runup.length, drift: c.drift })),
+            continuous_cycles: q21.map(c => ({ cycle: c.cycle, launch: c.launch, drift: c.drift, drift_pct: 100 * c.drift / c.launch })),
+            launches, launches_expected: wantL,
+            default_path_identical: seq(fr21) === seq(fr22),
+            k_step: { per_cycle: kByCycle, cycle_jitter: kCycleJit, segment_jitter: kSegJit },
+        };
+    }
+
+    // ── C14 — the step ramp with NO repeat cycle: loud, and continuous ────────
+    {
+        const g = await open('mb_seam_c_stepbad', STEPBAD);
+        await g.setState('STATE_1');
+        const frB: RampFrame[] = [];
+        for (let i = 0; i < 150; i++) { await g.tick(16.7, 1); frB.push(await g.page.evaluate(RAMP_LITE)); }
+        const loudB = g.errors.filter(e => e.indexOf('step') >= 0 && e.indexOf('repeat_every_ms') >= 0);
+        const offB = frB.filter(f => Math.abs(f.v0 - contRamp(SP_FROM, SP_TO, SP_MS, f.t_ms)) > 1e-9);
+        chk('C14_step_without_repeat_every_ms_is_loud_and_falls_back_to_continuous',
+            loudB.length > 0 && offB.length === 0 &&
+            Math.abs(frB[frB.length - 1].v0 - frB[0].v0) > 0.05,
+            'console error logged = ' + (loudB.length > 0) + ' (' + (loudB[0] || '').slice(0, 110) + '…); ' +
+            'frames off the CONTINUOUS closed form = ' + offB.length + '/' + frB.length +
+            ' — the ramp degrades to a plain sweep rather than freezing at `from` (v₀ ' +
+            frB[0].v0.toFixed(4) + ' → ' + frB[frB.length - 1].v0.toFixed(4) + ' m/s over ' +
+            Math.round(frB[frB.length - 1].t_ms) + ' ms)');
+        await g.browser.close();
     }
 
     // ══ Scene skeleton — the meshes must EXIST, not merely be declared ═══════

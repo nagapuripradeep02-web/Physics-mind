@@ -229,3 +229,50 @@ INSERT INTO engine_bug_queue (
     'lom-f Phase 1 field3d_surgeon dispatch (2026-07-31)',
     'probe_definition'
 );
+
+-- ============================================================
+-- PHASE 1 ADDITION (param_ramp step mode, 2026-07-31) — field3d_surgeon dispatch
+-- "param_ramp sweeps continuously through a body's free flight".
+-- Row 1 is the incident (found + fixed inside this dispatch's own diff).
+-- Row 2 is the durable probe_definition the fix installs.
+-- ============================================================
+
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_param_ramp_sweeps_continuously_through_a_bodys_free_flight',
+    'A continuous parameter sweep retimes a body that is already in free flight, so it accelerates with nothing touching it',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'param_ramp offered only a CONTINUOUS linear sweep of the state clock, but the pedagogy it serves is DISCRETE: each successive re-arm launches faster or softer than the last. Because the sweep never pauses, a v1 ramp keeps writing a new launch speed on every frame of the run-up, and since the body is still STAGED (armed, not yet spent) the shared write-path retimes its LIVE velocity - the ball visibly accelerates across the bench with nothing touching it and the HUD prints the climbing number. Measured on impulse.json geometry (run-up 2.62 m, contact at s = 1.02): STATE_4 v1 1.5->3.0 over end_ms 4894 drifts 1.50 -> 2.04 m/s (+36%) during the run-up alone; STATE_7 v1 1.5->6.0 drifts 1.50 -> 3.11 (+107%). Measured again on the harness fixture (v1 1.5->4.5 over 4800 ms, repeat 1200): run-up drift +15.33% / +6.67% / +3.67% on the first three cycles. It is NOT fixable from the JSON: lengthening end_ms only dilutes it, because the fraction of the sweep that leaks into each run-up is t_runup / t_cycle however long the ramp is, and every other workaround (shorter run-up, narrower range, hiding the v readout) trades away pedagogy. A k or c ramp is UNAFFECTED - those act only during contact - which is exactly why the defect stayed invisible through the seam that proved the ramp.',
+    'A parameter that is READ DURING FREE FLIGHT (a launch speed, a mass) must not be swept continuously while a body is in flight. Author it as param_ramp.mode step, which quantises the clock to the repeat_every_ms boundary BEFORE the ramp fraction is taken (t_q = floor(t_ms / repeat) * repeat), so the requested value is constant for a whole cycle and moves only at the instant the bench re-arms. The quantisation must stay a pure function of t_ms - no last-cycle-seen variable - or a freeze pin and a rewind stop agreeing (Rule 36). The ramp must run BEFORE the re-arm in the frame loop, or every stepped launch is one cycle stale. step without repeat_every_ms silently degrades back to a continuous sweep, so validate:concepts rejects the pair (Gate 8n) and the renderer logs an error and falls back.',
+    'js_eval',
+    'Drive a state whose ramp param is read during free flight, sampling every frame. Group frames by repeat cycle; for each cycle take the free-flight window between the re-arm and that cycle first engaged frame and assert spread(|v|) is EXACTLY 0 across it (a body with nothing touching it holds its speed). Assert the ramped value has zero jitter within each whole cycle and changes only on a frame that crossed a cycle boundary. With end_ms = N * repeat, assert exactly N+1 distinct launch values equal to from + (to-from)*i/N, strictly monotonic, and the next cycle clamped at to.',
+    'FIXED',
+    ARRAY['impulse']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts','src/schemas/conceptJson.ts','src/scripts/_scratch_mb_seams.ts']::text[],
+    'lom-f Phase 1 field3d_surgeon dispatch (2026-07-31)',
+    'incident'
+);
+
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_scripted_sweep_must_match_the_grain_of_what_it_teaches',
+    'A scripted sweep authored continuous while the lesson is per-event is a physics lie on every frame between events',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'A scripted parameter sweep has a GRAIN: the interval over which its value is allowed to move. When the taught claim is per-event ("each bounce launches faster than the last"), the grain is the event, not the frame. A continuous sweep has frame grain, so between events it keeps moving a quantity the scene is currently DISPLAYING as a physical fact - and the display is honest, which is what makes it a lie. The failure hides in plain sight because the sweep is correct AT the events: every recorded contact matches its own closed form, every gate passes, the eye sees a ball that gets faster, and only a frame-by-frame free-flight sample shows the ball accelerating with no force on it. It is invisible to a driver that samples at events, invisible to a frozen-frame baseline (each pinned frame is internally consistent), and invisible to a k or c ramp (a parameter read only during contact has event grain already). The general form: any scripted value written through a live write-path must be quantised to the grain of the physical event it teaches, and the quantisation must be closed-form in the clock so a pin and a rewind still agree.',
+    'Every scripted sweep declares its GRAIN. If the value is read while a body is in free flight, the grain is the re-arm cycle and the sweep is stepped; if it is read only inside an event the engine solves as one segment, frame grain is already safe. Order is load-bearing: the sweep writes BEFORE the re-arm reads it. A mode that needs a companion key to mean anything (step needs repeat_every_ms) gets a validator gate, not a silent degrade - loud beats clever.',
+    'js_eval',
+    'For every scripted sweep in a scenario: (1) classify each ramped param as free-flight-read or event-read; (2) for free-flight-read params, sample every frame and assert zero drift of the physically-owned quantity across each free window, and zero jitter of the requested value within each cycle; (3) for event-read params, assert zero jitter within each engaged segment and that each segment matches the closed form for the value it engaged with; (4) assert the same t_ms evaluated twice, and again after a rewind, returns an identical value; (5) assert the default (mode absent) frame-by-frame sequence is byte-identical to the explicit continuous one and matches the plain linear closed form, so the additive mode cannot move the fleet.',
+    'FIXED',
+    ARRAY['impulse']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts','src/schemas/conceptJson.ts','src/scripts/_scratch_mb_seams.ts']::text[],
+    'lom-f Phase 1 field3d_surgeon dispatch (2026-07-31)',
+    'probe_definition'
+);

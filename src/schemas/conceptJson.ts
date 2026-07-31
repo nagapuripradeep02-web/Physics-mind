@@ -646,19 +646,51 @@ export const conceptJsonSchema = z.object({
     | undefined;
   if (f3d && f3d.scenario_type === 'momentum_bench' && f3d.states && typeof f3d.states === 'object') {
     for (const [stateId, stateVal] of Object.entries(f3d.states)) {
-      const contact = (stateVal as { momentum_bench?: { contact?: Record<string, unknown> } })
-        ?.momentum_bench?.contact;
-      if (!contact) continue;
-      const preload = contact.preload_m;
-      if (contact.sticks === true && typeof preload === 'number' && preload > 0) {
-        ctx.addIssue({
-          code: 'custom',
-          path: ['field_3d_config', 'states', stateId, 'momentum_bench', 'contact'],
-          message:
-            `Gate 8m (momentum_bench): ${stateId}.contact declares BOTH sticks:true and ` +
-            `preload_m:${preload} — they are mutually exclusive. A pre-loaded spring that ` +
-            `latches on release is a dead sim. Remove one (preload_m wins at runtime).`,
-        });
+      const mbCfg = (stateVal as { momentum_bench?: Record<string, unknown> })?.momentum_bench;
+      if (!mbCfg || typeof mbCfg !== 'object') continue;
+
+      const contact = mbCfg.contact as Record<string, unknown> | undefined;
+      if (contact && typeof contact === 'object') {
+        const preload = contact.preload_m;
+        if (contact.sticks === true && typeof preload === 'number' && preload > 0) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['field_3d_config', 'states', stateId, 'momentum_bench', 'contact'],
+            message:
+              `Gate 8m (momentum_bench): ${stateId}.contact declares BOTH sticks:true and ` +
+              `preload_m:${preload} — they are mutually exclusive. A pre-loaded spring that ` +
+              `latches on release is a dead sim. Remove one (preload_m wins at runtime).`,
+          });
+        }
+      }
+
+      // ── Gate 8n — momentum_bench: param_ramp.mode:'step' REQUIRES
+      //    repeat_every_ms on the same state (founder ruling 2026-07-31).
+      //    A step ramp quantises the clock to the repeat-cycle boundary so the
+      //    ramped value holds still for a whole cycle and moves only when the
+      //    bench re-arms. With no repeat cycle there is nothing to quantise to,
+      //    so the ramp degrades silently back to a continuous sweep — i.e. the
+      //    exact defect the mode exists to remove, now shipped under a key that
+      //    claims it is fixed. The renderer additionally logs a console error and
+      //    falls back to continuous, but a silent degrade with no validator error
+      //    is the fails-silently class this chapter keeps paying for.
+      //      Deliberately NARROW, like 8m: this is the one contradiction, not a
+      //    Zod mirror of the whole momentum_bench config surface.
+      const ramp = mbCfg.param_ramp as Record<string, unknown> | undefined;
+      if (ramp && typeof ramp === 'object' && ramp.mode === 'step') {
+        const rep = mbCfg.repeat_every_ms;
+        if (!(typeof rep === 'number' && rep > 0)) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['field_3d_config', 'states', stateId, 'momentum_bench', 'param_ramp'],
+            message:
+              `Gate 8n (momentum_bench): ${stateId}.param_ramp declares mode:"step" but the ` +
+              `state has no repeat_every_ms > 0. A step ramp quantises the clock to the repeat ` +
+              `cycle, so with no cycle it silently degrades to a continuous sweep that retimes ` +
+              `the body in mid-flight. Add repeat_every_ms (size end_ms = N × repeat_every_ms ` +
+              `for N+1 distinct launches spanning from → to) or drop mode:"step".`,
+          });
+        }
       }
     }
   }

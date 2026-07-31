@@ -1170,7 +1170,27 @@ export interface Field3DConfig {
             // clock (never an accumulator) written through the SAME slider
             // write-path as a teacher drag, so the row's value text tracks it and
             // a rewind lands on the same number (Rule 36).
-            param_ramp?: { param: 'v1' | 'k' | 'm2'; from: number; to: number; start_ms?: number; end_ms: number };
+            //   mode (default 'continuous') — 'continuous' sweeps the value every
+            // frame, which is right when the parameter only acts DURING contact
+            // (k, c): the sweep between contacts is invisible and each impact just
+            // uses the value it engaged with. It is WRONG for a parameter that is
+            // read during free flight (v1, m2): a v1 sweep keeps retiming the ball
+            // on its run-up, so the ball visibly accelerates with nothing touching
+            // it. 'step' QUANTISES the clock to the repeat_every_ms boundary
+            // BEFORE the ramp fraction is taken, so the requested value is
+            // CONSTANT for the whole of each repeat cycle and moves only at the
+            // instant the bench re-arms — which is the discrete pedagogy ("each
+            // bounce launches faster than the last") the ramp actually serves.
+            //   'step' REQUIRES repeat_every_ms on the same state (there is no
+            // cycle to quantise to without it); validate:concepts rejects the pair
+            // (Gate 8n) and the renderer logs an error and falls back to
+            // continuous. Sizing: end_ms = N × repeat_every_ms gives N+1 distinct
+            // launches, u = 0, 1/N … 1, spanning from → to inclusive.
+            param_ramp?: {
+                param: 'v1' | 'k' | 'm2'; from: number; to: number;
+                start_ms?: number; end_ms: number;
+                mode?: 'continuous' | 'step';
+            };
             phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; glow_focal?: string }>;
         };
         // ── rhr_force_direction per-state config (DIRECTION-ONLY sibling of
@@ -42305,13 +42325,39 @@ export const FIELD_3D_RENDERER_CODE = `
     // param_ramp — a CLOSED FORM of the state clock, so a freeze pin and a rewind
     // both land on the same value (Rule 36). It writes through mbSetParam, i.e.
     // exactly the path a teacher drag takes, and a seize stops it dead.
+    //
+    //   mode = 'step' (default 'continuous'): quantise the clock to the
+    // repeat_every_ms boundary BEFORE the ramp fraction is taken.
+    //
+    //       t_q = floor(t_ms / repeat_every_ms) * repeat_every_ms
+    //       u   = clamp((t_q - t0) / (t1 - t0), 0, 1)
+    //
+    // The requested value is then CONSTANT for the whole of each repeat cycle and
+    // changes only at the instant the bench re-arms, so a body in free flight is
+    // never retimed under itself. THE DEFECT this exists for: a continuous v₁
+    // sweep writes a new launch speed on every frame of the run-up, and since the
+    // body is still STAGED (not spent) mbSetParam retimes its LIVE velocity — the
+    // ball accelerates across the bench with nothing touching it, and the HUD
+    // prints the climbing number. Lengthening end_ms only dilutes it; the leaked
+    // fraction of the sweep is t_runup / t_cycle however long the ramp is.
+    //   Still a pure function of eng.t_ms and authored constants — NOTHING is
+    // remembered between frames (no "last cycle seen"), so a SET_TIME_FREEZE pin
+    // and a rewind land on exactly the same value (Rule 36).
+    //   'step' with no repeat_every_ms has no cycle to quantise to.
+    // validate:concepts rejects that pair (Gate 8n) and applyMomentumBenchState
+    // says so out loud; here it simply falls back to continuous.
     function mbRunParamRamp(mb, eng) {
         var pr = mb && mb.param_ramp;
         if (!pr || !pr.param || !MB_CTRL_SPEC[pr.param]) return;
         if (window.PM_mbSeized) return;
         var t0 = (typeof pr.start_ms === "number" && pr.start_ms > 0) ? pr.start_ms : 0;
         var t1 = (typeof pr.end_ms === "number" && pr.end_ms > t0) ? pr.end_ms : t0;
-        var u = (t1 > t0) ? ((eng.t_ms - t0) / (t1 - t0)) : (eng.t_ms >= t1 ? 1 : 0);
+        var tEval = eng.t_ms;
+        if (pr.mode === "step") {
+            var rep = (typeof mb.repeat_every_ms === "number" && mb.repeat_every_ms > 0) ? mb.repeat_every_ms : 0;
+            if (rep > 0) tEval = Math.floor(eng.t_ms / rep) * rep;
+        }
+        var u = (t1 > t0) ? ((tEval - t0) / (t1 - t0)) : (tEval >= t1 ? 1 : 0);
         if (u < 0) u = 0; else if (u > 1) u = 1;
         mbSetParam(pr.param, pr.from + (pr.to - pr.from) * u);
     }
@@ -42352,6 +42398,12 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.t_ms += h * 1000;
         window.PM_mbTimeMs = eng.t_ms;
         mbRunPhases(mb, eng, eng.t_ms);
+        // ORDER IS LOAD-BEARING: the ramp writes BEFORE the repeat re-arms.
+        // On the frame that crosses t = N·repeat_every_ms both act, and a stepped
+        // ramp has already stepped to cycle N's value by the time
+        // mbSeedKinematics copies v₀ into the live v — so the re-armed body
+        // launches with the NEW value, never the previous cycle's. Swapping these
+        // two lines makes every stepped launch exactly one cycle stale.
         mbRunParamRamp(mb, eng);
         mbRunRepeat(mb, eng);
         mbStep(eng, h * mbDtScale(eng, mb));
@@ -42581,6 +42633,21 @@ export const FIELD_3D_RENDERER_CODE = `
             param_ramp: mb.param_ramp || null,
             trusted_drag_seizes: !!mb.trusted_drag_seizes
         };
+        // param_ramp.mode 'step' quantises the clock to the repeat cycle, so with
+        // no repeat_every_ms there is no cycle to quantise to and the ramp is
+        // silently just a continuous sweep — i.e. the exact defect the mode was
+        // added to remove, shipped under a key that claims it is fixed.
+        // validate:concepts rejects it (Gate 8n); if it arrives anyway, say so out
+        // loud ONCE per state apply (never per frame) and fall back to continuous.
+        if (mb.param_ramp && mb.param_ramp.mode === "step" &&
+            !(typeof mb.repeat_every_ms === "number" && mb.repeat_every_ms > 0)) {
+            try {
+                console.error("[momentum_bench] param_ramp.mode is \\u0027step\\u0027 but the state declares no " +
+                    "repeat_every_ms — a step ramp quantises the clock to the repeat cycle, so there is " +
+                    "no cycle to step on. Falling back to continuous. " +
+                    "npm run validate:concepts rejects this combination (Gate 8n).");
+            } catch (e) {}
+        }
         for (var i = 0; i < bodies.length; i++) {
             var d = bodies[i];
             if (!d || !d.id) continue;
