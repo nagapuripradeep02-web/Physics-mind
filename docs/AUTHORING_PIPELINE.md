@@ -68,6 +68,32 @@ build). **Checkpoint B** — after quality-auditor PASS + eye-walker: the four-p
 sealed: diff the claimed fixes, no silent skips. Shipping stays founder-only (Rule 17) — the proxy
 approves authoring, never releases. Full contract: `.agents/founder_proxy/CLAUDE.md`.
 
+**⧉ LAND — the repo step that closes every build (added 2026-08-01).** Not a new numbered stage: a
+companion to the checkpoints, run once a concept is sealed (Checkpoint C) — *before* the professor
+gate ④, because Asmi cannot review what is not on GitHub. Committing is not backing up; a commit
+that is never pushed exists on exactly one hard drive.
+
+```bash
+npm run check:renderer-syntax && npx tsc --noEmit && npm run validate:concepts && npx vitest run
+git status && git add <the named paths> && git diff --cached   # NEVER `git add -A`
+git commit -m "feat(<id>): <what>" && git push
+gh pr create --title "…" --body "…"
+npm run desk:audit          # must print: commits existing ONLY on this machine: 0
+```
+
+Delegate the whole step to the **`git-steward`** agent when the desk has drifted or the staging list
+is long — it runs the verify chain, stages only what it was named, pushes, and opens the PR. Its one
+hard boundary: **a merge conflict in any file under `src/` — above all the six Rule-40 platform
+engine files — stops it dead and routes to the owning surgeon** (`field_3d_renderer.ts` →
+field3d-surgeon; parametric / particle_field / premium_primitives → pcpl-surgeon). PR #10 is why:
+nine hunks there looked like ordinary keep-both conflicts, and a naive resolution would have shipped
+two HUD headers per body. It never merges to master, and it never touches `visual:approve`, TTS,
+`PILOT_CONCEPTS`, or any deploy — Rule 17 shipping stays founder-only.
+
+Desk hygiene is mechanical and belongs to `npm run desk:audit | sync | new | close`
+(`docs/GIT_WORKFLOW.md` §7), not to memory: one desk = one branch = one job, opened when the job
+starts and **closed when it merges**.
+
 ---
 
 ## §0 — Chapter opening: the Phase-0 doctrine (graduated 2026-07-31 from the chapter-loop trial)

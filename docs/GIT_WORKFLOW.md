@@ -182,3 +182,42 @@ git fetch origin && git log --all -S "<symbol>" --oneline
 # where is unpushed work hiding?
 git rev-list --count --branches --not --remotes     # must be 0
 ```
+
+---
+
+## 7. Desks — and the four commands that keep them honest
+
+*Added 2026-08-01, after an audit found 7 commits on one hard drive, three desks 81 commits behind
+master, and a finished desk still open a day after its PR merged.*
+
+**The office** is your main checkout. It stays on `master` and stays clean: you plan there, you never
+build there. **A desk** is a worktree: one desk = one branch = one session = one job. A desk is opened
+when the job starts and **closed when the job merges**. Desks are places you visit, not places you live
+— the month the main checkout spent parked on a feature branch is what made everything else drift.
+
+```bash
+npm run desk:audit                 # the truth table — run at session start AND session close
+npm run desk:sync                  # merge origin/master into every live desk
+npm run desk:new   -- feat/ch9-ray-optics    # open a desk (branch + worktree + node_modules junction)
+npm run desk:close -- feat/ch9-ray-optics    # close one; add --yes once you've read what it prints
+```
+
+`desk:audit` exits non-zero when any commit exists only on this machine, so it also works as a
+pre-flight. It is the mechanical answer to §2's "never end a session with unpushed commits" — a rule a
+human forgets and a script cannot.
+
+`desk:sync` merges one desk at a time and **stops at the first conflict** rather than guessing. When
+the conflicting file is one of §4's six platform engine files it says so loudly and names the owning
+surgeon, because that conflict is a judgement call (see §3 — and PR #10, where nine hunks in
+`field_3d_renderer.ts` looked like ordinary keep-both conflicts and a naive resolution would have
+printed two HUD headers per body).
+
+`desk:close` **refuses** to close a desk holding unpushed commits or uncommitted changes, backs up
+untracked files to `C:\Backups\desk-close-<date>\` first, and removes the `node_modules` junction
+*before* the worktree — that order is not cosmetic: reversed, `git worktree remove` follows the
+junction and empties the real `node_modules`. It never deletes a branch; the branch stays on GitHub.
+
+**Delegating it.** The `git-steward` agent does the same work when a desk has drifted badly or the
+staging list is long: verify chain → surgical `git add` of a *named* list → commit → push → open the
+PR. It never merges to master, never force-pushes, never `git add -A`, and stops at any conflict under
+`src/`. Shipping (`visual:approve`, TTS, `PILOT_CONCEPTS`, deploy) remains founder-only — Rule 17.
