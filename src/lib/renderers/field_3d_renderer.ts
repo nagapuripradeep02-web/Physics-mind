@@ -42464,9 +42464,16 @@ export const FIELD_3D_RENDERER_CODE = `
             v: { x: 0, y: 0 },
             ax: 0, ay: 0, sumFx: 0, sumFy: 0, sumF: 0,
             glow_focal: fr.glow_focal || "",
+            // The state's OWN entry focal, kept so a RESET_TRAJECTORY rewind can
+            // put it back after a phases[] one-shot has overridden it (the
+            // nlb base_glow_focal idiom).
+            base_glow_focal: fr.glow_focal || "",
             t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
             _ramp_last: null,     // param_ramp churn guard, rebased on every entry
             _sub: 0,
+            // Authored ring START pose, kept alongside the live p so a rewind can
+            // restore it (p is an ACCUMULATOR — see frResetTrajectory).
+            p0: { x: 0, y: 0 },
             // ── whirl (branch B) record; inert on a force_table state ──────
             geometry: "conical", L: 1, m_bob: 1.5,
             omega_req: 4, omega: 4, omega_min: 0, omega_clamped: false,
@@ -42493,6 +42500,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (off && off.length === 2 && isFinite(off[0]) && isFinite(off[1])) {
             eng.p.x = off[0]; eng.p.y = off[1];
         }
+        eng.p0 = { x: eng.p.x, y: eng.p.y };
         window.PM_frEngine = eng;
         window.PM_frSeized = false;
         window.PM_frTimeMs = 0;
@@ -42640,6 +42648,73 @@ export const FIELD_3D_RENDERER_CODE = `
             frwFit(fr, eng);
         }
         frWriteReadouts(fr, eng);
+    }
+
+    // ── RESET_TRAJECTORY — rewind THIS state to its own t = 0 ─────────────
+    //   Every CLOSED-FORM field_3d scenario poses from (time - stateStartTime),
+    //   so the shared RESET_TRAJECTORY handler rebasing stateStartTime rewinds it
+    //   for free. force_rig is a genuine INTEGRATOR on BOTH branches — the damped
+    //   ring's p/v, the whirl bob's p3/v3 + its trail — plus a state-local clock
+    //   t_ms that drives the phases[] script and the param_ramp. Those are
+    //   accumulators seeded only by applyForceRigState, so the rebase left them
+    //   exactly where the previous capture had run them to, and because a
+    //   SET_TIME_FREEZE pin advances virtual time FORWARD to its target and holds
+    //   (it never runs backwards), the pinned frame handed back the CONVERGED
+    //   steady state instead of the authored instant.
+    //   (engine_bug_queue force_rig_not_reproducible_under_set_time_freeze_pin:
+    //   all seven equilibrium_of_particles states photographed motionless — ring
+    //   centroid sub-pixel identical across 114 dense frames — and STATE_1 read
+    //   the param_ramp's END tension T₁ = 49.00 N at the t = 0 pin instead of the
+    //   authored 29.40 N. D5/D6/D7 then certified 31/31 on seven dead frames.)
+    //   Mirrors nlbResetTrajectory exactly, including its semantics: this is a
+    //   REWIND, not a re-seed. The pose, the clock and the one-shot latches go
+    //   back to entry; a teacher's live slider values are deliberately preserved
+    //   (a SEIZED state keeps them — Rule 37; an unseized one has its param_ramp
+    //   re-evaluated at t_ms = 0, which restores the authored "from" value through
+    //   the SAME frApplyParam write path a slider drag uses, so there is still no
+    //   parallel physics). Rule 36 is untouched: the replay that follows is the
+    //   ordinary fixed-step crawl (h = 1/60 s, __pmSteps forced to 1 under a pin),
+    //   so the reconstructed pose is byte-identical run to run.
+    function frResetTrajectory() {
+        var eng = window.PM_frEngine;
+        if (!eng) return;
+        var fr = frStateCfg();
+        eng.t_ms = 0;                        // state-local sim clock, back to 0
+        window.PM_frTimeMs = 0;
+        eng._ramp_last = null;               // the param_ramp is a closed form of t_ms
+        eng._sub = 0;
+        if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
+        var tableOn = (eng.apparatus === "force_table");
+        if (tableOn) {
+            var p0 = eng.p0 || { x: 0, y: 0 };
+            eng.p.x = p0.x; eng.p.y = p0.y;  // back to the authored ring start pose
+            eng.v.x = 0; eng.v.y = 0;
+            eng.ax = 0; eng.ay = 0;
+        } else {
+            eng.released = false;            // the cut re-arms and re-fires on replay
+            eng.trailN = 0;
+            eng.micro = 0;
+            eng.T = 0;
+            eng.ghost_r = 0; eng.ghost_y = 0;
+            var tl = frFindById("fr_trail");
+            if (tl) tl.geometry.setDrawRange(0, 0);
+        }
+        // The ramp runs AFTER the pose is restored (it writes through frApplyParam,
+        // which re-solves ΣF against the CURRENT ring position) and BEFORE the
+        // whirl re-seed (so the cone is rebuilt from the rewound ω / L).
+        frRunParamRamp(fr, eng);
+        if (tableOn) {
+            frSumForce(eng);
+            frFitStrings();
+            frDriveArrows(fr, eng);
+        } else {
+            frwSeed(eng, 0);                 // bob back ON the constraint manifold
+            frwMeasure(eng);
+            frwFit(fr, eng);
+            frwDriveArrows(fr, eng);
+        }
+        frWriteReadouts(fr, eng);
+        frApplyGlow();
     }
 
     // ── Build scenario ────────────────────────────────────────────────────
@@ -56588,6 +56663,11 @@ export const FIELD_3D_RENDERER_CODE = `
                     // form of (time - stateStartTime), so the rebase above cannot
                     // rewind it — its accumulators are rewound explicitly.
                     nlbResetTrajectory();
+                    // force_rig is the same shape (damped ring / whirl bob + the
+                    // t_ms that drives phases[] and param_ramp) — without this the
+                    // pin returned the converged steady state, not the pinned
+                    // instant (force_rig_not_reproducible_under_set_time_freeze_pin).
+                    frResetTrajectory();
                     break;
 
                 case "SET_GLOW":
