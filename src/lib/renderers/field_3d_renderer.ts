@@ -42068,7 +42068,7 @@ export const FIELD_3D_RENDERER_CODE = `
         g.font = MB_TRACE_FONT;
         g.fillStyle = "rgba(255,255,255,0.88)";
         g.textAlign = "left"; g.fillText("F (N)", 8, MB_TR_T - 8);
-        g.textAlign = "center"; g.fillText("t (ms)", (MB_TR_L + MB_TR_R) / 2, MB_TR_H - 5);
+        g.textAlign = "center"; g.fillText("t (ms)", (MB_TR_L + MB_TR_R) / 2, MB_TRACE_H - 5);
         g.textAlign = "right";
         g.fillText(mbFx(ymax, 0), MB_TR_L - 5, MB_TR_T + 5);
         g.fillText("0", MB_TR_L - 5, MB_TR_B + 4);
