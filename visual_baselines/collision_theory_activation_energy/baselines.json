@@ -1,6 +1,6 @@
 {
-  "approved_at": "2026-07-30T14:41:55.574Z",
-  "source_run": "/Users/thorotuyashwanthbalu/Desktop/Viditra-chem-collision/.visual_runs/kinetic_particle_theory/20260730-164127",
+  "approved_at": "2026-07-30T14:39:44.703Z",
+  "source_run": "/Users/thorotuyashwanthbalu/Desktop/Viditra-chem-collision/.visual_runs/collision_theory_activation_energy/20260730-015705",
   "tolerance": 0.02,
   "states": {
     "STATE_1": {
@@ -28,6 +28,14 @@
       "compare_frozen": true
     },
     "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_9": {
       "compare": true,
       "compare_frozen": true
     }
