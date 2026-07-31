@@ -40977,18 +40977,49 @@ export const FIELD_3D_RENDERER_CODE = `
     var FR_WEIGHT_H_PER_KG = 0.11;        // stack height per kilogram (the DRAWN weight)
     var FR_WEIGHT_H_MIN = 0.10;
     var FR_WEIGHT_H_MAX = 0.72;
-    // Arrow map — REUSED VERBATIM from newtons_laws_body (NLB_ARROW_SCALE /
-    // MIN_LEN / MAX_LEN / EPS), residual floor included: every force under
-    // MIN_LEN/SCALE = 11.5 N draws at the same floor length. Not re-derived here
-    // (spec section 3). The consequence for authoring is real and is carried into
-    // the JSON contract: hanging masses live in the 1.2-5 kg band so the drawn
-    // lengths are genuinely proportional across the slider range.
-    var FR_ARROW_SCALE = 0.048;           // world units PER NEWTON
-    var FR_ARROW_MIN_LEN = 0.55;
-    var FR_ARROW_MAX_LEN = 2.80;
+    // Arrow map — the newtons_laws_body map (NLB_ARROW_SCALE / MIN_LEN / MAX_LEN
+    // / EPS) RESCALED for this apparatus, residual floor included: every force
+    // under FR_ARROW_FLOOR_N draws at the same floor length. The consequence for
+    // authoring is real and is carried into the JSON contract: hanging masses
+    // live in the 1.2-5 kg band so the drawn lengths are genuinely proportional
+    // across the slider range.
+    //
+    // WHY THIS SCALE IS NOT THE NLB 0.048. A tension arrow is drawn from the ring
+    // ALONG its own string, so unlike a free-body arrow standing off a block it
+    // has a finite run to live in: ring -> pulley. That run is FR_TABLE_R_W (2.40)
+    // only while the ring sits at the exact table centre, and the ring is a solved,
+    // moving object — every time it settles toward a pulley the run on that side
+    // shrinks. At 0.048 a 49 N tension drew 2.352 units, so the moment the ring
+    // moved the arrow shot past its own pulley and terminated inside the hanging
+    // weight, burying its label under the weight's label (seen at 0/90/270 deg).
+    //   A PER-ARROW clamp is NOT available as a fix: clamping each arrow to its own
+    // available run would draw a 39.2 N and a 49 N tension at the same length
+    // whenever both are long, and length-means-magnitude is the physics this sim
+    // exists to show. So the ONE SHARED newtons -> world map is rescaled instead —
+    // every arrow on screen keeps a single common scale, and the drawn ratio of any
+    // two arrows is still exactly their ratio of newtons.
+    //   0.026 is the largest round scale that keeps the tip clear of the pulley rim
+    // in EVERY authored configuration of this concept, swept over both param_ramps
+    // and both branches (worst case STATE_4 at angle1 = 34 deg: run 1.334, arrow
+    // 1.019, pulley rim 0.22 -> 0.095 clear). It also stops the whirl branch's
+    // T arrow from punching through the anchor at high omega (T = 63 N capped at
+    // 2.80 exceeded the 2.40-unit string; it now draws 1.517).
+    //   FLOOR/CAP are written in NEWTONS so the three constants cannot drift apart
+    // and silently change WHICH forces are proportional: the floor still bites at
+    // 11.46 N and the cap at 58.33 N, exactly as before this rescale.
+    var FR_ARROW_SCALE = 0.026;           // world units PER NEWTON
+    var FR_ARROW_FLOOR_N = 11.4583;       // at/below this, every force draws one floor length
+    var FR_ARROW_CAP_N = 58.3333;         // at/above this, every force draws one cap length
+    var FR_ARROW_MIN_LEN = FR_ARROW_SCALE * FR_ARROW_FLOOR_N;   // 0.298
+    var FR_ARROW_MAX_LEN = FR_ARROW_SCALE * FR_ARROW_CAP_N;     // 1.517
     var FR_ARROW_EPS = 0.05;              // newtons; at or below this the force IS zero
     var FR_ARROW_LABEL_H = 0.26;
     var FR_ARROW_LABEL_GAP = 0.24;
+    // ... and this far to the SIDE of it (see frUpdateArrow). The arrow, its
+    // string, the pulley, the hanger and the weight plus the weight's own label
+    // are all collinear by construction, so a label placed straight ahead of the
+    // tip is placed into whatever apparatus that one direction runs into.
+    var FR_ARROW_LABEL_SIDE = 0.32;
     var FR_ZERO_DOT_R = 0.085;            // the ΣF = 0 dot (see frDriveArrows)
     // Every arrow and arrow label sits IN FRONT of the apparatus plane. A tension
     // acts along its own string, so at z = 0 the arrow is drawn inside the string
@@ -41181,7 +41212,16 @@ export const FIELD_3D_RENDERER_CODE = `
         arrow.setLength(len, headLen, headLen * 0.80);
         frFitShaft(arrow, len, headLen);
         if (lbl && labelText) {
-            lbl.position.copy(originWorld).addScaledVector(u, len + FR_ARROW_LABEL_GAP);
+            //   OFF the string line, never on it. Ahead of the tip lies the
+            //   pulley, then the hanger, then the weight and the weight's label —
+            //   the collision is structural, not a matter of how long the arrow
+            //   happens to be, so it is fixed by stepping the label sideways off
+            //   the shared axis rather than by shortening anything. The normal is
+            //   taken the same way for every arrow (+90 deg from the direction),
+            //   so labels stay spread around the ring instead of stacking.
+            lbl.position.copy(originWorld)
+                .addScaledVector(u, len + FR_ARROW_LABEL_GAP)
+                .addScaledVector(new THREE.Vector3(-u.y, u.x, 0), FR_ARROW_LABEL_SIDE);
             frSetLabelText(lbl, labelText);
         }
     }

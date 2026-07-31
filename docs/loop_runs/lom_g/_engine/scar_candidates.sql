@@ -184,3 +184,28 @@ UPDATE engine_bug_queue SET
     fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
     concepts_affected = ARRAY['equilibrium_of_particles', 'uniform_circular_motion']::text[]
 WHERE bug_class = 'field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line';
+
+-- Candidate 9 — MAJOR. NEW bug_class (no existing row: checked this file and
+-- docs/loop_runs/lom_g_state.md before authoring). Sibling of candidate 1/8 —
+-- same collinearity, opposite direction: 1/8 was the arrow being SWALLOWED by
+-- the apparatus line, this is the arrow OVERRUNNING it. Both were invisible to
+-- 31 deterministic checks and 42 harness assertions; only the frame showed it.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_arrow_length_exceeds_the_apparatus_line_it_lies_along',
+    'A magnitude-proportional arrow drawn ALONG an apparatus line outgrows that line and terminates inside the next part of the machine',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'A free-body arrow standing off a block has unlimited room, so a newtons-to-world scale can be chosen for readability alone. An arrow drawn ALONG the apparatus it describes (a string tension from the ring to its pulley, a whirl tension from the bob to its anchor) does not: it has a finite RUN, and that run is set by the solver, not by the author. force_rig inherited the newtons_laws_body scale 0.048 verbatim, which draws a 49 N tension 2.352 world units against a ring-to-pulley run that is 2.40 only while the ring sits at the exact table centre. The ring is a solved, moving object, so every time it settled toward a pulley the run shrank below the arrow and the arrow shot past its own pulley and terminated inside the hanging weight, with its label under the weight''s own label (observed at 0/90/270 deg; the whirl branch had the same defect, T = 63 N capped at 2.80 against a 2.40-unit string). The defect got WORSE, not better, when the shaft was given real mesh width (the candidate-8 fix), because a solid tube overrunning the machine is far more conspicuous than a 1px hairline doing the same thing.',
+    'Choose the newtons-to-world scale against the SHORTEST RUN THE SOLVER CAN PRODUCE, not against the apparatus at rest — sweep every authored configuration and every param_ramp/slider extreme and take the minimum ring-to-pulley (or bob-to-anchor) distance, then size the largest authored force to fit inside it with the apparatus part''s own radius as clearance. The fix is NEVER a per-arrow clamp: clamping each arrow to its own available run draws two different magnitudes at the same length, which destroys the one thing the arrow means, so ONE shared scale must serve every arrow on screen. Write the floor/cap in NEWTONS and derive the min/max lengths from the scale, so rescaling cannot silently change WHICH forces are proportional. Independently, place the arrow LABEL off the shared axis (a fixed perpendicular step), because the arrow, the string, the pulley, the hanger, the weight and the weight''s label are all collinear by construction — a label placed straight ahead of the tip is placed into whatever that direction runs into, and no choice of scale fixes it in a sandbox where a teacher can pin the solved object against its clamp.',
+    'manual',
+    'For every state and every slider/ramp extreme, settle the solver, then for each arrow compute run = |apparatus_end - arrow_origin| and assert drawn_length + apparatus_part_radius <= run. Separately measure the pixels: in the rendered frame, assert the arrow tip stops short of the apparatus part it points at, AND assert the drawn-length ratio of two arrows of different magnitude equals their ratio of newtons to within 2 percent (a per-arrow clamp passes the first assertion and fails the second — both are required, one alone is not evidence).',
+    'FIXED',
+    ARRAY['equilibrium_of_particles', 'uniform_circular_motion']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g routed engine dispatch — force_rig arrow overrun 2026-07-31',
+    'incident'
+);
