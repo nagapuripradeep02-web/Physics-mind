@@ -1,0 +1,1121 @@
+{
+  "concept_id": "capacitance",
+  "concept_name": "Capacitance — C = Q/V = ε₀A/d, the Fixed Ratio of a Capacitor",
+  "chapter": 2,
+  "section": "2.11-2.12",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.11 Capacitors and Capacitance, §2.12 The Parallel Plate Capacitor — capacitance half only) — table-of-contents + coverage scope reference only; teaching authored from first principles, no sequence/example/figure imported. DC Pandey table of contents consulted for SCOPE only (capacitance, parallel-plate capacitor, combinations, dielectrics sit as separate sections — supports this atomic's split from capacitor_energy_storage / dielectric_in_capacitor / combination_of_capacitors). The atomic idea: a capacitor's charge and voltage always move in lockstep so their ratio C = Q/V is a FIXED property of the device — set by geometry alone, C = ε₀A/d — not by how much charge or voltage you give it. Ninth Ch.2 diamond, positioned directly after parallel_plate_capacitor_field (shipped, baseline-locked): opens on that diamond's own apparatus (plates + gap ruler + docked battery) and teaches what it deliberately stopped short of (its own scope note names capacitance C = ε₀A/d as excluded). SCOPE: energy stored ½CV² (capacitor_energy_storage), dielectrics κ (dielectric_in_capacitor), combinations (combination_of_capacitors), and RC charging (i = C·dV/dt) are deferred to named siblings — each carries its own PRIMARY aha and misconception set, folding either in would break this atomic claim. The advanced-ring tail slot is used instead by the derivation of C = ε₀A/d (σ=Q/A → E=σ/ε₀ → V=E·d), which belongs to this atomic and which the CBSE/JEE lesson wants anyway. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch — a straightforward contrast beat, no predict→reveal). Routed to the field_3d 'capacitance' scenario (charge-flow circuit + plate-face charge-dot pools + area/gap morph + Q-V graph with axis-swap toggle — the field_3d_config below is the renderer contract). Authored as a doctrine proof-run for seven international-curriculum guidelines (worktree feat/curriculum-flex-pilot, 2026-07-21) — see the concept-level curriculum_tags block and each state's depth_ring for the proof-run's data-shape pilot (both additive, not gate-enforced yet).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "capacitance"
+    ]
+  },
+  "prerequisites": [
+    "parallel_plate_capacitor_field",
+    "electric_potential_meaning"
+  ],
+  "real_world_anchor": {
+    "primary": "A phone or camera flash cannot draw its blinding burst straight from the battery — so a capacitor spends a second or two quietly filling with charge, holds it, then dumps it all out again in a single millisecond of light. That fill-hold-release rhythm is exactly the physics this diamond builds, state by state.",
+    "secondary": "A defibrillator stores its life-saving jolt the same way — charging a capacitor for several seconds before releasing all of it through the paddles at once. Even a phone's touchscreen is a grid of tiny capacitors: two thin conducting layers with a whisker-thin gap, and your fingertip changes the capacitance wherever you touch."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "V": {
+        "name": "Potential difference (voltage) across the plates",
+        "unit": "V",
+        "min": 0,
+        "max": 24,
+        "default": 12,
+        "step": 1,
+        "role": "driver"
+      },
+      "A": {
+        "name": "Plate area (each plate)",
+        "unit": "m^2",
+        "min": 0.005,
+        "max": 0.025,
+        "default": 0.01,
+        "step": 0.001,
+        "role": "driver"
+      },
+      "d": {
+        "name": "Plate separation",
+        "unit": "m",
+        "min": 0.0005,
+        "max": 0.0025,
+        "default": 0.001,
+        "step": 0.0001,
+        "role": "driver"
+      },
+      "epsilon0": {
+        "name": "Permittivity of free space",
+        "unit": "C^2/(N*m^2)",
+        "constant": 8.854e-12
+      },
+      "C": {
+        "name": "Capacitance",
+        "unit": "F",
+        "derived": "epsilon0 * A / d"
+      },
+      "Q": {
+        "name": "Charge stored on ONE plate",
+        "unit": "C",
+        "derived": "C * V"
+      },
+      "sigma": {
+        "name": "Surface charge density (S6 derivation chain only)",
+        "unit": "C/m^2",
+        "derived": "Q / A"
+      },
+      "E": {
+        "name": "Field between plates via the sheet route (S6 derivation chain only)",
+        "unit": "V/m",
+        "derived": "sigma / epsilon0"
+      }
+    },
+    "computed_outputs": {
+      "C_pF": {
+        "formula": "(C*1e12) < 100 ? (C*1e12).toFixed(1) : (C*1e12).toFixed(0)"
+      },
+      "Q_nC": {
+        "formula": "(Q*1e9).toFixed(2)"
+      },
+      "ratio_nC_per_V": {
+        "formula": "(C*1e9).toFixed(4)"
+      },
+      "sigma_nC_per_m2": {
+        "formula": "(sigma*1e9).toFixed(1)"
+      },
+      "E_display_Vpm": {
+        "formula": "E.toFixed(0)"
+      },
+      "d_mm": {
+        "formula": "(d*1000).toFixed(1)"
+      },
+      "dot_count": {
+        "formula": "Math.round(Q_nC / 0.1)"
+      },
+      "graph_Q_axis_max": {
+        "formula": "1.1 * C * V_slider_max"
+      }
+    },
+    "derived_fields_declared": [
+      "C_pF",
+      "Q_nC",
+      "ratio_nC_per_V",
+      "sigma_nC_per_m2",
+      "E_display_Vpm",
+      "d_mm",
+      "dot_count",
+      "graph_Q_axis_max",
+      "C",
+      "Q",
+      "sigma",
+      "E"
+    ],
+    "formulas": {
+      "capacitance_definition": "C = Q / V",
+      "capacitance_geometry": "C = epsilon0 * A / d",
+      "charge_from_CV": "Q = C * V",
+      "sigma_from_Q": "sigma = Q / A",
+      "E_from_sigma": "E = sigma / epsilon0",
+      "V_from_Ed": "V = E * d",
+      "graph_trace_QV": "Q = C * V (re-slopes live with C(A,d))",
+      "graph_trace_VQ_toggled": "V = Q / C (S7 axis-swap toggle; same live C)"
+    },
+    "constraints": [
+      "Q = C*V is exact at every instant — never an approximation.",
+      "C = epsilon0*A/d is fixed by geometry alone; a property of the device, not of the charge or voltage on it (the PRIMARY aha).",
+      "The ratio Q/V is numerically identical to C at every V — demonstrated live via the ratio readout, never asserted without it.",
+      "While the battery stays connected, V is HELD FIXED by the source; Q is the dependent quantity that follows geometry changes (the S4/S5 guard).",
+      "No charge crosses the gap — one plate accumulates +Q, the other -Q; conduction current flows only in the external wires.",
+      "The isolated-capacitor case (battery disconnected, Q fixed instead of V) is NOT taught here and must never be visually implied; it is confined to the fixed_v_vs_fixed_q drill-down cluster, narration-only.",
+      "sigma = Q/A, E = sigma/epsilon0, V = E*d stay algebraically consistent with C = epsilon0*A/d at every state — the S6 chain closes numerically at whatever A, d, V the state shows."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 24
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Q and V move together, but their ratio, the capacitance, never changes.",
+    "visual_confirmation": "V steps 6 → 12 → 24 → 12 volts; Q mirrors it exactly on the HUD, but the glowing Q/V ratio readout never ticks."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "geometry": [
+      "STATE_4",
+      "STATE_5"
+    ],
+    "derivation": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was exhausted during the architect dispatch (2026-07-21), so ZERO external syllabus verification happened. Every cell the architect could not confirm from memory carries verified:false + needs_teacher_verification:true rather than a guess. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.2 content).",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.2 §2.11-2.12 — Capacitors and Capacitance / The Parallel Plate Capacitor",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "absent",
+        "syllabus_unit": "Quantitative capacitance believed not an IGCSE topic",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "partial",
+        "syllabus_unit": "Topic 'Capacitance' (A2) — C = Q/V, the farad, and the Q-V graph (S1-S3) believed covered; C = epsilon0*A/d believed NOT a 9702 outcome (9702's geometric capacitance case is the isolated sphere, not the parallel plate)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Legacy syllabus HL Topic 11.3 believed to cover capacitance in full; the 2023-reform syllabus believed to have REMOVED capacitance entirely",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "full",
+        "syllabus_unit": "Capacitance including the parallel-plate formula is believed core content; exact unit numbering under the 2024 Course and Exam Description needs verification",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "full",
+        "syllabus_unit": "'Conductors, Capacitors, Dielectrics' unit — confident on content overlap; the course also expects the Gauss-route derivation and the calculus-based energy result, both taught in named siblings, not here",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "partial",
+        "syllabus_unit": "The Fields strand covers plates and potential; capacitance as an explicit named device quantity believed marginal or absent from the expectations list",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "capacitive_touchscreen_grid",
+      "type": "B",
+      "label": "A phone touchscreen's capacitor grid",
+      "physical_world": "A smartphone screen is covered by a fine grid of tiny transparent conducting pads. Each overlapping pair of pads, separated by a thin insulating layer, forms a miniature parallel-plate capacitor.",
+      "same_physics": "Each pad-pair is a capacitor with C = epsilon0*A/d exactly as taught here; a fingertip approaching the glass locally changes the effective geometry, and the touch controller reads the resulting change in C to locate the touch.",
+      "scene_hint": "A zoomed-in patch of touchscreen showing two tiny transparent conducting layers with a narrow gap between them, a fingertip approaching from above."
+    },
+    {
+      "variant_id": "photography_flash_bank",
+      "type": "B",
+      "label": "A camera flash's capacitor bank",
+      "physical_world": "Before a camera flash can fire, a capacitor inside it spends a second or two quietly charging from the battery, then dumps all its stored charge in a single millisecond of light.",
+      "same_physics": "The same charge-and-hold behaviour taught in STATE_1-STATE_2: Q = CV charges up while connected, holds its charge indefinitely once full, then discharges — the same C = epsilon0*A/d device geometry, just tuned for a fast, bright release.",
+      "scene_hint": "A small flash unit's charging-indicator light climbing in brightness as its internal capacitor fills, then a bright flash and the light resets."
+    },
+    {
+      "variant_id": "defibrillator_charging_paddle",
+      "type": "B",
+      "label": "A defibrillator's charging capacitor",
+      "physical_world": "A defibrillator charges a large internal capacitor for several seconds — the machine visibly counts up a charge percentage — before it can deliver its life-saving shock through the paddles.",
+      "same_physics": "Identical Q = CV charge-and-hold mechanism at much higher voltage and larger plate area than a phone's capacitor — a bigger capacitor, exactly the same C = epsilon0*A/d physics.",
+      "scene_hint": "A defibrillator's charge-percentage readout climbing steadily as its internal capacitor fills, then holding at 100% until the shock is delivered."
+    }
+  ],
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Charge and hold — a capacitor stores charge",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_hold_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_setup_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "camera flash — fills a capacitor first",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_flow_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "switch closes — charge streams onto plates",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_hold_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "gap stays empty — charge holds",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A phone's camera flash can't draw its burst straight from the battery, so it fills a capacitor first.",
+              "glow": "plate_dots"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Close the switch: charge streams onto the plates, but none crosses the gap.",
+              "glow": "plate_dots",
+              "scenario_cue": "switch_close"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "One plate fills to positive Q, the other to negative Q. Voltage is the energy each coulomb gains crossing that gap.",
+              "glow": "plate_dots"
+            },
+            {
+              "id": "s1_4",
+              "text_en": "Then it holds.",
+              "glow": "plate_dots"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The charging current flows THROUGH the capacitor, across the gap.",
+            "visual_counter": "Beads march along the wires and STOP dead at each plate face — the gap stays visibly bead-free while +Q and -Q pile up face to face.",
+            "one_line_fix": "No charge ever crosses the gap — one plate fills to +Q while the other drains to -Q."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "The frozen ratio — Q and V move together, C never does",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_ratio_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_step_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "V steps 6 → 12 → 24 → 12 V",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_mirror_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "Q mirrors V exactly",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_ratio_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Q/V never ticks — frozen",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Watch the voltage step up and down — six, twelve, twenty-four, back to twelve volts.",
+              "glow": "ratio_readout",
+              "scenario_cue": "v_step_1"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Each time, charge on the plates mirrors it exactly.",
+              "glow": "ratio_readout"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "But watch this number: Q over V. It never ticks — not once.",
+              "glow": "ratio_readout"
+            },
+            {
+              "id": "s2_4",
+              "text_en": "You changed what the capacitor holds, never what it is.",
+              "glow": "ratio_readout"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Give it more charge or more volts and you've increased its capacitance.",
+            "visual_counter": "V doubles and doubles again, Q mirrors it exactly, and Q/V never ticks — you changed what it HOLDS, never what it IS.",
+            "one_line_fix": "Q and V change together; their ratio — the capacitance — is fixed by the device."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_ratio_constant",
+          "what_is_a_farad",
+          "charge_stored_vs_capacity"
+        ]
+      },
+      "STATE_3": {
+        "title": "Name the slope — C = Q/V, the farad",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_slope_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_sweep_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "V sweeps 0 → 24 V",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_line_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "straight line through the origin",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_slope_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "slope = C — 88.5 pF",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Now sweep the voltage from zero to twenty-four volts, and watch this graph.",
+              "glow": "graph",
+              "scenario_cue": "v_sweep_start"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Charge climbs in a dead-straight line, straight through the origin.",
+              "glow": "graph"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "That line's slope is the capacitance: C equals Q over V — measured in farads.",
+              "glow": "graph"
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Here, that slope reads eighty-eight point five picofarads.",
+              "glow": "graph"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "More area, more charge — C ∝ A",
+        "duration": 13,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s4_double_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_fixed_v_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "V fixed at 12 V",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_grow_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "plates double — beads flow in",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_double_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "double area — double charge: 88.5 → 177 pF",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now double the plate area, voltage still fixed at twelve volts.",
+              "glow": "plates",
+              "scenario_cue": "area_morph_start"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Watch the plates grow, and charge flows back in, filling the new floor at the very same density.",
+              "glow": "plates"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Twice the area, twice the charge: capacitance doubles too, eighty-eight to one-seventy-seven picofarads.",
+              "glow": "plates"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "The gap paradox — C = ε₀A/d",
+        "duration": 18,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s5_formula_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_fixed_v_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "battery holds V fixed",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_widen_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "gap doubles — charge drains",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_formula_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "C = ε₀A/d — closer plates, bigger C",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Voltage stays fixed — the battery holds it there. Now watch the gap widen to twice its size.",
+              "glow": "gap",
+              "scenario_cue": "gap_morph_start"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Charge doesn't stay put: it visibly drains back toward the battery, and both C and Q fall to half.",
+              "glow": "gap"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Closer plates hold more charge, not less — that's why capacitance is epsilon-nought times A over d.",
+              "glow": "gap"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A bigger gap means more room, so it should store more.",
+            "visual_counter": "The gap doubles and charge visibly DRAINS off the plates — Q and C halve before your eyes.",
+            "one_line_fix": "The nearby opposite plate is what holds charge in place — closer plates, bigger C: C = ε₀A/d."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_smaller_gap_bigger_c",
+          "where_does_drained_charge_go",
+          "fixed_v_vs_fixed_q"
+        ]
+      },
+      "STATE_6": {
+        "title": "Why ε₀A/d — three links, one formula",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s6_chain_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_sigma_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "σ = Q/A",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_field_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "E = σ/ε₀",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_chain_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "C = Q/V = ε₀A/d",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Nothing moves — three links you've already met, lighting up in turn.",
+              "glow": "formula"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Spread the charge over the area: sigma equals Q over A.",
+              "glow": "formula",
+              "scenario_cue": "link_1"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "That builds the field you saw before: E equals sigma over epsilon-nought.",
+              "glow": "formula",
+              "scenario_cue": "link_2"
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Multiply by the gap, V equals E times d.",
+              "glow": "formula",
+              "scenario_cue": "link_3"
+            },
+            {
+              "id": "s6_5",
+              "text_en": "Combine all three into C equals epsilon-nought A over d.",
+              "glow": "formula"
+            }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "derivation_chain_confusion",
+          "sigma_vs_q",
+          "why_v_equals_ed"
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore — capacitance sandbox",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_yours_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_drag_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "drag V, A, d",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_toggle_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "flip the axis toggle",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_yours_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "all yours",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now it's yours. Drag voltage, area, and the gap — watch charge, capacitance, and the graph respond live.",
+              "glow": "formula"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered capacitance when they can (1) state that a capacitor stores charge without any charge crossing the gap between the plates — one plate charges +Q, the other -Q; (2) recognise that the ratio Q/V is a fixed property of the device (the capacitance C), unchanged no matter what voltage or charge is applied; (3) read the slope of a Q-V graph as the capacitance, C = Q/V, in farads; (4) reason that at fixed voltage, doubling the plate area doubles both C and Q, since C ∝ A; (5) reason that at fixed voltage, doubling the plate separation halves both C and Q, since C = ε₀A/d; and (6) derive C = ε₀A/d by chaining σ = Q/A, E = σ/ε₀, and V = E·d.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A capacitor is connected to a battery and charge flows onto its plates. What happens to the charge as it moves through the circuit?",
+        "options": {
+          "A": "One plate fills with positive charge and the other with negative charge; no charge ever crosses the gap between them",
+          "B": "Charge flows through the gap from the positive plate to the negative plate",
+          "C": "Charge builds up equally on both plates with the same sign",
+          "D": "Charge oscillates back and forth across the gap until it settles"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — imagines conduction current literally crossing the gap",
+          "C": "ignores that the plates carry opposite charge, not the same sign",
+          "D": "invents an oscillation that never happens during simple charging"
+        },
+        "tested_idea": "No charge crosses the gap; one plate charges to +Q, the other to -Q.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A capacitor's plates are connected across a cell. Describe how the charge distributes itself once the switch is closed."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A capacitor is connected first to 6 V, then 12 V, then 24 V. At each voltage, its charge Q is measured. What is true about the ratio Q/V?",
+        "options": {
+          "A": "Q/V stays exactly the same at every voltage — it is the capacitor's fixed capacitance",
+          "B": "Q/V increases as voltage increases, since more charge is being stored",
+          "C": "Q/V decreases as voltage increases, since the capacitor becomes harder to fill",
+          "D": "Q/V has no fixed value; it depends on how the capacitor was charged"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — thinks giving it more voltage increases its capacitance",
+          "C": "guesses an inverse trend with no physical basis",
+          "D": "denies that C is a fixed device property at all"
+        },
+        "tested_idea": "Q/V is a fixed ratio — the capacitance — independent of the applied V.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A capacitor is charged to three different voltages in turn and its charge measured each time. Explain what stays constant, and why."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "On a graph of charge Q (y-axis) against voltage V (x-axis) for a capacitor, the plotted points form a straight line through the origin. What does the slope of that line represent?",
+        "options": {
+          "A": "The capacitance, C = Q/V",
+          "B": "The permittivity of free space, ε₀",
+          "C": "The electric field between the plates",
+          "D": "The plate separation, d"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the geometric constant with the measured slope",
+          "C": "imports the uniform-field diamond's E, a different quantity",
+          "D": "picks a geometric quantity not read off this graph"
+        },
+        "tested_idea": "The slope of the Q-V line is the capacitance, C = Q/V.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A student plots charge against voltage for a capacitor and gets a straight line through the origin. What quantity does the line's slope give, and in what unit?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "The plate area of a capacitor is doubled while the voltage is held fixed. What happens to its capacitance and stored charge?",
+        "options": {
+          "A": "Both the capacitance and the charge double",
+          "B": "The capacitance doubles but the charge stays the same",
+          "C": "The capacitance stays the same but the charge doubles",
+          "D": "Both the capacitance and the charge stay unchanged, since voltage didn't change"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "forgets that Q = CV must also change since V is fixed and C doubled",
+          "C": "misses that doubling A changes C itself, not just how much charge fits",
+          "D": "wrongly assumes only V controls Q, ignoring the geometry dependence"
+        },
+        "tested_idea": "C ∝ A, so at fixed V, doubling the area doubles both C and Q.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A parallel-plate capacitor's plates are swapped for ones with twice the area, at the same fixed voltage. State what happens to C and to Q."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "The plates of a capacitor are pulled twice as far apart while the voltage is held fixed by the battery. What happens to the stored charge?",
+        "options": {
+          "A": "The charge halves, because C = ε₀A/d and doubling d halves C",
+          "B": "The charge stays the same, because the battery voltage hasn't changed",
+          "C": "The charge doubles, because there is now more room between the plates",
+          "D": "The charge drops to zero, because the plates are now too far apart to interact"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — thinks Q depends only on V, ignoring geometry",
+          "C": "guesses more space means more storage, backwards from the real physics",
+          "D": "overstates the effect — the field doesn't vanish, it just weakens"
+        },
+        "tested_idea": "C = ε₀A/d, so at fixed V, doubling the separation halves Q.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "With the battery still connected, a capacitor's plate separation is doubled. State what happens to C and to Q, and why."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Each plate of a capacitor carries surface charge density σ = Q/A. Using E = σ/ε₀ and V = E·d, which expression for capacitance follows?",
+        "options": {
+          "A": "C = ε₀A/d",
+          "B": "C = ε₀d/A",
+          "C": "C = Q·A/d",
+          "D": "C = A/(ε₀d)"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "inverts the A and d dependence",
+          "C": "leaves a stray Q in the formula instead of it cancelling out",
+          "D": "puts ε₀ in the wrong position, inverting the whole ratio"
+        },
+        "tested_idea": "Chaining σ=Q/A, E=σ/ε₀, V=E·d through C=Q/V derives C=ε₀A/d.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Starting from σ = Q/A and E = σ/ε₀ and V = E·d, derive an expression for the capacitance C = Q/V in terms of ε₀, A, and d."
+      },
+      {
+        "q_id": "Q7",
+        "stem": "A capacitor's voltage is doubled and then returned to its original value. Compare the capacitance at the start and at the end.",
+        "options": {
+          "A": "Exactly the same — capacitance never changed at all",
+          "B": "Higher at the end, since the capacitor has now stored more charge overall",
+          "C": "Lower at the end, since some charge is permanently lost",
+          "D": "Impossible to say without knowing the exact charge stored"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes some memory effect that fixed capacitors don't have",
+          "C": "invents a charge-loss mechanism with no basis",
+          "D": "misses that C is fixed regardless of the charge history"
+        },
+        "tested_idea": "Capacitance is a fixed device property, unaffected by the voltage history.",
+        "teaches_state": "STATE_2",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A capacitor is charged to a high voltage, then discharged back to a lower one. State how its capacitance compares before and after, and justify your answer."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2", "Q7"],
+      "STATE_3": ["Q3"],
+      "STATE_4": ["Q4"],
+      "STATE_5": ["Q5"],
+      "STATE_6": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_7"]
+  },
+  "field_3d_config": {
+    "scenario_type": "capacitance",
+    "explorer_id": "capacitance_explorer",
+    "field_lines": {
+      "opacity": 0.5,
+      "color": "#66BB6A"
+    },
+    "slider_controls": {
+      "V": {
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "default": 12,
+        "label": "Voltage V (p.d.)"
+      },
+      "A": {
+        "min": 0.005,
+        "max": 0.025,
+        "step": 0.001,
+        "default": 0.01,
+        "label": "Plate area A"
+      },
+      "d": {
+        "min": 0.0005,
+        "max": 0.0025,
+        "step": 0.0001,
+        "default": 0.001,
+        "label": "Separation d"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Charge and hold — switch closes, plates fill",
+        "visible_elements": [
+          "cap_plates",
+          "cap_gap_bracket",
+          "cap_beads",
+          "cap_dots_pos",
+          "cap_dots_neg",
+          "s1_setup_label",
+          "s1_flow_label",
+          "s1_hold_label"
+        ],
+        "camera_position": [3.2, 2.0, 6.5],
+        "caption": "Charge flows on, stays",
+        "capacitance": {
+          "mode": "switch_close",
+          "V": 12,
+          "A": 0.01,
+          "d": 0.001,
+          "show_beads": true,
+          "show_dots": true,
+          "show_gap_bracket": true,
+          "show_area_tag": false,
+          "show_field_lines": false,
+          "show_graph": false,
+          "show_ratio_readout": false,
+          "switch_close_at_ms": 1500,
+          "charge_duration_ms": 9500,
+          "controls": [],
+          "static_readouts": []
+        }
+      },
+      "STATE_2": {
+        "label": "PRIMARY aha — the frozen ratio Q/V",
+        "visible_elements": [
+          "cap_plates",
+          "cap_gap_bracket",
+          "cap_beads",
+          "cap_dots_pos",
+          "cap_dots_neg",
+          "ratio_readout",
+          "s2_step_label",
+          "s2_mirror_label",
+          "s2_ratio_label"
+        ],
+        "camera_position": [3.2, 2.0, 6.5],
+        "caption": "Both double — ratio frozen",
+        "capacitance": {
+          "mode": "v_steps",
+          "V": 6,
+          "A": 0.01,
+          "d": 0.001,
+          "show_beads": true,
+          "show_dots": true,
+          "show_gap_bracket": true,
+          "show_area_tag": false,
+          "show_field_lines": false,
+          "show_graph": false,
+          "show_ratio_readout": true,
+          "formula": "Q / V = constant",
+          "v_steps": [
+            { "at_ms": 1000, "duration_ms": 800, "v": 12 },
+            { "at_ms": 3500, "duration_ms": 800, "v": 24 },
+            { "at_ms": 6000, "duration_ms": 800, "v": 12 }
+          ],
+          "controls": ["V"],
+          "static_readouts": []
+        }
+      },
+      "STATE_3": {
+        "label": "Name the slope — Q-V line, C = Q/V",
+        "visible_elements": [
+          "cap_plates",
+          "cap_gap_bracket",
+          "cap_beads",
+          "cap_dots_pos",
+          "cap_dots_neg",
+          "qv_graph",
+          "formula_surface",
+          "s3_sweep_label",
+          "s3_line_label",
+          "s3_slope_label"
+        ],
+        "camera_position": [4.2, 2.4, 6.8],
+        "caption": "Straight line — slope C",
+        "capacitance": {
+          "mode": "v_sweep",
+          "V": 0,
+          "A": 0.01,
+          "d": 0.001,
+          "show_beads": true,
+          "show_dots": true,
+          "show_gap_bracket": true,
+          "show_area_tag": false,
+          "show_field_lines": false,
+          "show_graph": true,
+          "show_ratio_readout": false,
+          "formula": "C = Q / V",
+          "v_sweep": {
+            "at_ms": 800,
+            "duration_ms": 4500,
+            "v_from": 0,
+            "v_to": 24
+          },
+          "controls": ["V"],
+          "static_readouts": []
+        }
+      },
+      "STATE_4": {
+        "label": "More area, more charge — C ∝ A",
+        "visible_elements": [
+          "cap_plates",
+          "cap_gap_bracket",
+          "plate_area_tag",
+          "cap_beads",
+          "cap_dots_pos",
+          "cap_dots_neg",
+          "qv_graph",
+          "formula_surface",
+          "s4_fixed_v_label",
+          "s4_grow_label",
+          "s4_double_label"
+        ],
+        "camera_position": [4.2, 2.4, 6.8],
+        "caption": "Double area — double charge",
+        "capacitance": {
+          "mode": "area_morph",
+          "V": 12,
+          "A": 0.01,
+          "d": 0.001,
+          "show_beads": true,
+          "show_dots": true,
+          "show_gap_bracket": true,
+          "show_area_tag": true,
+          "show_field_lines": false,
+          "show_graph": true,
+          "show_ratio_readout": false,
+          "formula": "C ∝ A",
+          "area_morph": {
+            "at_ms": 700,
+            "duration_ms": 2800,
+            "a_from": 0.01,
+            "a_to": 0.02
+          },
+          "controls": ["A"],
+          "static_readouts": []
+        }
+      },
+      "STATE_5": {
+        "label": "The gap paradox — charge drains as d grows",
+        "visible_elements": [
+          "cap_plates",
+          "cap_gap_bracket",
+          "plate_area_tag",
+          "cap_beads",
+          "cap_dots_pos",
+          "cap_dots_neg",
+          "qv_graph",
+          "formula_surface",
+          "s5_fixed_v_label",
+          "s5_widen_label",
+          "s5_formula_label"
+        ],
+        "camera_position": [4.2, 2.4, 6.8],
+        "caption": "Wider gap — charge drains",
+        "capacitance": {
+          "mode": "gap_morph",
+          "V": 12,
+          "A": 0.01,
+          "d": 0.001,
+          "show_beads": true,
+          "show_dots": true,
+          "show_gap_bracket": true,
+          "show_area_tag": true,
+          "show_field_lines": false,
+          "show_graph": true,
+          "show_ratio_readout": false,
+          "formula": "C = ε₀A / d",
+          "gap_morph": {
+            "at_ms": 700,
+            "duration_ms": 2800,
+            "d_from": 0.001,
+            "d_to": 0.002
+          },
+          "controls": ["d"],
+          "static_readouts": []
+        }
+      },
+      "STATE_6": {
+        "label": "Why ε₀A/d — three links dock into one formula",
+        "visible_elements": [
+          "cap_plates",
+          "cap_gap_bracket",
+          "plate_area_tag",
+          "cap_field_lines",
+          "cap_beads",
+          "cap_dots_pos",
+          "cap_dots_neg",
+          "formula_surface",
+          "s6_sigma_label",
+          "s6_field_label",
+          "s6_chain_label"
+        ],
+        "camera_position": [4.2, 2.4, 6.8],
+        "caption": "Three links — one formula",
+        "capacitance": {
+          "mode": "derivation",
+          "V": 12,
+          "A": 0.01,
+          "d": 0.001,
+          "show_beads": true,
+          "show_dots": true,
+          "show_gap_bracket": true,
+          "show_area_tag": true,
+          "show_field_lines": true,
+          "show_graph": false,
+          "show_ratio_readout": false,
+          "link_cues": [1500, 2500, 3500],
+          "controls": [],
+          "static_readouts": []
+        }
+      },
+      "STATE_7": {
+        "label": "Explore — V, A, d live, graph re-tracing",
+        "visible_elements": [
+          "cap_plates",
+          "cap_gap_bracket",
+          "plate_area_tag",
+          "cap_field_lines",
+          "cap_beads",
+          "cap_dots_pos",
+          "cap_dots_neg",
+          "qv_graph",
+          "formula_surface",
+          "s7_drag_label",
+          "s7_toggle_label",
+          "s7_yours_label"
+        ],
+        "camera_position": [4.2, 2.4, 6.8],
+        "caption": "All yours",
+        "capacitance": {
+          "mode": "explore",
+          "V": 12,
+          "A": 0.01,
+          "d": 0.001,
+          "show_beads": true,
+          "show_dots": true,
+          "show_gap_bracket": true,
+          "show_area_tag": true,
+          "show_field_lines": true,
+          "show_graph": true,
+          "show_ratio_readout": false,
+          "formula": "C = Q / V",
+          "controls": ["V", "A", "d"],
+          "static_readouts": [],
+          "axis_toggle": true,
+          "idle_sweep": true
+        }
+      }
+    }
+  }
+}

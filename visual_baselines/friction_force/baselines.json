@@ -1,0 +1,27 @@
+{
+  "approved_at": "2026-07-30T11:36:38.949Z",
+  "source_run": "C:\\Tutor\\physics-mind-lom-e\\.visual_runs\\friction_force\\20260730-133123",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

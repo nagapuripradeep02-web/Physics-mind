@@ -1,9 +1,9 @@
--- Laws of Motion chapter loop — engine scar CANDIDATES.
+-- Laws of Motion chapter loop â€” engine scar CANDIDATES.
 -- NOT APPLIED. No agent executes these; the founder reviews and applies.
 -- Upsert key is bug_class: a recurrence UPDATEs/reopens its row, never a duplicate INSERT.
 -- Columns are the 13 authored columns of the 16-col engine_bug_queue schema.
 
--- Seam A (newtons_laws_body build, 2026-07-25) — found while defending against it, not by a live failure.
+-- Seam A (newtons_laws_body build, 2026-07-25) â€” found while defending against it, not by a live failure.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -13,7 +13,7 @@ INSERT INTO engine_bug_queue (
     'Generic visible_elements matcher runs BEFORE the per-scenario apply and silently hides a new scenario''s apparatus',
     'MAJOR',
     'peter_parker:renderer_primitives',
-    'In field_3d applyState() the generic visibility pass (obj.visible = any visible_elements token substring-matches elementType/id) runs EARLIER in the function than every per-scenario applyXState() call. Any top-level object a new scenario registers through addToScene() is therefore hidden on any state whose authored visible_elements list does not happen to name it — and a per-scenario apply that only toggles its DYNAMIC elements (bodies, arrows) never restores the static apparatus (surface/ground/post). The result is a partially blank scene that still passes every value-level probe.',
+    'In field_3d applyState() the generic visibility pass (obj.visible = any visible_elements token substring-matches elementType/id) runs EARLIER in the function than every per-scenario applyXState() call. Any top-level object a new scenario registers through addToScene() is therefore hidden on any state whose authored visible_elements list does not happen to name it â€” and a per-scenario apply that only toggles its DYNAMIC elements (bodies, arrows) never restores the static apparatus (surface/ground/post). The result is a partially blank scene that still passes every value-level probe.',
     'A new scenario_type either (a) registers its objects ONLY in its own private id index (never addToScene) so the generic matcher cannot reach them, or (b) forces its apparatus objects visible inside its own applyXState(), which runs later and is authoritative. Assert EXISTENCE + visibility of the apparatus (mesh count > 0 AND visible === true) in the bring-up probe, never just the dynamic elements.',
     'js_eval',
     'For each top-level scene object whose elementType starts with the scenario prefix, assert obj.visible === true after SET_STATE for every state that is not authored to hide it; fail if a state''s visible_elements list is non-empty and the apparatus group went invisible.',
@@ -25,10 +25,10 @@ INSERT INTO engine_bug_queue (
 );
 
 -- ============================================================
--- SEAM B (integrator) — founder review, NOT applied
+-- SEAM B (integrator) â€” founder review, NOT applied
 -- ============================================================
 
--- Candidate 2 — MAJOR. Spec asserted Rule-36 fold-exactness while prescribing
+-- Candidate 2 â€” MAJOR. Spec asserted Rule-36 fold-exactness while prescribing
 -- s += v_new*dt, whose folded-position error is 1.5*a*N*(N-1)*h^2
 -- (measured 2.3 mm at 120 Hz for a = 3 m/s^2). Engine ships
 -- s += 0.5*(v_old+v_new)*dt instead, which folds exactly (delta = 0).
@@ -44,7 +44,7 @@ INSERT INTO engine_bug_queue (
     'MAJOR',
     'peter_parker:renderer_primitives',
     'Rule 36 requires an integrator to be linear in dt so that folding N micro-steps of h into one dtStep = N*h is EXACT. Velocity under semi-implicit Euler (v += a*dt) satisfies this. The position update s += v_new*dt does NOT: three steps of h give s0 + 3h*v0 + 6*a*h^2 while one step of 3h gives s0 + 3h*v0 + 9*a*h^2. The newtons_laws_body spec prescribed the literal s += v_new*dt while asserting fold-exactness twice in the same section. Measured divergence: 2.304e-3 m for a 6 N / 2 kg case at 120 Hz. The defect is invisible at 60 Hz in dev and only surfaces on high-refresh classroom hardware, exactly the Rule 36 failure mode.',
-    'Any new integrator''s dt-fold test must compare POSITION as well as velocity at 1e-9 — velocity alone passes while position drifts. The position update must be the trapezoid form s += 0.5*(v_old + v_new)*dt (equivalently v*dt + 0.5*a*dt^2), which is fold-exact and is the exact kinematic result for constant a. Velocity, the static-stick test, the friction sign logic and the zero-clamp are unchanged.',
+    'Any new integrator''s dt-fold test must compare POSITION as well as velocity at 1e-9 â€” velocity alone passes while position drifts. The position update must be the trapezoid form s += 0.5*(v_old + v_new)*dt (equivalently v*dt + 0.5*a*dt^2), which is fold-exact and is the exact kinematic result for constant a. Velocity, the static-stick test, the friction sign logic and the zero-clamp are unchanged.',
     'js_eval',
     'For a constant-force case, step the engine once with dt = 3h and separately three times with dt = h from identical initial conditions; assert |v_a - v_b| < 1e-9 AND |s_a - s_b| < 1e-9.',
     'OPEN',
@@ -54,7 +54,7 @@ INSERT INTO engine_bug_queue (
     'directive'
 );
 
--- Candidate 3 — MODERATE. A per-body SIGNED axis whose gravity term is written
+-- Candidate 3 â€” MODERATE. A per-body SIGNED axis whose gravity term is written
 -- in the opposite axis passes visual inspection on every flat-ground state and
 -- only breaks on the one coupled concept. Spec said theta_i = hanging ? 90,
 -- which makes a free hanging body accelerate UPWARD and fails both of the
@@ -69,8 +69,8 @@ INSERT INTO engine_bug_queue (
     'A per-body signed axis whose gravity term is written in the OPPOSITE axis passes every flat-ground state and only breaks the one coupled concept',
     'MODERATE',
     'peter_parker:renderer_primitives',
-    'newtons_laws_body gives each body a signed coordinate s along its OWN positive axis: up-slope for a surface body, DOWNWARD for a hanging body. The spec expressed the hanging case as theta_i = 90 inside the shared drive term F - m*g*sin(theta_i), which yields -m*g — gravity in the wrong direction for an axis that already points down. Taken literally it makes a free hanging body accelerate UPWARD and it fails both of the spec''s own checksums (Atwood returns T = m(g+a) instead of m(g-a); incline-plus-hanging returns a of the wrong sign). Every one of the five non-hanging concepts is unaffected, so nothing catches it until the single coupled concept is built.',
-    'Compute gravity in the body''s own axis (hanging => +m*g, equivalently theta_i = -90 deg) rather than reusing a shared theta. Derive the coupled sign factor c_i from the inextensible-string constraint (sum of dL = 0) rather than hardcoding a pair. Compute tension from the body''s own equation of motion T_i = m_i*a_i - drive_i - f_i, which yields equal tension magnitudes on both bodies in every case; the spec''s literal form does not. The general prevention: EXECUTE every checksum in a physics block against the renderer''s own formulas numerically before closing a seam — do not eyeball the algebra.',
+    'newtons_laws_body gives each body a signed coordinate s along its OWN positive axis: up-slope for a surface body, DOWNWARD for a hanging body. The spec expressed the hanging case as theta_i = 90 inside the shared drive term F - m*g*sin(theta_i), which yields -m*g â€” gravity in the wrong direction for an axis that already points down. Taken literally it makes a free hanging body accelerate UPWARD and it fails both of the spec''s own checksums (Atwood returns T = m(g+a) instead of m(g-a); incline-plus-hanging returns a of the wrong sign). Every one of the five non-hanging concepts is unaffected, so nothing catches it until the single coupled concept is built.',
+    'Compute gravity in the body''s own axis (hanging => +m*g, equivalently theta_i = -90 deg) rather than reusing a shared theta. Derive the coupled sign factor c_i from the inextensible-string constraint (sum of dL = 0) rather than hardcoding a pair. Compute tension from the body''s own equation of motion T_i = m_i*a_i - drive_i - f_i, which yields equal tension magnitudes on both bodies in every case; the spec''s literal form does not. The general prevention: EXECUTE every checksum in a physics block against the renderer''s own formulas numerically before closing a seam â€” do not eyeball the algebra.',
     'js_eval',
     'Run every closed-form checksum the spec declares against the live engine: Atwood a = (m1-m2)*g/(m1+m2) and T = m2*(g+a) = m1*(g-a); incline+hanging a = (m_hang*g - m_inc*g*sin(theta) - mu_k*m_inc*g*cos(theta))/(m1+m2). Assert agreement to 1e-9 AND assert |T| is equal on both bodies (the ideal-string consistency check the sign error breaks).',
     'OPEN',
@@ -100,7 +100,7 @@ INSERT INTO engine_bug_queue (
     'OPEN',
     ARRAY['newtons_laws_body scenario: free_body_diagram, block_on_incline, connected_bodies']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — seam C',
+    '2026-07-25 lom chapter loop â€” seam C',
     'incident'
 );
 
@@ -115,14 +115,14 @@ INSERT INTO engine_bug_queue (
     'A rope/string drawn from a free-chosen anchor silently contradicts the inextensible-string constraint its own integrator enforces',
     'MAJOR',
     'peter_parker:renderer_primitives',
-    'A coupled integrator enforces exactly two things about an ideal string: total length is CONSTANT as the bodies move, and tension acts along each body''s own axis. Rope geometry, being pure presentation, is normally authored by eye — a post height, an anchor point, two line segments — and every one of those choices is free. Two independent ways to get it wrong: (a) if the wheel/anchor height is not exactly one rim radius above the body-centre height, the along-surface segment is drawn at an ANGLE to the surface while the physics resolves tension along the surface, so the picture teaches a decomposition the equations do not use; (b) if either segment''s endpoint is not the true rim tangent point, the drawn length sum drifts as the bodies move, i.e. the visible string stretches while the integrator asserts it cannot. Both look plausible in a screenshot and neither is detectable by THE EYE, which sees one frame at a time and has no notion of a length invariant.',
-    'Derive the asset''s geometry FROM the constraint instead of choosing it: pin the wheel-centre offset so the along-surface segment is tangent at exactly body-centre height (parallel by construction at every theta, no special case), take both hanging anchors as the true vertical rim tangent points (hub.x +/- R, opposite sides so two hanging bodies cannot share one point), and then PROVE it numerically in a scratchpad — sweep the string coordinate and assert len(seg_a) + len(seg_b) + wrap is constant to 1e-9 for every branch the integrator has (both-hanging and surface-plus-hanging), plus assert the along-surface segment is perpendicular to the surface normal to 1e-12. Re-fit segments by TRANSFORM (position + quaternion + scale along the segment axis) behind an endpoint churn-guard, never by rebuilding geometry per frame, so a frozen pin writes nothing.',
+    'A coupled integrator enforces exactly two things about an ideal string: total length is CONSTANT as the bodies move, and tension acts along each body''s own axis. Rope geometry, being pure presentation, is normally authored by eye â€” a post height, an anchor point, two line segments â€” and every one of those choices is free. Two independent ways to get it wrong: (a) if the wheel/anchor height is not exactly one rim radius above the body-centre height, the along-surface segment is drawn at an ANGLE to the surface while the physics resolves tension along the surface, so the picture teaches a decomposition the equations do not use; (b) if either segment''s endpoint is not the true rim tangent point, the drawn length sum drifts as the bodies move, i.e. the visible string stretches while the integrator asserts it cannot. Both look plausible in a screenshot and neither is detectable by THE EYE, which sees one frame at a time and has no notion of a length invariant.',
+    'Derive the asset''s geometry FROM the constraint instead of choosing it: pin the wheel-centre offset so the along-surface segment is tangent at exactly body-centre height (parallel by construction at every theta, no special case), take both hanging anchors as the true vertical rim tangent points (hub.x +/- R, opposite sides so two hanging bodies cannot share one point), and then PROVE it numerically in a scratchpad â€” sweep the string coordinate and assert len(seg_a) + len(seg_b) + wrap is constant to 1e-9 for every branch the integrator has (both-hanging and surface-plus-hanging), plus assert the along-surface segment is perpendicular to the surface normal to 1e-12. Re-fit segments by TRANSFORM (position + quaternion + scale along the segment axis) behind an endpoint churn-guard, never by rebuilding geometry per frame, so a frozen pin writes nothing.',
     'js_eval',
     'Sweep the shared string coordinate q across its full range; at each q compute the drawn length of every rope segment plus the constant wrap arc and assert (max - min) < 1e-9. Separately assert, at theta = 0, +30 and -20 deg: each segment endpoint lies exactly on the wheel rim (|end - hub| == R), the along-surface segment satisfies |dir . surfaceNormal| < 1e-12, the vertical segment satisfies |dir . horizontal| < 1e-12, and each body-side endpoint coincides with that body''s live face position to 1e-12.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: connected_bodies']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — seam D',
+    '2026-07-25 lom chapter loop â€” seam D',
     'probe_definition'
 );
 
@@ -135,14 +135,14 @@ INSERT INTO engine_bug_queue (
     'A travel bound expressed in the apparatus that existed when it was written lets a body clamp INSIDE a mesh added by a later seam',
     'MODERATE',
     'peter_parker:renderer_primitives',
-    'newtons_laws_body bounded a surface body at +/- surface.length_m — correct while the surface end was the only thing there. A later seam stood the pulley POST on the surface at post_position_m, whose default IS surface.length_m, so the block''s up-slope clamp position is exactly the post''s base: the block comes to rest with the post passing through its own centre, and (because the clamp is where the coupled system spends the rest of the state) that is the frame a reveal pin is most likely to capture. The same shape bit the hanging side: its "cannot climb through the pulley" bound was a provisional 0.2 m chosen when no wheel existed, which lets the cube swallow the wheel it hangs from.',
-    'When a seam introduces apparatus into an existing scenario, re-derive EVERY motion bound from the apparatus that now physically stops the body, in the same commit — a bound is geometry, not physics, and leaving it expressed in the old geometry is the defect. Express each bound as a constant derived from the new asset (block half-width + post radius; rim radius + body half-height) so it cannot drift out of sync again, keep the change to the bound alone so the checksummed equations are untouched, and assert in a scratchpad that at each bound the two meshes touch without interpenetrating and that every dependent segment is still drawn (a bound that lands where a rope length reaches zero would silently hide the string).',
+    'newtons_laws_body bounded a surface body at +/- surface.length_m â€” correct while the surface end was the only thing there. A later seam stood the pulley POST on the surface at post_position_m, whose default IS surface.length_m, so the block''s up-slope clamp position is exactly the post''s base: the block comes to rest with the post passing through its own centre, and (because the clamp is where the coupled system spends the rest of the state) that is the frame a reveal pin is most likely to capture. The same shape bit the hanging side: its "cannot climb through the pulley" bound was a provisional 0.2 m chosen when no wheel existed, which lets the cube swallow the wheel it hangs from.',
+    'When a seam introduces apparatus into an existing scenario, re-derive EVERY motion bound from the apparatus that now physically stops the body, in the same commit â€” a bound is geometry, not physics, and leaving it expressed in the old geometry is the defect. Express each bound as a constant derived from the new asset (block half-width + post radius; rim radius + body half-height) so it cannot drift out of sync again, keep the change to the bound alone so the checksummed equations are untouched, and assert in a scratchpad that at each bound the two meshes touch without interpenetrating and that every dependent segment is still drawn (a bound that lands where a rope length reaches zero would silently hide the string).',
     'js_eval',
     'For each scenario body, evaluate its bound function at both limits, place the body there, and assert the axis-aligned separation between that body and every other visible mesh sharing its plane is >= 0 (touching, never overlapping); also assert every dependent segment length at those limits is > its own hide threshold.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: connected_bodies, block_on_incline']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — seam D',
+    '2026-07-25 lom chapter loop â€” seam D',
     'incident'
 );
 
@@ -159,14 +159,14 @@ INSERT INTO engine_bug_queue (
     'A zero-opacity drag proxy registered for glow gets an opacity written by BOTH emphasis branches, painting a solid ball over the very object it exists to pick',
     'MAJOR',
     'peter_parker:renderer_primitives',
-    'applyGlowEmphasis writes opacity in BOTH of its non-idle branches unless brightenOnly is set — the focal branch forces opacity 1.0, the dim-peer branch forces GLOW_DIM_OPACITY — and _glowEachMat TRAVERSES children, so parenting the proxy to a rendered mesh is not an escape either. An invisible pointer-pick proxy is deliberately built with material opacity 0 and mesh.visible = false, because the raycaster skips visible:false; it must therefore be switched visible:true in exactly the state that makes its object draggable, which is also the state most likely to name that object as glow_focal. The two facts compose into a sphere the size of the pick target rendered at full opacity over the teaching subject — and only in the explore/sandbox state, the one state THE EYE''s frozen guided reveal pins never cover and the one state a mocked node driver cannot fire a trusted drag in.',
-    'A pick proxy is geometry for the POINTER, never ink. Give it its OWN elementType and exclude that elementType from the scenario''s glow applier with one explicit early-out — an EXCLUSION, not a second emphasis channel, so Rule 32e is untouched — and keep it out of any rendered mesh''s child tree so the material traversal cannot reach it from its parent. Carry the proxy by writing its position inside the single funnel every body move already goes through (the scenario''s setPosition helper), so it needs no per-frame follow hook and therefore introduces no clock code (Rule 36). Never rely on visible:false alone: the pickability gate is exactly the thing that turns visibility on.',
+    'applyGlowEmphasis writes opacity in BOTH of its non-idle branches unless brightenOnly is set â€” the focal branch forces opacity 1.0, the dim-peer branch forces GLOW_DIM_OPACITY â€” and _glowEachMat TRAVERSES children, so parenting the proxy to a rendered mesh is not an escape either. An invisible pointer-pick proxy is deliberately built with material opacity 0 and mesh.visible = false, because the raycaster skips visible:false; it must therefore be switched visible:true in exactly the state that makes its object draggable, which is also the state most likely to name that object as glow_focal. The two facts compose into a sphere the size of the pick target rendered at full opacity over the teaching subject â€” and only in the explore/sandbox state, the one state THE EYE''s frozen guided reveal pins never cover and the one state a mocked node driver cannot fire a trusted drag in.',
+    'A pick proxy is geometry for the POINTER, never ink. Give it its OWN elementType and exclude that elementType from the scenario''s glow applier with one explicit early-out â€” an EXCLUSION, not a second emphasis channel, so Rule 32e is untouched â€” and keep it out of any rendered mesh''s child tree so the material traversal cannot reach it from its parent. Carry the proxy by writing its position inside the single funnel every body move already goes through (the scenario''s setPosition helper), so it needs no per-frame follow hook and therefore introduces no clock code (Rule 36). Never rely on visible:false alone: the pickability gate is exactly the thing that turns visibility on.',
     'js_eval',
-    'For every registered scenario object whose elementType names a pick proxy: run the scenario''s glow applier twice — once with that proxy''s own body id as glow_focal, once with a different focal — and after each assert material.opacity === 0 and material.transparent === true. Separately assert the proxy''s .visible is true only in states whose config sets the scenario''s trusted-drag flag and whose body is present and non-ghost, and assert no rendered mesh has a pick proxy in its child tree.',
+    'For every registered scenario object whose elementType names a pick proxy: run the scenario''s glow applier twice â€” once with that proxy''s own body id as glow_focal, once with a different focal â€” and after each assert material.opacity === 0 and material.transparent === true. Separately assert the proxy''s .visible is true only in states whose config sets the scenario''s trusted-drag flag and whose body is present and non-ghost, and assert no rendered mesh has a pick proxy in its child tree.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: every concept authoring a trusted_drag_seizes sandbox state']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — seam E',
+    '2026-07-25 lom chapter loop â€” seam E',
     'incident'
 );
 
@@ -179,25 +179,25 @@ INSERT INTO engine_bug_queue (
     'display:none on a per-state slider row inside a bottom-anchored panel re-flows every remaining row, so a slider shared across states silently moves',
     'MODERATE',
     'peter_parker:renderer_primitives',
-    'Rule 31 builds the contextual control panel ONCE and shows/hides rows per state, and the obvious hide is display:none. The field_3d convention anchors that panel by its BOTTOM edge (bottom:12px right:12px, so it grows upward and cannot collide with the value-only HUD at top:52px — Rule 34d). Removing a row from layout in a bottom-anchored box therefore slides every row ABOVE it downward: a slider exposed in state 3 and again in state 5 sits at a different screen y in each, so at the state click the control the teacher is reaching for jumps. That is exactly what Rule 32d forbids ("a shared slider keeps the same screen position"), and it is invisible to a per-state screenshot diff because every individual frame is internally correct — only the transition is wrong.',
-    'Hide a per-state control row with visibility:hidden, which KEEPS its layout slot, and additionally set its input .disabled so a reserved slot is never tab- or keyboard-reachable; never display:none it. Scope the reserved slots to the CONCEPT rather than to the engine''s whole token vocabulary: build a row only for a token some state of THIS concept actually names (the same union-over-every-state trick the scenario already uses to build its body meshes once), so a one-slider concept gets a one-row panel with no blank filler, while the explore state — which by Rule 31 exposes every control the concept has — is exactly the full panel with nothing left to grow into. Sync every BUILT row''s thumb and numeric readout FROM the engine record on state entry, so a state entered after a trusted drag or an idle sweep shows its own authored value and not the seized one.',
+    'Rule 31 builds the contextual control panel ONCE and shows/hides rows per state, and the obvious hide is display:none. The field_3d convention anchors that panel by its BOTTOM edge (bottom:12px right:12px, so it grows upward and cannot collide with the value-only HUD at top:52px â€” Rule 34d). Removing a row from layout in a bottom-anchored box therefore slides every row ABOVE it downward: a slider exposed in state 3 and again in state 5 sits at a different screen y in each, so at the state click the control the teacher is reaching for jumps. That is exactly what Rule 32d forbids ("a shared slider keeps the same screen position"), and it is invisible to a per-state screenshot diff because every individual frame is internally correct â€” only the transition is wrong.',
+    'Hide a per-state control row with visibility:hidden, which KEEPS its layout slot, and additionally set its input .disabled so a reserved slot is never tab- or keyboard-reachable; never display:none it. Scope the reserved slots to the CONCEPT rather than to the engine''s whole token vocabulary: build a row only for a token some state of THIS concept actually names (the same union-over-every-state trick the scenario already uses to build its body meshes once), so a one-slider concept gets a one-row panel with no blank filler, while the explore state â€” which by Rule 31 exposes every control the concept has â€” is exactly the full panel with nothing left to grow into. Sync every BUILT row''s thumb and numeric readout FROM the engine record on state entry, so a state entered after a trusted drag or an idle sweep shows its own authored value and not the seized one.',
     'js_eval',
     'For every pair of states that both name the same control token, apply each state and assert the row node''s getBoundingClientRect().top is identical to the pixel. Assert no row node ever carries display:none while the panel is shown, that every row whose token is absent from the live state''s controls_visible has visibility hidden AND its input disabled, and that each visible row''s readout text equals the value the state authored for that param immediately after the state is applied.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: all six Laws of Motion concepts']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — seam E',
+    '2026-07-25 lom chapter loop â€” seam E',
     'directive'
 );
 
 -- ============================================================
--- SEAM F (deriveStateMeta reveal-pin + hold classification) — founder review, NOT applied
+-- SEAM F (deriveStateMeta reveal-pin + hold classification) â€” founder review, NOT applied
 -- ============================================================
 
--- Candidate — MAJOR. The engine spec listed exactly TWO deriveStateMeta sites
+-- Candidate â€” MAJOR. The engine spec listed exactly TWO deriveStateMeta sites
 -- (reveal-ms block, hold classification) and called them sufficient ("Both 12
 -- and 13 are REQUIRED or THE EYE false-fails"). There is a THIRD mandatory site
--- in the same file — the F3D_REVEAL_KEYS scenario-key registry — and missing it
+-- in the same file â€” the F3D_REVEAL_KEYS scenario-key registry â€” and missing it
 -- silently routes a field_3d state down the PCPL derivation path.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -208,23 +208,23 @@ INSERT INTO engine_bug_queue (
     'A new field_3d scenario key missing from F3D_REVEAL_KEYS makes a cached physics_config derive PCPL reveal pins and PCPL hold classes',
     'MAJOR',
     'peter_parker:renderer_primitives',
-    'deriveStateMeta resolves field_3d states from EITHER the concept JSON (config.field_3d_config.states) OR a cached physics_config that already flattened field_3d_config to the top level. The second path is recognised ONLY by hasField3dTiming(), which tests whether a state object carries one of the hardcoded F3D_REVEAL_KEYS scenario keys. THE EYE reads the CACHED row, so a new scenario whose per-state config key is not in that list resolves as NOT field_3d: resolveField3dStates returns null, deriveMaxRevealTimeMs falls through to the PCPL branch (pcplRevealMs/pcplSceneRevealMs, structurally 0 on any Rule-31 concept => DEFAULT_REVEAL_MS 1500 for every state), and deriveHoldExpectations classifies via isPcplInteractive instead of the scenario''s own mode. Both new per-scenario blocks are then dead code on the exact path that matters, and the frozen pin lands at 1500 ms mid-script — the same self-contradictory baseline the missing-maxReveal scar describes, but with both required sites correctly implemented.',
+    'deriveStateMeta resolves field_3d states from EITHER the concept JSON (config.field_3d_config.states) OR a cached physics_config that already flattened field_3d_config to the top level. The second path is recognised ONLY by hasField3dTiming(), which tests whether a state object carries one of the hardcoded F3D_REVEAL_KEYS scenario keys. THE EYE reads the CACHED row, so a new scenario whose per-state config key is not in that list resolves as NOT field_3d: resolveField3dStates returns null, deriveMaxRevealTimeMs falls through to the PCPL branch (pcplRevealMs/pcplSceneRevealMs, structurally 0 on any Rule-31 concept => DEFAULT_REVEAL_MS 1500 for every state), and deriveHoldExpectations classifies via isPcplInteractive instead of the scenario''s own mode. Both new per-scenario blocks are then dead code on the exact path that matters, and the frozen pin lands at 1500 ms mid-script â€” the same self-contradictory baseline the missing-maxReveal scar describes, but with both required sites correctly implemented.',
     'A new field_3d scenario_type touches THREE sites in deriveStateMeta.ts, not two: (1) append its per-state config key to F3D_REVEAL_KEYS, (2) add its reveal-ms block in maxRevealForField3dState, (3) add its hold classification in deriveHoldExpectations. Prove site 1 by deriving against the FLATTENED shape ({ scenario_type, states }) as well as the concept-JSON shape and asserting both give identical per-state reveal ms and hold classes.',
     'js_eval',
-    'Build a minimal config in both shapes — { field_3d_config: { scenario_type, states } } and the flattened { scenario_type, states } — with one state whose reveal pin is provably not DEFAULT_REVEAL_MS. Assert deriveMaxRevealTimeMs and deriveHoldExpectations return byte-identical maps for the two shapes, and that the pinned state is not 1500.',
+    'Build a minimal config in both shapes â€” { field_3d_config: { scenario_type, states } } and the flattened { scenario_type, states } â€” with one state whose reveal pin is provably not DEFAULT_REVEAL_MS. Assert deriveMaxRevealTimeMs and deriveHoldExpectations return byte-identical maps for the two shapes, and that the pinned state is not 1500.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: all six Laws of Motion concepts']::text[],
     ARRAY['src/lib/validators/visual/deriveStateMeta.ts']::text[],
-    '2026-07-25 lom chapter loop — seam F',
+    '2026-07-25 lom chapter loop â€” seam F',
     'directive'
 );
 
 -- ============================================================
--- BRING-UP PROOF (spec section 7 step 2) — the two structural extremes driven
+-- BRING-UP PROOF (spec section 7 step 2) â€” the two structural extremes driven
 -- against the REAL renderer in chromium. Founder review, NOT applied.
 -- ============================================================
 
--- Candidate — MODERATE. FOUND LIVE and FIXED in this session: the hanging body
+-- Candidate â€” MODERATE. FOUND LIVE and FIXED in this session: the hanging body
 -- of a connected pair printed "N = 0.00 N" and "fk = 0.00 N" permanently.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -235,18 +235,18 @@ INSERT INTO engine_bug_queue (
     'A STATE-level readout enum applied to every body prints permanent zero stub rows on the body the quantity is identically zero for',
     'MODERATE',
     'peter_parker:renderer_primitives',
-    'newtons_laws_body declares readouts as a per-STATE array of quantity keys, while arrows are declared PER BODY. The HUD builder therefore emitted every declared key against every non-ghost body. A hanging body has N forced to 0 by construction (spec section 1) and consequently f == 0 on every friction path (all of them multiply by N), so the one state of connected_bodies that legitimately reads N and f off the SURFACE block was forced to also print "N = 0.00 N" and "fk = 0.00 N" against the hanging weight, forever. The arrow layer already refuses exactly this ("a real zero force HIDES the arrow, never a stub", spec section 3) — the HUD contradicted its own scenario rule, and the author had no per-body switch to opt out with.',
-    'Where a config enum is coarser than the thing it drives (state-level readouts vs per-body physics), the ENGINE must drop the rows that are zero BY CONSTRUCTION rather than expecting the author to avoid the combination — the author cannot, without losing the row on the body that needs it. Skip N and f for a hanging body in the HUD builder, mirroring the arrow layer zero-hides rule. General form: any value-only HUD row whose quantity is identically zero for a given object class must not be built for that class.',
+    'newtons_laws_body declares readouts as a per-STATE array of quantity keys, while arrows are declared PER BODY. The HUD builder therefore emitted every declared key against every non-ghost body. A hanging body has N forced to 0 by construction (spec section 1) and consequently f == 0 on every friction path (all of them multiply by N), so the one state of connected_bodies that legitimately reads N and f off the SURFACE block was forced to also print "N = 0.00 N" and "fk = 0.00 N" against the hanging weight, forever. The arrow layer already refuses exactly this ("a real zero force HIDES the arrow, never a stub", spec section 3) â€” the HUD contradicted its own scenario rule, and the author had no per-body switch to opt out with.',
+    'Where a config enum is coarser than the thing it drives (state-level readouts vs per-body physics), the ENGINE must drop the rows that are zero BY CONSTRUCTION rather than expecting the author to avoid the combination â€” the author cannot, without losing the row on the body that needs it. Skip N and f for a hanging body in the HUD builder, mirroring the arrow layer zero-hides rule. General form: any value-only HUD row whose quantity is identically zero for a given object class must not be built for that class.',
     'js_eval',
     'For every state that declares a readout key which is identically zero for some object class present in that state (N or f on a hanging body), assert no HUD row element exists for that (body, key) pair, and assert every row that DOES exist shows a value that changes across the state clock or is a real non-zero reading.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: connected_bodies']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    '2026-07-25 lom chapter loop â€” bring-up proof (free_body_diagram + connected_bodies extremes)',
     'incident'
 );
 
--- Candidate — MAJOR. FOUND LIVE by a fixture that violated a documented
+-- Candidate â€” MAJOR. FOUND LIVE by a fixture that violated a documented
 -- contract: the engine mis-rendered SILENTLY, with correct physics.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -257,18 +257,18 @@ INSERT INTO engine_bug_queue (
     'A build-once mesh whose PARENT and placement branch on a per-state flag read from the union def renders in the wrong place for every state that changes the flag',
     'MAJOR',
     'peter_parker:renderer_primitives',
-    'newtons_laws_body builds one mesh per unique body id from the UNION of every state bodies list (Rule 32d home-pose persistence), and at build time it chooses that mesh PARENT GROUP from the body hanging flag — world group for a hanging body, the rotating surface group for a surface body — and the placement helper then branches on mesh.userData.hanging. The flag is authored PER STATE, so a body id that hangs in one state (an Atwood beat) and sits on the surface in another (an incline-plus-hanging beat) keeps the FIRST state parent and placement branch forever: the block is drawn dangling from the pulley while the integrator, which reads the per-state engine record, correctly treats it as a surface body. Every numeric probe passes — position, acceleration, tension, the rope length invariant — because the rope is fitted through the same wrong branch, so the drawn picture is self-consistent and simply wrong. The interface comment documents the constraint (a given id hanging flag must be consistent across states) but nothing enforces or warns.',
-    'A per-state flag must never select a build-time parent or a build-time code branch for a build-once mesh. Either (a) build a SEPARATE mesh per (id, flag) combination — the cheap fix, since the author can simply use distinct ids — or (b) refresh the flag on state entry AND re-parent there. Until then the engine must FAIL LOUD: on build, detect a body id appearing with conflicting values of any build-time-consumed flag and post a SIM_ERROR rather than rendering plausibly. Authoring side: give the Atwood pair its own body ids, never reuse the incline block id.',
+    'newtons_laws_body builds one mesh per unique body id from the UNION of every state bodies list (Rule 32d home-pose persistence), and at build time it chooses that mesh PARENT GROUP from the body hanging flag â€” world group for a hanging body, the rotating surface group for a surface body â€” and the placement helper then branches on mesh.userData.hanging. The flag is authored PER STATE, so a body id that hangs in one state (an Atwood beat) and sits on the surface in another (an incline-plus-hanging beat) keeps the FIRST state parent and placement branch forever: the block is drawn dangling from the pulley while the integrator, which reads the per-state engine record, correctly treats it as a surface body. Every numeric probe passes â€” position, acceleration, tension, the rope length invariant â€” because the rope is fitted through the same wrong branch, so the drawn picture is self-consistent and simply wrong. The interface comment documents the constraint (a given id hanging flag must be consistent across states) but nothing enforces or warns.',
+    'A per-state flag must never select a build-time parent or a build-time code branch for a build-once mesh. Either (a) build a SEPARATE mesh per (id, flag) combination â€” the cheap fix, since the author can simply use distinct ids â€” or (b) refresh the flag on state entry AND re-parent there. Until then the engine must FAIL LOUD: on build, detect a body id appearing with conflicting values of any build-time-consumed flag and post a SIM_ERROR rather than rendering plausibly. Authoring side: give the Atwood pair its own body ids, never reuse the incline block id.',
     'js_eval',
     'At build time, collect for each body id the set of values of every flag consumed at build time (hanging); assert every set has size 1. At runtime, for each state assert each visible body mesh parent group matches its live engine record flag, and assert a hanging body world x equals its pulley rim anchor x while a surface body world position lies on the surface axis.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: connected_bodies']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    '2026-07-25 lom chapter loop â€” bring-up proof (free_body_diagram + connected_bodies extremes)',
     'directive'
 );
 
--- Candidate — MODERATE. FOUND IN PIXELS ONLY. The world-space de-collision pass
+-- Candidate â€” MODERATE. FOUND IN PIXELS ONLY. The world-space de-collision pass
 -- added by seam C is correct in 3D and still collides on screen.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -279,18 +279,18 @@ INSERT INTO engine_bug_queue (
     'A world-space minimum-separation pass on 3D labels proves nothing about the SCREEN: perspective collapses the separation it just enforced',
     'MODERATE',
     'peter_parker:renderer_primitives',
-    'A de-collision pass that pushes overlay labels apart until their WORLD distance exceeds a minimum separation is deterministic and cheap, but the reader sees the PROJECTION. Under the default oblique field_3d camera, two labels separated by more than the enforced world minimum can land within a few screen pixels whenever the separating direction runs close to the view axis — which is exactly what happens to the weight / mg-cos-theta pair on an incline (their tips differ by the incline angle, and the default camera looks along a direction that foreshortens precisely that tilt). Observed on the bring-up fixtures: mg and mg-cos-theta overlap as a single blob, and the body label overlaps the mg-sin-theta label, in states where the world-space pass reports every pair comfortably separated. Neither the mocked node driver nor a value-level probe can see it, and founder_drive DOM collision probe is blind to 3D sprites entirely.',
-    'A label layout for a 3D scene is only proved once the assertion is made in SCREEN space: project every visible label with the state live camera and assert the pairwise screen-space gap exceeds the rendered glyph box, for every camera the concept authors. Corollary for authoring: every state of a 3D mechanics scenario MUST author its own camera_position (a near side-on view for a free-body diagram) — the shared default camera is an oblique three-quarter view chosen for field/flux scenarios and it foreshortens exactly the angles a force decomposition exists to show.',
+    'A de-collision pass that pushes overlay labels apart until their WORLD distance exceeds a minimum separation is deterministic and cheap, but the reader sees the PROJECTION. Under the default oblique field_3d camera, two labels separated by more than the enforced world minimum can land within a few screen pixels whenever the separating direction runs close to the view axis â€” which is exactly what happens to the weight / mg-cos-theta pair on an incline (their tips differ by the incline angle, and the default camera looks along a direction that foreshortens precisely that tilt). Observed on the bring-up fixtures: mg and mg-cos-theta overlap as a single blob, and the body label overlaps the mg-sin-theta label, in states where the world-space pass reports every pair comfortably separated. Neither the mocked node driver nor a value-level probe can see it, and founder_drive DOM collision probe is blind to 3D sprites entirely.',
+    'A label layout for a 3D scene is only proved once the assertion is made in SCREEN space: project every visible label with the state live camera and assert the pairwise screen-space gap exceeds the rendered glyph box, for every camera the concept authors. Corollary for authoring: every state of a 3D mechanics scenario MUST author its own camera_position (a near side-on view for a free-body diagram) â€” the shared default camera is an oblique three-quarter view chosen for field/flux scenarios and it foreshortens exactly the angles a force decomposition exists to show.',
     'js_eval',
     'For each state, project every visible label sprite through the live camera to normalized device coordinates, convert to pixels at the capture viewport, and assert the minimum pairwise axis-aligned gap between label bounding boxes is >= 4 px; repeat for each authored camera_position.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: free_body_diagram, block_on_incline, connected_bodies']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    '2026-07-25 lom chapter loop â€” bring-up proof (free_body_diagram + connected_bodies extremes)',
     'incident'
 );
 
--- Candidate — MODERATE. FOUND IN PIXELS ONLY. Rule 34d overlay collision.
+-- Candidate â€” MODERATE. FOUND IN PIXELS ONLY. Rule 34d overlay collision.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -300,18 +300,18 @@ INSERT INTO engine_bug_queue (
     'An edge-anchored single formula surface with no width bound wraps back across the scene the moment the authored equation is long',
     'MODERATE',
     'peter_parker:renderer_primitives',
-    'Rule 34b gives each state ONE dedicated formula overlay, and the field_3d convention anchors it to a screen edge so it occupies a zone distinct from the HUD and the slider panel (Rule 34d). With no max-width and no reserved zone, the element box simply grows toward the middle of the canvas: a short equation sits harmlessly in the margin while a long one — a = (m2*g - m1*g*sin(theta) - mu_k*m1*g*cos(theta)) / (m1 + m2), which is the CENTRAL equation of the connected-bodies concept — wraps to two lines and runs straight through the pulley wheel and post. The zone is only distinct for the equation the engine author happened to test with, and the failure is invisible to every value-level probe: the overlay text is correct, the meshes are correct, only the composite frame is unreadable.',
-    'An edge-anchored overlay zone must be BOUNDED, not merely anchored: give the formula surface an explicit max-width (a fraction of the canvas) plus the wrap behaviour that follows from it, and reserve that rectangle so no scenario geometry is framed into it — or scale the font down for a long string. Verify with the LONGEST equation any state of the concept authors, in pixels, never with a representative short one.',
+    'Rule 34b gives each state ONE dedicated formula overlay, and the field_3d convention anchors it to a screen edge so it occupies a zone distinct from the HUD and the slider panel (Rule 34d). With no max-width and no reserved zone, the element box simply grows toward the middle of the canvas: a short equation sits harmlessly in the margin while a long one â€” a = (m2*g - m1*g*sin(theta) - mu_k*m1*g*cos(theta)) / (m1 + m2), which is the CENTRAL equation of the connected-bodies concept â€” wraps to two lines and runs straight through the pulley wheel and post. The zone is only distinct for the equation the engine author happened to test with, and the failure is invisible to every value-level probe: the overlay text is correct, the meshes are correct, only the composite frame is unreadable.',
+    'An edge-anchored overlay zone must be BOUNDED, not merely anchored: give the formula surface an explicit max-width (a fraction of the canvas) plus the wrap behaviour that follows from it, and reserve that rectangle so no scenario geometry is framed into it â€” or scale the font down for a long string. Verify with the LONGEST equation any state of the concept authors, in pixels, never with a representative short one.',
     'js_eval',
     'For each state, take the formula overlay getBoundingClientRect() and assert it does not intersect the screen-space bounding box of the scenario apparatus (project the apparatus mesh world bounds through the live camera), nor the HUD or slider-panel rects. Run it with the longest formula_overlay string in the concept.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: connected_bodies, block_on_incline']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    '2026-07-25 lom chapter loop â€” bring-up proof (free_body_diagram + connected_bodies extremes)',
     'incident'
 );
 
--- Candidate — MODERATE. UNDER-GENERALIZATION, reported not fixed (spec section 7
+-- Candidate â€” MODERATE. UNDER-GENERALIZATION, reported not fixed (spec section 7
 -- makes adding a config key a STOP-and-report condition, not a silent extension).
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -322,23 +322,67 @@ INSERT INTO engine_bug_queue (
     'newtons_laws_body has no way to hide the surface slab, so the Atwood (both-hanging) state renders a large empty plank as the biggest object on screen',
     'MODERATE',
     'peter_parker:renderer_primitives',
-    'The scenario whole generalization argument is that theta_deg = 0 gives flat ground through the same code path as an incline, so the surface is unconditional apparatus: the surface group is forced visible inside applyNewtonsLawsBodyState (correctly, to beat the generic visible_elements matcher), and there is no surface.hidden flag. A connected_atwood state has NO table and NO incline — two bodies hang from a pulley — yet a 12 m slab renders under them and, at the default camera, dominates the frame while carrying nothing. The only expressible workaround is surface.length_m = 0 with pulley.post_position_m set independently, which still leaves a 0.4-world-unit stub (the slab half-length is clamped to a 0.2 minimum) and reads as a fragment of apparatus rather than an absence.',
-    'FOUNDER DECISION REQUIRED — do not add the key unilaterally. The minimal generalization is one optional boolean on the existing surface block (surface.hidden, default false) honoured in the one place that forces the surface group visible, which keeps every other concept bit-identical. The alternative (author the Atwood beat with surface.length_m = 0) is available today at the cost of a visible stub. Either way the decision belongs in the chapter authoring pass, with the real Atwood state on screen.',
+    'The scenario whole generalization argument is that theta_deg = 0 gives flat ground through the same code path as an incline, so the surface is unconditional apparatus: the surface group is forced visible inside applyNewtonsLawsBodyState (correctly, to beat the generic visible_elements matcher), and there is no surface.hidden flag. A connected_atwood state has NO table and NO incline â€” two bodies hang from a pulley â€” yet a 12 m slab renders under them and, at the default camera, dominates the frame while carrying nothing. The only expressible workaround is surface.length_m = 0 with pulley.post_position_m set independently, which still leaves a 0.4-world-unit stub (the slab half-length is clamped to a 0.2 minimum) and reads as a fragment of apparatus rather than an absence.',
+    'FOUNDER DECISION REQUIRED â€” do not add the key unilaterally. The minimal generalization is one optional boolean on the existing surface block (surface.hidden, default false) honoured in the one place that forces the surface group visible, which keeps every other concept bit-identical. The alternative (author the Atwood beat with surface.length_m = 0) is available today at the cost of a visible stub. Either way the decision belongs in the chapter authoring pass, with the real Atwood state on screen.',
     'manual',
     'Open the frozen frame of any connected_atwood state and confirm no unoccupied surface slab is visible; the only apparatus should be post, wheel, both rope segments and the two hanging bodies.',
     'OPEN',
     ARRAY['newtons_laws_body scenario: connected_bodies']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop — bring-up proof (free_body_diagram + connected_bodies extremes)',
+    '2026-07-25 lom chapter loop â€” bring-up proof (free_body_diagram + connected_bodies extremes)',
     'directive'
 );
 
--- Cycle 1 (2026-07-25) — LIVE failure caught by THE EYE on free_body_diagram STATE_3.
+-- ============================================================================
+-- Session: 2026-07-25 lom-b chapter loop â€” concept 1, newton_first_law
+-- Found by eye_walker on .visual_runs/newton_first_law/20260725-191906/.
+-- Report only â€” NOT inserted (chapter-loop sessions are forbidden DB writes).
+-- ============================================================================
+
+-- Candidate â€” CRITICAL. Engine DEFECT (not an under-generalization): the nlb
+-- physics clock is inconsistent with the RESET_TRAJECTORY contract every other
+-- field_3d reveal timeline honours. Routed to field3d-surgeon this session.
+-- Cycle 1 (2026-07-25) â€” LIVE failure caught by THE EYE on free_body_diagram STATE_3.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
     discovered_in_session, row_type
 ) VALUES (
+    'field3d_nlb_physics_clock_not_state_local',
+    'newtons_laws_body integrates from SET_STATE instead of from the state-local reveal start, so a body silently moves (or fully decelerates) before the state visibly begins',
+    'CRITICAL',
+    'peter_parker:renderer_primitives',
+    'updateNewtonsLawsBodyFrame accumulates eng.t_ms from a per-tick real wall-clock dtStep that is never rebased by RESET_TRAJECTORY, unlike every other reveal timeline in field_3d_renderer.ts, which is a pure function of (time - stateStartTime) and IS rebased. The body starts integrating the instant applyNewtonsLawsBodyState builds a fresh eng object at SET_STATE, before the player/harness sends RESET_TRAJECTORY and the state-local reveal window begins. Any real-time gap between state entry and reveal start (THE EYE per-frame screenshot/encode overhead, ~1-4 s observed; equally a teacher pausing before pressing Play) lets the body advance by an uncontrolled amount. Symptom A: STATE_1 coast_no_force (frictionless, a=0) reads v=1.00 correctly through dense_t15000 but the H2 frozen pin reads v=0.00 â€” the block hit the +10 m bound, contradicting the never-slows delta cue at exactly the frame a teacher leaves frozen. Symptom B (worse): STATE_2 coast_with_friction reads v=0.02 m/s in its FIRST capture (98 percent decelerated from v0=1.0), so the ~4 s deceleration the state exists to teach happens entirely before the reveal clock starts and the state renders as a static block for its full ~14 s.',
+    'Gate the nlb integrator on the same state-local basis (time - stateStartTime) the other reveal systems use, or hold the nlb engine at dt=0 from SET_STATE until the first RESET_TRAJECTORY / Play. Any new scenario carrying its own integrator must rebase on RESET_TRAJECTORY â€” a free-running physics clock is invisible to every deterministic gate.',
+    'manual',
+    'Open the first captured frame and the frozen frame of a coast state: v at the first frame must equal the authored initial_velocity_mps, and the frozen frame must match the authored trajectory at the state duration (not the motion bound).',
+    'OPEN',
+    ARRAY['newton_first_law: STATE_1, STATE_2']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop â€” newton_first_law',
+    'incident'
+);
+
+-- Candidate â€” MODERATE. Owner ambiguous (renderer glow application vs authored
+-- phase tuning). Reported, NOT dispatched this session (Amendment 4: one
+-- bug_class per engine dispatch; the CRITICAL row took this concept's budget).
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_nlb_phase_glow_handoff_not_visible',
+    'newtons_laws_body phases[] glow_focal handoff fires in code but produces no perceptible brightness delta between two force arrows',
+    'MODERATE',
+    'ambiguous',
+    'The rest_equilibrium handoff (nlb_arrow_A_weight -> nlb_arrow_A_normal at 4000 ms) fires per nlbRunPhases (phase_fired and the glow_focal swap are confirmed in code), but frames before and after the handoff are visually identical: mg and N read at the same brightness in STATE_3 dense_t03000 vs dense_t04000/t05000/frozen. Either applyNewtonsLawsBodyGlow does not differentiate brightness for arrow-kind meshes, or the effect is too subtle at this render scale to read as exactly-one-glow-focal per Rule 32e.',
+    'FOUNDER TRIAGE â€” owner is genuinely ambiguous between peter_parker:renderer_primitives (a real glow-application gap on arrow meshes) and alex:json_author (phase timing/magnitude tuning). Confirm which by checking whether ANY nlb concept has ever produced a visible arrow-glow delta before assigning.',
+    'manual',
+    'Capture the frames either side of an authored phases[] glow handoff and confirm a visible brightness difference between the outgoing and incoming focal arrows.',
+    'OPEN',
+    ARRAY['newton_first_law: STATE_3']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop â€” newton_first_law',
     'field3d_integrating_scenario_ignores_reset_trajectory_and_carries_stale_accumulator',
     'An INTEGRATING field_3d scenario ignores RESET_TRAJECTORY, so every later capture/replay starts downrange from the previous one',
     'MAJOR',
@@ -350,22 +394,29 @@ INSERT INTO engine_bug_queue (
     'FIXED',
     ARRAY['free_body_diagram']::text[],
     ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
-    '2026-07-25 lom chapter loop cycle 1 — coast_body_halts_mid_state_despite_authored_length_m',
+    '2026-07-25 lom chapter loop cycle 1 â€” coast_body_halts_mid_state_despite_authored_length_m',
     'incident'
 );
 
--- ── lom-a / free_body_diagram cycle 3 (2026-07-25) — frame-reading protocol, NOT a code defect ──
+-- â”€â”€ lom-a / free_body_diagram cycle 3 (2026-07-25) â€” frame-reading protocol, NOT a code defect â”€â”€
 -- Raised after eye-walker opened a MAJOR "body jumps backward" finding on free_body_diagram STATE_3
 -- that a runtime probe + pixel-centroid measurement disproved (dense_t10000 is at x=826px, the dense
 -- series is linear, and the frozen frame is a re-entered state pinned at maxRevealMs by construction).
 -- Costs a full engine dispatch each time it recurs, so it is worth a permanent probe.
+-- ============================================================
+-- CYCLE 2 (newton_second_law, lom-b, 2026-07-25) â€” eye_walker findings.
+-- Found by the frame read; INVISIBLE to all 19 deterministic EYE gates.
+-- NOT APPLIED. Founder reviews.
+-- ============================================================
+
+-- Candidate â€” CRITICAL. Two independent (no-pulley) bodies render fully coincident.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
     discovered_in_session, row_type
 ) VALUES (
     'frozen_frame_read_as_dense_series_continuation_on_translating_body',
-    'A __frozen frame is a RE-ENTERED state pinned at maxRevealMs, not the end-of-timeline pose — reading it as the dense series'' last sample mints a phantom "body jumped backward" defect on any continuously-translating scenario',
+    'A __frozen frame is a RE-ENTERED state pinned at maxRevealMs, not the end-of-timeline pose â€” reading it as the dense series'' last sample mints a phantom "body jumped backward" defect on any continuously-translating scenario',
     'MODERATE',
     'ambiguous',
     'captureFrozenFrame() posts RESET_TRAJECTORY + REPLAY_ANIMATIONS + SET_TIME_FREEZE{at_ms: maxRevealMs} BEFORE its screenshot, so the frozen frame shows the state re-run from its own t=0 and held at the reveal pin. For every legacy field_3d scenario the reveal SATURATES (the picture stops changing once revealed), so frozen is pixel-identical to every later dense frame and the semantic is invisible. A scenario whose taught motion is a continuous translation (newtons_laws_body coast/accelerate modes) has NO settled beat: its frozen frame is legitimately BEHIND the last dense frame by (denseDuration - revealMs) x v. free_body_diagram STATE_3 (v=1 m/s, reveal 3000ms, dense 10000ms) reads as a backward jump, and lands beside a ghost body parked at -3 m, which makes the artifact look like a wrap/reset defect. Sibling STATE_4 (no ghost, reveal 4000ms) shows the identical numeric behaviour and was reported clean.',
@@ -379,8 +430,8 @@ INSERT INTO engine_bug_queue (
     'probe_definition'
 );
 
--- FOUNDER DECISION (deferred, not applied): free_body_diagram STATE_3's frozen frame — the canonical
--- reviewer screenshot AND the H2 baseline — pins at 3000 ms, which leaves the coasting body still
+-- FOUNDER DECISION (deferred, not applied): free_body_diagram STATE_3's frozen frame â€” the canonical
+-- reviewer screenshot AND the H2 baseline â€” pins at 3000 ms, which leaves the coasting body still
 -- overlapping the ghost, under-selling the state's teaching point (the GROWING GAP between the moving
 -- body and the frozen ghost is the whole idea). Nudging coast_no_force's reveal candidate later (e.g.
 -- 6000 ms -> s = +1 m, a clear 4 m gap) is a one-line change in deriveStateMeta.ts, but it moves H2
@@ -418,6 +469,24 @@ INSERT INTO engine_bug_queue (
 );
 
 -- FIXED bc649d4 -- a geometry veto must zero motion, never the force solution.
+    'field3d_nlb_two_body_lane_offset_missing_causes_full_occlusion',
+    'newtons_laws_body renders two independent bodies at the same z, so a shared start line fully occludes one body',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'nlbSetBodyPosition() (field_3d_renderer.ts ~L29497-29513) sets every non-hanging body mesh to (s*NLB_WORLD_PER_M, NLB_BODY_SIZE/2, 0) â€” z is hardcoded 0 for ALL bodies. The engine spec section 1 explicitly promises "Two bodies with NO pulley = independent, side-by-side", but they share one lane. Two bodies authored at the same initial_position_m (the intended same-start-line compare pattern) are pixel-coincident at reveal and stay visually merged until integration separates them. On newton_second_law STATE_2/STATE_3 only ONE block is visible at t=0 and the two Unicode labels render as an illegible merged blob for roughly the first third of the run. Worse, the H2 SET_TIME_FREEZE reveal-completeness baseline lands INSIDE the overlap window, so the frozen reference frame â€” the reveal-completeness reference â€” is illegible by construction. There is no authoring workaround: staggering the two initial_position_m values keeps both bodies in ONE lane, so the faster body overtakes and interpenetrates the slower one, which is worse than the occlusion.',
+    'Any scenario that renders two or more INDEPENDENT bodies must lay them out in distinct lanes â€” a small fixed per-body-index lateral offset centered about z=0, so a one-body state is bit-identical and two bodies can never be pixel-coincident even when their along-axis positions are exactly equal. The offset must carry to everything anchored to that body (mesh, label sprite, force arrows, drag hit proxy). A bring-up probe for a multi-body scenario must assert that the on-screen separation of any two independent bodies exceeds one body width at t=0, not merely that both meshes exist and are visible.',
+    'js_eval',
+    'For each state whose newtons_laws_body block declares 2+ bodies with no pulley: SET_STATE, then project each body mesh to screen space and assert the pairwise screen-space distance exceeds NLB_BODY_SIZE at t=0 and at the state reveal pin.',
+    'OPEN',
+    ARRAY['newton_second_law','newton_third_law']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    '2026-07-25 lom-b chapter loop cycle 2 â€” newton_second_law eye_walker',
+    'incident'
+);
+
+-- Candidate â€” MAJOR. Authored forces below the arrow-length floor. ROUTED AS CONTENT, not engine:
+-- the floor is designed behavior (spec section 3), the defect was 0.2N/0.4N authored magnitudes.
+-- Kept here as a PREVENTION row so the next author does not repeat it.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -556,12 +625,12 @@ INSERT INTO engine_bug_queue (
     'scar'
 );
 
--- ══════════════════════════════════════════════════════════════════════════════
--- TEXT ONLY — NOT APPLIED. Noticed during ENGINE SEAM A of the push-off build
+-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+-- TEXT ONLY â€” NOT APPLIED. Noticed during ENGINE SEAM A of the push-off build
 -- (bug_class nlb_push_off_phase_and_fixed_body, 2026-07-29). Deliberately NOT
 -- fixed in that dispatch (one bug_class, minimal diff). The founder/loop decides
 -- whether these become real rows.
--- ══════════════════════════════════════════════════════════════════════════════
+-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 -- INSERT INTO engine_bug_queue (
 --     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -605,7 +674,7 @@ INSERT INTO engine_bug_queue (
 --     'incident'
 -- );
 
--- ── SEAM B (spring geometry + lane), 2026-07-29 ────────────────────────────
+-- â”€â”€ SEAM B (spring geometry + lane), 2026-07-29 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 -- The lane row above (nlb_push_off_bodies_lane_separated_so_they_never_touch)
 -- is RESOLVED by this seam. bug_class is the upsert key, so this is an UPDATE
 -- of that row, NOT a second INSERT.
@@ -659,11 +728,11 @@ INSERT INTO engine_bug_queue (
 -- );
 
 -- ============================================================
--- SEAM C (push_off repeat_every_ms) — founder review 2026-07-29, NOT applied
+-- SEAM C (push_off repeat_every_ms) â€” founder review 2026-07-29, NOT applied
 -- ============================================================
 
 -- The dispatched finding itself. Fixed in this seam (engine + deriveStateMeta),
--- so it is logged FIXED rather than OPEN — the row exists so the CLASS ("an
+-- so it is logged FIXED rather than OPEN â€” the row exists so the CLASS ("an
 -- interaction whose physical duration is far shorter than its narrated state")
 -- is on the scar list, not just this instance.
 -- INSERT INTO engine_bug_queue (
@@ -753,11 +822,11 @@ INSERT INTO engine_bug_queue (
 --     'directive'
 -- );
 
--- ═══════════════════════════════════════════════════════════════════════════
+-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 -- lom-a spring choreography engine SEAM A (spring_action phase machine +
--- slow-motion window + honesty badge) — 2026-07-30. TEXT ONLY, nothing applied.
+-- slow-motion window + honesty badge) â€” 2026-07-30. TEXT ONLY, nothing applied.
 -- docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md (founder-approved).
--- ═══════════════════════════════════════════════════════════════════════════
+-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 -- The dispatched bug_class. FIXED here for the timing/phase half; the coil-
 -- geometry half (compression stroke + post-release ring) is seam B.
@@ -824,7 +893,7 @@ INSERT INTO engine_bug_queue (
 --     'directive'
 -- );
 
--- The general engine directive this seam establishes (the reusable half — it
+-- The general engine directive this seam establishes (the reusable half â€” it
 -- applies to any renderer that must show a physically fast event).
 -- INSERT INTO engine_bug_queue (
 --     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
@@ -846,12 +915,12 @@ INSERT INTO engine_bug_queue (
 --     'directive'
 -- );
 
--- ═══════════════════════════════════════════════════════════════════════════
--- SPRING CHOREOGRAPHY — ENGINE SEAM B (coil geometry) · 2026-07-30 · TEXT ONLY
+-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+-- SPRING CHOREOGRAPHY â€” ENGINE SEAM B (coil geometry) Â· 2026-07-30 Â· TEXT ONLY
 --   field3d_surgeon dispatch, ONE bug_class:
 --   nlb_spring_coil_geometry_does_not_follow_the_choreography_phases
 --   NOTHING BELOW IS APPLIED TO THE DATABASE.
--- ═══════════════════════════════════════════════════════════════════════════
+-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 -- (1) The seam-A row this dispatch CLOSES. bug_class is the upsert key, so this
 --     is an UPDATE of the existing OPEN row, never a second INSERT.
@@ -946,7 +1015,7 @@ INSERT INTO engine_bug_queue (
 -- );
 
 -- ============================================================
--- WALL-ANCHORED SPRING (field3d_surgeon, 2026-07-30) — founder finding on
+-- WALL-ANCHORED SPRING (field3d_surgeon, 2026-07-30) â€” founder finding on
 -- newton_third_law STATE_3: "the spring is moving with the block. It should be
 -- locked to the wall." TEXT ONLY, NOT APPLIED.
 -- ============================================================
@@ -961,7 +1030,7 @@ INSERT INTO engine_bug_queue (
     'A spring between a cart and a fixed wall slides bodily with the cart instead of staying bolted to the wall face',
     'CRITICAL',
     'peter_parker:field3d_surgeon',
-    'nlbFitSpring() mounted the coil at the MIDPOINT of the two body positions and gave it the gap as its length. That is correct and symmetric while BOTH bodies are free, but a wall-anchored spring has exactly ONE fixed end: with one body fixed, half of the free body''s displacement is handed to the mount point, so BOTH coil ends translate and the whole coil walks off the wall it is attached to. Measured on the real assembled renderer over one spring_action cycle: the wall-side coil end travelled 0.8466 m (the founder saw it as 640 px -> 628 px between t=0 and t=6000). The two loading phases that DO mount on a face (approach, ring) mounted on spring.between[0] — an authoring accident, not the anchored body — so a reversed pair mounted the coil on the moving cart instead.',
+    'nlbFitSpring() mounted the coil at the MIDPOINT of the two body positions and gave it the gap as its length. That is correct and symmetric while BOTH bodies are free, but a wall-anchored spring has exactly ONE fixed end: with one body fixed, half of the free body''s displacement is handed to the mount point, so BOTH coil ends translate and the whole coil walks off the wall it is attached to. Measured on the real assembled renderer over one spring_action cycle: the wall-side coil end travelled 0.8466 m (the founder saw it as 640 px -> 628 px between t=0 and t=6000). The two loading phases that DO mount on a face (approach, ring) mounted on spring.between[0] â€” an authoring accident, not the anchored body â€” so a reversed pair mounted the coil on the moving cart instead.',
     'A spring/push_off pair in which EITHER body is `fixed` mounts the coil on THAT body''s facing face in EVERY phase, for the life of the state; only the free end tracks. The mount is a phase-independent property of the apparatus (which body is bolted down), never a per-phase decision, and never derived from the authoring order of `spring.between`. Free-free pairs keep the midpoint mount unchanged.',
     'js_eval',
     'On a cart-vs-fixed-wall spring state, sample the coil''s anchored-end world position every frame of a full cycle (approach/compress/hold/release/coast). Assert (a) max-min of that coordinate < 1e-9, (b) its distance to the anchored body''s facing face < 1e-9 on every visible frame, and (c) the FREE end still travels > 0.3 world units, so the invariance is a pinned mount and not a frozen coil.',
@@ -982,7 +1051,7 @@ INSERT INTO engine_bug_queue (
     'Centring the coil on the two body CENTRES (not on the gap) leaves a visible air gap at the thinner body and buries the other end inside the fatter one',
     'MAJOR',
     'peter_parker:field3d_surgeon',
-    'The mount was cx = (pA + pB)/2 — the midpoint of the two body CENTRES — while the coil''s length is the FACE-TO-FACE gap. Those two midpoints coincide only when the two bodies have equal half-extents. A cart (half 0.55 m) against a wall slab (half 0.275 m) therefore offsets the coil by (hA-hB)/2 = 0.1375 m: a visible gap at the SLAB face and 0.1375 m of coil buried inside the cart. Measured 0.1375 m at the mid-hold pin, exactly the predicted value. The rendered slab and the authoring contract''s 0.275 m half-width DO agree (BoxGeometry(0.275, 1.76, 1.43) is translated in Y only, verified 0.275 m / 0.550 m from the live faces), so this was pure mount arithmetic, not a geometry mismatch. Second-order: the mesh is rebuilt at a 0.02-world quantum while the mount used the UNQUANTISED length, so the residual (up to 0.01 world) was split across both seams instead of being hidden inside a body.',
+    'The mount was cx = (pA + pB)/2 â€” the midpoint of the two body CENTRES â€” while the coil''s length is the FACE-TO-FACE gap. Those two midpoints coincide only when the two bodies have equal half-extents. A cart (half 0.55 m) against a wall slab (half 0.275 m) therefore offsets the coil by (hA-hB)/2 = 0.1375 m: a visible gap at the SLAB face and 0.1375 m of coil buried inside the cart. Measured 0.1375 m at the mid-hold pin, exactly the predicted value. The rendered slab and the authoring contract''s 0.275 m half-width DO agree (BoxGeometry(0.275, 1.76, 1.43) is translated in Y only, verified 0.275 m / 0.550 m from the live faces), so this was pure mount arithmetic, not a geometry mismatch. Second-order: the mesh is rebuilt at a 0.02-world quantum while the mount used the UNQUANTISED length, so the residual (up to 0.01 world) was split across both seams instead of being hidden inside a body.',
     'Mount a spanning object on a FACE, never on a centre midpoint, whenever the two hosts can have different half-extents; and offset by the MESH''s own quantised half-length, so the quantisation residual lands entirely on the end nobody reads (inside the moving body) instead of on the visible seam.',
     'js_eval',
     'For every visible frame of a spring state whose two bodies have different half-extents, assert the coil''s end-to-face distance is < 1e-9 at the anchored face and <= half a rebuild quantum at the free face.',
@@ -993,7 +1062,7 @@ INSERT INTO engine_bug_queue (
     'incident'
 );
 
--- (3) Probe doctrine — the H2 "0.00%" demand is not well formed. MODERATE, OPEN.
+-- (3) Probe doctrine â€” the H2 "0.00%" demand is not well formed. MODERATE, OPEN.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -1003,7 +1072,7 @@ INSERT INTO engine_bug_queue (
     'H2 on a frozen frame containing a moving element wobbles a few hundredths of a percent between identical runs, so "H2 = 0.00%" cannot be used as a regression equality',
     'MODERATE',
     'peter_parker:field3d_surgeon',
-    'Two EYE runs of the SAME committed code on the same concept returned different H2 percentages on frozen frames that contain a moving body (connected_bodies STATE_6__frozen 0.24% then 0.22%; free_body_diagram STATE_3__frozen 0.00% then 0.03% twice). A direct pixel diff of the two frames shows 4315 differing pixels inside a single 68x68 box with a MAXIMUM channel delta of 3/255 — sub-perceptual rasterizer/AA wobble, not geometry: a real displacement produces large channel deltas along edges. A dispatch that demands "H2 = 0.00%" as proof of no regression therefore fails for reasons unrelated to the change under test, and invites a surgeon to "fix" a non-defect.',
+    'Two EYE runs of the SAME committed code on the same concept returned different H2 percentages on frozen frames that contain a moving body (connected_bodies STATE_6__frozen 0.24% then 0.22%; free_body_diagram STATE_3__frozen 0.00% then 0.03% twice). A direct pixel diff of the two frames shows 4315 differing pixels inside a single 68x68 box with a MAXIMUM channel delta of 3/255 â€” sub-perceptual rasterizer/AA wobble, not geometry: a real displacement produces large channel deltas along edges. A dispatch that demands "H2 = 0.00%" as proof of no regression therefore fails for reasons unrelated to the change under test, and invites a surgeon to "fix" a non-defect.',
     'State the no-regression criterion as "H2 PASSES its tolerance AND any non-zero percentage reproduces on the PRE-change renderer or has max channel delta <= 3", not as an equality to 0.00%. When a non-zero H2 appears, settle it with a pre/post pixel diff (bounding box + max channel delta), never by eyeballing the percentage.',
     'manual',
     'Re-seed and run visual:eyes on the unchanged renderer; diff the two frozen PNGs pixel-wise and report differing-pixel count, bounding box and max channel delta. Sub-3/255 deltas are rasterizer noise.',
@@ -1024,8 +1093,8 @@ INSERT INTO engine_bug_queue (
     'The newtons_laws_body HUD and block labels printed identifiers and forces but never the MASS, so a state whose whole teaching point is a mass ratio could not be read at all',
     'MAJOR',
     'peter_parker:field3d_surgeon',
-    'The value-only HUD (Rule 33d) enumerated exactly the state''s readouts[] enum — N, f, a, v, T, F_net, F_applied — and mass is not a member because it is a PARAMETER, not a reading. The per-body group header printed the identifier alone ("m1"), and only when a state had more than one body; the on-block sprite printed the same identifier. So the one number that makes an unequal-mass beat legible ("same 30 N push, one cart accelerates 3x harder") appeared NOWHERE: the founder''s state 2 rendered "m1 / F = 30.00 N / a = 7.50 m/s2" against "m2 / F = -30.00 N / a = -2.50 m/s2" with no way to tell which cart was heavier or by how much. A fixed (wall/Earth) body compounded it: authored at 1000000 kg as a stand-in for infinity, any naive mass row would have printed that number as though it were a reading.',
-    'A quantity the state''s claim DEPENDS on must be rendered even when it is an input rather than an output — the readouts[] enum covers outputs only, so parameters (mass) are rendered by the engine unconditionally. Render it in BOTH places: the HUD group header (which body) and on the physical object (so a teacher can point at it). Format one way everywhere (bare integer, minimum readable precision otherwise), normalise identifiers to Unicode subscripts on EVERY text path that prints them (DOM header, DOM slider row, 3D sprite), and never print a stand-in-for-infinity mass as a number.',
+    'The value-only HUD (Rule 33d) enumerated exactly the state''s readouts[] enum â€” N, f, a, v, T, F_net, F_applied â€” and mass is not a member because it is a PARAMETER, not a reading. The per-body group header printed the identifier alone ("m1"), and only when a state had more than one body; the on-block sprite printed the same identifier. So the one number that makes an unequal-mass beat legible ("same 30 N push, one cart accelerates 3x harder") appeared NOWHERE: the founder''s state 2 rendered "m1 / F = 30.00 N / a = 7.50 m/s2" against "m2 / F = -30.00 N / a = -2.50 m/s2" with no way to tell which cart was heavier or by how much. A fixed (wall/Earth) body compounded it: authored at 1000000 kg as a stand-in for infinity, any naive mass row would have printed that number as though it were a reading.',
+    'A quantity the state''s claim DEPENDS on must be rendered even when it is an input rather than an output â€” the readouts[] enum covers outputs only, so parameters (mass) are rendered by the engine unconditionally. Render it in BOTH places: the HUD group header (which body) and on the physical object (so a teacher can point at it). Format one way everywhere (bare integer, minimum readable precision otherwise), normalise identifiers to Unicode subscripts on EVERY text path that prints them (DOM header, DOM slider row, 3D sprite), and never print a stand-in-for-infinity mass as a number.',
     'js_eval',
     'For every nlb state: each non-ghost, non-fixed body''s HUD header text matches /<name> = <number> kg/ with no ASCII m1/m2 anywhere, and its on-block sprite text equals the same number + " kg"; a fixed body''s header contains no mass digits and does contain U+226B; every mass sprite''s measured INK width is <= the cube width (0.55 world), which structurally forbids a collision with a neighbouring block''s label, and no mass rect intersects any other label rect, any arrow shaft polyline or any DOM overlay rect.',
     'FIXED',
@@ -1035,14 +1104,14 @@ INSERT INTO engine_bug_queue (
     'incident'
 );
 
--- (5) Probe doctrine — sprite ink is invisible to every DOM probe. MODERATE, OPEN.
+-- (5) Probe doctrine â€” sprite ink is invisible to every DOM probe. MODERATE, OPEN.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
     discovered_in_session, row_type
 ) VALUES (
     'field3d_sprite_label_text_and_ink_box_are_invisible_to_every_dom_probe',
-    'What a 3D sprite label SAYS, and where its ink actually lands on screen, is unreadable by founder_drive''s DOM collision probe and by THE EYE''s gates — only a canvas-measuring projection probe can assert either',
+    'What a 3D sprite label SAYS, and where its ink actually lands on screen, is unreadable by founder_drive''s DOM collision probe and by THE EYE''s gates â€” only a canvas-measuring projection probe can assert either',
     'MODERATE',
     'peter_parker:field3d_surgeon',
     'A field_3d label is a canvas texture on a THREE.Sprite: there is no DOM node, no text node and no bounding client rect, so every DOM-based collision/text probe silently reports nothing for the entire label layer. The drawn string was also not retained anywhere after createLabelSprite/updateLabelSpriteText ran, so even with the scene in hand a probe could not tell what a label said. Result: label-vs-label and label-vs-arrow collisions in the 3D layer are provable only by eye, which is exactly the class Rule 34d exists to prevent.',
@@ -1063,7 +1132,7 @@ INSERT INTO engine_bug_queue (
     discovered_in_session, row_type
 ) VALUES (
     'nlb_explore_hud_panel_slider_overlap',
-    'The nlb HUD panel is top-anchored and the slider panel bottom-anchored on the SAME right edge, so a tall HUD walks down into the sliders — the explore state bled its last readout rows behind the m1 slider row',
+    'The nlb HUD panel is top-anchored and the slider panel bottom-anchored on the SAME right edge, so a tall HUD walks down into the sliders â€” the explore state bled its last readout rows behind the m1 slider row',
     'MAJOR',
     'peter_parker:field3d_surgeon',
     'Both panels are fixed CSS with no knowledge of each other: #nlb_readout at top:52px;right:12px and #nlb_sliders at bottom:12px;right:12px. The height of the HUD is data-driven (bodies x readouts), so the explore state of a two-body concept builds 2 headers + 12 rows at 13px/1.7 = ~330 px and reaches the slider panel top at ~346 px; the sliders are appended later in the DOM and share z-index 10, so they paint OVER the last HUD rows. Making the mass header unconditional added exactly the two rows that crossed the line. CSS cannot express "stop before that other fixed panel", so no static layout fixes it.',
@@ -1105,7 +1174,7 @@ INSERT INTO engine_bug_queue (
     discovered_in_session, row_type
 ) VALUES (
     'nlb_slider_mass_label_unrounded_precision',
-    'A mass written by a live off-grid value (explore auto-sweep or a drag) printed three decimals — 8.464 kg on the block and in the HUD — instead of the minimum readable precision',
+    'A mass written by a live off-grid value (explore auto-sweep or a drag) printed three decimals â€” 8.464 kg on the block and in the HUD â€” instead of the minimum readable precision',
     'MODERATE',
     'peter_parker:field3d_surgeon',
     'The mass formatter rounded to 3 dp and only stripped trailing zeros, which is invisible while every mass on screen comes from an authored integer or a 0.5-step slider. The explore state''s idle auto-sweep (Rule 37) and THE EYE''s slider driver both write INTERPOLATED values off the step grid, so the raw sweep value reached every mass surface verbatim. The defect was in the shared formatter, not in one path: a per-path patch would have left the next writer of a live value exposed.',
@@ -1132,7 +1201,7 @@ INSERT INTO engine_bug_queue (
     'After a teacher rotates the camera in an explore state, an on-table (non-falling) cart can project underneath the semi-transparent slider panel, and its mass number plus identifier bleed through faded and illegible instead of dodging clear',
     'MODERATE',
     'peter_parker:field3d_surgeon',
-    'The label dodge added in ff6939c resets to the home pose, projects the real ink rect and slides the label pair clear of a visible overlay rect — correct and confirmed for a body that FALLS into the panel zone. But the projected rect depends on the camera, and an explore state lets the teacher rotate it (Rule 25d), which can move a body that never moves in world space into the panel zone. The dodge logic covers that case in principle; the observed frames show it not clearing, so either the cap (NLB_LABEL_DODGE_MAX 1.10 world) is too small for the rotated projection or the dodge axis (world x) is no longer the screen-clearing direction once the camera has turned.',
+    'The label dodge added in ff6939c resets to the home pose, projects the real ink rect and slides the label pair clear of a visible overlay rect â€” correct and confirmed for a body that FALLS into the panel zone. But the projected rect depends on the camera, and an explore state lets the teacher rotate it (Rule 25d), which can move a body that never moves in world space into the panel zone. The dodge logic covers that case in principle; the observed frames show it not clearing, so either the cap (NLB_LABEL_DODGE_MAX 1.10 world) is too small for the rotated projection or the dodge axis (world x) is no longer the screen-clearing direction once the camera has turned.',
     'A label dodge must clear the panel in SCREEN space, not along a fixed world axis: pick the slide direction from the projected panel edge normal and size the cap from the measured overlap in pixels, so the dodge stays correct under any camera the teacher can reach. Probe it with the camera rotated, not only at the authored camera.',
     'js_eval',
     'In an explore state, rotate the camera through a spread of azimuths; at each one project every visible mass/identifier ink rect and assert zero intersection with every visible DOM overlay rect. The authored camera alone is not sufficient coverage for any state that exposes camera drag.',
@@ -1143,12 +1212,12 @@ INSERT INTO engine_bug_queue (
     'incident'
 );
 
--- (10) The mass painted on the 3D BLOCK FACE is unreadable — the founder read the state as having
+-- (10) The mass painted on the 3D BLOCK FACE is unreadable â€” the founder read the state as having
 --      no masses at all. MAJOR, FIXED (this commit). This is the SAME finding as row (4)
 --      (`nlb_hud_and_body_labels_never_show_mass_...`) coming back one commit later through a
 --      different door: the HUD half of that fix was right, the on-face half was the wrong surface.
 --      Logged as its own class because the LESSON is about the surface, not about the missing value.
---      NOT APPLIED — candidate text only (trial constraint: no DB writes).
+--      NOT APPLIED â€” candidate text only (trial constraint: no DB writes).
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -1158,8 +1227,8 @@ INSERT INTO engine_bug_queue (
     'A quantity written across a 3D object''s own face (the nlb block''s mass) renders ~30 screen px, low-contrast on a saturated body colour and sheared by perspective, so the founder read the state as "m1 and m2 is not showing" even though the sprite existed and carried the right string',
     'MAJOR',
     'peter_parker:field3d_surgeon',
-    'Text parented to a face of a small solid inherits that solid''s projection: it shears with every camera angle, shrinks with distance, and sits on whatever hue the object happens to be. The 0.55-world-unit cart made "4 kg" about 30 px tall against a saturated red/blue face. Every automated check passed — the sprite existed, was visible, was registered in sceneObjects and carried the correct Unicode string — because presence is not legibility. No font size could fix it: on-face text always loses to perspective.',
-    'A VALUE (a number a student must read) never goes on a 3D face. It goes on the camera-facing billboard that already names the object, as ONE string ("m1 = 4 kg"), so identifier and value can never split, shear or shrink apart. On-face ink is for decoration and orientation cues only. When a billboard grows to carry a value, its de-collision must MEASURE the new ink width (sprite.scale.x x inkFrac) rather than assume the old one — a centre-distance test tuned for a two-glyph label is blind to a ten-glyph one.',
+    'Text parented to a face of a small solid inherits that solid''s projection: it shears with every camera angle, shrinks with distance, and sits on whatever hue the object happens to be. The 0.55-world-unit cart made "4 kg" about 30 px tall against a saturated red/blue face. Every automated check passed â€” the sprite existed, was visible, was registered in sceneObjects and carried the correct Unicode string â€” because presence is not legibility. No font size could fix it: on-face text always loses to perspective.',
+    'A VALUE (a number a student must read) never goes on a 3D face. It goes on the camera-facing billboard that already names the object, as ONE string ("m1 = 4 kg"), so identifier and value can never split, shear or shrink apart. On-face ink is for decoration and orientation cues only. When a billboard grows to carry a value, its de-collision must MEASURE the new ink width (sprite.scale.x x inkFrac) rather than assume the old one â€” a centre-distance test tuned for a two-glyph label is blind to a ten-glyph one.',
     'js_eval',
     'For every label sprite that carries a NUMBER, assert: (a) its parent is not a body mesh whose silhouette bounds it, and (b) its projected ink rect is at least ~24 px tall and does not intersect any other visible label rect or DOM overlay rect, measured at the state''s CLOSEST-approach pose (the compressed/hold beat of a two-body interaction), not only at state entry.',
     'FIXED',
@@ -1171,7 +1240,7 @@ INSERT INTO engine_bug_queue (
 
 -- (11) DIRECTIVE, companion to (10): a de-collision pass that switches off at a hard threshold makes
 --      the label JUMP. Recorded so the next widening does not re-introduce the pop.
---      NOT APPLIED — candidate text only.
+--      NOT APPLIED â€” candidate text only.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -1193,11 +1262,11 @@ INSERT INTO engine_bug_queue (
 );
 
 -- (12) OPEN, found by eye-walker on connected_bodies during the billboard-mass gate (2026-07-30).
---      NOT a regression from that fix — verified against the PRE-FIX approved baselines
+--      NOT a regression from that fix â€” verified against the PRE-FIX approved baselines
 --      (visual_baselines/connected_bodies/STATE_{3,4,7}__frozen.png), where block B and its short
 --      m2 tag are ALREADY half-hidden behind the #sliders panel. The wider string did not create the
 --      overlap; it made the overlap consequential, because the part now buried is the mass VALUE.
---      NOT APPLIED — candidate text only. Separate bug_class, needs its own dispatch.
+--      NOT APPLIED â€” candidate text only. Separate bug_class, needs its own dispatch.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -1221,7 +1290,7 @@ INSERT INTO engine_bug_queue (
 -- (13) OPEN, same walk, lower severity. Also PRE-EXISTING-WIDENED against the same baselines
 --      (STATE_6/STATE_7): the short m2 tag already touched the pulley rim pre-fix. Text stays
 --      legible (fill + stroke against grey) in BOTH versions - untidy, never unreadable.
---      NOT APPLIED — candidate text only.
+--      NOT APPLIED â€” candidate text only.
 INSERT INTO engine_bug_queue (
     bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
     probe_type, probe_logic, status, concepts_affected, fixed_in_files,
@@ -1239,5 +1308,17 @@ INSERT INTO engine_bug_queue (
     ARRAY['connected_bodies']::text[],
     ARRAY[]::text[],
     'lom-a billboard mass legibility 2026-07-30',
+    'field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio',
+    'Force magnitudes under the arrow-length floor render as invisible stubs and destroy any authored length ratio',
+    'MAJOR',
+    'alex:physics_author',
+    'The arrow overlay renders len = clamp(NLB_ARROW_MIN_LEN, NLB_ARROW_MAX_LEN, magnitudeN * NLB_ARROW_SCALE) with NLB_ARROW_SCALE = 0.030 world-units/N and NLB_ARROW_MIN_LEN = 0.30 (field_3d_renderer.ts ~L29272-29274). The clamp is DESIGNED behavior per engine spec section 3 ("a nonzero force is always at least readable"), so this is not an engine defect. But newton_second_law authored 0.2 N and 0.4 N â€” raw lengths 0.006 and 0.012, both far under the floor. Consequences: (a) STATE_1 applied-force arrow, the state sole glow_focal and the Rule 32a cause element, renders as a ~1px stub with no shaft or arrowhead at any captured frame; (b) STATE_3 doubled-force arrow, the state entire pedagogical payload and its Rule 29 magnitude-length exception, is destroyed because BOTH 0.2 N and 0.4 N clamp to the identical minimum, leaving no length difference to see. The physics block own section 6 flagged the small-numbers risk; it was realized, not hypothetical.',
+    'Any authored force intended to be SEEN must clear the arrow-length floor with margin: F >= 15 N at NLB_ARROW_SCALE = 0.030 (raw length 0.45, 1.5x the floor). Where two force magnitudes are compared on the same canvas for their LENGTH ratio, the SMALLER of the pair must clear the floor â€” otherwise the ratio is unrenderable. Scale masses (and surface.length_m / dwell) to hold the clamp-margin constraint at the larger forces, rather than shrinking forces to hold the accelerations down. Applies to idle_auto_sweep ranges too: a sandbox sweeping F over a sub-floor range shows a frozen stub arrow.',
+    'static_check',
+    'For every state, for every arrow declared in newtons_laws_body.arrows[].show, resolve its magnitude from the authored bodies/config and assert magnitude * NLB_ARROW_SCALE > NLB_ARROW_MIN_LEN. Additionally, where two arrows of the same kind appear in one state, assert both clear the floor before trusting any authored length ratio.',
+    'OPEN',
+    ARRAY['newton_second_law']::text[],
+    ARRAY['src/data/concepts/newton_second_law.json']::text[],
+    '2026-07-25 lom-b chapter loop cycle 2 â€” newton_second_law eye_walker',
     'incident'
 );

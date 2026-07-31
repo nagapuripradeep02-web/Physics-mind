@@ -2715,14 +2715,21 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     parallel_plate_capacitor_basic: "particle_field",
     parallel_plate_capacitor:       "particle_field",
     // Ch7 AC circuits — circuit_live for component/oscillation concepts, graph_interactive for analytical concepts
-    lc_oscillations:                "circuit_live",
+    // NOTE: lc_oscillations REMOVED from here — the real atomic concept
+    // (src/data/concepts/lc_oscillations.json) is field_3d, registered
+    // below alongside series_lcr_circuit/ac_power_factor. This stale
+    // circuit_live placeholder is retired (same pattern meter_bridge and
+    // wheatstone_bridge each executed on their own prior slot).
     lcr_series_circuit:             "circuit_live",
     resistor_in_ac:                 "circuit_live",
     inductor_in_ac:                 "circuit_live",
     capacitor_in_ac:                "circuit_live",
-    transformer:                    "circuit_live",
+    // NOTE: transformer REMOVED from here — the real atomic concept
+    // (src/data/concepts/transformer.json) is field_3d, registered below
+    // alongside lc_oscillations/series_lcr_circuit/ac_power_factor. This
+    // stale circuit_live placeholder is retired (same pattern each prior
+    // Ch.7 sibling executed on its own prior slot).
     ac_basics:                      "graph_interactive",
-    phasors:                        "graph_interactive",
     resonance_lcr:                  "graph_interactive",
     power_in_ac:                    "graph_interactive",
     // Mechanics 2D — all concepts routed to the mechanics_2d renderer
@@ -2734,6 +2741,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // "Vectors" DAG track (prerequisite: scalar_vs_vector). Also in
     // PCPL_CONCEPTS below (parametric_renderer, matches scalar_vs_vector).
     vector_addition_law:            "mechanics_2d",
+    // resultant_direction — concept #3 of the Vectors DAG track (prerequisite:
+    // vector_addition_law). Also in PCPL_CONCEPTS below (parametric_renderer,
+    // matches vector_addition_law/scalar_vs_vector).
+    resultant_direction:            "mechanics_2d",
     dot_product:                    "mechanics_2d",
     // Atomic splits from former vector_basics bundle
     unit_vector:                    "mechanics_2d",
@@ -2825,6 +2836,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     free_body_diagram:              "field_3d",   // RETROFIT 2026-07-25 onto newtons_laws_body (was mechanics_2d)
     connected_bodies:                "field_3d",   // NEW 2026-07-25 — newtons_laws_body Branch B (coupled/pulley)
     block_on_incline:               "field_3d",   // NEW 2026-07-26 — newtons_laws_body Branch A (incline friction threshold)
+    normal_force:                   "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (N = mg*cos(theta), N adjusts, never a fixed mg)
+    friction_force:                 "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (flat push: static self-adjust, maximum + drop)
+    rolling_friction:               "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch A + SEAM G (bodies[].shape:'wheel'): sliding block vs rolling wheel, same push, ~200x friction gap
+    tension_force:                  "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch B (pulley, STATE_1-3) then SEAM H train (STATE_4-6): T set by motion not the string, T1 != T2 in a chain
     uniform_circular_motion:        "mechanics_2d",
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",
@@ -2921,6 +2936,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     potential_energy_in_external_field: "field_3d",
     electric_potential_3d:          "field_3d",
     parallel_plate_capacitor_field: "field_3d",
+    capacitance:                    "field_3d",
     magnetic_field_solenoid:        "field_3d",
     magnetic_field_concept_B:       "field_3d",
     magnetic_field_wire:            "field_3d",
@@ -2952,8 +2968,53 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     eddy_currents:                  "field_3d",
     inductance:                     "field_3d",
     ac_generator:                   "field_3d",
+    ac_voltage_resistor:            "field_3d",
+    ac_voltage_inductor:            "field_3d",
+    ac_voltage_capacitor:           "field_3d",
+    // Supersedes the legacy 'phasors' -> graph_interactive stub removed
+    // above (old retired scaffolding, never wired to a real concept JSON).
+    phasors:                        "field_3d",
+    // src/data/concepts/series_lcr_circuit.json, field_3d ac_series_lcr
+    // scenario (Ch.7 #5, engine build commit cec3a50). NOT in PCPL_CONCEPTS
+    // (that set is 2D parametric_renderer only).
+    series_lcr_circuit:             "field_3d",
+    // src/data/concepts/ac_power_factor.json, field_3d ac_power scenario
+    // (Ch.7 #6, engine build commit 9df14e3). NOT in PCPL_CONCEPTS (that
+    // set is 2D parametric_renderer only).
+    ac_power_factor:                "field_3d",
+    // src/data/concepts/lc_oscillations.json, field_3d lc_oscillation
+    // scenario (Ch.7 #7, Class-B clone-sibling of ac_power — engine build
+    // dispatched separately from this JSON registration pass). NOT in
+    // PCPL_CONCEPTS (that set is 2D parametric_renderer only).
+    lc_oscillations:                "field_3d",
+    // src/data/concepts/transformer.json, field_3d 'transformer' scenario
+    // (Ch.7 #8, the LAST concept of the chapter — Class-B clone-sibling of
+    // lc_oscillation, engine build dispatched separately from this JSON
+    // registration pass). NOT in PCPL_CONCEPTS (that set is 2D
+    // parametric_renderer only).
+    transformer:                    "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
+    // displacement_vs_distance — concept #1 of the new Class 11 Kinematics
+    // "Motion in a Straight Line" DAG track (chapter:2, prerequisite:
+    // scalar_vs_vector). First field_3d Kinematics concept, on the
+    // kinematics_1d_track scenario built in the same change. Alex pipeline,
+    // 2026-07-25.
+    displacement_vs_distance:       "field_3d",
+    // Ch.8 Electromagnetic Waves — displacement current (NCERT §8.2), the
+    // chapter's load-bearing opener. NEW field_3d "displacement_current"
+    // scenario (Alex pipeline, 2026-07-24). Ampère–Maxwell correction:
+    // I_d = ε₀ dΦ_E/dt fixes the two-surface contradiction at a charging
+    // capacitor's gap.
+    displacement_current:           "field_3d",
+    // Ch.8 Electromagnetic Waves — EM wave propagation (NCERT §8.3), the
+    // chapter's second diamond (Alex pipeline, 2026-07-25). NEW field_3d
+    // "em_wave_propagation" scenario: mutually regenerating E and B
+    // self-propagate through vacuum at c = 1/√(μ₀ε₀), the speed that
+    // identifies light itself as an electromagnetic wave. Absorbs the
+    // seeded siblings em_wave_nature + speed_of_em_waves (redirect-only —
+    // see CONCEPT_SYNONYMS in intentClassifier.ts).
+    em_wave_propagation:            "field_3d",
     newton_first_law:               "field_3d",
     newton_second_law:              "field_3d",
     newton_third_law:               "field_3d",
@@ -3032,6 +3093,11 @@ const PCPL_CONCEPTS = new Set<string>([
     // vector_addition_law — concept #2 of the Vectors DAG track
     // (prerequisite: scalar_vs_vector). Alex pipeline, authored 2026-07-24.
     'vector_addition_law',
+    // resultant_direction — concept #3 of the Vectors DAG track (prerequisite:
+    // vector_addition_law) — direction of the resultant, tan alpha = B sin
+    // theta / (A + B cos theta), cashing out the formula vector_addition_law
+    // explicitly deferred. Alex pipeline, authored 2026-07-24.
+    'resultant_direction',
     // Ch.5.4 Phase 0 validation demo Sim 1 (session 56 — first concept using premium primitives:
     // glow_focus + animated_path + sound_cue)
     'vector_head_to_tail',

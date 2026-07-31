@@ -1,0 +1,128 @@
+name: verify
+
+# Runs on every push to every branch, and on PRs into master.
+#
+# The `pull_request` trigger matters more than it looks: PR workflows run from
+# the MERGE ref, which carries master's copy of this file. So opening a PR from
+# a branch that has never merged master still gets verified by this workflow —
+# no commit on that branch required.
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+# One run per ref. A rapid second push cancels the in-flight run instead of
+# paying for both. master is exempt — we want an unbroken history of the trunk.
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+      # npm reads npm_config_yes. Without it, an `npx` inside an npm script can
+      # abort on a non-TTY runner ("canceled due to missing packages").
+      npm_config_yes: 'true'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # fetch-depth defaults to 1 on purpose: .git here is ~253 MB
+        # (785 tracked PNG visual baselines). A full clone would add ~60s
+        # to every single run.
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.11.0' # matches the dev laptop; CI should reproduce it
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # tsx is NOT in package.json or package-lock.json — it currently works on
+      # the dev laptop only because of a global install. Installing it here
+      # (pinned) means `npx tsx ...` inside the npm scripts resolves from
+      # globalBin and never hits the registry prompt.
+      #
+      # Deliberately NOT added to devDependencies yet: four unmerged branches
+      # already edit package.json's scripts block, and npm ci HARD-ERRORS on
+      # any package.json/lockfile drift. Adding it now would turn a red CI into
+      # a blocker for those merges. Move it to devDependencies once they land,
+      # then delete this step.
+      - name: Install tsx (not yet in package.json — see comment)
+        run: npm i -g tsx@4.21.0
+
+      # ---- checks, cheapest first so a broken merge fails in ~90s ----------
+
+      - name: Agent specs in sync with canonicals
+        run: npm run check:agents
+
+      - name: Renderer template syntax (Rule 36c)
+        run: npm run check:renderer-syntax
+
+      # ADVISORY ONLY — 158 missing scenarios across 16 files as of 2026-07-26,
+      # reproduced identically on the dev laptop, so this is pre-existing debt
+      # and not new breakage. Most of the 16 are the legacy vectors/kinematics/
+      # forces JSONs that CLAUDE.md §3 explicitly says are OLD architecture and
+      # NOT product — but drift_velocity, ohms_law and resistivity are SHIPPED
+      # pilot concepts and deserve a look.
+      # Flip to blocking once the count reaches zero.
+      - name: Renderer scenarios resolve (advisory, non-blocking)
+        run: npm run check:scenarios
+        continue-on-error: true
+
+      # NEVER pass --with-smoke here: that path needs .env.local and launches
+      # a browser. Plain `validate:concepts` reads only tracked local files.
+      - name: Concept JSON schema + registration cross-check
+        run: npm run validate:concepts
+
+      # validate:concepts scans src/data/concepts/ NON-recursively by design (the
+      # isolation contract, docs/CHEMISTRY_ARCHITECTURE.md §7), so it never sees
+      # src/data/concepts/chemistry/ — a broken chemistry concept passed this
+      # whole workflow green. Added 2026-07-28, when chemistry reached four
+      # concepts across three renderer families. Like the step above it reads
+      # only tracked local files: no .env.local, no browser, no network.
+      - name: Chemistry concept schema + gates
+        run: npm run validate:chemistry
+
+      - name: Unit tests
+        run: npm test
+
+      # tsconfig.json `include`s next-env.d.ts and .next/types/**, all of which
+      # are gitignored and therefore absent in a fresh clone. `next typegen`
+      # generates them (no env, no network, no build).
+      #
+      # Non-blocking: this repo has zero CSS-module and zero static-image
+      # imports and typedRoutes is off, so if typegen fails tsc still catches
+      # nearly everything — it just loses App Router page/layout signature
+      # validation for that run.
+      - name: Generate Next types
+        run: npx --no-install next typegen
+        continue-on-error: true
+
+      - name: Type check
+        run: npx --no-install tsc --noEmit --incremental false
+
+      # ADVISORY ONLY — 146 pre-existing errors as of 2026-07-26. Blocking on
+      # this would make CI permanently red, which trains everyone to ignore it.
+      # Flip to blocking once the count reaches zero.
+      #
+      # Scoped to src/scripts/e2e because eslint.config.mjs's globalIgnores()
+      # REPLACES eslint-config-next's defaults, so a bare `eslint` walks
+      # mineru-service/venv311 and .netlify/ and OOM-crashes.
+      - name: Lint (advisory, non-blocking)
+        run: npx --no-install eslint src scripts e2e
+        continue-on-error: true

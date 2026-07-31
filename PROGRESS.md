@@ -1,5 +1,360 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔒 SESSION — Repo made PRIVATE · 110 unbacked commits pushed · CI + shared git hooks landed (2026-07-26)
+
+**Bottom line: the repo had no CI, no push discipline, and was PUBLIC. 110 commits across 5 branches existed on exactly one disk in the world. All of it is now backed up, the repo is private, GitHub Actions verifies every push, and a shared `post-commit`/`post-merge` hook auto-pushes feature branches so this cannot recur. Governing principle adopted: if a machine can check it, it is a machine check, not a written rule — `CLAUDE.md` already forbade everything that went wrong.**
+
+- **Root cause found:** the same PCPL focal-glow fix was built TWICE the same day under different names (`PM_focalEmphasis` here, `PM_focalPulseBoost` on the chemistry laptop), and the player clock twice — because neither side could see the other's unpushed work. Master had been frozen since 2026-07-22 while every branch piled up locally.
+- **Repo is now PRIVATE** (was public — 125 concept JSONs, 13 renderers, 46 agent specs, DISCUSSIONS.md pricing/customer calls were world-readable). Secret audit came back clean: the only key on master is the Supabase **anon** key (`role: "anon"`, RLS-gated by design); no `.env*` was ever committed. Collaborator access verified intact.
+- **Backup complete:** 52 MB verified bundle at `C:/Backups/physics-mind-2026-07-26.bundle`, then 5 branches pushed — `pcpl-parity` (16), `ch8-em-waves` (12), `lom-b` (34), `lom-a` (36), `ch7-alternating-current` (51). `git rev-list --count --branches --not --remotes` now reads **0** across all 18 local branches.
+- **CI (`.github/workflows/verify.yml`)** — agent sync · renderer syntax · concept schema + registration · vitest (284 tests) · `next typegen` → `tsc`. Lint and `check:scenarios` are ADVISORY (146 eslint errors and 158 missing scenarios are pre-existing; blocking would make CI permanently red and train everyone to ignore it). Installs `tsx` in-workflow rather than touching `package.json`, so the file merged into every outstanding branch with zero conflict.
+- **Shared hooks (`.githooks/` + `scripts/install-git-hooks.js`)** — installs into the SHARED `.git/hooks`, which is branch- and worktree-independent, so one run covers all 13 worktrees on every branch. Deliberately NOT `core.hooksPath`: a relative value resolves per-worktree, so it would have silently disabled the agent-emission guard on the 12 worktrees whose branch lacks `.githooks/` (git gives no fallback and no warning).
+- **Two bugs caught by testing rather than assuming:** (1) `git merge` does NOT run `post-commit` — it runs `post-merge`, so the daily "merge master" prescribed in the new workflow doc would have sat unpushed; added `post-merge`. (2) The installer displaced Git LFS's hooks — now chains to whatever it replaces. All 5 guards verified: happy path, `PM_NO_AUTOPUSH=1`, mid-rebase, detached HEAD, master-skip.
+- **CI matrix via draft PRs** (PR workflows run from the merge ref, so master's workflow covered every branch with zero commits on them): **ch7 #7 and ch8 #6 are MERGEABLE and fully green**. `pcpl-parity` #3 (23 conflicting files), `lom-a` #4 and `lom-b` #5 (16 each) are CONFLICTING — GitHub cannot build a merge ref, which is why no checks appear. Resolve `pcpl-parity` first; lom-a/lom-b descend from it.
+- **`docs/GIT_WORKFLOW.md`** — the shared contract for both laptops (four-places model, commit/push/merge cadence, why engine files are platform).
+- **CI's first real finding:** `check:scenarios` fails on 16 files. Most are the legacy vectors/kinematics/forces JSONs (CLAUDE.md §3: old architecture, not product) — but `drift_velocity`, `ohms_law` and `resistivity` are SHIPPED pilot concepts and need a look.
+- **NEXT:** (1) merge ch8 then ch7 to master (both green + clean). (2) Resolve `pcpl-parity` conflicts, then lom-a/lom-b. (3) Collaborator must push `feat/chemistry-foundation` — still only the scaffold commit on origin. (4) Deferred to after the branches land: `tsx` → devDependencies, fix `eslint.config.mjs` globalIgnores (bare `npm run lint` currently OOM-crashes), promote `.git/info/exclude` scratch entries into `.gitignore`.
+
+---
+
+## 🚂 SESSION — Kinematics chapter OPENS: `displacement_vs_distance` SHIPPED (first field_3d kinematics concept, new `kinematics_1d_track` engine scenario built from scratch) — baselines locked (2026-07-25)
+
+**Bottom line: authored `displacement_vs_distance` (Class-11 Ch.2 Kinematics #1, prerequisite `scalar_vs_vector`, field_3d) through the full Alex pipeline — architect → physics-author → json-author → quality-auditor → renderer-primitives → runtime-generation → eye-walker ∥ quality-auditor, across THREE FAIL→fix→re-verify rounds — ending ALL-GREEN: tsc 0, validate 126/126, THE EYE 27/27 deterministic ×3 runs, eye-walker independent re-verify CLEAN, quality-auditor independent re-verify PASS, 6/6 baselines approved (`visual:approve` run, NOT yet `git add`ed). Founder directive at session start: stop authoring Vectors (Ch.1, stays PCPL), open Kinematics on field_3d per the 2026-07-23 chapter-track decision — this concept is that opener.**
+
+- **The concept (6 states):** the "fitness-tracker paradox" anchor (jog out-and-back, tracker reads 4.0 km, displacement = 0) — origin/position setup → one-way jog (d=|Δx|, the "safe case") → **PRIMARY aha**: round-trip return leg where a dim ghost arrow grows at the odometer's rate and gets struck through as the real displacement arrow shrinks to a zero-length stub at O while d keeps climbing to 80m → signed displacement (sign-flip crossing origin, scalar_vs_vector callback) → lap-sweep oscillation proving Δx = x_f − x₀ depends only on endpoints → open sandbox (Rule 37 continuous idle-sweep + trusted-drag).
+- **Brand-new field_3d scenario `kinematics_1d_track` built from scratch** in `field_3d_renderer.ts` (first-ever 1D-straight-line-motion scenario — no prior scenario to reuse): track/ticks/origin-flag/runner/displacement-arrow/ghost-arrow-with-strikethrough/turnaround-post/sweep-markers/lap-counter/HUD readouts, registered in `deriveStateMeta.ts`, `#sliders` exclusion-chain entry, `top:52px+` HUD anchoring, dedicated Cambria-Math formula panel.
+- **Three FAIL rounds, each root-caused properly, not patched around:**
+  1. Missing scenario → crash on `config.field_lines.count` (unknown-scenario-type fallback bug, now hardened fleet-wide with an optional-chain guard).
+  2. `kt_x_readout` (STATE_1's position HUD) spec'd but never implemented; duplicate formula overlay (`#formula_overlay` + new `#kt_formula` both rendering); distance accumulator (`PM_ktD`) desyncing badly *specifically under THE EYE's capture harness* (`SET_TIME_FREEZE`'s backward clock jumps broke a frame-diff accumulator) — fixed architecturally by making `d(t)` a closed-form pure function of state-clock time for the 5 guided states (immune to seek order), keeping a live frame accumulator only on STATE_6's human-driven sandbox.
+  3. Two cosmetic camera notes (STATE_3 ghost-arrow clipping in narrow windowed layouts, STATE_5's oblique tilt vs the other states' flat home pose) — the STATE_5 "fix" appeared not to work on first attempt because **THE EYE reads `simulation_cache`, not the live JSON**, and nobody re-seeded after the json_author edit; re-running the concept's `_seed_<id>_cache.ts` resolved it with zero renderer code changes. New reusable lesson: `[[reference_visual_gate_ops]]` (memory) now documents this `build:review`-vs-`visual:eyes` cache-source trap explicitly.
+- **Not yet founder-reviewed** (Asmi review, §5 stage ④, still pending) — baselines locked but `visual_baselines/displacement_vs_distance/` not yet `git add`ed/committed. Migration SQL authored, not applied. `text_hi` not yet authored (Rule 30i — FYI, not a blocker; do via the Rule 30g Sonnet-5 sub-agent step before `shipper`). Not yet added to `PILOT_CONCEPTS`.
+
+**Next (fresh context):** founder reviews at `http://localhost:8080/displacement_vs_distance/`, decides whether to `git add`/commit the baselines + JSON + renderer diff. Second Kinematics concept (`avg_vs_instantaneous_velocity` or similar, per the chapter's teaching-order dependency graph) can reuse the now-hardened `kinematics_1d_track` scenario patterns if its motion is also straight-line — check first whether it needs a new scenario or can extend this one.
+
+## ➕ SESSION — Vectors #3 `resultant_direction` SHIPPED (full pipeline + 2 fix rounds) + PCPL focal-glow channel completed engine-wide (2026-07-24, second session)
+
+**Bottom line: authored `resultant_direction` (Class-11 Ch.1 Vectors DAG child #3, prerequisite `vector_addition_law`, PCPL) through the full Alex pipeline — architect → physics-author → json-author → eye-walker ∥ quality-auditor — with a genuine auditor FAIL→fix→re-verify round plus a second surgical fix round, ending ALL-GREEN: tsc 0, validate 126/126 (zero target warnings), THE EYE 27/27 deterministic ×3 runs, eye-walker re-verify all-RESOLVED, review site serving HTTP 200. This cashes out the direction formula α = tan⁻¹(B sin θ/(A + B cos θ)) that `vector_addition_law` line 136 explicitly deferred here. Fresh concept_id per the standing founder call — the broken legacy `direction_of_resultant.json`/`resultant_formula.json` stay byte-untouched, no synonym redirect. NOT yet founder-reviewed; baselines NOT locked (`visual:approve` untouched); migration authored NOT applied.**
+
+- **The concept (6 states, 6 unique archetypes):** S1 sweep-and-lock hook ("6 km — which way?") · S2 perpendicular-drop decomposition (B cos θ shadow + B sin θ riser) · S3 PRIMARY aha — wrong-base ghost overshoots at 49.1°, tracer beads run base+riser, true α arc lands at 34.7° (denominator misconception beat) · S4 bisector-belief earned at b=a then broken by b ping-pong ("R leans toward bigger") · S5 θ-sweep with landmark holds (90° formula collapse to B/A; base-zero → α=90° at θ≈138.6°; 180° flip) · S6 full sandbox. Home pose = parent's finished triangle at θ=60° (chosen so the shadow is visible; 90° would zero it). New pink α arc distinguishes α from θ. misconception_watch on S3+S4 only.
+- **Registration complete (all 8 sites + engine):** concept JSON · `PCPL_CONCEPTS` + `CONCEPT_RENDERER_MAP` · `VALID_CONCEPT_IDS` + `CLASSIFIER_PROMPT` (+ disambiguation line vs the legacy ids) · `CONCEPT_PANEL_MAP` · `computePhysics_resultant_direction` + dispatcher line in `parametric_renderer.ts` (parent-precedent registration edit — atan2 quadrant-safe, no server-side ENGINES entry needed, matching the parent) · clusters+panel SQL migration authored (`supabase_2026-07-24_seed_resultant_direction_clusters_migration.sql`, NOT applied). Seed script `_seed_resultant_direction_cache.ts` cloned from the parent's.
+- **Audit round (the pipeline worked):** quality-auditor FAILed on ONE blocker — ASCII-minus regression of the FIXED scar `ascii_minus_in_oncanvas_math_from_tofixed` in S6's `tan α` HUD (negative only at θ≥140°, structurally invisible to THE EYE — a clean Gate-8 static-scan win) → routed alex:json_author, fixed with `.toFixed(2).replace('-','−')`. Auditor verified json_author's two documented engine-capability deviations SOUND against renderer source (angle_arc has no timing gate → S1 arc bound to the sweep variable; variable_choreography is last-entry-wins → single-entry redesigns for S4/S5).
+- **Eye-walker round-1 finds (all fixed same session):** (1) "A = 3.0 kmB cos θ" merged-label collision S2/S3/S6 — the solver-blind hand-placement scar, fixed round 1 (perpendicular label mode) + round 2 residual (A's label on the shadow arrowhead → moved below the shaft, gap WIDENS with a so the S6 extreme is safe); (2) S3 tracer invisible in all dense frames — root cause: `locus_trace` is a trail with no mover, and the authored path retraced static arrow pixels → fixed with two cyan `body`+translate beads (parent's own pattern); (3) S5 frozen tail (motion 31% of duration) → retimed to 88.9% coverage with all landmark holds preserved.
+- **Glow-focal triage (main-session Playwright probe, decisive):** `PM_focalEmphasis` verified WORKING at runtime ({isFocal:true, glowPx:12} for the S2 riser; peers 0.6-dimmed — eye-walker's own pixel numbers confirm the dimming). The real gap: **`drawAngleArc` never consumes `PM_focalEmphasis`** — S3/S5's declared arc focals dim every peer but can't glow themselves (drawBody/drawLocusTrace share the gap). Logged OPEN for `peter_parker:renderer_primitives`; founder decision whether to dispatch.
+- **`engine_bug_queue`: 4 rows + 1 append this session** (`_seed_engine_bug_queue_resultant_direction_build.ts`): `pcpl_radians_helper_missing` (probe_definition OPEN — PCPL eval scope has NO `radians()`, silent NaN→0; the generic "wrap in radians()" spec guidance is field_3d dialect only — physics_author caught it pre-ship by reading renderer source) · `pcpl_locus_trace_no_visible_mover` (FIXED) · `pcpl_solver_blind_label_hand_placement_collisions` (FIXED) · `pcpl_angle_arc_no_focal_glow_channel` (OPEN, peter_parker) · appended `resultant_direction` to the pre-existing OPEN `pcpl_slider_label_stale_under_choreography` (S4/S5 slider captions lag choreography — known cosmetic, NOT re-filed).
+- **Ops note:** the port-8080 review server was found serving a STALE `review-site` copy from a different cwd (both new + parent pages 404 while root served 200) — killed PID and relaunched from `C:\Tutor\physics-mind`; if review pages 404 after a build, check the server's cwd before debugging the build.
+- **SHIPPED (founder "okay gahead" 2026-07-24):** (1) **Glow-channel engine fix landed first** (founder-directed `peter_parker:renderer_primitives` dispatch — deliberately BEFORE the baseline lock so no re-baseline cycle): `drawAngleArc`/`drawBody`/`drawLocusTrace` now consume `PM_focalEmphasis` mirroring the 4 existing call sites (alphaMul into alpha, shadowBlur set+reset, geometry untouched); verified by real-browser pixel sampling (arc halo 20 vs 0 pre-fix, peer dim 0.6, zero shadow leak), 3 new vitest string guards (13/13), THE EYE 27/27; scar row flipped FIXED. Process scar self-reported by the agent: a `git stash` of the shared renderer briefly wiped this session's other uncommitted edits — caught + popped immediately, final `git diff` verified intended-edits-only. (2) **Shipper chain complete:** `visual:approve` locked 6 baselines (12 PNGs, live+frozen) · `tts:generate --langs=en` voiced **21/21 EN clips, 0 stale** (fresh Sarvam spend) · build:review rebuilt with the audio strip · verify: manifest 21=21, HTTP 200, validate PASS. English-only per Rule 30i. **Correction to shipper's report: the concept is NOT on app.viditra.co** — no Vectors concept is in `PILOT_CONCEPTS`; opening the Class-11 Vectors chapter in the deployed catalog is a separate founder decision.
+- **NEXT:** (1) Founder decision: open the Class-11 Vectors chapter in `PILOT_CONCEPTS` (would be the pilot's first Class-11 content — scalar_vs_vector + vector_addition_law + resultant_direction all baseline-locked) + `build:pilot`/`deploy:app`. (2) Vectors #4 — next chapter sibling (components territory — needs a FRESH id, the legacy `vector_resolution` registration collides). (3) Apply the clusters migration when drill-down activates (dormant). (4) `text_hi` authoring (Rule 30i Sonnet-5 sub-agent) whenever narration languages matter. (5) Commit this session's work (concept + registrations + renderer glow/carry edits + baselines + scar scripts) — NOTE the working tree also carries UNRELATED uncommitted files (field_3d_renderer.ts, website/*, pilot_site_assets.ts) from other sessions: commit selectively, never `git add -A`.
+
+---
+
+## 🎓 SESSION — Pipeline v2: founder-proxy + field3d-surgeon GRADUATED · renderer-primitives → pcpl-surgeon · Phase-0 doctrine codified (2026-07-31, `feat/pipeline-v2`, PR #8)
+
+**Bottom line: the ch7/ch8 trial agents had been MERGED to master with the chapter branches but never GRADUATED — their specs still said "EXPERIMENTAL, trial branch only, NOT project doctrine" while being dispatchable, field3d-surgeon still carried the trial-absolute DB-write ban, and the governance docs listed 11 roles for a 13-role fleet. This session (founder-approved plan, four decisions locked) reconciled all of it: both agents de-trialed with dual-context dispatch contracts (interactive + loop), renderer-primitives renamed `pcpl-surgeon` (the CHECK-constrained DB tag `peter_parker:renderer_primitives` stays and maps to it; field_3d ownership moved to field3d-surgeon in OVERVIEW.md), feedback-collector marked DORMANT (0 real feedback rows), the Amendment-4 engine-dispatch discipline + Phase-0 chapter-opening doctrine graduated into `AUTHORING_PIPELINE.md` v1.1 §0, and `docs/PIPELINE_V2_PLAN.md` created as the phased roadmap. All green: check:agents 13/13, js-yaml 13/13, tsc 0, vitest 281/281, validate 145/145, CI verify ×2 pass, PR #8 MERGEABLE/CLEAN.**
+
+- **Founder decisions this session:** (1) physics-author→architect merge DEFERRED — exploration showed it would burn scarce Fable quota on Sonnet-grade formula work and delete the physics-author→architect adversarial cross-check; (2) `peter_parker:field3d_surgeon` tag confirmed (already in the live CHECK since the 2026-07-27 migration — only the 3 client allowlists needed it: `log_lesson.ts`, `BugQueueList.tsx`, `bug-queue/page.tsx`); (3) graduated field3d-surgeon inherits the standard Peter Parker seed-script scar contract in interactive dispatches (file-only ratchet stays law in loop context); (4) doctrine-only graduation of CHAPTER_LOOP.md — the autonomous loop protocol itself stays founder-triggered.
+- **Three LIVE silent-dispatch bugs found + fixed:** `pcpl-surgeon`, `runtime-generation`, AND `shipper` emissions all had unquoted YAML `description:` values containing `": "` — strict YAML parse fails (the documented dispatch-failure class from [[feedback_agent_dispatch_registry_worktree_gap]]). All 13 emissions now parse.
+- **Spec-accuracy fixes against live DB:** founder-proxy's scar-enum block said severity `MINOR` — the live CHECK is `CRITICAL|MAJOR|MODERATE`, so its candidate rows would silently have failed to insert; probe_type gains `vision_model`. field3d-surgeon's region-map header updated to the real ~55.4K-line merged master (was 47,461); `acl_` prefix ambiguity (buildAmperesCircuitalLaw@~10163 vs buildAcInductor@~25367) confirmed live; faraday-has-no-baseline reworded as fleet-wide fact.
+- **Process scars this session (self-reported):** (1) the session initially mis-read the roster from the stale `feat/field3d-draggable-sensor` checkout and planned an "import from ch8" that master didn't need — caught when the fresh worktree off real master exposed 13 agents already present; plan corrected before execution. (2) A PS 5.1 `Get-Content`/`Set-Content` round-trip mojibake'd two BOM-less UTF-8 spec files (em-dashes double-encoded + BOM added) — caught by diff-stat (125 lines churned where 1 was intended), reverted, redone with the Edit tool. (3) The sync-agents mtime gate silently skipped the feedback-collector body sync after a frontmatter edit — caught by "1 synced" where 2 were expected; canonical touched, re-synced.
+- **Files:** 36 changed (+571/−253 across two commits `25c94ec` + `a5fdd53`): 13 canonicals + 13 emissions (rename pair incl.), `peter_parker/OVERVIEW.md` (ownership re-split), `.agents/CLAUDE.md`+README (thirteen roles), `scripts/sync-agents.js` (ROLES + comments), `docs/{AUTHORING_PIPELINE,CHAPTER_LOOP,ARCHITECTURE_v2.2,FIELD3D_SCENARIO_CHECKLIST,PIPELINE_V2_PLAN}.md`, 3 owner-allowlist code files, repo `CLAUDE.md` §1 (founder-approved diff). Global `~/.claude/rules/agent-teams-reference.md` also updated (13 roles, tag→agent mapping table, stale shipper text_te clause fixed per 30i).
+- **NEXT:** (1) merge PR #8 (CI green, CLEAN). (2) **Proof run from a FRESH session** (registry loads at session start): next Kinematics concept — architect skeleton → dispatch `founder-proxy` Checkpoint A → normal pipeline → Checkpoint B. Success = actionable taste findings the gates missed at ~2M tokens/dispatch, correct surgeon routing by file. (3) Phase 3 of `docs/PIPELINE_V2_PLAN.md`: THE CALCULATOR ($0 numeric-physics gate beside THE EYE). (4) Open work re-surfaced by the audit: `faraday_law_induction` + `force_on_current_carrying_wire` are DEPLOYED without baselines; 9 baseline-locked concepts (Vectors set, KCL/KVL, displacement_vs_distance…) are NOT in PILOT_CONCEPTS — founder catalog decision.
+
+---
+
+## 🧪 SESSION — `le_chateliers_principle` (P1 #1) + five gas_box platform commits (2026-07-29, `feat/chemistry-le-chatelier`; engine half on master)
+
+> Concept detail → `docs/le_chateliers_principle_skeleton.md` + `docs/le_chateliers_principle_chemistry_block.md`.
+> The chemistry-priority list calls this one "the single best chemistry sim that exists to be built."
+
+**Built in a fresh worktree** (`Viditra-chem-lechatelier`) off master `e0868f7`, deliberately NOT in the
+stale `Viditra-chem-equilibrium` tree — which sat behind master and would have silently reverted the
+orbital fixes and two closed tooling scars. Vindicated during the session: the parallel session
+committed hybridisation + field_3d work to master throughout, with zero conflicts.
+
+### The concept
+
+8 states on the `gas_box` reaction layer: add reactant / remove reactant (partial payback) / squeeze /
+**heat it (PRIMARY aha)** / catalyst null / inert-gas null / same K new position (advanced) / explore.
+Final gates: tsc 0 · `validate:chemistry` 7/7 · `check:gas-reaction` all passed · `validate:concepts`
+**141 PASS 0 FAIL** (physics fleet untouched) · THE EYE 35/35 · quality_auditor **PASS** on its 3rd pass.
+No baselines locked — `visual:approve` remains founder-triggered.
+
+### What the day was actually about: making the CAUSE visible
+
+All three Le Chatelier disturbances were ALREADY emergent on this engine rather than scripted (the
+`Ea_rev = Ea_fwd + E_bond` derivation and the bimolecular/first-order asymmetry). What was missing was
+that the engine could show only ONE of them ARRIVING — the piston, via `piston_from`. Four fields
+closed that, each landed on master separately per Rule 40:
+
+| commit | field | why |
+|---|---|---|
+| `4e6df01` | `T_from` / `T_ramp_ms` | a state authoring `T: 500` opened already hot — the cause never moved on the PRIMARY aha |
+| `4e6df01` | `inject_cue` / `inject_n` / `inject_species` | reagent arrives mid-state instead of the box opening already-disturbed |
+| `532976f` | `reaction_at_cue: { cue, <constant> }` | the catalyst goes in while the class watches. Placed at `gasRxNum` — the single read point for EVERY reaction constant — so `Ea_rev` follows by derivation and the "no shift" result stays EMERGENT |
+| `4e6df01`/`aa21a14` | `show_k_ratio` | K as a measured number |
+
+`check:gas-reaction` grew **18 → 37 checks**.
+
+### Two engine defects both gates found independently (`458a6e3`)
+
+- **`drawGasThermometer` hardcoded `gasBoxL() + 142`** while every other chip accumulates via
+  `pfWgVis`. STATE_4 is the fleet's first state to light the thermometer WITHOUT pressure, so
+  "T = 500 K" was struck straight through the A/B counts for the whole state — captured frames read
+  `A 59T = 300B 59`. On the PRIMARY aha, burying its own cause instrument.
+- **`gasMovePiston`'s 0.06/frame ease drove the wall ~12x faster than thermal speed.** Measured peak
+  `gasMeasuredT()` **7173–9594 K** on a state authored at 300 K, product crashing 31 → 7, so for ~4 s
+  the readout showed REVERSE leading — the opposite of what a compression state narrates. New opt-in
+  `piston_ramp_ms`: **336 K over a 6 s ramp**. Default stroke provably unchanged (a check pins it), so
+  `kinetic_particle_theory` keeps its baselines.
+
+**The lesson worth carrying: on this engine anything that moves is a physical variable, and how FAST
+it moves is part of the physics, not the presentation.** True for `T_from`, then true again for the
+piston.
+
+### ⭐ THE FINDING THAT AFFECTS EVERY CHEMISTRY CONCEPT — THE EYE reads the cache, not your source
+
+`visual_eyes.ts` → `loadCachedSim()` reads **ONLY** the `simulation_cache` row. It never reads the
+concept JSON or the renderer, and for chemistry that row is seeded BY HAND and never auto-refreshes.
+
+A post-fix re-walk returned **35/35 deterministic checks green while rendering entirely pre-fix
+content** — the thermometer collision, the un-ramped piston, the old STATE_7 pose and the old slider
+label all "still broken" in frames, all four already fixed in source. **Every visual finding in that
+run was a false negative on the fix.** Caught only because eye_walker cross-checked frames against
+live source instead of trusting the capture.
+
+```bash
+npx tsx --env-file=.env.local src/scripts/_seed_chemistry_cache.ts <concept_id>
+```
+
+**Run after ANY concept-JSON or renderer edit, BEFORE dispatching eye_walker.** Exact sibling of the
+recorded `gas_box_freeze_resim_uses_wrong_stepper` lesson — *a green deterministic gate proves frames
+are REPRODUCIBLE, not correct.* **Proposed for `docs/AUTHORING_PIPELINE.md` §③ — needs founder ruling.**
+
+### Three narration defects: claims true in one frame of reference, false on screen
+
+Each survived the first audit and was caught by measurement, not by reading:
+
+1. **STATE_7 "the amounts move by about half"** — a BETWEEN-RUN comparison (baseline A 59 vs disturbed
+   A 89) spoken as an in-state observation. **This one was the main session's error, not an agent's.**
+   Redesigned, not reworded: opens at its own settled pose, injects +80 A at 9 s, so both numbers are
+   observable in one continuous state.
+2. **STATE_5 "the counts sit exactly where the lesson left them"** — single frames legitimately read
+   26–38, so an unlucky frame *confirmed* the misconception the state exists to refute. Now a band.
+3. **STATE_3 "forward pulls ahead of reverse"** — true as a net average (+0.75/s in all 10 seeds) but
+   the bars visibly cross mid-ramp. Now narrates the pair count, which dips then climbs decisively.
+
+### STATE_7 needed density, not a cleverer average
+
+K's relative fluctuation scales as **1/sqrt(n_AB)**, and at the lesson's normal density n_AB ≈ 30. Two
+averaging windows (5 s, then 10 s) were built and *measured failing* — the chip swung 33–50%, and in
+10/10 seeds the RATIO moved more than the amounts, inverting the state's whole contrast. Founder chose
+to attack the root cause. STATE_7 now runs ~516 particles (n_AB ≈ 204):
+
+```
+before  |dK| 15-21%, worst seed 59%, ratio beats amounts 1/8 (auditor: 10/10 @1280x720)
+after   |dK|  8-10%, worst seed 26%, ratio beats amounts 0/8 — at 900x560, 1280x720 AND 1600x900
+shipped frames: K 0.0089 pre-cue -> 0.0094 at end (+5.6%) while A 138 -> 210 (+52%). ~9:1.
+cost 2.18 ms/tick vs a 16.7 ms budget (the collision sweep is spatially GRIDDED, so linear not O(n^2))
+```
+
+A deliberate, measured exception to Rule 32d, recorded in `authoring_notes.s7_particle_density_is_deliberate`
+and named in the state's own scene roles. The auditor's judgment, which is the better argument:
+STATE_7 is the ONE state whose claim rides on numbers rather than the particle picture, so it spends
+particle-picture legibility it doesn't need to buy numeric legibility that is the whole state — and the
+discontinuity sits in the only state both curriculum presets can hide.
+
+### Cue/narration desync — caught on the 2nd audit, fixed via a mechanism already in the engine
+
+Four states fired their disturbance at `at_ms: 1000` while the announcing sentence (each begins
+"Now...") started 3.7–5.9 s in. **The box was disturbed and had re-settled before the narration said
+anything** — inverting the concept's own stated premise. `SET_CUE_TIME` already solves this (20 shipped
+physics concepts use it); this concept used none of it. Now bound via `scenario_cue`. Side effect the
+auditor spotted: S1 gains **6.8 s of settled box first**, which makes `s1_4`'s "both rates settle level
+again, higher than before" *observable* — previously there was no pre-cue baseline to see it against.
+
+### SHIPPED (founder-approved, end of session)
+
+`visual:approve` locked **17 baseline frames** from run `20260729-141501`; `tts:generate --langs=en`
+rendered **32 EN clips** (bulbul:v3/priya, 0 stale, no `--force`, no translation step) — verified 32
+mp3 against 32 authored `tts_sentences`. Review page HTTP 200, `validate:chemistry` 7/7.
+**Fleet 65 → 66 baseline-locked.** Commits `8532407` (ship) and `9432cc7`.
+
+**NOT deployed, deliberately** — no `PILOT_CONCEPTS` edit, no `build:pilot`, no `deploy:app`. Founder
+approved the ship chain only; CLAUDE.md §5 puts the professor gate (Asmi teaching a real student)
+before the deployed catalog, and the deployed catalog currently carries zero chemistry sims, so that
+path needs its own verification when it is taken.
+
+### The teaching pass (founder asked: walk the states, what is missing?)
+
+Four gaps that every gate had passed, found by reading frames as a teacher rather than as a gate:
+
+1. **The principle was never stated.** Eight states taught every disturbance and no sentence gave the
+   law or even the name. S8 now closes with it, ending on S2's partial-compensation aha.
+2. **Cooling was undemonstrable** — the most likely question after the PRIMARY aha. Measured: at the
+   250 K slider floor, cooling moved AB 31→~35, inside the noise band. At 200 K it is 31→~45 within
+   10 s with the box alive (fwd 3.5/s); at 150 K it reads dead (1.1/s). Floor now **200 K, measured**.
+3. **⭐ A bonded pair did not look bonded** (`20cb20a`, master). `drawGasDimer` strokes the bond in the
+   product colour then fills the discs — but bond length IS rA + rB, so the discs are tangent and the
+   line is painted over, leaving ~2 px of purple. AB is the species every state tracks: the HUD printed
+   a purple "AB 31" and the graph drew a purple curve while **nothing on canvas was purple**. The whole
+   lesson had to be read off numbers instead of the picture, which is the one thing a particle box
+   exists to provide. Fixed by draw order (rim both discs). Also fixed `dynamic_equilibrium`, whose
+   STATE_2 opens with 45 previously-uncountable pairs — its baselines re-approved after founder view.
+4. **The anchor promised what the sim cannot do** — "engineers steadily draw product away", but the
+   reagent tap is A-only by design (S2 needs removal to target A). Rewritten onto the two levers the
+   states actually show, which is better chemistry: pressurised because the product side has fewer
+   molecules (S3), run hotter than the balance would like because forward is exothermic (S4). That
+   trade-off is the real answer to "why not run it cold".
+
+**Pattern worth keeping:** all four were invisible to every automated gate AND to both review agents,
+because each agent was asked whether the sim was *correct*, not whether a teacher could *use* it. The
+fourth gate is a person asking "what is missing?".
+
+### Open items — none blocking, all need a founder ruling
+
+1. **`engine_bug_queue` rows not filed** (the session earned three): the stale-sim-cache gate blindness
+   ⭐, the viewport-dependent rate/pressure readouts, and the cue/narration desync class. **Blocked:**
+   the auditor found `alex:chemistry_author` is rejected by the queue's own CHECK constraint.
+2. **Rates and pressure are still viewport-dependent** — `gasRxAreaNorm` normalises the equilibrium
+   COMPOSITION, not the displayed readouts (measured **4.6x** rate spread, **5.9x** pressure spread,
+   900x560 → 1600x900). Fixed by AUTHORING here (no absolute rate is spoken anywhere) rather than by
+   engine change, because normalising displayed pressure would break the `P·A/N·T` gas-law readout and
+   move every shipped baseline. Engine limitation left OPEN for `peter_parker:renderer_primitives`.
+3. **Deliberately NOT done** on the auditor's own advice: the S1 particle-scale sentence (would cost a
+   beat for a textbook convention); rate-window priming at `gasInit` and the cumulative-mean K chip
+   (the density fix removed the need that motivated them — *"do not land them"*).
+4. **Audio**: none rendered. Rule 30h makes it on-demand, not a ship gate.
+
+**Next session first task:** founder review of the concept on the review site, then `visual:approve` to
+lock baselines; decide the `AUTHORING_PIPELINE.md` §③ cache-reseed addition; file the three scar rows
+(needs the CHECK-constraint fix first).
+
+## 🧪 SESSION — 2nd chemistry concept shipped to master + FOUR platform findings that affect physics too (2026-07-27, `feat/chemistry-ch1-conservation` → master `df3d993`)
+
+> Chemistry detail → `PROGRESS_CHEMISTRY.md` (2026-07-27 entry); strategy → `docs/CHEMISTRY_DISCUSSIONS.md`
+> Session C5. **This entry records only what is cross-subject** — every item below lands on the
+> `parametric` family and therefore on the physics Vectors chapter as much as on chemistry.
+
+**`law_of_conservation_of_mass` (NCERT Cl.11 Ch.1 §1.3, 7 states, archetype O) shipped end-to-end via the full traditional pipeline** — architect → chemistry_author → json_author → quality_auditor ∥ eye_walker, no founder-proxy, every gate to the founder. Engine half cherry-picked to master separately as `dceca4c` per Rule 40, then the branch merged (`df3d993`). tsc 0 · validate:chemistry 2/2 · **validate:concepts 141/141 unchanged** · THE EYE 44/44 · 7 baselines locked (fleet 60 → **61**) · 23/23 EN clips.
+
+### The finding that matters for physics: every automated gate passed a visibly broken sim
+
+THE EYE **31/31**, `validate:chemistry` PASS, `tsc` 0, `check-layout-overlap` clean — on a concept whose **apparatus was disassembled in six of seven states**. `drawBody` anchors `rect` at TOP-LEFT and `circle` at CENTER (`parametric_renderer.ts:1465-1468`); the author placed every rect as if centre-anchored, so parts sharing an authored axis rendered as a staircase of unconnected bars with the readout out on the background. Caught by `quality_auditor` *deriving expected geometry from coordinates and diffing against pixels* — **`eye_walker` read the same 145 frames and passed those states**, because it was asked about numbers/Unicode/staging/focal (all correct) and never asked "does this read as the apparatus it claims to be?". **Any parametric concept can ship this way today.**
+
+### Four platform items — none applied, all need a founder ruling
+
+1. **`parametric_layout_gates_blind_to_body_geometry`** ⭐ — `check-layout-overlap.mjs` computes bboxes only for text/arrows; `validate:chemistry` has **no canvas-bounds check at all**. A mis-assembled apparatus and an 80px-off-canvas `body` both ship green. It also models a magnitude-driven `force_arrow` as a fixed short box, ignoring `drawForceArrow`'s `scale_pixels_per_unit || 5` (a `magnitude: 22` needle rendered 110px through the apparatus). **Closing this is what stops the above recurring — on either subject.**
+2. **`drawVector` and `drawDerivationStep` never call `PM_animationGate`** (nine sibling draw fns do) → `appear_at_ms` is **silently ignored** on `vector` and `derivation_step`; staged reveals all fire at t=0 with no error and no warning. Workarounds used here: `force_arrow` for the needle, staged `annotation` for the derivation (the `bohr` precedent).
+3. **`tts_sentence` id uniqueness is unvalidated** — ids repeated per state (`s1`,`s2`… restarting) collide, and clips are keyed by id, so states silently overwrite each other's audio. Only `tts:generate` catches it, at render time; **any never-voiced concept in the fleet carries this latently.** Belongs in the schema/validator.
+4. **`parametric_from_expr_to_expr_never_consumed` is STALE** — the renderer *does* consume them now (`PM_resolveArrowPoint` `:1780-1781`, `PM_safeEvalPoint` `:2152-2163`). Retire the row before it misleads another author.
+
+### GAP 2 is closed — and a doc said otherwise for days
+
+`docs/patterns/chemistry.md` still documented "the parametric renderer binds only TEXT to live variables; `body`/`animated_path` positions are static per state" as a live limit. **`position_expr` landed in `369e263`** and is consumed at `:1185-1188`. All three pipeline agents designed the explore state around a limitation that no longer existed. No defect (the workarounds are valid) but the state shipped weaker than the engine allowed. **Same failure class as the archetype-`[LIVE]` scar: a renderer claim in a doc decays, and `git log -S "<symbol>"` is the whole cost of checking.** Doc corrected. **Physics parametric concepts can use `position_expr` today** — slider-driven explore states can move glyphs, not just numbers.
+
+### Ops: the auto-push hook drops commits (3× today)
+
+Two commits in quick succession → the second hook hits the in-flight lock and returns early on "pushes are cumulative", but the first push had already resolved its SHA, orphaning the second commit. Caught every time by `git rev-list --count --branches --not --remotes`, pushed by hand. This is `GIT_WORKFLOW.md` §0's *"trust the count, not the hook"* with a precise mechanism now (a race between the lock check and the post-push SHA comparison) rather than "observed after a large merge". **Also: `ffmpeg` was absent on this laptop** — 23 Sarvam calls spent and discarded before it was installed; belongs in the §0 new-machine checklist.
+
+### Strategy (chemistry-scoped, recorded here because it may generalise)
+
+Founder challenged whether the shipped concept needed to be a simulation at all: *"a teacher can do that more effectively and would use only the last state."* Correct — it is demo-tier. Locked the **whiteboard test** (a concept earns a build only if a teacher with a whiteboard and 60 seconds cannot produce the same understanding), demoted renderer-compounding to a tie-breaker *between* diamonds, and re-ranked the chemistry queue. **A tier-based state cap was proposed and REJECTED by the founder** — it contradicted Rule 11 and conflated *whether to build* with *how many states*; **state count stays complexity-driven, identically to physics. Only the ORDER changed, and the order is explicitly a flexible default, not a contract.**
+
+### ⏭ NEXT
+1. **P0 — the particle-box `particle_field` scenario** (one modest build, unlocks six chemistry diamonds), **or** P2 concepts needing zero engine work (titration curve, reaction profiles, hydrogen spectrum, periodic trends).
+2. **Founder rulings:** the 4 platform items above · merge `docs/chemistry-priority-order` to master.
+3. **Asmi's professor review on both chemistry concepts** — the only gate neither has passed.
+4. **Still outstanding from Ch.7 (unchanged):** the chapter-end full-fleet re-seed + THE EYE sweep. ~2900 lines of new scenario code went into a shared renderer with only `capacitance` as a regression anchor — the whole-chapter regression is NOT proven until it runs, and it gates founder-proxy's graduation.
+
+### CLAUDE.md suggestions (NOT applied — founder approval required)
+- **§0 of `GIT_WORKFLOW.md`:** add `ffmpeg` to the new-machine checklist beside the hook installer.
+- **Rule 19 / the validator:** the layout gates should register `body` bboxes using the renderer's own anchoring rule, and add a 760×500 bounds check. This is item 1 above and is the highest-value automated check available right now.
+- No change proposed to Rules 11/31 — the founder's ruling *confirms* them as written.
+
+---
+
+## 🧪 SESSION — Chemistry foundation: architecture + build plan → chemistry_author role → subject-aware catalog → parity-audit hardening → international build-flow locked (2026-07-23, branch `feat/chemistry-foundation`, new laptop/macOS)
+
+> **Chemistry now has its own logs** (this root PROGRESS.md stays the physics/engine log): ongoing
+> chemistry progress → `PROGRESS_CHEMISTRY.md`; chemistry strategy/decisions → `docs/CHEMISTRY_DISCUSSIONS.md`.
+> This entry is the summary; full detail lives in those two files + `docs/CHEMISTRY_ARCHITECTURE.md` +
+> `docs/CHEMISTRY_BUILD_PLAN.md`.
+
+**Bottom line: chemistry went from an empty scaffold folder to a fully buildable subject at parity with physics — architecture doc + phased build plan (Rule 17, founder-approved), the `chemistry_author` agent role + `docs/patterns/chemistry.md` pattern library, subject-aware catalog plumbing (physics output proven BYTE-IDENTICAL), a founder-requested parity audit that hardened all four shared agent specs (additive chemistry sections in architect / quality_auditor / json_author / eye_walker) + the build/verify tooling (shared subject-aware concept-JSON resolver, v0 `validate:chemistry`), and a LOCKED international-first, renderer-compounding build flow. Physics untouched throughout (tripwire green after every phase: tsc 0 · validate 124/124 · vitest 288/288 · agents in sync). 5 commits on `feat/chemistry-foundation` (`d25cdc4` → `4a3cbf5` → `d31f6c4` → `c6bfb03` → `ed49664`), NOT pushed. NO chemistry concept authored yet — decided next session: Rutherford α-scattering (Wave 1, prove-first).**
+
+- **International build FLOW locked (founder priority — serve international + NCERT at once):** build by RENDERER ARCHETYPE, not by chapter, so each sim makes the next cheaper (the magnetism recursive-bootstrap, applied to chemistry). Chemistry's "universal passport" = the physical-chemistry-of-change cluster (kinetic theory → rates → energetics → equilibrium) — highest cross-curriculum overlap AND most simulatable. 5-wave plan: W1 Rutherford (K, £0 renderer, prove the pipeline) → W2 build the particle-box scenario ONCE → the passport cluster → W3 energy ladder → W4 reaction ledger → W5 Three.js molecules/orbitals (Phase 5). Verified: `particle_field_renderer` is circuit-only (no gas-box scenario) so archetype M isn't truly [LIVE] — only Rutherford is zero-renderer today (`docs/patterns/chemistry.md` [LIVE] tag on M to be corrected next session). Full reasoning: `docs/CHEMISTRY_DISCUSSIONS.md` §C3.
+
+- **Phase 0 (baseline):** committed lockfile was genuinely out of sync with package.json (`npm ci` failed repo-wide — missing @emnapi entries); fixed + proven (`npm ci` exit 0). Isolation contract comment locked into `validate-concepts.ts` (non-recursive scan = chemistry invisible to physics validation BY DESIGN). Local agent-sync pre-commit hook installed.
+- **Phase 2 (authoring layer):** `.agents/chemistry_author/CLAUDE.md` (+ emission, model-pinned sonnet-5) — balanced-equation ledger doctrine (atom/charge conservation, redox e⁻ balance), chemistry units first-class, [LIVE]-archetype-only interim rule. `docs/patterns/chemistry.md` — representation triangle (macro↔particulate↔symbolic), archetypes K–Q with [LIVE]/[PHASE-5] gating mapped to EXISTING renderers, chemistry source roles (NCERT Chemistry = backbone · NCERT Exemplar = misconception beliefs · universal anchors per Rule 35). Governance: roster (11 roles), owner tag `alex:chemistry_author` in peter_parker OVERVIEW + both admin bug-queue enums, sync-agents ROLES entry.
+- **Phase 1 (curriculum plumbing):** `Subject` type (client-safe, types/student.ts); `src/lib/chemistryCatalog.ts` (NCERT Cl.11 Ch.1–4 chapter/section maps + 9 Ch.2 "Structure of Atom" roadmap ghosts); `conceptCatalog.ts` routes by `subject` as a PARAMETER (default physics, `sourcesFor()`), NOT a stored field — physics API output verified byte-identical via a throwaway function-level diff harness (5 level-combos + 2 lookups, empty diff). `?subject=` on both catalog routes; `/learn` label un-hardcoded (toggle deferred to Phase 3 — nothing visible until a live chemistry concept exists); separate `NCERT_CHEMISTRY_BOUNDARIES` export.
+- **Phase 2.5 (parity audit → hardening; founder asked "is chemistry as strong as physics?"):** two deep audits found the four shared specs would MISFIRE on a chemistry run — architect never referenced chemistry.md (violating chemistry_author's input contract by construction), auditor had no `alex:chemistry_author` FAIL route + Gate 2 would false-FAIL (flat PASS-list unattainable) + Gates 4a/4b false-FAIL on deliberately-unregistered chemistry, json_author's output path + 8-site registration rule inverted for chemistry, eye_walker lacked chemistry visual-sanity checks. Fixed with ADDITIVE "Chemistry concepts (2026-07-23)" sections in all four canonicals + same-session emission regen. Tooling: 3 scripts hardcoded the flat dir (`loadCachedSim.loadConceptJson` — with a SILENT-degradation trap quietly disabling EYE Category I/E on a missing JSON, now an explicit warning —, `build_review_site.loadConcept`, `generate_tts_audio.loadSentences`) → new shared `src/scripts/lib/resolveConceptJson.ts` (flat first = physics byte-identical; logs on chemistry resolution). New `npm run validate:chemistry` v0 (Zod via `validateConceptJson` + Rule 31a word-budget warnings; empty namespace = PASS). Addenda: AUTHORING_PIPELINE.md chemistry addendum; root CLAUDE.md 3 additive pointers (§1 pipeline substitution, §5 chemistry sources, §6 chemistry-registration exception) — founder-approved via plan.
+- **Key architectural verdicts (docs/CHEMISTRY_ARCHITECTURE.md):** extend, don't duplicate — ONE architect/auditor/eye_walker with chemistry-aware specs, chemistry-specific work concentrated in exactly two seams (the rigor role → chemistry_author DONE; the render surface → Phase 5, founder-gated). Review-site chain (`build:review -- <id>`) confirmed as the registration-free Phase-3 serving path; first concept must carry a `field_3d_config`/`particle_field_config` ([LIVE] constraint). THE EYE needs a `simulation_cache` row (cache-seed script must read chemistry/ when Phase 3 gets there).
+- **Environment notes (new machine):** repo migrated from Windows (`C:\Tutor\...` paths in docs are historical); `~/.claude/rules/agent-teams-reference.md` referenced by governance does NOT exist on this laptop — hard rules survive verbatim in `.agents/CLAUDE.md`, but the original external file should be recovered or re-authored. 2 pre-existing `react-hooks/set-state-in-effect` lint errors in `learn/page.tsx` (present on HEAD, untouched).
+- **NEXT SESSION (decided): Rutherford α-scattering (Wave 1, prove-first)** — the first chemistry vertical slice on the registration-free review-site path. (0) fix the archetype-M [LIVE] mislabel in `docs/patterns/chemistry.md`; (1) pipeline architect → chemistry_author → json_author → quality_auditor emitting `src/data/concepts/chemistry/rutherford_alpha_scattering.json` (site #1 only; reuse a `field_3d_config` on the force-in-field machinery); (2) chemistry cache-seed script reading the chemistry subdir → THE EYE → eye_walker → founder review → `build:review`. Full runbook: `PROGRESS_CHEMISTRY.md` §NEXT SESSION. Later: Phase 4 machine gates · Phase 5 render surface (particle-box, then Three.js) · push decision for the 5 commits.
+
+---
+
+## 🔁 SESSION — Ch.7 chapter map reordered + `ac_voltage_inductor` SEALED via CHAPTER_LOOP (2026-07-23, branch `feat/ch7-alternating-current`)
+
+**Founder reviewed `ac_voltage_resistor` SEALED + its 5 engine-loop diffs and granted scale-up per §7 of the trust ladder.** Chapter map reordered first: `ac_voltage_resistor (done) → ac_voltage_inductor → ac_voltage_capacitor → phasors → series_lcr_circuit → ac_power_factor → lc_oscillations → transformer` (phasors moved from position 2 to position 4, after the three individual R/L/C element concepts, so it introduces the combining tool once students have seen what's being combined). Then ran the full CHAPTER_LOOP pipeline on `ac_voltage_inductor` (Ch.7 #2) end-to-end.
+
+- **Checkpoint A (design gate), 1 fix cycle:** architect skeleton (9-state ghost-compare → mechanism → slope → reactance → power-slosh → derivation arc; PRIMARY aha at S4 "voltage sets the slope"). founder-proxy DESIGN_FIX on cycle 0 — the skeleton's engine-ask over-reached, declaring cross-concept helper-factoring "binding" in a way that risked an autonomous dispatch refactoring the SEALED `ac_resistor` scenario. Architect cycle-1 fix: reuse manifest downgraded to advisory-only, build scoped to a clean standalone sibling, `ac_resistor` refactor explicitly forbidden; also added a live `vm` slider at the PRIMARY-AHA state (S4) per a secondary P3 finding. DESIGN_OK on cycle 1.
+- **Engine build:** NEW `field_3d` `scenario_type: "ac_inductor"` (commit `35ae566`) — coil apparatus, back-emf arrow pair, ghost-compare ¼-cycle lag trace, signed power strip, closed-form scripted frequency ramp (proactively built to the `field3d_dt_accumulated_motion_invisible_to_eye_timepin` fix pattern rather than needing a retrofit), breathing U-gauge. Verify chain independently re-run by the orchestrator (not trusted from the dispatch): tsc/syntax/validate clean, `capacitance` 44/44 H2 0.00%, `ac_voltage_resistor` 39/39 — confirming the sealed sibling's code paths genuinely untouched.
+- **json_author + Checkpoint B, 1 fix cycle:** concept JSON built (126/126 validate:concepts), THE EYE 39/39. quality-auditor PASS (1 LOW) ∥ eye-walker FINDINGS(3) disagreed on three items; founder-proxy opened the actual contested frames itself rather than averaging the reports — confirmed a blocking defect on the PRIMARY AHA state (S4's sequential tangent-stop captions stacking into an unreadable blob on the frozen baseline) plus two ride-alongs (an S3 label clipped behind the HUD; the HUD leaking a signed power reading into states that hadn't taught power yet, including the explore state), and correctly REFUTED eye-walker's third finding (an S5 frequency sweep that "reverses" — actually the deliberately-authored two-direction ramp). Engine fix landed (commit `eae16ca`), independently re-verified by the orchestrator against the actual re-captured frames (not the fix description), zero regression. Checkpoint B re-review: APPROVE.
+- **Checkpoint C: SEALED.** founder-proxy diffed every claimed Checkpoint-A/B fix against the real committed artifacts (not trusted), validated the scar-candidate schema, and confirmed the cross-concept coherence claim with the sibling concept (the S2 "ghost" trace equals the sibling's own default in-phase current trace) is arithmetically exact, not narrative decoration.
+- **⚠ Process violation caught + corrected mid-run:** during the F1/F2/F3 engine-fix dispatch, the subagent wrote three findings directly into the LIVE `engine_bug_queue` Supabase table via a `_seed_engine_bug_queue_*.ts` script — a real breach of this trial's explicit file-only rule ("candidates stay files, never DB writes"). Root cause: that script pattern is the CORRECT, normal convention *outside* this trial (used for `capacitance` on 2026-07-21); this specific fix-cycle dispatch prompt failed to restate the trial's override the way every other dispatch this run had. Caught via an independent live `SELECT` (not trusting the dispatch's own report), the founder was asked how to proceed (chose: delete + file-mirror), the 3 rows were `DELETE`d and re-verified `COUNT=0`, the violating script was removed from the repo, and the same content was mirrored into `docs/loop_runs/ch7/_engine/scar_candidates.sql` (the trial's actual mechanism) with a full incident writeup. **Flag for future sessions: every §3b dispatch prompt — including fix cycles, not just first-builds — must restate the trial's "no DB writes" override explicitly**, since the underlying script pattern is correct doctrine outside the trial and subagents will otherwise default to it.
+- **Files:** `src/data/concepts/ac_voltage_inductor.json` + 8 registration sites + 2 migration files (file-only) + seed script; `src/lib/renderers/field_3d_renderer.ts` (+901/-5 build, +55/-5 fix) + `src/lib/validators/visual/deriveStateMeta.ts` (+78/-1); full pipeline artifacts under `docs/loop_runs/ch7/ac_voltage_inductor/` (skeleton, physics block, auditor/eye-walker/founder-proxy reports for all three checkpoints); `docs/loop_runs/ch7_engine_log.md` (2 new Stage-2 entries) + `docs/loop_runs/ch7_state.md` (chapter map reordered, `ac_voltage_inductor` moved to done, `next: ac_voltage_capacitor`).
+- **Trial constraints held** (after the one caught-and-corrected exception above): no `visual:approve`, no TTS, no `PILOT_CONCEPTS`, no deploy, no merge to master. 2 engine-loop commits this concept (`35ae566`, `eae16ca`), well under the 8-commit runaway-guard threshold; 7 total this chapter run so far.
+- **Next:** `ac_voltage_capacitor` (Ch.7 #3) — the architect skeleton should mirror `ac_voltage_inductor`'s arc (ghost-compare → mechanism → slope/lead → reactance → power slosh) per the handoff seed left in this concept's skeleton §Escalations, for a cheap L↔C symmetry `series_lcr_circuit` can later exploit.
+
+---
+
+## 🔁 SESSION — EXPERIMENTAL chapter-loop trial built: founder-proxy (11th agent) + founder_drive + CHAPTER_LOOP.md, isolated to this branch (2026-07-22, branch `feat/ch7-alternating-current`)
+
+**Goal:** close the AUTHORING loop (not the shipping loop — Rule 17 untouched) so a whole chapter authors autonomously with an agent playing the founder's per-sim taste review; human founder batch-reviews at chapter end. Full design at `~/.claude/plans/hashed-puzzling-avalanche.md`; trial-isolated per founder directive — keep/advance/modify/discard decided after the trust ladder.
+
+- **Parallel-worktree infrastructure (on master):** created `C:\Tutor\physics-mind-ch7` (`feat/ch7-alternating-current`) + `C:\Tutor\physics-mind-ch8` (`feat/ch8-em-waves`), real `npm ci` each (node_modules junction BREAKS Next 16 Turbopack — "symlink points out of filesystem root"; junctions remain fine for build:review-only worktrees), dev servers 3001/3002, `.gitattributes` `merge=union` for PROGRESS.md + DISCUSSIONS.md (committed to master, `10d6031`).
+- **founder-proxy agent (EXPERIMENTAL, this branch only):** `.agents/founder_proxy/CLAUDE.md` + emission + sync-agents ROLES entry (11 roles, `--check` clean). Opus-pinned, reject-biased; verdicts APPROVE (authoring sign-off ONLY — never ship) / FIX (one `alex:*` owner per finding, max 3 cycles) / ESCALATE (renderer-edit needed | physics doubt | budget exceeded → park-and-continue). Reports only; scar candidates are FILES (`scar_candidates.sql`), never DB writes, during the trial.
+- **founder_drive.ts (`npm run founder:drive`):** deterministic Playwright drive of the real review player — clicks every rail card, plays each state (t0/mid/late shots stamped with live `PM_simTimeMs`), TRUSTED mouse drags on every explore slider (the path THE EYE's synthetic events can't test), Rule-37 frozen-explore byte-probe. **Smoke-tested on ac_generator: 7 states, 21 shots, 4/4 sliders moved (e.g. acg_n 100→260), clock advanced 1500→5920 ms, motion probe alive, 0 flags / 0 console errors.**
+- **docs/CHAPTER_LOOP.md:** the loop SOP — stateless-orchestrator law ("nothing the next concept needs may exist only in the conversation"), `docs/loop_runs/<chapter>_state.md` state file, founder-involved pre-flight (chapter map + engine audit), autonomous per-concept loop, park-and-continue escalations, chapter-end push notification + founder batch review, trust ladder Stage 0→3.
+- **Trial isolation verified:** everything on this branch; master, main tree, ch8, doctrine files (CLAUDE.md / .agents/CLAUDE.md / agent-teams-reference) all untouched. Kill switch = reset branch + delete `docs/loop_runs/` + `.founder_runs/`.
+- **Next session (in THIS worktree, fresh `claude` session — new agent types dispatch only from the next session): Stage 0 calibration** — founder:drive + founder-proxy on `capacitance` + `wheatstone_bridge` (already-founder-reviewed sims), compare findings vs the real scar rows, report taste-match to founder. Then Ch.7 pre-flight (chapter map + phasor/LCR engine audit) WITH founder.
+- **Housekeeping:** detached http-server on :8093 serving the main tree's review-site (smoke test) — kill or reuse for Stage 0.
+
+## ⚙ SESSION — Rule 39g: per-widget teacher toggles go FLEET-WIDE (both renderers) → merged to master → app.viditra.co + viditra.co/demo deployed (2026-07-21)
+
+**Bottom line: the founder asked two things — (a) "should we rebuild the 48 sims to the capacitance-era rules, or just filter by curriculum?" and (b) "make the widget settings show on every simulation, in the production app and all upcoming ones". (a) was answered from the record (Session 86 already deferred the fleet retrofit behind a named gate — recommendation: don't rebuild; ship coverage, tag per curriculum as claims, retrofit per-chapter only when a real teacher of that curriculum signs up). (b) was BUILT, verified, merged to master, and deployed to production + the public demo. 4 commits on `feat/widget-settings-fleet` → merged `bd83ec0` → demo fix `00cef44`. NOT pushed to origin (4 commits ahead).**
+
+- **The problem:** the Session-86 widget system was capacitance-only (`SIM_READY` declared widgets solely for `scenario_type === "capacitance"`), so the ⚙ button was hidden on all 47 other concepts; `particle_field` (every Ch.3 circuit sim) had no widget support at all and no `SET_CLEAN_MODE` handler either. The literal Rule-39 path (per-scenario declare + display-pass rewrite) would have meant rewriting ~48 scenarios' display logic.
+- **The trick that made it cheap:** overrides are enforced with `!important` classes (`.pmWgHide`/`.pmWgShow`) that **beat each scenario's own inline `style.display` writes** — so NO scenario's display pass was touched. A multi-week retrofit became a renderer-level invariant (the Rules 36/37 pattern).
+- **`field_3d_renderer.ts` — auto-discovery (`pmWg*`):** finds widgets via the conventions clean mode already relies on (`.pm_hud` statics, inline `position:fixed` dynamic panels, `div[id$="_row"]` rows); a panel with rows contributes its rows, a row-less panel is one unit. Declares a widget the first time it is genuinely on screen (list names only what the concept really shows) and pushes `WIDGET_DECLARE` as later states reveal more. `--pm-wg-disp` preserves natural display for a force-show; `.pmWgShow:empty` keeps a force-shown empty box hidden. Re-asserted at the `applyState` tail + a ~2 Hz `animate()` heartbeat. Teacher-first labels: row `<label>` cut at its value separator (never bake a live value into a once-captured label), panel ids stripped of scenario prefix + noise words, a canvas-bearing panel is structurally a "Graph", duplicates disambiguated. Also fixed `equation_panel` losing `pm_hud` on its per-state anchor rewrite.
+- **`particle_field_renderer.ts` — config-derived + canvas gating:** declares upfront from config; its instruments are mostly **canvas-drawn with no DOM handle**, so ammeter / V–I graph / galvanometer / node+ratio+balance readouts / KCL+KVL sum chips / thermometer / drift arrow / R_eq badge / power+heat meters / voltmeter are each gated at their draw call via `pfWgVis(key, stateWants)`. DOM overlays route through the same resolver in `applyStateVisuals`, which doubles as the `SET_WIDGET_VIS` re-apply path (never re-runs `applyState` — that would reset the sim clock mid-state). Gained the missing `SET_CLEAN_MODE` + `body.pm-clean` CSS.
+- **Chrome:** `WIDGET_DECLARE` handler; an OPEN panel re-renders only when the key set actually changed — a rebuild detaches the row the teacher is mid-click on (found by a failing live test, not by inspection).
+- **Verification (evidence, not assertion):** THE EYE **zero regression on both engines** — `parallel_currents_force` **56/56**, `ohms_law` **38/38** (both baseline-locked, H2 compared; baselines safe by construction since THE EYE never sends overrides). `tsc` 0; `check:renderer-syntax` clean; **validator proven unaffected by `git stash`-ing the change and diffing the run** (identical 405/14/1 counts); `build:pilot` clean; all 50 built sims contain both engine and chrome (scripted grep, not spot-check); ⚙ driven live in a browser on **13 concepts** across every scenario family.
+- **Doctrine:** **Rule 39g** written into CLAUDE.md §6/§7 + CLAUDE_RULES.md and propagated SAME-SESSION into `json_author` (pre-check retired), `quality_auditor` (now checks label quality + `PF_WG_FLAGS` registration instead of a per-scenario contract), `renderer_primitives` (39g READ-THIS-FIRST block) + emissions re-synced. 39a–39e are now the optional CURATED path; `capacitance` keeps its bespoke list.
+- **Deployed:** `deploy:app` → **app.viditra.co** (129 files; verified live that both a field_3d and a particle_field sim serve the engine + chrome). `deploy:cf-site` → **viditra.co** (18 files).
+- **Public demo fixed (`website/demo/`):** was a STALE frozen copy — its `sim.html` still had hardcoded `0.016` per-frame deltas, i.e. it predated the **Rule 36** fixed-timestep fix, so the public demo ran **~2× fast on 120 Hz phones/tablets**. Refreshed `sim.html` (gains Rule 36 + Rule 39g) re-applying its 2 patches (`isMobile=false`, CDN three/katex), and **surgically injected** the widget chrome into `index.html` rather than recopying — the demo carries MORE hand-patches than the runbook recorded (device-gate modal #8, NCERT chip) and deliberately OMITS pilot auth / onboarding tour / brand curtain, so a raw recopy would have dropped the former and imported the latter. Verified live on viditra.co/demo: 8 widgets declared, toggle hides+restores, no console errors, true 3D on phone widths, every pre-existing patch intact.
+- **NEXT / open:** (1) `git push` (4 commits ahead of origin/master) — not done, deploys were the ask; (2) the demo's teaser CTA still says **"1 of 20 simulations"** — the catalog is now 47; a marketing-copy claim, left for founder approval; (3) fleet retrofit of depth rings + curriculum tags across the 48 (still deferred per Session 86 — the widget half of that gate is now CLOSED); (4) **capacitance is fully approved and baseline-locked** (`visual_baselines/capacitance/baselines.json`, `approved_at 2026-07-21T17:03Z`, commit `1fba5f2`) — the ONLY thing between it and teachers is the one-line `PILOT_CONCEPTS` entry + `build:pilot` + `deploy:app`; it is finished work worth nothing until that ships; (5) consider vendoring three/katex into `website/vendor/` so the public demo stops depending on a CDN (classroom-reliability doctrine).
+
+---
+
+## 🪞 SESSION — PCPL/parametric 2D "is-it-as-strong-as-3D?" parity audit + uplift (Tracks T/S/C/R ALL DONE; branch `feat/pcpl-parity`, 9 commits) (2026-07-23)
+
+**Bottom line: founder asked whether the PCPL/parametric 2D pipeline is as strong as field_3d across EVERYTHING — authoring agents, validator gates, THE EYE/eye-walker, renderer invariants, TTS, player, shipper, catalog. A 6-agent parallel audit found the answer is "much closer than it looks": the 2026-07-23 hardening already brought the RUNTIME (Rule 36 clock, time-pin, message contract, emphasis, explore free-run), the VALIDATOR (all gates run on PCPL — in fact validated MORE strictly than field_3d, whose `field_3d_config` is an unvalidated `.passthrough()` blob), THE EYE (same dense/frozen/H1-H3/D5/D7 + paid vision gate), the PLAYER, TTS, `visual:approve`, and the shipper chain to genuine parity. The real remaining deficit was NOT the machinery — it was (1) a CI hole, (2) the authoring FLEET's specs/docs still field_3d-centric with stale deleted-dir refs, (3) a cluster of known content/renderer defects. This session closed **all four tracks — T (tooling), S (agent fleet + SOP), C (all three broken concepts), and R (all six renderer-feature gaps) — in 9 commits**, every step tsc 0 / validate 124-PASS / browser- (and for the two visual items, screenshot-) verified. Work isolated in a separate worktree off HEAD `61f06ce` (NOT master — the whole PCPL track is unpushed on `feat/field3d-draggable-sensor`; branching off master would have lost it). **Only two founder-owned items remain:** (a) a `visual:approve` re-baseline of `scalar_vs_vector` (R-C/R-D move pixels BY DESIGN per Rule 34e — not a fix cycle), and (b) `pressure_scalar`'s arrow coords (a visual-layout judgment call, not a renderer bug). Plus minor tails (cosmetic slider-label staleness, Vectors-chapter buildout, Rule-39g merge reconciliation). Net verdict: the 2D pipeline's MACHINERY was already at parity; this session closed the tooling hole, the field_3d-centric agent specs, and the known content/renderer defects — so PCPL 2D now matches the field_3d 3D quality bar end-to-end.**
+
+- **Track T — CI + validator tooling parity (commit `0f87f63`):** (1) `check-renderer-syntax.ts` now `node --check`s the THIRD emitted body `PARAMETRIC_RENDERER_CODE` (146KB) — it was unguarded, so a stray backtick shipped a blank canvas silently past tsc (Rule 36c updated "both"→"all three"; this guard immediately paid off — it caught a backtick I introduced in a Track-C comment mid-session). (2) `deriveStateMeta.ts` closes the G3 D5 hole: a PCPL state animating via a one-shot body animation (free_fall/atwood/translate/slide/projectile) had neither `auto_after_animation` nor a loop, so D5 silently skipped it — now categorized (continuous body anims → motion=true + D7-strict; transient/settling → motion=true + reveal_hold dual-classification mirroring the field_3d pef sweep). (3) Corrected stale `screenshotter.ts` comments claiming PCPL "has no freeze handler" (false since `2435706`).
+- **Track S — authoring fleet + SOP to PCPL parity (commit `8352626`) — the biggest gap cluster:** runtime/validation were at parity but only 2 of 10 agent seats carried real PCPL instructions. Fixed: `renderer_primitives` (the PCPL engine OWNER) filed `parametric_renderer.ts` under "[LEGACY — NOT the current product surface]" and still listed the DELETED `src/lib/pcplRenderer/` as sacred files → promoted to CURRENT, repointed to the in-file primitives, refreshed drifted line numbers; `json_author` claimed "14 primitive files exist in `src/lib/pcplRenderer/primitives/`" → fixed + ADDED the `renderer_pair.panel_a:"mechanics_2d"` naming trap + refreshed the animation whitelist (added `projectile`/`rotate_continuous`) + removed the now-false "slide_horizontal only works in mechanics_2d"; `runtime_generation` dropped the deleted-dir glob; `architect` gained a PCPL pre-flight + a 760×500 pixel-coord Definition-of-Done substitution; `eye_walker`/`retrofit_surgeon`/`quality_auditor` stopped hardcoding `--field3d` (added a `--pcpl` fleet flag to `query_engine_bug_queue.ts` covering the 16-concept PCPL fleet); `docs/AUTHORING_PIPELINE.md` gained a PCPL/parametric Stage-② variant; `proof_run/PCPL_EXEMPLAR.md` created (the vintage `scalar_vs_vector_skeleton.md` misdirected 2D authors to clone the field_3d faraday exemplar — now points to the shipped concept as the blessed clone target). `sync:agents` regenerated all 7 emissions; zero un-annotated `pcplRenderer` refs remain.
+- **Track C — broken existing PCPL concepts (commits `078f93f`, `2210448`, `e65a6b8`):** closes documented NEXT items (3), (7), (8) + the `contact_forces` collapse.
+  - **[CRITICAL, item 3]** `direction_of_resultant` + `resultant_formula` rendered ONLY "Unknown concept" — both in `PCPL_CONCEPTS` (routing) but with NO `computePhysics` entry, so `computePhysics()` returned null → `PM_physics` falsy → the render short-circuited. Added `computePhysics_resultant_formula` (R=√(A²+B²+2AB·cosθ)) + `computePhysics_direction_of_resultant` (α=atan2(B·sinθ, A+B·cosθ)) + dispatcher entries. Same iframe-runtime-fallback pattern the other new PCPL concepts use (they're likewise absent from the legacy TS `physicsEngine` registry). **Browser-verified:** both now render with derived R=6.083, α=25.28° for A=4,B=3,θ=60 — matching each concept's authored labels.
+  - **[items 8 + contact_forces collapse]** `drawForceArrow` read only force_id/magnitude/forces[0], never `spec.to` — so `contact_forces` STATE_4's three components (N/f/F, distinct from→to) all collapsed onto `forces[0]`; and `drawVector` never read `from_expr`/`to_expr`, so STATE_6's N-stacked reaction ({x:310,y:370−N·4}) collapsed to (0,0). Added `PM_safeEvalPoint` (object-returning sibling of `PM_safeEval`) + `PM_resolveArrowPoint`, an isolated highest-priority geometric path in `drawForceArrow` (fires only for to/to_expr arrows — verified only `contact_forces` uses them fleet-wide, so magnitude arrows are byte-identical), and from_expr/to_expr resolution in `drawVector`. **Browser-verified:** STATE_4's 3 arrows resolve to distinct endpoints; STATE_6 from_expr → {310,290} at N=20.
+  - **[item 7]** `normal_reaction` STATE_5 `computed_outputs` name mismatch — the concept declared `N_value`/`mg_parallel`/`mg_perpendicular`/`apparent_weight` but the engine only put `N`/`W`/`g` in `derived` → any expr naming them NaN'd to 0. Added the four names to `derived` (PM_G=9.8 matches the JSON formulas). **Browser-verified:** all four resolve correctly. Additive-only.
+  - `scalar_vs_vector` (baseline-locked) smoke-checked across states — unaffected (exercises none of the new code paths, so pixels unchanged by construction; no re-baseline needed for Track C).
+- **Track R — renderer-feature parity (commits `e80c7f5`, `66ddf30`; all in `parametric_renderer.ts`) — DONE, all 6 items:** (R-B) `SET_CLEAN_MODE` handler + an in-`draw()` `PM_cleanMode` flag gating Pass-3 text chrome (formula_box/slider/annotation/derivation_step/mark_badge) + the diagnostic HUD — the teacher Clean button was DEAD on 2D sims; **screenshot-verified** on scalar_vs_vector STATE_5 (formula box + |R| HUD + 3 sliders vanish, the vector triangle + labels stay). (R-B2) `SET_GLOW` handler → `PM_glowOverride` fed into `PM_focalEmphasis` as top priority (per-sentence narration-beat glow, field_3d parity; cleared on state switch). (R-C) stable per-variable slider slots via `PM_ensureSliderSlotMap` (order/total from the max-slider explore state, so it reads as authored and every subset state places sliders at the same slots) — **verified** theta sits at x=500 in BOTH STATE_4 (alone) and STATE_5 (3rd), no jump. (R-E) `PM_animationGate` honors `spec.reveal_cue` → visual one-shots re-time to the narration beat via `SET_CUE_TIME` (matching field_3d `cueTriggerMs`; `appear_at_ms` stays the EYE-deterministic fallback). (R-D) `drawFormulaBox` now uses a `'Cambria Math'` serif stack (Rule 34b) — **screenshot-verified**. (R-F) `window.PM_currentState` mirrored at init + every SET_STATE. **Regression-checked:** contact_forces renders all 6 states with PM_physics + no console errors, and its STATE_4 geometric arrows still register distinct endpoints (335,300 / 455,400 / 455,300). **Baseline note:** R-C (STATE_4 slider x) + R-D (formula font, all states with a formula_box) change pixels BY DESIGN (Rule 34e) → scalar_vs_vector needs a **founder-triggered `visual:approve` re-baseline**, NOT a fix cycle; R-B/R-B2/R-E/R-F don't touch frozen frames (THE EYE never posts SET_CLEAN_MODE/SET_GLOW/SET_CUE_TIME → those stay off/null during capture).
+  - **Rule-39g reconciliation (IMPORTANT for merge):** this branch's `SET_CLEAN_MODE` is the SIMPLE clean-mode (matching field_3d in THIS tree). Master's fuller Rule-39g per-widget ⚙ toggle system (`pmWg`/`PF_WG_FLAGS`/`SET_WIDGET_VIS`) is NOT on this branch line — when `feat/pcpl-parity` merges toward master, reconcile my parametric `SET_CLEAN_MODE`/Pass-3 gating with 39g rather than double-implement. (See the branch-divergence caveat added to the `widget-toggles-fleet-rule39g` memory.)
+- **REMAINING (next session — smaller now; still "everything" scope):**
+  - **`pressure_scalar` arrow coords (item 4):** NOT a renderer bug — `PM_resolveForceOrigin` honors the authored literal `from`, so the arrows DO emanate from `{220,290}`; the coords themselves are a visual-layout judgment call (needs the intended STATE_1 design / founder eyes, not a blind edit).
+  - `pcpl_slider_label_stale_under_choreography` (cosmetic, `drawCanvasSlider` reads only `PM_sliderValues`); items (5) 21 overlap warnings, (6) 46 panel_config rows (not PCPL); rest of the Vectors chapter (9); founder-triggered `visual:approve` re-baseline of scalar_vs_vector (for R-C/R-D); remaining Track D archive-doc `pcplRenderer` mentions (low). The `scalar_vs_vector-pass2-notes.md` stale banner + the Rule-39g memory caveat are DONE.
+- **⚠ Flag for founder — the "Rule 39g / PF_WG_FLAGS" memory doesn't match this tree:** two independent audit agents grepped the whole repo and found NO literal "Rule 39g", NO `PF_WG_FLAGS`, and NO player ⚙/gear menu; the actual widget-hide mechanism is `SET_CLEAN_MODE` (field_3d-only today — particle_field AND parametric both lack it). The memory `project_widget_toggles_fleet_rule39g.md` (claims a fleet-wide ⚙ toggle system shipped 2026-07-21, both renderers) either describes work not present on this branch or is aspirational — verify before relying on it.
+- **Isolation:** separate git worktree `C:/Tutor/physics-mind-pcpl-parity` on branch `feat/pcpl-parity` off `61f06ce`, node_modules junctioned, unpushed. The dirty non-PCPL marketing/website edits on `feat/field3d-draggable-sensor` were left untouched.
 ## ➕ SESSION — Vectors #2 `vector_addition_law` SHIPPED (full pipeline + 2 fix rounds) + NEW PCPL `force_arrow` translate animation (the "carry" primitive) (2026-07-24)
 
 **Bottom line: authored `vector_addition_law` (Class-11 Ch.1 Vectors DAG child #2, prerequisite `scalar_vs_vector`, PCPL) through the full Alex pipeline — architect → physics-author → json-author → eye-walker ∥ quality-auditor — with a genuine auditor FAIL→fix→re-verify round, then closed a REAL engine gap the audit surfaced (`drawForceArrow` couldn't animate → STATE_2's "carry B" was a blink, not a glide) via a founder-directed `peter_parker:renderer_primitives` dispatch, and ran the founder-approved shipper release chain to completion after diagnosing its blocker in-session. Final state: THE EYE 32/32 (23 checks + 9 H2 vs locked baselines, 0.00% drift), baselines LOCKED (`visual:approve`), 18/18 EN clips voiced + manifest clean, build:review verified HTTP 200, tsc 0, validate 125/125. Founder decisions this session: (1) defer the broken `direction_of_resultant`/`resultant_formula` (confirmed NOT in PILOT_CONCEPTS → not teacher-reachable, latent only); (2) fresh concept_id — the old `parallelogram_law_test.json` stays byte-untouched, no synonym redirect.**
@@ -12161,3 +12516,366 @@ DATABASE:
   simulation_cache row for parallel_plate_capacitor_field regenerated (reseed x2)
   engine_bug_queue: 2 new rows (see above)
 ```
+
+---
+
+## Session 2026-07-25 — renderer_primitives: `displacement_vs_distance` second fix round (`kinematics_1d_track`)
+
+Second fix round on the `kinematics_1d_track` field_3d scenario (`displacement_vs_distance`), following
+independent post-fix findings from quality_auditor's Playwright re-audit and eye-walker's THE EYE frame
+walk. Three real defects, all rooted and fixed in `src/lib/renderers/field_3d_renderer.ts`.
+
+### Bug 1 (CRITICAL, fixed) — `kt_x_readout` spec'd but never implemented
+
+`buildKinematics1dTrack()` only built three DOM readouts (`kt_d_readout`/`kt_dx_readout`/`kt_lap_counter`);
+`kt_x_readout` — the STATE_1 plain-position HUD json_author added to fix an earlier Δx pre-spoil bug — had
+no matching `createElement` anywhere, so STATE_1 rendered zero numeric readout for its whole reveal + hold,
+and `glow_focal: "kt_x_readout"` lit nothing. Fix: added the `#kt_x_readout` DOM element (same screen slot
+`kt_dx_readout` takes over from STATE_2 onward — one continuous instrument, relabelled), added it to
+`ktApplyGlow`'s domIds, and moved the STATE_1 digit-roll logic off `kt_dx_readout` (labelled "Δx") onto
+`kt_x_readout` (labelled "x") — `kt_dx_readout` is now a plain live continuous tracker from STATE_2 on,
+with no state-specific special-casing left in its own block.
+
+### Bug 2 (MAJOR, fixed) — duplicate formula overlay
+
+`kinematics_1d_track` built its own dedicated Cambria-Math `#kt_formula` panel but the generic
+`#formula_overlay` suppression allowlist (`magnetisation`/`motional_emf_rod`/`ac_generator`) omitted the
+new scenario_type, so both rendered the same string at once (also the direct cause of the STATE_5 Gate 9
+`kt_sliders` x `formula_overlay` collision). Fix: added `config.scenario_type === "kinematics_1d_track"`
+to the suppression condition (~L30978 pre-fix line numbers). Collision cleared as a consequence — no
+separate layout fix needed.
+
+### Bug 3 (CRITICAL, fixed) — `PM_ktD` accumulator desynced under THE EYE's non-monotonic capture order
+
+Investigated per the task's explicit instruction (live click-through first, THE EYE second) before
+patching. **Live continuous Playwright probe (clean sequential `SET_STATE`, one settle read per state,
+mirroring quality_auditor's method) read PM_ktD CORRECTLY on all 6 states** — confirming this is a genuine
+capture-harness-interaction bug, not a live-playback bug. Root cause: `animate()`'s `SET_TIME_FREEZE`
+handling crawls `time` forward toward `freezeAtTime` one frame at a time, but if a NEW target is BEHIND
+the clock's current position (THE EYE's dense-then-frozen, or out-of-order dense, pin requests are not
+guaranteed monotonic within one long-lived per-state session), the very next frame's
+`time + dtStep >= freezeAtTime` check is already true, so `time` SNAPS backward in a single frame — no
+intermediate frames visited. The old accumulator (`PM_ktD += |x(t)-x(t-1)|`) cannot distinguish that jump
+from real motion, so it added the full backward displacement as fictitious distance, permanently inflating
+`d` for the rest of that state's captures (STATE_2 dense read `d=80` at `t=0`, STATE_3 climbed to `d=240`
+vs the true cap 80, ghost arrow ran toward the frame edge).
+
+Chose the architectural fix over a band-aid (per the task's own recommendation): guided states (S1–S5) now
+compute `d(t)` as a **closed-form path integral** of the authored `ktPositionM` schedule (new `ktBreakpoints`
++ `ktDistanceM` helpers) — summing `|Δx|` across the schedule's known breakpoints (each inter-breakpoint
+segment is monotonic, verified per-mode against `ktPositionM`'s own easing, so a completed segment's
+contribution is exactly `|x(segEnd)-x(segStart)|`, and the in-progress segment's contribution is
+`|x(t)-x(segStart)|` evaluated via `ktPositionM` itself). A pure function of `tMs` is immune to seek/jump/
+re-entry order by construction (Rule 26). STATE_6 (sandbox) keeps the original frame accumulator — its
+motion is live human drag input with no closed form, and THE EYE cannot fire trusted drag events there
+anyway (untestable by the visual gate per prior session notes), so it was out of scope and unaffected.
+
+The STATE_3 ghost arrow was rewired to match: it now reads `window.PM_ktD` (the pure value) directly
+instead of a separately-cached "growth since 4100ms" baseline (`PM_ktGhostBaseD`, removed) — that cache was
+itself jump-order-dependent (captured whatever `PM_ktD` held on the FIRST frame `tMs` happened to cross
+4100, which a direct seek to e.g. 6500ms would never do). Per the task's explicit design note, the ghost
+now shows the FULL `d(t)` rooted at `x0` (extending past the turnaround post to the true 80m cap before
+the strike-through), matching the "distance IS displacement the whole time" misconception more faithfully
+than the old "growth since the return leg started" partial view.
+
+**Secondary latent bug found and fixed while re-verifying:** once `PM_ktD` itself became seek-order-safe,
+a fresh THE EYE run exposed that `kt_ghost_arrow`/`kt_ghost_strike` used one-sided
+`if (tMs >= X) obj.visible = true` toggles with no `else obj.visible = false` — so a backward seek within
+a state left them visibly stuck ON from a later capture (visible at `STATE_3__dense_t00000.png` even
+though `d` itself now correctly read 0.0). Added the explicit `else` branches (reset visible/length/opacity)
+so both ghost and strike are now pure functions of `tMs` in both directions, not just forward.
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors (both fix iterations).
+- `npm run check:renderer-syntax` → clean (both fix iterations).
+- Live Playwright probe (`sim.html` direct, sequential `SET_STATE` walk, one settle read/state) —
+  **all correct**: STATE_1 `x = +30.0 m` (glowing, no d/dx shown); STATE_2 `d=40.0 / Δx=+40.0` + exactly
+  ONE visible formula (`kt_formula: d = |Δx|`); STATE_3 `d=80.0 / Δx=+0.0` + one formula (`d = 2L, Δx = 0`);
+  STATE_4 `d=20.0 / Δx=-20.0`; STATE_5 `d=60.0 / Δx=+20.0`, `laps: 1 (1× 40 m = 40 m)`; every guided state
+  showed exactly one visible formula overlay, zero on STATE_1/STATE_6 (both author `formula_overlay: null`).
+- `npm run visual:eyes -- displacement_vs_distance` — **27/27 deterministic checks passed** on both the
+  pre-ghost-fix and post-ghost-fix runs (`.visual_runs/displacement_vs_distance/20260725-141148/` and
+  `.../20260725-141717/`). Frames read directly: `STATE_1__frozen.png` shows `x = +30.0 m` glowing;
+  `STATE_2__dense_t00000.png` shows `d = 0.0 m` (was `d=80.0` pre-fix); `STATE_3__frozen.png` and
+  `STATE_3__dense_t00000.png` both show `d = 80.0 m` (was `d=240.0` pre-fix) with the ghost arrow correctly
+  capped at the true 80m distance (not running off-canvas); the post-ghost-fix run's
+  `STATE_3__dense_t00000.png` additionally confirms the ghost/strike no longer bleed into `t=0` (previously
+  visible there despite `tMs < 4100`).
+
+### RENDERER REGEN DIRECTIVE
+- cluster: renderer_primitives
+- fix_summary: kt_x_readout DOM element built + wired to STATE_1's digit-roll + glow (was spec'd, never implemented); kinematics_1d_track added to the #formula_overlay suppression allowlist (was duplicating #kt_formula); PM_ktD path-length odometer converted from a per-frame accumulator to a closed-form ktDistanceM(mode, tMs, ...) function for guided states S1-S5 (immune to THE EYE's non-monotonic SET_TIME_FREEZE seek order — sandbox S6 unaffected/unchanged); STATE_3 ghost arrow/strike now read PM_ktD directly (PM_ktGhostBaseD cache removed) and gained explicit else-branch visibility resets
+- affected_cache_tables: [simulation_cache]
+- affected_concept_ids: [displacement_vs_distance]
+- affected_modes: [conceptual]
+- handoff_to: runtime_generation
+
+### engine_bug_queue
+
+Three new incident rows inserted via `src/scripts/_seed_engine_bug_queue_displacement_vs_distance_fix2.ts`
+(all CRITICAL/MAJOR, all FIXED): `field3d_kt_x_readout_spec_not_implemented`,
+`field3d_kt_dual_formula_overlay_not_suppressed`, `field3d_kt_distance_accumulator_seek_order_dependent`.
+Archival SQL:
+`supabase_migrations/supabase_2026-07-25_seed_engine_bug_queue_displacement_vs_distance_fix2_migration.sql`.
+Same caveat as prior sessions: the `.agents/renderer_primitives/CLAUDE.md` silent-failure catalog table was
+NOT hand-edited (this role's own Tools Forbidden list bars `.agents/**` edits) — the queue rows above are
+the durable record pending a founder/architect-level catalog sync. Recommended catalog additions (for
+whoever performs that sync) mirror the queue rows' `title`/`DO` text verbatim, plus one general-purpose
+prevention note worth folding into the spec's Rule-36/capture-harness guidance: **any per-frame
+accumulator authored for a reproducible (non-live-input) state must instead be a closed-form function of
+state-local ms** — THE EYE's capture pattern is not guaranteed monotonic within a state.
+
+### Files modified
+
+```
+MODIFIED:
+  src/lib/renderers/field_3d_renderer.ts   (kt_x_readout DOM element + glow wiring + STATE_1 digit-roll retarget;
+                                             #formula_overlay suppression allowlist +kinematics_1d_track;
+                                             ktBreakpoints/ktDistanceM closed-form helpers added; PM_ktD
+                                             switched to closed-form for guided states; ghost arrow/strike
+                                             rewired off PM_ktD directly + explicit else-branch visibility resets)
+CREATED:
+  src/scripts/_seed_engine_bug_queue_displacement_vs_distance_fix2.ts
+  supabase_migrations/supabase_2026-07-25_seed_engine_bug_queue_displacement_vs_distance_fix2_migration.sql
+DATABASE:
+  simulation_cache row for displacement_vs_distance regenerated (reseed x2, via existing
+  _seed_displacement_vs_distance_cache.ts prewarm script from the first fix round)
+  engine_bug_queue: 3 new rows (see above)
+```
+
+## 2026-07-24 — Ch.8 chapter-loop: `displacement_current` SEALED (concept #1, NEW field_3d scenario built in-loop)
+
+First Ch.8 (Electromagnetic Waves) concept authored autonomously via the trial chapter loop (`docs/CHAPTER_LOOP.md`, Amendments 4+5; wrapper `scripts/ch8_loop.ps1`, review port 8088). One concept per session then EXIT.
+
+**Concept:** `displacement_current` (NCERT §8.2 — Maxwell's displacement current / the Ampère–Maxwell correction). 10-state field_3d diamond: 6 core (S1 charge fills wires, gap stays empty → S2 flux rises → S3 Ampère loop+flat disk I_enc=1.2A → S4 same-loop balloon-surface I_enc=0? crisis → S5 probe refutation B=2.4µT → S6 I_d=I_c only-while-changing) / 1 extended (S7 B(r) peak at plate edge) / 2 advanced (S8 I_d=ε₀dΦ_E/dt derivation, S9 frozen Ampère–Maxwell ledger — the S4↔S9 surface-morph contrast pair) / core explore-last (S10 sandbox, 3 live sliders, Rule 37 continuous-run). Universal anchor (Rule 35): charging capacitor in a camera flash / touchscreen / defibrillator, narration-only.
+
+**Pipeline:** architect → CP-A founder-proxy DESIGN_OK → physics-author (all locked numbers independently verified) → json-author (8 registration sites, migration + seed authored, tsc 0 / validate 125 PASS). NEW `scenario_type: "displacement_current"` built in-loop by field3d-surgeon (§3b). quality-auditor PASS (all gates ✓/N/A) ∥ eye-walker (2 MODERATE findings). CP-B founder-proxy: cycle-1 FIX(engine,blocking) → cycle-2 APPROVE. CP-C SEALED.
+
+**Engine commits (3 — all engine-files-only, grep `git log --grep=engine-loop`):**
+```
+59cdd53  feat(engine-loop): displacement_current field_3d scenario   (E1 — new scenario; +dc_surface disk↔balloon vertex-morph primitive; deriveStateMeta reveal pins)
+aa724f8  fix(engine-loop): S5 wrong-expectation ghost tag            (E2 — CP-B blocking; renders "✗ Expected: no current → B̶=̶0̶" ghosted, mode-gated, wired to ghost_tag_at_ms hook)
+32f032d  fix(engine-loop): dc_surface vertex-morph monotonicity guard (E3 — CP-B ride-along; clamp01 + explicit flat-disk cue boundary)
+```
+Plus an in-build fix (found+fixed in E1): S5 forced sustained-charge so B never blips to zero (physics_author flag). Verify chain green throughout: EYE 43/43 on displacement_current; regression pair magnetisation_and_intensity 38/38 + bar_magnet_as_dipole 56/56 clean (Amendment-5 disjoint pair); founder_drive states=10 collisions=0 flags=0 consoleErrors=0. 3 commits < the ≥8 runaway-guard threshold; no clock touch → no fleet sweep.
+
+**Concept-seal commit (this session):** concept JSON + 3 registration sites (panelConfig, aiSimulationGenerator CONCEPT_RENDERER_MAP, intentClassifier VALID_CONCEPT_IDS+CLASSIFIER_PROMPT) + migration + seed script + docs/loop_runs/ch8/displacement_current/ (skeleton, physics_block, checkpoint_a/b/c reports, auditor + eye_walker reports) + docs/loop_runs/ch8/_engine/scar_candidates.sql + ch8_engine_log.md + ch8_state.md + this PROGRESS entry. Chapter branch only (feat/ch8-em-waves) — NO master merge (trial).
+
+**Trial constraints honored:** no visual:approve, no tts, no PILOT_CONCEPTS, no deploy, NO DB writes to engine_bug_queue (3 scar candidates are FILES in docs/loop_runs/ch8/_engine/scar_candidates.sql, pending founder ruling at graduation). Cache ops were scoped (`cache:clear:scoped` + concept re-seeds for THE EYE) — no unconditional 4-table wipe.
+
+**Founder chapter-end queue for this concept:** (a) 3 scar candidates (2 FIXED, 1 OPEN = the fleet-wide scene_composition-annotation silent-no-op render path); apply-time: confirm live severity CHECK permits 'MAJOR'. (b) 3 P3 polish notes: S9 per-term label `μ₀·I_c(1−s)=0.16 A` dimensionally loose → tidy to `I_c(1−s)`; S7 R/r/peak tag crowding (legible); fleet-wide annotation render is a broader engine item. (c) Founder hand-tests S10's 3 live-slider drags + trusted-drag seize (headless can't fire trusted events).
+
+**Blocker / hygiene:** `.founder_runs/` is not gitignored on this branch (`.visual_runs` + `review-site` are) — seal commit added files by explicit path to avoid committing it; founder may want a .gitignore entry.
+
+**Next session's first task:** `em_wave_propagation` (Ch.8 #2, NCERT §8.3) — fresh session, `cache:clear:scoped em_wave_propagation` → dispatch architect. Likely another NEW field_3d scenario (traveling transverse E&B sinusoids). No CLAUDE.md changes suggested this session.
+
+## 2026-07-25 — Ch.8 chapter-loop: `em_wave_propagation` SEALED (concept #2, 11-state field_3d diamond)
+
+**Concept #2 of the founder-approved Ch.8 map** (displacement_current → em_wave_propagation → electromagnetic_spectrum). Resumed mid-flight from disk artifacts (CP-B fix cycle 1 was in progress); sealed this session. Branch `feat/ch8-em-waves`, worktree `C:\Tutor\physics-mind-ch8`.
+
+**What it teaches (NCERT §8.3):** the coupled changing E↔B handshake self-propagating as a transverse wave — E⊥B⊥direction with E×B along travel at crest and trough alike, E and B strictly IN PHASE (the Rule-16a misconception pivot: *not* 90° apart), `c = 1/√(μ₀ε₀)` recognized as the measured speed and therefore light's own identity, `B₀ = E₀/c` with the ratio pinned at c regardless of amplitude, the exact half-and-half energy split (`u_E = u_B` despite B₀'s tiny number), and `v = c/n` in a medium with ν fixed and only λ shortening. Built directly on the sealed `displacement_current` ("changing E makes B") + Faraday ("changing B makes E") — prerequisites declared, never re-taught (Rule 25 clean). Classifier boundary reconciled both ways; the seeded siblings `em_wave_nature` + `speed_of_em_waves` absorbed via `CONCEPT_SYNONYMS`.
+
+**Checkpoint path:** CP-A DESIGN_OK (1 cycle) → JSON authored → CP-B cycle 1 **FIX(engine, BLOCKING)** → 5 fixes → CP-B cycle 2 **APPROVE** → CP-C **SEALED**.
+
+**The blocking finding (why it mattered):** S5's authored `ghost_dissolve_at_ms` was pushed to THE EYE's reveal pin but **never read by the renderer** — dead code. So the ✗-tagged wrong-phase red ghost never dissolved: a Rule-16a misconception pivot left its disproven belief standing as the last thing a sound-off teacher sees. It passed 47/47 deterministic gates *with the defect live* — THE EYE consults the freeze pins themselves and nothing asks "is the pinned frame the RIGHT frame." The eye-walker frame-walk caught it; the pin push actively masked it.
+
+**Engine commits this session (Amendment 4 — ONE bug_class per dispatch, no bundles):**
+
+```
+7bb26e2  fix(engine-loop): S5 ghost dissolve — wire ghost_dissolve_at_ms       (BLOCKING)
+1b5efa7  fix(engine-loop): S9 reveal pin — push link1/2/3 + assembled cues     (ride-along)
+8d2f826  fix(engine-loop): S1 pulse arrival — honor needle_kick_at_ms          (ride-along)
+c16383d  fix(engine-loop): S6 λ bracket — render the declared span marker      (ride-along)
+```
+Plus the S8 Rule-34c authoring fix (`u<sub>E</sub>`/`u<sub>B</sub>` — was literal ASCII beside subscript tank labels), in the concept JSON. Prior-session scenario commits: `961fe87` core + `6a0fa7f` per-state add-ons.
+
+Two of the four were "capture-is-wrong, not sim-is-wrong" (S1, S9) — formally ride-along, taken in the blocking round anyway so the eventual founder `visual:approve` cannot baseline a wrong frame. The S6 λ bracket also renders on S11 (shared `show_lambda`); founder-proxy ruled that core-ring appropriate under Rule 38b — c = νλ manipulation is exactly what the explore sandbox is for.
+
+**Verify chain green throughout:** `check:renderer-syntax` OK · `tsc` 0 · `validate:concepts` PASS · EYE **47/47** on em_wave_propagation · regression pair `magnetisation_and_intensity` 38/38 + `bar_magnet_as_dipole` 56/56, every H2 at 0.00% (Amendment-5 disjoint pair) · founder_drive `states=11 shots=33 drags=10 collisions=0 flags=0 consoleErrors=0` · auditor PASS · eye-walker all 5 findings CLOSED (S6 confirmed by pixel-diff bbox, not eyeballing).
+
+**Scar corpus:** 4 candidate rows filed to `docs/loop_runs/ch8/_engine/scar_candidates.sql` (**files only — never applied to the DB** per trial constraint). The F-S5 row was caught missing by the Checkpoint-C diff audit and filed in-loop at `CRITICAL` — the run's highest-severity defect would otherwise have gone un-ratcheted.
+
+**Founder chapter-end queue:** (a) confirm the live `engine_bug_queue` severity CHECK permits `'MAJOR'` (F-S1 row; same open item as displacement_current — F-S5 was deliberately filed `CRITICAL` to sidestep it). (b) FL1 hand-test: S10 n-drag un-pins the clock — wiring present, but THE EYE structurally cannot fire trusted drag events. (c) 2 P3 polish notes: ν renders as a Latin-"v" lookalike in the 13px monospace HUD/slider on S6+S11 (sharpened on S11 where the punchline is a *speed*); λ shown on both HUD and bracket label on S11. (d) decide inclusion of the excluded scratch artifacts (`continue_em_wave_v2.txt`, `.founder_runs/`, `docs/loop_runs/wrapper/`). Detail: `docs/loop_runs/ch8/em_wave_propagation/checkpoint_c_report.md`.
+
+**Concept-seal commit (this session):** concept JSON + 3 registration sites (panelConfig, aiSimulationGenerator `CONCEPT_RENDERER_MAP`, intentClassifier `VALID_CONCEPT_IDS`+`CLASSIFIER_PROMPT`) + migration + seed script + `docs/loop_runs/ch8/em_wave_propagation/` (skeleton, physics_block, engine_contract, checkpoint_a/b/b_cycle2/c reports, auditor + eye_walker reports ×2) + `scar_candidates.sql` + `ch8_state.md` + this PROGRESS entry. Chapter branch only — NO master merge (trial). Next: `electromagnetic_spectrum` in a FRESH session (Amendment 4 — one concept per session).
+## 2026-07-22 — CHAPTER_LOOP trial: Stage 1a + Stage 1b, `ac_voltage_resistor` SEALED (Ch.7 concept 1/8)
+
+**EXPERIMENTAL** — `docs/CHAPTER_LOOP.md`, branch `feat/ch7-alternating-current`, worktree
+`C:\Tutor\physics-mind-ch7`. Not doctrine; trial-only until founder graduation.
+
+**Stage 1a (engine-loop shakedown, PASSED):** ran the full §3b engine loop end-to-end on a KNOWN defect
+— `particle_field`'s `#pm-sliders` panel collided with the review chrome (Rule 34d class, `field_3d`
+already fixed, `particle_field` never migrated). Landed a chrome-aware conditional fix
+(`pfInReviewChrome()`) rather than a hardcoded `top:52px`, specifically to keep THE EYE's 13
+raw-capture baselines byte-identical (trial forbids `visual:approve` re-lock). Verify chain full green;
+commit `9c2c64e`. Proved dispatch + verify chain + rollback-readiness + commit discipline before novel
+content work.
+
+**Stage 1b (one concept through the full closed loop, SEALED):** `ac_voltage_resistor` (NCERT §7.2,
+"AC voltage applied to a resistor") — chapter map approved by the founder: `ac_voltage_resistor,
+phasors, ac_voltage_inductor, ac_voltage_capacitor, series_lcr_circuit, ac_power_factor,
+lc_oscillations, transformer`.
+
+- **Checkpoint A (design gate):** architect skeleton (9-state field_3d, NEW `scenario_type:
+  "ac_resistor"`) → 1 DESIGN_FIX cycle (drag-seize guard + S6 thumb-lockstep; S7 "fold" corrected to
+  explicit squaring y→y² vs S8's genuine point-symmetry fold; heater `applyGlowEmphasis` exemption;
+  dedicated Cambria-Math formula panel) → cycle 1 `DESIGN_OK`.
+- **Engine build:** the `ac_resistor` scenario did not exist — built in-loop (`field_3d_renderer.ts`
+  +789 lines, `deriveStateMeta.ts` +71 lines) per the Class-B triage. Full verify chain green; commit
+  `6b97ede`.
+- **In-loop engine fix (`createTubeLine` crash):** post-build THE EYE run hit a `TypeError` — the
+  shared 90-call-site `createTubeLine()` helper unconditionally read `config.field_lines.opacity`,
+  throwing when `ac_voltage_resistor.json` correctly omitted a `field_lines` block. This killed the
+  entire scene-construction loop (no `SIM_READY`, clock never advanced) on all 9 states. Hardened the
+  shared helper (one-line null-guard) rather than patching just this concept, since the rest of Ch.7
+  reuses this scope-pane family. Verify chain green incl. runtime re-probe + regression on
+  `faraday_law_induction`/`capacitance`; commit `d26d139`. Re-ran THE EYE clean: **39/39, 0 failed.**
+- **quality-auditor ∥ eye-walker:** auditor PASS (1 LOW cosmetic note); eye-walker FINDINGS(3),
+  including one rated CRITICAL (S8's fold pane allegedly never renders). The two reports disagreed.
+- **Checkpoint B (build gate):** founder-proxy opened the contested frames itself rather than average
+  the two reports — refuted all 3 of eye-walker's findings with pixel/byte-size evidence (S8's fold
+  pane does render and animate; the S1 "desync" was a frozen-vs-dense frame mismatch; S6's DC-twin
+  does drift live, just invisibly to THE EYE's frozen capture). Verdict **APPROVE** + 2 ride-along
+  `FIX(engine)`: DC-twin drift is a `dt`-accumulator invisible to THE EYE's time-pin (MODERATE), and an
+  ASCII-`rms`-subscript gap across 4 renderer text paths the JSON's own Unicode formulas don't share
+  (MINOR, meter-sprite truncation noted too).
+- **Checkpoint C (handover gate):** independently re-diffed all 4 Checkpoint-A fixes against the built
+  renderer (not the reports' say-so) and re-opened the single most-contested S8 frame itself — verdict
+  **SEALED**. Highest-value-achievable sentence: yes, physics numerically exact end-to-end, 39/39 EYE,
+  zero collision/flag/console-error on live drive; the only gap is the two named ride-along polish
+  items, neither touching correctness or legibility.
+
+**Commits this session:** `9c2c64e` (Stage 1a fix) · `6b97ede` (ac_resistor scenario build) ·
+`d26d139` (createTubeLine fix) · a seal commit for `ac_voltage_resistor`'s authoring artifacts follows
+this entry · 2 more engine-loop commits (B1, B2 ride-alongs) to follow before `phasors` starts, per
+§3b's ride-along ordering.
+
+**Trial constraints held throughout:** no `visual:approve`, no `tts:*`, no `PILOT_CONCEPTS`, no
+deploy, no DB writes to `engine_bug_queue` (all findings filed as files in
+`docs/loop_runs/ch7/_engine/scar_candidates.sql`, pending founder ruling at chapter end), no merge to
+master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
+`docs/loop_runs/ch7/ac_voltage_resistor/*`.
+
+---
+
+## 2026-07-23 · Ch.7 chapter loop · `phasors` (concept 4/8) — SEALED
+
+Fourth concept of the autonomous Ch.7 run (NCERT 7.5, phasor representation). NEW `field_3d`
+scenario_type `ac_phasor`. Full pipeline + all three founder-proxy checkpoints.
+
+- **Checkpoint A (design):** DESIGN_FIX (11 findings, 5×P1) → 44-patch architect revision → **DESIGN_OK**
+  on cycle 1. Two founder-visible decisions recorded: (F1) the phasor disc was specced against a scope
+  pane position that does not exist in the built renderer — resolved to ONE combined left-band canvas
+  `phs_band`; (F4) the `R = X_L = X_C = 5.0 Ω` scoreboard silently displayed the resonance condition
+  `series_lcr_circuit` opens with — resolved by dropping the Ω chips (angles-only scoreboard), which also
+  retired the sole stated trigger for the compose-routine promotion.
+- **Pipeline:** physics_block (R3/R4/R5 residuals resolved, numbers independently re-derived) →
+  json_author (`phasors.json` + 8 registration sites + migration; tsc 0, validate PASS) → engine build
+  `62911da` (`ac_phasor`, closed-form θ(t)/Rule-36, freeze contract, F7 caption-order probe; a
+  scenario-scoped `phs_` compose clone, NOT the shared-layer promotion — F4 removed its trigger, so the
+  fleet-wide promotion is now a decoupled founder decision).
+- **Checkpoint B (build):** the two AI reviewers DISAGREED — quality-auditor PASS vs eye-walker
+  FINDINGS(2). founder-proxy opened the frames itself and ruled **eye-walker correct on both**:
+  **F2 (BLOCKING, CRITICAL)** — S7 (θ=ωt derivation) set `element:"generic"`, which rendered no element,
+  leaving a physically impossible open circuit with current flowing through a visible gap; **F1
+  (ride-along)** — the S5 frozen H2 baseline was pinned mid-flip (φ=15° in the HUD vs 90° in the formula
+  overlay). Both fixed via §3b: `9c50ad5` (a neutral closed generic element bridging the slot + a real
+  E4 `dim_apparatus`, general ∓ derivation preserved) and `04185ac` (the missing `ac_phasor`
+  `maxRevealForField3dState` block). Checkpoint-B re-review **APPROVE** — both resolved on the pixels,
+  regression clean, S8 explore ships bright. F3/F4 cosmetic JSON cleanups done by the loop session.
+- **Checkpoint C (handover):** diffed every A/B fix against the real commits, validated the 7-row scar
+  block against the LIVE CHECK constraints (applies clean, 0 collisions), confirmed sibling coherence
+  (X_L 5.000 / X_C 5.001 Ω at defaults, resonance withheld for `series_lcr`). One loop-fixable artifact
+  (state-file `engine_commits` omitted `04185ac`) fixed by the loop session, no cycle → **SEALED**.
+
+**Commits this session (this concept):** `62911da` (ac_phasor scenario build) · `9c50ad5` (F2 S7
+open-circuit fix) · `04185ac` (F1 frozen-pin fix) · this seal commit for the authoring artifacts.
+Phasors spent its full 2/2 per-concept engine-fix budget (guard NOT tripped). Verify chain green
+throughout, independently re-run by the orchestrator: EYE 35/35, capacitance regression 44/44 @ 0.00% H2.
+
+**Trial constraints held:** no `visual:approve`, no `tts:*`, no `PILOT_CONCEPTS`, no deploy, zero live
+`engine_bug_queue` writes (7 phasors scar rows filed as files, pending founder ruling), no merge to
+master. Full record: `docs/loop_runs/ch7_state.md`, `docs/loop_runs/ch7_engine_log.md`,
+`docs/loop_runs/ch7/phasors/*`. **Next: `series_lcr_circuit` (concept 5/8).**
+
+**POST-SEAL — founder screen-review fix (same day):** the founder hand-reviewed the sealed sim and found
+a real bug in the S8 sandbox — the R/L/C picker was inert: switching element changed neither the trace
+phase nor amplitude, only the R value-slider moved the graph, and the physical component never swapped.
+Root cause (two coupled defects, ac_phasor block only): `updateAcPhasorFrame` read the authored
+`d.element` (always "R" in S8) instead of the live `window.PM_phsElem` the picker writes; and
+`phsPickElement` never toggled the element mesh. Fixed (+12/−1, commit `b0a9cf0`): the frame reads the
+live element (byte-safe for guided S1–S7, which sync `PM_phsElem=d.element` on entry), and the picker
+mirrors the entry-path mesh toggle. Verified: tsc 0, validate PASS, EYE 35/35 (guided unchanged),
+capacitance 44/44, **plus a live headless Playwright drive of the trusted picker** (R→φ=0° in phase; L→φ=−90°
+lags + coil in slot; C→φ=+90° leads + plates in slot; on C, raising f 0.25→0.45 Hz raised iₘ 2.0→3.60 A =
+vₘ·ωC). This was phasors engine-fix **#3** — past the founder's per-concept "pause if >2" guard — proceeded
+because the founder directed it explicitly on a confirmed defect (the guard targets runaway *autonomous*
+fixing). Filed as a file-only scar (`FIXED`); confirmed via a live SELECT that zero phasors rows exist in
+the live `engine_bug_queue` table (file-only discipline held). State recorded in `6d534b8`.
+
+
+---
+
+## 2026-07-24 — Ch.7 #5 `series_lcr_circuit` SEALED (autonomous chapter loop, founder asleep)
+
+**Concept 5/8 of Ch.7 (NCERT §7.6, AC Voltage Applied to a Series LCR Circuit)** — the synthesis concept, sealed on the `feat/ch7-alternating-current` trial branch via the full CHAPTER_LOOP pipeline. Founder granted autonomous continuation ("finish this one, then do ac_power_factor too, don't wait for me") and went to sleep; the loop ran the whole concept + is continuing to #6 without blocking.
+
+**Design (Class-B, NEW `ac_series_lcr` scenario, 11 states):** teaches at an off-resonance work-point (f=0.50 Hz) while the chapter's shared default (f=0.25 Hz) secretly sits AT resonance — a mystery-first spine paying off at S8. Reveals exactly what `phasors` withheld: tip-to-tail phasor addition (S5), the reactance numerals + impedance triangle (S6), the phase angle (S7), and resonance (S8, the primary aha). Checkpoint A DESIGN_OK with no fix cycle — founder-proxy re-derived the entire number lock from scratch, including the geometric-mean half-power points.
+
+**Engine build `cec3a50`** (`feat(engine-loop): NEW field_3d scenario_type ac_series_lcr`) — the largest kind of dispatch (11-mode scenario in the 37K-line shared renderer), built with the two founder-decision defaults (local `slcr_` compose clone; cyan=V/amber=i colour law). Verify chain green, zero regression (`capacitance` 44/44, sealed siblings untouched).
+
+**Machine gates all clean first pass** (THE EYE 47/47, founder:drive 0 collisions/flags/console, tsc 0, validate 129/129) — **yet the AI reviewers disagreed**: quality-auditor PASS+1LOW ∥ eye-walker FINDINGS(6). founder-proxy Checkpoint B cycle-0 opened the frames *and read the renderer source*, adjudicating **FIX(engine)**: both reviewers were half-right. The load-bearing catch — the concept's central taught quantity, the **net reactance X=7.50 Ω, was never rendered anywhere it is taught** (`slcrDrawTriangle` labeled only the R and Z legs; `slcrDrawResoPlot` drew no `X_L=X_C` crossing chip) — a core-claim contradiction the auditor missed by checking the formula surface not the triangle leg. Plus `f_0`/`v_m` rendering with literal ASCII underscores (a recurrence of the Stage-1b rms-subscript scar) + 3 ride-alongs. The S3 "un-staggered fan" finding was REFUTED as the deliberate glow-tour json-author authored.
+
+**Fix bundle `5dc7ccd`** fixed all six; Checkpoint B cycle-1 verified each landed against the pixels (three labeled legs, merged `X_L=X_C=5.00 Ω` crossing chip, `f₀` Unicode everywhere, S9 settled to R=10/Q=0.5, S1 band clean, S4 sum 19.41), no regression, and ruled the remaining S7 down-leg vertex-clip an acceptable P3 cosmetic (deferred to protect the just-fixed S6). Checkpoint C SEALED — every fix diffed in the real commit, all 6 scar rows schema-clean and apply-ready, cross-sim coherence with the 4 siblings intact.
+
+**Trial discipline held:** zero DB writes (all 6 scars filed as files; the Stage-2 file-only violation did not recur — every §3b dispatch restated the constraint); no visual:approve/tts/deploy/master-merge. **Engine-loop commit count is now 16** (past the §3b runaway guard) under the founder's whole-chapter grant — flagged for the chapter-end packet. Full per-concept packet: `docs/loop_runs/ch7/series_lcr_circuit/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 5 + 5b. **Next: `ac_power_factor` (#6).**
+
+
+---
+
+## 2026-07-24 — Ch.7 #6 `ac_power_factor` SEALED (autonomous chapter loop, founder asleep)
+
+**Concept 6/8 of Ch.7 (NCERT §7.7, Power in AC Circuit / the power factor)** — sealed on `feat/ch7-alternating-current` via the full CHAPTER_LOOP pipeline, immediately after `series_lcr_circuit`, under the founder's "finish this one then do ac_power_factor too, don't wait for me" directive.
+
+**Design (Class-B, NEW `ac_power` scenario, 10 states):** the power consequence of the series-LCR circuit — p(t)=v·i as a double-frequency wave riding a DC offset ⟨p⟩=V_rms·I_rms·cosφ; the power factor cosφ=R/Z; wattless (quadrature) current; the impedance triangle × I²ᵣₘₛ → the power triangle (P/Q/S). Spine: the naive "power = V×I" works at the home setting (secretly resonance, P=10 W = the bare heater's number) → fails off-resonance (meter 3.08 W vs V×I 5.55) → cosφ. Two 16a pivots (S4 apparent-vs-real, S6 wattless). The `ac_power` scenario is an ADDITIVE clone of `ac_series_lcr` + the element scenarios' power machinery (averaging wattmeter `acl_meter`, p(t) pane `ac*_graph_p`, energy gauges `acl_u_gauge`) — a new averaging wattmeter, product-wave pane, current-component split, ×I²ᵣₘₛ triangle morph, and per-element energy gauges (E_L/E_C breathe net-zero, E_R ratchets +6.15 J/cyc; heater warm-glows on p_R_t=i²R). Engine build `9df14e3`, verify green, zero regression.
+
+**The review caught a real display-precision defect — and both reviewers AGREED on it** (unlike series_lcr, where they diverged). Machine gates were all clean first pass (THE EYE 43/43, drive 0 collisions/flags/console). quality-auditor FAIL + eye-walker MAJOR both flagged **S4 apparent power rendering as 5.54 AND 5.55 in the same panel.** founder-proxy Checkpoint B re-derived it: true I_rms=0.784498 correctly single-rounds to **0.784** (the number-lock — and founder-proxy's own CpA — had a **double-rounding slip to 0.785**), so the S4 chip's literal `7.07 × 0.784 = 5.54` contradicted S=5.55 in the ratio chip, the S8 triangle, and the narration — a self-contradiction on the flagship misconception pivot, and a recurrence of `series_lcr`'s S4 displayed-addend class. **Fix `f997ede`:** the chip now renders apparent power symbolically as `V_rms × I_rms = 5.55 W?` (S's own canonical value), still struck — so apparent power reads one value everywhere. Plus 3 ride-alongs (S3 buried negative lobe → auto-range + bolder fill; S10 −0.000 → clamp; wattmeter numeric enlarged) and F3 (a dead JSON cue removed). Physics was **100% correct throughout** — this was purely a display-consistency fix. CpB cycle-1 APPROVE (all fixes pixel-verified, 5.55 uniform across S4/S8/S9/ratio/HUD), CpC SEALED. Design docs corrected 0.785→0.784.
+
+**Trial discipline held:** zero DB writes (5 scars + a compose-rule-of-four directive filed as files; every §3b dispatch restated the file-only constraint — no recurrence of the Stage-2 violation); no visual:approve/tts/deploy/master-merge. **Engine-loop commit count now 18** (past the §3b runaway guard) under the whole-chapter grant — flagged for chapter-end. **Ops note:** the harness reaps backgrounded `visual:eyes`/`founder:drive`; ran them OS-detached via `Start-Process` + foreground log-poll. Full packet: `docs/loop_runs/ch7/ac_power_factor/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 6 + 6b. **Next: `lc_oscillations` (#7).**
+
+---
+
+## 2026-07-24 — Ch.7 #7 `lc_oscillations` SEALED (autonomous chapter loop, resumed mid-flight)
+
+**Concept 7/8 of Ch.7 (NCERT §7.8, LC Oscillations / the circuit's own rhythm)** — sealed on `feat/ch7-alternating-current` via the full CHAPTER_LOOP pipeline. This session RESUMED an in-flight concept: the pipeline (architect A:fix-1 DESIGN_OK, physics-author, json-author), the NEW-scenario engine build, and the Checkpoint-B blocking fixes had already landed in prior sessions; this session picked up at the ride-along stage and drove it to seal.
+
+**Design (Class-B, NEW `lc_oscillation` scenario, 9 states):** the FREE (source-removed) circuit — a capacitor charged to V₀ connected to an inductor with the battery physically removed (a two-position switch throws the source out of the loop); the L–C pair then oscillates at its own NATURAL frequency ω₀=1/√(LC)=1.571 rad/s → f₀=0.25 Hz (revealed as the same number the driven series-LCR favoured at resonance, now the circuit's OWN property). Primary aha: current is MAXIMUM exactly when charge is zero (the coil's inertia drives current through an empty capacitor and recharges it reversed — breaking "q=0 ⇒ i=0"). Energy sloshes intact between ½q²/C and ½Li² under a pinned total E_total=6.36 J (an all-wattless exchange — nothing spent until R is added). Mass-spring twin (q↔x, i↔v, L↔mass, 1/C↔k). Damped decay when R is inserted. Engine build `0c24436`.
+
+**Checkpoint B cycle-0 = FIX(engine), 2 BLOCKING + 4 ride-along** (no authoring findings, no ESCALATE). The two blocking defects each contradicted a state's core claim on screen and were fixed via one-bug `field3d-surgeon` dispatches (Amendment 4): **F1** (`056eb47`) — S7's entire "real coils leak" lesson never rendered because the scripted R-insert ramp 0→2.0 Ω never engaged (PM_lcoR stuck at 0 → α=0); fix = a closed-form R ramp over [0,500ms] driving α + the slider thumb in lockstep. **F2** (`30b28d5`) — the S3 PRIMARY-AHA frozen frame showed q=−0.90/θ=225° while its caption said "empty — current peaks"; fix = the deriveStateMeta `through_zero` pin moved from `flip_at_ms+1500`(2500ms) to `strike_at_ms+2000`(3000ms/θ270°/q=0.00,i=2.00), landing ON a crossing. Blocking re-CpB (cycle-1) = **APPROVE**. F2's *second half* (the live-player Rule-37 narration-end freeze still lands off-crossing) was adjudicated NON-BLOCKING and routed to `alex:architect` as a fleet-wide player invariant (recurring-crossing states snap the end-freeze to the nearest crossing) — the fragile narration-length hack was REJECTED per Rule 26 → founder chapter-end packet.
+
+**Four ride-alongs, each its own one-bug `field3d-surgeon` dispatch (this session):** F3 (`840fcb0`+`91c8af0`) removed an unauthored bottom-right `#formula_overlay` echo that rendered √→"V" (S4) and was occluded (S9), leaving the one Cambria surface; F4 (`c0651f4`; scar/log reconcile `9b3b8dc`) moved the E_total marker to its own header row so it stops overprinting the last bar's value label ("4636 J"); F5 (`749e625`) added pane-level focal glow (whole gauge pane / inset brightens as focal, peers dim — NOT per-dominant-bar, preserving antiphase-trade symmetry); F6 (`e4505b8`) closed the component-addend rounding seam (2.20+4.17=6.37 vs pinned 6.36). **F6 interpretive refinement:** the surgeon absorbed the ±0.01 residual into the LARGEST displayed component rather than the literal "last" — because on undamped frames where E_R≈0 the literal rule renders E_R=−0.01 (negative heat on the conservation lesson). Closure probe swept 1203 real frames: 1195 conserving frames close exactly to 6.36, 0 negatives. founder-proxy Checkpoint C ACCEPTED it as higher-quality than the prescription, and I corrected the F6 scar `prevention_rule` to match the landed behaviour (`b1bcace`).
+
+**Cumulative verify (Amendment-4 single post-ride-along run):** re-seed + THE EYE lc_oscillations **39/39, 0 failed**; capacitance regression **44/44, 0 failed, H2 0.00%** (F5+F6 shared-renderer edits, zero regression); founder:drive **states=9, 0 collisions, 0 flags, 0 console errors**; tsc 0, validate 131/0. Clock guard clean (no integrator touched → no fleet sweep). **Checkpoint C = SEALED** — all 6 fixes diff-verified against their commits (no silent skips), scar schema valid (`MAJOR` legal per the live CHECK), no grade drift.
+
+**Trial discipline held:** zero DB writes (6 scars filed to `docs/loop_runs/ch7/_engine/scar_candidates.sql`, pending founder ruling; every §3b dispatch restated the file-only constraint — 0 violations); no visual:approve/tts/deploy/master-merge. **Engine-loop feat/fix commit count now 27** (past the §3b runaway guard) under the whole-chapter grant — flagged for chapter-end. **Ops:** ran EYE/drive OS-detached via `Start-Process` + foreground poll (the harness reaps backgrounded long tasks). Full packet: `docs/loop_runs/ch7/lc_oscillations/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 7–7f. **One concept per session (Amendment 4): STOPPING here — the wrapper launches `transformer` (#8) fresh.**
+
+---
+
+## 2026-07-24 — Ch.7 #8 `transformer` SEALED — **CHAPTER 7 AUTHORING COMPLETE (8/8, 0 parked)**
+
+**Concept 8/8 of Ch.7 (NCERT §7.9, Transformers)** — sealed on `feat/ch7-alternating-current` via the full CHAPTER_LOOP pipeline. This session RESUMED an in-flight concept at `stage=engine-build`. Resume triage found the skeleton, physics block, `transformer.json` (11 states) and 7 registration sites already on disk, but the renderer scenario **not built** (a single incidental `transformer` string in `field_3d_renderer.ts`, belonging to another scenario) and **no `engine_handoff.md`** — so the prior surgeon dispatch had produced nothing. Per the state file's own resume rule, re-dispatched `field3d-surgeon` fresh; no completed pipeline stage was re-run.
+
+**Design (Class-B, NEW `transformer` scenario_type, 11 states, clone-sibling `lc_oscillation`):** the two-coil machine — one flux links two coils that touch nothing (S1) → power crosses with no wire back (S2) → **DC-dead pivot** (S3: primary carries a steady 3.33 A and the flux is full, but dΦ/dt=0 so the secondary reads exactly zero — the "two zeros" distinction against S1's open switch) → per-turn voltage share (S4) → turns set the voltage (S5) → **PRIMARY aha: volts up, amps down, Pₚ=Pₛ=16.0 W dead level — a trade, not a gift** (S6, the "step-up = free power?" ghost struck) → the grid-transmission payoff (S7: step up ×10 → I²R loss collapses ×100, 3.200→0.032 W) → real losses, η=95% (S8) → the eddy/lamination interior (S9, the chapter's one true Rule-33 cutaway) → derivation (S10) → explore (S11). Engine build `34692a5` (+903 renderer lines, 4 `deriveStateMeta` sites).
+
+**Pre-EYE authoring fix:** `transformer.json`'s only validator warning was STATE_10 narration at 58 EN words (>55, Rule 31a). The `[legacy fleet — warning only]` tag is a fleet-wide suppression for pre-budget concepts, not a pass for a new one, so `json-author` trimmed connective padding 58→54 words with every physics claim retained. **The file now ships with ZERO warnings.**
+
+**Checkpoint B cycle-0 = FIX ×2** (no authoring-quality failure, no ESCALATE). quality-auditor and eye-walker **independently found the same defect** — the S11 explore formula surface clipped behind the HUD — but disagreed on owner. **The adjudication is the notable part:** the auditor proposed the cheap authoring workaround (drop `hud_show_turns`) citing a "shared field_3d layout → full regression" blast radius; founder-proxy **disproved that from renderer source** (`tfr_formula` is `tfr_`-scoped; capacitance is a different `scenario_type`) and routed the durable **engine** fix instead, because the workaround would strip the turns readout from the one state where a teacher manipulates Nₛ. **F1** (`a1e96e0`, `peter_parker:renderer_primitives`): replaced the fixed `top:40%` anchor with `tfrPositionFormula()` docking to `#tfr_readout.getBoundingClientRect().bottom + 16`, called from both apply and the animate loop (the HUD's row count is repopulated per-frame, so an apply-only fix reads a stale height). Overlap probe: STATE_11 went from ~23px overlap to **+15.9px clearance**, subscripts intact, and the formula now tracks the HUD monotonically across every state (4-row→y200 … 9-row→y328). **F2** (`alex:json_author`, in this seal commit): removed the leftover `"tfr_band"` container token from `STATE_10.visible_elements` (its `band_content` was already `"none"`), killing a dead empty bordered box that rendered for the state's full 22 s. Both landed → **cycle-1 APPROVE**, with founder-proxy pixel-verifying each rather than trusting the agents' reports, plus an animate-loop jitter probe (t0 ≡ settled) and a full 11-state collateral sweep.
+
+**A third item was surfaced and deliberately NOT fixed:** json-author's lint sweep found the *inverse* mismatch at STATE_7 — `gauges_content:"power_bars"` set while `tfr_gauges` is absent from `visible_elements`, so that pane is inert. All three reviewers had already passed S7's frames, so this is dead config, not a visible defect; founder-proxy ruled that adding the token would inject a redundant S6-duplicate power-bars pane onto a passed state — **a regression, not a fix**. Filed as a P3 founder-discretion tidy.
+
+**Verify:** THE EYE `transformer` **47/47** (both before and after the fixes) · `capacitance` regression **44/44, every H2 diff 0.00%** (re-run after the shared-renderer edit) · `founder:drive` **11 states, 33 shots, 9 drags, 0 collisions / 0 flags / 0 console errors** · `tsc` 0 · `validate:concepts` **132/132 PASS, transformer zero warnings**. Clock guard clean (layout-only; no integrator touched → no fleet sweep). **Checkpoint C = SEALED** — every A/B fix diff-verified present (incl. the Checkpoint-A STATE_3 physics-consistency fix), scar schema valid, and the chapter arc's promised payoff confirmed to cash: `ac_power_factor` explicitly defers transmission step-up to `transformer`, and S7 delivers it.
+
+**Trial discipline held:** zero DB writes (3 scars filed to `docs/loop_runs/ch7/_engine/scar_candidates.sql` — the two incident rows reconciled OPEN→FIXED at Checkpoint C with landed evidence; the `probe_definition` forward-invariant row correctly stays OPEN, since a watch is never "fixed"); no `visual:approve` (and **none needed** — a brand-new scenario_type has no approved baseline, so Rule 34e's re-baseline path doesn't apply); no tts, PILOT_CONCEPTS, build:pilot, deploy, or master merge. **Engine-loop feat/fix commit count closed the chapter at 28** (§3b's guard is 8) under the whole-chapter grant — measured exactly at seal: `feat(engine-loop)`=**8**, `fix(engine-loop)`=**20**. The feat count being exactly 8, one NEW `scenario_type` per Class-B concept for 8 concepts, is the quantitative proof that the breach is inherent rather than runaway — the irreducible floor was 8, so the genuine fix load was 20 across 8 concepts (2.5/concept). It remains the founder's to ratify. (This supersedes the Checkpoint-C report's estimate of 29, which extrapolated from a running tally instead of counting; a bare `git log --grep=engine-loop` returns 35, including 2 docs reconciles, seal commits mentioning the loop, and the Amendment commit.)
+
+**⛳ Ch.7 authoring is COMPLETE — 8/8 sealed, 0 parked.** The per-concept loop has nothing left to run. **The top remaining task is CHAPTER-END §4 step 1: the full-fleet re-seed + THE EYE sweep across all baseline-locked concepts**, deliberately NOT run this session (Amendment 4 caps a session at one concept; a fleet sweep is chapter-level). This matters — the chapter added ~2900 lines of new scenario code across 8 new `scenario_type`s plus a layout edit to a *shared* renderer, and the only regression anchor available all run was `capacitance` (`faraday_law_induction` has no committed H2 baseline in this worktree). **Do not treat the whole-chapter regression as proven until that sweep runs.** Full packet: `docs/loop_runs/ch7/transformer/*.md`; engine record: `docs/loop_runs/ch7_engine_log.md` Stage 8 + 8b. **Session ends here per Amendment 4 — and the chapter map is exhausted, so there is no next concept for the wrapper to launch.**

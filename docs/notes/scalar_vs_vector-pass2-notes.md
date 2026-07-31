@@ -1,5 +1,13 @@
 # Pass-2 four-question lens — scalar_vs_vector
 
+> **[STALE — pre-hardening design notes, 2026-07-23. Historical intent only.]** Written BEFORE the
+> parametric renderer was hardened to doctrine parity (commit `2435706`). Its repeated "NOT
+> implementable / placeholder / MUST-FIX-BEFORE-SHIP" verdicts on the continuous φ-sweep (S1), the
+> spinning ψ-pointer (S2), the θ auto-ramp (S4), and `anchor_to` tail-tracking (S5) were all CLOSED by
+> that hardening + the WP-F1 choreography restore — the concept shipped at THE EYE 23/23 with locked
+> baselines. For the SHIPPED behavior read `src/data/concepts/scalar_vs_vector.json`, the PROGRESS.md
+> 2026-07-23 entries, and `.agents/proof_run/PCPL_EXEMPLAR.md`; use this file only for original design intent.
+
 Renderer family: **mechanics_2d / PCPL** (`renderer_pair.panel_a = "mechanics_2d"`, routed via
 `PCPL_CONCEPTS` to `parametric_renderer.ts`'s `assembleParametricHtml`/`PARAMETRIC_RENDERER_CODE`).
 This is NOT field_3d and NOT particle_field — Q3 motion below is authored via `scene_composition`

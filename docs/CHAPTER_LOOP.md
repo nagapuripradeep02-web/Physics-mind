@@ -1,220 +1,273 @@
-# CHAPTER_LOOP — autonomous chapter authoring, traditional pipeline
+# CHAPTER_LOOP — Autonomous chapter authoring with founder-proxy
 
-> Laws of Motion variant, founder-approved 2026-07-25. Derived from the Ch.7/Ch.8 chapter loop with
-> the founder-proxy checkpoint system REMOVED (see Amendment 6). Scope: branches `feat/lom-a` and
-> `feat/lom-b` only. Kill switch: reset the branch, delete `docs/loop_runs/`.
+> **PARTIALLY GRADUATED (founder, 2026-07-31).** The `founder-proxy` + `field3d-surgeon` agents,
+> the Amendment-4 engine-dispatch discipline, and the Phase-0 chapter-opening doctrine are now
+> PROJECT DOCTRINE — see `.agents/CLAUDE.md` (roster), `docs/AUTHORING_PIPELINE.md` §0 + the
+> engine-dispatch discipline section, and each agent's spec. **The AUTONOMOUS LOOP PROTOCOL below
+> (state files, relaunching wrapper scripts, unattended per-concept runs) remains a
+> founder-triggered capability, not a default** — a session runs it only on an explicit
+> "run the chapter loop" instruction. Branch-specific config from the trial era (wrapper script
+> name, state-file path, review port, the Amendment-5 disjoint regression pair) is set per run —
+> the ch7/ch8 values in the text below are EXAMPLES, not law. Shipping stays human throughout
+> (Rule 17): nothing here runs `visual:approve`, TTS, PILOT_CONCEPTS, or any deploy.
 
-**One session = one concept.** A fresh headless session picks up the next concept (or resumes an
-in-flight one from disk), takes it through the pipeline, seals or parks it, updates the state file,
-and EXITS. A wrapper script launches the next session. Fresh session = empty context = no growing
-cache-read tax.
+**What this is.** The SOP a worktree Claude session follows to author an entire chapter of concepts
+autonomously: the Alex pipeline authors each concept, `founder-proxy` (Opus) plays the
+founder at THREE checkpoints (A design, B build, C handover — see its spec), routed engine fixes run
+in-loop under the §3b verify chain (Amendment 2, founder-approved 2026-07-22), scars accumulate so
+later sims don't repeat earlier tweaks, and the human founder reviews the finished chapter in one
+batch. Prime directive for every decision: maximum simulation quality and teaching value for the
+Indian AND international curricula together — speed and completion are never tiebreakers. **Shipping stays human**: nothing here runs
+`visual:approve`, TTS, PILOT_CONCEPTS, `build:pilot`, or any deploy — Rule 17 intact.
 
----
+> **Amendment 4 — token discipline (founder-approved 2026-07-24).** Driven by the Ch.7 token audit
+> (~1.13B tokens for 6 concepts; the E1–E10 fix bundle alone = 156M = 19% of all subagent spend).
+> Three structural changes: (i) ONE bug per engine dispatch + a per-dispatch ceiling (§3b);
+> (ii) one concept per SESSION — an outer wrapper (`scripts/ch7_loop.ps1 or scripts/ch8_loop.ps1`) relaunches a fresh
+> headless session at every concept boundary, so no session pays the growing cache-read tax (§0);
+> (iii) field_3d engine dispatches go to the specialist `field3d-surgeon` agent, not
+> general-purpose (§3b). Quality machinery — the verify chain, checkpoints, fix budgets — is
+> UNTOUCHED by this amendment.
 
-## Amendments carried forward
+> **Amendment 5 — parallel-safety (founder-approved 2026-07-24).** Enables a SECOND chapter loop
+> (Ch.8 EM Waves) to run concurrently against the SAME dev Supabase without cache collisions. Two
+> changes, both behavior-neutral for a solo run: (i) the start-of-concept `simulation_cache` clear is
+> SCOPED to the concept_key (`npm run cache:clear:scoped -- <id>`) instead of an unconditional
+> full-table wipe — so one loop never clobbers the other's freshly-seeded concept mid-EYE (§3 step 1);
+> (ii) the field_3d regression sample is read from the state file's `regression_sample:` field so each
+> parallel chapter uses a DISJOINT locked pair (ch7 = faraday_law_induction + capacitance; ch8 =
+> magnetisation_and_intensity + bar_magnet_as_dipole) and the two never re-seed the same baseline at
+> once (§3b step 3). The serving-path tables (lesson/response/session_context) are not read by THE EYE,
+> so they are simply left alone by the scoped clear.
 
-**Amendment 4 (token discipline) — the single most important cost control.** One `bug_class` per
-engine dispatch; bundles are banned. A bundled ten-bug dispatch on Ch.7 burned **156M tokens in 91
-minutes** because prompt caching bills every turn for the accumulated context — one 480-turn
-conversation costs far more than ten fresh 48-turn dispatches. Per-dispatch ceiling ~100 tool calls
-or ~45 minutes; at the ceiling, write `engine_handoff.md` and exit so a fresh dispatch continues.
-field_3d engine work goes to the **field3d-surgeon** agent, never a general-purpose dispatch.
+**The prompt that runs (or resumes) it, always the same one line:**
 
-**Amendment 5 (parallel safety).** Two worktrees share one dev Supabase, so the start-of-concept
-cache clear is SCOPED: `npm run cache:clear:scoped -- <id>`, never an unconditional full-table wipe
-(that would delete the other worktree's freshly-seeded concept mid-EYE and cause a false visual FAIL).
-The field_3d regression sample comes from this branch's `regression_sample:` line in the state file,
-so the two worktrees use disjoint baseline pairs.
-
-**Amendment 6 (this variant, founder-approved 2026-07-25) — traditional pipeline, auto-approve.**
-1. **No founder-proxy.** The three CP-A/CP-B/CP-C checkpoints are gone. The gate is now
-   quality-auditor + eye-walker, exactly as in ordinary non-loop authoring.
-2. **Auto-approve on PASS.** quality-auditor PASS *and* eye-walker clean (zero new
-   `engine_bug_queue` rows) triggers `npm run visual:approve -- <id>` automatically. This is a
-   deliberate, founder-accepted deviation from the Rule 17 human gate: the founder reviews each
-   sealed concept afterward and iterates anything wrong.
-3. **The loop still stops short of shipping.** TTS, `PILOT_CONCEPTS`, `build:pilot` and `deploy:*`
-   remain founder-gated and are never run by a loop session.
-4. **field3d-surgeon is KEPT.** It is an engine specialist, not a review agent — ~3.4M tokens per
-   dispatch versus ~25M for a general-purpose dispatch doing the same field_3d work.
-
----
-
-## §0 — The stateless-orchestrator law
-
-1. **Subagents carry the load.** The orchestrator dispatches and reconciles. It never reads THE EYE
-   frame dumps, never reads `field_3d_renderer.ts` (~2.3 MB), never reads a full concept JSON.
-2. **Artifacts are files**, under `docs/loop_runs/lom/<concept>/`. Every stage writes its output
-   there so a later session can resume from the furthest durable artifact.
-3. **The concept boundary is the checkpoint.** Advance only after commit + state-file update.
-4. **One concept per session.** The moment a concept is SEALED or PARKED and the state file is
-   updated, EXIT. Never start a second concept in the same session.
+> Continue the chapter loop for <chapter> per docs/CHAPTER_LOOP.md.
 
 ---
 
-## §1 — State file
+## 0 · The stateless-orchestrator law
 
-`docs/loop_runs/lom_<a|b>_state.md`. Keys: `updated:` · `review_port:` · `regression_sample:` ·
-`next:` · `done:` · `parked:` · `in_flight:` · `engine_commits:` · `chapter_map:` · repeated `notes:`.
+**Nothing the next concept needs may exist only in the conversation.**
 
-**Resume protocol:** read the state file first. If `in_flight:` names a concept, or the working tree
-has uncommitted artifacts under `docs/loop_runs/lom/<concept>/` or an uncommitted
-`src/data/concepts/<concept>.json`, RESUME from the furthest durable artifact — do not re-run
-completed pipeline stages. Otherwise start `next:`.
+1. **Subagents carry the load.** Architect / physics-author / json-author / quality-auditor /
+   eye-walker / founder-proxy each run in their own disposable context window. The orchestrating
+   session NEVER Reads frames, renderer source, or full concept JSONs — it dispatches with PATHS and
+   receives compact reports (verdict + paths + top findings).
+2. **Artifacts are files.** Every inter-stage product lives under `docs/loop_runs/<chapter>/<concept>/`
+   (skeleton.md, physics_block.md, auditor_report.md, eye_walker_report.md, founder_proxy_report.md,
+   scar_candidates.sql). Dispatch prompts hand paths, never pasted content.
+3. **Concept boundary = checkpoint.** Only after commit + state-file update does the loop advance.
+4. **Clearing is always safe at a boundary, never mid-concept.** Re-orientation = CLAUDE.md
+   (auto-loads) + this doc + the state file (~30 lines). Auto-compaction mid-run is harmless by
+   design; a crash/restart resumes identically.
+5. **One concept per SESSION (Amendment 4 — supersedes "clear every 2–3 concepts").** The
+   orchestrating session completes exactly ONE concept — seal it (or park it per protocol), update
+   the state file, then EXIT. It never starts a second concept. The outer wrapper
+   (`scripts/ch7_loop.ps1 or scripts/ch8_loop.ps1`) owns the loop: it relaunches a fresh headless session per concept, so
+   every concept starts on an empty context window. Rationale (audit 2026-07-24): a long-lived
+   orchestrator pays cache-read on its whole history at every turn — one 20h session cost ~95M
+   tokens of pure overhead; a fresh session re-orients from disk for a tiny fraction of that.
+   Resuming an `in_flight` concept from its furthest disk artifact counts as that session's one
+   concept.
 
----
+## 1 · Chapter state file — `docs/loop_runs/<chapter>_state.md`
 
-## §2 — Pre-flight (already done for this chapter)
+The loop's only memory. Overwritten at every boundary (PROGRESS.md stays the human append-only log):
 
-Chapter map is founder-approved and written in the state file. The `newtons_laws_body` engine is
-built and committed (Phase 0, see `docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md` and
-`docs/loop_runs/phase0_engine_report.md`). `npm run check:agents` must report 11/11.
-
----
-
-## §3 — Per-concept loop
-
-**Step 1 — scoped cache clear.**
-`npm run cache:clear:scoped -- <id>`
-
-**Step 2 — the pipeline.** Sequential; each output is the next input. Write each stage's artifact to
-`docs/loop_runs/lom/<concept>/`.
-
-| # | Agent | Artifact |
-|---|---|---|
-| 1 | `architect` | `skeleton.md` — 9-section skeleton, state count, EPIC-L arc, Rule 31 per-state control table (state × teaches × archetype × delta × controls × duration), Rule 16a misconception beats, universal culture-neutral anchor (Rule 35) |
-| 2 | `physics-author` | `physics_block.md` — variables/formulas/constraints, per-state reveal timeline |
-| 3 | `json-author` | `src/data/concepts/<id>.json` + the registration sites + SQL migration |
-
-**The engine is already built.** Every concept in this chapter is expressed purely as
-`newtons_laws_body` configuration — see §6 of the engine spec for the per-concept knob mapping.
-`json-author` writes config, not renderer code.
-
-> **If a concept appears to need a renderer change, STOP.** Do not quietly extend the engine per
-> concept — that is exactly the cost pattern this design exists to avoid. Park the concept, write
-> what was missing to `docs/loop_runs/lom/<concept>/engine_gap.md`, note it in the state file, and
-> exit for founder review.
-
-**Step 3 — build and look.**
-```
-npm run visual:eyes -- <id>          # THE EYE, deterministic frames, $0
-npm run build:review -- <id>
-```
-Then dispatch **quality-auditor** and **eye-walker IN PARALLEL** (one message, two Agent calls).
-eye-walker reads ALL the frame dumps in its own context and returns a per-state verdict table —
-the orchestrator must never load the PNGs. Write both reports to the concept's artifact dir.
-
-**Step 4 — the gate (Amendment 6).**
-
-- **PASS** = quality-auditor PASS *and* eye-walker reports zero new `engine_bug_queue` candidates.
-  → `npm run visual:approve -- <id>` → commit → update the state file → **EXIT**.
-- **FIX (content)** = route back to the named `alex:*` owner (json-author / physics-author /
-  architect). Max **3 cycles**, then park.
-- **FIX (engine)** = run §3b. Max **2 attempts** per finding, then park.
-- **PARK** = commit what exists, record the cause in `parked:`, advance `next:`, **EXIT**.
-
-**Step 5 — commit.** Surgical `git add` of only this concept's files. Never `git add -A`.
-Message: `feat(lom): <concept_id> — Laws of Motion #N`.
-
-**Never, under any verdict:** merge to master · touch another branch or worktree · run any `tts:*`
-script · edit `PILOT_CONCEPTS` · run `build:pilot` or `deploy:*` · write rows to `engine_bug_queue`
-(scar candidates go to `docs/loop_runs/lom/_engine/scar_candidates.sql` for founder review) ·
-run the paid `smoke:visual-validator` (THE EYE is $0 and sufficient).
-
----
-
-## §3b — Engine loop
-
-Only for findings whose root cause is genuinely in the renderer.
-
-**Routing.** `field_3d_renderer.ts` → **field3d-surgeon**. Generator / cache / serving-path work →
-`runtime-generation`. PCPL/parametric → `renderer-primitives`. Never bundle.
-
-**Dispatch prompt contains:** the one finding with its evidence paths, the minimal-diff instruction,
-"no DB writes", and the verify chain. Not a re-derivation request — name the fix.
-
-**Verify chain — ALL must pass before the fix is considered landed:**
-```
-npm run check:renderer-syntax        # Rule 36c, after every renderer edit
-npx tsc --noEmit                     # 0 errors
-npm run validate:concepts            # PASS
-npm run cache:clear:scoped -- <id> && npm run visual:eyes -- <id>
-# then the regression sample from the state file's regression_sample: line
+```markdown
+# ch7 loop state
+updated: <ISO timestamp>
+review_port: 8087
+next: ac_voltage_inductor
+done: ac_voltage_resistor (A:ok B-cycles:1 C:sealed), phasors (A:fix-1 B-cycles:0 C:sealed)
+parked: <concept> — <cause: ESCALATE(trigger) | engine-blocking-failed | design-parked> | (none)
+in_flight: <concept> stage=<design|pipeline|build|review|fix-cycle-N|engine-fix|handover> | (none)
+engine_commits: <sha> <bug_class> [owner] | (none yet)
+notes: <anything the next resume must know, one line each>
 ```
 
-**Commit discipline.** Log the rollback-point SHA before dispatching. One commit per verified fix:
-`fix(engine): <bug_class> [owner: peter_parker:field3d_surgeon]`. Append the SHA to the state file's
-`engine_commits:` line and a one-line entry to `docs/loop_runs/lom_engine_log.md`.
+On resume: read this file, finish/restart any `in_flight` concept from its last durable artifact,
+then continue at `next`.
 
-**Runaway guard.** Because the engine was built once up front, engine fixes in this chapter should be
-RARE. **If `engine_commits:` reaches 5 in this worktree, PAUSE the loop and notify the founder** —
-that many engine fixes means the Phase 0 design under-generalized and the whole approach needs
-re-examination rather than another fix.
+## 2 · Chapter pre-flight (founder involved — NOT autonomous)
 
----
+1. **Chapter map:** concepts in teaching order (NCERT ToC; prose-only sections get no sim). Founder
+   approves the list. Write it into the state file. This approval is the ONLY founder step before
+   the loop runs (Amendment 2: engine work — including new scenarios — happens in-loop via §3b).
+2. Confirm worktree basics: dev server port, review-site server port (detached `http-server`),
+   `.env.local` present, `npm run check:agents` clean.
 
-## §4 — Chapter end
+## 3 · Per-concept loop (autonomous, sequential)
 
-1. Regression EYE across this branch's `regression_sample`.
-2. `npm run build:review -- <id>` for each sealed concept; verify HTTP 200 on the review port.
-3. Write a chapter summary to the state file's `notes:`.
-4. STOP. The founder reviews every concept, iterates anything wrong (`retrofit-surgeon` with a
-   NAMED delta), merges, and only then ships (TTS / catalog / deploy).
+1. **Cache clear (Amendment 5 — SCOPED).** `npm run cache:clear:scoped -- <id>` clears only THIS
+   concept's `simulation_cache` rows (concept_key + fingerprint_key), so a parallel chapter loop on
+   the same dev Supabase is never clobbered. (The old unconditional 4-table wipe —
+   `_scratch_cache_clear_4tables.mjs`, CLAUDE.md §6 — is retained for solo/manual use, but the loop
+   uses the scoped clear. The serving tables don't affect THE EYE, so they're left alone.)
+2. **Pipeline with Checkpoint A** — architect writes the skeleton → **dispatch founder-proxy at
+   Checkpoint A (design gate)**: DESIGN_OK proceeds; DESIGN_FIX routes back to architect (max 2
+   cycles, then park); ESCALATE parks. Only on DESIGN_OK: physics-author → json-author, each output
+   written to `docs/loop_runs/<chapter>/<concept>/` and passed by path. Then quality-auditor ∥
+   eye-walker (one message, two Agent calls). An auditor FAIL routed `alex:*` re-runs upstream as
+   normal (the pipeline's own cycles); an auditor FAIL routed `[owner: peter_parker:*]` goes through
+   the §3b engine loop.
+3. **Build + drive** — `npm run visual:eyes -- <id>` · `npm run build:review -- <id>` · ensure the
+   detached review server is up · `npm run founder:drive -- --id <id> --url http://localhost:<port>`.
+4. **founder-proxy review** — dispatch with paths (concept JSON, skeleton, physics block, reports,
+   `.visual_runs` dir, `.founder_runs` dump, ALL prior `scar_candidates.sql` of this run). Persist its
+   report to `founder_proxy_report.md`.
+   - **FIX** → save its candidate rows to `scar_candidates.sql` (**trial: files only, NEVER applied
+     to the DB**), dispatch the ONE named `alex:*` owner per finding, re-run step 3's affected parts,
+     re-dispatch founder-proxy. **Max 3 cycles**, then it's an ESCALATE.
+   - **FIX(engine), ride-along** → log the finding to `docs/loop_runs/<chapter>_engine_log.md` +
+     its scar candidate to `scar_candidates.sql`; the concept proceeds to APPROVE on its authoring
+     merits; the engine fix runs via §3b AFTER the approve commit, before the next concept starts.
+   - **FIX(engine), blocking** (the state's core claim is contradicted on screen) → the engine fix
+     runs via §3b NOW; on verified success, re-run founder_drive + founder-proxy (Checkpoint B) on
+     the concept; on 2-attempt failure, park the concept with the engine finding as the named cause.
+   - **ESCALATE** (physics doubt | fix-budget exceeded) → park: commit WIP to the chapter branch,
+     `parked:` entry in the state file, PushNotification to the founder (concept, trigger, one-line
+     why), **continue with next concept**.
+   - **APPROVE** → step 5.
+5. **Checkpoint C (handover gate), then commit** — dispatch founder-proxy at Checkpoint C: it diffs
+   every claimed A/B fix (no silent skips), validates scar-candidate schema, and writes the
+   "highest-value version achievable?" sentence for the founder packet. On `SEALED`: surgical
+   `git add` (concept JSON, registration sites, migration file, `docs/loop_runs/<chapter>/<concept>/`,
+   PROGRESS.md) → commit to the chapter branch. **Trial: NO merge to master, ever** (master merge is
+   a graduation behavior). Update the state file (incl. `checkpointA:` / `checkpointC:` markers);
+   append the PROGRESS.md session line. Advance `next`. A Checkpoint-C `FIX` (a claimed fix didn't
+   land) routes it back within the same budget; `ESCALATE` parks.
+6. **EXIT (Amendment 4).** The concept is sealed (or parked) and the state file updated — the
+   session's job is DONE. End the session; the wrapper launches a fresh one for the next concept.
+   Never start a second concept in the same session.
 
----
+**Never, under any verdict:** `visual:approve` · `tts:*` · PILOT_CONCEPTS · `build:pilot` /
+`deploy:*` · DB writes to `engine_bug_queue` (candidates stay files) · touching any other branch or
+worktree · engine edits OUTSIDE the §3b verify chain (a routed dispatch under the chain is the ONLY
+legitimate path to a renderer edit; the orchestrator never edits engine files itself).
 
-## §5 — Escalation
+## 3b · Engine loop (Amendment 2 — founder-approved 2026-07-22)
 
-Park and exit for founder review when: physics correctness is genuinely in doubt · the content
-fix-cycle budget (3) is exceeded · an engine finding fails 2 repair attempts · a concept appears to
-need a renderer change the engine spec doesn't cover (`engine_gap.md`).
+Routed engine findings (founder-proxy `FIX(engine)` or a quality-auditor FAIL tagged
+`[owner: peter_parker:*]`) are fixed IN-loop by dispatching the named engine agent. This mirrors the
+FAIL-routing authority quality_auditor has always had — a routed, owner-tagged, evidence-carrying
+dispatch, never a cold-call. (Trial-branch amendment to hard rule 3; goes to doctrine only at
+graduation.)
 
-Engine defects are NOT escalations by themselves — they run §3b.
+**Agent routing (Amendment 4):** engine work whose root cause lives in `field_3d_renderer.ts`
+(new scenario_type builds AND fixes) dispatches the **`field3d-surgeon`** agent — it carries the
+gotcha checklist, a region map of the renderer, and the verify chain in its own spec, so the
+dispatch prompt only needs the finding + evidence. particle_field / generator / cache work stays on
+general-purpose with the full inline template below.
 
----
+**ONE bug per dispatch (Amendment 4 — bundles are BANNED).** Each engine dispatch fixes exactly ONE
+`bug_class`. Multi-finding bundles (the E1–E10 pattern) are forbidden: N findings = N sequential
+dispatches, each starting fresh. Sole exception: two findings may share a dispatch only when they
+are in the SAME file AND share the SAME root cause. Ride-along findings each get their own queued
+dispatch after the concept's approve. Audit rationale: the bundled E1–E10 dispatch cost 156M tokens
+over 480 calls; the identically-shaped single-bug E11 dispatch cost 4.9M over 45 — per-turn cache
+reads compound with conversation length, so ten short dispatches are ~3× cheaper than one long one.
 
-## §6 — Quality over quantity
+**Per-dispatch ceiling (Amendment 4):** ~100 tool-calls or ~45 minutes, whichever first. On hitting
+it: STOP cleanly — write a handoff note to `docs/loop_runs/<chapter>/<concept>/engine_handoff.md`
+(what's done, what's verified, the exact next step) and exit; the loop re-dispatches FRESH with the
+note as input. Never push past the ceiling "to finish" — a fresh dispatch reading the note is
+cheaper than 50 more turns on a long context.
 
-There is no completion incentive in this loop. A parked concept is a normal, correct outcome; a
-concept shipped past a real defect is not. Budget caps exist to force a PARK, never to lower the bar.
-The founder's own review is the real gate — auto-approve (Amendment 6) speeds the loop up, it does
-not replace their judgment.
+**Effort guidance (Amendment 4):** when the finding already names the root cause (a diagnosed fix,
+not an investigation), the dispatch prompt says so explicitly: "Root cause is already diagnosed —
+execute the named fix; keep exploration minimal; do not re-derive the diagnosis." Reserve
+open-ended exploration for genuinely novel work (new scenario design, undiagnosed choreography).
 
----
+**Dispatch prompt must carry (peter_parker specs are NOT edited — constraints ride per-dispatch):**
+- The finding verbatim + its evidence (file/region, before/after expectation, the probe that proves it).
+- Minimal surgical diff; sacred-file scope per the agent's own spec; work ONLY in this worktree.
+- NO DB writes — the spec's post-fix bug-queue update goes to `scar_candidates.sql` instead.
+- New-scenario checklists when applicable: field_3d → deriveStateMeta registration, `#sliders`
+  exclusion chain, `field_lines` block for tube-drawing scenarios, NO backticks in the renderer
+  template, cue gates at t=0, `__PM_supportsTimePin`; particle_field → `updateReadouts` early-out for
+  a new topology, `PF_WG_FLAGS` registration for new canvas HUDs, `pfRevealMs` whitelist for sweeps.
 
-## §7 — Known engine gaps and PRE-APPROVED fixes
+**Verify chain — ALL must pass before the fix commits:**
+1. `npm run check:renderer-syntax` (Rule 36c) → `npx tsc --noEmit` → `npm run validate:concepts`.
+2. Re-seed the target concept's `simulation_cache` (THE EYE reads cached HTML — skipping the reseed
+   silently tests the OLD code) → `npm run visual:eyes -- <target>`.
+3. Regression sample — re-seed + EYE on baseline-locked concepts of the touched renderer.
+   **field_3d = the state file's `regression_sample:` field** (Amendment 5 — default
+   `faraday_law_induction` + `capacitance`; a parallel chapter overrides to a DISJOINT locked pair so
+   two loops never re-seed the same baseline at once); particle_field → `ohms_law` +
+   `wheatstone_bridge`. Any H2 diff vs locked baselines = regression = FAIL.
+4. **Clock guard (Rule 36b):** if the diff touches `__pmSteps` / `dtStep` / the p5 `deltaTime`
+   accumulator / any integrator, the FULL fleet sweep runs NOW, not at chapter end.
+5. On any failure: surgical rollback (`git checkout -- <engine files only>`), attempt 2 with the
+   failure evidence added to the dispatch. Second failure → the finding degrades to the founder's
+   chapter-end queue (blocking → the concept parks). **Never leave the build broken.**
 
-Findings carried forward from an earlier concept in this chapter. These are founder-visible and the
-listed fix is **already authorized** — do not spend a cycle re-deciding, and do not work around one by
-rewriting narration when it is the concept's central beat.
+**Commit + audit discipline:** record `git rev-parse HEAD` before each dispatch (rollback point);
+each verified fix = its OWN commit `fix(engine-loop): <bug_class> [<owner>]`; log finding → fix
+commit → verify evidence to `docs/loop_runs/<chapter>_engine_log.md`; append the sha to the state
+file's `engine_commits:`. The founder reviews every engine diff at chapter end via
+`git log --grep=engine-loop -p`. Budgets: 2 attempts per finding; ≥8 engine-fix commits in one
+chapter run → pause the loop + notify the founder (runaway guard).
 
-### 7.1 — `param_ramp`: no monotonic parameter reveal in a guided state
+## 4 · Chapter end
 
-**Found on** `free_body_diagram` STATE_5 (2026-07-25). The engine has no way to sweep a physical
-parameter monotonically across a guided state's reveal window: `idle_auto_sweep` is a ~4 s triangle
-(it comes back down) and `phases[]` drives glow only, never physics. STATE_5 therefore ships a STATIC
-θ = 30° incline instead of the intended 0° → 30° tilt, and its narration was rewritten so nothing
-promises a tilt the student never sees. Acceptable there — the tilt was not that concept's point.
+1. **Full-fleet sweep** (Rule 36b precedent) — re-seed + THE EYE across all baseline-locked concepts,
+   since engine-loop commits touched shared renderers during the run. Any regression → fix or revert
+   the offending engine commit BEFORE notifying the founder.
+2. **Checkpoint C, chapter-wide** — dispatch founder-proxy once more: cross-sim coherence (shared
+   apparatus pose, notation + dialect consistency across the chapter, no cross-concept
+   contradictions), the engine-diff summary, the parked list, and the handoff report the founder
+   reads first.
+3. `npm run build:review -- <id>` for every approved concept (already built during the loop — verify
+   HTTP 200 each on the detached server).
+4. PushNotification: "<chapter> ready: N approved, M parked, E engine commits, F degraded engine
+   findings, review at http://localhost:<port>".
+5. STOP. The founder batch-reviews every sim: approves (→ shipping flow later, at their discretion),
+   or gives tweaks (→ new scar candidates + fix dispatches), rules on each `parked` concept and each
+   `scar_candidates.sql` (apply / edit / discard), reviews every engine diff
+   (`git log --grep=engine-loop -p` + `<chapter>_engine_log.md`), and triages any DEGRADED engine
+   findings (the 2-attempt failures).
 
-**It is NOT acceptable on `block_on_incline`.** "Tilt the ramp until the block breaks away at
-tan θ = μs" IS that concept's central beat. A static incline cannot show it, and rewriting the
-narration around it would gut the concept.
+## 5 · Escalation triggers (founder-proxy → park-and-continue)
 
-**PRE-APPROVED:** when authoring `block_on_incline`, treat this as a §3b engine item and dispatch
-**field3d-surgeon** to add a minimal monotonic `param_ramp` knob (one parameter, start → end, over a
-declared window, driving real physics, one-shot per state entry — NOT a repeating sweep). Constraints
-are unchanged: ONE bug_class, minimal diff, linear in `dt`, byte-stable under `SET_TIME_FREEZE`
-(Rule 36), and the `interaction_complete` sandbox state must keep free-running (Rule 37). Rebase it
-on state entry the same way `nlbResetTrajectory()` already rebases the integrator.
+1. Physics-correctness doubt founder-proxy cannot resolve beyond doubt.
+2. Fix-cycle budget exceeded (Checkpoint B: 3 rounds; Checkpoint A: 2 design rounds).
 
-Do **not** work around this one. If the fix fails twice, park the concept and report — a weakened
-break-away beat is worse than a parked concept.
+Engine-side defects are NOT escalations: they run the §3b engine loop — ride-alongs after the
+concept's approve, blocking ones before it; only a 2-attempt engine failure degrades to the founder
+(blocking → the concept parks).
 
-### 7.2 — Deferred to founder review, do NOT act on in-loop
+## 6 · Quality-over-quantity (structural, not aspirational)
 
-- **STATE_3-style frozen-pin timing on coast states.** The canonical reviewer screenshot can pin while
-  a coasting body still overlaps its ghost, under-selling a growing-gap idea. The fix is a one-line
-  `deriveStateMeta` reveal-candidate nudge, but it moves H2 baseline pixels for every affected concept,
-  so it is a founder call. Noted at the end of `scar_candidates.sql`.
-- **Uncoupled-body tension.** `hanging` means "hangs off the pulley", so an uncoupled body genuinely has
-  no string and T = 0. Tension is `connected_bodies`' job. Do not try to rescue tension elsewhere.
+The pipeline agents never see the chapter goal — every dispatch is one concept. The only entity
+holding "finish the chapter" is this protocol; founder-proxy holds the opposite mandate
+(reject-biased, no completion incentive, evidence-only findings) and its budget cap ESCALATES rather
+than lowers the bar. A stuck concept costs the founder a parked notification, never a quality
+discount. Grade drift across fix cycles is called out by name in founder-proxy's self-review.
+
+## 7 · Trust ladder (how the founder decides keep/advance/modify/discard)
+
+- **Stage 0 — calibration (DONE 2026-07-22):** founder-drive + founder-proxy on 2
+  already-founder-reviewed sims (`capacitance`, `wheatstone_bridge`), blinded, vs the real scar
+  record + a replanted-defect recall test. Result: outperformed the recorded review (2 live
+  production bugs found); verdict miscalibration (everything escalated) → Amendment 2's FIX(engine);
+  harness gaps → guided-state drags + collision probe added to founder_drive. Report:
+  `docs/loop_runs/stage0_calibration/CALIBRATION_REPORT.md`.
+- **Stage 1a — engine-loop shakedown on a KNOWN defect:** run §3b end-to-end on the Stage-0
+  `particle_field` chrome collision (`pm-sliders` top:10px vs the chrome — field_3d's own fix shape
+  is `top:52px` at its L5569). Known defect, known fix, the driver's collision probe as the
+  after-proof, the regression sample as the safety proof. Proves dispatch + verify chain + rollback +
+  commit discipline before any novel work.
+- **Stage 1b — one new Ch.7 concept through the FULL closed loop** (content + engine autonomy, all
+  three checkpoints): proposed `ac_voltage_resistor` (NCERT 7.2). The founder approves the chapter
+  map first (§2); any new scenario the concept needs is built in-loop via §3b. Founder reviews the
+  finished sim + transcript + every engine diff.
+- **Scale-up gate:** the founder's Stage-1b review finds zero must-fix issues founder-proxy missed
+  (≤1 minor tolerated). Satisfied → the founder grants the whole-chapter run (the rest of Ch.7 in
+  one autonomous pass). A miss → rubric update + repeat with the next concept. (Ch.8 stays manual
+  until graduation.)
+- **Graduation of the system:** founder says "keep it" → Rule 40 + roster entries written into
+  doctrine, accumulated scar candidates applied to `engine_bug_queue`, branch merged to master,
+  per-concept master merges enabled, Ch.8 adopts the loop.

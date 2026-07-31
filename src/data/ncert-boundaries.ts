@@ -165,6 +165,49 @@ export const NCERT_BOUNDARIES = {
     ],
 };
 
+// ── NCERT Chemistry Syllabus Boundaries (Class 11) ───────────────────────────
+// Added 2026-07-23 (CHEMISTRY_BUILD_PLAN.md Phase 1). Kept as a SEPARATE export
+// rather than folded into NCERT_BOUNDARIES above, so the physics object stays
+// byte-for-byte unchanged (the Phase-0 "never edit shared physics data in place"
+// rule). Scope is the foundational Ch.1–4 block; extend as chemistry concepts land.
+// ⚠ Verify against the current rationalised syllabus before adding chapters beyond
+// these four (states-of-matter / hydrogen were dropped in the 2023 rationalisation).
+export const NCERT_CHEMISTRY_BOUNDARIES = {
+    class_11: {
+        some_basic_concepts: [
+            "Laws of chemical combination", "Dalton's atomic theory",
+            "Atomic and molecular masses", "Mole concept", "Molar mass",
+            "Percentage composition", "Empirical and molecular formula",
+            "Stoichiometry", "Limiting reagent", "Concentration terms",
+        ],
+        structure_of_atom: [
+            "Discovery of electron", "Discovery of proton and neutron",
+            "Thomson model", "Rutherford model", "Alpha-particle scattering",
+            "Atomic number", "Mass number", "Isotopes", "Isobars",
+            "Bohr model", "Energy levels", "Hydrogen spectrum",
+            "Quantum numbers", "Atomic orbitals", "Shapes of orbitals",
+            "Aufbau principle", "Pauli exclusion principle", "Hund's rule",
+            "Electronic configuration",
+        ],
+        periodicity: [
+            "Genesis of periodic classification", "Modern periodic law",
+            "Periodic table", "Periodic trends", "Atomic radius",
+            "Ionic radius", "Ionization enthalpy", "Electron gain enthalpy",
+            "Electronegativity", "Valence",
+        ],
+        chemical_bonding: [
+            "Kossel-Lewis approach", "Ionic bond", "Covalent bond",
+            "Lewis structures", "Formal charge", "VSEPR theory",
+            "Valence bond theory", "Hybridisation", "Molecular orbital theory",
+            "Bond parameters", "Hydrogen bonding", "Dipole moment",
+        ],
+    },
+    NOT_IN_CLASS_11_CHEMISTRY: [
+        "Coordination compounds", "d-block and f-block chemistry",
+        "Electrochemistry", "Chemical kinetics", "Solutions colligative properties",
+    ],
+};
+
 export function getBoundaryPrompt(classLevel: string, mode: string): string {
     if (mode === "board") {
         return `CONCEPT BOUNDARY — MANDATORY:

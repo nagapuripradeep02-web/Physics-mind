@@ -1,0 +1,531 @@
+{
+  "concept_id": "rolling_friction",
+  "concept_name": "Rolling Friction — Rolling Resists Motion Far Less Than Sliding",
+  "chapter": 8,
+  "section": "8.9",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.5 §5.9 (Laws of Motion — Friction, rolling friction paragraph) — table-of-contents scope only, teaching authored from first principles. The atomic idea: rolling contact resists motion two to three orders of magnitude less than sliding contact, obeying the SAME law f = μN with a far smaller coefficient (μᵣ ≈ 0.002 versus μₖ ≈ 0.40) — same mass, same push, opposite outcome. Does NOT cover rotational dynamics (no torque, no moment of inertia, no angular acceleration — the wheel's rendered spin is a kinematic fact, never a dynamics claim), and does NOT re-teach static vs kinetic friction (sibling friction_force owns that arc; this concept deliberately authors μₛ = μₖ = 0.40 on the block to keep exactly one coefficient per body). DC Pandey §8.7 table of contents consulted for scope only — no teaching method, example, or figure imported. Built on the newtons_laws_body field_3d engine (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md), Branch A + SEAM G (bodies[].shape:'wheel') + SEAM I (shared_applied_force), zero renderer edits.",
+
+  "prerequisites": [
+    "friction_force",
+    "normal_force",
+    "newton_second_law"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A suitcase with wheels versus dragging the same suitcase. Dragging it across the floor takes a large steady pull, and stopping for a moment means starting again is hard. Tip it onto its wheels and one finger keeps it moving. Same suitcase, same weight, same floor — the only change is rolling contact instead of sliding contact. That single change divides the friction by about two hundred, and it is the whole reason heavy objects are moved on wheels.",
+    "secondary": "A loaded trolley or cart: the heavier the load, the more dragging becomes impossible while rolling stays easy."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "m": { "name": "mass of body A (the block)", "unit": "kg", "min": 1, "max": 10, "step": 0.5, "default": 5 },
+      "m2": { "name": "mass of body B (the wheel)", "unit": "kg", "min": 1, "max": 10, "step": 0.5, "default": 5 },
+      "F": { "name": "applied push — both bodies' authored value in every guided state; the one shared engine slider (shared_applied_force:true drives both bodies together, STATE_5 only)", "unit": "N", "min": 0, "max": 50, "step": 0.5, "default": 20 },
+      "mu_s_block": { "name": "block's coefficient of static friction (sliding contact) — identity constant, never a live control in this concept", "unit": "", "constant": 0.40 },
+      "mu_k_block": { "name": "block's coefficient of kinetic friction (sliding contact) — identity constant, never a live control in this concept", "unit": "", "constant": 0.40 },
+      "mu_s_wheel": { "name": "wheel's coefficient of static friction (rolling contact) — identity constant; the stuck-check it feeds is physically inert here since drive is never near zero while it would matter", "unit": "", "constant": 0.002 },
+      "mu_k": { "name": "wheel's coefficient of kinetic/rolling friction (μᵣ) — the ONE live μ control in this concept, exposed only in STATE_3", "unit": "", "min": 0, "max": 0.5, "step": 0.002, "default": 0.002 },
+      "v0": { "name": "initial velocity (wheel, STATE_3/STATE_5)", "unit": "m/s", "min": -5, "max": 5, "step": 0.5, "default": 0 },
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "theta": { "name": "incline angle — fixed at 0 throughout; flat concept, block_on_incline owns the incline arc", "unit": "deg", "constant": 0 },
+      "N_block": { "name": "normal force on the block", "unit": "N", "derived": "m * g * cos(radians(theta))" },
+      "N_wheel": { "name": "normal force on the wheel", "unit": "N", "derived": "m2 * g * cos(radians(theta))" }
+    },
+    "computed_outputs": {
+      "f_block": { "formula": "friction on the block, N — magnitude equals |drive| while stuck (never exceeds mu_s_block*N_block); mu_k_block*N_block once sliding" },
+      "f_wheel": { "formula": "friction on the wheel, N — magnitude equals |drive| while stuck (never exceeds mu_s_wheel*N_wheel); mu_k*N_wheel once rolling" },
+      "a_block": { "formula": "0 while stuck; (F - mu_k_block*N_block)/m once moving" },
+      "a_wheel": { "formula": "0 while stuck; (F - mu_k*N_wheel)/m2 once moving" },
+      "v_block": { "formula": "velocity, m/s" },
+      "v_wheel": { "formula": "velocity, m/s" },
+      "friction_ratio": { "formula": "f_block / f_wheel at equal N — 0.40/0.002 = 200, the S1/S2 taught number" }
+    },
+    "formulas": {
+      "N_block": "m * g * cos(radians(theta))",
+      "N_wheel": "m2 * g * cos(radians(theta))",
+      "drive_block": "F - m * g * sin(radians(theta))",
+      "drive_wheel": "F - m2 * g * sin(radians(theta))",
+      "max_static_block": "mu_s_block * N_block",
+      "max_static_wheel": "mu_s_wheel * N_wheel",
+      "break_away_block": "mu_s_block * m * g",
+      "break_away_wheel": "mu_s_wheel * m2 * g",
+      "f_block_sliding": "mu_k_block * N_block",
+      "f_wheel_rolling": "mu_k * N_wheel",
+      "a_block_moving": "(F - mu_k_block * N_block) / m",
+      "a_wheel_moving": "(F - mu_k * N_wheel) / m2"
+    },
+    "constraints": [
+      "f = mu * N in BOTH regimes — the block (sliding, mu = 0.40) and the wheel (rolling, mu about 0.002) obey the SAME law; only which mu applies differs, never a separate rolling-resistance law",
+      "rolling resistance is small but never zero: f_wheel = mu_k_wheel * N_wheel is greater than zero for any N_wheel greater than zero — a coasting wheel under rolling friction alone is always decelerating, never coasting forever",
+      "both frictions scale with load: N_block = m*g and N_wheel = m2*g, so doubling either mass doubles that body's maximum friction — but only the sliding side's growth can cross a fixed push and flip motion to no-motion",
+      "a body at rest with |drive| <= mu_s*N stays at rest, and its reported friction equals the drive exactly, not mu_s*N — this self-adjusting mechanism belongs to friction_force and is only cited once here, in STATE_4, never re-derived",
+      "no rotational dynamics anywhere: no torque, no moment of inertia, no angular acceleration is computed or asserted — the wheel's rendered spin is a position-derived kinematic fact (s = r*theta, SEAM G), never a dynamics claim",
+      "theta = 0 throughout: N = m*g exactly for every body in every state, never resolved into components — the incline decomposition belongs to block_on_incline"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 40
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_1",
+    "statement": "Rolling friction is about 200 times smaller than sliding friction — same push, opposite outcome.",
+    "visual_confirmation": "Both bodies push with 20 N; the wheel crosses the 11 m track in 2.35 s while the block has moved only 0.76 m by 12 s — the friction readouts show why: 19.6 N vs 0.10 N."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_2" },
+    "rolling_has_friction": { "start": "STATE_3", "end": "STATE_3" },
+    "load_effect": { "start": "STATE_4", "end": "STATE_4" },
+    "explore": { "start": "STATE_5", "end": "STATE_5" }
+  },
+
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Same Push: Rolling Moves Much Farther",
+        "duration": 12,
+        "focal_primitive_id": "rf_s1_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "side-by-side-race (declared contrast pair with STATE_4)",
+        "delta_cue": "Same push, different result",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rf_s1_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Same 20 newton push on both bodies, same mass",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s1_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "the wheel crosses the track in about two seconds; the block barely moves",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s1_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a suitcase on wheels versus dragging the same suitcase",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Same mass, same 20 newton push, different results." },
+            { "id": "s1_2", "text_en": "The wheel crosses the whole track in about two seconds; the block barely moves." },
+            { "id": "s1_3", "text_en": "Sliding friction opposes 19.6 N of the 20 N push, leaving 0.4 N; the wheel's rolling friction opposes only about 0.10 N." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Same Law, Much Smaller Coefficient",
+        "duration": 9,
+        "focal_primitive_id": "rf_s2_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "Same formula, far smaller μ",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "rolling_resistance_origin_deformation",
+          "mu_r_typical_values_tyres_rails",
+          "rolling_vs_ball_bearings"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rf_s2_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "One law covers both bodies: f equals mu times N",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s2_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "mu is 0.40 for the block's sliding contact, 0.002 for the wheel's rolling contact",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s2_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "the wheel's push and friction are too small to draw as arrows here",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "One law covers both: friction f equals the friction coefficient mu times normal force N — 0.40 for the block, 0.002 for the wheel." },
+            { "id": "s2_2", "text_en": "Same law, far smaller number: both now glide at the same 1.0 meter per second." },
+            { "id": "s2_3", "text_en": "The wheel's push and friction are too small to draw, read the number instead: 0.10 newton." }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "Rolling Friction Is Not Zero",
+        "duration": 12,
+        "focal_primitive_id": "rf_s3_main",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "ramp-track (declared contrast pair with STATE_2's reveal-build)",
+        "delta_cue": "Rolling still has friction",
+        "depth_ring": "extended",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "rolling_friction_not_zero",
+          "why_rolling_objects_stop",
+          "mu_r_depends_on_surface_and_pressure"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rf_s3_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "The wheel coasts with no push at all",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s3_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "friction reads about 0.10 newton, not zero, and speed keeps slowly falling",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s3_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "raise the friction coefficient, as soft ground would, and the wheel stops",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The wheel coasts with no push, yet friction reads about 0.10 newton, not zero, too small to draw — and speed keeps falling." },
+            { "id": "s3_2", "text_en": "Zero friction would keep speed constant forever; this does not." },
+            { "id": "s3_3", "text_en": "Raise the friction coefficient mu, as soft or deformed ground would, and the wheel stops completely; ball bearings make mu even smaller." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A wheel has no friction — rolling means frictionless.",
+            "visual_counter": "The f readout is 0.10 N while the wheel coasts, and the v readout falls the whole time — zero friction would keep v constant forever.",
+            "one_line_fix": "Rolling friction is small, not zero — f = μᵣN with μᵣ about 0.002, and it grows on soft or deformed surfaces."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Heavier Load: Sliding Stops, Rolling Continues",
+        "duration": 11,
+        "focal_primitive_id": "rf_s4_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "side-by-side-race (contrast pair of STATE_1)",
+        "delta_cue": "Heavier load, wheel still rolls",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rf_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Load doubles to 10 kilograms on both bodies",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s4_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "block's maximum friction is now 39.2 newtons, more than the 20 newton push — it stays still",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s4_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "wheel's friction is only 0.20 newton — it still rolls, slower only because it is heavier",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The load doubles to 10 kilograms: the block's maximum static friction is now 39.2 newtons, more than its 20 newton push, so it stays still, while the wheel's rolling friction reaches 0.20 newton, too small to draw." },
+            { "id": "s4_2", "text_en": "It moves slower than before only because it is heavier now, not because rolling friction grew large." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "Explore: Change Every Value",
+        "duration": 0,
+        "focal_primitive_id": "rf_s5_main",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change the values yourself",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rf_s5_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Change every value yourself",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s5_main",
+            "position": { "x": 380, "y": 250 },
+            "text": "drag mass, push, and starting speed — watch the block and the wheel respond",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "rf_s5_anchor",
+            "position": { "x": 380, "y": 440 },
+            "text": "f = mu N",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Now change the mass, the push, and the starting speed yourself, and watch the block and the wheel respond." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "delivery_cart_wheels_vs_dragging",
+      "type": "B",
+      "label": "A Loaded Delivery Cart: Rolling vs Dragging the Same Load",
+      "physical_world": "A loaded delivery cart resists a steady drag across the floor, but tip it onto its wheels and the same load moves with a light, steady push.",
+      "same_physics": "Identical two-hundred-times friction gap: rolling contact obeys the same f = μN law as sliding contact, just with a coefficient about two hundred times smaller — only the labeled world changes.",
+      "scene_hint": "Same two-body rig, same flat floor — only the labeled objects change from a generic block and wheel to a dragged cart and a wheeled cart."
+    },
+    {
+      "variant_id": "office_chair_casters_vs_sliding",
+      "type": "B",
+      "label": "An Office Chair: Rolling on Casters vs Sliding It Directly",
+      "physical_world": "Sliding an office chair across a floor by its seat takes real effort; the same chair on its caster wheels glides away from a light push.",
+      "same_physics": "Same contrast, same law: caster wheels give a rolling contact whose friction coefficient is about two hundred times smaller than the chair's sliding contact with the floor.",
+      "scene_hint": "Same rig, same push — only the labeled objects change from a generic block and wheel to a slid chair and a wheeled chair."
+    }
+  ],
+
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "No external syllabus web-search verification was run during this authoring pass. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.5 §5.9 content) — every other row carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 11 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.5 §5.9 — rolling friction named explicitly, much smaller than sliding friction",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE / CAIE A-level Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Forces topic — rolling resistance believed mentioned qualitatively only, not as a named quantitative coefficient",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Mechanics — Forces (friction types; rolling resistance believed present only as a qualitative aside at SL/HL)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1",
+        "coverage": "partial",
+        "syllabus_unit": "Unit 2 — Dynamics (friction types; rolling resistance believed a minor qualitative mention only)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "UK A-level Physics (Edexcel/AQA/OCR)",
+        "coverage": "partial",
+        "syllabus_unit": "Forces & motion — friction; rolling resistance believed a qualitative aside, not quantified",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "slider_controls": {
+      "m": { "min": 1, "max": 10, "step": 0.5, "default": 5, "label": "m" },
+      "m2": { "min": 1, "max": 10, "step": 0.5, "default": 5, "label": "m₂" },
+      "F": { "min": 0, "max": 50, "step": 0.5, "default": 20, "label": "F" },
+      "mu_k": { "min": 0, "max": 0.5, "step": 0.002, "default": 0.002, "label": "μᵣ", "dp": 3 },
+      "v0": { "min": -5, "max": 5, "step": 0.5, "default": 0, "label": "v₀" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Same 20 N push, same 5 kg mass: the wheel crosses the whole track while the block barely moves",
+        "visible_elements": [],
+        "camera_position": [3.0, 3.2, 9.0],
+        "caption": "Same push, different result",
+        "show_sliders": true,
+        "formula_overlay": "a = (F − f)/m",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "block", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.40, "mu_k": 0.40, "applied_force_N": 20 },
+            { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 20 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "friction"] },
+            { "body_id": "B", "show": ["applied"] }
+          ],
+          "glow_focal": "nlb_body_B",
+          "phases": [
+            { "id": "friction_focal", "at_ms": 6000, "glow_focal": "nlb_arrow_A_friction" }
+          ],
+          "readouts": ["f", "v"],
+          "controls_visible": ["F"]
+        }
+      },
+      "STATE_2": {
+        "label": "One law f = μN for both bodies: μₖ = 0.40 for the block, μᵣ = 0.002 for the wheel — both now glide at the same speed",
+        "visible_elements": [],
+        "camera_position": [3.0, 3.2, 9.0],
+        "caption": "Same formula, far smaller μ",
+        "show_sliders": true,
+        "formula_overlay": "f = μN: μₖ = 0.40, μᵣ = 0.002",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "block", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 1.0, "mu_s": 0.40, "mu_k": 0.40, "applied_force_N": 19.6 },
+            { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 5, "initial_position_m": -2.0, "initial_velocity_mps": 1.0, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 0.098 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "friction"] }
+          ],
+          "glow_focal": "nlb_arrow_A_friction",
+          "readouts": ["f", "F_applied"],
+          "controls_visible": ["m"]
+        }
+      },
+      "STATE_3": {
+        "label": "The wheel coasts with no push: friction reads about 0.10 N, not zero, and speed falls; raising μᵣ 30× stops the wheel mid-track",
+        "visible_elements": [],
+        "camera_position": [3.0, 3.2, 9.0],
+        "caption": "Rolling still has friction",
+        "show_sliders": true,
+        "formula_overlay": "fₖ = μᵣN",
+        "newtons_laws_body": {
+          "mode": "coast_with_friction",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "block", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.40, "mu_k": 0.40, "applied_force_N": 0, "ghost": true },
+            { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 1.5, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 0 }
+          ],
+          "param_ramp": { "param": "mu_k", "from": 0.002, "to": 0.06, "start_ms": 3000, "end_ms": 6000 },
+          "arrows": [
+            { "body_id": "B", "show": ["weight", "normal"] }
+          ],
+          "glow_focal": "nlb_body_B",
+          "readouts": ["f", "v", "a"],
+          "controls_visible": ["mu_k"]
+        }
+      },
+      "STATE_4": {
+        "label": "Load doubles to 10 kg on both bodies: the block's maximum friction 39.2 N now exceeds the 20 N push and it stays still, while the wheel's 0.20 N friction is far below the push, so the wheel keeps rolling.",
+        "visible_elements": [],
+        "camera_position": [3.0, 3.2, 9.0],
+        "caption": "Heavier load, wheel still rolls",
+        "show_sliders": true,
+        "formula_overlay": "f = μN (N = mg)",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "block", "mass_kg": 10, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.40, "mu_k": 0.40, "applied_force_N": 20 },
+            { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 10, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 20 }
+          ],
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "weight", "friction", "normal"] },
+            { "body_id": "B", "show": ["applied", "weight", "normal"] }
+          ],
+          "glow_focal": "nlb_body_A",
+          "readouts": ["f", "v"],
+          "controls_visible": ["m"]
+        }
+      },
+      "STATE_5": {
+        "label": "Explore: change mass, push, and starting speed — the push is shared so both bodies always get the same push.",
+        "visible_elements": [],
+        "camera_position": [3.0, 3.2, 9.0],
+        "caption": "Change the values yourself",
+        "show_sliders": true,
+        "formula_overlay": "f = μN",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": false },
+          "bodies": [
+            { "id": "A", "label": "block", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.40, "mu_k": 0.40, "applied_force_N": 15 },
+            { "id": "B", "label": "wheel", "shape": "wheel", "mass_kg": 5, "initial_position_m": -5, "initial_velocity_mps": 0, "mu_s": 0.002, "mu_k": 0.002, "applied_force_N": 15 }
+          ],
+          "shared_applied_force": true,
+          "arrows": [
+            { "body_id": "A", "show": ["applied", "friction"] },
+            { "body_id": "B", "show": ["applied"] }
+          ],
+          "glow_focal": "nlb_body_B",
+          "readouts": ["f", "v"],
+          "controls_visible": ["m", "m2", "F", "v0"],
+          "trusted_drag_seizes": true,
+          "idle_auto_sweep": { "param": "F", "range": [15, 45] }
+        }
+      }
+    }
+  }
+}

@@ -4,9 +4,14 @@
 
 > **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
 > per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
-> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
-> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
-> structure remain valid reference.
+> `pause_after_ms` beats, and/or "sliders in the last state only". It also does NOT match the concept that
+> actually shipped: `scalar_vs_vector` was **re-authored fresh on 2026-07-23** (5 straightforward states,
+> `variable_choreography`, pixel-coordinate 760×500, THE EYE 23/23, baseline-locked) as the DAG root of the
+> Class-11 Vectors track. **The blessed PCPL clone target is the SHIPPED artifact, not this file:**
+> `src/data/concepts/scalar_vs_vector.json` + the PCPL/parametric variant in `docs/AUTHORING_PIPELINE.md`
+> §Stage ② (see also `.agents/proof_run/PCPL_EXEMPLAR.md`). Clone `faraday_law_induction_skeleton.md` only
+> for a **field_3d 3D** concept — its camera/RHR/field_lines vocabulary does NOT apply to a flat 2D vector
+> diagram. Physics content and structure below remain valid reference.
 
 Produced by: architect agent (2026-04-27)
 Upstream inputs: project `C:\Tutor\CLAUDE.md` (23 design rules), `C:\Tutor\PLAN.md` (Phase E + L), `physics-mind\.agents\architect\CLAUDE.md` (role spec), `physics-mind\docs\SHIP_V1_VECTORS_KINEMATICS.md` (v1 scope), exemplars `src/data/concepts/normal_reaction.json` + `src/data/concepts/friction_static_kinetic.json`, `engine_bug_queue` consultation 2026-04-27.

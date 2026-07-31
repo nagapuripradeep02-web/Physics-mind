@@ -1,6 +1,7 @@
 # AUTHORING_PIPELINE.md — How every PhysicsMind simulation gets built
 
-# Canonical SOP — v1.0 | 2026-06-10
+# Canonical SOP — v1.1 | 2026-06-10 (v1.1 2026-07-31: §0 Phase-0 chapter doctrine +
+# engine-dispatch discipline + founder-proxy checkpoints, graduated from the chapter-loop trial)
 # The end-to-end process for authoring ONE new simulation, from source to ship.
 # Locked with founder (Pradeep) on 2026-06-10. Every session follows this exactly.
 
@@ -57,6 +58,75 @@ For every NEW simulation:
    │  → value compounds, day 1 → day N                                      │
    └──────────────────────────────────────────────────────────────────────┘
 ```
+
+**founder-proxy checkpoints (graduated 2026-07-31 — proven in the Ch.7/Ch.8 chapter-loop trial):**
+the taste gate rides the pipeline at three points, in interactive builds as much as in the loop.
+**Checkpoint A** — after the architect skeleton, BEFORE physics-author: dispatch `founder-proxy`
+on every NEW skeleton (the highest-ROI quality slot; a mediocre design caught here saves the whole
+build). **Checkpoint B** — after quality-auditor PASS + eye-walker: the four-pass build review
+(`APPROVE` = authoring sign-off only, never shipping). **Checkpoint C** — before the concept is
+sealed: diff the claimed fixes, no silent skips. Shipping stays founder-only (Rule 17) — the proxy
+approves authoring, never releases. Full contract: `.agents/founder_proxy/CLAUDE.md`.
+
+---
+
+## §0 — Chapter opening: the Phase-0 doctrine (graduated 2026-07-31 from the chapter-loop trial)
+
+Runs ONCE per chapter, BEFORE the per-concept pipeline above. Evidence: Ch.1–6 reused mature
+scenarios and authored concepts as pure JSON (cheap); Ch.7 built its engine piecemeal per concept
+— ~1,296M tokens for 6 concepts. Ch.8, with this doctrine + the engine-dispatch discipline below,
+did equivalent work in ~177M. The cost driver of a chapter is UNPLANNED engine work (~42% of Ch.7
+spend), so plan it once:
+
+```
+0a  CHAPTER SURVEY (cheap — architect-level)
+    List EVERY concept in the chapter. For each: apparatus, what moves, what's
+    measured, the explore state. → the UNION of engine needs.
+    FIRST question: does an existing scenario family stretch? (Ch.3's CIRCUIT
+    engine ended up serving seven concepts incl. wheatstone + potentiometer.)
+    The cheapest Phase 0 is the one you discover you don't need.
+        │
+        ▼
+0b  DEEPEST-CONCEPT DESIGN
+    Full skeleton + physics block (EXACT functional forms) for the chapter's most
+    demanding concept — this is the engine's real spec.
+    → founder-proxy Checkpoint A on this skeleton BEFORE any engine code.
+        │
+        ▼
+0c  ENGINE ONCE (only if 0a found a real gap)
+    The owning surgeon (field3d-surgeon / pcpl-surgeon) builds ONE CONFIGURABLE
+    scenario against the 0a union, specced by 0b's physics. The dispatch REPORT's
+    closed enums are the authoritative JSON contract for json-author — they
+    supersede the skeleton's literal guesses.
+        │
+        ▼
+0d  CONCEPTS 1..N AS PURE JSON through the ① – ④ pipeline above.
+    SUCCESS TEST: concepts 2..N require ZERO renderer edits.
+
+⚠  ALARM RULE: a later concept forcing an engine edit means Phase 0
+   under-generalized — STOP and re-scope the scenario with the surgeon.
+   Never extend the engine per concept; that is exactly how Ch.7 got expensive.
+```
+
+## Engine-dispatch discipline (Amendment 4 — standing doctrine, graduated 2026-07-31)
+
+Applies to EVERY engine dispatch, interactive or loop:
+
+- **Route to the specialist:** field_3d root causes → `field3d-surgeon`
+  (`peter_parker:field3d_surgeon`); parametric/particle_field → `pcpl-surgeon`
+  (historical tag `peter_parker:renderer_primitives`); generator/serving/cache →
+  `runtime-generation`. Never general-purpose for field_3d work (~25M tokens/dispatch
+  re-exploring the renderer vs ~3.4M for the specialist — measured 2026-07-25).
+- **ONE `bug_class` per dispatch.** Bundles are BANNED — a ten-bug bundle once burned
+  156M tokens in 91 minutes (a long conversation re-bills its accumulated context every
+  turn; ten short dispatches are far cheaper than one long one). Sole exception: same
+  file AND same root cause.
+- **~100-tool-call / ~45-min ceiling** per dispatch, then a clean handoff note and a
+  fresh dispatch — never "push through to finish".
+- **Diagnosed root cause ⇒ minimal re-exploration.** State it in the dispatch prompt so
+  the agent executes instead of re-deriving.
+- **Scoped cache clears:** when testing one concept, `npm run cache:clear:scoped -- <id>`
+  (never a full-table wipe another session might be relying on).
 
 ---
 
@@ -134,6 +204,13 @@ every week.
 - **Screen position** of an overlay/hand → from the camera basis: screen-right ≈ `normalize(viewDir × up)`. Its z-component is negative for the default +x+y+z camera, so increasing world-z moves an object **left**, not right. Prefer **camera-relative anchoring** (position computed from `stateDef.camera_position`) over per-state hand-tuned world coords — framing-correct by construction, zero tuning.
 - **Timing** (curl, reveal, stagger) → explicit phase fractions, not eyeballed.
 - **Orientation** → `makeBasis` / quaternion with a determinant/handedness check (det = +1 = a true right hand, never mirrored — a mirrored RHR teaches the wrong physics).
+
+**PCPL / parametric variant (the Class-11 Vectors track — `parametric_renderer.ts`, reference `scalar_vs_vector`).** The Vectors chapter is a flat, pure-JSON, **pixel-coordinate 760×500** 2D canvas, NOT a 3D field sim — so the three field_3d compute rules above map differently:
+- **Screen position** → author **pixel coordinates directly** (origin top-left, x∈[40,720] y∈[40,460] to stay on-canvas), or better, a **zone anchor** — `zone: "CALLOUT_ZONE_R", anchor: "top_left"` over MAIN_ZONE / CALLOUT_ZONE_R / FORMULA_ZONE / CONTROL_ZONE / TITLE_ZONE (PM_ZONES) — which survives layout changes. There is **no camera and no zoom**: never author a "zoom into X" beat; use a `comparison_panel` split or a banner annotation, or escalate to `renderer_primitives`.
+- **Orientation** → there is **no 3D handedness**; the RHR/`makeBasis` DoD row is **N/A**. A vector's `direction_deg` / `from`→`to` endpoints are authored in the 2D plane.
+- **Motion** → each moving body names an `animation.type` from the whitelist (`free_fall`/`pendulum`/`atwood`/`translate`/`slide_horizontal`/`projectile`/`rotate_continuous`/…) or a `variable_choreography` sweep (`loop`/`ping_pong`/`once`); emphasis is **brightness-only** (`PM_focalEmphasis`, Rule 29) — never size/zoom.
+- **Routing** → write `renderer_pair.panel_a:"mechanics_2d"` AND add the concept_id to `PCPL_CONCEPTS` (registration site #7) + a `computePhysics_<id>` in `parametric_renderer.ts`; the `"mechanics_2d"` string does NOT select `mechanics_2d_renderer.ts` (PCPL_CONCEPTS overrides it), but MISS site #7 and the concept silently falls back to the legacy renderer.
+- **Verify** → THE EYE (`visual:eyes`) runs on parametric at full parity (sim-time-pinned dense + frozen frames); clone `scalar_vs_vector`'s shape, not a field_3d skeleton.
 
 **Iteration budget.** The irreducible loop is ONE compute + ONE visual-verify pass (stage ③ requires actually looking — you cannot trust framing you have not rendered). Target **2–3 rounds total, not 7.** Iteration is the *method*; guess-and-recapture and piecemeal-spec are the *waste*.
 
@@ -248,3 +325,25 @@ rewrite a lesson.
 student) wired but empty — 0 students; `proposal_queue` and `engine_bug_queue` tables EXIST
 (migrations 2026-06-10 / 2026-04-25), Tier-8 agents are markdown specs. The professor gate (④) is the human comprehension/pedagogy gate that lets the loop
 close NOW on 1–2 reviewers instead of waiting for 2,000 students. See Session 59 audit.*
+
+---
+
+## Chemistry addendum (2026-07-23 — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+The SOP above applies to CHEMISTRY concepts (`src/data/concepts/chemistry/`) with three
+substitutions; full doctrine in `docs/CHEMISTRY_ARCHITECTURE.md` + `docs/CHEMISTRY_BUILD_PLAN.md`:
+
+1. **Pipeline:** `architect → chemistry_author → json_author → quality_auditor` —
+   `chemistry_author` substitutes at position #2 (`.agents/chemistry_author/CLAUDE.md`); its output
+   is a "chemistry block" (balanced-equation ledger, quantities with chemistry units, Rule 31
+   timelines) consumed by json_author identically to a physics block.
+2. **Source roles (Stage ①):** NCERT **Chemistry** = syllabus backbone (chapter indexes only) ·
+   NCERT **Exemplar** = misconception beliefs (belief only) · teaching authored from first
+   principles; universal anchors per Rule 35 (rusting, soda fizz, electroplating). The HCV/DCP
+   triad is physics-only.
+3. **Stage ② DoD chemistry variant:** the right-hand-rule plan is replaced by the
+   balanced-equation-ledger plan (state symbols, oxidation numbers where redox, particle
+   scale-factor label); archetypes declared from `docs/patterns/chemistry.md` §1 ([LIVE] only until
+   Phase 5). Stage ③ THE EYE + eye_walker run unchanged, with the chemistry visual-sanity checklist
+   in `.agents/eye_walker/CLAUDE.md` §Chemistry; validation = `npm run validate:chemistry`
+   (the flat `validate:concepts` never scans the chemistry dir, by design).

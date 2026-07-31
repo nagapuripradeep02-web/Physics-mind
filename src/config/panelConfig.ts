@@ -371,18 +371,18 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/lc_oscillations.json, field_3d
+    // lc_oscillation scenario (Ch.7 #7). This entry REPLACES the legacy
+    // circuit_live + graph_interactive dual-panel stub (same pattern
+    // series_lcr_circuit and ac_power_factor each executed on their own
+    // prior slot).
     lc_oscillations: {
         concept_id: 'lc_oscillations',
-        layout: 'dual_horizontal',
+        layout: 'single',
         primary: {
-            renderer: 'circuit_live',
-            config_key: 'lc_oscillations_circuit',
-            label: 'LC Circuit',
-        },
-        secondary: {
-            renderer: 'graph_interactive',
-            config_key: 'lc_oscillations_graph',
-            label: 'Charge & Current vs Time',
+            renderer: 'field_3d',
+            config_key: 'lc_oscillations',
+            label: "LC Oscillations — The Circuit's Own Rhythm (3D)",
         },
     },
 
@@ -411,23 +411,21 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Real atomic concept: src/data/concepts/transformer.json, field_3d
+    // 'transformer' scenario (Ch.7 #8, the LAST concept of the chapter).
+    // This entry REPLACES the legacy circuit_live 'transformer_circuit' stub
+    // (same pattern lc_oscillations/series_lcr_circuit/ac_power_factor each
+    // executed on their own prior slot). Class-B triage: the 'transformer'
+    // scenario engine build is dispatched SEPARATELY from this registration
+    // pass (peter_parker:renderer_primitives scope) — the concept JSON's
+    // field_3d_config IS the contract that dispatch builds against.
     transformer: {
         concept_id: 'transformer',
         layout: 'single',
         primary: {
-            renderer: 'circuit_live',
-            config_key: 'transformer_circuit',
-            label: 'Transformer',
-        },
-    },
-
-    phasors: {
-        concept_id: 'phasors',
-        layout: 'single',
-        primary: {
-            renderer: 'graph_interactive',
-            config_key: 'phasors_graph',
-            label: 'Phasor Diagram',
+            renderer: 'field_3d',
+            config_key: 'transformer',
+            label: 'Transformer — Trading Voltage for Current (3D)',
         },
     },
 
@@ -557,6 +555,65 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Laws of Motion #4 — newtons_laws_body engine, Branch A (flat -> tilt ->
+    // vertical N-adjusts arc + a two-body maximum-friction contrast beat).
+    normal_force: {
+        concept_id: 'normal_force',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'normal_force',
+            label: 'Normal Force — N Is Not Always mg (3D)',
+        },
+    },
+
+    // Laws of Motion #5 — newtons_laws_body engine, Branch A (flat push:
+    // static friction self-adjusts up to a maximum, then drops to kinetic).
+    // Zero incline states — that arc belongs to sibling block_on_incline.
+    friction_force: {
+        concept_id: 'friction_force',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'friction_force',
+            label: 'Friction Force — Static Friction Matches the Push, Up to a Maximum (3D)',
+        },
+    },
+
+    // Laws of Motion #6 — newtons_laws_body engine, Branch A + SEAM G
+    // (bodies[].shape:'wheel'). Same-mass same-push race: a sliding block
+    // (mu_k=0.40) beside a rolling wheel (mu_r=0.002) — the ~200x friction
+    // gap, the load-doubling contrast (STATE_4), and the "rolling means
+    // frictionless" misconception confronted in STATE_3.
+    rolling_friction: {
+        concept_id: 'rolling_friction',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rolling_friction',
+            label: 'Rolling Friction — Rolling Resists Motion Far Less Than Sliding (3D)',
+        },
+    },
+
+    // Laws of Motion #7 — newtons_laws_body engine, Branch B (pulley,
+    // STATE_1-3) then SEAM H train (STATE_4-6). Six states: the original
+    // opening state was CUT in review as static (its only per-frame delta was
+    // a glow move), so every state number below shifted down by one.
+    // What tension IS (a pull along its own line, set by the motion, not by
+    // the string) + the same-vs-different question (one string = one T,
+    // a CHAIN of strings = a different T in each). Boundary against the
+    // sealed connected_bodies sibling: that concept owns the shared-|a|/
+    // one-T pulley SOLVING METHOD; this one owns what tension is + T1 != T2.
+    tension_force: {
+        concept_id: 'tension_force',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'tension_force',
+            label: 'Tension Force — Set by the Motion, Not the Same in Every String (3D)',
+        },
+    },
+
     // scalar_vs_vector is now a real, standalone concept (Class 11 Mechanics
     // Ch.1 "Vectors" — the DAG root). Single-panel PCPL sim, no panel_b_config.
     scalar_vs_vector: {
@@ -574,6 +631,36 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         concept_id: 'vector_addition_law',
         layout: 'single',
         primary: { renderer: 'mechanics_2d', config_key: 'vector_addition_law', label: 'Vector Addition: Triangle/Parallelogram Law' },
+    },
+
+    // resultant_direction — concept #3 of the new Class 11 Mechanics Ch.1
+    // "Vectors" DAG track (prerequisite: vector_addition_law). Single-panel
+    // PCPL sim, no panel_b_config authored — same missing-panel_b_config
+    // defect class as scalar_vs_vector/vector_addition_law
+    // (default_panel_count=1 forced via the concept_panel_config Supabase
+    // row, see supabase_migrations/).
+    resultant_direction: {
+        concept_id: 'resultant_direction',
+        layout: 'single',
+        primary: { renderer: 'mechanics_2d', config_key: 'resultant_direction', label: 'Direction of the Resultant of Two Vectors' },
+    },
+
+    // displacement_vs_distance — concept #1 of the new Class 11 Kinematics
+    // "Motion in a Straight Line" DAG track (chapter:2, prerequisite:
+    // scalar_vs_vector). First field_3d Kinematics concept — the
+    // kinematics_1d_track scenario does not exist in field_3d_renderer.ts yet
+    // (peter_parker:renderer_primitives build pending quality_auditor
+    // FAIL-routing). Single-panel field_3d sim, no panel_b_config.
+    // Retires the legacy distance_displacement_basics/distance_vs_displacement
+    // bundle names — see CONCEPT_SYNONYMS in intentClassifier.ts.
+    displacement_vs_distance: {
+        concept_id: 'displacement_vs_distance',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'displacement_vs_distance',
+            label: 'Displacement vs Distance — Δx = x_f − x₀, d = accumulated path length (3D)',
+        },
     },
 
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
@@ -1357,6 +1444,43 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    capacitance: {
+        concept_id: 'capacitance',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'capacitance',
+            label: 'Capacitance (3D)',
+        },
+    },
+
+    // Ch.8 Electromagnetic Waves — displacement current (NCERT §8.2), the
+    // chapter's load-bearing opener. NEW field_3d "displacement_current"
+    // scenario (Alex pipeline, 2026-07-24).
+    displacement_current: {
+        concept_id: 'displacement_current',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'displacement_current',
+            label: 'Displacement Current (3D)',
+        },
+    },
+
+    // Ch.8 Electromagnetic Waves — EM wave propagation (NCERT §8.3), the
+    // chapter's second diamond. NEW field_3d "em_wave_propagation" scenario
+    // (Alex pipeline, 2026-07-25). Absorbs the seeded siblings em_wave_nature
+    // + speed_of_em_waves (see CONCEPT_SYNONYMS in intentClassifier.ts).
+    em_wave_propagation: {
+        concept_id: 'em_wave_propagation',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'em_wave_propagation',
+            label: 'EM Wave Propagation (3D)',
+        },
+    },
+
     magnetic_field_solenoid: {
         concept_id: 'magnetic_field_solenoid',
         layout: 'single',
@@ -1534,6 +1658,75 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'ac_generator',
             label: 'AC Generator — ε = NBAω·sin(ωt) (3D)',
+        },
+    },
+
+    ac_voltage_resistor: {
+        concept_id: 'ac_voltage_resistor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_resistor',
+            label: 'AC Voltage on a Resistor — i = v/R, in phase, Vᵣₘₛ = vₘ/√2 (3D)',
+        },
+    },
+
+    ac_voltage_inductor: {
+        concept_id: 'ac_voltage_inductor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_inductor',
+            label: 'AC Voltage on an Inductor — i lags v by ¼ cycle, Xₗ = ωL (3D)',
+        },
+    },
+
+    ac_voltage_capacitor: {
+        concept_id: 'ac_voltage_capacitor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_voltage_capacitor',
+            label: 'AC Voltage on a Capacitor — i leads v by ¼ cycle, X_C = 1/(ωC) (3D)',
+        },
+    },
+
+    // Supersedes a legacy pre-field_3d 'phasors' -> graph_interactive stub
+    // (old retired 44-engine-OS scaffolding, never wired to a real concept
+    // JSON — see CLAUDE.md's note on superseded chat/particle_field/
+    // graph_interactive architecture). The real atomic concept now lives at
+    // src/data/concepts/phasors.json, field_3d ac_phasor scenario (Ch.7 #4).
+    phasors: {
+        concept_id: 'phasors',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'phasors',
+            label: 'Phasors — Rotating Vectors for AC (3D)',
+        },
+    },
+
+    // Real atomic concept: src/data/concepts/series_lcr_circuit.json, field_3d
+    // ac_series_lcr scenario (Ch.7 #5, engine build commit cec3a50).
+    series_lcr_circuit: {
+        concept_id: 'series_lcr_circuit',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'series_lcr_circuit',
+            label: 'Series LCR Circuit — Impedance and Resonance (3D)',
+        },
+    },
+
+    // Real atomic concept: src/data/concepts/ac_power_factor.json, field_3d
+    // ac_power scenario (Ch.7 #6, engine build commit 9df14e3).
+    ac_power_factor: {
+        concept_id: 'ac_power_factor',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_power_factor',
+            label: 'Power in AC Circuits — The Power Factor (3D)',
         },
     },
 

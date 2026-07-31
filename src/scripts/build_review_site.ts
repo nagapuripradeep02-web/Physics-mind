@@ -34,6 +34,7 @@ import {
     type ParticleFieldAuthoredConfig,
 } from '@/lib/renderers/particle_field_renderer';
 import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 import {
     pilotHeadTags,
     isPilotConcept,
@@ -41,6 +42,7 @@ import {
     chapterTitle,
     writeRootAssets,
     CLASS12_CHAPTER_NAMES,
+    PLAN_PRICE_INR,
 } from './pilot_site_assets';
 
 // ── Types (subset of the concept JSON we read) ───────────────────────────────
@@ -116,6 +118,12 @@ type ReviewState = {
     title: string;
     advance_mode: string;
     duration: number;
+    // Guided state that must keep running after its narration ends (Rule 37 /
+    // the continuous_motion exemption in onTimelineEnd). Must be carried HERE:
+    // the player reads it off the state object this function builds, so a field
+    // present in the concept JSON but absent from this type is silently dropped
+    // and the flag reads as inert with no error anywhere.
+    continuous_motion: boolean;
     sentences: ReviewSentence[];
 };
 
@@ -281,11 +289,21 @@ function embedJson(value: unknown): string {
 }
 
 function loadConcept(conceptId: string): ConceptJson {
-    const path = join(CONCEPTS_DIR, `${conceptId}.json`);
-    if (!existsSync(path)) {
-        throw new Error(`Concept JSON not found: ${path}`);
+    // Subject routing (CHEMISTRY_BUILD_PLAN.md Phase 2.5). The shared resolver
+    // checks the flat physics dir FIRST — so physics resolution is byte-identical
+    // to reading CONCEPTS_DIR directly — then src/data/concepts/chemistry/, which
+    // is the only place chemistry concepts may live (isolation contract,
+    // docs/CHEMISTRY_ARCHITECTURE.md §7). Same resolver already used by
+    // generate_tts_audio, _seed_chemistry_cache, buildParametricConfig and
+    // loadCachedSim, so every script layer agrees on where a concept lives.
+    const resolved = resolveConceptJsonPath(conceptId);
+    if (!resolved) {
+        throw new Error(
+            `Concept JSON not found: ${join(CONCEPTS_DIR, `${conceptId}.json`)} ` +
+            `(also checked src/data/concepts/chemistry/${conceptId}.json)`,
+        );
     }
-    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+    return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
 }
 
 // ── PCPL (mechanics_2d) adapter ───────────────────────────────────────────────
@@ -379,6 +397,7 @@ function extractStates(
                 title: st.title ?? id,
                 advance_mode: st.advance_mode ?? 'manual_click',
                 duration: typeof st.duration === 'number' ? st.duration : 12,
+                continuous_motion: (st as { continuous_motion?: boolean }).continuous_motion === true,
                 sentences,
             };
         });
@@ -414,7 +433,7 @@ function renderConceptPage(
             ? `<div class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.2 1.6 2.7-.2.9 2.6 2.2 1.6-.9 2.6.9 2.6-2.2 1.6-.9 2.6-2.7-.2L12 21.5l-2.2-1.6-2.7.2-.9-2.6L4 15.9l.9-2.6L4 10.7l2.2-1.6.9-2.6 2.7.2z" fill="rgba(203,104,67,.2)" stroke="rgba(203,104,67,.6)" stroke-width="1.1"/><path d="M8.6 12l2.1 2.1 4.6-4.6" stroke="#E3A07F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Teacher-Verified${review?.reviewer ? ' &middot; ' + escapeHtml(review.reviewer) : ''}</div>`
             : '';   // professor-facing: an internal "awaiting review" pill would read as "unfinished"
     return `<!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-pm-page="player"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${escapeHtml(conceptName)} — Viditra</title>
@@ -567,6 +586,37 @@ ${pilotHeadTags(1)}
            transition:color .15s ease, border-color .15s ease, background .15s ease; }
   .fsGlassBtn:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   #fsCleanBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* ⚙ Widgets — only for sims that declare toggleable widgets in SIM_READY;
+     visible in AND out of fullscreen (unlike #fsCleanBtn). Dot marks active overrides. */
+  #wgBtn { display:none; }
+  #wgBtn.avail { display:flex; }
+  #wgBtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  /* per-widget visibility popover (structure mirrors #rowMenu) */
+  #widgetMenu { position:fixed; z-index:50; display:none; min-width:225px; padding:9px 10px;
+             background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+             box-shadow:0 12px 30px -10px rgba(0,0,0,.7); }
+  #widgetMenu.open { display:block; }
+  #widgetMenu .wgHead { font-size:11px; font-weight:700; color:var(--ink-dim); letter-spacing:.04em;
+             text-transform:uppercase; padding:0 2px 7px; }
+  .wgRow { display:flex; align-items:center; justify-content:space-between; gap:14px;
+             padding:5px 4px; border-radius:7px; cursor:default; }
+  .wgRow:hover { background:var(--clay-wash); }
+  .wgRow .wgLbl { font-size:12px; color:var(--ink); white-space:nowrap; }
+  /* plain light-switch: reflects what is on screen RIGHT NOW; flip = show/hide */
+  .wgSwitch { position:relative; flex:0 0 auto; width:34px; height:18px; border-radius:9px;
+             background:var(--line); border:0; padding:0; cursor:pointer; transition:background .15s ease; }
+  .wgSwitch::after { content:''; position:absolute; top:2px; left:2px; width:14px; height:14px;
+             border-radius:50%; background:var(--ink-dim); transition:left .15s ease, background .15s ease; }
+  .wgSwitch.on { background:rgba(203,104,67,.6); }
+  .wgSwitch.on::after { left:18px; background:#fff; }
+  #widgetMenu .wgActions { display:flex; gap:6px; margin-top:8px; }
+  #widgetMenu .wgActions button { flex:1; padding:6px 8px; font-size:11px; font-weight:600;
+             text-align:center; border:1px solid var(--line); border-radius:7px;
+             background:none; color:var(--ink-dim); cursor:pointer;
+             transition:color .15s ease, border-color .15s ease, background .15s ease; }
+  #widgetMenu .wgActions button:hover { color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #widgetMenu .wgSave { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  #widgetMenu .wgHint { font-size:10px; color:var(--ink-dim); padding:7px 2px 0; }
   /* Next/Prev state chevrons + readout — full-screen only (§4, gated by #fsScope.pm-fs, not
      the :fullscreen pseudo-class, since these live inside #stage, a descendant of the
      fullscreen root, not the root itself). */
@@ -755,6 +805,7 @@ ${pilotHeadTags(1)}
         <button id="simClearBtn" class="pmbtn" title="Clear sim annotations">Clear</button>
       </div>
       <div id="fsTopControls">
+        <div id="wgBtn" class="fsGlassBtn" title="Show or hide individual sim widgets (sliders, graph, formula...)">&#9881; Widgets</div>
         <div id="fsCleanBtn" class="fsGlassBtn" title="Clean mode — hide on-canvas labels/sliders">&#10022; Clean</div>
         <div id="fsBtn" class="fsGlassBtn" title="Full screen the simulation (Esc to exit)"><span id="fsIcon">&#9974;</span> Full screen</div>
       </div>
@@ -918,7 +969,9 @@ ${pilotHeadTags(1)}
   var order = DEFAULT_ORDER.slice();   // position → STATES index
   var hiddenStates = {};               // { stateIndex: 1 }
   var stateNames = {};                 // { stateIndex: "custom title" }
+  var widgetStates = {};               // { widgetKey: 'show'|'hide' } — sim ⚙ overrides
   var dirty = false;                   // unsaved changes present?
+  function countKeys(o) { var n = 0, k; for (k in o) { if (Object.prototype.hasOwnProperty.call(o, k)) n++; } return n; }
   function loadLayout() {
     try {
       var d = JSON.parse(localStorage.getItem(LS_LAYOUT) || 'null');
@@ -926,11 +979,12 @@ ${pilotHeadTags(1)}
         if (validOrder(d.order)) order = d.order.slice();
         if (d.hidden && typeof d.hidden === 'object') hiddenStates = d.hidden;
         if (d.names && typeof d.names === 'object') stateNames = d.names;
+        if (d.widgets && typeof d.widgets === 'object') widgetStates = d.widgets;
       }
     } catch (e) {}
   }
   function saveLayout() {
-    try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+    try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates })); } catch (e) {}
     pushLayoutRemote();
     dirty = false; updateSaveBtn(true);
   }
@@ -951,7 +1005,7 @@ ${pilotHeadTags(1)}
           'apikey': PM_CONFIG.supabaseAnonKey, 'Authorization': 'Bearer ' + tok,
           'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal'
         },
-        body: JSON.stringify({ concept_id: CONCEPT_ID, layout: { order: order, hidden: hiddenStates, names: stateNames }, updated_at: new Date().toISOString() })
+        body: JSON.stringify({ concept_id: CONCEPT_ID, layout: { order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates }, updated_at: new Date().toISOString() })
       }).then(function (r) { if (!r.ok) { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} } },
               function () { try { console.warn('[layout] cloud save failed — kept on this device.'); } catch (e) {} });
     } catch (e) {}
@@ -968,16 +1022,20 @@ ${pilotHeadTags(1)}
         if (!rows || !rows.length || !rows[0].layout) return;
         if (dirty || railTouched) return;   // they're already working — this device's view wins for now
         var d = rows[0].layout;
-        var same = JSON.stringify([d.order, d.hidden, d.names]) ===
-                   JSON.stringify([order, hiddenStates, stateNames]);
+        var same = JSON.stringify([d.order, d.hidden, d.names, d.widgets]) ===
+                   JSON.stringify([order, hiddenStates, stateNames, widgetStates]);
         if (same) return;
         if (validOrder(d.order)) order = d.order.slice();
         hiddenStates = (d.hidden && typeof d.hidden === 'object') ? d.hidden : {};
         stateNames = (d.names && typeof d.names === 'object') ? d.names : {};
-        try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames })); } catch (e) {}
+        widgetStates = (d.widgets && typeof d.widgets === 'object') ? d.widgets : {};
+        try { localStorage.setItem(LS_LAYOUT, JSON.stringify({ order: order, hidden: hiddenStates, names: stateNames, widgets: widgetStates })); } catch (e) {}
         dirty = false;
         buildRail();
-        goToState(0, false);
+        sendWidgetVis();
+        updateWgBtn();
+        pmt('layout_pull', { states: order.length, hidden_n: countKeys(hiddenStates), renamed_n: countKeys(stateNames) });
+        goToState(0, false, 'layout_pull');
       }).catch(function () {});
     });
   }
@@ -1023,7 +1081,20 @@ ${pilotHeadTags(1)}
   var playing = false;        // play-intent: timeline should advance whenever not frozen
   var audioEl = new Audio();  // single reused element for stored narration clips → overlap impossible
   audioEl.preload = 'auto';
-  audioEl.addEventListener('error', function () { /* missing/blocked clip → silent; never blocks the clock */ });
+  // Narration that silently fails to load looks identical to narration that is off,
+  // so a broken/missing clip could sit unnoticed for weeks. Capped one per kind per
+  // page load: an autoplay block fires on EVERY pre-gesture load by design, and is
+  // expected noise rather than a fault.
+  function audioErr(kind) {
+    if (!kind || audioErrKinds[kind]) return;
+    audioErrKinds[kind] = 1;
+    pmt('audio_error', { kind: String(kind).slice(0, 40), state_id: cur() ? cur().id : null });
+  }
+  audioEl.addEventListener('error', function () {
+    var c = 0;
+    try { c = (audioEl.error && audioEl.error.code) || 0; } catch (e) {}
+    audioErr('media_' + c);   // 4 = src not supported / 404 — the actionable one
+  });
   var pendingRoll = null;     // state id we asked to render and want to roll on STATE_REACHED
   var scrubbing = false;
   // ── Clock-driven reveal timeline (Rule 26) ──
@@ -1033,6 +1104,12 @@ ${pilotHeadTags(1)}
   var spokenSi = -1;          // sentence index whose utterance was last started (audio dedupe)
   var loopHandle = null;      // setInterval handle for the reveal loop
   var ended = false;          // end-latch + transition suppression while the clock is stale
+  var stateCompleted = false; // per-visit latch for the state_complete event
+  var paramTimers = {};       // per-parameter debounce timers for streamed PARAM_UPDATEs
+  var paramLast = {};         // last streamed value per parameter, emitted on settle
+  var scrubFromMs = -1;       // sim clock at the START of the current scrub gesture
+  var fsIntentSrc = '';       // 'button' when SHE asked for fullscreen; else Esc/system
+  var audioErrKinds = {};     // one audio_error per kind per page load
   var dragFrom = -1;
   var simSurface = null;             // sim-overlay annotation surface (set up after the player)
   var boardSurface = null;           // whiteboard surface (set up after the player)
@@ -1151,24 +1228,45 @@ ${pilotHeadTags(1)}
     stopAudio();
     audioEl.src = './' + a.file;             // manifest path, e.g. ./audio/s1_1_en.mp3 (format-agnostic)
     var p = audioEl.play();
-    if (p && p.catch) p.catch(function () { /* autoplay-blocked / 404 → never block the clock */ });
+    if (p && p.catch) p.catch(function (err) {
+      audioErr((err && err.name) || 'PlayRejected');   // NotAllowedError = autoplay policy, expected
+    });
   }
   // Renderer never signals end-of-timeline, so detect it here. Auto-advance is
   // mute-independent (Rule 26c); the last state holds its final frame.
   function onTimelineEnd() {
     ended = true;
+    // "Did she let this state run to the end, or click away mid-explanation?" —
+    // state_reached is the entry ack, not completion, so this is the only signal
+    // that a state was actually watched through. Latched per visit (goToState
+    // clears it) so scrubbing back past the end cannot double-count.
+    if (!stateCompleted) {
+      stateCompleted = true;
+      pmt('state_complete', { state_id: cur() ? cur().id : null, at_ms: timelineTotal });
+    }
     // Auto-advance skips teacher-hidden states (explicit clicks still open them).
     var nextPos = idx + 1;
     while (nextPos < order.length && isHidden(order[nextPos])) nextPos++;
     if (autoEl.checked && nextPos < order.length) {
-      goToState(nextPos, playing);
-    } else if (cur() && cur().advance_mode === 'interaction_complete') {
+      goToState(nextPos, playing, 'auto');
+    } else if (cur() && (cur().advance_mode === 'interaction_complete' || cur().continuous_motion)) {
       // Explore/sandbox state: never auto-freeze. Let the clock free-run so the
       // motion loops forever (the renderer's bead phase wraps % 1) and slider
       // drags drive live continuous motion — a teacher can still Pause manually
       // (the Pause button calls freeze()). Nothing left to reveal here, so keep
       // playing and do NOT pin the clock. (founder 2026-07-12: the last state must
       // run continuously, not stop after its narration ends.)
+      //
+      // continuous_motion (2026-07-28): the same exemption, for a GUIDED state
+      // whose subject IS that the motion never stops. Dynamic equilibrium is the
+      // case that forced it — its central state says "the amounts stopped changing
+      // but the reaction never stopped", and under the default freeze the sim
+      // stopped dead a second after that sentence, demonstrating the misconception
+      // it exists to kill. Authored per state, never a default: a narrated state
+      // holding its final picture is right for almost every concept (Rule 26), and
+      // this is the narrow exception where the final picture is a lie.
+      // THE EYE's SET_TIME_FREEZE capture path is separate, so no baseline moves
+      // (Rule 37b) — verified, not assumed.
     } else {
       playing = false; setPlayBtnUI(false);
       try { stopAudio(); } catch (e) {}
@@ -1217,10 +1315,14 @@ ${pilotHeadTags(1)}
   // can explain over a still picture (and still drag-rotate it). SET_STATE
   // auto-releases the pin in the renderer, so changing state clears it.
   function readSimTimeMs() { try { return iframe.contentWindow.PM_simTimeMs || 0; } catch (e) { return 0; } }
-  function freeze() {
+  // src tells apart the four ways a teacher can stop the sim — the Pause button,
+  // Spacebar, tapping the canvas, or picking up the pen. They read identically in
+  // the data otherwise, and "does anyone find tap-to-pause?" is a real question
+  // (the tap cue exists precisely because reviewers missed it).
+  function freeze(src) {
     if (frozen) return;
     frozen = true;
-    pmt('pause', { at_ms: readSimTimeMs() });
+    pmt('pause', { at_ms: readSimTimeMs(), src: src || 'unknown' });
     retireTapCue();                     // they discovered pause — stop hinting
     post({ type: 'SET_TIME_FREEZE', at_ms: readSimTimeMs() });   // pin clock → reveals hold (Rule 26b)
     try { stopAudio(); } catch (e) {}        // audio stops; play-intent survives
@@ -1228,10 +1330,10 @@ ${pilotHeadTags(1)}
     setPlayBtnUI(false);
     pausedBadge.style.display = 'block';
   }
-  function unfreeze() {
+  function unfreeze(src) {
     if (!frozen) return;
     frozen = false;
-    pmt('resume', { at_ms: readSimTimeMs() });
+    pmt('resume', { at_ms: readSimTimeMs(), src: src || 'unknown' });
     post({ type: 'SET_TIME_FREEZE', frozen: false });   // clock resumes from where it was pinned
     pausedBadge.style.display = 'none';
     playing = true;                     // resume (or tap-to-play an idle frame)
@@ -1239,7 +1341,7 @@ ${pilotHeadTags(1)}
     spokenSi = -1;
     playCurrent();                     // re-voice current sentence now (audio gated on mute inside)
   }
-  function toggleFreeze() { if (frozen) unfreeze(); else freeze(); }
+  function toggleFreeze(src) { if (frozen) unfreeze(src); else freeze(src); }
 
   // First-watch discoverability cue: reviewers/students often don't realise the
   // sim can be paused by tapping it (reviewer Asmi, 2026-06-16 — "I thought I
@@ -1305,6 +1407,111 @@ ${pilotHeadTags(1)}
     rowMenu.style.left = Math.max(6, left) + 'px'; rowMenu.style.top = Math.max(6, top) + 'px';
   }
 
+  // ── ⚙ Per-widget visibility (SET_WIDGET_VIS) — the granular sibling of Clean
+  // mode. The SIM declares its toggleable widgets in SIM_READY; this chrome is
+  // generic and knows nothing about any specific sim. Three-way per widget:
+  // Auto (follow each state's authored default) / On (force show) / Off (force
+  // hide). Rides the LS_LAYOUT blob → applies live, persists on ✓ Save,
+  // cleared by ↻ Default, synced per professor via teacher_layouts.
+  var simWidgets = null;      // [{key,label}] from SIM_READY, or null = no button
+  var widgetVisNow = {};      // { key: bool } — EFFECTIVE visibility reported by the sim
+  var widgetRowEls = {};      // { key: switchButtonEl } for live sync while the panel is open
+  function sendWidgetVis() { post({ type: 'SET_WIDGET_VIS', overrides: widgetStates }); }
+  function widgetOverrideCount() { var n = 0, k; for (k in widgetStates) n++; return n; }
+  function updateWgBtn() {
+    var wb = document.getElementById('wgBtn'); if (!wb) return;
+    wb.classList.toggle('avail', !!(simWidgets && simWidgets.length));
+    wb.classList.toggle('on', widgetOverrideCount() > 0);
+  }
+  var widgetMenu = document.createElement('div'); widgetMenu.id = 'widgetMenu';
+  (document.getElementById('fsScope') || document.body).appendChild(widgetMenu);   // inside #fsScope so it renders in fullscreen too
+  function closeWidgetMenu() { widgetMenu.classList.remove('open'); widgetMenu.innerHTML = ''; widgetRowEls = {}; }
+  document.addEventListener('click', function (e) {
+    var wb = document.getElementById('wgBtn');
+    if (!widgetMenu.contains(e.target) && !(wb && wb.contains(e.target))) closeWidgetMenu();
+  }, true);
+  window.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeWidgetMenu(); });
+  // Sync the open panel's switches to what the sim says is actually on screen
+  // (called on every WIDGET_VIS_STATE — state changes flip switches live).
+  function syncWidgetMenu() {
+    for (var k in widgetRowEls) {
+      if (widgetVisNow[k] !== undefined) widgetRowEls[k].classList.toggle('on', !!widgetVisNow[k]);
+    }
+  }
+  function openWidgetMenu(anchorEl) {
+    widgetMenu.innerHTML = ''; widgetRowEls = {};
+    var head = document.createElement('div'); head.className = 'wgHead'; head.textContent = 'Show on screen'; widgetMenu.appendChild(head);
+    for (var i = 0; i < simWidgets.length; i++) {
+      (function (w) {
+        var row = document.createElement('div'); row.className = 'wgRow';
+        var lbl = document.createElement('span'); lbl.className = 'wgLbl'; lbl.textContent = w.label || w.key; row.appendChild(lbl);
+        var sw = document.createElement('button'); sw.className = 'wgSwitch';
+        sw.title = 'Show / hide';
+        var visNow = widgetVisNow[w.key];
+        if (visNow === undefined) visNow = widgetStates[w.key] !== 'hide';
+        sw.classList.toggle('on', !!visNow);
+        sw.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          var wantVisible = !sw.classList.contains('on');
+          sw.classList.toggle('on', wantVisible);
+          // Flip = an explicit pin for this widget ('show'/'hide'); the sim
+          // confirms via WIDGET_VIS_STATE, and Reset returns everything to
+          // the lesson's own defaults.
+          widgetStates[w.key] = wantVisible ? 'show' : 'hide';
+          sendWidgetVis(); markDirty(); updateWgBtn();
+          pmt('widget_toggle', { widget: w.key, mode: widgetStates[w.key] });
+        });
+        // Hovering a row pulses the widget on-canvas — no name-to-screen guessing.
+        row.addEventListener('mouseenter', function () { post({ type: 'WIDGET_PING', widget: w.key }); });
+        row.appendChild(sw); widgetMenu.appendChild(row);
+        widgetRowEls[w.key] = sw;
+      })(simWidgets[i]);
+    }
+    var actions = document.createElement('div'); actions.className = 'wgActions';
+    var reset = document.createElement('button');
+    reset.textContent = '↻ Defaults';
+    reset.title = 'Back to the lesson’s own setup';
+    reset.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      widgetStates = {};
+      sendWidgetVis(); markDirty(); updateWgBtn();
+      pmt('widget_toggle', { widget: 'ALL', mode: 'auto' });
+    });
+    actions.appendChild(reset);
+    // Same save as the state rail's ✓ Save — persists the WHOLE layout
+    // (state order/hides/renames + widget setup) to this teacher's account.
+    var save = document.createElement('button'); save.className = 'wgSave';
+    save.textContent = '✓ Save';
+    save.title = 'Keep this setup on your account — it loads on every device';
+    save.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      saveLayout();
+      pmt('widget_save', { overrides: widgetOverrideCount() });
+      save.textContent = '✓ Saved';
+      setTimeout(function () { save.textContent = '✓ Save'; }, 1400);
+    });
+    actions.appendChild(save);
+    widgetMenu.appendChild(actions);
+    var hint = document.createElement('div'); hint.className = 'wgHint';
+    hint.textContent = 'Point at a row to see it flash on screen.';
+    widgetMenu.appendChild(hint);
+    var r = anchorEl.getBoundingClientRect();
+    widgetMenu.classList.add('open');
+    var mw = widgetMenu.offsetWidth || 230, mh = widgetMenu.offsetHeight || 200;
+    var left = Math.min(r.right - mw, document.documentElement.clientWidth - mw - 6);
+    var top = Math.min(r.bottom + 6, document.documentElement.clientHeight - mh - 6);
+    widgetMenu.style.left = Math.max(6, left) + 'px'; widgetMenu.style.top = Math.max(6, top) + 'px';
+  }
+  (function () {
+    var wb = document.getElementById('wgBtn');
+    if (wb) wb.addEventListener('click', function () {
+      if (!simWidgets || !simWidgets.length) return;
+      if (widgetMenu.classList.contains('open')) { closeWidgetMenu(); return; }
+      pmt('widget_menu_open', { overrides: widgetOverrideCount() });
+      openWidgetMenu(wb);
+    });
+  })();
+
   function setHidden(si, hide) {
     if (hide) { hiddenStates[si] = 1; pmt('state_hide', { state_id: STATES[si].id, title: stateTitle(si) }); }
     else { delete hiddenStates[si]; pmt('state_unhide', { state_id: STATES[si].id, title: stateTitle(si) }); }
@@ -1360,7 +1567,7 @@ ${pilotHeadTags(1)}
         card.appendChild(numEl); card.appendChild(ttl); card.appendChild(grip);
         grip.addEventListener('click', function (ev) { ev.stopPropagation(); openRowMenu(si, grip); });
         ttl.addEventListener('dblclick', function (ev) { ev.stopPropagation(); startRename(si); });
-        card.addEventListener('click', function () { railTouched = true; pause(); goToState(pos, false); });
+        card.addEventListener('click', function () { railTouched = true; pause(); goToState(pos, false, 'rail'); });
         card.addEventListener('dragstart', function (e) { dragFrom = pos; card.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(pos)); } catch (_) {} });
         card.addEventListener('dragend', function () { card.classList.remove('dragging'); clearDragOver(); dragFrom = -1; });
         card.addEventListener('dragover', function (e) { e.preventDefault(); card.classList.add('dragover'); });
@@ -1409,12 +1616,16 @@ ${pilotHeadTags(1)}
     var keep = order[idx];
     order = DEFAULT_ORDER.slice();
     idx = order.indexOf(keep); if (idx < 0) idx = 0;
-    // "Default order" is the teacher's full reset: order + hidden + renames — and it PERSISTS immediately.
+    // "Default order" is the teacher's full reset: order + hidden + renames +
+    // widget overrides — and it PERSISTS immediately.
     var hadHides = false, hadNames = false, k;
     for (k in hiddenStates) { hadHides = true; break; }
     for (k in stateNames) { hadNames = true; break; }
-    hiddenStates = {}; stateNames = {}; hiddenExpanded = false;
-    pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames });
+    var hadWidgets = widgetOverrideCount() > 0;
+    hiddenStates = {}; stateNames = {}; widgetStates = {}; hiddenExpanded = false;
+    if (hadWidgets) { sendWidgetVis(); closeWidgetMenu(); }
+    updateWgBtn();
+    pmt('order_reset', { cleared_hides: hadHides, cleared_renames: hadNames, cleared_widgets: hadWidgets });
     saveLayout();     // durable reset
     buildRail();
     updateBadge();
@@ -1432,10 +1643,14 @@ ${pilotHeadTags(1)}
 
   // Move to the given order-position. autoRoll = start the timeline on entry (reveals always
   // play once rolled; audio follows mute). Else: idle on the opening frame until Play (Rule 26).
-  function goToState(pos, autoRoll) {
+  // src names HOW she got here — rail click, keyboard, fullscreen chevron, auto-advance,
+  // replay, first open, or a layout pulled from another device. Without it every arrival
+  // looks identical, and "does anyone actually use the rail?" is unanswerable.
+  function goToState(pos, autoRoll, src) {
     idx = Math.max(0, Math.min(order.length - 1, pos));
     window.PM_STATE_ID = cur().id;
-    pmt('state_open', { state_id: cur().id, pos: idx, auto: autoRoll === true });
+    stateCompleted = false;   // per-visit latch: state_complete fires once per entry
+    pmt('state_open', { state_id: cur().id, pos: idx, auto: autoRoll === true, src: src || 'unknown' });
     if (frozen) { frozen = false; pausedBadge.style.display = 'none'; }  // SET_STATE releases the pin
     try { stopAudio(); } catch (e) {}
     caption.textContent = '';
@@ -1475,13 +1690,23 @@ ${pilotHeadTags(1)}
 
   playBtn.addEventListener('click', function () {
     railTouched = true;
-    if (playing && !frozen) { freeze(); }            // playing → pause-hold
-    else if (frozen && playing) { unfreeze(); }      // paused mid-play → resume
+    if (playing && !frozen) { freeze('button'); }            // playing → pause-hold
+    else if (frozen && playing) { unfreeze('button'); }      // paused mid-play → resume
     else { play(); }                                 // idle / ended → roll from top
   });
-  replayBtn.addEventListener('click', function () { pmt('replay', {}); pause(); goToState(idx, true); });
+  replayBtn.addEventListener('click', function () { pmt('replay', {}); pause(); goToState(idx, true, 'replay'); });
   defaultOrderBtn.addEventListener('click', resetOrder);
-  saveBtn.addEventListener('click', function () { saveLayout(); pmt('layout_save', {}); });
+  saveBtn.addEventListener('click', function () {
+    saveLayout();
+    // The persisted layout's CONTENT was unrecoverable from telemetry — you could
+    // only replay reorder/rename/hide events and guess which preceded the save.
+    pmt('layout_save', {
+      order: order.slice(),
+      hidden_n: countKeys(hiddenStates),
+      renamed_n: countKeys(stateNames),
+      widget_overrides_n: widgetOverrideCount()
+    });
+  });
   // Subtitles: show/hide the caption box (independent of audio mute — a muted teacher
   // can still read along). Teacher-wide preference (LS_CC).
   function applySubs() {
@@ -1512,6 +1737,11 @@ ${pilotHeadTags(1)}
   // rAF-throttle the jump so a fast drag doesn't spam the iframe → smooth scrubbing.
   var scrubRaf = 0, scrubPending = 0;
   scrubEl.addEventListener('input', function () {
+    // Snapshot the pre-scrub clock on the FIRST input of the gesture — the jump is
+    // posted in a later rAF, so the iframe clock still reads the old time here.
+    // Direction and distance are the signal: skipping forward past an explanation
+    // reads very differently from scrubbing back to repeat one.
+    if (!scrubbing) scrubFromMs = readSimTimeMs();
     scrubbing = true;
     var ms = parseInt(scrubEl.value, 10) || 0;
     scrubPending = ms;
@@ -1528,7 +1758,14 @@ ${pilotHeadTags(1)}
   // Release: SET_TIME_JUMP holds, so if we were playing we must un-pin to resume.
   scrubEl.addEventListener('change', function () {
     scrubbing = false;
-    pmt('scrub', { to_ms: parseInt(scrubEl.value, 10) || 0 });
+    var toMs = parseInt(scrubEl.value, 10) || 0;
+    pmt('scrub', {
+      from_ms: scrubFromMs < 0 ? null : scrubFromMs,
+      to_ms: toMs,
+      max_ms: parseInt(scrubEl.max, 10) || 0,
+      dir: (scrubFromMs >= 0 && toMs < scrubFromMs) ? 'back' : 'fwd'
+    });
+    scrubFromMs = -1;
     if (playing) {
       post({ type: 'SET_TIME_FREEZE', frozen: false });
       frozen = false;
@@ -1557,7 +1794,7 @@ ${pilotHeadTags(1)}
       doc.addEventListener('change', function (ev) {
         var el = ev.target;
         if (!ev.isTrusted || !el) return;
-        if (el.type === 'range') pmt('slider_change', { slider: el.id || el.name || 'unnamed', value: el.value });
+        if (el.type === 'range') pmt('slider_change', { slider: el.id || el.name || 'unnamed', value: el.value, via: 'dom' });
         else if (el.tagName === 'SELECT') pmt('sim_select', { control: el.id || el.name || 'unnamed', value: el.value });
       }, true);
       doc.addEventListener('click', function (ev) {
@@ -1594,6 +1831,13 @@ ${pilotHeadTags(1)}
     if (t === 'SIM_READY') {
       simReady = true;
       pmt('sim_ready', { states: STATE_COUNT });
+      // Sims that support per-widget toggles declare them here (⚙ panel).
+      // Replaying the saved overrides restores the teacher's layout on load.
+      if (e.data.widgets && e.data.widgets.length) {
+        simWidgets = e.data.widgets;
+        updateWgBtn();
+        if (widgetOverrideCount() > 0) sendWidgetVis();
+      }
       attachSimCapture();
       // Baked audio can't be re-paced by the slider — disable it when clips exist.
       if (HAS_AUDIO && rateEl) { rateEl.disabled = true; rateEl.title = 'Pacing follows the recorded narration'; }
@@ -1601,7 +1845,7 @@ ${pilotHeadTags(1)}
       applyMuteUI();
       startLoop();
       pmLoadDone();
-      goToState(0, false);   // open the first state on its opening frame; Play to roll
+      goToState(0, false, 'init');   // open the first state on its opening frame; Play to roll
     } else if (t === 'STATE_REACHED') {
       pmt('state_reached', { state_id: e.data.state });
       if (pendingRoll && e.data.state === pendingRoll) {
@@ -1609,10 +1853,43 @@ ${pilotHeadTags(1)}
         rollTimeline();
       }
     } else if (t === 'PARAM_UPDATE') {
-      // Explorer scenarios announce param changes explicitly (e.g. ac_generator).
-      pmt('slider_change', { slider: e.data.param || 'param', value: e.data.value, explorer: e.data.explorer_id || null });
+      // Explorer scenarios announce param changes explicitly (e.g. ac_generator),
+      // and dragging a 3D object streams one message PER MOUSEMOVE — a five-second
+      // drag was ~400 telemetry rows, which blew past FLUSH_AT and evicted other
+      // events from the queue. Debounce per parameter and record where the drag
+      // SETTLED, which is the value she actually chose.
+      // e.data.key is the parametric/graph renderers' field name for the same thing;
+      // reading only e.data.param logged every canvas slider as the literal "param".
+      var pName = e.data.param || e.data.key || 'param';
+      var pKey = (e.data.explorer_id || '') + ':' + pName;
+      paramLast[pKey] = { slider: pName, value: e.data.value, explorer: e.data.explorer_id || null, via: 'stream' };
+      if (paramTimers[pKey]) clearTimeout(paramTimers[pKey]);
+      paramTimers[pKey] = setTimeout(function () {
+        paramTimers[pKey] = 0;
+        var last = paramLast[pKey];
+        if (last) { pmt('slider_change', last); paramLast[pKey] = null; }
+      }, 450);
+    } else if (t === 'WIDGET_VIS_STATE') {
+      // Sim reports EFFECTIVE widget visibility (state default ∘ overrides) —
+      // keeps the ⚙ panel's switches matching what's actually on screen.
+      if (e.data.vis && typeof e.data.vis === 'object') { widgetVisNow = e.data.vis; syncWidgetMenu(); }
+    } else if (t === 'WIDGET_DECLARE') {
+      // The generic widget engine (field_3d) discovers widgets as states
+      // reveal them — the ⚙ list grows mid-session. Full list every time.
+      // Re-render an OPEN panel only when the key set actually changed: a
+      // rebuild detaches the row the teacher is mid-click on.
+      if (e.data.widgets && e.data.widgets.length) {
+        var prevKeys = (simWidgets || []).map(function (w) { return w.key; }).join('|');
+        var nextKeys = e.data.widgets.map(function (w) { return w.key; }).join('|');
+        if (prevKeys !== nextKeys) {
+          simWidgets = e.data.widgets;
+          updateWgBtn();
+          if (widgetMenu.classList.contains('open')) openWidgetMenu(document.getElementById('wgBtn'));
+          if (widgetOverrideCount() > 0) sendWidgetVis();
+        }
+      }
     } else if (t === 'CANVAS_TAP') {
-      toggleFreeze();
+      toggleFreeze('tap');
     } else if (t === 'SIM_ERROR') {
       // Relayed by the error hook inside sim.html. Re-slice here too: any
       // window can postMessage, so never trust payload sizes from outside.
@@ -1635,9 +1912,9 @@ ${pilotHeadTags(1)}
   // presenter clickers send Page keys, not arrows, §6) step the (possibly reordered) sequence.
   window.addEventListener('keydown', function (e) {
     armIdle();
-    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggleFreeze(); }
-    else if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); var nR = nextVisible(idx, 1); if (nR >= 0) { pause(); goToState(nR, false); } }
-    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); var nL = nextVisible(idx, -1); if (nL >= 0) { pause(); goToState(nL, false); } }
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggleFreeze('space'); }
+    else if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); var nR = nextVisible(idx, 1); if (nR >= 0) { pause(); goToState(nR, false, 'key'); } }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); var nL = nextVisible(idx, -1); if (nL >= 0) { pause(); goToState(nL, false, 'key'); } }
   });
 
   // ════════════════════════════════════════════════════════════════════════
@@ -1758,7 +2035,7 @@ ${pilotHeadTags(1)}
       var pt = toLocal(e);
       if (TOOL.tool === 'eraser') { erasing = true; eraseHits = []; eraseAt(pt); e.preventDefault(); return; }
       drawing = true;
-      curStroke = { tool: TOOL.tool, color: TOOL.color, size: TOOL.size, points: [pt] };
+      curStroke = { tool: TOOL.tool, color: TOOL.color, size: TOOL.size, points: [pt], t0: Date.now() };
       e.preventDefault();
     }
     function onMove(e) {
@@ -1775,7 +2052,16 @@ ${pilotHeadTags(1)}
     function onUp(e) {
       if (e.pointerId !== drawPid) return;
       drawPid = null;
-      if (erasing) { erasing = false; if (eraseHits.length) { ops.push({ type: 'erase', strokes: eraseHits.slice() }); redo.length = 0; persist(); } eraseHits = []; return; }
+      if (erasing) {
+        erasing = false;
+        if (eraseHits.length) {
+          ops.push({ type: 'erase', strokes: eraseHits.slice() }); redo.length = 0; persist();
+          // Erasing removes strokes rather than adding one, so it never reached
+          // onStroke — rubbing something out was invisible in the data.
+          if (opts.onErase) { try { opts.onErase(eraseHits.length); } catch (e2) {} }
+        }
+        eraseHits = []; return;
+      }
       if (!drawing || !curStroke) return;
       drawing = false;
       if (curStroke.points.length) {
@@ -1784,7 +2070,7 @@ ${pilotHeadTags(1)}
         ops.push({ type: 'add', stroke: curStroke });
         redo.length = 0;
         growSpacer(); persist(); render();
-        if (opts.onStroke) { try { opts.onStroke(curStroke); } catch (e2) {} }
+        if (opts.onStroke) { try { opts.onStroke(curStroke, { w: cssW, h: cssH }); } catch (e2) {} }
       }
       curStroke = null;
     }
@@ -1799,6 +2085,7 @@ ${pilotHeadTags(1)}
       if (op.type === 'add') { var k = strokes.indexOf(op.stroke); if (k >= 0) strokes.splice(k, 1); }
       else if (op.type === 'erase' || op.type === 'clear') { for (var i = 0; i < op.strokes.length; i++) strokes.push(op.strokes[i]); }
       redo.push(op); growSpacer(); persist(); render();
+      if (opts.onOp) { try { opts.onOp('undo', op.type); } catch (e2) {} }
     }
     function redoOp() {
       var op = redo.pop(); if (!op) return;
@@ -1806,12 +2093,15 @@ ${pilotHeadTags(1)}
       else if (op.type === 'erase') { for (var i = 0; i < op.strokes.length; i++) { var k = strokes.indexOf(op.strokes[i]); if (k >= 0) strokes.splice(k, 1); } }
       else if (op.type === 'clear') { strokes.length = 0; }
       ops.push(op); growSpacer(); persist(); render();
+      if (opts.onOp) { try { opts.onOp('redo', op.type); } catch (e2) {} }
     }
     function clear() {
       if (!strokes.length) return;
+      var n = strokes.length;
       ops.push({ type: 'clear', strokes: strokes.slice() });
       strokes.length = 0; redo.length = 0;
       growSpacer(); persist(); render();
+      if (opts.onOp) { try { opts.onOp('clear', 'clear', n); } catch (e2) {} }
     }
     function setScroll(v) { scrollOffset = v; render(); growSpacer(); }
     function setDark(d) { bgIsDark = d; if (opts.scrollEl) opts.scrollEl.classList.toggle('dark', d); render(); }
@@ -1935,6 +2225,7 @@ ${pilotHeadTags(1)}
     document.body.classList.remove('dragging');
     railEl.style.transition = '';   // restore the collapse animation for click-toggles
     if (!railMoved) { railCollapsed = !railWasCol; pmt('rail_toggle', { collapsed: railCollapsed }); applyLayout(); }
+    else pmt('rail_resize', { width_px: Math.round(railWidth) });
     saveWbUI();
   });
 
@@ -1942,7 +2233,7 @@ ${pilotHeadTags(1)}
   var dragging = false, dragStartX = 0, dragStartBW = 0;
   dividerEl.addEventListener('pointerdown', function (e) { dragging = true; dragStartX = e.clientX; dragStartBW = boardWidth; try { dividerEl.setPointerCapture(e.pointerId); } catch (_) {} document.body.classList.add('dragging'); e.preventDefault(); });
   dividerEl.addEventListener('pointermove', function (e) { if (!dragging) return; boardWidth = dragStartBW + (dragStartX - e.clientX); applyLayout(); });
-  dividerEl.addEventListener('pointerup', function (e) { if (!dragging) return; dragging = false; try { dividerEl.releasePointerCapture(e.pointerId); } catch (_) {} document.body.classList.remove('dragging'); saveWbUI(); });
+  dividerEl.addEventListener('pointerup', function (e) { if (!dragging) return; dragging = false; try { dividerEl.releasePointerCapture(e.pointerId); } catch (_) {} document.body.classList.remove('dragging'); pmt('board_resize', { width_px: Math.round(boardWidth) }); saveWbUI(); });
 
   // ── Collapse the whole bottom control band (scrubbar + footer) for max sim ──
   var scrubbarEl = document.getElementById('scrubbar');
@@ -1971,10 +2262,20 @@ ${pilotHeadTags(1)}
   var fsStateReadout = document.getElementById('fsStateReadout');
   function inFullscreen() { return document.fullscreenElement || document.webkitFullscreenElement; }
   fsBtn.addEventListener('click', function () {
-    pmt('fullscreen_toggle', { on: !inFullscreen() });
+    // Intent only — the event itself is emitted by onFsChange, the single source of
+    // truth. The old click-time emit recorded toggles that never happened (a rejected
+    // requestFullscreen) and missed every Esc exit entirely.
+    fsIntentSrc = 'button';
     if (!inFullscreen()) {
-      if (fsScopeEl.requestFullscreen) fsScopeEl.requestFullscreen();
-      else if (fsScopeEl.webkitRequestFullscreen) fsScopeEl.webkitRequestFullscreen();
+      var pr = null;
+      if (fsScopeEl.requestFullscreen) pr = fsScopeEl.requestFullscreen();
+      else if (fsScopeEl.webkitRequestFullscreen) pr = fsScopeEl.webkitRequestFullscreen();
+      try {
+        if (pr && pr.catch) pr.catch(function (err) {
+          fsIntentSrc = '';
+          pmt('fullscreen_error', { message: String((err && err.message) || err).slice(0, 200) });
+        });
+      } catch (e) {}
     } else {
       if (document.exitFullscreen) document.exitFullscreen();
       else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
@@ -1990,8 +2291,8 @@ ${pilotHeadTags(1)}
     fsNextBtn.disabled = nextVisible(idx, 1) < 0;
     if (fsStateReadout) fsStateReadout.textContent = 'STATE ' + (idx + 1) + ' / ' + order.length;
   }
-  fsPrevBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, -1); if (n >= 0) { pause(); goToState(n, false); } });
-  fsNextBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, 1); if (n >= 0) { pause(); goToState(n, false); } });
+  fsPrevBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, -1); if (n >= 0) { pause(); goToState(n, false, 'chevron_fs'); } });
+  fsNextBtn.addEventListener('click', function () { armIdle(); var n = nextVisible(idx, 1); if (n >= 0) { pause(); goToState(n, false, 'chevron_fs'); } });
 
   // ── Clean mode (§5) — strips the on-canvas caption/formula/HUD/sliders to a bare scene.
   // Independent of the #ctlToggle panel. Never persisted: onFsChange resets it to off on
@@ -2030,6 +2331,10 @@ ${pilotHeadTags(1)}
 
   function onFsChange() {
     var on = !!inFullscreen();
+    // The ONLY fullscreen_toggle emit: fires once per real change, so an Esc exit
+    // (previously invisible) is recorded, and a rejected request never is.
+    pmt('fullscreen_toggle', { on: on, src: fsIntentSrc || 'esc_or_system' });
+    fsIntentSrc = '';
     fsScopeEl.classList.toggle('pm-fs', on);
     if (fsIcon) fsIcon.innerHTML = on ? '\\u2715' : '\\u26F6';   // ✕ exit / ⛶ enter
     fsBtn.childNodes[fsBtn.childNodes.length - 1].nodeValue = on ? ' Exit full screen' : ' Full screen';
@@ -2044,10 +2349,34 @@ ${pilotHeadTags(1)}
 
   // ── Surfaces ────────────────────────────────────────────────────────────────
   loadWbUI();
+  // WHERE she draws is the product signal — which part of a diagram gets circled,
+  // state after state. We record the stroke's bounding box normalised 0–1 against
+  // the canvas (resolution-independent, so a projector and a laptop are comparable)
+  // and deliberately NOT the stroke path: on the whiteboard that is handwriting,
+  // and a board can carry a student's name or marks (founder decision 2026-07-30).
+  function strokePayload(surface, s, box) {
+    var w = (box && box.w) || 1, h = (box && box.h) || 1;
+    var bb = s.bbox || null;
+    var r3 = function (v) { return Math.round(v * 1000) / 1000; };
+    return {
+      surface: surface,
+      at_ms: readSimTimeMs(),             // where in the state's timeline she drew
+      tool: s.tool,
+      color: s.color,
+      size: s.size,
+      points_n: s.points.length,
+      duration_ms: s.t0 ? (Date.now() - s.t0) : null,
+      bbox: bb ? [r3(bb.minX / w), r3(bb.minY / h), r3(bb.maxX / w), r3(bb.maxY / h)] : null
+    };
+  }
   simSurface = makeSurface(simOverlayEl, { scrolls: false, onActivate: function () { lastSurface = simSurface; },
-    onStroke: function (s) { pmt('pen_stroke', { surface: 'sim', at_ms: readSimTimeMs(), tool: s.tool, points: s.points.length }); } });
+    onStroke: function (s, box) { pmt('pen_stroke', strokePayload('sim', s, box)); },
+    onErase: function (n) { pmt('pen_erase', { surface: 'sim', removed: n, at_ms: readSimTimeMs() }); },
+    onOp: function (op, kind, n) { pmt('pen_' + op, { surface: 'sim', of: kind, strokes: n || null }); } });
   boardSurface = makeSurface(wbCanvasEl, { scrolls: true, scrollEl: boardScrollEl, spacerEl: wbSpacerEl, persistKey: 'pm_wb_' + CONCEPT_ID, onActivate: function () { lastSurface = boardSurface; },
-    onStroke: function (s) { pmt('pen_stroke', { surface: 'board', at_ms: readSimTimeMs(), tool: s.tool, points: s.points.length }); } });
+    onStroke: function (s, box) { pmt('pen_stroke', strokePayload('board', s, box)); },
+    onErase: function (n) { pmt('pen_erase', { surface: 'board', removed: n, at_ms: readSimTimeMs() }); },
+    onOp: function (op, kind, n) { pmt('pen_' + op, { surface: 'board', of: kind, strokes: n || null }); } });
   lastSurface = boardSurface;
   var restored = boardSurface.restore();
   boardScrollEl.addEventListener('scroll', function () { boardSurface.setScroll(boardScrollEl.scrollTop); });
@@ -2069,13 +2398,20 @@ ${pilotHeadTags(1)}
       var b = document.createElement('button');
       b.className = 'swatch'; b.setAttribute('data-color', col); b.style.background = col;
       b.title = col;
-      b.addEventListener('click', function () { TOOL.color = col; isDefaultColor = false; refreshSwatchSel(); });
+      b.addEventListener('click', function () {
+        TOOL.color = col; isDefaultColor = false; refreshSwatchSel();
+        pmt('pen_tool', { change: 'color', tool: TOOL.tool, color: TOOL.color, size: TOOL.size, custom: false });
+      });
       swatchWrap.appendChild(b);
     })(SWATCHES[ci]);
   }
-  colorInput.addEventListener('input', function () { TOOL.color = colorInput.value; isDefaultColor = false; refreshSwatchSel(); });
+  colorInput.addEventListener('input', function () {
+    TOOL.color = colorInput.value; isDefaultColor = false; refreshSwatchSel();
+    pmt('pen_tool', { change: 'color', tool: TOOL.tool, color: TOOL.color, size: TOOL.size, custom: true });
+  });
 
   function setTool(t) {
+    if (t !== TOOL.tool) pmt('pen_tool', { change: 'tool', tool: t, color: TOOL.color, size: TOOL.size });
     TOOL.tool = t;
     document.getElementById('wbPenBtn').classList.toggle('on', t === 'pen');
     document.getElementById('wbHiBtn').classList.toggle('on', t === 'highlighter');
@@ -2091,6 +2427,7 @@ ${pilotHeadTags(1)}
       btn.addEventListener('click', function () {
         TOOL.size = parseFloat(btn.getAttribute('data-size')) || 3;
         for (var j = 0; j < sizeBtns.length; j++) sizeBtns[j].classList.toggle('on', sizeBtns[j] === btn);
+        pmt('pen_tool', { change: 'size', tool: TOOL.tool, color: TOOL.color, size: TOOL.size });
       });
     })(sizeBtns[si]);
   }
@@ -2124,7 +2461,7 @@ ${pilotHeadTags(1)}
     simDrawBtn.classList.toggle('on', on);
     simMoveBtn.classList.toggle('on', !on);
     if (isDefaultColor) { TOOL.color = on ? SIM_DEFAULT_COLOR : boardDefaultColor(); refreshSwatchSel(); }
-    if (on) { lastSurface = simSurface; freeze(); }             // annotate a still frame (Rule 26b path)
+    if (on) { lastSurface = simSurface; freeze('draw'); }             // annotate a still frame (Rule 26b path)
   }
   simDrawBtn.addEventListener('click', function () { pmt('pen_used', { surface: 'sim' }); setSimDraw(true); });
   simMoveBtn.addEventListener('click', function () { setSimDraw(false); });
@@ -2243,7 +2580,7 @@ ${cards}
         .join('');
 
     const html = `<!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" data-pm-page="catalog"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viditra — Simulation Library</title>
@@ -2299,6 +2636,13 @@ ${pilotHeadTags(0)}
   #earlyNote button{flex:none;border:none;background:none;color:var(--ink-faint);font-size:17px;line-height:1;
         padding:2px 6px;cursor:pointer;border-radius:7px;transition:color .15s ease;}
   #earlyNote button:hover{color:var(--clay-soft);}
+  #trialNote{display:flex;align-items:center;gap:11px;padding:11px 15px;margin:0 0 18px;
+        background:var(--clay-wash);border:1px solid rgba(203,104,67,.35);border-radius:12px;}
+  #trialNote .txt{flex:1 1 auto;font-size:12.5px;line-height:1.5;color:var(--ink-dim);}
+  #trialNote .txt b{color:var(--clay-soft);font-weight:600;}
+  #trialNote a.cta{flex:none;font-size:12.5px;font-weight:600;color:#fff;background:var(--clay);
+        text-decoration:none;padding:8px 14px;border-radius:9px;white-space:nowrap;transition:background .15s ease;}
+  #trialNote a.cta:hover{background:var(--clay-soft);}
   .who .chip{font-size:11px;font-weight:600;color:var(--clay-soft);border:1px solid rgba(203,104,67,.4);
         border-radius:999px;padding:3px 10px;background:var(--clay-wash);}
   /* default OFF via display:none (an author rule beats the hidden attribute regardless of
@@ -2458,6 +2802,7 @@ ${pilotHeadTags(0)}
         </div>
         <div class="pmMenuGroup">
           <a class="pmMenuRow" id="pmMenuPlans" href="https://viditra.co/#pricing" target="_blank" rel="noopener" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.4 3.8 1.2 4.6 5 5-3.8.4-4.6 1.2-5 5-.4-3.8-1.2-4.6-5-5 3.8-.4 4.6-1.2 5-5z"/></svg>View plans</a>
+          <a class="pmMenuRow" id="pmMenuSubscribe" href="#" target="_blank" rel="noopener" role="menuitem" hidden><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Subscribe &middot; &#8377;${PLAN_PRICE_INR}/mo</a>
         </div>
         <div class="pmMenuGroup">
           <button class="pmMenuRow pmDanger" id="pmMenuSignOut" type="button" role="menuitem"><svg class="pmIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
@@ -2470,6 +2815,10 @@ ${pilotHeadTags(0)}
   <div id="earlyNote" hidden>
     <span class="txt"><b>Early access</b> &mdash; new simulations are added regularly, and your feedback shapes what we build next.</span>
     <button id="earlyNoteX" title="Dismiss" aria-label="Dismiss">&times;</button>
+  </div>
+  <div id="trialNote" hidden>
+    <span class="txt" id="trialNoteTxt"></span>
+    <a class="cta" id="trialNoteGo" href="#" target="_blank" rel="noopener">Continue &mdash; &#8377;${PLAN_PRICE_INR}/month</a>
   </div>
   <input id="search" type="search" placeholder="Search simulations… (e.g. flux, magnetic force, Gauss)" autocomplete="off">
   <div id="noresults">No simulations match that search.</div>
@@ -2525,6 +2874,10 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
       });
     }
   } catch (e) {}
+  try {
+    var tnGoEl = document.getElementById('trialNoteGo');
+    if (tnGoEl) tnGoEl.addEventListener('click', function () { pmt('subscribe_click', { source: 'trial_banner' }); });
+  } catch (e) {}
   // ── Account trigger (avatar + name + trial) ──
   function acctInitial(name, email) {
     var s = (name || email || '').replace(/^\\s+/, '');
@@ -2551,11 +2904,41 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     var name = (hasProfile && p.display_name) || m.display_name || (u && u.email) || 'Teacher';
     var email = (u && u.email) || '';
     var sub = '';
-    if (hasProfile && window.PM_TRIAL_END) {
+    var isPaid = !!(hasProfile && window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now());
+    if (isPaid) {
+      // paying member — the plan replaces the trial countdown (pm-auth sets PM_PLAN)
+      sub = String(window.PM_PLAN || '').indexOf('founding') === 0 ? 'Founding · ₹${PLAN_PRICE_INR}/mo' : 'Member';
+    } else if (hasProfile && window.PM_TRIAL_END) {
       var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
       sub = 'Trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
     } else if (staff) { sub = 'Staff · not tracked'; }
     setAcct({ name: name, sub: sub, email: email, menu: true, showProfile: hasProfile });
+    // ── Early-pay path (not gated by trial expiry): a teacher who's already sold
+    // doesn't have to wait to be locked out to give us money. The account-menu item
+    // is always available in-trial; the banner only surfaces in the final stretch.
+    try {
+      var payLink = window.PM_PAYMENT_LINK || '';
+      if (hasProfile && !isPaid && payLink) {
+        var mSub = document.getElementById('pmMenuSubscribe');
+        if (mSub) { mSub.href = payLink; mSub.hidden = false; }
+        if (window.PM_TRIAL_END) {
+          var daysLeft = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
+          if (daysLeft <= 3) {
+            var tn = document.getElementById('trialNote');
+            var tnTxt = document.getElementById('trialNoteTxt');
+            var tnGo = document.getElementById('trialNoteGo');
+            if (tn && tnTxt && tnGo) {
+              tnTxt.innerHTML = daysLeft <= 0
+                ? '<b>Your trial ends today</b> — keep teaching with Viditra on the founding-teacher plan, no interruption.'
+                : '<b>Your trial ends in ' + daysLeft + ' day' + (daysLeft === 1 ? '' : 's') + '</b> — continue now and keep teaching without a gap.';
+              tnGo.href = payLink;
+              tn.hidden = false;
+              pmt('trial_ending_banner_shown', { days_left: daysLeft });
+            }
+          }
+        }
+      }
+    } catch (e) {}
     // ── The hero surface: her name on her product (profile-gated; dev/staff see the generic title) ──
     var brandMomentStarted = false;
     if (hasProfile) {
@@ -3084,6 +3467,8 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     });
     var rPlans = document.getElementById('pmMenuPlans');
     if (rPlans) rPlans.addEventListener('click', function () { pmt('view_plans', {}); closeMenu(); });
+    var rSub = document.getElementById('pmMenuSubscribe');
+    if (rSub) rSub.addEventListener('click', function () { pmt('subscribe_click', { source: 'acct_menu' }); closeMenu(); });
     var rHelp = document.getElementById('pmMenuHelp');
     if (rHelp) rHelp.addEventListener('click', function () { pmt('get_help', {}); closeMenu(); });
     var rOut = document.getElementById('pmMenuSignOut');
@@ -3103,7 +3488,12 @@ ${chapterBlocks || '  <p class="empty">No simulations published yet.</p>'}
     profEl('pfTeaches').value = p.teaches || '';
     profEl('pfChapter').value = p.next_chapter || '';
     var t = profEl('pfTrial');
-    if (window.PM_TRIAL_END) {
+    if (window.PM_PAID_UNTIL && window.PM_PAID_UNTIL > Date.now()) {
+      var until = new Date(window.PM_PAID_UNTIL);
+      t.textContent = (String(window.PM_PLAN || '').indexOf('founding') === 0 ? 'Founding teacher · ₹${PLAN_PRICE_INR}/month' : 'Member')
+        + ' · active until ' + until.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+      t.style.display = '';
+    } else if (window.PM_TRIAL_END) {
       var days = Math.max(0, Math.ceil((window.PM_TRIAL_END - Date.now()) / 86400000));
       t.textContent = 'Free trial · ' + days + ' day' + (days === 1 ? '' : 's') + ' left';
       t.style.display = '';
@@ -3248,7 +3638,7 @@ function buildOne(conceptId: string): void {
     //    physics_engine_config = mechanics_2d/PCPL — also a p5 sketch, via a different renderer file)
     const simHtml = vendorizeSimHtml(
         json.field_3d_config
-            ? assembleField3DHtml(json.field_3d_config)
+            ? assembleField3DHtml(json.field_3d_config, json.epic_l_path as never)
             : json.particle_field_config
                 ? assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig)
                 : assembleParametricHtml(buildParametricConfig(conceptId, json)),

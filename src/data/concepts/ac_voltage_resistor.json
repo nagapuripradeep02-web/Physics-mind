@@ -1,0 +1,777 @@
+{
+  "concept_id": "ac_voltage_resistor",
+  "concept_name": "AC Voltage Applied to a Resistor",
+  "chapter": 7,
+  "section": "7.2",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.7 Alternating Current, §7.2 AC Voltage Applied to a Resistor (including rms values) — table-of-contents reference only; teaching authored from first principles, no sequence/example/figure imported. First of 8 in the Ch.7 map (ac_voltage_resistor -> phasors -> ac_voltage_inductor -> ac_voltage_capacitor -> series_lcr_circuit -> ac_power_factor -> lc_oscillations -> transformer): this concept is the chapter's baseline every later concept compares against — 'the resistor: v and i in phase, power always dissipated.' The atomic idea: a resistor obeys Ohm's law at every instant of a sinusoidal voltage v = vm*sin(omega t), so the current i = v/R is exactly IN PHASE with the voltage (zero phase difference, never a lag or lead); the instantaneous power p = v*i = vm*im*sin^2(omega t) is NEVER negative (a resistor only ever dissipates, never returns energy — the chapter's baseline that later inductor/capacitor concepts will break); the cycle-average of i (and v) is EXACTLY zero, so an averaging meter cannot rate AC; and the single honest DC-equivalent rating is the RMS value, Vrms = vm/sqrt(2) ~= 0.707*vm (the peak is sqrt(2) higher than every mains rating you will ever see). SCOPE: phasor diagrams (deferred to phasors — this diamond deliberately shows the in-phase lock ONLY on time-traces, peaks together/zeros together, and never draws a rotating-vector diagram), the phase shifts of inductors/capacitors (deferred to ac_voltage_inductor / ac_voltage_capacitor), and how the sinusoidal EMF itself is generated (prerequisite ac_generator, shipped, callback only — never re-derived). rms is NOT split into a sibling: NCERT teaches it here because rms is unmotivated without the resistor's heating, and the resistor lesson is incomplete without its measure. The advanced-ring tail is the derivation of <sin^2> = 1/2 (S8) — a genuine geometric point-symmetry fold, NOT the same operation as S7's pointwise squaring; the two curve-transform morphs are deliberately distinct and never conflated. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch at exactly S3, S5, S6 — a straightforward contrast beat, no predict->reveal). Routed to the NEW field_3d 'ac_resistor' scenario (sine-stamped AC source, oscillating current beads that rock in place instead of streaming, a p(t)-driven heater emissive, a dual-strip scope pane [v/i overlay + its own p(t) strip with a highlighted zero baseline], a re-taskable averaging/rms meter, an energy counter, and an S6-only twin DC circuit with a hard-locked R_dc = R so the match is FORCED to land exactly at Vrms) — built in-loop for this concept (docs/loop_runs/ch7_engine_log.md, Stage 1b, commit 6b97ede) per the architect's Class-B triage; renderer contract quoted verbatim from that engine-log handoff, which DEVIATES from the architect skeleton's own literal-guess visible_elements strings (the engine log is authoritative). entry_state_map's PRIMARY aha (S6, the rms/DC-equivalent insight) sits OUTSIDE the foundational slice, so a mandatory exit-pill is declared at the end of the foundational range: 'So which single number rates an AC supply? ->' routes a student into the rms slice (S5-S7); a second pill at the end of S7, 'Why exactly half? ->', routes into the S8 derivation tail. (No dedicated pill field exists in the current entry_state_map schema/runtime — this is the authoritative note for the UI layer that will consume it.) Every state is live (show_sliders true, Rule 31) but exposes only its own relevant control row(s) via the ac_resistor block's controls/static_readouts arrays: f_demo at S1, R at S2, V_dc at S6, ALL THREE at S9 (explore). Handoff to phasors (next concept): this diamond ends with two in-phase time-traces and no rotating-vector diagram anywhere; phasors formalizes exactly that lock as a 0-degree angle — no fix cycle on this concept may ever add a phasor arrow.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "ac_resistor"
+    ]
+  },
+  "prerequisites": [
+    "ohms_law",
+    "electrical_power_in_resistor",
+    "ac_generator"
+  ],
+  "real_world_anchor": {
+    "primary": "A heating element — inside a kettle, a toaster, a room heater — glows the same steady orange even though the current running through it reverses direction many times every second. The glow never betrays the reversals, because heating doesn't care which way the charge moves. And the number printed near a wall socket, or on an appliance's nameplate, is never the peak of that swing — it is the RMS value, the DC-equivalent rating; the true peak sits the square root of two higher.",
+    "secondary": "Point a phone's slow-motion camera at a row of mains-powered lamps and they visibly blink — at exactly twice the mains frequency. That is the same sin-squared power pulse this diamond builds, made visible with a device almost everyone already carries."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "vm": { "name": "Peak (amplitude) voltage across the resistor", "unit": "V", "min": 2, "max": 20, "default": 10.0, "step": 1, "role": "driver" },
+      "R": { "name": "Resistance of the heater element", "unit": "Ω", "min": 2, "max": 20, "default": 5.0, "step": 1, "role": "driver" },
+      "f_demo": { "name": "Demo-compressed AC frequency (real mains is tens of Hz)", "unit": "Hz", "min": 0.1, "max": 0.5, "default": 0.25, "step": 0.05, "role": "driver" },
+      "V_dc": { "name": "DC twin supply voltage — S6 only", "unit": "V", "min": 0, "max": 20, "default": 10.0, "step": 0.1, "role": "driver" },
+      "omega": { "name": "Angular frequency", "unit": "rad/s", "derived": "omega = 2*PI*f_demo" },
+      "theta": { "name": "Instantaneous phase — native radians, no wrap needed", "unit": "rad", "derived": "theta = omega * t   [t = state-local clock in seconds, Rule 26]" },
+      "v": { "name": "Instantaneous voltage", "unit": "V", "derived": "v = vm * sin(theta)" },
+      "im": { "name": "Peak (amplitude) current", "unit": "A", "derived": "im = vm / R" },
+      "i": { "name": "Instantaneous current", "unit": "A", "derived": "i = v / R = im * sin(theta)" },
+      "p": { "name": "Instantaneous power dissipated in R", "unit": "W", "derived": "p = v * i = vm*im*sin(theta)^2  [>= 0 always]" },
+      "p_peak": { "name": "Peak instantaneous power", "unit": "W", "derived": "p_peak = vm * im" },
+      "p_avg": { "name": "Cycle-average power", "unit": "W", "derived": "p_avg = p_peak / 2 = vm*im/2" },
+      "i_avg_cycle": { "name": "Cycle-average current — EXACT zero over any whole number of periods", "unit": "A", "derived": "i_avg_cycle = 0" },
+      "Vrms": { "name": "RMS voltage — the DC-equivalent rating", "unit": "V", "derived": "Vrms = vm / sqrt(2)" },
+      "Irms": { "name": "RMS current", "unit": "A", "derived": "Irms = im / sqrt(2)" },
+      "E": { "name": "Energy dissipated since this state began (Rule 26 state-local clock, resets each state entry)", "unit": "J", "derived": "E(t) = p_avg*t - (p_peak/(4*omega))*sin(2*omega*t)   [monotone non-decreasing, dE/dt = p(t) >= 0]" },
+      "i2_running": { "name": "Cumulative time-average of i² since state start — the S7 settling meter", "unit": "A^2", "derived": "i2_running(t) = im^2 * (0.5 - sin(2*omega*t)/(4*omega*t))   [limit as t->0 is 0; settles to im^2/2]" },
+      "Irms_running": { "name": "Running rms current — the root pulled from i2_running (S7)", "unit": "A", "derived": "Irms_running(t) = sqrt(i2_running(t))" },
+      "R_dc": { "name": "Twin (DC) heater resistance — LOCKED equal to R, never an independent slider", "unit": "Ω", "derived": "R_dc = R" },
+      "I_dc": { "name": "DC twin current", "unit": "A", "derived": "I_dc = V_dc / R_dc" },
+      "P_dc": { "name": "DC twin instantaneous (= constant) power", "unit": "W", "derived": "P_dc = V_dc^2 / R_dc" },
+      "E_dc": { "name": "DC twin energy since state start", "unit": "J", "derived": "E_dc(t) = P_dc * t   [exactly linear — no ripple, unlike E(t)]" }
+    },
+    "computed_outputs": {
+      "v_display": { "formula": "vm*Math.sin(omega*t)" },
+      "i_display": { "formula": "v_display / R" },
+      "p_display": { "formula": "v_display * i_display" },
+      "E_display": { "formula": "(vm*im/2)*t - (vm*im/(4*omega))*Math.sin(2*omega*t)" },
+      "p_avg_display": { "formula": "vm*im/2" },
+      "Vrms_display": { "formula": "vm/Math.sqrt(2)" },
+      "Irms_display": { "formula": "im/Math.sqrt(2)" },
+      "i2_running_display": { "formula": "t < 1e-3 ? 0 : im*im*(0.5 - Math.sin(2*omega*t)/(4*omega*t))" },
+      "Irms_running_display": { "formula": "Math.sqrt(i2_running_display)" },
+      "P_dc_display": { "formula": "V_dc*V_dc/R" },
+      "E_dc_display": { "formula": "(V_dc*V_dc/R)*t" }
+    },
+    "formulas": {
+      "instantaneous_voltage": "v = vₘ sin(ωt) — the applied AC voltage, ω = 2πf_demo",
+      "ohms_law_instant": "i = v/R — Ohm's law holds at EVERY instant, not just for DC",
+      "instantaneous_current": "i = iₘ sin(ωt), iₘ = vₘ/R — current is in phase with voltage (zero phase difference)",
+      "instantaneous_power": "p = v·i = vₘiₘ sin²(ωt) ≥ 0 — never negative, because v and i always share sign",
+      "peak_power": "p_peak = vₘiₘ",
+      "average_power": "⟨p⟩ = vₘiₘ/2 — from ⟨sin²ωt⟩ = ½",
+      "cycle_average_current": "⟨i⟩ = 0 exactly, over any whole number of periods",
+      "rms_voltage": "Vᵣₘₛ = vₘ/√2 ≈ 0.707vₘ — the DC-equivalent voltage",
+      "rms_current": "Iᵣₘₛ = iₘ/√2",
+      "rms_power_check": "⟨p⟩ = Vᵣₘₛ·Iᵣₘₛ = Iᵣₘₛ²R = ½vₘiₘ — three equivalent routes to the same 10.0 W",
+      "square_mean_root": "⟨i²⟩ = iₘ²/2 (square, then mean) → Iᵣₘₛ = √⟨i²⟩ = iₘ/√2 (then root) — the recipe order matters (S7)",
+      "half_identity": "sin²(ωt) = (1 − cos 2ωt)/2 — the cos 2ωt term is the SAME double-frequency (2f) pulse seen in p(t) since S3/S4 (S8)",
+      "dc_twin_match": "P_dc = V_dc²/R_dc; setting R_dc = R and P_dc = ⟨p⟩ gives V_dc = vₘ/√2 = Vᵣₘₛ exactly — the match is forced to land at the rms value ONLY because R_dc = R"
+    },
+    "constraints": [
+      "i(t) = v(t)/R holds at every instant — Ohm's law is not a DC-only law.",
+      "v(t) and i(t) are exactly in phase for a pure resistor — zero phase difference, always (no v-to-i time lag may ever be drawn — Rule 32a binding caution).",
+      "p(t) = v(t)·i(t) = vₘiₘ sin²(ωt) ≥ 0 at every instant — a resistor never returns energy to the source.",
+      "The cycle-average of i(t) (and v(t)) is exactly zero over any whole number of periods, yet ⟨p(t)⟩ = ½vₘiₘ > 0 — average current cannot rate AC.",
+      "Vᵣₘₛ = vₘ/√2 and Iᵣₘₛ = iₘ/√2 are the DC-equivalent values: ⟨p⟩ = Vᵣₘₛ·Iᵣₘₛ = Iᵣₘₛ²R = ½vₘiₘ.",
+      "⟨sin²ωt⟩ = ½ EXACTLY (not approximately) over any whole number of half-periods."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 3,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "RMS is the DC-equivalent rating for AC — the peak is √2 higher.",
+    "visual_confirmation": "The DC twin dialled to the peak voltage burns steadily brighter than the AC heater; winding the dial down to 7.07 V makes the two glows, and their energy-counter climb rates, match exactly."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "rms": ["STATE_5", "STATE_6", "STATE_7"],
+    "derivation": ["STATE_8"],
+    "exploration": ["STATE_9"]
+  },
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "Web-search budget was not spent during the architect dispatch, so zero external syllabus verification happened. Every cell the architect could not confirm from memory carries verified:false + needs_teacher_verification:true rather than a guess. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 content). The skeleton's Ontario row used an informal 'marginal' coverage note; the schema's coverage enum only allows full/partial/absent, so 'marginal' is mapped here to 'partial' with the original wording preserved in syllabus_unit.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 12 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.2 AC Voltage Applied to a Resistor, including rms values — the full ring set IS this lesson",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "CAIE A-level 9702",
+        "coverage": "full",
+        "syllabus_unit": "'Alternating currents' topic: sinusoidal AC, peak vs rms, I_rms = I0/√2, mean power = ½ peak power — believed covered; the S8 sin² proof believed to sit beyond the outcomes list",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Physics (0625)",
+        "coverage": "partial",
+        "syllabus_unit": "AC vs DC distinction believed qualitative only (S1-S4 territory); rms believed absent from this syllabus",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "absent",
+        "syllabus_unit": "AC circuit analysis and rms believed removed in the 2023 syllabus reform (the legacy HL 11.2 syllabus had it)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 2",
+        "coverage": "absent",
+        "syllabus_unit": "The AP Physics 2 CED's circuits content is believed DC-only",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Electricity and Magnetism",
+        "coverage": "absent",
+        "syllabus_unit": "AC and rms are believed to sit beyond the AP Physics C CED",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Ontario SPH4U",
+        "coverage": "partial",
+        "syllabus_unit": "Architect noted coverage as 'marginal' (believed) — mapped here to partial pending verification",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "AC swings both ways — magnitude AND direction reverse",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_beads_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_source_label", "position": { "x": 380, "y": 60 }, "text": "AC source: voltage swings positive and negative", "color": "#FFD54F" },
+          { "type": "annotation", "id": "s1_beads_label", "position": { "x": 200, "y": 250 }, "text": "charges rock forward, then back", "color": "#FFB300" },
+          { "type": "annotation", "id": "s1_freq_label", "position": { "x": 560, "y": 400 }, "text": "frequency sets how fast it swings", "color": "#90A4AE" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This ring feeds an alternating voltage into the wire — the same swinging push a spinning coil makes.", "glow": "source" },
+            { "id": "s1_2", "text_en": "Watch the charges rock forward, then back — direction itself keeps reversing, not just size.", "glow": "beads" },
+            { "id": "s1_3", "text_en": "We've slowed a real mains signal down so you can watch it swing; use frequency to speed it up.", "glow": "arrow" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Ohm's law holds every instant — current is in phase with voltage",
+        "duration": 19,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_phase_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["why_v_i_in_phase", "ohms_law_ac_validity", "peak_current_from_peak_voltage"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_ohm_label", "position": { "x": 380, "y": 60 }, "text": "Ohm's law: current equals voltage over resistance, every instant", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s2_sample_label", "position": { "x": 200, "y": 250 }, "text": "sample voltage, divide by resistance, plant current", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s2_phase_label", "position": { "x": 560, "y": 400 }, "text": "current and voltage peak together — in phase", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Ohm's law — current equals voltage over resistance — holds at every instant.", "glow": "i_trace" },
+            { "id": "s2_2", "text_en": "At zero volts the current is zero too.", "glow": "v_trace", "scenario_cue": "cursor_sample_1" },
+            { "id": "s2_3", "text_en": "A third of the way, five volts gives one amp.", "glow": "v_trace", "scenario_cue": "cursor_sample_2" },
+            { "id": "s2_4", "text_en": "At the peak, ten volts gives exactly two amps.", "glow": "v_trace", "scenario_cue": "cursor_sample_3" },
+            { "id": "s2_5", "text_en": "Now the full current curve sweeps in, locked to voltage — peaks together, zeros together.", "glow": "i_trace", "scenario_cue": "i_sweep_start" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Both halves heat equally — reversal is not undo",
+        "duration": 19,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_energy_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_forward_label", "position": { "x": 380, "y": 60 }, "text": "current flows forward — heater glows", "color": "#FFB300" },
+          { "type": "annotation", "id": "s3_reverse_label", "position": { "x": 200, "y": 250 }, "text": "current reverses — same glow, same heat", "color": "#FF8A65" },
+          { "type": "annotation", "id": "s3_energy_label", "position": { "x": 560, "y": 400 }, "text": "energy climbs through both halves, never down", "color": "#A5D6A7" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Current flows one way, and the heater glows steadily bright.", "glow": "arrow" },
+            { "id": "s3_2", "text_en": "Now the current reverses — same glow, same heat, just the flow direction flipped.", "glow": "heater" },
+            { "id": "s3_3", "text_en": "Every half cycle deposits more energy; the counter climbs through both halves, never back down.", "glow": "energy_counter" },
+            { "id": "s3_4", "text_en": "Heating doesn't care which way charge moves — reversing the current is not undoing it.", "glow": "heater" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The negative half-cycle undoes the positive half — over a whole cycle the resistor receives nothing.",
+            "visual_counter": "The A-to-B-to-A loop shows identical glow on both halves while the energy counter climbs through both, never down.",
+            "one_line_fix": "Heating doesn't care which way the charge moves — both halves deposit energy."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Power never goes negative — a resistor only ever dissipates",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_never_neg_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_multiply_label", "position": { "x": 380, "y": 60 }, "text": "power equals voltage times current, every instant", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s4_pulse_label", "position": { "x": 200, "y": 250 }, "text": "power pulses twice each cycle, touches zero", "color": "#F48FB1" },
+          { "type": "annotation", "id": "s4_never_neg_label", "position": { "x": 560, "y": 400 }, "text": "power never dips below zero", "color": "#A5D6A7" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Multiply voltage by current at every instant and watch power appear.", "glow": "p_strip" },
+            { "id": "s4_2", "text_en": "It rises, touches zero, rises again — twice each cycle, never below the line.", "glow": "p_strip" },
+            { "id": "s4_3", "text_en": "Even with both voltage and current negative, two minus signs still make power positive.", "glow": "p_strip", "scenario_cue": "product_walk_highlight" },
+            { "id": "s4_4", "text_en": "A resistor only ever eats energy — later components will learn to hand some back.", "glow": "energy_counter" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "The zero-average paradox — a dead meter, a glowing heater",
+        "duration": 18,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s5_zero_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_meter_label", "position": { "x": 380, "y": 60 }, "text": "an averaging meter — reads steady current", "color": "#90A4AE" },
+          { "type": "annotation", "id": "s5_zero_label", "position": { "x": 200, "y": 250 }, "text": "average current over a full cycle: zero", "color": "#EF9A9A" },
+          { "type": "annotation", "id": "s5_still_glow_label", "position": { "x": 560, "y": 400 }, "text": "heater still glows, energy still climbs", "color": "#FFB300" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Here's an average-reading meter — the kind that reads steady, direct current.", "glow": "meter" },
+            { "id": "s5_2", "text_en": "Watch its needle: over every full cycle, the average current is exactly zero.", "glow": "meter", "scenario_cue": "avg_zero_reveal" },
+            { "id": "s5_3", "text_en": "Yet the charges keep rocking and the heater keeps glowing the whole time.", "glow": "heater" },
+            { "id": "s5_4", "text_en": "A meter that averages to zero can't be the number that rates AC.", "glow": "meter" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A meter's average reading is the honest measure of AC.",
+            "visual_counter": "The averaging needle sits dead at zero across whole cycles while the heater keeps glowing and the energy counter keeps climbing.",
+            "one_line_fix": "A symmetric AC current averages to exactly zero — the average can't rate AC."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "RMS — the DC-equivalent rating, below the peak",
+        "duration": 19,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s6_match_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["rms_vs_average_confusion", "mains_rating_meaning", "why_not_peak_value"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_twin_label", "position": { "x": 380, "y": 60 }, "text": "a second heater on a steady DC supply", "color": "#4DD0E1" },
+          { "type": "annotation", "id": "s6_outglow_label", "position": { "x": 200, "y": 250 }, "text": "dialled to the peak, it out-glows ours", "color": "#FFAB91" },
+          { "type": "annotation", "id": "s6_match_label", "position": { "x": 560, "y": 400 }, "text": "match lands at 0.707 of the peak — the rms value", "color": "#FFCA28" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "A second heater sits on a steady supply, dialled to ten volts.", "glow": "twin_dc" },
+            { "id": "s6_2", "text_en": "It glows brighter than ours at first; now watch the dial wind down.", "glow": "twin_dc", "scenario_cue": "dial_down_start" },
+            { "id": "s6_3", "text_en": "The glows match at seven point zero seven volts — the root mean square.", "glow": "rms_line", "scenario_cue": "match_reveal" },
+            { "id": "s6_4", "text_en": "Every mains rating is this rms number — the true peak sits root two higher.", "glow": "rms_line" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The rating on the socket or the appliance nameplate is the peak voltage.",
+            "visual_counter": "The DC twin set to the peak voltage visibly out-glows the AC heater; the match lands at 0.707 of the peak, below the marked peak line.",
+            "one_line_fix": "Ratings are RMS — the peak is root two higher."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Square, mean, root — the recipe behind 0.707",
+        "duration": 19,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_root_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["why_root_two", "square_mean_root_order", "average_power_half_peak_power"],
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_square_label", "position": { "x": 380, "y": 60 }, "text": "square the current curve, point by point", "color": "#FFB300" },
+          { "type": "annotation", "id": "s7_settle_label", "position": { "x": 200, "y": 250 }, "text": "the mean settles at half the peak squared", "color": "#90A4AE" },
+          { "type": "annotation", "id": "s7_root_label", "position": { "x": 560, "y": 400 }, "text": "root pulls it back to 1.41 amps", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Here's the recipe behind that number: square the current curve, point by point.", "glow": "i_trace", "scenario_cue": "square_morph_start" },
+            { "id": "s7_2", "text_en": "Watch the meter settle — the mean of the squared current lands at two square amps.", "glow": "meter", "scenario_cue": "mean_settle_start" },
+            { "id": "s7_3", "text_en": "Pull the square root and it lands right on one point four one amps.", "glow": "rms_line", "scenario_cue": "root_pull" },
+            { "id": "s7_4", "text_en": "Square, mean, root — that number gives the average power: ten watts.", "glow": "formula", "scenario_cue": "avg_power_dock" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Why exactly half — the geometry of sin squared",
+        "duration": 18,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s8_flat_label",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_fold_label", "position": { "x": 380, "y": 60 }, "text": "the power curve folds — humps into troughs", "color": "#CE93D8" },
+          { "type": "annotation", "id": "s8_flat_label", "position": { "x": 200, "y": 250 }, "text": "curve flattens exactly at half the peak", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s8_identity_label", "position": { "x": 560, "y": 400 }, "text": "sin squared = (1 minus cos of twice the angle) over two", "color": "#FFD54F" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Nothing moves here — just this power curve, folding.", "glow": "p_strip", "scenario_cue": "fold_start" },
+            { "id": "s8_2", "text_en": "Each hump rotates into the trough beside it and the curve flattens dead level at half the peak.", "glow": "p_strip", "scenario_cue": "fold_end" },
+            { "id": "s8_3", "text_en": "That's the identity: sine squared equals one minus cosine of twice the angle, over two — the same double-frequency pulse you've seen since it started.", "glow": "formula", "scenario_cue": "identity_dock" }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — the whole resistor circuit, live",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s9_formula_label",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          { "type": "annotation", "id": "s9_drag_label", "position": { "x": 380, "y": 60 }, "text": "drag peak voltage, frequency, resistance", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s9_watch_label", "position": { "x": 200, "y": 250 }, "text": "watch voltage, current, and power respond live", "color": "#FFCA28" },
+          { "type": "annotation", "id": "s9_formula_label", "position": { "x": 560, "y": 400 }, "text": "i = v / R — the whole idea, live", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Now it's yours — set the peak voltage, the frequency, and the resistance, and watch voltage, current, and power respond live.", "glow": "formula" }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered AC voltage on a resistor when they can (1) state that AC means both the size AND direction of the voltage vary sinusoidally, unlike DC; (2) apply i = v/R at every instant to show current is exactly in phase with voltage (peaks and zeros together); (3) explain that the reversed half-cycle heats a resistor exactly as much as the forward half, since heating depends on i-squared; (4) show that instantaneous power p = v*i is never negative for a resistor, because voltage and current always share sign; (5) recognise that the cycle-average of the current is exactly zero, so an averaging meter cannot rate AC; (6) state that every AC voltage/current rating is an RMS value — the DC-equivalent that delivers the same average power — and that the true peak is root two times higher; (7) compute the rms current via the square-mean-root recipe (square the current, average it, then root it) and use it to find average power; and (8) explain why the time-average of sine-squared is exactly one half, using the identity sin²(ωt) = (1 − cos 2ωt)/2.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Which statement best describes what makes a voltage 'alternating' rather than direct?",
+        "options": {
+          "A": "Both its size AND its direction reverse periodically, tracing out a sine wave over time",
+          "B": "Only its size changes; the direction of the push never reverses",
+          "C": "It is direct current that has simply been slowed down for easier viewing",
+          "D": "It is a voltage that randomly jumps between different fixed values"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes AC only varies in magnitude, missing that direction reversal is the defining feature",
+          "C": "confuses the demo-compressed frequency used for visualization with the physics itself",
+          "D": "imagines AC as random or discontinuous jumps rather than a smooth periodic sine"
+        },
+        "tested_idea": "AC means both the magnitude AND the direction of the voltage vary sinusoidally with time, unlike DC.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A student says 'AC is just DC that keeps changing size.' What is missing from that description, and what does the missing piece look like on a voltage-vs-time graph?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "At the exact instant a resistor's voltage passes through its peak value, what is true of the current through it?",
+        "options": {
+          "A": "The current is ALSO at its peak — i = v/R holds at every instant, so v and i peak together",
+          "B": "The current lags slightly behind, reaching its peak a little later",
+          "C": "The current is zero, since Ohm's law only applies to steady values",
+          "D": "The current cannot be determined without also knowing the frequency"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports a phase lag from inductors or capacitors that a pure resistor never has",
+          "C": "the classic trap — believes Ohm's law is DC-only, missing that i = v/R holds instant by instant",
+          "D": "misses that i = v/R depends only on the instantaneous voltage and resistance, not the frequency"
+        },
+        "tested_idea": "Ohm's law holds at every instant for a resistor, so current is exactly in phase with voltage: im = vm/R.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A 10 V peak AC supply drives a 5 ohm resistor. State the peak current, and explain why the current and voltage reach their peaks at the same instant."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A resistor carries AC. Over one full cycle, the current flows forward for half the cycle and backward for the other half. How does the heat produced in the reversed half compare to the forward half?",
+        "options": {
+          "A": "Exactly the same — heating depends on the square of the current, which is identical either direction",
+          "B": "Zero — the reversed current undoes the heating from the first half",
+          "C": "Less, because reversing the current wastes some of its energy",
+          "D": "More, because reversing the current takes extra work"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — believes reversal cancels the heating instead of adding to it",
+          "C": "invents an energy-loss mechanism with no physical basis",
+          "D": "invents an energy-cost mechanism with no physical basis"
+        },
+        "tested_idea": "Heating in a resistor depends on i-squared, which is identical for +i and -i — reversal does not undo the heating.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why an energy counter tracking heat in a resistor never decreases, even though the AC current through it keeps changing direction."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "At some instant, both the voltage across a resistor AND the current through it are negative. What is the instantaneous power at that moment?",
+        "options": {
+          "A": "Positive — a negative voltage times a negative current gives a positive power, exactly as in the positive half-cycle",
+          "B": "Negative — power simply follows the sign of voltage and current",
+          "C": "Zero — two negative values cancel out any power",
+          "D": "Undefined — power has no meaning when both quantities are negative"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misapplies sign intuition, missing that a negative times a negative gives a positive",
+          "C": "confuses 'both negative' with 'they cancel to zero'",
+          "D": "believes negative inputs make power meaningless rather than positive"
+        },
+        "tested_idea": "p = v*i is never negative for a resistor, because v and i share the same sign at every instant.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Show that the power dissipated in a resistor cannot be negative, even during the half-cycle when both voltage and current are negative."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "You connect a meter that displays the average value of the AC current through a resistor, measured over many complete cycles. What does it read?",
+        "options": {
+          "A": "Exactly zero — the positive and negative halves of a symmetric AC cycle average out completely",
+          "B": "The peak current",
+          "C": "The rms current",
+          "D": "A small nonzero drift value that depends on the resistor"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the average with the peak — a much larger, different number",
+          "C": "confuses the average (zero) with the rms (nonzero) — exactly the distinction the next state draws out",
+          "D": "invents a nonphysical drift with no basis in the sine wave's symmetry"
+        },
+        "tested_idea": "The cycle-average of a symmetric AC current is exactly zero, so an averaging meter cannot rate AC.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "An averaging ammeter reads zero on an AC circuit that is clearly heating a resistor. Explain how both facts can be true at once."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "An appliance's nameplate lists its AC supply voltage as a single number. What does that number represent?",
+        "options": {
+          "A": "The RMS voltage — the DC voltage that would deliver the same average power to a resistor",
+          "B": "The peak voltage — the highest instantaneous value the supply ever reaches",
+          "C": "The average voltage over one cycle",
+          "D": "The minimum voltage guaranteed by the supply"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the confronted misconception — the peak is root two HIGHER than the rated rms value",
+          "C": "confuses rms with the average, which is exactly zero for AC",
+          "D": "invents a 'minimum guarantee' reading with no physical basis"
+        },
+        "tested_idea": "Every AC rating is an RMS value — the DC-equivalent that delivers the same average power — and the true peak is root two times higher.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "An AC supply is rated at 7.07 V rms. State its peak voltage, and explain in one sentence why the rating uses rms rather than the peak."
+      },
+      {
+        "q_id": "Q7",
+        "stem": "For a resistor carrying a sinusoidal current with peak value im, which sequence of operations correctly produces the rms current?",
+        "options": {
+          "A": "Square the current, take its time-average, then take the square root of that average",
+          "B": "Take the time-average of the current directly, then square it",
+          "C": "Take the square root of the current first, then average it",
+          "D": "Average the peak and zero values of the current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "averages first — this gives zero, since the cycle-average of current is zero, and squaring zero stays zero; the order matters",
+          "C": "roots before averaging — an invalid, physically meaningless sequence",
+          "D": "invents an ad hoc peak-and-zero average with no basis"
+        },
+        "tested_idea": "The rms recipe is square, then mean, then root, in that exact order.",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A resistor's peak current is 2.00 A. Using the square-mean-root recipe, compute its rms current and the average power dissipated in a 5 ohm resistor."
+      },
+      {
+        "q_id": "Q8",
+        "stem": "Why is the time-average of sine-squared of omega t, taken over a whole number of half-cycles, EXACTLY one half rather than merely approximately one half?",
+        "options": {
+          "A": "Because sine-squared equals one minus cosine of twice the angle, all over two, and that cosine term's own average is exactly zero, leaving exactly one half",
+          "B": "It's only approximately one half; the exact value depends on the frequency",
+          "C": "It's exactly one half purely by definition, with no underlying reason",
+          "D": "Because the peak and the trough of sine-squared are numerically equal"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misses that the identity makes the result frequency-independent and exact, not approximate",
+          "C": "treats a derivable result as an unexplained convention",
+          "D": "confuses 'peak equals trough' with the actual reason — the cosine term's own zero average"
+        },
+        "tested_idea": "sin-squared(omega t) equals (1 minus cos 2*omega*t)/2, and the double-frequency cosine term averages to exactly zero, making the average of sin-squared exactly one half.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Starting from sin-squared(theta) equals (1 minus cos 2*theta)/2, explain why the time-average of the instantaneous power in a resistor is exactly half its peak value."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q3"],
+      "STATE_4": ["Q4"],
+      "STATE_5": ["Q5"],
+      "STATE_6": ["Q6"],
+      "STATE_7": ["Q7"],
+      "STATE_8": ["Q8"]
+    },
+    "non_assessed_states": ["STATE_9"]
+  },
+  "field_3d_config": {
+    "scenario_type": "ac_resistor",
+    "explorer_id": "ac_resistor_explorer",
+    "slider_controls": {
+      "vm": { "min": 2, "max": 20, "step": 1, "default": 10.0, "label": "Peak voltage vₘ" },
+      "R": { "min": 2, "max": 20, "step": 1, "default": 5.0, "label": "Resistance R" },
+      "f_demo": { "min": 0.1, "max": 0.5, "step": 0.05, "default": 0.25, "label": "Frequency f" },
+      "V_dc": { "min": 0, "max": 20, "step": 0.1, "default": 10.0, "label": "DC supply V" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "AC swings both ways — voltage reverses in size and direction",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater"],
+        "camera_position": [1.2, 1.3, 8.5],
+        "caption": "Voltage swings both ways",
+        "show_sliders": true,
+        "formula_overlay": "v = vₘ sin(ωt)",
+        "variable_overrides": { "vm": 10.0, "R": 5.0 },
+        "ac_resistor": {
+          "mode": "ac_swings_both_ways",
+          "controls": ["f_demo"],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_twin_dc": false,
+          "show_energy": false,
+          "show_rms_readout": false,
+          "show_vm_peak_line": true,
+          "derivation": false,
+          "formula_text": "v = vₘ sin(ωt)"
+        }
+      },
+      "STATE_2": {
+        "label": "Ohm's law holds every instant — current tracks voltage exactly",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater"],
+        "camera_position": [1.2, 1.3, 8.5],
+        "caption": "Current copies voltage instantly",
+        "show_sliders": true,
+        "formula_overlay": "i = v/R\niₘ = vₘ/R",
+        "variable_overrides": { "vm": 10.0, "f_demo": 0.25 },
+        "ac_resistor": {
+          "mode": "ohm_at_every_instant",
+          "controls": ["R"],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_twin_dc": false,
+          "show_energy": false,
+          "show_rms_readout": false,
+          "derivation": false,
+          "formula_text": "i = v/R\niₘ = vₘ/R",
+          "cursor_sample_at_ms": [500, 2000, 3500],
+          "i_sweep_start_at_ms": 5000
+        }
+      },
+      "STATE_3": {
+        "label": "Both halves heat the resistor equally",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater"],
+        "camera_position": [1.2, 1.3, 8.5],
+        "caption": "Reversed current heats equally",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "f_demo": 0.25 },
+        "ac_resistor": {
+          "mode": "both_halves_heat",
+          "controls": [],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": false,
+          "show_twin_dc": false,
+          "show_energy": true,
+          "show_rms_readout": false,
+          "derivation": false,
+          "formula_text": ""
+        }
+      },
+      "STATE_4": {
+        "label": "Power never goes negative — a resistor only ever dissipates",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater"],
+        "camera_position": [1.2, 1.3, 8.5],
+        "caption": "Power never goes negative",
+        "show_sliders": true,
+        "formula_overlay": "p = v·i ≥ 0",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "f_demo": 0.25 },
+        "ac_resistor": {
+          "mode": "power_never_negative",
+          "controls": [],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_twin_dc": false,
+          "show_energy": true,
+          "show_rms_readout": false,
+          "derivation": false,
+          "formula_text": "p = v·i ≥ 0",
+          "product_walk_highlight_at_ms": 6500
+        }
+      },
+      "STATE_5": {
+        "label": "The zero-average paradox — a dead meter, a glowing heater",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater", "acr_meter"],
+        "camera_position": [1.2, 1.6, 9.5],
+        "caption": "Average current: exactly zero",
+        "show_sliders": true,
+        "formula_overlay": "⟨i⟩ = 0",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "f_demo": 0.25 },
+        "ac_resistor": {
+          "mode": "zero_average",
+          "meter_mode": "avg_i",
+          "controls": [],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_twin_dc": false,
+          "show_energy": true,
+          "show_rms_readout": false,
+          "derivation": false,
+          "formula_text": "⟨i⟩ = 0",
+          "avg_zero_reveal_at_ms": 1500
+        }
+      },
+      "STATE_6": {
+        "label": "RMS — the DC-equivalent rating, below the peak",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater", "acr_twin_dc"],
+        "camera_position": [2.0, -0.6, 12.5],
+        "caption": "Match lands below peak",
+        "show_sliders": true,
+        "formula_overlay": "Vᵣₘₛ = vₘ/√2 ≈ 0.707 vₘ",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "f_demo": 0.25, "V_dc": 10.0 },
+        "ac_resistor": {
+          "mode": "rms_dc_equivalent",
+          "controls": ["V_dc"],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_twin_dc": true,
+          "show_energy": true,
+          "show_rms_readout": true,
+          "show_vrms_line": true,
+          "derivation": false,
+          "formula_text": "Vᵣₘₛ = vₘ/√2 ≈ 0.707 vₘ",
+          "dial_down_start_at_ms": 2000,
+          "dial_down_end_at_ms": 5000,
+          "match_reveal_at_ms": 5200
+        }
+      },
+      "STATE_7": {
+        "label": "Square, mean, root — the recipe behind 0.707",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater", "acr_meter"],
+        "camera_position": [1.2, 1.6, 9.5],
+        "caption": "Square, average, root",
+        "show_sliders": true,
+        "formula_overlay": "⟨i²⟩ = iₘ²/2 → Iᵣₘₛ = iₘ/√2 → ⟨p⟩ = Iᵣₘₛ²R",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "f_demo": 0.25 },
+        "ac_resistor": {
+          "mode": "square_mean_root",
+          "meter_mode": "rms_i2",
+          "controls": [],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_twin_dc": false,
+          "show_energy": false,
+          "show_rms_readout": true,
+          "show_vrms_line": true,
+          "derivation": true,
+          "square_morph_start_at_ms": 500,
+          "mean_settle_start_at_ms": 2000,
+          "root_pull_at_ms": 4000,
+          "avg_power_dock_at_ms": 6000
+        }
+      },
+      "STATE_8": {
+        "label": "Why exactly half — the geometry of sin squared",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater"],
+        "camera_position": [1.5, 0.8, 10.5],
+        "caption": "Humps fill the troughs",
+        "show_sliders": true,
+        "formula_overlay": "sin²ωt = (1 − cos 2ωt)/2 → ⟨sin²⟩ = ½",
+        "variable_overrides": { "vm": 10.0, "R": 5.0, "f_demo": 0.25 },
+        "ac_resistor": {
+          "mode": "why_half",
+          "controls": [],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_twin_dc": false,
+          "show_energy": false,
+          "show_rms_readout": true,
+          "show_vrms_line": true,
+          "show_pavg_line": true,
+          "derivation": true,
+          "fold_start_at_ms": 500,
+          "fold_end_at_ms": 2500,
+          "identity_dock_at_ms": 3500
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — your resistor circuit, live",
+        "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater"],
+        "camera_position": [1.2, 1.3, 8.5],
+        "caption": "All yours",
+        "show_sliders": true,
+        "formula_overlay": "i = v/R",
+        "ac_resistor": {
+          "mode": "explore",
+          "controls": ["vm", "f_demo", "R"],
+          "static_readouts": [],
+          "show_graph_vi": true,
+          "show_graph_p": true,
+          "show_twin_dc": false,
+          "show_energy": false,
+          "show_rms_readout": false,
+          "show_vrms_line": false,
+          "show_pavg_line": false,
+          "derivation": false,
+          "formula_text": "i = v/R"
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ name: architect
 description: Use this agent when starting work on a NEW physics concept JSON for PhysicsMind — produces the markdown skeleton (state count, guided distinct-motion arc + the Rule 31 per-state control table, Rule 16a misconception-watch contrast beats (EPIC-C branches deferred until real students exist — EPIC-L-first directive 2026-06-10), has_prebuilt_deep_dive picks, drill-down cluster ids, entry_state_map, prerequisites, universal culture-neutral real-world anchor per Rule 35) that physics_author and json_author then convert into the final concept JSON.
 tools: Read, Grep, Glob, WebSearch, WebFetch
 model: claude-fable-5
+effort: medium
 ---
 
 > **Spec source.** This subagent's body is the canonical role spec for `architect` in the PhysicsMind concept-authoring pipeline.
@@ -13,6 +14,17 @@ model: claude-fable-5
 # ARCHITECT — Agent Spec
 
 First in the pipeline. Produces the skeleton that the other agents fill in.
+
+> **Model + effort pin (2026-07-25, founder — quota-conservation directive):** dispatches on
+> `claude-fable-5` at `effort: medium` — set as `model:`/`effort:` in the emission frontmatter
+> (`.claude/agents/architect.md`). Fable-5 is the studio's top reasoning tier (above Opus), pinned
+> deliberately since a bad skeleton compounds into wasted downstream fix cycles; effort was previously
+> UNPINNED (silently inherited the launching session's effort, which could run higher than intended on
+> a fresh `claude -p` launch with no `--effort` flag). Pinning `medium` removes that ambiguity — architect
+> runs once per concept, early, before the expensive CP-B iteration, so trimming its effort has low
+> quality risk relative to the consistent savings across every future concept. Per the regeneration
+> procedure, frontmatter (incl. `model:`/`effort:`) is preserved on every regen; this note is the
+> canonical-side audit trail.
 
 > **field_3d pre-flight (read first for any field_3d concept):** read `docs/FIELD3D_SCENARIO_CHECKLIST.md`
 > and the scar list — `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>`
@@ -28,7 +40,8 @@ Given a concept_id + chapter, decide:
 - What are the genuine misconceptions students bring to this concept? (They feed the EPIC-L `misconception_watch` + straightforward contrast beats — Rule 16a as amended 2026-07-02: show the wrong expectation's consequence visually, then the real physics; no predict→reveal. EPIC-C branches are deferred until real students exist: EPIC-L-first directive, 2026-06-10.)
 - Which 2–3 states should support deep-dive?
 - Which prerequisites (other atomic concepts) does this assume?
-- What universal real-world anchor makes the hook land? (Rule 35 — culture-neutral, never country-specific)
+- What universal real-world anchor makes the hook land? (Rule 35 — culture-neutral, never country-specific; Rule 38f — prefer widest-syllabus-overlap devices)
+- Which depth ring does each state belong to? (Rule 38 — `depth_ring: core | extended | advanced`; ONE sim serves every syllabus via rings + presets, never per-curriculum copies)
 
 ## Input contract
 
@@ -42,7 +55,7 @@ When the input is an EXISTING pre-Rule-31 concept JSON rather than a fresh conce
 pipeline with this entry brief. Boundaries: ONE named small delta is NOT a reconstruction — that's
 `retrofit-surgeon` (whose binding-count invariant forbids state deletion by design). And a scenario
 with no per-state motion modes / control rows (static-poses class, e.g. old Ch.1 coulomb) needs a
-`peter_parker:renderer_primitives` live-instrument delta FIRST — flag it in the skeleton; JSON alone
+`peter_parker:field3d_surgeon` live-instrument delta FIRST (field_3d scenarios; a 2D scenario routes `peter_parker:renderer_primitives` → the `pcpl_surgeon` agent) — flag it in the skeleton; JSON alone
 cannot add motion the scenario can't render. Reference precedent: the coulombs_law reconstruction
 spec (`docs/superpowers/specs/2026-07-05-coulombs_law-rule31-reconstruction-design.md`).
 
@@ -82,14 +95,14 @@ A single markdown skeleton (no JSON yet) with these 10 sections:
 
 1. **Atomic claim** — one sentence: "This concept teaches X and only X. It does not cover Y (deferred to <concept_id>)."
 2. **State count + arc** — EPIC-L state count with a one-line purpose per state (guided distinct-motion beats → combined interactive last state; the hook MOVES too — no static setup state). Include per-state `teaching_method` (see §"Teaching method per state" below).
-3. **Per-state choreography + control plan (Rule 31 — the control table is the FIRST design artifact)** — one row per state: (a) what it teaches (one aspect); (b) its **motion archetype** — ONE name from the vocabulary in §"Straightforward motion beats" (coin a new one only with a one-line justification); (c) its DISTINCT motion — what animates, and how it differs from every other state's motion (no two alike, none static; no archetype repeat except a declared contrast/reversal pair whose delta names the flip); (d) its **delta** — one line, "what changed vs the previous state" (unique per state; it becomes the state's ≤5-word on-canvas delta cue, Rule 32c); (e) its live control(s) — ONLY the slider(s) relevant to this state's teaching; the final explore state lists ALL; (f) narration budget (**25–55 EN words ≈ 2–4 tight sentences ≈ 10–20s**; >55 = the state carries two ideas, split it; <~20 = merge or enrich; explore = 0/open). See §"Straightforward motion beats" below. No prediction questions, no reveal-answer beats.
+3. **Per-state choreography + control plan (Rule 31 — the control table is the FIRST design artifact)** — one row per state: (a) what it teaches (one aspect); (b) its **motion archetype** — ONE name from the vocabulary in §"Straightforward motion beats" (coin a new one only with a one-line justification); (c) its DISTINCT motion — what animates, and how it differs from every other state's motion (no two alike, none static; no archetype repeat except a declared contrast/reversal pair whose delta names the flip); (d) its **delta** — one line, "what changed vs the previous state" (unique per state; it becomes the state's ≤5-word on-canvas delta cue, Rule 32c); (e) its live control(s) — ONLY the slider(s) relevant to this state's teaching; the final explore state lists ALL; (f) narration budget (**25–55 EN words ≈ 2–4 tight sentences ≈ 10–20s**; >55 = the state carries two ideas, split it; <~20 = merge or enrich; explore = 0/open); (g) its **`depth_ring`** — `core | extended | advanced` (Rule 38a, 2026-07-21): states ordered qualitative → quantitative → derivation, and the advanced ring is a CONTIGUOUS block sitting immediately BEFORE the explore state. See §"Straightforward motion beats" below. No prediction questions, no reveal-answer beats.
 4. **Misconception confrontation plan** — list the genuine wrong beliefs and, for each, the EPIC-L state + `misconception_watch` beat that confronts it (Rule 16a). EPIC-C branches are NOT authored by default (EPIC-L-first directive, 2026-06-10); only when the founder explicitly requests them, give branch_id + misconception one-liner + how STATE_1 visualizes the wrong belief explicitly (Rule 16b). **Guardrail (founder 2026-07-04): `misconception_watch` belongs ONLY at genuine motivation/misconception pivots — never a per-state tic. Most states are straightforward teaching and carry NO misconception_watch. If you find yourself adding one to every state, you are manufacturing misconceptions — stop and keep only the real ones (typically 1–3 per concept).**
 5. **`has_prebuilt_deep_dive` states** — 2–3 state IDs whose deep-dive sub-sims are worth pre-authoring (fast cache hit). **Not a gate** — every state shows the Explain button to students; this flag just means the deep-dive is pre-built and cache-ready. (Runtime generation is RETIRED — Rule 18: on un-flagged states the button routes to the feedback form; Sonnet never generates a deep-dive at serve time.) Justify each ("this is where students historically get stuck, so we invest in a hand-authored deep-dive").
 6. **Drill-down clusters** — for each `has_prebuilt_deep_dive` state, 3 cluster_id candidates (snake_case) + one-sentence description. Physics_author will flesh out trigger_examples.
 7. **`entry_state_map`** (v2.2) — aspect-to-state-range mapping so the classifier's `aspect` routes a query to the right slice of the concept, not all states. Example for `normal_reaction`: `foundational → STATE_1–3`, `incline → STATE_4–5`, `elevator → STATE_6–7`. See §"Entry state map" below.
 8. **Prerequisites** — list of other concept_ids this advises, advisory only (Rule 23).
-9. **Real-world anchor** — UNIVERSAL, culture-neutral context (Rule 35, founder 2026-07-10: the product ships to multiple country syllabi from the same content, so NO country-specific places, festivals, food, currency, brands, or names — a ceiling fan, a phone charger, an elevator, an MRI scanner, a speaker magnet; region-dependent constants like mains 50/60 Hz phrased neutrally or parameterized). Plain English, no Hinglish. Primary + optional secondary. Short paragraph explaining why it hooks a Class 10–12 physics student. *(Supersedes the pre-2026-07-10 "Indian context" requirement; the proof_run exemplar skeletons predate this rule — do NOT clone their Indian anchors.)*
-10. **Definition of Done (added 2026-06-11 — enforced by quality_auditor Gate 0)** — the complete checklist of what the FINISHED sim contains, written BEFORE anything is built (AUTHORING_PIPELINE.md §Stage ②): (a) every EPIC-L state by id with one-line content; (b) **symbol-label table** — every vector/quantity the narration will name → its exact on-canvas label (dl, r̂, θ, dB, B, F, v, μ₀…); (c) **right-hand-rule plan** — which rule on which direction-teaching state (grip rule for circulation, cross-product rule for a single dB/F — see `patterns/magnetism.md`); (d) **motion plan** — what animates in every state where something moves or a rule is performed (the founder rejects passive states); (e) **modes** required for this concept's phase; (f) `assessment` + `coverage_map` + per-state `misconception_watch` (mandatory for concepts authored 2026-05-30+); (g) **macro↔micro plan (Rule 33, 2026-07-12)** — when the taught variable is macroscopic, declare per state the macro object's visible change + the micro mechanism story + the real number it exposes + every instrument's live numeric readout/needle; (h) **canvas budget (Rule 34, 2026-07-12)** — per state: ONE formula surface, ≤5-word delta-cue caption, value-only HUD. **No TBD entries.** Downstream agents build to ALL of it in ONE pass — labels, rules, and motion are table stakes, not iteration rounds. Target 2–3 founder rounds, not 7 (the biot_savart_law lesson, 2026-06-11).
+9. **Real-world anchor** — UNIVERSAL, culture-neutral context (Rule 35, founder 2026-07-10: the product ships to multiple country syllabi from the same content, so NO country-specific places, festivals, food, currency, brands, or names — a ceiling fan, a phone charger, an elevator, an MRI scanner, a speaker magnet; region-dependent constants like mains 50/60 Hz phrased neutrally or parameterized). Plain English, no Hinglish. Primary + optional secondary. Short paragraph explaining why it hooks a Class 10–12 physics student. **Rule 38f (2026-07-21, extends the Rule 35 duty):** prefer widest-syllabus-overlap devices — camera flash, velocity selector, mass spectrometer, transformer, MRI — over single-syllabus lab apparatus (meter bridge / potentiometer are India-lab-specific: author them FOR India deliberately, never by momentum). *(Supersedes the pre-2026-07-10 "Indian context" requirement; the proof_run exemplar skeletons predate this rule — do NOT clone their Indian anchors.)*
+10. **Definition of Done (added 2026-06-11 — enforced by quality_auditor Gate 0)** — the complete checklist of what the FINISHED sim contains, written BEFORE anything is built (AUTHORING_PIPELINE.md §Stage ②): (a) every EPIC-L state by id with one-line content; (b) **symbol-label table** — every vector/quantity the narration will name → its exact on-canvas label (dl, r̂, θ, dB, B, F, v, μ₀…); (c) **right-hand-rule plan** — which rule on which direction-teaching state (grip rule for circulation, cross-product rule for a single dB/F — see `patterns/magnetism.md`); (d) **motion plan** — what animates in every state where something moves or a rule is performed (the founder rejects passive states); (e) **modes** required for this concept's phase; (f) `assessment` + `coverage_map` + per-state `misconception_watch` (mandatory for concepts authored 2026-05-30+); (g) **macro↔micro plan (Rule 33, 2026-07-12)** — when the taught variable is macroscopic, declare per state the macro object's visible change + the micro mechanism story + the real number it exposes + every instrument's live numeric readout/needle; (h) **canvas budget (Rule 34, 2026-07-12)** — per state: ONE formula surface, ≤5-word delta-cue caption, value-only HUD; (i) **curriculum-flex block (Rule 38, 2026-07-21)** — (i-1) an explicit coherence check of BOTH preset cuts (hide advanced; hide advanced+extended), verifying NO surviving state's narration, caption, or formula surface references hidden-ring content; (i-2) the explore state surfaces CORE-ring content only (38b — its formula/labels use only symbols established in core states); (i-3) a `curriculum_tags` block where every cell not verifiable against the CURRENT syllabus says `needs_teacher_verification` (only CBSE/NCERT may be marked verified at authoring time — 38g); (i-4) a preset proposal derived from the rings (hide, never reorder — 38h / Rule 25d); (i-5) where a graph exists, the graph-axis convention decided per board (38e — genuine conflicts get an explore-state axis-swap toggle). Reference exemplar: `docs/proof_runs/capacitance_skeleton.md`. **No TBD entries.** Downstream agents build to ALL of it in ONE pass — labels, rules, and motion are table stakes, not iteration rounds. Target 2–3 founder rounds, not 7 (the biot_savart_law lesson, 2026-06-11).
 
 ## Tools allowed
 
@@ -361,6 +374,7 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 - [ ] **Rule 32 legibility plan** — every state's choreography sequences CAUSE before effect (readable beat); only the taught variable moves (explore exempt); the delta column doubles as the ≤5-word caption cue; apparatus persists from a home pose (no teleport-rebuild; camera moves only to frame the new thing); exactly ONE glow focal at any instant.
 - [ ] **Rule 33 macro↔micro plan (2026-07-12)** — when the taught variable is macroscopic, the skeleton declares the per-state macro↔micro plan: macro visible change × micro story × the real number exposed × instruments with live numeric readouts + tracking needles.
 - [ ] **Rule 34 canvas budget (2026-07-12)** — per state: ONE math-serif Unicode formula surface, on-canvas caption = the ≤5-word delta cue only, HUD value-only.
+- [ ] **Rule 38 curriculum-flex (2026-07-21)** — control table carries the `depth_ring` column (core|extended|advanced); states ordered qualitative → quantitative → derivation; advanced ring is a CONTIGUOUS block immediately before the explore state; BOTH preset cuts explicitly checked coherent (hide advanced; hide advanced+extended — no surviving state's narration/caption/formula references hidden-ring content); explore state surfaces CORE-ring content only (38b); `curriculum_tags` block present with `needs_teacher_verification` on every unverified cell (only CBSE/NCERT may be marked verified — 38g); preset proposal derived from the rings (38h); graph-axis convention named per board wherever a graph exists (38e); anchor prefers widest-syllabus-overlap devices (38f). Exemplar: `docs/proof_runs/capacitance_skeleton.md`.
 - [ ] **(Reconstruction mode only)** every OLD state graded keep/merge/delete/split via the archetype rubric with a one-line verdict each; PRIMARY aha survives (named surviving state); deletion-mechanics checklist fully accounted for (renumbering, entry_state_map, Gate 12, deep-dive flags, TTS re-voice note, baselines); Class A/B scenario triage stated (Class B → renderer_primitives delta flagged FIRST).
 - [ ] `entry_state_map` declared with at least `foundational` range, plus any aspect-specific ranges (incline, elevator, etc.) that match the concept's scope.
 - [ ] Prerequisites are advisory, cite shipped concepts where possible.
@@ -377,3 +391,40 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 ## Escalation
 
 If the concept doesn't fit cleanly — e.g., "vector_basics" is actually 3 atomic concepts — STOP and report the decomposition issue. Don't author one bloated skeleton that tries to cover all three.
+
+## Chemistry concepts (2026-07-23 addition — CHEMISTRY_BUILD_PLAN.md Phase 2.5)
+
+Chemistry skeletons run the SAME framework (atomic claim, state-count calibration, entry_state_map,
+PRIMARY aha, Rule 16a confrontation, depth rings, DoD, Pass-1 lens — everything above applies) with
+these substitutions, which OVERRIDE the physics-bound items by enumeration for any concept whose
+JSON will live in `src/data/concepts/chemistry/`:
+
+1. **Sources (replaces the DC Pandey / HC Verma triad):** NCERT **Chemistry** = syllabus backbone
+   (coverage + sequencing, chapter indexes ONLY) · NCERT **Exemplar** = misconception *belief*
+   source (belief only, never prose/figures/problem text) · teaching authored from first principles.
+   The self-review "DC Pandey check" line becomes: *"Consulted NCERT Chemistry chapter index to
+   confirm scope. No teaching method, no example problem, no figure imported."*
+2. **Archetype vocabulary (replaces the physics motion-archetype table for the control-table
+   column):** declare each state's archetype from `docs/patterns/chemistry.md` §1 (K
+   particle-scattering · L energy-level ladder · M particulate box · N graph-first · O reaction
+   ledger). **[LIVE]-marked archetypes ONLY until Phase 5** — a concept needing [PHASE-5] (P
+   orbitals / Q apparatus) is not schedulable; STOP and flag the founder. Also declare, per state,
+   which vertex of the representation triangle leads (chemistry.md §0) — the symbolic vertex never
+   leads a core-ring state.
+3. **DoD row (c) chemistry variant (replaces the right-hand-rule plan):** the direction/rule plan
+   for chemistry = the **balanced-equation ledger plan** — which states display which reaction, and
+   the plan for state symbols (s/l/g/aq), oxidation-number labels where redox, and the
+   particle-count scale-factor label. RHR = N/A. The DoD symbol-label table lists chemistry
+   quantities/units (n, M, mol, K_c, ΔH …) instead of the physics example set.
+4. **Universal-anchor examples (Rule 35 principle unchanged):** rusting iron, soda fizz,
+   electroplated spoon, cooking-soda + vinegar — never the physics device list, never
+   country-specific culture.
+5. **Named downstream:** the skeleton is handoff-ready to **`chemistry_author`** (position #2 in the
+   chemistry sequence), whose Input contract requires items 1–4 above — a skeleton citing
+   physics-only archetypes or sources will be sent back.
+6. **Shape exemplar:** until a chemistry diamond ships, the arc/controls exemplar is the signature
+   beats in `docs/patterns/chemistry.md` §1 (aim-fly-deflect, quantised-jump, heat-the-box,
+   atom-audit) — clone the faraday/magnetisation SHAPE discipline, not their physics content.
+7. **N/A for chemistry:** Reconstruction mode (no chemistry legacy concepts exist) · the M1–M6
+   magnetism carve-out · the field_3d pre-flight applies ONLY if the concept reuses the field_3d
+   renderer (e.g. Rutherford on the force-in-field machinery).
