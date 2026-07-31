@@ -99,16 +99,26 @@ function describe(wt) {
   const unpushed = upstream ? countRevs(`${upstream}..HEAD`, cwd) : null;
   const behindOrigin = upstream ? countRevs(`HEAD..${upstream}`, cwd) : null;
 
+  // `unpushed` measures divergence from THIS branch's own remote — which counts
+  // commits that are already safe on origin/master (e.g. straight after a merge).
+  // `stranded` is the number that actually exists nowhere but this disk. Report
+  // the alarming one accurately: an alarm that overstates gets ignored.
+  const stranded = (() => {
+    const n = git(['rev-list', '--count', 'HEAD', '--not', '--remotes'], cwd);
+    return n === null ? null : parseInt(n, 10);
+  })();
+
   const behindMaster = isMain ? 0 : countRevs(`HEAD..master`, cwd);
   const aheadMaster  = isMain ? 0 : countRevs(`master..HEAD`, cwd);
 
-  return { ...wt, branch, isMain, dirty, untracked, upstream, unpushed, behindOrigin, behindMaster, aheadMaster };
+  return { ...wt, branch, isMain, dirty, untracked, upstream, unpushed, stranded, behindOrigin, behindMaster, aheadMaster };
 }
 
 function flagsFor(d) {
   const f = [];
   if (d.upstream === null && !d.isMain)      f.push(C.red('NO-BACKUP(no upstream)'));
-  if (d.unpushed > 0)                        f.push(C.red(`UNPUSHED(${d.unpushed})`));
+  if (d.stranded > 0)                        f.push(C.red(`STRANDED(${d.stranded})`));
+  else if (d.unpushed > 0)                   f.push(C.yel(`unpushed-to-branch(${d.unpushed})`));
   if (!d.isMain && !isParked(d.branch) && d.behindMaster > 0)
     f.push((d.behindMaster > 40 ? C.red : C.yel)(`BEHIND(${d.behindMaster})`));
   if (d.isMain && d.branch !== 'master')     f.push(C.red(`OFFICE-OFF-MASTER(${d.branch})`));
@@ -161,11 +171,12 @@ function cmdAudit() {
   if (noDesk.length) console.log(C.dim(`  branches with no desk: ${noDesk.slice(0, 12).join(', ')}${noDesk.length > 12 ? ', …' : ''}`));
 
   const actionable = desks.filter(d => !d.isMain && !isParked(d.branch) &&
-    (d.unpushed > 0 || d.behindMaster > 0 || d.aheadMaster === 0));
+    (d.stranded > 0 || d.unpushed > 0 || d.behindMaster > 0 || d.aheadMaster === 0));
   if (actionable.length) {
     console.log('\n  ' + C.bold('What to do:'));
     for (const d of actionable) {
-      if (d.unpushed > 0)       console.log(`   · ${d.branch}: ${C.red(`push ${d.unpushed} commit(s)`)} — they exist on one disk`);
+      if (d.stranded > 0)       console.log(`   · ${d.branch}: ${C.red(`push ${d.stranded} commit(s)`)} — they exist on ONE DISK`);
+      else if (d.unpushed > 0)  console.log(`   · ${d.branch}: ${C.yel(`${d.unpushed} commit(s) not on its own remote`)} — safe elsewhere, but push to keep the branch readable`);
       if (d.behindMaster > 0)   console.log(`   · ${d.branch}: ${C.yel(`${d.behindMaster} behind master`)} — npm run desk:sync`);
       if (d.aheadMaster === 0)  console.log(`   · ${d.branch}: ${C.grn('work is merged')} — npm run desk:close -- ${d.branch}`);
     }
@@ -269,8 +280,8 @@ function cmdClose(branch, yes) {
 
   console.log(`\nClosing ${C.bold(branch)}  ${C.dim(wt.path)}`);
   const blockers = [];
-  if (wt.unpushed === null) blockers.push('branch has no upstream — nothing is backed up');
-  else if (wt.unpushed > 0) blockers.push(`${wt.unpushed} commit(s) not on GitHub`);
+  if (wt.upstream === null && wt.stranded > 0) blockers.push('no upstream and commits exist nowhere else');
+  else if (wt.stranded > 0) blockers.push(`${wt.stranded} commit(s) exist on this disk only`);
   if (wt.dirty > 0)         blockers.push(`${wt.dirty} uncommitted change(s)`);
 
   if (wt.aheadMaster > 0) {
