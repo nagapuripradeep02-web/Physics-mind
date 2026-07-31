@@ -62,6 +62,13 @@ Phase-0 chapter-opening build per `docs/AUTHORING_PIPELINE.md` §0.
 `proposal_queue` for founder approval. Never invoked on a live serving path. **DORMANT
 (2026-07-31)** — shelved until `pilot_feedback`/`simulation_feedback` hold real teacher rows.
 
+**git-steward — the Ops cluster (added 2026-08-01):** carries a sealed desk to a reviewable PR —
+sync `origin/master` → verify chain → surgical `git add` of a NAMED list → commit → push →
+`gh pr create`. **Stops at any conflict under `src/`** (above all the six Rule-40 platform engine
+files) and routes to the owning surgeon. Never merges to master, never `git add -A`, never touches
+`visual:approve`/TTS/`PILOT_CONCEPTS`/deploy — Rule 17 intact. Mechanical desk hygiene is
+`npm run desk:audit | sync | new | close`, not this agent (`docs/GIT_WORKFLOW.md` §7).
+
 **Four live renderers:** `field_3d_renderer.ts` (all current 3D diamonds),
 `particle_field_renderer.ts` (Ch.3 2D — drift/circuits/KCL on the CIRCUIT scenario engine),
 `parametric_renderer.ts` (PCPL — the live engine for the Class-11 Vectors chapter; concepts are
