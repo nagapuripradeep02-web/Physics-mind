@@ -115,8 +115,13 @@ The engine now makes **σ*/π* antibonding nearly free** — constructive vs des
 
 ## 💥 SESSION — `collision_theory_activation_energy` (P1 #4) + the activation-energy engine layer (2026-07-29, branch `feat/chemistry-collision-theory`; engine half on master)
 
-**P1 #4 is built, gated and walked.** 8 states on `gas_box`. **NOT approved, NOT baseline-locked,
-NOT voiced, NOT deployed** — founder approval pending on all four.
+**P1 #4 is SHIPPED, baseline-locked and merged to master** (founder approval 2026-07-30).
+**9 states** on `gas_box` — not the 8 it was designed with; the ninth came from the founder asking
+"what is activation energy? did you define anything in the simulation?", and the honest answer was
+no. 9 baselines. Fleet 66 → 67. Master pushed (`f729fc2`).
+**NOT voiced** (Rule 30h — audio is on-demand, not a ship gate) and **NOT in `PILOT_CONCEPTS`**
+(CLAUDE.md §5 puts Asmi's professor gate before the deployed catalog, which still carries zero
+chemistry sims).
 
 Final gates: tsc 0 · `validate:chemistry` **9/9** · `validate:concepts` **141/141** (isolation held) ·
 `check:gas-reaction` **65/65** (was 37) · THE EYE **35/35** · quality_auditor FAIL→all findings fixed ·
@@ -192,6 +197,34 @@ are 0.00%)** — a founder re-baseline call, NOT taken.
    whether to backfill and move baselines or drop the Rule-32e claim from their scene roles).
 5. **7 unpushed master commits.** No TTS (Rule 30h), no `PILOT_CONCEPTS` entry, no deploy.
 6. **Asmi's professor review — now EIGHT concepts deep**, and the stated bottleneck for five sessions.
+
+### The two review rounds, and the two questions that beat them
+
+`quality_auditor` FAILed this concept **twice** and `eye_walker` walked it **twice**; between them
+they found 9 real defects that tsc, three validators, `check:gas-reaction` (70 checks) and THE EYE
+(35/35, then 39/39) had all passed. Worth separating what found what:
+
+- **The gates found:** nothing the reviewers didn't. Every EYE run was green over frames containing
+  real defects — the fifth consecutive concept where that is true.
+- **The reviewers found:** the counter window, the cross-chip ratio, the formula surfaces that never
+  painted, the slider/histogram clip, the Arrhenius slope error, the stale labels, the undeclared
+  density exception, and — the sharpest — the term ledger still failing for A/B/AB and f/c/k after
+  Eₐ was fixed. **A formula surface counts as USE.**
+- **The founder found the two that mattered most**, and neither was a code defect: the symbol was
+  printed before it was defined, and the concept named after activation energy never drew the energy
+  hill. The second had passed BOTH review agents *because the skeleton declared it an omission* —
+  and a declared omission is invisible to a correctness check. That is now a standing directive row.
+- **I found, by looking at a frame:** the box had gone entirely blue (every B disc silently deleted
+  by a truncation the Arrhenius plot was mathematically immune to), and my own slider-dodge fix had
+  landed in the wrong function and changed nothing while every gate stayed green.
+
+### Rule 41 arrived mid-ship
+Rule 41 (plain-language law) landed on master from the parallel Laws-of-Motion session *after* this
+concept was authored. Checked rather than assumed, and it had violations — including `"All yours"`,
+which 41a names verbatim. Five captions/titles and seven narration lines rewritten.
+**The caption edits moved 0.15–0.21% of pixels — under the 2% H2 tolerance — so THE EYE passed
+56/56 without flagging them.** A text change that size is invisible to the pixel gate; the locked
+baselines would have kept the old wording indefinitely had they not been re-approved deliberately.
 
 ### ⏭ NEXT
 **#3 `rate_of_reaction`** — this concept is its mechanism and the engine work is already paid for.
