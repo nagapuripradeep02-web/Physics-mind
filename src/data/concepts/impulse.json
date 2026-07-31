@@ -313,7 +313,7 @@
           "mode": "wall_impact",
           "bodies": [
             { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
-            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+            { "id": "WALL", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
           ],
           "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
           "readouts": ["v", "p", "J", "F_contact"],
@@ -333,7 +333,7 @@
           "mode": "wall_impact",
           "bodies": [
             { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 3.0 },
-            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+            { "id": "WALL", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
           ],
           "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
           "readouts": ["F_contact", "p"],
@@ -353,7 +353,7 @@
           "mode": "wall_impact",
           "bodies": [
             { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 1.5 },
-            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+            { "id": "WALL", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
           ],
           "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
           "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
@@ -403,7 +403,7 @@
           "mode": "wall_impact",
           "bodies": [
             { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 3.0 },
-            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+            { "id": "WALL", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
           ],
           "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "wall" },
           "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
@@ -426,7 +426,7 @@
           "mode": "wall_impact",
           "bodies": [
             { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 1.5 },
-            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+            { "id": "WALL", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
           ],
           "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
           "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
@@ -449,7 +449,7 @@
           "mode": "sandbox",
           "bodies": [
             { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.4, "initial_velocity_mps": 3.0 },
-            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+            { "id": "WALL", "label": " ", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
           ],
           "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "wall" },
           "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
