@@ -1,6 +1,12 @@
 # lom-f loop state — Laws of Motion, momentum tray
 
-updated: 2026-07-31 (**PHASE 1 — `impulse` AUTHORED, quality-auditor FAIL.** Pipeline ran clean
+updated: 2026-07-31 (**PHASE 1 — B2/B3 FIXED (`4ecae93`), step mode IN FLIGHT.** Founder ruled on
+         both open questions and RAISED THE RUNAWAY GUARD 3 → 4 for one more engine commit. B2+B3
+         landed as ONE bug_class in one dispatch; the surgeon then surfaced a THIRD defect
+         (`param_ramp` sweeps through free flight) which is now the in-flight dispatch. B1 + R4 are
+         queued behind it. See "Phase 1 — resolution log" below.)
+
+previously: 2026-07-31 (**PHASE 1 — `impulse` AUTHORED, quality-auditor FAIL.** Pipeline ran clean
          (architect → physics-author → json-author); `tsc` 0, `validate:concepts` **146 PASS / 0
          FAIL**. Auditor found 3 BLOCKING, and **2 of the 3 are ENGINE defects in the `v1` ramp
          write-path — an unproved Phase-0 seam.** STOPPED per the runaway guard. Visual gate NOT
@@ -23,11 +29,94 @@ chapter_map (founder-approved 2026-07-30, in build order):
   1. impulse                    — NCERT ball-and-wall, stiffness as the taught variable
   2. conservation_of_momentum   — two carts, elastic / inelastic / explosion
 
-next: **FOUNDER DECISION on the two engine defects below (B2, B3).** They are genuine NEW defects in
-      `field_3d_renderer.ts`, and the runaway guard stands at **2 of 3** — fixing either one reaches
-      the guard, so the loop stopped rather than spending it unilaterally. Nothing is blocked on
-      authoring: B1 is a one-line-per-state JSON change that can only be VERIFIED after B2 lands.
+next: **Step-mode dispatch is IN FLIGHT** (`param_ramp.mode: 'step'`). When it lands: apply B1 + R4 to
+      `impulse.json` via `alex:json_author`, re-run the verify chain, then re-dispatch quality-auditor.
       The visual gate stays deferred until this tray cherry-picks lom-g's capture fix.
+
+## Phase 1 — resolution log (2026-07-31, founder present)
+
+**Founder ruling 1 — B2 + B3 as ONE dispatch.** Both defects were adjacent branches of the same
+if/else chain in `mbSetParam`, i.e. genuinely one `bug_class` ("writes are not state-guarded"), so
+one dispatch and one commit — landing the guard at 3 of 3 rather than breaching to 4. **DONE:
+commit `4ecae93`.** Verify chain fully green: `check:renderer-syntax` OK · `tsc` 0 · `validate:concepts`
+146 PASS / 0 FAIL · harness **63 → 69/69, 0 failed** (all 6 new checks fail on the pre-fix engine and
+pass after) · regression EYE `electric_field_point_charge` 44/44 all 14 H2 entries 0.00% and
+`coulombs_law` 50/50 all 16 entries 0.00% · Rule 36b clock guard NOT tripped (zero diff lines touch
+`__pmSteps`/`dtStep`/`__pmAccumMs`/`__pmLastWall`).
+
+Fix shape: a body is **STAGED** from arming until it first meets a contact and **SPENT** thereafter
+(mid-impact *and* flying away) — only a staged body may have its live `v` retimed; `b.v0 = val` still
+runs unconditionally so the per-cycle re-arm is preserved. For `k`, a write into an already-solved
+segment is DEFERRED (`mbContactBusy(c) = c.engaged && !c.latched`, tested per-contact so a busy lane
+never blocks a free neighbour); no pending value is stored because the ramp is closed-form of the
+clock, so the deferred write self-heals on the first free frame.
+
+**A THIRD manifestation was found and fixed in the same class:** an unguarded mid-contact **mass**
+write moved `p = mv` instantly and broke `Σp` by **2–3% across a contact** — in the one scenario whose
+entire job is conserving `Σp`. Now conserved to `1.5e−14 %`. Taken under the Amendment-4 "same file
+AND same root cause" exception.
+
+**Founder ruling 2 — R4: DROP the `c` slider from STATE_8.** Damping makes the contact
+non-conservative, so a teacher dragging `c` in the sandbox silently breaks the equal-area invariant
+(`∫F dt = 2mv`) the whole concept rests on — and no state teaches damping. Rule 38b (explore surfaces
+CORE-ring only) points the same way. `controls_visible` becomes `["m1","v1","k"]`. **QUEUED**, applied
+with B1.
+
+**Founder ruling 3 — guard RAISED 3 → 4 for `param_ramp.mode: 'step'`.** The surgeon's report flagged
+a residual it declined to fix unilaterally: the staged boundary must be "has not yet met a contact"
+(not "has not yet moved") to keep check C5 and the Rule-31 live-instrument contract, so under a `v1`
+ramp the **run-up speed still tracks the ramp** — a free ball accelerating with nothing touching it,
+with the climbing number printed in the HUD (`readouts` include `v` on both S4 and S7).
+
+Measured, using the contract's contact formula (contact begins at ball centre `s = 1.02`; both states
+start the ball at `−1.6`, so every approach is a **2.62 m run-up**):
+
+| state | ramp | `end_ms` | rate | run-up drift |
+|---|---|---|---|---|
+| S4 as authored | v₁ 1.5→3.0 | 4894 | 0.31 m/s² | 1.50 → 2.04 (**+36%**) |
+| S7 as authored | v₁ 1.5→6.0 | 4894 | 0.92 m/s² | 1.50 → 3.11 (**+107%**) |
+| S6 (k ramp) | k 2000→200 | — | — | **none** — stiffness acts only during contact |
+
+**Lengthening `end_ms` cannot reach zero** — the fraction of the sweep leaking into each run-up is
+`t_runup / T_cycle` regardless of ramp length (S4 → +9%, S7 → +36% at 4× the length). The root cause is
+a mismatch: the pedagogy is DISCRETE ("each bounce launches faster"), the mechanism is a CONTINUOUS
+sweep. Every JSON workaround (shorter run-up, narrower range, hiding the `v` readout) trades away
+pedagogy AND leaves residual drift — and none is visually verifiable while the visual gate is deferred.
+Hence the engine fix: quantise the clock to the cycle boundary
+(`t_q = floor(t/repeat) * repeat`) so the value is constant within a cycle and steps only at re-arm.
+Stays closed-form (Rule 36 pin/rewind safe), does not touch `mbSetParam`, and a teacher's live drag is
+unaffected because drags bypass the ramp.
+
+**DONE — step mode shipped as `bfabb6c`.** Harness 69 → **77/77, 0 failed**; free-flight drift measured
+**0.000000000** across 26/17/12 run-up frames per cycle (continuous, same fixture: +15.33% / +6.67% /
++3.67%). `mode` defaults to `'continuous'`, which is the old arithmetic character-for-character — C13e
+proves `continuous` and `mode`-absent produce byte-identical 250-frame sequences. Rewind/pin determinism
+proved (2600 → 7000 → 2600 returns byte-identical bodies JSON). New **Gate 8n** rejects `mode:'step'`
+without `repeat_every_ms > 0`; renderer logs once at state-apply and degrades to continuous.
+Verify chain green: `tsc` 0 · `validate:concepts` 146 PASS / 0 FAIL · EYE `electric_field_point_charge`
+44/44 (14 H2 @ 0.00%) + `coulombs_law` 50/50 (16 H2 @ 0.00%) · Rule 36b NOT tripped.
+
+### B1 sizing — FINAL values (N=3 on all three; in flight with `alex:json_author`)
+
+`end_ms = N × repeat_every_ms` gives N+1 launches at `from + (to−from)·i/N`, spanning `from`→`to`
+INCLUSIVE. All three states take **N=3 → four launches on round numbers**:
+
+| state | `repeat_every_ms` | `end_ms` | launches |
+|---|---|---|---|
+| STATE_4 | 4894 | **14682** | v₁ = 1.5, 2.0, 2.5, 3.0 |
+| STATE_6 | 3966 | **11898** | k = 2000, 1400, 800, 200 |
+| STATE_7 | 4894 | **14682** | v₁ = 1.5, 3.0, 4.5, 6.0 |
+
+**STATE_6 takes `mode:'step'` too — overriding the engine author's "leave S6 continuous" advice.**
+Its `k` ramp has no run-up drift (stiffness acts only during contact) so that advice was right on the
+narrow question, but it misses the narration: all three states narrate explicit ENDPOINTS ("ramps down
+from 2000 to 200"), and a continuous sweep never lands on an endpoint at a launch — the engine run
+measured k hitting **1906/1374/834/294, never 2000 and never 200**. Step mode hits both endpoints
+exactly, which is what makes the sentence true. Same reasoning covers S4 and S7.
+
+Narration cross-check done before dispatch: S6's "area stays fixed at 6.00 N·s" ✓ (m=1.0, v=3.0 →
+2mv = 6.00); S7's "contact time pinned at 70 ms, does not depend on speed" ✓
+(t_c = π√(μ/k) = π√(1/2000) = 70.2 ms, amplitude-independent for a linear spring).
 
 ## Phase 1 — `impulse` (2026-07-31): authored, audited, FAILED, stopped
 
@@ -151,11 +240,18 @@ engine_commits:
   3d827ae  momentum_bench SEAM C — two-lane contacts, control/sandbox layer, formula surface
            [peter_parker:field3d_surgeon]
   05ddfd5  docs: SEAM C scar candidates
+  4ecae93  fix: mbSetParam writes are not state-guarded — staged/spent velocity guard, per-contact
+           busy guard for k/c, same guard extended to the mass branch (Σp broke 2–3% without it)
+           [peter_parker:field3d_surgeon]  (guard 3 of 4)
+  bfabb6c  feat: param_ramp step mode — per-cycle discrete values, Gate 8n, harness 69 → 77/77
+           [peter_parker:field3d_surgeon]  (guard 4 of 4 — BUDGET NOW FULLY SPENT)
 scar_candidates: docs/loop_runs/lom_f/_engine/scar_candidates.sql — **6 rows**, NOT applied
                  (4 FIXED in-diff; 2 OPEN: the retired-sentinel finding and the
                  `zod_superrefine_gate_silently_never_runs...` probe trap)
-runaway_guard: 2 of 3. SEAM C was pre-authorised and does not count; its two in-seam defect fixes
-               were inside its own new surface.
+runaway_guard: **3 of 4** — the founder RAISED the budget 3 → 4 on 2026-07-31, specifically and only
+               for the `param_ramp.mode: 'step'` addition (in flight). `4ecae93` spent commit 3.
+               SEAM C was pre-authorised and does not count; its two in-seam defect fixes were inside
+               its own new surface.
 
 ## Sentinel swap — `gauss_law_sphere` is RETIRED from this tray (founder-approved 2026-07-31)
 

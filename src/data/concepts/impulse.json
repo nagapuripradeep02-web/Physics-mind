@@ -361,7 +361,7 @@
           "glow_focal": "mb_body_BALL",
           "slow_window": { "slow_factor": 20, "badge": true },
           "controls_visible": ["v1"],
-          "param_ramp": { "param": "v1", "from": 1.5, "to": 3.0, "start_ms": 0, "end_ms": 4894 },
+          "param_ramp": { "param": "v1", "from": 1.5, "to": 3.0, "start_ms": 0, "end_ms": 14682, "mode": "step" },
           "repeat_every_ms": 4894,
           "formula": "F̄Δt = Δp"
         }
@@ -411,7 +411,7 @@
           "glow_focal": "mb_contact_element",
           "slow_window": { "slow_factor": 10, "badge": true },
           "controls_visible": ["k"],
-          "param_ramp": { "param": "k", "from": 2000, "to": 200, "start_ms": 0, "end_ms": 3966 },
+          "param_ramp": { "param": "k", "from": 2000, "to": 200, "start_ms": 0, "end_ms": 11898, "mode": "step" },
           "repeat_every_ms": 3966,
           "formula": "F̄ = Δp/Δt"
         }
@@ -434,7 +434,7 @@
           "glow_focal": "mb_body_BALL",
           "slow_window": { "slow_factor": 20, "badge": true },
           "controls_visible": ["v1"],
-          "param_ramp": { "param": "v1", "from": 1.5, "to": 6.0, "start_ms": 0, "end_ms": 4894 },
+          "param_ramp": { "param": "v1", "from": 1.5, "to": 6.0, "start_ms": 0, "end_ms": 14682, "mode": "step" },
           "repeat_every_ms": 4894,
           "formula": "Δt = π√(m/k)"
         }
@@ -456,7 +456,7 @@
           "readouts": ["v", "p", "F_contact"],
           "glow_focal": "mb_track",
           "slow_window": { "slow_factor": 10, "badge": true },
-          "controls_visible": ["m1", "v1", "k", "c"],
+          "controls_visible": ["m1", "v1", "k"],
           "trusted_drag_seizes": true,
           "repeat_every_ms": 2314,
           "formula": "F̄Δt = Δp"
