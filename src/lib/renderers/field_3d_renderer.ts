@@ -40957,8 +40957,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // string, so the two are exactly collinear; at the nlb string weight the white
     // cylinder swallowed the coloured arrow and the taught object of the whole
     // chapter read as a bare arrowhead (observed in the first bring-up frame).
-    var FR_STRING_R = 0.013;
-    var FR_STRING_OPACITY = 0.72;
+    // Thinner + dimmer AGAIN (2026-07-31): 0.013/0.72 still put a near-white
+    // ~1.6px line under a coloured arrow shaft, so the apparatus line and the
+    // taught vector competed. The arrow now owns the visual weight along that
+    // direction; the string is present, readable and subordinate. FR_ARROW_SHAFT_R
+    // (below) is 5x this radius by construction, so the ordering cannot invert.
+    var FR_STRING_R = 0.009;
+    var FR_STRING_OPACITY = 0.55;
+    var FR_STRING_EMISSIVE = 0.12;
     var FR_SEG_MIN = 0.02;                // below this a segment is genuinely gone, so it HIDES
     var FR_HANG_OUT = 0.30;               // string continues this far PAST the pulley to the weight
     // The hanging weight is drawn along the OUTWARD RADIAL direction rather than
@@ -40989,6 +40995,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // cylinder and the taught object of the whole chapter is invisible (observed
     // in the first bring-up frame: three correct arrows, none of them readable).
     var FR_ARROW_Z = 0.14;
+    // The arrow SHAFT is a real mesh cylinder, never the ArrowHelper's THREE.Line.
+    // WebGL ignores Line linewidth on essentially every desktop driver, so an
+    // ArrowHelper shaft renders ONE device pixel wide no matter what is asked for.
+    // A tension acts along its own string, so the arrow is exactly collinear with
+    // the apparatus line it lies on: a 1px shaft beside a lit string read as a
+    // detached cone head — three floating triangles instead of three arrows. Pure
+    // z-offset (FR_ARROW_Z) cannot fix that, because depth ordering was never the
+    // problem; a 1px line IN FRONT of a brighter line is still not an arrow. Only
+    // real geometry is driver-independent, so the shaft can never silently vanish
+    // again on different hardware. Rule 29 is untouched: this is a fixed WIDTH,
+    // never scaled for emphasis, and arrow LENGTH still means magnitude alone.
+    var FR_ARROW_SHAFT_R = 0.045;         // ≈5x FR_STRING_R
     var FR_Y_AXIS = new THREE.Vector3(0, 1, 0);
     var FR_MATH_FONT = "'Cambria Math','Times New Roman',serif";
 
@@ -41056,6 +41074,37 @@ export const FIELD_3D_RENDERER_CODE = `
         if (L > FR_ARROW_MAX_LEN) L = FR_ARROW_MAX_LEN;
         return L;
     }
+    // ── The mesh shaft (see FR_ARROW_SHAFT_R) ─────────────────────────────
+    //   Cloned LOCALLY into the fr region rather than promoted into a shared
+    //   helper: the thick-vector pattern already exists three times over in this
+    //   file (gauss sphere / line / sheet) and once inline on fcw_F_net, and
+    //   refactoring sealed siblings to share it is a founder decision.
+    //   The shaft is a CHILD of the ArrowHelper group, whose local +y IS the
+    //   arrow direction, so setDirection() carries it for free and only its
+    //   length has to be written per frame.
+    function frAddShaft(arrow, hex) {
+        if (!arrow) return arrow;
+        var sh = new THREE.Mesh(
+            new THREE.CylinderGeometry(FR_ARROW_SHAFT_R, FR_ARROW_SHAFT_R, 1, 12),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(hex), emissive: hexToThreeColor(hex),
+                emissiveIntensity: 0.42, shininess: 60, transparent: true, opacity: 1.0
+            }));
+        sh.scale.set(1, Math.max(1e-4, FR_ARROW_MIN_LEN - 0.21), 1);
+        sh.position.set(0, Math.max(1e-4, FR_ARROW_MIN_LEN - 0.21) / 2, 0);
+        arrow._frShaft = sh;
+        arrow.add(sh);
+        return arrow;
+    }
+    // Spans tail -> base of the cone, exactly the span ArrowHelper gives its own
+    // line, so head and shaft always meet and the tip stays at len.
+    function frFitShaft(arrow, len, headLen) {
+        var sh = arrow ? arrow._frShaft : null;
+        if (!sh) return;
+        var L = Math.max(1e-4, len - headLen);
+        sh.scale.set(1, L, 1);
+        sh.position.set(0, L / 2, 0);
+    }
     function frSetLabelText(lbl, text) {
         if (!lbl) return;
         var t = (text == null) ? "" : String(text);
@@ -41079,6 +41128,13 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!o || !hex) return;
         if (o.setColor) o.setColor(hexToThreeColor(hex));
         else if (o.material && o.material.color) o.material.color.set(hexToThreeColor(hex));
+        //   setColor() is the ArrowHelper API and reaches ONLY its own .line and
+        //   .cone, so the mesh shaft added by frAddShaft has to be recoloured
+        //   explicitly or a re-coloured arrow ships a build-palette shaft.
+        if (o._frShaft && o._frShaft.material) {
+            if (o._frShaft.material.color) o._frShaft.material.color.set(hexToThreeColor(hex));
+            if (o._frShaft.material.emissive) o._frShaft.material.emissive.set(hexToThreeColor(hex));
+        }
         if (!o.traverse) return;
         o.traverse(function (n) {
             if (!n.material) return;
@@ -41113,15 +41169,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (lbl) lbl.visible = vis && !!labelText;
         if (!vis) return;
         var len = frArrowLen(mag);
-        // The shaft is a THREE.Line and WebGL ignores linewidth on essentially
-        // every desktop driver, so the HEAD carries the visual weight (the nlb
-        // sizing, unchanged). Rule 29: LENGTH tracks magnitude and nothing here
-        // scales an arrow for emphasis — emphasis is brightness, frApplyGlow only.
+        // Head sizing is the nlb map, unchanged. The SHAFT is the mesh cylinder
+        // (FR_ARROW_SHAFT_R), refitted here — the ArrowHelper's own THREE.Line
+        // still draws underneath it and is simply hidden inside the tube.
+        // Rule 29: LENGTH tracks magnitude and nothing here scales an arrow for
+        // emphasis — emphasis is brightness, frApplyGlow only.
         var headLen = Math.min(0.34, len * 0.40);
         var u = new THREE.Vector3(dirx / d, diry / d, 0);
         arrow.position.copy(originWorld);
         arrow.setDirection(u);
         arrow.setLength(len, headLen, headLen * 0.80);
+        frFitShaft(arrow, len, headLen);
         if (lbl && labelText) {
             lbl.position.copy(originWorld).addScaledVector(u, len + FR_ARROW_LABEL_GAP);
             frSetLabelText(lbl, labelText);
@@ -41561,6 +41619,7 @@ export const FIELD_3D_RENDERER_CODE = `
         arrow.position.copy(origin);
         arrow.setDirection(u);
         arrow.setLength(worldLen, headLen, headLen * 0.80);
+        frFitShaft(arrow, worldLen, headLen);
         if (lbl && labelText) {
             lbl.position.copy(origin).addScaledVector(u, worldLen + FR_ARROW_LABEL_GAP);
             frSetLabelText(lbl, labelText);
@@ -42226,7 +42285,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     new THREE.CylinderGeometry(FR_STRING_R, FR_STRING_R, 1, 8),
                     new THREE.MeshPhongMaterial({
                         color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
-                        emissiveIntensity: 0.22, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+                        emissiveIntensity: FR_STRING_EMISSIVE, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
                     }));
                 seg.userData = { elementType: "fr_string", id: segIds[s], stringIndex: i };
                 seg.visible = false;
@@ -42257,8 +42316,8 @@ export const FIELD_3D_RENDERER_CODE = `
             var arrIds = ["fr_arrow_" + i, "fr_compx_" + i, "fr_compy_" + i];
             var arrTypes = ["fr_arrow", "fr_comp", "fr_comp"];
             for (var a = 0; a < arrIds.length; a++) {
-                var ah = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
-                    FR_ARROW_MIN_LEN, hexToThreeColor(col), 0.21, 0.17);
+                var ah = frAddShaft(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+                    FR_ARROW_MIN_LEN, hexToThreeColor(col), 0.21, 0.17), col);
                 ah.userData = { elementType: arrTypes[a], id: arrIds[a], stringIndex: i };
                 ah.visible = false;
                 root.add(ah); frRegister(ah);
@@ -42271,8 +42330,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         // The resultant, and the dot it collapses to at equilibrium.
-        var res = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
-            FR_ARROW_MIN_LEN, hexToThreeColor(FR_RESULTANT_COLOR), 0.21, 0.17);
+        var res = frAddShaft(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+            FR_ARROW_MIN_LEN, hexToThreeColor(FR_RESULTANT_COLOR), 0.21, 0.17), FR_RESULTANT_COLOR);
         res.userData = { elementType: "fr_arrow", id: "fr_resultant" };
         res.visible = false;
         root.add(res); frRegister(res);
@@ -42346,7 +42405,7 @@ export const FIELD_3D_RENDERER_CODE = `
             new THREE.CylinderGeometry(FR_W_STRING_R, FR_W_STRING_R, 1, 8),
             new THREE.MeshPhongMaterial({
                 color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
-                emissiveIntensity: 0.22, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+                emissiveIntensity: FR_STRING_EMISSIVE, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
             }));
         wstr.userData = { elementType: "fr_wstring", id: "fr_wstring" };
         wstr.visible = false;
@@ -42412,8 +42471,8 @@ export const FIELD_3D_RENDERER_CODE = `
                         FR_W_CENTRIP_COLOR, FR_RESULTANT_COLOR, FR_W_VEL_COLOR];
         var wArrLbls = ["T", "W", "N", "F", "ΣF", "v"];
         for (var wa = 0; wa < wArrIds.length; wa++) {
-            var wah = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
-                FR_ARROW_MIN_LEN, hexToThreeColor(wArrCols[wa]), 0.21, 0.17);
+            var wah = frAddShaft(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+                FR_ARROW_MIN_LEN, hexToThreeColor(wArrCols[wa]), 0.21, 0.17), wArrCols[wa]);
             wah.userData = { elementType: "fr_arrow", id: wArrIds[wa] };
             wah.visible = false;
             root.add(wah); frRegister(wah);

@@ -167,3 +167,20 @@ INSERT INTO engine_bug_queue (
     'lom-g — force_rig time-pin dispatch 2026-07-31',
     'incident'
 );
+
+-- Candidate 8 — RECURRENCE of Candidate 1. NOT a new row: bug_class is the
+-- upsert key, so this is an UPDATE/reopen of the existing
+-- field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line row.
+-- Candidate 1's remedy (a) (the FR_ARROW_Z z-offset) shipped and was NOT
+-- sufficient; clause (b) had never been applied at all. Fixed in this dispatch
+-- (fix(engine-loop): field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line).
+UPDATE engine_bug_queue SET
+    severity = 'MAJOR',
+    owner_cluster = 'peter_parker:field3d_surgeon',
+    root_cause = root_cause || E'\n\nRECURRENCE 2026-07-31 (equilibrium_of_particles STATE_1 dense t16000, post-E1/E2): the three tension arrows STILL read as detached cone heads floating near the pulleys. The z-offset remedy (a) was applied and is insufficient BY CONSTRUCTION, because depth ordering was never the failure: a 1-device-pixel THREE.Line placed IN FRONT of a brighter, thicker apparatus line is still not an arrow. Any remedy that leaves the shaft as a THREE.Line is betting on driver linewidth support that essentially no desktop GL driver provides, so it can also regress silently on different hardware. Remedy (b) — thin AND dim the apparatus line relative to the arrow — had never been applied: the string was 0.013 world radius at 0.72 opacity in near-white #ECEFF1 against a coloured 1px arrow, i.e. the apparatus was WIDER and BRIGHTER than the taught vector along the same direction.',
+    prevention_rule = 'An arrow that is collinear with apparatus geometry needs REAL GEOMETRY, not depth or colour tricks. (a) The shaft is a mesh cylinder parented to the ArrowHelper group (whose local +y IS the arrow direction, so setDirection carries it for free); the ArrowHelper keeps only the cone head, and the shaft is refitted to (len - headLen) in the same call that sets the length, so head and shaft always meet. Fixed WIDTH, never scaled for emphasis — Rule 29 intact, length still means magnitude alone. (b) The apparatus line is then made THINNER AND DIMMER than that shaft by construction, with the ratio written into the constants (FR_ARROW_SHAFT_R = 5x FR_STRING_R) so a later tweak to either cannot silently invert the ordering. (c) A group-level recolour helper must reach the new shaft explicitly: ArrowHelper.setColor() touches only .line and .cone, so a mesh shaft added as a child keeps the build-time palette forever unless recoloured by hand. (d) The z-offset alone is NOT a fix for this class and must not be recorded as one.',
+    probe_logic = 'Render the state at full size and measure the arrow shaft''s drawn width in device pixels along its own direction, and the apparatus line''s width at the same point. Assert shaft_px >= 3 AND shaft_px > line_px AND shaft_alpha > line_alpha. A shaft that measures 1px is a THREE.Line and has already failed regardless of what any existence assertion reports. Sweep every authored angle (0/17/34/50/90/130/163/180/233/270) and both apparatus branches.',
+    status = 'FIXED',
+    fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    concepts_affected = ARRAY['equilibrium_of_particles', 'uniform_circular_motion']::text[]
+WHERE bug_class = 'field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line';
