@@ -629,6 +629,39 @@ export const conceptJsonSchema = z.object({
       }
     }
   }
+
+  // ── Gate 8m — momentum_bench: `sticks` and `preload_m` are mutually
+  //    exclusive (founder ruling 2026-07-31). This is a CONFIG CONTRADICTION,
+  //    and the validator is where contradictions die: a pre-loaded spring that
+  //    latches the instant it releases produces a completely dead sim, which is
+  //    the most confusing possible failure for a teacher mid-class. The renderer
+  //    additionally logs a console error and honours `preload_m` if the pair
+  //    somehow reaches it, but a silent precedence rule with no validator error
+  //    is exactly the fails-silently class this chapter keeps paying for.
+  //      Deliberately NARROW: this is the one contradiction, not a Zod mirror of
+  //    the whole momentum_bench config surface (which would drift against the
+  //    renderer's own TypeScript type).
+  const f3d = (data as Record<string, unknown>).field_3d_config as
+    | { scenario_type?: unknown; states?: Record<string, unknown> }
+    | undefined;
+  if (f3d && f3d.scenario_type === 'momentum_bench' && f3d.states && typeof f3d.states === 'object') {
+    for (const [stateId, stateVal] of Object.entries(f3d.states)) {
+      const contact = (stateVal as { momentum_bench?: { contact?: Record<string, unknown> } })
+        ?.momentum_bench?.contact;
+      if (!contact) continue;
+      const preload = contact.preload_m;
+      if (contact.sticks === true && typeof preload === 'number' && preload > 0) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['field_3d_config', 'states', stateId, 'momentum_bench', 'contact'],
+          message:
+            `Gate 8m (momentum_bench): ${stateId}.contact declares BOTH sticks:true and ` +
+            `preload_m:${preload} — they are mutually exclusive. A pre-loaded spring that ` +
+            `latches on release is a dead sim. Remove one (preload_m wins at runtime).`,
+        });
+      }
+    }
+  }
 });
 
 // ── Validation helper ───────────────────────────────────────────────

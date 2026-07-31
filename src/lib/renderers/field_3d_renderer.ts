@@ -1083,11 +1083,18 @@ export interface Field3DConfig {
                 between: [string, string];         // the two body ids that may touch
                 stiffness_N_per_m: number;         // k — sets BOTH peak force and contact duration
                 damping_Ns_per_m?: number;         // c — 0 = perfectly elastic, high = inelastic
-                sticks?: boolean;                  // perfectly inelastic latch. Mutually exclusive
-                                                   // with `preload_m`.
+                // sticks and preload_m are MUTUALLY EXCLUSIVE, and the combination
+                // must never ship: `npm run validate:concepts` REJECTS a state
+                // declaring both (Gate 8m in src/schemas/conceptJson.ts). If one
+                // reaches the renderer anyway the engine logs a console ERROR and
+                // honours preload_m (founder ruling 2026-07-31 — this REVERSES
+                // SEAM A's "sticks wins"). Reason for that precedence: a
+                // pre-loaded spring under `sticks` would release and instantly
+                // latch, giving a completely dead sim — the most confusing
+                // possible failure. Loud beats clever.
+                sticks?: boolean;                  // perfectly inelastic latch.
                 preload_m?: number;                // EXPLOSION: the contact starts compressed by
-                                                   // this much and releases. Mutually exclusive
-                                                   // with `sticks`.
+                                                   // this much and releases.
                 natural_length_m?: number;         // rest length of the compliant element, default 0.4
                 label?: string;                    // e.g. "steel bumper" | "foam pad" | "velcro"
             };
@@ -1114,9 +1121,16 @@ export interface Field3DConfig {
             };
 
             // Two independent lanes of the SAME experiment, side by side, sharing
-            // one clock. offset_z_m is honoured (a lane body is drawn in its own
-            // lane) and the trace panel already overlays two traces on one axis;
-            // contact_override — i.e. a SECOND independent contact — is SEAM C.
+            // one clock. offset_z_m draws a lane body in its own lane, and
+            // contact_override gives that lane its OWN contact — so two contacts
+            // happen AT THE SAME TIME and the trace panel's shared axis pair
+            // carries both. THAT is `impulse`'s payoff beat: same ball, same
+            // speed, stiffness differing ~10x — equal areas, very different peaks,
+            // side by side (SEAM C).
+            //   Resolution rule: a lane whose bodies ARE the contact.between pair
+            // MODIFIES the base contact in place; any other lane with an override
+            // gets a NEW contact between its own first two bodies, inheriting
+            // everything the override does not name.
             lanes?: Array<{
                 id: string;
                 offset_z_m: number;                // lateral offset so lanes never occlude
@@ -1125,9 +1139,22 @@ export interface Field3DConfig {
             }>;
 
             glow_focal?: string;                   // EXACTLY ONE per state (Rule 32e)
-            // [SEAM C] Rule 31 contextual controls.
+            // Rule 31 contextual controls — the #mb_sliders rows this state
+            // exposes. Every row lives at a PERMANENT slot in the panel, so a
+            // slider shared between two states never moves on screen.
+            //   m1/v1 = the first moving body, m2/v2 = the second; k/c = the
+            // primary contact's stiffness / damping.
             controls_visible?: Array<'m1' | 'm2' | 'v1' | 'v2' | 'k' | 'c'>;
-            trusted_drag_seizes?: boolean;         // [SEAM C] sandbox state only
+            // Sandbox seize (Rule 37): the explore state free-runs and
+            // repeat_every_ms keeps re-arming the bench, so it never sits dead.
+            // The FIRST trusted slider drag seizes it — the idle sweep and any
+            // param_ramp stop, and the teacher owns the apparatus from then on.
+            trusted_drag_seizes?: boolean;
+            // ONE symbolic equation for this state (Rule 34b), rendered in the
+            // dedicated math-serif #mb_formula surface. Real Unicode, algebra
+            // only, no values — the momentum HUD is the separate value-only
+            // instrument and the two are never merged. e.g. 'J = FΔt = Δp'.
+            formula?: string;
             // The slow-motion honesty requirement (spec section 5): a dt MULTIPLIER
             // on the integrator during the contact window only
             // (dtPhysics = h / slow_factor), plus the "slow motion xN" badge. It is
@@ -1139,8 +1166,10 @@ export interface Field3DConfig {
                 badge?: boolean;                   // default true — the honesty requirement
             };
             repeat_every_ms?: number;              // re-arm the whole interaction on this cycle
-            // [SEAM C] one-shot monotonic parameter reveal; it writes through the
-            // same slider write-path, which lands with the SEAM C control rows.
+            // One-shot monotonic parameter reveal. A CLOSED FORM of the state
+            // clock (never an accumulator) written through the SAME slider
+            // write-path as a teacher drag, so the row's value text tracks it and
+            // a rewind lands on the same number (Rule 36).
             param_ramp?: { param: 'v1' | 'k' | 'm2'; from: number; to: number; start_ms?: number; end_ms: number };
             phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; glow_focal?: string }>;
         };
@@ -40982,6 +41011,29 @@ export const FIELD_3D_RENDERER_CODE = `
     var MB_TRACE_MAX_PTS = 400;           // decimation cap for the drawn polyline
     var MB_TRACE_FONT = "12px 'Cambria Math','Times New Roman',serif";
 
+    // ── SEAM C — lanes, controls, formula surface ─────────────────────────
+    //   At most this many SIMULTANEOUS contacts (one per lane). Two is what the
+    //   rigid-vs-padded comparison needs; the third is headroom, and the cap
+    //   exists so the per-frame event partition can never be unbounded.
+    var MB_MAX_CONTACTS = 3;
+    // The canonical control order. A row's SLOT is its index here, and a slot is
+    // absolutely positioned inside the panel — so a slider shared by two states
+    // occupies the SAME screen pixels in both (Rule 31), whatever its neighbours
+    // are doing. Hiding is display:none, so the generic Rule-39f ⚙ engine can
+    // force-show a row back into its own slot with .pmWgShow.
+    var MB_CTRL_ORDER = ["m1", "m2", "v1", "v2", "k", "c"];
+    var MB_CTRL_SPEC = {
+        m1: { label: "m₁", unit: " kg", min: 0.5, max: 10, step: 0.1, dp: 1 },
+        m2: { label: "m₂", unit: " kg", min: 0.5, max: 10, step: 0.1, dp: 1 },
+        v1: { label: "v₁", unit: " m/s", min: -6, max: 6, step: 0.1, dp: 1 },
+        v2: { label: "v₂", unit: " m/s", min: -6, max: 6, step: 0.1, dp: 1 },
+        k: { label: "k", unit: " N/m", min: 50, max: 5000, step: 25, dp: 0 },
+        c: { label: "c", unit: " N·s/m", min: 0, max: 300, step: 1, dp: 0 }
+    };
+    var MB_CTRL_ROW_H = 46;               // px — the fixed height of one slot
+    var MB_CTRL_PAD = 10;
+    var MB_CTRL_W = 232;
+
     var mbIndex = [];
     function mbRegister(obj) { mbIndex.push(obj); return obj; }
     function mbFindById(id) {
@@ -41020,8 +41072,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (shape === "wall") return MB_WALL_LEN_M / 2;
         return MB_CART_LEN_M / 2;
     }
-    // Lateral lane offset. SEAM A honours ONLY lanes[].offset_z_m so a lane body
-    // is already drawn in its own lane; contact_override is SEAM B.
+    // Lateral lane offset — a lane body is drawn in its own lane.
     function mbLaneZM(mb, bodyId) {
         var lanes = (mb && mb.lanes) || [];
         for (var i = 0; i < lanes.length; i++) {
@@ -41077,11 +41128,15 @@ export const FIELD_3D_RENDERER_CODE = `
     // LENGTH is the live separation, so a stiff contact barely deforms and a soft
     // one deforms a lot: THE DEFORMATION IS THE VISIBLE CAUSE of the long contact
     // time (spec section 3 — the newton_third_law lesson, the cause must be an object).
-    function mbFitContactElement() {
-        var el = mbFindById("mb_contact_element");
+    //   ONE element per contact (SEAM C): with two lanes there are two compliant
+    // elements deforming at the same time, and each has to show its OWN lane's
+    // deformation — that difference IS the lesson.
+    function mbContactElementId(i) {
+        return i === 0 ? "mb_contact_element" : ("mb_contact_element_" + i);
+    }
+    function mbFitOneContactElement(eng, c, i) {
+        var el = mbFindById(mbContactElementId(i));
         if (!el) return;
-        var eng = window.PM_mbEngine;
-        var c = eng && eng.contact;
         if (!c) { el.visible = false; return; }
         var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
         if (!L || !H) { el.visible = false; return; }
@@ -41094,6 +41149,12 @@ export const FIELD_3D_RENDERER_CODE = `
         el.visible = true;
         el.scale.set(span, 1, 1);
         el.position.set((xLo + xHi) / 2, mbBodyCentreY(L.shape), (L.laneZ || 0) * MB_WORLD_PER_M);
+    }
+    function mbFitContactElement() {
+        var eng = window.PM_mbEngine;
+        if (!eng) return;
+        var cs = eng.contacts || [];
+        for (var i = 0; i < MB_MAX_CONTACTS; i++) mbFitOneContactElement(eng, cs[i] || null, i);
     }
 
     // ── Physics helpers ───────────────────────────────────────────────────
@@ -41111,9 +41172,22 @@ export const FIELD_3D_RENDERER_CODE = `
     // claim, expressed as one number rather than a branch.
     function mbInvMass(b) { return (b && !b.fixed && b.m > 0) ? (1 / b.m) : 0; }
     // Facing-face separation d, and the overlap delta = max(0, L_natural - d).
-    function mbSepD(eng) {
-        var c = eng.contact, L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+    function mbSepD(eng, c) {
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
         return (H.s - H.half) - (L.s + L.half);
+    }
+    // Every contact of this engine, in authored order. contacts[0] is the base
+    // contact block; the rest come from lanes[].contact_override.
+    function mbContacts(eng) { return (eng && eng.contacts) || []; }
+    // Body ids currently held by an ENGAGED (non-latched) contact — they are
+    // advanced by the contact map, everything else free-flies.
+    function mbEngagedBodyIds(eng) {
+        var held = {}, cs = mbContacts(eng);
+        for (var i = 0; i < cs.length; i++) {
+            var c = cs[i];
+            if (c && c.engaged && !c.latched) { held[c.loId] = 1; held[c.hiId] = 1; }
+        }
+        return held;
     }
     // Track friction: the ONLY external force in this scenario and the only way
     // Sigma-p can change (spec section 2). Applied only while |v| > STOP_EPS_V.
@@ -41129,10 +41203,11 @@ export const FIELD_3D_RENDERER_CODE = `
     //                                      constant a, hence fold-exact)
     // With seg = 0 (SET_TIME_FREEZE) v1 === v and s1 === s identically, with NO
     // special-case branch — frozen frames are byte-stable by construction.
-    function mbFreeAdvance(eng, seg) {
+    function mbFreeAdvance(eng, seg, skip) {
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
             if (!b || b.fixed) continue;
+            if (skip && skip[b.id]) continue;
             var a = mbFricAccel(eng, b);
             var v1 = b.v + a * seg;
             // Friction brings a body to REST; it never drags it backwards.
@@ -41148,15 +41223,34 @@ export const FIELD_3D_RENDERER_CODE = `
     // mass-independent friction deceleration, so they stay in step by
     // construction; this re-imposes the joint exactly, killing any rounding drift.
     function mbHoldLatch(eng) {
-        var c = eng.contact;
-        if (!c || !c.latched) return;
-        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
-        if (!L || !H) return;
-        if (!L.fixed && !H.fixed) {
-            H.v = L.v;
-            H.s = L.s + c.latch_gap;
-        } else if (L.fixed) { H.v = 0; H.s = L.s + c.latch_gap; }
-        else { L.v = 0; L.s = H.s - c.latch_gap; }
+        var cs = mbContacts(eng);
+        for (var i = 0; i < cs.length; i++) {
+            var c = cs[i];
+            if (!c || !c.latched) continue;
+            var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+            if (!L || !H) continue;
+            if (!L.fixed && !H.fixed) {
+                H.v = L.v;
+                H.s = L.s + c.latch_gap;
+            } else if (L.fixed) { H.v = 0; H.s = L.s + c.latch_gap; }
+            else { L.v = 0; L.s = H.s - c.latch_gap; }
+        }
+    }
+    // ONE segment of physical time for the WHOLE bench: every engaged contact
+    // takes its exact oscillator map, every other body free-flies. The sets are
+    // disjoint by construction (a body belongs to at most one contact), so the
+    // order of the two passes cannot matter.
+    function mbAdvanceAll(eng, seg) {
+        var held = mbEngagedBodyIds(eng);
+        mbFreeAdvance(eng, seg, held);
+        var cs = mbContacts(eng), Fmax = 0;
+        for (var i = 0; i < cs.length; i++) {
+            var c = cs[i];
+            if (!c || !c.engaged || c.latched) continue;
+            mbContactAdvance(eng, c, seg);
+            if (c.F > Fmax) Fmax = c.F;
+        }
+        eng.F_contact = Fmax;
     }
     // ── The contact response, in closed form ──────────────────────────────
     //   The two contact bodies exchange F = k*delta + c*delta_dot, equal and
@@ -41199,8 +41293,8 @@ export const FIELD_3D_RENDERER_CODE = `
     // Reduced mass of the contact pair. A fixed partner contributes 1/m = 0, so
     // mu collapses to the moving body mass — spec section 2, "for a fixed wall,
     // drop the 1/m term of the wall".
-    function mbContactMu(eng) {
-        var c = eng.contact, L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+    function mbContactMu(eng, c) {
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
         var w = mbInvMass(L) + mbInvMass(H);
         return (w > 0) ? (1 / w) : 0;
     }
@@ -41245,12 +41339,11 @@ export const FIELD_3D_RENDERER_CODE = `
         return null;
     }
     // First instant inside (0, limit] at which the facing faces MEET.
-    function mbTimeToContact(eng, limit) {
-        var c = eng.contact;
+    function mbTimeToContact(eng, c, limit) {
         if (!c || c.latched) return null;
         var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
         if (!L || !H) return null;
-        var delta = c.L_nat - mbSepD(eng);
+        var delta = c.L_nat - mbSepD(eng, c);
         if (c.blocked_until_clear) {
             // STRICTLY below zero, not <= 0. A release lands on delta EXACTLY 0, and
             // that value satisfies the re-entry test below just as well as it
@@ -41284,10 +41377,9 @@ export const FIELD_3D_RENDERER_CODE = `
     // the SAME closed form the step used — never a second integration. Samples
     // land on an ABSOLUTE physical-time grid, so the sample set does not depend on
     // how the frame happened to be partitioned.
-    function mbSampleTrace(eng, mu, d0, u0, seg) {
-        var ev = eng.active_event;
+    function mbSampleTrace(eng, c, mu, d0, u0, seg) {
+        var ev = c.active_event;
         if (!ev) return;
-        var c = eng.contact;
         var t0ms = eng.tphys_ms, t1ms = t0ms + seg * 1000;
         var emit = function (tms, tRel) {
             if (ev.samples.length >= MB_TRACE_MAX) return;
@@ -41314,14 +41406,13 @@ export const FIELD_3D_RENDERER_CODE = `
     //   and momentum conservation is a RESULT here, not an assertion. A fixed
     //   partner has w = 0 and therefore takes no velocity change while still
     //   supplying its exact half of the pair.
-    function mbContactAdvance(eng, seg) {
-        var c = eng.contact;
+    function mbContactAdvance(eng, c, seg) {
         var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
         var wL = mbInvMass(L), wH = mbInvMass(H);
         var wsum = wL + wH;
         if (!(wsum > 0)) return;
         var mu = 1 / wsum;
-        var d0 = c.L_nat - mbSepD(eng);
+        var d0 = c.L_nat - mbSepD(eng, c);
         var u0 = L.v - H.v;
         var st = mbOscAt(c.k, c.c, mu, d0, u0, seg);
         var dDelta = st[0] - d0, du = st[1] - u0;
@@ -41330,7 +41421,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var sH = H.s + H.v * seg - mu * wH * xs;
         var vL = L.v + mu * wL * du;
         var vH = H.v - mu * wH * du;
-        mbSampleTrace(eng, mu, d0, u0, seg);
+        mbSampleTrace(eng, c, mu, d0, u0, seg);
         if (!L.fixed) { L.s = sL; L.v = vL; }
         if (!H.fixed) { H.s = sH; H.v = vH; }
         var F1 = c.k * st[0] + c.c * st[1];
@@ -41341,15 +41432,18 @@ export const FIELD_3D_RENDERER_CODE = `
         // not because it is skipped by a branch.
         L.a = -(F1 * wL);
         H.a = +(F1 * wH);
-        eng.F_contact = F1;
+        c.F = F1;
         // Track friction during contact is a first-order operator split. It is
         // INERT whenever mu_k = 0 (every precision fixture, and the default), so
         // the exactness argument above is untouched where it is asserted; where a
         // state deliberately turns friction on, Sigma-p is supposed to change and
-        // first order is the right cost.
+        // first order is the right cost. Applied to THIS contact's two bodies
+        // only — every other body already took its friction in mbFreeAdvance, and
+        // applying it twice would double the deceleration.
         if (eng.mu_k > 0) {
-            for (var i = 0; i < eng.order.length; i++) {
-                var b = eng.bodies[eng.order[i]];
+            var pair = [L, H];
+            for (var i = 0; i < pair.length; i++) {
+                var b = pair[i];
                 if (!b || b.fixed) continue;
                 var af = mbFricAccel(eng, b);
                 if (af === 0) continue;
@@ -41360,31 +41454,32 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
     }
-    function mbStartEvent(eng) {
-        var c = eng.contact;
+    function mbStartEvent(eng, c) {
         var ev = {
             index: eng.events.length, start_ms: eng.tphys_ms, end_ms: null, duration_ms: null,
             k: c.k, c: c.c, samples: [], F_peak: 0, F_peak_t_ms: null, J: 0,
-            lo: c.loId, hi: c.hiId, lane_z: (eng.bodies[c.loId] || {}).laneZ || 0,
+            lo: c.loId, hi: c.hiId, lane: c.laneId || "", contact_index: c.index,
+            label: c.label || "",
+            lane_z: (eng.bodies[c.loId] || {}).laneZ || 0,
             p_before: mbTotalP(eng), ke_before: mbTotalKE(eng)
         };
         eng.events.push(ev);
+        c.active_event = ev;
         eng.active_event = ev;
         window.PM_mbEvents = eng.events;
     }
-    function mbEngageContact(eng) {
-        var c = eng.contact;
+    function mbEngageContact(eng, c) {
         if (!c) return;
-        if (c.sticks) { mbLatchPair(eng); return; }
+        if (c.sticks) { mbLatchPair(eng, c); return; }
         c.engaged = true;
-        mbStartEvent(eng);
+        mbStartEvent(eng, c);
     }
-    function mbReleaseContact(eng) {
-        var c = eng.contact;
+    function mbReleaseContact(eng, c) {
         if (!c) return;
         c.engaged = false;
         c.blocked_until_clear = true;
-        var ev = eng.active_event;
+        c.F = 0;
+        var ev = c.active_event;
         if (ev) {
             if (ev.samples.length < MB_TRACE_MAX) {
                 mbAccumulateJ(ev, eng.tphys_ms, 0);
@@ -41394,20 +41489,25 @@ export const FIELD_3D_RENDERER_CODE = `
             ev.duration_ms = ev.end_ms - ev.start_ms;
             ev.p_after = mbTotalP(eng);
             ev.ke_after = mbTotalKE(eng);
-            eng.active_event = null;
+            c.active_event = null;
+            if (eng.active_event === ev) eng.active_event = null;
         }
-        eng.F_contact = 0;
-        for (var i = 0; i < eng.order.length; i++) {
-            var b = eng.bodies[eng.order[i]];
-            if (b) b.F_contact = 0;
+        // Only THIS contact's bodies drop to zero force; another lane may still be
+        // mid-impact and its arrows must keep reading its live force.
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        if (L) L.F_contact = 0;
+        if (H) H.F_contact = 0;
+        var cs = mbContacts(eng), Fmax = 0;
+        for (var i = 0; i < cs.length; i++) {
+            if (cs[i] && cs[i].engaged && !cs[i].latched && cs[i].F > Fmax) Fmax = cs[i].F;
         }
+        eng.F_contact = Fmax;
     }
     // sticks — the perfectly inelastic latch. Momentum conservation is what fixes
     // the common velocity, so the latch is not a cheat, it IS the constraint
     // (spec section 2). The kinetic energy that disappears is 0.5*mu*(dv)^2 and
     // it is recorded here for the KE readout that must SHOW the drop.
-    function mbLatchPair(eng) {
-        var c = eng.contact;
+    function mbLatchPair(eng, c) {
         var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
         var wL = mbInvMass(L), wH = mbInvMass(H);
         var wsum = wL + wH;
@@ -41480,8 +41580,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // A latch is instantaneous — there is no pulse to slow down — and the
     // approach runs at true speed so the impact reads as an impact.
     function mbSlowOpen(eng) {
-        var c = eng && eng.contact;
-        return !!(c && c.engaged && !c.latched);
+        var cs = mbContacts(eng);
+        for (var i = 0; i < cs.length; i++) {
+            if (cs[i] && cs[i].engaged && !cs[i].latched) return true;
+        }
+        return false;
     }
     function mbDtScale(eng, mb) {
         var f = mbSlowFactor(mb);
@@ -41495,33 +41598,39 @@ export const FIELD_3D_RENDERER_CODE = `
     //   by the frame rate, and because both maps compose exactly, folding N frames
     //   of h into one frame of N*h partitions at the SAME instants and lands on
     //   the SAME state — the Rule 36 property, to machine precision.
+    //   SEAM C: with two lanes there are TWO contacts running at once, so the
+    //   frame is split at the EARLIEST event across all of them and every body —
+    //   contacting or free — is advanced over the SAME segment. The number of
+    //   pieces is still set by the physics (how many entries/releases fall inside
+    //   the frame), never by the frame rate, so the fold property is unchanged.
     function mbStep(eng, h) {
-        var rem = h, guard = 0;
+        var rem = h, guard = 0, i;
+        var cs = mbContacts(eng);
         while (rem > MB_TINY && guard < MB_EVENT_MAX) {
             guard++;
-            var c = eng.contact;
-            var seg = rem, evt = "";
-            if (c && c.engaged && !c.latched) {
-                var mu = mbContactMu(eng);
-                var d0 = c.L_nat - mbSepD(eng);
-                var u0 = eng.bodies[c.loId].v - eng.bodies[c.hiId].v;
-                var tx = mbContactExitT(c.k, c.c, mu, d0, u0, rem);
-                if (tx != null) { seg = tx; evt = "exit"; }
-                if (seg > 0) mbContactAdvance(eng, seg);
-                eng.tphys_ms += seg * 1000;
-                rem -= seg;
-                if (evt === "exit") mbReleaseContact(eng);
-            } else {
-                var te = mbTimeToContact(eng, rem);
-                if (te != null) { seg = te; evt = "enter"; }
-                if (seg > 0) mbFreeAdvance(eng, seg);
-                eng.tphys_ms += seg * 1000;
-                rem -= seg;
-                if (evt === "enter") mbEngageContact(eng);
+            var seg = rem, evt = "", evC = null;
+            for (i = 0; i < cs.length; i++) {
+                var c = cs[i];
+                if (!c || c.latched) continue;
+                if (c.engaged) {
+                    var mu = mbContactMu(eng, c);
+                    var d0 = c.L_nat - mbSepD(eng, c);
+                    var u0 = eng.bodies[c.loId].v - eng.bodies[c.hiId].v;
+                    var tx = mbContactExitT(c.k, c.c, mu, d0, u0, seg);
+                    if (tx != null && tx <= seg) { seg = tx; evt = "exit"; evC = c; }
+                } else {
+                    var te = mbTimeToContact(eng, c, seg);
+                    if (te != null && te <= seg) { seg = te; evt = "enter"; evC = c; }
+                }
             }
+            if (seg > 0) mbAdvanceAll(eng, seg);
+            eng.tphys_ms += seg * 1000;
+            rem -= seg;
+            if (evt === "exit") mbReleaseContact(eng, evC);
+            else if (evt === "enter") mbEngageContact(eng, evC);
             if (seg <= 0 && evt === "") break;
         }
-        if (rem > MB_TINY) { mbFreeAdvance(eng, rem); eng.tphys_ms += rem * 1000; }
+        if (rem > MB_TINY) { mbAdvanceAll(eng, rem); eng.tphys_ms += rem * 1000; }
         mbClampToTrack(eng);
         window.PM_mbPhysTimeMs = eng.tphys_ms;
     }
@@ -41531,6 +41640,11 @@ export const FIELD_3D_RENDERER_CODE = `
     function mbRunRepeat(mb, eng) {
         var rep = (typeof mb.repeat_every_ms === "number" && mb.repeat_every_ms > 0) ? mb.repeat_every_ms : 0;
         if (!rep) return;
+        // Rule 37: the idle sweep keeps the sandbox demonstrating forever, but the
+        // moment a teacher takes hold of a slider it must STOP re-arming under
+        // them. The cycle counter still tracks the clock, so releasing nothing and
+        // re-entering the state resumes cleanly.
+        if (window.PM_mbSeized) { eng._cycle = Math.floor(eng.t_ms / rep); return; }
         var cyc = Math.floor(eng.t_ms / rep);
         if (eng._cycle == null) { eng._cycle = cyc; return; }
         if (cyc !== eng._cycle) { eng._cycle = cyc; mbSeedKinematics(eng); }
@@ -41564,10 +41678,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!b) continue;
             b.s = b.s0; b.v = b.v0; b.a = 0; b.F_contact = 0;
         }
-        var c = eng.contact;
-        if (c) {
+        var cs = mbContacts(eng);
+        eng.latch = null;
+        for (var ci = 0; ci < cs.length; ci++) {
+            var c = cs[ci];
+            if (!c) continue;
             c.engaged = false; c.latched = false; c.blocked_until_clear = false; c.latch_gap = 0;
-            eng.latch = null;
+            c.active_event = null; c.F = 0;
             // preload_m — the EXPLOSION. The contact starts compressed and
             // releases. The pair is re-separated about its own authored centre of
             // mass, so Sigma-p is exactly what the author wrote (0 for two bodies
@@ -41583,7 +41700,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     H.s = sCm + (L.m / (L.m + H.m)) * r;
                 }
                 c.engaged = true;
-                mbStartEvent(eng);
+                mbStartEvent(eng, c);
             }
         }
         eng.F_contact = 0;
@@ -41730,8 +41847,10 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     // The event whose true numbers the honesty rows report: the one in progress,
     // else the last one recorded.
+    //   The events list is append-ordered, so the last entry IS the one in
+    // progress whenever anything is engaged — identical to the SEAM A
+    // "active_event else last recorded" rule, and well-defined with two lanes.
     function mbLastEvent(eng) {
-        if (eng.active_event) return eng.active_event;
         var ev = eng.events || [];
         return ev.length ? ev[ev.length - 1] : null;
     }
@@ -41747,10 +41866,15 @@ export const FIELD_3D_RENDERER_CODE = `
         return ev ? ev.J : 0;
     }
     function mbLiveF(eng) {
-        var c = eng.contact;
-        if (!c) return 0;
-        var L = eng.bodies[c.loId];
-        return L ? Math.abs(L.F_contact || 0) : 0;
+        var cs = mbContacts(eng), best = 0;
+        for (var i = 0; i < cs.length; i++) {
+            var c = cs[i];
+            if (!c) continue;
+            var L = eng.bodies[c.loId];
+            var f = L ? Math.abs(L.F_contact || 0) : 0;
+            if (f > best) best = f;
+        }
+        return best;
     }
     // Rebuilt on STATE ENTRY only (never per frame). A row exists only where a
     // real reading exists: a fixed body has v = p = KE = 0 for all time, so
@@ -42001,17 +42125,26 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     // ── contact.label — drawn ON the contact element ──────────────────────
+    //   ONE label per contact: in a two-lane state "foam pad" and "steel bumper"
+    // must each sit over the lane they belong to, or the comparison names the
+    // wrong apparatus.
+    function mbContactLabelId(i) {
+        return i === 0 ? "mb_contact_label" : ("mb_contact_label_" + i);
+    }
     function mbDriveContactLabel(eng) {
-        var lb = mbFindById("mb_contact_label");
-        if (!lb) return;
-        var c = eng.contact;
-        if (!c || !c.label) { lb.visible = false; return; }
-        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
-        if (!L || !H) { lb.visible = false; return; }
-        lb.visible = true;
-        var xLo = (L.s + L.half) * MB_WORLD_PER_M, xHi = (H.s - H.half) * MB_WORLD_PER_M;
-        var yTop = Math.max(mbBodyCentreY(L.shape), mbBodyCentreY(H.shape));
-        lb.position.set((xLo + xHi) / 2, yTop + 0.55, (L.laneZ || 0) * MB_WORLD_PER_M);
+        var cs = mbContacts(eng);
+        for (var i = 0; i < MB_MAX_CONTACTS; i++) {
+            var lb = mbFindById(mbContactLabelId(i));
+            if (!lb) continue;
+            var c = cs[i];
+            if (!c || !c.label) { lb.visible = false; continue; }
+            var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+            if (!L || !H) { lb.visible = false; continue; }
+            lb.visible = true;
+            var xLo = (L.s + L.half) * MB_WORLD_PER_M, xHi = (H.s - H.half) * MB_WORLD_PER_M;
+            var yTop = Math.max(mbBodyCentreY(L.shape), mbBodyCentreY(H.shape));
+            lb.position.set((xLo + xHi) / 2, yTop + 0.55, (L.laneZ || 0) * MB_WORLD_PER_M);
+        }
     }
 
     function mbDriveInstruments(eng, mb) {
@@ -42025,15 +42158,152 @@ export const FIELD_3D_RENDERER_CODE = `
     // and then drive once, so the entry frame is already correct.
     function mbApplyInstrumentState(mb, eng) {
         mbRebuildReadout(mb, eng);
-        var lb = mbFindById("mb_contact_label");
-        if (lb) {
-            var txt = (eng.contact && eng.contact.label) ? eng.contact.label : "";
+        var cs = mbContacts(eng);
+        for (var i = 0; i < MB_MAX_CONTACTS; i++) {
+            var lb = mbFindById(mbContactLabelId(i));
+            if (!lb) continue;
+            var txt = (cs[i] && cs[i].label) ? cs[i].label : "";
             if (lb.userData._mbText !== txt) {
                 lb.userData._mbText = txt;
                 if (txt) updateLabelSpriteText(lb, txt);
             }
         }
+        mbApplyFormula(mb);
+        mbApplyControls(mb, eng);
         mbDriveInstruments(eng, mb);
+    }
+
+    // ══════════════════════════════════════════════════════════════════════
+    // SEAM C — THE CONTROL / SANDBOX LAYER
+    //   #mb_sliders rows (Rule 31 · Rule 39f discovery) · PARAM_UPDATE ·
+    //   param_ramp · the trusted-drag seize (Rule 37) · the formula surface.
+    // ══════════════════════════════════════════════════════════════════════
+
+    // The n-th body that can actually move. m1/v1 address the first, m2/v2 the
+    // second; a fixed wall is never addressable, because a slider that moves
+    // nothing is not a control.
+    function mbMovingBody(eng, n) {
+        var seen = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.fixed) continue;
+            if (seen === n) return b;
+            seen++;
+        }
+        return null;
+    }
+    function mbParamValue(eng, p) {
+        if (!eng) return null;
+        var b;
+        if (p === "m1" || p === "v1") { b = mbMovingBody(eng, 0); }
+        else if (p === "m2" || p === "v2") { b = mbMovingBody(eng, 1); }
+        if (p === "m1" || p === "m2") return b ? b.m : null;
+        if (p === "v1" || p === "v2") return b ? b.v0 : null;
+        var c = eng.contacts && eng.contacts[0];
+        if (p === "k") return c ? c.k : null;
+        if (p === "c") return c ? c.c : null;
+        return null;
+    }
+    // THE single write-path. A teacher drag, a PARAM_UPDATE and a param_ramp all
+    // land here, so the physics, the slider position and the row's value text can
+    // never disagree with each other.
+    function mbSetParam(p, val) {
+        var eng = window.PM_mbEngine;
+        if (!eng || !isFinite(val)) return;
+        var b = null;
+        if (p === "m1" || p === "v1") b = mbMovingBody(eng, 0);
+        else if (p === "m2" || p === "v2") b = mbMovingBody(eng, 1);
+        if ((p === "m1" || p === "m2") && b && val > 0) {
+            b.m = val;
+        } else if ((p === "v1" || p === "v2") && b) {
+            // v0 is the authored launch speed, so a repeat cycle re-arms with the
+            // NEW value. The live v follows too, unless this body is mid-impact —
+            // rewriting v inside a contact would contradict the segment the
+            // oscillator map is already solving.
+            b.v0 = val;
+            var held = mbEngagedBodyIds(eng);
+            if (!held[b.id]) b.v = val;
+        } else if (p === "k" || p === "c") {
+            var c0 = eng.contacts && eng.contacts[0];
+            if (c0) { if (p === "k") { if (val > 0) c0.k = val; } else c0.c = (val > 0 ? val : 0); }
+        }
+        mbSyncControlRow(p);
+    }
+    function mbSyncControlRow(p) {
+        var eng = window.PM_mbEngine, spx = MB_CTRL_SPEC[p];
+        if (!spx) return;
+        var v = mbParamValue(eng, p);
+        if (v == null) return;
+        var sl = document.getElementById("mb_" + p + "_slider");
+        var vl = document.getElementById("mb_" + p + "_val");
+        if (sl && String(sl.value) !== String(v)) sl.value = v;
+        var txt = mbFx(v, spx.dp);
+        if (vl && vl.textContent !== txt) vl.textContent = txt;
+    }
+    function mbEmitParam(p, val) {
+        try {
+            parent.postMessage({
+                type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "momentum_bench_explorer"),
+                param: p, value: val
+            }, "*");
+        } catch (e) {}
+    }
+    function mbWireControl(p) {
+        var sl = document.getElementById("mb_" + p + "_slider");
+        if (!sl) return;
+        sl.addEventListener("input", function (e) {
+            var val = parseFloat(sl.value);
+            // Rule 37 sandbox seize: a TRUSTED drag (a real teacher, never a
+            // scripted dispatch and never THE EYE) takes the bench off its idle
+            // sweep — repeat_every_ms stops re-arming and any param_ramp stops
+            // writing, so the teacher's value stands until the state is left.
+            if (e && e.isTrusted) {
+                var eng0 = window.PM_mbEngine;
+                if (eng0 && eng0.trusted_drag_seizes) window.PM_mbSeized = true;
+            }
+            mbSetParam(p, val);
+            mbEmitParam(p, val);
+        });
+    }
+    // param_ramp — a CLOSED FORM of the state clock, so a freeze pin and a rewind
+    // both land on the same value (Rule 36). It writes through mbSetParam, i.e.
+    // exactly the path a teacher drag takes, and a seize stops it dead.
+    function mbRunParamRamp(mb, eng) {
+        var pr = mb && mb.param_ramp;
+        if (!pr || !pr.param || !MB_CTRL_SPEC[pr.param]) return;
+        if (window.PM_mbSeized) return;
+        var t0 = (typeof pr.start_ms === "number" && pr.start_ms > 0) ? pr.start_ms : 0;
+        var t1 = (typeof pr.end_ms === "number" && pr.end_ms > t0) ? pr.end_ms : t0;
+        var u = (t1 > t0) ? ((eng.t_ms - t0) / (t1 - t0)) : (eng.t_ms >= t1 ? 1 : 0);
+        if (u < 0) u = 0; else if (u > 1) u = 1;
+        mbSetParam(pr.param, pr.from + (pr.to - pr.from) * u);
+    }
+    // Per-state row visibility. The panel itself shows only when the state asks
+    // for at least one row; every row keeps its own permanent slot.
+    function mbApplyControls(mb, eng) {
+        var slots = window.PM_mbCtrlSlots || [];
+        if (!slots.length) return;
+        var want = (mb && mb.controls_visible) || [];
+        var any = false;
+        for (var i = 0; i < slots.length; i++) {
+            var p = slots[i];
+            var row = document.getElementById("mb_" + p + "_row");
+            var on = want.indexOf(p) >= 0 && mbParamValue(eng, p) != null;
+            if (row) row.style.display = on ? "block" : "none";
+            if (on) any = true;
+            mbSyncControlRow(p);
+        }
+        var panel = document.getElementById("mb_sliders");
+        if (panel) panel.style.display = any ? "block" : "none";
+    }
+    // Rule 34b — ONE symbolic equation, never a value, never a second surface.
+    function mbApplyFormula(mb) {
+        var el = document.getElementById("mb_formula");
+        if (!el) return;
+        var txt = (mb && typeof mb.formula === "string") ? mb.formula : "";
+        if (!txt) { el.style.display = "none"; el.textContent = ""; return; }
+        if (el.textContent !== txt) el.textContent = txt;
+        el.style.display = "block";
     }
 
     function updateMomentumBenchFrame(dt) {
@@ -42045,6 +42315,7 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.t_ms += h * 1000;
         window.PM_mbTimeMs = eng.t_ms;
         mbRunPhases(mb, eng, eng.t_ms);
+        mbRunParamRamp(mb, eng);
         mbRunRepeat(mb, eng);
         mbStep(eng, h * mbDtScale(eng, mb));
         mbPresent(eng);
@@ -42121,11 +42392,15 @@ export const FIELD_3D_RENDERER_CODE = `
             color: hexToThreeColor(MB_CONTACT_COLOR), emissive: hexToThreeColor(MB_CONTACT_COLOR),
             emissiveIntensity: 0.35, shininess: 50, transparent: true, opacity: 0.85
         });
-        var ce = new THREE.Mesh(new THREE.BoxGeometry(1, 0.16, 0.4), ceMat);
-        ce.userData = { elementType: "mb_contact_element", id: "mb_contact_element" };
-        ce.visible = false;
-        addToScene(ce);
-        mbRegister(ce);
+        //    SEAM C: one per possible lane contact, so two lanes deform two
+        //    separate elements at the same instant.
+        for (var ci = 0; ci < MB_MAX_CONTACTS; ci++) {
+            var ce = new THREE.Mesh(new THREE.BoxGeometry(1, 0.16, 0.4), ceMat.clone());
+            ce.userData = { elementType: "mb_contact_element", id: mbContactElementId(ci) };
+            ce.visible = false;
+            addToScene(ce);
+            mbRegister(ce);
+        }
 
         // 4. SEAM B — the 3D overlay group: the equal-and-opposite force arrows,
         //    their labels and the contact label. A GROUP (added to the scene once)
@@ -42139,11 +42414,13 @@ export const FIELD_3D_RENDERER_CODE = `
         mbRegister(ov);
         mbBuildArrows(defs, ov);
 
-        var clbl = pmCreateAutoLabel((mb0.contact && mb0.contact.label) || "contact", MB_CONTACT_COLOR, 0.36);
-        clbl.userData = { elementType: "mb_contact_label", id: "mb_contact_label", _mbText: null };
-        clbl.visible = false;
-        ov.add(clbl);
-        mbRegister(clbl);
+        for (var li2 = 0; li2 < MB_MAX_CONTACTS; li2++) {
+            var clbl = pmCreateAutoLabel((mb0.contact && mb0.contact.label) || "contact", MB_CONTACT_COLOR, 0.36);
+            clbl.userData = { elementType: "mb_contact_label", id: mbContactLabelId(li2), _mbText: null };
+            clbl.visible = false;
+            ov.add(clbl);
+            mbRegister(clbl);
+        }
 
         // 5. SEAM B — the DOM instrument overlays. Rule 39f: a dynamically-created
         //    panel with an inline position:fixed is AUTO-DISCOVERED by the generic
@@ -42174,7 +42451,66 @@ export const FIELD_3D_RENDERER_CODE = `
             "padding:7px 13px;border-radius:8px;font:600 13px/1.3 system-ui,sans-serif;z-index:10;display:none;";
         document.body.appendChild(bg);
 
-        // 6. Home pose from the FIRST state so the very first frame is correct
+        // 7. SEAM C — the ONE formula surface (Rule 34b). A single symbolic
+        //    equation per state, math-serif Unicode, in its OWN zone: BOTTOM
+        //    CENTRE, the only band left free by the four corner instruments
+        //    (#mb_slowmo top-left, #mb_readout top-right, #mb_trace bottom-left,
+        //    #mb_sliders bottom-right) and by the shared #caption at top centre.
+        //    It never carries a value — the momentum HUD is the separate
+        //    value-only instrument and the two stay separate by ruling.
+        var fs = document.createElement("div");
+        fs.id = "mb_formula";
+        fs.style.cssText = "position:fixed;bottom:20px;left:50%;transform:translateX(-50%);" +
+            "background:rgba(0,0,0,0.78);color:#FFF176;padding:9px 18px;border-radius:8px;" +
+            "font:600 21px/1.35 \\u0027Cambria Math\\u0027,\\u0027Times New Roman\\u0027,serif;" +
+            "text-shadow:0 0 10px rgba(0,0,0,0.9);z-index:10;max-width:330px;text-align:center;display:none;";
+        document.body.appendChild(fs);
+
+        // 8. SEAM C — the Rule-31 control rows, in the reserved BOTTOM-RIGHT zone.
+        //    Every row that ANY state of this concept asks for gets a permanent
+        //    absolutely-positioned SLOT in canonical MB_CTRL_ORDER, so a slider
+        //    shared by two states sits on exactly the same pixels in both. Hiding
+        //    is display:none, which is what the generic Rule-39f ⚙ engine's
+        //    .pmWgShow/.pmWgHide classes drive — so the rows are auto-discovered
+        //    (id ends "_row") and teacher-toggleable with NO per-scenario widget
+        //    code, and a force-shown row returns to its own slot.
+        var union = {}, uni = [], sk = Object.keys(config.states || {});
+        for (var ui = 0; ui < sk.length; ui++) {
+            var usd = config.states[sk[ui]] || {};
+            var umb = usd.momentum_bench;
+            var ucv = (umb && umb.controls_visible) || [];
+            for (var uj = 0; uj < ucv.length; uj++) union[ucv[uj]] = true;
+            // A param_ramp writes through the slider write-path, so its row has to
+            // EXIST even in a state that exposes no teacher control.
+            if (umb && umb.param_ramp && umb.param_ramp.param) union[umb.param_ramp.param] = true;
+        }
+        for (var uk = 0; uk < MB_CTRL_ORDER.length; uk++) {
+            if (union[MB_CTRL_ORDER[uk]]) uni.push(MB_CTRL_ORDER[uk]);
+        }
+        window.PM_mbCtrlSlots = uni;
+        if (uni.length) {
+            var sp = document.createElement("div");
+            sp.id = "mb_sliders";
+            sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor +
+                ";border-radius:8px;font:12px/1.5 \\u0027Cambria Math\\u0027,\\u0027Times New Roman\\u0027,serif;z-index:10;" +
+                "width:" + MB_CTRL_W + "px;height:" + (uni.length * MB_CTRL_ROW_H + 2 * MB_CTRL_PAD) + "px;display:none;";
+            var html = "";
+            for (var si = 0; si < uni.length; si++) {
+                var pk = uni[si], spx = MB_CTRL_SPEC[pk];
+                html += '<div id="mb_' + pk + '_row" style="position:absolute;left:' + MB_CTRL_PAD +
+                    'px;right:' + MB_CTRL_PAD + 'px;top:' + (MB_CTRL_PAD + si * MB_CTRL_ROW_H) +
+                    'px;height:' + (MB_CTRL_ROW_H - 4) + 'px;display:none">' +
+                    '<label>' + spx.label + ' = <span id="mb_' + pk + '_val">--</span>' + spx.unit + '</label>' +
+                    '<input type="range" id="mb_' + pk + '_slider" min="' + spx.min + '" max="' + spx.max +
+                    '" step="' + spx.step + '" value="' + spx.min + '" style="width:100%;margin:2px 0 0 0">' +
+                    '</div>';
+            }
+            sp.innerHTML = html;
+            document.body.appendChild(sp);
+            for (var wi = 0; wi < uni.length; wi++) mbWireControl(uni[wi]);
+        }
+
+        // 9. Home pose from the FIRST state so the very first frame is correct
         //    (applyMomentumBenchState re-seeds on entry).
         mbApplyTrack(mbTrackLenM(mb0));
     }
@@ -42183,6 +42519,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var mb = (stateDef && stateDef.momentum_bench) ? stateDef.momentum_bench : {};
         var lenM = mbTrackLenM(mb);
         var bodies = mb.bodies || [];
+        // A seize belongs to the state the teacher took hold in; entering a new
+        // state hands the bench back to the script (Rule 25d — every state's
+        // visual is self-contained).
+        window.PM_mbSeized = false;
 
         var eng = {
             mode: mb.mode || "sandbox",
@@ -42224,30 +42564,92 @@ export const FIELD_3D_RENDERER_CODE = `
                 v0: d.initial_velocity_mps || 0
             };
         }
-        // The contact. Its lo/hi orientation is fixed from the AUTHORED starting
-        // positions and never re-derived mid-run: which body is on which side of
-        // the compliant element is apparatus, not state.
+        // ── The contacts. Its lo/hi orientation is fixed from the AUTHORED
+        //    starting positions and never re-derived mid-run: which body is on
+        //    which side of the compliant element is apparatus, not state.
+        //      SEAM C — a state may now carry MORE THAN ONE, one per lane, so two
+        //    impacts can happen at the same instant in two lanes. contacts[0] is
+        //    always the base contact block; eng.contact stays an alias of it so
+        //    every single-lane path reads exactly as it did.
         var ct = mb.contact;
-        if (ct && ct.between && ct.between.length === 2) {
-            var a0 = eng.bodies[ct.between[0]], b0 = eng.bodies[ct.between[1]];
-            if (a0 && b0) {
-                var lo = (a0.s <= b0.s) ? a0 : b0;
-                var hi = (lo === a0) ? b0 : a0;
-                eng.contact = {
-                    loId: lo.id, hiId: hi.id,
-                    k: (typeof ct.stiffness_N_per_m === "number" && ct.stiffness_N_per_m > 0) ? ct.stiffness_N_per_m : 0,
-                    c: (typeof ct.damping_Ns_per_m === "number" && ct.damping_Ns_per_m > 0) ? ct.damping_Ns_per_m : 0,
-                    // sticks and preload_m are mutually exclusive (spec section 1);
-                    // sticks wins if a state authors both, so the pair can never be
-                    // asked to latch and explode at once.
-                    sticks: !!ct.sticks,
-                    preload: (!ct.sticks && typeof ct.preload_m === "number" && ct.preload_m > 0) ? ct.preload_m : 0,
-                    L_nat: (typeof ct.natural_length_m === "number" && ct.natural_length_m >= 0) ? ct.natural_length_m : MB_NATURAL_LEN_M,
-                    label: ct.label || "",
-                    engaged: false, latched: false, blocked_until_clear: false, latch_gap: 0
-                };
-            }
+        eng.contacts = [];
+        // sticks + preload_m are mutually exclusive AND the pair must never ship:
+        // validate:concepts rejects it (Gate 8m). If it arrives anyway, say so out
+        // loud and honour preload_m — a pre-loaded spring that latches on release
+        // is a DEAD sim, the most confusing possible failure (founder ruling
+        // 2026-07-31; this reverses SEAM A's silent "sticks wins").
+        var wantSticks = !!(ct && ct.sticks);
+        var preM = (ct && typeof ct.preload_m === "number" && ct.preload_m > 0) ? ct.preload_m : 0;
+        if (wantSticks && preM > 0) {
+            wantSticks = false;
+            try {
+                console.error("[momentum_bench] contact declares BOTH sticks and preload_m — they are " +
+                    "mutually exclusive. Honouring preload_m and ignoring sticks. " +
+                    "npm run validate:concepts rejects this combination (Gate 8m).");
+            } catch (e) {}
         }
+        function mbMakeContact(idA, idB, k, cDamp, label) {
+            var a0 = eng.bodies[idA], b0 = eng.bodies[idB];
+            if (!a0 || !b0 || a0 === b0) return null;
+            var lo = (a0.s <= b0.s) ? a0 : b0;
+            var hi = (lo === a0) ? b0 : a0;
+            return {
+                index: eng.contacts.length, laneId: "",
+                loId: lo.id, hiId: hi.id,
+                k: (typeof k === "number" && k > 0) ? k : 0,
+                c: (typeof cDamp === "number" && cDamp > 0) ? cDamp : 0,
+                sticks: wantSticks,
+                preload: preM,
+                L_nat: (ct && typeof ct.natural_length_m === "number" && ct.natural_length_m >= 0)
+                    ? ct.natural_length_m : MB_NATURAL_LEN_M,
+                label: label || "",
+                F: 0, active_event: null,
+                engaged: false, latched: false, blocked_until_clear: false, latch_gap: 0
+            };
+        }
+        if (ct && ct.between && ct.between.length === 2) {
+            var c0 = mbMakeContact(ct.between[0], ct.between[1],
+                ct.stiffness_N_per_m, ct.damping_Ns_per_m, ct.label);
+            if (c0) eng.contacts.push(c0);
+        }
+        // lanes[].contact_override — the SECOND simultaneous contact. A lane that
+        // owns the base pair MODIFIES contacts[0] in place; any other lane gets
+        // its own contact between its first two bodies, inheriting everything the
+        // override does not name. That is what makes "same ball, same speed, two
+        // stiffnesses, side by side" authorable as data.
+        var lns = mb.lanes || [];
+        for (var li = 0; li < lns.length; li++) {
+            var ln = lns[li] || {};
+            var ov = ln.contact_override;
+            var lids = ln.bodies || [];
+            if (lids.length < 2) continue;
+            var owner = null;
+            for (var oi = 0; oi < eng.contacts.length; oi++) {
+                var cc = eng.contacts[oi];
+                if (lids.indexOf(cc.loId) >= 0 && lids.indexOf(cc.hiId) >= 0) { owner = cc; break; }
+            }
+            // A lane always TAGS the contact it owns, override or not — the trace
+            // legend and the event records name the lane, so an untagged base
+            // contact would leave the soft lane anonymous next to the named one.
+            if (owner && !ov) { owner.laneId = ln.id || ""; continue; }
+            if (!ov) continue;
+            if (owner) {
+                if (typeof ov.stiffness_N_per_m === "number" && ov.stiffness_N_per_m > 0) owner.k = ov.stiffness_N_per_m;
+                if (typeof ov.damping_Ns_per_m === "number" && ov.damping_Ns_per_m > 0) owner.c = ov.damping_Ns_per_m;
+                if (ov.label) owner.label = ov.label;
+                owner.laneId = ln.id || "";
+                continue;
+            }
+            if (eng.contacts.length >= MB_MAX_CONTACTS) continue;
+            var cn = mbMakeContact(lids[0], lids[1],
+                (typeof ov.stiffness_N_per_m === "number" && ov.stiffness_N_per_m > 0)
+                    ? ov.stiffness_N_per_m : (ct ? ct.stiffness_N_per_m : 0),
+                (typeof ov.damping_Ns_per_m === "number" && ov.damping_Ns_per_m > 0)
+                    ? ov.damping_Ns_per_m : (ct ? ct.damping_Ns_per_m : 0),
+                ov.label || (ct ? ct.label : ""));
+            if (cn) { cn.laneId = ln.id || ""; eng.contacts.push(cn); }
+        }
+        eng.contact = eng.contacts[0] || null;
 
         window.PM_mbEngine = eng;
         window.PM_mbEvents = eng.events;

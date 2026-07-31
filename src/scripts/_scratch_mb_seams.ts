@@ -29,6 +29,7 @@ import { chromium } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 import { assembleField3DHtml, type Field3DConfig } from '../lib/renderers/field_3d_renderer';
+import { conceptJsonSchema } from '../schemas/conceptJson';
 
 const OUT = path.join(process.cwd(), '.scratch_mb_seams');
 const RENDERER_SRC = path.join(process.cwd(), 'src', 'lib', 'renderers', 'field_3d_renderer.ts');
@@ -126,14 +127,14 @@ const SNAP = () => {
     scene.traverse((o: any) => {
         const id = o.userData && o.userData.id;
         if (!id) return;
-        if (/^mb_body_[A-Za-z0-9]+$/.test(id) || id === 'mb_contact_element' || id === 'mb_track') {
+        if (/^mb_body_[A-Za-z0-9]+$/.test(id) || /^mb_contact_element(_\d+)?$/.test(id) || id === 'mb_track') {
             const m = o.material;
             objs[id] = {
                 x: o.position.x, y: o.position.y, z: o.position.z, visible: o.visible, sx: o.scale.x,
                 op: m ? m.opacity : null, emI: (m && m.emissiveIntensity != null) ? m.emissiveIntensity : null,
             };
         }
-        if (id === 'mb_contact_label') {
+        if (/^mb_contact_label(_\d+)?$/.test(id)) {
             objs[id] = {
                 x: o.position.x, y: o.position.y, z: o.position.z, visible: o.visible,
                 text: o.userData._mbText,
@@ -158,7 +159,7 @@ const SNAP = () => {
     // The SHARED chrome overlays are in the list too: #legend is fixed bottom-LEFT,
     // which is exactly where the force-trace panel lives, and a collision check that
     // only compares a scenario's OWN panels cannot see that (it shipped once).
-    const panelIds = ['mb_readout', 'mb_trace', 'mb_slowmo', 'caption', 'legend'];
+    const panelIds = ['mb_readout', 'mb_trace', 'mb_slowmo', 'mb_formula', 'mb_sliders', 'caption', 'legend'];
     for (let i = 0; i < panelIds.length; i++) {
         const e = document.getElementById(panelIds[i]);
         if (!e) { panels[panelIds[i]] = null; continue; }
@@ -182,9 +183,30 @@ const SNAP = () => {
     }
     const events = (eng.events || []).map((e: any) => ({
         start_ms: e.start_ms, end_ms: e.end_ms, duration_ms: e.duration_ms,
-        k: e.k, c: e.c, F_peak: e.F_peak, n: e.samples.length,
+        k: e.k, c: e.c, F_peak: e.F_peak, n: e.samples.length, lane: e.lane,
+        label: e.label, lane_z: e.lane_z, contact_index: e.contact_index,
         samples: e.samples,
     }));
+    // SEAM C — every contact (contacts[0] is the base one) + the control rows as
+    // the teacher sees them on screen.
+    const contacts = (eng.contacts || []).map((c: any) => ({
+        index: c.index, lane: c.laneId, loId: c.loId, hiId: c.hiId, k: c.k, c: c.c,
+        sticks: !!c.sticks, preload: c.preload, label: c.label,
+        engaged: !!c.engaged, latched: !!c.latched, F: c.F,
+    }));
+    const rows: Row = {};
+    const rowNodes = document.querySelectorAll('#mb_sliders div[id$="_row"]');
+    for (let i = 0; i < rowNodes.length; i++) {
+        const n = rowNodes[i] as HTMLElement;
+        const r = n.getBoundingClientRect();
+        const inp = n.querySelector('input') as HTMLInputElement | null;
+        rows[n.id] = {
+            shown: getComputedStyle(n).display !== 'none',
+            rect: { x: r.x, y: r.y, w: r.width, h: r.height },
+            value: inp ? inp.value : null,
+            text: n.textContent || '',
+        };
+    }
     return {
         t_ms: eng.t_ms, tphys_ms: eng.tphys_ms, mode: eng.mode, mu_k: eng.mu_k,
         bound_hits: eng.bound_hits, F_contact: eng.F_contact,
@@ -194,8 +216,10 @@ const SNAP = () => {
             sticks: !!eng.contact.sticks, preload: eng.contact.preload, L_nat: eng.contact.L_nat,
             engaged: !!eng.contact.engaged, latched: !!eng.contact.latched,
         } : null,
-        bodies, events, objs, arrows, hudRows,
+        bodies, events, objs, arrows, hudRows, contacts, rows,
+        seized: !!w.PM_mbSeized, ctrlSlots: w.PM_mbCtrlSlots || [],
         hud: panels['mb_readout'], trace: panels['mb_trace'], badge: panels['mb_slowmo'],
+        formula: panels['mb_formula'], sliders: panels['mb_sliders'],
         caption: panels['caption'], legend: panels['legend'],
         traceDrawn: w.PM_mbTraceDrawn || [], traceAxes: w.PM_mbTraceAxes || null,
     };
@@ -204,9 +228,12 @@ const SNAP = () => {
 // call 340 times). Used only to time the slow-motion playback window.
 const LITE = () => {
     const eng = (window as any).PM_mbEngine;
+    let engaged = 0;
+    for (const c of (eng.contacts || [])) if (c && c.engaged && !c.latched) engaged++;
     return {
         tphys_ms: eng.tphys_ms,
-        engaged: !!(eng.contact && eng.contact.engaged && !eng.contact.latched),
+        engaged: engaged > 0,
+        nEngaged: engaged,
         nev: (eng.events || []).length,
     };
 };
@@ -278,6 +305,8 @@ const EX_M1 = 1, EX_M2 = 4, EX_K = 800, EX_PRE = 0.25;
 const IMP_M = 1.0, IMP_V = 3.0, IMP_K_SOFT = 200, IMP_K_STIFF = 2000;
 // 6) SEAM B — the slow-motion factor under test.
 const SLOW_N = 20;
+// 7) SEAM C — the param_ramp window under test.
+const RAMP_K0 = 200, RAMP_K1 = 2000, RAMP_MS = 2000;
 
 const FIX = benchConfig({
     // S1 elastic two-body
@@ -348,6 +377,63 @@ const FIX = benchConfig({
         { id: 'B', label: 'm₂', mass_kg: EL_M2, shape: 'cart', initial_position_m: 0 },
     ], { between: ['A', 'B'], stiffness_N_per_m: EL_K, sticks: true, label: 'velcro' },
         { readouts: ['v', 'p', 'sum_p', 'KE', 'sum_KE'] }),
+    // ── SEAM C fixtures ─────────────────────────────────────────────────────
+    // S12 — THE TWO-LANE CASE. The reason SEAM C exists: the SAME ball at the
+    // SAME speed hits a soft wall in one lane and a rigid wall in the other AT
+    // THE SAME INSTANT. Equal areas, very different peaks, side by side on one
+    // axis pair — that IS impulse's payoff beat, and until now nothing tested it.
+    STATE_12: benchState('Two lanes at once', 'wall_impact', [
+        { id: 'BALLA', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -2, initial_velocity_mps: IMP_V },
+        { id: 'WALLA', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+        { id: 'BALLB', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -2, initial_velocity_mps: IMP_V },
+        { id: 'WALLB', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALLA', 'WALLA'], stiffness_N_per_m: IMP_K_SOFT, label: 'foam pad' }, {
+        lanes: [
+            { id: 'soft', offset_z_m: -1.3, bodies: ['BALLA', 'WALLA'] },
+            {
+                id: 'rigid', offset_z_m: 1.3, bodies: ['BALLB', 'WALLB'],
+                contact_override: { stiffness_N_per_m: IMP_K_STIFF, label: 'steel bumper' },
+            },
+        ],
+        force_trace: { show: true, fill_area: true, peak_marker: true, compare_with_previous_lane: true },
+        formula: 'J = FΔt = Δp',
+    }),
+    // S13 / S14 — the Rule-31 control rows. They SHARE the k slider, so k must
+    // land on identical screen pixels in both however many neighbours are shown.
+    STATE_13: benchState('Controls: v₁ and k', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -2, initial_velocity_mps: IMP_V },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_SOFT }, {
+        controls_visible: ['v1', 'k'],
+        formula: 'J = mΔv',
+    }),
+    STATE_14: benchState('Control: k only, ramped', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -2, initial_velocity_mps: IMP_V },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_SOFT }, {
+        controls_visible: ['k'],
+        param_ramp: { param: 'k', from: RAMP_K0, to: RAMP_K1, start_ms: 0, end_ms: RAMP_MS },
+    }),
+    // S15 — the SANDBOX. Rule 37: it must never sit dead — repeat_every_ms keeps
+    // re-arming the bench for as long as the clock runs — and a TRUSTED drag
+    // seizes it so the teacher's value stands.
+    STATE_15: benchState('Sandbox', 'sandbox', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -2, initial_velocity_mps: IMP_V },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_SOFT }, {
+        controls_visible: ['v1', 'k'],
+        trusted_drag_seizes: true,
+        repeat_every_ms: 1400,
+    }),
+});
+
+// A SEPARATE page: the sticks + preload_m contradiction deliberately logs a
+// console error, and the shared harness page asserts zero console errors.
+const CONTRA = benchConfig({
+    STATE_1: benchState('sticks + preload together', 'explosion', [
+        { id: 'A', label: 'm₁', mass_kg: EX_M1, shape: 'cart', initial_position_m: -0.6 },
+        { id: 'B', label: 'm₂', mass_kg: EX_M2, shape: 'cart', initial_position_m: 0.6 },
+    ], { between: ['A', 'B'], stiffness_N_per_m: EX_K, preload_m: EX_PRE, sticks: true }),
 });
 
 (async () => {
@@ -939,6 +1025,286 @@ const FIX = benchConfig({
             engaged_frames_control: ctl.engagedFrames, engaged_frames_slow: slow.engagedFrames,
             slow_ratio: ratio, compare_areas: areasCmp,
             zones: rects.map(r => ({ id: r[0], rect: r[1].rect })),
+        };
+    }
+
+    // ══ SEAM C — two lanes, controls, ramp, sandbox, formula surface ═════════
+    {
+        // ── C1 — THE TWO-LANE CASE ───────────────────────────────────────────
+        // Two contacts of DIFFERENT stiffness, running at the SAME TIME in two
+        // lanes. Every number below is derived here from the harness's own
+        // masses and speeds; the engine is never asked what to expect.
+        await h.setState('STATE_12');
+        let bothEngagedFrames = 0, maxSimul = 0;
+        for (let i = 0; i < 260; i++) {
+            await h.tick(16.7, 1);
+            const q = await h.lite();
+            if (q.nEngaged > maxSimul) maxSimul = q.nEngaged;
+            if (q.nEngaged >= 2) bothEngagedFrames++;
+        }
+        const two = await h.snap();
+        chk('C1a_two_lane_contacts_are_built_and_engage_simultaneously',
+            two.contacts.length === 2 && maxSimul === 2 && bothEngagedFrames > 0 &&
+            two.contacts[0].k === IMP_K_SOFT && two.contacts[1].k === IMP_K_STIFF &&
+            two.contacts[0].lane === 'soft' && two.contacts[1].lane === 'rigid',
+            'contacts=' + two.contacts.length + ' [' +
+            two.contacts.map((c: Row) => c.lane + ' k=' + c.k + ' ' + c.loId + '/' + c.hiId +
+                ' "' + c.label + '"').join(' | ') +
+            ']; frames with BOTH engaged at once = ' + bothEngagedFrames + ' (max simultaneous ' + maxSimul + ')');
+
+        // The claim itself: equal AREAS, different PEAKS.
+        const evS = two.events.find((e: Row) => e.k === IMP_K_SOFT);
+        const evR = two.events.find((e: Row) => e.k === IMP_K_STIFF);
+        const dp2 = 2 * IMP_M * IMP_V;                    // |Δp| for an elastic wall bounce
+        const aS = evS ? areaOf(evS.samples) : 0, aR = evR ? areaOf(evR.samples) : 0;
+        const pS = evS ? peakOf(evS.samples) : 0, pR = evR ? peakOf(evR.samples) : 0;
+        const kRatio = IMP_K_STIFF / IMP_K_SOFT;
+        const peakRatio = pS > 0 ? pR / pS : 0;
+        chk('C1b_two_lane_areas_agree_while_peaks_differ',
+            !!evS && !!evR &&
+            rel(aS, dp2) <= 0.01 && rel(aR, dp2) <= 0.01 &&
+            rel(peakRatio, Math.sqrt(kRatio)) <= 0.02,
+            'soft  ∫F dt = ' + aS.toFixed(6) + ' N·s (vs m·Δv = ' + dp2.toFixed(6) + ', ' +
+            (100 * rel(aS, dp2)).toFixed(4) + '%)  Fₚₑₐₖ = ' + pS.toFixed(4) + ' N | ' +
+            'rigid ∫F dt = ' + aR.toFixed(6) + ' N·s (' + (100 * rel(aR, dp2)).toFixed(4) + '%)  Fₚₑₐₖ = ' +
+            pR.toFixed(4) + ' N | areas agree to ' + (100 * rel(aS, aR)).toFixed(4) +
+            '%; peak ratio ' + peakRatio.toFixed(5) + ' vs √(k ratio ' + kRatio + ') = ' +
+            Math.sqrt(kRatio).toFixed(5) + ' (' + (100 * rel(peakRatio, Math.sqrt(kRatio))).toFixed(4) + '%)');
+
+        // …and the PANEL actually drew both, on one shared axis pair.
+        const cd2 = two.traceDrawn || [];
+        const drawnAreas2 = cd2.map((d: Row) => areaOf(d.points));
+        chk('C1c_panel_draws_both_lanes_on_one_shared_axis',
+            cd2.length === 2 && !!two.traceAxes && two.traceAxes.compare === true &&
+            drawnAreas2.every((a: number) => rel(a, dp2) <= 0.01) &&
+            Math.max(...cd2.map((d: Row) => d.F_peak)) / Math.min(...cd2.map((d: Row) => d.F_peak)) >= 3,
+            'traces drawn=' + cd2.length + ' on ONE axis (window_ms=' +
+            (two.traceAxes && two.traceAxes.window_ms) + ', F_max=' + (two.traceAxes && two.traceAxes.F_max) +
+            '); drawn areas = [' + drawnAreas2.map((a: number) => a.toFixed(5)).join(', ') +
+            '] N·s vs ' + dp2.toFixed(5) + '; drawn peaks = [' +
+            cd2.map((d: Row) => Number(d.F_peak).toFixed(2)).join(', ') + '] N');
+        chk('C1d_each_lane_body_drawn_in_its_own_lane',
+            Math.abs(two.objs['mb_body_BALLA'].z - (-1.3 * 0.5)) < 1e-9 &&
+            Math.abs(two.objs['mb_body_BALLB'].z - (1.3 * 0.5)) < 1e-9 &&
+            two.objs['mb_contact_element'] && two.objs['mb_contact_element_1'],
+            'BALLA z=' + two.objs['mb_body_BALLA'].z.toFixed(4) + ' BALLB z=' +
+            two.objs['mb_body_BALLB'].z.toFixed(4) + ' (offset_z_m ∓1.3 × 0.5 world/m); ' +
+            'two contact elements built = ' +
+            (!!two.objs['mb_contact_element'] && !!two.objs['mb_contact_element_1']));
+        results.two_lane = {
+            areas: [aS, aR], peaks: [pS, pR], expected_area: dp2,
+            peak_ratio: peakRatio, sqrt_k_ratio: Math.sqrt(kRatio),
+            drawn_areas: drawnAreas2, both_engaged_frames: bothEngagedFrames,
+        };
+
+        // ── C2 — validate:concepts REJECTS sticks + preload_m ────────────────
+        // Asserted by calling the schema directly. Nothing is written into
+        // src/data/concepts/ — a fixture file there would be swept into the
+        // authoring gates and fail for a dozen unrelated reasons.
+        {
+            // superRefine only runs when the BASE object parses, so the probe is
+            // built on a real, currently-passing concept and swaps in nothing but
+            // the field_3d_config block. Nothing is written to disk, so
+            // validate:concepts' own 145-file count cannot move.
+            const baseConcept = JSON.parse(fs.readFileSync(
+                path.join(process.cwd(), 'src', 'data', 'concepts', 'block_on_incline.json'), 'utf8'));
+            const baseOk = conceptJsonSchema.safeParse(baseConcept).success;
+            const mk = (contact: Record<string, unknown>) => Object.assign({}, baseConcept, {
+                field_3d_config: {
+                    scenario_type: 'momentum_bench',
+                    states: { STATE_1: { momentum_bench: { bodies: [], contact } } },
+                },
+            });
+            const hit = (o: unknown) => {
+                const r = conceptJsonSchema.safeParse(o);
+                if (r.success) return [];
+                return r.error.issues
+                    .filter(i => i.path.join('.').indexOf('momentum_bench.contact') >= 0)
+                    .map(i => i.message);
+            };
+            const bad = hit(mk({ between: ['A', 'B'], stiffness_N_per_m: 300, sticks: true, preload_m: 0.25 }));
+            const ok1 = hit(mk({ between: ['A', 'B'], stiffness_N_per_m: 300, preload_m: 0.25 }));
+            const ok2 = hit(mk({ between: ['A', 'B'], stiffness_N_per_m: 300, sticks: true }));
+            chk('C2_validator_rejects_sticks_plus_preload_and_allows_each_alone',
+                baseOk && bad.length === 1 && bad[0].indexOf('Gate 8m') === 0 &&
+                ok1.length === 0 && ok2.length === 0,
+                'base concept parses = ' + baseOk + '; both authored → ' + bad.length +
+                ' issue(s): ' + (bad[0] || 'NONE') +
+                ' | preload_m alone → ' + ok1.length + ' issue(s) | sticks alone → ' + ok2.length + ' issue(s)');
+        }
+
+        // ── C3 — renderer fallback: loud, and preload_m wins ─────────────────
+        {
+            const g = await open('mb_seam_c_contra', CONTRA);
+            await g.setState('STATE_1');
+            for (let i = 0; i < 120; i++) await g.tick(16.7, 1);
+            const cs = await g.page.evaluate(SNAP);
+            const loud = g.errors.filter(e => e.indexOf('sticks') >= 0 && e.indexOf('preload_m') >= 0);
+            const sep = Math.abs(cs.bodies['B'].s - cs.bodies['A'].s);
+            const pSum = EX_M1 * cs.bodies['A'].v + EX_M2 * cs.bodies['B'].v;
+            chk('C3_renderer_logs_error_and_honours_preload_over_sticks',
+                loud.length > 0 && cs.contacts[0].sticks === false && cs.contacts[0].preload === EX_PRE &&
+                !cs.contacts[0].latched && cs.bodies['A'].v < -1e-6 && cs.bodies['B'].v > 1e-6 &&
+                Math.abs(pSum) <= 1e-9,
+                'console error logged = ' + (loud.length > 0) + ' (' + (loud[0] || '').slice(0, 96) + '…); ' +
+                'contact sticks=' + cs.contacts[0].sticks + ' preload=' + cs.contacts[0].preload +
+                ' latched=' + cs.contacts[0].latched + '; the pair EXPLODED apart: v_A=' +
+                cs.bodies['A'].v.toFixed(6) + ' v_B=' + cs.bodies['B'].v.toFixed(6) +
+                ' separation=' + sep.toFixed(4) + ' m; Σp=' + pSum.toExponential(3) + ' (must stay 0)');
+            await g.browser.close();
+        }
+
+        // ── C4 — Rule 31 rows: exactly the requested ones, at fixed slots ─────
+        await h.setState('STATE_13');
+        await h.tick(16.7, 4);
+        const s13 = await h.snap();
+        await h.setState('STATE_14');
+        await h.tick(16.7, 4);
+        const s14 = await h.snap();
+        const shown = (s: Row) => Object.keys(s.rows).filter(k => s.rows[k].shown).sort();
+        chk('C4a_controls_visible_shows_exactly_the_requested_rows',
+            JSON.stringify(shown(s13)) === JSON.stringify(['mb_k_row', 'mb_v1_row']) &&
+            JSON.stringify(shown(s14)) === JSON.stringify(['mb_k_row']) &&
+            s13.sliders.shown === true && s14.sliders.shown === true,
+            'slots built = [' + s13.ctrlSlots.join(', ') + ']; STATE_13 (v1+k) shows [' +
+            shown(s13).join(', ') + ']; STATE_14 (k) shows [' + shown(s14).join(', ') + ']');
+        const kA = s13.rows['mb_k_row'].rect, kB = s14.rows['mb_k_row'].rect;
+        chk('C4b_shared_slider_holds_the_same_screen_position_across_states',
+            kA.x === kB.x && kA.y === kB.y && kA.w === kB.w && kA.h === kB.h,
+            'mb_k_row STATE_13 [' + kA.x + ',' + kA.y + ' ' + kA.w + '×' + kA.h +
+            '] vs STATE_14 [' + kB.x + ',' + kB.y + ' ' + kB.w + '×' + kB.h + ']' +
+            ' — v₁ hidden in STATE_14, k must not move');
+
+        // ── C5 — a TRUSTED drag changes the physics live ─────────────────────
+        await h.setState('STATE_13');
+        await h.tick(16.7, 4);
+        const before = await h.snap();
+        const emitted: Row[] = [];
+        await h.page.evaluate(() => {
+            (window as any).__MB_PARAMS = [];
+            window.addEventListener('message', (e: any) => {
+                if (e.data && e.data.type === 'PARAM_UPDATE') (window as any).__MB_PARAMS.push(e.data);
+            });
+        });
+        await h.page.locator('#mb_v1_slider').fill('1.2');   // a REAL, trusted input event
+        await h.tick(16.7, 1);
+        const after = await h.snap();
+        emitted.push(...(await h.page.evaluate(() => (window as any).__MB_PARAMS || [])));
+        chk('C5_slider_drag_changes_the_physics_live_and_emits_param_update',
+            Math.abs(before.bodies['BALL'].v - IMP_V) < 1e-9 &&
+            Math.abs(after.bodies['BALL'].v - 1.2) < 1e-9 &&
+            emitted.some(m => m.param === 'v1' && Math.abs(m.value - 1.2) < 1e-9) &&
+            after.rows['mb_v1_row'].text.indexOf('1.2') >= 0,
+            'v was ' + before.bodies['BALL'].v.toFixed(4) + ' m/s; after filling #mb_v1_slider = 1.2 → ' +
+            after.bodies['BALL'].v.toFixed(4) + ' m/s; PARAM_UPDATE = ' +
+            JSON.stringify(emitted.filter(m => m.param === 'v1').slice(-1)) +
+            '; row text now "' + after.rows['mb_v1_row'].text.trim() + '"');
+
+        // ── C6 — param_ramp drives from → to over its declared window ────────
+        await h.setState('STATE_14');
+        const rampSeen: Array<[number, number]> = [];
+        for (let i = 0; i < 200; i++) {
+            await h.tick(16.7, 1);
+            const q = await h.page.evaluate(() => {
+                const e = (window as any).PM_mbEngine;
+                return [e.t_ms, e.contacts[0].k] as [number, number];
+            });
+            rampSeen.push(q);
+        }
+        const kAt = (t: number) => {
+            let best: [number, number] = rampSeen[0];
+            for (const r of rampSeen) if (Math.abs(r[0] - t) < Math.abs(best[0] - t)) best = r;
+            return best;
+        };
+        const want = (t: number) => RAMP_K0 + (RAMP_K1 - RAMP_K0) * Math.min(1, Math.max(0, t / RAMP_MS));
+        const probes = [0, 500, 1000, 1500, 2000, 3000].map(t => {
+            const [tt, kk] = kAt(t);
+            return { t, tt, kk, exp: want(tt) };
+        });
+        chk('C6_param_ramp_drives_its_parameter_from_to_over_the_window',
+            probes.every(p => rel(p.kk, p.exp) <= 0.02) &&
+            Math.abs(rampSeen[rampSeen.length - 1][1] - RAMP_K1) < 1e-9,
+            'k(t): ' + probes.map(p => 't≈' + Math.round(p.tt) + 'ms k=' + p.kk.toFixed(1) +
+                ' (exp ' + p.exp.toFixed(1) + ')').join(' | ') +
+            '; holds at ' + rampSeen[rampSeen.length - 1][1].toFixed(1) +
+            ' after end_ms (from ' + RAMP_K0 + ' → ' + RAMP_K1 + ' over ' + RAMP_MS + ' ms)');
+
+        // ── C7 — Rule 37 sandbox: it never sits dead, and a drag seizes it ────
+        await h.setState('STATE_15');
+        let nev = 0;
+        for (let i = 0; i < 400; i++) { await h.tick(16.7, 1); nev = (await h.lite()).nev; }
+        const sandA = await h.snap();
+        // A REAL mouse drag on the range thumb. locator.fill() sets the value
+        // programmatically, so its input event carries isTrusted=false — which is
+        // exactly what THE EYE and any scripted driver produce, and exactly what
+        // must NOT seize the bench. Only a genuine pointer interaction may.
+        const kBox = await h.page.locator('#mb_k_slider').boundingBox();
+        if (kBox) {
+            await h.page.mouse.move(kBox.x + kBox.width * 0.5, kBox.y + kBox.height / 2);
+            await h.page.mouse.down();
+            await h.page.mouse.move(kBox.x + kBox.width * 0.62, kBox.y + kBox.height / 2, { steps: 4 });
+            await h.page.mouse.up();
+        }
+        const kAfterDrag = await h.page.evaluate(() => (window as any).PM_mbEngine.contacts[0].k);
+        const nevAtSeize = (await h.lite()).nev;
+        for (let i = 0; i < 400; i++) await h.tick(16.7, 1);
+        const sandB = await h.snap();
+        chk('C7_sandbox_free_runs_and_a_trusted_drag_seizes_the_sweep',
+            nev >= 3 && sandA.seized === false && sandB.seized === true &&
+            sandB.events.length === nevAtSeize &&
+            sandB.contacts[0].k === kAfterDrag && kAfterDrag !== IMP_K_SOFT,
+            'repeat_every_ms=1400: ' + nev + ' contact events recorded over ~6.7 s of free-running clock ' +
+            '(the bench keeps demonstrating, Rule 37); seized before drag = ' + sandA.seized +
+            '; after a REAL mouse drag on #mb_k_slider → seized = ' + sandB.seized +
+            ', events frozen at ' + nevAtSeize + ' → ' + sandB.events.length +
+            ' over a further ~6.7 s (the idle sweep stopped re-arming), k moved ' + IMP_K_SOFT +
+            ' → ' + kAfterDrag + ' N/m and HELD at ' + sandB.contacts[0].k);
+
+        // ── C8 — the formula surface + Rule 34d with the two new zones ────────
+        await h.setState('STATE_12');
+        for (let i = 0; i < 30; i++) await h.tick(16.7, 1);
+        const zc = await h.snap();
+        await h.setState('STATE_13');
+        for (let i = 0; i < 30; i++) await h.tick(16.7, 1);
+        const zd = await h.snap();
+        chk('C8a_formula_surface_is_one_symbolic_equation_and_carries_no_value',
+            zc.formula.shown === true && zc.formula.text.trim() === 'J = FΔt = Δp' &&
+            zd.formula.text.trim() === 'J = mΔv' &&
+            !/[0-9]/.test(zc.formula.text) && !/[0-9]/.test(zd.formula.text) &&
+            zc.hud.shown === true,
+            'STATE_12 #mb_formula = "' + zc.formula.text.trim() + '" | STATE_13 = "' +
+            zd.formula.text.trim() + '"; contains no digit = ' +
+            (!/[0-9]/.test(zc.formula.text) && !/[0-9]/.test(zd.formula.text)) +
+            '; the value-only HUD stays a SEPARATE surface, shown = ' + zc.hud.shown);
+        const zr = [['mb_readout', zd.hud], ['mb_trace', zd.trace], ['mb_slowmo', zd.badge],
+        ['mb_formula', zd.formula], ['mb_sliders', zd.sliders], ['caption', zd.caption], ['legend', zd.legend]]
+            .filter(r => r[1] && (r[1] as Row).shown && (r[1] as Row).rect.w > 0) as Array<[string, Row]>;
+        // STATE_12 draws the trace + formula together; STATE_13 draws the sliders
+        // + formula. Both are checked, so no pair of zones escapes the test.
+        const zr2 = [['mb_readout', zc.hud], ['mb_trace', zc.trace], ['mb_slowmo', zc.badge],
+        ['mb_formula', zc.formula], ['mb_sliders', zc.sliders], ['caption', zc.caption], ['legend', zc.legend]]
+            .filter(r => r[1] && (r[1] as Row).shown && (r[1] as Row).rect.w > 0) as Array<[string, Row]>;
+        const collide = (rs: Array<[string, Row]>) => {
+            let o = '';
+            for (let i = 0; i < rs.length; i++) {
+                for (let j = i + 1; j < rs.length; j++) {
+                    const a = rs[i][1].rect, b = rs[j][1].rect;
+                    if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) o += rs[i][0] + '/' + rs[j][0] + ' ';
+                }
+            }
+            return o;
+        };
+        const fmt = (rs: Array<[string, Row]>) => rs.map(r => r[0] + '[' + Math.round(r[1].rect.x) + ',' +
+            Math.round(r[1].rect.y) + ' ' + Math.round(r[1].rect.w) + '×' + Math.round(r[1].rect.h) + ']').join(' ');
+        chk('C8b_all_overlay_zones_including_formula_and_sliders_are_disjoint',
+            collide(zr) === '' && collide(zr2) === '' &&
+            zr.some(r => r[0] === 'mb_sliders') && zr2.some(r => r[0] === 'mb_trace') &&
+            zr.every(r => r[0] === 'caption' || r[1].rect.y >= 52 - 0.01),
+            'STATE_13 zones: ' + fmt(zr) + ' → collisions: ' + (collide(zr) || 'NONE') +
+            ' || STATE_12 zones: ' + fmt(zr2) + ' → collisions: ' + (collide(zr2) || 'NONE'));
+        results.seam_c_zones = {
+            state_13: zr.map(r => ({ id: r[0], rect: r[1].rect })),
+            state_12: zr2.map(r => ({ id: r[0], rect: r[1].rect })),
         };
     }
 
