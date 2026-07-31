@@ -2832,6 +2832,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     free_body_diagram:              "field_3d",   // RETROFIT 2026-07-25 onto newtons_laws_body (was mechanics_2d)
     connected_bodies:                "field_3d",   // NEW 2026-07-25 — newtons_laws_body Branch B (coupled/pulley)
     block_on_incline:               "field_3d",   // NEW 2026-07-26 — newtons_laws_body Branch A (incline friction threshold)
+    normal_force:                   "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (N = mg*cos(theta), N adjusts, never a fixed mg)
+    friction_force:                 "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (flat push: static self-adjust, maximum + drop)
+    rolling_friction:               "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch A + SEAM G (bodies[].shape:'wheel'): sliding block vs rolling wheel, same push, ~200x friction gap
+    tension_force:                  "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch B (pulley, STATE_1-3) then SEAM H train (STATE_4-6): T set by motion not the string, T1 != T2 in a chain
     uniform_circular_motion:        "mechanics_2d",
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",

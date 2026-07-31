@@ -327,7 +327,7 @@
       "STATE_1": {
         "label": "One push, two forces: both bodies recoil symmetrically",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 13.6, 9.5],
+        "camera_position": [0, 10.61, 6.17],
         "caption": "One push — two forces",
         "show_sliders": true,
         "formula_overlay": "F₁₂ = -F₂₁",
@@ -351,7 +351,7 @@
       "STATE_2": {
         "label": "Unequal masses, equal forces: 1:3 masses, identical arrows, 3:1 accelerations",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 14.3, 10.0],
+        "camera_position": [0, 11.15, 6.5],
         "caption": "Unequal masses — equal forces",
         "show_sliders": true,
         "formula_overlay": "|F₁₂| = |F₂₁| ⇒ a ∝ 1/m",
@@ -397,7 +397,7 @@
       "STATE_4": {
         "label": "Explore: any two masses, any push -- forces always equal, accelerations always m2:m1",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label", "nlb_body_B", "nlb_body_B_label"],
-        "camera_position": [0, 13.9, 9.7],
+        "camera_position": [0, 10.84, 6.3],
         "caption": "All yours",
         "show_sliders": true,
         "formula_overlay": "F₁₂ = -F₂₁",

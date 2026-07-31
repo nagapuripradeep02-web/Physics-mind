@@ -315,7 +315,7 @@
       "STATE_1": {
         "label": "Frictionless coast: constant v, zero net force",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
-        "camera_position": [0, 2.6, 12],
+        "camera_position": [0, 2.03, 7.8],
         "caption": "No force — never slows",
         "show_sliders": true,
         "formula_overlay": "ΣF = 0 ⇒ v = constant",
@@ -336,7 +336,7 @@
       "STATE_2": {
         "label": "Contrast: same launch, friction on — a real force stops it",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
-        "camera_position": [0, 2.6, 12],
+        "camera_position": [0, 2.03, 7.8],
         "caption": "Friction on — block stops",
         "show_sliders": true,
         "formula_overlay": "ΣF ≠ 0 ⇒ v changes",
@@ -357,7 +357,7 @@
       "STATE_3": {
         "label": "Rest is balanced forces: N = mg, F_net = 0",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
-        "camera_position": [0, 2.2, 8],
+        "camera_position": [0, 1.72, 5.2],
         "caption": "At rest — forces balance",
         "show_sliders": true,
         "formula_overlay": "N = mg ⇒ ΣF = 0",
@@ -381,7 +381,7 @@
       "STATE_4": {
         "label": "Explore: drive m, F, mu_s, mu_k, v0 — when does v change?",
         "visible_elements": ["nlb_body_A", "nlb_body_A_label"],
-        "camera_position": [0, 3.0, 13],
+        "camera_position": [0, 2.34, 8.45],
         "caption": "All yours",
         "show_sliders": true,
         "formula_overlay": "ΣF = 0 ⇔ v constant",

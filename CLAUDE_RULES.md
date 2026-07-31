@@ -18,7 +18,7 @@
 
 ---
 
-## The Rules (verbatim; 1–39 as of 2026-07-21)
+## The Rules (verbatim; 1–41 as of 2026-07-30 — Rule 40’s full body lives in the CLAUDE.md §7 index entry)
 
 1. **Chat API returns JSON** `{ explanation, ncertSources, usage }` — no streaming ever
 2. **Three teaching modes are separate functions** — never mixed in one response
@@ -70,6 +70,17 @@
 - **`particle_field_renderer.ts` — CONFIG-DERIVED declaration + canvas gating.** Declares the full list upfront from the concept config (slider defs + which per-state flags any state uses), because this engine's HUDs are largely **canvas-drawn and therefore have no DOM handle to toggle**: ammeter, V–I graph, galvanometer, node/ratio/balance readouts, KCL & KVL sum chips, thermometer, drift arrow, R_eq badge, power/heat meters are each gated at their draw call through `pfWgVis(key, stateWants)`. DOM overlays (caption / formula / slider rows / readout) route through the same resolver in `applyStateVisuals`, which doubles as the `SET_WIDGET_VIS` re-apply path (never re-runs `applyState` — that would reset the sim clock mid-state, this engine's equivalent of the 39c trap). This renderer also gained the missing `SET_CLEAN_MODE` handler + `body.pm-clean` CSS in the same pass.
 
 **Consequences.** (i) Like Rules 36/37 this is a **renderer-level invariant, NOT per-concept authoring** — every existing concept gets ⚙ on its next `build:review` / `build:pilot`, and a NEW scenario inherits it for free. (ii) 39a–39e remain the **curated** path, now optional: take it only when auto-derived labels read poorly or a widget needs bespoke show semantics (`capacitance` keeps its bespoke curated list; the generic engine skips that scenario). (iii) Verified 2026-07-21 with zero regression — THE EYE `parallel_currents_force` 56/56 and `ohms_law` 38/38 (both baseline-locked, H2 compared), `tsc` 0, validator byte-identical to master, 47-sim `build:pilot` clean. Contract reference: the header comment + the `pmWg*` engine in `field_3d_renderer.ts`, `pfWgVis`/`pfWidgetList` in `particle_field_renderer.ts`, `WIDGET_DECLARE` in `build_review_site.ts`.
+
+41. **Plain-language law — every word a teacher or student can read is basic, literal English (founder 2026-07-30; origin: the friction_force/normal_force review, where "fate", "grip ceiling", "All yours" and "friction finds the answer" shipped through every automated gate).**
+
+**Scope — every reader-facing string, no exceptions:** concept names, state titles (the state rail), delta cues, on-canvas captions, bottom-left state labels, narration/subtitle text (`text_en` and every other language), HUD and slider labels, rendered annotations, feedback prompts. If a reader can see or hear it, this rule governs it.
+
+- **(41a) No idioms, no metaphors, no personification.** Banned register (examples, not an exhaustive list): "fate", "grip", "ceiling" for a maximum (say "maximum" or "limit"), "answers / asks / wants / knows / cares / wins / lets go / gives back / budges / rides on / lurches / runs away", "All yours", "keep your eye on". Forces and objects do not want, know, answer, or care — they increase, decrease, equal, stay still, start to move.
+- **(41b) Physics vocabulary is NOT jargon.** "Static friction", "kinetic friction", "normal force", "maximum static friction μₛN", "acceleration" ARE the plain words — never dumb them down. Use the word the formula uses: "friction increases to match the push" (f = F), never "friction finds the answer".
+- **(41c) The test:** a Class-11 student with textbook English — English as a second language — must understand every word without asking. If a word would need explaining and it is not a physics term, replace it.
+- **(41d) Titles are short and literal.** The state rail truncates long titles, so the FIRST words must carry the meaning ("No Push — Zero Friction", never "No Push — Zero Friction, Even Though the Ceiling Is Ready").
+- **(41e) Relation to other rules:** Rules 24/34 govern how MUCH text is on screen; Rule 35 bans culture-specific content; Rule 41 bans literary/idiomatic register. All three apply together to every string.
+- **Enforcement:** architect (titles + delta cues at design time), physics-author (narration), quality-auditor (a plain-language probe over every rendered string — the same sweep shape as the Rule 35 anchor probe). Note WHY the gates missed it the first time: every automated gate checks structure (word counts, archetypes, Unicode), none checked register — this rule exists because only the founder's read caught it.
 
 ---
 

@@ -114,6 +114,22 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // force changes velocity (newton_second_law), force pairs
     // (newton_third_law), or the friction threshold model (block_on_incline).
     'newton_first_law',
+    // Normal force (Class 11 Ch.8.3 — newtons_laws_body field_3d engine,
+    // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). The normal force is a contact
+    // force perpendicular to the surface whose magnitude ADJUSTS to exactly
+    // what is needed to stop the body sinking into the surface — it is NOT a
+    // fixed "mg", only the flat-ground special case: flat floor (N = mg,
+    // lockstep with mass), tilt (N detaches, N = mg*cos(theta)), vertical
+    // (nothing presses in, N = 0, free fall at g), and a two-body contrast
+    // where the friction ceiling f_max = mu_s*N rides on N, not weight (same
+    // push, light body slides, heavy body holds). Does NOT cover the
+    // friction-threshold break-away angle itself (block_on_incline owns
+    // tan(theta_c) = mu_s), the accelerating-lift case N = m(g +/- a)
+    // (deferred), or drawing complete free-body diagrams (free_body_diagram).
+    // Distinct from the legacy mechanics_2d 'normal_reaction' concept, which
+    // both remain valid concept IDs for now (founder synonym decision
+    // pending — see docs/loop_runs/lom/normal_force/skeleton.md §8).
+    'normal_force',
     // Newton's second law / F = ma (Class 11 Ch.8.4 — second concept of the
     // Laws of Motion field_3d chapter engine, newtons_laws_body scenario,
     // docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). A net force gives a body
@@ -140,6 +156,54 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // (free_body_diagram), friction or inclines (block_on_incline),
     // string-coupled bodies (connected_bodies), or momentum conservation.
     'newton_third_law',
+    // Friction Force (Class 11 Ch.8.6 — fourth concept of the Laws of Motion
+    // field_3d chapter engine, newtons_laws_body scenario, Branch A, FLAT
+    // push only — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). Static friction is
+    // not a fixed value — it self-adjusts to exactly cancel an applied push
+    // up to a ceiling f_max = μₛN, past which the body breaks free and
+    // friction DROPS to the smaller constant kinetic value μₖN: no push
+    // means zero friction even though the ceiling is ready, a rising push
+    // tracked in exact lockstep below the ceiling, the break-away snap at
+    // F = μₛN, two identical blocks at one force showing two different
+    // fates (resting holds, already-sliding runs away), and kinetic
+    // friction's speed-independence (fast and slow glides read the same f).
+    // Does NOT cover the incline decomposition or tan θ = μₛ break-away
+    // angle (block_on_incline), the full friction-opposes-relative-motion
+    // direction subtlety, or the legacy friction_static_kinetic bundle.
+    'friction_force',
+    // Rolling Friction (Class 11 Ch.5.9 — sixth concept of the Laws of
+    // Motion field_3d chapter engine, newtons_laws_body scenario, Branch A +
+    // SEAM G bodies[].shape:'wheel' — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md).
+    // Same mass, same push, two contact types: a sliding block (μₖ = 0.40)
+    // and a rolling wheel (μᵣ ≈ 0.002) obey the SAME law f = μN, but the
+    // rolling coefficient is about 200x smaller — the wheel crosses the
+    // whole track while the block barely moves. Confronts "rolling means
+    // frictionless" (the wheel's friction reads nonzero and it visibly
+    // slows while coasting) and shows both frictions grow with load, but
+    // only the sliding side's growth can stop motion entirely (STATE_4).
+    // Does NOT cover rotational dynamics (no torque, no moment of inertia,
+    // no angular acceleration) or re-teach static vs kinetic friction
+    // (owned by the sibling friction_force — this concept fixes μₛ = μₖ on
+    // the block deliberately).
+    'rolling_friction',
+    // Tension Force (Class 11 Ch.8.4 — fifth concept of the Laws of Motion
+    // field_3d chapter engine, newtons_laws_body scenario: Branch B/pulley
+    // then SEAM H/train — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). A string
+    // exerts a pull along its own line at both ends, whose SIZE is set by
+    // the motion, not by the string itself: at rest T equals the hanging
+    // weight, but that is a special case (T = m2g only when a = 0); once
+    // released, T = m2(g-a) drops strictly below the weight; one ideal
+    // string carries one tension throughout (an ideal pulley changes
+    // direction only, never size); and a CHAIN of separate strings carries
+    // a DIFFERENT tension in each one — a string only moves the mass behind
+    // it, so T1 != T2. Does NOT re-derive the shared-|a|/one-T pulley
+    // SOLVING METHOD, T != m2g as a solving step, the incline variant, or
+    // Atwood (all owned by the sealed connected_bodies sibling — this
+    // concept teaches what tension IS and the same-vs-different question,
+    // not the elimination method). Distinct from the legacy mechanics_2d
+    // tension_in_string bundle (bare formula lookup, kept for historical
+    // cache compatibility only).
+    'tension_force',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -830,11 +894,30 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
 // never return them for new queries — but keeping the redirect is defensive.
 export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     electric_field_lines: 'electric_field_point_charge',
-    normal_force: 'normal_reaction',
-    normal_forces: 'normal_reaction',
-    tension: 'tension_in_string',
-    rope_tension: 'tension_in_string',
-    atwood_machine: 'tension_in_string',
+    // `normal_force` is now a real atomic in VALID_CONCEPT_IDS, so normalizeConceptId
+    // returns it before ever reading this map — the old `normal_force: 'normal_reaction'`
+    // entry was dead and is removed. The PLURAL was NOT dead: `normal_forces` is not a
+    // valid ID, so it fell through to the synonym and resolved every "normal forces"
+    // query to the legacy mechanics_2d bundle — contradicting the CLASSIFIER_PROMPT's
+    // own "never return normal_reaction for a new query". Repointed at the live atomic.
+    normal_forces: 'normal_force',
+    // `tension_force` is now the live newtons_laws_body-engine atomic for
+    // what tension IS + T1 != T2 in a chain (registered 2026-07-30). Both
+    // bare-word synonyms redirect there — the legacy `tension_in_string`
+    // bundle (bare formula lookup) is kept only for historical cache
+    // compatibility, per docs/loop_runs/lom/lom_e_design.md §0.
+    // `atwood_machine` repointed at `connected_bodies` (2026-07-30). It aimed at
+    // the legacy `tension_in_string` bundle, which is DEAD mechanics_2d with no
+    // field_3d_config — so every "Atwood machine" query resolved to a
+    // non-product sim, while `connected_bodies` (sealed, on master) teaches
+    // exactly that case in a dedicated both-hanging state. Deliberately NOT sent
+    // to `tension_force`: that concept owns what tension IS and where it changes
+    // along a chain, and it has no Atwood state — solving a coupled pair is
+    // `connected_bodies`' job by design (see the concept boundary in
+    // docs/loop_runs/lom/tension_force/skeleton.md §1).
+    tension: 'tension_force',
+    rope_tension: 'tension_force',
+    atwood_machine: 'connected_bodies',
     contact_force: 'contact_forces',
     field_force: 'field_forces',
     weight: 'field_forces',
@@ -1056,7 +1139,8 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   ── Forces (Ch.8) ──
   field_forces            ← gravitational force, electrostatic force, weight = mg
   contact_forces          ← normal + friction at contact surface, resultant
-  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline
+  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline (legacy 2D bundle — prefer normal_force for new queries)
+  normal_force            ← the normal force ADJUSTS, it is never a fixed mg: flat floor N=mg (lockstep with mass), tilt detaches N=mg cosθ, vertical surface N=0 (free fall at g), friction ceiling f_max=μₛN rides on N not weight (same push, light body slides, heavy body holds); N never depends on an along-surface applied force F
   tension_in_string       ← rope tension, Atwood machine, T = 2m₁m₂g/(m₁+m₂)
   hinge_force             ← pin joint, rod on wall, hinge reaction
   free_body_diagram       ← FBD, isolate body, force diagram, N = mg cosθ on incline, string tension T = mg
@@ -1067,6 +1151,9 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   newton_first_law        ← law of inertia, ΣF=0 ⇔ v constant, why moving things need no force to keep moving, rest = balanced not absent forces
   newton_second_law       ← F = ma, a = ΣF/m, force sets acceleration not velocity, same force different mass, same mass different force
   newton_third_law        ← action-reaction pair, F₁₂ = -F₂₁, forces always equal and opposite no matter the masses, why the pair never cancels (acts on different bodies), heavier object "pushes harder" myth
+  friction_force          ← static friction self-adjusts to cancel a FLAT push exactly, up to a ceiling f_max = μₛN, then DROPS to the smaller constant μₖN once sliding; two identical blocks at one force can have two different fates (resting held vs already-sliding runs away); kinetic friction is speed-independent. NO incline, NO tan θ (that is block_on_incline)
+  rolling_friction        ← same mass, same push: a sliding block (μₖ = 0.40) vs a rolling wheel (μᵣ ≈ 0.002), SAME law f = μN but ~200× smaller coefficient — the wheel crosses the whole track while the block barely moves; rolling friction is small but NEVER zero (a coasting wheel still slows); both frictions grow with load, but only the sliding side's growth can stop motion entirely. NO torque, NO moment of inertia, NO angular acceleration; does NOT re-teach static vs kinetic friction (that is friction_force)
+  tension_force           ← what tension IS as a force: a pull along the string's own line at both ends, whose SIZE is set by the motion, not by the string — T = m₂g only at rest (a=0); T = m₂(g−a) strictly less than m₂g the instant it accelerates; one ideal string carries ONE tension throughout (a pulley changes direction only, never size); a CHAIN of separate strings carries a DIFFERENT tension in each one, since each string only moves the mass behind it (T₁ ≠ T₂). Does NOT re-derive the shared-|a|/one-T pulley SOLVING METHOD or Atwood (that is connected_bodies)
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -1303,7 +1390,7 @@ CRITICAL DISAMBIGUATION (vectors, Ch.5.1):
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "gravitational force" / "weight of object" → field_forces
-- "normal force" / "N = mg cosθ" → normal_reaction
+- "normal force" / "N = mg cosθ" / "is normal force always equal to weight" / "does the surface push back with a fixed force" / "normal force on an incline" / "why is normal force zero on a vertical surface" / "why does a heavier box grip the floor more" / "friction ceiling depends on normal force" → normal_force (the CURRENT field_3d atomic — N adjusts to whatever presses in: flat N=mg, tilt N=mg cosθ, vertical N=0, friction ceiling f_max=μₛN rides on N not weight. NOT normal_reaction, a legacy 2D bundle kept only for historical cache compatibility — never return normal_reaction for a new query)
 - "friction and normal force together" → contact_forces
 - "tension in rope" / "Atwood machine" → tension_in_string
 - "hinge force on rod" → hinge_force
@@ -1311,6 +1398,9 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "two blocks connected by a string over a pulley" / "Atwood machine" / "why isn't tension equal to the hanging weight" / "block on table connected to a hanging mass" / "block on incline connected over a pulley" / "counterweight problem" → connected_bodies (NOT tension_in_string — that concept is the bare formula lookup; connected_bodies teaches the shared-constraint + elimination METHOD with a live coupled sim)
 - "block on an incline with friction" / "when does a block start to slide on a ramp" / "why does it slip at exactly that angle" / "tan theta equals mu" / "does mass affect when it slips" / "static vs kinetic friction on a slope" / "block slipping down a ramp" (NO pulley, NO second body connected by a rope) → block_on_incline (NOT connected_bodies — that concept requires a rope/pulley; this one is a single uncoupled block, T is never authored)
 - "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
+- "why doesn't friction just equal mu N" / "does friction change as I push harder" / "why does the block suddenly lurch when it starts moving" / "why is friction weaker once something is already sliding" / "does a faster-sliding block feel more friction" / "push a heavy box until it slides" (FLAT surface, NO incline, NO tilt) → friction_force (NOT block_on_incline — that concept needs a ramp/tilt; this one is a flat push with static self-adjustment + the ceiling + the drop to kinetic. NOT friction_static_kinetic — that is the legacy bundle; friction_force is the new newtons_laws_body-engine concept)
+- "why is rolling friction so much smaller than sliding friction" / "does a rolling wheel have any friction at all" / "isn't rolling supposed to be frictionless" / "why does a ball eventually stop rolling" / "why do heavy things get moved on wheels" / "why is a wheeled suitcase easier to move than dragging it" / "does a heavier wheel still roll easily" → rolling_friction (NOT friction_force — that concept is the sliding-only static/kinetic self-adjust arc on ONE contact type; this one COMPARES a sliding block to a rolling wheel at the same push, ~200× friction gap, and confronts "rolling means frictionless". NOT block_on_incline — flat concept, no tilt anywhere)
+- "why isn't tension always equal to the weight" / "does tension in a string ever change" / "why is tension less than mg once it starts accelerating" / "why do two strings in a line read different tensions" / "why does the front string carry more than the back string" / "does one pull mean one tension everywhere" / "why isn't the front string's tension just equal to the applied force" / "tension in an elevator cable while accelerating" / "why does a pulley change tension" → tension_force (NOT connected_bodies — that concept teaches the shared-constraint SOLVING METHOD with one string/one T; this one teaches what tension IS and the same-vs-different question across a CHAIN of strings, T1 vs T2. NOT tension_in_string — that is the legacy mechanics_2d bare-formula bundle)
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
 - "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
 - "Newton's second law" / "F = ma" / "why does force cause acceleration not speed" / "does mass affect acceleration" / "same push heavier object" / "double the force what happens" → newton_second_law (NOT newton_second_law_direction — that concept is about the DIRECTION of a relative to F once a net force exists; this one is about the a = F/m proportionality itself, force sets a rate not a speed)
