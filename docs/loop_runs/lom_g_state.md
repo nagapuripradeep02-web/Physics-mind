@@ -57,7 +57,64 @@ all 7 states**. So the frames are now honest, and the motion is real and human-v
 genuinely static `force_rig` state would still not be CAUGHT by the machine. Deliberately not fixed —
 outside the founder's three-fix instruction. `[owner: peter_parker:field3d_surgeon]`
 
-## ⚠ Two MAJOR arrow scars are now MORE visible, precisely because motion is real
+## Both MAJOR arrow scars — FIXED 2026-07-31 (founder-ordered, one dispatch each)
+
+| # | commit | bug_class | agent |
+|---|---|---|---|
+| 4 | `7c6bbb3` | `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line` | `field3d-surgeon` |
+| 5 | `887ea50` | `force_arrow_length_exceeds_the_apparatus_line_it_lies_along` | `field3d-surgeon` |
+
+Run SEQUENTIALLY, not in parallel: both edit the same arrow-drawing region of
+`field_3d_renderer.ts`, which `feat/lom-f-momentum` is also editing concurrently.
+
+**Ownership correction: eye-walker filed both under `peter_parker:renderer_primitives`, which is
+WRONG.** That tag maps to `pcpl-surgeon`, which owns the 2D parametric renderer and would have
+rejected the scope. Both root causes live in `field_3d_renderer.ts` → `field3d-surgeon`. Worth
+remembering: eye-walker's owner tags are a guess from the symptom, not from the code.
+
+- **`7c6bbb3`** — the shaft was a `THREE.Line`, and WebGL ignores `linewidth` on essentially every
+  desktop driver, so it drew 1px no matter what. `FR_ARROW_Z` never addressed that (depth ordering
+  was never the failure — a 1px line *in front of* a bright cylinder is still invisible), which is
+  why this recurred. Fixed with a real mesh cylinder shaft (`FR_ARROW_SHAFT_R = 0.045`) PLUS the
+  never-applied prevention clause (b): string thinner (0.013→0.009) and dimmer (opacity 0.72→0.55,
+  emissive 0.22→0.12). A mesh cannot vanish on different hardware; clause (b) alone would have left
+  a 1px arrow against a 1px string. Trap found en route: `ArrowHelper.setColor()` reaches only
+  `.line`/`.cone`, so the new child mesh needed explicit re-colouring or it would have kept the
+  build-time palette forever — the same defect class E2 fixed.
+- **`887ea50`** — `force_rig` inherited `newtons_laws_body`'s arrow map (0.048 world/N). A free-body
+  arrow has unlimited room; a tension arrow drawn *along its own string* has only the ring→pulley
+  run, which is 2.40 world ONLY while the ring sits at table centre — and the ring is a solved,
+  moving object. At STATE_1 t=16000 the ring settles at (0.785, 0.128), leaving a run of **1.62**
+  against a **2.352** arrow. Fixed by lowering the single shared scale to 0.026 and adding a
+  perpendicular label offset. **Not a clamp** — one shared newtons→world map still serves every
+  arrow, and the floor/cap are now expressed in NEWTONS with lengths derived, so the thresholds
+  cannot silently drift. Proportionality verified in-frame after the fix: 77/62 px = 0.805 against
+  49.0/39.2 N = 0.800 (before: 148/119 = 0.804).
+
+### ⚠ OPEN TASTE CALL — fix 5 shrank every arrow to 54% of its approved drawn length
+
+The global scale had to be set by the WORST case (STATE_4/STATE_1, where the ring settles close to a
+pulley and the run collapses), so every well-behaved state paid for it. STATE_5 never had an
+overshoot problem — its run is the full 2.40 — yet its primary-aha arrows fell from ~150 px to ~45 px
+stubs clustered at the ring. Compare `20260731-152258\STATE_5__frozen.png` (approved look) with
+`20260731-190618\STATE_5__frozen.png`. The concept was founder-approved on the former.
+
+This is inherent to "one shared scale", which proportionality REQUIRES — but it is not the only
+lever. **The apparatus is drawn small: the table spans ~306 px of a 1280×720 frame, so the sim fills
+roughly 40% of the height.** Scaling the drawn apparatus and the arrow scale together by the same
+factor k zooms the whole picture up in pixels while leaving every geometric relationship — including
+the containment clearance and the proportionality — exactly intact. That would recover the arrows'
+screen presence without reintroducing either scar. Not done: it changes framing, and the founder
+approved this concept on its current framing.
+
+Also observed in the same frames, not yet filed: **the `T₁`/`T₂`/`T₃` arrow labels read dim and
+small** — they are drawn in each arrow's authored colour (blue, red) and now sit deep inside the
+dark table disc rather than out at the rim, so contrast is poor. Legibility is Rule 24/34 territory.
+
+Founder call needed: accept as-is · zoom the apparatus (recommended) · or revert `887ea50` and
+contain the overshoot a different way.
+
+## (superseded — both now fixed) Two MAJOR arrow scars are now MORE visible, precisely because motion is real
 
 Both were known and deliberately left (one `bug_class` per dispatch); both are plainly visible in the
 new `STATE_1__dense_t16000.png`:
@@ -180,8 +237,11 @@ next: **FOUNDER RE-REVIEW of `equilibrium_of_particles`** (approved on content; 
 in_flight: (none)
 parked: (none)
 engine_commits: e5c5d01 (force_table + harness), 096157d (whirl), 5801db6 (E2 colour),
-                ea16433 (FIX A — EYE pin fatal, platform/Rule 40), b2ebf9a (E1 time-pin replay)
-                → 2 commits. Runaway guard is 3 per the tray brief / 8 per CHAPTER_LOOP; not hit.
+                ea16433 (FIX A — EYE pin fatal, platform/Rule 40), b2ebf9a (E1 time-pin replay),
+                7c6bbb3 (arrow shaft width), 887ea50 (arrow length containment)
+                → the two arrow fixes were FOUNDER-ORDERED, which is itself the notification the
+                runaway guard exists to force. The guard is now AT its tray limit: any FURTHER
+                engine fix on this tray needs an explicit founder call first.
 
 ---
 
