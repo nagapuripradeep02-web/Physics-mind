@@ -41063,6 +41063,42 @@ export const FIELD_3D_RENDERER_CODE = `
         lbl._frText = t;                    // texture on every redraw — never per frame
         updateLabelSpriteText(lbl, t);
     }
+    // ── Authored string colour -> the drawn arrow + its label ──────────────
+    //   A THREE.ArrowHelper is a GROUP (.line + .cone children) and has NO
+    //   .material of its own, so the obvious o.material.color.set(...) guard is
+    //   simply false and every arrow silently kept the build-time index palette —
+    //   two physically identical cables rendered red and green, which teaches a
+    //   distinction that does not exist. setColor() is the ArrowHelper API (the
+    //   same call bmPulseColor / the flux arrows already use).
+    //   The glow pass caches each material's resting colour in
+    //   userData._glowBaseCol and restores it EVERY frame, so a re-colour that
+    //   does not invalidate that cache is reverted one frame later; the cached
+    //   OPACITY is deliberately left alone (it is the build-time baseline and
+    //   re-caching it mid-dim would strand the arrow at 40%).
+    function frRecolourArrow(o, hex) {
+        if (!o || !hex) return;
+        if (o.setColor) o.setColor(hexToThreeColor(hex));
+        else if (o.material && o.material.color) o.material.color.set(hexToThreeColor(hex));
+        if (!o.traverse) return;
+        o.traverse(function (n) {
+            if (!n.material) return;
+            var ms = Array.isArray(n.material) ? n.material : [n.material];
+            for (var q = 0; q < ms.length; q++) {
+                if (ms[q].userData) ms[q].userData._glowBaseCol = null;
+            }
+        });
+    }
+    //   The label is a sprite whose colour is BAKED into its canvas texture, so
+    //   tinting material.color multiplies the new ink onto the old palette ink
+    //   (and onto the dark outline). Re-draw the glyphs in the authored colour
+    //   and keep the material white, so a gold arrow can never carry a blue T.
+    function frRecolourLabel(o, hex) {
+        if (!o || !hex) return;
+        if (o.material && o.material.color) o.material.color.set(0xFFFFFF);
+        if (o._pmColor === hex) return;
+        o._pmColor = hex;
+        if (o._frText != null) updateLabelSpriteText(o, o._frText);
+    }
     // The spec section 3 update primitive: a real ZERO force HIDES its arrow
     // rather than drawing a stub, because "no force here" is exactly what the
     // absence of an arrow should mean.
@@ -42468,9 +42504,10 @@ export const FIELD_3D_RENDERER_CODE = `
             if (ud.stringIndex == null) return;
             var st = eng.strings[ud.stringIndex];
             if (!st) { o.visible = false; return; }
-            if ((ud.elementType === "fr_arrow" || ud.elementType === "fr_comp" || ud.elementType === "fr_arrow_label") &&
-                o.material && o.material.color) {
-                o.material.color.set(hexToThreeColor(st.color));
+            if (ud.elementType === "fr_arrow" || ud.elementType === "fr_comp") {
+                frRecolourArrow(o, st.color);
+            } else if (ud.elementType === "fr_arrow_label") {
+                frRecolourLabel(o, st.color);
             }
             if (o.material && o.material.userData) { o.material.userData._glowBaseCol = null; o.material.userData._glowBaseOp = null; }
         });
