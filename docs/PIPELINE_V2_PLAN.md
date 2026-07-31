@@ -66,7 +66,7 @@ field3d-surgeon stays Opus 5 (audit: half the calls of Sonnet ⇒ cheaper in pra
 |---|---|---|---|
 | **1** | Graduate founder-proxy + field3d-surgeon (de-trial specs, scar-filing policy, owner-tag code lists) · rename renderer-primitives → pcpl-surgeon (DB tag unchanged) · feedback-collector DORMANT · governance sweep (13 roles) | **SHIPPED 2026-07-31** (`feat/pipeline-v2`) | — |
 | **2** | Phase-0 chapter doctrine + Amendment-4 engine-dispatch discipline + founder-proxy checkpoints → `AUTHORING_PIPELINE.md` (v1.1). CHAPTER_LOOP.md re-bannered: doctrine graduated, the autonomous loop itself stays founder-triggered | **SHIPPED 2026-07-31** | — |
-| **3** | **THE CALCULATOR** — a numeric-physics gate beside THE EYE: drive each state headlessly, read HUD/probe/readout values, assert against the physics computed from the concept's own variables. Start with 3 invariant classes: readout-matches-formula · conservation checks · slider-response direction. $0, deterministic, no AI. | NEXT (1–2 sessions) | Fills the one uncovered gate: nothing today verifies the NUMBERS a teacher reads are physically right (THE EYE proves pixels moved; the paid vision gate is rarely run). |
+| **3** | **THE CALCULATOR** — a numeric-physics gate beside THE EYE: drive each state headlessly, read HUD/probe/readout values, assert against the physics computed from the concept's own variables. 3 invariant classes: readout-matches-formula · conservation checks · slider-response direction. $0, deterministic, no AI. | **SHIPPED 2026-07-31** (`feat/the-calculator`) — **ADVISORY** | `npm run numeric:calc -- <id>`. Fills the one uncovered gate: nothing verified the NUMBERS a teacher reads are physically right. Promotion to blocking + CI is a separate decision (see §5). |
 | **4** | **Exemplar rubric** — distill WHY `faraday_law_induction` / `resistivity` / `magnetisation_and_intensity` are excellent into a scored sheet → becomes founder-proxy's Checkpoint A/B scoring rubric. Every founder rejection thereafter feeds it (the ceiling counterpart of the scar list). | 1 founder session | Cheap; do alongside any concept build. |
 | **5** | **Renderer modularization** — `field_3d_renderer.ts` is ~55K lines in ONE template literal (no backticks, drifting line numbers, 42%-of-cost re-exploration). New scenarios born as modules with co-located manifests (knobs/cues/widgets/deriveStateMeta entries in one place); old scenarios migrate ONLY when touched, shielded by H2 frozen baselines (byte-identical frames = proven-harmless refactor). Never a big-bang rewrite. | Slow burn, separate branch | Third-use signal for extracting shared parts (meters, zoom-links, graphs) into a library — composition over bespoke scenario blocks is the long-term "powerful renderer" bet. |
 | **6** | **Feedback loop** — end-of-concept feedback prompt in the pilot player (a well-timed one-tap ask, not the passive corner button: 1,314 events / 0 feedback rows says passive doesn't work) + 4-bucket routing (teaching / build / test / engine-bug) for `pilot_feedback` rows, same funnel as Asmi's reviews. Re-activates feedback-collector when rows exist. | Product work, independent | The paying teacher's feedback outranks all telemetry. |
@@ -99,3 +99,31 @@ tokens/dispatch, and no routing lands on the wrong surgeon.
   emission or sync silently skips; a first-try "all up-to-date" after copying files is a false
   negative. Emission frontmatter/preamble are hand-maintained (sync never regenerates them), and
   unquoted `description:` values containing `": "` silently break dispatch — keep them quoted.
+
+## §5 — THE CALCULATOR: what it is and what promoting it requires
+
+Shipped ADVISORY. `npm run numeric:calc -- <id>` — no `.env.local`, no Supabase, no AI, $0.
+
+**Ground truth is the concept's own declared physics, never the renderer.** `computed_outputs`
+is the primary source (586 declared fleet-wide, 555 normalize, **429 evaluate**);
+`variables[].derived` is secondary (345 declared, 257 normalize, **163 evaluate**).
+`formulas` and `constraints` are prose and are never parsed. Using `computePhysics_<id>` or a
+renderer internal would make every assertion vacuously true.
+
+**Inputs come from the screen, relationships from the JSON.** States animate their inputs, so
+independent variables resolve live (painted value > visible slider > state override > declared
+default) and dependent ones are recomputed. Where an input could only be read from a declared
+default, a MISMATCH is ambiguous and SKIPs; a MATCH still counts. The asymmetry is deliberate.
+
+**Three harvest channels, no renderer edit:** DOM overlays; a
+`CanvasRenderingContext2D.prototype.fillText` hook (the only handle on p5 instruments, and it
+also catches sprite labels, which render into an offscreen 2D canvas); Three.js sprite `_pmText`.
+
+**Before promoting it to blocking / to `verify.yml`, three things must be true:**
+1. The fleet census shows a false-positive rate near zero — every FAIL hand-confirmed.
+2. CI can run it: it needs chromium plus the CDN `<script>` tags in the assembled HTML. Either
+   install chromium in the workflow and allow the network, or vendor three/p5 locally.
+3. `AUTHORING_PIPELINE.md` §③ and `GIT_WORKFLOW.md`'s pre-merge triad are updated together.
+
+Known limitation, by design: sensitivity is lower in states that expose no sliders, because
+their inputs are only readable from declared defaults and mismatches there must skip.
