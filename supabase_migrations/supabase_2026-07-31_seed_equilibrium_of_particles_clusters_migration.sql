@@ -137,3 +137,43 @@ SET concept_id        = EXCLUDED.concept_id,
     trigger_examples  = EXCLUDED.trigger_examples,
     status            = EXCLUDED.status,
     updated_at        = now();
+
+-- ── concept_panel_config registration (added 2026-08-01) ──────────────────
+-- CLAUDE.md §6 registration site 2. The concept is already registered in code
+-- (CONCEPT_PANEL_MAP in src/config/panelConfig.ts:625, layout 'single',
+-- renderer field_3d), which is what the serving path reads today — but a
+-- concept absent from this TABLE is the known silent-failure class
+-- `Concept missing from concept_panel_config silently routes to particle_field
+-- renderer with no warning` (engine_bug_queue, 2026-04-26). Registering here
+-- keeps equilibrium_of_particles out of the panel_count backlog.
+--
+-- Values mirror the code registration exactly: single panel, field_3d, and
+-- sonnet_can_upgrade FALSE because a field_3d diamond is authored config, never
+-- an LLM-upgradable panel (Rule 5/18).
+INSERT INTO concept_panel_config (
+    concept_id, default_panel_count, panel_a_renderer, panel_b_renderer,
+    sonnet_can_upgrade, upgrade_max, verified_by_human, reasoning,
+    technology_a, class_level, chapter
+) VALUES (
+    'equilibrium_of_particles',
+    1,
+    'field_3d',
+    NULL,
+    FALSE,
+    1,
+    FALSE,
+    'lom-g (2026-08-01). Single-panel field_3d diamond on the force_rig scenario engine (branch A, force_table). Mirrors CONCEPT_PANEL_MAP in src/config/panelConfig.ts. sonnet_can_upgrade FALSE: field_3d concepts are pure authored configuration and are never upgraded by an LLM at serving time (Rule 5/18).',
+    'threejs',
+    11,
+    '8'
+)
+ON CONFLICT (concept_id) DO UPDATE
+SET default_panel_count = EXCLUDED.default_panel_count,
+    panel_a_renderer    = EXCLUDED.panel_a_renderer,
+    panel_b_renderer    = EXCLUDED.panel_b_renderer,
+    sonnet_can_upgrade  = EXCLUDED.sonnet_can_upgrade,
+    upgrade_max         = EXCLUDED.upgrade_max,
+    reasoning           = EXCLUDED.reasoning,
+    technology_a        = EXCLUDED.technology_a,
+    class_level         = EXCLUDED.class_level,
+    chapter             = EXCLUDED.chapter;
