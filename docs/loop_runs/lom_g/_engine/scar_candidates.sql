@@ -1,4 +1,14 @@
--- lom-g (off-axis forces) engine scar candidates — NOT APPLIED.
+-- lom-g (off-axis forces) engine scar candidates — ✅ APPLIED 2026-08-01.
+-- The founder lifted the tray's no-DB-writes prohibition and directed "apply all".
+-- All 11 candidates are now live in engine_bug_queue on the dev project
+-- (dxwpkjfypzxrzgbevfnx): 10 INSERTs + candidate 8's UPDATE, which reopened
+-- candidate 1's row as a recurrence rather than duplicating it. 6 FIXED, 4 OPEN.
+-- Applied in file order so candidate 1 existed before candidate 8 updated it.
+-- fixed_at was stamped on the 6 FIXED rows (the file does not set it; a FIXED
+-- row with a null fixed_at is incomplete). Verified row-by-row after applying.
+-- This file is now the archival record, not a pending queue — do not re-apply.
+--
+-- Original header:
 -- Trial constraint: no DB writes. These are SQL TEXT for the founder to apply.
 -- Schema mirrors docs/loop_runs/lom/_engine/scar_candidates.sql (13 authored
 -- columns of the 16-col engine_bug_queue). bug_class is the upsert key — check
