@@ -3008,6 +3008,11 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     newton_first_law:               "field_3d",
     newton_second_law:              "field_3d",
     newton_third_law:               "field_3d",
+    // Laws of Motion momentum (momentum_bench engine, lom-f, 2026-07-31):
+    // impulse — J = F̄Δt = Δp, ball rebounding off a fixed wall of variable
+    // stiffness k. Sibling concept conservation_of_momentum shares this
+    // scenario_type on the SAME engine — see MOMENTUM_BENCH_ENGINE_SPEC.md.
+    impulse:                        "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────

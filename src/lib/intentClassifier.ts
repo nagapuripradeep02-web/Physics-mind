@@ -156,6 +156,22 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // (free_body_diagram), friction or inclines (block_on_incline),
     // string-coupled bodies (connected_bodies), or momentum conservation.
     'newton_third_law',
+    // Impulse (Class 11 Ch.8.8 — momentum_bench field_3d engine,
+    // docs/MOMENTUM_BENCH_ENGINE_SPEC.md). Impulse — the product of contact
+    // force and contact time — equals the momentum change (J = F̄Δt = Δp): a
+    // ball's momentum p = mv (STATE_1), a ball rebounding off a fixed wall
+    // DOUBLES its momentum change to 2mv because the sign reverses (STATE_2,
+    // the NCERT beat), the contact force is large and brief in slow motion
+    // (STATE_3), the shaded area under a force-time graph equals the impulse
+    // (STATE_4), two walls of very different stiffness produce EQUAL areas
+    // but very different peak forces — the PRIMARY payoff (STATE_5), a
+    // softer contact lowers the peak force over a longer time, the anchor
+    // for bending your knees / airbags (STATE_6), and contact duration
+    // depends only on mass and stiffness, never on impact speed (STATE_7).
+    // Does NOT cover conservation of momentum between two free bodies
+    // (conservation_of_momentum, the sibling concept on the same engine),
+    // inelastic energy loss, or 2-D oblique impacts.
+    'impulse',
     // Friction Force (Class 11 Ch.8.6 — fourth concept of the Laws of Motion
     // field_3d chapter engine, newtons_laws_body scenario, Branch A, FLAT
     // push only — docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md). Static friction is
@@ -1151,6 +1167,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   newton_first_law        ← law of inertia, ΣF=0 ⇔ v constant, why moving things need no force to keep moving, rest = balanced not absent forces
   newton_second_law       ← F = ma, a = ΣF/m, force sets acceleration not velocity, same force different mass, same mass different force
   newton_third_law        ← action-reaction pair, F₁₂ = -F₂₁, forces always equal and opposite no matter the masses, why the pair never cancels (acts on different bodies), heavier object "pushes harder" myth
+  impulse                 ← impulse J = F̄Δt = Δp; a ball rebounding off a fixed wall doubles its momentum change to 2mv because the sign reverses (not mv — speed unchanged, direction flipped); the shaded area under a force-time graph equals the impulse; two walls of very different stiffness give EQUAL impulse but very different peak force (equal areas, different peaks); a softer contact lowers the peak force over more time (bending your knees, airbags); contact duration Δt = π√(m/k) depends only on mass and stiffness, NEVER on impact speed. NO conservation of momentum between two free bodies (that is conservation_of_momentum)
   friction_force          ← static friction self-adjusts to cancel a FLAT push exactly, up to a ceiling f_max = μₛN, then DROPS to the smaller constant μₖN once sliding; two identical blocks at one force can have two different fates (resting held vs already-sliding runs away); kinetic friction is speed-independent. NO incline, NO tan θ (that is block_on_incline)
   rolling_friction        ← same mass, same push: a sliding block (μₖ = 0.40) vs a rolling wheel (μᵣ ≈ 0.002), SAME law f = μN but ~200× smaller coefficient — the wheel crosses the whole track while the block barely moves; rolling friction is small but NEVER zero (a coasting wheel still slows); both frictions grow with load, but only the sliding side's growth can stop motion entirely. NO torque, NO moment of inertia, NO angular acceleration; does NOT re-teach static vs kinetic friction (that is friction_force)
   tension_force           ← what tension IS as a force: a pull along the string's own line at both ends, whose SIZE is set by the motion, not by the string — T = m₂g only at rest (a=0); T = m₂(g−a) strictly less than m₂g the instant it accelerates; one ideal string carries ONE tension throughout (a pulley changes direction only, never size); a CHAIN of separate strings carries a DIFFERENT tension in each one, since each string only moves the mass behind it (T₁ ≠ T₂). Does NOT re-derive the shared-|a|/one-T pulley SOLVING METHOD or Atwood (that is connected_bodies)
@@ -1405,6 +1422,7 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
 - "Newton's second law" / "F = ma" / "why does force cause acceleration not speed" / "does mass affect acceleration" / "same push heavier object" / "double the force what happens" → newton_second_law (NOT newton_second_law_direction — that concept is about the DIRECTION of a relative to F once a net force exists; this one is about the a = F/m proportionality itself, force sets a rate not a speed)
 - "Newton's third law" / "action and reaction" / "for every action there is an equal and opposite reaction" / "why don't equal and opposite forces cancel" / "does the heavier one push harder" / "does a wall push back" / "why can I still move if the reaction pushes back equally" → newton_third_law (NOT newton_second_law — that concept is about ONE body's a = F/m; this one is about the PAIR of forces on TWO different bodies and why they never cancel)
+- "what is impulse" / "impulse momentum theorem" / "why is momentum change 2mv not mv on a bounce" / "why does bouncing back double the momentum change" / "does speed being the same mean momentum is the same" / "area under a force time graph" / "how do I find average force from a force-time graph" / "why is impulse in newton seconds" / "does a stiffer wall change the impulse" / "why does a softer wall have a smaller peak force" / "why does bending your knees reduce the force when landing" / "how does an airbag lower the force in a crash" / "does hitting faster change the contact time" → impulse (NOT newton_second_law — this concept is about F̄Δt = Δp for a SINGLE body's contact with a wall, not the instantaneous a = F/m relation; NOT conservation_of_momentum — that concept, not yet built, is about momentum shared between TWO free bodies with no wall)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",

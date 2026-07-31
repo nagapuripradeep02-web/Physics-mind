@@ -141,3 +141,51 @@ INSERT INTO engine_bug_queue (
     'lom-f Phase 0 SEAM C (2026-07-31)',
     'probe_definition'
 );
+
+-- ============================================================
+-- PHASE 1 (impulse authoring, 2026-07-31) — quality-auditor BLOCKING findings.
+-- Both are OPEN engine defects in the momentum_bench param_ramp write-path,
+-- found by driving the real renderer headlessly (THE EYE was barred by the stop line).
+-- Owner corrected to field3d_surgeon: renderer_primitives was renamed pcpl-surgeon
+-- on 2026-07-31 and now owns the 2D renderers only.
+-- ============================================================
+
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_param_ramp_velocity_write_cancels_the_rebound_every_frame',
+    'A per-frame param_ramp write to v1 overwrites the post-rebound velocity, so the ball can never leave the wall',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'mbRunParamRamp calls mbSetParam on EVERY frame with no churn guard and no early-out once the ramp saturates, and mbSetParam overwrites the live velocity whenever the body is not currently engaged (b.v = val when !held[b.id]). After a rebound the ball carries a NEGATIVE velocity and is momentarily not engaged, so the very next frame rewrites it back to the positive ramp value. The ball therefore re-strikes the wall roughly every one contact duration forever: measured 15 contact events where about 4 belong, clustered exactly 71 ms apart, with the ball travelling nowhere between them. A second symptom of the same cause is that the free ball visibly ACCELERATES during its approach with nothing touching it, contradicting the concepts own narration and Rule 32a. Control: the same apparatus with no ramp produces 5 clean single bounces at 70.2 ms and 134.16 N each, so the integrator is exact and the ramp write-path is the sole differentiator. No authored JSON value avoids this while param_ramp.param is v1.',
+    'A ramp that writes a STATE variable (velocity, position) rather than a PARAMETER (stiffness, mass) must write only when the value actually changes, and must stop writing once the ramp saturates. More generally: a bring-up harness that proves param_ramp for ONE value of a closed enum has proved it for one value, not for the enum - test every member (v1, k, m2), and test across a CONTACT rather than only between contacts.',
+    'js_eval',
+    'Drive a wall_impact state with param_ramp.param = v1 headlessly and count contact events over a fixed span; assert the count equals the number of repeat cycles (not a multiple of it), assert no two event start times are separated by less than one full contact duration, and assert the balls speed is CONSTANT on every pre-contact frame.',
+    'OPEN',
+    ARRAY['impulse']::text[],
+    ARRAY[]::text[],
+    'lom-f Phase 1 impulse audit (2026-07-31)',
+    'incident'
+);
+
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_stiffness_write_during_an_engaged_contact_breaks_elasticity',
+    'A k write landing mid-contact changes stiffness underneath an already-solved contact segment, so the bounce is neither elastic nor any valid closed form',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'mbSetParam writes eng.contacts[0].k unconditionally, including while c.engaged is true. The compliant contact is solved as a closed-form damped oscillator segment, so mutating k partway through leaves the departing state inconsistent with BOTH the old and the new stiffness. Measured on a k-ramp state: first event k=1601, duration 82.8 ms, F_peak 111.13 N, area 5.8136 N.s, ball departs at -2.811 m/s instead of -3.000. The closed forms for a FIXED k=1601 give F_peak 120.04 N and t_c 78.5 ms - the observed pair matches neither, which is the signature of the mid-contact rewrite. The concept asserts perfect elasticity (c = 0, |dp| = 2mv) and a fixed 6.00 N.s area, so the sim silently contradicts its own narration on the first bounce of the state.',
+    'A parameter that defines the contact response (k, c, natural_length) must never be mutated while that contact is engaged - defer the write to the next disengaged frame, or re-solve the segment from the current overlap. Assert it: no contact event may end with a departing speed differing from its closed form for the k that was in force when it began.',
+    'js_eval',
+    'Ramp k across a state containing contacts; for every recorded contact event assert F_peak and duration match the closed forms v*sqrt(k*m) and pi*sqrt(m/k) for a SINGLE k, and that the elastic departing speed equals the arriving speed to within 0.5%.',
+    'OPEN',
+    ARRAY['impulse']::text[],
+    ARRAY[]::text[],
+    'lom-f Phase 1 impulse audit (2026-07-31)',
+    'incident'
+);

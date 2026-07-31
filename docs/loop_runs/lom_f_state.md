@@ -1,6 +1,12 @@
 # lom-f loop state — Laws of Motion, momentum tray
 
-updated: 2026-07-31 (**PHASE 0 COMPLETE** — SEAMs A + B + C all green. Harness PASSES 63/63.
+updated: 2026-07-31 (**PHASE 1 — `impulse` AUTHORED, quality-auditor FAIL.** Pipeline ran clean
+         (architect → physics-author → json-author); `tsc` 0, `validate:concepts` **146 PASS / 0
+         FAIL**. Auditor found 3 BLOCKING, and **2 of the 3 are ENGINE defects in the `v1` ramp
+         write-path — an unproved Phase-0 seam.** STOPPED per the runaway guard. Visual gate NOT
+         run, per the stop line. See "Phase 1" below.)
+
+previously: 2026-07-31 (**PHASE 0 COMPLETE** — SEAMs A + B + C all green. Harness PASSES 63/63.
          Assertion 4 CLEARED and the TWO-LANE payoff beat now proved. Every key in the spec's §1
          config surface has behaviour — nothing parses-and-ignores. New sentinel VERIFIED
          deterministic. Paused for founder review before authoring begins.)
@@ -17,7 +23,98 @@ chapter_map (founder-approved 2026-07-30, in build order):
   1. impulse                    — NCERT ball-and-wall, stiffness as the taught variable
   2. conservation_of_momentum   — two carts, elastic / inelastic / explosion
 
-next: **Phase 1 — authoring `impulse`**, pending founder review of the Phase 0 engine
+next: **FOUNDER DECISION on the two engine defects below (B2, B3).** They are genuine NEW defects in
+      `field_3d_renderer.ts`, and the runaway guard stands at **2 of 3** — fixing either one reaches
+      the guard, so the loop stopped rather than spending it unilaterally. Nothing is blocked on
+      authoring: B1 is a one-line-per-state JSON change that can only be VERIFIED after B2 lands.
+      The visual gate stays deferred until this tray cherry-picks lom-g's capture fix.
+
+## Phase 1 — `impulse` (2026-07-31): authored, audited, FAILED, stopped
+
+Pipeline artefacts (each stage read its input BY PATH, nothing pasted):
+`docs/loop_runs/lom_f/impulse/00_BRIEF.md` (founder brief) →
+`01_architect_skeleton.md` → `02_physics_block.md` → `src/data/concepts/impulse.json`.
+
+**Authoring is COMPLETE and mechanically clean.** 8 states (7 guided + explore).
+`npx tsc --noEmit` 0 errors · `npm run validate:concepts` **146 PASS / 0 FAIL** (was 145),
+`impulse.json` PASS with zero WARN lines · all 8 registration sites done (site 7 `PCPL_CONCEPTS`
+correctly N/A — this is field_3d) · drill-down cluster migration authored and **unapplied** by design.
+
+**The founder's mandated payoff beat (S5) is numerically perfect and must not be touched.** Probe on
+the real renderer: padded `k=200` → `222.1 ms / 42.43 N / area 6.0000`; rigid `k=2000` →
+`70.2 ms / 134.16 N / area 5.9998`; both on ONE shared axis. Areas 0.0033% apart, peaks 3.162× (√10).
+
+### quality-auditor verdict: **FAIL** — 3 BLOCKING, 6 ride-along, 3 deferred
+
+The auditor could not use THE EYE (stop line), so it drove the REAL emitted renderer headlessly with
+the real `impulse.json` and read engine state + DOM geometry. That is how it caught defects a
+screenshot gate would have missed.
+
+**B1 — the three ramp states never show the trend their narration claims** `[owner: alex:json_author]`
+`param_ramp.end_ms` equals `repeat_every_ms` on S4/S6/S7 (`4894/4894`, `3966/3966`, `4894/4894`), so
+the whole ramp is consumed inside the FIRST repeat cycle and every later cycle is identical.
+Measured S4 peaks: `87.92, 105.02, 120.37, then 134.16 ×4 constant`. Direct hit on the OPEN scar
+`teach_visual_must_match_narration`. Fix is one line per state (`end_ms` must span several cycles) —
+**but it cannot be verified until B2 lands.**
+
+**B2 — on a `v1` ramp the ball can never leave the wall** `[owner: peter_parker:field3d_surgeon]`
+`mbRunParamRamp` calls `mbSetParam` EVERY FRAME with no churn guard and no early-out after
+saturation (`field_3d_renderer.ts:42271-42280`), and `mbSetParam` overwrites live velocity whenever
+the body is not engaged (`:42210-42226`) — erasing the NEGATIVE post-rebound velocity. Measured: 15
+contact events where ~4 belong, clustered exactly 71 ms apart (one contact duration); the free ball
+also visibly ACCELERATES during its approach with nothing touching it. Control: S2, identical
+apparatus, no ramp → 5 clean bounces at `70.2 ms / 134.16 N` each. **No JSON value avoids this while
+`param_ramp.param === 'v1'`.**
+
+**B3 — a mid-contact `k` write breaks elasticity** `[owner: peter_parker:field3d_surgeon]`
+`mbSetParam` writes `eng.contacts[0].k` unconditionally, including while `c.engaged` is true
+(`:42226-42229`), changing stiffness underneath an already-solved contact segment. Measured S6 first
+event: `k=1601, 82.8 ms, 111.13 N, area 5.8136`, ball departs at `−2.811 m/s` instead of `−3.000`.
+Closed forms for a fixed `k=1601` give `120.04 N / 78.5 ms` — the observed pair matches NEITHER,
+confirming the mid-contact rewrite.
+
+**Routing correction (orchestrator):** the auditor tagged B2/B3 `peter_parker:renderer_primitives`.
+That agent was renamed **`pcpl-surgeon`** on 2026-07-31 and now owns the 2D renderers only. The root
+cause is in `field_3d_renderer.ts`, so the correct owner is **`peter_parker:field3d_surgeon`**.
+
+### Why Phase 0 missed this — an honest gap in my own harness
+
+`_scratch_mb_seams.ts:415` ramps **`param: 'k'` and only `'k'`.** Check C6 proved the ramp mechanism
+against one parameter and I reported the config surface as fully implemented on that basis. The
+`'v1'` ramp write-path was never exercised, and `impulse` is the first artefact to touch it. B3 shows
+even the proven `'k'` path was only tested BETWEEN contacts, never DURING one.
+
+**The harness lesson for SEAM D:** a ramp test must cover every value of `param_ramp.param`
+(`v1 | k | m2`), and must assert across a CONTACT, not only between contacts. "Config key implemented"
+was proved for one enum value and generalised to three — that generalisation was mine, and it was wrong.
+
+### Stop-line compliance
+
+**No `visual:eyes`, no `eye-walker`, no `smoke:visual-validator`, no `visual:approve`, no `tts:*`,
+no `build:pilot`/deploy, no DB writes, no other branch or worktree.** The authoring IS committed to
+this feature branch (validator-green, nothing shipped) so the diff is reviewable via `git log -p` and
+the work survives the session — but the concept is **NOT sealed and NOT approved**; the auditor's
+FAIL stands until B1–B3 are resolved and the deferred visual gate runs.
+
+Three findings are DEFERRED to the visual gate, not failed: camera framing (`[0,3.2,12]`, S5 pulls
+back to `[0,3.6,13]`), THE EYE frame-level legibility, and the Next.js route walk — the last is
+environmentally blocked (`TurbopackInternalError: Symlink node_modules … points out of the
+filesystem root`, the worktree junction), **not a concept defect**; all 8 sites were verified
+statically instead.
+
+### Ride-along findings (not blocking)
+
+R1 both S5 balls carry `label: "m"`, so the HUD cannot name either lane on the PRIMARY aha
+(`alex:json_author`) · R2 `text_hi` is romanized Hinglish, not the fleet's Devanagari-with-inline-
+English convention (`alex:json_author`; zero product impact — Hindi is never voiced) · R3 the HUD's
+"true Δt" reports ELAPSED not TRUE contact time mid-contact, which undercuts the badge's own honesty
+claim (`peter_parker:field3d_surgeon`) · R4 S8 exposes a `c` slider for a quantity no state teaches
+(architect flagged deliberately — founder judgment) · R5 `parallel_form_stem` absent (Gate 20
+dormant) · R6 "pinned" in S7 is mildly idiomatic.
+
+---
+
+[SUPERSEDED — Phase 0 planning] next: **Phase 1 — authoring `impulse`**, pending founder review
       (`git log --grep=engine-loop -p`, 3 commits). The engine is complete and proved; the
       architect can now be handed hard facts (the JSON contract below) instead of wishful config.
       Nothing authored yet.

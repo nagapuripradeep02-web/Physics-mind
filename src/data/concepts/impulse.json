@@ -1,0 +1,604 @@
+{
+  "concept_id": "impulse",
+  "concept_name": "Impulse — Force Times Contact Time",
+  "chapter": 8,
+  "section": "8.8",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 11 Ch.5 Laws of Motion — table-of-contents reference only (impulse follows momentum and precedes variable-mass systems; the ball-and-wall rebound is the classic NCERT worked example). The atomic idea: impulse — the product of contact force and contact time — equals the change in momentum (J = F̄Δt = Δp), so for a fixed momentum change, spreading the contact over more time lowers the peak force. Does NOT cover conservation of momentum between two free bodies (deferred to conservation_of_momentum, the companion concept), inelastic energy loss, or 2-D oblique impacts. Engine: the shared momentum_bench field_3d scenario (docs/MOMENTUM_BENCH_ENGINE_SPEC.md) — a one-dimensional compliant-contact integrator; a ball (shape 'ball') rebounds elastically off a fixed wall (shape 'wall', c = 0 throughout every guided state) whose stiffness k is the sole varied teaching cause. All eight states are expressible with the engine's existing config surface; ENGINE GAP: none.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "momentum_bench"
+    ]
+  },
+  "prerequisites": [
+    "newton_second_law",
+    "newton_third_law"
+  ],
+  "real_world_anchor": {
+    "primary": "Bending your knees when you land from a jump. Land stiff-legged and the same momentum change is forced through a few milliseconds — a large peak force through your joints. Bend your knees and the same momentum change spreads over ten times longer — a far smaller peak force.",
+    "secondary": "A vehicle airbag spreads the same momentum change over a longer contact time, lowering the peak force on the passenger."
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Equal areas, very different peaks: stiffening trades peak force for contact time.",
+    "visual_confirmation": "Two shaded areas on one shared force-time axis read equal, 6.00 N·s each, while the peaks differ, 134.16 N against 42.43 N, a ratio of √10.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_5" },
+    "rebound": { "start": "STATE_2", "end": "STATE_2" },
+    "force_time_graph": { "start": "STATE_3", "end": "STATE_4" },
+    "applications": { "start": "STATE_5", "end": "STATE_6" },
+    "contact_duration": { "start": "STATE_7", "end": "STATE_7" },
+    "explore": { "start": "STATE_8", "end": "STATE_8" }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "m1": { "name": "ball mass", "unit": "kg", "min": 0.5, "max": 10, "step": 0.1, "default": 1.0 },
+      "v1": { "name": "ball velocity (signed)", "unit": "m/s", "min": -6, "max": 6, "step": 0.1, "default": 3.0 },
+      "k": { "name": "contact stiffness", "unit": "N/m", "min": 50, "max": 5000, "step": 25, "default": 2000 },
+      "c": { "name": "contact damping", "unit": "N·s/m", "min": 0, "max": 300, "step": 1, "default": 0 }
+    },
+    "computed_outputs": {
+      "p_before_N_s": { "formula": "m1 * v1 (signed, before contact)" },
+      "p_after_N_s": { "formula": "-m1 * v1 (signed, after full elastic rebound)" },
+      "delta_p_N_s": { "formula": "2 * m1 * |v1|" },
+      "J_N_s": { "formula": "equals delta_p_N_s (impulse-momentum theorem)" },
+      "F_peak_N": { "formula": "|v1| * sqrt(k * m1)" },
+      "delta_t_ms": { "formula": "1000 * PI * sqrt(m1 / k)" },
+      "F_avg_N": { "formula": "delta_p_N_s / (delta_t_ms / 1000)" }
+    },
+    "formulas": {
+      "p": "m1 * v1",
+      "delta_p_magnitude": "2 * m1 * (v1 < 0 ? -v1 : v1)",
+      "J": "2 * m1 * (v1 < 0 ? -v1 : v1)",
+      "F_peak": "(v1 < 0 ? -v1 : v1) * sqrt(k * m1)",
+      "delta_t": "PI * sqrt(m1 / k)",
+      "F_avg": "(2 * m1 * (v1 < 0 ? -v1 : v1)) / (PI * sqrt(m1 / k))"
+    },
+    "constraints": [
+      "J = Δp always — the impulse-momentum theorem holds for every contact, rigid or padded.",
+      "For a full elastic rebound off a fixed wall, |Δp| = 2·m·|v| exactly (proved to 0.000e+0 by the engine).",
+      "F_peak · Δt = πJ/2 — holds independent of contact stiffness k (proved identically on both lanes).",
+      "Contact duration Δt = π√(m/k) does not depend on impact speed v.",
+      "Total momentum of the ball+wall+Earth system is conserved; the ball alone loses momentum to the wall/Earth during contact — the ball's own momentum is NOT conserved through a bounce.",
+      "c = 0 on every guided state — both walls are perfectly elastic (rebounding); only stiffness k, never absorption, is the varied teaching cause."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "Momentum of a moving ball",
+        "duration": 12,
+        "focal_primitive_id": "imp_s1_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through (contrast pair with STATE_2)",
+        "delta_cue": "Momentum p = mv",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s1_head", "position": { "x": 380, "y": 60 }, "text": "A ball moves at a constant velocity — nothing pushes it", "color": "#FFD54F" },
+          { "type": "annotation", "id": "imp_s1_watch", "position": { "x": 200, "y": 250 }, "text": "Momentum p = mv is tracked live as the ball glides", "color": "#66BB6A" },
+          { "type": "annotation", "id": "imp_s1_anchor", "position": { "x": 560, "y": 400 }, "text": "Momentum has a direction, not just a size", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s1_1", "text_en": "Momentum p equals mass times velocity: p = mv, and it has a direction.", "text_hi": "Momentum p, mass times velocity ke barabar hota hai: p = mv, aur iski ek direction hoti hai." },
+            { "id": "imp_s1_2", "text_en": "This ball, mass 1 kilogram, moves at 3 metres per second, so its momentum reads +3.00 kilogram metres per second.", "text_hi": "Yeh ball, jiska mass 1 kilogram hai, 3 metres per second ki speed se chalti hai, isliye iska momentum +3.00 kilogram metres per second padhta hai." }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Rebound doubles the momentum change",
+        "duration": 20,
+        "focal_primitive_id": "imp_s2_watch",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through (declared contrast pair with STATE_1)",
+        "delta_cue": "Rebound: momentum change 2mv",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "rebound_sign_reversal",
+          "momentum_change_vs_speed_change",
+          "impulse_direction"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s2_head", "position": { "x": 380, "y": 60 }, "text": "The ball approaches the wall at +3.00 kg·m/s", "color": "#FFD54F" },
+          { "type": "annotation", "id": "imp_s2_watch", "position": { "x": 200, "y": 250 }, "text": "On rebound momentum flips to −3.00 kg·m/s — a swing of 6.00 kg·m/s", "color": "#EF5350" },
+          { "type": "annotation", "id": "imp_s2_note", "position": { "x": 560, "y": 400 }, "text": "The speed is unchanged; only the direction reverses", "color": "#FFB300" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s2_1", "text_en": "Watch the speed: 3.0 metres per second before contact, 3.0 metres per second after — unchanged.", "text_hi": "Speed dekhiye: contact se pehle 3.0 metres per second, contact ke baad bhi 3.0 metres per second — koi badlaav nahi." },
+            { "id": "imp_s2_2", "text_en": "But momentum has direction.", "text_hi": "Lekin momentum ki ek direction hoti hai." },
+            { "id": "imp_s2_3", "text_en": "The momentum reads +3.00 kilogram metres per second on approach and -3.00 after rebound: a swing of 6.00 kilogram metres per second, twice mv, because the sign reverses.", "text_hi": "Approach par momentum +3.00 kilogram metres per second padhta hai aur rebound ke baad -3.00, yani 6.00 kilogram metres per second ka swing, jo mv ka double hai, kyunki sign reverse ho jaata hai." },
+            { "id": "imp_s2_4", "text_en": "The impulse J also reads 6.00 newton-seconds.", "text_hi": "Impulse J bhi 6.00 newton-seconds padhta hai." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The ball leaves at the same speed it arrived, so the momentum change is small — maybe close to zero, or at most mv.",
+            "visual_counter": "The speed readout shows 3.0 m/s before contact and 3.0 m/s after — but the momentum readout runs from +3.00 to −3.00 kg·m/s, a swing of 6.00 kg·m/s, because momentum has a direction.",
+            "one_line_fix": "Momentum has a direction; the sign reversal on rebound doubles the momentum change to 2mv, not mv."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Contact force in slow motion",
+        "duration": 18,
+        "focal_primitive_id": "imp_s3_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "compress-release",
+        "delta_cue": "Large force, few milliseconds",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s3_head", "position": { "x": 380, "y": 60 }, "text": "Slowed ×20: watch the contact element compress", "color": "#FFD54F" },
+          { "type": "annotation", "id": "imp_s3_watch", "position": { "x": 200, "y": 250 }, "text": "Equal-and-opposite force arrows grow to a peak of 134.16 N", "color": "#66BB6A" },
+          { "type": "annotation", "id": "imp_s3_note", "position": { "x": 560, "y": 400 }, "text": "The true contact time is 70 ms, however slow it looks here", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s3_1", "text_en": "Zoom in on the contact.", "text_hi": "Contact par zoom karke dekhiye." },
+            { "id": "imp_s3_2", "text_en": "The ball pushes into a squeeze as it touches the wall, and the wall pushes back exactly as hard — Newton's third law.", "text_hi": "Ball wall ko chhoote hi squeeze mein dabti hai, aur wall bhi utni hi force se wapas dhakelti hai — Newton ka third law." },
+            { "id": "imp_s3_3", "text_en": "The contact force climbs to a peak of 134.16 newtons in just 70 milliseconds, the true contact time, shown slowed for clarity.", "text_hi": "Contact force sirf 70 milliseconds mein 134.16 newtons ke peak tak pahunch jaati hai, yehi true contact time hai, clarity ke liye slow dikhaya gaya hai." }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Area under the force-time curve",
+        "duration": 20,
+        "focal_primitive_id": "imp_s4_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "Shaded area equals Δp",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "area_under_curve_meaning",
+          "average_force_from_graph",
+          "impulse_units"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s4_head", "position": { "x": 380, "y": 60 }, "text": "The force-time trace draws live during the slowed contact", "color": "#FFD54F" },
+          { "type": "annotation", "id": "imp_s4_watch", "position": { "x": 200, "y": 250 }, "text": "The shaded area under the curve equals the impulse, equals Δp", "color": "#66BB6A" },
+          { "type": "annotation", "id": "imp_s4_note", "position": { "x": 560, "y": 400 }, "text": "As impact speed ramps up, each new area grows to match", "color": "#FFB300" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s4_1", "text_en": "The shaded area under this force-time curve equals the impulse, which equals the momentum change: from F = ma, force times time equals mass times the velocity change.", "text_hi": "Is force-time curve ke neeche ka shaded area impulse ke barabar hota hai, jo momentum change ke barabar hota hai: F = ma se, force times time, mass times velocity change ke barabar hota hai." },
+            { "id": "imp_s4_2", "text_en": "As the impact speed ramps from 1.5 to 3.0 metres per second, each new area grows to match the larger momentum change — same law, every time.", "text_hi": "Jaise impact speed 1.5 se 3.0 metres per second tak ramp hoti hai, har naya area bade momentum change ko match karne ke liye badhta hai — same law, har baar." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Two walls, equal areas",
+        "duration": 20,
+        "focal_primitive_id": "imp_s5_watch",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "side-by-side-compare",
+        "delta_cue": "Two walls: equal areas",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "stiffness_vs_impulse",
+          "peak_force_vs_average_force",
+          "time_spreading_safety"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s5_head", "position": { "x": 380, "y": 60 }, "text": "Two lanes launch together: a rigid wall and a padded wall", "color": "#FFD54F" },
+          { "type": "annotation", "id": "imp_s5_watch", "position": { "x": 200, "y": 250 }, "text": "Both shaded areas are equal — only the peaks differ, 3.16× apart", "color": "#66BB6A" },
+          { "type": "annotation", "id": "imp_s5_anchor", "position": { "x": 560, "y": 400 }, "text": "Bending your knees when you land spreads the same momentum change over more time", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s5_1", "text_en": "Two walls, same ball, same speed — stiffness differs about ten times.", "text_hi": "Do walls, same ball, same speed — stiffness lagbhag das guna alag hai." },
+            { "id": "imp_s5_2", "text_en": "Both momentum changes read 6.00 kilogram metres per second; both shaded areas are equal.", "text_hi": "Dono momentum changes 6.00 kilogram metres per second padhte hain; dono shaded areas equal hain." },
+            { "id": "imp_s5_3", "text_en": "Only the peaks differ: 134.16 newtons rigid, 42.43 newtons padded.", "text_hi": "Sirf peaks alag hain: rigid wall par 134.16 newtons, padded wall par 42.43 newtons." },
+            { "id": "imp_s5_4", "text_en": "Bending your knees when you land spreads the same momentum change over more time, for a smaller peak force.", "text_hi": "Land karte waqt ghutne modna wahi same momentum change ko zyada time mein failata hai, jisse peak force chhota ho jaata hai." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The padded wall is softer, so it must produce a smaller momentum change than the rigid wall.",
+            "visual_counter": "Both balls leave at the same 3.0 m/s, both momentum-change readouts read 6.00 kg·m/s, and both shaded areas under the force-time trace are equal. Only the peak force differs: 134.16 N on the rigid wall against 42.43 N on the padded wall.",
+            "one_line_fix": "A softer contact lowers the peak force and stretches the contact time — the momentum change stays the same."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Softer contact, smaller peak force",
+        "duration": 18,
+        "focal_primitive_id": "imp_s6_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "oscillate-track (contrast pair with STATE_7)",
+        "delta_cue": "Softer contact, lower peak",
+        "depth_ring": "extended",
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s6_head", "position": { "x": 380, "y": 60 }, "text": "The wall's stiffness ramps down from 2000 to 200 N/m", "color": "#FFD54F" },
+          { "type": "annotation", "id": "imp_s6_watch", "position": { "x": 200, "y": 250 }, "text": "The peak force falls, the contact stretches, the shaded area holds steady", "color": "#66BB6A" },
+          { "type": "annotation", "id": "imp_s6_anchor", "position": { "x": 560, "y": 400 }, "text": "The same idea sits behind an airbag", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s6_1", "text_en": "As the wall's stiffness ramps down from 2000 to 200 newtons per metre, the peak force falls and the contact stretches longer — the deformation deepens each bounce.", "text_hi": "Jaise wall ki stiffness 2000 se 200 newtons per metre tak ramp neeche jaati hai, peak force gir jaata hai aur contact lamba khinch jaata hai — deformation har bounce mein aur gehra hota hai." },
+            { "id": "imp_s6_2", "text_en": "The shaded area stays fixed at 6.00 newton-seconds, the same idea behind an airbag: spread the momentum change over more time.", "text_hi": "Shaded area 6.00 newton-seconds par fixed rehta hai, yehi idea airbag ke peeche bhi hai: momentum change ko zyada time mein failana." }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Contact time does not depend on speed",
+        "duration": 16,
+        "focal_primitive_id": "imp_s7_watch",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "motion_archetype": "oscillate-track (declared contrast pair with STATE_6)",
+        "delta_cue": "Contact time stays fixed",
+        "depth_ring": "advanced",
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s7_head", "position": { "x": 380, "y": 60 }, "text": "The impact speed ramps up on the same rigid wall", "color": "#FFD54F" },
+          { "type": "annotation", "id": "imp_s7_watch", "position": { "x": 200, "y": 250 }, "text": "The peak force grows, but the trace width never changes", "color": "#66BB6A" },
+          { "type": "annotation", "id": "imp_s7_note", "position": { "x": 560, "y": 400 }, "text": "Contact time is set by mass and stiffness alone, not speed", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s7_1", "text_en": "Now the speed ramps up, from 1.5 to 6.0 metres per second, on the same rigid wall.", "text_hi": "Ab speed 1.5 se 6.0 metres per second tak ramp up hoti hai, wahi rigid wall par." },
+            { "id": "imp_s7_2", "text_en": "The peak force grows with every bounce, but the trace width stays identical: the contact time stays pinned at 70 milliseconds.", "text_hi": "Peak force har bounce ke saath badhta hai, lekin trace ki width bilkul same rehti hai: contact time 70 milliseconds par pinned rehta hai." },
+            { "id": "imp_s7_3", "text_en": "It does not depend on speed at all.", "text_hi": "Yeh speed par depend hi nahi karta." }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Explore the impact",
+        "duration": 0,
+        "focal_primitive_id": "imp_s8_watch",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "All controls live",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "imp_s8_head", "position": { "x": 380, "y": 60 }, "text": "Drag the mass, speed, stiffness or damping sliders", "color": "#FFF176" },
+          { "type": "annotation", "id": "imp_s8_watch", "position": { "x": 380, "y": 250 }, "text": "Every readout and the shaded area respond live to your changes", "color": "#66BB6A" },
+          { "type": "annotation", "id": "imp_s8_note", "position": { "x": 380, "y": 440 }, "text": "The bench keeps demonstrating on its own until you take hold of a slider", "color": "#D4D4D8" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "imp_s8_1", "text_en": "Set the mass, speed, stiffness and damping, and watch the readouts and the shaded area respond live.", "text_hi": "Mass, speed, stiffness aur damping set kariye, aur readouts aur shaded area ko live respond karte dekhiye." }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "momentum_bench",
+    "explorer_id": "momentum_bench_explorer",
+    "states": {
+      "STATE_1": {
+        "label": "Momentum of a moving ball",
+        "visible_elements": [],
+        "camera_position": [0, 3.2, 12],
+        "caption": "Momentum p = mv",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "single_body",
+          "bodies": [
+            { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 }
+          ],
+          "readouts": ["v", "p"],
+          "glow_focal": "mb_body_BALL",
+          "repeat_every_ms": 2000,
+          "formula": "p = mv"
+        }
+      },
+      "STATE_2": {
+        "label": "Rebound doubles the momentum change",
+        "visible_elements": [],
+        "camera_position": [0, 3.2, 12],
+        "caption": "Rebound: momentum change 2mv",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "wall_impact",
+          "bodies": [
+            { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
+            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+          ],
+          "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
+          "readouts": ["v", "p", "J", "F_contact"],
+          "glow_focal": "mb_body_BALL",
+          "slow_window": { "slow_factor": 20, "badge": true },
+          "repeat_every_ms": 4080,
+          "formula": "Δp = p′ − p"
+        }
+      },
+      "STATE_3": {
+        "label": "Contact force in slow motion",
+        "visible_elements": [],
+        "camera_position": [0, 3.2, 12],
+        "caption": "Large force, few milliseconds",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "wall_impact",
+          "bodies": [
+            { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 3.0 },
+            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+          ],
+          "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
+          "readouts": ["F_contact", "p"],
+          "glow_focal": "mb_contact_element",
+          "slow_window": { "slow_factor": 20, "badge": true },
+          "repeat_every_ms": 3146,
+          "formula": "F = kx"
+        }
+      },
+      "STATE_4": {
+        "label": "Area under the force-time curve",
+        "visible_elements": [],
+        "camera_position": [0, 3.2, 12],
+        "caption": "Shaded area equals Δp",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "wall_impact",
+          "bodies": [
+            { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 1.5 },
+            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+          ],
+          "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
+          "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
+          "readouts": ["v", "p", "F_contact"],
+          "glow_focal": "mb_body_BALL",
+          "slow_window": { "slow_factor": 20, "badge": true },
+          "controls_visible": ["v1"],
+          "param_ramp": { "param": "v1", "from": 1.5, "to": 3.0, "start_ms": 0, "end_ms": 4894 },
+          "repeat_every_ms": 4894,
+          "formula": "F̄Δt = Δp"
+        }
+      },
+      "STATE_5": {
+        "label": "Two walls, equal areas",
+        "visible_elements": [],
+        "camera_position": [0, 3.6, 13],
+        "caption": "Two walls: equal areas",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "wall_impact",
+          "bodies": [
+            { "id": "BALLA", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
+            { "id": "WALLA", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true },
+            { "id": "BALLB", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -3.0, "initial_velocity_mps": 3.0 },
+            { "id": "WALLB", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+          ],
+          "contact": { "between": ["BALLA", "WALLA"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
+          "lanes": [
+            { "id": "rigid", "offset_z_m": 1.3, "bodies": ["BALLA", "WALLA"] },
+            { "id": "padded", "offset_z_m": -1.3, "bodies": ["BALLB", "WALLB"], "contact_override": { "stiffness_N_per_m": 200, "damping_Ns_per_m": 0, "label": "padded wall" } }
+          ],
+          "force_trace": { "show": true, "fill_area": true, "peak_marker": true, "compare_with_previous_lane": true },
+          "readouts": ["v", "p"],
+          "glow_focal": "mb_contact_element",
+          "slow_window": { "slow_factor": 10, "badge": true },
+          "repeat_every_ms": 4900,
+          "formula": "F̄ = Δp/Δt"
+        }
+      },
+      "STATE_6": {
+        "label": "Softer contact, smaller peak force",
+        "visible_elements": [],
+        "camera_position": [0, 3.2, 12],
+        "caption": "Softer contact, lower peak",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "wall_impact",
+          "bodies": [
+            { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 3.0 },
+            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+          ],
+          "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "wall" },
+          "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
+          "readouts": ["F_contact", "p"],
+          "glow_focal": "mb_contact_element",
+          "slow_window": { "slow_factor": 10, "badge": true },
+          "controls_visible": ["k"],
+          "param_ramp": { "param": "k", "from": 2000, "to": 200, "start_ms": 0, "end_ms": 3966 },
+          "repeat_every_ms": 3966,
+          "formula": "F̄ = Δp/Δt"
+        }
+      },
+      "STATE_7": {
+        "label": "Contact time does not depend on speed",
+        "visible_elements": [],
+        "camera_position": [0, 3.2, 12],
+        "caption": "Contact time stays fixed",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "wall_impact",
+          "bodies": [
+            { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.6, "initial_velocity_mps": 1.5 },
+            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+          ],
+          "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "rigid wall" },
+          "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
+          "readouts": ["v", "F_contact"],
+          "glow_focal": "mb_body_BALL",
+          "slow_window": { "slow_factor": 20, "badge": true },
+          "controls_visible": ["v1"],
+          "param_ramp": { "param": "v1", "from": 1.5, "to": 6.0, "start_ms": 0, "end_ms": 4894 },
+          "repeat_every_ms": 4894,
+          "formula": "Δt = π√(m/k)"
+        }
+      },
+      "STATE_8": {
+        "label": "Explore the impact",
+        "visible_elements": [],
+        "camera_position": [0, 3.2, 12],
+        "caption": "All controls live",
+        "show_sliders": true,
+        "momentum_bench": {
+          "mode": "sandbox",
+          "bodies": [
+            { "id": "BALL", "label": "m", "mass_kg": 1.0, "shape": "ball", "initial_position_m": -1.4, "initial_velocity_mps": 3.0 },
+            { "id": "WALL", "label": "wall", "mass_kg": 1, "shape": "wall", "initial_position_m": 2.0, "fixed": true }
+          ],
+          "contact": { "between": ["BALL", "WALL"], "stiffness_N_per_m": 2000, "damping_Ns_per_m": 0, "natural_length_m": 0.4, "label": "wall" },
+          "force_trace": { "show": true, "fill_area": true, "peak_marker": true },
+          "readouts": ["v", "p", "F_contact"],
+          "glow_focal": "mb_track",
+          "slow_window": { "slow_factor": 10, "badge": true },
+          "controls_visible": ["m1", "v1", "k", "c"],
+          "trusted_drag_seizes": true,
+          "repeat_every_ms": 2314,
+          "formula": "F̄Δt = Δp"
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered impulse when they can (1) compute the momentum change on a rebound including the sign reversal, (2) read impulse and average force off a force-time graph, (3) explain why two contacts with the same momentum change can have very different peak forces, and (4) predict that contact duration is set by mass and stiffness, never by impact speed.",
+    "questions": [
+      {
+        "q_id": "impulse_q1",
+        "stem": "A ball of mass 0.5 kg moving at 4 m/s hits a rigid wall and rebounds at the same speed. What is the magnitude of its momentum change?",
+        "options": {
+          "A": "2.0 kg·m/s",
+          "B": "4.0 kg·m/s",
+          "C": "0 kg·m/s",
+          "D": "8.0 kg·m/s"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "Used mv instead of 2mv — forgot momentum is signed, so a same-speed rebound looks like no net change beyond mv.",
+          "C": "Assumed unchanged speed means unchanged momentum, ignoring that the direction reversed.",
+          "D": "Arithmetic slip doubling the mass inside the 2mv formula."
+        },
+        "tested_idea": "rebound doubles the momentum change via sign reversal",
+        "teaches_state": "STATE_2",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "impulse_q2",
+        "stem": "A force-time graph for an impact shows a triangular pulse peaking at 100 N over a total contact time of 20 ms. What is the impulse?",
+        "options": {
+          "A": "1.0 N·s",
+          "B": "2.0 N·s",
+          "C": "100 N·s",
+          "D": "0.5 N·s"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Treated the triangular pulse as a rectangle, forgetting the half factor for a triangle's area.",
+          "C": "Multiplied peak force by the contact time in milliseconds instead of converting to seconds.",
+          "D": "Halved the correct triangle area a second time by mistake."
+        },
+        "tested_idea": "impulse equals the area under the force-time curve",
+        "teaches_state": "STATE_4",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "impulse_q3",
+        "stem": "A ball's momentum changes by 6.0 kg·m/s during a contact that lasts 30 ms. What is the average force on the ball?",
+        "options": {
+          "A": "200 N",
+          "B": "0.2 N",
+          "C": "0.18 N·s",
+          "D": "6.0 N"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Forgot to convert milliseconds to seconds before dividing.",
+          "C": "Multiplied momentum change by contact time instead of dividing, and confused the unit with impulse.",
+          "D": "Read off the momentum change value directly as if it were the force."
+        },
+        "tested_idea": "average force equals momentum change divided by contact time",
+        "teaches_state": "STATE_5",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "impulse_q4",
+        "stem": "Two balls with the same mass hit two different walls at the same speed and both rebound. One wall is rigid, one is padded. Which statement is correct?",
+        "options": {
+          "A": "Both momentum changes are equal; only the peak force and contact duration differ.",
+          "B": "The padded wall produces a smaller momentum change because it feels gentler.",
+          "C": "The rigid wall produces a larger momentum change because it hits harder.",
+          "D": "Neither wall changes the ball's momentum since both rebounds return the ball to its starting speed."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Softer is read as less happened, conflating peak force with total momentum change.",
+          "C": "Confuses a large peak force with a large total momentum change.",
+          "D": "Confuses unchanged speed with unchanged momentum, ignoring the sign reversal from STATE_2."
+        },
+        "tested_idea": "equal momentum changes can have very different peak forces",
+        "teaches_state": "STATE_5",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "impulse_q5",
+        "stem": "A ball bounces off the same spring-loaded wall at two different speeds, 2 m/s and 5 m/s. How does the contact time compare?",
+        "options": {
+          "A": "The contact time is the same at both speeds — it depends only on the ball's mass and the wall's stiffness.",
+          "B": "The contact time is shorter at 5 m/s because the ball hits harder and bounces off faster.",
+          "C": "The contact time is longer at 5 m/s because there is more momentum to reverse.",
+          "D": "The contact time cannot be compared without more information about the deformation."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes a harder impact must finish faster, confusing impact speed with contact duration.",
+          "C": "Assumes contact duration scales with the momentum change, when Δt is set by mass and stiffness alone.",
+          "D": "Assumes the closed form needs extra data, when Δt = π√(m/k) depends only on mass and stiffness."
+        },
+        "tested_idea": "contact duration is independent of impact speed",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch"
+      },
+      {
+        "q_id": "impulse_q6",
+        "stem": "Impulse is measured in newton-seconds (N·s). Which of these is an equivalent unit?",
+        "options": {
+          "A": "kilogram metres per second (kg·m/s)",
+          "B": "newtons per second (N/s)",
+          "C": "joules (J)",
+          "D": "watts (W)"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Divided instead of matching the dimensional equivalence of force times time.",
+          "C": "Confuses impulse, a momentum-like quantity, with energy.",
+          "D": "Confuses impulse with power."
+        },
+        "tested_idea": "impulse units are equivalent to momentum units",
+        "teaches_state": "STATE_4",
+        "difficulty": "core"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["impulse_q1"],
+      "STATE_4": ["impulse_q2", "impulse_q6"],
+      "STATE_5": ["impulse_q3", "impulse_q4"],
+      "STATE_7": ["impulse_q5"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_3", "STATE_6", "STATE_8"]
+  },
+  "curriculum_tags": {
+    "entries": [
+      { "curriculum": "CBSE/NCERT", "coverage": "full", "syllabus_unit": "Laws of Motion (Class 11) — Impulse", "verified": true, "needs_teacher_verification": false },
+      { "curriculum": "JEE/NEET", "coverage": "full", "syllabus_unit": "Impulse-momentum theorem; force-time graph area", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "AP Physics 1", "coverage": "full", "syllabus_unit": "Momentum — impulse and momentum change", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "IB DP Physics", "coverage": "full", "syllabus_unit": "Momentum and impulse", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "A-Level (UK)", "coverage": "full", "syllabus_unit": "Momentum; force as rate of change of momentum", "verified": false, "needs_teacher_verification": true }
+    ]
+  }
+}

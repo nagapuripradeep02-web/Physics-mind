@@ -1730,6 +1730,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    impulse: {
+        concept_id: 'impulse',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'impulse',
+            label: 'Impulse — F̄Δt = Δp (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',
