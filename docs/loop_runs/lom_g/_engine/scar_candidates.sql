@@ -50,3 +50,74 @@ INSERT INTO engine_bug_queue (
     'lom-g Phase 0 — force_rig force_table bring-up 2026-07-30',
     'directive'
 );
+
+-- ══════════════════════════════════════════════════════════════════════════
+-- WHIRL BRANCH (dispatch 2, 2026-07-31)
+-- ══════════════════════════════════════════════════════════════════════════
+
+-- Candidate 3 — MAJOR. Found by READING THE FIRST WHIRL FRAME while all 42
+-- harness checks passed. Same class as candidate 1 and it recurred one
+-- dispatch later on the same engine, which is why it is worth a permanent row.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_scenario_renders_offcentre_because_camera_target_is_not_authorable',
+    'A rig hung from a pivot renders entirely in the top half of the frame: concept JSON can author camera_position but never the camera TARGET',
+    'MAJOR',
+    'peter_parker:renderer_primitives',
+    'The field_3d camera always looks at the world origin, and a concept JSON can author camera_position but has no way to move the look-at target. Any scenario whose apparatus is naturally anchored at one end therefore renders off-centre and no amount of authoring can fix it: the conical pendulum hangs from a pivot at y = L, so the whole rig occupied the upper third of the frame with the lower half empty black. The same argument applies to any future rig with a floor, ceiling or single fixed mounting point. A second frame-only defect surfaced beside it in the same picture: a fixed-radius ground plane sized for the LONGEST authorable string swamped a short-string state, and then the same plane was too SMALL to hold the post-release path, so the bob visibly slid off the edge of the frictionless top a moment after the string was cut — which reads as flying through the air, the exact misreading that state exists to kill.',
+    'A new scenario places ITSELF around the origin: compute a per-state world Y (or X/Z) shift from the authored geometry at state entry, apply it in ONE metres-to-world conversion helper that every mesh in the scenario goes through, and capture it ONCE per state so a later slider drag moves the object rather than sliding the whole rig. Ground/reference surfaces are sized from the state''s own physical scale, and from the LARGEST excursion the state can produce (a release/projectile window), never from a build-time constant.',
+    'manual',
+    'For every new field_3d scenario, render the first frame of each state at 1280x800 and confirm the apparatus bounding box is centred within +/-15% of the viewport in both axes, and that no moving element leaves its own reference surface during the state''s pinned reveal window.',
+    'OPEN',
+    ARRAY['uniform_circular_motion']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g Phase 0 — force_rig whirl bring-up 2026-07-31',
+    'incident'
+);
+
+-- Candidate 4 — MODERATE. A probe-definition row: the comment-stripping idiom
+-- every future "the renderer contains no X term" grep assertion must use.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'harness_source_grep_comment_strip_defeated_by_crlf_line_endings',
+    'A source-grep assertion that strips comments with an anchored regex silently strips nothing on a CRLF working tree',
+    'MODERATE',
+    'peter_parker:renderer_primitives',
+    'The working tree is CRLF. Splitting a source file on "\n" leaves a trailing "\r" on every line, and JS treats "\r" as a line terminator, so an anchored comment-strip regex of the form /^\s*\/\/.*$/ matches nothing at all. The grep assertion then reports hits inside ordinary prose comments and reads as a real defect: the first run of the force_rig whirl harness reported two centrifugal terms in the renderer, both of which were historical notes in unrelated scenarios.',
+    'Any harness that greps renderer SOURCE for a forbidden term splits on /\r?\n/, strips block comments first, and asserts on executable lines only. Prefer a RUNTIME assertion over a source grep wherever one exists: "no drawn arrow has a positive outward radial component, sampled right round a revolution" is evidence about the picture, while a source grep is evidence about the prose.',
+    'js_eval',
+    'src.replace(/\/\*[\s\S]*?\*\//g, "").split(/\r?\n/).map(l => l.replace(/^\s*\/\/.*$/, "").replace(/\s\/\/.*$/, "")).join("\n") — then assert the forbidden pattern has zero matches.',
+    'OPEN',
+    ARRAY['uniform_circular_motion']::text[],
+    ARRAY['src/scripts/_scratch_fr_seams.ts']::text[],
+    'lom-g Phase 0 — force_rig whirl bring-up 2026-07-31',
+    'probe_definition'
+);
+
+-- Candidate 5 — MODERATE. Observed on the regression sample, NOT caused by any
+-- lom-g change; proved by re-running THE EYE at the rollback point.
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'eye_h2_baseline_nondeterministic_electric_potential_meaning_state6',
+    'electric_potential_meaning STATE_6 fails H2 with a percentage that changes run to run (2.31% / 2.90% vs a 2.0% tolerance)',
+    'MODERATE',
+    'ambiguous',
+    'THE EYE reports an H2 pixel regression on electric_potential_meaning STATE_6 whose magnitude is NOT reproducible: three runs of the same code produced 2.90%, 2.90% and (at the rollback point e5c5d01, with the whirl diff stashed and the cache re-seeded) 2.31%. The failure therefore predates the lom-g whirl branch and is not caused by it, but it means the concept currently has no usable H2 signal: it fails a locked baseline on unmodified code, so a real regression on that state would be indistinguishable from the noise. The tray uses this concept as one of its two Amendment-5 regression samples, which makes the gap load-bearing.',
+    'A frozen H2 baseline must be byte-reproducible by construction. Find the un-pinned element in STATE_6 (a wall-clock-driven or accumulated quantity that the SET_TIME_FREEZE pin does not hold) and make it a pure function of state-local t, then re-baseline. Until then, any tray using electric_potential_meaning as a regression sample must verify a suspected regression by re-running at the rollback point before calling it one.',
+    'manual',
+    'Run npm run visual:eyes -- electric_potential_meaning twice on identical code and compare the reported H2 percentage for STATE_6; a difference between runs is the defect.',
+    'OPEN',
+    ARRAY['electric_potential_meaning']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g Phase 0 — force_rig whirl bring-up 2026-07-31',
+    'incident'
+);

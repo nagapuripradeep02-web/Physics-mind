@@ -1119,17 +1119,34 @@ export interface Field3DConfig {
             };
 
             // ── whirl: a bob on a string sweeping a circle ───────────────────
-            // DECLARED ONLY — the whirl branch is a separate dispatch. Nothing in
-            // this renderer reads it yet; authoring against it is premature.
+            // The bob is INTEGRATED under gravity plus the inextensible-string
+            // constraint. Nothing here poses it on a parametric circle: the cone
+            // half-angle θ is SOLVED (cos θ = g/(ω²L)) and is never authored, so
+            // the sim cannot be made to show an impossible pose.
             whirl?: {
+                // 'flat'    — the bob slides on a frictionless horizontal plane
+                //             with the string anchored at the centre. The plane's
+                //             normal cancels gravity exactly, so the tension is the
+                //             ONLY horizontal force: T = m·ω²·r with r = L. This is
+                //             the clean cut-the-string case.
+                // 'conical' — a real conical pendulum. T = m·ω²·L and
+                //             cos θ = g/(ω²·L); below ω²L = g there is no conical
+                //             solution and the engine CLAMPS ω to sqrt(g/L),
+                //             reports the clamp in the HUD, snaps the slider back,
+                //             and draws the bob hanging — never a nonsense angle.
                 geometry: 'conical' | 'flat';
-                string_length_m: number;
+                string_length_m: number;             // L
                 bob_mass_kg: number;
-                omega_rad_per_s?: number;
-                anchor_height_m?: number;
+                omega_rad_per_s?: number;            // drives the motion; θ and r follow from it
+                anchor_height_m?: number;            // conical pivot height; default = L
+                // THE MISCONCEPTION BEAT. At at_ms the string constraint is
+                // REMOVED — not replaced by a scripted path. 'flat' then has no
+                // horizontal force at all, so the bob travels straight at constant
+                // speed along the tangent; 'conical' becomes a projectile. No
+                // outward force is drawn before or after, because none exists.
                 release?: { at_ms: number; trail?: boolean; ghost_circle?: boolean };
-                show_radius?: boolean;
-                show_velocity?: boolean;
+                show_radius?: boolean;               // draw r from the axis to the bob
+                show_velocity?: boolean;             // tangential v arrow
             };
 
             // Force arrows on the particle. Directions come from the solver, never
@@ -41211,6 +41228,458 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ════════════════════════════════════════════════════════════════════════
+    // Branch B — whirl (spec section 2). A bob on an inextensible string,
+    // INTEGRATED in 3-D, never posed on a parametric circle.
+    //
+    // World frame: +y is up, gravity is (0, -g, 0), the swept circle lies in
+    // the horizontal xz plane and the axis of rotation is the y-axis through
+    // x = z = 0. A straight line projects to a straight line under ANY
+    // projection, so the cut-the-string beat reads correctly from every camera
+    // the JSON can author — which is why the plane is drawn honestly horizontal
+    // rather than tilted to face the lens.
+    //
+    // THE CONSTRAINT, stated once because the whole branch rests on it. With
+    // u = unit(bob - anchor) and |bob - anchor| = L held exactly, differentiating
+    // the constraint twice gives r·a = -|v|², and a = a_free - (T/m)·u, so
+    //
+    //     T = m · ( u·a_free + |v|²/L )
+    //
+    // is the string tension — SOLVED, never authored. Substituting the conical
+    // steady state (u_y = -cosθ, |v| = ωL sinθ) collapses it to T = m ω² L, and
+    // the vertical balance T cosθ = mg then forces cos θ = g/(ω² L). Neither
+    // number is written down anywhere in this engine: both fall out of the
+    // integration, which is exactly why the picture cannot lie about the pose.
+    //
+    // Below ω² L = g there is NO conical solution (cos θ would exceed 1). The
+    // engine CLAMPS ω to sqrt(g/L), reports the clamp in the HUD and snaps the
+    // slider back to the clamped value, and renders the bob HANGING (θ = 0) —
+    // it never draws a nonsense angle and never silently swallows the write.
+    //
+    // RELEASE deletes the constraint. It does not substitute a scripted path:
+    // after the cut the only call is frwAccel with eng.released set, which
+    // returns gravity alone ('conical') or the ZERO vector ('flat'). The flat
+    // bob therefore travels straight at constant speed because nothing acts on
+    // it — the straight line is the OUTPUT, not the instruction. There is no
+    // outward term anywhere in this file, before or after the cut, because
+    // there is no outward force.
+    // ════════════════════════════════════════════════════════════════════════
+    var FR_W_WORLD_PER_M = 2.40;     // whirl world scale: L = 1 m draws 2.4 world units
+    // The whirl micro-step. The shared clock still hands this scenario
+    // dtStep = 0.016 * __pmSteps; the whirl subdivides each 0.016 s into
+    // FR_W_MICRO_PER_STEP fixed micro-steps, so the step COUNT stays a pure
+    // function of real elapsed ms (Rule 36: rate-correct, exactly fold-invariant,
+    // and zero steps at dt = 0 under a SET_TIME_FREEZE pin). The subdivision is a
+    // numerical requirement, not a preference: a constrained orbit integrated at
+    // 1/60 s carries a fixed-point radius error of order (ωh)², which at ω = 6
+    // is ~1% — visible as a cone angle that disagrees with cos θ = g/(ω²L).
+    var FR_W_STEP_S = 0.002;
+    var FR_W_MICRO_PER_STEP = 8;
+    var FR_W_TRAIL_EVERY = 8;        // one trail sample per 0.016 s of sim time
+    var FR_W_TRAIL_MAX = 720;
+    var FR_W_BOB_R = 0.17;
+    var FR_W_STRING_R = 0.016;
+    var FR_W_ANCHOR_R = 0.10;
+    var FR_W_PLANE_PAD = 1.28;
+    var FR_W_RING_SEG = 96;
+    var FR_W_BOB_COLOR = "#FFF176";
+    var FR_W_ANCHOR_COLOR = "#B0BEC5";
+    var FR_W_PLANE_COLOR = "#37474F";
+    var FR_W_RING_COLOR = "#4DD0E1";
+    var FR_W_TRAIL_COLOR = "#FFB74D";
+    var FR_W_RADIUS_COLOR = "#B0BEC5";
+    var FR_W_TENSION_COLOR = "#FFCA28";
+    var FR_W_WEIGHT_COLOR = "#EF5350";
+    var FR_W_NORMAL_COLOR = "#66BB6A";
+    var FR_W_CENTRIP_COLOR = "#4DD0E1";
+    var FR_W_VEL_COLOR = "#4FC3F7";
+    var FR_W_GUIDE_OPACITY = 0.34;   // "a faint guide ring" (spec section 3)
+    var FR_W_GHOST_OPACITY = 0.20;   // the abandoned circle after the cut
+    // Velocity is NOT a force, so it gets its own length map rather than the
+    // newtons-per-world-unit one — a v arrow scaled by FR_ARROW_SCALE would claim
+    // a magnitude in the wrong units.
+    var FR_W_VEL_SCALE = 0.30;       // world units per (m/s)
+    var FR_W_VEL_MIN = 0.45;
+    var FR_W_VEL_MAX = 1.90;         // never longer than the swept radius it belongs to
+    // Vertical framing. A concept JSON can author camera_position but NOT the
+    // camera target, so the rig has to place ITSELF around the origin: an
+    // apparatus hung from a pivot at y = L would otherwise sit entirely in the top
+    // half of the frame with the bottom half empty (observed in the first whirl
+    // bring-up frame). The shift is captured ONCE at state entry from the AUTHORED
+    // string length, so dragging L afterwards lengthens the string from a pivot
+    // that stays exactly where it was — which is also the honest picture.
+    var FR_W_PIVOT_Y = 1.15;
+    var FR_W_LABEL_H = 0.32;         // whirl arrow labels sit further from the lens
+    var FR_W_PLANE_R_FACTOR = 1.30;  // the frictionless top, sized from L
+    var FR_W_PLANE_R_CUT = 2.80;     // ... wider when the state cuts the string
+    // Arrows sit slightly toward the camera, the 3-D analogue of FR_ARROW_Z: the
+    // tension acts ALONG the string, so at zero offset the arrow is drawn inside
+    // the string cylinder and the taught object of the concept is invisible. A
+    // camera-facing offset moves the arrow off the string WITHOUT rotating it, so
+    // the drawn direction stays exactly the solved one.
+    var FR_W_ARROW_LIFT = 0.13;
+
+    function frWhirlCfg(fr) { return (fr && fr.whirl) ? fr.whirl : {}; }
+    // Positive-finite coercion with a fallback: an authoring typo must never throw
+    // out of the builder (the createTubeLine scar — one throw inside build means a
+    // blank scene, no SIM_READY, and a stalled clock).
+    function frwPos(a, b) { return (typeof a === "number" && isFinite(a) && a > 0) ? a : b; }
+    function frwW(m) { return m * FR_W_WORLD_PER_M; }
+    function frwShiftY(eng) {
+        return (eng.geometry === "flat") ? -FR_W_BOB_R : (FR_W_PIVOT_Y - frwW(frwAnchorY(eng)));
+    }
+    // The ONE metres -> world conversion for every whirl mesh, framing shift
+    // included. Anything that skipped it would render in a different frame from
+    // everything else.
+    function frwPt(eng, px, py, pz) {
+        return new THREE.Vector3(frwW(px), frwW(py) + (eng.yShift || 0), frwW(pz));
+    }
+    // Smallest ω that has a conical solution. 'flat' has none: gravity is
+    // cancelled by the plane, so every ω is physical.
+    function frwOmegaMin(eng) {
+        return (eng.geometry === "flat") ? 0 : Math.sqrt(FR_G / eng.L);
+    }
+    // The honest slider clamp (spec section 2). eng.omega_req keeps what was
+    // WRITTEN and eng.omega is what the physics uses, so the difference between
+    // them is observable at the HUD and at the slider — never swallowed.
+    function frwClampOmega(eng) {
+        var wmin = frwOmegaMin(eng);
+        var w = eng.omega_req;
+        if (!(typeof w === "number" && isFinite(w) && w > 0)) w = (wmin > 0) ? wmin : 1;
+        eng.omega_min = wmin;
+        if (w < wmin) { eng.omega = wmin; eng.omega_clamped = true; }
+        else { eng.omega = w; eng.omega_clamped = false; }
+    }
+    // The SOLVED cone half-angle. Nothing authored reaches this value.
+    function frwTheta(eng) {
+        if (eng.geometry === "flat") return Math.PI / 2;
+        var c = FR_G / (eng.omega * eng.omega * eng.L);
+        if (c > 1) c = 1;
+        if (c < 0) c = 0;
+        return Math.acos(c);
+    }
+    function frwAnchorY(eng) {
+        // 'flat': the string is anchored at the centre of the plane, at the height
+        // of the bob's own centre, so it lies IN the plane of motion.
+        if (eng.geometry === "flat") return FR_W_BOB_R / FR_W_WORLD_PER_M;
+        var h = eng.anchor_h;
+        return (typeof h === "number" && isFinite(h) && h > 0) ? h : eng.L;
+    }
+    function frwAzimuth(eng) {
+        if (!eng.p3) return 0;
+        var x = eng.p3.x - eng.anchor.x, z = eng.p3.z - eng.anchor.z;
+        if (Math.abs(x) < 1e-12 && Math.abs(z) < 1e-12) return eng.phi_last || 0;
+        return Math.atan2(z, x);
+    }
+    // Seed the CONSTRAINT, not its projections (the
+    // nlb_coupled_initial_velocity_never_seeded scar): a pose ON the constraint
+    // manifold plus a velocity IN its tangent space, both rebuilt from the live
+    // (ω, L) after every write. The azimuth is carried over so a slider drag
+    // re-shapes the cone in place instead of teleporting the bob (Rule 32d).
+    function frwSeed(eng, phi) {
+        frwClampOmega(eng);
+        var th = frwTheta(eng);
+        var ay = frwAnchorY(eng);
+        var r = eng.L * Math.sin(th);
+        eng.anchor = { x: 0, y: ay, z: 0 };
+        eng.theta = th;
+        eng.p3 = {
+            x: r * Math.cos(phi),
+            y: ay - eng.L * Math.cos(th),
+            z: r * Math.sin(phi)
+        };
+        var sp = eng.omega * r;
+        eng.v3 = { x: -sp * Math.sin(phi), y: 0, z: sp * Math.cos(phi) };
+        eng.phi_last = phi;
+        eng.phi_unwrapped = phi;
+    }
+    // a = a_free - (T/m)·u with T solved from the constraint. AFTER the cut the
+    // string term is simply gone — that single deletion IS the misconception beat.
+    function frwAccel(eng, p, v, out) {
+        var gy = (eng.geometry === "flat") ? 0 : -FR_G;
+        if (eng.released) {
+            out.x = 0; out.y = gy; out.z = 0; out.T = 0;
+            return out;
+        }
+        var dx = p.x - eng.anchor.x, dy = p.y - eng.anchor.y, dz = p.z - eng.anchor.z;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(d > 1e-9)) { out.x = 0; out.y = gy; out.z = 0; out.T = 0; return out; }
+        var ux = dx / d, uy = dy / d, uz = dz / d;
+        var v2 = v.x * v.x + v.y * v.y + v.z * v.z;
+        // T = m ( u·a_free + |v|²/L ). A string can only PULL, so a negative
+        // solution means it has gone slack and carries no force at all.
+        var T = eng.m_bob * (uy * gy + v2 / eng.L);
+        if (!(T > 0)) T = 0;
+        out.T = T;
+        var k = T / eng.m_bob;
+        out.x = -k * ux;
+        out.y = gy - k * uy;
+        out.z = -k * uz;
+        return out;
+    }
+    var FR_W_A0 = { x: 0, y: 0, z: 0, T: 0 };
+    var FR_W_A1 = { x: 0, y: 0, z: 0, T: 0 };
+    // ONE micro-step: velocity Verlet with the inextensible constraint enforced
+    // by SHAKE (project the position back onto |r| = L) and RATTLE (project the
+    // velocity onto the tangent plane at the NEW pose). Both projections are the
+    // constraint itself, not a nudge toward a desired answer: the tangential
+    // dynamics stay completely free, so a bob seeded off the conical condition
+    // genuinely wobbles. Projecting the velocity against the OLD pose instead
+    // would bleed |v| by (ωh)²/2 per step — a circle that visibly slows down.
+    function frwStep(eng, h) {
+        var p = eng.p3, v = eng.v3;
+        var a = frwAccel(eng, p, v, FR_W_A0);
+        v.x += a.x * h * 0.5; v.y += a.y * h * 0.5; v.z += a.z * h * 0.5;
+        var qx = p.x + v.x * h, qy = p.y + v.y * h, qz = p.z + v.z * h;
+        if (!eng.released) {
+            var dx = qx - eng.anchor.x, dy = qy - eng.anchor.y, dz = qz - eng.anchor.z;
+            var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (d > 1e-9) {
+                var s = eng.L / d;
+                var nx = eng.anchor.x + dx * s, ny = eng.anchor.y + dy * s, nz = eng.anchor.z + dz * s;
+                v.x += (nx - qx) / h; v.y += (ny - qy) / h; v.z += (nz - qz) / h;
+                qx = nx; qy = ny; qz = nz;
+            }
+        }
+        p.x = qx; p.y = qy; p.z = qz;
+        var a2 = frwAccel(eng, p, v, FR_W_A1);
+        v.x += a2.x * h * 0.5; v.y += a2.y * h * 0.5; v.z += a2.z * h * 0.5;
+        if (!eng.released) {
+            var ex = p.x - eng.anchor.x, ey = p.y - eng.anchor.y, ez = p.z - eng.anchor.z;
+            var e = Math.sqrt(ex * ex + ey * ey + ez * ez);
+            if (e > 1e-9) {
+                var wx = ex / e, wy = ey / e, wz = ez / e;
+                var vr = v.x * wx + v.y * wy + v.z * wz;
+                v.x -= vr * wx; v.y -= vr * wy; v.z -= vr * wz;
+            }
+        }
+    }
+    // Cut the string. ONE flag; no scripted path is installed in its place. The
+    // abandoned circle is frozen here so the ghost shows where the bob WOULD have
+    // gone, which is what makes the tangential departure legible as a departure.
+    function frwCut(eng) {
+        eng.released = true;
+        eng.ghost_r = eng.r_m;
+        eng.ghost_y = eng.p3.y;
+        eng.T = 0;
+        frwPushTrail(eng);
+    }
+    // Live measured quantities — all read off the INTEGRATED pose, so the HUD
+    // reports the picture on screen rather than the algebra that seeded it.
+    function frwMeasure(eng) {
+        var dx = eng.p3.x - eng.anchor.x, dy = eng.p3.y - eng.anchor.y, dz = eng.p3.z - eng.anchor.z;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        eng.r_m = Math.sqrt(eng.p3.x * eng.p3.x + eng.p3.z * eng.p3.z);
+        eng.speed = Math.sqrt(eng.v3.x * eng.v3.x + eng.v3.y * eng.v3.y + eng.v3.z * eng.v3.z);
+        eng.theta_meas = (d > 1e-9) ? Math.acos(Math.max(-1, Math.min(1, -dy / d))) : 0;
+        if (!eng.released) eng.theta = eng.theta_meas;
+        // T is recomputed from the CURRENT integrated pose (not carried out of the
+        // last sub-step), so the very first rendered frame of a state already
+        // reports the right tension and a frozen frame reports the tension of the
+        // pose actually on screen.
+        if (eng.released || !(d > 1e-9)) {
+            eng.T = 0;
+        } else {
+            var gy = (eng.geometry === "flat") ? 0 : -FR_G;
+            var tt = eng.m_bob * ((dy / d) * gy + (eng.speed * eng.speed) / eng.L);
+            eng.T = (tt > 0) ? tt : 0;
+        }
+        eng.a_c = (eng.r_m > 1e-9) ? (eng.speed * eng.speed) / eng.r_m : 0;
+        if (eng.released) eng.a_c = 0;
+        var phi = frwAzimuth(eng);
+        var dphi = phi - eng.phi_last;
+        while (dphi > Math.PI) dphi -= 2 * Math.PI;
+        while (dphi < -Math.PI) dphi += 2 * Math.PI;
+        eng.phi_unwrapped = (eng.phi_unwrapped || 0) + dphi;
+        eng.phi_last = phi;
+        eng.phi = phi;
+    }
+
+    // ── Whirl rendering (spec section 3) ──────────────────────────────────
+    //   Opacity is NOT written here: each ring's faintness is a build-time
+    //   material property, and re-writing it every frame would fight
+    //   applyGlowEmphasis, which caches its baseline ON the material (the
+    //   glow-focal-on-a-live-driven-channel no-op).
+    function frwSetRing(eng, id, radiusM, yM, on) {
+        var o = frFindById(id);
+        if (!o) return;
+        o.visible = !!on && radiusM > 1e-4;
+        if (!o.visible) return;
+        var rw = frwW(radiusM);
+        o.position.set(0, frwW(yM) + (eng.yShift || 0), 0);
+        o.scale.set(rw, 1, rw);
+    }
+    // One whirl arrow. Direction is the SOLVED unit vector; length comes from the
+    // shared newtons map (frArrowLen) for forces or the velocity map for v.
+    function frwArrow(id, origin, dx, dy, dz, worldLen, labelText, on) {
+        var arrow = frFindById(id);
+        var lbl = frFindById(id + "_label");
+        if (!arrow) return;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        var vis = !!on && d > 1e-9 && worldLen > 1e-4;
+        arrow.visible = vis;
+        if (lbl) lbl.visible = vis && !!labelText;
+        if (!vis) return;
+        var u = new THREE.Vector3(dx / d, dy / d, dz / d);
+        var headLen = Math.min(0.34, worldLen * 0.40);
+        arrow.position.copy(origin);
+        arrow.setDirection(u);
+        arrow.setLength(worldLen, headLen, headLen * 0.80);
+        if (lbl && labelText) {
+            lbl.position.copy(origin).addScaledVector(u, worldLen + FR_ARROW_LABEL_GAP);
+            frSetLabelText(lbl, labelText);
+        }
+    }
+    function frwHideArrows() {
+        var ids = ["fr_w_tension", "fr_w_weight", "fr_w_normal", "fr_w_centripetal",
+                   "fr_w_resultant", "fr_w_velocity"];
+        for (var i = 0; i < ids.length; i++) {
+            var a = frFindById(ids[i]); if (a) a.visible = false;
+            var l = frFindById(ids[i] + "_label"); if (l) l.visible = false;
+        }
+    }
+    // The camera-facing lift (see FR_W_ARROW_LIFT).
+    function frwLift(out) {
+        out.set(0, 0, 0);
+        try {
+            if (camera && camera.position) {
+                out.copy(camera.position).normalize().multiplyScalar(FR_W_ARROW_LIFT);
+            }
+        } catch (e) {}
+        return out;
+    }
+    // Every drawn force, in TRUE solved directions. eng.wArrows records exactly
+    // what went on screen so the bring-up harness can assert, frame by frame,
+    // that nothing ever points away from the axis (spec section 5 assertion 8).
+    function frwDriveArrows(fr, eng) {
+        var kinds = frArrowKinds(fr);
+        var lift = frwLift(new THREE.Vector3());
+        var O = frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z).add(lift);
+        var dx = eng.p3.x - eng.anchor.x, dy = eng.p3.y - eng.anchor.y, dz = eng.p3.z - eng.anchor.z;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1;
+        // toward the anchor — a string can only pull, never push
+        var tx = -dx / d, ty = -dy / d, tz = -dz / d;
+        var gy = (eng.geometry === "flat") ? 0 : -FR_G;
+        var W = eng.m_bob * FR_G;
+        var rec = [];
+        function put(kind, ux, uy, uz, mag, on) {
+            if (on) rec.push({ kind: kind, ux: ux, uy: uy, uz: uz, mag: mag });
+        }
+        var T = eng.released ? 0 : eng.T;
+        var showT = !!kinds.tension && T > FR_ARROW_EPS;
+        frwArrow("fr_w_tension", O, tx, ty, tz, frArrowLen(T),
+            (typeof kinds.tension === "string") ? kinds.tension : "T", showT);
+        put("tension", tx, ty, tz, T, showT);
+
+        var showW = !!kinds.weight;
+        frwArrow("fr_w_weight", O, 0, -1, 0, frArrowLen(W),
+            (typeof kinds.weight === "string") ? kinds.weight : "W", showW);
+        put("weight", 0, -1, 0, W, showW);
+
+        // The plane's normal exists only where there IS a plane.
+        var showN = !!kinds.normal && eng.geometry === "flat";
+        frwArrow("fr_w_normal", O, 0, 1, 0, frArrowLen(W),
+            (typeof kinds.normal === "string") ? kinds.normal : "N", showN);
+        put("normal", 0, 1, 0, W, showN);
+
+        // ΣF = m·a, straight out of the integrator. It is horizontal and inward in
+        // the steady state and, after a flat cut, it is ZERO — which is why the
+        // arrow disappears rather than turning outward.
+        var ax = 0, ay = gy, az = 0;
+        if (!eng.released && T > 0) {
+            var k = T / eng.m_bob;
+            ax = k * tx; ay = gy + k * ty; az = k * tz;
+        }
+        var Fx = eng.m_bob * ax, Fy = eng.m_bob * ay, Fz = eng.m_bob * az;
+        var Fmag = Math.sqrt(Fx * Fx + Fy * Fy + Fz * Fz);
+        var showR = !!kinds.resultant && Fmag > FR_ARROW_EPS;
+        frwArrow("fr_w_resultant", O, Fx, Fy, Fz, frArrowLen(Fmag),
+            (typeof kinds.resultant === "string") ? kinds.resultant : "ΣF", showR);
+        put("resultant", Fx, Fy, Fz, Fmag, showR);
+
+        // The centripetal force is not a new force — it is the HORIZONTAL part of
+        // the net force above, which is why it is drawn from the same ΣF and never
+        // added to it.
+        var Ch = Math.sqrt(Fx * Fx + Fz * Fz);
+        var showC = !!kinds.centripetal && Ch > FR_ARROW_EPS;
+        frwArrow("fr_w_centripetal", O, Fx, 0, Fz, frArrowLen(Ch),
+            (typeof kinds.centripetal === "string") ? kinds.centripetal : "F", showC);
+        put("centripetal", Fx, 0, Fz, Ch, showC);
+
+        var vl = eng.speed * FR_W_VEL_SCALE;
+        if (vl < FR_W_VEL_MIN) vl = FR_W_VEL_MIN;
+        if (vl > FR_W_VEL_MAX) vl = FR_W_VEL_MAX;
+        var showV = !!eng.show_velocity && eng.speed > 1e-6;
+        frwArrow("fr_w_velocity", O, eng.v3.x, eng.v3.y, eng.v3.z, vl, "v", showV);
+        eng.wArrows = rec;
+    }
+    function frwFit(fr, eng) {
+        var A = frwPt(eng, eng.anchor.x, eng.anchor.y, eng.anchor.z);
+        var B = frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z);
+        var bob = frFindById("fr_bob");
+        if (bob) { bob.position.copy(B); bob.visible = true; }
+        var ball = frFindById("fr_anchor");
+        if (ball) { ball.position.copy(A); ball.visible = true; }
+        // The support: a mast rising above a conical pivot, a stub post standing on
+        // the plane for the flat case.
+        var mast = frFindById("fr_anchor_post");
+        if (mast) {
+            var top = (eng.geometry === "flat")
+                ? frwPt(eng, 0, 0, 0)
+                : new THREE.Vector3(A.x, A.y + 0.55, A.z);
+            frFitSegment(mast, A, top, true);
+        }
+        // The string is CUT at release: it does not linger, and it is not redrawn
+        // shorter — it is simply no longer there.
+        frFitSegment(frFindById("fr_wstring"), A, B, !eng.released);
+        var plane = frFindById("fr_plane");
+        if (plane) {
+            plane.visible = (eng.geometry === "flat");
+            // Sized from THIS state's string length: a fixed-radius top built for
+            // the longest authorable string swamps a 0.6 m circle and takes the
+            // frame over from the physics. A state that CUTS the string gets a
+            // wider top, because a bob that slides off the visible edge a moment
+            // after the cut reads as flying through the air — which is the exact
+            // misreading this state exists to kill (seen in the first bring-up
+            // frame). Authoring note: the post-cut window must stay inside it, so
+            // keep ~1.4 s of flight at the authored ω.
+            var pr = frwW(eng.L) * ((eng.release_at != null) ? FR_W_PLANE_R_CUT : FR_W_PLANE_R_FACTOR);
+            plane.scale.set(pr, pr, 1);
+            plane.position.set(0, (eng.yShift || 0) - 0.02, 0);
+        }
+        // Guide ring: the circle actually being swept, at the bob's own height.
+        var ghostOn = eng.released && !!eng.ghost_on;
+        frwSetRing(eng, "fr_guide_ring", eng.r_m, eng.p3.y, !eng.released);
+        frwSetRing(eng, "fr_ghost_ring", eng.ghost_r || 0, eng.ghost_y || 0, ghostOn);
+        var rad = frFindById("fr_radius_line");
+        if (rad) {
+            frFitSegment(rad, new THREE.Vector3(0, B.y, 0), B, !!eng.show_radius && !eng.released);
+        }
+        frwDriveArrows(fr, eng);
+        frwDrawTrail(eng);
+    }
+    function frwDrawTrail(eng) {
+        var line = frFindById("fr_trail");
+        if (!line) return;
+        var n = eng.trailN || 0;
+        line.visible = !!eng.trail_on && n > 1;
+        if (!line.visible) return;
+        var attr = line.geometry.attributes.position;
+        attr.needsUpdate = true;
+        line.geometry.setDrawRange(0, n);
+    }
+    function frwPushTrail(eng) {
+        var line = frFindById("fr_trail");
+        if (!line || !eng.trail_on) return;
+        var n = eng.trailN || 0;
+        if (n >= FR_W_TRAIL_MAX) return;
+        var arr = line.geometry.attributes.position.array;
+        arr[n * 3] = frwW(eng.p3.x);
+        arr[n * 3 + 1] = frwW(eng.p3.y) + (eng.yShift || 0);
+        arr[n * 3 + 2] = frwW(eng.p3.z);
+        eng.trailN = n + 1;
+    }
+
     // ── phases[] (one-shot glow script) + param_ramp — Rule 36 closed forms ─
     //   Both read ONLY eng.t_ms, the state-local clock advanced solely by the dt
     //   handed to updateForceRigFrame. dt = 0 recomputes the same value, so a
@@ -41252,7 +41721,8 @@ export const FIELD_3D_RENDERER_CODE = `
         if (eng._ramp_last != null && Math.abs(v - eng._ramp_last) < 1e-4) return;   // churn guard
         eng._ramp_last = v;
         frApplyParam(pr.param, v);
-        frSyncSliderRow(pr.param, v);
+        var reff = frSliderValueFromEngine(pr.param);
+        frSyncSliderRow(pr.param, (reff == null) ? v : reff);
     }
 
     // ── The explorer surface (Rule 31 per-state contextual controls) ───────
@@ -41265,16 +41735,25 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Rule 34c: every glyph below is REAL Unicode (m₁ m₂ m₃ φ₁ φ₂ °), never an
     //   ASCII transcription; the label span carries the math-serif stack because
     //   U+2081.. are missing from most monospace faces (the tofu-subscript scar).
-    var FR_SLIDER_TOKENS = ["m1", "m2", "m3", "angle1", "angle2"];
+    var FR_SLIDER_TOKENS = ["m1", "m2", "m3", "angle1", "angle2", "omega", "L", "bob_mass"];
     var FR_SLIDER_SPEC = {
         m1:     { param: "hanging_mass_1", idx: 0, kind: "mass",  slider: "fr_m1_slider",     row: "fr_m1_row",     val: "fr_m1_val",     lbl: "fr_m1_lbl",     glyph: "m₁", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 3 },
         m2:     { param: "hanging_mass_2", idx: 1, kind: "mass",  slider: "fr_m2_slider",     row: "fr_m2_row",     val: "fr_m2_val",     lbl: "fr_m2_lbl",     glyph: "m₂", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 4 },
         m3:     { param: "hanging_mass_3", idx: 2, kind: "mass",  slider: "fr_m3_slider",     row: "fr_m3_row",     val: "fr_m3_val",     lbl: "fr_m3_lbl",     glyph: "m₃", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 5 },
         angle1: { param: "angle_1",        idx: 0, kind: "angle", slider: "fr_angle1_slider", row: "fr_angle1_row", val: "fr_angle1_val", lbl: "fr_angle1_lbl", glyph: "φ₁", unit: "°",   dp: 0, min: 0, max: 359, step: 1, def: 0 },
-        angle2: { param: "angle_2",        idx: 1, kind: "angle", slider: "fr_angle2_slider", row: "fr_angle2_row", val: "fr_angle2_val", lbl: "fr_angle2_lbl", glyph: "φ₂", unit: "°",   dp: 0, min: 0, max: 359, step: 1, def: 90 }
-        // whirl tokens (omega / L / bob_mass) are DELIBERATELY absent: a row whose
-        // write goes nowhere is the silently-swallowed-slider trap. They arrive with
-        // the whirl branch, which is the only thing that can act on them.
+        angle2: { param: "angle_2",        idx: 1, kind: "angle", slider: "fr_angle2_slider", row: "fr_angle2_row", val: "fr_angle2_val", lbl: "fr_angle2_lbl", glyph: "φ₂", unit: "°",   dp: 0, min: 0, max: 359, step: 1, def: 90 },
+        // ── whirl tokens. Every one has a REAL write path through frApplyParam
+        // into the constraint seed (frwSeed), and frToggleSliderRows only exposes
+        // them on a whirl state — an inert row that swallows the write is the trap
+        // that cost two earlier trays a fix cycle each.
+        //   Band note (the arrow map has a floor at FR_ARROW_MIN_LEN/FR_ARROW_SCALE
+        //   = 11.5 N and a cap at 58.3 N): with the defaults below, T = m ω² L runs
+        //   24 N at ω = 4 to 63 N at ω = 6.5, so "length ∝ magnitude" is genuinely
+        //   readable across the conical range. ω is allowed BELOW sqrt(g/L) on
+        //   purpose — the clamp is a teaching surface, not an error to hide.
+        omega:    { param: "omega",       kind: "whirl", wkey: "omega",    slider: "fr_omega_slider",    row: "fr_omega_row",    val: "fr_omega_val",    lbl: "fr_omega_lbl",    glyph: "ω", unit: " rad/s", dp: 1, min: 1,   max: 6.5, step: 0.1,  def: 4 },
+        L:        { param: "string_length", kind: "whirl", wkey: "L",      slider: "fr_L_slider",        row: "fr_L_row",        val: "fr_L_val",        lbl: "fr_L_lbl",        glyph: "L", unit: " m",     dp: 2, min: 0.6, max: 1.4, step: 0.05, def: 1 },
+        bob_mass: { param: "bob_mass",    kind: "whirl", wkey: "m_bob",    slider: "fr_bob_mass_slider", row: "fr_bob_mass_row", val: "fr_bob_mass_val", lbl: "fr_bob_mass_lbl", glyph: "m", unit: " kg",    dp: 1, min: 0.8, max: 4.5, step: 0.1,  def: 1.5 }
     };
     // Per-concept min/max/step/default/label override, keyed by the SAME token
     // controls_visible[] uses (the nlbSc / acgSc idiom). Every numeric is coerced
@@ -41329,6 +41808,28 @@ export const FIELD_3D_RENDERER_CODE = `
         var eng = window.PM_frEngine;
         var sp = FR_SLIDER_SPEC[token];
         if (!eng || !sp || !isFinite(value)) return;
+        // ── whirl writes re-seed the CONSTRAINT, never its projections ─────
+        //   ω and L change the physical shape of the cone, so the bob is placed
+        //   back on the constraint manifold at its CURRENT azimuth with the
+        //   matching tangential velocity — the cone re-shapes in place instead of
+        //   teleporting (Rule 32d). Bob mass changes T only, so it deliberately
+        //   does NOT re-seed: re-seeding on every mass tick would jerk the phase.
+        if (sp.kind === "whirl") {
+            if (eng.apparatus !== "whirl") return;
+            if (!(value > 0)) return;
+            if (sp.wkey === "m_bob") {
+                eng.m_bob = value;
+            } else if (sp.wkey === "L") {
+                eng.L = value;
+                frwSeed(eng, frwAzimuth(eng));
+            } else {
+                eng.omega_req = value;
+                frwSeed(eng, frwAzimuth(eng));
+            }
+            frwMeasure(eng);
+            frwFit(frStateCfg(), eng);
+            return;
+        }
         var st = eng.strings[sp.idx];
         if (!st) return;
         if (sp.kind === "mass") {
@@ -41345,6 +41846,15 @@ export const FIELD_3D_RENDERER_CODE = `
         var eng = window.PM_frEngine;
         var sp = FR_SLIDER_SPEC[token];
         if (!eng || !sp) return null;
+        // The EFFECTIVE value, not the requested one: eng.omega is post-clamp, so
+        // a sub-critical ω visibly snaps the slider back instead of leaving the
+        // handle parked at a pose the physics refused.
+        if (sp.kind === "whirl") {
+            if (eng.apparatus !== "whirl") return null;
+            if (sp.wkey === "m_bob") return eng.m_bob;
+            if (sp.wkey === "L") return eng.L;
+            return eng.omega;
+        }
         var st = eng.strings[sp.idx];
         if (!st) return null;
         return (sp.kind === "mass") ? st.m : st.angle_deg;
@@ -41368,8 +41878,10 @@ export const FIELD_3D_RENDERER_CODE = `
             var tok = built[i], sp = FR_SLIDER_SPEC[tok];
             // A control for a string this state does not have is never exposed: an
             // inert slider that silently swallows the write is exactly the trap that
-            // cost two earlier trays a fix cycle each.
-            var on = !!want[tok] && sp.idx < n;
+            // cost two earlier trays a fix cycle each. Same rule across the branch
+            // line: a whirl control is dead on a force-table state and vice versa.
+            var on = !!want[tok] &&
+                ((sp.kind === "whirl") ? (eng && eng.apparatus === "whirl") : (sp.idx < n));
             var row = document.getElementById(sp.row), el = document.getElementById(sp.slider);
             if (row) row.style.visibility = on ? "visible" : "hidden";
             if (el) el.disabled = !on;
@@ -41390,8 +41902,15 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!isFinite(v)) return;
             if (ev && ev.isTrusted) window.PM_frSeized = true;
             frApplyParam(token, v);
-            frSyncSliderRow(token, v);
-            frEmit(sp.param, v);
+            // Sync from the EFFECTIVE engine value, never from the raw write. When
+            // the physics refuses a value (the whirl's omega-squared-L > g range)
+            // the handle and the number snap back to what is actually being
+            // simulated, so a clamp is visible on screen instead of leaving the
+            // slider claiming a pose that is not there.
+            var eff = frSliderValueFromEngine(token);
+            var shown = (eff == null) ? v : eff;
+            frSyncSliderRow(token, shown);
+            frEmit(sp.param, shown);
         });
     }
 
@@ -41414,6 +41933,31 @@ export const FIELD_3D_RENDERER_CODE = `
                 '<span style="font-family:' + FR_MATH_FONT + '">' + labelHtml + '</span> = ' +
                 '<span id="' + frReadoutRowId(id) + '_val">--</span>' + unit + '</div>';
         }
+        var isWhirl = (eng && eng.apparatus === "whirl");
+        if (isWhirl) {
+            // Rule 34c: real Unicode for every glyph that HAS a codepoint (θ ω °
+            // ² ⁻), and <sub> markup for the one that does not — subscript c has no
+            // Unicode codepoint at all, so "a_c" or "ac" on screen would be the
+            // ASCII break the rule exists to stop.
+            if (keys.indexOf("T") >= 0) h += row("wT", "T", " N");
+            // θ is the CONE half-angle. On a flat plane there is no cone, so the
+            // row is dropped rather than reporting a constant 90° that means
+            // nothing to the student reading it (Rule 24: no untaught quantity).
+            if (keys.indexOf("theta") >= 0 && eng && eng.geometry !== "flat") h += row("theta", "θ", "°");
+            if (keys.indexOf("v") >= 0) h += row("v", "v", " m/s");
+            if (keys.indexOf("omega") >= 0) h += row("omega", "ω", " rad/s");
+            if (keys.indexOf("r") >= 0) h += row("r", "r", " m");
+            if (keys.indexOf("a_c") >= 0) h += row("a_c", "a<sub>c</sub>", " m/s²");
+            // The clamp line. Present in the markup from entry (never injected
+            // mid-state) and revealed only while the requested ω is below the
+            // slowest speed a cone can exist at — a VALUE, per Rule 34b, not prose.
+            h += '<div id="' + frReadoutRowId("omega_min") + '" style="display:none;color:#FFB74D">' +
+                '<span style="font-family:' + FR_MATH_FONT + '">ω</span> min = ' +
+                '<span id="' + frReadoutRowId("omega_min") + '_val">--</span> rad/s</div>';
+            el.innerHTML = h;
+            el.style.display = h ? "block" : "none";
+            return;
+        }
         if (keys.indexOf("T") >= 0) {
             for (var i = 0; i < sts.length; i++) {
                 h += row("T" + i, sts[i].label || ("T<sub>" + (i + 1) + "</sub>"), " N");
@@ -41431,6 +41975,20 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function frWriteReadouts(fr, eng) {
         var keys = fr.readouts || [];
+        if (eng.apparatus === "whirl") {
+            if (keys.indexOf("T") >= 0) frSetReadout("wT", frFx(eng.T, 2));
+            if (keys.indexOf("theta") >= 0) frSetReadout("theta", frFx(eng.theta_meas * 180 / Math.PI, 1));
+            if (keys.indexOf("v") >= 0) frSetReadout("v", frFx(eng.speed, 2));
+            if (keys.indexOf("omega") >= 0) frSetReadout("omega", frFx(eng.omega, 2));
+            if (keys.indexOf("r") >= 0) frSetReadout("r", frFx(eng.r_m, 3));
+            if (keys.indexOf("a_c") >= 0) frSetReadout("a_c", frFx(eng.a_c, 2));
+            var cl = document.getElementById(frReadoutRowId("omega_min"));
+            if (cl) {
+                cl.style.display = eng.omega_clamped ? "block" : "none";
+                if (eng.omega_clamped) frSetReadout("omega_min", frFx(eng.omega_min, 2));
+            }
+            return;
+        }
         if (keys.indexOf("T") >= 0) {
             for (var i = 0; i < eng.strings.length; i++) frSetReadout("T" + i, frFx(eng.strings[i].T, 2));
         }
@@ -41523,7 +42081,13 @@ export const FIELD_3D_RENDERER_CODE = `
             var solid = (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
                          ud.elementType === "fr_pulley" || ud.elementType === "fr_string" ||
                          ud.elementType === "fr_ring" || ud.elementType === "fr_weight" ||
-                         ud.elementType === "fr_weight_label" || ud.elementType === "fr_centre");
+                         ud.elementType === "fr_weight_label" || ud.elementType === "fr_centre" ||
+                         ud.elementType === "fr_plane" || ud.elementType === "fr_anchor" ||
+                         ud.elementType === "fr_wstring" || ud.elementType === "fr_bob" ||
+                         // The post-cut path is EVIDENCE, not a peer competing for
+                         // attention: dimming it to 40% while the bob holds the
+                         // focal would erase the one thing the cut state proves.
+                         ud.elementType === "fr_trail");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solid);
         });
     }
@@ -41701,6 +42265,129 @@ export const FIELD_3D_RENDERER_CODE = `
         ring.userData = { elementType: "fr_ring", id: "fr_ring" };
         root.add(ring); frRegister(ring);
 
+        // ── Branch B apparatus (whirl). Built ONCE alongside the table and
+        //    hidden; applyForceRigState shows exactly one branch, so the two
+        //    apparatus never co-exist on screen and neither needs a rebuild.
+        var wplane = new THREE.Mesh(
+            new THREE.CircleGeometry(1, 72),   // unit disc; scaled per state from L
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_PLANE_COLOR), emissive: hexToThreeColor(FR_W_PLANE_COLOR),
+                // Half-transparent on purpose: the bob rests ON the top, so its
+                // weight arrow points DOWN THROUGH it. At full opacity the table
+                // swallowed W and the free-body pair read as a lone normal force.
+                emissiveIntensity: 0.10, shininess: 18, transparent: true, opacity: 0.55, side: THREE.DoubleSide
+            }));
+        wplane.rotation.x = -Math.PI / 2;      // CircleGeometry is built in xy; the plane is horizontal
+        wplane.position.set(0, -0.02, 0);
+        wplane.userData = { elementType: "fr_plane", id: "fr_plane" };
+        wplane.visible = false;
+        root.add(wplane); frRegister(wplane);
+
+        var wanchor = new THREE.Mesh(
+            new THREE.SphereGeometry(FR_W_ANCHOR_R, 16, 12),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_ANCHOR_COLOR), emissive: hexToThreeColor(FR_W_ANCHOR_COLOR),
+                emissiveIntensity: 0.20, shininess: 60, transparent: true, opacity: 1.0
+            }));
+        wanchor.userData = { elementType: "fr_anchor", id: "fr_anchor" };
+        wanchor.visible = false;
+        root.add(wanchor); frRegister(wanchor);
+
+        var wpost = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.045, 0.045, 1, 10),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_ANCHOR_COLOR), emissive: hexToThreeColor(FR_W_ANCHOR_COLOR),
+                emissiveIntensity: 0.14, shininess: 40, transparent: true, opacity: 0.95
+            }));
+        wpost.userData = { elementType: "fr_anchor", id: "fr_anchor_post" };
+        wpost.visible = false;
+        root.add(wpost); frRegister(wpost);
+
+        // The string. Its OWN mesh rather than a borrowed table hanger, because
+        // glow_focal is authored by id and "fr_hangdrop_0" would be an unreadable
+        // thing to write in a concept JSON for the string of a whirling bob.
+        var wstr = new THREE.Mesh(
+            new THREE.CylinderGeometry(FR_W_STRING_R, FR_W_STRING_R, 1, 8),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
+                emissiveIntensity: 0.22, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+            }));
+        wstr.userData = { elementType: "fr_wstring", id: "fr_wstring" };
+        wstr.visible = false;
+        root.add(wstr); frRegister(wstr);
+
+        var wbob = new THREE.Mesh(
+            new THREE.SphereGeometry(FR_W_BOB_R, 20, 16),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_BOB_COLOR), emissive: hexToThreeColor(FR_W_BOB_COLOR),
+                emissiveIntensity: 0.34, shininess: 80, transparent: true, opacity: 1.0
+            }));
+        wbob.userData = { elementType: "fr_bob", id: "fr_bob" };
+        wbob.visible = false;
+        root.add(wbob); frRegister(wbob);
+
+        // Unit circles in the xz plane, SCALED per frame to the swept radius: one
+        // live guide ring, one dim ghost frozen at the pre-cut circle so the
+        // departure is visibly not along it.
+        var ringPts = [];
+        for (var rp = 0; rp <= FR_W_RING_SEG; rp++) {
+            var rt = (rp / FR_W_RING_SEG) * Math.PI * 2;
+            ringPts.push(new THREE.Vector3(Math.cos(rt), 0, Math.sin(rt)));
+        }
+        var ringIds = ["fr_guide_ring", "fr_ghost_ring"];
+        var ringOps = [FR_W_GUIDE_OPACITY, FR_W_GHOST_OPACITY];
+        for (var rg = 0; rg < ringIds.length; rg++) {
+            var rl = new THREE.Line(new THREE.BufferGeometry().setFromPoints(ringPts),
+                new THREE.LineBasicMaterial({
+                    color: hexToThreeColor(FR_W_RING_COLOR), transparent: true, opacity: ringOps[rg]
+                }));
+            rl.userData = { elementType: "fr_guide", id: ringIds[rg] };
+            rl.visible = false;
+            root.add(rl); frRegister(rl);
+        }
+
+        var wrad = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.014, 0.014, 1, 8),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_RADIUS_COLOR), emissive: hexToThreeColor(FR_W_RADIUS_COLOR),
+                emissiveIntensity: 0.20, shininess: 20, transparent: true, opacity: 0.85
+            }));
+        wrad.userData = { elementType: "fr_guide", id: "fr_radius_line" };
+        wrad.visible = false;
+        root.add(wrad); frRegister(wrad);
+
+        // The post-cut path. Preallocated + setDrawRange, so no per-frame geometry
+        // churn and no allocation inside the animate loop.
+        var trailGeo = new THREE.BufferGeometry();
+        trailGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(FR_W_TRAIL_MAX * 3), 3));
+        trailGeo.setDrawRange(0, 0);
+        var wtrail = new THREE.Line(trailGeo,
+            new THREE.LineBasicMaterial({ color: hexToThreeColor(FR_W_TRAIL_COLOR), transparent: true, opacity: 0.95 }));
+        wtrail.userData = { elementType: "fr_trail", id: "fr_trail" };
+        wtrail.frustumCulled = false;      // the bob leaves the seeded bounding sphere
+        wtrail.visible = false;
+        root.add(wtrail); frRegister(wtrail);
+
+        // Whirl force arrows get their OWN ids (not the table's fr_arrow_i) so
+        // every glow_focal a concept can author reads as the thing it names.
+        var wArrIds = ["fr_w_tension", "fr_w_weight", "fr_w_normal", "fr_w_centripetal",
+                       "fr_w_resultant", "fr_w_velocity"];
+        var wArrCols = [FR_W_TENSION_COLOR, FR_W_WEIGHT_COLOR, FR_W_NORMAL_COLOR,
+                        FR_W_CENTRIP_COLOR, FR_RESULTANT_COLOR, FR_W_VEL_COLOR];
+        var wArrLbls = ["T", "W", "N", "F", "ΣF", "v"];
+        for (var wa = 0; wa < wArrIds.length; wa++) {
+            var wah = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+                FR_ARROW_MIN_LEN, hexToThreeColor(wArrCols[wa]), 0.21, 0.17);
+            wah.userData = { elementType: "fr_arrow", id: wArrIds[wa] };
+            wah.visible = false;
+            root.add(wah); frRegister(wah);
+            var wal = pmCreateAutoLabel(wArrLbls[wa], wArrCols[wa], FR_W_LABEL_H);
+            wal._frText = wArrLbls[wa];
+            wal.userData = { elementType: "fr_arrow_label", id: wArrIds[wa] + "_label" };
+            wal.visible = false;
+            root.add(wal); frRegister(wal);
+        }
+
         // Value-only HUD (Rule 33d / 34b). top:52px clears the review-chrome
         // "Full screen" button (top:10px, ~40px tall) — Rule 34d.
         var ro = document.createElement("div");
@@ -41743,7 +42430,16 @@ export const FIELD_3D_RENDERER_CODE = `
             glow_focal: fr.glow_focal || "",
             t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
             _ramp_last: null,     // param_ramp churn guard, rebased on every entry
-            _sub: 0
+            _sub: 0,
+            // ── whirl (branch B) record; inert on a force_table state ──────
+            geometry: "conical", L: 1, m_bob: 1.5,
+            omega_req: 4, omega: 4, omega_min: 0, omega_clamped: false,
+            anchor: { x: 0, y: 1, z: 0 }, p3: { x: 0, y: 0, z: 0 }, v3: { x: 0, y: 0, z: 0 },
+            theta: 0, theta_meas: 0, r_m: 0, speed: 0, a_c: 0, T: 0,
+            phi: 0, phi_last: 0, phi_unwrapped: 0,
+            released: false, release_at: null, trail_on: false, ghost_on: false,
+            show_radius: false, show_velocity: false,
+            ghost_r: 0, ghost_y: 0, trailN: 0, micro: 0, wArrows: []
         };
         for (var i = 0; i < defs.length && i < FR_MAX_STRINGS; i++) {
             var d = defs[i] || {};
@@ -41785,14 +42481,47 @@ export const FIELD_3D_RENDERER_CODE = `
         frSumForce(eng);
         frFitStrings();
 
-        // Whole-scene visibility: a whirl state (branch B, a separate dispatch)
-        // legitimately has no table, so the table apparatus hides rather than
-        // standing there as apparatus that does nothing.
+        // Whole-scene visibility: exactly ONE apparatus is on screen. A whirl
+        // state has no table and a table state has no bob, so the other branch
+        // hides rather than standing there as apparatus that does nothing.
         var tableOn = frIsTable(fr);
         frEach(function (o, ud) {
             if (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
                 ud.elementType === "fr_centre" || ud.elementType === "fr_ring") o.visible = tableOn;
+            if (ud.elementType === "fr_plane" || ud.elementType === "fr_anchor" ||
+                ud.elementType === "fr_wstring" || ud.elementType === "fr_bob" ||
+                ud.elementType === "fr_guide" || ud.elementType === "fr_trail") o.visible = false;
         });
+        if (!tableOn) frwHideArrows();
+
+        // ── Branch B seed. Physics parameters only: the pose comes from frwSeed,
+        //    which puts the bob ON the constraint manifold with the tangential
+        //    velocity the live ω demands, so the first rendered frame already
+        //    shows the correct cone rather than settling into it.
+        if (!tableOn) {
+            var wc = frWhirlCfg(fr);
+            eng.geometry = (wc.geometry === "flat") ? "flat" : "conical";
+            eng.L = frwPos(wc.string_length_m, 1);
+            eng.m_bob = frwPos(wc.bob_mass_kg, frSc("bob_mass").def);
+            eng.omega_req = frwPos(wc.omega_rad_per_s, frSc("omega").def);
+            eng.anchor_h = (typeof wc.anchor_height_m === "number" && isFinite(wc.anchor_height_m) && wc.anchor_height_m > 0) ? wc.anchor_height_m : null;
+            var rel = wc.release;
+            eng.release_at = (rel && typeof rel.at_ms === "number" && isFinite(rel.at_ms)) ? rel.at_ms : null;
+            eng.trail_on = !!rel && rel.trail !== false;
+            eng.ghost_on = !!rel && !!rel.ghost_circle;
+            eng.show_radius = !!wc.show_radius;
+            eng.show_velocity = !!wc.show_velocity;
+            eng.released = false;
+            eng.trailN = 0;
+            eng.micro = 0;
+            var tl = frFindById("fr_trail");
+            if (tl) tl.geometry.setDrawRange(0, 0);
+            // Captured ONCE, from the authored L (see FR_W_PIVOT_Y).
+            eng.yShift = frwShiftY(eng);
+            frwSeed(eng, 0);
+            frwMeasure(eng);
+            frwFit(fr, eng);
+        }
 
         // The SINGLE formula surface for this state (Rule 34b).
         var ffe = document.getElementById("fr_formula");
@@ -41806,7 +42535,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // state can never keep a stale arrow on screen; the per-frame pass then
         // re-shows exactly the named kinds at their live magnitudes.
         frHideAllArrows();
-        frDriveArrows(fr, eng);
+        if (tableOn) frDriveArrows(fr, eng);
+        else frwDriveArrows(fr, eng);
         frWriteReadouts(fr, eng);
 
         frToggleSliderRows(fr);
@@ -41844,11 +42574,34 @@ export const FIELD_3D_RENDERER_CODE = `
             if (Math.abs(eng.v.x) < FR_REST_V) eng.v.x = 0;
             if (Math.abs(eng.v.y) < FR_REST_V) eng.v.y = 0;
             frFitStrings();
+            frDriveArrows(fr, eng);
+        } else {
+            // ── Branch B. The micro-step COUNT is recovered from the combined dt
+            //    exactly as branch A recovers its step count, so N frames of one
+            //    shared step and one frame of N run the identical arithmetic
+            //    sequence, 120 Hz runs the same number of micro-steps per SECOND,
+            //    and dt = 0 under a pin runs none at all.
+            var t0 = eng.t_ms - h * 1000;
+            var micro = (h > 0) ? Math.round(h / FR_W_STEP_S) : 0;
+            if (micro < 0) micro = 0;
+            if (micro > FR_W_MICRO_PER_STEP * 4) micro = FR_W_MICRO_PER_STEP * 4;
+            for (var k = 0; k < micro; k++) {
+                // The cut is evaluated per MICRO-step against absolute state-local
+                // time, so it fires at the same instant whether the browser
+                // delivered one frame or three (a per-frame test would drift the
+                // release by up to 50 ms between refresh rates).
+                var tMicro = t0 + (k + 1) * FR_W_STEP_S * 1000;
+                if (!eng.released && eng.release_at != null && tMicro >= eng.release_at) {
+                    frwMeasure(eng);
+                    frwCut(eng);
+                }
+                frwStep(eng, FR_W_STEP_S);
+                eng.micro++;
+                if (eng.released && eng.trail_on && (eng.micro % FR_W_TRAIL_EVERY) === 0) frwPushTrail(eng);
+            }
+            frwMeasure(eng);
+            frwFit(fr, eng);
         }
-        // apparatus === "whirl": branch B is a separate dispatch. Nothing is drawn
-        // and nothing is integrated here rather than guessing its physics.
-
-        frDriveArrows(fr, eng);
         frWriteReadouts(fr, eng);
     }
 
