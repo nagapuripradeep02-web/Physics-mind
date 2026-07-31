@@ -254,7 +254,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "imp_s7_1", "text_en": "Now the speed ramps up, from 1.5 to 6.0 metres per second, on the same rigid wall.", "text_hi": "Ab speed 1.5 se 6.0 metres per second tak ramp up hoti hai, wahi rigid wall par." },
+            { "id": "imp_s7_1", "text_en": "Now the speed ramps up, from 1.5 to 3.0 metres per second, on the same rigid wall.", "text_hi": "Ab speed 1.5 se 3.0 metres per second tak ramp up hoti hai, wahi rigid wall par." },
             { "id": "imp_s7_2", "text_en": "The peak force grows with every bounce, but the trace width stays identical: the contact time stays pinned at 70 milliseconds.", "text_hi": "Peak force har bounce ke saath badhta hai, lekin trace ki width bilkul same rehti hai: contact time 70 milliseconds par pinned rehta hai." },
             { "id": "imp_s7_3", "text_en": "It does not depend on speed at all.", "text_hi": "Yeh speed par depend hi nahi karta." }
           ]
@@ -270,13 +270,13 @@
         "delta_cue": "All controls live",
         "depth_ring": "core",
         "scene_composition": [
-          { "type": "annotation", "id": "imp_s8_head", "position": { "x": 380, "y": 60 }, "text": "Drag the mass, speed, stiffness or damping sliders", "color": "#FFF176" },
+          { "type": "annotation", "id": "imp_s8_head", "position": { "x": 380, "y": 60 }, "text": "Drag the mass, speed or stiffness sliders", "color": "#FFF176" },
           { "type": "annotation", "id": "imp_s8_watch", "position": { "x": 380, "y": 250 }, "text": "Every readout and the shaded area respond live to your changes", "color": "#66BB6A" },
           { "type": "annotation", "id": "imp_s8_note", "position": { "x": 380, "y": 440 }, "text": "The bench keeps demonstrating on its own until you take hold of a slider", "color": "#D4D4D8" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "imp_s8_1", "text_en": "Set the mass, speed, stiffness and damping, and watch the readouts and the shaded area respond live.", "text_hi": "Mass, speed, stiffness aur damping set kariye, aur readouts aur shaded area ko live respond karte dekhiye." }
+            { "id": "imp_s8_1", "text_en": "Set the mass, speed and stiffness, and watch the readouts and the shaded area respond live.", "text_hi": "Mass, speed aur stiffness set kariye, aur readouts aur shaded area ko live respond karte dekhiye." }
           ]
         }
       }
@@ -361,8 +361,8 @@
           "glow_focal": "mb_body_BALL",
           "slow_window": { "slow_factor": 20, "badge": true },
           "controls_visible": ["v1"],
-          "param_ramp": { "param": "v1", "from": 1.5, "to": 3.0, "start_ms": 0, "end_ms": 14682, "mode": "step" },
-          "repeat_every_ms": 4894,
+          "param_ramp": { "param": "v1", "from": 1.5, "to": 3.0, "start_ms": 0, "end_ms": 12600, "mode": "step" },
+          "repeat_every_ms": 4200,
           "formula": "F̄Δt = Δp"
         }
       },
@@ -411,8 +411,8 @@
           "glow_focal": "mb_contact_element",
           "slow_window": { "slow_factor": 10, "badge": true },
           "controls_visible": ["k"],
-          "param_ramp": { "param": "k", "from": 2000, "to": 200, "start_ms": 0, "end_ms": 11898, "mode": "step" },
-          "repeat_every_ms": 3966,
+          "param_ramp": { "param": "k", "from": 2000, "to": 200, "start_ms": 0, "end_ms": 10800, "mode": "step" },
+          "repeat_every_ms": 3600,
           "formula": "F̄ = Δp/Δt"
         }
       },
@@ -434,8 +434,8 @@
           "glow_focal": "mb_body_BALL",
           "slow_window": { "slow_factor": 20, "badge": true },
           "controls_visible": ["v1"],
-          "param_ramp": { "param": "v1", "from": 1.5, "to": 6.0, "start_ms": 0, "end_ms": 14682, "mode": "step" },
-          "repeat_every_ms": 4894,
+          "param_ramp": { "param": "v1", "from": 1.5, "to": 3.0, "start_ms": 0, "end_ms": 12600, "mode": "step" },
+          "repeat_every_ms": 4200,
           "formula": "Δt = π√(m/k)"
         }
       },
