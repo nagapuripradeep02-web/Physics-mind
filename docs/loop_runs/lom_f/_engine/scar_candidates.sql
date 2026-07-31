@@ -189,3 +189,43 @@ INSERT INTO engine_bug_queue (
     'lom-f Phase 1 impulse audit (2026-07-31)',
     'incident'
 );
+
+-- ============================================================
+-- PHASE 1 FIX (mbSetParam write-path, 2026-07-31) — field3d_surgeon dispatch
+-- "mbSetParam writes are not state-guarded" (both manifestations, one commit).
+-- Rows 1 and 2 UPDATE the two OPEN rows above (bug_class is the upsert key —
+-- these are the SAME defects, now fixed, never duplicate INSERTs).
+-- Row 3 is a NEW probe_definition: the durable invariant the fix installs.
+-- ============================================================
+
+UPDATE engine_bug_queue SET
+    status = 'FIXED',
+    fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts','src/scripts/_scratch_mb_seams.ts']::text[],
+    root_cause = root_cause || ' FIXED 2026-07-31: mbSetParam now writes the LIVE velocity only while the body is STAGED — armed and still on its way in. A new per-body flag b.spent is set the instant the body meets a contact (mbMarkSpent, called from mbEngageContact and from the preload arming) and cleared by mbSeedKinematics, i.e. by exactly the arming that re-launches it, so it never survives a re-arm or a rewind and no state is kept across a pin. b.v0 is still written unconditionally, so the authored re-arm intent (each repeat cycle launches with the new ramped value) is untouched. Measured on the real renderer, v1 ramped 1.5->4.0 m/s over 3000 ms with no repeat: BEFORE 41 contact events in 3856 ms and 79 of 198 post-rebound frames carrying v >= 0, the ball pinned at the ramp value forever; AFTER exactly 1 event, 0 of 198 frames with v >= 0, the ball still departing at -1.9933 m/s while v0 had re-armed to 4.0000. With repeat_every_ms=1500 over 4 armed cycles: BEFORE 47 events; AFTER exactly 4, each peak matching v(t)*sqrt(k*mu) to within 0.31%.'
+WHERE bug_class = 'field3d_param_ramp_velocity_write_cancels_the_rebound_every_frame';
+
+UPDATE engine_bug_queue SET
+    status = 'FIXED',
+    fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts','src/scripts/_scratch_mb_seams.ts']::text[],
+    root_cause = root_cause || ' FIXED 2026-07-31: every write into a contact that is engaged (and not latched) is now DEFERRED — per CONTACT, not globally, so in a two-lane state a busy lane never blocks its free neighbour. Because a param_ramp recomputes from the state clock every frame, the deferred value lands by itself on the first free frame with nothing kept anywhere (measured: exactly one lagging frame per segment, the release frame itself, self-healing on the very next frame). The SAME guard was extended to the MASS branch in the same commit: m sits inside the reduced mass the segment was solved with AND inside p = mv, so an unguarded mid-contact mass write moved Sigma-p instantly — measured on an m2 ramp, Sigma-p jumped 3.20% / 2.79% / 2.22% across the three contacts BEFORE and is conserved to 1.5e-14% AFTER. Measured for k, ramped 2000->200 N/m across four contacts: BEFORE k drifted 28.8 / 36.0 / 43.2 / 86.4 N/m WITHIN single engaged segments and the segments missed their own closed forms by up to 9.27% (t_c) and 10.88% (F_peak); AFTER the jitter is exactly 0 and every segment matches pi*sqrt(mu/k) and v*sqrt(k*mu) to 0.00%.'
+WHERE bug_class = 'field3d_stiffness_write_during_an_engaged_contact_breaks_elasticity';
+
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'field3d_live_write_path_must_be_guarded_by_engine_state_not_by_caller',
+    'A single write-path shared by a drag, a PARAM_UPDATE and a ramp must ask what the ENGINE is doing, never who is writing',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'A live-instrument scenario funnels a teacher drag, a PARAM_UPDATE and a scripted param_ramp through ONE setter so the physics, the slider position and the row text can never disagree. That is correct and load-bearing, and it means the setter is called on EVERY frame by the ramp. Any value the setter writes that the engine also OWNS - a live velocity mid-flight, a stiffness or a mass inside a contact segment the solver has already committed to - is therefore rewritten 60 times a second underneath the physics. The guard cannot be per-caller (that forks the path and re-opens the disagreement it exists to prevent); it must be a question about ENGINE STATE, asked identically for every caller: is this body still staged, is this contact mid-segment. Two independent MAJOR defects in one function came from asking too narrow a version of that question (engaged-right-now), which is true for one frame and false for the rest of the flight.',
+    'Every branch of a shared live write-path declares, in code, which engine state makes the write unsafe, and each branch is covered by a probe that ramps THAT branch straight through the unsafe window. A ramp harness that exercises one member of a closed param enum, and samples only between events, has proved one member between events - nothing more.',
+    'js_eval',
+    'For each member of the ramp param enum, drive a state whose ramp window spans a contact and sample every frame: (1) group consecutive engaged frames into segments and assert every engine-owned value is EXACTLY constant within each segment while still moving between them; (2) assert each segment obeys the closed forms for the value it engaged with (t_c = pi*sqrt(mu/k), F_peak = dv*sqrt(k*mu)) and conserves Sigma-p from p_before to p_after; (3) assert a rebounding body is never re-accelerated - contact-event count equals the number of armed repeat cycles, and no post-release frame shows the departure velocity reversed.',
+    'FIXED',
+    ARRAY['impulse']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts','src/scripts/_scratch_mb_seams.ts']::text[],
+    'lom-f Phase 1 field3d_surgeon dispatch (2026-07-31)',
+    'probe_definition'
+);

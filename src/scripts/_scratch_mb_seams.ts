@@ -185,6 +185,7 @@ const SNAP = () => {
         start_ms: e.start_ms, end_ms: e.end_ms, duration_ms: e.duration_ms,
         k: e.k, c: e.c, F_peak: e.F_peak, n: e.samples.length, lane: e.lane,
         label: e.label, lane_z: e.lane_z, contact_index: e.contact_index,
+        p_before: e.p_before, p_after: e.p_after,
         samples: e.samples,
     }));
     // SEAM C — every contact (contacts[0] is the base one) + the control rows as
@@ -237,6 +238,45 @@ const LITE = () => {
         nev: (eng.events || []).length,
     };
 };
+
+// The per-frame probe for the RAMPED write-path: every live value mbSetParam can
+// write, plus whether a contact segment is being solved right now. Cheap enough
+// to call on every one of ~300 frames (SNAP serialises every force sample and is
+// far too heavy for that). Same rule as SNAP: no named local function inside.
+const RAMP_LITE = () => {
+    const eng = (window as any).PM_mbEngine;
+    const c0 = (eng.contacts || [])[0] || null;
+    let engaged = 0;
+    for (const c of (eng.contacts || [])) if (c && c.engaged && !c.latched) engaged++;
+    const mov: any[] = [];
+    for (const id of eng.order) { const b = eng.bodies[id]; if (b && !b.fixed) mov.push(b); }
+    return {
+        t_ms: eng.t_ms as number,
+        engaged: engaged > 0,
+        k: c0 ? (c0.k as number) : 0,
+        cdamp: c0 ? (c0.c as number) : 0,
+        v: mov[0] ? (mov[0].v as number) : 0,
+        v0: mov[0] ? (mov[0].v0 as number) : 0,
+        s: mov[0] ? (mov[0].s as number) : 0,
+        m1: mov[0] ? (mov[0].m as number) : 0,
+        m2: mov[1] ? (mov[1].m as number) : 0,
+        nev: (eng.events || []).length as number,
+    };
+};
+type RampFrame = ReturnType<typeof RAMP_LITE>;
+// Consecutive runs of frames on which a contact segment was being solved. One run
+// = one engaged segment, which is the window inside which k and m must not move.
+function engagedRuns(fr: RampFrame[]): RampFrame[][] {
+    const runs: RampFrame[][] = [];
+    let cur: RampFrame[] = [];
+    for (const f of fr) {
+        if (f.engaged) cur.push(f);
+        else if (cur.length) { runs.push(cur); cur = []; }
+    }
+    if (cur.length) runs.push(cur);
+    return runs;
+}
+const spread = (xs: number[]) => (xs.length ? Math.max(...xs) - Math.min(...xs) : 0);
 
 async function open(name: string, config: Field3DConfig) {
     const file = writeFixture(name, config);
@@ -307,6 +347,16 @@ const IMP_M = 1.0, IMP_V = 3.0, IMP_K_SOFT = 200, IMP_K_STIFF = 2000;
 const SLOW_N = 20;
 // 7) SEAM C — the param_ramp window under test.
 const RAMP_K0 = 200, RAMP_K1 = 2000, RAMP_MS = 2000;
+// 8) SEAM C — the param_ramp WRITE-PATH, one fixture per ramped parameter.
+// mbSetParam is the single write-path, so 'v1' and 'm2' ride branches that the
+// k-only ramp above never touched: v1 writes a body's LIVE velocity and m2 its
+// MASS, and both of those sit inside a segment the contact solver is already
+// solving. ('m1' shares the m2 branch, 'v2' the v1 branch and 'c' the k branch,
+// so these three fixtures cover every branch of the write-path.)
+const VR_FROM = 1.5, VR_TO = 4.0, VR_MS = 3000;                   // v1, one flight
+const VC_FROM = 1.5, VC_TO = 4.5, VC_MS = 6000, VC_REP = 1500;    // v1, re-armed per cycle
+const KR_FROM = 2000, KR_TO = 200, KR_MS = 4000, KR_REP = 1200;   // k, across contacts
+const MR_FROM = 2, MR_TO = 5, MR_MS = 4000, MR_REP = 1500;        // m2, across contacts
 
 const FIX = benchConfig({
     // S1 elastic two-body
@@ -424,6 +474,42 @@ const FIX = benchConfig({
         controls_visible: ['v1', 'k'],
         trusted_drag_seizes: true,
         repeat_every_ms: 1400,
+    }),
+    // S16–S19 — THE RAMPED WRITE-PATH, one state per ramped parameter, every one
+    // of them running a ramp straight THROUGH a contact. S14 above ramps k and is
+    // only ever read between contacts, which is exactly how a write that lands in
+    // the middle of a flight (v1) or in the middle of a solved segment (k, m2)
+    // stayed invisible.
+    STATE_16: benchState('v₁ ramped, one flight', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -2, initial_velocity_mps: VR_FROM },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_STIFF }, {
+        controls_visible: ['v1'],
+        param_ramp: { param: 'v1', from: VR_FROM, to: VR_TO, start_ms: 0, end_ms: VR_MS },
+    }),
+    STATE_17: benchState('v₁ ramped, re-armed each cycle', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -2, initial_velocity_mps: VC_FROM },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: IMP_K_STIFF }, {
+        controls_visible: ['v1'],
+        param_ramp: { param: 'v1', from: VC_FROM, to: VC_TO, start_ms: 0, end_ms: VC_MS },
+        repeat_every_ms: VC_REP,
+    }),
+    STATE_18: benchState('k ramped across contacts', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: IMP_M, shape: 'ball', initial_position_m: -1.6, initial_velocity_mps: IMP_V },
+        { id: 'WALL', label: 'wall', mass_kg: 1, shape: 'wall', initial_position_m: 0, fixed: true },
+    ], { between: ['BALL', 'WALL'], stiffness_N_per_m: KR_FROM }, {
+        controls_visible: ['k'],
+        param_ramp: { param: 'k', from: KR_FROM, to: KR_TO, start_ms: 0, end_ms: KR_MS },
+        repeat_every_ms: KR_REP,
+    }),
+    STATE_19: benchState('m₂ ramped across contacts', 'collision', [
+        { id: 'A', label: 'm₁', mass_kg: EL_M1, shape: 'cart', initial_position_m: -3, initial_velocity_mps: EL_V1 },
+        { id: 'B', label: 'm₂', mass_kg: MR_FROM, shape: 'cart', initial_position_m: 0 },
+    ], { between: ['A', 'B'], stiffness_N_per_m: EL_K }, {
+        controls_visible: ['m2'],
+        param_ramp: { param: 'm2', from: MR_FROM, to: MR_TO, start_ms: 0, end_ms: MR_MS },
+        repeat_every_ms: MR_REP,
     }),
 });
 
@@ -1305,6 +1391,146 @@ const CONTRA = benchConfig({
         results.seam_c_zones = {
             state_13: zr.map(r => ({ id: r[0], rect: r[1].rect })),
             state_12: zr2.map(r => ({ id: r[0], rect: r[1].rect })),
+        };
+
+        // ── C9–C12 — THE RAMPED WRITE-PATH, ACROSS A CONTACT ─────────────────
+        // C6 above ramps k and reads it only BETWEEN contacts, so two whole
+        // branches of mbSetParam (the live velocity, the mass) and every instant
+        // INSIDE a contact went untested. Everything expected below is derived
+        // here from the harness's own masses, speeds and ramp windows.
+        const rampAt = (from: number, to: number, ms: number, t: number) =>
+            from + (to - from) * Math.min(1, Math.max(0, t / ms));
+
+        // C9 — v1 ramped through ONE flight. The ball must rebound and LEAVE.
+        await h.setState('STATE_16');
+        const fr16: RampFrame[] = [];
+        for (let i = 0; i < 240; i++) { await h.tick(16.7, 1); fr16.push(await h.page.evaluate(RAMP_LITE)); }
+        const s16 = await h.snap();
+        const ev16 = s16.events;
+        const e16 = ev16[0];
+        // One full frame of grace after the release, then the ball is FREE and
+        // nothing in the scene may ever push it back towards the wall again.
+        const after16 = e16 && e16.end_ms != null ? fr16.filter(f => f.t_ms > e16.end_ms + 34) : [];
+        const relaunched = after16.filter(f => f.v > -1e-9);
+        const vOut16 = after16.length ? after16[after16.length - 1].v : 0;
+        const v0End16 = fr16[fr16.length - 1].v0;
+        chk('C9_ramped_v1_never_relaunches_a_ball_that_has_already_rebounded',
+            ev16.length === 1 && after16.length > 120 && relaunched.length === 0 &&
+            !!e16 && rel(-e16.p_after, e16.p_before) <= 1e-6 &&
+            Math.abs(v0End16 - VR_TO) < 1e-9,
+            'v₁ ramped ' + VR_FROM + ' → ' + VR_TO + ' m/s over ' + VR_MS + ' ms, no repeat: ' +
+            ev16.length + ' contact event(s) in ' + Math.round(fr16[fr16.length - 1].t_ms) +
+            ' ms (expect exactly 1); impact p = ' + (e16 ? e16.p_before.toFixed(6) : 'n/a') +
+            ' → departure p = ' + (e16 ? e16.p_after.toFixed(6) : 'n/a') + ' kg·m/s (elastic ⇒ exact negation, ' +
+            (e16 ? (100 * rel(-e16.p_after, e16.p_before)).toExponential(2) : 'n/a') + '%); frames after release with v ≥ 0 = ' +
+            relaunched.length + '/' + after16.length + '; v still ' + vOut16.toFixed(4) +
+            ' m/s at t=' + Math.round(fr16[fr16.length - 1].t_ms) + ' ms while the ramp re-armed v₀ to ' +
+            v0End16.toFixed(4) + ' m/s (the re-arm intent, kept)');
+
+        // C10 — v1 ramped ACROSS repeat cycles: one bounce per cycle, each launch
+        // faster than the last, every peak the closed form for the ramp value the
+        // cycle was armed with.
+        await h.setState('STATE_17');
+        const fr17: RampFrame[] = [];
+        for (let i = 0; i < 348; i++) { await h.tick(16.7, 1); fr17.push(await h.page.evaluate(RAMP_LITE)); }
+        const s17 = await h.snap();
+        const ev17 = s17.events;
+        const cyc17 = Math.floor(fr17[fr17.length - 1].t_ms / VC_REP) + 1;
+        const pk17 = ev17.map((e: Row) => peakOf(e.samples));
+        const exp17 = ev17.map((e: Row) => rampAt(VC_FROM, VC_TO, VC_MS, e.start_ms) * Math.sqrt(IMP_K_STIFF * IMP_M));
+        let rising = ev17.length > 1;
+        for (let i = 1; i < pk17.length; i++) if (!(pk17[i] > pk17[i - 1] * 1.05)) rising = false;
+        chk('C10_ramped_v1_gives_exactly_one_ever_faster_bounce_per_repeat_cycle',
+            ev17.length === cyc17 && rising &&
+            ev17.every((e: Row, i: number) => rel(pk17[i], exp17[i]) <= 0.02) &&
+            ev17.every((e: Row) => e.p_before > 0 && e.p_after < 0),
+            'v₁ ramped ' + VC_FROM + ' → ' + VC_TO + ' over ' + VC_MS + ' ms, repeat_every_ms=' + VC_REP +
+            ': ' + ev17.length + ' contact events over ' + Math.round(fr17[fr17.length - 1].t_ms) +
+            ' ms of clock = ' + cyc17 + ' armed cycles (a 71 ms-spaced cluster would show many more); ' +
+            ev17.map((e: Row, i: number) => 't=' + Math.round(e.start_ms) + 'ms Fₚₑₐₖ=' + pk17[i].toFixed(2) +
+                ' N vs v(t)√(kμ)=' + exp17[i].toFixed(2) + ' (' + (100 * rel(pk17[i], exp17[i])).toFixed(2) + '%)').join(' | ') +
+            '; every launch ≥5% faster than the last = ' + rising);
+
+        // C11 — k ramped ACROSS contacts. k must hold still for the whole of any
+        // one engaged segment, and each segment must then obey the closed forms
+        // for the k it engaged with.
+        await h.setState('STATE_18');
+        const fr18: RampFrame[] = [];
+        for (let i = 0; i < 280; i++) { await h.tick(16.7, 1); fr18.push(await h.page.evaluate(RAMP_LITE)); }
+        const s18 = await h.snap();
+        const runs18 = engagedRuns(fr18);
+        const kRun = runs18.map(r => r[0].k);
+        const kJitter = runs18.map(r => spread(r.map(f => f.k)));
+        chk('C11a_ramped_k_holds_constant_for_the_whole_of_every_engaged_segment',
+            runs18.length >= 3 && kJitter.every(x => x === 0) && spread(kRun) > 100 &&
+            fr18.some(f => !f.engaged && Math.abs(f.k - KR_FROM) > 100),
+            'k ramped ' + KR_FROM + ' → ' + KR_TO + ' N/m over ' + KR_MS + ' ms, repeat_every_ms=' + KR_REP +
+            ': ' + runs18.length + ' engaged segments of ' + runs18.map(r => r.length).join('/') +
+            ' frames; k inside each = [' + kRun.map(k => k.toFixed(1)).join(', ') +
+            '] N/m with jitter [' + kJitter.map(x => x.toFixed(6)).join(', ') +
+            '] (must be exactly 0); the ramp still moves BETWEEN segments, total spread ' +
+            spread(kRun).toFixed(1) + ' N/m');
+        const ev18 = s18.events;
+        const cf18 = ev18.map((e: Row) => {
+            const vIn = Math.abs(e.p_before / IMP_M);
+            return {
+                k: e.k, tc: e.duration_ms, tcExp: Math.PI * Math.sqrt(IMP_M / e.k) * 1000,
+                pk: peakOf(e.samples), pkExp: vIn * Math.sqrt(e.k * IMP_M),
+            };
+        });
+        chk('C11b_every_ramped_segment_matches_the_closed_form_for_its_own_k',
+            ev18.length >= 3 &&
+            cf18.every((c: Row) => rel(c.tc, c.tcExp) <= 0.02 && rel(c.pk, c.pkExp) <= 0.02),
+            cf18.map((c: Row) => 'k=' + c.k.toFixed(0) + ': t_c=' + c.tc.toFixed(2) + ' ms vs π√(μ/k)=' +
+                c.tcExp.toFixed(2) + ' (' + (100 * rel(c.tc, c.tcExp)).toFixed(2) + '%), Fₚₑₐₖ=' +
+                c.pk.toFixed(2) + ' N vs Δv√(kμ)=' + c.pkExp.toFixed(2) + ' (' +
+                (100 * rel(c.pk, c.pkExp)).toFixed(2) + '%)').join(' | '));
+
+        // C12 — m2 ramped ACROSS contacts. Mass sits inside the reduced mass the
+        // segment was solved with AND inside p = mv, so a write landing mid-contact
+        // breaks Σp — the one thing this whole bench exists to conserve.
+        await h.setState('STATE_19');
+        const fr19: RampFrame[] = [];
+        for (let i = 0; i < 300; i++) { await h.tick(16.7, 1); fr19.push(await h.page.evaluate(RAMP_LITE)); }
+        const s19 = await h.snap();
+        const runs19 = engagedRuns(fr19);
+        const mRun = runs19.map(r => r[0].m2);
+        const mJitter = runs19.map(r => spread(r.map(f => f.m2)));
+        const free19 = fr19.filter(f => !f.engaged);
+        // A DEFERRED write is allowed to be one frame late and no more: the frame a
+        // segment releases on still carries the value the segment ran with (its own
+        // ramp write was deferred while it was still engaged), and the very next
+        // frame is back on the closed-form ramp with nothing kept anywhere.
+        const mStale: number[] = [];
+        for (let i = 0; i < fr19.length; i++) {
+            if (fr19[i].engaged) continue;
+            if (rel(fr19[i].m2, rampAt(MR_FROM, MR_TO, MR_MS, fr19[i].t_ms)) > 0.02) mStale.push(i);
+        }
+        const mSelfHeals = mStale.every(i =>
+            i > 0 && fr19[i - 1].engaged &&
+            i + 1 < fr19.length && rel(fr19[i + 1].m2, rampAt(MR_FROM, MR_TO, MR_MS, fr19[i + 1].t_ms)) <= 0.02);
+        const mTrack = mStale;
+        const ev19 = s19.events;
+        chk('C12a_ramped_m2_holds_constant_for_the_whole_of_every_engaged_segment',
+            runs19.length >= 3 && mJitter.every(x => x === 0) && spread(mRun) > 0.3 &&
+            mTrack.length <= runs19.length && mSelfHeals && Math.abs(fr19[fr19.length - 1].m2 - MR_TO) < 1e-9,
+            'm₂ ramped ' + MR_FROM + ' → ' + MR_TO + ' kg over ' + MR_MS + ' ms, repeat_every_ms=' + MR_REP +
+            ': ' + runs19.length + ' engaged segments; m₂ inside each = [' + mRun.map(m => m.toFixed(4)).join(', ') +
+            '] kg, jitter [' + mJitter.map(x => x.toFixed(9)).join(', ') + '] (must be exactly 0); between segments it tracks ' +
+            'the closed-form ramp on ' + (free19.length - mTrack.length) + '/' + free19.length +
+            ' free frames — the ' + mTrack.length + ' that lag are the release frames themselves and every one of them ' +
+            'self-heals on the very next frame = ' + mSelfHeals +
+            '; holds ' + fr19[fr19.length - 1].m2.toFixed(3) + ' kg after end_ms');
+        chk('C12b_sigma_p_is_conserved_across_every_ramped_segment',
+            ev19.length >= 3 && ev19.every((e: Row) => rel(e.p_after, e.p_before) <= 1e-9),
+            ev19.map((e: Row) => 't=' + Math.round(e.start_ms) + 'ms Σp ' + e.p_before.toFixed(9) + ' → ' +
+                e.p_after.toFixed(9) + ' kg·m/s (' + (100 * rel(e.p_after, e.p_before)).toExponential(2) +
+                '%)').join(' | ') + ' — a mass write landing inside the segment moves p = mv instantly');
+        results.ramped_write_path = {
+            v1_single: { events: ev16.length, relaunch_frames: relaunched.length, v0_end: v0End16, v_end: vOut16 },
+            v1_cycles: { events: ev17.length, cycles: cyc17, peaks: pk17, peaks_expected: exp17 },
+            k_ramp: { segments: runs18.length, k_per_segment: kRun, k_jitter: kJitter, closed_form: cf18 },
+            m2_ramp: { segments: runs19.length, m_per_segment: mRun, m_jitter: mJitter, events: ev19.length },
         };
     }
 

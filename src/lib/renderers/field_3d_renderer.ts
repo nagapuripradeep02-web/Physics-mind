@@ -41468,8 +41468,20 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.active_event = ev;
         window.PM_mbEvents = eng.events;
     }
+    // A body is STAGED from its arming until the instant it meets a contact, and
+    // SPENT from there on (mid-impact, and still spent once it is flying away
+    // again). Only a staged body may have its live v retimed by a control write —
+    // see mbSetParam. The flag is cleared by mbSeedKinematics, i.e. by exactly the
+    // arming that re-launches the body, so it never survives a re-arm or a rewind.
+    function mbMarkSpent(eng, c) {
+        if (!eng || !c) return;
+        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
+        if (L) L.spent = true;
+        if (H) H.spent = true;
+    }
     function mbEngageContact(eng, c) {
         if (!c) return;
+        mbMarkSpent(eng, c);
         if (c.sticks) { mbLatchPair(eng, c); return; }
         c.engaged = true;
         mbStartEvent(eng, c);
@@ -41677,6 +41689,9 @@ export const FIELD_3D_RENDERER_CODE = `
             var b = eng.bodies[eng.order[i]];
             if (!b) continue;
             b.s = b.s0; b.v = b.v0; b.a = 0; b.F_contact = 0;
+            // Re-armed: this body is STAGED again, so a control write may retime
+            // its live v until it next meets a contact (mbSetParam).
+            b.spent = false;
         }
         var cs = mbContacts(eng);
         eng.latch = null;
@@ -41700,6 +41715,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     H.s = sCm + (L.m / (L.m + H.m)) * r;
                 }
                 c.engaged = true;
+                mbMarkSpent(eng, c);
                 mbStartEvent(eng, c);
             }
         }
@@ -42204,9 +42220,19 @@ export const FIELD_3D_RENDERER_CODE = `
         if (p === "c") return c ? c.c : null;
         return null;
     }
+    // A contact that is engaged (and not latched) is MID-SEGMENT: the oscillator
+    // map is already solving this impact from the k, c and masses it entered with.
+    // Any write into that segment silently changes the answer under it, so every
+    // such write is DEFERRED. Per CONTACT, never global — in a two-lane state one
+    // lane may be mid-impact while the other is still free, and blocking the free
+    // lane's write on its neighbour would be a second bug.
+    function mbContactBusy(c) { return !!(c && c.engaged && !c.latched); }
+    function mbBodyBusy(eng, b) { return !!(b && mbEngagedBodyIds(eng)[b.id]); }
     // THE single write-path. A teacher drag, a PARAM_UPDATE and a param_ramp all
     // land here, so the physics, the slider position and the row's value text can
-    // never disagree with each other.
+    // never disagree with each other. Nothing here forks on WHO is writing; the
+    // only question asked is whether the body/contact being written is in the
+    // middle of something the write would corrupt.
     function mbSetParam(p, val) {
         var eng = window.PM_mbEngine;
         if (!eng || !isFinite(val)) return;
@@ -42214,18 +42240,29 @@ export const FIELD_3D_RENDERER_CODE = `
         if (p === "m1" || p === "v1") b = mbMovingBody(eng, 0);
         else if (p === "m2" || p === "v2") b = mbMovingBody(eng, 1);
         if ((p === "m1" || p === "m2") && b && val > 0) {
-            b.m = val;
+            // Mass sits inside the reduced mass the engaged segment was solved
+            // with, and p = mv jumps the instant it moves — so a mid-impact write
+            // is deferred exactly like k. A ramp recomputes from the clock every
+            // frame, so the deferred value lands on the next free frame by itself.
+            if (!mbBodyBusy(eng, b)) b.m = val;
         } else if ((p === "v1" || p === "v2") && b) {
             // v0 is the authored launch speed, so a repeat cycle re-arms with the
-            // NEW value. The live v follows too, unless this body is mid-impact —
-            // rewriting v inside a contact would contradict the segment the
-            // oscillator map is already solving.
+            // NEW value — that is the whole point of ramping v1, and it always
+            // applies.
             b.v0 = val;
-            var held = mbEngagedBodyIds(eng);
-            if (!held[b.id]) b.v = val;
+            // The LIVE v may follow only while the body is STAGED: armed, and
+            // still on its way in. Once it has met its contact the live v belongs
+            // to the physics — mid-impact it contradicts the segment the
+            // oscillator map is solving, and AFTER the rebound it overwrites the
+            // body's negative departure velocity with the positive launch value on
+            // every frame, so the body can never leave the wall (the whole reason
+            // this guard exists; "not engaged" alone let that through).
+            if (!b.spent && !mbBodyBusy(eng, b)) b.v = val;
         } else if (p === "k" || p === "c") {
             var c0 = eng.contacts && eng.contacts[0];
-            if (c0) { if (p === "k") { if (val > 0) c0.k = val; } else c0.c = (val > 0 ? val : 0); }
+            if (c0 && !mbContactBusy(c0)) {
+                if (p === "k") { if (val > 0) c0.k = val; } else c0.c = (val > 0 ? val : 0);
+            }
         }
         mbSyncControlRow(p);
     }
