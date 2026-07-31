@@ -220,7 +220,7 @@
             "type": "annotation",
             "id": "context_note",
             "position": { "x": 200, "y": 250 },
-            "text": "ΣFₓ runs −35.03 N → 0.00 N while ΣF_y reads 0.00 N",
+            "text": "ΣFx runs −35.03 N → 0.00 N while ΣFy reads 0.00 N",
             "color": "#4DD0E1"
           },
           {
@@ -694,7 +694,7 @@
         "visible_elements": [],
         "camera_position": [0, 3.4, 9.2],
         "caption": "Vertical sum stays zero",
-        "formula_overlay": "ΣFₓ = 0\nΣFᵧ = 0",
+        "formula_overlay": "ΣFx = 0\nΣFy = 0",
         "force_rig": {
           "apparatus": "force_table",
           "force_table": {
