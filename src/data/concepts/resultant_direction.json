@@ -1,0 +1,1188 @@
+{
+  "concept_id": "resultant_direction",
+  "concept_name": "Direction of the Resultant of Two Vectors",
+  "chapter": 1,
+  "section": "1.3",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "First-principles authoring (direction of the resultant via one perpendicular drop). DC Pandey Vol.1 Ch.5 table of contents used for syllabus scope only — no teaching method, example, or figure imported.",
+  "prerequisites": [
+    "vector_addition_law"
+  ],
+  "concept_tier": "medium",
+  "cognitive_limits": {
+    "max_primitives_per_state": 16,
+    "max_labels_per_state": 8,
+    "max_words_per_tts_sentence": 25
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Drop one perpendicular — the same triangle that gives |R| gives tan alpha too.",
+    "visual_confirmation": "alpha_arc_true"
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_3"
+    },
+    "dominance": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "angle_cases": {
+      "start": "STATE_5",
+      "end": "STATE_5"
+    },
+    "exploration": {
+      "start": "STATE_6",
+      "end": "STATE_6"
+    }
+  },
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A delivery drone is handed the same two-leg route a van drives — one leg, a turn, a second leg. The drone flies the straight line instead, but knowing the distance isn't enough: it cannot launch until it knows the compass bearing of its nose, measured from the first leg's direction. That bearing is exactly alpha.",
+    "secondary": "Two tugboats tow one ship at an angle. The ship surges along a diagonal, but the helmsman needs to know which diagonal — it swings toward whichever tug pulls harder."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "a": {
+        "name": "Length of vector A (reference direction, drone leg 1 / tugboat 1)",
+        "unit": "km",
+        "min": 1,
+        "max": 6,
+        "step": 0.5,
+        "default": 3
+      },
+      "b": {
+        "name": "Length of vector B (carried tip-to-tail onto A, per vector_addition_law)",
+        "unit": "km",
+        "min": 1,
+        "max": 6,
+        "step": 0.5,
+        "default": 4
+      },
+      "theta": {
+        "name": "Angle between vector A and vector B (both measured from a common tail)",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "step": 5,
+        "default": 60
+      },
+      "probe_heading_deg": {
+        "name": "STATE_1-only choreography driver: candidate heading of the sweeping ghost arrow during sweep-and-lock. Internal only, never a UI control.",
+        "unit": "deg",
+        "min": -15,
+        "max": 180,
+        "default": 0
+      },
+      "tracer_t": {
+        "name": "STATE_3-only choreography driver: 0=tracer at start, 0.5=tracer at foot of perpendicular (base fully traced), 1=tracer at R's tip (riser fully traced). Internal only, never a UI control.",
+        "unit": "fraction",
+        "min": 0,
+        "max": 1,
+        "default": 0
+      }
+    },
+    "formulas": {
+      "shadow": "b * cos(theta * PI / 180)",
+      "riser": "b * sin(theta * PI / 180)",
+      "base": "a + b * cos(theta * PI / 180)",
+      "tan_alpha_formula": "riser / base — i.e. b*sin(theta*PI/180) / (a + b*cos(theta*PI/180))",
+      "alpha_formula": "atan2(riser, base) * 180 / PI — quadrant-safe; never atan(riser/base)"
+    },
+    "computed_outputs": {
+      "shadow": { "formula": "b * cos(theta * PI / 180)" },
+      "riser": { "formula": "b * sin(theta * PI / 180)" },
+      "base": { "formula": "a + b * cos(theta * PI / 180)" },
+      "R_mag": { "formula": "sqrt(a*a + b*b + 2*a*b*cos(theta * PI / 180))" },
+      "alpha_deg": { "formula": "atan2(b*sin(theta * PI / 180), a + b*cos(theta * PI / 180)) * 180 / PI" },
+      "tan_alpha": { "formula": "(b*sin(theta * PI / 180)) / (a + b*cos(theta * PI / 180))" },
+      "P1_x": { "formula": "a" },
+      "P1_y": { "formula": "0" },
+      "P2_x": { "formula": "a + b*cos(theta * PI / 180)" },
+      "P2_y": { "formula": "b*sin(theta * PI / 180)" }
+    },
+    "derived_fields_declared": [
+      "shadow", "riser", "base", "R_mag", "alpha_deg", "tan_alpha", "P1_x", "P1_y", "P2_x", "P2_y"
+    ],
+    "constraints": [
+      "alpha_deg IS the parent's R_dir_deg formula, renamed/foregrounded — atan2(b*sin(theta*PI/180), a+b*cos(theta*PI/180))*180/PI; this concept cashes out the formula vector_addition_law's own constraint block explicitly deferred here",
+      "alpha_deg MUST use atan2(riser, base), never atan(riser/base) — riser = b*sin(theta*PI/180) >= 0 for all theta in [0deg,180deg], so atan2 alone returns a continuous, correctly-signed result over the full physical domain with no extra branch/correction needed",
+      "0 <= alpha_deg <= theta for all theta in [0deg,180deg]; strict alpha_deg < theta on the open interval (0deg,180deg) whenever a>0,b>0; equality only at the two boundary points — R never leads theta, it always trails",
+      "alpha_deg = theta/2 exactly if and only if a = b (any theta in (0deg,180deg)); this is the resultant-bisects-the-angle identity, verified numerically at a=b=3, theta=60deg -> alpha=30.000deg",
+      "base can go negative (theta past arccos(-a/b)); this is correct physics (the shadow of B points backward past A's tail) and must render as a genuine sign flip, never clamped to zero",
+      "R_mag is identical in formula to vector_addition_law's R_mag — do not re-derive, do not touch vector_addition_law.json (its own constraint line already defers this formula here)"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Which Way?",
+        "duration": 15,
+        "focal_primitive_id": "resultant_R_s1",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4,
+          "theta": 60,
+          "probe_heading_deg": 0
+        },
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "start_marker_s1",
+            "shape": "circle",
+            "size": 16,
+            "position": { "x": 200, "y": 380 },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A_s1",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "A = {a.toFixed(1)} km"
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B_s1",
+            "anchor_to": { "primitive_id": "leg_A_s1", "point": "tip" },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "annotation",
+            "id": "finish_tag_s1",
+            "text": "finish",
+            "position": { "x": 330, "y": 296 },
+            "color": "#E2E8F0"
+          },
+          {
+            "type": "force_arrow",
+            "id": "sweep_ghost_s1",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "probe_heading_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "appear_at_ms": 600,
+            "disappear_at_ms": 2800
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc_s1",
+            "center": { "x": 200, "y": 380 },
+            "from_deg": 0,
+            "to_deg_expr": "probe_heading_deg",
+            "radius": 45,
+            "color": "#F472B6"
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R_s1",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "alpha_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular",
+            "appear_at_ms": 2800,
+            "animate_in_ms": 200
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s1",
+            "equation": "α = ∠(A → R)",
+            "position": { "x": 560, "y": 70 },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "formula_box",
+            "id": "alpha_readout_s1",
+            "equation_expr": "α = {alpha_deg.toFixed(1)}°",
+            "position": { "x": 560, "y": 140 },
+            "border_color": "#F472B6",
+            "appear_at_ms": 2900
+          },
+          {
+            "type": "annotation",
+            "id": "delta_cue_s1",
+            "text": "6 km — which way?",
+            "position": { "x": 150, "y": 18 },
+            "color": "#E2E8F0"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "probe_heading_deg",
+            "mode": "once",
+            "from": 0,
+            "to": 34.715,
+            "start_ms": 600,
+            "duration_ms": 1800,
+            "holds": [
+              { "at_value": 34.715, "hold_ms": 400 }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Three kilometres east, then four more at sixty degrees — a six kilometre straight line." },
+            { "id": "s1_2", "text_en": "Length alone can't launch a drone — it needs a compass bearing, measured from that first leg." },
+            { "id": "s1_3", "text_en": "Watch the heading search and lock — that locked angle is alpha." }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Drop One Perpendicular",
+        "duration": 16,
+        "focal_primitive_id": "riser_arrow_s2",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4,
+          "theta": 60
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_b_splits_sin_cos",
+          "shadow_negative_past_90",
+          "is_this_vector_resolution"
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "start_marker_s2",
+            "shape": "circle",
+            "size": 16,
+            "position": { "x": 200, "y": 380 },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A_s2",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "A = {a.toFixed(1)} km",
+            "label_position": "perpendicular",
+            "label_perp_offset": 20,
+            "label_offset": { "dx": 10, "dy": 0 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B_s2",
+            "anchor_to": { "primitive_id": "leg_A_s2", "point": "tip" },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc_s2",
+            "anchor_to": { "primitive_id": "leg_A_s2", "point": "tip" },
+            "from_deg": 0,
+            "to_deg_expr": "theta",
+            "radius": 28,
+            "color": "#93C5FD",
+            "label": "{theta < 10 ? '' : 'θ = ' + theta.toFixed(0) + '°'}"
+          },
+          {
+            "type": "force_arrow",
+            "id": "shadow_arrow_s2",
+            "anchor_to": { "primitive_id": "leg_A_s2", "point": "tip" },
+            "magnitude_expr": "shadow",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "B cos θ",
+            "label_position": "perpendicular",
+            "label_perp_offset": 20,
+            "appear_at_ms": 1000,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "force_arrow",
+            "id": "riser_arrow_s2",
+            "anchor_to": { "primitive_id": "shadow_arrow_s2", "point": "tip" },
+            "magnitude_expr": "riser",
+            "direction_deg": 90,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "B sin θ",
+            "label_offset": { "dx": 6, "dy": -6 },
+            "appear_at_ms": 1800,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s2",
+            "equation": "B → B cos θ (along) + B sin θ (across)",
+            "position": { "x": 560, "y": 70 },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "formula_box",
+            "id": "shadow_readout_s2",
+            "equation_expr": "B cos θ = {shadow.toFixed(1)} km",
+            "position": { "x": 560, "y": 140 },
+            "border_color": "#94A3B8",
+            "appear_at_ms": 1700
+          },
+          {
+            "type": "formula_box",
+            "id": "riser_readout_s2",
+            "equation_expr": "B sin θ = {riser.toFixed(1)} km",
+            "position": { "x": 560, "y": 190 },
+            "border_color": "#94A3B8",
+            "appear_at_ms": 2700
+          },
+          {
+            "type": "annotation",
+            "id": "delta_cue_s2",
+            "text": "B splits: along, across",
+            "position": { "x": 150, "y": 18 },
+            "color": "#E2E8F0"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Drop a perpendicular from B's tip onto A's line." },
+            { "id": "s2_2", "text_en": "One piece runs along A — that's B cos theta, B's shadow." },
+            { "id": "s2_3", "text_en": "The other piece rises across A — that's B sin theta." },
+            { "id": "s2_4", "text_en": "Together they rebuild B exactly, split into an along part and an across part." }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Read Off the Tangent",
+        "duration": 16,
+        "focal_primitive_id": "alpha_arc_true",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4,
+          "theta": 60,
+          "tracer_t": 0
+        },
+        "misconception_watch": [
+          {
+            "belief": "the base of the tangent triangle is A alone",
+            "visual_counter": "ghost-gray arc/arrow at 49.1° (built on base=A=3 only) visibly overshoots past R's true 34.7° heading, then the tracer runs the FULL base (A + B cos θ = 5.0) and the true arc lands exactly on R",
+            "one_line_fix": "the along side is A plus B's shadow — A + B cos θ, not A alone"
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "start_marker_s3",
+            "shape": "circle",
+            "size": 16,
+            "position": { "x": 200, "y": 380 },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A_s3",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "A = {a.toFixed(1)} km",
+            "label_position": "perpendicular",
+            "label_perp_offset": 20,
+            "label_offset": { "dx": 10, "dy": 0 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B_s3",
+            "anchor_to": { "primitive_id": "leg_A_s3", "point": "tip" },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc_s3",
+            "anchor_to": { "primitive_id": "leg_A_s3", "point": "tip" },
+            "from_deg": 0,
+            "to_deg_expr": "theta",
+            "radius": 28,
+            "color": "#93C5FD",
+            "label": "{theta < 10 ? '' : 'θ = ' + theta.toFixed(0) + '°'}"
+          },
+          {
+            "type": "force_arrow",
+            "id": "shadow_arrow_s3",
+            "anchor_to": { "primitive_id": "leg_A_s3", "point": "tip" },
+            "magnitude_expr": "shadow",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "B cos θ",
+            "label_position": "perpendicular",
+            "label_perp_offset": 20
+          },
+          {
+            "type": "force_arrow",
+            "id": "riser_arrow_s3",
+            "anchor_to": { "primitive_id": "shadow_arrow_s3", "point": "tip" },
+            "magnitude_expr": "riser",
+            "direction_deg": 90,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "B sin θ",
+            "label_offset": { "dx": 6, "dy": -6 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R_s3",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "alpha_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc_true",
+            "center": { "x": 200, "y": 380 },
+            "from_deg": 0,
+            "to_deg_expr": "alpha_deg",
+            "radius": 50,
+            "color": "#F472B6",
+            "label": "α = {alpha_deg.toFixed(0)}°"
+          },
+          {
+            "type": "force_arrow",
+            "id": "wrong_ghost_arrow_s3",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "R_mag",
+            "direction_deg": 49.107,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "appear_at_ms": 600,
+            "disappear_at_ms": 2000
+          },
+          {
+            "type": "annotation",
+            "id": "base_label_s3",
+            "text": "A + B cos θ",
+            "position": { "x": 275, "y": 430 },
+            "color": "#FCD34D",
+            "appear_at_ms": 2200,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "body",
+            "id": "tracer_bead_leg1_s3",
+            "shape": "circle",
+            "size": 14,
+            "position": { "x": 200, "y": 380 },
+            "fill_color": "#22D3EE",
+            "appear_at_ms": 2200,
+            "disappear_at_ms": 3100,
+            "animation": {
+              "type": "translate",
+              "dx_px": 150,
+              "dy_px": 0,
+              "delay_sec": 2.2,
+              "duration_sec": 0.9
+            }
+          },
+          {
+            "type": "body",
+            "id": "tracer_bead_leg2_s3",
+            "shape": "circle",
+            "size": 14,
+            "position": { "x": 350, "y": 380 },
+            "fill_color": "#22D3EE",
+            "appear_at_ms": 3100,
+            "animation": {
+              "type": "translate",
+              "dx_px": 0,
+              "dy_px": -103.92,
+              "delay_sec": 3.1,
+              "duration_sec": 0.9
+            }
+          },
+          {
+            "type": "locus_trace",
+            "id": "tracer_path_s3",
+            "x_expr": "200 + min(tracer_t,0.5)*2*(a+b*cos(theta*PI/180))*30",
+            "y_expr": "380 - max(tracer_t-0.5,0)*2*(b*sin(theta*PI/180))*30",
+            "start_ms": 2200,
+            "end_ms": 4000,
+            "color": "#FCD34D",
+            "stroke_weight": 3
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s3",
+            "equation": "tan α = B sin θ / (A + B cos θ)",
+            "position": { "x": 560, "y": 70 },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "formula_box",
+            "id": "alpha_readout_s3",
+            "equation_expr": "α = {alpha_deg.toFixed(1)}°",
+            "position": { "x": 560, "y": 140 },
+            "border_color": "#F472B6",
+            "appear_at_ms": 4000
+          },
+          {
+            "type": "annotation",
+            "id": "delta_cue_s3",
+            "text": "tan α: across ÷ along",
+            "position": { "x": 150, "y": 18 },
+            "color": "#E2E8F0"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "tracer_t",
+            "mode": "once",
+            "from": 0,
+            "to": 1,
+            "start_ms": 2200,
+            "duration_ms": 1800
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Guess the base is just A, and the angle overshoots past where R points." },
+            { "id": "s3_2", "text_en": "The real base is A plus B cos theta, not A alone." },
+            { "id": "s3_3", "text_en": "Trace that base, then climb the across side, B sin theta." },
+            { "id": "s3_4", "text_en": "Opposite over adjacent gives tan alpha — no new formula needed." }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "R Leans Toward the Bigger",
+        "duration": 17,
+        "focal_primitive_id": "resultant_R4",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "theta": 60
+        },
+        "misconception_watch": [
+          {
+            "belief": "R splits the angle evenly",
+            "visual_counter": "at b=a=3, R sits exactly ON the ghost bisector (α=30.000°=θ/2, belief earned); then b growing to 6 drags R to α=40.893° (toward B, off the still-static 30° ghost); b shrinking to 1 drags R to α=13.898° (hugging A)",
+            "one_line_fix": "R leans toward the bigger vector — bisection is the A = B accident"
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "start_marker_s4",
+            "shape": "circle",
+            "size": 16,
+            "position": { "x": 200, "y": 380 },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A4",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "A = {a.toFixed(1)} km"
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B4",
+            "anchor_to": { "primitive_id": "leg_A4", "point": "tip" },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc_s4",
+            "anchor_to": { "primitive_id": "leg_A4", "point": "tip" },
+            "from_deg": 0,
+            "to_deg_expr": "theta",
+            "radius": 28,
+            "color": "#93C5FD",
+            "label": "{theta < 10 ? '' : 'θ = ' + theta.toFixed(0) + '°'}"
+          },
+          {
+            "type": "force_arrow",
+            "id": "bisector_ghost_s4",
+            "from": { "x": 200, "y": 380 },
+            "magnitude": 7,
+            "direction_deg": 30,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "θ/2"
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R4",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "alpha_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc4",
+            "center": { "x": 200, "y": 380 },
+            "from_deg": 0,
+            "to_deg_expr": "alpha_deg",
+            "radius": 50,
+            "color": "#F472B6",
+            "label": "α = {alpha_deg.toFixed(0)}°"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s4",
+            "equation": "tan α = B sin θ / (A + B cos θ)",
+            "position": { "x": 560, "y": 70 },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "formula_box",
+            "id": "alpha_readout_s4",
+            "equation_expr": "α = {alpha_deg.toFixed(1)}°",
+            "position": { "x": 560, "y": 140 },
+            "border_color": "#F472B6"
+          },
+          {
+            "type": "slider",
+            "id": "b_slider_s4",
+            "variable": "b",
+            "min": 1,
+            "max": 6,
+            "step": 0.5,
+            "default": 4,
+            "label": "leg B length",
+            "unit": "km",
+            "position": "bottom"
+          },
+          {
+            "type": "annotation",
+            "id": "delta_cue_s4",
+            "text": "R leans toward bigger",
+            "position": { "x": 150, "y": 18 },
+            "color": "#E2E8F0"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "b",
+            "mode": "ping_pong",
+            "from": 4,
+            "to": 1,
+            "start_ms": 600,
+            "duration_ms": 1800,
+            "seizable": true,
+            "holds": [
+              { "at_value": 3, "hold_ms": 900 }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Ease B down to match A — R settles on the bisector." },
+            { "id": "s4_2", "text_en": "That split-down-the-middle only happens by accident, when both vectors are equal." },
+            { "id": "s4_3", "text_en": "Shrink B and R hugs A; drag B past four and R swings toward B." },
+            { "id": "s4_4", "text_en": "The resultant leans toward whichever vector is bigger — bisecting is the one exact tie." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Alpha Chases Theta",
+        "duration": 18,
+        "focal_primitive_id": "alpha_arc_live",
+        "advance_mode": "manual_click",
+        "variable_overrides": {
+          "a": 3,
+          "b": 4
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "resultant_perpendicular_to_a",
+          "theta_180_direction_flip",
+          "max_lean_when_b_smaller"
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "start_marker_s5",
+            "shape": "circle",
+            "size": 16,
+            "position": { "x": 200, "y": 380 },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A5",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "A = {a.toFixed(1)} km"
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B5",
+            "anchor_to": { "primitive_id": "leg_A5", "point": "tip" },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc_s5",
+            "anchor_to": { "primitive_id": "leg_A5", "point": "tip" },
+            "from_deg": 0,
+            "to_deg_expr": "theta",
+            "radius": 28,
+            "color": "#93C5FD",
+            "label": "{theta < 10 ? '' : 'θ = ' + theta.toFixed(0) + '°'}"
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R5",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "alpha_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc_live",
+            "center": { "x": 200, "y": 380 },
+            "from_deg": 0,
+            "to_deg_expr": "alpha_deg",
+            "radius": 55,
+            "color": "#F472B6",
+            "label": "α = {alpha_deg.toFixed(0)}°"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s5",
+            "equation_expr": "{abs(theta-90)<1 ? 'tan α = B / A' : 'tan α = B sin θ / (A + B cos θ)'}",
+            "position": { "x": 560, "y": 70 },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "formula_box",
+            "id": "alpha_readout_s5",
+            "equation_expr": "α = {alpha_deg.toFixed(1)}°",
+            "position": { "x": 560, "y": 140 },
+            "border_color": "#F472B6"
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider_s5",
+            "variable": "theta",
+            "min": 0,
+            "max": 180,
+            "step": 5,
+            "default": 60,
+            "label": "angle θ",
+            "unit": "deg",
+            "position": "bottom"
+          },
+          {
+            "type": "annotation",
+            "id": "delta_cue_s5",
+            "text": "α trails θ, never leads",
+            "position": { "x": 150, "y": 18 },
+            "color": "#E2E8F0"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "once",
+            "from": 60,
+            "to": 180,
+            "start_ms": 700,
+            "duration_ms": 6000,
+            "seizable": true,
+            "holds": [
+              { "at_value": 90, "hold_ms": 3100 },
+              { "at_value": 138.59, "hold_ms": 3100 },
+              { "at_value": 180, "hold_ms": 3100 }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Sweep the angle between A and B, and alpha always trails it, never leads." },
+            { "id": "s5_2", "text_en": "At ninety degrees the formula collapses to a simple ratio, B over A." },
+            { "id": "s5_3", "text_en": "Push further and the along side vanishes — R stands perpendicular to A." },
+            { "id": "s5_4", "text_en": "Push to one-eighty and R flips to point straight along B instead." }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "All Yours",
+        "duration": 0,
+        "focal_primitive_id": "live_readout_S6",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "start_marker_s6",
+            "shape": "circle",
+            "size": 16,
+            "position": { "x": 200, "y": 380 },
+            "fill_color": "#64748B",
+            "label": "start",
+            "label_below": true
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_A6",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "a",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "A = {a.toFixed(1)} km",
+            "label_position": "perpendicular",
+            "label_perp_offset": 20,
+            "label_offset": { "dx": 10, "dy": 0 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "leg_B6",
+            "anchor_to": { "primitive_id": "leg_A6", "point": "tip" },
+            "magnitude_expr": "b",
+            "direction_deg_expr": "theta",
+            "scale_pixels_per_unit": 30,
+            "color": "#F59E0B",
+            "label_expr": "B = {b.toFixed(1)} km",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc_s6",
+            "anchor_to": { "primitive_id": "leg_A6", "point": "tip" },
+            "from_deg": 0,
+            "to_deg_expr": "theta",
+            "radius": 28,
+            "color": "#93C5FD",
+            "label": "{theta < 10 ? '' : 'θ = ' + theta.toFixed(0) + '°'}"
+          },
+          {
+            "type": "force_arrow",
+            "id": "shadow_ghost_s6",
+            "anchor_to": { "primitive_id": "leg_A6", "point": "tip" },
+            "magnitude_expr": "shadow",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "B cos θ",
+            "label_position": "perpendicular",
+            "label_perp_offset": 20
+          },
+          {
+            "type": "force_arrow",
+            "id": "riser_ghost_s6",
+            "anchor_to": { "primitive_id": "shadow_ghost_s6", "point": "tip" },
+            "magnitude_expr": "riser",
+            "direction_deg": 90,
+            "scale_pixels_per_unit": 30,
+            "color": "#94A3B8",
+            "label": "B sin θ",
+            "label_offset": { "dx": 6, "dy": -6 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R6",
+            "from": { "x": 200, "y": 380 },
+            "magnitude_expr": "R_mag",
+            "direction_deg_expr": "alpha_deg",
+            "scale_pixels_per_unit": 30,
+            "color": "#10B981",
+            "label": "R",
+            "label_position": "perpendicular"
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc6",
+            "center": { "x": 200, "y": 380 },
+            "from_deg": 0,
+            "to_deg_expr": "alpha_deg",
+            "radius": 55,
+            "color": "#F472B6",
+            "label": "α = {alpha_deg.toFixed(0)}°"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface_s6",
+            "equation": "tan α = B sin θ / (A + B cos θ)",
+            "position": { "x": 560, "y": 70 },
+            "border_color": "#93C5FD"
+          },
+          {
+            "type": "formula_box",
+            "id": "live_readout_S6",
+            "equation_expr": "α = {alpha_deg.toFixed(1)}°   (tan α = {tan_alpha.toFixed(2).replace('-','−')})",
+            "position": { "x": 560, "y": 140 },
+            "border_color": "#F472B6"
+          },
+          {
+            "type": "slider",
+            "id": "a_slider_s6",
+            "variable": "a",
+            "min": 1,
+            "max": 6,
+            "step": 0.5,
+            "default": 3,
+            "label": "leg A length",
+            "unit": "km",
+            "position": "bottom"
+          },
+          {
+            "type": "slider",
+            "id": "b_slider_s6",
+            "variable": "b",
+            "min": 1,
+            "max": 6,
+            "step": 0.5,
+            "default": 4,
+            "label": "leg B length",
+            "unit": "km",
+            "position": "bottom"
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider_s6",
+            "variable": "theta",
+            "min": 0,
+            "max": 180,
+            "step": 5,
+            "default": 60,
+            "label": "angle θ",
+            "unit": "deg",
+            "position": "bottom"
+          },
+          {
+            "type": "annotation",
+            "id": "delta_cue_s6",
+            "text": "All yours",
+            "position": { "x": 150, "y": 18 },
+            "color": "#E2E8F0"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Drag any slider — leg A, leg B, or the angle theta." },
+            { "id": "s6_2", "text_en": "Watch alpha and the resultant swing live as you explore." }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student who can name which vector alpha is measured from, correctly decompose B into along/across parts, compute tan alpha from the full base (not just A), state that R leans toward the bigger vector, and read off the theta=90 and R-perpendicular-to-A special cases has mastered this concept.",
+    "questions": [
+      {
+        "q_id": "q1",
+        "stem": "The direction angle alpha of the resultant R is measured starting from which vector?",
+        "options": {
+          "A": "From vector A",
+          "B": "From vector B",
+          "C": "From the bisector of theta",
+          "D": "From true north, independent of A or B"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses alpha with the angle measured from B, the OTHER leg, not A",
+          "C": "imports the bisector belief early — assumes symmetric splitting before it's even discussed",
+          "D": "treats alpha as an absolute compass bearing unrelated to A's own direction — but the whole point of the drone hook is that the bearing is relative to the first leg"
+        },
+        "tested_idea": "alpha_reference_vector",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A pilot reports a bearing measured from her first flight leg. Which leg defines the zero of that bearing?"
+      },
+      {
+        "q_id": "q2",
+        "stem": "The component of vector B that lies ALONG vector A is:",
+        "options": {
+          "A": "B cos theta",
+          "B": "B sin theta",
+          "C": "B tan theta",
+          "D": "Just B (the whole vector lies along A)"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "swaps sine and cosine — assigns the trig function of the OPPOSITE (across) side to the adjacent (along) side",
+          "C": "guesses a ratio-based formula, mixing up the tangent identity with a simple projection",
+          "D": "skips decomposition entirely — assumes B contributes its full length along A regardless of the angle between them"
+        },
+        "tested_idea": "component_along_vs_across",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A rope pulls at an angle to a track. What fraction of its pull acts along the track's own direction?"
+      },
+      {
+        "q_id": "q3",
+        "stem": "For A = 3 km, B = 4 km, theta = 60 degrees, what is tan alpha?",
+        "options": {
+          "A": "0.69",
+          "B": "1.15",
+          "C": "1.33",
+          "D": "0.40"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic denominator error — uses A alone (3) as the adjacent side instead of A + B cos theta (5.0), this concept's PRIMARY misconception",
+          "C": "misapplies the theta=90 special case (tan alpha = B/A) to a general angle where it does not hold",
+          "D": "swaps sine and cosine in the numerator — uses B cos theta instead of B sin theta as the across term"
+        },
+        "tested_idea": "tangent_denominator_full_base",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "For A = 5 km, B = 5 km, theta = 60 degrees, what is tan alpha (to 2 dp)?"
+      },
+      {
+        "q_id": "q4",
+        "stem": "If A and B are unequal in length, does the resultant R bisect the angle theta between them?",
+        "options": {
+          "A": "No — R leans toward the bigger vector; it bisects only when A equals B",
+          "B": "Yes, always, regardless of the two lengths",
+          "C": "No — R always leans toward the SMALLER vector",
+          "D": "R bisects theta only when theta equals 90 degrees"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic bisector misconception — generalizes from the equal-vectors textbook picture to every case",
+          "C": "gets the lean direction backwards — R leans toward the bigger vector, not away from it",
+          "D": "confuses the bisection condition (A = B) with the unrelated theta = 90 degree landmark from the angle-sweep state"
+        },
+        "tested_idea": "resultant_lean_not_bisect",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Two tow ropes pull a barge, one twice as strong as the other. Does the barge surge exactly down the middle?"
+      },
+      {
+        "q_id": "q5",
+        "stem": "At theta = 90 degrees (A = 3 km, B = 4 km), what is tan alpha?",
+        "options": {
+          "A": "tan alpha = B/A = 4/3, about 1.33",
+          "B": "tan alpha = A/B = 3/4, about 0.75",
+          "C": "tan alpha = 1, since alpha equals theta at 90 degrees",
+          "D": "tan alpha is undefined, because both A and B cos theta vanish at 90 degrees"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "inverts the ratio — computes A/B instead of B/A",
+          "C": "confuses alpha with theta itself — assumes the resultant's angle equals the angle between the vectors",
+          "D": "confuses this state's OTHER landmark (the base vanishing at theta of about 138.6 degrees) with theta = 90 degrees, wrongly believing the base vanishes here too"
+        },
+        "tested_idea": "theta_90_special_case",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "For A = 6 km, B = 8 km, theta = 90 degrees, what is tan alpha?"
+      },
+      {
+        "q_id": "q6",
+        "stem": "If R is exactly perpendicular to A (A = 3 km, B = 4 km), what is cos theta?",
+        "options": {
+          "A": "cos theta = -A/B = -0.75",
+          "B": "cos theta = -B/A",
+          "C": "cos theta = +A/B = +0.75",
+          "D": "cos theta = 0, since perpendicular means a 90 degree angle"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misapplies the maximum-lean-angle formula (cos theta = -B/A, only valid when B is smaller than A) to this different perpendicular-R condition",
+          "C": "drops the negative sign — forgets the shadow must point backward to exactly cancel A",
+          "D": "confuses 'R is perpendicular to A' with 'theta itself is 90 degrees' — two entirely different angles"
+        },
+        "tested_idea": "perpendicular_condition_base_zero",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "For A = 4 km, B = 5 km, what value of cos theta makes R exactly perpendicular to A?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1"],
+      "STATE_2": ["q2"],
+      "STATE_3": ["q3"],
+      "STATE_4": ["q4"],
+      "STATE_5": ["q5", "q6"]
+    },
+    "non_assessed_states": ["STATE_6"]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "var_tugboat_heading",
+      "type": "world",
+      "label": "Tugboat Heading",
+      "physical_world": "Two tugboats pull one barge at an angle; the crew needs the compass heading the barge will actually surge along.",
+      "same_physics": "Same tan alpha = B sin theta / (A + B cos theta) direction formula — the heading leans toward whichever tow pulls harder.",
+      "entry_state": "STATE_1"
+    },
+    {
+      "variant_id": "var_signal_relay_bearing",
+      "type": "world",
+      "label": "Signal Relay Bearing",
+      "physical_world": "A radio relay hands a signal along one leg, then a second leg at an angle; the receiver dish must aim along the straight-line bearing, not either leg alone.",
+      "same_physics": "Same perpendicular-drop construction and tan alpha formula give the dish's exact aiming angle measured from the first leg.",
+      "entry_state": "STATE_1"
+    }
+  ]
+}

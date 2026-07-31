@@ -489,6 +489,38 @@ function computePhysics_vector_addition_law(vars) {
   };
 }
 
+function computePhysics_resultant_direction(vars) {
+  var a = (vars && vars.a != null) ? vars.a : 3;
+  var b = (vars && vars.b != null) ? vars.b : 4;
+  var theta = (vars && vars.theta != null) ? vars.theta : 60;
+  var probe_heading_deg = (vars && vars.probe_heading_deg != null) ? vars.probe_heading_deg : 0;
+  var tracer_t = (vars && vars.tracer_t != null) ? vars.tracer_t : 0;
+  var theta_rad = theta * Math.PI / 180;
+  var shadow = b * Math.cos(theta_rad);
+  var riser = b * Math.sin(theta_rad);
+  var base = a + shadow;
+  var R_mag = Math.sqrt(a * a + b * b + 2 * a * b * Math.cos(theta_rad));
+  var alpha_deg = Math.atan2(riser, base) * 180 / Math.PI;   // quadrant-safe, never atan(riser/base)
+  var tan_alpha = riser / base;
+  return {
+    concept_id: 'resultant_direction',
+    variables: { a: a, b: b, theta: theta, probe_heading_deg: probe_heading_deg, tracer_t: tracer_t },
+    derived: {
+      shadow: shadow,
+      riser: riser,
+      base: base,
+      R_mag: R_mag,
+      alpha_deg: alpha_deg,
+      tan_alpha: tan_alpha,
+      P1_x: a,
+      P1_y: 0,
+      P2_x: a + shadow,
+      P2_y: riser
+    },
+    forces: []
+  };
+}
+
 // ── Chemistry namespace ───────────────────────────────────────────────────
 // Bohr hydrogen energy levels: E_n = -13.6/n^2 eV, photon lambda = hc/dE.
 // Concept-gated in the dispatcher below — never runs for a physics concept.
@@ -589,6 +621,7 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'newton_second_law_direction') result = computePhysics_newton_second_law_direction(vars);
   else if (conceptId === 'scalar_vs_vector') result = computePhysics_scalar_vs_vector(vars);
   else if (conceptId === 'vector_addition_law') result = computePhysics_vector_addition_law(vars);
+  else if (conceptId === 'resultant_direction') result = computePhysics_resultant_direction(vars);
   // Chemistry namespace (src/data/concepts/chemistry/) — concept-gated, fires
   // only for this id; the physics dispatch above is byte-unchanged.
   else if (conceptId === 'bohr_model_energy_levels') result = computePhysics_bohr_model_energy_levels(vars);
@@ -1409,8 +1442,15 @@ function drawBody(spec) {
     ? PM_interpolate(String(spec.label_expr))
     : (spec.label != null ? PM_interpolate(String(spec.label)) : '');
 
+  // peter_parker:renderer_primitives, 2026-07-24 —
+  // pcpl_angle_arc_no_focal_glow_channel: fetch AFTER labelText resolves,
+  // right before the single push()/pop() that wraps every shape branch below,
+  // so the emph.glowPx set/reset brackets the whole body (shape + label) —
+  // mirrors drawLabel/drawAnnotation/drawForceArrow/drawFormulaBox exactly.
+  var emph = PM_focalEmphasis(spec);
+
   push();
-  var effectiveOpacity = (spec.opacity != null ? spec.opacity : 1) * animOpacityMultiplier;
+  var effectiveOpacity = (spec.opacity != null ? spec.opacity : 1) * animOpacityMultiplier * emph.alphaMul;
   fill(rgb[0], rgb[1], rgb[2], effectiveOpacity * 255);
   if (spec.border_color) {
     var brgb = PM_hexToRgb(spec.border_color);
@@ -1418,6 +1458,10 @@ function drawBody(spec) {
     strokeWeight(spec.border_width || 1);
   } else {
     noStroke();
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.fill_color || spec.border_color || '#6B7280';
+    drawingContext.shadowBlur = emph.glowPx;
   }
 
   var cx, cy;
@@ -1563,6 +1607,10 @@ function drawBody(spec) {
       else labelY = cy;
       text(labelText, cx, labelY);
     }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 
@@ -2325,10 +2373,18 @@ function drawLocusTrace(spec) {
   var rgb = PM_hexToRgb(spec.color || '#8B5CF6');
   var sw = (typeof spec.stroke_weight === 'number') ? spec.stroke_weight : 2;
   var fadeTail = !!spec.fade_tail;
+  // peter_parker:renderer_primitives, 2026-07-24 —
+  // pcpl_angle_arc_no_focal_glow_channel companion fix (same missing-channel
+  // class; drawLocusTrace never asked either).
+  var emph = PM_focalEmphasis(spec);
 
   push();
   noFill();
   strokeWeight(sw);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#8B5CF6';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
   var prevPt = null;
   for (var i = 0; i < sampleCount; i++) {
     var tSample = startMs + i * step;
@@ -2339,10 +2395,14 @@ function drawLocusTrace(spec) {
     if (prevPt) {
       var alphaMul = 1;
       if (fadeTail && sampleCount > 1) alphaMul = 0.25 + 0.75 * (i / (sampleCount - 1));
-      stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * alphaMul);
+      stroke(rgb[0], rgb[1], rgb[2], 255 * gate.alpha * alphaMul * emph.alphaMul);
       line(prevPt.x, prevPt.y, x, y);
     }
     prevPt = { x: x, y: y };
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
@@ -2560,6 +2620,11 @@ function drawAngleArc(spec) {
   // the arc itself but still render the label so the student sees "θ = 0°"
   // without a zero-width arc artifact.
   if (Math.abs(toDeg - fromDeg) < 0.5 && !spec.label) return;
+  // Placed AFTER the degenerate-return so a visible arc always reaches this
+  // fetch (peter_parker:renderer_primitives, 2026-07-24 —
+  // pcpl_angle_arc_no_focal_glow_channel; mirrors drawLabel/drawAnnotation/
+  // drawForceArrow/drawFormulaBox's PM_focalEmphasis consumption).
+  var emph = PM_focalEmphasis(spec);
   var rgb = PM_hexToRgb(spec.color || '#F59E0B');
 
   // Math CCW → canvas CW: p5 arc takes angles in canvas (CW positive).
@@ -2569,7 +2634,11 @@ function drawAngleArc(spec) {
 
   push();
   noFill();
-  stroke(rgb[0], rgb[1], rgb[2], 220);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#F59E0B';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  stroke(rgb[0], rgb[1], rgb[2], 220 * emph.alphaMul);
   strokeWeight(1.5);
   arc(center.x, center.y, radius * 2, radius * 2, startRad, endRad);
 
@@ -2580,10 +2649,14 @@ function drawAngleArc(spec) {
     var lx = center.x + labelR * Math.cos(midCanvasRad);
     var ly = center.y + labelR * Math.sin(midCanvasRad);
     noStroke();
-    fill(rgb[0], rgb[1], rgb[2]);
+    fill(rgb[0], rgb[1], rgb[2], 255 * emph.alphaMul);
     textSize(12);
     textAlign(CENTER, CENTER);
     text(PM_interpolate(String(spec.label)), lx, ly);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
@@ -3935,6 +4008,28 @@ export function assembleParametricHtml(config: ParametricConfig): string {
     return `<!DOCTYPE html>
 <html><head>
 <meta charset="utf-8">
+<script>
+// First script on purpose: relays every iframe error (incl. CDN load failures and
+// renderer init crashes) to the parent player, which logs it to telemetry. Without
+// it a p5 crash in this engine was completely silent — only the parent's 15s
+// ready-timeout noticed, and only for a total failure.
+(function () {
+  var sent = 0;
+  function relay(msg, src, line) {
+    if (sent >= 10) return;
+    sent++;
+    try { parent.postMessage({ type: 'SIM_ERROR', message: String(msg || '').slice(0, 300), source: String(src || '').slice(0, 200), lineno: line || 0 }, '*'); } catch (e) {}
+  }
+  window.addEventListener('error', function (e) {
+    if (e && e.target && e.target !== window && (e.target.src || e.target.href)) { relay('resource_failed: ' + (e.target.src || e.target.href), '', 0); return; }
+    relay(e && e.message, e && e.filename, e && e.lineno);
+  }, true);
+  window.addEventListener('unhandledrejection', function (e) {
+    var r = e && e.reason;
+    relay('unhandledrejection: ' + ((r && r.message) ? r.message : String(r)), '', 0);
+  });
+})();
+<\/script>
 ${fontLink}
 <style>
 html, body { margin: 0; padding: 0; overflow: hidden; ${bodyStyle} }

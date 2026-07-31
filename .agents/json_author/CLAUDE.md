@@ -101,7 +101,7 @@ English-only and ships no language picker. Existing concepts keep their `text_te
   auto-discovers overlays/rows; particle_field declares from config + gates its canvas HUDs), so
   every concept — existing and future — gets ⚙ on its next `build:review`/`build:pilot` with ZERO
   concept-side authoring. Nothing to author, nothing to verify, nothing to escalate here. (The only
-  renderer-side obligation left lives in the renderer_primitives spec, not yours.)
+  renderer-side obligation left lives in the display-surgeon specs — pcpl_surgeon / field3d_surgeon — not yours.)
 
 ## Canvas bounds — 760×500
 

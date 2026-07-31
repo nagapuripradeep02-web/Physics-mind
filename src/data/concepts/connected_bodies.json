@@ -624,7 +624,7 @@
       "STATE_1": {
         "label": "One rope, one motion: both bodies share one speed",
         "visible_elements": [],
-        "camera_position": [0.0, 1.8, 10.5],
+        "camera_position": [0, 1.4, 6.83],
         "caption": "One rope, one motion",
         "show_sliders": true,
         "newtons_laws_body": {
@@ -647,7 +647,7 @@
       "STATE_2": {
         "label": "Every contact becomes an arrow: same T at both ends",
         "visible_elements": [],
-        "camera_position": [0.0, 1.8, 10.5],
+        "camera_position": [0, 1.4, 6.83],
         "caption": "Same T at both ends",
         "show_sliders": true,
         "formula_overlay": "T₁ = T₂ = T",
@@ -671,7 +671,7 @@
       "STATE_3": {
         "label": "Release frictionless: T drops below m₂g the moment a ≠ 0",
         "visible_elements": [],
-        "camera_position": [0.0, 1.8, 10.5],
+        "camera_position": [0, 1.4, 6.83],
         "caption": "T is not m₂g",
         "show_sliders": true,
         "formula_overlay": "T = m₂(g − a)",
@@ -696,7 +696,7 @@
       "STATE_4": {
         "label": "Solve it: one equation per body, T cancels",
         "visible_elements": [],
-        "camera_position": [0.0, 1.8, 10.5],
+        "camera_position": [0, 1.4, 6.83],
         "caption": "Two bodies, two equations",
         "show_sliders": true,
         "formula_overlay": "a = (m₂g − μₖm₁g) ∕ (m₁+m₂)",
@@ -725,7 +725,7 @@
       "STATE_5": {
         "label": "Same rig on a slope: gravity and friction steal from the pull",
         "visible_elements": [],
-        "camera_position": [0.0, 1.8, 10.5],
+        "camera_position": [0, 1.4, 6.83],
         "caption": "Slope steals the pull",
         "show_sliders": true,
         "formula_overlay": "a = (m₂g − m₁g·sinθ − f) ∕ (m₁+m₂)",
@@ -773,7 +773,7 @@
       "STATE_7": {
         "label": "Explore: every body, every control",
         "visible_elements": [],
-        "camera_position": [0.0, 1.8, 10.5],
+        "camera_position": [0, 1.4, 6.83],
         "caption": "All yours",
         "show_sliders": true,
         "newtons_laws_body": {

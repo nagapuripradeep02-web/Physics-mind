@@ -529,7 +529,7 @@
       "STATE_1": {
         "label": "Gravity splits on the slope: mg never tilts",
         "visible_elements": [],
-        "camera_position": [0.0, 2.4, 14.0],
+        "camera_position": [0, 1.87, 9.1],
         "caption": "Gravity splits on the slope",
         "show_sliders": true,
         "formula_overlay": "N = mg·cos θ",
@@ -555,7 +555,7 @@
       "STATE_2": {
         "label": "Static friction is an answer, not a number: fₛ tracks mg sin θ",
         "visible_elements": [],
-        "camera_position": [0.0, 2.4, 14.0],
+        "camera_position": [0, 1.87, 9.1],
         "caption": "Friction rises to match",
         "show_sliders": true,
         "formula_overlay": "fₛ = mg·sin θ",
@@ -577,7 +577,7 @@
       "STATE_3": {
         "label": "The break-away: grip fails at exactly tan θc = μₛ",
         "visible_elements": [],
-        "camera_position": [0.0, 2.4, 14.0],
+        "camera_position": [0, 1.87, 9.1],
         "caption": "Tilt until grip fails",
         "show_sliders": true,
         "formula_overlay": "tan θc = μₛ",
@@ -602,7 +602,7 @@
       "STATE_4": {
         "label": "Kinetic friction is weaker: two identical blocks, two fates",
         "visible_elements": [],
-        "camera_position": [0.0, 2.4, 14.0],
+        "camera_position": [0, 1.87, 9.1],
         "caption": "Moving friction is weaker",
         "show_sliders": true,
         "formula_overlay": "fₖ = μₖ·N",
@@ -628,7 +628,7 @@
       "STATE_5": {
         "label": "Explore: every control, all yours",
         "visible_elements": [],
-        "camera_position": [0.0, 2.4, 14.0],
+        "camera_position": [0, 1.87, 9.1],
         "caption": "All yours",
         "show_sliders": true,
         "formula_overlay": "a = g(sin θ − μₖ·cos θ)",

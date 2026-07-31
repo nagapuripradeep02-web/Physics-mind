@@ -158,7 +158,7 @@ Short. Factual. Not pedagogical — keep the teacher_script for narrative.
 `architect/CLAUDE.md` §"Straightforward motion beats"). Each state DECLARES its archetype + delta line
 in the control table, and the scenario engines implement the motion per-state — damped oscillation
 already EXISTS (the dipole `damped_pendulum` / trusted-release engine). A genuinely missing motion =
-a normal `engine_bug_queue` row routed to `peter_parker:renderer_primitives` — NOT a stop.
+a normal `engine_bug_queue` row routed to `peter_parker:field3d_surgeon` (field_3d scenarios; 2D → `peter_parker:renderer_primitives`) — NOT a stop.
 
 > **[SUPERSEDED — pre-Rule-31 whitelist; `docs/archive/CLAUDE_ENGINES.md` is archived. Legacy PCPL
 > reference only.]** Per CLAUDE_ENGINES.md, the Choreography engine supports **6 canonical motion

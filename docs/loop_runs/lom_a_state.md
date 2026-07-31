@@ -34,10 +34,23 @@ engine_commits:
   aa7daf5  nlb_pulley_group_hidden_with_surface_in_atwood_mode (concept-2 fix, 5 of 5 - GUARD TRIPPED)
   ada18a4  nlb_param_ramp monotonic guided-state parameter reveal (concept-3, PRE-AUTHORIZED per CHAPTER_LOOP.md 7.1 - does NOT count against the budget)
   37d6e68  nlb_uncoupled_readouts_flip_to_static_on_bound_halt (concept-3 fix, 1 of the fresh 3 - budget NOT exhausted, 2 unused)
+  d9d07a0  feat(engine): nlb push-off phase + fixed body (PUSH-OFF SEAM A - docs/NLB_PUSH_OFF_SPEC.md; NOT a concept fix)
+  208a8ba  feat(engine): nlb push-off spring geometry + glow/lane wiring (PUSH-OFF SEAM B)
 
 engine_verify: check:renderer-syntax OK - tsc 0 errors - validate:concepts 125 PASS / 0 FAIL (after every seam)
 engine_regression: electric_flux 62/62 gates + magnetic_flux 38/38 gates, eye-walker NO REGRESSION on both (zero nlb_* leakage)
 chapter_map (founder-approved 2026-07-25): free_body_diagram, connected_bodies, block_on_incline
+
+notes: 2026-07-29 PUSH-OFF ENGINE SEAM (founder-directed, engine-only - NO concept authored here). Built
+  the three capabilities of docs/NLB_PUSH_OFF_SPEC.md into the shared newtons_laws_body engine: the
+  push_off contact-then-release force phase (engine-enforced equality, state-local eng.t_ms, inert in
+  sandbox per Rule 37), the visible spring carried from the nlbSetBodyPosition funnel (brighten-only
+  apparatus in nlbApplyGlow's solidApparatus list), and fixed?: boolean bodies (never integrate, but
+  real - forces and arrows draw normally, rendered as a wall slab), plus lane 0 for head-on pairs.
+  Two field3d-surgeon dispatches, d9d07a0 + 208a8ba. The consumer is newton_third_law, which lives in
+  the OTHER worktree (C:\Tutor\physics-mind-lom-b) - this seam is the engine half only. Full report,
+  including the NON-OPTIONAL spring-geometry authoring contract (cart spacing 1.82 m, wall 1.545 m,
+  release_at_ms = 1000*sqrt(1.76/(F*(1/m_a+1/m_b)))), is in docs/loop_runs/push_off_report.md.
 
 notes: This worktree is HALF of the Laws of Motion chapter. The other half (newton_first_law, newton_second_law, newton_third_law) runs concurrently in C:\Tutor\physics-mind-lom-b on branch feat/lom-b. Two worktrees because git cannot check out one branch twice and two sessions must never race the same working tree.
 

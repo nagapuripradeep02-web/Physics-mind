@@ -1,5 +1,100 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧹 SESSION — Workspace rescue: 19 worktrees → 6, a month of stranded work landed, 38 LOM scars into the moat (2026-07-31, PRs #9 · #10 · #11)
+
+**Bottom line: an audit of the working tree found 19 worktrees, TEN of them finished-and-abandoned, and — worse — the founder's MAIN checkout had been living on a feature branch for a month (355 behind, 17 unmerged commits, 3 loose files) while `lom-a` held 26 unmerged commits 342 behind. Everything was landed, verified, and cleaned: three PRs merged, ten dead worktrees removed after backup, and the main checkout parked on `master` permanently as the "office". Nothing was lost; every deletion was backed up first and every merge was proved with the full gate chain.**
+
+- **The diagnosis (why it felt hectic).** Two habits, not disorganisation: (1) worktrees were treated as *places to live* rather than *desks to visit* — the main checkout sat on `feat/field3d-draggable-sensor` for a month; (2) desks were never cleared after their work merged, so ten finished worktrees and ~10 simultaneous Claude sessions crowded the branch picker and the sidebar. Codified for the founder as the **office/desk model**: the main checkout is always `master` + clean (plan there, never build); one desk = one branch = one session = one job; the desk is created at the start of a job and **deleted when it merges**. Also fixed the folder↔branch naming rule (`feat/<subject>-<thing>`, folder mirrors it) so physics/chemistry/maths and a second person read identically.
+- **PR #9 — the office branch landed (18 commits, 151 files, ~12.9k lines).** Payments Phase 2b automatic activation + payment events in the behaviour timeline · the full teacher-behaviour telemetry suite (page identity, funnel/tour capture, drive-the-player capture, particle_field slider naming + p5 crash relay) · concepts `resultant_direction` + `displacement_vs_distance` with locked baselines · the NEW `kinematics_1d_track` field_3d scenario · the PCPL focal-emphasis channel · website copy (curriculum-agnostic + founding-rate extension). **Merge cost of the drift: 355 commits of master, 14 conflict hunks across 6 shared engine files** — every one "both sides added" (this branch's Kinematics work vs master's ch7/ch8/LOM/chemistry work), resolved keep-both.
+- **PR #10 — `lom-a` rescued (26 commits, 134 files, ~16.3k lines) — the complete Laws of Motion chapter.** `newton_third_law` REBUILT on the push-off apparatus (two carts + spring — a real interaction object, not asserted arrows), repeating push-off cycle, realistic spring choreography (compress → hold → slow release → ring), plus the founder-review fixes (real coast after release, legible mass labels, spring locked to the wall, tighter camera framing, solid apparatus + confident vectors). **`feat/lom-b` was fully contained in it (0 commits outside), so one merge landed both.**
+- **First real `field3d-surgeon` dispatch since its graduation that morning.** `lom-a`'s merge hit **9 hunks in `field_3d_renderer.ts` where the SAME `newtons_laws_body` scenario had evolved on two branches** (master gained lom-e/c/d friction+rolling+tension; lom-a gained push-off+spring). The specialist resolved all 9 and documented four interpretive calls — notably catching that a naive keep-both would have printed **two HUD headers per body** (lom-a had *replaced* master's header line, not added to it), and unifying `h`→`hPhys` in the Branch-A position step to match the velocity step. Proved no symbol was lost from either parent by `comm`-ing all `nlb*` function names against both.
+- **The verification that mattered:** THE EYE on `newton_third_law` (the concept most exposed to that merge) — **32/32 checks, every H2 at 0.00% pixel drift** vs the founder-approved baselines. The merged engine reproduces the approved push-off visuals byte-for-byte. Plus, on every PR: `check:renderer-syntax` ×3 OK · `tsc` 0 · vitest 284/284 · `validate:concepts` 146/146 PASS · CI verify green ×2.
+- **PR #11 — 38 Laws of Motion scars into the moat.** The "stray commit" left on `lom-a` after its merge turned out to be the chapter's entire scar harvest (761-line payload + seed script), gathered from the report-only `scar_candidates.sql` files across the lom-a/lom-b/port worktrees. The chapter-loop protocol keeps scars as FILES (never DB writes), so **this was the first time the chapter's scars entered `engine_bug_queue`**. The script repaired three defects in the sources on the way in: cp1252 mojibake in 74 places, two SQL statements silently merged (missing trailing value + terminator — never executable as written), and values outside the CHECK constraints normalised. **Verified all 38 `bug_class` values present in the live table by direct SQL count** — not by trusting the script. Had that desk been wiped without looking, the rows would have survived in the DB with no committed record of their origin.
+- **Cleanup executed safely.** Ten dead worktrees removed (ch7, ch8, lom-c, lom-d, lom-e, onboarding, payments, pcpl-parity, proto, proto-biot) plus lom-a and lom-b after merge. **Every one backed up first** to `C:\Backups\worktree-cleanup-2026-07-31\` (18 files + the lom-a scratch set) — patches for tracked changes, copies for untracked. **The documented junction trap was respected**: `cmd /c rmdir` on all 7 `node_modules` junctions BEFORE `git worktree remove`, verified the main `node_modules` survived (708 entries) after each batch.
+- **Process scars from this session (self-reported):** (1) the session's opening audit read the roster from the STALE main checkout and concluded founder-proxy/field3d-surgeon were "stranded off master" — they had in fact merged with ch7/ch8 and only needed *de-trialing*; a dispatched Explore agent confirmed the same wrong answer because it read the same stale directory. Root cause: **`git worktree list` was never run before drawing conclusions about "the repo"**. (2) A PowerShell `Get-Content`/`Set-Content` round-trip mojibake'd two BOM-less UTF-8 spec files (double-encoded em-dashes + added BOM); caught by a diff-stat showing 125 changed lines where 1 was intended, reverted, redone with the Edit tool. **Never round-trip repo text files through PS 5.1 — use the Edit tool.**
+- **State at close:** office `physics-mind` → `master`, 0↓ 0↑, clean, 13 agents. Live desks: `the-calculator` (shipped, PR #12), `lom-f` (+11), `lom-g` (+11), `curriculum` (+8). Parked: voice-professor ×2 (V2, deliberate).
+- **NEXT:** (1) **`lom-f`, `lom-g` and `curriculum` are 77 behind and build on the `newtons_laws_body` engine master just changed — merge `origin/master` into each BEFORE further work.** Today proved the cost curve: 342-behind cost 9 renderer conflicts and a specialist dispatch; 77 is still cheap. (2) The website now claims "our first 25 founding teachers are already teaching with it" — the pilot DB shows 8 teacher profiles / 1 paid subscription; **verify before `deploy:cf-site`**. (3) Two concepts are DEPLOYED without visual baselines (`faraday_law_induction`, `force_on_current_carrying_wire`) — no H2 regression protection. (4) Nine baseline-locked concepts (the whole Class-11 Vectors set, KCL/KVL, `displacement_vs_distance`, …) are finished but absent from `PILOT_CONCEPTS` — founder catalog decision. (5) A broken stop hook (`continuous-learning/evaluate-session.sh`) errors on every session.
+
+---
+
+## 🧮 SESSION — THE CALCULATOR shipped: the $0 numeric-physics gate beside THE EYE (2026-07-31)
+
+**Bottom line: nothing verified that the NUMBERS a teacher reads off a simulation were physically right. THE EYE proves the pixels moved; `validate:concepts` proves structure and never runs the sim; the vision gate costs money and is rarely run. `npm run numeric:calc -- <id>` closes that gap — it drives every state headlessly, reads the values the sim actually PAINTS, and asserts them against physics recomputed from the concept's own declared variables. $0, deterministic, no AI, no Supabase. Ships ADVISORY.**
+
+- **Phase 3 of `docs/PIPELINE_V2_PLAN.md`, PR #12.** Three invariant classes: **N1** readout-matches-formula, **N2** conservation (relations among painted numbers only — no model, so it bites even where a concept delegates its physics to the renderer), **N3** slider-response direction (real Playwright `fill()`, so events are trusted and drag-seize renderers respond).
+- **Ground truth is the concept JSON, never the renderer.** `computed_outputs` is primary (586 declared fleet-wide → 429 evaluate); `variables[].derived` secondary (345 → 163); `formulas`/`constraints` are prose and are never parsed. Using `computePhysics_<id>` would make every assertion vacuously true. Measured, not assumed.
+- **Inputs come from the screen, relationships from the JSON.** States animate their inputs, so independent variables resolve live (painted > visible slider > state override > declared default) and dependent ones are recomputed. Where an input was only readable from a declared default a MISMATCH skips and a MATCH still counts — deliberately asymmetric, because a stale input would not have reproduced the painted number.
+- **Three harvest channels, zero renderer edits:** DOM overlays; a `CanvasRenderingContext2D.prototype.fillText` hook (the only handle on p5 instruments — and it also catches Three.js sprite labels, which render into an offscreen 2D canvas); sprite `_pmText`.
+- **Verified one per renderer family, all green:** `capacitance` (field_3d) 63/63 · `combination_of_resistors` (particle_field) 29/29 · `vector_head_to_tail` (parametric) 1/1. Each run **twice with byte-identical `readings.json`** — determinism proven, not assumed. **Negative-controlled before use:** perturbing a declared formula fires N1, inverting one fires N3; both restored, concept byte-identical to HEAD.
+- **Every one of the first run's 20 findings was MINE, not the sim's** — and hand-confirming them (which the gate's own output demands) is what found three real harness bugs: (1) stale inputs — `capacitance` STATE_4 morphs plate area 0.01 → 0.02 m², so the authored `A` is the value *before* the pinned beat; the sim was right every time (ε₀·0.02/0.001 = 177.08 pF, painted 177 pF); (2) a computed_output (`d_mm`) was treated as a *derivation* of `d`, demoting it so its live slider was ignored; (3) the cumulative canvas buffer leaked every earlier state's text (a stale `V2 = 3.0` read as a dead slider) and a settling p5 HUD contributed transient values. All three filed as `probe_definition` rows in `src/scripts/_seed_engine_bug_queue_the_calculator.ts` (**not yet applied** — needs `.env.local`).
+- **Shared refactor:** `buildDefaultVars` / `extractIdentifiers` / `classifyIdentifier` extracted from `validate-concepts.ts` into `src/lib/validators/formulaScope.ts`. Behaviour unchanged — the identical **146 PASS / 0 FAIL** is the proof.
+- **Verification:** `tsc` 0 · `validate:concepts` 146 PASS / 0 FAIL · `check:renderer-syntax` OK · **327 unit tests pass** (43 new).
+- **ADVISORY on purpose** — exits 1 on failure but is NOT in `verify.yml` or the blocking SOP chain: it needs chromium plus the CDN `<script>` tags, and the false-positive rate must be measured first. Promotion criteria written down in `PIPELINE_V2_PLAN.md` §5.
+- **Known limitation:** sensitivity is lower in states exposing no sliders, whose inputs are only readable from declared defaults, so mismatches there must skip.
+- **NEXT:** (1) finish the fleet SKIP census across the 65 baseline-locked concepts and decide on promotion to blocking. (2) Apply the `engine_bug_queue` seed script. (3) `capacitance`'s `d` steps in 0.1 mm, so the declared `d_mm` (1 decimal) is right and the renderer's `.toFixed(2)` paints a meaningless trailing zero — cosmetic, and renderer files are platform (Rule 40), so a separate branch.
+
+---
+
+## 🔒 SESSION — Repo made PRIVATE · 110 unbacked commits pushed · CI + shared git hooks landed (2026-07-26)
+
+**Bottom line: the repo had no CI, no push discipline, and was PUBLIC. 110 commits across 5 branches existed on exactly one disk in the world. All of it is now backed up, the repo is private, GitHub Actions verifies every push, and a shared `post-commit`/`post-merge` hook auto-pushes feature branches so this cannot recur. Governing principle adopted: if a machine can check it, it is a machine check, not a written rule — `CLAUDE.md` already forbade everything that went wrong.**
+
+- **Root cause found:** the same PCPL focal-glow fix was built TWICE the same day under different names (`PM_focalEmphasis` here, `PM_focalPulseBoost` on the chemistry laptop), and the player clock twice — because neither side could see the other's unpushed work. Master had been frozen since 2026-07-22 while every branch piled up locally.
+- **Repo is now PRIVATE** (was public — 125 concept JSONs, 13 renderers, 46 agent specs, DISCUSSIONS.md pricing/customer calls were world-readable). Secret audit came back clean: the only key on master is the Supabase **anon** key (`role: "anon"`, RLS-gated by design); no `.env*` was ever committed. Collaborator access verified intact.
+- **Backup complete:** 52 MB verified bundle at `C:/Backups/physics-mind-2026-07-26.bundle`, then 5 branches pushed — `pcpl-parity` (16), `ch8-em-waves` (12), `lom-b` (34), `lom-a` (36), `ch7-alternating-current` (51). `git rev-list --count --branches --not --remotes` now reads **0** across all 18 local branches.
+- **CI (`.github/workflows/verify.yml`)** — agent sync · renderer syntax · concept schema + registration · vitest (284 tests) · `next typegen` → `tsc`. Lint and `check:scenarios` are ADVISORY (146 eslint errors and 158 missing scenarios are pre-existing; blocking would make CI permanently red and train everyone to ignore it). Installs `tsx` in-workflow rather than touching `package.json`, so the file merged into every outstanding branch with zero conflict.
+- **Shared hooks (`.githooks/` + `scripts/install-git-hooks.js`)** — installs into the SHARED `.git/hooks`, which is branch- and worktree-independent, so one run covers all 13 worktrees on every branch. Deliberately NOT `core.hooksPath`: a relative value resolves per-worktree, so it would have silently disabled the agent-emission guard on the 12 worktrees whose branch lacks `.githooks/` (git gives no fallback and no warning).
+- **Two bugs caught by testing rather than assuming:** (1) `git merge` does NOT run `post-commit` — it runs `post-merge`, so the daily "merge master" prescribed in the new workflow doc would have sat unpushed; added `post-merge`. (2) The installer displaced Git LFS's hooks — now chains to whatever it replaces. All 5 guards verified: happy path, `PM_NO_AUTOPUSH=1`, mid-rebase, detached HEAD, master-skip.
+- **CI matrix via draft PRs** (PR workflows run from the merge ref, so master's workflow covered every branch with zero commits on them): **ch7 #7 and ch8 #6 are MERGEABLE and fully green**. `pcpl-parity` #3 (23 conflicting files), `lom-a` #4 and `lom-b` #5 (16 each) are CONFLICTING — GitHub cannot build a merge ref, which is why no checks appear. Resolve `pcpl-parity` first; lom-a/lom-b descend from it.
+- **`docs/GIT_WORKFLOW.md`** — the shared contract for both laptops (four-places model, commit/push/merge cadence, why engine files are platform).
+- **CI's first real finding:** `check:scenarios` fails on 16 files. Most are the legacy vectors/kinematics/forces JSONs (CLAUDE.md §3: old architecture, not product) — but `drift_velocity`, `ohms_law` and `resistivity` are SHIPPED pilot concepts and need a look.
+- **NEXT:** (1) merge ch8 then ch7 to master (both green + clean). (2) Resolve `pcpl-parity` conflicts, then lom-a/lom-b. (3) Collaborator must push `feat/chemistry-foundation` — still only the scaffold commit on origin. (4) Deferred to after the branches land: `tsx` → devDependencies, fix `eslint.config.mjs` globalIgnores (bare `npm run lint` currently OOM-crashes), promote `.git/info/exclude` scratch entries into `.gitignore`.
+
+---
+
+## 🚂 SESSION — Kinematics chapter OPENS: `displacement_vs_distance` SHIPPED (first field_3d kinematics concept, new `kinematics_1d_track` engine scenario built from scratch) — baselines locked (2026-07-25)
+
+**Bottom line: authored `displacement_vs_distance` (Class-11 Ch.2 Kinematics #1, prerequisite `scalar_vs_vector`, field_3d) through the full Alex pipeline — architect → physics-author → json-author → quality-auditor → renderer-primitives → runtime-generation → eye-walker ∥ quality-auditor, across THREE FAIL→fix→re-verify rounds — ending ALL-GREEN: tsc 0, validate 126/126, THE EYE 27/27 deterministic ×3 runs, eye-walker independent re-verify CLEAN, quality-auditor independent re-verify PASS, 6/6 baselines approved (`visual:approve` run, NOT yet `git add`ed). Founder directive at session start: stop authoring Vectors (Ch.1, stays PCPL), open Kinematics on field_3d per the 2026-07-23 chapter-track decision — this concept is that opener.**
+
+- **The concept (6 states):** the "fitness-tracker paradox" anchor (jog out-and-back, tracker reads 4.0 km, displacement = 0) — origin/position setup → one-way jog (d=|Δx|, the "safe case") → **PRIMARY aha**: round-trip return leg where a dim ghost arrow grows at the odometer's rate and gets struck through as the real displacement arrow shrinks to a zero-length stub at O while d keeps climbing to 80m → signed displacement (sign-flip crossing origin, scalar_vs_vector callback) → lap-sweep oscillation proving Δx = x_f − x₀ depends only on endpoints → open sandbox (Rule 37 continuous idle-sweep + trusted-drag).
+- **Brand-new field_3d scenario `kinematics_1d_track` built from scratch** in `field_3d_renderer.ts` (first-ever 1D-straight-line-motion scenario — no prior scenario to reuse): track/ticks/origin-flag/runner/displacement-arrow/ghost-arrow-with-strikethrough/turnaround-post/sweep-markers/lap-counter/HUD readouts, registered in `deriveStateMeta.ts`, `#sliders` exclusion-chain entry, `top:52px+` HUD anchoring, dedicated Cambria-Math formula panel.
+- **Three FAIL rounds, each root-caused properly, not patched around:**
+  1. Missing scenario → crash on `config.field_lines.count` (unknown-scenario-type fallback bug, now hardened fleet-wide with an optional-chain guard).
+  2. `kt_x_readout` (STATE_1's position HUD) spec'd but never implemented; duplicate formula overlay (`#formula_overlay` + new `#kt_formula` both rendering); distance accumulator (`PM_ktD`) desyncing badly *specifically under THE EYE's capture harness* (`SET_TIME_FREEZE`'s backward clock jumps broke a frame-diff accumulator) — fixed architecturally by making `d(t)` a closed-form pure function of state-clock time for the 5 guided states (immune to seek order), keeping a live frame accumulator only on STATE_6's human-driven sandbox.
+  3. Two cosmetic camera notes (STATE_3 ghost-arrow clipping in narrow windowed layouts, STATE_5's oblique tilt vs the other states' flat home pose) — the STATE_5 "fix" appeared not to work on first attempt because **THE EYE reads `simulation_cache`, not the live JSON**, and nobody re-seeded after the json_author edit; re-running the concept's `_seed_<id>_cache.ts` resolved it with zero renderer code changes. New reusable lesson: `[[reference_visual_gate_ops]]` (memory) now documents this `build:review`-vs-`visual:eyes` cache-source trap explicitly.
+- **Not yet founder-reviewed** (Asmi review, §5 stage ④, still pending) — baselines locked but `visual_baselines/displacement_vs_distance/` not yet `git add`ed/committed. Migration SQL authored, not applied. `text_hi` not yet authored (Rule 30i — FYI, not a blocker; do via the Rule 30g Sonnet-5 sub-agent step before `shipper`). Not yet added to `PILOT_CONCEPTS`.
+
+**Next (fresh context):** founder reviews at `http://localhost:8080/displacement_vs_distance/`, decides whether to `git add`/commit the baselines + JSON + renderer diff. Second Kinematics concept (`avg_vs_instantaneous_velocity` or similar, per the chapter's teaching-order dependency graph) can reuse the now-hardened `kinematics_1d_track` scenario patterns if its motion is also straight-line — check first whether it needs a new scenario or can extend this one.
+
+## ➕ SESSION — Vectors #3 `resultant_direction` SHIPPED (full pipeline + 2 fix rounds) + PCPL focal-glow channel completed engine-wide (2026-07-24, second session)
+
+**Bottom line: authored `resultant_direction` (Class-11 Ch.1 Vectors DAG child #3, prerequisite `vector_addition_law`, PCPL) through the full Alex pipeline — architect → physics-author → json-author → eye-walker ∥ quality-auditor — with a genuine auditor FAIL→fix→re-verify round plus a second surgical fix round, ending ALL-GREEN: tsc 0, validate 126/126 (zero target warnings), THE EYE 27/27 deterministic ×3 runs, eye-walker re-verify all-RESOLVED, review site serving HTTP 200. This cashes out the direction formula α = tan⁻¹(B sin θ/(A + B cos θ)) that `vector_addition_law` line 136 explicitly deferred here. Fresh concept_id per the standing founder call — the broken legacy `direction_of_resultant.json`/`resultant_formula.json` stay byte-untouched, no synonym redirect. NOT yet founder-reviewed; baselines NOT locked (`visual:approve` untouched); migration authored NOT applied.**
+
+- **The concept (6 states, 6 unique archetypes):** S1 sweep-and-lock hook ("6 km — which way?") · S2 perpendicular-drop decomposition (B cos θ shadow + B sin θ riser) · S3 PRIMARY aha — wrong-base ghost overshoots at 49.1°, tracer beads run base+riser, true α arc lands at 34.7° (denominator misconception beat) · S4 bisector-belief earned at b=a then broken by b ping-pong ("R leans toward bigger") · S5 θ-sweep with landmark holds (90° formula collapse to B/A; base-zero → α=90° at θ≈138.6°; 180° flip) · S6 full sandbox. Home pose = parent's finished triangle at θ=60° (chosen so the shadow is visible; 90° would zero it). New pink α arc distinguishes α from θ. misconception_watch on S3+S4 only.
+- **Registration complete (all 8 sites + engine):** concept JSON · `PCPL_CONCEPTS` + `CONCEPT_RENDERER_MAP` · `VALID_CONCEPT_IDS` + `CLASSIFIER_PROMPT` (+ disambiguation line vs the legacy ids) · `CONCEPT_PANEL_MAP` · `computePhysics_resultant_direction` + dispatcher line in `parametric_renderer.ts` (parent-precedent registration edit — atan2 quadrant-safe, no server-side ENGINES entry needed, matching the parent) · clusters+panel SQL migration authored (`supabase_2026-07-24_seed_resultant_direction_clusters_migration.sql`, NOT applied). Seed script `_seed_resultant_direction_cache.ts` cloned from the parent's.
+- **Audit round (the pipeline worked):** quality-auditor FAILed on ONE blocker — ASCII-minus regression of the FIXED scar `ascii_minus_in_oncanvas_math_from_tofixed` in S6's `tan α` HUD (negative only at θ≥140°, structurally invisible to THE EYE — a clean Gate-8 static-scan win) → routed alex:json_author, fixed with `.toFixed(2).replace('-','−')`. Auditor verified json_author's two documented engine-capability deviations SOUND against renderer source (angle_arc has no timing gate → S1 arc bound to the sweep variable; variable_choreography is last-entry-wins → single-entry redesigns for S4/S5).
+- **Eye-walker round-1 finds (all fixed same session):** (1) "A = 3.0 kmB cos θ" merged-label collision S2/S3/S6 — the solver-blind hand-placement scar, fixed round 1 (perpendicular label mode) + round 2 residual (A's label on the shadow arrowhead → moved below the shaft, gap WIDENS with a so the S6 extreme is safe); (2) S3 tracer invisible in all dense frames — root cause: `locus_trace` is a trail with no mover, and the authored path retraced static arrow pixels → fixed with two cyan `body`+translate beads (parent's own pattern); (3) S5 frozen tail (motion 31% of duration) → retimed to 88.9% coverage with all landmark holds preserved.
+- **Glow-focal triage (main-session Playwright probe, decisive):** `PM_focalEmphasis` verified WORKING at runtime ({isFocal:true, glowPx:12} for the S2 riser; peers 0.6-dimmed — eye-walker's own pixel numbers confirm the dimming). The real gap: **`drawAngleArc` never consumes `PM_focalEmphasis`** — S3/S5's declared arc focals dim every peer but can't glow themselves (drawBody/drawLocusTrace share the gap). Logged OPEN for `peter_parker:renderer_primitives`; founder decision whether to dispatch.
+- **`engine_bug_queue`: 4 rows + 1 append this session** (`_seed_engine_bug_queue_resultant_direction_build.ts`): `pcpl_radians_helper_missing` (probe_definition OPEN — PCPL eval scope has NO `radians()`, silent NaN→0; the generic "wrap in radians()" spec guidance is field_3d dialect only — physics_author caught it pre-ship by reading renderer source) · `pcpl_locus_trace_no_visible_mover` (FIXED) · `pcpl_solver_blind_label_hand_placement_collisions` (FIXED) · `pcpl_angle_arc_no_focal_glow_channel` (OPEN, peter_parker) · appended `resultant_direction` to the pre-existing OPEN `pcpl_slider_label_stale_under_choreography` (S4/S5 slider captions lag choreography — known cosmetic, NOT re-filed).
+- **Ops note:** the port-8080 review server was found serving a STALE `review-site` copy from a different cwd (both new + parent pages 404 while root served 200) — killed PID and relaunched from `C:\Tutor\physics-mind`; if review pages 404 after a build, check the server's cwd before debugging the build.
+- **SHIPPED (founder "okay gahead" 2026-07-24):** (1) **Glow-channel engine fix landed first** (founder-directed `peter_parker:renderer_primitives` dispatch — deliberately BEFORE the baseline lock so no re-baseline cycle): `drawAngleArc`/`drawBody`/`drawLocusTrace` now consume `PM_focalEmphasis` mirroring the 4 existing call sites (alphaMul into alpha, shadowBlur set+reset, geometry untouched); verified by real-browser pixel sampling (arc halo 20 vs 0 pre-fix, peer dim 0.6, zero shadow leak), 3 new vitest string guards (13/13), THE EYE 27/27; scar row flipped FIXED. Process scar self-reported by the agent: a `git stash` of the shared renderer briefly wiped this session's other uncommitted edits — caught + popped immediately, final `git diff` verified intended-edits-only. (2) **Shipper chain complete:** `visual:approve` locked 6 baselines (12 PNGs, live+frozen) · `tts:generate --langs=en` voiced **21/21 EN clips, 0 stale** (fresh Sarvam spend) · build:review rebuilt with the audio strip · verify: manifest 21=21, HTTP 200, validate PASS. English-only per Rule 30i. **Correction to shipper's report: the concept is NOT on app.viditra.co** — no Vectors concept is in `PILOT_CONCEPTS`; opening the Class-11 Vectors chapter in the deployed catalog is a separate founder decision.
+- **NEXT:** (1) Founder decision: open the Class-11 Vectors chapter in `PILOT_CONCEPTS` (would be the pilot's first Class-11 content — scalar_vs_vector + vector_addition_law + resultant_direction all baseline-locked) + `build:pilot`/`deploy:app`. (2) Vectors #4 — next chapter sibling (components territory — needs a FRESH id, the legacy `vector_resolution` registration collides). (3) Apply the clusters migration when drill-down activates (dormant). (4) `text_hi` authoring (Rule 30i Sonnet-5 sub-agent) whenever narration languages matter. (5) Commit this session's work (concept + registrations + renderer glow/carry edits + baselines + scar scripts) — NOTE the working tree also carries UNRELATED uncommitted files (field_3d_renderer.ts, website/*, pilot_site_assets.ts) from other sessions: commit selectively, never `git add -A`.
+
+---
+
+## 🎓 SESSION — Pipeline v2: founder-proxy + field3d-surgeon GRADUATED · renderer-primitives → pcpl-surgeon · Phase-0 doctrine codified (2026-07-31, `feat/pipeline-v2`, PR #8)
+
+**Bottom line: the ch7/ch8 trial agents had been MERGED to master with the chapter branches but never GRADUATED — their specs still said "EXPERIMENTAL, trial branch only, NOT project doctrine" while being dispatchable, field3d-surgeon still carried the trial-absolute DB-write ban, and the governance docs listed 11 roles for a 13-role fleet. This session (founder-approved plan, four decisions locked) reconciled all of it: both agents de-trialed with dual-context dispatch contracts (interactive + loop), renderer-primitives renamed `pcpl-surgeon` (the CHECK-constrained DB tag `peter_parker:renderer_primitives` stays and maps to it; field_3d ownership moved to field3d-surgeon in OVERVIEW.md), feedback-collector marked DORMANT (0 real feedback rows), the Amendment-4 engine-dispatch discipline + Phase-0 chapter-opening doctrine graduated into `AUTHORING_PIPELINE.md` v1.1 §0, and `docs/PIPELINE_V2_PLAN.md` created as the phased roadmap. All green: check:agents 13/13, js-yaml 13/13, tsc 0, vitest 281/281, validate 145/145, CI verify ×2 pass, PR #8 MERGEABLE/CLEAN.**
+
+- **Founder decisions this session:** (1) physics-author→architect merge DEFERRED — exploration showed it would burn scarce Fable quota on Sonnet-grade formula work and delete the physics-author→architect adversarial cross-check; (2) `peter_parker:field3d_surgeon` tag confirmed (already in the live CHECK since the 2026-07-27 migration — only the 3 client allowlists needed it: `log_lesson.ts`, `BugQueueList.tsx`, `bug-queue/page.tsx`); (3) graduated field3d-surgeon inherits the standard Peter Parker seed-script scar contract in interactive dispatches (file-only ratchet stays law in loop context); (4) doctrine-only graduation of CHAPTER_LOOP.md — the autonomous loop protocol itself stays founder-triggered.
+- **Three LIVE silent-dispatch bugs found + fixed:** `pcpl-surgeon`, `runtime-generation`, AND `shipper` emissions all had unquoted YAML `description:` values containing `": "` — strict YAML parse fails (the documented dispatch-failure class from [[feedback_agent_dispatch_registry_worktree_gap]]). All 13 emissions now parse.
+- **Spec-accuracy fixes against live DB:** founder-proxy's scar-enum block said severity `MINOR` — the live CHECK is `CRITICAL|MAJOR|MODERATE`, so its candidate rows would silently have failed to insert; probe_type gains `vision_model`. field3d-surgeon's region-map header updated to the real ~55.4K-line merged master (was 47,461); `acl_` prefix ambiguity (buildAmperesCircuitalLaw@~10163 vs buildAcInductor@~25367) confirmed live; faraday-has-no-baseline reworded as fleet-wide fact.
+- **Process scars this session (self-reported):** (1) the session initially mis-read the roster from the stale `feat/field3d-draggable-sensor` checkout and planned an "import from ch8" that master didn't need — caught when the fresh worktree off real master exposed 13 agents already present; plan corrected before execution. (2) A PS 5.1 `Get-Content`/`Set-Content` round-trip mojibake'd two BOM-less UTF-8 spec files (em-dashes double-encoded + BOM added) — caught by diff-stat (125 lines churned where 1 was intended), reverted, redone with the Edit tool. (3) The sync-agents mtime gate silently skipped the feedback-collector body sync after a frontmatter edit — caught by "1 synced" where 2 were expected; canonical touched, re-synced.
+- **Files:** 36 changed (+571/−253 across two commits `25c94ec` + `a5fdd53`): 13 canonicals + 13 emissions (rename pair incl.), `peter_parker/OVERVIEW.md` (ownership re-split), `.agents/CLAUDE.md`+README (thirteen roles), `scripts/sync-agents.js` (ROLES + comments), `docs/{AUTHORING_PIPELINE,CHAPTER_LOOP,ARCHITECTURE_v2.2,FIELD3D_SCENARIO_CHECKLIST,PIPELINE_V2_PLAN}.md`, 3 owner-allowlist code files, repo `CLAUDE.md` §1 (founder-approved diff). Global `~/.claude/rules/agent-teams-reference.md` also updated (13 roles, tag→agent mapping table, stale shipper text_te clause fixed per 30i).
+- **NEXT:** (1) merge PR #8 (CI green, CLEAN). (2) **Proof run from a FRESH session** (registry loads at session start): next Kinematics concept — architect skeleton → dispatch `founder-proxy` Checkpoint A → normal pipeline → Checkpoint B. Success = actionable taste findings the gates missed at ~2M tokens/dispatch, correct surgeon routing by file. (3) Phase 3 of `docs/PIPELINE_V2_PLAN.md`: THE CALCULATOR ($0 numeric-physics gate beside THE EYE). (4) Open work re-surfaced by the audit: `faraday_law_induction` + `force_on_current_carrying_wire` are DEPLOYED without baselines; 9 baseline-locked concepts (Vectors set, KCL/KVL, displacement_vs_distance…) are NOT in PILOT_CONCEPTS — founder catalog decision.
+
+---
+
 ## 🧪 SESSION — `le_chateliers_principle` (P1 #1) + five gas_box platform commits (2026-07-29, `feat/chemistry-le-chatelier`; engine half on master)
 
 > Concept detail → `docs/le_chateliers_principle_skeleton.md` + `docs/le_chateliers_principle_chemistry_block.md`.
@@ -12455,6 +12550,133 @@ MODIFIED:
 DATABASE:
   simulation_cache row for parallel_plate_capacitor_field regenerated (reseed x2)
   engine_bug_queue: 2 new rows (see above)
+```
+
+---
+
+## Session 2026-07-25 — renderer_primitives: `displacement_vs_distance` second fix round (`kinematics_1d_track`)
+
+Second fix round on the `kinematics_1d_track` field_3d scenario (`displacement_vs_distance`), following
+independent post-fix findings from quality_auditor's Playwright re-audit and eye-walker's THE EYE frame
+walk. Three real defects, all rooted and fixed in `src/lib/renderers/field_3d_renderer.ts`.
+
+### Bug 1 (CRITICAL, fixed) — `kt_x_readout` spec'd but never implemented
+
+`buildKinematics1dTrack()` only built three DOM readouts (`kt_d_readout`/`kt_dx_readout`/`kt_lap_counter`);
+`kt_x_readout` — the STATE_1 plain-position HUD json_author added to fix an earlier Δx pre-spoil bug — had
+no matching `createElement` anywhere, so STATE_1 rendered zero numeric readout for its whole reveal + hold,
+and `glow_focal: "kt_x_readout"` lit nothing. Fix: added the `#kt_x_readout` DOM element (same screen slot
+`kt_dx_readout` takes over from STATE_2 onward — one continuous instrument, relabelled), added it to
+`ktApplyGlow`'s domIds, and moved the STATE_1 digit-roll logic off `kt_dx_readout` (labelled "Δx") onto
+`kt_x_readout` (labelled "x") — `kt_dx_readout` is now a plain live continuous tracker from STATE_2 on,
+with no state-specific special-casing left in its own block.
+
+### Bug 2 (MAJOR, fixed) — duplicate formula overlay
+
+`kinematics_1d_track` built its own dedicated Cambria-Math `#kt_formula` panel but the generic
+`#formula_overlay` suppression allowlist (`magnetisation`/`motional_emf_rod`/`ac_generator`) omitted the
+new scenario_type, so both rendered the same string at once (also the direct cause of the STATE_5 Gate 9
+`kt_sliders` x `formula_overlay` collision). Fix: added `config.scenario_type === "kinematics_1d_track"`
+to the suppression condition (~L30978 pre-fix line numbers). Collision cleared as a consequence — no
+separate layout fix needed.
+
+### Bug 3 (CRITICAL, fixed) — `PM_ktD` accumulator desynced under THE EYE's non-monotonic capture order
+
+Investigated per the task's explicit instruction (live click-through first, THE EYE second) before
+patching. **Live continuous Playwright probe (clean sequential `SET_STATE`, one settle read per state,
+mirroring quality_auditor's method) read PM_ktD CORRECTLY on all 6 states** — confirming this is a genuine
+capture-harness-interaction bug, not a live-playback bug. Root cause: `animate()`'s `SET_TIME_FREEZE`
+handling crawls `time` forward toward `freezeAtTime` one frame at a time, but if a NEW target is BEHIND
+the clock's current position (THE EYE's dense-then-frozen, or out-of-order dense, pin requests are not
+guaranteed monotonic within one long-lived per-state session), the very next frame's
+`time + dtStep >= freezeAtTime` check is already true, so `time` SNAPS backward in a single frame — no
+intermediate frames visited. The old accumulator (`PM_ktD += |x(t)-x(t-1)|`) cannot distinguish that jump
+from real motion, so it added the full backward displacement as fictitious distance, permanently inflating
+`d` for the rest of that state's captures (STATE_2 dense read `d=80` at `t=0`, STATE_3 climbed to `d=240`
+vs the true cap 80, ghost arrow ran toward the frame edge).
+
+Chose the architectural fix over a band-aid (per the task's own recommendation): guided states (S1–S5) now
+compute `d(t)` as a **closed-form path integral** of the authored `ktPositionM` schedule (new `ktBreakpoints`
++ `ktDistanceM` helpers) — summing `|Δx|` across the schedule's known breakpoints (each inter-breakpoint
+segment is monotonic, verified per-mode against `ktPositionM`'s own easing, so a completed segment's
+contribution is exactly `|x(segEnd)-x(segStart)|`, and the in-progress segment's contribution is
+`|x(t)-x(segStart)|` evaluated via `ktPositionM` itself). A pure function of `tMs` is immune to seek/jump/
+re-entry order by construction (Rule 26). STATE_6 (sandbox) keeps the original frame accumulator — its
+motion is live human drag input with no closed form, and THE EYE cannot fire trusted drag events there
+anyway (untestable by the visual gate per prior session notes), so it was out of scope and unaffected.
+
+The STATE_3 ghost arrow was rewired to match: it now reads `window.PM_ktD` (the pure value) directly
+instead of a separately-cached "growth since 4100ms" baseline (`PM_ktGhostBaseD`, removed) — that cache was
+itself jump-order-dependent (captured whatever `PM_ktD` held on the FIRST frame `tMs` happened to cross
+4100, which a direct seek to e.g. 6500ms would never do). Per the task's explicit design note, the ghost
+now shows the FULL `d(t)` rooted at `x0` (extending past the turnaround post to the true 80m cap before
+the strike-through), matching the "distance IS displacement the whole time" misconception more faithfully
+than the old "growth since the return leg started" partial view.
+
+**Secondary latent bug found and fixed while re-verifying:** once `PM_ktD` itself became seek-order-safe,
+a fresh THE EYE run exposed that `kt_ghost_arrow`/`kt_ghost_strike` used one-sided
+`if (tMs >= X) obj.visible = true` toggles with no `else obj.visible = false` — so a backward seek within
+a state left them visibly stuck ON from a later capture (visible at `STATE_3__dense_t00000.png` even
+though `d` itself now correctly read 0.0). Added the explicit `else` branches (reset visible/length/opacity)
+so both ghost and strike are now pure functions of `tMs` in both directions, not just forward.
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors (both fix iterations).
+- `npm run check:renderer-syntax` → clean (both fix iterations).
+- Live Playwright probe (`sim.html` direct, sequential `SET_STATE` walk, one settle read/state) —
+  **all correct**: STATE_1 `x = +30.0 m` (glowing, no d/dx shown); STATE_2 `d=40.0 / Δx=+40.0` + exactly
+  ONE visible formula (`kt_formula: d = |Δx|`); STATE_3 `d=80.0 / Δx=+0.0` + one formula (`d = 2L, Δx = 0`);
+  STATE_4 `d=20.0 / Δx=-20.0`; STATE_5 `d=60.0 / Δx=+20.0`, `laps: 1 (1× 40 m = 40 m)`; every guided state
+  showed exactly one visible formula overlay, zero on STATE_1/STATE_6 (both author `formula_overlay: null`).
+- `npm run visual:eyes -- displacement_vs_distance` — **27/27 deterministic checks passed** on both the
+  pre-ghost-fix and post-ghost-fix runs (`.visual_runs/displacement_vs_distance/20260725-141148/` and
+  `.../20260725-141717/`). Frames read directly: `STATE_1__frozen.png` shows `x = +30.0 m` glowing;
+  `STATE_2__dense_t00000.png` shows `d = 0.0 m` (was `d=80.0` pre-fix); `STATE_3__frozen.png` and
+  `STATE_3__dense_t00000.png` both show `d = 80.0 m` (was `d=240.0` pre-fix) with the ghost arrow correctly
+  capped at the true 80m distance (not running off-canvas); the post-ghost-fix run's
+  `STATE_3__dense_t00000.png` additionally confirms the ghost/strike no longer bleed into `t=0` (previously
+  visible there despite `tMs < 4100`).
+
+### RENDERER REGEN DIRECTIVE
+- cluster: renderer_primitives
+- fix_summary: kt_x_readout DOM element built + wired to STATE_1's digit-roll + glow (was spec'd, never implemented); kinematics_1d_track added to the #formula_overlay suppression allowlist (was duplicating #kt_formula); PM_ktD path-length odometer converted from a per-frame accumulator to a closed-form ktDistanceM(mode, tMs, ...) function for guided states S1-S5 (immune to THE EYE's non-monotonic SET_TIME_FREEZE seek order — sandbox S6 unaffected/unchanged); STATE_3 ghost arrow/strike now read PM_ktD directly (PM_ktGhostBaseD cache removed) and gained explicit else-branch visibility resets
+- affected_cache_tables: [simulation_cache]
+- affected_concept_ids: [displacement_vs_distance]
+- affected_modes: [conceptual]
+- handoff_to: runtime_generation
+
+### engine_bug_queue
+
+Three new incident rows inserted via `src/scripts/_seed_engine_bug_queue_displacement_vs_distance_fix2.ts`
+(all CRITICAL/MAJOR, all FIXED): `field3d_kt_x_readout_spec_not_implemented`,
+`field3d_kt_dual_formula_overlay_not_suppressed`, `field3d_kt_distance_accumulator_seek_order_dependent`.
+Archival SQL:
+`supabase_migrations/supabase_2026-07-25_seed_engine_bug_queue_displacement_vs_distance_fix2_migration.sql`.
+Same caveat as prior sessions: the `.agents/renderer_primitives/CLAUDE.md` silent-failure catalog table was
+NOT hand-edited (this role's own Tools Forbidden list bars `.agents/**` edits) — the queue rows above are
+the durable record pending a founder/architect-level catalog sync. Recommended catalog additions (for
+whoever performs that sync) mirror the queue rows' `title`/`DO` text verbatim, plus one general-purpose
+prevention note worth folding into the spec's Rule-36/capture-harness guidance: **any per-frame
+accumulator authored for a reproducible (non-live-input) state must instead be a closed-form function of
+state-local ms** — THE EYE's capture pattern is not guaranteed monotonic within a state.
+
+### Files modified
+
+```
+MODIFIED:
+  src/lib/renderers/field_3d_renderer.ts   (kt_x_readout DOM element + glow wiring + STATE_1 digit-roll retarget;
+                                             #formula_overlay suppression allowlist +kinematics_1d_track;
+                                             ktBreakpoints/ktDistanceM closed-form helpers added; PM_ktD
+                                             switched to closed-form for guided states; ghost arrow/strike
+                                             rewired off PM_ktD directly + explicit else-branch visibility resets)
+CREATED:
+  src/scripts/_seed_engine_bug_queue_displacement_vs_distance_fix2.ts
+  supabase_migrations/supabase_2026-07-25_seed_engine_bug_queue_displacement_vs_distance_fix2_migration.sql
+DATABASE:
+  simulation_cache row for displacement_vs_distance regenerated (reseed x2, via existing
+  _seed_displacement_vs_distance_cache.ts prewarm script from the first fix round)
+  engine_bug_queue: 3 new rows (see above)
 ```
 
 ## 2026-07-24 — Ch.8 chapter-loop: `displacement_current` SEALED (concept #1, NEW field_3d scenario built in-loop)

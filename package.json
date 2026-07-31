@@ -34,6 +34,7 @@
     "smoke": "playwright test",
     "smoke:install": "playwright install chromium",
     "smoke:visual-validator": "npx tsx --env-file=.env.local src/scripts/smoke_visual_validator.ts",
+    "numeric:calc": "npx tsx src/scripts/numeric_calc.ts",
     "visual:eyes": "npx tsx --env-file=.env.local src/scripts/visual_eyes.ts",
     "founder:drive": "npx tsx src/scripts/founder_drive.ts",
     "cache:clear:scoped": "node src/scripts/_scratch_cache_clear_scoped.mjs",

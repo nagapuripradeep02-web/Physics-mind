@@ -1,0 +1,49 @@
+══════════════════════════════════════════════════════════════════════════════
+DESIGN-QUESTION MEASUREMENTS — collision_theory_activation_energy
+══════════════════════════════════════════════════════════════════════════════
+
+── DQ-4  Viewport stability: absolute rates vs the PERCENTAGE ──
+  the narration policy (never speak an absolute rate) rests on this
+  viewport      collisions/s      clear/s       PERCENTAGE
+  900x560          184              6.2           3.39%
+  1280x720          89              2.9           3.29%
+  1600x900          54              1.7           3.24%
+  760x480          283              9.1           3.22%
+  => collisions/s spread across viewports: x5.29
+  => PERCENTAGE  spread across viewports: x1.05   <- the number narration may speak
+
+── DQ-2  Arrhenius on a live T ramp — signal or 1/sqrt(n) noise? ──
+  sampling the cleared fraction in windows while T ramps 250 -> 800 K
+  window 4s · density x1 (180 discs): 8 pts · slope -885 (ideal -900) · R2 0.9535
+  window 4s · density x3 (540 discs): 8 pts · slope -1020 (ideal -900) · R2 0.9508
+  window 8s · density x1 (180 discs): 8 pts · slope -868 (ideal -900) · R2 0.9910
+  window 8s · density x3 (540 discs): 8 pts · slope -993 (ideal -900) · R2 0.9881
+  (a state can only claim "the points fall on a line" if R2 is high at a window
+   short enough that 8 points fit inside one state)
+
+── DQ-3  Crowding by piston vs by injection ──
+  home         collisions/s  181   fraction 3.95%   composition {"A":90,"B":90}
+  piston 0.40  collisions/s  505   fraction 3.32%   composition {"A":90,"B":90}   count x2.79
+  +180 A       collisions/s  181   fraction 3.95%   composition {"A":90,"B":90}   count x1.00
+
+── S5  Catalyst via ea_at_cue on the state clock (not a config diff) ──
+  Ea 3 -> 2 kT:  pre 3.13%  post 11.44%
+               fraction ratio across 5 seeds: x2.75  (1.90–3.66)
+  Ea 3 -> 1.8 kT:  pre 3.13%  post 12.90%
+               fraction ratio across 5 seeds: x3.69  (2.54–4.12)
+  Ea 3 -> 1.5 kT:  pre 3.13%  post 18.06%
+               fraction ratio across 5 seeds: x5.11  (3.50–5.77)
+
+── S6  The ladder: collisions -> clear Ea -> actually react ──
+  collisions/s 170   clear Ea/s 5.5   react/s 2.20
+  react / clear = 37.84%  (5-seed band 34.86%–40.00%)   AB after 20 s: 28
+  => the honest sentence is a FRACTION ("about a third"), never the three raw rates
+
+── S3/S8  Cooling: does the fridge beat survive the slider floor? ──
+   T(K)   collisions/s    clear/s    fraction     vs 300 K
+   200      152           1.00        0.67%      frac x0.21  clearing x0.17
+   220      160           1.77        1.09%      frac x0.34  clearing x0.30
+   250      170           3.40        2.00%      frac x0.62  clearing x0.58
+   300      183           5.90        3.22%      frac x1.00  clearing x1.00
+
+══════════════════════════════════════════════════════════════════════════════

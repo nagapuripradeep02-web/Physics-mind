@@ -113,6 +113,125 @@ The engine now makes **σ*/π* antibonding nearly free** — constructive vs des
 
 ---
 
+## 💥 SESSION — `collision_theory_activation_energy` (P1 #4) + the activation-energy engine layer (2026-07-29, branch `feat/chemistry-collision-theory`; engine half on master)
+
+**P1 #4 is SHIPPED, baseline-locked and merged to master** (founder approval 2026-07-30).
+**9 states** on `gas_box` — not the 8 it was designed with; the ninth came from the founder asking
+"what is activation energy? did you define anything in the simulation?", and the honest answer was
+no. 9 baselines. Fleet 66 → 67. Master pushed (`f729fc2`).
+**NOT voiced** (Rule 30h — audio is on-demand, not a ship gate) and **NOT in `PILOT_CONCEPTS`**
+(CLAUDE.md §5 puts Asmi's professor gate before the deployed catalog, which still carries zero
+chemistry sims).
+
+Final gates: tsc 0 · `validate:chemistry` **9/9** · `validate:concepts` **141/141** (isolation held) ·
+`check:gas-reaction` **65/65** (was 37) · THE EYE **35/35** · quality_auditor FAIL→all findings fixed ·
+eye_walker FINDINGS→all fixed.
+
+### Six engine commits on master (Rule 40), each with its gate
+`58bfe65` the activation-energy layer (kT `Ea` slider + `userTouched` guard, `ea_at_cue`,
+`show_arrhenius_plot`, `hist_speed_marks`) · `d2aafad` duplicate-key gate · `023e65b` four instrument
+defects · `354ba14` per-state `reaction.enabled`, `ea_at_cue.ramp_ms`, span-guard fix ·
+`cde17b3` `T_cue`/`piston_cue`, `counter_window_ms`, one-decimal clear rate, histogram dodges the
+slider panel · `59a2b5c` the reaction-off population gate. **All inherited free by P1 #3 and #5.**
+
+### THE LESSON: the instrument can be perfect while the box is wrong
+STATE_7's density fix authored `species_counts {A:360, B:360}` with no `N`. With the reaction OFF,
+`gasSyncCount` takes the branch where N IS the population and TRUNCATES the array — and
+`gasPlaceSpecies` lays species down in order, so the survivors are the FIRST species only. **The
+state opened with 720 discs and ran with 180, every one of them species A. Every B disc deleted.**
+
+tsc, all three validators, `check:gas-reaction` 65/65 and THE EYE 35/35 were green. Worse: the
+state's own Arrhenius plot still drew a clean straight line at a plausible slope, **because A–A
+collisions clear an activation barrier exactly as well as A–B ones** — the one instrument that could
+have reported it was mathematically immune to it. Found by looking at a frame and noticing the box
+had gone entirely blue. Same family as the duplicate-key scar: authored, valid, silently discarded.
+Now a hard `validate:chemistry` gate, negative-controlled.
+
+### Every number measured; two measurements changed the design
+- **The narration policy is proven, not assumed.** Absolute collision rates span **×5.29** across four
+  viewports (54–283/s); the cleared **PERCENTAGE spans ×1.05** (3.22–3.39%). Only percentages,
+  ratios and directions are spoken anywhere.
+- **S4's crowding beat was going to use injection.** Measured **×1.00 — it does nothing**:
+  `inject_cue` is silently undone with the reaction off. Piston instead.
+- **The Arrhenius state was an open question** (signal or 1/√n noise?). Measured R² 0.95, slope
+  within 1.7%, 8 points inside one state — and tripling density does NOT help, so unlike
+  le_chatelier's K chip it needed no density exception for R². It needed one for SLOPE ACCURACY:
+  at 180 discs the shipped seed missed the law by 21%, at 720 by 2.8%.
+
+### Four narration claims were false against the instrument, not against the physics
+Every one passed the physics gates and was caught by measuring the rendered chip:
+"the counter reading three point three percent" (frames legitimately read 2.5%; at 1 s averaging the
+chip swung **0.0%–8.2%**) · "soars past fourteen percent" (settled median 12.8–14.1) · "climbs to
+eighteen" (15.5–22.2) · **"only about a third actually react" — the two chips read 38–50%: it is about
+HALF**, and the earlier figure came from a different sampling window. Root cause of the first:
+the counter averaged over 1 s while the reaction rates beside it already used 5 s, for exactly this
+stated reason. Now authorable; a 0.0% frame under a caption about collisions clearing the barrier is
+gone.
+
+### The review round — the deterministic gate was green on frames containing all of it
+THE EYE returned **35/35** on frames where the concept's central equation was **absent from every
+state** (declared in `scene_composition`, never configured as `formula_overlay`), the explore state's
+slider panel **clipped the histogram's own Eₐ label**, and S7's slope printed **−1100 against a
+printed law of −900** under a caption reading "One straight line". Fifth consecutive concept where
+the deterministic suite was green over real defects.
+
+The slider/histogram collision **has been shipping in `kinetic_particle_theory` STATE_7** since the
+histogram landed. Fixing it moves that concept's baselines **9.36% (pixels only; the other six states
+are 0.00%)** — a founder re-baseline call, NOT taken.
+
+### Open for founder
+1. **`visual:approve` not run** on either concept. `collision_theory_activation_energy` has no
+   baselines yet; `kinetic_particle_theory` STATE_7 needs re-approval for the overlay fix.
+2. **The Arrhenius instrument was my judgment call.** Cutting S7 leaves 7 coherent states and both
+   curriculum cut-checks still hold.
+3. **Rule 32e is inert on `gas_box` fleet-wide** — `focal_primitive_id` is authored on every state of
+   every gas_box concept and `glow_focal` on none, so `dimFor()` returns 1 everywhere. Not this
+   build's regression; a scar candidate.
+4. **Scar rows FILED — 18 of them** (`_seed_engine_bug_queue_collision_theory.ts`,
+   session `session_2026-07-29_collision_theory_activation_energy`). **The recorded blocker was
+   wrong**: `alex:chemistry_author` is NOT rejected by the queue's CHECK constraint — three rows
+   already carried it — so the previous session's authoring rows were parked for no reason and
+   should be re-filed too. 16 FIXED, **2 left OPEN deliberately**: `inject_cue` silently undone
+   when the reaction is off (measured ×1.00, no concept depends on it) and
+   `gas_box_glow_focal_never_authored_so_rule32e_is_inert` (fleet-wide, four concepts, founder call
+   whether to backfill and move baselines or drop the Rule-32e claim from their scene roles).
+5. **7 unpushed master commits.** No TTS (Rule 30h), no `PILOT_CONCEPTS` entry, no deploy.
+6. **Asmi's professor review — now EIGHT concepts deep**, and the stated bottleneck for five sessions.
+
+### The two review rounds, and the two questions that beat them
+
+`quality_auditor` FAILed this concept **twice** and `eye_walker` walked it **twice**; between them
+they found 9 real defects that tsc, three validators, `check:gas-reaction` (70 checks) and THE EYE
+(35/35, then 39/39) had all passed. Worth separating what found what:
+
+- **The gates found:** nothing the reviewers didn't. Every EYE run was green over frames containing
+  real defects — the fifth consecutive concept where that is true.
+- **The reviewers found:** the counter window, the cross-chip ratio, the formula surfaces that never
+  painted, the slider/histogram clip, the Arrhenius slope error, the stale labels, the undeclared
+  density exception, and — the sharpest — the term ledger still failing for A/B/AB and f/c/k after
+  Eₐ was fixed. **A formula surface counts as USE.**
+- **The founder found the two that mattered most**, and neither was a code defect: the symbol was
+  printed before it was defined, and the concept named after activation energy never drew the energy
+  hill. The second had passed BOTH review agents *because the skeleton declared it an omission* —
+  and a declared omission is invisible to a correctness check. That is now a standing directive row.
+- **I found, by looking at a frame:** the box had gone entirely blue (every B disc silently deleted
+  by a truncation the Arrhenius plot was mathematically immune to), and my own slider-dodge fix had
+  landed in the wrong function and changed nothing while every gate stayed green.
+
+### Rule 41 arrived mid-ship
+Rule 41 (plain-language law) landed on master from the parallel Laws-of-Motion session *after* this
+concept was authored. Checked rather than assumed, and it had violations — including `"All yours"`,
+which 41a names verbatim. Five captions/titles and seven narration lines rewritten.
+**The caption edits moved 0.15–0.21% of pixels — under the 2% H2 tolerance — so THE EYE passed
+56/56 without flagging them.** A text change that size is invisible to the pixel gate; the locked
+baselines would have kept the old wording indefinitely had they not been re-approved deliberately.
+
+### ⏭ NEXT
+**#3 `rate_of_reaction`** — this concept is its mechanism and the engine work is already paid for.
+Its one open snag is unchanged: surface area is a solid-phase cause this box cannot show.
+
+---
+
 ## 🧬 SESSION — the hybrid-orbital surface + `hybridisation_sp_sp2_sp3` (P4 #13), and a sign that would have taught the opposite (2026-07-29, branch `feat/chemistry-hybridisation` → master)
 
 **Bottom line: hybrid orbitals are a live capability on `orbital_shapes` and #13 is authored, validating and walked in a browser. The load-bearing finding came BEFORE any renderer code existed — the natural way to write a hybrid puts 82.5% of the electron behind the atom, renders beautifully, and teaches the inverse of directional bonding. Engine + its gate are on master (`2378219`); the concept continues on the branch. #17 σ/π is now the cheap next harvest.**
@@ -306,9 +425,17 @@ the picture teaches. **That fourth gate is a person asking "what is missing?".**
 
 ### Open for founder
 
-1. **Three `engine_bug_queue` rows unfiled** — the stale-sim-cache gate blindness ⭐, the
-   viewport-dependent rate/pressure readouts, the cue/narration desync class. **Blocked:**
-   `alex:chemistry_author` is rejected by the queue's own CHECK constraint.
+1. ~~Three `engine_bug_queue` rows unfiled~~ — **BACKFILLED 2026-07-30, 13 rows + 1 extension**
+   (`_seed_engine_bug_queue_le_chatelier_backfill.ts`). This concept had exactly **ONE** row against
+   it before the backfill, so the whole session's defect classes sat in prose where no Gate 8
+   pre-flight would ever read them; it now has **15**. **The recorded blocker was FALSE** —
+   `alex:chemistry_author` is not rejected by the CHECK constraint (three rows already carried it),
+   so nothing was ever actually blocked. Left OPEN deliberately: the stale-sim-cache gate blindness ⭐
+   (still unenforced — the durable fix is to have `loadCachedSim` re-assemble from source and FAIL on
+   a mismatch) and the viewport-dependent rate/pressure readouts (engine limitation, worked around by
+   authoring). The teaching-pass meta-finding is now a standing `directive` row,
+   `directive_no_gate_asks_whether_a_teacher_could_use_it`, carrying the three questions to answer in
+   writing before any concept is signed off.
 2. **Rates and pressure are still viewport-dependent** — `gasRxAreaNorm` normalises the equilibrium
    COMPOSITION, not the readouts (measured **4.6×** rate, **5.9×** pressure, 900×560 → 1600×900).
    Fixed by AUTHORING here (no absolute rate is spoken anywhere); normalising displayed pressure would

@@ -60,6 +60,9 @@ route_backup.txt
 /.visual_runs/
 /.founder_runs/
 
+# numeric-gate runs (THE CALCULATOR) — harvested readings + check results
+/.calc_runs/
+
 # large regeneratable data (extracted from PDFs / generated JSONL)
 /ncert/
 ncert_chunks.jsonl
@@ -103,4 +106,8 @@ nul
 
 # scratch bring-up artifacts (generated HTML/PNG probes)
 /.scratch_nlb/
+/.scratch_nlb_repeat/
+/.scratch_nlb_spring/
 /.scratch_nlb_seams/
+/.scratch_nlb_mass/
+/.scratch_nlb_wall/

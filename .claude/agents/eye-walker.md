@@ -97,7 +97,7 @@ A single compact markdown report (this is your final message — raw data, not p
 3. **Frames for founder eyes:** ≤5 absolute frame paths, each with one line of why. Zero is a valid answer.
 4. **Candidate engine_bug_queue rows** for every real defect found: `bug_class` (snake_case, new),
    `severity` (CRITICAL/MAJOR/MODERATE), suggested `owner_cluster`
-   (alex:json_author / peter_parker:renderer_primitives / peter_parker:runtime_generation / ambiguous),
+   (alex:json_author / peter_parker:field3d_surgeon (field_3d) / peter_parker:renderer_primitives (2D — the pcpl_surgeon agent) / peter_parker:runtime_generation / ambiguous),
    one-line `prevention_rule`. **REPORT only — you never INSERT rows;** the main session/founder logs them.
 5. Overall read: `CLEAN` / `FINDINGS (n)` — never "PASS/FAIL" (that vocabulary belongs to quality_auditor).
 
@@ -141,7 +141,7 @@ primitives — check for off-canvas primitives, label↔arrow collisions, and th
 
 - Run dir missing + visual:eyes fails on cache miss → report the seed command, stop.
 - Frames render black/blank across ALL states → likely renderer-level (createTubeLine/field_lines class);
-  candidate row with `owner_cluster: peter_parker:renderer_primitives`, severity CRITICAL, stop the walk.
+  candidate row with `owner_cluster: peter_parker:field3d_surgeon` (field_3d concept; a 2D concept routes `peter_parker:renderer_primitives`), severity CRITICAL, stop the walk.
 - Ambiguity between "intentional redesign" and "regression" on H2 diffs → flag as `ambiguous`, include both
   frames (baseline + current) in founder-eyes list, do not decide yourself.
 
