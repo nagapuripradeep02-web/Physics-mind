@@ -1,0 +1,27 @@
+RESUME block_on_incline - it is nearly complete. Your previous session was KILLED by a 600s background-task wait ceiling while waiting on an engine dispatch, NOT because anything failed. Do not restart from scratch.
+
+Read docs/loop_runs/lom_a_state.md and docs/CHAPTER_LOOP.md first. Then verify what is already on disk with `git status` and `git log --oneline -5` before re-running anything:
+
+ALREADY DONE - do NOT redo these stages:
+- architect skeleton, physics_block, quality_auditor_report, eye_walker_report: all in docs/loop_runs/lom/block_on_incline/
+- src/data/concepts/block_on_incline.json (~32KB, uncommitted)
+- all 4 registration sites edited (panelConfig.ts, aiSimulationGenerator.ts CONCEPT_RENDERER_MAP, intentClassifier.ts VALID_CONCEPT_IDS + CLASSIFIER_PROMPT) - uncommitted
+- src/scripts/_seed_block_on_incline_cache.ts + the SQL migration - uncommitted
+- COMMITTED: ada18a4 nlb_param_ramp (the pre-approved section 7.1 engine addition - it is DONE, do not rebuild it)
+- The last log line said: "Content fix landed (frozen pin moves to ~7100 ms, mid-slide). Waiting on the engine fix."
+  There are also UNCOMMITTED changes to src/lib/renderers/field_3d_renderer.ts - determine whether that engine fix is complete before dispatching anything new.
+
+WHAT REMAINS: finish the current fix cycle, then re-verify and seal.
+1. Run the verify chain: npm run check:renderer-syntax, npx tsc --noEmit (0 errors), npm run validate:concepts (must PASS).
+2. npm run cache:clear:scoped -- block_on_incline, then re-seed via src/scripts/_seed_block_on_incline_cache.ts (the sim HTML is assembled from the renderer, so a re-seed is MANDATORY after any renderer edit or you will test the old build).
+3. npm run visual:eyes -- block_on_incline, then npm run build:review -- block_on_incline.
+4. Dispatch quality-auditor and eye-walker IN PARALLEL. Never load frame PNGs into your own context.
+5. Amendment 6 gate: quality-auditor PASS AND eye-walker clean -> npm run visual:approve -- block_on_incline -> commit -> update the state file -> EXIT.
+
+The central beat to protect: the state that ramps theta until the block breaks away at tan(theta) = mu_s must actually SHOW the tilt and the break-away. That is what param_ramp was added for. Do not accept a static incline here.
+
+Budget: the founder reset the engine-fix budget to 0 with a fresh guard of 3 NEW engine commits for this concept; param_ramp (already landed) does NOT count. If you exceed 3, PARK and report. Authoring rule from concept 2: keep the smallest on-screen force at or above ~15 N or the arrow-length floor collapses it to an invisible stub.
+
+Constraints unchanged: ONE bug_class per engine dispatch, field_3d work goes to field3d-surgeon (never general-purpose), no tts, no PILOT_CONCEPTS, no build:pilot, no deploy, no master merge, no engine_bug_queue DB writes, no paid smoke:visual-validator.
+
+This is the LAST concept in the chapter. When it is SEALED or PARKED and the state file is updated, EXIT.

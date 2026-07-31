@@ -53,6 +53,11 @@ export interface Field3DConfig {
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
         'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' | 'momentum_bench' |
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' |
+        // kinematics_1d_track (Class-11 Kinematics Ch.2 — 1D straight-line
+        // motion: track/runner/displacement-arrow/ghost-odometer; first
+        // kinematics scenario, 2026-07-25).
+        'kinematics_1d_track' |
         // molecular_geometry (VSEPR — CHEMISTRY, 2026-07-28): a central atom's
         // electron domains (bonds + lone pairs) repel into the arrangement of
         // maximum separation, which IS the molecular shape. The P3 slice of the
@@ -877,6 +882,36 @@ export interface Field3DConfig {
             show_hand?: boolean;               // RHR hand asset beat (S5 only)
             show_unit?: boolean;               // append "Wb" to the Φ readout (default: state_index ≥ 5)
         };
+        // ── kinematics_1d_track per-state config (displacement_vs_distance,
+        //    first 1D-straight-line-motion scenario; greenfield build
+        //    2026-07-25 — see engine_build_spec in the concept JSON for the
+        //    full renderer_primitives contract). A straight horizontal ground
+        //    track (-50..+50 m); the runner's x(t) is the only thing that
+        //    moves. `mode` selects the per-state choreography archetype;
+        //    `phases[]` is the full authored timeline (at_ms/until_ms/action/
+        //    glow_focal/scenario_cue per beat) — the renderer drives every
+        //    reveal as a PURE function of the state clock (Rule 26), never a
+        //    runtime string-eval (STATE_5's lap-sweep timing is computed
+        //    directly from the live extra_laps slider, not from a formula
+        //    string — see updateKinematics1dTrackFrame). `mode: 'sandbox'`
+        //    (S6) is the explore state — idle-auto-sweeps forever until a
+        //    trusted drag seizes the runner (Rule 37: never freezes).
+        track?: {
+            mode?: 'position_intro' | 'one_way_lockstep' | 'round_trip_divergence' |
+                'signed_direction' | 'endpoint_law_sweep' | 'sandbox';
+            x0?: number; x_f?: number; turnaround_x?: number; speed?: number; extra_laps?: number;
+            target_x?: number;
+            controls_visible?: Array<'target_x' | 'turnaround_x' | 'speed' | 'extra_laps'>;
+            show_readout?: boolean;
+            idle_auto_sweep?: { range?: [number, number]; speed_ref?: string };
+            trusted_drag_seizes?: boolean;
+            d_readout_persists_across_session?: boolean;
+            phases?: Array<{
+                id: string; at_ms?: number; until_ms?: number | null; action?: string;
+                glow_focal?: string; scenario_cue?: string;
+                duration_ms_formula?: string; at_ms_formula?: string; duration_ms?: number;
+            }>;
+        };
         // ── newtons_laws_body per-state config (Laws of Motion; NEW 2026-07-25) ──
         // ONE scenario_type serving the whole 6-concept Laws of Motion chapter as
         // pure JSON (docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md, founder-approved).
@@ -935,6 +970,16 @@ export interface Field3DConfig {
                 mu_k?: number;
                 applied_force_N?: number;          // signed, along the body's own positive axis
                 ghost?: boolean;                   // FBD decorative context body: dimmed, NEVER integrated
+                // The wall / the Earth: infinite effective mass. SKIPPED by the
+                // integrator entirely (v and s never change), but — unlike `ghost` —
+                // it is REAL: it takes and exerts forces and its force arrows draw
+                // NORMALLY at full brightness. This is what makes the third-law
+                // "push a wall" beat honest: the pair is still exactly equal and
+                // opposite, the wall's acceleration is simply zero. Rendered as a
+                // WALL SLAB instead of a cart mesh. Like `hanging`, the flag is
+                // read at BUILD time from the body's first appearance, so an id
+                // must not flip `fixed` between states.
+                fixed?: boolean;
             }>;
 
             pulley?: {                             // presence IS the coupled-integrator gate
@@ -999,6 +1044,190 @@ export interface Field3DConfig {
             action_reaction?: {                    // Newton III: engine-enforced equal-and-opposite
                 engaged: boolean;
                 driver_body_id: string;            // the other body's applied_force_N is MIRRORED each frame
+            };
+
+            // ── push_off — the contact-then-release force phase (Newton III) ──
+            // docs/NLB_PUSH_OFF_SPEC.md. The spring/hands press the two bodies
+            // apart for a finite CONTACT window and then let go; the carts coast
+            // on the (mu = 0) track afterwards, so the RESULT of the interaction
+            // stays on screen long after the interaction ended. That persistent
+            // separation is what sells the simultaneity.
+            //   while contact_from_ms <= t < release_at_ms:
+            //       body_a.applied = +force_N, body_b.applied = -force_N
+            //   otherwise (before contact AND at/after release):
+            //       both applied forces are 0
+            // The ENGINE enforces the equality every frame from the ONE authored
+            // magnitude — the pair can never be two hand-authored numbers that
+            // drift apart, exactly as `action_reaction` already guarantees.
+            // `t` is the state-local clock (eng.t_ms, rebased to 0 on state entry
+            // and by RESET_TRAJECTORY); the gate is a pure CLOSED FORM of it, so
+            // dt = 0 under SET_TIME_FREEZE reproduces the same force bit-for-bit
+            // (Rule 36). NEVER runs in a `mode: 'sandbox'` state — there the
+            // teacher's F slider owns the force and the state free-runs (Rule 37).
+            // `repeat_every_ms` (2026-07-29 founder review) makes the whole
+            // interaction REPEAT inside the state, the way a teacher repeats a
+            // demo. A spring push-off with classroom-visible forces is inherently
+            // FAST (see the TIMING contract below: ~420 ms for 30 N on 4 + 12 kg)
+            // while a Rule-31 guided state runs 10-20 s of narration — so a single
+            // fire left ~96% of the state showing two blocks sitting apart with
+            // both arrows hidden, no spring and 0.00 readouts, and the canonical
+            // frozen reviewer frame landed in that dead zone (scar
+            // nlb_push_off_interaction_dies_after_release_leaving_96pct_of_the_
+            // state_empty). With it set:
+            //     cycle = floor(t/R), phase = t - cycle*R
+            //     contact  <=>  contact_from_ms <= PHASE < release_at_ms
+            // and on every cycle boundary the engine RE-ARMS the interaction
+            // through its ONE rewind path (nlbResetTrajectory: every body's s/v
+            // back to its authored seed, spring re-compressed). The state-local
+            // clock is NOT rebased — it stays monotonic, so a SET_TIME_FREEZE pin
+            // holds one cycle/phase forever and frozen frames stay byte-identical
+            // (Rule 36). A trusted slider or a body drag SEIZES the state and
+            // cancels the repeat for good (Rule 37, the same latches
+            // idle_auto_sweep / param_ramp honour); the gate as a whole is already
+            // inert in a `mode: 'sandbox'` state.
+            // CHOOSING IT: R must exceed release_at_ms (a shorter cycle would
+            // leave the state permanently in contact and is IGNORED, falling back
+            // to single-fire), and should leave a coast beat long enough for the
+            // separation to read before the reset — release + ~1.5-2.5 s is the
+            // useful band. R = 2600 with release_at_ms = 420 gives ~4 repetitions
+            // inside an 11 s state: 420 ms of push, ~2.2 s of coasting apart, home
+            // pose, again. Omit the key for the original single-fire behaviour.
+            push_off?: {
+                body_a_id: string;
+                body_b_id: string;
+                force_N: number;          // magnitude applied to EACH body, equal and opposite, during contact
+                release_at_ms?: number;   // contact ENDS here; default 0 = released immediately
+                contact_from_ms?: number; // contact BEGINS here; default 0
+                repeat_every_ms?: number; // re-arm the WHOLE interaction on this cycle; omit = fire once
+            };
+
+            // ── spring_action — the REALISTIC spring cycle ────────────────────
+            // docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md (founder-approved 2026-07-30,
+            // from a screen recording: "you are not showing real spring
+            // compressing and releasing it... it should be slow and perfect and
+            // realistic"). Bare `push_off` opens the state with the coil ALREADY
+            // compressed and lets go 420 ms later, so the whole interaction is a
+            // FLASH with no visible loading (scar nlb_spring_release_plays_at_raw_
+            // 420ms_with_no_compression_or_hold_beat_and_no_slow_motion). This
+            // block wraps the SAME push_off contact window in a choreography:
+            //     approach -> compress -> hold -> release (SLOWED) -> coast
+            // and `push_off.repeat_every_ms` still drives the cycle (one rewind
+            // path, nlbResetTrajectory, unchanged).
+            //
+            // PHASE ARITHMETIC (all closed form of the state-local clock, Rule 36).
+            // Let A = approach_ms, C = compress_ms, H = hold_ms, S = slow_factor,
+            // t0 = push_off.contact_from_ms, t1 = push_off.release_at_ms,
+            // lead = A + C + H  and  relWall = (t1 - t0) * S:
+            //     phase  = t - cycle*R                       (WALL time, as before)
+            //     tPhys  = t0 + (phase - lead) / S           (the affine remap)
+            //     contact <=> t0 <= tPhys < t1                (the ORIGINAL gate)
+            // i.e. the force gate is the expression it always was — only its
+            // ARGUMENT changes, from wall phase to PHYSICAL release time. So the
+            // release window occupies phase [lead, lead + relWall): the 420 ms of
+            // PHYSICS plays over relWall = 420*S ms of WALL time, which is why the
+            // window is held open for the WALL duration and not the physical one.
+            //     approach : [0, A)              F = 0
+            //     compress : [A, A+C)            F ramps 0 -> force_N (arrows grow in)
+            //     hold     : [A+C, lead)         F = force_N, coil loaded and LATCHED
+            //     release  : [lead, lead+relWall) F = force_N, dt divided by S
+            //     coast    : [lead+relWall, R)   F = 0, the carts separate
+            // Before the release the pair is HELD (a real latch supplies the
+            // reaction): both applied arrows draw at the live magnitude while
+            // nothing moves, and at release the latch lets go — so `a` honestly
+            // reads 0 while held and jumps to F/m at release. Without the latch the
+            // compress+hold force would launch the carts before the release even
+            // started (a 1.6 s ramp to 30 N on 4 kg is 24 N.s of impulse).
+            // slow_factor is a dt MULTIPLIER on the INTEGRATOR during the release
+            // window ONLY (`dtPhysics = h / S`): the step stays strictly linear in
+            // dt, there is no sub-stepping, no literal 0.016 and no second clock,
+            // and under SET_TIME_FREEZE dt = 0 => dtPhysics = 0 (Rule 36). The HUD
+            // keeps reporting the TRUE physical values (F = 30.00 N, a = 7.50 m/s²)
+            // — the PLAYBACK is slowed, never the physics — and while the window is
+            // open the canvas shows a `slow motion ×N` badge (#nlb_slowmo), the
+            // Rule 24/34 honesty requirement without which this would teach a
+            // falsehood. Rule 37: no slow window and no choreography in a
+            // `mode: 'sandbox'` state (the whole gate is already inert there), and a
+            // trusted slider or body drag CANCELS an in-progress choreography
+            // through the same PM_nlbSweepSeized / PM_nlbBodyDragged latches the
+            // repeat cycle honours.
+            // THE COIL GEOMETRY (seam B, 2026-07-30). The phases above drive the
+            // coil's LENGTH, not just the force, so the spring visibly does the
+            // thing it is doing (nlbSpringLoadPose + nlbFitSpring):
+            //     approach : the pair is SCRIPTED together (closed form of the
+            //                phase, eased) from natural + 0.6 m of air down to
+            //                contact, with the coil drawn at its full NATURAL
+            //                length, mounted on spring.between[0]'s face.
+            //     compress : the gap closes natural -> compressed, so the coil
+            //                itself shortens and its pitch tightens, ending at the
+            //                AUTHORED SEED POSE exactly (which is what the release
+            //                then integrates from).
+            //     hold     : the seed pose, held, coil at 0.45x natural.
+            //     release  : the coil EXTENDS WITH THE GAP over the slowed window
+            //                (it no longer holds one length while the carts move).
+            //     coast    : `ring` = a damped oscillation of the coil length about
+            //                natural for ~450 ms of wall time, then it hides.
+            // All of it is a pure function of the published phase state, and the
+            // ring is cosmetic (a length only — it never feeds the integrator and
+            // never moves a cart, and it is clamped to the live gap so it cannot
+            // overlap a body).
+            // CHOOSING R: with spring_action the cycle floor rises from
+            // release_at_ms to lead + relWall (the whole wall-clock choreography);
+            // a shorter R would never let the phase escape the release window and
+            // is IGNORED exactly as before (degrades to single-fire). The founder's
+            // suggested default for 30 N on 4 + 12 kg: A = 600, C = 1600, H = 1200,
+            // S = 6 (release ≈ 2520 ms wall) => R ≈ 7200.
+            // Omit the block entirely for the pre-2026-07-30 behaviour, bit for bit.
+            spring_action?: {
+                approach_ms?: number;   // carts converge, coil at NATURAL length, no force yet
+                compress_ms: number;    // coil VISIBLY compresses; force ramps in
+                hold_ms?: number;       // latched and loaded: compressed coil, full arrows, live HUD
+                slow_factor?: number;   // playback slowdown for the RELEASE only, default 6 (1 = real time)
+                ring?: boolean;         // brief damped coil oscillation after it lets go (default true)
+            };
+
+            // ── spring — the VISIBLE interaction object (Newton III) ──────────
+            // docs/NLB_PUSH_OFF_SPEC.md §2. A coil drawn BETWEEN the two bodies'
+            // facing faces, so the cause of the push_off pair is a physical thing
+            // on screen instead of two arrows appearing from nowhere.
+            //   • It is carried by the ONE placement funnel every body move
+            //     already goes through (nlbSetBodyPosition) — no per-frame follow
+            //     hook, no clock, no second placement path (Rule 36).
+            //   • Length: it spans the live face-to-face gap, capped at its own
+            //     natural length. It renders COMPRESSED while the push_off contact
+            //     window is open, extends to natural length as the carts separate,
+            //     and HIDES once the gap exceeds natural length (the spring has let
+            //     go — exactly the instant push_off zeroes the forces).
+            //   • `compressed` is the render state for a state with NO live
+            //     push_off phase (a static display beat, or a sandbox where the
+            //     teacher owns the force). Whenever a non-sandbox state DOES
+            //     declare push_off, the ENGINE drives it from the contact phase and
+            //     the authored value is ignored — the picture can never disagree
+            //     with the force.
+            // AUTHORING CONTRACT (three parts — a spring is a real object with a
+            // real length, so the authored numbers must agree with it):
+            //  1. POSITION. Natural length is 1.6 m, compressed length 0.72 m
+            //     (apparatus constants, like the cart size). Author the two bodies'
+            //     initial_position_m so their FACING FACES start 0.72 m apart, i.e.
+            //     |s_a - s_b| = 0.72 + half-width of each body (0.55 m for a cart,
+            //     0.275 m for a `fixed` wall slab). Placed further apart, the coil
+            //     draws compressed and floating instead of touching both.
+            //  2. ORDER. push_off gives body_a +force_N along +s, so body_a is the
+            //     body on the POSITIVE side — otherwise the pair drives together.
+            //  3. TIMING. A spring stops pushing when it reaches natural length, so
+            //     push_off.release_at_ms must be the instant the pair has separated
+            //     by 1.6 - 0.72 = 0.88 m. With mu = 0 and theta = 0 that is exactly
+            //         release_at_ms = 1000 * sqrt( 1.76 / (force_N * (1/m_a + 1/m_b)) )
+            //     (drop the 1/m term of a `fixed` body — it never moves). E.g. 30 N
+            //     on 2 + 2 kg -> 242 ms; on 2 + 6 kg -> 297 ms; 30 N cart vs wall,
+            //     m = 2 kg -> 343 ms. Author a LONGER window and the coil correctly
+            //     vanishes at natural length while the force is still applied — the
+            //     picture stops explaining the arrows. The carts then coast for the
+            //     rest of the state, which is the whole point: the RESULT of the
+            //     interaction stays on screen long after the interaction ended.
+            spring?: {
+                between: [string, string];   // the two body ids
+                compressed?: boolean;        // render state; the ENGINE drives it from the push_off phase
+                coils?: number;              // default 8
             };
 
             arrows?: Array<{
@@ -2304,7 +2533,7 @@ body.pm-clean [style*="position: fixed"] {
             </div>
         </div>
     </div>
-    <div class="palm-footer">NCERT / DC Pandey: right-hand rule for v × B. Same hand both cases — only F's sign flips with q.</div>
+    <div class="palm-footer">Right-hand rule for v × B. Same hand both cases — only F's sign flips with q.</div>
 </div>
 <div id="fleming_overlay" class="pm_hud">
     <div class="fleming-title">Fleming's Left-Hand Rule</div>
@@ -3005,6 +3234,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (swcHits && swcHits.length) return true;
             }
         }
+        // kinematics_1d_track runner proxy (STATE_6 sandbox — trusted_drag_seizes).
+        if (ktStateIsDraggable()) {
+            var ktProxy = ktFindById("kt_runner_hit");
+            if (ktProxy && ktProxy.visible) {
+                pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+                var ktHits = pmRaycaster.intersectObject(ktProxy, false);
+                if (ktHits && ktHits.length) return true;
+            }
+        }
         // newtons_laws_body body proxies (SEAM E, spec site 4): one invisible sphere
         // per body (nlb_body_<id>_hit), armed only in a trusted_drag_seizes state and
         // only for a shown, non-ghost body — so this whole block is a no-op for every
@@ -3201,6 +3439,27 @@ export const FIELD_3D_RENDERER_CODE = `
                     }, "*");
                 } catch (e) {}
             }
+            return;
+        }
+        // kinematics_1d_track explorer (STATE_6 sandbox): grab the runner and
+        // slide it along the track's world-X axis (camera-right = +x, locked —
+        // engine_build_spec constraint). A trusted drag seizes control from the
+        // idle auto-sweep / any live target_x chase (Rule 31 live-instrument
+        // model) until the state resets on next entry.
+        if (ktStateIsDraggable()) {
+            var ktM = Math.max(-50, Math.min(50, hit.x / KT_SCALE));
+            window.PM_ktRunnerDragged = true;
+            window.PM_ktTargetDragged = false;
+            window.PM_ktDragX = ktM;
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "kinematics_1d_track_explorer"),
+                    param: "runner_position",
+                    value: ktM,
+                    point: [hit.x, hit.y, hit.z]
+                }, "*");
+            } catch (e) {}
             return;
         }
         var rsc = (config.slider_controls && config.slider_controls.r_gauss) || { min: 0.3, max: 4.0 };
@@ -4282,6 +4541,10 @@ export const FIELD_3D_RENDERER_CODE = `
     function updateLabelSpriteText(sprite, text) {
         if (!sprite || !sprite._pmCanvas || !sprite._pmCtx) return;
         var c = sprite._pmCanvas, ctx = sprite._pmCtx;
+        // The drawn string, retained. Sprite text is INK ONLY — invisible to any DOM
+        // probe — so keeping it readable is what lets a headless probe assert what a
+        // label actually says (and measure its ink box) without re-deriving it.
+        sprite._pmText = text;
         if (sprite._pmAutoWidth) {
             var fontSpec = sprite._pmFont || "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
             ctx.font = fontSpec;
@@ -4312,6 +4575,9 @@ export const FIELD_3D_RENDERER_CODE = `
             ctx.strokeText(text, c.width / 2, c.height / 2);
             ctx.fillStyle = sprite._pmColor;
             ctx.fillText(text, c.width / 2, c.height / 2);
+            // Fraction of the sprite quad the INK actually occupies. The quad is mostly
+            // transparent padding, so this is the only honest basis for a screen rect.
+            sprite._pmInkFrac = Math.min(1, ctx.measureText(text).width / c.width);
             if (sprite.material && sprite.material.map) sprite.material.map.needsUpdate = true;
             return;
         }
@@ -4366,6 +4632,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // retained-redraw + auto-width metadata read by updateLabelSpriteText.
         sprite._pmCanvas = canvas; sprite._pmCtx = ctx; sprite._pmColor = color;
         sprite._pmAutoWidth = true; sprite._pmFont = fontSpec; sprite._pmHeightScale = hs;
+        sprite._pmText = text;
+        sprite._pmInkFrac = Math.min(1, measured ? (measured - pad) / canvas.width : 1);
         return sprite;
     }
 
@@ -24191,6 +24459,785 @@ export const FIELD_3D_RENDERER_CODE = `
         return idx >= 0 ? idx + 1 : 1;
     }
 
+    // ── kinematics_1d_track scenario (displacement_vs_distance; Δx=x_f-x0 vs
+    //    d = accumulated path length. First 1D-straight-line-motion scenario in
+    //    this renderer — greenfield build, 2026-07-25; see engine_build_spec in
+    //    the concept JSON for the full contract.) A single straight horizontal
+    //    ground track spanning -50..+50 m. Camera-right = +x is LOCKED across
+    //    all six states — every camera_position this concept authors keeps
+    //    world +X mapping to screen-right (camera.lookAt(0,0,0) + the spherical
+    //    convention above always projects +X to camera-right when the camera's
+    //    x-offset stays small, which every authored state does), so every
+    //    object below is placed directly on the world X axis with NO rotation
+    //    ever applied (no radians() anywhere — pure 1D translation; the
+    //    STATE_4 arrow "flip" is a discrete +-x orientation swap, never a
+    //    rotation). d(t) is a path-length integral — NEVER a closed-form
+    //    |x_f-x0|; the JSON's distance_when_monotonic/round_trip_distance/
+    //    lap_sweep_distance formulas are per-state CHECKSUMS for verifying it,
+    //    not the implementation (engine_build_spec constraints list, which
+    //    explicitly allows "per-leg schedule summed at boundaries" as an
+    //    alternative to a raw frame accumulator). GUIDED states (S1-S5) use
+    //    exactly that: ktDistanceM below sums |Δx| across the authored
+    //    ktPositionM schedule's breakpoints — a PURE function of state-local
+    //    ms, immune to THE EYE's non-monotonic dense/frozen capture seek
+    //    order (2026-07-25 fix — see ktDistanceM's own comment for the
+    //    accumulator bug this replaced). STATE_6 (sandbox) is the one
+    //    exception: window.PM_ktD += |x(t)-x(t-1)| every frame, because its
+    //    motion is live human drag input with no closed form, and its
+    //    odometer is a TRUE persistent session total that never resets.
+    var KT_SCALE = 0.11;                 // world units per metre (50 m -> 5.5 units)
+    var KT_GROUND_Y = -1.1;
+    var KT_ARROW_Y = KT_GROUND_Y + 0.95;  // kt_disp_arrow lane
+    var KT_GHOST_Y = KT_ARROW_Y + 0.55;   // kt_ghost_arrow — parallel offset lane, never occludes kt_disp_arrow
+    var KT_ARROW_MIN_LEN = 0.05;          // a real zero-length arrow renders as a dot, not nothing
+
+    function ktX(m) { return m * KT_SCALE; }
+    function ktClamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function ktSmooth(p) { p = ktClamp(p, 0, 1); return p * p * (3 - 2 * p); }
+    function ktFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+    function ktStateIsDraggable() {
+        var sd = config.states && config.states[PM_currentState];
+        var kt = sd && sd.track;
+        return !!(kt && kt.trusted_drag_seizes);
+    }
+    // The phase ACTIVE at a given state-local ms — the last phase whose
+    // at_ms <= tMs (phases[] is authored in chronological order). Drives the
+    // exactly-one-glow-focal-at-a-time emphasis (Rule 32e) directly off the
+    // authored choreography timeline, independent of the TTS SET_GLOW channel
+    // (this scenario's teacher_script glow ids reference scene_composition
+    // annotation labels, which field_3d never renders — see the
+    // "field3d_oncanvas_text_source" gotcha; track.phases[].glow_focal is the
+    // authoritative source here).
+    function ktActivePhase(phases, tMs) {
+        if (!phases || !phases.length) return null;
+        var active = null;
+        for (var i = 0; i < phases.length; i++) {
+            var ph = phases[i];
+            var at = (typeof ph.at_ms === "number") ? ph.at_ms : 0;
+            if (tMs >= at) active = ph;
+        }
+        return active;
+    }
+    function ktApplyGlow(phases, tMs) {
+        var ph = ktActivePhase(phases, tMs);
+        var focal = (ph && ph.glow_focal) || null;
+        var domIds = ["kt_x_readout", "kt_d_readout", "kt_dx_readout", "kt_lap_counter"];
+        for (var d = 0; d < domIds.length; d++) {
+            var el = document.getElementById(domIds[d]);
+            if (el) el.classList.toggle("glow-pulse", focal === domIds[d]);
+        }
+        var meshIds = ["kt_runner", "kt_disp_arrow", "kt_ghost_arrow", "kt_turnaround_post"];
+        for (var m = 0; m < meshIds.length; m++) {
+            var o = ktFindById(meshIds[m]);
+            if (!o) continue;
+            applyGlowEmphasis(o, focal === meshIds[m], !!focal, 0.85, true);
+        }
+    }
+
+    function buildKinematics1dTrack() {
+        var trackColor = (config.pvl_colors && config.pvl_colors.track) || "#90A4AE";
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var posColor = (config.pvl_colors && config.pvl_colors.displacement_positive) || "#66BB6A";
+        var negColor = (config.pvl_colors && config.pvl_colors.displacement_negative) || "#EF5350";
+        var distColor = (config.pvl_colors && config.pvl_colors.distance) || "#FFD54F";
+        var runnerColor = "#FFCA28";
+
+        // 1. Track — wipes in during STATE_1's track_wipe phase (0-1200ms via
+        //    scale.x), static full-length in every other state.
+        var trackGeo = new THREE.BoxGeometry(100 * KT_SCALE, 0.05, 0.5);
+        var trackMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(trackColor) });
+        var track = new THREE.Mesh(trackGeo, trackMat);
+        track.position.set(0, KT_GROUND_Y, 0);
+        track.userData = { elementType: "kt_track", id: "kt_track" };
+        addToScene(track);
+
+        // 2. Tick marks every 10 m, -50..+50 (11 ticks) — static with the track.
+        var ticksGrp = new THREE.Group();
+        ticksGrp.userData = { elementType: "kt_ticks", id: "kt_ticks" };
+        for (var tm = -50; tm <= 50; tm += 10) {
+            var tickGeo = new THREE.BoxGeometry(0.02, 0.16, 0.16);
+            var tickMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(trackColor) });
+            var tick = new THREE.Mesh(tickGeo, tickMat);
+            tick.position.set(ktX(tm), KT_GROUND_Y + 0.08, 0.32);
+            tick.userData = { elementType: "kt_ticks", id: "kt_tick_" + tm };
+            ticksGrp.add(tick);
+        }
+        addToScene(ticksGrp);
+
+        // Camera-right = +x axis cue (billboarded orientation is unnecessary —
+        // the label is flat text always facing the fixed-ish frontal cameras
+        // every state authors; createLabelSprite is already a camera-facing
+        // sprite, so it billboards for free).
+        var axisArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(ktX(-50), KT_GROUND_Y - 0.5, 0), 0.9, hexToThreeColor(textColor), 0.16, 0.09);
+        axisArrow.userData = { elementType: "kt_track", id: "kt_axis_arrow" };
+        addToScene(axisArrow);
+        var axisLbl = createLabelSprite("+x", textColor, 0.3);
+        axisLbl.position.set(ktX(-50) + 1.15, KT_GROUND_Y - 0.5, 0);
+        axisLbl.userData = { elementType: "kt_track", id: "kt_lbl_axis" };
+        addToScene(axisLbl);
+
+        // 3. Origin flag at x=0 — drop/bounce during STATE_1, static after.
+        var flagGrp = new THREE.Group();
+        flagGrp.userData = { elementType: "kt_origin_flag", id: "kt_origin_flag" };
+        var poleGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.7, 8);
+        var poleMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(posColor) });
+        var pole = new THREE.Mesh(poleGeo, poleMat);
+        pole.position.set(0, 0.35, 0);
+        flagGrp.add(pole);
+        var flagGeo = new THREE.PlaneGeometry(0.32, 0.2);
+        var flagMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(posColor), side: THREE.DoubleSide, transparent: true, opacity: 0.92 });
+        var flagMesh = new THREE.Mesh(flagGeo, flagMat);
+        flagMesh.position.set(0.17, 0.62, 0);
+        flagGrp.add(flagMesh);
+        flagGrp.position.set(0, KT_GROUND_Y, 0);
+        addToScene(flagGrp);
+        var oLbl = createLabelSprite("O", posColor, 0.34);
+        oLbl.position.set(0, KT_GROUND_Y - 0.32, 0);
+        oLbl.userData = { elementType: "kt_origin_flag", id: "kt_lbl_O" };
+        addToScene(oLbl);
+
+        // 4. Runner figure — the ONLY thing whose position changes.
+        var runnerGrp = new THREE.Group();
+        runnerGrp.userData = { elementType: "kt_runner", id: "kt_runner" };
+        var bodyGeo = new THREE.CylinderGeometry(0.09, 0.11, 0.5, 10);
+        var bodyMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(runnerColor), emissive: hexToThreeColor(runnerColor), emissiveIntensity: 0.15 });
+        var bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+        bodyMesh.position.set(0, 0.28, 0);
+        runnerGrp.add(bodyMesh);
+        var headGeo = new THREE.SphereGeometry(0.13, 14, 14);
+        var headMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(runnerColor), emissive: hexToThreeColor(runnerColor), emissiveIntensity: 0.15 });
+        var headMesh = new THREE.Mesh(headGeo, headMat);
+        headMesh.position.set(0, 0.66, 0);
+        runnerGrp.add(headMesh);
+        runnerGrp.position.set(0, KT_GROUND_Y, 0);
+        addToScene(runnerGrp);
+
+        // Forgiving invisible drag proxy around the runner (STATE_6 sandbox
+        // only — applyKinematics1dTrackState toggles .visible per state;
+        // raycaster skips visible:false everywhere else, mirrors pm_drag_hit).
+        var hitGeo = new THREE.SphereGeometry(0.55, 10, 10);
+        var hitMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+        var hitMesh = new THREE.Mesh(hitGeo, hitMat);
+        hitMesh.position.set(0, KT_GROUND_Y + 0.35, 0);
+        hitMesh.visible = false;
+        hitMesh.userData = { elementType: "kt_runner_hit", id: "kt_runner_hit", draggable: true };
+        addToScene(hitMesh);
+
+        // 5. Displacement arrow — rooted at x0, tip at x(t); a live continuous
+        //    tracker (updated every frame in updateKinematics1dTrackFrame).
+        var dispArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, KT_ARROW_Y, 0), KT_ARROW_MIN_LEN, hexToThreeColor(posColor), 0.14, 0.08);
+        dispArrow.userData = { elementType: "kt_disp_arrow", id: "kt_disp_arrow" };
+        addToScene(dispArrow);
+        var dxArrowLbl = createLabelSprite("\\u0394x", posColor, 0.3);
+        dxArrowLbl.position.set(0, KT_ARROW_Y + 0.35, 0);
+        dxArrowLbl.userData = { elementType: "kt_disp_arrow", id: "kt_lbl_dxarrow" };
+        addToScene(dxArrowLbl);
+
+        // 6. Ghost arrow (STATE_3 only) — dim/desaturated, offset parallel lane
+        //    ABOVE kt_disp_arrow (never occludes it); grows at the naive d(t)
+        //    rate, then gets struck through.
+        var ghostArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, KT_GHOST_Y, 0), KT_ARROW_MIN_LEN, hexToThreeColor(distColor), 0.12, 0.07);
+        ghostArrow.userData = { elementType: "kt_ghost_arrow", id: "kt_ghost_arrow" };
+        ghostArrow.visible = false;
+        addToScene(ghostArrow);
+        ghostArrow.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = 0.55; } });
+        var strikeGeo1 = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-0.15, -0.15, 0), new THREE.Vector3(0.15, 0.15, 0)]);
+        var strikeGeo2 = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-0.15, 0.15, 0), new THREE.Vector3(0.15, -0.15, 0)]);
+        var strikeMat1 = new THREE.LineBasicMaterial({ color: hexToThreeColor(negColor), transparent: true, opacity: 0, linewidth: 2 });
+        var strikeMat2 = strikeMat1.clone();
+        var strike1 = new THREE.Line(strikeGeo1, strikeMat1);
+        var strike2 = new THREE.Line(strikeGeo2, strikeMat2);
+        var strikeGrp = new THREE.Group();
+        strikeGrp.add(strike1); strikeGrp.add(strike2);
+        strikeGrp.position.set(0, KT_GHOST_Y, 0);
+        strikeGrp.userData = { elementType: "kt_ghost_arrow", id: "kt_ghost_strike" };
+        strikeGrp.visible = false;
+        addToScene(strikeGrp);
+
+        // 7. Turnaround post + "L" label (STATE_3 primary; STATE_6 on demand).
+        var postGrp = new THREE.Group();
+        postGrp.userData = { elementType: "kt_turnaround_post", id: "kt_turnaround_post" };
+        var postPoleGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.85, 8);
+        var postPoleMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(distColor), emissive: hexToThreeColor(distColor), emissiveIntensity: 0.2 });
+        var postPole = new THREE.Mesh(postPoleGeo, postPoleMat);
+        postPole.position.set(0, 0.42, 0);
+        postGrp.add(postPole);
+        postGrp.position.set(ktX(40), KT_GROUND_Y, 0);
+        postGrp.visible = false;
+        addToScene(postGrp);
+        var postLbl = createLabelSprite("L", distColor, 0.32);
+        postLbl.position.set(0, 1.0, 0);
+        postLbl.userData = { elementType: "kt_turnaround_post", id: "kt_lbl_L" };
+        postGrp.add(postLbl);
+
+        // 8. Sweep-zone bound markers at the CONSTANT sweep_min/sweep_max
+        //    (+10/+30 m) — STATE_5/STATE_6, static for the state.
+        var sweepGrp = new THREE.Group();
+        sweepGrp.userData = { elementType: "kt_sweep_markers", id: "kt_sweep_markers" };
+        [10, 30].forEach(function (m) {
+            var g = new THREE.CylinderGeometry(0.02, 0.02, 0.55, 8);
+            var mm = new THREE.MeshPhongMaterial({ color: hexToThreeColor(runnerColor), transparent: true, opacity: 0.75 });
+            var mesh = new THREE.Mesh(g, mm);
+            mesh.position.set(ktX(m), KT_GROUND_Y + 0.28, 0);
+            sweepGrp.add(mesh);
+        });
+        sweepGrp.visible = false;
+        addToScene(sweepGrp);
+
+        // 9. x0 / x_f small tick labels.
+        var x0Lbl = createLabelSprite("x\\u2080", posColor, 0.28);
+        x0Lbl.position.set(0, KT_GROUND_Y + 0.42, -0.35);
+        x0Lbl.userData = { elementType: "kt_x0_marker", id: "kt_x0_marker" };
+        x0Lbl.visible = false;
+        addToScene(x0Lbl);
+        var xfLbl = createLabelSprite("x_f", posColor, 0.28);
+        xfLbl.position.set(0, KT_GROUND_Y + 0.42, -0.35);
+        xfLbl.userData = { elementType: "kt_xf_marker", id: "kt_xf_marker" };
+        xfLbl.visible = false;
+        addToScene(xfLbl);
+
+        // 10. HUD readouts — top-anchored >=52px, clearing the review-chrome
+        //     Full-screen button + pen bar (field3d_sliders_panel_top12_vs_
+        //     fsbtn_top10 scar). Value-only (Rule 34b) — a live number, no
+        //     re-derivation of the formula here.
+        // kt_x_readout — plain position HUD, STATE_1 ONLY (before Δx is
+        // introduced — the earlier pre-spoil fix). Occupies the SAME screen
+        // slot kt_dx_readout takes over from STATE_2 onward (top:52px;
+        // right:12px) — it's the same physical instrument, relabelled, so
+        // the panel reads as one continuous readout across the state cut
+        // (Rule 32d home-pose/instrument continuity), never both at once
+        // (visible_elements is exact-match exclusive between the two ids).
+        var xRp = document.createElement("div");
+        xRp.id = "kt_x_readout";
+        xRp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + posColor + ";padding:9px 13px;border-radius:8px;font:14px/1.6 monospace;z-index:10;min-width:140px;display:none;text-align:right;";
+        document.body.appendChild(xRp);
+        var dRp = document.createElement("div");
+        dRp.id = "kt_d_readout";
+        dRp.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.82);color:" + distColor + ";padding:9px 13px;border-radius:8px;font:14px/1.6 monospace;z-index:10;min-width:140px;display:none;";
+        document.body.appendChild(dRp);
+        var dxRp = document.createElement("div");
+        dxRp.id = "kt_dx_readout";
+        dxRp.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + posColor + ";padding:9px 13px;border-radius:8px;font:14px/1.6 monospace;z-index:10;min-width:140px;display:none;text-align:right;";
+        document.body.appendChild(dxRp);
+        var lapRp = document.createElement("div");
+        lapRp.id = "kt_lap_counter";
+        lapRp.style.cssText = "position:fixed;top:104px;left:12px;background:rgba(0,0,0,0.82);color:" + runnerColor + ";padding:7px 12px;border-radius:8px;font:12px/1.5 monospace;z-index:10;display:none;";
+        document.body.appendChild(lapRp);
+
+        // 11. Dedicated formula surface — Cambria Math serif, NOT the generic
+        //     #formula_overlay (13px monospace; OPEN scar field3d_formula_
+        //     overlay_generic_not_cambria_math applies directly to this
+        //     concept per quality_auditor's STATE_3 screenshot finding).
+        var fEl = document.createElement("div");
+        fEl.id = "kt_formula";
+        fEl.style.cssText = "position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(10,10,26,0.85);color:#FFF176;padding:9px 20px;border-radius:8px;font:600 19px/1.5 'Cambria Math','Times New Roman',serif;z-index:11;display:none;white-space:nowrap;text-align:center;";
+        document.body.appendChild(fEl);
+
+        // 12. Per-state contextual control panel (Rule 31) — rows built ONCE
+        //     (#kt_target_row/#kt_turn_row/#kt_speed_row/#kt_laps_row), shown/
+        //     hidden per state's track.controls_visible, same screen position
+        //     always. Owns its own #kt_sliders panel — excluded from the
+        //     generic #sliders panel via the isKt flag in applyState.
+        var scfg = config.slider_controls || {};
+        function ktSc(key, dmin, dmax, dstep, ddef, dlabel) {
+            var o = scfg[key] || {};
+            return { min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax), step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef), label: o.label || dlabel };
+        }
+        var scTarget = ktSc("target_x", -50, 50, 1, 20, "Target position (m)");
+        var scTurn = ktSc("turnaround_x", 10, 50, 1, 40, "Turnaround post L (m)");
+        var scSpeed = ktSc("speed", 0.5, 5, 0.1, 2, "Runner speed (m/s)");
+        var scLaps = ktSc("extra_laps", 0, 5, 1, 1, "Sweep laps");
+        window.PM_ktTargetX = scTarget.def; window.PM_ktTurnaroundX = scTurn.def;
+        window.PM_ktSpeed = scSpeed.def; window.PM_ktExtraLaps = scLaps.def;
+        window.PM_ktTargetDragged = false; window.PM_ktRunnerDragged = false; window.PM_ktDragX = 0;
+        window.PM_ktD = 0; window.PM_ktLastX = 0; window.PM_ktLapsCompleted = 0;
+
+        var sp = document.createElement("div");
+        sp.id = "kt_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:220px;display:none;";
+        sp.innerHTML =
+            '<div id="kt_target_row" style="display:none"><label>' + scTarget.label + ': <span id="kt_target_val">' + scTarget.def.toFixed(0) + '</span> m</label>' +
+            '<input type="range" id="kt_target_slider" min="' + scTarget.min + '" max="' + scTarget.max + '" step="' + scTarget.step + '" value="' + scTarget.def + '" style="width:100%"></div>' +
+            '<div id="kt_turn_row" style="display:none;margin-top:6px"><label>' + scTurn.label + ': <span id="kt_turn_val">' + scTurn.def.toFixed(0) + '</span> m</label>' +
+            '<input type="range" id="kt_turn_slider" min="' + scTurn.min + '" max="' + scTurn.max + '" step="' + scTurn.step + '" value="' + scTurn.def + '" style="width:100%"></div>' +
+            '<div id="kt_speed_row" style="display:none;margin-top:6px"><label>' + scSpeed.label + ': <span id="kt_speed_val">' + scSpeed.def.toFixed(1) + '</span> m/s</label>' +
+            '<input type="range" id="kt_speed_slider" min="' + scSpeed.min + '" max="' + scSpeed.max + '" step="' + scSpeed.step + '" value="' + scSpeed.def + '" style="width:100%"></div>' +
+            '<div id="kt_laps_row" style="display:none;margin-top:6px"><label>' + scLaps.label + ': <span id="kt_laps_val">' + scLaps.def + '</span></label>' +
+            '<input type="range" id="kt_laps_slider" min="' + scLaps.min + '" max="' + scLaps.max + '" step="' + scLaps.step + '" value="' + scLaps.def + '" style="width:100%"></div>';
+        document.body.appendChild(sp);
+
+        function ktEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "kinematics_1d_track_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var targetSl = document.getElementById("kt_target_slider"), targetV = document.getElementById("kt_target_val");
+        var turnSl = document.getElementById("kt_turn_slider"), turnV = document.getElementById("kt_turn_val");
+        var speedSl = document.getElementById("kt_speed_slider"), speedV = document.getElementById("kt_speed_val");
+        var lapsSl = document.getElementById("kt_laps_slider"), lapsV = document.getElementById("kt_laps_val");
+        if (targetSl) targetSl.addEventListener("input", function (ev) {
+            window.PM_ktTargetX = parseFloat(targetSl.value);
+            if (targetV) targetV.textContent = window.PM_ktTargetX.toFixed(0);
+            if (ev && ev.isTrusted) {
+                window.PM_ktTargetDragged = true;
+                window.PM_ktRunnerDragged = false;
+                window.PM_ktTargetDragStartX = window.PM_ktLastX;
+                window.PM_ktTargetDragStartT = time;
+            }
+            ktEmit("target_x", window.PM_ktTargetX);
+        });
+        if (turnSl) turnSl.addEventListener("input", function () {
+            window.PM_ktTurnaroundX = parseFloat(turnSl.value);
+            if (turnV) turnV.textContent = window.PM_ktTurnaroundX.toFixed(0);
+            ktEmit("turnaround_x", window.PM_ktTurnaroundX);
+        });
+        if (speedSl) speedSl.addEventListener("input", function () {
+            window.PM_ktSpeed = parseFloat(speedSl.value);
+            if (speedV) speedV.textContent = window.PM_ktSpeed.toFixed(1);
+            ktEmit("speed", window.PM_ktSpeed);
+        });
+        if (lapsSl) lapsSl.addEventListener("input", function () {
+            window.PM_ktExtraLaps = parseInt(lapsSl.value, 10);
+            if (lapsV) lapsV.textContent = String(window.PM_ktExtraLaps);
+            ktEmit("extra_laps", window.PM_ktExtraLaps);
+        });
+    }
+
+    // Per-state seed: home pose, panel row visibility (Rule 31), readout DOM
+    // visibility (mirrors visible_elements exactly — kt_x_readout/kt_d_
+    // readout/kt_dx_readout/kt_lap_counter are DOM overlays, so the generic sceneObjects
+    // visible_elements pass above never touches them), and the one-shot-
+    // reveal elements (ghost/strike/xf_marker) forced hidden so the animate
+    // loop can reveal them at their authored moment even though the generic
+    // pass already flipped their 3D group visible for this state.
+    function applyKinematics1dTrackState(stateDef) {
+        var track = stateDef.track || {};
+        var isSandbox = track.mode === "sandbox";
+        var scfg = config.slider_controls || {};
+        var defTarget = (scfg.target_x && scfg.target_x["default"] != null) ? scfg.target_x["default"] : 20;
+        var defTurn = (scfg.turnaround_x && scfg.turnaround_x["default"] != null) ? scfg.turnaround_x["default"] : 40;
+        var defSpeed = (scfg.speed && scfg.speed["default"] != null) ? scfg.speed["default"] : 2;
+        var defLaps = (scfg.extra_laps && scfg.extra_laps["default"] != null) ? scfg.extra_laps["default"] : 1;
+
+        var x0 = (typeof track.x0 === "number") ? track.x0 : 0;
+        var xf = (typeof track.x_f === "number") ? track.x_f : defTarget;
+        var turnX = (typeof track.turnaround_x === "number") ? track.turnaround_x : defTurn;
+        var speed = (typeof track.speed === "number") ? track.speed : defSpeed;
+        var laps = (typeof track.extra_laps === "number") ? track.extra_laps : defLaps;
+        var targetX = (typeof track.target_x === "number") ? track.target_x : defTarget;
+
+        window.PM_ktX0 = x0; window.PM_ktXf = xf; window.PM_ktTurnaroundX = turnX;
+        window.PM_ktSpeed = speed; window.PM_ktExtraLaps = laps; window.PM_ktTargetX = targetX;
+        window.PM_ktTargetDragged = false;
+        window.PM_ktRunnerDragged = false;
+        window.PM_ktLapsCompleted = isSandbox ? (window.PM_ktLapsCompleted || 0) : 0;
+
+        // d(t) accumulator: every guided state (S1-S5) is a reproducible
+        // preset that replays identically on every entry (Rule 31 instrument
+        // model), EXCEPT the S6 sandbox, whose odometer is a TRUE persistent
+        // session total that never resets (engine_build_spec: "d_readout
+        // NEVER resets across the session").
+        if (!isSandbox) window.PM_ktD = 0;
+        window.PM_ktLastX = x0;
+        // dx(t) in STATE_6 is relative to the runner's position when
+        // STATE_6's clock STARTED (captured once here) — not the guided
+        // x0 convention every other state uses.
+        window.PM_ktSessionX0 = x0;
+
+        var runner = ktFindById("kt_runner");
+        if (runner) runner.position.x = ktX(x0);
+        var hit = ktFindById("kt_runner_hit");
+        if (hit) { hit.visible = !!track.trusted_drag_seizes; hit.position.x = ktX(x0); }
+        var post = ktFindById("kt_turnaround_post");
+        if (post) post.position.x = ktX(turnX);
+
+        var ghost = ktFindById("kt_ghost_arrow");
+        if (ghost) { ghost.visible = false; ghost.setLength(KT_ARROW_MIN_LEN, 0.12, 0.07); }
+        var strike = ktFindById("kt_ghost_strike");
+        if (strike) { strike.visible = false; strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = 0; }); }
+        var x0Lbl = ktFindById("kt_x0_marker");
+        if (x0Lbl) x0Lbl.position.x = ktX(x0);
+        var xfLbl = ktFindById("kt_xf_marker");
+        if (xfLbl) { xfLbl.visible = false; xfLbl.position.x = ktX(xf); }
+        var track3d = ktFindById("kt_track");
+        if (track3d) track3d.scale.x = (track.mode === "position_intro") ? 0 : 1;
+        var flagGrp = ktFindById("kt_origin_flag");
+        if (flagGrp) flagGrp.scale.setScalar((track.mode === "position_intro") ? 0 : 1);
+
+        // Per-state contextual control panel (Rule 31) — rows shown only for
+        // the control(s) THIS beat exposes; the explore state (S6) exposes
+        // all four (interaction_complete progressive disclosure).
+        var controlsVisible = track.controls_visible || [];
+        var rowIds = { target_x: "kt_target_row", turnaround_x: "kt_turn_row", speed: "kt_speed_row", extra_laps: "kt_laps_row" };
+        for (var key in rowIds) {
+            var rowEl = document.getElementById(rowIds[key]);
+            if (rowEl) rowEl.style.display = (controlsVisible.indexOf(key) !== -1) ? "block" : "none";
+        }
+        var targetSl = document.getElementById("kt_target_slider"), targetV = document.getElementById("kt_target_val");
+        if (targetSl) targetSl.value = String(targetX);
+        if (targetV) targetV.textContent = targetX.toFixed(0);
+        var turnSl = document.getElementById("kt_turn_slider"), turnV = document.getElementById("kt_turn_val");
+        if (turnSl) turnSl.value = String(turnX);
+        if (turnV) turnV.textContent = turnX.toFixed(0);
+        var speedSl = document.getElementById("kt_speed_slider"), speedV = document.getElementById("kt_speed_val");
+        if (speedSl) speedSl.value = String(speed);
+        if (speedV) speedV.textContent = speed.toFixed(1);
+        var lapsSl = document.getElementById("kt_laps_slider"), lapsV = document.getElementById("kt_laps_val");
+        if (lapsSl) lapsSl.value = String(laps);
+        if (lapsV) lapsV.textContent = String(laps);
+
+        var panelEl = document.getElementById("kt_sliders");
+        if (panelEl) panelEl.style.display = (controlsVisible.length > 0) ? "block" : "none";
+
+        // Readout DOM visibility mirrors visible_elements exactly (the same
+        // array the generic 3D pass in applyState already read).
+        var vis = stateDef.visible_elements || [];
+        function ktHas(tok) { return vis.indexOf(tok) !== -1; }
+        var xRp = document.getElementById("kt_x_readout");
+        if (xRp) xRp.style.display = ktHas("kt_x_readout") ? "block" : "none";
+        var dRp = document.getElementById("kt_d_readout");
+        if (dRp) dRp.style.display = ktHas("kt_d_readout") ? "block" : "none";
+        var dxRp = document.getElementById("kt_dx_readout");
+        if (dxRp) dxRp.style.display = ktHas("kt_dx_readout") ? "block" : "none";
+        var lapRp = document.getElementById("kt_lap_counter");
+        if (lapRp) lapRp.style.display = ktHas("kt_lap_counter") ? "block" : "none";
+
+        var fEl = document.getElementById("kt_formula");
+        if (fEl) {
+            var ftext = stateDef.formula_overlay || "";
+            fEl.textContent = ftext;
+            fEl.style.display = ftext ? "block" : "none";
+        }
+    }
+
+    // Pure fn of state-local ms -> runner position in metres, per authored
+    // mode. STATE_5's lap-sweep timing reads the LIVE extra_laps slider
+    // directly (never a runtime string-eval of the JSON's duration_ms_formula/
+    // at_ms_formula fields — those stay documentation-only; this arithmetic
+    // mirrors them exactly and MUST stay in sync with deriveStateMeta.ts's
+    // maxRevealForField3dState if the timing constants ever change).
+    function ktPositionM(mode, tMs, x0, xf, turnX, laps) {
+        if (mode === "position_intro") {
+            if (tMs < 1800) return x0;
+            if (tMs < 3600) return x0 + (xf - x0) * ktSmooth((tMs - 1800) / 1800);
+            return xf;
+        }
+        if (mode === "one_way_lockstep") {
+            if (tMs < 500) return x0;
+            if (tMs < 5500) return x0 + (xf - x0) * ktClamp((tMs - 500) / 5000, 0, 1);
+            return xf;
+        }
+        if (mode === "round_trip_divergence") {
+            if (tMs < 500) return x0;
+            if (tMs < 3500) return x0 + (turnX - x0) * ktClamp((tMs - 500) / 3000, 0, 1);
+            if (tMs < 4100) return turnX;
+            if (tMs < 7100) return turnX + (x0 - turnX) * ktClamp((tMs - 4100) / 3000, 0, 1);
+            return x0;
+        }
+        if (mode === "signed_direction") {
+            var earlyTarget = x0 + (xf - x0) * 0.15; // "first visible steps" (cause_steps beat)
+            if (tMs < 600) return x0;
+            if (tMs < 1000) return x0 + (earlyTarget - x0) * ktSmooth((tMs - 600) / 400);
+            if (tMs < 1500) return earlyTarget;
+            if (tMs < 4100) return earlyTarget + (xf - earlyTarget) * ktClamp((tMs - 1500) / 2600, 0, 1);
+            return xf;
+        }
+        if (mode === "endpoint_law_sweep") {
+            var sweepMin = 10, sweepMax = 30;
+            if (tMs < 600) return x0;
+            if (tMs < 1600) return x0 + (sweepMin - x0) * ktClamp((tMs - 600) / 1000, 0, 1);
+            if (tMs < 2100) return sweepMin;
+            var sweepEndMs = 2100 + 3000 * laps;
+            if (tMs < sweepEndMs) {
+                var elapsed = tMs - 2100;
+                var within = elapsed % 3000;
+                if (within < 1500) return sweepMin + (sweepMax - sweepMin) * (within / 1500);
+                return sweepMax + (sweepMin - sweepMax) * ((within - 1500) / 1500);
+            }
+            var settleEndMs = sweepEndMs + 1000;
+            if (tMs < settleEndMs) return sweepMin + (xf - sweepMin) * ktClamp((tMs - sweepEndMs) / 1000, 0, 1);
+            return xf;
+        }
+        return x0;
+    }
+
+    // ── d(t) as a PURE function of state-local ms (Bug-3 fix, 2026-07-25) ──
+    // The original design used a mutable frame-to-frame accumulator
+    // (PM_ktD += |x(t)-x(t-1)| every animate() tick) documented as
+    // intentional in the engine_build_spec ("d is a path integral, NOT a
+    // closed-form"). That accumulator is correct ONLY if every intermediate
+    // frame is actually visited in increasing time order. THE EYE's dense +
+    // frozen capture pins one long-lived page session per state and does NOT
+    // guarantee monotonically increasing at_ms requests (a frozen/settled
+    // capture can land before or after a dense t-pin) — SET_TIME_FREEZE
+    // (renderer's postMessage handler above) sets freezeAtTime directly; if
+    // the new target is BEHIND the clock's current position, the animate loop
+    // SNAPS backward in one frame (time = freezeAtTime, no crawl), and the
+    // accumulator then adds |x(newTarget)-x(oldTarget)| as if that were real
+    // motion — a fictitious distance that permanently inflates PM_ktD for
+    // every subsequent read in that state. Root cause confirmed 2026-07-25:
+    // this is a genuine capture-harness-interaction bug (verified against a
+    // live continuous Playwright click-through, which read correctly), not a
+    // live-playback bug — but since THE EYE is a mandatory permanent gate
+    // (CLAUDE.md §5), it still had to be fixed here, not worked around there.
+    // The robust fix: every GUIDED state's motion (S1-S5) is already a
+    // reproducible piecewise schedule (ktPositionM above) — so d(t) can be
+    // computed directly as a closed-form path integral of that SAME schedule,
+    // immune to seek/jump/re-entry order by construction (Rule 26: a pure
+    // function of the state clock). Each inter-breakpoint segment below is
+    // monotonic in x (verified per-mode against ktPositionM's own easing —
+    // smootherstep/linear ramps never overshoot), so a segment's full-path
+    // contribution is exactly |x(segEnd)-x(segStart)| regardless of its ease
+    // curve, and the in-progress (final, partial) segment's contribution is
+    // just |x(t)-x(segStart)| evaluated via ktPositionM itself — so this
+    // never duplicates the position logic, it only re-walks its breakpoints.
+    // STATE_6 (sandbox) is NOT covered here — its odometer is a genuine
+    // persistent session total driven by live human drag input with no
+    // closed form, and THE EYE cannot fire trusted drag events there anyway
+    // (untestable by the visual gate), so it keeps the frame accumulator.
+    function ktBreakpoints(mode, x0, xf, turnX, laps) {
+        if (mode === "position_intro") return [0, 1800, 3600, 999999];
+        if (mode === "one_way_lockstep") return [0, 500, 5500, 999999];
+        if (mode === "round_trip_divergence") return [0, 500, 3500, 4100, 7100, 999999];
+        if (mode === "signed_direction") return [0, 600, 1000, 1500, 4100, 999999];
+        if (mode === "endpoint_law_sweep") {
+            var bps = [0, 600, 1600, 2100];
+            var lapsN = Math.max(0, laps || 0);
+            var totalHalves = Math.round(2 * lapsN);
+            for (var k = 1; k <= totalHalves; k++) bps.push(2100 + k * 1500);
+            var sweepEndMs = 2100 + 3000 * lapsN;
+            if (bps[bps.length - 1] < sweepEndMs) bps.push(sweepEndMs);
+            bps.push(sweepEndMs + 1000);
+            bps.push(999999);
+            return bps;
+        }
+        return [0, 999999];
+    }
+    function ktDistanceM(mode, tMs, x0, xf, turnX, laps) {
+        var bps = ktBreakpoints(mode, x0, xf, turnX, laps);
+        var d = 0;
+        for (var i = 0; i < bps.length - 1; i++) {
+            var segStart = bps[i], segEnd = bps[i + 1];
+            if (segEnd <= segStart) continue;
+            if (tMs >= segEnd) {
+                d += Math.abs(ktPositionM(mode, segEnd, x0, xf, turnX, laps) - ktPositionM(mode, segStart, x0, xf, turnX, laps));
+            } else if (tMs > segStart) {
+                d += Math.abs(ktPositionM(mode, tMs, x0, xf, turnX, laps) - ktPositionM(mode, segStart, x0, xf, turnX, laps));
+                break;
+            } else {
+                break;
+            }
+        }
+        return d;
+    }
+
+    function updateKinematics1dTrackFrame() {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var track = stateDef.track || {};
+        var mode = track.mode || "position_intro";
+        var isSandbox = mode === "sandbox";
+        var t = time - stateStartTime;   // state-local seconds (Rule 26)
+        var tMs = t * 1000;
+        var posColor = (config.pvl_colors && config.pvl_colors.displacement_positive) || "#66BB6A";
+        var negColor = (config.pvl_colors && config.pvl_colors.displacement_negative) || "#EF5350";
+
+        var x0 = (typeof track.x0 === "number") ? track.x0 : window.PM_ktSessionX0;
+        var xf = (typeof track.x_f === "number") ? track.x_f : window.PM_ktTargetX;
+        var turnX = window.PM_ktTurnaroundX;
+        var laps = window.PM_ktExtraLaps;
+
+        // Track wipe-in + origin-flag drop (STATE_1 only; static elsewhere).
+        if (mode === "position_intro") {
+            var track3d = ktFindById("kt_track");
+            if (track3d) track3d.scale.x = ktSmooth(tMs / 1200);
+            var flagGrp = ktFindById("kt_origin_flag");
+            if (flagGrp) flagGrp.scale.setScalar(tMs < 1000 ? 0 : ktClamp((tMs - 1000) / 600, 0, 1));
+        }
+
+        // ── Runner position: dragged (S6 trusted grab) > commanded target
+        //    chase (S6 target_x drag) > idle auto-sweep (S6 default) > the
+        //    authored guided choreography (S1-S5).
+        var xNow;
+        if (isSandbox) {
+            if (window.PM_ktRunnerDragged) {
+                xNow = ktClamp(window.PM_ktDragX, -50, 50);
+            } else if (window.PM_ktTargetDragged) {
+                var startX = (window.PM_ktTargetDragStartX != null) ? window.PM_ktTargetDragStartX : window.PM_ktSessionX0;
+                var startT = (window.PM_ktTargetDragStartT != null) ? window.PM_ktTargetDragStartT : time;
+                var dist = Math.abs(window.PM_ktTargetX - startX);
+                var dur = Math.max(0.2, dist / Math.max(0.2, window.PM_ktSpeed));
+                var p = ktClamp((time - startT) / dur, 0, 1);
+                xNow = startX + (window.PM_ktTargetX - startX) * p;
+            } else {
+                // Idle auto-sweep (Rule 37: never freezes, needs no input) —
+                // a continuous triangle wave across the full track, PHASE-
+                // ANCHORED so it starts exactly at the runner's session-start
+                // position at t=0 (no teleport, Rule 32d) and rises toward
+                // +x first (cause-before-effect, consistent first motion).
+                var range0 = -40, range1 = 40, span = range1 - range0;
+                var s0 = ktClamp(window.PM_ktSessionX0 - range0, 0, span);
+                var sNow = s0 + Math.max(0, window.PM_ktSpeed) * t;
+                var sw = sNow % (2 * span);
+                if (sw < 0) sw += 2 * span;
+                xNow = range0 + span - Math.abs(sw - span);
+            }
+        } else {
+            xNow = ktPositionM(mode, tMs, x0, xf, turnX, laps);
+        }
+
+        var runner = ktFindById("kt_runner");
+        if (runner) runner.position.x = ktX(xNow);
+        var hit = ktFindById("kt_runner_hit");
+        if (hit) hit.position.x = ktX(xNow);
+
+        // d(t): guided states (S1-S5) read a CLOSED-FORM path integral of the
+        // authored ktPositionM schedule (ktDistanceM above) — a pure function
+        // of tMs, immune to THE EYE's non-monotonic dense/frozen capture seek
+        // order (see the ktDistanceM comment for the accumulator bug this
+        // replaces). STATE_6 (sandbox) keeps the frame-to-frame accumulator —
+        // its motion is live human drag input with no closed form, and it's
+        // the one true persistent odometer that must never reset mid-session.
+        if (isSandbox) {
+            var lastX = (window.PM_ktLastX != null) ? window.PM_ktLastX : xNow;
+            window.PM_ktD = (window.PM_ktD || 0) + Math.abs(xNow - lastX);
+            window.PM_ktLastX = xNow;
+        } else {
+            window.PM_ktD = ktDistanceM(mode, tMs, x0, xf, turnX, laps);
+            window.PM_ktLastX = xNow;
+        }
+
+        // dx(t) = x(t) - x0 at every instant (endpoints only — Rule/formula
+        // delta_x). S6 measures from the position STATE_6's clock started at.
+        var dxOrigin = isSandbox ? window.PM_ktSessionX0 : x0;
+        var dxNow = xNow - dxOrigin;
+
+        // ── Displacement arrow ─────────────────────────────────────────
+        var dispArrow = ktFindById("kt_disp_arrow");
+        if (dispArrow) {
+            // STATE_4 (signed_direction) deliberately shows a naive default
+            // "+x stub" until the discrete flip beat (Rule 32a cause-then-
+            // effect readable gap) — the misconception_watch counter-visual.
+            var suppressedFlip = (mode === "signed_direction") && (tMs < cueTriggerMs("s4_flip", 1500));
+            var arrowRootM = suppressedFlip ? x0 : dxOrigin;
+            var arrowDx = suppressedFlip ? 0 : dxNow;
+            var dir = arrowDx >= 0 ? 1 : -1;
+            var len = suppressedFlip ? KT_ARROW_MIN_LEN * 3 : Math.max(KT_ARROW_MIN_LEN, ktX(Math.abs(arrowDx)));
+            dispArrow.position.set(ktX(arrowRootM), KT_ARROW_Y, 0);
+            dispArrow.setDirection(new THREE.Vector3(dir, 0, 0));
+            dispArrow.setLength(len, Math.min(0.14, Math.max(0.05, len * 0.35)), Math.min(0.08, Math.max(0.03, len * 0.28)));
+            dispArrow.setColor(hexToThreeColor((suppressedFlip || arrowDx >= 0) ? posColor : negColor));
+            var dxArrowLbl = ktFindById("kt_lbl_dxarrow");
+            if (dxArrowLbl) dxArrowLbl.position.x = ktX(arrowRootM) + (dir * len) / 2;
+        }
+
+        // ── STATE_3 ghost arrow — appears at t=4100ms, shows the FULL d(t)
+        //    (total path length so far, the naive "distance IS displacement"
+        //    expectation), rooted at x0, then gets struck through at 7100ms.
+        //    Reads window.PM_ktD directly (already the pure ktDistanceM value
+        //    for this non-sandbox mode) rather than a separately-cached
+        //    "growth since 4100ms" baseline — the old PM_ktGhostBaseD cache
+        //    was itself jump-order-dependent (captured whatever PM_ktD held
+        //    on the FIRST frame tMs happened to cross 4100, which a direct
+        //    seek to e.g. 6500ms would never do, corrupting the baseline).
+        //    A pure function of tMs is immune to seek order by construction.
+        if (mode === "round_trip_divergence") {
+            var ghost = ktFindById("kt_ghost_arrow");
+            var strike = ktFindById("kt_ghost_strike");
+            // Both branches are explicit (visible=true AND visible=false) — a
+            // one-sided "if tMs>=X set visible=true" leaves a stale TRUE from
+            // a later capture on screen when THE EYE seeks BACKWARD to an
+            // earlier tMs within the same state entry (the same non-
+            // monotonic dense/frozen capture order that caused the Bug-3
+            // PM_ktD desync). Every reveal here must be a pure function of
+            // tMs in BOTH directions, not just forward (Rule 26).
+            if (tMs >= 4100) {
+                var ghostD = window.PM_ktD;
+                if (ghost) {
+                    ghost.visible = true;
+                    ghost.position.set(ktX(x0), KT_GHOST_Y, 0);
+                    var gLen = Math.max(KT_ARROW_MIN_LEN, ktX(ghostD));
+                    ghost.setDirection(new THREE.Vector3(1, 0, 0));
+                    ghost.setLength(gLen, Math.min(0.12, Math.max(0.05, gLen * 0.3)), Math.min(0.07, Math.max(0.03, gLen * 0.25)));
+                }
+                if (tMs >= cueTriggerMs("s3_reveal", 7100) && strike) {
+                    strike.visible = true;
+                    var gLenNow = Math.max(KT_ARROW_MIN_LEN, ktX(ghostD));
+                    strike.position.x = ktX(x0) + gLenNow / 2;
+                    var strikeOp = ktClamp((tMs - cueTriggerMs("s3_reveal", 7100)) / 500, 0, 1);
+                    strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = strikeOp; });
+                } else if (strike) {
+                    strike.visible = false;
+                    strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = 0; });
+                }
+            } else {
+                if (ghost) { ghost.visible = false; ghost.setLength(KT_ARROW_MIN_LEN, 0.12, 0.07); }
+                if (strike) { strike.visible = false; strike.children.forEach(function (ch) { if (ch.material) ch.material.opacity = 0; }); }
+            }
+        }
+
+        // ── STATE_5 / STATE_6 lap counter.
+        var lapRp = document.getElementById("kt_lap_counter");
+        if (mode === "endpoint_law_sweep") {
+            var completed = 0;
+            if (tMs >= 2100) completed = Math.min(laps, Math.floor((tMs - 2100) / 3000));
+            window.PM_ktLapsCompleted = completed;
+            if (lapRp) {
+                var sweepEndMs2 = 2100 + 3000 * laps;
+                var settleEndMs2 = sweepEndMs2 + 1000;
+                var lapsHtml = "laps: " + completed;
+                if (tMs >= settleEndMs2 + 300) lapsHtml += " (" + laps + "\\u00D7 40 m = " + (laps * 40) + " m)";
+                lapRp.innerHTML = lapsHtml;
+                var xfLbl = ktFindById("kt_xf_marker");
+                if (xfLbl) xfLbl.visible = tMs >= settleEndMs2;
+            }
+        } else if (isSandbox) {
+            if (lapRp) lapRp.innerHTML = "laps: " + (window.PM_ktLapsCompleted || 0);
+        }
+
+        // ── S6 live control positions (turnaround post / sweep markers track
+        //    their slider values continuously — Rule 31 live-instrument model).
+        if (isSandbox) {
+            var post = ktFindById("kt_turnaround_post");
+            if (post) post.position.x = ktX(window.PM_ktTurnaroundX);
+            // Sync slider UI from the SAME live value driving the scene, every
+            // frame — not only on drag/entry (mirrors the mflSyncSliderUI fix).
+            var targetSlU = document.getElementById("kt_target_slider"), targetVU = document.getElementById("kt_target_val");
+            if (targetSlU && !window.PM_ktTargetDragged) { targetSlU.value = String(window.PM_ktTargetX); if (targetVU) targetVU.textContent = window.PM_ktTargetX.toFixed(0); }
+        }
+
+        // ── HUD readouts (value-only, Rule 34b) ─────────────────────────
+        var dRp = document.getElementById("kt_d_readout");
+        if (dRp) dRp.innerHTML = "d = " + window.PM_ktD.toFixed(1) + " m";
+        var dxRp = document.getElementById("kt_dx_readout");
+        if (dxRp) {
+            // Live continuous tracker in every state that shows it (STATE_2
+            // onward) — the ONE discrete reveal-gap this scenario teaches
+            // lives in kt_x_readout below (STATE_1 only), not here.
+            var dxTxt = (dxNow >= 0 ? "+" : "") + dxNow.toFixed(1) + " m";
+            dxRp.innerHTML = "\\u0394x = " + dxTxt;
+            dxRp.style.color = dxNow >= 0 ? posColor : negColor;
+        }
+        var xRp = document.getElementById("kt_x_readout");
+        if (xRp && mode === "position_intro") {
+            // STATE_1's ONE explicit reveal-gap (engine_build_spec continuous_
+            // tracker_note): the digit-roll counts 0 -> +30 during 4100-4600ms,
+            // a readable beat AFTER the runner's own arrival at 3600ms — a
+            // plain position "x" readout, deliberately NOT labelled Δx (that
+            // label is introduced STATE_2 onward via kt_dx_readout, so it
+            // doesn't get pre-spoiled in STATE_1 before displacement exists).
+            var xDisplay;
+            if (tMs < 4100) xDisplay = x0;
+            else if (tMs < 4600) xDisplay = x0 + (xf - x0) * ((tMs - 4100) / 500);
+            else xDisplay = xf;
+            var xTxt = (xDisplay >= 0 ? "+" : "") + xDisplay.toFixed(1) + " m";
+            xRp.innerHTML = "x = " + xTxt;
+            xRp.style.color = xDisplay >= 0 ? posColor : negColor;
+        }
+        var x0Lbl = ktFindById("kt_x0_marker");
+        if (x0Lbl) x0Lbl.visible = (mode === "position_intro") && tMs >= 4100;
+
+        ktApplyGlow(track.phases, tMs);
+    }
+
     // Authoritative per-state exact-match visibility + seed (locked B/A/N/omega)
     // + per-state contextual-control panel (Rule 31). Runs after the generic
     // visible_elements matcher and fully overrides it (mirrors applyFaradayState).
@@ -38259,6 +39306,23 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
     var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
     var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
+    // A "fixed" body renders as a WALL SLAB, not a cart: thin along the track,
+    // tall, and deep across it, so it READS as the immovable wall / the Earth at a
+    // glance and no student mistakes it for the other cart. These are APPARATUS
+    // dimensions, not a magnitude cue — the slab never scales with mass or force
+    // (Rule 29), and its geometry is translated at build time so its BASE sits at
+    // exactly the same local height a cart's does, which keeps nlbSetBodyPosition
+    // (the ONE placement funnel every arrow, label and pick proxy follows) untouched.
+    // (The on-block mass sprite and its glyph-height constant are RETIRED: text on a
+    // 3D face shears with the camera and shrinks with the object, so the number was
+    // illegible at ~30 screen px. The mass now rides the camera-facing billboard —
+    // see nlbBodyLabelText.)
+    var NLB_RO_CLEAR_PX = 8;              // HUD-to-slider-panel breathing room (Rule 34d)
+    var NLB_LABEL_DODGE_PAD_PX = 6;       // clearance a dodged label keeps from a panel edge
+    var NLB_LABEL_DODGE_MAX = 1.10;       // world units — the cap on an occlusion dodge
+    var NLB_WALL_T = NLB_BODY_SIZE * 0.5;   // thickness along the body's own axis
+    var NLB_WALL_H = NLB_BODY_SIZE * 3.2;   // height
+    var NLB_WALL_D = NLB_BODY_SIZE * 2.6;   // depth across the track
     var NLB_LANE_GAP = 0.85;              // world units of z between two INDEPENDENT side-by-side bodies.
                                           //   Engine spec §1 promises "two bodies with NO pulley = independent,
                                           //   side-by-side", but every body was pinned to z = 0, so the intended
@@ -38364,6 +39428,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // already-placed one further out ALONG ITS OWN arrow. See nlbDeCollideLabels.
     var NLB_LABEL_MIN_SEP = 0.30;         // > NLB_ARROW_LABEL_H (0.26 glyph height)
     var NLB_LABEL_PUSH = 0.20;
+    // Clearance for the MEASURED-INK separation tests (the body billboard now
+    // carries its mass, so its width is a live quantity — nlbInkHalfW/nlbInkHalfH
+    // measure it rather than assuming it; see nlbStackBodyLabels).
+    var NLB_BODY_LABEL_GAP = 0.07;
+    // World units of EXTRA x-separation over which a stacked billboard eases back
+    // down to its home pose, so it never jumps (see nlbStackBodyLabels).
+    var NLB_LABEL_EASE = 0.35;
     var NLB_LABEL_ORDER = ["weight", "normal", "friction", "applied", "tension", "net",
                            "component_sin", "component_cos"];
     // Components of the weight (show_components) — dashed + thin, in the WEIGHT
@@ -38422,6 +39493,65 @@ export const FIELD_3D_RENDERER_CODE = `
     // past the rim's lowest point, or the cube would swallow the wheel.
     var NLB_HANG_MIN_M = (NLB_PULLEY_R + NLB_BODY_SIZE / 2) / NLB_WORLD_PER_M;
     var NLB_Y_AXIS = new THREE.Vector3(0, 1, 0);
+
+    // ── SEAM B (push-off) — the SPRING, the visible interaction object ─────
+    //   docs/NLB_PUSH_OFF_SPEC.md §2. GEOMETRY ONLY: nothing here reads a clock,
+    //   integrates anything or hardcodes a frame delta (Rule 36) — the coil is a
+    //   pure function of the two bodies' CURRENT positions plus the push_off
+    //   contact flag, so dt = 0 under SET_TIME_FREEZE re-derives the identical
+    //   pose, and a rewind to an earlier t reproduces that t's pose exactly.
+    //   Nothing here is an emphasis channel either: the length is the spring's
+    //   real compression (the same licence the rope's scale.y and the force
+    //   arrows' magnitude-driven length already take), and emphasis stays
+    //   brightness-only through nlbApplyGlow() -> applyGlowEmphasis().
+    //   NATURAL LENGTH is an apparatus constant, exactly like the cart size: a
+    //   real spring has one, and deriving it from the authored gap instead would
+    //   make the release instant depend on where the author happened to park the
+    //   carts. 0.80 world units = 1.6 m, against a 1.1 m cart.
+    var NLB_SPRING_NATURAL_W = 0.80;      // world units — the free (uncompressed) length
+    var NLB_SPRING_COMPRESS_FRAC = 0.45;  // compressed length = 0.45 x natural = 0.36 world (0.72 m)
+    var NLB_SPRING_R = 0.15;              // coil RADIUS (world). 0.30 across, inside the 0.55 cart face,
+                                          //   and centred on body-centre height so it clears the slab.
+    var NLB_SPRING_WIRE_R = 0.022;        // tube radius of the wire itself
+    var NLB_SPRING_COILS = 8;             // spring.coils default
+    var NLB_SPRING_COLOR = "#FFA726";     // unused elsewhere in this scenario: the spring must be
+                                          //   unmistakable as THE CAUSE against the cool slab/cart palette.
+    // The coil geometry is REBUILT (never scaled) when its drawn length changes,
+    // because a unit-height helix stretched by scale.y squashes the WIRE's cross
+    // section with it — a compressed spring would render as a flat ribbon. The
+    // rebuild is quantised so a continuous extension costs a bounded number of
+    // rebuilds (~22 across the whole release) instead of one per frame, and the
+    // quantised length is a pure function of position, so byte-stability under a
+    // frozen pin is unaffected.
+    var NLB_SPRING_LEN_Q = 0.02;          // world units — geometry rebuild quantum
+    var NLB_SPRING_HIDE_EPS = 0.02;       // world units past natural length -> the spring has let go
+    // spring_action.slow_factor default (docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md): the
+    // ~420 ms physical release plays over ~2.5 s of wall time. A dt multiplier on
+    // the integrator during the release window ONLY — never a clock, never the HUD.
+    var NLB_SPRING_SLOW_DEFAULT = 6;
+    // ── spring_action GEOMETRY constants (seam B of the choreography) ───────
+    //   docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md: "you are not showing real spring
+    //   compressing". The coil mesh was already honest; what was missing is that
+    //   its LENGTH never followed the choreography. These are the apparatus
+    //   numbers the compression stroke and the ring are drawn from — all world
+    //   units / ms, all pure inputs to closed forms of the published phase state
+    //   (eng.spring_phase / spring_phase_ms / spring_progress), never clocks.
+    //   The AIR GAP is how much further apart the carts stand at the START of
+    //   approach than the coil's own natural length: the coil sits at natural
+    //   length mounted on one cart, and the other cart closes this gap and makes
+    //   CONTACT exactly as approach ends. 0.30 world = 0.6 m of visible travel,
+    //   comparable to the 0.88 m compression stroke that follows, so the two
+    //   beats read at similar speeds instead of one snapping past the other.
+    var NLB_SPRING_APPROACH_AIR_W = 0.30;
+    // The RING — a brief damped oscillation of the COIL LENGTH about natural
+    // after it lets go, then it hides. Cosmetic ONLY: it is a length, it never
+    // feeds the integrator and never moves a cart, and it is clamped to the live
+    // gap so it can never overlap either body. ~4.5 cycles decaying to ~3% of
+    // amplitude over 450 ms of WALL time ("a few tenths of a second", the spec).
+    var NLB_SPRING_RING_MS = 450;         // wall ms of coast the ring occupies
+    var NLB_SPRING_RING_AMP_W = 0.08;     // initial amplitude (world) = 0.16 m on a 1.6 m coil
+    var NLB_SPRING_RING_TAU_MS = 130;     // exponential decay constant
+    var NLB_SPRING_RING_PERIOD_MS = 100;  // 10 Hz — fast enough to read as a twang, not a wobble
 
     // Explicit id registry. addToScene() only registers the object handed to it,
     // so child meshes (bodies parented to the rotated surface group) would never
@@ -38552,9 +39682,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // z lanes, and draw each string diagonally across the track — the one thing
         // an inextensible string joining two carts can never look like.
         if (!eng || !eng.order || eng.pulley || eng.train) return 0;
+        // HEAD-ON pairs share ONE lane (seam A deferred scar candidate #1). The z
+        // separation above exists for a SIDE-BY-SIDE compare (Newton II: two carts
+        // racing the same track, which must not overlap into one blob). A push_off
+        // pair is the opposite geometry: the two bodies act on EACH OTHER through a
+        // spring on the line joining them, so separating them in z would draw the
+        // spring diagonally across the lanes and the carts would fly apart on two
+        // parallel tracks that never touched. The same is true of a cart pushing a
+        // "fixed" wall — the whole beat is contact. Both tests are per-STATE facts,
+        // so every existing compare state (no push_off, no fixed body) takes the
+        // unchanged path below and cannot move a pixel.
+        if (eng.push_off) return 0;
         var lanes = [];
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
+            if (b && b.fixed) return 0;                // cart vs wall: head-on, one lane
             if (b && !b.hanging && !b.ghost) lanes.push(b.id);
         }
         if (lanes.length < 2) return 0;
@@ -38583,6 +39725,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // follow hook and therefore no clock code (Rule 36).
         var hitP = nlbFindById("nlb_body_" + bodyId + "_hit");
         if (hitP) hitP.position.copy(mesh.position);
+        // SEAM B (push-off): the spring is carried from this SAME funnel, for the
+        // same reason — build seeding, the integrator writeback, a slider write and
+        // a drag all pass through here, so the coil can never lag the bodies it is
+        // drawn between and there is no per-frame follow hook and no clock code
+        // (Rule 36). It re-reads BOTH bodies, so the second of the pair's two calls
+        // in a tick settles the final geometry; it is a no-op before the mesh
+        // exists (build) and hides itself in any state with no spring block.
+        nlbFitSpring();
 
         // SEAM G: a wheel's SPIN, from the same funnel and for the same reason.
         // Rolling without slipping is s = r·θ, so the wheel's angle is a pure
@@ -38660,22 +39810,148 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_SEG_OWNER = "SEG";
     function nlbIsSegKey(k) { return k === "T1" || k === "T2"; }
     function nlbReadoutRowId(bodyId, key) { return "nlb_ro_" + bodyId + "_" + key; }
+
+    // ── Mass rendering — ONE place, every text path (founder finding: a state that
+    //   teaches a mass RATIO must say which body is heavier, and by how much).
+    //   Three engine-generic rules, zero per-concept authoring:
+    //     · nlbFxMass  — integers print bare ("4 kg"), non-integers at the minimum
+    //       readable precision ("0.5 kg", "2.1 kg"). Never "4.00 kg", and never a
+    //       float artifact ("4.000000000001 kg"): round to 3 dp, then strip the
+    //       trailing zeros and a bare trailing point.
+    //     · nlbMassSymbol — Rule 34c across EVERY surface that prints a body
+    //       identifier (the DOM HUD header, the DOM mass-slider row label and the
+    //       3D sprite label on the block): an ASCII "m1"/"m2" authored anywhere is
+    //       RENDERED as m₁ / m₂. Only a single letter followed by one or two digits
+    //       is touched, so "Block", "A", "m", "F = 10 N" all pass through unchanged.
+    //     · a "fixed" body is the wall / the Earth, authored at 1000000 kg as a
+    //       stand-in for infinity. That is not a reading and must never print as a
+    //       number — it renders as "m ≫ <every free body>", which stays true for
+    //       one free body or five.
+    var NLB_SUBSCRIPT_DIGITS = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"];
+    function nlbFxMass(v) {
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        // ONE decimal is the readable precision for a mass in kg (the mass slider's own
+        // step is 0.5). A 3-dp allowance was the hole the live-drag path fell through:
+        // THE EYE and a real drag both write INTERPOLATED slider values, so 8.464 kg
+        // reached the block and the HUD verbatim. Rounding here — the single mass
+        // formatter every surface goes through — closes it for all of them at once.
+        // Below 0.1 kg one decimal would round to "0", so a tiny mass keeps 3 dp.
+        var s = (Math.abs(n) >= 0.1) ? (Math.round(n * 10) / 10).toFixed(1)
+                                     : (Math.round(n * 1000) / 1000).toFixed(3);
+        while (s.indexOf(".") >= 0 && s.charAt(s.length - 1) === "0") s = s.slice(0, -1);
+        if (s.charAt(s.length - 1) === ".") s = s.slice(0, -1);
+        return s;
+    }
+    function nlbMassSymbol(label) {
+        var t = (label == null) ? "" : String(label);
+        if (!/^[A-Za-z][0-9]{1,2}$/.test(t)) return t;
+        var out = t.charAt(0);
+        for (var i = 1; i < t.length; i++) out += NLB_SUBSCRIPT_DIGITS[+t.charAt(i)];
+        return out;
+    }
+    // Every FREE (non-ghost, non-fixed) body's rendered identifier, for the wall's
+    // "m ≫ ..." line. Order follows the authored bodies[] order.
+    function nlbFreeBodyNames(bodies) {
+        var out = [];
+        for (var i = 0; i < (bodies || []).length; i++) {
+            var b = bodies[i];
+            if (!b || !b.id || b.ghost || b.fixed) continue;
+            out.push(b.label ? nlbMassSymbol(b.label) : b.id);
+        }
+        return out;
+    }
+    // The FLOATING BILLBOARD above a body: its identifier AND its mass, as ONE
+    // camera-facing sprite (founder finding, newton_third_law STATE_2 — "m₁ and m₂
+    // is not showing"). The number used to be painted across the block's own FRONT
+    // FACE, where it is ~30 screen px of ink on a saturated red/blue face, sheared
+    // by perspective and shrinking with the object: the student read m₁ / m₂ with
+    // no number at all. Text on a 3D face always fights perspective, so no size
+    // tweak could fix it — the value belongs on the billboard, which cannot shear,
+    // holds its authored glyph height and draws last (renderOrder 999).
+    //   Same three rules as the HUD header, from the SAME formatters: Rule-34c
+    //   subscripts (nlbMassSymbol), nlbFxMass digits (integers bare — "4 kg"), and
+    //   a fixed body that NEVER prints its 1000000 kg stand-in for infinity — the
+    //   wall reads "Wall — m ≫ m₁", true for one free body or five.
+    //   A GHOST is a decorative copy of a body, never a second body with its own
+    //   mass, so it carries no number (exactly the HUD's rule) — which also keeps
+    //   an unlabelled ghost rendering the identical pixels it rendered before.
+    function nlbBodyLabelText(bd, bodies) {
+        if (!bd) return "";
+        var name = bd.label ? nlbMassSymbol(bd.label) : bd.id;
+        if (bd.fixed) {
+            var free = nlbFreeBodyNames(bodies);
+            return name + " — m ≫ " + (free.length ? free.join(", ") : "any block here");
+        }
+        if (bd.ghost || !bd.label) return name;
+        if (name.indexOf("kg") >= 0) return name;   // an authored label carrying its own unit is never doubled
+        var eng = window.PM_nlbEngine;
+        var eb = (eng && eng.bodies) ? eng.bodies[bd.id] : null;
+        var m = eb ? eb.m : bd.mass_kg;
+        return name + " = " + nlbFxMass(m) + " kg";
+    }
+    // ONE guarded setter for that sprite. pmCreateAutoLabel re-measures and can
+    // re-allocate the canvas texture on a redraw, which must never happen 60 times
+    // a second — so BOTH writers (state entry and the per-frame mass tracker) go
+    // through here and an unchanged string costs a compare. It reads no clock and
+    // integrates nothing (Rule 36): under a frozen pin it rewrites the identical
+    // string and the guard makes even the redraw a no-op.
+    function nlbSetBodyLabelText(sprite, txt) {
+        if (!sprite || sprite._nlbLblTxt === txt) return;
+        sprite._nlbLblTxt = txt;
+        updateLabelSpriteText(sprite, txt);
+    }
+    // Ink half-extents of a label sprite, in WORLD units. The sprite quad is mostly
+    // transparent padding (the canvas has a 384 px floor), so _pmInkFrac is the only
+    // honest basis for a width — and width is exactly what the mass move changed
+    // ("m₁" ≈ 0.25 world units of ink, "m₁ = 4 kg" ≈ 1.0, against a 0.55 block).
+    // Every separation test below MEASURES; none assumes a hardcoded offset.
+    function nlbInkHalfW(sp) {
+        if (!sp) return 0;
+        return sp.scale.x * ((sp._pmInkFrac != null) ? sp._pmInkFrac : 1) / 2;
+    }
+    function nlbInkHalfH(sp) { return sp ? sp.scale.y / 2 : 0; }
+    // The HUD group header for one body: its identifier AND its mass. The mass value
+    // is its own span so the per-frame writer can track a mass slider live without
+    // rebuilding the row. An authored label that already carries its own unit (e.g.
+    // "m = 2 kg") is left exactly as authored — never doubled.
+    function nlbHeaderHtml(bd, bodies, marginTop) {
+        var name = bd.label ? nlbMassSymbol(bd.label) : bd.id;
+        var body;
+        if (bd.fixed) {
+            var free = nlbFreeBodyNames(bodies);
+            body = name + " — fixed, m ≫ " + (free.length ? free.join(", ") : "any block here");
+        } else if (name.indexOf("kg") >= 0) {
+            body = name;
+        } else {
+            var eng0 = window.PM_nlbEngine;
+            var eb0 = (eng0 && eng0.bodies) ? eng0.bodies[bd.id] : null;
+            var m0 = eb0 ? eb0.m : bd.mass_kg;
+            body = name + ' = <span id="' + nlbReadoutRowId(bd.id, "mass") + '_val">' +
+                   nlbFxMass(m0) + '</span> kg';
+        }
+        // The math-serif stack, not the panel's monospace: monospace faces have no
+        // ₁/₂/≫ glyphs and render them as tofu or a merged blob (the subscript scar).
+        return '<div style="opacity:0.82;margin-top:' + (marginTop ? "7px" : "0") +
+               ';font-family:' + NLB_MATH_FONT + '">' + body + '</div>';
+    }
     function nlbRebuildReadout(nlb) {
         var el = document.getElementById("nlb_readout");
         if (!el) return;
         var keys = nlb.readouts || [];
         var bodies = nlb.bodies || [];
         if (!keys.length || !bodies.length) { el.innerHTML = ""; el.style.display = "none"; return; }
-        var h = "";
+        var h = "", printed = 0;
         for (var b = 0; b < bodies.length; b++) {
             var bd = bodies[b];
             if (!bd || !bd.id || bd.ghost) continue;   // a ghost is decorative context: never integrated, never read out
-            // SEAM H fix: emit the per-body header ONLY if this body will actually
+            // SEAM H fix: emit the per-body GROUP ONLY if this body will actually
             // produce a row. Segment keys (T1/T2) belong to the SEG owner, so a state
             // whose readouts are all segment keys used to print one empty group
             // header per body — tension_force STATE_6 rendered "m₃ / m₂ / m₁" as three
             // labels with nothing under them. Same "a real zero is not a reading" rule
-            // the hanging-body N/f skip below already follows.
+            // the hanging-body N/f skip below already follows. The test runs BEFORE
+            // the header is emitted, so the richer header below cannot reintroduce the
+            // empty group it fixes.
             var bodyRows = 0;
             for (var kq = 0; kq < keys.length; kq++) {
                 var kk = keys[kq];
@@ -38684,9 +39960,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 bodyRows++;
             }
             if (!bodyRows) continue;
-            if (bodies.length > 1) {
-                h += '<div style="opacity:0.7;margin-top:' + (b > 0 ? "7px" : "0") + '">' + (bd.label || bd.id) + '</div>';
-            }
+            // The header is now unconditional (it was multi-body only): it is the one
+            // surface that states the body's MASS, and a single-body state needs that
+            // number just as much as a two-body one — "F = 30 N / a = 7.5 m/s²" with
+            // no m on screen is unreadable, which is exactly the founder finding.
+            // printed (not b) drives the group gap, so a leading ghost cannot leave
+            // the first REAL group indented by one gap.
+            // One GROUP div per body (block-level, so the default single-column
+            // stack is pixel-identical) — it is the unit nlbFitReadoutPanel reflows
+            // into side-by-side columns when the stack would otherwise reach the
+            // slider panel.
+            h += '<div class="nlb_ro_grp">' + nlbHeaderHtml(bd, bodies, printed > 0);
+            printed++;
             for (var k = 0; k < keys.length; k++) {
                 var key = keys[k];
                 // A HANGING body has N forced to 0 (spec section 1) and therefore
@@ -38707,6 +39992,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_lbl">' + lab + '</span> = ' +
                     '<span id="' + nlbReadoutRowId(bd.id, key) + '_val">--</span>' + (NLB_READOUT_UNITS[key] || "") + '</div>';
             }
+            h += '</div>';
         }
         // SEAM H — the shared per-SEGMENT block, appended once at the foot of the
         // HUD. Only the segments this train actually HAS get a row: a 2-cart train
@@ -38734,6 +40020,54 @@ export const FIELD_3D_RENDERER_CODE = `
         if (segH) h += '<div style="opacity:0.7;margin-top:7px">strings</div>' + segH;
         el.innerHTML = h;
         el.style.display = h ? "block" : "none";
+        nlbFitReadoutPanel();
+    }
+    // Rule 34d — the HUD panel and the slider panel share the RIGHT edge, one anchored
+    // to the top and one to the bottom, so a tall HUD walks down into the sliders. It
+    // walked far enough to bleed the last two readout rows behind the m₁ slider row the
+    // moment the group header became unconditional (2 headers + 12 rows in the
+    // connected_bodies explore state). CSS alone cannot express "stop before that other
+    // fixed panel", so the fit is MEASURED, once per state entry, and applied as a
+    // three-step ladder that stops at the first step that fits:
+    //   0. the authored look (13px/1.7)               — every state that already fits
+    //   1. compact rows (12px/1.35, tighter padding)  — the two-body explore state
+    //   2. one COLUMN PER BODY (flex row)             — the worst case (3 bodies x a
+    //                                                   full readouts[] set)
+    // A state that fits at step 0 is byte-identical to before, so no existing baseline
+    // moves except the ones that were actually overlapping. Reads no clock, writes no
+    // physics (Rule 36): it is layout only, recomputed identically on every entry.
+    var NLB_RO_STEPS = [
+        { font: "13px/1.7 monospace", pad: "11px 15px", flex: false },
+        { font: "12px/1.35 monospace", pad: "8px 12px", flex: false },
+        { font: "12px/1.35 monospace", pad: "8px 12px", flex: true }
+    ];
+    function nlbFitReadoutPanel() {
+        var el = document.getElementById("nlb_readout");
+        if (!el || el.style.display === "none") return;
+        // The floor the HUD may not cross: the slider panel's top edge when it is
+        // showing, else the bottom of the viewport.
+        var sp = document.getElementById("nlb_sliders");
+        var limit = window.innerHeight - 12;
+        if (sp && sp.style.display !== "none") {
+            var sr = sp.getBoundingClientRect();
+            if (sr.height > 0) limit = sr.top - NLB_RO_CLEAR_PX;
+        }
+        for (var i = 0; i < NLB_RO_STEPS.length; i++) {
+            var st = NLB_RO_STEPS[i];
+            el.style.font = st.font;
+            el.style.padding = st.pad;
+            el.style.display = st.flex ? "flex" : "block";
+            if (st.flex) { el.style.gap = "18px"; el.style.alignItems = "flex-start"; }
+            else { el.style.gap = ""; el.style.alignItems = ""; }
+            var grps = el.getElementsByClassName("nlb_ro_grp");
+            for (var g = 0; g < grps.length; g++) {
+                // In column mode every group starts at the top of its own column, so the
+                // stacked-group gap on its header must go.
+                var hd = grps[g].firstChild;
+                if (hd && hd.style) hd.style.marginTop = (st.flex || g === 0) ? "0" : "7px";
+            }
+            if (el.getBoundingClientRect().bottom <= limit) return;
+        }
     }
     // Per-frame value write (SEAM B). labelOverride lets the friction row switch
     // between the static and kinetic glyphs (fₛ / fₖ) without rebuilding the row.
@@ -38743,6 +40077,171 @@ export const FIELD_3D_RENDERER_CODE = `
         if (labelOverride) {
             var l = document.getElementById(nlbReadoutRowId(bodyId, key) + "_lbl");
             if (l) l.textContent = labelOverride;
+        }
+    }
+    // Live mass text on BOTH surfaces — the HUD header span and the floating
+    // billboard above the block — driven from the ENGINE record, so a mass-slider
+    // drag (which writes eng.bodies[id].m, never the authored JSON) moves both at
+    // once. Churn-guarded in nlbSetBodyLabelText, so this costs a string compare
+    // per body per frame. It reads NO clock, integrates nothing and hardcodes no
+    // frame delta (Rule 36) — under a SET_TIME_FREEZE pin it rewrites the identical
+    // string and the guard makes even the redraw a no-op, so a mass label cannot
+    // move a frozen pixel.
+    function nlbUpdateMassText(nlb) {
+        var eng = window.PM_nlbEngine;
+        var bodies = (nlb && nlb.bodies) || [];
+        for (var i = 0; i < bodies.length; i++) {
+            var bd = bodies[i];
+            if (!bd || !bd.id || bd.ghost) continue;
+            var eb = (eng && eng.bodies) ? eng.bodies[bd.id] : null;
+            if (eb ? eb.fixed : bd.fixed) continue;    // the wall states "m ≫ ..." once, on entry
+            var m = eb ? eb.m : bd.mass_kg;
+            nlbSetReadout(bd.id, "mass", nlbFxMass(m));
+            nlbSetBodyLabelText(nlbFindById("nlb_body_" + bd.id + "_label"),
+                                nlbBodyLabelText(bd, bodies));
+        }
+        nlbDodgeBodyLabels(nlb);
+    }
+    // Rule 34d, the occlusion half: the slider panel is a FIXED DOM overlay on the
+    // right edge, and a hanging body's landing zone is directly under it — so the
+    // falling body's number went behind the panel and became unreadable exactly while
+    // it was the thing to read (connected_bodies STATE_3/4/7). No 3D object can draw
+    // over a DOM overlay, so the only fix is to move the LABEL out from under it.
+    //   The dodge is a pure function of the CURRENT pose and the CURRENT panel rects:
+    //   reset every body label to its build-time home pose, stack any pair that now
+    //   overlaps (see nlbStackBodyLabels), project the label's real INK rect to screen
+    //   px, and if it lands in a panel, slide it along world x until it clears that
+    //   panel's edge, capped at NLB_LABEL_DODGE_MAX.
+    //   No clock, no accumulation, no integration (Rule 36): under a frozen pin the pose
+    //   and the rects are constant, so the same offset is recomputed every frame and the
+    //   frame is byte-stable. Nothing here writes physics.
+    function nlbPanelRects() {
+        var out = [], ids = ["nlb_readout", "nlb_sliders", "nlb_formula", "nlb_slowmo"];
+        for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(ids[i]);
+            if (!el || el.style.display === "none") continue;
+            var r = el.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) out.push(r);
+        }
+        return out;
+    }
+    function nlbProjPx(v) {
+        var p = v.clone().project(camera);
+        return { x: (p.x + 1) / 2 * window.innerWidth, y: (1 - p.y) / 2 * window.innerHeight };
+    }
+    function nlbSpriteRectPx(sprite, worldCentre, right, up) {
+        var hw = sprite.scale.x * ((sprite._pmInkFrac != null) ? sprite._pmInkFrac : 1) / 2;
+        var hh = sprite.scale.y / 2;
+        var xs = [], ys = [];
+        for (var sx = -1; sx <= 1; sx += 2) {
+            for (var sy = -1; sy <= 1; sy += 2) {
+                var q = nlbProjPx(worldCentre.clone().addScaledVector(right, sx * hw).addScaledVector(up, sy * hh));
+                xs.push(q.x); ys.push(q.y);
+            }
+        }
+        return { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
+                 y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+    }
+    // Rule 34d, the cross-body half. Each billboard is centred over its OWN block
+    // and must stay there (a label that drifts off its block stops naming it), so
+    // sideways is not available: at CLOSEST approach — the compressed/hold beat of
+    // a push-off, the two carts touching — the centres are one block apart (0.55
+    // world units) while each label now measures ~1.0 of ink, and the two strings
+    // overlap outright. The later body's label is therefore LIFTED until the pair
+    // clears vertically, by the amount the MEASURED ink rects actually need.
+    //   It engages only where the ink genuinely overlaps: a single-body state, two
+    //   carts standing apart, and the wall's high billboard all leave every label at
+    //   its home pose, pixel-identical to before.
+    //   The lift EASES OUT over NLB_LABEL_EASE of extra x-separation instead of
+    //   switching off the instant the rects part — a hard threshold would make the
+    //   label JUMP 40-odd px the frame two separating carts clear each other, which
+    //   is a motion the student would read as physics (Rule 32b: only the taught
+    //   variable moves). The ease band lies entirely INSIDE the already-clear zone,
+    //   so easing never re-introduces a collision. One pass, targets computed from
+    //   the pose alone: deterministic, clock-free, byte-stable under a frozen pin.
+    function nlbStackBodyLabels(nlb) {
+        var bodies = (nlb && nlb.bodies) || [];
+        var placed = [];
+        for (var i = 0; i < bodies.length; i++) {
+            var bd = bodies[i];
+            if (!bd || !bd.id) continue;
+            var mesh = nlbFindById("nlb_body_" + bd.id);
+            var lbl = nlbFindById("nlb_body_" + bd.id + "_label");
+            if (!mesh || !lbl || !mesh.visible || !lbl.visible) continue;
+            mesh.updateWorldMatrix(true, false);
+            var p = mesh.localToWorld(lbl.position.clone());
+            var hw = nlbInkHalfW(lbl), hh = nlbInkHalfH(lbl);
+            var wantY = p.y;
+            for (var q = 0; q < placed.length; q++) {
+                var o = placed[q];
+                // How far this label's ink is from clearing the placed one in x.
+                // Negative = the two strings genuinely overlap.
+                var xGap = Math.abs(p.x - o.x) - (hw + o.hw + NLB_BODY_LABEL_GAP);
+                if (xGap >= NLB_LABEL_EASE) continue;
+                var k = (xGap <= 0) ? 1 : (1 - xGap / NLB_LABEL_EASE);
+                var tgt = o.y + (hh + o.hh + NLB_BODY_LABEL_GAP) * k;
+                if (tgt > wantY) wantY = tgt;
+            }
+            if (wantY > p.y) {
+                p.y = wantY;
+                lbl.position.copy(mesh.worldToLocal(p.clone()));
+            }
+            placed.push({ x: p.x, y: p.y, hw: hw, hh: hh });
+        }
+    }
+    function nlbDodgeBodyLabels(nlb) {
+        if (typeof camera === "undefined" || !camera) return;
+        var bodies = (nlb && nlb.bodies) || [];
+        if (!bodies.length) return;
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var xUnit = new THREE.Vector3(1, 0, 0);
+        // 1. Home pose FIRST, for every body: each pass starts from the build
+        //    placement so no offset can ever accumulate across frames.
+        for (var h = 0; h < bodies.length; h++) {
+            if (!bodies[h] || !bodies[h].id) continue;
+            var hl = nlbFindById("nlb_body_" + bodies[h].id + "_label");
+            if (hl && hl._nlbHome) hl.position.copy(hl._nlbHome);
+        }
+        // 2. Then the cross-body stack, so the panel dodge below measures the pose
+        //    the label will actually be drawn at.
+        nlbStackBodyLabels(nlb);
+        // 3. Then the DOM-panel occlusion dodge.
+        var rects = nlbPanelRects();
+        if (!rects.length) return;
+        for (var i = 0; i < bodies.length; i++) {
+            var bd = bodies[i];
+            if (!bd || !bd.id) continue;
+            var mesh = nlbFindById("nlb_body_" + bd.id);
+            if (!mesh) continue;
+            var num = nlbFindById("nlb_body_" + bd.id + "_label");
+            if (!mesh.visible || !num || !num.visible || !num._nlbHome) continue;
+            // Matrices are refreshed here rather than trusted: this runs BEFORE the
+            // renderer's own update, and a one-frame-stale matrix would make the dodge
+            // lag the body (and wobble the first frozen frame).
+            mesh.updateWorldMatrix(true, false);
+            var base = mesh.localToWorld(num.position.clone());
+            var p0 = nlbProjPx(base);
+            var pX = nlbProjPx(base.clone().add(xUnit));
+            var pxPerX = pX.x - p0.x;
+            if (!(Math.abs(pxPerX) > 1e-3)) continue;
+            var box = nlbSpriteRectPx(num, base, right, up);
+            var shiftPx = 0;
+            for (var r = 0; r < rects.length; r++) {
+                var rc = rects[r];
+                if (!(box.x0 < rc.right && rc.left < box.x1 && box.y0 < rc.bottom && rc.top < box.y1)) continue;
+                // Slide AWAY from the panel: out to its near edge, whichever side the
+                // label sits on.
+                var want = ((rc.left + rc.right) / 2 > (box.x0 + box.x1) / 2)
+                    ? (rc.left - NLB_LABEL_DODGE_PAD_PX) - box.x1
+                    : (rc.right + NLB_LABEL_DODGE_PAD_PX) - box.x0;
+                if (Math.abs(want) > Math.abs(shiftPx)) shiftPx = want;
+            }
+            if (shiftPx === 0) continue;
+            var dx = shiftPx / pxPerX;
+            if (dx > NLB_LABEL_DODGE_MAX) dx = NLB_LABEL_DODGE_MAX;
+            if (dx < -NLB_LABEL_DODGE_MAX) dx = -NLB_LABEL_DODGE_MAX;
+            num.position.copy(mesh.worldToLocal(base.clone().addScaledVector(xUnit, dx)));
         }
     }
 
@@ -38838,20 +40337,42 @@ export const FIELD_3D_RENDERER_CODE = `
     // an already-placed one further out along its OWN arrow direction, so it still
     // unambiguously reads as that arrow's label. Deterministic — same magnitudes
     // in, same pixels out — so SET_TIME_FREEZE frames stay byte-stable.
+    //   The body's own floating billboard is SEEDED as the first obstacle. It is not
+    //   a label this pass may move (it names its block by sitting over it), but it is
+    //   the one whose WIDTH changed when the mass moved onto it — ~0.25 world units
+    //   of ink before, ~1.0 now — and a scalar centre-distance test cannot see that:
+    //   an arrow label 0.4 away passes the test and still lands in the middle of the
+    //   string. So the billboard enters with its MEASURED ink rect, and the arrow
+    //   labels move around it. The scalar test is kept bit-for-bit for every
+    //   label-vs-label pair (the exhaustive theta x sign x mass sweep behind
+    //   NLB_LABEL_MIN_SEP was run against it), so this can only ADD a push — no
+    //   existing arrow label moves except where it genuinely overlaps the billboard.
     function nlbDeCollideLabels(bodyId) {
         var placed = [];
+        var bmesh = nlbFindById("nlb_body_" + bodyId);
+        var blbl = nlbFindById("nlb_body_" + bodyId + "_label");
+        if (bmesh && blbl && bmesh.visible && blbl.visible) {
+            bmesh.updateWorldMatrix(true, false);
+            placed.push({ p: bmesh.localToWorld(blbl.position.clone()),
+                          hw: nlbInkHalfW(blbl), hh: nlbInkHalfH(blbl), rect: true });
+        }
         for (var i = 0; i < NLB_LABEL_ORDER.length; i++) {
             var lb = nlbLabelObj(bodyId, NLB_LABEL_ORDER[i]);
             if (!lb || !lb.visible) continue;
+            var lhw = nlbInkHalfW(lb), lhh = nlbInkHalfH(lb);
             for (var tries = 0; tries < 6; tries++) {
                 var bad = false;
                 for (var p = 0; p < placed.length; p++) {
-                    if (lb.position.distanceTo(placed[p]) < NLB_LABEL_MIN_SEP) { bad = true; break; }
+                    var o = placed[p];
+                    if (lb.position.distanceTo(o.p) < NLB_LABEL_MIN_SEP) { bad = true; break; }
+                    if (o.rect &&
+                        Math.abs(lb.position.x - o.p.x) < (lhw + o.hw + NLB_BODY_LABEL_GAP) &&
+                        Math.abs(lb.position.y - o.p.y) < (lhh + o.hh + NLB_BODY_LABEL_GAP)) { bad = true; break; }
                 }
                 if (!bad || !lb._nlbDir) break;
                 lb.position.addScaledVector(lb._nlbDir, NLB_LABEL_PUSH);
             }
-            placed.push(lb.position.clone());
+            placed.push({ p: lb.position.clone(), hw: lhw, hh: lhh, rect: false });
         }
     }
     // Redraw a label sprite ONLY when its text actually changed — pmCreateAutoLabel
@@ -39290,6 +40811,245 @@ export const FIELD_3D_RENDERER_CODE = `
         });
     }
 
+    // ── SEAM B (push-off) — the SPRING between two facing bodies ───────────
+    //   The helix, built at its TRUE drawn height so the wire keeps its own
+    //   thickness at every compression (see NLB_SPRING_LEN_Q). Local axis is +y
+    //   and the curve is centred on the origin, matching the rope segments, so
+    //   the same "map +y onto the direction" quaternion places it.
+    function nlbSpringGeometry(turns, h) {
+        var segs = Math.max(24, turns * 16);
+        var pts = [];
+        for (var i = 0; i <= segs; i++) {
+            var u = i / segs;
+            var a = u * turns * Math.PI * 2;
+            pts.push(new THREE.Vector3(NLB_SPRING_R * Math.cos(a), (u - 0.5) * h, NLB_SPRING_R * Math.sin(a)));
+        }
+        return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), segs, NLB_SPRING_WIRE_R, 7, false);
+    }
+    // This state's spring block, or null. A malformed "between" is treated as no
+    // spring rather than half-drawn against one body.
+    function nlbSpringCfg() {
+        var sp = nlbStateCfg().spring;
+        if (!sp || !sp.between || sp.between.length < 2 || !sp.between[0] || !sp.between[1]) return null;
+        return sp;
+    }
+    // Compressed or free RIGHT NOW. Engine-driven from the push_off contact phase
+    // whenever the state has one — with EXACTLY the carve-out nlbRunPushOff itself
+    // makes (inert in a sandbox state, where the teacher's F slider owns the force
+    // and the authored render flag stands, Rule 37). eng.push_off_contact is a
+    // DERIVED READ: the force is written in one place only, by nlbRunPushOff.
+    function nlbSpringCompressedNow(sp) {
+        var eng = window.PM_nlbEngine;
+        if (eng && eng.push_off && eng.mode !== "sandbox") return !!eng.push_off_contact;
+        return !!sp.compressed;
+    }
+    // Half-extent of a body along its own axis: a "fixed" body is a wall SLAB, so
+    // its facing face is at half the slab thickness, not half a cart.
+    function nlbSpringHalfExtent(bodyId) {
+        var m = nlbFindById("nlb_body_" + bodyId);
+        if (!m) return NLB_BODY_SIZE / 2;
+        return m.userData.fixed ? NLB_WALL_T / 2 : NLB_BODY_SIZE / 2;
+    }
+    // WHICH end of this spring is BOLTED DOWN, or "" for a free-free pair.
+    //   A wall-anchored spring has exactly ONE fixed end: it is screwed to the wall
+    // and only its free end travels. Mounting it at the MIDPOINT instead — correct
+    // and symmetric for two free carts — makes BOTH ends translate as the free body
+    // moves, i.e. the whole coil slides bodily off the wall it is supposed to be
+    // attached to (founder finding, newton_third_law STATE_3). So the moment either
+    // body is "fixed", that body owns the mount for every phase.
+    //   Build-time fact (userData.fixed is read from the body's first appearance and
+    // an id must not flip it between states), so this cannot change mid-state. A
+    // free-free pair returns "" and takes the byte-identical pre-2026-07-30 path;
+    // both fixed is degenerate apparatus (nothing moves) and pins on the first.
+    function nlbSpringAnchorId(idA, idB) {
+        var mA = nlbFindById("nlb_body_" + idA);
+        if (mA && mA.userData && mA.userData.fixed) return idA;
+        var mB = nlbFindById("nlb_body_" + idB);
+        if (mB && mB.userData && mB.userData.fixed) return idB;
+        return "";
+    }
+    // Place the coil between the two bodies' facing faces. Called ONLY from
+    // nlbSetBodyPosition (plus state entry / RESET_TRAJECTORY, for the same
+    // "first frame already correct" reason the ropes are fitted there). Pure
+    // presentation of already-placed meshes: reads no time, takes no dt,
+    // integrates nothing (Rule 36), and cannot stall a sandbox state (Rule 37) —
+    // there it simply follows the teacher's carts at the authored render state.
+    function nlbFitSpring() {
+        var obj = nlbFindById("nlb_spring");
+        if (!obj) return;                                  // build has not reached it yet
+        var sp = nlbSpringCfg();
+        if (!sp) { obj.visible = false; nlbPublishSpring(false, 0, 0); return; }
+        var idA = sp.between[0], idB = sp.between[1];
+        var mA = nlbFindById("nlb_body_" + idA), mB = nlbFindById("nlb_body_" + idB);
+        if (!mA || !mB || !mA.visible || !mB.visible) { obj.visible = false; nlbPublishSpring(false, 0, 0); return; }
+        var pA = nlbBodyWorldPos(idA), pB = nlbBodyWorldPos(idB);
+        var dx = pB.x - pA.x, dy = pB.y - pA.y, dz = pB.z - pA.z;
+        var sep = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(sep > 1e-6)) { obj.visible = false; nlbPublishSpring(false, 0, 0); return; }
+        // The face-to-face GAP along the line joining the two centres. Taken from
+        // the world positions, so the incline rotation and any lane offset are
+        // already in it and there is no theta test here.
+        var hA = nlbSpringHalfExtent(idA), hB = nlbSpringHalfExtent(idB);
+        var gap = sep - hA - hB;
+        // ── The CHOREOGRAPHY read (spring_action, 2026-07-30) ───────────────
+        //   ph is "" in every state that does not have a LIVE spring_action
+        //   choreography — no block authored, a sandbox state, or a teacher who
+        //   has seized (nlbRunPushOff publishes "" in all three) — and every
+        //   branch below then takes the byte-identical pre-2026-07-30 path.
+        //   A live choreography changes exactly two things here:
+        //     • the drawn length is capped at NATURAL instead of at the compressed
+        //       target, so THE GAP does the compressing (the carts are scripted
+        //       together through approach/compress and integrate apart through the
+        //       slowed release) — the coil therefore compresses AND extends with
+        //       the carts instead of holding one fixed length while they move;
+        //     • two phases legitimately draw a coil LONGER than natural minus the
+        //       carts: approach (mounted on one cart, not yet touching the other)
+        //       and the post-release ring. Both bypass the hide rule; nothing else
+        //       does.
+        var phc = "", ringOn = false, ringLen = 0;
+        var engS = window.PM_nlbEngine;
+        if (engS && engS.spring_phase) {
+            phc = engS.spring_phase;
+            if (phc === "coast" && engS.spring_ring) {
+                var tr = engS.spring_phase_ms || 0;
+                if (tr >= 0 && tr < NLB_SPRING_RING_MS) {
+                    ringOn = true;
+                    // A real spring twangs before it stops. Closed form of the
+                    // PUBLISHED phase ms (no clock, no accumulator, nothing to
+                    // rewind): under a freeze pin spring_phase_ms is frozen, so the
+                    // ring pose is re-derived bit for bit (Rule 36).
+                    ringLen = NLB_SPRING_NATURAL_W + NLB_SPRING_RING_AMP_W
+                        * Math.exp(-tr / NLB_SPRING_RING_TAU_MS)
+                        * Math.sin(2 * Math.PI * (tr / NLB_SPRING_RING_PERIOD_MS));
+                }
+            }
+        }
+        // Past its natural length the spring is no longer touching either body: it
+        // has LET GO, which is the same instant push_off zeroes both forces. It
+        // hides rather than stretching — a spring that kept spanning the widening
+        // gap would draw a pull that the physics does not apply. The two
+        // choreography phases named above are the only exemptions.
+        if (!(phc === "approach" || ringOn) && gap > NLB_SPRING_NATURAL_W + NLB_SPRING_HIDE_EPS) {
+            obj.visible = false; nlbPublishSpring(false, 0, gap); return;
+        }
+        var target;
+        if (phc) {
+            // approach: min() below leaves NATURAL (the gap is wider).
+            // compress / hold / release: the gap is the compression, so the coil
+            //   tightens to 0.45x natural as the carts close and springs back OUT
+            //   with them through the slowed release, hiding at natural.
+            // coast: the ring, or the plain cap (a short authored release can leave
+            //   the coil still inside the gap here).
+            target = ringOn ? ringLen : NLB_SPRING_NATURAL_W;
+        } else {
+            target = nlbSpringCompressedNow(sp)
+                ? NLB_SPRING_NATURAL_W * NLB_SPRING_COMPRESS_FRAC
+                : NLB_SPRING_NATURAL_W;
+        }
+        var drawn = (gap < target) ? gap : target;         // never longer than the gap it sits in
+        if (!(drawn > NLB_ROPE_MIN_LEN)) { obj.visible = false; nlbPublishSpring(false, 0, gap); return; }
+        // Quantised rebuild (see NLB_SPRING_LEN_Q): a pure function of position, so
+        // a frozen pin re-derives the same quantum and writes nothing at all.
+        var turns = (typeof sp.coils === "number" && isFinite(sp.coils) && sp.coils >= 2)
+            ? Math.round(sp.coils) : NLB_SPRING_COILS;
+        var q = Math.round(drawn / NLB_SPRING_LEN_Q) * NLB_SPRING_LEN_Q;
+        if (q < NLB_SPRING_LEN_Q) q = NLB_SPRING_LEN_Q;
+        if (obj.userData.coils !== turns || obj.userData.q_len !== q) {
+            if (obj.geometry) obj.geometry.dispose();
+            obj.geometry = nlbSpringGeometry(turns, q);
+            obj.userData.coils = turns;
+            obj.userData.q_len = q;
+        }
+        // Where the coil sits inside the gap. DEFAULT (and the only behaviour any
+        // pre-2026-07-30 state can reach): centred between the two body centres.
+        // Two choreography phases draw a coil SHORTER than the gap on purpose, and
+        // a coil floating with air on BOTH sides would read as a prop rather than a
+        // spring — so in both it is MOUNTED on between[0]'s facing face and all of
+        // the air is on the other body's side:
+        //   • approach — exactly the picture "the other cart is coming to meet the
+        //     spring". At the end of approach drawn === gap and this expression IS
+        //     the midpoint, so the handover into compress is continuous.
+        //   • the ring — a real spring stays bolted to what it was mounted on and
+        //     twangs there while the other cart flies off; it does not hover in the
+        //     middle of a widening gap. At the ring's first instant drawn === gap
+        //     too, so this handover is continuous as well.
+        // Clamped to the gap above (drawn <= gap always), so the coil can never
+        // overlap either body in any phase.
+        //   A WALL-ANCHORED spring (2026-07-30) is the third case and it OVERRIDES
+        // both of the above — see nlbSpringAnchorId: a spring bolted to an
+        // immovable body has exactly ONE fixed end, so it is mounted on that face
+        // in EVERY phase, not just the two that draw short.
+        var cx = (pA.x + pB.x) / 2, cy = (pA.y + pB.y) / 2, cz = (pA.z + pB.z) / 2;
+        var anch = nlbSpringAnchorId(idA, idB);
+        if (anch) {
+            // Pinned end ON the anchor's facing face; the free end takes ALL of the
+            // length change. pA/hA (or pB/hB) are constants for a fixed body — its
+            // s is pinned by the integrator and its half-extent is apparatus — so
+            // the pinned end's world position is literally invariant for the life
+            // of the state, in every phase, at every quantum, under any pin.
+            //   The offset uses the MESH's quantised half-height q/2, not drawn/2,
+            // so the pinned end lands on the face EXACTLY as drawn on screen: the
+            // whole (up to 0.01 world) quantisation residual is pushed onto the
+            // free end, inside the free body, where nothing can see it. Under the
+            // midpoint mount that residual was split across both seams, which put a
+            // visible fraction of it on the wall seam.
+            var au = new THREE.Vector3(dx / sep, dy / sep, dz / sep);
+            var aOff = (anch === idA ? hA : hB) + q / 2;
+            if (anch === idA) {
+                cx = pA.x + au.x * aOff; cy = pA.y + au.y * aOff; cz = pA.z + au.z * aOff;
+            } else {
+                cx = pB.x - au.x * aOff; cy = pB.y - au.y * aOff; cz = pB.z - au.z * aOff;
+            }
+        } else if ((phc === "approach" || ringOn) && drawn < gap - 1e-6) {
+            var ux = dx / sep, uy = dy / sep, uz = dz / sep;
+            var off = hA + drawn / 2;
+            cx = pA.x + ux * off; cy = pA.y + uy * off; cz = pA.z + uz * off;
+        }
+        obj.position.set(cx, cy, cz);
+        obj.quaternion.setFromUnitVectors(NLB_Y_AXIS, new THREE.Vector3(dx / sep, dy / sep, dz / sep));
+        obj.visible = true;
+        nlbPublishSpring(true, drawn, gap, obj.userData.q_len);
+        // MOUNT diagnostics — where the coil's two ends actually landed against the
+        // two faces they are supposed to sit between. Published because "the
+        // anchored end never moves" is the whole content of the wall-spring fix and
+        // an inferred endpoint would be the probe re-implementing the mount.
+        nlbPublishSpringMount(anch, cx, cy, cz, dx / sep, dy / sep, dz / sep,
+            obj.userData.q_len, pA, pB, hA, hB);
+    }
+    // Published DERIVED reads (the PM_nlb* mirror convention): the coil's live
+    // drawn length and the face-to-face gap it sits in, both in WORLD units, plus
+    // whether it is on screen at all. Diagnostics + probe surface only — nothing in
+    // the engine reads them back, so they can never become a second source of
+    // truth, and they touch no pixels.
+    function nlbPublishSpring(vis, drawn, gap, qLen) {
+        window.PM_nlbSpringVisible = !!vis;
+        window.PM_nlbSpringLen = drawn;
+        window.PM_nlbSpringGap = gap;
+        // The MESH's own built height (the quantised length its TubeGeometry was
+        // rebuilt at) — the on-screen truth, not the pre-quantisation intent.
+        window.PM_nlbSpringMeshLen = qLen || 0;
+        if (!vis) nlbPublishSpringMount("", 0, 0, 0, 1, 0, 0, 0, null, null, 0, 0);
+    }
+    // The coil's two ENDS and the two FACES they sit against, in WORLD units,
+    // plus which body (if any) the coil is bolted to. All derived reads on the
+    // pose just written — diagnostics + probe surface only, nothing in the engine
+    // reads them back and they touch no pixels. end0/face0 are the between[0]
+    // side, end1/face1 the between[1] side; the ends are taken from the mesh's
+    // QUANTISED height, so they are where the wire really is on screen.
+    function nlbPublishSpringMount(anchorId, cx, cy, cz, ux, uy, uz, qLen, pA, pB, hA, hB) {
+        window.PM_nlbSpringAnchor = anchorId || "";
+        if (!pA || !pB) {
+            window.PM_nlbSpringEnd0 = null; window.PM_nlbSpringEnd1 = null;
+            window.PM_nlbSpringFace0 = null; window.PM_nlbSpringFace1 = null;
+            return;
+        }
+        var half = (qLen || 0) / 2;
+        window.PM_nlbSpringEnd0 = { x: cx - ux * half, y: cy - uy * half, z: cz - uz * half };
+        window.PM_nlbSpringEnd1 = { x: cx + ux * half, y: cy + uy * half, z: cz + uz * half };
+        window.PM_nlbSpringFace0 = { x: pA.x + ux * hA, y: pA.y + uy * hA, z: pA.z + uz * hA };
+        window.PM_nlbSpringFace1 = { x: pB.x - ux * hB, y: pB.y - uy * hB, z: pB.z - uz * hB };
+    }
+
     function buildNewtonsLawsBody() {
         nlbIndex = [];
         var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
@@ -39421,7 +41181,25 @@ export const FIELD_3D_RENDERER_CODE = `
             world.add(rope); nlbRegister(rope);
         }
 
-        // 2d. SEAM H — one live tension sprite per rope SEGMENT ("T₁ = 4.00 N").
+        // 2d. SEAM B (push-off) — the spring. ONE mesh, in the UN-rotated world
+        //     group like the ropes, so nlbFitSpring places it from WORLD endpoints
+        //     with no theta branch. Hidden by default: nlbFitSpring shows it only
+        //     in a state that declares a spring block, and its own material (never
+        //     shared) so applyGlowEmphasis can cache a baseline on it.
+        var spring = new THREE.Mesh(
+            nlbSpringGeometry(NLB_SPRING_COILS, NLB_SPRING_NATURAL_W),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(NLB_SPRING_COLOR), emissive: hexToThreeColor(NLB_SPRING_COLOR),
+                emissiveIntensity: 0.20, shininess: 65, transparent: true, opacity: 1.0
+            }));
+        spring.userData = {
+            elementType: "nlb_spring", id: "nlb_spring",
+            coils: NLB_SPRING_COILS, q_len: NLB_SPRING_NATURAL_W
+        };
+        spring.visible = false;
+        world.add(spring); nlbRegister(spring);
+
+        // 2e. SEAM H — one live tension sprite per rope SEGMENT ("T₁ = 4.00 N").
         //     Siblings of the ropes in the un-rotated world group, NOT children of
         //     them: nlbFitSegment scales a rope to (1, len, 1), and a child label
         //     would inherit that stretch and render as smeared text at every length.
@@ -39448,10 +41226,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 color: hexToThreeColor(col), emissive: hexToThreeColor(col),
                 emissiveIntensity: 0.18, shininess: 60, transparent: true, opacity: 1.0
             });
-            var mesh = new THREE.Mesh(new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE), mat);
+            // A "fixed" body is the wall / the Earth, so it is built as a SLAB
+            // rather than a cart. Read from the union def's FIRST appearance, the
+            // same build-time contract "hanging" already has: an id must not flip
+            // "fixed" between states. The geometry is pushed UP by half the extra
+            // height so the slab's base lands where the cube's base does — the
+            // placement funnel, the arrow origins and the pick proxy all stay
+            // byte-identical for every existing (non-fixed) concept.
+            var bodyGeo;
+            if (d.fixed) {
+                bodyGeo = new THREE.BoxGeometry(NLB_WALL_T, NLB_WALL_H, NLB_WALL_D);
+                bodyGeo.translate(0, (NLB_WALL_H - NLB_BODY_SIZE) / 2, 0);
+            } else {
+                bodyGeo = new THREE.BoxGeometry(NLB_BODY_SIZE, NLB_BODY_SIZE, NLB_BODY_SIZE);
+            }
+            var mesh = new THREE.Mesh(bodyGeo, mat);
             mesh.userData = {
                 elementType: "nlb_body", id: "nlb_body_" + d.id, bodyId: d.id,
-                hanging: !!d.hanging, ghost: !!d.ghost, baseColor: col
+                hanging: !!d.hanging, ghost: !!d.ghost, fixed: !!d.fixed, baseColor: col
             };
             if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
             nlbRegister(mesh);
@@ -39543,13 +41335,32 @@ export const FIELD_3D_RENDERER_CODE = `
             if (d.hanging) { world.add(hitP); } else { surf.add(hitP); }
             nlbRegister(hitP);
 
-            // Unicode label from the body def label (e.g. m₁). pmCreateAutoLabel re-measures
-            // on every redraw, so a longer label ("m₁ = 2 kg") can never clip.
-            var lbl = pmCreateAutoLabel(d.label || d.id, col, 0.4);
-            lbl.position.set(0, NLB_BODY_SIZE * 0.95, 0);
+            // The ONE floating billboard for this body: its identifier AND its mass
+            // (e.g. "m₁ = 4 kg"), composed by nlbBodyLabelText and rewritten on every
+            // state entry + live on a mass-slider drag. pmCreateAutoLabel re-measures
+            // on every redraw, so the longer string can never clip.
+            // nlbMassSymbol is the Rule-34c guard on the SPRITE text path: an authored
+            // ASCII "m1" renders as m₁ here exactly as it does in the HUD header and on
+            // the slider row — one normalizer, all three surfaces. It is applied to the
+            // authored LABEL only, never to the id FALLBACK: an unlabelled body (a ghost)
+            // must keep rendering exactly the pixels it rendered before.
+            var lbl = pmCreateAutoLabel(nlbBodyLabelText(d, defs), col, 0.4);
+            lbl._nlbLblTxt = lbl._pmText;          // seeds nlbSetBodyLabelText's churn guard
+            // Clear the TOP of whichever solid this body is — the wall slab is
+            // ~3x a cart's height, so the cart offset would bury its label inside it.
+            lbl.position.set(0, d.fixed ? (NLB_WALL_H - NLB_BODY_SIZE / 2 + 0.18) : (NLB_BODY_SIZE * 0.95), 0);
             lbl.userData = { elementType: "nlb_body_label", id: "nlb_body_" + d.id + "_label", bodyId: d.id, ghost: !!d.ghost };
+            lbl._nlbHome = lbl.position.clone();   // the pose nlbDodgeBodyLabels resets to
             mesh.add(lbl);
             nlbRegister(lbl);
+
+            // NO second sprite on the block's FRONT FACE. The mass was painted there
+            // first (f234aea) and the founder read the result as "m₁ and m₂ is not
+            // showing": on a 0.55-unit cube it is ~30 screen px of ink, low-contrast
+            // against a saturated red/blue face, and SHEARED by perspective — and it
+            // shrinks with the object, so no font size could rescue it. A camera-facing
+            // billboard has none of those failure modes, so the value lives there and
+            // there only (one surface per fact — Rule 34b's discipline).
 
             nlbSetBodyPosition(d.id, d.initial_position_m || 0);
 
@@ -39565,6 +41376,17 @@ export const FIELD_3D_RENDERER_CODE = `
         ro.id = "nlb_readout";
         ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
         document.body.appendChild(ro);
+
+        // 4b. The spring_action slow-motion honesty badge (Rule 24/34 — see
+        //     nlbUpdateSlowBadge). TOP-LEFT, the one free corner; top:52px clears
+        //     the review-chrome "Full screen" button like the HUD. Hidden by
+        //     default and only ever shown while the release window plays slowed.
+        //     Rule 39g: an inline position:fixed panel, so clean mode and the ⚙
+        //     widget toggle pick it up with no per-scenario code.
+        var sm = document.createElement("div");
+        sm.id = "nlb_slowmo";
+        sm.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.72);color:#FFD54F;padding:6px 11px;border-radius:6px;font:600 13px/1.3 'Cambria Math','Times New Roman',serif;letter-spacing:0.02em;z-index:10;display:none;pointer-events:none;";
+        document.body.appendChild(sm);
 
         // 5. The SINGLE formula surface (Rule 34b) — math-serif Unicode, its own
         //    zone, never duplicated by the generic #formula_overlay (which the
@@ -39637,11 +41459,16 @@ export const FIELD_3D_RENDERER_CODE = `
             // component/right-angle overlays keep the real dim channel, so Rule 32e
             // (exactly one focal) is unchanged — only the peers that were never
             // meant to be see-through stop being see-through.
+            // The spring joins this list for exactly the founder's reason: it is a
+            // physical OBJECT, and the interaction the whole third-law beat is
+            // about. A 40%-opacity coil would read as the least solid thing on a
+            // screen whose entire point is that this object is doing the pushing.
             var solidApparatus = (ud.elementType === "nlb_body" ||
                                   ud.elementType === "nlb_body_label" ||
                                   ud.elementType === "nlb_surface" ||
                                   ud.elementType === "nlb_pulley" ||
-                                  ud.elementType === "nlb_rope");
+                                  ud.elementType === "nlb_rope" ||
+                                  ud.elementType === "nlb_spring");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
         });
     }
@@ -39674,8 +41501,8 @@ export const FIELD_3D_RENDERER_CODE = `
     // missing from most monospace faces (the merged-blob / tofu subscript scar).
     var NLB_SLIDER_TOKENS = ["m", "m2", "F", "theta", "mu_s", "mu_k", "v0"];
     var NLB_SLIDER_SPEC = {
-        m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 2 },
-        m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, min: 0.5, max: 10, step: 0.5, def: 4 },
+        m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 2 },
+        m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 4 },
         F:     { param: "applied_force",    slider: "nlb_f_slider",     row: "nlb_f_row",     val: "nlb_f_val",     lbl: "nlb_f_lbl",     glyph: "F",  unit: " N",   dp: 1, min: -20, max: 20, step: 0.5, def: 0 },
         theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
         mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
@@ -39736,7 +41563,10 @@ export const FIELD_3D_RENDERER_CODE = `
             // visibility:hidden (NOT display:none) — the reserved slot, Rule 32d.
             html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
                 '<label><span id="' + sp.lbl + '" style="font-family:' + NLB_MATH_FONT + '">' + sc.label + '</span> = ' +
-                '<span id="' + sp.val + '">' + sc.def.toFixed(sc.dp) + '</span>' + sp.unit + '</label>' +
+                // A MASS reads bare-integer everywhere (nlbFxMass); every other token
+                // formats at the PER-CONCEPT dp resolved by nlbSc, never the spec
+                // default — see the sc.dp note in nlbSyncSliderRow.
+                '<span id="' + sp.val + '">' + (sp.mass ? nlbFxMass(sc.def) : sc.def.toFixed(sc.dp)) + '</span>' + sp.unit + '</label>' +
                 '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
                 '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
         }
@@ -39753,13 +41583,16 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // The first / second NON-ghost body of the live state, in authored order: the
     // targets of mass_a / mass_b. A ghost is never integrated (spec section 3), so
-    // it can never be a slider target either.
+    // it can never be a slider target either. Nor can a "fixed" body: its mass is
+    // infinite by definition, so an m slider pointed at the wall would be a dead
+    // control, and an F slider pointed at the wall would push the one object that
+    // cannot move while the cart the teacher is watching stayed still.
     function nlbSliderBodies() {
         var eng = window.PM_nlbEngine, out = [null, null], n = 0;
         if (!eng) return out;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
-            if (!b || b.ghost) continue;
+            if (!b || b.ghost || b.fixed) continue;
             if (n < 2) out[n] = b.id;
             n++;
         }
@@ -39876,11 +41709,15 @@ export const FIELD_3D_RENDERER_CODE = `
         var el = document.getElementById(sp.slider);
         if (el) el.value = String(value);
         var vv = document.getElementById(sp.val);
-        // Per-concept dp, NOT the spec default. Computing the override in nlbSc()
-        // and then formatting with sp.dp here left the whole fix inert: mu_k stayed
-        // at 2 decimals and a 0.002 coefficient still rendered "0.00". Both display
-        // sites must read sc.dp or neither does anything.
-        if (vv) vv.textContent = nlbFx(value, nlbSc(token).dp);
+        // A MASS reads with the same rule everywhere on screen (bare integer, minimum
+        // readable precision otherwise) — the row would otherwise say "4.0 kg" beside a
+        // HUD and a block both saying "4 kg".
+        // Every OTHER token formats at the per-concept dp, NOT the spec default:
+        // computing the override in nlbSc() and then formatting with sp.dp here left
+        // the whole fix inert — mu_k stayed at 2 decimals and a 0.002 coefficient
+        // still rendered "0.00". Both display sites must read sc.dp or neither does
+        // anything. (A mass row is unaffected: nlbFxMass takes no dp.)
+        if (vv) vv.textContent = sp.mass ? nlbFxMass(value) : nlbFx(value, nlbSc(token).dp);
     }
     // The mass rows adopt the body's OWN authored Unicode label where there is one,
     // so the slider reads exactly like the block it drives (m₁ / m₂ by default).
@@ -39896,7 +41733,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var sp = NLB_SLIDER_SPEC[pairs[p][0]];
             var el = document.getElementById(sp.lbl);
             if (!el) continue;
-            var txt = labelFor(pairs[p][1]) || nlbSc(pairs[p][0]).label;
+            var txt = nlbMassSymbol(labelFor(pairs[p][1]) || nlbSc(pairs[p][0]).label);
             if (el.textContent !== txt) el.textContent = txt;
         }
     }
@@ -39962,7 +41799,10 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbEach(function (o, ud) {
             if (ud.elementType !== "nlb_body_hit") return;
             var bd = listed[ud.bodyId];
-            o.visible = !!(on && bd && !bd.ghost);
+            // A "fixed" body is immovable BY DEFINITION — letting a teacher drag
+            // the wall along the track would contradict the one thing the state
+            // exists to show, so it is never pickable.
+            o.visible = !!(on && bd && !bd.ghost && !bd.fixed);
         });
     }
     // Pointer plane-hit -> the body's own signed axis coordinate s, in metres.
@@ -39982,7 +41822,7 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbApplyBodyDrag(hit) {
         var eng = window.PM_nlbEngine;
         var b = (eng && window.PM_nlbDragId) ? eng.bodies[window.PM_nlbDragId] : null;
-        if (!b || b.ghost) return;
+        if (!b || b.ghost || b.fixed) return;   // belt to nlbSetDragProxies' braces
         // Clamp through nlbBoundsM — the ONE bounds source, already pulley-aware
         // (SEAM D): never re-derive the clamp band here.
         var bd = nlbBoundsM(b, eng.length_m);
@@ -40097,6 +41937,335 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbSyncSliderRow(tok, v);
     }
 
+    // ── push_off — the contact-then-release force phase ────────────────────
+    //   docs/NLB_PUSH_OFF_SPEC.md. The whole physics change is a GATE on WHICH
+    //   applied force the existing integrator sees this frame:
+    //       contact_from_ms <= t < release_at_ms  ->  A = +force_N, B = -force_N
+    //       otherwise                             ->  both 0 (the carts coast)
+    //   THE EQUALITY IS ENFORCED, NOT AUTHORED. Both bodies are written from the
+    //   ONE magnitude expression below, every frame, in one place — exactly the
+    //   discipline the action_reaction mirror already applies (and the reason
+    //   neither is ever two hand-authored numbers that can drift apart). A later
+    //   seam, a slider or a stale record cannot desynchronise the pair: the next
+    //   tick overwrites both again from the same expression.
+    //   Rule 36: this is a pure CLOSED FORM of eng.t_ms — no accumulator of its
+    //   own, nothing latched, no second clock. eng.t_ms is advanced solely by the
+    //   dt handed to updateNewtonsLawsBodyFrame, so under SET_TIME_FREEZE
+    //   (dt = 0) t_ms is unchanged and this recomputes the SAME force bit-for-bit:
+    //   the gate itself advances nothing, and a time-pin rewind reproduces the
+    //   earlier phase exactly. It is also step-fold exact (t_ms is linear in dt).
+    //   Rule 37: NEVER runs in a "mode: 'sandbox'" state. There the release gate
+    //   is INERT and the teacher's F slider owns the force (the same carve-out
+    //   param_ramp makes), so the explore state can never be frozen or stalled by
+    //   a release instant that has already passed — a sandbox authored with
+    //   action_reaction keeps its pair equal-and-opposite through the mirror above.
+    //
+    //   repeat_every_ms (2026-07-29 founder review) — THE DEMO REPEATS.
+    //   A spring push-off with classroom-visible force magnitudes is inherently
+    //   FAST (t = sqrt(2*stroke/a_rel): ~420 ms for 30 N on a 2+6 kg pair), while a
+    //   Rule-31 guided state runs 10-20 s of narration. Single-fire therefore left
+    //   ~96% of the state showing two blocks sitting apart with both arrows hidden,
+    //   both readouts 0, and no spring — and the canonical frozen reviewer frame
+    //   landed in exactly that dead zone (nlb_push_off_interaction_dies_after_
+    //   release_leaving_96pct_of_the_state_empty). An author sets repeat_every_ms
+    //   and the whole interaction RE-ARMS on that cycle, the way a teacher simply
+    //   does the demo again:
+    //       cycle = floor(t_ms / R)   phase = t_ms - cycle*R
+    //       contact  <=>  contact_from_ms <= PHASE < release_at_ms
+    //   The re-arm reuses nlbResetTrajectory() — the ONE rewind path in this engine
+    //   (s/v back to their s0/v0 seeds, the spring re-fitted from the home
+    //   positions, the one-shot latches re-armed). There is deliberately no second
+    //   rewind implementation to drift from it.
+    //   Rule 36 (freeze / rewind / step-fold), the whole argument:
+    //     • eng.t_ms is NOT rebased by the re-arm. nlbResetTrajectory zeroes it, so
+    //       the call is wrapped in a save/restore of t_ms (+ its published mirror
+    //       PM_nlbTimeMs) — the smaller and more honest diff than threading a
+    //       "keep the clock" flag through a function four other call sites share,
+    //       and it keeps the master clock MONOTONIC. A rebase here would make
+    //       phase == 0 forever and latch the state permanently in contact.
+    //     • cycle and phase are DERIVED from that monotonic clock, so under
+    //       SET_TIME_FREEZE (dt = 0) t_ms is unchanged => cycle unchanged =>
+    //       phase unchanged => NO re-arm fires and the same force is recomputed
+    //       bit-for-bit: frozen frames stay byte-identical, held for any number of
+    //       frames. A time-pin rewind reproduces the earlier phase exactly.
+    //     • the ONLY frame memo is eng._po_cycle, for edge detection. It starts
+    //       null on state entry AND after a genuine RESET_TRAJECTORY, and a null
+    //       memo ADOPTS the current cycle instead of firing — so the first frame
+    //       after a freeze-pin entry (or any re-entry) can never fire a spurious
+    //       re-arm on top of the seed applyNewtonsLawsBodyState just wrote, i.e.
+    //       no double-rewind. Nothing else is latched and nothing accumulates.
+    //     • step-fold exact: t_ms is linear in dt and the gate re-derives cycle
+    //       from t_ms every frame, so N micro-steps folded into one dtStep land on
+    //       the same cycle. A fold that skips OVER a whole cycle (only reachable
+    //       with R < ~50 ms, far below any authorable value) still re-arms once.
+    //   Rule 37: the sandbox carve-out above already makes the whole gate inert in
+    //   a 'mode: sandbox' state, so the cycle can never fight a teacher there. For
+    //   a GUIDED state that still allows a drag (trusted_drag_seizes) the repeat
+    //   additionally stops for good on the SAME PM_nlbSweepSeized /
+    //   PM_nlbBodyDragged latches idle_auto_sweep and param_ramp honour — a teacher
+    //   who grabs a cart is never yanked back to the home pose a second later. Once
+    //   seized the gate degrades to single-fire on the raw monotonic clock (already
+    //   past release => forces 0), never to a phase that keeps pushing carts that
+    //   are no longer touching.
+    //   GUARD: a non-finite, <= 0, or too-short R is IGNORED (single-fire), never
+    //   divided by. "Too short" = R <= release_at_ms, which would leave the state
+    //   permanently in contact (phase never escapes the window) — an author error,
+    //   ignored rather than rendered as a stuck spring. Validator candidate
+    //   recorded in scar_candidates.sql; no validator is added here.
+    //   spring_action (2026-07-30 founder review, docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md)
+    //   — THE REALISTIC CYCLE. See the authoring-type comment on "spring_action"
+    //   for the full phase arithmetic; the short form of the one load-bearing idea:
+    //   the force gate below is the SAME expression it has always been, and only
+    //   its ARGUMENT changes, from the wall-clock phase to the physical release
+    //   time, through one affine remap
+    //       tPhys = contact_from_ms + (phase - lead) / slow_factor
+    //   with lead = approach + compress + hold. That single line is the whole
+    //   wall-vs-physics resolution: the release window occupies WALL phase
+    //   [lead, lead + (t1-t0)*S), so the window is held open for the SLOWED wall
+    //   duration while the physics inside it still runs exactly (t1-t0) ms — the
+    //   integrator sees dt/S (see hPhys in updateNewtonsLawsBodyFrame) and the
+    //   accumulated physics dt over the window is therefore (t1-t0) exactly, so the
+    //   0.88 m stroke and the true exit speeds are unchanged. The PHASE clock is
+    //   never scaled (it is the wall clock, and it alone decides the window), so the
+    //   phase arithmetic and the repeat cycle cannot desync from the integrator.
+    //   Rule 36: every branch is a closed form of eng.t_ms, the step stays linear in
+    //   dt, and dt = 0 under SET_TIME_FREEZE gives dtPhysics = 0 — a held frame
+    //   recomputes the identical phase, force and position bit for bit.
+    //   Rule 37: sandbox is already inert (the early return above), and a trusted
+    //   slider/drag NULLS the choreography (same latches the repeat honours), after
+    //   which the gate degrades to the raw single-fire test — the honest "the
+    //   teacher took over" behaviour, identical to idle_auto_sweep's.
+    //   Omit "spring_action" and every branch below collapses to the pre-2026-07-30
+    //   arithmetic: sa = null => lead = 0, S = 1, tPhys === phase, no latch, no slow
+    //   window, F = inContact ? mag : 0 on the same value as before.
+    function nlbRunPushOff(nlb, eng) {
+        var po = eng.push_off;
+        if (!po) return;
+        if (eng.mode === "sandbox") return;              // Rule 37 — inert in the sandbox
+        var bA = po.body_a_id ? eng.bodies[po.body_a_id] : null;
+        var bB = po.body_b_id ? eng.bodies[po.body_b_id] : null;
+        if (!bA || !bB) return;
+        var mag = (typeof po.force_N === "number" && isFinite(po.force_N)) ? po.force_N : 0;
+        var t0 = (typeof po.contact_from_ms === "number" && isFinite(po.contact_from_ms)) ? po.contact_from_ms : 0;
+        var t1 = (typeof po.release_at_ms === "number" && isFinite(po.release_at_ms)) ? po.release_at_ms : 0;
+        var tMs = eng.t_ms || 0;
+        // The spring choreography, or null = the bare contact-then-release phase.
+        // A seize CANCELS it outright (Rule 37) — the same one-way latches the
+        // repeat cycle below honours, so a teacher who grabs a cart is never held
+        // by a latch or dropped into slow motion.
+        var sa = eng.spring_action;
+        if (sa && (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged)) sa = null;
+        var A = 0, C = 0, H = 0, S = 1, lead = 0, relWall = 0;
+        if (sa) {
+            A = nlbSaMs(sa.approach_ms);
+            C = nlbSaMs(sa.compress_ms);
+            H = nlbSaMs(sa.hold_ms);
+            // 1 is a legal author choice (a real-time release); anything below 1,
+            // non-finite or absent takes the spec default. Never a speed-UP.
+            S = (typeof sa.slow_factor === "number" && isFinite(sa.slow_factor) && sa.slow_factor >= 1)
+                ? sa.slow_factor : NLB_SPRING_SLOW_DEFAULT;
+            lead = A + C + H;
+            relWall = Math.max(0, t1 - t0) * S;           // the release window in WALL ms
+        }
+        // Repeat cycle, or 0 = single-fire (the pre-2026-07-29 behaviour, reached
+        // by every state that omits the key — phase stays === tMs below, so the
+        // force gate is then arithmetically identical to what it always was).
+        // The floor is the whole WALL-clock choreography: a cycle shorter than that
+        // would never let the phase escape the release window (permanent contact +
+        // permanent slow motion), so it is ignored exactly as a too-short cycle
+        // always was. With no spring_action the floor is release_at_ms, unchanged.
+        var repFloor = sa ? (lead + relWall) : t1;
+        var rep = (typeof po.repeat_every_ms === "number" && isFinite(po.repeat_every_ms)
+            && po.repeat_every_ms > 0 && po.repeat_every_ms > repFloor) ? po.repeat_every_ms : 0;
+        if (rep && (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged)) rep = 0;   // Rule 37 — seized
+        var phase = tMs;
+        if (rep) {
+            var cycle = Math.floor(tMs / rep);
+            if (eng._po_cycle == null) {
+                eng._po_cycle = cycle;                   // entry / post-rewind: adopt, never fire
+            } else if (cycle !== eng._po_cycle) {
+                var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+                nlbResetTrajectory();                    // the ONE rewind path
+                eng.t_ms = tKeep;                        // the master clock stays monotonic
+                window.PM_nlbTimeMs = tKeepPub;
+                eng._po_cycle = cycle;                   // AFTER the rewind (which nulls it)
+            }
+            phase = tMs - cycle * rep;
+        }
+        // The affine remap: wall phase -> physical release time. With sa null this
+        // is the identity (lead = 0, S = 1) and the gate below is untouched.
+        var tPhys = sa ? (t0 + (phase - lead) / S) : phase;
+        var inContact = (tPhys >= t0) && (tPhys < t1);
+        // The slow window IS the release window, and nothing else (the spec:
+        // "playback slowdown for the RELEASE only"). Read by hPhys.
+        eng.slow_active = !!sa && inContact && S > 1;
+        eng.spring_slow_factor = eng.slow_active ? S : 1;
+        // The phase machine. ONE chain decides the phase NAME, the force and the
+        // latch together, so the arrows, the HUD, the coil and the integrator can
+        // never disagree about which beat is playing.
+        var F, phName = "", phElapsed = 0, phDur = 0;
+        if (!sa) {
+            F = inContact ? mag : 0;
+        } else if (phase < A) {
+            phName = "approach"; phElapsed = phase; phDur = A;
+            F = 0;                                        // no force yet
+        } else if (phase < A + C) {
+            phName = "compress"; phElapsed = phase - A; phDur = C;
+            F = (C > 0) ? (mag * (phElapsed / C)) : mag;   // the arrows GROW IN, closed form
+        } else if (phase < lead) {
+            phName = "hold"; phElapsed = phase - (A + C); phDur = H;
+            F = mag;                                      // loaded and latched
+        } else if (inContact) {
+            phName = "release"; phElapsed = phase - lead; phDur = relWall;
+            F = mag;                                      // full force, slowed playback
+        } else {
+            phName = "coast"; phElapsed = phase - (lead + relWall);
+            phDur = rep ? Math.max(0, rep - lead - relWall) : 0;
+            F = 0;                                        // it has let go
+        }
+        // Before the release the pair is mechanically HELD. Read by the integrator
+        // branches (nlbLatchedNow) — a per-frame derived flag, no state of its own.
+        eng.push_off_latched = !!sa && (phase < lead);
+        // THE COMPRESSION STROKE. While the pair is latched the integrator writes
+        // no position at all (that is what the latch means), so the LOADING motion
+        // is scripted here — a pure closed form of the phase, placed through the one
+        // funnel (see nlbSpringLoadPose). Exactly the latched window, so the
+        // integrator and the script can never both own a position in the same frame.
+        if (eng.push_off_latched) nlbSpringLoadPose(eng, bA, bB, phName, phElapsed, phDur);
+        // ONE expression drives the paired pool: the reaction is literally the
+        // negation of the action, so an unequal pair is UNREPRESENTABLE here.
+        bA.F_applied = F;
+        bB.F_applied = -F;
+        // Read by seam B (the spring's compressed/extended render state) — a
+        // derived flag, never a second source of truth for the force itself.
+        eng.push_off_contact = inContact;
+        // Published for SEAM B (the compression-stroke coil geometry + the
+        // post-release ring). All DERIVED reads recomputed from the clock every
+        // frame — never a second source of truth, nothing latched, nothing to
+        // rewind under a freeze pin. spring_phase_ms is absolute wall ms inside the
+        // current phase (what a damped ring decay wants); spring_progress is the
+        // same thing normalised to 0..1, and reports 1 for a phase with no finite
+        // duration (an unbounded single-fire coast).
+        eng.spring_phase = phName;
+        eng.spring_phase_ms = phElapsed;
+        eng.spring_progress = (phDur > 0) ? Math.min(1, Math.max(0, phElapsed / phDur)) : 1;
+        eng.spring_ring = sa ? (sa.ring !== false) : false;
+        window.PM_nlbSpringPhase = phName;
+    }
+    // ms guard for the spring_action durations: a non-finite / negative / absent
+    // value is 0 (that beat simply does not exist), never NaN in the arithmetic.
+    function nlbSaMs(v) { return (typeof v === "number" && isFinite(v) && v > 0) ? v : 0; }
+    // Smoothstep on 0..1 — eased, and its DERIVATIVE is 0 at both ends, which is
+    // what makes the scripted loading motion hand over to the integrator without a
+    // velocity step: the carts glide to a stop exactly at contact and again exactly
+    // at the fully-loaded seed pose.
+    function nlbSmooth01(u) {
+        if (!(u > 0)) return 0;
+        if (u >= 1) return 1;
+        return u * u * (3 - 2 * u);
+    }
+    // ── spring_action — the SCRIPTED COMPRESSION STROKE ─────────────────────
+    //   docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md, defect 1: "there is no compression
+    //   stroke... a student never sees it being loaded, so the stored energy has no
+    //   visible origin". The authored seed pose IS the fully-compressed pose (the
+    //   position contract in docs/loop_runs/push_off_report.md §2), because the
+    //   release must integrate from exactly that seed. So the loading beats have to
+    //   walk the pair BACKWARDS out of the seed and return to it.
+    //   THE GEOMETRY, in metres of face-to-face gap (natural 1.6, compressed 0.72):
+    //     approach : gap = natural + air ..... natural   (coil AT natural length,
+    //                mounted on one cart; the other cart closes the air gap and
+    //                makes contact exactly as approach ends)
+    //     compress : gap = natural ........... compressed   (the coil is what
+    //                shortens: pitch tightens to NLB_SPRING_COMPRESS_FRAC)
+    //     hold     : gap = compressed = the authored seed pose, exactly
+    //   Each beat is eased with smoothstep, so there is no linear snap and no
+    //   velocity jump at either boundary.
+    //   Rule 36: position = f(phase) — a pure closed form of the published phase,
+    //   with NO accumulator, no velocity integration and no dt anywhere. Under
+    //   SET_TIME_FREEZE the phase is frozen, so the same s is rewritten bit for bit.
+    //   A rewind (repeat re-arm / RESET_TRAJECTORY) reproduces the same pose from
+    //   the same phase; nothing here is history.
+    //   Rule 37: unreachable unless eng.push_off_latched, which needs a live
+    //   spring_action — so a sandbox state, a seized state and every state that
+    //   omits the block never call it, and the carts then stay exactly where the
+    //   integrator (or the teacher's drag) left them. A seize DURING approach or
+    //   compress therefore freezes the pair at its current scripted separation and
+    //   hands it straight to the plain gap-driven fit: no teleport back to the seed,
+    //   no stuck coil (the coil simply follows the live gap from there).
+    //   THE ONE FUNNEL is untouched: this writes b.s only, and the placement still
+    //   happens in nlbSetBodyPosition, called by the latched integrator branch in
+    //   the same frame (which is also what carries the coil, the arrows, the labels
+    //   and the pick proxies with it).
+    function nlbSpringLoadPose(eng, bA, bB, phName, phElapsed, phDur) {
+        if (!bA || !bB) return;
+        var u = (phDur > 0) ? (phElapsed / phDur) : 1;
+        // Extra face-to-face separation, in METRES, added to the authored seed.
+        var strokeM = (NLB_SPRING_NATURAL_W * (1 - NLB_SPRING_COMPRESS_FRAC)) / NLB_WORLD_PER_M;
+        var airM = NLB_SPRING_APPROACH_AIR_W / NLB_WORLD_PER_M;
+        var extra;
+        if (phName === "approach") extra = strokeM + airM * (1 - nlbSmooth01(u));
+        else if (phName === "compress") extra = strokeM * (1 - nlbSmooth01(u));
+        else extra = 0;                                  // hold: the authored seed, exactly
+        // A "fixed" body is the wall / the Earth: it NEVER moves, so a cart-vs-wall
+        // push-off puts the whole convergence on the cart. Two carts split it
+        // symmetrically about the seed midpoint, which keeps the apparatus centred
+        // and the coil's home position fixed (Rule 32d — no teleport, one home pose).
+        var mvA = !bA.fixed, mvB = !bB.fixed;
+        var shA = mvA ? (mvB ? extra / 2 : extra) : 0;
+        var shB = mvB ? (mvA ? extra / 2 : extra) : 0;
+        var sA0 = (bA.s0 != null) ? bA.s0 : 0, sB0 = (bB.s0 != null) ? bB.s0 : 0;
+        // Which body stands on the +s side is read from the SEED, never assumed:
+        // the authoring contract puts body_a there, but a reversed pair must still
+        // pull APART rather than through each other.
+        var dir = (sA0 >= sB0) ? 1 : -1;
+        var lenM = eng.length_m;
+        if (mvA) bA.s = nlbSpringClampS(bA, sA0 + dir * shA, lenM);
+        if (mvB) bB.s = nlbSpringClampS(bB, sB0 - dir * shB, lenM);
+    }
+    // The scripted pose obeys the same track bounds the integrator does — a long
+    // approach can never place a cart off the end of the rail.
+    function nlbSpringClampS(b, s, lenM) {
+        var bd = nlbBoundsM(b, lenM);
+        if (s < bd.lo) return bd.lo;
+        if (s > bd.hi) return bd.hi;
+        return s;
+    }
+    // The spring_action pre-release LATCH. While the coil is being loaded
+    // (approach / compress) and while it is held compressed (hold), the pair is
+    // mechanically held: a real latch supplies the reaction, so both applied arrows
+    // draw at the live magnitude and the HUD reads the true F while a = 0, and at
+    // release the latch lets go and a jumps to F/m. ONLY the two bodies push_off
+    // names are latched — any third body in the state keeps integrating. Pure read
+    // of the flag nlbRunPushOff published this frame (no clock, no memo, nothing to
+    // rewind), and false in every state that authors no spring_action.
+    function nlbLatchedNow(eng, b) {
+        if (!eng || !eng.push_off_latched || !b) return false;
+        var po = eng.push_off;
+        return !!po && (b.id === po.body_a_id || b.id === po.body_b_id);
+    }
+    // ── Rule 24/34 honesty badge — "slow motion ×N" ─────────────────────────
+    //   Shown ONLY while the spring_action release window is playing slowed, so a
+    //   student can never read a slowed release as a small acceleration (without
+    //   this label the dt scaling would be teaching a falsehood; with it, it is
+    //   what every real physics film does). Hidden in every other phase, in a
+    //   sandbox state, once a teacher seizes, and in any state with no
+    //   spring_action — all of which leave eng.slow_active false. Zone: the TOP-LEFT
+    //   corner, the only one this scenario leaves free (#nlb_readout top-right,
+    //   #nlb_formula mid-right, #nlb_sliders bottom-right, #caption top-centre,
+    //   #legend bottom-left), at top:52px so it clears the review-chrome
+    //   "Full screen" button exactly as the HUD does (Rule 34d).
+    function nlbUpdateSlowBadge(eng) {
+        var el = document.getElementById("nlb_slowmo");
+        if (!el) return;
+        var on = !!(eng && eng.slow_active);
+        var want = on ? "block" : "none";
+        if (el.style.display !== want) el.style.display = want;
+        if (!on) return;
+        var f = eng.spring_slow_factor;
+        var txt = "slow motion ×" + String(Math.round(f * 10) / 10);
+        if (el.textContent !== txt) el.textContent = txt;
+    }
+
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
     //   Seeds masses / theta / mu / F / initial position+velocity into the
     //   engine state object every seam reads, sets glow_focal, resets the
@@ -40130,6 +42299,19 @@ export const FIELD_3D_RENDERER_CODE = `
             train: trn,
             shared_applied_force: !!nlb.shared_applied_force,   // SEAM I (see nlbApplyParam)
             action_reaction: nlb.action_reaction || null,
+            push_off: nlb.push_off || null,   // contact-then-release phase (see nlbRunPushOff)
+            spring_action: nlb.spring_action || null,  // the realistic spring cycle (see nlbRunPushOff)
+            // Every field below is DERIVED and rewritten by nlbRunPushOff each
+            // frame; seeded here so a state whose push_off gate early-returns (no
+            // block, sandbox, a missing body) can never read a stale slow window or
+            // latch — and so a state with no spring_action is bit-identical.
+            slow_active: false,           // the release-window dt scale is open
+            spring_slow_factor: 1,        // the ACTIVE factor (1 = real time)
+            push_off_latched: false,      // pre-release hold (approach/compress/hold)
+            spring_phase: "",             // SEAM B read: '' | approach | compress | hold | release | coast
+            spring_phase_ms: 0,           // wall ms elapsed inside the current phase
+            spring_progress: 0,           // the same, normalised 0..1 (1 if unbounded)
+            spring_ring: false,           // SEAM B: authored ring flag (default true when spring_action)
             glow_focal: nlb.glow_focal || "",
             order: [],
             bodies: {},
@@ -40137,6 +42319,7 @@ export const FIELD_3D_RENDERER_CODE = `
             a_string: 0,
             t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
             _ramp_last: null,     // §7.1 param_ramp churn guard, rebased on every entry
+            _po_cycle: null,      // push_off repeat_every_ms edge memo; null = adopt, never fire
             phase_fired: {}       // one-shot phase flags, reset on every state entry
         };
         for (var i = 0; i < bodies.length; i++) {
@@ -40148,6 +42331,9 @@ export const FIELD_3D_RENDERER_CODE = `
                 m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
                 hanging: !!d.hanging,
                 ghost: !!d.ghost,
+                // Infinite effective mass — the wall / the Earth. REAL (takes and
+                // exerts forces, arrows draw normally) but never integrated.
+                fixed: !!d.fixed,
                 s: d.initial_position_m || 0,
                 v: d.initial_velocity_mps || 0,
                 a: 0,
@@ -40233,8 +42419,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 // back out of bounds for the state's first rendered frame.
                 var seededB = eng.bodies[bd.id];
                 nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
-            } else if (bd.label) {
-                updateLabelSpriteText(o, bd.label);
+            } else if (ud.elementType === "nlb_body_label") {
+                // Identifier AND mass, on the ONE camera-facing billboard. Composed
+                // here on every entry (not only where bd.label is authored) because
+                // this is the surface that states a FIXED body's "m ≫ ..." — the
+                // per-frame tracker deliberately skips the wall, whose text can only
+                // change when the state's body list does. A ghost or an unlabelled
+                // body composes to exactly the string it rendered before.
+                nlbSetBodyLabelText(o, nlbBodyLabelText(bd, bodies));
             }
         });
 
@@ -40248,6 +42440,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Value-only HUD rows for this state's bodies x readouts.
         nlbRebuildReadout(nlb);
+        // ... and the mass text on both surfaces the rebuild just (re)created or
+        // re-showed, so the FIRST rendered frame of a state already carries the number
+        // (a frozen pin can catch that frame).
+        nlbUpdateMassText(nlb);
 
         // SEAM C — force-arrow overlay. Enabled kinds + component flag + label
         //   overrides were seeded into eng.arrows above; EVERY arrow surface is
@@ -40257,6 +42453,12 @@ export const FIELD_3D_RENDERER_CODE = `
         //   updateNewtonsLawsBodyFrame then re-shows exactly the named kinds at
         //   their live magnitudes — and hides any whose force is genuinely zero.
         nlbHideAllArrows();
+        // The slow-motion badge is blanked on EVERY entry, the same discipline the
+        // arrows follow: a state with no spring_action (or a sandbox) can never
+        // inherit the previous state's badge for the one frame before the first
+        // tick — which is exactly the frame a frozen pin can catch.
+        var smEl = document.getElementById("nlb_slowmo");
+        if (smEl) smEl.style.display = "none";
         // SEAM D — the pulley bracket + its two rope segments. The assembly stands
         //   at this state's pulley.post_position_m and is shown iff the state
         //   declares a pulley: a coupled state shows post + arm + wheel + hub +
@@ -40274,6 +42476,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // below then shows the strings the train does have.
         nlbShowPulley(!!eng.pulley);
         nlbFitRopes();
+        // SEAM B (push-off) — the spring, fitted ONCE on entry from the home
+        // positions just seeded, for the same reason the ropes are: the very first
+        // frame of a push-off state is already compressed and correct, and a state
+        // WITHOUT a spring block hides it here even if no body moved.
+        nlbFitSpring();
         // SEAM E — the explorer surface for this state. Order matters:
         //   1. clear the seize latches FIRST, so a drag or slider move in the
         //      PREVIOUS state can never keep this state's idle_auto_sweep switched
@@ -40295,6 +42502,10 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         nlbSyncSliderLabels(nlb);
         nlbToggleSliderRows(nlb);
+        // Re-fit the HUD now that THIS state's slider panel has its final height: the
+        // rebuild above ran before the toggle and could only measure the previous
+        // state's panel (Rule 34d — the floor the HUD must clear moves per state).
+        nlbFitReadoutPanel();
         // Read the flag off THIS stateDef, not via nlbStateIsDraggable()'s
         // PM_currentState lookup, so the proxies can never be armed one state late
         // if applyState ever runs before PM_currentState is committed.
@@ -40444,8 +42655,14 @@ export const FIELD_3D_RENDERER_CODE = `
         if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
         eng._sweep_last = null;             // the idle sweep is a closed form of t_ms
         eng._ramp_last = null;              // §7.1 param_ramp is likewise a closed form of t_ms
+        // push_off repeat edge memo: null = ADOPT the current cycle on the next
+        // frame instead of firing, so a rewind can never re-enter itself and a
+        // genuine RESET_TRAJECTORY (t_ms -> 0) starts clean. nlbRunPushOff's own
+        // re-arm re-assigns it immediately AFTER calling this function.
+        eng._po_cycle = null;
         nlbLastEmitS = null;
         nlbFitRopes();
+        nlbFitSpring();                     // the coil rewinds with the carts it sits between
         nlbApplyGlow();
     }
 
@@ -40639,6 +42856,16 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_nlbTimeMs = eng.t_ms;
         nlbRunPhases(nlb, eng, eng.t_ms);
 
+        // push_off — the contact-then-release phase gate. Hooked at the INPUT
+        // stage, BEFORE the action_reaction mirror and before both integrator
+        // branches, because it is an INPUT (exactly equivalent to a slider write
+        // on both bodies at once): running it here keeps the step, the force
+        // arrows, the readouts and the rope all consistent within the SAME frame.
+        // It writes the pair from ONE magnitude, so a state authoring BOTH blocks
+        // is self-consistent — the mirror below then simply re-affirms the value
+        // this gate just wrote, whichever body is the declared driver.
+        nlbRunPushOff(nlb, eng);
+
         // Newton III: the engine ENFORCES equal-and-opposite every frame, so the
         // pair can never drift out of Newton's third law no matter what a slider
         // (or a later seam) does to the driver's applied force.
@@ -40672,11 +42899,68 @@ export const FIELD_3D_RENDERER_CODE = `
         // frame behind the incline they are drawn on.
         nlbRunParamRamp(nlb, eng);
 
+        // ── spring_action slow motion — a dt MULTIPLIER on the INTEGRATOR ONLY ──
+        //   docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md. Physics cannot give a
+        //   classroom-visible force AND a slow release at the same time (a 2 s
+        //   contact over the 0.88 m stroke needs ~1.3 N, far below the arrow-length
+        //   floor), so the RELEASE is filmed in slow motion the way every real
+        //   physics lesson does — and labelled (#nlb_slowmo, Rule 24/34).
+        //   Rule 36, in full:
+        //     • this is a SCALE on the dt the step is already linear in
+        //       (v += a*hPhys; s += 0.5*(v0+v1)*hPhys), so N folded micro-steps are
+        //       still exactly one step of N*dt/S. No sub-stepping, no literal
+        //       0.016, no second clock, no accumulator, and nothing added to the
+        //       shared animate()/__pmSteps path (=> no Rule 36b fleet sweep).
+        //     • dt = 0 under SET_TIME_FREEZE => hPhys = 0 => the pose is rewritten
+        //       identically, held for any number of frames.
+        //     • the PHASE clock is NOT scaled: eng.t_ms above advanced by the raw
+        //       dt, and the wall phase alone decides the window (see nlbRunPushOff's
+        //       affine remap). So the choreography, the repeat cycle and the reveal
+        //       pin all stay on one coherent wall-clock timeline while only the
+        //       integrator runs slowed — the two can never desync.
+        //     • the HUD is untouched: F, a, v are the TRUE physical values, written
+        //       from this same step. We slow the playback, never the physics.
+        //   eng.slow_active is false in every state with no spring_action, in a
+        //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
+        var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
+        nlbUpdateSlowBadge(eng);
+        // Mass text (HUD header + on-block number) tracks a live slider drag. One call
+        // for both integrator branches, churn-guarded, clock-free.
+        nlbUpdateMassText(nlbStateCfg());
+
         if (!eng.coupled) {
             // ── Branch A — independent bodies (no pulley) ──────────────────
             for (var i = 0; i < eng.order.length; i++) {
                 var b = eng.bodies[eng.order[i]];
                 if (!b || b.ghost) continue;               // spec section 3: a ghost is NEVER integrated
+                // A spring_action LATCH takes this same branch (nlbLatchedNow):
+                // a body held by a latch and a body anchored to the Earth are the
+                // same physics — force in, no acceleration, the holder supplying the
+                // reaction — so there is ONE code path for both instead of a second
+                // "held" implementation to drift from it. s is never written here,
+                // so the pair stays exactly at its authored home pose until the
+                // latch lets go and the release integrates from that seed.
+                if (b.fixed || nlbLatchedNow(eng, b)) {
+                    // The wall / the Earth: infinite effective mass. SKIPPED by the
+                    // integrator entirely — v and s never change — but REAL, unlike a
+                    // ghost: it still TAKES the applied force push_off hands it (which
+                    // is why its "applied" arrow draws at full length, pixel-identical
+                    // to the cart's) and it still EXERTS the reaction. Its numbers are
+                    // the honest ones for an immovable body: a = 0 not because there
+                    // is no force but because m is effectively infinite, and the
+                    // reported f is the anchor reaction holding it (-drive), the same
+                    // quantity the statically-stuck branch below reports.
+                    var thF = b.hanging ? 90 : thetaSurf;
+                    b.N = nlbNormal(b, thF);
+                    b.a = 0; b.v = 0;
+                    b.f = -(b.F_applied + nlbGravAlong(b, thF));
+                    b.T = 0; b.F_net = 0;
+                    b._stuck = true;
+                    b._boundArrestedSliding = false;
+                    nlbSetBodyPosition(b.id, b.s);
+                    nlbWriteReadouts(nlb, b, true);
+                    continue;
+                }
                 var th = b.hanging ? 90 : thetaSurf;
                 var N = nlbNormal(b, th);
                 var drive = b.F_applied + nlbGravAlong(b, th);
@@ -40711,12 +42995,17 @@ export const FIELD_3D_RENDERER_CODE = `
                     a = (drive + f) / b.m;
                 }
                 var v0 = b.v;
-                var v1 = v0 + a * h;
+                var v1 = v0 + a * hPhys;      // hPhys === h unless the slow window is open
                 // Kinetic friction must not jitter the body back and forth across
                 // v = 0 — if the step reversed the sign and the drive cannot beat
                 // static friction, the body has come to REST.
                 if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
-                var s1 = b.s + 0.5 * (v0 + v1) * h;
+                // hPhys (not h) for the same reason the v1 step above uses it: the
+                // slow-motion release window scales the PHYSICS step only, and a
+                // position step taken at h while the velocity step took hPhys would
+                // desynchronize s from v. hPhys === h in every state with no open
+                // slow window, so no existing baseline moves.
+                var s1 = b.s + 0.5 * (v0 + v1) * hPhys;
                 // SEAM J — the SANDBOX wrap (founder-approved 2026-07-30).
                 //   Rule 37 says the explore state must keep MOVING, and names the
                 // mechanism for every other scenario: "the bead/motion phase wraps
@@ -40806,10 +43095,26 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!refId) return;
         var sigRef = eng.bodies[refId].hanging ? 1 : -1;
 
+        // A "fixed" body anywhere in a coupled pair ANCHORS the whole string: an
+        // inextensible string tied to an immovable body cannot move at either end,
+        // so the safe (and physically correct) behaviour is to hold the string —
+        // NOT to drop the fixed body out of the coupled set, which would silently
+        // break the constraint and let the free body run as if unattached. The
+        // string is therefore treated exactly as if it were statically held
+        // (stuckB below), so the tensions still come out of each body's own
+        // equation of motion with a = 0 and the HUD stays honest. Cart-vs-wall
+        // push-offs are Branch A (no pulley) and are unaffected by this.
+        var anchoredB = false;
         var act = [], D = 0, M = 0, maxStatSum = 0, mukNSum = 0;
         for (var j = 0; j < eng.order.length; j++) {
             var bj = eng.bodies[eng.order[j]];
             if (!bj || bj.ghost) continue;                 // spec section 3: never integrated
+            // A latched body anchors the string for exactly as long as the latch
+            // holds, for the same reason a "fixed" one does permanently.
+            if (bj.fixed || nlbLatchedNow(eng, bj)) anchoredB = true;
+            // The inline constraint expression moved into nlbSignFactor (SEAM H): a
+            // TRAIN is one line of carts on one string, so every cart shares c = +1,
+            // while the pulley cases keep the identical -(sigRef * sigma_i) form.
             var cj = nlbSignFactor(eng, bj, refId, sigRef);
             var thj = bj.hanging ? 90 : thetaSurf;
             var Nj = nlbNormal(bj, thj);
@@ -40825,7 +43130,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!act.length || !(M > 0)) return;
 
         var vStr = eng.v_string || 0;
-        var stuckB = (Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum);
+        var stuckB = anchoredB || ((Math.abs(vStr) < NLB_STOP_EPS_V) && (Math.abs(D) <= maxStatSum));
         var aStr = 0, Ffric = 0, vSignB = 0;
         if (stuckB) {
             aStr = 0; vStr = 0; Ffric = -D;                 // held by static friction
@@ -40835,12 +43140,12 @@ export const FIELD_3D_RENDERER_CODE = `
             aStr = (D + Ffric) / M;
         }
         var vs0 = vStr;
-        var vs1 = vs0 + aStr * h;
+        var vs1 = vs0 + aStr * hPhys;                       // hPhys === h unless the slow window is open
         if (nlbSgn(vs0) !== nlbSgn(vs1) && Math.abs(D) <= maxStatSum) { vs1 = 0; aStr = 0; }
 
         // Bound the STRING, not each body independently — clamping one body alone
         // would silently break the inextensible-string constraint.
-        var sAdv = 0.5 * (vs0 + vs1) * h;                   // same fold-exact form as branch A
+        var sAdv = 0.5 * (vs0 + vs1) * hPhys;               // same fold-exact form as branch A
         var blocked = false;
         for (var k2 = 0; k2 < act.length; k2++) {
             var bk = act[k2];
@@ -49483,11 +51788,27 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildCyclotronPeriod();
                 break;
 
+            case "kinematics_1d_track":
+                buildKinematics1dTrack();
+                break;
+
             default:
-                // Fallback: show a single positive charge
+                // Fallback: show a single positive charge. Hardening fix
+                // (engine_bug_queue field3d_unknown_scenario_field_lines_crash,
+                // 2026-07-25): a concept authored against a scenario_type this
+                // switch does not (yet) implement used to hard-crash HERE —
+                // config.field_lines is undefined for non-field-line scenarios
+                // (e.g. kinematics_1d_track before this case existed), and
+                // dereferencing .count on undefined threw before SIM_READY ever
+                // fired, so EVERY state rendered a black canvas with no error
+                // surfaced to the player. Guard with the same
+                // "config.field_lines && config.field_lines.count" pattern
+                // already used everywhere else in this switch, so a FUTURE
+                // still-unimplemented scenario_type degrades to the visible
+                // charge fallback instead of killing the whole sim.
                 buildPointChargeField(
                     { id: "q1", sign: 1, magnitude: 1, position: [0,0,0], label: "+q", color: "#EF5350" },
-                    config.field_lines.count || 12
+                    (config.field_lines && config.field_lines.count) || 12
                 );
         }
 
@@ -50006,6 +52327,18 @@ export const FIELD_3D_RENDERER_CODE = `
             applyMagneticFluxLoopState(stateDef);
         }
 
+        // kinematics_1d_track — per-state seeding of the straight-line-motion
+        // scene: x0/x_f/turnaround_x/speed/extra_laps, the per-state
+        // contextual-control panel (target_x/turnaround_x/speed/extra_laps,
+        // Rule 31), the d(t) path-length accumulator reset (kept running
+        // across STATE_6 re-entries — a true odometer), and the ghost-arrow /
+        // turnaround-post / sweep-marker visibility. The animate loop then
+        // drives the runner's x(t), the live disp_arrow + d/dx readouts, the
+        // STATE_3 ghost-arrow + strike-through, and the STATE_6 idle-sweep-
+        // or-drag sandbox.
+        if (config.scenario_type === "kinematics_1d_track") {
+            applyKinematics1dTrackState(stateDef);
+        }
         // newtons_laws_body — per-state seed of the Laws of Motion engine state
         // (masses / theta / mu / F / initial s+v), the surface pose, per-body
         // visibility + labels, the single Cambria-Math formula surface, the
@@ -50400,6 +52733,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
         // itself to this NOT-list, same as isMag/isFaraday/isAcGenerator/... above).
         var isMfl = config.scenario_type === "magnetic_flux_loop";
+        // kinematics_1d_track owns its OWN #kt_sliders panel (target_x/
+        // turnaround_x/speed/extra_laps) -- must be excluded here or the
+        // generic #sliders panel bleeds through with its straight-wire-
+        // current defaults (I = 5.0 A / r = 5 cm / B = 20.0 uT — the exact
+        // leak quality_auditor caught on every state of this concept) (THE-
+        // EYE "#sliders exclusion chain" — every dedicated panel adds itself
+        // to this NOT-list, same as isMag/isFaraday/isMfl/... above).
+        var isKt = config.scenario_type === "kinematics_1d_track";
         // newtons_laws_body owns its OWN #nlb_sliders panel (m/m2/F/theta/mu_s/
         // mu_k/v0) -- must be excluded here or the generic #sliders panel bleeds
         // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
@@ -50468,7 +52809,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isMb && !isOrbShapes) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isMb && !isOrbShapes && !isKt) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -50655,8 +52996,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "momentum_bench" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "momentum_bench" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "kinematics_1d_track")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -53636,7 +55977,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "kinematics_1d_track")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -54004,6 +56345,17 @@ export const FIELD_3D_RENDERER_CODE = `
         // Rule 29).
         if (config.scenario_type === "magnetic_flux_loop") {
             updateMagneticFluxLoopFrame();
+        }
+
+        // kinematics_1d_track — the runner's x(t) (pure fn of the state clock,
+        // Rule 26) drives the live disp_arrow tip/orientation, the d(t)
+        // path-integral odometer (Rule 36-linear accumulation, NEVER a
+        // closed-form |x_f-x0|), the dx(t)=x(t)-x0 signed readout, the
+        // STATE_3 ghost-arrow growth + strike-through, the STATE_4 discrete
+        // arrow flip, the STATE_5 lap counter + endpoint-law callout, and the
+        // STATE_6 idle-sweep-or-drag sandbox (never freezes, Rule 37).
+        if (config.scenario_type === "kinematics_1d_track") {
+            updateKinematics1dTrackFrame();
         }
 
         // gauss_law_sphere — charged-shell field. Drives the Gaussian-sphere

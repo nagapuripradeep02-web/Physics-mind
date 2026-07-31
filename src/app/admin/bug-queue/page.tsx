@@ -28,6 +28,8 @@ export interface BugQueueRow {
         | "alex:chemistry_author"
         | "alex:json_author"
         | "peter_parker:renderer_primitives"
+        | "peter_parker:field3d_surgeon"
+        | "peter_parker:visual_validator"
         | "peter_parker:runtime_generation"
         | "ambiguous";
     root_cause: string;

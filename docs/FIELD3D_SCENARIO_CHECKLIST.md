@@ -45,7 +45,7 @@ npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --field3d --
   `focal_primitive_id` at the title label.
 - **Interactivity / sliders in the LAST state only.**
 
-## For renderer-primitives (the engine `incident` rows)
+## For field3d-surgeon (the engine `incident` rows; owned by `renderer-primitives`→`pcpl-surgeon` before the 2026-07-31 split)
 - **Register a NEW scenario in `deriveStateMeta.ts` in the SAME change.** Add its per-state
   reveal/hold/motion recognition (maxRevealForField3dState + deriveHoldExpectations) or THE EYE
   mis-classifies every state at the 1500 ms default and false-fails D7/D1p.

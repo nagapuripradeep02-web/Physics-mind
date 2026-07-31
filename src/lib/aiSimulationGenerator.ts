@@ -2741,6 +2741,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // "Vectors" DAG track (prerequisite: scalar_vs_vector). Also in
     // PCPL_CONCEPTS below (parametric_renderer, matches scalar_vs_vector).
     vector_addition_law:            "mechanics_2d",
+    // resultant_direction — concept #3 of the Vectors DAG track (prerequisite:
+    // vector_addition_law). Also in PCPL_CONCEPTS below (parametric_renderer,
+    // matches vector_addition_law/scalar_vs_vector).
+    resultant_direction:            "mechanics_2d",
     dot_product:                    "mechanics_2d",
     // Atomic splits from former vector_basics bundle
     unit_vector:                    "mechanics_2d",
@@ -2991,6 +2995,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     transformer:                    "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
+    // displacement_vs_distance — concept #1 of the new Class 11 Kinematics
+    // "Motion in a Straight Line" DAG track (chapter:2, prerequisite:
+    // scalar_vs_vector). First field_3d Kinematics concept, on the
+    // kinematics_1d_track scenario built in the same change. Alex pipeline,
+    // 2026-07-25.
+    displacement_vs_distance:       "field_3d",
     // Ch.8 Electromagnetic Waves — displacement current (NCERT §8.2), the
     // chapter's load-bearing opener. NEW field_3d "displacement_current"
     // scenario (Alex pipeline, 2026-07-24). Ampère–Maxwell correction:
@@ -3088,6 +3098,11 @@ const PCPL_CONCEPTS = new Set<string>([
     // vector_addition_law — concept #2 of the Vectors DAG track
     // (prerequisite: scalar_vs_vector). Alex pipeline, authored 2026-07-24.
     'vector_addition_law',
+    // resultant_direction — concept #3 of the Vectors DAG track (prerequisite:
+    // vector_addition_law) — direction of the resultant, tan alpha = B sin
+    // theta / (A + B cos theta), cashing out the formula vector_addition_law
+    // explicitly deferred. Alex pipeline, authored 2026-07-24.
+    'resultant_direction',
     // Ch.5.4 Phase 0 validation demo Sim 1 (session 56 — first concept using premium primitives:
     // glow_focus + animated_path + sound_cue)
     'vector_head_to_tail',

@@ -9,8 +9,10 @@
  *                   epic_l_path…tts_sentences glow / math_show fields.
  */
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { resolveConceptJsonPath } from './resolveConceptJson';
+import { assembleSimFromSource } from './assembleSimFromSource';
 
 export interface CacheRow {
     sim_html: string;
@@ -37,7 +39,49 @@ export async function loadCachedSim(conceptId: string): Promise<CacheRow> {
     if (error) fail(`simulation_cache query failed: ${error.message}`);
     if (!data) fail(`No cached simulation found for concept_id="${conceptId}". Run /api/generate-simulation against this concept first.`);
     if (!data.sim_html) fail(`Cached row exists but sim_html is empty for "${conceptId}".`);
+    assertCacheMatchesSource(conceptId, data.sim_html);
     return data;
+}
+
+/**
+ * HARD FAIL when a hand-seeded cache row no longer matches its source.
+ *
+ * THE reason this exists (engine_bug_queue:
+ * eye_reads_the_hand_seeded_cache_not_the_current_source, CRITICAL): chemistry
+ * concepts never run through the live generation pipeline, so their
+ * simulation_cache row is seeded by hand and never auto-refreshes — while THE EYE
+ * reads ONLY that row. A post-fix re-walk therefore returned 35 checks / 35
+ * passed over entirely PRE-fix content: four already-fixed defects still present
+ * in every frame, and every visual finding in the run a false negative. It was
+ * caught by a human cross-checking frames against live source, which is not a
+ * gate. The class then cost a second session the same way.
+ *
+ * Scoped to CHEMISTRY, deliberately. Physics concepts are served by the live
+ * pipeline (aiSimulationGenerator), whose output legitimately differs from a
+ * bare renderer assembly, so comparing there would fail on every run.
+ */
+export function assertCacheMatchesSource(conceptId: string, cachedHtml: string): void {
+    let built: ReturnType<typeof assembleSimFromSource>;
+    try {
+        built = assembleSimFromSource(conceptId);
+    } catch {
+        return;                       // not assemblable from source — nothing to compare against
+    }
+    if (!built || built.subject !== 'chemistry') return;
+    if (built.simHtml === cachedHtml) return;
+
+    const h = (s: string) => createHash('sha256').update(s).digest('hex').slice(0, 12);
+    fail(
+        `STALE simulation_cache for "${conceptId}" — the cached sim does NOT match the current source.\n` +
+        `     cached  ${h(cachedHtml)}  (${cachedHtml.length} chars)\n` +
+        `     source  ${h(built.simHtml)}  (${built.simHtml.length} chars)\n\n` +
+        `   Chemistry cache rows are seeded BY HAND and never auto-refresh, and this gate reads only\n` +
+        `   the row — so continuing would report on PRE-EDIT pixels and every visual finding would be\n` +
+        `   a false negative. This has already happened twice (engine_bug_queue:\n` +
+        `   eye_reads_the_hand_seeded_cache_not_the_current_source).\n\n` +
+        `   Re-seed, then re-run:\n` +
+        `     npx tsx --env-file=.env.local src/scripts/_seed_chemistry_cache.ts ${conceptId}`,
+    );
 }
 
 export function loadConceptJson(conceptId: string): Record<string, unknown> | null {

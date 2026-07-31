@@ -30,11 +30,23 @@ import { join } from 'path';
 // ── Pilot Supabase project (production data; NOT the dev project) ────────────
 
 // ── Payments (Phase 1): the Razorpay Payment Page URL for the founding plan
-// (₹699/mo, monthly only — decided 2026-07-12). Empty = the link isn't live yet
-// (founder KYC pending) → expired.html keeps its mailto-first copy. Once Razorpay
-// activates, paste the rzp.io URL here and rebuild — the expired page then leads
-// with the payment button. Single edit point.
+// (monthly only — decided 2026-07-12; price LOWERED to ₹499 on 2026-07-19, which
+// meant a NEW Payment Page because Razorpay page amounts can't be edited).
+// PAYMENT_LINK + PLAN_PRICE_INR travel TOGETHER — the link's page amount and the
+// price we print must always agree, so never edit one without the other (the live
+// page was re-verified at 49900 paise on 2026-07-30, founder-confirmed). Empty
+// link = fall back to mailto-first copy on expired.html. Single edit point; every
+// price string in the pilot app (expired page, trial-ending banner, account menu)
+// reads PLAN_PRICE_INR, so there is no second place to remember.
 export const PAYMENT_LINK = 'https://rzp.io/rzp/hQXPjZqv';
+export const PLAN_PRICE_INR = 499;
+
+/** Pages whose amount no longer matches PLAN_PRICE_INR — the build warns loudly if
+ *  PAYMENT_LINK is still one of them. Empty today: `hQXPjZqv` → pl_TCzobgVF93OIhr was
+ *  re-fetched 2026-07-30 and serves 49900 paise ("Founding Teacher Plan — ₹499/month"),
+ *  i.e. the ₹499 page reuses the original short link. Verify the same way after any
+ *  price change: `curl -sL https://rzp.io/rzp/<slug> | grep -o '499\\|49900'`. */
+const SUPERSEDED_PAYMENT_LINKS: string[] = [];
 
 export const PILOT_SUPABASE_URL = 'https://jqbnmltsupnnbuvqgkix.supabase.co';
 export const PILOT_SUPABASE_ANON_KEY =
@@ -332,8 +344,29 @@ function pmAuthJs(): string {
       window.PM_PLAN = (sub && sub.plan) || null;
       var accessEnd = Math.max(end, paidUntil);
       if (accessEnd && Date.now() > accessEnd) {
-        if (PAGE === 'expired') { pass(); return; }
-        location.replace('/expired.html'); return;
+        // Before locking her out: a payment may be sitting unattached to her account
+        // — she paid before signing up, or paid from this email seconds ago. The
+        // webhook parks those against the payer email; claim_pending_payments()
+        // attaches them to auth.uid(). One RPC, and ONLY on the expired path, so the
+        // normal load costs nothing. Fail-closed here (a failed claim = the gate it
+        // would have been anyway), never fail-open — this is the paywall.
+        var lockOut = function () {
+          if (PAGE === 'expired') { pass(); return; }
+          location.replace('/expired.html');
+        };
+        client.rpc('claim_pending_payments').then(function (cr) {
+          var d = (cr && !cr.error && cr.data) || null;
+          var until = (d && d.paid_until) ? new Date(d.paid_until).getTime() : 0;
+          if (d && d.claimed > 0 && until > Date.now()) {
+            window.PM_PAID_UNTIL = until;
+            window.PM_PLAN = window.PM_PLAN || 'founding-499';
+            try { console.info('[pm-auth] pending payment claimed — access reopened.'); } catch (e) {}
+            if (PAGE === 'expired') { location.replace('/'); return; }
+            pass(); return;
+          }
+          lockOut();
+        }, lockOut);
+        return;
       }
       if (PAGE === 'welcome' || PAGE === 'expired') { location.replace('/'); return; }   // nothing to do here
       pass();
@@ -380,10 +413,23 @@ function pmTelemetryJs(): string {
   }
   var SID = sessionId();
 
+  // Which page produced this event. concept_id/state_id identify a sim, but every
+  // non-player page (catalog/login/join/welcome/expired) left them null — so a dwell
+  // on the paywall was indistinguishable from a dwell on the catalog. The <html
+  // data-pm-page> attribute already exists for the auth gate; telemetry reads it too.
+  function pageName() {
+    try { return document.documentElement.getAttribute('data-pm-page') || 'unknown'; }
+    catch (e) { return 'unknown'; }
+  }
+
   PM.track = function (type, payload) {
     if (!type) return;
+    var p = payload || {};
+    if (p.page === undefined) {          // an explicit page in the payload always wins
+      try { p.page = pageName(); } catch (e) {}
+    }
     if (IS_DEV || isStaff) {
-      try { console.debug('[pm-telemetry ' + (isStaff ? 'founder' : 'dev') + ', NOT sent] ' + type, payload || {}); } catch (e) {}
+      try { console.debug('[pm-telemetry ' + (isStaff ? 'founder' : 'dev') + ', NOT sent] ' + type, p); } catch (e) {}
       return;
     }
     queue.push({
@@ -391,7 +437,7 @@ function pmTelemetryJs(): string {
       concept_id: (typeof window.PM_CONCEPT_ID === 'string' ? window.PM_CONCEPT_ID : null),
       state_id: (typeof window.PM_STATE_ID === 'string' ? window.PM_STATE_ID : null),
       event_type: String(type),
-      payload: payload || {},
+      payload: p,
       client_ts: new Date().toISOString()
     });
     if (queue.length > MAX_QUEUE) queue.splice(0, queue.length - MAX_QUEUE);
@@ -453,12 +499,24 @@ function pmTelemetryJs(): string {
   // Explicit flush for callers that navigate away immediately (login redirect).
   PM.flushNow = function () { try { flush(true); } catch (e) {} };
 
-  // Dwell heartbeat: proves the tab is actually in front of a class.
+  // Dwell heartbeat: proves the tab is actually in front of a class. seq counts
+  // heartbeats for THIS page load, so vis_s is time actually visible (hidden ticks
+  // are skipped) — a bare heartbeat could not distinguish 10 visible minutes from
+  // 10 minutes with the tab buried behind a browser window.
+  var dwellSeq = 0;
   setInterval(function () {
-    if (document.visibilityState === 'visible') PM.track('dwell', {});
+    if (document.visibilityState === 'visible') {
+      dwellSeq++;
+      PM.track('dwell', { seq: dwellSeq, vis_s: dwellSeq * (DWELL_MS / 1000) });
+    }
   }, DWELL_MS);
 
-  window.addEventListener('pagehide', function () { PM.track('page_leave', {}); flush(true); });
+  window.addEventListener('pagehide', function () {
+    var afterS = 0;
+    try { afterS = Math.round((performance && performance.now ? performance.now() : 0) / 1000); } catch (e) {}
+    PM.track('page_leave', { after_s: afterS });
+    flush(true);
+  });
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') flush(true);
   });
@@ -693,6 +751,9 @@ function pmFeedbackJs(): string {
       thanks.style.display = 'none';
       err.style.display = 'none';
       refresh();
+      // Opened-vs-submitted: the submit lands in pilot_feedback, so without this the
+      // teacher who opens the box and abandons it leaves no trace at all.
+      try { if (window.PM && PM.track) PM.track('feedback_open', {}); } catch (e) {}
     }
     function close() { stopStt(); overlay.className = ''; }
 
@@ -1199,9 +1260,9 @@ function welcomeHtml(): string {
       <label for="sc">School / institute</label>
       <input id="sc" type="text" maxlength="120">
       <label for="tc">What you teach</label>
-      <input id="tc" type="text" maxlength="120" placeholder="e.g. Class 12 Physics · JEE/NEET">
+      <input id="tc" type="text" maxlength="120" placeholder="e.g. AP Physics C, IB DP Physics, CBSE Class 12">
       <label for="ch">Which chapter are you teaching next?</label>
-      <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other / Class 11</option></select>
+      <select id="ch"><option value="">Choose…</option>${chapterOptions}<option value="Other">Other</option></select>
     </details>
   </form>
   <div class="err" id="errBox"></div>
@@ -1213,6 +1274,9 @@ function welcomeHtml(): string {
   var errBox = document.getElementById('errBox');
   function showErr(m) { errBox.textContent = m; errBox.style.display = 'block'; }
   function clearErr() { errBox.style.display = 'none'; }
+  // Signup funnel: welcome_shown vs profile_created measures the drop-off at this
+  // form (a teacher who signs in with Google and never finishes was invisible).
+  try { if (window.PM && PM.track) PM.track('welcome_shown', {}); } catch (e) {}
   PM.authReady.then(function (u) {
     if (!u) return;   // gate already handles no-session; dev shows the form inert
     var m = u.user_metadata || {};
@@ -1247,7 +1311,11 @@ function welcomeHtml(): string {
       // build_review_site.ts), so the post-signup reload below replays it automatically.
       if (window.PM && PM.track) PM.track('profile_created', {});
       if (window.PM && PM.flushNow) PM.flushNow();
-      location.replace('/');
+      // She may have PAID BEFORE signing up (we hand the payment link out directly).
+      // The webhook parked that payment against her email; claim it now so she lands
+      // in the catalog already subscribed instead of on a trial that will expire.
+      c.rpc('claim_pending_payments').then(function () { location.replace('/'); },
+                                           function () { location.replace('/'); });
     }, function () { btn.disabled = false; showErr('Network error — please try again.'); });
   });
 })();
@@ -1258,7 +1326,13 @@ function welcomeHtml(): string {
 
 // ── expired.html — SOFT trial-end screen ─────────────────────────────────────
 // Data is NEVER deleted (the saved work is the teacher's hook to convert and the
-// founder's feedback goldmine); this page just gates access and points at Pradeep.
+// founder's feedback goldmine); this page just gates access and offers the way back.
+// The way back is a PAYMENT BUTTON, not an email (founder 2026-07-30): a teacher who
+// hit the wall must be able to pay in that moment — "message Pradeep" leaked every
+// teacher who wouldn't write an email. Email/WhatsApp stay as the quiet fallback.
+// Phase 1 activation is still manual (`npm run grant:paid -- <email>`), so the page
+// (a) tells her to pay with the SAME email she signs in with — grant:paid keys on the
+// payer email — and (b) gives her a "check my access" recheck instead of a dead end.
 function expiredHtml(): string {
     return `<!DOCTYPE html>
 <html lang="en" data-pm-page="expired"><head>
@@ -1296,9 +1370,20 @@ function expiredHtml(): string {
   a.go{display:block;text-align:center;text-decoration:none;width:100%;margin-top:4px;padding:12px;border:0;border-radius:10px;
        background:var(--clay);color:#fff;font-size:14px;font-weight:600;font-family:var(--font-ui);transition:background .15s ease;}
   a.go:hover{background:var(--clay-deep);}
-  .hint{font-size:11.5px;color:var(--ink-faint);margin-top:10px;text-align:center;}
+  .hint{font-size:11.5px;color:var(--ink-faint);margin-top:10px;text-align:center;line-height:1.55;}
+  .hint b{color:var(--ink-dim);font-weight:600;}
+  button.re{display:block;width:100%;margin-top:14px;padding:10px;border:1px solid var(--line);border-radius:10px;
+            background:var(--surface-2);color:var(--ink-dim);font-size:12.5px;font-weight:500;font-family:var(--font-ui);
+            cursor:pointer;transition:color .15s ease,border-color .15s ease;}
+  button.re:hover{color:var(--ink);border-color:rgba(245,240,230,.2);}
+  button.re[disabled]{opacity:.6;cursor:default;}
+  .note{margin-top:12px;padding:9px 12px;border-radius:9px;font-size:11.5px;line-height:1.5;display:none;}
+  .note.bad{background:rgba(224,106,82,.10);border:1px solid rgba(224,106,82,.3);color:#F0A292;}
   a.alt{display:block;text-align:center;margin-top:16px;color:var(--ink-dim);font-size:12.5px;text-decoration:none;}
   a.alt:hover{color:var(--clay-soft);}
+  .row{display:flex;gap:14px;justify-content:center;margin-top:16px;}
+  .row a{color:var(--ink-faint);font-size:12px;text-decoration:none;}
+  .row a:hover{color:var(--clay-soft);}
 </style>
 </head>
 <body>
@@ -1310,17 +1395,71 @@ function expiredHtml(): string {
 
   <h1 id="xhead">Your free trial has ended</h1>
   <p class="sub">Everything you set up — your saved lesson layouts, renames, and customizations — is safe
-     and waiting exactly as you left it. To keep teaching with Viditra, message Pradeep and he will
-     activate your founding-teacher plan (&#8377;499/month, locked).</p>
-  <a class="go" href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email pradeep@viditra.co</a>
-  <a class="alt" href="#" id="soLink">Sign out</a>
+     and waiting exactly as you left it.${PAYMENT_LINK
+        ? ` Continue on the founding-teacher plan — &#8377;${PLAN_PRICE_INR}/month, locked at that price for as long as you stay.`
+        : ` To keep teaching with Viditra, message Pradeep and he will activate your founding-teacher plan (&#8377;${PLAN_PRICE_INR}/month, locked).`}</p>
+${PAYMENT_LINK ? `  <a class="go" id="payBtn" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Continue &mdash; &#8377;${PLAN_PRICE_INR}/month</a>
+  <p class="hint">UPI, card, or netbanking. <span id="payEmailHint">Please pay with the same email you sign in with</span> —
+     that is how your access is matched. It reopens automatically within a few seconds of payment.</p>
+  <button class="re" id="reBtn" type="button">I&#8217;ve paid &mdash; check my access</button>
+  <div class="note bad" id="reNote"></div>
+  <div class="row">
+    <a href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email Pradeep</a>
+    <a href="#" id="soLink">Sign out</a>
+  </div>`
+: `  <a class="go" href="mailto:pradeep@viditra.co?subject=Continue%20my%20Viditra%20access">Email pradeep@viditra.co</a>
+  <p class="hint">or reply on the WhatsApp thread we have been talking on — that works too.</p>
+  <a class="alt" href="#" id="soLink">Sign out</a>`}
 </div></div>
 
 <script>
 (function () {
-  PM.authReady.then(function () {
+  // The paywall funnel's denominator: subscribe_click is meaningless without
+  // knowing how many teachers saw this screen and did nothing.
+  try { if (window.PM && PM.track) PM.track('expired_shown', {}); } catch (e) {}
+  PM.authReady.then(function (u) {
     var p = window.PM_PROFILE;
     if (p && p.display_name) document.getElementById('xhead').textContent = p.display_name.split(' ')[0] + ', your free trial has ended';
+    // Name the exact email her access is keyed on — grant:paid matches the payer email,
+    // so paying from a second address is the one way this flow silently strands her.
+    var eh = document.getElementById('payEmailHint');
+    if (eh && u && u.email) eh.innerHTML = 'Please pay with <b>' + u.email + '</b>';
+  });
+  var payBtn = document.getElementById('payBtn');
+  if (payBtn) payBtn.addEventListener('click', function () {
+    try { if (window.PM && PM.track) PM.track('subscribe_click', { source: 'expired' }); } catch (e) {}
+  });
+  // "I've paid" — activation is manual in Phase 1, so give her a live recheck instead
+  // of a dead end: re-read the subscription and let the gate route her back in.
+  var reBtn = document.getElementById('reBtn');
+  var reNote = document.getElementById('reNote');
+  if (reBtn) reBtn.addEventListener('click', function () {
+    reBtn.disabled = true; reBtn.textContent = 'Checking…';
+    if (reNote) reNote.style.display = 'none';
+    try { if (window.PM && PM.track) PM.track('access_recheck', {}); } catch (e) {}
+    var c = window.PM && PM.auth && PM.auth.client && PM.auth.client();
+    if (!c) { location.reload(); return; }
+    // Claim first: if she paid moments ago from a different email-less flow, or paid
+    // before this account existed, the webhook parked it — attach it, THEN re-read.
+    c.rpc('claim_pending_payments').then(recheck, recheck);
+    function recheck() {
+    // Same shape + same trial arithmetic as the pm-auth gate (there is no trial_end
+    // column — it is trial_started_at + trial_days), so this can never disagree with it.
+    c.from('teacher_profiles').select('*, teacher_subscriptions(plan, paid_until)').maybeSingle().then(function (r) {
+      var row = (r && !r.error && r.data) || null;
+      var sub = row ? (row.teacher_subscriptions || null) : null;
+      if (sub && sub.length !== undefined) sub = sub[0] || null;
+      var paid = 0, trial = 0;
+      try { if (sub && sub.paid_until) paid = new Date(sub.paid_until).getTime(); } catch (e) {}
+      try { if (row) trial = new Date(row.trial_started_at).getTime() + (row.trial_days || 7) * 86400000; } catch (e) {}
+      if (Math.max(paid || 0, trial || 0) > Date.now()) { location.replace('/'); return; }
+      reBtn.disabled = false; reBtn.textContent = 'Check again';
+      if (reNote) {
+        reNote.textContent = 'Not active yet. If you have just paid, give it a few seconds and check again — or email Pradeep and he will switch it on right away.';
+        reNote.style.display = 'block';
+      }
+    }, function () { location.reload(); });
+    }
   });
   document.getElementById('soLink').addEventListener('click', function (ev) {
     ev.preventDefault(); if (window.PM && PM.auth) PM.auth.signOut();
@@ -1472,6 +1611,7 @@ function pmTourJs(): string {
     if (!mk) return;                       // fail-open: driver.js missing -> no tour, app untouched
     injectStyles();                        // accent ring/glow + popover accent on the player too
     pauseSim(true);
+    try { if (window.PM && PM.track) PM.track('tour_start', {}); } catch (e) {}
     var steps = STEPS.map(function (s) {
       var pop = { title: s.title, description: s.text };
       if (s.side) pop.side = s.side;
@@ -1495,6 +1635,14 @@ function pmTourJs(): string {
       // tear down and finish. Guarded so the two paths can't double-run.
       if (finished) return;
       finished = true;
+      // Reached the last card = completed; anything earlier = abandoned, and WHERE
+      // she abandoned is the signal (which beat loses teachers).
+      try {
+        if (window.PM && PM.track) {
+          if (trackedIndex >= STEPS.length - 1) PM.track('tour_done', { steps: STEPS.length });
+          else PM.track('tour_skip', { at_step: trackedIndex, of: STEPS.length });
+        }
+      } catch (e) {}
       try { if (d) d.destroy(); } catch (e) {}   // real teardown (destroy() takes the non-onDestroyStarted path)
       finishTour();
     }
@@ -1520,6 +1668,9 @@ function pmTourJs(): string {
         } catch (e) {}
         var ai = (opts && opts.state && typeof opts.state.activeIndex === 'number') ? opts.state.activeIndex : 0;
         trackedIndex = ai;
+        try {
+          if (window.PM && PM.track) PM.track('tour_step', { n: ai, of: STEPS.length, demo: (STEPS[ai] && STEPS[ai].demo) || null });
+        } catch (e) {}
         try { playStep(ai); } catch (e) {}
         try { if (isMuted()) muteToggle(true); } catch (e) {}
         // On a Hide/Unhide beat, let the teacher click the real button; auto-advance when they do.
@@ -1625,8 +1776,13 @@ function pmTourJs(): string {
       '<button class="pm-tour-btn skip" id="pmTourSkip">Skip for now</button>' +
       '</div></div>';
     document.body.appendChild(ovl);
+    try { if (window.PM && PM.track) PM.track('tour_offer_shown', {}); } catch (e) {}
     document.getElementById('pmTourGo').addEventListener('click', launch);
-    document.getElementById('pmTourSkip').addEventListener('click', function () { markSeen(); ovl.remove(); });
+    document.getElementById('pmTourSkip').addEventListener('click', function () {
+      // at_step -1 = declined the offer without ever entering the tour
+      try { if (window.PM && PM.track) PM.track('tour_skip', { at_step: -1 }); } catch (e) {}
+      markSeen(); ovl.remove();
+    });
   }
 
   // A brand beat owns the first moments of the catalog and the welcome modal must wait
@@ -1696,4 +1852,17 @@ export function writeRootAssets(outDir: string): void {
     writeFileSync(join(outDir, 'welcome.html'), welcomeHtml(), 'utf-8');
     writeFileSync(join(outDir, 'expired.html'), expiredHtml(), 'utf-8');
     console.log('   pilot: pm-config.js, pm-auth.js, pm-telemetry.js, pm-feedback.js, pm-tour.js, login.html, join.html, welcome.html, expired.html → review-site/');
+    // Money guard: a Razorpay Payment Page amount can never be edited, so a link
+    // from a retired price silently charges the wrong amount behind ₹PLAN_PRICE_INR
+    // copy. Every price the app prints is generated from PLAN_PRICE_INR — the link
+    // is the one thing that can drift, so name it loudly at build time.
+    if (SUPERSEDED_PAYMENT_LINKS.some((u) => PAYMENT_LINK.includes(u))) {
+        console.warn(
+            `   ⚠ PAYMENT_LINK is a SUPERSEDED Razorpay page (${PAYMENT_LINK}) while the app prints ₹${PLAN_PRICE_INR}/month.\n` +
+            `     Teachers would be charged the old amount. Paste the current ₹${PLAN_PRICE_INR} Payment Page URL into PAYMENT_LINK\n` +
+            `     (src/scripts/pilot_site_assets.ts) and rebuild BEFORE npm run deploy:app.`,
+        );
+    } else if (!PAYMENT_LINK) {
+        console.warn('   ⚠ PAYMENT_LINK is empty — expired.html falls back to mailto-only copy (no way for a teacher to pay).');
+    }
 }

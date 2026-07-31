@@ -55,7 +55,7 @@ When the input is an EXISTING pre-Rule-31 concept JSON rather than a fresh conce
 pipeline with this entry brief. Boundaries: ONE named small delta is NOT a reconstruction — that's
 `retrofit-surgeon` (whose binding-count invariant forbids state deletion by design). And a scenario
 with no per-state motion modes / control rows (static-poses class, e.g. old Ch.1 coulomb) needs a
-`peter_parker:renderer_primitives` live-instrument delta FIRST — flag it in the skeleton; JSON alone
+`peter_parker:field3d_surgeon` live-instrument delta FIRST (field_3d scenarios; a 2D scenario routes `peter_parker:renderer_primitives` → the `pcpl_surgeon` agent) — flag it in the skeleton; JSON alone
 cannot add motion the scenario can't render. Reference precedent: the coulombs_law reconstruction
 spec (`docs/superpowers/specs/2026-07-05-coulombs_law-rule31-reconstruction-design.md`).
 

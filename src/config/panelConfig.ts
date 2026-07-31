@@ -633,6 +633,36 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         primary: { renderer: 'mechanics_2d', config_key: 'vector_addition_law', label: 'Vector Addition: Triangle/Parallelogram Law' },
     },
 
+    // resultant_direction — concept #3 of the new Class 11 Mechanics Ch.1
+    // "Vectors" DAG track (prerequisite: vector_addition_law). Single-panel
+    // PCPL sim, no panel_b_config authored — same missing-panel_b_config
+    // defect class as scalar_vs_vector/vector_addition_law
+    // (default_panel_count=1 forced via the concept_panel_config Supabase
+    // row, see supabase_migrations/).
+    resultant_direction: {
+        concept_id: 'resultant_direction',
+        layout: 'single',
+        primary: { renderer: 'mechanics_2d', config_key: 'resultant_direction', label: 'Direction of the Resultant of Two Vectors' },
+    },
+
+    // displacement_vs_distance — concept #1 of the new Class 11 Kinematics
+    // "Motion in a Straight Line" DAG track (chapter:2, prerequisite:
+    // scalar_vs_vector). First field_3d Kinematics concept — the
+    // kinematics_1d_track scenario does not exist in field_3d_renderer.ts yet
+    // (peter_parker:renderer_primitives build pending quality_auditor
+    // FAIL-routing). Single-panel field_3d sim, no panel_b_config.
+    // Retires the legacy distance_displacement_basics/distance_vs_displacement
+    // bundle names — see CONCEPT_SYNONYMS in intentClassifier.ts.
+    displacement_vs_distance: {
+        concept_id: 'displacement_vs_distance',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'displacement_vs_distance',
+            label: 'Displacement vs Distance — Δx = x_f − x₀, d = accumulated path length (3D)',
+        },
+    },
+
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
     current_not_vector: {
         concept_id: 'current_not_vector',

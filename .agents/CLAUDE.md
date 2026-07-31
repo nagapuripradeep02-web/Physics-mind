@@ -1,6 +1,6 @@
 # CLAUDE.md — `.agents/` (canonical agent specs)
 
-Umbrella governance for the eleven canonical agent specifications (seven original + three added 2026-07-04: `eye_walker`, `retrofit_surgeon`, `shipper`; + `chemistry_author` added 2026-07-23 — CHEMISTRY_BUILD_PLAN.md Phase 2). This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
+Umbrella governance for the thirteen canonical agent specifications (seven original + three added 2026-07-04: `eye_walker`, `retrofit_surgeon`, `shipper`; + `chemistry_author` added 2026-07-23 — CHEMISTRY_BUILD_PLAN.md Phase 2; + `founder_proxy` and `field3d_surgeon` GRADUATED 2026-07-31 from the ch7/ch8 chapter-loop trial; `renderer_primitives` renamed `pcpl_surgeon` the same day). This directory is the **source of truth**; `.claude/agents/*.md` is the emitted dispatch wrapper consumed by Claude Code's native auto-dispatch. Never hand-edit a wrapper.
 
 ## Canonical source vs dispatch wrapper
 
@@ -28,7 +28,7 @@ Frontmatter (`name:`, `description:`, `model:`, `tools:`) is hand-maintained IN 
 
 Naming reminder: emission filename and `name:` field use **hyphenated** form (`json-author`). Bug-queue ownership tags and FAIL routing use **underscored cluster-prefixed** form (`alex:json_author`). Both intentional. See `~/.claude/rules/agent-teams-reference.md`.
 
-## The eleven roles (2026-07-04: adds `eye_walker`, `retrofit_surgeon`, `shipper` + the Release cluster; 2026-07-23: adds `chemistry_author`)
+## The thirteen roles (2026-07-04: adds `eye_walker`, `retrofit_surgeon`, `shipper` + the Release cluster; 2026-07-23: adds `chemistry_author`; 2026-07-31: graduates `founder_proxy` + `field3d_surgeon`, renames `renderer_primitives` → `pcpl_surgeon`, marks `feedback_collector` DORMANT)
 
 | Cluster | Role (canonical dir) | Pattern | One-line summary |
 |---|---|---|---|
@@ -39,10 +39,12 @@ Naming reminder: emission filename and `name:` field use **hyphenated** form (`j
 | Alex | `quality_auditor` | pipelined #4 (gate) | Per-gate PASS/FAIL verdict + return-to-author FAIL routing. Reports only, never edits. Model-pinned `claude-opus-5` (2026-07-08 — upgraded from sonnet-5; founder call: the final adversarial pre-founder gate reasons across skeleton+physics+JSON+THE EYE+eye_walker+routing and never edits files, so it is the highest-ROI single Opus slot / zero blast radius. Fallback = revert pin to sonnet-5). |
 | Alex | `eye_walker` | parallel verification (frames) | Reads THE EYE frame dumps in its own context; per-state verdict table + ≤5 frames for founder eyes. Curates, never approves. Dispatched alongside quality_auditor. |
 | Alex | `retrofit_surgeon` | dispatched per-concept for doctrine deltas | ONE concept + ONE named delta = minimal surgical diff; preserves cue/glow bindings + PRIMARY aha; fleet migration = N parallel dispatches. |
-| Peter Parker | `renderer_primitives` | FAIL-routed | Display layer in `parametric_renderer.ts` + PCPL primitives. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
+| Review | `founder_proxy` | checkpoints A (design) / B (build) / C (handover) | GRADUATED 2026-07-31 (born 2026-07-22 chapter-loop trial). Plays the founder's per-sim taste review — reject-biased; APPROVE = authoring sign-off only, NEVER shipping (Rule 17 intact). Reports only, never edits. Model-pinned `claude-opus-5`, effort high (2026-07-22 — pure-judgment role, zero blast radius; deliberately NOT Fable: token-cost call 2026-07-31). |
+| Peter Parker | `pcpl_surgeon` | FAIL-routed | RENAMED from `renderer_primitives` 2026-07-31 (DB tag `peter_parker:renderer_primitives` unchanged, maps here). 2D display layers: `parametric_renderer.ts` + PCPL primitives + `particle_field_renderer.ts`. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
+| Peter Parker | `field3d_surgeon` | FAIL-routed + Phase-0 scenario builds | GRADUATED 2026-07-31 (born 2026-07-24 trial). Specialist for `field_3d_renderer.ts` (~55K lines) + its `deriveStateMeta.ts` co-edits; carries the region map + scar checklist; ~3.4M tokens/dispatch vs ~25M general-purpose. ONE bug_class per dispatch. Owner tag `peter_parker:field3d_surgeon`. Never call directly. Model-pinned `claude-opus-5` (audit: half the calls of Sonnet on this task class). |
 | Peter Parker | `runtime_generation` | FAIL-routed | Generator + jsonModifier + cache sweeps. Only agent that runs `DELETE` on cache tables. Never call directly. Model-pinned `claude-sonnet-5` (2026-07-08). |
 | Release | `shipper` | post-approval release chain — **founder-triggered only** | Rule 30h/30i chain: visual:approve → `tts:generate --langs=en` (audio on-demand; the product is English-only) → build:review → verify. No translation gate (Rule 30i, 2026-07-17 — the old `text_te` refusal is REMOVED; `text_hi` is authored pre-ship by a Sonnet-5 sub-agent but never blocks a release, and `tts:translate` stays forbidden). Refuses to run without an approval statement. |
-| Offline | `feedback_collector` | nightly only | E38–E41 quartet. Reads 5 feedback tables, writes proposals. Never invoked during live serving paths. |
+| Offline | `feedback_collector` | nightly only — **DORMANT (2026-07-31)** | E38–E41 quartet. Reads 5 feedback tables, writes proposals. Never invoked during live serving paths. Shelved until `pilot_feedback`/`simulation_feedback` hold real teacher rows — dispatching it now clusters noise. |
 
 **Release cluster (added 2026-07-04).** A fourth, deliberately lightweight cluster beyond Alex / Peter
 Parker / Offline: script-orchestration roles that run AFTER the Rule 17 human gate. It has no OVERVIEW.md
@@ -54,11 +56,12 @@ a real handoff protocol). Owner-tag form: `release:shipper`.
 
 1. New concept authoring uses the pipeline: architect → physics_author → json_author → quality_auditor. Sequential. Never parallel.
 2. Routine checks use parallel subagents (type-check + validator + console-audit fired in one message).
-3. Never call `renderer_primitives` or `runtime_generation` directly. They're triggered by quality_auditor's FAIL routing.
+3. Never call `pcpl_surgeon`, `field3d_surgeon`, or `runtime_generation` directly. They're triggered by quality_auditor's (or founder_proxy's `FIX(engine)`) FAIL routing — or, for field3d_surgeon, a planned Phase-0 chapter-opening build (`docs/AUTHORING_PIPELINE.md` §0).
 4. Quality_auditor is the gate, not the author. Reports + routes. Never edits content.
 5. `.agents/<role>/CLAUDE.md` is the canonical source. `.claude/agents/<role>.md` is the emission. Never edit the emission directly.
 6. Anchor checking (UNIVERSAL culture-neutral anchor per Rule 35 — founder 2026-07-10, supersedes the old "Indian context" requirement; plain English, no Hinglish) is folded into quality_auditor's anti-plagiarism probe. Do not create a separate anchor-checker agent.
 7. *(added 2026-07-04)* `shipper` dispatches ONLY on explicit founder approval (Rule 17 gate — quality_auditor PASS / THE EYE clean are NOT approval); `eye_walker` curates frames but never approves (`visual:approve` stays founder-triggered); `retrofit_surgeon` never touches registration sites, renderer code, or a second file — it escalates instead.
+8. *(added 2026-07-31)* `founder_proxy` runs at Checkpoints A/B/C on every new concept (Checkpoint A on every new architect skeleton is the default); its APPROVE is authoring sign-off ONLY — it never ships, never edits, never dispatches. `feedback_collector` is DORMANT — do not dispatch until real teacher feedback rows exist.
 
 **Chemistry addendum (2026-07-23, repo-local — not yet mirrored in `~/.claude/rules/agent-teams-reference.md`):** chemistry concepts run rule 1's pipeline with `chemistry_author` substituted at position #2 (`architect → chemistry_author → json_author → quality_auditor`); all other hard rules apply unchanged. Chemistry concept JSONs live ONLY in `src/data/concepts/chemistry/` (isolation contract — `docs/CHEMISTRY_ARCHITECTURE.md` §7).
 

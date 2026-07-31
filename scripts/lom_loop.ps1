@@ -1,4 +1,4 @@
-# lom_loop.ps1 - outer wrapper for the Laws of Motion chapter loop (worktree B, feat/lom-b)
+# lom_loop.ps1 - outer wrapper for the Laws of Motion chapter loop (worktree A, feat/lom-a)
 #
 # One concept per SESSION: each iteration launches a brand-new headless `claude -p` session that
 # completes exactly ONE concept (resuming any in_flight one from disk), seals/parks it, updates the
@@ -17,22 +17,22 @@
 #     stalls stop the wrapper - it never burns tokens in a retry loop.
 #   - MAX 5 iterations (3 concepts + headroom for fix cycles).
 #
-# Run detached:  Start-Process powershell -ArgumentList '-ExecutionPolicy','Bypass','-NoProfile','-File','scripts\lom_loop.ps1' -WorkingDirectory 'C:\Tutor\physics-mind-lom-b' -WindowStyle Hidden
+# Run detached:  Start-Process powershell -ArgumentList '-ExecutionPolicy','Bypass','-NoProfile','-File','scripts\lom_loop.ps1' -WorkingDirectory 'C:\Tutor\physics-mind-lom-a' -WindowStyle Hidden
 
 $ErrorActionPreference = 'Continue'
 
-$Repo         = 'C:\Tutor\physics-mind-lom-b'
-$StateFile    = Join-Path $Repo 'docs\loop_runs\lom_b_state.md'
+$Repo         = 'C:\Tutor\physics-mind-lom-a'
+$StateFile    = Join-Path $Repo 'docs\loop_runs\lom_a_state.md'
 $EngineReport = Join-Path $Repo 'docs\loop_runs\phase0_engine_report.md'
 $WrapDir      = Join-Path $Repo 'docs\loop_runs\wrapper'
-$ProjectsDir  = 'C:\Users\PRADEEEP\.claude\projects\C--Tutor-physics-mind-lom-b'
+$ProjectsDir  = 'C:\Users\PRADEEEP\.claude\projects\C--Tutor-physics-mind-lom-a'
 $MaxIter      = 5
 $QuietSeconds = 180
 # Quota-conservation directive (founder 2026-07-25): medium effort for the authoring loop.
 # The expensive engine work is already done in Phase 0; these iterations are JSON authoring.
 $Effort       = 'medium'
 
-$RemainingConcepts = @('newton_first_law', 'newton_second_law', 'newton_third_law')
+$RemainingConcepts = @('free_body_diagram', 'connected_bodies', 'block_on_incline')
 
 if (-not (Test-Path $WrapDir)) { New-Item -ItemType Directory -Force $WrapDir | Out-Null }
 $MainLog = Join-Path $WrapDir 'wrapper.log'
@@ -48,13 +48,13 @@ function Get-StateText {
 }
 
 function Test-EngineReady {
-    # This branch INHERITS the newtons_laws_body engine from feat/lom-a rather than building it,
-    # so the gate is a DIRECT check that the scenario is present in the renderer - not a
-    # state-file naming convention. Always true in practice, kept as a cheap guard against
-    # someone creating this worktree from the wrong base commit.
-    $renderer = Join-Path $Repo 'src\lib\renderers\field_3d_renderer.ts'
-    if (-not (Test-Path $renderer)) { return $false }
-    return [bool](Select-String -Path $renderer -Pattern 'newtons_laws_body' -SimpleMatch -Quiet)
+    if (-not (Test-Path $EngineReport)) { return $false }
+    $state = Get-StateText
+    if (-not $state) { return $false }
+    $line = ($state -split "`n" | Where-Object { $_ -match '^engine_commits:' }) -join ' '
+    if (-not $line) { return $false }
+    if ($line -match 'none yet') { return $false }
+    return $true
 }
 
 function Test-ChapterDone {
@@ -78,7 +78,7 @@ function Test-Quiescent {
     return ($age -ge $QuietSeconds)
 }
 
-Log "=== lom_loop (worktree B) starting (max $MaxIter iterations, effort=$Effort) ==="
+Log "=== lom_loop (worktree A) starting (max $MaxIter iterations, effort=$Effort) ==="
 
 # ---- Engine gate ----
 $waitedEngine = 0
@@ -104,7 +104,7 @@ if (Test-ChapterDone) {
     exit 0
 }
 
-$Prompt = 'Read docs/CHAPTER_LOOP.md and docs/loop_runs/lom_b_state.md. Complete exactly ONE concept: if the state file or working tree shows an in-flight concept (uncommitted artifacts under docs/loop_runs/lom/<concept>/ or an uncommitted src/data/concepts/<concept>.json), RESUME it from its furthest disk artifact - do not re-run completed pipeline stages. Otherwise start the next concept in the chapter map. The newtons_laws_body engine is ALREADY BUILT - every concept is pure JSON configuration per docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md section 6; if a concept appears to need a renderer change, STOP and park it with an engine_gap.md rather than extending the engine. Follow the protocol fully including Amendment 4 (ONE bug_class per engine dispatch, field_3d engine work goes to the field3d-surgeon agent) and Amendment 6 (no founder-proxy; quality-auditor PASS plus eye-walker clean auto-triggers visual:approve). Dispatch quality-auditor and eye-walker IN PARALLEL and never load frame PNGs into your own context. When the concept is SEALED or PARKED and the state file is updated, EXIT the session. Do not start another concept. Constraints: no tts, no PILOT_CONCEPTS, no build:pilot, no deploy, no master merge, no engine_bug_queue DB writes, no paid smoke:visual-validator.'
+$Prompt = 'Read docs/CHAPTER_LOOP.md and docs/loop_runs/lom_a_state.md. Complete exactly ONE concept: if the state file or working tree shows an in-flight concept (uncommitted artifacts under docs/loop_runs/lom/<concept>/ or an uncommitted src/data/concepts/<concept>.json), RESUME it from its furthest disk artifact - do not re-run completed pipeline stages. Otherwise start the next concept in the chapter map. The newtons_laws_body engine is ALREADY BUILT - every concept is pure JSON configuration per docs/NEWTONS_LAWS_BODY_ENGINE_SPEC.md section 6; if a concept appears to need a renderer change, STOP and park it with an engine_gap.md rather than extending the engine. Follow the protocol fully including Amendment 4 (ONE bug_class per engine dispatch, field_3d engine work goes to the field3d-surgeon agent) and Amendment 6 (no founder-proxy; quality-auditor PASS plus eye-walker clean auto-triggers visual:approve). Dispatch quality-auditor and eye-walker IN PARALLEL and never load frame PNGs into your own context. When the concept is SEALED or PARKED and the state file is updated, EXIT the session. Do not start another concept. Constraints: no tts, no PILOT_CONCEPTS, no build:pilot, no deploy, no master merge, no engine_bug_queue DB writes, no paid smoke:visual-validator.'
 
 $stalls = 0
 for ($i = 1; $i -le $MaxIter; $i++) {
@@ -134,7 +134,7 @@ for ($i = 1; $i -le $MaxIter; $i++) {
 }
 
 if (Test-ChapterDone) {
-    Log "=== lom-b COMPLETE per state file. Wrapper exiting. ==="
+    Log "=== lom-a COMPLETE per state file. Wrapper exiting. ==="
 } else {
     Log "=== wrapper exiting WITHOUT completion (iteration cap or stall guard). ==="
 }

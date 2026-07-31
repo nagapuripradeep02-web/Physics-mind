@@ -62,6 +62,11 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // "Vectors" DAG track (prerequisite: scalar_vs_vector). Alex pipeline,
     // 2026-07-24.
     'vector_addition_law',
+    // resultant_direction — concept #3 of the Vectors DAG track (prerequisite:
+    // vector_addition_law) — direction of the resultant, tan alpha = B sin
+    // theta / (A + B cos theta). Alex pipeline, 2026-07-24. NOT a synonym of
+    // the legacy 'direction_of_resultant' id below (byte-frozen, untouched).
+    'resultant_direction',
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
     'current_not_vector', 'parallelogram_law_test', 'pressure_scalar',
     'area_vector',
@@ -71,8 +76,22 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // Atomic splits from former vector_components bundle (Ch.5.3)
     'unit_vector_form', 'inclined_plane_components', 'negative_components',
     'dot_product',
-    // Atomic splits from former distance_vs_displacement bundle (Ch.6.1-6.5)
-    'distance_displacement_basics', 'average_speed_velocity',
+    // Kinematics — NEW DAG track (Ch.2, field_3d). Alex pipeline, 2026-07-25.
+    // displacement_vs_distance is concept #1 of the Class 11 Kinematics "Motion
+    // in a Straight Line" DAG (prerequisite: scalar_vs_vector) — Δx = x_f − x₀
+    // (signed, endpoint-only change of position) vs d = accumulated path length
+    // (always positive), including the round-trip Δx=0 aha and the
+    // signed-direction case. See CONCEPT_SYNONYMS below, which now retires the
+    // legacy distance_displacement_basics/distance_vs_displacement bundle names
+    // to this atomic (2026-07-25).
+    'displacement_vs_distance',
+    // Atomic splits from former distance_vs_displacement bundle (Ch.6.1-6.5).
+    // distance_displacement_basics RETIRED 2026-07-25 — superseded by the new
+    // field_3d displacement_vs_distance atomic above; its legacy JSON is
+    // renamed distance_displacement_basics.legacy.json.deleted and both
+    // 'distance_displacement_basics' and 'distance_vs_displacement' now
+    // redirect via CONCEPT_SYNONYMS.
+    'average_speed_velocity',
     'instantaneous_velocity', 'sign_convention', 's_in_equations',
     // Atomic splits from former uniform_acceleration bundle (Ch.6.6-6.9)
     'three_cases', 'free_fall', 'sth_formula', 'negative_time',
@@ -957,7 +976,8 @@ export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     vector_basics: 'unit_vector',
     vector_addition: 'resultant_formula',
     vector_components: 'vector_resolution',
-    distance_vs_displacement: 'distance_displacement_basics',
+    distance_vs_displacement: 'displacement_vs_distance',
+    distance_displacement_basics: 'displacement_vs_distance',
     uniform_acceleration: 'three_cases',
     non_uniform_acceleration: 'a_function_of_t',
     motion_graphs: 'xt_graph',
@@ -1093,6 +1113,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   ── Vectors (Ch.5) ── atomic splits
   scalar_vs_vector         ← the general TEST for whether a quantity is a scalar or a vector — magnitude+direction is necessary but NOT sufficient, it must also add by the triangle/parallelogram law (3 km + 4 km at a right angle gives 5 km, not 7); mass on a scale adds as a plain number regardless of orientation/angle. The general classification test — NOT a specific worked trap (current_not_vector, pressure_scalar are the specific applications of this same test).
   vector_addition_law      ← HOW two vectors add once you already know something IS a vector — carry the second vector parallel to itself and dock its tail on the first one's head (triangle law), equivalently draw both from a common tail and take the parallelogram's diagonal; R = sqrt(A² + B² + 2AB cosθ) spans |A−B| ≤ R ≤ A+B (7 at θ=0, 5 at θ=90, 1 at θ=180 for the 3-4 legs); either order (A then B, or B then A) lands the same finishing corner — one law, two drawings. Prerequisite of scalar_vs_vector (the DAG root); does NOT cover resultant direction angle α, vector subtraction, or component resolution (aspects: foundational=numbers-lie through the PRIMARY tip-to-tail aha, parallelogram=either-order-same-diagonal, magnitude=the angle-dials-the-sum sweep + the smaller-than-both surprise, exploration=all three dials).
+  resultant_direction      ← WHICH WAY the resultant of two vectors points, once you already know |R| — drop one perpendicular from B onto A's line, splitting B into an along part (B cosθ) and an across part (B sinθ); tan α = B sinθ / (A + B cosθ), where the along side is the WHOLE base A + B cosθ, not A alone (the classic denominator error); α always trails θ (α<θ), R leans toward whichever vector is bigger (bisects θ only in the A=B accident), θ=90° collapses to tan α=B/A, base=0 (θ=arccos(−A/B)) makes R exactly perpendicular to A, θ=180° flips R along the bigger vector. Prerequisite of vector_addition_law (cashes out the direction formula that concept explicitly deferred); does NOT cover the magnitude formula or general component resolution on arbitrary axes (aspects: foundational=which-way through the perpendicular-drop to the PRIMARY tan-alpha aha, dominance=R leans toward the bigger vector/bisector is the tie accident, angle_cases=the θ-sweep landmarks (90°/perpendicular/180° flip), exploration=all three dials).
   vector_resolution        ← resolving a force/vector at an angle into axes
   unit_vector              ← definition, magnitude, direction of unit vector
   angle_between_vectors
@@ -1112,8 +1133,10 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   negative_components
   dot_product              ← A·B = AB cosθ, scalar product
 
-  ── Kinematics (Ch.6-7) ── atomic splits
-  distance_displacement_basics   ← path length vs displacement
+  ── Kinematics (Ch.2) ── NEW DAG track (field_3d, Alex pipeline 2026-07-25)
+  displacement_vs_distance ← displacement Δx = x_f − x₀ (signed, endpoint-only change of position) vs distance d = always-positive accumulated path length; equal only for one-directional motion, diverging the instant motion reverses — the round-trip Δx=0-while-d-keeps-climbing aha, the signed-direction case (Δx<0 for motion along −x, d never negative), and the endpoints-only law (Δx depends only on start/final position, never the path taken). Prerequisite: scalar_vs_vector. Supersedes the legacy distance_displacement_basics/distance_vs_displacement bundle names (see CONCEPT_SYNONYMS).
+
+  ── Kinematics (Ch.6-7) ── atomic splits (legacy mechanics_2d, non-product)
   average_speed_velocity
   instantaneous_velocity
   sign_convention
@@ -1302,8 +1325,8 @@ CRITICAL DISAMBIGUATION (vectors, Ch.5):
 - "unit vector" → unit_vector
 - "i cap j cap k cap" / "vector in ijk form" → unit_vector_form
 
-CRITICAL DISAMBIGUATION (kinematics, Ch.6-7):
-- "distance vs displacement" → distance_displacement_basics
+CRITICAL DISAMBIGUATION (kinematics, Ch.2 + Ch.6-7):
+- "distance vs displacement" / "displacement vs distance" / "why is my displacement zero after a round trip" / "is displacement always positive" / "does the path matter for displacement" / "delta x equals x final minus x initial" → displacement_vs_distance (the NEW Ch.2 field_3d atomic — supersedes the legacy distance_displacement_basics id)
 - "equations of motion" / "suvat" → three_cases
 - "free fall" → free_fall
 - "nth second displacement" → sth_formula
@@ -1404,6 +1427,7 @@ CRITICAL DISAMBIGUATION (vectors, Ch.5.1):
 - "why is pressure a scalar" / "pressure pushes in all directions" → pressure_scalar (a SPECIFIC worked application of the scalar_vs_vector test)
 - "two conditions for a vector, formally, with more examples" / "surface tension / finite rotation / polar vs axial" → parallelogram_law_test
 - "how do you actually add two vectors" / "triangle law of vector addition" / "parallelogram law" / "tip to tail" / "why do you put the tail on the head" / "does it matter which vector you add first" / "resultant of two vectors" / "R = sqrt(a squared + b squared + 2ab cos theta)" / "can the sum be smaller than both vectors" / "range of the resultant" → vector_addition_law (the CONSTRUCTION/formula for adding two already-known vectors — distinct from scalar_vs_vector's classification TEST)
+- "which way does the resultant point" / "direction of the resultant" / "what is alpha" / "angle the resultant makes with a" / "tan alpha formula" / "tan alpha = q sin theta over p plus q cos theta" / "does the resultant bisect the angle" / "which vector does R lean toward" / "resultant perpendicular to a vector" / "resultant at 90 degrees" / "resultant at 180 degrees" → resultant_direction (the DIRECTION formula, given the two vectors already known — distinct from vector_addition_law's MAGNITUDE-only construction, which explicitly defers this)
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "gravitational force" / "weight of object" → field_forces

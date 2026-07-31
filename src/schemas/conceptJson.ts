@@ -123,11 +123,32 @@ const computedOutputSchema = z.object({
   formula: z.string(),
 });
 
+/**
+ * Optional hand-pinned assertion for THE CALCULATOR (npm run numeric:calc).
+ *
+ * The gate auto-derives its ground truth from `computed_outputs` and
+ * `variables[].derived`; this block exists only for the cases those two cannot
+ * express (a state-specific expected value, a looser tolerance where three
+ * rounded displays compound). Absent on every concept today, and absence means
+ * "auto-derive only" — never a validation failure.
+ */
+const numericAssertionSchema = z.object({
+  /** Restrict to one state; omit to assert in every state. */
+  state: z.string().optional(),
+  /** Symbol as PAINTED, optionally with a unit suffix ("Q_nC"). */
+  read: z.string(),
+  /** Expression evaluated in the state's scope to produce the expected value. */
+  expect: z.string(),
+  /** Relative tolerance in percent; defaults to 1. */
+  tol_pct: z.number().positive().optional(),
+});
+
 const physicsEngineConfigSchema = z.object({
   variables: z.record(z.string(), variableSchema),
   computed_outputs: z.record(z.string(), computedOutputSchema).optional(),
   formulas: z.record(z.string(), z.string()).optional(),
   constraints: z.array(z.string()).optional(),
+  numeric_assertions: z.array(numericAssertionSchema).optional(),
 });
 
 // ── Renderer Pair ───────────────────────────────────────────────────

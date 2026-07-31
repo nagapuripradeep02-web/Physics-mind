@@ -3,7 +3,7 @@
 > Rewritten 2026-06-11 (Batch A of the codebase audit). The previous README described
 > a five-role, non-runnable, pre-session-32 world that no longer exists.
 
-Eleven roles, four clusters (Alex authoring + verification · Peter Parker engines · Release · Offline). Each `<role>/CLAUDE.md` here is the
+Thirteen roles, five clusters (Alex authoring + verification · Review taste gate · Peter Parker engines · Release · Offline). Each `<role>/CLAUDE.md` here is the
 **founder-edited canonical source**; `physics-mind/.claude/agents/<role>.md` is the
 **emitted dispatch wrapper** (YAML frontmatter + canonical body) that Claude Code's
 native auto-dispatch actually reads. These ARE runnable subagents — dispatch via the
@@ -15,17 +15,22 @@ any spec.
 ## The pipeline (Alex cluster — sequential, never parallel)
 
 ```
-architect ──► physics_author ──► json_author ──► quality_auditor ──► (ship)
+architect ──► [founder_proxy Checkpoint A] ──► physics_author ──► json_author
+     ──► quality_auditor ∥ eye_walker ──► [founder_proxy Checkpoint B]
+     ──► [founder_proxy Checkpoint C seal] ──► founder ──► (ship)
                                                        │ FAIL routes back to the
                                                        │ named upstream agent, or
                                                        ▼ escalates to Peter Parker
-                                       peter_parker:renderer_primitives
+                                       peter_parker:field3d_surgeon      (field_3d)
+                                       peter_parker:renderer_primitives  (2D → the
+                                                          pcpl_surgeon agent)
                                        peter_parker:runtime_generation
                                        (engine cluster — never call directly;
                                         see peter_parker/OVERVIEW.md)
 
 feedback_collector — OFFLINE nightly only (E38–E41 quartet); writes to
 proposal_queue for founder approval. Never in live serving paths.
+DORMANT 2026-07-31 — shelved until real teacher feedback rows exist.
 
 Added 2026-07-04: eye_walker (parallel verification — frame reads, alongside
 quality_auditor) · retrofit_surgeon (per-concept named doctrine deltas) ·
@@ -35,6 +40,13 @@ Added 2026-07-23: chemistry_author (Alex) — CHEMISTRY concepts substitute it
 at position #2: architect ──► chemistry_author ──► json_author ──►
 quality_auditor. Same handoffs, same FAIL routing. Physics concepts are
 unchanged. (CHEMISTRY_BUILD_PLAN.md Phase 2.)
+
+Graduated 2026-07-31 (from the ch7/ch8 chapter-loop trial): founder_proxy
+(Review cluster — the founder's taste gate at Checkpoints A/B/C; reject-biased,
+report-only, APPROVE = authoring sign-off never shipping) · field3d_surgeon
+(Peter Parker — field_3d_renderer.ts specialist + Phase-0 scenario builds;
+docs/AUTHORING_PIPELINE.md §0). Same day: renderer_primitives renamed
+pcpl_surgeon (DB tag unchanged).
 ```
 
 - **architect** decides WHAT: state count, arc shape, Rule 16a misconception beats
@@ -65,8 +77,14 @@ unchanged. (CHEMISTRY_BUILD_PLAN.md Phase 2.)
 - **shipper** (added 2026-07-04; Release cluster) runs the founder-approval-gated
   Rule 30h release chain (visual:approve → tts:generate → build:review → verify).
   Refuses to run without an explicit founder-approval statement.
+- **founder_proxy** (graduated 2026-07-31; Review cluster) plays the founder's own
+  review at three checkpoints — A: is this skeleton the highest-value design? B: would
+  the founder approve this build? C: did every claimed fix actually land? Reject-biased,
+  Opus-pinned, report-only. Its APPROVE is authoring sign-off, never shipping.
+- **pcpl_surgeon** / **field3d_surgeon** / **runtime_generation** (Peter Parker) fix
+  ENGINES, never content — see peter_parker/OVERVIEW.md for the ownership split.
 - **feedback_collector** decides WHAT CHANGES NEXT: cluster proposals from student
-  signal. Design-locked; fuel-starved until real students exist.
+  signal. Design-locked; fuel-starved until real students exist — DORMANT 2026-07-31.
 
 ## Reading order per session
 
@@ -79,7 +97,7 @@ One role at a time. Each agent reads ONLY its own spec plus:
    `physics-mind\docs\archive\`: PLAN.md [HISTORICAL], CLAUDE_REFERENCE.md [STALE],
    CLAUDE_ENGINES.md [SUPERSEDED — engine numbering kept only for scar-tag continuity].
 
-**Anti-pattern**: loading all ten specs at once — context bloat + role confusion.
+**Anti-pattern**: loading all thirteen specs at once — context bloat + role confusion.
 
 ## Current-phase directives every spec already encodes (2026-06-11)
 
