@@ -26,9 +26,13 @@
  *
  *   npm run check:bonding-scene
  */
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
 
 const SRC = FIELD_3D_RENDERER_CODE;
+/** deriveStateMeta's SOURCE — the second file that treats a cue key as real. */
+const META_SRC = readFileSync(join(process.cwd(), "src/lib/validators/visual/deriveStateMeta.ts"), "utf8");
 
 /** Pull `function NAME(...) { ... }` out of the emitted renderer by brace matching. */
 function grabFn(name: string): string {
@@ -830,6 +834,90 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   const leaked = E.BS_MODES_DEFERRED.filter((m: string) => upd.includes('"' + m + '"'));
   ok("no DEFERRED mode is half-implemented", leaked.length === 0, leaked.join(" "));
 
+  // ── E1c-C: CUE-KEY COVERAGE. The same test as "every implemented mode is
+  //   read", extended from mode strings to CUE KEYS — and it is the check that
+  //   would have caught bonding_scene_reveal_cues_inert on day one.
+  //   deriveStateMeta registers a set of *_ms keys as frozen-pin candidates for
+  //   bonding_scene; a key it registers that the renderer's FRAME PATH never
+  //   reads is a cue that gates nothing while a second file treats it as real —
+  //   the sigma-pi decorative-string scar moved one layer out. It looked wired
+  //   end-to-end and survived four dispatches. Every registered key must
+  //   therefore be READ here, or be DECLARED deferred with an owner (never
+  //   silently absent — same discipline as BS_MODES_DEFERRED).
+  {
+    // the exact block deriveStateMeta uses to push bonding_scene pin candidates
+    const anchor = "const bscState = asObj(state.bonding_scene);";
+    const a0 = META_SRC.indexOf(anchor);
+    const b0 = META_SRC.indexOf("{", META_SRC.indexOf("if (bscState)", a0));
+    let d = 0, end = -1;
+    for (let j = b0; j < META_SRC.length && a0 >= 0; j++) {
+      if (META_SRC[j] === "{") d++;
+      else if (META_SRC[j] === "}") { d--; if (d === 0) { end = j + 1; break; } }
+    }
+    ok("deriveStateMeta's bonding_scene pin block is locatable", a0 >= 0 && end > a0);
+    const block = META_SRC.slice(a0, end);
+    // receiver -> the authored JSON path prefix it stands for
+    const RECV: Record<string, string> = {
+      bscState: "", bscTr: "transfer.", bscSh: "shift.", bscLat: "lattice."
+    };
+    const registered = new Map<string, string>();   // authored path -> leaf key
+    for (const m of block.matchAll(/\b(\w+)\.([A-Za-z_][A-Za-z0-9_]*_ms)\b/g)) {
+      const pre = RECV[m[1]];
+      if (pre === undefined) continue;
+      registered.set(pre + m[2], m[2]);
+    }
+    // nothing in the block may be reached through a receiver this gate does not
+    // know about, or a whole family of cues would be invisible to the sweep.
+    const allLeaves = new Set([...block.matchAll(/\.([A-Za-z_][A-Za-z0-9_]*_ms)\b/g)].map((m) => m[1]));
+    const leafSeen = new Set([...registered.values()]);
+    const missedLeaf = [...allLeaves].filter((k) => !leafSeen.has(k));
+    ok("the cue sweep sees every *_ms key in the pin block (no unknown receiver)",
+      missedLeaf.length === 0, missedLeaf.join(" "));
+    ok("the pin block registers a non-trivial cue set", registered.size >= 12, `${registered.size} keys`);
+
+    // the FRAME PATH: the bsc* helpers + apply + the frame updater. NOT
+    // buildBondingScene — a key referenced only at build time still gates nothing.
+    const framePath = grabRegion("bscClamp", "buildBondingScene") +
+      grabFn("applyBondingSceneState") + grabFn("updateBondingSceneFrame");
+    const isRead = (authored: string, leaf: string) => {
+      const dot = authored.indexOf(".");
+      if (dot < 0) return new RegExp("\\." + leaf + "\\b").test(framePath);
+      // a NESTED cue (transfer.at_ms) carries a generic leaf, so both halves
+      // must hold: the sub-object is consumed AND its leaf is read somewhere.
+      const sub = authored.slice(0, dot);
+      return new RegExp("bs\\." + sub + "\\b").test(framePath) &&
+        new RegExp("\\." + leaf + "\\b").test(framePath);
+    };
+    // Declared-deferred cues: registered, genuinely inert, NAMED with an owner.
+    // Reported by this dispatch (E1c-C scope is the three dipole cues only);
+    // implementing one means DELETING its entry, which the anti-rot half forces.
+    const CUE_DEFERRED: Record<string, string> = {
+      "assemble_at_ms": "unowned — mode 'assemble' has no scripted ramp (report E1c-C item 5)",
+      "assemble_duration_ms": "unowned — mode 'assemble' has no scripted ramp (report E1c-C item 5)",
+      "shift.at_ms": "E3b (the lattice DYNAMICS half: layer_shift)",
+      "shift.duration_ms": "E3b (the lattice DYNAMICS half: layer_shift)"
+    };
+    const inert: string[] = [], live: string[] = [];
+    for (const [authored, leaf] of registered) (isRead(authored, leaf) ? live : inert).push(authored);
+    const undeclared = inert.filter((k) => CUE_DEFERRED[k] === undefined);
+    ok("EVERY registered cue key is READ by the frame path (or declared deferred)",
+      undeclared.length === 0,
+      undeclared.length ? `INERT + UNDECLARED: ${undeclared.join(" ")}` : `${live.length} live`);
+    // anti-rot: a declared-deferred key that HAS been implemented must leave the list
+    const stale = Object.keys(CUE_DEFERRED).filter((k) => live.indexOf(k) >= 0);
+    ok("no declared-deferred cue is actually implemented (the list cannot rot)",
+      stale.length === 0, stale.join(" "));
+    // the three this dispatch makes real, asserted by name so a revert is loud
+    ok("arrows_at_ms / resultant_at_ms / charges_at_ms each gate their own layer",
+      /bs\.arrows_at_ms/.test(framePath) && /bs\.resultant_at_ms/.test(framePath) &&
+      /bs\.charges_at_ms/.test(framePath) &&
+      /showArrows && arrowsF > 0/.test(framePath) &&
+      /dip\.show_resultant && resFade > 0/.test(framePath) &&
+      /dip\.show_charges && chargesF > 0/.test(framePath));
+    for (const k of inert) console.log(`    deferred cue    ${k.padEnd(24)}${CUE_DEFERRED[k] || "UNDECLARED"}`);
+    console.log(`    cue coverage    ${live.length}/${registered.size} registered cue keys are read by the frame path`);
+  }
+
   // Every implemented hud line is actually rendered; all are in the closed enum.
   const hudImpl = [...E.BS_HUD_LINES_E1, ...E.BS_HUD_LINES_E2, ...E.BS_HUD_LINES_E3A];
   const unreadHud = hudImpl.filter((h: string) => !upd.includes('"' + h + '"'));
@@ -1359,6 +1447,54 @@ console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair ·
       (sq(2, 0, 104.5) as number[][]).every((v, i) => v.every((c, j) =>
         Object.is(c, (E.mgIdealDirs(2) as number[][])[i][j]))));
   }
+  // ── E1c-C item: the three dipole-layer REVEAL CUES, as SEMANTICS not as text.
+  {
+    const upd = grabFn("updateBondingSceneFrame");
+    const app = grabFn("applyBondingSceneState");
+    const cueF = (mms: number, at: number) => E.mgRamp(mms, at, E.BS_REVEAL_MS, 0, 1) as number;
+    ok("a cue holds the layer fully hidden until its own instant",
+      cueF(0, 4000) === 0 && cueF(3999, 4000) === 0 && cueF(4000, 4000) === 0,
+      `t=3999 -> ${cueF(3999, 4000)}`);
+    ok("the reveal reaches full ink at cue + BS_REVEAL_MS and HOLDS (no fade-out tail)",
+      Math.abs(cueF(4900, 4000) - 1) < 1e-12 && Math.abs(cueF(30000, 4000) - 1) < 1e-12,
+      `t=4900 -> ${cueF(4900, 4000).toFixed(6)}`);
+    ok("the ramp is strictly monotonic across the reveal (no latch, no overshoot)",
+      [4100, 4300, 4500, 4700, 4900].every((t, i, a) =>
+        i === 0 || (cueF(t, 4000) > cueF(a[i - 1], 4000) && cueF(t, 4000) <= 1)));
+    {
+      // THE REWIND, sampled MID-REVEAL: a SET_TIME_FREEZE pin must reproduce the
+      // same ink. A latched "once shown, stays shown" flag cannot do this.
+      const f1 = cueF(4450, 4000); cueF(9000, 4000); const f2 = cueF(4450, 4000);
+      ok("rewind t=4450 -> 9000 -> 4450 reproduces the MID-REVEAL ink byte-for-byte",
+        Object.is(f1, f2), `f=${f1}`);
+    }
+    ok("BS_REVEAL_MS matches the +900 ms deriveStateMeta pins after each cue",
+      E.BS_REVEAL_MS === 900 &&
+      /bscPush\(bscState\.arrows_at_ms, 900\)/.test(META_SRC) &&
+      /bscPush\(bscState\.resultant_at_ms, 900\)/.test(META_SRC) &&
+      /bscPush\(bscState\.charges_at_ms, 900\)/.test(META_SRC),
+      `${E.BS_REVEAL_MS} ms — the frozen pin lands on the FIRST settled frame`);
+    // the absent-cue no-op: opacity is written ONLY under the cue guard, so a
+    // state authored before E1c-C is byte-identical BY CONSTRUCTION.
+    ok("an ABSENT cue never writes opacity (pre-E1c-C states are untouched)",
+      /if \(arrowsCued\) \{/.test(upd) && /if \(resCued && resOn\) \{/.test(upd) &&
+      /if \(chargesCued\) setObjOpacity\(dlab, chargesF\)/.test(upd) &&
+      /return \(atMs == null\) \? 1 :/.test(upd));
+    ok("the ramp multiplies the SAME ink the build used (BS_ARROW/RESULTANT_OPACITY)",
+      /BS_ARROW_OPACITY \* arrowsF/.test(upd) && /BS_RESULTANT_OPACITY \* resFade/.test(upd) &&
+      /opacity: BS_ARROW_OPACITY/.test(grabFn("buildBondingScene")) &&
+      /opacity: BS_RESULTANT_OPACITY/.test(grabFn("buildBondingScene")));
+    // the RESTORE half (the dim-with-no-restore scar): leaving a state mid-ramp
+    // must not strand the next state's arrows at partial ink.
+    ok("state entry restores every cue-driven layer to its BUILT ink",
+      /setObjOpacity\(ar1, BS_ARROW_OPACITY\)/.test(app) &&
+      /setObjOpacity\(ar2, BS_ARROW_OPACITY\)/.test(app) &&
+      /setObjOpacity\(rs0, BS_RESULTANT_OPACITY\)/.test(app) &&
+      /setObjOpacity\(rh0, BS_RESULTANT_OPACITY\)/.test(app) &&
+      /setObjOpacity\(rl0, 1\)/.test(app) && /setObjOpacity\(rz0, 1\)/.test(app) &&
+      /setObjOpacity\(dl, 1\)/.test(app));
+  }
+
   function ang(a: number[], b: number[]) {
     return Math.acos(Math.max(-1, Math.min(1, E.mgDot(E.mgNorm(a), E.mgNorm(b))))) * 180 / Math.PI;
   }

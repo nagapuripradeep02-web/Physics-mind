@@ -48452,6 +48452,16 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // a 2-/3-bond centre with NO lone pair (a linear AB2 or a
     //                  // trigonal-planar AB3), which is what makes the explore
     //                  // angle slider live for CO2 and BF3, not H2O alone.
+    //       arrows_at_ms, resultant_at_ms, charges_at_ms,  // E1c-C: the three
+    //                  // DIPOLE-LAYER REVEAL CUES. Each one gates its own layer
+    //                  // ON TOP OF the dipole.show_* boolean, so the layer is
+    //                  // hidden until the cue and then fades in over
+    //                  // BS_REVEAL_MS (900 ms, the lattice reveal's ramp). ABSENT
+    //                  // cue + show_X:true = visible from frame 0, exactly as
+    //                  // before — every state authored against E1/E2/E3a is
+    //                  // untouched. Closed form in state-local t (D-1), no latch.
+    //                  // deriveStateMeta already pins cue + 900 as a frozen
+    //                  // candidate, i.e. the first SETTLED frame.
     //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale,
     //                 show_lone_pair },             // E1c: lobe + label, plus the
     //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
@@ -48489,6 +48499,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_T0_K = 298;              // jiggle reference temperature (amp goes as sqrt(T/T0))
     var BS_ARROW_D_PER_UNIT = 0.62; // scene units of arrow length per debye (Rule 29)
     var BS_ANGLE_RAMP_MS = 1600;    // E1c: default angle_ramp_ms (pair_shift's default)
+    // E1c-C: the BUILT ink of the two arrow families, named because the reveal
+    // ramp has to multiply the SAME number the build used — a reveal that
+    // settles at a different opacity than the un-cued layer would make the cue
+    // change more than its timing.
+    var BS_ARROW_OPACITY = 0.95;     // bond-dipole arrow shaft + head
+    var BS_RESULTANT_OPACITY = 0.98; // the derived resultant shaft + head
     // E1c: the lone-pair lobe, the molecular_geometry proportions verbatim so a
     // student meeting both sims sees the SAME object (fatter and shorter than a
     // bond — the extra girth IS the taught physics, not a Rule-29 bulge).
@@ -49393,7 +49409,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // magnitude), never an emphasis knob.
         for (i = 0; i < MG_MAX_BONDS; i++) {
             var sh = new THREE.Mesh(shaftGeo.clone(), new THREE.MeshBasicMaterial({
-                color: hexToThreeColor(arrowColor), transparent: true, opacity: 0.95,
+                color: hexToThreeColor(arrowColor), transparent: true, opacity: BS_ARROW_OPACITY,
                 depthTest: false, depthWrite: false
             }));
             sh.renderOrder = 996;
@@ -49401,7 +49417,7 @@ export const FIELD_3D_RENDERER_CODE = `
             sh.visible = false;
             addToScene(sh);
             var hd = new THREE.Mesh(headGeo.clone(), new THREE.MeshBasicMaterial({
-                color: hexToThreeColor(arrowColor), transparent: true, opacity: 0.95,
+                color: hexToThreeColor(arrowColor), transparent: true, opacity: BS_ARROW_OPACITY,
                 depthTest: false, depthWrite: false
             }));
             hd.renderOrder = 996;
@@ -49410,7 +49426,7 @@ export const FIELD_3D_RENDERER_CODE = `
             addToScene(hd);
         }
         var rs = new THREE.Mesh(new THREE.CylinderGeometry(0.062, 0.062, 1, 12), new THREE.MeshBasicMaterial({
-            color: hexToThreeColor(resColor), transparent: true, opacity: 0.98,
+            color: hexToThreeColor(resColor), transparent: true, opacity: BS_RESULTANT_OPACITY,
             depthTest: false, depthWrite: false
         }));
         rs.geometry.translate(0, 0.5, 0);
@@ -49419,7 +49435,7 @@ export const FIELD_3D_RENDERER_CODE = `
         rs.visible = false;
         addToScene(rs);
         var rh = new THREE.Mesh(new THREE.ConeGeometry(0.155, 0.38, 14), new THREE.MeshBasicMaterial({
-            color: hexToThreeColor(resColor), transparent: true, opacity: 0.98,
+            color: hexToThreeColor(resColor), transparent: true, opacity: BS_RESULTANT_OPACITY,
             depthTest: false, depthWrite: false
         }));
         rh.geometry.translate(0, 0.19, 0);
@@ -49832,6 +49848,20 @@ export const FIELD_3D_RENDERER_CODE = `
             var a1 = bscFindById("bsc_arrow_shaft_" + i); if (a1) a1.visible = false;
             var a2 = bscFindById("bsc_arrow_head_" + i); if (a2) a2.visible = false;
         }
+        // E1c-C: THE RESTORE HALF of the reveal ramps (the dim-with-no-restore
+        // scar). A cued state writes a partial opacity every frame; leaving a
+        // state mid-ramp (the teacher clicks the rail at t = cue + 200 ms) would
+        // otherwise strand the NEXT state's arrows at 30% ink forever, since a
+        // state with no cue never writes opacity at all. State entry therefore
+        // puts every cue-driven layer back at its BUILT ink.
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var ar1 = bscFindById("bsc_arrow_shaft_" + i); if (ar1) setObjOpacity(ar1, BS_ARROW_OPACITY);
+            var ar2 = bscFindById("bsc_arrow_head_" + i); if (ar2) setObjOpacity(ar2, BS_ARROW_OPACITY);
+        }
+        var rs0 = bscFindById("bsc_res_shaft"); if (rs0) setObjOpacity(rs0, BS_RESULTANT_OPACITY);
+        var rh0 = bscFindById("bsc_res_head"); if (rh0) setObjOpacity(rh0, BS_RESULTANT_OPACITY);
+        var rl0 = bscFindById("bsc_res_label"); if (rl0) setObjOpacity(rl0, 1);
+        var rz0 = bscFindById("bsc_res_zero"); if (rz0) setObjOpacity(rz0, 1);
         // E1c item 3: the lone-pair layer is a transient too — a capture landing
         // between this apply and the first animate frame must never photograph the
         // PREVIOUS state's lobes or lone-pair vector on a molecule that has none.
@@ -49844,7 +49874,8 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
         for (i = 0; i < (window.PM_bscUnitPool || 1); i++) {
             for (var j = 0; j < BS_MAX_ATOMS; j++) {
-                var dl = bscFindById("bsc_u" + i + "_delta" + j); if (dl) dl.visible = false;
+                var dl = bscFindById("bsc_u" + i + "_delta" + j);
+                if (dl) { dl.visible = false; setObjOpacity(dl, 1); }   // E1c-C restore half
             }
         }
         for (i = 0; i < BS_MAX_LINKS; i++) {
@@ -49923,6 +49954,34 @@ export const FIELD_3D_RENDERER_CODE = `
         if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged) spinRate = 0.14;
         var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
         var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
+
+        // ── E1c-C: THE THREE DIPOLE-LAYER REVEAL CUES.
+        //   arrows_at_ms / resultant_at_ms / charges_at_ms were registered as
+        //   frozen-pin candidates in deriveStateMeta and read NOWHERE here, so
+        //   every arrow, charge glyph and resultant stood on screen from frame 0
+        //   and each authored cue time was inert — the sigma-pi decorative-string
+        //   scar moved one layer out (a cue key that gates nothing while a second
+        //   file treats it as real). Rule 32a needs the cause to move first and
+        //   the effect to answer after a readable beat, which is exactly what a
+        //   cue buys: CO2's two long arrows stand alone (the wrong belief's honest
+        //   evidence) and only THEN does the resultant resolve to zero.
+        //   Semantics, and they are the JSON contract:
+        //     cue ABSENT  -> factor 1 for all t, and the opacity of that layer is
+        //                    never written at all: a state authored before this
+        //                    change is byte-identical, by construction.
+        //     cue PRESENT -> 0 until the cue, then a smoothstep ramp to 1 over
+        //                    BS_REVEAL_MS (the lattice reveal's own ramp), and it
+        //                    HOLDS. mgRamp is a pure function of state-local ms
+        //                    with no latch and no accumulator (D-1), so a
+        //                    SET_TIME_FREEZE rewind photographs the same pixels;
+        //                    deriveStateMeta pins cue + 900 = the first settled ms.
+        var bscCueOn = function (atMs) { return atMs != null; };
+        var bscCueF = function (atMs) {
+            return (atMs == null) ? 1 : mgRamp(ms, atMs, BS_REVEAL_MS, 0, 1);
+        };
+        var arrowsCued = bscCueOn(bs.arrows_at_ms), arrowsF = bscCueF(bs.arrows_at_ms);
+        var resCued = bscCueOn(bs.resultant_at_ms), resFade = bscCueF(bs.resultant_at_ms);
+        var chargesCued = bscCueOn(bs.charges_at_ms), chargesF = bscCueF(bs.charges_at_ms);
 
         window.PM_bscMolLive = molKey;
         window.PM_bscAngleLive = angleNow;
@@ -50021,7 +50080,8 @@ export const FIELD_3D_RENDERER_CODE = `
             var rot = udef ? bscOrientRot(udef.orient) : null;
             var org = orgAt(u, ms);
             var uq = on ? bscCharges(uSpec) : [0];
-            var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges;
+            // E1c-C: charges_at_ms gates the glyph layer ON TOP OF show_charges.
+            var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges && chargesF > 0;
 
             for (i = 0; i < BS_MAX_ATOMS; i++) {
                 var atom = bscFindById("bsc_u" + u + "_atom" + i);
@@ -50067,6 +50127,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
                     updateLabelSpriteText(dlab, txt);
                     mgPlaceLabelClear(dlab, pos, rad + 0.72, [org, pos]);
+                    if (chargesCued) setObjOpacity(dlab, chargesF);
                 }
             }
         }
@@ -50259,10 +50320,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var fOrg = (fUnit && fUnit.at) ? fUnit.at.slice(0) : [0, 0, 0];
         for (i = 0; i < MG_MAX_BONDS; i++) {
             var sh = bscFindById("bsc_arrow_shaft_" + i), hd = bscFindById("bsc_arrow_head_" + i);
-            var aOn = showArrows && i < D.arrows.length && Math.abs(D.arrows[i].D) > 1e-6;
+            // E1c-C: arrows_at_ms gates the BOND-dipole arrows. The lone-pair
+            // vector below is a separate layer with its own show_lone_pair gate
+            // and no registered cue, so it is deliberately not swept in here.
+            var aOn = showArrows && arrowsF > 0 && i < D.arrows.length && Math.abs(D.arrows[i].D) > 1e-6;
             if (sh) sh.visible = aOn;
             if (hd) hd.visible = aOn;
             if (!aOn) continue;
+            if (arrowsCued) {
+                setObjOpacity(sh, BS_ARROW_OPACITY * arrowsF);
+                setObjOpacity(hd, BS_ARROW_OPACITY * arrowsF);
+            }
             var m = D.arrows[i].D;
             // the moment vector: signed magnitude along the bond direction, so a
             // NEGATIVE entry draws the arrow pointing back at the central atom.
@@ -50285,13 +50353,22 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         var rsh = bscFindById("bsc_res_shaft"), rhd = bscFindById("bsc_res_head");
         var rlb = bscFindById("bsc_res_label"), rzr = bscFindById("bsc_res_zero");
-        var resOn = !!dip.show_resultant;
+        // E1c-C: resultant_at_ms gates the resultant (and its zero badge — the
+        // badge IS the answer in a symmetric molecule, so revealing the arrow but
+        // not the badge would leak the CO2 answer before its cue).
+        var resOn = !!dip.show_resultant && resFade > 0;
         // 1e-9 D is the numeric-zero floor: a symmetric molecule sums to ~1e-16.
         var isZero = D.mag < 1e-9;
         if (rsh) rsh.visible = resOn && !isZero;
         if (rhd) rhd.visible = resOn && !isZero;
         if (rlb) rlb.visible = resOn && !isZero;
         if (rzr) rzr.visible = resOn && isZero;
+        if (resCued && resOn) {
+            setObjOpacity(rsh, BS_RESULTANT_OPACITY * resFade);
+            setObjOpacity(rhd, BS_RESULTANT_OPACITY * resFade);
+            setObjOpacity(rlb, resFade);
+            setObjOpacity(rzr, resFade);
+        }
         if (resOn && !isZero) {
             var rv = D.vec.slice(0);
             if (fRot) rv = fRot(rv);
