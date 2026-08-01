@@ -47340,6 +47340,16 @@ export const FIELD_3D_RENDERER_CODE = `
     // lone-pair-up tripod. n=3 derives from the same constant so the trigonal
     // PLANE faces the camera instead of being seen edge-on.
     var MG_AZ0 = 237 * Math.PI / 180;
+    // E1c: the bend-plane NORMAL used when a zero-centroid set is squeezed (see
+    // mgSqueeze's degenerate branch). A linear AB2 has no defined bisector, so the
+    // plane its V opens in has to be named: this points it at the fleet house
+    // camera AZIMUTH (35 deg — BS_CAMERAS.dipole_sum / explore / assemble all sit
+    // there), which is what makes a bent CO2 read as bent instead of edge-on.
+    // Horizontal by construction, so the V opens across the screen, not into it.
+    // NOT MG_AZ0 + 90: that constant orients the molecular_geometry TRIGONAL PLANE
+    // against ITS camera and the two cameras are 52 deg apart.
+    var MG_BEND_AZ = 35 * Math.PI / 180;
+    var MG_BEND_NORMAL = [Math.cos(MG_BEND_AZ), 0, Math.sin(MG_BEND_AZ)];
 
     // CPK-flavoured but re-picked for legibility on the deep-blue field background.
     // radius = a REAL atomic magnitude (Rule 29), not an emphasis knob.
@@ -47405,8 +47415,25 @@ export const FIELD_3D_RENDERER_CODE = `
         H2Se:  { central: "Se", ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 91.0, bond_pm: 146, arc_pair: [0, 1], formula: "H\\u2082Se" },
         H2Te:  { central: "Te", ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 90.0, bond_pm: 169, arc_pair: [0, 1], formula: "H\\u2082Te" },
         CO2:   { central: "C",  ligand: "O",  bonds: 2, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 116, arc_pair: [0, 1], formula: "CO\\u2082" },
-        CCl4:  { central: "C",  ligand: "Cl", bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [0, 1], formula: "CCl\\u2084" },
-        CHCl3: { central: "C",  ligand: "Cl", ligands: ["H", "Cl", "Cl", "Cl"], bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [1, 2], formula: "CHCl\\u2083" },
+        //    RATIFIED 2026-08-01 (chemistry_author R3, landed by E1c-A). bond_moments
+        //    is the per-molecule override bscBondMoment reads (mgFrame never looks at
+        //    it, so the VSEPR path is untouched). The additive pair model famously
+        //    OVER-predicts the chloromethane series — plain C|Cl 1.46 gives CHCl3
+        //    1.76 D against a measured 1.04 D — so the C-Cl bond moment IN THIS
+        //    SERIES is authored at 0.74 D. It must be on BOTH molecules, and the two
+        //    claims are exact, not approximate:
+        //      CCl4 keeps mu EXACTLY 0 — one scalar on four identical ligands times
+        //      four ideal tetrahedral directions that sum to the zero vector.
+        //      CHCl3 lands EXACTLY on 1.04 D — with d1+d2+d3+d4 = 0, the three Cl
+        //      bonds give 0.74*(-d_H) and the H bond gives (-0.30)*d_H, i.e.
+        //      |-(0.74 + 0.30)| = 1.04 D. That identity is WHY 0.74 was chosen.
+        //    Delta-chi ordering survives: C-Cl 0.61 > C-H 0.35 and 0.74 > 0.30, so
+        //    S2-s "bigger Delta-chi, longer arrow" still reads true through S6-s swap.
+        //    E1c-A FINDING: the chemistry block recorded CHCl3 as already carrying
+        //    this override. It did not — only the READ hook shipped in E1 — so CHCl3
+        //    was rendering 1.76 D against narration quoting 1.04 D. Both landed here.
+        CCl4:  { central: "C",  ligand: "Cl", bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [0, 1], bond_moments: { Cl: 0.74 }, formula: "CCl\\u2084" },
+        CHCl3: { central: "C",  ligand: "Cl", ligands: ["H", "Cl", "Cl", "Cl"], bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [1, 2], bond_moments: { Cl: 0.74 }, formula: "CHCl\\u2083" },
         NF3:   { central: "N",  ligand: "F",  bonds: 3, lone: 1, e_geom: "tetrahedral", shape: "trigonal pyramidal", angle: 102.3, bond_pm: 137, arc_pair: [0, 1], formula: "NF\\u2083" }
     };
     var MG_EXPLORE_MOLECULES = ["CH4", "NH3", "H2O", "BF3", "BeCl2"];
@@ -47488,14 +47515,49 @@ export const FIELD_3D_RENDERER_CODE = `
     // for a PAIR β = θ/2. A fully symmetric set (CH4 / linear / octahedral) has a
     // zero centroid → returned untouched, which is exactly right: no lone pair,
     // no compression.
-    function mgSqueeze(dirs, targetDeg) {
+    function mgSqueeze(dirs, targetDeg, degenAxis) {
         var n = dirs.length, i;
         if (n < 2 || n > 3 || !(targetDeg > 0)) return dirs;
         var sum = [0, 0, 0];
         for (i = 0; i < n; i++) { sum[0] += dirs[i][0]; sum[1] += dirs[i][1]; sum[2] += dirs[i][2]; }
         var mag = Math.sqrt(sum[0] * sum[0] + sum[1] * sum[1] + sum[2] * sum[2]);
-        if (mag < 1e-6) return dirs;
-        var axis = [sum[0] / mag, sum[1] / mag, sum[2] / mag];
+        var axis;
+        if (mag < 1e-6) {
+            // E1c: THE DEGENERATE CASE — a set with a ZERO centroid (linear AB2,
+            // trigonal planar AB3, i.e. every 2-/3-bond centre with NO lone pair).
+            // Its bisector is undefined, so the caller must NAME the axis or the
+            // bend is arbitrary. Reached ONLY through mgFrame's zero-lone branch
+            // below, which fires only when a state AUTHORS an angle: nothing that
+            // resolves an equilibrium geometry ever lands here (every lone-pair
+            // set has a non-zero centroid), so no shipped molecule changes.
+            //   n = 2: the axis is the V-apex direction, perpendicular to the bond
+            //          line and inside the plane whose normal is degenAxis, so the
+            //          opening V faces the camera instead of being seen edge-on.
+            //   n = 3: the axis is the PLANE NORMAL (the C3 axis) — pyramidalising
+            //          a trigonal-planar centre is a rotation about it, and its
+            //          sign is fixed against degenAxis so the pucker direction is
+            //          deterministic under a SET_TIME_FREEZE rewind.
+            if (!degenAxis) return dirs;
+            if (n === 2) {
+                axis = mgNorm([
+                    degenAxis[1] * dirs[0][2] - degenAxis[2] * dirs[0][1],
+                    degenAxis[2] * dirs[0][0] - degenAxis[0] * dirs[0][2],
+                    degenAxis[0] * dirs[0][1] - degenAxis[1] * dirs[0][0]
+                ]);
+            } else {
+                var e1 = [dirs[1][0] - dirs[0][0], dirs[1][1] - dirs[0][1], dirs[1][2] - dirs[0][2]];
+                var e2 = [dirs[2][0] - dirs[0][0], dirs[2][1] - dirs[0][1], dirs[2][2] - dirs[0][2]];
+                axis = mgNorm([
+                    e1[1] * e2[2] - e1[2] * e2[1],
+                    e1[2] * e2[0] - e1[0] * e2[2],
+                    e1[0] * e2[1] - e1[1] * e2[0]
+                ]);
+                if (mgDot(axis, degenAxis) < 0) axis = [-axis[0], -axis[1], -axis[2]];
+            }
+            if (!(Math.abs(axis[0]) + Math.abs(axis[1]) + Math.abs(axis[2]) > 1e-6)) return dirs;
+        } else {
+            axis = [sum[0] / mag, sum[1] / mag, sum[2] / mag];
+        }
         var ct = Math.cos(targetDeg * Math.PI / 180), beta;
         if (n === 2) beta = (targetDeg / 2) * Math.PI / 180;
         else beta = Math.acos(Math.sqrt(mgClamp((ct + 0.5) / 1.5, 0, 1)));
@@ -47521,6 +47583,21 @@ export const FIELD_3D_RENDERER_CODE = `
         var bonds = ideal.slice(nLone);
         var ang = (angleDeg != null) ? angleDeg : mol.angle;
         if (nLone > 0) bonds = mgSqueeze(bonds, ang);
+        // E1c item 4: an AUTHORED angle also bends a 2-/3-bond centre that carries
+        // NO lone pair — otherwise the explore angle slider is inert for eight of
+        // bond_polarity's nine picker species (a slider that does nothing) and its
+        // own assessment item ("predict the effect of bending a linear AB2
+        // molecule") cannot be explored on CO2, the only linear AB2 it teaches.
+        // GATED THREE WAYS so nothing already shipped can move: the angle must be
+        // EXPLICITLY authored (angleDeg != null — a molecule resolving its own
+        // equilibrium passes null and takes the identical old path), the centre
+        // must carry zero lone pairs and 2 or 3 bonds, and the bare domain-spread
+        // morph (domainsOverride) is excluded. mgSqueeze is identity at the
+        // natural angle in both cases (180 deg for a pair, 120 deg for a tripod),
+        // so authoring the equilibrium value is also a no-op.
+        else if (angleDeg != null && !isSpread && bonds.length >= 2 && bonds.length <= 3) {
+            bonds = mgSqueeze(bonds, ang, MG_BEND_NORMAL);
+        }
         return {
             mol: mol, bonds: bonds, lone: lone, kinds: kinds.slice(nLone),
             angle: ang, domains: nDom, spread: isSpread
@@ -48368,10 +48445,44 @@ export const FIELD_3D_RENDERER_CODE = `
     //       approach_duration_ms, pair_shift_at_ms, pair_shift_duration_ms,
     //       compare_at_ms, compare_duration_ms, compare_species,           // E2
     //       unit_spacing, count_max, label_units, delta_units,             // E2
-    //       lattice / groups / sea / ions / transfer / shift,
-    //                                               // PARSED + PASSED THROUGH by
-    //                                               // E1/E2, behaviour owned by E3
-    //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale },
+    //       lattice: { cell: rock_salt|fcc|bcc|hcp,                        // E3a
+    //                  n:[nx,ny,nz],         // GRID STEPS per axis, forced ODD.
+    //                                        // rock_salt/fcc/bcc step = a/2, so
+    //                                        // [3,3,3] spans one conventional
+    //                                        // cube; hcp = [a1, a2, layers]
+    //                  a_pm,                 // conventional cubic edge
+    //                  grow_at_ms, grow_duration_ms, grow_from,
+    //                  reveal: none|cutaway|peer_fade, reveal_at_ms,
+    //                  cutaway_normal, focal_site, label_sites },
+    //       transfer: { at_ms, duration_ms, from, to },                    // E3a
+    //                  // from/to are units[].id; both species change size on
+    //                  // the LINEAR-pm scale and charge ramps with the radius
+    //       groups / sea / ions / shift,          // PARSED + PASSED THROUGH by
+    //                                             // E1/E2/E3a, owned by E3b
+    //       angle_deg,                              // static bond-angle override
+    //       angle_from, angle_at_ms, angle_ramp_ms, // E1c: the SCRIPTED bend.
+    //                  // angle_deg is the DESTINATION; the ramp runs angle_from
+    //                  // -> angle_deg over angle_ramp_ms (default 1600) starting
+    //                  // at angle_at_ms. Closed form in state-local t (D-1). The
+    //                  // angle slider opens at angle_from and tracks the script
+    //                  // until a trusted drag seizes it. angle_deg now also bends
+    //                  // a 2-/3-bond centre with NO lone pair (a linear AB2 or a
+    //                  // trigonal-planar AB3), which is what makes the explore
+    //                  // angle slider live for CO2 and BF3, not H2O alone.
+    //       arrows_at_ms, resultant_at_ms, charges_at_ms,  // E1c-C: the three
+    //                  // DIPOLE-LAYER REVEAL CUES. Each one gates its own layer
+    //                  // ON TOP OF the dipole.show_* boolean, so the layer is
+    //                  // hidden until the cue and then fades in over
+    //                  // BS_REVEAL_MS (900 ms, the lattice reveal's ramp). ABSENT
+    //                  // cue + show_X:true = visible from frame 0, exactly as
+    //                  // before — every state authored against E1/E2/E3a is
+    //                  // untouched. Closed form in state-local t (D-1), no latch.
+    //                  // deriveStateMeta already pins cue + 900 as a frozen
+    //                  // candidate, i.e. the first SETTLED frame.
+    //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale,
+    //                 show_lone_pair },             // E1c: lobe + label, plus the
+    //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
+    //                  // is non-zero (N only, per the ratified convention)
     //       electrons: { show: none|shells|pair_glyph, pair_shift },
     //       thermal: { T_K, jiggle_scale },
     //       spin_start_ms, spin_rate,               // rad/s about +y, 0 = hold
@@ -48404,6 +48515,43 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MAX_ATOM_LABELS = 12;    // D-6, the OTHER half: 30 units = 90 element labels
     var BS_T0_K = 298;              // jiggle reference temperature (amp goes as sqrt(T/T0))
     var BS_ARROW_D_PER_UNIT = 0.62; // scene units of arrow length per debye (Rule 29)
+    var BS_ANGLE_RAMP_MS = 1600;    // E1c: default angle_ramp_ms (pair_shift's default)
+    // E1c-C: the BUILT ink of the two arrow families, named because the reveal
+    // ramp has to multiply the SAME number the build used — a reveal that
+    // settles at a different opacity than the un-cued layer would make the cue
+    // change more than its timing.
+    var BS_ARROW_OPACITY = 0.95;     // bond-dipole arrow shaft + head
+    var BS_RESULTANT_OPACITY = 0.98; // the derived resultant shaft + head
+    // ── E1c-A item 3: THE HEAD SCALES WITH THE MAGNITUDE ─────────────────────
+    //   The built cone heights. They used to be the head length TOO, added on top
+    //   of a shaft floored at 0.02 — so the DRAWN length was
+    //   max(0.02, |m|*scale - 0.30) + 0.30, i.e. a constant 0.32 units for every
+    //   magnitude below 0.32/0.62 = 0.516 D, while the narration says the arrow-s
+    //   length IS the measured dipole moment (Rule 29 / D-3, one instrument).
+    //   Three authored magnitudes sit under that floor — HI 0.45 D, C|H 0.30 D and
+    //   the NF3 RESULTANT 0.228 D — so S2-s four-rung halide ladder drew HI and
+    //   HBr the same length, and S7 drew NF3-s resultant 3x too long against NH3-s
+    //   (0.42 vs 0.909 units, a ratio of 2.2 where the physics is 6.4).
+    //   The rule: head = min(built, len/2), shaft = len - head, so the TOTAL drawn
+    //   length is exactly |m| * scale at every magnitude, and a small arrow is a
+    //   small arrow with a proportionate head rather than a bare cone. The head-s
+    //   RADIUS eases with it (floored, so a tiny head is still a visible triangle)
+    //   because a full-width cone on a 0.28-unit arrow reads as a blob, not a
+    //   direction.
+    var BS_ARROW_HEAD_LEN = 0.30;    // built cone height, bond + lone-pair arrows
+    var BS_RES_HEAD_LEN = 0.38;      // built cone height, the resultant
+    var BS_HEAD_MIN_THICK = 0.62;    // floor on the head-s radius scale
+    function bscArrowParts(len, built) {
+        var h = (len * 0.5 < built) ? len * 0.5 : built;
+        var k = h / built;
+        return { head: h, shaft: (len - h > 1e-4) ? (len - h) : 1e-4, hy: k,
+            thick: (k < BS_HEAD_MIN_THICK) ? BS_HEAD_MIN_THICK : k };
+    }
+    // E1c: the lone-pair lobe, the molecular_geometry proportions verbatim so a
+    // student meeting both sims sees the SAME object (fatter and shorter than a
+    // bond — the extra girth IS the taught physics, not a Rule-29 bulge).
+    var BS_LONE_LOBE_W = 0.42;
+    var BS_LONE_LOBE_LEN = 0.66;
 
     // ── E2 (intermolecular link layer) constants ─────────────────────────────
     //   THE SCALE. Distances in the link contract are PICOMETRES (form_pm /
@@ -48446,9 +48594,9 @@ export const FIELD_3D_RENDERER_CODE = `
     // silently ignored, and check:bonding-scene asserts the split explicitly.
     var BS_MODES_E1 = ["dipole_sum", "explore"];
     var BS_MODES_E2 = ["assemble", "approach_link", "network", "compare"];
-    var BS_MODES_DEFERRED = ["transfer", "lattice_grow", "coordination",
-        "layer_shift", "electron_sea", "drift", "melt"];
-    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2);
+    var BS_MODES_E3A = ["transfer", "lattice_grow", "coordination"];
+    var BS_MODES_DEFERRED = ["layer_shift", "electron_sea", "drift", "melt"];
+    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2).concat(BS_MODES_E3A);
     var BS_MODES = BS_MODES_IMPL.concat(BS_MODES_DEFERRED);
     var BS_CONTROL_IDS = ["species", "molecule", "ligand", "angle", "temperature",
         "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
@@ -48457,8 +48605,54 @@ export const FIELD_3D_RENDERER_CODE = `
         "valence", "atomisation", "bp", "like_contacts", "conductivity"];
     var BS_HUD_LINES_E1 = ["delta_chi", "mu", "radius_pm", "valence"];
     var BS_HUD_LINES_E2 = ["links", "links_per_unit", "bp"];
+    var BS_HUD_LINES_E3A = ["coordination", "lattice_a"];
     var BS_PLACEMENTS = ["free", "lattice"];
     var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
+    // ── E3a (lattice PLACEMENT layer) constants ──────────────────────────────
+    var BS_CELLS = ["rock_salt", "fcc", "bcc", "hcp"];
+    var BS_LATTICE_REVEALS = ["none", "cutaway", "peer_fade"];
+    var BS_MAX_SITES = 125;         // rock_salt n=[5,5,5]; a 3x3x3 block is 27
+    var BS_MAX_SITE_LABELS = 8;     // D-6: a 27-site lattice never labels 27 sites
+    var BS_MAX_NEIGHBOURS = 12;     // hcp/fcc coordination is the pool ceiling
+    var BS_HCP_C_OVER_A = Math.sqrt(8 / 3);   // the IDEAL hcp axial ratio
+    // D-5, DECIDED ONCE and authored per state via lattice.reveal. Glow is
+    // brightness (Rule 29) and brightness cannot defeat occlusion: a rock-salt
+    // block is a wall of identical spheres and
+    // field3d_uniform_translucent_same_family_surfaces_fuse_with_no_silhouette_cue
+    // is a CRITICAL FIXED scar on three chemistry concepts. So the interior
+    // reveal is a real geometric mechanism, not a glow, and the peers do NOT
+    // become a uniform translucent fog: peer_fade drops them to
+    // BS_PEER_FADE_OPACITY *and* the counted set keeps solid neighbour RODS, so
+    // what the caption counts is six opaque sticks and six opaque spheres
+    // against a ghost wall — a silhouette cue the fused-surface scar has no
+    // purchase on. cutaway removes a half-space instead, for a state that wants
+    // the cut face itself. Neither is improvised per concept.
+    var BS_PEER_FADE_OPACITY = 0.12;
+    var BS_REVEAL_MS = 900;         // the reveal is a RAMP, never a pop
+    // Ball-and-stick target for a coordination state. A space-filling block
+    // physically ENCLOSES its focal ion — six touching neighbours hide it
+    // completely, at every camera — so "every ion is surrounded by six" cannot be
+    // read off a packed render at all. The reveal ramps every site radius to this
+    // fraction while the peers fade, so the state opens in the packed home pose
+    // (Rule 32d, continuous with the growth state before it) and the opening-up
+    // IS the beat (Rule 32a, cause first). It is a UNIFORM factor, so every
+    // radius RATIO is preserved and the linear-in-pm reading survives intact —
+    // this is a render convention, not a Rule-29 emphasis knob.
+    var BS_COORD_RADIUS_SCALE = 0.35;
+    // Camera auto-fit. The renderer camera is PerspectiveCamera(60, ...), so the
+    // half-height visible at distance d is d*tan(30 deg) = 0.5774*d. Fitting an
+    // extent e therefore needs d >= e/0.5774 = 1.732*e; 1.90 is that with margin.
+    var BS_FIT_MARGIN = 1.90;
+    // The five rock-salt pairs ionic_bonding's explore picker offers — ONE cell
+    // covers all of them, which is why that explore state needs no second cell
+    // type. a_pm is the conventional cubic edge (X-ray values).
+    var BS_ION_PAIRS = {
+        NaCl: { cation: "Na+", anion: "Cl-", a_pm: 564.0 },
+        KCl:  { cation: "K+",  anion: "Cl-", a_pm: 629.3 },
+        LiF:  { cation: "Li+", anion: "F-",  a_pm: 402.6 },
+        MgO:  { cation: "Mg2+", anion: "O2-", a_pm: 421.2 },
+        CaO:  { cation: "Ca2+", anion: "O2-", a_pm: 481.1 }
+    };
 
     // Per-species radius on a LINEAR-IN-PICOMETRE scale (doc row K / §reuse item 4).
     // MG_ELEMENTS.radius is legibility-COMPRESSED (H 0.30 vs Cl 0.52 = 1.7x where
@@ -48515,10 +48709,46 @@ export const FIELD_3D_RENDERER_CODE = `
     //   the positive end). Positive entry = the CENTRAL atom is delta+.
     //   A sign flip renders perfectly while teaching the reverse (CRITICAL scar
     //   superposed_orbital_sign_convention_inverts_the_taught_direction).
+    //
+    //   RATIFIED 2026-08-01 (chemistry_author, bond_polarity_dipole_moment R1/R2/R3;
+    //   landed by E1c-A). N is the SOLE EXCEPTION to the fitted/absorbed convention.
+    //   Every other central atom (O, S, Se, Te, C, B, Be, P and every H|X row) stays
+    //   FITTED — the published value already absorbs that centre-s lone-pair
+    //   contribution, BS_LONE_PAIR_D stays 0 there, and nothing downstream of them is
+    //   touched. In particular O|H -1.51 is what produces H2O-s 1.849 D, which
+    //   bond_polarity S4 AND hydrogen_bonding-s bscCharges/bscIonicFraction
+    //   donor-acceptor table both depend on: converting O would perturb both.
+    //   N moves to the INTRINSIC + EXPLICIT-LONE-PAIR convention because
+    //   bond_polarity S7 DRAWS the lone-pair vector on screen and teaches
+    //   "direction decides" as a real four-vector composition. Under the fitted
+    //   convention (N|H -1.31, N|F 0.17, L = 0) the whole NH3 -> NF3 drop came from
+    //   bond-moment MAGNITUDE, so the state-s own lesson was arithmetically false AND
+    //   the higher-Delta-chi bond (N-F, 0.94) drew the SHORTER arrow than N-H (0.84),
+    //   contradicting S2-s "bigger Delta-chi, longer arrow" rule.
+    //   Calibration (chemistry_author, full working in the chemistry block): one
+    //   proportionality b = k*Delta-chi plus the two published totals gives
+    //   k = 0.7759, i.e. b(N-H) = 0.66 D, b(N-F) = 0.73 D, L = 0.73 D. Forward check
+    //   against mgSqueeze-s own axial cosines (NH3 107 deg -> 0.3722, NF3 102.3 deg
+    //   -> 0.4374), asserted numerically by check:bonding-scene section 15:
+    //     NH3 = 3*0.66*0.3722 + 0.73 = 1.467 D   (was 1.462 — same picture, real terms)
+    //     NF3 = |3*0.73*0.4374 - 0.73| = 0.228 D (was 0.223)
+    //   and |N-F| 0.73 > |N-H| 0.66 now matches Delta-chi 0.94 > 0.84.
+    //   DO NOT extend this convention to another central atom without a matching
+    //   on-screen lone-pair-vector need — it is a local exception, not a table-wide
+    //   migration, and a table silently carrying two conventions is how the next
+    //   concept gets bitten. check:bonding-scene asserts |L| > 0 for the N centrals
+    //   ONLY, so any other central gaining a lone-pair moment fails the gate loudly.
+    //   R2: the hydrogen-halide row moves to CRC Handbook gas-phase (microwave)
+    //   values — HF 1.826, HCl 1.109, HBr 0.827, HI 0.448 — rounded to this table-s
+    //   own 2-decimal convention. The shipped H|I 0.38 was 16% below the measured
+    //   0.448 the S2 narration quotes: a spoken number and an on-screen instrument
+    //   reading different values for the same quantity (the sigma-pi two-instrument
+    //   scar). bscCharges/bscIonicFraction read Delta-chi only, never this table, so
+    //   hydrogen_bonding-s link formation is untouched by R2.
     var BS_BOND_MOMENT_D = {
-        "H|F": 1.82, "H|Cl": 1.08, "H|Br": 0.78, "H|I": 0.38,
+        "H|F": 1.83, "H|Cl": 1.11, "H|Br": 0.83, "H|I": 0.45,
         "O|H": -1.51, "S|H": -0.70, "Se|H": -0.44, "Te|H": -0.14,
-        "N|H": -1.31, "N|F": 0.17,
+        "N|H": -0.66, "N|F": 0.73,
         "C|H": -0.30, "C|Cl": 1.46, "C|F": 1.41, "C|O": 2.30, "C|Br": 1.38, "C|I": 1.19,
         "B|F": 1.48, "Be|Cl": 1.60, "P|Cl": 0.81, "S|F": 1.05
     };
@@ -48530,12 +48760,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // (MG_MOLECULES[key].bond_moments = { Cl: 0.74 }) is read below so
     // chemistry-author can ratify WITHOUT an engine edit.
     // Explicit lone-pair moment per central species, in debye, applied along EACH
-    // lone-pair direction. Authored 0 today and that is a DELIBERATE, flagged
-    // call: the published bond moments above are empirically fitted and already
-    // absorb the lone-pair contribution (with them, H2O/NH3/NF3 all land on
-    // literature with a zero term — adding one double-counts). The mechanism is
-    // shipped so ratification is a data edit, not an engine edit.
-    var BS_LONE_PAIR_D = { N: 0, O: 0, S: 0, Se: 0, Te: 0, P: 0, Cl: 0, F: 0 };
+    // lone-pair direction. ZERO everywhere the table above stays FITTED (the
+    // published bond moment already absorbs the lone-pair contribution there, so a
+    // second term would double-count), and NON-ZERO only at N, the one central atom
+    // this wave converts to the intrinsic convention — see the R1 block above for
+    // why, and check:bonding-scene for the assertion that keeps the exception
+    // single. This is a DATA edit on a mechanism that shipped in E1; a new non-zero
+    // entry here is a chemistry ratification, never a rendering convenience.
+    var BS_LONE_PAIR_D = { N: 0.73, O: 0, S: 0, Se: 0, Te: 0, P: 0, Cl: 0, F: 0 };
     // Fallback for a pair the table does not carry: sign from delta-chi, magnitude
     // 1.0 D per unit delta-chi. NEVER silent — every use is recorded on
     // window.PM_bscMuFallback so the gate can assert the shipped species set
@@ -48575,9 +48807,129 @@ export const FIELD_3D_RENDERER_CODE = `
         // is half of what S2-S4 teach.
         approach_link: { az: 35, el: 16, dist: 11.0 },
         network:    { az: 35, el: 22, dist: 17.0 },
-        compare:    { az: 35, el: 20, dist: 12.0 }
+        // MULTI-UNIT compare only (hydrogen_bonding-s side-by-side box). A compare
+        // state that swaps ONE molecule in place is the dipole_sum SCENE and is
+        // framed by the single-unit solve below — see bscSolvedCamera.
+        compare:    { az: 35, el: 20, dist: 12.0 },
+        // ── E3a solved cameras (D-4). fit:true adds the auto-fit above, so a
+        //    state that authors a bigger block than the canonical 3x3x3 cannot
+        //    silently overflow the frame.
+        //
+        //    coordination is THE countability state of this dispatch: ionic S5
+        //    reads "Six neighbours, every ion" against the highlighted ion PLUS
+        //    its six neighbours — that 7-element set is what the caption counts,
+        //    which is the E1 lesson verbatim (solving over the ligands alone
+        //    certified a camera on which an element swung to 0.064 NDC of the
+        //    central atom).
+        //
+        //    TWO measured findings changed this solve, and both are worth
+        //    writing down because each contradicts the obvious answer.
+        //
+        //    (1) CENTRE SEPARATION IS THE WRONG METRIC FOR A LATTICE. On a
+        //    close-packed crystal the spheres TOUCH by construction, so their
+        //    projections always overlap and a centre-separation floor certifies
+        //    a view in which the focal ion is completely enclosed by its own six
+        //    neighbours — which is what a real rock-salt crystal does, and it is
+        //    the scar (a counted element hidden behind another) not its absence.
+        //    The metric is therefore OCCLUSION: no counted element's projected
+        //    centre may fall inside a NEARER counted sphere's projected disc.
+        //    Under that metric a space-filling block is unsolvable at ANY camera
+        //    (best margin -0.21), which is why lattice.radius_scale exists and
+        //    why the reveal ramps to it: the block opens from its packed home
+        //    pose into ball-and-stick as the peers fade, one beat, cause first.
+        //
+        //    (2) el 45 IS THE BEST ELEVATION, AND THE ORTHOGRAPHIC METRIC WOULD
+        //    HAVE REJECTED IT. Orthographically el 45 is degenerate: a ring
+        //    neighbour crossing the screen centre-line sits sin(el) below the
+        //    focal ion and the -y neighbour cos(el) below it, and those are EQUAL
+        //    at 45, so an orthographic solver scores it ZERO and picks el 26.6.
+        //    Under the shipped PERSPECTIVE projection the two sit at different
+        //    depths and separate cleanly — el 45 measures 0.334 min pairwise NDC
+        //    against 0.172 at el 20, and el 26 measures 0.076, i.e. a FAIL. The
+        //    OPEN scar orthographic_separation_metric_underpredicts_perspective_
+        //    overlap fires here in the OPPOSITE direction: the cheap metric does
+        //    not merely pass a bad camera, it rejects the best one.
+        //    NO fit here, deliberately: the doc's state teaches from INSIDE a
+        //    block, so the wall is allowed to bleed past the frame edge while the
+        //    counted set stays large and separable.
+        transfer:      { az: 90, el: 12, dist: 15.0 },
+        lattice_grow:  { az: 35, el: 26, dist: 20.0, fit: true },
+        //    dist 16, not 14: the runtime smoke showed the two counted neighbours
+        //    nearest the camera CLIPPED by the viewport edge at 14 — a counted
+        //    element half off-screen is the same defect as one hidden behind
+        //    another, and only frames caught it. 16 is the joint solution:
+        //    occlusion margin +0.057 NDC, counted-set box 0.80 (floor 0.85),
+        //    min pairwise centre separation 0.250.
+        coordination:  { az: 35, el: 45, dist: 16.0 }
     };
     var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
+
+    // ── THE SINGLE-UNIT SOLVE, KEYED ON THE SCENE (E1c-A, D-4 continued) ──────
+    //   A MODE NAME IS NOT A SCENE. The same mode frames a single molecule swapped
+    //   in place (bond_polarity S2/S6/S7 reach compare only to use compare_species)
+    //   and a multi-unit side-by-side box (hydrogen_bonding). Keying the solve on
+    //   the mode string therefore teleported the camera FOUR times across
+    //   bond_polarity-s arc — S1->S2, S2->S3, S5->S6, S7->S8, each an elevation AND
+    //   distance jump (el 47 dist 7 -> el 20 dist 12) the taught variable never
+    //   caused (Rule 32d), drawing every arrow at ~58% of its neighbouring states-
+    //   size. arrow_scale cannot compensate: it is per-state, so raising it on the
+    //   compare states would draw the SAME CCl4 arrows at two different lengths in
+    //   S5 and S6 — Rule 29-s one-instrument rule broken to patch a camera bug.
+    //
+    //   So the solve reads the SCENE: unit count, the unit-s offset from the
+    //   origin, and the focal unit-s OWN domain geometry. A single unit sitting at
+    //   the origin is the dipole_sum scene whatever mode string the state used, and
+    //   is framed by the single-unit solve below; anything wider keeps the mode-s
+    //   own measured camera.
+    //
+    //   AND THE SINGLE-UNIT SOLVE IS NOT ONE CAMERA. E1 certified el 47 over CCl4-s
+    //   TETRAHEDRON (four bonds surrounding the centre) and never over a PYRAMID.
+    //   Measured at the renderer-s true FOV 60 over S7-s counted set (three bond
+    //   arrows + the lone-pair vector + the resultant + the central atom), az 35,
+    //   dist 7, static pose:
+    //     el 47  ligand-behind-centre margin +0.0350 NDC, disc separation -0.0400
+    //            (the three N-F ligand spheres OVERLAP the nitrogen: E1c-B read
+    //            exactly this in both its NH3 and NF3 smoke frames)
+    //     el 62  ligand-behind-centre margin +0.1194 NDC, disc separation +0.0424
+    //            (the discs genuinely separate; +0.0128 even under a full spin)
+    //     el 90  NEGATIVE CONTROL: straight down the C3 axis the lone-pair vector
+    //            and the resultant project onto each other, vector gap 0.0000
+    //   Cost of el 62 on the pyramid: the lone/resultant projected gap eases from
+    //   0.0273 to 0.0197 NDC — those two are COLLINEAR by construction on NH3 (the
+    //   physics of the state), disjoint along the axis, and drawn in two different
+    //   colours, so a smaller gap is the right thing to spend. A tetrahedral or
+    //   linear or bent centre is NOT moved: at el 62 CCl4-s spinning ligands start
+    //   crossing each other, which is why the key is the SHAPE and not a new global.
+    //   AZIMUTH STAYS 35 EVERYWHERE, deliberately: MG_BEND_AZ is asserted equal to
+    //   BS_CAMERAS.dipole_sum.az by check:bonding-scene so the authored bend cannot
+    //   silently go edge-on, and az 45-60 measured only ~0.03 NDC better on the
+    //   pyramid — not worth breaking that tie-down.
+    var BS_UNIT_CAMERAS = {
+        pyramidal: { az: 35, el: 62, dist: 7.0 },
+        general:   { az: 35, el: 47, dist: 7.0 }
+    };
+    // The scene-derived shape key: a centre whose bonds all sit on ONE side of it
+    // (three bonds plus at least one lone pair) puts a ligand behind the centre at
+    // a shallow look-down. Everything else — tetrahedral, trigonal planar, bent,
+    // linear, diatomic — surrounds its centre and reads at the general solve.
+    function bscUnitShapeKey(molKey) {
+        var m = MG_MOLECULES[molKey];
+        if (!m) return "general";
+        return (m.bonds === 3 && m.lone >= 1) ? "pyramidal" : "general";
+    }
+    // Derived from the state ALONE (never from the live camera or a dragged
+    // picker), so the countable view is identical on the first frame and under a
+    // SET_TIME_FREEZE pin — the D-4 property this whole family exists to keep.
+    function bscSolvedCamera(bs) {
+        var base = BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        if (bs.placement === "lattice") return base;
+        var units = (bs.units && bs.units.length) ? bs.units : null;
+        if (units && units.length > 1) return base;
+        var at = (units && units[0] && units[0].at) ? units[0].at : [0, 0, 0];
+        if (bscMag(at) > 0.5) return base;   // parked off-centre: a wider scene
+        var sp = (units && units[0] && units[0].species) || bs.species || null;
+        return BS_UNIT_CAMERAS[bscUnitShapeKey(sp)];
+    }
 
     // ── pure helpers (all closed-form; nothing below reads live scene state) ──
     function bscClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
@@ -48783,6 +49135,260 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         return [0, 0, 0];
     }
+    // ── E3a: THE LATTICE PLACEMENT LAYER ─────────────────────────────────────
+    //   Four cells, ONE generator: every cell is a FILTER over an integer grid
+    //   plus a cartesian map, so each site carries its exact INTEGER key and its
+    //   sublattice index all the way to the frame pass and onto
+    //   window.PM_bscSites.
+    //
+    //   That integer key is deliberate and it is what keeps D-7 OPEN for E3b.
+    //   like_contacts is defined as like-charge nearest-neighbour contacts
+    //   CREATED BY THE SHIFT and left UNSCREENED — a delta against the unshifted
+    //   lattice, not a raw count (a raw count reads 8 -> 8 on a cation-only bcc
+    //   metal and would teach that a metal has no like-charge neighbours, which
+    //   is false). A delta needs an exact identity for "the same contact before
+    //   and after", and only an integer key gives that; a float position compare
+    //   would not survive the shift ramp. Sublattice + species + charge are all
+    //   exposed per site for the same reason.
+    //
+    //   ORDERING is bscUnitSlot's pattern generalised to a crystal basis: sites
+    //   sort by distance from the block centre, ties broken lexicographically on
+    //   the integer key. So the growth beat reveals shell by shell OUTWARD and a
+    //   site already on screen NEVER moves — which is exactly ionic S4's
+    //   misconception kill ("the pair does not stay a pair"): the pair holds
+    //   still and gets surrounded. Presence is D-1 applied to existence: site k
+    //   is on screen at time t iff k < shown(t), and shown(t) is a closed-form
+    //   ramp of state-local t. Nothing is remembered; a SET_TIME_FREEZE rewind
+    //   reproduces the same site SET by construction.
+    //
+    //   n = GRID STEPS per axis, forced ODD so the block has a true centre site
+    //   (a coordination state needs one). For rock_salt / fcc / bcc the grid step
+    //   is a/2, so n = [3,3,3] spans one conventional cube; the site count then
+    //   follows from the cell's own filter (rock_salt 27, fcc 14, bcc 9). For hcp
+    //   n = [a1 count, a2 count, layers].
+    function bscOddN(v) {
+        var n = Math.max(1, Math.round(v || 3));
+        return (n % 2 === 0) ? n + 1 : n;
+    }
+    function bscCellSites(cell, nx, ny, nz) {
+        var out = [], i, j, k;
+        var hx = (bscOddN(nx) - 1) / 2, hy = (bscOddN(ny) - 1) / 2, hz = (bscOddN(nz) - 1) / 2;
+        var m2 = function (v) { return ((v % 2) + 2) % 2; };
+        if (cell === "hcp") {
+            // stacking runs along +y; in-plane a1 = (1,0,0), a2 = (1/2,0,sqrt3/2);
+            // the B layer sits at (a1 + a2)/3 and the ideal spacing c/2 puts every
+            // one of the twelve neighbours at exactly one lattice constant.
+            var s3 = Math.sqrt(3);
+            for (j = -hz; j <= hz; j++) {
+                var od = m2(j);
+                for (i = -hx; i <= hx; i++) {
+                    for (k = -hy; k <= hy; k++) {
+                        out.push({
+                            key: [i, k, j], sub: 0,
+                            at: [i + 0.5 * k + (od ? 0.5 : 0),
+                                 j * BS_HCP_C_OVER_A * 0.5,
+                                 k * (s3 / 2) + (od ? s3 / 6 : 0)]
+                        });
+                    }
+                }
+            }
+        } else {
+            for (i = -hx; i <= hx; i++) for (j = -hy; j <= hy; j++) for (k = -hz; k <= hz; k++) {
+                var sub = 0;
+                if (cell === "fcc") {
+                    if (m2(i + j + k) !== 0) continue;          // face-centred cubic
+                } else if (cell === "bcc") {
+                    var ae = (m2(i) === 0 && m2(j) === 0 && m2(k) === 0);
+                    var ao = (m2(i) === 1 && m2(j) === 1 && m2(k) === 1);
+                    if (!ae && !ao) continue;                   // body-centred cubic
+                } else {
+                    sub = m2(i + j + k);                        // rock salt: 2 sublattices
+                }
+                out.push({ key: [i, j, k], sub: sub, at: [i * 0.5, j * 0.5, k * 0.5] });
+            }
+        }
+        out.sort(function (A, B) {
+            var ra = A.at[0] * A.at[0] + A.at[1] * A.at[1] + A.at[2] * A.at[2];
+            var rb = B.at[0] * B.at[0] + B.at[1] * B.at[1] + B.at[2] * B.at[2];
+            if (Math.abs(ra - rb) > 1e-9) return ra - rb;
+            if (A.key[0] !== B.key[0]) return A.key[0] - B.key[0];
+            if (A.key[1] !== B.key[1]) return A.key[1] - B.key[1];
+            return A.key[2] - B.key[2];
+        });
+        return out;
+    }
+    // Coordination number, DERIVED from the generator above and never asserted as
+    // a constant: build a block big enough that the centre site has its whole
+    // first shell, then count the sites at the minimum distance. rock_salt 6,
+    // fcc 12, bcc 8, hcp 12 all fall out; the gate asserts those four numbers
+    // against THIS function, so a generator error cannot hide behind a table.
+    var BS_COORD_CACHE = {};
+    function bscCoordination(cell) {
+        if (BS_COORD_CACHE[cell] != null) return BS_COORD_CACHE[cell];
+        var S = bscCellSites(cell, 5, 5, 5), c = S[0], best = 1e9, i, n = 0;
+        for (i = 1; i < S.length; i++) {
+            var d = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (d < best - 1e-9) best = d;
+        }
+        for (i = 1; i < S.length; i++) {
+            var d2 = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (Math.abs(d2 - best) < 1e-6) n++;
+        }
+        BS_COORD_CACHE[cell] = n;
+        return n;
+    }
+    // Formal charge parsed from the species STRING, so a new ion never needs a
+    // table row: Na+ -> +1, Mg2+ -> +2, O2- -> -2, Cl- -> -1, a neutral atom 0.
+    // Charge conservation across the transfer beat is asserted on this.
+    function bscSpeciesCharge(sp) {
+        var s = String(sp || ""), last = s.charAt(s.length - 1);
+        if (last !== "+" && last !== "-") return 0;
+        var mag = 1, d = s.charAt(s.length - 2);
+        if (d >= "0" && d <= "9") mag = parseInt(d, 10);
+        return (last === "+") ? mag : -mag;
+    }
+    // Na+ -> Na(sup +), Mg2+ -> Mg(sup 2+), O2- -> O(sup 2-). Rule 34c: the
+    // charge NEVER renders as an ASCII trailing plus.
+    var BS_SUPDIG = ["\\u2070", "\\u00B9", "\\u00B2", "\\u00B3", "\\u2074",
+        "\\u2075", "\\u2076", "\\u2077", "\\u2078", "\\u2079"];
+    function bscSpeciesLabel(sp) {
+        var q = bscSpeciesCharge(sp);
+        if (q === 0) return String(sp || "");
+        var el = BS_ION_PARENT[sp] || String(sp).replace(/[0-9+-]+$/, "");
+        var mag = Math.abs(q);
+        return el + (mag > 1 ? BS_SUPDIG[mag] : "") + (q > 0 ? "\\u207A" : "\\u207B");
+    }
+    // The LINEAR-IN-PM radius (doc row K / §reuse item 4). Ions and lattice sites
+    // read this; molecule atoms stay on the legibility-compressed MG_ELEMENTS
+    // scale, because in ionic S2 the size change IS the lesson and it has to read
+    // as proportional (Na 186 -> 102 pm is a 45% shrink, and the compressed
+    // scale would flatten it).
+    function bscRadiusPm(sp) {
+        if (BS_RADIUS_PM[sp] != null) return BS_RADIUS_PM[sp];
+        var par = BS_ION_PARENT[sp];
+        if (par && BS_RADIUS_PM[par] != null) return BS_RADIUS_PM[par];
+        return 100;
+    }
+    // Derived inverse of BS_ION_PARENT (each parent has exactly one ion), so the
+    // transfer beat needs no second table: Na -> Na+, Cl -> Cl-.
+    var BS_ION_OF = (function () {
+        var o = {}, k;
+        for (k in BS_ION_PARENT) if (BS_ION_PARENT.hasOwnProperty(k)) o[BS_ION_PARENT[k]] = k;
+        return o;
+    })();
+    // A species the SITE layer draws: a bare atom or an ion, i.e. anything with a
+    // linear-pm radius that is not a molecule. Single-atom units therefore need
+    // no new config key — units[].species already accepts atoms and ions in the
+    // frozen enum, and E1 simply had nothing to draw them with.
+    function bscIsSite(sp) {
+        return !!sp && !MG_MOLECULES[sp] && (BS_RADIUS_PM[sp] != null || BS_ION_PARENT[sp] != null);
+    }
+    // Opacity on a pooled mesh WITHOUT a material recompile every frame: three.js
+    // needs needsUpdate only when the transparent FLAG flips, so the flag is
+    // compared before it is written. Peer fade would otherwise recompile ~120
+    // materials a frame.
+    function bscSetOpacity(mesh, op) {
+        if (!mesh || !mesh.material) return;
+        var m = mesh.material, tr = op < 0.999;
+        if (m.transparent !== tr) { m.transparent = tr; m.needsUpdate = true; }
+        m.opacity = op;
+    }
+    // THE site list for a state, at FULL growth — pure, and the single source of
+    // truth for the mesh pool size, the camera fit and the frame pass. Sublattice
+    // 0 takes units[0].species and sublattice 1 units[1].species, so a lattice
+    // needs NO new config key: the pair the transfer beat just made becomes the
+    // two sublattices of the block that grows out of it. pairOverride is the
+    // explore picker (ion_pair), which swaps BOTH species AND the cell edge
+    // together — a picker that changed the species and left a stale 564 pm edge
+    // would render LiF ions rattling inside a NaCl cage.
+    //
+    // ONE SCALE for radii and spacings (links.pm_per_unit, 48 pm/unit by
+    // default). That is not a convenience: rock salt at a = 564 pm puts nearest
+    // neighbours 282 pm apart, and r(Na+) + r(Cl-) = 102 + 181 = 283 pm, so on a
+    // shared linear scale the ions TOUCH — which is the whole of ionic S3's
+    // "attraction stops at 282". Two scales and that reading is gone.
+    function bscSiteList(bs, pairOverride) {
+        var out = [], i;
+        var p2u = bscLinkCfg(bs).pm_per_unit;
+        var units = (bs && bs.units) || [];
+        var lat = (bs && bs.lattice) || null;
+        if (bs && bs.placement === "lattice" && lat) {
+            var cell = (BS_CELLS.indexOf(lat.cell) >= 0) ? lat.cell : "rock_salt";
+            var spA = pairOverride ? pairOverride.cation
+                : ((units[0] && units[0].species) || "Na+");
+            var spB = pairOverride ? pairOverride.anion
+                : ((units[1] && units[1].species) || spA);
+            var aPm = pairOverride ? pairOverride.a_pm : ((lat.a_pm != null) ? lat.a_pm : 564);
+            var aU = aPm / p2u;
+            var n = lat.n || [3, 3, 3];
+            var S = bscCellSites(cell, n[0], n[1], n[2]);
+            for (i = 0; i < S.length && out.length < BS_MAX_SITES; i++) {
+                var sp = (S[i].sub === 1) ? spB : spA;
+                out.push({
+                    key: S[i].key, sub: S[i].sub, cell: cell, a_pm: aPm, species: sp,
+                    q: bscSpeciesCharge(sp), rPm: bscRadiusPm(sp), unit: null,
+                    at: [S[i].at[0] * aU, S[i].at[1] * aU, S[i].at[2] * aU]
+                });
+            }
+            return out;
+        }
+        // free placement: any unit whose species is an ATOM or an ION (rather
+        // than a molecule) is a site. mode transfer is exactly this case.
+        for (i = 0; i < units.length && out.length < BS_MAX_SITES; i++) {
+            var u = units[i];
+            if (!u || !bscIsSite(u.species)) continue;
+            out.push({
+                key: [i, 0, 0], sub: 0, cell: null, a_pm: 0, species: u.species,
+                q: bscSpeciesCharge(u.species), rPm: bscRadiusPm(u.species),
+                unit: u.id || ("u" + i), uidx: i,
+                at: u.at ? [u.at[0], u.at[1], u.at[2]] : [0, 0, 0]
+            });
+        }
+        return out;
+    }
+    // Growth: how many of the shell-ordered sites exist at state-local ms. A
+    // ROUNDED RAMP, so presence is a closed-form function of t and a rewind
+    // reproduces the same block. A latch remembering which sites already exist is
+    // exactly the accumulator D-1 forbids.
+    function bscGrowShown(bs, ms, total) {
+        var L = (bs && bs.lattice) || {};
+        if (L.grow_at_ms == null) return total;
+        var from = (L.grow_from != null) ? L.grow_from : Math.min(2, total);
+        return Math.round(mgRamp(ms, L.grow_at_ms,
+            (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000, from, total));
+    }
+    // Transfer progress: a closed-form ramp of state-local ms (D-1).
+    function bscTransferProg(bs, ms) {
+        var T = (bs && bs.transfer) || {};
+        if (T.at_ms == null) return 0;
+        return mgRamp(ms, T.at_ms, (T.duration_ms != null) ? T.duration_ms : 2000, 0, 1);
+    }
+    // The per-site state at transfer progress p: species, FORMAL CHARGE and
+    // radius. The ONE place the ionisation arithmetic lives, so the gate asserts
+    // the shipped path rather than a copy of it. Charge ramps WITH the radius, so
+    // Sigma q = 0 at every instant of the beat and not only at its endpoints.
+    // Radius is linear in PICOMETRES — Na 186 -> 102 pm has to read as a real
+    // 45% shrink, which the compressed MG_ELEMENTS scale would flatten.
+    function bscTransferSite(SI, p) {
+        if (!(p > 0)) return { species: SI.species, q: SI.q, r_pm: SI.rPm };
+        var ionSp = BS_ION_OF[SI.species] || SI.species;
+        return {
+            species: (p >= 0.5) ? ionSp : SI.species,
+            q: SI.q + (bscSpeciesCharge(ionSp) - SI.q) * p,
+            r_pm: SI.rPm + (bscRadiusPm(ionSp) - SI.rPm) * p
+        };
+    }
+    // Half-extent of the site block in scene units, radii included — what the
+    // camera auto-fit measures against.
+    function bscSiteExtent(bs, pairOverride) {
+        var S = bscSiteList(bs, pairOverride), p2u = bscLinkCfg(bs).pm_per_unit, e = 0, i;
+        for (i = 0; i < S.length; i++) {
+            var d = bscMag(S[i].at) + S[i].rPm / p2u;
+            if (d > e) e = d;
+        }
+        return e;
+    }
+
     // Authored labels arrive as plain ASCII (H2S) and are COMPOSED to real
     // Unicode subscripts here (Rule 34c). Same discipline as the fleet's
     // styled-subscript routines, except Unicode HAS all ten digit subscripts, so
@@ -48879,14 +49485,31 @@ export const FIELD_3D_RENDERER_CODE = `
         // state whose count slider should run past its own authored opening
         // scene. Both are honoured, units.length is the norm.
         var need = 1, sKey;
+        // E3a: the SITE pool is sized the same way, from the states that actually
+        // author a lattice (or single-atom units) — so bond_polarity and
+        // hydrogen_bonding, which author neither, pay ZERO site meshes. The
+        // explore picker can swap the ion pair, and LiF's smaller edge never adds
+        // sites, but the pool is measured across every pair anyway so a future
+        // pair with a different cell cannot silently truncate the block.
+        var needSites = 0;
         for (sKey in (config.states || {})) {
             var sb = (config.states[sKey] || {}).bonding_scene;
             if (!sb) continue;
             if (sb.units && sb.units.length > need) need = sb.units.length;
             if (sb.count_max > need) need = sb.count_max;
+            var nsp = bscSiteList(sb, null).length;
+            if (nsp > needSites) needSites = nsp;
+            var pk;
+            for (pk in BS_ION_PAIRS) {
+                if (!BS_ION_PAIRS.hasOwnProperty(pk)) continue;
+                var np = bscSiteList(sb, BS_ION_PAIRS[pk]).length;
+                if (np > needSites) needSites = np;
+            }
         }
         var nUnits = Math.min(BS_MAX_UNITS, Math.max(1, need));
         window.PM_bscUnitPool = nUnits;
+        var nSites = Math.min(BS_MAX_SITES, needSites);
+        window.PM_bscSitePool = nSites;
 
         var atomGeo = new THREE.SphereGeometry(1, 24, 24);
         var bondGeo = new THREE.CylinderGeometry(0.075, 0.075, 1, 14);
@@ -48936,7 +49559,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // magnitude), never an emphasis knob.
         for (i = 0; i < MG_MAX_BONDS; i++) {
             var sh = new THREE.Mesh(shaftGeo.clone(), new THREE.MeshBasicMaterial({
-                color: hexToThreeColor(arrowColor), transparent: true, opacity: 0.95,
+                color: hexToThreeColor(arrowColor), transparent: true, opacity: BS_ARROW_OPACITY,
                 depthTest: false, depthWrite: false
             }));
             sh.renderOrder = 996;
@@ -48944,7 +49567,7 @@ export const FIELD_3D_RENDERER_CODE = `
             sh.visible = false;
             addToScene(sh);
             var hd = new THREE.Mesh(headGeo.clone(), new THREE.MeshBasicMaterial({
-                color: hexToThreeColor(arrowColor), transparent: true, opacity: 0.95,
+                color: hexToThreeColor(arrowColor), transparent: true, opacity: BS_ARROW_OPACITY,
                 depthTest: false, depthWrite: false
             }));
             hd.renderOrder = 996;
@@ -48953,7 +49576,7 @@ export const FIELD_3D_RENDERER_CODE = `
             addToScene(hd);
         }
         var rs = new THREE.Mesh(new THREE.CylinderGeometry(0.062, 0.062, 1, 12), new THREE.MeshBasicMaterial({
-            color: hexToThreeColor(resColor), transparent: true, opacity: 0.98,
+            color: hexToThreeColor(resColor), transparent: true, opacity: BS_RESULTANT_OPACITY,
             depthTest: false, depthWrite: false
         }));
         rs.geometry.translate(0, 0.5, 0);
@@ -48962,7 +49585,7 @@ export const FIELD_3D_RENDERER_CODE = `
         rs.visible = false;
         addToScene(rs);
         var rh = new THREE.Mesh(new THREE.ConeGeometry(0.155, 0.38, 14), new THREE.MeshBasicMaterial({
-            color: hexToThreeColor(resColor), transparent: true, opacity: 0.98,
+            color: hexToThreeColor(resColor), transparent: true, opacity: BS_RESULTANT_OPACITY,
             depthTest: false, depthWrite: false
         }));
         rh.geometry.translate(0, 0.19, 0);
@@ -48980,6 +49603,56 @@ export const FIELD_3D_RENDERER_CODE = `
         zl.userData = { elementType: "bsc_resultant", id: "bsc_res_zero" };
         zl.visible = false;
         addToScene(zl);
+
+        // ── E1c item 3: THE LONE-PAIR LAYER (lobe + its own dipole vector).
+        //   bonding_scene rendered no lone pair at all — that machinery lived in
+        //   molecular_geometry — so bond_polarity S7 (NH3 vs NF3) could not be
+        //   drawn: its whole argument is that the lone pair carries a dipole of
+        //   its own which the bond arrows first ADD to and then OPPOSE, and its
+        //   narration points straight at it. NEVER NARRATE WHAT IS NOT DRAWN.
+        //   The lobe geometry is the molecular_geometry one verbatim (fatter and
+        //   shorter than a bond, a real occupied volume, not a Rule-29 bulge) so
+        //   a student meeting both sims sees the SAME object.
+        //   The VECTOR is drawn only where BS_LONE_PAIR_D[central] is non-zero,
+        //   which is the data half E1c-A ratifies: with the fitted table (every
+        //   central atom except N) the published bond moment already absorbs the
+        //   lone-pair contribution, so drawing a lone-pair arrow there would
+        //   double-count. It carries elementType bsc_arrow deliberately — it IS
+        //   one of the vectors the glow key "arrows" means, and the closed glow
+        //   enum does not grow a key.
+        var loneColor = CO.lone_pair || "#B39DDB";
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var lpb = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 16), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(loneColor), emissive: hexToThreeColor(loneColor),
+                emissiveIntensity: 0.34, shininess: 40, transparent: true, opacity: 0.5
+            }));
+            lpb.userData = { elementType: "bsc_lone", id: "bsc_lone_lobe_" + i, slot: i };
+            lpb.visible = false;
+            addToScene(lpb);
+            var lsh = new THREE.Mesh(shaftGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(loneColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            lsh.renderOrder = 996;
+            lsh.userData = { elementType: "bsc_arrow", id: "bsc_lone_shaft_" + i, slot: i };
+            lsh.visible = false;
+            addToScene(lsh);
+            var lhd = new THREE.Mesh(headGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(loneColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            lhd.renderOrder = 996;
+            lhd.userData = { elementType: "bsc_arrow", id: "bsc_lone_head_" + i, slot: i };
+            lhd.visible = false;
+            addToScene(lhd);
+        }
+        // ONE label for the whole lobe set (plural when there are two), placed
+        // beyond the first lobe — the molecular_geometry pattern. Auto-width
+        // because "lone pair" and "lone pairs" are different widths.
+        var lpl = pmCreateAutoLabel("lone pair", loneColor, 0.42);
+        lpl.userData = { elementType: "bsc_lone", id: "bsc_lone_label" };
+        lpl.visible = false;
+        addToScene(lpl);
 
         // Row N — the shared-pair glyph: TWO DISCRETE DOTS that translate RIGIDLY
         // along the bond axis. Deliberately NOT a deforming cloud: that scoping is
@@ -49028,6 +49701,58 @@ export const FIELD_3D_RENDERER_CODE = `
                 addToScene(dm);
             }
         }
+
+        // ── E3a: THE SITE POOL (lattice sites + single-atom ion/atom units).
+        //    A site is ONE sphere plus its own label, drawn on the linear-pm
+        //    radius scale. Kept separate from the unit pool on purpose: a unit
+        //    costs BS_MAX_ATOMS spheres + sticks + two labels each, so putting a
+        //    125-site block through it would build ~875 meshes for a scene that
+        //    needs 125. The glow key lattice (declared in BS_GLOW_ELS since E1)
+        //    finally has meshes behind it — presence is not correctness
+        //    (field3d_scenario_declares_bead_element_but_never_builds_the_meshes),
+        //    which is the same defect E2 had to fix for bsc_link.
+        for (u = 0; u < nSites; u++) {
+            var st = new THREE.Mesh(atomGeo.clone(), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#90A4AE"), emissive: hexToThreeColor("#90A4AE"),
+                emissiveIntensity: 0.30, shininess: 70
+            }));
+            st.userData = { elementType: "bsc_lattice", id: "bsc_site" + u, site: u };
+            st.visible = false;
+            addToScene(st);
+            // D-6: this label's text changes (Na -> Na(sup +) across the transfer
+            // beat), so pmCreateAutoLabel is mandatory — createLabelSprite
+            // measures its canvas once from the seed string and clips the wider
+            // one. Only BS_MAX_SITE_LABELS of these are ever visible at once.
+            var sl = pmCreateAutoLabel("Na", textColor, 0.44);
+            sl.userData = { elementType: "bsc_lattice", id: "bsc_site" + u + "_lab", site: u };
+            sl.visible = false;
+            addToScene(sl);
+        }
+        // The coordination rods: the counted set of ionic S5 is the highlighted
+        // ion PLUS its six neighbours, and a rod per neighbour is a countable
+        // element that does NOT depend on telling two identical spheres apart —
+        // the fused-silhouette scar has no purchase on a stick.
+        var nbColor = CO.neighbour || "#FFD54F";
+        for (u = 0; u < BS_MAX_NEIGHBOURS; u++) {
+            var nb = new THREE.Mesh(bondGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(nbColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            nb.renderOrder = 995;
+            nb.userData = { elementType: "bsc_neighbour", id: "bsc_nb" + u, slot: u };
+            nb.visible = false;
+            addToScene(nb);
+        }
+        // The transferred electron (ionic S2). One dot, on the existing
+        // bsc_electron glow key — no new key, the enum is frozen.
+        var te = new THREE.Mesh(new THREE.SphereGeometry(0.30, 14, 14), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(elecColor), transparent: true, opacity: 0.98,
+            depthTest: false, depthWrite: false
+        }));
+        te.renderOrder = 998;
+        te.userData = { elementType: "bsc_electron", id: "bsc_transfer_e" };
+        te.visible = false;
+        addToScene(te);
 
         // DOM surfaces. top:52px clears the review-chrome Full-screen button and
         // the #simPenBar glass buttons at BOTH edges (Rule 34d; engine_bug_queue
@@ -49175,7 +49900,14 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscSep = (bs.approach_from != null) ? bs.approach_from
             : ((bs.separation != null) ? bs.separation : 3.0);
         var molNow = MG_MOLECULES[window.PM_bscMol];
-        window.PM_bscAngle = (bs.angle_deg != null) ? bs.angle_deg : (molNow ? molNow.angle : 104.5);
+        // Same rule as separation above (FIXED scar scripted_change_desyncs_the_
+        // dom_control_that_shares_it): a state that SCRIPTS the bend opens its
+        // angle widget at the ramp's OWN starting value, not at the destination —
+        // otherwise S4's slider reads 104.5 while the molecule is drawn linear.
+        // The frame pass then tracks the scripted value every frame until a
+        // trusted drag seizes it, so the two are joined in both directions.
+        window.PM_bscAngle = (bs.angle_from != null && bs.angle_at_ms != null) ? bs.angle_from
+            : ((bs.angle_deg != null) ? bs.angle_deg : (molNow ? molNow.angle : 104.5));
 
         // Rule 31 contextual rows — ring-gated list, recorded for the preset builder.
         var ctrls = bscControlList(bs.controls);
@@ -49204,6 +49936,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (w) w.textContent = fmt(v);
         };
         seedSel("molecule", window.PM_bscMol);
+        // E1c-A: the halide picker is seeded from the STATE-s own opening species,
+        // not from whatever the previous state left on window — a scripted swap and
+        // the widget that shares it have to agree at state entry (the FIXED scar
+        // scripted_change_desyncs_the_dom_control_that_shares_it, the entry half).
+        var ligSeed = (bs.units && bs.units[0] && bs.units[0].species) || bs.species || window.PM_bscLig;
+        if (bscHasControl(ctrls, "ligand") && MG_MOLECULES[ligSeed]) window.PM_bscLig = ligSeed;
+        seedSel("ligand", window.PM_bscLig);
         seedRng("angle", window.PM_bscAngle, function (v) { return Number(v).toFixed(1); });
         seedRng("spin", window.PM_bscSpin, function (v) { return Number(v).toFixed(2); });
         seedRng("temperature", window.PM_bscTemp, function (v) { return String(Math.round(v)); });
@@ -49230,27 +49969,70 @@ export const FIELD_3D_RENDERER_CODE = `
         // The SOLVED camera (D-4), derived from the STATE's own mode — never read
         // off the live camera, so the countable view is identical on the first
         // frame and under a freeze pin.
-        var cam = bs.camera || BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        var cam = bs.camera || bscSolvedCamera(bs);
         if (bs.camera || !stateDef.camera_position) {
             var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
             var dd = cam.dist || 7;
+            // E3a auto-fit: a solved camera is solved for the CANONICAL block, and
+            // a state that authors a bigger one would otherwise overflow the frame
+            // silently. Derived from config, so it is still identical on the first
+            // frame and under a freeze pin.
+            if (!bs.camera && cam.fit) {
+                var ext = bscSiteExtent(bs, null);
+                if (ext > 0) dd = Math.max(dd, ext * BS_FIT_MARGIN);
+            }
             animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
+        }
+        // Seed the ion-pair picker from the state's OWN sublattice species, so a
+        // scripted lattice and the widget that shares it agree at state entry
+        // (FIXED scar scripted_change_desyncs_the_dom_control_that_shares_it).
+        if (bs.placement === "lattice" && bs.units && bs.units[0]) {
+            var pkey;
+            for (pkey in BS_ION_PAIRS) {
+                if (!BS_ION_PAIRS.hasOwnProperty(pkey)) continue;
+                if (BS_ION_PAIRS[pkey].cation === bs.units[0].species) { window.PM_bscIonPair = pkey; break; }
+            }
+            seedSel("ion_pair", window.PM_bscIonPair);
         }
 
         // Hide every transient the frame updater owns, so a capture landing between
         // this apply and the first animate frame can never photograph the PREVIOUS
         // state's arrows, delta labels or electron glyph.
-        var transient = ["bsc_res_shaft", "bsc_res_head", "bsc_res_label", "bsc_res_zero"];
+        var transient = ["bsc_res_shaft", "bsc_res_head", "bsc_res_label", "bsc_res_zero",
+            "bsc_lone_label"];
         for (i = 0; i < transient.length; i++) { var t = bscFindById(transient[i]); if (t) t.visible = false; }
         for (i = 0; i < MG_MAX_BONDS; i++) {
             var a1 = bscFindById("bsc_arrow_shaft_" + i); if (a1) a1.visible = false;
             var a2 = bscFindById("bsc_arrow_head_" + i); if (a2) a2.visible = false;
         }
+        // E1c-C: THE RESTORE HALF of the reveal ramps (the dim-with-no-restore
+        // scar). A cued state writes a partial opacity every frame; leaving a
+        // state mid-ramp (the teacher clicks the rail at t = cue + 200 ms) would
+        // otherwise strand the NEXT state's arrows at 30% ink forever, since a
+        // state with no cue never writes opacity at all. State entry therefore
+        // puts every cue-driven layer back at its BUILT ink.
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var ar1 = bscFindById("bsc_arrow_shaft_" + i); if (ar1) setObjOpacity(ar1, BS_ARROW_OPACITY);
+            var ar2 = bscFindById("bsc_arrow_head_" + i); if (ar2) setObjOpacity(ar2, BS_ARROW_OPACITY);
+        }
+        var rs0 = bscFindById("bsc_res_shaft"); if (rs0) setObjOpacity(rs0, BS_RESULTANT_OPACITY);
+        var rh0 = bscFindById("bsc_res_head"); if (rh0) setObjOpacity(rh0, BS_RESULTANT_OPACITY);
+        var rl0 = bscFindById("bsc_res_label"); if (rl0) setObjOpacity(rl0, 1);
+        var rz0 = bscFindById("bsc_res_zero"); if (rz0) setObjOpacity(rz0, 1);
+        // E1c item 3: the lone-pair layer is a transient too — a capture landing
+        // between this apply and the first animate frame must never photograph the
+        // PREVIOUS state's lobes or lone-pair vector on a molecule that has none.
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var l1 = bscFindById("bsc_lone_lobe_" + i); if (l1) l1.visible = false;
+            var l2 = bscFindById("bsc_lone_shaft_" + i); if (l2) l2.visible = false;
+            var l3 = bscFindById("bsc_lone_head_" + i); if (l3) l3.visible = false;
+        }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) { var pd = bscFindById("bsc_pair_" + i); if (pd) pd.visible = false; }
         for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
         for (i = 0; i < (window.PM_bscUnitPool || 1); i++) {
             for (var j = 0; j < BS_MAX_ATOMS; j++) {
-                var dl = bscFindById("bsc_u" + i + "_delta" + j); if (dl) dl.visible = false;
+                var dl = bscFindById("bsc_u" + i + "_delta" + j);
+                if (dl) { dl.visible = false; setObjOpacity(dl, 1); }   // E1c-C restore half
             }
         }
         for (i = 0; i < BS_MAX_LINKS; i++) {
@@ -49258,6 +50040,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 var ld = bscFindById("bsc_link" + i + "_d" + k2); if (ld) ld.visible = false;
             }
         }
+        for (i = 0; i < (window.PM_bscSitePool || 0); i++) {
+            var sm = bscFindById("bsc_site" + i); if (sm) sm.visible = false;
+            var smL = bscFindById("bsc_site" + i + "_lab"); if (smL) smL.visible = false;
+        }
+        for (i = 0; i < BS_MAX_NEIGHBOURS; i++) { var nbm = bscFindById("bsc_nb" + i); if (nbm) nbm.visible = false; }
+        var tem = bscFindById("bsc_transfer_e"); if (tem) tem.visible = false;
     }
 
     // The single per-frame pass. Every value below is a closed-form pure function
@@ -49280,18 +50068,50 @@ export const FIELD_3D_RENDERER_CODE = `
             : ((bs.units && bs.units[0] && bs.units[0].species) || bs.species || "HCl");
         if (!MG_MOLECULES[molKey]) molKey = "HCl";
         var mol = MG_MOLECULES[molKey];
-        // mode compare (hydrogen_bonding S7): the comparison species takes the
-        // scene at compare_at_ms — the swap IS the beat, and deriveStateMeta
-        // already pins compare_at_ms + 1500 as a frozen candidate, so no new cue
-        // key is introduced.
+        // mode compare (hydrogen_bonding S7, bond_polarity S2/S6/S7): the
+        // comparison species takes the scene at compare_at_ms — the swap IS the
+        // beat, and deriveStateMeta pins compare_at_ms + compare_duration_ms as a
+        // frozen candidate, so no new cue key is introduced.
+        // E1c-A: THE GUARD READS EVERY DRAG FLAG THAT CAN SEIZE molKey, not just
+        // the species picker. molKey is resolved above from THREE controls —
+        // molecule, ligand, species — and the swap used to stand down for only one
+        // of them, so bond_polarity S2 (a scripted HF->HI swap paired with a live
+        // 4-rung ligand slider, both required) had its slider stomped back to the
+        // scripted species on every frame from 9 s onward: dead for more than half
+        // the state. That is the FIXED scar
+        // scripted_change_desyncs_the_dom_control_that_shares_it recurring one
+        // control-id sideways, and the fix is the same drag-seize discipline the
+        // angle / temperature / count / separation quantities already use: once a
+        // TRUSTED drag has taken a quantity, the script never writes it again.
+        var swapSeized = (bscHasControl(ctrls, "molecule") && window.PM_bscMolDragged) ||
+            (bscHasControl(ctrls, "ligand") && window.PM_bscLigDragged) ||
+            (bscHasControl(ctrls, "species") && window.PM_bscSpeciesDragged);
         if (mode === "compare" && bs.compare_species != null && bs.compare_at_ms != null &&
-            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] &&
-            !window.PM_bscSpeciesDragged) {
+            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] && !swapSeized) {
             molKey = bs.compare_species;
             mol = MG_MOLECULES[molKey];
         }
+        window.PM_bscSwapSeized = !!swapSeized;
+        // E1c item 1: THE SCRIPTED BEND. angle_deg alone is a static override, so
+        // a state could only ever open at its final shape — and bond_polarity S4's
+        // primary aha is water opening LINEAR (arrows opposite, resultant zero,
+        // deliberately recreating the previous state's cancelled picture) and then
+        // bending to 104.5 while the resultant grows. Named after the shipped
+        // pair_shift_at_ms / approach_at_ms pattern and ramped with the same pure
+        // mgRamp helper: angle(t) is a CLOSED FORM of state-local t with no
+        // accumulator (D-1), so a SET_TIME_FREEZE rewind photographs the same
+        // pixels. angle_deg stays the DESTINATION (and the static value when no
+        // ramp is authored), exactly as separation is the destination of
+        // approach_from.
+        var angleTo = (bs.angle_deg != null) ? bs.angle_deg : mol.angle;
+        var angleAt = function (mms) {
+            if (bs.angle_from == null || bs.angle_at_ms == null) return angleTo;
+            return mgRamp(mms, bs.angle_at_ms,
+                (bs.angle_ramp_ms != null) ? bs.angle_ramp_ms : BS_ANGLE_RAMP_MS,
+                bs.angle_from, angleTo);
+        };
         var angleNow = (bscHasControl(ctrls, "angle") && window.PM_bscAngleDragged)
-            ? window.PM_bscAngle : ((bs.angle_deg != null) ? bs.angle_deg : mol.angle);
+            ? window.PM_bscAngle : angleAt(ms);
         var T_K = (bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged)
             ? window.PM_bscTemp : ((th.T_K != null) ? th.T_K : BS_T0_K);
         var nWant = (bscHasControl(ctrls, "count") && window.PM_bscCountDragged)
@@ -49305,6 +50125,34 @@ export const FIELD_3D_RENDERER_CODE = `
         if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged) spinRate = 0.14;
         var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
         var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
+
+        // ── E1c-C: THE THREE DIPOLE-LAYER REVEAL CUES.
+        //   arrows_at_ms / resultant_at_ms / charges_at_ms were registered as
+        //   frozen-pin candidates in deriveStateMeta and read NOWHERE here, so
+        //   every arrow, charge glyph and resultant stood on screen from frame 0
+        //   and each authored cue time was inert — the sigma-pi decorative-string
+        //   scar moved one layer out (a cue key that gates nothing while a second
+        //   file treats it as real). Rule 32a needs the cause to move first and
+        //   the effect to answer after a readable beat, which is exactly what a
+        //   cue buys: CO2's two long arrows stand alone (the wrong belief's honest
+        //   evidence) and only THEN does the resultant resolve to zero.
+        //   Semantics, and they are the JSON contract:
+        //     cue ABSENT  -> factor 1 for all t, and the opacity of that layer is
+        //                    never written at all: a state authored before this
+        //                    change is byte-identical, by construction.
+        //     cue PRESENT -> 0 until the cue, then a smoothstep ramp to 1 over
+        //                    BS_REVEAL_MS (the lattice reveal's own ramp), and it
+        //                    HOLDS. mgRamp is a pure function of state-local ms
+        //                    with no latch and no accumulator (D-1), so a
+        //                    SET_TIME_FREEZE rewind photographs the same pixels;
+        //                    deriveStateMeta pins cue + 900 = the first settled ms.
+        var bscCueOn = function (atMs) { return atMs != null; };
+        var bscCueF = function (atMs) {
+            return (atMs == null) ? 1 : mgRamp(ms, atMs, BS_REVEAL_MS, 0, 1);
+        };
+        var arrowsCued = bscCueOn(bs.arrows_at_ms), arrowsF = bscCueF(bs.arrows_at_ms);
+        var resCued = bscCueOn(bs.resultant_at_ms), resFade = bscCueF(bs.resultant_at_ms);
+        var chargesCued = bscCueOn(bs.charges_at_ms), chargesF = bscCueF(bs.charges_at_ms);
 
         window.PM_bscMolLive = molKey;
         window.PM_bscAngleLive = angleNow;
@@ -49391,8 +50239,11 @@ export const FIELD_3D_RENDERER_CODE = `
         };
 
         for (u = 0; u < pool; u++) {
-            var on = u < nUnits;
             var udef = (bs.units && bs.units[u]) ? bs.units[u] : null;
+            // E3a: a unit whose species is an ATOM or an ION is drawn by the SITE
+            // layer below, not by the molecular pool — so the molecular meshes for
+            // it stay hidden rather than falling back to a stand-in molecule.
+            var on = u < nUnits && !(udef && bscIsSite(udef.species));
             var uSpec = uSpecOf(u);
             var uMol = MG_MOLECULES[uSpec] || mol;
             var uLigs = bscLigands(uMol);
@@ -49400,7 +50251,8 @@ export const FIELD_3D_RENDERER_CODE = `
             var rot = udef ? bscOrientRot(udef.orient) : null;
             var org = orgAt(u, ms);
             var uq = on ? bscCharges(uSpec) : [0];
-            var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges;
+            // E1c-C: charges_at_ms gates the glyph layer ON TOP OF show_charges.
+            var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges && chargesF > 0;
 
             for (i = 0; i < BS_MAX_ATOMS; i++) {
                 var atom = bscFindById("bsc_u" + u + "_atom" + i);
@@ -49446,9 +50298,188 @@ export const FIELD_3D_RENDERER_CODE = `
                     var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
                     updateLabelSpriteText(dlab, txt);
                     mgPlaceLabelClear(dlab, pos, rad + 0.72, [org, pos]);
+                    if (chargesCued) setObjOpacity(dlab, chargesF);
                 }
             }
         }
+
+        // ── E3a: THE SITE LAYER (lattice placement · growth · coordination ·
+        //    transfer). EVERY value below is a closed-form pure function of
+        //    state-local ms: site EXISTENCE is a rounded ramp, the interior
+        //    reveal is a ramp, the transfer progress is a ramp, and the spin is
+        //    the same closed-form angle the unit layer uses. Nothing is
+        //    remembered — a growth beat that latched which sites already exist is
+        //    exactly the accumulator D-1 forbids, and a SET_TIME_FREEZE rewind
+        //    would then photograph an arbitrary block.
+        var pairLive = (bscHasControl(ctrls, "ion_pair") && window.PM_bscIonPairDragged)
+            ? (BS_ION_PAIRS[window.PM_bscIonPair] || null) : null;
+        var siteList = bscSiteList(bs, pairLive);
+        var sitePool = window.PM_bscSitePool || 0;
+        var lat = bs.lattice || {};
+        var p2uS = linkCfg.pm_per_unit;
+        var trc = bs.transfer || {};
+
+        // GROWTH. shown(t) walks the shell-ordered list, so sites appear from the
+        // centre OUTWARD and everything already on screen holds still. That is
+        // ionic S4's misconception kill: the pair does not move, it gets
+        // surrounded.
+        var nShown = bscGrowShown(bs, ms, siteList.length);
+        if (nShown > sitePool) nShown = sitePool;
+        if (nShown > siteList.length) nShown = siteList.length;
+        if (nShown < 0) nShown = 0;
+
+        // TRANSFER. One electron travels donor -> acceptor and BOTH species change
+        // size on the linear-pm scale (Na 186 -> 102, Cl 99 -> 181). Charge is
+        // ramped alongside the radius, so Sigma q = 0 at EVERY instant and not
+        // merely at the two endpoints.
+        var trProg = bscTransferProg(bs, ms);
+        var trFrom = -1, trTo = -1;
+        for (i = 0; i < siteList.length; i++) {
+            if (trc.from != null && siteList[i].unit === trc.from) trFrom = i;
+            if (trc.to != null && siteList[i].unit === trc.to) trTo = i;
+        }
+        var sitePos = [], siteQ = [], siteRU = [], siteSp = [], siteRpm = [], qSum = 0;
+        for (i = 0; i < siteList.length; i++) {
+            var SI = siteList[i];
+            var TS = bscTransferSite(SI, (i === trFrom || i === trTo) ? trProg : 0);
+            sitePos.push((spin !== 0) ? mgRotY(SI.at, spin) : SI.at);
+            siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
+            siteRpm.push(TS.r_pm);
+            if (i < nShown) qSum += TS.q;
+        }
+
+        // COORDINATION. The neighbour set is DERIVED from the geometry — the
+        // sites at the minimum distance from the focal site — never authored, so
+        // rock salt gives 6, fcc and hcp 12 and bcc 8 without a table.
+        var focalSite = (lat.focal_site != null) ? lat.focal_site : 0;
+        var nbIdx = [], nnU = 0;
+        if (siteList.length > 1 && focalSite < nShown) {
+            var fAt = siteList[focalSite].at, bestD = 1e9;
+            for (i = 0; i < nShown; i++) {
+                if (i === focalSite) continue;
+                var dq = bscMag([siteList[i].at[0] - fAt[0], siteList[i].at[1] - fAt[1], siteList[i].at[2] - fAt[2]]);
+                if (dq < bestD - 1e-6) bestD = dq;
+            }
+            nnU = bestD;
+            for (i = 0; i < nShown && nbIdx.length < BS_MAX_NEIGHBOURS; i++) {
+                if (i === focalSite) continue;
+                var dr = bscMag([siteList[i].at[0] - fAt[0], siteList[i].at[1] - fAt[1], siteList[i].at[2] - fAt[2]]);
+                if (Math.abs(dr - bestD) < 1e-4) nbIdx.push(i);
+            }
+        }
+        var isCounted = function (ix) {
+            if (ix === focalSite) return true;
+            for (var z = 0; z < nbIdx.length; z++) if (nbIdx[z] === ix) return true;
+            return false;
+        };
+        // INTERIOR REVEAL (D-5) — ONE decided mechanism, authored per state.
+        var revMode = (BS_LATTICE_REVEALS.indexOf(lat.reveal) >= 0) ? lat.reveal : "none";
+        var revF = (revMode === "none") ? 0
+            : ((lat.reveal_at_ms != null) ? mgRamp(ms, lat.reveal_at_ms, BS_REVEAL_MS, 0, 1) : 1);
+        var cutN = bscNorm(lat.cutaway_normal || [0, 1, 0]);
+        // ball-and-stick target, reached over the SAME reveal ramp (see
+        // BS_COORD_RADIUS_SCALE): packed home pose -> open polyhedron, one beat.
+        var rsTarget = (lat.radius_scale != null) ? lat.radius_scale
+            : ((mode === "coordination") ? BS_COORD_RADIUS_SCALE : 1);
+        var rsNow = 1 + (rsTarget - 1) * revF;
+        // D-6 label budget: a 27-site block never renders 27 labels. In a
+        // coordination state the focal ion and ONE neighbour are named (that is
+        // both species) and the RODS carry the count; elsewhere the leading
+        // sites only, which in a growth beat is the original pair.
+        // Frames finding (E3a runtime smoke): on a LATTICE the site labels render
+        // at the fitted camera distance as ~2 px specks buried behind the wall —
+        // clutter, not information (Rule 24 / D-6). So labels default OFF for any
+        // lattice and ON for a free-placement site close-up, which is the
+        // transfer beat, where "Na" becoming "Na+" IS the lesson. Authorable
+        // per state via lattice.label_sites.
+        var labelDefault = (bs.placement === "lattice") ? 0 : Math.min(2, siteList.length);
+        var siteLabelN = (lat.label_sites != null) ? lat.label_sites : labelDefault;
+        var siteLabelBudget = BS_MAX_SITE_LABELS;
+        for (i = 0; i < sitePool; i++) {
+            var sm2 = bscFindById("bsc_site" + i), sl2 = bscFindById("bsc_site" + i + "_lab");
+            var sOn = i < nShown;
+            if (sm2) sm2.visible = sOn;
+            if (sl2) sl2.visible = false;
+            if (!sOn || !sm2) continue;
+            var sp3 = siteSp[i], em3 = bscElement(sp3);
+            sm2.position.set(sitePos[i][0], sitePos[i][1], sitePos[i][2]);
+            sm2.scale.setScalar(siteRU[i] * rsNow);
+            mgSetColor(sm2, em3.color);
+            var op3 = 1;
+            if (revF > 0 && !isCounted(i)) {
+                if (revMode === "peer_fade") op3 = 1 + (BS_PEER_FADE_OPACITY - 1) * revF;
+                else if (revMode === "cutaway") {
+                    var rel = [siteList[i].at[0] - siteList[focalSite].at[0],
+                               siteList[i].at[1] - siteList[focalSite].at[1],
+                               siteList[i].at[2] - siteList[focalSite].at[2]];
+                    if (rel[0] * cutN[0] + rel[1] * cutN[1] + rel[2] * cutN[2] > 0.25 * (nnU || 1)) op3 = 1 - revF;
+                }
+            }
+            bscSetOpacity(sm2, op3);
+            var labWant = (mode === "coordination")
+                ? (i === focalSite || (nbIdx.length && i === nbIdx[0]))
+                : (i < siteLabelN);
+            if (sl2 && labWant && siteLabelBudget > 0 && op3 > 0.5) {
+                sl2.visible = true;
+                siteLabelBudget--;
+                updateLabelSpriteText(sl2, bscSpeciesLabel(sp3));
+                mgPlaceLabelClear(sl2, sitePos[i], siteRU[i] * rsNow + 0.46, [sitePos[i]]);
+            }
+        }
+        // the neighbour rods: SIX solid sticks are a countable set that does not
+        // ask the eye to tell two identical spheres apart.
+        var showNb = (mode === "coordination") && nbIdx.length > 0;
+        for (i = 0; i < BS_MAX_NEIGHBOURS; i++) {
+            var nbm2 = bscFindById("bsc_nb" + i);
+            if (!nbm2) continue;
+            var nOn = showNb && i < nbIdx.length && revF > 0.05;
+            nbm2.visible = nOn;
+            if (!nOn) continue;
+            var pF = sitePos[focalSite], pN = sitePos[nbIdx[i]];
+            var rv2 = [pN[0] - pF[0], pN[1] - pF[1], pN[2] - pF[2]];
+            mgOrientStick(nbm2, bscNorm(rv2), bscMag(rv2), 0.55);
+            nbm2.position.set(pF[0], pF[1], pF[2]);
+            bscSetOpacity(nbm2, 0.95 * Math.min(1, (revF - 0.05) / 0.45));
+        }
+        // the transferred electron, parked on the donor's surface before the beat
+        // and absorbed into the acceptor's at the end.
+        var teM = bscFindById("bsc_transfer_e");
+        if (teM) {
+            var teOn = (mode === "transfer") && trFrom >= 0 && trTo >= 0;
+            teM.visible = teOn;
+            if (teOn) {
+                var pA = sitePos[trFrom], pB = sitePos[trTo];
+                var axv = bscNorm([pB[0] - pA[0], pB[1] - pA[1], pB[2] - pA[2]]);
+                var rA = siteRU[trFrom] * rsNow, rB = siteRU[trTo] * rsNow;
+                var sA = [pA[0] + axv[0] * rA, pA[1] + axv[1] * rA, pA[2] + axv[2] * rA];
+                var sB = [pB[0] - axv[0] * rB, pB[1] - axv[1] * rB, pB[2] - axv[2] * rB];
+                teM.position.set(
+                    sA[0] + (sB[0] - sA[0]) * trProg,
+                    sA[1] + (sB[1] - sA[1]) * trProg + 1.1 * Math.sin(Math.PI * trProg),
+                    sA[2] + (sB[2] - sA[2]) * trProg
+                );
+            }
+        }
+        // Exposed for the gate and for E3b. The INTEGER key and the sublattice
+        // travel with every site precisely so E3b can define like_contacts as
+        // like-charge contacts CREATED BY THE SHIFT and left UNSCREENED (D-7) —
+        // a delta against the unshifted lattice needs an exact contact identity,
+        // and a raw like-neighbour count would read 8 -> 8 on a cation-only
+        // metal and teach something false.
+        var siteOut = [];
+        for (i = 0; i < nShown; i++) {
+            siteOut.push({
+                key: siteList[i].key, sub: siteList[i].sub, species: siteSp[i],
+                q: siteQ[i], r_pm: siteRpm[i], at: sitePos[i]
+            });
+        }
+        window.PM_bscSites = siteOut;
+        window.PM_bscSiteCount = nShown;
+        window.PM_bscChargeSum = qSum;
+        window.PM_bscCoordination = nbIdx.length;
+        window.PM_bscLatticeA = siteList.length ? siteList[0].a_pm : 0;
+        window.PM_bscTransfer = trProg;
+        window.PM_bscCell = (siteList.length && siteList[0].cell) ? siteList[0].cell : null;
 
         // ── bond-dipole arrows + the derived resultant (row F).
         //    Arrow length = |bond moment| in debye off the SAME table the readout
@@ -49460,10 +50491,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var fOrg = (fUnit && fUnit.at) ? fUnit.at.slice(0) : [0, 0, 0];
         for (i = 0; i < MG_MAX_BONDS; i++) {
             var sh = bscFindById("bsc_arrow_shaft_" + i), hd = bscFindById("bsc_arrow_head_" + i);
-            var aOn = showArrows && i < D.arrows.length && Math.abs(D.arrows[i].D) > 1e-6;
+            // E1c-C: arrows_at_ms gates the BOND-dipole arrows. The lone-pair
+            // vector below is a separate layer with its own show_lone_pair gate
+            // and no registered cue, so it is deliberately not swept in here.
+            var aOn = showArrows && arrowsF > 0 && i < D.arrows.length && Math.abs(D.arrows[i].D) > 1e-6;
             if (sh) sh.visible = aOn;
             if (hd) hd.visible = aOn;
             if (!aOn) continue;
+            if (arrowsCued) {
+                setObjOpacity(sh, BS_ARROW_OPACITY * arrowsF);
+                setObjOpacity(hd, BS_ARROW_OPACITY * arrowsF);
+            }
             var m = D.arrows[i].D;
             // the moment vector: signed magnitude along the bond direction, so a
             // NEGATIVE entry draws the arrow pointing back at the central atom.
@@ -49472,36 +50510,63 @@ export const FIELD_3D_RENDERER_CODE = `
             av = mgRotY(av, spin);
             var aLen = Math.abs(m) * aScale;
             var aDir = bscNorm(av);
-            // tail sits at the midpoint of the bond it belongs to
+            var aP = bscArrowParts(aLen, BS_ARROW_HEAD_LEN);
+            // E1c-A: the arrow is CENTRED on the midpoint of the bond it belongs
+            // to, not tailed there. The two sign cases then draw identically —
+            // which matters, because a NEGATIVE bond moment (O|H, N|H) points its
+            // head BACK at the central atom, and tailed at the midpoint the head
+            // of water-s 1.51 D arrow landed 0.064 units from the oxygen CENTRE,
+            // i.e. inside a sphere of radius 0.42 (E1c-B read yellow heads buried
+            // in the oxygen in its S4 frame). Centred, the same head lands at
+            // 0.532 and clears the sphere on every negative entry the table
+            // carries — asserted for the whole table by check:bonding-scene.
+            // The LENGTH is untouched by this: it is still |m| * scale, from the
+            // same table the HUD reads (Rule 29 / D-3).
             var bd0 = D.arrows[i].dir;
             var bd1 = fRot ? fRot(bd0) : bd0;
             bd1 = mgRotY(bd1, spin);
-            var tail = [fOrg[0] + bd1[0] * BS_BOND_LEN * 0.5, fOrg[1] + bd1[1] * BS_BOND_LEN * 0.5, fOrg[2] + bd1[2] * BS_BOND_LEN * 0.5];
-            if (sh) { mgOrientStick(sh, aDir, Math.max(0.02, aLen - 0.30), 1); sh.position.set(tail[0], tail[1], tail[2]); }
+            var aMid = BS_BOND_LEN * 0.5;
+            var tail = [fOrg[0] + bd1[0] * aMid - aDir[0] * aLen * 0.5,
+                        fOrg[1] + bd1[1] * aMid - aDir[1] * aLen * 0.5,
+                        fOrg[2] + bd1[2] * aMid - aDir[2] * aLen * 0.5];
+            if (sh) { mgOrientStick(sh, aDir, aP.shaft, 1); sh.position.set(tail[0], tail[1], tail[2]); }
             if (hd) {
-                var hp = [tail[0] + aDir[0] * Math.max(0.02, aLen - 0.30), tail[1] + aDir[1] * Math.max(0.02, aLen - 0.30), tail[2] + aDir[2] * Math.max(0.02, aLen - 0.30)];
-                mgOrientStick(hd, aDir, 1, 1);
+                var hp = [tail[0] + aDir[0] * aP.shaft, tail[1] + aDir[1] * aP.shaft, tail[2] + aDir[2] * aP.shaft];
+                mgOrientStick(hd, aDir, aP.hy, aP.thick);
                 hd.position.set(hp[0], hp[1], hp[2]);
             }
         }
         var rsh = bscFindById("bsc_res_shaft"), rhd = bscFindById("bsc_res_head");
         var rlb = bscFindById("bsc_res_label"), rzr = bscFindById("bsc_res_zero");
-        var resOn = !!dip.show_resultant;
+        // E1c-C: resultant_at_ms gates the resultant (and its zero badge — the
+        // badge IS the answer in a symmetric molecule, so revealing the arrow but
+        // not the badge would leak the CO2 answer before its cue).
+        var resOn = !!dip.show_resultant && resFade > 0;
         // 1e-9 D is the numeric-zero floor: a symmetric molecule sums to ~1e-16.
         var isZero = D.mag < 1e-9;
         if (rsh) rsh.visible = resOn && !isZero;
         if (rhd) rhd.visible = resOn && !isZero;
         if (rlb) rlb.visible = resOn && !isZero;
         if (rzr) rzr.visible = resOn && isZero;
+        if (resCued && resOn) {
+            setObjOpacity(rsh, BS_RESULTANT_OPACITY * resFade);
+            setObjOpacity(rhd, BS_RESULTANT_OPACITY * resFade);
+            setObjOpacity(rlb, resFade);
+            setObjOpacity(rzr, resFade);
+        }
         if (resOn && !isZero) {
             var rv = D.vec.slice(0);
             if (fRot) rv = fRot(rv);
             rv = mgRotY(rv, spin);
             var rdir = bscNorm(rv), rlen = D.mag * aScale;
-            if (rsh) { mgOrientStick(rsh, rdir, Math.max(0.04, rlen - 0.38), 1); rsh.position.set(fOrg[0], fOrg[1], fOrg[2]); }
+            // same magnitude-scaled head (E1c-A). The resultant is the arrow this
+            // matters MOST for: S7 contrasts NH3-s 1.47 D against NF3-s 0.23 D, a
+            // ratio of 6.4, and the fixed 0.38 head drew them at a ratio of 2.2.
+            var rP = bscArrowParts(rlen, BS_RES_HEAD_LEN);
+            if (rsh) { mgOrientStick(rsh, rdir, rP.shaft, 1); rsh.position.set(fOrg[0], fOrg[1], fOrg[2]); }
             if (rhd) {
-                var rp = [fOrg[0] + rdir[0] * Math.max(0.04, rlen - 0.38), fOrg[1] + rdir[1] * Math.max(0.04, rlen - 0.38), fOrg[2] + rdir[2] * Math.max(0.04, rlen - 0.38)];
-                mgOrientStick(rhd, rdir, 1, 1);
+                var rp = [fOrg[0] + rdir[0] * rP.shaft, fOrg[1] + rdir[1] * rP.shaft, fOrg[2] + rdir[2] * rP.shaft];
+                mgOrientStick(rhd, rdir, rP.hy, rP.thick);
                 rhd.position.set(rp[0], rp[1], rp[2]);
             }
             if (rlb) {
@@ -49513,6 +50578,89 @@ export const FIELD_3D_RENDERER_CODE = `
             rzr.position.set(fOrg[0], fOrg[1] + 1.15, fOrg[2]);
             updateLabelSpriteText(rzr, "\\u03BC = 0 D");
         }
+
+        // ── E1c item 3: the lone-pair lobe and its own dipole vector.
+        //   The lobe rides mgFrame's OWN lone directions (D.frame.lone) — the
+        //   geometry is never re-derived here, so the lobe sits exactly where
+        //   VSEPR puts it and moves with the same bend, orient and spin as the
+        //   bonds. The vector's tail sits at the LOBE, the way a bond arrow's
+        //   tail sits at its bond midpoint, so the two dipole families read as
+        //   the same kind of object attached to different domains.
+        var showLone = !!dip.show_lone_pair;
+        var loneDrawn = 0;
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var lob = bscFindById("bsc_lone_lobe_" + i);
+            var lsh2 = bscFindById("bsc_lone_shaft_" + i), lhd2 = bscFindById("bsc_lone_head_" + i);
+            var lEnt = (D.lone && i < D.lone.length) ? D.lone[i] : null;
+            var lOn = showLone && !!lEnt;
+            if (lob) lob.visible = lOn;
+            // the ARROW half is data-gated: zero lone-pair moment draws nothing,
+            // so every fitted-convention central atom keeps its current picture.
+            var lvOn = lOn && Math.abs(lEnt.D) > 1e-6;
+            if (lsh2) lsh2.visible = lvOn;
+            if (lhd2) lhd2.visible = lvOn;
+            if (!lOn) continue;
+            loneDrawn++;
+            var ld0 = lEnt.dir;
+            var ld1 = fRot ? fRot(ld0) : ld0;
+            ld1 = mgRotY(ld1, spin);
+            var lAt = BS_BOND_LEN * 0.52;
+            if (lob) {
+                lob.position.set(fOrg[0] + ld1[0] * lAt, fOrg[1] + ld1[1] * lAt, fOrg[2] + ld1[2] * lAt);
+                mgTmpV.set(ld1[0], ld1[1], ld1[2]).normalize();
+                mgTmpQ.setFromUnitVectors(MG_UP, mgTmpV);
+                lob.quaternion.copy(mgTmpQ);
+                lob.scale.set(BS_LONE_LOBE_W, BS_LONE_LOBE_LEN, BS_LONE_LOBE_W);
+            }
+            if (!lvOn) continue;
+            // signed, exactly like a bond arrow: a NEGATIVE entry would point the
+            // vector back at the central atom.
+            var lSgn = (lEnt.D >= 0) ? 1 : -1;
+            var lDir = [ld1[0] * lSgn, ld1[1] * lSgn, ld1[2] * lSgn];
+            var lLen = Math.abs(lEnt.D) * aScale;
+            // FRAMES FINDING (E1c runtime smoke): tailed at the lobe CENTRE the
+            // whole vector sat INSIDE the lobe — 0.73 D draws 0.45 units and the
+            // lobe is 0.66 long, so the arrow was invisible under a translucent
+            // shell. It launches from the lobe's OUTER FACE instead, which is also
+            // the honest picture (the charge cloud, then the moment it carries).
+            // The LENGTH still comes only from the table (Rule 29) — the offset
+            // moves the tail, never the magnitude.
+            var lTailAt = lAt + BS_LONE_LOBE_LEN;
+            var lTail = [fOrg[0] + ld1[0] * lTailAt, fOrg[1] + ld1[1] * lTailAt, fOrg[2] + ld1[2] * lTailAt];
+            // same magnitude-scaled head (E1c-A): the lone-pair vector is 0.73 D
+            // = 0.45 units, which under the old fixed 0.30 head was 67% head.
+            var lP = bscArrowParts(lLen, BS_ARROW_HEAD_LEN);
+            if (lsh2) { mgOrientStick(lsh2, lDir, lP.shaft, 1); lsh2.position.set(lTail[0], lTail[1], lTail[2]); }
+            if (lhd2) {
+                mgOrientStick(lhd2, lDir, lP.hy, lP.thick);
+                lhd2.position.set(lTail[0] + lDir[0] * lP.shaft, lTail[1] + lDir[1] * lP.shaft, lTail[2] + lDir[2] * lP.shaft);
+            }
+        }
+        var lLab = bscFindById("bsc_lone_label");
+        if (lLab) {
+            lLab.visible = showLone && loneDrawn > 0;
+            if (lLab.visible) {
+                var lld = D.lone[0].dir;
+                var lld1 = fRot ? fRot(lld) : lld;
+                lld1 = mgRotY(lld1, spin);
+                var llAt = BS_BOND_LEN * 0.52;
+                var lAnch = [fOrg[0] + lld1[0] * llAt, fOrg[1] + lld1[1] * llAt, fOrg[2] + lld1[2] * llAt];
+                // FRAMES FINDING (E1c runtime smoke): anchored straight along the
+                // lone-pair axis this label landed ON TOP of the resultant's
+                // "mu = 1.47 D" label — on NH3 the resultant points ALONG the lone
+                // pair by construction, so the two can never be separated by a
+                // fixed offset. Routed through the shared clear-placement helper
+                // (the same one the atom and delta labels use) with the resultant
+                // label, the resultant TIP and the central atom as avoid points.
+                var lAvoid = [fOrg, lAnch];
+                if (rlb && rlb.visible) lAvoid.push([rlb.position.x, rlb.position.y, rlb.position.z]);
+                if (rhd && rhd.visible) lAvoid.push([rhd.position.x, rhd.position.y, rhd.position.z]);
+                mgPlaceLabelClear(lLab, lAnch, BS_LONE_LOBE_LEN + 0.52, lAvoid);
+                updateLabelSpriteText(lLab, loneDrawn > 1 ? "lone pairs" : "lone pair");
+            }
+        }
+        window.PM_bscLoneD = (D.lone && D.lone.length) ? D.lone[0].D : 0;
+        window.PM_bscLoneDrawn = showLone ? loneDrawn : 0;
 
         // ── row N: the shared pair. TWO DISCRETE DOTS translating RIGIDLY along
         //    the bond axis toward the more electronegative end. Closed form, no
@@ -49679,7 +50827,23 @@ export const FIELD_3D_RENDERER_CODE = `
                 var w = want[i];
                 if (w === "mu") lines.push("\\u03BC = " + bscFmtD(D.mag) + " D");
                 else if (w === "delta_chi") lines.push("\\u0394\\u03C7 = " + dchi.toFixed(2));
-                else if (w === "radius_pm") lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
+                else if (w === "radius_pm") {
+                    // E3a: when a SITE layer is on screen the radius readout is
+                    // the thing that is actually changing size — ionic S2's whole
+                    // payoff — so it reports the LIVE ramped radius of the two
+                    // participants (or the focal site), never a molecule's
+                    // central atom. One instrument per quantity (D-3).
+                    if (trFrom >= 0 && trTo >= 0) {
+                        lines.push("r(" + bscSpeciesLabel(siteSp[trFrom]) + ") = " + Math.round(siteRpm[trFrom]) + " pm");
+                        lines.push("r(" + bscSpeciesLabel(siteSp[trTo]) + ") = " + Math.round(siteRpm[trTo]) + " pm");
+                    } else if (nShown > 0) {
+                        lines.push("r(" + bscSpeciesLabel(siteSp[focalSite]) + ") = " + Math.round(siteRpm[focalSite]) + " pm");
+                    } else {
+                        lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
+                    }
+                }
+                else if (w === "coordination") lines.push("neighbours = " + nbIdx.length);
+                else if (w === "lattice_a") lines.push("a = " + Math.round(window.PM_bscLatticeA) + " pm");
                 else if (w === "valence") lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
                 else if (w === "links") lines.push("links = " + nLinks);
                 else if (w === "links_per_unit") lines.push("links per molecule = " + window.PM_bscLinksPerUnit.toFixed(2));
@@ -49697,6 +50861,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (bscHasControl(ctrls, "molecule") && !window.PM_bscMolDragged) {
             var msel = document.getElementById("bsc_molecule_select");
             if (msel && msel.value !== molKey && MG_MOLECULES[molKey]) msel.value = molKey;
+        }
+        // E1c-A, the OTHER half of the same scar: the halide picker tracks the
+        // scripted swap every frame until a trusted drag seizes it, exactly as the
+        // molecule picker and the separation slider already do. Without it S2-s
+        // scripted HF->HI swap moved the molecule while the widget still read HF.
+        if (bscHasControl(ctrls, "ligand") && !window.PM_bscLigDragged) {
+            var lsel = document.getElementById("bsc_ligand_select");
+            if (lsel && lsel.value !== molKey && MG_MOLECULES[molKey]) lsel.value = molKey;
+            window.PM_bscLig = molKey;
         }
         if (bscHasControl(ctrls, "angle") && !window.PM_bscAngleDragged) {
             var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
@@ -49721,6 +50894,10 @@ export const FIELD_3D_RENDERER_CODE = `
             var csl = document.getElementById("bsc_count_slider"), cvl = document.getElementById("bsc_count_val");
             if (csl) csl.value = String(nUnits);
             if (cvl) cvl.textContent = String(nUnits);
+        }
+        if (bscHasControl(ctrls, "ion_pair") && !window.PM_bscIonPairDragged) {
+            var ipl = document.getElementById("bsc_ion_pair_select");
+            if (ipl && window.PM_bscIonPair && ipl.value !== window.PM_bscIonPair) ipl.value = window.PM_bscIonPair;
         }
     }
 
@@ -49854,7 +51031,11 @@ export const FIELD_3D_RENDERER_CODE = `
         arrows: ["bsc_arrow"],
         resultant: ["bsc_resultant"],
         charges: ["bsc_charge"],
-        electrons: ["bsc_electron"],
+        // E1c: the lone-pair LOBE is an electron pair, so it rides the electrons
+        // focal; its dipole VECTOR carries elementType bsc_arrow and rides the
+        // arrows focal with the bond arrows it is summed with. The closed 10-key
+        // glow enum is unchanged — only the element types behind two keys grow.
+        electrons: ["bsc_electron", "bsc_lone"],
         lattice: ["bsc_lattice"],
         layer: ["bsc_layer"],
         neighbours: ["bsc_neighbour"]
