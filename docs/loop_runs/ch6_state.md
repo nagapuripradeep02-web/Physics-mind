@@ -12,12 +12,13 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: 0c — SEAM K + SEAM L DONE and verified; SEAM M (teaching instruments) dispatched 2026-08-01
+next: 0c — K/L/M DONE and verified; SEAM N (off-axis force geometry, the LAST seam) dispatched
 done: (none yet)
 parked: (none)
 in_flight: conservation_of_mechanical_energy  stage=0c-building  checkpointA=CLOSED
-engine_commits: 9f479f6 SEAM K — genuine spring physics · dd2b869 SEAM L — energy display layer
-  (both on the branch; NOT yet landed on master — see "Rule 40 landing decision" below)
+engine_commits: 9f479f6 SEAM K — genuine spring physics · dd2b869 SEAM L — energy display layer ·
+  55c2fd7 SEAM M — teaching instruments (+ dfd249e scars). All on the branch; NOT yet landed on
+  master — see "Rule 40 landing decision" below.
 desk_synced: origin/master f69dc28 merged into the desk 2026-08-01 (merge bb6a89c, pushed).
   Zero file overlap — the desk's 3 commits were docs-only. Baseline re-verified GREEN after the
   merge: check:renderer-syntax OK · tsc 0 errors. The merge pulled +1063 lines into
@@ -214,6 +215,95 @@ was 0.00% across 10 baselines under SEAM L.
   overlay, while note 1/F12 mandates a left-edge measured DOM panel — the two cannot both be literal.
   Kept the DOM panel; gave the energy ids identical semantics via `nlbEnergyApplyGlow` at the same
   `GLOW_DIM_OPACITY = 0.4`, brightness only, one focal.
+
+## SEAM M RESULT 2026-08-01 — DONE, verified, commits `55c2fd7` (engine) + `dfd249e` (scars)
+
++1010/−21 renderer, +58 `deriveStateMeta.ts`. Contamination grep over 989 added lines = 0 hits;
+Rule 40a `-S` clean on all 12 invented symbols; 0 backticks in the scenario region (two were
+introduced during the build and CAUGHT by `check:renderer-syntax` — including a `\n` needing doubling
+inside the outer template literal; Rule 14 earns its keep). Verify chain green: renderer-syntax OK ·
+tsc 0 · validate:concepts 146/146 · warning profile unchanged.
+
+**Config contract (authoritative).** Each block is its own gate; a state authoring none renders
+exactly SEAM L's pixels.
+- `energy_layer.sum_merge`: `at_ms` (default 0, **FALLBACK ONLY** — the trigger is
+  `cueTriggerMs('sum_merge', at_ms)`, so the live teacher path takes the narration-bound `SET_CUE_TIME`
+  and THE EYE falls through; never a hardcoded stamp) · `duration_ms` (default 900). Closed form
+  `p = clamp((t−trigger)/duration,0,1)` → rewinds exactly, HOLDS at p=1. K/U/Uₛ fade to **0.15, never
+  0** (a bar that vanishes reads as *deleted*, not *absorbed*). **Requires `'E_total'` in `bars`** or
+  the one-shot is ignored rather than half-played.
+- `height_markers`: `body_id` · `show_h_ref_line` (true) · `h_ref_label` ('h = 0') ·
+  `predicted_stop.{label,show_height}` · `ghost_marker.{fraction (REQUIRED, 0<f<1), label}`. The line
+  draws at **exactly the resolved `energy_layer.h_ref_m`** — one field, never two authored values.
+  Bright marker at `s0 + sign(v₀)·v₀²/(2g·sinθ)`, recomputed every frame so a θ/v₀ slider moves it
+  WITH the physics; hides on a flat surface or unlaunched body. The ghost carries `userData.ghost` so
+  it is forced permanently dim and **can never become the focal**.
+- `work_accumulators` (1–4) + `work_scale_J`: `force` **CLOSED enum exactly**
+  `'gravity'|'friction'|'applied'|'normal'|'net'` (unknown member DROPPED, never silently created) ·
+  `label` (plain-English defaults, Rule 41) · `body_id`. Signed rendering: mid-height zero baseline,
+  up `#66BB6A` for W>0, down `#EF5350` for W<0, signed numeric with −0.0 clamp. Lives in **SEAM L's
+  panel**, reusing its `nlb_en_*` classes so the fit ladder and DOM glow pass cover it for free.
+- `checkpoints` (1–3): `s_m` (REQUIRED) · `label` · `body_id` · `capture` CLOSED enum
+  `'K'|'U_grav'|'U_spring'|'E_total'|'v'|'s'|'W'` (default `['K','U_grav']`) · `capture_mode`
+  `'first'|'every'` (default 'first'). Crossing = sign change of `s − s_m`, `_side = null` **adopts
+  without firing** on the first frame after entry/rewind/wrap. Stamps append under the authored
+  `formula_overlay`, which is stored separately as `eng.formula_base` **so a stamp can never eat it**.
+- `readouts` gains `'P' | 'P_avg'` (union only; this concept authors neither).
+- New glow ids: `marker_h_ref` · `marker_true` · `marker_ghost` · `checkpoint_1..3` ·
+  `work_bar_gravity|friction|applied|normal|net`.
+
+**`'spring'` is deliberately NOT a `work_accumulators` member.** Per-step accumulation is fold-exact
+only for position-independent F; for the spring the honest quantity is SEAM L's state-function `Uₛ`.
+The surgeon made the dishonest option **unrepresentable** rather than merely discouraged. `'normal'`
+IS included precisely because it is always exactly 0 — a bar visibly parked on the zero line while
+the body travels is the clearest statement that a perpendicular force does no work.
+
+**Frozen pin (note 15 site iii) — OWED ITEM DISCHARGED.** Rule: a `loop_reset_ms = R` state (not
+`push_off`, not sandbox) pins at `cycle·R + clamp(0.60R, 150, R−150)`. Verified across **eight state
+shapes**: every authorable loop lands at exactly 60.0% phase with **≥1000 ms clearance** — an order of
+magnitude past the required ±150 ms. Sole failure is a sub-300 ms loop, which cannot satisfy the
+assertion arithmetically and degrades to mid-cycle, **never to a boundary**, explicitly not silently.
+A `sum_merge` reveal candidate was added at site (i) but deliberately does NOT set `phaseFound`, so
+SEAM L's 3000 ms floor still governs — a merge firing at t=0 would otherwise drag the pin to 1400 ms,
+onto a picture where the block has barely moved.
+
+**`E_dissipated + W_applied` WIRED — SEAM L's restriction is LIFTED.** `W_applied` is an internal,
+always-on ledger existing whether or not a work bar is drawn (the scope clause is a property of the
+PHYSICS, not of what was drawn), identically 0 with no applied force so every already-correct state
+is bit-for-bit unchanged. Verified numerically two independent ways: `E_dissipated` = 24.98 J vs
+`μN·d` = 3.92 × 6.371 = 24.98 J.
+
+**`RESET_TRAJECTORY` proof is a real demonstration, not a code claim.** After reset the gravity ledger
+read **−8.793344 J** — not merely "0", but *exactly* the work re-accumulated over 160 ms from the home
+pose (Δs = 6(0.16) − ½(4.9)(0.16²) = 0.8973 m; −9.8 × 0.8973 = −8.7933). The determinism drive
+`RESET → pin(3000) → RESET → pin(9000) → RESET → pin(3000)` produced a **full DOM snapshot diff of
+zero** — every style, bar height, transform, value string, the stamped formula surface and all six
+marker meshes identical. Only raw `PM_*` float mirrors moved, at the 15th significant digit, inherited
+from the integrator's crawl-to-pin.
+
+**Regression H2.** `newton_third_law` 32/32 twice: 9/10 baselines 0.00% both runs; one frozen frame
+read 0.08% then 0.00% on an identical re-run — sandbox jitter, not damage. `block_on_incline` 32/32
+×4, and the surgeon **adopted the dispatching session's revert-and-compare method unprompted**:
+9/10 baselines identical **to the digit** between SEAM L and SEAM M; only the free-running sandbox
+frozen frame jitters, and it jitters in BOTH builds. **SEAM M moved zero pixels on either concept.**
+
+### SEAM M carry-forward
+
+- **Scar row 3 is OPEN, not fixed.** SEAM M rounded its own derived style values to 3 dp so
+  byte-identity is a property of the code rather than of CSSOM normalisation — but **SEAM L's
+  `nlbEnPct` is still unrounded and carries the same exposure**. The surgeon declined to edit a sealed
+  sibling seam unilaterally, which is right. Inert today (no shipped concept authors `energy_layer`),
+  but it goes LIVE the moment `conservation_of_mechanical_energy` is authored. **Must be fixed before
+  0d concludes** — it is a determinism exposure on the concept's own frozen baselines.
+- A sub-300 ms `loop_reset_ms` is a real hole (degrades explicitly). Not authorable this chapter.
+- Interpretive calls flagged for founder-proxy: `'spring'` unrepresentable in the work enum ·
+  `E_dissipated + W_applied` applies to the AGGREGATE group only (no non-arbitrary per-body
+  attribution rule for a rig-wide total) · `P_avg` pinned to the FIRST accumulator over elapsed state
+  seconds (the spec said "W/Δt" without naming which W) · work bars share SEAM L's panel rather than a
+  second measured overlay that could collide · plain-English force names because Unicode has no
+  subscript `g`/`f`/`d`, so `W_g` cannot be written honestly at all · `capture_mode: 'every'` added
+  because note 11's latch cannot express concept #5's round-trip test ('first' is default and
+  preserves the end-pose rule verbatim).
 
 ### Rule 40 landing decision (dispatching session, 2026-08-01)
 
