@@ -239,7 +239,7 @@
         "focal_primitive_id": "wdcf_s4_stamp",
         "advance_mode": "manual_click",
         "motion_archetype": "flow-along-path",
-        "delta_cue": "The numbers agree",
+        "delta_cue": "Matches at the flag",
         "depth_ring": "extended",
         "scene_composition": [
           {
@@ -253,7 +253,7 @@
             "id": "wdcf_s4_stamp",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "the formula predicts 40.0 J and the live meter reads 40.0 J at the same instant — prediction and measurement agree",
+            "text": "the meter reads 40.0 J at the flag, matching the formula's prediction, and a stamp holds that reading while the meter keeps climbing",
             "color": "#66BB6A"
           },
           {
@@ -267,50 +267,50 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s4_1", "text_en": "A forty newton pull acts at sixty degrees on the same frictionless floor." },
-            { "id": "s4_2", "text_en": "At the flag, two metres in, the formula predicts forty joules — the live meter reads the same forty joules at that instant." },
-            { "id": "s4_3", "text_en": "Prediction and measurement agree." },
-            { "id": "s4_4", "text_en": "This tilted pull does exactly as much work per metre as the first pull did." }
+            { "id": "s4_2", "text_en": "The formula predicts forty joules of work by the flag, two metres along." },
+            { "id": "s4_3", "text_en": "The meter reads that same forty joules the instant it crosses the flag, and a stamp holds that reading." },
+            { "id": "s4_4", "text_en": "The meter keeps climbing afterward; the stamp does not." }
           ]
         }
       },
 
       "STATE_5": {
-        "title": "The dot product gives the same work",
+        "title": "Two pulls, one formula",
         "duration": 23,
         "focal_primitive_id": "wdcf_s5_dot",
         "advance_mode": "manual_click",
         "teaching_method": "derivation_first_principles",
-        "motion_archetype": "reveal-build",
-        "delta_cue": "Any angle, one number",
+        "motion_archetype": "side-by-side-compare",
+        "delta_cue": "Two pulls, one formula",
         "depth_ring": "advanced",
         "scene_composition": [
           {
             "id": "wdcf_s5_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "A third pull, twenty newtons at thirty degrees, written as two vectors",
+            "text": "Two pulls, one flat and one tilted, release together on the same track",
             "color": "#FFF176"
           },
           {
             "id": "wdcf_s5_dot",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "W = F · d = F d cos θ — one number from the force arrow and the displacement arrow, at any angle",
+            "text": "W = F · d = F d cos θ — one formula, both live readings match exactly",
             "color": "#66BB6A"
           },
           {
             "id": "wdcf_s5_anchor",
             "type": "annotation",
             "position": { "x": 560, "y": 400 },
-            "text": "the same scalar product holds no matter how the pull is tilted",
+            "text": "the same rule holds for any pull, flat or tilted, like a suitcase pulled level or by its slanted handle",
             "color": "#4DD0E1"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "A different pull now acts at a third angle: twenty newtons at thirty degrees." },
-            { "id": "s5_2", "text_en": "The work formula becomes a scalar product of two arrows, force and displacement, collapsing into one number — force times displacement times the cosine of the angle between them." },
-            { "id": "s5_3", "text_en": "The same rule holds at any angle." }
+            { "id": "s5_1", "text_en": "Two pulls run together on the same track: one flat, one tilted, seen before." },
+            { "id": "s5_2", "text_en": "The flat crate moves farther and collects more work per metre — both from the same angle." },
+            { "id": "s5_3", "text_en": "One formula, the dot product of force and displacement, matches both live readings exactly, at any angle." }
           ]
         }
       },
@@ -666,10 +666,10 @@
         }
       },
       "STATE_4": {
-        "label": "A 40 N pull at 60° crosses a flag 2 m along the track; the formula's 40.0 J prediction and the live meter's 40.0 J reading stamp together",
+        "label": "A 40 N pull at 60° crosses a flag 2 m along the track; the meter reads 40.0 J at that instant, matching the formula, and a stamp holds that reading while the live meter keeps climbing",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
-        "caption": "The numbers agree",
+        "caption": "Matches at the flag",
         "show_sliders": true,
         "formula_overlay": "W = F·d·cos θ",
         "newtons_laws_body": {
@@ -697,25 +697,28 @@
         }
       },
       "STATE_5": {
-        "label": "A third pull, 20 N at 30°, written as two vectors: W = F·d = F d cos θ, one number from any angle",
+        "label": "Two pulls, 20 N flat and 20 N tilted to 60°, release together on the same track. The flat crate moves farther and collects more work per metre; one formula — the dot product of force and displacement — matches both live readings exactly.",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
-        "caption": "Any angle, one number",
+        "caption": "Two pulls, one formula",
         "show_sliders": true,
         "formula_overlay": "W = F⃗ · d⃗ = F d cos θ",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 30 } }
+            { "id": "crate_a", "label": "A", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 0 } },
+            { "id": "crate_b", "label": "B", "mass_kg": 5, "color": "#AB47BC", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
           ],
           "arrows": [
-            { "body_id": "crate", "show": ["applied"] }
+            { "body_id": "crate_a", "show": ["applied"] },
+            { "body_id": "crate_b", "show": ["applied"] }
           ],
-          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
-          "angle_arc": { "from": "applied", "to": "displacement", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "displacement_vector": { "body_id": "crate_b", "label": "d", "show_value": true },
+          "angle_arc": { "from": "applied", "to": "displacement", "body_id": "crate_b", "label": "θ", "show_value": true, "radius": 0.85 },
           "work_accumulators": [
-            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+            { "force": "applied", "label": "flat pull", "body_id": "crate_a" },
+            { "force": "applied", "label": "tilted pull", "body_id": "crate_b" }
           ],
           "work_scale_J": 260,
           "loop_reset_ms": 2000,

@@ -38,7 +38,7 @@ Medium-simple concept, at the low end of medium (§5 calibration: simple 3–4, 
 | S2 | `force_without_motion` | core | The same hard pull on a crate that does not move: the work meter holds exactly 0.0 J — **PRIMARY aha**, 16a contrast beat | misconception_confrontation |
 | S3 | `tilted_pull` | core | The same pull tilted upward — with the θ slider in the teacher's hand: the crate still moves, but the meter climbs slower for the same floor distance — only the along-motion part counts: `W = F·d·cos θ` | misconception_confrontation (16a beat #2) |
 | S4 | `numbers_agree` | extended | The formula predicts, the meter measures: at the flag, `40 × 2.0 × cos 60° = 40 J` stamps and the live bar reads the same number at that instant | (straightforward beat) |
-| S5 | `scalar_product` | advanced | The same physics at a THIRD angle (20 N at 30°) written in vector notation: `W = F⃗·d⃗` — one number from two arrows, at any angle | derivation_first_principles |
+| S5 | `scalar_product` | advanced | Two pulls the student has already met — crate A at 20 N/0° (S1's pull) and crate B at 20 N/60° (S3's pull) — release together on one track; one vector formula, `W = F⃗·d⃗`, scores both live bars | derivation_first_principles |
 | S6 | `explore` | core (explore) | Sandbox: drag the crate, change F, θ, m — work meter, d arrow and angle arc all live; clamped to 0…85° so #2's regime stays #2's | exploration_sliders |
 
 Rule 38a: qualitative (S1–S3) → quantitative (S4) → notation/derivation (S5); the advanced ring (S5) is one contiguous block immediately before the explore state. The hook MOVES at S1 from the first frame — the crate accelerates from rest under a visible force (no static setup state).
