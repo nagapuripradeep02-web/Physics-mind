@@ -1,0 +1,757 @@
+{
+  "concept_id": "work_done_by_constant_force",
+  "concept_name": "Work Done by a Constant Force — W = F·d·cos θ",
+  "chapter": 6,
+  "section": "6.3",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power, §6.3 Work — table-of-contents scope only, teaching authored from first principles. The atomic concept: work done by a constant force is W = F·d·cos θ — the force magnitude, the displacement it acts through, and only the component of the force along that displacement. Covers the joule as the unit, the zero-work no-displacement case, and the cos θ resolution for 0° <= theta < 90°. Does NOT cover the sign taxonomy of work across all three angle regimes (positive vs negative vs zero work, theta = 90 deg, friction's negative work, the normal force's zero work — all deferred to positive_negative_zero_work, concept #2), kinetic energy (#3), the work-energy theorem (#4), or power (#11/#12). Built on the newtons_laws_body field_3d engine extended with the SEAM K/L/M/N energy layer (docs/loop_runs/ch6_state.md), pure configuration, zero renderer edits (0d).",
+
+  "prerequisites": [
+    "newton_second_law",
+    "friction_force"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A rolling suitcase pulled by its tilted handle. The hand pulls along the slanted handle, but the case moves horizontally along the floor — the pull and the motion point in different directions, and only the along-the-floor part of the pull moves the case. That is W = F·d·cos θ acting in the student's own hand, on every syllabus, in every country.",
+    "secondary": "Pushing against a stalled car that does not move. Arms shaking, fully tired — the physics work done on the car is exactly zero, because it moved zero distance."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "F": { "name": "applied force magnitude", "unit": "N", "min": 0, "max": 60, "default": 20 },
+      "F_ang": { "name": "pull angle above the floor", "unit": "deg", "min": 0, "max": 85, "default": 60 },
+      "m": { "name": "crate mass", "unit": "kg", "min": 0.5, "max": 10, "default": 5 },
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "mu_s": { "name": "coefficient of static friction (S2 only)", "unit": "", "min": 0, "max": 1, "default": 0 }
+    },
+    "computed_outputs": {
+      "N": { "formula": "m*g - F*sin(radians(F_ang))" },
+      "F_along": { "formula": "F*cos(radians(F_ang))" },
+      "a": { "formula": "F*cos(radians(F_ang))/m" },
+      "maxStat": { "formula": "mu_s*(m*g - F*sin(radians(F_ang)))" },
+      "f_static": { "formula": "F*cos(radians(F_ang))" },
+      "W": { "formula": "F*d*cos(radians(F_ang))" }
+    },
+    "formulas": {
+      "definition": "W = F·d·cos θ — work done by a constant force = force magnitude × displacement magnitude × the cosine of the angle between them",
+      "normal": "N = mg − F·sin θ — the pull's vertical component changes the floor's normal reaction",
+      "along_component": "F∥ = F·cos θ — only this component lies along the motion and does work",
+      "static_ceiling": "f_s = F·cos θ, valid only while F·cos θ ≤ μₛN",
+      "max_static": "maxStat = μₛ·N",
+      "acceleration": "a = F·cos θ / m — frictionless states only (S1, S3, S4, S5, S6)"
+    },
+    "constraints": [
+      "W = F*d*cos(theta) at all times -- the engine's live work ledger and the formula agree to the last printed digit (SEAM N verified this on the 40N/30deg case)",
+      "N = m*g - F*sin(theta) must stay >= 0 in every configuration; slider_controls (F<=60N, theta<=85deg) keep N>0 for all four authored pairs and every reachable sandbox setting",
+      "displacement is required for work: d=0 forces W=0 regardless of F (S2)",
+      "the perpendicular component F*sin(theta) does zero work on this flat floor at any theta; only F*cos(theta) enters W",
+      "static friction never exceeds mu_s*N; S2's ramp target (36 N) stays at 0.816 x maxStat (44.1 N), so the crate never breaks free",
+      "mass does not appear in W = F*d*cos(theta); a heavier crate takes longer to cover the same displacement, but the force does the identical work"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "You can push with all your strength and do exactly zero work.",
+    "visual_confirmation": "The F arrow ramps up to 36 N and the friction readout tracks it exactly, but the crate never moves and the work meter holds at 0.0 J throughout."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "quantitative": { "start": "STATE_4", "end": "STATE_4" },
+    "vector_form": { "start": "STATE_5", "end": "STATE_5" }
+  },
+
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Work equals force times distance",
+        "duration": 22,
+        "focal_primitive_id": "wdcf_s1_meter",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Force times distance",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "wdcf_s1_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A steady pull moves the crate — the work meter climbs with the distance",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wdcf_s1_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "at d = 1.00 m the meter reads 20.0 J — one newton through one metre is one joule",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "wdcf_s1_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like pulling a loaded suitcase in a straight line along the floor",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A steady twenty newton pull moves the crate along the floor from rest." },
+            { "id": "s1_2", "text_en": "As it speeds up, the work meter climbs with the distance moved." },
+            { "id": "s1_3", "text_en": "When the crate has moved one metre, the meter reads twenty joules — one newton acting through one metre equals one joule." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "A force with no motion does no work",
+        "duration": 23,
+        "focal_primitive_id": "wdcf_s2_meter",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "null-result-hold",
+        "delta_cue": "No distance, no work",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "work_vs_effort",
+          "holding_is_not_working",
+          "force_needs_displacement"
+        ],
+        "scene_composition": [
+          {
+            "id": "wdcf_s2_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "The same pull, now against a rough floor that will not let go",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wdcf_s2_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "F climbs to 36 N and friction matches it exactly — the crate never moves, the meter holds at 0.0 J",
+            "color": "#EF5350"
+          },
+          {
+            "id": "wdcf_s2_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like pushing hard against a stalled car that does not move at all",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The same pull now acts on a crate resting on a rough floor." },
+            { "id": "s2_2", "text_en": "The force grows larger and larger, and static friction balances it at every instant." },
+            { "id": "s2_3", "text_en": "The crate never moves." },
+            { "id": "s2_4", "text_en": "With zero displacement, the work meter holds at exactly zero joules, however large the pull becomes." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Pushing hard IS doing work — effort equals work, even if nothing moves.",
+            "visual_counter": "The F arrow ramps large, the friction readout climbs to match it, the crate never moves, no d arrow ever appears, and the work meter holds exactly 0.0 J.",
+            "one_line_fix": "Work needs displacement — zero distance means zero work, whatever the force."
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "A tilted pull does less work",
+        "duration": 26,
+        "focal_primitive_id": "wdcf_s3_meter",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through (declared contrast pair with STATE_1)",
+        "delta_cue": "Tilted pull: less work",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_cos_theta",
+          "component_does_the_work",
+          "same_force_less_work"
+        ],
+        "scene_composition": [
+          {
+            "id": "wdcf_s3_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "The same pull, now tilted upward at an angle above the floor",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wdcf_s3_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "only the along-floor part of the pull does work — the meter climbs at half the rate of the flat pull",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "wdcf_s3_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like pulling a suitcase by its slanted handle instead of pulling flat along the floor",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The same twenty newton pull now tilts upward at an angle." },
+            { "id": "s3_2", "text_en": "The crate still slides across the floor, but the work meter climbs at half the rate per metre — only the part of the pull along the floor does any work." },
+            { "id": "s3_3", "text_en": "Drag the angle slider and watch the meter's climb rate change live." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The whole force does work: W = F·d for any direction of pull.",
+            "visual_counter": "The identical 20 N pull, tilted to 60°, buys only half the joules per metre — the arc shows the tilt, the full-length F arrow leans away from the motion, and the bar visibly climbs slower against the same growing d.",
+            "one_line_fix": "Tilting the pull leaves less of it pointing along the motion — the work per metre falls by cos θ."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Check the numbers: W = F·d·cos θ",
+        "duration": 26,
+        "focal_primitive_id": "wdcf_s4_stamp",
+        "advance_mode": "manual_click",
+        "motion_archetype": "flow-along-path",
+        "delta_cue": "The numbers agree",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "id": "wdcf_s4_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A forty newton pull at sixty degrees, crossing a flag two metres along the floor",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wdcf_s4_stamp",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the formula predicts 40.0 J and the live meter reads 40.0 J at the same instant — prediction and measurement agree",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "wdcf_s4_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the same check works for any steady pull at any angle",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "A forty newton pull acts at sixty degrees on the same frictionless floor." },
+            { "id": "s4_2", "text_en": "At the flag, two metres in, the formula predicts forty joules — the live meter reads the same forty joules at that instant." },
+            { "id": "s4_3", "text_en": "Prediction and measurement agree." },
+            { "id": "s4_4", "text_en": "This tilted pull does exactly as much work per metre as the first pull did." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "W = F⃗·d⃗: two vectors give one number",
+        "duration": 23,
+        "focal_primitive_id": "wdcf_s5_dot",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "Any angle, one number",
+        "depth_ring": "advanced",
+        "scene_composition": [
+          {
+            "id": "wdcf_s5_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A third pull, twenty newtons at thirty degrees, written as two vectors",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wdcf_s5_dot",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "W = F⃗ · d⃗ = F d cos θ — one number from the force arrow and the displacement arrow, at any angle",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "wdcf_s5_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the same scalar product holds no matter how the pull is tilted",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "A different pull now acts at a third angle: twenty newtons at thirty degrees." },
+            { "id": "s5_2", "text_en": "The work formula becomes a scalar product of two arrows, force and displacement, collapsing into one number — force times displacement times the cosine of the angle between them." },
+            { "id": "s5_3", "text_en": "The same rule holds at any angle." }
+          ]
+        }
+      },
+
+      "STATE_6": {
+        "title": "Explore: change force and angle",
+        "duration": 0,
+        "focal_primitive_id": "wdcf_s6_key",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change anything",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "wdcf_s6_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "Change the force, the angle, or the mass, and drag the crate freely",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wdcf_s6_key",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "W = F·d·cos θ — mass never appears in the formula",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "wdcf_s6_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "a heavier crate takes longer to move the same distance, but the force does the same work",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Mass does not appear in W = F·d·cos θ at all. A heavier crate takes longer to cover the same distance under the same pull, but the force does exactly the same work over that distance — try 2 kg and 8 kg at the same F and θ and watch the meter climb at the identical rate, just over a different time." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "sled_pulled_by_rope",
+      "type": "B",
+      "label": "Pulling a Loaded Sled Across Packed Snow by an Angled Rope",
+      "physical_world": "A loaded sled sits on packed snow. A rope runs from the sled up to shoulder height, so the pull tilts upward off the ground as it drags the sled forward.",
+      "same_physics": "Identical W = F·d·cos θ: only the component of the rope's pull along the snow moves the sled; the vertical part of the pull lightens the sled's contact with the snow without doing any work itself.",
+      "scene_hint": "Same single-body rig, same flat surface — only the labeled object changes from a crate to a sled and the pull is relabeled a rope."
+    },
+    {
+      "variant_id": "wagon_towed_by_handle",
+      "type": "B",
+      "label": "Towing a Garden Wagon by Its Angled Handle",
+      "physical_world": "A garden wagon is towed across a paved path by its long handle, held up at an angle rather than flat along the ground.",
+      "same_physics": "Same tilted-pull physics: the handle's angle sets cos θ, and only the along-the-path component of the tow does any work on the wagon.",
+      "scene_hint": "Same rig and physics — the crate is relabeled a wagon and the pull becomes the tow handle."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state that work requires both a force and a displacement along that force's direction; compute W = F·d·cos θ for any angle from 0° up to (not including) 90°; explain why a force with no displacement, or a force whose along-motion component is zero, does zero work; verify a live numeric prediction against a stamped measurement; write work as the scalar product W = F⃗·d⃗; and recognize that work done by a force is independent of the mass being moved.",
+    "questions": [
+      {
+        "q_id": "q1_work_definition",
+        "stem": "A steady 60 N force pulls a crate 1.0 m across a frictionless floor, acting in the same direction the crate moves. How much work does the force do?",
+        "options": {
+          "A": "60 J",
+          "B": "0 J",
+          "C": "61 J",
+          "D": "30 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses work with a rate-like quantity that needs elapsed time to build up, instead of a product of force and displacement",
+          "C": "adds the force value and the distance value instead of multiplying them (unit-blind arithmetic)",
+          "D": "halves the product of force and distance, treating work like an average rather than a product"
+        },
+        "tested_idea": "W = F·d for a force aligned with the displacement; the joule as N·m",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A gardener pulls a wheelbarrow with a steady 15 N force through 4 m, the force and the motion in the same direction. How much work is done?"
+      },
+      {
+        "q_id": "q2_zero_work_no_motion",
+        "stem": "A person pushes as hard as they can against a heavy filing cabinet that does not move at all, for several seconds. How much work does the push do on the cabinet?",
+        "options": {
+          "A": "Exactly 0 J, no matter how hard the push",
+          "B": "A large positive value that grows the longer they push",
+          "C": "A large positive value equal to the force times the cabinet's weight",
+          "D": "A negative value, because the person gets tired"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses effort and elapsed time with work — treats pushing hard for longer as accumulating work even with zero displacement",
+          "C": "confuses force with work and multiplies two force-like quantities together instead of using displacement",
+          "D": "confuses the person's own fatigue with the physics work done on the cabinet"
+        },
+        "tested_idea": "no displacement means zero work, regardless of how large the force is",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A weightlifter holds a loaded barbell perfectly still overhead for ten seconds. How much work does the weightlifter's upward force do on the barbell during that time?"
+      },
+      {
+        "q_id": "q3_angle_component",
+        "stem": "A 30 N force pulls a crate 5 m across a frictionless floor, directed 40° above the floor (cos 40° ≈ 0.77, sin 40° ≈ 0.64). How much work does the force do?",
+        "options": {
+          "A": "About 115 J",
+          "B": "About 96 J",
+          "C": "150 J",
+          "D": "0 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "uses sin θ instead of cos θ — picks the component perpendicular to the motion instead of along it",
+          "C": "uses the full force F·d and ignores the angle entirely",
+          "D": "believes any tilt away from the direction of motion makes the work zero, not just a 90° tilt"
+        },
+        "tested_idea": "only the along-motion component F cos θ does work",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A rope pulls a sled 8 m across level snow with a 25 N force directed 50° above the snow (cos 50° ≈ 0.64). How much work does the rope's pull do?"
+      },
+      {
+        "q_id": "q4_numeric_verification",
+        "stem": "A 40 N force acts at 60° above a frictionless floor and pulls a crate 2.0 m along the floor (cos 60° = 0.5). How much work does the force do?",
+        "options": {
+          "A": "40.0 J",
+          "B": "80.0 J",
+          "C": "34.6 J",
+          "D": "20.0 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "ignores cos θ entirely and uses the full F·d product",
+          "C": "uses sin 60° instead of cos 60°",
+          "D": "halves the correct answer, as if only half the force acted"
+        },
+        "tested_idea": "substituting real numbers into W = F·d·cos θ and checking it against a live measurement",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A crate is pulled 10 m across a horizontal floor by a 50 N force directed 37° above the horizontal (cos 37° ≈ 0.80). Find the work done by the applied force."
+      },
+      {
+        "q_id": "q5_scalar_product",
+        "stem": "Which expression correctly gives the work done by a constant force through a displacement, using vector notation?",
+        "options": {
+          "A": "W = F⃗ · d⃗ = F d cos θ",
+          "B": "W = F⃗ × d⃗ = F d sin θ",
+          "C": "W = F⃗ + d⃗",
+          "D": "W = |F⃗| + |d⃗|"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the dot product with the cross product, carrying the sin θ rule over from torque",
+          "C": "adds the two vectors together instead of combining them into a scalar",
+          "D": "adds the two vectors' magnitudes instead of taking their scalar product"
+        },
+        "tested_idea": "work is the scalar (dot) product of two vectors, not the cross product or a vector sum",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Which of the following correctly names the mathematical operation that combines the force vector and the displacement vector to give work?"
+      },
+      {
+        "q_id": "q6_mass_independence",
+        "stem": "A 5 kg crate and an 8 kg crate are each pulled by the same steady 30 N force through the same 2 m displacement on a frictionless floor, in the direction of motion. How does the work done on the two crates compare?",
+        "options": {
+          "A": "Exactly the same for both — 60 J each",
+          "B": "The 8 kg crate receives four times more work",
+          "C": "The 5 kg crate receives more work because it accelerates faster",
+          "D": "The work cannot be compared without knowing the time taken"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a mass-scaling rule for work that does not exist — mass does not appear in W = F·d·cos θ at all",
+          "C": "confuses work with acceleration or speed, which DO depend on mass",
+          "D": "confuses work with power, which depends on time; work itself does not"
+        },
+        "tested_idea": "work done by a force is independent of the mass being moved",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A 2 kg block and a 10 kg block are each pushed 3 m by the same 12 N force along a frictionless floor. Compare the work done on each block."
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1_work_definition"],
+      "STATE_2": ["q2_zero_work_no_motion"],
+      "STATE_3": ["q3_angle_component"],
+      "STATE_4": ["q4_numeric_verification"],
+      "STATE_5": ["q5_scalar_product"],
+      "STATE_6": ["q6_mass_independence"]
+    },
+    "non_assessed_states": []
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
+        "coverage": "full",
+        "syllabus_unit": "Ch.6 Work, Energy and Power — §6.3 Work (W = F·d·cos θ)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB Diploma Programme Physics",
+        "coverage": "full",
+        "syllabus_unit": "Topic 2.3 Work, energy and power — definition of work done by a constant force",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1 (College Board)",
+        "coverage": "full",
+        "syllabus_unit": "Unit 3 Work, Energy and Power — work done by a constant force",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-Level Physics (AQA/OCR/Edexcel)",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — W = Fd cos θ",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main/Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — work done by a constant force",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — definition of work",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "F": { "min": 0, "max": 60, "step": 5, "default": 20, "label": "F" },
+      "F_ang": { "min": 0, "max": 85, "step": 5, "default": 60, "label": "θ" },
+      "m": { "min": 0.5, "max": 10, "step": 0.5, "default": 5, "label": "m" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A steady 20 N pull at 0° moves the crate from rest; the work meter climbs with the distance, reading 20.0 J at d = 1.00 m",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Force times distance",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d  (1 N·m = 1 J)",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 260,
+          "loop_reset_ms": 2000,
+          "glow_focal": "displacement_vector",
+          "readouts": ["F_applied"],
+          "controls_visible": []
+        }
+      },
+      "STATE_2": {
+        "label": "The same pull ramps to 36 N against a rough floor (μₛ = 0.9); static friction matches it exactly, the crate never moves, and the work meter stays at 0.0 J",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "No distance, no work",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "mu_s": 0.9, "applied_force": { "N": 0, "angle_deg": 0 } }
+          ],
+          "param_ramp": { "param": "F", "from": 0, "to": 36, "start_ms": 0, "end_ms": 3000 },
+          "arrows": [
+            { "body_id": "crate", "show": ["applied"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 260,
+          "glow_focal": "nlb_arrow_crate_applied",
+          "readouts": ["F_applied", "f"],
+          "controls_visible": []
+        }
+      },
+      "STATE_3": {
+        "label": "The same 20 N pull now tilts to 60° above the floor; the crate still slides, but the work meter climbs at half the rate of the flat pull — only F cos θ does work",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Tilted pull: less work",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d·cos θ",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "applied", "to": "surface", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 260,
+          "loop_reset_ms": 2000,
+          "glow_focal": "angle_arc",
+          "readouts": ["F_applied"],
+          "controls_visible": ["F_ang"]
+        }
+      },
+      "STATE_4": {
+        "label": "A 40 N pull at 60° crosses a flag 2 m along the track; the formula's 40.0 J prediction and the live meter's 40.0 J reading stamp together",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "The numbers agree",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d·cos θ",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 40, "angle_deg": 60 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "applied", "to": "surface", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 260,
+          "loop_reset_ms": 2000,
+          "checkpoints": [
+            { "s_m": -3.4, "label": "flag at 2 m", "capture": ["W"], "capture_mode": "first", "body_id": "crate" }
+          ],
+          "glow_focal": "checkpoint_1",
+          "readouts": ["F_applied"],
+          "controls_visible": []
+        }
+      },
+      "STATE_5": {
+        "label": "A third pull, 20 N at 30°, written as two vectors: W = F⃗·d⃗ = F d cos θ, one number from any angle",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Any angle, one number",
+        "show_sliders": true,
+        "formula_overlay": "W = F⃗ · d⃗ = F d cos θ",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 30 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "applied", "to": "displacement", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 260,
+          "loop_reset_ms": 2000,
+          "glow_focal": "angle_arc",
+          "readouts": ["F_applied"],
+          "controls_visible": []
+        }
+      },
+      "STATE_6": {
+        "label": "Sandbox: drag the crate and the F, θ, and m sliders freely — the work meter, d arrow, and angle arc all update live; mass never appears in the formula",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 9],
+        "caption": "Change anything",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d·cos θ",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "applied", "to": "surface", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 240,
+          "glow_focal": "nlb_body_crate",
+          "readouts": ["F_applied"],
+          "controls_visible": ["F", "F_ang", "m"],
+          "trusted_drag_seizes": true
+        }
+      }
+    }
+  }
+}

@@ -1788,6 +1788,18 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Class 11 Ch.6 Work, Energy and Power #1 — newtons_laws_body engine +
+    // SEAM K/L/M/N energy layer. W = F·d·cos θ. Alex pipeline, 2026-08-01.
+    work_done_by_constant_force: {
+        concept_id: 'work_done_by_constant_force',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'work_done_by_constant_force',
+            label: 'Work Done by a Constant Force — W = F·d·cos θ (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',
