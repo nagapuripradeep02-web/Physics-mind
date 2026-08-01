@@ -1634,12 +1634,15 @@ console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow �
   ok("a single unit parked off-centre keeps the mode's wider camera",
     solve({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }).el === 22);
   ok("a PYRAMIDAL centre gets its own solve; every other shape does not",
-    single("dipole_sum", "NH3").el === 62 && single("dipole_sum", "NF3").el === 62 &&
+    single("dipole_sum", "NH3").el === 15 && single("dipole_sum", "NF3").el === 15 &&
     ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3"].every((k) => single("dipole_sum", k).el === 47),
     `pyramidal=${JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal)} general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
-  ok("azimuth is 35 on EVERY single-unit solve, so MG_BEND_AZ's tie-down holds",
-    E.BS_UNIT_CAMERAS.pyramidal.az === 35 && E.BS_UNIT_CAMERAS.general.az === 35 &&
-    E.BS_UNIT_CAMERAS.diatomic.az === 35 &&
+  // E1c-E: the pyramid now carries its OWN azimuth as well as its own elevation
+  // (which ligand hides behind the centre is an azimuth question — section 18).
+  // The tie-down that matters is unchanged and is on the GENERAL key: MG_BEND_AZ
+  // must equal it, or an authored bend can silently go edge-on.
+  ok("MG_BEND_AZ's tie-down holds on the GENERAL solve, whose azimuth never moves",
+    E.BS_UNIT_CAMERAS.general.az === 35 && E.BS_UNIT_CAMERAS.diatomic.az === 35 &&
     Math.abs(E.MG_BEND_AZ - E.BS_UNIT_CAMERAS.general.az * Math.PI / 180) < 1e-12);
   {
     // the pyramid solve, MEASURED here under the shipped perspective (FOV 60),
@@ -1907,15 +1910,23 @@ console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solv
     stat.tSep >= TEXT_FLOOR, `worst ${stat.tSep.toFixed(4)} NDC at ${stat.tAt}`);
   ok(`NO COUNTED LIGAND IS COVERED BY TEXT, pyramidal centre included (>= ${TEXT_FLOOR})`,
     stat.lSep >= TEXT_FLOOR, `worst ${stat.lSep.toFixed(4)} NDC at ${stat.lAt2}`);
-  ok("NEGATIVE CONTROL: the fixed-offset placement OVERLAPS both (E1c-A's frames)",
-    oldS.tSep < 0 && oldS.lSep < 0,
-    `text ${oldS.tSep.toFixed(4)} at ${oldS.tAt} · ligand ${oldS.lSep.toFixed(4)} at ${oldS.lAt2}`);
+  // E1c-E softened the LIGAND half of this control without weakening the finding:
+  // the fixed-offset placement's worst ligand case used to be a pyramidal molecule
+  // (NH3 -0.0261), and the re-solved pyramidal camera moved the pyramid out of it,
+  // so the worst surviving case is HF's (a diatomic, untouched here) at +0.0279.
+  // The control therefore asserts what it can still prove: the fixed offset OVERLAPS
+  // text outright, and is materially worse than clear-placement on ligands too.
+  ok("NEGATIVE CONTROL: the fixed-offset placement OVERLAPS text and is worse on ligands",
+    oldS.tSep < 0 && oldS.lSep < stat.lSep - 0.02,
+    `text ${oldS.tSep.toFixed(4)} at ${oldS.tAt} · ligand ${oldS.lSep.toFixed(4)} at ${oldS.lAt2}` +
+    ` (clear-placed ligand ${stat.lSep.toFixed(4)})`);
   ok(`the resultant label stays clear through a FULL SPIN (>= ${SPIN_FLOOR})`,
     spun.rSep >= SPIN_FLOOR && spun.rlSep >= SPIN_FLOOR,
     `vs text ${spun.rSep.toFixed(4)} at ${spun.rAt} · vs ligand ${spun.rlSep.toFixed(4)} at ${spun.rlAt}`);
   ok("NEGATIVE CONTROL: the fixed offset fails the spin sweep too",
-    oldSpun.rSep < 0 && oldSpun.rlSep < 0,
-    `vs text ${oldSpun.rSep.toFixed(4)} · vs ligand ${oldSpun.rlSep.toFixed(4)}`);
+    oldSpun.rSep < 0 && oldSpun.rlSep < spun.rlSep - 0.01,
+    `vs text ${oldSpun.rSep.toFixed(4)} · vs ligand ${oldSpun.rlSep.toFixed(4)}` +
+    ` (clear-placed ${spun.rlSep.toFixed(4)})`);
 
   // ── item 2: the diatomic solve.
   const projRatio = (molKey: string, cam: any) => {
@@ -1934,10 +1945,9 @@ console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solv
     ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3"].every((k) => E.bscUnitShapeKey(k) === "general") &&
     Object.keys(E.MG_MOLECULES).filter((k) => E.bscUnitShapeKey(k) === "diatomic").sort().join("|")
       === "HBr|HCl|HF|HI");
-  ok("E1c-A's two solves are UNCHANGED, value for value",
-    JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal) === JSON.stringify({ az: 35, el: 62, dist: 7 }) &&
+  ok("E1c-A's GENERAL solve is UNCHANGED, value for value (E1c-E moved only the pyramid)",
     JSON.stringify(E.BS_UNIT_CAMERAS.general) === JSON.stringify({ az: 35, el: 47, dist: 7 }),
-    `pyramidal=${JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal)} general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
+    `general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
   ok("a 1-bond unit's PROJECTED bond length is >= 0.9x its true length",
     worstDia >= 0.9, `${worstDia.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.diatomic.el}`);
   ok("NEGATIVE CONTROL: the general solve FORESHORTENS it below that floor",
@@ -1966,6 +1976,163 @@ console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solv
     `  (fixed offset was text=${oldS.tSep.toFixed(4)} ligand=${oldS.lSep.toFixed(4)})`);
   console.log(`    diatomic solve   el ${E.BS_UNIT_CAMERAS.diatomic.el}: projected bond ${worstDia.toFixed(4)}x true` +
     `  (was ${worstGen.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.general.el})`);
+}
+
+// ── 18. E1c-E: EVERY VECTOR A STATE DRAWS MUST SURVIVE ITS OWN CAMERA ──────────
+//   The scar this closes: a camera solved for one legibility metric (ligand
+//   countability) silently destroyed another (arrow LENGTH). Both were measured;
+//   only one was asserted, so the fix for the first shipped the second as a
+//   regression. S7's whole argument is a 6.4x magnitude contrast between NH3's
+//   resultant and NF3's, and at el 62 the smaller one drew at 5.8 px — a dot.
+//   So the projected length of every arrow the scene draws is now a GATED
+//   quantity, in both units that matter: as a fraction of the arrow's true world
+//   length (is the camera lying about the magnitude?) and in absolute pixels at
+//   720p (can a teacher see it at all?).
+console.log("\n=== 18. E1c-E VECTOR PROJECTION (no camera may foreshorten a taught length) ===");
+{
+  const FOV = 60 * Math.PI / 180, TH = Math.tan(FOV / 2);
+  const PX720 = 720 / 2;              // isotropic NDC y in [-1,1] spans 720 px
+  type W = number[];
+  const sb = (a: W, b: W) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cx = (a: W, b: W) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dp = (a: W, b: W) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const k3 = (v: W, k: number) => [v[0] * k, v[1] * k, v[2] * k];
+  const rig18 = (c: any) => {
+    const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+    const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sb([0, 0, 0], cam)), r = E.bscNorm(cx(f, [0, 1, 0])), u = cx(r, f);
+    const P = (p: W) => {
+      const v = sb(p, cam), z = dp(v, f);
+      return { x: dp(v, r) / (z * TH), y: dp(v, u) / (z * TH), z };
+    };
+    return { r, P };
+  };
+  /**
+   * Projected length of a world vector, against the SAME world length laid across
+   * the view through the same pivot — so the ratio isolates foreshortening from
+   * perspective scale, and px is what a 720p frame actually shows.
+   */
+  const projOf = (cam: any, dir: W, L: number) => {
+    const { r, P } = rig18(cam);
+    const a = P([0, 0, 0]), b = P(k3(dir, L));
+    const r1 = P(k3(r, -L / 2)), r2 = P(k3(r, L / 2));
+    const drawn = Math.hypot(a.x - b.x, a.y - b.y);
+    return { ratio: drawn / Math.hypot(r1.x - r2.x, r1.y - r2.y), px: drawn * PX720 };
+  };
+  /** every arrow the dipole layer draws for one species: bonds, lone pair, resultant. */
+  const vectorsOf = (molKey: string) => {
+    const D: any = E.bscDipole(molKey, null);
+    const out: any[] = [];
+    if (D.mag > 1e-9) out.push({ id: "resultant", dir: E.bscNorm(D.vec), L: D.mag * E.BS_ARROW_D_PER_UNIT });
+    D.arrows.forEach((a: any, i: number) => {
+      if (Math.abs(a.D) > 1e-6) out.push({ id: "bond" + i, dir: a.dir, L: Math.abs(a.D) * E.BS_ARROW_D_PER_UNIT });
+    });
+    D.lone.forEach((l: any, i: number) => {
+      if (Math.abs(l.D) > 1e-6) out.push({ id: "lone" + i, dir: l.dir, L: Math.abs(l.D) * E.BS_ARROW_D_PER_UNIT });
+    });
+    return out;
+  };
+  const DRAWN18 = ["NH3", "NF3", "H2O", "CHCl3", "HF", "HCl", "HBr", "HI"]
+    .filter((k) => (E.bscDipole(k, null) as any).mag > 1e-9);
+  /** worst projection over a species set, with the pyramidal key swappable (controls). */
+  const worst = (mols: string[], pyr: any, only?: string) => {
+    const CAM: any = { pyramidal: pyr, general: E.BS_UNIT_CAMERAS.general, diatomic: E.BS_UNIT_CAMERAS.diatomic };
+    let ratio = 9, px = 1e9, atR = "", atP = "";
+    for (const k of mols) {
+      const cam = CAM[E.bscUnitShapeKey(k)];
+      for (const v of vectorsOf(k)) {
+        if (only && v.id !== only) continue;
+        const q = projOf(cam, v.dir, v.L);
+        if (q.ratio < ratio) { ratio = q.ratio; atR = k + " " + v.id; }
+        if (q.px < px) { px = q.px; atP = k + " " + v.id; }
+      }
+    }
+    return { ratio, px, atR, atP };
+  };
+  const OLD_PYR = { az: 35, el: 62, dist: 7 };       // the E1c-A solve E1c-E replaced
+  const RATIO_FLOOR = 0.50, PX_FLOOR = 11.0;         // every arrow, every species
+  const RES_RATIO = 0.60, RES_PX = 11.0;             // the resultant specifically
+  const PYR_RES_RATIO = 0.90;                        // the pyramid's on-axis resultant
+  const now = worst(DRAWN18, E.BS_UNIT_CAMERAS.pyramidal);
+  const nowRes = worst(DRAWN18, E.BS_UNIT_CAMERAS.pyramidal, "resultant");
+  const pyrRes = worst(["NH3", "NF3"], E.BS_UNIT_CAMERAS.pyramidal, "resultant");
+  const oldRes = worst(["NH3", "NF3"], OLD_PYR, "resultant");
+  const azOnly = worst(["NH3", "NF3"], { az: 120, el: 62, dist: 7 }, "resultant");
+
+  ok(`EVERY arrow drawn projects to >= ${RATIO_FLOOR}x its true length and >= ${PX_FLOOR} px at 720p`,
+    now.ratio >= RATIO_FLOOR && now.px >= PX_FLOOR,
+    `worst ${now.ratio.toFixed(4)}x at ${now.atR} · worst ${now.px.toFixed(1)} px at ${now.atP}`);
+  ok(`every RESULTANT — the vector a magnitude claim rests on — clears ${RES_RATIO}x and ${RES_PX} px`,
+    nowRes.ratio >= RES_RATIO && nowRes.px >= RES_PX,
+    `worst ${nowRes.ratio.toFixed(4)}x at ${nowRes.atR} · worst ${nowRes.px.toFixed(1)} px at ${nowRes.atP}`);
+  ok(`the PYRAMID's on-axis resultant is drawn near full length (>= ${PYR_RES_RATIO}x)`,
+    pyrRes.ratio >= PYR_RES_RATIO,
+    `worst ${pyrRes.ratio.toFixed(4)}x / ${pyrRes.px.toFixed(1)} px at ${pyrRes.atR}`);
+  ok("NEGATIVE CONTROL: the el-62 solve foreshortens NF3's resultant to a dot (E1c-D's frames)",
+    oldRes.ratio < RES_RATIO && oldRes.px < RES_PX,
+    `${oldRes.ratio.toFixed(4)}x / ${oldRes.px.toFixed(1)} px at ${oldRes.atP}` +
+    ` — vs ${pyrRes.px.toFixed(1)} px now (+${((pyrRes.px / oldRes.px - 1) * 100).toFixed(0)}%)`);
+  ok("NEGATIVE CONTROL: the new AZIMUTH alone does not fix it — elevation is load-bearing",
+    Math.abs(azOnly.px - oldRes.px) < 0.05,
+    `az 120 el 62 still draws ${azOnly.px.toFixed(1)} px (an on-axis length depends on elevation only)`);
+  {
+    // ... and the new ELEVATION alone does not clear the ligand-occlusion floor,
+    // measured on section 16's metric: azimuth is what opens the joint band.
+    const ASP = 16 / 9;
+    const P16 = (c: any) => {
+      const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+      const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+      const f = E.bscNorm(sb([0, 0, 0], cam)), r = E.bscNorm(cx(f, [0, 1, 0])), u = cx(r, f);
+      return (p: W) => {
+        const v = sb(p, cam), z = dp(v, f);
+        return { x: dp(v, r) / (z * TH * ASP), y: dp(v, u) / (z * TH), z };
+      };
+    };
+    const occAt = (c: any) => {
+      const P = P16(c);
+      let o = 9;
+      for (const mk of ["NH3", "NF3"]) {
+        const D: any = E.bscDipole(mk, null), m = E.MG_MOLECULES[mk];
+        const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS[m.central].radius }].concat(
+          D.arrows.map((a: any, i: number) =>
+            ({ p: P(k3(a.dir, E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+        for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
+          if (i === j) continue;
+          const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
+          const far = near === atoms[i] ? atoms[j] : atoms[i];
+          o = Math.min(o, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) - near.r / (near.p.z * TH));
+        }
+      }
+      return o;
+    };
+    ok("NEGATIVE CONTROL: the new ELEVATION at the old azimuth re-overlaps the tripod",
+      occAt({ az: 35, el: 15, dist: 7 }) < 0.09 &&
+      occAt(E.BS_UNIT_CAMERAS.pyramidal) >= 0.09,
+      `az 35 el 15 occ=${occAt({ az: 35, el: 15, dist: 7 }).toFixed(4)} vs shipped ` +
+      `occ=${occAt(E.BS_UNIT_CAMERAS.pyramidal).toFixed(4)} (floor 0.09)`);
+  }
+  {
+    // S7 argues from a RATIO of two drawn lengths, so the ratio itself is a gated
+    // quantity: the drawn contrast must equal the physical contrast, not amplify it.
+    const cam = E.BS_UNIT_CAMERAS.pyramidal;
+    const pxOf = (k: string, c: any) => {
+      const D: any = E.bscDipole(k, null);
+      return projOf(c, E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT).px;
+    };
+    const phys = (E.bscDipole("NH3", null) as any).mag / (E.bscDipole("NF3", null) as any).mag;
+    const err = (c: any) => Math.abs((pxOf("NH3", c) / pxOf("NF3", c)) / phys - 1);
+    ok("S7's TAUGHT CONTRAST is drawn to scale: |drawn ratio / physical ratio - 1| <= 6%",
+      err(cam) <= 0.06,
+      `drawn ${(pxOf("NH3", cam) / pxOf("NF3", cam)).toFixed(3)}x vs physical ${phys.toFixed(3)}x` +
+      ` = ${(err(cam) * 100).toFixed(1)}% error`);
+    ok("NEGATIVE CONTROL: el 62 exaggerated that contrast while hiding the small arrow",
+      err(OLD_PYR) > 0.06,
+      `drawn ${(pxOf("NH3", OLD_PYR) / pxOf("NF3", OLD_PYR)).toFixed(3)}x = ${(err(OLD_PYR) * 100).toFixed(1)}% error`);
+    console.log(`    vector projection  pyramid resultants ${pyrRes.ratio.toFixed(4)}x / ${pyrRes.px.toFixed(1)} px` +
+      `  (el 62 drew ${oldRes.ratio.toFixed(4)}x / ${oldRes.px.toFixed(1)} px)` +
+      `  · contrast error ${(err(cam) * 100).toFixed(1)}% (was ${(err(OLD_PYR) * 100).toFixed(1)}%)`);
+  }
 }
 
 console.log(failures === 0

@@ -48906,10 +48906,63 @@ export const FIELD_3D_RENDERER_CODE = `
     //   colours, so a smaller gap is the right thing to spend. A tetrahedral or
     //   linear or bent centre is NOT moved: at el 62 CCl4-s spinning ligands start
     //   crossing each other, which is why the key is the SHAPE and not a new global.
-    //   AZIMUTH STAYS 35 EVERYWHERE, deliberately: MG_BEND_AZ is asserted equal to
-    //   BS_CAMERAS.dipole_sum.az by check:bonding-scene so the authored bend cannot
-    //   silently go edge-on, and az 45-60 measured only ~0.03 NDC better on the
-    //   pyramid — not worth breaking that tie-down.
+    //
+    //   THAT SOLVE THEN FORESHORTENED THE ONE VECTOR IT WAS CHOSEN TO SEPARATE
+    //   (E1c-E). Looking DOWN at 62 is looking nearly along the C3 axis, and on a
+    //   pyramid the resultant AND the lone-pair vector both lie ON that axis. So
+    //   the elevation that separated the ligand discs collapsed the length S7
+    //   argues from: measured at 720p, NH3-s resultant drew at 0.5303 of its true
+    //   length (43.0 px) and NF3-s at 0.4613 (5.8 px — a dot on the nitrogen),
+    //   while S7-s entire argument is the 6.4x magnitude contrast between them.
+    //     AZIMUTH CANNOT FIX A LENGTH, BUT IT IS WHAT OPENS THE BAND. The C3 axis
+    //   is +y, so an axial vector-s projected length depends on ELEVATION ONLY —
+    //   measured identical to 4 dp across az 0..180 at el 62. E1c-A therefore
+    //   searched elevation alone at az 35, and in THAT 1-D slice the joint band is
+    //   genuinely EMPTY: the occlusion floor (0.09 NDC) needs el >= 57, where the
+    //   NF3 resultant still reads 6.7 px. But which ligand hides behind the centre
+    //   is an AZIMUTH question, and the two-dimensional sweep (el 0..25 x az
+    //   35..180, then narrowed under E1c-D-s label floors as well) has an island at
+    //   LOW elevation where the tripod separates and the axis lies across the view.
+    //   The solve is the ROBUST INTERIOR of that island — every neighbour at +-1
+    //   deg in az and el clears every floor too:
+    //     az 120 el 15  occ +0.1006 NDC (floor 0.09), vector gap 0.0336 (was
+    //                   0.0197), box 0.559, label text 0.1023 / ligand 0.0627
+    //                   (floor 0.05), spun res-vs-text 0.0645 / res-vs-ligand
+    //                   0.0406 (floor 0.03) — and NH3-s resultant 0.9995x true
+    //                   (81.0 px), NF3-s 0.9609x (12.1 px), the lone-pair vector
+    //                   0.9824x (39.6 px, was 0.4979x / 20.1 px).
+    //     az  35 el 15  NEGATIVE CONTROL: the same elevation at the OLD azimuth is
+    //                   occ -0.0155 — the tripod re-overlaps. Azimuth is load-
+    //                   bearing; elevation alone is not.
+    //     az 120 el 62  NEGATIVE CONTROL: the new azimuth at the OLD elevation
+    //                   still draws NF3-s resultant at 0.4613x / 5.8 px. Elevation
+    //                   is load-bearing; azimuth alone is not.
+    //   The DRAWN magnitude contrast is what S7 argues from, and it now matches the
+    //   physics: 81.0 px / 12.1 px = 6.69x against the true 6.44x (4.0% error),
+    //   where el 62 drew 43.0 / 5.8 = 7.40x (15.0% — it exaggerated the contrast
+    //   while making the smaller arrow unreadable, the worst of both).
+    //   12.6 px is the CEILING, not a target: NF3-s resultant is 0.2279 D = 0.1413
+    //   world units, so laid fully across the view it is 12.6 px at 720p. The fix
+    //   recovers 2.1x of drawn length (5.8 -> 12.1) and cannot do better without
+    //   lying about the magnitude (Rule 29 / D-3: length IS the measured moment).
+    //   Rejected alternative: authoring units[].orient to tilt the molecule instead
+    //   reaches the same relative geometry (orient [150,15] at el 62 measures occ
+    //   0.0958, NF3 12.6 px) with no engine change — but it lays the C3 axis over
+    //   sideways, needs a units array authored on every future pyramidal state to
+    //   hang it on, is invisible to check:bonding-scene (which reads the renderer,
+    //   not a concept), and leaves the solve deriving a camera for a pose the JSON
+    //   has silently rotated. A shape-keyed defect belongs in the shape key.
+    //   Cost of the move: under a FULL SPIN the pyramid-s occlusion runs -0.0624
+    //   (a ligand passes behind the centre once per 120 deg) where el 62 held
+    //   +0.0934. No shipped state spins a pyramid — S7 authors no spin_rate and
+    //   NH3/NF3 are not in any explore_species list — and a spin does not restore
+    //   an ON-AXIS length at el 62 anyway, so the trade is measured, deliberate,
+    //   and asserted by check:bonding-scene rather than left to be rediscovered.
+    //   GENERAL-S AZIMUTH DOES NOT MOVE: MG_BEND_AZ is asserted equal to
+    //   BS_UNIT_CAMERAS.general.az by check:bonding-scene so the authored bend
+    //   cannot silently go edge-on. That tie-down is on the GENERAL key; the
+    //   pyramid now carries its own azimuth for the same reason it carries its own
+    //   elevation.
     //
     //   AND A DIATOMIC IS THE OPPOSITE PROBLEM (E1c-D). mgIdealDirs puts a single
     //   bond on the APEX (+y), so an HX molecule is drawn straight up the view-up
@@ -48926,7 +48979,7 @@ export const FIELD_3D_RENDERER_CODE = `
     //   The diatomic key changes NOTHING else: pyramidal and general keep their
     //   E1c-A values byte for byte, asserted by check:bonding-scene.
     var BS_UNIT_CAMERAS = {
-        pyramidal: { az: 35, el: 62, dist: 7.0 },
+        pyramidal: { az: 120, el: 15, dist: 7.0 },
         diatomic:  { az: 35, el: 12, dist: 7.0 },
         general:   { az: 35, el: 47, dist: 7.0 }
     };
