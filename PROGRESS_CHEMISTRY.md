@@ -52,6 +52,105 @@ of those measures whether it teaches.**
 
 ---
 
+## ⚙ SESSION — Phase 0 gated and E1 landed: the `bonding_scene` substrate is on master (2026-08-01, master — engine only, Rule 40)
+
+> Continuation of the Phase-0 session below. founder-proxy Checkpoint A ran two cycles on the two
+> deepest skeletons; E1 was dispatched to `field3d-surgeon` only after `DESIGN_OK`.
+> **Engine on master (`12cac9a`); no concept authored. Desk 1 opens after E2.**
+
+**Checkpoint A cycle 1: `DESIGN_FIX`, and it earned its place.** The load-bearing finding was a
+process one: §0d's success test — *"no designed state needs a feature outside A–M"* — had been
+written as a **claim rather than a walk**. Walking it state by state found **seven designed states,
+three of them core-ring, consuming capabilities the union did not list**: a drawn valence/shared
+electron pair, a trend surface (the boiling-point anomaly only reads as an anomaly against its
+family's rising line — a value-only HUD just states four numbers), interior reveal on a lattice
+(glow is brightness; it cannot defeat occlusion), and a per-species radius. Three more, verified
+against the renderer: **the closed enums could not name substances the state tables teach**
+(`MG_MOLECULES` has no H₂S/CO₂/CCl₄/CHCl₃/NF₃; `MG_ELEMENTS` no Na/Mg/Al), so the "one edit"
+reuse claim was wrong; **the derived-outcome principle had been applied to the layer shift but not
+to the H-bond criterion**, which was a hardcoded N/O/F whitelist — scripted in exactly the way that
+decision forbids; and **Rule 38a broke at the explore states**, where a flat `controls` array left a
+sandbox exposing a slider that shatters a crystal in a lesson that never showed the shatter.
+
+**Cycle 2: `DESIGN_OK`**, on two enum edits plus seven carry-forward items. Two would have cost an
+E3 re-architecture: the states cycle 1 added need **two co-present samples** (solid vs melt; NaCl vs
+MgO) against a contract holding one `lattice` and a global `thermal` — fixed with a `groups: []`
+layer, because the sample-vs-sample race *is* the teaching; and **`like_contacts` was specified by
+its two outputs, not by what it measures** — in a cation-only lattice every nearest-neighbour contact
+is already like-charged, so a literal count reads 8 → 8 and the gate would have passed a metric
+teaching *"a metal has no like-charge neighbours."* Now defined as contacts created by the shift and
+left unscreened, with the gate asserting the definition on the case where a naive metric and the
+intended values disagree.
+
+**The cycle-2 lesson, general:** a state added during a fix cycle was checked against the union rows
+and against the closed enums, and never against whether **one config object can hold it**.
+Cardinality is a third axis.
+
+**Ring promotion.** `hydrogen_bonding` S6–S7 and `ionic_bonding` S6–S8 moved extended → **core**.
+Both cuts survived, so no rule was broken — but it left hydrogen bonding's boiling-point anomaly (its
+*literal* whiteboard-test justification) and all three examinable ionic properties outside the
+core-only preset, i.e. outside IGCSE, the grade this wave exists to serve and where ionic bonding is
+the chapter opener.
+
+### E1 — what landed (`12cac9a`, master)
+`field_3d` `scenario_type: 'bonding_scene'` (+1063 in `field_3d_renderer.ts`), `deriveStateMeta`
+registration in the same change (+84), and a new **`npm run check:bonding-scene`** (493 lines,
+negative controls on every section). Tables: 11 new `MG_MOLECULES` rows + an optional `ligands`
+array, 10 new `MG_ELEMENTS` rows, and a **separate** `BS_RADIUS_PM` linear-pm table — molecule atoms
+stay on the compressed legibility scale, ions and lattice sites use the linear one, because there the
+size change *is* the lesson. Plus units, derived δ charges, the rigid two-dot electron glyph,
+dipole arrows + derived resultant, index-derived deterministic jiggle, 13 ring-gated control rows,
+closed mode/glow/hud/species enums with an explicit **implemented vs deferred** split.
+
+**Three findings that corrected the spec — all from measurement, none from reading:**
+
+1. **D-4's countability criterion, as written, omits the central atom — and that omission IS the
+   scar.** Solved over the four ligands alone, the fleet house camera scores a comfortable 0.484 NDC
+   across a full spin; add the central atom to the counted set and the same camera drops to **0.064
+   NDC** mid-spin — one ligand swinging onto the carbon under a caption counting four. That is
+   `field3d_counted_element_occluded_along_view_axis` reproduced verbatim on a camera the metric had
+   just certified. **The counted set is whatever the caption is read against.** Re-solved; shipped
+   camera 0.2258 with the central atom included, negative control 0.0000.
+2. **OPEN-DECISION-1's ratified model double-counts.** Checkpoint A had corrected the original
+   HCl-calibrated constant to *published bond moments **plus** an explicit lone-pair term* — and that
+   correction was itself half-wrong. With the published values, N–H 1.31 reproduces NH₃ at **1.462 D**
+   and N–F 0.17 reproduces NF₃ at **0.223 D** with a lone-pair term of **zero**, because tabulated
+   bond moments are empirically fitted and already absorb it; a textbook-sized term pushes NH₃ to
+   2.46 D and breaks H₂O at the same time. The mechanism ships, authored at 0. **S7's teaching still
+   holds — the NH₃/NF₃ reversal is a *direction* reversal, not an extra vector**, and
+   `chemistry-author` needs to know that before writing its narration.
+3. **CHCl₃ is the one number the model misses** — 1.760 D against a literature 1.04 D, because bond
+   moments are famously non-additive across the chloromethanes. Everything else lands (HF/HCl/HBr/HI
+   exact, H₂O 1.849, NH₃ 1.462, NF₃ 0.223, every symmetric species < 1.2e-15). A per-molecule
+   override hook is read by the model, so ratification is a data edit, and the gate **prints**
+   model-vs-literature with a ratify flag rather than asserting values it cannot yet justify.
+
+### Verification (independently re-run by the dispatching session, not taken on report)
+`tsc` 0 · `check:renderer-syntax` + backticks clean · **`check:bonding-scene` all E1 sections PASS**
+(2/3/6/7/8/9/13/14 declared E2/E3 stubs) · `validate:concepts` **146/146** · `validate:chemistry`
+**10/10** · `check:hybrid-orbitals` + `check:sigma-pi` unregressed · THE EYE **vsepr 44/44 with all
+14 baselines at 0.00%** — the concept that actually reads the grown tables · hybridisation 50/50 ·
+σ/π 56/56. `MG_EXPLORE_MOLECULES` unchanged (no leak into VSEPR's picker), and gate §12 asserts every
+pre-existing `MG_MOLECULES`/`MG_ELEMENTS` row is byte-identical.
+
+The hybridisation/σ-π H₂ figures are non-zero (0.21–0.46%, tolerance 2.0%). The surgeon did not
+accept that on a green total: it stashed the two engine files, re-seeded and re-ran on the pre-E1
+renderer, getting **identical** figures — pre-existing baseline vintage, zero E1 pixel delta.
+
+### Scars
+**3 rows** drafted as SQL text, **NOT APPLIED** (engine_bug_queue writes are a founder decision):
+the countability-metric omission (CRITICAL, FIXED), the bond-moment double-count (MAJOR, OPEN), and
+`deferred_enum_members_must_be_declared_not_merely_unimplemented` (MODERATE, FIXED) — the answer to
+"how do you keep 11 unimplemented modes from becoming the σ/π decorative-string scar".
+
+### ⏭ NEXT
+**E2 — the intermolecular link layer** (derived charge-threshold criterion, form/break hysteresis,
+links-per-unit readout, temperature → jiggle, the row-O trend surface), then **Desk 1**
+(`feat/chemistry-polarity-hbonding`). E1's handoff records that δ(O in H₂O) = 0.319 vs δ(S in H₂S) =
+0.036 — a 9.0× gap, already gated — so the N/O/F requirement genuinely *emerges* from the threshold.
+
+---
+
 ## 🧱 SESSION — Phase 0 for the bonding-successors wave: four concepts, ONE scenario, three sequenced dispatches, two desks (2026-08-01, no branch — design only, no code)
 
 > Founder asked to complete Phase 0 for `hydrogen_bonding`, `bond_polarity_dipole_moment`,
