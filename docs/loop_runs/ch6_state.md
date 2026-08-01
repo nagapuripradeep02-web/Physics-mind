@@ -12,11 +12,18 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: **0d — concepts 1..N as pure JSON** through the ①–④ pipeline. Start with #1
-  `work_done_by_constant_force` (architect → Checkpoint A → physics-author → json-author →
-  quality-auditor + eye-walker → Checkpoint B). Both pre-0d obligations are DISCHARGED:
-  `NLB_SPRING_CHOREOGRAPHY_SPEC.md` amended (`5d11ff2`) and the platform change is up as **PR #14**
-  (below) — awaiting founder merge, which is not a blocker for starting 0d on this branch.
+next: **0d concept #1 `work_done_by_constant_force` → physics-author.** Checkpoint A CLOSED
+  (DESIGN_FIX cycle 1 → DESIGN_OK + 12 verbatim patches cycle 2, all applied; reviewer directed
+  "proceed to physics-author, no re-review needed"). Then json-author → quality-auditor +
+  eye-walker → Checkpoint B. Both pre-0d obligations DISCHARGED: `NLB_SPRING_CHOREOGRAPHY_SPEC.md`
+  amended (`5d11ff2`) and the platform change is up as **PR #14** — awaiting founder merge, not a
+  blocker.
+
+branch: **concept work is on `feat/ch6-concepts`**, stacked on the engine work. `feat/ch6-work-energy-power`
+  is FROZEN at `24f967f` because PR #14 tracks it — adding concept commits there would make the
+  engine reach master bundled with concept JSON, the exact Rule-40 bundling the separate PR exists
+  to prevent. When PR #14 merges: `npm run desk:close -- feat/ch6-work-energy-power`, and this
+  branch's diff collapses to concept-only on its next sync.
 done: **PHASE 0 COMPLETE — 0a survey · 0b skeleton + Checkpoint A · 0c engine (4 seams)**
 parked: (none)
 in_flight: conservation_of_mechanical_energy  stage=0c-CLOSED  checkpointA=CLOSED
