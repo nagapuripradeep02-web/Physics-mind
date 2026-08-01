@@ -124,7 +124,20 @@ const SNAP = () => {
     // esbuild keepNames rewrites `const f = () => {}` to `__name(() => {}, "f")`,
     // and __name does not exist inside the page. Everything stays inline.
     const arrows: Row = {};
+    // Scene-wide census of ANY object that is, or ever was, the contact element:
+    // matched on a SUBSTRING of both id and elementType, so a renamed or
+    // re-prefixed survivor is still caught. The founder ruling of 2026-08-01 is
+    // that this number is 0, always, in every state, engaged or not — nothing is
+    // drawn between the two bodies.
+    let ceGeom = 0;
+    const ceIds: string[] = [];
     scene.traverse((o: any) => {
+        const ud0 = o.userData || {};
+        const sid = String(ud0.id || ''), set = String(ud0.elementType || '');
+        if (sid.indexOf('contact_element') >= 0 || set.indexOf('contact_element') >= 0) {
+            ceGeom++;
+            if (ceIds.length < 6) ceIds.push(sid + '/' + set + '/vis=' + o.visible);
+        }
         const id = o.userData && o.userData.id;
         if (!id) return;
         if (/^mb_body_[A-Za-z0-9]+$/.test(id) || /^mb_contact_element(_\d+)?$/.test(id) || id === 'mb_track') {
@@ -217,7 +230,7 @@ const SNAP = () => {
             sticks: !!eng.contact.sticks, preload: eng.contact.preload, L_nat: eng.contact.L_nat,
             engaged: !!eng.contact.engaged, latched: !!eng.contact.latched,
         } : null,
-        bodies, events, objs, arrows, hudRows, contacts, rows,
+        bodies, events, objs, arrows, hudRows, contacts, rows, ceGeom, ceIds,
         seized: !!w.PM_mbSeized, ctrlSlots: w.PM_mbCtrlSlots || [],
         hud: panels['mb_readout'], trace: panels['mb_trace'], badge: panels['mb_slowmo'],
         formula: panels['mb_formula'], sliders: panels['mb_sliders'],
@@ -674,6 +687,26 @@ const CORNERS: Array<[number, number, number]> = [
     [M_LO, V_MAX, K_LO], [M_LO, -V_MAX, K_LO],
     [M_HI, V_MAX, K_HI], [M_HI, -V_MAX, K_HI],
 ];
+// ── E — slow_window.from_cycle apparatus ─────────────────────────────────────
+// mu = m (the wall is fixed, i.e. infinite mass), so t_c = pi sqrt(m/k) exactly.
+const FC_M = 1, FC_K = 2000, FC_V = 6, FC_SLOW = 10, FC_LEN = 3, FC_S0 = -1.4, FC_WALL = 2.0;
+const FC_TC_MS = Math.PI * Math.sqrt(FC_M / FC_K) * 1000;      // 70.248 ms, derived HERE
+function fromCycleState(label: string, slow: Record<string, unknown>) {
+    return benchState(label, 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: FC_M, shape: 'ball', initial_position_m: FC_S0, initial_velocity_mps: FC_V },
+        { id: 'WALL', label: ' ', mass_kg: 1, shape: 'wall', initial_position_m: FC_WALL, fixed: true },
+    ], {
+        between: ['BALL', 'WALL'], stiffness_N_per_m: FC_K, damping_Ns_per_m: 0,
+        natural_length_m: 0.4, label: 'rigid wall',
+    }, {
+        track: { length_m: FC_LEN }, slow_window: slow,
+        readouts: ['v', 'p', 'F_contact'],
+        force_trace: { show: true, fill_area: true, peak_marker: true },
+        // Long enough that the DEPARTURE re-arm (not the period) ends every cycle,
+        // which is the harder half of "both re-arm reasons count".
+        repeat_every_ms: 20000,
+    });
+}
 const REARM = benchConfig({
     STATE_1: sandboxCorner(CORNERS[0][0], CORNERS[0][1], CORNERS[0][2]),
     STATE_2: sandboxCorner(CORNERS[1][0], CORNERS[1][1], CORNERS[1][2]),
@@ -720,6 +753,22 @@ const REARM = benchConfig({
         ],
         readouts: ['v', 'p', 'F_contact'], repeat_every_ms: 4900,
     }),
+    // ── E — slow_window.from_cycle (founder ruling 2026-08-01) ───────────────
+    //   "For the first few seconds show the ball go, collide, and come back at
+    // NORMAL speed — don't slow it down. After that, in the next pass, slow down
+    // the ball at the contact." Reality first, then the magnifier.
+    //   ONE apparatus, authored THREE ways, so the only difference between the
+    // three runs IS the from_cycle key: 12 opts in at cycle 1, 13 omits the key
+    // entirely (today's behaviour) and 14 writes the explicit default 0. 13 and 14
+    // must be indistinguishable from each other and from the pre-2026-08-01
+    // engine — that is the regression guard.
+    //   m = 1 kg into a FIXED wall, so mu = m and t_c = pi sqrt(1/2000) =
+    // 70.248 ms, the number the founder's dispatch quotes. v = 6 m/s and a 3 m
+    // track keep one whole cycle inside ~1.1 s of wall clock so both passes fit a
+    // 260-frame budget even with the second one stretched x10.
+    STATE_12: fromCycleState('from_cycle 1 — true speed, then slow', { slow_factor: FC_SLOW, badge: true, from_cycle: 1 }),
+    STATE_13: fromCycleState('no from_cycle — the unchanged default', { slow_factor: FC_SLOW, badge: true }),
+    STATE_14: fromCycleState('from_cycle 0 — the explicit default', { slow_factor: FC_SLOW, badge: true, from_cycle: 0 }),
 });
 // ONE round trip per state: tick and sample INSIDE the page (a per-frame
 // page.evaluate over 1500 frames × 11 states is minutes of IPC). Same rule as
@@ -747,6 +796,69 @@ const REARM_RUN = ([n, d]: [number, number]) => {
     return out;
 };
 type RearmFrame = { t: number; s: number; v: number; s0: number; v0: number; busy: boolean; bh: number; bha: number; ra: number; inC: number; nev: number };
+// ── E — the from_cycle probe ────────────────────────────────────────────────
+//   Reads BOTH clocks on the same frame. That pairing is the whole measurement:
+// eng.t_ms is the STATE (wall) clock and advances by the raw frame dt; eng.tphys_ms
+// is the PHYSICAL clock and advances by the MULTIPLIED dt. Their ratio over an
+// engaged window is therefore exactly 1 at true speed and exactly 1/slow_factor
+// while the magnifier is on — with NO frame-quantisation error, because both
+// numbers are sampled on the same frames. The engaged-frame wall-clock span is
+// reported too (that is what a teacher actually watches), but the ratio is what
+// the assertion rests on.
+//   Same rule as SNAP: no named local function inside the probe (tsx keepNames).
+const FC_RUN = ([n, d]: [number, number]) => {
+    const w = window as any;
+    const out: any[] = [];
+    for (let i = 0; i < n; i++) {
+        w.__MB_TICK(d, 1);
+        const eng = w.PM_mbEngine;
+        let busy = 0;
+        for (const c of (eng.contacts || [])) if (c && c.engaged && !c.latched) busy++;
+        const bg = document.getElementById('mb_slowmo');
+        let ce = 0;
+        const sc = w.__MB_SCENE;
+        if (sc) sc.traverse((o: any) => {
+            const ud = o.userData || {};
+            if (String(ud.id || '').indexOf('contact_element') >= 0 ||
+                String(ud.elementType || '').indexOf('contact_element') >= 0) ce++;
+        });
+        let s = 0, v = 0;
+        for (const id of eng.order) {
+            const b = eng.bodies[id];
+            if (b && !b.fixed) { s = b.s; v = b.v; break; }
+        }
+        out.push({
+            t: eng.t_ms, tp: eng.tphys_ms, s: s, v: v, busy: busy > 0,
+            ra: eng.rearms || 0, sa: !!eng.slow_active,
+            bg: !!bg && getComputedStyle(bg).display !== 'none',
+            bt: bg ? (bg.textContent || '') : '',
+            nev: (eng.events || []).length, ce: ce,
+        });
+    }
+    return out;
+};
+type FcFrame = { t: number; tp: number; s: number; v: number; busy: boolean; ra: number; sa: boolean; bg: boolean; bt: string; nev: number; ce: number };
+// One engaged window per pass, tagged with the re-arm cycle it belongs to.
+type FcPass = { cycle: number; n: number; wallMs: number; physMs: number; ratio: number; badgeOn: number; badgeText: string };
+function fcPasses(fr: FcFrame[]): FcPass[] {
+    const out: FcPass[] = [];
+    let cur: FcFrame[] = [];
+    for (let i = 0; i <= fr.length; i++) {
+        const f = i < fr.length ? fr[i] : null;
+        if (f && f.busy) { cur.push(f); continue; }
+        if (!cur.length) continue;
+        const a = cur[0], z = cur[cur.length - 1];
+        const wall = z.t - a.t, phys = z.tp - a.tp;
+        out.push({
+            cycle: a.ra, n: cur.length, wallMs: wall, physMs: phys,
+            ratio: wall > 0 ? phys / wall : NaN,
+            badgeOn: cur.filter(x => x.bg).length,
+            badgeText: (cur.find(x => x.bg) || { bt: '' }).bt,
+        });
+        cur = [];
+    }
+    return out;
+}
 // A re-arm is visible WITHOUT asking the engine: the body is put back at its
 // authored home pose AND relaunched at its authored speed. Derived this way the
 // same detector reads the PRE-fix engine (which has no counter at all) and the
@@ -1412,14 +1524,25 @@ function rearmFrames(fr: RearmFrame[]): number[] {
             '); drawn areas = [' + drawnAreas2.map((a: number) => a.toFixed(5)).join(', ') +
             '] N·s vs ' + dp2.toFixed(5) + '; drawn peaks = [' +
             cd2.map((d: Row) => Number(d.F_peak).toFixed(2)).join(', ') + '] N');
-        chk('C1d_each_lane_body_drawn_in_its_own_lane',
+        // REWORKED 2026-08-01: this used to close on "two contact elements built".
+        // There are no contact elements any more (founder ruling — nothing is drawn
+        // between the bodies), so the per-lane claim now rests on the two things
+        // that DO still separate the lanes visually: each lane's body sits at its
+        // own z, and each lane's contact NAMEPLATE sits over the lane it names.
+        // Two travelling names sweeping through each other was the M2 defect; two
+        // names parked in two different lanes is the lesson.
+        const lbA = two.objs['mb_contact_label'], lbB = two.objs['mb_contact_label_1'];
+        chk('C1d_each_lane_body_and_its_nameplate_are_drawn_in_their_own_lane',
             Math.abs(two.objs['mb_body_BALLA'].z - (-1.3 * 0.5)) < 1e-9 &&
             Math.abs(two.objs['mb_body_BALLB'].z - (1.3 * 0.5)) < 1e-9 &&
-            two.objs['mb_contact_element'] && two.objs['mb_contact_element_1'],
+            !!lbA && !!lbB && lbA.visible === true && lbB.visible === true &&
+            Math.abs(lbA.z - (-1.3 * 0.5)) < 1e-9 && Math.abs(lbB.z - (1.3 * 0.5)) < 1e-9 &&
+            lbA.text !== lbB.text && two.ceGeom === 0,
             'BALLA z=' + two.objs['mb_body_BALLA'].z.toFixed(4) + ' BALLB z=' +
             two.objs['mb_body_BALLB'].z.toFixed(4) + ' (offset_z_m ∓1.3 × 0.5 world/m); ' +
-            'two contact elements built = ' +
-            (!!two.objs['mb_contact_element'] && !!two.objs['mb_contact_element_1']));
+            'nameplates "' + (lbA ? lbA.text : '--') + '" at z=' + (lbA ? lbA.z.toFixed(4) : '--') +
+            ' and "' + (lbB ? lbB.text : '--') + '" at z=' + (lbB ? lbB.z.toFixed(4) : '--') +
+            ', each over its own lane; contact-element objects in the scene = ' + two.ceGeom);
         results.two_lane = {
             areas: [aS, aR], peaks: [pS, pR], expected_area: dp2,
             peak_ratio: peakRatio, sqrt_k_ratio: Math.sqrt(kRatio),
@@ -1686,46 +1809,66 @@ function rearmFrames(fr: RearmFrame[]): number[] {
             'repeat cycle RESUMED: events ' + sdAt.events.length + ' → ' + sdB.events.length +
             ', seized = ' + sdB.seized + ' (two consumers, two lifetimes)');
 
-        // ── M1 — the contact element is a FORCE, not a permanent connection ───
-        //   THE DEFECT: mbFitContactElement fitted the element between the two
-        //   facing faces on EVERY frame regardless of c.engaged, so with a
-        //   natural length of 0.4 m and a 2.6 m approach it rendered as a solid
-        //   yellow rod glued between ball and wall for the whole run-up, growing
-        //   and shrinking as the ball travelled — a permanent mechanical link
-        //   asserted over a free flight that carries no contact and no force at
-        //   all, which is precisely what the surrounding states teach.
-        //   Founder screen recording, 2026-08-01.
-        await h.setState('STATE_2');
-        await h.tick(16.7, 4);
-        type CeFrame = { engaged: boolean; visible: boolean; sx: number };
+        // ── M1 (REWORKED 2026-08-01) — NOTHING is drawn between the bodies ────
+        //   HISTORY. M1 was born as "the contact element is drawn only while the
+        //   contact is engaged": mbFitContactElement had fitted a yellow box
+        //   between the two facing faces on EVERY frame, so a 0.4 m element
+        //   stretched across a 2.6 m approach and rendered as a solid rod glued
+        //   between ball and wall through the whole free flight. Engaged-only made
+        //   the physics honest, and the founder rejected it anyway (video review,
+        //   2026-08-01): a thing that pops into existence at impact still reads as
+        //   a THIRD OBJECT between the two bodies, and in a real collision nothing
+        //   arrives at the collision. "Don't put anything between the wall and the
+        //   ball during the collision — in ALL the states."
+        //   THE NEW INVARIANT, which is what this now asserts: NO contact-element
+        //   geometry is visible in ANY state, engaged or not — while what does
+        //   render the interaction survives, namely the equal-and-opposite force
+        //   arrows and the wall nameplate.
+        //   Swept across the three shapes a state can take (single wall impact,
+        //   two-lane compare, cart–cart), because "in ALL the states" is the ruling.
+        type CeFrame = { st: string; engaged: boolean; ce: number; ids: string[] };
         const ceFr: CeFrame[] = [];
-        for (let i = 0; i < 44; i++) {
-            await h.tick(16.7, 1);
-            const q = await h.snap();
-            const ce = q.objs['mb_contact_element'];
-            ceFr.push({ engaged: !!q.contacts[0].engaged, visible: !!(ce && ce.visible), sx: ce ? ce.sx : 0 });
+        for (const st of ['STATE_2', 'STATE_10', 'STATE_1']) {
+            await h.setState(st);
+            await h.tick(16.7, 4);
+            for (let i = 0; i < 44; i++) {
+                await h.tick(16.7, 1);
+                const q = await h.snap();
+                ceFr.push({
+                    st, engaged: (q.contacts || []).some((c: Row) => c && c.engaged),
+                    ce: q.ceGeom, ids: q.ceIds,
+                });
+            }
         }
         const freeFr = ceFr.filter(f => !f.engaged);
         const engFr = ceFr.filter(f => f.engaged);
-        const drawnFree = freeFr.filter(f => f.visible);
-        const drawnEng = engFr.filter(f => f.visible);
-        const MAX_SPAN = L_NAT_DEFAULT * 0.5;                      // metres → world units
-        const overLong = ceFr.filter(f => f.visible && f.sx > MAX_SPAN + 1e-9);
-        chk('M1_contact_element_is_drawn_only_while_the_contact_is_engaged',
-            freeFr.length > 20 && engFr.length > 3 &&
-            drawnFree.length === 0 && drawnEng.length === engFr.length &&
-            overLong.length === 0 &&
-            spread(drawnEng.map(f => f.sx)) > 0.02,
-            'wall impact, ball from −3 m: ' + ceFr.length + ' frames = ' + freeFr.length +
-            ' with the contact NOT engaged + ' + engFr.length + ' engaged. Element drawn on ' +
-            drawnFree.length + '/' + freeFr.length + ' free-flight frames (must be 0; pre-fix it was ' +
-            'drawn on every one of them, up to ' +
-            (freeFr.length ? Math.max(...freeFr.map(f => f.sx)).toFixed(3) : '--') +
-            ' world units = ' + (freeFr.length ? (Math.max(...freeFr.map(f => f.sx)) / 0.5).toFixed(2) : '--') +
-            ' m of rod) and on ' + drawnEng.length + '/' + engFr.length + ' engaged frames; drawn length ' +
-            'never exceeds natural_length_m — over-long frames = ' + overLong.length +
-            '; it still visibly COMPRESSES while engaged (span spread ' +
-            spread(drawnEng.map(f => f.sx)).toFixed(4) + ' world units)');
+        const withCe = ceFr.filter(f => f.ce > 0);
+        // What must REMAIN at the contact: the equal-and-opposite arrow pair and
+        // the nameplate — read on an engaged frame of the wall-impact state, and
+        // the nameplate must not depend on any element mesh existing (M2's anchor).
+        await h.setState('STATE_9');            // the state that authors contact.label
+        let armed: Row | null = null;
+        for (let i = 0; i < 120 && !armed; i++) {
+            await h.tick(16.7, 1);
+            const q = await h.snap();
+            if (q.contacts[0] && q.contacts[0].engaged) armed = q;
+        }
+        const liveArrows = armed ? Object.keys(armed.arrows).filter(k => /^mb_arrow_/.test(k) && armed!.arrows[k].visible) : [];
+        const nameplate = armed ? armed.objs['mb_contact_label'] : null;
+        chk('M1_no_contact_element_geometry_in_any_state_engaged_or_not',
+            freeFr.length > 40 && engFr.length > 5 && withCe.length === 0 &&
+            armed !== null && liveArrows.length === 2 &&
+            !!nameplate && nameplate.visible === true && nameplate.text === 'foam pad',
+            'swept STATE_2 (wall impact) + STATE_10 (two lanes) + STATE_1 (cart–cart), ' +
+            ceFr.length + ' frames = ' + freeFr.length + ' with no contact engaged + ' + engFr.length +
+            ' engaged. Frames carrying ANY object whose id or elementType contains "contact_element": ' +
+            withCe.length + '/' + ceFr.length + ' (must be 0; pre-fix the scene carried 3 of them in ' +
+            'every single frame, drawn on the engaged ones)' +
+            (withCe.length ? ' witness ' + JSON.stringify(withCe[0].ids) : '') +
+            '. What REMAINS at the contact on an engaged frame: ' + liveArrows.length +
+            ' visible force arrows ' + JSON.stringify(liveArrows) + ' and the nameplate "' +
+            (nameplate ? nameplate.text : '(missing)') + '" at x=' +
+            (nameplate ? nameplate.x.toFixed(3) : '--') + ' — the label survives the mesh removal.');
 
         // ── M2 — the contact label NAMES THE APPARATUS, so it must not move ───
         //   THE DEFECT: the label was anchored to the contact element's midpoint,
@@ -2290,6 +2433,218 @@ function rearmFrames(fr: RearmFrame[]): number[] {
             '), 40 further frames under the pin: bodies + counters identical = ' +
             (JSON.stringify(q1) === JSON.stringify(q2)) + ' (re-arms ' + q1.rearms + ' → ' + q2.rearms + ')');
 
+        // ══ E — slow_window.from_cycle ═══════════════════════════════════════
+        //   "For the first few seconds show the ball go, collide, and come back
+        //   at NORMAL speed — don't slow it down. After that, in the next pass,
+        //   slow down the ball at the contact." (founder video review 2026-08-01)
+        //   A contact slowed x20 from the very first bounce means the student
+        //   never sees what a real bounce looks like.
+        const fcRun = async (st: string, n: number) => {
+            await r.setState(st);
+            return await r.page.evaluate(FC_RUN, [n, 16.7] as [number, number]) as FcFrame[];
+        };
+        const fr12 = await fcRun('STATE_12', 320);
+        const fr13 = await fcRun('STATE_13', 320);
+        const fr14 = await fcRun('STATE_14', 320);
+        const ps12 = fcPasses(fr12), ps13 = fcPasses(fr13);
+        const FRM = 16.7;
+        const p0 = ps12[0], p1f = ps12[1];
+        // The TRUE physical duration of each pass, straight off the recorded
+        // events — it must be t_c in BOTH cycles, slowed or not.
+        const ev12 = await r.page.evaluate(() => ((window as any).PM_mbEngine.events || [])
+            .map((e: any) => ({ d: e.duration_ms, F: e.F_peak })));
+
+        //   THE MEASUREMENT. The exact half is the pair of clocks: eng.t_ms (wall)
+        // and eng.tphys_ms (physical) are sampled on the SAME frames, so their
+        // ratio over an engaged window is 1 at true speed and 1/slow_factor under
+        // the magnifier with no quantisation error at all. The wall-clock span is
+        // the thing a teacher actually watches, and it is bounded rather than
+        // equated, because mbDtScale is decided ONCE PER FRAME from whether a
+        // contact is engaged at the frame's START: the frame that ENTERS the
+        // contact therefore runs at true speed and swallows up to one whole
+        // 1/60 s of physical time before the magnifier turns on, and the frame
+        // that leaves does the mirror image. That is a documented property of a
+        // per-frame multiplier, not a defect, so the slowed window must last
+        // between (t_c − 2 frames of physics) × slow_factor and t_c × slow_factor.
+        const wallLo = (FC_TC_MS - 2 * FRM) * FC_SLOW, wallHi = FC_TC_MS * FC_SLOW;
+        chk('E1_from_cycle_holds_the_first_pass_at_true_speed_and_slows_the_next',
+            ps12.length >= 2 &&
+            Math.abs(p0.ratio - 1) <= 1e-9 &&
+            rel(p1f.ratio, 1 / FC_SLOW) <= 1e-9 &&
+            Math.abs(p0.wallMs - FC_TC_MS) <= 2 * FRM &&
+            p1f.wallMs >= wallLo && p1f.wallMs <= wallHi &&
+            p1f.n >= 6 * p0.n &&
+            p0.cycle === 0 && p1f.cycle >= 1 &&
+            ev12.length >= 2 && rel(ev12[0].d, FC_TC_MS) <= 0.005 && rel(ev12[1].d, FC_TC_MS) <= 0.005,
+            'm=' + FC_M + ' kg into a fixed wall at k=' + FC_K + ' N/m ⇒ t_c = π√(m/k) = ' +
+            FC_TC_MS.toFixed(2) + ' ms (derived by the harness). from_cycle=1, slow ×' + FC_SLOW +
+            ': ' + ps12.length + ' passes. CYCLE ' + p0.cycle + ' — ' + p0.n + ' engaged frames = ' +
+            p0.wallMs.toFixed(1) + ' ms of WALL clock for ' + p0.physMs.toFixed(2) +
+            ' ms of physical time, ratio ' + p0.ratio.toFixed(9) + ' (must be exactly 1 = true speed; ' +
+            'wall within ' + (Math.abs(p0.wallMs - FC_TC_MS) / FRM).toFixed(2) + ' frames of t_c). ' +
+            'CYCLE ' + p1f.cycle + ' — ' + p1f.n + ' engaged frames = ' + p1f.wallMs.toFixed(1) +
+            ' ms of wall clock for ' + p1f.physMs.toFixed(2) + ' ms physical, ratio ' +
+            p1f.ratio.toFixed(9) + ' (must be exactly 1/' + FC_SLOW + '), inside the derived band [' +
+            wallLo.toFixed(1) + ', ' + wallHi.toFixed(1) + '] ms and ' +
+            (p1f.n / p0.n).toFixed(1) + '× as many frames as cycle 0. The TRUE recorded ' +
+            'durations are unchanged by any of it: ' + ev12.slice(0, 2).map((e: Row) => e.d.toFixed(3)).join(' / ') +
+            ' ms, F_peak ' + ev12.slice(0, 2).map((e: Row) => e.F.toFixed(1)).join(' / ') + ' N');
+
+        // The badge is the honesty instrument. Over a pass that is running at real
+        // speed it would be a lie, so it must be dark there and only there.
+        const badge0 = fr12.filter(f => f.ra === 0 && f.bg).length;
+        const badge1 = fr12.filter(f => f.ra >= 1 && f.busy && f.bg).length;
+        const eng1 = fr12.filter(f => f.ra >= 1 && f.busy).length;
+        chk('E2_badge_absent_in_cycle_0_and_present_only_in_the_slowed_cycle',
+            badge0 === 0 && eng1 > 5 && badge1 === eng1 &&
+            p1f.badgeText === 'slow motion ×' + FC_SLOW,
+            'cycle 0 (true speed): badge shown on ' + badge0 + '/' + fr12.filter(f => f.ra === 0).length +
+            ' frames — must be 0, a "slow motion ×' + FC_SLOW + '" badge over a real-speed bounce is a lie. ' +
+            'Cycle ≥1 engaged frames: ' + badge1 + '/' + eng1 + ' carry the badge, text "' +
+            p1f.badgeText + '". Frames with the badge up but no contact engaged: ' +
+            fr12.filter(f => f.bg && !f.busy).length);
+
+        // The regression guard: the key ABSENT and the key at its explicit default
+        // must be the same run, and that run must still slow the FIRST contact —
+        // i.e. every existing concept is byte-identical to the pre-2026-08-01
+        // engine unless it opts in.
+        //   Compared on the EVENT LEDGER and the derived pass structure, NOT on
+        // the raw frame stream. The raw stream is not a legitimate equality: every
+        // fixture on this page shares one renderer clock accumulator, and 16.7 ms
+        // ticks against a 1/60 s fixed step leave a residual that depends on how
+        // many frames ran EARLIER in the session — so two identical states run
+        // back to back differ in which frames take two steps. The event ledger is
+        // immune by construction: contact entry and release are solved at their
+        // exact instants and the fold property (A8a) makes them independent of how
+        // the frame was partitioned. What must be identical is the physics and the
+        // playback rate, and that is exactly what this compares.
+        //   THE CONTROL IS A RE-RUN OF THE SAME STATE. Bit equality is not available
+        // here and pretending otherwise would just be a tuned tolerance: every
+        // fixture on this page shares ONE renderer clock accumulator, 16.7 ms ticks
+        // against a 1/60 s fixed step leave a residual, and the residual depends on
+        // how many frames ran earlier in the session. That moves which frame a
+        // departure re-arm lands on (it is tested once per frame) and where the
+        // 0.5 ms force-sample grid falls relative to the peak — so start_ms of a
+        // re-armed contact shifts by a frame and duration_ms / F_peak wobble in
+        // their last few digits. A standalone probe (2026-08-01) measured it:
+        // STATE_13 → STATE_14 → STATE_13 gave durations 70.24814731040811 /
+        // ...040419 / ...040397 ms and F_peak 268.32767 / 268.32727 / 268.32727 N,
+        // and the SECOND STATE_13 matched STATE_14 exactly — i.e. the wobble tracks
+        // run ORDER, not the from_cycle key.
+        //   So the guard is a controlled comparison: run STATE_13, then STATE_14,
+        // then STATE_13 AGAIN, and require that authoring the key makes no more
+        // difference than re-running the identical state does. The last event of
+        // each run is dropped: it is still mid-contact when the frame budget ends,
+        // so its F_peak is a partial reading of where the budget stopped.
+        const evOf = async () => await r.page.evaluate(() => ((window as any).PM_mbEngine.events || [])
+            .filter((e: any) => e.duration_ms != null)
+            .map((e: any) => [e.start_ms, e.duration_ms, e.F_peak])) as number[][];
+        await r.setState('STATE_13'); const l13 = await r.page.evaluate(FC_RUN, [320, 16.7] as [number, number]) as FcFrame[];
+        const ev13 = await evOf();
+        await r.setState('STATE_14'); const l14 = await r.page.evaluate(FC_RUN, [320, 16.7] as [number, number]) as FcFrame[];
+        const ev14 = await evOf();
+        await r.setState('STATE_13'); const l13b = await r.page.evaluate(FC_RUN, [320, 16.7] as [number, number]) as FcFrame[];
+        const ev13b = await evOf();
+        const shape = (ps: FcPass[]) => JSON.stringify(ps.map(p => [p.cycle, +p.ratio.toFixed(9), p.badgeOn === p.n, p.badgeText]));
+        // Worst relative disagreement over duration_ms and F_peak of every closed
+        // contact, plus an EXACT check on the first contact's start (that one is a
+        // pure free-flight time and no re-arm has happened yet, so it must not move).
+        const ledgerGap = (a: number[][], b: number[][]) => {
+            if (a.length !== b.length || a.length < 3) return Number.POSITIVE_INFINITY;
+            if (a[0][0] !== b[0][0]) return Number.POSITIVE_INFINITY;
+            let w = 0;
+            for (let i = 0; i < a.length; i++) for (const j of [1, 2]) w = Math.max(w, rel(a[i][j], b[i][j]));
+            return w;
+        };
+        const gapKey = ledgerGap(ev13, ev14);          // the from_cycle key's cost
+        const gapRerun = ledgerGap(ev13, ev13b);       // the control: re-running STATE_13
+        const same1314 = gapKey <= Math.max(gapRerun, 1e-12) && gapKey <= 1e-5 &&
+            shape(fcPasses(l13)) === shape(fcPasses(l14)) &&
+            shape(fcPasses(l13)) === shape(fcPasses(l13b));
+        const firstPassSlowed13 = ps13.length > 0 && rel(ps13[0].ratio, 1 / FC_SLOW) <= 1e-9 && ps13[0].cycle === 0;
+        chk('E3_default_and_explicit_zero_are_the_unchanged_today_behaviour',
+            same1314 && ev13.length >= 3 && firstPassSlowed13 && ps13[0].badgeOn === ps13[0].n,
+            'the SAME apparatus authored with no from_cycle key (STATE_13) and with from_cycle: 0 ' +
+            '(STATE_14): ' + ev13.length + ' CLOSED contacts each, first contact starting at exactly ' +
+            (ev13[0] ? ev13[0][0].toFixed(6) : '--') + ' ms of physical time in both. Worst relative ' +
+            'disagreement in duration_ms / F_peak caused by AUTHORING THE KEY = ' + gapKey.toExponential(2) +
+            '; caused by merely RE-RUNNING STATE_13 unchanged = ' + gapRerun.toExponential(2) +
+            ' — the key costs no more than a re-run does, so the residual is the shared clock ' +
+            'accumulator, not from_cycle. Pass structure (cycle, wall/phys ratio, badge) identical ' +
+            'across all three runs = ' + (shape(fcPasses(l13)) === shape(fcPasses(l14)) &&
+                shape(fcPasses(l13)) === shape(fcPasses(l13b))) +
+            '. And that unchanged path still slows the VERY FIRST contact: cycle ' + ps13[0].cycle +
+            ', ' + ps13[0].n + ' engaged frames, wall/phys ratio ' + ps13[0].ratio.toFixed(9) +
+            ' (= 1/' + FC_SLOW + '), badge up on ' + ps13[0].badgeOn + '/' + ps13[0].n +
+            ' of them — so a concept that does not opt in sees no change at all');
+
+        // Rewind / pin determinism ACROSS the cycle boundary. The gate reads the
+        // engine's own re-arm counter, which is born 0 with the state, cleared by
+        // RESET_TRAJECTORY and advanced only by a frame that advances time — so a
+        // pin inside cycle 0 must photograph true speed and a pin inside a later
+        // cycle must photograph the magnifier, every time, from the clock alone.
+        const fcPin = async (st: string, ms: number) => {
+            await r.setState(st);
+            await r.pin(ms);
+            for (let i = 0; i < 900; i++) {
+                await r.tick(16.7, 8);
+                const t = await r.page.evaluate(() => (window as any).PM_mbTimeMs);
+                if (typeof t === 'number' && t >= ms - 1) break;
+            }
+            return await r.page.evaluate(() => {
+                const eng = (window as any).PM_mbEngine, o: Row = {};
+                for (const id of eng.order) {
+                    const b = eng.bodies[id];
+                    o[id] = { s: b.s, v: b.v, a: b.a, F: b.F_contact, spent: !!b.spent };
+                }
+                const bg = document.getElementById('mb_slowmo');
+                return {
+                    bodies: o, t_ms: eng.t_ms, tphys_ms: eng.tphys_ms,
+                    rearms: eng.rearms || 0, sa: !!eng.slow_active, nev: (eng.events || []).length,
+                    badge: !!bg && getComputedStyle(bg).display !== 'none',
+                };
+            });
+        };
+        // Pin instants taken from the free run: the middle engaged frame of each
+        // pass, so each pin lands INSIDE its own contact window.
+        const eng0Fr = fr12.filter(f => f.busy && f.ra === 0);
+        const eng1Fr = fr12.filter(f => f.busy && f.ra >= 1);
+        const T0 = eng0Fr.length ? eng0Fr[Math.floor(eng0Fr.length / 2)].t : 0;
+        const T1 = eng1Fr.length ? eng1Fr[Math.floor(eng1Fr.length / 2)].t : 0;
+        const a0 = await fcPin('STATE_12', T0);
+        const b1 = await fcPin('STATE_12', T1);
+        const a0b = await fcPin('STATE_12', T0);
+        chk('E4_from_cycle_is_deterministic_across_the_cycle_boundary_under_pin_and_rewind',
+            eng0Fr.length > 2 && eng1Fr.length > 5 &&
+            JSON.stringify(a0) === JSON.stringify(a0b) &&
+            a0.rearms === 0 && a0.sa === false && a0.badge === false &&
+            b1.rearms >= 1 && b1.sa === true && b1.badge === true,
+            'pinned INSIDE cycle 0\\u0027s contact at t = ' + Math.round(T0) + ' ms: re-arms ' + a0.rearms +
+            ', slow_active ' + a0.sa + ', badge ' + a0.badge + ' (true speed). Pinned INSIDE the next ' +
+            'cycle\\u0027s contact at t = ' + Math.round(T1) + ' ms: re-arms ' + b1.rearms + ', slow_active ' +
+            b1.sa + ', badge ' + b1.badge + ' (magnified). Rewound to ' + Math.round(T0) +
+            ' ms again: identical to the first visit = ' + (JSON.stringify(a0) === JSON.stringify(a0b)) +
+            ' (s ' + a0.bodies['BALL'].s.toFixed(9) + ' → ' + a0b.bodies['BALL'].s.toFixed(9) +
+            ', re-arms ' + a0.rearms + ' → ' + a0b.rearms + ', slow_active ' + a0.sa + ' → ' + a0b.sa +
+            ') — no latch survives the rewind');
+
+        // The Part-1 negative, re-asserted on this page too: the from_cycle states
+        // are wall impacts, and NOTHING may be drawn at the contact in any of them.
+        const ceAll = fr12.concat(fr13, fr14).filter(f => f.ce > 0).length;
+        chk('E5_no_contact_element_geometry_on_any_from_cycle_frame',
+            ceAll === 0 && fr12.concat(fr13, fr14).filter(f => f.busy).length > 20,
+            'objects whose id or elementType contains "contact_element", across ' +
+            (fr12.length + fr13.length + fr14.length) + ' frames of which ' +
+            fr12.concat(fr13, fr14).filter(f => f.busy).length + ' had a contact engaged: ' + ceAll);
+
+        results.from_cycle = {
+            t_c_ms: +FC_TC_MS.toFixed(3),
+            state_12: ps12.map(p => ({ cycle: p.cycle, frames: p.n, wall_ms: +p.wallMs.toFixed(1), phys_ms: +p.physMs.toFixed(3), ratio: +p.ratio.toFixed(9), badge: p.badgeOn })),
+            state_13: ps13.map(p => ({ cycle: p.cycle, frames: p.n, wall_ms: +p.wallMs.toFixed(1), ratio: +p.ratio.toFixed(9), badge: p.badgeOn })),
+            default_equals_explicit_zero: same1314,
+            pin: { T0: Math.round(T0), T1: Math.round(T1), a0, b1, stable: JSON.stringify(a0) === JSON.stringify(a0b) },
+        };
+
         chk('D7_no_page_errors_on_the_re_arm_page', r.errors.length === 0, JSON.stringify(r.errors.slice(0, 3)));
         results.rearm = {
             corners: cornerRows,
@@ -2313,18 +2668,32 @@ function rearmFrames(fr: RearmFrame[]): number[] {
         chk('S2_body_mesh_tracks_its_physics_position',
             Math.abs(s.objs['mb_body_BALL'].x - s.bodies['BALL'].s * 0.5) < 1e-9,
             'mesh x=' + s.objs['mb_body_BALL'].x.toFixed(6) + ' vs s·WORLD_PER_M=' + (s.bodies['BALL'].s * 0.5).toFixed(6));
-        // The contact element must be a real, visibly COMPRESSING object.
-        const spans: number[] = [];
+        // ── S3 (REWORKED 2026-08-01) — NO contact-element geometry, ever ──────
+        //   It used to read "the contact element exists and compresses", which is
+        // the OLD design: a compressible box fitted between the facing faces.
+        // The founder removed it outright — a drawn thing at the collision reads
+        // as a third object arriving at the impact, and in a real collision
+        // nothing arrives. The invariant is now the negative one, and it is
+        // asserted over the ENGAGED frames too (a check that only looked at free
+        // flight would have passed the very design being removed).
+        //   Existence-before-negative (scar #7): the run is only meaningful if a
+        // contact actually happened, so the frame budget must contain engaged
+        // frames AND a recorded event.
+        let ceSeen = 0, engagedSeen = 0, ceWitness = '';
         for (let i = 0; i < 40; i++) {
             await h.tick(16.7, 1);
             const q = await h.snap();
-            const ce = q.objs['mb_contact_element'];
-            if (ce && ce.visible) spans.push(ce.sx);
+            if (q.ceGeom > 0) { ceSeen++; if (!ceWitness) ceWitness = JSON.stringify(q.ceIds); }
+            if (q.contacts[0] && q.contacts[0].engaged) engagedSeen++;
         }
-        chk('S3_contact_element_exists_and_compresses',
-            spans.length > 0 && (Math.max(...spans) - Math.min(...spans)) > 0.02,
-            'visible on ' + spans.length + ' frames; span ' + (spans.length ? Math.min(...spans).toFixed(4) : '--') +
-            ' -> ' + (spans.length ? Math.max(...spans).toFixed(4) : '--') + ' world units');
+        const s3 = await h.snap();
+        chk('S3_no_contact_element_geometry_is_ever_visible',
+            ceSeen === 0 && engagedSeen > 2 && s3.events.length > 0,
+            'wall impact over 40 frames: ' + engagedSeen + ' of them with the contact ENGAGED and ' +
+            s3.events.length + ' recorded contact event(s) — so the negative below covers the impact ' +
+            'itself, not just the free flight. Objects in the scene whose id or elementType contains ' +
+            '"contact_element": ' + ceSeen + '/40 frames (must be 0; pre-fix every frame carried ' +
+            (3) + ' of them) ' + (ceWitness ? 'witness ' + ceWitness : ''));
         chk('S4_body_absent_from_a_state_is_hidden',
             s.objs['mb_body_A'] ? s.objs['mb_body_A'].visible === false : true,
             'STATE_2 lists BALL + WALL only; mb_body_A visible=' + (s.objs['mb_body_A'] || {}).visible);

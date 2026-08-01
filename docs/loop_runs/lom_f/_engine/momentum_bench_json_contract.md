@@ -60,7 +60,13 @@ Worked example: a ball closing on a wall centred at `s = 0` first touches at bal
 | `readouts[]` | `v \| p \| sum_p \| KE \| sum_KE \| F_contact \| J` |
 | `controls_visible[]` | `m1 \| m2 \| v1 \| v2 \| k \| c` |
 | `param_ramp.param` | `v1 \| k \| m2` |
-| `glow_focal` | exactly ONE of `mb_body_<id>` / `mb_track` / `mb_contact_element` / a bare body id |
+| `glow_focal` | exactly ONE of `mb_body_<id>` / `mb_track` / a bare body id |
+
+> **`mb_contact_element` is RETIRED (founder ruling 2026-08-01).** Nothing is drawn between the two
+> bodies in any state — a thing that appears at the collision reads as a third object arriving at it.
+> The interaction is rendered by the equal-and-opposite force arrows and named by the wall nameplate.
+> The engine tolerates the dead value (one `console.warn`, degrade to no focal), but a state that
+> still authors it has NO focal at all, so re-point every one.
 
 ## 3. Slider ranges (renderer-fixed — a `param_ramp` must stay inside its param's range)
 
@@ -76,9 +82,16 @@ Worked example: a ball closing on a wall centred at `s = 0` first touches at bal
   contact in place; any other lane with an override gets its own contact. Cap **3 contacts**.
 - **`force_trace.compare_with_previous_lane: true`** — both traces on ONE shared axis pair. This is
   the two-lane payoff beat.
-- **`slow_window: {slow_factor, badge}`** — **MANDATORY on any state with a contact** (spec §5).
-  Pure `dt` multiplier on playback only; the HUD keeps reporting TRUE peak force and TRUE contact
-  duration in ms. The `slow motion ×N` badge is the honesty requirement, not decoration.
+- **`slow_window: {slow_factor, badge, from_cycle?}`** — **MANDATORY on any state with a contact**
+  (spec §5). Pure `dt` multiplier on playback only; the HUD keeps reporting TRUE peak force and TRUE
+  contact duration in ms. The `slow motion ×N` badge is the honesty requirement, not decoration.
+  - **`from_cycle: N`** (integer, default `0`) — **reality first, then the magnifier** (founder
+    2026-08-01). The multiplier engages only from re-arm cycle `N`: cycle 0 is the pass the state
+    opened with, cycle 1 the first re-armed pass. Earlier cycles run at TRUE speed *and the badge is
+    hidden there* (a badge over a real-speed bounce is a lie). `from_cycle: 1` is the founder's ask —
+    "show the ball go, collide, and come back at normal speed; in the next pass, slow down at the
+    contact." Requires `repeat_every_ms` on the same state, or cycle 1 is never reached and the
+    window never opens. Default `0` = today's behaviour, so omitting the key changes nothing.
 - **`trusted_drag_seizes: true`** — the explore state ONLY, paired with `repeat_every_ms` (~1400 ms)
   so the bench keeps demonstrating until a teacher grabs it (Rule 37).
 

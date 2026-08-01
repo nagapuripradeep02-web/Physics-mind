@@ -2698,7 +2698,9 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     //     so the SAME physical collision occupies far more wall-clock time and a
     //     floor sized for real speed would photograph the bodies still closing in
     //     (field3d_slcr_reveal_hold_captures_transitional_r_family: the pin must
-    //     land past the LAST settled beat, never mid-transition);
+    //     land past the LAST settled beat, never mid-transition). Its
+    //     `from_cycle` gate is honoured: when the first pass runs at true speed
+    //     the cushion is NOT added (see below);
     //   • `repeat_every_ms` — the interaction RE-ARMS on this cycle, teleporting
     //     the bodies back to their start. The pin is therefore clamped to land
     //     LATE INSIDE the first cycle, after the collision has finished and before
@@ -2735,7 +2737,17 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                     : DEFAULT_REVEAL_MS;
             const mbSlow = asObj(mb.slow_window);
             const mbFactor = mbSlow ? asNum(mbSlow.slow_factor, 1) : 1;
-            if (mbFactor > 1 && (mbMode === 'wall_impact' || mbMode === 'collision' || mbMode === 'explosion')) {
+            // `from_cycle: N` (founder 2026-08-01) holds the multiplier OFF until
+            // re-arm cycle N, so the FIRST pass plays at true speed. The pin is
+            // clamped into the first repeat cycle a dozen lines below, and a state
+            // with no repeat_every_ms never reaches cycle 1 at all — so with
+            // from_cycle > 0 the frame this pin photographs is an un-slowed one and
+            // the slow cushion would push it past the settled picture it wants,
+            // into the next approach. Add the cushion only when cycle 0 is itself
+            // slowed.
+            const mbFromCycle = mbSlow ? asNum(mbSlow.from_cycle, 0) : 0;
+            if (mbFactor > 1 && mbFromCycle <= 0 &&
+                (mbMode === 'wall_impact' || mbMode === 'collision' || mbMode === 'explosion')) {
                 // A real contact lasts tens of ms; at xS playback it occupies tens
                 // of ms x S of wall clock. Capped so a very large slow_factor
                 // cannot push the pin past a sane state length.

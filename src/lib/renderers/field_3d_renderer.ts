@@ -1393,6 +1393,26 @@ export interface Field3DConfig {
             slow_window?: {
                 slow_factor: number;
                 badge?: boolean;                   // default true — the honesty requirement
+                // REALITY FIRST, THEN THE MAGNIFIER (founder ruling 2026-08-01).
+                //   Slowing every contact from the very first bounce means the
+                // student never sees what a real bounce looks like. from_cycle: N
+                // engages the multiplier only for contacts in re-arm cycle >= N;
+                // earlier cycles run at TRUE speed and, because a badge over a
+                // normal-speed bounce would be a lie, the "slow motion xN" badge
+                // is hidden there too.
+                //   The cycle index is the engine's OWN re-arm counter (eng.rearms):
+                // cycle 0 is the launch the state entered with, cycle 1 the first
+                // re-armed pass, and both re-arm reasons (period boundary and
+                // departure) count. It is born 0 with the state, cleared by
+                // RESET_TRAJECTORY and advanced only by a frame that advances
+                // time — so a SET_TIME_FREEZE pin cannot move it and a rewind
+                // leaves nothing stale (Rule 36).
+                //   Default 0 = slow from the first contact, i.e. the pre-2026-08-01
+                // behaviour, so every existing concept is byte-identical unless it
+                // opts in. Authoring note: from_cycle: N needs repeat_every_ms on
+                // the same state, or there is never a cycle N to reach and the
+                // window simply never opens (a one-shot state is cycle 0 forever).
+                from_cycle?: number;
             };
             // Re-arm the whole interaction on this cycle. The number is the
             // nominal CADENCE, not a promise: the engine bounds it at both ends
@@ -43486,62 +43506,33 @@ export const FIELD_3D_RENDERER_CODE = `
         slab.scale.set(halfWorld * 2, 1, 1);
         slab.userData.length_m = lenM;
     }
-    // The compressible contact element, drawn between the two facing faces. Its
-    // LENGTH is the live separation, so a stiff contact barely deforms and a soft
-    // one deforms a lot: THE DEFORMATION IS THE VISIBLE CAUSE of the long contact
-    // time (spec section 3 — the newton_third_law lesson, the cause must be an object).
-    //   ONE element per contact (SEAM C): with two lanes there are two compliant
-    // elements deforming at the same time, and each has to show its OWN lane's
-    // deformation — that difference IS the lesson.
-    function mbContactElementId(i) {
-        return i === 0 ? "mb_contact_element" : ("mb_contact_element_" + i);
-    }
-    function mbFitOneContactElement(eng, c, i) {
-        var el = mbFindById(mbContactElementId(i));
-        if (!el) return;
-        // THE ELEMENT IS A RENDERING OF A FORCE, so it exists only while that
-        // force does. Fitting it between the two facing faces on EVERY frame drew
-        // a solid rod across the whole approach gap — 2.6 m of it on the impulse
-        // bench — that grew and shrank as the ball travelled, i.e. a permanent
-        // mechanical connection asserted over a free flight in which there is no
-        // contact and no force at all. That is the very thing the surrounding
-        // states teach, contradicted by the picture.
-        //   engaged && !latched is exactly the window in which mbStep is solving
-        // a contact segment and c.F is non-zero; a latch is instantaneous (the
-        // two bodies are simply joined from then on) and has no spring to draw.
-        if (!c || !c.engaged || c.latched) { el.visible = false; return; }
-        var L = eng.bodies[c.loId], H = eng.bodies[c.hiId];
-        if (!L || !H) { el.visible = false; return; }
-        var xLo = (L.s + L.half) * MB_WORLD_PER_M;
-        var xHi = (H.s - H.half) * MB_WORLD_PER_M;
-        var span = xHi - xLo;
-        // A compliant element is only ever COMPRESSED here: contact begins at the
-        // natural length and ends when it is recovered, so a drawn length above
-        // L_natural would be a stretch the physics never applied. Clamped rather
-        // than asserted, because a damped release can cross the release instant a
-        // hair late inside one frame.
-        var maxSpan = c.L_nat * MB_WORLD_PER_M;
-        if (span > maxSpan) span = maxSpan;
-        // Never a stub and never inverted: once the faces have met the element is
-        // fully compressed and hands the picture over to the two bodies themselves.
-        if (!(span > 0.01)) { el.visible = false; return; }
-        el.visible = true;
-        el.scale.set(span, 1, 1);
-        // Anchored to the face of the FIXED party when there is one, so a clamped
-        // span never floats the element off the wall it belongs to. With both
-        // bodies free (cart–cart) the mid-gap is the only meaningful anchor.
-        // Un-clamped all three expressions are the same point.
-        var xc = (xLo + xHi) / 2;
-        if (H.fixed) xc = xHi - span / 2;
-        else if (L.fixed) xc = xLo + span / 2;
-        el.position.set(xc, mbBodyCentreY(L.shape), (L.laneZ || 0) * MB_WORLD_PER_M);
-    }
-    function mbFitContactElement() {
-        var eng = window.PM_mbEngine;
-        if (!eng) return;
-        var cs = eng.contacts || [];
-        for (var i = 0; i < MB_MAX_CONTACTS; i++) mbFitOneContactElement(eng, cs[i] || null, i);
-    }
+    // ── THE CONTACT ELEMENT IS NOT DRAWN. AT ALL. (founder ruling 2026-08-01) ──
+    //   There used to be a compressible yellow box fitted between the two facing
+    // faces — its length the live separation, so a stiff contact barely deformed
+    // and a soft one deformed a lot. SEAM A built it as "the deformation is the
+    // visible cause of the long contact time".
+    //   It was wrong, and it stayed wrong after the engaged-only fix. Drawn on
+    // every frame it asserted a permanent mechanical link across a free flight
+    // (fixed 2026-08-01, M1). Drawn only while engaged it became a THIRD OBJECT
+    // that pops into existence at impact and vanishes again — and in a real
+    // collision nothing arrives at the contact. Either way the picture says a
+    // thing sits between the ball and the wall, which is exactly the belief the
+    // impulse states exist to remove. Founder video review, 2026-08-01:
+    // "Don't put anything between the wall and the ball during the collision —
+    // in ALL the states."
+    //   WHAT REMAINS AT THE CONTACT, and why it is enough:
+    //     · the two equal-and-opposite force arrows (mb_arrow_*) — the honest
+    //       rendering of the interaction; the force IS the interaction, and an
+    //       arrow is a quantity, not an intervening body;
+    //     · the contact NAMEPLATE (mb_contact_label), anchored to the fixed
+    //       party's face — it names the apparatus ("rigid wall"/"padded wall"),
+    //       never the gap, and does not depend on any element mesh existing;
+    //     · the force–time trace panel and the momentum HUD.
+    //   THE PHYSICS IS UNTOUCHED: the compliant contact still solves exactly as
+    // it did (mbStep/mbContactMu/mbContactExitT are not edited by this change).
+    // Only the draw path is gone — there is no hidden flag, no invisible mesh
+    // and no id left to name. MB_CONTACT_COLOR survives because the nameplate
+    // still uses it.
 
     // ── Physics helpers ───────────────────────────────────────────────────
     function mbSgn(x) { return x > 0 ? 1 : (x < 0 ? -1 : 0); }
@@ -43985,6 +43976,31 @@ export const FIELD_3D_RENDERER_CODE = `
     // A latch is instantaneous — there is no pulse to slow down — and the
     // approach runs at true speed so the impact reads as an impact.
     function mbSlowOpen(eng) { return mbAnyContactBusy(eng); }
+    // ── from_cycle — REALITY FIRST, THEN THE MAGNIFIER (founder 2026-08-01) ──
+    //   The re-arm CYCLE INDEX. Not a second counter and not a latch: it is the
+    // engine's own re-arm ledger, born 0 with the state, zeroed by
+    // RESET_TRAJECTORY, and incremented only inside mbRunRepeat — which itself
+    // refuses to run on a frame that advances no time. So under a SET_TIME_FREEZE
+    // pin it is frozen with everything else, and a rewind replays it from 0 along
+    // with the physics it is derived from (the same discipline the departure
+    // re-arm's D5/D6 checks hold).
+    function mbCycleIndex(eng) {
+        var n = eng && eng.rearms;
+        return (typeof n === "number" && isFinite(n) && n > 0) ? n : 0;
+    }
+    function mbSlowFromCycle(mb) {
+        var sw = mb && mb.slow_window;
+        var n = (sw && typeof sw.from_cycle === "number" && isFinite(sw.from_cycle)) ? Math.floor(sw.from_cycle) : 0;
+        return (n > 0) ? n : 0;
+    }
+    // The ONE predicate both consumers read — the dt multiplier and the honesty
+    // badge — so the badge can never claim slow motion on a pass that is running
+    // at true speed, or stay dark on one that is not.
+    function mbSlowEngaged(eng, mb) {
+        if (mbSlowFactor(mb) <= 1) return false;
+        if (mbCycleIndex(eng) < mbSlowFromCycle(mb)) return false;
+        return mbSlowOpen(eng);
+    }
     // Is ANY real (non-latched) contact mid-segment right now? The per-contact
     // form (mbContactBusy) answers "may I write into this contact"; this one
     // answers "is the bench in the middle of something", which is the question
@@ -44028,9 +44044,8 @@ export const FIELD_3D_RENDERER_CODE = `
         return false;
     }
     function mbDtScale(eng, mb) {
-        var f = mbSlowFactor(mb);
-        if (f <= 1) return 1;
-        return mbSlowOpen(eng) ? (1 / f) : 1;
+        if (!mbSlowEngaged(eng, mb)) return 1;
+        return 1 / mbSlowFactor(mb);
     }
     // ── The step — event-partitioned, NOT sub-stepped ─────────────────────
     //   One frame is split at the TRUE contact entry / release instants and each
@@ -44228,7 +44243,6 @@ export const FIELD_3D_RENDERER_CODE = `
             var b = eng.bodies[eng.order[i]];
             if (b) mbSetBodyPosition(b.id, b.s);
         }
-        mbFitContactElement();
     }
     // ══════════════════════════════════════════════════════════════════════
     // SEAM B — THE INSTRUMENT LAYER
@@ -44619,7 +44633,10 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!el) return;
         var f = mbSlowFactor(mb);
         var sw = mb && mb.slow_window;
-        var wants = (f > 1) && (!sw || sw.badge !== false) && mbSlowOpen(eng);
+        // mbSlowEngaged, not mbSlowOpen: a badge over a cycle that is running at
+        // TRUE speed (from_cycle not reached yet) would be a lie, and this badge
+        // exists only to stop the picture lying.
+        var wants = (!sw || sw.badge !== false) && mbSlowEngaged(eng, mb);
         el.style.display = wants ? "block" : "none";
         if (!wants) return;
         var txt = "slow motion ×" + ((Math.round(f) === f) ? String(f) : f.toFixed(1));
@@ -44980,6 +44997,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // bench on the held frame — a frozen EYE baseline showing the home pose
         // instead of the departure it pinned.
         mbRunRepeat(mb, eng, h * 1000);
+        // DERIVED once per frame, never latched: whether THIS frame's integration
+        // is being magnified. Read by the badge and by probes; it is a report of
+        // the multiplier below, not a second source of truth.
+        eng.slow_active = mbSlowEngaged(eng, mb);
+        eng.cycle_index = mbCycleIndex(eng);
         mbStep(eng, h * mbDtScale(eng, mb));
         mbPresent(eng);
         mbDriveInstruments(eng, mb);
@@ -45049,21 +45071,10 @@ export const FIELD_3D_RENDERER_CODE = `
             mbSetBodyPosition(d.id, d.initial_position_m || 0);
         }
 
-        // 3. The compressible contact element between the facing faces. Built as a
-        //    unit-x box so the per-frame fit is a scale, never new geometry.
-        var ceMat = new THREE.MeshPhongMaterial({
-            color: hexToThreeColor(MB_CONTACT_COLOR), emissive: hexToThreeColor(MB_CONTACT_COLOR),
-            emissiveIntensity: 0.35, shininess: 50, transparent: true, opacity: 0.85
-        });
-        //    SEAM C: one per possible lane contact, so two lanes deform two
-        //    separate elements at the same instant.
-        for (var ci = 0; ci < MB_MAX_CONTACTS; ci++) {
-            var ce = new THREE.Mesh(new THREE.BoxGeometry(1, 0.16, 0.4), ceMat.clone());
-            ce.userData = { elementType: "mb_contact_element", id: mbContactElementId(ci) };
-            ce.visible = false;
-            addToScene(ce);
-            mbRegister(ce);
-        }
+        // 3. (removed 2026-08-01) NO contact-element geometry is built. Nothing is
+        //    ever drawn between the two facing faces — see the ruling above
+        //    mbHalfM. The interaction is rendered by the force arrows in step 4
+        //    and named by the nameplate that follows them.
 
         // 4. SEAM B — the 3D overlay group: the equal-and-opposite force arrows,
         //    their labels and the contact label. A GROUP (added to the scene once)
@@ -45349,7 +45360,6 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var j = 0; j < bodies.length; j++) { if (bodies[j] && bodies[j].id) listed[bodies[j].id] = bodies[j]; }
         mbEach(function (o, ud) {
             if (ud.elementType === "mb_track_group" || ud.elementType === "mb_track") { o.visible = true; return; }
-            if (ud.elementType === "mb_contact_element") return;   // owned by mbFitContactElement
             if (ud.bodyId) { o.visible = !!listed[ud.bodyId]; return; }
         });
 
@@ -45362,11 +45372,44 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Same shape as nlbApplyGlow, including its brighten-only carve-out for the
     //   solid apparatus (a 40%-opacity cart renders as glass with the track
     //   showing through the thing the physics is happening TO).
+    // A focal that matches NOTHING in the scene is the black-hole case: glowActive
+    // stays true, no object is ever the focal, so every single peer dims and the
+    // state renders uniformly dark with no bright thing anywhere. That is exactly
+    // what an authored glow_focal of "mb_contact_element" became the moment the
+    // element stopped being drawn (2026-08-01) — impulse STATE_3/5/6 author it,
+    // and a follow-up json_author pass re-points them. Until then, and for any
+    // future typo, DEGRADE: warn ONCE per distinct unresolvable value (this runs
+    // every frame from the glow dispatch, so a per-frame warn would be a flood)
+    // and fall back to no-focal, i.e. the state's default full-brightness pass.
+    var mbFocalWarned = {};
+    function mbFocalMatches(focal) {
+        if (!focal) return 0;
+        var n = 0;
+        mbEach(function (o, ud) {
+            if (ud.elementType === "mb_track_group" || ud.elementType === "mb_overlay") return;
+            if (ud.id === focal || ud.elementType === focal || ud.bodyId === focal) n++;
+        });
+        return n;
+    }
     function mbApplyGlow() {
         var mb = mbStateCfg();
         var eng0 = window.PM_mbEngine;
         var focal = (eng0 && eng0.glow_focal) || mb.glow_focal || (glowTargets.length ? glowTargets[0] : "");
-        var glowActive = !!focal || glowTargets.length > 0;
+        if (focal && mbFocalMatches(focal) === 0) {
+            if (!mbFocalWarned[focal]) {
+                mbFocalWarned[focal] = true;
+                // console.warn, deliberately NOT console.error: this is a graceful
+                // degrade, and THE EYE's H3 gate counts console.error/pageerror.
+                try {
+                    console.warn("[momentum_bench] glow_focal \\u0027" + focal + "\\u0027 matches no drawn " +
+                        "object in this scene — falling back to no focal (full brightness). " +
+                        "mb_contact_element was REMOVED on 2026-08-01 (nothing is drawn between the " +
+                        "bodies); re-point the authored focal at mb_body_<id>, mb_track or an arrow.");
+                } catch (e) {}
+            }
+            focal = "";
+        }
+        var glowActive = !!focal;
         var glowP = glowEmphT(time);
         mbEach(function (o, ud) {
             // containers: their children each get their own pass
@@ -45381,7 +45424,6 @@ export const FIELD_3D_RENDERER_CODE = `
             var solidApparatus = (ud.elementType === "mb_body" ||
                                   ud.elementType === "mb_body_label" ||
                                   ud.elementType === "mb_track" ||
-                                  ud.elementType === "mb_contact_element" ||
                                   ud.elementType === "mb_arrow" ||
                                   ud.elementType === "mb_arrow_label" ||
                                   ud.elementType === "mb_contact_label");
